@@ -1,0 +1,75 @@
+A couple simple things you might want to know if you are doing a translation for Aequus (Or most mods really)
+
+Requirements: Knowing english so you can read and translate the in game text
+
+Other Important Info:
+
+en-US = English
+de-DE = German
+zh-Hans = Chinese (Simplified)
+es-ES = Spanish
+pt-BR = Portugese
+# All of the languages below do not have a single translation
+it-IT = Italian
+fr-FR = French
+ru-RU = Russian
+pl-PL = Polish
+
+Try to do translations for major updates, because it's a bit annoying to do translations for every minor update which might add a couple extra language values here and there
+
+############################################################
+
+The first thing you will notice is that there are weird pieces of text with an = sign
+The first two words on every line is the key (They can techincally be longer but I don't think I have gone past 2 words per key)
+
+
+NPCName.Omegastarite=
+
+NPCName.OmegaStarite is the key, it is quite easy to see that this means the name of the NPC interally called "OmegaStarite"
+the text after the = is the actual language value
+
+NPCName.OmegaStarite=Omega Starite
+(It is important to not add a space before or after the equals sign. Even though it would be easy to fix if you do that, it's just a waste of time for me and you)
+Omega Starite is the text you will see in game, so lets change that.
+
+NPCName.OmegaStarite=Dumb Blue Spheres Boss
+Dumb Blue Spheres Boss will now become Omega Starite's name. Congratulations.
+
+############################################################
+
+Another thing you should watch for is curly braces with a $ {$}, these are normally language commands which tell the game 
+to fetch a language value from somewhere else and put it there. 
+{$Mods.AQMod.NPCName.OmegaStarite} would fetch the name of Omega Starite in the proper language
+
+{0} or {1} or {2}, ect... are values which get replaced. So if I write
+{0} is the number of enemies on screen
+
+and set it to the number of enemies on screen (example: 20 enemies)
+20 is the number of enemies on screen
+
+or
+
+{0} went too high in space
+
+and set it to the name of a player {example name: Dylan}
+Dylan went too high in space
+
+{0} allows me to dynamically change the text. So you shouldn't replace those if you are doing a translation.
+
+(TL;DR The only things that {0} should mean is a number, or a name of something)
+
+############################################################
+
+There are many puns and plays on words, there are also many English phrases which might not translate well into other languages.
+
+So for something like "Magmalbulbia" You should probably split it into "Magma" and "Bulb"
+and then find a clever combination of the two which would work in the language
+
+Other words like "Bossrushium" don't really work well in other languages, so you can change them up in order to fit better
+so something like "Test of Endurance" or whatever would be a good alternative
+
+(TL;DR don't be afraid to change things if they don't work in a language)
+
+############################################################
+
+That should hopefully be enough info for anyone who wants to do a translation, cya!
