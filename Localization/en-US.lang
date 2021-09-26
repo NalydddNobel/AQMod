@@ -1,0 +1,637 @@
+﻿##################################################################################
+# Common																		 #
+##################################################################################
+# Armor Set Bonuses
+Common.ArmorSetBonus_Arachnotron=On a true melee critical hit you gain greatly increased stats for a short while\nWhen the effect activates you gain the potion sickness debuff\nThis effect can only trigger if you don't have the potion sickness debuff
+Common.ArmorSetBonus_Lightbulb=Hunter and dangersense is always active
+#
+# Config Names
+Common.ConfigName_AQConfigClient=Client Config
+Common.ConfigName_AQConfigServer=Server Config
+#
+# Config Headers
+Common.ConfigHeader_Visuals=Visuals
+Common.ConfigHeader_Misc=Misc
+Common.ConfigHeader_World=World
+Common.ConfigHeader_Debug=Debug
+#
+# Config Values
+# (Client Config)
+Common.Config_DrawSpotlights=Draw Spotlights
+Common.Config_EffectQuality=Effect Quality
+Common.Config_EffectIntensity=Effect Intensity
+Common.Config_LoadItemOverlays=Load Item Overlays
+Common.Config_BackgroundStarites=Background Starites
+Common.Config_MapBlipColor=Map Blip Color
+Common.Config_ShowCompletedAnglerQuestsCount=Show Completed Angler Quests Count
+Common.Config_ShowCompletedRobsterQuestsCount=Show Completed Robster Hunts Count
+Common.Config_CosmicEnergyAlt=Cosmic Energy (Alt Texture)
+Common.Config_MarkerMapUIType=Marker Map UI Type
+# (Server Config)
+Common.Config_EvilProgressionLock=Evil Progression Lock
+Common.Config_EvilProgressionLockTooltip=Ebonstone, Crimstone, Shadow Orbs and Crimson Hearts can no longer be destroyed by explosives
+Common.Config_TrailShader=Enable Trail Shaders
+Common.Config_ScrollShader=Enable Scroll Shaders
+Common.Config_HypnoShader=Enable Hypno Shaders
+Common.Config_OutlineShader=Enable Outline Shaders
+Common.Config_ScreenDistoryShader=Enable Screen Distort Shaders
+Common.Config_AprilFools=April Fools
+Common.Config_DebugCommand=Debug Command (/ncall)
+# Eightball
+Common.EightballAnswer0=Yes
+Common.EightballAnswer1=My sources say no
+Common.EightballAnswer2=It is certain
+Common.EightballAnswer3=It is decidedly so
+Common.EightballAnswer4=Without a doubt
+Common.EightballAnswer5=Yes definitely
+Common.EightballAnswer6=You may rely on it
+Common.EightballAnswer7=As I see it yes
+Common.EightballAnswer8=Most likely
+Common.EightballAnswer9=Outlook good
+Common.EightballAnswer10=Signs point to yes
+Common.EightballAnswer11=Don't count on it
+Common.EightballAnswer12=My reply is no
+Common.EightballAnswer13=Outlook not so good
+Common.EightballAnswer14=Very doubtful
+Common.EightballAnswer15=Reply hazy try again
+Common.EightballAnswer16=Ask again later
+Common.EightballAnswer17=Better not tell you now
+Common.EightballAnswer18=Cannot predict now
+Common.EightballAnswer19=Concentrate and ask again
+Common.EightballAnswer20=Nothing is displayed on the Celestial 8-Ball
+#
+Common.EightballMisc0=Rain rain go away
+Common.EightballMisc1=Is your favorite number {0}?
+Common.EightballMisc2=GlimmerItem
+Common.EightballMisc3=Balls
+Common.EightballMisc4=Massive Ones.
+Common.EightballMisc5=Jimbo sometimes you make me feel internal pain
+Common.EightballMisc6=What doth life
+#
+# World Gen text
+Common.RandomStructures=Generating Random Structures...
+Common.RandomStructures_TikiChest=Generating Random Structures... Tiki Chest
+Common.RandomStructures_NobleMushrooms=Generating Random Structures... Noble Mushrooms
+Common.RandomStructures_CandelabraTraps=Generating Random Structures... Candelabra Traps
+Common.RandomStructures_ExoticCoralBlotches=Generating Random Structures... Exotic Coral Blotches
+Common.OceanRavines=Ocean Ravines
+Common.RareStructures=Generating Rare Structures...
+#
+# Recipe Groups
+Common.RecipeGroup_AnyNobleMushroom=Any Noble Mushroom
+Common.RecipeGroup_AnyEnergy=Any Energy
+#
+# Robster
+Common.RobsterChat0=There is a reason I don't like other lobsters... it's because my own brother betrayed me.
+Common.RobsterChat1=Do you know what I have been through?
+Common.RobsterChat2=The floor below me seems to be glowing... this feels like reversed fog.
+Common.RobsterChat3=Starites can be such a pain I tell you, atleast they make for good cereal.
+Common.RobsterChat4=There's this sword I saw somewhere in the distance. I wonder what happens if someone tried to touch it...
+Common.RobsterChat5=Y'know, I was never a fan of horror movies and this is absolutely freaking me out.
+Common.RobsterChat6=I saw a suspicious moth wearing a blue cloak, looked a bit like a cultist. It told me that Mothron stole a powerful piece of equipment. I am not gonna try to kill one of those giant Moths though.
+Common.RobsterChat7=Blood Moons were very scary when sailing through the ocean. I don't know how many Zombie Mermen our crew has killed.
+Common.RobsterChat8=Tell those little eye flappers I said 'hi'.
+Common.RobsterChat9=I was fishing at the lake tonight and got ambushed by an anthropomorphic shark. Ugly thing I tell you.
+Common.RobsterChat10=I was fishing at the lake tonight and got ambushed by a giant red eel. Ugly thing I tell you.
+Common.RobsterChat11=I once dared {0} to fish during the blood moon. He caught this massive nautalis, I actually felt afraid.
+Common.RobsterChat12=Whoever gave me this hat forgot to make it fit me... I can't see a thing!
+Common.RobsterChat13=I feel really dumb that I forgot my own name. How would anyone even do that?
+Common.RobsterChat14=Thanks for finding my card. It reminded me of how much I love ripping people off and stealing their things.
+#
+Common.RobsterExtraReward0=Thanks for doing that for me, I don't normally ask people to do stuff that often. Take this {$ItemName.GoldenCrate} as an extra.
+Common.RobsterExtraReward1=Heres some extra stuff as another thank you.
+#
+Common.RobsterStoryHunt0=My brother, Snobster, betrayed me when I was a small child. I want you to find him and bring him to me alive. I heard something about Snobster living in the ocean so you could start there. If you can't find him on the ocean floor maybe try fishing him up?
+Common.RobsterStoryHuntComplete0=THIS ISN'T SNOBSTER! WHAT DO YOU MEAN THIS IS SNOBSTER? THIS IS JUST A SLIME LOBSTER- AGH okay fine, I guess I shouldn't ask random people to find my brother so I will tell you to do something more reasonable.
+Common.RobsterStoryHunt1=When I used to be a pirate, I had to have a pirate registration card so that the crew knew who I was and what pirate crew I was a part of. I lost it somewhere in the ocean, it's probably lying on the ground blending in with the shells and starfish. If you can't find it on the ocean floor maybe try fishing it up?
+Common.RobsterStoryHuntComplete1=Thanks for finding my pirate registration card... wait. My name is Robster? I didn't know that, I-I guess I should tell everyone that my name isn't actually {0}...
+#
+Common.RobsterRandomHunt0=I saw someone with a very special {0}. I want you to steal it from them for me
+Common.RobsterCantDoRandomHunt=I don't have anything for you to do.
+Common.RobsterSawInSomeonesHouse=I think I saw it in {0}'s house.
+Common.RobsterRandomHuntComplete0=You got it, very nice. I bet they didn't suspect a thing.
+#
+Common.RobsterHunt=Hunt
+Common.RobsterQuitHunt=Quit Hunt
+Common.PressHuntToContinue=(Press 'Hunt' again to continue)
+Common.RobsterQuitHuntQuestion=Do you really want to quit this hunt?
+#
+# Other Commons
+Common.NoScrollShader=Scroll Shader is not enabled
+Common.NoHypnoShader=Hypno Shader is not enabled
+Common.NoOutlineShader=Outline Shader is not enabled
+Common.CrabSeason=Crab Season
+Common.CrabClockEnds={0} until crab season ends
+Common.CrabClockStarts={0} until crab season starts
+Common.CrabSeasonWarning=The warmth of the oceans increases...
+Common.CrabSeasonEnding=The oceans become neutral again...
+Common.GlimmerEvent=Glimmer Event
+Common.GlimmerEventWarning=A glimmer appears in the sky...
+Common.GlimmerEventEnding=The glimmer begins to fade away...
+Common.EnergyDoDrop=The energies of the world become stable...
+Common.EnergyDontDrop=The energies of the world return to chaos...
+Common.WorksInInventoryAndPiggyBank=Works in your inventory or piggy bank
+Common.UseDarts=Uses seeds and darts as ammo
+Common.FavoriteOnly=Only works when favorited
+Common.DoesntMinionTarget=Does not obey minion targetting
+Common.NotConsumable=Does not get consumed
+Common.TorchCanBePlacedInLiquids=Can be placed in liquids
+Common.ReturnToLobster=Return this to the Lobster
+Common.DedicatedItemTag=Dedicated Item
+Common.IchorDartShotgunTag=Ichor Darts spawn pre-split
+Common.NobleMushroomScent=Crabs cannot resist its scent
+Common.EnableThing=Enable {0}?
+Common.DisableThing=Disable {0}?
+Common.UnassignedKey0=Unassigned Key
+Common.UnassignedKey1=an unassigned key
+Common.UnassignedKey2=unassigned key
+Common.AwakenedOmegaStarite=Omega Starite has awoken!
+Common.AwakenedCrabson=Jerry Crabson has awoken!
+##################################################################################
+# Item Names																	 #
+##################################################################################
+# Accessories #
+###############
+# Amulets
+ItemName.GhostAmulet=Ghost Amulet
+ItemName.SpiritAmulet=Spirit Amulet
+ItemName.WyvernAmulet=Wyvern Amulet
+ItemName.VoodooAmulet=Voodoo Amulet
+# Fishing Seals
+ItemName.CopperSeal=Copper Seal
+ItemName.SilverSeal=Silver Seal
+ItemName.GoldSeal=Gold Seal
+ItemName.PlatinumSeal=Platinum Seal
+# Masks
+ItemName.MothmanMask=Mothman Mask
+# Shields
+ItemName.TargeoftheBlodded=Shield of the Blooded
+# Shoes
+ItemName.MoonShoes=Moonwalker
+# Shop Cards
+ItemName.BlurryDiscountCard=Blurry Discount Card
+ItemName.BusinessCard=Business Card
+# Wings
+ItemName.SparrowWings=Sparrow Wings
+#
+# Other Accessories
+#
+ItemName.Breadsoul=Breadsoul
+ItemName.CelesteTorus=Celeste Torus
+ItemName.Dreadsoul=Dreadsoul
+ItemName.RustyKnife=Rusty Knife
+ItemName.Terraroot=Terraroot
+ItemName.Thunderbird=Thunderbird
+ItemName.Ultranium=Hyper Crystal
+##############
+# Boss Items #
+##############
+# Crabson
+ItemName.Crabsol=Crabsol
+ItemName.CrabsonBag=Treasure Bag
+ItemName.MushroomClam=Mushroom Clam
+ItemName.CrabsonTrophy=Jerry Crabson Trophy
+ItemName.CrabsonMask=Jerry Crabson Mask
+# Omega Starite
+ItemName.DragonBall=Dragon Ball
+ItemName.MythicStarfruit=Mythic Starfruit
+ItemName.NovaFruit=Nova Fruit
+ItemName.OmegaStariteMask=Omega Starite Mask
+ItemName.OmegaStariteTrophy=Omega Starite Trophy
+ItemName.StariteBag=Treasure Bag
+ItemName.UltimateStarfruit=Ultimate Starfruit
+ItemName.UltimateSword=Ultimate Sword
+##############
+# Buff Items #
+##############
+ItemName.Baguette=Baguette
+ItemName.NeutronJuice=Neutron Juice
+ItemName.SuspiciousLookingSteak=Suspicious Looking Steak
+ItemName.SpicyEel=Spicy Eel
+# Staffs
+ItemName.BatonofNightVision=Baton of Night Vision
+ItemName.BatonofRage=Baton of Rage
+ItemName.BatonofWrath=Baton of Wrath
+ItemName.StaffofNightVision=Staff of the Night Owl
+ItemName.StaffofIronskin=Staff of Ironskin
+ItemName.StaffofRegeneration=Staff of Regeneration
+ItemName.StaffofSwiftness=Staff of Swiftness
+ItemName.StaffofWaterBreathing=Staff of Water Breathing
+# Other Buffs Items
+ItemName.MysteryGrail=Mystery Grail
+ItemName.OpposingPotion=Opposing Potion
+ItemName.PotionofBossrushium=Encore Potion
+ItemName.SpoilsPotion=Spoils Potion
+##############
+# Equipables #
+##############
+# Armor
+ItemName.HermitShell=Hermit Shell
+ItemName.StriderPalms=Strider Palms
+ItemName.ArachnotronRevvers=Arachnotron Revvers
+ItemName.ArachnotronRibcage=Arachnotron Ribcage
+ItemName.ArachnotronVisor=Arachnotron Visor
+ItemName.DartTrapHat=Dart Trap Hat
+ItemName.LightbulbBreastplate=Lightbulb Breastplate
+ItemName.LightbulbGreaves=Lightbulb Greaves
+ItemName.LightbulbHelmet=Lightbulb Helmet
+ItemName.SuperDartTrapHat=Super Dart Trap Hat
+# Barbs
+ItemName.CrabBarb=Crab Barb
+ItemName.CrimtaneBarb=Crimtane Barb
+ItemName.DemoniteBarb=Demonite Barb
+ItemName.MetalBarb=Metal Barb
+# Map
+ItemName.CosmicTelescope=Cosmic Marker
+ItemName.DungeonMap=Bone Marker
+ItemName.LihzahrdMap=Lihzahrd Marker
+ItemName.RetroGoggles=Retro Marker
+# Spelunker
+ItemName.MinersFlashlight=Miner's Flashlight
+ItemName.Extractor=Extractor
+########
+# Misc #
+########
+# Energies
+ItemName.OrganicEnergy=Organic Energy
+ItemName.DemonicEnergy=Demonic Energy
+ItemName.CosmicEnergy=Cosmic Energy
+ItemName.AtmosphericEnergy=Atmospheric Energy
+ItemName.AquaticEnergy=Aquatic Energy
+ItemName.UltimateEnergy=Ultimate Energy
+# Bait
+ItemName.CursedPopper=Cursed Popper
+ItemName.IchorPopper=Ichor Popper
+ItemName.MysticPopper=Mystic Popper
+# Rods
+ItemName.CrabRod=Crab Rod
+ItemName.BeeRod=Buzzrod
+# Fish
+ItemName.Blobfish=Blobfish
+ItemName.Fizzler=Fizzler
+ItemName.Nessie=Nessie
+ItemName.UltraEel=Ultra Eel
+ItemName.Combfish=Combfish
+ItemName.LarvaEel=Larva Eel
+# Quest Fish
+ItemName.WaterFisg=Water Fish
+ItemName.Crabdaughter=Crabdaughter
+# Quest Robster
+ItemName.CrabCard=Crab Card
+ItemName.Snobster=Snobster
+ItemName.JeweledChalice=Jeweled Chalice
+ItemName.JeweledCandelabra=Jeweled Candelabra
+ItemName.JeweledChandelier=Jeweled Chandelier
+ItemName.JeweledChair=Jeweled Chair
+ItemName.JeweledTable=Jeweled Table
+# Other Misc
+ItemName.BloodshedPotion=Bloodshed Potion
+ItemName.CrabShell=Crab Shell
+ItemName.CrabClock=Crab Clock
+ItemName.Lightbulb=Lightbulb
+ItemName.Molite=Molite
+ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
+ItemName.NuclearFeather=Nuclear Feather
+ItemName.PotionofContainers=Containers Potion
+ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
+ItemName.Qi=Qi
+ItemName.UnityMirror=Unity Mirror
+#############
+# Placeable #
+#############
+# Banners
+ItemName.StariteBanner=Starite Banner
+ItemName.SuperStariteBanner=Super Starite Banner
+ItemName.HyperStariteBanner=Hyper Starite Banner
+# Mushrooms
+ItemName.ArgonMushroom=Argon Mushroom
+ItemName.KryptonMushroom=Krypton Mushroom
+ItemName.XenonMushroom=Xenon Mushroom
+# Torches
+ItemName.ExoticRedTorch=Exotic Red Torch
+ItemName.ExoticGreenTorch=Exotic Green Torch
+ItemName.ExoticBlueTorch=Exotic Blue Torch
+ItemName.UltrabrightRedTorch=Ultrabright Red Torch
+ItemName.UltrabrightGreenTorch=Ultrabright Green Torch
+ItemName.UltrabrightBlueTorch=Ultrabright Blue Torch
+# Walls
+ItemName.MoonlightWall=Moonlight Wall
+# World Interactors
+ItemName.GlimmeringStatue=Glimmering Statue
+# Other Placeables
+ItemName.ExoticCoral=Exotic Coral
+ItemName.ExoticStarfish=Exotic Starfish
+ItemName.FishingCraftingStation=Fishing Utility Crafting Station
+ItemName.GoreNestItem=Gore Nest
+ItemName.PlaceableShadowOrb=Shadow Orb (Placeable)
+ItemName.PlaceableCrimsonHeart=Crimson Heart (Placeable)
+############
+# Vanities #
+############
+ItemName.MonoxideHat=Monoxide Hat
+ItemName.FishyFins=Fishy Fins
+ItemName.CelesitalEightBall=Celestial 8-Ball
+###########
+# Weapons #
+###########
+# Magic
+# Staffs
+ItemName.Bubbler=Bubbler
+ItemName.GebulbaStaff=Gebulba Staff
+ItemName.MagicWand=Magic Wand
+ItemName.MagmalbulbiaStaff=Magmalbulbia Staff
+ItemName.Narrizuul=Narrizuul
+ItemName.ScarletSea=Scarlet Sea
+ItemName.SeltzerRain=Seltzer Rain
+# Tomes
+ItemName.PentalScythe=Pental Scythe
+# Melee
+# Flails
+ItemName.JerryClawFlail=Jerry Claw
+# Spears
+ItemName.ArgonSpear=Argon Spear
+ItemName.HorizonSkies=Horizon Skies
+# Yoyos
+ItemName.Aphrodite=Aphrodite
+ItemName.Venus=Venus
+ItemName.StariteSpinner=Starite Spinner
+# Other Melee
+ItemName.CrimsonHellSword=Burnterizer 
+ItemName.Galactium=Galactium
+ItemName.KryptonSword=Krypton Sword
+ItemName.StariteBlade=Starite Blade
+ItemName.VineSword=Vine Sword
+ItemName.XenonBasher=Xenon Basher
+# Ranged
+# Bows
+ItemName.CinnabarBow=Cinnabar Bow
+# Dart
+ItemName.SpiralingTwilight=Spiraling Twilight
+ItemName.Sprinkler=Sprinkler
+ItemName.StarPhish=Star Phish
+# Pistols
+ItemName.Raygun=Raygun
+ItemName.SpaceShot=Space Shot
+# Summon
+# Sentry
+ItemName.LotusStaff=Lotus Staff
+# Other Summon
+ItemName.MonoxiderStaff=Monoxider Staff
+ItemName.StariteStaff=Starite Staff
+# Other Item Names
+ItemName.ATM=ATM
+ItemName.Globebulb=Globebulb
+ItemName.SpectralLens=Spectral Lens
+ItemName.SpectreSoul=Spectre Soul
+#
+#
+##################################################################################
+# Item Tooltips																	 #
+##################################################################################
+# Accessories
+# Amulets
+ItemTooltip.GhostAmulet=Prevents Ghost spawns in singleplayer
+ItemTooltip.SpiritAmulet=Prevents Dungeon Spirit spawns in singleplayer
+ItemTooltip.WyvernAmulet=Prevents Wyvern spawns in singleplayer
+ItemTooltip.VoodooAmulet=Prevents Voodoo Demon spawns in singleplayer
+# Fishing Seals
+ItemTooltip.CopperSeal=Fishing a crate will bless you with 30 seconds of the crate potion buff
+ItemTooltip.SilverSeal=Fishing anything will bless you with 10 seconds of the fishing potion buff
+ItemTooltip.GoldSeal=Fishing anything that can be sold for 1 gold blesses you with 1 minute of the sonar potion buff
+ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
+# Masks
+ItemTooltip.MothmanMask=Your crit chance increases by 10% and your damage increases by 30%\nWhen below max life your crit chance and damage gets decreased instead
+# Shields
+ItemTooltip.TargeoftheBlodded=Increases armor penetration by 2\nAllows the ability to slide down walls\nImproved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
+# Shoes
+ItemTooltip.MoonShoes=Allows slow fall\nHold down to revert to regular gravity and hold up to lower gravity even more\n'HE-HE'
+# Shop Cards
+ItemTooltip.BlurryDiscountCard=Shops have slightly lower prices\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'It's hard to read but they will give you a discount anyways'
+ItemTooltip.BusinessCard=Shops have even lower prices\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'Consider everything a business expense'
+# Wings
+ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
+# Other Accessories 
+ItemTooltip.Breadsoul=Enemies no longer drop hearts and instead drop spectre souls\nSpectre souls drop more commonly when you are lower on health and they heal you by 30\nSpectre Souls don't heal instantly
+ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe radius speed damage and knockback are all determined by various stats\nIncreases flight time by 2 seconds
+ItemTooltip.Dreadsoul=Upon death enemies will release 3 spectre souls which will target enemies of the same type
+ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP when you die with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
+ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
+ItemTooltip.Thunderbird=Gives you a thunderous extra jump that refreshes every 2 seconds you must be moving in a direction to use the jump\nEnemies below you have a chance to get struck by lightning\nThe lightning becomes more powerful the lower your life
+ItemTooltip.Ultranium=Increases melee critical strike chance by 10%\nYour attacks inflict sparkling\nTrue melee crits on enemies channels the damage to the closest boss
+##############
+# Boss Items #
+##############
+# Crabson
+ItemTooltip.Crabsol=Only the strongest of people can wield this weapon in honor
+ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
+ItemTooltip.MushroomClam=Summons Jerry Crabson at the beach
+# Omega Starite
+ItemTooltip.DragonBall=Summons a micro starite
+ItemTooltip.MythicStarfruit=Begins the Glimmer Event
+ItemTooltip.NovaFruit=Summons {$Mods.AQMod.NPCName.OmegaStarite} at night\n{$Mods.AQMod.Common.NotConsumable}
+ItemTooltip.OmegaStariteTrophy='You have no idea whats in store for you!'
+ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
+ItemTooltip.UltimateStarfruit=Left click summons {$Mods.AQMod.NPCName.OmegaStarite} at night\nRight click toggles the Glimmer Event\n{$Mods.AQMod.Common.NotConsumable}
+ItemTooltip.UltimateSword=When you hit an enemy you gain brief immune frames and the ultima buff\nEnemies that have 400 HP or less explode into ultima flares
+##############
+# Buff Items #
+##############
+# Foods
+ItemTooltip.Baguette='Cake is just spongy bread'
+ItemTooltip.NeutronJuice='Weighs millions of tons... still lighter than putting a safe in a safe'
+ItemTooltip.SuspiciousLookingSteak=Gives multiple buffs\n'Unfunny'
+ItemTooltip.SpicyEel=Greatly increases speed
+# Staffs
+ItemTooltip.BatonofNightVision=Provides night vision for yourself and nearby players
+ItemTooltip.BatonofRage=Enrages yourself and nearby players
+ItemTooltip.BatonofWrath=Ignites the wrath in yourself and nearby players
+ItemTooltip.StaffofIronskin=Provides ironskin for yourself and nearby players
+ItemTooltip.StaffofNightVision=Provides night vision for yourself and nearby players
+ItemTooltip.StaffofRegeneration=Provides life regeneration for yourself and nearby players
+ItemTooltip.StaffofSwiftness=Provides swiftness for yourself and nearby 
+ItemTooltip.StaffofWaterBreathing=Provides gills for yourself and nearby players
+# Other Buffs Items
+ItemTooltip.MysteryGrail=Gives you a random buff
+ItemTooltip.OpposingPotion=Makes some enemies drop opposing loot
+ItemTooltip.PotionofBossrushium=Bosses respawn when defeated
+ItemTooltip.SpoilsPotion=Non-Boss Enemies drop 2 times more loot
+##############
+# Equipables #
+##############
+# Armor
+ItemTooltip.HermitShell=Increases your defense the lower your speed
+ItemTooltip.StriderPalms=Increases minion damage by 10%\nIncreases the stats of the Strider Hook
+ItemTooltip.ArachnotronRevvers=Allows you to run super fast and grants immunity to fire blocks\nIncreases your max number of minions
+ItemTooltip.ArachnotronRibcage=Gives you damaging spider arms\nIncreases melee speed by 10% and damage reduction by 5%\nIncreases your max number of minions
+ItemTooltip.ArachnotronVisor=Increases melee crit chance by 5% and summon damage by 10%\nGives you night vision
+ItemTooltip.DartTrapHat=Shoots poisioned darts while you are on the ground\nIncreases summon damage by 5%
+ItemTooltip.LightbulbGreaves=Increases your max number of minions
+ItemTooltip.LightbulbHelmet=Slightly increases mana regeneration\nYou faintly emit light
+ItemTooltip.SuperDartTrapHat=Shoots poisioned darts while you are on the ground\nIncreases summon damage by 10%\nIncreases your max number of minions
+# Barbs
+ItemTooltip.CrabBarb=Inflicts poison when your grappling hook contacts an NPC
+# Map
+ItemTooltip.CosmicTelescope=Shows the center of the Glimmer Event on the map
+ItemTooltip.DungeonMap=Shows the location of the Dungeon if it has already been disovered\nYou can teleport to the dungeon using a Unity Mirror
+ItemTooltip.LihzahrdMap=Shows the location of the Lihzahrd Altar if it has already been disovered or Plantera has been defeated\nYou can teleport to the Lihzahrd Altar using a Unity Mirror if Plantera has been defeated
+ItemTooltip.RetroGoggles=Shows enemies as a pink blip on the fullscreen map
+# Spelunker
+ItemTooltip.MinersFlashlight=Exposed treasure shimmers when shown by the flashlight
+ItemTooltip.Extractor=You gain immunity to suffocation\nFalling Silt and Slush now deal x4 less damage\nIf the accessory is not marked as hidden:\nYou obtain the ability to veinmine silt slush and desert fossils\nExtracting something at the Extractinator will show your extractination count 
+########
+# Misc #
+########
+# Cursor Dyes
+ItemTooltip.CursorDyeRemover=Removes any applied cursor dye
+# Bait
+ItemTooltip.CursedPopper=Increases bait power by 30% when in the corruption
+ItemTooltip.IchorPopper=Increases bait power by 35% when in the crimson
+ItemTooltip.MysticPopper=Increases bait power by 25% when in the hallow
+# Rods
+ItemTooltip.BeeRod=Throws flying bee bobbers\nThrows 3 lines when using the Hive Pack
+# Fish
+ItemTooltip.Fizzler=It's corrupted and glimmering
+ItemTooltip.UltraEel=The offspring of an ancient starite species
+ItemTooltip.Combfish='The scales of this fish are not edible'
+ItemTooltip.LarvaEel=Gives you 3 minutes of honey and 60 seconds of potion sickness
+# Quest Robster
+ItemTooltip.CrabCard={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.Snobster={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.JeweledChalice={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.JeweledCandelabra={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.JeweledChandelier={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
+# Other Misc
+ItemTooltip.BloodshedPotion=Teleports you to the location of your most recent death
+ItemTooltip.CrabShell=It's oddly mishapen
+ItemTooltip.CrabClock=Speeds up ocean's natural fluctuations
+ItemTooltip.Molite=Can be filled with a potion
+ItemTooltip.NuclearFeather=Created from nuclear fusion\n'They say it's from the flawless wings of Yatagaratsu'
+ItemTooltip.PotionofContainers=Teleports you to a random chest in the world
+ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
+ItemTooltip.Qi=A mystical energy created by extreme philosophical forces
+ItemTooltip.UnityMirror=Allows you to teleport to unity map points\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}
+#############
+# Placeable #
+#############
+# Banners
+ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
+ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
+ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
+# Mushrooms
+ItemTooltip.ArgonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
+ItemTooltip.KryptonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
+ItemTooltip.XenonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
+# Torches
+ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+# Walls
+ItemTooltip.MoonlightWall=NPCs in front of the wall will think it's night
+# World Interactors
+ItemTooltip.GlimmeringStatue=Right click at night to toggle the Glimmer Event's visuals\nIf the Glimmer Event is already active it will teleport the sword to the statue
+# Other Placeables
+ItemTooltip.FishingCraftingStation=Used to craft special fishing items
+############
+# Vanities #
+############
+# Cursor Dyes
+ItemName.CursorDyeRemover=Cursor Dye Remover
+ItemName.HealthCursorDye=Health Cursor Dye
+ItemName.ManaCursorDye=Mana Cursor Dye
+ItemName.SwordCursorDye=Sword Cursor Dye
+# Dyes
+ItemName.EnchantedDye=Enchanted Dye
+ItemName.ScrollDye=Scroll Dye
+# Other Vanities
+ItemTooltip.MonoxideHat='Became a vanity item due to popular demand'
+ItemTooltip.CelesitalEightBall=Right click to use as a normal 8-Ball\nHas special text depending on the world state
+###########
+# Weapons #
+###########
+# Magic
+# Staffs
+ItemTooltip.Bubbler=Shoots a constant stream of bubbles\n'The Sand Bubbler Crab will be your favorite animal because it makes balls of sand'
+ItemTooltip.GebulbaStaff=Shoots bouncy slimeballs\n'Boing!'
+ItemTooltip.MagicWand=Shoots a bolt towards your cursor which explodes into horizontal waves
+ItemTooltip.MagmalbulbiaStaff=Shoots firey magmaballs that explode off tiles\n'EXPLOSION! EXPLOSION! EXPLOSION!'
+ItemTooltip.Narrizuul=A relic birthed in an alternate universe\n'Smells like roses'
+ItemTooltip.ScarletSea=Shoots 2 blood orbs which follow your cursor\nWhen they get too close to the cursor they shimmer and stop following\nOnly 10 blood orbs can follow the cursor at once
+ItemTooltip.SeltzerRain=Shoots 5 fizzy orbs which follow your cursor for a short while\nThe fizzy orbs soon start fleeing from your cursor
+# Tomes
+ItemTooltip.PentalScythe=Shoots firey demon scythes that target your enemies
+# Melee
+# Flails
+ItemTooltip.JerryClawFlail='Feels oily'
+# Spears
+ItemTooltip.ArgonSpear=Redirects itself to your cursor
+ItemTooltip.HorizonSkies=Shoots lines of energy\n'Are you readyayayayayyayayayaya'
+# Yoyos
+ItemTooltip.Aphrodite=Has a chance to give enemies lovestruck
+ItemTooltip.Venus=Has a chance to poison enemies
+# Other Melee
+ItemTooltip.Eyeslash=Shoots mini servents of cthulhu
+ItemTooltip.Galactium=Rains glimmer stars from the sky
+ItemTooltip.XenonBasher=Hitting enemies will create xenon spores
+# Ranged
+# Dart
+ItemTooltip.SpiralingTwilight={$Mods.AQMod.Common.UseDarts}
+ItemTooltip.Sprinkler={$Mods.AQMod.Common.UseDarts}
+ItemTooltip.StarPhish={$Mods.AQMod.Common.UseDarts}
+# Pistols
+ItemTooltip.Raygun=Converts most bullets into a ray
+ItemTooltip.SpaceShot=Shoots a star which then shoots bullets
+# Summon
+# Sentry
+ItemTooltip.LotusStaff=Summons a magma lotus to fight for you\n{$Mods.AQMod.Common.DoesntMinionTarget}
+# Other Summon
+ItemTooltip.MonoxiderStaff=Summons a monoxide finch to fight for you\n{$Mods.AQMod.Common.DoesntMinionTarget}
+ItemTooltip.StariteStaff=Summons 3 starites to fight for you
+# Other Item Tooltips
+ItemTooltip.ATM=Summons a flying safe to store your items\nPlace in your Safe in order to have it always summoned
+ItemTooltip.SpectralLens=Toggles energy drops
+ItemTooltip.Globebulb=Speeds up time for a moment
+# Buffs
+BuffName.Spoiled=Spoiled
+BuffDescription.Spoiled=Enemies drop twice as much loot\n'You are such a spoiled brat!'
+BuffName.MicroStarite=Micro Starite
+BuffDescription.MicroStarite=The smallest solar system imaginable
+BuffName.Monoxider=Monoxider
+BuffDescription.Monoxider=The monoxider will fight for you
+BuffName.StariteMinion=Starite
+BuffDescription.StariteMinion=The starite will fight for you
+BuffName.Bossrush=Encore
+BuffDescription.Bossrush=Bosses respawn when defeated
+BuffName.Ultima=Ultima
+BuffDescription.Ultima=The blade of ultima blesses you
+BuffName.SpectreHealing=Spectre Healing
+BuffDescription.SpectreHealing=You are healing at rapid speeds
+BuffName.PrimeTime=Prime Time
+BuffDescription.PrimeTime=Your endurance is greatly increased and crits are twice as likely to occur
+BuffName.Opposing=Opposing
+BuffDescription.Opposing=Enemies have a chance to drop opposing loot
+BuffName.SpicyEelBuff=Spicy Eel
+BuffDescription.SpicyEelBuff=Your speed is greatly increased
+# Projectiles
+ProjectileName.FlamingScythe=Flaming Scythe
+ProjectileName.DemonicFireball=Demonic Fireball
+ProjectileName.DemonicFireballExplosion=Demonic Fireball
+ProjectileName.NarrenBolt=Narren Bolt
+ProjectileName.OmegaRay=Omega Ray
+ProjectileName.HyperSpike=Hyper Starite Arm
+ProjectileName.OrbCollider=Omega Starite
+# NPCs
+NPCName.BloodMimic={$NPCName.Mimic}
+NPCName.Starite=Starite
+NPCName.SuperStarite=Super Starite
+NPCName.HyperStarite=Hyper Starite
+NPCName.UltraStarite=Ultra Starite
+NPCName.OmegaStarite=Omega Starite
+NPCName.Robster=Lobster
+NPCName.JerryCrabson=Jerry Crabson
+NPCName.JerryClaw=Jerry Claw
+NPCName.ArrowCrab=Arrow Crab
+NPCName.SoliderCrabs=Solider Crabs
+NPCName.HermitCrab=Hermit Crab
+NPCName.StriderCrab=Strider Crab

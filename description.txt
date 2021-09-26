@@ -1,0 +1,141 @@
+Aequus Mod is an unfinished mod made for fun. It doesn't have any serious intentions and was only created for me to mess around :)
+> Important <
+# A discord link for the mod is in the Homepage! #
+# This mod is opened sourced and assets are extractable #
+# Currently, this mod is NOT multiplayer friendly. You can still try multiplayer, but don't expect it to be stable! #
+# The wiki is currently a disaster so any help with that is appreciated! #
+>
+Currently Contains:
+172 Items
+8 Enemies
+1 Town NPC
+2 Bosses
+2 "Events"
+0 Mounts
+10 Tiles
+1 Wall
+Many bugs (ahahah)
+>
+##################
+Developer:
+##################
+>
+[c/7dd8ff:Nalyd T.] as coder, spriter, and creator of Aequus
+>
+##################
+Contributors:
+##################
+>
+[c/5dff64:# Coding]
+[c/5dff64:Woodio] for helping me learn some basic coding things (Mostly about shaders)
+[c/5dff64:turingcomplete30] for creating a really good open sourced mod that I sometimes use as refernence
+>
+[c/e8ff00:# Spriting] 
+[c/e8ff00:niker] for spriting multiple items and the arachnotron armor and giving ideas for Yin-Yang
+[c/e8ff00:FunkItOut1] for spriting Nalyd's Devwand and Narrizuul
+[c/e8ff00:Maikli Messes] for spriting the Lotus Staff and Moonwalker
+[c/e8ff00:Triangle] for spriting and giving ideas for Yin-Yang
+[c/e8ff00:Squartron] for spriting the original Organic Energy, and ideas
+[c/e8ff00:Terra212X] for spriting the Watcher, and ideas
+[c/e8ff00:Funtime_Gerd] for spriting the original sprite for his dedicated item, and creating the music for Crabson and Yin-Yang, and ideas
+[c/e8ff00:Mjoon] for spriting Drimis' sigil, and ideas
+[c/e8ff00:Pyrossal] for spriting the Mythic Star
+>
+# Translations
+[c/adefd1:Maple and Lin] for doing Chinese Translations
+Crimulian for doing some Portuguese translations
+adrianyupi for doing some Spanish translations
+Monki for doing some German translations
+# Ideas
+Xemic for ideas
+someperson for Ideas
+Slayer for Ideas
+Taco Burrito Guacamole for Ideas
+.
+>
+>
+>
+>
+>
+>
+.
+You can extract the mod for the complete changelog file
+###################
+# Current Changelog  #
+####### v1.2 #######
+.
+Added Items: 
+* Outline Dye
+* Rainbow Outline Dye
+* Simplifed Dye
+* Jerry Crabson's Trophy
+* Jerry Crabson's Mask
+* Cursed Popper
+* Ichor Popper
+* Mystic Popper
+* Fishy Fins
+* Hermit Shell
+* Strider Carapace
+* Strider Palms
+* Strider Hook
+* Burnterizer
+
+Added Enemies:
+* Hermit Crab
+* Strider Crab
+
+Fixes / Changes:
+
+(Boss Checklist)
+- Added Omega Starite's Mask to its collectables 
+
+- Added a secret sound effect to the Ultimate Sword...
+
+- Added some extra safety measures to things that use Vertex Trails
+- Fixed a slight error with the Narren Bolt's trail when Trailshaders are disabled
+- Fixed a mod conflict with Shader Lib
+- Slightly changed the visual effects of the Narren Bolt
+
+- Starites now have a 1/50 chance to drop Hypno Dye
+- Super Starites now have a 1/50 chance to drop Outline Dye
+- Hyper Starites now have a 1/50 chance to drop Scroll Dye
+- Arrow Crabs can now spawn outside of the water
+- Greatly nerfed the Globebulb
+- Renamed the "Potion of Bossrushium" to "Encore Potion" since Encore describes the potion better, and is easier to translate into other languages compared to "Bossrushium"
+- Added a secret to Robster that no one will see
+
+- The text that appears when the Crab Season starts and ends will now only appear when holding the Crab Clock
+- Crab Clock now drops from Crabs while Crab Season is not active
+
+- These Enemies can will no longer be effected by the Spoiled Effect:
+* Creepers (From BoC)
+* Mimics
+* Hallowed, Crimson, Corruption, and Jungle Mimics
+* Dungeon Guardians
+* Eater of World's segments
+* Present Mimics
+* Nailhead
+* The Groom 
+* The Bride
+* Ice Golems
+* Sand Elementals
+* Solar, Vortex, Nebula, and Stardust Pillars
+* Flying Dutchman
+* Goblin Summoner
+* Mothron
+* Mourning Wood
+* Pumpking 
+* Everscream
+* Sanktank
+* Ice Queen
+(Bosses and enemies from the Old Ones Army will also not have increased loot)
+####
+>
+>
+>
+>
+>
+>
+>
+>
+.

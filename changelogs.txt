@@ -1,0 +1,1301 @@
+####### v1.2 #######
+
+Added Items: 
+* Outline Dye
+* Rainbow Outline Dye
+* Simplifed Dye
+* Jerry Crabson's Trophy
+* Jerry Crabson's Mask
+* Cursed Popper
+* Ichor Popper
+* Mystic Popper
+* Fishy Fins
+* Hermit Shell
+* Strider Carapace
+* Strider Palms
+* Strider Hook
+* Burnterizer
+
+Added Enemies:
+* Hermit Crab
+* Strider Crab
+
+Fixes / Changes:
+
+- Added Omega Starite's Mask to its collectables (Boss Checklist)
+
+- Added a secret sound effect to the Ultimate Sword...
+
+- Added some extra safety measures to things that use Vertex Trails
+
+- Fixed a slight error with the Narren Bolt's trail when Trailshaders are disabled
+
+- Fixed a mod conflict with Shader Lib
+
+- Slightly changed the visual effects of the Narren Bolt
+
+- Starites now have a 1/50 chance to drop Hypno Dye
+
+- Super Starites now have a 1/50 chance to drop Outline Dye
+
+- Hyper Starites now have a 1/50 chance to drop Scroll Dye
+
+- Arrow Crabs can now spawn outside of the water
+
+- Greatly nerfed the Globebulb
+
+- Renamed the "Potion of Bossrushium" to "Encore Potion" since Encore describes the potion better, and is easier to translate into other languages compared to "Bossrushium"
+
+- Added a secret to Robster that no one will see
+
+- The text that appears when the Crab Season starts and ends will now only appear when holding the Crab Clock
+
+- Crab Clock now drops from Crabs while Crab Season is not active
+
+- These Enemies can will no longer be effected by the Spoiled Effect:
+* Creepers (From BoC)
+* Mimics
+* Hallowed, Crimson, Corruption, and Jungle Mimics
+* Dungeon Guardians
+* Eater of World's segments
+* Present Mimics
+* Nailhead
+* The Groom 
+* The Bride
+* Ice Golems
+* Sand Elementals
+* Solar, Vortex, Nebula, and Stardust Pillars
+* Flying Dutchman
+* Goblin Summoner
+* Mothron
+* Mourning Wood
+* Pumpking 
+* Everscream
+* Sanktank
+* Ice Queen
+(Bosses and enemies from the Old Ones Army will also not have increased loot)
+
+####### v1.1.14 #######
+
+Added Items:
+- Crab Clock
+- Crab Rod
+- Bee Rod
+- Comb Fish
+- Larva Eel
+- Spicy Eel
+- Hypno Dye
+
+Fixes and Changes:
+
+- Changed the color of some text
+
+- Fixed a crash regarding Robster
+
+- Fixed a text issue regarding Robster
+
+- Overhauled World Draw Layers again
+
+- Added a config option that lets you disable specific shaders
+
+- Fixed a coloring issue with the Ray Bullets shot from the Raygun
+
+New Content:
+- The Crab Season event can now naturally happen in normal gameplay
+
+####### v1.1.13 #######
+
+Added Items:
+* Xenon Basher
+* Glimmering Statue
+
+- Major Code overhaul
+
+- Added the Chinese translations by Maple And Lin (Thank you!)
+
+- Made the .lang files much more readable
+
+- Removed unused localization values
+
+- The Orb Collider should now display as "Omega Starite" when you get killed by it
+
+- Added localization values for things that should have them
+
+- Removed the .json language value reader
+
+- Removed many vanilla item changes
+
+- Made most tile items autoswing
+
+- Modified the Argon Spear
+
+- Modified the price of multiple items
+
+- Decreased the drop rate of Demonic Energy
+
+- The Energies message should now display when you defeat the Eye of Cthulhu in expert mode
+
+- Added more Robster rewards
+
+- Omega Starite now does a cool screen shake when it shoots the Omega Ray
+
+- Omega Starite can no longer be spawned using the Nova Fruit or Ultimate Starfruit during the Glimmer Event, and must be summoned using the Ultimate Sword
+
+- Spiraling Twilight now requires the Sprinker in order to craft
+
+- Exotic Torches now emit "Mist" instead of "Dust"
+
+- Buffed Frigid Twilight
+Damage: 45 -> 65
+
+- Changed Ultimate Energy's visuals
+
+- Added some visual effects to the Ultimate Sword
+
+- The Magic Wand's projectiles now ignore water
+
+- Holding a modded dye no longer makes the Special Equips vanish
+
+- The Dye slot in the Special Equips menu no longer takes the entire stack of a dye item
+
+- Mythic Starfruits can now be crafted using Crimtane Bars
+
+####### v1.1.12.6 #######
+
+- Decreased the damage of the Celeste Torus
+
+- The Celeste Torus now tells you its damage and range on its tooltip
+
+- The Arachnotron Ribcage should no longer crash the game when you die
+
+- The Celeste Torus should no longer draw on after images
+
+####### v1.1.12.4 #######
+
+Added Items:
+* Moonlight Wall
+* Fishing Utility Crafting Station
+
+- Removed the Argon Grenade
+
+- Removed the Sakhalin Bow
+
+- The reward for completing the Snobster hunt from Robster is now the Fishing Utility Crafting Station
+* It will be sold if the hunt is completed
+
+- The Suspicious Looking Steak now gives:
+Night Owl,
+Ironskin,
+Swiftness
+and Gills
+
+- The Celeste Torus should no longer be permanently aggro after Golem has been defeated
+
+- Massively overhauled the player drawing code
+
+- Fixed the recipe for the Exotic Blue Torch
+
+- Gave Noble Mushrooms a cool looking dust effect
+
+- Buffed Omega Starite's HP
+* 8750 -> 12250
+(Expert: 14000 -> 19600)
+
+- Moved Omega Starite back to hardmode (due to the buff)
+
+- Added the Starite fish to the Boss Checklist entry of the Glimmer Event
+
+####### v1.1.12.3 #######
+
+Added Items:
+* Crabdaughter
+* Molite, Fizzler, Ultra Eel, Nessie, and Blobfish, which are obtained by fishing during the Glimmer Event
+* Raygun (Omega Starite drop)
+* Exotic Starfish
+
+- Removed the Starite Swinger
+
+- Hyper Starite Arms should no longer linger after they die
+
+- The sky background should now work again
+
+- Slightly changed the Moonwalker's effect
+
+- Town NPCs now take only 10% of the damage from Omega Starite's deathray
+
+- Fixed an issue regarding Exotic Corals worldgen
+
+- Fixed some language value issues
+
+- Gave Omega Starite some sound effects
+
+- Increased the amount of light emitted from Omega Starite
+
+- Increased the speed of some of Omega Starite's projectiles
+
+- Fixed the lighting issue when Omega Starite moves too fast or goes into tiles
+
+- Increased the randomness of the background starite's movements
+
+####### v1.1.12 #######
+
+Added Items:
+* Staff of Swiftness 
+* Staff of Ironskin
+* Crab Card
+* Nuclear Feather
+* Exotic Red, Green, and Blue torches
+* Platinum Seal
+* Snobster
+* Jeweled Chalice and Jeweled Candelabra 
+* Exotic Coral
+
+Added Town NPC:
+* Lobster, sells Crabson loot and some pirate stuff, has an item hunt system
+
+- The "No Energy Drops" flag now saves
+
+- Renamed the RGB Ultrabright Torch items internally, this means they will unload
+
+- Lowered the damage of Crabson
+
+- Added Exotic Coral Splotches world gen
+
+- Increased the time between Crabson's bubbles
+
+- If you had anything in the "Life or Mana" slot, it will spawn in the player's inventory when they enter a world
+
+- The Hyper Crystal is no longer expert exclusive
+
+- Dark and Light Mummies should no longer drop Qi pre-Golem sometimes
+
+- The Opposing Potion should now no longer last forever
+
+- You can now stack Mythic Starfruit to 999
+
+- Hellbats can no longer drop Demonic Energy
+
+- Gave a value to the Scarlet Sea and Seltzer Rain
+
+- The Spectral Lens can no longer drop from the Eye of Cthulhu's Treasure Bag
+
+- Fixed an issue regarding the Glimmer Event Boss Checklist entry
+
+- Removed the crafting recipe for the Crab Barb
+
+####### v1.1.11.2 #######
+
+Added Items:
+* Extractor
+* Galactium
+* Baton of Rage
+* Baton of Wrath
+
+Added Enemy: Solider Crabs
+
+- Buffed the Ultimate Sword
+
+- Buffed the Lotus Staff
+
+- Increased the time between Crabson's bubbles
+
+- Removed the Bubbler from the Seltzer Rain and Scarlet Sea recipes
+
+- Removed the Moonwalker's Starfury buff
+
+####### v1.1.11.1 #######
+
+Added Items:
+* Wyvern Amulet
+* Voodoo Amulet
+* Ghost Amulet
+
+- Fixed a minor language value error
+
+- The Celestial 8-Ball's eightball text should now function properly
+
+- The Business Card should now work
+
+- Moved the Glimmer Event's Boss Checklist entry to be post-EoC
+
+- Removed the Crimson Vein and Shadow Fragment
+
+- The Moonwalker no longer makes Wyverns unable to spawn, it has been given to the Wyvern Amulet
+
+####### v1.1.11 #######
+
+Added Items:
+* Spoils Potion
+* Mystery Grail
+* Staff of Water Breathing
+* Omega Starite Mask
+* Crabsol
+* Crabson's Treasure Bag
+* Mushroom Clam (Crabson summon)
+* Crab Barb
+* Cinnabar Bow
+* Jerry Claw (Flail)
+* Argon Spear
+* Krypton Sword
+
+Added NPCs:
+* Arrow Crab, temporarily spawns at the beach during night
+* Jerry Crabson, a mostly unfinished boss which you fight at the beach
+* Jerry Claw, the claw of Crabson
+
+- Greatly nerfed Omega Starite
+
+- If Omega Starite gets hit by a fallen star which deals more than 200 damage, it will not split into 8 homing fallen stars which do the same amount of damage as the fallen star which hit Omega Starite
+
+- Modifed the Celestial 8-Ball
+
+- Removed the Eyeslash's weird "slash"
+
+- Added extra tooltip information to wings, maps, barbs, spelunker items, pets, mounts, minecarts, and hooks
+
+- Changed the stats of the Vine Sword
+* Dmg: 12->13
+* Use Time: 24->18
+* Kb: 4->2
+* Size ~70->~50
+* Autoswing: true->false
+
+- Nerfed the Eyeslash
+* Damage: 24->22
+* Scale: 1.5->1.2
+* Shoot Delay: 50->30
+* Velocity: 6->5
+
+- Temporarily removed the Life / Mana slot
+
+- Removed the "Watcher's Protection"
+
+- Decreased the amount of materials needed to craft Aphrodite or Venus
+
+- The Arachnotron Arms now use their own immune frames
+
+- Any projectile which is considered "Held by the player" is now considered for the Hyper Crystal's and Arachnotron's true melee effect
+
+- You now emit some sparks when the Thunderbird's jump recharges
+
+- Your feet emit some sparks when you can use the Thunderbird double jump
+
+- The Opposing buff will now make Light Mummies drop Dark Shards, and Dark Mummies drop Light Shards
+
+- Changed the order in which the Pirate NPC sells Seals and Angler Armor
+
+- The Skeleton Merchant now sells the Miner's Flashlight while the moon is in the First Quarter or Waxing Gibbous at night
+
+- Added recipes for the Staff of Night Vision and Staff of Regeneration
+
+- The Bubbler is no longer craftable
+
+- Added recipes for the Noble Mushrooms
+
+- Blood Mimics now tick up the Mimic banner counter and not the Wraith banner counter
+
+- The Bloodshed Potion should now properly consume
+
+- Removed the use of instanced mod types (pre 1.4 support basically)
+
+- Added the Dragon Ball to Omega Starite's boss checklist collectibles
+
+- You can now use the Nova Fruit or Ultimate Starfruit to summon Omega Starite during the Glimmer Event
+
+- Effect Intensity will no longer make the Glimmer Event sky gradient white
+
+- "Omega Starite has awoken!"
+
+####### v1.1.10.2 #######
+
+Added Items:
+* Spectral Lens
+
+- Added a catch texture
+
+- Removed redundant detours
+
+- Gave the Seltzer Rain a tooltip
+
+- Gave all Cursor Dyes a tooltip
+
+- All energy drops (except specific cases like Omega Starite) can no longer drop until the Eye of Cthulhu has been defeated, and can be toggled using the Spectral Lens
+
+- Added a config option to remove Item Overlays
+
+- Organic Energy no longer drops if you are inside the Lihzahrd Temple
+
+- All Energies can no longer drop if you are behind safe walls
+
+- Vertex Trails now work properly in reversed gravity
+
+####### v1.1.10 #######
+
+Added Items:
+* Sword Cursor Dye
+* Metal Barb
+* Demonite Barb
+* Crimtane Barb
+* Mythic Starfruit
+* Ultimate Starfruit
+* Dragon Ball
+* Lightbulb
+* Lightbulb Helmet
+* Lightbulb Breastplate
+* Lightbulb Greaves
+* Globebulb
+* Retro Goggles
+* Dungeon Map
+* Lihzahrd Map
+* Opposing Potion
+* Scarlet Sea
+* Seltzer Rain
+
+Removed Items:
+* Barbed Grappling Hook 
+* Barbed Ivy Whip
+* Multi Compass
+* Molten Pentstar 
+* Notch Apple
+* Notch of Flesh
+* Notch Beetle
+* Notch Emblem
+* Notch Belt
+* Platinum Circlet
+* Gold Circlet 
+* Glubby Circlet
+* Nalyd's Devwand
+
+- Destroying Krypton and Xenon Torches will now give you the proper item
+
+- Changed the color of the Rusty Knife's dedicated item text from black to green
+
+- NPCs now drop a Baguette when they die in lava (in hell)
+
+- Potion recipes should now work properly at the Alchemy Table
+
+- Thunderbird is now an accessory
+
+- Thunderbird now works underground
+
+- Increased the damage and amount of time before each strike from the Thunderbird
+
+- Removed Charms
+
+- Greatly nerfed Omega Starite
+
+- Nerfed Omega Starite even more in Normal mode
+
+- Omega Starite now drops the Cosmic Telescope
+
+- Added new equip slots
+
+- The Cosmic Telescope is now a Map Item
+
+- The Miner's Pocketlight is no longer a charm, has been renamed to "Miner's Flashlight" and is now a Spelunker equip
+
+####### v1.1.9.3 #######
+
+Added Items:
+* Red Ultrabright Torch
+* Green Ultrabright Torch
+* Blue Ultrabright Torch
+* Cursor Dye Remover
+* Health Cursor Dye
+* Mana Cursor Dye
+
+- Decreased the amount of grenades needed and obtained from the Argon Grenade recipe
+* 500 -> 25
+
+- Changed the tooltip on charms to tell the player that you must right click the charm in your inventory to unlock it
+
+- Fixed an issue regarding the Omega Starite checklist entry
+
+- Removed Apollo
+
+- Moved the Glimmer Event out of beta
+
+- The Glimmer Event now spawns farther away from the player
+* 100 blocks minimum -> 1200 blocks minimum
+
+- All noble mushrooms can now be placed on any solid / table tile
+
+- Fixed a bug where Omega Starite would go to the Omega Laser attack when trying to start the Ring attack
+
+- Added a map background for the Glimmer Event
+
+- Hyper Starite can no longer drop the Hyper Crystal in normal mode
+
+####### v1.1.9.2 ####### 
+
+HOTFIX
+
+- Fixed an issue where the map would be flooded with icons
+
+####### v1.1.9.1 #######
+
+Added Items:
+* Rusty Knife, someperson's (Basil) dedicated item
+* Eyeslash
+* Arachnotron Armor set (head, body, and leggings)
+* Magic Wand, Omega Starite drop
+* Argon Grenade, a combination of a grenade and a noble mushroom...
+* Omega Starite Trophy
+
+- Ebonstone, Crimstone, Shadow Orbs, and Crimson Hearts are now all immune to explosives (toggleable via config)
+
+- Increased the hammer power for The Breaker and Flesh Grinder
+* 55 -> 60
+
+- Omega Starite no longer drops celestial fragments when defeated post-ML
+
+- Removed the "u farded" text from the Whoopie Cushion
+
+- Removed the "'Bee is stored in the balls'" text from the Beenades
+
+- Moved the tooltip on Omega Starite's boss bag to the trophy
+
+- Omega Starite's boss checklist entry now appears
+
+####### v1.1.9.0 ########
+
+Added Items:
+* ATM, a flying safe
+
+Added Recipes:
+* Gold Bar (8) + Aquatic Energy (5) + Crab Shell (16) = Water Walking Boots
+* Piggy Bank (1) + Atmospheric Energy (5) = Money Trough
+
+- The Gold Seal is now obtainable
+
+- The Notch Emblem is now obtainable
+
+- The Monoxide Hat is now obtainable
+
+- Modified Narrizuul's visuals, projectile, and the way it shoots the projectiles
+
+- Omega Starite can no longer be harmed by traps
+
+- The Molten Pentstar no longer can randomly drop in the Underworld, and can only be dropped via NPC lava sacrifice
+
+- Overhauled Omega Starite
+
+- Fixed a visual problem regarding the Mothman Mask and creating a new player
+
+- Renamed the "Ultranium" item to "Hyper Crystal"
+
+- Removed the April Fools Ultranium text
+
+- Changed the drops of the Blood Mimic
+* The Blood Mimic can now drop the Adhesive Bandage
+
+####### v1.1.8.7 ########
+
+Added Items:
+* Multi Compass (charm)
+* Gold Seal (charm)
+* Argon, Krypton, and Xenon Mushrooms (+ a tile for them)
+* Dreadsoul (charm)
+* Starite Swinger
+* Bubbler
+* Notch Beetle
+
+- Changed the way the Dedicated Item tag looks
+
+- Added a tooltip to Beenades
+
+- Omega Starite now skips its death scene if you deal more than 200 damage as the last hit
+
+- If you leave the circle arena in Omega Starite's phase 2, it will relocate itself above you
+
+- Gave the Mothman mask a special feature when you are at max HP
+
+- The Mothman Mask is now red rarity
+
+- The Party Girl now sells whoopie cushions... at night during a full moon
+
+- The Untouchable Target now despawns projectiles
+
+- The Untouchable Target now sets the respawn timer to 1 second instead of 2 seconds
+
+- Unobtained charms are no longer "spoilerable" when hovering over them in the Charm UI
+
+- The Copper and Silver Seal now work properly
+
+- Added a maximum cap of charms you can equip, which is 5
+
+- The Notches Tracker on the bottom of the Charm UI no longer decrements when hovering over unobtained charms
+
+- Remade charm saving and loading again
+
+- Added Charm Synergies
+
+- The spheres from the Celeste Torus now knockback enemies in the correct direction
+
+- Crabs can now drop Crab Shells
+
+####### v1.1.8.6 ########
+
+- Added Items:
+* Sparrow Wings
+* Silver Seal (charm)
+* Copper Seal (charm)
+* Extractor (charm)
+* Platinum Circlet (sudo armor class for charms)
+* Golden Circlet
+* Glubby Circlet 
+* Notch Emblem 
+
+- The Eater of Worlds can now drop Shadow Fragments, making shadow orbs renewable and potentially obtainable in crimson worlds without having to world jump (if you can get corrupt seeds, that is)
+* This also applies to the Brain of Cthulhu, it now drops Crimson Veins.
+
+- The Notch Apple can no longer be crafted, but is now rarely found in underground chests
+
+- The Charm UI no longer tells you the amount of notches something uses before you have obtained the charm
+
+- Various charm things are now affected by "Charm Power"
+
+- The Undead Miner can now drop the Notch Apple
+
+- The Undead Miner can no longer drop the Miner's Pocketlight
+
+- You can no longer fish up Night Vision Helmets in the granite biome
+
+- Fixed a bug with the notch counter not updating properly
+
+- The Baguette is now sold by the Dryad after Plantera has been defeated
+
+- The Celeste Torus now has a tooltip, and has been overhauled
+
+- Increased the spawn chance for Blood Mimics
+
+- Organized and removed old entries in the lang files
+
+####### v1.1.8.5 ########
+
+- Added Items:
+* Moon Boots
+* Notch of Flesh
+* Notch Apple
+* Shadow Fragment
+* Placeable Shadow Orb
+* Crimson Vein
+* Placeable Crimson Heart
+
+- Overall code cleanup
+
+- The Hyper Starite now locks on to a direction before shooting, this should make it easier to fight
+
+- Hyper Starite arms now deal half damage
+
+- Decreased the max life and defense for Starites, Super Starites, and Hyper Starites
+
+- Decreased the damage of Star Bolts
+
+- Temporarily, Hyper Starites can now drop the Ultranium accessory
+
+- Killing a Super Starite or Hyper Starite will now flag the Glimmer Event as defeated (If the Glimmer Event is active)
+
+- Increased the drop chance for Super Starite weapons,
+* 1/5 -> 1/4
+
+- Added the Ultimate Sword to Omega Starite's Boss Checklist entry
+
+- German translations should now actually load... for the 3rd time
+
+- The Molten Pentstar effect should no longer be always applied
+
+- All grappling hooks no longer deal damage
+
+####### v1.1.8.4 ########
+
+=== Omega Starite is STILL unfinished ===
+
+- Added Items:
+* Dart Trap Hat
+* Super Dart Trap Hat
+* Celeste Torus + Expert Item for Omega Starite
+* Nova Fruit + Summons Omega Starite
+* Omega Starite's Treasure Bag
+
+- Overhauled charm saving and loading
+(This will clear your existing charm save data, sadly)
+
+- Remade the Charm UI
+
+- Added a recipe for the Wizard Hat
+* Silk, 20
+* Cosmic Energy, 1
+* Fallen Star, 10
+
+- Added a recipe for the Enchanted Sword
+* Gold Bar (and platinum), 10
+* Cosmic Energy, 1
+* Fallen Star, 10
+
+- Changed the recipe for the Cosmic Telescope
+
+- Added a recipe for the Space Shot
+
+- Added a glowmask for the Space Shot
+
+- Replaced IModGlowmask with ModGlowmaskAttribute
+
+- Increased the rarity of the Starite Spinner
+* 1 -> 2
+
+- Buffed the Starite Blade
+* Dmg: 20 -> 38
+* Size: 1.15 -> 1.25
+* Use Time: 18 -> 17
+
+- Nerfed the Potion of Bossrushium
+* Buff Time: 10m -> 9m
+
+- German Translations now properly load
+
+- Narrizuul now uses 20 mana per swing
+
+- Nerfed the Gebulba Staff
+* Dmg: 30 -> 16
+* Mana Cost: 9 -> 5
+* Velocity: 12 -> 10
+* Sell Price: 1 gold, 20 silver -> 60 silver
+
+- Changed the recipe for the Gebulba staff
+
+- The Potion of Bossrushium's recipe has been changed
+
+- The Monoxider Staff now has a glowmask
+
+- The Lotus Staff now has a glowmask
+
+- The Potion of Containers and Bloodshed Potion now don't release all of your hooks if they cannot find a proper teleporting spot
+
+- The Potion of Containers should no longer teleport you into the Lihzahrd Temple pre-Plantera, this also applys to the one tagged with the Lihzarhd Chest
+
+- Atmospheric Energy no longer spawns purple particles
+
+- Removed the ability for NPCs to sell energies
+
+- The Monoxide Hat now uses the item glowmask instead of the equipped glowmask
+
+- The Chest icon on the Potion of Containers should now be less janky
+
+- Added the mod's discord link in the mod's description
+
+- Set item.noMelee to true for multiple weapons
+
+- Added a slider for visual "quality" in the config
+
+- Removed the "Draw Spotlights" config option
+
+- Added an easier way to access the beta Glimmer Event content, through the Server Config
+
+- Fixed an issue with Server Config loading
+
+- Added Omega Starite to Boss Checklist
+
+- Omega Starite is officially now ranked as a hardmode boss, it will still be fightable pre-Hardmode
+
+- Omega Starite now gets colored properly when inflicted with ichor and such
+
+- Omega Starite now only drops the Ultimate Sword during the Glimmer Event
+
+- Monoxide Finches should now (visually) work properly when you are in reversed gravity
+
+- Reworked Miner's Pocketlight
+
+- Reworked Molten Pentstar
+
+- Reworked Breadsoul
+
+####### v1.1.8.3 ########
+
+- Added Items:
+* Staff of Regeneration
+* Spiked Shield + Blood Mimics now drop the Spiked Shield as a replacement for the Bloody Machete
+* Space Shot + It is now a drop from Super Starites
+* Terraroot
+* Barbed Ivy Whip
+* Lotus Staff
+* Ultimate Energy (does nothing for now)
+* Crab Shell (does nothing for now)
+
+- Added Omega Starite, the boss of the Glimmer Event
+
+- Fixed a bug with Starite spawns during the glimmer event
+
+- The Glimmer Event should no longer spam "A glimmer appears in the sky..." during the daytime
+
+- Decreased the stats for Super Starites and Starites
+
+- Charms should no longer reload inproperly when reloading the mod
+
+- Added a special chest that spawns near the oceans
+
+####### v1.1.8.2 ########
+
+- The Glimmer Event now get's disabled if:
+* The Pumpkin Moon is active
+* The Frost Moon is active
+* The Pillar Event is active
+
+- Fixed an unloading error that can occur if autoloading fails
+
+- Added german translations provided by Monki (Thank you!)
+
+- Fixed up the Contribution list
+
+- Ultranium now works (lul)
+
+- Starites and Super Starites now get buffed during the Glimmer Event (expert mode only)
+
+- The Super Starite Spike now uses the Starite Projectile Color of lavender
+
+- Nerfed the Starite Spinner:
+* Dmg: 24 -> 12
+* KB: 3 -> 2
+* Range: 280 -> 190
+* Speed: 14 -> 11
+* Life Time: 14 -> 9
+
+- Changed the Starite Blade
+* Dmg: 33 -> 20
+* Size: 1 -> 1.15
+* Use Time: 20 -> 18
+* Sell Price: 4 gold -> 1 gold
+* KB: 5 -> 4.5
+
+- Removed AQItemConfig.cs and just replaced it with a server config
+
+- Added something in the description asking for wiki help
+
+- Added Hyper Starite
+
+- Added the Candelabra trap
+
+- Added some random QoL thing with man eaters
+
+- Starite Projectiles can no longer inflict Distorted
+
+- Super Starites now inflict less debuffs, and the timers for the remaining ones have been halved
+
+- Fixed a very minor bug regarding the Celestial 8-Ball
+
+- Added the Barbed Grappling Hook
+
+- Added a UI background for the "CaptureValues" debug interface
+
+####### v1.1.8.1 ########
+
+- THE VERSION NUMBER HAS BEEN SHIFTED UP
+
+- Readded Starites as nighttime enemies
+
+- Increased the scale for the Ultimate sword
+1.0 -> 1.3
+
+- Decreased the use time of the Ultimate Sword (this is a buff, cause it now swings faster)
+24 -> 15
+
+- Increased the knockback of the Ultimate Sword
+2 -> 7
+
+- Striking an enemy with the Ultimate Sword now gives 10 frames of invulnerability
+
+- Striking an enemy with the Ultimate Sword now increases defense by 20, and greatly increases life regen for 10 seconds
+(Both of these effects will not be enabled through PVP like most buff-swords)
+
+- The Ultimate Sword now inflicts many debuffs with an 100% chance
+
+- The Ultimate Sword now makes enemies who have less than 400 HP explode into damaging flares upon death
+* The flares deal 10 damage
+
+- Starites now move slower in normal mode
+
+- Suspicious Looking Steak no longer gives obsidan skin, thorns, swiftness, and ironskin
+
+- Increased the trail length of the Starite
+
+- The Starite Blade is now craftable with 5 Cosmic Energy, 20 Fallen Stars, and a Lead or Iron Shortsword
+
+- The Starite Spinner is now craftable with 5 Cosmic Energy, 20 Fallen Stars, and Rally
+
+- Increased the natural spawnrate for Starites
+
+- Readded the Super Starite, which now can spawn naturally in Hardmode
+
+- Removed unused language values
+
+- Added spanish translations by adrianyupi (Thank you!)
+
+- Changed how language values are loaded
+
+- Finally renamed LangHelper to AQLang
+
+- Capture Values is now automatically enabled during multiplayer on the server
+
+- Changed a lot of things related to Language
+
+- The Untouchable Target can now be crafted using 20 silk at a loom
+- Baguette is now a 1/1000 drop from the Gingerbread Man
+- Decreased the mana cost for the Magmalbulbia Staff
+* 18 -> 11
+- Decreased the use time for the Magmalbulbia Staff (it's faster basically)
+* 34 -> 26
+
+- Added the Vine Sword
+
+- Removed the Treasure Bag tip from Moonlord's bag
+
+- Finally renamed AQLang.modKey to AQLang.Key
+
+- Removed the Treasure Bag tip from the Twin's bag
+
+- Added Ultranium
+
+- Moved AQHooks from the main folder to the Utilities folder
+
+- Changed some code stylings
+
+- Removed most of the random recipes that use energy 
+(Organic Energy is now useless again oh no)
+
+- Removed the "Treasure Bag Tooltip" config option
+
+- Removed AQNetworking.cs
+
+- Removed the ON hook for the title screen
+
+- Removed ClientPreferences.cs
+
+- The AQ_ClientPreferences.json file no longer gets created
+
+- The Charm UI now fits itself back into screen if it's offscreen
+
+- Added the Monoxider Staff
+
+- Increased the rarity of the Business Card
+* 6 -> 8
+
+- Increased the sell price of the Business Card for no reason
+* 5 gold -> 8 gold
+
+- Removed the Salpher
+
+####### v0.1.1.8 ########
+
+- Removed some debugging logs
+
+- Removed the usage of Update cycling (only updating a portion of the game every few frames)
+
+- Modifed TextureContainer.cs
+
+- Added support for No More Invasions
+
+- Fixed some language errors
+
+- The Scythes from the pental scythe now use their own immune frames
+
+- Nerfed the Pental Scythe
+* Damage: 39 -> 30
+* Mana Cost: 20 -> 24
+* Crit: 15 -> 4
+* Use Time: 36 -> 40
+
+- The Pental Scythe no longer shoots projectiles in a star for aimability
+
+- The Untouchable Target is now a Charm
+
+- All charms now sell for 50 silver
+
+- Minor improvements to the no-hit stuff
+
+- Added a visual effect and a sound for equipping and unequipping charms
+
+- Did some safe checks for Charms
+
+- The Charm UI now disappears when you die instead of staying onscreen
+
+- Treasure Bag Tooltips have been removed
+
+####### v0.1.1.7 ########
+
+- Removed recipes for the Charms
+
+- Added a UI for Charms (Has a hotkey)
+
+- Charms are no longer equipable, but now must be activated and toggled in the charm manager
+
+####### v0.1.1.6 ########
+
+- It's complicated.
+
+####### v0.1.1.5 ########
+
+- Aequus' source code is now extractable
+
+- Added the Equalized Prism
+
+- Added multiple modes for the Devwand
+
+- Venus is now a proper Yoyo item
+
+- Added the Mystia Plume
+* Temporary: Illuminant Bats drop the Mystia Plume after a single mech boss has been defeated
+
+- Added the Mothman Mask
+
+- Removed the Drimis Sigil
+
+- Removed the unused effects left in the Effects folder
+
+- Optimized the graphics player code
+
+- Merged AQPlayer and GraphicsPlayer
+
+- Added glowmask drawcode for all item use-styles
+
+- The Monoxide Hat now shows on the player select screen
+
+- Sigils and other Vanity items will no longer be crafted, but instead bought
+* Sigils are now sold by the Party Girl (until I get an idea and then sprite an NPC that will sell the Sigils)
+
+- Sigils now update properly, so now their effects should not disappear when pausing or changing application windows
+
+- Removed the Magical Bottle
+
+- Changed the recipe for Aphrodite and Venus
+
+- The Monoxide Hat now doesn't draw if you mark it invisible
+
+- The Monoxide Hat now draws on your map head
+
+- Decreased the amount of Demonic Energy needed to craft the Magmalbulbia Staff and Pental Scythe
+
+- Added the Staff of Night Vision
+* drops from Wooden Crates and Pearlwood Crates
+* found in wooden chests
+
+- Added a client config that you can use in order to manage VFX
+
+- Added Biscuiteer as a minor ideas contributor
+
+- Changed the tooltips for the Sigils
+
+- The Potion of Bossrushium can now naturally stack to 999
+
+- Added the Containers Potion
+
+- The Clothier now sells the Monoxide Hat during an Eclipse, and the Recipe for the Monoxide Hat has been removed
+
+- Added the Corrupted Fang
+
+- Added the Fang Necklace
+
+- Removed the Blood Crate due to it no longer having any modded loot
+
+- Removed the blood crate tag for fishing rods
+
+- Removed Tooltip Tags as I don't like how they look
+* In place, there will just be a normal tooltip
+* so the Dedicated Item tag is now just "Dedicated Item" written out
+
+- Added language values for the new Tooltip Tags
+
+- Added an invisible texture
+
+####### v0.1.1.4 ########
+
+- Changed the rarity for the Sigil Vanity Items to 4 (Light Red)
+
+- All Sigil Items now sell for 1 gold
+
+- Added Mjoon to the Contributions
+
+- Decreased the damage of the Magmalbulbia Staff
+108 -> 60
+
+- Changed the rarity for the Energy Weapons 
+Magamalbulbia Staff 8 -> 6
+Pental Scythe 8 -> 6
+Sprinkler 8 -> 6
+Sakhalin Bow 8 -> 6
+
+- Sigil Effects no longer clear when you open the fullscreen map
+
+- Added more Spanish translations (Thanks again adrianyupi!!!)
+
+- Updated the homepage thread
+
+- Added 2 items
+Alpha Cenfury: Upgrade to Sunfury using Cosmic Energy
+Narrizuul: Developer weapon for nalyd (me :>)
+
+####### v0.1.1.3 ########
+
+- Added "Tooltip Tags". They are going to be added to certain items that have very special properties 
+(Example: Spiraling Twilight shoots ichor darts pre-split, so it gets a special tag for that)
+^ Current Tags: [Ichor Darts Split on Fire], [Developer Item], [Special Blood Moon Fishing Loot]
+
+- Increased the damage for the Starphish
+14 -> 15
+
+- Added the Void and Blood Sigil (Vanity)
+
+- Removed the Nuclear Feather
+
+- Added Blood Crates
+* Caught during Blood Moon
+* A fishing rod with the [Special Blood Moon Fishing Loot] gets a higher chance to get Blood Crates
+
+- Gave tooltips for the Spiraling Twilight, Sprinkler, and Starphish stating that they use Darts as ammo
+
+- Added the Sakhalin Bow (Upgrade for the Hellwing Bow using Aquatic Energy)
+
+- Changed the tooltip on the Potion of Bossrushium
+
+- Turned Aphrodite and Venus into Yoyos
+
+- Updated the description
+
+####### v0.1.1.2 ########
+
+- Modified the Demonic Fireball's movement and how it shoots at a target (They should now get stuck in tiles much less often)
+
+- The Pental Scythe's star pattern now turns with your shoot direction
+
+- Removed Pair Value (Didn't notice ValueTuple existed lol)
+
+- Decreased the sight range for the Pental Scythe
+
+- Changed the stats for the Pental Scythe
+* Damage: 50 -> 39
+* Crit Chance: 4% -> 15%
+* Penetration: 6 -> 3
+* Use Time: 36 -> 30
+* Mana Cost: 16 -> 20
+
+- Monoxide Hat is now craftable at a Iron / Lead Anvil instead of a Mythril / Orichalcum Anvil
+
+- Added an upgrade for the Starphish called the Sprinkler (Made with Aquatic Energy) 
+
+- Steampunker now sells The Super Absorbant Sponge when she is in the Ocean biome, and sells the Bottomless Water Bucket instead if it is raining
+^ (If "Fargo's Mutant Mod" is not enabled)
+
+- Pirate now Sells Angler Armor pieces 
+* Angler Hat after 10 Quests
+* Angler Vest after 15 Quests
+* Angler Pants after 20 Quests
+^^ (Meaning you still need to complete proper amount of quests in order to get the armor, but now you can buy them back if you loose them)
+
+- The Merchant now sells the Fuzzy Carrot after you have completed 5 Angler Quests
+^ (If "Fargo's Mutant Mod" is not enabled)
+
+- Gave the Business Card a recipe
+
+- Seeds are now sold by the Merchant when you have a blowpipe-type weapon in your inventory
+
+- Crystal Darts, Ichor Darts, and Cursed Darts are now sold by the Wizard when you have a Blowpipe-Type weapon in your inventory
+
+- Decreased the damage for the Spiraling Twilight 
+^ 126 -> 45
+
+- Added the Nebula Sigil, Vortex Sigil, Solar Sigil, and Stardust Sigil (Vanity)
+
+- Monoxide Hat now has [item.vanity] set to true (Meaning it has the proper tooltip now)
+
+- Updated the description to include Woodio as a code contributer
+
+####### v0.1.1.1 ########
+
+- Updated the description
+
+- Gave the Spiraling Twilight a proper recipe
+
+- Added multiple NPCs to No-Enviro-Drops (Basically a list of NPC types that should not drop loot from the environment EX: Organic Energy)
+^ The Hungry (Attached and Not-Attached), Leech, Moon Lord Leech Clot, Plantera Hook, Plantera Tentacle, Golem Fists, Golem Head, Vortexian, Vortex Pillar, Nebula Pillar, Solar Pillar, Stardust Pillar, Alien Hornet, Alien Hornet Queen, Alien Larva, Storm Diver, Stardust Cells, Flow Invader, Milkyway Weaver, Twinkle Popper, Corite, Crawltipede, Drakomire, Drakomire Rider, Solar Flare, Solar Fragment, Solenian, Drakanian, Stroller, Evolution Beast, Nebula Floater, Brain Suckler, Predictor, Martian Drone, Martian Engineer, Martian Officer, Martian Saucer (and its other segments), Tesla Turret, Martian Walker, Bubble Shield, Phantasmal Dragon, Ancient Vision, Ancient Doom, Ancient Light, Creeper, Sharkron, Detonating Bubble, Tortured Soul, Dungeon Spirit, Dungeon Guardian, Slimer (Winged), Bee (Big and Small), Viscous Bunny, Viscous Penguin, Viscous Goldfish, Corrupt Bunny, Corrupt Penguin, Corrupt Goldfish, Goblin Archer, Goblin Peon, Goblin Scout, Goblin Sorcerer, Goblin Summoner, Goblin Thief, Goblin Warrior, Bound Goblin, Flying Dutchman (And its cannons),  Pirate Captain, Pirate Corsair, Pirate Crossbower, Pirate Deadeye, Pirate Deckhand, Snowman Gangsta, Snow Balla, Mister Stabby, Mothron Egg, Baby Mothron, Ray Gunner, Scutlix (And its rider), Gray Grunt, Scarecrow, Splinterling, Hellhound, Mourning Wood, Pumpking (And its scythes), Elf Archer, Elf Copter, Zombie Elf, Gingerbread Man, Flocko, Headless Horseman, Nutcracker, Yeti, Krampus, Present Mimic, Everscream, Santa NK1, Ice Queen, Prime Cannon, Prime Laser, Prime Saw, Prime Vice, Skeletron Hand, Eternia Crystal, Fungi Spore, Spore, Lunatic Devote, Mysterious Tablet, Cultist Archer, Lunatic Cultist (Clone), Hallowed Mimic, Corruption Mimic, Crimson Mimic, Target Dummy, Mysterious Portal, Unconscious Man, Bound Mechanic, Bound Wizard, and the Eater of Worlds.
+
+- Betsy is no longer affected by the Bossrushium Potion
+
+- NPCs spawned from a statue no longer are affected by loot added by Aequus Mod
+
+- Recolored Cosmic Energy
+
+- Added Aquatic Energy
+
+- Gave Cosmic Energy purple light instead of orange light
+
+- Changed the amount of Demonic Energy used for crafting the Magmabulbia Staff and Pental Scythe
+20 -> 10
+
+- Got a small amount of text translated into Portuguese
+
+- Got a large amount text translated into Spanish (Thanks adrianyupi!)
+
+- Fixed a visual bug with the Monoxide Hat and Gravitation potions
+
+- Added sudo-proper glowmasks to some items
+
+####### v0.1.1 ########
+
+- Added extractable changelog file (because I accidentally forgot to add it in the last update)
+
+- Added Vile Spit and Probes to the No-Enviro-Drops list (So they don't drop Organic / Demonic Energy)
+
+- Centered the Pental Scythe's pattern
+
+- Added the Business Card (40% decrease in shop prices + works in inventory and piggy bank)
+
+- The Steampunker now sells certain info accessories in specific circumstances
+
+- Added Nalyd's Devwand
+
+- Added recipes for several Vanilla items
+
+- Added Magical Bottle
+
+- Added Cosmic Energy
+
+- Turned Demonic and Organic Energy into post-Eye of Cthulhu materials
+
+- Removed Demonic and Organic Energy from the recipe for the Potion of Bossrushium
+
+######## v0.1.0.1 ########
+
+- Added extractable changelog file
+
+- Linked to github
+
+- Edited build.txt in order to allow extraction of .DLLs (for cross mod stuff) and Resources (sprites)
+
+######## v0.1 ########
+
+- 15 Items
+
+*Potion of Bossrushium (Also a buff for it)
+
+*Bullet Duplicators I, II, and III
+
+*Demonic Energy (Dropped by enemies in the Underworld)
+
+*Organic Energy (Dropped by enemies in the Jungle)
+
+*Nuclear Feather (Dropped by Lavabats after Moon Lord has been defeated)
+
+*Monoxide Hat (Crafted from 5 Demonic Energies, Vanity)
+
+*Gebulba Staff  (Early magic weapon made with 80 Gel + 4 Iron/Lead)
+
+*Magmalbulbia Staff (Upgrade to the Gebulba Staff)
+
+*Pental Scythe (Upgrade to the Demon Scythe)
+
+*Aphrodite (Upgrade to the Silver Sword)
+
+*Venus (Upgrade to the Tungsten Sword)
+
+*Spiraling Twilight Dart Rifle made from Vortex Fragments
+
+*Starphish (Upgrade for the Blowpipe made with Fallen Stars and Starfish)

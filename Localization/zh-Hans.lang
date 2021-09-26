@@ -1,0 +1,638 @@
+# Translation by Maple and Lin
+##################################################################################
+# Common																		 #
+##################################################################################
+# Armor Set Bonuses
+Common.ArmorSetBonus_Arachnotron=真近战攻击造成暴击后使你的各项属性大幅度提升一小段时间\n当触发此效果时使你获得耐药性减益\n此效果仅在你没有耐药性减益时触发
+Common.ArmorSetBonus_Lightbulb=你现在拥有危险感和猎人增益
+#
+# Config Names
+Common.ConfigName_AQConfigClient=客户端设置
+Common.ConfigName_AQConfigServer=服务器设置
+#
+# Config Headers
+Common.ConfigHeader_Visuals=视觉效果
+Common.ConfigHeader_Misc=杂项
+Common.ConfigHeader_World=世界
+Common.ConfigHeader_Debug=调试模式
+#
+# Config Values
+# (Client Config)
+Common.Config_DrawSpotlights=绘制灯光效果
+Common.Config_EffectQuality=效果质量
+Common.Config_EffectIntensity=效果强度
+Common.Config_LoadItemOverlays=加载物品覆盖层
+Common.Config_BackgroundStarites=星源背景
+Common.Config_MapBlipColor=地图光点的颜色
+Common.Config_ShowCompletedAnglerQuestsCount=显示已完成的渔夫的任务次数
+Common.Config_ShowCompletedRobsterQuestsCount=显示已完成的龙虾的任务次数
+Common.Config_CosmicEnergyAlt=星宇能量(备用贴图)
+Common.Config_MarkerMapUIType=地图标记UI的类型(位置)
+# (Server Config)
+Common.Config_EvilProgressionLock=锁定邪恶时期
+Common.Config_EvilProgressionLockTooltip=黑檀石、猩红石、暗影珠和猩红之心无法再被爆炸物摧毁
+Common.Config_TrailShader=启用尾痕残影着色器
+Common.Config_ScrollShader=启用滚动特效着色器
+Common.Config_HypnoShader=启用色彩分离特效着色器
+Common.Config_OutlineShader=启用轮廓特效着色器
+Common.Config_ScreenDistoryShader=启用屏幕扭曲特效着色器
+Common.Config_AprilFools=愚人节
+Common.Config_DebugCommand=调试命令 (/ncall)
+# Eightball
+Common.EightballAnswer0=是的
+Common.EightballAnswer1=我的消息来源说不
+Common.EightballAnswer2=有迹象表明是的
+Common.EightballAnswer3=确实如此
+Common.EightballAnswer4=毫无疑问
+Common.EightballAnswer5=当然可以
+Common.EightballAnswer6=你可以相信它
+Common.EightballAnswer7=如我所见, 是的
+Common.EightballAnswer8=有希望
+Common.EightballAnswer9=前景很好
+Common.EightballAnswer10=有迹象表明是的
+Common.EightballAnswer11=别想了
+Common.EightballAnswer12=我的回答是否
+Common.EightballAnswer13=未来可欺
+Common.EightballAnswer14=令人疑惑
+Common.EightballAnswer15=再试一次吧
+Common.EightballAnswer16=待会再问
+Common.EightballAnswer17=时候未到
+Common.EightballAnswer18=现在没法预测
+Common.EightballAnswer19=请集中你的精神再问一次
+Common.EightballAnswer20=星界8号球上没有显示任何内容
+#
+Common.EightballMisc0=雨过天晴
+Common.EightballMisc1=你最喜欢的数字是{0}吗?
+Common.EightballMisc2=微光之物
+Common.EightballMisc3=一个球
+Common.EightballMisc4=巨大的东西.
+Common.EightballMisc5=你令我心碎
+Common.EightballMisc6=生命的意义是什么
+#
+# World Gen text
+Common.RandomStructures=正在生成随机构造...
+Common.RandomStructures_TikiChest=正在生成随机构造... 提基宝箱
+Common.RandomStructures_NobleMushrooms=正在生成随机构造... 华贵蘑菇
+Common.RandomStructures_CandelabraTraps=正在生成随机构造... 烛台陷阱
+Common.RandomStructures_ExoticCoralBlotches=正在生成随机构造... 奇异珊瑚
+Common.OceanRavines=海沟
+Common.RareStructures=正在生成稀有构造...
+#
+# Recipe Groups
+Common.RecipeGroup_AnyNobleMushroom=任意华贵蘑菇
+Common.RecipeGroup_AnyEnergy=任意能量
+#
+# Robster
+Common.RobsterChat0=我不喜欢其他的龙虾是有原因的...因为我的兄弟姐妹背叛了我.
+Common.RobsterChat1=你知道我经历过什么吗?
+Common.RobsterChat2=我脚下的地板似乎散发着光芒, 感觉就像扭曲迷雾一样.
+Common.RobsterChat3=星源族可能会令人痛苦, 但至少它们是很好的谷类食物.
+Common.RobsterChat4=我曾在某个离这里很远的地方看到过这把剑, 我很好奇当有人触摸这把剑时会发生什么.
+Common.RobsterChat5=你应该懂吧, 我一直都不是恐怖电影迷, 那些恐怖电影把我吓坏了.
+Common.RobsterChat6=我曾看到过一只披着蓝色斗篷的可疑飞蛾, 看起来非常的像拜月教邪教徒. 它告诉我蛾怪偷走了一件非常强大的东西, 不过我可不会蠢到试图击杀一只大飞蛾.
+Common.RobsterChat7=在海上航行时最可怕的事莫过于发生血月, 我都不知道我的船员们杀死了多少只僵尸人鱼.
+Common.RobsterChat8=告诉那些小海盗们, 我对他们说:'嗨'.
+Common.RobsterChat9=我今晚在湖边钓鱼时被一条人形鲨鱼袭击了. 这简直是黑历史.
+Common.RobsterChat10=我今晚在湖边钓鱼时被一条巨大的红鳗鱼袭击了. 这简直是黑历史.
+Common.RobsterChat11=某次血月时我问{0}敢不敢去钓鱼. 结果他钓上来了一只鹦鹉螺, 我当时吓坏了.
+Common.RobsterChat12=给了我这顶帽子的人并不知道这个帽子对我来说太大了...我现在啥都看不见!
+Common.RobsterChat13=我真傻, 我竟然把我自己的给忘了. 除我之外还有第二个把自己名字忘了的人吗?
+Common.RobsterChat14=感谢你帮忙找到了我的卡片, 这让我想起了过去我是多么的喜欢掠夺别人东西.
+#
+Common.RobsterExtraReward0=谢谢你, 我不怎么要求别人经常帮我做事. 拿着{$ItemName.GoldenCrate}, 这是额外的报酬.
+Common.RobsterExtraReward1=拿着这个额外的报酬以表达我对你的感激之情.
+#
+Common.RobsterStoryHunt0=我的兄弟, 小绿虾, 在我还是个孩子时就背叛了我, 我需要你帮我找到他, 抓活的, 带到我面前. 以及我听说他现在住在海底, 你可以试着从那找起. 如果你找不到他, 你可以试着把他从海里钓上来.
+Common.RobsterStoryHuntComplete0=这 不 是 小 绿 虾! 嘛 意 思!? 这 只 是 个 粘 乎 乎 的 龙 虾 - 啊 行吧, 我想我不该随便找个人就帮我找我的亲兄弟, 所以我会让你帮我做一些更合理的事情.
+Common.RobsterStoryHunt1=当我还是一名海盗时, 我持有一张卡片, 这有助于使其他船员辨别我的身份. 直到某天我不小心弄丢了它, 它可能在海底与那些贝壳和海星们混在了一些. 你可以去找找, 如果你找不到, 你可以试着把它从海里钓上来.
+Common.RobsterStoryHuntComplete1=非常感谢, 你帮我找到了我的海盗识别卡... 等下. 我的名字是龙虾? 我对此并不知情, 我-我想我该告诉其他人我的名字实际上不是{0}...
+#
+Common.RobsterRandomHunt0=我看到某人有个非常特别的东西{0}. 我想让你把它偷来给我.
+Common.RobsterCantDoRandomHunt=我没有需要你帮忙做的事.
+Common.RobsterSawInSomeonesHouse=我想我是在{0}的房子里看到的这个.
+Common.RobsterRandomHuntComplete0=很好, 你做到了. 我打赌他们不会起疑的.
+#
+Common.RobsterHunt=狩猎
+Common.RobsterQuitHunt=停止狩猎
+Common.PressHuntToContinue=(再次按下'狩猎'以继续)
+Common.RobsterQuitHuntQuestion=你想停止狩猎吗?
+#
+# Other Commons
+Common.NoScrollShader=滚动特效着色器未启用
+Common.NoHypnoShader=色彩分离着色器未启用
+Common.NoOutlineShader=轮廓特效着色器未启用
+Common.CrabSeason=蟹季
+Common.CrabClockEnds={0}直到蟹季结束
+Common.CrabClockStarts={0}直到蟹季开始
+Common.CrabSeasonWarning=海洋的温度正在逐渐升高...
+Common.CrabSeasonEnding=海洋再度变得冰冷...
+Common.GlimmerEvent=微光事件
+Common.GlimmerEventWarning=天空中闪烁着微光...
+Common.GlimmerEventEnding=微光渐渐消失...
+Common.EnergyDoDrop=世界的能量再度变得稳定...
+Common.EnergyDontDrop=世界的能量又回到了混乱之中...
+Common.WorksInInventoryAndPiggyBank=放置在背包或猪猪存钱罐中即可生效
+Common.UseDarts=使用种子和飞镖作为弹药
+Common.FavoriteOnly=仅将其标记为收藏时才会生效
+Common.DoesntMinionTarget=不会优先攻击具有召唤标记的目标
+Common.NotConsumable=不消耗
+Common.TorchCanBePlacedInLiquids=可放置在液体中
+Common.ReturnToLobster=请将此物交付于龙虾
+Common.DedicatedItemTag=专属物品
+Common.IchorDartShotgunTag=使用灵液镖作为弹药时直接发射分裂灵液镖
+Common.NobleMushroomScent=蟹类无法抗拒它的气味
+Common.EnableThing=启用{0}?
+Common.DisableThing=禁用{0}?
+Common.UnassignedKey0=Unassigned Key
+Common.UnassignedKey1=an unassigned key
+Common.UnassignedKey2=unassigned key
+Common.AwakenedOmegaStarite=终末之星已苏醒!
+Common.AwakenedCrabson=巨蟹蛤已苏醒!
+##################################################################################
+# Item Names																	 #
+##################################################################################
+# Accessories #
+###############
+# Amulets
+ItemName.GhostAmulet=鬼灵护符
+ItemName.SpiritAmulet=幽魂护符
+ItemName.WyvernAmulet=飞龙护符
+ItemName.VoodooAmulet=巫毒护符
+# Fishing Seals
+ItemName.CopperSeal=铜制容器
+ItemName.SilverSeal=银制容器
+ItemName.GoldSeal=金制容器
+ItemName.PlatinumSeal=钛金制容器
+# Masks
+ItemName.MothmanMask=天蛾人面具
+# Shields
+ItemName.TargeoftheBlodded=血腥盾牌
+# Shoes
+ItemName.MoonShoes=月之行者
+# Shop Cards
+ItemName.BlurryDiscountCard=字迹模糊的优惠卡
+ItemName.BusinessCard=商务卡
+# Wings
+ItemName.SparrowWings=雀翼
+#
+# Other Accessories
+#
+ItemName.Breadsoul=幽惧之魂
+ItemName.CelesteTorus=天界手环
+ItemName.Dreadsoul=惊惧之魂
+ItemName.RustyKnife=生锈的刀
+ItemName.Terraroot=地之根茎
+ItemName.Thunderbird=雷鸟
+ItemName.Ultranium=超载晶体
+##############
+# Boss Items #
+##############
+# Crabson
+ItemName.Crabsol=蟹壳剑
+ItemName.CrabsonBag=宝藏袋
+ItemName.MushroomClam=蕈蛤
+ItemName.CrabsonTrophy=巨蟹蛤纪念章
+ItemName.CrabsonMask=巨蟹蛤面具
+# Omega Starite
+ItemName.DragonBall=龙珠
+ItemName.MythicStarfruit=秘星果
+ItemName.NovaFruit=新星果
+ItemName.OmegaStariteMask=终末之星面具
+ItemName.OmegaStariteTrophy=终末之星纪念章
+ItemName.StariteBag=宝藏袋
+ItemName.UltimateStarfruit=终极星果
+ItemName.UltimateSword=最终之剑
+##############
+# Buff Items #
+##############
+ItemName.Baguette=法棍
+ItemName.NeutronJuice=中子果汁
+ItemName.SuspiciousLookingSteak=可疑牛排
+ItemName.SpicyEel=香辣鳗鱼
+# Staffs
+ItemName.BatonofNightVision=夜视节杖
+ItemName.BatonofRage=暴怒节杖
+ItemName.BatonofWrath=怒气节杖
+ItemName.StaffofNightVision=夜猫子法杖
+ItemName.StaffofIronskin=铁皮法杖
+ItemName.StaffofRegeneration=再生法杖
+ItemName.StaffofSwiftness=敏捷法杖
+ItemName.StaffofWaterBreathing=水下呼吸法杖
+# Other Buffs Items
+ItemName.MysteryGrail=神秘圣杯
+ItemName.OpposingPotion=对立药水
+ItemName.PotionofBossrushium=安可药水
+ItemName.SpoilsPotion=战利品药水
+##############
+# Equipables #
+##############
+# Armor
+ItemName.HermitShell=寄生蟹壳
+ItemName.StriderPalms=长足护胫
+ItemName.ArachnotronRevvers=机械蜘蛛护胫
+ItemName.ArachnotronRibcage=机械蜘蛛胸甲
+ItemName.ArachnotronVisor=机械蜘蛛面具
+ItemName.DartTrapHat=飞镖帽
+ItemName.LightbulbBreastplate=灯泡胸甲
+ItemName.LightbulbGreaves=灯泡护胫
+ItemName.LightbulbHelmet=灯泡头盔
+ItemName.SuperDartTrapHat=超级飞镖帽
+# Barbs
+ItemName.CrabBarb=蟹刺
+ItemName.CrimtaneBarb=猩红钩
+ItemName.DemoniteBarb=恶魔钩
+ItemName.MetalBarb=金属钩
+# Map
+ItemName.CosmicTelescope=星宇标记
+ItemName.DungeonMap=骨质标记
+ItemName.LihzahrdMap=神庙标记
+ItemName.RetroGoggles=复古标记
+# Spelunker
+ItemName.MinersFlashlight=矿工的明灯
+ItemName.Extractor=提炼器
+########
+# Misc #
+########
+# Energies
+ItemName.OrganicEnergy=自然能量
+ItemName.DemonicEnergy=恶魔能量
+ItemName.CosmicEnergy=星宇能量
+ItemName.AtmosphericEnergy=天权能量
+ItemName.AquaticEnergy=海蓝能量
+ItemName.UltimateEnergy=终极能量
+# Bait
+ItemName.CursedPopper=诅咒响饵
+ItemName.IchorPopper=灵液响饵
+ItemName.MysticPopper=秘圣响饵
+# Rods
+ItemName.CrabRod=螃蟹钓竿
+ItemName.BeeRod=蜜蜂钓竿
+# Fish
+ItemName.Blobfish=水滴鱼
+ItemName.Fizzler=星灼鱼
+ItemName.Nessie=尼斯湖水怪
+ItemName.UltraEel=超级进化鳗
+ItemName.Combfish=纵带盔鱼
+ItemName.LarvaEel=寄生鳗幼虫
+# Quest Fish
+ItemName.WaterFisg=水鱼
+ItemName.Crabdaughter=蟹蛤之子
+# Quest Robster
+ItemName.CrabCard=蟹卡
+ItemName.Snobster=小绿虾
+ItemName.JeweledChalice=宝石杯
+ItemName.JeweledCandelabra=宝石烛台
+ItemName.JeweledChandelier=宝石大吊灯
+ItemName.JeweledChair=宝石椅
+ItemName.JeweledTable=宝石桌
+# Other Misc
+ItemName.BloodshedPotion=喋血药水
+ItemName.CrabShell=蟹壳
+ItemName.CrabClock=蟹钟
+ItemName.Lightbulb=灯泡
+ItemName.Molite=流辉鱼
+ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
+ItemName.NuclearFeather=核子之羽
+ItemName.PotionofContainers=传箱药水
+ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
+ItemName.Qi=气
+ItemName.UnityMirror=清灵明镜
+#############
+# Placeable #
+#############
+# Banners
+ItemName.StariteBanner=星之源旗
+ItemName.SuperStariteBanner=超级新星旗
+ItemName.HyperStariteBanner=巨耀新星旗
+# Mushrooms
+ItemName.ArgonMushroom=氩蘑菇
+ItemName.KryptonMushroom=氪蘑菇
+ItemName.XenonMushroom=氙蘑菇
+# Torches
+ItemName.ExoticRedTorch=奇异的红色火把
+ItemName.ExoticGreenTorch=奇异的绿色火把
+ItemName.ExoticBlueTorch=奇异的蓝色火把
+ItemName.UltrabrightRedTorch=超亮红火把
+ItemName.UltrabrightGreenTorch=超亮绿火把
+ItemName.UltrabrightBlueTorch=超亮蓝火把
+# Walls
+ItemName.MoonlightWall=月光墙
+# World Interactors
+ItemName.GlimmeringStatue=烁光雕像
+# Other Placeables
+ItemName.ExoticCoral=奇异的珊瑚
+ItemName.ExoticStarfish=奇异的海星
+ItemName.FishingCraftingStation=渔具加工站
+ItemName.GoreNestItem=血巢
+ItemName.PlaceableShadowOrb=暗影珠 (可放置)
+ItemName.PlaceableCrimsonHeart=猩红之心 (可放置)
+############
+# Vanities #
+############
+ItemName.FishyFins=可疑的鱼鳍
+ItemName.MonoxideHat=金乌之巢
+ItemName.CelesitalEightBall=星界八号球
+###########
+# Weapons #
+###########
+# Magic
+# Staffs
+ItemName.Bubbler=泡泡法杖
+ItemName.GebulbaStaff=弹球法杖
+ItemName.MagicWand=魔杖
+ItemName.MagmalbulbiaStaff=邪弹法杖
+ItemName.Narrizuul=耀宇遗光
+ItemName.ScarletSea=罪孽红海
+ItemName.SeltzerRain=苏打雨
+# Tomes
+ItemName.PentalScythe=回旋魔镰
+# Melee
+# Flails
+ItemName.JerryClawFlail=蟹蛤之爪
+# Spears
+ItemName.ArgonSpear=氩制长枪
+ItemName.HorizonSkies=空之视界
+# Yoyos
+ItemName.Aphrodite=阿芙罗狄忒
+ItemName.Venus=维纳斯
+ItemName.StariteSpinner=星源涡
+# Other Melee
+ItemName.CrimsonHellSword=焚焰剑 
+ItemName.Galactium=辰星坠
+ItemName.KryptonSword=氪制剑
+ItemName.StariteBlade=星源刃
+ItemName.VineSword=藤蔓长剑
+ItemName.XenonBasher=氙制轻剑
+# Ranged
+# Bows
+ItemName.CinnabarBow=朱砂弓
+# Dart
+ItemName.SpiralingTwilight=暮光螺旋
+ItemName.Sprinkler=喷水器
+ItemName.StarPhish=螺旋吹筒
+# Pistols
+ItemName.Raygun=射线枪
+ItemName.SpaceShot=太空手枪
+# Summon
+# Sentry
+ItemName.LotusStaff=莲花杖
+# Other Summon
+ItemName.MonoxiderStaff=日驭金乌杖
+ItemName.StariteStaff=星源召唤杖
+# Other Item Names
+ItemName.ATM=ATM
+ItemName.Globebulb=天体灯泡
+ItemName.SpectralLens=幽冥透镜
+ItemName.SpectreSoul=幽冥之魂
+#
+#
+##################################################################################
+# Item Tooltips																	 #
+##################################################################################
+# Accessories
+# Amulets
+ItemTooltip.GhostAmulet=在单人模式下可阻止鬼魂的自然生成
+ItemTooltip.SpiritAmulet=在单人模式下可阻止地牢幽魂的自然生成
+ItemTooltip.WyvernAmulet=在单人模式下可阻止飞龙的自然生成
+ItemTooltip.VoodooAmulet=在单人模式下可阻止巫毒恶魔的自然生成
+# Fishing Seals
+ItemTooltip.CopperSeal=使用鱼竿钓到宝匣时使你获得30秒的宝匣增益
+ItemTooltip.SilverSeal=使用鱼竿钓到物品时使你获得10秒的钓鱼增益
+ItemTooltip.GoldSeal=使用鱼竿钓到任何售价为1金币的物品时使你获得1分钟的声呐增益
+ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
+# Masks
+ItemTooltip.MothmanMask=增加30%伤害和10%暴击率\n当你的生命值未处于满状态时降低你的伤害和暴击率
+# Shields
+ItemTooltip.TargeoftheBlodded=增加2点护甲穿透\n可沿墙滑下\n结合{$ItemName.ClimbingClaws}或{$ItemName.ShoeSpikes}使用时可提升能力
+# Shoes
+ItemTooltip.MoonShoes=使你获得缓降效果\n长按'下'键可恢复正常的重力效果, 长按'上'键可进一步强化低重力效果\n'HE-HE'
+# Shop Cards
+ItemTooltip.BlurryDiscountCard=小幅度降低商店价格\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'它很难被读懂, 但无论如何商人们都会给你打折.'
+ItemTooltip.BusinessCard=降低商店价格\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'把你花费的钱都当做是业务支出就好了'
+# Wings
+ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
+# Other Accessories 
+ItemTooltip.Breadsoul=敌人不再掉落红心, 而是掉落幽冥之魂\n你的生命值越低, 幽冥之魂掉落几率越高, 幽冥之魂会为你回复30点生命值\n幽冥之魂不会立即治疗你30点生命值而是持续恢复
+ItemTooltip.CelesteTorus=在你的周围召唤一圈环绕着你的球体\n球体的半径、速度、伤害和击退都根据你不同的属性决定\n延长2秒飞行时间
+ItemTooltip.Dreadsoul=击杀敌人时使其释放三个追踪同种敌人灵魂
+ItemTooltip.RustyKnife=召唤你的朋友为你而战\n当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间\n'为什么你要拿着锋利的刀锋而不是刀把?'
+ItemTooltip.Terraroot=有几率将火枪子弹转化为叶绿弹
+ItemTooltip.Thunderbird=使你获得雷鸣之跃, 每2秒刷新一次, 你必须朝着某个方向移动才能使用跳跃\n在你下边的敌人会遭受雷击\n你的生命值越低, 雷击的频率越高
+ItemTooltip.Ultranium=增加10%近战暴击率\n你的攻击会造成闪烁减益\n真近战攻击对敌人造成暴击时伤害会弹射至离你最近的Boss
+##############
+# Boss Items #
+##############
+# Crabson
+ItemTooltip.Crabsol=只有最强壮的人才能举起这把剑
+ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
+ItemTooltip.MushroomClam=在海边使用以召唤巨蟹蛤
+# Omega Starite
+ItemTooltip.DragonBall=召唤一个微型星之源
+ItemTooltip.MythicStarfruit=使用以召唤微光事件
+ItemTooltip.NovaFruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n{$Mods.AQMod.Common.NotConsumable}
+ItemTooltip.OmegaStariteTrophy='你不知道会发生什么!'
+ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
+ItemTooltip.UltimateStarfruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n右键开始或结束微光事件\n{$Mods.AQMod.Common.NotConsumable}
+ItemTooltip.UltimateSword=击中敌人时使你无敌一小段时间并获得最终之力增益\n生命值低于400点的敌人会爆炸并喷发出绚彩圣焰
+##############
+# Buff Items #
+##############
+# Foods
+ItemTooltip.Baguette='蛋糕只是海绵般松软的面包'
+ItemTooltip.NeutronJuice='重达数百万吨... 比把保险箱放在保险箱里还轻'
+ItemTooltip.SuspiciousLookingSteak=使你获得许多增益或减益\n'平淡无奇'
+ItemTooltip.SpicyEel=大幅度增加移动速度
+# Staffs
+ItemTooltip.BatonofNightVision=使你和附近的玩家获得夜视增益
+ItemTooltip.BatonofRage=使你和附近的玩家获得暴怒增益
+ItemTooltip.BatonofWrath=使你和附近的玩家获得怒气增益
+ItemTooltip.StaffofIronskin=使你和附近的玩家获得铁皮增益
+ItemTooltip.StaffofNightVision=使你和附近的玩家获得夜猫子增益
+ItemTooltip.StaffofRegeneration=使你和附近的玩家获得再生增益
+ItemTooltip.StaffofSwiftness=使你和附近的玩家获得敏捷增益
+ItemTooltip.StaffofWaterBreathing=使你和附近的玩家获得鱼鳃增益
+# Other Buffs Items
+ItemTooltip.MysteryGrail=使你获得随机的增益
+ItemTooltip.OpposingPotion=使某些敌人掉落与其主题相反的物品\n(例如肉后血地怪会掉光明之魂)
+ItemTooltip.PotionofBossrushium=Boss被击败时会再次生成
+ItemTooltip.SpoilsPotion=非Boss敌人在死亡时掉落的战利品的数量翻倍
+##############
+# Equipables #
+##############
+# Armor
+ItemTooltip.HermitShell=你的移动速度越低, 你的防御就越高
+ItemTooltip.StriderPalms=增加10%召唤伤害\n强化长足蟹钩的各项属性
+ItemTooltip.ArachnotronRevvers=允许你飞速奔跑并对火块免疫\n+1额外召唤栏
+ItemTooltip.ArachnotronRibcage=给你能够对敌人造成伤害的蜘蛛臂\n增加10%近战攻击速度和5%伤害减免\n+1额外召唤栏
+ItemTooltip.ArachnotronVisor=增加5%近战暴击率和10%召唤伤害\n提供夜视效果
+ItemTooltip.DartTrapHat=当你站在地面上时发射毒镖\n增加5%召唤伤害
+ItemTooltip.LightbulbGreaves=+1额外召唤栏
+ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n使你轻微发光
+ItemTooltip.SuperDartTrapHat=当你站在地面上时发射毒镖\n增加10%召唤伤害\n+2额外召唤栏
+# Barbs
+ItemTooltip.CrabBarb=钩爪击中NPC时会造成中毒减益
+# Map
+ItemTooltip.CosmicTelescope=在地图上显示微光事件的正中心
+ItemTooltip.DungeonMap=若地牢已被发现, 则在地图上显示地牢位置\n你可以使用清灵明镜传送至地牢
+ItemTooltip.LihzahrdMap=若神庙祭坛已被发现或世纪之花已被击败, 则在地图上显示神庙祭坛的位置\n在击败世纪之花后，你可以使用清灵明镜传送至神庙祭坛
+ItemTooltip.RetroGoggles=在大地图上以粉色光点显示敌人的位置
+# Spelunker
+ItemTooltip.MinersFlashlight=被手电筒照到的宝藏会发出闪光
+ItemTooltip.Extractor=使你免疫窒息减益\n下落的泥沙块和雪泥块造成的伤害降低4倍\n如果启用此饰品的可见性:\n使你获得提炼泥沙块、雪泥块和沙漠化石的能力\n在提炼机处提炼某些东西时会显示提炼的次数
+########
+# Misc #
+########
+# Cursor Dyes
+ItemTooltip.CursorDyeRemover=移除光标染料的效果
+# Bait
+ItemTooltip.CursedPopper=在腐化之地钓鱼时增加30%鱼饵力
+ItemTooltip.IchorPopper=在猩红之地钓鱼时增加35%鱼饵力
+ItemTooltip.MysticPopper=在神圣之地钓鱼时增加25%鱼饵力
+# Rods
+ItemTooltip.BeeRod=扔出飞行的蜜蜂浮标\n在佩戴蜂巢背包时会扔出3枚浮标
+# Fish
+ItemTooltip.Fizzler=它被腐蚀了且散发着微弱的光芒
+ItemTooltip.UltraEel=一种非常古老的星源物种的后代
+ItemTooltip.Combfish='这种鱼的鳞片无法食用'
+ItemTooltip.LarvaEel=使你获得3分钟蜂蜜增益和60秒耐药性减益
+# Quest Robster
+ItemTooltip.CrabCard={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.Snobster={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.JeweledChalice={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.JeweledCandelabra={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.JeweledChandelier={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
+ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
+# Other Misc
+ItemTooltip.BloodshedPotion=将你传送至上次死亡时的位置
+ItemTooltip.CrabShell=畸形, 真是诡异
+ItemTooltip.CrabClock=加快海洋的自然波动
+ItemTooltip.Molite=用于强化药水的效力
+ItemTooltip.NuclearFeather=在核聚变的过程中形成\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
+ItemTooltip.PotionofContainers=将你传送至随机一个箱子
+ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
+ItemTooltip.Qi=由终极哲学之力创造出的神秘能量
+ItemTooltip.UnityMirror=允许你传送至地图上被标记的特殊位置\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}
+#############
+# Placeable #
+#############
+# Banners
+ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
+ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
+ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
+# Mushrooms
+ItemTooltip.ArgonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
+ItemTooltip.KryptonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
+ItemTooltip.XenonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
+# Torches
+ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+# Walls
+ItemTooltip.MoonlightWall=墙壁前的NPC会认为现在处于晚上
+# World Interactors
+ItemTooltip.GlimmeringStatue=放置后, 在夜晚右键点击此物品可切换微光事件的视觉效果\n如果微光事件正在进行, 则会将最终之剑传送至此雕像的上方
+# Other Placeables
+ItemTooltip.FishingCraftingStation=用于制作特殊的钓鱼物品
+############
+# Vanities #
+############
+# Cursor Dyes
+ItemName.CursorDyeRemover=光标染料移除剂
+ItemName.HealthCursorDye=生命光标染料
+ItemName.ManaCursorDye=法力光标染料
+ItemName.SwordCursorDye=剑刃光标染料
+# Dyes
+ItemName.EnchantedDye=附魔染料
+ItemName.ScrollDye=眩惑染料
+# Other Vanities
+ItemTooltip.MonoxideHat='因人们需求而变成一件装饰物品'
+ItemTooltip.CelesitalEightBall=右键使用以当做普通的8号球使用\n特殊文本取决于世界当前状态
+###########
+# Weapons #
+###########
+# Magic
+# Staffs
+ItemTooltip.Bubbler=不断地发射泡泡\n'沙泡蟹会是你最喜欢的动物, 因为它会制造沙球'
+ItemTooltip.GebulbaStaff=发射弹跳粘球\n'Boing!'
+ItemTooltip.MagicWand=向你的光标位置发射一束魔法矢, 魔法矢会爆炸成向两边水平移动的冲击波
+ItemTooltip.MagmalbulbiaStaff=发射击中物块时会爆炸的弹跳火焰弹\n'艺术就是爆炸!'
+ItemTooltip.Narrizuul=于异界形成的遗物\n'闻起来像玫瑰'
+ItemTooltip.ScarletSea=发射2个跟随你光标移动的血珠\n当血珠接近光标时会停止移动并发出闪光\n一次至多有10个血珠跟随光标
+ItemTooltip.SeltzerRain=发射5个会跟随你光标移动一段时间的闪光球\n闪光球在移动一段时间后会远离你的光标
+# Tomes
+ItemTooltip.PentalScythe=发射追踪敌人的烈焰魔镰
+# Melee
+# Flails
+ItemTooltip.JerryClawFlail='摸起来非常的油腻'
+# Spears
+ItemTooltip.ArgonSpear=会不断的瞄准你的光标位置
+ItemTooltip.HorizonSkies=发射能量射线\n'你准备好了吗吗吗吗吗吗'
+# Yoyos
+ItemTooltip.Aphrodite=击中敌人时有几率造成热恋减益
+ItemTooltip.Venus=击中敌人时有几率造成中毒减益
+# Other Melee
+ItemTooltip.Eyeslash=发射迷你克苏鲁之仆
+ItemTooltip.Galactium=挥舞时召唤从天而降的微光星辰
+ItemTooltip.XenonBasher=击中敌人时生成氙气孢子
+# Ranged
+# Dart
+ItemTooltip.SpiralingTwilight={$Mods.AQMod.Common.UseDarts}
+ItemTooltip.Sprinkler={$Mods.AQMod.Common.UseDarts}
+ItemTooltip.StarPhish={$Mods.AQMod.Common.UseDarts}
+# Pistols
+ItemTooltip.Raygun=将大多数子弹转化为射线
+ItemTooltip.SpaceShot=发射一颗星星, 随后再发射其使用的子弹
+# Summon
+# Sentry
+ItemTooltip.LotusStaff=召唤一朵熔岩之莲为你而战\n{$Mods.AQMod.Common.DoesntMinionTarget}
+# Other Summon
+ItemTooltip.MonoxiderStaff=召唤一只金乌为你而战\n{$Mods.AQMod.Common.DoesntMinionTarget}
+ItemTooltip.StariteStaff=召唤3个星之源为你而战
+# Other Item Tooltips
+ItemTooltip.ATM=召唤一个用于存放物品的飞行保险箱\n将其放在你的保险箱里以便随时召唤它
+ItemTooltip.SpectralLens=切换敌人的掉落
+ItemTooltip.Globebulb=加快时间的流逝速度一小段时间
+# Buffs
+BuffName.Spoiled=溺爱
+BuffDescription.Spoiled=敌人死亡时掉落的战利品的数量翻倍\n'你只是个被惯坏了的坏孩子!'
+BuffName.MicroStarite=微型星之源
+BuffDescription.MicroStarite=你所能想象的最小的类太阳系
+BuffName.Monoxider=金乌
+BuffDescription.Monoxider=金乌会为你而战
+BuffName.StariteMinion=星之源
+BuffDescription.StariteMinion=星之源会为你而战
+BuffName.Bossrush=安可
+BuffDescription.Bossrush=Boss被击败时会再次生成
+BuffName.Ultima=最终之力
+BuffDescription.Ultima=最终之剑祝福着你
+BuffName.SpectreHealing=幽魂之愈
+BuffDescription.SpectreHealing=你正快速的恢复生命
+BuffName.PrimeTime=黄金时间
+BuffDescription.PrimeTime=大幅度增加伤害减免且暴击率翻倍
+BuffName.Opposing=对立
+BuffDescription.Opposing=使某些敌人有几率掉落与其主题相反的物品
+BuffName.SpicyEelBuff=香辣鳗鱼
+BuffDescription.SpicyEelBuff=大幅度增加移动速度
+# Projectiles
+ProjectileName.FlamingScythe=烈焰镰刀
+ProjectileName.DemonicFireball=恶魔火球
+ProjectileName.DemonicFireballExplosion=恶魔火球
+ProjectileName.NarrenBolt=耀星
+ProjectileName.OmegaRay=欧米伽射线
+ProjectileName.HyperSpike=超星
+ProjectileName.OrbCollider=终末之星
+# NPCs
+NPCName.BloodMimic={$NPCName.Mimic}
+NPCName.Starite=星之源
+NPCName.SuperStarite=超级新星
+NPCName.HyperStarite=巨耀新星
+NPCName.UltraStarite=终耀新星
+NPCName.OmegaStarite=终末之星
+NPCName.Robster=龙虾
+NPCName.JerryCrabson=巨蟹蛤
+NPCName.JerryClaw=蟹蛤之爪
+NPCName.ArrowCrab=箭蟹
+NPCName.SoliderCrabs=大闸蟹
+NPCName.HermitCrab=寄居蟹
+NPCName.StriderCrab=长足蟹
