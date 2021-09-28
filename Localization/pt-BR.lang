@@ -424,7 +424,6 @@ ItemTooltip.Fizzler=It's corrupted and glimmering
 ItemTooltip.UltraEel=The offspring of an ancient starite species
 # Quest Robster
 ItemTooltip.CrabCard={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.Snobster={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledChalice={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledCandelabra={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledChandelier={$Mods.AQMod.Common.ReturnToLobster}

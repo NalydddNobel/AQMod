@@ -1,5 +1,5 @@
-﻿using AQMod.Common;
-using AQMod.Common.Config;
+﻿using AQMod.Common.Config;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -115,8 +115,8 @@ namespace AQMod.Effects
 
         public void Draw()
         {
-            var vertexShader = SpriteUtils.Effects.Trailshader;
-            vertexShader.Parameters["WVP"].SetValue(SpriteUtils.WorldViewPoint);
+            var vertexShader = EffectCache.Instance.Trailshader;
+            vertexShader.Parameters["WVP"].SetValue(DrawUtils.WorldViewPoint);
             vertexShader.Parameters["imageTexture"].SetValue(_texture);
             vertexShader.Parameters["strength"].SetValue(1f);
             vertexShader.CurrentTechnique.Passes[_pass].Apply();

@@ -1,8 +1,11 @@
-﻿using AQMod.Assets.Enumerators;
-using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
+using AQMod.Assets.Enumerators;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
+using AQMod.Content.Dusts;
 using AQMod.Effects;
+using AQMod.Effects.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -54,7 +57,7 @@ namespace AQMod.Projectiles.Ranged.Bullets.Rays
             if (!projectile.hide)
             {
                 projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
-                int dustType = ModContent.DustType<Dusts.MonoDust>();
+                int dustType = ModContent.DustType<MonoDust>();
                 var dustColor = GetColor();
                 Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, dustType, 0f, 0f, 0, dustColor, 1.25f)].velocity *= 0.015f;
                 projectile.localAI[0]++;
@@ -82,10 +85,10 @@ namespace AQMod.Projectiles.Ranged.Bullets.Rays
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             lightColor = GetColor();
-            var spotlight = SpriteUtils.Textures.Lights[LightID.Spotlight24x24];
+            var spotlight = DrawUtils.Textures.Lights[LightID.Spotlight24x24];
             var center = projectile.Center;
             var orig = spotlight.Size() / 2f;
-            var texture = AQTextureAssets.GetProjectile(projectile.type);
+            var texture = TextureCache.GetProjectile(projectile.type);
             var textureOrig = new Vector2(texture.Width / 2f, 2f);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             if (Trailshader.ShouldDrawVertexTrails(Trailshader.GetVertexDrawingContext_Projectile(projectile)))
@@ -95,11 +98,11 @@ namespace AQMod.Projectiles.Ranged.Bullets.Rays
                 {
                     if (projectile.oldPos[i] == new Vector2(0f, 0f))
                         break;
-                    trueOldPos.Add(CameraManager.UpsideDown(projectile.oldPos[i] + offset - Main.screenPosition));
+                    trueOldPos.Add(GameScreenManager.UpsideDownScreenSupport(projectile.oldPos[i] + offset - Main.screenPosition));
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader trail = new Trailshader(SpriteUtils.Textures.Trails[TrailID.Line], Trailshader.TextureTrail);
+                    Trailshader trail = new Trailshader(DrawUtils.Textures.Trails[TrailID.Line], Trailshader.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(8f - p * 8f), (p) => lightColor * (1f - p));
                     trail.Draw();
                 }
@@ -144,7 +147,7 @@ namespace AQMod.Projectiles.Ranged.Bullets.Rays
 
         public override void Kill(int timeLeft)
         {
-            int dustType = ModContent.DustType<Dusts.MonoDust>();
+            int dustType = ModContent.DustType<MonoDust>();
             var dustColor = GetColor();
             for (int i = 0; i < 10; i++)
             {

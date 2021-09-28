@@ -1,10 +1,11 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.Utilities;
+using AQMod.Items.Energies;
 using AQMod.Items.Fishing.Rods;
-using AQMod.Items.Misc.Energies;
-using AQMod.Items.Weapons.Magic.Staffs;
+using AQMod.Items.Tools;
+using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee.Flails;
 using AQMod.Items.Weapons.Ranged.Bows;
-using AQMod.NPCs.Ocean.Crabson;
+using AQMod.NPCs.Crabson;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

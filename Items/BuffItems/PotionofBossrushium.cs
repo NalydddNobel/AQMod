@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common;
-using AQMod.Items.Misc.Energies;
+using AQMod.Common.Utilities;
+using AQMod.Items.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -39,7 +40,7 @@ namespace AQMod.Items.BuffItems
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            Texture2D texture = SpriteUtils.Textures.Glows[GlowID.PotionofBussrushium];
+            Texture2D texture = DrawUtils.Textures.Glows[GlowID.PotionofBussrushium];
             float colorOffset = ((float)Math.Sin(Main.GlobalTime) + 1f) * 60f;
             Main.spriteBatch.Draw(texture, position, null, new Color((int)(20 + colorOffset * 2), 10, (int)(255 - colorOffset / 2), 180), 0f, origin + new Vector2(2, 2), scale, SpriteEffects.None, 0f);
             return true;
@@ -50,7 +51,7 @@ namespace AQMod.Items.BuffItems
             Rectangle frame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
             Vector2 drawPosition = new Vector2(item.position.X - Main.screenPosition.X + frame.Width / 2 + item.width / 2 - frame.Width / 2, item.position.Y - Main.screenPosition.Y + frame.Height / 2 + item.height - frame.Height);
             float colorOffset = ((float)Math.Sin(Main.GlobalTime) + 1f) * 60f;
-            Texture2D texture = SpriteUtils.Textures.Glows[GlowID.PotionofBussrushium];
+            Texture2D texture = DrawUtils.Textures.Glows[GlowID.PotionofBussrushium];
             Main.spriteBatch.Draw(texture, drawPosition, null, new Color((int)(20 + colorOffset * 2), 10, (int)(255 - colorOffset / 2), 180), rotation, new Vector2(texture.Width, texture.Height) / 2f, scale, SpriteEffects.None, 0f);
             Vector2 origin = frame.Size() / 2f;
             Main.spriteBatch.Draw(Main.itemTexture[item.type], drawPosition, frame, alphaColor, rotation, origin, scale, SpriteEffects.None, 0f);

@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -47,7 +48,7 @@ namespace AQMod.Projectiles
             var plr = Main.LocalPlayer;
             if (projectile.getRect().Contains(Main.MouseWorld.ToPoint()) && plr.IsInTileInteractionRange((int)pos.X / 16, (int)pos.Y / 16))
             {
-                var outlineTexture = SpriteUtils.Textures.Extras[ExtraID.ATMOutline];
+                var outlineTexture = DrawUtils.Textures.Extras[ExtraID.ATMOutline];
                 plr.noThrow = 2;
                 plr.showItemIcon = true;
                 plr.showItemIcon2 = ItemID.Safe;

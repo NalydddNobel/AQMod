@@ -1,5 +1,4 @@
-﻿using AQMod.Common.DeveloperTools;
-using AQMod.Items.Weapons.Magic.Staffs;
+﻿using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee.Flails;
 using AQMod.Items.Weapons.Ranged.Bows;
 using AQMod.Tiles;
@@ -45,11 +44,6 @@ namespace AQMod.Items.BossItems.Crabson
                 r.AddIngredient(item.type);
                 r.AddTile(TileID.Solidifier);
                 r.SetResult(ModContent.ItemType<Bubbler>());
-                r.AddRecipe();
-                r = new ModRecipe(mod);
-                r.AddIngredient(item.type);
-                r.AddTile(TileID.Solidifier);
-                r.SetResult(ModContent.ItemType<CrabClock>());
                 r.AddRecipe();
             }
         }

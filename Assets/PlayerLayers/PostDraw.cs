@@ -2,6 +2,7 @@
 using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,7 +20,7 @@ namespace AQMod.Assets.PlayerLayers
             var aQMod = AQMod.Instance;
             var player = info.drawPlayer;
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            var drawingPlayer = player.GetModPlayer<AQVisualsPlayer>();
+            var drawingPlayer = player.GetModPlayer<GraphicsPlayer>();
             switch (drawingPlayer.specialHead)
             {
                 case SpecialHeadID.ArachnotronVisor:
@@ -29,8 +30,8 @@ namespace AQMod.Assets.PlayerLayers
                     var headOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 10f) + info.drawPlayer.headPosition + info.headOrigin;
                     var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
                     var drawDiff = info.position - info.drawPlayer.position;
-                    var texture = SpriteUtils.Textures.Extras[ExtraID.ArachnotronVisorGlowmask];
-                    int count = drawingPlayer.GetOldPosCountMaxed(AQVisualsPlayer.ARACHNOTRON_OLD_POS_LENGTH);
+                    var texture = DrawUtils.Textures.Extras[ExtraID.ArachnotronVisorGlowmask];
+                    int count = drawingPlayer.GetOldPosCountMaxed(GraphicsPlayer.ARACHNOTRON_OLD_POS_LENGTH);
                     if (info.shadow == 0f)
                     {
                         var clrMult = 1f / count;
@@ -42,8 +43,8 @@ namespace AQMod.Assets.PlayerLayers
                     }
                     if (AQConfigClient.Instance.EffectQuality >= 1f)
                     {
-                        int frame = info.drawPlayer.bodyFrame.Y / AQVisualsPlayer.FRAME_HEIGHT;
-                        texture = SpriteUtils.Textures.Lights[LightID.Spotlight30x30];
+                        int frame = info.drawPlayer.bodyFrame.Y / GraphicsPlayer.FRAME_HEIGHT;
+                        texture = DrawUtils.Textures.Lights[LightID.Spotlight30x30];
                         var orig = texture.Size() / 2f;
                         clr = new Color(128, 20, 20, 0) * (1f - info.shadow);
                         var drawPos = new Vector2((int)(info.position.X - Main.screenPosition.X), (int)(info.position.Y - Main.screenPosition.Y) - 12f) + headOff;
@@ -92,8 +93,8 @@ namespace AQMod.Assets.PlayerLayers
                     var bodyOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 4f) + info.drawPlayer.bodyPosition + new Vector2(info.drawPlayer.bodyFrame.Width / 2, info.drawPlayer.bodyFrame.Height / 2);
                     var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
                     var drawDiff = info.position - info.drawPlayer.position;
-                    var texture = SpriteUtils.Textures.Extras[ExtraID.ArachnotronRibcageGlowmask];
-                    int count = drawingPlayer.GetOldPosCountMaxed(AQVisualsPlayer.ARACHNOTRON_OLD_POS_LENGTH);
+                    var texture = DrawUtils.Textures.Extras[ExtraID.ArachnotronRibcageGlowmask];
+                    int count = drawingPlayer.GetOldPosCountMaxed(GraphicsPlayer.ARACHNOTRON_OLD_POS_LENGTH);
                     if (info.shadow == 0f)
                     {
                         var clrMult = 1f / count;
@@ -105,8 +106,8 @@ namespace AQMod.Assets.PlayerLayers
                     }
                     if (ModContent.GetInstance<AQConfigClient>().EffectQuality >= 1f)
                     {
-                        int frame = info.drawPlayer.bodyFrame.Y / AQVisualsPlayer.FRAME_HEIGHT;
-                        texture = SpriteUtils.Textures.Lights[LightID.Spotlight30x30];
+                        int frame = info.drawPlayer.bodyFrame.Y / GraphicsPlayer.FRAME_HEIGHT;
+                        texture = DrawUtils.Textures.Lights[LightID.Spotlight30x30];
                         var orig = texture.Size() / 2f;
                         clr = new Color(128, 20, 20, 0) * (1f - info.shadow);
                         var drawPos = new Vector2((int)(info.position.X - Main.screenPosition.X), (int)(info.position.Y - Main.screenPosition.Y)) + bodyOff;
@@ -138,17 +139,17 @@ namespace AQMod.Assets.PlayerLayers
             }
             if (info.shadow == 0f && aQPlayer.blueSpheres && drawingPlayer.celesteTorusPositions != null)
             {
-                var texture = SpriteUtils.Textures.Extras[ExtraID.CelesteTorusProjectile];
+                var texture = DrawUtils.Textures.Extras[ExtraID.CelesteTorusProjectile];
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var orig = frame.Size() / 2f;
                 for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)
                 {
                     var position = aQPlayer.GetCelesteTorusPositionOffset(i);
-                    float layerValue = Parralax.GetParralaxScale(1f, drawingPlayer.celesteTorusPositions[i].Z * AQVisualsPlayer.CELESTE_Z_MULT);
+                    float layerValue = Parralax.GetParralaxScale(1f, drawingPlayer.celesteTorusPositions[i].Z * GraphicsPlayer.CELESTE_Z_MULT);
                     if (layerValue >= 1f)
                     {
                         var center = info.position + new Vector2(player.width / 2 + (int)position.X, player.height / 2 + (int)position.Y);
-                        Main.playerDrawData.Add(new DrawData(texture, Parralax.GetParralaxPosition(center, drawingPlayer.celesteTorusPositions[i].Z * AQVisualsPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, Parralax.GetParralaxScale(aQPlayer.celesteTorusScale, drawingPlayer.celesteTorusPositions[i].Z * AQVisualsPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawingPlayer.cCelesteTorus, ignorePlayerRotation = true });
+                        Main.playerDrawData.Add(new DrawData(texture, Parralax.GetParralaxPosition(center, drawingPlayer.celesteTorusPositions[i].Z * GraphicsPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, Parralax.GetParralaxScale(aQPlayer.celesteTorusScale, drawingPlayer.celesteTorusPositions[i].Z * GraphicsPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawingPlayer.cCelesteTorus, ignorePlayerRotation = true });
                     }
                 }
             }

@@ -1,9 +1,9 @@
 ﻿using AQMod.Common;
-using AQMod.Common.Skies;
-using AQMod.Common.WorldEvents;
-using AQMod.Items.Misc.Energies;
+using AQMod.Content.Skies;
+using AQMod.Content.WorldEvents;
+using AQMod.Items.Energies;
 using AQMod.Localization;
-using AQMod.NPCs.Glimmer.OmegaStar;
+using AQMod.NPCs.Starite;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -37,7 +37,7 @@ namespace AQMod.Items.BossItems.Starite
             if (Main.myPlayer == player.whoAmI)
                 GlimmerEventSky._glimmerLight = 1f;
             NPC.NewNPC((int)player.position.X, (int)player.position.Y - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, player.whoAmI);
-            AQMod.BroadcastMessage(AQText.Key + "Common.AwakenedOmegaStarite", AQNPC.BossMessage);
+            AQMod.BroadcastMessage(AQText.Key + "Common.AwakenedOmegaStarite", AQMod.BossMessage);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

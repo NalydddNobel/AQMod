@@ -1,4 +1,6 @@
-﻿using AQMod.Items.Misc.Markers;
+﻿using AQMod.Common;
+using AQMod.Items.Misc.Markers;
+using AQMod.Items.Tools.Markers;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;

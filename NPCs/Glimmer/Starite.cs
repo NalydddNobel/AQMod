@@ -1,7 +1,8 @@
 ﻿using AQMod.Common;
-using AQMod.Common.WorldEvents;
+using AQMod.Common.Utilities;
+using AQMod.Content.WorldEvents;
 using AQMod.Items.BuffItems.Foods;
-using AQMod.Items.Misc.Energies;
+using AQMod.Items.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
 using Microsoft.Xna.Framework;

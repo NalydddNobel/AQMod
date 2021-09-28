@@ -1,3 +1,115 @@
+####### v1.2.1 #######
+
+~ Demon Siege update ~
+
+Added Items:
+* Hell's Boon
+* Degeneration Ring
+* Pow Punch
+* Disco Dye
+* Breakdown Dye
+* Hell Beam Dye
+* Demonic Cursor Dye
+
+Added Enemies:
+* Hecktor, a red dungeon spirit that spawns from Hell Armored Bones and Diabolists!
+* Magmabubble, a lava slime and a blood crawler... what an evil combination
+* Trapper Imp, a fire imp that gained a loving for capturing prey instead of burning it...
+* Cindera, a hellbat with the temper of a Biome Mimic, how could that go wrong?
+
+* Snobster... it's just there.
+
+* Boss Changes:
+- Omega Starite now has a 33% chance to drop Disco Dye when defeated during the Glimmer Event
+
+- Crabson now drops Breakdown Dye with Crabsol
+- Lowered Crabson's HP to 1000 (normal) 1500 (expert)
+- It's now harder to escape Crabson's Claws
+- Modified how Crabson shoots bubbles, and gave it a new bubble attack
+- Jerry Claws now shoot Jerry Pearls less often if more than 8 are active at once
+- Lowered the lifespan of Jerry Pearls
+- Crabson's Claws will no longer go towards you when "flowing"
+
+- Added a boss checklist entry for Crab Season
+- Added the "Demon Siege" event to boss checklist (+ a downed flag)
+
+* Important Changes:
+- Added Gerd to the developer's list in the description of Aequus
+
+- Removed the Crab Card
+
+- Removed Robster's """""""Story""""""" hunts
+
+- Robster no longer sells Crabson loot
+
+- Robster no longer creates quests for dead town NPCs
+
+- Gore Nests now spawn naturally on the outer 1/3rds of your world, and also regrow naturally in hardmode.
+
+- Demonic Energy is no longer a global drop, and will now only drop from Demon Siege enemies
+
+* Misc Changes:
+- Robster can no longer go to Queen Statues 
+
+- Robster now uses Crabsol to defend himself instead of having no weapon
+
+- Music now plays while the Demon Siege is active (without the music mod, it's "Boss 1")
+
+- The music that plays during the Glimmer Event will no longer play when you are underground
+
+- Modifed the drawcode for the energies
+
+- Centered the spotlight on Demonic Energy
+
+- You must now craft Molite potions at a Demon Altar
+
+- You can no longer turn Sake and Ale into Molite Buffs
+
+- Renamed "Molite" to "Starbyte"
+
+- The Potion of Containers can now support modded chests!!! 
+
+- The Fishy Fins will no longer display as the Monoxide Hat on the map
+
+- You must now craft baited Containers Potions at a Demon Altar (since the alchemy table lets you have a 33% chance to not consume the potion or chest...)
+
+- Added more textures for the Sword Cursor Dye
+
+- The Sword Cursor Dye now applies your cursor outline color
+
+- Removed a dumb recipe used to craft the Starite Staff
+
+- The Jeweled Chalice is no longer considered a Bottles tile
+(this will make them unload sadly) 
+
+- TEA should now load the callback texture properly
+
+- Overhauled the Extractor internally
+
+- Town NPCs now react to you stealing jeweled tiles
+
+- Gave localization values to multiple hostile projectiles
+
+- Skeletron no longer drops the Dungeon Marker, and it is instead a 1/75 drop from Angry Bones, Dark Casters, and Cursed Skull
+
+- Plantera no longer drops the Lihzahrd Marker, and it is instead a 1/50 drop from Lihzarhds and Flying Snakes 
+
+- Enemies will no longer drop multiple hearts / spectre souls when using the Spoils Potion 
+
+- The text "The town NPC that Robster wants you to steal isn't here anymore... Talk to Robster for a different Hunt" should no longer be absurdly rare or appear multiple times when using a Spoils Potion
+
+- Robster's quest should now properly reset when the town NPC you are stealing from dies
+
+- Qi is no longer obtainable
+
+- Nerfed Crabsol's damage and use speed and changed its drop requirement
+
+- Added a visual effect to the Gore Nest
+
+- The Strider Crab now makes a sound when shooting
+
+- Fixed some localization key errors 
+
 ####### v1.2 #######
 
 Added Items: 

@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
@@ -32,7 +33,7 @@ namespace AQMod.Common.UserInterface
 
         public static bool UnityTeleport(float x, float y, Vector2 drawPosition, Player player, bool allowedToTeleport)
         {
-            var texture = SpriteUtils.Textures.Extras[ExtraID.UnityTeleportable];
+            var texture = DrawUtils.Textures.Extras[ExtraID.UnityTeleportable];
             float scale = Main.UIScale * 0.8f;
             drawPosition += new Vector2(-texture.Width / 2f, -texture.Height / 2f) * scale;
             Main.spriteBatch.Draw(texture, drawPosition + new Vector2(2f, 0f), null, Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);

@@ -1,5 +1,6 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
 using AQMod.Common;
+using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -8,7 +9,7 @@ namespace AQMod.Projectiles
 {
     public class SpectreSoul : ModProjectile
     {
-        public override string Texture => AQMod.ModName + "/" + AQTextureAssets.None;
+        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
 
         public override void SetDefaults()
         {
@@ -45,7 +46,7 @@ namespace AQMod.Projectiles
 
         public override void PostAI()
         {
-            int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.MonoDust>(), 0f, 0f, 0, new Color(240, 90, 100, 0));
+            int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(240, 90, 100, 0));
             Main.dust[d].velocity = projectile.velocity * 0.01f;
         }
     }

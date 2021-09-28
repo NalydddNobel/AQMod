@@ -9,6 +9,7 @@ namespace AQMod.Common
         public static bool DownedStarite { get; set; }
         public static bool DownedYinYang { get; set; }
         public static bool DownedCrabson { get; set; }
+        public static bool DownedDemonSiege { get; set; }
 
         public override void Initialize()
         {
@@ -16,6 +17,7 @@ namespace AQMod.Common
             DownedStarite = false;
             DownedYinYang = false;
             DownedCrabson = false;
+            DownedDemonSiege = false;
         }
 
         public override TagCompound Save()
@@ -26,6 +28,7 @@ namespace AQMod.Common
                 ["DownedStarite"] = DownedStarite,
                 ["DownedYinYang"] = DownedYinYang,
                 ["DownedCrabson"] = DownedCrabson,
+                ["DownedDemonSiege"] = DownedDemonSiege,
             };
         }
 
@@ -35,6 +38,7 @@ namespace AQMod.Common
             DownedStarite = tag.GetBool("DownedStarite");
             DownedYinYang = tag.GetBool("DownedYinYang");
             DownedCrabson = tag.GetBool("DownedCrabson");
+            DownedDemonSiege = tag.GetBool("DownedDemonSiege");
         }
     }
 }

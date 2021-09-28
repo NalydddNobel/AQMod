@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
 
 namespace AQMod.Items.GrapplingHooks
 {

@@ -93,5 +93,94 @@ namespace AQMod.Common.DeveloperTools
             streamWriter.Close();
             aQMod.Logger.Debug("saved at: " + fileLocation);
         }
+
+        public static void MergeEnglish(GameCulture culture)
+        {
+            string fileLocation = "Localization/" + culture.CultureInfo.Name + ".lang";
+            string fileLocationEnglish = "Localization/" + GameCulture.English.CultureInfo.Name + ".lang";
+            var aQMod = AQMod.Instance;
+            aQMod.Logger.Debug("Getting mod file:" + fileLocationEnglish);
+            var stream = aQMod.GetFileStream(fileLocationEnglish, false);
+            aQMod.Logger.Debug(fileLocation);
+            if (stream == null)
+            {
+                aQMod.Logger.Error("Stream to this localization file doesn't exist");
+                return;
+            }
+            var reader = new StreamReader(stream);
+            string s = "";
+            List<string> lines = new List<string>();
+            while (s != null)
+            {
+                s = reader.ReadLine();
+                lines.Add(s);
+            }
+            aQMod.Logger.Debug("Getting mod file:" + fileLocation);
+            stream = aQMod.GetFileStream(fileLocation, false);
+            reader.Dispose();
+            reader = new StreamReader(stream);
+            List<string> mergeKeys = new List<string>();
+            List<string> mergeKeysValue = new List<string>();
+            for (long l = 0; !reader.EndOfStream; l++)
+            {
+                s = reader.ReadLine();
+                if (string.IsNullOrWhiteSpace(s) || s[0] == '#')
+                {
+                    continue;
+                }
+                string key = "";
+                foreach (char c in s)
+                {
+                    if (c != '=')
+                    {
+                        key += c;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                mergeKeys.Add(key);
+                mergeKeysValue.Add(s);
+            }
+            for (int i = 0; i < lines.Count; i++)
+            {
+                string text = lines[i];
+                if (string.IsNullOrWhiteSpace(text) || text[0] == '#')
+                {
+                    continue;
+                }
+                string key = "";
+                foreach (char c in text)
+                {
+                    if (c != '=')
+                    {
+                        key += c;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                int sameKey = mergeKeys.FindIndex((mergingKey) => key.Equals(mergingKey));
+                if (sameKey != -1)
+                {
+                    lines[i] = mergeKeysValue[sameKey];
+                }
+            }
+            s = "";
+            foreach (string text in lines)
+            {
+                //aQMod.Logger.Debug(text);
+                s += text + '\n';
+            }
+            fileLocation = Main.SavePath + Path.DirectorySeparatorChar + "Mods/Cache/AQMod/Localization/";
+            Directory.CreateDirectory(fileLocation);
+            fileLocation += culture.CultureInfo.Name + ".lang";
+            var streamWriter = File.CreateText(fileLocation);
+            streamWriter.Write(s);
+            streamWriter.Close();
+            aQMod.Logger.Debug("saved at: " + fileLocation);
+        }
     }
 }

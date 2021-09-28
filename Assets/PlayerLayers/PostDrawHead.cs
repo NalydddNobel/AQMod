@@ -2,6 +2,7 @@
 using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,10 +18,10 @@ namespace AQMod.Assets.PlayerLayers
         {
             var player = info.drawPlayer;
             var aQPlayer = info.drawPlayer.GetModPlayer<AQPlayer>();
-            var drawingPlayer = info.drawPlayer.GetModPlayer<AQVisualsPlayer>();
+            var drawingPlayer = info.drawPlayer.GetModPlayer<GraphicsPlayer>();
             float opacity = 1f - info.shadow;
             const float MagicOffsetForReversedGravity = 8f;
-            int headFrame = info.drawPlayer.bodyFrame.Y / AQVisualsPlayer.FRAME_HEIGHT;
+            int headFrame = info.drawPlayer.bodyFrame.Y / GraphicsPlayer.FRAME_HEIGHT;
             float gravityOffset = 0f;
             if (info.drawPlayer.gravDir == -1)
                 gravityOffset = MagicOffsetForReversedGravity;
@@ -33,7 +34,7 @@ namespace AQMod.Assets.PlayerLayers
                         headOff.Y -= 8f;
                     var headPos = new Vector2((int)(info.position.X - Main.screenPosition.X), (int)(info.position.Y - Main.screenPosition.Y)) + headOff;
                     var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
-                    var texture = SpriteUtils.Textures.Glows[GlowID.OmegaStariteMask];
+                    var texture = DrawUtils.Textures.Glows[GlowID.OmegaStariteMask];
                     Main.playerDrawData.Add(new DrawData(texture, headPos, info.drawPlayer.bodyFrame, clr * 0.8f, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = info.headArmorShader });
                 }
                 break;
@@ -47,7 +48,7 @@ namespace AQMod.Assets.PlayerLayers
                         headOff.Y -= 8f;
                     var headPos = new Vector2((int)(info.position.X - Main.screenPosition.X), (int)(info.position.Y - Main.screenPosition.Y)) + headOff;
                     var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
-                    var texture = SpriteUtils.Textures.Extras[ExtraID.ArachnotronVisorGlowmask];
+                    var texture = DrawUtils.Textures.Extras[ExtraID.ArachnotronVisorGlowmask];
                     Main.playerDrawData.Add(new DrawData(texture, headPos, info.drawPlayer.bodyFrame, clr, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = info.headArmorShader });
                 }
                 break;
@@ -60,7 +61,7 @@ namespace AQMod.Assets.PlayerLayers
                 {
                     default:
                     {
-                        Main.playerDrawData.Add(new DrawData(SpriteUtils.Textures.PlayerMasks[(PlayerMaskID)drawingPlayer.mask], position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = drawingPlayer.cMask, });
+                        Main.playerDrawData.Add(new DrawData(DrawUtils.Textures.PlayerMasks[(PlayerMaskID)drawingPlayer.mask], position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = drawingPlayer.cMask, });
                     }
                     break;
 
@@ -68,12 +69,12 @@ namespace AQMod.Assets.PlayerLayers
                     {
                         if (drawingPlayer.cMask > 0)
                             drawingPlayer.cataEyeColor = new Color(100, 100, 100, 0);
-                        Main.playerDrawData.Add(new DrawData(SpriteUtils.Textures.PlayerMasks[PlayerMaskID.CataMask], position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = drawingPlayer.cMask, });
+                        Main.playerDrawData.Add(new DrawData(DrawUtils.Textures.PlayerMasks[PlayerMaskID.CataMask], position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = drawingPlayer.cMask, });
                         if (drawingPlayer.mothmanMaskSpecial)
                         {
                             if (info.drawPlayer.headRotation == 0)
                             {
-                                var texture = SpriteUtils.Textures.Lights[LightID.Spotlight240x66];
+                                var texture = DrawUtils.Textures.Lights[LightID.Spotlight240x66];
                                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                                 var orig = frame.Size() / 2f;
                                 var scale = new Vector2((float)(Math.Sin(Main.GlobalTime * 10f) + 1f) * 0.04f + 0.2f, 0.1f);
@@ -108,14 +109,14 @@ namespace AQMod.Assets.PlayerLayers
                 {
                     default:
                     {
-                        Main.playerDrawData.Add(new DrawData(SpriteUtils.Textures.PlayerHeadOverlays[(PlayerHeadOverlayID)drawingPlayer.headOverlay], position - Main.screenPosition, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                        Main.playerDrawData.Add(new DrawData(DrawUtils.Textures.PlayerHeadOverlays[(PlayerHeadOverlayID)drawingPlayer.headOverlay], position - Main.screenPosition, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
                     }
                     break;
 
                     case PlayerHeadOverlayID.MonoxideHat:
                     {
-                        Main.playerDrawData.Add(new DrawData(SpriteUtils.Textures.PlayerHeadOverlays[PlayerHeadOverlayID.MonoxideHat], position - Main.screenPosition, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
-                        Main.playerDrawData.Add(new DrawData(SpriteUtils.Textures.PlayerHeadOverlays[PlayerHeadOverlayID.MonoxideHatGlow], position - Main.screenPosition, info.drawPlayer.bodyFrame, new Color(opacity * 0.99f, opacity * 0.99f, opacity * 0.99f, 0f), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                        Main.playerDrawData.Add(new DrawData(DrawUtils.Textures.PlayerHeadOverlays[PlayerHeadOverlayID.MonoxideHat], position - Main.screenPosition, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                        Main.playerDrawData.Add(new DrawData(DrawUtils.Textures.PlayerHeadOverlays[PlayerHeadOverlayID.MonoxideHatGlow], position - Main.screenPosition, info.drawPlayer.bodyFrame, new Color(opacity * 0.99f, opacity * 0.99f, opacity * 0.99f, 0f), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
                         var value = ModContent.ProjectileType<Projectiles.Minions.Monoxider>();
                         var texture = Main.projectileTexture[value];
                         var frame = new Rectangle(0, 0, texture.Width, texture.Height / Main.projFrames[value] - 2);
@@ -142,7 +143,7 @@ namespace AQMod.Assets.PlayerLayers
 
                     case PlayerHeadOverlayID.FishyFins:
                     {
-                        Main.playerDrawData.Add(new DrawData(SpriteUtils.Textures.PlayerHeadOverlays[(PlayerHeadOverlayID)drawingPlayer.headOverlay], position - Main.screenPosition, info.drawPlayer.bodyFrame, Lighting.GetColor((int)info.position.X / 16, (int)info.position.Y / 16, info.drawPlayer.skinColor), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                        Main.playerDrawData.Add(new DrawData(DrawUtils.Textures.PlayerHeadOverlays[(PlayerHeadOverlayID)drawingPlayer.headOverlay], position - Main.screenPosition, info.drawPlayer.bodyFrame, Lighting.GetColor((int)info.position.X / 16, (int)info.position.Y / 16, info.drawPlayer.skinColor), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
                     }
                     break;
                 }

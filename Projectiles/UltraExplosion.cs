@@ -1,4 +1,5 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
+using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -9,7 +10,7 @@ namespace AQMod.Projectiles
 {
     public class UltraExplosion : ModProjectile
     {
-        public override string Texture => "AQMod/" + AQTextureAssets.None;
+        public override string Texture => "AQMod/" + TextureCache.None;
 
         public override void SetDefaults()
         {
@@ -33,7 +34,7 @@ namespace AQMod.Projectiles
                                     (float)Math.Sin(positionLength + offset) + 1f,
                                     (float)Math.Sin(positionLength + offset * 2f) + 1f,
                                     0.5f);
-                var type = ModContent.DustType<Dusts.MonoDust>();
+                var type = ModContent.DustType<MonoDust>();
                 for (int i = 0; i < 80; i++)
                 {
                     int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, type, default, default, default, color, 1.65f);

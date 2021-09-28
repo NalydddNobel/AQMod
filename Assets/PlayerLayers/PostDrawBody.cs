@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -12,7 +13,7 @@ namespace AQMod.Assets.PlayerLayers
     {
         public static void Draw(PlayerDrawInfo info)
         {
-            var drawingPlayer = info.drawPlayer.GetModPlayer<AQVisualsPlayer>();
+            var drawingPlayer = info.drawPlayer.GetModPlayer<GraphicsPlayer>();
             switch (drawingPlayer.specialBody)
             {
                 case 20:
@@ -21,7 +22,7 @@ namespace AQMod.Assets.PlayerLayers
                     var bodyPos = new Vector2((int)(info.position.X - Main.screenPosition.X), (int)(info.position.Y - Main.screenPosition.Y)) + bodyOff;
                     var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
                     var drawDiff = info.position - info.drawPlayer.position;
-                    var texture = SpriteUtils.Textures.Extras[ExtraID.ArachnotronRibcageGlowmask];
+                    var texture = DrawUtils.Textures.Extras[ExtraID.ArachnotronRibcageGlowmask];
                     var drawData = new DrawData(texture, bodyPos, info.drawPlayer.bodyFrame, clr, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.bodyArmorShader };
                     Main.playerDrawData.Add(drawData);
                 }

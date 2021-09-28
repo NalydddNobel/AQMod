@@ -26,7 +26,7 @@ namespace AQMod.Items.Vanities
             item.vanity = true;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQVisualsPlayer drawingPlayer, int i)
+        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, GraphicsPlayer drawingPlayer, int i)
         {
             drawingPlayer.headOverlay = (int)PlayerHeadOverlayID.MonoxideHat;
             drawingPlayer.cHeadOverlay = player.dye[i % AQPlayer.DyeWrap].dye;

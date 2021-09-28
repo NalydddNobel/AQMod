@@ -17,6 +17,10 @@ namespace AQMod.Common
             {
                 Main.tile[i, j] = new Tile();
             }
+            if (WorldGen.genRand.NextBool(10000) && AQWorldGen.GrowGoreNest(i, j, true, true))
+            {
+                return;
+            }
             switch (type)
             {
                 case TileID.Stone:
@@ -34,6 +38,23 @@ namespace AQMod.Common
             }
         }
 
+        public static bool ProtectedTile(int i, int j)
+        {
+            var tile = Main.tile[i, j];
+            if (tile.type > Main.maxTileSets && Main.tileFrameImportant[tile.type])
+            {
+                bool blockDamaged = false;
+                if (TileLoader.GetTile(tile.type).mod.Name == "AQMod")
+                {
+                    if (!TileLoader.CanKillTile(i, j, tile.type, ref blockDamaged))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
         {
             switch (type)
@@ -41,44 +62,14 @@ namespace AQMod.Common
                 case TileID.ShadowOrbs:
                 return !AQConfigServer.Instance.evilProgressionLock || NPC.downedSlimeKing || NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee || Main.hardMode || Main.LocalPlayer.HeldItem.hammer >= 60;
             }
-            return true;
-        }
-
-        private static bool _veinmine;
-        private static uint _veinmineUpdateDelay;
-        private static readonly bool _veinmineUseStopwatch = true;
-
-        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
-        {
-            if (Main.GameUpdateCount >= _veinmineUpdateDelay && VeinmineHelper.CanVeinmineAtAll(type) && !fail && !effectOnly && !_veinmine && VeinmineHelper.IsSilt(type))
+            if (!Main.tileFrameImportant[type] && Main.tileSolid[type])
             {
-                byte plr = Player.FindClosest(new Vector2(i * 16f, j * 16f), 16, 16);
-                if (Main.player[plr].GetModPlayer<AQPlayer>().extractinatorVisible && Player.tileTargetX == i && Player.tileTargetY == j && Main.player[plr].HeldItem.pick > 0)
+                if (ProtectedTile(i, j - 1))
                 {
-                    Stopwatch stopwatch = null;
-
-                    if (_veinmineUseStopwatch)
-                    {
-                        stopwatch = new Stopwatch();
-                        stopwatch.Start();
-                    }
-
-                    _veinmine = true;
-                    VeinmineHelper.VeinmineTile(i, j, Main.player[plr]);
-                    _veinmine = false;
-
-                    if (_veinmineUseStopwatch)
-                    {
-                        ModContent.GetInstance<AQMod>().Logger.Debug((uint)stopwatch.ElapsedMilliseconds * 10);
-                        _veinmineUpdateDelay = Main.GameUpdateCount + (uint)stopwatch.ElapsedMilliseconds * 10;
-                        stopwatch.Stop();
-                    }
-                    else
-                    {
-                        _veinmineUpdateDelay = Main.GameUpdateCount + 10;
-                    }
+                    return false;
                 }
             }
+            return true;
         }
 
         public override bool CanExplode(int i, int j, int type)
@@ -92,7 +83,64 @@ namespace AQMod.Common
                 case TileID.ShadowOrbs:
                 return !AQConfigServer.Instance.evilProgressionLock || NPC.downedSlimeKing || NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee || Main.hardMode;
             }
+            if (!Main.tileFrameImportant[type] && Main.tileSolid[type])
+            {
+                if (ProtectedTile(i, j - 1))
+                {
+                    return false;
+                }
+            }
             return true;
+        }
+
+        public override bool Slope(int i, int j, int type)
+        {
+            if (!Main.tileFrameImportant[type] && Main.tileSolid[type])
+            {
+                if (ProtectedTile(i, j - 1))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private static bool _veinmine;
+        private static uint _veinmineUpdateDelay;
+        private static bool veinmineUseStopwatch => Main.netMode == NetmodeID.SinglePlayer;
+
+        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
+        {
+            if (Main.GameUpdateCount >= _veinmineUpdateDelay && VeinmineHelper.CanVeinmineAtAll(type) && !fail && !effectOnly && !_veinmine)
+            {
+                byte plr = Player.FindClosest(new Vector2(i * 16f, j * 16f), 16, 16);
+                if (Main.player[plr].GetModPlayer<AQPlayer>().veinmineTiles[type] && Player.tileTargetX == i && Player.tileTargetY == j && Main.player[plr].HeldItem.pick > 0)
+                {
+                    Stopwatch stopwatch = null;
+
+                    if (veinmineUseStopwatch)
+                    {
+                        stopwatch = new Stopwatch();
+                        stopwatch.Start();
+                    }
+
+                    noItem = true;
+                    _veinmine = true;
+                    VeinmineHelper.VeinmineTile(i, j, Main.player[plr]);
+                    _veinmine = false;
+
+                    if (veinmineUseStopwatch)
+                    {
+                        ModContent.GetInstance<AQMod>().Logger.Debug((uint)stopwatch.ElapsedMilliseconds * 10);
+                        _veinmineUpdateDelay = Main.GameUpdateCount + (uint)stopwatch.ElapsedMilliseconds * 10;
+                        stopwatch.Stop();
+                    }
+                    else
+                    {
+                        _veinmineUpdateDelay = Main.GameUpdateCount + 10;
+                    }
+                }
+            }
         }
 
         internal static bool PlaceRandomNobleMushroom(int x, int y)

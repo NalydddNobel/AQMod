@@ -1,4 +1,5 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
+using AQMod.Content.Dusts;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -6,7 +7,7 @@ namespace AQMod.Projectiles.Melee
 {
     public class UltimaFlare : ModProjectile
     {
-        public override string Texture => AQMod.ModName + "/" + AQTextureAssets.None;
+        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
 
         public override void SetDefaults()
         {
@@ -24,7 +25,7 @@ namespace AQMod.Projectiles.Melee
         {
             projectile.velocity.X *= 0.995f;
             projectile.velocity.Y -= 0.2f;
-            Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.UltimaDust>());
+            Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<UltimaDust>());
         }
     }
 }

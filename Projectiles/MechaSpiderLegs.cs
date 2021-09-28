@@ -1,5 +1,7 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
+using AQMod.Assets.Textures;
 using AQMod.Common;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,7 +12,7 @@ namespace AQMod.Projectiles
 {
     public class MechaSpiderLegs : ModProjectile
     {
-        public override string Texture => AQMod.ModName + "/" + AQTextureAssets.None;
+        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
 
         public Vector2[] arms;
         public Vector2[] armRest;
@@ -163,10 +165,10 @@ namespace AQMod.Projectiles
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            var texture = SpriteUtils.Textures.Extras[ExtraID.ArachnotronLeg];
-            var texture2 = SpriteUtils.Textures.Extras[ExtraID.ArachnotronLeg2];
-            var texture3 = SpriteUtils.Textures.Glows[GlowID.ArachnotronLeg];
-            var texture4 = SpriteUtils.Textures.Glows[GlowID.ArachnotronLeg2];
+            var texture = DrawUtils.Textures.Extras[ExtraID.ArachnotronLeg];
+            var texture2 = DrawUtils.Textures.Extras[ExtraID.ArachnotronLeg2];
+            var texture3 = DrawUtils.Textures.Glows[GlowID.ArachnotronLeg];
+            var texture4 = DrawUtils.Textures.Glows[GlowID.ArachnotronLeg2];
             projectile.gfxOffY = (float)Math.Sin(Main.GlobalTime * 2f);
             var drawOrig = projectile.position + new Vector2(projectile.width / 2f, projectile.height + projectile.gfxOffY);
             var orig = new Vector2(texture.Width / 2f, texture.Height);

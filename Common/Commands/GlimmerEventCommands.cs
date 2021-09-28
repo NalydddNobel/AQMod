@@ -1,4 +1,4 @@
-﻿using AQMod.Common.WorldEvents;
+﻿using AQMod.Content.WorldEvents;
 using AQMod.Localization;
 using Terraria.Localization;
 using Terraria.ModLoader;

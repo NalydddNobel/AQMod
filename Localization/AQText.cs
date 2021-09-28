@@ -38,61 +38,6 @@ namespace AQMod.Localization
             return string.Format(ModText("Common.EnableThing").Value, arg);
         }
 
-        public static LocalizedText RobsterSawInSomeonesHouse()
-        {
-            return ModText("Common.RobsterSawInSomeonesHouse");
-        }
-
-        public static LocalizedText RobsterRandomHunt(UnifiedRandom random)
-        {
-            return RobsterRandomHunt(0);
-        }
-
-        public static LocalizedText RobsterRandomHunt(int type)
-        {
-            return ModText("Common.RobsterRandomHunt" + type);
-        }
-
-        public static LocalizedText RobsterQuitHuntQuestion()
-        {
-            return ModText("Common.RobsterQuitHuntQuestion");
-        }
-
-        public static LocalizedText RobsterRandomHuntComplete(int type)
-        {
-            return ModText("Common.RobsterRandomHuntComplete" + type);
-        }
-
-        public static LocalizedText RobsterStoryHuntComplete(int type)
-        {
-            return ModText("Common.RobsterStoryHuntComplete" + type);
-        }
-
-        public static LocalizedText RobsterStoryHunt(int type)
-        {
-            return ModText("Common.RobsterStoryHunt" + type);
-        }
-
-        public static LocalizedText RobsterExtraReward(int type)
-        {
-            return ModText("Common.RobsterExtraReward" + type);
-        }
-
-        public static LocalizedText PressHuntToContinue()
-        {
-            return ModText("Common.PressHuntToContinue");
-        }
-
-        public static LocalizedText RobsterQuitHunt()
-        {
-            return ModText("Common.RobsterQuitHunt");
-        }
-
-        public static LocalizedText RobsterHunt()
-        {
-            return ModText("Common.RobsterHunt");
-        }
-
         public static LocalizedText RobsterChat(int type)
         {
             return ModText("Common.RobsterChat" + type);

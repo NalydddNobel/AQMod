@@ -1,4 +1,5 @@
 ﻿using AQMod.Items.Fishing.Bait;
+using AQMod.Projectiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,19 +8,42 @@ namespace AQMod.Common
 {
     public class AQProjectile : GlobalProjectile
     {
+        public static class TagID
+        {
+            public const byte None = 0;
+            public const byte HamaYumi = 1;
+            public const byte Deltoid = 2;
+        }
+
+        public static class Sets
+        {
+            public static bool[] UntaggableProjectile { get; private set; }
+
+            internal static void Setup()
+            {
+                UntaggableProjectile = new bool[ProjectileLoader.ProjectileCount];
+                UntaggableProjectile[ModContent.ProjectileType<CelesteTorusProjectile>()] = true;
+            }
+        }
+
+        public byte projectileTag;
+
+        public override bool InstancePerEntity => true;
+        public override bool CloneNewInstances => true; 
+
         public override bool PreAI(Projectile projectile)
         {
             if (projectile.aiStyle == 61)
             {
                 if (projectile.ai[1] > 0f && projectile.localAI[1] >= 0f) // on catch effects
                 {
-                    //var aQPlayer = Main.player[projectile.owner].GetModPlayer<AQPlayer>();
-                    //if (aQPlayer.PopperType > 0)
-                    //{
-                    //    var item = new Item();
-                    //    item.SetDefaults(aQPlayer.PopperType);
-                    //    ((PopperBait)item.modItem).PopperEffects(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
-                    //}
+                    var aQPlayer = Main.player[projectile.owner].GetModPlayer<AQPlayer>();
+                    if (aQPlayer.PopperType > 0)
+                    {
+                        var item = new Item();
+                        item.SetDefaults(aQPlayer.PopperType);
+                        ((PopperBait)item.modItem).OnCatchEffect(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
+                    }
                 }
                 else if (projectile.ai[0] <= 0f && projectile.wet && projectile.rotation != 0f) // When it enters the water
                 {
@@ -33,6 +57,18 @@ namespace AQMod.Common
                 }
             }
             return true;
+        }
+
+        public override void AI(Projectile projectile)
+        {
+            switch (projectileTag)
+            {
+                case TagID.HamaYumi:
+                {
+
+                }
+                break;
+            }
         }
 
         public override void Kill(Projectile projectile, int timeLeft)
@@ -105,6 +141,32 @@ namespace AQMod.Common
                     }
                 }
             }
+            switch (projectileTag)
+            {
+                case TagID.HamaYumi:
+                {
+
+                }
+                break;
+            }
+        }
+
+        /// <summary>
+        /// Counts how many projectiles are active of a given type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static int CountProjectiles(int type)
+        {
+            int count = 0;
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].type == type)
+                {
+                    count++;
+                }
+            }
+            return count;
         }
     }
 }

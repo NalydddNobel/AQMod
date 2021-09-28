@@ -26,7 +26,7 @@ namespace AQMod.Items.BossItems.Starite
 
         public override void UpdateVanity(Player player, EquipType type)
         {
-            player.GetModPlayer<AQVisualsPlayer>().specialHead = SpecialHeadID.OmegaStariteMask;
+            player.GetModPlayer<GraphicsPlayer>().specialHead = SpecialHeadID.OmegaStariteMask;
         }
     }
 }

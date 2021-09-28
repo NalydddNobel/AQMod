@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Content.Dusts;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -47,7 +48,7 @@ namespace AQMod.Projectiles.Ranged.Bullets.Rays
             if (!projectile.hide)
             {
                 projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
-                int dustType = ModContent.DustType<Dusts.MonoDust>();
+                int dustType = ModContent.DustType<MonoDust>();
                 var dustColor = GetColor();
                 Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, dustType, 0f, 0f, 0, dustColor, 1.25f)].velocity *= 0.015f;
                 projectile.localAI[0]++;

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories.Shoes
 {
+    [AutoloadEquip(EquipType.Shoes)]
     public class MoonShoes : ModItem
     {
         public override void SetDefaults()

@@ -1,5 +1,5 @@
-﻿using AQMod.Common;
-using AQMod.Dusts;
+﻿using AQMod.Common.Utilities;
+using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -53,7 +53,7 @@ namespace AQMod.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             float intensityMult = 0.1f;
-            var screenCenter = SpriteUtils.ScreenCenter;
+            var screenCenter = DrawUtils.ScreenCenter;
             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
             var distance = (screenCenter - screenPosition).Length();
             if (distance < GlowDistance)
@@ -156,14 +156,6 @@ namespace AQMod.Tiles
             {
                 default:
                 Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Placeable.ExoticCoral>());
-                break;
-
-                case 6:
-                Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Misc.QuestRobster.CrabCard>());
-                break;
-
-                case 7:
-                Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Misc.QuestRobster.Snobster>());
                 break;
 
                 case 8:

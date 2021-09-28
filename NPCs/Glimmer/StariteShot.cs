@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Content.WorldEvents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -56,15 +57,15 @@ namespace AQMod.NPCs.Glimmer
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Vector2 offset = new Vector2(projectile.width / 2f, projectile.height / 2f) - Main.screenPosition;
-            Color color = AQNPC.StariteProjectileColor * 0.4f;
+            Color color = GlimmerEvent.StariteProjectileColor * 0.4f;
             float mult = 1f / ProjectileID.Sets.TrailCacheLength[projectile.type];
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
             {
                 float progress = mult * i;
                 spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.oldPos[i] + offset, null, Color.Lerp(color * 10f, color, progress) * (1f - progress) * ModContent.GetInstance<AQConfigClient>().EffectIntensity, projectile.rotation, Main.projectileTexture[projectile.type].Size() / 2f, projectile.scale - progress, SpriteEffects.None, 0f);
             }
-            spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position + offset, null, AQNPC.StariteProjectileColor, projectile.rotation, Main.projectileTexture[projectile.type].Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position + offset, null, AQNPC.StariteProjectileColor * 0.1f, projectile.rotation, Main.projectileTexture[projectile.type].Size() / 2f, projectile.scale + 0.1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position + offset, null, GlimmerEvent.StariteProjectileColor, projectile.rotation, Main.projectileTexture[projectile.type].Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position + offset, null, GlimmerEvent.StariteProjectileColor * 0.1f, projectile.rotation, Main.projectileTexture[projectile.type].Size() / 2f, projectile.scale + 0.1f, SpriteEffects.None, 0f);
             return false;
         }
 

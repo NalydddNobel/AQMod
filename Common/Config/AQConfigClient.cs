@@ -1,4 +1,4 @@
-﻿using AQMod.Common.Skies;
+﻿using AQMod.Content.Skies;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.ComponentModel;
@@ -55,6 +55,21 @@ namespace AQMod.Common.Config
         [DefaultValue(true)]
         [ReloadRequired()]
         public bool ScreenDistortShader { get; set; }
+
+        [Label(AQText.ConfigValueKey + "PortalShader")]
+        [DefaultValue(true)]
+        [ReloadRequired()]
+        public bool PortalShader { get; set; }
+
+        [Label(AQText.ConfigValueKey + "ColorDistortShader")]
+        [DefaultValue(true)]
+        [ReloadRequired()]
+        public bool ColorDistortShader { get; set; }
+
+        [Label(AQText.ConfigValueKey + "SpotlightShader")]
+        [DefaultValue(true)]
+        [ReloadRequired()]
+        public bool SpotlightShader { get; set; }
 
         [Label(AQText.ConfigValueKey + "BackgroundStarites")]
         [DefaultValue(true)]

@@ -1,4 +1,6 @@
 ﻿using AQMod.Common;
+using AQMod.Common.Utilities;
+using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -29,7 +31,7 @@ namespace AQMod.Projectiles
                 }
                 if (Main.rand.NextBool(12))
                 {
-                    int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.XenonDust>());
+                    int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<XenonDust>());
                     Main.dust[d].velocity.X *= 0.5f;
                     Main.dust[d].velocity.Y = Main.dust[d].velocity.Y.Abs() * -1.1f;
                 }
@@ -46,13 +48,13 @@ namespace AQMod.Projectiles
                 projectile.velocity = Vector2.Lerp(projectile.velocity, new Vector2(projectile.ai[0], 0f).RotatedBy((Main.npc[target].Center - projectile.Center).ToRotation()), projectile.ai[0] * 0.005f);
                 if (Main.rand.NextBool(4))
                 {
-                    int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.XenonDust>());
+                    int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<XenonDust>());
                     Main.dust[d].velocity.X *= 0.5f;
                     Main.dust[d].velocity.Y = Main.dust[d].velocity.Y.Abs() * -1.1f;
                 }
                 if (Main.rand.NextBool(4))
                 {
-                    int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.XenonMist>());
+                    int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<XenonMist>());
                 }
             }
             Lighting.AddLight(projectile.Center, new Vector3(0.05f, 0.05f, 0.1f));
@@ -63,7 +65,7 @@ namespace AQMod.Projectiles
 
         public override void Kill(int timeLeft)
         {
-            var dustType = ModContent.DustType<Dusts.XenonDust>();
+            var dustType = ModContent.DustType<XenonDust>();
             for (int i = 0; i < 10; i++)
             {
                 Dust.NewDust(projectile.position, projectile.width, projectile.height, dustType, 0f, 0f, 0, default(Color), 1.4f);

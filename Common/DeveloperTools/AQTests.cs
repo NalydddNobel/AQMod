@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Common.Utilities;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameInput;
@@ -51,7 +52,7 @@ namespace AQMod.Common.DeveloperTools
                     }
                 }
 
-                var texture = SpriteUtils.Textures.Extras[Assets.Textures.ExtraID.Omegite];
+                var texture = DrawUtils.Textures.Extras[Assets.Textures.ExtraID.Omegite];
                 var textureOrigin = texture.Size() / 2f;
                 Main.spriteBatch.Draw(texture, origin, null, Color.Black, 0f, textureOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture, target, null, Color.Black, 0f, textureOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
@@ -135,7 +136,7 @@ namespace AQMod.Common.DeveloperTools
                     }
                 }
 
-                var texture = SpriteUtils.Textures.Extras[Assets.Textures.ExtraID.Omegite];
+                var texture = DrawUtils.Textures.Extras[Assets.Textures.ExtraID.Omegite];
                 var textureOrigin = texture.Size() / 2f;
                 Main.spriteBatch.Draw(texture, Parralax.GetParralaxPosition(new Vector2(origin.X, origin.Y) + Main.screenPosition, origin.Z * 0.01f) - Main.screenPosition, null, Color.Black, 0f, textureOrigin, Parralax.GetParralaxScale(1f, origin.Z * 0.1f), Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture, Parralax.GetParralaxPosition(new Vector2(target.X, target.Y) + Main.screenPosition, target.Z * 0.01f) - Main.screenPosition, null, Color.Black, 0f, textureOrigin, Parralax.GetParralaxScale(1f, target.Z * 0.1f), Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);

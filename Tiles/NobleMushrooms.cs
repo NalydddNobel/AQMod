@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Dusts;
+using AQMod.Content.Dusts;
 using AQMod.Items.Placeable.Mushrooms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

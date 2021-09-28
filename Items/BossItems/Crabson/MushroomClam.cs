@@ -1,7 +1,6 @@
 ﻿using AQMod.Common;
-using AQMod.Items.Misc;
 using AQMod.Localization;
-using AQMod.NPCs.Ocean.Crabson;
+using AQMod.NPCs.Crabson;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,7 +34,7 @@ namespace AQMod.Items.BossItems.Crabson
         public override bool UseItem(Player player)
         {
             NPC.NewNPC((int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<JerryCrabson>(), 0, 0f, 0f, 0f, 0f, player.whoAmI);
-            Main.NewText(AQText.ModText("Common.AwakenedCrabson"), AQNPC.BossMessage);
+            Main.NewText(AQText.ModText("Common.AwakenedCrabson"), AQMod.BossMessage);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

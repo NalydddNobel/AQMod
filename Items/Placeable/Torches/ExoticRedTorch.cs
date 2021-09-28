@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Content.Dusts;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -30,7 +31,7 @@ namespace AQMod.Items.Placeable.Torches
         {
             if (Main.rand.Next(player.itemAnimation > 0 ? 40 : 80) == 0)
             {
-                var type = Main.rand.NextBool() ? ModContent.DustType<Dusts.ArgonDust>() : ModContent.DustType<Dusts.ArgonMist>();
+                var type = Main.rand.NextBool() ? ModContent.DustType<ArgonDust>() : ModContent.DustType<ArgonMist>();
                 Dust.NewDust(new Vector2(player.itemLocation.X + 16f * player.direction, player.itemLocation.Y - 14f * player.gravDir), 4, 4, type);
             }
             Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + 12f * player.direction + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y), true);

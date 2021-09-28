@@ -1,6 +1,8 @@
-﻿using AQMod.Common.Skies;
-using AQMod.Common.WorldEvents;
-using AQMod.NPCs.Town;
+﻿using AQMod.Common.Utilities;
+using AQMod.Content.Skies;
+using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.NPCs.Town.Robster;
 using AQMod.Tiles;
 using System.IO;
 using Terraria;
@@ -15,7 +17,7 @@ namespace AQMod.Common
 
         public override void Initialize()
         {
-            AQMod.OmegaStariteIndexCache = -1;
+            AQMod.omegaStariteIndexCache = -1;
             AQMod.omegaStariteScene = 0;
             GlimmerEvent.ActuallyActive = false;
             GlimmerEvent.FakeActive = false;
@@ -25,8 +27,8 @@ namespace AQMod.Common
             GlimmerEvent.DeactivationTimer = -1;
             CrabSeason.crabSeasonTimer = CrabSeason.CrabSeasonTimerMin;
             CrabSeason.CrabsonCachedID = -1;
-            SpriteUtils.WorldEffects.Clear();
-            Robster.Initalize();
+            DemonSiege.Reset();
+            DrawUtils.WorldEffects.Clear();
         }
 
         public override TagCompound Save()
@@ -43,10 +45,6 @@ namespace AQMod.Common
                 ["CrabSeason_crabSeasonTimer"] = CrabSeason.crabSeasonTimer,
 
                 ["EnergyDrops"] = AQNPC.NoEnergyDrops,
-
-                ["Robster_StoryProgression"] = Robster.StoryProgression,
-                ["Robster_CurrentHunt"] = Robster.RandomHunt,
-                ["Robster_RandomsCompleted"] = (int)Robster.RandomsCompleted,
             };
             return tag;
         }
@@ -64,10 +62,6 @@ namespace AQMod.Common
                 GlimmerEvent.Y = (ushort)tag.GetInt("GlimmerEvent_Y");
             }
             GlimmerEvent.GlimmerChance = tag.GetInt("GlimmerEvent_GlimmerChance");
-
-            Robster.StoryProgression = tag.GetByte("Robster_StoryProgression");
-            Robster.RandomHunt = tag.GetByte("Robster_CurrentHunt");
-            Robster.RandomsCompleted = (uint)tag.GetInt("Robster_RandomsCompleted");
 
             if (!Main.dayTime)
                 GlimmerEventSky.InitNight();

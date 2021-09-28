@@ -52,6 +52,7 @@ namespace AQMod.Assets.Textures
         CrabSeasonIcon = 41,
         CelesteTorusProjectile = 42,
         EnchantedGlimmer = 43,
+        EdgelorthWings = 44,
         Count
     }
 }

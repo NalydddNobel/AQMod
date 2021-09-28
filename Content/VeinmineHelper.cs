@@ -43,7 +43,6 @@ namespace AQMod.Content
         public static void VeinmineTile(int i, int j, Player player)
         {
             int type = Main.tile[i, j].type;
-            int[] rewards = new int[ItemLoader.ItemCount];
             List<Point> points = new List<Point>() { new Point(i, j) };
             expand(ref points, i, j, type);
             for (int k = 0; k < VeinmineReps; k++)

@@ -2,6 +2,7 @@
 using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -45,7 +46,7 @@ namespace AQMod.Assets.ItemOverlays
 
         private static void DrawEye(Vector2 drawPosition, Item item, float time, float rotation = 0f, float scale3 = 1f)
         {
-            var texture = SpriteUtils.Textures.Lights[LightID.Spotlight80x80];
+            var texture = DrawUtils.Textures.Lights[LightID.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             int count = (int)(pattern.Length / 2 * ModContent.GetInstance<AQConfigClient>().EffectQuality);
@@ -71,7 +72,7 @@ namespace AQMod.Assets.ItemOverlays
 
         private static void DrawEye_DrawData(Vector2 drawPosition, Player player, Item item, SpriteEffects effects)
         {
-            var texture = SpriteUtils.Textures.Lights[LightID.Spotlight80x80];
+            var texture = DrawUtils.Textures.Lights[LightID.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             int count = pattern.Length / 2;
@@ -97,7 +98,7 @@ namespace AQMod.Assets.ItemOverlays
 
         public override void DrawHeld(Player player, AQPlayer aQPlayer, Item item, PlayerDrawInfo info)
         {
-            Texture2D texture = SpriteUtils.Textures.Glows[GlowID.SpectralLens];
+            Texture2D texture = DrawUtils.Textures.Glows[GlowID.SpectralLens];
             var drawColor = getColor(Main.GlobalTime);
             if (player.gravDir == -1f)
             {
@@ -119,7 +120,7 @@ namespace AQMod.Assets.ItemOverlays
 
         public override void DrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            var texture = SpriteUtils.Textures.Glows[GlowID.SpectralLens];
+            var texture = DrawUtils.Textures.Glows[GlowID.SpectralLens];
             var drawColor = getColor(Main.GlobalTime);
             Vector2 drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
             var drawOrigin = Main.itemTexture[item.type].Size() / 2;
@@ -127,9 +128,9 @@ namespace AQMod.Assets.ItemOverlays
             DrawEye(drawPosition, item, Main.GlobalTime + 1f, rotation, scale);
         }
 
-        public override void DrawInventory(Player player, AQPlayer aQPlayer, Item item, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        public override void PostDrawInventory(Player player, AQPlayer aQPlayer, Item item, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            var texture = SpriteUtils.Textures.Glows[GlowID.SpectralLens];
+            var texture = DrawUtils.Textures.Glows[GlowID.SpectralLens];
             drawColor = getColor(Main.GlobalTime);
             Main.spriteBatch.Draw(texture, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
             DrawEye(position - origin + frame.Size() / 2f * scale, item, Main.GlobalTime + 1f, 0f, scale);

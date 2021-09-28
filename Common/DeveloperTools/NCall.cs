@@ -1,13 +1,15 @@
-﻿using AQMod.Assets.Sounds.Music;
-using AQMod.Common.Config;
-using AQMod.Common.CursorDyes;
+﻿using AQMod.Common.Config;
 using AQMod.Common.IO;
-using AQMod.Common.Skies;
-using AQMod.Common.WorldEvents;
+using AQMod.Common.Utilities;
 using AQMod.Content;
+using AQMod.Content.CursorDyes;
+using AQMod.Content.Skies;
+using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Localization;
 using AQMod.NPCs;
-using AQMod.NPCs.Town;
+using AQMod.NPCs.Town.Robster;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -41,9 +43,9 @@ namespace AQMod.Common.DeveloperTools
             public override void UpdateEquip(Item item, Player player)
             {
                 if (headOverlay > -1)
-                    player.GetModPlayer<AQVisualsPlayer>().headOverlay = headOverlay;
+                    player.GetModPlayer<GraphicsPlayer>().headOverlay = headOverlay;
                 if (mask > -1)
-                    player.GetModPlayer<AQVisualsPlayer>().mask = mask;
+                    player.GetModPlayer<GraphicsPlayer>().mask = mask;
             }
 
             public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -80,6 +82,48 @@ namespace AQMod.Common.DeveloperTools
                 caller.Reply("Command doesn't exist.");
                 break;
 
+                case "robstersave":
+                {
+                    caller.Reply("Hunt Key: " + HuntSystem.Hunt.GetKey());
+                    if (HuntSystem.TargetNPC != -1)
+                    {
+                        var modNPCIO = new ModNPCIO();
+                        string key = modNPCIO.GetKey(HuntSystem._targetNPCType);
+                        caller.Reply("Target NPC: " + key);
+                        int npcType = modNPCIO.GetID(key);
+                        HuntSystem.SetNPCTarget(npcType);
+                        caller.Reply("Attempt reload NPC type: " + npcType + " (" + Lang.GetNPCNameValue(npcType) + "), ((" + Main.npc[HuntSystem.TargetNPC].FullName + "))");
+                    }
+                }
+                break;
+
+                case "gorenests":
+                AQWorldGen.GenerateGoreNests(null);
+                break;
+
+                case "gorenest2":
+                caller.Reply(AQWorldGen.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, true, true).ToString());
+                break;
+
+                case "gorenest":
+                caller.Reply(AQWorldGen.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, false, false).ToString());
+                break;
+
+                case "downeddemonsiege":
+                WorldDefeats.DownedDemonSiege = !WorldDefeats.DownedDemonSiege;
+                break;
+
+                case "demonsiegequick":
+                DemonSiege.UpgradeItem();
+                DemonSiege.Deactivate();
+                WorldDefeats.DownedDemonSiege = true;
+                break;
+
+                case "demonsiegeend":
+                DemonSiege.Deactivate();
+                break;
+
+                case "togglestaritedeath":
                 case "preventstaritedeath":
                 AQNPC._preventStariteDeath = !AQNPC._preventStariteDeath;
                 caller.Reply(AQNPC._preventStariteDeath.ToString());
@@ -150,6 +194,11 @@ namespace AQMod.Common.DeveloperTools
                         caller.Reply(i + ": " + g.CultureInfo.Name);
                         i++;
                     }
+                }
+
+                case "langmerge2":
+                {
+                    LangHelper.MergeEnglish(GameCulture.FromLegacyId(int.Parse(args[1])));
                 }
                 break;
 
@@ -228,26 +277,6 @@ namespace AQMod.Common.DeveloperTools
                 WorldGen.PlaceTile((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, ModContent.TileType<Tiles.ExoticCoral>(), true, false, -1, int.Parse(args[1]));
                 break;
 
-                case "placegolden1":
-                WorldGen.PlaceTile((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, ModContent.TileType<Tiles.JeweledCandelabra>());
-                break;
-
-                case "placegolden0":
-                WorldGen.PlaceTile((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, ModContent.TileType<Tiles.Bottles>());
-                break;
-
-                case "randgolden1":
-                {
-                    caller.Reply(Robster.TryPlaceGoldenCandelabra(out byte npc) + ":" + npc);
-                }
-                break;
-
-                case "randgolden0":
-                {
-                    caller.Reply(Robster.TryPlaceGoldenChalice(out byte npc) + ":" + npc);
-                }
-                break;
-
                 case "ravinetest":
                 {
                     Main.NewText("Generating Ravine...");
@@ -262,38 +291,10 @@ namespace AQMod.Common.DeveloperTools
                 }
                 break;
 
-                case "lquest":
-                {
-                    if (args.Length == 1)
-                    {
-                        caller.Reply("Story Quest: " + Robster.StoryProgression);
-                        caller.Reply("Random Quest: " + Robster.RandomHunt);
-                    }
-                    else
-                    {
-                        byte set = byte.Parse(args[1]);
-                        Robster.StoryProgression = set;
-                        caller.Reply("Set Story Quest to: " + set);
-                        if (args.Length > 2)
-                        {
-                            set = byte.Parse(args[2]);
-                            Robster.RandomHunt = set;
-                            caller.Reply("Set Random Quest to: " + set);
-                        }
-                    }
-                }
-                break;
-
                 case "tikitest":
                 {
                     Main.NewText("Generating Biome...");
                     Main.NewText("Generation Complete!");
-                }
-                break;
-
-                case "screenshader":
-                {
-
                 }
                 break;
 
@@ -312,10 +313,10 @@ namespace AQMod.Common.DeveloperTools
                         case "omegastarite":
                         {
                             NPC npc = new NPC();
-                            npc.SetDefaults(ModContent.NPCType<NPCs.Glimmer.OmegaStar.OmegaStarite>());
+                            npc.SetDefaults(ModContent.NPCType<NPCs.Starite.OmegaStarite>());
                             var drawPos = Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
                             npc.Center = drawPos;
-                            var omegaStarite = (NPCs.Glimmer.OmegaStar.OmegaStarite)npc.modNPC;
+                            var omegaStarite = (NPCs.Starite.OmegaStarite)npc.modNPC;
                             omegaStarite.Init();
                             for (int i = 0; i < 240; i++)
                             {
@@ -360,10 +361,10 @@ namespace AQMod.Common.DeveloperTools
                             captureBatch.Begin();
 
                             NPC npc = new NPC();
-                            npc.SetDefaults(ModContent.NPCType<NPCs.Glimmer.OmegaStar.OmegaStarite>());
+                            npc.SetDefaults(ModContent.NPCType<NPCs.Starite.OmegaStarite>());
 
                             npc.Center = Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
-                            var omegaStarite = (NPCs.Glimmer.OmegaStar.OmegaStarite)npc.modNPC;
+                            var omegaStarite = (NPCs.Starite.OmegaStarite)npc.modNPC;
                             omegaStarite.Init();
                             omegaStarite.innerRingRoll = -0.8f;
                             omegaStarite.outerRingRoll = -0.865f;
@@ -678,13 +679,13 @@ namespace AQMod.Common.DeveloperTools
 
                 case "checkcursor":
                 {
-                    var drawingPlayer = Main.LocalPlayer.GetModPlayer<AQVisualsPlayer>();
-                    caller.Reply(nameof(AQVisualsPlayer.CursorDyeID) + ":" + drawingPlayer.CursorDyeID);
-                    caller.Reply(nameof(AQVisualsPlayer.CursorDye) + ":" + drawingPlayer.CursorDye);
-                    caller.Reply(nameof(CursorDyeManager.CursorDyeCount) + ":" + CursorDyeManager.CursorDyeCount);
-                    for (int i = 0; i < CursorDyeManager.CursorDyeCount; i++)
+                    var drawingPlayer = Main.LocalPlayer.GetModPlayer<GraphicsPlayer>();
+                    caller.Reply(nameof(GraphicsPlayer.CursorDyeID) + ":" + drawingPlayer.CursorDyeID);
+                    caller.Reply(nameof(GraphicsPlayer.CursorDye) + ":" + drawingPlayer.CursorDye);
+                    caller.Reply(nameof(AQMod.CursorDyes.Count) + ":" + AQMod.CursorDyes.Count);
+                    for (int i = 0; i < AQMod.CursorDyes.Count; i++)
                     {
-                        var cursorDye = CursorDyeManager.CursorDyeFromID(i + 1);
+                        var cursorDye = AQMod.CursorDyes.GetContent(i);
                         caller.Reply(nameof(CursorDye.Mod) + i + ":" + cursorDye.Mod);
                         caller.Reply(nameof(CursorDye.Name) + i + ":" + cursorDye.Name);
                     }
@@ -752,15 +753,15 @@ namespace AQMod.Common.DeveloperTools
 
                 case "staritedisco":
                 {
-                    AQNPC.StariteDisco = !AQNPC.StariteDisco;
-                    if (!AQNPC.StariteDisco)
-                        AQNPC.StariteProjectileColor = AQNPC.StariteProjectileColorOrig;
+                    GlimmerEvent.StariteDisco = !GlimmerEvent.StariteDisco;
+                    if (!GlimmerEvent.StariteDisco)
+                        GlimmerEvent.StariteProjectileColor = GlimmerEvent.StariteProjectileColorOrig;
                 }
                 break;
 
                 case "staritedisco2":
                 {
-                    AQNPC.StariteDisco = !AQNPC.StariteDisco;
+                    GlimmerEvent.StariteDisco = !GlimmerEvent.StariteDisco;
                 }
                 break;
 

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using AQMod.Common;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,9 +16,16 @@ namespace AQMod.Items.Accessories.Amulets
             item.value = Item.sellPrice(gold: 1);
         }
 
+        public override void UpdateInventory(Player player)
+        {
+            player.GetModPlayer<AQPlayer>().voodooAmuletHeld = true;
+        }
+
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AQPlayer>().voodooAmulet = true;
+            var aQPlayer = player.GetModPlayer<AQPlayer>();
+            aQPlayer.voodooAmulet = true;
+            aQPlayer.voodooAmuletHeld = true;
         }
     }
 }

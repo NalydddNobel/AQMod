@@ -1,7 +1,7 @@
-﻿using AQMod.Common.WorldEvents;
-using AQMod.Items.Misc.Energies;
+﻿using AQMod.Content.WorldEvents;
+using AQMod.Items.Energies;
 using AQMod.Localization;
-using AQMod.NPCs.Glimmer.OmegaStar;
+using AQMod.NPCs.Starite;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

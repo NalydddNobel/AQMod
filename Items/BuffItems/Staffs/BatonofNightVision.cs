@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.Textures;
+using AQMod.Items.Weapons.Magic.Support;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

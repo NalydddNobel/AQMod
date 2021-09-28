@@ -1,4 +1,6 @@
-﻿using AQMod.Common;
+﻿using AQMod.Assets;
+using AQMod.Common;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -149,7 +151,7 @@ namespace AQMod.Items.GrapplingHooks
             var chainTexture = ChainTextures.Chains[ChainTextureID.StriderHook];
             float textureHeight = chainTexture.Height - 2f;
             DrawMethods.DrawChain_UseLighting(chainTexture, projectile.Center, player.Center, Main.screenPosition);
-            var texture = this.GetTexture();
+            var texture = TextureCache.GetTexture(projectile);
             Main.spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, lightColor, projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0f);
             return false;
         }

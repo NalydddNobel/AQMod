@@ -1,12 +1,13 @@
 ﻿using AQMod.Assets.Enumerators;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Shoes;
 using AQMod.Items.BuffItems.Foods;
-using AQMod.Items.Misc.Energies;
-using AQMod.Items.Misc.Markers;
+using AQMod.Items.Energies;
 using AQMod.Items.Placeable.Banners;
+using AQMod.Items.Tools.Markers;
 using AQMod.Items.Vanities.Dyes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -429,7 +430,7 @@ namespace AQMod.NPCs.Glimmer
             float mult = 1f / NPCID.Sets.TrailCacheLength[npc.type];
             var frame = new Rectangle(npc.frame.X, npc.frame.Y + npc.frame.Height, npc.frame.Width, npc.frame.Height);
             var armLength = new Vector2(npc.height * npc.scale + npc.ai[3] + 18f, 0f);
-            var texture1 = SpriteUtils.Textures.Lights[LightID.Spotlight66x66];
+            var texture1 = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
             var frame1 = new Rectangle(0, 0, texture1.Width, texture1.Height);
             var origin1 = frame1.Size() / 2f;
             Main.spriteBatch.Draw(texture1, npc.position + offset - Main.screenPosition, frame1, SpotlightColor, 0f, origin1, npc.scale * 2, SpriteEffects.None, 0f);
@@ -452,7 +453,7 @@ namespace AQMod.NPCs.Glimmer
             Main.spriteBatch.Draw(texture, npc.position + offset - Main.screenPosition, npc.frame, new Color(255, 255, 255, 255), 0f, origin, npc.scale, SpriteEffects.None, 0f);
             if (npc.ai[0] == 2f)
             {
-                var texture3 = SpriteUtils.Textures.Lights[LightID.Spotlight33x24];
+                var texture3 = DrawUtils.Textures.Lights[LightID.Spotlight33x24];
                 float rotation;
                 if (npc.ai[2] != 0f)
                 {

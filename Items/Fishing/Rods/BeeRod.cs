@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Misc.Energies;
+﻿using AQMod.Items.Energies;
 using AQMod.Projectiles.Bobbers;
 using Microsoft.Xna.Framework;
 using Terraria;

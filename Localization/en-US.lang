@@ -22,6 +22,15 @@ Common.Config_EffectQuality=Effect Quality
 Common.Config_EffectIntensity=Effect Intensity
 Common.Config_LoadItemOverlays=Load Item Overlays
 Common.Config_BackgroundStarites=Background Starites
+#
+Common.Config_TrailShader=Enable Trail Shaders
+Common.Config_ScrollShader=Enable Scroll Shaders
+Common.Config_HypnoShader=Enable Hypno Shaders
+Common.Config_OutlineShader=Enable Outline Shaders
+Common.Config_ScreenDistortShader=Enable Screen Distort Shaders
+Common.Config_PortalShader=Enable Portal Shaders
+Common.Config_ColorDistortShader=Enable Color Distort Shaders
+#
 Common.Config_MapBlipColor=Map Blip Color
 Common.Config_ShowCompletedAnglerQuestsCount=Show Completed Angler Quests Count
 Common.Config_ShowCompletedRobsterQuestsCount=Show Completed Robster Hunts Count
@@ -30,11 +39,6 @@ Common.Config_MarkerMapUIType=Marker Map UI Type
 # (Server Config)
 Common.Config_EvilProgressionLock=Evil Progression Lock
 Common.Config_EvilProgressionLockTooltip=Ebonstone, Crimstone, Shadow Orbs and Crimson Hearts can no longer be destroyed by explosives
-Common.Config_TrailShader=Enable Trail Shaders
-Common.Config_ScrollShader=Enable Scroll Shaders
-Common.Config_HypnoShader=Enable Hypno Shaders
-Common.Config_OutlineShader=Enable Outline Shaders
-Common.Config_ScreenDistoryShader=Enable Screen Distort Shaders
 Common.Config_AprilFools=April Fools
 Common.Config_DebugCommand=Debug Command (/ncall)
 # Eightball
@@ -76,6 +80,7 @@ Common.RandomStructures_CandelabraTraps=Generating Random Structures... Candelab
 Common.RandomStructures_ExoticCoralBlotches=Generating Random Structures... Exotic Coral Blotches
 Common.OceanRavines=Ocean Ravines
 Common.RareStructures=Generating Rare Structures...
+Common.WorldGen_GoreNests=Generating Gore Nests...
 #
 # Recipe Groups
 Common.RecipeGroup_AnyNobleMushroom=Any Noble Mushroom
@@ -97,26 +102,34 @@ Common.RobsterChat11=I once dared {0} to fish during the blood moon. He caught t
 Common.RobsterChat12=Whoever gave me this hat forgot to make it fit me... I can't see a thing!
 Common.RobsterChat13=I feel really dumb that I forgot my own name. How would anyone even do that?
 Common.RobsterChat14=Thanks for finding my card. It reminded me of how much I love ripping people off and stealing their things.
-#
-Common.RobsterExtraReward0=Thanks for doing that for me, I don't normally ask people to do stuff that often. Take this {$ItemName.GoldenCrate} as an extra.
-Common.RobsterExtraReward1=Heres some extra stuff as another thank you.
-#
-Common.RobsterStoryHunt0=My brother, Snobster, betrayed me when I was a small child. I want you to find him and bring him to me alive. I heard something about Snobster living in the ocean so you could start there. If you can't find him on the ocean floor maybe try fishing him up?
-Common.RobsterStoryHuntComplete0=THIS ISN'T SNOBSTER! WHAT DO YOU MEAN THIS IS SNOBSTER? THIS IS JUST A SLIME LOBSTER- AGH okay fine, I guess I shouldn't ask random people to find my brother so I will tell you to do something more reasonable.
-Common.RobsterStoryHunt1=When I used to be a pirate, I had to have a pirate registration card so that the crew knew who I was and what pirate crew I was a part of. I lost it somewhere in the ocean, it's probably lying on the ground blending in with the shells and starfish. If you can't find it on the ocean floor maybe try fishing it up?
-Common.RobsterStoryHuntComplete1=Thanks for finding my pirate registration card... wait. My name is Robster? I didn't know that, I-I guess I should tell everyone that my name isn't actually {0}...
-#
-Common.RobsterRandomHunt0=I saw someone with a very special {0}. I want you to steal it from them for me
+Common.RobsterNPCDeath=The town NPC that Robster wants you to steal isn't here anymore...
+Common.RobsterNPCDeath2=Ask Robster to begin a different hunt
+Common.RobsterFail=You didn't obtain the special item sneakily enough...
+Common.RobsterFailAccident=The special item was accidentally destroyed...
+Common.HuntJeweledChalice=I saw someone with a very special Jeweled Chalice. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
+Common.HuntJeweledCandelabra=I saw someone with a very special Jeweled Candelabra. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
+Common.RobsterRandomHunt0=I saw someone with a very special {0}. I want you to steal it from them
 Common.RobsterCantDoRandomHunt=I don't have anything for you to do.
 Common.RobsterSawInSomeonesHouse=I think I saw it in {0}'s house.
-Common.RobsterRandomHuntComplete0=You got it, very nice. I bet they didn't suspect a thing.
-#
+Common.RobsterRandomHuntComplete0=You got it, very nice... I bet they didn't suspect a thing.
+Common.RobsterRandomHuntComplete1=Ooohoohoohoohoo yes yes yes yeesssss you got it. I can't wait to sell this out on the seas.
+Common.RobsterRandomHuntComplete2=Dumb cricket, I don't even think they remember buying that. Ah whatever I'm just going to take this trinket and use it for... something better
+Common.RobsterRandomHuntComplete3=Looks like the gems got a bit scruffed... whatever. Here's your pay.
+Common.RobsterRandomHuntComplete4=They say steal from the rich and give to the poor, but I think we should do the opposite. OH and here's your payment.
 Common.RobsterHunt=Hunt
+Common.CompleteRobsterHunt=Complete Hunt
 Common.RobsterQuitHunt=Quit Hunt
 Common.PressHuntToContinue=(Press 'Hunt' again to continue)
 Common.RobsterQuitHuntQuestion=Do you really want to quit this hunt?
 #
 # Other Commons
+Common.TimeLeft={0} Left
+Common.ContainerPotionImproperLoad=This potion has unloaded improperly...\nWill only teleport to {$ItemName.GoldChest} :(
+Common.ContainerPotionLink=Will only teleport to {0} ( [i:{1}] )
+Common.DemonSiege=Demon Siege
+Common.DemonSiegeDeath=The Gore Nest regurgitates your item...
+Common.DemonSiegeTooFarAway=You are too far away from the Demon Siege in order to upgrade your weapon
+Common.NoColorDistort=Color Distort Shader is not enabled
 Common.NoScrollShader=Scroll Shader is not enabled
 Common.NoHypnoShader=Hypno Shader is not enabled
 Common.NoOutlineShader=Outline Shader is not enabled
@@ -164,6 +177,8 @@ ItemName.GoldSeal=Gold Seal
 ItemName.PlatinumSeal=Platinum Seal
 # Masks
 ItemName.MothmanMask=Mothman Mask
+# Rings
+ItemName.DegenerationRing=Degeneration Ring
 # Shields
 ItemName.TargeoftheBlodded=Shield of the Blooded
 # Shoes
@@ -289,7 +304,7 @@ ItemName.BloodshedPotion=Bloodshed Potion
 ItemName.CrabShell=Crab Shell
 ItemName.CrabClock=Crab Clock
 ItemName.Lightbulb=Lightbulb
-ItemName.Molite=Molite
+ItemName.Molite=Starbyte
 ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
 ItemName.NuclearFeather=Nuclear Feather
 ItemName.PotionofContainers=Containers Potion
@@ -348,6 +363,7 @@ ItemName.PentalScythe=Pental Scythe
 # Melee
 # Flails
 ItemName.JerryClawFlail=Jerry Claw
+ItemName.PowPunch=Pow Punch
 # Spears
 ItemName.ArgonSpear=Argon Spear
 ItemName.HorizonSkies=Horizon Skies
@@ -357,6 +373,7 @@ ItemName.Venus=Venus
 ItemName.StariteSpinner=Starite Spinner
 # Other Melee
 ItemName.CrimsonHellSword=Burnterizer 
+ItemName.HellsBoon=Hell's Boon
 ItemName.Galactium=Galactium
 ItemName.KryptonSword=Krypton Sword
 ItemName.StariteBlade=Starite Blade
@@ -401,6 +418,8 @@ ItemTooltip.GoldSeal=Fishing anything that can be sold for 1 gold blesses you wi
 ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
 # Masks
 ItemTooltip.MothmanMask=Your crit chance increases by 10% and your damage increases by 30%\nWhen below max life your crit chance and damage gets decreased instead
+# Rings
+ItemTooltip.DegenerationRing=Makes you resist multiple types of burning
 # Shields
 ItemTooltip.TargeoftheBlodded=Increases armor penetration by 2\nAllows the ability to slide down walls\nImproved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
 # Shoes
@@ -495,8 +514,6 @@ ItemTooltip.UltraEel=The offspring of an ancient starite species
 ItemTooltip.Combfish='The scales of this fish are not edible'
 ItemTooltip.LarvaEel=Gives you 3 minutes of honey and 60 seconds of potion sickness
 # Quest Robster
-ItemTooltip.CrabCard={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.Snobster={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledChalice={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledCandelabra={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledChandelier={$Mods.AQMod.Common.ReturnToLobster}
@@ -506,7 +523,7 @@ ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.BloodshedPotion=Teleports you to the location of your most recent death
 ItemTooltip.CrabShell=It's oddly mishapen
 ItemTooltip.CrabClock=Speeds up ocean's natural fluctuations
-ItemTooltip.Molite=Can be filled with a potion
+ItemTooltip.Molite=Doubles the length of potions
 ItemTooltip.NuclearFeather=Created from nuclear fusion\n'They say it's from the flawless wings of Yatagaratsu'
 ItemTooltip.PotionofContainers=Teleports you to a random chest in the world
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
@@ -544,6 +561,13 @@ ItemName.SwordCursorDye=Sword Cursor Dye
 # Dyes
 ItemName.EnchantedDye=Enchanted Dye
 ItemName.ScrollDye=Scroll Dye
+ItemName.HellBeamDye=Hell Beam Dye
+ItemName.BreakdownDye=Breakdown Dye
+ItemName.DiscoDye=Disco Dye
+ItemName.HypnoDye=Hypno Dye
+ItemName.SimplifiedDye=Simplified Dye
+ItemName.OutlineDye=Outline Dye
+ItemName.RainbowOutlineDye=Rainbow Outline Dye
 # Other Vanities
 ItemTooltip.MonoxideHat='Became a vanity item due to popular demand'
 ItemTooltip.CelesitalEightBall=Right click to use as a normal 8-Ball\nHas special text depending on the world state
@@ -564,6 +588,7 @@ ItemTooltip.PentalScythe=Shoots firey demon scythes that target your enemies
 # Melee
 # Flails
 ItemTooltip.JerryClawFlail='Feels oily'
+ItemTooltip.PowPunch=Throws two fists which repeatedly bash enemies
 # Spears
 ItemTooltip.ArgonSpear=Redirects itself to your cursor
 ItemTooltip.HorizonSkies=Shoots lines of energy\n'Are you readyayayayayyayayayaya'
@@ -571,7 +596,8 @@ ItemTooltip.HorizonSkies=Shoots lines of energy\n'Are you readyayayayayyayayayay
 ItemTooltip.Aphrodite=Has a chance to give enemies lovestruck
 ItemTooltip.Venus=Has a chance to poison enemies
 # Other Melee
-ItemTooltip.Eyeslash=Shoots mini servents of cthulhu
+ItemTooltip.CrimsonHellSword=Shoots a wave of demonic energy that homes to the enemy closest to your cursor
+ItemTooltip.HellsBoon=Creates ash spikes around your cursor which protrude out of nearby tiles
 ItemTooltip.Galactium=Rains glimmer stars from the sky
 ItemTooltip.XenonBasher=Hitting enemies will create xenon spores
 # Ranged
@@ -621,6 +647,11 @@ ProjectileName.NarrenBolt=Narren Bolt
 ProjectileName.OmegaRay=Omega Ray
 ProjectileName.HyperSpike=Hyper Starite Arm
 ProjectileName.OrbCollider=Omega Starite
+ProjectileName.JerryBubble=Jerry Bubble
+ProjectileName.JerryBubbleBig={$Mods.AQMod.ProjectileName.JerryBubble}
+ProjectileName.JerryPearl=Jerry Pearl
+ProjectileName.GelBulb=Gebulba
+ProjectileName.Maggie=Magma Bubble
 # NPCs
 NPCName.BloodMimic={$NPCName.Mimic}
 NPCName.Starite=Starite
@@ -635,3 +666,9 @@ NPCName.ArrowCrab=Arrow Crab
 NPCName.SoliderCrabs=Solider Crabs
 NPCName.HermitCrab=Hermit Crab
 NPCName.StriderCrab=Strider Crab
+NPCName.Heckto=Heckto
+NPCName.Magmabubble=Magmabubble
+NPCName.TrapImp=Trapper Imp
+NPCName.Trapper=Trapper
+NPCName.Cindera=Cindera
+NPCName.SnobsterCritter=Snobster

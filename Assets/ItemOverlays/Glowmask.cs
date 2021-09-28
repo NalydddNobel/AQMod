@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -31,7 +32,7 @@ namespace AQMod.Assets.ItemOverlays
 
         public override void DrawHeld(Player player, AQPlayer aQPlayer, Item item, PlayerDrawInfo info)
         {
-            Texture2D texture = SpriteUtils.Textures.Glows[glowmask];
+            Texture2D texture = DrawUtils.Textures.Glows[glowmask];
             if (item.useStyle == ItemUseStyleID.HoldingOut)
             {
                 if (Item.staff[item.type])
@@ -86,7 +87,7 @@ namespace AQMod.Assets.ItemOverlays
 
         public override void DrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            var texture = SpriteUtils.Textures.Glows[glowmask];
+            var texture = DrawUtils.Textures.Glows[glowmask];
             Vector2 drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
             Main.spriteBatch.Draw(texture, drawPosition, null, drawColor, rotation, Main.itemTexture[item.type].Size() / 2, scale, SpriteEffects.None, 0f);
         }

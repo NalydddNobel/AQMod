@@ -1,7 +1,9 @@
 ﻿using AQMod.Assets.Enumerators;
-using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
+using AQMod.Content.Dusts;
 using AQMod.Effects;
+using AQMod.Effects.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -65,7 +67,7 @@ namespace AQMod.Projectiles
             projectile.rotation += 0.0628f;
             if (Main.rand.NextBool())
             {
-                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.MonoDust>(), 0f, 0f, 0, color(projectile.timeLeft) * (0.1f + (1f - dist / 400f) * 0.9f) * ModContent.GetInstance<AQConfigClient>().EffectIntensity * ((255 - projectile.localAI[0]) / 255f), 1.25f);
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color(projectile.timeLeft) * (0.1f + (1f - dist / 400f) * 0.9f) * ModContent.GetInstance<AQConfigClient>().EffectIntensity * ((255 - projectile.localAI[0]) / 255f), 1.25f);
                 Main.dust[d].velocity = projectile.velocity * 0.1f;
             }
             if (Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
@@ -119,11 +121,11 @@ namespace AQMod.Projectiles
                 {
                     if (projectile.oldPos[i] == new Vector2(0f, 0f))
                         break;
-                    trueOldPos.Add(CameraManager.UpsideDown(projectile.oldPos[i] + offset - Main.screenPosition));
+                    trueOldPos.Add(GameScreenManager.UpsideDownScreenSupport(projectile.oldPos[i] + offset - Main.screenPosition));
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader trail = new Trailshader(SpriteUtils.Textures.Trails[TrailID.Line], Trailshader.TextureTrail);
+                    Trailshader trail = new Trailshader(DrawUtils.Textures.Trails[TrailID.Line], Trailshader.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity), (p) => color(projectile.timeLeft - p) * 0.5f * (1f - p));
                     trail.Draw();
                 }
@@ -142,11 +144,11 @@ namespace AQMod.Projectiles
             }
             if (intensity > 0f)
             {
-                var spotlight = SpriteUtils.Textures.Lights[LightID.Spotlight66x66];
+                var spotlight = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.3f * intensity, projectile.rotation, spotlightOrig, projectile.scale * intensity, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.1f * intensity, projectile.rotation, spotlightOrig, projectile.scale * 1.25f * intensity, SpriteEffects.None, 0f);
-                spotlight = SpriteUtils.Textures.Lights[LightID.Spotlight240x66];
+                spotlight = DrawUtils.Textures.Lights[LightID.Spotlight240x66];
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.1f * intensity, (2f + (float)Math.Sin(Main.GlobalTime * 10f)) * intensity);
                 var spotlightDrawColor = drawColor * intensity;
@@ -175,7 +177,7 @@ namespace AQMod.Projectiles
             var velo = projectile.velocity * 0.5f;
             for (int i = 0; i < 40; i++)
             {
-                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Dusts.MonoDust>(), 0f, 0f, 0, color(projectile.timeLeft), 1.5f);
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color(projectile.timeLeft), 1.5f);
                 Main.dust[d].velocity = Vector2.Lerp(Main.dust[d].velocity, projectile.velocity, 0.5f);
             }
         }

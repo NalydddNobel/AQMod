@@ -1,8 +1,9 @@
-﻿using AQMod.Assets.ItemOverlays;
+﻿using AQMod.Assets;
+using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.Textures;
-using AQMod.Common;
-using AQMod.Dusts;
-using AQMod.Items.Misc.Energies;
+using AQMod.Common.Utilities;
+using AQMod.Content.Dusts;
+using AQMod.Items.Energies;
 using AQMod.Items.Placeable.Mushrooms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -98,7 +99,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                var texture = this.GetTexture();
+                var texture = TextureCache.GetItem(item.type);
                 float length = texture.Size().Length();
                 Vector2 itemPosition = new Vector2((int)player.itemLocation.X, (int)player.itemLocation.Y);
                 Vector2 center = player.MountedCenter;
@@ -119,7 +120,7 @@ namespace AQMod.Items.Weapons.Melee
             if (AQMod.GameWorldActive)
             {
                 var center = item.Center;
-                var texture = this.GetTexture();
+                var texture = TextureCache.GetItem(item.type);
                 var size = texture.Size();
                 var length = size.Length();
                 var origin = texture.Size() / 2f;

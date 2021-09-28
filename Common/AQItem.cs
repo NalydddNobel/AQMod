@@ -5,6 +5,7 @@ using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.BuffItems.Staffs;
 using AQMod.Items.Fishing.Rods;
 using AQMod.Items.Misc.Markers;
+using AQMod.Items.Weapons.Magic.Support;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,6 +22,7 @@ namespace AQMod.Common
         public static int GlimmerWeaponValue => Item.sellPrice(silver: 80);
         public static int PillarWeaponValue => Item.sellPrice(gold: 10);
         public static int CrabsonWeaponValue => Item.sellPrice(silver: 25);
+        public static int DemonSiegeWeaponValue => Item.sellPrice(silver: 80);
         public static int EnergyBuyValue => Item.sellPrice(gold: 2);
         public static int EnergySellValue => Item.sellPrice(silver: 5);
         public static int PotionValue => Item.sellPrice(silver: 2);
@@ -45,6 +47,18 @@ namespace AQMod.Common
 
         internal const string CommonTag_DedicatedItem = "DedicatedItem";
         internal const string CommonTag_IchorDartShotgun = "IchorDartShotgun";
+
+        public static bool ItemOnGroundAlready(int type)
+        {
+            for (int i= 0; i < Main.maxItems; i++)
+            {
+                if (Main.item[i].active && Main.item[i].type == type)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
         {
@@ -98,22 +112,10 @@ namespace AQMod.Common
                         }
                         break;
 
-                        case ItemID.SkeletronBossBag:
-                        {
-                            player.QuickSpawnItem(ModContent.ItemType<DungeonMap>());
-                        }
-                        break;
-
                         case ItemID.WallOfFleshBossBag:
                         {
                             if (Main.hardMode)
                                 player.QuickSpawnItem(ModContent.ItemType<OpposingPotion>(), Main.rand.Next(4) + 1);
-                        }
-                        break;
-
-                        case ItemID.PlanteraBossBag:
-                        {
-                            player.QuickSpawnItem(ModContent.ItemType<LihzahrdMap>());
                         }
                         break;
                     }
@@ -316,11 +318,22 @@ namespace AQMod.Common
             ItemOverlayLoader.GetOverlay(item.type)?.DrawWorld(item, lightColor, alphaColor, rotation, scale, whoAmI);
         }
 
+        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            if (item.type < Main.maxItemTypes)
+                return true;
+            if (!ItemOverlayLoader.GetOverlay(item.type)?.PreDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale) == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             if (item.type < Main.maxItemTypes)
                 return;
-            ItemOverlayLoader.GetOverlay(item.type)?.DrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale);
+            ItemOverlayLoader.GetOverlay(item.type)?.PostDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale);
         }
 
         internal static Vector2 getItemDrawPos_NoAnimation(Item item)

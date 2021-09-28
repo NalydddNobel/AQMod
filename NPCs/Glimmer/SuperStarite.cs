@@ -1,13 +1,15 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Config;
-using AQMod.Common.WorldEvents;
+using AQMod.Common.NPCIMethods;
+using AQMod.Common.Utilities;
+using AQMod.Content.WorldEvents;
 using AQMod.Items.BuffItems.Foods;
-using AQMod.Items.Misc.Energies;
+using AQMod.Items.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Yoyos;
-using AQMod.Items.Weapons.Ranged.Pistols;
+using AQMod.Items.Weapons.Ranged.Bullet;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,7 +19,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.NPCs.Glimmer
 {
-    public class SuperStarite : ModNPC, NPCIMethods.idecidetofallthroughplatforms
+    public class SuperStarite : ModNPC, IDecideFallThroughPlatforms
     {
         public override void SetStaticDefaults()
         {
@@ -397,6 +399,6 @@ namespace AQMod.NPCs.Glimmer
             return false;
         }
 
-        bool NPCIMethods.idecidetofallthroughplatforms.decide() => true;
+        bool IDecideFallThroughPlatforms.Decide() => true;
     }
 }

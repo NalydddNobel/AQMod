@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.Utilities;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -40,9 +41,9 @@ namespace AQMod.Items.Accessories
             aQPlayer.extraFlightTime += 120;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQVisualsPlayer drawingPlayer, int i)
+        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, GraphicsPlayer drawingPlayer, int i)
         {
-            drawingPlayer.cCelesteTorus = player.dye[i % AQVisualsPlayer.DYE_WRAP].dye;
+            drawingPlayer.cCelesteTorus = player.dye[i % GraphicsPlayer.DYE_WRAP].dye;
         }
     }
 }

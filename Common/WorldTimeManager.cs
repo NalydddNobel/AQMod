@@ -1,5 +1,5 @@
-﻿using AQMod.Common.Skies;
-using AQMod.Common.WorldEvents;
+﻿using AQMod.Content.Skies;
+using AQMod.Content.WorldEvents;
 using Terraria;
 
 namespace AQMod.Common

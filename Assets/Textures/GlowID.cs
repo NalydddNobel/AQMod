@@ -16,9 +16,9 @@
         MonoxiderStaff = 11,
         StaffofSwiftness = 12,
         StaffofIronskin = 13,
-        NebubulbiaStaff = 14,
+        CorruptHellSword = 14,
         GlimmeringStatue = 15,
-        AlphaCenfury = 16,
+        CorruptHellYoyo = 16,
         AlphaCenfuryItem = 17,
         NarrenBolt = 18,
         EqualizedPrism = 19,
@@ -59,6 +59,7 @@
         MoonlightWallWall = 54,
         XenonBasher = 55,
         StariteStaff = 56,
+        Burnterizer = 57,
         Count
     }
 }

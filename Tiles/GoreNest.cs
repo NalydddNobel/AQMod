@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using AQMod.Assets.SceneLayers;
+using AQMod.Content.WorldEvents.DemonSiege;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,14 +11,8 @@ namespace AQMod.Tiles
 {
     public class GoreNest : ModTile
     {
-        public static List<int> GoreNestUpgradeableItems { get; private set; }
-
         public override void SetDefaults()
         {
-            GoreNestUpgradeableItems = new List<int>
-            {
-                ItemID.BloodButcherer
-            };
             Main.tileHammer[Type] = true;
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
@@ -26,67 +22,80 @@ namespace AQMod.Tiles
             TileObjectData.addTile(Type);
             dustType = DustID.Blood;
             disableSmartCursor = true;
-
+            adjTiles = new int[] { TileID.DemonAltar };
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("{$Mods.AQMod.ItemName.GoreNestItem}");
             AddMapEntry(new Color(175, 15, 15), name);
         }
 
-        public static int getInteractableItemType(Player player)
+
+        private static (DemonSiegeUpgrade? upgrade, Item item) getUpgradeableItem(Player player)
         {
-            for (int i = 0; i < GoreNestUpgradeableItems.Count; i++)
+            for (int i = 0; i < Main.maxInventory; i++)
             {
-                if (player.HasItem(GoreNestUpgradeableItems[i]))
+                var upgrade = DemonSiege.GetUpgrade(player.inventory[i]);
+                if (upgrade != null)
                 {
-                    return GoreNestUpgradeableItems[i];
+                    return (upgrade, player.inventory[i]);
                 }
             }
-            return -1;
+            return (null, null);
         }
 
         public override bool HasSmartInteract()
         {
-            return getInteractableItemType(Main.player[Main.myPlayer]) != -1;
+            if (DemonSiege.IsActive)
+            {
+                return false;
+            }
+            return getUpgradeableItem(Main.LocalPlayer).item != null;
         }
 
         public override void MouseOver(int i, int j)
         {
+            if (DemonSiege.IsActive)
+            {
+                return;
+            }
             var player = Main.player[Main.myPlayer];
-            int item = getInteractableItemType(player);
-            if (item != -1)
+            var upgradeableItem = getUpgradeableItem(player);
+            if (upgradeableItem.item != null && upgradeableItem.item.type > ItemID.None)
             {
                 player.noThrow = 2;
                 player.showItemIcon = true;
-                player.showItemIcon2 = item;
+                player.showItemIcon2 = upgradeableItem.item.type;
             }
         }
         public override bool NewRightClick(int i, int j)
         {
-            var player = Main.player[Main.myPlayer];
-            int item = getInteractableItemType(player);
-            if (item != -1)
+            if (DemonSiege.IsActive)
             {
-                switch (item)
-                {
-                    case ItemID.BloodButcherer:
-                    {
-                        player.ConsumeItem(ItemID.BloodButcherer);
-                        player.QuickSpawnItem(ModContent.ItemType<Items.Weapons.Melee.CrimsonHellSword>());
-                    }
-                    break;
-                }
+                return false;
+            }
+            var player = Main.player[Main.myPlayer];
+            var upgradeableItem = getUpgradeableItem(player);
+            if (upgradeableItem.item != null && upgradeableItem.item.type > ItemID.None)
+            {
+                DemonSiege.Activate(i, j, player.whoAmI, upgradeableItem.item);
+                Main.PlaySound(SoundID.DD2_EtherianPortalOpen, new Vector2(i * 16f, j * 16f));
             }
             return false;
         }
 
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
         {
-            return Main.hardMode;
+            return Main.hardMode && (!DemonSiege.IsActive || !DemonSiege.altarRectangle().Contains(i, j));
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Placeable.GoreNestItem>());
+        }
+
+        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref Color drawColor, ref int nextSpecialDrawIndex)
+        {
+            if (Main.tile[i, j].frameX == 0 && Main.tile[i, j].frameY == 0)
+                GoreNestWorldOverlay.AddCorrds(i, j);
         }
     }
 }

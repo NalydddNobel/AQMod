@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets.Textures;
-using AQMod.Common;
-using AQMod.Common.Skies;
-using AQMod.Common.WorldEvents;
+using AQMod.Common.Utilities;
+using AQMod.Content.Skies;
+using AQMod.Content.WorldEvents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -104,7 +104,7 @@ namespace AQMod.Tiles
             }
             if (glowmaskIntensity > 0f)
             {
-                var texture = SpriteUtils.Textures.Glows[GlowID.GlimmeringStatue];
+                var texture = DrawUtils.Textures.Glows[GlowID.GlimmeringStatue];
                 Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
                 if (Main.drawToScreen)
                 {

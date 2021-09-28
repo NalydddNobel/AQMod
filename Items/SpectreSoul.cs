@@ -1,5 +1,5 @@
-﻿using AQMod.Assets.Textures;
-using AQMod.Common;
+﻿using AQMod.Assets;
+using AQMod.Common.Utilities;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,7 +8,7 @@ namespace AQMod.Items
 {
     public class SpectreSoul : ModItem
     {
-        public override string Texture => AQMod.ModName + "/" + AQTextureAssets.None;
+        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
 
         public override void SetStaticDefaults()
         {

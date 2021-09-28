@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using AQMod.Common;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Minion

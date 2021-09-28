@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Common;
+using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -47,7 +48,7 @@ namespace AQMod.Items.BossItems.Starite
             if (target.lifeMax <= 400)
             {
                 Main.PlaySound(SoundID.Item14, target.position);
-                var value = ModContent.DustType<Dusts.UltimaDust>();
+                var value = ModContent.DustType<UltimaDust>();
                 for (int i = 0; i < 40; i++)
                 {
                     Dust.NewDust(target.position, target.width, target.height, value);
@@ -67,7 +68,7 @@ namespace AQMod.Items.BossItems.Starite
 
         public override void UseItemHitbox(Player player, ref Rectangle hitbox, ref bool noHitbox)
         {
-            Dust.NewDust(hitbox.TopLeft(), hitbox.Width, hitbox.Height, ModContent.DustType<Dusts.UltimaDust>());
+            Dust.NewDust(hitbox.TopLeft(), hitbox.Width, hitbox.Height, ModContent.DustType<UltimaDust>());
         }
     }
 }

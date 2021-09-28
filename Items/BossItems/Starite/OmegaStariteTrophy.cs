@@ -1,7 +1,6 @@
-﻿using AQMod.Common.DeveloperTools;
-using AQMod.Items.Weapons.Magic.Staffs;
+﻿using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
-using AQMod.Items.Weapons.Ranged.Pistols;
+using AQMod.Items.Weapons.Ranged.Bullet;
 using Terraria.ID;
 using Terraria.ModLoader;
 

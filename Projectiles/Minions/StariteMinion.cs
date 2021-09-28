@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -226,7 +227,7 @@ namespace AQMod.Projectiles.Minions
         {
             Player player = Main.player[projectile.owner];
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            var drawingPlayer = player.GetModPlayer<AQVisualsPlayer>();
+            var drawingPlayer = player.GetModPlayer<GraphicsPlayer>();
             var center = projectile.Center;
             if (player.dead)
                 aQPlayer.stariteMinion = false;

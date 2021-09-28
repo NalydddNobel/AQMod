@@ -43,7 +43,7 @@ namespace AQMod.Projectiles.Minions
             return new Vector2(player.width * 0.5f + xOff * player.direction, -4 + yOff);
         }
 
-        private void IncreaseStack(AQVisualsPlayer drawingPlayer)
+        private void IncreaseStack(GraphicsPlayer drawingPlayer)
         {
             drawingPlayer.hatMinionCarry++;
             if (drawingPlayer.hatMinionCarry == 0)
@@ -85,7 +85,7 @@ namespace AQMod.Projectiles.Minions
         {
             Player player = Main.player[projectile.owner];
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            var drawingPlayer = player.GetModPlayer<AQVisualsPlayer>();
+            var drawingPlayer = player.GetModPlayer<GraphicsPlayer>();
             var center = projectile.Center;
             if (player.dead)
                 aQPlayer.monoxiderBird = false;

@@ -1,5 +1,7 @@
-﻿using AQMod.Items.BuffItems.Staffs;
-using AQMod.Items.Misc;
+﻿using AQMod.Common.Utilities;
+using AQMod.Items;
+using AQMod.Items.BuffItems.Staffs;
+using AQMod.Items.Weapons.Magic.Support;
 using AQMod.Localization;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;
@@ -39,6 +41,113 @@ namespace AQMod.Common
         private static GenPass getPass(string name, WorldGenLegacyMethod method)
         {
             return new PassLegacy(name, method);
+        }
+
+        internal static bool GrowGoreNest(int x, int y, bool checkX, bool checkY)
+        {
+            if (checkX)
+            {
+                int thirdX = Main.maxTilesX / 3;
+                //Main.NewText(0);
+                if (x <= thirdX || x >= Main.maxTilesX - thirdX)
+                {
+                    return false;
+                }
+            }
+            if (checkY)
+            {
+                //Main.NewText(1);
+                if (y < Main.maxTilesY - 300)
+                {
+                    return false;
+                }
+            }
+            //Main.NewText(2);
+            if (Main.tile[x, y].active())
+            {
+                if (!Main.tile[x, y - 1].active())
+                {
+                    y--;
+                }
+                else
+                {
+                    //Main.NewText(443);
+                    return false;
+                }
+            }
+            else if (!Main.tile[x, y + 1].active())
+            {
+                //Main.NewText(444);
+                return false;
+            }
+            //Main.NewText(3);
+            y -= 2;
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    int x2 = x + i;
+                    int y2 = y + j;
+                    if (Main.tileCut[Main.tile[x2, y2].type])
+                    {
+                        Main.tile[x2, y2].active(active: false);
+                    }
+                    if (Framing.GetTileSafely(x2, y2).active() || Main.tile[x2, y2].liquid > 0)
+                    {
+                        //Main.NewText(i + ":" + j);
+                        return false;
+                    }
+                }
+            }
+            y += 3;
+            for (int i = 0; i < 3; i++)
+            {
+                int x2 = x + i;
+                if (!Framing.GetTileSafely(x2, y).active() || !Main.tileSolid[Main.tile[x2, y].type] || Main.tileCut[Main.tile[x2, y].type])
+                {
+                    //Main.NewText(i);
+                    return false;
+                }
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                int x2 = x + i;
+                Main.tile[x2, y].slope(slope: 0);
+                Main.tile[x2, y].halfBrick(false);
+            }
+            y--;
+            //Main.NewText(4);
+            int tileType = ModContent.TileType<GoreNest>();
+            WorldGen.PlaceTile(x, y, tileType);
+            if (Main.tile[x, y].type == tileType)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        internal static void GenerateGoreNests(GenerationProgress progress)
+        {
+            if (progress != null)
+                progress.Message = Language.GetTextValue(AQText.Key + "Common.WorldGen_GoreNests");
+            int thirdX = Main.maxTilesX / 3;
+            int goreNestCount = 0;
+            for (int i = 0; i < 10000; i++)
+            {
+                int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
+                int y = WorldGen.genRand.Next(Main.maxTilesY - 300, Main.maxTilesY - 80);
+                if (GrowGoreNest(x, y, true, true))
+                {
+                    goreNestCount++;
+                    if (goreNestCount > 4)
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         internal static void GenerateTikiChests(GenerationProgress progress)
@@ -469,8 +578,14 @@ namespace AQMod.Common
             if (i != -1)
             {
                 i++;
-                tasks.Insert(i, getPass("Ocean Ravines", GenerateOceanRavines));
                 tasks.Insert(i, getPass("Robster", GenerateRobsterQuestTiles));
+                tasks.Insert(i, getPass("Ocean Ravines", GenerateOceanRavines));
+            }
+            i = tasks.FindIndex((t) => t.Name.Equals("Hellforge"));
+            if (i != -1)
+            {
+                i++;
+                tasks.Insert(i, getPass("Gore Nests", GenerateGoreNests));
             }
             i = tasks.FindIndex((t) => t.Name.Equals("Micro Biomes"));
             if (i != -1)

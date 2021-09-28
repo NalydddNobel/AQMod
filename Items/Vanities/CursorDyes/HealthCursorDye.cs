@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
-using AQMod.Common.CursorDyes;
-using AQMod.Items.Misc.Energies;
+using AQMod.Content.CursorDyes;
+using AQMod.Items.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,12 +26,12 @@ namespace AQMod.Items.Vanities.CursorDyes
 
         public override bool CanUseItem(Player player)
         {
-            return player.GetModPlayer<AQVisualsPlayer>().CursorDyeID != CursorDyeManager.ID.Health;
+            return player.GetModPlayer<GraphicsPlayer>().CursorDyeID != CursorDyeLoader.ID.Health;
         }
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<AQVisualsPlayer>().SetCursorDye(CursorDyeManager.ID.Health);
+            player.GetModPlayer<GraphicsPlayer>().SetCursorDye(CursorDyeLoader.ID.Health);
             return true;
         }
 

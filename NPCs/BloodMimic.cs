@@ -1,5 +1,6 @@
-﻿using AQMod.Items.BuffItems.Foods;
-using AQMod.Items.Misc;
+﻿using AQMod.Items;
+using AQMod.Items.BuffItems.Foods;
+using AQMod.Items.Tools;
 using AQMod.NPCs.AI;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -198,7 +199,7 @@ namespace AQMod.NPCs
                 }
                 if (NPC.downedBoss3)
                 {
-                    choices.Add(ModContent.ItemType<Items.ATM>());
+                    choices.Add(ModContent.ItemType<ATM>());
                 }
                 if (Main.rand.NextBool(8))
                 {

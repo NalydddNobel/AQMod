@@ -62,6 +62,43 @@ float4 Simplify(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
     return color * sampleColor;
 }
 
+const float TWO_PI_OVER_3 = 6.28 / 3;
+
+float4 SuperHypno(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0)
+{
+    float pixelSize = 1 / uImageSize0;
+    float offset = uOpacity * 2;
+    float rotation = uTime * 8;
+    float2 normal = float2(sin(rotation), cos(rotation));
+    float4 origColor = tex2D(uImage0, coords);
+    float r = tex2D(uImage0, coords + (normal * pixelSize * offset)).r;
+    normal = float2(sin(rotation + TWO_PI_OVER_3), cos(rotation + TWO_PI_OVER_3));
+    float g = tex2D(uImage0, coords + (normal * pixelSize * offset)).g;
+    normal = float2(sin(rotation + TWO_PI_OVER_3 * 2), cos(rotation + TWO_PI_OVER_3 * 2));
+    float b = tex2D(uImage0, coords + (normal * pixelSize * offset)).b;
+    return float4(r, g, b, origColor.a) * sampleColor;
+}
+
+float4 WeirdHypno(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0)
+{
+    float2 pixelSize = 1 / uImageSize0;
+    if (isnan(uImageSize0.y) || pixelSize.y == 0)
+    {
+        pixelSize.x = 1;
+        pixelSize.y = 1;
+    }
+    float offset = uOpacity * 4;
+    float rotation = uTime * 8 + sin(coords.x + uTime + coords.y * 10) * 8;
+    float2 normal = float2(sin(rotation), cos(rotation));
+    float4 origColor = tex2D(uImage0, coords);
+    float r = tex2D(uImage0, coords + (normal * pixelSize * offset)).r;
+    normal = float2(sin(rotation + TWO_PI_OVER_3), cos(rotation + TWO_PI_OVER_3));
+    float g = tex2D(uImage0, coords + (normal * pixelSize * offset)).g;
+    normal = float2(sin(rotation + TWO_PI_OVER_3 * 2), cos(rotation + TWO_PI_OVER_3 * 2));
+    float b = tex2D(uImage0, coords + (normal * pixelSize * offset)).b;
+    return float4(r, g, b, origColor.a) * sampleColor;
+}
+
 technique Technique1
 {
     pass HypnoPass

@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.Textures;
 using AQMod.Common;
-using AQMod.Items.Misc.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -50,17 +49,6 @@ namespace AQMod.Items.Weapons.Summon
             stariteChild = Projectile.NewProjectile(position + new Vector2(-30f, 10f), new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.Minions.StariteMinion>(), damage, knockBack, player.whoAmI, stariteParent + 1);
             Main.projectile[stariteChild].minionSlots = 0;
             return false;
-        }
-
-        public override void AddRecipes()
-        {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.RavenStaff);
-            recipe.AddIngredient(ItemID.FragmentSolar, 18);
-            recipe.AddIngredient(ItemID.HallowedBar, 20);
-            recipe.AddIngredient(ModContent.ItemType<DemonicEnergy>(), 15);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
         }
     }
 }

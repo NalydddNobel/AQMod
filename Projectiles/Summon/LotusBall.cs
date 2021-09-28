@@ -1,7 +1,7 @@
-﻿using AQMod.Assets.Enumerators;
-using AQMod.Assets.Textures;
-using AQMod.Common;
+﻿using AQMod.Assets;
+using AQMod.Assets.Enumerators;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -102,14 +102,14 @@ namespace AQMod.Projectiles.Summon
 
         public static void Draw(Vector2 center, float rotation, float scale, int i, float j)
         {
-            var texture = SpriteUtils.Textures.Lights[LightID.Spotlight30x30];
+            var texture = DrawUtils.Textures.Lights[LightID.Spotlight30x30];
             float intensity = ModContent.GetInstance<AQConfigClient>().EffectIntensity * (((float)Math.Sin(Main.GlobalTime * 4f) + 1f) / 4f + 0.2f + (1f - j / 9f) * 0.75f);
             var orig = texture.Size() / 2f;
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, null, new Color(128, 95, 10, 0) * intensity, 0f, orig, scale * intensity, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, null, new Color(56, 25, 1, 0) * intensity, 0f, orig, scale * intensity * 1.5f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, null, new Color(56, 25, 1, 0) * intensity, 0f, orig, new Vector2(scale * intensity * 0.2f, scale * intensity * 1.75f), SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, null, new Color(56, 25, 1, 0) * intensity, MathHelper.PiOver2, orig, new Vector2(scale * intensity * 0.2f, scale * intensity * 1.75f), SpriteEffects.None, 0f);
-            texture = AQTextureAssets.GetProjectile(ModContent.ProjectileType<LotusBall>());
+            texture = TextureCache.GetProjectile(ModContent.ProjectileType<LotusBall>());
             orig = texture.Size() / 2f;
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, null, new Color(255, 255, 255, 128), rotation, orig, scale + 0.25f * intensity, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition + Utils.RandomVector2(Main.rand, -2f, 2f) * intensity, null, new Color(255, 255, 255, 128), rotation, orig, scale, SpriteEffects.None, 0f);

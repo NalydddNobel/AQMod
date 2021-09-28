@@ -6,11 +6,12 @@ Aequus Mod is an unfinished mod made for fun. It doesn't have any serious intent
 # The wiki is currently a disaster so any help with that is appreciated! #
 >
 Currently Contains:
-172 Items
-8 Enemies
+178 Items
+13 Enemies
 1 Town NPC
+1 Critter
 2 Bosses
-2 "Events"
+3 Events
 0 Mounts
 10 Tiles
 1 Wall
@@ -20,7 +21,8 @@ Many bugs (ahahah)
 Developer:
 ##################
 >
-[c/7dd8ff:Nalyd T.] as coder, spriter, and creator of Aequus
+[c/7dd8ff:Nalyd T.] as the main coder, spriter, and creator of Aequus
+[c/8257c0:Gerd] as the main musician of Aequus
 >
 ##################
 Contributors:
@@ -28,17 +30,14 @@ Contributors:
 >
 [c/5dff64:# Coding]
 [c/5dff64:Woodio] for helping me learn some basic coding things (Mostly about shaders)
-[c/5dff64:turingcomplete30] for creating a really good open sourced mod that I sometimes use as refernence
+[c/5dff64:turingcomplete30] for creating a really good open sourced mod that I sometimes use as reference
 >
 [c/e8ff00:# Spriting] 
-[c/e8ff00:niker] for spriting multiple items and the arachnotron armor and giving ideas for Yin-Yang
+[c/e8ff00:niker] for spriting multiple items, including the Arachnotron Armor and giving ideas for Yin-Yang
 [c/e8ff00:FunkItOut1] for spriting Nalyd's Devwand and Narrizuul
-[c/e8ff00:Maikli Messes] for spriting the Lotus Staff and Moonwalker
+[c/e8ff00:Maikli Messes] for spriting the Lotus Staff
 [c/e8ff00:Triangle] for spriting and giving ideas for Yin-Yang
 [c/e8ff00:Squartron] for spriting the original Organic Energy, and ideas
-[c/e8ff00:Terra212X] for spriting the Watcher, and ideas
-[c/e8ff00:Funtime_Gerd] for spriting the original sprite for his dedicated item, and creating the music for Crabson and Yin-Yang, and ideas
-[c/e8ff00:Mjoon] for spriting Drimis' sigil, and ideas
 [c/e8ff00:Pyrossal] for spriting the Mythic Star
 >
 # Translations
@@ -62,73 +61,82 @@ Taco Burrito Guacamole for Ideas
 You can extract the mod for the complete changelog file
 ###################
 # Current Changelog  #
-####### v1.2 #######
+####### v1.2.1 #######
 .
-Added Items: 
-* Outline Dye
-* Rainbow Outline Dye
-* Simplifed Dye
-* Jerry Crabson's Trophy
-* Jerry Crabson's Mask
-* Cursed Popper
-* Ichor Popper
-* Mystic Popper
-* Fishy Fins
-* Hermit Shell
-* Strider Carapace
-* Strider Palms
-* Strider Hook
-* Burnterizer
+~ Demon Siege update ~
+
+Added Items:
+* Hell's Boon
+* Degeneration Ring
+* Pow Punch
+* Disco Dye
+* Breakdown Dye
+* Hell Beam Dye
+* Demonic Cursor Dye
 
 Added Enemies:
-* Hermit Crab
-* Strider Crab
+* Hecktor, a red dungeon spirit that spawns from Hell Armored Bones and Diabolists!
+* Magmabubble, a lava slime and a blood crawler... what an evil combination
+* Trapper Imp, a fire imp that gained a loving for capturing prey instead of burning it...
+* Cindera, a hellbat with the temper of a Biome Mimic, how could that go wrong?
 
-Fixes / Changes:
+* Snobster... it's just there.
 
-(Boss Checklist)
-- Added Omega Starite's Mask to its collectables 
+* Boss Changes:
+- Omega Starite now has a 33% chance to drop Disco Dye when defeated during the Glimmer Event
 
-- Added a secret sound effect to the Ultimate Sword...
+- Crabson now drops Breakdown Dye with Crabsol
+- Lowered Crabson's HP to 1000 (normal) 1500 (expert)
+- It's now harder to escape Crabson's Claws
+- Modified how Crabson shoots bubbles, and gave it a new bubble attack
+- Jerry Claws now shoot Jerry Pearls less often if more than 8 are active at once
+- Lowered the lifespan of Jerry Pearls
+- Crabson's Claws will no longer go towards you when "flowing"
 
-- Added some extra safety measures to things that use Vertex Trails
-- Fixed a slight error with the Narren Bolt's trail when Trailshaders are disabled
-- Fixed a mod conflict with Shader Lib
-- Slightly changed the visual effects of the Narren Bolt
+- Added a boss checklist entry for Crab Season
+- Added the "Demon Siege" event to boss checklist (+ a downed flag)
 
-- Starites now have a 1/50 chance to drop Hypno Dye
-- Super Starites now have a 1/50 chance to drop Outline Dye
-- Hyper Starites now have a 1/50 chance to drop Scroll Dye
-- Arrow Crabs can now spawn outside of the water
-- Greatly nerfed the Globebulb
-- Renamed the "Potion of Bossrushium" to "Encore Potion" since Encore describes the potion better, and is easier to translate into other languages compared to "Bossrushium"
-- Added a secret to Robster that no one will see
+* Important Changes:
+- Added Gerd to the developer's list in the description of Aequus
+- Removed the Crab Card
+- Removed Robster's """""""Story""""""" hunts
+- Robster no longer sells Crabson loot
+- Robster no longer creates quests for dead town NPCs
+- Gore Nests now spawn naturally on the outer 1/3rds of your world, and also regrow naturally in hardmode.
+- Demonic Energy is no longer a global drop, and will now only drop from Demon Siege enemies
 
-- The text that appears when the Crab Season starts and ends will now only appear when holding the Crab Clock
-- Crab Clock now drops from Crabs while Crab Season is not active
-
-- These Enemies can will no longer be effected by the Spoiled Effect:
-* Creepers (From BoC)
-* Mimics
-* Hallowed, Crimson, Corruption, and Jungle Mimics
-* Dungeon Guardians
-* Eater of World's segments
-* Present Mimics
-* Nailhead
-* The Groom 
-* The Bride
-* Ice Golems
-* Sand Elementals
-* Solar, Vortex, Nebula, and Stardust Pillars
-* Flying Dutchman
-* Goblin Summoner
-* Mothron
-* Mourning Wood
-* Pumpking 
-* Everscream
-* Sanktank
-* Ice Queen
-(Bosses and enemies from the Old Ones Army will also not have increased loot)
+* Misc Changes:
+- Robster can no longer go to Queen Statues 
+- Robster now uses Crabsol to defend himself instead of having no weapon
+- Music now plays while the Demon Siege is active (without the music mod, it's "Boss 1")
+- The music that plays during the Glimmer Event will no longer play when you are underground
+- Modifed the drawcode for the energies
+- Centered the spotlight on Demonic Energy
+- You must now craft Molite potions at a Demon Altar
+- You can no longer turn Sake and Ale into Molite Buffs
+- Renamed "Molite" to "Starbyte"
+- The Potion of Containers can now support modded chests!!! 
+- The Fishy Fins will no longer display as the Monoxide Hat on the map
+- You must now craft baited Containers Potions at a Demon Altar (since the alchemy table lets you have a 33% chance to not consume the potion or chest...)
+- Added more textures for the Sword Cursor Dye
+- The Sword Cursor Dye now applies your cursor outline color
+- Removed a dumb recipe used to craft the Starite Staff
+- The Jeweled Chalice is no longer considered a Bottles tile
+(this will make them unload sadly) 
+- TEA should now load the callback texture properly
+- Overhauled the Extractor internally
+- Town NPCs now react to you stealing jeweled tiles
+- Gave localization values to multiple hostile projectiles
+- Skeletron no longer drops the Dungeon Marker, and it is instead a 1/75 drop from Angry Bones, Dark Casters, and Cursed Skull
+- Plantera no longer drops the Lihzahrd Marker, and it is instead a 1/50 drop from Lihzarhds and Flying Snakes 
+- Enemies will no longer drop multiple hearts / spectre souls when using the Spoils Potion 
+- The text "The town NPC that Robster wants you to steal isn't here anymore... Talk to Robster for a different Hunt" should no longer be absurdly rare or appear multiple times when using a Spoils Potion
+- Robster's quest should now properly reset when the town NPC you are stealing from dies
+- Qi is no longer obtainable
+- Nerfed Crabsol's damage and use speed and changed its drop requirement
+- Added a visual effect to the Gore Nest
+- The Strider Crab now makes a sound when shooting
+- Fixed some localization key errors 
 ####
 >
 >

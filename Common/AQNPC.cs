@@ -1,24 +1,25 @@
-﻿using AQMod.Assets.Textures;
-using AQMod.Common.WorldEvents;
-using AQMod.Content;
+﻿using AQMod.Content;
+using AQMod.Content.Dusts;
+using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Dedicated.Cataclysmic_Armageddon;
-using AQMod.Items.Dedicated.Dreadsoul;
 using AQMod.Items.Dedicated.niker;
 using AQMod.Items.Dedicated.someperson;
-using AQMod.Items.Misc;
-using AQMod.Items.Misc.Energies;
-using AQMod.Items.Misc.Markers;
+using AQMod.Items.Energies;
+using AQMod.Items.Tools;
+using AQMod.Items.Tools.Markers;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Localization;
-using AQMod.NPCs.Glimmer.OmegaStar;
-using AQMod.NPCs.Town;
+using AQMod.NPCs;
+using AQMod.NPCs.SiegeEvent;
+using AQMod.NPCs.Starite;
+using AQMod.NPCs.Town.Robster;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -34,6 +35,9 @@ namespace AQMod.Common
             public static bool[] NoSpoilLoot { get; private set; }
             public static bool[] NoMapBlip { get; private set; }
             public static bool[] NoGlobalDrops { get; private set; }
+            public static bool[] HecktoplasmDungeonEnemy { get; private set; }
+            public static bool[] EnemyDungeonSprit { get; private set; }
+            public static bool[] DemonSiegeEnemy { get; private set; }
 
             public static bool IsAZombie(int type, bool includeBloodZombies = false)
             {
@@ -53,8 +57,55 @@ namespace AQMod.Common
                 type == NPCID.ZombieSweater;
             }
 
+            public static int CountNPCs(bool[] ruleset)
+            {
+                int count = 0;
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && ruleset[Main.npc[i].type])
+                    {
+                        count++;
+                    }
+                }
+                return count;
+            }
+
+            public static int CountNPCs(params bool[][] ruleset)
+            {
+                int count = 0;
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    foreach (bool[] b in ruleset)
+                    {
+                        if (Main.npc[i].active && b[Main.npc[i].type])
+                        {
+                            count++;
+                            break;
+                        }
+                    }
+                }
+                return count;
+            }
+
             internal static void Setup()
             {
+                DemonSiegeEnemy = new bool[NPCLoader.NPCCount];
+                DemonSiegeEnemy[ModContent.NPCType<Magmalbubble>()] = true;
+                DemonSiegeEnemy[ModContent.NPCType<TrapImp>()] = true;
+                DemonSiegeEnemy[ModContent.NPCType<Cindera>()] = true;
+
+                EnemyDungeonSprit = new bool[NPCLoader.NPCCount];
+                EnemyDungeonSprit[NPCID.DungeonSpirit] = true;
+                EnemyDungeonSprit[ModContent.NPCType<Heckto>()] = true;
+
+                HecktoplasmDungeonEnemy = new bool[NPCLoader.NPCCount];
+                HecktoplasmDungeonEnemy[NPCID.DiabolistRed] = true;
+                HecktoplasmDungeonEnemy[NPCID.DiabolistWhite] = true;
+                HecktoplasmDungeonEnemy[NPCID.HellArmoredBones] = true;
+                HecktoplasmDungeonEnemy[NPCID.HellArmoredBonesMace] = true;
+                HecktoplasmDungeonEnemy[NPCID.HellArmoredBonesSpikeShield] = true;
+                HecktoplasmDungeonEnemy[NPCID.HellArmoredBonesSword] = true;
+
                 NoSpoilLoot = new bool[NPCLoader.NPCCount];
                 NoSpoilLoot[NPCID.EaterofWorldsHead] = true;
                 NoSpoilLoot[NPCID.EaterofWorldsBody] = true;
@@ -262,23 +313,21 @@ namespace AQMod.Common
 
             internal static void Unload()
             {
+                DemonSiegeEnemy = null;
+                EnemyDungeonSprit = null;
+                HecktoplasmDungeonEnemy = null;
                 NoSpoilLoot = null;
                 NoMapBlip = null;
+                NoGlobalDrops = null;
             }
         }
-
-        public static MoonlightWallHelper MoonlightWall { get; internal set; }
 
         internal static bool _preventStariteDeath;
 
         public static bool CanDropEnergy => NPC.downedBoss1 && !NoEnergyDrops;
-
+        internal static Color GreenSlime => new Color(0, 220, 40, 100);
         internal static Color BlueSlime => new Color(0, 80, 255, 100);
-        internal static Color BossMessage => new Color(175, 75, 255, 255);
 
-        public static bool StariteDisco { get; internal set; }
-        internal static readonly Color StariteProjectileColorOrig = new Color(200, 10, 255, 0);
-        internal static Color StariteProjectileColor { get; set; }
         public static bool EnergyDropsMessage { get; set; }
         public static bool NoEnergyDrops { get; set; }
 
@@ -295,12 +344,6 @@ namespace AQMod.Common
         public static bool CheckStariteDeath(NPC npc)
         {
             return !_preventStariteDeath && Main.dayTime;
-        }
-
-        public static void CheckStariteModifyHit(Projectile projectile, int damage)
-        {
-            if (projectile.type == ProjectileID.FallingStar && damage > 700)
-                StariteDisco = true;
         }
 
         public override void ResetEffects(NPC npc)
@@ -424,13 +467,13 @@ namespace AQMod.Common
 
         public override bool PreAI(NPC npc)
         {
-            if (MoonlightWall.Active) // in case the NPC before this one broke and skipped PostAI, if there's a next NPC then it would hopefully fix it
+            if (MoonlightWallHelper.Instance.Active) // in case the NPC before this one broke and skipped PostAI, if there's a next NPC then it would hopefully fix it
             {
-                MoonlightWall.End();
+                MoonlightWallHelper.Instance.End();
             }
             if (MoonlightWallHelper.BehindMoonlightWall(npc.Center))
             {
-                MoonlightWall.Begin();
+                MoonlightWallHelper.Instance.Begin();
             }
             if (npc.aiStyle == 13 && npc.ai[0] == 0 && npc.ai[1] == 0)
             {
@@ -503,24 +546,6 @@ namespace AQMod.Common
                         npc.active = false;
                         return false;
                     }
-                    if (specialData == 1)
-                    {
-                        npc.TargetClosest();
-                        Vector2 center = npc.Center;
-                        Vector2 difference = Main.player[npc.target].Center - center;
-                        float speedMult = (float)Math.Sqrt(difference.X * difference.X + difference.Y * difference.Y);
-                        float maxSpeed = 12f;
-                        speedMult = maxSpeed / speedMult;
-                        difference *= speedMult;
-                        npc.velocity.X = (npc.velocity.X * 100f + difference.X) / 101f;
-                        npc.velocity.Y = (npc.velocity.Y * 100f + difference.Y) / 101f;
-                        npc.rotation = (float)Math.Atan2(difference.Y, difference.X) - 1.57f;
-                        int num1383 = Dust.NewDust(npc.position, npc.width, npc.height, ModContent.DustType<Dusts.MonoDust>(), 0f, 0f, 0, new Color(240, 90, 100, 0));
-                        Main.dust[num1383].velocity *= 0.1f;
-                        Main.dust[num1383].scale = 1.3f;
-                        Main.dust[num1383].noGravity = true;
-                        return false;
-                    }
                 }
                 break;
             }
@@ -529,9 +554,9 @@ namespace AQMod.Common
 
         public override void PostAI(NPC npc)
         {
-            if (MoonlightWall.Active)
+            if (MoonlightWallHelper.Instance.Active)
             {
-                MoonlightWall.End();
+                MoonlightWallHelper.Instance.End();
             }
         }
 
@@ -590,22 +615,6 @@ namespace AQMod.Common
                     {
                         shop.item[nextSlot].SetDefaults(ModContent.ItemType<Baguette>());
                         nextSlot++;
-                    }
-                    if (NPC.downedBoss3 || Main.time < Main.dayLength - Main.nightLength && Main.time % 600 < 300)
-                    {
-                        if (Main.dayTime || Main.LocalPlayer.ZoneDungeon)
-                        {
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<DungeonMap>());
-                            nextSlot++;
-                        }
-                    }
-                    if (NPC.downedPlantBoss || Main.time < Main.dayLength - Main.nightLength && Main.time % 600 < 300)
-                    {
-                        if (!Main.dayTime || Framing.GetTileSafely(Main.LocalPlayer.Center.ToTileCoordinates()).wall == WallID.LihzahrdBrickUnsafe)
-                        {
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<LihzahrdMap>());
-                            nextSlot++;
-                        }
                     }
                 }
                 break;
@@ -720,27 +729,6 @@ namespace AQMod.Common
                                 nextSlot++;
                             }
                             break;
-                        }
-                    }
-                }
-                break;
-            }
-        }
-
-        public override void HitEffect(NPC npc, int hitDirection, double damage)
-        {
-            switch (npc.type)
-            {
-                case NPCID.DungeonSpirit:
-                {
-                    if (specialData == 1)
-                    {
-                        for (int i = 0; i < 50; i++)
-                        {
-                            int num209 = Dust.NewDust(npc.position, npc.width, npc.height, ModContent.DustType<Dusts.MonoDust>(), npc.velocity.X, npc.velocity.Y, 0, new Color(240, 90, 100, 0));
-                            Main.dust[num209].velocity *= 2f;
-                            Main.dust[num209].noGravity = true;
-                            Main.dust[num209].scale = 1.4f;
                         }
                     }
                 }
@@ -905,7 +893,6 @@ namespace AQMod.Common
             }
             if (soulCollector == -1)
                 return;
-            NPCLoader.blockLoot.Add(ItemID.Heart);
             if (npc.boss)
             {
                 for (int j = 0; j < 20; j++)
@@ -972,41 +959,44 @@ namespace AQMod.Common
         public override bool PreNPCLoot(NPC npc)
         {
             EnergyDropsMessage = !NPC.downedBoss1;
-            ManageSpectreCharm(npc);
-            if (Robster.TargetNPC == npc.type)
+            if (_loop != 0)
             {
-                AQMod.BroadcastMessage("The NPC that Robster wants you to steal isn't here anymore...", new Color(200, 222, 55));
-                AQMod.BroadcastMessage("Talk to Robster for a different Hunt", new Color(200, 222, 55));
+                NPCLoader.blockLoot.Add(ItemID.Heart);
+            }
+            else
+            {
+                ManageSpectreCharm(npc);
+                if (npc.whoAmI == HuntSystem.TargetNPC)
+                {
+                    if (HuntSystem.Hunt != null)
+                    {
+                        HuntSystem.Hunt.RemoveHunt();
+                    }
+                    HuntSystem.RandomizeHunt(null);
+                    AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterNPCDeath", Robster.RobsterBroadcastMessageColor);
+                    AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterNPCDeath2", Robster.RobsterBroadcastMessageColor);
+                }
             }
             return true;
         }
 
         public override bool SpecialNPCLoot(NPC npc)
         {
-            switch (npc.type)
+            if (Sets.HecktoplasmDungeonEnemy[npc.type] && npc.lifeMax > 100)
             {
-                case NPCID.DiabolistRed:
-                case NPCID.DiabolistWhite:
-                case NPCID.HellArmoredBones:
-                case NPCID.HellArmoredBonesMace:
-                case NPCID.HellArmoredBonesSpikeShield:
-                case NPCID.HellArmoredBonesSword:
+                if (npc.HasPlayerTarget && Main.hardMode && NPC.downedPlantBoss && Main.player[npc.target].ZoneDungeon)
                 {
-                    if (npc.HasPlayerTarget && Main.hardMode && NPC.downedPlantBoss && Main.player[npc.target].ZoneDungeon)
+                    int spawnChance = 13;
+                    if (Main.expertMode)
+                        spawnChance = 9;
+                    var center = npc.Center;
+                    if (Main.wallDungeon[Main.tile[(int)center.X / 16, (int)center.Y / 16].wall] && Main.rand.Next(spawnChance) == 0)
                     {
-                        int spawnChance = 13;
-                        if (Main.expertMode)
-                            spawnChance = 9;
-                        var center = npc.Center;
-                        if (Main.rand.Next(spawnChance) == 0 && Main.wallDungeon[Main.tile[(int)center.X / 16, (int)center.Y / 16].wall])
-                        {
-                            int n = NPC.NewNPC((int)center.X, (int)center.Y, 288);
-                            Main.npc[n].GetGlobalNPC<AQNPC>().specialData = 1;
-                        }
+                        int n = NPC.NewNPC((int)center.X, (int)center.Y, ModContent.NPCType<Heckto>());
                     }
-                    npc.lifeMax = 99;
-                    npc.NPCLoot();
                 }
+                npc.lifeMax = 99;
+                npc.NPCLoot();
                 return true;
             }
             return false;
@@ -1050,6 +1040,51 @@ namespace AQMod.Common
                     }
                 }
             }
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                if (Sets.EnemyDungeonSprit[npc.type])
+                {
+                    if (!aQPlayer.spiritAmuletHeld)
+                    {
+                        int count = Sets.CountNPCs(Sets.EnemyDungeonSprit);
+                        if (count > 1)
+                        {
+                            int itemType = ModContent.ItemType<SpiritAmulet>();
+                            if (!AQItem.ItemOnGroundAlready(itemType))
+                            {
+                                int chance = 8 - count * 2;
+                                if (chance <= 1 || Main.rand.NextBool(chance))
+                                {
+                                    Item.NewItem(npc.getRect(), itemType);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (npc.type == NPCID.Ghost)
+                {
+                    if (!aQPlayer.ghostAmuletHeld && Main.rand.NextBool(15))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<GhostAmulet>());
+                }
+                else if (npc.type == NPCID.VoodooDemon)
+                {
+                    if (!aQPlayer.voodooAmuletHeld && (Main.LocalPlayer.killGuide || Main.LocalPlayer.HasItem(ItemID.GuideVoodooDoll)) && Main.rand.NextBool(3))
+                    {
+                        int itemType = ModContent.ItemType<VoodooAmulet>();
+                        if (!AQItem.ItemOnGroundAlready(itemType))
+                            Item.NewItem(npc.getRect(), itemType);
+                    }
+                }
+                else if (npc.type == NPCID.WyvernHead)
+                {
+                    if (!aQPlayer.wyvernAmuletHeld && plr.wingsLogic > 0 && Main.rand.NextBool(3))
+                    {
+                        int itemType = ModContent.ItemType<WyvernAmulet>();
+                        if (!AQItem.ItemOnGroundAlready(itemType))
+                            Item.NewItem(npc.getRect(), itemType);
+                    }
+                }
+            }
             if (!Sets.NoGlobalDrops[npc.type] && !npc.boss && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC)
             {
                 if (Main.hardMode && npc.position.Y > Main.rockLayer * 16.0 && npc.value > 0f)
@@ -1078,11 +1113,6 @@ namespace AQMod.Common
                                     Item.NewItem(npc.getRect(), ModContent.ItemType<OrganicEnergy>());
                             }
                         }
-                        if (Main.player[p].ZoneUnderworldHeight && npc.type != NPCID.Hellbat)
-                        {
-                            if (Main.rand.NextBool(16))
-                                Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());
-                        }
                         if (Main.player[p].ZoneBeach && Main.rand.NextBool(8))
                             Item.NewItem(npc.getRect(), ModContent.ItemType<AquaticEnergy>());
                     }
@@ -1090,13 +1120,20 @@ namespace AQMod.Common
             }
             if (npc.type >= Main.maxNPCTypes)
                 return;
+            if (npc.type == NPCID.AngryBones || npc.type == NPCID.DarkCaster || npc.type == NPCID.CursedSkull)
+            {
+                if (Main.rand.NextBool(75))
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
+            }
+            if (npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler || npc.type == NPCID.FlyingSnake)
+            {
+                if (Main.rand.NextBool(50))
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
+            }
             switch (npc.type)
             {
                 case NPCID.EyeofCthulhu:
                 {
-                    if (!Main.expertMode)
-                    {
-                    }
                     if (EnergyDropsMessage)
                     {
                         NoEnergyDrops = false;
@@ -1108,18 +1145,8 @@ namespace AQMod.Common
 
                 case NPCID.Harpy:
                 {
-                    if (NPC.downedBoss1 && !NoEnergyDrops)
-                    {
-                        if (Main.rand.NextBool(8))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<AtmosphericEnergy>());
-                    }
-                }
-                break;
-
-                case NPCID.SkeletronHead:
-                {
-                    if (!Main.expertMode && Main.rand.NextBool())
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
+                    if (CanDropEnergy && Main.rand.NextBool(8))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<AtmosphericEnergy>());
                 }
                 break;
 
@@ -1147,40 +1174,8 @@ namespace AQMod.Common
                 }
                 break;
 
-                case NPCID.Ghost:
-                {
-                    if (Main.netMode == NetmodeID.SinglePlayer)
-                    {
-                        if (Main.rand.NextBool(3))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<GhostAmulet>());
-                    }
-                }
-                break;
-
-                case NPCID.VoodooDemon:
-                {
-                    if (Main.netMode == NetmodeID.SinglePlayer)
-                    {
-                        if ((Main.LocalPlayer.killGuide || Main.LocalPlayer.HasItem(ItemID.GuideVoodooDoll)) && Main.rand.NextBool(3))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<VoodooAmulet>());
-                    }
-                }
-                break;
-
-                case NPCID.WyvernHead:
-                {
-                    if (Main.netMode == NetmodeID.SinglePlayer)
-                    {
-                        if (plr.wingsLogic > 0 && Main.rand.NextBool(3)) // Only drops if the player has wings equipped
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<WyvernAmulet>());
-                    }
-                }
-                break;
-
                 case NPCID.DarkMummy:
                 {
-                    if (NPC.downedGolemBoss && (Main.moonPhase % 2 == 1 || aQPlayer.opposingForce))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Qi>());
                     if (aQPlayer.opposingForce && Main.rand.NextBool(10))
                         Item.NewItem(npc.getRect(), ItemID.LightShard);
                 }
@@ -1188,39 +1183,17 @@ namespace AQMod.Common
 
                 case NPCID.LightMummy:
                 {
-                    if (NPC.downedGolemBoss && (Main.moonPhase % 2 == 0 || aQPlayer.opposingForce))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Qi>());
                     if (aQPlayer.opposingForce && Main.rand.NextBool(10))
                         Item.NewItem(npc.getRect(), ItemID.DarkShard);
                 }
                 break;
 
-                case NPCID.Plantera:
-                {
-                    if (!Main.expertMode && Main.rand.NextBool())
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
-                }
-                break;
-
                 case NPCID.DungeonSpirit:
-                if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    if (Main.rand.NextBool(5) && NPC.CountNPCS(NPCID.DungeonSpirit) > 1)
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<SpiritAmulet>());
-                }
                 if (Main.rand.NextBool(30))
                 {
-                    if (specialData == 1)
-                    {
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
-                    }
-                    else
-                    {
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Breadsoul>());
-                    }
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Breadsoul>());
                 }
                 break;
-
 
                 case NPCID.GingerbreadMan:
                 if (Main.rand.NextBool(1000))
@@ -1243,6 +1216,11 @@ namespace AQMod.Common
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
+            if (DemonSiege.CloseEnoughToDemonSiege(player))
+            {
+                spawnRate *= 10;
+                maxSpawns = (int)(maxSpawns * 0.1);
+            }
             if (BossRush)
             {
                 spawnRate *= 10;
@@ -1261,7 +1239,7 @@ namespace AQMod.Common
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<Dusts.UltimaDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), Main.rand.NextFloat(0.6f, 1.25f));
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<UltimaDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), Main.rand.NextFloat(0.6f, 1.25f));
                     Main.dust[dust].velocity *= 2.65f;
                     Main.dust[dust].velocity.Y -= 2f;
                 }
@@ -1272,28 +1250,6 @@ namespace AQMod.Common
                 var b = 1 * ((float)Math.Sin(positionLength + offset * 2f) + 1f);
                 Lighting.AddLight(npc.Center, r * 0.25f, g * 0.25f, b * 0.25f);
             }
-        }
-
-        public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
-        {
-            switch (npc.type)
-            {
-                case NPCID.DungeonSpirit:
-                {
-                    if (specialData == 1)
-                    {
-                        var texture = SpriteUtils.Textures.Extras[ExtraID.MoltenSpirit];
-                        Vector2 drawPos = npc.Center - Main.screenPosition;
-                        drawPos -= new Vector2(texture.Width, texture.Height / Main.npcFrameCount[npc.type]) * npc.scale / 2f;
-                        var orig = new Vector2(texture.Width / 2, texture.Height / Main.npcFrameCount[npc.type] / 2);
-                        drawPos += orig * npc.scale + new Vector2(0f, npc.gfxOffY + 2f);
-                        spriteBatch.Draw(texture, drawPos, npc.frame, new Color(200, 200, 200, 0), npc.rotation, orig, npc.scale, npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
-                        return false;
-                    }
-                }
-                break;
-            }
-            return true;
         }
 
         internal static int FindClosest(Vector2 position, float distance = 2000f)

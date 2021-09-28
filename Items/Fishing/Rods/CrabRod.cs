@@ -1,5 +1,4 @@
-﻿using AQMod.Items.Misc;
-using AQMod.Items.Misc.Energies;
+﻿using AQMod.Items.Energies;
 using AQMod.Items.Placeable;
 using AQMod.Projectiles.Bobbers;
 using Terraria.ID;

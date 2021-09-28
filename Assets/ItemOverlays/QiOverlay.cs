@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets.Enumerators;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -14,7 +15,7 @@ namespace AQMod.Assets.ItemOverlays
         private static void DrawEye(Vector2 drawPosition, Item item, float time, float rotation = 0f, float scale = 1f)
         {
             var config = ModContent.GetInstance<AQConfigClient>();
-            var texture = SpriteUtils.Textures.Lights[LightID.Spotlight80x80];
+            var texture = DrawUtils.Textures.Lights[LightID.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             float timeSine = (float)Math.Sin(time);
@@ -40,7 +41,7 @@ namespace AQMod.Assets.ItemOverlays
             if (config.EffectQuality < 1f)
                 return;
 
-            texture = SpriteUtils.Textures.Lights[LightID.Spotlight80x80Half];
+            texture = DrawUtils.Textures.Lights[LightID.Spotlight80x80Half];
 
             scale3 = MathHelper.Clamp(((float)Math.Sin(time * 1.1f) + 1f) / 2f, 0.151f, 0.8f) * 0.9f;
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(b, b, b, 0) * scale3, rotation + time * 1.1f, drawOrigin, scale2 * scale3, SpriteEffects.None, 0f);
@@ -65,14 +66,14 @@ namespace AQMod.Assets.ItemOverlays
                     distance = 888f;
                 distance -= 200f;
                 float mult = distance / 688f;
-                texture = SpriteUtils.Textures.Lights[LightID.Spotlight80x80];
+                texture = DrawUtils.Textures.Lights[LightID.Spotlight80x80];
                 var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var drawOrigin = drawFrame.Size() / 2f;
                 Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(90, 90, 90, 60) * mult, rotation + MathHelper.PiOver4, drawOrigin, new Vector2(scale / 4f * mult, scale * 1.65f * mult), SpriteEffects.None, 0f);
             }
         }
 
-        public override void DrawInventory(Player player, AQPlayer aQPlayer, Item item, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        public override void PostDrawInventory(Player player, AQPlayer aQPlayer, Item item, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             DrawEye(position - origin + frame.Size() / 2f * scale, item, Main.GlobalTime * 2f, 0f, scale);
         }

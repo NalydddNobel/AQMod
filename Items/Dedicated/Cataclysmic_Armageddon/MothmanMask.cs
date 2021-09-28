@@ -43,7 +43,7 @@ namespace AQMod.Items.Dedicated.Cataclysmic_Armageddon
 
         Color IDedicatedItem.DedicatedItemColor() => DedicatedColors.Cataclysmic_Armageddon;
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQVisualsPlayer drawingPlayer, int i)
+        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, GraphicsPlayer drawingPlayer, int i)
         {
             drawingPlayer.mask = (int)PlayerMaskID.CataMask;
             drawingPlayer.cMask = player.dye[i % AQPlayer.DyeWrap].dye;

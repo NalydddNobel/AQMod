@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -7,7 +7,7 @@ namespace AQMod.NPCs.Glimmer
 {
     public class HyperSpike : ModProjectile
     {
-        public override string Texture => AQMod.ModName + "/" + AQTextureAssets.None;
+        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
 
         public override void SetDefaults()
         {

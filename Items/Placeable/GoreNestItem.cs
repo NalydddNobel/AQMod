@@ -14,6 +14,7 @@ namespace AQMod.Items.Placeable
             item.maxStack = 999;
             item.useTime = 10;
             item.useAnimation = 15;
+            item.rare = ItemRarityID.LightRed;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.createTile = ModContent.TileType<Tiles.GoreNest>();
             item.consumable = true;

@@ -1,11 +1,11 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.Utilities;
 using AQMod.Items.Accessories;
-using AQMod.Items.Misc.Energies;
-using AQMod.Items.Misc.Markers;
-using AQMod.Items.Weapons.Magic.Staffs;
+using AQMod.Items.Energies;
+using AQMod.Items.Tools.Markers;
+using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
-using AQMod.Items.Weapons.Ranged.Pistols;
-using AQMod.NPCs.Glimmer.OmegaStar;
+using AQMod.Items.Weapons.Ranged.Bullet;
+using AQMod.NPCs.Starite;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
