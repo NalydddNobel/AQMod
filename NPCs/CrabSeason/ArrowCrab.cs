@@ -1,4 +1,5 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
+using AQMod.Assets.Textures;
 using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents;
 using AQMod.Items;
@@ -24,6 +25,8 @@ namespace AQMod.NPCs.CrabSeason
             npc.value = Item.buyPrice(silver: 8);
             npc.HitSound = SoundID.NPCHit2;
             npc.DeathSound = SoundID.NPCDeath8;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Placeable.Banners.ArrowCrabBanner>();
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -163,7 +166,7 @@ namespace AQMod.NPCs.CrabSeason
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             var center = npc.Center;
-            var legTexture = DrawUtils.Textures.Extras[ExtraID.ArrowCrabLeg];
+            var legTexture = TextureCache.ArrowCrabLegs.GetValue();
             int legFrameHeight = legTexture.Height / 2;
             var legFrame = new Rectangle(0, 0, legTexture.Width, legFrameHeight - 2);
             var footFrame = new Rectangle(0, legFrameHeight, legTexture.Width, legFrameHeight - 2);

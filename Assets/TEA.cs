@@ -17,7 +17,7 @@ namespace AQMod.Assets
 
         private readonly bool[] _loaded;
         private readonly Texture2D[] _textures;
-        private const string callbackTexture = "AQMod/Assets/Textures/error";
+        private const string callbackTexture = "AQMod/" + TextureCache.Error;
 
         public TEA(TEnum count, string filePath, string fileNames)
         {

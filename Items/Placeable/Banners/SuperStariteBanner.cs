@@ -1,4 +1,6 @@
-﻿using AQMod.Tiles;
+﻿using AQMod.Content.CrossMod;
+using AQMod.Items.Vanities.Dyes;
+using AQMod.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,12 +28,17 @@ namespace AQMod.Items.Placeable.Banners
 
         public override void AddRecipes()
         {
-            if (ModHelpers.Fargowiltas.Active)
+            if (FargosQOLStuff.FargowiltasActive)
             {
                 var r = new ModRecipe(mod);
                 r.AddIngredient(item.type);
                 r.AddTile(TileID.Solidifier);
                 r.SetResult(ItemID.Nazar);
+                r.AddRecipe();
+                r = new ModRecipe(mod);
+                r.AddIngredient(item.type);
+                r.AddTile(TileID.Solidifier);
+                r.SetResult(ModContent.ItemType<OutlineDye>());
                 r.AddRecipe();
             }
         }

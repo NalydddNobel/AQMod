@@ -2,9 +2,8 @@
 using AQMod.Common.Config;
 using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents;
+using AQMod.Items;
 using AQMod.Items.BuffItems.Foods;
-using AQMod.Items.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Melee;
@@ -48,7 +47,7 @@ namespace AQMod.NPCs.Glimmer
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            if (GlimmerEvent.ActuallyActive)
+            if (AQMod.glimmerEvent.IsActive)
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.25f);
                 if (Main.hardMode)
@@ -358,7 +357,7 @@ namespace AQMod.NPCs.Glimmer
                 };
                 Item.NewItem(npc.getRect(), drops[Main.rand.Next(drops.Length)]);
             }
-            if (GlimmerEvent.ActuallyActive)
+            if (AQMod.glimmerEvent.IsActive)
             {
                 WorldDefeats.DownedGlimmer = true;
                 if (AQNPC.CanDropEnergy && Main.rand.NextBool(5))
@@ -377,11 +376,6 @@ namespace AQMod.NPCs.Glimmer
                 Item.NewItem(npc.getRect(), ItemID.Nazar);
             if (Main.rand.NextBool(50))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<OutlineDye>());
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return GlimmerEvent.ActuallyActive || !Main.hardMode ? 0f : SpawnCondition.OverworldNightMonster.Chance * 0.055f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)

@@ -1,5 +1,5 @@
-﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.Textures;
+﻿using AQMod.Assets.Textures;
+using AQMod.Common.ItemOverlays;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +11,9 @@ namespace AQMod.Items.BuffItems.Foods
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new Glowmask(GlowID.NeutronJuice), item.type);
+            {
+                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.NeutronJuice), item.type);
+            }
         }
 
         public override void SetDefaults()

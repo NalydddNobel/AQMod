@@ -1,8 +1,8 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.Glimmer;
+using AQMod.Items;
 using AQMod.Items.BuffItems.Foods;
-using AQMod.Items.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
 using Microsoft.Xna.Framework;
@@ -41,7 +41,7 @@ namespace AQMod.NPCs.Glimmer
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            if (GlimmerEvent.ActuallyActive)
+            if (AQMod.glimmerEvent.IsActive)
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.25f);
                 npc.knockBackResist *= 0.95f;
@@ -286,22 +286,13 @@ namespace AQMod.NPCs.Glimmer
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.CelesitalEightBall>());
             if (NPC.downedBoss1 && !AQNPC.NoEnergyDrops)
             {
-                if (!GlimmerEvent.ActuallyActive || Main.rand.NextBool(10))
+                if (!AQMod.glimmerEvent.IsActive || Main.rand.NextBool(10))
                     Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
             }
             if (Main.rand.NextBool(5))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<NeutronJuice>());
             if (Main.rand.NextBool(50))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HypnoDye>());
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return GlimmerEvent.ActuallyActive
-                ? 0f
-                : Main.hardMode || NPC.AnyNPCs(ModContent.NPCType<Starite>())
-                ? SpawnCondition.OverworldNightMonster.Chance * 0.005f
-                : SpawnCondition.OverworldNightMonster.Chance * 0.01f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)

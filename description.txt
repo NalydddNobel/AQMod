@@ -1,149 +1,18 @@
-Aequus Mod is an unfinished mod made for fun. It doesn't have any serious intentions and was only created for me to mess around :)
-> Important <
-# A discord link for the mod is in the Homepage! #
-# This mod is opened sourced and assets are extractable #
-# Currently, this mod is NOT multiplayer friendly. You can still try multiplayer, but don't expect it to be stable! #
-# The wiki is currently a disaster so any help with that is appreciated! #
->
-Currently Contains:
-178 Items
+Aequus is a mod made for fun :) It was created from me messing around with coding and stuff, so don't try to take the mod super serious pls.
+# Important Info #
+The mod's assets are extratable
+The wiki is a complete mess, don't use it
+A discord link to the mod is in the homepage, if you like typing discord invite links yourself, here you go:
+[c/aaaaff:> https://discord.gg/pEKfVCnqe4]
+##################
+[c/ff3377:> Content <]
+187 Items
 13 Enemies
-1 Town NPC
-1 Critter
-2 Bosses
 3 Events
-0 Mounts
-10 Tiles
+2 Bosses
+1 Town NPC
+11 Tiles
 1 Wall
-Many bugs (ahahah)
->
+0 Mounts
+And importantly, many bugs!
 ##################
-Developer:
-##################
->
-[c/7dd8ff:Nalyd T.] as the main coder, spriter, and creator of Aequus
-[c/8257c0:Gerd] as the main musician of Aequus
->
-##################
-Contributors:
-##################
->
-[c/5dff64:# Coding]
-[c/5dff64:Woodio] for helping me learn some basic coding things (Mostly about shaders)
-[c/5dff64:turingcomplete30] for creating a really good open sourced mod that I sometimes use as reference
->
-[c/e8ff00:# Spriting] 
-[c/e8ff00:niker] for spriting multiple items, including the Arachnotron Armor and giving ideas for Yin-Yang
-[c/e8ff00:FunkItOut1] for spriting Nalyd's Devwand and Narrizuul
-[c/e8ff00:Maikli Messes] for spriting the Lotus Staff
-[c/e8ff00:Triangle] for spriting and giving ideas for Yin-Yang
-[c/e8ff00:Squartron] for spriting the original Organic Energy, and ideas
-[c/e8ff00:Pyrossal] for spriting the Mythic Star
->
-# Translations
-[c/adefd1:Maple and Lin] for doing Chinese Translations
-Crimulian for doing some Portuguese translations
-adrianyupi for doing some Spanish translations
-Monki for doing some German translations
-# Ideas
-Xemic for ideas
-someperson for Ideas
-Slayer for Ideas
-Taco Burrito Guacamole for Ideas
-.
->
->
->
->
->
->
-.
-You can extract the mod for the complete changelog file
-###################
-# Current Changelog  #
-####### v1.2.1 #######
-.
-~ Demon Siege update ~
-
-Added Items:
-* Hell's Boon
-* Degeneration Ring
-* Pow Punch
-* Disco Dye
-* Breakdown Dye
-* Hell Beam Dye
-* Demonic Cursor Dye
-
-Added Enemies:
-* Hecktor, a red dungeon spirit that spawns from Hell Armored Bones and Diabolists!
-* Magmabubble, a lava slime and a blood crawler... what an evil combination
-* Trapper Imp, a fire imp that gained a loving for capturing prey instead of burning it...
-* Cindera, a hellbat with the temper of a Biome Mimic, how could that go wrong?
-
-* Snobster... it's just there.
-
-* Boss Changes:
-- Omega Starite now has a 33% chance to drop Disco Dye when defeated during the Glimmer Event
-
-- Crabson now drops Breakdown Dye with Crabsol
-- Lowered Crabson's HP to 1000 (normal) 1500 (expert)
-- It's now harder to escape Crabson's Claws
-- Modified how Crabson shoots bubbles, and gave it a new bubble attack
-- Jerry Claws now shoot Jerry Pearls less often if more than 8 are active at once
-- Lowered the lifespan of Jerry Pearls
-- Crabson's Claws will no longer go towards you when "flowing"
-
-- Added a boss checklist entry for Crab Season
-- Added the "Demon Siege" event to boss checklist (+ a downed flag)
-
-* Important Changes:
-- Added Gerd to the developer's list in the description of Aequus
-- Removed the Crab Card
-- Removed Robster's """""""Story""""""" hunts
-- Robster no longer sells Crabson loot
-- Robster no longer creates quests for dead town NPCs
-- Gore Nests now spawn naturally on the outer 1/3rds of your world, and also regrow naturally in hardmode.
-- Demonic Energy is no longer a global drop, and will now only drop from Demon Siege enemies
-
-* Misc Changes:
-- Robster can no longer go to Queen Statues 
-- Robster now uses Crabsol to defend himself instead of having no weapon
-- Music now plays while the Demon Siege is active (without the music mod, it's "Boss 1")
-- The music that plays during the Glimmer Event will no longer play when you are underground
-- Modifed the drawcode for the energies
-- Centered the spotlight on Demonic Energy
-- You must now craft Molite potions at a Demon Altar
-- You can no longer turn Sake and Ale into Molite Buffs
-- Renamed "Molite" to "Starbyte"
-- The Potion of Containers can now support modded chests!!! 
-- The Fishy Fins will no longer display as the Monoxide Hat on the map
-- You must now craft baited Containers Potions at a Demon Altar (since the alchemy table lets you have a 33% chance to not consume the potion or chest...)
-- Added more textures for the Sword Cursor Dye
-- The Sword Cursor Dye now applies your cursor outline color
-- Removed a dumb recipe used to craft the Starite Staff
-- The Jeweled Chalice is no longer considered a Bottles tile
-(this will make them unload sadly) 
-- TEA should now load the callback texture properly
-- Overhauled the Extractor internally
-- Town NPCs now react to you stealing jeweled tiles
-- Gave localization values to multiple hostile projectiles
-- Skeletron no longer drops the Dungeon Marker, and it is instead a 1/75 drop from Angry Bones, Dark Casters, and Cursed Skull
-- Plantera no longer drops the Lihzahrd Marker, and it is instead a 1/50 drop from Lihzarhds and Flying Snakes 
-- Enemies will no longer drop multiple hearts / spectre souls when using the Spoils Potion 
-- The text "The town NPC that Robster wants you to steal isn't here anymore... Talk to Robster for a different Hunt" should no longer be absurdly rare or appear multiple times when using a Spoils Potion
-- Robster's quest should now properly reset when the town NPC you are stealing from dies
-- Qi is no longer obtainable
-- Nerfed Crabsol's damage and use speed and changed its drop requirement
-- Added a visual effect to the Gore Nest
-- The Strider Crab now makes a sound when shooting
-- Fixed some localization key errors 
-####
->
->
->
->
->
->
->
->
-.

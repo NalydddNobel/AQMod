@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
-using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -17,14 +16,13 @@ namespace AQMod.Items.GrapplingHooks
             item.height = 20;
             item.damage = 0;
             item.knockBack = 7f;
-            item.useStyle = ItemUseStyleID.HoldingOut;
             item.shoot = ModContent.ProjectileType<StriderHookHook>();
             item.shootSpeed = 8f;
             item.noUseGraphic = true;
             item.UseSound = SoundID.Item1;
             item.useAnimation = 20;
             item.useTime = 20;
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
             item.noMelee = true;
             item.value = Item.sellPrice(silver: 20);
         }
@@ -148,7 +146,7 @@ namespace AQMod.Items.GrapplingHooks
         {
             var player = Main.player[projectile.owner];
             float playerLength = (player.Center - projectile.Center).Length();
-            var chainTexture = ChainTextures.Chains[ChainTextureID.StriderHook];
+            var chainTexture = TextureCache.StriderHookHookChain.GetValue();
             float textureHeight = chainTexture.Height - 2f;
             DrawMethods.DrawChain_UseLighting(chainTexture, projectile.Center, player.Center, Main.screenPosition);
             var texture = TextureCache.GetTexture(projectile);

@@ -1,4 +1,5 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
+using AQMod.Assets.Textures;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Items.Placeable.Torches;
@@ -127,7 +128,7 @@ namespace AQMod.Tiles
                         if (Main.tile[i, j].liquid > 0)
                         {
                             float intensityMult = 0.1f;
-                            var screenCenter = DrawUtils.ScreenCenter;
+                            var screenCenter = AQMod.ScreenCenter;
                             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
                             var distance = (screenCenter - screenPosition).Length();
                             if (distance < TorchIntensityDistance)
@@ -151,7 +152,7 @@ namespace AQMod.Tiles
                         if (Main.tile[i, j].liquid > 0)
                         {
                             float intensityMult = 0.1f;
-                            var screenCenter = DrawUtils.ScreenCenter;
+                            var screenCenter = AQMod.ScreenCenter;
                             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
                             var distance = (screenCenter - screenPosition).Length();
                             if (distance < TorchIntensityDistance)
@@ -175,7 +176,7 @@ namespace AQMod.Tiles
                         if (Main.tile[i, j].liquid > 0)
                         {
                             float intensityMult = 0.1f;
-                            var screenCenter = DrawUtils.ScreenCenter;
+                            var screenCenter = AQMod.ScreenCenter;
                             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
                             var distance = (screenCenter - screenPosition).Length();
                             if (distance < TorchIntensityDistance)
@@ -263,7 +264,7 @@ namespace AQMod.Tiles
                         if (Main.tile[i, j].liquid > 0)
                         {
                             intensityMult = 0.025f;
-                            var screenCenter = DrawUtils.ScreenCenter;
+                            var screenCenter = AQMod.ScreenCenter;
                             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
                             var distance = (screenCenter - screenPosition).Length();
                             if (distance < TorchIntensityDistance)
@@ -296,7 +297,7 @@ namespace AQMod.Tiles
                     {
                         float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f * intensityMult;
                         float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f * intensityMult;
-                        Main.spriteBatch.Draw(DrawUtils.Textures.Extras[ExtraID.Torches], new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                        Main.spriteBatch.Draw(TextureCache.TorchesFlames.GetValue(), new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
                     }
                 }
                 break;

@@ -1,7 +1,6 @@
-﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.Textures;
+﻿using AQMod.Assets.Textures;
 using AQMod.Common;
-using AQMod.Items.Energies;
+using AQMod.Common.ItemOverlays;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -14,7 +13,7 @@ namespace AQMod.Items.Weapons.Summon.Sentry
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new Glowmask(GlowID.LotusStaff), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.LotusStaff), item.type);
         }
 
         public override void SetDefaults()

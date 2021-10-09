@@ -8,12 +8,16 @@ namespace AQMod.Assets
     public sealed class TextureAsset : AssetItem<Texture2D>
     {
         private string _path;
-        private const string throwbackTexturePath = "AQMod/Assets/Textures/error";
-        private static bool _debug = true;
+        private const string throwbackTexturePath = "AQMod/" + TextureCache.Error;
+        private static bool _debug = false;
 
         internal TextureAsset(string path)
         {
             _path = path;
+            if (_debug)
+            {
+                LoadAsset();
+            }
         }
 
         internal static TextureAsset FromT<T>(string extra)
@@ -33,8 +37,15 @@ namespace AQMod.Assets
         {
             if (!_loaded)
             {
-                _asset = new Ref<Texture2D>(ModContent.TextureExists(_path) ? ModContent.GetTexture(_path) : ModContent.GetTexture(throwbackTexturePath));
+                _loadedProperly = ModContent.TextureExists(_path);
+                _asset = new Ref<Texture2D>(_loadedProperly ? ModContent.GetTexture(_path) : ModContent.GetTexture(throwbackTexturePath));
+                _loaded = true;
             }
+        }
+
+        public string Path()
+        {
+            return _path;
         }
     }
 }

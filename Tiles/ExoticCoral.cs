@@ -53,7 +53,7 @@ namespace AQMod.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             float intensityMult = 0.1f;
-            var screenCenter = DrawUtils.ScreenCenter;
+            var screenCenter = AQMod.ScreenCenter;
             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
             var distance = (screenCenter - screenPosition).Length();
             if (distance < GlowDistance)

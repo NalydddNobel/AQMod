@@ -1,10 +1,4 @@
-﻿using AQMod.Assets.Textures;
-using AQMod.Common.Utilities;
-using AQMod.Content.Skies;
-using AQMod.Content.WorldEvents;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -15,23 +9,80 @@ namespace AQMod.Tiles
 {
     public class GlimmeringStatue : ModTile
     {
+        public static bool PlaceUndisoveredGlimmeringStatue(int x, int y)
+        {
+            return PlaceUndiscoveredGlimmeringStatue(new Point(x, y));
+        }
+
+        public static bool PlaceUndiscoveredGlimmeringStatue(Point p)
+        {
+            WorldGen.PlaceTile(p.X, p.Y, ModContent.TileType<GlimmeringStatue>());
+            Tile tile = Main.tile[p.X, p.Y];
+            if (tile.type == ModContent.TileType<GlimmeringStatue>())
+            {
+                var objectData = TileObjectData.GetTileData(tile);
+                int x = p.X - (tile.frameX % 36 / 18);
+                int y = p.Y - (tile.frameY / 18);
+                x += 1;
+                y += 2;
+                objectData.HookPostPlaceMyPlayer.hook(x, y, tile.type, objectData.Style, 0);
+                int index = ModContent.GetInstance<TEGlimmeringStatue>().Find(x - 1, y - 2);
+                if (index == -1)
+                {
+                    return false;
+                }
+                TEGlimmeringStatue glimmeringStatue = (TEGlimmeringStatue)TileEntity.ByID[index];
+                glimmeringStatue.discovered = false;
+                return true;
+            }
+            return false;
+        }
+
         public override void SetDefaults()
         {
             Main.tileFrameImportant[Type] = true;
+            TileID.Sets.HasOutlines[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
             TileObjectData.newTile.Height = 3;
             TileObjectData.newTile.Origin = new Point16(1, 2);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 18 };
+            TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(ModContent.GetInstance<TEGlimmeringStatue>().Hook_AfterPlacement, -1, 0, false);
             TileObjectData.addTile(Type);
-            AddMapEntry(new Color(75, 139, 166));
-            dustType = DustID.Stone;
-            animationFrameHeight = 56;
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("{$Mods.AQMod.ItemName.GlimmeringStatue}");
+            AddMapEntry(new Color(75, 139, 166), name);
+            dustType = 15;
             disableSmartCursor = true;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Placeable.WorldInteractors.GlimmeringStatue>());
+            Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Placeable.GlimmeringStatue>());
+            ModContent.GetInstance<TEGlimmeringStatue>().Kill(i, j);
+        }
+
+        public override void MouseOver(int i, int j)
+        {
+            Player player = Main.LocalPlayer;
+            player.noThrow = 2;
+            player.showItemIcon = true;
+            player.showItemIcon2 = ModContent.ItemType<Items.Placeable.GlimmeringStatue>();
+        }
+
+        public override void RandomUpdate(int i, int j)
+        {
+            Tile tile = Main.tile[i, j];
+            int x = i - (tile.frameX % 36 / 18);
+            int y = j - (tile.frameY / 18);
+            int index = ModContent.GetInstance<TEGlimmeringStatue>().Find(x, y);
+            if (index != -1 && !AQMod.glimmerEvent.IsActive && (AQMod.glimmerEvent.spawnChance <= 1 || Main.rand.NextBool(AQMod.glimmerEvent.spawnChance)))
+            {
+                int d = Dust.NewDust(new Vector2(x * 16f, y * 16f), 32, 16, dustType);
+                Main.dust[d].noGravity = true;
+                Main.dust[d].scale = Main.rand.NextFloat(0.8f, 1.2f);
+                Main.dust[d].velocity.X *= 0.3f;
+                Main.dust[d].velocity.Y = -Main.rand.NextFloat(1f, 2f);
+            }
         }
 
         public override bool NewRightClick(int i, int j)
@@ -41,76 +92,29 @@ namespace AQMod.Tiles
             return true;
         }
 
-        public override void MouseOver(int i, int j)
-        {
-            Player player = Main.LocalPlayer;
-            player.noThrow = 2;
-            player.showItemIcon = true;
-            player.showItemIcon2 = ModContent.ItemType<Items.Placeable.WorldInteractors.GlimmeringStatue>();
-        }
-
-        public static bool GlimmerInStatue(int x, int y)
-        {
-            int glimmerX = GlimmerEvent.X;
-            int glimmerY = GlimmerEvent.Y;
-            if (!GlimmerEvent.IsActive)
-            {
-                glimmerX = -1;
-                glimmerY = -1;
-            }
-            return glimmerX == x + 1 && glimmerY == y + 3;
-        }
-
         public override void HitWire(int i, int j)
         {
-            int x = i - Main.tile[i, j].frameX / 18 % 2;
-            int y = j - Main.tile[i, j].frameY / 18 % 3;
-            bool glimmerInStatue = GlimmerInStatue(x, y);
-            if (GlimmerEvent.IsActive && glimmerInStatue)
+            Tile tile = Main.tile[i, j];
+            int x = i - (tile.frameX / 18 % 2);
+            int y = j - (tile.frameY / 18 % 3);
+            int index = ModContent.GetInstance<TEGlimmeringStatue>().Find(x, y);
+            if (index != -1 && !AQMod.glimmerEvent.IsActive && AQMod.glimmerEvent.spawnChance > 0)
             {
-                GlimmerEvent.FakeActive = false;
-            }
-            else
-            {
-                if (!GlimmerEvent.IsActive)
-                {
-                    GlimmerEventSky._glimmerLight = 1f;
-                }
-                GlimmerEvent.Activate((ushort)(x + 1), (ushort)(y + 3), genuine: false);
+                int d = Dust.NewDust(new Vector2(x * 16f, y * 16f), 32, 16, dustType);
+                Main.dust[d].noGravity = true;
+                Main.dust[d].scale = Main.rand.NextFloat(0.8f, 1.2f);
+                Main.dust[d].velocity.X *= 0.3f;
+                Main.dust[d].velocity.Y = -Main.rand.NextFloat(1f, 2f);
+                CombatText.NewText(new Rectangle(x * 16, y * 16, 32, 16), AQMod.glimmerEvent.stariteProjectileColor, AQMod.glimmerEvent.spawnChance, true);
             }
             if (Wiring.running)
             {
                 Wiring.SkipWire(x, y);
-                Wiring.SkipWire(x, y + 1);
-                Wiring.SkipWire(x, y + 2);
                 Wiring.SkipWire(x + 1, y);
+                Wiring.SkipWire(x, y + 1);
                 Wiring.SkipWire(x + 1, y + 1);
+                Wiring.SkipWire(x, y + 2);
                 Wiring.SkipWire(x + 1, y + 2);
-            }
-        }
-
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
-        {
-            int x = i - Main.tile[i, j].frameX / 18 % 2;
-            int y = j - Main.tile[i, j].frameY / 18 % 3;
-            float glowmaskIntensity = 0f;
-            if (GlimmerEvent.FakeActive && GlimmerInStatue(x, y))
-            {
-                glowmaskIntensity = ((float)Math.Sin(Main.GlobalTime * 2f) + 1f) * 0.4f + 0.2f;
-            }
-            else if (GlimmerEvent.ActuallyActive)
-            {
-                glowmaskIntensity += 0.1f;
-            }
-            if (glowmaskIntensity > 0f)
-            {
-                var texture = DrawUtils.Textures.Glows[GlowID.GlimmeringStatue];
-                Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
-                if (Main.drawToScreen)
-                {
-                    zero = Vector2.Zero;
-                }
-                Main.spriteBatch.Draw(texture, new Vector2(i * 16f, j * 16f) + zero - Main.screenPosition, new Rectangle(Main.tile[i, j].frameX, Main.tile[i, j].frameY, 16, 18), new Color(250, 250, 250, 0) * glowmaskIntensity, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
         }
     }

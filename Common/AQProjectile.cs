@@ -1,4 +1,5 @@
 ﻿using AQMod.Items.Fishing.Bait;
+using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles;
 using Terraria;
 using Terraria.ID;
@@ -18,11 +19,16 @@ namespace AQMod.Common
         public static class Sets
         {
             public static bool[] UntaggableProjectile { get; private set; }
+            public static bool[] HeadMinion { get; private set; }
 
             internal static void Setup()
             {
                 UntaggableProjectile = new bool[ProjectileLoader.ProjectileCount];
                 UntaggableProjectile[ModContent.ProjectileType<CelesteTorusProjectile>()] = true;
+
+                HeadMinion = new bool[ProjectileLoader.ProjectileCount];
+                //HeadMinion[ModContent.ProjectileType<ChomperHead>()] = true;
+                HeadMinion[ModContent.ProjectileType<MonoxiderMinion>()] = true;
             }
         }
 

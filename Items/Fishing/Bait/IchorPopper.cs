@@ -1,6 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Common.Utilities;
-using AQMod.Content.WorldEffects;
+using AQMod.Effects.WorldEffects;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -32,7 +31,7 @@ namespace AQMod.Items.Fishing.Bait
 
         public override void PopperEffects(Player player, AQPlayer aQPlayer, Projectile bobber, Tile tile)
         {
-            DrawUtils.WorldEffects.Add(new FishingPopperEffect((int)bobber.position.X, (int)bobber.position.Y, tile.liquid, 170, default(Color)));
+            AQMod.WorldEffects.Add(new FishingPopperEffect((int)bobber.position.X, (int)bobber.position.Y, tile.liquid, 170, default(Color)));
         }
 
         public override void AddRecipes()

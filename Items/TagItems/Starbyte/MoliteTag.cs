@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
+using AQMod.Common.Recipes;
 using AQMod.Content.Dusts;
-using AQMod.Content.Recipes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

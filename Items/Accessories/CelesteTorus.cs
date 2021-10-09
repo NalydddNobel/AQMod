@@ -41,9 +41,9 @@ namespace AQMod.Items.Accessories
             aQPlayer.extraFlightTime += 120;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, GraphicsPlayer drawingPlayer, int i)
+        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer drawingPlayer, int i)
         {
-            drawingPlayer.cCelesteTorus = player.dye[i % GraphicsPlayer.DYE_WRAP].dye;
+            drawingPlayer.cCelesteTorus = player.dye[i % AQPlayer.DYE_WRAP].dye;
         }
     }
 }

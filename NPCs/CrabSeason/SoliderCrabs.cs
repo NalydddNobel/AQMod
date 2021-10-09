@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents;
 using AQMod.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,6 +27,8 @@ namespace AQMod.NPCs.CrabSeason
             npc.HitSound = SoundID.NPCHit2;
             npc.DeathSound = SoundID.NPCDeath8;
             npc.behindTiles = true;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Placeable.Banners.SoliderCrabsBanner>();
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -124,7 +125,9 @@ namespace AQMod.NPCs.CrabSeason
             else
             {
                 if (npc.velocity.Y > 0)
+                {
                     npc.velocity.Y = 0f;
+                }
                 else
                 {
                     npc.velocity.Y -= 0.1f;
@@ -215,7 +218,9 @@ namespace AQMod.NPCs.CrabSeason
                 else
                 {
                     if (velocity.Y > 0)
+                    {
                         velocity.Y = 0f;
+                    }
                     else
                     {
                         velocity.Y -= 0.1f;

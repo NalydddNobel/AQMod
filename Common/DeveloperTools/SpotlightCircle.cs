@@ -16,7 +16,7 @@ namespace AQMod.Common.DeveloperTools
                     int index = j * width + i;
                     double dX = (i - x) / (double)x;
                     double dY = (j - y) / (double)y;
-                    double c = Math.Sqrt(dX * dX + dY * dY);
+                    double c = Math.Sqrt((dX * dX) + (dY * dY));
                     if (c == 0)
                     {
                         colors[index] = new Color(1f, 1f, 1f, 1f);

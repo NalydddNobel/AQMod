@@ -5,6 +5,6 @@ namespace AQMod.Items
 {
     internal interface IUpdateEquipVisuals
     {
-        void UpdateEquipVisuals(Player player, GraphicsPlayer aQPlayer, int i);
+        void UpdateEquipVisuals(Player player, AQPlayer aQPlayer, int i);
     }
 }

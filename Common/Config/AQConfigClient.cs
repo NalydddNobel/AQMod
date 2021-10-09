@@ -26,11 +26,6 @@ namespace AQMod.Common.Config
         [Range(0.1f, 2f)]
         public float EffectIntensity { get; set; }
 
-        [Label(AQText.ConfigValueKey + "LoadItemOverlays")]
-        [DefaultValue(true)]
-        [ReloadRequired()]
-        public bool LoadItemOverlays { get; set; }
-
         [Label(AQText.ConfigValueKey + "TrailShader")]
         [DefaultValue(true)]
         [ReloadRequired()]
@@ -78,22 +73,16 @@ namespace AQMod.Common.Config
         [Header(AQText.ConfigHeaderKey + "Misc")]
 
         [Label(AQText.ConfigValueKey + "MapBlipColor")]
-        [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorHSLSlider(true), ColorNoAlpha]
+        [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorNoAlpha]
         public Color MapBlipColor { get; set; }
+
+        [Label(AQText.ConfigValueKey + "StariteProjColor")]
+        [DefaultValue(typeof(Color), "200, 10, 255, 0"), ColorNoAlpha]
+        public Color StariteProjColor { get; set; }
 
         [Label(AQText.ConfigValueKey + "ShowCompletedAnglerQuestsCount")]
         [DefaultValue(true)]
         public bool ShowCompletedQuestsCount { get; set; }
-
-        [Label(AQText.ConfigValueKey + "ShowCompletedRobsterQuestsCount")]
-        [DefaultValue(true)]
-        public bool ShowCompletedRobsterQuestsCount { get; set; }
-
-        [Label(AQText.ConfigValueKey + "MarkerMapUIType")]
-        [DrawTicks()]
-        [Range(-1, 1)]
-        [DefaultValue(-1)]
-        public int MarkerMapUIType { get; set; }
 
         [Label(AQText.ConfigValueKey + "CosmicEnergyAlt")]
         [DefaultValue(false)]
@@ -101,7 +90,8 @@ namespace AQMod.Common.Config
 
         public override void OnChanged()
         {
-            GlimmerEventSky.AssignConfig(this);
+            AQMod.ApplyClientConfig(this);
+            GlimmerEventSky.OnUpdateConfig(this);
         }
     }
 }

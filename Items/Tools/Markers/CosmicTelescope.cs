@@ -1,17 +1,8 @@
-﻿using AQMod.Assets.Textures;
-using AQMod.Common;
-using AQMod.Common.UserInterface;
-using AQMod.Common.Utilities;
-using AQMod.Content;
-using AQMod.Content.WorldEvents;
-using AQMod.Items.Energies;
-using AQMod.Items.Misc.Markers;
-using AQMod.Localization;
+﻿using AQMod.Common;
+using AQMod.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Tools.Markers
@@ -22,10 +13,6 @@ namespace AQMod.Items.Tools.Markers
         {
             item.width = 30;
             item.height = 30;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = ItemUseStyleID.HoldingUp;
-            item.UseSound = SoundID.Item4;
             item.consumable = true;
             item.rare = ItemRarityID.Green;
             item.value = Item.sellPrice(gold: 2);
@@ -49,60 +36,35 @@ namespace AQMod.Items.Tools.Markers
             recipe.AddRecipe();
         }
 
-        public static string ApplyCosmicTelescope(Player player, AQPlayer aQPlayer, string mouseText)
+        public override void GlobeEffects(Player player, TEGlobe globe)
         {
-            if (GlimmerEvent.ActuallyActive && Main.Map[GlimmerEvent.X, GlimmerEvent.Y].Light > 40)
-            {
-                var texture = DrawUtils.Textures.Extras[ExtraID.GlimmerEventMapIcon];
-                var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                var drawPos = MapInterface.MapPos(new Vector2(GlimmerEvent.X + 0.5f, GlimmerEvent.Y - 3f));
-                var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
-                var scale = Main.UIScale;
-                if (hitbox.Contains(Main.mouseX, Main.mouseY))
-                {
-                    mouseText = Language.GetTextValue(AQText.Key + "Common.GlimmerEvent");
-                    scale += 0.5f;
-                }
-                Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                for (int i = 0; i < 2; i++)
-                {
-                    int b = i == 1 ? -1 : 1;
-                    var pos = new Vector2(GlimmerEvent.X + 0.5f + GlimmerEvent.HyperStariteDistance * b, 160f);
-                    if (pos.X < 0f || pos.X > Main.maxTilesX)
-                        continue;
-                    texture = DrawUtils.Textures.Extras[ExtraID.StariteMapIcon];
-                    frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                    drawPos = MapInterface.MapPos(pos);
-                    hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
-                    scale = Main.UIScale;
-                    if (hitbox.Contains(Main.mouseX, Main.mouseY))
-                    {
-                        mouseText = AQText.ModText("NPCName.HyperStarite").Value;
-                        scale += 0.5f;
-                    }
-                    Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                    pos = new Vector2(GlimmerEvent.X + 0.5f + GlimmerEvent.SuperStariteDistance * b, 160f);
-                    if (pos.X < 0f || pos.X > Main.maxTilesX)
-                        continue;
-                    drawPos = MapInterface.MapPos(pos);
-                    hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
-                    scale = Main.UIScale;
-                    if (hitbox.Contains(Main.mouseX, Main.mouseY))
-                    {
-                        mouseText = AQText.ModText("NPCName.SuperStarite").Value;
-                        scale += 0.5f;
-                    }
-                    Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                }
-            }
-            return mouseText;
+            player.AddBuff(ModContent.BuffType<CosmicMarkerBuff>(), 20);
         }
 
-        public override int GetID() => MapMarkerPlayer.ID.CosmicMarker;
-
-        public override string Apply(Player player, AQPlayer aQPlayer, string mouseText, MapMarkerPlayer mapMarkerPlayer)
+        public override void PreAddMarker(Player player, TEGlobe globe)
         {
-            return ApplyCosmicTelescope(player, aQPlayer, mouseText);
+            var rectangle = new Rectangle(globe.Position.X * 16, globe.Position.Y * 16, 32, 32);
+            for (int i = 0; i < 12; i++)
+            {
+                int d = Dust.NewDust(new Vector2(rectangle.X, rectangle.Y), rectangle.Width, rectangle.Height, 261);
+                Main.dust[d].noGravity = true;
+                Main.dust[d].velocity.X *= 0.2f;
+                Main.dust[d].velocity.Y = -Main.rand.NextFloat(1f, 3f);
+            }
+        }
+    }
+
+    public class CosmicMarkerBuff : ModBuff
+    {
+        public override void SetDefaults()
+        {
+            Main.buffNoSave[Type] = true;
+            Main.buffNoTimeDisplay[Type] = true;
+        }
+
+        public override void Update(Player player, ref int buffIndex)
+        {
+            player.GetModPlayer<AQPlayer>().cosmicMap = true;
         }
     }
 }

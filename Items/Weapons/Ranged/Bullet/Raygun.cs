@@ -1,6 +1,6 @@
-﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.Textures;
+﻿using AQMod.Assets.Textures;
 using AQMod.Common;
+using AQMod.Common.ItemOverlays;
 using AQMod.Projectiles.Ranged.Bullets.Rays;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -15,7 +15,7 @@ namespace AQMod.Items.Weapons.Ranged.Bullet
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new Glowmask(GlowID.Raygun), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.Raygun), item.type);
         }
 
         public override void SetDefaults()

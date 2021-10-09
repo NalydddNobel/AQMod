@@ -30,6 +30,7 @@ namespace AQMod.Items.Accessories.FishingSeals
             r.AddIngredient(ModContent.ItemType<CopperSeal>());
             r.AddIngredient(ModContent.ItemType<SilverSeal>());
             r.AddIngredient(ModContent.ItemType<GoldSeal>());
+            r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
             r.AddTile(TileID.TinkerersWorkbench);
             r.SetResult(this);
             r.AddRecipe();

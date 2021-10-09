@@ -1,7 +1,9 @@
-﻿using AQMod.Content;
+﻿using AQMod.Common.Utilities;
+using AQMod.Content;
 using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.WorldEvents.Glimmer;
+using AQMod.Content.WorldEvents.Siege;
 using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
@@ -9,11 +11,9 @@ using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Dedicated.Cataclysmic_Armageddon;
 using AQMod.Items.Dedicated.niker;
 using AQMod.Items.Dedicated.someperson;
-using AQMod.Items.Energies;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.Markers;
 using AQMod.Items.Vanities.CursorDyes;
-using AQMod.Items.Vanities.Dyes;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.SiegeEvent;
@@ -682,16 +682,6 @@ namespace AQMod.Common
                 }
                 break;
 
-                case NPCID.DyeTrader:
-                {
-                    if (GlimmerEvent.ActuallyActive)
-                    {
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<ScrollDye>());
-                        nextSlot++;
-                    }
-                }
-                break;
-
                 case NPCID.SkeletonMerchant:
                 {
                     var plr = Main.LocalPlayer;
@@ -1230,7 +1220,65 @@ namespace AQMod.Common
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            GlimmerEvent.ModifySpawnPool(pool, spawnInfo);
+            if (AQMod.glimmerEvent.IsActive && AQMod.glimmerEvent.deactivationTimer <= 0 && spawnInfo.player.position.Y < (Main.worldSurface + 50) * 16)
+            {
+                int tileDistance = AQMod.glimmerEvent.GetTileDistance(spawnInfo.player);
+                if (tileDistance < GlimmerEvent.MaxDistance)
+                {
+                    if (tileDistance > GlimmerEvent.HyperStariteDistance) // shouldn't divide by 0...
+                    {
+                        float normalSpawnsMult = 1f - (1f / (tileDistance - GlimmerEvent.HyperStariteDistance));
+                        IEnumerator<int> keys = pool.Keys.GetEnumerator();
+                        int[] keyValue = new int[pool.Count];
+                        for (int i = 0; i < pool.Count; i++)
+                        {
+                            keyValue[i] = keys.Current;
+                            if (!keys.MoveNext())
+                            {
+                                break;
+                            }
+                        }
+                        keys.Dispose();
+                        for (int i = 0; i < pool.Count; i++)
+                        {
+                            pool[keyValue[i]] *= normalSpawnsMult;
+                        }
+                    }
+                    else
+                    {
+                        int[] keyValue = new int[pool.Count];
+                        IEnumerator<int> keys = pool.Keys.GetEnumerator();
+                        for (int i = 0; i < pool.Count; i++)
+                        {
+                            keyValue[i] = keys.Current;
+                            if (!keys.MoveNext())
+                            {
+                                break;
+                            }
+                        }
+                        for (int i = 0; i < pool.Count; i++)
+                        {
+                            pool[keyValue[i]] = 0f;
+                        }
+                    }
+                    int layerIndex = GlimmerEvent.GetLayerIndex(tileDistance);
+                    if (layerIndex != -1)
+                    {
+                        for (int i = layerIndex - 1; i >= 0; i--)
+                        {
+                            pool.Add(GlimmerEvent.Layers[i].NPCType, GlimmerEvent.Layers[i].SpawnChance);
+                        }
+                        if (layerIndex == GlimmerEvent.Layers.Count - 1)
+                        {
+                            pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, (AQUtils.GetGrad(0, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance));
+                        }
+                        else
+                        {
+                            pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, 1f - (AQUtils.GetGrad(GlimmerEvent.Layers[layerIndex + 1].Distance, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance));
+                        }
+                    }
+                }
+            }
         }
 
         public override void DrawEffects(NPC npc, ref Color drawColor)

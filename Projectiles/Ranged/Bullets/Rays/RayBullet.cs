@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Enumerators;
+using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
@@ -112,7 +113,7 @@ namespace AQMod.Projectiles.Ranged.Bullets.Rays
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             lightColor = GetColor();
-            var spotlight = DrawUtils.Textures.Lights[LightID.Spotlight24x24];
+            var spotlight = TextureCache.Lights[LightID.Spotlight24x24];
             var center = projectile.Center;
             var orig = spotlight.Size() / 2f;
             var texture = TextureCache.GetProjectile(projectile.type);
@@ -129,7 +130,7 @@ namespace AQMod.Projectiles.Ranged.Bullets.Rays
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader trail = new Trailshader(DrawUtils.Textures.Trails[TrailID.Line], Trailshader.TextureTrail);
+                    Trailshader trail = new Trailshader(TextureCache.Trails[TrailID.Line], Trailshader.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(8f - p * 8f), (p) => lightColor * (1f - p));
                     trail.Draw();
                 }

@@ -22,12 +22,7 @@ namespace AQMod.Items.GrapplingHooks.Barbs
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var barbPlayer = player.GetModPlayer<HookBarbPlayer>();
-            if (barbPlayer.BarbCount == 0)
-            {
-                barbPlayer.BarbCount++;
-                barbPlayer.BarbPostAI += BarbPostAI;
-            }
+            player.GetModPlayer<HookBarbPlayer>().AddBarb(new DamageBarb(item));
         }
 
         public void BarbPostAI(Projectile Projectile, HookBarbsProjectile hookBarbs, Player owner, HookBarbPlayer barbPlayer)

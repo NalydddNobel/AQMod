@@ -1,6 +1,6 @@
-﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.Textures;
+﻿using AQMod.Assets.Textures;
 using AQMod.Common;
+using AQMod.Common.ItemOverlays;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,7 +12,7 @@ namespace AQMod.Items.BuffItems
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new DynamicInventoryGlowmask(GlowID.MysteryGrail, () => Main.DiscoColor), item.type);
+                AQMod.ItemOverlays.Register(new DynamicInventoryGlowmask(GlowID.MysteryGrail, () => Main.DiscoColor), item.type);
         }
 
         public override void SetDefaults()

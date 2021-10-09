@@ -1,8 +1,10 @@
-﻿using AQMod.Assets.Enumerators;
+﻿using AQMod.Assets;
+using AQMod.Assets.Enumerators;
+using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Effects;
 using AQMod.Effects.Screen;
 using Microsoft.Xna.Framework;
@@ -44,7 +46,7 @@ namespace AQMod.NPCs.Starite
             projectile.rotation += 0.0314f;
             if (Main.rand.NextBool(12))
             {
-                int d = Dust.NewDust(projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.StariteProjectileColor, 0.75f);
+                int d = Dust.NewDust(projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AQMod.glimmerEvent.stariteProjectileColor, 0.75f);
                 Main.dust[d].velocity = projectile.velocity * 0.1f;
             }
         }
@@ -54,7 +56,7 @@ namespace AQMod.NPCs.Starite
             var texture = Main.projectileTexture[projectile.type];
             var orig = texture.Size() / 2f;
             var drawPos = projectile.Center - Main.screenPosition;
-            var drawColor = GlimmerEvent.StariteProjectileColor;
+            var drawColor = AQMod.glimmerEvent.stariteProjectileColor;
             drawColor.A = 0;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             if (Trailshader.ShouldDrawVertexTrails(Trailshader.GetVertexDrawingContext_Projectile(projectile)))
@@ -68,7 +70,7 @@ namespace AQMod.NPCs.Starite
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader.FullDraw(DrawUtils.Textures.Trails[TrailID.Line], Trailshader.TextureTrail,
+                    Trailshader.FullDraw(TextureCache.Trails[TrailID.Line], Trailshader.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }
@@ -90,10 +92,10 @@ namespace AQMod.NPCs.Starite
             intensity *= ModContent.GetInstance<AQConfigClient>().EffectIntensity;
             if (intensity > 0f)
             {
-                var spotlight = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
+                var spotlight = TextureCache.Lights[LightID.Spotlight66x66];
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.25f, projectile.rotation, spotlightOrig, projectile.scale * intensity, SpriteEffects.None, 0f);
-                spotlight = DrawUtils.Textures.Lights[LightID.Spotlight240x66];
+                spotlight = TextureCache.Lights[LightID.Spotlight240x66];
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.04f * intensity, (3f + (float)Math.Sin(Main.GlobalTime * 16f) * 0.2f) * intensity);
                 var spotlightDrawColor = drawColor * 0.2f;
@@ -115,7 +117,7 @@ namespace AQMod.NPCs.Starite
             var velo = projectile.velocity * 0.5f;
             for (int i = 0; i < 25; i++)
             {
-                int d = Dust.NewDust(projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.StariteProjectileColor, 0.75f);
+                int d = Dust.NewDust(projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AQMod.glimmerEvent.stariteProjectileColor, 0.75f);
                 Main.dust[d].velocity = velo;
             }
         }

@@ -1,11 +1,12 @@
-﻿using AQMod.Assets.Enumerators;
+﻿using AQMod.Assets;
+using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
+using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Shoes;
 using AQMod.Items.BuffItems.Foods;
-using AQMod.Items.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Tools.Markers;
 using AQMod.Items.Vanities.Dyes;
@@ -430,30 +431,32 @@ namespace AQMod.NPCs.Glimmer
             float mult = 1f / NPCID.Sets.TrailCacheLength[npc.type];
             var frame = new Rectangle(npc.frame.X, npc.frame.Y + npc.frame.Height, npc.frame.Width, npc.frame.Height);
             var armLength = new Vector2(npc.height * npc.scale + npc.ai[3] + 18f, 0f);
-            var texture1 = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
+            var texture1 = TextureCache.Lights[LightID.Spotlight66x66];
             var frame1 = new Rectangle(0, 0, texture1.Width, texture1.Height);
             var origin1 = frame1.Size() / 2f;
-            Main.spriteBatch.Draw(texture1, npc.position + offset - Main.screenPosition, frame1, SpotlightColor, 0f, origin1, npc.scale * 2, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture1, new Vector2((int)(npc.position.X + offset.X - Main.screenPosition.X), (int)(npc.position.Y + offset.Y - Main.screenPosition.Y)), frame1, SpotlightColor, 0f, origin1, npc.scale * 2, SpriteEffects.None, 0f);
             for (int i = 0; i < NPCID.Sets.TrailCacheLength[npc.type]; i++)
             {
                 Color color = new Color(10, 10, 30, 0) * (mult * (NPCID.Sets.TrailCacheLength[npc.type] - i)) * ModContent.GetInstance<AQConfigClient>().EffectIntensity;
-                Main.spriteBatch.Draw(texture, npc.oldPos[i] + offset - Main.screenPosition, npc.frame, color, 0f, origin, npc.scale, SpriteEffects.None, 0f);
-                color = new Color(25, 25, 80, 4) * (mult * (NPCID.Sets.TrailCacheLength[npc.type] - i)) * ModContent.GetInstance<AQConfigClient>().EffectIntensity;
+                Main.spriteBatch.Draw(texture, new Vector2((int)(npc.oldPos[i].X + offset.X - Main.screenPosition.X), (int)(npc.oldPos[i].Y + offset.Y - Main.screenPosition.Y)), npc.frame, color, 0f, origin, npc.scale, SpriteEffects.None, 0f);
+                color = new Color(25, 25, 80, 4) * (mult * (NPCID.Sets.TrailCacheLength[npc.type] - i)) * ModContent.GetInstance<AQConfigClient>().EffectIntensity * 0.6f;
                 for (int j = 0; j < 5; j++)
                 {
-                    float rotation = npc.oldRot[i] + MathHelper.TwoPi / 5f * j;
-                    Main.spriteBatch.Draw(texture, npc.position + offset + armLength.RotatedBy(rotation - MathHelper.PiOver2) - Main.screenPosition, frame, color, rotation, origin, npc.scale, SpriteEffects.None, 0f);
+                    float rotation = npc.oldRot[i] + (MathHelper.TwoPi / 5f * j);
+                    var armPos = npc.position + offset + armLength.RotatedBy(rotation - MathHelper.PiOver2) - Main.screenPosition;
+                    Main.spriteBatch.Draw(texture, new Vector2((int)armPos.X, (int)armPos.Y), frame, color, rotation, origin, npc.scale, SpriteEffects.None, 0f);
                 }
             }
             for (int i = 0; i < 5; i++)
             {
                 float rotation = npc.rotation + MathHelper.TwoPi / 5f * i;
-                Main.spriteBatch.Draw(texture, npc.position + offset + armLength.RotatedBy(rotation - MathHelper.PiOver2) - Main.screenPosition, frame, new Color(255, 255, 255, 255), rotation, origin, npc.scale, SpriteEffects.None, 0f);
+                var armPos = npc.position + offset + armLength.RotatedBy(rotation - MathHelper.PiOver2) - Main.screenPosition;
+                Main.spriteBatch.Draw(texture, new Vector2((int)armPos.X, (int)armPos.Y), frame, new Color(255, 255, 255, 255), rotation, origin, npc.scale, SpriteEffects.None, 0f);
             }
-            Main.spriteBatch.Draw(texture, npc.position + offset - Main.screenPosition, npc.frame, new Color(255, 255, 255, 255), 0f, origin, npc.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2((int)(npc.position.X + offset.X - Main.screenPosition.X), (int)(npc.position.Y + offset.Y - Main.screenPosition.Y)), npc.frame, new Color(255, 255, 255, 255), 0f, origin, npc.scale, SpriteEffects.None, 0f);
             if (npc.ai[0] == 2f)
             {
-                var texture3 = DrawUtils.Textures.Lights[LightID.Spotlight33x24];
+                var texture3 = TextureCache.Lights[LightID.Spotlight33x24];
                 float rotation;
                 if (npc.ai[2] != 0f)
                 {
@@ -468,11 +471,45 @@ namespace AQMod.NPCs.Glimmer
                     var gotoPos = target.Center + target.velocity * mult2;
                     rotation = (gotoPos - (npc.position + offset)).ToRotation();
                 }
-                Main.spriteBatch.Draw(texture3, npc.position + offset + new Vector2(npc.height * 0.45f, 0f).RotatedBy(rotation) - Main.screenPosition, null, new Color(255, 255, 25, 150), rotation + MathHelper.PiOver2, new Vector2(texture3.Width / 2f, texture3.Height), new Vector2(npc.scale * 1.5f, npc.scale * 2f + 2f), SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(texture3, npc.position + offset + new Vector2(npc.height * 0.45f, 0f).RotatedBy(rotation) - Main.screenPosition, null, new Color(255, 255, 25, 150) * 0.2f, rotation + MathHelper.PiOver2, new Vector2(texture3.Width / 2f, texture3.Height), new Vector2(npc.scale * 0.5f, npc.scale * 2f + 40f), SpriteEffects.None, 0f);
+                var drawPos = npc.position + offset + new Vector2(npc.height * 0.45f, 0f).RotatedBy(rotation) - Main.screenPosition;
+                drawPos.X = (int)drawPos.X;
+                drawPos.Y = (int)drawPos.Y;
+                Main.spriteBatch.Draw(texture3, drawPos, null, new Color(255, 255, 25, 150), rotation + MathHelper.PiOver2, new Vector2(texture3.Width / 2f, texture3.Height), new Vector2(npc.scale * 1.5f, npc.scale * 2f + 2f), SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture3, drawPos, null, new Color(255, 255, 25, 150) * 0.2f, rotation + MathHelper.PiOver2, new Vector2(texture3.Width / 2f, texture3.Height), new Vector2(npc.scale * 0.5f, npc.scale * 2f + 40f), SpriteEffects.None, 0f);
             }
-            Main.spriteBatch.Draw(texture, npc.position + offset - Main.screenPosition, npc.frame, new Color(60, 60, 60, 0) * ModContent.GetInstance<AQConfigClient>().EffectIntensity, 0f, origin, npc.scale + 0.3f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2((int)(npc.position.X + offset.X - Main.screenPosition.X), (int)(npc.position.Y + offset.Y - Main.screenPosition.Y)), npc.frame, new Color(60, 60, 60, 0) * AQMod.EffectIntensity, 0f, origin, npc.scale + 0.3f, SpriteEffects.None, 0f);
             return false;
+        }
+    }
+
+    public class HyperSpike : ModProjectile
+    {
+        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
+
+        public override void SetDefaults()
+        {
+            projectile.width = 50;
+            projectile.height = 50;
+            projectile.hostile = true;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = false;
+            projectile.aiStyle = -1;
+        }
+
+        public override void AI()
+        {
+            var npc = Main.npc[(int)projectile.ai[0]];
+            if (npc.active && npc.type == ModContent.NPCType<HyperStarite>())
+            {
+                var armLength = new Vector2(npc.height * npc.scale + npc.ai[3] + 18f, 0f);
+                float rotation = npc.rotation + MathHelper.TwoPi / 5f * projectile.ai[1];
+                projectile.timeLeft = 16;
+                projectile.Center = npc.Center + armLength.RotatedBy(rotation - MathHelper.PiOver2);
+            }
+            else
+            {
+                projectile.active = false;
+            }
         }
     }
 }

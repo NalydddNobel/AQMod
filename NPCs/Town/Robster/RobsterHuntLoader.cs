@@ -19,6 +19,9 @@ namespace AQMod.NPCs.Town.Robster
             AddContent(new HuntJeweledCandelabra(mod, "JeweledCandelabra"));
         }
 
+        /// <summary>
+        /// Runs the setup method for each hunt
+        /// </summary>
         public void SetupHunts()
         {
             foreach (RobsterHunt h in _content)

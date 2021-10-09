@@ -1,8 +1,8 @@
 ﻿using AQMod.Common.Utilities;
+using AQMod.Content;
 using AQMod.Content.Skies;
 using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.DemonSiege;
-using AQMod.NPCs.Town.Robster;
+using AQMod.Content.WorldEvents.Siege;
 using AQMod.Tiles;
 using System.IO;
 using Terraria;
@@ -17,30 +17,24 @@ namespace AQMod.Common
 
         public override void Initialize()
         {
-            AQMod.omegaStariteIndexCache = -1;
-            AQMod.omegaStariteScene = 0;
-            GlimmerEvent.ActuallyActive = false;
-            GlimmerEvent.FakeActive = false;
-            GlimmerEvent.X = 0;
-            GlimmerEvent.Y = 0;
-            GlimmerEvent.GlimmerChance = GlimmerEvent.GlimmerChanceMax;
-            GlimmerEvent.DeactivationTimer = -1;
+            OmegaStariteSceneManager.Initialize();
+            AQMod.glimmerEvent.Init();
             CrabSeason.crabSeasonTimer = CrabSeason.CrabSeasonTimerMin;
             CrabSeason.CrabsonCachedID = -1;
             DemonSiege.Reset();
-            DrawUtils.WorldEffects.Clear();
+            AQMod.WorldEffects.Clear();
         }
 
         public override TagCompound Save()
         {
-            if (GlimmerEvent.DeactivationTimer > 0)
-                GlimmerEvent.Deactivate();
+            if (AQMod.glimmerEvent.deactivationTimer > 0)
+                AQMod.glimmerEvent.Deactivate();
             var tag = new TagCompound()
             {
-                ["GlimmerEvent_active"] = GlimmerEvent.ActuallyActive,
-                ["GlimmerEvent_X"] = (int)GlimmerEvent.X,
-                ["GlimmerEvent_Y"] = (int)GlimmerEvent.Y,
-                ["GlimmerEvent_GlimmerChance"] = GlimmerEvent.GlimmerChance,
+                ["GlimmerEvent_active"] = AQMod.glimmerEvent.IsActive,
+                ["GlimmerEvent_X"] = (int)AQMod.glimmerEvent.tileX,
+                ["GlimmerEvent_Y"] = (int)AQMod.glimmerEvent.tileY,
+                ["GlimmerEvent_GlimmerChance"] = AQMod.glimmerEvent.spawnChance,
 
                 ["CrabSeason_crabSeasonTimer"] = CrabSeason.crabSeasonTimer,
 
@@ -55,13 +49,9 @@ namespace AQMod.Common
 
             AQNPC.NoEnergyDrops = tag.GetBool("EnergyDrops");
 
-            GlimmerEvent.ActuallyActive = tag.GetBool("GlimmerEvent_active");
-            if (GlimmerEvent.ActuallyActive)
-            {
-                GlimmerEvent.X = (ushort)tag.GetInt("GlimmerEvent_X");
-                GlimmerEvent.Y = (ushort)tag.GetInt("GlimmerEvent_Y");
-            }
-            GlimmerEvent.GlimmerChance = tag.GetInt("GlimmerEvent_GlimmerChance");
+            AQMod.glimmerEvent.tileX = (ushort)tag.GetInt("GlimmerEvent_X");
+            AQMod.glimmerEvent.tileY = (ushort)tag.GetInt("GlimmerEvent_Y");
+            AQMod.glimmerEvent.spawnChance = tag.GetInt("GlimmerEvent_GlimmerChance");
 
             if (!Main.dayTime)
                 GlimmerEventSky.InitNight();
@@ -70,7 +60,7 @@ namespace AQMod.Common
         public override void PostUpdate()
         {
             AQNPC.UpdateBossRush();
-            GlimmerEvent.UpdateWorld();
+            AQMod.glimmerEvent.UpdateWorld();
             CrabSeason.UpdateWorld();
         }
 
@@ -86,31 +76,19 @@ namespace AQMod.Common
 
         public override void NetSend(BinaryWriter writer)
         {
-            writer.Write(GlimmerEvent.ActuallyActive);
-            writer.Write(GlimmerEvent.FakeActive);
-            if (GlimmerEvent.ActuallyActive)
+            if (AQMod.glimmerEvent.IsActive)
             {
-                writer.Write(GlimmerEvent.X);
-                writer.Write(GlimmerEvent.Y);
+                writer.Write(AQMod.glimmerEvent.tileX);
+                writer.Write(AQMod.glimmerEvent.tileY);
             }
-            writer.Write(GlimmerEvent.GlimmerChance);
+            writer.Write(AQMod.glimmerEvent.spawnChance);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
-            GlimmerEvent.ActuallyActive = reader.ReadBoolean();
-            GlimmerEvent.FakeActive = reader.ReadBoolean();
-            if (GlimmerEvent.ActuallyActive)
-            {
-                GlimmerEvent.X = reader.ReadUInt16();
-                GlimmerEvent.Y = reader.ReadUInt16();
-            }
-            else
-            {
-                GlimmerEvent.X = 0;
-                GlimmerEvent.Y = 0;
-            }
-            GlimmerEvent.GlimmerChance = reader.ReadInt32();
+            AQMod.glimmerEvent.tileX = reader.ReadUInt16();
+            AQMod.glimmerEvent.tileY = reader.ReadUInt16();
+            AQMod.glimmerEvent.spawnChance = reader.ReadInt32();
         }
     }
 }

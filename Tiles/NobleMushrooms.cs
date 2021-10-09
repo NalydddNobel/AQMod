@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Content.Dusts;
-using AQMod.Items.Placeable.Mushrooms;
+using AQMod.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

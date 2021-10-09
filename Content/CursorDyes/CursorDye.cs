@@ -11,7 +11,7 @@ namespace AQMod.Content.CursorDyes
         {
         }
 
-        public virtual bool ApplyColor(Player player, GraphicsPlayer drawingPlayer, out Color newCursorColor)
+        public virtual bool ApplyColor(Player player, AQPlayer drawingPlayer, out Color newCursorColor)
         {
             newCursorColor = default(Color);
             return false;
@@ -22,21 +22,21 @@ namespace AQMod.Content.CursorDyes
             return null;
         }
 
-        public virtual bool PreDrawCursor(Player player, GraphicsPlayer drawingPlayer, Vector2 bonus, bool smart)
+        public virtual bool PreDrawCursor(Player player, AQPlayer drawingPlayer, Vector2 bonus, bool smart)
         {
             return false;
         }
 
-        public virtual void PostDrawCursor(Player player, GraphicsPlayer drawingPlayer, Vector2 bonus, bool smart)
+        public virtual void PostDrawCursor(Player player, AQPlayer drawingPlayer, Vector2 bonus, bool smart)
         {
         }
 
-        public virtual bool PreDrawCursorOverrides(Player player, GraphicsPlayer drawingPlayer)
+        public virtual bool PreDrawCursorOverrides(Player player, AQPlayer drawingPlayer)
         {
             return false;
         }
 
-        public virtual void PostDrawCursorOverrides(Player player, GraphicsPlayer drawingPlayer)
+        public virtual void PostDrawCursorOverrides(Player player, AQPlayer drawingPlayer)
         {
         }
     }

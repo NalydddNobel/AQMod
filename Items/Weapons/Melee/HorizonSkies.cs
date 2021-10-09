@@ -1,8 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.Textures;
+using AQMod.Common.ItemOverlays;
 using AQMod.Content.Dusts;
-using AQMod.Items.Energies;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -19,7 +18,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new Glowmask(GlowID.HorizonSkies), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.HorizonSkies), item.type);
         }
 
         public override void SetDefaults()
@@ -93,7 +92,9 @@ namespace AQMod.Items.Weapons.Melee
                     projectile.netUpdate = true;
                 }
                 if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3)
+                {
                     projectile.ai[0] -= 2.4f;
+                }
                 else
                 {
                     projectile.ai[0] += 0.9f;

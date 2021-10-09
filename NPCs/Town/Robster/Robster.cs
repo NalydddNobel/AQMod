@@ -1,9 +1,9 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
-using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Items.Accessories.ShopCards;
-using AQMod.Items.BossItems.Crabson;
 using AQMod.Items.Placeable;
+using AQMod.Items.Weapons.Melee;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -143,7 +143,7 @@ namespace AQMod.NPCs.Town.Robster
                     potentialText.Add(AQText.RobsterChat(6).Value);
             }
 
-            if (GlimmerEvent.IsActive)
+            if (AQMod.glimmerEvent.IsActive)
             {
                 potentialText.Add(AQText.RobsterChat(2).Value);
                 potentialText.Add(AQText.RobsterChat(3).Value);

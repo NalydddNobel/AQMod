@@ -1,12 +1,15 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
+using AQMod.Assets.Textures;
 using AQMod.Common;
+using AQMod.Common.CrossMod;
 using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents;
-using AQMod.Items.BossItems.Crabson;
-using AQMod.Items.Energies;
+using AQMod.Items;
+using AQMod.Items.Placeable;
 using AQMod.Items.Tools;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Magic;
+using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Flails;
 using AQMod.Items.Weapons.Ranged.Bows;
 using AQMod.Sounds;
@@ -19,7 +22,7 @@ using Terraria.ModLoader;
 namespace AQMod.NPCs.Crabson
 {
     [AutoloadBossHead]
-    public class JerryCrabson : ModNPC
+    public class JerryCrabson : ModNPC, IModifiableMusicNPC
     {
         public override void SetDefaults()
         {
@@ -38,7 +41,7 @@ namespace AQMod.NPCs.Crabson
             npc.behindTiles = true;
             bossBag = ModContent.ItemType<CrabsonBag>();
             npc.buffImmune[BuffID.Suffocation] = true;
-            music = AQMusicManager.GetMusic(AQMusicManager.Crabson);
+            music = GetMusic().GetMusicID();
             musicPriority = MusicPriority.BossLow;
         }
 
@@ -58,7 +61,7 @@ namespace AQMod.NPCs.Crabson
                     Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood);
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    var chain = DrawUtils.Textures.Extras[ExtraID.JerryChain];
+                    var chain = TextureCache.JerryClawChain.GetValue();
                     int height = chain.Height - 2;
                     Vector2 origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
                     var endPosition = Main.npc[(int)npc.localAI[0]].Center;
@@ -391,5 +394,7 @@ namespace AQMod.NPCs.Crabson
             }
             npc.position.Y += npc.height / 2f;
         }
+
+        public ModifiableMusic GetMusic() => AQMod.CrabsonMusic;
     }
 }

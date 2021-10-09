@@ -1,8 +1,8 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.DemonSiege;
-using AQMod.Items.Energies;
+using AQMod.Content.WorldEvents.Siege;
+using AQMod.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -53,6 +53,8 @@ namespace AQMod.NPCs.SiegeEvent
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.buffImmune[BuffID.Confused] = false;
             npc.SetLiquidSpeed(lava: 1f);
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Placeable.Banners.MagmabubbleBanner>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -338,7 +340,7 @@ namespace AQMod.NPCs.SiegeEvent
                     progress = timer / 40f;
                 }
                 progress = 1f - progress;
-                var spotlight = DrawUtils.Textures.Lights[Assets.Enumerators.LightID.Spotlight10x50];
+                var spotlight = TextureCache.Lights[Assets.Textures.LightID.Spotlight10x50];
                 var color = Color.Lerp(Color.Red, Color.Yellow, ((float)Math.Sin(Main.GlobalTime * 25f) + 1f) / 2f);
                 color *= progress;
                 var spotlightOrigin = spotlight.Size() / 2f;

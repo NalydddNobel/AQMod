@@ -1,8 +1,8 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.DemonSiege;
-using AQMod.Items.Energies;
+using AQMod.Content.WorldEvents.Siege;
+using AQMod.Items;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Weapons.Melee.Flails;
 using Microsoft.Xna.Framework;
@@ -40,6 +40,8 @@ namespace AQMod.NPCs.SiegeEvent
             npc.buffImmune[BuffID.Confused] = false;
             npc.buffImmune[BuffID.Ichor] = false;
             npc.SetLiquidSpeed(lava: 1f);
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Placeable.Banners.TrapperImpBanner>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

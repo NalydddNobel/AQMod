@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Items.Placeable;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,11 +33,11 @@ namespace AQMod.Tiles
             switch (frameX / 54)
             {
                 case 0:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.BossItems.Starite.OmegaStariteTrophy>());
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<OmegaStariteTrophy>());
                 break;
 
                 case 1:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.BossItems.Crabson.CrabsonTrophy>());
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<CrabsonTrophy>());
                 break;
             }
         }

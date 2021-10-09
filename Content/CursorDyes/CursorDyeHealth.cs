@@ -11,7 +11,7 @@ namespace AQMod.Content.CursorDyes
         {
         }
 
-        public override bool ApplyColor(Player player, GraphicsPlayer drawingPlayer, out Color newCursorColor)
+        public override bool ApplyColor(Player player, AQPlayer drawingPlayer, out Color newCursorColor)
         {
             newCursorColor = Color.Lerp(new Color(20, 1, 1, 255), new Color(255, 40, 40, 255), player.statLife / (float)player.statLifeMax2);
             return true;

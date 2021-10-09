@@ -1,4 +1,5 @@
-﻿using Terraria.Localization;
+﻿using Terraria;
+using Terraria.Localization;
 using Terraria.Utilities;
 
 namespace AQMod.Localization
@@ -23,9 +24,16 @@ namespace AQMod.Localization
             callback?.UpdateCallback();
         }
 
-        public static LocalizedText AequusItemName(string internalName)
+        public static string chooselocalizationtext(string en_US, string zh_Hans = null)
         {
-            return ModText("ItemName." + internalName);
+            if (zh_Hans != null && Language.ActiveCulture == GameCulture.Chinese)
+            {
+                return zh_Hans;
+            }
+            else
+            {
+                return en_US;
+            }
         }
 
         public static string DisableThing(object arg)

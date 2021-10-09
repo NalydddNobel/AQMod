@@ -23,28 +23,12 @@ namespace AQMod.Items.GrapplingHooks.Barbs
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var barbPlayer = player.GetModPlayer<HookBarbPlayer>();
-            if (barbPlayer.BarbCount == 0)
-            {
-                barbPlayer.BarbCount++;
-                barbPlayer.BarbPostAI += BarbPostAI;
-            }
-        }
-
-        private void BarbPostAI(Projectile Projectile, HookBarbsProjectile hookBarbs, Player owner, HookBarbPlayer barbPlayer)
-        {
-            var rect = Projectile.getRect();
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                if (Main.npc[i].active && AQUtils.CanNPCBeHitByProjectile(Main.npc[i], Projectile) && rect.Intersects(Main.npc[i].getRect()))
-                {
-                    if (Main.npc[i].immune[Projectile.owner] <= 0)
-                    {
-                        Main.npc[i].immune[Projectile.owner] = 5;
-                        owner.ApplyDamageToNPC(Main.npc[i], Main.DamageVar(owner.GetWeaponDamage(item)), owner.GetWeaponKnockback(item, item.knockBack), Projectile.velocity.X < 0f ? -1 : 1, AQPlayer.PlayerCrit(item.crit, Main.rand));
-                    }
-                }
-            }
+            player.GetModPlayer<HookBarbPlayer>().AddBarb(new DamageBarb(item));
+            //if (barbPlayer.BarbCount == 0)
+            //{
+            //    barbPlayer.BarbCount++;
+            //    barbPlayer.BarbPostAI += BarbPostAI;
+            //}
         }
 
         public override void AddRecipes()

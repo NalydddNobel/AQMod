@@ -36,6 +36,8 @@ namespace AQMod.NPCs.CrabSeason
             npc.DeathSound = SoundID.NPCDeath8;
             npc.gfxOffY = -4;
             npc.behindTiles = true;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Placeable.Banners.HermitCrabBanner>();
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -155,11 +157,6 @@ namespace AQMod.NPCs.CrabSeason
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             var center = npc.Center;
-            var legTexture = DrawUtils.Textures.Extras[ExtraID.ArrowCrabLeg];
-            int legFrameHeight = legTexture.Height / 2;
-            var legFrame = new Rectangle(0, 0, legTexture.Width, legFrameHeight - 2);
-            var footFrame = new Rectangle(0, legFrameHeight, legTexture.Width, legFrameHeight - 2);
-            var legOrigin = new Vector2(legFrame.Width / 2f, legFrame.Height);
             var drawPosition = npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY);
             var shellFrame = getShellFrame();
             var origin = npc.frame.Size() / 2f;

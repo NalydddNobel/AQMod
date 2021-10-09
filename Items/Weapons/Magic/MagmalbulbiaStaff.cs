@@ -1,10 +1,8 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Enumerators;
-using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.Textures;
 using AQMod.Common;
+using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
-using AQMod.Items.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -20,7 +18,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             Item.staff[item.type] = true;
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new DynamicInventoryGlowmask(GlowID.MagmalbulbiaStaff, getGlowmaskColor), item.type);
+                AQMod.ItemOverlays.Register(new DynamicGlowmaskOverlayData(AQUtils.GetPath<MagmalbulbiaStaff>() + "_Glow", getGlowmaskColor), item.type);
         }
 
         private static Color getGlowmaskColor() => Color.Lerp(new Color(188, 175, 135, 0), new Color(144, 130, 111, 0), ((float)Math.Sin(Main.GlobalTime * 1.1f) + 1f) / 2f);
@@ -159,7 +157,7 @@ namespace AQMod.Items.Weapons.Magic
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Vector2 drawpos = projectile.Center - Main.screenPosition;
-            Texture2D texture = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
+            Texture2D texture = TextureCache.Lights[LightID.Spotlight66x66];
             Main.spriteBatch.Draw(texture, drawpos, null, new Color(180, 160, 20, 255), 0f, texture.Size() / 2, projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(Main.projectileTexture[projectile.type], drawpos, null, new Color(255, 255, 255, 200), 0f, Main.projectileTexture[projectile.type].Size() / 2, projectile.scale, SpriteEffects.None, 0f);
             return false;

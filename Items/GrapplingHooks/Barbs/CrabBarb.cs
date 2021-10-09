@@ -25,28 +25,25 @@ namespace AQMod.Items.GrapplingHooks.Barbs
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var barbPlayer = player.GetModPlayer<HookBarbPlayer>();
-            if (barbPlayer.BarbCount == 0)
+            barbPlayer.AddBarb(new CrabBarbAttachment(item));
+            //if (barbPlayer.BarbCount == 0)
+            //{
+            //    barbPlayer.BarbCount++;
+            //    barbPlayer.BarbPostAI += BarbPostAI;
+            //}
+        }
+
+        protected class CrabBarbAttachment : DamageBarb
+        {
+            public CrabBarbAttachment(Item item) : base(item)
             {
-                barbPlayer.BarbCount++;
-                barbPlayer.BarbPostAI += BarbPostAI;
+            }
+
+            protected override void OnHit(NPC npc, int damage, float knockback, bool crit, int hitDirection, Projectile projectile, HookBarbsProjectile barbProj, Player player, HookBarbPlayer barbPlayer)
+            {
+                npc.AddBuff(BuffID.Poisoned, 120);
             }
         }
 
-        public void BarbPostAI(Projectile Projectile, HookBarbsProjectile hookBarbs, Player owner, HookBarbPlayer barbPlayer)
-        {
-            var rect = Projectile.getRect();
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                if (Main.npc[i].active && rect.Intersects(Main.npc[i].getRect()) && AQUtils.CanNPCBeHitByProjectile(Main.npc[i], Projectile))
-                {
-                    if (Main.npc[i].immune[Projectile.owner] <= 0)
-                    {
-                        Main.npc[i].immune[Projectile.owner] = 3;
-                        owner.ApplyDamageToNPC(Main.npc[i], Main.DamageVar(owner.GetWeaponDamage(item)), item.knockBack, Projectile.velocity.X < 0f ? -1 : 1, AQPlayer.PlayerCrit(item.crit, Main.rand));
-                        Main.npc[i].AddBuff(BuffID.Poisoned, 120);
-                    }
-                }
-            }
-        }
     }
 }

@@ -22,6 +22,7 @@ Common.Config_EffectQuality=效果质量
 Common.Config_EffectIntensity=效果强度
 Common.Config_LoadItemOverlays=加载物品覆盖层
 Common.Config_BackgroundStarites=星源背景
+Common.Config_StariteProjColor=星源弹幕的颜色
 #
 Common.Config_TrailShader=启用尾痕残影着色器
 Common.Config_ScrollShader=启用滚动特效着色器
@@ -30,6 +31,7 @@ Common.Config_OutlineShader=启用轮廓特效着色器
 Common.Config_ScreenDistortShader=启用屏幕扭曲特效着色器
 Common.Config_PortalShader=启用传送门特效着色器
 Common.Config_ColorDistortShader=启用颜色失真特效着色器
+Common.Config_SpotlightShader=启用灯光效果着色器
 #
 Common.Config_MapBlipColor=地图光点的颜色
 Common.Config_ShowCompletedAnglerQuestsCount=显示已完成的渔夫的任务次数
@@ -40,7 +42,7 @@ Common.Config_MarkerMapUIType=地图标记UI的类型(位置)
 Common.Config_EvilProgressionLock=锁定邪恶时期
 Common.Config_EvilProgressionLockTooltip=黑檀石、猩红石、暗影珠和猩红之心无法再被爆炸物摧毁
 Common.Config_AprilFools=愚人节
-Common.Config_DebugCommand=调试命令 (/ncall)
+Common.Config_DebugCommand=调试模式 (/ncall)
 # Eightball
 Common.EightballAnswer0=是的
 Common.EightballAnswer1=我的消息来源说不
@@ -81,6 +83,8 @@ Common.RandomStructures_ExoticCoralBlotches=正在生成随机构造... 奇异�
 Common.OceanRavines=海沟
 Common.RareStructures=正在生成稀有构造...
 Common.WorldGen_GoreNests=正在生成血巢...
+Common.WorldGen_Globes=正在生成地球仪...
+Common.WorldGen_GlimmeringStatues=正在生成烁光雕像...
 #
 # Recipe Groups
 Common.RecipeGroup_AnyNobleMushroom=任意华贵蘑菇
@@ -106,33 +110,37 @@ Common.RobsterNPCDeath=龙虾掠夺者想要你偷窃的东西已经不在原位
 Common.RobsterNPCDeath2=询问龙虾掠夺者以开始另一场不同的狩猎
 Common.RobsterFail=你并没有足够小心翼翼的偷到东西...
 Common.RobsterFailAccident=这件特别的东西被你不小心弄坏了...
-Common.HuntJeweledChalice=I saw someone with a very special Jeweled Chalice. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
-Common.HuntJeweledCandelabra=I saw someone with a very special Jeweled Candelabra. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
+Common.HuntJeweledChalice=我看见某人拿着一件特别的宝石杯. 它上面还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
+Common.HuntJeweledCandelabra=我看见某人拿着一件特别的宝石烛台.  它上还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
 Common.RobsterRandomHunt0=我看到某人有个非常特别的东西{0}. 我想让你把它偷来给我.
 Common.RobsterCantDoRandomHunt=我没有需要你帮忙做的事.
 Common.RobsterSawInSomeonesHouse=我想我是在{0}的房子里看到的这个.
 Common.RobsterRandomHuntComplete0=很好, 你做到了. 我打赌他们不会起疑的.
-Common.RobsterRandomHuntComplete1=Ooohoohoohoohoo yes yes yes yeesssss you got it. I can't wait to sell this out on the seas.
-Common.RobsterRandomHuntComplete2=Dumb cricket, I don't even think they remember buying that. Ah whatever I'm just going to take this trinket and use it for... something better
-Common.RobsterRandomHuntComplete3=Looks like the gems got a bit scruffed... whatever. Here's your pay.
-Common.RobsterRandomHuntComplete4=They say steal from the rich and give to the poor, but I think we should do the opposite. OH and here's your payment.
+Common.RobsterRandomHuntComplete1=哦哦哦哦哦哦, 你搞到它了. 我迫不及待的想在海上把它给卖出去了.
+Common.RobsterRandomHuntComplete2=真是个笨蟋蟀, 我觉得他们都不记得买过在东西. 啊管他呢, 我要用这些小饰品来装饰...某些特别的东西
+Common.RobsterRandomHuntComplete3=上面的宝石看起来磨损了...管他呢. 这是给你的奖励.
+Common.RobsterRandomHuntComplete4=他们常说劫富济贫, 但我认为我们应该做与其相反的事情. 嘿, 这是给你的奖励.
 Common.RobsterHunt=狩猎
-Common.CompleteRobsterHunt=Complete Hunt
+Common.CompleteRobsterHunt=完成狩猎
 Common.RobsterQuitHunt=停止狩猎
 Common.PressHuntToContinue=(再次按下'狩猎'以继续)
 Common.RobsterQuitHuntQuestion=你想停止狩猎吗?
 #
 # Other Commons
-Common.TimeLeft={0} Left
-Common.ContainerPotionImproperLoad=This potion has unloaded improperly...\nWill only teleport to {$ItemName.GoldChest} :(
-Common.ContainerPotionLink=Will only teleport to {0} ( [i:{1}] )
-Common.DemonSiege=Demon Siege
+Common.SpawnAfterPoint=({0})会在此位置生成
+Common.FoundGlobe=已发现一个地球仪!
+Common.EnergiesEnabled=能量掉落已启用
+Common.EnergiesDisabled=能量掉落已禁用
+Common.TimeLeft={0}已离去
+Common.ContainerPotionImproperLoad=此药水未能正确卸载...\n仅会传送至{$ItemName.GoldChest} :(
+Common.ContainerPotionLink=仅会传送至{0} ( [i:{1}] )
+Common.DemonSiege=恶魔围攻
 Common.DemonSiegeDeath=血巢吐出了你的武器...
 Common.DemonSiegeTooFarAway=你离恶魔围攻事件太远了, 必须在血巢附近才能升级你的武器
-Common.NoColorDistort=Color Distort Shader is not enabled
+Common.NoColorDistort=颜色扭曲特效着色器未启用
 Common.NoScrollShader=滚动特效着色器未启用
-Common.NoHypnoShader=色彩分离着色器未启用
-Common.NoOutlineShader=轮廓特效着色器未启用
+Common.NoHypnoShader=色彩分离特效着色器未启用
+Common.NoOutlineShader=轮廓描边特效着色器未启用
 Common.CrabSeason=蟹季
 Common.CrabClockEnds={0}直到蟹季结束
 Common.CrabClockStarts={0}直到蟹季开始
@@ -177,6 +185,8 @@ ItemName.GoldSeal=金制容器
 ItemName.PlatinumSeal=钛金制容器
 # Masks
 ItemName.MothmanMask=天蛾人面具
+# Rings
+ItemName.DegenerationRing=堕落魔戒
 # Shields
 ItemName.TargeoftheBlodded=血腥盾牌
 # Shoes
@@ -298,11 +308,12 @@ ItemName.JeweledChandelier=宝石大吊灯
 ItemName.JeweledChair=宝石椅
 ItemName.JeweledTable=宝石桌
 # Other Misc
+ItemName.DwarfStariteItem=矮源星
 ItemName.BloodshedPotion=喋血药水
 ItemName.CrabShell=蟹壳
 ItemName.CrabClock=蟹钟
 ItemName.Lightbulb=灯泡
-ItemName.Molite=Starbyte
+ItemName.Molite=元星鱼
 ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
 ItemName.NuclearFeather=核子之羽
 ItemName.PotionofContainers=传箱药水
@@ -316,6 +327,13 @@ ItemName.UnityMirror=清灵明镜
 ItemName.StariteBanner=星之源旗
 ItemName.SuperStariteBanner=超级新星旗
 ItemName.HyperStariteBanner=巨耀新星旗
+ItemName.ArrowCrabBanner=箭蟹旗
+ItemName.HermitCrabBanner=寄居蟹旗
+ItemName.SoliderCrabsBanner=大闸蟹旗
+ItemName.StriderCrabsBanner=长足蟹旗
+ItemName.CinderaBanner=幻形蝠旗
+ItemName.MagmabubbleBanner=熔火喷吐者旗
+ItemName.TrapperImpBanner=捕魂小鬼旗
 # Mushrooms
 ItemName.ArgonMushroom=氩蘑菇
 ItemName.KryptonMushroom=氪蘑菇
@@ -335,6 +353,7 @@ ItemName.GlimmeringStatue=烁光雕像
 ItemName.ExoticCoral=奇异的珊瑚
 ItemName.ExoticStarfish=奇异的海星
 ItemName.FishingCraftingStation=渔具加工站
+ItemName.GlobeItem=节点地球仪
 ItemName.GoreNestItem=血巢
 ItemName.PlaceableShadowOrb=暗影珠 (可放置)
 ItemName.PlaceableCrimsonHeart=猩红之心 (可放置)
@@ -393,6 +412,8 @@ ItemName.LotusStaff=莲花杖
 # Other Summon
 ItemName.MonoxiderStaff=日驭金乌杖
 ItemName.StariteStaff=星源召唤杖
+ItemName.CrimsonHandStaff=猩红血手法杖
+ItemName.CorruptPot=腐食罐
 # Other Item Names
 ItemName.ATM=ATM
 ItemName.Globebulb=天体灯泡
@@ -416,6 +437,8 @@ ItemTooltip.GoldSeal=使用鱼竿钓到任何售价为1金币的物品时使你�
 ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
 # Masks
 ItemTooltip.MothmanMask=增加30%伤害和10%暴击率\n当你的生命值未处于满状态时降低你的伤害和暴击率
+# Rings
+ItemTooltip.DegenerationRing=使你获得多种燃烧抗性
 # Shields
 ItemTooltip.TargeoftheBlodded=增加2点护甲穿透\n可沿墙滑下\n结合{$ItemName.ClimbingClaws}或{$ItemName.ShoeSpikes}使用时可提升能力
 # Shoes
@@ -489,7 +512,7 @@ ItemTooltip.CrabBarb=钩爪击中NPC时会造成中毒减益
 ItemTooltip.CosmicTelescope=在地图上显示微光事件的正中心
 ItemTooltip.DungeonMap=若地牢已被发现, 则在地图上显示地牢位置\n你可以使用清灵明镜传送至地牢
 ItemTooltip.LihzahrdMap=若神庙祭坛已被发现或世纪之花已被击败, 则在地图上显示神庙祭坛的位置\n在击败世纪之花后，你可以使用清灵明镜传送至神庙祭坛
-ItemTooltip.RetroGoggles=在大地图上以粉色光点显示敌人的位置
+ItemTooltip.RetroGoggles=在地图上以粉色光点显示敌人的位置
 # Spelunker
 ItemTooltip.MinersFlashlight=被手电筒照到的宝藏会发出闪光
 ItemTooltip.Extractor=使你免疫窒息减益\n下落的泥沙块和雪泥块造成的伤害降低4倍\n如果启用此饰品的可见性:\n使你获得提炼泥沙块、雪泥块和沙漠化石的能力\n在提炼机处提炼某些东西时会显示提炼的次数
@@ -519,7 +542,7 @@ ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.BloodshedPotion=将你传送至上次死亡时的位置
 ItemTooltip.CrabShell=畸形, 真是诡异
 ItemTooltip.CrabClock=加快海洋的自然波动
-ItemTooltip.Molite=Doubles the length of potions
+ItemTooltip.Molite=翻倍药水的持续时间
 ItemTooltip.NuclearFeather=在核聚变的过程中形成\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
 ItemTooltip.PotionofContainers=将你传送至随机一个箱子
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
@@ -532,6 +555,14 @@ ItemTooltip.UnityMirror=允许你传送至地图上被标记的特殊位置\n{$M
 ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
 ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
 ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
+ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
+ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
+ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
+ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
+ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}
+ItemTooltip.MagmabubbleBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}
+ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}
+ItemTooltip.HecktoBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Heckto}
 # Mushrooms
 ItemTooltip.ArgonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 ItemTooltip.KryptonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
@@ -543,9 +574,10 @@ ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 # Walls
 ItemTooltip.MoonlightWall=墙壁前的NPC会认为现在处于晚上
 # World Interactors
-ItemTooltip.GlimmeringStatue=放置后, 在夜晚右键点击此物品可切换微光事件的视觉效果\n如果微光事件正在进行, 则会将最终之剑传送至此雕像的上方
+ItemTooltip.GlimmeringStatue=在微光事件持续期间有很高几率吸引最终之剑至此
 # Other Placeables
 ItemTooltip.FishingCraftingStation=用于制作特殊的钓鱼物品
+ItemTooltip.GlobeItem=可使用标记物品进行绘制
 ############
 # Vanities #
 ############
@@ -554,16 +586,17 @@ ItemName.CursorDyeRemover=光标染料移除剂
 ItemName.HealthCursorDye=生命光标染料
 ItemName.ManaCursorDye=法力光标染料
 ItemName.SwordCursorDye=剑刃光标染料
+ItemName.DemonicCursorDye=恶魔光标染料
 # Dyes
 ItemName.EnchantedDye=附魔染料
 ItemName.ScrollDye=眩惑染料
-ItemName.HellBeamDye=Hell Beam Dye
-ItemName.BreakdownDye=Breakdown Dye
-ItemName.DiscoDye=Disco Dye
-ItemName.HypnoDye=Hypno Dye
-ItemName.SimplifiedDye=Simplified Dye
-ItemName.OutlineDye=Outline Dye
-ItemName.RainbowOutlineDye=Rainbow Outline Dye
+ItemName.HellBeamDye=狱光染料
+ItemName.BreakdownDye=故障染料
+ItemName.DiscoDye=迪斯科染料
+ItemName.HypnoDye=色彩分离染料
+ItemName.SimplifiedDye=简化染料
+ItemName.OutlineDye=轮廓描边染料
+ItemName.RainbowOutlineDye=彩虹轮廓描边染料
 # Other Vanities
 ItemTooltip.MonoxideHat='因人们需求而变成一件装饰物品'
 ItemTooltip.CelesitalEightBall=右键使用以当做普通的8号球使用\n特殊文本取决于世界当前状态
@@ -592,8 +625,8 @@ ItemTooltip.HorizonSkies=发射能量射线\n'你准备好了吗吗吗吗吗吗'
 ItemTooltip.Aphrodite=击中敌人时有几率造成热恋减益
 ItemTooltip.Venus=击中敌人时有几率造成中毒减益
 # Other Melee
-ItemTooltip.CrimsonHellSword=Shoots a wave of demonic energy that homes to the enemy closest to your cursor
-ItemTooltip.HellsBoon=挥舞时释放邪魔吞噬者
+ItemTooltip.CrimsonHellSword=发射恶魔能量冲击波, 冲击波会追踪离你光标位置最近的敌人
+ItemTooltip.HellsBoon=在光标附近的物块上不断生成灰烬尖刺
 ItemTooltip.Galactium=挥舞时召唤从天而降的微光星辰
 ItemTooltip.XenonBasher=击中敌人时生成氙气孢子
 # Ranged
@@ -610,6 +643,8 @@ ItemTooltip.LotusStaff=召唤一朵熔岩之莲为你而战\n{$Mods.AQMod.Common
 # Other Summon
 ItemTooltip.MonoxiderStaff=召唤一只金乌为你而战\n{$Mods.AQMod.Common.DoesntMinionTarget}
 ItemTooltip.StariteStaff=召唤3个星之源为你而战
+ItemTooltip.CrimsonHandStaff=召唤一个猩红血手为你而战
+ItemTooltip.CorruptPot=召唤一株腐化植物为你而战
 # Other Item Tooltips
 ItemTooltip.ATM=召唤一个用于存放物品的飞行保险箱\n将其放在你的保险箱里以便随时召唤它
 ItemTooltip.SpectralLens=切换敌人的掉落
@@ -619,10 +654,22 @@ BuffName.Spoiled=溺爱
 BuffDescription.Spoiled=敌人死亡时掉落的战利品的数量翻倍\n'你只是个被惯坏了的坏孩子!'
 BuffName.MicroStarite=微型星之源
 BuffDescription.MicroStarite=你所能想象的最小的类太阳系
-BuffName.Monoxider=金乌
-BuffDescription.Monoxider=金乌会为你而战
-BuffName.StariteMinion=星之源
-BuffDescription.StariteMinion=星之源会为你而战
+BuffName.CosmicMarkerBuff=星宇标记
+BuffDescription.CosmicMarkerBuff=在地图上显示微光事件的正中心
+BuffName.RetroMarkerBuff=复古标记
+BuffDescription.RetroMarkerBuff=在地图上以粉色光点显示敌人的位置
+BuffName.DungeonMarkerBuff=地牢标记
+BuffDescription.DungeonMarkerBuff=在地图上显示地牢的位置
+BuffName.LihzahrdMarkerBuff=神庙标记
+BuffDescription.LihzahrdMarkerBuff=在地图上显示神庙祭坛的位置
+BuffName.CorruptPotBuff=食人花
+BuffDescription.CorruptPotBuff=食人花会为你而战
+BuffName.MonoxiderBuff=金乌
+BuffDescription.MonoxiderBuff=金乌会为你而战
+BuffName.StariteMinionBuff=星之源
+BuffDescription.StariteMinionBuff=星之源会为你而战
+BuffName.CrimsonHandBuff=猩红血手
+BuffDescription.CrimsonHandBuff=猩红血手会为你而战
 BuffName.Bossrush=安可
 BuffDescription.Bossrush=Boss被击败时会再次生成
 BuffName.Ultima=最终之力
@@ -648,6 +695,8 @@ ProjectileName.JerryBubbleBig={$Mods.AQMod.ProjectileName.JerryBubble}
 ProjectileName.JerryPearl=蟹蛤珍珠
 ProjectileName.GelBulb=弹跳粘球
 ProjectileName.Maggie=熔岩球
+ProjectileName.CrimsonHandMinion=猩红血手
+ProjectileName.CrimsonHandBloodShot={$Mods.AQMod.ProjectileName.CrimsonHandMinion}
 # NPCs
 NPCName.BloodMimic={$NPCName.Mimic}
 NPCName.Starite=星之源
@@ -666,5 +715,5 @@ NPCName.Heckto=冥狱之魂
 NPCName.Magmabubble=熔火喷吐者
 NPCName.TrapImp=捕魂小鬼
 NPCName.Trapper=捕魂钩
-NPCName.Cindera=Cindera
-NPCName.SnobsterCritter=Snobster
+NPCName.Cindera=幻形蝠
+NPCName.SnobsterCritter={$Mods.AQMod.ItemName.Snobster}

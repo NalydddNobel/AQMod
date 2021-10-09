@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.Textures;
 using AQMod.Common;
+using AQMod.Common.ItemOverlays;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using System;
@@ -17,7 +17,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             Item.staff[item.type] = true;
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new Glowmask(GlowID.MagicWand, new Color(128, 128, 128, 0)), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.MagicWand, new Color(128, 128, 128, 0)), item.type);
         }
 
         public override void SetDefaults()

@@ -1,4 +1,6 @@
-﻿using AQMod.Assets.Enumerators;
+﻿using AQMod.Assets;
+using AQMod.Assets.Enumerators;
+using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
@@ -125,7 +127,7 @@ namespace AQMod.Projectiles
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader trail = new Trailshader(DrawUtils.Textures.Trails[TrailID.Line], Trailshader.TextureTrail);
+                    Trailshader trail = new Trailshader(TextureCache.Trails[TrailID.Line], Trailshader.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity), (p) => color(projectile.timeLeft - p) * 0.5f * (1f - p));
                     trail.Draw();
                 }
@@ -144,11 +146,11 @@ namespace AQMod.Projectiles
             }
             if (intensity > 0f)
             {
-                var spotlight = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
+                var spotlight = TextureCache.Lights[LightID.Spotlight66x66];
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.3f * intensity, projectile.rotation, spotlightOrig, projectile.scale * intensity, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.1f * intensity, projectile.rotation, spotlightOrig, projectile.scale * 1.25f * intensity, SpriteEffects.None, 0f);
-                spotlight = DrawUtils.Textures.Lights[LightID.Spotlight240x66];
+                spotlight = TextureCache.Lights[LightID.Spotlight240x66];
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.1f * intensity, (2f + (float)Math.Sin(Main.GlobalTime * 10f)) * intensity);
                 var spotlightDrawColor = drawColor * intensity;

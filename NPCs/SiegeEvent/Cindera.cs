@@ -1,9 +1,10 @@
-﻿using AQMod.Assets.Enumerators;
+﻿using AQMod.Assets;
+using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.DemonSiege;
-using AQMod.Items.Energies;
+using AQMod.Content.WorldEvents.Siege;
+using AQMod.Items;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.NPCs.AI;
 using Microsoft.Xna.Framework;
@@ -61,6 +62,8 @@ namespace AQMod.NPCs.SiegeEvent
             npc.buffImmune[BuffID.Confused] = false;
             npc.gfxOffY = -6f;
             npc.SetLiquidSpeed(lava: 1f);
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Placeable.Banners.CinderaBanner>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -410,7 +413,7 @@ namespace AQMod.NPCs.SiegeEvent
                 var c = drawColor * 0.08f * value;
                 if (AQConfigClient.Instance.EffectQuality >= 1f)
                 {
-                    var spotlight = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
+                    var spotlight = TextureCache.Lights[LightID.Spotlight66x66];
                     var spotlightOrigin = spotlight.Size() / 2f;
                     Main.spriteBatch.Draw(spotlight, npc.position + offset - screenPos, null, new Color(255, 150, 10, 0) * value, npc.rotation, spotlightOrigin, npc.scale * value * 0.15f, effects, 0f);
                     Main.spriteBatch.Draw(spotlight, npc.position + offset - screenPos, null, new Color(255, 150, 10, 0) * value * 0.1f, npc.rotation, spotlightOrigin, npc.scale * value * 0.3f, effects, 0f);

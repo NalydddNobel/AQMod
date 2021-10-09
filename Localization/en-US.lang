@@ -22,6 +22,7 @@ Common.Config_EffectQuality=Effect Quality
 Common.Config_EffectIntensity=Effect Intensity
 Common.Config_LoadItemOverlays=Load Item Overlays
 Common.Config_BackgroundStarites=Background Starites
+Common.Config_StariteProjColor=Starite Color (Projectiles)
 #
 Common.Config_TrailShader=Enable Trail Shaders
 Common.Config_ScrollShader=Enable Scroll Shaders
@@ -30,6 +31,7 @@ Common.Config_OutlineShader=Enable Outline Shaders
 Common.Config_ScreenDistortShader=Enable Screen Distort Shaders
 Common.Config_PortalShader=Enable Portal Shaders
 Common.Config_ColorDistortShader=Enable Color Distort Shaders
+Common.Config_SpotlightShader=Enable Spotlight Shaders
 #
 Common.Config_MapBlipColor=Map Blip Color
 Common.Config_ShowCompletedAnglerQuestsCount=Show Completed Angler Quests Count
@@ -40,7 +42,7 @@ Common.Config_MarkerMapUIType=Marker Map UI Type
 Common.Config_EvilProgressionLock=Evil Progression Lock
 Common.Config_EvilProgressionLockTooltip=Ebonstone, Crimstone, Shadow Orbs and Crimson Hearts can no longer be destroyed by explosives
 Common.Config_AprilFools=April Fools
-Common.Config_DebugCommand=Debug Command (/ncall)
+Common.Config_DebugCommand=Debug Mode (/ncall)
 # Eightball
 Common.EightballAnswer0=Yes
 Common.EightballAnswer1=My sources say no
@@ -81,6 +83,8 @@ Common.RandomStructures_ExoticCoralBlotches=Generating Random Structures... Exot
 Common.OceanRavines=Ocean Ravines
 Common.RareStructures=Generating Rare Structures...
 Common.WorldGen_GoreNests=Generating Gore Nests...
+Common.WorldGen_Globes=Generating Globes...
+Common.WorldGen_GlimmeringStatues=Generating Glimmering Statues...
 #
 # Recipe Groups
 Common.RecipeGroup_AnyNobleMushroom=Any Noble Mushroom
@@ -114,7 +118,7 @@ Common.RobsterSawInSomeonesHouse=I think I saw it in {0}'s house.
 Common.RobsterRandomHuntComplete0=You got it, very nice... I bet they didn't suspect a thing.
 Common.RobsterRandomHuntComplete1=Ooohoohoohoohoo yes yes yes yeesssss you got it. I can't wait to sell this out on the seas.
 Common.RobsterRandomHuntComplete2=Dumb cricket, I don't even think they remember buying that. Ah whatever I'm just going to take this trinket and use it for... something better
-Common.RobsterRandomHuntComplete3=Looks like the gems got a bit scruffed... whatever. Here's your pay.
+Common.RobsterRandomHuntComplete3=Looks like the gems got a bit scuffed... whatever. Here's your pay.
 Common.RobsterRandomHuntComplete4=They say steal from the rich and give to the poor, but I think we should do the opposite. OH and here's your payment.
 Common.RobsterHunt=Hunt
 Common.CompleteRobsterHunt=Complete Hunt
@@ -123,6 +127,10 @@ Common.PressHuntToContinue=(Press 'Hunt' again to continue)
 Common.RobsterQuitHuntQuestion=Do you really want to quit this hunt?
 #
 # Other Commons
+Common.SpawnAfterPoint=({0}) can spawn after this point
+Common.FoundGlobe=A globe was discovered!
+Common.EnergiesEnabled=Energy drops are enabled
+Common.EnergiesDisabled=Energy drops are disabled
 Common.TimeLeft={0} Left
 Common.ContainerPotionImproperLoad=This potion has unloaded improperly...\nWill only teleport to {$ItemName.GoldChest} :(
 Common.ContainerPotionLink=Will only teleport to {0} ( [i:{1}] )
@@ -292,7 +300,6 @@ ItemName.LarvaEel=Larva Eel
 ItemName.WaterFisg=Water Fish
 ItemName.Crabdaughter=Crabdaughter
 # Quest Robster
-ItemName.CrabCard=Crab Card
 ItemName.Snobster=Snobster
 ItemName.JeweledChalice=Jeweled Chalice
 ItemName.JeweledCandelabra=Jeweled Candelabra
@@ -300,6 +307,7 @@ ItemName.JeweledChandelier=Jeweled Chandelier
 ItemName.JeweledChair=Jeweled Chair
 ItemName.JeweledTable=Jeweled Table
 # Other Misc
+ItemName.DwarfStariteItem=Dwarf Starite
 ItemName.BloodshedPotion=Bloodshed Potion
 ItemName.CrabShell=Crab Shell
 ItemName.CrabClock=Crab Clock
@@ -318,6 +326,13 @@ ItemName.UnityMirror=Unity Mirror
 ItemName.StariteBanner=Starite Banner
 ItemName.SuperStariteBanner=Super Starite Banner
 ItemName.HyperStariteBanner=Hyper Starite Banner
+ItemName.ArrowCrabBanner=Arrow Crab Banner
+ItemName.HermitCrabBanner=Hermit Crab Banner
+ItemName.SoliderCrabsBanner=Solider Crabs Banner
+ItemName.StriderCrabsBanner=Strider Crab Banner
+ItemName.CinderaBanner=Cindera Banner
+ItemName.MagmabubbleBanner=Magmabubble Banner
+ItemName.TrapperImpBanner=Trapper Imp Banner
 # Mushrooms
 ItemName.ArgonMushroom=Argon Mushroom
 ItemName.KryptonMushroom=Krypton Mushroom
@@ -337,6 +352,7 @@ ItemName.GlimmeringStatue=Glimmering Statue
 ItemName.ExoticCoral=Exotic Coral
 ItemName.ExoticStarfish=Exotic Starfish
 ItemName.FishingCraftingStation=Fishing Utility Crafting Station
+ItemName.GlobeItem=Unity Globe
 ItemName.GoreNestItem=Gore Nest
 ItemName.PlaceableShadowOrb=Shadow Orb (Placeable)
 ItemName.PlaceableCrimsonHeart=Crimson Heart (Placeable)
@@ -395,6 +411,8 @@ ItemName.LotusStaff=Lotus Staff
 # Other Summon
 ItemName.MonoxiderStaff=Monoxider Staff
 ItemName.StariteStaff=Starite Staff
+ItemName.CrimsonHandStaff=Crimson Hand Staff
+ItemName.CorruptPot=Corrupt Pot
 # Other Item Names
 ItemName.ATM=ATM
 ItemName.Globebulb=Globebulb
@@ -536,6 +554,14 @@ ItemTooltip.UnityMirror=Allows you to teleport to unity map points\n{$Mods.AQMod
 ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
 ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
 ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
+ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
+ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
+ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
+ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
+ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}
+ItemTooltip.MagmabubbleBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}
+ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}
+ItemTooltip.HecktoBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Heckto}
 # Mushrooms
 ItemTooltip.ArgonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 ItemTooltip.KryptonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
@@ -547,9 +573,10 @@ ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 # Walls
 ItemTooltip.MoonlightWall=NPCs in front of the wall will think it's night
 # World Interactors
-ItemTooltip.GlimmeringStatue=Right click at night to toggle the Glimmer Event's visuals\nIf the Glimmer Event is already active it will teleport the sword to the statue
+ItemTooltip.GlimmeringStatue=Has a very high chance to attract the Ultimate Sword during the Glimmer Event
 # Other Placeables
 ItemTooltip.FishingCraftingStation=Used to craft special fishing items
+ItemTooltip.GlobeItem=Can be drawn on with markers
 ############
 # Vanities #
 ############
@@ -558,6 +585,7 @@ ItemName.CursorDyeRemover=Cursor Dye Remover
 ItemName.HealthCursorDye=Health Cursor Dye
 ItemName.ManaCursorDye=Mana Cursor Dye
 ItemName.SwordCursorDye=Sword Cursor Dye
+ItemName.DemonicCursorDye=Demonic Cursor Dye
 # Dyes
 ItemName.EnchantedDye=Enchanted Dye
 ItemName.ScrollDye=Scroll Dye
@@ -614,6 +642,8 @@ ItemTooltip.LotusStaff=Summons a magma lotus to fight for you\n{$Mods.AQMod.Comm
 # Other Summon
 ItemTooltip.MonoxiderStaff=Summons a monoxide finch to fight for you\n{$Mods.AQMod.Common.DoesntMinionTarget}
 ItemTooltip.StariteStaff=Summons 3 starites to fight for you
+ItemTooltip.CrimsonHandStaff=Summons a crimson hand to fight for you
+ItemTooltip.CorruptPot=Summons a corrupted plant to fight for you
 # Other Item Tooltips
 ItemTooltip.ATM=Summons a flying safe to store your items\nPlace in your Safe in order to have it always summoned
 ItemTooltip.SpectralLens=Toggles energy drops
@@ -623,10 +653,22 @@ BuffName.Spoiled=Spoiled
 BuffDescription.Spoiled=Enemies drop twice as much loot\n'You are such a spoiled brat!'
 BuffName.MicroStarite=Micro Starite
 BuffDescription.MicroStarite=The smallest solar system imaginable
-BuffName.Monoxider=Monoxider
-BuffDescription.Monoxider=The monoxider will fight for you
-BuffName.StariteMinion=Starite
-BuffDescription.StariteMinion=The starite will fight for you
+BuffName.CosmicMarkerBuff=Cosmic Marker
+BuffDescription.CosmicMarkerBuff=The glimmer event's center is shown on the map
+BuffName.RetroMarkerBuff=Retro Marker
+BuffDescription.RetroMarkerBuff=Enemies appear as pink blobs on the map
+BuffName.DungeonMarkerBuff=Dungeon Marker
+BuffDescription.DungeonMarkerBuff=The Dungeon is shown on the map
+BuffName.LihzahrdMarkerBuff=Lihzahrd Marker
+BuffDescription.LihzahrdMarkerBuff=The Lihzahrd Altar is shown on the map
+BuffName.CorruptPotBuff=Chompie
+BuffDescription.CorruptPotBuff=The chomper will fight for you
+BuffName.MonoxiderBuff=Monoxider
+BuffDescription.MonoxiderBuff=The monoxider will fight for you
+BuffName.StariteMinionBuff=Starite
+BuffDescription.StariteMinionBuff=The starite will fight for you
+BuffName.CrimsonHandBuff=Crimson Hand
+BuffDescription.CrimsonHandBuff=The crimson hand will fight for you
 BuffName.Bossrush=Encore
 BuffDescription.Bossrush=Bosses respawn when defeated
 BuffName.Ultima=Ultima
@@ -652,6 +694,8 @@ ProjectileName.JerryBubbleBig={$Mods.AQMod.ProjectileName.JerryBubble}
 ProjectileName.JerryPearl=Jerry Pearl
 ProjectileName.GelBulb=Gebulba
 ProjectileName.Maggie=Magma Bubble
+ProjectileName.CrimsonHandMinion=Crimson Hand
+ProjectileName.CrimsonHandBloodShot={$Mods.AQMod.ProjectileName.CrimsonHandMinion}
 # NPCs
 NPCName.BloodMimic={$NPCName.Mimic}
 NPCName.Starite=Starite
@@ -671,4 +715,4 @@ NPCName.Magmabubble=Magmabubble
 NPCName.TrapImp=Trapper Imp
 NPCName.Trapper=Trapper
 NPCName.Cindera=Cindera
-NPCName.SnobsterCritter=Snobster
+NPCName.SnobsterCritter={$Mods.AQMod.ItemName.Snobster}

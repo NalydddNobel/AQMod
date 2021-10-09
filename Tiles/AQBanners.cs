@@ -1,5 +1,7 @@
 ﻿using AQMod.Items.Placeable.Banners;
+using AQMod.NPCs.CrabSeason;
 using AQMod.NPCs.Glimmer;
+using AQMod.NPCs.SiegeEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -15,6 +17,13 @@ namespace AQMod.Tiles
         public const int Starite = 0;
         public const int SuperStarite = 1;
         public const int HyperStarite = 2;
+        public const int ArrowCrab = 3;
+        public const int HermitCrab = 4;
+        public const int SoliderCrabs = 5;
+        public const int StriderCrab = 6;
+        public const int Cindera = 7;
+        public const int Magmabubble = 8;
+        public const int TrapperImp = 9;
 
         public override void SetDefaults()
         {
@@ -48,6 +57,24 @@ namespace AQMod.Tiles
                 case 2:
                 Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<HyperStariteBanner>());
                 break;
+                case ArrowCrab:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<ArrowCrabBanner>());
+                break;
+                case HermitCrab:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<HermitCrabBanner>());
+                break;
+                case SoliderCrabs:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<SoliderCrabsBanner>());
+                break;
+                case StriderCrab:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<SoliderCrabsBanner>());
+                break;
+                case Cindera:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<CinderaBanner>());
+                break;
+                case Magmabubble:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<MagmabubbleBanner>());
+                break;
             }
         }
 
@@ -66,6 +93,27 @@ namespace AQMod.Tiles
                     break;
                     case 2:
                     player.NPCBannerBuff[ModContent.NPCType<HyperStarite>()] = true;
+                    break;
+                    case ArrowCrab:
+                    player.NPCBannerBuff[ModContent.NPCType<ArrowCrab>()] = true;
+                    break;
+                    case HermitCrab:
+                    player.NPCBannerBuff[ModContent.NPCType<HermitCrab>()] = true;
+                    break;
+                    case SoliderCrabs:
+                    player.NPCBannerBuff[ModContent.NPCType<SoliderCrabs>()] = true;
+                    break;
+                    case StriderCrab:
+                    player.NPCBannerBuff[ModContent.NPCType<StriderCrab>()] = true;
+                    break;
+                    case Cindera:
+                    player.NPCBannerBuff[ModContent.NPCType<Cindera>()] = true;
+                    break;
+                    case Magmabubble:
+                    player.NPCBannerBuff[ModContent.NPCType<Magmalbubble>()] = true;
+                    break;
+                    case TrapperImp:
+                    player.NPCBannerBuff[ModContent.NPCType<TrapImp>()] = true;
                     break;
                     default:
                     return;

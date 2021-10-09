@@ -1,8 +1,8 @@
-﻿using AQMod.Assets.Enumerators;
+﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.Glimmer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,7 +17,6 @@ namespace AQMod.Content.Skies
     {
         public const string Name = "AQMod:GlimmerEventSky";
 
-        public static bool _showBGStarites;
         public static float _glimmerLight;
         private float _cloudAlpha;
         private static bool _active;
@@ -95,11 +94,11 @@ namespace AQMod.Content.Skies
 
             public void Draw(UnifiedRandom rand)
             {
+                var texture = TextureCache.BGStarite.GetValue();
                 switch (size)
                 {
                     default:
                     {
-                        var texture = DrawUtils.Textures.Extras[ExtraID.StariteSky];
                         int x = size0Width * rand.Next(size0Frames);
                         var frame = new Rectangle(x, size0Y, size0Width, size0Height);
                         var orig = new Vector2(1f, 1f);
@@ -109,7 +108,6 @@ namespace AQMod.Content.Skies
 
                     case 1:
                     {
-                        var texture = DrawUtils.Textures.Extras[ExtraID.StariteSky];
                         var frame = new Rectangle(0, 4, 10, 10);
                         var orig = frame.Size() / 2f;
                         Main.spriteBatch.Draw(texture, new Vector2((int)x, (int)y), frame, Color.White, rot, orig, 0.5f, SpriteEffects.None, 0f);
@@ -118,7 +116,6 @@ namespace AQMod.Content.Skies
 
                     case 2:
                     {
-                        var texture = DrawUtils.Textures.Extras[ExtraID.StariteSky];
                         var frame = new Rectangle(0, 16, 14, 14);
                         var orig = frame.Size() / 2f;
                         Main.spriteBatch.Draw(texture, new Vector2((int)x, (int)y), frame, Color.White, rot, orig, 0.33f, SpriteEffects.None, 0f);
@@ -127,7 +124,6 @@ namespace AQMod.Content.Skies
 
                     case 3:
                     {
-                        var texture = DrawUtils.Textures.Extras[ExtraID.StariteSky];
                         var frame = new Rectangle(0, 52, 24, 22);
                         var orig = frame.Size() / 2f;
                         Main.spriteBatch.Draw(texture, new Vector2((int)x, (int)y), frame, Color.White, rot, orig, 0.45f, SpriteEffects.None, 0f);
@@ -137,9 +133,8 @@ namespace AQMod.Content.Skies
             }
         }
 
-        public static void AssignConfig(AQConfigClient config)
+        public static void OnUpdateConfig(AQConfigClient config)
         {
-            _showBGStarites = config.BackgroundStarites;
             _starites = null;
             _lonelyStarite = null;
         }
@@ -158,14 +153,14 @@ namespace AQMod.Content.Skies
 
         public static bool CanSpawnBGStarites()
         {
-            return _starites == null && _showBGStarites;
+            return _starites == null && AQMod.ShowBackgroundStarites;
         }
 
         public static void InitNight()
         {
-            if (!GlimmerEvent.IsActive)
+            if (!AQMod.glimmerEvent.IsActive)
             {
-                if (CanSpawnBGStarites() && _random.NextBool(GlimmerEvent.GlimmerChance))
+                if (CanSpawnBGStarites() && _random.NextBool(AQMod.glimmerEvent.spawnChance))
                 {
                     _lonelyStarite = new BGStarite();
                     _lonelyStarite.x = Main.screenWidth / 2f + _random.Next(-20, 20);
@@ -259,17 +254,17 @@ namespace AQMod.Content.Skies
 
         private void DrawSky()
         {
-            if (AQMod.omegaStariteIndexCache != -1)
+            if (OmegaStariteSceneManager.OmegaStariteIndexCache != -1)
             {
                 int width = Main.screenWidth + 40;
                 int height = Main.screenHeight + 40;
-                var texture = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
+                var texture = TextureCache.Lights[LightID.Spotlight66x66];
                 float scaleX = width / texture.Width * 1.75f;
                 float scaleY = height / texture.Height;
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 Color color;
                 float y = Main.screenHeight / 2f + (325f - Main.screenPosition.Y / 16f);
-                if (GlimmerEvent.StariteDisco)
+                if (AQMod.glimmerEvent.StariteDisco)
                     color = new Color((int)(Main.DiscoR * 0.9f + Main.DiscoG * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoG * 0.9f + Main.DiscoR * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoB * 0.9f + Main.DiscoR * 0.05f + Main.DiscoG * 0.05f), 255);
                 else
                 {
@@ -285,11 +280,11 @@ namespace AQMod.Content.Skies
                         _glimmerLight = 0f;
                 }
             }
-            else if (GlimmerEvent.IsActive)
+            else if (AQMod.glimmerEvent.IsActive)
             {
                 if (CanSpawnBGStarites())
                     SpawnBGStarites(_random);
-                float tileDistance = (GlimmerEvent.X - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs();
+                float tileDistance = (AQMod.glimmerEvent.tileX - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs();
                 float intensity = (1f - tileDistance / GlimmerEvent.MaxDistance) * ModContent.GetInstance<AQConfigClient>().EffectIntensity;
                 if (Main.time < 200.0)
                     intensity *= (float)Main.time / 200f;
@@ -297,13 +292,13 @@ namespace AQMod.Content.Skies
                 {
                     int width = Main.screenWidth + 40;
                     int height = Main.screenHeight + 40;
-                    var texture = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
+                    var texture = TextureCache.Lights[LightID.Spotlight66x66];
                     float scaleX = width / texture.Width * 1.75f;
                     float scaleY = height / texture.Height;
                     var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                     Color color;
                     float y = Main.screenHeight / 2f + (325f - Main.screenPosition.Y / 16f);
-                    if (GlimmerEvent.StariteDisco)
+                    if (AQMod.glimmerEvent.StariteDisco)
                         color = new Color((int)(Main.DiscoR * 0.9f + Main.DiscoG * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoG * 0.9f + Main.DiscoR * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoB * 0.9f + Main.DiscoR * 0.05f + Main.DiscoG * 0.05f), 255);
                     else
                     {
@@ -407,7 +402,7 @@ namespace AQMod.Content.Skies
 
         public override float GetCloudAlpha()
         {
-            if (GlimmerEvent.IsActive || AQMod.omegaStariteIndexCache != -1)
+            if (AQMod.glimmerEvent.IsActive || OmegaStariteSceneManager.OmegaStariteIndexCache != -1)
                 _cloudAlpha = MathHelper.Lerp(_cloudAlpha, 0.25f, 0.01f);
             else
             {

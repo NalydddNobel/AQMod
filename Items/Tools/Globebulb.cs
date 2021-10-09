@@ -1,7 +1,5 @@
-﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.Textures;
-using AQMod.Common;
-using AQMod.Items.Energies;
+﻿using AQMod.Assets.Textures;
+using AQMod.Common.ItemOverlays;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -15,7 +13,7 @@ namespace AQMod.Items.Tools
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new DynamicInventoryGlowmask(GlowID.Globebulb, getGlowmaskColor), item.type);
+                AQMod.ItemOverlays.Register(new DynamicInventoryGlowmask(GlowID.Globebulb, getGlowmaskColor), item.type);
         }
 
         private static Color getGlowmaskColor()
@@ -45,7 +43,7 @@ namespace AQMod.Items.Tools
         public override bool UseItem(Player player)
         {
             if (Main.myPlayer == player.whoAmI || Main.netMode == NetmodeID.Server)
-                WorldTimeManager.dayrateIncrease += 24;
+                AQMod.dayrateIncrease += 24;
             return false;
         }
 

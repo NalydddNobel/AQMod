@@ -2,7 +2,6 @@
 using AQMod.Common;
 using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents;
 using AQMod.Items;
 using AQMod.Items.Armor.Crab;
 using AQMod.Items.GrapplingHooks;
@@ -72,7 +71,7 @@ namespace AQMod.NPCs.CrabSeason
         {
             npc.width = 50;
             npc.height = 30;
-            npc.lifeMax = 280;
+            npc.lifeMax = 190;
             npc.damage = 30;
             npc.knockBackResist = 0.08f;
             npc.noGravity = true;
@@ -80,6 +79,8 @@ namespace AQMod.NPCs.CrabSeason
             npc.value = Item.buyPrice(silver: 8);
             npc.HitSound = SoundID.NPCHit2;
             npc.DeathSound = SoundID.NPCDeath8;
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<Items.Placeable.Banners.StriderCrabBanner>();
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -228,7 +229,9 @@ namespace AQMod.NPCs.CrabSeason
                     gotoY = gotoTileY * 16f - 120f;
                 float y = npc.position.Y + npc.height / 2f;
                 if ((y - gotoY).Abs() < 0.1f)
+                {
                     npc.velocity.Y *= 0.8f;
+                }
                 else
                 {
                     if (y < gotoY)
@@ -321,7 +324,7 @@ namespace AQMod.NPCs.CrabSeason
             var legTip = drawPosition + new Vector2(_frames[1].Height - 24f, 0f).RotatedBy(rotation + MathHelper.PiOver2);
             if ((legTip - kneePos).Length() > 8f)
             {
-                var chainTexture = ChainTextures.Chains[ChainTextureID.StriderHook];
+                var chainTexture = TextureCache.StriderHookHookChain.GetValue();
                 DrawMethods.DrawChain_UseLighting(chainTexture, kneePos, legTip, screenPos);
             }
             Main.spriteBatch.Draw(texture, drawPosition - screenPos, _frames[1], Lighting.GetColor((int)drawPosition.X / 16, (int)drawPosition.Y / 16), npc.rotation + rotation, new Vector2(orig.X, 6f), npc.scale, effects, 0f);
@@ -388,7 +391,9 @@ namespace AQMod.NPCs.CrabSeason
             if (projectile.tileCollide && projectile.velocity.Y.Abs() <= 0.01f)
             {
                 if (strider.npc.velocity.X.Abs() > 1.5f)
+                {
                     projectile.localAI[0] -= 18f;
+                }
                 else if (strider.npc.velocity.X.Abs() > 0.1f)
                 {
                     projectile.localAI[0] -= 1f;

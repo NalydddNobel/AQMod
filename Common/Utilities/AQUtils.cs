@@ -23,33 +23,105 @@ namespace AQMod.Common.Utilities
     {
         public const int UI_SIZE = 10;
 
-        private static MemberInfoCache Cache { get; set; }
-
-        public static void Setup()
+        /// <summary>
+        /// Gets a frame of the projectile's sprite. Use this only for drawing, since this uses the projectile's texture.
+        /// </summary>
+        /// <param name="Projectile"></param>
+        /// <returns></returns>
+        public static Rectangle ProjFrame(this Projectile Projectile, int frameX, int totalFramesX, int paddingX = 2, int paddingY = 2)
         {
-            Cache = new MemberInfoCache();
+            var texture = Projectile.GetTexture();
+            int frameWidth = texture.Height / totalFramesX;
+            int frameHeight = texture.Height / Main.projFrames[Projectile.type];
+            return new Rectangle(frameWidth * frameX, frameHeight * Projectile.frame, frameWidth - paddingX, frameHeight - paddingY);
         }
 
-        public static void Unload()
+        /// <summary>
+        /// Gets a frame of the projectile's sprite. Use this only for drawing, since this uses the projectile's texture.
+        /// </summary>
+        /// <param name="Projectile"></param>
+        /// <returns></returns>
+        public static Rectangle ProjFrame(this Projectile Projectile, int padding = 2)
         {
-            Cache = null;
+            var texture = Projectile.GetTexture();
+            int frameHeight = texture.Height / Main.projFrames[Projectile.type];
+            return new Rectangle(0, frameHeight * Projectile.frame, texture.Width, frameHeight - padding);
         }
 
-        private class MemberInfoCache
+        public static bool PositionOnScreen(Vector2 position, float size)
         {
-            private FieldInfo _armorShaderData_uImage;
-            public FieldInfo ArmorShaderData_uImage
+            var normal = Vector2.Normalize(new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f) - position);
+            position += normal * size;
+            return PositionOnScreen(position);
+        }
+
+        public static bool PositionOnScreen(Vector2 position)
+        {
+            if (position.X < -20 || position.X > Main.screenWidth + 20)
             {
-                get
+                return false;
+            }
+            if (position.Y < -20 || position.Y > Main.screenHeight + 20)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Gets the median of light 
+        /// </summary>
+        /// <param name="position">The center of the object</param>
+        /// <param name="size">The size in tile coordinates</param>
+        /// <returns></returns>
+        public static Color GetLightingSection(Vector2 position, int size = 10)
+        {
+            Vector3 lighting = Vector3.Zero;
+            float amount = 0f;
+            int realSize = size / 2;
+            Point tilePosition = position.ToTileCoordinates();
+            tilePosition.Fluffize(10 + realSize);
+            for (int i = tilePosition.X - realSize; i <= tilePosition.X + realSize; i++)
+            {
+                for (int j = tilePosition.Y - realSize; j <= tilePosition.Y + realSize; j++)
                 {
-                    if (_armorShaderData_uImage != null)
-                        return _armorShaderData_uImage;
-                    else
-                    {
-                        return _armorShaderData_uImage = typeof(ArmorShaderData).GetField("_uImage", BindingFlags.NonPublic | BindingFlags.Instance);
-                    }
+                    lighting += Lighting.GetColor(i, j).ToVector3();
+                    amount += 1f;
                 }
             }
+            if (amount == 0f)
+            {
+                return Color.White;
+            }
+            return new Color(lighting / amount);
+
+        }
+
+        public static Color Minimize(this Color color, float value)
+        {
+            return Minimize(color, (byte)(int)(value * 255f));
+        }
+
+        public static Color Minimize(this Color color, int value)
+        {
+            return Minimize(color, (byte)value);
+        }
+
+        public static Color Minimize(this Color color, byte value)
+        {
+            if (color.R < value)
+            {
+                color.R = value;
+            }
+            if (color.G < value)
+            {
+                color.G = value;
+            }
+            if (color.B < value)
+            {
+                color.B = value;
+            }
+            return color;
         }
 
         public static Point FluffizePoint(Point point, int fluff = 10)
@@ -153,12 +225,6 @@ namespace AQMod.Common.Utilities
             return defaultValue;
         }
 
-        public static ArmorShaderData UseTexture2D(this ArmorShaderData a, Texture2D texture)
-        {
-            Cache.ArmorShaderData_uImage.SetValue(a, new Ref<Texture2D>(texture));
-            return a;
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -206,7 +272,9 @@ namespace AQMod.Common.Utilities
         public static string KnockbackItemTooltip(float knockback)
         {
             if (knockback == 0f)
+            {
                 return Lang.tip[14].Value;
+            }
             else if (knockback <= 1.5)
             {
                 return Lang.tip[15].Value;
@@ -300,7 +368,7 @@ namespace AQMod.Common.Utilities
 
         public static bool CanNPCBeHitByProjectile(NPC npc, Projectile projectile)
         {
-            if (npc.dontTakeDamage || (projectile.usesLocalNPCImmunity || projectile.usesIDStaticNPCImmunity) && (!projectile.usesLocalNPCImmunity || projectile.localNPCImmunity[npc.whoAmI] != 0) && (!projectile.usesIDStaticNPCImmunity || !Projectile.IsNPCImmune(projectile.type, npc.whoAmI)))
+            if (npc.dontTakeDamage || ((projectile.usesLocalNPCImmunity || projectile.usesIDStaticNPCImmunity) && (!projectile.usesLocalNPCImmunity || projectile.localNPCImmunity[npc.whoAmI] != 0) && (!projectile.usesIDStaticNPCImmunity || !Projectile.IsNPCImmune(projectile.type, npc.whoAmI))))
                 return false;
             return true;
         }
@@ -338,14 +406,19 @@ namespace AQMod.Common.Utilities
             return ms.ToArray();
         }
 
-        public static string GetPath(ModItem m)
+        public static string GetPath(object o)
         {
-            return GetPath(m.GetType()) + "/" + m.Name;
+            return GetPath(o.GetType());
+        }
+
+        public static string GetPath<T>()
+        {
+            return GetPath(typeof(T));
         }
 
         public static string GetPath(Type t)
         {
-            return t.Namespace.Replace('.', '/');
+            return t.Namespace.Replace('.', '/') + "/" + t.Name;
         }
 
         public static bool Check2x2ThenCut(int x, int y)
@@ -504,29 +577,29 @@ namespace AQMod.Common.Utilities
         public static void DrawUIBox(int width, int height, Vector2 topLeft, Color color)
         {
             Vector2 orig = new Vector2(0f, 0f);
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top left
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top right
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom left
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(width, height), new Rectangle(24, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom right
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(0f, UI_SIZE), new Rectangle(0, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f); // top left -> bottom left
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(width, UI_SIZE), new Rectangle(24, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f); // top right -> bottom right
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(UI_SIZE, 0f), new Rectangle(16, 0, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f); // top left -> top right
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(UI_SIZE, height), new Rectangle(16, 24, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f); // bottom left -> bottom right
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(UI_SIZE, UI_SIZE), new Rectangle(16, 16, 2, 2), color, 0f, orig, new Vector2((width - 10f) / 2f, (height - 10f) / 2f), SpriteEffects.None, 0f); // filling
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top left
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top right
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom left
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, height), new Rectangle(24, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom right
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(0f, UI_SIZE), new Rectangle(0, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f); // top left -> bottom left
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, UI_SIZE), new Rectangle(24, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f); // top right -> bottom right
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, 0f), new Rectangle(16, 0, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f); // top left -> top right
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, height), new Rectangle(16, 24, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f); // bottom left -> bottom right
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, UI_SIZE), new Rectangle(16, 16, 2, 2), color, 0f, orig, new Vector2((width - 10f) / 2f, (height - 10f) / 2f), SpriteEffects.None, 0f); // filling
         }
 
         public static void DrawUIBox_HightlightedTop(int width, int height, Vector2 topLeft, Color color)
         {
             Vector2 orig = new Vector2(0f, 0f);
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(width, height), new Rectangle(24, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(0f, UI_SIZE), new Rectangle(0, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(width, UI_SIZE), new Rectangle(24, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(UI_SIZE, 0f), new Rectangle(38, 0, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(UI_SIZE, height), new Rectangle(16, 24, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.Textures.UI, topLeft + new Vector2(UI_SIZE, UI_SIZE), new Rectangle(16, 16, 2, 2), color, 0f, orig, new Vector2((width - 10f) / 2f, (height - 10f) / 2f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, height), new Rectangle(24, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(0f, UI_SIZE), new Rectangle(0, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, UI_SIZE), new Rectangle(24, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, 0f), new Rectangle(38, 0, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, height), new Rectangle(16, 24, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, UI_SIZE), new Rectangle(16, 16, 2, 2), color, 0f, orig, new Vector2((width - 10f) / 2f, (height - 10f) / 2f), SpriteEffects.None, 0f);
         }
 
         public static void UpdateFilter(bool active, string name, Vector2 position = default(Vector2), params object[] args)
@@ -534,7 +607,9 @@ namespace AQMod.Common.Utilities
             if (active != Filters.Scene[name].IsActive())
             {
                 if (active)
+                {
                     Filters.Scene[name].Activate(position, args);
+                }
                 else
                 {
                     Filters.Scene[name].Deactivate(args);
@@ -547,7 +622,9 @@ namespace AQMod.Common.Utilities
             if (active != SkyManager.Instance[name].IsActive())
             {
                 if (active)
+                {
                     SkyManager.Instance.Activate(name, default(Vector2));
+                }
                 else
                 {
                     SkyManager.Instance.Deactivate(name);
@@ -560,7 +637,9 @@ namespace AQMod.Common.Utilities
             if (Overlays.Scene[name] != null && active != (Overlays.Scene[name].Mode != OverlayMode.Inactive))
             {
                 if (active)
+                {
                     Overlays.Scene.Activate(name);
+                }
                 else
                 {
                     Overlays.Scene[name].Deactivate();
@@ -651,7 +730,9 @@ namespace AQMod.Common.Utilities
         {
             List<string> keys = key.GetAssignedKeys();
             if (keys == null || keys.Count == 0)
+            {
                 return Language.GetTextValue(AQText.Key + "Common.UnassignedKey" + keyValue);
+            }
             else
             {
                 if (keys.Count == 1)
@@ -740,7 +821,9 @@ namespace AQMod.Common.Utilities
                 return 0;
             float hue = 0f;
             if (max == color.R)
+            {
                 hue = (color.G - color.B) / (max - min);
+            }
             else if (max == color.G)
             {
                 hue = 2f + (color.B - color.R) / (max - min);

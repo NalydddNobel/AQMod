@@ -1,6 +1,5 @@
-﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common;
-using AQMod.Items.Energies;
+﻿using AQMod.Common;
+using AQMod.Common.ItemOverlays;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -14,7 +13,8 @@ namespace AQMod.Items.Tools
     {
         public override void SetStaticDefaults()
         {
-            ItemOverlayLoader.Register(new SpectralLensOverlay(), item.type);
+            if (!Main.dedServ)
+                AQMod.ItemOverlays.Register(new SpectralLensOverlayData(), item.type);
         }
 
         public override void SetDefaults()
@@ -33,6 +33,10 @@ namespace AQMod.Items.Tools
 
         public override bool UseItem(Player player)
         {
+            if (!NPC.downedBoss1)
+            {
+                return false;
+            }
             AQNPC.NoEnergyDrops = !AQNPC.NoEnergyDrops;
             if (AQNPC.NoEnergyDrops)
             {
@@ -47,7 +51,14 @@ namespace AQMod.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(mod, "Status", string.Format("Energy drops are currently {0}", AQNPC.NoEnergyDrops ? "disabled" : "enabled")));
+            if (AQNPC.CanDropEnergy)
+            {
+                tooltips.Add(new TooltipLine(mod, "Status", AQText.ModText("Common.EnergiesEnabled").Value));
+            }
+            else
+            {
+                tooltips.Add(new TooltipLine(mod, "Status", AQText.ModText("Common.EnergiesDisabled").Value));
+            }
         }
 
         public override void AddRecipes()

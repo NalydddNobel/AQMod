@@ -1,35 +1,36 @@
 using AQMod.Assets;
-using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.SceneLayers;
 using AQMod.Common;
 using AQMod.Common.Commands;
 using AQMod.Common.Config;
+using AQMod.Common.CrossMod;
 using AQMod.Common.NPCIMethods;
 using AQMod.Common.UI;
-using AQMod.Common.UserInterface;
 using AQMod.Common.Utilities;
 using AQMod.Content;
+using AQMod.Content.CrossMod;
 using AQMod.Content.CursorDyes;
+using AQMod.Content.SceneLayers;
 using AQMod.Content.Skies;
 using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.WorldEvents.Glimmer;
+using AQMod.Content.WorldEvents.Siege;
 using AQMod.Effects;
 using AQMod.Effects.Screen;
+using AQMod.Effects.WorldEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.ShopCards;
-using AQMod.Items.Energies;
-using AQMod.Items.GrapplingHooks;
-using AQMod.Items.Placeable.Mushrooms;
+using AQMod.Items.Placeable;
 using AQMod.Items.TagItems.Starbyte;
 using AQMod.Items.Vanities;
-using AQMod.Items.Weapons.Melee.Flails;
+using AQMod.Items.Vanities.Dyes;
 using AQMod.Localization;
-using AQMod.NPCs.SiegeEvent;
+using AQMod.NPCs;
 using AQMod.NPCs.Starite;
 using AQMod.NPCs.Town.Robster;
-using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,27 +41,90 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
+using Terraria.Utilities;
 
 namespace AQMod
 {
     public class AQMod : Mod
     {
+        /// <summary>
+        /// Gets an instance of the mod. This is the same as calling <see cref="ModContent.GetInstance{T}"/> and passing <see cref="AQMod"/> as T. Except it's slightly cooler?
+        /// </summary>
         public static AQMod Instance => ModContent.GetInstance<AQMod>();
+        /// <summary>
+        /// The name of the mod, to be honest I need to remove all references of this and replace it with "AQMod" since like... why
+        /// </summary>
         public const string ModName = nameof(AQMod);
+        /// <summary>
+        /// The key for the Any Noble Mushrooms recipe group
+        /// </summary>
+        public const string AnyNobleMushroom = "AQMod:AnyNobleMushroom";
+        /// <summary>
+        /// The key for the Any Energy recipe group
+        /// </summary>
+        public const string AnyEnergy = "AQMod:AnyEnergy";
+        /// <summary>
+        /// Basically guesses if the game is still active, should only really use for drawing methods that do things like summon dust
+        /// </summary>
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
-        internal static bool Loading { get; private set; }
-
-
-        internal const float TwoPiOver5 = MathHelper.TwoPi / 5f;
-        internal const float TwoPiOver8 = MathHelper.TwoPi / 8f;
-
-        public static short omegaStariteIndexCache = -1;
-        public static byte omegaStariteScene;
-        public static bool summonOmegaStarite;
-
-        public static bool AprilFools { get; internal set; }
-
+        /// <summary>
+        /// Gets the center of the screen's draw coordinates
+        /// </summary>
+        internal static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+        /// <summary>
+        /// Gets the center of the screen's world coordinates
+        /// </summary>
+        internal static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
+        /// <summary>
+        /// The world view point matrix
+        /// </summary>
+        internal static Matrix WorldViewPoint
+        {
+            get
+            {
+                GraphicsDevice graphics = Main.graphics.GraphicsDevice;
+                Vector2 zoom = Main.GameViewMatrix.Zoom;
+                int width = graphics.Viewport.Width;
+                int height = graphics.Viewport.Height;
+                Matrix Zoom = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(width / 2, height / -2, 0) * Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(zoom.X, zoom.Y, 1f);
+                Matrix Projection = Matrix.CreateOrthographic(width, height, 0, 1000);
+                return Zoom * Projection;
+            }
+        }
+        /// <summary>
+        /// The zero for drawing tiles correctly
+        /// </summary>
+        internal static Vector2 TileZero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
+        /// <summary>
+        /// The color used for most menacing messages like "The Twins has awoken!".
+        /// </summary>
         internal static Color BossMessage => new Color(175, 75, 255, 255);
+        internal static bool DebugKeysPressed => Main.netMode == NetmodeID.SinglePlayer && AQConfigServer.Instance.debugCommand && Main.keyState.IsKeyDown(Keys.LeftShift) && Main.keyState.IsKeyDown(Keys.Q);
+
+        public static bool spawnStarite;
+        public static int dayrateIncrease;
+
+        /// <summary>
+        /// This is normally used to prevent adding new content to arrays after the mod has loaded and blah blah. It's also used to prevent some drawing which might happen on the title screen before assets fully load.
+        /// </summary>
+        internal static bool Loading { get; private set; }
+        /// <summary>
+        /// A flag which gets raised if the mod detects that it's april fools. Use this for fun :)
+        /// </summary>
+        public static bool AprilFools { get; internal set; }
+        /// <summary>
+        /// Use this value to check if you should actually run unnecessary drawcode operations. Default value is 1.
+        /// </summary>
+        public static float EffectQuality { get; private set; }
+        /// <summary>
+        /// Use this value to tune down bright, flashy things. Default value is 1.
+        /// </summary>
+        public static float EffectIntensity { get; private set; }
+        public static float EffectIntensityMultipliable => 2f - EffectIntensity;
+        /// <summary>
+        /// Whether or not the background starites from the Glimmer Event should be shown. Default value is true
+        /// </summary>
+        public static bool ShowBackgroundStarites { get; private set; }
 
         public AQMod()
         {
@@ -79,8 +143,39 @@ namespace AQMod
             Loading = true;
         }
 
-        internal static CursorDyeLoader CursorDyes { get; private set; }
-        internal static RobsterHuntLoader RobsterHunts { get; private set; }
+        /// <summary>
+        /// The active instance of the Cursor Dyes Loader.
+        /// </summary>
+        public static CursorDyeLoader CursorDyes { get; private set; }
+        /// <summary>
+        /// The active instance of the Robster Hunts Loader.
+        /// </summary>
+        public static RobsterHuntLoader RobsterHunts { get; private set; }
+        /// <summary>
+        /// The active instance of World Layers
+        /// </summary>
+        public static SceneLayersManager WorldLayers { get; private set; }
+        /// <summary>
+        /// The active instance of Item Overlays, this is not initialized on the server
+        /// </summary>
+        public static DrawOverlayLoader<ItemOverlayData> ItemOverlays { get; private set; }
+        /// <summary>
+        /// The active instance of Armor Overlays, this is not initialized on the server
+        /// </summary>
+        public static ArmorOverlayLoader ArmorOverlays { get; private set; }
+        /// <summary>
+        /// The active list of World Effects, this is not initialized on the server
+        /// </summary>
+        public static List<WorldVisualEffect> WorldEffects { get; private set; }
+        /// <summary>
+        /// The active instance of the Glimmer Event
+        /// </summary>
+        public static GlimmerEvent glimmerEvent { get; private set; }
+
+        public static ModifiableMusic CrabsonMusic { get; private set; }
+        public static ModifiableMusic GlimmerEventMusic { get; private set; }
+        public static ModifiableMusic OmegaStariteMusic { get; private set; }
+        public static ModifiableMusic DemonSiegeMusic { get; private set; }
 
         public override void Load()
         {
@@ -91,31 +186,41 @@ namespace AQMod
             CursorDyes.Setup();
             RobsterHunts = new RobsterHuntLoader();
             RobsterHunts.Setup();
+            glimmerEvent = new GlimmerEvent();
             AQPlayer.Setup();
             AQCommand.LoadCommands();
-            GlimmerEvent.StariteProjectileColor = GlimmerEvent.StariteProjectileColorOrig;
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
-            AQUtils.Setup();
-            WorldTimeManager.Setup();
             On.Terraria.Chest.SetupShop += Chest_SetupShop;
             //On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
             On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
+            On.Terraria.Main.UpdateTime += Main_UpdateTime;
+            On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
             On.Terraria.Main.DrawTiles += Main_DrawTiles;
             if (!Main.dedServ)
             {
                 var client = AQConfigClient.Instance;
+                ApplyClientConfig(client);
+                ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
+                ArmorOverlays = new ArmorOverlayLoader();
                 TextureCache.Load();
-                AQMusicManager.Initialize();
+                CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
+                GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
+                OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
+                DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
                 Parralax.RefreshParralax();
                 SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
                 GlimmerEventSky.Initialize();
                 Trailshader.Setup();
-                DrawUtils.Textures.Setup();
-                ChainTextures.Setup();
+                DrawUtils.LegacyTextureCache.Setup();
                 EffectCache.Instance = new EffectCache(this, client, Logger);
-                WorldDrawLayers.Setup();
+                WorldLayers = new SceneLayersManager();
+                WorldLayers.Setup(loadHooks: true);
+                WorldLayers.AddLayer("GoreNest", new GoreNestLayer(test: false), SceneLayering.InfrontNPCs);
+                WorldLayers.AddLayer("UltimateSword", new UltimateSwordWorldOverlay(), SceneLayering.InfrontNPCs);
+                WorldLayers.AddLayer("ImpChains", new ImpChainLayer(), SceneLayering.BehindNPCs);
+                WorldLayers.AddLayer("CrabsonChains", new JerryCrabsonLayer(), SceneLayering.BehindTiles_BehindNPCs);
                 GameScreenManager.Load();
-                StarbyteColorCache.Load();
+                StarbyteColorCache.Init();
                 if (client.OutlineShader)
                 {
                     GameShaders.Misc["AQMod:Outline"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlinePass");
@@ -131,11 +236,37 @@ namespace AQMod
                     GameShaders.Misc["AQMod:FadeYProgressAlpha"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "FadeYProgressAlphaPass");
                     GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
                 }
-                DrawUtils.FinalSetup();
+                WorldEffects = new List<WorldVisualEffect>();
                 AssetManager.AssetsLoaded = true;
             }
         }
 
+        private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)
+        {
+            orig();
+            Main.dayRate += dayrateIncrease;
+        }
+
+        private static void Main_UpdateTime(On.Terraria.Main.orig_UpdateTime orig)
+        {
+            bool settingUpNight = false;
+            if (Main.time + Main.dayRate > Main.dayLength)
+                settingUpNight = true;
+            Main.dayRate += dayrateIncrease;
+            orig();
+            dayrateIncrease = 0;
+            if (settingUpNight)
+            {
+                OnTurnNight();
+            }
+        }
+
+        /// <summary>
+        /// Modifies <see cref="Chest.SetupShop(int)"/> to make the <see cref="BusinessCard"/> and <see cref="BlurryDiscountCard"/> work by modifying <see cref="AQPlayer.discountPercentage"/>
+        /// </summary>
+        /// <param name="orig"></param>
+        /// <param name="self"></param>
+        /// <param name="type"></param>
         private static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
         {
             var plr = Main.LocalPlayer;
@@ -154,6 +285,21 @@ namespace AQMod
             }
         }
 
+        /// <summary>
+        /// Modifies <see cref="Projectile.NewProjectile(float, float, float, float, int, int, float, int, float, float)"/>, so that any projectiles owned by the player can get tagged on creation. I haven't actually checked but I think <see cref="Projectile.NewProjectile(Vector2, Vector2, int, int, float, int, float, float)"/> literally just calls this method, I don't know about <see cref="Projectile.NewProjectileDirect(Vector2, Vector2, int, int, float, int, float, float)"/> though... I'm 99% certain it also calls this by calling the previous method
+        /// </summary>
+        /// <param name="orig"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="SpeedX"></param>
+        /// <param name="SpeedY"></param>
+        /// <param name="Type"></param>
+        /// <param name="Damage"></param>
+        /// <param name="KnockBack"></param>
+        /// <param name="Owner"></param>
+        /// <param name="ai0"></param>
+        /// <param name="ai1"></param>
+        /// <returns></returns>
         private int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
         {
             int p = orig(X, Y, SpeedX, SpeedY, Type, Damage, KnockBack, Owner, ai0, ai1);
@@ -164,31 +310,41 @@ namespace AQMod
             return p;
         }
 
+        /// <summary>
+        /// Modifies NPC.Collision_DecideFallThroughPlatforms so that some npcs can... actually fall through platforms... is this implented in ModNPC at all? Since I can't find it :(
+        /// </summary>
+        /// <param name="orig"></param>
+        /// <param name="self"></param>
+        /// <returns></returns>
         private static bool NPC_Collision_DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
             self.type > Main.maxNPCTypes && self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ? decideToFallThroughPlatforms.Decide() : orig(self);
 
-        private static void Main_DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Terraria.Main self, bool solidOnly, int waterStyleOverride)
+        /// <summary>
+        /// Modifies <see cref="Main.DrawTiles(bool, int)"/> so that special tile draw coordinates can be refreshed.
+        /// </summary>
+        /// <param name="orig"></param>
+        /// <param name="self"></param>
+        /// <param name="solidOnly"></param>
+        /// <param name="waterStyleOverride"></param>
+        private static void Main_DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Main self, bool solidOnly, int waterStyleOverride)
         {
             if (!solidOnly)
             {
-                GoreNestWorldOverlay.RefreshCoords();
+                GoreNestLayer.RefreshCoords();
             }
             orig(self, solidOnly, waterStyleOverride);
         }
 
         public override void PostSetupContent()
         {
-            AQNPC.Sets.Setup();
-            AQProjectile.Sets.Setup();
-            MapMarkerPlayer.Setup();
-            DemonSiege.Setup();
-            bosschecklist.setup(this);
-            ModHelpers.Fargowiltas.SetupBossSummons(this);
+            AQNPC.Sets.Setup(); // Initializes sets for npcs
+            AQProjectile.Sets.Setup(); // Initializes sets for projectiles
+            DemonSiege.Setup(); // Sets up the Demon Siege event
+            GlimmerEvent.Setup();
+            BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
+            FargosQOLStuff.Setup(this); // Sets up boss summons for Fargowiltas,
             AQItem.Sets.Setup();
         }
-
-        public const string AnyNobleMushroom = "AQMod:AnyNobleMushroom";
-        public const string AnyEnergy = "AQMod:AnyEnergy";
 
         public override void AddRecipeGroups()
         {
@@ -213,9 +369,13 @@ namespace AQMod
 
         public override void AddRecipes()
         {
-            Loading = false;
+            // TODO: Add content method instances that run here, which other mods can add to, so that adding to specific things is less hellish.
+            Loading = false; // Sets Loading to false, so that some things no longer accept new content.
             RobsterHunts.SetupHunts();
-            ItemOverlayLoader.Finish();
+            if (!Main.dedServ)
+            {
+                ItemOverlays.Finish();
+            }
             CelesitalEightBall.Text = Language.GetTextValue(AQText.Key + "Common.EightballAnswer20");
 
             var r = new ModRecipe(this);
@@ -283,8 +443,33 @@ namespace AQMod
             {
                 DowngradeSiegeWeaponRecipe(u);
             }
+
+            if (FargosQOLStuff.FargowiltasActive)
+            {
+                int[] itemArray = new int[] { ModContent.ItemType<EnchantedDye>(), ModContent.ItemType<RainbowOutlineDye>(), ModContent.ItemType<DiscoDye>(), };
+                int item = ModContent.ItemType<OmegaStariteTrophy>();
+                for (int i = 0; i < itemArray.Length; i++)
+                {
+                    for (int j = 0; j < itemArray.Length; j++)
+                    {
+                        if (j != i)
+                        {
+                            r = new ModRecipe(this);
+                            r.AddIngredient(itemArray[i]);
+                            r.AddIngredient(item);
+                            r.AddTile(TileID.Solidifier);
+                            r.SetResult(itemArray[j]);
+                            r.AddRecipe();
+                        }
+                    }
+                }
+            }
         }
 
+        /// <summary>
+        /// Automatically creates and registers a recipe used to downgrade a Demon Siege weapon back into its original item <para>TODO: Make the recipe keep the reforge of the item when you craft the downgrade</para>
+        /// </summary>
+        /// <param name="u"></param>
         private void DowngradeSiegeWeaponRecipe(DemonSiegeUpgrade u)
         {
             var r = new ModRecipe(this);
@@ -302,27 +487,41 @@ namespace AQMod
 
             // in: AddRecipes()
             CelesitalEightBall.Text = null;
-            ItemOverlayLoader.Unload();
+            ItemOverlays = null;
 
             // in: PostSetupContent()
             AQItem.Sets.Unload();
             DemonSiege.Unload();
-            MapMarkerPlayer.Unload();
             AQNPC.Sets.Setup();
 
             // in: Load()
             // v doesn't load on server v
-            AssetManager.AssetsLoaded = false; // set assets loaded to false here so that anything that is using assets at the title screen knows to stop before it unloads
-            DrawUtils.UnloadAssets();
-            StarbyteColorCache.Unload();
-            GameScreenManager.Unload();
-            WorldDrawLayers.Unload();
-            EffectCache.Instance = null;
-            GlimmerEventSky.Unload();
-            AQMusicManager.Unload();
-            TextureCache.Unload();
+            if (Main.dedServ)
+            {
+                AssetManager.AssetsLoaded = false; // set assets loaded to false here so that anything that is using assets at the title screen knows to stop before it unloads
+                DrawUtils.UnloadAssets();
+                if (WorldEffects != null)
+                {
+                    WorldEffects.Clear();
+                    WorldEffects = null;
+                }
+                StarbyteColorCache.Unload();
+                GameScreenManager.Unload();
+                ArmorOverlays = null;
+                if (WorldLayers != null)
+                {
+                    WorldLayers.Unload();
+                    WorldLayers = null;
+                }
+                EffectCache.Instance = null;
+                GlimmerEventSky.Unload();
+                DemonSiegeMusic = null;
+                OmegaStariteMusic = null;
+                GlimmerEventMusic = null;
+                CrabsonMusic = null;
+                TextureCache.Unload();
+            }
             // ^ doesn't load on server ^
-            AQUtils.Unload();
             MoonlightWallHelper.Instance = null;
             AQCommand.UnloadCommands();
             if (CursorDyes != null)
@@ -333,118 +532,54 @@ namespace AQMod
             AQText.Unload();
         }
 
-        public override object Call(params object[] args)
-        {
-            if (args.Length == 0 || !(args[0] is string callType))
-                return null;
-            switch (callType)
-            {
-                case "GlimmerEvent_GlimmerChance":
-                if (args.Length > 1)
-                {
-                    try
-                    {
-                        GlimmerEvent.GlimmerChance = (int)args[1];
-                    }
-                    catch
-                    {
-                    }
-                }
-                return GlimmerEvent.GlimmerChance;
-
-                case "GlimmerEvent_X":
-                if (args.Length > 1)
-                {
-                    try
-                    {
-                        GlimmerEvent.X = (ushort)args[1];
-                    }
-                    catch
-                    {
-                    }
-                }
-                return GlimmerEvent.X;
-
-                case "GlimmerEvent_Y":
-                if (args.Length > 1)
-                {
-                    try
-                    {
-                        GlimmerEvent.Y = (ushort)args[1];
-                    }
-                    catch
-                    {
-                    }
-                }
-                return GlimmerEvent.Y;
-
-                case "GlimmerEvent_FakeActive":
-                return GlimmerEvent.FakeActive;
-
-                case "GlimmerEvent_ActuallyActive":
-                return GlimmerEvent.ActuallyActive;
-
-                case "GlimmerEvent_Active":
-                {
-                    if (args.Length > 1 && args[1] is bool flag)
-                    {
-                        if (flag)
-                        {
-                            if (args.Length > 2 && args[2] is bool flag2)
-                            {
-                                GlimmerEvent.Activate(genuine: flag2);
-                            }
-                            else
-                            {
-                                GlimmerEvent.Activate(genuine: true);
-                            }
-                        }
-                        else
-                        {
-                            GlimmerEvent.Deactivate();
-                        }
-                    }
-                    return GlimmerEvent.IsActive;
-                }
-            }
-            return null;
-        }
-
         public override void PreUpdateEntities()
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                for (int i = 0; i < DrawUtils.WorldEffects.Count; i++)
+                for (int i = 0; i < WorldEffects.Count; i++)
                 {
-                    var v = DrawUtils.WorldEffects[i];
+                    var v = WorldEffects[i];
                     if (!v.Update())
                     {
-                        DrawUtils.WorldEffects.RemoveAt(i);
+                        WorldEffects.RemoveAt(i);
                         i--;
                     }
                 }
             }
-            GlimmerEvent.StariteProjectileColor = GlimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : GlimmerEvent.StariteProjectileColorOrig;
+            if (Main.netMode != NetmodeID.Server)
+            {
+                glimmerEvent.stariteProjectileColor = glimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : AQConfigClient.Instance.StariteProjColor;
+            }
+            else
+            {
+                glimmerEvent.stariteProjectileColor = glimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : GlimmerEvent.StariteProjectileColorOrig;
+            }
         }
 
         public override void MidUpdateNPCGore()
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient && summonOmegaStarite && omegaStariteIndexCache == -1)
-            {
-                SummonOmegaStarite();
-            }
-            if (Main.netMode != NetmodeID.Server && Main.drawToScreen)
-            {
-                WorldDrawLayers.Update();
-            }
             DemonSiege.UpdateEvent();
-            if (omegaStariteIndexCache > -1 && !Main.npc[omegaStariteIndexCache].active)
+
+            if (OmegaStariteSceneManager.OmegaStariteIndexCache > -1 && !Main.npc[OmegaStariteSceneManager.OmegaStariteIndexCache].active)
             {
-                omegaStariteIndexCache = -1;
+                OmegaStariteSceneManager.OmegaStariteIndexCache = -1;
             }
+            if (Main.netMode != NetmodeID.MultiplayerClient && spawnStarite)
+            {
+                OmegaStariteSceneManager.OmegaStariteIndexCache = (short)NPC.NewNPC(AQMod.glimmerEvent.tileX * 16 + 8, AQMod.glimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
+                OmegaStariteSceneManager.Scene = 1;
+                spawnStarite = false;
+                BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", BossMessage);
+            }
+
             if (CrabSeason.CrabsonCachedID > -1 && !Main.npc[CrabSeason.CrabsonCachedID].active)
             {
                 CrabSeason.CrabsonCachedID = -1;
+            }
+
+            if (Main.netMode != NetmodeID.Server)
+            {
+                WorldLayers.UpdateLayers();
             }
         }
 
@@ -452,7 +587,7 @@ namespace AQMod
         {
             AQText.UpdateCallback();
 
-            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active)
+            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || !AssetManager.AssetsLoaded)
             {
                 return;
             }
@@ -460,16 +595,34 @@ namespace AQMod
             var player = Main.LocalPlayer;
             if (DemonSiege.CloseEnoughToDemonSiege(player))
             {
-                music = AQMusicManager.GetMusic(AQMusicManager.DemonSiege);
+                music = DemonSiegeMusic.GetMusicID();
                 priority = MusicPriority.Event;
             }
-            else if (GlimmerEvent.ActuallyActive && player.position.Y < Main.worldSurface * 16.0)
+            else if (glimmerEvent.IsActive && player.position.Y < Main.worldSurface * 16.0)
             {
-                int tileDistance = (int)(player.Center.X / 16 - GlimmerEvent.X).Abs();
+                int tileDistance = (int)(player.Center.X / 16 - glimmerEvent.tileX).Abs();
                 if (tileDistance < GlimmerEvent.MaxDistance)
                 {
-                    music = AQMusicManager.GetMusic(AQMusicManager.GlimmerEvent);
+                    music = GlimmerEventMusic.GetMusicID();
                     priority = MusicPriority.Event;
+                }
+            }
+        }
+
+        public static void SetupNewMusic()
+        {
+            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || !AssetManager.AssetsLoaded)
+            {
+                return;
+            }
+            if (Main.npc != null && Main.npc.Length >= Main.maxNPCs)
+            {
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].modNPC is IModifiableMusicNPC modifiableMusicNPC)
+                    {
+                        Main.npc[i].modNPC.music = modifiableMusicNPC.GetMusic().GetMusicID();
+                    }
                 }
             }
         }
@@ -500,27 +653,45 @@ namespace AQMod
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            byte messageID = reader.ReadByte();
+            var messageID = Networking.GetMessage(reader);
 
             switch (messageID)
             {
-                case 0:
+                case NetType.SummonOmegaStarite:
                 {
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        summonOmegaStarite = true;
+                        spawnStarite = true;
                     }
+                }
+                break;
+
+                case NetType.UpdateGlimmerEvent:
+                {
+                    glimmerEvent.tileX = reader.ReadUInt16();
+                    glimmerEvent.tileY = reader.ReadUInt16();
+                    glimmerEvent.spawnChance = reader.ReadInt32();
+                    glimmerEvent.StariteDisco = reader.ReadBoolean();
+                    glimmerEvent.deactivationTimer = reader.ReadInt32();
                 }
                 break;
             }
         }
 
-        private static void SummonOmegaStarite()
+        public static void ApplyClientConfig(AQConfigClient clientConfig)
         {
-            omegaStariteIndexCache = (short)NPC.NewNPC(GlimmerEvent.X * 16 + 8, GlimmerEvent.Y * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
-            Main.npc[omegaStariteIndexCache].netUpdate = true;
-            omegaStariteScene = 1;
-            summonOmegaStarite = false;
+            EffectQuality = clientConfig.EffectQuality;
+            EffectIntensity = clientConfig.EffectIntensity;
+            ShowBackgroundStarites = clientConfig.BackgroundStarites;
+        }
+
+        public static void OnTurnNight()
+        {
+            glimmerEvent.OnTurnNight();
+            if (Main.netMode != NetmodeID.Server)
+            {
+                GlimmerEventSky.InitNight();
+            }
         }
 
         internal static void BroadcastMessage(string key, Color color)
@@ -533,6 +704,11 @@ namespace AQMod
             {
                 Main.NewText(Language.GetTextValue(key), color);
             }
+        }
+
+        internal static int RandomSmokeGoreType(UnifiedRandom random)
+        {
+            return 61 + random.Next(3);
         }
     }
 }

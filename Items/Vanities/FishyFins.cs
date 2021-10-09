@@ -25,10 +25,10 @@ namespace AQMod.Items.Vanities
             return null;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, GraphicsPlayer drawingPlayer, int i)
+        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer drawingPlayer, int i)
         {
             drawingPlayer.headOverlay = (int)PlayerHeadOverlayID.FishyFins;
-            drawingPlayer.cHeadOverlay = player.dye[i % AQPlayer.DyeWrap].dye;
+            drawingPlayer.cHeadOverlay = player.dye[i % AQPlayer.DYE_WRAP].dye;
         }
     }
 }

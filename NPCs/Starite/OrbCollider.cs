@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Content;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -24,7 +25,7 @@ namespace AQMod.NPCs.Starite
         public override void AI()
         {
             var omegaStarite = Main.npc[(int)projectile.ai[0]];
-            if (AQMod.omegaStariteIndexCache == -1 || !omegaStarite.active || omegaStarite.ai[0] == -1f)
+            if (!omegaStarite.active || omegaStarite.ai[0] == -1f)
                 return;
             projectile.timeLeft = 2;
             projectile.Center = omegaStarite.Center;

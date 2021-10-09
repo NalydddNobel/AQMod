@@ -1,6 +1,8 @@
-﻿using AQMod.Assets.PlayerLayers;
-using AQMod.Common;
-using AQMod.Items.Energies;
+﻿using AQMod.Common;
+using AQMod.Common.ItemOverlays;
+using AQMod.Common.PlayerLayers;
+using AQMod.Common.PlayerLayers.ArmorOverlays;
+using AQMod.Common.Utilities;
 using AQMod.Localization;
 using Terraria;
 using Terraria.ID;
@@ -11,6 +13,15 @@ namespace AQMod.Items.Armor.Arachnotron
     [AutoloadEquip(EquipType.Head)]
     public class ArachnotronVisor : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            if (!Main.dedServ)
+            {
+                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow"), item.type);
+                AQMod.ArmorOverlays.AddHeadOverlay<ArachnotronVisor>(new ArachnotronVisorOverlay());
+            }
+        }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -30,14 +41,6 @@ namespace AQMod.Items.Armor.Arachnotron
             player.meleeCrit += 5;
             player.minionDamage += 0.1f;
             player.nightVision = true;
-        }
-
-        public override void UpdateVanity(Player player, EquipType type)
-        {
-            var drawingPlayer = player.GetModPlayer<GraphicsPlayer>();
-            if (drawingPlayer.oldPosLength < 10)
-                drawingPlayer.oldPosLength = 10;
-            drawingPlayer.specialHead = SpecialHeadID.ArachnotronVisor;
         }
 
         public override void UpdateArmorSet(Player player)

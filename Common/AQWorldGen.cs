@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.Utilities;
 using AQMod.Items;
-using AQMod.Items.BuffItems.Staffs;
 using AQMod.Items.Weapons.Magic.Support;
 using AQMod.Localization;
 using AQMod.Tiles;
@@ -41,6 +40,133 @@ namespace AQMod.Common
         private static GenPass getPass(string name, WorldGenLegacyMethod method)
         {
             return new PassLegacy(name, method);
+        }
+
+        internal static bool PlaceGlimmeringStatue(int x, int y)
+        {
+            if (!ActiveAndSolid(x, y) && !ActiveAndSolid(x - 1, y) && ActiveAndSolid(x, y + 1) && ActiveAndSolid(x - 1, y + 1) && Main.tile[x, y].wall == WallID.None)
+            {
+                GlimmeringStatue.PlaceUndisoveredGlimmeringStatue(x, y);
+                return true;
+            }
+            return false;
+        }
+
+        internal static void GenerateGlimmeringStatues(GenerationProgress progress)
+        {
+            if (progress != null)
+                progress.Message = Language.GetTextValue(AQText.Key + "Common.WorldGen_GlimmeringStatues");
+            int glimmerCount = 0;
+            int glimmerMax = Main.maxTilesX / 1500;
+            var rectLeft = new Rectangle(80, 40, 600, (int)Main.worldSurface - 100);
+            var rectRight = new Rectangle(Main.maxTilesX - rectLeft.Width - rectLeft.X, rectLeft.Y, rectLeft.Width, rectLeft.Height);
+            var rectSpace = new Rectangle(80, 40, Main.maxTilesX - 160, 180);
+            for (int i = 0; i < 10000; i++)
+            {
+                int r = WorldGen.genRand.Next(3);
+                Rectangle rect;
+                switch (r)
+                {
+                    default:
+                    rect = rectSpace;
+                    break;
+
+                    case 1:
+                    rect = rectLeft;
+                    break;
+
+                    case 2:
+                    rect = rectRight;
+                    break;
+                }
+                int x = WorldGen.genRand.Next(rect.X, rect.X + rect.Width);
+                int y = WorldGen.genRand.Next(rect.Y, rect.Y + rect.Height);
+                if (PlaceGlimmeringStatue(x, y))
+                {
+                    glimmerCount++;
+                    if (glimmerCount >= glimmerMax)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        internal static bool PlaceGlobeTemple(int x, int y)
+        {
+            if (!ActiveAndSolid(x, y) && ActiveAndSolid(x, y + 1) && Main.tile[x, y].wall == WallID.None)
+            {
+                Main.tile[x, y + 1].type = TileID.GrayBrick;
+                Main.tile[x, y + 1].halfBrick(halfBrick: false);
+                Main.tile[x, y + 1].slope(slope: 0);
+                Framing.GetTileSafely(x + 1, y + 1).active(active: true);
+                Main.tile[x + 1, y + 1].type = TileID.GrayBrick;
+                Main.tile[x + 1, y + 1].halfBrick(halfBrick: false);
+                Main.tile[x + 1, y + 1].slope(slope: 0);
+                Framing.GetTileSafely(x - 1, y + 1).active(active: true);
+                Main.tile[x - 1, y + 1].type = TileID.GrayBrick;
+                Main.tile[x - 1, y + 1].halfBrick(halfBrick: false);
+                Main.tile[x - 1, y + 1].slope(slope: 0);
+                Framing.GetTileSafely(x + 2, y + 1).active(active: true);
+                Main.tile[x + 2, y + 1].type = TileID.GrayBrick;
+                Main.tile[x + 2, y + 1].halfBrick(halfBrick: false);
+                Main.tile[x + 2, y + 1].slope(slope: 0);
+                Framing.GetTileSafely(x - 2, y + 1).active(active: true);
+                Main.tile[x - 2, y + 1].type = TileID.GrayBrick;
+                Main.tile[x - 2, y + 1].halfBrick(halfBrick: false);
+                Main.tile[x - 2, y + 1].slope(slope: 0);
+                int height = WorldGen.genRand.Next(3) + 5;
+                for (int i = 0; i < height; i++)
+                {
+                    Framing.GetTileSafely(x + 1, y - i).active(active: false);
+                    Main.tile[x + 1, y - i].wall = WallID.Stone;
+                    Framing.GetTileSafely(x, y - i).active(active: false);
+                    Main.tile[x, y - i].wall = WallID.Stone;
+                    Framing.GetTileSafely(x - 1, y - i).active(active: false);
+                    Main.tile[x - 1, y - i].wall = WallID.Stone;
+                    Framing.GetTileSafely(x - 2, y - i).active(active: true);
+                    Main.tile[x - 2, y - i].type = TileID.WoodenBeam;
+                    Framing.GetTileSafely(x + 2, y - i).active(active: true);
+                    Main.tile[x + 2, y - i].type = TileID.WoodenBeam;
+                }
+                for (int i = 0; i < 5; i++)
+                {
+                    Framing.GetTileSafely(x - 2 + i, y + 2).active(active: true);
+                    Main.tile[x - 2 + i, y + 2].type = TileID.GrayBrick;
+                    Framing.GetTileSafely(x - 2 + i, y - height).active(active: true);
+                    Main.tile[x - 2 + i, y - height].type = TileID.GrayBrick;
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    Framing.GetTileSafely(x - 1 + i, y - height - 1).active(active: true);
+                    Main.tile[x - 1 + i, y - height - 1].type = TileID.GrayBrick;
+                }
+                WorldGen.PlaceTile(x, y, TileID.Tables);
+                Globe.PlaceUndisoveredGlobe(x + WorldGen.genRand.Next(2), y - 2);
+                return true;
+            }
+            return false;
+        }
+
+        internal static void GenerateGlobeTemples(GenerationProgress progress)
+        {
+            if (progress != null)
+                progress.Message = Language.GetTextValue(AQText.Key + "Common.WorldGen_Globes");
+            int templeCount = 0;
+            int templeMax = Main.maxTilesX / 400;
+            for (int i = 0; i < 10000; i++)
+            {
+                int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
+                int y = WorldGen.genRand.Next((int)Main.worldSurface + 50, Main.maxTilesY - 300);
+                if (PlaceGlobeTemple(x, y))
+                {
+                    templeCount++;
+                    if (templeCount >= templeMax)
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         internal static bool GrowGoreNest(int x, int y, bool checkX, bool checkY)
@@ -133,7 +259,6 @@ namespace AQMod.Common
         {
             if (progress != null)
                 progress.Message = Language.GetTextValue(AQText.Key + "Common.WorldGen_GoreNests");
-            int thirdX = Main.maxTilesX / 3;
             int goreNestCount = 0;
             for (int i = 0; i < 10000; i++)
             {
@@ -539,21 +664,6 @@ namespace AQMod.Common
             }
         }
 
-        internal static void GenerateRobsterQuestTiles(GenerationProgress progress)
-        {
-            progress.Message = "Robster...";
-            for (int i = 0; i < 10000; i++)
-            {
-                if (PlaceRobsterQuestTile(6))
-                    break;
-            }
-            for (int i = 0; i < 10000; i++)
-            {
-                if (PlaceRobsterQuestTile(7))
-                    break;
-            }
-        }
-
         public static bool PlaceRobsterQuestTile(int style = 6)
         {
             int x = WorldGen.genRand.Next(90, 200);
@@ -578,7 +688,6 @@ namespace AQMod.Common
             if (i != -1)
             {
                 i++;
-                tasks.Insert(i, getPass("Robster", GenerateRobsterQuestTiles));
                 tasks.Insert(i, getPass("Ocean Ravines", GenerateOceanRavines));
             }
             i = tasks.FindIndex((t) => t.Name.Equals("Hellforge"));
@@ -586,6 +695,8 @@ namespace AQMod.Common
             {
                 i++;
                 tasks.Insert(i, getPass("Gore Nests", GenerateGoreNests));
+                tasks.Insert(i, getPass("Globe Temples", GenerateGlobeTemples));
+                tasks.Insert(i, getPass("Glimmering Statues", GenerateGlimmeringStatues));
             }
             i = tasks.FindIndex((t) => t.Name.Equals("Micro Biomes"));
             if (i != -1)

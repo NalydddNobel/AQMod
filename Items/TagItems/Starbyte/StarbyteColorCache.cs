@@ -12,7 +12,7 @@ namespace AQMod.Items.TagItems.Starbyte
         private static Dictionary<ushort, Color> _colorsCache;
         private static Stopwatch _colorTimer;
 
-        internal static void Load()
+        internal static void Init()
         {
             _colorsCache = new Dictionary<ushort, Color>
             {
@@ -30,7 +30,11 @@ namespace AQMod.Items.TagItems.Starbyte
 
         internal static void Unload()
         {
-            _colorsCache = null;
+            if (_colorsCache != null)
+            {
+                _colorsCache.Clear();
+                _colorsCache = null;
+            }
             if (_colorTimer != null)
             {
                 _colorTimer.Stop();

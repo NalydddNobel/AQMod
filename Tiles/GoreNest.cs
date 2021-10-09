@@ -1,5 +1,5 @@
-﻿using AQMod.Assets.SceneLayers;
-using AQMod.Content.WorldEvents.DemonSiege;
+﻿using AQMod.Content.SceneLayers;
+using AQMod.Content.WorldEvents.Siege;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -66,6 +66,12 @@ namespace AQMod.Tiles
                 player.showItemIcon2 = upgradeableItem.item.type;
             }
         }
+
+        public override bool AutoSelect(int i, int j, Item item)
+        {
+            return DemonSiege.GetUpgrade(item) != null;
+        }
+
         public override bool NewRightClick(int i, int j)
         {
             if (DemonSiege.IsActive)
@@ -95,7 +101,7 @@ namespace AQMod.Tiles
         public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref Color drawColor, ref int nextSpecialDrawIndex)
         {
             if (Main.tile[i, j].frameX == 0 && Main.tile[i, j].frameY == 0)
-                GoreNestWorldOverlay.AddCorrds(i, j);
+                GoreNestLayer.AddCorrds(i, j);
         }
     }
 }

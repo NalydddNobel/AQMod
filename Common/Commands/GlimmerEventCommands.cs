@@ -1,4 +1,4 @@
-﻿using AQMod.Content.WorldEvents;
+﻿using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Localization;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -35,21 +35,21 @@ namespace AQMod.Common.Commands
 
                 case "start":
                 {
-                    GlimmerEvent.Activate();
+                    AQMod.glimmerEvent.Activate();
                     caller.Reply(Language.GetTextValue(AQText.Key + "Common.GlimmerEventWarning"), GlimmerEvent.TextColor);
                 }
                 break;
 
                 case "end":
                 {
-                    GlimmerEvent.Deactivate();
+                    AQMod.glimmerEvent.Deactivate();
                     caller.Reply(Language.GetTextValue(AQText.Key + "Common.GlimmerEventEnding"), GlimmerEvent.TextColor);
                 }
                 break;
 
                 case "active":
                 {
-                    caller.Reply(GlimmerEvent.ActuallyActive.ToString());
+                    caller.Reply(AQMod.glimmerEvent.IsActive.ToString());
                 }
                 break;
             }

@@ -22,9 +22,7 @@ namespace AQMod.Content.HookBarbs
         {
             if (CheckBarb(projectile))
             {
-                var plr = getPlayer(projectile);
-                if (plr.BarbPreAI != null)
-                    return plr.BarbPreAI(projectile, this, plr.player, plr);
+                return getPlayer(projectile).BarbPreAI(projectile, this);
             }
             return true;
         }
@@ -33,8 +31,7 @@ namespace AQMod.Content.HookBarbs
         {
             if (IsBarb)
             {
-                var plr = getPlayer(projectile);
-                plr.BarbAI?.Invoke(projectile, this, plr.player, plr);
+                getPlayer(projectile).BarbAI(projectile, this);
             }
         }
 
@@ -42,8 +39,7 @@ namespace AQMod.Content.HookBarbs
         {
             if (IsBarb)
             {
-                var plr = getPlayer(projectile);
-                plr.BarbPostAI?.Invoke(projectile, this, plr.player, plr);
+                getPlayer(projectile).BarbPostAI(projectile, this);
             }
         }
     }

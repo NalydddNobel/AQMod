@@ -1,20 +1,29 @@
-﻿namespace AQMod.Assets.Textures
+﻿using System;
+
+namespace AQMod.Assets.Textures
 {
     public enum GlowID : ushort
     {
+        [Obsolete]
         DemonicEnergy = 0,
         PotionofBussrushium = 1,
+        [Obsolete]
         OrganicEnergy = 2,
         VortexBlowpipe = 3,
+        [Obsolete]
         MagmalbulbiaStaff = 4,
         MonoxideHat = 5,
         MonoxideHatItem = 6,
         PentalScythe = 7,
+        [Obsolete]
         CosmicEnergy = 8,
+        [Obsolete]
         AquaticEnergy = 9,
         LotusStaff = 10,
         MonoxiderStaff = 11,
+        [Obsolete]
         StaffofSwiftness = 12,
+        [Obsolete]
         StaffofIronskin = 13,
         CorruptHellSword = 14,
         GlimmeringStatue = 15,
@@ -40,13 +49,18 @@
         SpaceShot = 35,
         AtmosphericEnergyAprilFools = 36,
         MagicWand = 37,
+        [Obsolete]
         HorizonLine = 38,
+        [Obsolete]
         ArachnotronLeg = 39,
+        [Obsolete]
         ArachnotronLeg2 = 40,
         Globebulb = 41,
         UltimateEnergy2 = 42,
         SpectralLens = 43,
+        [Obsolete]
         OmegaStariteMask = 44,
+        [Obsolete]
         OmegaStariteMaskItem = 45,
         MysteryGrail = 46,
         StaffofWaterBreathing = 47,
@@ -55,6 +69,7 @@
         BatonofRage = 50,
         BatonofWrath = 51,
         Raygun = 52,
+        [Obsolete]
         MoonlightWall = 53,
         MoonlightWallWall = 54,
         XenonBasher = 55,

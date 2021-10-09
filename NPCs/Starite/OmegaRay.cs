@@ -1,7 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.Glimmer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -32,11 +32,6 @@ namespace AQMod.NPCs.Starite
 
         public override void AI()
         {
-            if (AQMod.omegaStariteIndexCache == -1)
-            {
-                projectile.Kill();
-                return;
-            }
             var npc = Main.npc[(int)projectile.ai[0]];
             var omegaStarite = (OmegaStarite)npc.modNPC;
             if (!npc.active)
@@ -77,7 +72,7 @@ namespace AQMod.NPCs.Starite
             Vector2 normalizedRotation = new Vector2(1f, 0f).RotatedBy(projectile.rotation);
             Vector2 basePosition = drawPosition + normalizedRotation * OmegaStarite.CIRCUMFERENCE;
             Vector2 origin = frame.Size() / 2f;
-            Color beamColor = GlimmerEvent.StariteProjectileColor * 0.065f;
+            Color beamColor = AQMod.glimmerEvent.stariteProjectileColor * 0.065f;
             float rotation = projectile.rotation - MathHelper.PiOver2;
             float baseScale = GetLaserScale();
             Main.spriteBatch.Draw(texture, basePosition, frame, beamColor, rotation, origin, new Vector2(1f * baseScale, 1f * baseScale), SpriteEffects.None, 0f);

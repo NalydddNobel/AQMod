@@ -43,10 +43,10 @@ namespace AQMod.Items.Dedicated.Cataclysmic_Armageddon
 
         Color IDedicatedItem.DedicatedItemColor() => DedicatedColors.Cataclysmic_Armageddon;
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, GraphicsPlayer drawingPlayer, int i)
+        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer drawingPlayer, int i)
         {
             drawingPlayer.mask = (int)PlayerMaskID.CataMask;
-            drawingPlayer.cMask = player.dye[i % AQPlayer.DyeWrap].dye;
+            drawingPlayer.cMask = player.dye[i % AQPlayer.DYE_WRAP].dye;
             if (player.head == ArmorIDs.Head.ShadowHelmet &&
                 player.body == ArmorIDs.Body.ShadowScalemail &&
                 player.legs == ArmorIDs.Legs.ShadowGreaves)

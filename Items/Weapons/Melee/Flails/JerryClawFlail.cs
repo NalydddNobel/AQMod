@@ -1,4 +1,5 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
+using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
@@ -151,7 +152,7 @@ namespace AQMod.Items.Weapons.Melee.Flails
             Player player = Main.player[projectile.owner];
             Vector2 center = projectile.Center + new Vector2(0f, 10f).RotatedBy(projectile.rotation);
             Vector2 playerCenter = player.MountedCenter;
-            var chain = DrawUtils.Textures.Extras[ExtraID.JerryFlailChain];
+            var chain = TextureCache.JerryClawFlailProjectileChain.GetValue();
             int height = chain.Height - 2;
             var velo = Vector2.Normalize(center + new Vector2(0f, height * 4f) - playerCenter) * height;
             var position = playerCenter;

@@ -46,7 +46,7 @@ namespace AQMod.Content.CursorDyes
         {
             OverrideColor = false;
             var player = Main.LocalPlayer;
-            var drawingPlayer = player.GetModPlayer<GraphicsPlayer>();
+            var drawingPlayer = player.GetModPlayer<AQPlayer>();
             if (drawingPlayer.CursorDyeID != ID.None)
             {
                 var cursorDye = AQMod.CursorDyes.GetContent(drawingPlayer.CursorDyeID);
@@ -71,7 +71,7 @@ namespace AQMod.Content.CursorDyes
         {
             if (CanApplyCursorDye())
             {
-                var type = Main.LocalPlayer.GetModPlayer<GraphicsPlayer>().CursorDyeID;
+                var type = Main.LocalPlayer.GetModPlayer<AQPlayer>().CursorDyeID;
                 if (type != ID.None)
                 {
                     var value = AQMod.CursorDyes.GetContent(type).DrawThickCursor(smart);
@@ -86,7 +86,7 @@ namespace AQMod.Content.CursorDyes
             if (CanApplyCursorDye() && !PlayerInput.UsingGamepad)
             {
                 var player = Main.LocalPlayer;
-                var drawingPlayer = player.GetModPlayer<GraphicsPlayer>();
+                var drawingPlayer = player.GetModPlayer<AQPlayer>();
                 if (drawingPlayer.CursorDyeID != ID.None)
                 {
                     var cursorDye = AQMod.CursorDyes.GetContent(drawingPlayer.CursorDyeID);
@@ -109,7 +109,7 @@ namespace AQMod.Content.CursorDyes
             if (CanApplyCursorDye())
             {
                 var player = Main.LocalPlayer;
-                var drawingPlayer = player.GetModPlayer<GraphicsPlayer>();
+                var drawingPlayer = player.GetModPlayer<AQPlayer>();
                 if (drawingPlayer.CursorDyeID != ID.None)
                 {
                     var cursorDye = AQMod.CursorDyes.GetContent(drawingPlayer.CursorDyeID);

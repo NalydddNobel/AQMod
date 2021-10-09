@@ -1,3 +1,73 @@
+####### v1.2.2 ######
+
+Added Items:
+Crimson Hand Staff
+Corrrupt Pot
+Unity Globe
+# BANNERS #
+Arrow Crab Banner
+Hermit Crab Banner
+Solider Crabs Banner
+Strider Crab Banner
+Cindera Banner
+Magmalbubble Banner
+Trapper Imp Banner
+
+Added NPC:
+Dwarf Starite, a cute little starite critter
+
+* Important Changes: 
+- Yet again, I messed with the player save data, so your current Cursor Dye will not load when updating
+
+- Modified how Glimmering Statues work
+- Glimmering Statues now naturally generate on world creation
+
+- Lowered the HP of the Strider Crab
+* 190 (normal), 380 (expert)
+
+- Overhauled the Staff of Night Vision
+
+- Starites and Super Starites can no longer spawn naturally outside of the Glimmer Event
+- The Glimmer Event can no longer naturally happen if you are below 200 HP, the Dryad is not moved in, or it's a full moon... 
+- Increased the spawn chance of the Glimmer Event to compensate for its extra requirements
+* 300 -> 275 base rarity
+- The Glimmer Event will now start with 150 extra base rarity after is has been cleared, and in hard mode it will gain another 150 base rarity
+- Fixed the spawnrates of the Glimmer Event enemies being weird
+- The Cosmic Marker is now a drop from Starites and Super Starites
+- Removed the crafting recipe for the Cosmic Marker
+
+- Barbs no longer deal damage to town NPCs
+- Barbs should no longer be super powerful
+
+- Removed the Shadow Orb (Placeable) and Crimson Heart (Placeable)
+
+- Buffed the Celeste Torus
+- The Celeste Torus now automatically updates to your current damage and knockback
+
+* Misc Changes:
+- Added a config to change the color of Starite projectiles
+- Fixed a localization issue in the config
+- Centered the spotlight on Ultimate Energy
+- Greatly shortened the mod's description
+- Eliminated the Extra Textures folder
+- The Demon Siege now plays the Pumpkin Moon's music by default
+- Modified the drawcode for Arachnotron Armor
+- The Dye Trader no longer sells Scroll Dye
+- Added a secret debug code
+- You can no longer manually throw the Strider Hook
+- The Platinum Seal now requires Ultimate Energy to craft
+- Made the trail shorter on the Arachnotron Armor
+- Added a glowmask for the Arachnotron Visor and Arachnotron Ribcage item sprites
+- Fixed various issues with Player Layers
+- The "Debug Command" config option is now "Debug Mode"
+- Fixed the Celeste Torus orbs being buggy with dyes
+- Added an outline texture for the Glimmering Statue
+- The text "Omega Starite has awoken!" now appears when summoned through the Ultimate Sword
+- Increased the screen shake intensity of Omega Starite's death
+- Changed the tooltip on the Glimmering Statue
+- The Ultimate Sword (item projectile that gets spawned when Omega Starite dies) now collides with platforms
+- You can now stack Snobsters
+
 ####### v1.2.1 #######
 
 ~ Demon Siege update ~

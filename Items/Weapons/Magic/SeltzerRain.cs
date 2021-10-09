@@ -1,4 +1,5 @@
-﻿using AQMod.Assets.Enumerators;
+﻿using AQMod.Assets;
+using AQMod.Assets.Textures;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Items.Fishing;
@@ -171,13 +172,13 @@ namespace AQMod.Items.Weapons.Magic
             float dist = Vector2.Distance(projectile.Center, Main.MouseWorld);
             if (dist < 200f)
             {
-                colorMult = 1f - dist / MouseDistance;
-                texture = DrawUtils.Textures.Lights[LightID.Spotlight10x50];
+                colorMult = 1f - (dist / MouseDistance);
+                texture = TextureCache.Lights[LightID.Spotlight10x50];
                 frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 color = new Color(50, 15, 190, 0) * colorMult;
                 origin = texture.Size() / 2f;
 
-                var texture2 = DrawUtils.Textures.Lights[LightID.Spotlight20x20];
+                var texture2 = TextureCache.Lights[LightID.Spotlight20x20];
 
                 Main.spriteBatch.Draw(texture2, projectile.position + offset, null, color, projectile.rotation, texture2.Size() / 2f, projectile.scale * (colorMult * colorMult), SpriteEffects.None, 0f);
 

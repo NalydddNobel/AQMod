@@ -1,6 +1,8 @@
-﻿using AQMod.Assets.PlayerLayers;
-using AQMod.Common;
-using AQMod.Items.Energies;
+﻿using AQMod.Common;
+using AQMod.Common.ItemOverlays;
+using AQMod.Common.PlayerLayers;
+using AQMod.Common.PlayerLayers.ArmorOverlays;
+using AQMod.Common.Utilities;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +12,15 @@ namespace AQMod.Items.Armor.Arachnotron
     [AutoloadEquip(EquipType.Body)]
     public class ArachnotronRibcage : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            if (!Main.dedServ)
+            {
+                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow"), item.type);
+                AQMod.ArmorOverlays.AddBodyOverlay<ArachnotronRibcage>(new ArachnotronRibcageOverlay());
+            }
+        }
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -25,14 +36,6 @@ namespace AQMod.Items.Armor.Arachnotron
             player.maxMinions += 1;
             player.meleeSpeed += 0.1f;
             player.endurance += 0.05f;
-        }
-
-        public override void UpdateVanity(Player player, EquipType type)
-        {
-            var drawingPlayer = player.GetModPlayer<GraphicsPlayer>();
-            if (drawingPlayer.oldPosLength < 10)
-                drawingPlayer.oldPosLength = 10;
-            drawingPlayer.specialBody = SpecialBodyID.ArachnotronRibcage;
         }
 
         public override void AddRecipes()

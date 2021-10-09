@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets.Enumerators;
-using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.Textures;
 using AQMod.Common;
+using AQMod.Common.ItemOverlays;
+using AQMod.Common.Utilities;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,7 +13,7 @@ namespace AQMod.Items.Vanities
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new Glowmask(GlowID.MonoxideHatItem), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow"), item.type);
         }
 
         public override void SetDefaults()
@@ -26,10 +26,10 @@ namespace AQMod.Items.Vanities
             item.vanity = true;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, GraphicsPlayer drawingPlayer, int i)
+        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer drawingPlayer, int i)
         {
             drawingPlayer.headOverlay = (int)PlayerHeadOverlayID.MonoxideHat;
-            drawingPlayer.cHeadOverlay = player.dye[i % AQPlayer.DyeWrap].dye;
+            drawingPlayer.cHeadOverlay = player.dye[i % AQPlayer.DYE_WRAP].dye;
         }
     }
 }

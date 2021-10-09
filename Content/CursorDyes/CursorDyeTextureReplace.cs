@@ -2,7 +2,7 @@
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Effects;
-using AQMod.Effects.SpriteBatchModifers;
+using AQMod.Effects.Batchers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -25,7 +25,7 @@ namespace AQMod.Content.CursorDyes
             return Vector2.Zero;
         }
 
-        public sealed override bool PreDrawCursor(Player player, GraphicsPlayer drawingPlayer, Vector2 bonus, bool smart)
+        public sealed override bool PreDrawCursor(Player player, AQPlayer drawingPlayer, Vector2 bonus, bool smart)
         {
             var type = smart ? CursorType.SmartCursor : CursorType.Cursor;
             var tea = TextureEnumeratorArray;
@@ -59,7 +59,7 @@ namespace AQMod.Content.CursorDyes
             return false;
         }
 
-        public override bool PreDrawCursorOverrides(Player player, GraphicsPlayer drawingPlayer)
+        public override bool PreDrawCursorOverrides(Player player, AQPlayer drawingPlayer)
         {
             if (Main.cursorOverride < 0)
             {

@@ -1,4 +1,5 @@
-﻿using AQMod.Assets.Enumerators;
+﻿using AQMod.Assets;
+using AQMod.Assets.Enumerators;
 using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.UserInterface;
@@ -130,7 +131,7 @@ namespace AQMod.Items.Dedicated.nalyddd
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = DrawUtils.Textures.Glows[GlowID.NarrenBolt];
+            Texture2D texture = DrawUtils.LegacyTextureCache.Glows[GlowID.NarrenBolt];
             Vector2 origin = texture.Size() / 2f;
             Vector2 offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             float colorMult = 1f / ProjectileID.Sets.TrailCacheLength[projectile.type];
@@ -148,7 +149,7 @@ namespace AQMod.Items.Dedicated.nalyddd
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader trail = new Trailshader(DrawUtils.Textures.Trails[TrailID.ThickLine], Trailshader.TextureTrail);
+                    Trailshader trail = new Trailshader(TextureCache.Trails[TrailID.ThickLine], Trailshader.TextureTrail);
                     var clr2 = AQUtils.MovingRainbow(projectile.localAI[1]);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20f - p * 20f), (p) => clr2 * 0.65f * (1f - p));
                     trail.Draw();
@@ -166,7 +167,7 @@ namespace AQMod.Items.Dedicated.nalyddd
                     Main.spriteBatch.Draw(texture, projectile.oldPos[i] + offset / 2f - Main.screenPosition, null, clr2 * progress, projectile.rotation, orig2, projectile.scale, SpriteEffects.None, 0f);
                 }
             }
-            texture = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
+            texture = TextureCache.Lights[LightID.Spotlight66x66];
             spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, AQUtils.MovingRainbow(projectile.localAI[1]) * 0.5f, projectile.rotation, texture.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             texture = Main.projectileTexture[projectile.type];
             var drawPos = projectile.Center - Main.screenPosition;

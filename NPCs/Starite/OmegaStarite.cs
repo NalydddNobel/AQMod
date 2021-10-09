@@ -1,20 +1,22 @@
-﻿using AQMod.Assets.Enumerators;
+﻿using AQMod.Assets;
+using AQMod.Assets.Enumerators;
 using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.CrossMod;
 using AQMod.Common.Utilities;
+using AQMod.Content;
 using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents;
 using AQMod.Effects;
 using AQMod.Effects.Screen;
-using AQMod.Items.BossItems.Starite;
-using AQMod.Items.Energies;
+using AQMod.Items;
+using AQMod.Items.Placeable;
 using AQMod.Items.Tools.Markers;
 using AQMod.Items.Vanities.Dyes;
+using AQMod.Items.Vanities.Pets;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged.Bullet;
-using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -26,18 +28,11 @@ using Terraria.ModLoader;
 namespace AQMod.NPCs.Starite
 {
     [AutoloadBossHead()]
-    public class OmegaStarite : ModNPC
+    public class OmegaStarite : ModNPC, IModifiableMusicNPC
     {
         public const float CIRCUMFERENCE = 120;
         public const float RADIUS = CIRCUMFERENCE / 2f;
         private const float DEATH_TIME = MathHelper.PiOver4 * 134;
-
-        public static byte OmegaStariteIndexCache => (byte)(AQMod.omegaStariteIndexCache == -1 ? 255 : AQMod.omegaStariteIndexCache);
-
-        public static bool DistortShaderActive()
-        {
-            return OmegaStariteIndexCache != 255 && (int)Main.npc[OmegaStariteIndexCache].ai[0] == -1;
-        }
 
         public class OmegaStariteOrb
         {
@@ -131,9 +126,9 @@ namespace AQMod.NPCs.Starite
             npc.trapImmune = true;
             npc.lavaImmune = true;
             bossBag = ModContent.ItemType<StariteBag>();
-            if (!GlimmerEvent.ActuallyActive)
+            if (!AQMod.glimmerEvent.IsActive)
                 skipDeathTimer = 600;
-            music = AQMusicManager.GetMusic(AQMusicManager.OmegaStarite);
+            music = GetMusic().GetMusicID();
             musicPriority = MusicPriority.BossMedium;
         }
 
@@ -208,7 +203,7 @@ namespace AQMod.NPCs.Starite
         public void Init()
         {
             npc.TargetClosest(faceTarget: false);
-            AQMod.omegaStariteIndexCache = (short)npc.whoAmI;
+            OmegaStariteSceneManager.OmegaStariteIndexCache = (short)npc.whoAmI;
             bool ftw = false;
             orbs = new List<OmegaStariteOrb>();
             var center = npc.Center;
@@ -221,7 +216,7 @@ namespace AQMod.NPCs.Starite
             }
             else if (Main.expertMode)
             {
-                if (GlimmerEvent.ActuallyActive)
+                if (AQMod.glimmerEvent.IsActive)
                 {
                     spawnRing(center, OmegaStariteOrb.INNER_RING, CIRCUMFERENCE, 1f);
                     spawnRing(center, OmegaStariteOrb.OUTER_RING, CIRCUMFERENCE * 1.75f, 1.25f);
@@ -286,8 +281,8 @@ namespace AQMod.NPCs.Starite
             if (AQNPC.CheckStariteDeath(npc))
             {
                 npc.life = -1;
-                AQMod.omegaStariteIndexCache = -1;
-                AQMod.omegaStariteScene = 0;
+                OmegaStariteSceneManager.OmegaStariteIndexCache = -1;
+                OmegaStariteSceneManager.Scene = 0;
                 npc.HitEffect();
                 Main.PlaySound(SoundID.Dig, npc.Center);
                 npc.active = false;
@@ -391,7 +386,7 @@ namespace AQMod.NPCs.Starite
                         {
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
-                                if (GlimmerEvent.ActuallyActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
+                                if (AQMod.glimmerEvent.IsActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
                                 {
                                     npc.localAI[0]++;
                                     if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
@@ -487,7 +482,7 @@ namespace AQMod.NPCs.Starite
                         if (orbs[OmegaStariteOrb.INNER_RING].radius > orbs[OmegaStariteOrb.INNER_RING].defRadius)
                         {
                             SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].radius - MathHelper.PiOver2 * 3f);
-                            if (GlimmerEvent.ActuallyActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
+                            if (AQMod.glimmerEvent.IsActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
                             {
                                 npc.localAI[0]++;
                                 if (npc.localAI[0] > (Main.expertMode ? 12f : 60f))
@@ -586,7 +581,7 @@ namespace AQMod.NPCs.Starite
                             {
                                 npc.localAI[2] += Main.expertMode ? 0.00015f : 0.000085f;
                             }
-                            if (Main.netMode != NetmodeID.MultiplayerClient && (GlimmerEvent.ActuallyActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius))
+                            if (Main.netMode != NetmodeID.MultiplayerClient && (AQMod.glimmerEvent.IsActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius))
                             {
                                 npc.localAI[0]++;
                                 if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
@@ -632,9 +627,9 @@ namespace AQMod.NPCs.Starite
                             const int width = (int)(CIRCUMFERENCE * 2f);
                             const int height = 900;
                             Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.StariteProjectileColor, 2f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.StariteProjectileColor, 2f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.StariteProjectileColor, 2f);
+                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AQMod.glimmerEvent.stariteProjectileColor, 2f);
+                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AQMod.glimmerEvent.stariteProjectileColor, 2f);
+                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AQMod.glimmerEvent.stariteProjectileColor, 2f);
                         }
                     }
                 }
@@ -678,14 +673,14 @@ namespace AQMod.NPCs.Starite
                                 damage = 20;
                             for (int i = 0; i < 5; i++)
                             {
-                                var v = new Vector2(0f, -1f).RotatedBy(AQMod.TwoPiOver5 * i);
+                                var v = new Vector2(0f, -1f).RotatedBy(MathHelper.TwoPi / 5f * i);
                                 int p = Projectile.NewProjectile(center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
                                 Main.projectile[p].timeLeft += 120;
                             }
                             speed2 *= 1.2f;
                             for (int i = 0; i < 5; i++)
                             {
-                                var v = new Vector2(0f, -1f).RotatedBy(AQMod.TwoPiOver5 * i);
+                                var v = new Vector2(0f, -1f).RotatedBy(MathHelper.TwoPi / 5f * i);
                                 Projectile.NewProjectile(center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
                             }
                         }
@@ -766,7 +761,7 @@ namespace AQMod.NPCs.Starite
                             else
                             {
                                 npc.ai[1] = -npc.ai[3] * 16;
-                                if (GlimmerEvent.ActuallyActive || Vector2.Distance(plrCenter, center) > 400f)
+                                if (AQMod.glimmerEvent.IsActive || Vector2.Distance(plrCenter, center) > 400f)
                                 {
                                     if (Main.netMode != NetmodeID.MultiplayerClient)
                                     {
@@ -781,7 +776,7 @@ namespace AQMod.NPCs.Starite
                                                 damage = 20;
                                             for (int i = 0; i < 5; i++)
                                             {
-                                                var v = new Vector2(0f, -1f).RotatedBy(AQMod.TwoPiOver5 * i);
+                                                var v = new Vector2(0f, -1f).RotatedBy(MathHelper.TwoPi / 5f * i);
                                                 int p = Projectile.NewProjectile(center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
                                                 Main.projectile[p].timeLeft += 120;
                                             }
@@ -884,7 +879,7 @@ namespace AQMod.NPCs.Starite
                         {
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
-                                if (GlimmerEvent.ActuallyActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
+                                if (AQMod.glimmerEvent.IsActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
                                 {
                                     npc.localAI[0]++;
                                     if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
@@ -1054,8 +1049,8 @@ namespace AQMod.NPCs.Starite
                     if (center.Y > npc.ai[2])
                     {
                         int[] choices = new int[] { PHASE_HYPER_STARITE_PART0, PHASE_ASSAULT_PLAYER };
-                        if (AQMod.omegaStariteScene == 1)
-                            AQMod.omegaStariteScene = 2;
+                        if (OmegaStariteSceneManager.Scene == 1)
+                            OmegaStariteSceneManager.Scene = 2;
                         npc.ai[0] = choices[Main.rand.Next(choices.Length)];
                         npc.ai[1] = 0f;
                         npc.ai[2] = 0f;
@@ -1278,7 +1273,7 @@ namespace AQMod.NPCs.Starite
             {
                 if (damage > 300)
                 {
-                    GlimmerEvent.StariteDisco = true;
+                    AQMod.glimmerEvent.StariteDisco = true;
                     Vector2 velo = projectile.velocity * -1.2f;
                     for (int i = 0; i < 8; i++)
                     {
@@ -1303,14 +1298,14 @@ namespace AQMod.NPCs.Starite
 
         public override bool PreNPCLoot()
         {
-            AQMod.omegaStariteScene = 3;
+            OmegaStariteSceneManager.OmegaStariteIndexCache = -1;
+            OmegaStariteSceneManager.Scene = 3;
             return true;
         }
 
         public override void NPCLoot()
         {
-            AQMod.omegaStariteIndexCache = -1;
-            GlimmerEvent.DeactivationTimer = 275;
+            AQMod.glimmerEvent.deactivationTimer = 275;
             if (Main.rand.NextBool(7))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<OmegaStariteTrophy>());
             if (Main.expertMode)
@@ -1337,7 +1332,7 @@ namespace AQMod.NPCs.Starite
             }
             WorldDefeats.DownedStarite = true;
             WorldDefeats.DownedGlimmer = true;
-            if (GlimmerEvent.ActuallyActive)
+            if (AQMod.glimmerEvent.IsActive)
             {
                 switch (Main.rand.Next(3))
                 {
@@ -1364,7 +1359,7 @@ namespace AQMod.NPCs.Starite
                 {
                     var plr = Main.player[i];
                     if (plr.active && npc.playerInteraction[i])
-                        Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(2f, 6f) * (Main.rand.NextBool() ? -1f : 1f), -18f), ModContent.ProjectileType<ItemProjectile>(), 0, 0f, i, ModContent.ItemType<UltimateSword>());
+                        Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(2f, 6f) * (Main.rand.NextBool() ? -1f : 1f), -18f), ModContent.ProjectileType<UltimateSwordItemProjectile>(), 0, 0f, i, ModContent.ItemType<UltimateSword>());
                 }
             }
         }
@@ -1396,10 +1391,10 @@ namespace AQMod.NPCs.Starite
                 {
                     sortedOmegites[i].drawOffset = new Vector3(Main.rand.Next(-range, range), Main.rand.Next(-range, range), Main.rand.Next(-range, range));
                 }
-                GameScreenManager.ChannelEffect("OmegaStariteDeathScreenShake", new OmegaStariteScreenShake((int)(range * 0.5f), 0.01f, Math.Max(6 - (int)(range * 0.5), 1)));
+                GameScreenManager.ChannelEffect("OmegaStariteDeathScreenShake", new OmegaStariteScreenShake((int)(range * 0.8f), 0.01f, Math.Max(6 - (int)(range * 0.8), 1)));
             }
             sortedOmegites.Sort((o, o2) => -(o.position.Z + o.drawOffset.Z).CompareTo(o2.position.Z + o2.drawOffset.Z));
-            var omegiteTexture = DrawUtils.Textures.Extras[ExtraID.Omegite];
+            var omegiteTexture = TextureCache.OmegaStariteOrb.GetValue();
             var omegiteFrame = new Rectangle(0, 0, omegiteTexture.Width, omegiteTexture.Height);
             var omegiteOrigin = omegiteFrame.Size() / 2f;
             float xOff = (float)(Math.Sin(Main.GlobalTime * 3f) + 1f);
@@ -1407,10 +1402,10 @@ namespace AQMod.NPCs.Starite
             float deathSpotlightScale = 0f;
             if (intensity > 3f)
                 deathSpotlightScale = npc.scale * (intensity - 2.1f) * ((float)Math.Sin(npc.ai[1] * 0.1f) + 1f) / 2f;
-            var spotlight = DrawUtils.Textures.Lights[LightID.Spotlight66x66];
+            var spotlight = TextureCache.Lights[LightID.Spotlight66x66];
             var spotlightOrig = spotlight.Size() / 2f;
             Color spotlightColor;
-            if (GlimmerEvent.StariteDisco)
+            if (AQMod.glimmerEvent.StariteDisco)
             {
                 spotlightColor = Main.DiscoColor;
                 spotlightColor.A = 0;
@@ -1498,8 +1493,8 @@ namespace AQMod.NPCs.Starite
                     if (trueOldPos.Count > 1)
                     {
                         const float radius = CIRCUMFERENCE / 2f;
-                        var trailClr = GlimmerEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                        Trailshader trail = new Trailshader(DrawUtils.Textures.Trails[TrailID.Line], Trailshader.TextureTrail);
+                        var trailClr = AQMod.glimmerEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
+                        Trailshader trail = new Trailshader(TextureCache.Trails[TrailID.Line], Trailshader.TextureTrail);
                         trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
                         trail.Draw();
                     }
@@ -1512,7 +1507,7 @@ namespace AQMod.NPCs.Starite
                         if (npc.oldPos[i] == new Vector2(0f, 0f))
                             break;
                         float progress = 1f - 1f / trailLength * i;
-                        var trailClr = GlimmerEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
+                        var trailClr = AQMod.glimmerEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
                         trailClr.A = 0;
                         Main.spriteBatch.Draw(texture, npc.oldPos[i] + offset - Main.screenPosition, npc.frame, trailClr * 0.4f * progress, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
                     }
@@ -1564,5 +1559,7 @@ namespace AQMod.NPCs.Starite
             }
             return false;
         }
+
+        public ModifiableMusic GetMusic() => AQMod.OmegaStariteMusic;
     }
 }

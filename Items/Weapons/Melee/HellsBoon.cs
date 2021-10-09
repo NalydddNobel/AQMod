@@ -1,10 +1,10 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
-using AQMod.Effects.SpriteBatchModifers;
+using AQMod.Effects.Batchers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new Glowmask(GlowID.CorruptHellSword, new Color(200, 200, 200, 0)), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.CorruptHellSword, new Color(200, 200, 200, 0)), item.type);
         }
 
         public override void SetDefaults()

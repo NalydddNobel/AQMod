@@ -1,5 +1,4 @@
-﻿using AQMod.Items.Energies;
-using AQMod.Items.Placeable.Mushrooms;
+﻿using AQMod.Items.Placeable;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

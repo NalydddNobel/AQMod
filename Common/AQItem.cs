@@ -1,14 +1,13 @@
-﻿using AQMod.Assets.ItemOverlays;
+﻿using AQMod.Assets;
 using AQMod.Items.Accessories;
 using AQMod.Items.BuffItems;
 using AQMod.Items.BuffItems.Foods;
-using AQMod.Items.BuffItems.Staffs;
 using AQMod.Items.Fishing.Rods;
-using AQMod.Items.Misc.Markers;
 using AQMod.Items.Weapons.Magic.Support;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -19,6 +18,8 @@ namespace AQMod.Common
 {
     public class AQItem : GlobalItem
     {
+        public static int CorruptionWeaponValue => Item.sellPrice(silver: 50);
+        public static int CrimsonWeaponValue => Item.sellPrice(silver: 55);
         public static int GlimmerWeaponValue => Item.sellPrice(silver: 80);
         public static int PillarWeaponValue => Item.sellPrice(gold: 10);
         public static int CrabsonWeaponValue => Item.sellPrice(silver: 25);
@@ -26,8 +27,8 @@ namespace AQMod.Common
         public static int EnergyBuyValue => Item.sellPrice(gold: 2);
         public static int EnergySellValue => Item.sellPrice(silver: 5);
         public static int PotionValue => Item.sellPrice(silver: 2);
-        public static int EnergyWeaponValue => Item.sellPrice(gold: 4, silver: 50);
-        public static int OmegaStariteWeaponValue => Item.sellPrice(gold: 4);
+        public static int EnergyWeaponValue => Item.sellPrice(gold: 5, silver: 50);
+        public static int OmegaStariteWeaponValue => Item.sellPrice(gold: 2);
 
         public static class Sets
         {
@@ -36,6 +37,8 @@ namespace AQMod.Common
             internal static void Setup()
             {
                 CantBeTurnedIntoMolitePotion = new bool[ItemLoader.ItemCount];
+                CantBeTurnedIntoMolitePotion[ModContent.ItemType<StaffofNightVision>()] = true;
+                CantBeTurnedIntoMolitePotion[ModContent.ItemType<BatonofNightVision>()] = true;
                 CantBeTurnedIntoMolitePotion[ModContent.ItemType<SpicyEel>()] = true;
             }
 
@@ -50,7 +53,7 @@ namespace AQMod.Common
 
         public static bool ItemOnGroundAlready(int type)
         {
-            for (int i= 0; i < Main.maxItems; i++)
+            for (int i = 0; i < Main.maxItems; i++)
             {
                 if (Main.item[i].active && Main.item[i].type == type)
                 {
@@ -147,12 +150,6 @@ namespace AQMod.Common
             if (item.type == ItemID.Starfury && player.GetModPlayer<AQPlayer>().moonShoes)
                 return 1.5f;
             return 1f;
-        }
-
-        public override void ModifyWeaponDamage(Item item, Player player, ref float add, ref float mult, ref float flat)
-        {
-            if (item.type == ItemID.Starfury && player.GetModPlayer<AQPlayer>().moonShoes)
-                mult += 0.1f;
         }
 
         internal static int FindVanillaTooltipLineIndex(List<TooltipLine> tooltips, string tooltipName)
@@ -315,14 +312,14 @@ namespace AQMod.Common
         {
             if (item.type < Main.maxItemTypes)
                 return;
-            ItemOverlayLoader.GetOverlay(item.type)?.DrawWorld(item, lightColor, alphaColor, rotation, scale, whoAmI);
+            AQMod.ItemOverlays.GetOverlay(item.type)?.DrawWorld(item, lightColor, alphaColor, rotation, scale, whoAmI);
         }
 
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             if (item.type < Main.maxItemTypes)
                 return true;
-            if (!ItemOverlayLoader.GetOverlay(item.type)?.PreDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale) == false)
+            if (!AQMod.ItemOverlays.GetOverlay(item.type)?.PreDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale) == false)
             {
                 return false;
             }
@@ -333,7 +330,7 @@ namespace AQMod.Common
         {
             if (item.type < Main.maxItemTypes)
                 return;
-            ItemOverlayLoader.GetOverlay(item.type)?.PostDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale);
+            AQMod.ItemOverlays.GetOverlay(item.type)?.PostDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale);
         }
 
         internal static Vector2 getItemDrawPos_NoAnimation(Item item)

@@ -1,5 +1,4 @@
-﻿using AQMod.Assets.Textures;
-using AQMod.Common.Utilities;
+﻿using AQMod.Assets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -109,7 +108,7 @@ namespace AQMod.Common
         public static void DrawWall(int i, int j, Texture2D texture, Color color)
         {
             var tile = Main.tile[i, j];
-            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X - 8, j * 16 - (int)Main.screenPosition.Y - 8) + DrawUtils.TileZero, new Rectangle(tile.wallFrameX(), tile.wallFrameY() + Main.wallFrame[tile.wall] * 180, 32, 32), color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X - 8, j * 16 - (int)Main.screenPosition.Y - 8) + AQMod.TileZero, new Rectangle(tile.wallFrameX(), tile.wallFrameY() + Main.wallFrame[tile.wall] * 180, 32, 32), color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
         public static void DrawChain_UseLighting(Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos)
@@ -130,7 +129,7 @@ namespace AQMod.Common
 
         public static void DrawJerryChain(Vector2 currentPosition, Vector2 endPosition)
         {
-            var chain = DrawUtils.Textures.Extras[ExtraID.JerryChain];
+            var chain = TextureCache.JerryClawChain.GetValue();
             int height = chain.Height - 2;
             var velo = Vector2.Normalize(endPosition + new Vector2(0f, height * 4f) - currentPosition) * height;
             var position = currentPosition;

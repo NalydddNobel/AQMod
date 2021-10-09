@@ -1,30 +1,20 @@
-﻿using AQMod.Common;
-using AQMod.Content;
+﻿using AQMod.Tiles;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Misc.Markers
+namespace AQMod.Items.Tools.Markers
 {
     public abstract class MapMarker : ModItem
     {
-        public abstract int GetID();
-
-        public sealed override bool UseItem(Player player)
+        public virtual void GlobeEffects(Player player, TEGlobe globe)
         {
-            int id = GetID();
-            var mapMarkerPlayer = player.GetModPlayer<MapMarkerPlayer>();
-            if (mapMarkerPlayer.MarkersObtained[id])
-            {
-                return false;
-            }
-            else
-            {
-                mapMarkerPlayer.MarkersObtained[id] = true;
-                mapMarkerPlayer.MarkersHidden[id] = false;
-                return true;
-            }
+            player.AddBuff(BuffID.Regeneration, 240);
         }
 
-        public abstract string Apply(Player player, AQPlayer aQPlayer, string mouseText, MapMarkerPlayer mapMarkerPlayer);
+        public virtual void PreAddMarker(Player player, TEGlobe globe)
+        {
+
+        }
     }
 }

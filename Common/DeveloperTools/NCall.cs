@@ -1,15 +1,15 @@
 ﻿using AQMod.Common.Config;
 using AQMod.Common.IO;
 using AQMod.Common.Utilities;
-using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Skies;
 using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.WorldEvents.Glimmer;
+using AQMod.Content.WorldEvents.Siege;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Town.Robster;
-using AQMod.Sounds;
+using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -43,9 +43,9 @@ namespace AQMod.Common.DeveloperTools
             public override void UpdateEquip(Item item, Player player)
             {
                 if (headOverlay > -1)
-                    player.GetModPlayer<GraphicsPlayer>().headOverlay = headOverlay;
+                    player.GetModPlayer<AQPlayer>().headOverlay = headOverlay;
                 if (mask > -1)
-                    player.GetModPlayer<GraphicsPlayer>().mask = mask;
+                    player.GetModPlayer<AQPlayer>().mask = mask;
             }
 
             public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -80,6 +80,123 @@ namespace AQMod.Common.DeveloperTools
             {
                 default:
                 caller.Reply("Command doesn't exist.");
+                break;
+
+                case "npcssetname":
+                {
+                    string name = args[1];
+                    for (int i = 2; i < args.Length; i++)
+                    {
+                        name += " " + args[i];
+                    }
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        Main.npc[i].GivenName = name;
+                    }
+                }
+                break;
+
+                case "npcssethp":
+                {
+                    int hp = int.Parse(args[1]);
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        Main.npc[i].lifeMax = hp;
+                        Main.npc[i].life = hp;
+                    }
+                }
+                break;
+
+                case "generateglimmers":
+                {
+                    AQWorldGen.GenerateGlimmeringStatues(null);
+                }
+                break;
+
+                case "generateglobes":
+                {
+                    AQWorldGen.GenerateGlobeTemples(null);
+                }
+                break;
+
+                case "placeglimmer":
+                {
+                    caller.Reply("placed correctly: " + AQWorldGen.PlaceGlimmeringStatue((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
+                }
+                break;
+
+                case "createsample":
+                {
+                    Texture2D result = null;
+                    switch (args[1])
+                    {
+                        case "alphafix":
+                        {
+                            result = new AlphaFixer(args[2]).CreateImage(int.Parse(args[3]), int.Parse(args[4]));
+                        }
+                        break;
+
+                        case "spotlight":
+                        {
+                            result = new SpotlightCircle().CreateImage(int.Parse(args[2]), int.Parse(args[3]));
+                        }
+                        break;
+
+                        case "fester":
+                        {
+                            if (args.Length > 4)
+                            {
+                                result = new FesteringCircle(float.Parse(args[4]), float.Parse(args[5]), float.Parse(args[6]), float.Parse(args[7]), float.Parse(args[8])).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
+                            }
+                            else
+                            {
+                                result = new FesteringCircle(1f, 1f, 1f, 0.2f, 2f).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
+                            }
+                        }
+                        break;
+
+                        case "aura":
+                        {
+                            var getTexture = ModContent.GetTexture(args[2]);
+                            int maxWidth = 4;
+                            if (args.Length > 3)
+                            {
+                                maxWidth = int.Parse(args[3]);
+                            }
+                            Vector3 tint = new Vector3(1f, 1f, 1f);
+                            if (args.Length > 4)
+                            {
+                                tint.X = float.Parse(args[4]);
+                                tint.Y = float.Parse(args[5]);
+                                tint.Z = float.Parse(args[6]);
+                            }
+                            result = new Aura(getTexture, tint, maxWidth).CreateImage(getTexture.Width, getTexture.Height);
+                        }
+                        break;
+                    }
+                    string path = Main.SavePath + Path.DirectorySeparatorChar + "Mods" + Path.DirectorySeparatorChar + "Cache" + Path.DirectorySeparatorChar + "AQMod";
+                    Directory.CreateDirectory(path);
+                    result.SaveAsPng(File.Create(path + Path.DirectorySeparatorChar + "ncallresult.png"), result.Width, result.Height);
+                    Utils.OpenFolder(path);
+                }
+                break;
+
+                case "glimmerlayer":
+                {
+                    caller.Reply("glimmer layer: " + GlimmerEvent.GetLayerIndex(AQMod.glimmerEvent.GetTileDistance(caller.Player)));
+                }
+                break;
+
+                case "placeglobe":
+                {
+                    caller.Reply("placed correctly: " + AQWorldGen.PlaceGlobeTemple((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
+                }
+                break;
+
+                case "placeuglobe":
+                {
+                    caller.Reply("placed correctly: " + Globe.PlaceUndiscoveredGlobe(Main.MouseWorld.ToTileCoordinates()));
+                }
                 break;
 
                 case "robstersave":
@@ -168,16 +285,6 @@ namespace AQMod.Common.DeveloperTools
                 }
                 break;
 
-                case "mapstuff":
-                {
-                    var mapPlayer = caller.Player.GetModPlayer<MapMarkerPlayer>();
-                    for (int i = 0; i < MapMarkerPlayer.MapMarkerCount; i++)
-                    {
-                        caller.Reply(i + ":" + mapPlayer.MarkersObtained[i] + ", " + mapPlayer.MarkersHidden[i]);
-                    }
-                }
-                break;
-
                 case "crabseasonstart":
                 {
                     CrabSeason.Activate();
@@ -205,14 +312,6 @@ namespace AQMod.Common.DeveloperTools
                 case "langmerge":
                 {
                     LangHelper.Merge(GameCulture.FromLegacyId(int.Parse(args[1])));
-                }
-                break;
-
-                case "music":
-                {
-                    caller.Reply(AQMusicManager.Crabson.ToString());
-                    caller.Reply(AQMusicManager.GlimmerEvent.ToString());
-                    caller.Reply(AQMusicManager.OmegaStarite.ToString());
                 }
                 break;
 
@@ -571,48 +670,6 @@ namespace AQMod.Common.DeveloperTools
                 }
                 break;
 
-                case "glimmerevent":
-                {
-                    if (args.Length == 1)
-                    {
-                        caller.Reply("GlimmerEvent.active: " + GlimmerEvent.IsActive);
-                        caller.Reply("GlimmerEvent.X: " + GlimmerEvent.X + "(" + AQUtils.Info_GetCompass(GlimmerEvent.X * 16f) + ")");
-                        caller.Reply("GlimmerEvent.Y: " + GlimmerEvent.Y + "(" + AQUtils.Info_GetDepthMeter(GlimmerEvent.Y * 16f) + ")");
-                        caller.Reply("GlimmerEvent.GlimmerChance: " + GlimmerEvent.GlimmerChance);
-                    }
-                    else
-                    {
-                        switch (args[1])
-                        {
-                            case "checkdowned":
-                            {
-                                caller.Reply("WorldDefeats.DownedGlimmer: " + WorldDefeats.DownedGlimmer);
-                            }
-                            break;
-
-                            case "downed":
-                            {
-                                WorldDefeats.DownedGlimmer = !WorldDefeats.DownedGlimmer;
-                                caller.Reply("WorldDefeats.DownedGlimmer: " + WorldDefeats.DownedGlimmer);
-                            }
-                            break;
-
-                            case "x":
-                            if (args.Length > 2)
-                            {
-                                GlimmerEvent.X = (ushort)int.Parse(args[2]);
-                            }
-                            else
-                            {
-                                GlimmerEvent.X = (ushort)(caller.Player.position.X / 16f);
-                            }
-                            caller.Reply("GlimmerEvent.X: " + GlimmerEvent.X + "(" + AQUtils.Info_GetCompass(GlimmerEvent.X * 16f) + ")");
-                            break;
-                        }
-                    }
-                }
-                break;
-
                 case "moonphase":
                 {
                     if (args.Length > 1)
@@ -679,9 +736,9 @@ namespace AQMod.Common.DeveloperTools
 
                 case "checkcursor":
                 {
-                    var drawingPlayer = Main.LocalPlayer.GetModPlayer<GraphicsPlayer>();
-                    caller.Reply(nameof(GraphicsPlayer.CursorDyeID) + ":" + drawingPlayer.CursorDyeID);
-                    caller.Reply(nameof(GraphicsPlayer.CursorDye) + ":" + drawingPlayer.CursorDye);
+                    var drawingPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
+                    caller.Reply(nameof(AQPlayer.CursorDyeID) + ":" + drawingPlayer.CursorDyeID);
+                    caller.Reply(nameof(AQPlayer.CursorDye) + ":" + drawingPlayer.CursorDye);
                     caller.Reply(nameof(AQMod.CursorDyes.Count) + ":" + AQMod.CursorDyes.Count);
                     for (int i = 0; i < AQMod.CursorDyes.Count; i++)
                     {
@@ -726,42 +783,6 @@ namespace AQMod.Common.DeveloperTools
                 case "omori":
                 {
                     Main.LocalPlayer.GetModPlayer<AQPlayer>().omoriDeathTimer = 1;
-                }
-                break;
-
-                case "glimmer":
-                caller.Reply("chance: " + GlimmerEvent.GlimmerChance);
-                caller.Reply("active: " + GlimmerEvent.ActuallyActive);
-                caller.Reply("fake active: " + GlimmerEvent.FakeActive);
-                break;
-
-                case "glimmerstart":
-                GlimmerEvent.GlimmerChance = GlimmerEvent.GlimmerChanceMax;
-                GlimmerEvent.ActuallyActive = true;
-                GlimmerEventSky.InitNight();
-                GlimmerEvent.Activate();
-                break;
-
-                case "glimmerend":
-                GlimmerEvent.Deactivate();
-                break;
-
-                case "glimmerinit":
-                GlimmerEvent.UpdateNight();
-                GlimmerEventSky.InitNight();
-                break;
-
-                case "staritedisco":
-                {
-                    GlimmerEvent.StariteDisco = !GlimmerEvent.StariteDisco;
-                    if (!GlimmerEvent.StariteDisco)
-                        GlimmerEvent.StariteProjectileColor = GlimmerEvent.StariteProjectileColorOrig;
-                }
-                break;
-
-                case "staritedisco2":
-                {
-                    GlimmerEvent.StariteDisco = !GlimmerEvent.StariteDisco;
                 }
                 break;
 

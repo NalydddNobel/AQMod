@@ -53,7 +53,7 @@ namespace AQMod.Items.Placeable.Torches
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.UltrabrightTorch, 20);
-            recipe.AddIngredient(ModContent.ItemType<Mushrooms.KryptonMushroom>());
+            recipe.AddIngredient(ModContent.ItemType<KryptonMushroom>());
             recipe.SetResult(this, 20);
             recipe.AddRecipe();
         }

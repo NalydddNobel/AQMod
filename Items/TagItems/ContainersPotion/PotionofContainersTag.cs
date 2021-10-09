@@ -1,5 +1,5 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.Content.Recipes;
+﻿using AQMod.Common.Recipes;
+using AQMod.Common.Utilities;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

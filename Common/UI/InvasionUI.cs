@@ -1,8 +1,8 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.WorldEvents.Siege;
+using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,7 +34,7 @@ namespace AQMod.Common.UI
                 currentInvasionType = DemonSiegeInvasion;
                 InvasionType = DemonSiegeInvasion;
             }
-            else if (GlimmerEvent.CanShowInvasionProgress())
+            else if (AQMod.glimmerEvent.CanShowInvasionProgress())
             {
                 currentInvasionType = GlimmerEventInvasion;
                 InvasionType = GlimmerEventInvasion;
@@ -63,9 +63,9 @@ namespace AQMod.Common.UI
                 {
                     case GlimmerEventInvasion:
                     {
-                        invasionProgress = 1f - (float)GlimmerEvent.GetTileDistance(Main.LocalPlayer) / GlimmerEvent.MaxDistance;
+                        invasionProgress = 1f - (float)AQMod.glimmerEvent.GetTileDistance(Main.LocalPlayer) / GlimmerEvent.MaxDistance;
                         uiStyle = 0;
-                        texture = DrawUtils.Textures.Extras[ExtraID.GlimmerEventEventIcon];
+                        texture = TextureCache.GlimmerEventEventIcon.Value;
                         text = AQText.GlimmerEvent().Value;
                         color = new Color(120, 20, 110, 128);
                     }

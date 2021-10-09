@@ -1,0 +1,205 @@
+﻿using AQMod.Common;
+using AQMod.Items.Placeable;
+using AQMod.Items.Tools.Markers;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+
+namespace AQMod.Tiles
+{
+    public class Globe : ModTile
+    {
+        internal static List<MapMarker> _registeredMarkers;
+
+        public static void RegisterMarker<T>() where T : MapMarker
+        {
+            if (AQMod.Loading)
+            {
+                int type = ModContent.ItemType<T>();
+                if (type >= Main.maxItemTypes)
+                {
+                    var item = new Item();
+                    item.SetDefaults(type, noMatCheck: true);
+                    _registeredMarkers.Add((T)item.modItem);
+                }
+            }
+        }
+
+        public static bool PlaceUndisoveredGlobe(int x, int y)
+        {
+           return PlaceUndiscoveredGlobe(new Point(x, y));
+        }
+
+        public static bool PlaceUndiscoveredGlobe(Point p)
+        {
+            WorldGen.PlaceTile(p.X, p.Y, ModContent.TileType<Globe>());
+            Tile tile = Main.tile[p.X, p.Y];
+            if (tile.type == ModContent.TileType<Globe>())
+            {
+                var objectData = TileObjectData.GetTileData(tile);
+                int x = p.X - tile.frameX % 36 / 18;
+                int y = p.Y - tile.frameY / 18;
+                objectData.HookPostPlaceMyPlayer.hook(x, y, tile.type, objectData.Style, 0);
+                int index = ModContent.GetInstance<TEGlobe>().Find(x, y);
+                if (index == -1)
+                {
+                    return false;
+                }
+                TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
+                globe.discovered = false;
+                return true;
+            }
+            return false;
+        }
+
+        public override void SetDefaults()
+        {
+            Main.tileFrameImportant[Type] = true;
+            TileID.Sets.HasOutlines[Type] = true;
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
+            TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(ModContent.GetInstance<TEGlobe>().Hook_AfterPlacement, -1, 0, true);
+            TileObjectData.addTile(Type);
+            dustType = DustID.Stone;
+            disableSmartCursor = true;
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("{$Mods.AQMod.ItemName.GlobeItem}");
+            AddMapEntry(new Color(180, 180, 180), name);
+
+            _registeredMarkers = new List<MapMarker>();
+            RegisterMarker<CosmicTelescope>();
+            RegisterMarker<DungeonMap>();
+            RegisterMarker<LihzahrdMap>();
+            RegisterMarker<RetroGoggles>();
+        }
+
+        private Item getMarker(Player player)
+        {
+            for (int i = 0; i < Main.maxInventory; i++)
+            {
+                if (player.inventory[i].type >= Main.maxItemTypes)
+                {
+                    for (int j = 0; j < _registeredMarkers.Count; j++)
+                    {
+                        if (player.inventory[i].type == _registeredMarkers[j].item.type)
+                        {
+                            return player.inventory[i];
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        private Item getMarker(Player player, TEGlobe globe)
+        {
+            for (int i = 0; i < Main.maxInventory; i++)
+            {
+                if (player.inventory[i].type >= Main.maxItemTypes)
+                {
+                    for (int j = 0; j < _registeredMarkers.Count; j++)
+                    {
+                        if (player.inventory[i].type == _registeredMarkers[j].item.type && !globe.AlreadyHasMarker(player.inventory[i].modItem.mod.Name, player.inventory[i].modItem.Name))
+                        {
+                            return player.inventory[i];
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public override bool HasSmartInteract()
+        {
+            return true;
+        }
+
+        public override void MouseOver(int i, int j)
+        {
+            Tile tile = Main.tile[i, j];
+            int x = i - (tile.frameX % 36 / 18);
+            int y = j - (tile.frameY / 18);
+            int index = ModContent.GetInstance<TEGlobe>().Find(x, y);
+            var plr = Main.LocalPlayer;
+            if (index == -1)
+            {
+                plr.noThrow = 2;
+                plr.showItemIcon = true;
+                plr.showItemIcon2 = ModContent.ItemType<GlobeItem>();
+                return;
+            }
+            TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
+            var item = getMarker(Main.LocalPlayer, globe);
+            if (item != null)
+            {
+                plr.noThrow = 2;
+                plr.showItemIcon = true;
+                plr.showItemIcon2 = item.type;
+            }
+        }
+
+        public override bool NewRightClick(int i, int j)
+        {
+            Tile tile = Main.tile[i, j];
+            int x = i - tile.frameX % 36 / 18;
+            int y = j - tile.frameY / 18;
+            int index = ModContent.GetInstance<TEGlobe>().Find(x, y);
+            if (index == -1)
+            {
+                return false;
+            }
+            TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
+            var item = getMarker(Main.LocalPlayer, globe);
+            if (item != null && !globe.AlreadyHasMarker((MapMarker)item.modItem))
+            {
+                Main.PlaySound(SoundID.Grab);
+                ((MapMarker)item.modItem).PreAddMarker(Main.LocalPlayer, globe);
+                globe.AddMarker((MapMarker)item.Clone().modItem);
+                Main.LocalPlayer.ConsumeItem(item.type);
+            }
+            //else
+            //{
+            //    foreach (var marker in globe.markers)
+            //    {
+            //        Main.NewText(marker.mod.Name + ":" + marker.Name);
+            //    }
+            //}
+            return true;
+        }
+
+        public override void NearbyEffects(int i, int j, bool closer)
+        {
+            var plr = Main.LocalPlayer;
+            if (Vector2.Distance(new Vector2(i * 16f, j * 16f), plr.Center) < 200f)
+            {
+                Tile tile = Main.tile[i, j];
+                int x = i - (tile.frameX % 36 / 18);
+                int y = j - (tile.frameY / 18);
+                int index = ModContent.GetInstance<TEGlobe>().Find(x, y);
+                if (index == -1)
+                {
+                    return;
+                }
+                TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
+                globe.Discover();
+                var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
+                aQPlayer.nearGlobe = 32;
+                aQPlayer.globeX = (ushort)globe.Position.X;
+                aQPlayer.globeY = (ushort)globe.Position.Y;
+                foreach (var m in globe.markers)
+                {
+                    m.GlobeEffects(Main.LocalPlayer, globe);
+                }
+            }
+        }
+
+        public override void KillMultiTile(int i, int j, int frameX, int frameY)
+        {
+            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<Items.Placeable.GlobeItem>());
+            ModContent.GetInstance<TEGlobe>().Kill(i, j);
+        }
+    }
+}

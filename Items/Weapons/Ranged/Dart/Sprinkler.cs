@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Items.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

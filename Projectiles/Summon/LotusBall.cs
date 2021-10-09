@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Enumerators;
+using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
@@ -102,7 +102,7 @@ namespace AQMod.Projectiles.Summon
 
         public static void Draw(Vector2 center, float rotation, float scale, int i, float j)
         {
-            var texture = DrawUtils.Textures.Lights[LightID.Spotlight30x30];
+            var texture = TextureCache.Lights[LightID.Spotlight30x30];
             float intensity = ModContent.GetInstance<AQConfigClient>().EffectIntensity * (((float)Math.Sin(Main.GlobalTime * 4f) + 1f) / 4f + 0.2f + (1f - j / 9f) * 0.75f);
             var orig = texture.Size() / 2f;
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, null, new Color(128, 95, 10, 0) * intensity, 0f, orig, scale * intensity, SpriteEffects.None, 0f);

@@ -1,5 +1,5 @@
-﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.Textures;
+﻿using AQMod.Assets.Textures;
+using AQMod.Common.ItemOverlays;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -12,7 +12,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                ItemOverlayLoader.Register(new Glowmask(GlowID.StariteBlade, new Color(200, 200, 200, 0)), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.StariteBlade, new Color(200, 200, 200, 0)), item.type);
         }
 
         public override void SetDefaults()

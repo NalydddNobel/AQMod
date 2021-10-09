@@ -1,20 +1,27 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets;
+using AQMod.Assets.Enumerators;
 using AQMod.Common.Config;
+using AQMod.Common.IO;
 using AQMod.Common.Utilities;
+using AQMod.Content;
+using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
 using AQMod.Content.Skies;
-using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Effects.Screen;
 using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
+using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.Fishing;
 using AQMod.Items.Fishing.Bait;
 using AQMod.Items.Fishing.QuestFish;
+using AQMod.Items.Placeable;
 using AQMod.Items.Placeable.Walls;
-using AQMod.Items.Placeable.WorldInteractors;
 using AQMod.Items.TagItems.Starbyte;
+using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
+using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -31,12 +39,18 @@ namespace AQMod.Common
 {
     public sealed class AQPlayer : ModPlayer
     {
-        internal const int MaxArmor = 20;
-        internal const int DyeWrap = MaxArmor / 2;
-
         public const int MaxCelesteTorusOrbs = 5;
+        public const int MAX_ARMOR = 20;
+        public const int DYE_WRAP = MAX_ARMOR / 2;
+        public const int FRAME_HEIGHT = 56;
+        public const int FRAME_COUNT = 20;
+        public const float CELESTE_Z_MULT = 0.0157f;
+        public const int ARACHNOTRON_OLD_POS_LENGTH = 8;
 
-        public int ExtractinatorCount { get; set; }
+        public static int oldPosLength;
+        public static Vector2[] oldPosVisual;
+        public static bool arachnotronHeadTrail;
+        public static bool arachnotronBodyTrail;
 
         public bool bossrush;
         public float discountPercentage;
@@ -97,13 +111,118 @@ namespace AQMod.Common
         public byte weaponShootTag;
         public ushort shieldLife;
         public bool burnterizerCursor;
+        public bool crimsonHands;
+        public bool chomper;
+        public bool cosmicMap;
+        public bool dungeonMap;
+        public bool lihzahrdMap;
+        public bool retroMap;
+        public bool showCosmicMap = true;
+        public bool showDungeonMap = true;
+        public bool showLihzahrdMap = true;
+        public bool showRetroMap = true;
+        public byte nearGlobe;
+        public ushort globeX;
+        public ushort globeY;
+        public bool hasMinionCarry;
+        public int headMinionCarryX;
+        public int headMinionCarryY;
+        public int headMinionCarryXOld;
+        public int headMinionCarryYOld;
+        public bool mothmanMaskSpecial;
+        public Color cataEyeColor;
+        public byte monoxiderCarry;
+        public int headOverlay = -1;
+        public int mask = -1;
+        public int cHeadOverlay;
+        public int cMask;
+        public int cCelesteTorus;
 
         public byte ClosestEnemy { get; private set; }
         public float ClosestEnemyDistance { get; private set; }
-
         public int PopperType { get; private set; }
         public int PopperBaitPower { get; private set; }
         public int FishingPowerCache { get; private set; }
+        public int ExtractinatorCount { get; set; }
+        public int CursorDyeID { get; private set; } = CursorDyeLoader.ID.None;
+        public string CursorDye { get; private set; } = "";
+
+        public void SetCursorDye(int type)
+        {
+            if (type <= CursorDyeLoader.ID.None || type > AQMod.CursorDyes.Count)
+            {
+                CursorDyeID = CursorDyeLoader.ID.None;
+                CursorDye = "";
+            }
+            else
+            {
+                CursorDyeID = type;
+                var cursorDye = AQMod.CursorDyes.GetContent(type);
+                CursorDye = AQStringCodes.EncodeName(cursorDye.Mod, cursorDye.Name);
+            }
+        }
+
+        public void SetMinionCarryPos(int x, int y)
+        {
+            hasMinionCarry = true;
+            headMinionCarryX = x;
+            headMinionCarryY = y;
+        }
+
+        public Vector2 GetHeadCarryPosition()
+        {
+            int x;
+            if (headMinionCarryX != 0)
+            {
+                x = headMinionCarryX;
+            }
+            else if (headMinionCarryXOld != 0)
+            {
+                x = headMinionCarryXOld;
+            }
+            else
+            {
+                x = (int)player.position.X + (player.width / 2);
+            }
+            int y;
+            if (headMinionCarryY != 0)
+            {
+                y = headMinionCarryY;
+            }
+            else if (headMinionCarryYOld != 0)
+            {
+                y = headMinionCarryYOld;
+            }
+            else
+            {
+                y = (int)player.position.Y + (player.height / 2);
+            }
+            return new Vector2(x, y);
+        }
+
+        /// <summary>
+        /// Item is the item, int is the index.
+        /// </summary>
+        /// <param name="action"></param>
+        public void ArmorAction(Action<Item, int> action)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                action(player.armor[i], i);
+            }
+        }
+
+        /// <summary>
+        /// Item is the item, bool is the hide flag, int is the index.
+        /// </summary>
+        /// <param name="action"></param>
+        public void AccessoryAction(Action<Item, bool, int> action)
+        {
+            for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
+            {
+                action(player.armor[i], player.hideVisual[i], i);
+            }
+        }
 
         public bool TagProjectile(Projectile projectile)
         {
@@ -119,6 +238,17 @@ namespace AQMod.Common
         public static void Setup()
         {
             On.Terraria.Player.FishingLevel += GetFishingLevel;
+        }
+
+        public void HeadMinionSummonCheck(int type)
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.HeadMinion[Main.projectile[i].type])
+                {
+                    Main.projectile[i].Kill();
+                }
+            }
         }
 
         private static int GetFishingLevel(On.Terraria.Player.orig_FishingLevel orig, Player player)
@@ -168,11 +298,30 @@ namespace AQMod.Common
         {
             if (blueSpheres)
             {
+                float playerPercent = player.statLife / (float)player.statLifeMax2;
+                celesteTorusMaxRadius = GetCelesteTorusMaxRadius(playerPercent);
+                celesteTorusRadius = MathHelper.Lerp(celesteTorusRadius, celesteTorusMaxRadius, 0.1f);
+                celesteTorusDamage = GetCelesteTorusDamage();
+                celesteTorusKnockback = GetCelesteTorusKnockback();
+
+                celesteTorusScale = 1f + (celesteTorusRadius * 0.006f) + (celesteTorusDamage * 0.009f) + (celesteTorusKnockback * 0.0015f);
+
                 var type = ModContent.ProjectileType<CelesteTorusProjectile>();
                 if (player.ownedProjectileCounts[type] <= 0)
                     Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
+                else
+                {
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == ModContent.ProjectileType<CelesteTorusProjectile>())
+                        {
+                            Main.projectile[i].damage = celesteTorusDamage;
+                            Main.projectile[i].knockBack = celesteTorusKnockback;
+                            break;
+                        }
+                    }
+                }
                 var center = player.Center;
-                float playerPercent = player.statLife / (float)player.statLifeMax2;
                 bool danger = false;
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
@@ -197,13 +346,6 @@ namespace AQMod.Common
                     celesteTorusY += 0.01f;
                     celesteTorusZ += celesteTorusSpeed;
                 }
-
-                celesteTorusMaxRadius = GetCelesteTorusMaxRadius(playerPercent);
-                celesteTorusRadius = MathHelper.Lerp(celesteTorusRadius, celesteTorusMaxRadius, 0.1f);
-                celesteTorusDamage = GetCelesteTorusDamage();
-                celesteTorusKnockback = GetCelesteTorusKnockback();
-
-                celesteTorusScale = 1f + celesteTorusRadius * 0.006f + celesteTorusDamage * 0.009f + celesteTorusKnockback * 0.0015f;
             }
             else
             {
@@ -231,7 +373,29 @@ namespace AQMod.Common
 
         public float GetCelesteTorusKnockback()
         {
-            return 6.5f + player.velocity.Length() * 0.8f;
+            return 6.5f + (player.velocity.Length() * 0.8f);
+        }
+
+        public Vector3[] celesteTorusDrawOffsets;
+
+        public int GetOldPosCountMaxed(int maxCount)
+        {
+            int count = 0;
+            for (; count < maxCount; count++)
+            {
+                if (oldPosVisual[count] == default(Vector2))
+                    break;
+            }
+            return count;
+        }
+
+        public static bool ShouldDrawOldPos(Player player)
+        {
+            if (player.mount.Active || player.frozen || player.stoned || player.GetModPlayer<AQPlayer>().mask >= 0)
+            {
+                return false;
+            }
+            return true;
         }
 
         public override void Initialize()
@@ -242,7 +406,27 @@ namespace AQMod.Common
             spoiled = 0;
             sparkling = false;
             weaponShootTag = 0;
-            shieldLife = 0;
+            nearGlobe = 0;
+            headMinionCarryX = 0;
+            headMinionCarryY = 0;
+            headMinionCarryXOld = 0;
+            headMinionCarryYOld = 0;
+            headOverlay = -1;
+            mask = -1;
+            CursorDyeID = 0;
+            cHeadOverlay = 0;
+            cMask = 0;
+            cCelesteTorus = 0;
+            monoxiderCarry = 0;
+            cataEyeColor = new Color(50, 155, 255, 0);
+            showCosmicMap = true;
+            showDungeonMap = true;
+            showLihzahrdMap = true;
+            showRetroMap = true;
+            oldPosLength = 0;
+            oldPosVisual = null;
+            arachnotronHeadTrail = false;
+            arachnotronBodyTrail = false;
         }
 
         public override void OnEnterWorld(Player player)
@@ -256,19 +440,29 @@ namespace AQMod.Common
             return new TagCompound()
             {
                 ["extractinatorCount"] = ExtractinatorCount,
+                ["CursorDye"] = CursorDye,
             };
         }
 
         public override void Load(TagCompound tag)
         {
             ExtractinatorCount = tag.GetInt("extractinatorCount");
+            string dyeKey = tag.GetString("CursorDye");
+            if (!string.IsNullOrEmpty(dyeKey) && AQStringCodes.DecodeName(dyeKey, out string cursorDyeMod, out string cursorDyeName))
+            {
+                SetCursorDye(AQMod.CursorDyes.GetContentID(cursorDyeMod, cursorDyeName));
+            }
+            else
+            {
+                SetCursorDye(CursorDyeLoader.ID.None);
+            }
         }
 
         public override void UpdateBiomeVisuals()
         {
             if (flyingSafe > -1)
             {
-                if (player.flyingPigChest >= 0 || player.chest != -3 || !Main.projectile[flyingSafe].active || Main.projectile[flyingSafe].type != ModContent.ProjectileType<Projectiles.ATM>())
+                if (player.flyingPigChest >= 0 || player.chest != -3 || !Main.projectile[flyingSafe].active || Main.projectile[flyingSafe].type != ModContent.ProjectileType<ATMPet>())
                 {
                     flyingSafe = -1;
                 }
@@ -297,7 +491,7 @@ namespace AQMod.Common
             {
                 GameScreenManager.Update();
             }
-            AQUtils.UpdateSky((GlimmerEvent.IsActive || AQMod.omegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
+            AQUtils.UpdateSky((AQMod.glimmerEvent.IsActive || OmegaStariteSceneManager.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
             //if (AQConfigClient.Instance.ScreenDistortShader)
             //    player.ManageSpecialBiomeVisuals(VisualsManager.DistortX, OmegaStarite.DistortShaderActive());
         }
@@ -308,8 +502,8 @@ namespace AQMod.Common
             {
                 if (player.position.Y < Main.worldSurface * 16f)
                 {
-                    if (GlimmerEvent.IsActive)
-                        return DrawUtils.Textures.Extras[ExtraID.GlimmerMapBackground];
+                    if (AQMod.glimmerEvent.IsActive)
+                        return TextureCache.MapBGGlimmer.Value;
                 }
             }
             return null;
@@ -317,7 +511,7 @@ namespace AQMod.Common
 
         public static bool InVanitySlot(Player player, int type)
         {
-            for (int i = GraphicsPlayer.DYE_WRAP; i < GraphicsPlayer.MAX_ARMOR; i++)
+            for (int i = DYE_WRAP; i < MAX_ARMOR; i++)
             {
                 if (player.armor[i].type == type)
                 {
@@ -335,7 +529,7 @@ namespace AQMod.Common
                 {
                     player.flyingPigChest = -1;
                     player.chest = -3;
-                    Main.projectile[flyingSafe].type = ModContent.ProjectileType<Projectiles.ATM>();
+                    Main.projectile[flyingSafe].type = ModContent.ProjectileType<ATMPet>();
                 }
             }
             bossrush = false;
@@ -375,6 +569,27 @@ namespace AQMod.Common
             veinmineTiles = new bool[TileLoader.TileCount];
             weaponShootTag = AQProjectile.TagID.None;
             shieldLife = 0;
+            crimsonHands = false;
+            chomper = false;
+            cosmicMap = false;
+            dungeonMap = false;
+            lihzahrdMap = false;
+            retroMap = false;
+            headMinionCarryXOld = headMinionCarryX;
+            headMinionCarryYOld = headMinionCarryY;
+            headMinionCarryX = 0;
+            headMinionCarryY = 0;
+            headOverlay = -1;
+            mask = -1;
+            cHeadOverlay = 0;
+            cMask = 0;
+            cCelesteTorus = 0;
+            monoxiderCarry = 0;
+            cataEyeColor = new Color(50, 155, 255, 0);
+            if (nearGlobe > 0)
+            {
+                nearGlobe--;
+            }
             if (burnterizerCursor)
             {
                 if (Main.myPlayer == player.whoAmI)
@@ -418,6 +633,12 @@ namespace AQMod.Common
             blueSpheres = false;
             sparkling = false;
             burnterizerCursor = false;
+            monoxiderCarry = 0;
+            if (Main.myPlayer == player.whoAmI)
+            {
+                oldPosLength = 0;
+                oldPosVisual = null;
+            }
         }
 
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -447,6 +668,32 @@ namespace AQMod.Common
                 }
             }
             return true;
+        }
+
+        public override void PostUpdateBuffs()
+        {
+            monoxiderCarry = 0;
+            var monoxider = ModContent.ProjectileType<MonoxiderMinion>();
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile p = Main.projectile[i];
+                if (p.active && p.type == monoxider && p.ai[0] > 0f)
+                    monoxiderCarry++;
+            }
+        }
+
+        public override void UpdateVanityAccessories()
+        {
+            for (int i = 0; i < MAX_ARMOR; i++)
+            {
+                if (player.armor[i].type <= Main.maxItemTypes)
+                    continue;
+                bool hidden = i < 10 && player.hideVisual[i];
+                if (player.armor[i].modItem is IUpdateEquipVisuals update && !hidden)
+                    update.UpdateEquipVisuals(player, this, i);
+            }
+            if (player.GetModPlayer<AQPlayer>().monoxiderBird)
+                headOverlay = (int)PlayerHeadOverlayID.MonoxideHat;
         }
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
@@ -485,7 +732,7 @@ namespace AQMod.Common
             {
                 if (Main.myPlayer == player.whoAmI)
                 {
-                    int type = ModContent.ProjectileType<MechaSpiderLegs>();
+                    int type = ModContent.ProjectileType<ArachnotronLegs>();
                     if (player.ownedProjectileCounts[type] <= 0)
                     {
                         int p = Projectile.NewProjectile(player.Center, Vector2.Zero, type, 33, 1f, player.whoAmI);
@@ -826,7 +1073,7 @@ namespace AQMod.Common
                 {
                     caughtType = ModContent.ItemType<Crabdaughter>();
                 }
-                if (GlimmerEvent.ActuallyActive)
+                if (AQMod.glimmerEvent.IsActive)
                 {
                     if (player.position.Y < Main.worldSurface * 16f)
                     {
@@ -834,7 +1081,7 @@ namespace AQMod.Common
                         {
                             caughtType = ModContent.ItemType<Fizzler>();
                         }
-                        else if (((int)(player.position.X / 16f + player.width / 2) - GlimmerEvent.X).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
+                        else if (((int)(player.position.X / 16f + player.width / 2) - AQMod.glimmerEvent.tileX).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
                         {
                             caughtType = ModContent.ItemType<UltraEel>();
                         }
@@ -875,8 +1122,45 @@ namespace AQMod.Common
             }
         }
 
+        private Vector2 getCataDustSpawnPos(int gravityOffset, int headFrame)
+        {
+            var spawnPos = new Vector2((int)(player.position.X + player.width / 2) - 3f, (int)(player.position.Y + 12f + gravityOffset) + Main.OffsetsPlayerHeadgear[headFrame].Y) + player.headPosition;
+            if (player.direction == -1)
+                spawnPos.X -= 4f;
+            spawnPos.X -= 0.6f;
+            spawnPos.Y -= 0.6f;
+            return spawnPos;
+        }
+
+        private void CataEyeDust(Vector2 spawnPos)
+        {
+            int d = Dust.NewDust(spawnPos + new Vector2(0f, -6f), 6, 6, ModContent.DustType<MonoDust>(), 0, 0, 0, cataEyeColor);
+            if (Main.rand.NextBool(600))
+            {
+                Main.dust[d].velocity = player.velocity.RotatedBy(Main.rand.NextFloat(-0.025f, 0.025f)) * 2;
+                Main.dust[d].velocity.X += Main.windSpeed * 20f + player.velocity.X / -2f;
+                Main.dust[d].velocity.Y -= Main.rand.NextFloat(8f, 16f);
+                Main.dust[d].scale *= Main.rand.NextFloat(0.65f, 2f);
+            }
+            else
+            {
+                Main.dust[d].velocity = player.velocity * 1.1f;
+                Main.dust[d].velocity.X += Main.windSpeed * 2.5f + player.velocity.X / -2f;
+                Main.dust[d].velocity.Y -= Main.rand.NextFloat(4f, 5.65f);
+                Main.dust[d].scale *= Main.rand.NextFloat(0.95f, 1.4f);
+            }
+            Main.dust[d].shader = GameShaders.Armor.GetSecondaryShader(cMask, player);
+            Main.playerDrawDust.Add(d);
+        }
+
         public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
+            if (Main.myPlayer == drawInfo.drawPlayer.whoAmI)
+            {
+                oldPosLength = 0;
+                arachnotronHeadTrail = false;
+                arachnotronBodyTrail = false;
+            }
             if (sparkling)
             {
                 if (drawInfo.shadow == 0f)
@@ -896,6 +1180,106 @@ namespace AQMod.Common
                 b *= (float)Math.Sin(positionLength + offset * 2f) + 1f;
                 Lighting.AddLight(player.Center, r * 0.25f, g * 0.25f, b * 0.25f);
             }
+            if (drawInfo.shadow == 0f)
+            {
+                for (int i = 0; i < DYE_WRAP; i++)
+                {
+                    if (player.armor[i].type > Main.maxItemTypes && !player.hideVisual[i] && player.armor[i].modItem is IUpdateEquipVisuals updateVanity)
+                        updateVanity.UpdateEquipVisuals(player, this, i);
+                }
+                for (int i = DYE_WRAP; i < MAX_ARMOR; i++)
+                {
+                    if (player.armor[i].type > Main.maxItemTypes && player.armor[i].modItem is IUpdateEquipVisuals updateVanity)
+                        updateVanity.UpdateEquipVisuals(player, this, i);
+                }
+                int gravityOffset = 0;
+                int headFrame = player.bodyFrame.Y / FRAME_HEIGHT;
+                if (player.gravDir == -1)
+                    gravityOffset = 8;
+                switch ((PlayerMaskID)mask)
+                {
+                    case PlayerMaskID.CataMask:
+                    {
+                        if (cMask > 0)
+                            cataEyeColor = new Color(100, 100, 100, 0);
+                        if (!player.mount.Active && !player.merman && !player.wereWolf && player.statLife == player.statLifeMax2)
+                        {
+                            mothmanMaskSpecial = true;
+                            float dustAmount = (Main.rand.Next(2, 3) + 1) * ModContent.GetInstance<AQConfigClient>().EffectQuality;
+                            if (dustAmount < 1f)
+                            {
+                                if (Main.rand.NextFloat(dustAmount) > 0.1f)
+                                    CataEyeDust(getCataDustSpawnPos(gravityOffset, headFrame));
+                            }
+                            else
+                            {
+                                var spawnPos = getCataDustSpawnPos(gravityOffset, headFrame);
+                                for (int i = 0; i < dustAmount; i++)
+                                {
+                                    CataEyeDust(spawnPos);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+            var aQPlayer = drawInfo.drawPlayer.GetModPlayer<AQPlayer>();
+            var drawPlayer = drawInfo.drawPlayer.GetModPlayer<AQPlayer>();
+            if (aQPlayer.blueSpheres)
+            {
+                celesteTorusDrawOffsets = new Vector3[MaxCelesteTorusOrbs];
+                for (int i = 0; i < MaxCelesteTorusOrbs; i++)
+                {
+                    celesteTorusDrawOffsets[i] = aQPlayer.GetCelesteTorusPositionOffset(i);
+                }
+            }
+            if (!aQPlayer.chomper && aQPlayer.monoxiderBird)
+            {
+                aQPlayer.headOverlay = (byte)PlayerHeadOverlayID.MonoxideHat;
+            }
+        }
+
+        public override void ModifyDrawLayers(List<PlayerLayer> layers)
+        {
+            int i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Head"));
+            if (i != -1)
+            {
+                PlayerDrawLayerInstances.postDrawHead.visible = true;
+                layers.Insert(i + 1, PlayerDrawLayerInstances.postDrawHead);
+            }
+            i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Body"));
+            if (i != -1)
+            {
+                PlayerDrawLayerInstances.postDrawBody.visible = true;
+                layers.Insert(i + 1, PlayerDrawLayerInstances.postDrawBody);
+            }
+            i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("HeldItem"));
+            if (i != -1)
+            {
+                PlayerDrawLayerInstances.postDrawHeldItem.visible = true;
+                layers.Insert(i + 1, PlayerDrawLayerInstances.postDrawHeldItem);
+            }
+            i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Wings"));
+            if (i != -1)
+            {
+                PlayerDrawLayerInstances.postDrawWings.visible = true;
+                layers.Insert(i + 1, PlayerDrawLayerInstances.postDrawWings);
+            }
+            PlayerDrawLayerInstances.preDraw.visible = true;
+            layers.Insert(0, PlayerDrawLayerInstances.preDraw);
+            PlayerDrawLayerInstances.postDraw.visible = true;
+            layers.Add(PlayerDrawLayerInstances.postDraw);
+        }
+
+        public override void ModifyDrawHeadLayers(List<PlayerHeadLayer> layers)
+        {
+            layers.Add(PlayerDrawLayerInstances.postDrawHeadHead);
+        }
+
+        public override void ModifyScreenPosition()
+        {
+            GameScreenManager.ModifyScreenPosition();
         }
 
         public static bool PlayerCrit(int critChance, UnifiedRandom rand)
@@ -905,11 +1289,6 @@ namespace AQMod.Common
             if (critChance <= 0)
                 return false;
             return rand.NextBool(100 - critChance);
-        }
-
-        public override void ModifyScreenPosition()
-        {
-            GameScreenManager.ModifyScreenPosition();
         }
     }
 }
