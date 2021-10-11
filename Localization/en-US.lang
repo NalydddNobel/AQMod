@@ -23,6 +23,7 @@ Common.Config_EffectIntensity=Effect Intensity
 Common.Config_LoadItemOverlays=Load Item Overlays
 Common.Config_BackgroundStarites=Background Starites
 Common.Config_StariteProjColor=Starite Color (Projectiles)
+Common.Config_TonsofScreenShakes=Tons of Screen Shakes
 #
 Common.Config_TrailShader=Enable Trail Shaders
 Common.Config_ScrollShader=Enable Scroll Shaders
@@ -398,6 +399,7 @@ ItemName.XenonBasher=Xenon Basher
 # Ranged
 # Bows
 ItemName.CinnabarBow=Cinnabar Bow
+ItemName.HamaYumi=Hama Yumi
 # Dart
 ItemName.SpiralingTwilight=Spiraling Twilight
 ItemName.Sprinkler=Sprinkler
@@ -629,6 +631,8 @@ ItemTooltip.HellsBoon=Creates ash spikes around your cursor which protrude out o
 ItemTooltip.Galactium=Rains glimmer stars from the sky
 ItemTooltip.XenonBasher=Hitting enemies will create xenon spores
 # Ranged
+# Bows
+ItemTooltip.HamaYumi=Converts arrows into exploding shade arrows
 # Dart
 ItemTooltip.SpiralingTwilight={$Mods.AQMod.Common.UseDarts}
 ItemTooltip.Sprinkler={$Mods.AQMod.Common.UseDarts}

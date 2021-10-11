@@ -11,7 +11,7 @@ using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Flails;
-using AQMod.Items.Weapons.Ranged.Bows;
+using AQMod.Items.Weapons.Ranged;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using System;

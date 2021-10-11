@@ -310,13 +310,14 @@ namespace AQMod.Items.Weapons.Summon
             return false;
         }
 
-        public static void DrawHead(Player player, AQPlayer aQPlayer, Vector2 drawPos)
+        public static void DrawHead(Player player, AQPlayer aQPlayer, Vector2 drawPos, bool ignorePlayerRotation = true)
         {
             int headFrame = player.bodyFrame.Y / AQPlayer.FRAME_HEIGHT;
             var monoxiderBirdType = ModContent.ProjectileType<MonoxiderMinion>();
             var monoxiderTexture = TextureCache.GetProjectile(monoxiderBirdType);
             var frame = new Rectangle(0, 0, monoxiderTexture.Width, monoxiderTexture.Height / Main.projFrames[monoxiderBirdType] - 2);
-            var drawData = new DrawData(monoxiderTexture, default(Vector2), frame, default(Color), 0f, frame.Size() / 2f, 1f, player.direction == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
+            var drawData = new DrawData(monoxiderTexture, default(Vector2), frame, default(Color), 0f, frame.Size() / 2f, 1f, player.direction == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0)
+            { ignorePlayerRotation = ignorePlayerRotation };
             var offset = new Vector2(0f, 0f);
             if (player.gravDir == -1)
             {

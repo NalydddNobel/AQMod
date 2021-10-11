@@ -3,6 +3,7 @@ using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
+using AQMod.Effects.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -93,6 +94,14 @@ namespace AQMod.Items.Weapons.Magic
         private void CollisionEffects(Vector2 velocity)
         {
             Vector2 spawnPos = projectile.position + velocity;
+            if (Main.myPlayer == projectile.owner && AQMod.TonsofScreenShakes)
+            {
+                float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
+                if (distance < 400)
+                {
+                    GameScreenManager.AddEffect(new ScreenShake(8, AQMod.MultIntensity((int)(400f - distance) / 32)));
+                }
+            }
             DemonicFireballExplosion.Explode(projectile.Center + projectile.velocity, projectile.damage / 2, projectile.damage, projectile.knockBack, projectile.owner);
         }
 

@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.ItemOverlays;
-using AQMod.Projectiles.Ranged.Bullets.Rays;
+using AQMod.Projectiles.Ranged.RayGunBullets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;

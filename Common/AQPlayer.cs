@@ -108,9 +108,7 @@ namespace AQMod.Common
         public bool spiritAmuletHeld;
         public bool[] veinmineTiles;
         public bool degenerationRing;
-        public byte weaponShootTag;
         public ushort shieldLife;
-        public bool burnterizerCursor;
         public bool crimsonHands;
         public bool chomper;
         public bool cosmicMap;
@@ -222,17 +220,6 @@ namespace AQMod.Common
             {
                 action(player.armor[i], player.hideVisual[i], i);
             }
-        }
-
-        public bool TagProjectile(Projectile projectile)
-        {
-            if (!AQProjectile.Sets.UntaggableProjectile[projectile.type] && projectile.damage > 0 && !projectile.bobber && !projectile.noEnchantments && !projectile.counterweight && !projectile.minion)
-            {
-                var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
-                aQProj.projectileTag = weaponShootTag;
-                return true;
-            }
-            return false;
         }
 
         public static void Setup()
@@ -405,7 +392,6 @@ namespace AQMod.Common
             arachnotron = false;
             spoiled = 0;
             sparkling = false;
-            weaponShootTag = 0;
             nearGlobe = 0;
             headMinionCarryX = 0;
             headMinionCarryY = 0;
@@ -567,7 +553,6 @@ namespace AQMod.Common
             voodooAmuletHeld = InVanitySlot(player, ModContent.ItemType<VoodooAmulet>());
             wyvernAmuletHeld = InVanitySlot(player, ModContent.ItemType<WyvernAmulet>());
             veinmineTiles = new bool[TileLoader.TileCount];
-            weaponShootTag = AQProjectile.TagID.None;
             shieldLife = 0;
             crimsonHands = false;
             chomper = false;
@@ -590,19 +575,6 @@ namespace AQMod.Common
             {
                 nearGlobe--;
             }
-            if (burnterizerCursor)
-            {
-                if (Main.myPlayer == player.whoAmI)
-                {
-                    int sightsID = ModContent.ProjectileType<BurnterizerSights>();
-                    if (AQProjectile.CountProjectiles(sightsID) <= 0)
-                    {
-                        Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, sightsID, 0, 0f, player.whoAmI);
-                        player.ownedProjectileCounts[sightsID]++;
-                    }
-                }
-            }
-            burnterizerCursor = false;
             if (!dartHead)
                 dartTrapHatTimer = 240;
             dartHead = false;
@@ -632,7 +604,6 @@ namespace AQMod.Common
             omori = false;
             blueSpheres = false;
             sparkling = false;
-            burnterizerCursor = false;
             monoxiderCarry = 0;
             if (Main.myPlayer == player.whoAmI)
             {
@@ -646,11 +617,6 @@ namespace AQMod.Common
             if (chloroTransfer && type == ProjectileID.Bullet && Main.rand.NextBool(8))
                 type = ProjectileID.ChlorophyteBullet;
             return true;
-        }
-
-        public override void PostItemCheck()
-        {
-            weaponShootTag = 0;
         }
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -816,6 +782,7 @@ namespace AQMod.Common
                     default:
                     return false;
 
+                    case NPCID.TargetDummy:
                     case NPCID.EaterofWorldsHead:
                     case NPCID.EaterofWorldsBody:
                     case NPCID.EaterofWorldsTail:
@@ -865,6 +832,74 @@ namespace AQMod.Common
             }
         }
 
+        public void DoHyperCrystalChannel(NPC target, int damage, float knockback, Vector2 center, Vector2 targCenter)
+        {
+            int boss = -1;
+            float closestDist = 4000f;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.active && CanBossChannel(npc) && !npc.dontTakeDamage)
+                {
+                    float dist = (npc.Center - center).Length();
+                    if (dist < closestDist)
+                    {
+                        boss = i;
+                        closestDist = dist;
+                    }
+                }
+            }
+            if (boss != -1)
+            {
+                int dmg = damage > target.lifeMax ? target.lifeMax : damage;
+                Vector2 normal = Vector2.Normalize(Main.npc[boss].Center - targCenter);
+                int size = 4;
+                var type = ModContent.DustType<MonoDust>();
+                Vector2 position = target.Center - new Vector2(size / 2);
+                int length = (int)(Main.npc[boss].Center - targCenter).Length();
+                if (Main.myPlayer == player.whoAmI && AQMod.TonsofScreenShakes)
+                {
+                    if (length < 800)
+                    {
+                        GameScreenManager.AddEffect(new ScreenShake(12, AQMod.MultIntensity((800 - length) / 32)));
+                    }
+                }
+                int dustLength = length / size;
+                const float offset = MathHelper.TwoPi / 3f;
+                for (int i = 0; i < dustLength; i++)
+                {
+                    Vector2 pos = position + normal * (i * size);
+                    for (int j = 0; j < 6; j++)
+                    {
+                        int d = Dust.NewDust(pos, size, size, type);
+                        float positionLength = Main.dust[d].position.Length() / 32f;
+                        Main.dust[d].color = new Color(
+                            (float)Math.Sin(positionLength) + 1f,
+                            (float)Math.Sin(positionLength + offset) + 1f,
+                            (float)Math.Sin(positionLength + offset * 2f) + 1f,
+                            0.5f);
+                    }
+                }
+                for (int i = 0; i < 8; i++)
+                {
+                    Vector2 normal2 = new Vector2(1f, 0f).RotatedBy(MathHelper.PiOver4 * i);
+                    for (int j = 0; j < 4; j++)
+                    {
+
+                        float positionLength1 = (targCenter + normal2 * (j * 8f)).Length() / 32f;
+                        Color color = new Color(
+                            (float)Math.Sin(positionLength1) + 1f,
+                            (float)Math.Sin(positionLength1 + offset) + 1f,
+                            (float)Math.Sin(positionLength1 + offset * 2f) + 1f,
+                            0.5f);
+                        int d = Dust.NewDust(targCenter, 1, 1, type, default, default, default, color);
+                        Main.dust[d].velocity = normal2 * (j * 3.5f);
+                    }
+                }
+                Projectile.NewProjectile(Main.npc[boss].Center, Vector2.Zero, ModContent.ProjectileType<UltraExplosion>(), dmg * 2, knockback * 2, player.whoAmI);
+            }
+        }
+
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
             var center = player.Center;
@@ -876,62 +911,7 @@ namespace AQMod.Common
                     target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 120);
                     if (!target.SpawnedFromStatue && !CanBossChannel(target) && crit)
                     {
-                        int boss = -1;
-                        float closestDist = 4000f;
-                        for (int i = 0; i < Main.maxNPCs; i++)
-                        {
-                            NPC npc = Main.npc[i];
-                            if (npc.active && CanBossChannel(npc) && !npc.dontTakeDamage)
-                            {
-                                float dist = (npc.Center - center).Length();
-                                if (dist < closestDist)
-                                {
-                                    boss = i;
-                                    closestDist = dist;
-                                }
-                            }
-                        }
-                        if (boss != -1)
-                        {
-                            int dmg = damage > target.lifeMax ? target.lifeMax : damage;
-                            Vector2 normal = Vector2.Normalize(Main.npc[boss].Center - targCenter);
-                            int size = 4;
-                            var type = ModContent.DustType<MonoDust>();
-                            Vector2 position = target.Center - new Vector2(size / 2);
-                            int length = (int)(Main.npc[boss].Center - targCenter).Length() / size;
-                            const float offset = MathHelper.TwoPi / 3f;
-                            for (int i = 0; i < length; i++)
-                            {
-                                Vector2 pos = position + normal * (i * size);
-                                for (int j = 0; j < 6; j++)
-                                {
-                                    int d = Dust.NewDust(pos, size, size, type);
-                                    float positionLength = Main.dust[d].position.Length() / 32f;
-                                    Main.dust[d].color = new Color(
-                                        (float)Math.Sin(positionLength) + 1f,
-                                        (float)Math.Sin(positionLength + offset) + 1f,
-                                        (float)Math.Sin(positionLength + offset * 2f) + 1f,
-                                        0.5f);
-                                }
-                            }
-                            for (int i = 0; i < 8; i++)
-                            {
-                                Vector2 normal2 = new Vector2(1f, 0f).RotatedBy(MathHelper.PiOver4 * i);
-                                for (int j = 0; j < 4; j++)
-                                {
-
-                                    float positionLength1 = (targCenter + normal2 * (j * 8f)).Length() / 32f;
-                                    Color color = new Color(
-                                        (float)Math.Sin(positionLength1) + 1f,
-                                        (float)Math.Sin(positionLength1 + offset) + 1f,
-                                        (float)Math.Sin(positionLength1 + offset * 2f) + 1f,
-                                        0.5f);
-                                    int d = Dust.NewDust(targCenter, 1, 1, type, default, default, default, color);
-                                    Main.dust[d].velocity = normal2 * (j * 3.5f);
-                                }
-                            }
-                            Projectile.NewProjectile(Main.npc[boss].Center, Vector2.Zero, ModContent.ProjectileType<UltraExplosion>(), dmg * 2, knockback * 2, player.whoAmI);
-                        }
+                        DoHyperCrystalChannel(target, damage, knockback, center, targCenter);
                     }
                 }
                 if (primeTime)
@@ -956,62 +936,7 @@ namespace AQMod.Common
                     target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 120);
                     if (!target.SpawnedFromStatue && !CanBossChannel(target) && crit)
                     {
-                        int boss = -1;
-                        float closestDist = 4000f;
-                        for (int i = 0; i < Main.maxNPCs; i++)
-                        {
-                            NPC npc = Main.npc[i];
-                            if (npc.active && CanBossChannel(npc) && !npc.dontTakeDamage)
-                            {
-                                float dist = (npc.Center - center).Length();
-                                if (dist < closestDist)
-                                {
-                                    boss = i;
-                                    closestDist = dist;
-                                }
-                            }
-                        }
-                        if (boss != -1)
-                        {
-                            int dmg = damage > target.lifeMax ? target.lifeMax : damage;
-                            Vector2 normal = Vector2.Normalize(Main.npc[boss].Center - targCenter);
-                            int size = 4;
-                            var type = ModContent.DustType<MonoDust>();
-                            Vector2 position = target.Center - new Vector2(size / 2);
-                            int length = (int)(Main.npc[boss].Center - targCenter).Length() / size;
-                            const float offset = MathHelper.TwoPi / 3f;
-                            for (int i = 0; i < length; i++)
-                            {
-                                Vector2 pos = position + normal * (i * size);
-                                for (int j = 0; j < 6; j++)
-                                {
-                                    int d = Dust.NewDust(pos, size, size, type);
-                                    float positionLength = Main.dust[d].position.Length() / 32f;
-                                    Main.dust[d].color = new Color(
-                                        (float)Math.Sin(positionLength) + 1f,
-                                        (float)Math.Sin(positionLength + offset) + 1f,
-                                        (float)Math.Sin(positionLength + offset * 2f) + 1f,
-                                        0.5f);
-                                }
-                            }
-                            for (int i = 0; i < 8; i++)
-                            {
-                                Vector2 normal2 = new Vector2(1f, 0f).RotatedBy(MathHelper.PiOver4 * i);
-                                for (int j = 0; j < 4; j++)
-                                {
-
-                                    float positionLength1 = (targCenter + normal2 * (j * 8f)).Length() / 32f;
-                                    Color color = new Color(
-                                        (float)Math.Sin(positionLength1) + 1f,
-                                        (float)Math.Sin(positionLength1 + offset) + 1f,
-                                        (float)Math.Sin(positionLength1 + offset * 2f) + 1f,
-                                        0.5f);
-                                    int d = Dust.NewDust(targCenter, 1, 1, type, default, default, default, color);
-                                    Main.dust[d].velocity = normal2 * (j * 3.5f);
-                                }
-                            }
-                            Projectile.NewProjectile(Main.npc[boss].Center, Vector2.Zero, ModContent.ProjectileType<UltraExplosion>(), dmg * 2, knockback * 2, player.whoAmI);
-                        }
+                        DoHyperCrystalChannel(target, damage, knockback, center, targCenter);
                     }
                 }
                 if (primeTime)

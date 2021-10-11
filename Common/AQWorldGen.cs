@@ -827,6 +827,11 @@ namespace AQMod.Common
             return Framing.GetTileSafely(x, y).active() && Main.tileSolid[Main.tile[x, y].type] && !Main.tileCut[Main.tile[x, y].type];
         }
 
+        internal static bool ActiveAndFullySolid(int x, int y)
+        {
+            return Framing.GetTileSafely(x, y).active() && Main.tileSolid[Main.tile[x, y].type] && !Main.tileSolidTop[Main.tile[x, y].type] && !Main.tileCut[Main.tile[x, y].type];
+        }
+
         internal static bool ActiveAndUncuttable(int x, int y)
         {
             return Framing.GetTileSafely(x, y).active() && !Main.tileCut[Main.tile[x, y].type];

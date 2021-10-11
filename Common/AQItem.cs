@@ -30,6 +30,11 @@ namespace AQMod.Common
         public static int EnergyWeaponValue => Item.sellPrice(gold: 5, silver: 50);
         public static int OmegaStariteWeaponValue => Item.sellPrice(gold: 2);
 
+        public static Color GetAlphaDemonSiegeWeapon(Color lightColor)
+        {
+            return new Color(lightColor.R * lightColor.R, lightColor.G * lightColor.G, lightColor.B * lightColor.B, lightColor.A);
+        }
+
         public static class Sets
         {
             public static bool[] CantBeTurnedIntoMolitePotion { get; private set; }

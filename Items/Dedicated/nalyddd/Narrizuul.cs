@@ -181,6 +181,14 @@ namespace AQMod.Items.Dedicated.nalyddd
 
         public override void Kill(int timeLeft)
         {
+            if (Main.myPlayer == projectile.owner && AQMod.TonsofScreenShakes)
+            {
+                float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
+                if (distance < 800)
+                {
+                    GameScreenManager.AddEffect(new ScreenShake(8, AQMod.MultIntensity((int)(800f - distance) / 32)));
+                }
+            }
             Color color = AQUtils.MovingRainbow(projectile.localAI[1]) * 1.5f;
             for (int i = 0; i < 20; i++)
             {

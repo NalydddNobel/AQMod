@@ -563,7 +563,7 @@ namespace AQMod.NPCs.Starite
                                     Main.PlaySound(SoundID.Trackable, npc.Center, 188);
                                     if (Main.netMode != NetmodeID.Server)
                                     {
-                                        GameScreenManager.AddEffect(new OmegaStariteScreenShake(8, 0.02f));
+                                        GameScreenManager.AddEffect(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f * AQMod.EffectIntensity));
                                     }
                                     int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaRay>(), 100, 1f, Main.myPlayer, npc.whoAmI);
                                     Main.projectile[p].scale = 0.75f;

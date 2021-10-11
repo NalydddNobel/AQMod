@@ -25,6 +25,7 @@ namespace AQMod.Assets.Textures
         StaffofSwiftness = 12,
         [Obsolete]
         StaffofIronskin = 13,
+        [Obsolete]
         CorruptHellSword = 14,
         GlimmeringStatue = 15,
         CorruptHellYoyo = 16,
@@ -74,6 +75,7 @@ namespace AQMod.Assets.Textures
         MoonlightWallWall = 54,
         XenonBasher = 55,
         StariteStaff = 56,
+        [Obsolete]
         Burnterizer = 57,
         Count
     }

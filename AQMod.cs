@@ -120,7 +120,12 @@ namespace AQMod
         /// Use this value to tune down bright, flashy things. Default value is 1.
         /// </summary>
         public static float EffectIntensity { get; private set; }
-        public static float EffectIntensityMultipliable => 2f - EffectIntensity;
+        public static float EffectIntensityMinus => 2f - EffectIntensity;
+        public static int MultIntensity(int input)
+        {
+            return (int)(input * EffectIntensity);
+        }
+        public static bool TonsofScreenShakes { get; private set; }
         /// <summary>
         /// Whether or not the background starites from the Glimmer Event should be shown. Default value is true
         /// </summary>
@@ -283,31 +288,6 @@ namespace AQMod
                         self.item[i].value = (int)(self.item[i].value * discountPercentage);
                 }
             }
-        }
-
-        /// <summary>
-        /// Modifies <see cref="Projectile.NewProjectile(float, float, float, float, int, int, float, int, float, float)"/>, so that any projectiles owned by the player can get tagged on creation. I haven't actually checked but I think <see cref="Projectile.NewProjectile(Vector2, Vector2, int, int, float, int, float, float)"/> literally just calls this method, I don't know about <see cref="Projectile.NewProjectileDirect(Vector2, Vector2, int, int, float, int, float, float)"/> though... I'm 99% certain it also calls this by calling the previous method
-        /// </summary>
-        /// <param name="orig"></param>
-        /// <param name="X"></param>
-        /// <param name="Y"></param>
-        /// <param name="SpeedX"></param>
-        /// <param name="SpeedY"></param>
-        /// <param name="Type"></param>
-        /// <param name="Damage"></param>
-        /// <param name="KnockBack"></param>
-        /// <param name="Owner"></param>
-        /// <param name="ai0"></param>
-        /// <param name="ai1"></param>
-        /// <returns></returns>
-        private int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
-        {
-            int p = orig(X, Y, SpeedX, SpeedY, Type, Damage, KnockBack, Owner, ai0, ai1);
-            if (Owner >= 0 && Owner < 255 && Main.player[Owner].active && !Main.player[Owner].dead)
-            {
-                Main.player[Owner].GetModPlayer<AQPlayer>().TagProjectile(Main.projectile[p]);
-            }
-            return p;
         }
 
         /// <summary>
@@ -683,6 +663,7 @@ namespace AQMod
             EffectQuality = clientConfig.EffectQuality;
             EffectIntensity = clientConfig.EffectIntensity;
             ShowBackgroundStarites = clientConfig.BackgroundStarites;
+            TonsofScreenShakes = clientConfig.TonsofScreenShakes;
         }
 
         public static void OnTurnNight()

@@ -26,6 +26,10 @@ namespace AQMod.Common.Config
         [Range(0.1f, 2f)]
         public float EffectIntensity { get; set; }
 
+        [Label(AQText.ConfigValueKey + "TonsofScreenShakes")]
+        [DefaultValue(false)]
+        public bool TonsofScreenShakes { get; set; }
+
         [Label(AQText.ConfigValueKey + "TrailShader")]
         [DefaultValue(true)]
         [ReloadRequired()]
