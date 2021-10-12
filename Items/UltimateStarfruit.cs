@@ -53,7 +53,7 @@ namespace AQMod.Items
                 }
                 else
                 {
-                    AQMod.glimmerEvent.Activate();
+                    AQMod.glimmerEvent.Activate(resetSpawnChance: false);
                     AQMod.BroadcastMessage(AQText.Key + "Common.GlimmerEventWarning", GlimmerEvent.TextColor);
                     Main.PlaySound(SoundID.Roar, player.position, 0);
                 }

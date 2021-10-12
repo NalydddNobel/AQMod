@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Enumerators;
 using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.UserInterface;
@@ -149,7 +148,7 @@ namespace AQMod.Items.Dedicated.nalyddd
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader trail = new Trailshader(TextureCache.Trails[TrailID.ThickLine], Trailshader.TextureTrail);
+                    Trailshader trail = new Trailshader(TextureCache.Trails[TrailTextureID.ThickLine], Trailshader.TextureTrail);
                     var clr2 = AQUtils.MovingRainbow(projectile.localAI[1]);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20f - p * 20f), (p) => clr2 * 0.65f * (1f - p));
                     trail.Draw();

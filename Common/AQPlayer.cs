@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Enumerators;
 using AQMod.Common.Config;
 using AQMod.Common.IO;
 using AQMod.Common.Skies;
@@ -868,7 +867,7 @@ namespace AQMod.Common
                 {
                     if (length < 800)
                     {
-                        GameScreenManager.AddEffect(new ScreenShake(12, AQMod.MultIntensity((800 - length) / 32)));
+                        GameScreenManager.AddEffect(new ScreenShake(12, AQMod.MultIntensity((800 - length) / 128)));
                     }
                 }
                 int dustLength = length / size;

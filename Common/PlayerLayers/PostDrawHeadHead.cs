@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Enumerators;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;

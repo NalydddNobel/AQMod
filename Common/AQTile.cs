@@ -60,7 +60,7 @@ namespace AQMod.Common
             switch (type)
             {
                 case TileID.ShadowOrbs:
-                return !AQConfigServer.Instance.evilProgressionLock || NPC.downedSlimeKing || NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee || Main.hardMode || Main.LocalPlayer.HeldItem.hammer >= 60;
+                return !AQMod.EvilProgressionLock || AQMod.DryadCanMoveIn() || Main.LocalPlayer.HeldItem.hammer >= 60;
             }
             if (!Main.tileFrameImportant[type] && Main.tileSolid[type])
             {
@@ -78,10 +78,10 @@ namespace AQMod.Common
             {
                 case TileID.Ebonstone:
                 case TileID.Crimstone:
-                return !AQConfigServer.Instance.evilProgressionLock || NPC.downedBoss2 || Main.hardMode || j < 400;
+                return !AQMod.EvilProgressionLock || NPC.downedBoss2 || Main.hardMode || j < 400;
 
                 case TileID.ShadowOrbs:
-                return !AQConfigServer.Instance.evilProgressionLock || NPC.downedSlimeKing || NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee || Main.hardMode;
+                return !AQMod.EvilProgressionLock || AQMod.DryadCanMoveIn();
             }
             if (!Main.tileFrameImportant[type] && Main.tileSolid[type])
             {

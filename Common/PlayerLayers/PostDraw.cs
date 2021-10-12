@@ -77,11 +77,11 @@ namespace AQMod.Common.PlayerLayers
                 for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)
                 {
                     var position = aQPlayer.GetCelesteTorusPositionOffset(i);
-                    float layerValue = Parralax.GetParralaxScale(1f, aQPlayer.celesteTorusDrawOffsets[i].Z * AQPlayer.CELESTE_Z_MULT);
+                    float layerValue = ThreeDimensionsEffect.GetParralaxScale(1f, aQPlayer.celesteTorusDrawOffsets[i].Z * AQPlayer.CELESTE_Z_MULT);
                     if (layerValue >= 1f)
                     {
                         var center = info.position + new Vector2(player.width / 2 + (int)position.X, player.height / 2 + (int)position.Y);
-                        Main.playerDrawData.Add(new DrawData(texture, Parralax.GetParralaxPosition(center, aQPlayer.celesteTorusDrawOffsets[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, Parralax.GetParralaxScale(aQPlayer.celesteTorusScale, aQPlayer.celesteTorusDrawOffsets[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = aQPlayer.cCelesteTorus, ignorePlayerRotation = true });
+                        Main.playerDrawData.Add(new DrawData(texture, ThreeDimensionsEffect.GetParralaxPosition(center, aQPlayer.celesteTorusDrawOffsets[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, ThreeDimensionsEffect.GetParralaxScale(aQPlayer.celesteTorusScale, aQPlayer.celesteTorusDrawOffsets[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = aQPlayer.cCelesteTorus, ignorePlayerRotation = true });
                     }
                 }
             }

@@ -80,7 +80,6 @@ namespace AQMod.Projectiles.Pets
         }
         void ISuperClunkyMoneyTroughTypeThing.OnClose()
         {
-            //Main.NewText("a?");
             Main.PlaySound(SoundID.Item97);
         }
     }

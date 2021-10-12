@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Enumerators;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Content.Dusts;
@@ -68,7 +67,7 @@ namespace AQMod.Projectiles
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader.FullDraw(TextureCache.Trails[TrailID.Line], Trailshader.TextureTrail,
+                    Trailshader.FullDraw(TextureCache.Trails[TrailTextureID.Line], Trailshader.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }

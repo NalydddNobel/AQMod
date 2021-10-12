@@ -3,26 +3,29 @@ using Terraria;
 
 namespace AQMod.Common
 {
-    internal struct Parralax
+    internal struct ThreeDimensionsEffect
     {
         public const float Z_VIEW = -20f;
 
         public readonly Vector2 WorldViewPosition;
         public readonly float ViewScale;
 
-        public static float GameParallax { get; private set; }
-
         internal static Vector2 GetParralaxPosition(Vector2 origin, float z)
         {
+            z = MultZ(z);
             Vector2 viewPos = new Vector2(Main.screenPosition.X + Main.screenWidth / 2f, Main.screenPosition.Y + Main.screenHeight / 2f);
             return new Vector2(origin.X - (1f - (-Z_VIEW / (z - Z_VIEW))) * (origin.X - viewPos.X), origin.Y - (1f - (-Z_VIEW / (z - Z_VIEW))) * (origin.Y - viewPos.Y));
         }
 
-        public static float GetParralaxScale(float originalScale, float z) => originalScale * (-Z_VIEW / (z - Z_VIEW));
-
-        public static float ParralaxLerp(float z)
+        public static float GetParralaxScale(float originalScale, float z)
         {
-            return MathHelper.Lerp(z, 0f, GameParallax);
+            z = MultZ(z);
+            return originalScale * (-Z_VIEW / (z - Z_VIEW));
+        }
+
+        public static float MultZ(float z)
+        {
+            return z *= AQMod.Effect3Dness + 0.01f; // adding 0.001 because some things actually rely on z for layering
         }
 
         /// <summary>
@@ -31,16 +34,11 @@ namespace AQMod.Common
         /// <param name="worldPosition"></param>
         /// <param name="baseScale"></param>
         /// <param name="z"></param>
-        public Parralax(Vector2 worldPosition, float baseScale, float z)
+        public ThreeDimensionsEffect(Vector2 worldPosition, float baseScale, float z)
         {
-            z = ParralaxLerp(z);
+            z = MultZ(z);
             WorldViewPosition = GetParralaxPosition(worldPosition, z);
             ViewScale = GetParralaxScale(baseScale, z);
-        }
-
-        internal static void RefreshParralax()
-        {
-            GameParallax = (Main.caveParallax - 0.8f) * 5f;
         }
     }
 }

@@ -27,6 +27,7 @@ using AQMod.Items.Vanities;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Localization;
 using AQMod.NPCs;
+using AQMod.NPCs.Boss.Crabson;
 using AQMod.NPCs.Boss.Starite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -121,6 +122,10 @@ namespace AQMod
         /// </summary>
         public static float EffectIntensity { get; private set; }
         public static float EffectIntensityMinus => 2f - EffectIntensity;
+        public static float Effect3Dness { get; private set; }
+        public static bool HarderOmegaStarite { get; private set; }
+        public static bool EvilProgressionLock { get; private set; }
+        public static bool ConfigReduceSpawnsWhenYouShould { get; private set; }
         public static int MultIntensity(int input)
         {
             return (int)(input * EffectIntensity);
@@ -200,6 +205,8 @@ namespace AQMod
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
             On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
             On.Terraria.Main.DrawTiles += Main_DrawTiles;
+            var server = AQConfigServer.Instance;
+            ApplyServerConfig(server);
             if (!Main.dedServ)
             {
                 var client = AQConfigClient.Instance;
@@ -211,7 +218,6 @@ namespace AQMod
                 GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
                 OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
                 DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
-                Parralax.RefreshParralax();
                 SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
                 GlimmerEventSky.Initialize();
                 Trailshader.Setup();
@@ -661,8 +667,16 @@ namespace AQMod
         {
             EffectQuality = clientConfig.EffectQuality;
             EffectIntensity = clientConfig.EffectIntensity;
+            Effect3Dness = clientConfig.Effect3D;
             ShowBackgroundStarites = clientConfig.BackgroundStarites;
             TonsofScreenShakes = clientConfig.TonsofScreenShakes;
+        }
+
+        public static void ApplyServerConfig(AQConfigServer serverConfig)
+        {
+            HarderOmegaStarite = serverConfig.harderOmegaStarite;
+            EvilProgressionLock = serverConfig.evilProgressionLock;
+            ConfigReduceSpawnsWhenYouShould = serverConfig.reduceSpawns;
         }
 
         public static void OnTurnNight()
@@ -698,6 +712,21 @@ namespace AQMod
         internal static bool VariableLuck(int chance, UnifiedRandom rand)
         {
             return chance < 1 || rand.NextBool(chance);
+        }
+
+        internal static bool DryadCanMoveIn()
+        {
+            return NPC.downedSlimeKing || NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee || Main.hardMode;
+        }
+
+        internal static bool reduceSpawnrates()
+        {
+            return NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) || NPC.AnyNPCs(ModContent.NPCType<JerryCrabson>());
+        }
+
+        public static bool ShouldReduceSpawns()
+        {
+            return ConfigReduceSpawnsWhenYouShould && reduceSpawnrates();
         }
     }
 }

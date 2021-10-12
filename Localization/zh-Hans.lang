@@ -23,6 +23,7 @@ Common.Config_EffectIntensity=效果强度
 Common.Config_LoadItemOverlays=加载物品覆盖层
 Common.Config_BackgroundStarites=星源背景
 Common.Config_StariteProjColor=星源弹幕的颜色
+Common.Config_TonsofScreenShakes=屏幕震动
 #
 Common.Config_TrailShader=启用尾痕残影着色器
 Common.Config_ScrollShader=启用滚动特效着色器
@@ -399,6 +400,7 @@ ItemName.XenonBasher=氙制轻剑
 # Ranged
 # Bows
 ItemName.CinnabarBow=朱砂弓
+ItemName.HamaYumi=破魔弓
 # Dart
 ItemName.SpiralingTwilight=暮光螺旋
 ItemName.Sprinkler=喷水器
@@ -630,6 +632,8 @@ ItemTooltip.HellsBoon=在光标附近的物块上不断生成灰烬尖刺
 ItemTooltip.Galactium=挥舞时召唤从天而降的微光星辰
 ItemTooltip.XenonBasher=击中敌人时生成氙气孢子
 # Ranged
+# Bows
+ItemTooltip.HamaYumi=将箭矢转化为爆影破魔矢
 # Dart
 ItemTooltip.SpiralingTwilight={$Mods.AQMod.Common.UseDarts}
 ItemTooltip.Sprinkler={$Mods.AQMod.Common.UseDarts}
@@ -716,4 +720,4 @@ NPCName.Magmabubble=熔火喷吐者
 NPCName.TrapImp=捕魂小鬼
 NPCName.Trapper=捕魂钩
 NPCName.Cindera=幻形蝠
-NPCName.SnobsterCritter={$Mods.AQMod.ItemName.Snobster}
+NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}

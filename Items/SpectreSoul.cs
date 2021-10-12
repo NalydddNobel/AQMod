@@ -126,10 +126,10 @@ namespace AQMod.Items
                 for (int i = 0; i < 8; i++)
                 {
                     positions[i] = Vector3.Transform(new Vector3(l * 10f, 0f, 0f), Matrix.CreateFromYawPitchRoll(time * 0.01f, time * 0.0157f, time * 0.0314f + MathHelper.TwoPi / 8f * i));
-                    scales[i] = Parralax.GetParralaxScale((line.baseScale.X + line.baseScale.Y) / 2f, positions[i].Z * 0.157f);
+                    scales[i] = ThreeDimensionsEffect.GetParralaxScale((line.baseScale.X + line.baseScale.Y) / 2f, positions[i].Z * 0.157f);
                     if (positions[i].Z > 0f)
                     {
-                        var drawPosition = Parralax.GetParralaxPosition(new Vector2(textPosition.X + (int)positions[i].X, textPosition.Y + (int)positions[i].Y) + Main.screenPosition, positions[i].Z * 0.0314f) - Main.screenPosition;
+                        var drawPosition = ThreeDimensionsEffect.GetParralaxPosition(new Vector2(textPosition.X + (int)positions[i].X, textPosition.Y + (int)positions[i].Y) + Main.screenPosition, positions[i].Z * 0.0314f) - Main.screenPosition;
                         ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, drawPosition, ghostlyColor, line.rotation, line.origin, new Vector2(scales[i], scales[i]), line.maxWidth, false);
                     }
                 }
@@ -138,7 +138,7 @@ namespace AQMod.Items
                 {
                     if (positions[i].Z <= 0f)
                     {
-                        var drawPosition = Parralax.GetParralaxPosition(new Vector2(textPosition.X + (int)positions[i].X, textPosition.Y + (int)positions[i].Y) + Main.screenPosition, positions[i].Z * 0.0314f) - Main.screenPosition;
+                        var drawPosition = ThreeDimensionsEffect.GetParralaxPosition(new Vector2(textPosition.X + (int)positions[i].X, textPosition.Y + (int)positions[i].Y) + Main.screenPosition, positions[i].Z * 0.0314f) - Main.screenPosition;
                         ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, drawPosition, ghostlyColor, line.rotation, line.origin, new Vector2(scales[i], scales[i]), line.maxWidth, false);
                     }
                 }

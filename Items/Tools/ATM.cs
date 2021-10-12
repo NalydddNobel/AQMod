@@ -1,10 +1,6 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 

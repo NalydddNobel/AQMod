@@ -1,9 +1,9 @@
-﻿namespace AQMod.Assets.Enumerators
+﻿namespace AQMod.Assets
 {
-    public enum TrailID : byte
+    public enum TrailTextureID : byte
     {
         Line = 0,
-        SmokeyLine = 1,
+        SmokeLine = 1,
         FadingLightLine = 2,
         ThickLine = 3,
         Count

@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Enumerators;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
@@ -94,7 +93,7 @@ namespace AQMod.Projectiles
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        var trail = new Trailshader(TextureCache.Trails[TrailID.Line], Trailshader.TextureTrail);
+                        var trail = new Trailshader(TextureCache.Trails[TrailTextureID.Line], Trailshader.TextureTrail);
                         trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTime + p) * 0.5f * (1f - p));
                         trail.Draw();
                     }

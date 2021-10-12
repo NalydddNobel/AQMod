@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Enumerators;
 using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Config;
@@ -148,7 +147,7 @@ namespace AQMod.NPCs.Boss.Starite
             return Main.expertMode ? 25 : 30;
         }
 
-        public bool OmegaLaser()
+        public bool IsOmegaLaserActive()
         {
             return npc.ai[0] == PHASE_OMEGA_LASER && npc.ai[2] < 1200f;
         }
@@ -201,23 +200,20 @@ namespace AQMod.NPCs.Boss.Starite
             }
         }
 
+        public bool HardVersion()
+        {
+            return AQMod.HarderOmegaStarite || AQMod.glimmerEvent.IsActive;
+        }
+
         public void Init()
         {
             npc.TargetClosest(faceTarget: false);
             OmegaStariteSceneManager.OmegaStariteIndexCache = (short)npc.whoAmI;
-            bool ftw = false;
             orbs = new List<OmegaStariteOrb>();
             var center = npc.Center;
-            if (ftw)
+            if (Main.expertMode)
             {
-                spawnRing(center, OmegaStariteOrb.INNER_RING, CIRCUMFERENCE, OmegaStariteOrb.INNER_RING_SCALE);
-                spawnRing(center, OmegaStariteOrb.OUTER_RING, CIRCUMFERENCE * OmegaStariteOrb.OUTER_RING_CIRCUMFERENCE_MULT, OmegaStariteOrb.OUTER_RING_SCALE_FTW);
-                spawnRing(center, OmegaStariteOrb.FTW_RING_3, CIRCUMFERENCE * OmegaStariteOrb.FTW_RING_3_CIRCUMFERENCE_MULT, OmegaStariteOrb.FTW_RING_3_SCALE);
-                spawnRing(center, OmegaStariteOrb.FTW_RING_4, CIRCUMFERENCE * OmegaStariteOrb.FTW_RING_4_CIRCUMFERENCE_MULT, OmegaStariteOrb.FTW_RING_4_SCALE);
-            }
-            else if (Main.expertMode)
-            {
-                if (AQMod.glimmerEvent.IsActive)
+                if (HardVersion())
                 {
                     spawnRing(center, OmegaStariteOrb.INNER_RING, CIRCUMFERENCE, 1f);
                     spawnRing(center, OmegaStariteOrb.OUTER_RING, CIRCUMFERENCE * 1.75f, 1.25f);
@@ -291,6 +287,7 @@ namespace AQMod.NPCs.Boss.Starite
             }
             if (skipDeathTimer > 0)
                 skipDeathTimer--;
+            bool hardVersion = HardVersion();
             Vector2 center = npc.Center;
             Player player = Main.player[npc.target];
             var plrCenter = player.Center;
@@ -381,7 +378,7 @@ namespace AQMod.NPCs.Boss.Starite
                         {
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
-                                if (AQMod.glimmerEvent.IsActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
+                                if (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
                                 {
                                     npc.localAI[0]++;
                                     if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
@@ -475,7 +472,7 @@ namespace AQMod.NPCs.Boss.Starite
                         if (orbs[OmegaStariteOrb.INNER_RING].radius > orbs[OmegaStariteOrb.INNER_RING].defRadius)
                         {
                             SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].radius - MathHelper.PiOver2 * 3f);
-                            if (AQMod.glimmerEvent.IsActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
+                            if (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
                             {
                                 npc.localAI[0]++;
                                 if (npc.localAI[0] > (Main.expertMode ? 12f : 60f))
@@ -568,7 +565,7 @@ namespace AQMod.NPCs.Boss.Starite
                             {
                                 npc.localAI[2] += Main.expertMode ? 0.00015f : 0.000085f;
                             }
-                            if (Main.netMode != NetmodeID.MultiplayerClient && (AQMod.glimmerEvent.IsActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius))
+                            if (Main.netMode != NetmodeID.MultiplayerClient && (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius))
                             {
                                 npc.localAI[0]++;
                                 if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
@@ -744,7 +741,7 @@ namespace AQMod.NPCs.Boss.Starite
                             else
                             {
                                 npc.ai[1] = -npc.ai[3] * 16;
-                                if (AQMod.glimmerEvent.IsActive || Vector2.Distance(plrCenter, center) > 400f)
+                                if (hardVersion || Vector2.Distance(plrCenter, center) > 400f)
                                 {
                                     if (Main.netMode != NetmodeID.MultiplayerClient)
                                     {
@@ -852,7 +849,7 @@ namespace AQMod.NPCs.Boss.Starite
                         {
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
-                                if (AQMod.glimmerEvent.IsActive || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
+                                if (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
                                 {
                                     npc.localAI[0]++;
                                     if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
@@ -1341,6 +1338,10 @@ namespace AQMod.NPCs.Boss.Starite
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
+            if (orbs == null)
+            {
+                return false;
+            }
             drawColor *= 5f;
             if (drawColor.R < 80)
                 drawColor.R = 80;
@@ -1350,7 +1351,7 @@ namespace AQMod.NPCs.Boss.Starite
                 drawColor.B = 80;
             var drawPos = npc.Center - Main.screenPosition;
             var sortedOmegites = new List<OmegaStariteOrb>(orbs);
-            float intensity = ModContent.GetInstance<AQConfigClient>().EffectIntensity;
+            float intensity = AQMod.EffectIntensity;
             if ((int)npc.ai[0] == -1)
             {
                 intensity += npc.ai[1] / 20;
@@ -1419,8 +1420,8 @@ namespace AQMod.NPCs.Boss.Starite
             {
                 if (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z > 0f)
                 {
-                    var drawPosition = Parralax.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
-                    var drawScale = Parralax.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
+                    var drawPosition = ThreeDimensionsEffect.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
+                    var drawScale = ThreeDimensionsEffect.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
                     foreach (var draw in drawOmegite)
                     {
                         draw.Invoke(
@@ -1463,7 +1464,7 @@ namespace AQMod.NPCs.Boss.Starite
                     {
                         const float radius = CIRCUMFERENCE / 2f;
                         var trailClr = AQMod.glimmerEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                        var trail = new Trailshader(TextureCache.Trails[TrailID.Line], Trailshader.TextureTrail);
+                        var trail = new Trailshader(TextureCache.Trails[TrailTextureID.Line], Trailshader.TextureTrail);
                         trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
                         trail.Draw();
                     }
@@ -1494,8 +1495,8 @@ namespace AQMod.NPCs.Boss.Starite
             }
             for (int i = 0; i < sortedOmegites.Count; i++)
             {
-                var drawPosition = Parralax.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
-                var drawScale = Parralax.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
+                var drawPosition = ThreeDimensionsEffect.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
+                var drawScale = ThreeDimensionsEffect.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
                 foreach (var draw in drawOmegite)
                 {
                     draw.Invoke(

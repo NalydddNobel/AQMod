@@ -1,5 +1,4 @@
-﻿using AQMod.Assets.Enumerators;
-using AQMod.Common;
+﻿using AQMod.Common;
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
 using Terraria;

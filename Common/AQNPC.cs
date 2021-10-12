@@ -1207,6 +1207,12 @@ namespace AQMod.Common
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
+            if (AQMod.ShouldReduceSpawns())
+            {
+                spawnRate = 1000;
+                maxSpawns = 0;
+                return;
+            }
             if (DemonSiege.CloseEnoughToDemonSiege(player))
             {
                 spawnRate *= 10;

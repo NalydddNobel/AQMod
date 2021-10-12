@@ -1,4 +1,4 @@
-﻿namespace AQMod.Assets.Enumerators
+﻿namespace AQMod.Common.Utilities
 {
     public enum PlayerHeadOverlayID : ushort
     {

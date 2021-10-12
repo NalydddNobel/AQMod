@@ -29,9 +29,6 @@ namespace AQMod.Content.WorldEvents.Glimmer
 
         internal static Color StariteProjectileColorOrig => new Color(200, 10, 255, 0);
         public static Color TextColor => new Color(238, 17, 68, 255);
-        /// <summary>
-        /// A list of the Glimmer Event Layers, do not cache this list please.
-        /// </summary>
         public static List<GlimmerEventLayer> Layers { get; private set; }
 
         public bool IsActive => tileX != 0;
@@ -126,7 +123,7 @@ namespace AQMod.Content.WorldEvents.Glimmer
             return false;
         }
 
-        public bool Activate()
+        public bool Activate(bool resetSpawnChance = true)
         {
             List<TEGlimmeringStatue> statuePlacements = new List<TEGlimmeringStatue>();
             foreach (var t in TileEntity.ByID)
@@ -140,12 +137,12 @@ namespace AQMod.Content.WorldEvents.Glimmer
             {
                 if (statuePlacements.Count == 1)
                 {
-                    Activate(statuePlacements[0].Position.X, statuePlacements[0].Position.Y);
+                    Activate(statuePlacements[0].Position.X, statuePlacements[0].Position.Y, resetSpawnChance);
                 }
                 else
                 {
                     int randIndex = Main.rand.Next(statuePlacements.Count);
-                    Activate(statuePlacements[randIndex].Position.X, statuePlacements[randIndex].Position.Y);
+                    Activate(statuePlacements[randIndex].Position.X, statuePlacements[randIndex].Position.Y, resetSpawnChance);
                 }
                 return true;
             }
@@ -177,10 +174,11 @@ namespace AQMod.Content.WorldEvents.Glimmer
             return false;
         }
 
-        public void Activate(int x, int y)
+        public void Activate(int x, int y, bool resetSpawnChance = true)
         {
             OmegaStariteSceneManager.Scene = 0;
-            spawnChance = GetBaseRarity();
+            if (resetSpawnChance)
+                spawnChance = GetBaseRarity();
             tileX = (ushort)x;
             tileY = (ushort)y;
         }
@@ -189,39 +187,13 @@ namespace AQMod.Content.WorldEvents.Glimmer
         {
             deactivationTimer = -1;
             OmegaStariteSceneManager.Scene = 0;
-                tileX = 0;
-                tileY = 0;
+            tileX = 0;
+            tileY = 0;
             if (StariteDisco)
             {
                 StariteDisco = false;
                 stariteProjectileColor = StariteProjectileColorOrig;
             }
-        }
-
-        private static ushort FindGlimmerPosition()
-        {
-            for (int i = 0; i < 100; i++)
-            {
-                int x = Main.rand.Next(200, Main.maxTilesX - 200);
-                if ((x - Main.spawnTileX).Abs() < 100)
-                    continue;
-                bool invaildSpot = false;
-                for (int j = 0; j < Main.maxPlayers; j++)
-                {
-                    if (Main.player[j].active && !Main.player[j].dead)
-                    {
-                        int playerX = (int)(Main.player[j].position.X / 16);
-                        if ((x - playerX).Abs() < SuperStariteDistance)
-                        {
-                            invaildSpot = true;
-                            break;
-                        }
-                    }
-                }
-                if (!invaildSpot)
-                    return (ushort)x;
-            }
-            return (ushort)Main.rand.Next(200, Main.maxTilesX - 200);
         }
 
         internal ushort ManageGlimmerY()
@@ -288,7 +260,7 @@ namespace AQMod.Content.WorldEvents.Glimmer
                     {
                         if (spawnChance > 0)
                             spawnChance = Main.rand.Next(spawnChance);
-                        if (spawnChance <= 0 && Activate())
+                        if (spawnChance <= 0 && Activate(resetSpawnChance: true))
                         {
                             AQMod.BroadcastMessage(AQText.GlimmerEventWarning().Value, TextColor);
                             Networking.GlimmerEventNetUpdate();

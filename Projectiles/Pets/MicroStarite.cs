@@ -73,10 +73,10 @@ namespace AQMod.Projectiles.Pets
             for (int i = 0; i < orbsCount; i++)
             {
                 orbs[i] = Vector3.Transform(new Vector3(frame.Width, 0f, 0f), Matrix.CreateFromYawPitchRoll(innerRingPitch, innerRingRoll, innerRingRotation + rotMult * i));
-                orbScales[i] = Parralax.GetParralaxScale(projectile.scale, orbs[i].Z * 0.157f);
+                orbScales[i] = ThreeDimensionsEffect.GetParralaxScale(projectile.scale, orbs[i].Z * 0.157f);
                 if (orbs[i].Z > 0f)
                 {
-                    var drawPosition = Parralax.GetParralaxPosition(new Vector2(center.X + orbs[i].X, center.Y + orbs[i].Y), orbs[i].Z * 0.0314f) - Main.screenPosition;
+                    var drawPosition = ThreeDimensionsEffect.GetParralaxPosition(new Vector2(center.X + orbs[i].X, center.Y + orbs[i].Y), orbs[i].Z * 0.0314f) - Main.screenPosition;
                     int frameNumber = 1;
                     if (orbScales[i] <= 0.925f)
                         frameNumber = 2;
@@ -89,7 +89,7 @@ namespace AQMod.Projectiles.Pets
             {
                 if (orbs[i].Z < 0f)
                 {
-                    var drawPosition = Parralax.GetParralaxPosition(new Vector2(center.X + orbs[i].X, center.Y + orbs[i].Y), orbs[i].Z * 0.0314f) - Main.screenPosition;
+                    var drawPosition = ThreeDimensionsEffect.GetParralaxPosition(new Vector2(center.X + orbs[i].X, center.Y + orbs[i].Y), orbs[i].Z * 0.0314f) - Main.screenPosition;
                     int frameNumber = 1;
                     if (orbScales[i] >= 1.075f)
                         frameNumber = 0;

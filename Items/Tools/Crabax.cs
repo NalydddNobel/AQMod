@@ -12,8 +12,8 @@ namespace AQMod.Items.Tools
             item.height = 60;
             item.melee = true;
             item.damage = 20;
-            item.useTime = 38;
-            item.useAnimation = 38;
+            item.useTime = 30;
+            item.useAnimation = 30;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 10f;
             item.autoReuse = true;

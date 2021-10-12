@@ -69,11 +69,6 @@ namespace AQMod.Common
             NobleMushroomsCount = tileCounts[ModContent.TileType<NobleMushrooms>()];
         }
 
-        public override void PostDrawTiles()
-        {
-            Parralax.RefreshParralax();
-        }
-
         public override void NetSend(BinaryWriter writer)
         {
             if (AQMod.glimmerEvent.IsActive)

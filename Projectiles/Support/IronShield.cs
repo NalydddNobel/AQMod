@@ -1,6 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
-using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
@@ -10,118 +8,24 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Magic.Support
+namespace AQMod.Projectiles.Support
 {
-    public class StaffofNightVision : ModItem
+    public class IronShield : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.StaffofNightVision, new Color(128, 128, 128, 0)), item.type);
-        }
-
-        public override void SetDefaults()
-        {
-            item.width = 16;
-            item.height = 16;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 28;
-            item.useTime = 28;
-            item.buffType = BuffID.NightOwl;
-            item.buffTime = 600;
-            item.shoot = ModContent.ProjectileType<NightOwl>();
-            item.shootSpeed = 9f;
-            item.rare = ItemRarityID.Blue;
-            item.UseSound = SoundID.Item9;
-            item.magic = true;
-        }
-
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            var nightOwl = NightOwl.SpawnNightOwl(position, damage, knockBack, player);
-            nightOwl.maxPower = 350f;
-            return false;
-        }
-
-        public override void AddRecipes()
-        {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.NightOwlPotion, 4);
-            r.AddIngredient(ItemID.Amethyst, 8);
-            r.AddIngredient(ItemID.Wood, 4);
-            r.AddTile(TileID.WorkBenches);
-            r.SetResult(this);
-            r.AddRecipe();
-        }
-    }
-
-    public class BatonofNightVision : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.BatonofNightVision, new Color(128, 128, 128, 0)), item.type);
-        }
-
-        public override void SetDefaults()
-        {
-            item.width = 16;
-            item.height = 16;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.useAnimation = 28;
-            item.useTime = 28;
-            item.buffType = BuffID.NightOwl;
-            item.buffTime = 600;
-            item.shoot = ModContent.ProjectileType<NightOwl>();
-            item.shootSpeed = 9f;
-            item.rare = ItemRarityID.LightRed;
-            item.UseSound = SoundID.Item9;
-            item.magic = true;
-        }
-
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            var nightOwl = NightOwl.SpawnNightOwl(position, damage, knockBack, player);
-            nightOwl.maxPower = 900f;
-            nightOwl.baton = true;
-            return false;
-        }
-
-        public override void AddRecipes()
-        {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<StaffofNightVision>());
-            r.AddIngredient(ItemID.HallowedBar, 4);
-            r.AddIngredient(ItemID.SoulofSight);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
-        }
-    }
-
-    public class NightOwl : ModProjectile
-    {
-        public float maxPower; 
-        public float power; 
+        public float maxPower;
+        public float power;
         public bool baton;
 
-        public static NightOwl SpawnNightOwl(Vector2 position, int damage, float knockback, Player player)
+        public static IronShield SpawnIronShield(Vector2 position, int damage, float knockback, Player player)
         {
-            int type = ModContent.ProjectileType<NightOwl>();
+            int type = ModContent.ProjectileType<IronShield>();
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (Main.projectile[i].active && Main.projectile[i].type == type)
-                {
                     Main.projectile[i].Kill();
-                }
             }
             int p = Projectile.NewProjectile(position, Vector2.Zero, type, damage, knockback, player.whoAmI);
-            return (NightOwl)Main.projectile[p].modProjectile;
-        }
-
-        public override void SetStaticDefaults()
-        {
-            Main.projFrames[projectile.type] = 11;
+            return (IronShield)Main.projectile[p].modProjectile;
         }
 
         public override void SetDefaults()
@@ -130,12 +34,6 @@ namespace AQMod.Items.Weapons.Magic.Support
             projectile.height = 20;
             projectile.friendly = true;
             projectile.timeLeft = 3600;
-            projectile.magic = true;
-        }
-
-        public override Color? GetAlpha(Color lightColor)
-        {
-            return base.GetAlpha(lightColor);
         }
 
         public bool UpdatePlayers()
@@ -145,25 +43,21 @@ namespace AQMod.Items.Weapons.Magic.Support
             {
                 var p = Main.player[i];
                 if (p.dead || !p.active)
-                {
                     continue;
-                }
                 var difference = p.Center - projectile.Center;
                 float playerPower = power;
                 if (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, p.position, p.width, p.height))
-                {
                     playerPower /= 2f;
-                }
                 if (difference.Length() < playerPower)
                 {
-                    p.AddBuff(BuffID.NightOwl, (int)(power * 2));
+                    p.AddBuff(BuffID.Ironskin, (int)(power * 2));
                     buffedAnyPlayer = true;
                     if (Main.netMode != NetmodeID.SinglePlayer && Main.myPlayer == i)
                     {
                         var d75 = difference / 75f;
                         for (int j = 0; j < 75; j++)
                         {
-                            int d = Dust.NewDust(projectile.Center + (d75 * j) + new Vector2(-6f, -6f), 12, 12, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(100, 255, 100, 0));
+                            int d = Dust.NewDust(projectile.Center + d75 * j + new Vector2(-6f, -6f), 12, 12, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(190, 255, 100, 0));
                             Main.dust[d].velocity *= 0.1f;
                             Main.dust[d].noGravity = true;
                             Main.dust[d].scale = Main.rand.NextFloat(0.75f, 2f);
@@ -174,7 +68,7 @@ namespace AQMod.Items.Weapons.Magic.Support
                         var d20 = difference / 20f;
                         for (int j = 0; j < 20; j++)
                         {
-                            int d = Dust.NewDust(projectile.Center + (d20 * j), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(100, 255, 100, 0));
+                            int d = Dust.NewDust(projectile.Center + d20 * j, 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(190, 255, 100, 0));
                             Main.dust[d].velocity *= 0.1f;
                             Main.dust[d].noGravity = true;
                             Main.dust[d].scale = Main.rand.NextFloat(0.5f, 1.5f);
@@ -188,9 +82,7 @@ namespace AQMod.Items.Weapons.Magic.Support
         public override void AI()
         {
             if (Main.player[projectile.owner].dead && projectile.timeLeft > 120)
-            {
                 projectile.timeLeft = 120;
-            }
             if (projectile.timeLeft < 120)
             {
                 power = maxPower * (projectile.timeLeft / 120f);
@@ -202,10 +94,8 @@ namespace AQMod.Items.Weapons.Magic.Support
                 {
                     var pos = new Vector2(power, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
                     if (!Collision.CanHitLine(projectile.position, projectile.width, projectile.height, projectile.Center + pos, 2, 2))
-                    {
                         pos /= 2f;
-                    }
-                    int d = Dust.NewDust(projectile.Center + pos, 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 255, 100, 0));
+                    int d = Dust.NewDust(projectile.Center + pos, 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(240, 255, 100, 0));
                     Main.dust[d].noGravity = true;
                     Main.dust[d].velocity *= 0.1f;
                 }
@@ -217,10 +107,8 @@ namespace AQMod.Items.Weapons.Magic.Support
                         float rot = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
                         var pos2 = new Vector2(f, 0f).RotatedBy(rot);
                         if (!Collision.CanHitLine(projectile.position, projectile.width, projectile.height, projectile.Center + new Vector2(power, 0f).RotatedBy(rot), 2, 2))
-                        {
                             pos2 /= 2f;
-                        }
-                        int d2 = Dust.NewDust(projectile.Center + pos2, 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 255, 100, 0));
+                        int d2 = Dust.NewDust(projectile.Center + pos2, 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(240, 255, 100, 0));
                         Main.dust[d2].noGravity = true;
                         Main.dust[d2].scale = Main.rand.NextFloat(0.8f, 2f);
                         var diff = projectile.Center - Main.dust[d2].position;
@@ -233,10 +121,8 @@ namespace AQMod.Items.Weapons.Magic.Support
                     float rot = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
                     var pos2 = new Vector2(f, 0f).RotatedBy(rot);
                     if (!Collision.CanHitLine(projectile.position, projectile.width, projectile.height, projectile.Center + new Vector2(power, 0f).RotatedBy(rot), 2, 2))
-                    {
                         pos2 /= 2f;
-                    }
-                    int d2 = Dust.NewDust(projectile.Center + pos2, 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 255, 100, 0));
+                    int d2 = Dust.NewDust(projectile.Center + pos2, 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(240, 255, 100, 0));
                     Main.dust[d2].noGravity = true;
                     Main.dust[d2].scale = Main.rand.NextFloat(0.5f, 1.5f);
                     var diff = projectile.Center - Main.dust[d2].position;
@@ -247,19 +133,16 @@ namespace AQMod.Items.Weapons.Magic.Support
                 {
                     projectile.ai[1] = 0f;
                     if (UpdatePlayers())
-                    {
                         Main.PlaySound(SoundID.Item8);
-                    }
                 }
+                return;
                 projectile.frameCounter++;
                 if (projectile.frameCounter > 4)
                 {
                     projectile.frameCounter = 0;
                     projectile.frame++;
                     if (projectile.frame >= 11)
-                    {
                         projectile.frame = 7;
-                    }
                 }
                 return;
             }
@@ -283,10 +166,8 @@ namespace AQMod.Items.Weapons.Magic.Support
             float length = difference.Length();
             float off = (float)Math.Sin((projectile.position.X + projectile.position.Y) / 32f) * projectile.width;
             if (length < 120f)
-            {
                 off *= length / 120f;
-            }
-            Dust.NewDust(projectile.Center + new Vector2(off, 0f).RotatedBy(projectile.velocity.ToRotation() + MathHelper.PiOver2), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 255, 100, 0));
+            Dust.NewDust(projectile.Center + new Vector2(off, 0f).RotatedBy(projectile.velocity.ToRotation() + MathHelper.PiOver2), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(240, 255, 100, 0));
             if (length > 2f)
             {
                 float speed;

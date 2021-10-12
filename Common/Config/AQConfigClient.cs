@@ -26,6 +26,12 @@ namespace AQMod.Common.Config
         [Range(0.1f, 2f)]
         public float EffectIntensity { get; set; }
 
+        [Label(AQText.ConfigValueKey + "Effect3D")]
+        [Tooltip(AQText.ConfigValueKey + "Effect3DTooltip")]
+        [DefaultValue(1f)]
+        [Range(0f, 1.5f)]
+        public float Effect3D { get; set; }
+
         [Label(AQText.ConfigValueKey + "TonsofScreenShakes")]
         [DefaultValue(false)]
         public bool TonsofScreenShakes { get; set; }

@@ -40,7 +40,7 @@ namespace AQMod.Projectiles
             }
             projectile.Center = npc.Center;
             projectile.rotation = -omegaStarite.innerRingRoll;
-            if (omegaStarite.OmegaLaser())
+            if (omegaStarite.IsOmegaLaserActive())
                 projectile.timeLeft = LASER_DEATH_TIME;
         }
 
