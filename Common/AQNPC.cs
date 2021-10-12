@@ -1,6 +1,7 @@
 ﻿using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.Dusts;
+using AQMod.Content.RobsterQuests;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Content.WorldEvents.Siege;
@@ -15,10 +16,10 @@ using AQMod.Items.Tools;
 using AQMod.Items.Tools.Markers;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Localization;
-using AQMod.NPCs;
-using AQMod.NPCs.SiegeEvent;
-using AQMod.NPCs.Starite;
-using AQMod.NPCs.Town.Robster;
+using AQMod.NPCs.Friendly.Town;
+using AQMod.NPCs.Monsters;
+using AQMod.NPCs.Monsters.DemonicEvent;
+using AQMod.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -927,7 +928,7 @@ namespace AQMod.Common
                 {
                     var aQPlr = plr.GetModPlayer<AQPlayer>();
                     float distance = Vector2.Distance(plr.Center, npc.Center);
-                    if (aQPlr.dreadsoul && distance < 2000f && plr.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.SpectreSoul>()] < 20)
+                    if (aQPlr.dreadsoul && distance < 2000f && plr.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.DreadsoulAttack>()] < 20)
                     {
                         var center = npc.Center;
                         float rot = MathHelper.TwoPi / 3f;
@@ -937,9 +938,9 @@ namespace AQMod.Common
                         for (int j = 0; j < 3; j++)
                         {
                             var dir = new Vector2(0f, -1f).RotatedBy(rot * j);
-                            Projectile.NewProjectile(center + dir * (size + 2f), dir * 2f, ModContent.ProjectileType<Projectiles.SpectreSoul>(), damage, kb, i, 0f, npc.type);
+                            Projectile.NewProjectile(center + dir * (size + 2f), dir * 2f, ModContent.ProjectileType<Projectiles.DreadsoulAttack>(), damage, kb, i, 0f, npc.type);
                         }
-                        plr.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.SpectreSoul>()] += 3;
+                        plr.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.DreadsoulAttack>()] += 3;
                         break;
                     }
                 }

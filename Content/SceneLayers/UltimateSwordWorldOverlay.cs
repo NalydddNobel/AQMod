@@ -5,7 +5,7 @@ using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Melee;
-using AQMod.NPCs.Starite;
+using AQMod.NPCs.Boss.Starite;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

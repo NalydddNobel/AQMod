@@ -4,6 +4,6 @@ version = 1.2.2.1
 homepage = https://forums.terraria.org/index.php?threads/aequus.105402/
 hideResources = false
 hideCode = false
-includeSource = true
+includeSource = false
 includePBD = true
 buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, obj\*, bin\*, .vs\*, .cache\*

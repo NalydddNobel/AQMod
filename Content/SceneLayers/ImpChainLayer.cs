@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.SceneLayers;
-using AQMod.NPCs.SiegeEvent;
+using AQMod.NPCs.Monsters.DemonicEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

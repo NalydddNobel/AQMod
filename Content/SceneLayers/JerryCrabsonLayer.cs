@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets.SceneLayers;
 using AQMod.Common;
-using AQMod.NPCs.Crabson;
+using AQMod.NPCs.Boss.Crabson;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;

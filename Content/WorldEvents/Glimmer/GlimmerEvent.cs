@@ -2,7 +2,7 @@
 using AQMod.Common.Commands;
 using AQMod.Common.Utilities;
 using AQMod.Localization;
-using AQMod.NPCs.Glimmer;
+using AQMod.NPCs.Monsters.CosmicEvent;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

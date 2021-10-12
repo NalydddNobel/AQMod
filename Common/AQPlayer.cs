@@ -2,11 +2,11 @@
 using AQMod.Assets.Enumerators;
 using AQMod.Common.Config;
 using AQMod.Common.IO;
+using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
-using AQMod.Content.Skies;
 using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Effects.Screen;
 using AQMod.Items;
@@ -23,6 +23,7 @@ using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles;
+using AQMod.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -51,6 +52,8 @@ namespace AQMod.Common
         public static Vector2[] oldPosVisual;
         public static bool arachnotronHeadTrail;
         public static bool arachnotronBodyTrail;
+        internal static int _moneyTroughHackIndex = -1;
+        internal static ISuperClunkyMoneyTroughTypeThing _moneyTroughHack;
 
         public bool bossrush;
         public float discountPercentage;
@@ -74,7 +77,6 @@ namespace AQMod.Common
         public int extraFlightTime;
         public int thunderbirdJumpTimer;
         public int thunderbirdLightningTimer;
-        public int flyingSafe = -1;
         public bool dreadsoul;
         public bool arachnotron;
         public bool primeTime;
@@ -293,14 +295,14 @@ namespace AQMod.Common
 
                 celesteTorusScale = 1f + (celesteTorusRadius * 0.006f) + (celesteTorusDamage * 0.009f) + (celesteTorusKnockback * 0.0015f);
 
-                var type = ModContent.ProjectileType<CelesteTorusProjectile>();
+                var type = ModContent.ProjectileType<CelesteTorusCollider>();
                 if (player.ownedProjectileCounts[type] <= 0)
                     Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
                 else
                 {
                     for (int i = 0; i < Main.maxProjectiles; i++)
                     {
-                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == ModContent.ProjectileType<CelesteTorusProjectile>())
+                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == ModContent.ProjectileType<CelesteTorusCollider>())
                         {
                             Main.projectile[i].damage = celesteTorusDamage;
                             Main.projectile[i].knockBack = celesteTorusKnockback;
@@ -388,7 +390,6 @@ namespace AQMod.Common
         public override void Initialize()
         {
             omoriDeathTimer = 1;
-            flyingSafe = -1;
             arachnotron = false;
             spoiled = 0;
             sparkling = false;
@@ -413,6 +414,8 @@ namespace AQMod.Common
             oldPosVisual = null;
             arachnotronHeadTrail = false;
             arachnotronBodyTrail = false;
+            _moneyTroughHack = null;
+            _moneyTroughHackIndex = -1;
         }
 
         public override void OnEnterWorld(Player player)
@@ -446,30 +449,33 @@ namespace AQMod.Common
 
         public override void UpdateBiomeVisuals()
         {
-            if (flyingSafe > -1)
+            if (_moneyTroughHack == null)
+                _moneyTroughHackIndex = -1;
+            if (_moneyTroughHackIndex > -1)
             {
-                if (player.flyingPigChest >= 0 || player.chest != -3 || !Main.projectile[flyingSafe].active || Main.projectile[flyingSafe].type != ModContent.ProjectileType<ATMPet>())
+                if (player.flyingPigChest >= 0 || player.chest != -3 || !Main.projectile[_moneyTroughHackIndex].active || Main.projectile[_moneyTroughHackIndex].type != ModContent.ProjectileType<Projectiles.Pets.ATM>())
                 {
-                    flyingSafe = -1;
+                    _moneyTroughHackIndex = -1;
+                    _moneyTroughHack = null;
                 }
                 else
                 {
-                    player.chestX = ((int)Main.projectile[flyingSafe].position.X + Main.projectile[flyingSafe].width / 2) / 16;
-                    player.chestY = ((int)Main.projectile[flyingSafe].position.Y + Main.projectile[flyingSafe].height / 2) / 16;
+                    player.chestX = ((int)Main.projectile[_moneyTroughHackIndex].position.X + Main.projectile[_moneyTroughHackIndex].width / 2) / 16;
+                    player.chestY = ((int)Main.projectile[_moneyTroughHackIndex].position.Y + Main.projectile[_moneyTroughHackIndex].height / 2) / 16;
                     if (!player.IsInTileInteractionRange(player.chestX, player.chestY))
                     {
                         if (player.chest != -1)
-                            Main.PlaySound(SoundID.Item97);
+                            _moneyTroughHack.OnClose();
                         player.flyingPigChest = -1;
-                        flyingSafe = -1;
+                        _moneyTroughHackIndex = -1;
                         player.chest = -1;
                         Recipe.FindRecipes();
                     }
                     else
                     {
-                        player.flyingPigChest = flyingSafe;
+                        player.flyingPigChest = _moneyTroughHackIndex;
                         player.chest = -2;
-                        Main.projectile[flyingSafe].type = ProjectileID.FlyingPiggyBank;
+                        Main.projectile[_moneyTroughHackIndex].type = ProjectileID.FlyingPiggyBank;
                     }
                 }
             }
@@ -482,40 +488,15 @@ namespace AQMod.Common
             //    player.ManageSpecialBiomeVisuals(VisualsManager.DistortX, OmegaStarite.DistortShaderActive());
         }
 
-        public override Texture2D GetMapBackgroundImage()
-        {
-            if (!player.ZoneCorrupt && !player.ZoneCrimson && !player.ZoneHoly && !player.ZoneDesert && !player.ZoneJungle)
-            {
-                if (player.position.Y < Main.worldSurface * 16f)
-                {
-                    if (AQMod.glimmerEvent.IsActive)
-                        return TextureCache.MapBGGlimmer.Value;
-                }
-            }
-            return null;
-        }
-
-        public static bool InVanitySlot(Player player, int type)
-        {
-            for (int i = DYE_WRAP; i < MAX_ARMOR; i++)
-            {
-                if (player.armor[i].type == type)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public override void ResetEffects()
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                if (flyingSafe > -1)
+                if (_moneyTroughHackIndex > -1)
                 {
                     player.flyingPigChest = -1;
-                    player.chest = -3;
-                    Main.projectile[flyingSafe].type = ModContent.ProjectileType<ATMPet>();
+                    player.chest = _moneyTroughHack.ChestType;
+                    Main.projectile[_moneyTroughHackIndex].type = _moneyTroughHack.ProjectileType;
                 }
             }
             bossrush = false;
@@ -598,6 +579,32 @@ namespace AQMod.Common
                 }
             }
         }
+
+        public override Texture2D GetMapBackgroundImage()
+        {
+            if (!player.ZoneCorrupt && !player.ZoneCrimson && !player.ZoneHoly && !player.ZoneDesert && !player.ZoneJungle)
+            {
+                if (player.position.Y < Main.worldSurface * 16f)
+                {
+                    if (AQMod.glimmerEvent.IsActive)
+                        return TextureCache.MapBGGlimmer.Value;
+                }
+            }
+            return null;
+        }
+
+        public static bool InVanitySlot(Player player, int type)
+        {
+            for (int i = DYE_WRAP; i < MAX_ARMOR; i++)
+            {
+                if (player.armor[i].type == type)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
 
         public override void UpdateDead()
         {
@@ -1214,6 +1221,26 @@ namespace AQMod.Common
             if (critChance <= 0)
                 return false;
             return rand.NextBool(100 - critChance);
+        }
+
+        public static bool OpenMoneyTrough(ISuperClunkyMoneyTroughTypeThing moneyTrough, int index)
+        {
+            if (_moneyTroughHack == null)
+            {
+                _moneyTroughHack = moneyTrough;
+                _moneyTroughHackIndex = index;
+                var plr = Main.LocalPlayer;
+                plr.chest = moneyTrough.ChestType;
+                plr.chestX = (int)(Main.projectile[index].Center.X / 16f);
+                plr.chestY = (int)(Main.projectile[index].Center.Y / 16f);
+                plr.talkNPC = -1;
+                Main.npcShop = 0;
+                Main.playerInventory = true;
+                moneyTrough.OnOpen();
+                Recipe.FindRecipes();
+                return true;
+            }
+            return false;
         }
     }
 }

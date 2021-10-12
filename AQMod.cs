@@ -5,13 +5,14 @@ using AQMod.Common.Commands;
 using AQMod.Common.Config;
 using AQMod.Common.CrossMod;
 using AQMod.Common.NPCIMethods;
+using AQMod.Common.Skies;
 using AQMod.Common.UI;
 using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.CrossMod;
 using AQMod.Content.CursorDyes;
+using AQMod.Content.RobsterQuests;
 using AQMod.Content.SceneLayers;
-using AQMod.Content.Skies;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Content.WorldEvents.Siege;
@@ -26,8 +27,7 @@ using AQMod.Items.Vanities;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Localization;
 using AQMod.NPCs;
-using AQMod.NPCs.Starite;
-using AQMod.NPCs.Town.Robster;
+using AQMod.NPCs.Boss.Starite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -196,7 +196,6 @@ namespace AQMod
             AQCommand.LoadCommands();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             On.Terraria.Chest.SetupShop += Chest_SetupShop;
-            //On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
             On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
             On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
@@ -255,9 +254,9 @@ namespace AQMod
         private static void Main_UpdateTime(On.Terraria.Main.orig_UpdateTime orig)
         {
             bool settingUpNight = false;
+            Main.dayRate += dayrateIncrease;
             if (Main.time + Main.dayRate > Main.dayLength)
                 settingUpNight = true;
-            Main.dayRate += dayrateIncrease;
             orig();
             dayrateIncrease = 0;
             if (settingUpNight)
@@ -690,6 +689,15 @@ namespace AQMod
         internal static int RandomSmokeGoreType(UnifiedRandom random)
         {
             return 61 + random.Next(3);
+        }
+
+        internal static bool VariableLuck(int chance)
+        {
+            return VariableLuck(chance, Main.rand);
+        }
+        internal static bool VariableLuck(int chance, UnifiedRandom rand)
+        {
+            return chance < 1 || rand.NextBool(chance);
         }
     }
 }

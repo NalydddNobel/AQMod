@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.Utilities;
 using AQMod.Localization;
-using AQMod.NPCs.Crabson;
+using AQMod.NPCs.Boss.Crabson;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

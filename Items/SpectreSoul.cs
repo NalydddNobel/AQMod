@@ -45,6 +45,7 @@ namespace AQMod.Items
 
         public override bool OnPickup(Player player)
         {
+            Main.PlaySound(SoundID.DD2_DarkMageCastHeal, player.Center);
             player.AddBuff(item.buffType, item.buffTime);
             return false;
         }

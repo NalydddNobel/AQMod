@@ -1,4 +1,4 @@
-﻿using AQMod.Content.Skies;
+﻿using AQMod.Common.Skies;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.ComponentModel;

@@ -4,7 +4,7 @@ using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Localization;
-using AQMod.NPCs.SiegeEvent;
+using AQMod.NPCs.Monsters.DemonicEvent;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using System;

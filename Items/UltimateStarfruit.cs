@@ -1,8 +1,8 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.Content.Skies;
+﻿using AQMod.Common.Skies;
+using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Localization;
-using AQMod.NPCs.Starite;
+using AQMod.NPCs.Boss.Starite;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

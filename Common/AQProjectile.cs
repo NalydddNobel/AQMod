@@ -24,7 +24,7 @@ namespace AQMod.Common
             internal static void Setup()
             {
                 UntaggableProjectile = new bool[ProjectileLoader.ProjectileCount];
-                UntaggableProjectile[ModContent.ProjectileType<CelesteTorusProjectile>()] = true;
+                UntaggableProjectile[ModContent.ProjectileType<CelesteTorusCollider>()] = true;
 
                 HeadMinion = new bool[ProjectileLoader.ProjectileCount];
                 //HeadMinion[ModContent.ProjectileType<ChomperHead>()] = true;

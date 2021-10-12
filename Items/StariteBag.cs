@@ -5,7 +5,7 @@ using AQMod.Items.Vanities;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged.Bullet;
-using AQMod.NPCs.Starite;
+using AQMod.NPCs.Boss.Starite;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

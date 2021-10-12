@@ -1,6 +1,6 @@
 Aequus is a mod made for fun :) It was created from me messing around with coding and stuff, so don't try to take the mod super serious pls.
 # Important Info #
-The mod's assets are extratable
+The mod's assets are extractable
 The wiki is a complete mess, don't use it
 A discord link to the mod is in the homepage, if you like typing discord invite links yourself, here you go:
 [c/aaaaff:> https://discord.gg/pEKfVCnqe4]

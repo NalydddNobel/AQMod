@@ -1,14 +1,14 @@
 ﻿using AQMod.Common.Config;
 using AQMod.Common.IO;
+using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
-using AQMod.Content.Skies;
+using AQMod.Content.RobsterQuests;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Content.WorldEvents.Siege;
 using AQMod.Localization;
-using AQMod.NPCs;
-using AQMod.NPCs.Town.Robster;
+using AQMod.NPCs.Monsters;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -412,10 +412,10 @@ namespace AQMod.Common.DeveloperTools
                         case "omegastarite":
                         {
                             NPC npc = new NPC();
-                            npc.SetDefaults(ModContent.NPCType<NPCs.Starite.OmegaStarite>());
+                            npc.SetDefaults(ModContent.NPCType<NPCs.Boss.Starite.OmegaStarite>());
                             var drawPos = Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
                             npc.Center = drawPos;
-                            var omegaStarite = (NPCs.Starite.OmegaStarite)npc.modNPC;
+                            var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)npc.modNPC;
                             omegaStarite.Init();
                             for (int i = 0; i < 240; i++)
                             {
@@ -460,10 +460,10 @@ namespace AQMod.Common.DeveloperTools
                             captureBatch.Begin();
 
                             NPC npc = new NPC();
-                            npc.SetDefaults(ModContent.NPCType<NPCs.Starite.OmegaStarite>());
+                            npc.SetDefaults(ModContent.NPCType<NPCs.Boss.Starite.OmegaStarite>());
 
                             npc.Center = Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
-                            var omegaStarite = (NPCs.Starite.OmegaStarite)npc.modNPC;
+                            var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)npc.modNPC;
                             omegaStarite.Init();
                             omegaStarite.innerRingRoll = -0.8f;
                             omegaStarite.outerRingRoll = -0.865f;

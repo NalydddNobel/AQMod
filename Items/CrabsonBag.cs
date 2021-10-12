@@ -4,7 +4,7 @@ using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee.Flails;
 using AQMod.Items.Weapons.Ranged;
-using AQMod.NPCs.Crabson;
+using AQMod.NPCs.Boss.Crabson;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -28,6 +28,7 @@ namespace AQMod.Items
 
         public override void OpenBossBag(Player player)
         {
+            player.QuickSpawnItem(ModContent.ItemType<Crabax>());
             if (Main.rand.NextBool(3))
                 player.QuickSpawnItem(ModContent.ItemType<CrabClock>());
             if (Main.rand.NextBool())
