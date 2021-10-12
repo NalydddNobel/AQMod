@@ -1223,6 +1223,18 @@ namespace AQMod.Common
             return rand.NextBool(100 - critChance);
         }
 
+        public static bool CloseMoneyTrough()
+        {
+            if (_moneyTroughHack != null)
+            {
+                _moneyTroughHack.OnClose();
+                Main.LocalPlayer.chest = -1;
+                Recipe.FindRecipes();
+                return true;
+            }
+            return false;
+        }
+
         public static bool OpenMoneyTrough(ISuperClunkyMoneyTroughTypeThing moneyTrough, int index)
         {
             if (_moneyTroughHack == null)

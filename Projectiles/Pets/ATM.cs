@@ -60,9 +60,7 @@ namespace AQMod.Projectiles.Pets
                     Main.mouseRightRelease = false;
                     if (Main.player[Main.myPlayer].chest == -3)
                     {
-                        Main.PlaySound(SoundID.Item97);
-                        plr.chest = -1;
-                        Recipe.FindRecipes();
+                        AQPlayer.CloseMoneyTrough();
                     }
                     else
                     {
@@ -74,7 +72,7 @@ namespace AQMod.Projectiles.Pets
             return false;
         }
 
-        int ISuperClunkyMoneyTroughTypeThing.ChestType => -1;
+        int ISuperClunkyMoneyTroughTypeThing.ChestType => -3;
         int ISuperClunkyMoneyTroughTypeThing.ProjectileType => ModContent.ProjectileType<ATM>();
         void ISuperClunkyMoneyTroughTypeThing.OnOpen()
         {
@@ -82,6 +80,7 @@ namespace AQMod.Projectiles.Pets
         }
         void ISuperClunkyMoneyTroughTypeThing.OnClose()
         {
+            //Main.NewText("a?");
             Main.PlaySound(SoundID.Item97);
         }
     }
