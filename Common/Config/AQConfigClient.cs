@@ -80,8 +80,6 @@ namespace AQMod.Common.Config
         [DefaultValue(true)]
         public bool BackgroundStarites { get; set; }
 
-        [Header(AQText.ConfigHeaderKey + "Misc")]
-
         [Label(AQText.ConfigValueKey + "MapBlipColor")]
         [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorNoAlpha]
         public Color MapBlipColor { get; set; }
@@ -90,13 +88,26 @@ namespace AQMod.Common.Config
         [DefaultValue(typeof(Color), "200, 10, 255, 0"), ColorNoAlpha]
         public Color StariteProjColor { get; set; }
 
-        [Label(AQText.ConfigValueKey + "ShowCompletedAnglerQuestsCount")]
-        [DefaultValue(true)]
-        public bool ShowCompletedQuestsCount { get; set; }
+        [Label(AQText.ConfigValueKey + "StariteBackgroundLight")]
+        [Tooltip(AQText.ConfigValueKey + "StariteBackgroundLightTooltip")]
+        [DefaultValue(1f)]
+        [Range(0f, 1f)]
+        public float StariteBackgroundLight { get; set; }
+
+        [Label(AQText.ConfigValueKey + "StariteAuraColor")]
+        [Tooltip(AQText.ConfigValueKey + "StariteAuraColorTooltip")]
+        [DefaultValue(typeof(Color), "100, 100, 255, 0"), ColorNoAlpha]
+        public Color StariteAuraColor { get; set; }
 
         [Label(AQText.ConfigValueKey + "CosmicEnergyAlt")]
         [DefaultValue(false)]
         public bool CosmicEnergyAlt { get; set; }
+
+        [Header(AQText.ConfigHeaderKey + "Misc")]
+
+        [Label(AQText.ConfigValueKey + "ShowCompletedAnglerQuestsCount")]
+        [DefaultValue(true)]
+        public bool ShowCompletedQuestsCount { get; set; }
 
         public override void OnChanged()
         {

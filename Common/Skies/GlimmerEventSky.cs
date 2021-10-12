@@ -271,7 +271,9 @@ namespace AQMod.Common.Skies
                     color = new Color((int)(Main.DiscoR * 0.9f + Main.DiscoG * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoG * 0.9f + Main.DiscoR * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoB * 0.9f + Main.DiscoR * 0.05f + Main.DiscoG * 0.05f), 255);
                 else
                 {
-                    color = new Color(110, 110, 255, 255);
+                    color = AQMod.StariteAuraColor;
+                    color.A = 255;
+                    color *= AQMod.StariteBGMult;
                 }
                 color *= (1f + (ModContent.GetInstance<AQConfigClient>().EffectIntensity - 1f) * 0.24f) * (1f - _glimmerLight);
                 float x = Main.screenWidth / 2f;
@@ -305,7 +307,9 @@ namespace AQMod.Common.Skies
                         color = new Color((int)(Main.DiscoR * 0.9f + Main.DiscoG * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoG * 0.9f + Main.DiscoR * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoB * 0.9f + Main.DiscoR * 0.05f + Main.DiscoG * 0.05f), 255);
                     else
                     {
-                        color = new Color(110, 110, 255, 255);
+                        color = AQMod.StariteAuraColor;
+                        color.A = 255;
+                        color *= AQMod.StariteBGMult;
                     }
                     color *= intensity;
                     float x = Main.screenWidth / 2f;

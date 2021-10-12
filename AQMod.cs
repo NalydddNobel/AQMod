@@ -123,35 +123,18 @@ namespace AQMod
         public static float EffectIntensity { get; private set; }
         public static float EffectIntensityMinus => 2f - EffectIntensity;
         public static float Effect3Dness { get; private set; }
+        public static float StariteBGMult { get; private set; }
         public static bool HarderOmegaStarite { get; private set; }
         public static bool EvilProgressionLock { get; private set; }
         public static bool ConfigReduceSpawnsWhenYouShould { get; private set; }
-        public static int MultIntensity(int input)
-        {
-            return (int)(input * EffectIntensity);
-        }
         public static bool TonsofScreenShakes { get; private set; }
         /// <summary>
         /// Whether or not the background starites from the Glimmer Event should be shown. Default value is true
         /// </summary>
         public static bool ShowBackgroundStarites { get; private set; }
-
-        public AQMod()
-        {
-            Properties = new ModProperties()
-            {
-                Autoload = true,
-                AutoloadBackgrounds = true,
-                AutoloadGores = true,
-                AutoloadSounds = true
-            };
-            AprilFools = false;
-            if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
-            {
-                AprilFools = true;
-            }
-            Loading = true;
-        }
+        public static Color MapBlipColor { get; private set; }
+        public static Color StariteProjectileColor { get; private set; }
+        public static Color StariteAuraColor { get; private set; }
 
         /// <summary>
         /// The active instance of the Cursor Dyes Loader.
@@ -186,6 +169,23 @@ namespace AQMod
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
+
+        public AQMod()
+        {
+            Properties = new ModProperties()
+            {
+                Autoload = true,
+                AutoloadBackgrounds = true,
+                AutoloadGores = true,
+                AutoloadSounds = true
+            };
+            AprilFools = false;
+            if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
+            {
+                AprilFools = true;
+            }
+            Loading = true;
+        }
 
         public override void Load()
         {
@@ -533,7 +533,7 @@ namespace AQMod
             }
             if (Main.netMode != NetmodeID.Server)
             {
-                glimmerEvent.stariteProjectileColor = glimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : AQConfigClient.Instance.StariteProjColor;
+                glimmerEvent.stariteProjectileColor = glimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : StariteProjectileColor;
             }
             else
             {
@@ -670,6 +670,10 @@ namespace AQMod
             Effect3Dness = clientConfig.Effect3D;
             ShowBackgroundStarites = clientConfig.BackgroundStarites;
             TonsofScreenShakes = clientConfig.TonsofScreenShakes;
+            StariteProjectileColor = clientConfig.StariteProjColor;
+            MapBlipColor = clientConfig.MapBlipColor;
+            StariteAuraColor = clientConfig.StariteAuraColor;
+            StariteBGMult = clientConfig.StariteBackgroundLight;
         }
 
         public static void ApplyServerConfig(AQConfigServer serverConfig)
@@ -727,6 +731,11 @@ namespace AQMod
         public static bool ShouldReduceSpawns()
         {
             return ConfigReduceSpawnsWhenYouShould && reduceSpawnrates();
+        }
+
+        public static int MultIntensity(int input)
+        {
+            return (int)(input * EffectIntensity);
         }
     }
 }

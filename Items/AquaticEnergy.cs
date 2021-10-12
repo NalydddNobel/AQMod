@@ -20,7 +20,7 @@ namespace AQMod.Items
 
         private static Color outline(float colorOffset)
         {
-            return Color.Lerp(new Color(111, 111, 255, 180), new Color(11, 11, 190, 180), ((float)Math.Sin(Main.GlobalTime * 2f) + 1f) / 2f);
+            return Color.Lerp(new Color(200, 200, 255, 180), new Color(111, 111, 190, 180), ((float)Math.Sin(Main.GlobalTime * 2f) + 1f) / 2f);
         }
 
         private static Color spotlight(float colorOffset)

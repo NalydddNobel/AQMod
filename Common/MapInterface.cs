@@ -153,7 +153,7 @@ namespace AQMod.Common
                         if (Main.npc[i].active && !AQNPC.Sets.NoMapBlip[Main.npc[i].type] && Main.npc[i].GetBossHeadTextureIndex() == -1 && !Main.npc[i].townNPC)
                         {
                             var drawPos = MapPos(Main.npc[i].Center / 16f);
-                            var color = AQConfigClient.Instance.MapBlipColor;
+                            var color = AQMod.MapBlipColor;
                             byte r = color.R;
                             if (r < 10)
                                 r = 10;

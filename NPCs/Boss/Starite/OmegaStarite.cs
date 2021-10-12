@@ -1382,7 +1382,7 @@ namespace AQMod.NPCs.Boss.Starite
             }
             else
             {
-                spotlightColor = new Color(100, 100, 255, 0);
+                spotlightColor = AQMod.StariteAuraColor;
             }
             var drawOmegite = new List<DrawMethod>();
             if (ModContent.GetInstance<AQConfigClient>().EffectQuality >= 1f)
