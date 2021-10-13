@@ -24,7 +24,6 @@ namespace AQMod.Items.Tools.SupportStaffs
             item.useAnimation = 28;
             item.useTime = 28;
             item.buffType = BuffID.NightOwl;
-            item.buffTime = 600;
             item.shoot = ModContent.ProjectileType<NightOwl>();
             item.shootSpeed = 9f;
             item.rare = ItemRarityID.LightRed;

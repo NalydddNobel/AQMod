@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
-using AQMod.Items.Weapons.Magic.Support;
 using AQMod.Projectiles.Support;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -25,7 +24,6 @@ namespace AQMod.Items.Tools.SupportStaffs
             item.useAnimation = 28;
             item.useTime = 28;
             item.buffType = BuffID.NightOwl;
-            item.buffTime = 600;
             item.shoot = ModContent.ProjectileType<IronShield>();
             item.shootSpeed = 9f;
             item.rare = ItemRarityID.Blue;

@@ -1,6 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Content.Dusts;
 using AQMod.Effects.WorldEffects;
+using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Localization;
@@ -89,9 +90,11 @@ namespace AQMod.Content.WorldEvents.Siege
         {
             Reset();
             _upgrades = new List<DemonSiegeUpgrade>();
-            AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.BloodButcherer, ModContent.ItemType<CrimsonHellSword>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.LightsBane, ModContent.ItemType<HellsBoon>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
+            AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.BloodButcherer, ModContent.ItemType<CrimsonHellSword>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.DemonBow, ModContent.ItemType<HamaYumi>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
+            AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.TendonBow, ModContent.ItemType<Deltoid>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
+            AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ModContent.ItemType<SeltzerRain>(), ModContent.ItemType<PagetFizzler>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
 
             _enemies = new List<DemonSiegeEnemy>();
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Cindera>(UpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_CINDERA, 20));

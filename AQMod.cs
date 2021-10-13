@@ -737,5 +737,16 @@ namespace AQMod
         {
             return (int)(input * EffectIntensity);
         }
+
+        public static TModProjectile NewModProjectile<TModProjectile>(Vector2 position, Vector2 velocity, int Type, int Damage, float KnockBack, int Owner, float ai0 = 0f, float ai1 = 0f) where TModProjectile : ModProjectile
+        {
+            return (TModProjectile)Main.projectile[Projectile.NewProjectile(position, velocity, Type, Damage, KnockBack, Owner, ai0, ai1)].modProjectile;
+        }
+
+        public static TModProjectile NewModProjectile<TModProjectile>(out int index, Vector2 position, Vector2 velocity, int Type, int Damage, float KnockBack, int Owner, float ai0 = 0f, float ai1 = 0f) where TModProjectile : ModProjectile
+        {
+            index = Projectile.NewProjectile(position, velocity, Type, Damage, KnockBack, Owner, ai0, ai1);
+            return (TModProjectile)Main.projectile[index].modProjectile;
+        }
     }
 }
