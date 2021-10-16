@@ -18,8 +18,6 @@ using AQMod.Items.Fishing.QuestFish;
 using AQMod.Items.Placeable;
 using AQMod.Items.Placeable.Walls;
 using AQMod.Items.TagItems.Starbyte;
-using AQMod.Items.Tools;
-using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
@@ -136,6 +134,7 @@ namespace AQMod.Common
         public int cHeadOverlay;
         public int cMask;
         public int cCelesteTorus;
+        public bool heartMoth;
 
         public byte ClosestEnemy { get; private set; }
         public float ClosestEnemyDistance { get; private set; }
@@ -296,7 +295,9 @@ namespace AQMod.Common
 
                 var type = ModContent.ProjectileType<CelesteTorusCollider>();
                 if (player.ownedProjectileCounts[type] <= 0)
+                {
                     Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
+                }
                 else
                 {
                     for (int i = 0; i < Main.maxProjectiles; i++)
@@ -551,6 +552,7 @@ namespace AQMod.Common
             cCelesteTorus = 0;
             monoxiderCarry = 0;
             cataEyeColor = new Color(50, 155, 255, 0);
+            heartMoth = false;
             if (nearGlobe > 0)
             {
                 nearGlobe--;

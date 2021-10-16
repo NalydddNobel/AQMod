@@ -148,8 +148,6 @@ namespace AQMod.Content.CrossMod
                     ModContent.ItemType<CosmicEnergy>(),
                     ItemID.Nazar,
                     ModContent.ItemType<RetroGoggles>(),
-                    ModContent.ItemType<StariteBlade>(),
-                    ModContent.ItemType<StariteSpinner>(),
                     ModContent.ItemType<SpaceShot>(),
                     ModContent.ItemType<StariteStaff>(),
                     ModContent.ItemType<MoonShoes>(),

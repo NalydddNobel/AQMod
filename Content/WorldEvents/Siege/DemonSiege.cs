@@ -94,7 +94,7 @@ namespace AQMod.Content.WorldEvents.Siege
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.BloodButcherer, ModContent.ItemType<CrimsonHellSword>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.DemonBow, ModContent.ItemType<HamaYumi>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.TendonBow, ModContent.ItemType<Deltoid>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
-            AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ModContent.ItemType<SeltzerRain>(), ModContent.ItemType<PagetFizzler>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
+            AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ModContent.ItemType<SeltzerRain>(), ModContent.ItemType<FizzlingFire>(), UpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
 
             _enemies = new List<DemonSiegeEnemy>();
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Cindera>(UpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_CINDERA, 20));

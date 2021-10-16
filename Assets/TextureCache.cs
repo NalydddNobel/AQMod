@@ -10,6 +10,7 @@ using AQMod.NPCs.Boss.Crabson;
 using AQMod.NPCs.Boss.Starite;
 using AQMod.NPCs.Monsters.AquaticEvent;
 using AQMod.NPCs.Monsters.DemonicEvent;
+using AQMod.Projectiles.Ranged;
 using AQMod.Tiles;
 using log4net;
 using Microsoft.Xna.Framework.Graphics;

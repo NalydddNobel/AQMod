@@ -8,7 +8,7 @@ using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Yoyos;
-using AQMod.Items.Weapons.Ranged.Bullet;
+using AQMod.Items.Weapons.Ranged;
 using AQMod.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -31,9 +31,9 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
         {
             npc.width = 80;
             npc.height = 80;
-            npc.lifeMax = 95;
-            npc.damage = 20;
-            npc.defense = 8;
+            npc.lifeMax = 115;
+            npc.damage = 25;
+            npc.defense = 9;
             npc.HitSound = SoundID.NPCHit5;
             npc.DeathSound = SoundID.NPCDeath55;
             npc.aiStyle = -1;
@@ -44,19 +44,6 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             npc.npcSlots = 2f;
             banner = npc.type;
             bannerItem = ModContent.ItemType<SuperStariteBanner>();
-        }
-
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            if (AQMod.glimmerEvent.IsActive)
-            {
-                npc.lifeMax = (int)(npc.lifeMax * 1.25f);
-                if (Main.hardMode)
-                {
-                    npc.lifeMax = (int)(npc.lifeMax * 1.5f);
-                    npc.damage = (int)(npc.damage * 1.2f);
-                }
-            }
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -342,25 +329,12 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
         {
             if (Main.rand.NextBool(4))
             {
-                int[] drops = new int[]
-                {
-                    ModContent.ItemType<StariteBlade>(),
-                    ModContent.ItemType<StariteSpinner>(),
-                    ModContent.ItemType<SpaceShot>(),
-                };
-                Item.NewItem(npc.getRect(), drops[Main.rand.Next(drops.Length)]);
+                Item.NewItem(npc.getRect(), ModContent.ItemType<SpaceShot>());
             }
-            if (AQMod.glimmerEvent.IsActive)
-            {
-                WorldDefeats.DownedGlimmer = true;
-                if (AQNPC.CanDropEnergy && Main.rand.NextBool(5))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
-            }
-            else
-            {
-                if (AQNPC.CanDropEnergy)
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
-            }
+            WorldDefeats.DownedGlimmer = true;
+            if (AQNPC.CanDropEnergy && Main.rand.NextBool(5))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
+
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<NeutronJuice>());
             if (Main.rand.NextBool(50))

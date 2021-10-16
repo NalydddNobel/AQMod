@@ -32,5 +32,16 @@ namespace AQMod.Items.Weapons.Melee.Yoyos
             item.shootSpeed = 10f;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.Yoyos.StariteSpinner>();
         }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.WoodYoyo);
+            r.AddIngredient(ItemID.FallenStar, 8);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
+            r.AddTile(TileID.Anvils);
+            r.SetResult(this);
+            r.AddRecipe();
+        }
     }
 }

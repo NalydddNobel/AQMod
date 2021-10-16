@@ -219,14 +219,11 @@ ItemName.Ultranium=Hyper Crystal
 ##############
 # Boss Items #
 ##############
-# Crabson
 ItemName.Crabsol=Crabsol
 ItemName.CrabsonBag=Treasure Bag
 ItemName.MushroomClam=Mushroom Clam
 ItemName.CrabsonTrophy=Jerry Crabson Trophy
 ItemName.CrabsonMask=Jerry Crabson Mask
-# Omega Starite
-ItemName.DragonBall=Dragon Ball
 ItemName.MythicStarfruit=Mythic Starfruit
 ItemName.NovaFruit=Nova Fruit
 ItemName.OmegaStariteMask=Omega Starite Mask
@@ -372,6 +369,24 @@ ItemName.PlaceableCrimsonHeart=Crimson Heart (Placeable)
 ItemName.MonoxideHat=Monoxide Hat
 ItemName.FishyFins=Fishy Fins
 ItemName.CelesitalEightBall=Celestial 8-Ball
+ItemName.DragonBall=Dragon Ball
+ItemName.HeartLamp=Heart Lamp
+# Cursor Dyes
+ItemName.CursorDyeRemover=Cursor Dye Remover
+ItemName.HealthCursorDye=Health Cursor Dye
+ItemName.ManaCursorDye=Mana Cursor Dye
+ItemName.SwordCursorDye=Sword Cursor Dye
+ItemName.DemonicCursorDye=Demonic Cursor Dye
+# Dyes
+ItemName.EnchantedDye=Enchanted Dye
+ItemName.ScrollDye=Scroll Dye
+ItemName.HellBeamDye=Hell Beam Dye
+ItemName.BreakdownDye=Breakdown Dye
+ItemName.DiscoDye=Disco Dye
+ItemName.HypnoDye=Hypno Dye
+ItemName.SimplifiedDye=Simplified Dye
+ItemName.OutlineDye=Outline Dye
+ItemName.RainbowOutlineDye=Rainbow Outline Dye
 ###########
 # Weapons #
 ###########
@@ -384,6 +399,7 @@ ItemName.MagmalbulbiaStaff=Magmalbulbia Staff
 ItemName.Narrizuul=Narrizuul
 ItemName.ScarletSea=Scarlet Sea
 ItemName.SeltzerRain=Seltzer Rain
+ItemName.FizzlingFire=Fizzling Fire
 # Tomes
 ItemName.PentalScythe=Pental Scythe
 # Melee
@@ -588,26 +604,8 @@ ItemTooltip.GlimmeringStatue=Has a very high chance to attract the Ultimate Swor
 # Other Placeables
 ItemTooltip.FishingCraftingStation=Used to craft special fishing items
 ItemTooltip.GlobeItem=Can be drawn on with markers
-############
-# Vanities #
-############
-# Cursor Dyes
-ItemName.CursorDyeRemover=Cursor Dye Remover
-ItemName.HealthCursorDye=Health Cursor Dye
-ItemName.ManaCursorDye=Mana Cursor Dye
-ItemName.SwordCursorDye=Sword Cursor Dye
-ItemName.DemonicCursorDye=Demonic Cursor Dye
-# Dyes
-ItemName.EnchantedDye=Enchanted Dye
-ItemName.ScrollDye=Scroll Dye
-ItemName.HellBeamDye=Hell Beam Dye
-ItemName.BreakdownDye=Breakdown Dye
-ItemName.DiscoDye=Disco Dye
-ItemName.HypnoDye=Hypno Dye
-ItemName.SimplifiedDye=Simplified Dye
-ItemName.OutlineDye=Outline Dye
-ItemName.RainbowOutlineDye=Rainbow Outline Dye
-# Other Vanities
+ItemTooltip.DragonBall=Summons a micro starite
+ItemTooltip.HeartLamp=Summons a heart moth which increases life regen
 ItemTooltip.MonoxideHat='Became a vanity item due to popular demand'
 ItemTooltip.CelesitalEightBall=Right click to use as a normal 8-Ball\nHas special text depending on the world state
 ###########
@@ -622,6 +620,7 @@ ItemTooltip.MagmalbulbiaStaff=Shoots firey magmaballs that explode off tiles\n'E
 ItemTooltip.Narrizuul=A relic birthed in an alternate universe\n'Smells like roses'
 ItemTooltip.ScarletSea=Shoots 2 blood orbs which follow your cursor\nWhen they get too close to the cursor they shimmer and stop following\nOnly 10 blood orbs can follow the cursor at once
 ItemTooltip.SeltzerRain=Shoots 5 fizzy orbs which follow your cursor for a short while\nThe fizzy orbs soon start fleeing from your cursor
+ItemTooltip.FizzlingFire=Shoots powerful blue flames\nCannot be used while potion sick
 # Tomes
 ItemTooltip.PentalScythe=Shoots firey demon scythes that target your enemies
 # Melee
@@ -666,6 +665,8 @@ BuffName.Spoiled=Spoiled
 BuffDescription.Spoiled=Enemies drop twice as much loot\n'You are such a spoiled brat!'
 BuffName.MicroStarite=Micro Starite
 BuffDescription.MicroStarite=The smallest solar system imaginable
+BuffName.HeartMoth=Heart Moth
+BuffDescription.HeartMoth=Gives you increased life regen and emits light
 BuffName.CosmicMarkerBuff=Cosmic Marker
 BuffDescription.CosmicMarkerBuff=The glimmer event's center is shown on the map
 BuffName.RetroMarkerBuff=Retro Marker

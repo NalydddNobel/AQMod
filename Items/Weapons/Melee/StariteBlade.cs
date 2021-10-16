@@ -36,5 +36,16 @@ namespace AQMod.Items.Weapons.Melee
             if (Main.rand.NextBool(5))
                 Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 15);
         }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.WoodenSword);
+            r.AddIngredient(ItemID.FallenStar, 8);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
+            r.AddTile(TileID.Anvils);
+            r.SetResult(this);
+            r.AddRecipe();
+        }
     }
 }

@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Ranged.Bullet
+namespace AQMod.Items.Weapons.Ranged
 {
     public class SpaceShot : ModItem
     {

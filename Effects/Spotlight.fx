@@ -104,6 +104,7 @@ float4 SpikeFade(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
     return color * sampleColor;
 }
 
+
 technique Technique1
 {
     pass SpotlightPass

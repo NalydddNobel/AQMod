@@ -24,32 +24,18 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
         {
             npc.width = 20;
             npc.height = 20;
-            npc.lifeMax = 35;
-            npc.damage = 40;
+            npc.lifeMax = 45;
+            npc.damage = 45;
             npc.defense = 3;
             npc.HitSound = SoundID.NPCHit39;
             npc.DeathSound = SoundID.NPCDeath55;
             npc.aiStyle = -1;
             npc.noGravity = true;
-            npc.knockBackResist = 1.2f;
+            npc.knockBackResist = 1.1f;
             npc.value = Item.buyPrice(silver: 2);
             npc.buffImmune[BuffID.OnFire] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<StariteBanner>();
-        }
-
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            if (AQMod.glimmerEvent.IsActive)
-            {
-                npc.lifeMax = (int)(npc.lifeMax * 1.25f);
-                npc.knockBackResist *= 0.95f;
-                if (Main.hardMode)
-                {
-                    npc.lifeMax = (int)(npc.lifeMax * 1.5f);
-                    npc.damage = (int)(npc.damage * 1.2f);
-                }
-            }
         }
 
         public override void AI()
