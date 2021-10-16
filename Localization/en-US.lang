@@ -620,7 +620,7 @@ ItemTooltip.MagmalbulbiaStaff=Shoots firey magmaballs that explode off tiles\n'E
 ItemTooltip.Narrizuul=A relic birthed in an alternate universe\n'Smells like roses'
 ItemTooltip.ScarletSea=Shoots 2 blood orbs which follow your cursor\nWhen they get too close to the cursor they shimmer and stop following\nOnly 10 blood orbs can follow the cursor at once
 ItemTooltip.SeltzerRain=Shoots 5 fizzy orbs which follow your cursor for a short while\nThe fizzy orbs soon start fleeing from your cursor
-ItemTooltip.FizzlingFire=Shoots powerful blue flames\nCannot be used while potion sick
+ItemTooltip.FizzlingFire=Shoots powerful blue flames\nCannot be used while mana sick
 # Tomes
 ItemTooltip.PentalScythe=Shoots firey demon scythes that target your enemies
 # Melee

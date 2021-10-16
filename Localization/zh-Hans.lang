@@ -20,6 +20,12 @@ Common.ConfigHeader_Debug=调试模式
 Common.Config_DrawSpotlights=绘制灯光效果
 Common.Config_EffectQuality=效果质量
 Common.Config_EffectIntensity=效果强度
+Common.Config_Effect3D=3D效果
+Common.Config_Effect3DTooltip=数值越高3D效果越明显, 数值越低3D效果越扁平
+Common.Config_StariteBackgroundLight=星源背景亮度
+Common.Config_StariteBackgroundLightTooltip=决定微光事件背景光的亮度
+Common.Config_StariteAuraColor=星源氛围颜色
+Common.Config_StariteAuraColorTooltip=终末之星和微光事件整体氛围的颜色
 Common.Config_LoadItemOverlays=加载物品覆盖层
 Common.Config_BackgroundStarites=星源背景
 Common.Config_StariteProjColor=星源弹幕的颜色
@@ -210,14 +216,11 @@ ItemName.Ultranium=超载晶体
 ##############
 # Boss Items #
 ##############
-# Crabson
 ItemName.Crabsol=蟹壳剑
 ItemName.CrabsonBag=宝藏袋
 ItemName.MushroomClam=蕈蛤
 ItemName.CrabsonTrophy=巨蟹蛤纪念章
 ItemName.CrabsonMask=巨蟹蛤面具
-# Omega Starite
-ItemName.DragonBall=龙珠
 ItemName.MythicStarfruit=秘星果
 ItemName.NovaFruit=新星果
 ItemName.OmegaStariteMask=终末之星面具
@@ -236,11 +239,11 @@ ItemName.SpicyEel=香辣鳗鱼
 ItemName.BatonofNightVision=夜视节杖
 ItemName.BatonofRage=暴怒节杖
 ItemName.BatonofWrath=怒气节杖
-ItemName.StaffofNightVision=夜猫子法杖
-ItemName.StaffofIronskin=铁皮法杖
-ItemName.StaffofRegeneration=再生法杖
-ItemName.StaffofSwiftness=敏捷法杖
-ItemName.StaffofWaterBreathing=水下呼吸法杖
+ItemName.StaffofNightVision=夜猫子手杖
+ItemName.StaffofIronskin=铁皮手杖
+ItemName.StaffofRegeneration=再生手杖
+ItemName.StaffofSwiftness=敏捷手杖
+ItemName.StaffofWaterBreathing=避水手杖
 # Other Buffs Items
 ItemName.MysteryGrail=神秘圣杯
 ItemName.OpposingPotion=对立药水
@@ -364,6 +367,24 @@ ItemName.PlaceableCrimsonHeart=猩红之心 (可放置)
 ItemName.MonoxideHat=金乌之巢
 ItemName.FishyFins=可疑的鱼鳍
 ItemName.CelesitalEightBall=星界八号球
+ItemName.DragonBall=龙珠
+ItemName.HeartLamp=心灯
+# Cursor Dyes
+ItemName.CursorDyeRemover=光标染料移除剂
+ItemName.HealthCursorDye=生命光标染料
+ItemName.ManaCursorDye=法力光标染料
+ItemName.SwordCursorDye=剑刃光标染料
+ItemName.DemonicCursorDye=恶魔光标染料
+# Dyes
+ItemName.EnchantedDye=附魔染料
+ItemName.ScrollDye=眩惑染料
+ItemName.HellBeamDye=狱光染料
+ItemName.BreakdownDye=故障染料
+ItemName.DiscoDye=迪斯科染料
+ItemName.HypnoDye=色彩分离染料
+ItemName.SimplifiedDye=简化染料
+ItemName.OutlineDye=轮廓描边染料
+ItemName.RainbowOutlineDye=彩虹轮廓描边染料
 ###########
 # Weapons #
 ###########
@@ -376,6 +397,7 @@ ItemName.MagmalbulbiaStaff=邪弹法杖
 ItemName.Narrizuul=耀宇遗光
 ItemName.ScarletSea=罪孽红海
 ItemName.SeltzerRain=苏打雨
+ItemName.FizzlingFire=冥焰
 # Tomes
 ItemName.PentalScythe=回旋魔镰
 # Melee
@@ -580,26 +602,8 @@ ItemTooltip.GlimmeringStatue=在微光事件持续期间有很高几率吸引最
 # Other Placeables
 ItemTooltip.FishingCraftingStation=用于制作特殊的钓鱼物品
 ItemTooltip.GlobeItem=可使用标记物品进行绘制
-############
-# Vanities #
-############
-# Cursor Dyes
-ItemName.CursorDyeRemover=光标染料移除剂
-ItemName.HealthCursorDye=生命光标染料
-ItemName.ManaCursorDye=法力光标染料
-ItemName.SwordCursorDye=剑刃光标染料
-ItemName.DemonicCursorDye=恶魔光标染料
-# Dyes
-ItemName.EnchantedDye=附魔染料
-ItemName.ScrollDye=眩惑染料
-ItemName.HellBeamDye=狱光染料
-ItemName.BreakdownDye=故障染料
-ItemName.DiscoDye=迪斯科染料
-ItemName.HypnoDye=色彩分离染料
-ItemName.SimplifiedDye=简化染料
-ItemName.OutlineDye=轮廓描边染料
-ItemName.RainbowOutlineDye=彩虹轮廓描边染料
-# Other Vanities
+ItemTooltip.DragonBall=召唤一个微型星之源
+ItemTooltip.HeartLamp=召唤一只会增加你生命恢复速度的心蛾
 ItemTooltip.MonoxideHat='因人们需求而变成一件装饰物品'
 ItemTooltip.CelesitalEightBall=右键使用以当做普通的8号球使用\n特殊文本取决于世界当前状态
 ###########
@@ -614,6 +618,7 @@ ItemTooltip.MagmalbulbiaStaff=发射击中物块时会爆炸的弹跳火焰弹\n
 ItemTooltip.Narrizuul=于异界形成的遗物\n'闻起来像玫瑰'
 ItemTooltip.ScarletSea=发射2个跟随你光标移动的血珠\n当血珠接近光标时会停止移动并发出闪光\n一次至多有10个血珠跟随光标
 ItemTooltip.SeltzerRain=发射5个会跟随你光标移动一段时间的闪光球\n闪光球在移动一段时间后会远离你的光标
+ItemTooltip.FizzlingFire=发射强大的蓝色火焰\n在你拥有耐魔性减益时无法使用
 # Tomes
 ItemTooltip.PentalScythe=发射追踪敌人的烈焰魔镰
 # Melee
@@ -658,6 +663,8 @@ BuffName.Spoiled=溺爱
 BuffDescription.Spoiled=敌人死亡时掉落的战利品的数量翻倍\n'你只是个被惯坏了的坏孩子!'
 BuffName.MicroStarite=微型星之源
 BuffDescription.MicroStarite=你所能想象的最小的类太阳系
+BuffName.HeartMoth=心蛾
+BuffDescription.HeartMoth=增加你的生命恢复速度并提供光照
 BuffName.CosmicMarkerBuff=星宇标记
 BuffDescription.CosmicMarkerBuff=在地图上显示微光事件的正中心
 BuffName.RetroMarkerBuff=复古标记
