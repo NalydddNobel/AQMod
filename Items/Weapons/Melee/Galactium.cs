@@ -40,5 +40,17 @@ namespace AQMod.Items.Weapons.Melee
             Main.PlaySound(SoundID.Item9, position);
             return true;
         }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<StariteBlade>());
+            r.AddIngredient(ItemID.Starfury);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 5);
+            r.AddIngredient(ItemID.SoulofFlight, 5);
+            r.AddTile(TileID.Anvils);
+            r.SetResult(this);
+            r.AddRecipe();
+        }
     }
 }

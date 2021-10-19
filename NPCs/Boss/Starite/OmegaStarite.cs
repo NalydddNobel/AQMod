@@ -1292,7 +1292,6 @@ namespace AQMod.NPCs.Boss.Starite
                 int[] choices = new int[]
                 {
                     ModContent.ItemType<MagicWand>(),
-                    ModContent.ItemType<Galactium>(),
                     ModContent.ItemType<Raygun>(),
                 };
                 Item.NewItem(rect, choices[Main.rand.Next(choices.Length)]);

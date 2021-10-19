@@ -35,7 +35,6 @@ namespace AQMod.Items
             int[] choices = new int[]
             {
                 ModContent.ItemType<MagicWand>(),
-                ModContent.ItemType<Galactium>(),
                 ModContent.ItemType<Raygun>(),
             };
             player.QuickSpawnItem(choices[Main.rand.Next(choices.Length)]);

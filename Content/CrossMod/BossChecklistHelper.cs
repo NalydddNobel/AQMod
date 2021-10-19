@@ -71,7 +71,6 @@ namespace AQMod.Content.CrossMod
                         ModContent.ItemType<CelesteTorus>(),
                         ModContent.ItemType<UltimateSword>(),
                         ModContent.ItemType<CosmicTelescope>(),
-                        ModContent.ItemType<Galactium>(),
                         ModContent.ItemType<Raygun>(),
                         ModContent.ItemType<MagicWand>(),
                         ModContent.ItemType<CosmicEnergy>(),

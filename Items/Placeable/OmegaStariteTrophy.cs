@@ -33,11 +33,6 @@ namespace AQMod.Items.Placeable
                 var r = new ModRecipe(mod);
                 r.AddIngredient(item.type);
                 r.AddTile(TileID.Solidifier);
-                r.SetResult(ModContent.ItemType<Galactium>());
-                r.AddRecipe();
-                r = new ModRecipe(mod);
-                r.AddIngredient(item.type);
-                r.AddTile(TileID.Solidifier);
                 r.SetResult(ModContent.ItemType<Raygun>());
                 r.AddRecipe();
                 r = new ModRecipe(mod);
