@@ -135,17 +135,19 @@ namespace AQMod.Common.ItemOverlays
             origin = Main.itemTexture[item.type].Size() / 2;
             if (PreDraw(false, item))
             {
-                var batcher = new GeneralEntityBatcher(Main.spriteBatch);
+
                 var drawData = new DrawData(texture, drawCoordinates, drawFrame, drawColor, drawRotation, origin, scale, SpriteEffects.None, 0);
                 if (shader != 0)
                 {
-                    batcher.StartShaderBatch();
+                    Main.spriteBatch.End();
+                    BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
                     GameShaders.Armor.Apply(shader, item, drawData);
                 }
                 drawData.Draw(Main.spriteBatch);
                 if (shader != 0)
                 {
-                    batcher.StartBatch();
+                    Main.spriteBatch.End();
+                    BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
                 }
             }
         }

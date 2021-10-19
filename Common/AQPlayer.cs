@@ -7,7 +7,7 @@ using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.Glimmer;
-using AQMod.Effects.Screen;
+using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
@@ -420,7 +420,7 @@ namespace AQMod.Common
 
         public override void OnEnterWorld(Player player)
         {
-            if (!Main.dayTime)
+            if (!Main.dayTime && Main.netMode != NetmodeID.MultiplayerClient && Main.myPlayer == player.whoAmI)
                 GlimmerEventSky.InitNight();
         }
 
@@ -481,7 +481,7 @@ namespace AQMod.Common
             }
             if (!Main.gamePaused && Main.instance.IsActive)
             {
-                GameScreenManager.Update();
+                ScreenShakeManager.Update();
             }
             AQUtils.UpdateSky((AQMod.glimmerEvent.IsActive || OmegaStariteSceneManager.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
             //if (AQConfigClient.Instance.ScreenDistortShader)
@@ -869,7 +869,7 @@ namespace AQMod.Common
                 {
                     if (length < 800)
                     {
-                        GameScreenManager.AddEffect(new ScreenShake(12, AQMod.MultIntensity((800 - length) / 128)));
+                        ScreenShakeManager.AddEffect(new BasicScreenShake(12, AQMod.MultIntensity((800 - length) / 128)));
                     }
                 }
                 int dustLength = length / size;
@@ -1212,7 +1212,7 @@ namespace AQMod.Common
 
         public override void ModifyScreenPosition()
         {
-            GameScreenManager.ModifyScreenPosition();
+            ScreenShakeManager.ModifyScreenPosition();
         }
 
         public static bool PlayerCrit(int critChance, UnifiedRandom rand)

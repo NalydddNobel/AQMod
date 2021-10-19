@@ -7,7 +7,7 @@ using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.Dusts;
 using AQMod.Effects;
-using AQMod.Effects.Screen;
+using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
 using AQMod.Items.Placeable;
 using AQMod.Items.Tools.Markers;
@@ -128,8 +128,11 @@ namespace AQMod.NPCs.Boss.Starite
             bossBag = ModContent.ItemType<StariteBag>();
             if (!AQMod.glimmerEvent.IsActive)
                 skipDeathTimer = 600;
-            music = GetMusic().GetMusicID();
-            musicPriority = MusicPriority.BossMedium;
+            if (AQMod.CanUseAssets)
+            {
+                music = GetMusic().GetMusicID();
+                musicPriority = MusicPriority.BossMedium;
+            }
         }
 
         public override Color? GetAlpha(Color drawColor)
@@ -550,7 +553,7 @@ namespace AQMod.NPCs.Boss.Starite
                                     npc.localAI[1] = 1f;
                                     Main.PlaySound(SoundID.Trackable, npc.Center, 188);
                                     if (Main.netMode != NetmodeID.Server)
-                                        GameScreenManager.AddEffect(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f * AQMod.EffectIntensity));
+                                        ScreenShakeManager.AddEffect(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f * AQMod.EffectIntensity));
                                     int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaRay>(), 100, 1f, Main.myPlayer, npc.whoAmI);
                                     Main.projectile[p].scale = 0.75f;
                                 }
@@ -1361,7 +1364,7 @@ namespace AQMod.NPCs.Boss.Starite
                 {
                     sortedOmegites[i].drawOffset = new Vector3(Main.rand.Next(-range, range), Main.rand.Next(-range, range), Main.rand.Next(-range, range));
                 }
-                GameScreenManager.ChannelEffect("OmegaStariteDeathScreenShake", new OmegaStariteScreenShake((int)(range * 0.8f), 0.01f, Math.Max(6 - (int)(range * 0.8), 1)));
+                ScreenShakeManager.ChannelEffect("OmegaStariteDeathScreenShake", new OmegaStariteScreenShake((int)(range * 0.8f), 0.01f, Math.Max(6 - (int)(range * 0.8), 1)));
             }
             sortedOmegites.Sort((o, o2) => -(o.position.Z + o.drawOffset.Z).CompareTo(o2.position.Z + o2.drawOffset.Z));
             var omegiteTexture = TextureCache.OmegaStariteOrb.GetValue();
@@ -1458,7 +1461,7 @@ namespace AQMod.NPCs.Boss.Starite
                     {
                         if (npc.oldPos[i] == new Vector2(0f, 0f))
                             break;
-                        trueOldPos.Add(GameScreenManager.UpsideDownScreenSupport(npc.oldPos[i] + offset - Main.screenPosition));
+                        trueOldPos.Add(ScreenShakeManager.UpsideDownScreenSupport(npc.oldPos[i] + offset - Main.screenPosition));
                     }
                     if (trueOldPos.Count > 1)
                     {

@@ -23,6 +23,11 @@ namespace AQMod.Common.Utilities
     {
         public const int UI_SIZE = 10;
 
+        public static void UseImageSize(this MiscShaderData data, Vector2 imageSize)
+        {
+            data.Shader.Parameters["uImageSize0"].SetValue(imageSize);
+        }
+
         /// <summary>
         /// Gets a frame of the projectile's sprite. Use this only for drawing, since this uses the projectile's texture.
         /// </summary>

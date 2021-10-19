@@ -2,7 +2,7 @@
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
-using AQMod.Effects.Screen;
+using AQMod.Effects.ScreenEffects;
 using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -49,7 +49,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             if (AQMod.TonsofScreenShakes && Main.myPlayer == player.whoAmI)
             {
-                GameScreenManager.AddEffect(new ScreenShake(item.useTime, (int)(2 * AQMod.EffectIntensity)));
+                ScreenShakeManager.AddEffect(new BasicScreenShake(item.useTime, (int)(2 * AQMod.EffectIntensity)));
             }
             int randcount = Main.rand.Next(7);
             var velo = new Vector2(speedX, speedY);

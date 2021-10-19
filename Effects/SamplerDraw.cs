@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -8,7 +7,7 @@ using Terraria.Graphics.Shaders;
 
 namespace AQMod.Effects
 {
-    public static class SDraw
+    public static class SamplerDraw
     {
         public static void Light(Vector2 position, float scale)
         {

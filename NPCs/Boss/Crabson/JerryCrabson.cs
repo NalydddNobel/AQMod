@@ -39,8 +39,11 @@ namespace AQMod.NPCs.Boss.Crabson
             npc.behindTiles = true;
             bossBag = ModContent.ItemType<CrabsonBag>();
             npc.buffImmune[BuffID.Suffocation] = true;
-            music = GetMusic().GetMusicID();
-            musicPriority = MusicPriority.BossLow;
+            if (AQMod.CanUseAssets)
+            {
+                music = GetMusic().GetMusicID();
+                musicPriority = MusicPriority.BossLow;
+            }
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

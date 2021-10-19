@@ -4,7 +4,7 @@ using AQMod.Common.Config;
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Effects.Batchers;
-using AQMod.Effects.Screen;
+using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -115,7 +115,7 @@ namespace AQMod.Items.Weapons.Melee
                 float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
                 if (distance < 700)
                 {
-                    GameScreenManager.AddEffect(new ScreenShake(8, AQMod.MultIntensity((int)(700f - distance) / 32)));
+                    ScreenShakeManager.AddEffect(new BasicScreenShake(8, AQMod.MultIntensity((int)(700f - distance) / 32)));
                 }
             }
             int p = Projectile.NewProjectile(projectile.Center, Vector2.Zero, ModContent.ProjectileType<BurnterizerExplosion>(), 30, projectile.knockBack, projectile.owner);
@@ -148,12 +148,12 @@ namespace AQMod.Items.Weapons.Melee
             var color = projectile.GetAlpha(lightColor);
             var origin = new Vector2(texture.Width / 2f, 10f);
             var drawData = new DrawData(texture, drawPosition, null, color, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0);
-            var batcher = new GeneralEntityBatcher(Main.spriteBatch);
             bool resetBatch = false;
             if (AQConfigClient.Instance.OutlineShader)
             {
                 resetBatch = true;
-                batcher.StartShaderBatch();
+                Main.spriteBatch.End();
+                BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
                 float intensity = (float)Math.Sin(Main.GlobalTime * 10f) + 1.5f;
                 var effect = GameShaders.Misc["AQMod:OutlineColor"];
                 effect.UseColor(new Vector3(1f, 0.5f * intensity, 0.1f * intensity));
@@ -161,7 +161,10 @@ namespace AQMod.Items.Weapons.Melee
             }
             drawData.Draw(Main.spriteBatch);
             if (resetBatch)
-                batcher.StartBatch();
+            {
+                Main.spriteBatch.End();
+                BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
+            }
             drawData.scale *= 1.25f;
             drawData.color *= 0.25f;
             drawData.Draw(Main.spriteBatch);

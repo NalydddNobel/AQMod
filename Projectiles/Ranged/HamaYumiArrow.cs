@@ -2,7 +2,7 @@
 using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
-using AQMod.Effects.Screen;
+using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -180,7 +180,7 @@ namespace AQMod.Projectiles.Ranged
                 int p = Projectile.NewProjectile(x3, (y + topY) * 16f, 0f, 0f, type, (int)(projectile.damage * 1.5f), projectile.knockBack, projectile.owner);
                 Main.projectile[p].height = height;
                 if (Main.myPlayer == projectile.owner && AQMod.TonsofScreenShakes)
-                    GameScreenManager.AddEffect(new ScreenShake(20, AQMod.MultIntensity(2)));
+                    ScreenShakeManager.AddEffect(new BasicScreenShake(20, AQMod.MultIntensity(2)));
             }
         }
     }

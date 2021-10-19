@@ -32,20 +32,23 @@ namespace AQMod.Common.ItemOverlays
             Rectangle frame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
             Vector2 drawPosition = new Vector2(item.position.X - Main.screenPosition.X + frame.Width / 2 + item.width / 2 - frame.Width / 2, item.position.Y - Main.screenPosition.Y + frame.Height / 2 + item.height - frame.Height);
             drawPosition = new Vector2((int)drawPosition.X, drawPosition.Y);
-            var batcher = new GeneralEntityBatcher(Main.spriteBatch);
             bool resetBatch = false;
             if (AQConfigClient.Instance.SpotlightShader)
             {
                 resetBatch = true;
-                batcher.StartShaderBatch();
-                SDraw.Light(drawPosition + _spotlightOffset, (scale + (float)Math.Sin(Main.GlobalTime * 3.14f) * 0.1f + 0.65f) * 30f, getSpotlightColor(Main.GlobalTime));
+                Main.spriteBatch.End();
+                BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+                SamplerDraw.Light(drawPosition + _spotlightOffset, (scale + (float)Math.Sin(Main.GlobalTime * 3.14f) * 0.1f + 0.65f) * 30f, getSpotlightColor(Main.GlobalTime));
             }
             Vector2 origin = frame.Size() / 2f;
             var drawData = new DrawData(Main.itemTexture[item.type], drawPosition, frame, item.modItem.GetAlpha(default(Color)).GetValueOrDefault(), rotation, origin, scale, SpriteEffects.None, 0);
             if (AQConfigClient.Instance.OutlineShader)
             {
                 if (!resetBatch)
-                    batcher.StartShaderBatch();
+                {
+                    Main.spriteBatch.End();
+                    BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+                }
                 resetBatch = true;
                 var effect = GameShaders.Misc["AQMod:OutlineColor"];
                 effect.UseColor(getOutlineColor(Main.GlobalTime));
@@ -53,25 +56,31 @@ namespace AQMod.Common.ItemOverlays
             }
             drawData.Draw(Main.spriteBatch);
             if (resetBatch)
-                batcher.StartBatch();
+            {
+                Main.spriteBatch.End();
+                BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
+            }
         }
 
         public override bool PreDrawInventory(Player player, AQPlayer aQPlayer, Item item, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            var batcher = new UIBatcher(Main.spriteBatch);
             bool resetBatch = false;
             var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
             if (AQConfigClient.Instance.OutlineShader)
             {
                 resetBatch = true;
-                batcher.StartShaderBatch();
+                Main.spriteBatch.End();
+                BatcherTypes.StartShaderBatch_UI(Main.spriteBatch);
                 var effect = GameShaders.Misc["AQMod:OutlineColor"];
                 effect.UseColor(getOutlineColor(Main.GlobalTime * 2f));
                 effect.Apply(drawData);
             }
             drawData.Draw(Main.spriteBatch);
             if (resetBatch)
-                batcher.StartBatch();
+            {
+                Main.spriteBatch.End();
+                BatcherTypes.StartBatch_UI(Main.spriteBatch);
+            }
             return true;
         }
     }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace AQMod.Effects.Screen
+namespace AQMod.Effects.ScreenEffects
 {
-    public class OmegaStariteScreenShake : ScreenFX
+    public class OmegaStariteScreenShake : ScreenShakeFX
     {
         private float _intensityY;
         private float _intensityYLerp;
@@ -19,7 +19,7 @@ namespace AQMod.Effects.Screen
 
         public override bool UpdateBiomeVisuals => false;
 
-        public override void AdoptChannel(ScreenFX effect)
+        public override void AdoptChannel(ScreenShakeFX effect)
         {
             var o = (OmegaStariteScreenShake)effect;
             _intensityY = o._intensityY;

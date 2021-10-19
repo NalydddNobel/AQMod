@@ -144,14 +144,14 @@ namespace AQMod.Items.Weapons.Melee
             var frame = new Rectangle(frameWidth * projectile.frame, 0, frameWidth - 2, frameHeight);
             var orig = new Vector2(frameWidth / 2f, 16f);
             var effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            var batcher = new GeneralEntityBatcher(Main.spriteBatch);
             bool resetBatch = false;
             var drawData = new DrawData(texture, projectile.Center - Main.screenPosition, frame, lightColor, projectile.rotation + MathHelper.PiOver2, orig, projectile.scale, SpriteEffects.None, 0);
             if (AQConfigClient.Instance.SpotlightShader)
             {
                 resetBatch = true;
                 drawData.sourceRect = new Rectangle(frame.X, frame.Y, frame.Width, texture.Height);
-                batcher.StartShaderBatch();
+                Main.spriteBatch.End();
+                BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
                 var effect = GameShaders.Misc["AQMod:SpikeFade"];
                 var sampler = TextureCache.Pixel.Value;
                 effect.UseOpacity(1f / texture.Height * frameHeight + _portaloffset);
@@ -162,7 +162,10 @@ namespace AQMod.Items.Weapons.Melee
             drawData.Draw(Main.spriteBatch);
             drawData.Draw(Main.spriteBatch);
             if (resetBatch)
-                batcher.StartBatch();
+            {
+                Main.spriteBatch.End();
+                BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
+            }
             return false;
         }
 

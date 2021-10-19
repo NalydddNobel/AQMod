@@ -83,6 +83,7 @@ namespace AQMod.Projectiles.Magic
             var color = new Color(100, 100, 100, 0);
             var rand = new UnifiedRandom(Main.player[projectile.owner].name.GetHashCode() + projectile.whoAmI);
             float intensity = (1f - projectile.alpha / 255f) * AQMod.EffectIntensity;
+            intensity *= 2f;
             color *= intensity;
             for (int i = 0; i < 4; i++)
             {

@@ -23,7 +23,7 @@ namespace AQMod.Common.Config
 
         [Label(AQText.ConfigValueKey + "EffectIntensity")]
         [DefaultValue(1f)]
-        [Range(0.1f, 2f)]
+        [Range(0.1f, 1f)]
         public float EffectIntensity { get; set; }
 
         [Label(AQText.ConfigValueKey + "Effect3D")]

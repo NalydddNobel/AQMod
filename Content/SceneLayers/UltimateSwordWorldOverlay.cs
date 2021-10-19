@@ -22,7 +22,6 @@ namespace AQMod.Content.SceneLayers
         public const string KEY = "AQMod:UltimateSword";
 
         private readonly float y;
-        private ushort _ultimateSwordChatTimer;
         private byte _swordEffectDelay;
         private readonly UnifiedRandom _rand;
 
@@ -108,12 +107,6 @@ namespace AQMod.Content.SceneLayers
                 return;
             var position = swordPos();
             Lighting.AddLight(position, new Vector3(1f, 1f, 1f));
-            _ultimateSwordChatTimer++;
-            if (_ultimateSwordChatTimer >= 2700)
-            {
-                _ultimateSwordChatTimer = 0;
-                Main.PlaySound(AQMod.Instance.GetLegacySoundSlot(SoundType.Custom, "Sounds/Custom/StariteSpeech").WithVolume(0.2f * Main.ambientVolume).WithPitchVariance(1f), position);
-            }
             if (_rand.NextBool(10))
             {
                 int d = Dust.NewDust(position + new Vector2(_rand.Next(-6, 6), -_rand.Next(60)), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(160, 160, 160, 80));

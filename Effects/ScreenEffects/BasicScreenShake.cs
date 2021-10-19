@@ -1,10 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Utilities;
 
-namespace AQMod.Effects.Screen
+namespace AQMod.Effects.ScreenEffects
 {
-    public class ScreenShake : ScreenFX
+    public class BasicScreenShake : ScreenShakeFX
     {
         private readonly float _intensityX = 0f;
         private readonly float _intensityY = 0f;
@@ -13,14 +12,14 @@ namespace AQMod.Effects.Screen
         private float _offsetY = 0f;
         private int _time;
 
-        public ScreenShake(int time, int intensity)
+        public BasicScreenShake(int time, int intensity)
         {
             _time = time;
             _intensityX = intensity;
             _intensityY = intensity;
         }
 
-        public ScreenShake(int time, int intensityX, int intensityY)
+        public BasicScreenShake(int time, int intensityX, int intensityY)
         {
             _time = time;
             _intensityX = intensityX;

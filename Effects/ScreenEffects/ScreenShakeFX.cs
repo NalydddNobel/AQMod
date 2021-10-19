@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.Utilities;
 
-namespace AQMod.Effects.Screen
+namespace AQMod.Effects.ScreenEffects
 {
-    public abstract class ScreenFX
+    public abstract class ScreenShakeFX
     {
         protected UnifiedRandom _random;
 
@@ -19,7 +19,7 @@ namespace AQMod.Effects.Screen
 
         public abstract bool UpdateBiomeVisuals { get; }
 
-        public virtual void AdoptChannel(ScreenFX effect)
+        public virtual void AdoptChannel(ScreenShakeFX effect)
         {
         }
 

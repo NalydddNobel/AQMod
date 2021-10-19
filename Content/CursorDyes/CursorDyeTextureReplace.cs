@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
 using AQMod.Effects;
 using AQMod.Effects.Batchers;
 using Microsoft.Xna.Framework;
@@ -38,7 +39,8 @@ namespace AQMod.Content.CursorDyes
                 {
                     try
                     {
-                        new UIBatcher(Main.spriteBatch).StartShaderBatch();
+                        Main.spriteBatch.End();
+                        BatcherTypes.StartShaderBatch_UI(Main.spriteBatch);
                         var effect = GameShaders.Misc["AQMod:OutlineColor"];
                         effect.UseColor(Main.MouseBorderColor);
                         effect.UseImageSize(texture.Size());
@@ -52,7 +54,8 @@ namespace AQMod.Content.CursorDyes
                 Main.spriteBatch.Draw(texture, new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
                 if (outline)
                 {
-                    new UIBatcher(Main.spriteBatch).StartBatch();
+                    Main.spriteBatch.End();
+                    BatcherTypes.StartBatch_UI(Main.spriteBatch);
                 }
                 return true;
             }
@@ -75,7 +78,8 @@ namespace AQMod.Content.CursorDyes
                 {
                     try
                     {
-                        new UIBatcher(Main.spriteBatch).StartShaderBatch();
+                        Main.spriteBatch.End();
+                        BatcherTypes.StartShaderBatch_UI(Main.spriteBatch);
                         var effect = GameShaders.Misc["AQMod:OutlineColor"];
                         effect.UseColor(Main.MouseBorderColor);
                         effect.UseImageSize(texture.Size());
@@ -92,7 +96,8 @@ namespace AQMod.Content.CursorDyes
 
                 if (outline)
                 {
-                    new UIBatcher(Main.spriteBatch).StartBatch();
+                    Main.spriteBatch.End();
+                    BatcherTypes.StartBatch_UI(Main.spriteBatch);
                 }
                 return true;
             }

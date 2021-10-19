@@ -1,10 +1,10 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
+using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Effects;
-using AQMod.Effects.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -122,7 +122,7 @@ namespace AQMod.Projectiles
                 {
                     if (projectile.oldPos[i] == new Vector2(0f, 0f))
                         break;
-                    trueOldPos.Add(GameScreenManager.UpsideDownScreenSupport(projectile.oldPos[i] + offset - Main.screenPosition));
+                    trueOldPos.Add(ScreenShakeManager.UpsideDownScreenSupport(projectile.oldPos[i] + offset - Main.screenPosition));
                 }
                 if (trueOldPos.Count > 1)
                 {

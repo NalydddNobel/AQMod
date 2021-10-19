@@ -17,7 +17,6 @@ using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Content.WorldEvents.Siege;
 using AQMod.Effects;
-using AQMod.Effects.Screen;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.ShopCards;
@@ -68,6 +67,7 @@ namespace AQMod
         /// Basically guesses if the game is still active, should only really use for drawing methods that do things like summon dust
         /// </summary>
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
+        public static bool CanUseAssets => !Loading && Main.netMode != NetmodeID.Server;
         /// <summary>
         /// Gets the center of the screen's draw coordinates
         /// </summary>
@@ -163,7 +163,7 @@ namespace AQMod
         /// <summary>
         /// The active instance of the Glimmer Event
         /// </summary>
-        public static GlimmerEvent glimmerEvent { get; private set; }
+        public static GlimmerEvent glimmerEvent { get; set; }
 
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
@@ -190,7 +190,6 @@ namespace AQMod
         public override void Load()
         {
             Loading = true;
-            AssetManager.AssetsLoaded = false;
             AQText.Load();
             CursorDyes = new CursorDyeLoader();
             CursorDyes.Setup();
@@ -229,7 +228,7 @@ namespace AQMod
                 WorldLayers.AddLayer("UltimateSword", new UltimateSwordWorldOverlay(), SceneLayering.InfrontNPCs);
                 WorldLayers.AddLayer("ImpChains", new ImpChainLayer(), SceneLayering.BehindNPCs);
                 WorldLayers.AddLayer("CrabsonChains", new JerryCrabsonLayer(), SceneLayering.BehindTiles_BehindNPCs);
-                GameScreenManager.Load();
+                ScreenShakeManager.Load();
                 StarbyteColorCache.Init();
                 if (client.OutlineShader)
                 {
@@ -247,7 +246,6 @@ namespace AQMod
                     GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
                 }
                 WorldEffects = new List<WorldVisualEffect>();
-                AssetManager.AssetsLoaded = true;
             }
         }
 
@@ -468,6 +466,7 @@ namespace AQMod
         public override void Unload()
         {
             // outside of AQMod
+            Loading = true;
             HuntSystem.Unload();
 
             // in: AddRecipes()
@@ -483,7 +482,6 @@ namespace AQMod
             // v doesn't load on server v
             if (Main.dedServ)
             {
-                AssetManager.AssetsLoaded = false; // set assets loaded to false here so that anything that is using assets at the title screen knows to stop before it unloads
                 DrawUtils.UnloadAssets();
                 if (WorldEffects != null)
                 {
@@ -491,7 +489,7 @@ namespace AQMod
                     WorldEffects = null;
                 }
                 StarbyteColorCache.Unload();
-                GameScreenManager.Unload();
+                ScreenShakeManager.Unload();
                 ArmorOverlays = null;
                 if (WorldLayers != null)
                 {
@@ -572,7 +570,7 @@ namespace AQMod
         {
             AQText.UpdateCallback();
 
-            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || !AssetManager.AssetsLoaded)
+            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || Loading)
             {
                 return;
             }
@@ -596,7 +594,7 @@ namespace AQMod
 
         public static void SetupNewMusic()
         {
-            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || !AssetManager.AssetsLoaded)
+            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || Loading)
             {
                 return;
             }

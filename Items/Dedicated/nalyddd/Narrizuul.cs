@@ -5,7 +5,7 @@ using AQMod.Common.UserInterface;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Effects;
-using AQMod.Effects.Screen;
+using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -144,7 +144,7 @@ namespace AQMod.Items.Dedicated.nalyddd
                     {
                         break;
                     }
-                    trueOldPos.Add(GameScreenManager.UpsideDownScreenSupport(projectile.oldPos[i] + offset - Main.screenPosition));
+                    trueOldPos.Add(ScreenShakeManager.UpsideDownScreenSupport(projectile.oldPos[i] + offset - Main.screenPosition));
                 }
                 if (trueOldPos.Count > 1)
                 {
@@ -185,7 +185,7 @@ namespace AQMod.Items.Dedicated.nalyddd
                 float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
                 if (distance < 800)
                 {
-                    GameScreenManager.AddEffect(new ScreenShake(8, AQMod.MultIntensity((int)(800f - distance) / 64)));
+                    ScreenShakeManager.AddEffect(new BasicScreenShake(8, AQMod.MultIntensity((int)(800f - distance) / 64)));
                 }
             }
             Color color = AQUtils.MovingRainbow(projectile.localAI[1]) * 1.5f;

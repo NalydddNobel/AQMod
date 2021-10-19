@@ -2,6 +2,7 @@
 using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Content.WorldEvents.Siege;
 using AQMod.Tiles;
 using System.IO;
@@ -18,6 +19,7 @@ namespace AQMod.Common
         public override void Initialize()
         {
             OmegaStariteSceneManager.Initialize();
+            AQMod.glimmerEvent = new GlimmerEvent();
             AQMod.glimmerEvent.Init();
             CrabSeason.crabSeasonTimer = CrabSeason.CrabSeasonTimerMin;
             CrabSeason.CrabsonCachedID = -1;

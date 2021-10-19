@@ -2,7 +2,7 @@
 using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
-using AQMod.Effects.Screen;
+using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

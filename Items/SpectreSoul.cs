@@ -146,8 +146,8 @@ namespace AQMod.Items
             else if (line.Name == "bad5")
             {
                 ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, Main.fontMouseText, text, textPosition, new Color(0, 0, 0, 255), line.rotation, line.origin, line.baseScale, line.maxWidth, line.spread);
-                var batcher = new UIBatcher(Main.spriteBatch);
-                batcher.StartShaderBatch();
+                Main.spriteBatch.End();
+                BatcherTypes.StartShaderBatch_UI(Main.spriteBatch);
                 shaderTime--;
                 if (shaderTime <= 0)
                 {
@@ -173,7 +173,8 @@ namespace AQMod.Items
                     GameShaders.Armor.Apply(lastShader, item, null);
                 }
                 ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, textPosition, trueTextColor, line.rotation, line.origin, line.baseScale, line.maxWidth, false);
-                batcher.StartBatch();
+                Main.spriteBatch.End();
+                BatcherTypes.StartBatch_UI(Main.spriteBatch);
             }
             else
             {
