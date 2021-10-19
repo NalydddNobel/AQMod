@@ -10,7 +10,7 @@ using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Flails;
 using AQMod.Items.Weapons.Ranged;
-using AQMod.Projectiles;
+using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

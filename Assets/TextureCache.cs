@@ -103,7 +103,6 @@ namespace AQMod.Assets
             ArrowCrabLegs = TextureAsset.FromT<ArrowCrab>("_Legs");
             JerryClawChain = TextureAsset.FromT<JerryClaw>("_Chain");
             JerryClawFlailProjectileChain = TextureAsset.FromT<JerryClawFlailProjectile>("_Chain");
-            CelesteTorusOrb = TextureAsset.FromT<CelesteTorus>("_Orb");
             StriderHookHookChain = TextureAsset.FromT<StriderHookHook>("_Chain");
 
             Pixel = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/Pixel"));
@@ -173,7 +172,7 @@ namespace AQMod.Assets
             ArrowCrabLegs = null;
             JerryClawChain = null;
             JerryClawFlailProjectileChain = null;
-            CelesteTorusOrb = null;
+            StriderHookHookChain = null;
 
             PlayerHeadOverlays = null;
             PlayerMasks = null;

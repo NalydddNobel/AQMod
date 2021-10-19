@@ -17,6 +17,7 @@ using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged.Bullet;
 using AQMod.Projectiles;
+using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -1246,14 +1247,14 @@ namespace AQMod.NPCs.Boss.Starite
                     Vector2 velo = projectile.velocity * -1.2f;
                     for (int i = 0; i < 8; i++)
                     {
-                        int p2 = Projectile.NewProjectile(projectile.Center, velo.RotatedBy(MathHelper.PiOver4 * i), ModContent.ProjectileType<RainbowStar>(), damage, knockback);
+                        int p2 = Projectile.NewProjectile(projectile.Center, velo.RotatedBy(MathHelper.PiOver4 * i), ModContent.ProjectileType<RainbowStarofHyperApocalypse>(), damage, knockback);
                         Main.projectile[p2].timeLeft = 240;
                     }
                     damage = (int)(damage * 0.25);
                     projectile.active = false;
                     return;
                 }
-                int p = Projectile.NewProjectile(projectile.Center, projectile.velocity * -1.2f, ModContent.ProjectileType<RainbowStar>(), damage, knockback);
+                int p = Projectile.NewProjectile(projectile.Center, projectile.velocity * -1.2f, ModContent.ProjectileType<RainbowStarofHyperApocalypse>(), damage, knockback);
                 Main.projectile[p].timeLeft = 240;
                 damage = (int)(damage * 0.25);
                 projectile.active = false;

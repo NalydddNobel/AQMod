@@ -7,7 +7,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles
+namespace AQMod.Projectiles.Monster
 {
     public class OmegaRay : ModProjectile
     {

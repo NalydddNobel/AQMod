@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
+﻿using AQMod.Common;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -8,8 +7,6 @@ namespace AQMod.Projectiles
 {
     public class CelesteTorusCollider : ModProjectile
     {
-        public override string Texture => "AQMod/" + TextureCache.None;
-
         public override void SetDefaults()
         {
             projectile.width = 20;

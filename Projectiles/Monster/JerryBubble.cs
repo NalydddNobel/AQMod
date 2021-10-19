@@ -1,12 +1,11 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles
+namespace AQMod.Projectiles.Monster
 {
     public class JerryBubble : ModProjectile
     {
@@ -44,7 +43,9 @@ namespace AQMod.Projectiles
 
             Player player = Main.player[Player.FindClosest(projectile.position, projectile.width, projectile.height)];
             if (player.dead || !player.active)
+            {
                 projectile.velocity.X *= 0.96f;
+            }
             else
             {
                 projectile.velocity.X = MathHelper.Lerp(projectile.velocity.X, player.position.X + player.width / 2f < projectile.position.X + projectile.width / 2f ? -1 : 1, 0.08f);

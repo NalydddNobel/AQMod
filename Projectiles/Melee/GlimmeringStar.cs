@@ -2,7 +2,6 @@
 using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Config;
-using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Effects;
 using Microsoft.Xna.Framework;
@@ -13,9 +12,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles
+namespace AQMod.Projectiles.Melee
 {
-    public class GlimmerStar : ModProjectile
+    public class GlimmeringStar : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -77,9 +76,7 @@ namespace AQMod.Projectiles
                 projectile.localAI[0] += Main.rand.NextFloat(2f, 5f);
             }
             if (projectile.localAI[0] >= 255f)
-            {
                 projectile.active = false;
-            }
         }
 
         private static Color color(float time)
@@ -126,7 +123,7 @@ namespace AQMod.Projectiles
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader trail = new Trailshader(TextureCache.Trails[TrailTextureID.Line], Trailshader.TextureTrail);
+                    var trail = new Trailshader(TextureCache.Trails[TrailTextureID.Line], Trailshader.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity), (p) => color(projectile.timeLeft - p) * 0.5f * (1f - p));
                     trail.Draw();
                 }

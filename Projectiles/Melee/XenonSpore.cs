@@ -6,7 +6,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles
+namespace AQMod.Projectiles.Melee
 {
     public class XenonSpore : ModProjectile
     {
@@ -15,6 +15,7 @@ namespace AQMod.Projectiles
             projectile.width = 12;
             projectile.height = 12;
             projectile.friendly = true;
+            projectile.melee = true;
             projectile.aiStyle = -1;
             projectile.timeLeft = 360;
         }
@@ -53,9 +54,7 @@ namespace AQMod.Projectiles
                     Main.dust[d].velocity.Y = Main.dust[d].velocity.Y.Abs() * -1.1f;
                 }
                 if (Main.rand.NextBool(4))
-                {
-                    int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<XenonMist>());
-                }
+                    Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<XenonMist>());
             }
             Lighting.AddLight(projectile.Center, new Vector3(0.05f, 0.05f, 0.1f));
             projectile.gfxOffY = (float)Math.Sin(projectile.timeLeft * 0.0628f);

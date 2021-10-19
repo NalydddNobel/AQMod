@@ -3,7 +3,7 @@ using AQMod.Common;
 using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Projectiles;
+using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

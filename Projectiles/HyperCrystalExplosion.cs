@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles
 {
-    public class UltraExplosion : ModProjectile
+    public class HyperCrystalExplosion : ModProjectile
     {
         public override string Texture => "AQMod/" + TextureCache.None;
 

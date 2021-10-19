@@ -1,15 +1,10 @@
 ﻿using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles
+namespace AQMod.Projectiles.Monster
 {
     public class Magmabub : ModProjectile
     {
@@ -93,7 +88,9 @@ namespace AQMod.Projectiles
                 projectile.velocity.Y = -oldVelocity.Y * 0.8f;
             }
             if (doEffects)
+            {
                 CollisionEffects(projectile.velocity);
+            }
             else
             {
                 projectile.velocity *= 0.95f;

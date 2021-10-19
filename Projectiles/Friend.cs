@@ -28,13 +28,9 @@ namespace AQMod.Projectiles
         {
             projectile.localAI[0] += 0.0314f;
             if (Main.player[projectile.owner].dead)
-            {
                 Main.player[projectile.owner].GetModPlayer<AQPlayer>().omori = false;
-            }
             if (Main.player[projectile.owner].GetModPlayer<AQPlayer>().omori)
-            {
                 projectile.timeLeft = 2;
-            }
             switch (projectile.ai[0])
             {
                 default:
@@ -65,15 +61,11 @@ namespace AQMod.Projectiles
                     if (target != -1)
                     {
                         if (projectile.ai[1] == 0f)
-                        {
                             projectile.ai[1] = 1f;
-                        }
                         var npc = Main.npc[target];
                         var dist = (npc.Center - center).Length();
                         if (dist < 20f)
-                        {
                             projectile.ai[1] = 30f;
-                        }
                         else if (dist < 200f && projectile.ai[1] <= 1f)
                         {
                             projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(npc.Center - center) * 20f, 0.035f);
@@ -81,16 +73,12 @@ namespace AQMod.Projectiles
                         else
                         {
                             if (projectile.ai[1] > 1f)
-                            {
                                 projectile.ai[1]--;
-                            }
                             projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(npc.Center - center) * 20f, 0.0075f);
                         }
                         projectile.rotation += projectile.velocity.Length() * 0.0314f;
                         if (projectile.velocity.X < 0f)
-                        {
                             projectile.spriteDirection = -1;
-                        }
                         else
                         {
                             projectile.spriteDirection = 1;
@@ -106,9 +94,7 @@ namespace AQMod.Projectiles
                             projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(plrCenter - center) * 20f, 0.035f);
                             projectile.rotation += projectile.velocity.Length() * 0.0314f;
                             if ((center - plrCenter).Length() < 30f)
-                            {
                                 projectile.ai[1] = 0f;
-                            }
                         }
                         else
                         {
@@ -206,9 +192,7 @@ namespace AQMod.Projectiles
             var frame = new Rectangle(0, frameHeight * projectile.frame, texture.Width, frameHeight - 2);
             var effects = SpriteEffects.None;
             if (projectile.spriteDirection == -1)
-            {
                 effects = SpriteEffects.FlipHorizontally;
-            }
             Main.spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, frame, Color.White, projectile.rotation, frame.Size() / 2f, projectile.scale, effects, 0f);
             return false;
         }

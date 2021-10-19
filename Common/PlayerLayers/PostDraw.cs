@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -71,7 +72,7 @@ namespace AQMod.Common.PlayerLayers
 
             if (info.shadow == 0f && aQPlayer.blueSpheres && aQPlayer.celesteTorusDrawOffsets != null)
             {
-                var texture = TextureCache.CelesteTorusOrb.GetValue();
+                var texture = TextureCache.GetProjectile(ModContent.ProjectileType<CelesteTorusCollider>());
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var orig = frame.Size() / 2f;
                 for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)

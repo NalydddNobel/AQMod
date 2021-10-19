@@ -904,7 +904,7 @@ namespace AQMod.Common
                         Main.dust[d].velocity = normal2 * (j * 3.5f);
                     }
                 }
-                Projectile.NewProjectile(Main.npc[boss].Center, Vector2.Zero, ModContent.ProjectileType<UltraExplosion>(), dmg * 2, knockback * 2, player.whoAmI);
+                Projectile.NewProjectile(Main.npc[boss].Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalExplosion>(), dmg * 2, knockback * 2, player.whoAmI);
             }
         }
 

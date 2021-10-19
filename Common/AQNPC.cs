@@ -19,7 +19,7 @@ using AQMod.Localization;
 using AQMod.NPCs.Friendly.Town;
 using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.DemonicEvent;
-using AQMod.Projectiles;
+using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
