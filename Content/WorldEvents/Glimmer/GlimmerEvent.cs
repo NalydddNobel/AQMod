@@ -47,7 +47,6 @@ namespace AQMod.Content.WorldEvents.Glimmer
                 new GlimmerEventLayer(ModContent.NPCType<SuperStarite>(), SuperStariteDistance, SuperStariteSpawnChance),
                 new GlimmerEventLayer(ModContent.NPCType<HyperStarite>(), HyperStariteDistance, HyperStariteSpawnChance),
             };
-            //_sortTest();
         }
 
         private static void _sortTest()
@@ -250,6 +249,10 @@ namespace AQMod.Content.WorldEvents.Glimmer
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;
+            }
+            if (spawnChance == -1)
+            {
+                spawnChance = GetBaseRarity();
             }
             if (Main.moonPhase != MoonPhaseID.FullMoon && NPC.AnyNPCs(NPCID.Dryad))
             {

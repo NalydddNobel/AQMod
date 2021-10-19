@@ -16,7 +16,6 @@ using AQMod.Items.Vanities.Pets;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Flails;
-using AQMod.Items.Weapons.Melee.Yoyos;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Items.Weapons.Ranged.Bullet;
 using AQMod.Items.Weapons.Summon;
@@ -28,9 +27,6 @@ using AQMod.NPCs.Monsters.CosmicEvent;
 using AQMod.NPCs.Monsters.DemonicEvent;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -38,8 +34,8 @@ namespace AQMod.Content.CrossMod
 {
     internal class BossChecklistHelper
     {
-        private Mod _bossChecklist;
-        private Mod _aQMod;
+        private readonly Mod _bossChecklist;
+        private readonly Mod _aQMod;
         private BossChecklistHelper(Mod mod, AQMod aQMod)
         {
             _bossChecklist = mod;
@@ -77,7 +73,7 @@ namespace AQMod.Content.CrossMod
                         ItemID.SoulofFlight,
                         ItemID.FallenStar,
                     },
-                    "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] or [i:" + ModContent.ItemType<UltimateStarfruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event",
+                    "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event",
                     "AQMod/Assets/Textures/BossChecklist_OmegaStarite");
                 b.AddBoss(
                     2f,
@@ -152,7 +148,7 @@ namespace AQMod.Content.CrossMod
                     ModContent.ItemType<MoonShoes>(),
                     ModContent.ItemType<Ultranium>(),
                     },
-                    "Happens naturally at night. Can be summoned with a [i:" + ModContent.ItemType<MythicStarfruit>() + "] or [i:" + ModContent.ItemType<UltimateStarfruit>() + "]. Ends when the sun rises",
+                    "Happens naturally at night. Can alternatively summoned with a [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Ends when the sun rises",
                     "AQMod/Assets/Textures/BossChecklist_GlimmerEvent",
                     null);
                 var items = new List<int>()

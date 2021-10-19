@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Summon
+namespace AQMod.Projectiles.Summon.Sentry
 {
     public class Lotus : ModProjectile
     {
@@ -38,13 +38,9 @@ namespace AQMod.Projectiles.Summon
             for (int j = 0; j < 100; j++)
             {
                 if (y + j + 1 >= Main.maxTilesY)
-                {
                     break;
-                }
                 if (Framing.GetTileSafely(x, y + j).active() && Main.tileSolid[Main.tile[x, y + j].type])
-                {
                     return new Vector2(x * 16f + 8f, (y + j) * 16f - HeightCache / 2f);
-                }
             }
             return new Vector2(x * 16f + 8f, y * 16f - HeightCache / 2f);
         }
@@ -57,18 +53,14 @@ namespace AQMod.Projectiles.Summon
             {
                 projectile.ai[1]++;
                 if (projectile.ai[1] % ORB_RESPAWN_TIME == 0f)
-                {
                     projectile.ai[0]++;
-                }
             }
             else if (projectile.ai[0] > 0f)
             {
                 if (projectile.ai[1] > 150)
                 {
                     if (projectile.frameCounter % 2 == 0)
-                    {
                         projectile.frameCounter++;
-                    }
                 }
                 projectile.frameCounter++;
                 if (projectile.frameCounter > 20)
@@ -76,9 +68,7 @@ namespace AQMod.Projectiles.Summon
                     projectile.frame++;
                     projectile.frameCounter = 0;
                     if (projectile.frame > 1)
-                    {
                         projectile.frame = 0;
-                    }
                 }
                 projectile.ai[1]++;
             }
@@ -89,7 +79,7 @@ namespace AQMod.Projectiles.Summon
             }
             if (projectile.ai[1] > 360f)
             {
-                int type = ModContent.ProjectileType<LotusBall>();
+                int type = ModContent.ProjectileType<LotusShot>();
                 float rotOffset = MathHelper.PiOver2 / (projectile.ai[0] - 1f);
                 var bottom = new Vector2(projectile.position.X + projectile.width / 2f, projectile.position.Y + projectile.height);
                 for (int i = 0; i < projectile.ai[0]; i++)
@@ -116,12 +106,12 @@ namespace AQMod.Projectiles.Summon
             Rectangle frame;
             if (projectile.ai[0] > 0)
             {
-                texture = Main.projectileTexture[ModContent.ProjectileType<LotusBall>()];
+                texture = Main.projectileTexture[ModContent.ProjectileType<LotusShot>()];
                 frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 float rotOffset = 2f / (projectile.ai[0] - 1f);
                 for (int i = 0; i < projectile.ai[0]; i++)
                 {
-                    LotusBall.Draw(projectile.Center + new Vector2(0f, projectile.gfxOffY) + new Vector2(0, 10f) + new Vector2(0f, -16f).RotatedBy(rotOffset * i - 1f), projectile.rotation, projectile.scale, i + projectile.whoAmI, 8f);
+                    LotusShot.Draw(projectile.Center + new Vector2(0f, projectile.gfxOffY) + new Vector2(0, 10f) + new Vector2(0f, -16f).RotatedBy(rotOffset * i - 1f), projectile.rotation, projectile.scale, i + projectile.whoAmI, 8f);
                 }
             }
             texture = Main.projectileTexture[projectile.type];
