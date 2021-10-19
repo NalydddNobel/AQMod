@@ -82,6 +82,19 @@ namespace AQMod.Common.DeveloperTools
                 caller.Reply("Command doesn't exist.");
                 break;
 
+                case "writeencore":
+                {
+                    var aQPlayer = caller.Player.GetModPlayer<AQPlayer>();
+                    string path = AQMod.DebugFolderPath;
+                    Directory.CreateDirectory(path);
+                    var buffer = aQPlayer.SerializeBossKills();
+                    var stream = File.Create(path + Path.DirectorySeparatorChar + "encorekills.txt", buffer.Length);
+                    stream.Write(buffer, 0, buffer.Length);
+                    Utils.OpenFolder(path);
+                    aQPlayer.DeserialzeBossKills(buffer);
+                }
+                break;
+
                 case "npcssetname":
                 {
                     string name = args[1];
@@ -174,7 +187,7 @@ namespace AQMod.Common.DeveloperTools
                         }
                         break;
                     }
-                    string path = Main.SavePath + Path.DirectorySeparatorChar + "Mods" + Path.DirectorySeparatorChar + "Cache" + Path.DirectorySeparatorChar + "AQMod";
+                    string path = AQMod.DebugFolderPath;
                     Directory.CreateDirectory(path);
                     result.SaveAsPng(File.Create(path + Path.DirectorySeparatorChar + "ncallresult.png"), result.Width, result.Height);
                     Utils.OpenFolder(path);
@@ -238,12 +251,6 @@ namespace AQMod.Common.DeveloperTools
 
                 case "demonsiegeend":
                 DemonSiege.Deactivate();
-                break;
-
-                case "togglestaritedeath":
-                case "preventstaritedeath":
-                AQNPC._preventStariteDeath = !AQNPC._preventStariteDeath;
-                caller.Reply(AQNPC._preventStariteDeath.ToString());
                 break;
 
                 case "fish":

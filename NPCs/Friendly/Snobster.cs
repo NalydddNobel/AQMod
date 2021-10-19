@@ -32,7 +32,7 @@ namespace AQMod.NPCs.Friendly
         {
             for (int i = 0; i < 5; i++)
             {
-                Dust.NewDust(npc.position, npc.width, npc.height, DustID.t_Slime, npc.velocity.X, npc.velocity.Y, 0, AQNPC.GreenSlime);
+                Dust.NewDust(npc.position, npc.width, npc.height, DustID.t_Slime, npc.velocity.X, npc.velocity.Y, 0, AQNPC.GreenSlimeColor);
             }
         }
 

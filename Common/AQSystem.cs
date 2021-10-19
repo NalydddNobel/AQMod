@@ -61,7 +61,6 @@ namespace AQMod.Common
 
         public override void PostUpdate()
         {
-            AQNPC.UpdateBossRush();
             AQMod.glimmerEvent.UpdateWorld();
             CrabSeason.UpdateWorld();
         }

@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
+using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.CrossMod;
@@ -1215,20 +1216,19 @@ namespace AQMod.NPCs.Boss.Starite
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (Main.rand.NextBool())
-                target.AddBuff(BuffID.OnFire, 120);
             if (Main.expertMode)
             {
                 if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.Blackout, 120);
-                else if (Main.rand.NextBool())
-                {
-                    target.AddBuff(BuffID.Darkness, 360);
-                }
+                    target.AddBuff(ModContent.BuffType<BlueFire>(), 120);
+                if (Main.rand.NextBool())
+                    target.AddBuff(BuffID.Blackout, 360);
             }
-            else if (Main.rand.NextBool())
+            else 
             {
-                target.AddBuff(BuffID.Darkness, 120);
+                if (Main.rand.NextBool())
+                    target.AddBuff(BuffID.OnFire, 120);
+                if (Main.rand.NextBool())
+                    target.AddBuff(BuffID.Darkness, 120);
             }
         }
 

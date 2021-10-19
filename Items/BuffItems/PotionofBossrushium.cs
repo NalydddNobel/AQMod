@@ -33,7 +33,6 @@ namespace AQMod.Items.BuffItems
         public override bool UseItem(Player player)
         {
             player.AddBuff(ModContent.BuffType<Buffs.Bossrush>(), item.buffTime);
-            AQNPC.BeginBossRush(player.whoAmI);
             return true;
         }
 

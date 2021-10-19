@@ -3,6 +3,7 @@ using AQMod.Common.Utilities;
 using AQMod.Items.Vanities;
 using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles;
+using AQMod.Projectiles.Summon.Chomper;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -23,7 +24,7 @@ namespace AQMod.Common.PlayerLayers
             var drawingPlayer = player.GetModPlayer<AQPlayer>();
             if (info.shadow == 0f)
             {
-                if (aQPlayer.blueSpheres && drawingPlayer.celesteTorusDrawOffsets != null)
+                if (aQPlayer.blueSpheres && drawingPlayer.celesteTorusOffsetsForDrawing != null)
                 {
                     var texture = TextureCache.GetProjectile(ModContent.ProjectileType<CelesteTorusCollider>());
                     var frame = new Rectangle(0, 0, texture.Width, texture.Height);
@@ -31,18 +32,18 @@ namespace AQMod.Common.PlayerLayers
                     for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)
                     {
                         var position = aQPlayer.GetCelesteTorusPositionOffset(i);
-                        float layerValue = ThreeDimensionsEffect.GetParralaxScale(1f, drawingPlayer.celesteTorusDrawOffsets[i].Z * AQPlayer.CELESTE_Z_MULT);
+                        float layerValue = ThreeDimensionsEffect.GetParralaxScale(1f, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT);
                         if (layerValue < 1f)
                         {
                             var center = info.position + new Vector2((player.width / 2) + (int)position.X, (player.height / 2) + (int)position.Y);
-                            Main.playerDrawData.Add(new DrawData(texture, ThreeDimensionsEffect.GetParralaxPosition(center, drawingPlayer.celesteTorusDrawOffsets[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, ThreeDimensionsEffect.GetParralaxScale(aQPlayer.celesteTorusScale, drawingPlayer.celesteTorusDrawOffsets[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawingPlayer.cCelesteTorus, ignorePlayerRotation = true });
+                            Main.playerDrawData.Add(new DrawData(texture, ThreeDimensionsEffect.GetParralaxPosition(center, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, ThreeDimensionsEffect.GetParralaxScale(aQPlayer.celesteTorusScale, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawingPlayer.cCelesteTorus, ignorePlayerRotation = true });
                         }
                     }
                 }
                 if (aQPlayer.chomper)
                 {
                     int count = 0;
-                    int type = ModContent.ProjectileType<ChomperHead>();
+                    int type = ModContent.ProjectileType<ChomperMinion>();
                     var texture = TextureCache.GetProjectile(type);
                     int frameHeight = texture.Height / Main.projFrames[type];
                     var frame = new Rectangle(0, 0, texture.Width, frameHeight - 2);
@@ -67,7 +68,7 @@ namespace AQMod.Common.PlayerLayers
                             {
                                 DrawChomperChain(info.drawPlayer, Main.projectile[i], drawPosition, drawColor);
                             }
-                            var chomperHead = (ChomperHead)Main.projectile[i].modProjectile;
+                            var chomperHead = (ChomperMinion)Main.projectile[i].modProjectile;
                             if (chomperHead.eatingDelay != 0 && chomperHead.eatingDelay < 35)
                             {
                                 float intensity = (10 - chomperHead.eatingDelay) / 2.5f * AQMod.EffectIntensity;
@@ -109,7 +110,7 @@ namespace AQMod.Common.PlayerLayers
 
         private void DrawChomperChain(Player player, Projectile chomper, Vector2 drawPosition, Color drawColor)
         {
-            var chomperHead = (ChomperHead)chomper.modProjectile;
+            var chomperHead = (ChomperMinion)chomper.modProjectile;
             int frameWidth = 16;
             var frame = new Rectangle(0, 0, frameWidth - 2, 20);
             var origin = frame.Size() / 2f;

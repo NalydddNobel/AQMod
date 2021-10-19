@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Config;
-using AQMod.Content;
+﻿using AQMod.Content;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;

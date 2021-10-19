@@ -68,7 +68,7 @@ namespace AQMod.Items.Weapons.Magic
             for (int i = 0; i < 10; i++)
             {
                 int d = Dust.NewDust(spawnPos, projectile.width, projectile.height, DustID.t_Slime);
-                Main.dust[d].color = AQNPC.BlueSlime;
+                Main.dust[d].color = AQNPC.BlueSlimeColor;
             }
         }
 
@@ -102,7 +102,7 @@ namespace AQMod.Items.Weapons.Magic
             for (int i = 0; i < 10; i++)
             {
                 int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.t_Slime);
-                Main.dust[d].color = AQNPC.BlueSlime;
+                Main.dust[d].color = AQNPC.BlueSlimeColor;
             }
         }
     }

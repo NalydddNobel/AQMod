@@ -11,6 +11,7 @@ using AQMod.NPCs.Boss.Starite;
 using AQMod.NPCs.Monsters.AquaticEvent;
 using AQMod.NPCs.Monsters.DemonicEvent;
 using AQMod.Projectiles.Ranged;
+using AQMod.Projectiles.Summon.Chomper;
 using AQMod.Tiles;
 using log4net;
 using Microsoft.Xna.Framework.Graphics;
@@ -42,7 +43,6 @@ namespace AQMod.Assets
         public static TextureAsset TrapperChain { get; private set; }
         public static TextureAsset ChomperHeadLeaves { get; private set; }
         public static TextureAsset ChomperChain { get; private set; }
-        public static TextureAsset ChomperPot { get; private set; }
         public static TextureAsset BGStarite { get; private set; }
         public static TextureAsset EnchantGlimmer { get; private set; }
         public static TextureAsset OmegaStariteOrb { get; private set; }
@@ -87,9 +87,8 @@ namespace AQMod.Assets
             TrapperImpWings = TextureAsset.FromT<TrapImp>("_Wings");
             TrapperImpGlow = TextureAsset.FromT<TrapImp>("_Glow");
             TrapperChain = TextureAsset.FromT<Trapper>("_Chain");
-            ChomperHeadLeaves = new TextureAsset("AQMod/Items/Weapons/Summon/ChomperHeadLeaves");
-            ChomperChain = new TextureAsset("AQMod/Items/Weapons/Summon/ChomperChain");
-            ChomperPot = new TextureAsset("AQMod/Items/Weapons/Summon/ChomperPot");
+            ChomperHeadLeaves = TextureAsset.FromT<ChomperMinion>("_Leaves");
+            ChomperChain = TextureAsset.FromT<ChomperMinion>("_Chain");
             BGStarite = new TextureAsset("AQMod/Assets/Textures/BGStarite");
             EnchantGlimmer = new TextureAsset("AQMod/Assets/Textures/EnchantGlimmer");
             OmegaStariteOrb = TextureAsset.FromT<OmegaStarite>("_Orb");
@@ -160,7 +159,6 @@ namespace AQMod.Assets
             PowPunchChain = null;
             ChomperHeadLeaves = null;
             ChomperChain = null;
-            ChomperPot = null;
             BGStarite = null;
             EnchantGlimmer = null;
             OmegaStariteOrb = null;

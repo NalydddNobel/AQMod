@@ -44,6 +44,5 @@ namespace AQMod.Common
             p.Write(AQMod.glimmerEvent.StariteDisco);
             p.Write(AQMod.glimmerEvent.deactivationTimer);
         }
-
     }
 }

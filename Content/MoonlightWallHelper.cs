@@ -17,11 +17,15 @@ namespace AQMod.Content
 
         public static bool BehindMoonlightWall(Vector2 center)
         {
-            return Framing.GetTileSafely((int)center.X / 16, (int)center.Y / 16).wall == ModContent.WallType<MoonlightWallWall>();
+            return BehindMoonlightWall((int)center.X / 16, (int)center.Y / 16);
         }
 
         public static bool BehindMoonlightWall(int x, int y)
         {
+            if (x < 0 || x > Main.maxTilesX || y < 0 || y > Main.maxTilesY)
+            {
+                return false;
+            }
             return x < 0 || x > Main.maxTilesX || y < 0 || y > Main.maxTilesY
                 ? false
                 : Framing.GetTileSafely(x, y).wall == ModContent.WallType<MoonlightWallWall>();

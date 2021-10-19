@@ -25,6 +25,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
@@ -52,12 +53,13 @@ namespace AQMod.Common
         internal static int _moneyTroughHackIndex = -1;
         internal static ISuperClunkyMoneyTroughTypeThing _moneyTroughHack;
 
-        public bool bossrush;
+        public Vector3[] celesteTorusOffsetsForDrawing;
+
         public float discountPercentage;
         public bool blueSpheres;
         public bool bossChanneling;
         public bool monoxiderBird;
-        public bool sparkling;
+        public bool glimmering;
         public bool chloroTransfer;
         public bool opposingForce;
         public bool spectreSoulCollector;
@@ -100,7 +102,7 @@ namespace AQMod.Common
         public bool stariteMinion;
         public bool spicyEel;
         public bool striderPalms;
-        public bool striderPalms2;
+        public bool striderPalmsOld;
         public bool wyvernAmuletHeld;
         public bool voodooAmuletHeld;
         public bool ghostAmuletHeld;
@@ -135,7 +137,13 @@ namespace AQMod.Common
         public int cMask;
         public int cCelesteTorus;
         public bool heartMoth;
+        public bool notFrostburn;
+        public bool bossrush;
+        public bool bossrushOld;
 
+        public bool NetUpdateKillCount;
+        public int[] CurrentEncoreKillCount { get; private set; }
+        public int[] EncoreBossKillCountRecord { get; private set; }
         public byte ClosestEnemy { get; private set; }
         public float ClosestEnemyDistance { get; private set; }
         public int PopperType { get; private set; }
@@ -145,97 +153,60 @@ namespace AQMod.Common
         public int CursorDyeID { get; private set; } = CursorDyeLoader.ID.None;
         public string CursorDye { get; private set; } = "";
 
-        public void SetCursorDye(int type)
+        public override void clientClone(ModPlayer clientClone)
         {
-            if (type <= CursorDyeLoader.ID.None || type > AQMod.CursorDyes.Count)
+            var clone = (AQPlayer)clientClone;
+            clone.celesteTorusX = celesteTorusX;
+            clone.celesteTorusY = celesteTorusY;
+            clone.celesteTorusZ = celesteTorusZ;
+            clone.CurrentEncoreKillCount = CurrentEncoreKillCount;
+            clone.EncoreBossKillCountRecord = EncoreBossKillCountRecord;
+        }
+
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+            var clone = (AQPlayer)clientPlayer;
+            if (clone.blueSpheres)
             {
-                CursorDyeID = CursorDyeLoader.ID.None;
-                CursorDye = "";
+                var packet = mod.GetPacket();
+                packet.Write(NetType.UpdateAQPlayerCelesteTorus);
+                packet.Write((byte)player.whoAmI);
+                packet.Write(celesteTorusX);
+                packet.Write(celesteTorusY);
+                packet.Write(celesteTorusZ);
+                packet.Send();
             }
-            else
+            if (clone.bossrush)
             {
-                CursorDyeID = type;
-                var cursorDye = AQMod.CursorDyes.GetContent(type);
-                CursorDye = AQStringCodes.EncodeName(cursorDye.Mod, cursorDye.Name);
+                NetUpdateKillCount = true;
+                SyncPlayer(-1, player.whoAmI, true);
             }
         }
 
-        public void SetMinionCarryPos(int x, int y)
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
-            hasMinionCarry = true;
-            headMinionCarryX = x;
-            headMinionCarryY = y;
-        }
-
-        public Vector2 GetHeadCarryPosition()
-        {
-            int x;
-            if (headMinionCarryX != 0)
+            ModPacket packet = mod.GetPacket();
+            if (NetUpdateKillCount)
             {
-                x = headMinionCarryX;
+                packet.Write(NetType.UpdateAQPlayerEncoreKills);
+                packet.Write((byte)player.whoAmI);
+                byte[] buffer = SerializeBossKills();
+                packet.Write(buffer, 0, buffer.Length);
+                packet.Send(toWho, fromWho);
+                NetUpdateKillCount = false;
+                return;
             }
-            else if (headMinionCarryXOld != 0)
-            {
-                x = headMinionCarryXOld;
-            }
-            else
-            {
-                x = (int)player.position.X + (player.width / 2);
-            }
-            int y;
-            if (headMinionCarryY != 0)
-            {
-                y = headMinionCarryY;
-            }
-            else if (headMinionCarryYOld != 0)
-            {
-                y = headMinionCarryYOld;
-            }
-            else
-            {
-                y = (int)player.position.Y + (player.height / 2);
-            }
-            return new Vector2(x, y);
-        }
-
-        /// <summary>
-        /// Item is the item, int is the index.
-        /// </summary>
-        /// <param name="action"></param>
-        public void ArmorAction(Action<Item, int> action)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                action(player.armor[i], i);
-            }
-        }
-
-        /// <summary>
-        /// Item is the item, bool is the hide flag, int is the index.
-        /// </summary>
-        /// <param name="action"></param>
-        public void AccessoryAction(Action<Item, bool, int> action)
-        {
-            for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
-            {
-                action(player.armor[i], player.hideVisual[i], i);
-            }
+            packet.Write(NetType.UpdateAQPlayer);
+            packet.Write((byte)player.whoAmI);
+            packet.Write(celesteTorusX);
+            packet.Write(celesteTorusY);
+            packet.Write(celesteTorusZ);
+            packet.Send(toWho, fromWho);
         }
 
         public static void Setup()
         {
             On.Terraria.Player.FishingLevel += GetFishingLevel;
-        }
-
-        public void HeadMinionSummonCheck(int type)
-        {
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.HeadMinion[Main.projectile[i].type])
-                {
-                    Main.projectile[i].Kill();
-                }
-            }
         }
 
         private static int GetFishingLevel(On.Terraria.Player.orig_FishingLevel orig, Player player)
@@ -365,8 +336,6 @@ namespace AQMod.Common
             return 6.5f + (player.velocity.Length() * 0.8f);
         }
 
-        public Vector3[] celesteTorusDrawOffsets;
-
         public int GetOldPosCountMaxed(int maxCount)
         {
             int count = 0;
@@ -392,7 +361,7 @@ namespace AQMod.Common
             omoriDeathTimer = 1;
             arachnotron = false;
             spoiled = 0;
-            sparkling = false;
+            glimmering = false;
             nearGlobe = 0;
             headMinionCarryX = 0;
             headMinionCarryY = 0;
@@ -416,6 +385,11 @@ namespace AQMod.Common
             arachnotronBodyTrail = false;
             _moneyTroughHack = null;
             _moneyTroughHackIndex = -1;
+            notFrostburn = false;
+            bossrush = false;
+            bossrushOld = false;
+            CurrentEncoreKillCount = new int[NPCLoader.NPCCount];
+            EncoreBossKillCountRecord = new int[NPCLoader.NPCCount];
         }
 
         public override void OnEnterWorld(Player player)
@@ -424,12 +398,89 @@ namespace AQMod.Common
                 GlimmerEventSky.InitNight();
         }
 
+        public byte[] SerializeBossKills()
+        {
+            var writer = new BinaryWriter(new MemoryStream(1024));
+            if (EncoreBossKillCountRecord == null)
+            {
+                writer.Write(false);
+                return ((MemoryStream)writer.BaseStream).GetBuffer();
+            }
+            writer.Write(true);
+            writer.Write((byte)0);
+            for (int i = 0; i < EncoreBossKillCountRecord.Length; i++)
+            {
+                if (EncoreBossKillCountRecord[i] != 0)
+                {
+                    writer.Write(true);
+                    if (i >= Main.maxNPCTypes)
+                    {
+                        writer.Write(true);
+                        var ModNPC = NPCLoader.GetNPC(i);
+                        writer.Write(ModNPC.mod.Name);
+                        writer.Write(ModNPC.Name);
+                        writer.Write(EncoreBossKillCountRecord[i]);
+                    }
+                    else
+                    {
+                        writer.Write(false);
+                        writer.Write(i);
+                        writer.Write(EncoreBossKillCountRecord[i]);
+                    }
+                }
+            }
+            writer.Write(false);
+            return ((MemoryStream)writer.BaseStream).GetBuffer();
+        }
+
+        public void DeserialzeBossKills(byte[] buffer)
+        {
+            var reader = new BinaryReader(new MemoryStream(buffer));
+            if (!reader.ReadBoolean())
+            {
+                return;
+            }
+            byte save = reader.ReadByte();
+            while (reader.ReadBoolean())
+            {
+                if (reader.ReadBoolean())
+                {
+                    string mod = reader.ReadString();
+                    string name = reader.ReadString();
+                    int kills = reader.ReadInt32();
+                    try
+                    {
+                        var Mod = ModLoader.GetMod(mod);
+                        if (Mod == null)
+                        {
+                            continue;
+                        }
+                        int type = Mod.NPCType(name);
+                        if (type != -1)
+                        {
+                            EncoreBossKillCountRecord[type] = kills;
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
+                else
+                {
+                    int type = reader.ReadInt32();
+                    int kills = reader.ReadInt32();
+                    EncoreBossKillCountRecord[type] = kills;
+                }
+            }
+        }
+
         public override TagCompound Save()
         {
             return new TagCompound()
             {
                 ["extractinatorCount"] = ExtractinatorCount,
                 ["CursorDye"] = CursorDye,
+                ["bosskills"] = SerializeBossKills(),
             };
         }
 
@@ -445,6 +496,12 @@ namespace AQMod.Common
             {
                 SetCursorDye(CursorDyeLoader.ID.None);
             }
+            byte[] buffer = tag.GetByteArray("bosskills");
+            if (buffer == null || buffer.Length == 0)
+            {
+                return;
+            }
+            DeserialzeBossKills(buffer);
         }
 
         public override void UpdateBiomeVisuals()
@@ -499,12 +556,11 @@ namespace AQMod.Common
                     Main.projectile[_moneyTroughHackIndex].type = _moneyTroughHack.ProjectileType;
                 }
             }
-            bossrush = false;
             blueSpheres = false;
             discountPercentage = 0.8f;
             bossChanneling = false;
             monoxiderBird = false;
-            sparkling = false;
+            glimmering = false;
             moonShoes = false;
             canDash = !(player.setSolar || player.mount.Active);
             copperSeal = false;
@@ -527,7 +583,7 @@ namespace AQMod.Common
             unityMirror = false;
             stariteMinion = false;
             spicyEel = false;
-            striderPalms2 = striderPalms;
+            striderPalmsOld = striderPalms;
             striderPalms = false;
             ghostAmuletHeld = InVanitySlot(player, ModContent.ItemType<GhostAmulet>());
             spiritAmuletHeld = InVanitySlot(player, ModContent.ItemType<SpiritAmulet>());
@@ -553,6 +609,20 @@ namespace AQMod.Common
             monoxiderCarry = 0;
             cataEyeColor = new Color(50, 155, 255, 0);
             heartMoth = false;
+            notFrostburn = false;
+            if (bossrushOld != bossrush)
+            {
+                if (bossrush)
+                {
+
+                }
+                else
+                {
+                    CurrentEncoreKillCount = new int[NPCLoader.NPCCount];
+                }
+            }
+            bossrushOld = bossrush;
+            bossrush = false;
             if (nearGlobe > 0)
             {
                 nearGlobe--;
@@ -611,7 +681,7 @@ namespace AQMod.Common
         {
             omori = false;
             blueSpheres = false;
-            sparkling = false;
+            glimmering = false;
             monoxiderCarry = 0;
             if (Main.myPlayer == player.whoAmI)
             {
@@ -960,12 +1030,19 @@ namespace AQMod.Common
 
         public override void UpdateBadLifeRegen()
         {
-            if (sparkling)
+            if (glimmering)
             {
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
                 player.lifeRegenTime = 0;
                 player.lifeRegen -= 40;
+            }
+            if (notFrostburn)
+            {
+                if (player.lifeRegen > 0)
+                    player.lifeRegen = 0;
+                player.lifeRegenTime = 0;
+                player.lifeRegen -= 10;
             }
         }
 
@@ -1094,9 +1171,9 @@ namespace AQMod.Common
                 arachnotronHeadTrail = false;
                 arachnotronBodyTrail = false;
             }
-            if (sparkling)
+            if (drawInfo.shadow == 0f)
             {
-                if (drawInfo.shadow == 0f)
+                if (glimmering)
                 {
                     for (int i = 0; i < 4; i++)
                     {
@@ -1105,16 +1182,24 @@ namespace AQMod.Common
                         Main.dust[d].velocity.Y -= 2f;
                         Main.playerDrawDust.Add(d);
                     }
+                    Lighting.AddLight(player.Center, 1f, 1f, 1f);
+                    fullBright = true;
                 }
-                float positionLength = drawInfo.drawPlayer.position.Length() / 128f;
-                const float offset = MathHelper.TwoPi / 3f;
-                r *= (float)Math.Sin(positionLength) + 1f;
-                g *= (float)Math.Sin(positionLength + offset) + 1f;
-                b *= (float)Math.Sin(positionLength + offset * 2f) + 1f;
-                Lighting.AddLight(player.Center, r * 0.25f, g * 0.25f, b * 0.25f);
-            }
-            if (drawInfo.shadow == 0f)
-            {
+                if (notFrostburn)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        int d = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width + 4, player.height + 4, ModContent.DustType<MonoEmber>(), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), Main.rand.NextFloat(0.45f, 1f));
+                        Main.dust[d].color = new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f);
+                        Main.dust[d].scale = Main.rand.NextFloat(0.2f, 1.5f);
+                        Main.dust[d].velocity.X *= 0.75f;
+                        Main.dust[d].velocity.Y = Main.dust[d].velocity.Y.Abs();
+                        Main.dust[d].velocity.Y -= 2f;
+                        Main.playerDrawDust.Add(d);
+                    }
+                    Lighting.AddLight(player.Center, 0.4f, 0.4f, 1f);
+                    fullBright = true;
+                }
                 for (int i = 0; i < DYE_WRAP; i++)
                 {
                     if (player.armor[i].type > Main.maxItemTypes && !player.hideVisual[i] && player.armor[i].modItem is IUpdateEquipVisuals updateVanity)
@@ -1161,10 +1246,10 @@ namespace AQMod.Common
             var drawPlayer = drawInfo.drawPlayer.GetModPlayer<AQPlayer>();
             if (aQPlayer.blueSpheres)
             {
-                celesteTorusDrawOffsets = new Vector3[MaxCelesteTorusOrbs];
+                celesteTorusOffsetsForDrawing = new Vector3[MaxCelesteTorusOrbs];
                 for (int i = 0; i < MaxCelesteTorusOrbs; i++)
                 {
-                    celesteTorusDrawOffsets[i] = aQPlayer.GetCelesteTorusPositionOffset(i);
+                    celesteTorusOffsetsForDrawing[i] = aQPlayer.GetCelesteTorusPositionOffset(i);
                 }
             }
             if (!aQPlayer.chomper && aQPlayer.monoxiderBird)
@@ -1254,6 +1339,94 @@ namespace AQMod.Common
                 return true;
             }
             return false;
+        }
+
+        public void SetCursorDye(int type)
+        {
+            if (type <= CursorDyeLoader.ID.None || type > AQMod.CursorDyes.Count)
+            {
+                CursorDyeID = CursorDyeLoader.ID.None;
+                CursorDye = "";
+            }
+            else
+            {
+                CursorDyeID = type;
+                var cursorDye = AQMod.CursorDyes.GetContent(type);
+                CursorDye = AQStringCodes.EncodeName(cursorDye.Mod, cursorDye.Name);
+            }
+        }
+
+        public void SetMinionCarryPos(int x, int y)
+        {
+            hasMinionCarry = true;
+            headMinionCarryX = x;
+            headMinionCarryY = y;
+        }
+
+        public Vector2 GetHeadCarryPosition()
+        {
+            int x;
+            if (headMinionCarryX != 0)
+            {
+                x = headMinionCarryX;
+            }
+            else if (headMinionCarryXOld != 0)
+            {
+                x = headMinionCarryXOld;
+            }
+            else
+            {
+                x = (int)player.position.X + (player.width / 2);
+            }
+            int y;
+            if (headMinionCarryY != 0)
+            {
+                y = headMinionCarryY;
+            }
+            else if (headMinionCarryYOld != 0)
+            {
+                y = headMinionCarryYOld;
+            }
+            else
+            {
+                y = (int)player.position.Y + (player.height / 2);
+            }
+            return new Vector2(x, y);
+        }
+
+        /// <summary>
+        /// Item is the item, int is the index.
+        /// </summary>
+        /// <param name="action"></param>
+        public void ArmorAction(Action<Item, int> action)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                action(player.armor[i], i);
+            }
+        }
+
+        /// <summary>
+        /// Item is the item, bool is the hide flag, int is the index.
+        /// </summary>
+        /// <param name="action"></param>
+        public void AccessoryAction(Action<Item, bool, int> action)
+        {
+            for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
+            {
+                action(player.armor[i], player.hideVisual[i], i);
+            }
+        }
+
+        public void HeadMinionSummonCheck(int type)
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.HeadMinion[Main.projectile[i].type])
+                {
+                    Main.projectile[i].Kill();
+                }
+            }
         }
     }
 }

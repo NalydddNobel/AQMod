@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Debuffs
 {
-    public class Sparkling : ModBuff
+    public class BlueFire : ModBuff
     {
         public override void SetDefaults()
         {
@@ -16,12 +16,12 @@ namespace AQMod.Buffs.Debuffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<AQPlayer>().glimmering = true;
+            player.GetModPlayer<AQPlayer>().notFrostburn = true;
         }
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<AQNPC>().sparkling = true;
+            npc.GetGlobalNPC<AQNPC>().notFrostburn = true;
         }
     }
 }

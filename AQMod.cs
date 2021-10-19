@@ -101,6 +101,7 @@ namespace AQMod
         /// </summary>
         internal static Color BossMessage => new Color(175, 75, 255, 255);
         internal static bool DebugKeysPressed => Main.netMode == NetmodeID.SinglePlayer && AQConfigServer.Instance.debugCommand && Main.keyState.IsKeyDown(Keys.LeftShift) && Main.keyState.IsKeyDown(Keys.Q);
+        internal static string DebugFolderPath => Main.SavePath + Path.DirectorySeparatorChar + "Mods" + Path.DirectorySeparatorChar + "Cache" + Path.DirectorySeparatorChar + "AQMod";
 
         public static bool spawnStarite;
         public static int dayrateIncrease;
@@ -656,6 +657,35 @@ namespace AQMod
                     glimmerEvent.spawnChance = reader.ReadInt32();
                     glimmerEvent.StariteDisco = reader.ReadBoolean();
                     glimmerEvent.deactivationTimer = reader.ReadInt32();
+                }
+                break;
+
+                case NetType.UpdateAQPlayer:
+                {
+                    var player = Main.player[reader.ReadByte()];
+                    var aQPlayer = player.GetModPlayer<AQPlayer>();
+                    aQPlayer.celesteTorusX = reader.ReadSingle();
+                    aQPlayer.celesteTorusY = reader.ReadSingle();
+                    aQPlayer.celesteTorusZ = reader.ReadSingle();
+                }
+                break;
+
+                case NetType.UpdateAQPlayerCelesteTorus:
+                {
+                    var player = Main.player[reader.ReadByte()];
+                    var aQPlayer = player.GetModPlayer<AQPlayer>();
+                    aQPlayer.celesteTorusX = reader.ReadSingle();
+                    aQPlayer.celesteTorusY = reader.ReadSingle();
+                    aQPlayer.celesteTorusZ = reader.ReadSingle();
+                }
+                break;
+
+                case NetType.UpdateAQPlayerEncoreKills:
+                {
+                    var player = Main.player[reader.ReadByte()];
+                    var aQPlayer = player.GetModPlayer<AQPlayer>();
+                    byte[] buffer = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));
+                    aQPlayer.DeserialzeBossKills(buffer);
                 }
                 break;
             }

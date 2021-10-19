@@ -99,7 +99,7 @@ namespace AQMod.Items.GrapplingHooks
 
         public int grappleHookCount(Player player)
         {
-            if (player.GetModPlayer<AQPlayer>().striderPalms2)
+            if (player.GetModPlayer<AQPlayer>().striderPalmsOld)
             {
                 return 3;
             }
@@ -109,7 +109,7 @@ namespace AQMod.Items.GrapplingHooks
         public override void GrappleRetreatSpeed(Player player, ref float speed)
         {
             speed = 15f;
-            if (player.GetModPlayer<AQPlayer>().striderPalms2)
+            if (player.GetModPlayer<AQPlayer>().striderPalmsOld)
             {
                 speed *= 1.25f;
             }
@@ -118,7 +118,7 @@ namespace AQMod.Items.GrapplingHooks
         public override void GrapplePullSpeed(Player player, ref float speed)
         {
             speed = 10f;
-            if (player.GetModPlayer<AQPlayer>().striderPalms2)
+            if (player.GetModPlayer<AQPlayer>().striderPalmsOld)
             {
                 speed *= 1.25f;
             }

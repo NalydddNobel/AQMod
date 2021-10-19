@@ -323,28 +323,24 @@ namespace AQMod.Common
             }
         }
 
-        internal static bool _preventStariteDeath;
-
         public static bool CanDropEnergy => NPC.downedBoss1 && !NoEnergyDrops;
-        internal static Color GreenSlime => new Color(0, 220, 40, 100);
-        internal static Color BlueSlime => new Color(0, 80, 255, 100);
+        internal static Color GreenSlimeColor => new Color(0, 220, 40, 100);
+        internal static Color BlueSlimeColor => new Color(0, 80, 255, 100);
 
-        public static bool EnergyDropsMessage { get; set; }
         public static bool NoEnergyDrops { get; set; }
 
         public static bool BossRush { get; private set; }
         public static byte BossRushPlayer { get; private set; }
 
-        internal static readonly Dictionary<int, int> bossRushKillCount = new Dictionary<int, int>();
-
+        private static bool _showEnergyDropsMessage;
         public override bool InstancePerEntity => true;
 
         public bool sparkling;
-        public int specialData;
+        public bool notFrostburn;
 
         public static bool CheckStariteDeath(NPC npc)
         {
-            return !_preventStariteDeath && Main.dayTime;
+            return Main.dayTime;
         }
 
         public override void ResetEffects(NPC npc)
@@ -755,110 +751,97 @@ namespace AQMod.Common
             return MathHelper.Clamp(averageScale((int)(lifeMax * 3.5), true) * 0.6f, 1.05f, 1.25f);
         }
 
-        internal static void BeginBossRush(int plr)
+        private void EncoreKill(NPC npc)
         {
-            BossRushPlayer = (byte)plr;
-            BossRush = true;
-        }
-
-        internal static void UpdateBossRush()
-        {
-            BossRush = BossRushPlayer != byte.MaxValue && !Main.player[BossRushPlayer].dead && Main.player[BossRushPlayer].GetModPlayer<AQPlayer>().bossrush;
-            if (!BossRush)
-                BossRushPlayer = byte.MaxValue;
-        }
-
-        private void HandleBossRush(NPC npc)
-        {
-            UpdateBossRush();
-            if (!BossRush)
+            if (!npc.boss || npc.type == NPCID.MartianSaucerCore || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail)
             {
-                bossRushKillCount.Clear();
+                return;
             }
-            else
+            for (int k = 0; k < Main.maxPlayers; k++)
             {
-                if (npc.boss && npc.type != NPCID.MartianSaucerCore && npc.type != NPCID.EaterofWorldsHead && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail)
+                var player = Main.player[k];
+                var aQPlayer = player.GetModPlayer<AQPlayer>();
+                if (Main.netMode == NetmodeID.Server)
                 {
-                    Player player = Main.player[BossRushPlayer];
-                    if (bossRushKillCount.ContainsKey(npc.type))
+                    aQPlayer.NetUpdateKillCount = true;
+                    aQPlayer.SyncPlayer(-1, player.whoAmI, false);
+                }
+                if (!aQPlayer.bossrush)
+                {
+                    aQPlayer.CurrentEncoreKillCount[npc.type] = 0;
+                    return;
+                }
+                aQPlayer.CurrentEncoreKillCount[npc.type]++;
+                if (aQPlayer.CurrentEncoreKillCount[npc.type] > aQPlayer.EncoreBossKillCountRecord[npc.type])
+                {
+                    aQPlayer.EncoreBossKillCountRecord[npc.type] = aQPlayer.CurrentEncoreKillCount[npc.type];
+                }
+                CombatText.NewText(player.getRect(), Main.mouseColor, aQPlayer.CurrentEncoreKillCount[npc.type], true);
+                float x = player.position.X + player.width / 2f;
+                if (npc.type == NPCID.TheDestroyer && npc.lifeMax <= 0)
+                {
+                    for (int i = 0; i < Main.maxNPCs; i++)
                     {
-                        bossRushKillCount[npc.type] += 1;
-                    }
-                    else
-                    {
-                        bossRushKillCount.Add(npc.type, 1);
-                    }
-                    CombatText.NewText(player.getRect(), Main.mouseColor, bossRushKillCount[npc.type], true);
-                    float x = player.position.X + player.width / 2f;
-                    if (npc.type == NPCID.TheDestroyer && npc.lifeMax <= 0)
-                    {
-                        for (int i = 0; i < Main.maxNPCs; i++)
+                        if (Main.npc[i].type == NPCID.TheDestroyerBody || Main.npc[i].type == NPCID.TheDestroyerTail)
                         {
-                            if (Main.npc[i].type == NPCID.TheDestroyerBody || Main.npc[i].type == NPCID.TheDestroyerTail)
-                            {
-                                Main.npc[i].lifeMax = -1;
-                                Main.npc[i].HitEffect();
-                                Main.npc[i].active = false;
-                            }
+                            Main.npc[i].lifeMax = -1;
+                            Main.npc[i].HitEffect();
+                            Main.npc[i].active = false;
                         }
                     }
-                    int n = NPC.NewNPC((int)x, (int)player.position.Y - 600, npc.type);
-                    NPC boss = Main.npc[n];
-                    float yOff = boss.height * 2f;
-                    float healthScale = bossRushScale(npc.lifeMax);
-                    float damageScale = MathHelper.Clamp(healthScale, 1.01f, 1.15f);
-                    boss.lifeMax = (int)(npc.lifeMax * healthScale);
-                    boss.life = boss.lifeMax;
-                    boss.defDamage = (int)(npc.defDamage * damageScale);
-                    boss.damage = boss.defDamage;
-                    //int text = CombatText.NewText(new Rectangle((int)player.position.X - player.width * 2, (int)player.position.Y, player.width, player.height), Main.DiscoColor, (int)healthScale, true);
-                    //Main.combatText[text].text = healthScale.ToString();
-                    //text = CombatText.NewText(new Rectangle((int)player.position.X + player.width * 2, (int)player.position.Y, player.width, player.height), Main.OurFavoriteColor, (int)damageScale, true);
-                    //Main.combatText[text].text = damageScale.ToString();
-                    Vector2 spawnPosition = new Vector2(x, player.position.Y - yOff);
-                    boss.Center = spawnPosition;
-                    boss.target = BossRushPlayer;
-                    if (npc.type == NPCID.SkeletronHead)
+                }
+                int n = NPC.NewNPC((int)x, (int)player.position.Y - 600, npc.type);
+                NPC boss = Main.npc[n];
+                float yOff = boss.height * 2f;
+                float healthScale = bossRushScale(npc.lifeMax);
+                float damageScale = MathHelper.Clamp(healthScale, 1.01f, 1.15f);
+                boss.lifeMax = (int)(npc.lifeMax * healthScale);
+                boss.life = boss.lifeMax;
+                boss.defDamage = (int)(npc.defDamage * damageScale);
+                boss.damage = boss.defDamage;
+                Vector2 spawnPosition = new Vector2(x, player.position.Y - yOff);
+                boss.Center = spawnPosition;
+                boss.target = BossRushPlayer;
+                if (npc.type == NPCID.SkeletronHead)
+                {
+                    boss.ai[0] = 1f;
+                    boss.velocity.X = Main.rand.NextFloat(-15f, 15f);
+                    int x1 = (int)spawnPosition.X;
+                    int y1 = (int)spawnPosition.Y;
+                    for (int i = 0; i < 4; i++)
                     {
-                        boss.ai[0] = 1f;
-                        boss.velocity.X = Main.rand.NextFloat(-15f, 15f);
-                        int x1 = (int)spawnPosition.X;
-                        int y1 = (int)spawnPosition.Y;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            NPC arm = Main.npc[NPC.NewNPC(x1, y1, NPCID.SkeletronHand, boss.whoAmI)];
-                            arm.lifeMax = (int)(arm.lifeMax * healthScale);
-                            arm.life = arm.lifeMax;
-                            arm.Center = spawnPosition;
-                            arm.ai[0] = i % 2 == 0 ? -1f : 1f;
-                            arm.ai[1] = n;
-                            arm.target = BossRushPlayer;
-                            arm.netUpdate = true;
-                            arm.defDamage = (int)(arm.defDamage * healthScale);
-                            arm.damage = arm.defDamage;
-                        }
+                        NPC arm = Main.npc[NPC.NewNPC(x1, y1, NPCID.SkeletronHand, boss.whoAmI)];
+                        arm.lifeMax = (int)(arm.lifeMax * healthScale);
+                        arm.life = arm.lifeMax;
+                        arm.Center = spawnPosition;
+                        arm.ai[0] = i % 2 == 0 ? -1f : 1f;
+                        arm.ai[1] = n;
+                        arm.target = BossRushPlayer;
+                        arm.netUpdate = true;
+                        arm.defDamage = (int)(arm.defDamage * healthScale);
+                        arm.damage = arm.defDamage;
                     }
-                    if (npc.type == NPCID.SkeletronPrime)
+                }
+                else if (npc.type == NPCID.SkeletronPrime)
+                {
+                    boss.ai[0] = 1f;
+                    boss.velocity.X = Main.rand.NextFloat(-15f, 15f);
+                    int x1 = (int)spawnPosition.X;
+                    int y1 = (int)spawnPosition.Y;
+                    for (int i = 0; i < 4; i++)
                     {
-                        boss.ai[0] = 1f;
-                        boss.velocity.X = Main.rand.NextFloat(-15f, 15f);
-                        int x1 = (int)spawnPosition.X;
-                        int y1 = (int)spawnPosition.Y;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            NPC arm = Main.npc[NPC.NewNPC(x1, y1, NPCID.PrimeCannon + i, boss.whoAmI)];
-                            arm.lifeMax = (int)(arm.lifeMax * healthScale);
-                            arm.life = arm.lifeMax;
-                            arm.Center = spawnPosition;
-                            arm.ai[0] = i % 2 == 0 ? -1f : 1f;
-                            arm.ai[1] = n;
-                            arm.target = BossRushPlayer;
-                            arm.netUpdate = true;
-                            arm.defDamage = (int)(arm.defDamage * healthScale);
-                            arm.damage = arm.defDamage;
-                            if (i > 1)
-                                arm.ai[3] = 150f;
-                        }
+                        NPC arm = Main.npc[NPC.NewNPC(x1, y1, NPCID.PrimeCannon + i, boss.whoAmI)];
+                        arm.lifeMax = (int)(arm.lifeMax * healthScale);
+                        arm.life = arm.lifeMax;
+                        arm.Center = spawnPosition;
+                        arm.ai[0] = i % 2 == 0 ? -1f : 1f;
+                        arm.ai[1] = n;
+                        arm.target = BossRushPlayer;
+                        arm.netUpdate = true;
+                        arm.defDamage = (int)(arm.defDamage * healthScale);
+                        arm.damage = arm.defDamage;
+                        if (i > 1)
+                            arm.ai[3] = 150f;
                     }
                 }
             }
@@ -949,7 +932,7 @@ namespace AQMod.Common
 
         public override bool PreNPCLoot(NPC npc)
         {
-            EnergyDropsMessage = !NPC.downedBoss1;
+            _showEnergyDropsMessage = !NPC.downedBoss1;
             if (_loop != 0)
             {
                 NPCLoader.blockLoot.Add(ItemID.Heart);
@@ -1014,7 +997,7 @@ namespace AQMod.Common
             if (_loop == 0)
             {
                 ManageDreadsoul(npc);
-                HandleBossRush(npc);
+                EncoreKill(npc);
             }
             if (npc.townNPC && npc.position.Y > (Main.maxTilesY - 200) * 16f)
             {
@@ -1125,10 +1108,10 @@ namespace AQMod.Common
             {
                 case NPCID.EyeofCthulhu:
                 {
-                    if (EnergyDropsMessage)
+                    if (_showEnergyDropsMessage)
                     {
                         NoEnergyDrops = false;
-                        EnergyDropsMessage = false;
+                        _showEnergyDropsMessage = false;
                         AQMod.BroadcastMessage(AQText.Key + "Common.EnergyDoDrop", new Color(80, 200, 255, 255));
                     }
                 }
@@ -1207,18 +1190,18 @@ namespace AQMod.Common
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            if (AQMod.ShouldReduceSpawns())
+            if (player.GetModPlayer<AQPlayer>().bossrush)
+            {
+                spawnRate *= 10;
+                maxSpawns = (int)(maxSpawns * 0.1);
+            }
+            else if (AQMod.ShouldReduceSpawns())
             {
                 spawnRate = 1000;
                 maxSpawns = 0;
                 return;
             }
             if (DemonSiege.CloseEnoughToDemonSiege(player))
-            {
-                spawnRate *= 10;
-                maxSpawns = (int)(maxSpawns * 0.1);
-            }
-            if (BossRush)
             {
                 spawnRate *= 10;
                 maxSpawns = (int)(maxSpawns * 0.1);
