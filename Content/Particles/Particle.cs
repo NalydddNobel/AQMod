@@ -5,7 +5,11 @@
         public virtual void OnAdd()
         {
         }
-        public abstract void Update();
+        /// <summary>
+        /// Return false to kill this particle
+        /// </summary>
+        /// <returns></returns>
+        public abstract bool Update();
         public abstract void Draw();
     }
 }

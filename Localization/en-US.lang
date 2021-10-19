@@ -661,6 +661,8 @@ ItemTooltip.ATM=Summons a flying safe to store your items\nPlace in your Safe in
 ItemTooltip.SpectralLens=Toggles energy drops
 ItemTooltip.Globebulb=Speeds up time for a moment
 # Buffs
+BuffName.BlueFire=Blue Fire
+BuffDescription.BlueFire=The immense heat burns off your skin
 BuffName.Spoiled=Spoiled
 BuffDescription.Spoiled=Enemies drop twice as much loot\n'You are such a spoiled brat!'
 BuffName.MicroStarite=Micro Starite

@@ -10,6 +10,8 @@
         BehindTiles_InfrontNPCs = 2,
         BehindNPCs = 3,
         InfrontNPCs = 4,
+        PreDrawPlayers = 5,
+        PostDrawPlayers = 6,
         Count
     }
 }

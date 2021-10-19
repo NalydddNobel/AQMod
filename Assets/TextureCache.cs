@@ -34,6 +34,7 @@ namespace AQMod.Assets
         public static TEA<TrailTextureID> Trails { get; private set; }
         public static TEA<PlayerMaskID> PlayerMasks { get; private set; }
         public static TEA<PlayerHeadOverlayID> PlayerHeadOverlays { get; private set; }
+        public static TEA<ParticleTextureID> Particles { get; private set; }
 
         public static TextureAsset PowPunchChain { get; private set; }
         public static TextureAsset MagmabubbleLegs { get; private set; }
@@ -80,6 +81,7 @@ namespace AQMod.Assets
             Trails = new TEA<TrailTextureID>(TrailTextureID.Count, "AQMod/Assets/Textures", "Trail");
             PlayerMasks = new TEA<PlayerMaskID>(PlayerMaskID.Count, "AQMod/Assets/Textures", "PlayerMask");
             PlayerHeadOverlays = new TEA<PlayerHeadOverlayID>(PlayerHeadOverlayID.Count, "AQMod/Assets/Textures", "HeadOverlay");
+            Particles = new TEA<ParticleTextureID>(ParticleTextureID.Count, "AQMod/Assets/Textures/Particles", "Particle");
 
             PowPunchChain = TextureAsset.FromT<PowPunchProjectile>("_Chain");
             MagmabubbleLegs = TextureAsset.FromT<Magmalbubble>("_Legs");

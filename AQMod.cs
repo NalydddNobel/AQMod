@@ -17,6 +17,7 @@ using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Content.WorldEvents.Siege;
 using AQMod.Effects;
+using AQMod.Effects.Batchers;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.ShopCards;
@@ -205,6 +206,7 @@ namespace AQMod
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
             On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
             On.Terraria.Main.DrawTiles += Main_DrawTiles;
+            On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
             var server = AQConfigServer.Instance;
             ApplyServerConfig(server);
             if (!Main.dedServ)
@@ -229,6 +231,7 @@ namespace AQMod
                 WorldLayers.AddLayer("UltimateSword", new UltimateSwordWorldOverlay(), SceneLayering.InfrontNPCs);
                 WorldLayers.AddLayer("ImpChains", new ImpChainLayer(), SceneLayering.BehindNPCs);
                 WorldLayers.AddLayer("CrabsonChains", new JerryCrabsonLayer(), SceneLayering.BehindTiles_BehindNPCs);
+                WorldLayers.AddLayer("ParticleLayer_PostDrawPlayer", new ParticleLayer_PostDrawPlayers(), SceneLayering.PostDrawPlayers);
                 ScreenShakeManager.Load();
                 StarbyteColorCache.Init();
                 if (client.OutlineShader)
@@ -248,6 +251,14 @@ namespace AQMod
                 }
                 WorldEffects = new List<WorldVisualEffect>();
             }
+        }
+
+        private void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
+        {
+            orig(self);
+            BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
+            WorldLayers.DrawLayer(SceneLayering.PostDrawPlayers);
+            Main.spriteBatch.End();
         }
 
         private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)

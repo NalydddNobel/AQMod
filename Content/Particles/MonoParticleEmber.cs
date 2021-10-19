@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AQMod.Assets;
+using AQMod.Assets.Textures;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 
 namespace AQMod.Content.Particles
 {
-    class MonoParticleEmber
+    public class MonoParticleEmber : MonoParticle
     {
+        protected override Texture2D Texture => TextureCache.Particles[ParticleTextureID.MonoEmber];
+
+        public MonoParticleEmber(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1f) : base(position, velocity, color, scale)
+        {
+        }
+
+        public override void OnAdd()
+        {
+            frame = new Rectangle(0, 30 * Main.rand.Next(3), 30, 30);
+            origin = frame.Size() / 2f;
+        }
     }
 }

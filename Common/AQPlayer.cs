@@ -6,6 +6,8 @@ using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
+using AQMod.Content.Particles;
+using AQMod.Content.SceneLayers;
 using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
@@ -1187,15 +1189,17 @@ namespace AQMod.Common
                 }
                 if (notFrostburn)
                 {
-                    for (int i = 0; i < 10; i++)
+                    if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
                     {
-                        int d = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width + 4, player.height + 4, ModContent.DustType<MonoEmber>(), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), Main.rand.NextFloat(0.45f, 1f));
-                        Main.dust[d].color = new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f);
-                        Main.dust[d].scale = Main.rand.NextFloat(0.2f, 1.5f);
-                        Main.dust[d].velocity.X *= 0.75f;
-                        Main.dust[d].velocity.Y = Main.dust[d].velocity.Y.Abs();
-                        Main.dust[d].velocity.Y -= 2f;
-                        Main.playerDrawDust.Add(d);
+                        for (int i = 0; i < 3; i++)
+                        {
+                            var pos = drawInfo.position - new Vector2(2f, 2f);
+                            var rect = new Rectangle((int)pos.X, (int)pos.Y, player.width + 4, player.height + 4);
+                            var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                            ParticleLayers.AddParticle_PostDrawPlayers(
+                                new MonoParticleEmber(dustPos, new Vector2((player.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f , ((player.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f), 
+                                new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
+                        }
                     }
                     Lighting.AddLight(player.Center, 0.4f, 0.4f, 1f);
                     fullBright = true;
