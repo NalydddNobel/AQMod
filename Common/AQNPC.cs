@@ -18,6 +18,7 @@ using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Localization;
 using AQMod.NPCs.Friendly.Town;
 using AQMod.NPCs.Monsters;
+using AQMod.NPCs.Monsters.AtmosphericEvent;
 using AQMod.NPCs.Monsters.DemonicEvent;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -338,6 +339,23 @@ namespace AQMod.Common
         public bool sparkling;
         public bool notFrostburn;
 
+        public static int MeteorLength = 7200; // 4 minutes, making each meteor time 8 minutes
+
+        public static void CrashMeteor(int x, int y, int size)
+        {
+        }
+
+        public static bool MeteorTime()
+        {
+            if (Main.time < 14400)
+                return true;
+            if (Main.dayTime)
+            {
+                return Main.time > Main.dayLength - 14400;
+            }
+            return Main.time > Main.nightLength - 14400;
+        }
+
         public static bool CheckStariteDeath(NPC npc)
         {
             return Main.dayTime;
@@ -346,6 +364,7 @@ namespace AQMod.Common
         public override void ResetEffects(NPC npc)
         {
             sparkling = false;
+            notFrostburn = false;
         }
 
         public static bool AreTheSameNPC(int type, int otherType)
@@ -1208,7 +1227,7 @@ namespace AQMod.Common
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (AQMod.glimmerEvent.IsActive && AQMod.glimmerEvent.deactivationTimer <= 0 && spawnInfo.player.position.Y < (Main.worldSurface + 50) * 16)
+            if (AQMod.glimmerEvent.SpawnsActive(spawnInfo.player))
             {
                 int tileDistance = AQMod.glimmerEvent.GetTileDistance(spawnInfo.player);
                 if (tileDistance < GlimmerEvent.MaxDistance)
@@ -1264,6 +1283,17 @@ namespace AQMod.Common
                         {
                             pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, 1f - (AQUtils.GetGrad(GlimmerEvent.Layers[layerIndex + 1].Distance, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance));
                         }
+                    }
+                }
+            }
+            else
+            {
+                if (spawnInfo.spawnTileY < AQMod.SpaceLayer - 40)
+                {
+                    if (MeteorTime())
+                    {
+                        pool.Clear();
+                        pool.Add(ModContent.NPCType<Meteor>(), 1f);
                     }
                 }
             }

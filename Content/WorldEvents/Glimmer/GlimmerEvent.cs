@@ -32,6 +32,10 @@ namespace AQMod.Content.WorldEvents.Glimmer
         public static List<GlimmerEventLayer> Layers { get; private set; }
 
         public bool IsActive => tileX != 0;
+        public bool SpawnsActive(Player player)
+        {
+            return AQMod.glimmerEvent.IsActive && AQMod.glimmerEvent.deactivationTimer <= 0 && player.position.Y < (Main.worldSurface + 50) * 16;
+        }
         public ushort tileX;
         public ushort tileY;
         public int spawnChance;

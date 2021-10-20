@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Common;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.NPCs.Monsters.AtmosphericEvent
 {
-    public class MeteorMid : ModNPC
+    public class Meteor : ModNPC
     {
         public override void SetStaticDefaults()
         {
@@ -56,6 +57,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         npc.HitEffect();
                         npc.active = false;
                     }
+                    var p = npc.Center.ToTileCoordinates();
+                    AQNPC.CrashMeteor(p.X, p.Y, 9);
                 }
             }
             else if (npc.position.Y > 1600f)
@@ -68,13 +71,6 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
         public override void FindFrame(int frameHeight)
         {
             npc.frame.Y = frameHeight * (int)(npc.localAI[0] - 1f);
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            if (!NPC.downedBoss2)
-                return 0f;
-            return SpawnCondition.Sky.Chance;
         }
     }
 }

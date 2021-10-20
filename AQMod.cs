@@ -64,6 +64,8 @@ namespace AQMod
         /// The key for the Any Energy recipe group
         /// </summary>
         public const string AnyEnergy = "AQMod:AnyEnergy";
+        public const int SpaceLayerTile = 200;
+        public const int SpaceLayer = SpaceLayerTile * 16;
         /// <summary>
         /// Basically guesses if the game is still active, should only really use for drawing methods that do things like summon dust
         /// </summary>
