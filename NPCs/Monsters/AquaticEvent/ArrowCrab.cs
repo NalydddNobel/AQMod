@@ -122,6 +122,8 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
         {
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
+            if (Main.rand.NextBool())
+                Item.NewItem(npc.getRect(), ModContent.ItemType<AquaticEnergy>());
         }
 
         private Vector2[] _feetPositions;

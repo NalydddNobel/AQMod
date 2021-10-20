@@ -6,6 +6,7 @@ using AQMod.Items;
 using AQMod.Items.Armor.Crab;
 using AQMod.Items.GrapplingHooks;
 using AQMod.Items.Vanities;
+using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -229,7 +230,9 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
                     gotoY = gotoTileY * 16f - 120f;
                 float y = npc.position.Y + npc.height / 2f;
                 if ((y - gotoY).Abs() < 0.1f)
+                {
                     npc.velocity.Y *= 0.8f;
+                }
                 else
                 {
                     if (y < gotoY)
@@ -308,8 +311,8 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
                 Item.NewItem(npc.getRect(), ModContent.ItemType<StriderHook>());
             if (Main.rand.NextBool(20))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<FishyFins>());
-            if (Main.rand.NextBool())
-                Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
+            Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>(), Main.rand.Next(3) + 2);
+            Item.NewItem(npc.getRect(), ModContent.ItemType<AquaticEnergy>(), Main.rand.Next(3) + 1);
         }
 
         private void DrawLeg(int i, Texture2D texture, Vector2 screenPos, Vector2 orig)
@@ -343,136 +346,5 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
         }
 
         bool IDecideFallThroughPlatforms.Decide() => true;
-    }
-
-    public sealed class StriderCrabLeg : ModProjectile
-    {
-        public override void SetDefaults()
-        {
-            projectile.width = 8;
-            projectile.height = 8;
-            projectile.hostile = true;
-            projectile.timeLeft *= 10;
-            projectile.manualDirectionChange = true;
-        }
-
-        public Vector2 getKneecapPositionOffset()
-        {
-            return new Vector2(projectile.width / 2f, projectile.height - StriderCrab.LEG_2_KNEECAP_Y_OFFSET);
-        }
-
-        public override void AI()
-        {
-            int npcOwner = (int)projectile.ai[1] - 1;
-            if (npcOwner == -1 || !Main.npc[npcOwner].active)
-            {
-                //Main.NewText("bo");
-                projectile.Kill();
-                return;
-            }
-            int legID = (int)projectile.ai[0];
-            var strider = Main.npc[npcOwner].modNPC as StriderCrab;
-            Vector2 connection = strider.GetLegPosition(legID, Main.npc[npcOwner].direction);
-            var kneecapPositionOffset = getKneecapPositionOffset();
-            var kneecapPosition = projectile.position + kneecapPositionOffset;
-            var differenceFromConnection = kneecapPosition - connection;
-            if (differenceFromConnection.Length() > StriderCrab.LEG_1_LENGTH)
-            {
-                float speed = Math.Max(differenceFromConnection.Length() / 16f, 6f);
-                var normal = Vector2.Normalize(-differenceFromConnection);
-                projectile.velocity = normal * speed;
-                projectile.velocity.X *= 0.75f;
-                strider.npc.velocity += -projectile.velocity / 8f;
-                if (projectile.localAI[0] < 120f)
-                    projectile.localAI[0] += 1.5f;
-            }
-            if (projectile.tileCollide && projectile.velocity.Y.Abs() <= 0.01f)
-            {
-                if (strider.npc.velocity.X.Abs() > 1.5f)
-                    projectile.localAI[0] -= 18f;
-                else if (strider.npc.velocity.X.Abs() > 0.1f)
-                {
-                    projectile.localAI[0] -= 1f;
-                }
-            }
-            projectile.velocity.Y += 0.2f;
-            if (projectile.velocity.Y > 3f)
-                projectile.velocity.Y = 3f;
-            if (projectile.localAI[0] <= 0f)
-            {
-                projectile.localAI[0] = 120f - Main.rand.Next(30);
-                projectile.velocity.X = projectile.direction * 4.5f;
-                projectile.velocity.Y = -2f;
-                strider.npc.velocity += projectile.velocity / 7f;
-            }
-        }
-
-        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
-        {
-            int npcOwner = (int)projectile.ai[1] - 1;
-            fallThrough = true;
-            if (Main.npc[npcOwner].HasValidTarget)
-            {
-                var target = Main.player[Main.npc[npcOwner].target];
-                fallThrough = Main.npc[npcOwner].position.Y + Main.npc[npcOwner].height + 180f < target.position.Y;
-            }
-            if (fallThrough)
-            {
-                if ((Main.npc[npcOwner].Center - projectile.Center).Length() < 10f || Main.npc[npcOwner].position.Y + Main.npc[npcOwner].height > projectile.position.Y)
-                    fallThrough = true;
-            }
-            return true;
-        }
-
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            if (projectile.velocity.Y >= 0f)
-                projectile.velocity *= 0.1f;
-            return false;
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            var texture = this.GetTexture();
-            var orig = new Vector2(texture.Width / 2f, texture.Height - 4f);
-            Main.spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, lightColor, projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
-            return false;
-        }
-    }
-
-    public sealed class StriderCrabLaser : ModProjectile
-    {
-        public override void SetDefaults()
-        {
-            projectile.width = 8;
-            projectile.height = 8;
-            projectile.hostile = true;
-            projectile.aiStyle = -1;
-        }
-
-        public override Color? GetAlpha(Color lightColor)
-        {
-            return new Color(lightColor.R / 2, lightColor.G / 2, lightColor.B / 2, 0);
-        }
-
-        public override void AI()
-        {
-            projectile.velocity.Y += 0.1f;
-            if (projectile.velocity.Y > 0f)
-                projectile.velocity.Y += projectile.velocity.Y * 0.00015f;
-            projectile.rotation = projectile.velocity.ToRotation();
-            int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, Dust.dustWater());
-            Main.dust[d].scale = 0.9f * projectile.scale;
-            Main.dust[d].velocity = projectile.velocity * 0.25f;
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            var texture = this.GetTexture();
-            var center = projectile.Center;
-            var origin = new Vector2(texture.Width / 2f, 6f);
-            Main.spriteBatch.Draw(texture, center - Main.screenPosition, null, lightColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
-            return false;
-        }
     }
 }

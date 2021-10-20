@@ -1,4 +1,5 @@
-﻿using AQMod.Common;
+﻿using AQMod.Buffs.Debuffs;
+using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
@@ -277,24 +278,21 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (Main.rand.NextBool())
-                target.AddBuff(BuffID.OnFire, 360);
             if (Main.expertMode)
             {
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.Blackout, 900);
-                else if (Main.rand.NextBool())
-                {
-                    target.AddBuff(BuffID.Darkness, 3000);
-                }
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.Cursed, 60);
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.VortexDebuff, 60);
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 120);
+                target.AddBuff(BuffID.Blackout, 600);
+                if (Main.rand.NextBool(4))
+                    target.AddBuff(BuffID.Cursed, 120);
             }
-            else if (Main.rand.NextBool())
+            else
             {
-                target.AddBuff(BuffID.Darkness, 900);
+                if (Main.rand.NextBool(4))
+                    target.AddBuff(BuffID.OnFire, 120);
+                if (Main.rand.NextBool())
+                    target.AddBuff(BuffID.Darkness, 600);
+                if (Main.rand.NextBool(12))
+                    target.AddBuff(BuffID.Cursed, 120);
             }
         }
 

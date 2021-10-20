@@ -1087,8 +1087,6 @@ namespace AQMod.Common
                                     Item.NewItem(npc.getRect(), ModContent.ItemType<OrganicEnergy>());
                             }
                         }
-                        if (Main.player[p].ZoneBeach && Main.rand.NextBool(8))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<AquaticEnergy>());
                     }
                 }
             }

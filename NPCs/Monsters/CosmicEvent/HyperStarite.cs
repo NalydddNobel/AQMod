@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
+using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
@@ -114,10 +115,29 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             }
         }
 
-        private static float Speed() => Main.expertMode ? 25f : 18f;
+        private float Speed() => Main.expertMode ? 25f : 18f;
 
         public override void AI()
         {
+            if (AQNPC.CheckStariteDeath(npc))
+            {
+                npc.life = -1;
+                npc.HitEffect();
+                npc.active = false;
+                return;
+            }
+            if (Main.rand.NextBool(8))
+            {
+                int d = Dust.NewDust(npc.position, npc.width, npc.height, 58);
+                Main.dust[d].velocity.X = Main.rand.NextFloat(-4f, 4f);
+                Main.dust[d].velocity.Y = Main.rand.NextFloat(-4f, 4f);
+            }
+            if (Main.rand.NextBool(10))
+            {
+                int g = Gore.NewGore(npc.position + new Vector2(Main.rand.Next(npc.width - 4), Main.rand.Next(npc.height - 4)), new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)), 16);
+                Main.gore[g].scale *= 0.6f;
+            }
+            Lighting.AddLight(npc.Center, new Vector3(1.2f, 1.2f, 0.5f));
             Vector2 center = npc.Center;
             if (npc.ai[0] == -1f)
             {
@@ -331,54 +351,21 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (Main.rand.NextBool())
-                target.AddBuff(BuffID.OnFire, 360);
             if (Main.expertMode)
             {
-                if (Main.rand.NextBool())
-                {
-                    target.AddBuff(BuffID.Blackout, 1800);
-                }
-                else if (Main.rand.NextBool())
-                {
-                    target.AddBuff(BuffID.Darkness, 6000);
-                }
-                if (Main.rand.NextBool())
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 360);
+                target.AddBuff(BuffID.Blackout, 1800);
+                if (Main.rand.NextBool(4))
                     target.AddBuff(BuffID.Cursed, 120);
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.Slow, 120);
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.Confused, 120);
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.Silenced, 120);
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.VortexDebuff, 60);
             }
-            else if (Main.rand.NextBool())
+            else
             {
-                target.AddBuff(BuffID.Darkness, 1800);
-            }
-        }
-
-        public override void PostAI()
-        {
-            if (Main.rand.NextBool(8))
-            {
-                int d = Dust.NewDust(npc.position, npc.width, npc.height, 58);
-                Main.dust[d].velocity.X = Main.rand.NextFloat(-4f, 4f);
-                Main.dust[d].velocity.Y = Main.rand.NextFloat(-4f, 4f);
-            }
-            if (Main.rand.NextBool(10))
-            {
-                int g = Gore.NewGore(npc.position + new Vector2(Main.rand.Next(npc.width - 4), Main.rand.Next(npc.height - 4)), new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)), 16);
-                Main.gore[g].scale *= 0.6f;
-            }
-            Lighting.AddLight(npc.Center, new Vector3(1.2f, 1.2f, 0.5f));
-            if (AQNPC.CheckStariteDeath(npc))
-            {
-                npc.life = -1;
-                npc.HitEffect();
-                npc.active = false;
+                if (Main.rand.NextBool(4))
+                    target.AddBuff(BuffID.OnFire, 360);
+                if (Main.rand.NextBool())
+                    target.AddBuff(BuffID.Darkness, 1800);
+                if (Main.rand.NextBool(12))
+                    target.AddBuff(BuffID.Cursed, 120);
             }
         }
 

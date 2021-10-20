@@ -1,4 +1,5 @@
-﻿using AQMod.Common;
+﻿using AQMod.Buffs.Debuffs;
+using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Items;
 using AQMod.Items.BuffItems.Foods;
@@ -203,24 +204,15 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
         {
             if (Main.expertMode)
             {
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.OnFire, 120);
-                if (Main.rand.NextBool())
-                {
-                    target.AddBuff(BuffID.Blackout, 120);
-                }
-                else if (Main.rand.NextBool())
-                {
-                    target.AddBuff(BuffID.Darkness, 360);
-                }
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.Cursed, 60);
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.Slow, 60);
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 60);
+                target.AddBuff(BuffID.Blackout, 300);
             }
-            else if (Main.rand.NextBool())
+            else
             {
-                target.AddBuff(BuffID.Darkness, 120);
+                if (Main.rand.NextBool(4))
+                    target.AddBuff(BuffID.OnFire, 60);
+                if (Main.rand.NextBool())
+                    target.AddBuff(BuffID.Darkness, 300);
             }
         }
 

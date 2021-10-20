@@ -120,6 +120,8 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
             if (Main.rand.NextBool(8))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HermitShell>());
             if (Main.rand.NextBool())
+                Item.NewItem(npc.getRect(), ModContent.ItemType<AquaticEnergy>());
+            if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
         }
 
