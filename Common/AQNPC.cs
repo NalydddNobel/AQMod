@@ -339,7 +339,7 @@ namespace AQMod.Common
         public bool sparkling;
         public bool notFrostburn;
 
-        public static int MeteorLength = 7200; // 4 minutes, making each meteor time 8 minutes
+        public static int MeteorLength = 7200; // 2 minutes, making each meteor time 4 minutes
 
         public static void CrashMeteor(int x, int y, int size)
         {
@@ -1223,6 +1223,17 @@ namespace AQMod.Common
                 spawnRate *= 10;
                 maxSpawns = (int)(maxSpawns * 0.1);
             }
+            else
+            {
+                if (player.position.Y < AQMod.SpaceLayer - (40 * 16f))
+                {
+                    if (MeteorTime())
+                    {
+                        spawnRate /= 2;
+                        maxSpawns *= 2;
+                    }
+                }
+            }
         }
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
@@ -1288,7 +1299,7 @@ namespace AQMod.Common
             }
             else
             {
-                if (spawnInfo.spawnTileY < AQMod.SpaceLayer - 40)
+                if (spawnInfo.spawnTileY < AQMod.SpaceLayerTile - 40)
                 {
                     if (MeteorTime())
                     {

@@ -39,6 +39,7 @@ namespace AQMod.Common.DeveloperTools
 
             public int headOverlay = -1;
             public int mask = -1;
+            public byte debug = 0;
 
             public override void UpdateEquip(Item item, Player player)
             {
@@ -54,6 +55,16 @@ namespace AQMod.Common.DeveloperTools
                     tooltips.Add(new TooltipLine(mod, "headOverlay", "headOverlay: " + headOverlay));
                 if (mask > -1)
                     tooltips.Add(new TooltipLine(mod, "mask", "mask: " + mask));
+                switch (debug)
+                {
+                    case 1:
+                    {
+                        bool meteorTime = AQNPC.MeteorTime();
+                        tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
+                        tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < AQMod.SpaceLayer - (40 * 16f)).ToString()));
+                    }
+                    break;
+                }
             }
         }
 
@@ -80,6 +91,12 @@ namespace AQMod.Common.DeveloperTools
             {
                 default:
                 caller.Reply("Command doesn't exist.");
+                break;
+
+                case "debugi":
+                {
+                    caller.Player.HeldItem.GetGlobalItem<NCallGlobalItem>().debug = byte.Parse(args[1]);
+                }
                 break;
 
                 case "writeencore":
