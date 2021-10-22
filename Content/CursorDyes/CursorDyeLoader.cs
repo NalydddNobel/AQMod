@@ -17,9 +17,9 @@ namespace AQMod.Content.CursorDyes
             public const int Demon = 3;
         }
 
-        public override void Setup()
+        public override void Setup(bool setupStatics = false)
         {
-            base.Setup();
+            base.Setup(setupStatics);
             On.Terraria.Main.CursorColor += Main_CursorColor;
             On.Terraria.Main.DrawCursor += Main_DrawCursor;
             On.Terraria.Main.DrawThickCursor += Main_DrawThickCursor;
@@ -39,7 +39,7 @@ namespace AQMod.Content.CursorDyes
 
         internal static bool CanApplyCursorDye()
         {
-            return !AQMod.Loading && !Main.gameMenu && Main.myPlayer != -1 && Main.LocalPlayer.active;
+            return !AQMod.Loading && !Main.gameMenu && Main.myPlayer >= 0 && Main.LocalPlayer.active;
         }
 
         internal static void UpdateColor()

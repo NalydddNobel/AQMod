@@ -196,9 +196,9 @@ namespace AQMod
             Loading = true;
             AQText.Load();
             CursorDyes = new CursorDyeLoader();
-            CursorDyes.Setup();
+            CursorDyes.Setup(setupStatics: true);
             RobsterHunts = new RobsterHuntLoader();
-            RobsterHunts.Setup();
+            RobsterHunts.Setup(setupStatics: true);
             glimmerEvent = new GlimmerEvent();
             AQPlayer.Setup();
             AQCommand.LoadCommands();

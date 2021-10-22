@@ -8,10 +8,9 @@
             public const byte JeweledChalice = 1;
         }
 
-        public override void Setup()
+        public override void Setup(bool setupStatics = false)
         {
-            base.Setup();
-
+            base.Setup(setupStatics);
             var mod = AQMod.Instance;
             AddContent(new HuntJeweledChalice(mod, "JeweledChalice"));
             AddContent(new HuntJeweledCandelabra(mod, "JeweledCandelabra"));

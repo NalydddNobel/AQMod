@@ -9,7 +9,7 @@ namespace AQMod.Content
 
         public int Count => _contentCount;
 
-        public virtual void Setup()
+        public virtual void Setup(bool setupStatics = false)
         {
             _content = new List<T>();
             _contentCount = 0;
