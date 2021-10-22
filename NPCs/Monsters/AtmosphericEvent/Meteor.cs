@@ -58,6 +58,13 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         npc.active = false;
                     }
                     var p = npc.Center.ToTileCoordinates();
+                    Main.PlaySound(SoundID.NPCDeath14, npc.Center);
+                    for (int i = 0; i < 50; i++)
+                    {
+                        int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.8f, 1.75f));
+                        Main.dust[d].noGravity = true;
+                        Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
+                    }
                     AQNPC.CrashMeteor(p.X, p.Y, 9);
                 }
             }
