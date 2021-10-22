@@ -39,7 +39,7 @@ namespace AQMod.Content.CursorDyes
 
         internal static bool CanApplyCursorDye()
         {
-            return AQMod.Loading && !Main.gameMenu && Main.myPlayer != -1 && Main.LocalPlayer.active;
+            return !AQMod.Loading && !Main.gameMenu && Main.myPlayer != -1 && Main.LocalPlayer.active;
         }
 
         internal static void UpdateColor()
