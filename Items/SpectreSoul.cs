@@ -1,7 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Common;
 using AQMod.Common.Utilities;
-using AQMod.Effects.Batchers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -126,10 +124,10 @@ namespace AQMod.Items
                 for (int i = 0; i < 8; i++)
                 {
                     positions[i] = Vector3.Transform(new Vector3(l * 10f, 0f, 0f), Matrix.CreateFromYawPitchRoll(time * 0.01f, time * 0.0157f, time * 0.0314f + MathHelper.TwoPi / 8f * i));
-                    scales[i] = ThreeDimensionsEffect.GetParralaxScale((line.baseScale.X + line.baseScale.Y) / 2f, positions[i].Z * 0.157f);
+                    scales[i] = Projector3D.GetParralaxScale((line.baseScale.X + line.baseScale.Y) / 2f, positions[i].Z * 0.157f);
                     if (positions[i].Z > 0f)
                     {
-                        var drawPosition = ThreeDimensionsEffect.GetParralaxPosition(new Vector2(textPosition.X + (int)positions[i].X, textPosition.Y + (int)positions[i].Y) + Main.screenPosition, positions[i].Z * 0.0314f) - Main.screenPosition;
+                        var drawPosition = Projector3D.GetParralaxPosition(new Vector2(textPosition.X + (int)positions[i].X, textPosition.Y + (int)positions[i].Y) + Main.screenPosition, positions[i].Z * 0.0314f) - Main.screenPosition;
                         ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, drawPosition, ghostlyColor, line.rotation, line.origin, new Vector2(scales[i], scales[i]), line.maxWidth, false);
                     }
                 }
@@ -138,7 +136,7 @@ namespace AQMod.Items
                 {
                     if (positions[i].Z <= 0f)
                     {
-                        var drawPosition = ThreeDimensionsEffect.GetParralaxPosition(new Vector2(textPosition.X + (int)positions[i].X, textPosition.Y + (int)positions[i].Y) + Main.screenPosition, positions[i].Z * 0.0314f) - Main.screenPosition;
+                        var drawPosition = Projector3D.GetParralaxPosition(new Vector2(textPosition.X + (int)positions[i].X, textPosition.Y + (int)positions[i].Y) + Main.screenPosition, positions[i].Z * 0.0314f) - Main.screenPosition;
                         ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, drawPosition, ghostlyColor, line.rotation, line.origin, new Vector2(scales[i], scales[i]), line.maxWidth, false);
                     }
                 }
@@ -147,7 +145,7 @@ namespace AQMod.Items
             {
                 ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, Main.fontMouseText, text, textPosition, new Color(0, 0, 0, 255), line.rotation, line.origin, line.baseScale, line.maxWidth, line.spread);
                 Main.spriteBatch.End();
-                BatcherTypes.StartShaderBatch_UI(Main.spriteBatch);
+                BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
                 shaderTime--;
                 if (shaderTime <= 0)
                 {
@@ -174,7 +172,7 @@ namespace AQMod.Items
                 }
                 ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, textPosition, trueTextColor, line.rotation, line.origin, line.baseScale, line.maxWidth, false);
                 Main.spriteBatch.End();
-                BatcherTypes.StartBatch_UI(Main.spriteBatch);
+                BatcherMethods.StartBatch_UI(Main.spriteBatch);
             }
             else
             {

@@ -5,7 +5,6 @@ using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.Siege;
 using AQMod.Effects;
-using AQMod.Effects.Batchers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -83,10 +82,10 @@ namespace AQMod.Content.SceneLayers
                 if (AQConfigClient.Instance.PortalShader)
                 {
                     Main.spriteBatch.End();
-                    BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+                    BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
                     SamplerDraw.DrawSampler("AQMod:GoreNestPortal", portalPosition - Main.screenPosition, 0f, new Vector2(portalSize()), portalColor());
                     Main.spriteBatch.End();
-                    BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
+                    BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
                 }
                 else
                 {

@@ -13,7 +13,7 @@ namespace AQMod.Items.Tools.SupportStaffs
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow", new Color(128, 128, 128, 0)), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(CommonUtils.GetPath(this) + "_Glow", new Color(128, 128, 128, 0)), item.type);
         }
 
         public override void SetDefaults()

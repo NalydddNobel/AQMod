@@ -107,14 +107,14 @@ namespace AQMod.Projectiles.Ranged
             float intensity = AQMod.EffectIntensity;
             if (projectile.timeLeft < 30)
                 intensity *= 30 - projectile.timeLeft;
-            Main.spriteBatch.Draw(ModContent.GetTexture(AQUtils.GetPath(this) + "_Aura"), projectile.position + offset - Main.screenPosition, null, new Color(60, 2, 100, 0) * intensity, rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(ModContent.GetTexture(CommonUtils.GetPath(this) + "_Aura"), projectile.position + offset - Main.screenPosition, null, new Color(60, 2, 100, 0) * intensity, rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition, null, lightColor, rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
             if (intensity > 10f)
             {
                 intensity -= 10f;
                 var spotlightTexture = TextureCache.Lights[Assets.Textures.LightID.Spotlight30x30];
                 var spotlightTextureOrigin = spotlightTexture.Size() / 2f;
-                Main.spriteBatch.Draw(ModContent.GetTexture(AQUtils.GetPath(this) + "_Aura"), projectile.position + offset - Main.screenPosition, null, new Color(20, 8, 50, 0) * intensity, rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(ModContent.GetTexture(CommonUtils.GetPath(this) + "_Aura"), projectile.position + offset - Main.screenPosition, null, new Color(20, 8, 50, 0) * intensity, rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlightTexture, projectile.position + offset - Main.screenPosition, null, new Color(60, 10, 100, 0) * intensity, rotation, spotlightTextureOrigin, projectile.scale * intensity / 8f, SpriteEffects.None, 0f);
                 if (AQMod.EffectQuality >= 1f)
                     Main.spriteBatch.Draw(spotlightTexture, projectile.position + offset - Main.screenPosition, null, new Color(10, 2, 40, 0) * (intensity / 5f), rotation, spotlightTextureOrigin, projectile.scale * intensity / 3, SpriteEffects.None, 0f);

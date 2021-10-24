@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

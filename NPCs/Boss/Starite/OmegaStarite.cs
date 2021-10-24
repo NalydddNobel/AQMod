@@ -1423,8 +1423,8 @@ namespace AQMod.NPCs.Boss.Starite
             {
                 if (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z > 0f)
                 {
-                    var drawPosition = ThreeDimensionsEffect.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
-                    var drawScale = ThreeDimensionsEffect.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
+                    var drawPosition = Projector3D.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
+                    var drawScale = Projector3D.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
                     foreach (var draw in drawOmegite)
                     {
                         draw.Invoke(
@@ -1498,8 +1498,8 @@ namespace AQMod.NPCs.Boss.Starite
             }
             for (int i = 0; i < sortedOmegites.Count; i++)
             {
-                var drawPosition = ThreeDimensionsEffect.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
-                var drawScale = ThreeDimensionsEffect.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
+                var drawPosition = Projector3D.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
+                var drawScale = Projector3D.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
                 foreach (var draw in drawOmegite)
                 {
                     draw.Invoke(

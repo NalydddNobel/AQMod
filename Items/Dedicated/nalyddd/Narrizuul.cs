@@ -48,7 +48,7 @@ namespace AQMod.Items.Dedicated.nalyddd
         {
             if (line.mod == "Terraria" && line.Name == "ItemName")
             {
-                UIHelper.Text.Narrizuul(line.text, line.X, line.Y, line.rotation, line.origin, line.baseScale);
+                UIManager.TextDrawingMethods.Narrizuul(line.text, line.X, line.Y, line.rotation, line.origin, line.baseScale);
                 return false;
             }
             return true;
@@ -122,10 +122,10 @@ namespace AQMod.Items.Dedicated.nalyddd
             if (Main.rand.NextBool(4))
             {
                 int d = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<Content.Dusts.ColorlessTransparentOrb>());
-                Main.dust[d].color = AQUtils.MovingRainbow(projectile.localAI[1]) * 1.5f;
+                Main.dust[d].color = CommonUtils.MovingRainbow(projectile.localAI[1]) * 1.5f;
                 Main.dust[d].velocity = Vector2.Zero;
             }
-            Lighting.AddLight(projectile.Center, (AQUtils.MovingRainbow(projectile.localAI[1]) * 1.5f).ToVector3() * projectile.scale);
+            Lighting.AddLight(projectile.Center, (CommonUtils.MovingRainbow(projectile.localAI[1]) * 1.5f).ToVector3() * projectile.scale);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -149,7 +149,7 @@ namespace AQMod.Items.Dedicated.nalyddd
                 if (trueOldPos.Count > 1)
                 {
                     Trailshader trail = new Trailshader(TextureCache.Trails[TrailTextureID.ThickLine], Trailshader.TextureTrail);
-                    var clr2 = AQUtils.MovingRainbow(projectile.localAI[1]);
+                    var clr2 = CommonUtils.MovingRainbow(projectile.localAI[1]);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20f - p * 20f), (p) => clr2 * 0.65f * (1f - p));
                     trail.Draw();
                 }
@@ -161,18 +161,18 @@ namespace AQMod.Items.Dedicated.nalyddd
                     if (projectile.oldPos[i] == new Vector2(0f, 0f))
                         break;
                     float progress = 1f - 1f / trailLength * i;
-                    var clr2 = AQUtils.MovingRainbow(projectile.localAI[1] + i * 0.1f) * 0.225f;
+                    var clr2 = CommonUtils.MovingRainbow(projectile.localAI[1] + i * 0.1f) * 0.225f;
                     var orig2 = Main.projectileTexture[projectile.type].Size() / 2f;
                     Main.spriteBatch.Draw(texture, projectile.oldPos[i] + offset / 2f - Main.screenPosition, null, clr2 * progress, projectile.rotation, orig2, projectile.scale, SpriteEffects.None, 0f);
                 }
             }
             texture = TextureCache.Lights[LightID.Spotlight66x66];
-            spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, AQUtils.MovingRainbow(projectile.localAI[1]) * 0.5f, projectile.rotation, texture.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, CommonUtils.MovingRainbow(projectile.localAI[1]) * 0.5f, projectile.rotation, texture.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             texture = Main.projectileTexture[projectile.type];
             var drawPos = projectile.Center - Main.screenPosition;
             var orig = Main.projectileTexture[projectile.type].Size() / 2f;
             spriteBatch.Draw(texture, drawPos, null, new Color(250, 250, 250, 20), projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
-            var clr = Color.Lerp(new Color(250, 250, 250, 20), AQUtils.MovingRainbow(projectile.localAI[1]), 0.5f);
+            var clr = Color.Lerp(new Color(250, 250, 250, 20), CommonUtils.MovingRainbow(projectile.localAI[1]), 0.5f);
             spriteBatch.Draw(texture, drawPos, null, clr * 0.5f, projectile.rotation, orig, projectile.scale + 0.2f + (float)Math.Sin(Main.GlobalTime * 20f) * 0.4f, SpriteEffects.None, 0f);
             spriteBatch.Draw(texture, drawPos, null, clr * 0.32f, projectile.rotation + MathHelper.PiOver4, orig, projectile.scale + 0.1f + (float)Math.Sin(Main.GlobalTime * 20f + 1f) * 0.2f, SpriteEffects.None, 0f);
             return false;
@@ -188,7 +188,7 @@ namespace AQMod.Items.Dedicated.nalyddd
                     ScreenShakeManager.AddEffect(new BasicScreenShake(8, AQMod.MultIntensity((int)(800f - distance) / 64)));
                 }
             }
-            Color color = AQUtils.MovingRainbow(projectile.localAI[1]) * 1.5f;
+            Color color = CommonUtils.MovingRainbow(projectile.localAI[1]) * 1.5f;
             for (int i = 0; i < 20; i++)
             {
                 int d = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<ColorlessTransparentOrb>());
@@ -200,7 +200,7 @@ namespace AQMod.Items.Dedicated.nalyddd
             {
                 int d = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<ColorlessTransparentOrb>());
                 Main.dust[d].scale *= Main.rand.NextFloat(1.1f, 1.7f);
-                Main.dust[d].color = AQUtils.MovingRainbow(projectile.localAI[1] + i * 0.1f) * 1.5f;
+                Main.dust[d].color = CommonUtils.MovingRainbow(projectile.localAI[1] + i * 0.1f) * 1.5f;
                 Main.dust[d].velocity = new Vector2(6, 0).RotatedByRandom(MathHelper.TwoPi);
             }
             if (Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center) < Math.Sqrt(Main.screenWidth * Main.screenWidth + Main.screenHeight * Main.screenHeight))

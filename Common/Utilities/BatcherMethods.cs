@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace AQMod.Effects.Batchers
+namespace AQMod.Common.Utilities
 {
-    internal static class BatcherTypes
+    internal static class BatcherMethods
     {
         public static void StartBatch_Background(SpriteBatch spriteBatch)
         {

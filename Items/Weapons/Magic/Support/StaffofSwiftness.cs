@@ -12,7 +12,7 @@ namespace AQMod.Items.Weapons.Magic.Support
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(AQUtils.GetPath<StaffofSwiftness>() + "_Glow", new Color(128, 128, 128, 0)), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(CommonUtils.GetPath<StaffofSwiftness>() + "_Glow", new Color(128, 128, 128, 0)), item.type);
         }
 
         protected override int BuffType => BuffID.Swiftness;

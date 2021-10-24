@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Projectiles.Summon.Chomper;
+﻿using AQMod.Projectiles.Summon.Chomper;
 using Terraria;
 using Terraria.ModLoader;
 

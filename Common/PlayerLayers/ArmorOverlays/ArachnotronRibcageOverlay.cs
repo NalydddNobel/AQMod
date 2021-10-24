@@ -10,7 +10,7 @@ namespace AQMod.Common.PlayerLayers.ArmorOverlays
 {
     public class ArachnotronRibcageOverlay : ArmorBodyOverlay
     {
-        public ArachnotronRibcageOverlay() : base(new TextureAsset(AQUtils.GetPath<ArachnotronRibcage>() + "_BodyGlow"))
+        public ArachnotronRibcageOverlay() : base(new TextureAsset(CommonUtils.GetPath<ArachnotronRibcage>() + "_BodyGlow"))
         {
         }
 

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace AQMod.Common
+namespace AQMod.Common.Utilities
 {
-    internal struct ThreeDimensionsEffect
+    internal struct Projector3D
     {
         public const float Z_VIEW = -20f;
 
@@ -13,7 +13,7 @@ namespace AQMod.Common
         internal static Vector2 GetParralaxPosition(Vector2 origin, float z)
         {
             z = MultZ(z);
-            Vector2 viewPos = new Vector2(Main.screenPosition.X + Main.screenWidth / 2f, Main.screenPosition.Y + Main.screenHeight / 2f);
+            var viewPos = new Vector2(Main.screenPosition.X + Main.screenWidth / 2f, Main.screenPosition.Y + Main.screenHeight / 2f);
             return new Vector2(origin.X - (1f - (-Z_VIEW / (z - Z_VIEW))) * (origin.X - viewPos.X), origin.Y - (1f - (-Z_VIEW / (z - Z_VIEW))) * (origin.Y - viewPos.Y));
         }
 
@@ -34,7 +34,7 @@ namespace AQMod.Common
         /// <param name="worldPosition"></param>
         /// <param name="baseScale"></param>
         /// <param name="z"></param>
-        public ThreeDimensionsEffect(Vector2 worldPosition, float baseScale, float z)
+        public Projector3D(Vector2 worldPosition, float baseScale, float z)
         {
             z = MultZ(z);
             WorldViewPosition = GetParralaxPosition(worldPosition, z);

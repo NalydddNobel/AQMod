@@ -15,9 +15,9 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common
+namespace AQMod.Common.UserInterface
 {
-    public static class MapInterface
+    public static class MapInterfaceManager
     {
         public const int MapIconFrames = 4;
         public const int MapIconWidth = 34;
@@ -36,7 +36,7 @@ namespace AQMod.Common
 
         private static Vector2 mapPosSingle(Vector2 tileCoords)
         {
-            return new Vector2((tileCoords.X * _mapScale) + _map.X, (tileCoords.Y * _mapScale) + _map.Y);
+            return new Vector2(tileCoords.X * _mapScale + _map.X, tileCoords.Y * _mapScale + _map.Y);
         }
 
         public static Vector2 MapPosToTilePos(Vector2 mapPos)
@@ -82,7 +82,7 @@ namespace AQMod.Common
                 if (t.Value is TEGlobe globe && (globe.discovered || debug))
                 {
                     var pos = MapPos(new Vector2(globe.Position.X + 1f, globe.Position.Y + 1f));
-                    if (AQUtils.PositionOnScreen(pos, 8f))
+                    if (CommonUtils.PositionOnScreen(pos, 8f))
                     {
                         var scale = Main.UIScale;
                         var hitbox = Utils.CenteredRectangle(pos, new Vector2(texture.Width, texture.Height) * scale);
@@ -93,9 +93,7 @@ namespace AQMod.Common
                             scale += 0.5f;
                         }
                         if (aQPlayer.globeX == globe.Position.X && aQPlayer.globeY == globe.Position.Y)
-                        {
                             scale += alpha * 0.1f;
-                        }
                         Main.spriteBatch.Draw(texture, pos, frame, new Color(255, 255, 255, 255), 0f, origin, scale, SpriteEffects.None, 0f);
                     }
                 }
@@ -111,7 +109,7 @@ namespace AQMod.Common
                     if (t.Value is TEGlimmeringStatue glimmer)
                     {
                         var pos = MapPos(new Vector2(glimmer.Position.X + 1f, glimmer.Position.Y + 1f));
-                        if (AQUtils.PositionOnScreen(pos, 8f))
+                        if (CommonUtils.PositionOnScreen(pos, 8f))
                         {
                             var scale = Main.UIScale;
                             var hitbox = Utils.CenteredRectangle(pos, new Vector2(texture.Width, texture.Height) * scale);
@@ -122,18 +120,16 @@ namespace AQMod.Common
                                 scale += 0.5f;
                             }
                             if (glimmer.discovered)
-                            {
                                 scale += alpha * 0.1f;
-                            }
                             Main.spriteBatch.Draw(texture, pos, frame, new Color(0, 0, 255, 255), 0f, origin, scale, SpriteEffects.None, 0f);
                         }
                     }
                 }
             }
 
-            List<int> buffToggleType = new List<int>();
-            List<bool> buffEnabled = new List<bool>();
-            List<Action> buffToggleFunctions = new List<Action>();
+            var buffToggleType = new List<int>();
+            var buffEnabled = new List<bool>();
+            var buffToggleFunctions = new List<Action>();
 
             if (aQPlayer.retroMap || debug)
             {
@@ -215,35 +211,29 @@ namespace AQMod.Common
                         for (int j = 0; j < 2; j++)
                         {
                             int d = j == 1 ? -1 : 1;
-                            var pos = new Vector2(AQMod.glimmerEvent.tileX + 0.5f + (layer.Distance * d), 46f);
+                            var pos = new Vector2(AQMod.glimmerEvent.tileX + 0.5f + layer.Distance * d, 46f);
                             if (pos.X < 0f || pos.X > Main.maxTilesX)
                                 continue;
                             for (int k = 0; k < 2; k++)
                             {
                                 if (k == 1)
-                                {
                                     pos.Y = (float)Main.worldSurface;
-                                }
                                 drawPos = MapPos(pos);
                                 hitbox = Utils.CenteredRectangle(drawPos, new Vector2(stariteFrame.Width, stariteFrame.Height) * Main.UIScale);
                                 float stariteScale = Main.UIScale;
                                 if (hitbox.Contains(Main.mouseX, Main.mouseY))
                                 {
                                     if (debug)
-                                    {
                                         mouseText = "npc: " + layer.NPCType + "\ndistance from center: " + layer.Distance + "\nspawn chance: " + layer.SpawnChance + "\nid: " + i;
-                                    }
                                     else
                                     {
                                         mouseText = string.Format(AQText.ModText("Common.SpawnAfterPoint").Value, Lang.GetNPCName(layer.NPCType));
                                     }
-                                    stariteScale += 0.6f + (alpha * 0.2f);
+                                    stariteScale += 0.6f + alpha * 0.2f;
                                 }
                                 Main.spriteBatch.Draw(texture, drawPos, stariteFrame, new Color(255, 255, 255, 255), 0f, stariteOrig, stariteScale, SpriteEffects.None, 0f);
                                 if (k == 0)
-                                {
                                     Main.spriteBatch.Draw(texture, drawPos + new Vector2(0f, (arrowDownFrame.Height + stariteFrame.Height + arrowBobbingY) * Main.UIScale), arrowDownFrame, new Color(255, 255, 255, 255), 0f, arrowDownOrig, Main.UIScale, SpriteEffects.None, 0f);
-                                }
                                 else
                                 {
                                     Main.spriteBatch.Draw(texture, drawPos - new Vector2(0f, (arrowUpFrame.Height + stariteFrame.Height + arrowBobbingY) * Main.UIScale), arrowUpFrame, new Color(255, 255, 255, 255), 0f, arrowUpOrig, Main.UIScale, SpriteEffects.None, 0f);
@@ -320,7 +310,7 @@ namespace AQMod.Common
             {
                 var buffTexture = TextureCache.GetBuff(buffToggleType[i]);
                 float scale = Main.UIScale;
-                var drawPosition = new Vector2((8f + ((buffTexture.Width + 8f) * i)) * scale, (8f + (buffTexture.Height / 2f)) * scale);
+                var drawPosition = new Vector2((8f + (buffTexture.Width + 8f) * i) * scale, (8f + buffTexture.Height / 2f) * scale);
                 var drawColor = new Color(255, 255, 255, 255);
                 if (!buffEnabled[i])
                 {
@@ -331,9 +321,7 @@ namespace AQMod.Common
                 if (hitbox.Contains(Main.mouseX, Main.mouseY))
                 {
                     if (Main.mouseLeft && Main.mouseLeftRelease)
-                    {
                         buffToggleFunctions[i].Invoke();
-                    }
                     mouseText = Lang.GetBuffName(buffToggleType[i]);
                     Main.spriteBatch.Draw(TextureCache.BuffOutline.Value, drawPosition, null, drawColor, 0f, new Vector2(4f, 4f), scale, SpriteEffects.None, 0f);
                 }

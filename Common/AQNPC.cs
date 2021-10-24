@@ -1288,11 +1288,11 @@ namespace AQMod.Common
                         }
                         if (layerIndex == GlimmerEvent.Layers.Count - 1)
                         {
-                            pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, (AQUtils.GetGrad(0, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance));
+                            pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, (CommonUtils.GetGrad(0, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance));
                         }
                         else
                         {
-                            pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, 1f - (AQUtils.GetGrad(GlimmerEvent.Layers[layerIndex + 1].Distance, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance));
+                            pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, 1f - (CommonUtils.GetGrad(GlimmerEvent.Layers[layerIndex + 1].Distance, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance));
                         }
                     }
                 }

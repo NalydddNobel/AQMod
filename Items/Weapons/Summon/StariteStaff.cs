@@ -255,7 +255,7 @@ namespace AQMod.Items.Weapons.Summon
 
     public sealed class StariteMinionLeader : StariteMinion
     {
-        public override string Texture => AQUtils.GetPath<StariteMinion>();
+        public override string Texture => CommonUtils.GetPath<StariteMinion>();
 
         public override void SetStaticDefaults()
         {

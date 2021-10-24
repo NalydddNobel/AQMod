@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
-using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;

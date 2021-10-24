@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Content.CursorDyes;
+﻿using AQMod.Content.CursorDyes;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

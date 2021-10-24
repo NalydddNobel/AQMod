@@ -3,7 +3,6 @@ using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
-using AQMod.Effects.Batchers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow", new Color(200, 200, 200, 0)), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(CommonUtils.GetPath(this) + "_Glow", new Color(200, 200, 200, 0)), item.type);
         }
 
         public override void SetDefaults()
@@ -151,7 +150,7 @@ namespace AQMod.Items.Weapons.Melee
                 resetBatch = true;
                 drawData.sourceRect = new Rectangle(frame.X, frame.Y, frame.Width, texture.Height);
                 Main.spriteBatch.End();
-                BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+                BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
                 var effect = GameShaders.Misc["AQMod:SpikeFade"];
                 var sampler = TextureCache.Pixel.Value;
                 effect.UseOpacity(1f / texture.Height * frameHeight + _portaloffset);
@@ -164,7 +163,7 @@ namespace AQMod.Items.Weapons.Melee
             if (resetBatch)
             {
                 Main.spriteBatch.End();
-                BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
+                BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
             }
             return false;
         }

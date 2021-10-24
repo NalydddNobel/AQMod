@@ -1,8 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.Siege;
 using AQMod.Content.WorldEvents.Glimmer;
+using AQMod.Content.WorldEvents.Siege;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,7 +9,7 @@ using System;
 using Terraria;
 using Terraria.Localization;
 
-namespace AQMod.Common.UI
+namespace AQMod.Common.UserInterface
 {
     internal static class InvasionUI
     {
@@ -89,7 +88,7 @@ namespace AQMod.Common.UI
                     {
                         int num11 = (int)(200f * alpha);
                         int num12 = (int)(45f * alpha);
-                        Vector2 vector3 = new Vector2(Main.screenWidth - 120, Main.screenHeight - 40);
+                        var vector3 = new Vector2(Main.screenWidth - 120, Main.screenHeight - 40);
                         Utils.DrawInvBG(Main.spriteBatch, new Rectangle((int)vector3.X - num11 / 2, (int)vector3.Y - num12 / 2, num11, num12), new Color(63, 65, 151, 255) * 0.785f);
 
                         string eventNameAndProgressText = (int)(invasionProgress * 100f) + "%";
@@ -99,7 +98,7 @@ namespace AQMod.Common.UI
                         if (InvasionType == DemonSiegeInvasion)
                         {
                             string value = AQText.ModText("Common.TimeLeft").Value;
-                            eventNameAndProgressText = string.Format(value, AQUtils.TimeText3(DemonSiege.UpgradeTime));
+                            eventNameAndProgressText = string.Format(value, CommonUtils.TimeText3(DemonSiege.UpgradeTime));
                         }
 
                         Texture2D colorBar = Main.colorBarTexture;

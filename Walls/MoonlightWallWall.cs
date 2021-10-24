@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.Textures;
-using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Items.Placeable.Walls;
 using Microsoft.Xna.Framework;

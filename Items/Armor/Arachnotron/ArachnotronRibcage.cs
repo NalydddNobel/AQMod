@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Common.ItemOverlays;
 using AQMod.Common.PlayerLayers;
 using AQMod.Common.PlayerLayers.ArmorOverlays;
 using AQMod.Common.Utilities;
@@ -16,7 +15,7 @@ namespace AQMod.Items.Armor.Arachnotron
         {
             if (!Main.dedServ)
             {
-                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow"), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(CommonUtils.GetPath(this) + "_Glow"), item.type);
                 AQMod.ArmorOverlays.AddBodyOverlay<ArachnotronRibcage>(new ArachnotronRibcageOverlay());
             }
         }

@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

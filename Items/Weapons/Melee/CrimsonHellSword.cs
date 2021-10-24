@@ -3,7 +3,7 @@ using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
-using AQMod.Effects.Batchers;
+using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,7 +21,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow", new Color(200, 200, 200, 0)), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(CommonUtils.GetPath(this) + "_Glow", new Color(200, 200, 200, 0)), item.type);
         }
 
         public override void SetDefaults()
@@ -153,7 +153,7 @@ namespace AQMod.Items.Weapons.Melee
             {
                 resetBatch = true;
                 Main.spriteBatch.End();
-                BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+                BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
                 float intensity = (float)Math.Sin(Main.GlobalTime * 10f) + 1.5f;
                 var effect = GameShaders.Misc["AQMod:OutlineColor"];
                 effect.UseColor(new Vector3(1f, 0.5f * intensity, 0.1f * intensity));
@@ -163,7 +163,7 @@ namespace AQMod.Items.Weapons.Melee
             if (resetBatch)
             {
                 Main.spriteBatch.End();
-                BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
+                BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
             }
             drawData.scale *= 1.25f;
             drawData.color *= 0.25f;

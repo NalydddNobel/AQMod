@@ -1,10 +1,12 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria.ModLoader;
 
 namespace AQMod.Common.Utilities
 {
+    [Obsolete()]
     public static class DrawUtils
     {
         public static class LegacyTextureCache

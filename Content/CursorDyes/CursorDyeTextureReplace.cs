@@ -1,9 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Effects;
-using AQMod.Effects.Batchers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -40,7 +38,7 @@ namespace AQMod.Content.CursorDyes
                     try
                     {
                         Main.spriteBatch.End();
-                        BatcherTypes.StartShaderBatch_UI(Main.spriteBatch);
+                        BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
                         var effect = GameShaders.Misc["AQMod:OutlineColor"];
                         effect.UseColor(Main.MouseBorderColor);
                         effect.UseImageSize(texture.Size());
@@ -55,7 +53,7 @@ namespace AQMod.Content.CursorDyes
                 if (outline)
                 {
                     Main.spriteBatch.End();
-                    BatcherTypes.StartBatch_UI(Main.spriteBatch);
+                    BatcherMethods.StartBatch_UI(Main.spriteBatch);
                 }
                 return true;
             }
@@ -79,7 +77,7 @@ namespace AQMod.Content.CursorDyes
                     try
                     {
                         Main.spriteBatch.End();
-                        BatcherTypes.StartShaderBatch_UI(Main.spriteBatch);
+                        BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
                         var effect = GameShaders.Misc["AQMod:OutlineColor"];
                         effect.UseColor(Main.MouseBorderColor);
                         effect.UseImageSize(texture.Size());
@@ -97,7 +95,7 @@ namespace AQMod.Content.CursorDyes
                 if (outline)
                 {
                     Main.spriteBatch.End();
-                    BatcherTypes.StartBatch_UI(Main.spriteBatch);
+                    BatcherMethods.StartBatch_UI(Main.spriteBatch);
                 }
                 return true;
             }

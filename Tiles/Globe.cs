@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Items.Placeable;
+﻿using AQMod.Items.Placeable;
 using AQMod.Items.Tools.Markers;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

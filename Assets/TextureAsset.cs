@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Assets
 {
+    [Obsolete("Replace with ref textures")]
     public sealed class TextureAsset : AssetItem<Texture2D>
     {
         private string _path;

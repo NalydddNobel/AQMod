@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using AQMod.Content.HookBarbs;
 using Terraria;
 using Terraria.ID;
@@ -30,7 +29,7 @@ namespace AQMod.Items.GrapplingHooks.Barbs
             var rect = Projectile.getRect();
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && AQUtils.CanNPCBeHitByProjectile(Main.npc[i], Projectile) && rect.Intersects(Main.npc[i].getRect()))
+                if (Main.npc[i].active && CommonUtils.CanNPCBeHitByProjectile(Main.npc[i], Projectile) && rect.Intersects(Main.npc[i].getRect()))
                 {
                     if (Main.npc[i].immune[Projectile.owner] <= 0)
                     {

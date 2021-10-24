@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 
-namespace AQMod.Common
+namespace AQMod.Effects
 {
     public sealed class ScreenShakeManager
     {

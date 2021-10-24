@@ -32,7 +32,7 @@ namespace AQMod.aprilfools
 
         public override bool UseItem(Player player)
         {
-            if (player.CanReach_IgnoreItemTileBoost() && AQUtils.Check2x2ThenCut(Player.tileTargetX, Player.tileTargetY))
+            if (player.CanReach_IgnoreItemTileBoost() && CommonUtils.Check2x2ThenCut(Player.tileTargetX, Player.tileTargetY))
             {
                 Main.PlaySound(SoundID.Dig, player.position);
                 Main.tile[Player.tileTargetX, Player.tileTargetY].active(active: true);

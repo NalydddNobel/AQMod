@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using Terraria;
+﻿using Terraria;
 
 namespace AQMod.Items
 {

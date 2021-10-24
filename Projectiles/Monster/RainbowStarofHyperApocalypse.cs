@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
-using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
@@ -63,7 +62,7 @@ namespace AQMod.Projectiles.Monster
         private static Color getColor(float time)
         {
             var config = ModContent.GetInstance<AQConfigClient>();
-            return AQUtils.colorLerps(pattern, time * 3f * config.EffectIntensity) * config.EffectIntensity;
+            return CommonUtils.colorLerps(pattern, time * 3f * config.EffectIntensity) * config.EffectIntensity;
         }
 
 

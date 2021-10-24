@@ -32,11 +32,11 @@ namespace AQMod.Common.PlayerLayers
                     for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)
                     {
                         var position = aQPlayer.GetCelesteTorusPositionOffset(i);
-                        float layerValue = ThreeDimensionsEffect.GetParralaxScale(1f, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT);
+                        float layerValue = Projector3D.GetParralaxScale(1f, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT);
                         if (layerValue < 1f)
                         {
                             var center = info.position + new Vector2((player.width / 2) + (int)position.X, (player.height / 2) + (int)position.Y);
-                            Main.playerDrawData.Add(new DrawData(texture, ThreeDimensionsEffect.GetParralaxPosition(center, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, ThreeDimensionsEffect.GetParralaxScale(aQPlayer.celesteTorusScale, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawingPlayer.cCelesteTorus, ignorePlayerRotation = true });
+                            Main.playerDrawData.Add(new DrawData(texture, Projector3D.GetParralaxPosition(center, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, Projector3D.GetParralaxScale(aQPlayer.celesteTorusScale, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawingPlayer.cCelesteTorus, ignorePlayerRotation = true });
                         }
                     }
                 }
@@ -91,7 +91,7 @@ namespace AQMod.Common.PlayerLayers
                                         new DrawData(monoxiderHat, hatPos, null, drawColor, Main.projectile[i].rotation, monoxiderHatOrig, Main.projectile[i].scale, SpriteEffects.None, 0)
                                         { ignorePlayerRotation = true });
                                     Main.playerDrawData.Add(
-                                        new DrawData(ModContent.GetTexture(AQUtils.GetPath<MonoxideHat>() + "_Glow"), hatPos, null, new Color(250, 250, 250, 0), Main.projectile[i].rotation, monoxiderHatOrig, Main.projectile[i].scale, SpriteEffects.None, 0)
+                                        new DrawData(ModContent.GetTexture(CommonUtils.GetPath<MonoxideHat>() + "_Glow"), hatPos, null, new Color(250, 250, 250, 0), Main.projectile[i].rotation, monoxiderHatOrig, Main.projectile[i].scale, SpriteEffects.None, 0)
                                         { ignorePlayerRotation = true });
                                     int headFrame = player.bodyFrame.Y / AQPlayer.FRAME_HEIGHT;
                                     if (player.gravDir == -1)

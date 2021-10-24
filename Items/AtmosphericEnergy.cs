@@ -15,7 +15,7 @@ namespace AQMod.Items
         {
             get
             {
-                string path = AQUtils.GetPath<AtmosphericEnergy>();
+                string path = CommonUtils.GetPath<AtmosphericEnergy>();
                 if (AQMod.AprilFools)
                     return path + "_AprilFools";
                 return path;

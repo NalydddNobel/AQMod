@@ -1,8 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Utilities;
 using AQMod.Effects;
-using AQMod.Effects.Batchers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -37,7 +36,7 @@ namespace AQMod.Common.ItemOverlays
             {
                 resetBatch = true;
                 Main.spriteBatch.End();
-                BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+                BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
                 SamplerDraw.Light(drawPosition + _spotlightOffset, (scale + (float)Math.Sin(Main.GlobalTime * 3.14f) * 0.1f + 0.65f) * 30f, getSpotlightColor(Main.GlobalTime));
             }
             Vector2 origin = frame.Size() / 2f;
@@ -47,7 +46,7 @@ namespace AQMod.Common.ItemOverlays
                 if (!resetBatch)
                 {
                     Main.spriteBatch.End();
-                    BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+                    BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
                 }
                 resetBatch = true;
                 var effect = GameShaders.Misc["AQMod:OutlineColor"];
@@ -58,7 +57,7 @@ namespace AQMod.Common.ItemOverlays
             if (resetBatch)
             {
                 Main.spriteBatch.End();
-                BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
+                BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
             }
         }
 
@@ -70,7 +69,7 @@ namespace AQMod.Common.ItemOverlays
             {
                 resetBatch = true;
                 Main.spriteBatch.End();
-                BatcherTypes.StartShaderBatch_UI(Main.spriteBatch);
+                BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
                 var effect = GameShaders.Misc["AQMod:OutlineColor"];
                 effect.UseColor(getOutlineColor(Main.GlobalTime * 2f));
                 effect.Apply(drawData);
@@ -79,7 +78,7 @@ namespace AQMod.Common.ItemOverlays
             if (resetBatch)
             {
                 Main.spriteBatch.End();
-                BatcherTypes.StartBatch_UI(Main.spriteBatch);
+                BatcherMethods.StartBatch_UI(Main.spriteBatch);
             }
             return true;
         }

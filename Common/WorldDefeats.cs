@@ -3,6 +3,9 @@ using Terraria.ModLoader.IO;
 
 namespace AQMod.Common
 {
+    /// <summary>
+    /// Carries all of the downed flags for Bosses and Events.
+    /// </summary>
     public class WorldDefeats : ModWorld
     {
         public static bool DownedGlimmer { get; set; }

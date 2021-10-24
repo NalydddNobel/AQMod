@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common;
 using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
 using AQMod.Items;

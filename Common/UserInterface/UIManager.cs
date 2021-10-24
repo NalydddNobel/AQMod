@@ -12,9 +12,9 @@ using Terraria.UI.Chat;
 
 namespace AQMod.Common.UserInterface
 {
-    public class UIHelper
+    public class UIManager
     {
-        public static class Text
+        public static class TextDrawingMethods
         {
             public static void Narrizuul(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale)
             {

@@ -1,6 +1,8 @@
 ﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.IO;
+using AQMod.Common.NetCode;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Content;
@@ -9,6 +11,7 @@ using AQMod.Content.Dusts;
 using AQMod.Content.Particles;
 using AQMod.Content.SceneLayers;
 using AQMod.Content.WorldEvents.Glimmer;
+using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
@@ -36,7 +39,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 
-namespace AQMod.Common
+namespace AQMod
 {
     public sealed class AQPlayer : ModPlayer
     {
@@ -264,13 +267,11 @@ namespace AQMod.Common
                 celesteTorusDamage = GetCelesteTorusDamage();
                 celesteTorusKnockback = GetCelesteTorusKnockback();
 
-                celesteTorusScale = 1f + (celesteTorusRadius * 0.006f) + (celesteTorusDamage * 0.009f) + (celesteTorusKnockback * 0.0015f);
+                celesteTorusScale = 1f + celesteTorusRadius * 0.006f + celesteTorusDamage * 0.009f + celesteTorusKnockback * 0.0015f;
 
                 var type = ModContent.ProjectileType<CelesteTorusCollider>();
                 if (player.ownedProjectileCounts[type] <= 0)
-                {
                     Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
-                }
                 else
                 {
                     for (int i = 0; i < Main.maxProjectiles; i++)
@@ -335,7 +336,7 @@ namespace AQMod.Common
 
         public float GetCelesteTorusKnockback()
         {
-            return 6.5f + (player.velocity.Length() * 0.8f);
+            return 6.5f + player.velocity.Length() * 0.8f;
         }
 
         public int GetOldPosCountMaxed(int maxCount)
@@ -352,9 +353,7 @@ namespace AQMod.Common
         public static bool ShouldDrawOldPos(Player player)
         {
             if (player.mount.Active || player.frozen || player.stoned || player.GetModPlayer<AQPlayer>().mask >= 0)
-            {
                 return false;
-            }
             return true;
         }
 
@@ -439,9 +438,7 @@ namespace AQMod.Common
         {
             var reader = new BinaryReader(new MemoryStream(buffer));
             if (!reader.ReadBoolean())
-            {
                 return;
-            }
             byte save = reader.ReadByte();
             while (reader.ReadBoolean())
             {
@@ -454,14 +451,10 @@ namespace AQMod.Common
                     {
                         var Mod = ModLoader.GetMod(mod);
                         if (Mod == null)
-                        {
                             continue;
-                        }
                         int type = Mod.NPCType(name);
                         if (type != -1)
-                        {
                             EncoreBossKillCountRecord[type] = kills;
-                        }
                     }
                     catch
                     {
@@ -491,18 +484,14 @@ namespace AQMod.Common
             ExtractinatorCount = tag.GetInt("extractinatorCount");
             string dyeKey = tag.GetString("CursorDye");
             if (!string.IsNullOrEmpty(dyeKey) && AQStringCodes.DecodeName(dyeKey, out string cursorDyeMod, out string cursorDyeName))
-            {
                 SetCursorDye(AQMod.CursorDyes.GetContentID(cursorDyeMod, cursorDyeName));
-            }
             else
             {
                 SetCursorDye(CursorDyeLoader.ID.None);
             }
             byte[] buffer = tag.GetByteArray("bosskills");
             if (buffer == null || buffer.Length == 0)
-            {
                 return;
-            }
             DeserialzeBossKills(buffer);
         }
 
@@ -512,7 +501,7 @@ namespace AQMod.Common
                 _moneyTroughHackIndex = -1;
             if (_moneyTroughHackIndex > -1)
             {
-                if (player.flyingPigChest >= 0 || player.chest != -3 || !Main.projectile[_moneyTroughHackIndex].active || Main.projectile[_moneyTroughHackIndex].type != ModContent.ProjectileType<Projectiles.Pets.ATM>())
+                if (player.flyingPigChest >= 0 || player.chest != -3 || !Main.projectile[_moneyTroughHackIndex].active || Main.projectile[_moneyTroughHackIndex].type != ModContent.ProjectileType<ATM>())
                 {
                     _moneyTroughHackIndex = -1;
                     _moneyTroughHack = null;
@@ -539,10 +528,8 @@ namespace AQMod.Common
                 }
             }
             if (!Main.gamePaused && Main.instance.IsActive)
-            {
                 ScreenShakeManager.Update();
-            }
-            AQUtils.UpdateSky((AQMod.glimmerEvent.IsActive || OmegaStariteSceneManager.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
+            CommonUtils.UpdateSky((AQMod.glimmerEvent.IsActive || OmegaStariteSceneManager.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
             //if (AQConfigClient.Instance.ScreenDistortShader)
             //    player.ManageSpecialBiomeVisuals(VisualsManager.DistortX, OmegaStarite.DistortShaderActive());
         }
@@ -626,9 +613,7 @@ namespace AQMod.Common
             bossrushOld = bossrush;
             bossrush = false;
             if (nearGlobe > 0)
-            {
                 nearGlobe--;
-            }
             if (!dartHead)
                 dartTrapHatTimer = 240;
             dartHead = false;
@@ -671,9 +656,7 @@ namespace AQMod.Common
             for (int i = DYE_WRAP; i < MAX_ARMOR; i++)
             {
                 if (player.armor[i].type == type)
-                {
                     return true;
-                }
             }
             return false;
         }
@@ -852,9 +835,7 @@ namespace AQMod.Common
         public static bool CanBossChannel(NPC npc)
         {
             if (npc.boss)
-            {
                 return true;
-            }
             else
             {
                 switch (npc.type)
@@ -932,7 +913,7 @@ namespace AQMod.Common
             if (boss != -1)
             {
                 int dmg = damage > target.lifeMax ? target.lifeMax : damage;
-                Vector2 normal = Vector2.Normalize(Main.npc[boss].Center - targCenter);
+                var normal = Vector2.Normalize(Main.npc[boss].Center - targCenter);
                 int size = 4;
                 var type = ModContent.DustType<MonoDust>();
                 Vector2 position = target.Center - new Vector2(size / 2);
@@ -940,9 +921,7 @@ namespace AQMod.Common
                 if (Main.myPlayer == player.whoAmI && AQMod.TonsofScreenShakes)
                 {
                     if (length < 800)
-                    {
                         ScreenShakeManager.AddEffect(new BasicScreenShake(12, AQMod.MultIntensity((800 - length) / 128)));
-                    }
                 }
                 int dustLength = length / size;
                 const float offset = MathHelper.TwoPi / 3f;
@@ -967,7 +946,7 @@ namespace AQMod.Common
                     {
 
                         float positionLength1 = (targCenter + normal2 * (j * 8f)).Length() / 32f;
-                        Color color = new Color(
+                        var color = new Color(
                             (float)Math.Sin(positionLength1) + 1f,
                             (float)Math.Sin(positionLength1 + offset) + 1f,
                             (float)Math.Sin(positionLength1 + offset * 2f) + 1f,
@@ -990,9 +969,7 @@ namespace AQMod.Common
                 {
                     target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 120);
                     if (!target.SpawnedFromStatue && !CanBossChannel(target) && crit)
-                    {
                         DoHyperCrystalChannel(target, damage, knockback, center, targCenter);
-                    }
                 }
                 if (primeTime)
                 {
@@ -1015,9 +992,7 @@ namespace AQMod.Common
                 {
                     target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 120);
                     if (!target.SpawnedFromStatue && !CanBossChannel(target) && crit)
-                    {
                         DoHyperCrystalChannel(target, damage, knockback, center, targCenter);
-                    }
                 }
                 if (primeTime)
                 {
@@ -1078,9 +1053,7 @@ namespace AQMod.Common
             if (liquidType == Tile.Liquid_Water)
             {
                 if (questFish == ModContent.ItemType<WaterFisg>() && Main.rand.NextBool(8))
-                {
                     caughtType = ModContent.ItemType<WaterFisg>();
-                }
                 else if (questFish == ModContent.ItemType<Crabdaughter>() && player.ZoneBeach && Main.rand.NextBool(4))
                 {
                     caughtType = ModContent.ItemType<Crabdaughter>();
@@ -1090,9 +1063,7 @@ namespace AQMod.Common
                     if (player.position.Y < Main.worldSurface * 16f)
                     {
                         if (player.ZoneCorrupt && Main.rand.NextBool(5))
-                        {
                             caughtType = ModContent.ItemType<Fizzler>();
-                        }
                         else if (((int)(player.position.X / 16f + player.width / 2) - AQMod.glimmerEvent.tileX).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
                         {
                             caughtType = ModContent.ItemType<UltraEel>();
@@ -1124,9 +1095,7 @@ namespace AQMod.Common
             if (liquidType == Tile.Liquid_Honey)
             {
                 if (Main.rand.NextBool(3))
-                {
                     caughtType = ModContent.ItemType<Combfish>();
-                }
                 else if (Main.rand.NextBool(5))
                 {
                     caughtType = ModContent.ItemType<LarvaEel>();
@@ -1197,7 +1166,7 @@ namespace AQMod.Common
                             var rect = new Rectangle((int)pos.X, (int)pos.Y, player.width + 4, player.height + 4);
                             var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                             ParticleLayers.AddParticle_PostDrawPlayers(
-                                new MonoParticleEmber(dustPos, new Vector2((player.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f , ((player.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f), 
+                                new MonoParticleEmber(dustPos, new Vector2((player.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((player.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
                                 new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
                         }
                     }
@@ -1257,9 +1226,7 @@ namespace AQMod.Common
                 }
             }
             if (!aQPlayer.chomper && aQPlayer.monoxiderBird)
-            {
                 aQPlayer.headOverlay = (byte)PlayerHeadOverlayID.MonoxideHat;
-            }
         }
 
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
@@ -1371,29 +1338,25 @@ namespace AQMod.Common
         {
             int x;
             if (headMinionCarryX != 0)
-            {
                 x = headMinionCarryX;
-            }
             else if (headMinionCarryXOld != 0)
             {
                 x = headMinionCarryXOld;
             }
             else
             {
-                x = (int)player.position.X + (player.width / 2);
+                x = (int)player.position.X + player.width / 2;
             }
             int y;
             if (headMinionCarryY != 0)
-            {
                 y = headMinionCarryY;
-            }
             else if (headMinionCarryYOld != 0)
             {
                 y = headMinionCarryYOld;
             }
             else
             {
-                y = (int)player.position.Y + (player.height / 2);
+                y = (int)player.position.Y + player.height / 2;
             }
             return new Vector2(x, y);
         }
@@ -1427,9 +1390,7 @@ namespace AQMod.Common
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.HeadMinion[Main.projectile[i].type])
-                {
                     Main.projectile[i].Kill();
-                }
             }
         }
     }

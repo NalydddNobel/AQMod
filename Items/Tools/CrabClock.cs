@@ -35,8 +35,8 @@ namespace AQMod.Items.Tools
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             string text = CrabSeason.crabSeasonTimer < 0
-                ? string.Format(AQText.ModText("Common.CrabClockEnds").Value, AQUtils.TimeText2(CrabSeason.CrabSeasonTimerMin + CrabSeason.crabSeasonTimer))
-                : string.Format(AQText.ModText("Common.CrabClockStarts").Value, AQUtils.TimeText2(CrabSeason.crabSeasonTimer));
+                ? string.Format(AQText.ModText("Common.CrabClockEnds").Value, CommonUtils.TimeText2(CrabSeason.CrabSeasonTimerMin + CrabSeason.crabSeasonTimer))
+                : string.Format(AQText.ModText("Common.CrabClockStarts").Value, CommonUtils.TimeText2(CrabSeason.crabSeasonTimer));
             tooltips.Add(new TooltipLine(mod, "CrabSeasonTimer", text));
         }
     }

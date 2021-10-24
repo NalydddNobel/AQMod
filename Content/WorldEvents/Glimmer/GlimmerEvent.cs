@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Commands;
+using AQMod.Common.NetCode;
 using AQMod.Common.Utilities;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.CosmicEvent;
@@ -41,7 +42,7 @@ namespace AQMod.Content.WorldEvents.Glimmer
         public int spawnChance;
         public int deactivationTimer = -1;
         internal Color stariteProjectileColor;
-        public bool StariteDisco { get; internal set; }
+        public bool StariteDisco { get; set; }
 
         internal static void Setup()
         {
@@ -270,7 +271,7 @@ namespace AQMod.Content.WorldEvents.Glimmer
                         if (spawnChance <= 0 && Activate(resetSpawnChance: true))
                         {
                             AQMod.BroadcastMessage(AQText.GlimmerEventWarning().Value, TextColor);
-                            Networking.GlimmerEventNetUpdate();
+                            NetworkingMethods.GlimmerEventNetUpdate();
                         }
                         break;
                     }

@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Effects.Batchers;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -140,14 +140,14 @@ namespace AQMod.Common.ItemOverlays
                 if (shader != 0)
                 {
                     Main.spriteBatch.End();
-                    BatcherTypes.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+                    BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
                     GameShaders.Armor.Apply(shader, item, drawData);
                 }
                 drawData.Draw(Main.spriteBatch);
                 if (shader != 0)
                 {
                     Main.spriteBatch.End();
-                    BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
+                    BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
                 }
             }
         }

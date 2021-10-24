@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ID;
 
-namespace AQMod.Common
+namespace AQMod.Common.NetCode
 {
-    public static class Networking
+    public static class NetworkingMethods
     {
         public static void Write(this BinaryWriter writer, NetType message)
         {
@@ -19,9 +19,7 @@ namespace AQMod.Common
         public static void GlimmerEventNetSummonOmegaStarite()
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
-            {
                 AQMod.spawnStarite = true;
-            }
             else
             {
                 var p = AQMod.Instance.GetPacket();
@@ -32,9 +30,7 @@ namespace AQMod.Common
         public static void GlimmerEventNetUpdate()
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
-            {
                 return;
-            }
             var p = AQMod.Instance.GetPacket();
             p.Write(NetType.UpdateGlimmerEvent);
 

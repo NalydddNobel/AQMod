@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Items.Dedicated.Dreadsoul;
 using Microsoft.Xna.Framework;

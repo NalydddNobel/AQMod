@@ -2,6 +2,7 @@
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
+using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;
@@ -17,7 +18,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             Item.staff[item.type] = true;
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow", new Color(128, 128, 128, 0)), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(CommonUtils.GetPath(this) + "_Glow", new Color(128, 128, 128, 0)), item.type);
         }
 
         public override void SetDefaults()

@@ -4,9 +4,10 @@ using AQMod.Common;
 using AQMod.Common.Commands;
 using AQMod.Common.Config;
 using AQMod.Common.CrossMod;
+using AQMod.Common.NetCode;
 using AQMod.Common.NPCIMethods;
 using AQMod.Common.Skies;
-using AQMod.Common.UI;
+using AQMod.Common.UserInterface;
 using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.CrossMod;
@@ -17,7 +18,6 @@ using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Content.WorldEvents.Siege;
 using AQMod.Effects;
-using AQMod.Effects.Batchers;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.ShopCards;
@@ -203,6 +203,7 @@ namespace AQMod
             AQPlayer.Setup();
             AQCommand.LoadCommands();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
+            ModCallHelper.Setup();
             On.Terraria.Chest.SetupShop += Chest_SetupShop;
             On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
@@ -258,7 +259,7 @@ namespace AQMod
         private void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
         {
             orig(self);
-            BatcherTypes.StartBatch_GeneralEntities(Main.spriteBatch);
+            BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
             WorldLayers.DrawLayer(SceneLayering.PostDrawPlayers);
             Main.spriteBatch.End();
         }
@@ -519,6 +520,8 @@ namespace AQMod
                 TextureCache.Unload();
             }
             // ^ doesn't load on server ^
+
+            ModCallHelper.Unload();
             MoonlightWallHelper.Instance = null;
             AQCommand.UnloadCommands();
             if (CursorDyes != null)
@@ -626,7 +629,7 @@ namespace AQMod
 
         public override void PostDrawFullscreenMap(ref string mouseText)
         {
-            MapInterface.Apply(ref mouseText);
+            MapInterfaceManager.Apply(ref mouseText);
         }
 
         private static Vector2 GetMapPosition(Vector2 map, Vector2 tileCoords, float mapScale)
@@ -650,7 +653,7 @@ namespace AQMod
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            var messageID = Networking.GetMessage(reader);
+            var messageID = NetworkingMethods.GetMessage(reader);
 
             switch (messageID)
             {
@@ -702,6 +705,15 @@ namespace AQMod
                 }
                 break;
             }
+        }
+
+        public override object Call(params object[] args)
+        {
+            if (ModCallHelper.VerifyCall(args))
+            {
+                return ModCallHelper.InvokeCall(args);
+            }
+            return null;
         }
 
         public static void ApplyClientConfig(AQConfigClient clientConfig)

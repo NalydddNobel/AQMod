@@ -19,9 +19,39 @@ using Terraria.Utilities;
 
 namespace AQMod.Common.Utilities
 {
-    internal static class AQUtils
+    internal static class CommonUtils
     {
         public const int UI_SIZE = 10;
+
+        public static Texture2D GetTexture<T>(string extra)
+        {
+            return ModContent.GetTexture(GetPath<T>(extra));
+        }
+
+        public static Texture2D GetTexture(this object obj, string extra)
+        {
+            return ModContent.GetTexture(obj.GetPath(extra));
+        }
+
+        public static Texture2D GetTexture(this Type t, string extra)
+        {
+            return ModContent.GetTexture(t.GetPath(extra));
+        }
+
+        public static Texture2D GetTexture<T>()
+        {
+            return typeof(T).GetTexture();
+        }
+
+        public static Texture2D GetTexture(this object obj)
+        {
+            return obj.GetType().GetTexture();
+        }
+
+        public static Texture2D GetTexture(this Type t)
+        {
+            return ModContent.GetTexture(t.GetPath());
+        }
 
         public static void UseImageSize(this MiscShaderData data, Vector2 imageSize)
         {
@@ -63,13 +93,9 @@ namespace AQMod.Common.Utilities
         public static bool PositionOnScreen(Vector2 position)
         {
             if (position.X < -20 || position.X > Main.screenWidth + 20)
-            {
                 return false;
-            }
             if (position.Y < -20 || position.Y > Main.screenHeight + 20)
-            {
                 return false;
-            }
             return true;
         }
 
@@ -95,37 +121,29 @@ namespace AQMod.Common.Utilities
                 }
             }
             if (amount == 0f)
-            {
                 return Color.White;
-            }
             return new Color(lighting / amount);
 
         }
 
         public static Color Minimize(this Color color, float value)
         {
-            return Minimize(color, (byte)(int)(value * 255f));
+            return color.Minimize((byte)(int)(value * 255f));
         }
 
         public static Color Minimize(this Color color, int value)
         {
-            return Minimize(color, (byte)value);
+            return color.Minimize((byte)value);
         }
 
         public static Color Minimize(this Color color, byte value)
         {
             if (color.R < value)
-            {
                 color.R = value;
-            }
             if (color.G < value)
-            {
                 color.G = value;
-            }
             if (color.B < value)
-            {
                 color.B = value;
-            }
             return color;
         }
 
@@ -138,17 +156,13 @@ namespace AQMod.Common.Utilities
         public static void Fluffize(this ref Point point, int fluff = 10)
         {
             if (point.X < fluff)
-            {
                 point.X = fluff;
-            }
             else if (point.X > Main.maxTilesX - fluff)
             {
                 point.X = Main.maxTilesX - fluff;
             }
             if (point.Y < fluff)
-            {
                 point.Y = fluff;
-            }
             else if (point.Y > Main.maxTilesY - fluff)
             {
                 point.Y = Main.maxTilesY - fluff;
@@ -277,9 +291,7 @@ namespace AQMod.Common.Utilities
         public static string KnockbackItemTooltip(float knockback)
         {
             if (knockback == 0f)
-            {
                 return Lang.tip[14].Value;
-            }
             else if (knockback <= 1.5)
             {
                 return Lang.tip[15].Value;
@@ -373,14 +385,14 @@ namespace AQMod.Common.Utilities
 
         public static bool CanNPCBeHitByProjectile(NPC npc, Projectile projectile)
         {
-            if (npc.dontTakeDamage || ((projectile.usesLocalNPCImmunity || projectile.usesIDStaticNPCImmunity) && (!projectile.usesLocalNPCImmunity || projectile.localNPCImmunity[npc.whoAmI] != 0) && (!projectile.usesIDStaticNPCImmunity || !Projectile.IsNPCImmune(projectile.type, npc.whoAmI))))
+            if (npc.dontTakeDamage || (projectile.usesLocalNPCImmunity || projectile.usesIDStaticNPCImmunity) && (!projectile.usesLocalNPCImmunity || projectile.localNPCImmunity[npc.whoAmI] != 0) && (!projectile.usesIDStaticNPCImmunity || !Projectile.IsNPCImmune(projectile.type, npc.whoAmI)))
                 return false;
             return true;
         }
 
         public static void Sort<T>(ref T[] array, Comparison<T> comparison)
         {
-            List<T> arrayAsList = new List<T>(array);
+            var arrayAsList = new List<T>(array);
             arrayAsList.Sort(comparison);
             array = arrayAsList.ToArray();
         }
@@ -405,23 +417,38 @@ namespace AQMod.Common.Utilities
         {
             if (obj == null)
                 return null;
-            BinaryFormatter bf = new BinaryFormatter();
-            MemoryStream ms = new MemoryStream();
+            var bf = new BinaryFormatter();
+            var ms = new MemoryStream();
             bf.Serialize(ms, obj);
             return ms.ToArray();
         }
 
-        public static string GetPath(object o)
+        public static string GetPath(this object o, string extra)
         {
-            return GetPath(o.GetType());
+            return o.GetPath() + extra;
+        }
+
+        public static string GetPath<T>(string extra)
+        {
+            return GetPath<T>() + extra;
+        }
+
+        public static string GetPath(this Type t, string extra)
+        {
+            return t.GetPath() + extra;
+        }
+
+        public static string GetPath(this object o)
+        {
+            return o.GetType().GetPath();
         }
 
         public static string GetPath<T>()
         {
-            return GetPath(typeof(T));
+            return typeof(T).GetPath();
         }
 
-        public static string GetPath(Type t)
+        public static string GetPath(this Type t)
         {
             return t.Namespace.Replace('.', '/') + "/" + t.Name;
         }
@@ -581,7 +608,7 @@ namespace AQMod.Common.Utilities
 
         public static void DrawUIBox(int width, int height, Vector2 topLeft, Color color)
         {
-            Vector2 orig = new Vector2(0f, 0f);
+            var orig = new Vector2(0f, 0f);
             Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top left
             Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top right
             Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom left
@@ -595,7 +622,7 @@ namespace AQMod.Common.Utilities
 
         public static void DrawUIBox_HightlightedTop(int width, int height, Vector2 topLeft, Color color)
         {
-            Vector2 orig = new Vector2(0f, 0f);
+            var orig = new Vector2(0f, 0f);
             Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
@@ -612,9 +639,7 @@ namespace AQMod.Common.Utilities
             if (active != Filters.Scene[name].IsActive())
             {
                 if (active)
-                {
                     Filters.Scene[name].Activate(position, args);
-                }
                 else
                 {
                     Filters.Scene[name].Deactivate(args);
@@ -627,9 +652,7 @@ namespace AQMod.Common.Utilities
             if (active != SkyManager.Instance[name].IsActive())
             {
                 if (active)
-                {
                     SkyManager.Instance.Activate(name, default(Vector2));
-                }
                 else
                 {
                     SkyManager.Instance.Deactivate(name);
@@ -642,9 +665,7 @@ namespace AQMod.Common.Utilities
             if (Overlays.Scene[name] != null && active != (Overlays.Scene[name].Mode != OverlayMode.Inactive))
             {
                 if (active)
-                {
                     Overlays.Scene.Activate(name);
-                }
                 else
                 {
                     Overlays.Scene[name].Deactivate();
@@ -735,9 +756,7 @@ namespace AQMod.Common.Utilities
         {
             List<string> keys = key.GetAssignedKeys();
             if (keys == null || keys.Count == 0)
-            {
                 return Language.GetTextValue(AQText.Key + "Common.UnassignedKey" + keyValue);
-            }
             else
             {
                 if (keys.Count == 1)
@@ -784,7 +803,7 @@ namespace AQMod.Common.Utilities
 
         public static Vector2[] GetPointCircle(Vector2 center, float radius, int amount = 20)
         {
-            Vector2[] points = new Vector2[amount];
+            var points = new Vector2[amount];
             float rot = MathHelper.TwoPi / amount;
             float j = 0f;
             for (int i = 0; i < amount; i++)
@@ -826,9 +845,7 @@ namespace AQMod.Common.Utilities
                 return 0;
             float hue = 0f;
             if (max == color.R)
-            {
                 hue = (color.G - color.B) / (max - min);
-            }
             else if (max == color.G)
             {
                 hue = 2f + (color.B - color.R) / (max - min);

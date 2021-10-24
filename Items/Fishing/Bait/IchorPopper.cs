@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Effects.WorldEffects;
+﻿using AQMod.Effects.WorldEffects;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

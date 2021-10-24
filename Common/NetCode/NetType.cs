@@ -1,4 +1,4 @@
-﻿namespace AQMod.Common
+﻿namespace AQMod.Common.NetCode
 {
     public enum NetType : byte
     {

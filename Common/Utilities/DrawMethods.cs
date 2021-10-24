@@ -3,28 +3,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
-using Terraria.ModLoader;
 
-namespace AQMod.Common
+namespace AQMod.Common.Utilities
 {
     internal delegate void DrawMethod(Texture2D texture, Vector2 position, Rectangle? frame, Color color, float scale, Vector2 origin, float rotation, SpriteEffects effects, float layerDepth);
 
     public static class DrawMethods
     {
-        public static void BeginShaderUI(DrawableTooltipLine line, ref int yOffset, MiscShaderData shader, DrawData? drawData)
-        {
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Main.UIScaleMatrix);
-        }
-
-        public static void EndShaderUI(DrawableTooltipLine line, ref int yOffset, MiscShaderData shader, DrawData? drawData)
-        {
-            Main.spriteBatch.End();
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.UIScaleMatrix);
-        }
-
         public static void DrawFishingLine(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 linePositionOffset)
         {
             var bobberCenter = new Vector2(bobberPosition.X + bobberWidth / 2f, bobberPosition.Y + bobberHeight / 2f);
@@ -119,7 +104,7 @@ namespace AQMod.Common
             velocity.Normalize();
             velocity *= height;
             float rotation = velocity.ToRotation() + MathHelper.PiOver2;
-            Vector2 origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
+            var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
             for (int i = 0; i < length; i++)
             {
                 var position = currentPosition + velocity * i;
@@ -133,7 +118,7 @@ namespace AQMod.Common
             int height = chain.Height - 2;
             var velo = Vector2.Normalize(endPosition + new Vector2(0f, height * 4f) - currentPosition) * height;
             var position = currentPosition;
-            Vector2 origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
+            var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
             for (int i = 0; i < 50; i++)
             {
                 Main.spriteBatch.Draw(chain, position - Main.screenPosition, null, Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0f);

@@ -17,7 +17,7 @@ namespace AQMod.Items
         {
             get
             {
-                string path = AQUtils.GetPath<CosmicEnergy>();
+                string path = CommonUtils.GetPath<CosmicEnergy>();
                 if (AQMod.AprilFools)
                     return path + "_AprilFools";
                 if (ModContent.GetInstance<AQConfigClient>().CosmicEnergyAlt)
