@@ -1,5 +1,4 @@
-﻿using AQMod.Projectiles.Support;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Tools.SupportStaffs

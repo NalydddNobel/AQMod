@@ -661,6 +661,14 @@ ItemTooltip.ATM=Summons a flying safe to store your items\nPlace in your Safe in
 ItemTooltip.SpectralLens=Toggles energy drops
 ItemTooltip.Globebulb=Speeds up time for a moment
 # Buffs
+Common.BuffSupportive=(Supportive)
+BuffName.NightOwlSupport={$BuffName.NightOwl} {$Mods.AQMod.Common.BuffSupportive}
+BuffDescription.NightOwlSupport={$BuffDescription.NightOwl}\nNearby allies gain the Night Owl buff
+BuffName.IronskinSupport={$BuffName.Ironskin} {$Mods.AQMod.Common.BuffSupportive}
+BuffDescription.IronskinSupport={$BuffDescription.Ironskin}\nNearby allies gain the Ironskin buff
+BuffName.SwiftnessSupport={$BuffName.Swiftness} {$Mods.AQMod.Common.BuffSupportive}
+BuffDescription.SwiftnessSupport={$BuffDescription.Swiftness}\nNearby allies gain the Ironskin buff
+#
 BuffName.BlueFire=Blue Fire
 BuffDescription.BlueFire=The immense heat burns off your skin
 BuffName.Spoiled=Spoiled
