@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Magic.Support
 {
+    [Obsolete()]
     public abstract class LegacyBuffStaff : ModItem
     {
         protected abstract int BuffType { get; }

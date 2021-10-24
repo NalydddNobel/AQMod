@@ -1,11 +1,12 @@
 ﻿using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
+using AQMod.Items.Weapons.Magic.Support;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Magic.Support
+namespace AQMod.Items.Tools.SupportStaffs
 {
     public class StaffofSwiftness : LegacyBuffStaff
     {

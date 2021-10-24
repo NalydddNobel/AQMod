@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Buffs.SupportBuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.IO;
@@ -147,6 +148,7 @@ namespace AQMod
         public bool bossrushOld;
 
         public bool NetUpdateKillCount;
+        public byte[] BuffSupport { get; private set; }
         public int[] CurrentEncoreKillCount { get; private set; }
         public int[] EncoreBossKillCountRecord { get; private set; }
         public byte ClosestEnemy { get; private set; }
@@ -393,6 +395,7 @@ namespace AQMod
             bossrushOld = false;
             CurrentEncoreKillCount = new int[NPCLoader.NPCCount];
             EncoreBossKillCountRecord = new int[NPCLoader.NPCCount];
+            BuffSupport = new byte[BuffLoader.BuffCount];
         }
 
         public override void OnEnterWorld(Player player)
@@ -603,6 +606,7 @@ namespace AQMod
             cataEyeColor = new Color(50, 155, 255, 0);
             heartMoth = false;
             notFrostburn = false;
+            BuffSupport = new byte[BuffLoader.BuffCount];
             if (bossrushOld != bossrush)
             {
                 if (bossrush)
@@ -1408,6 +1412,30 @@ namespace AQMod
                 if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.HeadMinion[Main.projectile[i].type])
                     Main.projectile[i].Kill();
             }
+        }
+
+        public bool BuffSupportCheck()
+        {
+            bool returnValue = true;
+            byte buffCount = 0;
+            for (int i = 0; i < Player.MaxBuffs; i++)
+            {
+                if (player.buffTime[i] > 0 && player.buffType[i] > Main.maxBuffTypes)
+                {
+                    var modBuff = BuffLoader.GetBuff(i);
+                    if (modBuff is BuffSupportType b)
+                    {
+                        if (buffCount > 1)
+                        {
+                            player.DelBuff(i);
+                            returnValue = false;
+                            i--;
+                        }
+                        buffCount++;
+                    }
+                }
+            }
+            return returnValue;
         }
     }
 }

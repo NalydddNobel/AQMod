@@ -1,7 +1,6 @@
 ﻿using AQMod.Common.Utilities;
 using AQMod.Items.Materials;
 using AQMod.Items.Tools.SupportStaffs;
-using AQMod.Items.Weapons.Magic.Support;
 using AQMod.Localization;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;

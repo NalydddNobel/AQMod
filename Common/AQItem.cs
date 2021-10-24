@@ -3,7 +3,6 @@ using AQMod.Items.BuffItems;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Fishing.Rods;
 using AQMod.Items.Tools.SupportStaffs;
-using AQMod.Items.Weapons.Magic.Support;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
