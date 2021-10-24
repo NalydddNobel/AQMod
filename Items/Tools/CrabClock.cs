@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Localization;
 using System.Collections.Generic;
 using Terraria;

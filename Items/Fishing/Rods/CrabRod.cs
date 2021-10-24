@@ -1,4 +1,6 @@
 ﻿using AQMod.Common.Utilities;
+using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

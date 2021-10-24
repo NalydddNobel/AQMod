@@ -1,12 +1,7 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
-using AQMod.Common.Utilities;
-using AQMod.Content.Dusts;
+﻿using AQMod.Content.Dusts;
 using AQMod.Items.Fishing;
 using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

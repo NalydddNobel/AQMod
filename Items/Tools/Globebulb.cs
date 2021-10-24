@@ -1,5 +1,7 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common.ItemOverlays;
+using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

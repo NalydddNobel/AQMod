@@ -5,6 +5,7 @@ using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
+using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

@@ -2,6 +2,7 @@
 using AQMod.Assets.Textures;
 using AQMod.Common.ItemOverlays;
 using AQMod.Content.Dusts;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

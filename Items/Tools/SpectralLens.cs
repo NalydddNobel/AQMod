@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ItemOverlays;
+using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

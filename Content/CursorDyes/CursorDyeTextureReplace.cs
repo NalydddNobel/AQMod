@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
-using AQMod.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

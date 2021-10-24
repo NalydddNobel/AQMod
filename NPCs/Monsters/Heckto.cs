@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
-using AQMod.Items.Dedicated.Dreadsoul;
+using AQMod.Items.Dedicated;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -67,7 +67,9 @@ namespace AQMod.NPCs.Monsters
                 npc.direction = difference.X < 0f ? -1 : 1;
                 npc.velocity.X += npc.direction * 0.5f;
                 if (npc.velocity.X > maxSpeed)
+                {
                     npc.velocity.X = maxSpeed;
+                }
                 else if (npc.velocity.X < -maxSpeed)
                 {
                     npc.velocity.X = -maxSpeed;

@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Placeable;
+﻿using AQMod.Items.Materials.Energies;
+using AQMod.Items.Placeable;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

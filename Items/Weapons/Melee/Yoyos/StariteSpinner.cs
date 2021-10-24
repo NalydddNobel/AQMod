@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Items.Materials.Energies;
 using Terraria.ID;
 using Terraria.ModLoader;
 

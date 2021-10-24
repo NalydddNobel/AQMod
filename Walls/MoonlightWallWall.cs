@@ -1,13 +1,9 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common.Utilities;
-using AQMod.Items.Placeable.Walls;
+using AQMod.Items.Placeable.WallItems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 

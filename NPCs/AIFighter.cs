@@ -138,7 +138,9 @@ namespace AQMod.NPCs
                             npc.gfxOffY += npc.position.Y + npc.height - num84;
                             npc.position.Y = num84 - npc.height;
                             if (num85 < 9f)
+                            {
                                 npc.stepSpeed = 1f;
+                            }
                             else
                             {
                                 npc.stepSpeed = 2f;

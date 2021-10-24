@@ -63,8 +63,8 @@ namespace AQMod.Content.RobsterQuests
         /// </summary>
         protected void RemoveQuestTiles()
         {
-            var chaliceTile = ModContent.TileType<Tiles.QuestTiles.JeweledChalice>();
-            var candelabraTile = ModContent.TileType<Tiles.QuestTiles.JeweledCandelabra>();
+            var chaliceTile = ModContent.TileType<Tiles.RobsterHuntTiles.JeweledChalice>();
+            var candelabraTile = ModContent.TileType<Tiles.RobsterHuntTiles.JeweledCandelabra>();
             for (int i = 5; i < Main.maxTilesX - 5; i++)
             {
                 for (int j = 5; j < Main.maxTilesY - 5; j++)

@@ -31,7 +31,9 @@ namespace AQMod.Effects
         public static void ChannelEffect(string name, ScreenShakeFX effect)
         {
             if (_channeledShakes.ContainsKey(name))
+            {
                 _channeledShakes[name].AdoptChannel(effect);
+            }
             else
             {
                 effect.Setup();
@@ -50,7 +52,9 @@ namespace AQMod.Effects
                     i--;
                 }
                 else if (e.UpdateBiomeVisuals)
+                {
                     e.Apply();
+                }
             }
             var removeKeys = new List<string>();
             foreach (var pair in _channeledShakes)

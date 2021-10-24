@@ -1,13 +1,11 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.Utilities;
+using AQMod.Common.WorldGeneration;
 using AQMod.Content.Dusts;
-using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Ranged
@@ -49,7 +47,7 @@ namespace AQMod.Projectiles.Ranged
             var center = projectile.Center;
             Lighting.AddLight(center, new Vector3(1f, 0.65f, 0.2f));
             if (projectile.velocity.X.Abs() > projectile.velocity.Y.Abs())
-            projectile.ai[0]++;
+                projectile.ai[0]++;
             if (projectile.ai[0] > 35f)
             {
                 projectile.ai[0] = 0f;
@@ -89,7 +87,9 @@ namespace AQMod.Projectiles.Ranged
                     projectile.hide = false;
             }
             else if (!projectile.hide)
+            {
                 projectile.rotation = projectile.velocity.ToRotation();
+            }
         }
 
         public override Color? GetAlpha(Color lightColor)

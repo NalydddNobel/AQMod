@@ -156,13 +156,17 @@ namespace AQMod.Common.Utilities
         public static void Fluffize(this ref Point point, int fluff = 10)
         {
             if (point.X < fluff)
+            {
                 point.X = fluff;
+            }
             else if (point.X > Main.maxTilesX - fluff)
             {
                 point.X = Main.maxTilesX - fluff;
             }
             if (point.Y < fluff)
+            {
                 point.Y = fluff;
+            }
             else if (point.Y > Main.maxTilesY - fluff)
             {
                 point.Y = Main.maxTilesY - fluff;
@@ -291,7 +295,9 @@ namespace AQMod.Common.Utilities
         public static string KnockbackItemTooltip(float knockback)
         {
             if (knockback == 0f)
+            {
                 return Lang.tip[14].Value;
+            }
             else if (knockback <= 1.5)
             {
                 return Lang.tip[15].Value;
@@ -639,7 +645,9 @@ namespace AQMod.Common.Utilities
             if (active != Filters.Scene[name].IsActive())
             {
                 if (active)
+                {
                     Filters.Scene[name].Activate(position, args);
+                }
                 else
                 {
                     Filters.Scene[name].Deactivate(args);
@@ -652,7 +660,9 @@ namespace AQMod.Common.Utilities
             if (active != SkyManager.Instance[name].IsActive())
             {
                 if (active)
+                {
                     SkyManager.Instance.Activate(name, default(Vector2));
+                }
                 else
                 {
                     SkyManager.Instance.Deactivate(name);
@@ -665,7 +675,9 @@ namespace AQMod.Common.Utilities
             if (Overlays.Scene[name] != null && active != (Overlays.Scene[name].Mode != OverlayMode.Inactive))
             {
                 if (active)
+                {
                     Overlays.Scene.Activate(name);
+                }
                 else
                 {
                     Overlays.Scene[name].Deactivate();
@@ -756,7 +768,9 @@ namespace AQMod.Common.Utilities
         {
             List<string> keys = key.GetAssignedKeys();
             if (keys == null || keys.Count == 0)
+            {
                 return Language.GetTextValue(AQText.Key + "Common.UnassignedKey" + keyValue);
+            }
             else
             {
                 if (keys.Count == 1)
@@ -792,8 +806,6 @@ namespace AQMod.Common.Utilities
             if (direction == 1)
                 player.itemRotation -= MathHelper.Pi;
         }
-
-        public static Color MovingRainbow(float position) => LerpColors(new Color[] { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Magenta, }, position);
 
         public static Color LerpColors(Color[] colors, float position)
         {
@@ -845,7 +857,9 @@ namespace AQMod.Common.Utilities
                 return 0;
             float hue = 0f;
             if (max == color.R)
+            {
                 hue = (color.G - color.B) / (max - min);
+            }
             else if (max == color.G)
             {
                 hue = 2f + (color.B - color.R) / (max - min);

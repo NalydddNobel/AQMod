@@ -1,5 +1,4 @@
-﻿using AQMod.Items.Placeable.Walls;
-using AQMod.Walls;
+﻿using AQMod.Walls;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;

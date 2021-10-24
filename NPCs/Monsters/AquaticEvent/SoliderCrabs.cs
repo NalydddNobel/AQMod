@@ -1,7 +1,9 @@
 ﻿using AQMod.Assets;
-using AQMod.Common;
 using AQMod.Common.Utilities;
-using AQMod.Items;
+using AQMod.Common.WorldGeneration;
+using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -76,7 +78,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Content.WorldEvents.CrabSeason.Active && Collision.WetCollision(new Vector2(spawnInfo.spawnTileX * 16f - 16f, spawnInfo.spawnTileY * 16f - 16f), 48, 48) && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
+            if (CrabSeason.Active && Collision.WetCollision(new Vector2(spawnInfo.spawnTileX * 16f - 16f, spawnInfo.spawnTileY * 16f - 16f), 48, 48) && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
                 return SpawnCondition.OceanMonster.Chance * 0.4f;
             return 0f;
         }
@@ -127,7 +129,9 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
             else
             {
                 if (npc.velocity.Y > 0)
+                {
                     npc.velocity.Y = 0f;
+                }
                 else
                 {
                     npc.velocity.Y -= 0.1f;
@@ -218,7 +222,9 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
                 else
                 {
                     if (velocity.Y > 0)
+                    {
                         velocity.Y = 0f;
+                    }
                     else
                     {
                         velocity.Y -= 0.1f;

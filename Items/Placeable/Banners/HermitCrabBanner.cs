@@ -1,7 +1,6 @@
-﻿using AQMod.Content.CrossMod;
+﻿using AQMod.Common;
 using AQMod.Items.Armor.Crab;
 using AQMod.Items.Vanities;
-using AQMod.Items.Vanities.Dyes;
 using AQMod.Tiles;
 using Terraria;
 using Terraria.ID;

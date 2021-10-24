@@ -2,11 +2,12 @@
 using AQMod.Common.IO;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
+using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.RobsterQuests;
-using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.Glimmer;
-using AQMod.Content.WorldEvents.Siege;
+using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters;
 using AQMod.Tiles;
@@ -16,7 +17,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Cinematics;
 using Terraria.ID;
@@ -83,7 +83,7 @@ namespace AQMod.Common.DeveloperTools
         private static void createSample(object arg)
         {
             string[] args = (string[])arg;
-             Texture2D result = null;
+            Texture2D result = null;
             switch (args[1])
             {
                 case "alphafix":
@@ -210,7 +210,7 @@ namespace AQMod.Common.DeveloperTools
 
                 case "placeglimmer":
                 {
-                    caller.Reply("placed correctly: " + AQWorldGen.PlaceGlimmeringStatue((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
+                    caller.Reply("placed correctly: " + GlimmeringStatue.TryGenGlimmeringStatue((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
                 }
                 break;
 
@@ -228,7 +228,7 @@ namespace AQMod.Common.DeveloperTools
 
                 case "placeglobe":
                 {
-                    caller.Reply("placed correctly: " + AQWorldGen.PlaceGlobeTemple((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
+                    caller.Reply("placed correctly: " + Globe.GenGlobeTemple((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
                 }
                 break;
 
@@ -258,11 +258,11 @@ namespace AQMod.Common.DeveloperTools
                 break;
 
                 case "gorenest2":
-                caller.Reply(AQWorldGen.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, true, true).ToString());
+                caller.Reply(GoreNest.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, true, true).ToString());
                 break;
 
                 case "gorenest":
-                caller.Reply(AQWorldGen.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, false, false).ToString());
+                caller.Reply(GoreNest.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, false, false).ToString());
                 break;
 
                 case "downeddemonsiege":
@@ -419,7 +419,7 @@ namespace AQMod.Common.DeveloperTools
 
                 case "coraltest":
                 {
-                    caller.Reply(AQWorldGen.TryPlaceExoticBlotch((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, WorldGen.genRand.Next(3), 50).ToString());
+                    caller.Reply(ExoticCoral.TryPlaceExoticBlotch((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, WorldGen.genRand.Next(3), 50).ToString());
                 }
                 break;
 

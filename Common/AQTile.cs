@@ -1,4 +1,5 @@
-﻿using AQMod.Content;
+﻿using AQMod.Common.WorldGeneration;
+using AQMod.Content;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
@@ -16,7 +17,7 @@ namespace AQMod.Common
             {
                 Main.tile[i, j] = new Tile();
             }
-            if (WorldGen.genRand.NextBool(10000) && AQWorldGen.GrowGoreNest(i, j, true, true))
+            if (WorldGen.genRand.NextBool(10000) && GoreNest.GrowGoreNest(i, j, true, true))
             {
                 return;
             }

@@ -1,6 +1,8 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Utilities;
-using AQMod.Items;
+using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -113,7 +115,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Content.WorldEvents.CrabSeason.Active && Collision.WetCollision(new Vector2(spawnInfo.spawnTileX * 16f - 16f, spawnInfo.spawnTileY * 16f - 16f), 48, 48) && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
+            if (CrabSeason.Active && Collision.WetCollision(new Vector2(spawnInfo.spawnTileX * 16f - 16f, spawnInfo.spawnTileY * 16f - 16f), 48, 48) && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
                 return SpawnCondition.OceanMonster.Chance * 0.4f;
             return 0f;
         }
@@ -176,7 +178,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             var center = npc.Center;
-            var legTexture = TextureCache.ArrowCrabLegs.GetValue();
+            var legTexture = this.GetTexture("_Legs");
             int legFrameHeight = legTexture.Height / 2;
             var legFrame = new Rectangle(0, 0, legTexture.Width, legFrameHeight - 2);
             var footFrame = new Rectangle(0, legFrameHeight, legTexture.Width, legFrameHeight - 2);

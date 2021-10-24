@@ -1,8 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.Siege;
-using AQMod.Items;
+using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Items.Materials.Energies;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -66,7 +65,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
         private bool checkPlayerSights(int chances = 4)
         {
             if (Collision.CanHitLine(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].width))
+            {
                 return true;
+            }
             else
             {
                 npc.ai[2]++;
@@ -105,13 +106,17 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
                             break;
                         }
                         if (x < 10)
+                        {
                             x = 10;
+                        }
                         else if (x > Main.maxTilesX - 10)
                         {
                             x = Main.maxTilesX - 10;
                         }
                         if (y < 10)
+                        {
                             y = 10;
+                        }
                         else if (y > Main.maxTilesY - 10)
                         {
                             y = Main.maxTilesY - 10;
@@ -273,7 +278,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
             if (npc.velocity.Y != 0 && !npc.collideY)
             {
                 if (npc.velocity.Y.Abs() < 2f)
+                {
                     npc.frame.Y = frameHeight * FRAME_JUMPGOINGDOWN;
+                }
                 else if (npc.velocity.Y < 0f)
                 {
                     npc.frame.Y = frameHeight * FRAME_JUMPUP;
@@ -304,7 +311,7 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             var texture = Main.npcTexture[npc.type];
-            var legsTexture = TextureCache.MagmabubbleLegs.GetValue();
+            var legsTexture = this.GetTexture("_Legs");
             var drawPosition = new Vector2(npc.position.X + npc.width / 2f, npc.position.Y + npc.height / 2f);
             drawPosition.Y -= 10.5f;
             var screenPos = Main.screenPosition;
@@ -315,7 +322,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
                 int timer = (int)(-npc.ai[0] - 20);
                 float progress = 0f;
                 if (timer > 40)
+                {
                     progress = (timer - 40f) / 40f;
+                }
                 else if (timer < 40)
                 {
                     progress = timer / 40f;
@@ -356,14 +365,16 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
             if (Main.rand.NextBool(3))
             {
                 if (Main.rand.NextBool())
+                {
                     Item.NewItem(npc.getRect(), DemonSiege.GetHellBannerDrop(Main.rand));
+                }
                 else
                 {
                     Item.NewItem(npc.getRect(), ItemID.LavaLamp);
                 }
             }
             if (Main.rand.NextBool(Main.expertMode ? 12 : 16) && DemonSiege.IsActive)
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.Rings.DegenerationRing>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.DegenerationRing>());
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());
         }
@@ -371,7 +382,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
         bool IDecideFallThroughPlatforms.Decide()
         {
             if (Main.player[npc.target].dead)
+            {
                 return true;
+            }
             else
             {
                 return Main.player[npc.target].position.Y

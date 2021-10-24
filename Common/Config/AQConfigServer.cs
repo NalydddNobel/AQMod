@@ -48,13 +48,9 @@ namespace AQMod.Common.Config
         {
             var p = (AQConfigServer)pendingConfig;
             if (p.harderOmegaStarite != harderOmegaStarite)
-            {
                 return NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
-            }
             if (p.reduceSpawns != reduceSpawns)
-            {
                 return AQMod.reduceSpawnrates();
-            }
             return base.NeedsReload(pendingConfig);
         }
 

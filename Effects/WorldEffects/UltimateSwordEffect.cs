@@ -1,10 +1,8 @@
-﻿using AQMod.Content.Dusts;
-using AQMod.Content.SceneLayers;
-using AQMod.Content.WorldEvents.Siege;
+﻿using AQMod.Common.SceneLayers;
+using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -13,13 +11,13 @@ namespace AQMod.Effects.WorldEffects
     public class UltimateSwordEffect : WorldVisualEffect
     {
         private float _time;
-        private float _maxWidth;
-        private float _maxHeight;
+        private readonly float _maxWidth;
+        private readonly float _maxHeight;
         private byte _existence;
-        private byte _lifespan;
-        private byte _reps;
+        private readonly byte _lifespan;
+        private readonly byte _reps;
         private Color _dustColor;
-        private UnifiedRandom _rand;
+        private readonly UnifiedRandom _rand;
 
         public UltimateSwordEffect(UnifiedRandom rand) : base(AQMod.glimmerEvent.tileX * 16, AQMod.glimmerEvent.tileY * 16)
         {

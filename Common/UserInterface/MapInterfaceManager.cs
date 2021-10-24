@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Config;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.Glimmer;
+using AQMod.Common.WorldGeneration;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Placeable;
 using AQMod.Items.Tools.Markers;
 using AQMod.Localization;
@@ -224,7 +224,9 @@ namespace AQMod.Common.UserInterface
                                 if (hitbox.Contains(Main.mouseX, Main.mouseY))
                                 {
                                     if (debug)
+                                    {
                                         mouseText = "npc: " + layer.NPCType + "\ndistance from center: " + layer.Distance + "\nspawn chance: " + layer.SpawnChance + "\nid: " + i;
+                                    }
                                     else
                                     {
                                         mouseText = string.Format(AQText.ModText("Common.SpawnAfterPoint").Value, Lang.GetNPCName(layer.NPCType));
@@ -233,7 +235,9 @@ namespace AQMod.Common.UserInterface
                                 }
                                 Main.spriteBatch.Draw(texture, drawPos, stariteFrame, new Color(255, 255, 255, 255), 0f, stariteOrig, stariteScale, SpriteEffects.None, 0f);
                                 if (k == 0)
+                                {
                                     Main.spriteBatch.Draw(texture, drawPos + new Vector2(0f, (arrowDownFrame.Height + stariteFrame.Height + arrowBobbingY) * Main.UIScale), arrowDownFrame, new Color(255, 255, 255, 255), 0f, arrowDownOrig, Main.UIScale, SpriteEffects.None, 0f);
+                                }
                                 else
                                 {
                                     Main.spriteBatch.Draw(texture, drawPos - new Vector2(0f, (arrowUpFrame.Height + stariteFrame.Height + arrowBobbingY) * Main.UIScale), arrowUpFrame, new Color(255, 255, 255, 255), 0f, arrowUpOrig, Main.UIScale, SpriteEffects.None, 0f);
@@ -291,7 +295,7 @@ namespace AQMod.Common.UserInterface
                 buffToggleType.Add(ModContent.BuffType<LihzahrdMarkerBuff>());
                 buffEnabled.Add(aQPlayer.showLihzahrdMap);
                 buffToggleFunctions.Add(() => aQPlayer.showLihzahrdMap = !aQPlayer.showLihzahrdMap);
-                if (aQPlayer.showLihzahrdMap && AQWorldGen.CommonStructureSearchMethods.LihzahrdAltar(out var position) && (Main.Map[position.X, position.Y].Light > 40 || NPC.downedPlantBoss))
+                if (aQPlayer.showLihzahrdMap && CommonStructureSearchMethods.LihzahrdAltar(out var position) && (Main.Map[position.X, position.Y].Light > 40 || NPC.downedPlantBoss))
                 {
                     var mapIcon = TextureCache.MapIconDungeons.Value;
                     var frame = new Rectangle(MapIconWidth * 4, 0, TrueMapIconWidth, MapIconHeight);

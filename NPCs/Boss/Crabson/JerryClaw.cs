@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
-using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
@@ -263,7 +262,9 @@ namespace AQMod.NPCs.Boss.Crabson
                                     npc.localAI[1] = 100;
                                     npc.localAI[2] = 0;
                                     if (distX > 0f)
+                                    {
                                         npc.velocity.X = xSpeed;
+                                    }
                                     else
                                     {
                                         npc.velocity.X = -xSpeed;
@@ -441,7 +442,9 @@ namespace AQMod.NPCs.Boss.Crabson
                     var pearlOrig = pearlFrame.Size() / 2f;
                     var pearlDrawPosition = drawPosition - Main.screenPosition;
                     if (npc.spriteDirection == 1)
+                    {
                         pearlDrawPosition += new Vector2(2f, 8f);
+                    }
                     else
                     {
                         pearlDrawPosition += new Vector2(-2f, 8f);

@@ -1,8 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.Siege;
-using AQMod.Items;
+using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Weapons.Melee.Flails;
 using Microsoft.Xna.Framework;
@@ -107,7 +106,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
             int animation = frameTime % (TAIL_FRAME_COUNT * 2);
             int frame;
             if (animation > TAIL_FRAME_COUNT)
+            {
                 frame = TAIL_FRAME_COUNT - animation % TAIL_FRAME_COUNT;
+            }
             else
             {
                 frame = animation % TAIL_FRAME_COUNT;
@@ -170,7 +171,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
             if (Main.rand.NextBool(5))
             {
                 if (Main.rand.NextBool())
+                {
                     Item.NewItem(npc.getRect(), ItemID.ObsidianRose);
+                }
                 else
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<PowPunch>());
@@ -187,7 +190,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
         bool IDecideFallThroughPlatforms.Decide()
         {
             if (Main.player[npc.target].dead)
+            {
                 return true;
+            }
             else
             {
                 return Main.player[npc.target].position.Y

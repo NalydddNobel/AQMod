@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace AQMod.Assets
 {
@@ -43,7 +41,7 @@ namespace AQMod.Assets
             {
                 GetAsset(type);
             }
-            return _loaded[type.GetHashCode()]; 
+            return _loaded[type.GetHashCode()];
         }
 
         public virtual Texture2D GetAsset(TEnum type)

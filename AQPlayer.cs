@@ -3,14 +3,14 @@ using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.IO;
 using AQMod.Common.NetCode;
+using AQMod.Common.SceneLayers;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
 using AQMod.Content.Particles;
-using AQMod.Content.SceneLayers;
-using AQMod.Content.WorldEvents.Glimmer;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
@@ -21,7 +21,7 @@ using AQMod.Items.Fishing;
 using AQMod.Items.Fishing.Bait;
 using AQMod.Items.Fishing.QuestFish;
 using AQMod.Items.Placeable;
-using AQMod.Items.Placeable.Walls;
+using AQMod.Items.Placeable.WallItems;
 using AQMod.Items.TagItems.Starbyte;
 using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles;
@@ -271,7 +271,9 @@ namespace AQMod
 
                 var type = ModContent.ProjectileType<CelesteTorusCollider>();
                 if (player.ownedProjectileCounts[type] <= 0)
+                {
                     Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
+                }
                 else
                 {
                     for (int i = 0; i < Main.maxProjectiles; i++)
@@ -484,7 +486,9 @@ namespace AQMod
             ExtractinatorCount = tag.GetInt("extractinatorCount");
             string dyeKey = tag.GetString("CursorDye");
             if (!string.IsNullOrEmpty(dyeKey) && AQStringCodes.DecodeName(dyeKey, out string cursorDyeMod, out string cursorDyeName))
+            {
                 SetCursorDye(AQMod.CursorDyes.GetContentID(cursorDyeMod, cursorDyeName));
+            }
             else
             {
                 SetCursorDye(CursorDyeLoader.ID.None);
@@ -529,7 +533,7 @@ namespace AQMod
             }
             if (!Main.gamePaused && Main.instance.IsActive)
                 ScreenShakeManager.Update();
-            CommonUtils.UpdateSky((AQMod.glimmerEvent.IsActive || OmegaStariteSceneManager.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
+            CommonUtils.UpdateSky((AQMod.glimmerEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
             //if (AQConfigClient.Instance.ScreenDistortShader)
             //    player.ManageSpecialBiomeVisuals(VisualsManager.DistortX, OmegaStarite.DistortShaderActive());
         }
@@ -835,7 +839,9 @@ namespace AQMod
         public static bool CanBossChannel(NPC npc)
         {
             if (npc.boss)
+            {
                 return true;
+            }
             else
             {
                 switch (npc.type)
@@ -1053,7 +1059,9 @@ namespace AQMod
             if (liquidType == Tile.Liquid_Water)
             {
                 if (questFish == ModContent.ItemType<WaterFisg>() && Main.rand.NextBool(8))
+                {
                     caughtType = ModContent.ItemType<WaterFisg>();
+                }
                 else if (questFish == ModContent.ItemType<Crabdaughter>() && player.ZoneBeach && Main.rand.NextBool(4))
                 {
                     caughtType = ModContent.ItemType<Crabdaughter>();
@@ -1063,7 +1071,9 @@ namespace AQMod
                     if (player.position.Y < Main.worldSurface * 16f)
                     {
                         if (player.ZoneCorrupt && Main.rand.NextBool(5))
+                        {
                             caughtType = ModContent.ItemType<Fizzler>();
+                        }
                         else if (((int)(player.position.X / 16f + player.width / 2) - AQMod.glimmerEvent.tileX).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
                         {
                             caughtType = ModContent.ItemType<UltraEel>();
@@ -1095,7 +1105,9 @@ namespace AQMod
             if (liquidType == Tile.Liquid_Honey)
             {
                 if (Main.rand.NextBool(3))
+                {
                     caughtType = ModContent.ItemType<Combfish>();
+                }
                 else if (Main.rand.NextBool(5))
                 {
                     caughtType = ModContent.ItemType<LarvaEel>();
@@ -1338,7 +1350,9 @@ namespace AQMod
         {
             int x;
             if (headMinionCarryX != 0)
+            {
                 x = headMinionCarryX;
+            }
             else if (headMinionCarryXOld != 0)
             {
                 x = headMinionCarryXOld;
@@ -1349,7 +1363,9 @@ namespace AQMod
             }
             int y;
             if (headMinionCarryY != 0)
+            {
                 y = headMinionCarryY;
+            }
             else if (headMinionCarryYOld != 0)
             {
                 y = headMinionCarryYOld;

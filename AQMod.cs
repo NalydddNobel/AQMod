@@ -1,26 +1,23 @@
 using AQMod.Assets;
 using AQMod.Assets.SceneLayers;
 using AQMod.Common;
-using AQMod.Common.Commands;
 using AQMod.Common.Config;
-using AQMod.Common.CrossMod;
 using AQMod.Common.NetCode;
-using AQMod.Common.NPCIMethods;
+using AQMod.Common.SceneLayers;
 using AQMod.Common.Skies;
 using AQMod.Common.UserInterface;
 using AQMod.Common.Utilities;
 using AQMod.Content;
-using AQMod.Content.CrossMod;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.RobsterQuests;
-using AQMod.Content.SceneLayers;
-using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.Glimmer;
-using AQMod.Content.WorldEvents.Siege;
+using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Effects;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items;
 using AQMod.Items.Accessories.ShopCards;
+using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
 using AQMod.Items.TagItems.Starbyte;
 using AQMod.Items.Vanities;
@@ -201,7 +198,6 @@ namespace AQMod
             RobsterHunts.Setup(setupStatics: true);
             glimmerEvent = new GlimmerEvent();
             AQPlayer.Setup();
-            AQCommand.LoadCommands();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             ModCallHelper.Setup();
             On.Terraria.Chest.SetupShop += Chest_SetupShop;
@@ -523,7 +519,6 @@ namespace AQMod
 
             ModCallHelper.Unload();
             MoonlightWallHelper.Instance = null;
-            AQCommand.UnloadCommands();
             if (CursorDyes != null)
             {
                 CursorDyes.Unload();
@@ -560,14 +555,14 @@ namespace AQMod
         {
             DemonSiege.UpdateEvent();
 
-            if (OmegaStariteSceneManager.OmegaStariteIndexCache > -1 && !Main.npc[OmegaStariteSceneManager.OmegaStariteIndexCache].active)
+            if (OmegaStariteScene.OmegaStariteIndexCache > -1 && !Main.npc[OmegaStariteScene.OmegaStariteIndexCache].active)
             {
-                OmegaStariteSceneManager.OmegaStariteIndexCache = -1;
+                OmegaStariteScene.OmegaStariteIndexCache = -1;
             }
             if (Main.netMode != NetmodeID.MultiplayerClient && spawnStarite)
             {
-                OmegaStariteSceneManager.OmegaStariteIndexCache = (short)NPC.NewNPC(AQMod.glimmerEvent.tileX * 16 + 8, AQMod.glimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
-                OmegaStariteSceneManager.Scene = 1;
+                OmegaStariteScene.OmegaStariteIndexCache = (short)NPC.NewNPC(AQMod.glimmerEvent.tileX * 16 + 8, AQMod.glimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
+                OmegaStariteScene.SceneType = 1;
                 spawnStarite = false;
                 BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", BossMessage);
             }

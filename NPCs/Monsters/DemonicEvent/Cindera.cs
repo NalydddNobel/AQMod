@@ -1,10 +1,10 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
-using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.Siege;
-using AQMod.Items;
+using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Items.Accessories;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities.Dyes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -85,7 +85,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
             if (!canHitPlayer)
             {
                 if (npc.ai[3] < 300f)
+                {
                     npc.ai[3]++;
+                }
                 else
                 {
                     npc.ai[0] = 10f;
@@ -113,7 +115,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
                 var differenceY = target.position.Y + target.height / 2f - (npc.position.Y + npc.height / 2f);
                 float differenceYAbs = differenceY.Abs();
                 if (differenceYAbs < target.height + npc.height)
+                {
                     npc.ai[0]++;
+                }
                 else if (differenceYAbs > target.height * 6 + npc.height)
                 {
                     if (npc.ai[0] > 0)
@@ -273,7 +277,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
             {
                 npc.frameCounter = 0.0;
                 if (npc.velocity.X > 2f)
+                {
                     npc.frame.Y = frameHeight * FRAME_OPEN_MOUTH_0;
+                }
                 else
                 {
                     npc.frame.Y = frameHeight * FRAME_OPEN_MOUTH_1;
@@ -286,11 +292,15 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
                 if ((int)npc.frameCounter > 0 || length < npc.width * 1.5f)
                 {
                     if ((int)npc.frameCounter == 0)
+                    {
                         npc.frame.Y = frameHeight * FRAME_CHOMP_0;
+                    }
                     else
                     {
                         if ((int)npc.frameCounter / 4 % 2 == 0)
+                        {
                             npc.frame.Y = frameHeight * FRAME_CHOMP_1;
+                        }
                         else
                         {
                             npc.frame.Y = frameHeight * FRAME_CHOMP_2;
@@ -348,7 +358,7 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
             if (Main.rand.NextBool(12))
                 Item.NewItem(npc.getRect(), ItemID.MagmaStone);
             if (Main.rand.NextBool(Main.expertMode ? 12 : 16) && DemonSiege.IsActive)
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.Rings.DegenerationRing>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<DegenerationRing>());
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());
         }
@@ -395,7 +405,9 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
         bool IDecideFallThroughPlatforms.Decide()
         {
             if (Main.player[npc.target].dead)
+            {
                 return true;
+            }
             else
             {
                 return Main.player[npc.target].position.Y

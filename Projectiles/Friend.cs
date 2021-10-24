@@ -64,7 +64,9 @@ namespace AQMod.Projectiles
                         var npc = Main.npc[target];
                         var dist = (npc.Center - center).Length();
                         if (dist < 20f)
+                        {
                             projectile.ai[1] = 30f;
+                        }
                         else if (dist < 200f && projectile.ai[1] <= 1f)
                         {
                             projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(npc.Center - center) * 20f, 0.035f);
@@ -77,7 +79,9 @@ namespace AQMod.Projectiles
                         }
                         projectile.rotation += projectile.velocity.Length() * 0.0314f;
                         if (projectile.velocity.X < 0f)
+                        {
                             projectile.spriteDirection = -1;
+                        }
                         else
                         {
                             projectile.spriteDirection = 1;

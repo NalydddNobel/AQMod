@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Items.Accessories;
+﻿using AQMod.Items.Accessories;
 using AQMod.Items.BuffItems;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Fishing.Rods;
@@ -8,7 +7,6 @@ using AQMod.Items.Weapons.Magic.Support;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

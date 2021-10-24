@@ -19,7 +19,9 @@ namespace AQMod.Common.NetCode
         public static void GlimmerEventNetSummonOmegaStarite()
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
+            {
                 AQMod.spawnStarite = true;
+            }
             else
             {
                 var p = AQMod.Instance.GetPacket();

@@ -1,10 +1,12 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
-using AQMod.Common.CrossMod;
 using AQMod.Common.Utilities;
-using AQMod.Items;
+using AQMod.Common.WorldGeneration;
+using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
 using AQMod.Items.Tools;
+using AQMod.Items.TreasureBags;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
@@ -126,7 +128,7 @@ namespace AQMod.NPCs.Boss.Crabson
                 npc.TargetClosest();
                 Main.npc[n].target = npc.target;
                 Main.npc[n1].target = npc.target;
-                Content.WorldEvents.CrabSeason.CrabsonCachedID = (short)npc.whoAmI;
+                CrabSeason.CrabsonCachedID = (short)npc.whoAmI;
             }
             if (!Main.npc[(int)npc.localAI[0]].active || !Main.npc[(int)npc.localAI[1]].active)
             {
@@ -317,7 +319,9 @@ namespace AQMod.NPCs.Boss.Crabson
             else
             {
                 if (npc.velocity.Y > 0)
+                {
                     npc.velocity.Y = 0f;
+                }
                 else
                 {
                     npc.velocity.Y -= 0.1f;
@@ -335,7 +339,7 @@ namespace AQMod.NPCs.Boss.Crabson
         public override bool PreNPCLoot()
         {
             npc.position.Y -= npc.height / 2f;
-            Content.WorldEvents.CrabSeason.CrabsonCachedID = -1;
+            CrabSeason.CrabsonCachedID = -1;
             return true;
         }
 

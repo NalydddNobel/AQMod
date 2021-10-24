@@ -1,4 +1,5 @@
 ﻿using AQMod.Content.Dusts;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -87,7 +88,9 @@ namespace AQMod.Items.Weapons.Melee
                     projectile.netUpdate = true;
                 }
                 if (player.itemAnimation < player.itemAnimationMax / 3f)
+                {
                     projectile.ai[0] = MathHelper.Lerp(projectile.ai[0], 0f, MathHelper.Clamp(lerpAmount + 0.45f, 0.55f, 1f));
+                }
                 else
                 {
                     projectile.ai[0] = MathHelper.Lerp(projectile.ai[0], projectile.localAI[0], MathHelper.Clamp(lerpAmount + 0.25f, 0.35f, 1f));

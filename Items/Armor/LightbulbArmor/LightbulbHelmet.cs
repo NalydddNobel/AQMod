@@ -1,4 +1,5 @@
-﻿using AQMod.Localization;
+﻿using AQMod.Items.Materials;
+using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

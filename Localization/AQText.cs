@@ -1,6 +1,4 @@
-﻿using Terraria;
-using Terraria.Localization;
-using Terraria.Utilities;
+﻿using Terraria.Localization;
 
 namespace AQMod.Localization
 {

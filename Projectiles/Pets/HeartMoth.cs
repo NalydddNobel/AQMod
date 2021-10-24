@@ -61,7 +61,7 @@ namespace AQMod.Projectiles.Pets
                 projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(gotoPos - center) * 20f, 0.03f);
                 projectile.rotation = projectile.velocity.X * 0.1f;
             }
-            else 
+            else
             {
                 projectile.Center = player.Center;
                 projectile.velocity *= 0.5f;

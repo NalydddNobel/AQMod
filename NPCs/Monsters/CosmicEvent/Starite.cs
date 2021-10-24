@@ -1,8 +1,8 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Utilities;
-using AQMod.Items;
 using AQMod.Items.BuffItems.Foods;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
 using Microsoft.Xna.Framework;

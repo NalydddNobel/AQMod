@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.ItemOverlays;
+using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

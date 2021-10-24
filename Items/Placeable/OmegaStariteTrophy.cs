@@ -1,6 +1,5 @@
-﻿using AQMod.Content.CrossMod;
+﻿using AQMod.Common;
 using AQMod.Items.Weapons.Magic;
-using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged.Bullet;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,7 +1,7 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.Content.Dusts;
+﻿using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,6 +27,44 @@ namespace AQMod.Tiles
                 case 5:
                 return style - (random.NextBool() ? 0 : 3);
             }
+        }
+
+        public static bool TryPlaceExoticBlotch(int x, int y, int style, int size)
+        {
+            var halfSize = size / 2;
+            var area = new Rectangle(x - halfSize, y - halfSize, size, size);
+            if (area.X < 10)
+            {
+                area.X = 10;
+            }
+            else if (area.X + area.Width > Main.maxTilesX - 10)
+            {
+                area.X = Main.maxTilesX - 10 - area.Width;
+            }
+            int required = size / 4;
+            var validSpots = new List<Point>();
+            var tileType = ModContent.TileType<ExoticCoral>();
+            for (int j = area.Y; j < area.Y + size; j++)
+            {
+                for (int i = area.X; i < area.X + size; i++)
+                {
+                    if (Framing.GetTileSafely(i, j + 1).active() && Main.tileSolid[Main.tile[i, j + 1].type] &&
+                        (!Framing.GetTileSafely(i, j).active() || Main.tileCut[Main.tile[i, j].type]) &&
+                        Main.tile[i, j].liquid > 0 && !Main.tile[i, j].lava() && !Main.tile[i, j].honey())
+                    {
+                        validSpots.Add(new Point(i, j));
+                    }
+                }
+            }
+            if (validSpots.Count < required)
+                return false;
+            for (int i = 0; i < required; i++)
+            {
+                int index = WorldGen.genRand.Next(validSpots.Count);
+                WorldGen.PlaceTile(validSpots[index].X, validSpots[index].Y, (ushort)tileType, true, true, -1, ExoticCoral.GetStyle(style, WorldGen.genRand));
+                validSpots.RemoveAt(index);
+            }
+            return true;
         }
 
         public override void SetDefaults()

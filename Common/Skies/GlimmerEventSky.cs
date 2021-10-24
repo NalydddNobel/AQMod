@@ -3,7 +3,7 @@ using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Content;
-using AQMod.Content.WorldEvents.Glimmer;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -257,7 +257,7 @@ namespace AQMod.Common.Skies
 
         private void DrawSky()
         {
-            if (OmegaStariteSceneManager.OmegaStariteIndexCache != -1)
+            if (OmegaStariteScene.OmegaStariteIndexCache != -1)
             {
                 int width = Main.screenWidth + 40;
                 int height = Main.screenHeight + 40;
@@ -268,7 +268,9 @@ namespace AQMod.Common.Skies
                 Color color;
                 float y = Main.screenHeight / 2f + (325f - Main.screenPosition.Y / 16f);
                 if (AQMod.glimmerEvent.StariteDisco)
+                {
                     color = new Color((int)(Main.DiscoR * 0.9f + Main.DiscoG * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoG * 0.9f + Main.DiscoR * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoB * 0.9f + Main.DiscoR * 0.05f + Main.DiscoG * 0.05f), 255);
+                }
                 else
                 {
                     color = AQMod.StariteAuraColor;
@@ -304,7 +306,9 @@ namespace AQMod.Common.Skies
                     Color color;
                     float y = Main.screenHeight / 2f + (325f - Main.screenPosition.Y / 16f);
                     if (AQMod.glimmerEvent.StariteDisco)
+                    {
                         color = new Color((int)(Main.DiscoR * 0.9f + Main.DiscoG * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoG * 0.9f + Main.DiscoR * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoB * 0.9f + Main.DiscoR * 0.05f + Main.DiscoG * 0.05f), 255);
+                    }
                     else
                     {
                         color = AQMod.StariteAuraColor;
@@ -409,8 +413,10 @@ namespace AQMod.Common.Skies
 
         public override float GetCloudAlpha()
         {
-            if (AQMod.glimmerEvent.IsActive || OmegaStariteSceneManager.OmegaStariteIndexCache != -1)
+            if (AQMod.glimmerEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1)
+            {
                 _cloudAlpha = MathHelper.Lerp(_cloudAlpha, 0.25f, 0.01f);
+            }
             else
             {
                 _cloudAlpha = MathHelper.Lerp(_cloudAlpha, 1f, 0.01f);

@@ -1,5 +1,4 @@
 ﻿using AQMod.Content;
-using AQMod.Content.WorldEvents.Glimmer;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -48,7 +47,7 @@ namespace AQMod.Items.Vanities
                     spawnText(player, AQText.EightballMisc(5).Value);
                     return true;
                 }
-                if (OmegaStariteSceneManager.OmegaStariteIndexCache != -1 && Main.rand.NextBool())
+                if (OmegaStariteScene.OmegaStariteIndexCache != -1 && Main.rand.NextBool())
                 {
                     if (Text == AQText.EightballMisc(3).Value)
                     {

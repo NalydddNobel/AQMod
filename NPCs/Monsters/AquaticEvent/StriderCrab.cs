@@ -1,9 +1,10 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
-using AQMod.Items;
+using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Items.Armor.Crab;
-using AQMod.Items.GrapplingHooks;
+using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
+using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.Items.Vanities;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -295,7 +296,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Content.WorldEvents.CrabSeason.Active && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
+            if (CrabSeason.Active && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
                 return SpawnCondition.OceanMonster.Chance * 0.2f;
             return 0f;
         }

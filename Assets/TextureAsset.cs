@@ -8,9 +8,9 @@ namespace AQMod.Assets
     [Obsolete("Replace with ref textures")]
     public sealed class TextureAsset : AssetItem<Texture2D>
     {
-        private string _path;
+        private readonly string _path;
         private const string throwbackTexturePath = "AQMod/" + TextureCache.Error;
-        private static bool _debug = false;
+        private static readonly bool _debug = false;
 
         internal TextureAsset(string path)
         {

@@ -12,7 +12,7 @@ namespace AQMod.Content.RobsterQuests
         {
         }
 
-        public override int GetQuestItem() => ModContent.ItemType<Items.RobsterHunts.JeweledChalice>();
+        public override int GetQuestItem() => ModContent.ItemType<Items.RobsterHuntItems.Quests.JeweledChalice>();
 
         public override void Setup()
         {
@@ -36,8 +36,8 @@ namespace AQMod.Content.RobsterQuests
                             int randomY = checkRectangle.Y + Main.rand.Next(checkRectangle.Height);
                             if (!Framing.GetTileSafely(randomX, randomY).active() && Framing.GetTileSafely(randomX, randomY + 1).active() && Main.tileSolidTop[Main.tile[randomX, randomY + 1].type])
                             {
-                                WorldGen.PlaceTile(randomX, randomY, ModContent.TileType<Tiles.QuestTiles.JeweledChalice>(), true, false, -1, 0);
-                                if (Framing.GetTileSafely(randomX, randomY).type == ModContent.TileType<Tiles.QuestTiles.JeweledChalice>())
+                                WorldGen.PlaceTile(randomX, randomY, ModContent.TileType<Tiles.RobsterHuntTiles.JeweledChalice>(), true, false, -1, 0);
+                                if (Framing.GetTileSafely(randomX, randomY).type == ModContent.TileType<Tiles.RobsterHuntTiles.JeweledChalice>())
                                 {
                                     HuntSystem.SetNPCTarget(npc, npcID: false);
                                     return true;

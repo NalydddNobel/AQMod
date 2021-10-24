@@ -6,8 +6,8 @@ namespace AQMod.Common.DeveloperTools
     internal class FesteringCircle : ImageCreationFunction
     {
         private Color clr;
-        private float rad;
-        private float smallMult;
+        private readonly float rad;
+        private readonly float smallMult;
         public FesteringCircle(float r, float g, float b, float rad, float smallMult)
         {
             clr = new Color(r, g, b, 1f);

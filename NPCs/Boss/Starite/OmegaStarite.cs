@@ -3,15 +3,15 @@ using AQMod.Assets.Textures;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
-using AQMod.Common.CrossMod;
 using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Items;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
 using AQMod.Items.Tools.Markers;
+using AQMod.Items.TreasureBags;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Vanities.Pets;
 using AQMod.Items.Weapons.Magic;
@@ -213,7 +213,7 @@ namespace AQMod.NPCs.Boss.Starite
         public void Init()
         {
             npc.TargetClosest(faceTarget: false);
-            OmegaStariteSceneManager.OmegaStariteIndexCache = (short)npc.whoAmI;
+            OmegaStariteScene.OmegaStariteIndexCache = (short)npc.whoAmI;
             orbs = new List<OmegaStariteOrb>();
             var center = npc.Center;
             if (Main.expertMode)
@@ -283,8 +283,8 @@ namespace AQMod.NPCs.Boss.Starite
             if (AQNPC.CheckStariteDeath(npc))
             {
                 npc.life = -1;
-                OmegaStariteSceneManager.OmegaStariteIndexCache = -1;
-                OmegaStariteSceneManager.Scene = 0;
+                OmegaStariteScene.OmegaStariteIndexCache = -1;
+                OmegaStariteScene.SceneType = 0;
                 npc.HitEffect();
                 Main.PlaySound(SoundID.Dig, npc.Center);
                 npc.active = false;
@@ -318,7 +318,9 @@ namespace AQMod.NPCs.Boss.Starite
                     if (npc.ai[2] > 300f)
                     {
                         if (npc.ai[1] > 0.0314)
+                        {
                             npc.ai[1] -= 0.0005f;
+                        }
                         else
                         {
                             npc.ai[1] = 0.0314f;
@@ -348,7 +350,9 @@ namespace AQMod.NPCs.Boss.Starite
                                 if (npc.life / (float)npc.lifeMax < (Main.expertMode ? 0.5f : 0.33f))
                                     choices.Add(PHASE_STAR_BULLETS);
                                 if (choices.Count == 1)
+                                {
                                     npc.ai[0] = choices[0];
+                                }
                                 else
                                 {
                                     npc.ai[0] = choices[Main.rand.Next(choices.Count)];
@@ -369,7 +373,9 @@ namespace AQMod.NPCs.Boss.Starite
                     else
                     {
                         if (npc.ai[1] >= 0.0628f)
+                        {
                             npc.ai[1] = 0.0628f;
+                        }
                         else
                         {
                             npc.ai[1] += 0.0002f;
@@ -466,7 +472,9 @@ namespace AQMod.NPCs.Boss.Starite
                     if (npc.ai[2] > 1200f)
                     {
                         if (npc.ai[1] > 0.0314)
+                        {
                             npc.ai[1] -= 0.0005f;
+                        }
                         else
                         {
                             npc.ai[1] = 0.0314f;
@@ -538,7 +546,9 @@ namespace AQMod.NPCs.Boss.Starite
                     else
                     {
                         if (npc.ai[1] >= 0.0628f)
+                        {
                             npc.ai[1] = 0.0628f;
+                        }
                         else
                         {
                             npc.ai[1] += 0.0002f;
@@ -565,7 +575,9 @@ namespace AQMod.NPCs.Boss.Starite
                                 }
                             }
                             if (innerRingRoll > MathHelper.PiOver2 * 6f)
+                            {
                                 npc.localAI[2] -= Main.expertMode ? 0.001f : 0.00045f;
+                            }
                             else
                             {
                                 npc.localAI[2] += Main.expertMode ? 0.00015f : 0.000085f;
@@ -680,7 +692,9 @@ namespace AQMod.NPCs.Boss.Starite
                     }
                     float distance = (center - plrCenter).Length();
                     if (distance > CIRCUMFERENCE * 3.75f)
+                    {
                         npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(plrCenter - center) * npc.ai[2], 0.02f);
+                    }
                     else if (distance < CIRCUMFERENCE * 2.25f)
                     {
                         npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(center - plrCenter) * npc.ai[2], 0.02f);
@@ -716,7 +730,9 @@ namespace AQMod.NPCs.Boss.Starite
                         if (npc.ai[2] == 0f)
                         {
                             if (PlrCheck())
+                            {
                                 npc.ai[2] = Main.expertMode ? 18f : 6f;
+                            }
                             else
                             {
                                 break;
@@ -787,7 +803,9 @@ namespace AQMod.NPCs.Boss.Starite
                     if (npc.ai[2] > 300f)
                     {
                         if (npc.ai[1] > 0.0314)
+                        {
                             npc.ai[1] -= 0.0005f;
+                        }
                         else
                         {
                             npc.ai[1] = 0.0314f;
@@ -796,14 +814,18 @@ namespace AQMod.NPCs.Boss.Starite
                         outerRingRotation += npc.ai[1] * 0.5f;
                         bool innerRing = false;
                         if (orbs[0].radius > orbs[0].defRadius)
+                        {
                             SetInnerRingRadius(orbs[0].radius - MathHelper.Pi);
+                        }
                         else
                         {
                             innerRing = true;
                         }
                         bool outerRing = false;
                         if (orbs[OmegaStariteOrb.INNER_RING].radius > orbs[OmegaStariteOrb.INNER_RING].defRadius)
+                        {
                             SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].radius - MathHelper.PiOver2 * 3f);
+                        }
                         else
                         {
                             outerRing = true;
@@ -821,7 +843,9 @@ namespace AQMod.NPCs.Boss.Starite
                                 if (npc.life / (float)npc.lifeMax < (Main.expertMode ? 0.5f : 0.33f))
                                     choices.Add(PHASE_STAR_BULLETS);
                                 if (choices.Count == 1)
+                                {
                                     npc.ai[0] = choices[0];
+                                }
                                 else
                                 {
                                     npc.ai[0] = choices[Main.rand.Next(choices.Count)];
@@ -841,7 +865,9 @@ namespace AQMod.NPCs.Boss.Starite
                     else
                     {
                         if (npc.ai[1] >= 0.0628f)
+                        {
                             npc.ai[1] = 0.0628f;
+                        }
                         else
                         {
                             npc.ai[1] += 0.0002f;
@@ -963,7 +989,9 @@ namespace AQMod.NPCs.Boss.Starite
                             {
                                 npc.velocity *= 0.1f;
                                 if (npc.life / (float)npc.lifeMax < 0.5f)
+                                {
                                     npc.ai[0] = PHASE_OMEGA_LASER_PART0;
+                                }
                                 else
                                 {
                                     npc.ai[0] = PHASE_HYPER_STARITE_PART1;
@@ -1022,8 +1050,8 @@ namespace AQMod.NPCs.Boss.Starite
                     if (center.Y > npc.ai[2])
                     {
                         int[] choices = new int[] { PHASE_HYPER_STARITE_PART0, PHASE_ASSAULT_PLAYER };
-                        if (OmegaStariteSceneManager.Scene == 1)
-                            OmegaStariteSceneManager.Scene = 2;
+                        if (OmegaStariteScene.SceneType == 1)
+                            OmegaStariteScene.SceneType = 2;
                         npc.ai[0] = choices[Main.rand.Next(choices.Length)];
                         npc.ai[1] = 0f;
                         npc.ai[2] = 0f;
@@ -1223,7 +1251,7 @@ namespace AQMod.NPCs.Boss.Starite
                 if (Main.rand.NextBool())
                     target.AddBuff(BuffID.Blackout, 360);
             }
-            else 
+            else
             {
                 if (Main.rand.NextBool())
                     target.AddBuff(BuffID.OnFire, 120);
@@ -1268,8 +1296,8 @@ namespace AQMod.NPCs.Boss.Starite
 
         public override bool PreNPCLoot()
         {
-            OmegaStariteSceneManager.OmegaStariteIndexCache = -1;
-            OmegaStariteSceneManager.Scene = 3;
+            OmegaStariteScene.OmegaStariteIndexCache = -1;
+            OmegaStariteScene.SceneType = 3;
             return true;
         }
 

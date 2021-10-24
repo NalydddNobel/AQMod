@@ -34,7 +34,7 @@ namespace AQMod.Common
         public byte projectileTag;
 
         public override bool InstancePerEntity => true;
-        public override bool CloneNewInstances => true; 
+        public override bool CloneNewInstances => true;
 
         public override bool PreAI(Projectile projectile)
         {

@@ -1,9 +1,9 @@
 ﻿using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Content;
-using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.Glimmer;
-using AQMod.Content.WorldEvents.Siege;
+using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Tiles;
 using System.IO;
 using Terraria;
@@ -18,7 +18,7 @@ namespace AQMod.Common
 
         public override void Initialize()
         {
-            OmegaStariteSceneManager.Initialize();
+            OmegaStariteScene.Initialize();
             AQMod.glimmerEvent = new GlimmerEvent();
             AQMod.glimmerEvent.Init();
             CrabSeason.crabSeasonTimer = CrabSeason.CrabSeasonTimerMin;

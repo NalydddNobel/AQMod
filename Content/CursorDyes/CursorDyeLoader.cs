@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;
 

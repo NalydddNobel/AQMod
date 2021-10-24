@@ -1,14 +1,11 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
-using AQMod.Common.NPCIMethods;
 using AQMod.Common.Utilities;
-using AQMod.Items;
 using AQMod.Items.BuffItems.Foods;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
-using AQMod.Items.Weapons.Melee;
-using AQMod.Items.Weapons.Melee.Yoyos;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -239,7 +236,9 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
                             Vector2 velocity = Vector2.Normalize(difference) * Main.rand.NextFloat(4f, 8f);
                             npc.netUpdate = true;
                             if (length < 500f)
+                            {
                                 npc.ai[1] = -125f;
+                            }
                             else if (length < 800f)
                             {
                                 npc.ai[1] = -100f;

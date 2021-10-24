@@ -1,16 +1,14 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
-using AQMod.Items.Accessories;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.GrapplingHooks;
+using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Flails;
 using AQMod.NPCs.Boss.Crabson;
 using AQMod.NPCs.Boss.Starite;
 using AQMod.NPCs.Monsters.AquaticEvent;
 using AQMod.NPCs.Monsters.DemonicEvent;
-using AQMod.Projectiles.Ranged;
 using AQMod.Projectiles.Summon.Chomper;
 using AQMod.Tiles;
 using log4net;
@@ -37,7 +35,6 @@ namespace AQMod.Assets
         public static TEA<ParticleTextureID> Particles { get; private set; }
 
         public static TextureAsset PowPunchChain { get; private set; }
-        public static TextureAsset MagmabubbleLegs { get; private set; }
         public static TextureAsset TrapperImpTail { get; private set; }
         public static TextureAsset TrapperImpWings { get; private set; }
         public static TextureAsset TrapperImpGlow { get; private set; }
@@ -54,7 +51,6 @@ namespace AQMod.Assets
         public static TextureAsset ArachnotronRibcageBodyGlow { get; private set; }
         public static TextureAsset ArachnotronVisorHeadGlow { get; private set; }
         public static TextureAsset TorchesFlames { get; private set; }
-        public static TextureAsset ArrowCrabLegs { get; private set; }
         public static TextureAsset JerryClawChain { get; private set; }
         public static TextureAsset JerryClawFlailProjectileChain { get; private set; }
         public static TextureAsset CelesteTorusOrb { get; private set; }
@@ -84,7 +80,6 @@ namespace AQMod.Assets
             Particles = new TEA<ParticleTextureID>(ParticleTextureID.Count, "AQMod/Assets/Textures/Particles", "Particle");
 
             PowPunchChain = TextureAsset.FromT<PowPunchProjectile>("_Chain");
-            MagmabubbleLegs = TextureAsset.FromT<Magmalbubble>("_Legs");
             TrapperImpTail = TextureAsset.FromT<TrapImp>("_Tail");
             TrapperImpWings = TextureAsset.FromT<TrapImp>("_Wings");
             TrapperImpGlow = TextureAsset.FromT<TrapImp>("_Glow");
@@ -101,7 +96,6 @@ namespace AQMod.Assets
             ArachnotronRibcageBodyGlow = TextureAsset.FromT<ArachnotronRibcage>("_BodyGlow");
             ArachnotronVisorHeadGlow = TextureAsset.FromT<ArachnotronVisor>("_HeadGlow");
             TorchesFlames = TextureAsset.FromT<Torches>("_Flames");
-            ArrowCrabLegs = TextureAsset.FromT<ArrowCrab>("_Legs");
             JerryClawChain = TextureAsset.FromT<JerryClaw>("_Chain");
             JerryClawFlailProjectileChain = TextureAsset.FromT<JerryClawFlailProjectile>("_Chain");
             StriderHookHookChain = TextureAsset.FromT<StriderHookHook>("_Chain");
@@ -157,7 +151,6 @@ namespace AQMod.Assets
             TrapperImpGlow = null;
             TrapperImpWings = null;
             TrapperImpTail = null;
-            MagmabubbleLegs = null;
             PowPunchChain = null;
             ChomperHeadLeaves = null;
             ChomperChain = null;
@@ -169,7 +162,6 @@ namespace AQMod.Assets
             ArachnotronRibcageBodyGlow = null;
             ArachnotronVisorHeadGlow = null;
             TorchesFlames = null;
-            ArrowCrabLegs = null;
             JerryClawChain = null;
             JerryClawFlailProjectileChain = null;
             StriderHookHookChain = null;

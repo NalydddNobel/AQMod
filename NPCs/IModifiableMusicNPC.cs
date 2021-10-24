@@ -1,4 +1,4 @@
-﻿using AQMod.Common.CrossMod;
+﻿using AQMod.Common;
 
 namespace AQMod.NPCs
 {

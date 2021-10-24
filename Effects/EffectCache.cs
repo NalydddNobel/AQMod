@@ -1,7 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
 using AQMod.Common.Config;
-using AQMod.Common.Utilities;
 using AQMod.Effects.ShaderData;
 using AQMod.Items.Vanities.Dyes;
 using log4net;

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Common.WorldGeneration;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -9,6 +10,16 @@ namespace AQMod.Tiles
 {
     public class GlimmeringStatue : ModTile
     {
+        internal static bool TryGenGlimmeringStatue(int x, int y)
+        {
+            if (!AQWorldGen.ActiveAndSolid(x, y) && !AQWorldGen.ActiveAndSolid(x - 1, y) && AQWorldGen.ActiveAndSolid(x, y + 1) && AQWorldGen.ActiveAndSolid(x - 1, y + 1) && Main.tile[x, y].wall == WallID.None)
+            {
+                PlaceUndisoveredGlimmeringStatue(x, y);
+                return true;
+            }
+            return false;
+        }
+
         public static bool PlaceUndisoveredGlimmeringStatue(int x, int y)
         {
             return PlaceUndiscoveredGlimmeringStatue(new Point(x, y));

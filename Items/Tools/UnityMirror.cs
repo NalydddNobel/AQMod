@@ -1,4 +1,6 @@
 ﻿using AQMod.Items.BuffItems.Foods;
+using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
 using AQMod.Items.TagItems.Starbyte;
 using Terraria;

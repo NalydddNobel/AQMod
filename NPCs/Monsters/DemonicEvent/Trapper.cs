@@ -1,5 +1,4 @@
-﻿using AQMod.Common.NPCIMethods;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

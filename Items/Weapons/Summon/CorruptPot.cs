@@ -1,11 +1,7 @@
 ﻿using AQMod.Buffs.Summon;
 using AQMod.Common;
-using AQMod.Common.Utilities;
 using AQMod.Projectiles.Summon.Chomper;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

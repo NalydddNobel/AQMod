@@ -1,7 +1,7 @@
 ﻿using AQMod.Common.ItemOverlays;
-using AQMod.Common.PlayerLayers;
 using AQMod.Common.PlayerLayers.ArmorOverlays;
 using AQMod.Common.Utilities;
+using AQMod.Items.Materials.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

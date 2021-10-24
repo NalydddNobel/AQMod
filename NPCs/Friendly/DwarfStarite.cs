@@ -2,6 +2,7 @@
 using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Utilities;
+using AQMod.Common.WorldGeneration;
 using AQMod.Items.Critters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -74,7 +75,9 @@ namespace AQMod.NPCs.Friendly
                 }
             }
             if (tileHeight == 10)
+            {
                 npc.ai[0] = 0.5f;
+            }
             else
             {
                 if ((int)npc.ai[1] <= 0)

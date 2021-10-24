@@ -83,7 +83,9 @@ namespace AQMod.NPCs
                 {
                     npc.velocity.X -= SpeedX;
                     if (npc.velocity.X > MaxSpeedX)
+                    {
                         npc.velocity.X -= SpeedX;
+                    }
                     else if (npc.velocity.X > 0f)
                     {
                         npc.velocity.X += SpeedX / 2f;
@@ -95,7 +97,9 @@ namespace AQMod.NPCs
                 {
                     npc.velocity.X += SpeedX;
                     if (npc.velocity.X < -MaxSpeedX)
+                    {
                         npc.velocity.X += SpeedX;
+                    }
                     else if (npc.velocity.X < 0f)
                     {
                         npc.velocity.X -= SpeedX / 2f;
@@ -110,7 +114,9 @@ namespace AQMod.NPCs
                 {
                     npc.velocity.Y -= SpeedY;
                     if (npc.velocity.Y > SpeedYMax)
+                    {
                         npc.velocity.Y -= SpeedY * 1.25f;
+                    }
                     else if (npc.velocity.Y > 0f)
                     {
                         npc.velocity.Y += SpeedY * 0.75f;
@@ -122,7 +128,9 @@ namespace AQMod.NPCs
                 {
                     npc.velocity.Y += SpeedY;
                     if (npc.velocity.Y < -SpeedYMax)
+                    {
                         npc.velocity.Y += SpeedY * 1.25f;
+                    }
                     else if (npc.velocity.Y < 0f)
                     {
                         npc.velocity.Y -= SpeedY * 0.75f;

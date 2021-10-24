@@ -1,6 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
-using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -79,7 +77,9 @@ namespace AQMod.Items.Armor.Arachnotron
                 projectile.timeLeft = 2;
             var gotoPosition = plr.position;
             if (Main.player[projectile.owner].gravDir == -1)
+            {
                 gotoPosition += new Vector2(plr.width / 2f, plr.height - 15f);
+            }
             else
             {
                 gotoPosition += new Vector2(plr.width / 2f, 16f);

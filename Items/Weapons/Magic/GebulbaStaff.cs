@@ -88,7 +88,9 @@ namespace AQMod.Items.Weapons.Magic
                 projectile.velocity.Y = -oldVelocity.Y * 0.8f;
             }
             if (doEffects)
+            {
                 CollisionEffects(projectile.velocity);
+            }
             else
             {
                 projectile.velocity *= 0.95f;

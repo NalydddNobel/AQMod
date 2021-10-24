@@ -1,5 +1,5 @@
-﻿using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.Siege;
+﻿using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.WorldEvents.DemonSiege;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -46,7 +46,7 @@ namespace AQMod.Common
                     {
                         AQMod.glimmerEvent.Deactivate();
                         return null;
-                    } 
+                    }
                 },
                 { "glimmerevent_gettiledistance", (o) => AQMod.glimmerEvent.GetTileDistance((Player)o[1]) },
 
@@ -62,15 +62,15 @@ namespace AQMod.Common
                     {
                          if (o.Length > 5)
                          {
-                             DemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (UpgradeProgression)o[2], (int)o[3], (int)o[4]));
+                             DemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2], (int)o[3], (int)o[4]));
                          }
                          else if (o.Length > 4)
                          {
-                             DemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (UpgradeProgression)o[2], (int)o[3]));
+                             DemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2], (int)o[3]));
                          }
                          else
                          {
-                             DemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (UpgradeProgression)o[2]));
+                             DemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2]));
                          }
                         return null;
                     }
@@ -79,11 +79,11 @@ namespace AQMod.Common
                 {
                     if (o.Length > 5)
                     {
-                        DemonSiege.AddDemonSeigeUpgrade(new DemonSiegeUpgrade((int)o[1], (int)o[2], (UpgradeProgression)o[3], (ushort)o[4]));
+                        DemonSiege.AddDemonSeigeUpgrade(new DemonSiegeUpgrade((int)o[1], (int)o[2], (DemonSiegeUpgradeProgression)o[3], (ushort)o[4]));
                     }
                     else
                     {
-                        DemonSiege.AddDemonSeigeUpgrade(new DemonSiegeUpgrade((int)o[1], (int)o[2], (UpgradeProgression)o[3]));
+                        DemonSiege.AddDemonSeigeUpgrade(new DemonSiegeUpgrade((int)o[1], (int)o[2], (DemonSiegeUpgradeProgression)o[3]));
                     }
                     return null;
                 }

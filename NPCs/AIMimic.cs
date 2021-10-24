@@ -86,7 +86,9 @@ namespace AQMod.NPCs
             {
                 int frameCount = 3;
                 if (npc.velocity.Y == 0f)
+                {
                     npc.frameCounter -= 1.0;
+                }
                 else
                 {
                     npc.frameCounter += 1.0;
@@ -96,7 +98,9 @@ namespace AQMod.NPCs
                 if (npc.frameCounter > frameCount * 4)
                     npc.frameCounter = frameCount * 4;
                 if (npc.frameCounter < frameCount)
+                {
                     npc.frame.Y = frameHeight;
+                }
                 else if (npc.frameCounter < frameCount * 2)
                 {
                     npc.frame.Y = frameHeight * 2;

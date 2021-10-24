@@ -1,5 +1,5 @@
 ﻿using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents.Siege;
+using AQMod.Content.WorldEvents.DemonSiege;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -10,7 +10,7 @@ namespace AQMod.Effects.WorldEffects
 {
     public class DemonSiegeSpawnEffect : WorldVisualEffect
     {
-        private DemonSiegeEnemy _enemy;
+        private readonly DemonSiegeEnemy _enemy;
         private int _timer;
 
         public DemonSiegeSpawnEffect(int x, int y, DemonSiegeEnemy enemy) : base(x, y)

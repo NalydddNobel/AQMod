@@ -3,6 +3,7 @@ using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
+using AQMod.Common.WorldGeneration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
