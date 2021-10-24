@@ -1302,8 +1302,8 @@ namespace AQMod.Common
                 {
                     if (MeteorTime())
                     {
-                        pool.Clear();
-                        pool.Add(ModContent.NPCType<Meteor>(), 1f);
+                        //pool.Clear();
+                        //pool.Add(ModContent.NPCType<Meteor>(), 1f);
                     }
                 }
             }

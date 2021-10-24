@@ -211,7 +211,7 @@ ItemName.CelesteTorus=天界手环
 ItemName.Dreadsoul=惊惧之魂
 ItemName.RustyKnife=生锈的刀
 ItemName.Terraroot=地之根茎
-ItemName.Thunderbird=雷鸟
+ItemName.Thunderbird=雷鸟塑像
 ItemName.Ultranium=超载晶体
 ##############
 # Boss Items #
@@ -659,6 +659,8 @@ ItemTooltip.ATM=召唤一个用于存放物品的飞行保险箱\n将其放在�
 ItemTooltip.SpectralLens=切换敌人的掉落
 ItemTooltip.Globebulb=加快时间的流逝速度一小段时间
 # Buffs
+BuffName.BlueFire=冥焰
+BuffDescription.BlueFire=冥焰灼烧着你的皮肤
 BuffName.Spoiled=溺爱
 BuffDescription.Spoiled=敌人死亡时掉落的战利品的数量翻倍\n'你只是个被惯坏了的坏孩子!'
 BuffName.MicroStarite=微型星之源
@@ -700,7 +702,7 @@ ProjectileName.DemonicFireballExplosion=恶魔火球
 ProjectileName.NarrenBolt=耀星
 ProjectileName.OmegaRay=欧米伽射线
 ProjectileName.HyperSpike=超星
-ProjectileName.OrbCollider=终末之星
+ProjectileName.OmegaStariteCollider=终末之星
 ProjectileName.JerryBubble=蟹蛤泡泡
 ProjectileName.JerryBubbleBig={$Mods.AQMod.ProjectileName.JerryBubble}
 ProjectileName.JerryPearl=蟹蛤珍珠
@@ -728,3 +730,4 @@ NPCName.TrapImp=捕魂小鬼
 NPCName.Trapper=捕魂钩
 NPCName.Cindera=幻形蝠
 NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
+NPCName.Meteor=流星
