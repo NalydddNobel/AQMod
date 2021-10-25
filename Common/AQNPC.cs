@@ -619,6 +619,8 @@ namespace AQMod.Common
                     {
                         shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BuffItems.SpoilsPotion>());
                         nextSlot++;
+                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.Powders.GoldPowder>());
+                        nextSlot++;
                     }
                 }
                 break;
@@ -1344,6 +1346,87 @@ namespace AQMod.Common
                 }
             }
             return npc;
+        }
+
+        public static bool ConvertNPCtoGold(int i)
+        {
+            switch (Main.npc[i].type)
+            {
+                case NPCID.Bunny:
+                case NPCID.BunnySlimed:
+                case NPCID.BunnyXmas:
+                case NPCID.PartyBunny:
+                {
+                    Main.npc[i].Transform(NPCID.GoldBunny);
+                }
+                return true;
+
+                case NPCID.Squirrel:
+                case NPCID.SquirrelRed:
+                {
+                    Main.npc[i].Transform(NPCID.SquirrelGold);
+                }
+                return true;
+
+                case NPCID.Bird:
+                case NPCID.BirdBlue:
+                case NPCID.BirdRed:
+                {
+                    Main.npc[i].Transform(NPCID.GoldBird);
+                }
+                return true;
+
+                case NPCID.Butterfly:
+                {
+                    Main.npc[i].Transform(NPCID.GoldButterfly);
+                }
+                return true;
+
+                case NPCID.Frog:
+                {
+                    Main.npc[i].Transform(NPCID.GoldFrog);
+                }
+                return true;
+
+                case NPCID.Grasshopper:
+                {
+                    Main.npc[i].Transform(NPCID.GoldGrasshopper);
+                }
+                return true;
+
+                case NPCID.Mouse:
+                {
+                    Main.npc[i].Transform(NPCID.GoldMouse);
+                }
+                return true;
+
+                case NPCID.Worm:
+                {
+                    Main.npc[i].Transform(NPCID.GoldWorm);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public static void CollideWithNPCs(Action<NPC> onCollide, Rectangle myRect)
+        {
+            CollideWithNPCs(onCollide, (n) => new Rectangle((int)n.position.X, (int)n.position.Y, n.width, n.height).Intersects(myRect));
+        }
+
+        public static void CollideWithNPCs(Action<NPC> onCollide, Func<NPC, bool> isColliding)
+        {
+            for (int i = 0; i < 200; i++)
+            {
+                if (!Main.npc[i].active)
+                {
+                    continue;
+                }
+                if (isColliding(Main.npc[i]))
+                {
+                    onCollide(Main.npc[i]);
+                }
+            }
         }
     }
 }

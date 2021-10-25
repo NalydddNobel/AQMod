@@ -448,6 +448,10 @@ ItemName.ATM=ATM
 ItemName.Globebulb=Globebulb
 ItemName.SpectralLens=Spectral Lens
 ItemName.SpectreSoul=Spectre Soul
+ItemName.GoldPowder=Gold Powder
+ItemTooltip.GoldPowder=Converts critters into their golden counterparts
+ItemName.FertilePowder=Fertile Powder
+ItemTooltip.FertilePowder=Forces tiles to grow
 #
 #
 ##################################################################################
