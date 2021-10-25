@@ -95,7 +95,7 @@ namespace AQMod.Common.Skies
 
             public void Draw(UnifiedRandom rand)
             {
-                var texture = TextureCache.BGStarite.GetValue();
+                var texture = TextureCache.BGStarite.Value;
                 switch (size)
                 {
                     default:

@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.SceneLayers;
 using AQMod.Common.NetCode;
 using AQMod.Common.Utilities;
 using AQMod.Content;
@@ -16,7 +15,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace AQMod.Common.SceneLayers
+namespace AQMod.Assets.SceneLayers
 {
     public sealed class UltimateSwordWorldOverlay : SceneLayer
     {
@@ -44,7 +43,7 @@ namespace AQMod.Common.SceneLayers
             Main.spriteBatch.Draw(texture, drawPos - Main.screenPosition, frame, new Color(255, 255, 255, 255), MathHelper.PiOver4 * 3f, origin, 1f, SpriteEffects.None, 0f);
 
             float bobbing = (bobbingSin() + 1f) / 2f;
-            var blurTexture = TextureCache.UltimateSwordBlurTransparent.GetValue();
+            var blurTexture = ModContent.GetTexture(AQUtils.GetPath<UltimateSword>("_BlurTransparent"));
             var blurFrame = new Rectangle(0, 0, blurTexture.Width, blurTexture.Height);
             var blurOrigin = new Vector2(origin.X, blurTexture.Height - texture.Height);
             Main.spriteBatch.Draw(blurTexture, drawPos - Main.screenPosition, blurFrame, new Color(80 + Main.DiscoR / 60, 80 + Main.DiscoG / 60, 80 + Main.DiscoB / 60, 0) * (1f - bobbing), MathHelper.PiOver4 * 3f, blurOrigin, 1f, SpriteEffects.None, 0f);
@@ -84,9 +83,7 @@ namespace AQMod.Common.SceneLayers
         {
             float x = AQMod.glimmerEvent.tileX * 16f;
             if (Framing.GetTileSafely(AQMod.glimmerEvent.tileX, AQMod.glimmerEvent.tileY).type == ModContent.TileType<GlimmeringStatue>())
-            {
                 x += 16f;
-            }
             else
             {
                 x += 8f;
@@ -113,9 +110,7 @@ namespace AQMod.Common.SceneLayers
                 Main.dust[d].noGravity = true;
             }
             if (_swordEffectDelay > 0)
-            {
                 _swordEffectDelay--;
-            }
             else if (_rand.NextBool(10 + (int)(20 * AQMod.EffectIntensityMinus)))
             {
                 AQMod.WorldEffects.Add(new UltimateSwordEffect(_rand));
