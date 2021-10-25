@@ -62,9 +62,9 @@ namespace AQMod.Projectiles
             {
                 maxY = Main.maxTilesY;
             }
-            if (Main.rand.NextBool(16))
+            if (Main.rand.NextBool(4))
             {
-                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 254, new Color(240 + (int)(Main.DiscoR / 255f * 10f), 240 + (int)(Main.DiscoG / 255f * 10f), 240 + (int)(Main.DiscoB / 255f * 10f), 120), 1.65f);
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 254, new Color(240 + (int)(Main.DiscoR / 255f * 10f), 240 + (int)(Main.DiscoG / 255f * 10f), (int)(Main.DiscoB / 255f * 10f), 120), 1.65f);
                 Main.dust[d].velocity = -projectile.velocity * 0.1f;
             }
             if (Main.myPlayer != projectile.owner)
@@ -87,7 +87,7 @@ namespace AQMod.Projectiles
                         {
                             continue;
                         }
-                        if (AQWorldGen.ActiveAndFullySolid(i, j))
+                        if (AQWorldGen.ActiveAndFullySolid(i, j) && Main.rand.NextBool(16))
                         {
                             int d = Dust.NewDust(pos, 16, 16, ModContent.DustType<MonoDust>(), 0f, 0f, 254, new Color(240 + (int)(Main.DiscoR / 255f * 10f), 240 + (int)(Main.DiscoG / 255f * 10f), 240 + (int)(Main.DiscoB / 255f * 10f), 120), 1.65f);
                             Main.dust[d].velocity *= 0.05f;
