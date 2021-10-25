@@ -46,6 +46,9 @@ Common.Config_ShowCompletedRobsterQuestsCount=显示已完成的龙虾掠夺者�
 Common.Config_CosmicEnergyAlt=星宇能量(备用贴图)
 Common.Config_MarkerMapUIType=地图标记UI的类型(位置)
 # (Server Config)
+Common.Config_HarderOmegaStarite=总是困难版本的终末之星
+Common.Config_HarderOmegaStariteTooltip=与微光事件中的强化版终末之星战斗, 即使此时并不处于微光事件\n但终末之星并不会在微光事件外掉落最终之剑
+Common.Config_ReduceSpawns=Boss战期间减少刷怪率(仅适用于Aequus Mod的Boss)
 Common.Config_EvilProgressionLock=锁定邪恶时期
 Common.Config_EvilProgressionLockTooltip=黑檀石、猩红石、暗影珠和猩红之心无法再被爆炸物摧毁
 Common.Config_AprilFools=愚人节
@@ -235,15 +238,6 @@ ItemName.Baguette=法棍
 ItemName.NeutronJuice=中子果汁
 ItemName.SuspiciousLookingSteak=可疑牛排
 ItemName.SpicyEel=香辣鳗鱼
-# Staffs
-ItemName.BatonofNightVision=夜视节杖
-ItemName.BatonofRage=暴怒节杖
-ItemName.BatonofWrath=怒气节杖
-ItemName.StaffofNightVision=夜枭图腾
-ItemName.StaffofIronskin=铁皮手杖
-ItemName.StaffofRegeneration=再生手杖
-ItemName.StaffofSwiftness=敏捷手杖
-ItemName.StaffofWaterBreathing=避水手杖
 # Other Buffs Items
 ItemName.MysteryGrail=神秘圣杯
 ItemName.OpposingPotion=对立药水
@@ -304,7 +298,6 @@ ItemName.LarvaEel=寄生鳗幼虫
 ItemName.WaterFisg=水鱼
 ItemName.Crabdaughter=蟹蛤之子
 # Quest Robster
-ItemName.CrabCard=蟹卡
 ItemName.Snobster=势利鬼虾
 ItemName.JeweledChalice=宝石杯
 ItemName.JeweledCandelabra=宝石烛台
@@ -412,7 +405,8 @@ ItemName.Aphrodite=阿芙罗狄忒
 ItemName.Venus=维纳斯
 ItemName.StariteSpinner=星源涡
 # Other Melee
-ItemName.CrimsonHellSword=焚焰剑 
+ItemName.CrimsonHellSword=焚焰剑
+Tooltip.CrimsonHellSword=发射恶魔能量冲击波, 冲击波会追踪离你光标位置最近的敌人
 ItemName.HellsBoon=地狱之赐
 ItemName.Galactium=辰星坠
 ItemName.KryptonSword=氪制剑
@@ -435,9 +429,18 @@ ItemName.SpaceShot=太空手枪
 ItemName.LotusStaff=莲花杖
 # Other Summon
 ItemName.MonoxiderStaff=日驭金乌杖
+ItemTooltip.MonoxiderStaff=召唤一只金乌为你而战
+BuffName.MonoxiderBuff=金乌
+BuffDescription.MonoxiderBuff=金乌会为你而战
 ItemName.StariteStaff=星源召唤杖
+BuffName.StariteMinionBuff=星之源
+BuffDescription.StariteMinionBuff=星之源会为你而战
 ItemName.CrimsonHandStaff=猩红血手法杖
+BuffName.CrimsonHandBuff=猩红血手
+BuffDescription.CrimsonHandBuff=猩红血手会为你而战
 ItemName.CorruptPot=腐食罐
+BuffName.CorruptPotBuff=食人花
+BuffDescription.CorruptPotBuff=食人花会为你而战
 # Other Item Names
 ItemName.ATM=ATM
 ItemName.Globebulb=天体灯泡
@@ -503,15 +506,6 @@ ItemTooltip.Baguette='蛋糕只是海绵般松软的面包'
 ItemTooltip.NeutronJuice='重达数百万吨... 比把保险箱放在保险箱里还轻'
 ItemTooltip.SuspiciousLookingSteak=使你获得许多增益或减益\n'平淡无奇'
 ItemTooltip.SpicyEel=大幅度增加移动速度
-# Staffs
-ItemTooltip.BatonofNightVision=使你和附近的玩家获得夜视增益
-ItemTooltip.BatonofRage=使你和附近的玩家获得暴怒增益
-ItemTooltip.BatonofWrath=使你和附近的玩家获得怒气增益
-ItemTooltip.StaffofIronskin=使你和附近的玩家获得铁皮增益
-ItemTooltip.StaffofNightVision=使你和附近的玩家获得夜猫子增益
-ItemTooltip.StaffofRegeneration=使你和附近的玩家获得再生增益
-ItemTooltip.StaffofSwiftness=使你和附近的玩家获得敏捷增益
-ItemTooltip.StaffofWaterBreathing=使你和附近的玩家获得鱼鳃增益
 # Other Buffs Items
 ItemTooltip.MysteryGrail=使你获得随机的增益
 ItemTooltip.OpposingPotion=使某些敌人掉落与其主题相反的物品\n(例如肉后血地怪会掉光明之魂)
@@ -632,7 +626,6 @@ ItemTooltip.HorizonSkies=发射能量射线\n'你准备好了吗吗吗吗吗吗'
 ItemTooltip.Aphrodite=击中敌人时有几率造成热恋减益
 ItemTooltip.Venus=击中敌人时有几率造成中毒减益
 # Other Melee
-ItemTooltip.CrimsonHellSword=发射恶魔能量冲击波, 冲击波会追踪离你光标位置最近的敌人
 ItemTooltip.HellsBoon=在光标附近的物块上不断生成灰烬尖刺
 ItemTooltip.Galactium=挥舞时召唤从天而降的微光星辰
 ItemTooltip.XenonBasher=击中敌人时生成氙气孢子
@@ -650,7 +643,6 @@ ItemTooltip.SpaceShot=发射一颗星星, 随后再发射其使用的子弹
 # Sentry
 ItemTooltip.LotusStaff=召唤一朵熔岩之莲为你而战\n{$Mods.AQMod.Common.DoesntMinionTarget}
 # Other Summon
-ItemTooltip.MonoxiderStaff=召唤一只金乌为你而战\n{$Mods.AQMod.Common.DoesntMinionTarget}
 ItemTooltip.StariteStaff=召唤3个星之源为你而战
 ItemTooltip.CrimsonHandStaff=召唤一个猩红血手为你而战
 ItemTooltip.CorruptPot=召唤一株腐化植物为你而战
@@ -659,6 +651,7 @@ ItemTooltip.ATM=召唤一个用于存放物品的飞行保险箱\n将其放在�
 ItemTooltip.SpectralLens=切换敌人的掉落
 ItemTooltip.Globebulb=加快时间的流逝速度一小段时间
 # Buffs
+Common.BuffSupportive=(团队共享类增益)
 BuffName.BlueFire=冥焰
 BuffDescription.BlueFire=冥焰灼烧着你的皮肤
 BuffName.Spoiled=溺爱
@@ -675,14 +668,6 @@ BuffName.DungeonMarkerBuff=地牢标记
 BuffDescription.DungeonMarkerBuff=在地图上显示地牢的位置
 BuffName.LihzahrdMarkerBuff=神庙标记
 BuffDescription.LihzahrdMarkerBuff=在地图上显示神庙祭坛的位置
-BuffName.CorruptPotBuff=食人花
-BuffDescription.CorruptPotBuff=食人花会为你而战
-BuffName.MonoxiderBuff=金乌
-BuffDescription.MonoxiderBuff=金乌会为你而战
-BuffName.StariteMinionBuff=星之源
-BuffDescription.StariteMinionBuff=星之源会为你而战
-BuffName.CrimsonHandBuff=猩红血手
-BuffDescription.CrimsonHandBuff=猩红血手会为你而战
 BuffName.Bossrush=安可
 BuffDescription.Bossrush=Boss被击败时会再次生成
 BuffName.Ultima=最终之力
