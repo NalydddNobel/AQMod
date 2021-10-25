@@ -396,9 +396,14 @@ ItemName.FizzlingFire=冥焰
 # Tomes
 ItemName.PentalScythe=回旋魔镰
 # Melee
-# Flails
 ItemName.JerryClawFlail=蟹蛤之爪
 ItemName.PowPunch=链拳
+ItemTooltip.PowPunch=投出反复击打敌人的双拳
+ProjectileName.PowPunch=链拳
+ProjectileName.PowPunchExplosion=链拳
+ItemName.CrystalDagger=水晶匕首
+ItemTooltip.CrystalDagger=快速刺击敌人
+ProjectileName.CrystalDagger=水晶匕首
 # Spears
 ItemName.ArgonSpear=氩制长枪
 ItemName.HorizonSkies=空之视界
@@ -622,7 +627,6 @@ ItemTooltip.PentalScythe=发射追踪敌人的烈焰魔镰
 # Melee
 # Flails
 ItemTooltip.JerryClawFlail='摸起来非常的油腻'
-ItemTooltip.PowPunch=投出反复击打敌人的双拳
 # Spears
 ItemTooltip.ArgonSpear=会不断的瞄准你的光标位置
 ItemTooltip.HorizonSkies=发射能量射线\n'你准备好了吗吗吗吗吗吗'
