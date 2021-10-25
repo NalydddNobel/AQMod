@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
@@ -40,7 +41,7 @@ namespace AQMod.Common.ItemOverlays
         private static Color getColor(float time)
         {
             var config = ModContent.GetInstance<AQConfigClient>();
-            return CommonUtils.colorLerps(pattern, time * 3f * config.EffectIntensity) * config.EffectIntensity;
+            return AQUtils.colorLerps(pattern, time * 3f * config.EffectIntensity) * config.EffectIntensity;
         }
 
         private static void DrawEye(Vector2 drawPosition, Item item, float time, float rotation = 0f, float scale3 = 1f)

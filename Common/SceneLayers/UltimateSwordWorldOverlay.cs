@@ -50,7 +50,7 @@ namespace AQMod.Common.SceneLayers
             Main.spriteBatch.Draw(blurTexture, drawPos - Main.screenPosition, blurFrame, new Color(80 + Main.DiscoR / 60, 80 + Main.DiscoG / 60, 80 + Main.DiscoB / 60, 0) * (1f - bobbing), MathHelper.PiOver4 * 3f, blurOrigin, 1f, SpriteEffects.None, 0f);
 
             var hitbox = new Rectangle((int)drawPos.X - 10, (int)drawPos.Y - 60, 20, 60);
-            Vector2 trueMouseworld = CommonUtils.TrueMouseworld;
+            Vector2 trueMouseworld = AQUtils.TrueMouseworld;
             if (hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y) && AQMod.glimmerEvent.IsActive)
             {
                 int omegaStariteID = ModContent.NPCType<OmegaStarite>();

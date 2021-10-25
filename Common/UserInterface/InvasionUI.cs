@@ -98,7 +98,7 @@ namespace AQMod.Common.UserInterface
                         if (InvasionType == DemonSiegeInvasion)
                         {
                             string value = AQText.ModText("Common.TimeLeft").Value;
-                            eventNameAndProgressText = string.Format(value, CommonUtils.TimeText3(DemonSiege.UpgradeTime));
+                            eventNameAndProgressText = string.Format(value, AQUtils.TimeText3(DemonSiege.UpgradeTime));
                         }
 
                         Texture2D colorBar = Main.colorBarTexture;

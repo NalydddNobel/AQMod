@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Assets.ArmorOverlays;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
@@ -51,7 +52,7 @@ namespace AQMod.Common.PlayerLayers
                                 var scale = new Vector2((float)(Math.Sin(Main.GlobalTime * 10f) + 1f) * 0.04f + 0.2f, 0.1f);
                                 var eyeGlowPos = position + new Vector2(2f * player.direction, Main.OffsetsPlayerHeadgear[headFrame].Y);
                                 var eyeGlowColor = aQPlayer.cataEyeColor;
-                                var value = CommonUtils.GetGrad(0.25f, 0.45f, scale.X) * 0.5f;
+                                var value = AQUtils.GetGrad(0.25f, 0.45f, scale.X) * 0.5f;
                                 var config = ModContent.GetInstance<AQConfigClient>();
                                 var colorMult = ModContent.GetInstance<AQConfigClient>().EffectIntensity * (1f - info.shadow);
                                 Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, 0f, orig, scale, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
@@ -99,7 +100,7 @@ namespace AQMod.Common.PlayerLayers
                             {
                                 hatPos.Y += Main.OffsetsPlayerHeadgear[headFrame].Y;
                             }
-                            MonoxiderMinion.DrawHead(player, aQPlayer, hatPos, ignorePlayerRotation: false);
+                            Projectiles.Summon.Monoxider.DrawHead(player, aQPlayer, hatPos, ignorePlayerRotation: false);
                         }
                     }
                     break;

@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Assets.ItemOverlays;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Effects;

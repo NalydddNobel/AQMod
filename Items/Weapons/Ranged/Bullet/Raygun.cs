@@ -15,7 +15,7 @@ namespace AQMod.Items.Weapons.Ranged.Bullet
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.Raygun), item.type);
+                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.Raygun), item.type);
         }
 
         public override void SetDefaults()

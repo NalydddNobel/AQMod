@@ -14,7 +14,7 @@ namespace AQMod.Content.HookBarbs
             var rect = projectile.getRect();
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && !Main.npc[i].townNPC && rect.Intersects(Main.npc[i].getRect()) && CommonUtils.CanNPCBeHitByProjectile(Main.npc[i], projectile))
+                if (Main.npc[i].active && !Main.npc[i].townNPC && rect.Intersects(Main.npc[i].getRect()) && AQUtils.CanNPCBeHitByProjectile(Main.npc[i], projectile))
                 {
                     if (Main.npc[i].immune[projectile.owner] <= 0)
                     {

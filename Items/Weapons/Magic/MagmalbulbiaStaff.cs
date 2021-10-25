@@ -21,7 +21,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             Item.staff[item.type] = true;
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new DynamicGlowmaskOverlayData(CommonUtils.GetPath<MagmalbulbiaStaff>() + "_Glow", getGlowmaskColor), item.type);
+                AQMod.ItemOverlays.Register(new DynamicGlowmaskOverlayData(AQUtils.GetPath<MagmalbulbiaStaff>() + "_Glow", getGlowmaskColor), item.type);
         }
 
         private static Color getGlowmaskColor() => Color.Lerp(new Color(188, 175, 135, 0), new Color(144, 130, 111, 0), ((float)Math.Sin(Main.GlobalTime * 1.1f) + 1f) / 2f);

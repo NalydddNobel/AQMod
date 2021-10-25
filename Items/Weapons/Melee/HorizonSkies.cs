@@ -19,7 +19,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.HorizonSkies), item.type);
+                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.HorizonSkies), item.type);
         }
 
         public override void SetDefaults()

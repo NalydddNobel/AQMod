@@ -12,7 +12,7 @@ namespace AQMod.Items.BuffItems.Foods
         {
             if (!Main.dedServ)
             {
-                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.NeutronJuice), item.type);
+                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.NeutronJuice), item.type);
             }
         }
 

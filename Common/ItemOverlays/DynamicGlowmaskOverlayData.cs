@@ -4,7 +4,7 @@ using Terraria;
 
 namespace AQMod.Common.ItemOverlays
 {
-    public class DynamicGlowmaskOverlayData : GlowmaskOverlayData
+    public class DynamicGlowmaskOverlayData : LegacyGlowmaskOverlayData
     {
         public readonly Func<Color> GetColor;
 

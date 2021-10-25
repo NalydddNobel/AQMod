@@ -7,9 +7,9 @@ using Terraria;
 namespace AQMod.Common.ItemOverlays
 {
     /// <summary>
-    /// Same as <see cref="LegacyGlowmask"/> but also applies the mask in the inventory
+    /// Same as <see cref="LegacyLegacyGlowmask"/> but also applies the mask in the inventory
     /// </summary>
-    public class InventoryGlowmask : LegacyGlowmask
+    public class InventoryGlowmask : LegacyLegacyGlowmask
     {
         public InventoryGlowmask(GlowID glowmask) : base(glowmask)
         {

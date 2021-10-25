@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Assets.ArmorOverlays;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

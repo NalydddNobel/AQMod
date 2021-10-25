@@ -82,7 +82,7 @@ namespace AQMod.Common.UserInterface
                 if (t.Value is TEGlobe globe && (globe.discovered || debug))
                 {
                     var pos = MapPos(new Vector2(globe.Position.X + 1f, globe.Position.Y + 1f));
-                    if (CommonUtils.PositionOnScreen(pos, 8f))
+                    if (AQUtils.PositionOnScreen(pos, 8f))
                     {
                         var scale = Main.UIScale;
                         var hitbox = Utils.CenteredRectangle(pos, new Vector2(texture.Width, texture.Height) * scale);
@@ -109,7 +109,7 @@ namespace AQMod.Common.UserInterface
                     if (t.Value is TEGlimmeringStatue glimmer)
                     {
                         var pos = MapPos(new Vector2(glimmer.Position.X + 1f, glimmer.Position.Y + 1f));
-                        if (CommonUtils.PositionOnScreen(pos, 8f))
+                        if (AQUtils.PositionOnScreen(pos, 8f))
                         {
                             var scale = Main.UIScale;
                             var hitbox = Utils.CenteredRectangle(pos, new Vector2(texture.Width, texture.Height) * scale);

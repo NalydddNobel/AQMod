@@ -2,7 +2,6 @@
 using AQMod.Items.BuffItems;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Fishing.Rods;
-using AQMod.Items.Tools.SupportStaffs;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,8 +39,6 @@ namespace AQMod.Common
             internal static void Setup()
             {
                 CantBeTurnedIntoMolitePotion = new bool[ItemLoader.ItemCount];
-                CantBeTurnedIntoMolitePotion[ModContent.ItemType<StaffofNightVision>()] = true;
-                CantBeTurnedIntoMolitePotion[ModContent.ItemType<BatonofNightVision>()] = true;
                 CantBeTurnedIntoMolitePotion[ModContent.ItemType<SpicyEel>()] = true;
             }
 
@@ -124,24 +121,6 @@ namespace AQMod.Common
                                 player.QuickSpawnItem(ModContent.ItemType<OpposingPotion>(), Main.rand.Next(4) + 1);
                         }
                         break;
-                    }
-                }
-                break;
-
-                case "crate":
-                if (arg == ItemID.WoodenCrate)
-                {
-                    if (Main.rand.NextBool(5))
-                    {
-                        int[] choices = new int[]
-                        {
-                            ModContent.ItemType<StaffofNightVision>(),
-                            ModContent.ItemType<StaffofRegeneration>(),
-                            ModContent.ItemType<StaffofWaterBreathing>(),
-                            ModContent.ItemType<StaffofSwiftness>(),
-                            ModContent.ItemType<StaffofIronskin>(),
-                        };
-                        player.QuickSpawnItem(choices[Main.rand.Next(choices.Length)]);
                     }
                 }
                 break;

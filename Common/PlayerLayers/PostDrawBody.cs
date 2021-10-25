@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Assets.ArmorOverlays;
 using Terraria.ModLoader;
 
 namespace AQMod.Common.PlayerLayers

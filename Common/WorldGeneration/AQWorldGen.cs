@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.Utilities;
 using AQMod.Items.Materials;
-using AQMod.Items.Tools.SupportStaffs;
 using AQMod.Localization;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;
@@ -152,12 +151,12 @@ namespace AQMod.Common.WorldGeneration
                     {
                         WorldGen.KillTile(x, y + 3 + i);
                         WorldGen.PlaceTile(x, y + 3 + i, TileID.Explosives);
-                        CommonUtils.TileABLine(x, y, x, y + 3 + i, delegate (int x2, int y2)
+                        AQUtils.TileABLine(x, y, x, y + 3 + i, delegate (int x2, int y2)
                         {
                             WorldGen.PlaceWire(x2, y2);
                             return true;
                         });
-                        CommonUtils.TileABLine(x - 1, y, x + 2, y, delegate (int x2, int y2)
+                        AQUtils.TileABLine(x - 1, y, x + 2, y, delegate (int x2, int y2)
                         {
                             WorldGen.PlaceWire(x2, y2);
                             return true;
@@ -297,12 +296,12 @@ namespace AQMod.Common.WorldGeneration
                     WorldGen.KillTile(pressurePlate.X, pressurePlate.Y);
                     Main.tile[pressurePlate.X, pressurePlate.Y + 1].active(active: true);
                     WorldGen.PlaceTile(pressurePlate.X, pressurePlate.Y, TileID.PressurePlates, true, true);
-                    CommonUtils.TileABLine(pressurePlate.X, pressurePlate.Y, x, y, delegate (int x3, int y3)
+                    AQUtils.TileABLine(pressurePlate.X, pressurePlate.Y, x, y, delegate (int x3, int y3)
                     {
                         WorldGen.PlaceWire(x3, y3);
                         return true;
                     });
-                    CommonUtils.RectangleMethod(candelabra, delegate (int x3, int y3)
+                    AQUtils.RectangleMethod(candelabra, delegate (int x3, int y3)
                     {
                         if (Main.tileCut[Main.tile[x3, y3].type])
                             WorldGen.KillTile(x3, y3);
@@ -324,7 +323,7 @@ namespace AQMod.Common.WorldGeneration
                         if (dynamite != new Point())
                         {
                             WorldGen.PlaceTile(pressurePlate2.X, pressurePlate2.Y, TileID.PressurePlates, true, true);
-                            CommonUtils.TileABLine(pressurePlate2.X, pressurePlate2.Y, dynamite.X, dynamite.Y, delegate (int x3, int y3)
+                            AQUtils.TileABLine(pressurePlate2.X, pressurePlate2.Y, dynamite.X, dynamite.Y, delegate (int x3, int y3)
                             {
                                 WorldGen.PlaceWire2(x3, y3);
                                 return true;
@@ -489,80 +488,6 @@ namespace AQMod.Common.WorldGeneration
                 tasks.Insert(i, getPass("Tiki Chests", GenerateTikiChests));
                 tasks.Insert(i, getPass("Candelabra Traps", GenerateCandelabraTraps));
                 tasks.Insert(i, getPass("Exotic Coral", GenerateExoticBlotches));
-            }
-        }
-
-        private static int getBuffStaff(int i)
-        {
-            switch (i % 5)
-            {
-                default:
-                return ModContent.ItemType<StaffofNightVision>();
-                case 1:
-                return ModContent.ItemType<StaffofRegeneration>();
-                case 2:
-                return ModContent.ItemType<StaffofWaterBreathing>();
-                case 3:
-                return ModContent.ItemType<StaffofSwiftness>();
-                case 4:
-                return ModContent.ItemType<StaffofIronskin>();
-            }
-        }
-
-        public override void PostWorldGen()
-        {
-            int buffStaffIndex = 0;
-            for (int c = 0; c < Main.maxChests; c++)
-            {
-                Chest chest = Main.chest[c];
-                if (chest != null)
-                {
-                    Tile tile = Framing.GetTileSafely(chest.x, chest.y);
-                    if (tile.type != TileID.Containers)
-                        continue;
-                    switch (tile.frameX)
-                    {
-                        case 0: // Wooden Chests
-                        if (!Main.wallDungeon[tile.wall])
-                        {
-                            if (WorldGen.genRand.NextBool(3))
-                            {
-                                for (int i = 0; i < Chest.maxItems; i++)
-                                {
-                                    if (chest.item[i].type == ItemID.None)
-                                    {
-                                        chest.item[i].SetDefaults(getBuffStaff(buffStaffIndex));
-                                        buffStaffIndex++;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        break;
-
-                        case 36: // (unlocked) Golden Chests
-                        {
-                        }
-                        break;
-
-                        case 108:
-                        case 144: // Shadow Chests
-                        {
-                            if (WorldGen.genRand.NextBool(4))
-                            {
-                                for (int i = 0; i < Chest.maxItems; i++)
-                                {
-                                    if (chest.item[i].type == ItemID.None)
-                                    {
-                                        chest.item[i].SetDefaults(ModContent.ItemType<Items.Dedicated.Thunderbird>());
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        break;
-                    }
-                }
             }
         }
 

@@ -1,6 +1,4 @@
-﻿using AQMod.Buffs.Summon;
-using AQMod.Common;
-using AQMod.Projectiles.Summon.Chomper;
+﻿using AQMod.Common;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -31,8 +29,8 @@ namespace AQMod.Items.Weapons.Summon
             item.value = AQItem.CorruptionWeaponValue;
             item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item44;
-            item.shoot = ModContent.ProjectileType<ChomperMinion>();
-            item.buffType = ModContent.BuffType<ChomperMinionBuff>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Summon.ChomperMinion.Chomper>();
+            item.buffType = ModContent.BuffType<Buffs.Summon.Chomper>();
             item.autoReuse = true;
         }
 
@@ -52,5 +50,4 @@ namespace AQMod.Items.Weapons.Summon
             recipe.AddRecipe();
         }
     }
-
 }

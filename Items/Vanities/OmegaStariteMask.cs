@@ -15,8 +15,8 @@ namespace AQMod.Items.Vanities
         {
             if (!Main.dedServ)
             {
-                AQMod.ItemOverlays.Register(new GlowmaskOverlayData(CommonUtils.GetPath(this) + "_Glow"), item.type);
-                AQMod.ArmorOverlays.AddHeadOverlay<OmegaStariteMask>(new ArmorHeadOverlay(CommonUtils.GetPath(this) + "_HeadGlow", new Color(200, 200, 200, 0)));
+                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow"), item.type);
+                AQMod.ArmorOverlays.AddHeadOverlay<OmegaStariteMask>(new ArmorHeadOverlay(AQUtils.GetPath(this) + "_HeadGlow", new Color(200, 200, 200, 0)));
             }
         }
 

@@ -14,7 +14,7 @@ namespace AQMod.Items.Weapons.Ranged.Dart
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.VortexBlowpipe), item.type);
+                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.VortexBlowpipe), item.type);
         }
 
         public override void SetDefaults()

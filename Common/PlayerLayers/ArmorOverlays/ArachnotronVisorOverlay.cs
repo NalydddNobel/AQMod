@@ -10,7 +10,7 @@ namespace AQMod.Common.PlayerLayers.ArmorOverlays
 {
     public class ArachnotronVisorOverlay : ArmorHeadOverlay
     {
-        public ArachnotronVisorOverlay() : base(new TextureAsset(CommonUtils.GetPath<ArachnotronVisor>() + "_HeadGlow"))
+        public ArachnotronVisorOverlay() : base(new TextureAsset(AQUtils.GetPath<ArachnotronVisor>() + "_HeadGlow"))
         {
         }
 

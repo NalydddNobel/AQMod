@@ -27,7 +27,7 @@ namespace AQMod.Common
                 UntaggableProjectile[ModContent.ProjectileType<CelesteTorusCollider>()] = true;
 
                 HeadMinion = new bool[ProjectileLoader.ProjectileCount];
-                HeadMinion[ModContent.ProjectileType<MonoxiderMinion>()] = true;
+                HeadMinion[ModContent.ProjectileType<Projectiles.Summon.Monoxider>()] = true;
             }
         }
 

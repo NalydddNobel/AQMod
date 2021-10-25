@@ -13,7 +13,7 @@ namespace AQMod.Items.Placeable.WallItems
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new DynamicGlowmaskOverlayData(CommonUtils.GetPath<MoonlightWall>() + "_Glow", getColor), item.type);
+                AQMod.ItemOverlays.Register(new DynamicGlowmaskOverlayData(AQUtils.GetPath<MoonlightWall>() + "_Glow", getColor), item.type);
         }
 
         private static Color getColor() => MoonlightWallWall.GetColor(0f);

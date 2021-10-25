@@ -1,4 +1,4 @@
-﻿using AQMod.Assets;
+﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.Textures;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;

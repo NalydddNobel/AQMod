@@ -437,9 +437,18 @@ ItemName.SpaceShot=Space Shot
 ItemName.LotusStaff=Lotus Staff
 # Other Summon
 ItemName.MonoxiderStaff=Monoxider Staff
+ItemTooltip.MonoxiderStaff=Summons a monoxide finch to fight for you
+BuffName.Monoxider=Monoxider
+BuffDescription.Monoxider=The monoxider will fight for you
 ItemName.StariteStaff=Starite Staff
+BuffName.Starite=Starite
+BuffDescription.Starite=The starite will fight for you
 ItemName.CrimsonHandStaff=Crimson Hand Staff
+BuffName.CrimsonHand=Crimson Hand
+BuffDescription.CrimsonHand=The crimson hand will fight for you
 ItemName.CorruptPot=Corrupt Pot
+BuffName.Chomper=Chomper
+BuffDescription.Chomper=The chomper will fight for you
 # Other Item Names
 ItemName.ATM=ATM
 ItemName.Globebulb=Globebulb
@@ -652,7 +661,6 @@ ItemTooltip.SpaceShot=Shoots a star which then shoots bullets
 # Sentry
 ItemTooltip.LotusStaff=Summons a magma lotus to fight for you\n{$Mods.AQMod.Common.DoesntMinionTarget}
 # Other Summon
-ItemTooltip.MonoxiderStaff=Summons a monoxide finch to fight for you\n{$Mods.AQMod.Common.DoesntMinionTarget}
 ItemTooltip.StariteStaff=Summons 3 starites to fight for you
 ItemTooltip.CrimsonHandStaff=Summons a crimson hand to fight for you
 ItemTooltip.CorruptPot=Summons a corrupted plant to fight for you
@@ -685,14 +693,6 @@ BuffName.DungeonMarkerBuff=Dungeon Marker
 BuffDescription.DungeonMarkerBuff=The Dungeon is shown on the map
 BuffName.LihzahrdMarkerBuff=Lihzahrd Marker
 BuffDescription.LihzahrdMarkerBuff=The Lihzahrd Altar is shown on the map
-BuffName.CorruptPotBuff=Chompie
-BuffDescription.CorruptPotBuff=The chomper will fight for you
-BuffName.MonoxiderBuff=Monoxider
-BuffDescription.MonoxiderBuff=The monoxider will fight for you
-BuffName.StariteMinionBuff=Starite
-BuffDescription.StariteMinionBuff=The starite will fight for you
-BuffName.CrimsonHandBuff=Crimson Hand
-BuffDescription.CrimsonHandBuff=The crimson hand will fight for you
 BuffName.Bossrush=Encore
 BuffDescription.Bossrush=Bosses respawn when defeated
 BuffName.Ultima=Ultima

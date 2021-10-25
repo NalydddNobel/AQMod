@@ -3,7 +3,7 @@ using AQMod.Common.Utilities;
 using AQMod.Items.Vanities;
 using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles;
-using AQMod.Projectiles.Summon.Chomper;
+using AQMod.Projectiles.Summon.ChomperMinion;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -43,7 +43,7 @@ namespace AQMod.Common.PlayerLayers
                 if (aQPlayer.chomper)
                 {
                     int count = 0;
-                    int type = ModContent.ProjectileType<ChomperMinion>();
+                    int type = ModContent.ProjectileType<Chomper>();
                     var texture = TextureCache.GetProjectile(type);
                     int frameHeight = texture.Height / Main.projFrames[type];
                     var frame = new Rectangle(0, 0, texture.Width, frameHeight - 2);
@@ -68,7 +68,7 @@ namespace AQMod.Common.PlayerLayers
                             {
                                 DrawChomperChain(info.drawPlayer, Main.projectile[i], drawPosition, drawColor);
                             }
-                            var chomperHead = (ChomperMinion)Main.projectile[i].modProjectile;
+                            var chomperHead = (Chomper)Main.projectile[i].modProjectile;
                             if (chomperHead.eatingDelay != 0 && chomperHead.eatingDelay < 35)
                             {
                                 float intensity = (10 - chomperHead.eatingDelay) / 2.5f * AQMod.EffectIntensity;
@@ -91,14 +91,14 @@ namespace AQMod.Common.PlayerLayers
                                         new DrawData(monoxiderHat, hatPos, null, drawColor, Main.projectile[i].rotation, monoxiderHatOrig, Main.projectile[i].scale, SpriteEffects.None, 0)
                                         { ignorePlayerRotation = true });
                                     Main.playerDrawData.Add(
-                                        new DrawData(ModContent.GetTexture(CommonUtils.GetPath<MonoxideHat>() + "_Glow"), hatPos, null, new Color(250, 250, 250, 0), Main.projectile[i].rotation, monoxiderHatOrig, Main.projectile[i].scale, SpriteEffects.None, 0)
+                                        new DrawData(ModContent.GetTexture(AQUtils.GetPath<MonoxideHat>() + "_Glow"), hatPos, null, new Color(250, 250, 250, 0), Main.projectile[i].rotation, monoxiderHatOrig, Main.projectile[i].scale, SpriteEffects.None, 0)
                                         { ignorePlayerRotation = true });
                                     int headFrame = player.bodyFrame.Y / AQPlayer.FRAME_HEIGHT;
                                     if (player.gravDir == -1)
                                     {
                                         hatPos.Y += player.height + 8f;
                                     }
-                                    MonoxiderMinion.DrawHead(player, aQPlayer, hatPos, ignorePlayerRotation: true);
+                                    Projectiles.Summon.Monoxider.DrawHead(player, aQPlayer, hatPos, ignorePlayerRotation: true);
                                 }
                             }
                             count++;
@@ -110,12 +110,12 @@ namespace AQMod.Common.PlayerLayers
 
         private void DrawChomperChain(Player player, Projectile chomper, Vector2 drawPosition, Color drawColor)
         {
-            var chomperHead = (ChomperMinion)chomper.modProjectile;
+            var chomperHead = (Chomper)chomper.modProjectile;
             int frameWidth = 16;
             var frame = new Rectangle(0, 0, frameWidth - 2, 20);
             var origin = frame.Size() / 2f;
             float offset = (chomper.width / 2f) + (frame.Height / 2f);
-            var texture = TextureCache.ChomperChain.GetValue();
+            var texture = ModContent.GetTexture(AQUtils.GetPath<Chomper>("_Chain"));
             Main.playerDrawData.Add(new DrawData(texture, new Vector2(drawPosition.X + (chomper.width / 2 * -chomper.spriteDirection), drawPosition.Y), frame, drawColor, 0f, origin, chomper.scale, chomper.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0)
             { ignorePlayerRotation = true });
             int height = frame.Height - 4;
@@ -181,7 +181,7 @@ namespace AQMod.Common.PlayerLayers
                 }
             }
             rand = new UnifiedRandom(chomper.whoAmI + 2 + player.name.GetHashCode());
-            texture = TextureCache.ChomperHeadLeaves.GetValue();
+            texture = ModContent.GetTexture(AQUtils.GetPath<Chomper>("_Leaves"));
             frame.Y -= 2;
             int numLeaves = rand.Next(4) + 3;
             float leafRotation = chomper.rotation;

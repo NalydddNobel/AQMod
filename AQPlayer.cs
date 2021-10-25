@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Buffs.SupportBuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.IO;
@@ -24,7 +23,6 @@ using AQMod.Items.Fishing.QuestFish;
 using AQMod.Items.Placeable;
 using AQMod.Items.Placeable.WallItems;
 using AQMod.Items.TagItems.Starbyte;
-using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
 using Microsoft.Xna.Framework;
@@ -536,7 +534,7 @@ namespace AQMod
             }
             if (!Main.gamePaused && Main.instance.IsActive)
                 ScreenShakeManager.Update();
-            CommonUtils.UpdateSky((AQMod.glimmerEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
+            AQUtils.UpdateSky((AQMod.glimmerEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
             //if (AQConfigClient.Instance.ScreenDistortShader)
             //    player.ManageSpecialBiomeVisuals(VisualsManager.DistortX, OmegaStarite.DistortShaderActive());
         }
@@ -710,7 +708,7 @@ namespace AQMod
         public override void PostUpdateBuffs()
         {
             monoxiderCarry = 0;
-            var monoxider = ModContent.ProjectileType<MonoxiderMinion>();
+            var monoxider = ModContent.ProjectileType<Projectiles.Summon.Monoxider>();
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile p = Main.projectile[i];
@@ -1247,6 +1245,7 @@ namespace AQMod
 
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
         {
+
             int i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Head"));
             if (i != -1)
             {
@@ -1412,30 +1411,6 @@ namespace AQMod
                 if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.HeadMinion[Main.projectile[i].type])
                     Main.projectile[i].Kill();
             }
-        }
-
-        public bool BuffSupportCheck()
-        {
-            bool returnValue = true;
-            byte buffCount = 0;
-            for (int i = 0; i < Player.MaxBuffs; i++)
-            {
-                if (player.buffTime[i] > 0 && player.buffType[i] > Main.maxBuffTypes)
-                {
-                    var modBuff = BuffLoader.GetBuff(i);
-                    if (modBuff is BuffSupportType b)
-                    {
-                        if (buffCount > 1)
-                        {
-                            player.DelBuff(i);
-                            returnValue = false;
-                            i--;
-                        }
-                        buffCount++;
-                    }
-                }
-            }
-            return returnValue;
         }
     }
 }

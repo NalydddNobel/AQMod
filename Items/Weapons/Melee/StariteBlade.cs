@@ -13,7 +13,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.StariteBlade, new Color(200, 200, 200, 0)), item.type);
+                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.StariteBlade, new Color(200, 200, 200, 0)), item.type);
         }
 
         public override void SetDefaults()

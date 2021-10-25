@@ -18,7 +18,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             Item.staff[item.type] = true;
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmask(GlowID.MagicWand, new Color(128, 128, 128, 0)), item.type);
+                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.MagicWand, new Color(128, 128, 128, 0)), item.type);
         }
 
         public override void SetDefaults()

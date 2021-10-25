@@ -310,11 +310,11 @@ namespace AQMod.Common.DeveloperTools
                 }
                 if (CrabSeason.crabSeasonTimer < 0)
                 {
-                    caller.Reply(CommonUtils.TimeText2(-CrabSeason.crabSeasonTimer) + " until crab season ends");
+                    caller.Reply(AQUtils.TimeText2(-CrabSeason.crabSeasonTimer) + " until crab season ends");
                 }
                 else
                 {
-                    caller.Reply(CommonUtils.TimeText2(CrabSeason.crabSeasonTimer) + " until crab season starts");
+                    caller.Reply(AQUtils.TimeText2(CrabSeason.crabSeasonTimer) + " until crab season starts");
                 }
                 break;
 

@@ -62,7 +62,7 @@ namespace AQMod.Projectiles.Monster
         private static Color getColor(float time)
         {
             var config = ModContent.GetInstance<AQConfigClient>();
-            return CommonUtils.colorLerps(pattern, time * 3f * config.EffectIntensity) * config.EffectIntensity;
+            return AQUtils.colorLerps(pattern, time * 3f * config.EffectIntensity) * config.EffectIntensity;
         }
 
 

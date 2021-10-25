@@ -1,4 +1,6 @@
 using AQMod.Assets;
+using AQMod.Assets.ArmorOverlays;
+using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.SceneLayers;
 using AQMod.Common;
 using AQMod.Common.Config;
