@@ -650,7 +650,7 @@ ItemTooltip.ATM=召唤一个用于存放物品的飞行保险箱\n将其放在�
 ItemTooltip.SpectralLens=切换敌人的掉落
 ItemTooltip.Globebulb=加快时间的流逝速度一小段时间
 # Buffs
-Common.BuffSupportive=(有益增益)
+Common.BuffSupportive=(团队共享类增益)
 BuffName.BlueFire=冥焰
 BuffDescription.BlueFire=冥焰灼烧着你的皮肤
 BuffName.Spoiled=溺爱
