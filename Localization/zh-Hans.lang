@@ -47,7 +47,7 @@ Common.Config_CosmicEnergyAlt=星宇能量(备用贴图)
 Common.Config_MarkerMapUIType=地图标记UI的类型(位置)
 # (Server Config)
 Common.Config_HarderOmegaStarite=总是困难版本的终末之星
-Common.Config_HarderOmegaStariteTooltip=与在微光事件中的强化版终末之星战斗, 即使此时并不处于微光事件\n但终末之星并不会在微光事件外掉落最终之剑
+Common.Config_HarderOmegaStariteTooltip=与微光事件中的强化版终末之星战斗, 即使此时并不处于微光事件\n但终末之星并不会在微光事件外掉落最终之剑
 Common.Config_ReduceSpawns=Boss战期间减少刷怪率(仅适用于Aequus Mod的Boss)
 Common.Config_EvilProgressionLock=锁定邪恶时期
 Common.Config_EvilProgressionLockTooltip=黑檀石、猩红石、暗影珠和猩红之心无法再被爆炸物摧毁
