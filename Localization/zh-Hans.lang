@@ -404,9 +404,8 @@ ItemName.Venus=维纳斯
 ItemName.StariteSpinner=星源涡
 # Other Melee
 ItemName.CrimsonHellSword=焚焰剑
-
-ItemName.HellsBoon=地狱之赐
 Tooltip.CrimsonHellSword=发射恶魔能量冲击波, 冲击波会追踪离你光标位置最近的敌人
+ItemName.HellsBoon=地狱之赐
 ItemName.Galactium=辰星坠
 ItemName.KryptonSword=氪制剑
 ItemName.StariteBlade=星源刃
