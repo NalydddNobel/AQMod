@@ -344,6 +344,8 @@ ItemName.UltrabrightGreenTorch=超亮绿火把
 ItemName.UltrabrightBlueTorch=超亮蓝火把
 # Walls
 ItemName.MoonlightWall=月光墙
+ItemTooltip.MoonlightWall=墙壁前的NPC会认为现在处于晚上
+ItemName.OceanRavineWall=海沟墙
 # World Interactors
 ItemName.GlimmeringStatue=烁光雕像
 # Other Placeables
@@ -446,6 +448,10 @@ ItemName.ATM=ATM
 ItemName.Globebulb=天体灯泡
 ItemName.SpectralLens=幽冥透镜
 ItemName.SpectreSoul=幽冥之魂
+ItemName.GoldPowder=黄金之尘
+ItemTooltip.GoldPowder=将小动物转化为金小动物
+ItemName.FertilePowder=丰饶之尘
+ItemTooltip.FertilePowder=强制物块进行生长
 #
 #
 ##################################################################################
@@ -589,8 +595,6 @@ ItemTooltip.XenonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-# Walls
-ItemTooltip.MoonlightWall=墙壁前的NPC会认为现在处于晚上
 # World Interactors
 ItemTooltip.GlimmeringStatue=在微光事件持续期间有很高几率吸引最终之剑至此
 # Other Placeables
