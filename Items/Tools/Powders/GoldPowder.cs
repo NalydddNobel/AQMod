@@ -20,7 +20,7 @@ namespace AQMod.Items.Tools.Powders
 			item.useAnimation = 15;
 			item.useTime = 15;
 			item.noMelee = true;
-			item.value = Item.sellPrice(silver: 1);
+			item.value = Item.buyPrice(gold: 15);
 			item.rare = ItemRarityID.Green;
         }
     }
