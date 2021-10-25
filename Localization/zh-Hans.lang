@@ -344,6 +344,8 @@ ItemName.UltrabrightGreenTorch=超亮绿火把
 ItemName.UltrabrightBlueTorch=超亮蓝火把
 # Walls
 ItemName.MoonlightWall=月光墙
+ItemTooltip.MoonlightWall=墙壁前的NPC会认为现在处于晚上
+ItemName.OceanRavineWall=海沟墙
 # World Interactors
 ItemName.GlimmeringStatue=烁光雕像
 # Other Placeables
@@ -589,8 +591,6 @@ ItemTooltip.XenonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-# Walls
-ItemTooltip.MoonlightWall=墙壁前的NPC会认为现在处于晚上
 # World Interactors
 ItemTooltip.GlimmeringStatue=在微光事件持续期间有很高几率吸引最终之剑至此
 # Other Placeables
