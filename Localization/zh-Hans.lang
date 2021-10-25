@@ -448,6 +448,10 @@ ItemName.ATM=ATM
 ItemName.Globebulb=天体灯泡
 ItemName.SpectralLens=幽冥透镜
 ItemName.SpectreSoul=幽冥之魂
+ItemName.GoldPowder=黄金之尘
+ItemTooltip.GoldPowder=将小动物转化为金小动物
+ItemName.FertilePowder=丰饶之尘
+ItemTooltip.FertilePowder=强制物块进行生长
 #
 #
 ##################################################################################
