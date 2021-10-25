@@ -9,13 +9,6 @@ namespace AQMod.Common
 {
     public class AQProjectile : GlobalProjectile
     {
-        public static class TagID
-        {
-            public const byte None = 0;
-            public const byte HamaYumi = 1;
-            public const byte Deltoid = 2;
-        }
-
         public static class Sets
         {
             public static bool[] UntaggableProjectile { get; private set; }
@@ -30,8 +23,6 @@ namespace AQMod.Common
                 HeadMinion[ModContent.ProjectileType<Projectiles.Summon.Monoxider>()] = true;
             }
         }
-
-        public byte projectileTag;
 
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
@@ -62,18 +53,6 @@ namespace AQMod.Common
                 }
             }
             return true;
-        }
-
-        public override void AI(Projectile projectile)
-        {
-            switch (projectileTag)
-            {
-                case TagID.HamaYumi:
-                {
-
-                }
-                break;
-            }
         }
 
         public override void Kill(Projectile projectile, int timeLeft)
@@ -146,14 +125,6 @@ namespace AQMod.Common
                     }
                 }
             }
-            switch (projectileTag)
-            {
-                case TagID.HamaYumi:
-                {
-
-                }
-                break;
-            }
         }
 
         /// <summary>
@@ -172,6 +143,11 @@ namespace AQMod.Common
                 }
             }
             return count;
+        }
+
+        public static void ShortswordAI(Projectile projectile, float distanceFromPlayer)
+        {
+
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,33 +6,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee.Flails
+namespace AQMod.Projectiles.Melee
 {
-    public class JerryClawFlail : ModItem
-    {
-        public override void SetDefaults()
-        {
-            item.damage = 32;
-            item.melee = true;
-            item.useTime = 30;
-            item.useAnimation = 30;
-            item.width = 30;
-            item.height = 30;
-            item.noMelee = true;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = ItemRarityID.Blue;
-            item.shoot = ModContent.ProjectileType<JerryClawFlailProjectile>();
-            item.shootSpeed = 13.5f;
-            item.UseSound = SoundID.Item1;
-            item.value = AQItem.CrabsonWeaponValue;
-            item.noMelee = true;
-            item.noUseGraphic = true;
-            item.channel = true;
-            item.knockBack = 6f;
-        }
-    }
-
-    public class JerryClawFlailProjectile : ModProjectile
+    public class JerryClawFlail : ModProjectile
     {
         public override void SetDefaults()
         {
@@ -155,7 +129,7 @@ namespace AQMod.Items.Weapons.Melee.Flails
             int height = chain.Height - 2;
             var velo = Vector2.Normalize(center + new Vector2(0f, height * 4f) - playerCenter) * height;
             var position = playerCenter;
-            Vector2 origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
+            var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
             for (int i = 0; i < 50; i++)
             {
                 Main.spriteBatch.Draw(chain, position - Main.screenPosition, null, Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0f);

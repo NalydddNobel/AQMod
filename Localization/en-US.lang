@@ -396,9 +396,14 @@ ItemName.FizzlingFire=Fizzling Fire
 # Tomes
 ItemName.PentalScythe=Pental Scythe
 # Melee
-# Flails
 ItemName.JerryClawFlail=Jerry Claw
 ItemName.PowPunch=Pow Punch
+ItemTooltip.PowPunch=Throws two fists which repeatedly bash enemies
+ProjectileName.PowPunch=Pow Punch
+ProjectileName.PowPunchExplosion=Pow Punch
+ItemName.CrystalDagger=Crystal Dagger
+ItemTooltip.CrystalDagger=Quickly jabs enemies
+ProjectileName.CrystalDagger=Crystal Dagger
 # Spears
 ItemName.ArgonSpear=Argon Spear
 ItemName.HorizonSkies=Horizon Skies
@@ -622,7 +627,6 @@ ItemTooltip.PentalScythe=Shoots firey demon scythes that target your enemies
 # Melee
 # Flails
 ItemTooltip.JerryClawFlail='Feels oily'
-ItemTooltip.PowPunch=Throws two fists which repeatedly bash enemies
 # Spears
 ItemTooltip.ArgonSpear=Redirects itself to your cursor
 ItemTooltip.HorizonSkies=Shoots lines of energy\n'Are you readyayayayayyayayayaya'

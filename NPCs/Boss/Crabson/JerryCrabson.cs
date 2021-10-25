@@ -10,7 +10,6 @@ using AQMod.Items.TreasureBags;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
-using AQMod.Items.Weapons.Melee.Flails;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;

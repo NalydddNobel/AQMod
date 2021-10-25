@@ -14,7 +14,6 @@ using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Vanities.Pets;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
-using AQMod.Items.Weapons.Melee.Flails;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Items.Weapons.Ranged.Bullet;
 using AQMod.Items.Weapons.Summon;

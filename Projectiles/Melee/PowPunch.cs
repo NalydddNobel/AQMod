@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
+﻿using AQMod.Common;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,47 +7,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee.Flails
+namespace AQMod.Projectiles.Melee
 {
-    public class PowPunch : ModItem
-    {
-        public override void SetDefaults()
-        {
-            item.damage = 24;
-            item.melee = true;
-            item.useTime = 30;
-            item.useAnimation = 30;
-            item.width = 30;
-            item.height = 30;
-            item.noMelee = true;
-            item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = ItemRarityID.Green;
-            item.shoot = ModContent.ProjectileType<PowPunchProjectile>();
-            item.shootSpeed = 16f;
-            item.UseSound = SoundID.Item1;
-            item.value = AQItem.DemonSiegeWeaponValue;
-            item.noMelee = true;
-            item.noUseGraphic = true;
-            item.channel = true;
-            item.knockBack = 8f;
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            return player.ownedProjectileCounts[item.shoot] <= 0;
-        }
-
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            int p = Projectile.NewProjectile(position, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI, 0f, 1f);
-            Main.projectile[p].Center = PowPunchProjectile.PowRestingPosition(Main.projectile[p], player);
-            p = Projectile.NewProjectile(position, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI, 0f, -1f);
-            Main.projectile[p].Center = PowPunchProjectile.PowRestingPosition(Main.projectile[p], player);
-            return false;
-        }
-    }
-
-    public class PowPunchProjectile : ModProjectile
+    public class PowPunch : ModProjectile
     {
         public static Vector2 PowRestingPosition(Projectile projectile, Player player)
         {
@@ -115,20 +76,16 @@ namespace AQMod.Items.Weapons.Melee.Flails
             }
             Vector2 difference = player.MountedCenter - projectile.Center;
             float length = difference.Length();
-            bool holding = player.channel || player.HeldItem.type == ModContent.ItemType<PowPunch>();
+            bool holding = player.channel || player.HeldItem.type == ModContent.ItemType<Items.Weapons.Melee.PowPunch>();
             projectile.timeLeft = 2;
             if ((int)projectile.ai[0] == 0)
             {
                 player.itemAnimation = 10;
                 player.itemTime = 10;
                 if (projectile.localAI[0] > 0f)
-                {
                     projectile.localAI[0]--;
-                }
                 if ((int)projectile.localAI[0] == 0)
-                {
                     updateDirToPlayer(player);
-                }
                 int target = AQNPC.FindClosest(projectile.position, 200f / player.meleeSpeed);
                 float maxLength = 260f;
                 if (target != -1)
@@ -148,7 +105,7 @@ namespace AQMod.Items.Weapons.Melee.Flails
                     projectile.netUpdate = true;
                 }
                 projectile.velocity.Y += 0.5f;
-                if (length > maxLength || (projectile.velocity.Length() < 15f && target == -1))
+                if (length > maxLength || projectile.velocity.Length() < 15f && target == -1)
                 {
                     projectile.ai[0] = 1f;
                     projectile.netUpdate = true;
@@ -172,7 +129,7 @@ namespace AQMod.Items.Weapons.Melee.Flails
                     projectile.direction = player.direction;
                     projectile.spriteDirection = player.direction;
                     var gotoPosition = PowRestingPosition(projectile, player);
-                    projectile.rotation = Utils.AngleLerp(projectile.rotation, 0f, 0.025f);
+                    projectile.rotation = projectile.rotation.AngleLerp(0f, 0.025f);
                     difference = gotoPosition - projectile.Center;
                     length = difference.Length();
                     bool gotoPlayer = true;
@@ -303,9 +260,7 @@ namespace AQMod.Items.Weapons.Melee.Flails
                 var position = playerCenter + velocity * j;
                 var color = Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f));
                 if (j < 6)
-                {
-                    color *= (1f / 6f) * j;
-                }
+                    color *= 1f / 6f * j;
                 Main.spriteBatch.Draw(chainTexture, position - Main.screenPosition, null, color, rotation + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0f);
             }
 
@@ -322,27 +277,19 @@ namespace AQMod.Items.Weapons.Melee.Flails
                     float p = power - 4f;
                     int afterImages = 1 + (int)p;
                     if (afterImages > ProjectileID.Sets.TrailCacheLength[projectile.type])
-                    {
                         afterImages = ProjectileID.Sets.TrailCacheLength[projectile.type];
-                    }
                     p *= 10f;
                     byte minLight = (byte)(int)p;
                     if (lightColor.R < minLight)
-                    {
                         lightColor.R = minLight;
-                    }
                     if (lightColor.G < minLight)
-                    {
                         lightColor.G = minLight;
-                    }
                     if (lightColor.B < minLight)
-                    {
                         lightColor.B = minLight;
-                    }
                     var afterImageColor = new Color(lightColor.R / 255f * 2, lightColor.G / 255f * 1.5f, lightColor.B / 255f * 0.5f, 0.05f);
                     for (int i = 0; i < afterImages; i++)
                     {
-                        float progress = 1f - (1f / afterImages * i);
+                        float progress = 1f - 1f / afterImages * i;
                         Main.spriteBatch.Draw(texture, projectile.oldPos[i] + offset - Main.screenPosition, null, afterImageColor * (progress + 0.1f), rotation, origin, Math.Min(projectile.scale * progress + 0.1f, projectile.scale), effects, 0f);
                     }
                     Main.spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition, null, lightColor, projectile.rotation, origin, projectile.scale, effects, 0f);
@@ -351,37 +298,8 @@ namespace AQMod.Items.Weapons.Melee.Flails
                 }
             }
             if (draw)
-            {
                 Main.spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition, null, lightColor, projectile.rotation, origin, 1f, effects, 0f);
-            }
             return false;
-        }
-    }
-
-    public class PowPunchExplosion : ModProjectile
-    {
-        public override string Texture => "AQMod/" + TextureCache.None;
-
-        public override void SetDefaults()
-        {
-            projectile.width = 60;
-            projectile.height = 60;
-            projectile.timeLeft = 12;
-            projectile.friendly = true;
-            projectile.melee = true;
-            projectile.aiStyle = -1;
-            projectile.ignoreWater = true;
-            projectile.penetrate = -1;
-            projectile.tileCollide = false;
-        }
-
-        public override void AI()
-        {
-            if (projectile.ai[0] > 0)
-            {
-                projectile.friendly = false;
-            }
-            projectile.ai[0]++;
         }
     }
 }

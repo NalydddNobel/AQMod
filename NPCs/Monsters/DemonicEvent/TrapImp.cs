@@ -3,7 +3,7 @@ using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities.CursorDyes;
-using AQMod.Items.Weapons.Melee.Flails;
+using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

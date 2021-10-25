@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Items.Weapons.Magic;
-using AQMod.Items.Weapons.Melee.Flails;
+using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Tiles;
 using Terraria.ID;

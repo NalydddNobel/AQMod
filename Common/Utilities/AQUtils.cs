@@ -50,7 +50,7 @@ namespace AQMod.Common.Utilities
 
         public static Texture2D GetTexture(this Type t)
         {
-            return ModContent.GetTexture(t.GetPath());
+            return ModContent.GetTexture(GetPath(t));
         }
 
         public static void UseImageSize(this MiscShaderData data, Vector2 imageSize)
