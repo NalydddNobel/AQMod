@@ -3,17 +3,10 @@ using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
 using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.Tools.GrapplingHooks;
-using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Flails;
 using AQMod.NPCs.Boss.Crabson;
-using AQMod.NPCs.Boss.Starite;
 using AQMod.NPCs.Monsters.DemonicEvent;
-using AQMod.Projectiles.Summon.ChomperMinion;
-using AQMod.Tiles;
-using log4net;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -33,24 +26,10 @@ namespace AQMod.Assets
         public static TEA<PlayerHeadOverlayID> PlayerHeadOverlays { get; private set; }
         public static TEA<ParticleTextureID> Particles { get; private set; }
 
-        public static TextureAsset PowPunchChain { get; private set; }
-        public static TextureAsset TrapperImpTail { get; private set; }
-        public static TextureAsset TrapperImpWings { get; private set; }
-        public static TextureAsset TrapperImpGlow { get; private set; }
-        public static TextureAsset TrapperChain { get; private set; }
-        public static TextureAsset BGStarite { get; private set; }
-        public static TextureAsset EnchantGlimmer { get; private set; }
-        public static TextureAsset OmegaStariteOrb { get; private set; }
-        public static TextureAsset UltimateSwordBlur { get; private set; }
-        public static TextureAsset UltimateSwordBlurTransparent { get; private set; }
-        public static TextureAsset UltimateSwordHighlight { get; private set; }
-        public static TextureAsset ATMPetHighlight { get; private set; }
         public static TextureAsset ArachnotronRibcageBodyGlow { get; private set; }
         public static TextureAsset ArachnotronVisorHeadGlow { get; private set; }
-        public static TextureAsset TorchesFlames { get; private set; }
         public static TextureAsset JerryClawChain { get; private set; }
         public static TextureAsset JerryClawFlailProjectileChain { get; private set; }
-        public static TextureAsset CelesteTorusOrb { get; private set; }
         public static TextureAsset StriderHookHookChain { get; private set; }
 
         public static Ref<Texture2D> Pixel { get; private set; }
@@ -64,6 +43,7 @@ namespace AQMod.Assets
         public static Ref<Texture2D> MapBGGlimmer { get; private set; }
         public static Ref<Texture2D> MapIconGlobe { get; private set; }
         public static Ref<Texture2D> BuffOutline { get; private set; }
+        public static Ref<Texture2D> BGStarite { get; private set; }
 
         internal static void Load()
         {
@@ -76,21 +56,8 @@ namespace AQMod.Assets
             PlayerHeadOverlays = new TEA<PlayerHeadOverlayID>(PlayerHeadOverlayID.Count, "AQMod/Assets/Textures", "HeadOverlay");
             Particles = new TEA<ParticleTextureID>(ParticleTextureID.Count, "AQMod/Assets/Textures/Particles", "Particle");
 
-            PowPunchChain = TextureAsset.FromT<PowPunchProjectile>("_Chain");
-            TrapperImpTail = TextureAsset.FromT<TrapImp>("_Tail");
-            TrapperImpWings = TextureAsset.FromT<TrapImp>("_Wings");
-            TrapperImpGlow = TextureAsset.FromT<TrapImp>("_Glow");
-            TrapperChain = TextureAsset.FromT<Trapper>("_Chain");
-            BGStarite = new TextureAsset("AQMod/Assets/Textures/BGStarite");
-            EnchantGlimmer = new TextureAsset("AQMod/Assets/Textures/EnchantGlimmer");
-            OmegaStariteOrb = TextureAsset.FromT<OmegaStarite>("_Orb");
-            UltimateSwordHighlight = TextureAsset.FromT<UltimateSword>("_Highlight");
-            UltimateSwordBlur = TextureAsset.FromT<UltimateSword>("_Blur");
-            UltimateSwordBlurTransparent = TextureAsset.FromT<UltimateSword>("_BlurTransparent");
-            ATMPetHighlight = TextureAsset.FromT<Projectiles.Pets.ATM>("_Highlight");
             ArachnotronRibcageBodyGlow = TextureAsset.FromT<ArachnotronRibcage>("_BodyGlow");
             ArachnotronVisorHeadGlow = TextureAsset.FromT<ArachnotronVisor>("_HeadGlow");
-            TorchesFlames = TextureAsset.FromT<Torches>("_Flames");
             JerryClawChain = TextureAsset.FromT<JerryClaw>("_Chain");
             JerryClawFlailProjectileChain = TextureAsset.FromT<JerryClawFlailProjectile>("_Chain");
             StriderHookHookChain = TextureAsset.FromT<StriderHookHook>("_Chain");
@@ -106,28 +73,7 @@ namespace AQMod.Assets
             MapBGGlimmer = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/MapBGGlimmer"));
             MapIconGlobe = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/MapIconGlobe"));
             BuffOutline = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/BuffOutline"));
-
-            //textureloadtest(AQMod.Instance.Logger);
-        }
-
-        private static void textureloadtest(ILog logger)
-        {
-            logger.Debug("writing properties");
-            var t = typeof(TextureCache);
-            var p = t.GetProperties(BindingFlags.Public | BindingFlags.Static);
-            foreach (var property in p)
-            {
-                logger.Debug(property.Name);
-                if (property.PropertyType == typeof(TextureAsset))
-                {
-                    var textureAsset = (TextureAsset)property.GetValue(null);
-                    textureAsset.GetValue();
-                    if (!textureAsset.LoadedProperly())
-                    {
-                        throw new Exception("Texture: " + property.Name + ", did not load properly. " + textureAsset.Path());
-                    }
-                }
-            }
+            BGStarite = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/BGStarite"));
         }
 
         internal static void Unload()
@@ -142,19 +88,9 @@ namespace AQMod.Assets
             DemonSiegeEventIcon = null;
             Pixel = null;
 
-            TrapperChain = null;
-            TrapperImpGlow = null;
-            TrapperImpWings = null;
-            TrapperImpTail = null;
-            PowPunchChain = null;
             BGStarite = null;
-            EnchantGlimmer = null;
-            OmegaStariteOrb = null;
-            UltimateSwordHighlight = null;
-            ATMPetHighlight = null;
             ArachnotronRibcageBodyGlow = null;
             ArachnotronVisorHeadGlow = null;
-            TorchesFlames = null;
             JerryClawChain = null;
             JerryClawFlailProjectileChain = null;
             StriderHookHookChain = null;

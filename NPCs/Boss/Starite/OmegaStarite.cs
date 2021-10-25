@@ -1395,7 +1395,7 @@ namespace AQMod.NPCs.Boss.Starite
                 ScreenShakeManager.ChannelEffect("OmegaStariteDeathScreenShake", new OmegaStariteScreenShake((int)(range * 0.8f), 0.01f, Math.Max(6 - (int)(range * 0.8), 1)));
             }
             sortedOmegites.Sort((o, o2) => -(o.position.Z + o.drawOffset.Z).CompareTo(o2.position.Z + o2.drawOffset.Z));
-            var omegiteTexture = TextureCache.OmegaStariteOrb.GetValue();
+            var omegiteTexture = ModContent.GetTexture(this.GetPath("_Orb"));
             var omegiteFrame = new Rectangle(0, 0, omegiteTexture.Width, omegiteTexture.Height);
             var omegiteOrigin = omegiteFrame.Size() / 2f;
             float xOff = (float)(Math.Sin(Main.GlobalTime * 3f) + 1f);

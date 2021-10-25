@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
@@ -8,16 +7,16 @@ namespace AQMod.Effects.ShaderData
 {
     public class CustomTextureArmorShaderData : ArmorShaderData
     {
-        private readonly TextureAsset _texture;
+        private readonly Ref<Texture2D> _texture;
 
-        public CustomTextureArmorShaderData(Ref<Effect> shader, string passName, TextureAsset texture) : base(shader, passName)
+        public CustomTextureArmorShaderData(Ref<Effect> shader, string passName, Ref<Texture2D> texture) : base(shader, passName)
         {
             _texture = texture;
         }
 
         protected override void Apply()
         {
-            var t = _texture.GetValue();
+            var t = _texture.Value;
             Main.graphics.GraphicsDevice.Textures[1] = t;
             Shader.Parameters["uImageSize1"].SetValue(new Vector2(t.Width, t.Height));
             base.Apply();

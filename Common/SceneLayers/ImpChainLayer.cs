@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.SceneLayers;
+using AQMod.Common.Utilities;
 using AQMod.NPCs.Monsters.DemonicEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +20,7 @@ namespace AQMod.Common.SceneLayers
                 {
                     if (Main.npc[i].type == trapImpType)
                     {
-                        var chainTexture = TextureCache.TrapperChain.GetValue();
+                        var chainTexture = ModContent.GetTexture(AQUtils.GetPath<Trapper>("_Chain"));
                         int npcOwner = (int)Main.npc[i].ai[1] - 1;
                         int height = chainTexture.Height - 2;
                         var npcCenter = Main.npc[i].Center;

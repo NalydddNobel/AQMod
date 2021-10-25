@@ -47,7 +47,7 @@ namespace AQMod.Projectiles.Pets
             var plr = Main.LocalPlayer;
             if (projectile.getRect().Contains(Main.MouseWorld.ToPoint()) && plr.IsInTileInteractionRange((int)pos.X / 16, (int)pos.Y / 16))
             {
-                var outlineTexture = TextureCache.ATMPetHighlight.GetValue();
+                var outlineTexture = ModContent.GetTexture(this.GetPath("_Highlight"));
                 plr.noThrow = 2;
                 plr.showItemIcon = true;
                 plr.showItemIcon2 = ModContent.ItemType<Items.Tools.ATM>();

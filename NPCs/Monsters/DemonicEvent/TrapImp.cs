@@ -101,7 +101,7 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
 
         private void DrawTail(Vector2 drawPosition, Vector2 screenPos, Color drawColor)
         {
-            var tailTexture = TextureCache.TrapperImpTail.GetValue();
+            var tailTexture = ModContent.GetTexture(this.GetPath("_Tail"));
             int frameTime = (int)(Main.GlobalTime * 15f);
             int animation = frameTime % (TAIL_FRAME_COUNT * 2);
             int frame;
@@ -123,7 +123,7 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
 
         private void DrawWings(Vector2 drawPosition, Vector2 screenPos, Color drawColor)
         {
-            var wingsTexture = TextureCache.TrapperImpWings.GetValue();
+            var wingsTexture = ModContent.GetTexture(this.GetPath("_Wings"));
             var wingFrame = new Rectangle(0, 0, wingsTexture.Width / 2 - 2, wingsTexture.Height);
             var wingOrig = new Vector2(wingFrame.Width, 4f);
             float wingRotation = npc.rotation + (float)Math.Sin(Main.GlobalTime * 25f) * 0.314f;
@@ -134,7 +134,7 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
 
         private void DrawEyes(Vector2 drawPosition, Vector2 screenPos, Vector2 orig)
         {
-            var glowTexture = TextureCache.TrapperImpGlow.GetValue();
+            var glowTexture = ModContent.GetTexture(this.GetPath("_Glow"));
             Main.spriteBatch.Draw(glowTexture, drawPosition - screenPos, npc.frame, new Color(200, 200, 200, 0), npc.rotation, orig, npc.scale, SpriteEffects.None, 0f);
         }
 

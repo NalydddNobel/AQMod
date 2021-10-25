@@ -290,7 +290,7 @@ namespace AQMod.Items.Weapons.Melee.Flails
             Player player = Main.player[projectile.owner];
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             var playerCenter = player.MountedCenter;
-            var chainTexture = TextureCache.PowPunchChain.GetValue();
+            var chainTexture = ModContent.GetTexture(this.GetPath("_Chain"));
             int height = chainTexture.Height - 2;
             var velocity = projectile.position + offset - playerCenter;
             int length = (int)(velocity.Length() / height);

@@ -61,7 +61,7 @@ namespace AQMod.Common.SceneLayers
                     plr.noThrow = 2;
                     plr.showItemIcon = true;
                     plr.showItemIcon2 = ModContent.ItemType<UltimateSword>();
-                    var highlightTexture = TextureCache.UltimateSwordHighlight.GetValue();
+                    var highlightTexture = ModContent.GetTexture(AQUtils.GetPath<UltimateSword>("_Highlight"));
                     Main.spriteBatch.Draw(highlightTexture, drawPos - Main.screenPosition, frame, new Color(255, 255, 255, 255), MathHelper.PiOver4 * 3f, origin, 1f, SpriteEffects.None, 0f);
                     if (Main.mouseRight && Main.mouseRightRelease)
                     {

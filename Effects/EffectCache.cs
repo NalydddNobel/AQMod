@@ -141,7 +141,7 @@ namespace AQMod.Effects
             if (client.ScrollShader)
             {
                 GameShaders.Armor.BindShader(ModContent.ItemType<ScrollDye>(), new ArmorShaderData(new Ref<Effect>(Scroll), "ScrollPass"));
-                GameShaders.Armor.BindShader(ModContent.ItemType<EnchantedDye>(), new CustomTextureArmorShaderData(new Ref<Effect>(Scroll), "ImageScrollPass", TextureCache.EnchantGlimmer));
+                GameShaders.Armor.BindShader(ModContent.ItemType<EnchantedDye>(), new CustomTextureArmorShaderData(new Ref<Effect>(Scroll), "ImageScrollPass", new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/EnchantGlimmer"))));
                 GameShaders.Armor.BindShader(ModContent.ItemType<HellBeamDye>(), new LightSourceAsThirdColorVariableArmorShaderData(new Ref<Effect>(Scroll), "ShieldBeamsPass", new Vector3(0.3f, 0.2f, 0f))
                     .UseColor(new Vector3(1f, 0.8f, 0.1f)).UseSecondaryColor(1.8f, 0.8f, 0.6f));
             }

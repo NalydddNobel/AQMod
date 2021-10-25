@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Items.Placeable.TorchItems;
 using Microsoft.Xna.Framework;
@@ -295,7 +296,7 @@ namespace AQMod.Tiles
                     {
                         float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f * intensityMult;
                         float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f * intensityMult;
-                        Main.spriteBatch.Draw(TextureCache.TorchesFlames.GetValue(), new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                        Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Flames")), new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
                     }
                 }
                 break;
