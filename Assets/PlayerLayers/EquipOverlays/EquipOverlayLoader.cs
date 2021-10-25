@@ -1,41 +1,40 @@
-﻿using AQMod.Common.PlayerLayers.ArmorOverlays;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Assets.ArmorOverlays
+namespace AQMod.Assets.PlayerLayers.EquipOverlays
 {
-    public class ArmorOverlayLoader
+    public class EquipOverlayLoader
     {
-        private readonly Dictionary<string, ArmorOverlay>[] _overlays;
+        private readonly Dictionary<string, EquipOverlay>[] _overlays;
 
-        public ArmorOverlayLoader()
+        public EquipOverlayLoader()
         {
-            _overlays = new Dictionary<string, ArmorOverlay>[(byte)ArmorOverlayType.Count];
+            _overlays = new Dictionary<string, EquipOverlay>[(byte)EquipLayering.Count];
             for (int i = 0; i < _overlays.Length; i++)
             {
-                _overlays[i] = new Dictionary<string, ArmorOverlay>();
+                _overlays[i] = new Dictionary<string, EquipOverlay>();
             }
         }
 
-        public void AddOverlay(ArmorOverlay overlay, ArmorOverlayType type, string name)
+        public void AddOverlay(EquipOverlay overlay, EquipLayering type, string name)
         {
             _overlays[(byte)type].Add(name, overlay);
         }
 
-        public void AddOverlay<T>(ArmorOverlay overlay, ArmorOverlayType type) where T : ModItem
+        public void AddOverlay<T>(EquipOverlay overlay, EquipLayering type) where T : ModItem
         {
             _overlays[(byte)type].Add(typeof(T).Name, overlay);
         }
 
-        public void AddHeadOverlay<T>(ArmorHeadOverlay overlay) where T : ModItem
+        public void AddHeadOverlay<T>(EquipHeadOverlay overlay) where T : ModItem
         {
-            _overlays[(byte)ArmorOverlayType.Head].Add(typeof(T).Name, overlay);
+            _overlays[(byte)EquipLayering.Head].Add(typeof(T).Name, overlay);
         }
 
-        public void AddBodyOverlay<T>(ArmorBodyOverlay overlay) where T : ModItem
+        public void AddBodyOverlay<T>(EquipBodyOverlay overlay) where T : ModItem
         {
-            _overlays[(byte)ArmorOverlayType.Body].Add(typeof(T).Name, overlay);
+            _overlays[(byte)EquipLayering.Body].Add(typeof(T).Name, overlay);
         }
 
         /// <summary>
@@ -43,36 +42,36 @@ namespace AQMod.Assets.ArmorOverlays
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static EquipType ArmorOverlayToEquipType(ArmorOverlayType type)
+        public static EquipType ArmorOverlayToEquipType(EquipLayering type)
         {
             switch (type)
             {
-                case ArmorOverlayType.Head:
+                case EquipLayering.Head:
                 return EquipType.Head;
-                case ArmorOverlayType.Body:
+                case EquipLayering.Body:
                 return EquipType.Body;
-                case ArmorOverlayType.Legs:
+                case EquipLayering.Legs:
                 return EquipType.Legs;
             }
             return (EquipType)(-1);
         }
 
-        public void InvokeArmorOverlay(ArmorOverlayType type, PlayerDrawInfo info)
+        public void InvokeArmorOverlay(EquipLayering type, PlayerDrawInfo info)
         {
             int slot = -1;
             switch (type)
             {
-                case ArmorOverlayType.Head:
+                case EquipLayering.Head:
                 slot = info.drawPlayer.head;
                 if (slot < Main.numArmorHead)
                     return;
                 break;
-                case ArmorOverlayType.Body:
+                case EquipLayering.Body:
                 slot = info.drawPlayer.body;
                 if (slot < Main.numArmorBody)
                     return;
                 break;
-                case ArmorOverlayType.Legs:
+                case EquipLayering.Legs:
                 slot = info.drawPlayer.legs;
                 if (slot < Main.numArmorLegs)
                     return;
@@ -98,7 +97,7 @@ namespace AQMod.Assets.ArmorOverlays
         /// <param name="type"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public ArmorOverlay GetOverlay(ArmorOverlayType type, string name)
+        public EquipOverlay GetOverlay(EquipLayering type, string name)
         {
             var d = _overlays[(byte)type];
             if (d.ContainsKey(name))

@@ -1,16 +1,15 @@
-﻿using AQMod.Assets;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using AQMod.Items.Armor.Arachnotron;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.PlayerLayers.ArmorOverlays
+namespace AQMod.Assets.PlayerLayers.EquipOverlays
 {
-    public class ArachnotronVisorOverlay : ArmorHeadOverlay
+    public class ArachnotronVisorOverlay : EquipHeadOverlay
     {
-        public ArachnotronVisorOverlay() : base(new TextureAsset(AQUtils.GetPath<ArachnotronVisor>() + "_HeadGlow"))
+        public ArachnotronVisorOverlay() : base(ModContent.GetTexture(AQUtils.GetPath<ArachnotronVisor>("_HeadGlow")))
         {
         }
 
@@ -26,7 +25,7 @@ namespace AQMod.Common.PlayerLayers.ArmorOverlays
                 }
                 GetBasicPlayerDrawInfo(info, out Vector2 headPosition, out float opacity);
                 var clr = new Color(250, 250, 250, 0);
-                var texture = Texture.GetValue();
+                var texture = Asset.Value;
                 Main.playerDrawData.Add(new DrawData(texture, headPosition, info.drawPlayer.bodyFrame, clr, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = info.headArmorShader });
             }
         }

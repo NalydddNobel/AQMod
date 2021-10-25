@@ -1,5 +1,5 @@
-﻿using AQMod.Common.ItemOverlays;
-using AQMod.Common.PlayerLayers.ArmorOverlays;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Assets.PlayerLayers.EquipOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
@@ -16,7 +16,7 @@ namespace AQMod.Items.Armor.Arachnotron
         {
             if (!Main.dedServ)
             {
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow"), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(AQUtils.GetPath(this) + "_Glow"), item.type);
                 AQMod.ArmorOverlays.AddHeadOverlay<ArachnotronVisor>(new ArachnotronVisorOverlay());
             }
         }

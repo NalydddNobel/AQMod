@@ -98,7 +98,7 @@ namespace AQMod.Projectiles.Magic
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new Trailshader(TextureCache.Trails[TrailTextureID.ThickLine], Trailshader.TextureTrail);
+                    var trail = new Trailshader(TextureCache.Trails[TrailType.ThickLine], Trailshader.TextureTrail);
                     var clr2 = NarrizuulRainbow(projectile.localAI[1]);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20f - p * 20f), (p) => clr2 * 0.65f * (1f - p));
                     trail.Draw();

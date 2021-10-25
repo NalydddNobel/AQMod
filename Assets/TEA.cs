@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria.ModLoader;
 
 namespace AQMod.Assets
 {
+    [Obsolete("Replace with Texture2D dictionaries")]
     /// <summary>
     /// Texture Enum Array
     /// </summary>

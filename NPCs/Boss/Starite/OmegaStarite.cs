@@ -1495,7 +1495,7 @@ namespace AQMod.NPCs.Boss.Starite
                     {
                         const float radius = CIRCUMFERENCE / 2f;
                         var trailClr = AQMod.glimmerEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                        var trail = new Trailshader(TextureCache.Trails[TrailTextureID.Line], Trailshader.TextureTrail);
+                        var trail = new Trailshader(TextureCache.Trails[TrailType.Line], Trailshader.TextureTrail);
                         trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
                         trail.Draw();
                     }

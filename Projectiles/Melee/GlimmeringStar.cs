@@ -122,7 +122,7 @@ namespace AQMod.Projectiles.Melee
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new Trailshader(TextureCache.Trails[TrailTextureID.Line], Trailshader.TextureTrail);
+                    var trail = new Trailshader(TextureCache.Trails[TrailType.Line], Trailshader.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity), (p) => color(projectile.timeLeft - p) * 0.5f * (1f - p));
                     trail.Draw();
                 }

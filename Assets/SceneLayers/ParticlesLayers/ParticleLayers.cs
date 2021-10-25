@@ -1,8 +1,7 @@
-﻿using AQMod.Assets.SceneLayers;
-using AQMod.Content.Particles;
+﻿using AQMod.Content.Particles;
 using System.Collections.Generic;
 
-namespace AQMod.Common.SceneLayers
+namespace AQMod.Assets.SceneLayers.ParticlesLayers
 {
     public static class ParticleLayers
     {
@@ -29,32 +28,6 @@ namespace AQMod.Common.SceneLayers
             {
                 particles[i].Draw();
             }
-        }
-    }
-
-    public class ParticleLayer_PostDrawPlayers : SceneLayer
-    {
-        private static List<Particle> _particles;
-
-        public ParticleLayer_PostDrawPlayers()
-        {
-            _particles = new List<Particle>();
-        }
-
-        public static void AddParticle(Particle particle)
-        {
-            particle.OnAdd();
-            _particles.Add(particle);
-        }
-
-        public override void Update()
-        {
-            ParticleLayers.UpdateParticles(_particles);
-        }
-
-        protected override void Draw()
-        {
-            ParticleLayers.DrawParticles(_particles);
         }
     }
 }

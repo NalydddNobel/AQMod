@@ -1,4 +1,4 @@
-﻿using AQMod.Common.Recipes;
+﻿using AQMod.Common.CustomRecipes;
 using AQMod.Common.Utilities;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;

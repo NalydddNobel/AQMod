@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.ArmorOverlays;
+using AQMod.Assets.PlayerLayers.EquipOverlays;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
@@ -22,7 +22,7 @@ namespace AQMod.Common.PlayerLayers
             const float MagicOffsetForReversedGravity = 8f;
             int headFrame = info.drawPlayer.bodyFrame.Y / AQPlayer.FRAME_HEIGHT;
             float gravityOffset = 0f;
-            AQMod.ArmorOverlays.InvokeArmorOverlay(ArmorOverlayType.Head, info);
+            AQMod.ArmorOverlays.InvokeArmorOverlay(EquipLayering.Head, info);
             if (info.drawPlayer.gravDir == -1)
                 gravityOffset = MagicOffsetForReversedGravity;
             if (aQPlayer.mask >= 0)

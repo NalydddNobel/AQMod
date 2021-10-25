@@ -1,4 +1,4 @@
-﻿namespace AQMod.Common.IO
+﻿namespace AQMod.Common
 {
     public static class AQStringCodes
     {

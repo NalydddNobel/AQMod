@@ -125,7 +125,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new Trailshader(TextureCache.Trails[TrailTextureID.Line], Trailshader.TextureTrail);
+                    var trail = new Trailshader(TextureCache.Trails[TrailType.Line], Trailshader.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(8f - p * 8f), (p) => lightColor * (1f - p));
                     trail.Draw();
                 }

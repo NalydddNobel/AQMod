@@ -17,6 +17,7 @@ namespace AQMod.Projectiles.Summon
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.TrailingMode[projectile.type] = 2;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
+            ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
             ProjectileID.Sets.Homing[projectile.type] = true;
         }

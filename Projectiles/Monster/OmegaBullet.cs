@@ -66,7 +66,7 @@ namespace AQMod.Projectiles.Monster
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader.FullDraw(TextureCache.Trails[TrailTextureID.Line], Trailshader.TextureTrail,
+                    Trailshader.FullDraw(TextureCache.Trails[TrailType.Line], Trailshader.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }

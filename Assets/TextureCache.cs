@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
+using AQMod.Effects;
 using AQMod.Items.Armor.Arachnotron;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -17,7 +18,7 @@ namespace AQMod.Assets
         public static TEA<CursorType> DemonCursors { get; private set; }
         public static TEA<ArachnotronLegsTextureType> ArachnotronArms { get; private set; }
         public static TEA<LightID> Lights { get; private set; }
-        public static TEA<TrailTextureID> Trails { get; private set; }
+        public static TEA<TrailType> Trails { get; private set; }
         public static TEA<PlayerMaskID> PlayerMasks { get; private set; }
         public static TEA<PlayerHeadOverlayID> PlayerHeadOverlays { get; private set; }
         public static TEA<ParticleTextureID> Particles { get; private set; }
@@ -41,7 +42,7 @@ namespace AQMod.Assets
             DemonCursors = new TEA<CursorType>(CursorType.Count, "AQMod/Assets/Textures", "DemonCursor");
             ArachnotronArms = new TEA<ArachnotronLegsTextureType>(ArachnotronLegsTextureType.Count, "AQMod/Items/Armor/Arachnotron", "ArachnotronLeg");
             Lights = new TEA<LightID>(LightID.Count, "AQMod/Assets/Textures/Lights", "Light");
-            Trails = new TEA<TrailTextureID>(TrailTextureID.Count, "AQMod/Assets/Textures", "Trail");
+            Trails = new TEA<TrailType>(TrailType.Count, "AQMod/Assets/Textures", "Trail");
             PlayerMasks = new TEA<PlayerMaskID>(PlayerMaskID.Count, "AQMod/Assets/Textures", "PlayerMask");
             PlayerHeadOverlays = new TEA<PlayerHeadOverlayID>(PlayerHeadOverlayID.Count, "AQMod/Assets/Textures", "HeadOverlay");
             Particles = new TEA<ParticleTextureID>(ParticleTextureID.Count, "AQMod/Assets/Textures/Particles", "Particle");

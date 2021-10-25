@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.Recipes
+namespace AQMod.Common.CustomRecipes
 {
     public class MolitePotionRecipe : ModRecipe
     {

@@ -1,9 +1,8 @@
 ﻿using AQMod.Assets;
+using AQMod.Assets.SceneLayers.ParticlesLayers;
 using AQMod.Common;
 using AQMod.Common.Config;
-using AQMod.Common.IO;
 using AQMod.Common.NetCode;
-using AQMod.Common.SceneLayers;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Content;

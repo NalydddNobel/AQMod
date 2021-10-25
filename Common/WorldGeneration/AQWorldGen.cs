@@ -378,8 +378,10 @@ namespace AQMod.Common.WorldGeneration
             return !Framing.GetTileSafely(x, y).active() && Main.tile[x, y].liquid > 0 && Framing.GetTileSafely(x, y + 1).active() && Main.tileSand[Main.tile[x, y + 1].type];
         }
 
-        public static void PlaceOceanRavine(int x, int y, int torchStyle = -1, int tileType = TileID.Sandstone, int tileType2 = TileID.HardenedSand, int wallType = WallID.Sandstone)
+        public static void PlaceOceanRavine(int x, int y, int torchStyle = -1, int tileType = TileID.Sandstone, int tileType2 = TileID.HardenedSand, int wallType = 0)
         {
+            if (wallType == 0)
+                wallType = ModContent.WallType<Walls.OceanRavineWall>();
             int height = WorldGen.genRand.Next(40, 120);
             int digDir = x < Main.maxTilesX / 2 ? 1 : -1;
             int[] xAdds = new int[height];

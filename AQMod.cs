@@ -1,7 +1,8 @@
 using AQMod.Assets;
-using AQMod.Assets.ArmorOverlays;
 using AQMod.Assets.ItemOverlays;
+using AQMod.Assets.PlayerLayers.EquipOverlays;
 using AQMod.Assets.SceneLayers;
+using AQMod.Assets.SceneLayers.ParticlesLayers;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.NetCode;
@@ -158,7 +159,7 @@ namespace AQMod
         /// <summary>
         /// The active instance of Armor Overlays, this is not initialized on the server
         /// </summary>
-        public static ArmorOverlayLoader ArmorOverlays { get; private set; }
+        public static EquipOverlayLoader ArmorOverlays { get; private set; }
         /// <summary>
         /// The active list of World Effects, this is not initialized on the server
         /// </summary>
@@ -215,7 +216,7 @@ namespace AQMod
                 var client = AQConfigClient.Instance;
                 ApplyClientConfig(client);
                 ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
-                ArmorOverlays = new ArmorOverlayLoader();
+                ArmorOverlays = new EquipOverlayLoader();
                 TextureCache.Load();
                 CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
                 GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
