@@ -80,7 +80,7 @@ namespace AQMod.Projectiles
                         }
                         if (AQWorldGen.ActiveAndFullySolid(i, j))
                         {
-                            int d = Dust.NewDust(pos, 16, 16, ModContent.DustType<MonoDust>(), 0f, 0f, 254, new Color(220 + (int)(Main.DiscoR / 255f * 30f), 220 + (int)(Main.DiscoG / 255f * 30f), 220 + (int)(Main.DiscoB / 255f * 30f), 255), 0.5f);
+                            int d = Dust.NewDust(pos, 16, 16, ModContent.DustType<MonoDust>(), 0f, 0f, 254, new Color(220 + (int)(Main.DiscoR / 255f * 30f), 220 + (int)(Main.DiscoG / 255f * 30f), 220 + (int)(Main.DiscoB / 255f * 30f), 255), 1.65f);
                             Main.dust[d].velocity *= 0f;
                         }
                         AQWorldGen.RandomUpdateTile_Spreading(i, j, maxValue: -1);
