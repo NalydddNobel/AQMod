@@ -238,15 +238,6 @@ ItemName.Baguette=Baguette
 ItemName.NeutronJuice=Neutron Juice
 ItemName.SuspiciousLookingSteak=Suspicious Looking Steak
 ItemName.SpicyEel=Spicy Eel
-# Staffs
-ItemName.BatonofNightVision=Baton of Night Vision
-ItemName.BatonofRage=Baton of Rage
-ItemName.BatonofWrath=Baton of Wrath
-ItemName.StaffofNightVision=Night Owl Totem
-ItemName.StaffofIronskin=Cane of Ironskin
-ItemName.StaffofRegeneration=Cane of Regeneration
-ItemName.StaffofSwiftness=Cane of Swiftness
-ItemName.StaffofWaterBreathing=Cane of Water Breathing
 # Other Buffs Items
 ItemName.MysteryGrail=Mystery Grail
 ItemName.OpposingPotion=Opposing Potion
@@ -414,7 +405,8 @@ ItemName.Aphrodite=Aphrodite
 ItemName.Venus=Venus
 ItemName.StariteSpinner=Starite Spinner
 # Other Melee
-ItemName.CrimsonHellSword=Burnterizer 
+ItemName.CrimsonHellSword=Burnterizer
+ItemTooltip.CrimsonHellSword=Shoots a wave of demonic energy
 ItemName.HellsBoon=Hell's Boon
 ItemName.Galactium=Galactium
 ItemName.KryptonSword=Krypton Sword
@@ -514,15 +506,6 @@ ItemTooltip.Baguette='Cake is just spongy bread'
 ItemTooltip.NeutronJuice='Weighs millions of tons... still lighter than putting a safe in a safe'
 ItemTooltip.SuspiciousLookingSteak=Gives multiple buffs\n'Unfunny'
 ItemTooltip.SpicyEel=Greatly increases speed
-# Staffs
-ItemTooltip.BatonofNightVision=Provides night vision for yourself and nearby players
-ItemTooltip.BatonofRage=Enrages yourself and nearby players
-ItemTooltip.BatonofWrath=Ignites the wrath in yourself and nearby players
-ItemTooltip.StaffofIronskin=Provides ironskin for yourself and nearby players
-ItemTooltip.StaffofNightVision=Provides night vision for yourself and nearby players
-ItemTooltip.StaffofRegeneration=Provides life regeneration for yourself and nearby players
-ItemTooltip.StaffofSwiftness=Provides swiftness for yourself and nearby 
-ItemTooltip.StaffofWaterBreathing=Provides gills for yourself and nearby players
 # Other Buffs Items
 ItemTooltip.MysteryGrail=Gives you a random buff
 ItemTooltip.OpposingPotion=Makes some enemies drop opposing loot
@@ -643,7 +626,6 @@ ItemTooltip.HorizonSkies=Shoots lines of energy\n'Are you readyayayayayyayayayay
 ItemTooltip.Aphrodite=Has a chance to give enemies lovestruck
 ItemTooltip.Venus=Has a chance to poison enemies
 # Other Melee
-ItemTooltip.CrimsonHellSword=Shoots a wave of demonic energy that homes to the enemy closest to your cursor
 ItemTooltip.HellsBoon=Creates ash spikes around your cursor which protrude out of nearby tiles
 ItemTooltip.Galactium=Rains glimmer stars from the sky
 ItemTooltip.XenonBasher=Hitting enemies will create xenon spores
@@ -670,13 +652,6 @@ ItemTooltip.SpectralLens=Toggles energy drops
 ItemTooltip.Globebulb=Speeds up time for a moment
 # Buffs
 Common.BuffSupportive=(Supportive)
-BuffName.NightOwlSupport={$BuffName.NightOwl} {$Mods.AQMod.Common.BuffSupportive}
-BuffDescription.NightOwlSupport={$BuffDescription.NightOwl}\nNearby allies gain the Night Owl buff
-BuffName.IronskinSupport={$BuffName.Ironskin} {$Mods.AQMod.Common.BuffSupportive}
-BuffDescription.IronskinSupport={$BuffDescription.Ironskin}\nNearby allies gain the Ironskin buff
-BuffName.SwiftnessSupport={$BuffName.Swiftness} {$Mods.AQMod.Common.BuffSupportive}
-BuffDescription.SwiftnessSupport={$BuffDescription.Swiftness}\nNearby allies gain the Ironskin buff
-#
 BuffName.BlueFire=Blue Fire
 BuffDescription.BlueFire=The immense heat burns off your skin
 BuffName.Spoiled=Spoiled
