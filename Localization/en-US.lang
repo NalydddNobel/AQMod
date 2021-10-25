@@ -344,6 +344,8 @@ ItemName.UltrabrightGreenTorch=Ultrabright Green Torch
 ItemName.UltrabrightBlueTorch=Ultrabright Blue Torch
 # Walls
 ItemName.MoonlightWall=Moonlight Wall
+ItemTooltip.MoonlightWall=NPCs in front of the wall will think it's night
+ItemName.OceanRavineWall=Ocean Ravine Wall
 # World Interactors
 ItemName.GlimmeringStatue=Glimmering Statue
 # Other Placeables
@@ -589,8 +591,6 @@ ItemTooltip.XenonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-# Walls
-ItemTooltip.MoonlightWall=NPCs in front of the wall will think it's night
 # World Interactors
 ItemTooltip.GlimmeringStatue=Has a very high chance to attract the Ultimate Sword during the Glimmer Event
 # Other Placeables

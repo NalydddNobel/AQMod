@@ -13,7 +13,7 @@ namespace AQMod.Walls
     {
         public static Color GetColor(float value = 0f)
         {
-            return new Color(128, 128, 128, 10) * ((float)Math.Sin((Main.GlobalTime + value * 0.35f) * 2f) * 0.2f + 0.8f);
+            return AQUtils.LerpColors(new Color[] { new Color(53, 163, 255, 0), new Color(0, 16, 102, 0), new Color(8, 165, 137, 0) }, value * 0.157f + Main.GlobalTime);
         }
 
         public override void SetDefaults()
@@ -35,8 +35,7 @@ namespace AQMod.Walls
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            var texture = DrawUtils.LegacyTextureCache.Glows[GlowID.MoonlightWallWall];
-            DrawMethods.DrawWall(i, j, texture, GetColor(i + j));
+            DrawMethods.DrawWall(i, j, ModContent.GetTexture(this.GetPath("_Glow")), GetColor(i + j));
         }
     }
 }
