@@ -64,7 +64,7 @@ namespace AQMod.NPCs.Boss.Crabson
                     Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood);
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    var chain = TextureCache.JerryClawChain.GetValue();
+                    var chain = ModContent.GetTexture(AQUtils.GetPath<JerryClaw>("_Chain"));
                     int height = chain.Height - 2;
                     var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
                     var endPosition = Main.npc[(int)npc.localAI[0]].Center;

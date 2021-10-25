@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Utilities;
+using AQMod.Items.Armor.Arachnotron;
 using AQMod.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -29,7 +30,7 @@ namespace AQMod.Common.PlayerLayers
                             var headOff = new Vector2((-info.drawPlayer.bodyFrame.Width / 2) + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 10f) + info.drawPlayer.headPosition + info.headOrigin;
                             var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
                             var drawDiff = info.position - info.drawPlayer.position;
-                            var texture = TextureCache.ArachnotronVisorHeadGlow.GetValue();
+                            var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronVisor>("_HeadGlow"));
                             int count = aQPlayer.GetOldPosCountMaxed(AQPlayer.ARACHNOTRON_OLD_POS_LENGTH);
                             var clrMult = 1f / count;
                             for (int i = 0; i < count; i++)
@@ -45,7 +46,7 @@ namespace AQMod.Common.PlayerLayers
                         var bodyOff = new Vector2((-info.drawPlayer.bodyFrame.Width / 2) + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 4f) + info.drawPlayer.bodyPosition + new Vector2(info.drawPlayer.bodyFrame.Width / 2, info.drawPlayer.bodyFrame.Height / 2);
                         var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
                         var drawDiff = info.position - info.drawPlayer.position;
-                        var texture = TextureCache.ArachnotronRibcageBodyGlow.GetValue();
+                        var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronRibcage>("_BodyGlow"));
                         int count = aQPlayer.GetOldPosCountMaxed(AQPlayer.ARACHNOTRON_OLD_POS_LENGTH);
                         if (info.shadow == 0f)
                         {

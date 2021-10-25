@@ -112,9 +112,8 @@ namespace AQMod.Common.Utilities
             }
         }
 
-        public static void DrawJerryChain(Vector2 currentPosition, Vector2 endPosition)
+        public static void DrawJerryChain(Texture2D chain, Vector2 currentPosition, Vector2 endPosition)
         {
-            var chain = TextureCache.JerryClawChain.GetValue();
             int height = chain.Height - 2;
             var velo = Vector2.Normalize(endPosition + new Vector2(0f, height * 4f) - currentPosition) * height;
             var position = currentPosition;

@@ -12,6 +12,7 @@ namespace AQMod.Common.SceneLayers
         protected override void Draw()
         {
             int crabsonType = ModContent.NPCType<JerryCrabson>();
+            var chain = ModContent.GetTexture(AQUtils.GetPath<JerryClaw>("_Chain"));
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active)
@@ -19,8 +20,8 @@ namespace AQMod.Common.SceneLayers
                     if (Main.npc[i].type == crabsonType)
                     {
                         var crabsonPosition = Main.npc[i].Center;
-                        DrawMethods.DrawJerryChain(new Vector2(crabsonPosition.X - 24f, crabsonPosition.Y), Main.npc[(int)Main.npc[i].localAI[0]].Center);
-                        DrawMethods.DrawJerryChain(new Vector2(crabsonPosition.X + 24f, crabsonPosition.Y), Main.npc[(int)Main.npc[i].localAI[1]].Center);
+                        DrawMethods.DrawJerryChain(chain, new Vector2(crabsonPosition.X - 24f, crabsonPosition.Y), Main.npc[(int)Main.npc[i].localAI[0]].Center);
+                        DrawMethods.DrawJerryChain(chain, new Vector2(crabsonPosition.X + 24f, crabsonPosition.Y), Main.npc[(int)Main.npc[i].localAI[1]].Center);
                     }
                 }
             }

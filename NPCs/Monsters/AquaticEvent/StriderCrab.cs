@@ -325,7 +325,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
             var legTip = drawPosition + new Vector2(_frames[1].Height - 24f, 0f).RotatedBy(rotation + MathHelper.PiOver2);
             if ((legTip - kneePos).Length() > 8f)
             {
-                var chainTexture = TextureCache.StriderHookHookChain.GetValue();
+                var chainTexture = ModContent.GetTexture(AQUtils.GetPath<StriderHookHook>("_Chain"));
                 DrawMethods.DrawChain_UseLighting(chainTexture, kneePos, legTip, screenPos);
             }
             Main.spriteBatch.Draw(texture, drawPosition - screenPos, _frames[1], Lighting.GetColor((int)drawPosition.X / 16, (int)drawPosition.Y / 16), npc.rotation + rotation, new Vector2(orig.X, 6f), npc.scale, effects, 0f);

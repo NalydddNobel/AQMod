@@ -2,10 +2,6 @@
 using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.Tools.GrapplingHooks;
-using AQMod.Items.Weapons.Melee.Flails;
-using AQMod.NPCs.Boss.Crabson;
-using AQMod.NPCs.Monsters.DemonicEvent;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
@@ -25,12 +21,6 @@ namespace AQMod.Assets
         public static TEA<PlayerMaskID> PlayerMasks { get; private set; }
         public static TEA<PlayerHeadOverlayID> PlayerHeadOverlays { get; private set; }
         public static TEA<ParticleTextureID> Particles { get; private set; }
-
-        public static TextureAsset ArachnotronRibcageBodyGlow { get; private set; }
-        public static TextureAsset ArachnotronVisorHeadGlow { get; private set; }
-        public static TextureAsset JerryClawChain { get; private set; }
-        public static TextureAsset JerryClawFlailProjectileChain { get; private set; }
-        public static TextureAsset StriderHookHookChain { get; private set; }
 
         public static Ref<Texture2D> Pixel { get; private set; }
         public static Ref<Texture2D> DemonSiegeEventIcon { get; private set; }
@@ -56,12 +46,6 @@ namespace AQMod.Assets
             PlayerHeadOverlays = new TEA<PlayerHeadOverlayID>(PlayerHeadOverlayID.Count, "AQMod/Assets/Textures", "HeadOverlay");
             Particles = new TEA<ParticleTextureID>(ParticleTextureID.Count, "AQMod/Assets/Textures/Particles", "Particle");
 
-            ArachnotronRibcageBodyGlow = TextureAsset.FromT<ArachnotronRibcage>("_BodyGlow");
-            ArachnotronVisorHeadGlow = TextureAsset.FromT<ArachnotronVisor>("_HeadGlow");
-            JerryClawChain = TextureAsset.FromT<JerryClaw>("_Chain");
-            JerryClawFlailProjectileChain = TextureAsset.FromT<JerryClawFlailProjectile>("_Chain");
-            StriderHookHookChain = TextureAsset.FromT<StriderHookHook>("_Chain");
-
             Pixel = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/Pixel"));
             DemonSiegeEventIcon = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/EventIcon_DemonSiege"));
             GlimmerEventEventIcon = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/EventIcon_GlimmerEvent"));
@@ -78,6 +62,7 @@ namespace AQMod.Assets
 
         internal static void Unload()
         {
+            BGStarite = null;
             MapBGGlimmer = null;
             MapIconDungeons = null;
             MapIconEnemyBlip = null;
@@ -87,13 +72,6 @@ namespace AQMod.Assets
             GlimmerEventEventIcon = null;
             DemonSiegeEventIcon = null;
             Pixel = null;
-
-            BGStarite = null;
-            ArachnotronRibcageBodyGlow = null;
-            ArachnotronVisorHeadGlow = null;
-            JerryClawChain = null;
-            JerryClawFlailProjectileChain = null;
-            StriderHookHookChain = null;
 
             PlayerHeadOverlays = null;
             PlayerMasks = null;
