@@ -615,29 +615,31 @@ namespace AQMod.Common.Utilities
         public static void DrawUIBox(int width, int height, Vector2 topLeft, Color color)
         {
             var orig = new Vector2(0f, 0f);
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top left
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top right
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom left
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, height), new Rectangle(24, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom right
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(0f, UI_SIZE), new Rectangle(0, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f); // top left -> bottom left
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, UI_SIZE), new Rectangle(24, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f); // top right -> bottom right
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, 0f), new Rectangle(16, 0, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f); // top left -> top right
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, height), new Rectangle(16, 24, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f); // bottom left -> bottom right
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, UI_SIZE), new Rectangle(16, 16, 2, 2), color, 0f, orig, new Vector2((width - 10f) / 2f, (height - 10f) / 2f), SpriteEffects.None, 0f); // filling
+            var uiTexture = ModContent.GetTexture("AQMod/Assets/Textures/UI");
+            Main.spriteBatch.Draw(uiTexture, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top left
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top right
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom left
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, height), new Rectangle(24, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom right
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(0f, UI_SIZE), new Rectangle(0, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f); // top left -> bottom left
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, UI_SIZE), new Rectangle(24, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f); // top right -> bottom right
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(UI_SIZE, 0f), new Rectangle(16, 0, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f); // top left -> top right
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(UI_SIZE, height), new Rectangle(16, 24, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f); // bottom left -> bottom right
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(UI_SIZE, UI_SIZE), new Rectangle(16, 16, 2, 2), color, 0f, orig, new Vector2((width - 10f) / 2f, (height - 10f) / 2f), SpriteEffects.None, 0f); // filling
         }
 
         public static void DrawUIBox_HightlightedTop(int width, int height, Vector2 topLeft, Color color)
         {
             var orig = new Vector2(0f, 0f);
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, height), new Rectangle(24, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(0f, UI_SIZE), new Rectangle(0, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(width, UI_SIZE), new Rectangle(24, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, 0f), new Rectangle(38, 0, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, height), new Rectangle(16, 24, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(DrawUtils.LegacyTextureCache.UI, topLeft + new Vector2(UI_SIZE, UI_SIZE), new Rectangle(16, 16, 2, 2), color, 0f, orig, new Vector2((width - 10f) / 2f, (height - 10f) / 2f), SpriteEffects.None, 0f);
+            var uiTexture = TextureCache.UITexture.Value;
+            Main.spriteBatch.Draw(uiTexture, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, height), new Rectangle(24, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(0f, UI_SIZE), new Rectangle(0, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, UI_SIZE), new Rectangle(24, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(UI_SIZE, 0f), new Rectangle(38, 0, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(UI_SIZE, height), new Rectangle(16, 24, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(UI_SIZE, UI_SIZE), new Rectangle(16, 16, 2, 2), color, 0f, orig, new Vector2((width - 10f) / 2f, (height - 10f) / 2f), SpriteEffects.None, 0f);
         }
 
         public static void UpdateFilter(bool active, string name, Vector2 position = default(Vector2), params object[] args)

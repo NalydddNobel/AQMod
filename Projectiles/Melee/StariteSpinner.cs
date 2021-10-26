@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Melee.Yoyos
+namespace AQMod.Projectiles.Melee
 {
     public class StariteSpinner : ModProjectile
     {
@@ -41,7 +41,7 @@ namespace AQMod.Projectiles.Melee.Yoyos
             Vector2 origin = texture.Size() / 2f;
             Vector2 drawPos = projectile.Center - Main.screenPosition;
             float mult = 1f / ProjectileID.Sets.TrailCacheLength[projectile.type];
-            Vector2 offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
+            var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
             {
                 Main.spriteBatch.Draw(texture, projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(80, 80, 80, 0) * (mult * (ProjectileID.Sets.TrailCacheLength[projectile.type] - i)), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);

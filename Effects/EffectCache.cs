@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common.Config;
+﻿using AQMod.Common.Config;
 using AQMod.Effects.ShaderData;
 using AQMod.Items.Vanities.Dyes;
 using log4net;
@@ -15,7 +14,7 @@ namespace AQMod.Effects
 {
     public class EffectCache
     {
-        public static EffectCache Instance;
+        public static EffectCache Instance { get; internal set; }
 
         public Effect Trailshader { get; private set; }
         public Effect Scroll { get; private set; }
@@ -26,12 +25,10 @@ namespace AQMod.Effects
         public Effect ColorDistort { get; private set; }
         public Effect Spotlight { get; private set; }
 
-        public EffectCache()
+        internal EffectCache(AQMod mod, AQConfigClient client, ILog logger, bool newInstance = true)
         {
-        }
-
-        public EffectCache(AQMod mod, AQConfigClient client, ILog logger)
-        {
+            if (newInstance)
+                Instance = this;
             Setup(mod, client, logger);
             BindDyes(mod, client, logger);
             AddFilters(mod, client, logger);

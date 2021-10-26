@@ -3,7 +3,7 @@ using AQMod.Items.Materials.Energies;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee.Yoyos
+namespace AQMod.Items.Weapons.Melee
 {
     public class StariteSpinner : ModItem
     {
@@ -31,7 +31,7 @@ namespace AQMod.Items.Weapons.Melee.Yoyos
             item.noMelee = true;
             item.noUseGraphic = true;
             item.shootSpeed = 10f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.Yoyos.StariteSpinner>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.StariteSpinner>();
         }
 
         public override void AddRecipes()

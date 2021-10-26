@@ -35,6 +35,7 @@ namespace AQMod.Assets
         public static Ref<Texture2D> MapIconGlobe { get; private set; }
         public static Ref<Texture2D> BuffOutline { get; private set; }
         public static Ref<Texture2D> BGStarite { get; private set; }
+        public static Ref<Texture2D> UITexture { get; private set; }
 
         internal static void Load()
         {
@@ -59,6 +60,7 @@ namespace AQMod.Assets
             MapIconGlobe = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/MapIconGlobe"));
             BuffOutline = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/BuffOutline"));
             BGStarite = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/BGStarite"));
+            UITexture = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/UI"));
         }
 
         internal static void Unload()

@@ -226,7 +226,7 @@ namespace AQMod
                 GlimmerEventSky.Initialize();
                 Trailshader.Setup();
                 DrawUtils.LegacyTextureCache.Setup();
-                EffectCache.Instance = new EffectCache(this, client, Logger);
+                EffectCache.Instance = new EffectCache(this, client, Logger, newInstance: true);
                 WorldLayers = new SceneLayersManager();
                 WorldLayers.Setup(loadHooks: true);
                 WorldLayers.AddLayer("GoreNest", new GoreNestLayer(test: false), SceneLayering.InfrontNPCs);

@@ -23,5 +23,14 @@ namespace AQMod.Items.Tools.Powders
 			item.value = Item.sellPrice(silver: 1);
 			item.rare = ItemRarityID.Green;
         }
+
+        public override void AddRecipes()
+        {
+			var r = new ModRecipe(mod);
+			r.AddIngredient(ItemID.Bone, 5);
+			r.AddTile(TileID.WorkBenches);
+			r.SetResult(this);
+			r.AddRecipe();
+        }
     }
 }
