@@ -1,6 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,10 +8,8 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles
 {
-    public class UltimateSwordItemProjectile : ModProjectile
+    public class UltimateSword : ModProjectile
     {
-        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
-
         public override void SetDefaults()
         {
             projectile.width = 0;
@@ -50,7 +46,7 @@ namespace AQMod.Projectiles
             var texture = Main.itemTexture[(int)projectile.ai[0]];
             var frame = new Rectangle(0, 0, texture.Width, texture.Height);
             spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, frame, lightColor, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(DrawUtils.LegacyTextureCache.Glows[GlowID.UltimateSword], projectile.Center - Main.screenPosition, frame, new Color(250, 250, 250, 0), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(AQUtils.GetTexture<Items.Weapons.Melee.UltimateSword>("_Glow"), projectile.Center - Main.screenPosition, frame, new Color(250, 250, 250, 0), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
 

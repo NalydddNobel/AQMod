@@ -2,6 +2,7 @@
 using AQMod.Common.Config;
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
+using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -66,11 +67,14 @@ namespace AQMod.Items.Materials.Energies
                 chance = 5;
             if (Main.rand.NextBool(chance))
             {
-                int d = Dust.NewDust(item.position, item.width, item.height, 173);
-                Main.dust[d].scale = Main.rand.NextFloat(0.7f, 1.5f);
+                var color = outline(Main.GlobalTime * 2f);
+                color.A = 0;
+                int d = Dust.NewDust(item.position, item.width, item.height, ModContent.DustType<EnergyPulse>(), 0f, 0f, 0, color);
+                Main.dust[d].alpha = Main.rand.Next(0, 35);
+                Main.dust[d].scale = Main.rand.NextFloat(0.95f, 1.15f);
                 if (Main.dust[d].scale > 1f)
                     Main.dust[d].noGravity = true;
-                Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(2f, 4f), 0f).RotatedBy((Main.dust[d].position - item.Center).ToRotation() + Main.rand.NextFloat(-0.1f, 0.1f));
+                Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(-0.15f, 0.15f), Main.rand.NextFloat(-4f, -2.5f));
             }
             Lighting.AddLight(item.position, new Vector3(0.6f, 0.1f, 0.65f));
         }
