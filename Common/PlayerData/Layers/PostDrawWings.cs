@@ -1,11 +1,10 @@
-﻿using AQMod.Assets;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.PlayerLayers
+namespace AQMod.Common.PlayerData.Layers
 {
-    public class PostDrawWings : PlayerLayerWrapper
+    public class PostDrawWings : TempPlayerLayerWrapper
     {
         public override void Draw(PlayerDrawInfo info)
         {

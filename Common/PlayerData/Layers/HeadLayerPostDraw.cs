@@ -6,13 +6,13 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.PlayerLayers
+namespace AQMod.Common.PlayerData.Layers
 {
-    public class PostDrawHeadHead : PlayerHeadLayerWrapper
+    public class HeadLayerPostDraw : TempPlayerHeadLayerWrapper
     {
         protected override void Draw(PlayerHeadDrawInfo info)
         {
-            Player player = info.drawPlayer;
+            var player = info.drawPlayer;
             AQPlayer aQPlayer = info.drawPlayer.GetModPlayer<AQPlayer>();
             var drawingPlayer = info.drawPlayer.GetModPlayer<AQPlayer>();
             if (drawingPlayer.mask >= 0)

@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Tiles
+namespace AQMod.Tiles.TileEntities
 {
     public class TEGlimmeringStatue : ModTileEntity
     {

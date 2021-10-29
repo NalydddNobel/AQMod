@@ -7,7 +7,7 @@ using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.GrapplingHooks;
-using AQMod.Items.Tools.Markers;
+using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Vanities;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Vanities.Dyes;

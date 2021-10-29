@@ -3,6 +3,8 @@ using AQMod.Assets.SceneLayers.ParticlesLayers;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.NetCode;
+using AQMod.Common.PlayerData;
+using AQMod.Common.PlayerData.Layers;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Content;
@@ -145,11 +147,8 @@ namespace AQMod
         public bool bossrushOld;
 
         public bool NetUpdateKillCount;
-        public byte[] BuffSupport { get; private set; }
         public int[] CurrentEncoreKillCount { get; private set; }
         public int[] EncoreBossKillCountRecord { get; private set; }
-        public byte ClosestEnemy { get; private set; }
-        public float ClosestEnemyDistance { get; private set; }
         public int PopperType { get; private set; }
         public int PopperBaitPower { get; private set; }
         public int FishingPowerCache { get; private set; }
@@ -392,7 +391,6 @@ namespace AQMod
             bossrushOld = false;
             CurrentEncoreKillCount = new int[NPCLoader.NPCCount];
             EncoreBossKillCountRecord = new int[NPCLoader.NPCCount];
-            BuffSupport = new byte[BuffLoader.BuffCount];
         }
 
         public override void OnEnterWorld(Player player)
@@ -603,7 +601,6 @@ namespace AQMod
             cataEyeColor = new Color(50, 155, 255, 0);
             heartMoth = false;
             notFrostburn = false;
-            BuffSupport = new byte[BuffLoader.BuffCount];
             if (bossrushOld != bossrush)
             {
                 if (bossrush)
@@ -805,21 +802,6 @@ namespace AQMod
             {
                 player.accRunSpeed *= 1.1f;
                 player.moveSpeed *= 1.1f;
-            }
-            var center = player.Center;
-            ClosestEnemy = byte.MaxValue;
-            ClosestEnemyDistance = float.MaxValue;
-            for (byte i = 0; i < Main.maxNPCs; i++)
-            {
-                if (Main.npc[i].IsntFriendly())
-                {
-                    float distance = (Main.npc[i].Center - center).Length();
-                    if (distance < ClosestEnemyDistance)
-                    {
-                        ClosestEnemyDistance = distance;
-                        ClosestEnemy = i;
-                    }
-                }
             }
         }
 
@@ -1244,40 +1226,39 @@ namespace AQMod
 
         public override void ModifyDrawLayers(List<PlayerLayer> layers)
         {
-
             int i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Head"));
             if (i != -1)
             {
-                PlayerDrawLayerInstances.postDrawHead.visible = true;
-                layers.Insert(i + 1, PlayerDrawLayerInstances.postDrawHead);
+                PlayerLayersCache.postDrawHead.visible = true;
+                layers.Insert(i + 1, PlayerLayersCache.postDrawHead);
             }
             i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Body"));
             if (i != -1)
             {
-                PlayerDrawLayerInstances.postDrawBody.visible = true;
-                layers.Insert(i + 1, PlayerDrawLayerInstances.postDrawBody);
+                PlayerLayersCache.postDrawBody.visible = true;
+                layers.Insert(i + 1, PlayerLayersCache.postDrawBody);
             }
             i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("HeldItem"));
             if (i != -1)
             {
-                PlayerDrawLayerInstances.postDrawHeldItem.visible = true;
-                layers.Insert(i + 1, PlayerDrawLayerInstances.postDrawHeldItem);
+                PlayerLayersCache.postDrawHeldItem.visible = true;
+                layers.Insert(i + 1, PlayerLayersCache.postDrawHeldItem);
             }
             i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Wings"));
             if (i != -1)
             {
-                PlayerDrawLayerInstances.postDrawWings.visible = true;
-                layers.Insert(i + 1, PlayerDrawLayerInstances.postDrawWings);
+                PlayerLayersCache.postDrawWings.visible = true;
+                layers.Insert(i + 1, PlayerLayersCache.postDrawWings);
             }
-            PlayerDrawLayerInstances.preDraw.visible = true;
-            layers.Insert(0, PlayerDrawLayerInstances.preDraw);
-            PlayerDrawLayerInstances.postDraw.visible = true;
-            layers.Add(PlayerDrawLayerInstances.postDraw);
+            PlayerLayersCache.preDraw.visible = true;
+            layers.Insert(0, PlayerLayersCache.preDraw);
+            PlayerLayersCache.postDraw.visible = true;
+            layers.Add(PlayerLayersCache.postDraw);
         }
 
         public override void ModifyDrawHeadLayers(List<PlayerHeadLayer> layers)
         {
-            layers.Add(PlayerDrawLayerInstances.postDrawHeadHead);
+            layers.Add(PlayerLayersCache.postDrawHeadHead);
         }
 
         public override void ModifyScreenPosition()

@@ -1,8 +1,8 @@
 ﻿using Terraria.ModLoader;
 
-namespace AQMod.Assets
+namespace AQMod.Common.PlayerData
 {
-    public abstract class PlayerHeadLayerWrapper
+    public abstract class TempPlayerHeadLayerWrapper
     {
         protected virtual string Mod => "AQMod";
         protected virtual string Name => GetType().Name;

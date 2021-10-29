@@ -1,5 +1,4 @@
 ﻿using AQMod.Items.Fishing.Bait;
-using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles;
 using Terraria;
 using Terraria.ID;

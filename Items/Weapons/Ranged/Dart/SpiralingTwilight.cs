@@ -42,11 +42,6 @@ namespace AQMod.Items.Weapons.Ranged.Dart
             return new Vector2(-6f, 2f);
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            AQItem.AddCommonTooltipLine(tooltips, AQItem.CommonTag_IchorDartShotgun);
-        }
-
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             if (type == ProjectileID.IchorDart)

@@ -1,10 +1,9 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.PlayerLayers.EquipOverlays;
+﻿using AQMod.Assets.PlayerLayers.EquipOverlays;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.PlayerLayers
+namespace AQMod.Common.PlayerData.Layers
 {
-    public class PostDrawBody : PlayerLayerWrapper
+    public class PostDrawBody : TempPlayerLayerWrapper
     {
         public override void Draw(PlayerDrawInfo info)
         {

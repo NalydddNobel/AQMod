@@ -1,7 +1,7 @@
 ﻿using AQMod.Common.Utilities;
 using AQMod.Items.Accessories;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Tools.Markers;
+using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Vanities;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Ranged.Bullet;

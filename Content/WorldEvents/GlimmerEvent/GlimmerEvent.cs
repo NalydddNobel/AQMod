@@ -3,7 +3,7 @@ using AQMod.Common.NetCode;
 using AQMod.Common.Utilities;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.CosmicEvent;
-using AQMod.Tiles;
+using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

@@ -12,7 +12,7 @@ using AQMod.Items.Dedicated;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools;
-using AQMod.Items.Tools.Markers;
+using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Localization;
 using AQMod.NPCs.Friendly.Town;

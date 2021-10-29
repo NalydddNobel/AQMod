@@ -9,9 +9,9 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.PlayerLayers
+namespace AQMod.Common.PlayerData.Layers
 {
-    public class PostDraw : PlayerLayerWrapper
+    public class PostDraw : TempPlayerLayerWrapper
     {
         public override void Draw(PlayerDrawInfo info)
         {
@@ -27,7 +27,7 @@ namespace AQMod.Common.PlayerLayers
                     {
                         if (info.shadow == 0f)
                         {
-                            var headOff = new Vector2((-info.drawPlayer.bodyFrame.Width / 2) + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 10f) + info.drawPlayer.headPosition + info.headOrigin;
+                            var headOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 10f) + info.drawPlayer.headPosition + info.headOrigin;
                             var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
                             var drawDiff = info.position - info.drawPlayer.position;
                             var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronVisor>("_HeadGlow"));
@@ -35,7 +35,7 @@ namespace AQMod.Common.PlayerLayers
                             var clrMult = 1f / count;
                             for (int i = 0; i < count; i++)
                             {
-                                float colorMult = 0.5f * (1f - ((float)Math.Sin((Main.GlobalTime * 8f) - (i * 0.314f)) * 0.2f));
+                                float colorMult = 0.5f * (1f - (float)Math.Sin(Main.GlobalTime * 8f - i * 0.314f) * 0.2f);
                                 var drawData = new DrawData(texture, new Vector2((int)(AQPlayer.oldPosVisual[i].X - Main.screenPosition.X), (int)(AQPlayer.oldPosVisual[i].Y - Main.screenPosition.Y)) + drawDiff + headOff, info.drawPlayer.bodyFrame, clr * (clrMult * (count - i)) * colorMult, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.headArmorShader };
                                 Main.playerDrawData.Add(drawData);
                             }
@@ -43,7 +43,7 @@ namespace AQMod.Common.PlayerLayers
                     }
                     if (AQPlayer.arachnotronBodyTrail)
                     {
-                        var bodyOff = new Vector2((-info.drawPlayer.bodyFrame.Width / 2) + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 4f) + info.drawPlayer.bodyPosition + new Vector2(info.drawPlayer.bodyFrame.Width / 2, info.drawPlayer.bodyFrame.Height / 2);
+                        var bodyOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 4f) + info.drawPlayer.bodyPosition + new Vector2(info.drawPlayer.bodyFrame.Width / 2, info.drawPlayer.bodyFrame.Height / 2);
                         var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
                         var drawDiff = info.position - info.drawPlayer.position;
                         var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronRibcage>("_BodyGlow"));
@@ -53,7 +53,7 @@ namespace AQMod.Common.PlayerLayers
                             var clrMult = 1f / count;
                             for (int i = 0; i < count; i++)
                             {
-                                float colorMult = 0.5f * (1f - ((float)Math.Sin((Main.GlobalTime * 8f) - (i * 0.314f)) * 0.2f));
+                                float colorMult = 0.5f * (1f - (float)Math.Sin(Main.GlobalTime * 8f - i * 0.314f) * 0.2f);
                                 var drawData = new DrawData(texture, new Vector2((int)(AQPlayer.oldPosVisual[i].X - Main.screenPosition.X), (int)(AQPlayer.oldPosVisual[i].Y - Main.screenPosition.Y)) + drawDiff + bodyOff, info.drawPlayer.bodyFrame, clr * (clrMult * (count - i)) * colorMult, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.bodyArmorShader };
                                 Main.playerDrawData.Add(drawData);
                             }

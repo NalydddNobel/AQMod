@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Accessories;
+﻿using AQMod.Content.Dusts;
+using AQMod.Items.Accessories;
 using AQMod.Items.BuffItems;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Fishing.Rods;
@@ -320,11 +321,31 @@ namespace AQMod.Common
             return new Vector2(item.position.X - Main.screenPosition.X + Main.itemTexture[item.type].Width / 2 + item.width / 2 - Main.itemTexture[item.type].Width / 2, item.position.Y - Main.screenPosition.Y + Main.itemTexture[item.type].Height / 2 + item.height - Main.itemTexture[item.type].Height + 2f);
         }
 
-        internal static void AddCommonTooltipLine(List<TooltipLine> tooltips, string name, Color? color = null)
+        internal static void energy_DoUpdate(Item Item, Color clr, Vector3 lightClr)
         {
-            const string a = "Common.";
-            const string b = AQText.Key + a;
-            tooltips.Add(new TooltipLine(ModContent.GetInstance<AQMod>(), name, Language.GetTextValue(b + name + "Tag")) { overrideColor = color });
+            int chance = 15;
+            if (Item.velocity.Length() > 1f)
+                chance = 5;
+            if (Main.rand.NextBool(chance))
+            {
+                clr.A = 0;
+                int d = Dust.NewDust(Item.position, Item.width, Item.height - 4, ModContent.DustType<EnergyPulse>(), 0f, 0f, 0, clr);
+                Main.dust[d].alpha = Main.rand.Next(0, 35);
+                Main.dust[d].scale = Main.rand.NextFloat(0.95f, 1.15f);
+                if (Main.dust[d].scale > 1f)
+                    Main.dust[d].noGravity = true;
+                Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(-0.15f, 0.15f), Main.rand.NextFloat(-3.5f, -1.75f));
+            }
+            Lighting.AddLight(Item.position, lightClr);
+        }
+
+        internal static void energy_SetDefaults(Item item, int rarity, int price)
+        {
+            item.width = 24;
+            item.height = 24;
+            item.rare = rarity;
+            item.value = price;
+            item.maxStack = 999;
         }
     }
 }

@@ -41,11 +41,7 @@ namespace AQMod.Items.Materials.Energies
 
         public override void SetDefaults()
         {
-            item.width = 30;
-            item.height = 30;
-            item.rare = ItemRarityID.Green;
-            item.value = AQItem.EnergySellValue;
-            item.maxStack = 999;
+            AQItem.energy_SetDefaults(item, ItemRarityID.LightRed, AQItem.EnergySellValue);
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -53,20 +49,11 @@ namespace AQMod.Items.Materials.Energies
             return new Color(255, 255, 255, 255);
         }
 
-        public override void PostUpdate()
+        public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            int chance = 15;
-            if (item.velocity.Length() > 1f)
-                chance = 5;
-            if (Main.rand.NextBool(chance))
-            {
-                int d = Dust.NewDust(item.position, item.width, item.height, 64);
-                Main.dust[d].scale = Main.rand.NextFloat(0.7f, 1.5f);
-                if (Main.dust[d].scale > 1f)
-                    Main.dust[d].noGravity = true;
-                Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(2f, 4f), 0f).RotatedBy((Main.dust[d].position - item.Center).ToRotation() + Main.rand.NextFloat(-0.1f, 0.1f));
-            }
-            Lighting.AddLight(item.position, new Vector3(0.6f, 0.1f, 0.65f));
+            var color = outline(Main.GlobalTime * 2f);
+            color.A = 0;
+            AQItem.energy_DoUpdate(item, color, new Vector3(0.6f, 0.1f, 0.65f));
         }
     }
 }

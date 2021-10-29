@@ -1,6 +1,7 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Items.Placeable;
-using AQMod.Items.Tools.Markers;
+using AQMod.Items.Tools.MapMarkers;
+using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -13,9 +14,9 @@ namespace AQMod.Tiles
 {
     public class Globe : ModTile
     {
-        internal static List<MapMarker> _registeredMarkers;
+        internal static List<MapMarkerItem> _registeredMarkers;
 
-        public static void RegisterMarker<T>() where T : MapMarker
+        public static void RegisterMarker<T>() where T : MapMarkerItem
         {
             if (AQMod.Loading)
             {
@@ -106,7 +107,7 @@ namespace AQMod.Tiles
                     return false;
                 }
                 TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
-                globe.discovered = false;
+                globe.Discovered = false;
                 return true;
             }
             return false;
@@ -125,7 +126,7 @@ namespace AQMod.Tiles
             name.SetDefault("{$Mods.AQMod.ItemName.GlobeItem}");
             AddMapEntry(new Color(180, 180, 180), name);
 
-            _registeredMarkers = new List<MapMarker>();
+            _registeredMarkers = new List<MapMarkerItem>();
             RegisterMarker<CosmicTelescope>();
             RegisterMarker<DungeonMap>();
             RegisterMarker<LihzahrdMap>();
@@ -209,11 +210,11 @@ namespace AQMod.Tiles
             }
             TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
             var item = getMarker(Main.LocalPlayer, globe);
-            if (item != null && !globe.AlreadyHasMarker((MapMarker)item.modItem))
+            if (item != null && !globe.AlreadyHasMarker((MapMarkerItem)item.modItem))
             {
                 Main.PlaySound(SoundID.Grab);
-                ((MapMarker)item.modItem).PreAddMarker(Main.LocalPlayer, globe);
-                globe.AddMarker((MapMarker)item.Clone().modItem);
+                ((MapMarkerItem)item.modItem).PreAddMarker(Main.LocalPlayer, globe);
+                globe.AddMarker((MapMarkerItem)item.Clone().modItem);
                 Main.LocalPlayer.ConsumeItem(item.type);
             }
             //else

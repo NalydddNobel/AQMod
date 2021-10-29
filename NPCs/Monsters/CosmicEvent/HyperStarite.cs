@@ -9,7 +9,7 @@ using AQMod.Items.Accessories.Shoes;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
-using AQMod.Items.Tools.Markers;
+using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Vanities.Dyes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

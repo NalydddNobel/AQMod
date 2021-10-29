@@ -1,12 +1,12 @@
-﻿using AQMod.Tiles;
+﻿using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Markers
+namespace AQMod.Items.Tools.MapMarkers
 {
-    public class DungeonMap : MapMarker
+    public class DungeonMap : MapMarkerItem
     {
         public override void SetDefaults()
         {
@@ -31,21 +31,7 @@ namespace AQMod.Items.Tools.Markers
 
         public override void GlobeEffects(Player player, TEGlobe globe)
         {
-            player.AddBuff(ModContent.BuffType<DungeonMarkerBuff>(), 20);
-        }
-    }
-
-    public class DungeonMarkerBuff : ModBuff
-    {
-        public override void SetDefaults()
-        {
-            Main.buffNoSave[Type] = true;
-            Main.buffNoTimeDisplay[Type] = true;
-        }
-
-        public override void Update(Player player, ref int buffIndex)
-        {
-            player.GetModPlayer<AQPlayer>().dungeonMap = true;
+            player.AddBuff(ModContent.BuffType<Buffs.MapMarkers.DungeonMarker>(), 20);
         }
     }
 }

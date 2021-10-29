@@ -10,7 +10,7 @@ using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
-using AQMod.Items.Tools.Markers;
+using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.TreasureBags;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Vanities.Pets;

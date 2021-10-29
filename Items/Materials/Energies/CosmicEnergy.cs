@@ -46,11 +46,7 @@ namespace AQMod.Items.Materials.Energies
 
         public override void SetDefaults()
         {
-            item.width = 30;
-            item.height = 30;
-            item.rare = ItemRarityID.Green;
-            item.value = AQItem.EnergySellValue;
-            item.maxStack = 999;
+            AQItem.energy_SetDefaults(item, ItemRarityID.Green, AQItem.EnergySellValue);
         }
 
         public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 255);
@@ -60,23 +56,11 @@ namespace AQMod.Items.Materials.Energies
             return false;
         }
 
-        public override void PostUpdate()
+        public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            int chance = 15;
-            if (item.velocity.Length() > 1f)
-                chance = 5;
-            if (Main.rand.NextBool(chance))
-            {
-                var color = outline(Main.GlobalTime * 2f);
-                color.A = 0;
-                int d = Dust.NewDust(item.position, item.width, item.height, ModContent.DustType<EnergyPulse>(), 0f, 0f, 0, color);
-                Main.dust[d].alpha = Main.rand.Next(0, 35);
-                Main.dust[d].scale = Main.rand.NextFloat(0.95f, 1.15f);
-                if (Main.dust[d].scale > 1f)
-                    Main.dust[d].noGravity = true;
-                Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(-0.15f, 0.15f), Main.rand.NextFloat(-4f, -2.5f));
-            }
-            Lighting.AddLight(item.position, new Vector3(0.6f, 0.1f, 0.65f));
+            var color = outline(Main.GlobalTime * 2f);
+            color.A = 0;
+            AQItem.energy_DoUpdate(item, color, new Vector3(0.6f, 0.1f, 0.65f));
         }
     }
 }

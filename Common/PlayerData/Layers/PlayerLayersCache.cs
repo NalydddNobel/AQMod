@@ -1,9 +1,8 @@
-﻿using AQMod.Common.PlayerLayers;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
-namespace AQMod.Assets
+namespace AQMod.Common.PlayerData.Layers
 {
-    public class PlayerDrawLayerInstances
+    public static class PlayerLayersCache
     {
         public static readonly PlayerLayer postDrawHead = new PostDrawHead().GetLayer();
         public static readonly PlayerLayer postDrawBody = new PostDrawBody().GetLayer();
@@ -12,6 +11,6 @@ namespace AQMod.Assets
         public static readonly PlayerLayer postDraw = new PostDraw().GetLayer();
         public static readonly PlayerLayer postDrawWings = new PostDrawWings().GetLayer();
 
-        public static readonly PlayerHeadLayer postDrawHeadHead = new PostDrawHeadHead().GetLayer();
+        public static readonly PlayerHeadLayer postDrawHeadHead = new HeadLayerPostDraw().GetLayer();
     }
 }

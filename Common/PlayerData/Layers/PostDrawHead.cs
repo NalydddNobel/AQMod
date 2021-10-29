@@ -10,9 +10,9 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.PlayerLayers
+namespace AQMod.Common.PlayerData.Layers
 {
-    public class PostDrawHead : PlayerLayerWrapper
+    public class PostDrawHead : TempPlayerLayerWrapper
     {
         public override void Draw(PlayerDrawInfo info)
         {
@@ -27,7 +27,7 @@ namespace AQMod.Common.PlayerLayers
                 gravityOffset = MagicOffsetForReversedGravity;
             if (aQPlayer.mask >= 0)
             {
-                Vector2 position = new Vector2((int)(info.position.X - Main.screenPosition.X - (info.drawPlayer.bodyFrame.Width / 2) + (info.drawPlayer.width / 2)), (int)(info.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + gravityOffset)) + info.drawPlayer.headPosition + info.headOrigin;
+                Vector2 position = new Vector2((int)(info.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + gravityOffset)) + info.drawPlayer.headPosition + info.headOrigin;
                 Color color = Lighting.GetColor((int)info.position.X / 16, (int)(info.position.Y + gravityOffset) / 16) * opacity;
                 switch ((PlayerMaskID)aQPlayer.mask)
                 {
@@ -74,7 +74,7 @@ namespace AQMod.Common.PlayerLayers
             }
             if (aQPlayer.headOverlay >= 0)
             {
-                Vector2 position = new Vector2((int)(info.position.X - Main.screenPosition.X - (info.drawPlayer.bodyFrame.Width / 2) + (info.drawPlayer.width / 2)), (int)(info.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + gravityOffset)) + info.drawPlayer.headPosition + info.headOrigin;
+                Vector2 position = new Vector2((int)(info.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + gravityOffset)) + info.drawPlayer.headPosition + info.headOrigin;
                 Color color = Lighting.GetColor((int)info.position.X / 16, (int)info.position.Y / 16) * opacity;
                 int shader = aQPlayer.cHeadOverlay;
                 switch ((PlayerHeadOverlayID)aQPlayer.headOverlay)
@@ -93,9 +93,7 @@ namespace AQMod.Common.PlayerLayers
                         {
                             var hatPos = position;
                             if (player.gravDir == -1)
-                            {
                                 hatPos.Y += player.height + Main.OffsetsPlayerHeadgear[headFrame].Y + 8f;
-                            }
                             else
                             {
                                 hatPos.Y += Main.OffsetsPlayerHeadgear[headFrame].Y;

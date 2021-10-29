@@ -3,9 +3,9 @@ using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Placeable;
-using AQMod.Items.Tools.Markers;
+using AQMod.Items.Tools.MapMarkers;
 using AQMod.Localization;
-using AQMod.Tiles;
+using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -79,7 +79,7 @@ namespace AQMod.Common.UserInterface
                 var texture = TextureCache.MapIconGlobe.Value;
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var origin = frame.Size() / 2f;
-                if (t.Value is TEGlobe globe && (globe.discovered || debug))
+                if (t.Value is TEGlobe globe && (globe.Discovered || debug))
                 {
                     var pos = MapPos(new Vector2(globe.Position.X + 1f, globe.Position.Y + 1f));
                     if (AQUtils.PositionOnScreen(pos, 8f))

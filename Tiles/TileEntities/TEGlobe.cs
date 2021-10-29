@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Tools.Markers;
+﻿using AQMod.Items.Tools.MapMarkers;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -7,32 +7,29 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Tiles
+namespace AQMod.Tiles.TileEntities
 {
     public class TEGlobe : ModTileEntity
     {
-        public List<MapMarker> markers;
-        public bool discovered;
+        public List<MapMarkerItem> markers;
+        public bool Discovered { get; private set; }
 
         public TEGlobe()
         {
-            markers = new List<MapMarker>();
-            discovered = true;
+            markers = new List<MapMarkerItem>();
+            Discovered = true;
         }
 
         public TEGlobe(bool discovered)
         {
-            markers = new List<MapMarker>();
-            this.discovered = discovered;
+            markers = new List<MapMarkerItem>();
+            Discovered = discovered;
         }
 
         public void Discover()
         {
-            if (!discovered)
-            {
-                discovered = true;
-                //AQMod.BroadcastMessage("Mods.AQMod.Common.FoundGlobe", new Color(255, 255, 200, 255));
-            }
+            if (!Discovered)
+                Discovered = true;
         }
 
         public bool AlreadyHasMarker(string mod, string name)
@@ -40,14 +37,14 @@ namespace AQMod.Tiles
             return markers.Find((m) => m.mod.Name == mod && m.Name == name) != null;
         }
 
-        public bool AlreadyHasMarker(MapMarker marker)
+        public bool AlreadyHasMarker(MapMarkerItem marker)
         {
             return markers.Find((m) => m.mod.Name == marker.mod.Name && m.Name == marker.Name) != null;
         }
 
         public override void NetSend(BinaryWriter writer, bool lightSend)
         {
-            writer.Write(discovered);
+            writer.Write(Discovered);
             writer.Write(markers.Count);
             foreach (var marker in markers)
             {
@@ -58,7 +55,7 @@ namespace AQMod.Tiles
 
         public override void NetReceive(BinaryReader reader, bool lightReceive)
         {
-            discovered = reader.ReadBoolean();
+            Discovered = reader.ReadBoolean();
             int count = reader.ReadInt32();
             for (int i = 0; i < count; i++)
             {
@@ -72,14 +69,12 @@ namespace AQMod.Tiles
         {
             var m = Globe._registeredMarkers.Find((marker) => marker.mod.Name == mod && marker.Name == name);
             if (m == null)
-            {
                 return false;
-            }
             AddMarker(m);
             return true;
         }
 
-        public void AddMarker(MapMarker marker)
+        public void AddMarker(MapMarkerItem marker)
         {
             markers.Add(marker);
         }
@@ -88,12 +83,12 @@ namespace AQMod.Tiles
         {
             var tag = new TagCompound
             {
-                ["discovered"] = discovered,
+                ["discovered"] = Discovered,
                 ["MarkerCount"] = markers.Count,
             };
             for (int i = 0; i < markers.Count; i++)
             {
-                MapMarker marker = markers[i];
+                MapMarkerItem marker = markers[i];
                 tag["markermod" + i] = marker.mod.Name;
                 tag["markername" + i] = marker.Name;
             }
@@ -102,7 +97,7 @@ namespace AQMod.Tiles
 
         public override void Load(TagCompound tag)
         {
-            discovered = tag.GetBool("discovered");
+            Discovered = tag.GetBool("discovered");
             int count = tag.GetInt("MarkerCount");
             for (int i = 0; i < count; i++)
             {

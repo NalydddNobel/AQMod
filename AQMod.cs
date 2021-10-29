@@ -188,6 +188,7 @@ namespace AQMod
             {
                 AprilFools = true;
             }
+            ContentManager.OnInitNewModInstance();
             Loading = true;
         }
 
@@ -202,7 +203,7 @@ namespace AQMod
             glimmerEvent = new GlimmerEvent();
             AQPlayer.Setup();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
-            ModCallHelper.Setup();
+            ModCallHelper.SetupCalls();
             On.Terraria.Chest.SetupShop += Chest_SetupShop;
             On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
@@ -210,6 +211,7 @@ namespace AQMod
             On.Terraria.Main.DrawTiles += Main_DrawTiles;
             On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
             var server = AQConfigServer.Instance;
+            ContentManager.OnLoad(server);
             ApplyServerConfig(server);
             if (!Main.dedServ)
             {
@@ -252,6 +254,7 @@ namespace AQMod
                     GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
                 }
                 WorldEffects = new List<WorldVisualEffect>();
+                ContentManager.OnLoadAssets(server, client);
             }
         }
 

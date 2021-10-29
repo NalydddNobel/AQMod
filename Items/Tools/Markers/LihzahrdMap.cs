@@ -1,12 +1,12 @@
-﻿using AQMod.Tiles;
+﻿using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Markers
+namespace AQMod.Items.Tools.MapMarkers
 {
-    public class LihzahrdMap : MapMarker
+    public class LihzahrdMap : MapMarkerItem
     {
         public override void SetDefaults()
         {

@@ -1,11 +1,11 @@
-﻿using AQMod.Tiles;
+﻿using AQMod.Tiles.TileEntities;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Markers
+namespace AQMod.Items.Tools.MapMarkers
 {
-    public abstract class MapMarker : ModItem
+    public abstract class MapMarkerItem : ModItem
     {
         public virtual void GlobeEffects(Player player, TEGlobe globe)
         {

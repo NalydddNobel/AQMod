@@ -1,4 +1,6 @@
-﻿using AQMod.Content.WorldEvents.CrabSeason;
+﻿using AQMod.Common.DeveloperTools;
+using AQMod.Content;
+using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
 using System;
 using System.Collections.Generic;
@@ -10,10 +12,17 @@ namespace AQMod.Common
     {
         private static Dictionary<string, Func<object[], object>> _calls;
 
-        public static void Setup()
+        public static void SetupCalls()
         {
             _calls = new Dictionary<string, Func<object[], object>>
             {
+                { "addloadtask", (o) =>
+                    {
+                        ContentManager.addLoadTask(new CachedTask((object)o[1], (Func<object, object>)o[2]));
+                        return null;
+                    } 
+                },
+
                 { "glimmerevent.tilex", (o) => AQMod.glimmerEvent.tileX },
                 { "glimmerevent.tiley", (o) => AQMod.glimmerEvent.tileY },
                 { "glimmerevent.spawnchance", (o) => AQMod.glimmerEvent.spawnChance },
