@@ -167,9 +167,9 @@ namespace AQMod.Common.UserInterface
 
             if (aQPlayer.cosmicMap || debug)
             {
-                buffToggleType.Add(ModContent.BuffType<CosmicMarkerBuff>());
-                buffEnabled.Add(aQPlayer.showCosmicMap);
-                buffToggleFunctions.Add(() => aQPlayer.showCosmicMap = !aQPlayer.showCosmicMap);
+                //buffToggleType.Add(ModContent.BuffType<CosmicMarkerBuff>());
+                //buffEnabled.Add(aQPlayer.showCosmicMap);
+                //buffToggleFunctions.Add(() => aQPlayer.showCosmicMap = !aQPlayer.showCosmicMap);
                 if (aQPlayer.showCosmicMap && AQMod.glimmerEvent.IsActive)
                 {
                     var texture = TextureCache.MapIconGlimmerEvent.Value;
@@ -250,9 +250,9 @@ namespace AQMod.Common.UserInterface
 
             if (aQPlayer.dungeonMap || debug)
             {
-                buffToggleType.Add(ModContent.BuffType<DungeonMarkerBuff>());
-                buffEnabled.Add(aQPlayer.showDungeonMap);
-                buffToggleFunctions.Add(() => aQPlayer.showDungeonMap = !aQPlayer.showDungeonMap);
+                //buffToggleType.Add(ModContent.BuffType<DungeonMarkerBuff>());
+                //buffEnabled.Add(aQPlayer.showDungeonMap);
+                //buffToggleFunctions.Add(() => aQPlayer.showDungeonMap = !aQPlayer.showDungeonMap);
                 if (aQPlayer.showDungeonMap && (Main.Map[Main.dungeonX, Main.dungeonY].Light > 40 || NPC.downedBoss3 || Main.hardMode))
                 {
                     var mapIcon = TextureCache.MapIconDungeons.Value;

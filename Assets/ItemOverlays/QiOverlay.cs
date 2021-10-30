@@ -1,6 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.Textures;
+﻿using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,14 +6,14 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.ItemOverlays
+namespace AQMod.Assets.ItemOverlays
 {
-    public class QiOverlayData : ItemOverlayData
+    public class QiOverlay : ItemOverlayData
     {
         private static void DrawEye(Vector2 drawPosition, Item item, float time, float rotation = 0f, float scale = 1f)
         {
             var config = ModContent.GetInstance<AQConfigClient>();
-            var texture = TextureCache.Lights[LightID.Spotlight80x80];
+            var texture = TextureCache.Lights[SpotlightID.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             float timeSine = (float)Math.Sin(time);
@@ -41,7 +39,7 @@ namespace AQMod.Common.ItemOverlays
             if (config.EffectQuality < 1f)
                 return;
 
-            texture = TextureCache.Lights[LightID.Spotlight80x80Half];
+            texture = TextureCache.Lights[SpotlightID.Spotlight80x80Half];
 
             scale3 = MathHelper.Clamp(((float)Math.Sin(time * 1.1f) + 1f) / 2f, 0.151f, 0.8f) * 0.9f;
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(b, b, b, 0) * scale3, rotation + time * 1.1f, drawOrigin, scale2 * scale3, SpriteEffects.None, 0f);
@@ -56,7 +54,7 @@ namespace AQMod.Common.ItemOverlays
         public override void DrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             var texture = Main.itemTexture[item.type];
-            Vector2 drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
+            var drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
             DrawEye(drawPosition, item, Main.GlobalTime * 2f + whoAmI, rotation, scale);
             float distance = (Main.player[Main.myPlayer].Center - item.Center).Length();
             var config = ModContent.GetInstance<AQConfigClient>();
@@ -66,7 +64,7 @@ namespace AQMod.Common.ItemOverlays
                     distance = 888f;
                 distance -= 200f;
                 float mult = distance / 688f;
-                texture = TextureCache.Lights[LightID.Spotlight80x80];
+                texture = TextureCache.Lights[SpotlightID.Spotlight80x80];
                 var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var drawOrigin = drawFrame.Size() / 2f;
                 Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(90, 90, 90, 60) * mult, rotation + MathHelper.PiOver4, drawOrigin, new Vector2(scale / 4f * mult, scale * 1.65f * mult), SpriteEffects.None, 0f);

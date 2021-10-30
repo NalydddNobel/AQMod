@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace AQMod.Content
 {
-    public static class ContentManager
+    public static class AQContent
     {
         public static MapMarkerManager MapMarkers { get; private set; }
 
@@ -39,7 +39,7 @@ namespace AQMod.Content
         /// <summary>
         /// Ran right before Aequus starts truly loading.
         /// </summary>
-        public static void OnInitNewModInstance()
+        internal static void OnInitNewModInstance()
         {
             cachedLoadTasks = new List<CachedTask>();
         }
@@ -47,7 +47,7 @@ namespace AQMod.Content
         /// <summary>
         /// Ran in <see cref="AQMod.Load"/>.
         /// </summary>
-        public static void OnLoad(AQConfigServer server)
+        internal static void OnLoad(AQConfigServer server)
         {
             MapMarkers = new MapMarkerManager();
         }
@@ -55,14 +55,14 @@ namespace AQMod.Content
         /// <summary>
         /// Ran in <see cref="AQMod.Load"/>.
         /// </summary>
-        public static void OnLoadAssets(AQConfigServer server, AQConfigClient client)
+        internal static void OnLoadAssets(AQConfigServer server, AQConfigClient client)
         {
         }
 
         /// <summary>
         /// Ran in <see cref="AQMod.PostSetupContent"/>.
         /// </summary>
-        public static void OnPostSetupContent()
+        internal static void OnPostSetupContent()
         {
             MapMarkers.Setup(setupStatics: true);
             invokeTasks();
@@ -72,13 +72,13 @@ namespace AQMod.Content
         /// <summary>
         /// Ran in <see cref="AQMod.AddRecipes"/>.
         /// </summary>
-        public static void OnAddRecipes()
+        internal static void OnAddRecipes()
         {
             invokeTasks();
             cachedLoadTasks = null;
         }
 
-        public static void Unload()
+        internal static void Unload()
         {
             cachedLoadTasks = null;
             MapMarkers = null;

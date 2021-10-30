@@ -188,7 +188,7 @@ namespace AQMod
             {
                 AprilFools = true;
             }
-            ContentManager.OnInitNewModInstance();
+            AQContent.OnInitNewModInstance();
             Loading = true;
         }
 
@@ -211,7 +211,7 @@ namespace AQMod
             On.Terraria.Main.DrawTiles += Main_DrawTiles;
             On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
             var server = AQConfigServer.Instance;
-            ContentManager.OnLoad(server);
+            AQContent.OnLoad(server);
             ApplyServerConfig(server);
             if (!Main.dedServ)
             {
@@ -254,7 +254,7 @@ namespace AQMod
                     GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
                 }
                 WorldEffects = new List<WorldVisualEffect>();
-                ContentManager.OnLoadAssets(server, client);
+                AQContent.OnLoadAssets(server, client);
             }
         }
 
@@ -337,6 +337,7 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
+            AQContent.OnPostSetupContent();
             AQNPC.Sets.Setup(); // Initializes sets for npcs
             AQProjectile.Sets.Setup(); // Initializes sets for projectiles
             DemonSiege.Setup(); // Sets up the Demon Siege event
@@ -369,6 +370,7 @@ namespace AQMod
 
         public override void AddRecipes()
         {
+            AQContent.OnAddRecipes();
             // TODO: Add content method instances that run here, which other mods can add to, so that adding to specific things is less hellish.
             Loading = false; // Sets Loading to false, so that some things no longer accept new content.
             RobsterHunts.SetupHunts();
@@ -376,29 +378,23 @@ namespace AQMod
             {
                 ItemOverlays.Finish();
             }
-            CelesitalEightBall.Text = Language.GetTextValue(AQText.Key + "Common.EightballAnswer20");
+            CelesitalEightBall.ResetStatics();
 
             var r = new ModRecipe(this);
             r.AddIngredient(ItemID.Bottle);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddIngredient(ItemID.Cloud, 20);
             r.SetResult(ItemID.CloudinaBottle);
             r.AddRecipe();
             r = new ModRecipe(this);
-            r.AddIngredient(ItemID.Bottle);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
-            r.AddIngredient(ItemID.RainCloud, 20);
-            r.SetResult(ItemID.TsunamiInABottle);
-            r.AddRecipe();
-            r = new ModRecipe(this);
             r.AddIngredient(ItemID.CloudinaBottle);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>(), 3);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
             r.AddIngredient(ItemID.SnowCloudBlock, 40);
             r.SetResult(ItemID.BlizzardinaBottle);
             r.AddRecipe();
             r = new ModRecipe(this);
             r.AddIngredient(ItemID.CloudinaBottle);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>(), 3);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
             r.AddIngredient(ItemID.SandBlock, 40);
             r.SetResult(ItemID.SandstorminaBottle);
             r.AddRecipe();
@@ -414,7 +410,7 @@ namespace AQMod
 
             r = new ModRecipe(this);
             r.AddIngredient(ItemID.GreenThread);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddTile(TileID.WorkBenches);
             r.SetResult(ItemID.HermesBoots);
             r.AddRecipe();
@@ -487,7 +483,7 @@ namespace AQMod
             HuntSystem.Unload();
 
             // in: AddRecipes()
-            CelesitalEightBall.Text = null;
+            CelesitalEightBall.ResetStatics();
             ItemOverlays = null;
 
             // in: PostSetupContent()

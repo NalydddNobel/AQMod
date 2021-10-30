@@ -29,8 +29,6 @@ namespace AQMod.Assets
         internal static TextureAsset FromType(Type t, string extra)
         {
             var textureAsset = new TextureAsset(t.Namespace.Replace(".", "/") + "/" + t.Name + extra);
-            if (_debug)
-                AQMod.Instance.Logger.Debug("Creating asset: " + textureAsset._path);
             return textureAsset;
         }
 

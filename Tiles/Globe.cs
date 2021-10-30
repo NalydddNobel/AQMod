@@ -14,21 +14,21 @@ namespace AQMod.Tiles
 {
     public class Globe : ModTile
     {
-        internal static List<MapMarkerItem> _registeredMarkers;
+        //internal static List<MapMarkerItem> _registeredMarkers;
 
-        public static void RegisterMarker<T>() where T : MapMarkerItem
-        {
-            if (AQMod.Loading)
-            {
-                int type = ModContent.ItemType<T>();
-                if (type >= Main.maxItemTypes)
-                {
-                    var item = new Item();
-                    item.SetDefaults(type, noMatCheck: true);
-                    _registeredMarkers.Add((T)item.modItem);
-                }
-            }
-        }
+        //public static void RegisterMarker<T>() where T : MapMarkerItem
+        //{
+        //    if (AQMod.Loading)
+        //    {
+        //        int type = ModContent.ItemType<T>();
+        //        if (type >= Main.maxItemTypes)
+        //        {
+        //            var item = new Item();
+        //            item.SetDefaults(type, noMatCheck: true);
+        //            _registeredMarkers.Add((T)item.modItem);
+        //        }
+        //    }
+        //}
 
         public static bool GenGlobeTemple(int x, int y)
         {
@@ -126,48 +126,48 @@ namespace AQMod.Tiles
             name.SetDefault("{$Mods.AQMod.ItemName.GlobeItem}");
             AddMapEntry(new Color(180, 180, 180), name);
 
-            _registeredMarkers = new List<MapMarkerItem>();
-            RegisterMarker<CosmicTelescope>();
-            RegisterMarker<DungeonMap>();
-            RegisterMarker<LihzahrdMap>();
-            RegisterMarker<RetroGoggles>();
+            //_registeredMarkers = new List<MapMarkerItem>();
+            //RegisterMarker<CosmicTelescope>();
+            //RegisterMarker<DungeonMap>();
+            //RegisterMarker<LihzahrdMap>();
+            //RegisterMarker<RetroGoggles>();
         }
 
-        private Item getMarker(Player player)
-        {
-            for (int i = 0; i < Main.maxInventory; i++)
-            {
-                if (player.inventory[i].type >= Main.maxItemTypes)
-                {
-                    for (int j = 0; j < _registeredMarkers.Count; j++)
-                    {
-                        if (player.inventory[i].type == _registeredMarkers[j].item.type)
-                        {
-                            return player.inventory[i];
-                        }
-                    }
-                }
-            }
-            return null;
-        }
+        //private Item getMarker(Player player)
+        //{
+        //    for (int i = 0; i < Main.maxInventory; i++)
+        //    {
+        //        if (player.inventory[i].type >= Main.maxItemTypes)
+        //        {
+        //            for (int j = 0; j < _registeredMarkers.Count; j++)
+        //            {
+        //                if (player.inventory[i].type == _registeredMarkers[j].item.type)
+        //                {
+        //                    return player.inventory[i];
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return null;
+        //}
 
-        private Item getMarker(Player player, TEGlobe globe)
-        {
-            for (int i = 0; i < Main.maxInventory; i++)
-            {
-                if (player.inventory[i].type >= Main.maxItemTypes)
-                {
-                    for (int j = 0; j < _registeredMarkers.Count; j++)
-                    {
-                        if (player.inventory[i].type == _registeredMarkers[j].item.type && !globe.AlreadyHasMarker(player.inventory[i].modItem.mod.Name, player.inventory[i].modItem.Name))
-                        {
-                            return player.inventory[i];
-                        }
-                    }
-                }
-            }
-            return null;
-        }
+        //private Item getMarker(Player player, TEGlobe globe)
+        //{
+        //    for (int i = 0; i < Main.maxInventory; i++)
+        //    {
+        //        if (player.inventory[i].type >= Main.maxItemTypes)
+        //        {
+        //            for (int j = 0; j < _registeredMarkers.Count; j++)
+        //            {
+        //                if (player.inventory[i].type == _registeredMarkers[j].item.type && !globe.AlreadyHasMarker(player.inventory[i].modItem.mod.Name, player.inventory[i].modItem.Name))
+        //                {
+        //                    return player.inventory[i];
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return null;
+        //}
 
         public override bool HasSmartInteract()
         {
@@ -189,13 +189,13 @@ namespace AQMod.Tiles
                 return;
             }
             TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
-            var item = getMarker(Main.LocalPlayer, globe);
-            if (item != null)
-            {
-                plr.noThrow = 2;
-                plr.showItemIcon = true;
-                plr.showItemIcon2 = item.type;
-            }
+            //var item = getMarker(Main.LocalPlayer, globe);
+            //if (item != null)
+            //{
+            //    plr.noThrow = 2;
+            //    plr.showItemIcon = true;
+            //    plr.showItemIcon2 = item.type;
+            //}
         }
 
         public override bool NewRightClick(int i, int j)
@@ -209,14 +209,14 @@ namespace AQMod.Tiles
                 return false;
             }
             TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
-            var item = getMarker(Main.LocalPlayer, globe);
-            if (item != null && !globe.AlreadyHasMarker((MapMarkerItem)item.modItem))
-            {
-                Main.PlaySound(SoundID.Grab);
-                ((MapMarkerItem)item.modItem).PreAddMarker(Main.LocalPlayer, globe);
-                globe.AddMarker((MapMarkerItem)item.Clone().modItem);
-                Main.LocalPlayer.ConsumeItem(item.type);
-            }
+            //var item = getMarker(Main.LocalPlayer, globe);
+            //if (item != null && !globe.AlreadyHasMarker((MapMarkerItem)item.modItem))
+            //{
+            //    Main.PlaySound(SoundID.Grab);
+            //    ((MapMarkerItem)item.modItem).PreAddMarker(Main.LocalPlayer, globe);
+            //    globe.AddMarker((MapMarkerItem)item.Clone().modItem);
+            //    Main.LocalPlayer.ConsumeItem(item.type);
+            //}
             //else
             //{
             //    foreach (var marker in globe.markers)
@@ -246,16 +246,16 @@ namespace AQMod.Tiles
                 aQPlayer.nearGlobe = 32;
                 aQPlayer.globeX = (ushort)globe.Position.X;
                 aQPlayer.globeY = (ushort)globe.Position.Y;
-                foreach (var m in globe.markers)
-                {
-                    m.GlobeEffects(Main.LocalPlayer, globe);
-                }
+                //foreach (var m in globe.Markers)
+                //{
+                //    m.GlobeEffects(Main.LocalPlayer, globe);
+                //}
             }
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<Items.Placeable.GlobeItem>());
+            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<GlobeItem>());
             ModContent.GetInstance<TEGlobe>().Kill(i, j);
         }
     }

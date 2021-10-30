@@ -53,8 +53,6 @@
                     name += key[cursor];
                     cursor++;
                 }
-                AQMod.Instance.Logger.Debug(mod);
-                AQMod.Instance.Logger.Debug(name);
                 return true;
             }
             mod = default(string);

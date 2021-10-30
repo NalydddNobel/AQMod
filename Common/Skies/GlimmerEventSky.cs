@@ -261,7 +261,7 @@ namespace AQMod.Common.Skies
             {
                 int width = Main.screenWidth + 40;
                 int height = Main.screenHeight + 40;
-                var texture = TextureCache.Lights[LightID.Spotlight66x66];
+                var texture = TextureCache.Lights[SpotlightID.Spotlight66x66];
                 float scaleX = width / texture.Width * 1.75f;
                 float scaleY = height / texture.Height;
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
@@ -299,7 +299,7 @@ namespace AQMod.Common.Skies
                 {
                     int width = Main.screenWidth + 40;
                     int height = Main.screenHeight + 40;
-                    var texture = TextureCache.Lights[LightID.Spotlight66x66];
+                    var texture = TextureCache.Lights[SpotlightID.Spotlight66x66];
                     float scaleX = width / texture.Width * 1.75f;
                     float scaleY = height / texture.Height;
                     var frame = new Rectangle(0, 0, texture.Width, texture.Height);

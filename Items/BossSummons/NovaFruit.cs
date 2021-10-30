@@ -46,14 +46,7 @@ namespace AQMod.Items.BossSummons
             var r = new ModRecipe(mod);
             r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
             r.AddIngredient(ItemID.HellstoneBar, 15);
-            r.AddIngredient(ItemID.ShadowScale, 8);
-            r.AddTile(TileID.DemonAltar);
-            r.SetResult(this);
-            r.AddRecipe();
-            r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
-            r.AddIngredient(ItemID.HellstoneBar, 15);
-            r.AddIngredient(ItemID.TissueSample, 8);
+            r.AddIngredient(ItemID.CrystalShard, 8);
             r.AddTile(TileID.DemonAltar);
             r.SetResult(this);
             r.AddRecipe();

@@ -1,6 +1,6 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Common;
-using AQMod.Common.ItemOverlays;
+using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,10 +16,8 @@ namespace AQMod.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new DynamicInventoryGlowmask(GlowID.PentalScythe, getGlowmaskColor), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), new Color(200, 200, 200, 0)), item.type);
         }
-
-        private static Color getGlowmaskColor() => Color.Lerp(new Color(188, 175, 135, 0), new Color(144, 130, 111, 0), ((float)Math.Sin(Main.GlobalTime * 1.1f) + 1f) / 2f);
 
         public override void SetDefaults()
         {

@@ -1,5 +1,5 @@
-﻿using AQMod.Common;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
@@ -15,7 +15,7 @@ namespace AQMod.Items.Tools
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new SpectralLensOverlayData(), item.type);
+                AQMod.ItemOverlays.Register(new SpectralLensOverlay(), item.type);
         }
 
         public override void SetDefaults()

@@ -13,7 +13,7 @@ namespace AQMod.Items.Vanities
             item.width = 20;
             item.height = 10;
             item.accessory = true;
-            item.rare = ItemRarityID.Blue;
+            item.rare = ItemRarityID.Yellow;
             item.value = Item.sellPrice(silver: 20);
             item.vanity = true;
         }

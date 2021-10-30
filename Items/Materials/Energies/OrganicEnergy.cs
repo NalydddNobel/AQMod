@@ -1,4 +1,5 @@
-﻿using AQMod.Common;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common;
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
@@ -26,7 +27,7 @@ namespace AQMod.Items.Materials.Energies
         {
             ItemID.Sets.ItemNoGravity[item.type] = true;
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new EnergyOverlayData(outline, spotlight), item.type);
+                AQMod.ItemOverlays.Register(new EnergyOverlay(outline, spotlight), item.type);
         }
 
         private static Color outline(float colorOffset)

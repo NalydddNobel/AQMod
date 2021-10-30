@@ -23,6 +23,16 @@ namespace AQMod.Common.Utilities
     {
         public const int UI_SIZE = 10;
 
+        public static TEnum ToEnum<TEnum>(this ushort number) where TEnum : Enum
+        {
+            return (TEnum)Enum.ToObject(typeof(TEnum), number);
+        }
+
+        public static TEnum ToEnum<TEnum>(this int number) where TEnum : Enum
+        {
+            return (TEnum)Enum.ToObject(typeof(TEnum), number);
+        }
+
         public static Texture2D GetTexture<T>(string extra)
         {
             return ModContent.GetTexture(GetPath<T>(extra));

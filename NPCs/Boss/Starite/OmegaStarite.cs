@@ -1403,7 +1403,7 @@ namespace AQMod.NPCs.Boss.Starite
             float deathSpotlightScale = 0f;
             if (intensity > 3f)
                 deathSpotlightScale = npc.scale * (intensity - 2.1f) * ((float)Math.Sin(npc.ai[1] * 0.1f) + 1f) / 2f;
-            var spotlight = TextureCache.Lights[LightID.Spotlight66x66];
+            var spotlight = TextureCache.Lights[SpotlightID.Spotlight66x66];
             var spotlightOrig = spotlight.Size() / 2f;
             Color spotlightColor;
             if (AQMod.glimmerEvent.StariteDisco)

@@ -18,7 +18,7 @@ namespace AQMod.Common
             {
                 { "addloadtask", (o) =>
                     {
-                        ContentManager.addLoadTask(new CachedTask((object)o[1], (Func<object, object>)o[2]));
+                        AQContent.addLoadTask(new CachedTask((object)o[1], (Func<object, object>)o[2]));
                         return null;
                     } 
                 },

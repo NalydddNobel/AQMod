@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.Shoes
+namespace AQMod.Items.Accessories
 {
     [AutoloadEquip(EquipType.Shoes)]
     public class MoonShoes : ModItem
@@ -21,13 +21,9 @@ namespace AQMod.Items.Accessories.Shoes
             if (!player.controlDown)
             {
                 if (player.controlUp)
-                {
                     player.gravity *= 0.25f;
-                }
                 else
-                {
                     player.gravity *= 0.5f;
-                }
             }
             player.noFallDmg = true;
         }

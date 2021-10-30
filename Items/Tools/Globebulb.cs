@@ -1,5 +1,5 @@
-﻿using AQMod.Assets.Textures;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common.Utilities;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
@@ -15,7 +15,7 @@ namespace AQMod.Items.Tools
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new DynamicInventoryGlowmask(GlowID.Globebulb, getGlowmaskColor), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), getGlowmaskColor, drawInventory: true), item.type);
         }
 
         private static Color getGlowmaskColor()

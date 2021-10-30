@@ -1,5 +1,4 @@
 ﻿using AQMod.Items.Accessories;
-using AQMod.Items.Accessories.Shoes;
 using AQMod.Items.Armor.Crab;
 using AQMod.Items.BossSummons;
 using AQMod.Items.Materials;

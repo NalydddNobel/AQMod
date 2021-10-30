@@ -4,19 +4,32 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Vanities
 {
     public class CelesitalEightBall : ModItem
     {
-        public static string Text { get; set; }
+        public static string TextKey { get; private set; }
+        public static object[] Arguments { get; private set; }
+
+        public static string GetTextValue()
+        {
+            if (string.IsNullOrEmpty(TextKey))
+                return Language.GetTextValue(AQText.Key + "Common.EightballAnswer20");
+            if (Arguments != null)
+            {
+                return Language.GetTextValue(TextKey, Arguments);
+            }
+            return Language.GetTextValue(TextKey);
+        }
 
         public override void SetDefaults()
         {
             item.width = 20;
             item.height = 20;
-            item.rare = ItemRarityID.Green;
+            item.rare = ItemRarityID.Yellow;
             item.useAnimation = 120;
             item.useTime = 120;
             item.useStyle = ItemUseStyleID.HoldingUp;
@@ -24,38 +37,73 @@ namespace AQMod.Items.Vanities
 
         public override bool AltFunctionUse(Player player) => true;
 
-        private static void spawnText(Player player, string text)
+        public static void ResetStatics()
         {
+            TextKey = null;
+            Arguments = null;
+        }
+
+        private static void setText(string key)
+        {
+            TextKey = key;
+            Arguments = null;
+        }
+
+        private static void setText(string key, object argument)
+        {
+            TextKey = key;
+            Arguments = new object[] { argument };
+        }
+
+        private static void setText(string key, params object[] arguments)
+        {
+            TextKey = key;
+            Arguments = arguments;
+        }
+
+        private static void spawnText(Player player, string key)
+        {
+            string text = Language.GetTextValue(key);
             int t = CombatText.NewText(player.getRect(), new Color(Main.mouseColor.R, Main.mouseColor.G, Main.mouseColor.B, 255), 0, true);
             Main.combatText[t].text = text;
-            Main.combatText[t].position.X = player.Center.X - Main.fontCombatText[1].MeasureString(text).X / 2f;
-            Text = text;
+            Main.combatText[t].position.X = player.Center.X - (Main.fontCombatText[1].MeasureString(text).X / 2f);
         }
 
         public override bool UseItem(Player player)
         {
-            if (Main.myPlayer != player.whoAmI)
-                return true;
+            string key = "";
             if (player.altFunctionUse == 2)
             {
-                spawnText(player, AQText.EightballAnswer(Main.rand.Next(20)).Value);
+                key = AQText.Key + "Common.EightballAnswer" + Main.rand.Next(20);
+                spawnText(player, key);
+                if (Main.myPlayer == player.whoAmI)
+                    setText(key);
             }
             else
             {
                 if (player.frostArmor)
                 {
-                    spawnText(player, AQText.EightballMisc(5).Value);
+                    key = AQText.Key + "Common.EightballMisc5";
+                    spawnText(player, key);
+                    if (Main.myPlayer == player.whoAmI)
+                        setText(key);
                     return true;
                 }
                 if (OmegaStariteScene.OmegaStariteIndexCache != -1 && Main.rand.NextBool())
                 {
-                    if (Text == AQText.EightballMisc(3).Value)
+                    if (TextKey == AQText.Key + "Common.EightballMisc3")
                     {
-                        spawnText(player, AQText.EightballMisc(4).Value);
+                        key = AQText.Key + "Common.EightballMisc4";
+                        spawnText(player, key);
+                        if (Main.myPlayer == player.whoAmI)
+                            setText(key);
                     }
                     else
                     {
-                        spawnText(player, AQText.EightballMisc(3).Value);
+                        key = AQText.Key + "Common.EightballMisc3";
+                        spawnText(player, key);
+                        if (Main.myPlayer == player.whoAmI)
+                            setText(key);
                     }
                     return true;
                 }
@@ -63,13 +111,19 @@ namespace AQMod.Items.Vanities
                 {
                     if ((int)(player.Center.X / 16) == AQMod.glimmerEvent.tileX)
                     {
-                        spawnText(player, AQText.EightballMisc(2).Value);
+                        key = AQText.Key + "Common.EightballMisc2";
+                        spawnText(player, key);
+                        if (Main.myPlayer == player.whoAmI)
+                            setText(key);
                         return true;
                     }
                 }
                 if (Main.raining && Main.rand.NextBool())
                 {
-                    spawnText(player, AQText.EightballMisc(0).Value);
+                    key = AQText.Key + "Common.EightballMisc0";
+                    spawnText(player, key);
+                    if (Main.myPlayer == player.whoAmI)
+                        setText(key);
                     return true;
                 }
                 if (Main.rand.NextBool(3))
@@ -115,23 +169,31 @@ namespace AQMod.Items.Vanities
                         Main.MaxBannerTypes,
                         Main.MaxTimeout,
                     };
-                    spawnText(player, string.Format(AQText.EightballMisc(3).Value, numbers[Main.rand.Next(numbers.Length)]));
+                    key = AQText.Key + "Common.EightballMisc3";
+                    int obj = numbers[Main.rand.Next(numbers.Length)];
+                    string text = Language.GetTextValue(key, obj);
+                    spawnText(player, text);
+                    if (Main.myPlayer == player.whoAmI)
+                        setText(key, obj);
                     return true;
                 }
                 int tileX = (int)player.Center.X / 16;
                 if (tileX % 5 == 0 && Main.rand.NextBool())
                 {
-                    spawnText(player, AQText.EightballMisc(6).Value);
+                    key = AQText.Key + "Common.EightballMisc6";
+                    spawnText(player, key);
+                    if (Main.myPlayer == player.whoAmI)
+                        setText(key);
                     return true;
                 }
-                spawnText(player, AQText.EightballAnswer(20).Value);
+                spawnText(player, AQText.Key + "Common.EightballAnswer20");
             }
             return true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(mod, "EightBall", Text));
+            tooltips.Add(new TooltipLine(mod, "EightBall", GetTextValue()));
         }
     }
 }

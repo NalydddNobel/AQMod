@@ -98,12 +98,12 @@ namespace AQMod.Projectiles.Magic
             if (dist < 200f)
             {
                 colorMult = 1f - (dist / MouseDistance);
-                texture = TextureCache.Lights[LightID.Spotlight10x50];
+                texture = TextureCache.Lights[SpotlightID.Spotlight10x50];
                 frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 color = new Color(50, 15, 190, 0) * colorMult;
                 origin = texture.Size() / 2f;
 
-                var texture2 = TextureCache.Lights[LightID.Spotlight20x20];
+                var texture2 = TextureCache.Lights[SpotlightID.Spotlight20x20];
 
                 Main.spriteBatch.Draw(texture2, projectile.position + offset, null, color, projectile.rotation, texture2.Size() / 2f, projectile.scale * (colorMult * colorMult), SpriteEffects.None, 0f);
 

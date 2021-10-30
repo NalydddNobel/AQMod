@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.ItemOverlays;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Effects;
@@ -10,9 +9,9 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 
-namespace AQMod.Common.ItemOverlays
+namespace AQMod.Assets.ItemOverlays
 {
-    public class EnergyOverlayData : ItemOverlayData
+    public class EnergyOverlay : ItemOverlayData
     {
         protected static float energyColorValue => ((float)Math.Sin(Main.GlobalTime) + 1f) * 45f;
 
@@ -20,7 +19,7 @@ namespace AQMod.Common.ItemOverlays
         protected readonly Func<float, Color> getSpotlightColor;
         protected readonly Vector2 _spotlightOffset;
 
-        public EnergyOverlayData(Func<float, Color> getOutlineColor, Func<float, Color> getSpotlightColor, Vector2 spotlightOffset = default(Vector2))
+        public EnergyOverlay(Func<float, Color> getOutlineColor, Func<float, Color> getSpotlightColor, Vector2 spotlightOffset = default(Vector2))
         {
             this.getOutlineColor = getOutlineColor;
             this.getSpotlightColor = getSpotlightColor;
@@ -29,8 +28,8 @@ namespace AQMod.Common.ItemOverlays
 
         public override void DrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            Rectangle frame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
-            Vector2 drawPosition = new Vector2(item.position.X - Main.screenPosition.X + frame.Width / 2 + item.width / 2 - frame.Width / 2, item.position.Y - Main.screenPosition.Y + frame.Height / 2 + item.height - frame.Height);
+            var frame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
+            var drawPosition = new Vector2(item.position.X - Main.screenPosition.X + frame.Width / 2 + item.width / 2 - frame.Width / 2, item.position.Y - Main.screenPosition.Y + frame.Height / 2 + item.height - frame.Height);
             drawPosition = new Vector2((int)drawPosition.X, drawPosition.Y);
             bool resetBatch = false;
             if (AQConfigClient.Instance.SpotlightShader)

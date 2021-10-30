@@ -1,4 +1,5 @@
 ﻿using AQMod.Items;
+using AQMod.Items.Accessories;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Tools;
 using Microsoft.Xna.Framework;
@@ -185,7 +186,7 @@ namespace AQMod.NPCs.Monsters
             }
             if (NPC.CountNPCS(npc.type) <= 1)
             {
-                var choices = new List<int> { ModContent.ItemType<Items.Accessories.Shields.TargeoftheBlodded>(), };
+                var choices = new List<int> { ModContent.ItemType<TargeoftheBlodded>(), };
                 for (int i = 0; i < 3; i++)
                 {
                     randDrops();

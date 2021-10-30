@@ -1,5 +1,5 @@
-﻿using AQMod.Items.Tools.MapMarkers;
-using Microsoft.Xna.Framework;
+﻿using AQMod.Content;
+using AQMod.Content.MapMarkers;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -11,18 +11,18 @@ namespace AQMod.Tiles.TileEntities
 {
     public class TEGlobe : ModTileEntity
     {
-        public List<MapMarkerItem> markers;
-        public bool Discovered { get; private set; }
+        public readonly List<MapMarkerData> Markers;
+        public bool Discovered { get; set; }
 
         public TEGlobe()
         {
-            markers = new List<MapMarkerItem>();
+            Markers = new List<MapMarkerData>();
             Discovered = true;
         }
 
         public TEGlobe(bool discovered)
         {
-            markers = new List<MapMarkerItem>();
+            Markers = new List<MapMarkerData>();
             Discovered = discovered;
         }
 
@@ -32,23 +32,12 @@ namespace AQMod.Tiles.TileEntities
                 Discovered = true;
         }
 
-        public bool AlreadyHasMarker(string mod, string name)
-        {
-            return markers.Find((m) => m.mod.Name == mod && m.Name == name) != null;
-        }
-
-        public bool AlreadyHasMarker(MapMarkerItem marker)
-        {
-            return markers.Find((m) => m.mod.Name == marker.mod.Name && m.Name == marker.Name) != null;
-        }
-
         public override void NetSend(BinaryWriter writer, bool lightSend)
         {
             writer.Write(Discovered);
-            writer.Write(markers.Count);
-            foreach (var marker in markers)
+            writer.Write(Markers.Count);
+            foreach (var marker in Markers)
             {
-                writer.Write(marker.mod.Name);
                 writer.Write(marker.Name);
             }
         }
@@ -59,24 +48,17 @@ namespace AQMod.Tiles.TileEntities
             int count = reader.ReadInt32();
             for (int i = 0; i < count; i++)
             {
-                string mod = reader.ReadString();
                 string name = reader.ReadString();
-                AddMarker(mod, name);
+                AddMarker(name);
             }
         }
 
-        public bool AddMarker(string mod, string name)
+        public bool AddMarker(string name)
         {
-            var m = Globe._registeredMarkers.Find((marker) => marker.mod.Name == mod && marker.Name == name);
-            if (m == null)
+            if (AQContent.MapMarkers.TryGetMarker(name, out MapMarkerData value))
                 return false;
-            AddMarker(m);
+            Markers.Add(value);
             return true;
-        }
-
-        public void AddMarker(MapMarkerItem marker)
-        {
-            markers.Add(marker);
         }
 
         public override TagCompound Save()
@@ -84,24 +66,70 @@ namespace AQMod.Tiles.TileEntities
             var tag = new TagCompound
             {
                 ["discovered"] = Discovered,
-                ["MarkerCount"] = markers.Count,
+                ["MarkerCount"] = Markers.Count,
+                ["SaveType"] = (byte)1,
             };
-            for (int i = 0; i < markers.Count; i++)
+            for (int i = 0; i < Markers.Count; i++)
             {
-                MapMarkerItem marker = markers[i];
-                tag["markermod" + i] = marker.mod.Name;
+                var marker = Markers[i];
                 tag["markername" + i] = marker.Name;
             }
             return tag;
+        }
+
+        private void loadLegacy(TagCompound tag, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                if (tag.GetString("markermod" + i) == "AQMod")
+                {
+                    switch (tag.GetString("markername" + i))
+                    {
+                        case "CosmicTelescope":
+                        {
+                            AQContent.MapMarkers.GetMarker("CosmicMarker");
+                        }
+                        break;
+
+                        case "DungeonMap":
+                        {
+                            AQContent.MapMarkers.GetMarker("DungeonMarker");
+                        }
+                        break;
+
+                        case "LihzahrdMap":
+                        {
+                            AQContent.MapMarkers.GetMarker("LihzahrdMarker");
+                        }
+                        break;
+
+                        case "RetroGoggles":
+                        {
+                            AQContent.MapMarkers.GetMarker("RetroMarker");
+                        }
+                        break;
+                    }
+                }
+            }
         }
 
         public override void Load(TagCompound tag)
         {
             Discovered = tag.GetBool("discovered");
             int count = tag.GetInt("MarkerCount");
-            for (int i = 0; i < count; i++)
+            byte b = tag.GetByte("SaveType");
+            if (b == 0)
             {
-                AddMarker(tag.GetString("markermod" + i), tag.GetString("markername" + i));
+                loadLegacy(tag, count);
+            }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    string name = tag.GetString("markername" + i);
+                    AQContent.MapMarkers.TryGetMarker(name, out MapMarkerData value);
+
+                }
             }
         }
 
@@ -120,14 +148,6 @@ namespace AQMod.Tiles.TileEntities
                 return -1;
             }
             return Place(i, j);
-        }
-
-        public override void OnKill()
-        {
-            foreach (var m in markers)
-            {
-                Item.NewItem(new Rectangle(Position.X * 16, Position.Y * 16, 32, 32), m.item.type);
-            }
         }
     }
 }

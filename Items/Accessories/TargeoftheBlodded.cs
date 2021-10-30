@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.Shields
+namespace AQMod.Items.Accessories
 {
     [AutoloadEquip(EquipType.Shield)]
     public class TargeoftheBlodded : ModItem // I know this is mispelt...

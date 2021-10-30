@@ -17,6 +17,9 @@ namespace AQMod.Content.MapMarkers
         internal void Setup(bool setupStatics = false)
         {
             addMapMarker("CosmicMarker", new CosmicMarkerData());
+            addMapMarker("DungeonMarker", new CosmicMarkerData());
+            addMapMarker("LihzahrdMarker", new CosmicMarkerData());
+            addMapMarker("RetroMarker", new CosmicMarkerData());
         }
 
         internal void addMapMarker(string name, MapMarkerData data)
@@ -48,6 +51,11 @@ namespace AQMod.Content.MapMarkers
         public MapMarkerData GetMarker(string name)
         {
             return _mapMarkers[name];
+        }
+
+        public bool TryGetMarker(string name, out MapMarkerData value)
+        {
+            return _mapMarkers.TryGetValue(name, out value);
         }
     }
 }

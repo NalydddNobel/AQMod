@@ -17,7 +17,7 @@ namespace AQMod.Items.Vanities.CursorDyes
             item.useTurn = true;
             item.UseSound = SoundID.Item3;
             item.consumable = true;
-            item.rare = ItemRarityID.Green;
+            item.rare = ItemRarityID.Pink;
             item.value = Item.buyPrice(gold: 1);
             item.maxStack = 999;
         }

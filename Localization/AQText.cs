@@ -49,11 +49,6 @@ namespace AQMod.Localization
             return ModText("Common.RobsterChat" + type);
         }
 
-        public static LocalizedText EightballAnswer(int type)
-        {
-            return ModText("Common.EightballAnswer" + type);
-        }
-
         public static LocalizedText EightballMisc(int type)
         {
             return ModText("Common.EightballMisc" + type);

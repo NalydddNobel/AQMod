@@ -117,7 +117,7 @@ namespace AQMod.Projectiles.Ranged
             if (intensity > 10f)
             {
                 intensity -= 10f;
-                var spotlightTexture = TextureCache.Lights[Assets.Textures.LightID.Spotlight30x30];
+                var spotlightTexture = TextureCache.Lights[Assets.Textures.SpotlightID.Spotlight30x30];
                 var spotlightTextureOrigin = spotlightTexture.Size() / 2f;
                 Main.spriteBatch.Draw(ModContent.GetTexture(AQUtils.GetPath<HamaYumiArrow>() + "_Aura"), projectile.position + offset - Main.screenPosition, null, new Color(20, 8, 50, 0) * intensity, rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlightTexture, projectile.position + offset - Main.screenPosition, null, new Color(60, 10, 100, 0) * intensity, rotation, spotlightTextureOrigin, projectile.scale * intensity / 8f, SpriteEffects.None, 0f);

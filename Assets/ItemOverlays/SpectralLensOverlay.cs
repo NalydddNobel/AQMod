@@ -1,6 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.Textures;
+﻿using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
@@ -10,9 +8,9 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.ItemOverlays
+namespace AQMod.Assets.ItemOverlays
 {
-    public class SpectralLensOverlayData : ItemOverlayData
+    public class SpectralLensOverlay : ItemOverlayData
     {
         private static readonly Color[] pattern = new Color[]
         {
@@ -46,13 +44,13 @@ namespace AQMod.Common.ItemOverlays
 
         private static void DrawEye(Vector2 drawPosition, Item item, float time, float rotation = 0f, float scale3 = 1f)
         {
-            var texture = TextureCache.Lights[LightID.Spotlight80x80];
+            var texture = TextureCache.Lights[SpotlightID.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             int count = (int)(pattern.Length / 2 * ModContent.GetInstance<AQConfigClient>().EffectQuality);
             float rot = MathHelper.TwoPi / count;
             float rot2 = Main.GlobalTime * 3.22244455f;
-            Vector2 scale = new Vector2(scale3 * 0.06f, scale3 * (0.4f - (float)Math.Sin(time) * 0.08f));
+            var scale = new Vector2(scale3 * 0.06f, scale3 * (0.4f - (float)Math.Sin(time) * 0.08f));
             var clr = getColor(Main.GlobalTime);
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, clr, 0f, drawOrigin, scale3 * 0.25f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, clr * 0.5f, 0f, drawOrigin, scale3 * 0.4f, SpriteEffects.None, 0f);
@@ -72,13 +70,13 @@ namespace AQMod.Common.ItemOverlays
 
         private static void DrawEye_DrawData(Vector2 drawPosition, Player player, Item item, SpriteEffects effects)
         {
-            var texture = TextureCache.Lights[LightID.Spotlight80x80];
+            var texture = TextureCache.Lights[SpotlightID.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             int count = pattern.Length / 2;
             float rot = MathHelper.TwoPi / count;
             float rot2 = Main.GlobalTime * 3.22244455f;
-            Vector2 scale = new Vector2(item.scale * 0.06f, item.scale * (0.75f - (float)Math.Sin(player.itemAnimation / (float)player.itemAnimationMax * MathHelper.Pi) * 0.25f));
+            var scale = new Vector2(item.scale * 0.06f, item.scale * (0.75f - (float)Math.Sin(player.itemAnimation / (float)player.itemAnimationMax * MathHelper.Pi) * 0.25f));
             var clr = getColor(Main.GlobalTime);
             Main.playerDrawData.Add(new DrawData(texture, drawPosition, drawFrame, clr, 0f, drawOrigin, item.scale * 0.45f, effects, 0));
             Main.playerDrawData.Add(new DrawData(texture, drawPosition, drawFrame, clr * 0.55f, 0f, drawOrigin, item.scale * 0.82f, effects, 0));
@@ -122,7 +120,7 @@ namespace AQMod.Common.ItemOverlays
         {
             var texture = DrawUtils.LegacyTextureCache.Glows[GlowID.SpectralLens];
             var drawColor = getColor(Main.GlobalTime);
-            Vector2 drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
+            var drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
             var drawOrigin = Main.itemTexture[item.type].Size() / 2;
             Main.spriteBatch.Draw(texture, drawPosition, null, drawColor, rotation, drawOrigin, scale, SpriteEffects.None, 0f);
             DrawEye(drawPosition, item, Main.GlobalTime + 1f, rotation, scale);

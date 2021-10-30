@@ -88,10 +88,10 @@ namespace AQMod.Projectiles.Monster
             intensity *= ModContent.GetInstance<AQConfigClient>().EffectIntensity;
             if (intensity > 0f)
             {
-                var spotlight = TextureCache.Lights[LightID.Spotlight66x66];
+                var spotlight = TextureCache.Lights[SpotlightID.Spotlight66x66];
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.25f, projectile.rotation, spotlightOrig, projectile.scale * intensity, SpriteEffects.None, 0f);
-                spotlight = TextureCache.Lights[LightID.Spotlight240x66];
+                spotlight = TextureCache.Lights[SpotlightID.Spotlight240x66];
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.04f * intensity, (3f + (float)Math.Sin(Main.GlobalTime * 16f) * 0.2f) * intensity);
                 var spotlightDrawColor = drawColor * 0.2f;

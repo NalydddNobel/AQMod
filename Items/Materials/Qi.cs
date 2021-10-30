@@ -1,4 +1,4 @@
-﻿using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -13,7 +13,7 @@ namespace AQMod.Items.Materials
         {
             ItemID.Sets.ItemNoGravity[item.type] = true;
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new QiOverlayData(), item.type);
+                AQMod.ItemOverlays.Register(new QiOverlay(), item.type);
         }
 
         public override void SetDefaults()
