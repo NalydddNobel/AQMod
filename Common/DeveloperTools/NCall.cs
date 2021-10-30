@@ -86,6 +86,12 @@ namespace AQMod.Common.DeveloperTools
             Texture2D result = null;
             switch (args[1])
             {
+                case "resettravellingmerch":
+                {
+                    Chest.SetupTravelShop();
+                }
+                break;
+
                 case "alphafix":
                 {
                     result = new AlphaFixer(args[2]).CreateImage(int.Parse(args[3]), int.Parse(args[4]));
