@@ -1124,6 +1124,13 @@ namespace AQMod.Common
             }
             switch (npc.type)
             {
+                case NPCID.UndeadViking:
+                {
+                    if (Main.rand.NextBool(6))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.CrystalDagger>());
+                }
+                break;
+
                 case NPCID.EyeofCthulhu:
                 {
                     if (_showEnergyDropsMessage)
