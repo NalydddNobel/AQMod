@@ -6,7 +6,6 @@ using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.NPCs.Boss.Crabson;
-using AQMod.Projectiles.Bobbers;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
