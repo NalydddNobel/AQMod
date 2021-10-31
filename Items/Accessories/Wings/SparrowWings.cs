@@ -20,7 +20,7 @@ namespace AQMod.Items.Accessories.Wings
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.wingTimeMax = 100;
+            player.wingTimeMax = 160;
         }
 
         public override bool WingUpdate(Player player, bool inUse)
@@ -67,19 +67,17 @@ namespace AQMod.Items.Accessories.Wings
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            ascentWhenFalling = 0.5f;
-            ascentWhenRising = 0.1f;
-            maxCanAscendMultiplier = 0.5f;
-            maxAscentMultiplier = 1.5f;
-            constantAscend = 0.1f;
+            ascentWhenFalling = 0.75f;
+            ascentWhenRising = 0.15f;
+            maxCanAscendMultiplier = 0.75f;
+            maxAscentMultiplier = 2f;
+            constantAscend = 0.15f;
         }
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
         {
-            //speed = 8f;
-            //acceleration *= 2f;
-            speed = 6f;
-            acceleration *= 1.8f;
+            speed = 8f;
+            acceleration *= 2f;
         }
 
         public override void AddRecipes()
