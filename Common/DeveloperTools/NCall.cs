@@ -80,70 +80,6 @@ namespace AQMod.Common.DeveloperTools
 
         private static string[] lastCall = null;
 
-        private static void createSample(object arg)
-        {
-            string[] args = (string[])arg;
-            Texture2D result = null;
-            switch (args[1])
-            {
-                case "resettravellingmerch":
-                {
-                    Chest.SetupTravelShop();
-                }
-                break;
-
-                case "alphafix":
-                {
-                    result = new AlphaFixer(args[2]).CreateImage(int.Parse(args[3]), int.Parse(args[4]));
-                }
-                break;
-
-                case "spotlight":
-                {
-                    result = new SpotlightCircle().CreateImage(int.Parse(args[2]), int.Parse(args[3]));
-                }
-                break;
-
-                case "fester":
-                {
-                    if (args.Length > 4)
-                    {
-                        result = new FesteringCircle(float.Parse(args[4]), float.Parse(args[5]), float.Parse(args[6]), float.Parse(args[7]), float.Parse(args[8])).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
-                    }
-                    else
-                    {
-                        result = new FesteringCircle(1f, 1f, 1f, 0.2f, 2f).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
-                    }
-                }
-                break;
-
-                case "aura":
-                {
-                    var getTexture = ModContent.GetTexture(args[2]);
-                    int maxWidth = 4;
-                    if (args.Length > 3)
-                    {
-                        maxWidth = int.Parse(args[3]);
-                    }
-                    Vector3 tint = new Vector3(1f, 1f, 1f);
-                    if (args.Length > 4)
-                    {
-                        tint.X = float.Parse(args[4]);
-                        tint.Y = float.Parse(args[5]);
-                        tint.Z = float.Parse(args[6]);
-                    }
-                    result = new Aura(getTexture, tint, maxWidth).CreateImage(getTexture.Width, getTexture.Height);
-                }
-                break;
-            }
-            string path = AQMod.DebugFolderPath;
-            Directory.CreateDirectory(path);
-            result.SaveAsPng(File.Create(path + Path.DirectorySeparatorChar + "ncallresult.png"), result.Width, result.Height);
-            Thread.Sleep(2000);
-            Main.NewText("image complete!");
-            Utils.OpenFolder(path);
-        }
-
         public override void Action(CommandCaller caller, string input, string[] args)
         {
             if (args.Length == 0)
@@ -156,6 +92,12 @@ namespace AQMod.Common.DeveloperTools
             {
                 default:
                 caller.Reply("Command doesn't exist.");
+                break;
+
+                case "resettmerch":
+                {
+                    Chest.SetupTravelShop();
+                }
                 break;
 
                 case "debugi":
@@ -843,6 +785,63 @@ namespace AQMod.Common.DeveloperTools
                 }
             }
             lastCall = args;
+        }
+
+        private static void createSample(object arg)
+        {
+            string[] args = (string[])arg;
+            Texture2D result = null;
+            switch (args[1])
+            {
+                case "alphafix":
+                {
+                    result = new AlphaFixer(args[2]).CreateImage(int.Parse(args[3]), int.Parse(args[4]));
+                }
+                break;
+
+                case "spotlight":
+                {
+                    result = new SpotlightCircle().CreateImage(int.Parse(args[2]), int.Parse(args[3]));
+                }
+                break;
+
+                case "fester":
+                {
+                    if (args.Length > 4)
+                    {
+                        result = new FesteringCircle(float.Parse(args[4]), float.Parse(args[5]), float.Parse(args[6]), float.Parse(args[7]), float.Parse(args[8])).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
+                    }
+                    else
+                    {
+                        result = new FesteringCircle(1f, 1f, 1f, 0.2f, 2f).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
+                    }
+                }
+                break;
+
+                case "aura":
+                {
+                    var getTexture = ModContent.GetTexture(args[2]);
+                    int maxWidth = 4;
+                    if (args.Length > 3)
+                    {
+                        maxWidth = int.Parse(args[3]);
+                    }
+                    Vector3 tint = new Vector3(1f, 1f, 1f);
+                    if (args.Length > 4)
+                    {
+                        tint.X = float.Parse(args[4]);
+                        tint.Y = float.Parse(args[5]);
+                        tint.Z = float.Parse(args[6]);
+                    }
+                    result = new Aura(getTexture, tint, maxWidth).CreateImage(getTexture.Width, getTexture.Height);
+                }
+                break;
+            }
+            string path = AQMod.DebugFolderPath;
+            Directory.CreateDirectory(path);
+            result.SaveAsPng(File.Create(path + Path.DirectorySeparatorChar + "ncallresult.png"), result.Width, result.Height);
+            Main.NewText("image complete!");
+            Utils.OpenFolder(path);
         }
     }
 }
