@@ -8,7 +8,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Ranged.Bullet
+namespace AQMod.Items.Weapons.Ranged
 {
     public class Raygun : ModItem
     {

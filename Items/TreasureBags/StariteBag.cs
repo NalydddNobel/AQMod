@@ -2,9 +2,9 @@
 using AQMod.Items.Accessories;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.MapMarkers;
-using AQMod.Items.Vanities;
+using AQMod.Items.Vanities.BossMasks;
 using AQMod.Items.Weapons.Magic;
-using AQMod.Items.Weapons.Ranged.Bullet;
+using AQMod.Items.Weapons.Ranged;
 using AQMod.NPCs.Boss.Starite;
 using Terraria;
 using Terraria.ID;

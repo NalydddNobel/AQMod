@@ -1,10 +1,9 @@
-﻿using AQMod.NPCs.Friendly;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Critters
+namespace AQMod.Items.Vanities.Critters
 {
-    public class DwarfStariteItem : ModItem
+    public class Snobster : ModItem
     {
         public override void SetDefaults()
         {
@@ -15,7 +14,7 @@ namespace AQMod.Items.Critters
             item.useTime = 10;
             item.useAnimation = 15;
             item.maxStack = 999;
-            item.makeNPC = (short)ModContent.NPCType<DwarfStarite>();
+            item.makeNPC = (short)ModContent.NPCType<NPCs.Friendly.Snobster>();
         }
     }
 }

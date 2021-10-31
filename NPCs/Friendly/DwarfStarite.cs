@@ -3,7 +3,7 @@ using AQMod.Assets.Textures;
 using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
-using AQMod.Items.Critters;
+using AQMod.Items.Vanities.Critters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

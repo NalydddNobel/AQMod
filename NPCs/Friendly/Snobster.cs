@@ -25,7 +25,7 @@ namespace AQMod.NPCs.Friendly
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.npcSlots = 0.5f;
-            npc.catchItem = (short)ModContent.ItemType<Items.Critters.Snobster>();
+            npc.catchItem = (short)ModContent.ItemType<Items.Vanities.Critters.Snobster>();
         }
 
         public override void HitEffect(int hitDirection, double damage)

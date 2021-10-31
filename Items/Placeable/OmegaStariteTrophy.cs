@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Items.Weapons.Magic;
-using AQMod.Items.Weapons.Ranged.Bullet;
+using AQMod.Items.Weapons.Ranged;
 using Terraria.ID;
 using Terraria.ModLoader;
 

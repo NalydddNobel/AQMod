@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Vanities
+namespace AQMod.Items.Vanities.BossMasks
 {
     [AutoloadEquip(EquipType.Head)]
     public class OmegaStariteMask : ModItem
@@ -15,8 +15,8 @@ namespace AQMod.Items.Vanities
         {
             if (!Main.dedServ)
             {
-                AQMod.ItemOverlays.Register(new GlowmaskOverlay(AQUtils.GetPath(this) + "_Glow"), item.type);
-                AQMod.ArmorOverlays.AddHeadOverlay<OmegaStariteMask>(new EquipHeadOverlay(AQUtils.GetPath(this) + "_HeadGlow", new Color(200, 200, 200, 0)));
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath() + "_Glow"), item.type);
+                AQMod.ArmorOverlays.AddHeadOverlay<OmegaStariteMask>(new EquipHeadOverlay(this.GetPath() + "_HeadGlow", new Color(200, 200, 200, 0)));
             }
         }
 
