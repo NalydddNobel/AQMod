@@ -322,8 +322,8 @@ ItemName.UnityMirror=清灵明镜
 #############
 # Banners
 ItemName.StariteBanner=星之源旗
-ItemName.SuperStariteBanner=极耀新星旗
-ItemName.HyperStariteBanner=巨耀新星旗
+ItemName.SuperStariteBanner=极耀源星旗
+ItemName.HyperStariteBanner=巨耀源星旗
 ItemName.ArrowCrabBanner=箭蟹旗
 ItemName.HermitCrabBanner=寄居蟹旗
 ItemName.SoliderCrabsBanner=大闸蟹旗
@@ -706,9 +706,9 @@ ProjectileName.CrimsonHandBloodShot={$Mods.AQMod.ProjectileName.CrimsonHandMinio
 # NPCs
 NPCName.BloodMimic={$NPCName.Mimic}
 NPCName.Starite=星之源
-NPCName.SuperStarite=极耀新星
-NPCName.HyperStarite=巨耀新星
-NPCName.UltraStarite=终耀新星
+NPCName.SuperStarite=极耀源星
+NPCName.HyperStarite=巨耀源星
+NPCName.UltraStarite=终耀源星
 NPCName.OmegaStarite=终末之星
 NPCName.Robster=掠夺者
 NPCName.JerryCrabson=巨蟹蛤
@@ -731,5 +731,5 @@ NPCName.SpaceSquid=太空乌贼
 NPCName.RedSprite=红色精灵
 NPCName.Condor=兀鹰
 NPCName.Atmodrone=大气无人机
-NPCName.MultiStarite=集群新星
-NPCName.DwarfStarite=侏儒新星
+NPCName.MultiStarite=集群源星
+NPCName.DwarfStarite=侏儒源星
