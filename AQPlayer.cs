@@ -7,7 +7,6 @@ using AQMod.Common.PlayerData;
 using AQMod.Common.PlayerData.Layers;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
-using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
 using AQMod.Content.Particles;
@@ -531,7 +530,7 @@ namespace AQMod
             }
             if (!Main.gamePaused && Main.instance.IsActive)
                 ScreenShakeManager.Update();
-            AQUtils.UpdateSky((AQMod.glimmerEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
+            AQUtils.UpdateSky((AQMod.CosmicEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
             //if (AQConfigClient.Instance.ScreenDistortShader)
             //    player.ManageSpecialBiomeVisuals(VisualsManager.DistortX, OmegaStarite.DistortShaderActive());
         }
@@ -646,7 +645,7 @@ namespace AQMod
             {
                 if (player.position.Y < Main.worldSurface * 16f)
                 {
-                    if (AQMod.glimmerEvent.IsActive)
+                    if (AQMod.CosmicEvent.IsActive)
                         return TextureCache.MapBGGlimmer.Value;
                 }
             }
@@ -1049,7 +1048,7 @@ namespace AQMod
                 {
                     caughtType = ModContent.ItemType<Crabdaughter>();
                 }
-                if (AQMod.glimmerEvent.IsActive)
+                if (AQMod.CosmicEvent.IsActive)
                 {
                     if (player.position.Y < Main.worldSurface * 16f)
                     {
@@ -1057,7 +1056,7 @@ namespace AQMod
                         {
                             caughtType = ModContent.ItemType<Fizzler>();
                         }
-                        else if (((int)(player.position.X / 16f + player.width / 2) - AQMod.glimmerEvent.tileX).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
+                        else if (((int)(player.position.X / 16f + player.width / 2) - AQMod.CosmicEvent.tileX).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
                         {
                             caughtType = ModContent.ItemType<UltraEel>();
                         }

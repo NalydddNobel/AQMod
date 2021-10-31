@@ -87,7 +87,7 @@ namespace AQMod.Tiles
             int x = i - (tile.frameX % 36 / 18);
             int y = j - (tile.frameY / 18);
             int index = ModContent.GetInstance<TEGlimmeringStatue>().Find(x, y);
-            if (index != -1 && !AQMod.glimmerEvent.IsActive && (AQMod.glimmerEvent.spawnChance <= 1 || Main.rand.NextBool(AQMod.glimmerEvent.spawnChance)))
+            if (index != -1 && !AQMod.CosmicEvent.IsActive && (AQMod.CosmicEvent.spawnChance <= 1 || Main.rand.NextBool(AQMod.CosmicEvent.spawnChance)))
             {
                 int d = Dust.NewDust(new Vector2(x * 16f, y * 16f), 32, 16, dustType);
                 Main.dust[d].noGravity = true;
@@ -110,14 +110,14 @@ namespace AQMod.Tiles
             int x = i - (tile.frameX / 18 % 2);
             int y = j - (tile.frameY / 18 % 3);
             int index = ModContent.GetInstance<TEGlimmeringStatue>().Find(x, y);
-            if (index != -1 && !AQMod.glimmerEvent.IsActive && AQMod.glimmerEvent.spawnChance > 0)
+            if (index != -1 && !AQMod.CosmicEvent.IsActive && AQMod.CosmicEvent.spawnChance > 0)
             {
                 int d = Dust.NewDust(new Vector2(x * 16f, y * 16f), 32, 16, dustType);
                 Main.dust[d].noGravity = true;
                 Main.dust[d].scale = Main.rand.NextFloat(0.8f, 1.2f);
                 Main.dust[d].velocity.X *= 0.3f;
                 Main.dust[d].velocity.Y = -Main.rand.NextFloat(1f, 2f);
-                CombatText.NewText(new Rectangle(x * 16, y * 16, 32, 16), AQMod.glimmerEvent.stariteProjectileColor, AQMod.glimmerEvent.spawnChance, true);
+                CombatText.NewText(new Rectangle(x * 16, y * 16, 32, 16), AQMod.CosmicEvent.stariteProjectileColor, AQMod.CosmicEvent.spawnChance, true);
             }
             if (Wiring.running)
             {

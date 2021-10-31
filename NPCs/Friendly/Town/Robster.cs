@@ -143,7 +143,7 @@ namespace AQMod.NPCs.Friendly.Town
                     potentialText.Add(AQText.RobsterChat(6).Value);
             }
 
-            if (AQMod.glimmerEvent.IsActive)
+            if (AQMod.CosmicEvent.IsActive)
             {
                 potentialText.Add(AQText.RobsterChat(2).Value);
                 potentialText.Add(AQText.RobsterChat(3).Value);

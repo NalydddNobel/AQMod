@@ -1,7 +1,4 @@
-﻿using AQMod.Items.Materials;
-using AQMod.Items.Materials.Energies;
-using AQMod.Items.Placeable;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Tools.Rods
@@ -15,18 +12,6 @@ namespace AQMod.Items.Tools.Rods
             item.shootSpeed = 10f;
             item.rare = ItemRarityID.Blue;
             item.shoot = ModContent.ProjectileType<Projectiles.Bobbers.CrabRod>();
-        }
-
-
-        public override void AddRecipes()
-        {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<CrabShell>(), 8);
-            r.AddIngredient(ModContent.ItemType<AquaticEnergy>());
-            r.AddIngredient(ModContent.ItemType<ExoticCoral>(), 40);
-            r.AddTile(ModContent.TileType<Tiles.FishingCraftingStation>());
-            r.SetResult(this);
-            r.AddRecipe();
         }
     }
 }

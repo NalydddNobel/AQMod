@@ -18,46 +18,46 @@ namespace AQMod.Common
             {
                 { "addloadtask", (o) =>
                     {
-                        AQContent.addLoadTask(new CachedTask((object)o[1], (Func<object, object>)o[2]));
+                        AQMod.addLoadTask(new CachedTask((object)o[1], (Func<object, object>)o[2]));
                         return null;
                     } 
                 },
 
-                { "glimmerevent.tilex", (o) => AQMod.glimmerEvent.tileX },
-                { "glimmerevent.tiley", (o) => AQMod.glimmerEvent.tileY },
-                { "glimmerevent.spawnchance", (o) => AQMod.glimmerEvent.spawnChance },
-                { "glimmerevent.deactivationtimer", (o) => AQMod.glimmerEvent.deactivationTimer },
-                { "glimmerevent.staritedisco", (o) => AQMod.glimmerEvent.StariteDisco },
+                { "glimmerevent.tilex", (o) => AQMod.CosmicEvent.tileX },
+                { "glimmerevent.tiley", (o) => AQMod.CosmicEvent.tileY },
+                { "glimmerevent.spawnchance", (o) => AQMod.CosmicEvent.spawnChance },
+                { "glimmerevent.deactivationtimer", (o) => AQMod.CosmicEvent.deactivationTimer },
+                { "glimmerevent.staritedisco", (o) => AQMod.CosmicEvent.StariteDisco },
 
-                { "glimmerevent.tilex_set", (o) => AQMod.glimmerEvent.tileX = (ushort)o[1] },
-                { "glimmerevent.tiley_set", (o) => AQMod.glimmerEvent.tileY = (ushort)o[1] },
-                { "glimmerevent.spawnchance_set", (o) => AQMod.glimmerEvent.spawnChance = (int)o[1] },
-                { "glimmerevent.deactivationtimer_set", (o) => AQMod.glimmerEvent.deactivationTimer = (int)o[1] },
-                { "glimmerevent.staritedisco_set", (o) => AQMod.glimmerEvent.StariteDisco = (bool)o[1] },
+                { "glimmerevent.tilex_set", (o) => AQMod.CosmicEvent.tileX = (ushort)o[1] },
+                { "glimmerevent.tiley_set", (o) => AQMod.CosmicEvent.tileY = (ushort)o[1] },
+                { "glimmerevent.spawnchance_set", (o) => AQMod.CosmicEvent.spawnChance = (int)o[1] },
+                { "glimmerevent.deactivationtimer_set", (o) => AQMod.CosmicEvent.deactivationTimer = (int)o[1] },
+                { "glimmerevent.staritedisco_set", (o) => AQMod.CosmicEvent.StariteDisco = (bool)o[1] },
 
-                { "glimmerevent_isactive", (o) => AQMod.glimmerEvent.IsActive },
-                { "glimmerevent_stariteprojectilecolor", (o) => AQMod.glimmerEvent.stariteProjectileColor },
+                { "glimmerevent_isactive", (o) => AQMod.CosmicEvent.IsActive },
+                { "glimmerevent_stariteprojectilecolor", (o) => AQMod.CosmicEvent.stariteProjectileColor },
                 { "glimmerevent_activate", (o) =>
                     {
                         if (o.Length > 1 && o[1] is bool flag)
                         {
-                            return AQMod.glimmerEvent.Activate(flag);
+                            return AQMod.CosmicEvent.Activate(flag);
                         }
                         else
                         {
-                            return AQMod.glimmerEvent.Activate();
+                            return AQMod.CosmicEvent.Activate();
                         }
                     }
                 },
-                { "glimmerevent_spawnsactive", (o) => AQMod.glimmerEvent.SpawnsActive((Player)o[1]) },
-                { "glimmerevent_canshowinvasionprogress", (o) => AQMod.glimmerEvent.CanShowInvasionProgress() },
+                { "glimmerevent_spawnsactive", (o) => AQMod.CosmicEvent.SpawnsActive((Player)o[1]) },
+                { "glimmerevent_canshowinvasionprogress", (o) => AQMod.CosmicEvent.CanShowInvasionProgress() },
                 { "glimmerevent_deactivate", (o) =>
                     {
-                        AQMod.glimmerEvent.Deactivate();
+                        AQMod.CosmicEvent.Deactivate();
                         return null;
                     }
                 },
-                { "glimmerevent_gettiledistance", (o) => AQMod.glimmerEvent.GetTileDistance((Player)o[1]) },
+                { "glimmerevent_gettiledistance", (o) => AQMod.CosmicEvent.GetTileDistance((Player)o[1]) },
 
                 { "demonsiege.x", (o) => DemonSiege.X },
                 { "demonsiege.y", (o) => DemonSiege.Y },

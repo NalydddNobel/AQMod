@@ -1246,9 +1246,9 @@ namespace AQMod.Common
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (AQMod.glimmerEvent.SpawnsActive(spawnInfo.player))
+            if (AQMod.CosmicEvent.SpawnsActive(spawnInfo.player))
             {
-                int tileDistance = AQMod.glimmerEvent.GetTileDistance(spawnInfo.player);
+                int tileDistance = AQMod.CosmicEvent.GetTileDistance(spawnInfo.player);
                 if (tileDistance < GlimmerEvent.MaxDistance)
                 {
                     if (tileDistance > GlimmerEvent.HyperStariteDistance) // shouldn't divide by 0...

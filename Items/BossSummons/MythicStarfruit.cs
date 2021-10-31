@@ -29,12 +29,12 @@ namespace AQMod.Items.BossSummons
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime && !AQMod.glimmerEvent.IsActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !AQMod.CosmicEvent.IsActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool UseItem(Player player)
         {
-            AQMod.glimmerEvent.Activate(resetSpawnChance: false);
+            AQMod.CosmicEvent.Activate(resetSpawnChance: false);
             AQMod.BroadcastMessage(AQText.Key + "Common.GlimmerEventWarning", GlimmerEvent.TextColor);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;

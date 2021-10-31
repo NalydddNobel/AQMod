@@ -1,4 +1,4 @@
-﻿using AQMod.Content;
+﻿using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -107,9 +107,9 @@ namespace AQMod.Items.Vanities
                     }
                     return true;
                 }
-                if (AQMod.glimmerEvent.IsActive && Main.rand.NextBool())
+                if (AQMod.CosmicEvent.IsActive && Main.rand.NextBool())
                 {
-                    if ((int)(player.Center.X / 16) == AQMod.glimmerEvent.tileX)
+                    if ((int)(player.Center.X / 16) == AQMod.CosmicEvent.tileX)
                     {
                         key = AQText.Key + "Common.EightballMisc2";
                         spawnText(player, key);

@@ -28,7 +28,7 @@ namespace AQMod.Items.BossSummons
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime && !AQMod.glimmerEvent.IsActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !AQMod.CosmicEvent.IsActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool UseItem(Player player)

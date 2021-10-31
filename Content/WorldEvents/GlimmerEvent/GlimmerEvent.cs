@@ -34,7 +34,7 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
         public bool IsActive => tileX != 0;
         public bool SpawnsActive(Player player)
         {
-            return AQMod.glimmerEvent.IsActive && AQMod.glimmerEvent.deactivationTimer <= 0 && player.position.Y < (Main.worldSurface + 50) * 16;
+            return AQMod.CosmicEvent.IsActive && AQMod.CosmicEvent.deactivationTimer <= 0 && player.position.Y < (Main.worldSurface + 50) * 16;
         }
         public ushort tileX;
         public ushort tileY;

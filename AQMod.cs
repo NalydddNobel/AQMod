@@ -5,6 +5,7 @@ using AQMod.Assets.SceneLayers;
 using AQMod.Assets.SceneLayers.ParticlesLayers;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.DeveloperTools;
 using AQMod.Common.NetCode;
 using AQMod.Common.SceneLayers;
 using AQMod.Common.Skies;
@@ -12,6 +13,7 @@ using AQMod.Common.UserInterface;
 using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
+using AQMod.Content.MapMarkers;
 using AQMod.Content.RobsterQuests;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
@@ -147,6 +149,9 @@ namespace AQMod
         /// The active instance of the Robster Hunts Loader.
         /// </summary>
         public static RobsterHuntLoader RobsterHunts { get; private set; }
+        public static MapMarkerManager MapMarkers { get; private set; }
+
+        private static List<CachedTask> cachedLoadTasks;
         /// <summary>
         /// The active instance of World Layers
         /// </summary>
@@ -166,7 +171,7 @@ namespace AQMod
         /// <summary>
         /// The active instance of the Glimmer Event
         /// </summary>
-        public static GlimmerEvent glimmerEvent { get; set; }
+        public static GlimmerEvent CosmicEvent { get; set; }
 
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
@@ -187,7 +192,7 @@ namespace AQMod
             {
                 AprilFools = true;
             }
-            AQContent.OnInitNewModInstance();
+            cachedLoadTasks = new List<CachedTask>();
             Loading = true;
         }
 
@@ -199,7 +204,8 @@ namespace AQMod
             CursorDyes.Setup(setupStatics: true);
             RobsterHunts = new RobsterHuntLoader();
             RobsterHunts.Setup(setupStatics: true);
-            glimmerEvent = new GlimmerEvent();
+            CosmicEvent = new GlimmerEvent();
+            MapMarkers = new MapMarkerManager();
             AQPlayer.Setup();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             ModCallHelper.SetupCalls();
@@ -210,7 +216,6 @@ namespace AQMod
             On.Terraria.Main.DrawTiles += Main_DrawTiles;
             On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
             var server = AQConfigServer.Instance;
-            AQContent.OnLoad(server);
             ApplyServerConfig(server);
             if (!Main.dedServ)
             {
@@ -253,7 +258,6 @@ namespace AQMod
                     GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
                 }
                 WorldEffects = new List<WorldVisualEffect>();
-                AQContent.OnLoadAssets(server, client);
             }
         }
 
@@ -336,7 +340,6 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
-            AQContent.OnPostSetupContent();
             AQNPC.Sets.Setup(); // Initializes sets for npcs
             AQProjectile.Sets.Setup(); // Initializes sets for projectiles
             DemonSiege.Setup(); // Sets up the Demon Siege event
@@ -344,6 +347,9 @@ namespace AQMod
             BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
             FargosQOLStuff.Setup(this); // Sets up boss summons for Fargowiltas,
             AQItem.Sets.Setup();
+            MapMarkers.Setup(setupStatics: true);
+            invokeTasks();
+            cachedLoadTasks.Clear();
         }
 
         public override void AddRecipeGroups()
@@ -369,7 +375,8 @@ namespace AQMod
 
         public override void AddRecipes()
         {
-            AQContent.OnAddRecipes();
+            invokeTasks();
+            cachedLoadTasks = null;
             // TODO: Add content method instances that run here, which other mods can add to, so that adding to specific things is less hellish.
             Loading = false; // Sets Loading to false, so that some things no longer accept new content.
             RobsterHunts.SetupHunts();
@@ -486,9 +493,11 @@ namespace AQMod
             ItemOverlays = null;
 
             // in: PostSetupContent()
+            cachedLoadTasks = null;
+            MapMarkers = null;
             AQItem.Sets.Unload();
             DemonSiege.Unload();
-            AQNPC.Sets.Setup();
+            AQNPC.Sets.Unload();
 
             // in: Load()
             // v doesn't load on server v
@@ -544,11 +553,11 @@ namespace AQMod
             }
             if (Main.netMode != NetmodeID.Server)
             {
-                glimmerEvent.stariteProjectileColor = glimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : StariteProjectileColor;
+                CosmicEvent.stariteProjectileColor = CosmicEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : StariteProjectileColor;
             }
             else
             {
-                glimmerEvent.stariteProjectileColor = glimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : GlimmerEvent.StariteProjectileColorOrig;
+                CosmicEvent.stariteProjectileColor = CosmicEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : GlimmerEvent.StariteProjectileColorOrig;
             }
         }
 
@@ -562,7 +571,7 @@ namespace AQMod
             }
             if (Main.netMode != NetmodeID.MultiplayerClient && spawnStarite)
             {
-                OmegaStariteScene.OmegaStariteIndexCache = (short)NPC.NewNPC(AQMod.glimmerEvent.tileX * 16 + 8, AQMod.glimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
+                OmegaStariteScene.OmegaStariteIndexCache = (short)NPC.NewNPC(AQMod.CosmicEvent.tileX * 16 + 8, AQMod.CosmicEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
                 OmegaStariteScene.SceneType = 1;
                 spawnStarite = false;
                 BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", BossMessage);
@@ -594,9 +603,9 @@ namespace AQMod
                 music = DemonSiegeMusic.GetMusicID();
                 priority = MusicPriority.Event;
             }
-            else if (glimmerEvent.IsActive && player.position.Y < Main.worldSurface * 16.0)
+            else if (CosmicEvent.IsActive && player.position.Y < Main.worldSurface * 16.0)
             {
-                int tileDistance = (int)(player.Center.X / 16 - glimmerEvent.tileX).Abs();
+                int tileDistance = (int)(player.Center.X / 16 - CosmicEvent.tileX).Abs();
                 if (tileDistance < GlimmerEvent.MaxDistance)
                 {
                     music = GlimmerEventMusic.GetMusicID();
@@ -664,11 +673,11 @@ namespace AQMod
 
                 case NetType.UpdateGlimmerEvent:
                 {
-                    glimmerEvent.tileX = reader.ReadUInt16();
-                    glimmerEvent.tileY = reader.ReadUInt16();
-                    glimmerEvent.spawnChance = reader.ReadInt32();
-                    glimmerEvent.StariteDisco = reader.ReadBoolean();
-                    glimmerEvent.deactivationTimer = reader.ReadInt32();
+                    CosmicEvent.tileX = reader.ReadUInt16();
+                    CosmicEvent.tileY = reader.ReadUInt16();
+                    CosmicEvent.spawnChance = reader.ReadInt32();
+                    CosmicEvent.StariteDisco = reader.ReadBoolean();
+                    CosmicEvent.deactivationTimer = reader.ReadInt32();
                 }
                 break;
 
@@ -734,7 +743,7 @@ namespace AQMod
 
         public static void OnTurnNight()
         {
-            glimmerEvent.OnTurnNight();
+            CosmicEvent.OnTurnNight();
             if (Main.netMode != NetmodeID.Server)
             {
                 GlimmerEventSky.InitNight();
@@ -796,6 +805,31 @@ namespace AQMod
         {
             index = Projectile.NewProjectile(position, velocity, Type, Damage, KnockBack, Owner, ai0, ai1);
             return (TModProjectile)Main.projectile[index].modProjectile;
+        }
+
+        internal static void addLoadTask(CachedTask task)
+        {
+            cachedLoadTasks.Add(task);
+        }
+
+        private static void invokeTasks()
+        {
+            if (cachedLoadTasks == null)
+                return;
+            foreach (var task in cachedLoadTasks)
+            {
+                try
+                {
+                    task.Invoke();
+                }
+                catch (Exception e)
+                {
+                    var aQMod = AQMod.Instance;
+                    aQMod.Logger.Error("An error occured when invoking cached load tasks.");
+                    aQMod.Logger.Error(e.Message);
+                    aQMod.Logger.Error(e.StackTrace);
+                }
+            }
         }
     }
 }

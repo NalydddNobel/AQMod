@@ -36,11 +36,11 @@ namespace AQMod.Common.NetCode
             var p = AQMod.Instance.GetPacket();
             p.Write(NetType.UpdateGlimmerEvent);
 
-            p.Write(AQMod.glimmerEvent.tileX);
-            p.Write(AQMod.glimmerEvent.tileY);
-            p.Write(AQMod.glimmerEvent.spawnChance);
-            p.Write(AQMod.glimmerEvent.StariteDisco);
-            p.Write(AQMod.glimmerEvent.deactivationTimer);
+            p.Write(AQMod.CosmicEvent.tileX);
+            p.Write(AQMod.CosmicEvent.tileY);
+            p.Write(AQMod.CosmicEvent.spawnChance);
+            p.Write(AQMod.CosmicEvent.StariteDisco);
+            p.Write(AQMod.CosmicEvent.deactivationTimer);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace AQMod.Content
+namespace AQMod.Content.WorldEvents.GlimmerEvent
 {
     public static class OmegaStariteScene
     {
@@ -30,7 +30,7 @@ namespace AQMod.Content
 
         public static Vector2 SwordDrawPosition()
         {
-            return new Vector2(AQMod.glimmerEvent.tileX * 16f, AQMod.glimmerEvent.tileY - 120f);
+            return new Vector2(AQMod.CosmicEvent.tileX * 16f, AQMod.CosmicEvent.tileY - 120f);
         }
 
         public static void InteractWithSword(Player player)

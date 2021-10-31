@@ -170,11 +170,11 @@ namespace AQMod.Common.UserInterface
                 //buffToggleType.Add(ModContent.BuffType<CosmicMarkerBuff>());
                 //buffEnabled.Add(aQPlayer.showCosmicMap);
                 //buffToggleFunctions.Add(() => aQPlayer.showCosmicMap = !aQPlayer.showCosmicMap);
-                if (aQPlayer.showCosmicMap && AQMod.glimmerEvent.IsActive)
+                if (aQPlayer.showCosmicMap && AQMod.CosmicEvent.IsActive)
                 {
                     var texture = TextureCache.MapIconGlimmerEvent.Value;
                     var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                    var drawPos = MapPos(new Vector2(AQMod.glimmerEvent.tileX + 0.5f, AQMod.glimmerEvent.tileY - 3f));
+                    var drawPos = MapPos(new Vector2(AQMod.CosmicEvent.tileX + 0.5f, AQMod.CosmicEvent.tileY - 3f));
                     var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
                     var scale = Main.UIScale;
                     if (hitbox.Contains(Main.mouseX, Main.mouseY))
@@ -186,8 +186,8 @@ namespace AQMod.Common.UserInterface
                             if (Main.mouseRight)
                             {
                                 var p = MapPosToTilePos(new Vector2(Main.mouseX, Main.mouseY));
-                                AQMod.glimmerEvent.tileX = (ushort)(int)p.X;
-                                AQMod.glimmerEvent.tileY = (ushort)(int)p.Y;
+                                AQMod.CosmicEvent.tileX = (ushort)(int)p.X;
+                                AQMod.CosmicEvent.tileY = (ushort)(int)p.Y;
                             }
                         }
                         else
@@ -211,7 +211,7 @@ namespace AQMod.Common.UserInterface
                         for (int j = 0; j < 2; j++)
                         {
                             int d = j == 1 ? -1 : 1;
-                            var pos = new Vector2(AQMod.glimmerEvent.tileX + 0.5f + layer.Distance * d, 46f);
+                            var pos = new Vector2(AQMod.CosmicEvent.tileX + 0.5f + layer.Distance * d, 46f);
                             if (pos.X < 0f || pos.X > Main.maxTilesX)
                                 continue;
                             for (int k = 0; k < 2; k++)

@@ -240,7 +240,7 @@ namespace AQMod.NPCs.Friendly
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (AQMod.glimmerEvent.IsActive && spawnInfo.player.position.Y < Main.worldSurface * 16f)
+            if (AQMod.CosmicEvent.IsActive && spawnInfo.player.position.Y < Main.worldSurface * 16f)
                 return 1f;
             return 0f;
         }

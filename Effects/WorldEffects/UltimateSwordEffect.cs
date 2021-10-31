@@ -19,7 +19,7 @@ namespace AQMod.Effects.WorldEffects
         private Color _dustColor;
         private readonly UnifiedRandom _rand;
 
-        public UltimateSwordEffect(UnifiedRandom rand) : base(AQMod.glimmerEvent.tileX * 16, AQMod.glimmerEvent.tileY * 16)
+        public UltimateSwordEffect(UnifiedRandom rand) : base(AQMod.CosmicEvent.tileX * 16, AQMod.CosmicEvent.tileY * 16)
         {
             _rand = rand;
             _time = rand.NextFloat(0f, MathHelper.PiOver2 * 3f);
@@ -87,7 +87,7 @@ namespace AQMod.Effects.WorldEffects
             }
         }
 
-        public UltimateSwordEffect(float timeOffset, float maxWidth, float maxHeight, int lifespan, int reps, Color dustColor, int seed = -1) : base(AQMod.glimmerEvent.tileX * 16, AQMod.glimmerEvent.tileY * 16)
+        public UltimateSwordEffect(float timeOffset, float maxWidth, float maxHeight, int lifespan, int reps, Color dustColor, int seed = -1) : base(AQMod.CosmicEvent.tileX * 16, AQMod.CosmicEvent.tileY * 16)
         {
             if (seed == -1)
                 _rand = new UnifiedRandom();

@@ -33,7 +33,7 @@ namespace AQMod.Common.UserInterface
                 currentInvasionType = DemonSiegeInvasion;
                 InvasionType = DemonSiegeInvasion;
             }
-            else if (AQMod.glimmerEvent.CanShowInvasionProgress())
+            else if (AQMod.CosmicEvent.CanShowInvasionProgress())
             {
                 currentInvasionType = GlimmerEventInvasion;
                 InvasionType = GlimmerEventInvasion;
@@ -62,7 +62,7 @@ namespace AQMod.Common.UserInterface
                 {
                     case GlimmerEventInvasion:
                     {
-                        invasionProgress = 1f - (float)AQMod.glimmerEvent.GetTileDistance(Main.LocalPlayer) / GlimmerEvent.MaxDistance;
+                        invasionProgress = 1f - (float)AQMod.CosmicEvent.GetTileDistance(Main.LocalPlayer) / GlimmerEvent.MaxDistance;
                         uiStyle = 0;
                         texture = TextureCache.GlimmerEventEventIcon.Value;
                         text = AQText.GlimmerEvent().Value;

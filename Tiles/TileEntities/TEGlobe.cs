@@ -55,7 +55,7 @@ namespace AQMod.Tiles.TileEntities
 
         public bool AddMarker(string name)
         {
-            if (AQContent.MapMarkers.TryGetMarker(name, out MapMarkerData value))
+            if (AQMod.MapMarkers.TryGetMarker(name, out MapMarkerData value))
                 return false;
             Markers.Add(value);
             return true;
@@ -87,25 +87,25 @@ namespace AQMod.Tiles.TileEntities
                     {
                         case "CosmicTelescope":
                         {
-                            AQContent.MapMarkers.GetMarker("CosmicMarker");
+                            AQMod.MapMarkers.GetMarker("CosmicMarker");
                         }
                         break;
 
                         case "DungeonMap":
                         {
-                            AQContent.MapMarkers.GetMarker("DungeonMarker");
+                            AQMod.MapMarkers.GetMarker("DungeonMarker");
                         }
                         break;
 
                         case "LihzahrdMap":
                         {
-                            AQContent.MapMarkers.GetMarker("LihzahrdMarker");
+                            AQMod.MapMarkers.GetMarker("LihzahrdMarker");
                         }
                         break;
 
                         case "RetroGoggles":
                         {
-                            AQContent.MapMarkers.GetMarker("RetroMarker");
+                            AQMod.MapMarkers.GetMarker("RetroMarker");
                         }
                         break;
                     }
@@ -127,8 +127,7 @@ namespace AQMod.Tiles.TileEntities
                 for (int i = 0; i < count; i++)
                 {
                     string name = tag.GetString("markername" + i);
-                    AQContent.MapMarkers.TryGetMarker(name, out MapMarkerData value);
-
+                    AQMod.MapMarkers.TryGetMarker(name, out MapMarkerData value);
                 }
             }
         }

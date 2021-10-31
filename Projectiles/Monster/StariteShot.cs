@@ -55,15 +55,15 @@ namespace AQMod.Projectiles.Monster
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Vector2 offset = new Vector2(projectile.width / 2f, projectile.height / 2f) - Main.screenPosition;
-            Color color = AQMod.glimmerEvent.stariteProjectileColor * 0.4f;
+            Color color = AQMod.CosmicEvent.stariteProjectileColor * 0.4f;
             float mult = 1f / ProjectileID.Sets.TrailCacheLength[projectile.type];
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
             {
                 float progress = mult * i;
                 spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.oldPos[i] + offset, null, Color.Lerp(color * 10f, color, progress) * (1f - progress) * ModContent.GetInstance<AQConfigClient>().EffectIntensity, projectile.rotation, Main.projectileTexture[projectile.type].Size() / 2f, projectile.scale - progress, SpriteEffects.None, 0f);
             }
-            spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position + offset, null, AQMod.glimmerEvent.stariteProjectileColor, projectile.rotation, Main.projectileTexture[projectile.type].Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position + offset, null, AQMod.glimmerEvent.stariteProjectileColor * 0.1f, projectile.rotation, Main.projectileTexture[projectile.type].Size() / 2f, projectile.scale + 0.1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position + offset, null, AQMod.CosmicEvent.stariteProjectileColor, projectile.rotation, Main.projectileTexture[projectile.type].Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.projectileTexture[projectile.type], projectile.position + offset, null, AQMod.CosmicEvent.stariteProjectileColor * 0.1f, projectile.rotation, Main.projectileTexture[projectile.type].Size() / 2f, projectile.scale + 0.1f, SpriteEffects.None, 0f);
             return false;
         }
 
