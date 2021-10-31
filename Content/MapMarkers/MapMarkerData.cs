@@ -1,4 +1,5 @@
-﻿using AQMod.Tiles.TileEntities;
+﻿using AQMod.Content.MapMarkers.Components;
+using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Terraria;
 
@@ -7,11 +8,16 @@ namespace AQMod.Content.MapMarkers
     public abstract class MapMarkerData
     {
         public string Name { get; internal set; }
-        internal void setup(string name)
+        public int ItemTypeBind { get; internal set; }
+        public MapMarkerData(string name, int item, bool setup = true)
         {
             Name = name;
-            Setup();
+            ItemTypeBind = item;
+            if (setup)
+                Setup();
         }
+
+        public abstract void DrawMap(ref string mouseText, Player player, AQPlayer aQPlayer, MapMarkerLayerToggles toggles);
 
         protected virtual void Setup()
         {

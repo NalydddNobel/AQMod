@@ -1,13 +1,15 @@
 ﻿using AQMod.Content.MapMarkers.Data;
+using AQMod.Items.Tools.MapMarkers;
 using AQMod.Tiles.TileEntities;
 using System.Collections.Generic;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace AQMod.Content.MapMarkers
 {
     public class MapMarkerManager
     {
         private readonly Dictionary<string, MapMarkerData> _mapMarkers;
-        public static TEGlobe LocalGlobe { get; private set; }
 
         internal MapMarkerManager()
         {
@@ -16,15 +18,38 @@ namespace AQMod.Content.MapMarkers
 
         internal void Setup(bool setupStatics = false)
         {
-            addMapMarker("CosmicMarker", new CosmicMarkerData());
-            addMapMarker("DungeonMarker", new CosmicMarkerData());
-            addMapMarker("LihzahrdMarker", new CosmicMarkerData());
-            addMapMarker("RetroMarker", new CosmicMarkerData());
+            addMapMarker(new CosmicMarkerData("CosmicMarker", ModContent.ItemType<CosmicTelescope>()));
+            addMapMarker(new CosmicMarkerData("DungeonMarker", ModContent.ItemType<DungeonMap>()));
+            addMapMarker(new CosmicMarkerData("LihzahrdMarker", ModContent.ItemType<LihzahrdMap>()));
+            addMapMarker(new CosmicMarkerData("RetroMarker", ModContent.ItemType<RetroGoggles>()));
         }
 
-        internal void addMapMarker(string name, MapMarkerData data)
+        /// <summary>
+        /// Returns null if no marker item was found
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public Item FindMarker(Item[] array)
         {
-            _mapMarkers.Add(name, data);
+            for (int i = 0; i < Main.maxInventory; i++)
+            {
+                if (array[i].type >= Main.maxItemTypes)
+                {
+                    foreach (var m in _mapMarkers)
+                    {
+                        if (array[i].type == m.Value.ItemTypeBind)
+                        {
+                            return array[i];
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        internal void addMapMarker(MapMarkerData data)
+        {
+            _mapMarkers.Add(data.Name, data);
         }
 
         public bool AddMapMarker(string name, MapMarkerData data)

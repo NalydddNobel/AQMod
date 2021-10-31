@@ -63,7 +63,7 @@ namespace AQMod.Common.UserInterface
             return false;
         }
 
-        public static void Apply(ref string mouseText)
+        public static void Apply(ref string mouseText, bool drawGlobes = true)
         {
             bool debug = AQMod.DebugKeysPressed;
             _mapScale = Main.mapFullscreenScale / Main.UIScale;
@@ -71,7 +71,8 @@ namespace AQMod.Common.UserInterface
             float alpha = (float)Math.Sin(Main.GlobalTime * 7f) + 1f;
             var plr = Main.player[Main.myPlayer];
             var aQPlayer = plr.GetModPlayer<AQPlayer>();
-            if (!debug && aQPlayer.nearGlobe == 0)
+
+            if (!debug && (!drawGlobes || aQPlayer.nearGlobe <= 0))
                 return;
 
             foreach (var t in TileEntity.ByID)
@@ -165,94 +166,8 @@ namespace AQMod.Common.UserInterface
                 }
             }
 
-            if (aQPlayer.cosmicMap || debug)
-            {
-                //buffToggleType.Add(ModContent.BuffType<CosmicMarkerBuff>());
-                //buffEnabled.Add(aQPlayer.showCosmicMap);
-                //buffToggleFunctions.Add(() => aQPlayer.showCosmicMap = !aQPlayer.showCosmicMap);
-                if (aQPlayer.showCosmicMap && AQMod.CosmicEvent.IsActive)
-                {
-                    var texture = TextureCache.MapIconGlimmerEvent.Value;
-                    var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                    var drawPos = MapPos(new Vector2(AQMod.CosmicEvent.tileX + 0.5f, AQMod.CosmicEvent.tileY - 3f));
-                    var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
-                    var scale = Main.UIScale;
-                    if (hitbox.Contains(Main.mouseX, Main.mouseY))
-                    {
-                        string key = "Common.GlimmerEvent";
-                        if (debug)
-                        {
-                            mouseText = key;
-                            if (Main.mouseRight)
-                            {
-                                var p = MapPosToTilePos(new Vector2(Main.mouseX, Main.mouseY));
-                                AQMod.CosmicEvent.tileX = (ushort)(int)p.X;
-                                AQMod.CosmicEvent.tileY = (ushort)(int)p.Y;
-                            }
-                        }
-                        else
-                        {
-                            mouseText = AQText.ModText(key).Value;
-                        }
-                        scale += 0.5f;
-                    }
-                    Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                    texture = TextureCache.MapIconStarite.Value;
-                    var stariteFrame = new Rectangle(0, 0, texture.Width, 22);
-                    var arrowUpFrame = new Rectangle(0, stariteFrame.Height + 2, texture.Width, 32);
-                    var arrowDownFrame = new Rectangle(0, arrowUpFrame.Y + arrowUpFrame.Height + 2, texture.Width, 32);
-                    var stariteOrig = stariteFrame.Size() / 2f;
-                    var arrowUpOrig = new Vector2(arrowUpFrame.Width / 2f, 0f);
-                    var arrowDownOrig = new Vector2(arrowUpOrig.X, arrowUpFrame.Height);
-                    float arrowBobbingY = alpha * 2f;
-                    for (int i = 0; i < GlimmerEvent.Layers.Count; i++)
-                    {
-                        var layer = GlimmerEvent.Layers[i];
-                        for (int j = 0; j < 2; j++)
-                        {
-                            int d = j == 1 ? -1 : 1;
-                            var pos = new Vector2(AQMod.CosmicEvent.tileX + 0.5f + layer.Distance * d, 46f);
-                            if (pos.X < 0f || pos.X > Main.maxTilesX)
-                                continue;
-                            for (int k = 0; k < 2; k++)
-                            {
-                                if (k == 1)
-                                    pos.Y = (float)Main.worldSurface;
-                                drawPos = MapPos(pos);
-                                hitbox = Utils.CenteredRectangle(drawPos, new Vector2(stariteFrame.Width, stariteFrame.Height) * Main.UIScale);
-                                float stariteScale = Main.UIScale;
-                                if (hitbox.Contains(Main.mouseX, Main.mouseY))
-                                {
-                                    if (debug)
-                                    {
-                                        mouseText = "npc: " + layer.NPCType + "\ndistance from center: " + layer.Distance + "\nspawn chance: " + layer.SpawnChance + "\nid: " + i;
-                                    }
-                                    else
-                                    {
-                                        mouseText = string.Format(AQText.ModText("Common.SpawnAfterPoint").Value, Lang.GetNPCName(layer.NPCType));
-                                    }
-                                    stariteScale += 0.6f + alpha * 0.2f;
-                                }
-                                Main.spriteBatch.Draw(texture, drawPos, stariteFrame, new Color(255, 255, 255, 255), 0f, stariteOrig, stariteScale, SpriteEffects.None, 0f);
-                                if (k == 0)
-                                {
-                                    Main.spriteBatch.Draw(texture, drawPos + new Vector2(0f, (arrowDownFrame.Height + stariteFrame.Height + arrowBobbingY) * Main.UIScale), arrowDownFrame, new Color(255, 255, 255, 255), 0f, arrowDownOrig, Main.UIScale, SpriteEffects.None, 0f);
-                                }
-                                else
-                                {
-                                    Main.spriteBatch.Draw(texture, drawPos - new Vector2(0f, (arrowUpFrame.Height + stariteFrame.Height + arrowBobbingY) * Main.UIScale), arrowUpFrame, new Color(255, 255, 255, 255), 0f, arrowUpOrig, Main.UIScale, SpriteEffects.None, 0f);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
             if (aQPlayer.dungeonMap || debug)
             {
-                //buffToggleType.Add(ModContent.BuffType<DungeonMarkerBuff>());
-                //buffEnabled.Add(aQPlayer.showDungeonMap);
-                //buffToggleFunctions.Add(() => aQPlayer.showDungeonMap = !aQPlayer.showDungeonMap);
                 if (aQPlayer.showDungeonMap && (Main.Map[Main.dungeonX, Main.dungeonY].Light > 40 || NPC.downedBoss3 || Main.hardMode))
                 {
                     var mapIcon = TextureCache.MapIconDungeons.Value;
@@ -308,28 +223,6 @@ namespace AQMod.Common.UserInterface
                     Main.spriteBatch.Draw(mapIcon, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
                     UnityTeleport((position.X + 1f) * 16f, (position.Y + 2f) * 16f - plr.height, drawPos + new Vector2(frame.Width / 2f + 2f, frame.Height / 2f) * scale, plr, NPC.downedPlantBoss && hovering);
                 }
-            }
-
-            for (int i = 0; i < buffToggleType.Count; i++)
-            {
-                var buffTexture = TextureCache.GetBuff(buffToggleType[i]);
-                float scale = Main.UIScale;
-                var drawPosition = new Vector2((8f + (buffTexture.Width + 8f) * i) * scale, (8f + buffTexture.Height / 2f) * scale);
-                var drawColor = new Color(255, 255, 255, 255);
-                if (!buffEnabled[i])
-                {
-                    drawColor *= 0.5f;
-                    drawColor.A = 200;
-                }
-                var hitbox = new Rectangle((int)drawPosition.X, (int)drawPosition.Y, (int)(buffTexture.Width * scale), (int)(buffTexture.Height * scale));
-                if (hitbox.Contains(Main.mouseX, Main.mouseY))
-                {
-                    if (Main.mouseLeft && Main.mouseLeftRelease)
-                        buffToggleFunctions[i].Invoke();
-                    mouseText = Lang.GetBuffName(buffToggleType[i]);
-                    Main.spriteBatch.Draw(TextureCache.BuffOutline.Value, drawPosition, null, drawColor, 0f, new Vector2(4f, 4f), scale, SpriteEffects.None, 0f);
-                }
-                Main.spriteBatch.Draw(buffTexture, drawPosition, null, drawColor, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
             }
         }
     }

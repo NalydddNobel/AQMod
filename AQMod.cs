@@ -634,7 +634,7 @@ namespace AQMod
 
         public override void PostDrawFullscreenMap(ref string mouseText)
         {
-            MapInterfaceManager.Apply(ref mouseText);
+            MapInterfaceManager.Apply(ref mouseText, drawGlobes: true);
         }
 
         private static Vector2 GetMapPosition(Vector2 map, Vector2 tileCoords, float mapScale)

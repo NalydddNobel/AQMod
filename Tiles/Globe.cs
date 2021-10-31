@@ -125,49 +125,7 @@ namespace AQMod.Tiles
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("{$Mods.AQMod.ItemName.GlobeItem}");
             AddMapEntry(new Color(180, 180, 180), name);
-
-            //_registeredMarkers = new List<MapMarkerItem>();
-            //RegisterMarker<CosmicTelescope>();
-            //RegisterMarker<DungeonMap>();
-            //RegisterMarker<LihzahrdMap>();
-            //RegisterMarker<RetroGoggles>();
         }
-
-        //private Item getMarker(Player player)
-        //{
-        //    for (int i = 0; i < Main.maxInventory; i++)
-        //    {
-        //        if (player.inventory[i].type >= Main.maxItemTypes)
-        //        {
-        //            for (int j = 0; j < _registeredMarkers.Count; j++)
-        //            {
-        //                if (player.inventory[i].type == _registeredMarkers[j].item.type)
-        //                {
-        //                    return player.inventory[i];
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        //private Item getMarker(Player player, TEGlobe globe)
-        //{
-        //    for (int i = 0; i < Main.maxInventory; i++)
-        //    {
-        //        if (player.inventory[i].type >= Main.maxItemTypes)
-        //        {
-        //            for (int j = 0; j < _registeredMarkers.Count; j++)
-        //            {
-        //                if (player.inventory[i].type == _registeredMarkers[j].item.type && !globe.AlreadyHasMarker(player.inventory[i].modItem.mod.Name, player.inventory[i].modItem.Name))
-        //                {
-        //                    return player.inventory[i];
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return null;
-        //}
 
         public override bool HasSmartInteract()
         {
@@ -189,13 +147,13 @@ namespace AQMod.Tiles
                 return;
             }
             TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
-            //var item = getMarker(Main.LocalPlayer, globe);
-            //if (item != null)
-            //{
-            //    plr.noThrow = 2;
-            //    plr.showItemIcon = true;
-            //    plr.showItemIcon2 = item.type;
-            //}
+            var item = AQMod.MapMarkers.FindMarker(Main.player[Main.myPlayer].inventory);
+            if (item != null)
+            {
+                plr.noThrow = 2;
+                plr.showItemIcon = true;
+                plr.showItemIcon2 = item.type;
+            }
         }
 
         public override bool NewRightClick(int i, int j)
@@ -246,10 +204,10 @@ namespace AQMod.Tiles
                 aQPlayer.nearGlobe = 32;
                 aQPlayer.globeX = (ushort)globe.Position.X;
                 aQPlayer.globeY = (ushort)globe.Position.Y;
-                //foreach (var m in globe.Markers)
-                //{
-                //    m.GlobeEffects(Main.LocalPlayer, globe);
-                //}
+                foreach (var m in globe.Markers)
+                {
+                    m.NearbyEffects(globe);
+                }
             }
         }
 

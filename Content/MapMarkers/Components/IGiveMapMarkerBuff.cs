@@ -4,8 +4,8 @@ namespace AQMod.Content.MapMarkers.Components
 {
     public interface IGiveMapMarkerBuff
     {
-        void ApplyMapMarker(Player player, AQPlayer aQPlayer); 
         void ToggleMapMarkerBuff(Player player, AQPlayer aQPlayer);
         int BuffType();
+        bool BuffEnabled(Player player, AQPlayer aQPlayer);
     }
 }
