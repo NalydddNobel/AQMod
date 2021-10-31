@@ -4,7 +4,7 @@ using AQMod.Items.Placeable;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fishing.Rods
+namespace AQMod.Items.Tools.Rods
 {
     public class CrabRod : ModItem
     {
