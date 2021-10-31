@@ -22,7 +22,6 @@ using AQMod.Items.Accessories.ShopCards;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
-using AQMod.Items.TagItems.Starbyte;
 using AQMod.Items.Vanities;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Localization;

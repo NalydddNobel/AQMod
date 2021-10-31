@@ -2,7 +2,7 @@
 using AQMod.Items.Accessories;
 using AQMod.Items.BuffItems;
 using AQMod.Items.BuffItems.Foods;
-using AQMod.Items.Fishing.Rods;
+using AQMod.Items.Tools.Rods;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fishing
+namespace AQMod.Items.BuffItems
 {
     public class LarvaEel : ModItem
     {

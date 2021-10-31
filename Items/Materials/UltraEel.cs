@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fishing
+namespace AQMod.Items.Materials
 {
     public class UltraEel : ModItem
     {
@@ -13,15 +13,6 @@ namespace AQMod.Items.Fishing
             item.value = Item.sellPrice(silver: 10);
             item.rare = ItemRarityID.Orange;
             item.maxStack = 999;
-        }
-
-        public override void AddRecipes()
-        {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(item.type);
-            r.AddTile(TileID.CookingPots);
-            r.SetResult(ItemID.CookedFish);
-            r.AddRecipe();
         }
     }
 }

@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fishing.Bait
+namespace AQMod.Items.Bait
 {
-    public abstract class PopperBait : ModItem
+    public abstract class PopperBaitItem : ModItem
     {
         public abstract int GetExtraFishingPower(Player player, AQPlayer aQPlayer);
         public virtual void PopperEffects(Player player, AQPlayer aQPlayer, Projectile bobber, Tile tile)

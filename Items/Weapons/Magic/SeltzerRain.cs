@@ -1,5 +1,5 @@
 ﻿using AQMod.Content.Dusts;
-using AQMod.Items.Fishing;
+using AQMod.Items.Materials;
 using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;

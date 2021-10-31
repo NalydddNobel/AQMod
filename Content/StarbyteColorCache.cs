@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Terraria.ID;
 
-namespace AQMod.Items.TagItems.Starbyte
+namespace AQMod.Content
 {
     public class StarbyteColorCache
     {
@@ -45,9 +45,7 @@ namespace AQMod.Items.TagItems.Starbyte
         public static Color GetColor(int item)
         {
             if (_colorsCache.TryGetValue((ushort)item, out var color2))
-            {
                 return color2;
-            }
             switch (item)
             {
                 default:
@@ -59,25 +57,21 @@ namespace AQMod.Items.TagItems.Starbyte
                         texture.GetData(clrs, 0, clrs.Length);
                         int pixelPaddingX = 4;
                         if (texture.Width <= 6)
-                        {
                             pixelPaddingX = 0;
-                        }
                         else if (texture.Width <= 8)
                         {
                             pixelPaddingX = 2;
                         }
                         int pixelPaddingY = 4;
                         if (texture.Height <= 6)
-                        {
                             pixelPaddingY = 0;
-                        }
                         else if (texture.Height <= 8)
                         {
                             pixelPaddingY = 2;
                         }
                         int textureHeightHalf = texture.Height / 2;
-                        Rectangle frame = new Rectangle(pixelPaddingX, textureHeightHalf + pixelPaddingY, texture.Width - pixelPaddingX * 2, textureHeightHalf - pixelPaddingY);
-                        List<Color> colors = new List<Color>();
+                        var frame = new Rectangle(pixelPaddingX, textureHeightHalf + pixelPaddingY, texture.Width - pixelPaddingX * 2, textureHeightHalf - pixelPaddingY);
+                        var colors = new List<Color>();
                         for (int i = frame.X; i < frame.X + frame.Width; i++)
                         {
                             for (int j = frame.Y; j < frame.Y + frame.Height; j++)

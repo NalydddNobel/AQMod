@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Fishing.Bait;
+﻿using AQMod.Items.Bait;
 using AQMod.Projectiles;
 using Terraria;
 using Terraria.ID;
@@ -37,7 +37,7 @@ namespace AQMod.Common
                     {
                         var item = new Item();
                         item.SetDefaults(aQPlayer.PopperType);
-                        ((PopperBait)item.modItem).OnCatchEffect(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
+                        ((PopperBaitItem)item.modItem).OnCatchEffect(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
                     }
                 }
                 else if (projectile.ai[0] <= 0f && projectile.wet && projectile.rotation != 0f) // When it enters the water
@@ -47,7 +47,7 @@ namespace AQMod.Common
                     {
                         var item = new Item();
                         item.SetDefaults(aQPlayer.PopperType);
-                        ((PopperBait)item.modItem).PopperEffects(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
+                        ((PopperBaitItem)item.modItem).PopperEffects(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
                     }
                 }
             }

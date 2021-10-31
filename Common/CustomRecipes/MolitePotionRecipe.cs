@@ -1,4 +1,5 @@
-﻿using AQMod.Items.TagItems.Starbyte;
+﻿using AQMod.Items;
+using AQMod.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,11 +8,11 @@ namespace AQMod.Common.CustomRecipes
 {
     public class MolitePotionRecipe : ModRecipe
     {
-        private readonly StarbytePotionTag _potion;
+        private readonly MoliteTag.StarbytePotionTag _potion;
 
         public MolitePotionRecipe(Mod mod, ushort potionType) : base(mod)
         {
-            _potion = new StarbytePotionTag(potionType);
+            _potion = new MoliteTag.StarbytePotionTag(potionType);
         }
 
         public override void OnCraft(Item item)

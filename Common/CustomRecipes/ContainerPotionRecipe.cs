@@ -1,4 +1,4 @@
-﻿using AQMod.Items.TagItems.ContainersPotion;
+﻿using AQMod.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,11 +7,11 @@ namespace AQMod.Common.CustomRecipes
 {
     public class ContainerPotionRecipe : ModRecipe
     {
-        private readonly ContainerTag _chestTagCache;
+        private readonly PotionofContainersTag.ContainerTag _chestTagCache;
 
         public ContainerPotionRecipe(Mod mod, int chest) : base(mod)
         {
-            _chestTagCache = new ContainerTag(chest);
+            _chestTagCache = new PotionofContainersTag.ContainerTag(chest);
         }
 
         public override void OnCraft(Item item)

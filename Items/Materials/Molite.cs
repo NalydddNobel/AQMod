@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.TagItems.Starbyte
+namespace AQMod.Items.Materials
 {
     public class Molite : ModItem
     {

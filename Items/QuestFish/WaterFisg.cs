@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace AQMod.Items.Fishing.QuestFish
+namespace AQMod.Items.QuestFish
 {
     public class WaterFisg : ModItem
     {

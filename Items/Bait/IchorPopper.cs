@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fishing.Bait
+namespace AQMod.Items.Bait
 {
-    public class IchorPopper : PopperBait
+    public class IchorPopper : PopperBaitItem
     {
         public override void SetDefaults()
         {
@@ -22,9 +22,7 @@ namespace AQMod.Items.Fishing.Bait
         public override int GetExtraFishingPower(Player player, AQPlayer aQPlayer)
         {
             if (player.ZoneCrimson)
-            {
                 return 35;
-            }
             return 0;
         }
 

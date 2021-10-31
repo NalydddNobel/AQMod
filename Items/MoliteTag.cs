@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.CustomRecipes;
+using AQMod.Content;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,18 +15,124 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Items.TagItems.Starbyte
+namespace AQMod.Items
 {
     public class MoliteTag : ModItem
     {
+        public struct StarbytePotionTag
+        {
+            public readonly ushort potionItemID;
+            public ushort BuffID { get; private set; }
+            public uint BuffTime { get; private set; }
+
+            public static StarbytePotionTag Default => new StarbytePotionTag(ItemID.ObsidianSkinPotion, Terraria.ID.BuffID.ObsidianSkin, 6000);
+
+            public static StarbytePotionTag Error => new StarbytePotionTag(ItemID.ObsidianSkinPotion, ushort.MaxValue, 6000);
+
+            internal StarbytePotionTag(int item, int buffID, uint buffTime)
+            {
+                potionItemID = (ushort)item;
+                this.BuffID = (ushort)buffID;
+                this.BuffTime = buffTime;
+            }
+
+            public StarbytePotionTag(int item)
+            {
+                potionItemID = (ushort)item;
+                BuffID = 0;
+                BuffTime = 0;
+                SetupTag();
+            }
+
+            public static StarbytePotionTag FromKey(string key)
+            {
+                try
+                {
+                    if (key[0] == '0')
+                    {
+                        string id = "";
+                        for (int i = 2; i < key.Length - 1 && key[i] != ':' && key[i] != ';'; i++)
+                        {
+                            id += key[i];
+                        }
+                        int itemType = int.Parse(id);
+                        if (itemType >= Main.maxItemTypes)
+                        {
+                            return Error;
+                        }
+                        else
+                        {
+                            return new StarbytePotionTag(itemType);
+                        }
+                    }
+                    else
+                    {
+                        string mod = "";
+                        int cursor = 2;
+                        for (; cursor < key.Length - 1 && key[cursor] != ':'; cursor++)
+                        {
+                            mod += key[cursor];
+                        }
+                        cursor++;
+                        string name = "";
+                        for (; cursor < key.Length - 1 && key[cursor] != ':' && key[cursor] != ';'; cursor++)
+                        {
+                            name += key[cursor];
+                        }
+                        var modInstance = ModLoader.GetMod(mod);
+                        int itemType = modInstance.ItemType(name);
+                        if (itemType < Main.maxItemTypes)
+                        {
+                            return Error;
+                        }
+                        else
+                        {
+                            return new StarbytePotionTag(itemType);
+                        }
+                    }
+                }
+                catch
+                {
+                    return Error;
+                }
+            }
+
+            public string GetKey()
+            {
+                if (potionItemID < Main.maxItemTypes)
+                {
+                    return "0:" + potionItemID + ";";
+                }
+                else
+                {
+                    var item = new Item();
+                    item.netDefaults(potionItemID);
+                    return "1:" + item.modItem.mod.Name + ":" + item.modItem.Name + ";";
+                }
+            }
+
+            public bool SetupTag()
+            {
+                var item = new Item();
+                item.netDefaults(potionItemID);
+                if (item.buffType <= 0 || item.buffTime <= 0)
+                {
+                    return false;
+                }
+                BuffID = (ushort)item.buffType;
+                BuffTime = (uint)(item.buffTime * 2);
+                return true;
+            }
+        }
+
         public override bool CloneNewInstances => true;
 
         public StarbytePotionTag potion = StarbytePotionTag.Default;
 
         public void SetupPotionStats()
         {
-            item.buffType = potion.buffID;
-            item.buffTime = (int)potion.buffTime;
+            item.buffType = potion.BuffID;
+            item.buffTime = (int)potion.BuffTime;
         }
 
         public override void SetDefaults()
@@ -85,14 +192,14 @@ namespace AQMod.Items.TagItems.Starbyte
                 var texture = TextureCache.GetItem(item.type);
                 Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, scale, SpriteEffects.None, 0f);
 
-                if (Main.keyState.IsKeyDown(Keys.LeftShift) || _usePotionBuffTexture && potion.buffID < 0 || !_usePotionBuffTexture && potion.potionItemID <= 0 || ItemID.Sets.Deprecated[potion.potionItemID])
+                if (Main.keyState.IsKeyDown(Keys.LeftShift) || _usePotionBuffTexture && potion.BuffID < 0 || !_usePotionBuffTexture && potion.potionItemID <= 0 || ItemID.Sets.Deprecated[potion.potionItemID])
                     return;
                 Texture2D potionTexture;
                 if (_usePotionBuffTexture)
                 {
                     try
                     {
-                        potionTexture = TextureCache.GetBuff(potion.buffID);
+                        potionTexture = TextureCache.GetBuff(potion.BuffID);
                     }
                     catch
                     {
@@ -149,8 +256,8 @@ namespace AQMod.Items.TagItems.Starbyte
         public override void NetSend(BinaryWriter writer)
         {
             writer.Write(potion.potionItemID);
-            writer.Write(potion.buffID);
-            writer.Write(potion.buffTime);
+            writer.Write(potion.BuffID);
+            writer.Write(potion.BuffTime);
         }
 
         public override void NetRecieve(BinaryReader reader)
@@ -188,9 +295,7 @@ namespace AQMod.Items.TagItems.Starbyte
                     text = Language.GetTextValue(key);
                 }
                 if (text != key)
-                {
                     tooltips.Add(new TooltipLine(mod, "OriginalPotionTooltip", text) { overrideColor = GetTextColor(Main.GlobalTime * 6f) });
-                }
             }
             catch (Exception e)
             {
@@ -211,7 +316,7 @@ namespace AQMod.Items.TagItems.Starbyte
             {
                 try
                 {
-                    Item item = new Item();
+                    var item = new Item();
                     item.SetDefaults(i);
                     if (item.buffType > 0 && item.buffTime > 0 && item.consumable &&
                         item.useStyle == ItemUseStyleID.EatingUsing && CanBuffBeTurnedIntoMolitePotion(item.buffType) &&

@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.TagItems.ContainersPotion
+namespace AQMod.Items
 {
     public class PotionofContainers : ModItem
     {
@@ -47,9 +47,7 @@ namespace AQMod.Items.TagItems.ContainersPotion
         public override void UseStyle(Player player) // mostly reused logic from the Magic Mirror 
         {
             if (player.itemTime == 0)
-            {
                 player.itemTime = (int)(item.useTime / PlayerHooks.TotalUseTimeMultiplier(player, item));
-            }
             else if (player.itemTime == (int)(item.useTime / PlayerHooks.TotalUseTimeMultiplier(player, item)) / 2)
             {
                 for (int i = 0; i < 30; i++)
@@ -76,7 +74,7 @@ namespace AQMod.Items.TagItems.ContainersPotion
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            var recipe = new ModRecipe(mod);
             recipe.alchemy = true;
             recipe.AddIngredient(ItemID.BottledWater);
             recipe.AddIngredient(ItemID.Moonglow);

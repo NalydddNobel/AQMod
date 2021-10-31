@@ -18,12 +18,12 @@ using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.Fishing;
-using AQMod.Items.Fishing.Bait;
-using AQMod.Items.Fishing.QuestFish;
+using AQMod.Items.Bait;
+using AQMod.Items.BuffItems;
+using AQMod.Items.Materials;
 using AQMod.Items.Placeable;
 using AQMod.Items.Placeable.WallItems;
-using AQMod.Items.TagItems.Starbyte;
+using AQMod.Items.QuestFish;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
 using Microsoft.Xna.Framework;
@@ -227,7 +227,7 @@ namespace AQMod
                     break;
                 }
             }
-            if (baitItem.modItem is PopperBait popper)
+            if (baitItem.modItem is PopperBaitItem popper)
             {
                 int popperPower = popper.GetExtraFishingPower(player, aQPlayer);
                 if (popperPower > 0)
