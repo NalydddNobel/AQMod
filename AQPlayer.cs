@@ -583,10 +583,8 @@ namespace AQMod
             shieldLife = 0;
             crimsonHands = false;
             chomper = false;
-            cosmicMap = false;
             dungeonMap = false;
             lihzahrdMap = false;
-            retroMap = false;
             headMinionCarryXOld = headMinionCarryX;
             headMinionCarryYOld = headMinionCarryY;
             headMinionCarryX = 0;

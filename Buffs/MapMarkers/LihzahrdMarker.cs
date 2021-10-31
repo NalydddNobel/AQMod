@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs.MapMarkers
 {
-    public class CosmicMarker : ModBuff
+    public class LihzahrdMarker : ModBuff
     {
         public override void SetDefaults()
         {

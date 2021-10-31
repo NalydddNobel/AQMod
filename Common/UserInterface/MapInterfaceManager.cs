@@ -1,18 +1,13 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Utilities;
-using AQMod.Common.WorldGeneration;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.MapMarkers.Components;
 using AQMod.Items.Placeable;
-using AQMod.Items.Tools.MapMarkers;
-using AQMod.Localization;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Common.UserInterface
@@ -128,102 +123,18 @@ namespace AQMod.Common.UserInterface
                 }
             }
 
-            var buffToggleType = new List<int>();
-            var buffEnabled = new List<bool>();
-            var buffToggleFunctions = new List<Action>();
-
-            if (aQPlayer.retroMap || debug)
+            int index = ModContent.GetInstance<TEGlobe>().Find(aQPlayer.globeX, aQPlayer.globeY);
+            if (index == -1)
             {
-                buffToggleType.Add(ModContent.BuffType<RetroMarkerBuff>());
-                buffEnabled.Add(aQPlayer.showRetroMap);
-                buffToggleFunctions.Add(() => aQPlayer.showRetroMap = !aQPlayer.showRetroMap);
-                if (aQPlayer.showRetroMap)
-                {
-                    var texture = TextureCache.MapIconEnemyBlip.Value;
-                    int frameHeight = texture.Height / 2;
-                    int frameNumber = (int)(Main.GameUpdateCount % 24 / 12);
-                    var frame = new Rectangle(0, frameHeight * frameNumber, texture.Width, frameHeight);
-                    Vector2 origin = frameNumber == 1 ? new Vector2(3f, 5f) : new Vector2(4f, 4f);
-                    var scale = Main.UIScale * 4f;
-                    for (int i = 0; i < Main.maxNPCs; i++)
-                    {
-                        if (Main.npc[i].active && !AQNPC.Sets.NoMapBlip[Main.npc[i].type] && Main.npc[i].GetBossHeadTextureIndex() == -1 && !Main.npc[i].townNPC)
-                        {
-                            var drawPos = MapPos(Main.npc[i].Center / 16f);
-                            var color = AQMod.MapBlipColor;
-                            byte r = color.R;
-                            if (r < 10)
-                                r = 10;
-                            byte g = color.G;
-                            if (g < 10)
-                                g = 10;
-                            byte b = color.B;
-                            if (b < 10)
-                                b = 10;
-                            Main.spriteBatch.Draw(texture, drawPos, frame, new Color(r, g, b, 150), 0f, origin, scale, SpriteEffects.None, 0f);
-                        }
-                    }
-                }
+                return;
             }
-
-            if (aQPlayer.dungeonMap || debug)
+            var layerToggles = new MapMarkerLayerToggles(Main.player[Main.myPlayer], aQPlayer);
+            TEGlobe globe2 = (TEGlobe)TileEntity.ByID[index];
+            foreach (var m in globe2.Markers)
             {
-                if (aQPlayer.showDungeonMap && (Main.Map[Main.dungeonX, Main.dungeonY].Light > 40 || NPC.downedBoss3 || Main.hardMode))
-                {
-                    var mapIcon = TextureCache.MapIconDungeons.Value;
-                    int iconFrame;
-                    switch (Framing.GetTileSafely(Main.dungeonX, Main.dungeonY).type)
-                    {
-                        default:
-                        iconFrame = 3;
-                        break;
-
-                        case TileID.BlueDungeonBrick:
-                        iconFrame = 0;
-                        break;
-
-                        case TileID.PinkDungeonBrick:
-                        iconFrame = 1;
-                        break;
-
-                        case TileID.GreenDungeonBrick:
-                        iconFrame = 2;
-                        break;
-                    }
-                    var frame = new Rectangle(MapIconWidth * iconFrame, 0, TrueMapIconWidth, MapIconHeight);
-                    var drawPos = MapPos(new Vector2(Main.dungeonX + 0.5f, Main.dungeonY - 2.5f));
-                    var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(frame.Width, frame.Height) * Main.UIScale);
-                    var scale = Main.UIScale;
-                    bool hovering = hitbox.Contains(Main.mouseX, Main.mouseY);
-                    if (hovering)
-                    {
-                        mouseText = "Dungeon";
-                        scale += 0.1f;
-                    }
-                    Main.spriteBatch.Draw(mapIcon, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                    UnityTeleport((Main.dungeonX + 0.5f) * 16f, Main.dungeonY * 16f - plr.height, drawPos + new Vector2(frame.Width / 2f + 2f, frame.Height / 2f) * scale, plr, (NPC.downedBoss3 || Main.hardMode) && hovering);
-                }
+                m.DrawMap(ref mouseText, plr, aQPlayer, layerToggles);
             }
-
-            if (aQPlayer.lihzahrdMap || debug)
-            {
-                buffToggleType.Add(ModContent.BuffType<LihzahrdMarkerBuff>());
-                buffEnabled.Add(aQPlayer.showLihzahrdMap);
-                buffToggleFunctions.Add(() => aQPlayer.showLihzahrdMap = !aQPlayer.showLihzahrdMap);
-                if (aQPlayer.showLihzahrdMap && CommonStructureSearchMethods.LihzahrdAltar(out var position) && (Main.Map[position.X, position.Y].Light > 40 || NPC.downedPlantBoss))
-                {
-                    var mapIcon = TextureCache.MapIconDungeons.Value;
-                    var frame = new Rectangle(MapIconWidth * 4, 0, TrueMapIconWidth, MapIconHeight);
-                    var drawPos = MapPos(new Vector2(position.X + 1.5f, position.Y - 0.5f));
-                    var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(frame.Width, frame.Height) * Main.UIScale);
-                    var scale = Main.UIScale;
-                    bool hovering = hitbox.Contains(Main.mouseX, Main.mouseY);
-                    if (hovering)
-                        scale += 0.1f;
-                    Main.spriteBatch.Draw(mapIcon, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                    UnityTeleport((position.X + 1f) * 16f, (position.Y + 2f) * 16f - plr.height, drawPos + new Vector2(frame.Width / 2f + 2f, frame.Height / 2f) * scale, plr, NPC.downedPlantBoss && hovering);
-                }
-            }
+            layerToggles.ApplyInterface(ref mouseText);
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Items.Placeable;
-using AQMod.Items.Tools.MapMarkers;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -14,22 +12,6 @@ namespace AQMod.Tiles
 {
     public class Globe : ModTile
     {
-        //internal static List<MapMarkerItem> _registeredMarkers;
-
-        //public static void RegisterMarker<T>() where T : MapMarkerItem
-        //{
-        //    if (AQMod.Loading)
-        //    {
-        //        int type = ModContent.ItemType<T>();
-        //        if (type >= Main.maxItemTypes)
-        //        {
-        //            var item = new Item();
-        //            item.SetDefaults(type, noMatCheck: true);
-        //            _registeredMarkers.Add((T)item.modItem);
-        //        }
-        //    }
-        //}
-
         public static bool GenGlobeTemple(int x, int y)
         {
             if (!AQWorldGen.ActiveAndSolid(x, y) && AQWorldGen.ActiveAndSolid(x, y + 1) && Main.tile[x, y].wall == WallID.None)
@@ -148,11 +130,11 @@ namespace AQMod.Tiles
             }
             TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
             var item = AQMod.MapMarkers.FindMarker(Main.player[Main.myPlayer].inventory);
-            if (item != null)
+            if (item.Item1 != null)
             {
                 plr.noThrow = 2;
                 plr.showItemIcon = true;
-                plr.showItemIcon2 = item.type;
+                plr.showItemIcon2 = item.Item1.type;
             }
         }
 
@@ -167,19 +149,19 @@ namespace AQMod.Tiles
                 return false;
             }
             TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
-            //var item = getMarker(Main.LocalPlayer, globe);
-            //if (item != null && !globe.AlreadyHasMarker((MapMarkerItem)item.modItem))
-            //{
-            //    Main.PlaySound(SoundID.Grab);
-            //    ((MapMarkerItem)item.modItem).PreAddMarker(Main.LocalPlayer, globe);
-            //    globe.AddMarker((MapMarkerItem)item.Clone().modItem);
-            //    Main.LocalPlayer.ConsumeItem(item.type);
-            //}
+            var item = AQMod.MapMarkers.FindMarker(Main.player[Main.myPlayer].inventory);
+            if (item.Item1 != null && !globe.HasMarker(item.Item2))
+            {
+                Main.PlaySound(SoundID.Grab);
+                item.Item2.OnAddToGlobe(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), globe);
+                globe.AddMarker(item.Item2);
+                Main.LocalPlayer.ConsumeItem(item.Item1.type);
+            }
             //else
             //{
-            //    foreach (var marker in globe.markers)
+            //    foreach (var marker in globe.Markers)
             //    {
-            //        Main.NewText(marker.mod.Name + ":" + marker.Name);
+            //        Main.NewText(marker.Name);
             //    }
             //}
             return true;

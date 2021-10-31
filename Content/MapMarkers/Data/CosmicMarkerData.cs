@@ -35,64 +35,59 @@ namespace AQMod.Content.MapMarkers.Data
 
         public override void DrawMap(ref string mouseText, Player player, AQPlayer aQPlayer, MapMarkerLayerToggles toggles)
         {
-            if (aQPlayer.cosmicMap)
+            toggles.AddMapMarker(this);
+            if (aQPlayer.showCosmicMap && AQMod.CosmicEvent.IsActive)
             {
-                //buffToggleType.Add(ModContent.BuffType<CosmicMarkerBuff>());
-                //buffEnabled.Add(aQPlayer.showCosmicMap);
-                //buffToggleFunctions.Add(() => aQPlayer.showCosmicMap = !aQPlayer.showCosmicMap);
-                if (aQPlayer.showCosmicMap && AQMod.CosmicEvent.IsActive)
+                float alpha = (float)Math.Sin(Main.GlobalTime * 7f) + 1f;
+                var texture = TextureCache.MapIconGlimmerEvent.Value;
+                var frame = new Rectangle(0, 0, texture.Width, texture.Height);
+                var drawPos = MapInterfaceManager.MapPos(new Vector2(AQMod.CosmicEvent.tileX + 0.5f, AQMod.CosmicEvent.tileY - 3f));
+                var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
+                var scale = Main.UIScale;
+                if (hitbox.Contains(Main.mouseX, Main.mouseY))
                 {
-                    float alpha = (float)Math.Sin(Main.GlobalTime * 7f) + 1f;
-                    var texture = TextureCache.MapIconGlimmerEvent.Value;
-                    var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                    var drawPos = MapInterfaceManager.MapPos(new Vector2(AQMod.CosmicEvent.tileX + 0.5f, AQMod.CosmicEvent.tileY - 3f));
-                    var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
-                    var scale = Main.UIScale;
-                    if (hitbox.Contains(Main.mouseX, Main.mouseY))
+                    string key = "Common.GlimmerEvent";
+                    mouseText = AQText.ModText(key).Value;
+                    scale += 0.5f;
+                }
+                Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+                texture = TextureCache.MapIconStarite.Value;
+                var stariteFrame = new Rectangle(0, 0, texture.Width, 22);
+                var arrowUpFrame = new Rectangle(0, stariteFrame.Height + 2, texture.Width, 32);
+                var arrowDownFrame = new Rectangle(0, arrowUpFrame.Y + arrowUpFrame.Height + 2, texture.Width, 32);
+                var stariteOrig = stariteFrame.Size() / 2f;
+                var arrowUpOrig = new Vector2(arrowUpFrame.Width / 2f, 0f);
+                var arrowDownOrig = new Vector2(arrowUpOrig.X, arrowUpFrame.Height);
+                float arrowBobbingY = alpha * 2f;
+                for (int i = 0; i < GlimmerEvent.Layers.Count; i++)
+                {
+                    var layer = GlimmerEvent.Layers[i];
+                    for (int j = 0; j < 2; j++)
                     {
-                        string key = "Common.GlimmerEvent";
-                        mouseText = AQText.ModText(key).Value;
-                        scale += 0.5f;
-                    }
-                    Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                    texture = TextureCache.MapIconStarite.Value;
-                    var stariteFrame = new Rectangle(0, 0, texture.Width, 22);
-                    var arrowUpFrame = new Rectangle(0, stariteFrame.Height + 2, texture.Width, 32);
-                    var arrowDownFrame = new Rectangle(0, arrowUpFrame.Y + arrowUpFrame.Height + 2, texture.Width, 32);
-                    var stariteOrig = stariteFrame.Size() / 2f;
-                    var arrowUpOrig = new Vector2(arrowUpFrame.Width / 2f, 0f);
-                    var arrowDownOrig = new Vector2(arrowUpOrig.X, arrowUpFrame.Height);
-                    float arrowBobbingY = alpha * 2f;
-                    for (int i = 0; i < GlimmerEvent.Layers.Count; i++)
-                    {
-                        var layer = GlimmerEvent.Layers[i];
-                        for (int j = 0; j < 2; j++)
+                        int d = j == 1 ? -1 : 1;
+                        var pos = new Vector2(AQMod.CosmicEvent.tileX + 0.5f + layer.Distance * d, 46f);
+                        if (pos.X < 0f || pos.X > Main.maxTilesX)
+                            continue;
+                        for (int k = 0; k < 2; k++)
                         {
-                            int d = j == 1 ? -1 : 1;
-                            var pos = new Vector2(AQMod.CosmicEvent.tileX + 0.5f + layer.Distance * d, 46f);
-                            if (pos.X < 0f || pos.X > Main.maxTilesX)
-                                continue;
-                            for (int k = 0; k < 2; k++)
+                            if (k == 1)
+                                pos.Y = (float)Main.worldSurface;
+                            drawPos = MapInterfaceManager.MapPos(pos);
+                            hitbox = Utils.CenteredRectangle(drawPos, new Vector2(stariteFrame.Width, stariteFrame.Height) * Main.UIScale);
+                            float stariteScale = Main.UIScale;
+                            if (hitbox.Contains(Main.mouseX, Main.mouseY))
                             {
-                                if (k == 1)
-                                    pos.Y = (float)Main.worldSurface;
-                                drawPos = MapInterfaceManager.MapPos(pos);
-                                hitbox = Utils.CenteredRectangle(drawPos, new Vector2(stariteFrame.Width, stariteFrame.Height) * Main.UIScale);
-                                float stariteScale = Main.UIScale;
-                                if (hitbox.Contains(Main.mouseX, Main.mouseY))
-                                {
-                                    mouseText = string.Format(AQText.ModText("Common.SpawnAfterPoint").Value, Lang.GetNPCName(layer.NPCType));
-                                    stariteScale += 0.6f + alpha * 0.2f;
-                                }
-                                Main.spriteBatch.Draw(texture, drawPos, stariteFrame, new Color(255, 255, 255, 255), 0f, stariteOrig, stariteScale, SpriteEffects.None, 0f);
-                                if (k == 0)
-                                {
-                                    Main.spriteBatch.Draw(texture, drawPos + new Vector2(0f, (arrowDownFrame.Height + stariteFrame.Height + arrowBobbingY) * Main.UIScale), arrowDownFrame, new Color(255, 255, 255, 255), 0f, arrowDownOrig, Main.UIScale, SpriteEffects.None, 0f);
-                                }
-                                else
-                                {
-                                    Main.spriteBatch.Draw(texture, drawPos - new Vector2(0f, (arrowUpFrame.Height + stariteFrame.Height + arrowBobbingY) * Main.UIScale), arrowUpFrame, new Color(255, 255, 255, 255), 0f, arrowUpOrig, Main.UIScale, SpriteEffects.None, 0f);
-                                }
+                                mouseText = string.Format(AQText.ModText("Common.SpawnAfterPoint").Value, Lang.GetNPCName(layer.NPCType));
+                                stariteScale += 0.6f + alpha * 0.2f;
+                            }
+                            Main.spriteBatch.Draw(texture, drawPos, stariteFrame, new Color(255, 255, 255, 255), 0f, stariteOrig, stariteScale, SpriteEffects.None, 0f);
+                            if (k == 0)
+                            {
+                                Main.spriteBatch.Draw(texture, drawPos + new Vector2(0f, (arrowDownFrame.Height + stariteFrame.Height + arrowBobbingY) * Main.UIScale), arrowDownFrame, new Color(255, 255, 255, 255), 0f, arrowDownOrig, Main.UIScale, SpriteEffects.None, 0f);
+                            }
+                            else
+                            {
+                                Main.spriteBatch.Draw(texture, drawPos - new Vector2(0f, (arrowUpFrame.Height + stariteFrame.Height + arrowBobbingY) * Main.UIScale), arrowUpFrame, new Color(255, 255, 255, 255), 0f, arrowUpOrig, Main.UIScale, SpriteEffects.None, 0f);
                             }
                         }
                     }

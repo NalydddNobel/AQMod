@@ -1,5 +1,4 @@
-﻿using AQMod.Content;
-using AQMod.Content.MapMarkers;
+﻿using AQMod.Content.MapMarkers;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -57,7 +56,12 @@ namespace AQMod.Tiles.TileEntities
         {
             if (AQMod.MapMarkers.TryGetMarker(name, out MapMarkerData value))
                 return false;
-            Markers.Add(value);
+            return AddMarker(value);
+        }
+
+        public bool AddMarker(MapMarkerData data)
+        {
+            Markers.Add(data);
             return true;
         }
 
@@ -127,7 +131,9 @@ namespace AQMod.Tiles.TileEntities
                 for (int i = 0; i < count; i++)
                 {
                     string name = tag.GetString("markername" + i);
-                    AQMod.MapMarkers.TryGetMarker(name, out MapMarkerData value);
+                    if (!AQMod.MapMarkers.TryGetMarker(name, out MapMarkerData value))
+                        continue;
+                    AddMarker(value);
                 }
             }
         }
@@ -147,6 +153,18 @@ namespace AQMod.Tiles.TileEntities
                 return -1;
             }
             return Place(i, j);
+        }
+
+        public bool HasMarker(string name)
+        {
+            if (AQMod.MapMarkers.TryGetMarker(name, out MapMarkerData value))
+                return false;
+            return HasMarker(value);
+        }
+
+        public bool HasMarker(MapMarkerData marker)
+        {
+            return Markers.Find((m) => m.Name == marker.Name) != null;
         }
     }
 }

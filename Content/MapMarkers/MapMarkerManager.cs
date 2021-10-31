@@ -1,6 +1,5 @@
 ﻿using AQMod.Content.MapMarkers.Data;
 using AQMod.Items.Tools.MapMarkers;
-using AQMod.Tiles.TileEntities;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -19,9 +18,9 @@ namespace AQMod.Content.MapMarkers
         internal void Setup(bool setupStatics = false)
         {
             addMapMarker(new CosmicMarkerData("CosmicMarker", ModContent.ItemType<CosmicTelescope>()));
-            addMapMarker(new CosmicMarkerData("DungeonMarker", ModContent.ItemType<DungeonMap>()));
-            addMapMarker(new CosmicMarkerData("LihzahrdMarker", ModContent.ItemType<LihzahrdMap>()));
-            addMapMarker(new CosmicMarkerData("RetroMarker", ModContent.ItemType<RetroGoggles>()));
+            addMapMarker(new DungeonMarkerData("DungeonMarker", ModContent.ItemType<DungeonMap>()));
+            addMapMarker(new LihzahrdMarkerData("LihzahrdMarker", ModContent.ItemType<LihzahrdMap>()));
+            addMapMarker(new RetroMarkerData("RetroMarker", ModContent.ItemType<RetroGoggles>()));
         }
 
         /// <summary>
@@ -29,7 +28,7 @@ namespace AQMod.Content.MapMarkers
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public Item FindMarker(Item[] array)
+        public (Item, MapMarkerData) FindMarker(Item[] array)
         {
             for (int i = 0; i < Main.maxInventory; i++)
             {
@@ -39,12 +38,12 @@ namespace AQMod.Content.MapMarkers
                     {
                         if (array[i].type == m.Value.ItemTypeBind)
                         {
-                            return array[i];
+                            return (array[i], m.Value);
                         }
                     }
                 }
             }
-            return null;
+            return (null, null);
         }
 
         internal void addMapMarker(MapMarkerData data)
