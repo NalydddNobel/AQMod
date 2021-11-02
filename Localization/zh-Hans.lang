@@ -316,7 +316,6 @@ ItemName.NuclearFeather=核子之羽
 ItemName.PotionofContainers=传箱药水
 ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
 ItemName.Qi=气
-ItemName.UnityMirror=清灵明镜
 #############
 # Placeable #
 #############
@@ -385,6 +384,10 @@ ItemName.RainbowOutlineDye=彩虹轮廓描边染料
 ###########
 # Magic
 # Staffs
+ItemName.SunbaskMirror=暖阳之镜
+ItemTooltip.SunbaskMirror=镜子的表面反射着强烈的阳光\n只能在白天的地表上方使用
+ItemName.UnityMirror=寒月之镜
+ItemTooltip.UnityMirror=镜子的表面反射着强烈的月光\n只能在夜晚的地表上方使用
 ItemName.Bubbler=泡泡法杖
 ItemName.GebulbaStaff=弹球法杖
 ItemName.MagicWand=魔杖
@@ -576,7 +579,6 @@ ItemTooltip.NuclearFeather=在核聚变的过程中形成\n'他们说此羽来�
 ItemTooltip.PotionofContainers=将你传送至随机一个箱子
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 ItemTooltip.Qi=由终极哲学之力创造出的神秘能量
-ItemTooltip.UnityMirror=允许你传送至地图上被标记的特殊位置\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}
 #############
 # Placeable #
 #############
@@ -689,15 +691,15 @@ BuffDescription.Opposing=使某些敌人有几率掉落与其主题相反的物�
 BuffName.SpicyEelBuff=香辣鳗鱼
 BuffDescription.SpicyEelBuff=大幅度增加移动速度
 # Projectiles
-ProjectileName.FlamingScythe=烈焰镰刀
-ProjectileName.DemonicFireball=恶魔火球
-ProjectileName.DemonicFireballExplosion=恶魔火球
+ProjectileName.PentalScythe=烈焰镰刀
+ProjectileName.MagmalbulbiaStaff=熔火球
+ProjectileName.MagmalbulbiaStaffExplosion=熔火爆炸
 ProjectileName.NarrenBolt=耀星
 ProjectileName.OmegaRay=欧米伽射线
 ProjectileName.HyperSpike=超星
 ProjectileName.OmegaStariteCollider=终末之星
 ProjectileName.JerryBubble=蟹蛤泡泡
-ProjectileName.JerryBubbleBig={$Mods.AQMod.ProjectileName.JerryBubble}
+ProjectileName.JerryBubbleBig=蟹蛤泡泡
 ProjectileName.JerryPearl=蟹蛤珍珠
 ProjectileName.GelBulb=弹跳粘球
 ProjectileName.Maggie=熔岩球
