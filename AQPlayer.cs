@@ -3,7 +3,6 @@ using AQMod.Assets.SceneLayers.ParticlesLayers;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.NetCode;
-using AQMod.Common.PlayerData;
 using AQMod.Common.PlayerData.Layers;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;

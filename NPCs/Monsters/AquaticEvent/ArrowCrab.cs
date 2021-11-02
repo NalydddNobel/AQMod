@@ -178,7 +178,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             var center = npc.Center;
-            var legTexture = this.GetTexture("_Legs");
+            var legTexture = this.GetTextureobj("_Legs");
             int legFrameHeight = legTexture.Height / 2;
             var legFrame = new Rectangle(0, 0, legTexture.Width, legFrameHeight - 2);
             var footFrame = new Rectangle(0, legFrameHeight, legTexture.Width, legFrameHeight - 2);

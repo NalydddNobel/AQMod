@@ -27,6 +27,7 @@ namespace AQMod.Common
         public static int PotionValue => Item.sellPrice(silver: 2);
         public static int EnergyWeaponValue => Item.sellPrice(gold: 5, silver: 50);
         public static int OmegaStariteWeaponValue => Item.sellPrice(gold: 2);
+        public static int AtmosphericCurrentsValue => Item.sellPrice(gold: 4);
 
         public static Color GetAlphaDemonSiegeWeapon(Color lightColor)
         {

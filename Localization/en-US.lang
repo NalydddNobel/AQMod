@@ -316,7 +316,6 @@ ItemName.NuclearFeather=Nuclear Feather
 ItemName.PotionofContainers=Containers Potion
 ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
 ItemName.Qi=Qi
-ItemName.UnityMirror=Unity Mirror
 #############
 # Placeable #
 #############
@@ -385,6 +384,10 @@ ItemName.RainbowOutlineDye=Rainbow Outline Dye
 ###########
 # Magic
 # Staffs
+ItemName.SunbaskMirror=Sunbask Mirror
+ItemTooltip.SunbaskMirror=Reflects powerful sunlight off of its surface\nCan only be used during daytime, above ground
+ItemName.UnityMirror=Moonluna Mirror
+ItemTooltip.UnityMirror=Reflects powerful moonlight off of its surface\nCan only be used during nighttime, above ground
 ItemName.Bubbler=Bubbler
 ItemName.GebulbaStaff=Gebulba Staff
 ItemName.MagicWand=Magic Wand
@@ -576,7 +579,6 @@ ItemTooltip.NuclearFeather=Created from nuclear fusion\n'They say it's from the 
 ItemTooltip.PotionofContainers=Teleports you to a random chest in the world
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 ItemTooltip.Qi=A mystical energy created by extreme philosophical forces
-ItemTooltip.UnityMirror=Allows you to teleport to unity map points\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}
 #############
 # Placeable #
 #############
@@ -689,15 +691,15 @@ BuffDescription.Opposing=Enemies have a chance to drop opposing loot
 BuffName.SpicyEelBuff=Spicy Eel
 BuffDescription.SpicyEelBuff=Your speed is greatly increased
 # Projectiles
-ProjectileName.FlamingScythe=Flaming Scythe
-ProjectileName.DemonicFireball=Demonic Fireball
-ProjectileName.DemonicFireballExplosion=Demonic Fireball
+ProjectileName.PentalScythe=Flaming Scythe
+ProjectileName.MagmalbulbiaStaff=DMagmalbulbia Staff
+ProjectileName.MagmalbulbiaStaffExplosion=Magmalbulbia Staff
 ProjectileName.NarrenBolt=Narren Bolt
 ProjectileName.OmegaRay=Omega Ray
 ProjectileName.HyperSpike=Hyper Starite Arm
 ProjectileName.OmegaStariteCollider=Omega Starite
 ProjectileName.JerryBubble=Jerry Bubble
-ProjectileName.JerryBubbleBig={$Mods.AQMod.ProjectileName.JerryBubble}
+ProjectileName.JerryBubbleBig=Jerry Bubble
 ProjectileName.JerryPearl=Jerry Pearl
 ProjectileName.GelBulb=Gebulba
 ProjectileName.Maggie=Magma Bubble

@@ -23,6 +23,15 @@ namespace AQMod.Common.Utilities
     {
         public const int UI_SIZE = 10;
 
+        public static Item ItemInHand(this Player player)
+        {
+            if (!Main.mouseItem.IsAir)
+            {
+                return Main.mouseItem;
+            }
+            return player.HeldItem;
+        }
+
         public static TEnum ToEnum<TEnum>(this ushort number) where TEnum : Enum
         {
             return (TEnum)Enum.ToObject(typeof(TEnum), number);
@@ -33,32 +42,32 @@ namespace AQMod.Common.Utilities
             return (TEnum)Enum.ToObject(typeof(TEnum), number);
         }
 
-        public static Texture2D GetTexture<T>(string extra)
+        public static Texture2D GetTextureobj<T>(string extra)
         {
             return ModContent.GetTexture(GetPath<T>(extra));
         }
 
-        public static Texture2D GetTexture(this object obj, string extra)
+        public static Texture2D GetTextureobj(this object obj, string extra)
         {
             return ModContent.GetTexture(obj.GetPath(extra));
         }
 
-        public static Texture2D GetTexture(this Type t, string extra)
+        public static Texture2D GetTextureobj(this Type t, string extra)
         {
             return ModContent.GetTexture(t.GetPath(extra));
         }
 
-        public static Texture2D GetTexture<T>()
+        public static Texture2D GetTextureobj<T>()
         {
-            return typeof(T).GetTexture();
+            return typeof(T).GetTextureobj();
         }
 
-        public static Texture2D GetTexture(this object obj)
+        public static Texture2D GetTextureobj(this object obj)
         {
-            return obj.GetType().GetTexture();
+            return obj.GetType().GetTextureobj();
         }
 
-        public static Texture2D GetTexture(this Type t)
+        public static Texture2D GetTextureobj(this Type t)
         {
             return ModContent.GetTexture(GetPath(t));
         }
@@ -75,7 +84,7 @@ namespace AQMod.Common.Utilities
         /// <returns></returns>
         public static Rectangle ProjFrame(this Projectile Projectile, int frameX, int totalFramesX, int paddingX = 2, int paddingY = 2)
         {
-            var texture = Projectile.GetTexture();
+            var texture = Projectile.GetTextureobj();
             int frameWidth = texture.Height / totalFramesX;
             int frameHeight = texture.Height / Main.projFrames[Projectile.type];
             return new Rectangle(frameWidth * frameX, frameHeight * Projectile.frame, frameWidth - paddingX, frameHeight - paddingY);
@@ -88,7 +97,7 @@ namespace AQMod.Common.Utilities
         /// <returns></returns>
         public static Rectangle ProjFrame(this Projectile Projectile, int padding = 2)
         {
-            var texture = Projectile.GetTexture();
+            var texture = Projectile.GetTextureobj();
             int frameHeight = texture.Height / Main.projFrames[Projectile.type];
             return new Rectangle(0, frameHeight * Projectile.frame, texture.Width, frameHeight - padding);
         }

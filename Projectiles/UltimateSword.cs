@@ -46,7 +46,7 @@ namespace AQMod.Projectiles
             var texture = Main.itemTexture[(int)projectile.ai[0]];
             var frame = new Rectangle(0, 0, texture.Width, texture.Height);
             spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, frame, lightColor, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(AQUtils.GetTexture<Items.Weapons.Melee.UltimateSword>("_Glow"), projectile.Center - Main.screenPosition, frame, new Color(250, 250, 250, 0), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(AQUtils.GetTextureobj<Items.Weapons.Melee.UltimateSword>("_Glow"), projectile.Center - Main.screenPosition, frame, new Color(250, 250, 250, 0), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
 

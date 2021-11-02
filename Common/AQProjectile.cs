@@ -1,5 +1,8 @@
-﻿using AQMod.Items.Bait;
+﻿using AQMod.Common.Utilities;
+using AQMod.Items.Bait;
 using AQMod.Projectiles;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -144,9 +147,34 @@ namespace AQMod.Common
             return count;
         }
 
-        public static void ShortswordAI(Projectile projectile, float distanceFromPlayer)
+        public static void UpdateHeldProjDoVelocity(Player player, Vector2 rotatedRelativePoint, Projectile projectile)
         {
+            float speed = 1f;
+            var item = player.ItemInHand();
+            if (item.shoot == projectile.type)
+            {
+                speed = item.shootSpeed * projectile.scale;
+            }
+            Vector2 newVelocity = (Main.MouseWorld - rotatedRelativePoint).SafeNormalize(Vector2.UnitX * player.direction) * speed;
+            if (projectile.velocity.X != newVelocity.X || projectile.velocity.Y != newVelocity.Y)
+            {
+                projectile.netUpdate = true;
+            }
+            projectile.velocity = newVelocity;
+        }
 
+        public static void UpdateHeldProj(Player player, Vector2 rotatedRelativePoint, float offsetAmount, Projectile projectile)
+        {
+            float velocityAngle = projectile.velocity.ToRotation();
+            projectile.rotation = velocityAngle + ((projectile.spriteDirection == -1).ToInt() * (float)Math.PI);
+            projectile.direction = (Math.Cos(velocityAngle) > 0.0).ToDirectionInt();
+            float offset = offsetAmount * projectile.scale;
+            projectile.position = rotatedRelativePoint - (projectile.Size * 0.5f) + (velocityAngle.ToRotationVector2() * offset);
+            projectile.spriteDirection = projectile.direction;
+            player.ChangeDir(projectile.direction);
+            projectile.timeLeft = 2;
+            player.itemRotation = (projectile.velocity * projectile.direction).ToRotation();
+            player.heldProj = projectile.whoAmI;
         }
     }
 }

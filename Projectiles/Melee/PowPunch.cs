@@ -266,7 +266,7 @@ namespace AQMod.Projectiles.Melee
 
             var effects = projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             bool draw = true;
-            var texture = this.GetTexture();
+            var texture = this.GetTextureobj();
             origin = new Vector2(texture.Width / 2f, texture.Height / 2f);
             if (projectile.ai[0] == 0f)
             {

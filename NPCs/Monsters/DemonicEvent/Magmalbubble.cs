@@ -311,7 +311,7 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             var texture = Main.npcTexture[npc.type];
-            var legsTexture = this.GetTexture("_Legs");
+            var legsTexture = this.GetTextureobj("_Legs");
             var drawPosition = new Vector2(npc.position.X + npc.width / 2f, npc.position.Y + npc.height / 2f);
             drawPosition.Y -= 10.5f;
             var screenPos = Main.screenPosition;
