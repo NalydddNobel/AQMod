@@ -57,20 +57,25 @@ namespace AQMod.Projectiles.Magic
                 }
                 else
                 {
-                    projectile.Kill();
+                    projectile.ai[0] = -1f;
+                    projectile.timeLeft = player.itemTime;
+                    projectile.netUpdate = true;
                 }
             }
             projectile.hide = false;
-            if (player.itemTime <= 2)
+            if ((int)projectile.ai[0] != -1)
             {
-                player.itemTime = 2;
-            }
-            if (player.itemAnimation <= 2)
-            {
-                player.itemAnimation = 2;
+                if (player.itemTime <= 2)
+                {
+                    player.itemTime = 2;
+                }
+                if (player.itemAnimation <= 2)
+                {
+                    player.itemAnimation = 2;
+                }
+                projectile.timeLeft = 2;
             }
             AQProjectile.UpdateHeldProj(player, rotatedRelativePoint, 2f, projectile);
-
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -119,11 +124,13 @@ namespace AQMod.Projectiles.Magic
                 }
                 amount /= 3;
                 laserStart.Y -= laserOrig.X;
-                laserDir = new Vector2(0f, -speed);
+                var normal = Vector2.Normalize(Main.player[projectile.owner].Center + new Vector2(0f, -500f) - laserStart);
+                laserDir = normal * speed;
+                laserRot = normal.ToRotation();
                 for (int i = 0; i < amount; i++)
                 {
                     float progress = 1f / amount * i;
-                    Main.spriteBatch.Draw(laserTexture, laserStart + laserDir * i - Main.screenPosition + new Vector2(0f, 10f), null, laserColor * (1f - progress), MathHelper.PiOver2, origin, new Vector2(laserScale, laserScale * (1f - progress)), effects, 0f);
+                    Main.spriteBatch.Draw(laserTexture, laserStart + laserDir * i - Main.screenPosition + new Vector2(0f, 10f), null, laserColor * (1f - progress), laserRot, origin, new Vector2(laserScale, laserScale * (1f - progress)), effects, 0f);
                 }
             }
             origin.X += projectile.spriteDirection * 4f;

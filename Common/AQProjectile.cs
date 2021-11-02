@@ -172,7 +172,6 @@ namespace AQMod.Common
             projectile.position = rotatedRelativePoint - (projectile.Size * 0.5f) + (velocityAngle.ToRotationVector2() * offset);
             projectile.spriteDirection = projectile.direction;
             player.ChangeDir(projectile.direction);
-            projectile.timeLeft = 2;
             player.itemRotation = (projectile.velocity * projectile.direction).ToRotation();
             player.heldProj = projectile.whoAmI;
         }
