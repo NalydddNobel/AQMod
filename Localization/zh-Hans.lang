@@ -385,9 +385,9 @@ ItemName.RainbowOutlineDye=彩虹轮廓描边染料
 # Magic
 # Staffs
 ItemName.SunbaskMirror=暖阳之镜
-ItemTooltip.SunbaskMirror=镜子的表面反射着强烈的阳光\n只能在白天的地表上方使用
+ItemTooltip.SunbaskMirror=镜子的表面反射着强烈的阳光\n只能在白天的地表使用
 ItemName.UnityMirror=寒月之镜
-ItemTooltip.UnityMirror=镜子的表面反射着强烈的月光\n只能在夜晚的地表上方使用
+ItemTooltip.UnityMirror=镜子的表面反射着强烈的月光\n只能在夜晚的地表使用
 ItemName.Bubbler=泡泡法杖
 ItemName.GebulbaStaff=弹球法杖
 ItemName.MagicWand=魔杖
