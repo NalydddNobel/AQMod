@@ -366,7 +366,7 @@ namespace AQMod.Common
             {
                 return false;
             }
-            for (int i = 0; i < 30; i++) // 500 / 16 = 31.25
+            for (int i = 0; i < 15; i++)
             {
                 if (tileY - 1 - i <= 0)
                 {

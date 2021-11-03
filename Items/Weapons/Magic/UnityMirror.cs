@@ -9,7 +9,7 @@ namespace AQMod.Items.Weapons.Magic
     {
         public override void SetDefaults()
         {
-            item.damage = 155;
+            item.damage = 100;
             item.magic = true;
             item.useTime = 30;
             item.useAnimation = 30;
