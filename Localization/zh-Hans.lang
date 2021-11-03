@@ -394,6 +394,7 @@ ItemName.MagicWand=魔杖
 ItemName.MagmalbulbiaStaff=邪弹法杖
 ItemName.Narrizuul=耀宇遗光
 ItemName.ScarletSea=罪孽红海
+ItemTooltip.ScarletSea=召唤会跟随你光标移动的血珠
 ItemName.SeltzerRain=苏打雨
 ItemName.FizzlingFire=冥焰
 # Tomes
@@ -621,7 +622,6 @@ ItemTooltip.GebulbaStaff=发射弹跳粘球\n'Boing!'
 ItemTooltip.MagicWand=向你的光标位置发射一束魔法矢, 魔法矢会爆炸成向两边水平移动的冲击波
 ItemTooltip.MagmalbulbiaStaff=发射击中物块时会爆炸的弹跳火焰弹\n'艺术就是爆炸!'
 ItemTooltip.Narrizuul=于异界形成的遗物\n'闻起来像玫瑰'
-ItemTooltip.ScarletSea=发射2个跟随你光标移动的血珠\n当血珠接近光标时会停止移动并发出闪光\n一次至多有10个血珠跟随光标
 ItemTooltip.SeltzerRain=发射5个会跟随你光标移动一段时间的闪光球\n闪光球在移动一段时间后会远离你的光标
 ItemTooltip.FizzlingFire=发射强大的蓝色火焰\n在你拥有耐魔性减益时无法使用
 # Tomes
