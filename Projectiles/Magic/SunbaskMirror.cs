@@ -14,7 +14,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Magic
 {
-    public class MoonMoonMirror : ModProjectile
+    public class SunbaskMirror : ModProjectile
     {
         public const float LaserLength = 1000f;
 
@@ -72,7 +72,7 @@ namespace AQMod.Projectiles.Magic
                 if (player.itemTime <= 2)
                 {
                     player.itemTime = 2;
-                    projectile.friendly = laserScale > 0.1f;
+                    projectile.friendly = laserScale > 0.05f;
                     if (projectile.friendly)
                     {
                         projectile.ai[0]++;
@@ -106,42 +106,50 @@ namespace AQMod.Projectiles.Magic
             AQProjectile.UpdateHeldProj(player, rotatedRelativePoint, 2f, projectile);
             if (AQMod.EffectQuality >= 1f && laserScale > 0.05f)
             {
-                float laserRot = projectile.rotation;
-                if (projectile.spriteDirection == -1)
-                    laserRot += MathHelper.Pi;
                 float sunProgress = 1f - (player.itemAnimation - 2) / (float)(player.itemAnimationMax - 2);
                 if (sunProgress > 0.5f)
                 {
-                    int amount = (int)(12f * AQMod.EffectQuality);
-                    float trueProgress = (sunProgress - 0.5f) * 2f;
-                    int end = (int)(amount * trueProgress);
-                    float lineMax = LaserLength * trueProgress;
+                    int amount = (int)(28f * AQMod.EffectQuality);
+                    int end = (int)(amount * ((sunProgress - 0.5f) * 2f));
                     int size = (int)(16 * laserScale);
                     var sizeOff = new Vector2(-size / 2f);
                     float speed = LaserLength / amount;
+                    float laserRot = projectile.rotation;
+                    if (projectile.spriteDirection == -1)
+                        laserRot += MathHelper.Pi;
+                    var l = Vector2.UnitX.RotatedBy(laserRot + MathHelper.PiOver2);
                     var laserStart = projectile.Center;
                     var laserDir = new Vector2(speed, 0f).RotatedBy(laserRot);
-                    var l = Vector2.UnitX.RotatedBy(laserRot + MathHelper.PiOver2);
                     for (int i = 0; i < end; i++)
                     {
-                        float progress = 1f / amount * i;
-                        float spotlightIntensity = (float)Math.Sin(Main.GlobalTime * 10f - progress * 20f);
-                        int dChance = 30 - (int)(spotlightIntensity.Abs() * 30);
-                        if (Main.rand.NextBool(10 + dChance))
+                        if (Main.rand.NextBool(30))
                         {
-                            float line = Main.rand.NextFloat(lineMax);
+                            float progress = 1f / amount * i;
                             Vector2 localScale = new Vector2(laserScale, laserScale);
                             if (progress > 0.8f)
                             {
                                 localScale = new Vector2(laserScale, laserScale * (1f - (progress - 0.8f) / 0.8f));
                             }
                             var pos = laserStart + laserDir * i;
-                            int d = Dust.NewDust(pos - sizeOff, size, size, ModContent.DustType<MonoDust>(), default, default, default, new Color(128, 143, 231, 0), Main.rand.NextFloat(1f, 1.5f) * laserScale);
-                            Main.dust[d].velocity = l * Main.rand.NextFloat(-6f * laserScale, 6f * laserScale);
+                            float spotlightIntensity = (float)Math.Sin(Main.GlobalTime * 10f - progress * 20f);
+                            int d = Dust.NewDust(pos + sizeOff, size, size, ModContent.DustType<MonoDust>(), default, default, default, new Color(255, 206, 115, 0), Main.rand.NextFloat(0.75f, 1.35f));
+                            Main.dust[d].velocity = l * Main.rand.NextFloat(-4f * laserScale, 4f * laserScale);
                         }
                     }
                 }
             }
+        }
+
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+        {
+            float _ = float.NaN;
+            float size = getLaserScaleFromRot(projectile.rotation) * projectile.width;
+            float laserRot = projectile.rotation;
+            if (projectile.direction == -1)
+                laserRot += MathHelper.Pi;
+                var normal = new Vector2(1f, 0f).RotatedBy(laserRot);
+            Vector2 end = projectile.Center + normal * LaserLength;
+            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), projectile.Center, end, size * projectile.scale, ref _);
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -156,18 +164,6 @@ namespace AQMod.Projectiles.Magic
             hitDirection = target.position.X + target.width / 2f < Main.player[projectile.owner].position.X + Main.player[projectile.owner].width / 2f ? -1 : 1;
         }
 
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
-        {
-            float _ = float.NaN;
-            float laserRot = projectile.rotation;
-            if (projectile.direction == -1)
-                laserRot += MathHelper.Pi;
-            var normal = new Vector2(1f, 0f).RotatedBy(laserRot);
-            Vector2 end = projectile.Center + normal * LaserLength;
-            float size = getLaserScaleFromRot(laserRot) * projectile.width;
-            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), projectile.Center, end, size * projectile.scale, ref _);
-        }
-
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             var texture = this.GetTexture();
@@ -180,14 +176,14 @@ namespace AQMod.Projectiles.Magic
             var player = Main.player[projectile.owner];
             if (laserScale > 0f)
             {
+                float sunProgress = 1f - (player.itemAnimation - 2) / (float)(player.itemAnimationMax - 2);
                 if (AQMod.TonsofScreenShakes && Main.myPlayer == projectile.owner)
                 {
-                    ScreenShakeManager.ChannelEffect("Mirror", new BasicScreenShake(15, (int)(4f * laserScale)));
+                    ScreenShakeManager.ChannelEffect("Mirror", new BasicScreenShake(15, (int)(4f * laserScale * sunProgress)));
                 }
-                float sunProgress = 1f - (player.itemAnimation - 2) / (float)(player.itemAnimationMax - 2);
                 var laserStart = center;
                 laserScale *= 0.465f;
-                var laserTexture = ModContent.GetTexture("AQMod/Projectiles/Magic/MoonlightBeam");
+                var laserTexture = ModContent.GetTexture("AQMod/Projectiles/Magic/SunlightBeam");
                 var laserOrig = laserTexture.Size() / 2f;
                 float laserRot = projectile.rotation;
                 if (projectile.spriteDirection == -1)
@@ -225,7 +221,7 @@ namespace AQMod.Projectiles.Magic
                             }
                             var pos = laserStart + laserDir * i - Main.screenPosition;
                             float spotlightIntensity = (float)Math.Sin(Main.GlobalTime * 10f - progress * 20f);
-                            Main.spriteBatch.Draw(spotlight, pos, null, new Color(128, 143, 231, 0) * (0.5f + spotlightIntensity * 0.2f * localScale.Y), 0f, spotlightOrig, localScale.Y * 1.25f + spotlightIntensity * 0.1f * localScale.Y, effects, 0f);
+                            Main.spriteBatch.Draw(spotlight, pos, null, new Color(255, 150, 40, 0) * (0.5f + spotlightIntensity * 0.2f * localScale.Y), 0f, spotlightOrig, localScale.Y * 1.25f + spotlightIntensity * 0.1f * localScale.Y, effects, 0f);
                         }
                     }
                 }
@@ -252,7 +248,7 @@ namespace AQMod.Projectiles.Magic
                         var pos = laserStart + laserDir * i - Main.screenPosition + new Vector2(0f, 10f);
                         float spotlightIntensity = (float)Math.Sin(Main.GlobalTime * 10f + progress * 20f);
                         float s = laserScale * (1f - progress);
-                        Main.spriteBatch.Draw(spotlight, pos, null, new Color(128, 143, 231, 0) * (0.5f + spotlightIntensity * 0.2f) * (1f - progress), 0f, spotlightOrig, new Vector2(laserScale + spotlightIntensity * 0.1f, s + spotlightIntensity * 0.1f * s) * 1.25f, effects, 0f);
+                        Main.spriteBatch.Draw(spotlight, pos, null, new Color(255, 150, 40, 0) * (0.5f + spotlightIntensity * 0.2f) * (1f - progress), 0f, spotlightOrig, new Vector2(laserScale + spotlightIntensity * 0.1f, s + spotlightIntensity * 0.1f * s) * 1.25f, effects, 0f);
                     }
                 }
             }

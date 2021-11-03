@@ -1,4 +1,5 @@
-﻿using AQMod.Content.Dusts;
+﻿using AQMod.Common.WorldGeneration;
+using AQMod.Content.Dusts;
 using AQMod.Items.Accessories;
 using AQMod.Items.BuffItems;
 using AQMod.Items.BuffItems.Foods;
@@ -347,6 +348,40 @@ namespace AQMod.Common
             item.rare = rarity;
             item.value = price;
             item.maxStack = 999;
+        }
+
+        public static bool MirrorItemUseCheck(Player player)
+        {
+            if (player.position.Y - 500f > Main.worldSurface * 16f)
+            {
+                return false;
+            }
+            int tileX = (int)(player.position.X + player.width / 2f) / 16;
+            int tileY = (int)(player.position.Y + player.height / 2f) / 16;
+            if (Main.tile[tileX, tileY] == null)
+            {
+                Main.tile[tileX, tileY] = new Tile();
+            }
+            if (AQWorldGen.TileObstructedFromLight(tileX, tileY))
+            {
+                return false;
+            }
+            for (int i = 0; i < 30; i++) // 500 / 16 = 31.25
+            {
+                if (tileY - 1 - i <= 0)
+                {
+                    break;
+                }
+                if (Main.tile[tileX, tileY - 1 - i] == null)
+                {
+                    Main.tile[tileX, tileY - 1 - i] = new Tile();
+                }
+                if (AQWorldGen.TileObstructedFromLight(tileX, tileY - 1 - i))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

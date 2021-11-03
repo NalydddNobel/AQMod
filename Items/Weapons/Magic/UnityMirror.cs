@@ -9,10 +9,10 @@ namespace AQMod.Items.Weapons.Magic
     {
         public override void SetDefaults()
         {
-            item.damage = 60;
+            item.damage = 155;
             item.magic = true;
-            item.useTime = 36;
-            item.useAnimation = 36;
+            item.useTime = 30;
+            item.useAnimation = 30;
             item.width = 50;
             item.height = 50;
             item.noMelee = true;
@@ -31,7 +31,7 @@ namespace AQMod.Items.Weapons.Magic
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime;
+            return (!Main.dayTime || (Main.dayTime && Main.eclipse)) && AQItem.MirrorItemUseCheck(player);
         }
     }
 }

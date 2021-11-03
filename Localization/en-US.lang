@@ -394,6 +394,7 @@ ItemName.MagicWand=Magic Wand
 ItemName.MagmalbulbiaStaff=Magmalbulbia Staff
 ItemName.Narrizuul=Narrizuul
 ItemName.ScarletSea=Scarlet Sea
+ItemTooltip.ScarletSea=Summons homing blood orbs which follow your cursor
 ItemName.SeltzerRain=Seltzer Rain
 ItemName.FizzlingFire=Fizzling Fire
 # Tomes
@@ -621,7 +622,6 @@ ItemTooltip.GebulbaStaff=Shoots bouncy slimeballs\n'Boing!'
 ItemTooltip.MagicWand=Shoots a bolt towards your cursor which explodes into horizontal waves
 ItemTooltip.MagmalbulbiaStaff=Shoots firey magmaballs that explode off tiles\n'EXPLOSION! EXPLOSION! EXPLOSION!'
 ItemTooltip.Narrizuul=A relic birthed in an alternate universe\n'Smells like roses'
-ItemTooltip.ScarletSea=Shoots 2 blood orbs which follow your cursor\nWhen they get too close to the cursor they shimmer and stop following\nOnly 10 blood orbs can follow the cursor at once
 ItemTooltip.SeltzerRain=Shoots 5 fizzy orbs which follow your cursor for a short while\nThe fizzy orbs soon start fleeing from your cursor
 ItemTooltip.FizzlingFire=Shoots powerful blue flames\nCannot be used while mana sick
 # Tomes

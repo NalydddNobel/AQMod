@@ -166,11 +166,11 @@ namespace AQMod.Common
         public static void UpdateHeldProj(Player player, Vector2 rotatedRelativePoint, float offsetAmount, Projectile projectile)
         {
             float velocityAngle = projectile.velocity.ToRotation();
-            projectile.rotation = velocityAngle + ((projectile.spriteDirection == -1).ToInt() * (float)Math.PI);
             projectile.direction = (Math.Cos(velocityAngle) > 0.0).ToDirectionInt();
             float offset = offsetAmount * projectile.scale;
             projectile.position = rotatedRelativePoint - (projectile.Size * 0.5f) + (velocityAngle.ToRotationVector2() * offset);
             projectile.spriteDirection = projectile.direction;
+            projectile.rotation = velocityAngle + ((projectile.spriteDirection == -1).ToInt() * (float)Math.PI);
             player.ChangeDir(projectile.direction);
             player.itemRotation = (projectile.velocity * projectile.direction).ToRotation();
             player.heldProj = projectile.whoAmI;

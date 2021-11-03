@@ -9,7 +9,7 @@ namespace AQMod.Items.Weapons.Magic
     {
         public override void SetDefaults()
         {
-            item.damage = 76;
+            item.damage = 200;
             item.magic = true;
             item.useTime = 38;
             item.useAnimation = 38;
@@ -18,7 +18,7 @@ namespace AQMod.Items.Weapons.Magic
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.rare = ItemRarityID.Pink;
-            item.shoot = ModContent.ProjectileType<Projectiles.Magic.MoonMoonMirror>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Magic.SunbaskMirror>();
             item.shootSpeed = 24.11f;
             item.mana = 11;
             item.autoReuse = true;
@@ -31,7 +31,7 @@ namespace AQMod.Items.Weapons.Magic
 
         public override bool CanUseItem(Player player)
         {
-            return Main.dayTime;
+            return Main.dayTime && AQItem.MirrorItemUseCheck(player);
         }
     }
 }

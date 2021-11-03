@@ -42,5 +42,11 @@ namespace AQMod.Effects.ScreenEffects
             _offsetY = _random.NextFloat(-_intensityY, _intensityY);
             return true;
         }
+
+        public override void AdoptChannel(ScreenShakeFX effect)
+        {
+            var basicScreenShake = (BasicScreenShake)effect;
+            _time = basicScreenShake._time;
+        }
     }
 }

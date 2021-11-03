@@ -2135,5 +2135,10 @@ namespace AQMod.Common.WorldGeneration
             TileLoader.RandomUpdate(num100, num101, Main.tile[num100, num101].type);
             WallLoader.RandomUpdate(num100, num101, Main.tile[num100, num101].wall);
         }
+
+        internal static bool TileObstructedFromLight(int x, int y)
+        {
+            return Main.tile[x, y].wall > 0 || (Main.tile[x, y].active() && Main.tileBlockLight[Main.tile[x, y].type]);
+        }
     }
 }
