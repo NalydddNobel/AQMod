@@ -2,6 +2,7 @@
 using AQMod.Content;
 using AQMod.Content.Dusts;
 using AQMod.Content.RobsterQuests;
+using AQMod.Content.WorldEvents.AzureCurrents;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.GlimmerEvent;
@@ -342,17 +343,6 @@ namespace AQMod.Common
 
         public static void CrashMeteor(int x, int y, int size)
         {
-        }
-
-        public static bool MeteorTime()
-        {
-            if (Main.time < 14400)
-                return true;
-            if (Main.dayTime)
-            {
-                return Main.time > Main.dayLength - 14400;
-            }
-            return Main.time > Main.nightLength - 14400;
         }
 
         public static bool CheckStariteDeath(NPC npc)
@@ -1235,7 +1225,7 @@ namespace AQMod.Common
             {
                 if (player.position.Y < AQMod.SpaceLayer - (40 * 16f))
                 {
-                    if (MeteorTime())
+                    if (AzureCurrents.MeteorTime())
                     {
                         spawnRate /= 2;
                         maxSpawns *= 2;
@@ -1309,7 +1299,7 @@ namespace AQMod.Common
             {
                 if (spawnInfo.spawnTileY < AQMod.SpaceLayerTile - 40)
                 {
-                    if (MeteorTime())
+                    if (AzureCurrents.MeteorTime())
                     {
                         //pool.Clear();
                         //pool.Add(ModContent.NPCType<Meteor>(), 1f);

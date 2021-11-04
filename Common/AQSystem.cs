@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
+using AQMod.Content.WorldEvents.AzureCurrents;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.GlimmerEvent;
@@ -20,6 +21,7 @@ namespace AQMod.Common
             OmegaStariteScene.Initialize();
             AQMod.CosmicEvent = new GlimmerEvent();
             AQMod.CosmicEvent.Init();
+            AQMod.AtmosphericEvent = new AzureCurrents();
             CrabSeason.crabSeasonTimer = CrabSeason.CrabSeasonTimerMin;
             CrabSeason.CrabsonCachedID = -1;
             DemonSiege.Reset();
@@ -62,6 +64,7 @@ namespace AQMod.Common
         {
             AQMod.CosmicEvent.UpdateWorld();
             CrabSeason.UpdateWorld();
+            AQMod.AtmosphericEvent.UpdateWorld();
         }
 
         public override void TileCountsAvailable(int[] tileCounts)

@@ -5,6 +5,7 @@ using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.RobsterQuests;
+using AQMod.Content.WorldEvents.AzureCurrents;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.GlimmerEvent;
@@ -60,7 +61,7 @@ namespace AQMod.Common.DeveloperTools
                 {
                     case 1:
                     {
-                        bool meteorTime = AQNPC.MeteorTime();
+                        bool meteorTime = AzureCurrents.MeteorTime();
                         tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
                         tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < AQMod.SpaceLayer - (40 * 16f)).ToString()));
                     }

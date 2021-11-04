@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Content.WorldEvents.AzureCurrents;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -65,7 +66,10 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         Main.dust[d].noGravity = true;
                         Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
                     }
-                    AQNPC.CrashMeteor(p.X, p.Y, 9);
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        AzureCurrents.CrashMeteor_Orig(p.X, p.Y, 9, doEffects: true, tileType: TileID.Meteorite);
+                    }
                 }
             }
             else if (npc.position.Y > 1600f)

@@ -147,12 +147,16 @@ namespace AQMod
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
         public int[] EncoreBossKillCountRecord { get; private set; }
-        public int PopperType { get; private set; }
-        public int PopperBaitPower { get; private set; }
-        public int FishingPowerCache { get; private set; }
+        public int PopperType { get; set; }
+        public int PopperBaitPower { get; set; }
+        public int FishingPowerCache { get; set; }
         public int ExtractinatorCount { get; set; }
         public int CursorDyeID { get; private set; } = CursorDyeLoader.ID.None;
         public string CursorDye { get; private set; } = "";
+
+        public const float AtmosphericCurrentsWindSpeed = 30f;
+
+        public bool AtmosphericCurrentsEvent => player.ZoneSkyHeight && Main.windSpeed > 30f;
 
         public override void clientClone(ModPlayer clientClone)
         {
@@ -203,49 +207,6 @@ namespace AQMod
             packet.Write(celesteTorusY);
             packet.Write(celesteTorusZ);
             packet.Send(toWho, fromWho);
-        }
-
-        public static void Setup()
-        {
-            On.Terraria.Player.FishingLevel += GetFishingLevel;
-        }
-
-        private static int GetFishingLevel(On.Terraria.Player.orig_FishingLevel orig, Player player)
-        {
-            int regularLevel = orig(player);
-            if (regularLevel <= 0)
-                return regularLevel;
-            var aQPlayer = player.GetModPlayer<AQPlayer>();
-            Item baitItem = null;
-            for (int j = 0; j < 58; j++)
-            {
-                if (player.inventory[j].stack > 0 && player.inventory[j].bait > 0)
-                {
-                    baitItem = player.inventory[j];
-                    break;
-                }
-            }
-            if (baitItem.modItem is PopperBaitItem popper)
-            {
-                int popperPower = popper.GetExtraFishingPower(player, aQPlayer);
-                if (popperPower > 0)
-                {
-                    aQPlayer.PopperType = baitItem.type;
-                    aQPlayer.PopperBaitPower = popperPower;
-                }
-                else
-                {
-                    aQPlayer.PopperType = 0;
-                    aQPlayer.PopperBaitPower = 0;
-                }
-            }
-            else
-            {
-                aQPlayer.PopperType = 0;
-                aQPlayer.PopperBaitPower = 0;
-            }
-            aQPlayer.FishingPowerCache = regularLevel + aQPlayer.PopperBaitPower;
-            return aQPlayer.FishingPowerCache;
         }
 
         public Vector3 GetCelesteTorusPositionOffset(int i)

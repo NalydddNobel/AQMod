@@ -15,12 +15,15 @@ using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.MapMarkers;
 using AQMod.Content.RobsterQuests;
+using AQMod.Content.WorldEvents;
+using AQMod.Content.WorldEvents.AzureCurrents;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Effects;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Accessories.ShopCards;
+using AQMod.Items.Bait;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
@@ -104,6 +107,10 @@ namespace AQMod
         /// The color used for most menacing messages like "The Twins has awoken!".
         /// </summary>
         internal static Color BossMessage => new Color(175, 75, 255, 255);
+        /// <summary>
+        /// The color used for most event messages like "A meteorite has landed!".
+        /// </summary>
+        internal static Color EventMessage => new Color(50, 255, 130, 255);
         internal static bool DebugKeysPressed => Main.netMode == NetmodeID.SinglePlayer && AQConfigServer.Instance.debugCommand && Main.keyState.IsKeyDown(Keys.LeftShift) && Main.keyState.IsKeyDown(Keys.Q);
         internal static string DebugFolderPath => Main.SavePath + Path.DirectorySeparatorChar + "Mods" + Path.DirectorySeparatorChar + "Cache" + Path.DirectorySeparatorChar + "AQMod";
 
@@ -169,9 +176,13 @@ namespace AQMod
         /// </summary>
         public static List<WorldVisualEffect> WorldEffects { get; private set; }
         /// <summary>
-        /// The active instance of the Glimmer Event
+        /// The active instance of the Glimmer Event (event)
         /// </summary>
         public static GlimmerEvent CosmicEvent { get; set; }
+        /// <summary>
+        /// The active instance of the Azure Currents event
+        /// </summary>
+        public static AzureCurrents AtmosphericEvent { get; set; }
 
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
@@ -200,13 +211,14 @@ namespace AQMod
         {
             Loading = true;
             AQText.Load();
+            ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
             CursorDyes = new CursorDyeLoader();
             CursorDyes.Setup(setupStatics: true);
             RobsterHunts = new RobsterHuntLoader();
             RobsterHunts.Setup(setupStatics: true);
             CosmicEvent = new GlimmerEvent();
+            AtmosphericEvent = new AzureCurrents();
             MapMarkers = new MapMarkerManager();
-            AQPlayer.Setup();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             ModCallHelper.SetupCalls();
             On.Terraria.Chest.SetupShop += Chest_SetupShop;
@@ -215,50 +227,94 @@ namespace AQMod
             On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
             On.Terraria.Main.DrawTiles += Main_DrawTiles;
             On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
+            On.Terraria.Player.FishingLevel += GetFishingLevel;
             var server = AQConfigServer.Instance;
             ApplyServerConfig(server);
             if (!Main.dedServ)
             {
-                var client = AQConfigClient.Instance;
-                ApplyClientConfig(client);
-                ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
-                ArmorOverlays = new EquipOverlayLoader();
-                TextureCache.Load();
-                CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
-                GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
-                OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
-                DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
-                SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
-                GlimmerEventSky.Initialize();
-                Trailshader.Setup();
-                DrawUtils.LegacyTextureCache.Setup();
-                EffectCache.Instance = new EffectCache(this, client, Logger, newInstance: true);
-                WorldLayers = new SceneLayersManager();
-                WorldLayers.Setup(loadHooks: true);
-                WorldLayers.AddLayer("GoreNest", new GoreNestLayer(test: false), SceneLayering.InfrontNPCs);
-                WorldLayers.AddLayer("UltimateSword", new UltimateSwordWorldOverlay(), SceneLayering.InfrontNPCs);
-                WorldLayers.AddLayer("ImpChains", new ImpChainLayer(), SceneLayering.BehindNPCs);
-                WorldLayers.AddLayer("CrabsonChains", new JerryCrabsonLayer(), SceneLayering.BehindTiles_BehindNPCs);
-                WorldLayers.AddLayer("ParticleLayer_PostDrawPlayer", new ParticleLayer_PostDrawPlayers(), SceneLayering.PostDrawPlayers);
-                ScreenShakeManager.Load();
-                StarbyteColorCache.Init();
-                if (client.OutlineShader)
-                {
-                    GameShaders.Misc["AQMod:Outline"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlinePass");
-                    GameShaders.Misc["AQMod:OutlineColor"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlineColorPass");
-                }
-                if (client.PortalShader)
-                {
-                    GameShaders.Misc["AQMod:GoreNestPortal"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Portal), "DemonicPortalPass");
-                }
-                if (client.SpotlightShader)
-                {
-                    GameShaders.Misc["AQMod:Spotlight"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpotlightPass");
-                    GameShaders.Misc["AQMod:FadeYProgressAlpha"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "FadeYProgressAlphaPass");
-                    GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
-                }
-                WorldEffects = new List<WorldVisualEffect>();
+                Load_ClientSide();
             }
+        }
+
+        private void Load_ClientSide()
+        {
+            var client = AQConfigClient.Instance;
+            ApplyClientConfig(client);
+            ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
+            ArmorOverlays = new EquipOverlayLoader();
+            TextureCache.Load();
+            CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
+            GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
+            OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
+            DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
+            SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
+            GlimmerEventSky.Initialize();
+            Trailshader.Setup();
+            DrawUtils.LegacyTextureCache.Setup();
+            EffectCache.Instance = new EffectCache(this, client, Logger, newInstance: true);
+            WorldLayers = new SceneLayersManager();
+            WorldLayers.Setup(loadHooks: true);
+            WorldLayers.AddLayer("GoreNest", new GoreNestLayer(test: false), SceneLayering.InfrontNPCs);
+            WorldLayers.AddLayer("UltimateSword", new UltimateSwordWorldOverlay(), SceneLayering.InfrontNPCs);
+            WorldLayers.AddLayer("ImpChains", new ImpChainLayer(), SceneLayering.BehindNPCs);
+            WorldLayers.AddLayer("CrabsonChains", new JerryCrabsonLayer(), SceneLayering.BehindTiles_BehindNPCs);
+            WorldLayers.AddLayer("ParticleLayer_PostDrawPlayer", new ParticleLayer_PostDrawPlayers(), SceneLayering.PostDrawPlayers);
+            ScreenShakeManager.Load();
+            StarbyteColorCache.Init();
+            if (client.OutlineShader)
+            {
+                GameShaders.Misc["AQMod:Outline"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlinePass");
+                GameShaders.Misc["AQMod:OutlineColor"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlineColorPass");
+            }
+            if (client.PortalShader)
+            {
+                GameShaders.Misc["AQMod:GoreNestPortal"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Portal), "DemonicPortalPass");
+            }
+            if (client.SpotlightShader)
+            {
+                GameShaders.Misc["AQMod:Spotlight"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpotlightPass");
+                GameShaders.Misc["AQMod:FadeYProgressAlpha"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "FadeYProgressAlphaPass");
+                GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
+            }
+            WorldEffects = new List<WorldVisualEffect>();
+        }
+
+        private static int GetFishingLevel(On.Terraria.Player.orig_FishingLevel orig, Player player)
+        {
+            int regularLevel = orig(player);
+            if (regularLevel <= 0)
+                return regularLevel;
+            var aQPlayer = player.GetModPlayer<AQPlayer>();
+            Item baitItem = null;
+            for (int j = 0; j < 58; j++)
+            {
+                if (player.inventory[j].stack > 0 && player.inventory[j].bait > 0)
+                {
+                    baitItem = player.inventory[j];
+                    break;
+                }
+            }
+            if (baitItem.modItem is PopperBaitItem popper)
+            {
+                int popperPower = popper.GetExtraFishingPower(player, aQPlayer);
+                if (popperPower > 0)
+                {
+                    aQPlayer.PopperType = baitItem.type;
+                    aQPlayer.PopperBaitPower = popperPower;
+                }
+                else
+                {
+                    aQPlayer.PopperType = 0;
+                    aQPlayer.PopperBaitPower = 0;
+                }
+            }
+            else
+            {
+                aQPlayer.PopperType = 0;
+                aQPlayer.PopperBaitPower = 0;
+            }
+            aQPlayer.FishingPowerCache = regularLevel + aQPlayer.PopperBaitPower;
+            return aQPlayer.FishingPowerCache;
         }
 
         private void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
@@ -535,6 +591,12 @@ namespace AQMod
                 CursorDyes = null;
             }
             AQText.Unload();
+        }
+
+        public override void MidUpdateInvasionNet()
+        {
+            ImitatedWindyDay.Reset(resetNonUpdatedStatics: false);
+            ImitatedWindyDay.UpdateWindyDayFlags();
         }
 
         public override void PreUpdateEntities()
