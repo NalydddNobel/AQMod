@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Content.WorldEvents.AzureCurrents;
+﻿using AQMod.Content.WorldEvents.AzureCurrents;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -42,7 +41,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 npc.velocity = new Vector2(Main.rand.NextFloat(1f, 2.5f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
                 npc.localAI[0] = Main.rand.Next(Main.npcFrameCount[npc.type]) + 1f;
             }
-            if (npc.position.Y > 3200f)
+            if (!AzureCurrents.InSpace(npc.position.Y))
             {
                 npc.noGravity = false;
                 if (npc.collideX || npc.collideY)
@@ -66,15 +65,19 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         Main.dust[d].noGravity = true;
                         Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
                     }
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    if (Main.netMode != NetmodeID.MultiplayerClient && npc.oldVelocity.Length() > 7.5f)
                     {
-                        AzureCurrents.CrashMeteor_Orig(p.X, p.Y, 9, doEffects: true, tileType: TileID.Meteorite);
+                        AzureCurrents.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
                     }
                 }
             }
-            else if (npc.position.Y > 1600f)
+            else if (!AzureCurrents.InMeteorSpawnZone(npc.position.Y))
             {
                 npc.velocity.Y -= 0.01f;
+            }
+            else if (npc.position.Y < 200)
+            {
+                npc.velocity.Y += 0.05f;
             }
             npc.rotation += npc.velocity.Length() * 0.00157f;
         }

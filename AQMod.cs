@@ -396,7 +396,7 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
-            AQNPC.Sets.Setup(); // Initializes sets for npcs
+            AQNPC.Sets.LoadSets(); // Initializes sets for npcs
             AQProjectile.Sets.Setup(); // Initializes sets for projectiles
             DemonSiege.Setup(); // Sets up the Demon Siege event
             GlimmerEvent.Setup();
@@ -553,7 +553,7 @@ namespace AQMod
             MapMarkers = null;
             AQItem.Sets.Unload();
             DemonSiege.Unload();
-            AQNPC.Sets.Unload();
+            AQNPC.Sets.UnloadSets();
 
             // in: Load()
             // v doesn't load on server v

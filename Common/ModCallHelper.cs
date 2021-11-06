@@ -2,9 +2,11 @@
 using AQMod.Content;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
+using MonoMod.RuntimeDetour;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AQMod.Common
 {
@@ -107,7 +109,19 @@ namespace AQMod.Common
                 },
 
                 { "crabseasontimer", (o) => CrabSeason.crabSeasonTimer },
-                { "crabseasontimer_set", (o) => CrabSeason.crabSeasonTimer = (int)o[0] }
+                { "crabseasontimer_set", (o) => CrabSeason.crabSeasonTimer = (int)o[1] },
+
+                { "worlddefeats.downedcrabson", (o) => WorldDefeats.DownedCrabson },
+                { "worlddefeats.downeddemonsiege", (o) => WorldDefeats.DownedDemonSiege },
+                { "worlddefeats.downedglimmer", (o) => WorldDefeats.DownedGlimmer },
+                { "worlddefeats.downedstarite", (o) => WorldDefeats.DownedStarite },
+                { "worlddefeats.downedyinyang", (o) => WorldDefeats.DownedYinYang },
+
+                { "worlddefeats.downedcrabson_set", (o) => WorldDefeats.DownedCrabson = (bool)o[1]},
+                { "worlddefeats.downeddemonsiege_set", (o) => WorldDefeats.DownedDemonSiege = (bool)o[1]},
+                { "worlddefeats.downedglimmer_set", (o) => WorldDefeats.DownedGlimmer = (bool)o[1]},
+                { "worlddefeats.downedstarite_set", (o) => WorldDefeats.DownedStarite = (bool)o[1]},
+                { "worlddefeats.downedyinyang_set", (o) => WorldDefeats.DownedYinYang = (bool)o[1]},
             };
         }
 

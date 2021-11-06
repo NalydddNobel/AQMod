@@ -95,6 +95,28 @@ namespace AQMod.Common.DeveloperTools
                 caller.Reply("Command doesn't exist.");
                 break;
 
+                case "meteor":
+                {
+                    var b = Main.MouseWorld.ToTileCoordinates();
+                    if (args.Length > 7)
+                    {
+                        AzureCurrents.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]), ushort.Parse(args[7]));
+                    }
+                    else if (args.Length > 6)
+                    {
+                        AzureCurrents.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]));
+                    }
+                    else if (args.Length > 2)
+                    {
+                        AzureCurrents.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]));
+                    }
+                    else
+                    {
+                        AzureCurrents.CrashMeteor(b.X, b.Y, int.Parse(args[1]));
+                    }
+                }
+                break;
+
                 case "resettmerch":
                 {
                     Chest.SetupTravelShop();

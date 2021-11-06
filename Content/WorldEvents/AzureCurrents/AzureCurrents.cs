@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AQMod.Common.Utilities;
+using System;
 using Terraria;
 using Terraria.ID;
 
@@ -20,6 +21,11 @@ namespace AQMod.Content.WorldEvents.AzureCurrents
                 return Main.time > Main.dayLength - 14400;
             }
             return Main.time > Main.nightLength - 14400;
+        }
+
+        public static bool InMeteorSpawnZone(float y)
+        {
+            return y < 2000f;
         }
 
         public static bool InSpace(Player player)
@@ -66,7 +72,170 @@ namespace AQMod.Content.WorldEvents.AzureCurrents
             return true;
         }
 
-        public static void CrashMeteor_Orig(int x, int y, int size, bool doEffects = true, ushort tileType = TileID.Meteorite)
+        public static void CrashMeteor(int x, int y, int size = 40, int scatter = 1, int scatterAmount = 4, int scatterChance = 25, int holeSizeDivider = 3, bool doEffects = true, ushort tileType = TileID.Meteorite)
+        {
+            int circularSize = size - 8 - scatter;
+            int halfSize = circularSize / 2;
+            int minX = x - halfSize;
+            int maxX = x + halfSize;
+            int minY = y - halfSize;
+            int maxY = y + halfSize;
+            // draws the circle of the meteorite
+            for (int i = minX; i < maxX; i++)
+            {
+                for (int j = minY; j < maxY; j++)
+                {
+                    if (Main.tile[i, j] == null)
+                    {
+                        Main.tile[i, j] = new Tile();
+                        continue;
+                    }
+                    int iX = i - x;
+                    int iY = j - y;
+                    int distance = (int)Math.Sqrt(iX * iX + iY * iY);
+                    if (distance < halfSize)
+                    {
+                        bool active = Main.tile[i, j].active();
+                        int type = Main.tile[i, j].type;
+                        if (active && type != tileType)
+                        {
+                            WorldGen.KillTile(i, j, fail: false, effectOnly: false, noItem: false);
+                            if (Main.tileSolid[type])
+                            {
+                                Main.tile[i, j].active(active: true);
+                            }
+                        }
+                        Main.tile[i, j].type = tileType;
+                    }
+                }
+            }
+
+            halfSize = size / 2 - scatter;
+            minX = x - halfSize;
+            maxX = x + halfSize;
+            minY = y - halfSize;
+            maxY = y + halfSize;
+
+            // does some scatter on the outside
+            for (int i = minX; i < maxX; i++)
+            {
+                for (int j = minY; j < maxY; j++)
+                {
+                    if (Main.tile[i, j] == null)
+                    {
+                        Main.tile[i, j] = new Tile();
+                        continue;
+                    }
+                    int iX = i - x;
+                    int iY = j - y;
+                    int distance = (int)Math.Sqrt(iX * iX + iY * iY);
+                    if (distance < halfSize && WorldGen.genRand.NextBool(25))
+                    {
+                        int scatterX = AQUtils.NextVRand(Main.rand, -scatter, scatter);
+                        int scatterY = AQUtils.NextVRand(Main.rand, -scatter, scatter);
+                        bool active = Main.tile[i + scatterX, j + scatterY].active();
+                        int type = Main.tile[i + scatterX, j + scatterY].type;
+                        if (type != tileType)
+                        {
+                            WorldGen.KillTile(i + scatterX, j + scatterY, fail: false, effectOnly: false, noItem: false);
+                            if (active && Main.tileSolid[type])
+                            {
+                                Main.tile[i + scatterX, j + scatterY].active(active: true);
+                            }
+                        }
+                        Main.tile[i + scatterX, j + scatterY].type = tileType;
+                    }
+                }
+            }
+
+            circularSize = size / holeSizeDivider;
+            halfSize = circularSize / 2;
+            minX = x - circularSize;
+            maxX = x + circularSize;
+            minY = y - circularSize;
+            maxY = y + circularSize;
+
+            // carves a hole in the middle
+            for (int i = minX; i < maxX; i++)
+            {
+                for (int j = minY; j < maxY; j++)
+                {
+                    if (Main.tile[i, j] == null)
+                    {
+                        Main.tile[i, j] = new Tile();
+                        continue;
+                    }
+                    int iX = i - x;
+                    int iY = j - y;
+                    int distance = (int)Math.Sqrt(iX * iX + iY * iY);
+                    if (distance < halfSize)
+                    {
+                        Main.tile[i, j].active(active: false);
+                    }
+                }
+            }
+
+            // does some scatter in the center of the meteorite
+            for (int k = 0; k < scatterAmount; k++)
+            {
+                for (int i = minX; i < maxX; i++)
+                {
+                    for (int j = minY; j < maxY; j++)
+                    {
+                        if (Main.tile[i, j] == null)
+                        {
+                            Main.tile[i, j] = new Tile();
+                            continue;
+                        }
+                        int iX = i - x;
+                        int iY = j - y;
+                        int distance = (int)Math.Sqrt(iX * iX + iY * iY);
+                        if (distance < halfSize)
+                        {
+                            int scatterX = AQUtils.NextVRand(Main.rand, -1, 1);
+                            int scatterY = AQUtils.NextVRand(Main.rand, -1, 1);
+                            Main.tile[i + scatterX, j + scatterY].active(active: false);
+                        }
+                    }
+                }
+            }
+
+            halfSize = size / 2;
+             minX = x - halfSize;
+             maxX = x + halfSize;
+             minY = y - halfSize;
+             maxY = y + halfSize;
+            // runs square tile frame on everything here
+            for (int i = minX; i < maxX; i++)
+            {
+                for (int j = minY; j < maxY; j++)
+                {
+                    if (Main.tile[i, j] == null)
+                    {
+                        Main.tile[i, j] = new Tile();
+                        continue;
+                    }
+                    int iX = i - x;
+                    int iY = j - y;
+                    int distance = (int)Math.Sqrt(iX * iX + iY * iY);
+                    if (distance < halfSize)
+                    {
+                        if (Main.tile[i, j].active() && Main.tile[i, j].type == tileType)
+                        {
+                            WorldGen.SquareTileFrame(i, j, true);
+                        }
+                    }
+                }
+            }
+
+            AQMod.BroadcastMessage(Lang.gen[59].Key, AQMod.EventMessage);
+            if (Main.netMode != 1)
+            {
+                NetMessage.SendTileSquare(-1, minX, minY, size);
+            }
+        }
+
+        public static void CrashMeteor_Old(int x, int y, int size, bool doEffects = true, ushort tileType = TileID.Meteorite)
         {
             // doesn't do reflection for no-drops since it might as well drop tiles.
             int num = WorldGen.genRand.Next(17, 23);

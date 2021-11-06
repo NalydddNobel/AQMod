@@ -89,7 +89,7 @@ namespace AQMod.Common
                 return count;
             }
 
-            internal static void Setup()
+            internal static void LoadSets()
             {
                 DemonSiegeEnemy = new bool[NPCLoader.NPCCount];
                 DemonSiegeEnemy[ModContent.NPCType<Magmalbubble>()] = true;
@@ -311,9 +311,11 @@ namespace AQMod.Common
                 NoGlobalDrops[NPCID.EaterofWorldsHead] = true;
                 NoGlobalDrops[NPCID.EaterofWorldsBody] = true;
                 NoGlobalDrops[NPCID.EaterofWorldsTail] = true;
+
+                NoGlobalDrops[ModContent.NPCType<Meteor>()] = true;
             }
 
-            internal static void Unload()
+            internal static void UnloadSets()
             {
                 DemonSiegeEnemy = null;
                 EnemyDungeonSprit = null;
