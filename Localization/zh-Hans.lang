@@ -519,7 +519,7 @@ ItemTooltip.UltimateSword=击中敌人时会使你无敌一小段时间并获得
 # Foods
 ItemTooltip.Baguette='蛋糕只是海绵般松软的面包'
 ItemTooltip.NeutronJuice='重达数百万吨... 比把保险箱放在保险箱里还轻'
-ItemTooltip.SuspiciousLookingSteak=使你获得许多增益或减益\n'平淡无奇'
+ItemTooltip.SuspiciousLookingSteak=使你获得许多增益或减益\n'诅咒已除'
 ItemTooltip.SpicyEel=大幅度增加移动速度
 # Other Buffs Items
 ItemTooltip.MysteryGrail=使你获得随机的增益
