@@ -343,15 +343,6 @@ namespace AQMod.Common
 
         public static int MeteorLength = 7200; // 2 minutes, making each meteor time 4 minutes
 
-        public static void CrashMeteor(int x, int y, int size)
-        {
-        }
-
-        public static bool CheckStariteDeath(NPC npc)
-        {
-            return Main.dayTime;
-        }
-
         public override void ResetEffects(NPC npc)
         {
             sparkling = false;
@@ -360,98 +351,66 @@ namespace AQMod.Common
 
         public static bool AreTheSameNPC(int type, int otherType)
         {
+            if (type == otherType || Item.NPCtoBanner(type) == Item.NPCtoBanner(otherType)) // same banner or same npc type
+            {
+                return true;
+            }
             switch (type)
             {
-                default:
-                return type == otherType;
-
-                case NPCID.BlueArmoredBones:
-                case NPCID.BlueArmoredBonesMace:
-                case NPCID.BlueArmoredBonesNoPants:
-                case NPCID.BlueArmoredBonesSword:
+                case NPCID.EaterofWorldsHead:
+                case NPCID.EaterofWorldsBody:
+                case NPCID.EaterofWorldsTail:
                 {
                     switch (otherType)
                     {
-                        default:
-                        return false;
-
-                        case NPCID.BlueArmoredBones:
-                        case NPCID.BlueArmoredBonesMace:
-                        case NPCID.BlueArmoredBonesNoPants:
-                        case NPCID.BlueArmoredBonesSword:
+                        case NPCID.EaterofWorldsHead:
+                        case NPCID.EaterofWorldsBody:
+                        case NPCID.EaterofWorldsTail:
                         return true;
                     }
                 }
+                break;
 
-                case NPCID.AngryBones:
-                case NPCID.AngryBonesBig:
-                case NPCID.AngryBonesBigHelmet:
-                case NPCID.AngryBonesBigMuscle:
+                case NPCID.TheDestroyer:
+                case NPCID.TheDestroyerBody:
+                case NPCID.TheDestroyerTail:
                 {
                     switch (otherType)
                     {
-                        default:
-                        return false;
-
-                        case NPCID.AngryBones:
-                        case NPCID.AngryBonesBig:
-                        case NPCID.AngryBonesBigHelmet:
-                        case NPCID.AngryBonesBigMuscle:
+                        case NPCID.TheDestroyer:
+                        case NPCID.TheDestroyerBody:
+                        case NPCID.TheDestroyerTail:
                         return true;
                     }
                 }
+                break;
 
-                case NPCID.Necromancer:
-                case NPCID.NecromancerArmored:
+                case NPCID.TheHungry:
+                case NPCID.TheHungryII:
                 {
                     switch (otherType)
                     {
-                        default:
-                        return false;
-
-                        case NPCID.Necromancer:
-                        case NPCID.NecromancerArmored:
+                        case NPCID.TheHungry:
+                        case NPCID.TheHungryII:
                         return true;
                     }
                 }
-
-                case NPCID.DiabolistRed:
-                case NPCID.DiabolistWhite:
-                {
-                    switch (otherType)
-                    {
-                        default:
-                        return false;
-
-                        case NPCID.DiabolistRed:
-                        case NPCID.DiabolistWhite:
-                        return true;
-                    }
-                }
-
-                case NPCID.HellArmoredBones:
-                case NPCID.HellArmoredBonesMace:
-                case NPCID.HellArmoredBonesSpikeShield:
-                case NPCID.HellArmoredBonesSword:
-                {
-                    switch (otherType)
-                    {
-                        default:
-                        return false;
-
-                        case NPCID.HellArmoredBones:
-                        case NPCID.HellArmoredBonesMace:
-                        case NPCID.HellArmoredBonesSpikeShield:
-                        case NPCID.HellArmoredBonesSword:
-                        return true;
-                    }
-                }
+                break;
             }
+            return false;
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
             if (sparkling)
+            {
+                if (npc.lifeRegen > 0)
+                    npc.lifeRegen = 0;
+                npc.lifeRegen -= 10;
+                if (damage < 1)
+                    damage = 1;
+            }
+            if (notFrostburn)
             {
                 if (npc.lifeRegen > 0)
                     npc.lifeRegen = 0;

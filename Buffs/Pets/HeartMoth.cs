@@ -9,7 +9,6 @@ namespace AQMod.Buffs.Pets
         {
             Main.buffNoTimeDisplay[Type] = true;
             Main.lightPet[Type] = true;
-            Main.vanityPet[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)

@@ -23,9 +23,9 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
         public const float SuperStariteSpawnChance = 0.75f;
         public const float HyperStariteSpawnChance = 0.4f;
         public const float UltraStariteSpawnChance = 0.2f;
-        public const int EventBaseRarity = 300;
-        public const int GlimmerDownedRarityAdd = 150;
-        public const int HardmodeRarityAdd = 150;
+        public const int EventBaseRarity = 1250;
+        public const int GlimmerDownedRarityAdd = 350;
+        public const int HardmodeRarityAdd = 350;
 
         internal static Color StariteProjectileColorOrig => new Color(200, 10, 255, 0);
         public static Color TextColor => new Color(238, 17, 68, 255);
@@ -240,6 +240,11 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
                 if (!Framing.GetTileSafely(tileX, tileY).active() || Framing.GetTileSafely(tileX, tileY - 1).active())
                     tileY = ManageGlimmerY();
             }
+        }
+
+        public static bool CheckStariteDeath(NPC npc)
+        {
+            return Main.dayTime;
         }
 
         public void OnTurnNight()

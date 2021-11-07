@@ -2,6 +2,7 @@
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
@@ -314,7 +315,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
                 Main.gore[g].scale *= 0.6f;
             }
             Lighting.AddLight(npc.Center, new Vector3(0.8f, 0.8f, 0.45f));
-            if (AQNPC.CheckStariteDeath(npc))
+            if (GlimmerEvent.CheckStariteDeath(npc))
             {
                 npc.life = -1;
                 npc.HitEffect();

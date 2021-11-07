@@ -1,6 +1,7 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Utilities;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
@@ -170,7 +171,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             }
             Lighting.AddLight(npc.Center, new Vector3(0.4f, 0.4f, 0.2f));
             npc.rotation += npc.velocity.Length() * 0.0157f;
-            if (AQNPC.CheckStariteDeath(npc))
+            if (GlimmerEvent.CheckStariteDeath(npc))
             {
                 npc.life = -1;
                 npc.HitEffect();

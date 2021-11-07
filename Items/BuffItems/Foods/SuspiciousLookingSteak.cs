@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using AQMod.Common.Utilities;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,6 +7,17 @@ namespace AQMod.Items.BuffItems.Foods
 {
     public class SuspiciousLookingSteak : ModItem
     {
+        public override string Texture
+        {
+            get
+            {
+                string path = AQUtils.GetPath(this);
+                if (AQMod.AprilFools)
+                    return path + "_AprilFools";
+                return path;
+            }
+        }
+
         public override void SetDefaults()
         {
             item.width = 20;

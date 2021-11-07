@@ -4,6 +4,7 @@ using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Materials.Energies;
@@ -118,7 +119,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
 
         public override void AI()
         {
-            if (AQNPC.CheckStariteDeath(npc))
+            if (GlimmerEvent.CheckStariteDeath(npc))
             {
                 npc.life = -1;
                 npc.HitEffect();

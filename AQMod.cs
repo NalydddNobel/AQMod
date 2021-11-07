@@ -14,6 +14,7 @@ using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.MapMarkers;
+using AQMod.Content.NoHitting;
 using AQMod.Content.RobsterQuests;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.AzureCurrents;
@@ -397,6 +398,7 @@ namespace AQMod
         public override void PostSetupContent()
         {
             AQNPC.Sets.LoadSets(); // Initializes sets for npcs
+            NoHitManager.Setup();
             AQProjectile.Sets.Setup(); // Initializes sets for projectiles
             DemonSiege.Setup(); // Sets up the Demon Siege event
             GlimmerEvent.Setup();
@@ -553,6 +555,7 @@ namespace AQMod
             MapMarkers = null;
             AQItem.Sets.Unload();
             DemonSiege.Unload();
+            NoHitManager.Unload();
             AQNPC.Sets.UnloadSets();
 
             // in: Load()

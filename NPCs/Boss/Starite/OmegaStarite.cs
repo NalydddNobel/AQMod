@@ -280,7 +280,7 @@ namespace AQMod.NPCs.Boss.Starite
 
         public override void AI()
         {
-            if (AQNPC.CheckStariteDeath(npc))
+            if (GlimmerEvent.CheckStariteDeath(npc))
             {
                 npc.life = -1;
                 OmegaStariteScene.OmegaStariteIndexCache = -1;

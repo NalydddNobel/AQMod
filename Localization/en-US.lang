@@ -519,7 +519,7 @@ ItemTooltip.UltimateSword=When you hit an enemy you gain brief immune frames and
 # Foods
 ItemTooltip.Baguette='Cake is just spongy bread'
 ItemTooltip.NeutronJuice='Weighs millions of tons... still lighter than putting a safe in a safe'
-ItemTooltip.SuspiciousLookingSteak=Gives multiple buffs\n'Unfunny'
+ItemTooltip.SuspiciousLookingSteak=Gives multiple buffs\n'A curse has been lifted'
 ItemTooltip.SpicyEel=Greatly increases speed
 # Other Buffs Items
 ItemTooltip.MysteryGrail=Gives you a random buff
