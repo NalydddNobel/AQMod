@@ -135,7 +135,11 @@ namespace AQMod.Content.RobsterQuests
                     Main.npc[i].direction = directionToTile;
                     Main.npc[i].spriteDirection = directionToTile;
                     Main.npc[i].netUpdate = true;
+
+
                     int[] emoteChoices = new int[] { EmoteID.WeatherLightning, EmoteID.ItemSword, EmoteID.MiscFire };
+
+
                     int choice = Main.rand.Next(emoteChoices.Length);
                     EmoteBubble.NewBubble(emoteChoices[choice], new WorldUIAnchor(Main.npc[i]), 480);
                 }
@@ -148,9 +152,6 @@ namespace AQMod.Content.RobsterQuests
             return foundOut;
         }
 
-        internal static void Unload()
-        {
-            Hunt = null;
-        }
+        internal static void Unload() { Hunt = null; }
     }
 }

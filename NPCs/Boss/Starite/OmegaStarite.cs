@@ -5,6 +5,7 @@ using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
+using AQMod.Content.NoHitting;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
@@ -15,9 +16,7 @@ using AQMod.Items.TreasureBags;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Vanities.Pets;
 using AQMod.Items.Weapons.Magic;
-using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
-using AQMod.Projectiles;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -1304,13 +1303,39 @@ namespace AQMod.NPCs.Boss.Starite
         public override void NPCLoot()
         {
             AQMod.CosmicEvent.deactivationTimer = 275;
-            if (Main.rand.NextBool(7))
+            var noHitManager = npc.GetGlobalNPC<NoHitManager>();
+            bool anyoneNoHit = false;
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && !noHitManager.hitPlayer[i] && npc.playerInteraction[i])
+                {
+                    anyoneNoHit = true;
+                    break;
+                }
+            }
+            if (anyoneNoHit || Main.rand.NextBool(10))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<OmegaStariteTrophy>());
             if (Main.expertMode)
             {
                 npc.DropBossBags();
-                if (Main.rand.NextBool(4))
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    int item = Item.NewItem(npc.getRect(), ModContent.ItemType<DragonBall>(), 1, noBroadcast: true);
+                    Main.itemLockoutTime[item] = 54000;
+                    for (int i = 0; i < 255; i++)
+                    {
+                        var plr = Main.player[i];
+                        if (plr.active && npc.playerInteraction[i] && (!noHitManager.hitPlayer[i] || Main.rand.NextBool(4)))
+                        {
+                            NetMessage.SendData(MessageID.InstancedItem, i, -1, null, item);
+                        }
+                    }
+                    Main.item[item].active = false;
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<DragonBall>());
+                }
             }
             else
             {

@@ -18,11 +18,6 @@ namespace AQMod.Items.Tools
             item.shoot = ModContent.ProjectileType<Projectiles.Pets.ATM>();
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            return player.altFunctionUse != 2;
-        }
-
         void IUpdatePlayerSafe.UpdatePlayerSafe(Player player, int i)
         {
             var aQPlr = player.GetModPlayer<AQPlayer>();

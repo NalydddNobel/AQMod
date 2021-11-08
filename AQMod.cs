@@ -357,7 +357,9 @@ namespace AQMod
             var plr = Main.LocalPlayer;
             bool discount = plr.discount;
             plr.discount = false;
+
             orig(self, type);
+
             plr.discount = discount;
             if (discount)
             {
@@ -377,7 +379,9 @@ namespace AQMod
         /// <param name="self"></param>
         /// <returns></returns>
         private static bool NPC_Collision_DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
-            self.type > Main.maxNPCTypes && self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ? decideToFallThroughPlatforms.Decide() : orig(self);
+            self.type > Main.maxNPCTypes && 
+            self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ? 
+            decideToFallThroughPlatforms.Decide() : orig(self);
 
         /// <summary>
         /// Modifies <see cref="Main.DrawTiles(bool, int)"/> so that special tile draw coordinates can be refreshed.
@@ -889,7 +893,7 @@ namespace AQMod
                 }
                 catch (Exception e)
                 {
-                    var aQMod = AQMod.Instance;
+                    var aQMod = Instance;
                     aQMod.Logger.Error("An error occured when invoking cached load tasks.");
                     aQMod.Logger.Error(e.Message);
                     aQMod.Logger.Error(e.StackTrace);

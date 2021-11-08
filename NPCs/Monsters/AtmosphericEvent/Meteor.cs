@@ -65,7 +65,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         Main.dust[d].noGravity = true;
                         Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
                     }
-                    if (Main.netMode != NetmodeID.MultiplayerClient && npc.oldVelocity.Length() > 7.5f)
+                    if (Main.netMode != NetmodeID.MultiplayerClient && npc.oldVelocity.Length() > 7.5f && 
+                        AzureCurrents.CanCrashMeteor(p.X, p.Y, 24))
                     {
                         AzureCurrents.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
                     }
