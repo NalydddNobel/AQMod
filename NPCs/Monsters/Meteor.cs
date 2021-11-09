@@ -49,6 +49,7 @@ namespace AQMod.NPCs.Monsters
                 if (npc.collideX || npc.collideY)
                 {
                     npc.TargetClosest(faceTarget: false);
+                    npc.defense = 0;
                     if (npc.HasValidTarget)
                         Main.player[npc.target].ApplyDamageToNPC(npc, npc.lifeMax, npc.velocity.Length(), 0, false);
                     else
@@ -57,7 +58,7 @@ namespace AQMod.NPCs.Monsters
                         npc.HitEffect();
                         npc.active = false;
                     }
-                    npc.lifeMax = -1;
+                    npc.life = -1;
                     var p = npc.Center.ToTileCoordinates();
                     Main.PlaySound(SoundID.NPCDeath14, npc.Center);
                     for (int i = 0; i < 50; i++)

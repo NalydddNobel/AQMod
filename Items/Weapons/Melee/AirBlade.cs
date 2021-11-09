@@ -13,8 +13,8 @@ namespace AQMod.Items.Weapons.Melee
             item.melee = true;
             item.damage = 36;
             item.knockBack = 3f;
-            item.useAnimation = 8;
-            item.useTime = 8;
+            item.useAnimation = 14;
+            item.useTime = 14;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item1;
             item.rare = ItemRarityID.Pink;

@@ -251,7 +251,8 @@ namespace AQMod.NPCs.Boss.Starite
             outerRingRotation %= orbs[OmegaStariteOrb.INNER_RING].maxRotation;
             for (int i = OmegaStariteOrb.INNER_RING; i < OmegaStariteOrb.SPHERE_COUNT; i++)
             {
-                orbs[i].position = Vector3.Transform(new Vector3(orbs[i].radius, 0f, 0f), Matrix.CreateFromYawPitchRoll(outerRingPitch, outerRingRoll, orbs[i].defRotation + outerRingRotation)) + new Vector3(center, 0f);
+                orbs[i].position = Vector3.Transform(new Vector3(orbs[i].radius, 0f, 0f), 
+                    Matrix.CreateFromYawPitchRoll(outerRingPitch, outerRingRoll, orbs[i].defRotation + outerRingRotation)) + new Vector3(center, 0f);
             }
         }
 

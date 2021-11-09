@@ -64,7 +64,7 @@ namespace AQMod.Projectiles.Melee
             float progress = projectile.alpha / 255f;
             if (Main.rand.NextBool(3))
             {
-                int d = Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(235, 150, 25, 20) * Main.rand.NextFloat(0.8f, 1.25f) * progress, 0.8f);
+                int d = Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(235, 175, 25, 20) * Main.rand.NextFloat(0.8f, 1.25f) * progress, 0.8f);
                 Main.dust[d].velocity = -projectile.velocity * 0.1f;
             }
         }
@@ -74,9 +74,9 @@ namespace AQMod.Projectiles.Melee
             float progress = projectile.alpha / 255f;
             for (int i = 0; i < 15; i++)
             {
-                int d = Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(235, 150, 25, 20) * Main.rand.NextFloat(0.8f, 1.25f) * progress, 1.35f);
+                int d = Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(235, 175, 25, 20) * Main.rand.NextFloat(0.8f, 1.25f) * progress, 1.35f);
                 Main.dust[d].velocity = -projectile.velocity * 0.15f;
-                d = Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(235, 150, 25, 20) * Main.rand.NextFloat(0.15f, 0.45f) * progress, 2f);
+                d = Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(235, 175, 25, 20) * Main.rand.NextFloat(0.15f, 0.45f) * progress, 2f);
                 Main.dust[d].velocity = -projectile.velocity * Main.rand.NextFloat(0.2f, 0.35f);
             }
         }

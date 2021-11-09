@@ -24,7 +24,7 @@ namespace AQMod.Projectiles.Melee
             projectile.tileCollide = false;
             projectile.friendly = true;
             projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 3;
+            projectile.idStaticNPCHitCooldown = 6;
             projectile.manualDirectionChange = true;
             projectile.ignoreWater = true;
         }
@@ -51,9 +51,10 @@ namespace AQMod.Projectiles.Melee
             {
                 if ((int)projectile.ai[0] == 0)
                 {
-                    projectile.ai[0] = 25f;
+                    projectile.ai[0] = 10f;
+                    projectile.ai[1] = Main.rand.NextFloat(-0.23f, 0.23f);
                     if (Main.myPlayer == player.whoAmI && lerpAmount > 0f)
-                        projectile.velocity = Vector2.Normalize(Main.MouseWorld - playerCenter) * projectile.ai[0];
+                        projectile.velocity = Vector2.Normalize(Main.MouseWorld - playerCenter).RotatedBy(projectile.ai[1]) * projectile.ai[0];
                     projectile.netUpdate = true;
                 }
                 if (player.itemAnimation < player.itemAnimationMax / 3f)
