@@ -115,7 +115,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
                     Main.spriteBatch.Draw(texture, projectile.oldPos[i] + offset - Main.screenPosition, null, trailClr * progress, projectile.rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
                 }
             }
-            int targetIndex = AQNPC.FindClosest(center, 800f);
+            int targetIndex = AQNPC.FindTarget(center, 800f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, null, lightColor, projectile.rotation, new Vector2(texture.Width / 2f, 2f), projectile.scale, SpriteEffects.None, 0f);
             if (targetIndex != -1)
             {

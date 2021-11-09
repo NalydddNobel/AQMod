@@ -1413,7 +1413,7 @@ namespace AQMod.Common
             }
         }
 
-        internal static int FindClosest(Vector2 position, float distance = 2000f)
+        internal static int FindTarget(Vector2 position, float distance = 2000f)
         {
             int npc = -1;
             for (int i = 0; i < Main.maxNPCs; i++)

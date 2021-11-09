@@ -43,7 +43,7 @@ namespace AQMod.Assets.SceneLayers
             Main.spriteBatch.Draw(texture, drawPos - Main.screenPosition, frame, new Color(255, 255, 255, 255), MathHelper.PiOver4 * 3f, origin, 1f, SpriteEffects.None, 0f);
 
             float bobbing = (bobbingSin() + 1f) / 2f;
-            var blurTexture = ModContent.GetTexture(AQUtils.GetPath<UltimateSword>("_BlurTransparent"));
+            var blurTexture = ModContent.GetTexture(AQUtils.GetPath<UltimateSword>("_Blur"));
             var blurFrame = new Rectangle(0, 0, blurTexture.Width, blurTexture.Height);
             var blurOrigin = new Vector2(origin.X, blurTexture.Height - texture.Height);
             Main.spriteBatch.Draw(blurTexture, drawPos - Main.screenPosition, blurFrame, new Color(80 + Main.DiscoR / 60, 80 + Main.DiscoG / 60, 80 + Main.DiscoB / 60, 0) * (1f - bobbing), MathHelper.PiOver4 * 3f, blurOrigin, 1f, SpriteEffects.None, 0f);

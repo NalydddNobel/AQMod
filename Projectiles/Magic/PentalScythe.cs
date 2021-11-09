@@ -42,7 +42,7 @@ namespace AQMod.Projectiles.Magic
             float turnSpeed = projectile.ai[0] / 3000f;
             float speed = projectile.ai[1];
             float rotation = projectile.velocity.ToRotation();
-            int targetIndex = AQNPC.FindClosest(projectile.Center, 1000f);
+            int targetIndex = AQNPC.FindTarget(projectile.Center, 1000f);
             if (targetIndex != -1)
             {
                 NPC target = Main.npc[targetIndex];

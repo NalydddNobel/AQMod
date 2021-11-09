@@ -39,7 +39,7 @@ namespace AQMod.Projectiles.Melee
             }
             else
             {
-                int target = AQNPC.FindClosest(projectile.Center, 400f);
+                int target = AQNPC.FindTarget(projectile.Center, 400f);
                 if (target == -1)
                 {
                     projectile.Kill();

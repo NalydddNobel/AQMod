@@ -86,7 +86,7 @@ namespace AQMod.Projectiles.Melee
                     projectile.localAI[0]--;
                 if ((int)projectile.localAI[0] == 0)
                     updateDirToPlayer(player);
-                int target = AQNPC.FindClosest(projectile.position, 200f / player.meleeSpeed);
+                int target = AQNPC.FindTarget(projectile.position, 200f / player.meleeSpeed);
                 float maxLength = 260f;
                 if (target != -1)
                 {
@@ -173,7 +173,7 @@ namespace AQMod.Projectiles.Melee
                         }
                         else
                         {
-                            int target = AQNPC.FindClosest(projectile.position, 100f);
+                            int target = AQNPC.FindTarget(projectile.position, 100f);
                             if (target != -1)
                             {
                                 gotoPlayer = false;
