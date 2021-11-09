@@ -1,10 +1,10 @@
 ﻿using AQMod.Items.Accessories;
 using AQMod.Items.Armor.Crab;
-using AQMod.Items.BossSummons;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
 using AQMod.Items.Tools;
+using AQMod.Items.Tools.BossSummons;
 using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Vanities;

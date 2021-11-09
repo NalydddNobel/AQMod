@@ -7,6 +7,7 @@ using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Tiles;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -25,7 +26,8 @@ namespace AQMod.Common
             CrabSeason.crabSeasonTimer = CrabSeason.CrabSeasonTimerMin;
             CrabSeason.CrabsonCachedID = -1;
             DemonSiege.Reset();
-            AQMod.WorldEffects.Clear();
+            if (Main.netMode != NetmodeID.Server)
+                AQMod.WorldEffects.Clear();
         }
 
         public override TagCompound Save()

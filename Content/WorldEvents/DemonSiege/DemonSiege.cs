@@ -280,7 +280,7 @@ namespace AQMod.Content.WorldEvents.DemonSiege
 
         private static int GetSpawnChance()
         {
-            return Main.expertMode ? 200 : 300;
+            return Main.expertMode ? 150 : 300;
         }
 
         private static void SpawnEnemies(Player player)

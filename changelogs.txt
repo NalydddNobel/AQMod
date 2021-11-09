@@ -1,4 +1,141 @@
-####### v1.2.2 ######
+####### 1.2.3 #######
+
+Added Items:
+Gold Powder
+Fertile Powder
+Crystal Dagger, a weapon dropped from Undead Vikings!
+Moonluna Mirror
+Sunbask Mirror
+The Fan, an item which lets you mess with the wind! Dropped from ambient meteors after the evil boss has been defeated.
+Crabax, Jerry Crabson's expert item.
+Hama Yumi, a Demon Siege reward.
+Deltoid, a Demon Siege reward.
+Fizzling Fire, a Demon Siege reward.
+Heart Lamp, a light pet which gives a little extra boost...
+Ocean Ravine Wall, now desert enemies should no longer spawn at oceans...
+
+Removed Items:
+Staff of Night Vision
+Staff of Ironskin
+Staff of Regeneration
+Staff of Swiftness
+Staff of Water Breathing
+Baton of Night Vision
+Baton of Rage
+Baton of Wrath
+Unity Mirror? Kind of... it got renamed to Moonluna Mirror, plus completely overhauled.
+Ultimate Starfruit
+
+* Important Changes:
+- Made the mod's source code non-extractable now that I can commit to the Github 
+
+- Fixed a multiplayer loading issue
+
+- Added ambient meteors which float in space
+
+- Monoxiders can no longer target Target Dummies
+- Monoxiders now obey minion targetting
+
+- The Nova Fruit now requires Crystal Shards in order to be crafted 
+- The Cloud in a Bottle, Blizzard in a Bottle, and Sandstorm in a Bottle are now crafted with Cosmic Energy instead of Atmospheric Energy
+- Hermes Boots can now crafted with Cosmic Energy instead of Atmospheric Energy 
+- You can no longer craft the Cosmic Marker
+- Removed the recipe for the Tsunami in a Bottle
+- Removed the recipe for the Crab Rod
+- Galactium no longer drops from Omega Starite, and must be crafted
+
+- Added a sort of "Boss Zen" when Omega Starite or Crabson is alive 
+
+- You can no longer get your markers back when you use them on a globe
+
+- Ocean Ravines now generate with Ocean Ravine Walls instead of Sandstone Walls
+
+- All Starite enemies inflict Blue Fire instead of On Fire in expert mode
+- Hyper Starites can no longer inflict:
+* Distorted
+* Confused
+* Silenced
+* Slow
+- Super Starites can no longer inflict:
+* Distorted 
+
+- Sparrow Wings have been buffed to be on tier with Pixie Wings
+
+- Fixed an issue with enemies that exit the world border
+
+- Fixed a minor issue with the Glimmer Event's spawn chance
+- Greatly increased the Glimmer Event's spawnchance from a 1 / 300 base spawn rarity to 1 / 1250 base spawn rarity
+
+- Increased the spawnrate for NPCs in the Demon Siege
+
+- Fixed an issue with screen effects not unloading properly
+
+- Slightly boosted the stats of the Starite and Super Starite
+- Super Starites no longer drop the Starite Blade and Starite Spinner, and they now must be crafted
+- Omega Starite no longer creates an error when spawned in while autopaused
+
+- Added a config option for "Always Harder Omega Starite" 
+- Added a config option called "Tons of Screen Shakes"
+- Added a config option for "3D Flatness" which makes 3D effects more flat the lower the value 
+- Added a config option for "Starite Background Light" which lets you darken the background light for the Glimmer Event
+- The config option "Evil Progression Lock" no longer requires a reload
+- "Effect Intensity" has been changed to a slider between 0.1 -> 1 since I didn't like how effects looked with higher intensity
+
+- Fixed a bug regarding the Heart Moth and regular pets 
+
+- You can no longer boss channel off Target Dummies
+
+- Modified how the Moonlight Wall looks
+
+- Modified the Burnterizer's tooltip
+- Modified the Burnterizer's projectiles 
+* Removed the mouse aura
+* Decreased the wave's damage by half
+* Increased the wave's  speed (8 -> 12)
+* Removed the wave's penetration
+- The Burnterizer waves can now have flask abilities
+
+- The Spectral Lens no longer effects energy drops from:
+* Starite
+* Super Starite
+* Hyper Starite
+* Cindera
+* Magmalbubble
+* Trapper Imp
+* Arrow Crab
+* Hermit Crab
+* Solider Crab
+* Strider Crab
+
+- Aquatic Energy is no longer a global drop
+# Misc Changes:
+- Removed the deprecated "Edgelorth Wings"
+
+- Finally centered the dust on Narrizuul's projectiles
+
+- The Spectre Soul now has a grabbing sound
+
+- The Mythic Starfruit and Ultimate Starfruit no longer resets the spawnrate of the Glimmer Event
+
+- Fixed a layering issue with Crabson's arms
+
+- Omega Starite's Trophy now has the proper droprate
+* 1/7 -> 1/10
+
+- Fixed an issue with the Glimmer Event's Sky
+
+- Modified the tooltip for the Suspicious Looking Steak 
+
+- Removed some debug logging code
+
+- Energies now emit new effects
+- Aquatic Energy's rarity was dropped from 2 -> 1
+- Atmospheric Energy's rarity was increased from 2 -> 4
+- Ultimate Energy's rarity was increased from 4 -> 7
+
+- Fixed a bug where the Demon Siege invasion UI appears when you are near 0, 0
+
+####### v1.2.2 #######
 
 Added Items:
 Crimson Hand Staff

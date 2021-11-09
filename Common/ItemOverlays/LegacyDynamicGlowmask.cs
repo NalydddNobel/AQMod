@@ -81,7 +81,7 @@ namespace AQMod.Common.ItemOverlays
             Main.playerDrawData.Add(drawData1);
         }
 
-        public override void DrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public override void PostDrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             Color drawColor = _getColor();
             var texture = DrawUtils.LegacyTextureCache.Glows[glowmask];

@@ -116,7 +116,7 @@ namespace AQMod.Assets.ItemOverlays
             }
         }
 
-        public override void DrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public override void PostDrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             var texture = DrawUtils.LegacyTextureCache.Glows[GlowID.SpectralLens];
             var drawColor = getColor(Main.GlobalTime);

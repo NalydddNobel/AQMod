@@ -541,7 +541,12 @@ namespace AQMod.Common.WorldGeneration
 
         internal static bool ActiveAndFullySolid(int x, int y)
         {
-            return Framing.GetTileSafely(x, y).active() && Main.tileSolid[Main.tile[x, y].type] && !Main.tileSolidTop[Main.tile[x, y].type] && !Main.tileCut[Main.tile[x, y].type];
+            return ActiveAndFullySolid(Framing.GetTileSafely(x, y));
+        }
+
+        internal static bool ActiveAndFullySolid(Tile tile)
+        {
+            return tile.active() && Main.tileSolid[tile.type] && !Main.tileSolidTop[tile.type] && !Main.tileCut[tile.type];
         }
 
         internal static bool ActiveAndUncuttable(int x, int y)

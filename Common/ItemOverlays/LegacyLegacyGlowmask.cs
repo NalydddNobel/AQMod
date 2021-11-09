@@ -85,7 +85,7 @@ namespace AQMod.Common.ItemOverlays
             Main.playerDrawData.Add(drawData1);
         }
 
-        public override void DrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public override void PostDrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             var texture = DrawUtils.LegacyTextureCache.Glows[glowmask];
             Vector2 drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);

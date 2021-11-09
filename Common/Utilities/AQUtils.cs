@@ -311,6 +311,39 @@ namespace AQMod.Common.Utilities
             return segments;
         }
 
+        public static string UseTimeAnimationTooltip(float useAnimation)
+        {
+            if (useAnimation <= 8)
+            {
+                return Lang.tip[6].Value;
+            }
+            else if (useAnimation <= 20)
+            {
+                return Lang.tip[7].Value;
+            }
+            else if (useAnimation <= 25)
+            {
+                return Lang.tip[8].Value;
+            }
+            else if (useAnimation <= 30)
+            {
+                return Lang.tip[9].Value;
+            }
+            else if (useAnimation <= 35)
+            {
+                return Lang.tip[10].Value;
+            }
+            else if (useAnimation <= 45)
+            {
+                return Lang.tip[11].Value;
+            }
+            else if (useAnimation <= 55)
+            {
+                return Lang.tip[12].Value;
+            }
+            return Lang.tip[13].Value;
+        }
+
         public static string KnockbackItemTooltip(float knockback)
         {
             if (knockback == 0f)

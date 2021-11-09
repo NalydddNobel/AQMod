@@ -1,4 +1,6 @@
-﻿using AQMod.Common.Skies;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common.Config;
+using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
@@ -7,13 +9,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.BossSummons
+namespace AQMod.Items.Tools.BossSummons
 {
     public class NovaFruit : ModItem
     {
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[item.type] = (int)BossSpawnItemSortOrder.Abeemination;
+            if (!Main.dedServ && AQConfigClient.Instance.ScrollShader)
+                AQMod.ItemOverlays.Register(new EnchantmentOverlay(), item.type);
         }
 
         public override void SetDefaults()

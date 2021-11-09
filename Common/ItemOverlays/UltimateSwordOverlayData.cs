@@ -37,7 +37,7 @@ namespace AQMod.Common.ItemOverlays
             Main.playerDrawData.Add(new DrawData(texture, drawPosition + new Vector2(-x, 0f), drawFrame, drawColor, player.itemRotation, swordOrigin, item.scale, info.spriteEffects, 0));
         }
 
-        public override void DrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public override void PostDrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             var drawColor = new Color(128, 128, 128, 0);
             var texture = AQUtils.GetTextureobj<UltimateSword>("_Glow");

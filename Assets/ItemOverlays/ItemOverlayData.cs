@@ -6,7 +6,12 @@ namespace AQMod.Assets.ItemOverlays
 {
     public abstract class ItemOverlayData
     {
-        public virtual void DrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public virtual bool PreDrawWorld(Item item, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        {
+            return false;
+        }
+
+        public virtual void PostDrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
         }
 

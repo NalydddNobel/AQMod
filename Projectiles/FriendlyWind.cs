@@ -1,5 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Assets.SceneLayers.ParticlesLayers;
+using AQMod.Common;
+using AQMod.Common.Utilities;
+using AQMod.Common.WorldGeneration;
+using AQMod.Content.Particles;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Projectiles
@@ -11,6 +18,7 @@ namespace AQMod.Projectiles
             int p = Projectile.NewProjectile(position, velocity, ModContent.ProjectileType<FriendlyWind>(), 0, windSpeed, player.whoAmI);
             Main.projectile[p].width = size;
             Main.projectile[p].height = size;
+            Main.projectile[p].Center = position;
             Main.projectile[p].timeLeft = lifeSpan;
             return p;
         }
@@ -27,20 +35,62 @@ namespace AQMod.Projectiles
 
         public override void AI()
         {
-            if (Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+            int minX = (int)projectile.position.X / 16;
+            int minY = (int)projectile.position.Y / 16;
+            int maxX = minX + Math.Min(projectile.width / 16, 1);
+            int maxY = minY + Math.Min(projectile.height / 16, 1);
+            int colldingTiles = 0;
+            for (int i = minX; i < maxX; i++)
             {
-                projectile.velocity *= 0.97f;
+                for (int j = minY; j < maxY; j++)
+                {
+                    if (Main.tile[i, j] == null)
+                    {
+                        Main.tile[i, j] = new Tile();
+                        continue;
+                    }
+                    if (Main.tile[i, j].active() && AQWorldGen.ActiveAndFullySolid(Main.tile[i, j]))
+                    {
+                        colldingTiles++;
+                    }
+                }
             }
-            for (int i = 0; i < Main.maxNPCs;i++)
+            if (colldingTiles > 8)
+            {
+                projectile.velocity *= 0.97f - ((colldingTiles - 8) * 0.01f);
+            }
+            for (int i = 0; i < Main.maxNPCs; i++)
             {
                 var target = Main.npc[i];
                 if (target.active)
                 {
-                    if (!target.noGravity && projectile.getRect().Intersects(target.getRect()))
+                    var aQNPC = target.GetGlobalNPC<AQNPC>();
+                    if (aQNPC.ShouldApplyWindMechanics(target) && projectile.getRect().Intersects(target.getRect()))
                     {
-                        target.velocity += Vector2.Normalize(projectile.velocity) * projectile.knockBack;
+                        aQNPC.ApplyWindMechanics(target, Vector2.Normalize(projectile.velocity) * projectile.knockBack);
                     }
                 }
+            }
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                var target = Main.projectile[i];
+                if (target.active)
+                {
+                    var aQProjectile = target.GetGlobalProjectile<AQProjectile>();
+                    if (aQProjectile.ShouldApplyWindMechanics(target) && projectile.Colliding(projectile.getRect(), target.getRect()))
+                    {
+                        aQProjectile.ApplyWindMechanics(target, Vector2.Normalize(projectile.velocity) * projectile.knockBack);
+                    }
+                }
+            }
+            if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive && Main.rand.NextBool(3))
+            {
+                var rect = new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height);
+                var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                var velocity = new Vector2(-projectile.velocity.X + Main.rand.NextFloat(-1f, 1f) + Main.windSpeed, -projectile.velocity.Y + Main.rand.NextFloat(-1f, 1f));
+                ParticleLayers.AddParticle_PostDrawPlayers(
+                    new MonoParticle(dustPos, velocity * 0.5f,
+                    new Color(0.5f, 0.5f, 0.5f, 0f), Main.rand.NextFloat(0.2f, 1.2f)));
             }
         }
     }

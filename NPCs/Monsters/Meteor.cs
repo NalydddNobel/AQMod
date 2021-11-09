@@ -1,10 +1,12 @@
-﻿using AQMod.Content.WorldEvents.AzureCurrents;
+﻿using AQMod.Common.Utilities;
+using AQMod.Content.WorldEvents.AzureCurrents;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.AtmosphericEvent
+namespace AQMod.NPCs.Monsters
 {
     public class Meteor : ModNPC
     {
@@ -20,8 +22,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             npc.lifeMax = 250;
             npc.damage = 2;
             npc.defense = 45;
-            npc.HitSound = SoundID.NPCHit39;
-            npc.DeathSound = SoundID.NPCDeath55;
+            npc.HitSound = SoundID.NPCHit7;
+            npc.DeathSound = SoundID.NPCDeath14;
             npc.aiStyle = -1;
             npc.noGravity = true;
             npc.knockBackResist = 0.3f;
@@ -48,9 +50,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 {
                     npc.TargetClosest(faceTarget: false);
                     if (npc.HasValidTarget)
-                    {
                         Main.player[npc.target].ApplyDamageToNPC(npc, npc.lifeMax, npc.velocity.Length(), 0, true);
-                    }
                     else
                     {
                         npc.lifeMax = -1;
@@ -65,7 +65,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         Main.dust[d].noGravity = true;
                         Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
                     }
-                    if (Main.netMode != NetmodeID.MultiplayerClient && npc.oldVelocity.Length() > 7.5f && 
+                    if (Main.netMode != NetmodeID.MultiplayerClient && npc.oldVelocity.Length() > 7.5f &&
                         AzureCurrents.CanCrashMeteor(p.X, p.Y, 24))
                     {
                         AzureCurrents.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
@@ -81,6 +81,46 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 npc.velocity.Y += 0.05f;
             }
             npc.rotation += npc.velocity.Length() * 0.00157f;
+        }
+
+        public override void NPCLoot()
+        {
+            if (Main.rand.NextBool())
+                barOreDrop(ItemID.CopperOre, ItemID.TinOre, ItemID.CopperBar, ItemID.TinBar, WorldGen.CopperTierOre, TileID.Tin, 3);
+            else
+                barOreDrop(ItemID.SilverOre, ItemID.TungstenOre, ItemID.SilverBar, ItemID.TungstenBar, WorldGen.SilverTierOre, TileID.Tungsten, 4);
+            barOreDrop(ItemID.IronOre, ItemID.LeadOre, ItemID.IronBar, ItemID.LeadBar, WorldGen.IronTierOre, TileID.Lead, 20);
+            if (Main.rand.NextBool(4))
+                barOreDrop(ItemID.GoldOre, ItemID.PlatinumOre, ItemID.GoldBar, ItemID.PlatinumBar, WorldGen.GoldTierOre, TileID.Platinum, 4);
+            if ((NPC.downedBoss2 || Main.hardMode) && Main.rand.NextBool(32))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tools.TheFan>());
+
+        }
+
+        private void barOreDrop(int ore1, int ore2, int bar1, int bar2, int worldOreTier, int altOreTier, int oreDropMax)
+        {
+            if (worldOreTier == altOreTier)
+            {
+                if (Main.rand.NextBool())
+                {
+                    Item.NewItem(npc.getRect(), ore2, Main.rand.NextVRand(1, oreDropMax));
+                }
+                else
+                {
+                    Item.NewItem(npc.getRect(), bar2, Math.Max(Main.rand.NextVRand(1, oreDropMax) / 3, 1));
+                }
+            }
+            else
+            {
+                if (Main.rand.NextBool())
+                {
+                    Item.NewItem(npc.getRect(), ore1, Main.rand.NextVRand(1, oreDropMax));
+                }
+                else
+                {
+                    Item.NewItem(npc.getRect(), bar1, Math.Max(Main.rand.NextVRand(1, oreDropMax) / 3, 1));
+                }
+            }
         }
 
         public override void FindFrame(int frameHeight)

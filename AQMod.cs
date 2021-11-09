@@ -403,7 +403,7 @@ namespace AQMod
         {
             AQNPC.Sets.LoadSets(); // Initializes sets for npcs
             NoHitManager.Setup();
-            AQProjectile.Sets.Setup(); // Initializes sets for projectiles
+            AQProjectile.Sets.LoadSets(); // Initializes sets for projectiles
             DemonSiege.Setup(); // Sets up the Demon Siege event
             GlimmerEvent.Setup();
             BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
@@ -559,6 +559,7 @@ namespace AQMod
             MapMarkers = null;
             AQItem.Sets.Unload();
             DemonSiege.Unload();
+            AQProjectile.Sets.UnloadSets();
             NoHitManager.Unload();
             AQNPC.Sets.UnloadSets();
 

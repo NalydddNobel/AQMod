@@ -293,11 +293,22 @@ namespace AQMod.Common
             return 1;
         }
 
+        public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        {
+            if (item.type < Main.maxItemTypes)
+                return true;
+            if (!AQMod.ItemOverlays.GetOverlay(item.type)?.PreDrawWorld(item, lightColor, alphaColor, ref rotation, ref scale, whoAmI) == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public override void PostDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             if (item.type < Main.maxItemTypes)
                 return;
-            AQMod.ItemOverlays.GetOverlay(item.type)?.DrawWorld(item, lightColor, alphaColor, rotation, scale, whoAmI);
+            AQMod.ItemOverlays.GetOverlay(item.type)?.PostDrawWorld(item, lightColor, alphaColor, rotation, scale, whoAmI);
         }
 
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

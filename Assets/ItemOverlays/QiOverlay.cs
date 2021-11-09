@@ -51,7 +51,7 @@ namespace AQMod.Assets.ItemOverlays
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(b, b, b, 0) * scale3, rotation + time * 0.6553322f, drawOrigin, scale2 * scale3, SpriteEffects.None, 0f);
         }
 
-        public override void DrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public override void PostDrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             var texture = Main.itemTexture[item.type];
             var drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);

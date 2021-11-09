@@ -14,6 +14,8 @@ namespace AQMod.Content.WorldEvents
 		// these are statics in vanilla so why not here lol?
 		public static float MinWind;
 		public static float MaxWind;
+		public static float MaxWindSpeed;
+		public static float MinWindSpeed;
 
 		internal static void Reset(bool resetNonUpdatedStatics = false)
         {
@@ -22,7 +24,9 @@ namespace AQMod.Content.WorldEvents
             {
 				MinWind = 0.34f;
 				MaxWind = 0.4f;
-            }
+				MaxWindSpeed = 1f;
+				MinWindSpeed = -1f;
+			}
         }
 
         internal static void UpdateWindyDayFlags()

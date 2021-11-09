@@ -1,10 +1,12 @@
-﻿using AQMod.Common.Config;
+﻿using AQMod.Assets;
+using AQMod.Common.Config;
 using AQMod.Common.IO;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.RobsterQuests;
+using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.AzureCurrents;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
@@ -20,6 +22,8 @@ using System.Reflection;
 using System.Threading;
 using Terraria;
 using Terraria.Cinematics;
+using Terraria.DataStructures;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -64,9 +68,36 @@ namespace AQMod.Common.DeveloperTools
                         bool meteorTime = AzureCurrents.MeteorTime();
                         tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
                         tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < AQMod.SpaceLayer - (40 * 16f)).ToString()));
+                        tooltips.Add(new TooltipLine(mod, "2", "windy day: " + ImitatedWindyDay.IsItAHappyWindyDay));
+                        tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + AQMod.AtmosphericEvent.IsActive));
                     }
                     break;
                 }
+            }
+
+            public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+            {
+                if (debug > 0 && AQMod.ItemOverlays.GetOverlay(item.type) == null)
+                {
+                    bool resetBatch = false;
+                    var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
+                    if (AQConfigClient.Instance.ScrollShader)
+                    {
+                        resetBatch = true;
+                        Main.spriteBatch.End();
+                        BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
+                        var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
+                        effect.Apply(null, drawData);
+                    }
+                    drawData.Draw(Main.spriteBatch);
+                    if (resetBatch)
+                    {
+                        Main.spriteBatch.End();
+                        BatcherMethods.StartBatch_UI(Main.spriteBatch);
+                    }
+                    return false;
+                }
+                return true;
             }
         }
 

@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.BossSummons
+namespace AQMod.Items.Tools.BossSummons
 {
     public class MythicStarfruit : ModItem
     {

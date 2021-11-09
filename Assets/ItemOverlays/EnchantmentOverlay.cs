@@ -1,7 +1,6 @@
 ﻿using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
@@ -10,56 +9,22 @@ using Terraria.ModLoader;
 
 namespace AQMod.Assets.ItemOverlays
 {
-    public class GlowmaskOverlay : ItemOverlayData
+    public class EnchantmentOverlay : ItemOverlayData
     {
-        public readonly string Path;
-        public readonly Func<Color> GetDrawColor;
-        public readonly bool DrawInventory; 
-        public int Shader;
-        public Vector2 drawCoordinates;
-        public Vector2 origin;
-        public Rectangle drawFrame;
-        public float drawRotation;
+        protected int Shader;
 
-        public static Color DefaultGlowmaskColor => new Color(250, 250, 250, 0);
-
-        internal GlowmaskOverlay(string path, int shader = 0, bool drawInventory = false)
+        public EnchantmentOverlay()
         {
-            Path = path;
-            GetDrawColor = () => DefaultGlowmaskColor;
-            DrawInventory = drawInventory;
-            Shader = shader;
-        }
-
-        internal GlowmaskOverlay(string path, Color color, int shader = 0, bool drawInventory = false)
-        {
-            Path = path;
-            GetDrawColor = () => color;
-            DrawInventory = drawInventory;
-            Shader = shader;
-        }
-
-        internal GlowmaskOverlay(string path, Func<Color> color, int shader = 0, bool drawInventory = false)
-        {
-            Path = path;
-            GetDrawColor = color;
-            DrawInventory = drawInventory;
-            Shader = shader;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="drawingOnPlayer">Whether this is called on the player's glowmask drawcode</param>
-        /// <returns>Whether to draw the glowmask</returns>
-        protected virtual bool PreDraw(bool drawingOnPlayer, Item item)
-        {
-            return true;
+            Shader = GameShaders.Armor.GetShaderIdFromItemId(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
         }
 
         public override void DrawHeld(Player player, AQPlayer aQPlayer, Item item, PlayerDrawInfo info)
         {
-            var texture = ModContent.GetTexture(Path);
+            var texture = item.GetTexture();
+            float drawRotation = 0f;
+            Vector2 drawCoordinates = default(Vector2);
+            Vector2 origin = default(Vector2);
+            Rectangle drawFrame = default(Rectangle);
             if (item.useStyle == ItemUseStyleID.HoldingOut)
             {
                 if (Item.staff[item.type])
@@ -92,8 +57,7 @@ namespace AQMod.Assets.ItemOverlays
                     drawCoordinates = new Vector2((int)(info.itemLocation.X - Main.screenPosition.X + origin.X + offsetX1), (int)(info.itemLocation.Y - Main.screenPosition.Y + offsetY));
                     drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
                     origin += holdoutOrigin;
-                    if (PreDraw(true, item))
-                        Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetDrawColor(), drawRotation, origin, item.scale, info.spriteEffects, 0) { shader = this.Shader });
+                        Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, new Color(255, 255, 255, 255), drawRotation, origin, item.scale, info.spriteEffects, 0) { shader = this.Shader });
                     return;
                 }
                 SpriteEffects spriteEffects = (SpriteEffects)(player.gravDir != 1f ? player.direction != 1 ? 3 : 2 : player.direction != 1 ? 1 : 0);
@@ -105,8 +69,7 @@ namespace AQMod.Assets.ItemOverlays
                 drawCoordinates = new Vector2((int)(player.itemLocation.X - Main.screenPosition.X + offset.X), (int)(player.itemLocation.Y - Main.screenPosition.Y + offset.Y));
                 drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
                 drawRotation = player.itemRotation;
-                if (PreDraw(true, item))
-                    Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetDrawColor(), drawRotation, origin, item.scale, spriteEffects, 0) { shader = this.Shader });
+                    Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, new Color(255, 255, 255, 255), drawRotation, origin, item.scale, spriteEffects, 0) { shader = this.Shader });
                 return;
             }
             if (player.gravDir == -1f)
@@ -115,51 +78,46 @@ namespace AQMod.Assets.ItemOverlays
                 drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
                 drawRotation = player.itemRotation;
                 origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, 0f);
-                if (PreDraw(true, item))
-                    Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetDrawColor(), drawRotation, origin, item.scale, info.spriteEffects, 0) { shader = this.Shader });
+                    Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, new Color(255, 255, 255, 255), drawRotation, origin, item.scale, info.spriteEffects, 0) { shader = this.Shader });
                 return;
             }
             drawCoordinates = new Vector2((int)(info.itemLocation.X - Main.screenPosition.X), (int)(info.itemLocation.Y - Main.screenPosition.Y));
             drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             drawRotation = player.itemRotation;
             origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, texture.Height);
-            if (PreDraw(true, item))
-                Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetDrawColor(), drawRotation, origin, item.scale, info.spriteEffects, 0) { shader = this.Shader });
+                Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, new Color(255, 255, 255, 255), drawRotation, origin, item.scale, info.spriteEffects, 0) { shader = this.Shader });
         }
 
-        public override void PostDrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public override bool PreDrawWorld(Item item, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
-            var texture = ModContent.GetTexture(Path);
-            drawCoordinates = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
-            drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
-            drawRotation = rotation;
-            origin = Main.itemTexture[item.type].Size() / 2;
-            if (PreDraw(false, item))
-            {
+            Main.spriteBatch.End();
+            BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+            
+            var frame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
+            var drawPosition = new Vector2(item.position.X - Main.screenPosition.X + frame.Width / 2 + item.width / 2 - frame.Width / 2, item.position.Y - Main.screenPosition.Y + frame.Height / 2 + item.height - frame.Height);
+            Vector2 origin = frame.Size() / 2f;
+            var drawData = new DrawData(Main.itemTexture[item.type], drawPosition, frame, item.GetAlpha(lightColor), rotation, origin, scale, SpriteEffects.None, 0);
 
-                var drawData = new DrawData(texture, drawCoordinates, drawFrame, GetDrawColor(), drawRotation, origin, scale, SpriteEffects.None, 0);
-                if (Shader != 0)
-                {
-                    Main.spriteBatch.End();
-                    BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
-                    GameShaders.Armor.Apply(Shader, item, drawData);
-                }
-                drawData.Draw(Main.spriteBatch);
-                if (Shader != 0)
-                {
-                    Main.spriteBatch.End();
-                    BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
-                }
-            }
+            var effect = GameShaders.Armor.GetSecondaryShader(Shader, null);
+            effect.Apply(null, drawData);
+            drawData.Draw(Main.spriteBatch);
+
+            Main.spriteBatch.End();
+            BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
+            return true;
         }
 
-        public override void PostDrawInventory(Player player, AQPlayer aQPlayer, Item item, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        public override bool PreDrawInventory(Player player, AQPlayer aQPlayer, Item item, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            if (DrawInventory)
-            {
-                var texture = ModContent.GetTexture(Path);
-                Main.spriteBatch.Draw(texture, position, frame, GetDrawColor(), 0f, origin, scale, SpriteEffects.None, 0f);
-            }
+            Main.spriteBatch.End();
+            BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
+            var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
+            var effect = GameShaders.Armor.GetSecondaryShader(Shader, player);
+            effect.Apply(null, drawData);
+            drawData.Draw(Main.spriteBatch);
+            Main.spriteBatch.End();
+            BatcherMethods.StartBatch_UI(Main.spriteBatch);
+            return true;
         }
     }
 }

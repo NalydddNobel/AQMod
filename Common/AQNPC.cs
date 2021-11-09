@@ -18,7 +18,6 @@ using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Localization;
 using AQMod.NPCs.Friendly.Town;
 using AQMod.NPCs.Monsters;
-using AQMod.NPCs.Monsters.AtmosphericEvent;
 using AQMod.NPCs.Monsters.DemonicEvent;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -32,6 +31,72 @@ namespace AQMod.Common
 {
     public class AQNPC : GlobalNPC
     {
+        internal static class AIStyles // personal ai style list
+        {
+            public const int BoundNPCAI = 0;
+            public const int SlimeAI = 1;
+            public const int DemonEyeAI = 2;
+            public const int FighterAI = 3;
+            public const int EoCAI = 4;
+            public const int FlyingAI = 5;
+            public const int WormAI = 6;
+            public const int PassiveAI = 7;
+            public const int CasterAI = 8;
+            public const int SpellAI = 9;
+            public const int CursedSkullAI = 10;
+            public const int SkeletronAI = 11;
+            public const int SkeletronHandAI = 12;
+            public const int ManEaterAI = 13;
+            public const int BatAI = 14;
+            public const int KingSlimeAI = 15;
+            public const int FishAI = 16;
+            public const int VultureAI = 17;
+            public const int JellyfishAI = 18;
+            public const int AntlionAI = 19;
+            public const int SpikeBallAI = 20;
+            public const int BlazingWheelAI = 21;
+            public const int HoveringAI = 22;
+            public const int EnchantedSwordAI = 23;
+            public const int BirdCritterAI = 24;
+            public const int MimicAI = 25;
+            public const int UnicornAI = 26;
+            public const int WoFAI = 27;
+            public const int TheHungryAI = 28;
+
+            public const int SnowmanAI = 38;
+            public const int TortiseAI = 39;
+            public const int SpiderAI = 40;
+            public const int DerplingAI = 41;
+
+            public const int FlyingFishAI = 44;
+
+            public const int AngryNimbusAI = 49;
+            public const int SporeAI = 50;
+
+            public const int DungeonSpiritAI = 56;
+            public const int MourningWoodAI = 57;
+            public const int PumpkingAI = 58;
+            public const int PumpkingScytheAI = 59;
+            public const int IceQueenAI = 60;
+            public const int SantaNKIAI = 61;
+            public const int ElfCopterAI = 62;
+            public const int FlockoAI = 63;
+            public const int FireflyAI = 64;
+            public const int ButterflyAI = 65;
+            public const int WormCritterAI = 66;
+            public const int SnailAI = 67;
+            public const int DuckAI = 68;
+            public const int DukeFishronAI = 69;
+
+            public const int BiomeMimicAI = 87;
+            public const int MothronAI = 88;
+
+            public const int GraniteElementalAI = 91;
+
+            public const int SandElementalAI = 102;
+            public const int SandSharkAI = 103;
+        }
+
         public static class Sets
         {
             public static bool[] NoSpoilLoot { get; private set; }
@@ -40,6 +105,7 @@ namespace AQMod.Common
             public static bool[] HecktoplasmDungeonEnemy { get; private set; }
             public static bool[] EnemyDungeonSprit { get; private set; }
             public static bool[] DemonSiegeEnemy { get; private set; }
+            public static bool[] UnaffectedByWind { get; private set; }
 
             public static bool IsAZombie(int type, bool includeBloodZombies = false)
             {
@@ -311,8 +377,50 @@ namespace AQMod.Common
                 NoGlobalDrops[NPCID.EaterofWorldsHead] = true;
                 NoGlobalDrops[NPCID.EaterofWorldsBody] = true;
                 NoGlobalDrops[NPCID.EaterofWorldsTail] = true;
-
+                NoGlobalDrops[NPCID.DungeonSpirit] = true;
+                NoGlobalDrops[ModContent.NPCType<Heckto>()] = true;
                 NoGlobalDrops[ModContent.NPCType<Meteor>()] = true;
+
+                UnaffectedByWind = new bool[NPCLoader.NPCCount];
+
+                for (int i = 0; i < NPCLoader.NPCCount; i++)
+                {
+                    if (NPCID.Sets.BelongsToInvasionOldOnesArmy[i])
+                    {
+                        UnaffectedByWind[i] = true;
+                        continue;
+                    }
+                    try
+                    {
+                        NPC npc = new NPC();
+                        npc.SetDefaults(i);
+                        if (npc.aiStyle != AIStyles.DemonEyeAI && npc.aiStyle != AIStyles.FlyingAI && npc.aiStyle != AIStyles.SpellAI && npc.aiStyle != AIStyles.EnchantedSwordAI && npc.aiStyle != AIStyles.SpiderAI &&
+                            (npc.noGravity || npc.boss))
+                            UnaffectedByWind[i] = true;
+                    }
+                    catch
+                    {
+                    }
+                }
+
+                UnaffectedByWind[NPCID.BigMimicCorruption] = true;
+                UnaffectedByWind[NPCID.BigMimicCrimson] = true;
+                UnaffectedByWind[NPCID.BigMimicHallow] = true;
+                UnaffectedByWind[NPCID.BigMimicJungle] = true;
+                UnaffectedByWind[NPCID.MourningWood] = true;
+                UnaffectedByWind[NPCID.Everscream] = true;
+                UnaffectedByWind[NPCID.SantaNK1] = true;
+                UnaffectedByWind[NPCID.CultistArcherBlue] = true;
+                UnaffectedByWind[NPCID.CultistDevote] = true;
+                UnaffectedByWind[NPCID.TargetDummy] = true;
+
+                UnaffectedByWind[NPCID.DetonatingBubble] = false;
+                UnaffectedByWind[NPCID.DungeonSpirit] = false;
+                UnaffectedByWind[ModContent.NPCType<Heckto>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CosmicEvent.Starite>()] = false;
+                UnaffectedByWind[ModContent.NPCType<TrapImp>()] = false;
+                UnaffectedByWind[ModContent.NPCType<Cindera>()] = false;
+                UnaffectedByWind[ModContent.NPCType<Meteor>()] = false;
             }
 
             internal static void UnloadSets()
@@ -323,6 +431,7 @@ namespace AQMod.Common
                 NoSpoilLoot = null;
                 NoMapBlip = null;
                 NoGlobalDrops = null;
+                UnaffectedByWind = null;
             }
         }
 
@@ -340,13 +449,29 @@ namespace AQMod.Common
 
         public bool sparkling;
         public bool notFrostburn;
-
-        public static int MeteorLength = 7200; // 2 minutes, making each meteor time 4 minutes
+        /// <summary>
+        /// When this flag is raised, no wind events should be applied to this NPC
+        /// </summary>
+        public bool windStruck;
+        public bool windStruckOld;
 
         public override void ResetEffects(NPC npc)
         {
             sparkling = false;
             notFrostburn = false;
+            windStruckOld = windStruck;
+            windStruck = false;
+        }
+
+        public bool ShouldApplyWindMechanics(NPC npc)
+        {
+            return !windStruck && !Sets.UnaffectedByWind[npc.type];
+        }
+
+        public void ApplyWindMechanics(NPC npc, Vector2 wind)
+        {
+            npc.velocity += wind;
+            windStruck = true;
         }
 
         public static bool AreTheSameNPC(int type, int otherType)
@@ -1262,8 +1387,8 @@ namespace AQMod.Common
                 {
                     if (AzureCurrents.MeteorTime())
                     {
-                        //pool.Clear();
-                        //pool.Add(ModContent.NPCType<Meteor>(), 1f);
+                        pool.Clear();
+                        pool.Add(ModContent.NPCType<Meteor>(), 1f);
                     }
                 }
             }
