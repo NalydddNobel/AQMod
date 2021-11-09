@@ -461,6 +461,8 @@ ItemName.GoldPowder=黄金之尘
 ItemTooltip.GoldPowder=将小动物转化为金小动物
 ItemName.FertilePowder=丰饶之尘
 ItemTooltip.FertilePowder=强制物块进行生长
+ItemName.TheFan=吹风机
+ItemTooltip.TheFan=吹退你面前的东西\n可更改风速
 #
 #
 ##################################################################################
