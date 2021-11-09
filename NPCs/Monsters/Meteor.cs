@@ -50,13 +50,14 @@ namespace AQMod.NPCs.Monsters
                 {
                     npc.TargetClosest(faceTarget: false);
                     if (npc.HasValidTarget)
-                        Main.player[npc.target].ApplyDamageToNPC(npc, npc.lifeMax, npc.velocity.Length(), 0, true);
+                        Main.player[npc.target].ApplyDamageToNPC(npc, npc.lifeMax, npc.velocity.Length(), 0, false);
                     else
                     {
                         npc.lifeMax = -1;
                         npc.HitEffect();
                         npc.active = false;
                     }
+                    npc.lifeMax = -1;
                     var p = npc.Center.ToTileCoordinates();
                     Main.PlaySound(SoundID.NPCDeath14, npc.Center);
                     for (int i = 0; i < 50; i++)
@@ -81,6 +82,31 @@ namespace AQMod.NPCs.Monsters
                 npc.velocity.Y += 0.05f;
             }
             npc.rotation += npc.velocity.Length() * 0.00157f;
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (npc.life <= 0)
+            {
+                for (int i = 0; i < 25; i++)
+                {
+                    int d = Dust.NewDust(npc.position, npc.width, npc.height, 23, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
+                    Main.dust[d].noGravity = AzureCurrents.InSpace(npc.position.Y);
+                    Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
+                }
+                for (int i = 0; i < 10; i++)
+                {
+                    int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.8f, 1.75f));
+                    Main.dust[d].noGravity = true;
+                    Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
+                }
+            }
+            else
+            {
+                int d = Dust.NewDust(npc.position, npc.width, npc.height, 23, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
+                Main.dust[d].noGravity = AzureCurrents.InSpace(npc.position.Y);
+                Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
+            }
         }
 
         public override void NPCLoot()
