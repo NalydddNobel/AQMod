@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable.WallItems
+namespace AQMod.Items.Placeable.Wall
 {
     public class OceanRavineWall : ModItem
     {

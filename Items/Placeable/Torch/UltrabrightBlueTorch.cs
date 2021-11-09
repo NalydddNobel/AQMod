@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable.TorchItems
+namespace AQMod.Items.Placeable.Torch
 {
-    public class UltrabrightRedTorch : ModItem
+    public class UltrabrightBlueTorch : ModItem
     {
         public override void SetDefaults()
         {
@@ -23,24 +23,24 @@ namespace AQMod.Items.Placeable.TorchItems
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.Torches>();
             item.value = 50;
-            item.placeStyle = 0;
+            item.placeStyle = 2;
         }
 
         public override void HoldItem(Player player)
         {
             if (Main.rand.Next(player.itemAnimation > 0 ? 40 : 80) == 0)
             {
-                Dust.NewDust(new Vector2(player.itemLocation.X + 16f * player.direction, player.itemLocation.Y - 14f * player.gravDir), 4, 4, ModContent.DustType<XenonDust>());
+                Dust.NewDust(new Vector2(player.itemLocation.X + 16f * player.direction, player.itemLocation.Y - 14f * player.gravDir), 4, 4, ModContent.DustType<ArgonDust>());
             }
             Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + 12f * player.direction + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y), true);
-            Lighting.AddLight(position, 1f, 0f, 0f);
+            Lighting.AddLight(position, 0f, 0f, 1f);
         }
 
         public override void PostUpdate()
         {
             if (!item.wet)
             {
-                Lighting.AddLight((int)((item.position.X + item.width / 2) / 16f), (int)((item.position.Y + item.height / 2) / 16f), 1f, 0f, 0f);
+                Lighting.AddLight((int)((item.position.X + item.width / 2) / 16f), (int)((item.position.Y + item.height / 2) / 16f), 0f, 0f, 1f);
             }
         }
 
@@ -53,7 +53,7 @@ namespace AQMod.Items.Placeable.TorchItems
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.UltrabrightTorch, 20);
-            recipe.AddIngredient(ModContent.ItemType<ArgonMushroom>());
+            recipe.AddIngredient(ModContent.ItemType<XenonMushroom>());
             recipe.SetResult(this, 20);
             recipe.AddRecipe();
         }

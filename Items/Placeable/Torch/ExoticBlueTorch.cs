@@ -1,12 +1,13 @@
 ﻿using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable.TorchItems
+namespace AQMod.Items.Placeable.Torch
 {
-    public class UltrabrightGreenTorch : ModItem
+    public class ExoticBlueTorch : ModItem
     {
         public override void SetDefaults()
         {
@@ -14,7 +15,6 @@ namespace AQMod.Items.Placeable.TorchItems
             item.height = 12;
             item.maxStack = 999;
             item.holdStyle = 1;
-            item.noWet = true;
             item.useTurn = true;
             item.autoReuse = true;
             item.useAnimation = 15;
@@ -22,38 +22,40 @@ namespace AQMod.Items.Placeable.TorchItems
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.Torches>();
+            item.flame = true;
             item.value = 50;
-            item.placeStyle = 1;
+            item.placeStyle = 5;
         }
 
         public override void HoldItem(Player player)
         {
             if (Main.rand.Next(player.itemAnimation > 0 ? 40 : 80) == 0)
             {
-                Dust.NewDust(new Vector2(player.itemLocation.X + 16f * player.direction, player.itemLocation.Y - 14f * player.gravDir), 4, 4, ModContent.DustType<KryptonDust>());
+                var type = Main.rand.NextBool() ? ModContent.DustType<XenonDust>() : ModContent.DustType<XenonMist>();
+                Dust.NewDust(new Vector2(player.itemLocation.X + 16f * player.direction, player.itemLocation.Y - 14f * player.gravDir), 4, 4, type);
             }
             Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + 12f * player.direction + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y), true);
-            Lighting.AddLight(position, 0f, 1f, 0f);
+            float time = Main.GlobalTime * 2f;
+            Lighting.AddLight(position, ((float)Math.Sin(time) + 1f) / 16f, ((float)Math.Cos(time) + 1f) / 16f, ((float)Math.Sin(time * 0.85f) + 1f) / 4f);
         }
 
         public override void PostUpdate()
         {
-            if (!item.wet)
-            {
-                Lighting.AddLight((int)((item.position.X + item.width / 2) / 16f), (int)((item.position.Y + item.height / 2) / 16f), 0f, 1f, 0f);
-            }
+            float time = Main.GlobalTime * 2f;
+            Lighting.AddLight((int)((item.position.X + item.width / 2) / 16f), (int)((item.position.Y + item.height / 2) / 16f), ((float)Math.Sin(time) + 1f) / 16f, ((float)Math.Cos(time) + 1f) / 16f, ((float)Math.Sin(time * 0.85f) + 1f) / 4f);
         }
 
         public override void AutoLightSelect(ref bool dryTorch, ref bool wetTorch, ref bool glowstick)
         {
-            dryTorch = true;
+            wetTorch = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.UltrabrightTorch, 20);
-            recipe.AddIngredient(ModContent.ItemType<KryptonMushroom>());
+            recipe.AddIngredient(ItemID.Torch, 20);
+            recipe.AddIngredient(ItemID.Diamond);
+            recipe.AddIngredient(ModContent.ItemType<ExoticCoral>());
             recipe.SetResult(this, 20);
             recipe.AddRecipe();
         }

@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Placeable.WallItems;
+﻿using AQMod.Items.Placeable.Wall;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

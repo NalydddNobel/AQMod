@@ -1,5 +1,5 @@
 ﻿using AQMod.Buffs;
-using AQMod.Items.Materials;
+using AQMod.Items.Materials.Fish;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

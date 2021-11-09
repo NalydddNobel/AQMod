@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Materials
+namespace AQMod.Items.Materials.Fish
 {
     public class UltraEel : ModItem
     {

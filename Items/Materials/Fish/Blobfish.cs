@@ -2,15 +2,15 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Materials
+namespace AQMod.Items.Materials.Fish
 {
-    public class Combfish : ModItem
+    public class Blobfish : ModItem
     {
         public override void SetDefaults()
         {
             item.width = 20;
             item.height = 20;
-            item.value = Item.sellPrice(silver: 10);
+            item.value = Item.sellPrice(gold: 1);
             item.rare = ItemRarityID.Green;
             item.maxStack = 999;
         }
@@ -18,13 +18,9 @@ namespace AQMod.Items.Materials
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.BottledWater);
             r.AddIngredient(item.type);
-            r.AddIngredient(ItemID.Moonglow);
-            r.AddIngredient(ItemID.Shiverthorn);
-            r.AddIngredient(ItemID.Waterleaf);
-            r.AddTile(TileID.Bottles);
-            r.SetResult(ItemID.LifeforcePotion);
+            r.AddTile(TileID.CookingPots);
+            r.SetResult(ItemID.CookedFish, 5);
             r.AddRecipe();
         }
     }
