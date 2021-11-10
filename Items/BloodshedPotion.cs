@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items
 {
-    public class BloodshedPotion : ModItem
+    public class BloodshedPotion : ModItem // hi torra B)
     {
         public override void SetDefaults()
         {
