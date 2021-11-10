@@ -1,4 +1,4 @@
-﻿namespace AQMod.Common.Utilities
+﻿namespace AQMod.Common
 {
     public enum BossSpawnItemSortOrder
     {

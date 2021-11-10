@@ -1,8 +1,8 @@
 using AQMod.Assets;
 using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.PlayerLayers.EquipOverlays;
-using AQMod.Assets.SceneLayers;
-using AQMod.Assets.SceneLayers.ParticlesLayers;
+using AQMod.Assets.DrawCode;
+using AQMod.Assets.DrawCode.ParticlesLayers;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.DeveloperTools;
@@ -48,6 +48,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
+using AQMod.Effects.HotAndColdCurrent;
 
 namespace AQMod
 {
@@ -190,6 +191,9 @@ namespace AQMod
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
 
+        private static Vector2 _lastScreenZoom;
+        private static Vector2 _lastScreenView;
+
         public AQMod()
         {
             Properties = new ModProperties()
@@ -260,6 +264,7 @@ namespace AQMod
             WorldLayers.AddLayer("ImpChains", new ImpChainLayer(), SceneLayering.BehindNPCs);
             WorldLayers.AddLayer("CrabsonChains", new JerryCrabsonLayer(), SceneLayering.BehindTiles_BehindNPCs);
             WorldLayers.AddLayer("ParticleLayer_PostDrawPlayer", new ParticleLayer_PostDrawPlayers(), SceneLayering.PostDrawPlayers);
+            WorldLayers.AddLayer(HotAndColdCurrentLayer.Name, new HotAndColdCurrentLayer(), HotAndColdCurrentLayer.Layer);
             ScreenShakeManager.Load();
             StarbyteColorCache.Init();
             if (client.OutlineShader)
@@ -277,7 +282,16 @@ namespace AQMod
                 GameShaders.Misc["AQMod:FadeYProgressAlpha"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "FadeYProgressAlphaPass");
                 GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
             }
+            Main.OnPreDraw += Main_OnPreDraw;
             WorldEffects = new List<WorldVisualEffect>();
+        }
+
+        private void Main_OnPreDraw(GameTime obj) // this is based greatly on the Stargoop from Spirit Mod, thank you, whoever coded that.
+        {
+            if (!Main.gameMenu && Main.graphics.GraphicsDevice != null && Main.spriteBatch != null)
+            {
+                HotAndColdCurrentLayer.DrawTarget();
+            }
         }
 
         private static int GetFishingLevel(On.Terraria.Player.orig_FishingLevel orig, Player player)
@@ -609,8 +623,14 @@ namespace AQMod
 
         public override void PreUpdateEntities()
         {
-            if (Main.netMode != NetmodeID.Server)
+            if (!Main.dedServ)
             {
+                if ((_lastScreenView != Main.ViewSize || _lastScreenZoom != new Vector2(Main.screenWidth, Main.screenHeight)))
+                {
+                    HotAndColdCurrentLayer.Reset(Main.graphics.GraphicsDevice);
+                }
+                _lastScreenZoom = new Vector2(Main.screenWidth, Main.screenHeight);
+                _lastScreenView = Main.ViewSize;
                 for (int i = 0; i < WorldEffects.Count; i++)
                 {
                     var v = WorldEffects[i];

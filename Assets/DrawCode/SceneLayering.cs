@@ -1,4 +1,4 @@
-﻿namespace AQMod.Assets.SceneLayers
+﻿namespace AQMod.Assets.DrawCode
 {
     /// <summary>
     /// An enumerator used to tell the <see cref="SceneLayersManager"/> when to run drawcode so it all layers properly.

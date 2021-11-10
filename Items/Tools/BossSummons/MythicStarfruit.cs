@@ -1,4 +1,4 @@
-﻿using AQMod.Common.Utilities;
+﻿using AQMod.Common;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;

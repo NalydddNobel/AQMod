@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria;
 
-namespace AQMod.Assets.SceneLayers
+namespace AQMod.Assets.DrawCode
 {
     public sealed class SceneLayersManager
     {

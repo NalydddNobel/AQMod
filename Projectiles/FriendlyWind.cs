@@ -1,9 +1,13 @@
-﻿using AQMod.Assets.SceneLayers.ParticlesLayers;
+﻿using AQMod.Assets.DrawCode;
+using AQMod.Assets.DrawCode.DrawTypes;
+using AQMod.Assets.DrawCode.ParticlesLayers;
 using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Particles;
+using AQMod.Effects.HotAndColdCurrent;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -23,12 +27,19 @@ namespace AQMod.Projectiles
             return p;
         }
 
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.TrailingMode[projectile.type] = 2;
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
+        }
+
         public override void SetDefaults()
         {
             projectile.width = 40;
             projectile.height = 40;
             projectile.friendly = true;
-            projectile.hide = true;
+            projectile.aiStyle = -1;
+            //projectile.hide = true;
             projectile.tileCollide = false;
             projectile.timeLeft = 240;
         }
@@ -74,7 +85,7 @@ namespace AQMod.Projectiles
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 var target = Main.projectile[i];
-                if (target.active)
+                if (i != projectile.whoAmI && target.active)
                 {
                     var aQProjectile = target.GetGlobalProjectile<AQProjectile>();
                     if (aQProjectile.ShouldApplyWindMechanics(target) && projectile.Colliding(projectile.getRect(), target.getRect()))
@@ -92,6 +103,13 @@ namespace AQMod.Projectiles
                     new MonoParticle(dustPos, velocity * 0.5f,
                     new Color(0.5f, 0.5f, 0.5f, 0f), Main.rand.NextFloat(0.2f, 1.2f)));
             }
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            HotAndColdCurrentLayer.AddToHotCurrentList(new testdraw(ModContent.GetTexture("AQMod/Assets/Textures/debugtextures/hotcur")));
+            HotAndColdCurrentLayer.AddToColdCurrentList(new ArrowDraw(Color.Blue, projectile.oldPos.AsAddAll(-Main.screenPosition)));
+            return false;
         }
     }
 }

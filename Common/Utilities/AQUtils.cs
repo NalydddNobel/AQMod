@@ -23,6 +23,42 @@ namespace AQMod.Common.Utilities
     {
         public const int UI_SIZE = 10;
 
+        public static Vector2[] AsAddAll(this Vector2[] v, Vector2 sub)
+        {
+            var clone = new Vector2[v.Length];
+            for (int i = 0; i < v.Length; i++)
+            {
+                clone[i] = new Vector2(v[i].X + sub.X, v[i].Y + sub.Y);
+            }
+            return clone;
+        }
+
+        public static List<Vector2> AsAddAll(this List<Vector2> v, Vector2 sub)
+        {
+            var clone = new List<Vector2>();
+            for (int i = 0; i < v.Count; i++)
+            {
+                clone.Add(new Vector2(v[i].X + sub.X, v[i].Y + sub.Y));
+            }
+            return clone;
+        }
+
+        public static void AddAll(this Vector2[] v, Vector2 sub)
+        {
+            for (int i = 0; i < v.Length; i++)
+            {
+                v[i] = new Vector2(v[i].X + sub.X, v[i].Y + sub.Y);
+            }
+        }
+
+        public static void AddAll(this List<Vector2> v, Vector2 sub)
+        {
+            for (int i = 0; i < v.Count; i++)
+            {
+                v[i] = new Vector2(v[i].X + sub.X, v[i].Y + sub.Y);
+            }
+        }
+
         public static Item ItemInHand(this Player player)
         {
             if (!Main.mouseItem.IsAir)

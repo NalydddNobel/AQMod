@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Skies;
-using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
 using AQMod.NPCs.Boss.Starite;

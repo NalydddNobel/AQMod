@@ -1,8 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.SceneLayers;
+using AQMod.Assets.DrawCode;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
-using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Effects;
 using Microsoft.Xna.Framework;

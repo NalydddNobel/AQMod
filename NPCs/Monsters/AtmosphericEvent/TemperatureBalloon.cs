@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Assets.DrawCode;
+using AQMod.Common;
+using AQMod.Effects.HotAndColdCurrent;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -10,14 +13,14 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
     {
         public const int FramesX = 2;
 
-        private bool _setupFrame; // no need to sync this since it's client only (I think)
+        private bool _setupFrame; // no need to sync this since find frame stuff is client only (I think)
 
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[npc.type] = 7;
 
-            NPCID.Sets.TrailingMode[npc.type] = 4;
-            NPCID.Sets.TrailCacheLength[npc.type] = 12;
+            NPCID.Sets.TrailingMode[npc.type] = 7;
+            NPCID.Sets.TrailCacheLength[npc.type] = 4;
         }
 
         public override void SetDefaults()
@@ -32,7 +35,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             npc.aiStyle = -1;
             npc.noGravity = true;
             npc.knockBackResist = 0.1f;
-            npc.value = Item.buyPrice(silver: 60);
+            npc.value = Item.buyPrice(silver: 20);
             npc.buffImmune[BuffID.OnFire] = true;
             //banner = npc.type;
             //bannerItem = ModContent.ItemType<StariteBanner>();
@@ -216,6 +219,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
+            //HotAndColdCurrentLayer.AddToColdCurrentList(new testdraw(ModContent.GetTexture("AQMod/Assets/Textures/debugtextures/coldcur")));
+            //HotAndColdCurrentLayer.AddToHotCurrentList(new testdraw(ModContent.GetTexture("AQMod/Assets/Textures/debugtextures/hotcur")));
             Texture2D texture = Main.npcTexture[npc.type];
             var offset = new Vector2(npc.width / 2f, npc.height / 2f);
             Vector2 origin = npc.frame.Size() / 2f;

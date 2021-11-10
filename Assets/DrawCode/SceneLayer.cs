@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace AQMod.Assets.SceneLayers
+namespace AQMod.Assets.DrawCode
 {
     public abstract class SceneLayer
     {
