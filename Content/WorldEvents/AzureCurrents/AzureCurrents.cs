@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Utilities;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -7,6 +8,10 @@ namespace AQMod.Content.WorldEvents.AzureCurrents
 {
     public sealed class AzureCurrents
     {
+        public static Color HotCurrentColor => new Color(43, 148, 240, 255);
+        public static Color ColdCurrentColor => new Color(255, 94, 31, 255);
+        public static Color NeutralCurrentColor => new Color(255, 255, 255, 255);
+
         public bool IsActive { get; private set; }
         public bool EventActive(Player player)
         {

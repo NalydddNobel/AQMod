@@ -1,11 +1,12 @@
-﻿using AQMod.Assets.DrawCode;
-using AQMod.Assets.DrawCode.DrawTypes;
-using AQMod.Assets.DrawCode.ParticlesLayers;
+﻿using AQMod.Assets.Graphics;
+using AQMod.Assets.Graphics.DrawTypes;
+using AQMod.Assets.Graphics.ParticlesLayers;
+using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Particles;
-using AQMod.Effects.HotAndColdCurrent;
+using AQMod.Content.WorldEvents.AzureCurrents;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,7 +20,7 @@ namespace AQMod.Projectiles
     {
         public static int NewWind(Player player, Vector2 position, Vector2 velocity, float windSpeed, int lifeSpan = 300, int size = 40)
         {
-            int p = Projectile.NewProjectile(position, velocity, ModContent.ProjectileType<FriendlyWind>(), 0, windSpeed, player.whoAmI);
+            int p = Projectile.NewProjectile(position, velocity, ModContent.ProjectileType<FriendlyWind>(), -1, windSpeed, player.whoAmI);
             Main.projectile[p].width = size;
             Main.projectile[p].height = size;
             Main.projectile[p].Center = position;
@@ -42,6 +43,12 @@ namespace AQMod.Projectiles
             //projectile.hide = true;
             projectile.tileCollide = false;
             projectile.timeLeft = 240;
+            projectile.alpha = 0;
+        }
+
+        public override bool? CanCutTiles()
+        {
+            return false;
         }
 
         public override void AI()
@@ -68,7 +75,7 @@ namespace AQMod.Projectiles
             }
             if (colldingTiles > 8)
             {
-                projectile.velocity *= 0.97f - ((colldingTiles - 8) * 0.01f);
+                projectile.velocity *= 0.97f - (colldingTiles - 8) * 0.01f;
             }
             for (int i = 0; i < Main.maxNPCs; i++)
             {
@@ -101,14 +108,40 @@ namespace AQMod.Projectiles
                 var velocity = new Vector2(-projectile.velocity.X + Main.rand.NextFloat(-1f, 1f) + Main.windSpeed, -projectile.velocity.Y + Main.rand.NextFloat(-1f, 1f));
                 ParticleLayers.AddParticle_PostDrawPlayers(
                     new MonoParticle(dustPos, velocity * 0.5f,
-                    new Color(0.5f, 0.5f, 0.5f, 0f), Main.rand.NextFloat(0.2f, 1.2f)));
+                    new Color(0.5f, 0.5f, 0.5f, 0f), Main.rand.NextFloat(0.6f, 1.2f)));
+            }
+            if (projectile.timeLeft < 80)
+            {
+                projectile.alpha += 3;
+            }
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
+            {
+                var trueOldPos = projectile.oldPos.AsAddAll(new Vector2(projectile.width / 2f, projectile.height / 2f));
+                for (int i = 0; i < trueOldPos.Length; i++)
+                {
+                    ParticleLayers.AddParticle_PostDrawPlayers(new ColdCurrentParticle(trueOldPos[i], -projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.4f, 0.4f)) * 0.5f, AzureCurrents.NeutralCurrentColor, 0.75f));
+                }
+                var rect = new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height);
+                for (int i = 0; i < 5; i++)
+                {
+                    var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                    var velocity = new Vector2(-projectile.velocity.X + Main.rand.NextFloat(-1f, 1f) + Main.windSpeed, -projectile.velocity.Y + Main.rand.NextFloat(-1f, 1f));
+                    ParticleLayers.AddParticle_PostDrawPlayers(
+                        new MonoParticle(dustPos, velocity * 0.5f,
+                        new Color(0.5f, 0.5f, 0.5f, 0f), Main.rand.NextFloat(0.8f, 1.45f)));
+                }
             }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            HotAndColdCurrentLayer.AddToHotCurrentList(new testdraw(ModContent.GetTexture("AQMod/Assets/Textures/debugtextures/hotcur")));
-            HotAndColdCurrentLayer.AddToColdCurrentList(new ArrowDraw(Color.Blue, projectile.oldPos.AsAddAll(-Main.screenPosition)));
+            var color = AzureCurrents.NeutralCurrentColor;
+            color.A = 255;
+            HotAndColdCurrentLayer.AddToCurrentList(new ArrowDraw(color, projectile.oldPos.AsAddAll(-Main.screenPosition + new Vector2(projectile.width / 2f, projectile.height / 2f)), projectile.velocity.ToRotation()));
             return false;
         }
     }

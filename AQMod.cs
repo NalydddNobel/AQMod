@@ -1,8 +1,8 @@
 using AQMod.Assets;
 using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.PlayerLayers.EquipOverlays;
-using AQMod.Assets.DrawCode;
-using AQMod.Assets.DrawCode.ParticlesLayers;
+using AQMod.Assets.Graphics;
+using AQMod.Assets.Graphics.ParticlesLayers;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.DeveloperTools;
@@ -48,7 +48,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
-using AQMod.Effects.HotAndColdCurrent;
+using AQMod.Assets.Graphics.SceneLayers;
 
 namespace AQMod
 {

@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.DrawCode;
+using AQMod.Assets.Graphics;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Effects;

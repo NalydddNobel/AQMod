@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.DrawCode;
+﻿using AQMod.Assets.Graphics;
 using AQMod.Common.Utilities;
 using AQMod.NPCs.Boss.Crabson;
 using Microsoft.Xna.Framework;

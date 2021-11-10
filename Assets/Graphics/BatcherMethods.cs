@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace AQMod.Assets.DrawCode
+namespace AQMod.Assets.Graphics
 {
     internal static class BatcherMethods
     {

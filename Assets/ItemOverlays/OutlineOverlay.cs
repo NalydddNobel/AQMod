@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.DrawCode;
+﻿using AQMod.Assets.Graphics;
 using AQMod.Common.Config;
 using AQMod.Effects;
 using Microsoft.Xna.Framework;

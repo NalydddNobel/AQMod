@@ -1,7 +1,4 @@
-﻿using AQMod.Assets.DrawCode;
-using AQMod.Common;
-using AQMod.Effects.HotAndColdCurrent;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -108,7 +105,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             {
                 targetX -= npc.width * 3f;
             }
-            else 
+            else
             {
                 targetX += npc.width * 3f;
             }
@@ -116,7 +113,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             {
                 if (npc.ai[1] == 1f)
                 {
-                    if (npc.velocity.X > -4f) 
+                    if (npc.velocity.X > -4f)
                     {
                         npc.velocity.X -= 0.15f;
                     }

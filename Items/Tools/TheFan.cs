@@ -22,7 +22,7 @@ namespace AQMod.Items.Tools
             item.UseSound = SoundID.Item39;
             item.rare = ItemRarityID.Pink;
             item.shoot = ModContent.ProjectileType<Projectiles.FriendlyWind>();
-            item.shootSpeed = 4.5f;
+            item.shootSpeed = 8f;
             item.autoReuse = true;
         }
 

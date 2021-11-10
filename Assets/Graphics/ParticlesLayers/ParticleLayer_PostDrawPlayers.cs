@@ -1,7 +1,7 @@
 ﻿using AQMod.Content.Particles;
 using System.Collections.Generic;
 
-namespace AQMod.Assets.DrawCode.ParticlesLayers
+namespace AQMod.Assets.Graphics.ParticlesLayers
 {
     public class ParticleLayer_PostDrawPlayers : SceneLayer
     {

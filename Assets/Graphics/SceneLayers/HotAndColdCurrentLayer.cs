@@ -1,11 +1,10 @@
-﻿using AQMod.Assets.DrawCode;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
-namespace AQMod.Effects.HotAndColdCurrent
+namespace AQMod.Assets.Graphics.SceneLayers
 {
     public class HotAndColdCurrentLayer : SceneLayer
     {
@@ -21,7 +20,7 @@ namespace AQMod.Effects.HotAndColdCurrent
             }
             catch
             {
-                throw new Exception("There was an error while loading the Hot and Cold current shader.");
+                throw new Exception("There was an error while loading the Hot and Cold current shader. Try loading shaders in a higher quality or something?");
             }
             _hotCurrentList = new List<IDrawType>();
             _coldCurrentList = new List<IDrawType>();
@@ -54,7 +53,7 @@ namespace AQMod.Effects.HotAndColdCurrent
             ((HotAndColdCurrentLayer)AQMod.WorldLayers.GetLayer(Layer, Name))._hotCurrentList.Add(drawType);
         }
 
-        public static void AddToColdCurrentList(IDrawType drawType)
+        public static void AddToCurrentList(IDrawType drawType)
         {
             ((HotAndColdCurrentLayer)AQMod.WorldLayers.GetLayer(Layer, Name))._coldCurrentList.Add(drawType);
         }
@@ -66,12 +65,10 @@ namespace AQMod.Effects.HotAndColdCurrent
 
         private void drawTarget()
         {
-            if (_hotCurrentList.Count > 0 && _coldCurrentList.Count > 0)
+            if (_hotCurrentList.Count > 0 || _coldCurrentList.Count > 0)
             {
                 if (finalTarget == null || hotTarget == null || coldTarget == null)
-                {
                     reset(Main.graphics.GraphicsDevice);
-                }
                 var renderTargets = graphics.GetRenderTargets();
 
                 graphics.SetRenderTarget(coldTarget);
@@ -106,7 +103,6 @@ namespace AQMod.Effects.HotAndColdCurrent
                 graphics.Textures[1] = hotTarget;
 
                 _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
-
                 _hotAndColdCurrentShader.CurrentTechnique.Passes["MergeColorsPass"].Apply();
 
                 Main.spriteBatch.Draw(coldTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
@@ -138,6 +134,7 @@ namespace AQMod.Effects.HotAndColdCurrent
 
                 BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
 
+                _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
                 _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
                 _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
                 _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
@@ -148,51 +145,53 @@ namespace AQMod.Effects.HotAndColdCurrent
 
                 BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
             }
-            else if (!TargetsDrawn)
-            {
-                if (_coldCurrentList.Count > 0)
-                {
-                    Main.spriteBatch.End();
+            //else if (!TargetsDrawn)
+            //{
+            //    if (_coldCurrentList.Count > 0)
+            //    {
+            //        Main.spriteBatch.End();
 
-                    BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+            //        BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
 
-                    _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
-                    _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
-                    _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
+            //        _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
+            //        _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
+            //        _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
+            //        _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
 
-                    foreach (var d in _coldCurrentList)
-                    {
-                        d.RunDraw();
-                    }
+            //        foreach (var d in _coldCurrentList)
+            //        {
+            //            d.RunDraw();
+            //        }
 
-                    Main.spriteBatch.End();
+            //        Main.spriteBatch.End();
 
-                    BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
+            //        BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
 
-                    _coldCurrentList = new List<IDrawType>();
-                }
-                else if (_hotCurrentList.Count > 0)
-                {
-                    Main.spriteBatch.End();
+            //        _coldCurrentList = new List<IDrawType>();
+            //    }
+            //    else if (_hotCurrentList.Count > 0)
+            //    {
+            //        Main.spriteBatch.End();
 
-                    BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+            //        BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
 
-                    _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
-                    _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
-                    _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
+            //        _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
+            //        _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
+            //        _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
+            //        _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
 
-                    foreach (var d in _hotCurrentList)
-                    {
-                        d.RunDraw();
-                    }
+            //        foreach (var d in _hotCurrentList)
+            //        {
+            //            d.RunDraw();
+            //        }
 
-                    Main.spriteBatch.End();
+            //        Main.spriteBatch.End();
 
-                    BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
+            //        BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
 
-                    _hotCurrentList = new List<IDrawType>();
-                }
-            }
+            //        _hotCurrentList = new List<IDrawType>();
+            //    }
+            //}
             TargetsDrawn = false;
         }
     }

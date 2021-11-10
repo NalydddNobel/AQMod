@@ -15,7 +15,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace AQMod.Assets.DrawCode
+namespace AQMod.Assets.Graphics
 {
     public sealed class UltimateSwordWorldOverlay : SceneLayer
     {

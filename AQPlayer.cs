@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.DrawCode.ParticlesLayers;
+using AQMod.Assets.Graphics.ParticlesLayers;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.NetCode;

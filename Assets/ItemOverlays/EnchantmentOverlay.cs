@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.DrawCode;
+﻿using AQMod.Assets.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

@@ -421,6 +421,9 @@ namespace AQMod.Common
                 UnaffectedByWind[ModContent.NPCType<TrapImp>()] = false;
                 UnaffectedByWind[ModContent.NPCType<Cindera>()] = false;
                 UnaffectedByWind[ModContent.NPCType<Meteor>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.AquaticEvent.ArrowCrab>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.AquaticEvent.StriderCrab>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.AquaticEvent.SoliderCrabs>()] = false;
             }
 
             internal static void UnloadSets()
