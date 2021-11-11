@@ -326,10 +326,23 @@ ItemName.HyperStariteBanner=巨耀源星旗
 ItemName.ArrowCrabBanner=箭蟹旗
 ItemName.HermitCrabBanner=寄居蟹旗
 ItemName.SoliderCrabsBanner=大闸蟹旗
-ItemName.StriderCrabsBanner=长足蟹旗
+ItemName.StriderCrabBanner=长足蟹旗
 ItemName.CinderaBanner=幻形蝠旗
 ItemName.MagmabubbleBanner=熔火喷吐者旗
 ItemName.TrapperImpBanner=捕魂小鬼旗
+
+ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
+ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
+ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
+ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
+ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
+ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
+ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
+ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}
+ItemTooltip.MagmabubbleBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}
+ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}
+ItemTooltip.HecktoBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Heckto}
+
 # Mushrooms
 ItemName.ArgonMushroom=氩蘑菇
 ItemName.KryptonMushroom=氪蘑菇
@@ -585,18 +598,6 @@ ItemTooltip.Qi=由终极哲学之力创造出的神秘能量
 #############
 # Placeable #
 #############
-# Banners
-ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
-ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
-ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
-ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
-ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
-ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
-ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
-ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}
-ItemTooltip.MagmabubbleBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}
-ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}
-ItemTooltip.HecktoBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Heckto}
 # Mushrooms
 ItemTooltip.ArgonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 ItemTooltip.KryptonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
@@ -722,7 +723,7 @@ NPCName.SoliderCrabs=大闸蟹
 NPCName.HermitCrab=寄居蟹
 NPCName.StriderCrab=长足蟹
 NPCName.Heckto=冥狱之魂
-NPCName.Magmabubble=熔火喷吐者
+NPCName.Magmalbubble=熔火喷吐者
 NPCName.TrapImp=捕魂小鬼
 NPCName.Trapper=捕魂钩
 NPCName.Cindera=幻形蝠
