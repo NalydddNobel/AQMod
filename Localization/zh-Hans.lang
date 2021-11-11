@@ -152,8 +152,8 @@ Common.NoScrollShader=滚动特效着色器未启用
 Common.NoHypnoShader=色彩分离特效着色器未启用
 Common.NoOutlineShader=轮廓描边特效着色器未启用
 Common.CrabSeason=蟹季
-Common.CrabClockEnds={0}直到蟹季结束
-Common.CrabClockStarts={0}直到蟹季开始
+Common.CrabClockEnds=距离蟹季结束还剩{0}
+Common.CrabClockStarts=距离蟹季开始还剩{0}
 Common.CrabSeasonWarning=海洋的温度正在逐渐升高...
 Common.CrabSeasonEnding=海洋再度变得冰冷...
 Common.GlimmerEvent=微光事件
@@ -198,7 +198,7 @@ ItemName.MothmanMask=天蛾人面具
 # Rings
 ItemName.DegenerationRing=堕落魔戒
 # Shields
-ItemName.TargeoftheBlodded=血腥盾牌
+ItemName.TargeoftheBlodded=尖刺盾牌
 # Shoes
 ItemName.MoonShoes=月之行者
 # Shop Cards
@@ -430,7 +430,7 @@ ItemName.Venus=维纳斯
 ItemName.StariteSpinner=星源涡
 # Other Melee
 ItemName.CrimsonHellSword=焚焰剑
-Tooltip.CrimsonHellSword=发射恶魔能量冲击波, 冲击波会追踪离你光标位置最近的敌人
+ItemTooltip.CrimsonHellSword=发射恶魔能量冲击波
 ItemName.HellsBoon=地狱之赐
 ItemName.Galactium=辰星坠
 ItemName.KryptonSword=氪制剑
@@ -454,17 +454,17 @@ ItemName.LotusStaff=莲花杖
 # Other Summon
 ItemName.MonoxiderStaff=日驭金乌杖
 ItemTooltip.MonoxiderStaff=召唤一只金乌为你而战
-BuffName.MonoxiderBuff=金乌
-BuffDescription.MonoxiderBuff=金乌会为你而战
+BuffName.Monoxider=金乌
+BuffDescription.Monoxider=金乌会为你而战
 ItemName.StariteStaff=星源召唤杖
-BuffName.StariteMinionBuff=星之源
-BuffDescription.StariteMinionBuff=星之源会为你而战
+BuffName.Starite=星之源
+BuffDescription.Starite=星之源会为你而战
 ItemName.CrimsonHandStaff=猩红血手法杖
-BuffName.CrimsonHandBuff=猩红血手
-BuffDescription.CrimsonHandBuff=猩红血手会为你而战
+BuffName.CrimsonHand=猩红血手
+BuffDescription.CrimsonHand=猩红血手会为你而战
 ItemName.CorruptPot=腐食罐
-BuffName.CorruptPotBuff=食人花
-BuffDescription.CorruptPotBuff=食人花会为你而战
+BuffName.Chomper=食人花
+BuffDescription.Chomper=食人花会为你而战
 # Other Item Names
 ItemName.ATM=ATM
 ItemName.Globebulb=天体灯泡
@@ -534,10 +534,10 @@ ItemTooltip.UltimateSword=击中敌人时会使你无敌一小段时间并获得
 # Foods
 ItemTooltip.Baguette='蛋糕只是海绵般松软的面包'
 ItemTooltip.NeutronJuice='重达数百万吨... 比把保险箱放在保险箱里还轻'
-ItemTooltip.SuspiciousLookingSteak=使你获得许多增益或减益\n'诅咒已除'
+ItemTooltip.SuspiciousLookingSteak=使你获得许多增益\n'诅咒已除'
 ItemTooltip.SpicyEel=大幅度增加移动速度
 # Other Buffs Items
-ItemTooltip.MysteryGrail=使你获得随机的增益
+ItemTooltip.MysteryGrail=使你获得随机的增益或减益
 ItemTooltip.OpposingPotion=使某些敌人掉落与其主题相反的物品\n(例如肉后血地怪会掉光明之魂)
 ItemTooltip.PotionofBossrushium=Boss被击败时会再次生成
 ItemTooltip.SpoilsPotion=非Boss敌人在死亡时掉落的战利品的数量翻倍
@@ -590,7 +590,7 @@ ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.BloodshedPotion=将你传送至上次死亡时的位置
 ItemTooltip.CrabShell=畸形, 真是诡异
 ItemTooltip.CrabClock=加快海洋的自然波动
-ItemTooltip.Molite=翻倍药水的持续时间
+ItemTooltip.Molite=与药水结合使用时可翻倍药水的持续时间
 ItemTooltip.NuclearFeather=在核聚变的过程中形成\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
 ItemTooltip.PotionofContainers=将你传送至随机一个箱子
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
