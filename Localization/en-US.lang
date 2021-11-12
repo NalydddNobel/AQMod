@@ -319,37 +319,6 @@ ItemName.Qi=Qi
 #############
 # Placeable #
 #############
-# Banners
-ItemName.StariteBanner=Starite Banner
-ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
-
-ItemName.SuperStariteBanner=Super Starite Banner
-ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
-
-ItemName.HyperStariteBanner=Hyper Starite Banner
-ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
-
-ItemName.ArrowCrabBanner=Arrow Crab Banner
-ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
-
-ItemName.HermitCrabBanner=Hermit Crab Banner
-ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
-
-ItemName.SoliderCrabsBanner=Solider Crabs Banner
-ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
-
-ItemName.StriderCrabBanner=Strider Crab Banner
-ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
-
-ItemName.CinderaBanner=Cindera Banner
-ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}
-
-ItemName.MagmabubbleBanner=Magmabubble Banner
-ItemTooltip.MagmabubbleBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}
-
-ItemName.TrapperImpBanner=Trapper Imp Banner
-ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}
-
 # Mushrooms
 ItemName.ArgonMushroom=Argon Mushroom
 ItemName.KryptonMushroom=Krypton Mushroom
@@ -738,10 +707,50 @@ NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
 NPCName.Meteor=Meteor
 NPCName.HotCurrent=Hot Current
 NPCName.ColdCurrent=Cold Current
-NPCName.TemperatureBlimp=Temperature Blimp
+NPCName.TemperatureBalloon=Temperature Balloon
 NPCName.SpaceSquid=Space Squid
 NPCName.RedSprite=Red Sprite
-NPCName.Condor=Condor
+NPCName.Vraine=Vraine
 NPCName.Atmodrone=Atmodrone
 NPCName.MultiStarite=Multi Starite
 NPCName.DwarfStarite=Dwarf Starite
+
+# Banners
+ItemName.StariteBanner=Starite Banner
+ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
+
+ItemName.SuperStariteBanner=Super Starite Banner
+ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
+
+ItemName.HyperStariteBanner=Hyper Starite Banner
+ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
+
+ItemName.ArrowCrabBanner=Arrow Crab Banner
+ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
+
+ItemName.HermitCrabBanner=Hermit Crab Banner
+ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
+
+ItemName.SoliderCrabsBanner=Solider Crabs Banner
+ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
+
+ItemName.StriderCrabBanner=Strider Crab Banner
+ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
+
+ItemName.CinderaBanner=Cindera Banner
+ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}
+
+ItemName.MagmabubbleBanner=Magmabubble Banner
+ItemTooltip.MagmabubbleBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}
+
+ItemName.TrapperImpBanner=Trapper Imp Banner
+ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}
+
+ItemName.VraineBanner=Vraine Banner
+ItemTooltip.VraineBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Vraine}
+
+ItemName.TemperatureBalloonBanner=Temperature Balloon Banner
+ItemTooltip.TemperatureBalloonBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TemperatureBalloon}
+
+ItemName.RedSpriteBanner=Red Sprite Banner
+ItemTooltip.RedSpriteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.RedSprite}

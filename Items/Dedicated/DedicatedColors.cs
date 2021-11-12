@@ -10,5 +10,6 @@ namespace AQMod.Items.Dedicated
         public static readonly Color nalyddd = new Color(160, 80, 250, 255);
         public static readonly Color niker = new Color(187, 142, 42, 255);
         public static readonly Color someperson = new Color(30, 255, 60, 255);
+        public static readonly Color starlightmp4 = new Color(240, 240, 255, 255);
     }
 }
