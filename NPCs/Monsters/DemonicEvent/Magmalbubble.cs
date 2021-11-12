@@ -380,7 +380,7 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
 
             if (AQMod.Split.Active)
             {
-                Item.NewItem(npc.getRect(), AQMod.Split.ItemType("LavaCream"));
+                Item.NewItem(npc.getRect(), AQMod.Split.ItemType("LavaCream"), Main.rand.Next(3) + 1);
             }
         }
 
