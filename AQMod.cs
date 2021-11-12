@@ -49,6 +49,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
 using AQMod.Assets.Graphics.SceneLayers;
+using AQMod.Common.CrossMod;
 
 namespace AQMod
 {
@@ -191,6 +192,8 @@ namespace AQMod
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
 
+        internal static CrossModType Split { get; private set; }
+
         private static Vector2 _lastScreenZoom;
         private static Vector2 _lastScreenView;
 
@@ -233,6 +236,7 @@ namespace AQMod
             On.Terraria.Main.DrawTiles += Main_DrawTiles;
             On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
             On.Terraria.Player.FishingLevel += GetFishingLevel;
+
             var server = AQConfigServer.Instance;
             ApplyServerConfig(server);
             if (!Main.dedServ)
@@ -453,6 +457,10 @@ namespace AQMod
         {
             invokeTasks();
             cachedLoadTasks = null;
+
+            Split = new CrossModType("Split");
+            Split.Load();
+
             // TODO: Add content method instances that run here, which other mods can add to, so that adding to specific things is less hellish.
             Loading = false; // Sets Loading to false, so that some things no longer accept new content.
             RobsterHunts.SetupHunts();
@@ -567,6 +575,8 @@ namespace AQMod
             // in: AddRecipes()
             CelesitalEightBall.ResetStatics();
             ItemOverlays = null;
+            Split.Unload();
+            Split = null;
 
             // in: PostSetupContent()
             cachedLoadTasks = null;

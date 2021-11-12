@@ -1,5 +1,6 @@
 ﻿using AQMod.Items.Placeable.Banners;
 using AQMod.NPCs.Monsters.AquaticEvent;
+using AQMod.NPCs.Monsters.AtmosphericEvent;
 using AQMod.NPCs.Monsters.CosmicEvent;
 using AQMod.NPCs.Monsters.DemonicEvent;
 using Microsoft.Xna.Framework;
@@ -24,6 +25,9 @@ namespace AQMod.Tiles
         public const int Cindera = 7;
         public const int Magmabubble = 8;
         public const int TrapperImp = 9;
+        public const int Vraine = 10;
+        public const int TemperatureBalloon = 11;
+        public const int RedSprite = 12;
 
         public override void SetDefaults()
         {
@@ -75,6 +79,18 @@ namespace AQMod.Tiles
                 case Magmabubble:
                 Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<MagmabubbleBanner>());
                 break;
+                case TrapperImp:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<TrapperImpBanner>());
+                break;
+                case Vraine:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<VraineBanner>());
+                break;
+                case TemperatureBalloon:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<TemperatureBalloonBanner>());
+                break;
+                case RedSprite:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<RedSpriteBanner>());
+                break;
             }
         }
 
@@ -114,6 +130,15 @@ namespace AQMod.Tiles
                     break;
                     case TrapperImp:
                     player.NPCBannerBuff[ModContent.NPCType<TrapImp>()] = true;
+                    break;
+                    case Vraine:
+                    //player.NPCBannerBuff[ModContent.NPCType<Vraine>()] = true;
+                    break;
+                    case TemperatureBalloon:
+                    player.NPCBannerBuff[ModContent.NPCType<TemperatureBalloon>()] = true;
+                    break;
+                    case RedSprite:
+                    //player.NPCBannerBuff[ModContent.NPCType<RedSprite>()] = true;
                     break;
                     default:
                     return;

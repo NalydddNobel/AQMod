@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.NPCs.Monsters.AtmosphericEvent
 {
-    public class TemperatureBalloon : ModNPC
+    public class Vraine : ModNPC
     {
         public const int FramesX = 2;
 
@@ -15,10 +15,10 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 7;
+            Main.npcFrameCount[npc.type] = 16;
 
             NPCID.Sets.TrailingMode[npc.type] = 7;
-            NPCID.Sets.TrailCacheLength[npc.type] = 4;
+            NPCID.Sets.TrailCacheLength[npc.type] = 12;
         }
 
         public override void SetDefaults()

@@ -377,6 +377,11 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.DegenerationRing>());
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());
+
+            if (AQMod.Split.Active)
+            {
+                Item.NewItem(npc.getRect(), AQMod.Split.ItemType("LavaCream"));
+            }
         }
 
         bool IDecideFallThroughPlatforms.Decide()
