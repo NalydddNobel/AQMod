@@ -6,6 +6,7 @@ using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Common.Utilities;
 using System.Collections.Generic;
+using AQMod.NPCs.Monsters.AtmosphericEvent;
 
 namespace AQMod.Content.WorldEvents
 {
@@ -103,15 +104,18 @@ namespace AQMod.Content.WorldEvents
                     }
                 }
             }
-            else
+            if (spawnInfo.spawnTileY < AQMod.SpaceLayerTile - 40)
             {
-                if (spawnInfo.spawnTileY < AQMod.SpaceLayerTile - 40)
+                if (AzureCurrents.MeteorTime())
                 {
-                    if (AzureCurrents.MeteorTime())
-                    {
-                        pool.Add(ModContent.NPCType<Meteor>(), 2f);
-                    }
+                    pool.Add(ModContent.NPCType<Meteor>(), 2f);
                 }
+            }
+            if (AQMod.AtmosphericEvent.EventActive(spawnInfo.player))
+            {
+                if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
+                    pool.Add(ModContent.NPCType<Vraine>(), 1f);
+                pool.Add(ModContent.NPCType<TemperatureBalloon>(), 1f);
             }
         }
     }

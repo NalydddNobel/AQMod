@@ -19,13 +19,13 @@ namespace AQMod.Content.WorldEvents.AtmosphericEvent
         }
         public static bool MeteorTime()
         {
-            if (Main.time < 14400)
+            if (Main.time < 3600)
                 return true;
             if (Main.dayTime)
             {
-                return Main.time > Main.dayLength - 14400;
+                return Main.time > Main.dayLength - 3600;
             }
-            return Main.time > Main.nightLength - 14400;
+            return Main.time > Main.nightLength - 3600;
         }
 
         public static bool InMeteorSpawnZone(float y)
