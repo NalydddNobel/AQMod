@@ -42,6 +42,7 @@ namespace AQMod.Projectiles.Melee
             int target = AQNPC.FindTarget(projectile.Center, 400f);
             if (target != -1)
             {
+                projectile.timeLeft++;
                 projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(Main.npc[target].Center - center) * (float)Math.Sqrt(projectile.ai[0] * projectile.ai[0] + projectile.ai[1] * projectile.ai[1]) * 2f, 0.1f);
             }
             else
