@@ -10,7 +10,7 @@ namespace AQMod.Content.Particles
 {
     public sealed class ColdCurrentParticle : MonoParticle
     {
-        public override Texture2D Texture => TextureCache.Particles[ParticleTextureID.WindParticle];
+        public override Texture2D Texture => TextureCache.Particles[ParticleTex.WindParticle];
 
         public ColdCurrentParticle(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1) : base(position, velocity, color, scale)
         {

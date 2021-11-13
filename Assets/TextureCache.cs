@@ -6,6 +6,7 @@ using AQMod.Items.Armor.Arachnotron;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -19,11 +20,11 @@ namespace AQMod.Assets
         public static TEA<CursorType> SwordCursors { get; private set; }
         public static TEA<CursorType> DemonCursors { get; private set; }
         public static TEA<ArachnotronLegsTextureType> ArachnotronArms { get; private set; }
-        public static TEA<SpotlightID> Lights { get; private set; }
-        public static TEA<TrailType> Trails { get; private set; }
         public static TEA<PlayerMaskID> PlayerMasks { get; private set; }
         public static TEA<PlayerHeadOverlayID> PlayerHeadOverlays { get; private set; }
-        public static Dictionary<ParticleTextureID, Texture2D> Particles { get; private set; }
+        public static Dictionary<ParticleTex, Texture2D> Particles { get; private set; }
+        public static Dictionary<LightTex, Texture2D> Lights { get; private set; }
+        public static Dictionary<TrailTex, Texture2D> Trails { get; private set; }
 
         public static Ref<Texture2D> Pixel { get; private set; }
         public static Ref<Texture2D> DemonSiegeEventIcon { get; private set; }
@@ -39,27 +40,31 @@ namespace AQMod.Assets
         public static Ref<Texture2D> BGStarite { get; private set; }
         public static Ref<Texture2D> UITexture { get; private set; }
 
-        private static Dictionary<TEnum, Texture2D> fillDictionary<TEnum>(TEnum count, string pathWithoutNumbers) where TEnum : Enum
+        private static Dictionary<TEnum, Texture2D> fillDictionary_ThreadSafe<TEnum>(TEnum count, string pathWithoutNumbers) where TEnum : Enum
         {
-            int max = count.GetHashCode();
-            var d = new Dictionary<TEnum, Texture2D>(max);
-            for (ushort i = 0; i < max; i++)
+            try
             {
-                d.Add(i.ToEnum<TEnum>(), ModContent.GetTexture(pathWithoutNumbers + i)); 
+                int max = count.GetHashCode();
+                var d = new Dictionary<TEnum, Texture2D>(max);
+                for (ushort i = 0; i < max; i++)
+                {
+                    if (AQMod.Unloading)
+                    {
+                        return null;
+                    }
+                    d.Add(i.ToEnum<TEnum>(), ModContent.GetTexture(pathWithoutNumbers + i));
+                }
+                return d;
             }
-            return d;
+            catch
+            {
+                return null;
+            }
         }
 
         internal static void Load()
         {
-            SwordCursors = new TEA<CursorType>(CursorType.Count, "AQMod/Assets/Textures", "SwordCursor");
-            DemonCursors = new TEA<CursorType>(CursorType.Count, "AQMod/Assets/Textures", "DemonCursor");
-            ArachnotronArms = new TEA<ArachnotronLegsTextureType>(ArachnotronLegsTextureType.Count, "AQMod/Items/Armor/Arachnotron", "ArachnotronLeg");
-            Lights = new TEA<SpotlightID>(SpotlightID.Count, "AQMod/Assets/Textures/Lights", "Light");
-            Trails = new TEA<TrailType>(TrailType.Count, "AQMod/Assets/Textures", "Trail");
-            PlayerMasks = new TEA<PlayerMaskID>(PlayerMaskID.Count, "AQMod/Assets/Textures", "PlayerMask");
-            PlayerHeadOverlays = new TEA<PlayerHeadOverlayID>(PlayerHeadOverlayID.Count, "AQMod/Assets/Textures", "HeadOverlay");
-            Particles = fillDictionary(ParticleTextureID.Count, "AQMod/Assets/Textures/Particles/Particle_");
+            ThreadPool.QueueUserWorkItem(LoadDictionaries);
 
             Pixel = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/Pixel"));
             DemonSiegeEventIcon = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/EventIcon_DemonSiege"));
@@ -74,6 +79,18 @@ namespace AQMod.Assets
             BuffOutline = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/BuffOutline"));
             BGStarite = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/BGStarite"));
             UITexture = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/UI"));
+        }
+
+        private static void LoadDictionaries(object callContext)
+        {
+            SwordCursors = new TEA<CursorType>(CursorType.Count, "AQMod/Assets/Textures", "SwordCursor");
+            DemonCursors = new TEA<CursorType>(CursorType.Count, "AQMod/Assets/Textures", "DemonCursor");
+            ArachnotronArms = new TEA<ArachnotronLegsTextureType>(ArachnotronLegsTextureType.Count, "AQMod/Items/Armor/Arachnotron", "ArachnotronLeg");
+            PlayerMasks = new TEA<PlayerMaskID>(PlayerMaskID.Count, "AQMod/Assets/Textures", "PlayerMask");
+            PlayerHeadOverlays = new TEA<PlayerHeadOverlayID>(PlayerHeadOverlayID.Count, "AQMod/Assets/Textures", "HeadOverlay");
+            Particles = fillDictionary_ThreadSafe(ParticleTex.Count, "AQMod/Assets/Textures/Particles/Particle_");
+            Lights = fillDictionary_ThreadSafe(LightTex.Count, "AQMod/Assets/Textures/Lights/Light_");
+            Trails = fillDictionary_ThreadSafe(TrailTex.Count, "AQMod/Assets/Textures/Trail_");
         }
 
         internal static void Unload()

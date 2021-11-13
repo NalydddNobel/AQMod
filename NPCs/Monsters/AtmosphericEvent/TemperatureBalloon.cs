@@ -1,9 +1,14 @@
-﻿using AQMod.Common.Utilities;
+﻿using AQMod.Assets;
+using AQMod.Assets.Textures;
+using AQMod.Common.Utilities;
+using AQMod.Items.Placeable.Banners;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace AQMod.NPCs.Monsters.AtmosphericEvent
 {
@@ -27,7 +32,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             npc.height = 36;
             npc.lifeMax = 345;
             npc.damage = 45;
-            npc.defense = 3;
+            npc.defense = 4;
             npc.HitSound = SoundID.DD2_GoblinHurt;
             npc.DeathSound = SoundID.NPCDeath56;
             npc.aiStyle = -1;
@@ -35,8 +40,13 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             npc.knockBackResist = 0.1f;
             npc.value = Item.buyPrice(silver: 20);
             npc.buffImmune[BuffID.OnFire] = true;
-            //banner = npc.type;
-            //bannerItem = ModContent.ItemType<StariteBanner>();
+            banner = npc.type;
+            bannerItem = ModContent.ItemType<TemperatureBalloonBanner>();
+        }
+
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            npc.lifeMax = (int)(npc.lifeMax * 0.625f);
         }
 
         public override void AI() // ai[0] attack stuff, -1 means it's fleeing.
@@ -48,6 +58,10 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 npc.netUpdate = true;
             }
             bool hot = (int)npc.ai[1] == 1;
+            if (!hot)
+            {
+                npc.defense = npc.defDefense * 2;
+            }
             if ((int)npc.ai[0] == -1)
             {
                 npc.velocity.X *= 0.97f;
@@ -58,6 +72,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 npc.velocity.Y -= 0.1f;
                 return;
             }
+            var center = npc.Center;
             npc.TargetClosest(faceTarget: false);
             npc.spriteDirection = 1;
             if (!npc.HasValidTarget)
@@ -181,38 +196,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 }
             }
 
-            DoParticles();
-            DoCollision();
-            Lighting.AddLight(npc.Center, new Vector3(-1f, -1f, -1f));
-        }
-
-        private void DoAttacks()
-        {
-        }
-
-        private void DoParticles()
-        {
-            var center = npc.Center;
-            float yMult = npc.height / (float)npc.width;
-            for (int i = 0; i < 10 * AQMod.EffectQuality; i++)
-            {
-                int d = Dust.NewDust(npc.position, npc.width, npc.height, 16);
-                Main.dust[d].position = center;
-                var offset = new Vector2(Main.rand.NextFloat(npc.width - 12f) / 2f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
-                offset.Y *= yMult;
-                Main.dust[d].alpha = 165;
-                Main.dust[d].position += offset;
-                Main.dust[d].velocity *= 0.1f;
-                Main.dust[d].velocity += npc.velocity * 0.8f;
-                Main.dust[d].noGravity = true;
-                Main.dust[d].scale = Main.rand.NextFloat(0.2f, 2.25f);
-            }
-        }
-
-        private void DoCollision()
-        {
+            // collision
             var rect = npc.getRect();
-            var center = npc.Center;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (i != npc.whoAmI && Main.npc[i].active && Main.npc[i].type == npc.type && Main.npc[i].getRect().Intersects(rect)) // if there are multiple temperature balloons colliding
@@ -221,6 +206,24 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     npc.velocity += normal;
                 }
             }
+
+            // particle stuff
+            float yMult = npc.height / (float)npc.width;
+            for (int i = 0; i < 10 * AQMod.EffectQuality; i++)
+            {
+                int d = Dust.NewDust(npc.position, npc.width, npc.height, 16);
+                Main.dust[d].position = center;
+                var offset = new Vector2(Main.rand.NextFloat(npc.width - 20f) / 2f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+                offset.Y *= yMult;
+                Main.dust[d].alpha = 240;
+                Main.dust[d].position += offset;
+                Main.dust[d].velocity *= 0.1f;
+                Main.dust[d].velocity += npc.velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f));
+                Main.dust[d].noGravity = true;
+                Main.dust[d].scale = Main.rand.NextFloat(0.2f, 2.25f);
+            }
+
+            Lighting.AddLight(npc.Center, new Vector3(-1f, -1f, -1f));
         }
 
         public override void FindFrame(int frameHeight)
@@ -259,19 +262,35 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            //HotAndColdCurrentLayer.AddToColdCurrentList(new testdraw(ModContent.GetTexture("AQMod/Assets/Textures/debugtextures/coldcur")));
-            //HotAndColdCurrentLayer.AddToHotCurrentList(new testdraw(ModContent.GetTexture("AQMod/Assets/Textures/debugtextures/hotcur")));
             Texture2D texture = Main.npcTexture[npc.type];
             var offset = new Vector2(npc.width / 2f, npc.height / 2f);
             Vector2 origin = npc.frame.Size() / 2f;
             Vector2 drawPos = npc.Center - Main.screenPosition;
+
             float mult = 1f / NPCID.Sets.TrailCacheLength[npc.type];
             for (int i = 0; i < NPCID.Sets.TrailCacheLength[npc.type]; i++)
             {
-                Main.spriteBatch.Draw(texture, npc.oldPos[i] + offset - Main.screenPosition, npc.frame, drawColor * 0.3f * (mult * (NPCID.Sets.TrailCacheLength[npc.type] - i)), npc.oldRot[i], origin, npc.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, npc.oldPos[i] + offset - Main.screenPosition, npc.frame, drawColor * 0.05f * (mult * (NPCID.Sets.TrailCacheLength[npc.type] - i)), npc.oldRot[i], origin, npc.scale, SpriteEffects.None, 0f);
             }
-            Main.spriteBatch.Draw(texture, drawPos, npc.frame, new Color(255, 255, 255, 255), npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, drawPos, npc.frame, new Color(20, 20, 20, 0), npc.rotation, origin, npc.scale + 0.1f, SpriteEffects.None, 0f);
+
+            Main.spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
+            
+            if (AQMod.EffectQuality >= 1f) // extra cloud fx
+            {
+                UnifiedRandom random = new UnifiedRandom(npc.whoAmI);
+                var cloudTexture = TextureCache.Lights[LightTex.Spotlight30x30];
+                var cloudOrigin = cloudTexture.Size() / 2f;
+                for (int i = 0; i < NPCID.Sets.TrailCacheLength[npc.type] * 2 * AQMod.EffectQuality; i++)
+                {
+                    var off = new Vector2(random.NextFloat(-10, 8), random.NextFloat(-6, 6));
+                    float time = random.NextFloat(-MathHelper.Pi, MathHelper.Pi);
+                    var scale = new Vector2(npc.scale * (float)Math.Sin(time + Main.GlobalTime * 4f) + 2f, npc.scale * (float)Math.Sin(time + random.NextFloat(-0.1f, 0.1f) + Main.GlobalTime * 4f) + 1f);
+                    scale *= random.NextFloat(0.25f, 0.2f);
+                    var clr = drawColor * scale.Length();
+                    Main.spriteBatch.Draw(cloudTexture, npc.position + offset - Main.screenPosition + off, null, clr * random.NextFloat(0.5f, 0.75f), 0f, cloudOrigin, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(cloudTexture, npc.position + offset - Main.screenPosition + off, null, clr * random.NextFloat(0.025f, 0.2f), 0f, cloudOrigin, scale * random.NextFloat(1.5f, 2f), SpriteEffects.None, 0f);
+                }
+            }
             return false;
         }
     }

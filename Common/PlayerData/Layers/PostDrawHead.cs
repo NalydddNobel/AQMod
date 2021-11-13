@@ -46,7 +46,7 @@ namespace AQMod.Common.PlayerData.Layers
                         {
                             if (info.drawPlayer.headRotation == 0)
                             {
-                                var texture = TextureCache.Lights[SpotlightID.Spotlight240x66];
+                                var texture = TextureCache.Lights[LightTex.Spotlight240x66];
                                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                                 var orig = frame.Size() / 2f;
                                 var scale = new Vector2((float)(Math.Sin(Main.GlobalTime * 10f) + 1f) * 0.04f + 0.2f, 0.1f);

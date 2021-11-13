@@ -108,7 +108,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             lightColor = GetColor();
-            var spotlight = TextureCache.Lights[SpotlightID.Spotlight24x24];
+            var spotlight = TextureCache.Lights[LightTex.Spotlight24x24];
             var center = projectile.Center;
             var orig = spotlight.Size() / 2f;
             var texture = TextureCache.GetProjectile(projectile.type);
@@ -125,7 +125,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new Trailshader(TextureCache.Trails[TrailType.Line], Trailshader.TextureTrail);
+                    var trail = new Trailshader(TextureCache.Trails[TrailTex.Line], Trailshader.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(8f - p * 8f), (p) => lightColor * (1f - p));
                     trail.Draw();
                 }

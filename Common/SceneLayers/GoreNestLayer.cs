@@ -88,7 +88,7 @@ namespace AQMod.Common.SceneLayers
                 }
                 else
                 {
-                    var texture = TextureCache.Lights[SpotlightID.Spotlight66x66Negative];
+                    var texture = TextureCache.Lights[LightTex.Spotlight66x66Negative];
                     float size = portalSize() / texture.Size().Length();
                     Main.spriteBatch.Draw(texture, portalPosition - Main.screenPosition, null, Color.White, 0f, texture.Size() / 2f, size, SpriteEffects.None, 0);
                 }

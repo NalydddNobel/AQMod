@@ -1,6 +1,6 @@
 ﻿namespace AQMod.Effects
 {
-    public enum TrailType : byte
+    public enum TrailTex : byte
     {
         Line = 0,
         SmokeLine = 1,

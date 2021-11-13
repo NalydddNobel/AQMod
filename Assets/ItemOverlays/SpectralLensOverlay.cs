@@ -44,7 +44,7 @@ namespace AQMod.Assets.ItemOverlays
 
         private static void DrawEye(Vector2 drawPosition, Item item, float time, float rotation = 0f, float scale3 = 1f)
         {
-            var texture = TextureCache.Lights[SpotlightID.Spotlight80x80];
+            var texture = TextureCache.Lights[LightTex.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             int count = (int)(pattern.Length / 2 * ModContent.GetInstance<AQConfigClient>().EffectQuality);
@@ -70,7 +70,7 @@ namespace AQMod.Assets.ItemOverlays
 
         private static void DrawEye_DrawData(Vector2 drawPosition, Player player, Item item, SpriteEffects effects)
         {
-            var texture = TextureCache.Lights[SpotlightID.Spotlight80x80];
+            var texture = TextureCache.Lights[LightTex.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             int count = pattern.Length / 2;

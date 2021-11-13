@@ -1429,7 +1429,7 @@ namespace AQMod.NPCs.Boss.Starite
             float deathSpotlightScale = 0f;
             if (intensity > 3f)
                 deathSpotlightScale = npc.scale * (intensity - 2.1f) * ((float)Math.Sin(npc.ai[1] * 0.1f) + 1f) / 2f;
-            var spotlight = TextureCache.Lights[SpotlightID.Spotlight66x66];
+            var spotlight = TextureCache.Lights[LightTex.Spotlight66x66];
             var spotlightOrig = spotlight.Size() / 2f;
             Color spotlightColor;
             if (AQMod.CosmicEvent.StariteDisco)
@@ -1521,7 +1521,7 @@ namespace AQMod.NPCs.Boss.Starite
                     {
                         const float radius = CIRCUMFERENCE / 2f;
                         var trailClr = AQMod.CosmicEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                        var trail = new Trailshader(TextureCache.Trails[TrailType.Line], Trailshader.TextureTrail);
+                        var trail = new Trailshader(TextureCache.Trails[TrailTex.Line], Trailshader.TextureTrail);
                         trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
                         trail.Draw();
                     }

@@ -125,6 +125,10 @@ namespace AQMod
         /// </summary>
         internal static bool Loading { get; private set; }
         /// <summary>
+        /// This is normally used to prevent threaded assets from loading
+        /// </summary>
+        internal static bool Unloading { get; private set; }
+        /// <summary>
         /// A flag which gets raised if the mod detects that it's april fools. Use this for fun :)
         /// </summary>
         public static bool AprilFools { get; internal set; }
@@ -218,6 +222,7 @@ namespace AQMod
         public override void Load()
         {
             Loading = true;
+            Unloading = false;
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
             CursorDyes = new CursorDyeLoader();
@@ -570,6 +575,7 @@ namespace AQMod
         {
             // outside of AQMod
             Loading = true;
+            Unloading = true;
             HuntSystem.Unload();
 
             // in: AddRecipes()

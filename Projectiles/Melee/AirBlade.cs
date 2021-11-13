@@ -82,7 +82,7 @@ namespace AQMod.Projectiles.Melee
             if (player.ownedProjectileCounts[ghostBlade] < 3 && Main.rand.NextBool(5))
             {
                 int p = Projectile.NewProjectile(projectile.Center + Vector2.Normalize(
-                    -projectile.velocity.RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4))) * Main.rand.Next(60, 120), projectile.velocity / 3f, ghostBlade, projectile.damage, projectile.knockBack, projectile.owner);
+                    -projectile.velocity.RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4))) * Main.rand.Next(60, 120), projectile.velocity / 2f * speedMultiplier, ghostBlade, projectile.damage, projectile.knockBack, projectile.owner);
             }
         }
 
@@ -111,7 +111,7 @@ namespace AQMod.Projectiles.Melee
             }
             if (projectile.localAI[0] != 0f)
             {
-                texture = TextureCache.Lights[Assets.Textures.SpotlightID.Spotlight30x30];
+                texture = TextureCache.Lights[Assets.Textures.LightTex.Spotlight30x30];
                 frame = texture.Frame();
                 lightColor = new Color(130, 100, 12, 1) * AQMod.EffectIntensity;
                 origin = texture.Size() / 2f;

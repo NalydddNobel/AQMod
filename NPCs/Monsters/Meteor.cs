@@ -23,7 +23,6 @@ namespace AQMod.NPCs.Monsters
             npc.damage = 2;
             npc.defense = 45;
             npc.HitSound = SoundID.NPCHit7;
-            npc.DeathSound = SoundID.NPCDeath14;
             npc.aiStyle = -1;
             npc.noGravity = true;
             npc.knockBackResist = 0.3f;
@@ -50,6 +49,7 @@ namespace AQMod.NPCs.Monsters
                 {
                     npc.TargetClosest(faceTarget: false);
                     npc.defense = 0;
+                    npc.ai[0] = 2f;
                     if (npc.HasValidTarget)
                         Main.player[npc.target].ApplyDamageToNPC(npc, npc.lifeMax, npc.velocity.Length(), 0, false);
                     else
@@ -101,6 +101,13 @@ namespace AQMod.NPCs.Monsters
                     Main.dust[d].noGravity = true;
                     Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
                 }
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    int npcX = (int)npc.position.X + npc.width / 2;
+                    int npcY = (int)npc.position.Y + npc.height / 2;
+                    var sound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/Meteor_S3K");
+                    Main.PlaySound(sound.SoundId, npcX, npcY, sound.Style, 0.45f);
+                }
             }
             else
             {
@@ -112,6 +119,8 @@ namespace AQMod.NPCs.Monsters
 
         public override void NPCLoot()
         {
+            if ((int)npc.ai[0] == 2)
+                return;
             if (Main.rand.NextBool())
                 barOreDrop(ItemID.CopperOre, ItemID.TinOre, ItemID.CopperBar, ItemID.TinBar, WorldGen.CopperTierOre, TileID.Tin, 3);
             else

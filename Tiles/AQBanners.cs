@@ -132,7 +132,7 @@ namespace AQMod.Tiles
                     player.NPCBannerBuff[ModContent.NPCType<TrapImp>()] = true;
                     break;
                     case Vraine:
-                    //player.NPCBannerBuff[ModContent.NPCType<Vraine>()] = true;
+                    player.NPCBannerBuff[ModContent.NPCType<Vraine>()] = true;
                     break;
                     case TemperatureBalloon:
                     player.NPCBannerBuff[ModContent.NPCType<TemperatureBalloon>()] = true;

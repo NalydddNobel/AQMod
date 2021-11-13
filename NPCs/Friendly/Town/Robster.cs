@@ -107,6 +107,19 @@ namespace AQMod.NPCs.Friendly.Town
 
         public override string GetChat()
         {
+            try
+            {
+                if (ModLoader.GetMod("StarlightRiver") != null)
+                {
+                    npc.life = -1;
+                    npc.HitEffect();
+                    npc.active = false; // 😎
+                }
+            }
+            catch
+            {
+            }
+
             _resetQuest = 0;
             var potentialText = new List<string>();
             int angler = NPC.FindFirstNPC(NPCID.Angler);

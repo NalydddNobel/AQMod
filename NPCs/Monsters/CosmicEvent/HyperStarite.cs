@@ -406,7 +406,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             float mult = 1f / NPCID.Sets.TrailCacheLength[npc.type];
             var frame = new Rectangle(npc.frame.X, npc.frame.Y + npc.frame.Height, npc.frame.Width, npc.frame.Height);
             var armLength = new Vector2(npc.height * npc.scale + npc.ai[3] + 18f, 0f);
-            var texture1 = TextureCache.Lights[SpotlightID.Spotlight66x66];
+            var texture1 = TextureCache.Lights[LightTex.Spotlight66x66];
             var frame1 = new Rectangle(0, 0, texture1.Width, texture1.Height);
             var origin1 = frame1.Size() / 2f;
             Main.spriteBatch.Draw(texture1, new Vector2((int)(npc.position.X + offset.X - Main.screenPosition.X), (int)(npc.position.Y + offset.Y - Main.screenPosition.Y)), frame1, SpotlightColor, 0f, origin1, npc.scale * 2, SpriteEffects.None, 0f);
@@ -431,7 +431,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             Main.spriteBatch.Draw(texture, new Vector2((int)(npc.position.X + offset.X - Main.screenPosition.X), (int)(npc.position.Y + offset.Y - Main.screenPosition.Y)), npc.frame, new Color(255, 255, 255, 255), 0f, origin, npc.scale, SpriteEffects.None, 0f);
             if (npc.ai[0] == 2f)
             {
-                var texture3 = TextureCache.Lights[SpotlightID.Spotlight33x24];
+                var texture3 = TextureCache.Lights[LightTex.Spotlight33x24];
                 float rotation;
                 if (npc.ai[2] != 0f)
                 {

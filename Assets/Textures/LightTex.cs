@@ -1,6 +1,6 @@
 ﻿namespace AQMod.Assets.Textures
 {
-    public enum SpotlightID : byte
+    public enum LightTex : byte
     {
         Spotlight30x30 = 0,
         Spotlight66x66 = 1,

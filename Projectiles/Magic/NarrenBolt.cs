@@ -98,7 +98,7 @@ namespace AQMod.Projectiles.Magic
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new Trailshader(TextureCache.Trails[TrailType.ThickLine], Trailshader.TextureTrail);
+                    var trail = new Trailshader(TextureCache.Trails[TrailTex.ThickLine], Trailshader.TextureTrail);
                     var clr2 = NarrizuulRainbow(projectile.localAI[1]);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20f - p * 20f), (p) => clr2 * 0.65f * (1f - p));
                     trail.Draw();
@@ -116,7 +116,7 @@ namespace AQMod.Projectiles.Magic
                     Main.spriteBatch.Draw(texture, projectile.oldPos[i] + offset / 2f - Main.screenPosition, null, clr2 * progress, projectile.rotation, orig2, projectile.scale, SpriteEffects.None, 0f);
                 }
             }
-            texture = TextureCache.Lights[SpotlightID.Spotlight66x66];
+            texture = TextureCache.Lights[LightTex.Spotlight66x66];
             spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, NarrizuulRainbow(projectile.localAI[1]) * 0.5f, projectile.rotation, texture.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             texture = Main.projectileTexture[projectile.type];
             var drawPos = projectile.Center - Main.screenPosition;

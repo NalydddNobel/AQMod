@@ -8,7 +8,7 @@ namespace AQMod.Content.Particles
 {
     public class MonoParticleEmber : MonoParticle
     {
-        public override Texture2D Texture => TextureCache.Particles[ParticleTextureID.MonoEmber];
+        public override Texture2D Texture => TextureCache.Particles[ParticleTex.MonoEmber];
 
         public MonoParticleEmber(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1f) : base(position, velocity, color, scale)
         {

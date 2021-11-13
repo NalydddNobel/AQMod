@@ -95,8 +95,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
                 {
                     float length = npc.velocity.Length();
                     Vector2 difference = plrCenter - center;
-                    Vector2 lerpedVelocity = Vector2.Normalize(Vector2.Lerp(npc.velocity, difference, turnSpeed)) * length;
-                    npc.velocity = lerpedVelocity;
+                    npc.velocity = Vector2.Normalize(Vector2.Lerp(npc.velocity, difference, turnSpeed)) * length;
                 }
             }
             if (npc.ai[0] == 2f)

@@ -1,6 +1,6 @@
 ﻿namespace AQMod.Assets.Textures
 {
-    public enum ParticleTextureID
+    public enum ParticleTex
     {
         Mono = 0,
         MonoEmber = 1,

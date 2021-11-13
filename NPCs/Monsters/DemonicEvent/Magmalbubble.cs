@@ -330,7 +330,7 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
                     progress = timer / 40f;
                 }
                 progress = 1f - progress;
-                var spotlight = TextureCache.Lights[Assets.Textures.SpotlightID.Spotlight10x50];
+                var spotlight = TextureCache.Lights[Assets.Textures.LightTex.Spotlight10x50];
                 var color = Color.Lerp(Color.Red, Color.Yellow, ((float)Math.Sin(Main.GlobalTime * 25f) + 1f) / 2f);
                 color *= progress;
                 var spotlightOrigin = spotlight.Size() / 2f;

@@ -122,7 +122,7 @@ namespace AQMod.Projectiles.Melee
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new Trailshader(TextureCache.Trails[TrailType.Line], Trailshader.TextureTrail);
+                    var trail = new Trailshader(TextureCache.Trails[TrailTex.Line], Trailshader.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity), (p) => color(projectile.timeLeft - p) * 0.5f * (1f - p));
                     trail.Draw();
                 }
@@ -141,11 +141,11 @@ namespace AQMod.Projectiles.Melee
             }
             if (intensity > 0f)
             {
-                var spotlight = TextureCache.Lights[SpotlightID.Spotlight66x66];
+                var spotlight = TextureCache.Lights[LightTex.Spotlight66x66];
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.3f * intensity, projectile.rotation, spotlightOrig, projectile.scale * intensity, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.1f * intensity, projectile.rotation, spotlightOrig, projectile.scale * 1.25f * intensity, SpriteEffects.None, 0f);
-                spotlight = TextureCache.Lights[SpotlightID.Spotlight240x66];
+                spotlight = TextureCache.Lights[LightTex.Spotlight240x66];
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.1f * intensity, (2f + (float)Math.Sin(Main.GlobalTime * 10f)) * intensity);
                 var spotlightDrawColor = drawColor * intensity;
