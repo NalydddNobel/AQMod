@@ -173,20 +173,20 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             // attack stuff
             if (diffY.Abs() < 40f)
             {
-                npc.ai[0]++;
-                if (diffX.Abs() < 100f)
-                {
-                    npc.ai[0]++; // x2 faster when closer to the player
-                }
-                if ((int)npc.ai[0] > 60)
-                {
-                    npc.ai[0] = 0f;
-                    npc.netUpdate = true;
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        Projectile.NewProjectile(npc.Center, new Vector2(0f, 12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
-                    }
-                }
+                //npc.ai[0]++;
+                //if (diffX.Abs() < 100f)
+                //{
+                //    npc.ai[0]++; // x2 faster when closer to the player
+                //}
+                //if ((int)npc.ai[0] > 60)
+                //{
+                //    npc.ai[0] = 0f;
+                //    npc.netUpdate = true;
+                //    if (Main.netMode != NetmodeID.MultiplayerClient)
+                //    {
+                //        Projectile.NewProjectile(npc.Center, new Vector2(0f, 12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
+                //    }
+                //}
             }
             else
             {
@@ -287,8 +287,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     var scale = new Vector2(npc.scale * (float)Math.Sin(time + Main.GlobalTime * 4f) + 2f, npc.scale * (float)Math.Sin(time + random.NextFloat(-0.1f, 0.1f) + Main.GlobalTime * 4f) + 1f);
                     scale *= random.NextFloat(0.25f, 0.2f);
                     var clr = drawColor * scale.Length();
-                    Main.spriteBatch.Draw(cloudTexture, npc.position + offset - Main.screenPosition + off, null, clr * random.NextFloat(0.5f, 0.75f), 0f, cloudOrigin, scale, SpriteEffects.None, 0f);
-                    Main.spriteBatch.Draw(cloudTexture, npc.position + offset - Main.screenPosition + off, null, clr * random.NextFloat(0.025f, 0.2f), 0f, cloudOrigin, scale * random.NextFloat(1.5f, 2f), SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(cloudTexture, npc.position + offset - Main.screenPosition + off, null, clr * random.NextFloat(0.65f, 0.85f), 0f, cloudOrigin, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(cloudTexture, npc.position + offset - Main.screenPosition + off, null, clr * random.NextFloat(0.05f, 0.28f), 0f, cloudOrigin, scale * random.NextFloat(1.5f, 2f), SpriteEffects.None, 0f);
                 }
             }
             return false;
