@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Items.Armor.Crab;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;

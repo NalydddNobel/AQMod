@@ -1,9 +1,9 @@
 ﻿using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.AzureCurrents;
-using AQMod.Content.WorldEvents.CrabSeason;
-using AQMod.Content.WorldEvents.DemonSiege;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.WorldEvents.AtmosphericEvent;
+using AQMod.Content.WorldEvents.AquaticEvent;
+using AQMod.Content.WorldEvents.DemonicEvent;
+using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Tiles;
 using System.IO;
 using Terraria;

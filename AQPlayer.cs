@@ -9,7 +9,7 @@ using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
 using AQMod.Content.Particles;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;

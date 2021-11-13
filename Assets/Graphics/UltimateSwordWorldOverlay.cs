@@ -2,7 +2,7 @@
 using AQMod.Common.NetCode;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Melee;
 using AQMod.NPCs.Boss.Starite;

@@ -3,7 +3,7 @@ using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace AQMod.Content.WorldEvents.CrabSeason
+namespace AQMod.Content.WorldEvents.AquaticEvent
 {
     public static class CrabSeason
     {

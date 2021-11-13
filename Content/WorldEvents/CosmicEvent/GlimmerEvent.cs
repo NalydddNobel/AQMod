@@ -11,7 +11,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents.GlimmerEvent
+namespace AQMod.Content.WorldEvents.CosmicEvent
 {
     public sealed class GlimmerEvent
     {

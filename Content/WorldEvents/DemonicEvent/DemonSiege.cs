@@ -15,7 +15,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace AQMod.Content.WorldEvents.DemonSiege
+namespace AQMod.Content.WorldEvents.DemonicEvent
 {
     public class DemonSiege
     {

@@ -6,7 +6,7 @@ using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Particles;
-using AQMod.Content.WorldEvents.AzureCurrents;
+using AQMod.Content.WorldEvents.AtmosphericEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

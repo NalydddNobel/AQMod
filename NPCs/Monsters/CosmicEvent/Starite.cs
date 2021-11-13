@@ -1,7 +1,7 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;

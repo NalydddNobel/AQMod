@@ -4,7 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 
-namespace AQMod.Content.WorldEvents.AzureCurrents
+namespace AQMod.Content.WorldEvents.AtmosphericEvent
 {
     public sealed class AzureCurrents
     {

@@ -158,7 +158,7 @@ namespace AQMod.Common
                     ItemID.ObsidianRose,
                 };
                 string summonItems = "";
-                foreach (var upgrade in Content.WorldEvents.DemonSiege.DemonSiege._upgrades)
+                foreach (var upgrade in Content.WorldEvents.DemonicEvent.DemonSiege._upgrades)
                 {
                     if (summonItems != "")
                         summonItems += ", ";

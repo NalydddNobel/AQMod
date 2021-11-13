@@ -2,7 +2,7 @@
 using AQMod.Assets.Graphics;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
-using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

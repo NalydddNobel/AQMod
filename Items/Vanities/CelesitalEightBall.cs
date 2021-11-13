@@ -1,4 +1,4 @@
-﻿using AQMod.Content.WorldEvents.GlimmerEvent;
+﻿using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

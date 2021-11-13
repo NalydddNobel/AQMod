@@ -2,7 +2,7 @@
 using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
 using AQMod.Items.Tools;

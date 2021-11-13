@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.DemonSiege;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.WorldEvents.DemonicEvent;
+using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

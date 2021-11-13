@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.UserInterface;
 using AQMod.Content.MapMarkers.Components;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Localization;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
