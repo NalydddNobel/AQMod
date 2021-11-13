@@ -40,28 +40,6 @@ namespace AQMod.Assets
         public static Ref<Texture2D> BGStarite { get; private set; }
         public static Ref<Texture2D> UITexture { get; private set; }
 
-        private static Dictionary<TEnum, Texture2D> fillDictionary_ThreadSafe<TEnum>(TEnum count, string pathWithoutNumbers) where TEnum : Enum
-        {
-            try
-            {
-                int max = count.GetHashCode();
-                var d = new Dictionary<TEnum, Texture2D>(max);
-                for (ushort i = 0; i < max; i++)
-                {
-                    if (AQMod.Unloading)
-                    {
-                        return null;
-                    }
-                    d.Add(i.ToEnum<TEnum>(), ModContent.GetTexture(pathWithoutNumbers + i));
-                }
-                return d;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
         internal static void Load()
         {
             ThreadPool.QueueUserWorkItem(LoadDictionaries);
@@ -91,6 +69,28 @@ namespace AQMod.Assets
             Particles = fillDictionary_ThreadSafe(ParticleTex.Count, "AQMod/Assets/Textures/Particles/Particle_");
             Lights = fillDictionary_ThreadSafe(LightTex.Count, "AQMod/Assets/Textures/Lights/Light_");
             Trails = fillDictionary_ThreadSafe(TrailTex.Count, "AQMod/Assets/Textures/Trail_");
+        }
+
+        private static Dictionary<TEnum, Texture2D> fillDictionary_ThreadSafe<TEnum>(TEnum count, string pathWithoutNumbers) where TEnum : Enum
+        {
+            try
+            {
+                int max = count.GetHashCode();
+                var d = new Dictionary<TEnum, Texture2D>(max);
+                for (ushort i = 0; i < max; i++)
+                {
+                    if (AQMod.Unloading)
+                    {
+                        return null;
+                    }
+                    d.Add(i.ToEnum<TEnum>(), ModContent.GetTexture(pathWithoutNumbers + i));
+                }
+                return d;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         internal static void Unload()

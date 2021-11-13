@@ -39,6 +39,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             npc.buffImmune[BuffID.OnFire] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<VraineBanner>();
+            npc.noTileCollide = true;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -114,13 +115,15 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             {
                 if (hot)
                 {
-                    Vector2 difference = Main.player[npc.target].Center - center;
+                    var plrCenter = Main.player[npc.target].Center;
+                    Vector2 difference = plrCenter - center;
                     float lerpAmount = 0.01f;
                     if (npc.ai[3] <= 0f && difference.Length() > 460f)
                     {
                         npc.ai[1] = 2f;
                         _transparency = 100;
                         npc.ai[3] = _transparency;
+                        npc.netUpdate = true;
                     }
                     float length = npc.velocity.Length();
                     if (Main.expertMode)
@@ -138,51 +141,106 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         }
                     }
                     npc.velocity = Vector2.Normalize(Vector2.Lerp(npc.velocity, difference, lerpAmount)) * length;
-                }
-                else
-                {
-                    Vector2 difference = Main.player[npc.target].Center - center;
-                    if (difference.Y < 620f && difference.Y > 480f)
+                    npc.direction = npc.velocity.X > 0f ? 1 : -1;
+                    if (npc.direction == 1)
                     {
-                        npc.velocity = Vector2.Normalize(difference) * (Main.expertMode ? 7.5f : 4.85f);
-                        npc.ai[1] = 1f;
-                        _transparency = 100;
-                        npc.ai[3] = _transparency;
-                        npc.netUpdate = true;
-
-                        Main.PlaySound(SoundID.Item1, npc.Center);
-                    }
-                    else if (difference.Length() < 360f)
-                    {
-                        npc.ai[1] = 1f;
-                        _transparency = 60;
-                        npc.ai[3] = _transparency;
-                        npc.netUpdate = true;
-                    }
-
-                    float maxSpeedY = -8f;
-                    if (Main.player[npc.target].velocity.Y < -8f)
-                    {
-                        maxSpeedY = Main.player[npc.target].velocity.Y;
-                    }
-                    if (npc.velocity.Y < -maxSpeedY)
-                    {
-                        npc.velocity.Y += Main.rand.NextFloat(-0.0025f, -0.1f);
-                    }
-
-                    float diffX = Main.player[npc.target].position.X + Main.player[npc.target].width / 2f - (npc.position.X + npc.width / 2f);
-                    if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X)
-                    {
-                        if (npc.velocity.X > -2f)
+                        if (center.X > plrCenter.X)
                         {
-                            npc.velocity.X -= 0.075f;
+                            npc.ai[1] = 2f;
+                            _transparency = 120;
+                            npc.ai[3] = _transparency;
+                            npc.netUpdate = true;
                         }
                     }
                     else
                     {
-                        if (npc.velocity.X < 2f)
+                        if (center.X < plrCenter.X)
                         {
-                            npc.velocity.X += 0.075f;
+                            npc.ai[1] = 2f;
+                            _transparency = 120;
+                            npc.ai[3] = _transparency;
+                            npc.netUpdate = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (npc.ai[3] <= 0f)
+                    {
+                        Vector2 difference = Main.player[npc.target].Center - center;
+                        if (npc.ai[3] < 0f)
+                        {
+                            var gotoVeloc = Vector2.Normalize(difference) * (Main.expertMode ? 7.5f : 4.85f);
+                            npc.ai[3]++;
+                            npc.velocity = Vector2.Lerp(npc.velocity, gotoVeloc, 0.1f);
+                            if (npc.ai[3] == -1)
+                            {
+                                _transparency = 100;
+                                npc.ai[1] = 1f;
+                                npc.ai[3] = _transparency;
+                                npc.velocity = gotoVeloc;
+                                Main.PlaySound(SoundID.Item1, npc.Center);
+                            }
+                        }
+                        else
+                        {
+                            if (difference.Y < 500f && difference.Y > 375f)
+                            {
+                                npc.netUpdate = true;
+                                npc.ai[3] = -20f;
+                            }
+                            else if (difference.Y > 200f)
+                            {
+                                npc.velocity.Y *= 0.98f;
+                            }
+                            else if (difference.Length() < 360f)
+                            {
+                                npc.ai[1] = 1f;
+                                _transparency = 60;
+                                npc.ai[3] = _transparency;
+                                npc.netUpdate = true;
+                            }
+
+                            float maxSpeedY = -8f;
+                            if (Main.player[npc.target].velocity.Y < -8f)
+                            {
+                                maxSpeedY = Main.player[npc.target].velocity.Y;
+                            }
+                            if (npc.velocity.Y < -maxSpeedY)
+                            {
+                                npc.velocity.Y += Main.rand.NextFloat(-0.0025f, -0.1f);
+                            }
+
+                            float diffX = Main.player[npc.target].position.X + Main.player[npc.target].width / 2f - (npc.position.X + npc.width / 2f);
+                            if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X)
+                            {
+                                if (npc.velocity.X > -2f)
+                                {
+                                    npc.velocity.X -= 0.035f;
+                                }
+                            }
+                            else
+                            {
+                                if (npc.velocity.X < 2f)
+                                {
+                                    npc.velocity.X += 0.035f;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (npc.velocity.Y > 0f)
+                        {
+                            npc.velocity.Y += Main.rand.NextFloat(-0.0025f, -0.1f);
+                        }
+                        if (npc.velocity.X > -2f && npc.velocity.X < 2f)
+                        {
+                            npc.velocity.X += 0.035f * npc.direction;
+                        }
+                        else if (npc.velocity.X < -3f && npc.velocity.X > 3f)
+                        {
+                            npc.velocity.X *= 0.99f;
                         }
                     }
                 }
@@ -214,17 +272,53 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     }
                     npc.ai[2] = closestNPC;
                 }
+
                 var leaderMod = (Vraine)leader.modNPC;
                 npc.ai[1] = leader.ai[1];
                 npc.ai[3] = leader.ai[3];
                 _transparency = leaderMod._transparency;
-                int offsetX = npc.width;
-                if (npc.position.X + npc.width / 2f < leader.position.X + leader.width / 2f)
+
+                if ((int)leader.ai[2] == -1)
                 {
-                    offsetX = -offsetX;
+                    npc.direction = 1;
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        if (i == npc.whoAmI)
+                        {
+                            break;
+                        }
+                        if (Main.npc[i].active && Main.npc[i].type == npc.type && i < npc.whoAmI && (int)Main.npc[i].ai[2] == (int)npc.ai[2])
+                        {
+                            npc.direction = -1;
+                            break;
+                        }
+                    }
                 }
-                var gotoPos = new Vector2(leader.position.X + leader.width / 2f + offsetX, leader.position.Y + leader.height / 2f);
-                npc.velocity = gotoPos - center;
+                else
+                {
+                    npc.direction = leader.direction;
+                }
+                var gotoPosition = leader.Center + new Vector2(-npc.width / 2f, npc.height * npc.direction * 1.5f).RotatedBy(leader.rotation);
+                var difference2 = (gotoPosition - center);
+                float distance = difference2.Length();
+                if (distance < 10f)
+                {
+                    npc.velocity = Vector2.Lerp(npc.velocity, leader.velocity, 0.8f);
+                }
+                else
+                {
+                    float speed = npc.velocity.Length();
+                    float leaderSpeed = leader.velocity.Length();
+                    if (speed < leaderSpeed * 1.6f)
+                    {
+                        speed = leaderSpeed * 1.6f;
+                    }
+                    else if (speed < 2.5f)
+                    {
+                        speed = 2.5f;
+                    }
+                    npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(difference2) * speed, 0.025f);
+                }
             }
             npc.rotation = npc.velocity.ToRotation();
         }
@@ -276,7 +370,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 else
                     frame.X = 0;
 
-                    float progress = npc.ai[3] / _transparency;
+                float progress = npc.ai[3] / _transparency;
                 Main.spriteBatch.Draw(texture, drawPos, frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), 1f - progress), npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture, drawPos, npc.frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), progress), npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
             }
