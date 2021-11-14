@@ -34,6 +34,7 @@ namespace AQMod.NPCs.Friendly.Town
             NPCID.Sets.AttackTime[npc.type] = 10;
             NPCID.Sets.AttackAverageChance[npc.type] = 10;
             NPCID.Sets.HatOffsetY[npc.type] = 8;
+
             Initialize();
         }
 

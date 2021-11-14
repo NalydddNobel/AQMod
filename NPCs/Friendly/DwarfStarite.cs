@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
+using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;

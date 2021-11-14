@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.NPCs.Monsters.AquaticEvent
 {
-    public class HermitCrab : AIFighter
+    public class HermitCrab : AIFighter, IDecideFallThroughPlatforms
     {
         public const int FramesX = 2;
 
@@ -166,6 +166,15 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
             Main.spriteBatch.Draw(Main.npcTexture[npc.type], drawPosition, npc.frame, drawColor, npc.rotation, origin, npc.scale, effects, 0f);
             Main.spriteBatch.Draw(Main.npcTexture[npc.type], drawPosition, shellFrame, drawColor, npc.rotation, origin, npc.scale, effects, 0f);
             return false;
+        }
+
+        bool IDecideFallThroughPlatforms.Decide()
+        {
+            if (!npc.HasValidTarget)
+            {
+                return false;
+            }
+            return Main.player[npc.target].position.Y > npc.position.Y;
         }
     }
 }

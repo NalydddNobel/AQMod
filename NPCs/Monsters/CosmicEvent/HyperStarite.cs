@@ -45,11 +45,10 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             npc.noTileCollide = true;
             npc.knockBackResist = 0f;
             npc.value = Item.buyPrice(gold: 2, silver: 50);
+            npc.buffImmune[BuffID.Confused] = true;
             npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.CursedInferno] = true;
-            npc.buffImmune[BuffID.Ichor] = true;
-            npc.buffImmune[BuffID.BetsysCurse] = true;
-            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.Sparkling>()] = true;
+            npc.buffImmune[ModContent.BuffType<Sparkling>()] = true;
+            npc.buffImmune[ModContent.BuffType<BlueFire>()] = true;
             npc.npcSlots = 4f;
             banner = npc.type;
             bannerItem = ModContent.ItemType<HyperStariteBanner>();
