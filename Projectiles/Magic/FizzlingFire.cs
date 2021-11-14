@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,7 +10,7 @@ using Terraria.Utilities;
 
 namespace AQMod.Projectiles.Magic
 {
-    public class FizzledFire : ModProjectile
+    public class FizzlingFire : ModProjectile
     {
         public const int FramesX = 6;
 
@@ -74,7 +75,7 @@ namespace AQMod.Projectiles.Magic
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            var texture = ModContent.GetTexture("AQMod/Projectiles/Magic/FizzledFire_Big");
+            var texture = ModContent.GetTexture(this.GetPath("_Big"));
             var offset = new Vector2(projectile.width / 2f - Main.screenPosition.X, projectile.height / 2f - Main.screenPosition.Y);
             int frameWidth = texture.Width / 3;
             int frameHeight = texture.Height;

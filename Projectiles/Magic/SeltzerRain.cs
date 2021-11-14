@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Magic
 {
-    public class FizzyBubble : ModProjectile
+    public class SeltzerRain : ModProjectile
     {
         private const int MouseDistance = 100;
 

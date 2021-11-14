@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Melee
 {
-    public class GlimmeringStar : ModProjectile
+    public class Galactium : ModProjectile
     {
         public override void SetStaticDefaults()
         {

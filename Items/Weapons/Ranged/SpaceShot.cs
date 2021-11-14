@@ -21,7 +21,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.height = 20;
             item.useTime = 30;
             item.useAnimation = 30;
-            item.damage = 12;
+            item.damage = 13;
             item.rare = ItemRarityID.Green;
             item.ranged = true;
             item.useStyle = ItemUseStyleID.HoldingOut;

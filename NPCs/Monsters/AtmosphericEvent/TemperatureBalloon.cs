@@ -191,7 +191,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     {
                         float veloX = targetX - npc.position.X + npc.width / 2f;
                         veloX /= 60f;
-                        int projectileType = ModContent.ProjectileType<Projectiles.Monster.TrapperBlast>();
+                        int projectileType = ModContent.ProjectileType<Projectiles.Monster.Trapper>();
                         Projectile.NewProjectile(npc.Center, new Vector2(veloX, -12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
                         Projectile.NewProjectile(npc.Center, new Vector2(veloX * 0.75f, -12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
                         Projectile.NewProjectile(npc.Center, new Vector2(veloX * 1.25f, -12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);

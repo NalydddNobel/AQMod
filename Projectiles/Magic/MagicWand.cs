@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.Graphics.ParticlesLayers;
-using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Dusts;
 using AQMod.Content.Particles;
@@ -111,7 +110,7 @@ namespace AQMod.Projectiles.Magic
                 if (distance < 800)
                     ScreenShakeManager.AddEffect(new BasicScreenShake(10, AQMod.MultIntensity((int)(1600f - distance) / 400)));
             }
-            
+
             for (int yy = y + topY; yy < y + bottomY; yy++)
             {
                 for (int i = 0; i < 4; i++)

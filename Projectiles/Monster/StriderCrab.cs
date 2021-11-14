@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Utilities;
-using AQMod.NPCs.Monsters.AquaticEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Monster
 {
-    public sealed class StriderCrabLeg : ModProjectile
+    public sealed class StriderCrab : ModProjectile
     {
         public override void SetDefaults()
         {
@@ -22,7 +21,7 @@ namespace AQMod.Projectiles.Monster
 
         public Vector2 getKneecapPositionOffset()
         {
-            return new Vector2(projectile.width / 2f, projectile.height - StriderCrab.LEG_2_KNEECAP_Y_OFFSET);
+            return new Vector2(projectile.width / 2f, projectile.height - NPCs.Monsters.AquaticEvent.StriderCrab.LEG_2_KNEECAP_Y_OFFSET);
         }
 
         public override void AI()
@@ -35,12 +34,12 @@ namespace AQMod.Projectiles.Monster
                 return;
             }
             int legID = (int)projectile.ai[0];
-            var strider = Main.npc[npcOwner].modNPC as StriderCrab;
+            var strider = Main.npc[npcOwner].modNPC as NPCs.Monsters.AquaticEvent.StriderCrab;
             Vector2 connection = strider.GetLegPosition(legID, Main.npc[npcOwner].direction);
             var kneecapPositionOffset = getKneecapPositionOffset();
             var kneecapPosition = projectile.position + kneecapPositionOffset;
             var differenceFromConnection = kneecapPosition - connection;
-            if (differenceFromConnection.Length() > StriderCrab.LEG_1_LENGTH)
+            if (differenceFromConnection.Length() > NPCs.Monsters.AquaticEvent.StriderCrab.LEG_1_LENGTH)
             {
                 float speed = Math.Max(differenceFromConnection.Length() / 16f, 6f);
                 var normal = Vector2.Normalize(-differenceFromConnection);

@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Content.RobsterQuests;
-using AQMod.Items.Accessories.ShopCards;
+using AQMod.Items.Accessories;
 using AQMod.Items.Placeable;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Localization;

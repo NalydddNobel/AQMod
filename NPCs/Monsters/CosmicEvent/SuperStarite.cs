@@ -260,7 +260,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
                     {
                         const float twoPiOver5 = MathHelper.TwoPi / 5f;
                         int damage = Main.hardMode && Main.expertMode ? 45 : 20;
-                        int type = ModContent.ProjectileType<StariteShot>();
+                        int type = ModContent.ProjectileType<Projectiles.Monster.SuperStarite>();
                         float length = (float)Math.Sqrt(npc.width * npc.width + npc.height * npc.height) / 2f;
                         for (int i = 0; i < 5; i++)
                         {

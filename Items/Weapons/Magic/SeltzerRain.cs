@@ -27,7 +27,7 @@ namespace AQMod.Items.Weapons.Magic
             item.useTime = 40;
             item.useAnimation = 40;
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType<FizzyBubble>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Magic.SeltzerRain>();
             item.shootSpeed = 16.88f;
             item.noMelee = true;
             item.UseSound = SoundID.Item8;

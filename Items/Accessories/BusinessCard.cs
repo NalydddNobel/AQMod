@@ -1,25 +1,26 @@
-﻿using Terraria;
+﻿using AQMod.Items.Materials.Energies;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.ShopCards
+namespace AQMod.Items.Accessories
 {
-    public class BlurryDiscountCard : ModItem, IUpdatePiggybank
+    public class BusinessCard : ModItem, IUpdatePiggybank
     {
         public override void SetDefaults()
         {
             item.width = 16;
             item.height = 24;
             item.accessory = true;
-            item.rare = ItemRarityID.Green;
-            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Yellow;
+            item.value = Item.sellPrice(gold: 8);
         }
 
         private void Update(Player player)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
             if (!player.discount)
-                aQPlayer.discountPercentage = 0.9f;
+                aQPlayer.discountPercentage = 0.6f;
             player.discount = true;
         }
 
@@ -36,6 +37,17 @@ namespace AQMod.Items.Accessories.ShopCards
         void IUpdatePiggybank.UpdatePiggyBank(Player player, int i)
         {
             Update(player);
+        }
+
+        public override void AddRecipes()
+        {
+            var recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.DiscountCard);
+            recipe.AddIngredient(ModContent.ItemType<DemonicEnergy>(), 5);
+            recipe.AddIngredient(ItemID.ChlorophyteBar, 8);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

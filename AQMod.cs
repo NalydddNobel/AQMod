@@ -23,7 +23,6 @@ using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Effects;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items.Accessories.ShopCards;
 using AQMod.Items.Bait;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
@@ -51,6 +50,7 @@ using Terraria.Utilities;
 using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Common.CrossMod;
 using AQMod.Items.Placeable.Trophies;
+using AQMod.Items.Accessories;
 
 namespace AQMod
 {
@@ -562,8 +562,11 @@ namespace AQMod
             // in: AddRecipes()
             CelesitalEightBall.ResetStatics();
             ItemOverlays = null;
-            Split.Unload();
-            Split = null;
+            if (Split != null)
+            {
+                Split.Unload();
+                Split = null;
+            }
 
             // in: PostSetupContent()
             cachedLoadTasks = null;

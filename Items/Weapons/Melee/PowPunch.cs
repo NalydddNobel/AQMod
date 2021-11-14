@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
+﻿using AQMod.Common;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -11,7 +10,7 @@ namespace AQMod.Items.Weapons.Melee
     {
         public override void SetDefaults()
         {
-            item.damage = 24;
+            item.damage = 25;
             item.melee = true;
             item.useTime = 30;
             item.useAnimation = 30;

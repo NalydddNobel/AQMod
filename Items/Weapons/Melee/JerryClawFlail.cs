@@ -18,7 +18,7 @@ namespace AQMod.Items.Weapons.Melee
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.rare = ItemRarityID.Blue;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.JerryClawFlail>();
-            item.shootSpeed = 13.5f;
+            item.shootSpeed = 16f;
             item.UseSound = SoundID.Item1;
             item.value = AQItem.CrabsonWeaponValue;
             item.noMelee = true;

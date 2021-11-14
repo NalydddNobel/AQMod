@@ -27,12 +27,12 @@ namespace AQMod.Projectiles.Monster
             projectile.timeLeft *= 5;
         }
 
-        private const float size = OmegaStarite.CIRCUMFERENCE * 4f;
+        private const float size = NPCs.Boss.Starite.OmegaStarite.CIRCUMFERENCE * 4f;
 
         public override void AI()
         {
             var npc = Main.npc[(int)projectile.ai[0]];
-            var omegaStarite = (OmegaStarite)npc.modNPC;
+            var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)npc.modNPC;
             if (!npc.active)
             {
                 projectile.Kill();
@@ -57,7 +57,7 @@ namespace AQMod.Projectiles.Monster
         {
             float _ = float.NaN;
             var normal = new Vector2(1f, 0f).RotatedBy(projectile.rotation);
-            var offset = normal * OmegaStarite.CIRCUMFERENCE;
+            var offset = normal * NPCs.Boss.Starite.OmegaStarite.CIRCUMFERENCE;
             Vector2 end = projectile.Center + offset + normal * NORMAL_BEAM_LENGTH;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), projectile.Center + offset, end, size * projectile.scale, ref _);
         }
@@ -69,7 +69,7 @@ namespace AQMod.Projectiles.Monster
             var frame = new Rectangle(0, 0, texture.Width, texture.Height / Main.projFrames[projectile.type]);
             float timeSin = (float)(Math.Sin(Main.GlobalTime) + 1f) / 2f;
             Vector2 normalizedRotation = new Vector2(1f, 0f).RotatedBy(projectile.rotation);
-            Vector2 basePosition = drawPosition + normalizedRotation * OmegaStarite.CIRCUMFERENCE;
+            Vector2 basePosition = drawPosition + normalizedRotation * NPCs.Boss.Starite.OmegaStarite.CIRCUMFERENCE;
             Vector2 origin = frame.Size() / 2f;
             Color beamColor = AQMod.CosmicEvent.stariteProjectileColor * 0.065f;
             float rotation = projectile.rotation - MathHelper.PiOver2;
@@ -99,7 +99,7 @@ namespace AQMod.Projectiles.Monster
             Vector2 dustVelocityNormal = new Vector2(1f, 0f).RotatedBy(projectile.rotation - MathHelper.PiOver2);
             Vector2 dustPositionOffset = dustVelocityNormal * (size / 2 - 60f) * baseScale;
             int type = ModContent.DustType<MonoDust>();
-            Vector2 spawnBase = projectile.Center + normalizedRotation * (OmegaStarite.CIRCUMFERENCE + 30f);
+            Vector2 spawnBase = projectile.Center + normalizedRotation * (NPCs.Boss.Starite.OmegaStarite.CIRCUMFERENCE + 30f);
             for (int i = 0; i < dustAmount; i++)
             {
                 float x = Main.rand.NextFloat(0f, length) * 60f;

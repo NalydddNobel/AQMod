@@ -169,7 +169,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
                                 for (int i = 0; i < 5; i++)
                                 {
                                     int damage = Main.expertMode ? 45 : 75;
-                                    int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<HyperSpike>(), damage, 1f, default, npc.whoAmI, i);
+                                    int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.Monster.HyperStarite>(), damage, 1f, default, npc.whoAmI, i);
                                     Main.projectile[p].netUpdate = true;
                                 }
                             }
@@ -454,37 +454,6 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             }
             Main.spriteBatch.Draw(texture, new Vector2((int)(npc.position.X + offset.X - Main.screenPosition.X), (int)(npc.position.Y + offset.Y - Main.screenPosition.Y)), npc.frame, new Color(60, 60, 60, 0) * AQMod.EffectIntensity, 0f, origin, npc.scale + 0.3f, SpriteEffects.None, 0f);
             return false;
-        }
-    }
-
-    public class HyperSpike : ModProjectile
-    {
-        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
-
-        public override void SetDefaults()
-        {
-            projectile.width = 50;
-            projectile.height = 50;
-            projectile.hostile = true;
-            projectile.ignoreWater = true;
-            projectile.tileCollide = false;
-            projectile.aiStyle = -1;
-        }
-
-        public override void AI()
-        {
-            var npc = Main.npc[(int)projectile.ai[0]];
-            if (npc.active && npc.type == ModContent.NPCType<HyperStarite>())
-            {
-                var armLength = new Vector2(npc.height * npc.scale + npc.ai[3] + 18f, 0f);
-                float rotation = npc.rotation + MathHelper.TwoPi / 5f * projectile.ai[1];
-                projectile.timeLeft = 16;
-                projectile.Center = npc.Center + armLength.RotatedBy(rotation - MathHelper.PiOver2);
-            }
-            else
-            {
-                projectile.active = false;
-            }
         }
     }
 }

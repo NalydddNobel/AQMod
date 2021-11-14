@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Monster
 {
-    public class StariteShot : ModProjectile
+    public class SuperStarite : ModProjectile
     {
         public override void SetStaticDefaults()
         {

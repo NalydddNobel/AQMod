@@ -101,13 +101,13 @@ namespace AQMod.Tiles
                 Player player = Main.LocalPlayer;
                 switch (Main.tile[i, j].frameX / 18)
                 {
-                    case 0:
+                    case Starite:
                     player.NPCBannerBuff[ModContent.NPCType<Starite>()] = true;
                     break;
-                    case 1:
+                    case SuperStarite:
                     player.NPCBannerBuff[ModContent.NPCType<SuperStarite>()] = true;
                     break;
-                    case 2:
+                    case HyperStarite:
                     player.NPCBannerBuff[ModContent.NPCType<HyperStarite>()] = true;
                     break;
                     case ArrowCrab:
@@ -130,6 +130,7 @@ namespace AQMod.Tiles
                     break;
                     case TrapperImp:
                     player.NPCBannerBuff[ModContent.NPCType<TrapImp>()] = true;
+                    player.NPCBannerBuff[ModContent.NPCType<Trapper>()] = true;
                     break;
                     case Vraine:
                     player.NPCBannerBuff[ModContent.NPCType<Vraine>()] = true;

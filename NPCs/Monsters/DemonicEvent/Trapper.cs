@@ -107,7 +107,7 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             float projectileSpeed = 10f;
-                            int projectileType = ModContent.ProjectileType<TrapperBlast>();
+                            int projectileType = ModContent.ProjectileType<Projectiles.Monster.Trapper>();
                             int damage = 20;
                             if (Main.expertMode)
                                 damage = 15;

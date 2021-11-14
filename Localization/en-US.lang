@@ -640,7 +640,6 @@ ItemTooltip.ATM=Summons a flying safe to store your items\nPlace in your Safe in
 ItemTooltip.SpectralLens=Toggles energy drops
 ItemTooltip.Globebulb=Speeds up time for a moment
 # Buffs
-Common.BuffSupportive=(Supportive)
 BuffName.BlueFire=Blue Fire
 BuffDescription.BlueFire=The immense heat burns off your skin
 BuffName.Spoiled=Spoiled
@@ -669,28 +668,110 @@ BuffName.Opposing=Opposing
 BuffDescription.Opposing=Enemies have a chance to drop opposing loot
 BuffName.SpicyEelBuff=Spicy Eel
 BuffDescription.SpicyEelBuff=Your speed is greatly increased
-# Projectiles
-ProjectileName.PentalScythe=Flaming Scythe
-ProjectileName.MagmalbulbiaStaff=DMagmalbulbia Staff
+
+###### Projectiles ######
+# Melee Weapon Projectiles
+ProjectileName.AirBlade=Air Blade
+ProjectileName.AirBladeGhost=Air Blade
+ProjectileName.Aphrodite=Aphrodite
+ProjectileName.ArgonSpear=Argon Spear
+ProjectileName.Burnterizer=Burnterizer
+ProjectileName.BurnterizerExplosion=Burnterizer
+ProjectileName.CrystalDagger=Crystal Dagger
+ProjectileName.Galactium=Galactium
+ProjectileName.HellsBoon=Hell's Boon
+ProjectileName.HorizonSkies=Horizon Skies
+ProjectileName.HorizonSkiesBolt=Horizon Skies
+ProjectileName.HorizonSkiesExplosion=Horizon Skies
+ProjectileName.JerryClawFlail=Jerry Claw
+ProjectileName.PowPunch=Pow Punch
+ProjectileName.PowPunchExplosion=Pow Punch
+ProjectileName.StariteSpinner=Starite Spinner
+ProjectileName.UltimaFlare=Ultima Flare
+ProjectileName.XenonBasher=Xenon Basher
+ProjectileName.Venus=Venus
+
+# Ranged Weapon Projectiles
+ProjectileName.RayBullet=Ray Bullet
+ProjectileName.RayChlorophyteBullet=Ray Bullet
+ProjectileName.RayCursedBullet=Ray Bullet
+ProjectileName.RayIchorBullet=Ray Bullet
+ProjectileName.RayMeteorBullet=Ray Bullet
+ProjectileName.RayVenomBullet=Ray Bullet
+ProjectileName.DeltoidArrow=Deltoid Arrow
+ProjectileName.HamaYumiArrow=Hama Yumi Arrow
+ProjectileName.SpaceShot=SpaceShot
+
+# Magic Weapon Projectiles
+ProjectileName.Bubbler=Bubbler
+ProjectileName.FizzlingFire=Fizzling Fire
+ProjectileName.GebulbaStaff=Gebulba Staff
+ProjectileName.MagicWand=Magic Wand
+ProjectileName.MagmalbulbiaStaff=Magmalbulbia Staff
 ProjectileName.MagmalbulbiaStaffExplosion=Magmalbulbia Staff
-ProjectileName.NarrenBolt=Narren Bolt
-ProjectileName.OmegaRay=Omega Ray
-ProjectileName.HyperSpike=Hyper Starite Arm
-ProjectileName.OmegaStariteCollider=Omega Starite
+ProjectileName.MoonMoonMirror=Moonluna Mirror
+ProjectileName.Narrizuul=Narrizuul
+ProjectileName.PentalScythe=Pental Scythe
+ProjectileName.ScarletSea=Scarlet Sea
+ProjectileName.SeltzerRain=Seltzer Rain
+ProjectileName.SunbaskMirror=Sunbask Mirror
+
+# Summon Weapon Projectiles
+ProjectileName.Chomper=Chomper
+ProjectileName.Lotus=Lotus
+ProjectileName.LotusShot=Lotus
+ProjectileName.Starite=Starite
+ProjectileName.StariteLeader=Starite
+ProjectileName.CrimsonHand=Crimson Hand
+ProjectileName.Monoxider=Monoxider
+
+# Misc
+ProjectileName.CelesteTorusCollider=Celeste Torus
+ProjectileName.DreadsoulAttack=Dreadsoul
+ProjectileName.FertilePowder=Fertile Powder
+ProjectileName.Friend=Friend
+ProjectileName.FriendlyWind=Friendly Wind
+ProjectileName.GoldPowder=Gold Powder
+ProjectileName.HyperCrystalExplosion=Hyper Crystal
+ProjectileName.KelBall=Kel's Ball
+ProjectileName.UltimateSword=Ultimate Sword
+
+# Pets
+ProjectileName.ATM=ATM
+ProjectileName.HeartMoth=Heart Moth
+ProjectileName.MicroStarite=Micro Starite
+
+# Fishing Bobbers
+ProjectileName.BeeRod=Bee Bobber
+ProjectileName.CrabRod=Crab Bobber
+
+# Enemy Projectiles
+ProjectileName.HyperStarite=Hyper Starite
 ProjectileName.JerryBubble=Jerry Bubble
 ProjectileName.JerryBubbleBig=Jerry Bubble
 ProjectileName.JerryPearl=Jerry Pearl
-ProjectileName.GelBulb=Gebulba
-ProjectileName.Maggie=Magma Bubble
-ProjectileName.CrimsonHandMinion=Crimson Hand
-ProjectileName.CrimsonHandBloodShot={$Mods.AQMod.ProjectileName.CrimsonHandMinion}
+ProjectileName.Magmabub=Magmabub
+ProjectileName.OmegaBullet=Omega Bullet
+ProjectileName.OmegaRay=Omega Ray
+ProjectileName.OmegaStarite=Omega Starite
+ProjectileName.RainbowStarofHyperApocalypse=Rainbow Star of Hyper Apocalypse
+ProjectileName.StriderCrab=Strider Crab
+ProjectileName.StriderCrabLaser=Strider Crab
+ProjectileName.SuperStarite=Super Starite
+ProjectileName.TemperatureBombCold=Temperature Bomb
+ProjectileName.TemperatureBombHot=Temperature Bomb
+ProjectileName.Trapper=Trapper
+
 # NPCs
-NPCName.BloodMimic={$NPCName.Mimic}
+NPCName.DwarfStarite=Dwarf Starite
 NPCName.Starite=Starite
 NPCName.SuperStarite=Super Starite
 NPCName.HyperStarite=Hyper Starite
 NPCName.UltraStarite=Ultra Starite
 NPCName.OmegaStarite=Omega Starite
+NPCName.MultiStarite=Multi Starite
+
+NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
 NPCName.Robster=Lobster
 NPCName.JerryCrabson=Jerry Crabson
 NPCName.JerryClaw=Jerry Claw
@@ -698,59 +779,51 @@ NPCName.ArrowCrab=Arrow Crab
 NPCName.SoliderCrabs=Solider Crabs
 NPCName.HermitCrab=Hermit Crab
 NPCName.StriderCrab=Strider Crab
-NPCName.Heckto=Heckto
+
 NPCName.Magmalbubble=Magmabubble
 NPCName.TrapImp=Trapper Imp
 NPCName.Trapper=Trapper
 NPCName.Cindera=Cindera
-NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
+
 NPCName.Meteor=Meteor
-NPCName.HotCurrent=Hot Current
-NPCName.ColdCurrent=Cold Current
 NPCName.TemperatureBalloon=Temperature Balloon
 NPCName.SpaceSquid=Space Squid
 NPCName.RedSprite=Red Sprite
 NPCName.Vraine=Vraine
 NPCName.Atmodrone=Atmodrone
-NPCName.MultiStarite=Multi Starite
-NPCName.DwarfStarite=Dwarf Starite
+NPCName.HotCurrent=Hot Current
+NPCName.ColdCurrent=Cold Current
+
+NPCName.BloodMimic={$NPCName.Mimic}
+NPCName.Heckto=Heckto
 
 # Banners
 ItemName.StariteBanner=Starite Banner
 ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
-
 ItemName.SuperStariteBanner=Super Starite Banner
 ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
-
 ItemName.HyperStariteBanner=Hyper Starite Banner
 ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
 
 ItemName.ArrowCrabBanner=Arrow Crab Banner
 ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
-
 ItemName.HermitCrabBanner=Hermit Crab Banner
 ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
-
 ItemName.SoliderCrabsBanner=Solider Crabs Banner
 ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
-
 ItemName.StriderCrabBanner=Strider Crab Banner
 ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
 
 ItemName.CinderaBanner=Cindera Banner
 ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}
-
 ItemName.MagmabubbleBanner=Magmabubble Banner
 ItemTooltip.MagmabubbleBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}
-
 ItemName.TrapperImpBanner=Trapper Imp Banner
 ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}
 
 ItemName.VraineBanner=Vraine Banner
 ItemTooltip.VraineBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Vraine}
-
 ItemName.TemperatureBalloonBanner=Temperature Balloon Banner
 ItemTooltip.TemperatureBalloonBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TemperatureBalloon}
-
 ItemName.RedSpriteBanner=Red Sprite Banner
 ItemTooltip.RedSpriteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.RedSprite}

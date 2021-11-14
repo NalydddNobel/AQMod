@@ -1,10 +1,9 @@
-﻿using AQMod.Common;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -18,7 +17,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             Item.staff[item.type] = true;
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow", new Color(128, 128, 128, 0)), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(AQUtils.GetPath(this) + "_Glow", new Color(128, 128, 128, 0)), item.type);
         }
 
         public override void SetDefaults()
@@ -32,7 +31,7 @@ namespace AQMod.Items.Weapons.Magic
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.rare = ItemRarityID.Orange;
-            item.shoot = ModContent.ProjectileType<FizzledFire>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Magic.FizzlingFire>();
             item.shootSpeed = 15f;
             item.mana = 30;
             item.autoReuse = true;

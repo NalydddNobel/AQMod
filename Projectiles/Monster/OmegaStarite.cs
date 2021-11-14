@@ -1,15 +1,11 @@
-﻿using AQMod.Assets;
-using AQMod.NPCs.Boss.Starite;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Monster
 {
-    public class OmegaStariteCollider : ModProjectile
+    public class OmegaStarite : ModProjectile
     {
-        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
-
         public override void SetDefaults()
         {
             projectile.width = 2;
@@ -19,7 +15,7 @@ namespace AQMod.Projectiles.Monster
             projectile.penetrate = -1;
             projectile.hostile = true;
             projectile.ignoreWater = true;
-            projectile.hide = true; // seems useless but there's nothing to draw anyways, so why even try to run the draw method at all?
+            projectile.hide = true;
         }
 
         public override void AI()
@@ -33,7 +29,7 @@ namespace AQMod.Projectiles.Monster
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            var omegaStarite = (OmegaStarite)Main.npc[(int)projectile.ai[0]].modNPC;
+            var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)Main.npc[(int)projectile.ai[0]].modNPC;
             for (int i = 0; i < omegaStarite.orbs.Count; i++)
             {
                 var collisionCenter = new Vector2(omegaStarite.orbs[i].position.X, omegaStarite.orbs[i].position.Y);

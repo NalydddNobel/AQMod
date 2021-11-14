@@ -46,7 +46,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             knockBack *= 0.5f;
             var spawnPosition = target.Center;
-            int type = ModContent.ProjectileType<Projectiles.Melee.XenonSpore>();
+            int type = ModContent.ProjectileType<Projectiles.Melee.XenonBasher>();
             float speed = 6f * player.meleeSpeed;
             int amount = Main.rand.Next(3) + 1;
             if (crit)

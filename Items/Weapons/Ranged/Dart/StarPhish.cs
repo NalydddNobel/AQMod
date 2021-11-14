@@ -12,7 +12,7 @@ namespace AQMod.Items.Weapons.Ranged.Dart
             item.width = 24;
             item.height = 8;
             item.ranged = true;
-            item.damage = 15;
+            item.damage = 18;
             item.useTime = 31;
             item.useAnimation = 31;
             item.useStyle = ItemUseStyleID.HoldingOut;

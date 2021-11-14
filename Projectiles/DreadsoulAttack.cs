@@ -9,8 +9,6 @@ namespace AQMod.Projectiles
 {
     public class DreadsoulAttack : ModProjectile
     {
-        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
-
         public override void SetDefaults()
         {
             projectile.width = 8;
@@ -19,6 +17,7 @@ namespace AQMod.Projectiles
             projectile.aiStyle = -1;
             projectile.tileCollide = false;
             projectile.extraUpdates = 6;
+            projectile.hide = true;
         }
 
         public override void AI()
@@ -42,10 +41,6 @@ namespace AQMod.Projectiles
                 if (target > -1)
                     projectile.velocity = Vector2.Lerp(projectile.velocity, new Vector2(2f, 0f).RotatedBy((Main.npc[target].Center - center).ToRotation()), 0.05f);
             }
-        }
-
-        public override void PostAI()
-        {
             int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(240, 90, 100, 0));
             Main.dust[d].velocity = projectile.velocity * 0.01f;
         }

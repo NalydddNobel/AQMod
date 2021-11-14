@@ -30,7 +30,7 @@ namespace AQMod.Items.Weapons.Melee
             item.noMelee = true;
             item.noUseGraphic = true;
             item.shootSpeed = 10f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.Yoyos.Venus>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.Venus>();
         }
 
         public override void AddRecipes()

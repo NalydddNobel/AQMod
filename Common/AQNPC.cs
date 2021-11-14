@@ -458,6 +458,7 @@ namespace AQMod.Common
         /// </summary>
         public bool windStruck;
         public bool windStruckOld;
+        public bool lovestruckAQ;
 
         public override void ResetEffects(NPC npc)
         {
@@ -465,6 +466,7 @@ namespace AQMod.Common
             notFrostburn = false;
             windStruckOld = windStruck;
             windStruck = false;
+            lovestruckAQ = false;
         }
 
         public bool ShouldApplyWindMechanics(NPC npc)
@@ -549,6 +551,11 @@ namespace AQMod.Common
             }
         }
 
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+        {
+            ApplyDamageEffects(ref damage);
+        }
+
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             if (npc.townNPC)
@@ -557,6 +564,23 @@ namespace AQMod.Common
                 {
                     damage = (int)(damage * 0.1f);
                 }
+            }
+            ApplyDamageEffects(ref damage);
+        }
+
+        private void ApplyDamageEffects(ref int damage)
+        {
+            if (lovestruckAQ)
+            {
+                damage += (int)(damage * 0.1f);
+            }
+        }
+
+        public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
+        {
+            if (lovestruckAQ)
+            {
+                damage -= (int)(damage * 0.1f);
             }
         }
 

@@ -1,16 +1,17 @@
-﻿using Terraria;
+﻿using AQMod.Buffs.Debuffs;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Melee.Yoyos
+namespace AQMod.Projectiles.Melee
 {
     public class Venus : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type] = 2f;
-            ProjectileID.Sets.YoyosMaximumRange[projectile.type] = 210f;
-            ProjectileID.Sets.YoyosTopSpeed[projectile.type] = 8.75f;
+            ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type] = 3f;
+            ProjectileID.Sets.YoyosMaximumRange[projectile.type] = 320f;
+            ProjectileID.Sets.YoyosTopSpeed[projectile.type] = 9.5f;
         }
 
         public override void SetDefaults()
@@ -27,8 +28,9 @@ namespace AQMod.Projectiles.Melee.Yoyos
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.rand.NextBool(4))
+            if (Main.rand.NextBool(4) && target.Distance(Main.player[projectile.owner].Center) < 120f)
                 target.AddBuff(BuffID.Poisoned, 30);
+            LovestruckAQ.Apply(target, 120);
         }
     }
 }

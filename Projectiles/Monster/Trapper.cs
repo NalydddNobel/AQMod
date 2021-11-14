@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Monster
 {
-    public class TrapperBlast : ModProjectile
+    public class Trapper : ModProjectile
     {
         public override void SetDefaults()
         {

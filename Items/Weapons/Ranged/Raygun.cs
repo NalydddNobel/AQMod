@@ -20,7 +20,7 @@ namespace AQMod.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            item.damage = 44;
+            item.damage = 32;
             item.ranged = true;
             item.useTime = 16;
             item.useAnimation = 16;

@@ -10,8 +10,6 @@ namespace AQMod.Projectiles
 {
     public class HyperCrystalExplosion : ModProjectile
     {
-        public override string Texture => "AQMod/" + TextureCache.None;
-
         public override void SetDefaults()
         {
             projectile.width = 80;
@@ -19,6 +17,7 @@ namespace AQMod.Projectiles
             projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.timeLeft = 2;
+            projectile.hide = true;
             projectile.usesIDStaticNPCImmunity = true;
             projectile.idStaticNPCHitCooldown = 2;
         }

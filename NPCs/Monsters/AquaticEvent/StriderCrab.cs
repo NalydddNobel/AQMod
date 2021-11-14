@@ -33,7 +33,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
             new Vector2(40, 24f),
         };
 
-        private StriderCrabLeg[] _legs;
+        private Projectiles.Monster.StriderCrab[] _legs;
 
         public void Flip(int newDir)
         {
@@ -57,14 +57,14 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
         private void Init()
         {
             var center = npc.Center;
-            int legType = ModContent.ProjectileType<StriderCrabLeg>();
+            int legType = ModContent.ProjectileType<Projectiles.Monster.StriderCrab>();
             npc.TargetClosest(faceTarget: true);
             int legsCount = _legPositions.Length;
-            _legs = new StriderCrabLeg[legsCount];
+            _legs = new Projectiles.Monster.StriderCrab[legsCount];
             for (int i = 0; i < legsCount; i++)
             {
                 var p = Projectile.NewProjectileDirect(GetLegPosition(i, npc.direction), Vector2.Zero, legType, 20, 0f, Main.myPlayer, i, npc.whoAmI + 1);
-                _legs[i] = p.modProjectile as StriderCrabLeg;
+                _legs[i] = p.modProjectile as Projectiles.Monster.StriderCrab;
             }
         }
 
