@@ -116,7 +116,7 @@ namespace AQMod.Content.WorldEvents
                 pool[0] *= 0.1f;
                 if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
                     pool.Add(ModContent.NPCType<Vraine>(), 1f);
-                pool.Add(ModContent.NPCType<TemperatureBalloon>(), 1f);
+                //pool.Add(ModContent.NPCType<TemperatureBalloon>(), 1f);
             }
         }
     }
