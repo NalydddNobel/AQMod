@@ -50,6 +50,7 @@ using Terraria.UI;
 using Terraria.Utilities;
 using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Common.CrossMod;
+using AQMod.Items.Placeable.Trophies;
 
 namespace AQMod
 {
@@ -430,7 +431,6 @@ namespace AQMod
             DemonSiege.Setup(); // Sets up the Demon Siege event
             GlimmerEvent.Setup();
             BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
-            FargosQOLStuff.Setup(this); // Sets up boss summons for Fargowiltas,
             AQItem.Sets.Setup();
             MapMarkers.Setup(setupStatics: true);
             invokeTasks();
@@ -535,26 +535,7 @@ namespace AQMod
                 DowngradeSiegeWeaponRecipe(u);
             }
 
-            if (FargosQOLStuff.FargowiltasActive)
-            {
-                int[] itemArray = new int[] { ModContent.ItemType<EnchantedDye>(), ModContent.ItemType<RainbowOutlineDye>(), ModContent.ItemType<DiscoDye>(), };
-                int item = ModContent.ItemType<OmegaStariteTrophy>();
-                for (int i = 0; i < itemArray.Length; i++)
-                {
-                    for (int j = 0; j < itemArray.Length; j++)
-                    {
-                        if (j != i)
-                        {
-                            r = new ModRecipe(this);
-                            r.AddIngredient(itemArray[i]);
-                            r.AddIngredient(item);
-                            r.AddTile(TileID.Solidifier);
-                            r.SetResult(itemArray[j]);
-                            r.AddRecipe();
-                        }
-                    }
-                }
-            }
+            FargosQOLStuff.Setup(this);
         }
 
         /// <summary>
@@ -598,11 +579,7 @@ namespace AQMod
             if (Main.dedServ)
             {
                 DrawUtils.UnloadAssets();
-                if (WorldEffects != null)
-                {
-                    WorldEffects.Clear();
-                    WorldEffects = null;
-                }
+                WorldEffects = null;
                 StarbyteColorCache.Unload();
                 ScreenShakeManager.Unload();
                 ArmorOverlays = null;

@@ -177,13 +177,6 @@ namespace AQMod.NPCs.Monsters
         public override void NPCLoot()
         {
             Rectangle rect = npc.getRect();
-            void randDrops()
-            {
-                if (Main.rand.NextBool(3))
-                    Item.NewItem(rect, ModContent.ItemType<SuspiciousLookingSteak>());
-                if (Main.rand.NextBool(5))
-                    Item.NewItem(rect, ModContent.ItemType<BloodshedPotion>());
-            }
             if (NPC.CountNPCS(npc.type) <= 1)
             {
                 var choices = new List<int> { ModContent.ItemType<TargeoftheBlodded>(), };
@@ -206,6 +199,14 @@ namespace AQMod.NPCs.Monsters
             {
                 randDrops();
             }
+        }
+
+        private void randDrops()
+        {
+            if (Main.rand.NextBool(3))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<SuspiciousLookingSteak>());
+            if (Main.rand.NextBool(5))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<BloodshedPotion>());
         }
     }
 }

@@ -4,7 +4,7 @@ using AQMod.Items.Weapons.Ranged;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable
+namespace AQMod.Items.Placeable.Trophies
 {
     public class OmegaStariteTrophy : ModItem
     {
@@ -23,23 +23,6 @@ namespace AQMod.Items.Placeable
             item.rare = ItemRarityID.Blue;
             item.createTile = ModContent.TileType<Tiles.Trophies>();
             item.placeStyle = 0;
-        }
-
-        public override void AddRecipes()
-        {
-            if (FargosQOLStuff.FargowiltasActive)
-            {
-                var r = new ModRecipe(mod);
-                r.AddIngredient(item.type);
-                r.AddTile(TileID.Solidifier);
-                r.SetResult(ModContent.ItemType<Raygun>());
-                r.AddRecipe();
-                r = new ModRecipe(mod);
-                r.AddIngredient(item.type);
-                r.AddTile(TileID.Solidifier);
-                r.SetResult(ModContent.ItemType<MagicWand>());
-                r.AddRecipe();
-            }
         }
     }
 }

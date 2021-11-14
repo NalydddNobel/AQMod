@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Placeable;
+﻿using AQMod.Items.Placeable.Trophies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

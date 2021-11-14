@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Terraria.ID;
 
 namespace AQMod.Content
@@ -10,7 +9,6 @@ namespace AQMod.Content
     public class StarbyteColorCache
     {
         private static Dictionary<ushort, Color> _colorsCache;
-        private static Stopwatch _colorTimer;
 
         internal static void Init()
         {
@@ -30,16 +28,7 @@ namespace AQMod.Content
 
         internal static void Unload()
         {
-            if (_colorsCache != null)
-            {
-                _colorsCache.Clear();
-                _colorsCache = null;
-            }
-            if (_colorTimer != null)
-            {
-                _colorTimer.Stop();
-                _colorTimer = null;
-            }
+            _colorsCache = null;
         }
 
         public static Color GetColor(int item)
@@ -57,14 +46,18 @@ namespace AQMod.Content
                         texture.GetData(clrs, 0, clrs.Length);
                         int pixelPaddingX = 4;
                         if (texture.Width <= 6)
+                        {
                             pixelPaddingX = 0;
+                        }
                         else if (texture.Width <= 8)
                         {
                             pixelPaddingX = 2;
                         }
                         int pixelPaddingY = 4;
                         if (texture.Height <= 6)
+                        {
                             pixelPaddingY = 0;
+                        }
                         else if (texture.Height <= 8)
                         {
                             pixelPaddingY = 2;

@@ -25,22 +25,5 @@ namespace AQMod.Items.Placeable.Banners
             item.createTile = ModContent.TileType<AQBanners>();
             item.placeStyle = AQBanners.SuperStarite;
         }
-
-        public override void AddRecipes()
-        {
-            if (FargosQOLStuff.FargowiltasActive)
-            {
-                var r = new ModRecipe(mod);
-                r.AddIngredient(item.type);
-                r.AddTile(TileID.Solidifier);
-                r.SetResult(ItemID.Nazar);
-                r.AddRecipe();
-                r = new ModRecipe(mod);
-                r.AddIngredient(item.type);
-                r.AddTile(TileID.Solidifier);
-                r.SetResult(ModContent.ItemType<OutlineDye>());
-                r.AddRecipe();
-            }
-        }
     }
 }

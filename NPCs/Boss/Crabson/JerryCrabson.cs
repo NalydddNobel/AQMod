@@ -4,7 +4,7 @@ using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Placeable;
+using AQMod.Items.Placeable.Trophies;
 using AQMod.Items.Tools;
 using AQMod.Items.TreasureBags;
 using AQMod.Items.Vanities.Dyes;
