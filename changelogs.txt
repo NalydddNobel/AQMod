@@ -1,3 +1,90 @@
+####### 1.2.3.2 #######
+
+Added Items:
+Air Blade
+Vraine Banner
+Temperature Balloon Banner
+Red Sprite Banner
+
+Added Enemy:
+Vraine, an enemy that spawns in the sky during windy days
+
+* Important Changes:
+- Breaking a Trapper Imp Banner now drops the proper banner
+
+- Greatly shortened "Meteor Time"
+
+- Temperature Balloons and Vraines now drop Atmospheric Energy 
+
+- Harpies can no longer drop Atmospheric Energy
+
+- The Sunbask Mirror now drops from Hot Temperature Balloons, and the Moonluna Mirror now drops from Cold Temperature Balloons
+
+- Exotic Coral can no longer grow on grass tiles
+
+- The Trapper Imp banner now also makes you have increased damage and defense against Trappers
+
+- Reduced the damage of the Raygun
+*44 -> 32 
+- Increased the damage of the Starite Staff
+*15 -> 18
+- Increased the damage of the Corrupt Pot
+*26 -> 36 
+- Increased the damage of the Crimson Hand Staff
+*17 -> 20
+- Increased the damage of the Deltoid
+*16 -> 20
+- Increased the damage of Hama Yumi
+*29 -> 33
+- Increased the damage of the Space Shot
+*12 -> 13
+- Increased the damage of the Starphish
+*15 -> 18
+- Reduced the damage of the Sprinkler
+*30 -> 26
+- Increased the stats of the Cinnabar Bow
+damage: 18 -> 22
+use speed: 30 tick delay -> 26 tick delay
+knockback: 4 -> 6.5
+shoot speed: 7.5 -> 8.5
+- Increased the yoyo stats of Venus
+210 -> 320 range
+8.75 speed -> 9.5 speed
+2 lifetime -> 3 lifetime
+- Increased the yoyo stats of Aphrodite
+200 -> 280 range
+9 speed -> 11.5 speed
+2 lifetime -> 4 lifetime 
+- Modified the recipes of Venus and Aphrodite
+- Venus now inflicts lovestruck, and can only poison enemies if they are close to the player
+- Lovestruck inflicted by Aphrodite and Venus now makes enemies deal 10% less damage, and take 10% more damage 
+- Increased the shoot speed of the Jerry Claw (flail)
+*13.5 -> 16 
+- Increased the damage of the Pow Punch
+*24 -> 25
+
+- The Starite Blade now inflicts Blue Fire
+- Galactium now inflicts Blue Fire on true melee hits 
+- Blue Fire now deals 12 damage per second instead of 1 damage per second to enemies 
+
+- Decreased the damage of the Magic Wand
+*68 -> 32 
+- The Magic Wand's horizontal waves no longer obey tiles when spawning, meaning they will be at full length no matter what
+
+# Misc Changes:
+- Increased the shoot speed of The Fan
+- Added a visual effect to The Fan's wind
+- Modified the tooltip of The Fan
+- Wind from The Fan can no longer break cuttable tiles 
+- The Arrow Crab, Strider Crab, and Solider Crabs can now be affected by wind
+
+- Fixed a bug regarding wind blowing itself...
+- Fixed a bug regarding meteors crashing
+
+- Fixed some localization errors
+- Renamed Magmalbubble to Magmabubble
+- Added fargo banner recipes for the Demon Siege enemies
+
 ####### 1.2.3 #######
 
 Added Items:
@@ -108,6 +195,7 @@ Ultimate Starfruit
 * Strider Crab
 
 - Aquatic Energy is no longer a global drop
+
 # Misc Changes:
 - Removed the deprecated "Edgelorth Wings"
 

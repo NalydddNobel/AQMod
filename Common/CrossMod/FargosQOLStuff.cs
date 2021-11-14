@@ -100,7 +100,7 @@ namespace AQMod.Common.CrossMod
             createFargoRecipe(ItemID.MimicBanner, ItemID.AdhesiveBandage);
             createFargoRecipe(ItemID.MimicBanner, ItemID.SharkToothNecklace);
             createFargoRecipe(ItemID.MimicBanner, ItemID.MoneyTrough);
-            var r = new ModRecipe(_aQMod1);
+            r = new ModRecipe(_aQMod1);
             r.AddIngredient(ItemID.MimicBanner);
             r.AddIngredient(ItemID.Bone, 5);
             r.AddTile(TileID.Solidifier);
