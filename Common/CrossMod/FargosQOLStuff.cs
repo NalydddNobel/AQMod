@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Common
+namespace AQMod.Common.CrossMod
 {
     internal sealed class FargosQOLStuff
     {
@@ -31,6 +31,11 @@ namespace AQMod.Common
                 aQMod.Logger.Warn(e.Message);
                 aQMod.Logger.Warn(e.StackTrace);
             }
+        }
+
+        private static void createRecipes()
+        {
+
         }
 
         private void AddSummon(float sort, string itemName, Func<bool> checkFlag, int price)

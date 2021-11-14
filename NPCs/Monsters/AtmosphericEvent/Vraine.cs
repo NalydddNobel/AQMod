@@ -343,6 +343,12 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             }
         }
 
+        public override void NPCLoot()
+        {
+            if (Main.rand.NextBool(10) || !NPC.AnyNPCs(npc.type))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             Texture2D texture = Main.npcTexture[npc.type];

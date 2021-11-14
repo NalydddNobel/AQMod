@@ -32,7 +32,7 @@ namespace AQMod.Items.Dedicated
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(gold: 50);
             item.mana = 7;
-            item.shoot = ModContent.ProjectileType<NarrenBolt>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Magic.Narrizuul>();
         }
 
         public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)

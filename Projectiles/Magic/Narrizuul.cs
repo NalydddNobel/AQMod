@@ -15,7 +15,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Magic
 {
-    public class NarrenBolt : ModProjectile
+    public class Narrizuul : ModProjectile
     {
         public override void SetStaticDefaults()
         {

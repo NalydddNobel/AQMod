@@ -1,4 +1,4 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.CrossMod;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Ranged;
 using Terraria.ID;

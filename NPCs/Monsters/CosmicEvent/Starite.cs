@@ -3,7 +3,6 @@ using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Items.BuffItems.Foods;
-using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
 using Microsoft.Xna.Framework;
@@ -263,8 +262,8 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.CelesitalEightBall>());
             if (NPC.downedBoss1 && !AQNPC.NoEnergyDrops)
             {
-                if (!AQMod.CosmicEvent.IsActive || Main.rand.NextBool(10))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
+                if (Main.rand.NextBool(10))
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
             }
             if (Main.rand.NextBool(5))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<NeutronJuice>());

@@ -24,7 +24,7 @@ namespace AQMod.Items.Weapons.Magic
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.rare = ItemRarityID.Blue;
-            item.shoot = ModContent.ProjectileType<BubblerBubble>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Magic.Bubbler>();
             item.shootSpeed = 5.5f;
             item.mana = 5;
             item.autoReuse = true;
@@ -40,23 +40,6 @@ namespace AQMod.Items.Weapons.Magic
             speedX = newVelocity.X;
             speedY = newVelocity.Y;
             return true;
-        }
-    }
-
-    public class BubblerBubble : ModProjectile
-    {
-        public override void SetDefaults()
-        {
-            projectile.width = 16;
-            projectile.height = 16;
-            projectile.magic = true;
-            projectile.friendly = true;
-            projectile.aiStyle = 95;
-        }
-
-        public override void AI()
-        {
-            projectile.velocity.X *= 0.99f;
         }
     }
 }

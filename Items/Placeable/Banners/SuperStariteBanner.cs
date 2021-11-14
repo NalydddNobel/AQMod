@@ -1,4 +1,4 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.CrossMod;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Tiles;
 using Terraria;

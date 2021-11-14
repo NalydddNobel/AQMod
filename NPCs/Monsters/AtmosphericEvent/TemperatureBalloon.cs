@@ -170,23 +170,33 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     }
                 }
             }
+
             // attack stuff
             if (diffY.Abs() < 40f)
             {
-                //npc.ai[0]++;
-                //if (diffX.Abs() < 100f)
-                //{
-                //    npc.ai[0]++; // x2 faster when closer to the player
-                //}
-                //if ((int)npc.ai[0] > 60)
-                //{
-                //    npc.ai[0] = 0f;
-                //    npc.netUpdate = true;
-                //    if (Main.netMode != NetmodeID.MultiplayerClient)
-                //    {
-                //        Projectile.NewProjectile(npc.Center, new Vector2(0f, 12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
-                //    }
-                //}
+                if (diffX.Abs() < 100f)
+                {
+                    npc.ai[0] += 0.25f;
+                }
+                else
+                {
+                    npc.ai[0]++;
+                    npc.velocity.X *= 0.99f;
+                }
+                if ((int)npc.ai[0] > 90)
+                {
+                    npc.ai[0] = 0f;
+                    npc.netUpdate = true;
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        float veloX = targetX - npc.position.X + npc.width / 2f;
+                        veloX /= 60f;
+                        int projectileType = ModContent.ProjectileType<Projectiles.Monster.TrapperBlast>();
+                        Projectile.NewProjectile(npc.Center, new Vector2(veloX, -12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center, new Vector2(veloX * 0.75f, -12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center, new Vector2(veloX * 1.25f, -12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
+                    }
+                }
             }
             else
             {
@@ -215,7 +225,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 Main.dust[d].position = center;
                 var offset = new Vector2(Main.rand.NextFloat(npc.width - 20f) / 2f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
                 offset.Y *= yMult;
-                Main.dust[d].alpha = 240;
+                Main.dust[d].alpha = 222;
                 Main.dust[d].position += offset;
                 Main.dust[d].velocity *= 0.1f;
                 Main.dust[d].velocity += npc.velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f));
@@ -256,6 +266,26 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 if (npc.frame.Y < frameHeight * (Main.npcFrameCount[npc.type] - 1))
                 {
                     npc.frame.Y += frameHeight;
+                }
+            }
+        }
+
+        public override void NPCLoot()
+        {
+            if (Main.rand.NextBool(2))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
+            if ((int)npc.ai[1] == 1)
+            {
+                if (Main.rand.NextBool(12))
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Magic.SunbaskMirror>());
+                }
+            }
+            else
+            {
+                if (Main.rand.NextBool(12))
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Magic.UnityMirror>());
                 }
             }
         }

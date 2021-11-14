@@ -71,8 +71,16 @@ namespace AQMod.Assets
             Trails = fillDictionary_ThreadSafe(TrailTex.Count, "AQMod/Assets/Textures/Trail_");
         }
 
+        /// <summary>
+        /// Loads a dictionary of textures from a specified path
+        /// </summary>
+        /// <typeparam name="TEnum"></typeparam>
+        /// <param name="count">The max amount of textures. This is an enum since dictionary cringe, plus an excuse to not write the <T> stuff</param>
+        /// <param name="pathWithoutNumbers">The path without the added number at the end. Example: "AQMod/Assets/Textures/Fart_". the paths would add 0, 1, 2, ect at the end of that path</param>
+        /// <returns></returns>
         private static Dictionary<TEnum, Texture2D> fillDictionary_ThreadSafe<TEnum>(TEnum count, string pathWithoutNumbers) where TEnum : Enum
-        {
+        { // why does this summary not work at all :ech:
+            // also this might be a bit overkill since this all loads in a single frame right now
             try
             {
                 int max = count.GetHashCode();

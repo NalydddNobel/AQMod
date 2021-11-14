@@ -1,4 +1,4 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.CrossMod;
 using AQMod.Tiles;
 using Terraria;
 using Terraria.ID;

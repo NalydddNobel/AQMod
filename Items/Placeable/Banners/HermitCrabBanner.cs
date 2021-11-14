@@ -1,4 +1,4 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.CrossMod;
 using AQMod.Items.Armor.Crab;
 using AQMod.Items.Vanities;
 using AQMod.Tiles;
