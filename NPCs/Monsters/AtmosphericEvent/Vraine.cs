@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.NPCs.Monsters.AtmosphericEvent
 {
-    public class Vraine : ModNPC
+    public class Vraine : ModNPC, IDecideFallThroughPlatforms
     {
         public const int FramesX = 2;
 
@@ -386,6 +386,11 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             }
 
             return false;
+        }
+
+        bool IDecideFallThroughPlatforms.Decide()
+        {
+            return true;
         }
     }
 }

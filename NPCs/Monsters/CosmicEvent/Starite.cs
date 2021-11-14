@@ -34,7 +34,10 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             npc.noGravity = true;
             npc.knockBackResist = 1.1f;
             npc.value = Item.buyPrice(silver: 2);
+            npc.buffImmune[BuffID.Confused] = true;
             npc.buffImmune[BuffID.OnFire] = true;
+            npc.buffImmune[ModContent.BuffType<Sparkling>()] = true;
+            npc.buffImmune[ModContent.BuffType<BlueFire>()] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<StariteBanner>();
         }

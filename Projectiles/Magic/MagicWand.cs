@@ -1,10 +1,8 @@
 ﻿using AQMod.Assets.Graphics.ParticlesLayers;
-using AQMod.Common.WorldGeneration;
 using AQMod.Content.Dusts;
 using AQMod.Content.Particles;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -83,65 +81,48 @@ namespace AQMod.Projectiles.Magic
             int d = Dust.NewDust(center, 2, 2, type, 0f, 0f, 0, clr, 1.5f);
             float sum = projectile.position.X + projectile.position.Y;
             Main.dust[d].velocity = Vector2.Zero;
-            int x = (int)(center.X / 16f);
-            int y = (int)(center.Y / 16f);
-            const int maxHeight = 6;
-            int topY = -maxHeight;
-            int bottomY = maxHeight;
-            for (int i = 0; i < maxHeight; i++)
-            {
-                if (AQWorldGen.ActiveAndSolid(x, y - maxHeight + i))
-                {
-                    topY = -maxHeight + i;
-                }
-                if (AQWorldGen.ActiveAndSolid(x, y + maxHeight - i))
-                {
-                    bottomY = maxHeight - i;
-                }
-            }
-            float x2 = x * 16f;
-            float x3 = x * 16f + 8f;
+
             int projectileX = (int)projectile.position.X + projectile.width / 2;
             int projectileY = (int)projectile.position.Y + projectile.height / 2;
-            Main.PlaySound(SoundID.DD2_BetsyFireballShot.SoundId, projectileX, projectileY, SoundID.DD2_BetsyFireballShot.Style, 0.8f, 0.5f);
+            Main.PlaySound(SoundID.DD2_BetsyFireballShot.SoundId, projectileX, projectileY, SoundID.DD2_BetsyFireballShot.Style, 0.85f, -0.25f);
             if (Main.myPlayer == projectile.owner && AQMod.TonsofScreenShakes)
             {
                 float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
                 if (distance < 800)
-                    ScreenShakeManager.AddEffect(new BasicScreenShake(10, AQMod.MultIntensity((int)(1600f - distance) / 400)));
+                    ScreenShakeManager.AddEffect(new BasicScreenShake(12, AQMod.MultIntensity((int)(1600f - distance) / 300)));
             }
 
-            for (int yy = y + topY; yy < y + bottomY; yy++)
+            int height = 12 * 16;
+            var rect = new Rectangle(projectileX, projectileY - height / 2, 16, height);
+            for (int k = 0; k < height / 2; k++)
             {
-                for (int i = 0; i < 4; i++)
-                {
-                    int d1 = Dust.NewDust(new Vector2(x2, yy * 16f), 16, 16, type, 0, 0, 0, clr, 2f);
-                    Main.dust[d1].velocity *= 0.5f;
-                }
+                int d1 = Dust.NewDust(rect.TopLeft(), rect.Width, rect.Height, type, 0, 0, 0, clr, 2f);
+                Main.dust[d1].rotation = 0f;
+                Main.dust[d1].velocity *= 0.5f;
             }
             if (Main.netMode != NetmodeID.Server && AQMod.EffectQuality >= 1f)
             {
-                for (int yy = y + topY; yy < y + bottomY; yy++)
+                for (int k = 0; k < height; k++)
                 {
                     var velo = projectile.velocity * 0.015f;
-                    for (int i = 0; i < 3; i++)
-                    {
-                        var pos = new Vector2(x2, yy * 16f);
-                        var rect = new Rectangle((int)pos.X, (int)pos.Y, 16, 16);
-                        var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                        ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, new Vector2(Main.rand.NextFloat(-0.1f, 0.1f), Main.rand.NextFloat(-0.1f, 0.1f)),
-                            new Color(255, 180, 180, 0)));
-                    }
+                    var particlePos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                    ParticleLayers.AddParticle_PostDrawPlayers(
+                        new MonoParticleEmber(particlePos, new Vector2(Main.rand.NextFloat(-2.5f, 2.5f), Main.rand.NextFloat(-0.1f, 0.1f)),
+                        new Color(255, 180, 180, 0), 1.35f));
                 }
             }
             type = ModContent.ProjectileType<MagicPillar>();
-            int height = (y + bottomY - (y + topY)) * 16;
-            int p = Projectile.NewProjectile(x3, (y + topY) * 16f, 20f, 0f, type, projectile.damage, projectile.knockBack, projectile.owner);
+
+            int p = Projectile.NewProjectile(projectile.position + new Vector2(projectile.width / 2f - 8f, projectile.height / 2f - height / 2f), new Vector2(20f, 0f), type, projectile.damage, projectile.knockBack, projectile.owner);
             Main.projectile[p].height = height;
-            p = Projectile.NewProjectile(x3, (y + topY) * 16f, -20f, 0f, type, projectile.damage, projectile.knockBack, projectile.owner);
+            p = Projectile.NewProjectile(projectile.position + new Vector2(projectile.width / 2f + -8f, projectile.height / 2f + -height / 2f), new Vector2(-20f, 0f), type, projectile.damage, projectile.knockBack, projectile.owner);
             Main.projectile[p].height = height;
-            dustFlower(6, projectile.width * 2f, projectile.height * 4f, (int)(50 * AQMod.EffectQuality));
+            p = Projectile.NewProjectile(projectile.Center, new Vector2(-20f, 0f), ModContent.ProjectileType<MagicExplosion>(), projectile.damage, projectile.knockBack, projectile.owner);
+            Main.projectile[p].width = Main.projectile[p].height = (int)(height * 2.5f);
+            Main.projectile[p].position.X -= Main.projectile[p].width / 2f;
+            Main.projectile[p].position.Y -= Main.projectile[p].width / 2f;
+            if (AQMod.EffectQuality >= 1f)
+                dustFlower(6, height, height * 1.25f, (int)(125 * AQMod.EffectQuality));
         }
 
         private void dustFlower(int petals, float minSize, float maxSize, int amount = 40)

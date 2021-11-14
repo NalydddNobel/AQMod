@@ -12,7 +12,7 @@ using Terraria.Utilities;
 
 namespace AQMod.NPCs.Monsters.AtmosphericEvent
 {
-    public class TemperatureBalloon : ModNPC
+    public class TemperatureBalloon : ModNPC, IDecideFallThroughPlatforms
     {
         public const int FramesX = 2;
 
@@ -322,6 +322,11 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 }
             }
             return false;
+        }
+
+        bool IDecideFallThroughPlatforms.Decide()
+        {
+            return true;
         }
     }
 }
