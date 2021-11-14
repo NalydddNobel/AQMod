@@ -36,9 +36,9 @@ namespace AQMod.Items.Weapons.Melee
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.SilverBar, 8);
+            r.AddIngredient(ItemID.TungstenBar, 8);
             r.AddIngredient(ItemID.HealingPotion);
-            r.AddTile(TileID.WorkBenches);
+            r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();
         }

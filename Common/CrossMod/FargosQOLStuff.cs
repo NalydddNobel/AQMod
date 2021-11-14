@@ -82,15 +82,30 @@ namespace AQMod.Common.CrossMod
             createFargoRecipe<TrapperImpBanner, Items.Weapons.Melee.PowPunch>();
             createFargoRecipe<TrapperImpBanner, DemonicCursorDye>();
 
-            createFargoRecipe<TemperatureBalloonBanner, Items.Weapons.Magic.UnityMirror>();
-            createFargoRecipe<TemperatureBalloonBanner, Items.Weapons.Magic.SunbaskMirror>();
+            var r = new ModRecipe(_aQMod1);
+            r.AddIngredient(ModContent.ItemType<TemperatureBalloonBanner>());
+            r.AddIngredient(ItemID.SoulofNight);
+            r.AddTile(TileID.Solidifier);
+            r.SetResult(ModContent.ItemType<Items.Weapons.Magic.UnityMirror>());
+            r.AddRecipe();
+            r = new ModRecipe(_aQMod1);
+            r.AddIngredient(ModContent.ItemType<TemperatureBalloonBanner>());
+            r.AddIngredient(ItemID.SoulofLight);
+            r.AddTile(TileID.Solidifier);
+            r.SetResult(ModContent.ItemType<Items.Weapons.Magic.SunbaskMirror>());
+            r.AddRecipe();
 
             createFargoRecipeBannerInput<Items.Weapons.Melee.CrystalDagger>(ItemID.UndeadVikingBanner);
 
             createFargoRecipe(ItemID.MimicBanner, ItemID.AdhesiveBandage);
             createFargoRecipe(ItemID.MimicBanner, ItemID.SharkToothNecklace);
             createFargoRecipe(ItemID.MimicBanner, ItemID.MoneyTrough);
-            createFargoRecipeBannerInput<Items.Tools.ATM>(ItemID.MimicBanner);
+            var r = new ModRecipe(_aQMod1);
+            r.AddIngredient(ItemID.MimicBanner);
+            r.AddIngredient(ItemID.Bone, 5);
+            r.AddTile(TileID.Solidifier);
+            r.SetResult(ModContent.ItemType<Items.Tools.ATM>());
+            r.AddRecipe();
 
             createFargoRecipeBannerInput<Items.Accessories.Breadsoul>(ItemID.DungeonSpiritBanner);
             createFargoRecipeBannerInput<Items.Dedicated.Dreadsoul>(ItemID.DungeonSpiritBanner);
@@ -109,7 +124,7 @@ namespace AQMod.Common.CrossMod
                 {
                     if (j != i)
                     {
-                        var r = new ModRecipe(_aQMod1);
+                        r = new ModRecipe(_aQMod1);
                         r.AddIngredient(itemArray[i]);
                         r.AddIngredient(item);
                         r.AddTile(TileID.Solidifier);

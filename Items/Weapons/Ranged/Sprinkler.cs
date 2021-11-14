@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Ranged.Dart
+namespace AQMod.Items.Weapons.Ranged
 {
     public class Sprinkler : ModItem
     {
@@ -32,7 +32,7 @@ namespace AQMod.Items.Weapons.Ranged.Dart
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             int dustAmount = Main.rand.Next(10, 15);
-            Vector2 normalizedVelocity = Vector2.Normalize(new Vector2(speedX, speedY));
+            var normalizedVelocity = Vector2.Normalize(new Vector2(speedX, speedY));
             Vector2 spawnPosition = position + normalizedVelocity * 46f + new Vector2(0, -4f);
             for (int i = 0; i < dustAmount; i++)
             {
@@ -53,7 +53,7 @@ namespace AQMod.Items.Weapons.Ranged.Dart
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            var recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<StarPhish>());
             recipe.AddIngredient(ModContent.ItemType<AquaticEnergy>(), 10);
             recipe.AddIngredient(ItemID.ChlorophyteBar, 12);

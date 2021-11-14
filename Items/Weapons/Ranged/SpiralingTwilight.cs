@@ -2,12 +2,11 @@
 using AQMod.Common;
 using AQMod.Common.ItemOverlays;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Ranged.Dart
+namespace AQMod.Items.Weapons.Ranged
 {
     public class SpiralingTwilight : ModItem
     {
@@ -46,10 +45,10 @@ namespace AQMod.Items.Weapons.Ranged.Dart
         {
             if (type == ProjectileID.IchorDart)
             {
-                Vector2 velo = new Vector2(speedX, speedY);
+                var velo = new Vector2(speedX, speedY);
                 Projectile.NewProjectile(position, velo, type, damage, knockBack, player.whoAmI, 0, -1000f);
                 float length = velo.Length();
-                Vector2 velocity = Vector2.Normalize(velo);
+                var velocity = Vector2.Normalize(velo);
                 int amount = Main.rand.Next(3) + 1;
                 for (int i = 0; i < amount; i++)
                 {
@@ -62,7 +61,7 @@ namespace AQMod.Items.Weapons.Ranged.Dart
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            var recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<Sprinkler>());
             recipe.AddIngredient(ItemID.FragmentVortex, 18);
             recipe.AddTile(TileID.LunarCraftingStation);

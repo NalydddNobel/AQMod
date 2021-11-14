@@ -274,6 +274,10 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
         {
             if (Main.rand.NextBool(2))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
+
+            if (!Main.hardMode)
+                return;
+
             if ((int)npc.ai[1] == 1)
             {
                 if (Main.rand.NextBool(12))
