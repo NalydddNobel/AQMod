@@ -1,11 +1,10 @@
-﻿using AQMod.Common.Utilities;
+﻿using AQMod.Assets.Graphics.ParticlesLayers;
+using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.Dusts;
+using AQMod.Content.Particles;
 using AQMod.Content.RobsterQuests;
-using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.AquaticEvent;
-using AQMod.Content.WorldEvents.DemonicEvent;
-using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
@@ -22,7 +21,6 @@ using AQMod.NPCs.Monsters.DemonicEvent;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -396,7 +394,9 @@ namespace AQMod.Common
                         npc.SetDefaults(i);
                         if (npc.aiStyle != AIStyles.DemonEyeAI && npc.aiStyle != AIStyles.FlyingAI && npc.aiStyle != AIStyles.SpellAI && npc.aiStyle != AIStyles.EnchantedSwordAI && npc.aiStyle != AIStyles.SpiderAI &&
                             (npc.noGravity || npc.boss))
+                        {
                             UnaffectedByWind[i] = true;
+                        }
                     }
                     catch
                     {
@@ -452,6 +452,9 @@ namespace AQMod.Common
         public override bool InstancePerEntity => true;
 
         public bool sparkling;
+        /// <summary>
+        /// Blue Fire
+        /// </summary>
         public bool notFrostburn;
         /// <summary>
         /// When this flag is raised, no wind events should be applied to this NPC
@@ -467,6 +470,11 @@ namespace AQMod.Common
             windStruckOld = windStruck;
             windStruck = false;
             lovestruckAQ = false;
+        }
+
+        public override void SetDefaults(NPC npc)
+        {
+            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.LovestruckAQ>()] = npc.buffImmune[BuffID.Lovestruck];
         }
 
         public bool ShouldApplyWindMechanics(NPC npc)
@@ -544,10 +552,14 @@ namespace AQMod.Common
             if (notFrostburn)
             {
                 if (npc.lifeRegen > 0)
+                {
                     npc.lifeRegen = 0;
-                npc.lifeRegen -= 10;
-                if (damage < 1)
-                    damage = 1;
+                }
+                npc.lifeRegen -= 96;
+                if (damage < 12)
+                {
+                    damage = 12;
+                }
             }
         }
 
@@ -1333,6 +1345,22 @@ namespace AQMod.Common
                 var g = 1 * ((float)Math.Sin(positionLength + offset) + 1f);
                 var b = 1 * ((float)Math.Sin(positionLength + offset * 2f) + 1f);
                 Lighting.AddLight(npc.Center, r * 0.25f, g * 0.25f, b * 0.25f);
+            }
+            if (notFrostburn)
+            {
+                if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        var pos = npc.position - new Vector2(2f, 2f);
+                        var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
+                        var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new MonoParticleEmber(dustPos, new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
+                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
+                    }
+                }
+                Lighting.AddLight(npc.Center, 0.4f, 0.4f, 1f);
             }
         }
 

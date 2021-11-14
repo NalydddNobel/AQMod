@@ -402,15 +402,19 @@ ItemName.ArgonSpear=Argon Spear
 ItemName.HorizonSkies=Horizon Skies
 # Yoyos
 ItemName.Aphrodite=Aphrodite
+ItemTooltip.Aphrodite=Give enemies lovestruck which decreases their damage inflicted by 10%, and increases their damage taken by 10%
 ItemName.Venus=Venus
+ItemTooltip.Venus=Give enemies lovestruck which decreases their damage inflicted by 10%, and increases their damage taken by 10%\nHas a chance to poison enemies if they are very close to you
 ItemName.StariteSpinner=Starite Spinner
 # Other Melee
 ItemName.CrimsonHellSword=Burnterizer
 ItemTooltip.CrimsonHellSword=Shoots a wave of demonic energy
 ItemName.HellsBoon=Hell's Boon
 ItemName.Galactium=Galactium
+ItemTooltip.Galactium=Rains stars from the sky\nInflicts blue fire on true melee hits
 ItemName.KryptonSword=Krypton Sword
 ItemName.StariteBlade=Starite Blade
+ItemTooltip.StariteBlade=Inflicts blue fire on hit
 ItemName.VineSword=Vine Sword
 ItemName.XenonBasher=Xenon Basher
 # Ranged
@@ -611,12 +615,8 @@ ItemTooltip.JerryClawFlail='Feels oily'
 # Spears
 ItemTooltip.ArgonSpear=Redirects itself to your cursor
 ItemTooltip.HorizonSkies=Shoots lines of energy\n'Are you readyayayayayyayayayaya'
-# Yoyos
-ItemTooltip.Aphrodite=Has a chance to give enemies lovestruck
-ItemTooltip.Venus=Has a chance to poison enemies
 # Other Melee
 ItemTooltip.HellsBoon=Creates ash spikes around your cursor which protrude out of nearby tiles
-ItemTooltip.Galactium=Rains glimmer stars from the sky
 ItemTooltip.XenonBasher=Hitting enemies will create xenon spores
 # Ranged
 # Bows

@@ -38,6 +38,11 @@ namespace AQMod.Items.Weapons.Melee
                 Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 15);
         }
 
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            target.AddBuff(ModContent.BuffType<Buffs.Debuffs.BlueFire>(), 120);
+        }
+
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);

@@ -29,6 +29,17 @@ namespace AQMod.Items.Weapons.Melee
             item.scale = 1.1f;
         }
 
+        public override void UseItemHitbox(Player player, ref Rectangle hitbox, ref bool noHitbox)
+        {
+            if (Main.rand.NextBool(5))
+                Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 15);
+        }
+
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            target.AddBuff(ModContent.BuffType<Buffs.Debuffs.BlueFire>(), 240);
+        }
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             damage = (int)(damage * 1.5);

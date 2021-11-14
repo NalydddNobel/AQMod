@@ -29,7 +29,7 @@ namespace AQMod.Projectiles.Melee
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (Main.rand.NextBool(4) && target.Distance(Main.player[projectile.owner].Center) < 120f)
-                target.AddBuff(BuffID.Poisoned, 30);
+                target.AddBuff(BuffID.Poisoned, 240);
             LovestruckAQ.Apply(target, 120);
         }
     }
