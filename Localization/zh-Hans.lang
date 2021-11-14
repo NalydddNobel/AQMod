@@ -385,7 +385,7 @@ ItemName.Narrizuul=耀宇遗光
 ItemName.ScarletSea=罪孽红海
 ItemTooltip.ScarletSea=召唤会跟随你光标移动的血珠
 ItemName.SeltzerRain=苏打雨
-ItemName.FizzlingFire=冥焰
+ItemName.FizzlingFire=碧蓝之火
 # Tomes
 ItemName.PentalScythe=回旋魔镰
 # Melee
@@ -402,15 +402,19 @@ ItemName.ArgonSpear=氩制长枪
 ItemName.HorizonSkies=空之视界
 # Yoyos
 ItemName.Aphrodite=阿芙罗狄忒
+ItemTooltip.Aphrodite=击中敌人时对其造成热恋减益, 使其造成的伤害降低10%并受到10%额外伤害
 ItemName.Venus=维纳斯
+ItemTooltip.Venus=击中敌人时对其造成热恋减益, 使其造成的伤害降低10%并受到10%额外伤害\n如果敌人离你很近则有几率使其中毒
 ItemName.StariteSpinner=星源涡
 # Other Melee
 ItemName.CrimsonHellSword=焚焰剑
 ItemTooltip.CrimsonHellSword=发射恶魔能量冲击波
 ItemName.HellsBoon=地狱之赐
 ItemName.Galactium=辰星坠
+ItemTooltip.Galactium=挥舞时召唤从天而降的微光星辰\n真近战攻击击中敌人时对其造成碧蓝之火减益
 ItemName.KryptonSword=氪制剑
 ItemName.StariteBlade=星源刃
+ItemTooltip.StariteBlade=击中敌人时对其造成碧蓝之火减益
 ItemName.VineSword=藤蔓长剑
 ItemName.XenonBasher=氙制轻剑
 # Ranged
@@ -531,7 +535,7 @@ ItemTooltip.LightbulbGreaves=+1额外召唤栏
 ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n使你轻微发光
 ItemTooltip.SuperDartTrapHat=当你站在地面上时发射毒镖\n增加10%召唤伤害\n+2额外召唤栏
 # Barbs
-ItemTooltip.CrabBarb=钩爪击中NPC时会造成中毒减益
+ItemTooltip.CrabBarb=钩爪击中NPC时会对其造成中毒减益
 # Map
 ItemTooltip.CosmicTelescope=在地图上显示微光事件的正中心
 ItemTooltip.DungeonMap=若地牢已被发现, 则在地图上显示地牢位置\n你可以使用清灵明镜传送至地牢
@@ -539,7 +543,7 @@ ItemTooltip.LihzahrdMap=若神庙祭坛已被发现或世纪之花已被击败, 
 ItemTooltip.RetroGoggles=在地图上以粉色光点显示敌人的位置
 # Spelunker
 ItemTooltip.MinersFlashlight=被手电筒照到的宝藏会发出闪光
-ItemTooltip.Extractor=使你免疫窒息减益\n下落的泥沙块和雪泥块造成的伤害降低4倍\n如果启用此饰品的可见性:\n使你获得提炼泥沙块、雪泥块和沙漠化石的能力\n在提炼机处提炼某些东西时会显示提炼的次数
+ItemTooltip.Extractor=使你免疫窒息减益\n下落的泥沙块和雪泥块对你造成的伤害降低4倍\n如果启用此饰品的可见性:\n使你获得提炼泥沙块、雪泥块和沙漠化石的能力\n在提炼机处提炼某些东西时会显示提炼的次数
 ########
 # Misc #
 ########
@@ -611,12 +615,8 @@ ItemTooltip.JerryClawFlail='摸起来非常的油腻'
 # Spears
 ItemTooltip.ArgonSpear=会不断的瞄准你的光标位置
 ItemTooltip.HorizonSkies=发射能量射线\n'你准备好了吗吗吗吗吗吗'
-# Yoyos
-ItemTooltip.Aphrodite=击中敌人时有几率造成热恋减益
-ItemTooltip.Venus=击中敌人时有几率造成中毒减益
 # Other Melee
 ItemTooltip.HellsBoon=在光标附近的物块上不断生成灰烬尖刺
-ItemTooltip.Galactium=挥舞时召唤从天而降的微光星辰
 ItemTooltip.XenonBasher=击中敌人时生成氙气孢子
 # Ranged
 # Bows
@@ -640,9 +640,8 @@ ItemTooltip.ATM=召唤一个用于存放物品的飞行保险箱\n将其放在�
 ItemTooltip.SpectralLens=切换敌人的掉落
 ItemTooltip.Globebulb=加快时间的流逝速度一小段时间
 # Buffs
-Common.BuffSupportive=(团队共享类增益)
-BuffName.BlueFire=冥焰
-BuffDescription.BlueFire=冥焰灼烧着你的皮肤
+BuffName.BlueFire=碧蓝之火
+BuffDescription.BlueFire=碧蓝之火灼烧着你的皮肤
 BuffName.Spoiled=溺爱
 BuffDescription.Spoiled=敌人死亡时掉落的战利品的数量翻倍\n'你只是个被惯坏了的坏孩子!'
 BuffName.MicroStarite=微型星之源
@@ -669,28 +668,110 @@ BuffName.Opposing=对立
 BuffDescription.Opposing=使某些敌人有几率掉落与其主题相反的物品
 BuffName.SpicyEelBuff=香辣鳗鱼
 BuffDescription.SpicyEelBuff=大幅度增加移动速度
-# Projectiles
-ProjectileName.PentalScythe=烈焰镰刀
-ProjectileName.MagmalbulbiaStaff=熔火球
-ProjectileName.MagmalbulbiaStaffExplosion=熔火爆炸
-ProjectileName.NarrenBolt=耀星
-ProjectileName.OmegaRay=欧米伽射线
-ProjectileName.HyperSpike=超星
-ProjectileName.OmegaStariteCollider=终末之星
+
+###### Projectiles ######
+# Melee Weapon Projectiles
+ProjectileName.AirBlade=风之刃
+ProjectileName.AirBladeGhost=风之刃
+ProjectileName.Aphrodite=阿芙罗狄忒
+ProjectileName.ArgonSpear=氩制长枪
+ProjectileName.Burnterizer=焚焰剑
+ProjectileName.BurnterizerExplosion=焚焰剑
+ProjectileName.CrystalDagger=水晶匕首
+ProjectileName.Galactium=陨落尘星
+ProjectileName.HellsBoon=地狱之刺
+ProjectileName.HorizonSkies=空之视界
+ProjectileName.HorizonSkiesBolt=空之视界
+ProjectileName.HorizonSkiesExplosion=空之视界
+ProjectileName.JerryClawFlail=蟹蛤之爪
+ProjectileName.PowPunch=链拳
+ProjectileName.PowPunchExplosion=链拳
+ProjectileName.StariteSpinner=星源涡
+ProjectileName.UltimaFlare=绚彩圣焰
+ProjectileName.XenonBasher=氙制轻剑
+ProjectileName.Venus=维纳斯
+
+# Ranged Weapon Projectiles
+ProjectileName.RayBullet=射线
+ProjectileName.RayChlorophyteBullet=射线
+ProjectileName.RayCursedBullet=射线
+ProjectileName.RayIchorBullet=射线
+ProjectileName.RayMeteorBullet=射线
+ProjectileName.RayVenomBullet=射线
+ProjectileName.DeltoidArrow=增量矢
+ProjectileName.HamaYumiArrow=爆影破魔矢
+ProjectileName.SpaceShot=星星
+
+# Magic Weapon Projectiles
+ProjectileName.Bubbler=泡泡
+ProjectileName.FizzlingFire=碧蓝之火
+ProjectileName.GebulbaStaff=弹跳粘球
+ProjectileName.MagicWand=魔法矢
+ProjectileName.MagmalbulbiaStaff=弹跳火焰弹
+ProjectileName.MagmalbulbiaStaffExplosion=弹跳火焰弹
+ProjectileName.MoonMoonMirror=月光射线
+ProjectileName.Narrizuul=耀宇遗光
+ProjectileName.PentalScythe=烈焰魔镰
+ProjectileName.ScarletSea=罪孽红海
+ProjectileName.SeltzerRain=苏打雨
+ProjectileName.SunbaskMirror=日光射线
+
+# Summon Weapon Projectiles
+ProjectileName.Chomper=食人花
+ProjectileName.Lotus=莲花
+ProjectileName.LotusShot=莲花
+ProjectileName.Starite=星之源
+ProjectileName.StariteLeader=星之源
+ProjectileName.CrimsonHand=猩红血手
+ProjectileName.Monoxider=金乌
+
+# Misc
+ProjectileName.CelesteTorusCollider=天界环球
+ProjectileName.DreadsoulAttack=惊惧之魂
+ProjectileName.FertilePowder=丰饶之尘
+ProjectileName.Friend=朋友
+ProjectileName.FriendlyWind=友善的风
+ProjectileName.GoldPowder=黄金之尘
+ProjectileName.HyperCrystalExplosion=超载爆破
+ProjectileName.KelBall=Kel的球球
+ProjectileName.UltimateSword=最终之剑
+
+# Pets
+ProjectileName.ATM=ATM
+ProjectileName.HeartMoth=心蛾
+ProjectileName.MicroStarite=微型星之源
+
+# Fishing Bobbers
+ProjectileName.BeeRod=蜜蜂浮标
+ProjectileName.CrabRod=螃蟹浮标
+
+# Enemy Projectiles
+ProjectileName.HyperStarite=巨耀源星
 ProjectileName.JerryBubble=蟹蛤泡泡
 ProjectileName.JerryBubbleBig=蟹蛤泡泡
 ProjectileName.JerryPearl=蟹蛤珍珠
-ProjectileName.GelBulb=弹跳粘球
-ProjectileName.Maggie=熔岩球
-ProjectileName.CrimsonHandMinion=猩红血手
-ProjectileName.CrimsonHandBloodShot={$Mods.AQMod.ProjectileName.CrimsonHandMinion}
+ProjectileName.Magmabub=熔火喷吐者
+ProjectileName.OmegaBullet=终末弹
+ProjectileName.OmegaRay=终末射线
+ProjectileName.OmegaStarite=终末之星
+ProjectileName.RainbowStarofHyperApocalypse=终末天启之七彩耀星
+ProjectileName.StriderCrab=长足蟹
+ProjectileName.StriderCrabLaser=长足蟹
+ProjectileName.SuperStarite=极耀源星
+ProjectileName.TemperatureBombCold=寒霜爆弹
+ProjectileName.TemperatureBombHot=灼炎爆弹
+ProjectileName.Trapper=捕魂钩
+
 # NPCs
-NPCName.BloodMimic={$NPCName.Mimic}
+NPCName.DwarfStarite=侏儒源星
 NPCName.Starite=星之源
 NPCName.SuperStarite=极耀源星
 NPCName.HyperStarite=巨耀源星
 NPCName.UltraStarite=终耀源星
 NPCName.OmegaStarite=终末之星
+NPCName.MultiStarite=集群源星
+
+NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
 NPCName.Robster=龙虾
 NPCName.JerryCrabson=巨蟹蛤
 NPCName.JerryClaw=蟹蛤之爪
@@ -698,59 +779,48 @@ NPCName.ArrowCrab=箭蟹
 NPCName.SoliderCrabs=大闸蟹
 NPCName.HermitCrab=寄居蟹
 NPCName.StriderCrab=长足蟹
-NPCName.Heckto=冥狱之魂
+
 NPCName.Magmalbubble=熔火喷吐者
 NPCName.TrapImp=捕魂小鬼
 NPCName.Trapper=捕魂钩
 NPCName.Cindera=幻形蝠
-NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
+
 NPCName.Meteor=流星
-NPCName.HotCurrent=暖流
-NPCName.ColdCurrent=寒流
 NPCName.TemperatureBalloon=探温风标
 NPCName.SpaceSquid=太空乌贼
 NPCName.RedSprite=红色精灵
 NPCName.Vraine=镰鸟
 NPCName.Atmodrone=大气无人机
-NPCName.MultiStarite=集群源星
-NPCName.DwarfStarite=侏儒源星
+NPCName.HotCurrent=暖流
+NPCName.ColdCurrent=寒流
+
+NPCName.BloodMimic={$NPCName.Mimic}
+NPCName.Heckto=冥狱之魂
 
 # Banners
 ItemName.StariteBanner=星之源旗
 ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
-
 ItemName.SuperStariteBanner=极耀源星旗
 ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
-
 ItemName.HyperStariteBanner=巨耀源星旗
 ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
-
 ItemName.ArrowCrabBanner=箭蟹旗
 ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
-
 ItemName.HermitCrabBanner=寄居蟹旗
 ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
-
 ItemName.SoliderCrabsBanner=大闸蟹旗
 ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
-
 ItemName.StriderCrabBanner=长足蟹旗
 ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
-
 ItemName.CinderaBanner=幻形蝠旗
 ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}
-
 ItemName.MagmabubbleBanner=熔火喷吐者旗
 ItemTooltip.MagmabubbleBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}
-
 ItemName.TrapperImpBanner=捕魂小鬼旗
 ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}
-
 ItemName.VraineBanner=镰鸟旗
 ItemTooltip.VraineBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Vraine}
-
 ItemName.TemperatureBalloonBanner=探温风标旗
 ItemTooltip.TemperatureBalloonBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TemperatureBalloon}
-
 ItemName.RedSpriteBanner=红色精灵旗
 ItemTooltip.RedSpriteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.RedSprite} 
