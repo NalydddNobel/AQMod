@@ -252,5 +252,53 @@ namespace AQMod.Common
             player.itemRotation = (projectile.velocity * projectile.direction).ToRotation();
             player.heldProj = projectile.whoAmI;
         }
+
+        /// <summary>
+        /// Tries to find an active projectile with that identity. Returns -1 if none is found.
+        /// </summary>
+        /// <param name="identity"></param>
+        /// <returns></returns>
+        public static int FindIdentity(int identity)
+        {
+            int owner = -1;
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].identity == identity)
+                {
+                    if (Main.projectile[i].active)
+                    {
+                        owner = i;
+                        break;
+                    }
+                    owner = -1;
+                    break;
+                }
+            }
+            return owner;
+        }
+
+        /// <summary>
+        /// Tries to find an active projectile with that identity. Returns -1 if none is found.
+        /// </summary>
+        /// <param name="identity"></param>
+        /// <returns></returns>
+        public static int FindIdentityAndType(int identity, int type)
+        {
+            int owner = -1;
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].type == type && Main.projectile[i].identity == identity)
+                {
+                    if (Main.projectile[i].active)
+                    {
+                        owner = i;
+                        break;
+                    }
+                    owner = -1;
+                    break;
+                }
+            }
+            return owner;
+        }
     }
 }

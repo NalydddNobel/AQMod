@@ -449,6 +449,8 @@ namespace AQMod.Common
         public static byte BossRushPlayer { get; private set; }
 
         private static bool _showEnergyDropsMessage;
+        private static byte _lootLoop;
+
         public override bool InstancePerEntity => true;
 
         public bool sparkling;
@@ -462,6 +464,8 @@ namespace AQMod.Common
         public bool windStruck;
         public bool windStruckOld;
         public bool lovestruckAQ;
+        public bool corruptHellfire;
+        public bool crimsonHellfire;
 
         public override void ResetEffects(NPC npc)
         {
@@ -470,11 +474,16 @@ namespace AQMod.Common
             windStruckOld = windStruck;
             windStruck = false;
             lovestruckAQ = false;
+            corruptHellfire = false;
+            crimsonHellfire = false;
         }
 
         public override void SetDefaults(NPC npc)
         {
-            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.LovestruckAQ>()] = npc.buffImmune[BuffID.Lovestruck];
+            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.LovestruckAQ>()] = 
+                npc.buffImmune[BuffID.Lovestruck];
+            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = 
+                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = npc.buffImmune[BuffID.OnFire];
         }
 
         public bool ShouldApplyWindMechanics(NPC npc)
@@ -560,6 +569,82 @@ namespace AQMod.Common
                 {
                     damage = 12;
                 }
+            }
+            if (corruptHellfire || crimsonHellfire)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 120;
+                if (damage < 15)
+                {
+                    damage = 15;
+                }
+            }
+        }
+
+        public override void DrawEffects(NPC npc, ref Color drawColor)
+        {
+            if (sparkling)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<UltimaDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), Main.rand.NextFloat(0.6f, 1.25f));
+                    Main.dust[dust].velocity *= 2.65f;
+                    Main.dust[dust].velocity.Y -= 2f;
+                }
+                float positionLength = npc.Center.Length() / 32f;
+                const float offset = MathHelper.TwoPi / 3f;
+                var r = 1 * ((float)Math.Sin(positionLength) + 1f);
+                var g = 1 * ((float)Math.Sin(positionLength + offset) + 1f);
+                var b = 1 * ((float)Math.Sin(positionLength + offset * 2f) + 1f);
+                Lighting.AddLight(npc.Center, r * 0.25f, g * 0.25f, b * 0.25f);
+            }
+            if (notFrostburn)
+            {
+                if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        var pos = npc.position - new Vector2(2f, 2f);
+                        var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
+                        var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new MonoParticleEmber(dustPos, new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
+                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
+                    }
+                }
+                Lighting.AddLight(npc.Center, 0.4f, 0.4f, 1f);
+            }
+            if (corruptHellfire || crimsonHellfire)
+            {
+                Color fireColor = Buffs.Debuffs.CorruptionHellfire.FireColor;
+                if (corruptHellfire && crimsonHellfire)
+                {
+                    fireColor = Color.Lerp(fireColor, Buffs.Debuffs.CrimsonHellfire.FireColor, 0.5f);
+                }
+                else if (crimsonHellfire)
+                {
+                    fireColor = Buffs.Debuffs.CrimsonHellfire.FireColor;
+                }
+                if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
+                {
+                    var pos = npc.position - new Vector2(2f, 2f);
+                    var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                        var velocity = new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f);
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new MonoParticleEmber(dustPos, velocity,
+                            fireColor, Main.rand.NextFloat(0.8f, 1.1f)));
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new MonoParticleEmber(dustPos, velocity,
+                            fireColor * 0.2f, 1.5f));
+                    }
+                }
+                Lighting.AddLight(npc.Center, fireColor.ToVector3());
             }
         }
 
@@ -1069,7 +1154,7 @@ namespace AQMod.Common
         public override bool PreNPCLoot(NPC npc)
         {
             _showEnergyDropsMessage = !NPC.downedBoss1;
-            if (_loop != 0)
+            if (_lootLoop != 0)
             {
                 NPCLoader.blockLoot.Add(ItemID.Heart);
             }
@@ -1112,8 +1197,6 @@ namespace AQMod.Common
             return false;
         }
 
-        private static byte _loop;
-
         public override void NPCLoot(NPC npc)
         {
             byte p = Player.FindClosest(npc.position, npc.width, npc.height);
@@ -1123,14 +1206,14 @@ namespace AQMod.Common
                 return;
             if (!npc.boss && !npc.friendly)
             {
-                if (!Sets.NoSpoilLoot[npc.type] && _loop < aQPlayer.spoiled)
+                if (!Sets.NoSpoilLoot[npc.type] && _lootLoop < aQPlayer.spoiled)
                 {
-                    _loop++;
+                    _lootLoop++;
                     npc.NPCLoot();
-                    _loop = 0;
+                    _lootLoop = 0;
                 }
             }
-            if (_loop == 0)
+            if (_lootLoop == 0)
             {
                 ManageDreadsoul(npc);
                 EncoreKill(npc);
@@ -1326,41 +1409,6 @@ namespace AQMod.Common
                         Item.NewItem(npc.getRect(), ModContent.ItemType<RustyKnife>());
                 }
                 break;
-            }
-        }
-
-        public override void DrawEffects(NPC npc, ref Color drawColor)
-        {
-            if (sparkling)
-            {
-                for (int i = 0; i < 6; i++)
-                {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<UltimaDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), Main.rand.NextFloat(0.6f, 1.25f));
-                    Main.dust[dust].velocity *= 2.65f;
-                    Main.dust[dust].velocity.Y -= 2f;
-                }
-                float positionLength = npc.Center.Length() / 32f;
-                const float offset = MathHelper.TwoPi / 3f;
-                var r = 1 * ((float)Math.Sin(positionLength) + 1f);
-                var g = 1 * ((float)Math.Sin(positionLength + offset) + 1f);
-                var b = 1 * ((float)Math.Sin(positionLength + offset * 2f) + 1f);
-                Lighting.AddLight(npc.Center, r * 0.25f, g * 0.25f, b * 0.25f);
-            }
-            if (notFrostburn)
-            {
-                if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        var pos = npc.position - new Vector2(2f, 2f);
-                        var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
-                        var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                        ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
-                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
-                    }
-                }
-                Lighting.AddLight(npc.Center, 0.4f, 0.4f, 1f);
             }
         }
 

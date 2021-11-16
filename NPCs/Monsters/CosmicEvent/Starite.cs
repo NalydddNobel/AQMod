@@ -263,7 +263,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
         {
             if (Main.rand.NextBool(50))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.CelesitalEightBall>());
-            if (NPC.downedBoss1 && !AQNPC.NoEnergyDrops)
+            if (NPC.downedBoss1)
             {
                 if (Main.rand.NextBool(10))
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());

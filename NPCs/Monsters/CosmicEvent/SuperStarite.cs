@@ -333,7 +333,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
                 Item.NewItem(npc.getRect(), ModContent.ItemType<SpaceShot>());
             }
             WorldDefeats.DownedGlimmer = true;
-            if (AQNPC.CanDropEnergy && Main.rand.NextBool(5))
+            if (NPC.downedBoss1 && Main.rand.NextBool(5))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
 
             if (Main.rand.NextBool())

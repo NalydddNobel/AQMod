@@ -371,7 +371,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
         public override void NPCLoot()
         {
             WorldDefeats.DownedGlimmer = true;
-            if (AQNPC.CanDropEnergy)
+            if (NPC.downedBoss1)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
             for (int i = 0; i < 2; i++)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<NeutronJuice>());
