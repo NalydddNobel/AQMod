@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.RobsterHuntItems.Quests
+namespace AQMod.Items.Quest.Lobster
 {
     public class JeweledChalice : ModItem
     {

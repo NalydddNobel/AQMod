@@ -3,7 +3,7 @@ using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.Dusts;
 using AQMod.Content.Particles;
-using AQMod.Content.RobsterQuests;
+using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;

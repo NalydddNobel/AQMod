@@ -21,7 +21,7 @@ using AQMod.Items.BuffItems;
 using AQMod.Items.Materials.Fish;
 using AQMod.Items.Placeable;
 using AQMod.Items.Placeable.Wall;
-using AQMod.Items.QuestFish;
+using AQMod.Items.Quest.Angler;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
 using Microsoft.Xna.Framework;
@@ -998,13 +998,13 @@ namespace AQMod
         {
             if (liquidType == Tile.Liquid_Water)
             {
-                if (questFish == ModContent.ItemType<WaterFisg>() && Main.rand.NextBool(8))
+                if (questFish > Main.maxItems && ItemLoader.GetItem(questFish) is AnglerQuestItem anglerQuestItem)
                 {
-                    caughtType = ModContent.ItemType<WaterFisg>();
-                }
-                else if (questFish == ModContent.ItemType<Crabdaughter>() && player.ZoneBeach && Main.rand.NextBool(4))
-                {
-                    caughtType = ModContent.ItemType<Crabdaughter>();
+                    if (anglerQuestItem.FishingLocation.CatchFish(player, fishingRod, bait, power, liquidType, poolSize, worldLayer))
+                    {
+                        caughtType = questFish;
+                        return;
+                    }
                 }
                 if (AQMod.CosmicEvent.IsActive)
                 {

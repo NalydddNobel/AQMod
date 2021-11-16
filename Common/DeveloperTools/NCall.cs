@@ -6,7 +6,6 @@ using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
-using AQMod.Content.RobsterQuests;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.AquaticEvent;
@@ -28,6 +27,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using AQMod.Content.Quest.Lobster;
 
 namespace AQMod.Common.DeveloperTools
 {

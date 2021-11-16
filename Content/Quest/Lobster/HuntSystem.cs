@@ -6,7 +6,7 @@ using Terraria.GameContent.UI;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Content.RobsterQuests
+namespace AQMod.Content.Quest.Lobster
 {
     public class HuntSystem : ModWorld
     {

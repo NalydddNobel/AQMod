@@ -15,7 +15,6 @@ using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.MapMarkers;
 using AQMod.Content.NoHitting;
-using AQMod.Content.RobsterQuests;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.AquaticEvent;
@@ -51,6 +50,7 @@ using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Common.CrossMod;
 using AQMod.Items.Placeable.Trophies;
 using AQMod.Items.Accessories;
+using AQMod.Content.Quest.Lobster;
 
 namespace AQMod
 {

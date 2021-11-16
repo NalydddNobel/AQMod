@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Content.RobsterQuests
+namespace AQMod.Content.Quest.Lobster
 {
     public abstract class RobsterHunt : ContentItem
     {
@@ -15,8 +15,6 @@ namespace AQMod.Content.RobsterQuests
         protected RobsterHunt(string mod, string name) : base(mod, name)
         {
         }
-
-        public HuntData Hunt { get; private set; }
 
         public abstract void Setup();
         public abstract int GetQuestItem();
@@ -63,8 +61,8 @@ namespace AQMod.Content.RobsterQuests
         /// </summary>
         protected void RemoveQuestTiles()
         {
-            var chaliceTile = ModContent.TileType<Tiles.RobsterHuntTiles.JeweledChalice>();
-            var candelabraTile = ModContent.TileType<Tiles.RobsterHuntTiles.JeweledCandelabra>();
+            var chaliceTile = ModContent.TileType<Tiles.LobsterQuests.JeweledChalice>();
+            var candelabraTile = ModContent.TileType<Tiles.LobsterQuests.JeweledCandelabra>();
             for (int i = 5; i < Main.maxTilesX - 5; i++)
             {
                 for (int j = 5; j < Main.maxTilesY - 5; j++)

@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
-using AQMod.Content.RobsterQuests;
+using AQMod.Content.Quest.Lobster;
 using AQMod.Items.Accessories;
 using AQMod.Items.Placeable;
 using AQMod.Items.Weapons.Melee;

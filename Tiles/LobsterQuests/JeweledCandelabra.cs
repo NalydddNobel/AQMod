@@ -1,4 +1,4 @@
-﻿using AQMod.Content.RobsterQuests;
+﻿using AQMod.Content.Quest.Lobster;
 using AQMod.Localization;
 using AQMod.NPCs.Friendly.Town;
 using Terraria;
@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace AQMod.Tiles.RobsterHuntTiles
+namespace AQMod.Tiles.LobsterQuests
 {
     public class JeweledCandelabra : ModTile
     {
@@ -34,7 +34,7 @@ namespace AQMod.Tiles.RobsterHuntTiles
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             if (HuntSystem.SpecialHuntTileDestroyed(i, j) == false)
-                Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.RobsterHuntItems.Quests.JeweledCandelabra>());
+                Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Quest.Lobster.JeweledCandelabra>());
         }
     }
 }

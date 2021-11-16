@@ -1,17 +1,22 @@
 ﻿using AQMod.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.RobsterQuests
+namespace AQMod.Content.Quest.Lobster.HuntTypes
 {
-    public class HuntJeweledCandelabra : RobsterHunt
+    public class HuntJeweledChalice : RobsterHunt
     {
-        public HuntJeweledCandelabra(Mod mod, string name) : base(mod, name)
+        public HuntJeweledChalice(Mod mod, string name) : base(mod, name)
         {
         }
 
-        public override int GetQuestItem() => ModContent.ItemType<Items.RobsterHuntItems.Quests.JeweledCandelabra>();
+        public override int GetQuestItem() => ModContent.ItemType<Items.Quest.Lobster.JeweledChalice>();
+
+        public override void Setup()
+        {
+        }
 
         public override bool CanStart(Player player)
         {
@@ -29,10 +34,10 @@ namespace AQMod.Content.RobsterQuests
                         {
                             int randomX = checkRectangle.X + Main.rand.Next(checkRectangle.Width);
                             int randomY = checkRectangle.Y + Main.rand.Next(checkRectangle.Height);
-                            if (!Framing.GetTileSafely(randomX, randomY).active() && !Framing.GetTileSafely(randomX, randomY + 1).active() && !Framing.GetTileSafely(randomX + 1, randomY).active() && !Framing.GetTileSafely(randomX + 1, randomY + 1).active() && Framing.GetTileSafely(randomX, randomY + 2).active() && Main.tileSolidTop[Main.tile[randomX, randomY + 2].type] && Framing.GetTileSafely(randomX + 1, randomY + 2).active() && Main.tileSolidTop[Main.tile[randomX + 1, randomY + 2].type])
+                            if (!Framing.GetTileSafely(randomX, randomY).active() && Framing.GetTileSafely(randomX, randomY + 1).active() && Main.tileSolidTop[Main.tile[randomX, randomY + 1].type])
                             {
-                                WorldGen.PlaceTile(randomX, randomY, ModContent.TileType<Tiles.RobsterHuntTiles.JeweledCandelabra>(), true, false, -1, 0);
-                                if (Framing.GetTileSafely(randomX, randomY).type == ModContent.TileType<Tiles.RobsterHuntTiles.JeweledCandelabra>())
+                                WorldGen.PlaceTile(randomX, randomY, ModContent.TileType<Tiles.LobsterQuests.JeweledChalice>(), true, false, -1, 0);
+                                if (Framing.GetTileSafely(randomX, randomY).type == ModContent.TileType<Tiles.LobsterQuests.JeweledChalice>())
                                 {
                                     HuntSystem.SetNPCTarget(npc, npcID: false);
                                     return true;
@@ -45,13 +50,14 @@ namespace AQMod.Content.RobsterQuests
             return false;
         }
 
-        public override void Setup()
+        public override void OnStart(Player player)
         {
+            HuntSystem.SetNPCTarget(NPCID.Guide);
         }
 
         public override string QuestChat()
         {
-            return "Mods.AQMod.Common.HuntJeweledCandelabra";
+            return "Mods.AQMod.Common.HuntJeweledChalice";
         }
 
         public override void RemoveHunt()
