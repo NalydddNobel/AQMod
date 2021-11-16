@@ -405,7 +405,14 @@ ItemName.Aphrodite=阿芙罗狄忒
 ItemTooltip.Aphrodite=击中敌人时对其造成热恋减益, 使其造成的伤害降低10%并受到10%额外伤害
 ItemName.Venus=维纳斯
 ItemTooltip.Venus=击中敌人时对其造成热恋减益, 使其造成的伤害降低10%并受到10%额外伤害\n如果敌人离你很近则有几率使其中毒
+
 ItemName.StariteSpinner=星源涡
+
+ItemName.Dysesthesia=苦痛之触
+ItemTooltip.Dysesthesia=探出伤害性尖刺\n如果敌人离尖刺很近则释放腐狱之火攻击敌人
+ProjectileName.Dysesthesia=苦痛之触
+ProjectileName.DysesthesiaSpike=苦痛之触
+
 # Other Melee
 ItemName.CrimsonHellSword=焚焰剑
 ItemTooltip.CrimsonHellSword=发射恶魔能量冲击波
