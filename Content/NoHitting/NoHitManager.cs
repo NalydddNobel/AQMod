@@ -20,7 +20,7 @@ namespace AQMod.Content.NoHitting
             NoHitEffects = new INoHitReward[NPCLoader.NPCCount];
 
             //NoHitEffects[NPCID.EyeofCthulhu] = new NoHitRewardLoot(ItemID.TwilightDye); testing
-            NoHitEffects[ModContent.NPCType<OmegaStarite>()] = new NoHitRewardLoot(ItemID.TwilightDye);
+            NoHitEffects[ModContent.NPCType<OmegaStarite>()] = new NoHitOmegaStarite(ItemID.TwilightDye);
         }
 
         internal static void Unload()
