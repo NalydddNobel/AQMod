@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using AQMod.NPCs.Boss.Starite;
+using Terraria;
 
 namespace AQMod.Content.NoHitting
 {
@@ -26,7 +27,7 @@ namespace AQMod.Content.NoHitting
 
         public bool OnEffect(NPC npc, int hitDirection, double damage, NoHitManager noHitManager)
         {
-            return npc.lifeMax == -33333;
+            return (npc.modNPC as OmegaStarite).skipDeathTimer > 0 || npc.ai[0] == OmegaStarite.PHASE_DEAD;
         }
     }
 }
