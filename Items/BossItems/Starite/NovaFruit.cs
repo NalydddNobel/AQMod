@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.BossSummons
+namespace AQMod.Items.BossItems.Starite
 {
     public class NovaFruit : ModItem
     {

@@ -11,7 +11,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.TreasureBags
+namespace AQMod.Items.BossItems.Crabson
 {
     public class CrabsonBag : ModItem
     {

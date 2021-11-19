@@ -16,7 +16,6 @@ using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.Bait;
 using AQMod.Items.BuffItems;
 using AQMod.Items.Materials.Fish;
 using AQMod.Items.Placeable;

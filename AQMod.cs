@@ -1,10 +1,12 @@
 using AQMod.Assets;
-using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.PlayerLayers.EquipOverlays;
 using AQMod.Assets.Graphics;
 using AQMod.Assets.Graphics.ParticlesLayers;
+using AQMod.Assets.Graphics.SceneLayers;
+using AQMod.Assets.ItemOverlays;
+using AQMod.Assets.PlayerLayers.EquipOverlays;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.CrossMod;
 using AQMod.Common.DeveloperTools;
 using AQMod.Common.NetCode;
 using AQMod.Common.SceneLayers;
@@ -15,19 +17,20 @@ using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.MapMarkers;
 using AQMod.Content.NoHitting;
+using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.AquaticEvent;
-using AQMod.Content.WorldEvents.DemonicEvent;
+using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Effects;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items.Bait;
+using AQMod.Items.Accessories;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
+using AQMod.Items.Tools.Bait;
 using AQMod.Items.Vanities;
-using AQMod.Items.Vanities.Dyes;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Boss.Crabson;
@@ -46,11 +49,6 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
-using AQMod.Assets.Graphics.SceneLayers;
-using AQMod.Common.CrossMod;
-using AQMod.Items.Placeable.Trophies;
-using AQMod.Items.Accessories;
-using AQMod.Content.Quest.Lobster;
 
 namespace AQMod
 {
@@ -235,12 +233,11 @@ namespace AQMod
             MapMarkers = new MapMarkerManager();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             ModCallHelper.SetupCalls();
+
             On.Terraria.Chest.SetupShop += Chest_SetupShop;
             On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
             On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
-            On.Terraria.Main.DrawTiles += Main_DrawTiles;
-            On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
             On.Terraria.Player.FishingLevel += GetFishingLevel;
 
             var server = AQConfigServer.Instance;
@@ -255,6 +252,9 @@ namespace AQMod
         {
             var client = AQConfigClient.Instance;
             ApplyClientConfig(client);
+            On.Terraria.ItemText.NewText += ItemText_NewText;
+            On.Terraria.Main.DrawTiles += Main_DrawTiles;
+            On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
             ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
             ArmorOverlays = new EquipOverlayLoader();
             TextureCache.Load();
@@ -269,12 +269,13 @@ namespace AQMod
             EffectCache.Instance = new EffectCache(this, client, Logger, newInstance: true);
             WorldLayers = new SceneLayersManager();
             WorldLayers.Setup(loadHooks: true);
-            WorldLayers.AddLayer("GoreNest", new GoreNestLayer(test: false), SceneLayering.InfrontNPCs);
-            WorldLayers.AddLayer("UltimateSword", new UltimateSwordWorldOverlay(), SceneLayering.InfrontNPCs);
-            WorldLayers.AddLayer("ImpChains", new ImpChainLayer(), SceneLayering.BehindNPCs);
-            WorldLayers.AddLayer("CrabsonChains", new JerryCrabsonLayer(), SceneLayering.BehindTiles_BehindNPCs);
-            WorldLayers.AddLayer("ParticleLayer_PostDrawPlayer", new ParticleLayer_PostDrawPlayers(), SceneLayering.PostDrawPlayers);
-            WorldLayers.AddLayer(HotAndColdCurrentLayer.Name, new HotAndColdCurrentLayer(), HotAndColdCurrentLayer.Layer);
+            WorldLayers.Register("GoreNest", new GoreNestLayer(test: false), SceneLayering.InfrontNPCs);
+            WorldLayers.Register("UltimateSword", new UltimateSwordWorldOverlay(), SceneLayering.InfrontNPCs);
+            WorldLayers.Register("ImpChains", new ImpChainLayer(), SceneLayering.BehindNPCs);
+            WorldLayers.Register("CrabsonChains", new JerryCrabsonLayer(), SceneLayering.BehindTiles_BehindNPCs);
+            WorldLayers.Register("ParticleLayer_PostDrawPlayer", new ParticleLayer_PostDrawPlayers(), SceneLayering.PostDrawPlayers);
+            WorldLayers.Register(HotAndColdCurrentLayer.Name, new HotAndColdCurrentLayer(), HotAndColdCurrentLayer.Layer);
+            WorldLayers.Register(CustomPickupTextLayer.Name, new CustomPickupTextLayer(), CustomPickupTextLayer.Layer);
             ScreenShakeManager.Load();
             StarbyteColorCache.Init();
             if (client.OutlineShader)
@@ -294,6 +295,16 @@ namespace AQMod
             }
             Main.OnPreDraw += Main_OnPreDraw;
             WorldEffects = new List<WorldVisualEffect>();
+        }
+
+        private static void ItemText_NewText(On.Terraria.ItemText.orig_NewText orig, Item newItem, int stack, bool noStack, bool longText)
+        {
+            if (newItem != null && newItem.type > Main.maxItemTypes && newItem.modItem is Items.ICustomPickupText customPickupText)
+            {
+                if (customPickupText.OnSpawnText(newItem, stack, noStack, longText))
+                    return;
+            }
+            orig(newItem, stack, noStack, longText);
         }
 
         private void Main_OnPreDraw(GameTime obj) // this is based greatly on the Stargoop from Spirit Mod, thank you, whoever coded that.
@@ -403,8 +414,8 @@ namespace AQMod
         /// <param name="self"></param>
         /// <returns></returns>
         private static bool NPC_Collision_DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
-            self.type > Main.maxNPCTypes && 
-            self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ? 
+            self.type > Main.maxNPCTypes &&
+            self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ?
             decideToFallThroughPlatforms.Decide() : orig(self);
 
         /// <summary>

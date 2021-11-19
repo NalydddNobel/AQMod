@@ -6,12 +6,12 @@ using Terraria;
 
 namespace AQMod.Assets.Graphics.SceneLayers
 {
-    public class HotAndColdCurrentLayer : SceneLayer
+    public sealed class HotAndColdCurrentLayer : SceneLayer
     {
         public const string Name = "HotAndColdCurrent";
         public const SceneLayering Layer = SceneLayering.BehindNPCs;
 
-        public override void OnLoad()
+        protected override void onLoad()
         {
             reset(Main.graphics.GraphicsDevice);
             try

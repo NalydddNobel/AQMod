@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
 
-namespace AQMod.Items
+namespace AQMod.Items.Tools.Consumable
 {
     public class PotionofContainersTag : ModItem
     {
@@ -50,9 +50,7 @@ namespace AQMod.Items
                         }
                         int itemType = int.Parse(id);
                         if (itemType >= Main.maxItemTypes)
-                        {
                             return Error;
-                        }
                         else
                         {
                             return new ContainerTag(itemType);
@@ -75,9 +73,7 @@ namespace AQMod.Items
                         var modInstance = ModLoader.GetMod(mod);
                         int itemType = modInstance.ItemType(name);
                         if (itemType < Main.maxItemTypes)
-                        {
                             return Error;
-                        }
                         else
                         {
                             return new ContainerTag(itemType);
@@ -108,9 +104,7 @@ namespace AQMod.Items
             public string GetKey()
             {
                 if (chestItemID < Main.maxItemTypes)
-                {
                     return "0:" + chestItemID + ";";
-                }
                 else
                 {
                     var item = new Item();
@@ -124,9 +118,7 @@ namespace AQMod.Items
                 var item = new Item();
                 item.netDefaults(chestItemID);
                 if (!Main.tileContainer[chestTileID] || Main.tileTable[chestTileID])
-                {
                     return false;
-                }
                 chestTileID = (ushort)item.createTile;
                 chestTileStyle = (byte)item.placeStyle;
                 return true;
@@ -191,9 +183,7 @@ namespace AQMod.Items
         public override void UseStyle(Player player)
         {
             if (player.itemTime == 0)
-            {
                 player.itemTime = (int)(item.useTime / PlayerHooks.TotalUseTimeMultiplier(player, item));
-            }
             else if (player.itemTime == (int)(item.useTime / PlayerHooks.TotalUseTimeMultiplier(player, item)) / 2)
             {
                 for (int i = 0; i < 30; i++)

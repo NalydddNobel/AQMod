@@ -1,14 +1,13 @@
 ﻿using AQMod.Items.Accessories;
 using AQMod.Items.Armor.Crab;
+using AQMod.Items.BossItems.Crabson;
+using AQMod.Items.BossItems.Starite;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Placeable.Trophies;
 using AQMod.Items.Tools;
-using AQMod.Items.Tools.BossSummons;
 using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Vanities;
-using AQMod.Items.Vanities.BossMasks;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Vanities.Pets;

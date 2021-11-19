@@ -209,7 +209,11 @@ ItemName.SparrowWings=Sparrow Wings
 #
 # Other Accessories
 #
+
 ItemName.Breadsoul=Breadsoul
+ItemTooltip.Breadsoul=Enemies no longer drop hearts and instead drop spectre souls\nSpectre souls drop more commonly when you are lower on health and they heal you by 30\nSpectre Souls don't heal instantly
+ProjectileName.BreadsoulHealing=Breadsoul
+
 ItemName.CelesteTorus=Celeste Torus
 ItemName.Dreadsoul=Dreadsoul
 ItemName.RustyKnife=Rusty Knife
@@ -334,7 +338,6 @@ ItemName.UltrabrightBlueTorch=Ultrabright Blue Torch
 ItemName.MoonlightWall=Moonlight Wall
 ItemTooltip.MoonlightWall=NPCs in front of the wall will think it's night
 ItemName.OceanRavineWall=Ocean Ravine Wall
-# World Interactors
 ItemName.GlimmeringStatue=Glimmering Statue
 # Other Placeables
 ItemName.ExoticCoral=Exotic Coral
@@ -493,7 +496,6 @@ ItemTooltip.BusinessCard=Shops have even lower prices\n{$Mods.AQMod.Common.Works
 # Wings
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 # Other Accessories 
-ItemTooltip.Breadsoul=Enemies no longer drop hearts and instead drop spectre souls\nSpectre souls drop more commonly when you are lower on health and they heal you by 30\nSpectre Souls don't heal instantly
 ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe radius speed damage and knockback are all determined by various stats\nIncreases flight time by 2 seconds
 ItemTooltip.Dreadsoul=Upon death enemies will release 3 spectre souls which will target enemies of the same type
 ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP when you die with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'

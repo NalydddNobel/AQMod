@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items
+namespace AQMod.Items.Tools.Consumable
 {
     public class BloodshedPotion : ModItem
     {
@@ -27,9 +27,7 @@ namespace AQMod.Items
         public override void UseStyle(Player player)
         {
             if (player.itemTime == 0)
-            {
                 player.itemTime = (int)(item.useTime / PlayerHooks.TotalUseTimeMultiplier(player, item));
-            }
             else if (player.itemTime == (int)(item.useTime / PlayerHooks.TotalUseTimeMultiplier(player, item)) / 2)
             {
                 for (int i = 0; i < 30; i++)

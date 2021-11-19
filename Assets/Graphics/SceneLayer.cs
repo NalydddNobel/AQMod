@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 
 namespace AQMod.Assets.Graphics
@@ -30,10 +31,14 @@ namespace AQMod.Assets.Graphics
         {
         }
 
+        public void OnLoad()
+        {
+            onLoad();
+        }
         /// <summary>
         /// Called when added to the layers dictionary array
         /// </summary>
-        public virtual void OnLoad()
+        protected virtual void onLoad()
         {
         }
 

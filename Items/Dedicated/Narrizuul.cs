@@ -1,5 +1,6 @@
-﻿using AQMod.Common.UserInterface;
-using AQMod.Projectiles.Magic;
+﻿using AQMod.Assets.Graphics;
+using AQMod.Assets.Graphics.SceneLayers;
+using AQMod.Common.UserInterface;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -7,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Dedicated
 {
-    public class Narrizuul : ModItem, IDedicatedItem
+    public class Narrizuul : ModItem, IDedicatedItem, ICustomPickupText
     {
         public override void SetStaticDefaults()
         {
@@ -53,6 +54,17 @@ namespace AQMod.Items.Dedicated
         }
 
         Color IDedicatedItem.DedicatedItemColor() => DedicatedColors.nalyddd;
+
+        bool ICustomPickupText.OnSpawnText(Item newItem, int stack, bool noStack, bool longText)
+        {
+            if (Main.showItemText && Main.netMode != NetmodeID.Server)
+                CustomPickupTextLayer.NewText(new NarrizuulPickupDrawObject(
+                    "Mods.AQMod.ItemName.Narrizuul",
+                    Main.player[Main.myPlayer].Center + new Vector2(0f, -Main.player[Main.myPlayer].height), 
+                    new Vector2(0f, -10f),
+                    new Color(255, 255, 255, 255), 0f, 0.125f, 120));
+            return true;
+        }
     }
 
 }

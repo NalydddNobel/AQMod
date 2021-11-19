@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.BossSummons
+namespace AQMod.Items.BossItems.Crabson
 {
     public class MushroomClam : ModItem
     {

@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Vanities.BossMasks
+namespace AQMod.Items.BossItems.Starite
 {
     [AutoloadEquip(EquipType.Head)]
     public class OmegaStariteMask : ModItem

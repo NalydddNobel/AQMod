@@ -1,5 +1,6 @@
-﻿using AQMod.Items.Placeable.Banners;
-using AQMod.Items.Placeable.Trophies;
+﻿using AQMod.Items.BossItems.Crabson;
+using AQMod.Items.BossItems.Starite;
+using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Vanities.Dyes;

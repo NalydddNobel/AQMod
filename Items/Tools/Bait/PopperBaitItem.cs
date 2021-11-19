@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Bait
+namespace AQMod.Items.Tools.Bait
 {
     public abstract class PopperBaitItem : ModItem
     {

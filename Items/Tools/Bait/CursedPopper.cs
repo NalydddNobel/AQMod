@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Bait
+namespace AQMod.Items.Tools.Bait
 {
     public class CursedPopper : PopperBaitItem
     {

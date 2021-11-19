@@ -1,10 +1,7 @@
-﻿using AQMod.Common.CrossMod;
-using AQMod.Items.Weapons.Magic;
-using AQMod.Items.Weapons.Ranged;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable.Trophies
+namespace AQMod.Items.BossItems.Starite
 {
     public class OmegaStariteTrophy : ModItem
     {

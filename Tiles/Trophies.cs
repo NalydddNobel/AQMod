@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Placeable.Trophies;
+﻿using AQMod.Items.BossItems.Crabson;
+using AQMod.Items.BossItems.Starite;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

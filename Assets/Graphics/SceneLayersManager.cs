@@ -7,7 +7,7 @@ namespace AQMod.Assets.Graphics
     {
         private Dictionary<string, SceneLayer>[] _layers;
 
-        public void AddLayer(string name, SceneLayer layer, SceneLayering layering)
+        public void Register(string name, SceneLayer layer, SceneLayering layering)
         {
             if (AQMod.Loading)
             {
@@ -40,6 +40,10 @@ namespace AQMod.Assets.Graphics
         /// <param name="layering"></param>
         internal void DrawLayer(SceneLayering layering)
         {
+            if (Main.gameMenu)
+            {
+                return;
+            }
             foreach (var layer in _layers[(byte)layering])
             {
                 layer.Value.DrawLayer();

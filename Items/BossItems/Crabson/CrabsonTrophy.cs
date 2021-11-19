@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable.Trophies
+namespace AQMod.Items.BossItems.Crabson
 {
     public class CrabsonTrophy : ModItem
     {

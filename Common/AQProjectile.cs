@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.Utilities;
-using AQMod.Items.Bait;
+using AQMod.Items.Tools.Bait;
 using AQMod.Projectiles;
 using Microsoft.Xna.Framework;
 using System;

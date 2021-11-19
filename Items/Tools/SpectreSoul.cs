@@ -11,7 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace AQMod.Items
+namespace AQMod.Items.Tools
 {
     public class SpectreSoul : ModItem
     {
@@ -98,17 +98,13 @@ namespace AQMod.Items
         public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
         {
             if (!_superSecret)
-            {
                 return false;
-            }
             float l = line.text.Length;
             string text = line.text;
             var textColor = line.overrideColor.GetValueOrDefault(line.color);
             var trueTextColor = Colors.AlphaDarken(textColor);
             if (line.Name == "bad2" || line.Name == "bad3")
-            {
                 yOffset = 40;
-            }
             else
             {
                 yOffset = 0;
@@ -118,7 +114,7 @@ namespace AQMod.Items
             ghostlyColor = Colors.AlphaDarken(ghostlyColor);
             if (line.Name == "bad3")
             {
-                Vector3[] positions = new Vector3[8];
+                var positions = new Vector3[8];
                 float[] scales = new float[8];
                 float time = Main.GlobalTime * 60f;
                 for (int i = 0; i < 8; i++)

@@ -480,9 +480,9 @@ namespace AQMod.Common
 
         public override void SetDefaults(NPC npc)
         {
-            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.LovestruckAQ>()] = 
+            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.LovestruckAQ>()] =
                 npc.buffImmune[BuffID.Lovestruck];
-            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = 
+            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] =
                 npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = npc.buffImmune[BuffID.OnFire];
         }
 
@@ -1093,7 +1093,7 @@ namespace AQMod.Common
                 for (int j = 0; j < 20; j++)
                 {
                     if (Main.rand.NextBool(2))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SpectreSoul>());
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tools.SpectreSoul>());
                 }
             }
             else
@@ -1119,7 +1119,7 @@ namespace AQMod.Common
                     return;
                 int chance = (int)(lifePercent * 40) + Main.player[lowestPercentPlayer].statDefense / 3;
                 if (chance <= 1 || Main.rand.NextBool(chance))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.SpectreSoul>());
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tools.SpectreSoul>());
             }
         }
 

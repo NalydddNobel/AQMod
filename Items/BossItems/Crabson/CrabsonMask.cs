@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Vanities.BossMasks
+namespace AQMod.Items.BossItems.Crabson
 {
     [AutoloadEquip(EquipType.Head)]
     public class CrabsonMask : ModItem

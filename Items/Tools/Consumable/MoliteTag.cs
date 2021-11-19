@@ -15,7 +15,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Items
+namespace AQMod.Items.Tools.Consumable
 {
     public class MoliteTag : ModItem
     {
@@ -32,8 +32,8 @@ namespace AQMod.Items
             internal StarbytePotionTag(int item, int buffID, uint buffTime)
             {
                 potionItemID = (ushort)item;
-                this.BuffID = (ushort)buffID;
-                this.BuffTime = buffTime;
+                BuffID = (ushort)buffID;
+                BuffTime = buffTime;
             }
 
             public StarbytePotionTag(int item)
@@ -57,9 +57,7 @@ namespace AQMod.Items
                         }
                         int itemType = int.Parse(id);
                         if (itemType >= Main.maxItemTypes)
-                        {
                             return Error;
-                        }
                         else
                         {
                             return new StarbytePotionTag(itemType);
@@ -82,9 +80,7 @@ namespace AQMod.Items
                         var modInstance = ModLoader.GetMod(mod);
                         int itemType = modInstance.ItemType(name);
                         if (itemType < Main.maxItemTypes)
-                        {
                             return Error;
-                        }
                         else
                         {
                             return new StarbytePotionTag(itemType);
@@ -100,9 +96,7 @@ namespace AQMod.Items
             public string GetKey()
             {
                 if (potionItemID < Main.maxItemTypes)
-                {
                     return "0:" + potionItemID + ";";
-                }
                 else
                 {
                     var item = new Item();
@@ -116,9 +110,7 @@ namespace AQMod.Items
                 var item = new Item();
                 item.netDefaults(potionItemID);
                 if (item.buffType <= 0 || item.buffTime <= 0)
-                {
                     return false;
-                }
                 BuffID = (ushort)item.buffType;
                 BuffTime = (uint)(item.buffTime * 2);
                 return true;
