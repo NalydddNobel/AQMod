@@ -209,7 +209,11 @@ ItemName.SparrowWings=雀翼
 #
 # Other Accessories
 #
-ItemName.Breadsoul=幽惧之魂
+
+ItemName.Breadsoul=幽冥之魂
+ItemTooltip.Breadsoul=敌人不再掉落红心, 而是掉落幽冥之魂\n你的生命值越低, 幽冥之魂掉落几率越高, 幽冥之魂会为你回复30点生命值\n幽冥之魂不会立即治疗你30点生命值而是持续恢复
+ProjectileName.BreadsoulHealing=幽冥之魂
+
 ItemName.CelesteTorus=天界手环
 ItemName.Dreadsoul=惊惧之魂
 ItemName.RustyKnife=生锈的刀
@@ -493,7 +497,6 @@ ItemTooltip.BusinessCard=降低商店价格\n{$Mods.AQMod.Common.WorksInInventor
 # Wings
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 # Other Accessories 
-ItemTooltip.Breadsoul=敌人不再掉落红心, 而是掉落幽冥之魂\n你的生命值越低, 幽冥之魂掉落几率越高, 幽冥之魂会为你回复30点生命值\n幽冥之魂不会立即治疗你30点生命值而是持续恢复
 ItemTooltip.CelesteTorus=在你的周围召唤一圈环绕着你的球体\n球体的半径、速度、伤害和击退都根据你不同的属性决定\n延长2秒飞行时间
 ItemTooltip.Dreadsoul=击杀敌人时使其释放三个追踪同种敌人灵魂
 ItemTooltip.RustyKnife=召唤你的朋友为你而战\n当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间\n'为什么你要拿着锋利的刀锋而不是刀把?'
