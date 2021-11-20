@@ -40,13 +40,6 @@ namespace AQMod.NPCs.Monsters
 
         public override void AI()
         {
-            if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().spiritAmulet)
-            {
-                npc.life = -1;
-                npc.HitEffect();
-                npc.active = false;
-                return;
-            }
             npc.TargetClosest();
             Vector2 center = npc.Center;
             var target = Main.player[npc.target];
@@ -125,7 +118,7 @@ namespace AQMod.NPCs.Monsters
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Ectoplasm, Main.rand.Next(3) + 1);
-            if (Main.rand.NextBool(30))
+            if (Main.rand.NextBool(45))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
         }
 

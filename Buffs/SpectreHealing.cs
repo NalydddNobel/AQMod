@@ -20,7 +20,7 @@ namespace AQMod.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            if (player.buffTime[buffIndex] % 5 == 0)
+            if (player.buffTime[buffIndex] % 5 == 0) // 12 HP a second
             {
                 player.HealEffect(1);
                 player.statLife += 1;

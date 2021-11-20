@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Buffs
+namespace AQMod.Buffs.Foods
 {
-    public class SpicyEelBuff : ModBuff
+    public class SpicyEel : ModBuff
     {
         public override void SetDefaults()
         {

@@ -26,6 +26,7 @@ using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Effects;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Accessories;
+using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable;
@@ -239,6 +240,8 @@ namespace AQMod
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
             On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
             On.Terraria.Player.FishingLevel += GetFishingLevel;
+            On.Terraria.Player.AddBuff += Player_AddBuff;
+            On.Terraria.Player.QuickBuff += Player_QuickBuff;
 
             var server = AQConfigServer.Instance;
             ApplyServerConfig(server);
@@ -246,6 +249,74 @@ namespace AQMod
             {
                 Load_ClientSide();
             }
+        }
+
+        private void Player_QuickBuff(On.Terraria.Player.orig_QuickBuff orig, Player self)
+        {
+            Point[] buffResetIndices = new Point[Main.maxInventory];
+            int wellFedItem = -1;
+            int buffResetIndex = 0;
+            for (int i = 0; i < Main.maxInventory; i++)
+            {
+                var item = self.inventory[i];
+                if (item.stack <= 0 || item.type < Main.maxItemTypes || item.buffType <= 0 || item.summon || item.mountType > 0)
+                {
+                    continue;
+                }
+                Main.NewText(item.buffType);
+                Main.NewText(buffResetIndex);
+                Main.NewText(i, Main.DiscoColor);
+                if (AQBuff.Sets.FoodBuff[item.buffType])
+                {
+                    Main.NewText("IS FOOD");
+                    if (wellFedItem != -1)
+                    {
+                        Main.NewText("NO MORE BUFF");
+                        buffResetIndices[buffResetIndex] = new Point(i, item.buffType);
+                        buffResetIndex++;
+                        item.buffType = 0;
+                        continue;
+                    }
+                    wellFedItem = i;
+                }
+                if (!(item.modItem is ISpecialFood specialFood))
+                {
+                    continue;
+                }
+                buffResetIndices[buffResetIndex] = new Point(i, item.buffType);
+                buffResetIndex++;
+                item.buffType = specialFood.ChangeBuff(self);
+            }
+            orig(self);
+            for (int i = 0; i < buffResetIndex; i++)
+            {
+                if (buffResetIndices[i].X == 0)
+                {
+                    return;
+                }
+                var item = self.inventory[buffResetIndices[i].X];
+                if (item.stack <= 0 || item.type < ItemID.None)
+                {
+                    continue;
+                }
+                item.buffType = buffResetIndices[i].Y;
+            }
+        }
+
+        private void Player_AddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)
+        {
+            if (AQBuff.Sets.FoodBuff[type])
+            {
+                for (int i = 0; i < Player.MaxBuffs; i++)
+                {
+                    if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.FoodBuff[self.buffType[i]])
+                    {
+                        self.DelBuff(i);
+                        i--;
+                    }
+                }
+            }
+            orig(self, type, time1, quiet);
         }
 
         private void Load_ClientSide()
@@ -436,6 +507,7 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
+            AQBuff.Sets.Setup();
             AQNPC.Sets.LoadSets(); // Initializes sets for npcs
             NoHitManager.Setup();
             AQProjectile.Sets.LoadSets(); // Initializes sets for projectiles
@@ -587,6 +659,7 @@ namespace AQMod
             AQProjectile.Sets.UnloadSets();
             NoHitManager.Unload();
             AQNPC.Sets.UnloadSets();
+            AQBuff.Sets.Unload();
 
             // in: Load()
             // v doesn't load on server v

@@ -211,11 +211,13 @@ ItemName.SparrowWings=Sparrow Wings
 #
 
 ItemName.Breadsoul=Breadsoul
-ItemTooltip.Breadsoul=Enemies no longer drop hearts and instead drop spectre souls\nSpectre souls drop more commonly when you are lower on health and they heal you by 30\nSpectre Souls don't heal instantly
+ItemTooltip.Breadsoul=Increases your grab reach by 25%\nDungeon Spirit enemies are now friendly\nNearby enemies no longer drop hearts, and instead drop souls\nSpectre souls drop more commonly and give you massive life regeneration
 ProjectileName.BreadsoulHealing=Breadsoul
+ItemName.Dreadsoul=Dreadsoul
+ItemTooltip.Dreadsoul=Upon death enemies will release 3 spectre souls which will target enemies of the same type
+ProjectileName.DreadsoulAttack=Dreadsoul
 
 ItemName.CelesteTorus=Celeste Torus
-ItemName.Dreadsoul=Dreadsoul
 ItemName.RustyKnife=Rusty Knife
 ItemName.Terraroot=Terraroot
 ItemName.Thunderbird=Thunderbird
@@ -239,7 +241,11 @@ ItemName.UltimateSword=Ultimate Sword
 # Buff Items #
 ##############
 ItemName.Baguette=Baguette
-ItemName.NeutronJuice=Neutron Juice
+ItemName.NeutronJuice=Neutron Yogurt
+
+ItemName.GrapePhanta=Grape Phanta
+ItemTooltip.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
+
 ItemName.SuspiciousLookingSteak=Suspicious Looking Steak
 ItemName.SpicyEel=Spicy Eel
 # Other Buffs Items
@@ -497,7 +503,6 @@ ItemTooltip.BusinessCard=Shops have even lower prices\n{$Mods.AQMod.Common.Works
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 # Other Accessories 
 ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe radius speed damage and knockback are all determined by various stats\nIncreases flight time by 2 seconds
-ItemTooltip.Dreadsoul=Upon death enemies will release 3 spectre souls which will target enemies of the same type
 ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP when you die with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
 ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
 ItemTooltip.Thunderbird=Gives you a thunderous extra jump that refreshes every 2 seconds you must be moving in a direction to use the jump\nEnemies below you have a chance to get struck by lightning\nThe lightning becomes more powerful the lower your life
@@ -736,7 +741,6 @@ ProjectileName.Monoxider=Monoxider
 
 # Misc
 ProjectileName.CelesteTorusCollider=Celeste Torus
-ProjectileName.DreadsoulAttack=Dreadsoul
 ProjectileName.FertilePowder=Fertile Powder
 ProjectileName.Friend=Friend
 ProjectileName.FriendlyWind=Friendly Wind

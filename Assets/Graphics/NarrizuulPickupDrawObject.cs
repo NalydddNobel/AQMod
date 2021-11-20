@@ -8,7 +8,7 @@ using Terraria.Localization;
 
 namespace AQMod.Assets.Graphics
 {
-    public class NarrizuulPickupDrawObject : IDrawObject
+    public class NarrizuulPickupDrawObject : IDrawObject // unfinished
     {
         public string key;
         public Vector2 position;

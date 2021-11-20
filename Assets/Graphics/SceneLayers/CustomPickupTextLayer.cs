@@ -34,9 +34,14 @@ namespace AQMod.Assets.Graphics.SceneLayers
 
         public override void Update()
         {
-            foreach (var d in _text)
+            for (int i = 0; i < _text.Count; i++)
             {
-                d.Update();
+                IDrawObject d = _text[i];
+                if (d.Update())
+                {
+                    _text.RemoveAt(i);
+                    i--;
+                }
             }
         }
     }

@@ -89,7 +89,6 @@ namespace AQMod
         public bool wyvernAmulet;
         public bool voodooAmulet;
         public bool ghostAmulet;
-        public bool spiritAmulet;
         public bool extractinatorVisible;
         public float celesteTorusX;
         public float celesteTorusY;
@@ -108,7 +107,6 @@ namespace AQMod
         public bool wyvernAmuletHeld;
         public bool voodooAmuletHeld;
         public bool ghostAmuletHeld;
-        public bool spiritAmuletHeld;
         public bool[] veinmineTiles;
         public bool degenerationRing;
         public ushort shieldLife;
@@ -142,6 +140,7 @@ namespace AQMod
         public bool notFrostburn;
         public bool bossrush;
         public bool bossrushOld;
+        public float grabReachMult; // until 1.4 comes
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -349,6 +348,7 @@ namespace AQMod
             bossrushOld = false;
             CurrentEncoreKillCount = new int[NPCLoader.NPCCount];
             EncoreBossKillCountRecord = new int[NPCLoader.NPCCount];
+            grabReachMult = 1f;
         }
 
         public override void OnEnterWorld(Player player)
@@ -526,7 +526,6 @@ namespace AQMod
             wyvernAmulet = false;
             voodooAmulet = false;
             ghostAmulet = false;
-            spiritAmulet = false;
             extractinatorVisible = false;
             opposingForce = false;
             unityMirror = false;
@@ -535,7 +534,6 @@ namespace AQMod
             striderPalmsOld = striderPalms;
             striderPalms = false;
             ghostAmuletHeld = InVanitySlot(player, ModContent.ItemType<GhostAmulet>());
-            spiritAmuletHeld = InVanitySlot(player, ModContent.ItemType<SpiritAmulet>());
             voodooAmuletHeld = InVanitySlot(player, ModContent.ItemType<VoodooAmulet>());
             wyvernAmuletHeld = InVanitySlot(player, ModContent.ItemType<WyvernAmulet>());
             veinmineTiles = new bool[TileLoader.TileCount];
@@ -570,6 +568,7 @@ namespace AQMod
             }
             bossrushOld = bossrush;
             bossrush = false;
+            grabReachMult = 1f;
             if (nearGlobe > 0)
                 nearGlobe--;
             if (!dartHead)

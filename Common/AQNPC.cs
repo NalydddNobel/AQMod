@@ -18,6 +18,7 @@ using AQMod.Localization;
 using AQMod.NPCs.Friendly.Town;
 using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.DemonicEvent;
+using AQMod.Projectiles;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using System;
@@ -450,6 +451,7 @@ namespace AQMod.Common
 
         private static bool _showEnergyDropsMessage;
         private static byte _lootLoop;
+        private static int _breadsoul = 0;
 
         public override bool InstancePerEntity => true;
 
@@ -744,18 +746,6 @@ namespace AQMod.Common
                 case NPCID.WyvernHead:
                 {
                     if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().wyvernAmulet)
-                    {
-                        npc.life = -1;
-                        npc.HitEffect();
-                        npc.active = false;
-                        return false;
-                    }
-                }
-                break;
-
-                case NPCID.DungeonSpirit:
-                {
-                    if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().spiritAmulet)
                     {
                         npc.life = -1;
                         npc.HitEffect();
@@ -1068,10 +1058,10 @@ namespace AQMod.Common
             }
         }
 
-        private void ManageSpectreCharm(NPC npc)
+        private void UpdateBreadsoul(NPC npc)
         {
-            int soulCollector = -1;
-            float soulCollectorDistance = 2000f;
+            _breadsoul = -1;
+            float breadsoulDistance = 2000f;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 var plr = Main.player[i];
@@ -1079,33 +1069,30 @@ namespace AQMod.Common
                 {
                     var aQPlr = plr.GetModPlayer<AQPlayer>();
                     float distance = Vector2.Distance(plr.Center, npc.Center);
-                    if (aQPlr.spectreSoulCollector && distance < soulCollectorDistance)
+                    if (aQPlr.spectreSoulCollector && distance < breadsoulDistance)
                     {
-                        soulCollector = i;
-                        soulCollectorDistance = distance;
+                        _breadsoul = i;
+                        breadsoulDistance = distance;
                     }
                 }
             }
-            if (soulCollector == -1)
+            if (_breadsoul == -1)
                 return;
+            NPCLoader.blockLoot.Add(ItemID.Heart);
             if (npc.boss)
             {
-                for (int j = 0; j < 20; j++)
-                {
-                    if (Main.rand.NextBool(2))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tools.SpectreSoul>());
-                }
+                BreadsoulHealing.SpawnCluster(Main.player[_breadsoul], npc.Center, npc.Size.Length() / 2f,Main.rand.Next(10, 18), Main.rand.Next(120, 180));
             }
             else
             {
-                var soulCollecterCenter = Main.player[soulCollector].Center;
-                int lowestPercentPlayer = soulCollector;
-                float lifePercent = Main.player[soulCollector].statLife / (float)Main.player[soulCollector].statLifeMax2;
+                var breadsoulCollector = Main.player[_breadsoul].Center;
+                int lowestPercentPlayer = _breadsoul;
+                float lifePercent = Main.player[_breadsoul].statLife / (float)Main.player[_breadsoul].statLifeMax2;
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {
-                    if (i == soulCollector || Main.player[i].dead || !Main.player[i].active)
+                    if (i == _breadsoul || Main.player[i].dead || !Main.player[i].active)
                         continue;
-                    if (Vector2.Distance(soulCollecterCenter, Main.player[i].Center) < 2000f)
+                    if (Vector2.Distance(breadsoulCollector, Main.player[i].Center) < 2000f)
                     {
                         float otherLifePercent = Main.player[i].statLife / (float)Main.player[i].statLifeMax2;
                         if (otherLifePercent < lifePercent)
@@ -1119,7 +1106,9 @@ namespace AQMod.Common
                     return;
                 int chance = (int)(lifePercent * 40) + Main.player[lowestPercentPlayer].statDefense / 3;
                 if (chance <= 1 || Main.rand.NextBool(chance))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tools.SpectreSoul>());
+                {
+                    BreadsoulHealing.SpawnCluster(Main.player[_breadsoul], npc.Center, Main.rand.Next(3, 6), Main.rand.Next(25, 35));
+                }
             }
         }
 
@@ -1160,7 +1149,7 @@ namespace AQMod.Common
             }
             else
             {
-                ManageSpectreCharm(npc);
+                UpdateBreadsoul(npc);
                 if (npc.whoAmI == HuntSystem.TargetNPC)
                 {
                     if (HuntSystem.Hunt != null)
@@ -1235,26 +1224,7 @@ namespace AQMod.Common
             }
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                if (Sets.EnemyDungeonSprit[npc.type])
-                {
-                    if (!aQPlayer.spiritAmuletHeld)
-                    {
-                        int count = Sets.CountNPCs(Sets.EnemyDungeonSprit);
-                        if (count > 1)
-                        {
-                            int itemType = ModContent.ItemType<SpiritAmulet>();
-                            if (!AQItem.ItemOnGroundAlready(itemType))
-                            {
-                                int chance = 8 - count * 2;
-                                if (chance <= 1 || Main.rand.NextBool(chance))
-                                {
-                                    Item.NewItem(npc.getRect(), itemType);
-                                }
-                            }
-                        }
-                    }
-                }
-                else if (npc.type == NPCID.Ghost)
+                if (npc.type == NPCID.Ghost)
                 {
                     if (!aQPlayer.ghostAmuletHeld && Main.rand.NextBool(15))
                         Item.NewItem(npc.getRect(), ModContent.ItemType<GhostAmulet>());
@@ -1387,9 +1357,24 @@ namespace AQMod.Common
                 break;
 
                 case NPCID.DungeonSpirit:
+                if (Main.rand.NextBool(45))
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Breadsoul>());
+                }
+                break;
+
+                case NPCID.Necromancer:
                 if (Main.rand.NextBool(30))
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Breadsoul>());
+                }
+                break;
+
+                case NPCID.DiabolistRed:
+                case NPCID.DiabolistWhite:
+                if (Main.rand.NextBool(30))
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
                 }
                 break;
 

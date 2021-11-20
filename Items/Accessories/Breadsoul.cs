@@ -23,7 +23,11 @@ namespace AQMod.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AQPlayer>().spectreSoulCollector = true;
+            player.npcTypeNoAggro[NPCID.DungeonSpirit] = true;
+            player.npcTypeNoAggro[ModContent.NPCType<NPCs.Monsters.Heckto>()] = true;
+            var aQPlayer = player.GetModPlayer<AQPlayer>();
+            aQPlayer.grabReachMult += 0.25f;
+            aQPlayer.spectreSoulCollector = true;
         }
     }
 }

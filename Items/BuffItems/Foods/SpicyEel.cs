@@ -1,5 +1,4 @@
-﻿using AQMod.Buffs;
-using AQMod.Items.Materials.Fish;
+﻿using AQMod.Items.Materials.Fish;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,7 +20,7 @@ namespace AQMod.Items.BuffItems.Foods
             item.consumable = true;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(silver: 50);
-            item.buffType = ModContent.BuffType<SpicyEelBuff>();
+            item.buffType = ModContent.BuffType<Buffs.Foods.SpicyEel>();
             item.buffTime = 25200;
         }
 
