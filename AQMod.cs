@@ -253,54 +253,9 @@ namespace AQMod
 
         private void Player_QuickBuff(On.Terraria.Player.orig_QuickBuff orig, Player self)
         {
-            Point[] buffResetIndices = new Point[Main.maxInventory];
-            int wellFedItem = -1;
-            int buffResetIndex = 0;
-            for (int i = 0; i < Main.maxInventory; i++)
-            {
-                var item = self.inventory[i];
-                if (item.stack <= 0 || item.type < Main.maxItemTypes || item.buffType <= 0 || item.summon || item.mountType > 0)
-                {
-                    continue;
-                }
-                Main.NewText(item.buffType);
-                Main.NewText(buffResetIndex);
-                Main.NewText(i, Main.DiscoColor);
-                if (AQBuff.Sets.FoodBuff[item.buffType])
-                {
-                    Main.NewText("IS FOOD");
-                    if (wellFedItem != -1)
-                    {
-                        Main.NewText("NO MORE BUFF");
-                        buffResetIndices[buffResetIndex] = new Point(i, item.buffType);
-                        buffResetIndex++;
-                        item.buffType = 0;
-                        continue;
-                    }
-                    wellFedItem = i;
-                }
-                if (!(item.modItem is ISpecialFood specialFood))
-                {
-                    continue;
-                }
-                buffResetIndices[buffResetIndex] = new Point(i, item.buffType);
-                buffResetIndex++;
-                item.buffType = specialFood.ChangeBuff(self);
-            }
+            AQPlayer.IsQuickBuffing = true;
             orig(self);
-            for (int i = 0; i < buffResetIndex; i++)
-            {
-                if (buffResetIndices[i].X == 0)
-                {
-                    return;
-                }
-                var item = self.inventory[buffResetIndices[i].X];
-                if (item.stack <= 0 || item.type < ItemID.None)
-                {
-                    continue;
-                }
-                item.buffType = buffResetIndices[i].Y;
-            }
+            AQPlayer.IsQuickBuffing = false;
         }
 
         private void Player_AddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)

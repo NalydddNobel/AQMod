@@ -245,6 +245,8 @@ ItemName.NeutronJuice=Neutron Yogurt
 
 ItemName.GrapePhanta=Grape Phanta
 ItemTooltip.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
+BuffName.GrapePhanta=Grape Phanta
+BuffDescription.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
 
 ItemName.SuspiciousLookingSteak=Suspicious Looking Steak
 ItemName.SpicyEel=Spicy Eel

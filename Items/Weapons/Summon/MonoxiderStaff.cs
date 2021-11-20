@@ -42,7 +42,7 @@ namespace AQMod.Items.Weapons.Summon
         {
             player.AddBuff(item.buffType, 2);
             position = Main.MouseWorld;
-            player.GetModPlayer<AQPlayer>().HeadMinionSummonCheck(type);
+            AQPlayer.HeadMinionSummonCheck(player.whoAmI, type);
             return true;
         }
 

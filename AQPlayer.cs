@@ -17,6 +17,7 @@ using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.BuffItems;
+using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Materials.Fish;
 using AQMod.Items.Placeable;
 using AQMod.Items.Placeable.Wall;
@@ -153,6 +154,7 @@ namespace AQMod
         public string CursorDye { get; private set; } = "";
 
         public const float AtmosphericCurrentsWindSpeed = 30f;
+        public static bool IsQuickBuffing { get; internal set; }
 
         public bool AtmosphericCurrentsEvent => player.ZoneSkyHeight && Main.windSpeed > 30f;
 
@@ -164,6 +166,14 @@ namespace AQMod
             clone.celesteTorusZ = celesteTorusZ;
             clone.CurrentEncoreKillCount = CurrentEncoreKillCount;
             clone.EncoreBossKillCountRecord = EncoreBossKillCountRecord;
+        }
+
+        public override void PostItemCheck()
+        {
+            if (player.itemAnimation < 1 && player.inventory[player.selectedItem].modItem is ISpecialFood)
+            {
+                player.inventory[player.selectedItem].buffType = BuffID.WellFed;
+            }
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -1339,13 +1349,25 @@ namespace AQMod
             }
         }
 
-        public void HeadMinionSummonCheck(int type)
+        public static void HeadMinionSummonCheck(int player, int type)
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.HeadMinion[Main.projectile[i].type])
+                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.HeadMinion[Main.projectile[i].type] && Main.projectile[i].owner == player)
                     Main.projectile[i].Kill();
             }
+        }
+
+        public static bool HasFoodBuff(int player)
+        {
+            for (int i = 0; i < Player.MaxBuffs; i++)
+            {
+                if (Main.player[player].buffTime[i] > 0 && AQBuff.Sets.FoodBuff[Main.player[player].buffType[i]])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -66,6 +66,29 @@ namespace AQMod.Common
             return false;
         }
 
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if (item.modItem is ISpecialFood specialFood)
+            {
+                if (AQPlayer.IsQuickBuffing && AQPlayer.HasFoodBuff(player.whoAmI))
+                {
+                    return false;
+                }
+                if (base.CanUseItem(item, player))
+                {
+                    item.buffType = 0;
+                    player.AddBuff(specialFood.ChangeBuff(player), item.buffTime);
+                    player.ConsumeItem(item.type);
+                    if (item.UseSound != null)
+                        Main.PlaySound(item.UseSound, player.Center);
+                    if (!AQPlayer.IsQuickBuffing)
+                        return true;
+                }
+                return false;
+            }
+            return base.CanUseItem(item, player);
+        }
+
         public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
         {
             if (player.GetModPlayer<AQPlayer>().spicyEel)
