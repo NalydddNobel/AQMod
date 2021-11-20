@@ -211,11 +211,13 @@ ItemName.SparrowWings=雀翼
 #
 
 ItemName.Breadsoul=幽冥之魂
-ItemTooltip.Breadsoul=敌人不再掉落红心, 而是掉落幽冥之魂\n你的生命值越低, 幽冥之魂掉落几率越高, 幽冥之魂会为你回复30点生命值\n幽冥之魂不会立即治疗你30点生命值而是持续恢复
+ItemTooltip.Breadsoul=增加25%钩爪距离\n使地牢幽魂变得友善\n敌人不再掉落红心, 而是掉落灵魂\n增加灵魂的掉落几率, 灵魂会为你回复大量生命值
 ProjectileName.BreadsoulHealing=幽冥之魂
+ItemName.Dreadsoul=惊惧之魂
+ItemTooltip.Dreadsoul=击杀敌人时使其释放三个追踪同种敌人灵魂
+ProjectileName.DreadsoulAttack=惊惧之魂
 
 ItemName.CelesteTorus=天界手环
-ItemName.Dreadsoul=惊惧之魂
 ItemName.RustyKnife=生锈的刀
 ItemName.Terraroot=地之根茎
 ItemName.Thunderbird=雷鸟塑像
@@ -239,7 +241,11 @@ ItemName.UltimateSword=最终之剑
 # Buff Items #
 ##############
 ItemName.Baguette=法棍
-ItemName.NeutronJuice=中子果汁
+ItemName.NeutronJuice=中子酸奶
+
+ItemName.GrapePhanta=幻影葡萄
+ItemTooltip.GrapePhanta=中幅度提升大多数属性\n大幅度提升魔法属性\n增加20点法力值
+
 ItemName.SuspiciousLookingSteak=可疑牛排
 ItemName.SpicyEel=香辣鳗鱼
 # Other Buffs Items
@@ -338,7 +344,6 @@ ItemName.UltrabrightBlueTorch=超亮蓝火把
 ItemName.MoonlightWall=月光墙
 ItemTooltip.MoonlightWall=墙壁前的NPC会认为现在处于晚上
 ItemName.OceanRavineWall=海沟墙
-# World Interactors
 ItemName.GlimmeringStatue=烁光雕像
 # Other Placeables
 ItemName.ExoticCoral=奇异的珊瑚
@@ -498,7 +503,6 @@ ItemTooltip.BusinessCard=降低商店价格\n{$Mods.AQMod.Common.WorksInInventor
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 # Other Accessories 
 ItemTooltip.CelesteTorus=在你的周围召唤一圈环绕着你的球体\n球体的半径、速度、伤害和击退都根据你不同的属性决定\n延长2秒飞行时间
-ItemTooltip.Dreadsoul=击杀敌人时使其释放三个追踪同种敌人灵魂
 ItemTooltip.RustyKnife=召唤你的朋友为你而战\n当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间\n'为什么你要拿着锋利的刀锋而不是刀把?'
 ItemTooltip.Terraroot=有几率将火枪子弹转化为叶绿弹
 ItemTooltip.Thunderbird=使你获得雷鸣之跃能力, 每2秒刷新一次, 你必须朝着某个方向移动才能使用跳跃\n在你下边的敌人会遭受雷击\n你的生命值越低, 雷击的频率越高
@@ -737,7 +741,6 @@ ProjectileName.Monoxider=金乌
 
 # Misc
 ProjectileName.CelesteTorusCollider=天界环球
-ProjectileName.DreadsoulAttack=惊惧之魂
 ProjectileName.FertilePowder=丰饶之尘
 ProjectileName.Friend=朋友
 ProjectileName.FriendlyWind=友善的风
@@ -814,6 +817,7 @@ ItemName.SuperStariteBanner=极耀源星旗
 ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
 ItemName.HyperStariteBanner=巨耀源星旗
 ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
+
 ItemName.ArrowCrabBanner=箭蟹旗
 ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
 ItemName.HermitCrabBanner=寄居蟹旗
@@ -822,12 +826,14 @@ ItemName.SoliderCrabsBanner=大闸蟹旗
 ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
 ItemName.StriderCrabBanner=长足蟹旗
 ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
+
 ItemName.CinderaBanner=幻形蝠旗
 ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}
 ItemName.MagmabubbleBanner=熔火喷吐者旗
 ItemTooltip.MagmabubbleBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}
 ItemName.TrapperImpBanner=捕魂小鬼旗
 ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}
+
 ItemName.VraineBanner=镰鸟旗
 ItemTooltip.VraineBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Vraine}
 ItemName.TemperatureBalloonBanner=探温风标旗
