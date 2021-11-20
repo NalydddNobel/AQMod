@@ -3,11 +3,11 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Foods
 {
-    public class GrapePhanta : ModBuff
+    public class NeutronYogurt : ModBuff
     {
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<AQPlayer>().spicyEel = true;
+            player.GetModPlayer<AQPlayer>().neutronYogurt = true;
             player.wellFed = true;
             player.statDefense += 3;
             player.allDamage += 0.075f;

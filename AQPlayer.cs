@@ -65,7 +65,7 @@ namespace AQMod
         public bool glimmering;
         public bool chloroTransfer;
         public bool opposingForce;
-        public bool spectreSoulCollector;
+        public bool breadsoul;
         public bool moonShoes;
         public bool extractinator;
         public bool copperSeal;
@@ -142,6 +142,8 @@ namespace AQMod
         public bool bossrush;
         public bool bossrushOld;
         public float grabReachMult; // until 1.4 comes
+        public bool grapePhanta;
+        public bool neutronYogurt;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -157,172 +159,6 @@ namespace AQMod
         public static bool IsQuickBuffing { get; internal set; }
 
         public bool AtmosphericCurrentsEvent => player.ZoneSkyHeight && Main.windSpeed > 30f;
-
-        public override void clientClone(ModPlayer clientClone)
-        {
-            var clone = (AQPlayer)clientClone;
-            clone.celesteTorusX = celesteTorusX;
-            clone.celesteTorusY = celesteTorusY;
-            clone.celesteTorusZ = celesteTorusZ;
-            clone.CurrentEncoreKillCount = CurrentEncoreKillCount;
-            clone.EncoreBossKillCountRecord = EncoreBossKillCountRecord;
-        }
-
-        public override void PostItemCheck()
-        {
-            if (player.itemAnimation < 1 && player.inventory[player.selectedItem].modItem is ISpecialFood)
-            {
-                player.inventory[player.selectedItem].buffType = BuffID.WellFed;
-            }
-        }
-
-        public override void SendClientChanges(ModPlayer clientPlayer)
-        {
-            var clone = (AQPlayer)clientPlayer;
-            if (clone.blueSpheres)
-            {
-                var packet = mod.GetPacket();
-                packet.Write(NetType.UpdateAQPlayerCelesteTorus);
-                packet.Write((byte)player.whoAmI);
-                packet.Write(celesteTorusX);
-                packet.Write(celesteTorusY);
-                packet.Write(celesteTorusZ);
-                packet.Send();
-            }
-            if (clone.bossrush)
-            {
-                NetUpdateKillCount = true;
-                SyncPlayer(-1, player.whoAmI, true);
-            }
-        }
-
-        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-        {
-            ModPacket packet = mod.GetPacket();
-            if (NetUpdateKillCount)
-            {
-                packet.Write(NetType.UpdateAQPlayerEncoreKills);
-                packet.Write((byte)player.whoAmI);
-                byte[] buffer = SerializeBossKills();
-                packet.Write(buffer, 0, buffer.Length);
-                packet.Send(toWho, fromWho);
-                NetUpdateKillCount = false;
-                return;
-            }
-            packet.Write(NetType.UpdateAQPlayer);
-            packet.Write((byte)player.whoAmI);
-            packet.Write(celesteTorusX);
-            packet.Write(celesteTorusY);
-            packet.Write(celesteTorusZ);
-            packet.Send(toWho, fromWho);
-        }
-
-        public Vector3 GetCelesteTorusPositionOffset(int i)
-        {
-            return Vector3.Transform(new Vector3(celesteTorusRadius, 0f, 0f), Matrix.CreateFromYawPitchRoll(celesteTorusX, celesteTorusY, celesteTorusZ + MathHelper.TwoPi / 5 * i));
-        }
-
-        public void UpdateCelesteTorus()
-        {
-            if (blueSpheres)
-            {
-                float playerPercent = player.statLife / (float)player.statLifeMax2;
-                celesteTorusMaxRadius = GetCelesteTorusMaxRadius(playerPercent);
-                celesteTorusRadius = MathHelper.Lerp(celesteTorusRadius, celesteTorusMaxRadius, 0.1f);
-                celesteTorusDamage = GetCelesteTorusDamage();
-                celesteTorusKnockback = GetCelesteTorusKnockback();
-
-                celesteTorusScale = 1f + celesteTorusRadius * 0.006f + celesteTorusDamage * 0.009f + celesteTorusKnockback * 0.0015f;
-
-                var type = ModContent.ProjectileType<CelesteTorusCollider>();
-                if (player.ownedProjectileCounts[type] <= 0)
-                {
-                    Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
-                }
-                else
-                {
-                    for (int i = 0; i < Main.maxProjectiles; i++)
-                    {
-                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == ModContent.ProjectileType<CelesteTorusCollider>())
-                        {
-                            Main.projectile[i].damage = celesteTorusDamage;
-                            Main.projectile[i].knockBack = celesteTorusKnockback;
-                            break;
-                        }
-                    }
-                }
-                var center = player.Center;
-                bool danger = false;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].IsntFriendly() && Vector2.Distance(Main.npc[i].Center, center) < 2000f)
-                    {
-                        danger = true;
-                        break;
-                    }
-                }
-
-                if (danger)
-                {
-                    celesteTorusSpeed = 0.04f + (1f - playerPercent) * 0.0314f;
-                    celesteTorusX = celesteTorusX.AngleLerp(0f, 0.01f);
-                    celesteTorusY = celesteTorusY.AngleLerp(0f, 0.0075f);
-                    celesteTorusZ += celesteTorusSpeed;
-                }
-                else
-                {
-                    celesteTorusSpeed = 0.0314f;
-                    celesteTorusX += 0.0157f;
-                    celesteTorusY += 0.01f;
-                    celesteTorusZ += celesteTorusSpeed;
-                }
-            }
-            else
-            {
-                celesteTorusDamage = 0;
-                celesteTorusKnockback = 0f;
-                celesteTorusMaxRadius = 0;
-                celesteTorusRadius = 0f;
-                celesteTorusScale = 1f;
-                celesteTorusSpeed = 0f;
-                celesteTorusX = 0f;
-                celesteTorusY = 0f;
-                celesteTorusZ = 0f;
-            }
-        }
-
-        public int GetCelesteTorusMaxRadius(float playerPercent)
-        {
-            return (int)((float)Math.Sqrt(player.width * player.height) + 20f + player.wingTimeMax * 0.15f + player.wingTime * 0.15f + (1f - playerPercent) * 90f + player.statDefense);
-        }
-
-        public int GetCelesteTorusDamage()
-        {
-            return 25 + (int)(player.statDefense / 1.5f + player.endurance * 80f);
-        }
-
-        public float GetCelesteTorusKnockback()
-        {
-            return 6.5f + player.velocity.Length() * 0.8f;
-        }
-
-        public int GetOldPosCountMaxed(int maxCount)
-        {
-            int count = 0;
-            for (; count < maxCount; count++)
-            {
-                if (oldPosVisual[count] == default(Vector2))
-                    break;
-            }
-            return count;
-        }
-
-        public static bool ShouldDrawOldPos(Player player)
-        {
-            if (player.mount.Active || player.frozen || player.stoned || player.GetModPlayer<AQPlayer>().mask >= 0)
-                return false;
-            return true;
-        }
 
         public override void Initialize()
         {
@@ -527,7 +363,7 @@ namespace AQMod
             goldSeal = false;
             extraFlightTime = 0;
             dreadsoul = false;
-            spectreSoulCollector = false;
+            breadsoul = false;
             arachnotron = false;
             primeTime = false;
             omori = false;
@@ -565,6 +401,8 @@ namespace AQMod
             cataEyeColor = new Color(50, 155, 255, 0);
             heartMoth = false;
             notFrostburn = false;
+            grabReachMult = 1f;
+            grapePhanta = false;
             if (bossrushOld != bossrush)
             {
                 if (bossrush)
@@ -578,7 +416,6 @@ namespace AQMod
             }
             bossrushOld = bossrush;
             bossrush = false;
-            grabReachMult = 1f;
             if (nearGlobe > 0)
                 nearGlobe--;
             if (!dartHead)
@@ -618,16 +455,73 @@ namespace AQMod
             return null;
         }
 
-        public static bool InVanitySlot(Player player, int type)
+        public override void clientClone(ModPlayer clientClone)
         {
-            for (int i = DYE_WRAP; i < MAX_ARMOR; i++)
-            {
-                if (player.armor[i].type == type)
-                    return true;
-            }
-            return false;
+            var clone = (AQPlayer)clientClone;
+            clone.celesteTorusX = celesteTorusX;
+            clone.celesteTorusY = celesteTorusY;
+            clone.celesteTorusZ = celesteTorusZ;
+            clone.CurrentEncoreKillCount = CurrentEncoreKillCount;
+            clone.EncoreBossKillCountRecord = EncoreBossKillCountRecord;
+            clone.breadsoul = breadsoul;
+            clone.dreadsoul = dreadsoul;
+            clone.dartHead = dartHead;
+            clone.dartHeadType = dartHeadType;
+            clone.arachnotron = arachnotron;
+            clone.blueSpheres = blueSpheres;
         }
 
+        public override void PostItemCheck()
+        {
+            if (player.itemAnimation < 1 && player.inventory[player.selectedItem].modItem is ISpecialFood)
+            {
+                player.inventory[player.selectedItem].buffType = BuffID.WellFed;
+            }
+        }
+
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+            var clone = (AQPlayer)clientPlayer;
+            if (clone.bossrush)
+            {
+                NetUpdateKillCount = true;
+                SyncPlayer(-1, player.whoAmI, true);
+            }
+            else
+            {
+                if (clone.blueSpheres)
+                {
+                    Sync_CelesteTorus(toWho: -1, fromWho: -1);
+                }
+            }
+        }
+
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+        {
+            ModPacket packet = mod.GetPacket();
+            if (NetUpdateKillCount)
+            {
+                packet.Write(NetType.UpdateAQPlayerEncoreKills);
+                packet.Write((byte)player.whoAmI);
+                byte[] buffer = SerializeBossKills();
+                packet.Write(buffer, 0, buffer.Length);
+                packet.Send(toWho, fromWho);
+                NetUpdateKillCount = false;
+                return;
+            }
+            Sync_CelesteTorus();
+        }
+
+        private void Sync_CelesteTorus(int toWho = -1, int fromWho = -1)
+        {
+            var packet = mod.GetPacket();
+            packet.Write(NetType.UpdateAQPlayerCelesteTorus);
+            packet.Write((byte)player.whoAmI);
+            packet.Write(celesteTorusX);
+            packet.Write(celesteTorusY);
+            packet.Write(celesteTorusZ);
+            packet.Send(toWho, fromWho);
+        }
 
         public override void UpdateDead()
         {
@@ -1231,46 +1125,113 @@ namespace AQMod
             ScreenShakeManager.ModifyScreenPosition();
         }
 
-        public static bool PlayerCrit(int critChance, UnifiedRandom rand)
+        public Vector3 GetCelesteTorusPositionOffset(int i)
         {
-            if (critChance >= 100)
-                return true;
-            if (critChance <= 0)
+            return Vector3.Transform(new Vector3(celesteTorusRadius, 0f, 0f), Matrix.CreateFromYawPitchRoll(celesteTorusX, celesteTorusY, celesteTorusZ + MathHelper.TwoPi / 5 * i));
+        }
+
+        public void UpdateCelesteTorus()
+        {
+            if (blueSpheres)
+            {
+                float playerPercent = player.statLife / (float)player.statLifeMax2;
+                celesteTorusMaxRadius = GetCelesteTorusMaxRadius(playerPercent);
+                celesteTorusRadius = MathHelper.Lerp(celesteTorusRadius, celesteTorusMaxRadius, 0.1f);
+                celesteTorusDamage = GetCelesteTorusDamage();
+                celesteTorusKnockback = GetCelesteTorusKnockback();
+
+                celesteTorusScale = 1f + celesteTorusRadius * 0.006f + celesteTorusDamage * 0.009f + celesteTorusKnockback * 0.0015f;
+
+                var type = ModContent.ProjectileType<CelesteTorusCollider>();
+                if (player.ownedProjectileCounts[type] <= 0)
+                {
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
+                }
+                else
+                {
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == ModContent.ProjectileType<CelesteTorusCollider>())
+                        {
+                            Main.projectile[i].damage = celesteTorusDamage;
+                            Main.projectile[i].knockBack = celesteTorusKnockback;
+                            break;
+                        }
+                    }
+                }
+                var center = player.Center;
+                bool danger = false;
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].IsntFriendly() && Vector2.Distance(Main.npc[i].Center, center) < 2000f)
+                    {
+                        danger = true;
+                        break;
+                    }
+                }
+
+                if (danger)
+                {
+                    celesteTorusSpeed = 0.04f + (1f - playerPercent) * 0.0314f;
+                    celesteTorusX = celesteTorusX.AngleLerp(0f, 0.01f);
+                    celesteTorusY = celesteTorusY.AngleLerp(0f, 0.0075f);
+                    celesteTorusZ += celesteTorusSpeed;
+                }
+                else
+                {
+                    celesteTorusSpeed = 0.0314f;
+                    celesteTorusX += 0.0157f;
+                    celesteTorusY += 0.01f;
+                    celesteTorusZ += celesteTorusSpeed;
+                }
+            }
+            else
+            {
+                celesteTorusDamage = 0;
+                celesteTorusKnockback = 0f;
+                celesteTorusMaxRadius = 0;
+                celesteTorusRadius = 0f;
+                celesteTorusScale = 1f;
+                celesteTorusSpeed = 0f;
+                celesteTorusX = 0f;
+                celesteTorusY = 0f;
+                celesteTorusZ = 0f;
+            }
+        }
+
+        public int GetCelesteTorusMaxRadius(float playerPercent)
+        {
+            return (int)((float)Math.Sqrt(player.width * player.height) + 20f + player.wingTimeMax * 0.15f + player.wingTime * 0.15f + (1f - playerPercent) * 90f + player.statDefense);
+        }
+
+        public int GetCelesteTorusDamage()
+        {
+            return 25 + (int)(player.statDefense / 1.5f + player.endurance * 80f);
+        }
+
+        public float GetCelesteTorusKnockback()
+        {
+            return 6.5f + player.velocity.Length() * 0.8f;
+        }
+
+        public int GetOldPosCountMaxed(int maxCount)
+        {
+            int count = 0;
+            for (; count < maxCount; count++)
+            {
+                if (oldPosVisual[count] == default(Vector2))
+                    break;
+            }
+            return count;
+        }
+
+        public static bool ShouldDrawOldPos(Player player)
+        {
+            if (player.mount.Active || player.frozen || player.stoned || player.GetModPlayer<AQPlayer>().mask >= 0)
                 return false;
-            return rand.NextBool(100 - critChance);
+            return true;
         }
 
-        public static bool CloseMoneyTrough()
-        {
-            if (_moneyTroughHack != null)
-            {
-                _moneyTroughHack.OnClose();
-                Main.LocalPlayer.chest = -1;
-                Recipe.FindRecipes();
-                return true;
-            }
-            return false;
-        }
-
-        public static bool OpenMoneyTrough(ISuperClunkyMoneyTroughTypeThing moneyTrough, int index)
-        {
-            if (_moneyTroughHack == null)
-            {
-                _moneyTroughHack = moneyTrough;
-                _moneyTroughHackIndex = index;
-                var plr = Main.LocalPlayer;
-                plr.chest = moneyTrough.ChestType;
-                plr.chestX = (int)(Main.projectile[index].Center.X / 16f);
-                plr.chestY = (int)(Main.projectile[index].Center.Y / 16f);
-                plr.talkNPC = -1;
-                Main.npcShop = 0;
-                Main.playerInventory = true;
-                moneyTrough.OnOpen();
-                Recipe.FindRecipes();
-                return true;
-            }
-            return false;
-        }
 
         public void SetCursorDye(int type)
         {
@@ -1366,6 +1327,58 @@ namespace AQMod
                 {
                     return true;
                 }
+            }
+            return false;
+        }
+
+
+        public static bool PlayerCrit(int critChance, UnifiedRandom rand)
+        {
+            if (critChance >= 100)
+                return true;
+            if (critChance <= 0)
+                return false;
+            return rand.NextBool(100 - critChance);
+        }
+
+        public static bool CloseMoneyTrough()
+        {
+            if (_moneyTroughHack != null)
+            {
+                _moneyTroughHack.OnClose();
+                Main.LocalPlayer.chest = -1;
+                Recipe.FindRecipes();
+                return true;
+            }
+            return false;
+        }
+
+        public static bool OpenMoneyTrough(ISuperClunkyMoneyTroughTypeThing moneyTrough, int index)
+        {
+            if (_moneyTroughHack == null)
+            {
+                _moneyTroughHack = moneyTrough;
+                _moneyTroughHackIndex = index;
+                var plr = Main.LocalPlayer;
+                plr.chest = moneyTrough.ChestType;
+                plr.chestX = (int)(Main.projectile[index].Center.X / 16f);
+                plr.chestY = (int)(Main.projectile[index].Center.Y / 16f);
+                plr.talkNPC = -1;
+                Main.npcShop = 0;
+                Main.playerInventory = true;
+                moneyTrough.OnOpen();
+                Recipe.FindRecipes();
+                return true;
+            }
+            return false;
+        }
+
+        public static bool InVanitySlot(Player player, int type)
+        {
+            for (int i = DYE_WRAP; i < MAX_ARMOR; i++)
+            {
+                if (player.armor[i].type == type)
+                    return true;
             }
             return false;
         }

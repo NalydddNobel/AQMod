@@ -806,16 +806,6 @@ namespace AQMod
                 }
                 break;
 
-                case NetType.UpdateAQPlayer:
-                {
-                    var player = Main.player[reader.ReadByte()];
-                    var aQPlayer = player.GetModPlayer<AQPlayer>();
-                    aQPlayer.celesteTorusX = reader.ReadSingle();
-                    aQPlayer.celesteTorusY = reader.ReadSingle();
-                    aQPlayer.celesteTorusZ = reader.ReadSingle();
-                }
-                break;
-
                 case NetType.UpdateAQPlayerCelesteTorus:
                 {
                     var player = Main.player[reader.ReadByte()];

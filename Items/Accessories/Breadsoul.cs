@@ -27,7 +27,7 @@ namespace AQMod.Items.Accessories
             player.npcTypeNoAggro[ModContent.NPCType<NPCs.Monsters.Heckto>()] = true;
             var aQPlayer = player.GetModPlayer<AQPlayer>();
             aQPlayer.grabReachMult += 0.25f;
-            aQPlayer.spectreSoulCollector = true;
+            aQPlayer.breadsoul = true;
         }
     }
 }

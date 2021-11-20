@@ -1069,7 +1069,7 @@ namespace AQMod.Common
                 {
                     var aQPlr = plr.GetModPlayer<AQPlayer>();
                     float distance = Vector2.Distance(plr.Center, npc.Center);
-                    if (aQPlr.spectreSoulCollector && distance < breadsoulDistance)
+                    if (aQPlr.breadsoul && distance < breadsoulDistance)
                     {
                         _breadsoul = i;
                         breadsoulDistance = distance;

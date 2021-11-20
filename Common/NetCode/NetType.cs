@@ -11,14 +11,13 @@
         /// </summary>
         UpdateGlimmerEvent = 1,
         /// <summary>
-        /// Tells the server that this player needs to be updated
-        /// </summary>
-        UpdateAQPlayer = 2,
-        /// <summary>
         /// Tells the server that this player's encore kills needs to be updated
         /// </summary>
-        UpdateAQPlayerEncoreKills = 3,
-        UpdateAQPlayerCelesteTorus = 4,
+        UpdateAQPlayerEncoreKills = 2,
+        /// <summary>
+        /// Tells the server that the celeste torus needs to be updated
+        /// </summary>
+        UpdateAQPlayerCelesteTorus = 3,
         Count
     }
 }
