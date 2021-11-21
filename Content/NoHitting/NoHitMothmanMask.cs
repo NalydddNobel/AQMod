@@ -1,19 +1,20 @@
-﻿using Terraria;
+﻿using AQMod.NPCs.Boss.Starite;
+using Terraria;
 
 namespace AQMod.Content.NoHitting
 {
-    public class NoHitRewardLoot : INoHitReward
+    public class NoHitMothmanMask : INoHitReward
     {
         public readonly int Type;
         public readonly int Stack;
 
-        public NoHitRewardLoot(int type)
+        public NoHitMothmanMask(int type)
         {
             Type = type;
             Stack = 1;
         }
 
-        public NoHitRewardLoot(int type, int stack)
+        public NoHitMothmanMask(int type, int stack)
         {
             Type = type;
             Stack = stack;
@@ -21,12 +22,13 @@ namespace AQMod.Content.NoHitting
 
         public void NPCLoot(NPC npc, NoHitNPC noHitManager)
         {
-            Item.NewItem(npc.getRect(), Type, Stack);
+            if (Main.eclipse && Main.dayTime)
+                Item.NewItem(npc.getRect(), Type, Stack);
         }
 
         public bool OnEffect(NPC npc, int hitDirection, double damage, NoHitNPC noHitManager)
         {
-            return true;
+            return Main.eclipse && Main.dayTime;
         }
     }
 }

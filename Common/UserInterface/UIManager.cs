@@ -1,8 +1,5 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,23 +10,6 @@ namespace AQMod.Common.UserInterface
 {
     public class UIManager
     {
-        public static class TextDrawingMethods
-        {
-            public static void Narrizuul(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale)
-            {
-                var font = Main.fontMouseText;
-                Vector2 center = font.MeasureString(text) / 2f;
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, new Vector2(x, y), Color.Black, rotation, origin, baseScale);
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + new Vector2(2f, 0).RotatedBy(Main.GlobalTime), new Color(255, 0, 0, 0), rotation, origin, baseScale);
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + new Vector2(2f, 0).RotatedBy(Main.GlobalTime + MathHelper.TwoPi / 6), new Color(255, 255, 0, 0), rotation, origin, baseScale);
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + new Vector2(2f, 0).RotatedBy(Main.GlobalTime + MathHelper.TwoPi / 6 * 2), new Color(0, 0, 255, 0), rotation, origin, baseScale);
-                Texture2D texture = TextureCache.Lights[LightTex.Spotlight12x66];
-                Main.spriteBatch.Draw(texture, new Vector2(x, y) + center + new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f), -4f + (float)Math.Sin(Main.GlobalTime * 2.3134f)), null, new Color(0, 70, 0, 0), rotation + MathHelper.PiOver2, new Vector2(6f, 33f), new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime * 4f) * 0.145f, center.Y * 0.15f), SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(texture, new Vector2(x, y) + center + new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f + 5245f) * 4f, -4f + (float)Math.Sin(Main.GlobalTime * 2.3134f + 12f) * 2f), null, new Color(70, 70, 0, 0), rotation + MathHelper.PiOver2, new Vector2(6f, 33f), new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime + 655f) * 0.2f, center.Y * 0.1435f), SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(texture, new Vector2(x, y) + center + new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f + 12f) * -4f, -4f + (float)Math.Sin(Main.GlobalTime * 2.3134f + 5245f) * -1.25f), null, new Color(0, 0, 70, 0), rotation + MathHelper.PiOver2, new Vector2(6f, 33f), new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime * 2f + 777f) * 0.2f, center.Y * 0.25f), SpriteEffects.None, 0f);
-            }
-        }
-
         public struct InventoryItemDrawResults
         {
             public Item item;

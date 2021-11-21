@@ -1,5 +1,7 @@
 ﻿using AQMod.Assets;
+using AQMod.Assets.Graphics.Particles;
 using AQMod.Assets.Graphics.ParticlesLayers;
+using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.NetCode;
@@ -8,7 +10,6 @@ using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
-using AQMod.Content.Particles;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
@@ -64,7 +65,7 @@ namespace AQMod
         public bool monoxiderBird;
         public bool glimmering;
         public bool chloroTransfer;
-        public bool opposingForce;
+        public bool altEvilDrops;
         public bool breadsoul;
         public bool moonShoes;
         public bool extractinator;
@@ -129,7 +130,6 @@ namespace AQMod
         public int headMinionCarryY;
         public int headMinionCarryXOld;
         public int headMinionCarryYOld;
-        public bool mothmanMaskSpecial;
         public Color cataEyeColor;
         public byte monoxiderCarry;
         public int headOverlay = -1;
@@ -144,6 +144,9 @@ namespace AQMod
         public float grabReachMult; // until 1.4 comes
         public bool grapePhanta;
         public bool neutronYogurt;
+        public bool mothmanMask;
+        public bool mothmanMaskSpecialFX;
+        public byte mothmanExplosionDelay;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -373,7 +376,7 @@ namespace AQMod
             voodooAmulet = false;
             ghostAmulet = false;
             extractinatorVisible = false;
-            opposingForce = false;
+            altEvilDrops = false;
             unityMirror = false;
             stariteMinion = false;
             spicyEel = false;
@@ -403,6 +406,8 @@ namespace AQMod
             notFrostburn = false;
             grabReachMult = 1f;
             grapePhanta = false;
+            if (mothmanExplosionDelay > 0)
+                mothmanExplosionDelay--;
             if (bossrushOld != bossrush)
             {
                 if (bossrush)
@@ -588,12 +593,15 @@ namespace AQMod
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
         {
-            for (int i = 0; i < Chest.maxItems; i++)
+            if (Main.myPlayer == player.whoAmI)
             {
-                if (player.bank.item[i].type > Main.maxItemTypes && player.bank.item[i].modItem is IUpdatePiggybank update)
-                    update.UpdatePiggyBank(player, i);
-                if (player.bank2.item[i].type > Main.maxItemTypes && player.bank2.item[i].modItem is IUpdatePlayerSafe update2)
-                    update2.UpdatePlayerSafe(player, i);
+                for (int i = 0; i < Chest.maxItems; i++)
+                {
+                    if (player.bank.item[i].type > Main.maxItemTypes && player.bank.item[i].modItem is IUpdatePiggybank update)
+                        update.UpdatePiggyBank(player, i);
+                    if (player.bank2.item[i].type > Main.maxItemTypes && player.bank2.item[i].modItem is IUpdatePlayerSafe update2)
+                        update2.UpdatePlayerSafe(player, i);
+                }
             }
             UpdateCelesteTorus();
             if (player.wingsLogic > 0)
@@ -807,17 +815,42 @@ namespace AQMod
             }
         }
 
+
+        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+        {
+            switch (npc.type)
+            {
+                case NPCID.Mothron:
+                case NPCID.MothronSpawn:
+                case NPCID.MothronEgg:
+                case NPCID.CultistBoss:
+                case NPCID.CultistBossClone:
+                case NPCID.CultistDragonBody1:
+                case NPCID.CultistDragonBody2:
+                case NPCID.CultistDragonBody3:
+                case NPCID.CultistDragonBody4:
+                case NPCID.CultistDragonHead:
+                case NPCID.CultistDragonTail:
+                case NPCID.AncientCultistSquidhead:
+                {
+                    if (mothmanMask)
+                        damage /= 2;
+                }
+                break;
+            }
+        }
+
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
             var center = player.Center;
-            var targCenter = target.Center;
+            var targetCenter = target.Center;
             if (item.melee)
             {
                 if (bossChanneling)
                 {
-                    target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 120);
+                    target.AddBuff(ModContent.BuffType<Sparkling>(), 120);
                     if (!target.SpawnedFromStatue && !CanBossChannel(target) && crit)
-                        DoHyperCrystalChannel(target, damage, knockback, center, targCenter);
+                        DoHyperCrystalChannel(target, damage, knockback, center, targetCenter);
                 }
                 if (primeTime)
                 {
@@ -828,19 +861,20 @@ namespace AQMod
                     }
                 }
             }
+            HitNPCEffects(target, targetCenter, damage, knockback, crit);
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
             var center = player.Center;
-            var targCenter = target.Center;
+            var targetCenter = target.Center;
             if (proj.melee && proj.whoAmI == player.heldProj && proj.aiStyle != 99)
             {
                 if (bossChanneling)
                 {
                     target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 120);
                     if (!target.SpawnedFromStatue && !CanBossChannel(target) && crit)
-                        DoHyperCrystalChannel(target, damage, knockback, center, targCenter);
+                        DoHyperCrystalChannel(target, damage, knockback, center, targetCenter);
                 }
                 if (primeTime)
                 {
@@ -848,6 +882,74 @@ namespace AQMod
                     {
                         player.AddBuff(ModContent.BuffType<Buffs.PrimeTime>(), 600);
                         player.AddBuff(BuffID.PotionSickness, player.potionDelayTime);
+                    }
+                }
+            }
+            HitNPCEffects(target, targetCenter, damage, knockback, crit);
+        }
+
+        private void HitNPCEffects(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
+        {
+            if (mothmanMask && mothmanExplosionDelay == 0 && player.statLife >= player.statLifeMax2 && crit && !target.buffImmune[ModContent.BuffType<BlueFire>()] && target.type != NPCID.TargetDummy)
+            {
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 480);
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    Main.PlaySound(SoundID.Item74, targetCenter);
+                    int amount = (int)(25 * AQMod.EffectIntensity);
+                    if (AQMod.EffectQuality < 1f)
+                    {
+                        amount = (int)(amount * AQMod.EffectQuality);
+                    }
+                    var pos = target.position - new Vector2(2f, 2f);
+                    var rect = new Rectangle((int)pos.X, (int)pos.Y, target.width + 4, target.height + 4);
+                    for (int i = 0; i < amount; i++)
+                    {
+                        var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                        var velocity = new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-10f, 2f).Abs());
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new MonoParticleEmber(dustPos, velocity,
+                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new MonoParticleEmber(dustPos, velocity,
+                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
+                    }
+                    amount = (int)(120 * AQMod.EffectIntensity);
+                    if (AQMod.EffectQuality < 1f)
+                    {
+                        amount = (int)(amount * AQMod.EffectQuality);
+                    }
+                    if (AQMod.TonsofScreenShakes)
+                    {
+                        ScreenShakeManager.AddEffect(new BasicScreenShake(16, 8));
+                    }
+                    mothmanExplosionDelay = 60;
+                    int p = Projectile.NewProjectile(targetCenter, Vector2.Normalize(targetCenter - player.Center), ModContent.ProjectileType<MothmanCritExplosion>(), damage * 2, knockback * 1.5f, player.whoAmI, 0f, target.whoAmI);
+                    var size = Main.projectile[p].Size;
+                    float radius = size.Length() / 5f;
+                    for (int i = 0; i < amount; i++)
+                    {
+                        var offset = new Vector2(Main.rand.NextFloat(radius), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+                        var normal = Vector2.Normalize(offset);
+                        var dustPos = targetCenter + offset;
+                        var velocity = normal * Main.rand.NextFloat(6f, 12f);
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new MonoParticleEmber(dustPos, velocity,
+                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new MonoParticleEmber(dustPos, velocity,
+                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
+                        if (Main.rand.NextBool(14))
+                        {
+                            var sparkleClr = new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f);
+                            ParticleLayers.AddParticle_PostDrawPlayers(
+                                new SparkleParticle(dustPos, velocity,
+                                sparkleClr, 1.5f));
+                            ParticleLayers.AddParticle_PostDrawPlayers(
+                                new SparkleParticle(dustPos, velocity,
+                                sparkleClr * 0.5f, 1f)
+                                { rotation = MathHelper.PiOver4 });
+                        }
                     }
                 }
             }
@@ -972,7 +1074,7 @@ namespace AQMod
             int d = Dust.NewDust(spawnPos + new Vector2(0f, -6f), 6, 6, ModContent.DustType<MonoDust>(), 0, 0, 0, cataEyeColor);
             if (Main.rand.NextBool(600))
             {
-                Main.dust[d].velocity = player.velocity.RotatedBy(Main.rand.NextFloat(-0.025f, 0.025f)) * 2;
+                Main.dust[d].velocity = player.velocity.RotatedBy(Main.rand.NextFloat(-0.025f, 0.025f)) * 1.5f;
                 Main.dust[d].velocity.X += Main.windSpeed * 20f + player.velocity.X / -2f;
                 Main.dust[d].velocity.Y -= Main.rand.NextFloat(8f, 16f);
                 Main.dust[d].scale *= Main.rand.NextFloat(0.65f, 2f);
@@ -984,6 +1086,7 @@ namespace AQMod
                 Main.dust[d].velocity.Y -= Main.rand.NextFloat(4f, 5.65f);
                 Main.dust[d].scale *= Main.rand.NextFloat(0.95f, 1.4f);
             }
+
             Main.dust[d].shader = GameShaders.Armor.GetSecondaryShader(cMask, player);
             Main.playerDrawDust.Add(d);
         }
@@ -1049,7 +1152,7 @@ namespace AQMod
                             cataEyeColor = new Color(100, 100, 100, 0);
                         if (!player.mount.Active && !player.merman && !player.wereWolf && player.statLife == player.statLifeMax2)
                         {
-                            mothmanMaskSpecial = true;
+                            mothmanMaskSpecialFX = true;
                             float dustAmount = (Main.rand.Next(2, 3) + 1) * ModContent.GetInstance<AQConfigClient>().EffectQuality;
                             if (dustAmount < 1f)
                             {
@@ -1143,7 +1246,7 @@ namespace AQMod
                 celesteTorusScale = 1f + celesteTorusRadius * 0.006f + celesteTorusDamage * 0.009f + celesteTorusKnockback * 0.0015f;
 
                 var type = ModContent.ProjectileType<CelesteTorusCollider>();
-                if (player.ownedProjectileCounts[type] <= 0)
+                if (Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[type] <= 0)
                 {
                     Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
                 }

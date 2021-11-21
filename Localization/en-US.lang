@@ -168,7 +168,6 @@ Common.DoesntMinionTarget=Does not obey minion targetting
 Common.NotConsumable=Does not get consumed
 Common.TorchCanBePlacedInLiquids=Can be placed in liquids
 Common.ReturnToLobster=Return this to the Lobster
-Common.DedicatedItemTag=Dedicated Item
 Common.IchorDartShotgunTag=Ichor Darts spawn pre-split
 Common.NobleMushroomScent=Crabs cannot resist its scent
 Common.EnableThing=Enable {0}?
@@ -193,8 +192,6 @@ ItemName.CopperSeal=Copper Seal
 ItemName.SilverSeal=Silver Seal
 ItemName.GoldSeal=Gold Seal
 ItemName.PlatinumSeal=Platinum Seal
-# Masks
-ItemName.MothmanMask=Mothman Mask
 # Rings
 ItemName.DegenerationRing=Degeneration Ring
 # Shields
@@ -327,6 +324,21 @@ ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
 ItemName.NuclearFeather=Nuclear Feather
 ItemName.PotionofContainers=Containers Potion
 ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
+
+CommonTooltip.DedicatedItem=Dedicated Item
+CommonTooltip.ContentCreatorItem=Content Creator Item
+
+PaintingSignature.NalydT=N.T.
+
+ItemName.AStrangeIdea=A Strange Idea...
+ItemTooltip.AStrangeIdea={$Mods.AQMod.PaintingSignature.NalydT}
+ItemName.Narrizuul=Narrizuul
+ItemTooltip.Narrizuul=A relic birthed in an alternate universe\n'Smells like roses'
+
+ItemName.MothmanMask=Mothman Mask
+ItemTooltip.MothmanMask=All effects only occur if you are at max health\n15% increased damage and critical strike chance\nIncreases the knockback of your minions\nCrits inflicts blue fire to nearby enemies
+ProjectileName.MothmanCritExplosion=Mothman Mask
+
 ItemName.Qi=Qi
 #############
 # Placeable #
@@ -392,7 +404,6 @@ ItemName.Bubbler=Bubbler
 ItemName.GebulbaStaff=Gebulba Staff
 ItemName.MagicWand=Magic Wand
 ItemName.MagmalbulbiaStaff=Magmalbulbia Staff
-ItemName.Narrizuul=Narrizuul
 ItemName.ScarletSea=Scarlet Sea
 ItemTooltip.ScarletSea=Summons homing blood orbs which follow your cursor
 ItemName.SeltzerRain=Seltzer Rain
@@ -490,8 +501,6 @@ ItemTooltip.CopperSeal=Fishing a crate will bless you with 30 seconds of the cra
 ItemTooltip.SilverSeal=Fishing anything will bless you with 10 seconds of the fishing potion buff
 ItemTooltip.GoldSeal=Fishing anything that can be sold for 1 gold blesses you with 1 minute of the sonar potion buff
 ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
-# Masks
-ItemTooltip.MothmanMask=Your crit chance increases by 10% and your damage increases by 30%\nWhen below max life your crit chance and damage gets decreased instead
 # Rings
 ItemTooltip.DegenerationRing=Makes you resist multiple types of burning
 # Shields
@@ -620,7 +629,6 @@ ItemTooltip.Bubbler=Shoots a constant stream of bubbles\n'The Sand Bubbler Crab 
 ItemTooltip.GebulbaStaff=Shoots bouncy slimeballs\n'Boing!'
 ItemTooltip.MagicWand=Shoots a bolt towards your cursor which explodes into horizontal waves
 ItemTooltip.MagmalbulbiaStaff=Shoots firey magmaballs that explode off tiles\n'EXPLOSION! EXPLOSION! EXPLOSION!'
-ItemTooltip.Narrizuul=A relic birthed in an alternate universe\n'Smells like roses'
 ItemTooltip.SeltzerRain=Shoots 5 fizzy orbs which follow your cursor for a short while\nThe fizzy orbs soon start fleeing from your cursor
 ItemTooltip.FizzlingFire=Shoots powerful blue flames\nCannot be used while mana sick
 # Tomes
@@ -847,3 +855,10 @@ QuestFish.Crabdaughter=Seems like some new fish have entered the ocean recently,
 QuestFish.WaterFisg=It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.
 FishingLocation.AnywhereFishing=Caught anywhere
 FishingLocation.BeachFishing=Caught in Ocean
+
+MapObject.Painting=Painting
+MapObject.Trophies=Trophy
+MapObject.Banners=Banner
+MapObject.ExoticCoral=Exotic Coral
+MapObject.FishingCraftingStation=Fishing Utility Crafting Station
+MapObject.NobleMushrooms=Noble Mushroom

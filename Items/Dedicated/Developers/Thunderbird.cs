@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated
+namespace AQMod.Items.Dedicated.Developers
 {
     public class Thunderbird : ModItem, IDedicatedItem
     {
@@ -118,6 +118,7 @@ namespace AQMod.Items.Dedicated
             }
         }
 
-        Color IDedicatedItem.DedicatedItemColor() => DedicatedColors.Gerd;
+        Color IDedicatedItem.DedicatedItemColor => new Color(200, 125, 255, 255);
+        IDedicationType IDedicatedItem.DedicationType => new ContributorDedication();
     }
 }

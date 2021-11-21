@@ -60,9 +60,7 @@ namespace AQMod.Tiles
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 18 };
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(ModContent.GetInstance<TEGlimmeringStatue>().Hook_AfterPlacement, -1, 0, false);
             TileObjectData.addTile(Type);
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("{$Mods.AQMod.ItemName.GlimmeringStatue}");
-            AddMapEntry(new Color(75, 139, 166), name);
+            AddMapEntry(new Color(75, 139, 166), Lang.GetItemName(ModContent.ItemType<Items.Placeable.GlimmeringStatue>()));
             dustType = 15;
             disableSmartCursor = true;
         }

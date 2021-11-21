@@ -1,4 +1,4 @@
-﻿using AQMod.Content.Particles;
+﻿using AQMod.Assets.Graphics.Particles;
 using System.Collections.Generic;
 
 namespace AQMod.Assets.Graphics.ParticlesLayers

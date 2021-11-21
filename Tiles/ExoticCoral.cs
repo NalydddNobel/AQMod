@@ -79,9 +79,7 @@ namespace AQMod.Tiles
             TileObjectData.newSubTile.RandomStyleRange = 3;
             TileObjectData.addSubTile(8);
             TileObjectData.addTile(Type);
-            var name = CreateMapEntryName("TileName.ExoticCoral");
-            name.SetDefault("Exotic Coral");
-            AddMapEntry(new Color(245, 122, 122), name);
+            AddMapEntry(new Color(245, 122, 122), CreateMapEntryName("ExoticCoral"));
             dustType = DustID.Dirt;
             disableSmartCursor = true;
         }

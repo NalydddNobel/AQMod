@@ -18,8 +18,8 @@ namespace AQMod.Items.BossItems.Starite
             item.consumable = true;
             item.value = 50000;
             item.rare = ItemRarityID.Blue;
-            item.createTile = ModContent.TileType<Tiles.Trophies>();
-            item.placeStyle = 0;
+            item.createTile = ModContent.TileType<Tiles.Furniture.Trophies>();
+            item.placeStyle = Tiles.Furniture.Trophies.OmegaStarite;
         }
     }
 }

@@ -464,7 +464,7 @@ namespace AQMod
         {
             AQBuff.Sets.Setup();
             AQNPC.Sets.LoadSets(); // Initializes sets for npcs
-            NoHitManager.Setup();
+            NoHitNPC.Setup();
             AQProjectile.Sets.LoadSets(); // Initializes sets for projectiles
             DemonSiege.Setup(); // Sets up the Demon Siege event
             GlimmerEvent.Setup();
@@ -612,7 +612,7 @@ namespace AQMod
             AQItem.Sets.Unload();
             DemonSiege.Unload();
             AQProjectile.Sets.UnloadSets();
-            NoHitManager.Unload();
+            NoHitNPC.Unload();
             AQNPC.Sets.UnloadSets();
             AQBuff.Sets.Unload();
 

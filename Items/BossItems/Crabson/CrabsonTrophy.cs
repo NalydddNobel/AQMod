@@ -18,8 +18,8 @@ namespace AQMod.Items.BossItems.Crabson
             item.consumable = true;
             item.value = 50000;
             item.rare = ItemRarityID.Blue;
-            item.createTile = ModContent.TileType<Tiles.Trophies>();
-            item.placeStyle = Tiles.Trophies.Crabson;
+            item.createTile = ModContent.TileType<Tiles.Furniture.Trophies>();
+            item.placeStyle = Tiles.Furniture.Trophies.Crabson;
         }
     }
 }

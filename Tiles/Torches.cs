@@ -69,9 +69,7 @@ namespace AQMod.Tiles
 
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Torch");
-            AddMapEntry(new Color(0, 0, 255), name);
+            AddMapEntry(new Color(0, 0, 255), Lang.GetItemName(ItemID.Torch));
             dustType = ModContent.DustType<ArgonDust>();
             drop = ModContent.ItemType<UltrabrightRedTorch>();
             disableSmartCursor = true;

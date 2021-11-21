@@ -104,9 +104,7 @@ namespace AQMod.Tiles
             TileObjectData.addTile(Type);
             dustType = DustID.Stone;
             disableSmartCursor = true;
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("{$Mods.AQMod.ItemName.GlobeItem}");
-            AddMapEntry(new Color(180, 180, 180), name);
+            AddMapEntry(new Color(180, 180, 180), Lang.GetItemName(ModContent.ItemType<GlobeItem>()));
         }
 
         public override bool HasSmartInteract()

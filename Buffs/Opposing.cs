@@ -12,7 +12,7 @@ namespace AQMod.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<AQPlayer>().opposingForce = true;
+            player.GetModPlayer<AQPlayer>().altEvilDrops = true;
         }
     }
 }

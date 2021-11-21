@@ -42,8 +42,6 @@ namespace AQMod.Common
                 ["GlimmerEvent_GlimmerChance"] = AQMod.CosmicEvent.spawnChance,
 
                 ["CrabSeason_crabSeasonTimer"] = CrabSeason.crabSeasonTimer,
-
-                ["EnergyDrops"] = AQNPC.NoEnergyDrops,
             };
             return tag;
         }
@@ -51,8 +49,6 @@ namespace AQMod.Common
         public override void Load(TagCompound tag)
         {
             CrabSeason.crabSeasonTimer = tag.GetIntOrDefault("CrabSeason_crabSeasonTimer", CrabSeason.CrabSeasonTimerMin);
-
-            AQNPC.NoEnergyDrops = tag.GetBool("EnergyDrops");
 
             AQMod.CosmicEvent.tileX = (ushort)tag.GetInt("GlimmerEvent_X");
             AQMod.CosmicEvent.tileY = (ushort)tag.GetInt("GlimmerEvent_Y");

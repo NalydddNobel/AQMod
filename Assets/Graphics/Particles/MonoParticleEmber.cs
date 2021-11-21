@@ -1,10 +1,9 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
+﻿using AQMod.Assets.Textures;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace AQMod.Content.Particles
+namespace AQMod.Assets.Graphics.Particles
 {
     public class MonoParticleEmber : MonoParticle
     {

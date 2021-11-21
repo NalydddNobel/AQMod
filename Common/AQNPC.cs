@@ -1,20 +1,21 @@
-﻿using AQMod.Assets.Graphics.ParticlesLayers;
+﻿using AQMod.Assets.Graphics.Particles;
+using AQMod.Assets.Graphics.ParticlesLayers;
 using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.Dusts;
-using AQMod.Content.Particles;
+using AQMod.Content.NoHitting;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
-using AQMod.Items.Dedicated;
+using AQMod.Items.Dedicated.ContentCreators;
+using AQMod.Items.Dedicated.Contributors;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Vanities.CursorDyes;
-using AQMod.Localization;
 using AQMod.NPCs.Friendly.Town;
 using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.DemonicEvent;
@@ -440,21 +441,20 @@ namespace AQMod.Common
             }
         }
 
-        public static bool CanDropEnergy => NPC.downedBoss1 && !NoEnergyDrops;
         internal static Color GreenSlimeColor => new Color(0, 220, 40, 100);
         internal static Color BlueSlimeColor => new Color(0, 80, 255, 100);
-
-        public static bool NoEnergyDrops { get; set; }
 
         public static bool BossRush { get; private set; }
         public static byte BossRushPlayer { get; private set; }
 
-        private static bool _showEnergyDropsMessage;
         private static byte _lootLoop;
         private static int _breadsoul = 0;
 
         public override bool InstancePerEntity => true;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool sparkling;
         /// <summary>
         /// Blue Fire
@@ -465,6 +465,9 @@ namespace AQMod.Common
         /// </summary>
         public bool windStruck;
         public bool windStruckOld;
+        /// <summary>
+        /// A flag for Aphrodite's and Venus' custom lovestruck effects
+        /// </summary>
         public bool lovestruckAQ;
         public bool corruptHellfire;
         public bool crimsonHellfire;
@@ -482,10 +485,14 @@ namespace AQMod.Common
 
         public override void SetDefaults(NPC npc)
         {
-            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.LovestruckAQ>()] =
-                npc.buffImmune[BuffID.Lovestruck];
-            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] =
-                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = npc.buffImmune[BuffID.OnFire];
+            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.LovestruckAQ>()] = npc.buffImmune[BuffID.Lovestruck];
+
+            if (npc.buffImmune[BuffID.CursedInferno] || npc.buffImmune[BuffID.ShadowFlame])
+            {
+                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.BlueFire>()] = true;
+                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
+                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
+            }
         }
 
         public bool ShouldApplyWindMechanics(NPC npc)
@@ -607,7 +614,12 @@ namespace AQMod.Common
             {
                 if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
                 {
-                    for (int i = 0; i < 3; i++)
+                    int amount = (npc.width + npc.height)/ 30;
+                    if (amount < 3)
+                    {
+                        amount = 3;
+                    }
+                    for (int i = 0; i < amount; i++)
                     {
                         var pos = npc.position - new Vector2(2f, 2f);
                         var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
@@ -760,6 +772,30 @@ namespace AQMod.Common
 
         public override void PostAI(NPC npc)
         {
+            if (npc.type == NPCID.CultistBoss && Main.eclipse && Main.dayTime && (int)npc.ai[0] != 5f)
+            {
+                int neededMothronCount = 0;
+                if (npc.life * 2 < npc.lifeMax)
+                {
+                    neededMothronCount++;
+                }
+                if (npc.life * 4 < npc.lifeMax)
+                {
+                    neededMothronCount++;
+                }
+                neededMothronCount += NPC.CountNPCS(NPCID.CultistBossClone);
+                if (neededMothronCount > 0)
+                {
+                    int mothronCount = NPC.CountNPCS(NPCID.Mothron);
+                    int x = 100 * neededMothronCount / 2;
+                    for (int i = mothronCount; i < neededMothronCount; i++)
+                    {
+                        int spawnX = (int)npc.position.X + npc.width / 2 + x - 100 * i;
+                        int spawnY = (int)npc.position.Y + 1250;
+                        NPC.NewNPC(spawnX, spawnY, NPCID.Mothron);
+                    }
+                }
+            }
             if (MoonlightWallHelper.Instance.Active)
             {
                 MoonlightWallHelper.Instance.End();
@@ -1081,7 +1117,7 @@ namespace AQMod.Common
             NPCLoader.blockLoot.Add(ItemID.Heart);
             if (npc.boss)
             {
-                BreadsoulHealing.SpawnCluster(Main.player[_breadsoul], npc.Center, npc.Size.Length() / 2f,Main.rand.Next(10, 18), Main.rand.Next(120, 180));
+                BreadsoulHealing.SpawnCluster(Main.player[_breadsoul], npc.Center, npc.Size.Length() / 2f, Main.rand.Next(10, 18), Main.rand.Next(120, 180));
             }
             else
             {
@@ -1142,7 +1178,6 @@ namespace AQMod.Common
 
         public override bool PreNPCLoot(NPC npc)
         {
-            _showEnergyDropsMessage = !NPC.downedBoss1;
             if (_lootLoop != 0)
             {
                 NPCLoader.blockLoot.Add(ItemID.Heart);
@@ -1252,7 +1287,7 @@ namespace AQMod.Common
             {
                 if (Main.hardMode && npc.position.Y > Main.rockLayer * 16.0 && npc.value > 0f)
                 {
-                    if (aQPlayer.opposingForce && Main.rand.NextBool(5))
+                    if (aQPlayer.altEvilDrops && Main.rand.NextBool(5))
                     {
                         if (plr.ZoneCorrupt || plr.ZoneCrimson)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofLight);
@@ -1260,39 +1295,62 @@ namespace AQMod.Common
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight);
                     }
                 }
-                if (NPC.downedBoss1 && !NoEnergyDrops)
+                var tile = Framing.GetTileSafely(Main.player[p].Center.ToTileCoordinates());
+                if (!Main.wallHouse[tile.wall])
                 {
-                    var tile = Framing.GetTileSafely(Main.player[p].Center.ToTileCoordinates());
-                    if (!Main.wallHouse[tile.wall])
+                    if (Main.player[p].ZoneJungle && tile.wall != TileID.LihzahrdBrick)
                     {
-                        if (Main.player[p].ZoneJungle && tile.wall != TileID.LihzahrdBrick)
+                        if (npc.lifeMax > (Main.expertMode ? Main.hardMode ? 150 : 80 : 30))
                         {
-                            if (npc.lifeMax > (Main.expertMode ? Main.hardMode ? 150 : 80 : 30))
-                            {
-                                int chance = 14;
-                                if (npc.lifeMax + npc.defDefense > 350 && npc.type != NPCID.MossHornet) // defDefense is the defense of the NPC when it spawns
-                                    chance /= 2;
-                                if (Main.rand.NextBool(chance))
-                                    Item.NewItem(npc.getRect(), ModContent.ItemType<OrganicEnergy>());
-                            }
+                            int chance = 14;
+                            if (npc.lifeMax + npc.defDefense > 350 && npc.type != NPCID.MossHornet) // defDefense is the defense of the NPC when it spawns
+                                chance /= 2;
+                            if (Main.rand.NextBool(chance))
+                                Item.NewItem(npc.getRect(), ModContent.ItemType<OrganicEnergy>());
                         }
                     }
                 }
             }
             if (npc.type >= Main.maxNPCTypes)
                 return;
-            if (npc.type == NPCID.AngryBones || npc.type == NPCID.DarkCaster || npc.type == NPCID.CursedSkull)
-            {
-                if (Main.rand.NextBool(75))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
-            }
-            if (npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler || npc.type == NPCID.FlyingSnake)
-            {
-                if (Main.rand.NextBool(50))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
-            }
             switch (npc.type)
             {
+                case NPCID.AngryBones:
+                {
+                    if (Main.rand.NextBool(80))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
+                }
+                break;
+
+                case NPCID.DarkCaster:
+                {
+                    if (Main.rand.NextBool(50))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
+                }
+                break;
+
+                case NPCID.CursedSkull:
+                {
+                    if (Main.rand.NextBool(30))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
+                }
+                break;
+
+                case NPCID.Lihzahrd:
+                case NPCID.LihzahrdCrawler:
+                {
+                    if (Main.rand.NextBool(50))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
+                }
+                break;
+
+                case NPCID.FlyingSnake:
+                {
+                    if (Main.rand.NextBool(50))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
+                }
+                break;
+
                 case NPCID.UndeadViking:
                 {
                     if (Main.rand.NextBool(6))
@@ -1300,29 +1358,11 @@ namespace AQMod.Common
                 }
                 break;
 
-                case NPCID.EyeofCthulhu:
-                {
-                    if (_showEnergyDropsMessage)
-                    {
-                        NoEnergyDrops = false;
-                        _showEnergyDropsMessage = false;
-                        AQMod.BroadcastMessage(AQText.Key + "Common.EnergyDoDrop", new Color(80, 200, 255, 255));
-                    }
-                }
-                break;
-
-                case NPCID.Harpy:
-                {
-                    if (CanDropEnergy && Main.rand.NextBool(8))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<AtmosphericEnergy>());
-                }
-                break;
-
                 case NPCID.Crab:
                 {
                     if (CrabSeason.Active)
                     {
-                        if ((Main.moonPhase % 2 == 0 && !aQPlayer.opposingForce) || (Main.moonPhase % 2 == 1 && aQPlayer.opposingForce))
+                        if ((Main.moonPhase % 2 == 0 && !aQPlayer.altEvilDrops) || (Main.moonPhase % 2 == 1 && aQPlayer.altEvilDrops))
                         {
                             Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
                         }
@@ -1344,14 +1384,14 @@ namespace AQMod.Common
 
                 case NPCID.DarkMummy:
                 {
-                    if (aQPlayer.opposingForce && Main.rand.NextBool(10))
+                    if (aQPlayer.altEvilDrops && Main.rand.NextBool(10))
                         Item.NewItem(npc.getRect(), ItemID.LightShard);
                 }
                 break;
 
                 case NPCID.LightMummy:
                 {
-                    if (aQPlayer.opposingForce && Main.rand.NextBool(10))
+                    if (aQPlayer.altEvilDrops && Main.rand.NextBool(10))
                         Item.NewItem(npc.getRect(), ItemID.DarkShard);
                 }
                 break;
@@ -1384,7 +1424,7 @@ namespace AQMod.Common
                 break;
 
                 case NPCID.Mothron:
-                if (NPC.downedAncientCultist && Main.rand.NextBool(3))
+                if (NPC.downedAncientCultist && ((npc.playerInteraction[p] && npc.GetGlobalNPC<NoHitNPC>().hitPlayer[p]) || Main.rand.NextBool(10)))
                     Item.NewItem(npc.getRect(), ModContent.ItemType<MothmanMask>());
                 break;
 

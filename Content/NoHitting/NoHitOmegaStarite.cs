@@ -20,12 +20,12 @@ namespace AQMod.Content.NoHitting
             Stack = stack;
         }
 
-        public void NPCLoot(NPC npc, NoHitManager noHitManager)
+        public void NPCLoot(NPC npc, NoHitNPC noHitManager)
         {
             Item.NewItem(npc.getRect(), Type, Stack);
         }
 
-        public bool OnEffect(NPC npc, int hitDirection, double damage, NoHitManager noHitManager)
+        public bool OnEffect(NPC npc, int hitDirection, double damage, NoHitNPC noHitManager)
         {
             return (npc.modNPC as OmegaStarite).skipDeathTimer > 0 || npc.ai[0] == OmegaStarite.PHASE_DEAD;
         }

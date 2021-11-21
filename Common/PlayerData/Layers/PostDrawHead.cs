@@ -42,7 +42,7 @@ namespace AQMod.Common.PlayerData.Layers
                         if (aQPlayer.cMask > 0)
                             aQPlayer.cataEyeColor = new Color(100, 100, 100, 0);
                         Main.playerDrawData.Add(new DrawData(TextureCache.PlayerMasks[PlayerMaskID.CataMask], position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                        if (aQPlayer.mothmanMaskSpecial)
+                        if (aQPlayer.mothmanMaskSpecialFX)
                         {
                             if (info.drawPlayer.headRotation == 0)
                             {

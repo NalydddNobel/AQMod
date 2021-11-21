@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated
+namespace AQMod.Items.Dedicated.ContentCreators
 {
     public class Dreadsoul : ModItem, IDedicatedItem
     {
@@ -26,6 +26,7 @@ namespace AQMod.Items.Dedicated
             player.GetModPlayer<AQPlayer>().dreadsoul = true;
         }
 
-        Color IDedicatedItem.DedicatedItemColor() => DedicatedColors.DreadSoul;
+        Color IDedicatedItem.DedicatedItemColor => DedicatedColors.Youtuber;
+        IDedicationType IDedicatedItem.DedicationType => new ContentCreatorDedication();
     }
 }

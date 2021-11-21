@@ -5,9 +5,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated
+namespace AQMod.Items.Dedicated.ContentCreators
 {
-    public class MothmanMask : ModItem, IUpdateEquipVisuals, IDedicatedItem
+    public class MothmanMask : ModItem, IDedicatedItem, IUpdateEquipVisuals
     {
         public override void SetDefaults()
         {
@@ -20,27 +20,18 @@ namespace AQMod.Items.Dedicated
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            var aQPlayer = player.GetModPlayer<AQPlayer>();
+            aQPlayer.mothmanMask = true;
             if (player.statLife >= player.statLifeMax2)
             {
-                player.allDamageMult += 0.1f;
-                player.meleeCrit += 10;
-                player.magicCrit += 10;
-                player.rangedCrit += 10;
-                player.thrownCrit += 10;
-                player.allDamage += 0.2f;
-            }
-            else
-            {
-                player.allDamageMult -= 0.1f;
-                player.meleeCrit -= 10;
-                player.magicCrit -= 10;
-                player.rangedCrit -= 10;
-                player.thrownCrit -= 10;
-                player.allDamage -= 0.2f;
+                player.allDamage += 0.15f;
+                player.meleeCrit += 15;
+                player.rangedCrit += 15;
+                player.magicCrit += 15;
+                player.thrownCrit += 15;
+                player.minionKB += 1f;
             }
         }
-
-        Color IDedicatedItem.DedicatedItemColor() => DedicatedColors.Cataclysmic_Armageddon;
 
         void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer drawingPlayer, int i)
         {
@@ -65,5 +56,8 @@ namespace AQMod.Items.Dedicated
                 drawingPlayer.cataEyeColor = new Color(140 - (int)(Math.Sin(Main.GlobalTime * 10f) * 30), 90 + (int)(Math.Cos(Main.GlobalTime * 10f) * 30), 10, 0);
             }
         }
+
+        Color IDedicatedItem.DedicatedItemColor => DedicatedColors.Youtuber;
+        IDedicationType IDedicatedItem.DedicationType => new ContentCreatorDedication();
     }
 }

@@ -109,7 +109,7 @@ namespace AQMod.Common.CrossMod
             r.AddRecipe();
 
             createFargoRecipeBannerInput<Items.Accessories.Breadsoul>(ItemID.DungeonSpiritBanner);
-            createFargoRecipeBannerInput<Items.Dedicated.Dreadsoul>(ItemID.DungeonSpiritBanner);
+            createFargoRecipeBannerInput<Items.Dedicated.ContentCreators.Dreadsoul>(ItemID.DungeonSpiritBanner);
 
             createFargoRecipe<CrabsonTrophy, Items.Weapons.Melee.JerryClawFlail>();
             createFargoRecipe<CrabsonTrophy, Items.Weapons.Ranged.CinnabarBow>();

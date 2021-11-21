@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace AQMod.Tiles
+namespace AQMod.Tiles.Furniture
 {
     public class Trophies : ModTile
     {
@@ -24,8 +24,7 @@ namespace AQMod.Tiles
             TileObjectData.addTile(Type);
             dustType = 7;
             disableSmartCursor = true;
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Trophy");
+            ModTranslation name = CreateMapEntryName("Trophies");
             AddMapEntry(new Color(120, 85, 60), name);
         }
 

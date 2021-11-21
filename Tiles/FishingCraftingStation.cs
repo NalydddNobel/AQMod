@@ -13,8 +13,7 @@ namespace AQMod.Tiles
             Main.tileFrameImportant[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.addTile(Type);
-            var name = CreateMapEntryName();
-            name.SetDefault("Fishing Utility Crafting Station");
+            var name = CreateMapEntryName("FishingCraftingStation");
             AddMapEntry(new Color(222, 200, 200), name);
             soundStyle = SoundID.Dig;
             disableSmartCursor = true;

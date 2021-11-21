@@ -1,6 +1,6 @@
-﻿using AQMod.Assets.Graphics.ParticlesLayers;
+﻿using AQMod.Assets.Graphics.Particles;
+using AQMod.Assets.Graphics.ParticlesLayers;
 using AQMod.Content.Dusts;
-using AQMod.Content.Particles;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;

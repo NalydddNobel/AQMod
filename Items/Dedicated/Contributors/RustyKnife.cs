@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated
+namespace AQMod.Items.Dedicated.Contributors
 {
     public class RustyKnife : ModItem, IDedicatedItem
     {
@@ -21,6 +21,7 @@ namespace AQMod.Items.Dedicated
             player.GetModPlayer<AQPlayer>().omori = true;
         }
 
-        Color IDedicatedItem.DedicatedItemColor() => DedicatedColors.someperson;
+        Color IDedicatedItem.DedicatedItemColor => new Color(30, 255, 60, 255);
+        IDedicationType IDedicatedItem.DedicationType => new ContributorDedication();
     }
 }

@@ -34,8 +34,7 @@ namespace AQMod.Tiles
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18, };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.addTile(Type);
-            var name = CreateMapEntryName("TileName.NobleMushroom");
-            name.SetDefault("Noble Mushroom");
+            var name = CreateMapEntryName("NobleMushrooms");
             AddMapEntry(new Color(208, 0, 126), name);
             AddMapEntry(new Color(144, 254, 2), name);
             AddMapEntry(new Color(0, 197, 208), name);

@@ -10,7 +10,7 @@ namespace AQMod.Content.NoHitting
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active)
-                    Main.npc[i].GetGlobalNPC<NoHitManager>().hitPlayer[target.whoAmI] = true;
+                    Main.npc[i].GetGlobalNPC<NoHitNPC>().hitPlayer[target.whoAmI] = true;
             }
         }
     }

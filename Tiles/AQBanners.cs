@@ -43,9 +43,7 @@ namespace AQMod.Tiles
             TileObjectData.addTile(Type);
             dustType = -1;
             disableSmartCursor = true;
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Banner");
-            AddMapEntry(new Color(13, 88, 130), name);
+            AddMapEntry(new Color(13, 88, 130), CreateMapEntryName("Banners"));
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

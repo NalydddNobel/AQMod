@@ -90,9 +90,7 @@ namespace AQMod.Tiles
             dustType = DustID.Blood;
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.DemonAltar };
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("{$Mods.AQMod.ItemName.GoreNestItem}");
-            AddMapEntry(new Color(175, 15, 15), name);
+            AddMapEntry(new Color(175, 15, 15), Lang.GetItemName(ModContent.ItemType<Items.Placeable.GoreNestItem>()));
         }
 
 

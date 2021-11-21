@@ -4,6 +4,7 @@ namespace AQMod.Items.Dedicated
 {
     public interface IDedicatedItem
     {
-        Color DedicatedItemColor();
+        IDedicationType DedicationType { get; }
+        Color DedicatedItemColor { get; }
     }
 }

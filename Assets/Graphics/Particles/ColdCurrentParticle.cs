@@ -1,12 +1,11 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.Graphics.DrawTypes;
+﻿using AQMod.Assets.Graphics.DrawTypes;
 using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Assets.Textures;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace AQMod.Content.Particles
+namespace AQMod.Assets.Graphics.Particles
 {
     public sealed class ColdCurrentParticle : MonoParticle
     {

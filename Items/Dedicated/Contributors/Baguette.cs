@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated
+namespace AQMod.Items.Dedicated.Contributors
 {
     public class Baguette : ModItem, IDedicatedItem
     {
@@ -23,6 +23,7 @@ namespace AQMod.Items.Dedicated
             item.buffTime = 216000;
         }
 
-        Color IDedicatedItem.DedicatedItemColor() => DedicatedColors.niker;
+        Color IDedicatedItem.DedicatedItemColor => new Color(187, 142, 42, 255);
+        IDedicationType IDedicatedItem.DedicationType => new ContributorDedication();
     }
 }
