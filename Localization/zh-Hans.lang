@@ -15,8 +15,10 @@ Common.ConfigHeader_Misc=杂项
 Common.ConfigHeader_World=世界
 Common.ConfigHeader_Debug=调试模式
 #
-# Config Values
-# (Client Config)
+
+ClientConfig.Screenshakes=屏幕震动
+ClientConfig.TonsofScreenShakes=额外的不必要的屏幕震动
+
 Common.Config_DrawSpotlights=绘制灯光效果
 Common.Config_EffectQuality=效果质量
 Common.Config_EffectIntensity=效果强度
@@ -29,7 +31,6 @@ Common.Config_StariteAuraColorTooltip=终末之星和微光事件整体氛围的
 Common.Config_LoadItemOverlays=加载物品覆盖层
 Common.Config_BackgroundStarites=星源背景
 Common.Config_StariteProjColor=星源弹幕的颜色
-Common.Config_TonsofScreenShakes=屏幕震动
 #
 Common.Config_TrailShader=启用尾痕残影着色器
 Common.Config_ScrollShader=启用滚动特效着色器
@@ -168,7 +169,6 @@ Common.DoesntMinionTarget=不会优先攻击具有召唤标记的目标
 Common.NotConsumable=不消耗
 Common.TorchCanBePlacedInLiquids=可放置在液体中
 Common.ReturnToLobster=请将此物交付于龙虾掠夺者
-Common.DedicatedItemTag=专属物品
 Common.IchorDartShotgunTag=使用灵液镖作为弹药时直接发射分裂灵液镖
 Common.NobleMushroomScent=蟹类无法抗拒它的气味
 Common.EnableThing=启用{0}?
@@ -193,8 +193,6 @@ ItemName.CopperSeal=铜制容器
 ItemName.SilverSeal=银制容器
 ItemName.GoldSeal=金制容器
 ItemName.PlatinumSeal=钛金制容器
-# Masks
-ItemName.MothmanMask=天蛾人面具
 # Rings
 ItemName.DegenerationRing=堕落魔戒
 # Shields
@@ -214,7 +212,7 @@ ItemName.Breadsoul=幽冥之魂
 ItemTooltip.Breadsoul=增加25%钩爪距离\n使地牢幽魂变得友善\n敌人不再掉落红心, 而是掉落灵魂\n增加灵魂的掉落几率, 灵魂会为你回复大量生命值
 ProjectileName.BreadsoulHealing=幽冥之魂
 ItemName.Dreadsoul=惊惧之魂
-ItemTooltip.Dreadsoul=击杀敌人时使其释放三个追踪同种敌人灵魂
+ItemTooltip.Dreadsoul=击杀敌人时使其释放六个追踪同种敌人的灵魂\n使地牢幽魂变得友善
 ProjectileName.DreadsoulAttack=惊惧之魂
 
 ItemName.CelesteTorus=天界手环
@@ -327,6 +325,21 @@ ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
 ItemName.NuclearFeather=核子之羽
 ItemName.PotionofContainers=传箱药水
 ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
+
+CommonTooltip.DedicatedItem=专属物品
+CommonTooltip.ContentCreatorItem=内容创建者物品
+
+PaintingSignature.NalydT=N.T.
+
+ItemName.AStrangeIdea=一个奇怪的想法...
+ItemTooltip.AStrangeIdea={$Mods.AQMod.PaintingSignature.NalydT}
+ItemName.Narrizuul=耀宇遗光
+ItemTooltip.Narrizuul=于异界形成的遗物\n'闻起来像玫瑰'
+
+ItemName.MothmanMask=天蛾人面具
+ItemTooltip.MothmanMask=所有效果仅在你的生命值为满时生效\n增加15%暴击伤害和暴击率\n增加召唤物击退\n攻击造成暴击时对敌人造成碧蓝之火减益
+ProjectileName.MothmanCritExplosion=天蛾人面具
+
 ItemName.Qi=气
 #############
 # Placeable #
@@ -339,17 +352,27 @@ ItemName.XenonMushroom=氙蘑菇
 ItemName.ExoticRedTorch=奇异的红色火把
 ItemName.ExoticGreenTorch=奇异的绿色火把
 ItemName.ExoticBlueTorch=奇异的蓝色火把
+
 ItemName.UltrabrightRedTorch=超亮红火把
+ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+
 ItemName.UltrabrightGreenTorch=超亮绿火把
+ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+
 ItemName.UltrabrightBlueTorch=超亮蓝火把
+ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+
+ItemName.SparklingTorch=闪亮火把
+ItemTooltip.SparklingTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+
 # Walls
 ItemName.MoonlightWall=月光墙
 ItemTooltip.MoonlightWall=墙壁前的NPC会认为现在处于晚上
 ItemName.OceanRavineWall=海沟墙
 ItemName.GlimmeringStatue=烁光雕像
 # Other Placeables
-ItemName.ExoticCoral=奇异的珊瑚
-ItemName.ExoticStarfish=奇异的海星
+ItemName.ExoticCoral=奇异珊瑚
+ItemName.ExoticStarfish=奇异海星
 ItemName.FishingCraftingStation=渔具加工站
 ItemName.GlobeItem=节点地球仪
 ItemName.GoreNestItem=血巢
@@ -392,7 +415,6 @@ ItemName.Bubbler=泡泡法杖
 ItemName.GebulbaStaff=弹球法杖
 ItemName.MagicWand=魔杖
 ItemName.MagmalbulbiaStaff=邪弹法杖
-ItemName.Narrizuul=耀宇遗光
 ItemName.ScarletSea=罪孽红海
 ItemTooltip.ScarletSea=召唤会跟随你光标移动的血珠
 ItemName.SeltzerRain=苏打雨
@@ -420,9 +442,9 @@ ItemTooltip.Venus=击中敌人时对其造成热恋减益, 使其造成的伤害
 ItemName.StariteSpinner=星源涡
 
 ItemName.Dysesthesia=苦痛之触
-ItemTooltip.Dysesthesia=探出伤害性尖刺\n如果敌人离尖刺很近则释放腐狱之火攻击敌人
+ItemTooltip.Dysesthesia=召唤恶魔之镰\n如果敌人离其很近则释放腐狱之火攻击敌人
 ProjectileName.Dysesthesia=苦痛之触
-ProjectileName.DysesthesiaSpike=苦痛之触
+ProjectileName.MiniDemonScythe=苦痛之触
 
 # Other Melee
 ItemName.CrimsonHellSword=焚焰剑
@@ -490,8 +512,6 @@ ItemTooltip.CopperSeal=使用鱼竿钓到宝匣时使你获得30秒的宝匣增�
 ItemTooltip.SilverSeal=使用鱼竿钓到物品时使你获得10秒的钓鱼增益
 ItemTooltip.GoldSeal=使用鱼竿钓到任何售价为1金币的物品时使你获得1分钟的声呐增益
 ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
-# Masks
-ItemTooltip.MothmanMask=增加30%伤害和10%暴击率\n当你的生命值未处于满状态时降低你的伤害和暴击率
 # Rings
 ItemTooltip.DegenerationRing=使你获得多种燃烧抗性
 # Shields
@@ -598,10 +618,6 @@ ItemTooltip.Qi=由终极哲学之力创造出的神秘能量
 ItemTooltip.ArgonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 ItemTooltip.KryptonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 ItemTooltip.XenonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
-# Torches
-ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 # World Interactors
 ItemTooltip.GlimmeringStatue=在微光事件持续期间有很高几率吸引最终之剑至此
 # Other Placeables
@@ -620,7 +636,6 @@ ItemTooltip.Bubbler=不断地发射泡泡\n'沙泡蟹会是你最喜欢的动物
 ItemTooltip.GebulbaStaff=发射弹跳粘球\n'Boing!'
 ItemTooltip.MagicWand=向你的光标位置发射一束魔法矢, 魔法矢会爆炸成向两边水平移动的冲击波
 ItemTooltip.MagmalbulbiaStaff=发射击中物块时会爆炸的弹跳火焰弹\n'艺术就是爆炸!'
-ItemTooltip.Narrizuul=于异界形成的遗物\n'闻起来像玫瑰'
 ItemTooltip.SeltzerRain=发射5个会跟随你光标移动一段时间的闪光球\n闪光球在移动一段时间后会远离你的光标
 ItemTooltip.FizzlingFire=发射强大的蓝色火焰\n在你拥有耐魔性减益时无法使用
 # Tomes
@@ -847,3 +862,10 @@ QuestFish.Crabdaughter=看起来海洋中最近涌入了某些新的鱼, 其中�
 QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我曾见过一条内部充满清澈的水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
 FishingLocation.AnywhereFishing=抓捕位置: 任意位置
 FishingLocation.BeachFishing=抓捕位置: 海洋
+
+MapObject.Painting=画作
+MapObject.Trophies=纪念章
+MapObject.Banners=旗
+MapObject.ExoticCoral=奇异珊瑚
+MapObject.FishingCraftingStation=渔具加工站
+MapObject.NobleMushrooms=华贵蘑菇
