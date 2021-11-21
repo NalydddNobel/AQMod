@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Content.NoHitting
 {
-    public class NoHitNPC : GlobalNPC
+    public class NoHitManager : GlobalNPC
     {
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
@@ -20,7 +20,7 @@ namespace AQMod.Content.NoHitting
             NoHitEffects = new INoHitReward[NPCLoader.NPCCount];
 
             NoHitEffects[NPCID.CultistBoss] = new NoHitMothmanMask(ModContent.ItemType<Items.Dedicated.ContentCreators.MothmanMask>());
-            NoHitEffects[ModContent.NPCType<OmegaStarite>()] = new NoHitOmegaStarite(ItemID.TwilightDye);
+            NoHitEffects[ModContent.NPCType<OmegaStarite>()] = new NoHitOmegaStarite(ModContent.ItemType<Items.Dedicated.Developers.AStrangeIdea>());
         }
 
         internal static void Unload()
@@ -28,14 +28,14 @@ namespace AQMod.Content.NoHitting
             NoHitEffects = null;
         }
 
-        public NoHitNPC()
+        public NoHitManager()
         {
             hitPlayer = new bool[Main.maxPlayers];
         }
 
         public override GlobalNPC NewInstance(NPC npc)
         {
-            return new NoHitNPC();
+            return new NoHitManager();
         }
 
         public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
@@ -48,7 +48,7 @@ namespace AQMod.Content.NoHitting
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active)
-                    Main.npc[i].GetGlobalNPC<NoHitNPC>().hitPlayer[player] = true;
+                    Main.npc[i].GetGlobalNPC<NoHitManager>().hitPlayer[player] = true;
             }
         }
 
@@ -57,7 +57,7 @@ namespace AQMod.Content.NoHitting
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active)
-                    Main.npc[i].GetGlobalNPC<NoHitNPC>().hitPlayer[player] = false;
+                    Main.npc[i].GetGlobalNPC<NoHitManager>().hitPlayer[player] = false;
             }
         }
 

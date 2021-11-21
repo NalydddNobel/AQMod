@@ -1426,7 +1426,7 @@ namespace AQMod.Common
                 break;
 
                 case NPCID.Mothron:
-                if (NPC.downedAncientCultist && ((npc.playerInteraction[p] && npc.GetGlobalNPC<NoHitNPC>().hitPlayer[p]) || Main.rand.NextBool(10)))
+                if (NPC.downedAncientCultist && ((npc.playerInteraction[p] && npc.GetGlobalNPC<NoHitManager>().hitPlayer[p]) || Main.rand.NextBool(10)))
                     Item.NewItem(npc.getRect(), ModContent.ItemType<MothmanMask>());
                 break;
 

@@ -17,7 +17,7 @@ Common.ConfigHeader_Debug=Debug
 #
 
 ClientConfig.Screenshakes=Screenshakes
-ClientConfig.TonsofScreenShakes=Tons of Screen Shakes
+ClientConfig.TonsofScreenShakes=Extra Unnecessary Screenshakes
 
 Common.Config_DrawSpotlights=Draw Spotlights
 Common.Config_EffectQuality=Effect Quality
@@ -442,7 +442,7 @@ ItemTooltip.Venus=Give enemies lovestruck which decreases their damage inflicted
 ItemName.StariteSpinner=Starite Spinner
 
 ItemName.Dysesthesia=Dysesthesia
-ItemTooltip.Dysesthesia=Probes out damaging spikes\nInflicts enemies with corrupt hellfire if they are very close
+ItemTooltip.Dysesthesia=Summons demon scythes\nInflicts enemies with corrupt hellfire if they are very close
 ProjectileName.Dysesthesia=Dysesthesia
 ProjectileName.MiniDemonScythe=Dysesthesia
 

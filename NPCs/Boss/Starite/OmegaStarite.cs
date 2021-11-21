@@ -1306,7 +1306,7 @@ namespace AQMod.NPCs.Boss.Starite
         public override void NPCLoot()
         {
             AQMod.CosmicEvent.deactivationTimer = 275;
-            var noHitManager = npc.GetGlobalNPC<NoHitNPC>();
+            var noHitManager = npc.GetGlobalNPC<NoHitManager>();
             bool anyoneNoHit = false;
             for (int i = 0; i < Main.maxPlayers; i++)
             {

@@ -20,13 +20,13 @@ namespace AQMod.Content.NoHitting
             Stack = stack;
         }
 
-        public void NPCLoot(NPC npc, NoHitNPC noHitManager)
+        public void NPCLoot(NPC npc, NoHitManager noHitManager)
         {
             if (Main.eclipse && Main.dayTime)
                 Item.NewItem(npc.getRect(), Type, Stack);
         }
 
-        public bool OnEffect(NPC npc, int hitDirection, double damage, NoHitNPC noHitManager)
+        public bool OnEffect(NPC npc, int hitDirection, double damage, NoHitManager noHitManager)
         {
             return Main.eclipse && Main.dayTime;
         }

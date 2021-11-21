@@ -92,6 +92,7 @@ namespace AQMod.Content.WorldEvents.DemonicEvent
             _upgrades = new List<DemonSiegeUpgrade>();
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.LightsBane, ModContent.ItemType<HellsBoon>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.BloodButcherer, ModContent.ItemType<CrimsonHellSword>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
+            AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.CorruptYoyo, ModContent.ItemType<Dysesthesia>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.DemonBow, ModContent.ItemType<HamaYumi>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.TendonBow, ModContent.ItemType<Deltoid>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ModContent.ItemType<SeltzerRain>(), ModContent.ItemType<FizzlingFire>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));

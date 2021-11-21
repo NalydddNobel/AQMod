@@ -5,8 +5,9 @@ Additions:
 Dysesthesia, a yoyo made with Malaise at a Gore Nest
 Sparkling Torch, a bright torch crafted using Cosmic Energy
 Grape Phanta, dropped from Rusted Armored bones and Ragged Casters, gives magical buffs
+"A Strange Idea...", a painting of the old mod icon, obtained by no-hitting Omega Starite
 
-- Added a config option called "Screenshakes" -Set to true by default and renamed the "Tons of Screenshakes" option to "Extra Unnecessary Screenshakes" 
+- Added a config option called "Screenshakes" (Set to true by default) 
 
 Removals:
 * Items:
@@ -30,6 +31,8 @@ Changes:
 - Breadsoul's spectre souls are now projectiles, and they spawn in seperate pieces, collecting all of the soul pieces will give you the full 30 HP heal
 
 - Target Dummies no longer appear on the map when using the Retro Marker
+
+- Renamed the "Tons of Screenshakes" option to "Extra Unnecessary Screenshakes" 
 
 - Renamed Neutron Juice to Neutron Yogurt
 

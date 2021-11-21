@@ -129,20 +129,20 @@ namespace AQMod.Common
                     ModContent.ItemType<MythicStarfruit>(),
                     new List<int>()
                     {
-                    ModContent.ItemType<CelesitalEightBall>(),
-                    ModContent.ItemType<HypnoDye>(),
-                    ModContent.ItemType<OutlineDye>(),
-                    ModContent.ItemType<ScrollDye>(),
+                        ModContent.ItemType<CelesitalEightBall>(),
+                        ModContent.ItemType<HypnoDye>(),
+                        ModContent.ItemType<OutlineDye>(),
+                        ModContent.ItemType<ScrollDye>(),
                     },
                     new List<int>()
                     {
-                    ModContent.ItemType<CosmicEnergy>(),
-                    ItemID.Nazar,
-                    ModContent.ItemType<RetroGoggles>(),
-                    ModContent.ItemType<SpaceShot>(),
-                    ModContent.ItemType<StariteStaff>(),
-                    ModContent.ItemType<MoonShoes>(),
-                    ModContent.ItemType<Ultranium>(),
+                        ModContent.ItemType<CosmicEnergy>(),
+                        ItemID.Nazar,
+                        ModContent.ItemType<RetroGoggles>(),
+                        ModContent.ItemType<SpaceShot>(),
+                        ModContent.ItemType<StariteStaff>(),
+                        ModContent.ItemType<MoonShoes>(),
+                        ModContent.ItemType<Ultranium>(),
                     },
                     "Happens naturally at night. Can alternatively summoned with a [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Ends when the sun rises",
                     "AQMod/Assets/Textures/BossChecklist_GlimmerEvent",
@@ -188,7 +188,7 @@ namespace AQMod.Common
                         ItemID.LavaEruptsBanner,
                 },
                 items,
-                "An event that happens when you are trying to upgrade a demonite or crimtane item. Can be summoned using: " + summonItems + " at a Gore Nest.",
+                "Can be summoned using: " + summonItems + " at a Gore Nest.",
                 "AQMod/Assets/Textures/BossChecklist_DemonSiege",
                 null);
             }
