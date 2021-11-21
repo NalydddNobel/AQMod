@@ -444,7 +444,7 @@ ItemName.StariteSpinner=Starite Spinner
 ItemName.Dysesthesia=Dysesthesia
 ItemTooltip.Dysesthesia=Probes out damaging spikes\nInflicts enemies with corrupt hellfire if they are very close
 ProjectileName.Dysesthesia=Dysesthesia
-ProjectileName.DysesthesiaSpike=Dysesthesia
+ProjectileName.MiniDemonScythe=Dysesthesia
 
 # Other Melee
 ItemName.CrimsonHellSword=Burnterizer

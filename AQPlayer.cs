@@ -405,6 +405,7 @@ namespace AQMod
             notFrostburn = false;
             grabReachMult = 1f;
             grapePhanta = false;
+            mothmanMask = false;
             if (mothmanExplosionDelay > 0)
                 mothmanExplosionDelay--;
             if (bossrushOld != bossrush)

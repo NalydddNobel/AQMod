@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Common;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,15 +27,27 @@ namespace AQMod.Projectiles.Melee
 
         public override void AI()
         {
-            projectile.localAI[1]++;
-            if (projectile.localAI[1] > 20f)
+            if (projectile.ai[0] != -1)
             {
-                var v = new Vector2(0f, 1f).RotatedBy((projectile.localAI[0] - projectile.localAI[1]) * 0.075f);
-                int type = ModContent.ProjectileType<DysesthesiaSpike>();
-                Projectile.NewProjectile(projectile.Center, v, type, projectile.damage, projectile.knockBack, projectile.owner, projectile.identity);
-                Projectile.NewProjectile(projectile.Center, -v, type, projectile.damage, projectile.knockBack, projectile.owner, projectile.identity);
-                projectile.localAI[1] = 0f;
-                projectile.netUpdate = true;
+                projectile.localAI[1]++;
+                if (projectile.localAI[1] > 14f * Main.player[projectile.owner].meleeSpeed)
+                {
+                    int target = AQNPC.FindTarget(projectile.Center, 300f);
+                    Vector2 normal;
+                    if (target != -1)
+                    {
+                        normal = Vector2.Normalize(projectile.Center - Main.npc[target].Center);
+                    }
+                    else
+                    {
+                        normal = new Vector2(0f, 1f).RotatedBy((projectile.localAI[0] - projectile.localAI[1]) * 0.04f);
+                    }
+                    int type = ModContent.ProjectileType<MiniDemonScythe>();
+                    Projectile.NewProjectile(projectile.Center, normal, type, projectile.damage, projectile.knockBack, projectile.owner, projectile.identity);
+                    Projectile.NewProjectile(projectile.Center, -normal, type, projectile.damage, projectile.knockBack, projectile.owner, projectile.identity);
+                    projectile.localAI[1] = 0f;
+                    projectile.netUpdate = true;
+                }
             }
         }
 
