@@ -51,9 +51,6 @@ namespace AQMod.Common
             }
         }
 
-        internal const string CommonTag_DedicatedItem = "DedicatedItem";
-        internal const string CommonTag_IchorDartShotgun = "IchorDartShotgun";
-
         public static bool ItemOnGroundAlready(int type)
         {
             for (int i = 0; i < Main.maxItems; i++)
@@ -158,6 +155,104 @@ namespace AQMod.Common
             if (item.type == ItemID.Starfury && player.GetModPlayer<AQPlayer>().moonShoes)
                 return 1.5f;
             return 1f;
+        }
+
+        public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        {
+            if (item.type < Main.maxItemTypes)
+                return true;
+            if (!AQMod.ItemOverlays.GetOverlay(item.type)?.PreDrawWorld(item, lightColor, alphaColor, ref rotation, ref scale, whoAmI) == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override void PostDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            if (item.type < Main.maxItemTypes)
+                return;
+            AQMod.ItemOverlays.GetOverlay(item.type)?.PostDrawWorld(item, lightColor, alphaColor, rotation, scale, whoAmI);
+        }
+
+        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            if (item.type < Main.maxItemTypes)
+                return true;
+            if (!AQMod.ItemOverlays.GetOverlay(item.type)?.PreDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale) == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            if (item.type < Main.maxItemTypes)
+                return;
+            AQMod.ItemOverlays.GetOverlay(item.type)?.PostDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale);
+        }
+
+        internal static Vector2 getItemDrawPos_NoAnimation(Item item)
+        {
+            return new Vector2(item.position.X - Main.screenPosition.X + Main.itemTexture[item.type].Width / 2 + item.width / 2 - Main.itemTexture[item.type].Width / 2, item.position.Y - Main.screenPosition.Y + Main.itemTexture[item.type].Height / 2 + item.height - Main.itemTexture[item.type].Height + 2f);
+        }
+
+        internal static void energy_DoUpdate(Item Item, Color clr, Vector3 lightClr)
+        {
+            int chance = 15;
+            if (Item.velocity.Length() > 1f)
+                chance = 5;
+            if (Main.rand.NextBool(chance))
+            {
+                clr.A = 0;
+                int d = Dust.NewDust(Item.position, Item.width, Item.height - 4, ModContent.DustType<EnergyPulse>(), 0f, 0f, 0, clr);
+                Main.dust[d].alpha = Main.rand.Next(0, 35);
+                Main.dust[d].scale = Main.rand.NextFloat(0.95f, 1.15f);
+                if (Main.dust[d].scale > 1f)
+                    Main.dust[d].noGravity = true;
+                Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(-0.15f, 0.15f), Main.rand.NextFloat(-3.5f, -1.75f));
+            }
+            Lighting.AddLight(Item.position, lightClr);
+        }
+
+        public override void GrabRange(Item item, Player player, ref int grabRange)
+        {
+            grabRange = (int)(grabRange * player.GetModPlayer<AQPlayer>().grabReachMult);
+        }
+
+        public static bool MirrorItemUseCheck(Player player)
+        {
+            if (player.position.Y - 500f > Main.worldSurface * 16f)
+            {
+                return false;
+            }
+            int tileX = (int)(player.position.X + player.width / 2f) / 16;
+            int tileY = (int)(player.position.Y + player.height / 2f) / 16;
+            if (Main.tile[tileX, tileY] == null)
+            {
+                Main.tile[tileX, tileY] = new Tile();
+            }
+            if (AQWorldGen.TileObstructedFromLight(tileX, tileY))
+            {
+                return false;
+            }
+            for (int i = 0; i < 15; i++)
+            {
+                if (tileY - 1 - i <= 0)
+                {
+                    break;
+                }
+                if (Main.tile[tileX, tileY - 1 - i] == null)
+                {
+                    Main.tile[tileX, tileY - 1 - i] = new Tile();
+                }
+                if (AQWorldGen.TileObstructedFromLight(tileX, tileY - 1 - i))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         internal static int FindVanillaTooltipLineIndex(List<TooltipLine> tooltips, string tooltipName)
@@ -316,65 +411,6 @@ namespace AQMod.Common
             return 1;
         }
 
-        public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
-            if (item.type < Main.maxItemTypes)
-                return true;
-            if (!AQMod.ItemOverlays.GetOverlay(item.type)?.PreDrawWorld(item, lightColor, alphaColor, ref rotation, ref scale, whoAmI) == false)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public override void PostDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
-        {
-            if (item.type < Main.maxItemTypes)
-                return;
-            AQMod.ItemOverlays.GetOverlay(item.type)?.PostDrawWorld(item, lightColor, alphaColor, rotation, scale, whoAmI);
-        }
-
-        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-        {
-            if (item.type < Main.maxItemTypes)
-                return true;
-            if (!AQMod.ItemOverlays.GetOverlay(item.type)?.PreDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale) == false)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-        {
-            if (item.type < Main.maxItemTypes)
-                return;
-            AQMod.ItemOverlays.GetOverlay(item.type)?.PostDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale);
-        }
-
-        internal static Vector2 getItemDrawPos_NoAnimation(Item item)
-        {
-            return new Vector2(item.position.X - Main.screenPosition.X + Main.itemTexture[item.type].Width / 2 + item.width / 2 - Main.itemTexture[item.type].Width / 2, item.position.Y - Main.screenPosition.Y + Main.itemTexture[item.type].Height / 2 + item.height - Main.itemTexture[item.type].Height + 2f);
-        }
-
-        internal static void energy_DoUpdate(Item Item, Color clr, Vector3 lightClr)
-        {
-            int chance = 15;
-            if (Item.velocity.Length() > 1f)
-                chance = 5;
-            if (Main.rand.NextBool(chance))
-            {
-                clr.A = 0;
-                int d = Dust.NewDust(Item.position, Item.width, Item.height - 4, ModContent.DustType<EnergyPulse>(), 0f, 0f, 0, clr);
-                Main.dust[d].alpha = Main.rand.Next(0, 35);
-                Main.dust[d].scale = Main.rand.NextFloat(0.95f, 1.15f);
-                if (Main.dust[d].scale > 1f)
-                    Main.dust[d].noGravity = true;
-                Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(-0.15f, 0.15f), Main.rand.NextFloat(-3.5f, -1.75f));
-            }
-            Lighting.AddLight(Item.position, lightClr);
-        }
-
         internal static void energy_SetDefaults(Item item, int rarity, int price)
         {
             item.width = 24;
@@ -382,40 +418,6 @@ namespace AQMod.Common
             item.rare = rarity;
             item.value = price;
             item.maxStack = 999;
-        }
-
-        public static bool MirrorItemUseCheck(Player player)
-        {
-            if (player.position.Y - 500f > Main.worldSurface * 16f)
-            {
-                return false;
-            }
-            int tileX = (int)(player.position.X + player.width / 2f) / 16;
-            int tileY = (int)(player.position.Y + player.height / 2f) / 16;
-            if (Main.tile[tileX, tileY] == null)
-            {
-                Main.tile[tileX, tileY] = new Tile();
-            }
-            if (AQWorldGen.TileObstructedFromLight(tileX, tileY))
-            {
-                return false;
-            }
-            for (int i = 0; i < 15; i++)
-            {
-                if (tileY - 1 - i <= 0)
-                {
-                    break;
-                }
-                if (Main.tile[tileX, tileY - 1 - i] == null)
-                {
-                    Main.tile[tileX, tileY - 1 - i] = new Tile();
-                }
-                if (AQWorldGen.TileObstructedFromLight(tileX, tileY - 1 - i))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
     }
 }

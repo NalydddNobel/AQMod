@@ -24,7 +24,7 @@ namespace AQMod.Items.Placeable.Torch
             item.createTile = ModContent.TileType<Tiles.Torches>();
             item.flame = true;
             item.value = 50;
-            item.placeStyle = 3;
+            item.placeStyle = Tiles.Torches.ExoticRedTorch;
         }
 
         public override void HoldItem(Player player)

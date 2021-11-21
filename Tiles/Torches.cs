@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Items.Placeable.Torch;
 using Microsoft.Xna.Framework;
@@ -16,6 +15,14 @@ namespace AQMod.Tiles
 {
     public class Torches : ModTile
     {
+        public const int UltrabrightRedTorch = 0;
+        public const int UltrabrightGreenTorch = 1;
+        public const int UltrabrightBlueTorch = 2;
+        public const int ExoticRedTorch = 3;
+        public const int ExoticGreenTorch = 4;
+        public const int ExoticBlueTorch = 5;
+        public const int SparklingTorch = 6;
+
         public override void SetDefaults()
         {
             Main.tileLighted[Type] = true;
@@ -48,7 +55,7 @@ namespace AQMod.Tiles
             TileObjectData.newSubTile.WaterDeath = false;
             TileObjectData.newSubTile.LavaDeath = false;
             TileObjectData.newSubTile.WaterPlacement = LiquidPlacement.Allowed;
-            TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.Allowed;
+            TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addSubTile(3);
 
             TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
@@ -56,7 +63,7 @@ namespace AQMod.Tiles
             TileObjectData.newSubTile.WaterDeath = false;
             TileObjectData.newSubTile.LavaDeath = false;
             TileObjectData.newSubTile.WaterPlacement = LiquidPlacement.Allowed;
-            TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.Allowed;
+            TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addSubTile(4);
 
             TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
@@ -64,8 +71,16 @@ namespace AQMod.Tiles
             TileObjectData.newSubTile.WaterDeath = false;
             TileObjectData.newSubTile.LavaDeath = false;
             TileObjectData.newSubTile.WaterPlacement = LiquidPlacement.Allowed;
-            TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.Allowed;
+            TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addSubTile(5);
+
+            TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
+            TileObjectData.newSubTile.LinkedAlternates = true;
+            TileObjectData.newSubTile.WaterDeath = false;
+            TileObjectData.newSubTile.LavaDeath = false;
+            TileObjectData.newSubTile.WaterPlacement = LiquidPlacement.Allowed;
+            TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.Allowed;
+            TileObjectData.addSubTile(SparklingTorch);
 
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
@@ -186,6 +201,14 @@ namespace AQMod.Tiles
                         }
                     }
                     break;
+
+                    case SparklingTorch:
+                    {
+                        r = 0.9f;
+                        g = 0.9f;
+                        b = 1f;
+                    }
+                    break;
                 }
             }
         }
@@ -242,6 +265,12 @@ namespace AQMod.Tiles
                     Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<ExoticBlueTorch>());
                 }
                 break;
+
+                case SparklingTorch:
+                {
+                    Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<SparklingTorch>());
+                }
+                break;
             }
             return false;
         }
@@ -251,13 +280,11 @@ namespace AQMod.Tiles
             int torchFrameY = Main.tile[i, j].frameY / 22;
             switch (torchFrameY)
             {
-                case 3:
-                case 4:
-                case 5:
+                case ExoticRedTorch:
+                case ExoticGreenTorch:
+                case ExoticBlueTorch:
                 {
                     float intensityMult = 1f;
-                    if (torchFrameY == 3 || torchFrameY == 4 || torchFrameY == 5) // seems useless for now
-                    {
                         if (Main.tile[i, j].liquid > 0)
                         {
                             intensityMult = 0.025f;
@@ -269,7 +296,6 @@ namespace AQMod.Tiles
                                 intensityMult += (1f - distance / TorchIntensityDistance) * 1.25f;
                             }
                         }
-                    }
                     ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i);
                     Color color = new Color(100, 100, 100, 0) * intensityMult;
                     int frameX = Main.tile[i, j].frameX;
@@ -294,6 +320,37 @@ namespace AQMod.Tiles
                     {
                         float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f * intensityMult;
                         float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f * intensityMult;
+                        Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Flames")), new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                    }
+                }
+                break;
+
+                case SparklingTorch:
+                {
+                    ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i);
+                    Color color = new Color(100, 100, 100, 0);
+                    int frameX = Main.tile[i, j].frameX;
+                    int frameY = Main.tile[i, j].frameY;
+                    int width = 20;
+                    int offsetY = 0;
+                    int height = 20;
+                    if (WorldGen.SolidTile(i, j - 1))
+                    {
+                        offsetY = 2;
+                        if (WorldGen.SolidTile(i - 1, j + 1) || WorldGen.SolidTile(i + 1, j + 1))
+                        {
+                            offsetY = 4;
+                        }
+                    }
+                    Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
+                    if (Main.drawToScreen)
+                    {
+                        zero = Vector2.Zero;
+                    }
+                    for (int k = 0; k < 7; k++)
+                    {
+                        float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
+                        float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
                         Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Flames")), new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
                     }
                 }

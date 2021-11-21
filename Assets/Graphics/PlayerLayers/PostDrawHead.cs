@@ -1,16 +1,15 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.PlayerLayers.EquipOverlays;
+﻿using AQMod.Assets.PlayerLayers.EquipOverlays;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
+using AQMod.Common.PlayerData;
 using AQMod.Common.Utilities;
-using AQMod.Items.Weapons.Summon;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.PlayerData.Layers
+namespace AQMod.Assets.Graphics.PlayerLayers
 {
     public class PostDrawHead : TempPlayerLayerWrapper
     {
@@ -42,31 +41,28 @@ namespace AQMod.Common.PlayerData.Layers
                         if (aQPlayer.cMask > 0)
                             aQPlayer.cataEyeColor = new Color(100, 100, 100, 0);
                         Main.playerDrawData.Add(new DrawData(TextureCache.PlayerMasks[PlayerMaskID.CataMask], position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                        if (aQPlayer.mothmanMaskSpecialFX)
+                        if (player.statLife == player.statLifeMax2 && info.drawPlayer.headRotation == 0)
                         {
-                            if (info.drawPlayer.headRotation == 0)
+                            var texture = TextureCache.Lights[LightTex.Spotlight240x66];
+                            var frame = new Rectangle(0, 0, texture.Width, texture.Height);
+                            var orig = frame.Size() / 2f;
+                            var scale = new Vector2((float)(Math.Sin(Main.GlobalTime * 10f) + 1f) * 0.04f + 0.2f, 0.1f);
+                            var eyeGlowPos = position + new Vector2(2f * player.direction, Main.OffsetsPlayerHeadgear[headFrame].Y);
+                            var eyeGlowColor = aQPlayer.cataEyeColor;
+                            var value = AQUtils.GetGrad(0.25f, 0.45f, scale.X) * 0.5f;
+                            var config = ModContent.GetInstance<AQConfigClient>();
+                            var colorMult = ModContent.GetInstance<AQConfigClient>().EffectIntensity * (1f - info.shadow);
+                            Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, 0f, orig, scale, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                            Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.3f * colorMult, 0f, orig, scale * (1.1f + value * 2), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                            if (ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
                             {
-                                var texture = TextureCache.Lights[LightTex.Spotlight240x66];
-                                var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                                var orig = frame.Size() / 2f;
-                                var scale = new Vector2((float)(Math.Sin(Main.GlobalTime * 10f) + 1f) * 0.04f + 0.2f, 0.1f);
-                                var eyeGlowPos = position + new Vector2(2f * player.direction, Main.OffsetsPlayerHeadgear[headFrame].Y);
-                                var eyeGlowColor = aQPlayer.cataEyeColor;
-                                var value = AQUtils.GetGrad(0.25f, 0.45f, scale.X) * 0.5f;
-                                var config = ModContent.GetInstance<AQConfigClient>();
-                                var colorMult = ModContent.GetInstance<AQConfigClient>().EffectIntensity * (1f - info.shadow);
-                                Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, 0f, orig, scale, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.3f * colorMult, 0f, orig, scale * (1.1f + value * 2), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                if (ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
-                                {
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.35f * colorMult, MathHelper.PiOver4, orig, scale * (1f - value) * 0.75f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.35f * colorMult, -MathHelper.PiOver4, orig, scale * (1f - value) * 0.75f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.2f * colorMult, MathHelper.PiOver2, orig, scale * (1f - value), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                }
-                                Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, MathHelper.PiOver2, orig, scale * 0.5f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                if (ModContent.GetInstance<AQConfigClient>().EffectIntensity > 1.5f && ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.15f * colorMult, 0f, orig, scale * (2f + value * 3f), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.35f * colorMult, MathHelper.PiOver4, orig, scale * (1f - value) * 0.75f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.35f * colorMult, -MathHelper.PiOver4, orig, scale * (1f - value) * 0.75f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.2f * colorMult, MathHelper.PiOver2, orig, scale * (1f - value), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
                             }
+                            Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, MathHelper.PiOver2, orig, scale * 0.5f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                            if (ModContent.GetInstance<AQConfigClient>().EffectIntensity > 1.5f && ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
+                                Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.15f * colorMult, 0f, orig, scale * (2f + value * 3f), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
                         }
                     }
                     break;
@@ -93,7 +89,9 @@ namespace AQMod.Common.PlayerData.Layers
                         {
                             var hatPos = position;
                             if (player.gravDir == -1)
+                            {
                                 hatPos.Y += player.height + Main.OffsetsPlayerHeadgear[headFrame].Y + 8f;
+                            }
                             else
                             {
                                 hatPos.Y += Main.OffsetsPlayerHeadgear[headFrame].Y;

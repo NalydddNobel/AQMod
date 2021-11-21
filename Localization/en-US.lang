@@ -352,9 +352,19 @@ ItemName.XenonMushroom=Xenon Mushroom
 ItemName.ExoticRedTorch=Exotic Red Torch
 ItemName.ExoticGreenTorch=Exotic Green Torch
 ItemName.ExoticBlueTorch=Exotic Blue Torch
+
 ItemName.UltrabrightRedTorch=Ultrabright Red Torch
+ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+
 ItemName.UltrabrightGreenTorch=Ultrabright Green Torch
+ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+
 ItemName.UltrabrightBlueTorch=Ultrabright Blue Torch
+ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+
+ItemName.SparklingTorch=Sparkling Torch
+ItemTooltip.SparklingTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+
 # Walls
 ItemName.MoonlightWall=Moonlight Wall
 ItemTooltip.MoonlightWall=NPCs in front of the wall will think it's night
@@ -608,10 +618,6 @@ ItemTooltip.Qi=A mystical energy created by extreme philosophical forces
 ItemTooltip.ArgonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 ItemTooltip.KryptonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 ItemTooltip.XenonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
-# Torches
-ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 # World Interactors
 ItemTooltip.GlimmeringStatue=Has a very high chance to attract the Ultimate Sword during the Glimmer Event
 # Other Placeables

@@ -1,6 +1,7 @@
-﻿using Terraria.ModLoader;
+﻿using AQMod.Common.PlayerData.Layers;
+using Terraria.ModLoader;
 
-namespace AQMod.Common.PlayerData.Layers
+namespace AQMod.Assets.Graphics.PlayerLayers
 {
     public static class PlayerLayersCache
     {

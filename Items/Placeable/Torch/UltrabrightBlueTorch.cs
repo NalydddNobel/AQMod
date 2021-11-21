@@ -23,7 +23,7 @@ namespace AQMod.Items.Placeable.Torch
             item.consumable = true;
             item.createTile = ModContent.TileType<Tiles.Torches>();
             item.value = 50;
-            item.placeStyle = 2;
+            item.placeStyle = Tiles.Torches.UltrabrightBlueTorch;
         }
 
         public override void HoldItem(Player player)

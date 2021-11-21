@@ -1,11 +1,11 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Graphics.Particles;
 using AQMod.Assets.Graphics.ParticlesLayers;
+using AQMod.Assets.Graphics.PlayerLayers;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.NetCode;
-using AQMod.Common.PlayerData.Layers;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
@@ -145,7 +145,6 @@ namespace AQMod
         public bool grapePhanta;
         public bool neutronYogurt;
         public bool mothmanMask;
-        public bool mothmanMaskSpecialFX;
         public byte mothmanExplosionDelay;
 
         public bool NetUpdateKillCount;
@@ -1152,7 +1151,6 @@ namespace AQMod
                             cataEyeColor = new Color(100, 100, 100, 0);
                         if (!player.mount.Active && !player.merman && !player.wereWolf && player.statLife == player.statLifeMax2)
                         {
-                            mothmanMaskSpecialFX = true;
                             float dustAmount = (Main.rand.Next(2, 3) + 1) * ModContent.GetInstance<AQConfigClient>().EffectQuality;
                             if (dustAmount < 1f)
                             {

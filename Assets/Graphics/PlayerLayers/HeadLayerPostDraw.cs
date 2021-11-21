@@ -1,4 +1,4 @@
-﻿using AQMod.Assets;
+﻿using AQMod.Common.PlayerData;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.PlayerData.Layers
+namespace AQMod.Assets.Graphics.PlayerLayers
 {
     public class HeadLayerPostDraw : TempPlayerHeadLayerWrapper
     {
