@@ -919,7 +919,7 @@ namespace AQMod
                     {
                         amount = (int)(amount * AQMod.EffectQuality);
                     }
-                    if (AQMod.TonsofScreenShakes)
+                    if (AQMod.Screenshakes)
                     {
                         ScreenShakeManager.AddEffect(new BasicScreenShake(16, 8));
                     }

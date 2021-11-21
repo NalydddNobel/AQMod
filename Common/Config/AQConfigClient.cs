@@ -32,7 +32,11 @@ namespace AQMod.Common.Config
         [Range(0f, 1.5f)]
         public float Effect3D { get; set; }
 
-        [Label(AQText.ConfigValueKey + "TonsofScreenShakes")]
+        [Label(AQText.Key + "ClientConfig.Screenshakes")]
+        [DefaultValue(true)]
+        public bool Screenshakes { get; set; }
+
+        [Label(AQText.Key + "ClientConfig.TonsofScreenShakes")]
         [DefaultValue(false)]
         public bool TonsofScreenShakes { get; set; }
 

@@ -146,6 +146,7 @@ namespace AQMod
         public static bool HarderOmegaStarite { get; private set; }
         public static bool EvilProgressionLock { get; private set; }
         public static bool ConfigReduceSpawnsWhenYouShould { get; private set; }
+        public static bool Screenshakes { get; private set; }
         public static bool TonsofScreenShakes { get; private set; }
         /// <summary>
         /// Whether or not the background starites from the Glimmer Event should be shown. Default value is true
@@ -842,6 +843,7 @@ namespace AQMod
             EffectIntensity = clientConfig.EffectIntensity;
             Effect3Dness = clientConfig.Effect3D;
             ShowBackgroundStarites = clientConfig.BackgroundStarites;
+            Screenshakes = clientConfig.Screenshakes;
             TonsofScreenShakes = clientConfig.TonsofScreenShakes;
             StariteProjectileColor = clientConfig.StariteProjColor;
             MapBlipColor = clientConfig.MapBlipColor;

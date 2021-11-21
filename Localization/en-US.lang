@@ -15,8 +15,10 @@ Common.ConfigHeader_Misc=Misc
 Common.ConfigHeader_World=World
 Common.ConfigHeader_Debug=Debug
 #
-# Config Values
-# (Client Config)
+
+ClientConfig.Screenshakes=Screenshakes
+ClientConfig.TonsofScreenShakes=Tons of Screen Shakes
+
 Common.Config_DrawSpotlights=Draw Spotlights
 Common.Config_EffectQuality=Effect Quality
 Common.Config_EffectIntensity=Effect Intensity
@@ -29,7 +31,6 @@ Common.Config_StariteAuraColorTooltip=The color of Omega Starite and the Glimmer
 Common.Config_LoadItemOverlays=Load Item Overlays
 Common.Config_BackgroundStarites=Background Starites
 Common.Config_StariteProjColor=Starite Color (Projectiles)
-Common.Config_TonsofScreenShakes=Tons of Screen Shakes
 #
 Common.Config_TrailShader=Enable Trail Shaders
 Common.Config_ScrollShader=Enable Scroll Shaders
