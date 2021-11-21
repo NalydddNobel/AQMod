@@ -212,7 +212,7 @@ ItemName.Breadsoul=Breadsoul
 ItemTooltip.Breadsoul=Increases your grab reach by 25%\nDungeon Spirit enemies are now friendly\nNearby enemies no longer drop hearts, and instead drop souls\nSpectre souls drop more commonly and give you massive life regeneration
 ProjectileName.BreadsoulHealing=Breadsoul
 ItemName.Dreadsoul=Dreadsoul
-ItemTooltip.Dreadsoul=Upon death enemies will release 3 spectre souls which will target enemies of the same type
+ItemTooltip.Dreadsoul=Upon death enemies will release 6 dreaded souls which will target enemies of the same type\nDungeon Spirit enemies are now friendly
 ProjectileName.DreadsoulAttack=Dreadsoul
 
 ItemName.CelesteTorus=Celeste Torus

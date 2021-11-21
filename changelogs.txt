@@ -1,4 +1,58 @@
-####### 1.2.3.2 #######
+####### 1.2.3.4 #######
+
+Additions:
+* Items:
+Dysesthesia, a yoyo made with Malaise at a Gore Nest
+Sparkling Torch, a bright torch crafted using Cosmic Energy
+Grape Phanta, dropped from Rusted Armored bones and Ragged Casters, gives magical buffs
+
+- Added a config option called "Screenshakes" -Set to true by default and renamed the "Tons of Screenshakes" option to "Extra Unnecessary Screenshakes" 
+
+Removals:
+* Items:
+Spectre Amulet -- gave its effect to Breadsoul and Dreadsoul
+Spectre Soul
+Spectral Lens 
+
+- Removed the text that appears after first beating Eye of Cthulhu
+
+Changes:
+- Modified the droprate of the Dungeon Marker
+* Angry Bones: 75 -> 80
+* Dark Caster: 75 -> 50
+* Cursed Skull: 75 -> 30
+
+- Dreadsoul can now be dropped by Diabolists, with a 1/30 chance
+- Dreadsoul now spawns 6 dreaded souls instead of 3
+
+- Breadsoul can now be dropped from Necromancers, with a 1/30 chance
+- Breadsoul now increases your item grab reach by 25%
+- Breadsoul's spectre souls are now projectiles, and they spawn in seperate pieces, collecting all of the soul pieces will give you the full 30 HP heal
+
+- Target Dummies no longer appear on the map when using the Retro Marker
+
+- Renamed Neutron Juice to Neutron Yogurt
+
+- Spicy Eel's food buff can no longer stack with Well Fed
+
+- Most tiles now get their name from language values instead of hardcoded strings
+
+- Dedicated items to Content Creators now explicitly say Content Creator Item
+
+- The Mothman Mask is now dropped from Lunatic Cultist during a Solar Eclipse... though don't believe it's that simple
+
+- Overhauled the Mothman Mask
+
+- Anything that is naturally immune to Cursed Flames or Shadowflame is now immune to Blue Fire, Corrupted Fire, and Crimson Fire 
+
+Fixes:
+- Hopefully fixed a crash that can happen on the player select screen
+
+- Fixed an error with the Moonluna and Sunbask Mirror still being useable while in an invalid position
+
+- You can no longer place Exotic Red, Green and Blue Torches in lava
+
+####### 1.2.3.3 #######
 
 Added Items:
 Air Blade

@@ -217,6 +217,7 @@ namespace AQMod.Common
                 NoMapBlip[NPCID.DetonatingBubble] = true;
                 NoMapBlip[NPCID.ForceBubble] = true;
                 NoMapBlip[NPCID.FungiSpore] = true;
+                NoMapBlip[NPCID.TargetDummy] = true;
 
                 NoGlobalDrops = new bool[NPCLoader.NPCCount];
                 NoGlobalDrops[NPCID.MeteorHead] = true;
@@ -1157,19 +1158,20 @@ namespace AQMod.Common
                 {
                     var aQPlr = plr.GetModPlayer<AQPlayer>();
                     float distance = Vector2.Distance(plr.Center, npc.Center);
-                    if (aQPlr.dreadsoul && distance < 2000f && plr.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.DreadsoulAttack>()] < 20)
+                    int dreadsoulAttack = ModContent.ProjectileType<DreadsoulAttack>();
+                    if (aQPlr.dreadsoul && distance < 2000f && plr.ownedProjectileCounts[dreadsoulAttack] < 36)
                     {
                         var center = npc.Center;
-                        float rot = MathHelper.TwoPi / 3f;
+                        float rot = MathHelper.TwoPi / 6f;
                         int damage = (int)(plr.GetWeaponDamage(plr.HeldItem) * 0.65f);
-                        float kb = plr.GetWeaponKnockback(plr.HeldItem, 1f) / 3f;
+                        float kb = plr.GetWeaponKnockback(plr.HeldItem, 1f) / 6f;
                         float size = (float)Math.Sqrt(npc.width * npc.height);
-                        for (int j = 0; j < 3; j++)
+                        for (int j = 0; j < 6; j++)
                         {
                             var dir = new Vector2(0f, -1f).RotatedBy(rot * j);
-                            Projectile.NewProjectile(center + dir * (size + 2f), dir * 2f, ModContent.ProjectileType<Projectiles.DreadsoulAttack>(), damage, kb, i, 0f, npc.type);
+                            Projectile.NewProjectile(center + dir * (size + 2f), dir * 2f, dreadsoulAttack, damage, kb, i, 0f, npc.type);
                         }
-                        plr.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.DreadsoulAttack>()] += 3;
+                        plr.ownedProjectileCounts[dreadsoulAttack] += 6;
                         break;
                     }
                 }
