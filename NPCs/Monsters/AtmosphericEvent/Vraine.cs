@@ -345,8 +345,11 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
 
         public override void NPCLoot()
         {
-            if (Main.rand.NextBool(10) || !NPC.AnyNPCs(npc.type))
+            bool anyOthers = NPC.AnyNPCs(npc.type);
+            if (!anyOthers || Main.rand.NextBool(10))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
+            if (anyOthers && Main.rand.NextBool(5))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.Vrang>(), Main.rand.NextVRand(1, 3));
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)

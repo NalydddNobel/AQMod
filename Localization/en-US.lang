@@ -153,8 +153,6 @@ Common.NoScrollShader=Scroll Shader is not enabled
 Common.NoHypnoShader=Hypno Shader is not enabled
 Common.NoOutlineShader=Outline Shader is not enabled
 Common.CrabSeason=Crab Season
-Common.CrabClockEnds={0} until crab season ends
-Common.CrabClockStarts={0} until crab season starts
 Common.CrabSeasonWarning=The warmth of the oceans increases...
 Common.CrabSeasonEnding=The oceans become neutral again...
 Common.GlimmerEvent=Glimmer Event
@@ -862,6 +860,10 @@ QuestFish.Crabdaughter=Seems like some new fish have entered the ocean recently,
 QuestFish.WaterFisg=It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.
 FishingLocation.AnywhereFishing=Caught anywhere
 FishingLocation.BeachFishing=Caught in Ocean
+
+CrabClock.Ends={0} until crab season ends
+CrabClock.Starts={0} until crab season starts
+CrabClock.Favorite=Favorite this item to see the time
 
 MapObject.Painting=Painting
 MapObject.Trophies=Trophy

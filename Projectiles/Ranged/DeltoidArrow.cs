@@ -1,11 +1,11 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.Utilities;
-using AQMod.Common.WorldGeneration;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Ranged
@@ -19,77 +19,87 @@ namespace AQMod.Projectiles.Ranged
 
         public override void SetDefaults()
         {
-            projectile.width = 8;
-            projectile.height = 8;
+            projectile.width = 10;
+            projectile.height = 10;
             projectile.aiStyle = -1;
             projectile.ranged = true;
             projectile.friendly = true;
             projectile.timeLeft = 600;
-            projectile.extraUpdates = 3;
-            projectile.penetrate = 2;
-            projectile.hide = true;
+            projectile.extraUpdates = 2;
+            projectile.penetrate = 5;
+            projectile.alpha = 240;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            projectile.Kill();
-        }
-
-        public void SpawnArrowPortal(int x, int y, int ydir = 1)
-        {
-            int p = Projectile.NewProjectile(new Vector2((x * 16f) + 8, (y * 16f) - (8f * ydir)), new Vector2(projectile.velocity.X * 0.6f, -10f * ydir), (int)projectile.ai[1], projectile.damage, projectile.knockBack, projectile.owner);
-            Main.projectile[p].coldDamage = projectile.coldDamage;
-            Main.projectile[p].noDropItem = true;
+            Buffs.Debuffs.CrimsonHellfire.Inflict(target, 120);
         }
 
         public override void AI()
         {
-            var center = projectile.Center;
-            Lighting.AddLight(center, new Vector3(1f, 0.65f, 0.2f));
-            if (projectile.velocity.X.Abs() > projectile.velocity.Y.Abs())
-                projectile.ai[0]++;
-            if (projectile.ai[0] > 35f)
+            if (Main.netMode == NetmodeID.Server)
             {
-                projectile.ai[0] = 0f;
-                var projTile = center.ToTileCoordinates();
-                int y = -1;
-                for (int i = 0; i < 20; i++)
+                return;
+            }
+            var center = projectile.Center;
+            if (projectile.alpha > 0)
+            {
+                projectile.alpha -= 5;
+                if (projectile.alpha < 0)
                 {
-                    if (AQWorldGen.ActiveAndSolid(projTile.X, projTile.Y + i))
-                    {
-                        y = projTile.Y + i;
-                        break;
-                    }
+                    projectile.alpha = 0;
                 }
-                if (y != -1)
+            }
+            float opacity = 1f - projectile.alpha / 255f;
+            Lighting.AddLight(center, new Vector3(1f, 0.65f, 0.2f) * opacity);
+            int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Fire);
+            Main.dust[d].noGravity = true;
+            Main.dust[d].velocity *= 0.05f;
+            Main.dust[d].alpha = projectile.alpha;
+            Main.dust[d].scale = opacity * Main.rand.NextFloat(0.4f, 1.1f);
+            projectile.rotation = projectile.velocity.ToRotation();
+            if (Main.myPlayer != projectile.owner)
+            {
+                return;
+            }
+            if (projectile.localAI[0] == 0f)
+            {
+                int projectileType = (int)projectile.ai[1];
+                if (projectileType == ProjectileID.HolyArrow)
                 {
-                    SpawnArrowPortal(projTile.X, y);
+                    projectile.ai[0] = 60f;
                 }
-                y = -1;
-                for (int i = 0; i < 20; i++)
+                else
                 {
-                    if (AQWorldGen.ActiveAndSolid(projTile.X, projTile.Y - i))
-                    {
-                        y = projTile.Y - i;
-                        break;
-                    }
+                    projectile.ai[0] = 30f;
                 }
-                if (y != -1)
+                projectile.localAI[0] = projectile.velocity.Length() * 3f;
+            }
+            projectile.ai[0]--;
+            if ((int)projectile.ai[0] <= 0)
+            {
+                int projectileType = (int)projectile.ai[1];
+                if (projectileType == ProjectileID.HolyArrow)
                 {
-                    SpawnArrowPortal(projTile.X, y, -1);
+                    projectile.ai[0] = 120f;
                 }
+                else
+                {
+                    projectile.ai[0] = 30f;
+                }
+                projectile.netUpdate = true;
+                projectile.localAI[1]++;
+                if ((int)projectile.localAI[1] > 5)
+                {
+                    projectile.ai[0] = 3000f;
+                }
+                int p = Projectile.NewProjectile(projectile.Center, Vector2.Normalize(projectile.velocity) * projectile.localAI[0], projectileType, projectile.damage, projectile.knockBack, projectile.owner);
+                Main.projectile[p].rotation = projectile.rotation;
+                Main.projectile[p].penetrate = projectile.penetrate;
+                Main.projectile[p].coldDamage = projectile.coldDamage;
+                Main.projectile[p].noDropItem = true;
             }
             projectile.velocity.Y += 0.03f;
-            projectile.localAI[1]++;
-            if (projectile.hide)
-            {
-                if (projectile.localAI[1] > 8f)
-                    projectile.hide = false;
-            }
-            else if (!projectile.hide)
-            {
-                projectile.rotation = projectile.velocity.ToRotation();
-            }
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -100,6 +110,7 @@ namespace AQMod.Projectiles.Ranged
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             lightColor = projectile.GetAlpha(lightColor);
+            lightColor *= 1f - projectile.alpha / 255f;
             var texture = TextureCache.GetProjectile(projectile.type);
             var textureOrig = new Vector2(texture.Width / 2f, 10f);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
@@ -124,12 +135,16 @@ namespace AQMod.Projectiles.Ranged
 
         public override void Kill(int timeLeft)
         {
-            var clr = new Color(200, 150, 80, 0);
             int type = ModContent.DustType<MonoDust>();
+            var center = projectile.Center;
+            float r = projectile.Size.Length() / 3f;
             for (int i = 0; i < 20; i++)
             {
+                var clr = new Color(255, 100 + Main.rand.Next(-20, 20), 20 + Main.rand.Next(-20, 30), 0);
                 int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, type, 0, 0, 0, clr * Main.rand.NextFloat(0.8f, 2f), Main.rand.NextFloat(0.8f, 2f));
-                Main.dust[d].velocity *= 1.2f;
+                var normal = new Vector2(1f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+                Main.dust[d].position = center + normal * Main.rand.NextFloat(r);
+                Main.dust[d].velocity = normal * Main.rand.NextFloat(0.65f, 3f);
             }
         }
     }

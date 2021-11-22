@@ -1,6 +1,6 @@
-﻿using AQMod.Assets.Textures;
+﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Common;
-using AQMod.Common.ItemOverlays;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -13,7 +13,7 @@ namespace AQMod.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.VortexBlowpipe), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow")), item.type);
         }
 
         public override void SetDefaults()

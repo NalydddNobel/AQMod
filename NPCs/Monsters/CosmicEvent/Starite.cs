@@ -21,6 +21,25 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             NPCID.Sets.TrailCacheLength[npc.type] = 12;
         }
 
+        internal static void BuffImmunities(NPC NPC)
+        {
+            NPC.buffImmune[BuffID.Confused] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.ShadowFlame] = true;
+            NPC.buffImmune[BuffID.CursedInferno] = true;
+            NPC.buffImmune[BuffID.Frostburn] = true;
+            NPC.buffImmune[BuffID.Ichor] = true;
+            NPC.buffImmune[BuffID.Poisoned] = true;
+            NPC.buffImmune[BuffID.Venom] = true;
+            NPC.buffImmune[BuffID.Bleeding] = true;
+            NPC.buffImmune[BuffID.Stinky] = true;
+            NPC.buffImmune[BuffID.Lovestruck] = true;
+            NPC.buffImmune[BuffID.Wet] = true;
+            NPC.buffImmune[BuffID.Slimed] = true;
+            NPC.buffImmune[ModContent.BuffType<Sparkling>()] = true;
+            NPC.buffImmune[ModContent.BuffType<BlueFire>()] = true;
+        }
+
         public override void SetDefaults()
         {
             npc.width = 20;
@@ -34,10 +53,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             npc.noGravity = true;
             npc.knockBackResist = 1.1f;
             npc.value = Item.buyPrice(silver: 2);
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[ModContent.BuffType<Sparkling>()] = true;
-            npc.buffImmune[ModContent.BuffType<BlueFire>()] = true;
+            BuffImmunities(npc);
             banner = npc.type;
             bannerItem = ModContent.ItemType<StariteBanner>();
         }

@@ -1,4 +1,5 @@
-﻿using AQMod.Common;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common;
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Projectiles.Ranged;
@@ -14,7 +15,7 @@ namespace AQMod.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow"), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(AQUtils.GetPath(this) + "_Glow"), item.type);
         }
 
         public override void SetDefaults()

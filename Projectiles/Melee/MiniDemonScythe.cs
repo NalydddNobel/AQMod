@@ -13,7 +13,6 @@ namespace AQMod.Projectiles.Melee
             projectile.friendly = true;
             projectile.magic = false;
             projectile.melee = true;
-            projectile.tileCollide = true;
             projectile.extraUpdates = 1;
             projectile.width = 16;
             projectile.height = 16;
@@ -29,7 +28,7 @@ namespace AQMod.Projectiles.Melee
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (Main.rand.NextBool(4) && target.Distance(Main.player[projectile.owner].Center) < (ProjectileID.Sets.YoyosMaximumRange[projectile.type] / 2f))
-                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>(), 360);
+                Buffs.Debuffs.CorruptionHellfire.Inflict(target, 360);
         }
     }
 }

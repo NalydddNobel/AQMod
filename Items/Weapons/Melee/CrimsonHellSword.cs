@@ -35,6 +35,11 @@ namespace AQMod.Items.Weapons.Melee
             item.scale = 1.35f;
         }
 
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            Buffs.Debuffs.CrimsonHellfire.Inflict(target, 240);
+        }
+
         public override Color? GetAlpha(Color lightColor)
         {
             return AQItem.GetAlphaDemonSiegeWeapon(lightColor);

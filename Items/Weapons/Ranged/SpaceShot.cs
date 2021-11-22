@@ -1,5 +1,5 @@
-﻿using AQMod.Assets.Textures;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -12,7 +12,7 @@ namespace AQMod.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.SpaceShot, new Color(200, 200, 200, 0)), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), new Color(200, 200, 200, 0)), item.type);
         }
 
         public override void SetDefaults()

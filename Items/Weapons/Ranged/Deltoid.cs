@@ -1,4 +1,5 @@
-﻿using AQMod.Common;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common;
 using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Projectiles.Ranged;
@@ -14,16 +15,16 @@ namespace AQMod.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow"), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(AQUtils.GetPath(this) + "_Glow"), item.type);
         }
 
         public override void SetDefaults()
         {
-            item.damage = 20;
+            item.damage = 23;
             item.ranged = true;
-            item.useTime = 28;
-            item.useAnimation = 28;
-            item.width = 30;
+            item.useTime = 38;
+            item.useAnimation = 38;
+            item.width = 20;
             item.height = 30;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;

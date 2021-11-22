@@ -42,6 +42,7 @@ namespace AQMod.Projectiles.Melee
                     {
                         normal = new Vector2(0f, 1f).RotatedBy((projectile.localAI[0] - projectile.localAI[1]) * 0.04f);
                     }
+                    Main.PlaySound(SoundID.Item8, projectile.Center);
                     int type = ModContent.ProjectileType<MiniDemonScythe>();
                     Projectile.NewProjectile(projectile.Center, normal, type, projectile.damage, projectile.knockBack, projectile.owner, projectile.identity);
                     Projectile.NewProjectile(projectile.Center, -normal, type, projectile.damage, projectile.knockBack, projectile.owner, projectile.identity);
@@ -54,7 +55,7 @@ namespace AQMod.Projectiles.Melee
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (Main.rand.NextBool(4) && target.Distance(Main.player[projectile.owner].Center) < (ProjectileID.Sets.YoyosMaximumRange[projectile.type] / 2f))
-                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>(), 360);
+                Buffs.Debuffs.CorruptionHellfire.Inflict(target, 360);
         }
     }
 }

@@ -60,6 +60,11 @@ namespace AQMod.Projectiles.Magic
             }
         }
 
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            Buffs.Debuffs.CorruptionHellfire.Inflict(target, 120);
+        }
+
         public override void Kill(int timeLeft)
         {
             for (int i = 0; i < 40; i++)

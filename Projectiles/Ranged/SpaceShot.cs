@@ -36,6 +36,11 @@ namespace AQMod.Projectiles.Ranged
             }
         }
 
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(ModContent.BuffType<Buffs.Debuffs.BlueFire>(), 120);
+        }
+
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.Item9);

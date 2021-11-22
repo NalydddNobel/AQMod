@@ -494,6 +494,68 @@ namespace AQMod.Common
                 npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
                 npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
             }
+
+            if (npc.type == NPCID.DarkMummy || npc.type == NPCID.DesertDjinn || npc.type == NPCID.DesertLamiaDark)
+            {
+                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
+                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
+            }
+            else
+            {
+                switch (npc.type)
+                {
+                    case NPCID.EaterofSouls:
+                    case NPCID.BigEater:
+                    case NPCID.LittleEater:
+                    case NPCID.EaterofWorldsHead:
+                    case NPCID.EaterofWorldsBody:
+                    case NPCID.EaterofWorldsTail:
+                    case NPCID.DevourerHead:
+                    case NPCID.DevourerBody:
+                    case NPCID.DevourerTail:
+                    case NPCID.Clinger:
+                    case NPCID.CorruptBunny:
+                    case NPCID.CorruptGoldfish:
+                    case NPCID.Corruptor:
+                    case NPCID.CorruptPenguin:
+                    case NPCID.CorruptSlime:
+                    case NPCID.Slimeling:
+                    case NPCID.Slimer:
+                    case NPCID.Slimer2:
+                    case NPCID.BigMimicCorruption:
+                    case NPCID.DesertGhoulCorruption:
+                    case NPCID.PigronCorruption:
+                    case NPCID.SandsharkCorrupt:
+                    {
+                        npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
+                    }
+                    break;
+
+                    case NPCID.Crimera:
+                    case NPCID.FaceMonster:
+                    case NPCID.BloodCrawler:
+                    case NPCID.BloodCrawlerWall:
+                    case NPCID.Crimslime:
+                    case NPCID.Herpling:
+                    case NPCID.CrimsonGoldfish:
+                    case NPCID.BrainofCthulhu:
+                    case NPCID.Creeper:
+                    case NPCID.BloodJelly:
+                    case NPCID.BloodFeeder:
+                    case NPCID.CrimsonAxe:
+                    case NPCID.IchorSticker:
+                    case NPCID.FloatyGross:
+                    case NPCID.DesertGhoulCrimson:
+                    case NPCID.PigronCrimson:
+                    case NPCID.BigMimicCrimson:
+                    case NPCID.CrimsonBunny:
+                    case NPCID.CrimsonPenguin:
+                    {
+                        npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CrimsonHellfire>()] = true;
+                    }
+                    break;
+                }
+            }
         }
 
         public bool ShouldApplyWindMechanics(NPC npc)
@@ -1535,6 +1597,14 @@ namespace AQMod.Common
                 {
                     onCollide(Main.npc[i]);
                 }
+            }
+        }
+
+        public static void ImmuneToAllBuffs(NPC NPC)
+        {
+            for (int i = 0; i < NPC.buffImmune.Length; i++)
+            {
+                NPC.buffImmune[i] = true;
             }
         }
     }

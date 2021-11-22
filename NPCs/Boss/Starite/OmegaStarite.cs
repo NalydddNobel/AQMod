@@ -117,13 +117,7 @@ namespace AQMod.NPCs.Boss.Starite
             npc.knockBackResist = 0f;
             npc.value = Item.buyPrice(gold: 18);
             npc.boss = true;
-            npc.buffImmune[BuffID.Confused] = true;
-            npc.buffImmune[BuffID.OnFire] = true;
-            npc.buffImmune[BuffID.Poisoned] = true;
-            npc.buffImmune[BuffID.Venom] = true;
-            npc.buffImmune[BuffID.Bleeding] = true;
-            npc.buffImmune[ModContent.BuffType<Sparkling>()] = true;
-            npc.buffImmune[ModContent.BuffType<BlueFire>()] = true;
+            AQNPC.ImmuneToAllBuffs(npc);
             npc.npcSlots = 10f;
             npc.noTileCollide = true;
             npc.trapImmune = true;

@@ -36,6 +36,7 @@ namespace AQMod.Projectiles.Ranged
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            Buffs.Debuffs.CorruptionHellfire.Inflict(target, 120);
             projectile.Kill();
         }
 
