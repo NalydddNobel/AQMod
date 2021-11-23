@@ -27,7 +27,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
         {
             npc.width = 46;
             npc.height = 36;
-            npc.lifeMax = 125;
+            npc.lifeMax = 275;
             npc.damage = 45;
             npc.defense = 15;
             npc.HitSound = SoundID.DD2_GoblinHurt;
@@ -40,11 +40,6 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             banner = npc.type;
             bannerItem = ModContent.ItemType<VraineBanner>();
             npc.noTileCollide = true;
-        }
-
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            npc.lifeMax = (int)(npc.lifeMax * 1.3f);
         }
 
         public override void HitEffect(int hitDirection, double damage)

@@ -73,7 +73,15 @@ namespace AQMod.Projectiles.Ranged
                 {
                     projectile.ai[0] = 30f;
                 }
+                if (projectileType == ProjectileID.HellfireArrow)
+                {
+                    projectile.velocity /= 2f;
+                }
                 projectile.localAI[0] = projectile.velocity.Length() * 3f;
+                if (projectileType == ProjectileID.JestersArrow)
+                {
+                    projectile.velocity *= 2f;
+                }
             }
             projectile.ai[0]--;
             if ((int)projectile.ai[0] <= 0)
@@ -85,7 +93,7 @@ namespace AQMod.Projectiles.Ranged
                 }
                 else
                 {
-                    projectile.ai[0] = 30f;
+                    projectile.ai[0] = 40f;
                 }
                 projectile.netUpdate = true;
                 projectile.localAI[1]++;
@@ -93,9 +101,16 @@ namespace AQMod.Projectiles.Ranged
                 {
                     projectile.ai[0] = 3000f;
                 }
-                int p = Projectile.NewProjectile(projectile.Center, Vector2.Normalize(projectile.velocity) * projectile.localAI[0], projectileType, projectile.damage, projectile.knockBack, projectile.owner);
+                var soundID = SoundID.Item5;
+                Main.PlaySound(soundID.SoundId, (int)center.X, (int)center.Y, soundID.Style, 0.8f, 0.6f);
+                int p = Projectile.NewProjectile(center, Vector2.Normalize(projectile.velocity) * projectile.localAI[0], projectileType, projectile.damage, projectile.knockBack, projectile.owner);
                 Main.projectile[p].rotation = projectile.rotation;
-                Main.projectile[p].penetrate = projectile.penetrate;
+                if (Main.projectile[p].penetrate != -1 && Main.projectile[p].penetrate < projectile.penetrate)
+                {
+                    Main.projectile[p].penetrate = projectile.penetrate;
+                    Main.projectile[p].usesIDStaticNPCImmunity = true;
+                    Main.projectile[p].idStaticNPCHitCooldown = 12;
+                }
                 Main.projectile[p].coldDamage = projectile.coldDamage;
                 Main.projectile[p].noDropItem = true;
             }

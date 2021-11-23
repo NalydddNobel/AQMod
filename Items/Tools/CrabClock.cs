@@ -28,7 +28,7 @@ namespace AQMod.Items.Tools
             {
                 player.itemTime = 10;
                 player.itemAnimation = 10;
-                CrabSeason.crabSeasonTimerRate += 49;
+                CrabSeason.crabSeasonTimerRate += 99;
             }
         }
 

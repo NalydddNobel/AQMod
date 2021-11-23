@@ -30,7 +30,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
         {
             npc.width = 46;
             npc.height = 36;
-            npc.lifeMax = 345;
+            npc.lifeMax = 500;
             npc.damage = 45;
             npc.defense = 4;
             npc.HitSound = SoundID.DD2_GoblinHurt;
@@ -38,7 +38,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             npc.aiStyle = -1;
             npc.noGravity = true;
             npc.knockBackResist = 0.1f;
-            npc.value = Item.buyPrice(silver: 20);
+            npc.value = Item.buyPrice(silver: 50);
             npc.buffImmune[BuffID.OnFire] = true;
             banner = npc.type;
             bannerItem = ModContent.ItemType<TemperatureBalloonBanner>();
@@ -46,7 +46,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax * 0.625f);
+            npc.lifeMax = (int)(npc.lifeMax * 0.8f);
         }
 
         public override void AI() // ai[0] attack stuff, -1 means it's fleeing.
@@ -172,7 +172,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             }
 
             // attack stuff
-            if (diffY.Abs() < 40f)
+            if (diffY.Abs() < 200f)
             {
                 if (diffX.Abs() < 100f)
                 {
@@ -185,22 +185,35 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 }
                 if ((int)npc.ai[0] > 90)
                 {
-                    npc.ai[0] = 0f;
-                    npc.netUpdate = true;
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    int time = (int)(npc.ai[0] - 90) % 25;
+                    if (time == 0)
                     {
-                        float veloX = targetX - npc.position.X + npc.width / 2f;
-                        veloX /= 60f;
-                        int projectileType = ModContent.ProjectileType<Projectiles.Monster.Trapper>();
-                        Projectile.NewProjectile(npc.Center, new Vector2(veloX, -12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
-                        Projectile.NewProjectile(npc.Center, new Vector2(veloX * 0.75f, -12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
-                        Projectile.NewProjectile(npc.Center, new Vector2(veloX * 1.25f, -12f), ProjectileID.SmokeBomb, 30, 1f, Main.myPlayer);
+                        npc.netUpdate = true;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                        {
+                            float veloX = targetX - npc.position.X + npc.width / 2f;
+                            veloX /= 60f;
+                            if (hot)
+                            {
+
+                            }
+                            else
+                            {
+                                Main.PlaySound(SoundID.Item66, npc.Center);
+                                Projectile.NewProjectile(npc.Center, new Vector2(veloX, -48f),
+                                    ModContent.ProjectileType<Projectiles.Monster.TemperatureBombCold>(), 30, 1f, Main.myPlayer);
+                            }
+                        }
+                    }
+                    if (npc.ai[0] > 165f)
+                    {
+                        npc.ai[0] = 0f;
                     }
                 }
             }
             else
             {
-                if (npc.ai[0] > 0f)
+                if (npc.ai[0] > 0f && npc.ai[0] < 90f)
                 {
                     npc.ai[0] -= 0.5f;
                 }
