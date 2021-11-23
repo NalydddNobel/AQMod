@@ -153,8 +153,6 @@ Common.NoScrollShader=滚动特效着色器未启用
 Common.NoHypnoShader=色彩分离特效着色器未启用
 Common.NoOutlineShader=轮廓描边特效着色器未启用
 Common.CrabSeason=蟹季
-Common.CrabClockEnds=距离蟹季结束还剩{0}
-Common.CrabClockStarts=距离蟹季开始还剩{0}
 Common.CrabSeasonWarning=海洋的温度正在逐渐升高...
 Common.CrabSeasonEnding=海洋再度变得冰冷...
 Common.GlimmerEvent=微光事件
@@ -862,6 +860,10 @@ QuestFish.Crabdaughter=看起来海洋中最近涌入了某些新的鱼, 其中�
 QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我曾见过一条内部充满清澈的水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
 FishingLocation.AnywhereFishing=抓捕位置: 任意位置
 FishingLocation.BeachFishing=抓捕位置: 海洋
+
+CrabClock.Ends=距离蟹季结束还剩{0}
+CrabClock.Starts=距离蟹季开始还剩{0}
+CrabClock.Favorite=将此物品标记为收藏以查看时间
 
 MapObject.Painting=画作
 MapObject.Trophies=纪念章
