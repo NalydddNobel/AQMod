@@ -233,6 +233,9 @@ ItemName.OmegaStariteTrophy=终末之星纪念章
 ItemName.StariteBag=宝藏袋
 ItemName.UltimateStarfruit=终极星果
 ItemName.UltimateSword=最终之剑
+ProjectileName.UltimateSword=最终之剑
+ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时生成闪光
+
 ##############
 # Buff Items #
 ##############
@@ -541,7 +544,6 @@ ItemTooltip.NovaFruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}
 ItemTooltip.OmegaStariteTrophy='你不知道会发生什么!'
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.UltimateStarfruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n右键开始或结束微光事件\n{$Mods.AQMod.Common.NotConsumable}
-ItemTooltip.UltimateSword=击中敌人时会使你无敌一小段时间并获得最终之力增益\n攻击生命值低于400的敌人时会使其爆炸并喷发出绚彩圣焰
 ##############
 # Buff Items #
 ##############
@@ -762,7 +764,7 @@ ProjectileName.FriendlyWind=友善的风
 ProjectileName.GoldPowder=黄金之尘
 ProjectileName.HyperCrystalExplosion=超载爆破
 ProjectileName.KelBall=Kel的球球
-ProjectileName.UltimateSword=最终之剑
+ProjectileName.SparklingExplosion=闪光爆破
 
 # Pets
 ProjectileName.ATM=ATM
