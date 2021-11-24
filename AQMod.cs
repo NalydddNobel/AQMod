@@ -291,6 +291,7 @@ namespace AQMod
             GlimmerEventSky.Initialize();
             Trailshader.Setup();
             DrawUtils.LegacyTextureCache.Setup();
+            EffectCache.Setup(this);
             //EffectCache.Instance = new EffectCache(this, client, Logger, newInstance: true);
             WorldLayers = new SceneLayersManager();
             WorldLayers.Setup(loadHooks: true);
