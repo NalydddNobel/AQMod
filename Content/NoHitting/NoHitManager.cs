@@ -19,7 +19,8 @@ namespace AQMod.Content.NoHitting
         {
             NoHitEffects = new INoHitReward[NPCLoader.NPCCount];
 
-            NoHitEffects[NPCID.CultistBoss] = new NoHitMothmanMask(ModContent.ItemType<Items.Dedicated.ContentCreators.MothmanMask>());
+            NoHitEffects[NPCID.CultistBoss] = new NoHitMothmanMask(ModContent.ItemType<Items.Dedicated.ContentCreators.MothmanMask>(),
+                ModContent.ItemType<Items.Placeable.NoHitPaintings.RockFromAnAlternateUniverse>());
             NoHitEffects[ModContent.NPCType<OmegaStarite>()] = new NoHitOmegaStarite(ModContent.ItemType<Items.Dedicated.Developers.AStrangeIdea>());
         }
 

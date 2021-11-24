@@ -29,7 +29,7 @@ using AQMod.Items.Accessories;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Placeable;
+using AQMod.Items.Materials.NobleMushrooms;
 using AQMod.Items.Tools.Bait;
 using AQMod.Items.Vanities;
 using AQMod.Localization;

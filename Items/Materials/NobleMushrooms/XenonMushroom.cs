@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable
+namespace AQMod.Items.Materials.NobleMushrooms
 {
     public class XenonMushroom : ModItem
     {

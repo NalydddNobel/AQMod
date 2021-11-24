@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable
+namespace AQMod.Items.Materials.NobleMushrooms
 {
-    public class KryptonMushroom : ModItem
+    public class ArgonMushroom : ModItem
     {
         public override void SetDefaults()
         {
@@ -16,7 +16,7 @@ namespace AQMod.Items.Placeable
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.createTile = ModContent.TileType<Tiles.NobleMushrooms>();
-            item.placeStyle = 1;
+            item.placeStyle = 0;
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;
@@ -26,7 +26,7 @@ namespace AQMod.Items.Placeable
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Mushroom);
-            r.AddIngredient(ItemID.Emerald);
+            r.AddIngredient(ItemID.Amethyst);
             r.SetResult(this);
             r.AddRecipe();
         }
