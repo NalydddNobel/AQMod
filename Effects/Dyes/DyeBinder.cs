@@ -33,7 +33,7 @@ namespace AQMod.Effects.Dyes
 
         private static void setupDye(DyeItem dye)
         {
-            dye.mod.Logger.Info("Binding shader to " + dye.Name);
+            dye.mod.Logger.Info("Binding shader to " + dye.Name + " {Pass:" + dye.Pass + "}");
             GameShaders.Armor.BindShader(dye.item.type, dye.CreateShaderData);
         }
     }
