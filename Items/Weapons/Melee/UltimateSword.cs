@@ -21,54 +21,52 @@ namespace AQMod.Items.Weapons.Melee
         {
             item.width = 50;
             item.height = 50;
-            item.rare = ItemRarityID.Lime;
-            item.useTime = 16;
-            item.useAnimation = 16;
+            item.rare = ItemRarityID.Pink;
+            item.useTime = 18;
+            item.useAnimation = 18;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
-            item.value = AQItem.OmegaStariteWeaponValue * 4;
-            item.damage = 75;
+            item.value = AQItem.OmegaStariteWeaponValue * 2;
+            item.damage = 65;
             item.melee = true;
-            item.knockBack = 6f;
+            item.knockBack = 4f;
             item.autoReuse = true;
             item.useTurn = true;
-            item.scale = 1.35f;
+            item.scale = 1.3f;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            if (player.immuneTime < 11)
+            if (player.immuneTime < 5)
             {
-                player.immuneTime = 11;
+                player.immuneTime = 5;
                 player.immuneNoBlink = true;
             }
-            player.AddBuff(ModContent.BuffType<Buffs.Ultima>(), 1200);
-            target.AddBuff(BuffID.CursedInferno, 60);
-            target.AddBuff(BuffID.Ichor, 20);
-            if (target.lifeMax <= 400)
+            target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 1200);
+            if (crit)
             {
-                Main.PlaySound(SoundID.Item14, target.position);
-                var value = ModContent.DustType<UltimaDust>();
-                for (int i = 0; i < 40; i++)
+                player.AddBuff(ModContent.BuffType<Buffs.Ultima>(), 300);
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.BlueFire>(), 120);
+                if (target.lifeMax <= 400)
                 {
-                    Dust.NewDust(target.position, target.width, target.height, value);
-                }
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    value = ModContent.ProjectileType<Projectiles.Melee.UltimaFlare>();
-                    var value1 = (float)Math.Sqrt(target.width * target.width + target.height * target.height) + 8f;
-                    for (int i = 0; i < 10; i++)
+                    Main.PlaySound(SoundID.Item14, target.position);
+                    var value = ModContent.DustType<UltimaDust>();
+                    for (int i = 0; i < 40; i++)
                     {
-                        Vector2 normal = new Vector2(1f, 0f).RotatedBy(Main.rand.NextFloat(MathHelper.TwoPi));
-                        Projectile.NewProjectile(target.Center + normal * value1, normal * Main.rand.NextFloat(2f, 12f), value, 10, knockBack, player.whoAmI);
+                        Dust.NewDust(target.position, target.width, target.height, value);
+                    }
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        value = ModContent.ProjectileType<Projectiles.Melee.UltimaFlare>();
+                        var value1 = (float)Math.Sqrt(target.width * target.width + target.height * target.height) + 8f;
+                        for (int i = 0; i < 10; i++)
+                        {
+                            Vector2 normal = new Vector2(1f, 0f).RotatedBy(Main.rand.NextFloat(MathHelper.TwoPi));
+                            Projectile.NewProjectile(target.Center + normal * value1, normal * Main.rand.NextFloat(2f, 12f), value, 10, knockBack, player.whoAmI);
+                        }
                     }
                 }
             }
-        }
-
-        public override void UseItemHitbox(Player player, ref Rectangle hitbox, ref bool noHitbox)
-        {
-            Dust.NewDust(hitbox.TopLeft(), hitbox.Width, hitbox.Height, ModContent.DustType<UltimaDust>());
         }
     }
 }

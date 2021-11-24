@@ -6,6 +6,8 @@ using AQMod.Content.Dusts;
 using AQMod.Content.NoHitting;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents.AquaticEvent;
+using AQMod.Effects;
+using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
@@ -106,6 +108,7 @@ namespace AQMod.Common
             public static bool[] EnemyDungeonSprit { get; private set; }
             public static bool[] DemonSiegeEnemy { get; private set; }
             public static bool[] UnaffectedByWind { get; private set; }
+            public static bool[] BossRelatedEnemy { get; private set; }
 
             public static bool IsAZombie(int type, bool includeBloodZombies = false)
             {
@@ -125,38 +128,43 @@ namespace AQMod.Common
                 type == NPCID.ZombieSweater;
             }
 
-            public static int CountNPCs(bool[] ruleset)
-            {
-                int count = 0;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].active && ruleset[Main.npc[i].type])
-                    {
-                        count++;
-                    }
-                }
-                return count;
-            }
-
-            public static int CountNPCs(params bool[][] ruleset)
-            {
-                int count = 0;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    foreach (bool[] b in ruleset)
-                    {
-                        if (Main.npc[i].active && b[Main.npc[i].type])
-                        {
-                            count++;
-                            break;
-                        }
-                    }
-                }
-                return count;
-            }
-
             internal static void LoadSets()
             {
+                BossRelatedEnemy = new bool[NPCLoader.NPCCount];
+                BossRelatedEnemy[NPCID.ServantofCthulhu] = true;
+                BossRelatedEnemy[NPCID.PirateShipCannon] = true;
+                BossRelatedEnemy[NPCID.MartianSaucerCannon] = true;
+                BossRelatedEnemy[NPCID.EaterofWorldsHead] = true;
+                BossRelatedEnemy[NPCID.EaterofWorldsBody] = true;
+                BossRelatedEnemy[NPCID.EaterofWorldsTail] = true;
+                BossRelatedEnemy[NPCID.TheDestroyerBody] = true;
+                BossRelatedEnemy[NPCID.TheDestroyerTail] = true;
+                BossRelatedEnemy[NPCID.MoonLordHand] = true;
+                BossRelatedEnemy[NPCID.MoonLordHead] = true;
+                BossRelatedEnemy[NPCID.GolemFistLeft] = true;
+                BossRelatedEnemy[NPCID.GolemFistRight] = true;
+                BossRelatedEnemy[NPCID.GolemHead] = true;
+                BossRelatedEnemy[NPCID.PrimeVice] = true;
+                BossRelatedEnemy[NPCID.MourningWood] = true;
+                BossRelatedEnemy[NPCID.Pumpking] = true;
+                BossRelatedEnemy[NPCID.Everscream] = true;
+                BossRelatedEnemy[NPCID.SantaNK1] = true;
+                BossRelatedEnemy[NPCID.IceQueen] = true;
+                BossRelatedEnemy[NPCID.Paladin] = true;
+                BossRelatedEnemy[NPCID.WyvernHead] = true;
+                BossRelatedEnemy[NPCID.WyvernBody] = true;
+                BossRelatedEnemy[NPCID.WyvernBody2] = true;
+                BossRelatedEnemy[NPCID.WyvernBody3] = true;
+                BossRelatedEnemy[NPCID.WyvernTail] = true;
+                BossRelatedEnemy[NPCID.DD2DarkMageT1] = true;
+                BossRelatedEnemy[NPCID.DD2DarkMageT3] = true;
+                BossRelatedEnemy[NPCID.DD2OgreT2] = true;
+                BossRelatedEnemy[NPCID.DD2OgreT3] = true;
+                BossRelatedEnemy[NPCID.DD2Betsy] = true;
+                BossRelatedEnemy[NPCID.Creeper] = true;
+                BossRelatedEnemy[NPCID.BeeSmall] = true;
+                BossRelatedEnemy[NPCID.Bee] = true;
+
                 DemonSiegeEnemy = new bool[NPCLoader.NPCCount];
                 DemonSiegeEnemy[ModContent.NPCType<Magmalbubble>()] = true;
                 DemonSiegeEnemy[ModContent.NPCType<TrapImp>()] = true;
@@ -440,6 +448,36 @@ namespace AQMod.Common
                 NoGlobalDrops = null;
                 UnaffectedByWind = null;
             }
+
+            public static int CountNPCs(bool[] ruleset)
+            {
+                int count = 0;
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && ruleset[Main.npc[i].type])
+                    {
+                        count++;
+                    }
+                }
+                return count;
+            }
+
+            public static int CountNPCs(params bool[][] ruleset)
+            {
+                int count = 0;
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    foreach (bool[] b in ruleset)
+                    {
+                        if (Main.npc[i].active && b[Main.npc[i].type])
+                        {
+                            count++;
+                            break;
+                        }
+                    }
+                }
+                return count;
+            }
         }
 
         internal static Color GreenSlimeColor => new Color(0, 220, 40, 100);
@@ -453,9 +491,6 @@ namespace AQMod.Common
 
         public override bool InstancePerEntity => true;
 
-        /// <summary>
-        /// 
-        /// </summary>
         public bool sparkling;
         /// <summary>
         /// Blue Fire
@@ -491,6 +526,7 @@ namespace AQMod.Common
             if (npc.buffImmune[BuffID.CursedInferno] || npc.buffImmune[BuffID.ShadowFlame])
             {
                 npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.BlueFire>()] = true;
+                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.Sparkling>()] = true;
                 npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
                 npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
             }
@@ -626,9 +662,9 @@ namespace AQMod.Common
             {
                 if (npc.lifeRegen > 0)
                     npc.lifeRegen = 0;
-                npc.lifeRegen -= 10;
-                if (damage < 1)
-                    damage = 1;
+                npc.lifeRegen -= 3 * 8;
+                if (damage < 3)
+                    damage = 3;
             }
             if (notFrostburn)
             {
@@ -636,7 +672,7 @@ namespace AQMod.Common
                 {
                     npc.lifeRegen = 0;
                 }
-                npc.lifeRegen -= 96;
+                npc.lifeRegen -= 12 * 8;
                 if (damage < 12)
                 {
                     damage = 12;
@@ -648,7 +684,7 @@ namespace AQMod.Common
                 {
                     npc.lifeRegen = 0;
                 }
-                npc.lifeRegen -= 120;
+                npc.lifeRegen -= 15 * 8;
                 if (damage < 15)
                 {
                     damage = 15;
@@ -660,18 +696,39 @@ namespace AQMod.Common
         {
             if (sparkling)
             {
-                for (int i = 0; i < 6; i++)
+                if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<UltimaDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), Main.rand.NextFloat(0.6f, 1.25f));
-                    Main.dust[dust].velocity *= 2.65f;
-                    Main.dust[dust].velocity.Y -= 2f;
+                    var center = npc.Center;
+                    var dustPos = npc.position + new Vector2(Main.rand.Next(npc.width + 4) - 2f, Main.rand.Next(npc.height + 4) - 2f);
+                    var normal = Vector2.Normalize(dustPos - center);
+                    float size = npc.Size.Length() / 2f;
+                    var velocity = normal * Main.rand.NextFloat(size / 12f, size / 6f);
+                    velocity += -npc.velocity * 0.3f;
+                    float npcVelocityLength = npc.velocity.Length();
+                    ParticleLayers.AddParticle_PostDrawPlayers(
+                        new MonoParticleEmber(dustPos, velocity,
+                        new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
+                    ParticleLayers.AddParticle_PostDrawPlayers(
+                        new MonoParticleEmber(dustPos, velocity,
+                        new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f) * 0.2f, 1.5f));
+                    int sparkleChance = 30;
+                    if (npcVelocityLength > 8f)
+                    {
+                        sparkleChance /= 2;
+                    }
+                    if (Main.rand.NextBool(30))
+                    {
+                        var sparkleClr = new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f);
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new SparkleParticle(dustPos, velocity,
+                            sparkleClr, 1.5f));
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new SparkleParticle(dustPos, velocity,
+                            sparkleClr * 0.5f, 1f)
+                            { rotation = MathHelper.PiOver4 });
+                    }
                 }
-                float positionLength = npc.Center.Length() / 32f;
-                const float offset = MathHelper.TwoPi / 3f;
-                var r = 1 * ((float)Math.Sin(positionLength) + 1f);
-                var g = 1 * ((float)Math.Sin(positionLength + offset) + 1f);
-                var b = 1 * ((float)Math.Sin(positionLength + offset * 2f) + 1f);
-                Lighting.AddLight(npc.Center, r * 0.25f, g * 0.25f, b * 0.25f);
+                Lighting.AddLight(npc.Center, 0.25f, 0.25f, 0.25f);
             }
             if (notFrostburn)
             {
@@ -722,6 +779,53 @@ namespace AQMod.Common
                     }
                 }
                 Lighting.AddLight(npc.Center, fireColor.ToVector3());
+            }
+        }
+
+        public override void HitEffect(NPC npc, int hitDirection, double damage)
+        {
+            if (npc.life < 0 && npc.HasValidTarget && Main.myPlayer == npc.target && npc.CanBeChasedBy(Main.player[npc.target]))
+            {
+                if (sparkling)
+                {
+                    int amount = (int)(100 * AQMod.EffectIntensity);
+                    if (AQMod.EffectQuality < 1f)
+                    {
+                        amount = (int)(amount * AQMod.EffectQuality);
+                    }
+                    if (AQMod.Screenshakes)
+                    {
+                        ScreenShakeManager.AddEffect(new BasicScreenShake(12, 6));
+                    }
+                    var npcCenter = npc.Center;
+                    int p = Projectile.NewProjectile(npcCenter, Vector2.Normalize(npcCenter - Main.player[npc.target].Center), ModContent.ProjectileType<SparklingExplosion>(), 100, 5f, npc.target);
+                    var size = Main.projectile[p].Size;
+                    float radius = size.Length() / 5f;
+                    for (int i = 0; i < amount; i++)
+                    {
+                        var offset = new Vector2(Main.rand.NextFloat(radius), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+                        var normal = Vector2.Normalize(offset);
+                        var dustPos = npcCenter + offset;
+                        var velocity = normal * Main.rand.NextFloat(6f, 12f);
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new MonoParticleEmber(dustPos, velocity,
+                            new Color(0.9f, Main.rand.NextFloat(0.7f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
+                        ParticleLayers.AddParticle_PostDrawPlayers(
+                            new MonoParticleEmber(dustPos, velocity,
+                            new Color(0.9f, Main.rand.NextFloat(0.7f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f) * 0.2f, 1.5f));
+                        if (Main.rand.NextBool(14))
+                        {
+                            var sparkleClr = new Color(0.9f, Main.rand.NextFloat(0.8f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f);
+                            ParticleLayers.AddParticle_PostDrawPlayers(
+                                new SparkleParticle(dustPos, velocity,
+                                sparkleClr, 1.5f));
+                            ParticleLayers.AddParticle_PostDrawPlayers(
+                                new SparkleParticle(dustPos, velocity,
+                                sparkleClr * 0.5f, 1f)
+                                { rotation = MathHelper.PiOver4 });
+                        }
+                    }
+                }
             }
         }
 

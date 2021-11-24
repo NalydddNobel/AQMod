@@ -63,7 +63,7 @@ namespace AQMod
         public bool blueSpheres;
         public bool bossChanneling;
         public bool monoxiderBird;
-        public bool glimmering;
+        public bool sparkling;
         public bool chloroTransfer;
         public bool altEvilDrops;
         public bool breadsoul;
@@ -156,6 +156,8 @@ namespace AQMod
         public int ExtractinatorCount { get; set; }
         public int CursorDyeID { get; private set; } = CursorDyeLoader.ID.None;
         public string CursorDye { get; private set; } = "";
+        public sbyte Temperature;
+        public byte TemperatureStruck;
 
         public const float AtmosphericCurrentsWindSpeed = 30f;
         public static bool IsQuickBuffing { get; internal set; }
@@ -167,7 +169,7 @@ namespace AQMod
             omoriDeathTimer = 1;
             arachnotron = false;
             spoiled = 0;
-            glimmering = false;
+            sparkling = false;
             nearGlobe = 0;
             headMinionCarryX = 0;
             headMinionCarryY = 0;
@@ -197,6 +199,7 @@ namespace AQMod
             CurrentEncoreKillCount = new int[NPCLoader.NPCCount];
             EncoreBossKillCountRecord = new int[NPCLoader.NPCCount];
             grabReachMult = 1f;
+            Temperature = 0;
         }
 
         public override void OnEnterWorld(Player player)
@@ -357,7 +360,7 @@ namespace AQMod
             discountPercentage = 0.8f;
             bossChanneling = false;
             monoxiderBird = false;
-            glimmering = false;
+            sparkling = false;
             moonShoes = false;
             canDash = !(player.setSolar || player.mount.Active);
             copperSeal = false;
@@ -406,6 +409,15 @@ namespace AQMod
             grabReachMult = 1f;
             grapePhanta = false;
             mothmanMask = false;
+            if (TemperatureStruck > 0)
+                TemperatureStruck--;
+            else
+            {
+                if (Temperature < 0f)
+                {
+
+                }
+            }
             if (mothmanExplosionDelay > 0)
                 mothmanExplosionDelay--;
             if (bossrushOld != bossrush)
@@ -532,7 +544,7 @@ namespace AQMod
         {
             omori = false;
             blueSpheres = false;
-            glimmering = false;
+            sparkling = false;
             monoxiderCarry = 0;
             if (Main.myPlayer == player.whoAmI)
             {
@@ -688,75 +700,23 @@ namespace AQMod
 
         public static bool CanBossChannel(NPC npc)
         {
-            if (npc.boss)
+            if (npc.chaseable || npc.dontTakeDamage)
             {
-                return true;
+                return false;
             }
-            else
-            {
-                switch (npc.type)
-                {
-                    default:
-                    return false;
-
-                    case NPCID.TargetDummy:
-                    case NPCID.EaterofWorldsHead:
-                    case NPCID.EaterofWorldsBody:
-                    case NPCID.EaterofWorldsTail:
-                    case NPCID.TheDestroyerBody:
-                    case NPCID.TheDestroyerTail:
-                    case NPCID.MoonLordHand:
-                    case NPCID.MoonLordHead:
-                    case NPCID.GolemFistLeft:
-                    case NPCID.GolemFistRight:
-                    case NPCID.SkeletronHand:
-                    case NPCID.PrimeCannon:
-                    case NPCID.PrimeLaser:
-                    case NPCID.PrimeSaw:
-                    case NPCID.PrimeVice:
-                    case NPCID.LunarTowerNebula:
-                    case NPCID.LunarTowerSolar:
-                    case NPCID.LunarTowerStardust:
-                    case NPCID.LunarTowerVortex:
-                    case NPCID.PirateShipCannon:
-                    case NPCID.GoblinSummoner:
-                    case NPCID.MourningWood:
-                    case NPCID.Pumpking:
-                    case NPCID.Everscream:
-                    case NPCID.SantaNK1:
-                    case NPCID.IceQueen:
-                    case NPCID.DD2DarkMageT1:
-                    case NPCID.DD2DarkMageT3:
-                    case NPCID.DD2OgreT2:
-                    case NPCID.DD2OgreT3:
-                    case NPCID.DD2Betsy:
-                    case NPCID.WyvernHead:
-                    case NPCID.WyvernBody:
-                    case NPCID.WyvernBody2:
-                    case NPCID.WyvernBody3:
-                    case NPCID.WyvernLegs:
-                    case NPCID.WyvernTail:
-                    case NPCID.Paladin:
-                    case NPCID.BigMimicCrimson:
-                    case NPCID.BigMimicCorruption:
-                    case NPCID.BigMimicHallow:
-                    case NPCID.BigMimicJungle:
-                    case NPCID.MartianSaucerTurret:
-                    case NPCID.MartianSaucerCannon:
-                    case NPCID.PlanterasTentacle:
-                    return true;
-                }
-            }
+            return npc.boss || AQNPC.Sets.BossRelatedEnemy[npc.type];
         }
 
         public void DoHyperCrystalChannel(NPC target, int damage, float knockback, Vector2 center, Vector2 targCenter)
         {
+            if (target.SpawnedFromStatue || target.type == NPCID.TargetDummy || CanBossChannel(target))
+                return;
             int boss = -1;
-            float closestDist = 4000f;
+            float closestDist = 1200f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 NPC npc = Main.npc[i];
-                if (npc.active && CanBossChannel(npc) && !npc.dontTakeDamage)
+                if (npc.active && CanBossChannel(npc))
                 {
                     float dist = (npc.Center - center).Length();
                     if (dist < closestDist)
@@ -849,7 +809,7 @@ namespace AQMod
                 if (bossChanneling)
                 {
                     target.AddBuff(ModContent.BuffType<Sparkling>(), 120);
-                    if (!target.SpawnedFromStatue && !CanBossChannel(target) && crit)
+                    if (crit)
                         DoHyperCrystalChannel(target, damage, knockback, center, targetCenter);
                 }
                 if (primeTime)
@@ -872,8 +832,8 @@ namespace AQMod
             {
                 if (bossChanneling)
                 {
-                    target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 120);
-                    if (!target.SpawnedFromStatue && !CanBossChannel(target) && crit)
+                    target.AddBuff(ModContent.BuffType<Sparkling>(), 120);
+                    if (crit)
                         DoHyperCrystalChannel(target, damage, knockback, center, targetCenter);
                 }
                 if (primeTime)
@@ -957,7 +917,7 @@ namespace AQMod
 
         public override void UpdateBadLifeRegen()
         {
-            if (glimmering)
+            if (sparkling)
             {
                 if (player.lifeRegen > 0)
                     player.lifeRegen = 0;
@@ -1101,7 +1061,7 @@ namespace AQMod
             }
             if (drawInfo.shadow == 0f)
             {
-                if (glimmering)
+                if (sparkling)
                 {
                     for (int i = 0; i < 4; i++)
                     {

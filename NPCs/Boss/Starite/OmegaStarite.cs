@@ -107,7 +107,7 @@ namespace AQMod.NPCs.Boss.Starite
         {
             npc.width = 120;
             npc.height = 120;
-            npc.lifeMax = 12250;
+            npc.lifeMax = 9500;
             npc.damage = 50;
             npc.defense = 18;
             npc.HitSound = SoundID.NPCDeath57;

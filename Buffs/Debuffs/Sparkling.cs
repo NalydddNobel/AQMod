@@ -16,7 +16,7 @@ namespace AQMod.Buffs.Debuffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<AQPlayer>().glimmering = true;
+            player.GetModPlayer<AQPlayer>().sparkling = true;
         }
 
         public override void Update(NPC npc, ref int buffIndex)
