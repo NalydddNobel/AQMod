@@ -70,8 +70,30 @@ namespace AQMod.Common
                             projectile.aiStyle != AIStyles.BounceAI && projectile.aiStyle != AIStyles.CrystalStormAI)
                             UnaffectedByWind[i] = true;
                     }
-                    catch
+                    catch (Exception e)
                     {
+                        UnaffectedByWind[i] = true;
+                        var l = AQMod.Instance.Logger;
+                        string projectileName;
+                        if (i > Main.maxProjectileTypes)
+                        {
+                            string tryName = Lang.GetNPCName(i).Value;
+                            if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
+                            {
+                                projectileName = ProjectileLoader.GetProjectile(i).Name;
+                            }
+                            else
+                            {
+                                projectileName = tryName + "/" + ProjectileLoader.GetProjectile(i).Name;
+                            }
+                        }
+                        else
+                        {
+                            projectileName = Lang.GetNPCName(i).Value;
+                        }
+                        l.Error("An error occured when doing algorithmic checks for sets for {" + projectileName + ", ID: " + i + "}");
+                        l.Error(e.Message);
+                        l.Error(e.StackTrace);
                     }
                 }
             }
@@ -92,6 +114,8 @@ namespace AQMod.Common
         /// </summary>
         public bool windStruck;
         public bool windStruckOld;
+
+        public sbyte temperature;
 
         public bool ShouldApplyWindMechanics(Projectile projectile)
         {

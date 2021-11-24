@@ -2,7 +2,6 @@
 using AQMod.Assets.Graphics;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
-using AQMod.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -106,7 +105,7 @@ namespace AQMod.Projectiles.Melee
             var effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             bool resetBatch = false;
             var drawData = new DrawData(texture, projectile.Center - Main.screenPosition, frame, lightColor, projectile.rotation + MathHelper.PiOver2, orig, projectile.scale, SpriteEffects.None, 0);
-            if (EffectCache.Instance.Spotlight != null)
+            //if (EffectCache.Instance.Spotlight != null)
             {
                 resetBatch = true;
                 drawData.sourceRect = new Rectangle(frame.X, frame.Y, frame.Width, texture.Height);

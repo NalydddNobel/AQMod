@@ -4,7 +4,7 @@ using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace AQMod.Effects.ShaderData
+namespace AQMod.Effects.Dyes
 {
     public class DynamicColorArmorShaderData : ArmorShaderData
     {

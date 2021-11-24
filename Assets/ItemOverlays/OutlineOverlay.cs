@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets.Graphics;
 using AQMod.Common.Config;
-using AQMod.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -43,15 +42,15 @@ namespace AQMod.Assets.ItemOverlays
         {
             bool resetBatch = false;
             var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
-            if (EffectCache.Instance.Outline != null)
-            {
-                resetBatch = true;
-                Main.spriteBatch.End();
-                BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
-                var effect = GameShaders.Misc["AQMod:OutlineColor"];
-                effect.UseColor(getOutlineColor(Main.GlobalTime * 2f));
-                effect.Apply(drawData);
-            }
+            //if (EffectCache.Instance.Outline != null)
+            //{
+            //    resetBatch = true;
+            //    Main.spriteBatch.End();
+            //    BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
+            //    var effect = GameShaders.Misc["AQMod:OutlineColor"];
+            //    effect.UseColor(getOutlineColor(Main.GlobalTime * 2f));
+            //    effect.Apply(drawData);
+            //}
             drawData.Draw(Main.spriteBatch);
             if (resetBatch)
             {

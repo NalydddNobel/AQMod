@@ -1,4 +1,5 @@
-﻿using AQMod.Common.Config;
+﻿using AQMod.Assets;
+using AQMod.Common.Config;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -43,6 +44,7 @@ namespace AQMod.Effects
             internal static void setup()
             {
                 _shouldDrawTrails = ModLoader.GetMod("ShaderLib") == null;
+                _shouldDrawTrails = false;
             }
         }
 
@@ -114,16 +116,16 @@ namespace AQMod.Effects
 
         public void Draw()
         {
-            var vertexShader = EffectCache.Instance.Trailshader;
-            vertexShader.Parameters["WVP"].SetValue(AQMod.WorldViewPoint);
-            vertexShader.Parameters["imageTexture"].SetValue(_texture);
-            vertexShader.Parameters["strength"].SetValue(1f);
-            vertexShader.CurrentTechnique.Passes[_pass].Apply();
-            Main.graphics.GraphicsDevice.RasterizerState = new RasterizerState
-            {
-                CullMode = CullMode.None
-            };
-            Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, _positions.ToArray(), 0, _positions.Count / 3);
+            //var vertexShader = EffectCache.Instance.Trailshader;
+            //vertexShader.Parameters["WVP"].SetValue(AQMod.WorldViewPoint);
+            //vertexShader.Parameters["imageTexture"].SetValue(_texture);
+            //vertexShader.Parameters["strength"].SetValue(1f);
+            //vertexShader.CurrentTechnique.Passes[_pass].Apply();
+            //Main.graphics.GraphicsDevice.RasterizerState = new RasterizerState
+            //{
+            //    CullMode = CullMode.None
+            //};
+            //Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, _positions.ToArray(), 0, _positions.Count / 3);
         }
 
         public void Clear()

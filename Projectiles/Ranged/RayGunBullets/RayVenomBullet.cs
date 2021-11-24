@@ -69,7 +69,10 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Venom, 240);
+            if (Main.rand.NextBool(4))
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 600);
         }
+
 
         public override void Kill(int timeLeft)
         {

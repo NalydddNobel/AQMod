@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace AQMod.Effects.ShaderData
+namespace AQMod.Effects.Dyes
 {
     public class LightSourceAsThirdColorVariableArmorShaderData : ArmorShaderData
     {

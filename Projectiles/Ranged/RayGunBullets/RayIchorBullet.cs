@@ -75,6 +75,8 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            if (Main.rand.NextBool(4))
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 600);
             target.AddBuff(BuffID.Ichor, 240);
         }
 

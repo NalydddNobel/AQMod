@@ -155,7 +155,6 @@ namespace AQMod
         public static Color MapBlipColor { get; private set; }
         public static Color StariteProjectileColor { get; private set; }
         public static Color StariteAuraColor { get; private set; }
-
         /// <summary>
         /// The active instance of the Cursor Dyes Loader.
         /// </summary>
@@ -191,7 +190,6 @@ namespace AQMod
         /// The active instance of the Azure Currents event
         /// </summary>
         public static AzureCurrents AtmosphericEvent { get; set; }
-
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
@@ -293,7 +291,7 @@ namespace AQMod
             GlimmerEventSky.Initialize();
             Trailshader.Setup();
             DrawUtils.LegacyTextureCache.Setup();
-            EffectCache.Instance = new EffectCache(this, client, Logger, newInstance: true);
+            //EffectCache.Instance = new EffectCache(this, client, Logger, newInstance: true);
             WorldLayers = new SceneLayersManager();
             WorldLayers.Setup(loadHooks: true);
             WorldLayers.Register("GoreNest", new GoreNestLayer(test: false), SceneLayering.InfrontNPCs);
@@ -307,18 +305,18 @@ namespace AQMod
             StarbyteColorCache.Init();
             if (client.OutlineShader)
             {
-                GameShaders.Misc["AQMod:Outline"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlinePass");
-                GameShaders.Misc["AQMod:OutlineColor"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlineColorPass");
+                //GameShaders.Misc["AQMod:Outline"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlinePass");
+                //GameShaders.Misc["AQMod:OutlineColor"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlineColorPass");
             }
             if (client.PortalShader)
             {
-                GameShaders.Misc["AQMod:GoreNestPortal"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Portal), "DemonicPortalPass");
+                //GameShaders.Misc["AQMod:GoreNestPortal"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Portal), "DemonicPortalPass");
             }
             if (client.SpotlightShader)
             {
-                GameShaders.Misc["AQMod:Spotlight"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpotlightPass");
-                GameShaders.Misc["AQMod:FadeYProgressAlpha"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "FadeYProgressAlphaPass");
-                GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
+                //GameShaders.Misc["AQMod:Spotlight"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpotlightPass");
+                //GameShaders.Misc["AQMod:FadeYProgressAlpha"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "FadeYProgressAlphaPass");
+                //GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
             }
             Main.OnPreDraw += Main_OnPreDraw;
             WorldEffects = new List<WorldVisualEffect>();
@@ -464,9 +462,7 @@ namespace AQMod
         public override void PostSetupContent()
         {
             AQBuff.Sets.Setup();
-            AQNPC.Sets.LoadSets(); // Initializes sets for npcs
             NoHitManager.Setup();
-            AQProjectile.Sets.LoadSets(); // Initializes sets for projectiles
             DemonSiege.Setup(); // Sets up the Demon Siege event
             GlimmerEvent.Setup();
             BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
@@ -478,6 +474,8 @@ namespace AQMod
 
         public override void AddRecipeGroups()
         {
+            AQNPC.Sets.LoadSets();
+            AQProjectile.Sets.LoadSets();
             var r = new RecipeGroup(() => Language.GetTextValue(AQText.Key + "Common.RecipeGroup_AnyNobleMushroom"), new[]
             {
                 ModContent.ItemType<ArgonMushroom>(),
@@ -631,7 +629,8 @@ namespace AQMod
                     WorldLayers.Unload();
                     WorldLayers = null;
                 }
-                EffectCache.Instance = null;
+                EffectCache.ParentPixelShader = null;
+                //EffectCache.Instance = null;
                 GlimmerEventSky.Unload();
                 DemonSiegeMusic = null;
                 OmegaStariteMusic = null;

@@ -4,19 +4,32 @@ using AQMod.Items.Accessories;
 using AQMod.Items.BuffItems;
 using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Tools.Rods;
-using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AQMod.Common
 {
     public class AQItem : GlobalItem
     {
+        public static class Sets
+        {
+            public static bool[] CantBeTurnedIntoMolitePotion { get; private set; }
+
+            internal static void Setup()
+            {
+                CantBeTurnedIntoMolitePotion = new bool[ItemLoader.ItemCount];
+            }
+
+            internal static void Unload()
+            {
+                CantBeTurnedIntoMolitePotion = null;
+            }
+        }
+
         public static int CorruptionWeaponValue => Item.sellPrice(silver: 50);
         public static int CrimsonWeaponValue => Item.sellPrice(silver: 55);
         public static int GlimmerWeaponValue => Item.sellPrice(silver: 80);
@@ -29,39 +42,6 @@ namespace AQMod.Common
         public static int EnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);
         public static int OmegaStariteWeaponValue => Item.sellPrice(gold: 4, silver: 50);
         public static int AtmosphericCurrentsValue => Item.sellPrice(gold: 4);
-
-        public static Color GetAlphaDemonSiegeWeapon(Color lightColor)
-        {
-            return new Color(lightColor.R * lightColor.R, lightColor.G * lightColor.G, lightColor.B * lightColor.B, lightColor.A);
-        }
-
-        public static class Sets
-        {
-            public static bool[] CantBeTurnedIntoMolitePotion { get; private set; }
-
-            internal static void Setup()
-            {
-                CantBeTurnedIntoMolitePotion = new bool[ItemLoader.ItemCount];
-                CantBeTurnedIntoMolitePotion[ModContent.ItemType<SpicyEel>()] = true;
-            }
-
-            internal static void Unload()
-            {
-                CantBeTurnedIntoMolitePotion = null;
-            }
-        }
-
-        public static bool ItemOnGroundAlready(int type)
-        {
-            for (int i = 0; i < Main.maxItems; i++)
-            {
-                if (Main.item[i].active && Main.item[i].type == type)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
 
         public override bool CanUseItem(Item item, Player player)
         {
@@ -418,6 +398,23 @@ namespace AQMod.Common
             item.rare = rarity;
             item.value = price;
             item.maxStack = 999;
+        }
+
+        public static Color GetAlphaDemonSiegeWeapon(Color lightColor)
+        {
+            return new Color(lightColor.R * lightColor.R, lightColor.G * lightColor.G, lightColor.B * lightColor.B, lightColor.A);
+        }
+
+        public static bool ItemOnGroundAlready(int type)
+        {
+            for (int i = 0; i < Main.maxItems; i++)
+            {
+                if (Main.item[i].active && Main.item[i].type == type)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

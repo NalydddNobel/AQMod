@@ -409,8 +409,30 @@ namespace AQMod.Common
                             UnaffectedByWind[i] = true;
                         }
                     }
-                    catch
+                    catch (Exception e)
                     {
+                        UnaffectedByWind[i] = true;
+                        var l = AQMod.Instance.Logger;
+                        string npcname;
+                        if (i > Main.maxNPCTypes)
+                        {
+                            string tryName = Lang.GetNPCName(i).Value;
+                            if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
+                            {
+                                npcname = NPCLoader.GetNPC(i).Name;
+                            }
+                            else
+                            {
+                                npcname = tryName + "/" + NPCLoader.GetNPC(i).Name;
+                            }
+                        }
+                        else 
+                        {
+                            npcname = Lang.GetNPCName(i).Value;
+                        }
+                        l.Error("An error occured when doing algorithmic checks for sets for {" + npcname + ", ID: " + i + "}");
+                        l.Error(e.Message);
+                        l.Error(e.StackTrace);
                     }
                 }
 
@@ -508,6 +530,9 @@ namespace AQMod.Common
         public bool corruptHellfire;
         public bool crimsonHellfire;
 
+        public bool hotDamage;
+        public sbyte temperature;
+
         public override void ResetEffects(NPC npc)
         {
             sparkling = false;
@@ -591,6 +616,28 @@ namespace AQMod.Common
                     }
                     break;
                 }
+            }
+        }
+
+        public override void AI(NPC npc)
+        {
+            if (hotDamage)
+            {
+                if (temperature < sbyte.MaxValue)
+                {
+                    temperature++;
+                }
+            }
+            else if (npc.coldDamage)
+            {
+                if (temperature > sbyte.MinValue)
+                {
+                    temperature--;
+                }
+            }
+            else
+            {
+
             }
         }
 
@@ -798,7 +845,7 @@ namespace AQMod.Common
                         ScreenShakeManager.AddEffect(new BasicScreenShake(12, 6));
                     }
                     var npcCenter = npc.Center;
-                    int p = Projectile.NewProjectile(npcCenter, Vector2.Normalize(npcCenter - Main.player[npc.target].Center), ModContent.ProjectileType<SparklingExplosion>(), 100, 5f, npc.target);
+                    int p = Projectile.NewProjectile(npcCenter, Vector2.Normalize(npcCenter - Main.player[npc.target].Center), ModContent.ProjectileType<SparklingExplosion>(), 50, 5f, npc.target);
                     var size = Main.projectile[p].Size;
                     float radius = size.Length() / 5f;
                     for (int i = 0; i < amount; i++)

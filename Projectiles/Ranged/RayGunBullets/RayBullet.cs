@@ -167,6 +167,12 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
             return false;
         }
 
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            if (Main.rand.NextBool(4))
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 600);
+        }
+
         public override void Kill(int timeLeft)
         {
             int dustType = ModContent.DustType<MonoDust>();

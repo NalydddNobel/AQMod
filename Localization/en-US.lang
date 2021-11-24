@@ -233,6 +233,9 @@ ItemName.OmegaStariteTrophy=Omega Starite Trophy
 ItemName.StariteBag=Treasure Bag
 ItemName.UltimateStarfruit=Ultimate Starfruit
 ItemName.UltimateSword=Ultimate Sword
+ProjectileName.UltimateSword=Ultimate Sword
+ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts sparkling on hit
+
 ##############
 # Buff Items #
 ##############
@@ -541,7 +544,6 @@ ItemTooltip.NovaFruit=Summons {$Mods.AQMod.NPCName.OmegaStarite} at night\n{$Mod
 ItemTooltip.OmegaStariteTrophy='You have no idea whats in store for you!'
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.UltimateStarfruit=Left click summons {$Mods.AQMod.NPCName.OmegaStarite} at night\nRight click toggles the Glimmer Event\n{$Mods.AQMod.Common.NotConsumable}
-ItemTooltip.UltimateSword=When you hit an enemy you gain brief immune frames and the ultima buff\nEnemies that have 400 HP or less explode into ultima flares
 ##############
 # Buff Items #
 ##############
@@ -762,7 +764,7 @@ ProjectileName.FriendlyWind=Friendly Wind
 ProjectileName.GoldPowder=Gold Powder
 ProjectileName.HyperCrystalExplosion=Hyper Crystal
 ProjectileName.KelBall=Kel's Ball
-ProjectileName.UltimateSword=Ultimate Sword
+ProjectileName.SparklingExplosion=Sparkling Explosion
 
 # Pets
 ProjectileName.ATM=ATM
