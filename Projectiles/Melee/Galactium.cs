@@ -3,6 +3,8 @@ using AQMod.Assets.Textures;
 using AQMod.Common.Config;
 using AQMod.Content.Dusts;
 using AQMod.Effects;
+using AQMod.Effects.ScreenEffects;
+using AQMod.Effects.Trails;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

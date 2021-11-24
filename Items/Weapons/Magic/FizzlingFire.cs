@@ -2,7 +2,6 @@
 using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
-using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Terraria;

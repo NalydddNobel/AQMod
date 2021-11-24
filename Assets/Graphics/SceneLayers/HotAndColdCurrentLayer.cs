@@ -145,53 +145,6 @@ namespace AQMod.Assets.Graphics.SceneLayers
 
                 BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
             }
-            //else if (!TargetsDrawn)
-            //{
-            //    if (_coldCurrentList.Count > 0)
-            //    {
-            //        Main.spriteBatch.End();
-
-            //        BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
-
-            //        _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
-            //        _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
-            //        _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
-            //        _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
-
-            //        foreach (var d in _coldCurrentList)
-            //        {
-            //            d.RunDraw();
-            //        }
-
-            //        Main.spriteBatch.End();
-
-            //        BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
-
-            //        _coldCurrentList = new List<IDrawType>();
-            //    }
-            //    else if (_hotCurrentList.Count > 0)
-            //    {
-            //        Main.spriteBatch.End();
-
-            //        BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
-
-            //        _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
-            //        _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
-            //        _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
-            //        _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
-
-            //        foreach (var d in _hotCurrentList)
-            //        {
-            //            d.RunDraw();
-            //        }
-
-            //        Main.spriteBatch.End();
-
-            //        BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
-
-            //        _hotCurrentList = new List<IDrawType>();
-            //    }
-            //}
             TargetsDrawn = false;
         }
     }

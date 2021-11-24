@@ -103,28 +103,20 @@ namespace AQMod.Projectiles.Melee
             var frame = new Rectangle(frameWidth * projectile.frame, 0, frameWidth - 2, frameHeight);
             var orig = new Vector2(frameWidth / 2f, 16f);
             var effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            bool resetBatch = false;
-            var drawData = new DrawData(texture, projectile.Center - Main.screenPosition, frame, lightColor, projectile.rotation + MathHelper.PiOver2, orig, projectile.scale, SpriteEffects.None, 0);
-            //if (EffectCache.Instance.Spotlight != null)
+            var drawData = new DrawData(texture, projectile.Center - Main.screenPosition, frame, lightColor, projectile.rotation + MathHelper.PiOver2, orig, projectile.scale, SpriteEffects.None, 0)
             {
-                resetBatch = true;
-                drawData.sourceRect = new Rectangle(frame.X, frame.Y, frame.Width, texture.Height);
-                Main.spriteBatch.End();
-                BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
-                var effect = GameShaders.Misc["AQMod:SpikeFade"];
-                var sampler = TextureCache.Pixel.Value;
-                effect.UseOpacity(1f / texture.Height * frameHeight + _portaloffset);
-                effect.UseColor(new Vector3(0.65f, 0.3f, 1f));
-                effect.Apply(drawData);
-            }
-            drawData.Draw(Main.spriteBatch); // super very smart :)
+                sourceRect = new Rectangle(frame.X, frame.Y, frame.Width, texture.Height)
+            };
+            Main.spriteBatch.End();
+            BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+            var effect = EffectCache.s_SpikeFade;
+            var sampler = TextureCache.Pixel.Value;
+            effect.UseOpacity(1f / texture.Height * frameHeight + _portaloffset);
+            effect.UseColor(new Vector3(0.65f, 0.3f, 1f));
+            effect.Apply(drawData);
             drawData.Draw(Main.spriteBatch);
-            drawData.Draw(Main.spriteBatch);
-            if (resetBatch)
-            {
-                Main.spriteBatch.End();
-                BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
-            }
+            Main.spriteBatch.End();
+            BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
             return false;
         }
 

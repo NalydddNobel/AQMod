@@ -1,30 +1,12 @@
-﻿using AQMod.Common.Config;
-using AQMod.Localization;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using AQMod.Effects.Dyes;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Terraria.Graphics.Shaders;
 
 namespace AQMod.Items.Vanities.Dyes
 {
-    public class RainbowOutlineDye : ModItem
+    public class RainbowOutlineDye : DyeItem
     {
-        public override void SetDefaults()
-        {
-            item.width = 20;
-            item.height = 20;
-            item.maxStack = 99;
-            item.value = Item.sellPrice(gold: 1, silver: 50);
-            item.rare = ItemRarityID.Pink;
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            if (!AQConfigClient.Instance.HypnoShader)
-            {
-                tooltips.Add(new TooltipLine(mod, "OutlineShader", AQText.ModText("Common.NoOutlineShader").Value) { overrideColor = new Color(128, 128, 128, 255) });
-            }
-        }
+        public override string Pass => "OutlineColorPass";
+        public override ArmorShaderData CreateShaderData => new DynamicColorArmorShaderData(Effect, Pass, () => Main.DiscoColor.ToVector3());
     }
 }

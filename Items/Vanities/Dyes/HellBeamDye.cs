@@ -1,30 +1,13 @@
-﻿using AQMod.Common.Config;
-using AQMod.Localization;
+﻿using AQMod.Effects.Dyes;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Terraria.Graphics.Shaders;
 
 namespace AQMod.Items.Vanities.Dyes
 {
-    public class HellBeamDye : ModItem
+    public class HellBeamDye : DyeItem
     {
-        public override void SetDefaults()
-        {
-            item.width = 20;
-            item.height = 20;
-            item.maxStack = 99;
-            item.value = Item.sellPrice(gold: 1, silver: 50);
-            item.rare = ItemRarityID.Orange;
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            if (!AQConfigClient.Instance.ScrollShader)
-            {
-                tooltips.Add(new TooltipLine(mod, "ScrollShader", AQText.ModText("Common.NoScrollShader").Value) { overrideColor = new Color(128, 128, 128, 255) });
-            }
-        }
+        public override string Pass => "ShieldBeamsPass";
+        public override ArmorShaderData CreateShaderData => new LightSourceAsThirdColorVariableArmorShaderData(Effect, Pass,
+            new Vector3(0.3f, 0.2f, 0f)).UseColor(new Vector3(1f, 0.8f, 0.1f)).UseSecondaryColor(1.8f, 0.8f, 0.6f);
     }
 }

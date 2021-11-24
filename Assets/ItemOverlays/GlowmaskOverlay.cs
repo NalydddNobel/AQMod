@@ -136,7 +136,6 @@ namespace AQMod.Assets.ItemOverlays
             origin = Main.itemTexture[item.type].Size() / 2;
             if (PreDraw(false, item))
             {
-
                 var drawData = new DrawData(texture, drawCoordinates, drawFrame, GetDrawColor(), drawRotation, origin, scale, SpriteEffects.None, 0);
                 if (Shader != 0)
                 {

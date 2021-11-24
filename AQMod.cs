@@ -23,10 +23,11 @@ using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Content.WorldEvents.DemonicEvent;
-using AQMod.Effects;
+using AQMod.Effects.Dyes;
+using AQMod.Effects.ScreenEffects;
+using AQMod.Effects.Trails;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Accessories;
-using AQMod.Items.BuffItems.Foods;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Materials.NobleMushrooms;
@@ -44,7 +45,6 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -283,6 +283,7 @@ namespace AQMod
             ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
             ArmorOverlays = new EquipOverlayLoader();
             TextureCache.Load();
+            EffectCache.Load(this);
             CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
             GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
             OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
@@ -291,8 +292,6 @@ namespace AQMod
             GlimmerEventSky.Initialize();
             Trailshader.Setup();
             DrawUtils.LegacyTextureCache.Setup();
-            EffectCache.Setup(this);
-            //EffectCache.Instance = new EffectCache(this, client, Logger, newInstance: true);
             WorldLayers = new SceneLayersManager();
             WorldLayers.Setup(loadHooks: true);
             WorldLayers.Register("GoreNest", new GoreNestLayer(test: false), SceneLayering.InfrontNPCs);
@@ -304,21 +303,6 @@ namespace AQMod
             WorldLayers.Register(CustomPickupTextLayer.Name, new CustomPickupTextLayer(), CustomPickupTextLayer.Layer);
             ScreenShakeManager.Load();
             StarbyteColorCache.Init();
-            if (client.OutlineShader)
-            {
-                //GameShaders.Misc["AQMod:Outline"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlinePass");
-                //GameShaders.Misc["AQMod:OutlineColor"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Outline), "OutlineColorPass");
-            }
-            if (client.PortalShader)
-            {
-                //GameShaders.Misc["AQMod:GoreNestPortal"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Portal), "DemonicPortalPass");
-            }
-            if (client.SpotlightShader)
-            {
-                //GameShaders.Misc["AQMod:Spotlight"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpotlightPass");
-                //GameShaders.Misc["AQMod:FadeYProgressAlpha"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "FadeYProgressAlphaPass");
-                //GameShaders.Misc["AQMod:SpikeFade"] = new MiscShaderData(new Ref<Effect>(EffectCache.Instance.Spotlight), "SpikeFadePass");
-            }
             Main.OnPreDraw += Main_OnPreDraw;
             WorldEffects = new List<WorldVisualEffect>();
         }
@@ -469,6 +453,10 @@ namespace AQMod
             BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
             AQItem.Sets.Setup();
             MapMarkers.Setup(setupStatics: true);
+            if (!Main.dedServ)
+            {
+                DyeBinder.LoadDyes();
+            }
             invokeTasks();
             cachedLoadTasks.Clear();
         }
@@ -608,6 +596,7 @@ namespace AQMod
 
             // in: PostSetupContent()
             cachedLoadTasks = null;
+            DyeBinder.Unload();
             MapMarkers = null;
             AQItem.Sets.Unload();
             DemonSiege.Unload();

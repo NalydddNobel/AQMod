@@ -1,9 +1,8 @@
-﻿using AQMod.Effects.ScreenEffects;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 
-namespace AQMod.Effects
+namespace AQMod.Effects.ScreenEffects
 {
     public sealed class ScreenShakeManager
     {
@@ -31,9 +30,7 @@ namespace AQMod.Effects
         public static void ChannelEffect(string name, ScreenShakeFX effect)
         {
             if (_channeledShakes.ContainsKey(name))
-            {
                 _channeledShakes[name].AdoptChannel(effect);
-            }
             else
             {
                 effect.Setup();

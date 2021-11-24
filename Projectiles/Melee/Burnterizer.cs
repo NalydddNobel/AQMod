@@ -1,14 +1,11 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Graphics;
-using AQMod.Common.Config;
-using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -94,23 +91,15 @@ namespace AQMod.Projectiles.Melee
             var color = projectile.GetAlpha(lightColor);
             var origin = new Vector2(texture.Width / 2f, 10f);
             var drawData = new DrawData(texture, drawPosition, null, color, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0);
-            bool resetBatch = false;
-            if (AQConfigClient.Instance.OutlineShader)
-            {
-                resetBatch = true;
-                Main.spriteBatch.End();
-                BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
-                float intensity = (float)Math.Sin(Main.GlobalTime * 10f) + 1.5f;
-                var effect = GameShaders.Misc["AQMod:OutlineColor"];
-                effect.UseColor(new Vector3(1f, 0.5f * intensity, 0.1f * intensity));
-                effect.Apply(drawData);
-            }
+            Main.spriteBatch.End();
+            BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+            float intensity = (float)Math.Sin(Main.GlobalTime * 10f) + 1.5f;
+            var effect = EffectCache.s_OutlineColor;
+            effect.UseColor(new Vector3(1f, 0.5f * intensity, 0.1f * intensity));
+            effect.Apply(drawData);
             drawData.Draw(Main.spriteBatch);
-            if (resetBatch)
-            {
-                Main.spriteBatch.End();
-                BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
-            }
+            Main.spriteBatch.End();
+            BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
             drawData.scale *= 1.25f;
             drawData.color *= 0.25f;
             drawData.Draw(Main.spriteBatch);

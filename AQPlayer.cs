@@ -11,7 +11,6 @@ using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.CosmicEvent;
-using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;

@@ -40,46 +40,6 @@ namespace AQMod.Common.Config
         [DefaultValue(false)]
         public bool TonsofScreenShakes { get; set; }
 
-        [Label(AQText.ConfigValueKey + "TrailShader")]
-        [DefaultValue(true)]
-        [ReloadRequired()]
-        public bool TrailShader { get; set; }
-
-        [Label(AQText.ConfigValueKey + "ScrollShader")]
-        [DefaultValue(true)]
-        [ReloadRequired()]
-        public bool ScrollShader { get; set; }
-
-        [Label(AQText.ConfigValueKey + "HypnoShader")]
-        [DefaultValue(true)]
-        [ReloadRequired()]
-        public bool HypnoShader { get; set; }
-
-        [Label(AQText.ConfigValueKey + "OutlineShader")]
-        [DefaultValue(true)]
-        [ReloadRequired()]
-        public bool OutlineShader { get; set; }
-
-        [Label(AQText.ConfigValueKey + "ScreenDistortShader")]
-        [DefaultValue(true)]
-        [ReloadRequired()]
-        public bool ScreenDistortShader { get; set; }
-
-        [Label(AQText.ConfigValueKey + "PortalShader")]
-        [DefaultValue(true)]
-        [ReloadRequired()]
-        public bool PortalShader { get; set; }
-
-        [Label(AQText.ConfigValueKey + "ColorDistortShader")]
-        [DefaultValue(true)]
-        [ReloadRequired()]
-        public bool ColorDistortShader { get; set; }
-
-        [Label(AQText.ConfigValueKey + "SpotlightShader")]
-        [DefaultValue(true)]
-        [ReloadRequired()]
-        public bool SpotlightShader { get; set; }
-
         [Label(AQText.ConfigValueKey + "BackgroundStarites")]
         [DefaultValue(true)]
         public bool BackgroundStarites { get; set; }

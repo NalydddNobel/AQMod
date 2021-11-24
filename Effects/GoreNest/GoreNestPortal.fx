@@ -13,13 +13,6 @@ float3 uLightSource;
 float2 uImageSize0;
 float2 uImageSize1;
 
-float FrameYFix(float2 coords)
-{
-    float frameSizeY = uSourceRect.w / uImageSize0.y;
-    float y = coords.y % frameSizeY;
-    return y * 1 / frameSizeY;
-}
-
 float4 hellportal(float dX, float dY, float coordsY, float3 clr) : COLOR0
 {
     if (dX > 0)

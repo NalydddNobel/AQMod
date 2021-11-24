@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Common;
-using AQMod.Common.Config;
 using AQMod.Common.Skies;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
@@ -16,7 +15,7 @@ namespace AQMod.Items.BossItems.Starite
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[item.type] = (int)BossSpawnItemSortOrder.Abeemination;
-            if (!Main.dedServ && AQConfigClient.Instance.ScrollShader)
+            if (!Main.dedServ)
                 AQMod.ItemOverlays.Register(new EnchantmentOverlay(), item.type);
         }
 

@@ -1,7 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Graphics;
-using AQMod.Assets.Textures;
-using AQMod.Common.Config;
 using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Effects;
 using Microsoft.Xna.Framework;
@@ -78,20 +76,11 @@ namespace AQMod.Common.SceneLayers
             for (int k = 0; k < index; k++)
             {
                 var portalPosition = new Vector2(x[k] * 16f + 24f, y[k] * 16f - 24f + (float)Math.Sin(Main.GlobalTime) * 4f);
-                if (AQConfigClient.Instance.PortalShader)
-                {
-                    Main.spriteBatch.End();
-                    BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
-                    SamplerDraw.DrawSampler("AQMod:GoreNestPortal", portalPosition - Main.screenPosition, 0f, new Vector2(portalSize()), portalColor());
-                    Main.spriteBatch.End();
-                    BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
-                }
-                else
-                {
-                    var texture = TextureCache.Lights[LightTex.Spotlight66x66Negative];
-                    float size = portalSize() / texture.Size().Length();
-                    Main.spriteBatch.Draw(texture, portalPosition - Main.screenPosition, null, Color.White, 0f, texture.Size() / 2f, size, SpriteEffects.None, 0);
-                }
+                Main.spriteBatch.End();
+                BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+                SamplerDraw.DrawSampler("AQMod:GoreNestPortal", portalPosition - Main.screenPosition, 0f, new Vector2(portalSize()), portalColor());
+                Main.spriteBatch.End();
+                BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
                 if (_test)
                 {
                     var font = Main.fontMouseText;

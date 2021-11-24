@@ -9,6 +9,7 @@ using AQMod.Content.NoHitting;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
+using AQMod.Effects.Trails;
 using AQMod.Items.BossItems.Starite;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.MapMarkers;

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Effects
+namespace AQMod.Effects.Trails
 {
     public class Trailshader
     {
@@ -44,7 +44,6 @@ namespace AQMod.Effects
             internal static void setup()
             {
                 _shouldDrawTrails = ModLoader.GetMod("ShaderLib") == null;
-                _shouldDrawTrails = false;
             }
         }
 
@@ -55,10 +54,6 @@ namespace AQMod.Effects
 
         public static bool ShouldDrawVertexTrails(IVertexDrawingContext context = null)
         {
-            if (!AQConfigClient.Instance.TrailShader)
-            {
-                return false;
-            }
             return context == null ? true : context.ShouldDraw();
         }
 
@@ -70,7 +65,7 @@ namespace AQMod.Effects
 
         public static void FullDraw(Texture2D texture, string pass, Vector2[] positions, Func<float, Vector2> getWidth, Func<float, Color> getColor)
         {
-            Trailshader trail = new Trailshader(texture, pass);
+            var trail = new Trailshader(texture, pass);
             trail.PrepareVertices(positions, getWidth, getColor);
             trail.Draw();
         }
@@ -116,16 +111,16 @@ namespace AQMod.Effects
 
         public void Draw()
         {
-            //var vertexShader = EffectCache.Instance.Trailshader;
-            //vertexShader.Parameters["WVP"].SetValue(AQMod.WorldViewPoint);
-            //vertexShader.Parameters["imageTexture"].SetValue(_texture);
-            //vertexShader.Parameters["strength"].SetValue(1f);
-            //vertexShader.CurrentTechnique.Passes[_pass].Apply();
-            //Main.graphics.GraphicsDevice.RasterizerState = new RasterizerState
-            //{
-            //    CullMode = CullMode.None
-            //};
-            //Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, _positions.ToArray(), 0, _positions.Count / 3);
+            var vertexShader = EffectCache.Trailshader;
+            vertexShader.Parameters["WVP"].SetValue(AQMod.WorldViewPoint);
+            vertexShader.Parameters["imageTexture"].SetValue(_texture);
+            vertexShader.Parameters["strength"].SetValue(1f);
+            vertexShader.CurrentTechnique.Passes[_pass].Apply();
+            Main.graphics.GraphicsDevice.RasterizerState = new RasterizerState
+            {
+                CullMode = CullMode.None
+            };
+            Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, _positions.ToArray(), 0, _positions.Count / 3);
         }
 
         public void Clear()

@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
-using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

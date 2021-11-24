@@ -1,11 +1,9 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Graphics;
-using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
 namespace AQMod.Content.CursorDyes
@@ -32,14 +30,14 @@ namespace AQMod.Content.CursorDyes
             {
                 var texture = tea[type];
                 float scale = Main.cursorScale * 0.8f;
-                bool outline = HasOutlines && AQConfigClient.Instance.OutlineShader;
+                bool outline = HasOutlines;
                 if (outline)
                 {
                     try
                     {
                         Main.spriteBatch.End();
                         BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
-                        var effect = GameShaders.Misc["AQMod:OutlineColor"];
+                        var effect = EffectCache.s_OutlineColor;
                         effect.UseColor(Main.MouseBorderColor);
                         effect.UseImageSize(texture.Size());
                         effect.Apply(null);
@@ -71,14 +69,14 @@ namespace AQMod.Content.CursorDyes
             if (tea.ContainsTexture(type, true))
             {
                 var texture = tea[type];
-                bool outline = AQConfigClient.Instance.OutlineShader;
+                bool outline = HasOutlines;
                 if (outline)
                 {
                     try
                     {
                         Main.spriteBatch.End();
                         BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
-                        var effect = GameShaders.Misc["AQMod:OutlineColor"];
+                        var effect = EffectCache.s_OutlineColor;
                         effect.UseColor(Main.MouseBorderColor);
                         effect.UseImageSize(texture.Size());
                         effect.Apply(null);

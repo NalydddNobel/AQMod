@@ -1,9 +1,6 @@
-﻿using AQMod.Common.Config;
-using log4net;
+﻿using AQMod.Effects.Dyes;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
-using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 
 namespace AQMod.Assets
@@ -11,121 +8,37 @@ namespace AQMod.Assets
     public static class EffectCache
     {
         public static Effect ParentPixelShader { get; internal set; }
-
+        public static Effect GoreNestPortal { get; private set; }
         public static Effect Trailshader { get; private set; }
-        public static Effect Scroll { get; private set; }
-        public static Effect Hypno { get; private set; }
-        public static Effect Outline { get; private set; }
-        public static Effect ScreenDistort { get; private set; }
-        public static Effect Portal { get; private set; }
-        public static Effect ColorDistort { get; private set; }
-        public static Effect Spotlight { get; private set; }
 
-        internal static void Setup(AQMod aQMod)
+        public static MiscShaderData s_Outline { get => GameShaders.Misc["AQMod:Outline"]; set => GameShaders.Misc["AQMod:Outline"] = value; }
+        public static MiscShaderData s_OutlineColor { get => GameShaders.Misc["AQMod:OutlineColor"]; set => GameShaders.Misc["AQMod:OutlineColor"] = value; }
+        public static MiscShaderData s_GoreNestPortal { get => GameShaders.Misc["AQMod:GoreNestPortal"]; set => GameShaders.Misc["AQMod:GoreNestPortal"] = value; }
+        public static MiscShaderData s_Spotlight { get => GameShaders.Misc["AQMod:Spotlight"]; set => GameShaders.Misc["AQMod:Spotlight"] = value; }
+        public static MiscShaderData s_FadeYProgressAlpha { get => GameShaders.Misc["AQMod:FadeYProgressAlpha"]; set => GameShaders.Misc["AQMod:FadeYProgressAlpha"] = value; }
+        public static MiscShaderData s_SpikeFade { get => GameShaders.Misc["AQMod:SpikeFade"]; set => GameShaders.Misc["AQMod:SpikeFade"] = value; }
+
+        internal static void Load(AQMod aQMod)
         {
-            ParentPixelShader = aQMod.GetEffect("Effects/Dyes/ParentDyeShader");
+            ParentPixelShader = logGetEffect("Dyes/ParentDyeShader", aQMod);
+            GoreNestPortal = logGetEffect("GoreNest/GoreNestPortal", aQMod);
+            Trailshader = logGetEffect("Trails/Trailshader", aQMod);
+
+            s_Outline = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "OutlinePass");
+            s_OutlineColor = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "OutlineColorPass");
+            s_GoreNestPortal = new MiscShaderData(new Ref<Effect>(GoreNestPortal), "DemonicPortalPass");
+            s_Spotlight = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "SpotlightPass");
+            s_FadeYProgressAlpha = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "FadeYProgressAlphaPass");
+            s_SpikeFade = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "SpikeFadePass");
         }
 
-        internal static void Setup(AQMod mod, AQConfigClient client, ILog logger)
+        private static Effect logGetEffect(string path, AQMod aQMod)
         {
-            logger.Info("Loading Shaders...");
-            if (client.SpotlightShader)
-            {
-                try
-                {
-                    Spotlight = mod.GetEffect("Effects/Spotlight");
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Couldn't load Spotlight Shader, try disabling it in the Client Config.", e);
-                }
-            }
-            if (client.ColorDistortShader)
-            {
-                try
-                {
-                    ColorDistort = mod.GetEffect("Effects/ColorDistort");
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Couldn't load Color Distort Shader, try disabling it in the Client Config.", e);
-                }
-            }
-            if (client.TrailShader)
-            {
-                try
-                {
-                    Trailshader = mod.GetEffect("Effects/Trailshader");
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Couldn't load Trail Shader, try disabling it in the Client Config.", e);
-                }
-            }
-            if (client.PortalShader)
-            {
-                try
-                {
-                    Portal = mod.GetEffect("Effects/Portal");
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Couldn't load Portal Shader, try disabling it in the Client Config.", e);
-                }
-            }
-            if (client.ScrollShader)
-            {
-                try
-                {
-                    Scroll = mod.GetEffect("Effects/Scroll");
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Couldn't load Scroll Shader, try disabling it in the Client Config.", e);
-                }
-            }
-            if (client.HypnoShader)
-            {
-                try
-                {
-                    Hypno = mod.GetEffect("Effects/Hypno");
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Couldn't load Hypno Shader, try disabling it in the Client Config.", e);
-                }
-            }
-            if (client.OutlineShader)
-            {
-                try
-                {
-                    Outline = mod.GetEffect("Effects/Outline");
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Couldn't load Outline Shader, try disabling it in the Client Config.", e);
-                }
-            }
-            if (client.ScreenDistortShader)
-            {
-                try
-                {
-                    ScreenDistort = mod.GetEffect("Effects/ScreenDistort");
-                }
-                catch (Exception e)
-                {
-                    throw new Exception("Couldn't load Screen Distort Shader, try disabling it in the Client Config.", e);
-                }
-            }
-        }
-
-        public const string DistortXFilter = "AQMod:DistortX";
-
-        public static void AddFilters(AQMod mod, AQConfigClient client, ILog logger)
-        {
-            logger.Info("Loading filters...");
-            if (client.ScreenDistortShader)
-                Filters.Scene[DistortXFilter] = new Filter(new ScreenShaderData(new Ref<Effect>(ScreenDistort), "DistortXPass").UseIntensity(1f), EffectPriority.Low);
+            aQMod.Logger.Info("Loading effect: Effects/" + path);
+            var effect = aQMod.GetEffect("Effects/" + path);
+            if (effect == null)
+                aQMod.Logger.Error("Failed to load effect");
+            return effect;
         }
     }
 }

@@ -6,11 +6,12 @@ using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
+using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.AquaticEvent;
-using AQMod.Content.WorldEvents.DemonicEvent;
+using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters;
 using AQMod.Tiles;
@@ -27,7 +28,6 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using AQMod.Content.Quest.Lobster;
 
 namespace AQMod.Common.DeveloperTools
 {
@@ -80,22 +80,14 @@ namespace AQMod.Common.DeveloperTools
             {
                 if (debug > 0 && AQMod.ItemOverlays.GetOverlay(item.type) == null)
                 {
-                    bool resetBatch = false;
                     var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
-                    if (AQConfigClient.Instance.ScrollShader)
-                    {
-                        resetBatch = true;
-                        Main.spriteBatch.End();
-                        BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
-                        var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
-                        effect.Apply(null, drawData);
-                    }
+                    Main.spriteBatch.End();
+                    BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
+                    var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
+                    effect.Apply(null, drawData);
                     drawData.Draw(Main.spriteBatch);
-                    if (resetBatch)
-                    {
-                        Main.spriteBatch.End();
-                        BatcherMethods.StartBatch_UI(Main.spriteBatch);
-                    }
+                    Main.spriteBatch.End();
+                    BatcherMethods.StartBatch_UI(Main.spriteBatch);
                     return false;
                 }
                 return true;
