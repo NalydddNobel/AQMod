@@ -115,11 +115,29 @@ namespace AQMod.Common
         public bool windStruck;
         public bool windStruckOld;
 
+        /// <summary>
+        /// Values over 10 mean the projectile is hot, values below -10 means the projectile is cold
+        /// </summary>
         public sbyte temperature;
+        public byte temperatureRate;
+        private byte temperatureUpdate;
+        public bool canHeat;
+        public bool canFreeze;
 
         public bool ShouldApplyWindMechanics(Projectile projectile)
         {
             return !windStruck && !Sets.UnaffectedByWind[projectile.type];
+        }
+
+        public override void SetDefaults(Projectile projectile)
+        {
+            if (projectile.coldDamage)
+            {
+                canHeat = false;
+                temperature = -10;
+            }
+            temperatureRate = 8;
+            temperatureUpdate = 0;
         }
 
         public void ApplyWindMechanics(Projectile projectile, Vector2 wind)
@@ -132,6 +150,21 @@ namespace AQMod.Common
         {
             windStruckOld = windStruck;
             windStruck = false;
+
+            temperatureUpdate--;
+            if (temperatureUpdate == 0)
+            {
+                temperatureUpdate = temperatureRate;
+                if (canHeat && temperature < 0)
+                {
+                    temperature++;
+                }
+                else if (canFreeze && temperature > 0)
+                {
+                    temperature--;
+                }
+            }
+
             if (projectile.aiStyle == 61)
             {
                 if (projectile.ai[1] > 0f && projectile.localAI[1] >= 0f) // on catch effects
