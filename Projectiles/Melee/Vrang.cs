@@ -145,13 +145,16 @@ namespace AQMod.Projectiles.Melee
             var origin = frame.Size() / 2f;
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, lightColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
-            if (aQProj.temperature < -10)
+            if (aQProj.temperature != 0)
             {
-                Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Hot")), center - Main.screenPosition, frame, lightColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
-            }
-            else if (aQProj.temperature > -10)
-            {
-                Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Cold")), center - Main.screenPosition, frame, lightColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
+                if (aQProj.temperature > 10)
+                {
+                    Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Hot")), center - Main.screenPosition, frame, lightColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
+                }
+                else if (aQProj.temperature < -10)
+                {
+                    Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Cold")), center - Main.screenPosition, frame, lightColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
+                }
             }
             return false;
         }
