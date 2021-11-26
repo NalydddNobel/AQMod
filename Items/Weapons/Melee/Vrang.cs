@@ -59,55 +59,6 @@ namespace AQMod.Items.Weapons.Melee
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (item.stack > 1)
-            {
-                int boomerangsLeft = item.stack - 1;
-                Main.NewText(boomerangsLeft);
-                int half = boomerangsLeft / 2;
-                int rightProj = Projectile.NewProjectile(position, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI, 1f);
-                var aQProj = Main.projectile[rightProj].GetGlobalProjectile<AQProjectile>();
-                sbyte setTemperature = 10;
-                bool canFreeze = false;
-                bool canHeat = true;
-                if (player.altFunctionUse == 2)
-                {
-                    setTemperature = -10;
-                    canFreeze = true;
-                    canHeat = false;
-                }
-                int leftProj = rightProj;
-                aQProj.temperature = setTemperature;
-                aQProj.canFreeze = canFreeze;
-                aQProj.canHeat = canHeat;
-                for (int i = 0; i < half; i++)
-                {
-                    int p = Projectile.NewProjectile(position + new Vector2(32f * i, 0f), new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI, 
-                        -Main.projectile[rightProj].identity);
-                    aQProj = Main.projectile[p].GetGlobalProjectile<AQProjectile>();
-                    aQProj.temperature = setTemperature;
-                    aQProj.canFreeze = canFreeze;
-                    aQProj.canHeat = canHeat;
-                    rightProj = p;
-                    p = Projectile.NewProjectile(position + new Vector2(-32f * i, 0f), new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI, 
-                        -Main.projectile[leftProj].identity);
-                    aQProj = Main.projectile[p].GetGlobalProjectile<AQProjectile>();
-                    aQProj.temperature = setTemperature;
-                    aQProj.canFreeze = canFreeze;
-                    aQProj.canHeat = canHeat;
-                    leftProj = p;
-                    boomerangsLeft--;
-                }
-                if (boomerangsLeft == 1)
-                {
-                    int p = Projectile.NewProjectile(position, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI,
-                        -Main.projectile[rightProj].identity);
-                    aQProj = Main.projectile[rightProj].GetGlobalProjectile<AQProjectile>();
-                    aQProj.temperature = setTemperature;
-                    aQProj.canFreeze = canFreeze;
-                    aQProj.canHeat = canHeat;
-                }
-                return false;
-            }
             return base.Shoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
 

@@ -26,66 +26,19 @@ namespace AQMod.Projectiles.Melee
 
         public override void AI()
         {
-            projectile.aiStyle = -1;
-            var differenceFromPlayer = Main.player[projectile.owner].Center - projectile.Center;
-            float distanceFromPlayer = differenceFromPlayer.Length();
-            if (distanceFromPlayer > 3000f)
+            if ((int)projectile.ai[0] == 0)
             {
-                projectile.Kill();
-                return;
-            }
-            sbyte temperature = projectile.GetGlobalProjectile<AQProjectile>().temperature;
-            if ((int)projectile.ai[0] <= 0)
-            {
-                int p = AQProjectile.FindIdentityAndType((int)projectile.ai[0], projectile.type);
-                if (p == -1 || !Main.projectile[p].active)
-                {
-                    projectile.ai[0] = 1f;
-                }
-                else
-                {
-                    projectile.tileCollide = false;
-                    projectile.velocity = Main.projectile[p].velocity;
-                    return;
-                }
-            }
-            if (Main.player[projectile.owner].itemTime < 2)
-            {
-                Main.player[projectile.owner].itemTime = 2;
-            }
-            if (Main.player[projectile.owner].itemAnimation < 2)
-            {
-                Main.player[projectile.owner].itemAnimation = 2;
+                projectile.velocity = Vector2.Normalize(projectile.velocity);
             }
             projectile.ai[0]++;
-            projectile.tileCollide = true;
-            if (projectile.ai[1] == 0f)
+            if (projectile.ai[0] > 30f * Main.player[projectile.owner].meleeSpeed)
             {
-                projectile.ai[1] = projectile.velocity.Length();
+                projectile.velocity += projectile.velocity * 0.001f;
             }
-            float speed = projectile.ai[1];
-            if (temperature > 11 || temperature < -11)
+            else
             {
-                speed += temperature / 100f;
+                projectile.velocity += Vector2.Normalize(projectile.velocity) * 0.0125f;
             }
-            if (projectile.ai[0] > 61f)
-            {
-                if (Main.myPlayer == projectile.owner)
-                {
-                    Rectangle hitbox = projectile.getRect();
-                    Rectangle plrHitbox = Main.player[projectile.owner].getRect();
-                    if (hitbox.Intersects(plrHitbox))
-                    {
-                        projectile.Kill();
-                        return;
-                    }
-                }
-                projectile.tileCollide = false;
-                speed += (projectile.ai[0] - 61f) * 0.015f;
-                speed = -speed;
-            }
-            projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(differenceFromPlayer) * speed, 0.01f);
-            projectile.rotation += 0.4f * projectile.direction;
         }
     }
 }

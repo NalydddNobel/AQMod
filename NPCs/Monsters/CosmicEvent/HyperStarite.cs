@@ -6,7 +6,7 @@ using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Items.Accessories;
-using AQMod.Items.BuffItems.Foods;
+using AQMod.Items.Consumables.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Tools.MapMarkers;

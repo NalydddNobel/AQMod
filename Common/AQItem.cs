@@ -1,8 +1,8 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Content.Dusts;
 using AQMod.Items.Accessories;
-using AQMod.Items.BuffItems;
-using AQMod.Items.BuffItems.Foods;
+using AQMod.Items.Consumables.Foods;
+using AQMod.Items.Consumables.Potion;
 using AQMod.Items.Tools.Rods;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

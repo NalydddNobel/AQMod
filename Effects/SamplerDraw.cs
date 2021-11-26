@@ -31,12 +31,16 @@ namespace AQMod.Effects
 
         public static void Light(Vector2 position, float rotation, Vector2 scale, Color color)
         {
-            DrawSampler("AQMod:Spotlight", position, rotation, scale, color);
+            DrawSampler(EffectCache.s_Spotlight, position, rotation, scale, color);
         }
 
         public static void DrawSampler(string name, Vector2 position, float rotation, Vector2 scale, Color color)
         {
-            var effect = GameShaders.Misc[name];
+            DrawSampler(GameShaders.Misc[name], position, rotation, scale, color);
+        }
+
+        public static void DrawSampler(MiscShaderData effect, Vector2 position, float rotation, Vector2 scale, Color color)
+        {
             var sampler = TextureCache.Pixel.Value;
             var drawData = new DrawData(sampler, position, null, color, rotation, new Vector2(0.5f, 0.5f), scale, SpriteEffects.None, 0);
             effect.UseColor(color);

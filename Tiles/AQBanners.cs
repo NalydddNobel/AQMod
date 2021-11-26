@@ -83,9 +83,7 @@ namespace AQMod.Tiles
                 case Vraine:
                 Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<VraineBanner>());
                 break;
-                case TemperatureBalloon:
-                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<TemperatureBalloonBanner>());
-                break;
+
                 case RedSprite:
                 Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<RedSpriteBanner>());
                 break;
@@ -133,9 +131,7 @@ namespace AQMod.Tiles
                     case Vraine:
                     player.NPCBannerBuff[ModContent.NPCType<Vraine>()] = true;
                     break;
-                    case TemperatureBalloon:
-                    player.NPCBannerBuff[ModContent.NPCType<TemperatureBalloon>()] = true;
-                    break;
+
                     case RedSprite:
                     //player.NPCBannerBuff[ModContent.NPCType<RedSprite>()] = true;
                     break;

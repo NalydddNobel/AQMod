@@ -33,5 +33,18 @@ namespace AQMod.Items.Weapons.Magic
         {
             return Main.dayTime && AQItem.MirrorItemUseCheck(player);
         }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.MeteoriteBar, 20);
+            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>(), 5);
+            r.AddIngredient(ModContent.ItemType<Materials.Energies.DemonicEnergy>());
+            r.AddIngredient(ItemID.SoulofFlight, 10);
+            r.AddIngredient(ItemID.SoulofLight, 2);
+            r.AddTile(TileID.MythrilAnvil);
+            r.SetResult(this);
+            r.AddRecipe();
+        }
     }
 }

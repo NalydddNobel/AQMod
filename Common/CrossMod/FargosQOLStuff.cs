@@ -83,25 +83,12 @@ namespace AQMod.Common.CrossMod
             createFargoRecipe<TrapperImpBanner, Items.Weapons.Melee.PowPunch>();
             createFargoRecipe<TrapperImpBanner, DemonicCursorDye>();
 
-            var r = new ModRecipe(_aQMod1);
-            r.AddIngredient(ModContent.ItemType<TemperatureBalloonBanner>());
-            r.AddIngredient(ItemID.SoulofNight);
-            r.AddTile(TileID.Solidifier);
-            r.SetResult(ModContent.ItemType<Items.Weapons.Magic.UnityMirror>());
-            r.AddRecipe();
-            r = new ModRecipe(_aQMod1);
-            r.AddIngredient(ModContent.ItemType<TemperatureBalloonBanner>());
-            r.AddIngredient(ItemID.SoulofLight);
-            r.AddTile(TileID.Solidifier);
-            r.SetResult(ModContent.ItemType<Items.Weapons.Magic.SunbaskMirror>());
-            r.AddRecipe();
-
             createFargoRecipeBannerInput<Items.Weapons.Melee.CrystalDagger>(ItemID.UndeadVikingBanner);
 
             createFargoRecipe(ItemID.MimicBanner, ItemID.AdhesiveBandage);
             createFargoRecipe(ItemID.MimicBanner, ItemID.SharkToothNecklace);
             createFargoRecipe(ItemID.MimicBanner, ItemID.MoneyTrough);
-            r = new ModRecipe(_aQMod1);
+            var r = new ModRecipe(_aQMod1);
             r.AddIngredient(ItemID.MimicBanner);
             r.AddIngredient(ItemID.Bone, 5);
             r.AddTile(TileID.Solidifier);

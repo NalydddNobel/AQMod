@@ -1,6 +1,6 @@
 ﻿using Terraria;
 
-namespace AQMod.Items.BuffItems.Foods
+namespace AQMod.Items.Consumables.Foods
 {
     public interface ISpecialFood
     {

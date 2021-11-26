@@ -3,7 +3,7 @@ using AQMod.Common;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.BuffItems
+namespace AQMod.Items.Consumables.Potion
 {
     public class OpposingPotion : ModItem
     {
@@ -26,7 +26,7 @@ namespace AQMod.Items.BuffItems
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            var recipe = new ModRecipe(mod);
             recipe.alchemy = true;
             recipe.AddIngredient(ItemID.BottledWater);
             recipe.AddIngredient(ItemID.Daybloom);

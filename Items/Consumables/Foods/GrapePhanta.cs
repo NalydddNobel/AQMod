@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.BuffItems.Foods
+namespace AQMod.Items.Consumables.Foods
 {
     public class GrapePhanta : ModItem, ISpecialFood
     {

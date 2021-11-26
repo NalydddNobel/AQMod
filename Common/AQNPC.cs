@@ -456,7 +456,6 @@ namespace AQMod.Common
                 UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.AquaticEvent.ArrowCrab>()] = false;
                 UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.AquaticEvent.StriderCrab>()] = false;
                 UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.AquaticEvent.SoliderCrabs>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.AtmosphericEvent.TemperatureBalloon>()] = false;
             }
 
             internal static void UnloadSets()
@@ -1057,7 +1056,7 @@ namespace AQMod.Common
                     }
                     if (Main.hardMode)
                     {
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BuffItems.SpoilsPotion>());
+                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Consumables.Potion.SpoilsPotion>());
                         nextSlot++;
                         shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.Powders.GoldPowder>());
                         nextSlot++;

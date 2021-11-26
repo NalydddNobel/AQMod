@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.ItemOverlays;
+﻿using AQMod.Assets.Graphics.ItemOverlays;
 using AQMod.Common;
 using AQMod.Common.Skies;
 using AQMod.Items.Materials.Energies;

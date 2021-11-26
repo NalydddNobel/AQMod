@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.BuffItems
+namespace AQMod.Items.Consumables.Potion
 {
     public class MysteryGrail : ModItem
     {

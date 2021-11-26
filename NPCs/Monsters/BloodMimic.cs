@@ -1,5 +1,5 @@
 ﻿using AQMod.Items.Accessories;
-using AQMod.Items.BuffItems.Foods;
+using AQMod.Items.Consumables.Foods;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.Consumable;
 using Microsoft.Xna.Framework;

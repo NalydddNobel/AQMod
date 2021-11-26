@@ -1,5 +1,4 @@
-﻿using AQMod.Effects.Dyes;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
@@ -17,6 +16,7 @@ namespace AQMod.Assets
         public static MiscShaderData s_Spotlight { get => GameShaders.Misc["AQMod:Spotlight"]; set => GameShaders.Misc["AQMod:Spotlight"] = value; }
         public static MiscShaderData s_FadeYProgressAlpha { get => GameShaders.Misc["AQMod:FadeYProgressAlpha"]; set => GameShaders.Misc["AQMod:FadeYProgressAlpha"] = value; }
         public static MiscShaderData s_SpikeFade { get => GameShaders.Misc["AQMod:SpikeFade"]; set => GameShaders.Misc["AQMod:SpikeFade"] = value; }
+        public static MiscShaderData s_Enchant { get => GameShaders.Misc["AQMod:Enchant"]; set => GameShaders.Misc["AQMod:Enchant"] = value; }
 
         internal static void Load(AQMod aQMod)
         {
@@ -30,6 +30,7 @@ namespace AQMod.Assets
             s_Spotlight = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "SpotlightPass");
             s_FadeYProgressAlpha = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "FadeYProgressAlphaPass");
             s_SpikeFade = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "SpikeFadePass");
+            s_Enchant = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "ImageScrollPass");
         }
 
         private static Effect logGetEffect(string path, AQMod aQMod)

@@ -78,7 +78,7 @@ namespace AQMod.Common.SceneLayers
                 var portalPosition = new Vector2(x[k] * 16f + 24f, y[k] * 16f - 24f + (float)Math.Sin(Main.GlobalTime) * 4f);
                 Main.spriteBatch.End();
                 BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
-                SamplerDraw.DrawSampler("AQMod:GoreNestPortal", portalPosition - Main.screenPosition, 0f, new Vector2(portalSize()), portalColor());
+                SamplerDraw.DrawSampler(EffectCache.s_GoreNestPortal, portalPosition - Main.screenPosition, 0f, new Vector2(portalSize()), portalColor());
                 Main.spriteBatch.End();
                 BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
                 if (_test)

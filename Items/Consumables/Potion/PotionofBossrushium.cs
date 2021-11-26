@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.BuffItems
+namespace AQMod.Items.Consumables.Potion
 {
     public class PotionofBossrushium : ModItem
     {
@@ -47,8 +47,8 @@ namespace AQMod.Items.BuffItems
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
-            Rectangle frame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
-            Vector2 drawPosition = new Vector2(item.position.X - Main.screenPosition.X + frame.Width / 2 + item.width / 2 - frame.Width / 2, item.position.Y - Main.screenPosition.Y + frame.Height / 2 + item.height - frame.Height);
+            var frame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
+            var drawPosition = new Vector2(item.position.X - Main.screenPosition.X + frame.Width / 2 + item.width / 2 - frame.Width / 2, item.position.Y - Main.screenPosition.Y + frame.Height / 2 + item.height - frame.Height);
             float colorOffset = ((float)Math.Sin(Main.GlobalTime) + 1f) * 60f;
             Texture2D texture = DrawUtils.LegacyTextureCache.Glows[GlowID.PotionofBussrushium];
             Main.spriteBatch.Draw(texture, drawPosition, null, new Color((int)(20 + colorOffset * 2), 10, (int)(255 - colorOffset / 2), 180), rotation, new Vector2(texture.Width, texture.Height) / 2f, scale, SpriteEffects.None, 0f);
@@ -59,7 +59,7 @@ namespace AQMod.Items.BuffItems
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
+            var recipe = new ModRecipe(mod);
             recipe.alchemy = true;
             recipe.AddIngredient(ItemID.BottledWater);
             recipe.AddIngredient(ItemID.Lens, 2);
