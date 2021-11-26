@@ -144,6 +144,8 @@ namespace AQMod
         public bool neutronYogurt;
         public bool mothmanMask;
         public byte mothmanExplosionDelay;
+        public sbyte temperature;
+        public byte temperatureRegen;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -154,8 +156,6 @@ namespace AQMod
         public int ExtractinatorCount { get; set; }
         public int CursorDyeID { get; private set; } = CursorDyeLoader.ID.None;
         public string CursorDye { get; private set; } = "";
-        public sbyte Temperature;
-        public byte TemperatureStruck;
 
         public const float AtmosphericCurrentsWindSpeed = 30f;
         public static bool IsQuickBuffing { get; internal set; }
@@ -197,7 +197,7 @@ namespace AQMod
             CurrentEncoreKillCount = new int[NPCLoader.NPCCount];
             EncoreBossKillCountRecord = new int[NPCLoader.NPCCount];
             grabReachMult = 1f;
-            Temperature = 0;
+            temperature = 0;
         }
 
         public override void OnEnterWorld(Player player)
@@ -407,14 +407,40 @@ namespace AQMod
             grabReachMult = 1f;
             grapePhanta = false;
             mothmanMask = false;
-            if (TemperatureStruck > 0)
-                TemperatureStruck--;
+            if (temperature != 0)
+            {
+                if (temperature < -100)
+                {
+                    temperature = -100;
+                }
+                else if (temperature > 100)
+                {
+                    temperature = 100;
+                }
+                if (temperatureRegen == 0)
+                {
+                    temperatureRegen = 8;
+                    if (player.resistCold && temperature < 0)
+                    {
+                        temperatureRegen = 4;
+                    }
+                    if (temperature < 0)
+                    {
+                        temperature++;
+                    }
+                    else
+                    {
+                        temperature--;
+                    }
+                }
+                else
+                {
+                    temperatureRegen--;
+                }
+            }
             else
             {
-                if (Temperature < 0f)
-                {
-
-                }
+                temperatureRegen = 32;
             }
             if (mothmanExplosionDelay > 0)
                 mothmanExplosionDelay--;
@@ -1185,6 +1211,50 @@ namespace AQMod
             ScreenShakeManager.ModifyScreenPosition();
         }
 
+        public void ChangeTemperature(sbyte newTemperature)
+        {
+            if (player.resistCold && newTemperature < 0)
+            {
+                newTemperature /= 2;
+            }
+            if (temperature < 0)
+            {
+                if (newTemperature < 0)
+                {
+                    if (temperature > newTemperature)
+                    {
+                        temperature = newTemperature;
+                    }
+                }
+                else
+                    temperature = 0;
+            }
+            else if (temperature > 0)
+            {
+                if (newTemperature > 0)
+                {
+                    if (temperature < newTemperature)
+                    {
+                        temperature = newTemperature;
+                    }
+                }
+                else
+                    temperature = 0;
+            }
+            else
+            {
+                temperature = newTemperature;
+            }
+            if (newTemperature < 0)
+            {
+                temperature--;
+            }
+            else
+            {
+                temperature++;
+            }
+        }
+
         public Vector3 GetCelesteTorusPositionOffset(int i)
         {
             return Vector3.Transform(new Vector3(celesteTorusRadius, 0f, 0f), Matrix.CreateFromYawPitchRoll(celesteTorusX, celesteTorusY, celesteTorusZ + MathHelper.TwoPi / 5 * i));
@@ -1292,7 +1362,6 @@ namespace AQMod
             return true;
         }
 
-
         public void SetCursorDye(int type)
         {
             if (type <= CursorDyeLoader.ID.None || type > AQMod.CursorDyes.Count)
@@ -1390,7 +1459,6 @@ namespace AQMod
             }
             return false;
         }
-
 
         public static bool PlayerCrit(int critChance, UnifiedRandom rand)
         {

@@ -263,6 +263,47 @@ namespace AQMod.Common
             }
         }
 
+        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        {
+            if (temperature != 0)
+            {
+                var aQNPC = target.GetGlobalNPC<AQNPC>();
+                aQNPC.ChangeTemperature(target, temperature);
+            }
+        }
+
+        public void ChangeTemperature(sbyte newTemperature)
+        {
+            if (temperature < 0)
+            {
+                if (newTemperature < 0)
+                {
+                    if (temperature > newTemperature)
+                    {
+                        temperature = newTemperature;
+                    }
+                }
+                else
+                    temperature = 0;
+            }
+            else if (temperature > 0)
+            {
+                if (newTemperature > 0)
+                {
+                    if (temperature < newTemperature)
+                    {
+                        temperature = newTemperature;
+                    }
+                }
+                else
+                    temperature = 0;
+            }
+            else
+            {
+                temperature = newTemperature;
+            }
+        }
+
         /// <summary>
         /// Counts how many projectiles are active of a given type
         /// </summary>

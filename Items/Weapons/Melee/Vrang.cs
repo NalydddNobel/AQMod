@@ -35,8 +35,21 @@ namespace AQMod.Items.Weapons.Melee
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             var normal = Vector2.Normalize(new Vector2(speedX, speedY));
-            Projectile.NewProjectile(position + normal.RotatedBy(MathHelper.PiOver4 * 3f) * 50f, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position + normal.RotatedBy(-MathHelper.PiOver4 * 3f) * 50f, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
+            int p = Projectile.NewProjectile(position + normal.RotatedBy(MathHelper.PiOver4 * 3f) * 50f, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
+            var aQProj = Main.projectile[p].GetGlobalProjectile<AQProjectile>();
+            Main.projectile[p].localAI[0] = 1f;
+            if (player.frostArmor)
+            {
+                aQProj.temperature = -20;
+            }
+            else
+            {
+                aQProj.temperature = 20;
+            }
+            p = Projectile.NewProjectile(position + normal.RotatedBy(-MathHelper.PiOver4 * 3f) * 50f, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
+            Main.projectile[p].localAI[0] = -1f;
+            aQProj = Main.projectile[p].GetGlobalProjectile<AQProjectile>();
+            aQProj.temperature = -20;
             return base.Shoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
 

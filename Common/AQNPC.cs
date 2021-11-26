@@ -621,21 +621,28 @@ namespace AQMod.Common
         {
             if (hotDamage)
             {
-                if (temperature < sbyte.MaxValue)
+                if (temperature < 100)
                 {
                     temperature++;
                 }
             }
             else if (npc.coldDamage)
             {
-                if (temperature > sbyte.MinValue)
+                if (temperature > -100)
                 {
                     temperature--;
                 }
             }
             else
             {
-
+                if (temperature < -100)
+                {
+                    temperature = -100;
+                }
+                else if (temperature > 100)
+                {
+                    temperature = 100;
+                }
             }
         }
 
@@ -1647,6 +1654,54 @@ namespace AQMod.Common
                         Item.NewItem(npc.getRect(), ModContent.ItemType<RustyKnife>());
                 }
                 break;
+            }
+        }
+
+        public void ChangeTemperature(NPC npc, sbyte newTemperature)
+        {
+            if (hotDamage && newTemperature > 0)
+            {
+                newTemperature /= 2;
+            }
+            else if (npc.coldDamage && newTemperature < 0)
+            {
+                newTemperature /= 2;
+            }
+            if (temperature < 0)
+            {
+                if (newTemperature < 0)
+                {
+                    if (temperature > newTemperature)
+                    {
+                        temperature = newTemperature;
+                    }
+                }
+                else
+                    temperature = 0;
+            }
+            else if (temperature > 0)
+            {
+                if (newTemperature > 0)
+                {
+                    if (temperature < newTemperature)
+                    {
+                        temperature = newTemperature;
+                    }
+                }
+                else
+                    temperature = 0;
+            }
+            else
+            {
+                temperature = newTemperature;
+            }
+            if (newTemperature < 0)
+            {
+                temperature--;
+            }
+            else
+            {
+                temperature++;
             }
         }
 

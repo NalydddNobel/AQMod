@@ -1,5 +1,8 @@
-﻿using AQMod.Common.Utilities;
+﻿using AQMod.Assets;
+using AQMod.Common;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,8 +21,11 @@ namespace AQMod.Projectiles.Melee
             projectile.penetrate = -1;
             projectile.melee = true;
             projectile.alpha = 250;
-            projectile.timeLeft = 60;
+            projectile.timeLeft = 70;
             projectile.penetrate = 3;
+            var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
+            aQProj.canHeat = false;
+            aQProj.canFreeze = false;
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
@@ -51,6 +57,26 @@ namespace AQMod.Projectiles.Melee
             {
                 if (projectile.velocity.Length() < 22f / Main.player[projectile.owner].meleeSpeed)
                     projectile.velocity += projectile.velocity * 0.08f;
+
+                if ((int)projectile.localAI[0] != 0)
+                {
+                    var off = new Vector2(projectile.width / 2f, 0f).RotatedBy(projectile.velocity.ToRotation() + MathHelper.PiOver2 * projectile.localAI[0]);
+                    var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
+                    if (aQProj.temperature < -10)
+                    {
+                        int d = Dust.NewDust(projectile.Center + off, 2, 2, 185);
+                        Main.dust[d].velocity *= 0.1f;
+                        Main.dust[d].noGravity = true;
+                        Main.dust[d].scale = 0.8f;
+                    }
+                    else if (aQProj.temperature > 10)
+                    {
+                        int d = Dust.NewDust(projectile.Center + off, 2, 2, DustID.Fire);
+                        Main.dust[d].velocity *= 0.1f;
+                        Main.dust[d].noGravity = true;
+                        Main.dust[d].scale = 0.8f;
+                    }
+                }
 
                 projectile.localAI[1] += 0.005f;
                 projectile.rotation += 0.3f + projectile.localAI[1];
@@ -109,6 +135,25 @@ namespace AQMod.Projectiles.Melee
                 return false;
             }
             return base.OnTileCollide(oldVelocity);
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            var texture = this.GetTexture();
+            var center = projectile.Center;
+            var frame = new Rectangle(0, 0, texture.Width, texture.Height);
+            var origin = frame.Size() / 2f;
+            Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, lightColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
+            var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
+            if (aQProj.temperature < -10)
+            {
+                Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Hot")), center - Main.screenPosition, frame, lightColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
+            }
+            else if (aQProj.temperature > -10)
+            {
+                Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Cold")), center - Main.screenPosition, frame, lightColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
+            }
+            return false;
         }
     }
 }
