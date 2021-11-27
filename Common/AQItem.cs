@@ -416,5 +416,71 @@ namespace AQMod.Common
             }
             return false;
         }
+
+        public static void DropMoney(int value, Rectangle rect)
+        {
+            if (value >= Item.platinum)
+            {
+                int platinum = value / Item.platinum;
+                Item.NewItem(rect, ItemID.GoldCoin, platinum);
+                value -= Item.platinum * platinum;
+                if (value <= 0)
+                {
+                    return;
+                }
+            }
+            if (value >= Item.gold)
+            {
+                int gold = value / Item.gold;
+                Item.NewItem(rect, ItemID.GoldCoin, gold);
+                value -= Item.gold * gold;
+                if (value <= 0)
+                {
+                    return;
+                }
+            }
+            if (value >= Item.silver)
+            {
+                int silver = value / Item.silver;
+                Item.NewItem(rect, ItemID.SilverCoin, silver);
+                value -= Item.silver * silver;
+            }
+            if (value > 0)
+            {
+                Item.NewItem(rect, ItemID.CopperCoin, value);
+            }
+        }
+
+        public static void ConvertToMoney(int value, out int platinum, out int gold, out int silver, out int copper)
+        {
+            platinum = 0;
+            gold = 0;
+            silver = 0;
+            copper = 0;
+            if (value >= Item.platinum)
+            {
+                platinum = value / Item.platinum;
+                value -= Item.platinum * platinum;
+                if (value <= 0)
+                {
+                    return;
+                }
+            }
+            if (value >= Item.gold)
+            {
+                gold = value / Item.gold;
+                value -= Item.gold * gold;
+                if (value <= 0)
+                {
+                    return;
+                }
+            }
+            if (value >= Item.silver)
+            {
+                silver = value / Item.silver;
+                value -= Item.silver * silver;
+            }
+            copper = value;
+        }
     }
 }

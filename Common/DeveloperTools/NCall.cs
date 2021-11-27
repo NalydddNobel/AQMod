@@ -119,6 +119,22 @@ namespace AQMod.Common.DeveloperTools
                 caller.Reply("Command doesn't exist.");
                 break;
 
+                case "itemperature":
+                {
+                    sbyte newTemp = sbyte.Parse(args[1]);
+                    caller.Reply("changing temperature to: " + newTemp);
+                    caller.Player.GetModPlayer<AQPlayer>().InflictTemperature(newTemp);
+                }
+                break;
+
+                case "settemperature":
+                {
+                    sbyte newTemp = sbyte.Parse(args[1]);
+                    caller.Reply("changing temperature to: " + newTemp);
+                    caller.Player.GetModPlayer<AQPlayer>().temperature = newTemp;
+                }
+                break;
+
                 case "meteor":
                 {
                     var b = Main.MouseWorld.ToTileCoordinates();

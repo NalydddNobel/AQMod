@@ -3,6 +3,7 @@ using AQMod.Assets.Graphics.Particles;
 using AQMod.Assets.Graphics.ParticlesLayers;
 using AQMod.Assets.Graphics.PlayerLayers;
 using AQMod.Buffs.Debuffs;
+using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.NetCode;
@@ -47,6 +48,10 @@ namespace AQMod
         public const int FRAME_COUNT = 20;
         public const float CELESTE_Z_MULT = 0.0157f;
         public const int ARACHNOTRON_OLD_POS_LENGTH = 8;
+
+        public const byte TEMPERATURE_REGEN_NORMAL = 32;
+        public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
+        public const byte TEMPERATURE_REGEN_ON_HIT = 120;
 
         public static int oldPosLength;
         public static Vector2[] oldPosVisual;
@@ -419,10 +424,10 @@ namespace AQMod
                 }
                 if (temperatureRegen == 0)
                 {
-                    temperatureRegen = 8;
+                    temperatureRegen = TEMPERATURE_REGEN_NORMAL;
                     if (player.resistCold && temperature < 0)
                     {
-                        temperatureRegen = 4;
+                        temperatureRegen = TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP;
                     }
                     if (temperature < 0)
                     {
@@ -440,7 +445,31 @@ namespace AQMod
             }
             else
             {
-                temperatureRegen = 32;
+                temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
+            }
+            if (temperature < -60)
+            {
+                player.AddBuff(ModContent.BuffType<Cold60>(), 4);
+            }
+            else if (temperature < -40)
+            {
+                player.AddBuff(ModContent.BuffType<Cold40>(), 4);
+            }
+            else if (temperature < -20)
+            {
+                player.AddBuff(ModContent.BuffType<Cold20>(), 4);
+            }
+            else if (temperature > 60)
+            {
+                player.AddBuff(ModContent.BuffType<Hot60>(), 4);
+            }
+            else if (temperature > 40)
+            {
+                player.AddBuff(ModContent.BuffType<Hot40>(), 4);
+            }
+            else if (temperature > 20)
+            {
+                player.AddBuff(ModContent.BuffType<Hot20>(), 4);
             }
             if (mothmanExplosionDelay > 0)
                 mothmanExplosionDelay--;
@@ -720,6 +749,11 @@ namespace AQMod
                 }
                 break;
             }
+            var aQProjectile = proj.GetGlobalProjectile<AQProjectile>();
+            if (aQProjectile.temperature != 0)
+            {
+                InflictTemperature(aQProjectile.temperature);
+            }
         }
 
         public static bool CanBossChannel(NPC npc)
@@ -821,6 +855,11 @@ namespace AQMod
                         damage /= 2;
                 }
                 break;
+            }
+            var aQNPC = npc.GetGlobalNPC<AQNPC>();
+            if (aQNPC.temperature != 0)
+            {
+                InflictTemperature(aQNPC.temperature);
             }
         }
 
@@ -1211,8 +1250,9 @@ namespace AQMod
             ScreenShakeManager.ModifyScreenPosition();
         }
 
-        public void ChangeTemperature(sbyte newTemperature)
+        public void InflictTemperature(sbyte newTemperature)
         {
+            temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
             if (player.resistCold && newTemperature < 0)
             {
                 newTemperature /= 2;
@@ -1227,7 +1267,9 @@ namespace AQMod
                     }
                 }
                 else
-                    temperature = 0;
+                {
+                    temperature /= 2;
+                }
             }
             else if (temperature > 0)
             {
@@ -1239,19 +1281,21 @@ namespace AQMod
                     }
                 }
                 else
-                    temperature = 0;
+                {
+                    temperature /= 2;
+                }
             }
             else
             {
-                temperature = newTemperature;
+                temperature = (sbyte)(newTemperature / 2);
             }
             if (newTemperature < 0)
             {
-                temperature--;
+                temperature -= 3;
             }
             else
             {
-                temperature++;
+                temperature += 3;
             }
         }
 
@@ -1452,7 +1496,7 @@ namespace AQMod
         {
             for (int i = 0; i < Player.MaxBuffs; i++)
             {
-                if (Main.player[player].buffTime[i] > 0 && AQBuff.Sets.FoodBuff[Main.player[player].buffType[i]])
+                if (Main.player[player].buffTime[i] > 0 && AQBuff.Sets.IsFoodBuff[Main.player[player].buffType[i]])
                 {
                     return true;
                 }

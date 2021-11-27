@@ -1,7 +1,9 @@
-﻿using AQMod.Common.Utilities;
+﻿using AQMod.Common;
+using AQMod.Common.Utilities;
 using AQMod.Items.Placeable.Banners;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,9 +13,10 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
     public class Vraine : ModNPC, IDecideFallThroughPlatforms
     {
         public const int FramesX = 2;
+        public const int Temperature = 40;
 
         private bool _setupFrame; // no need to sync this since find frame stuff is client only (I think)
-        private int _transparency;
+        public int transitionMax;
 
         public override void SetStaticDefaults()
         {
@@ -103,9 +106,23 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 npc.velocity.Y = -npc.oldVelocity.Y * 0.8f;
 
             bool hot = (int)npc.ai[1] == 1;
+            var aQNPC = npc.GetGlobalNPC<AQNPC>();
             var center = npc.Center;
             if (npc.ai[3] > 0f)
+            {
                 npc.ai[3]--;
+                if (npc.ai[3] <= 0)
+                {
+                    npc.ai[3] = 0f;
+                    aQNPC.temperature = (sbyte)(Temperature * (hot ? 1 : -1));
+                }
+                else if (transitionMax != 0)
+                {
+                    float progress = 1f - npc.ai[3] / transitionMax;
+                    float temperature = MathHelper.Lerp(aQNPC.temperature, Temperature * (hot ? 1 : -1), progress);
+                    aQNPC.temperature = (sbyte)(int)temperature;
+                }
+            }
             if ((int)npc.ai[2] == -1) // leader
             {
                 if (hot)
@@ -116,8 +133,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     if (npc.ai[3] <= 0f && difference.Length() > 460f)
                     {
                         npc.ai[1] = 2f;
-                        _transparency = 100;
-                        npc.ai[3] = _transparency;
+                        transitionMax = 100;
+                        npc.ai[3] = transitionMax;
                         npc.netUpdate = true;
                     }
                     float length = npc.velocity.Length();
@@ -142,8 +159,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         if (center.X > plrCenter.X)
                         {
                             npc.ai[1] = 2f;
-                            _transparency = 120;
-                            npc.ai[3] = _transparency;
+                            transitionMax = 120;
+                            npc.ai[3] = transitionMax;
                             npc.netUpdate = true;
                         }
                     }
@@ -152,8 +169,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         if (center.X < plrCenter.X)
                         {
                             npc.ai[1] = 2f;
-                            _transparency = 120;
-                            npc.ai[3] = _transparency;
+                            transitionMax = 120;
+                            npc.ai[3] = transitionMax;
                             npc.netUpdate = true;
                         }
                     }
@@ -170,9 +187,9 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                             npc.velocity = Vector2.Lerp(npc.velocity, gotoVeloc, 0.1f);
                             if (npc.ai[3] == -1)
                             {
-                                _transparency = 100;
+                                transitionMax = 100;
                                 npc.ai[1] = 1f;
-                                npc.ai[3] = _transparency;
+                                npc.ai[3] = transitionMax;
                                 npc.velocity = gotoVeloc;
                                 Main.PlaySound(SoundID.Item1, npc.Center);
                             }
@@ -191,8 +208,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                             else if (difference.Length() < 360f)
                             {
                                 npc.ai[1] = 1f;
-                                _transparency = 60;
-                                npc.ai[3] = _transparency;
+                                transitionMax = 60;
+                                npc.ai[3] = transitionMax;
                                 npc.netUpdate = true;
                             }
 
@@ -271,7 +288,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 var leaderMod = (Vraine)leader.modNPC;
                 npc.ai[1] = leader.ai[1];
                 npc.ai[3] = leader.ai[3];
-                _transparency = leaderMod._transparency;
+                transitionMax = leaderMod.transitionMax;
 
                 if ((int)leader.ai[2] == -1)
                 {
@@ -316,6 +333,16 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 }
             }
             npc.rotation = npc.velocity.ToRotation();
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(transitionMax);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            transitionMax = reader.ReadInt32();
         }
 
         public override void FindFrame(int frameHeight)
@@ -366,7 +393,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 }
             }
 
-            if (npc.ai[3] > 0f && _transparency > 0)
+            if (npc.ai[3] > 0f && transitionMax > 0)
             {
                 var frame = npc.frame;
                 if (npc.ai[1] == 1)
@@ -374,7 +401,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 else
                     frame.X = 0;
 
-                float progress = npc.ai[3] / _transparency;
+                float progress = npc.ai[3] / transitionMax;
                 Main.spriteBatch.Draw(texture, drawPos, frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), 1f - progress), npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture, drawPos, npc.frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), progress), npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
             }

@@ -21,7 +21,7 @@ namespace AQMod.Projectiles.Melee
             projectile.penetrate = -1;
             projectile.melee = true;
             projectile.alpha = 250;
-            projectile.timeLeft = 70;
+            projectile.timeLeft = 100;
             projectile.penetrate = 3;
             var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
             aQProj.canHeat = false;

@@ -4,6 +4,7 @@ using AQMod.Assets.Graphics.ParticlesLayers;
 using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Assets.ItemOverlays;
 using AQMod.Assets.PlayerLayers.EquipOverlays;
+using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.CrossMod;
@@ -235,6 +236,7 @@ namespace AQMod
             ModCallHelper.SetupCalls();
 
             On.Terraria.Chest.SetupShop += Chest_SetupShop;
+            On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
             On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
             On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
@@ -250,6 +252,19 @@ namespace AQMod
             }
         }
 
+        private int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
+        {
+            int originalValue = orig(X, Y, SpeedX, SpeedY, Type, Damage, KnockBack, Owner, ai0, ai1);
+            var projectile = Main.projectile[originalValue];
+            if (projectile.coldDamage || (projectile.friendly && projectile.owner != 255 && Main.player[projectile.owner].frostArmor && (projectile.melee || projectile.ranged)))
+            {
+                var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
+                aQProj.canHeat = false;
+                aQProj.temperature = -15;
+            }
+            return originalValue;
+        }
+
         private void Player_QuickBuff(On.Terraria.Player.orig_QuickBuff orig, Player self)
         {
             AQPlayer.IsQuickBuffing = true;
@@ -259,11 +274,41 @@ namespace AQMod
 
         private void Player_AddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)
         {
-            if (AQBuff.Sets.FoodBuff[type])
+            if (type >= Main.maxBuffTypes)
+            {
+                var modBuff = ModContent.GetModBuff(type);
+                if (modBuff is temperatureDebuff)
+                {
+                    for (int i = 0; i < Player.MaxBuffs; i++)
+                    {
+                        if (self.buffTime[i] > 0)
+                        {
+                            if (self.buffType[i] == type)
+                            {
+                                orig(self, type, time1, quiet);
+                                return;
+                            }
+                            if (self.buffType[i] > Main.maxBuffTypes)
+                            {
+                                var otherModBuff = ModContent.GetModBuff(self.buffType[i]);
+                                if (otherModBuff is temperatureDebuff)
+                                {
+                                    self.DelBuff(i);
+                                    orig(self, type, time1, quiet);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    orig(self, type, time1, quiet);
+                    return;
+                }
+            }
+            if (AQBuff.Sets.IsFoodBuff[type])
             {
                 for (int i = 0; i < Player.MaxBuffs; i++)
                 {
-                    if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.FoodBuff[self.buffType[i]])
+                    if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.IsFoodBuff[self.buffType[i]])
                     {
                         self.DelBuff(i);
                         i--;

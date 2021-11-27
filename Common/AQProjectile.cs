@@ -131,11 +131,7 @@ namespace AQMod.Common
 
         public override void SetDefaults(Projectile projectile)
         {
-            if (projectile.coldDamage)
-            {
-                canHeat = false;
-                temperature = -10;
-            }
+            temperature = 0;
             temperatureRate = 8;
             temperatureUpdate = 0;
         }

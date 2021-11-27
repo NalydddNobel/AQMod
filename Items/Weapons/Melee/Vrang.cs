@@ -56,6 +56,10 @@ namespace AQMod.Items.Weapons.Melee
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             float temp = (float)Math.Sin(Main.GlobalTime);
+            if (Main.LocalPlayer.frostArmor) // found out that the frost armor flag is raised here if you just have a full set visible... weird
+            {
+                temp = -1f;
+            }
             Texture2D texture;
             if (temp < 0f)
             {

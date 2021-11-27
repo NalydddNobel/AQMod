@@ -1448,14 +1448,16 @@ namespace AQMod.Common
             AQPlayer aQPlayer = plr.GetModPlayer<AQPlayer>();
             if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type])
                 return;
-            if (!npc.boss && !npc.friendly)
+            if (!npc.boss && !npc.friendly && !Sets.NoSpoilLoot[npc.type] && _lootLoop < aQPlayer.spoiled)
             {
-                if (!Sets.NoSpoilLoot[npc.type] && _lootLoop < aQPlayer.spoiled)
+                _lootLoop++;
+                if ((int)npc.extraValue > 0)
                 {
-                    _lootLoop++;
-                    npc.NPCLoot();
-                    _lootLoop = 0;
+                    AQItem.DropMoney((int)npc.extraValue, npc.getRect());
+                    npc.extraValue = 0;
                 }
+                npc.NPCLoot();
+                _lootLoop = 0;
             }
             if (_lootLoop == 0)
             {

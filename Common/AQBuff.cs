@@ -7,14 +7,14 @@ namespace AQMod.Common
     {
         public static class Sets
         {
-            public static bool[] FoodBuff { get; private set; }
+            public static bool[] IsFoodBuff { get; private set; }
 
             internal static void Setup()
             {
-                FoodBuff = new bool[BuffLoader.BuffCount];
-                FoodBuff[BuffID.WellFed] = true;
-                FoodBuff[ModContent.BuffType<Buffs.Foods.GrapePhanta>()] = true;
-                FoodBuff[ModContent.BuffType<Buffs.Foods.SpicyEel>()] = true;
+                IsFoodBuff = new bool[BuffLoader.BuffCount];
+                IsFoodBuff[BuffID.WellFed] = true;
+                IsFoodBuff[ModContent.BuffType<Buffs.Foods.GrapePhanta>()] = true;
+                IsFoodBuff[ModContent.BuffType<Buffs.Foods.SpicyEel>()] = true;
             }
 
             internal static void Unload()

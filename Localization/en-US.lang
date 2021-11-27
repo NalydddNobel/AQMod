@@ -700,6 +700,23 @@ BuffDescription.Opposing=Enemies have a chance to drop opposing loot
 BuffName.SpicyEelBuff=Spicy Eel
 BuffDescription.SpicyEelBuff=Your speed is greatly increased
 
+BuffName.Cold20=Cold
+BuffDescription.Cold20=You are below 20 degrees Fahrenheit
+BuffName.Cold40=Colder
+BuffDescription.Cold40=You are below 40 degrees Fahrenheit
+BuffName.Cold60=Freezing
+BuffDescription.Cold60=You are below 60 degrees Fahrenheit
+BuffName.Cold80=Frozen
+BuffDescription.Cold80=You are below 80 degrees Fahrenheit
+BuffName.Hot20=Hot
+BuffDescription.Hot20=You are above 20 degrees Fahrenheit
+BuffName.Hot40=Hotter
+BuffDescription.Hot40=You are above 40 degrees Fahrenheit
+BuffName.Hot60=Scorching
+BuffDescription.Hot60=You are above 60 degrees Fahrenheit
+BuffName.Hot80=Melting
+BuffDescription.Hot80=You are above 80 degrees Fahrenheit
+
 ###### Projectiles ######
 # Melee Weapon Projectiles
 ProjectileName.AirBlade=Air Blade
