@@ -700,6 +700,23 @@ BuffDescription.Opposing=使某些敌人有几率掉落与其主题相反的物�
 BuffName.SpicyEelBuff=香辣鳗鱼
 BuffDescription.SpicyEelBuff=大幅度增加移动速度
 
+BuffName.Cold20=冷
+BuffDescription.Cold20=你的体温低于20华氏度
+BuffName.Cold40=很冷
+BuffDescription.Cold40=你的体温低于40华氏度
+BuffName.Cold60=严寒
+BuffDescription.Cold60=你的体温低于60华氏度
+BuffName.Cold80=冻结
+BuffDescription.Cold80=你的体温低于80华氏度
+BuffName.Hot20=热
+BuffDescription.Hot20=你的体温高于20华氏度
+BuffName.Hot40=很热
+BuffDescription.Hot40=你的体温高于40华氏度
+BuffName.Hot60=酷热
+BuffDescription.Hot60=你的体温高于60华氏度
+BuffName.Hot80=熔化
+BuffDescription.Hot80=你的体温高于80华氏度
+
 ###### Projectiles ######
 # Melee Weapon Projectiles
 ProjectileName.AirBlade=风之刃
