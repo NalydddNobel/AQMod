@@ -4,6 +4,7 @@ using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Effects.ScreenEffects;
+using AQMod.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -28,7 +29,7 @@ namespace AQMod.Projectiles.Magic
         {
             projectile.ai[0] = 0f;
             var item = player.ItemInHand();
-            if (AQItem.MirrorItemUseCheck(player) && player.CheckMana(item, item.mana, pay: true, blockQuickMana: false))
+            if (AQItem.Similarities.Mirror_CanUseItem(player) && player.CheckMana(item, item.mana, pay: true, blockQuickMana: false))
             {
                 var sound = SoundID.DD2_EtherianPortalSpawnEnemy;
                 var pos = projectile.Center;

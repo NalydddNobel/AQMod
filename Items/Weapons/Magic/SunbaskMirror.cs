@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,7 +22,7 @@ namespace AQMod.Items.Weapons.Magic
             item.mana = 11;
             item.autoReuse = true;
             item.UseSound = SoundID.Item101;
-            item.value = AQItem.AtmosphericCurrentsValue;
+            item.value = AQItem.Prices.AtmosphericCurrentsValue;
             item.knockBack = 6f;
             item.channel = true;
             item.noUseGraphic = true;
@@ -31,7 +30,7 @@ namespace AQMod.Items.Weapons.Magic
 
         public override bool CanUseItem(Player player)
         {
-            return Main.dayTime && AQItem.MirrorItemUseCheck(player);
+            return Main.dayTime && AQItem.Similarities.Mirror_CanUseItem(player);
         }
 
         public override void AddRecipes()

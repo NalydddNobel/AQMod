@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -20,7 +19,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.knockBack = 4f;
             item.autoReuse = true;
-            item.value = AQItem.EnergyWeaponValue;
+            item.value = AQItem.Prices.PostMechsEnergyWeaponValue;
             item.useAmmo = AmmoID.Dart;
             item.shoot = ProjectileID.Seed;
             item.shootSpeed = 28f;

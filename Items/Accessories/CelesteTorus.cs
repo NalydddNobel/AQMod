@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -23,7 +22,7 @@ namespace AQMod.Items.Accessories
         {
             try
             {
-                int line = AQItem.FindVanillaTooltipLineIndex(tooltips, "Damage");
+                int line = AQItem.Tooltips.FindVanillaTooltipLineIndex(tooltips, "Damage");
                 var player = Main.LocalPlayer;
                 var aQPlayer = player.GetModPlayer<AQPlayer>();
                 tooltips.Insert(line, new TooltipLine(mod, "Knockback", AQUtils.KnockbackItemTooltip(aQPlayer.GetCelesteTorusKnockback())));

@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Melee
@@ -20,7 +19,7 @@ namespace AQMod.Items.Weapons.Melee
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.JerryClawFlail>();
             item.shootSpeed = 16f;
             item.UseSound = SoundID.Item1;
-            item.value = AQItem.CrabsonWeaponValue;
+            item.value = AQItem.Prices.CrabsonWeaponValue;
             item.noMelee = true;
             item.noUseGraphic = true;
             item.channel = true;

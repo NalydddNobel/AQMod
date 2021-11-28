@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -28,7 +27,7 @@ namespace AQMod.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int index = AQItem.FindVanillaTooltipLineIndex(tooltips, "Tooltip");
+            int index = AQItem.Tooltips.FindVanillaTooltipLineIndex(tooltips, "Tooltip");
             tooltips.Insert(index, new TooltipLine(mod, "Knockback", AQUtils.KnockbackItemTooltip(item.knockBack)));
             tooltips.Insert(index, new TooltipLine(mod, "Speed", AQUtils.UseTimeAnimationTooltip(item.shootSpeed)));
         }

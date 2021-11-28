@@ -1,6 +1,5 @@
-﻿using AQMod.Assets.Textures;
-using AQMod.Common;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -14,7 +13,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             Item.staff[item.type] = true;
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.MagicWand, new Color(128, 128, 128, 0)), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), new Color(128, 128, 128, 0)), item.type);
         }
 
         public override void SetDefaults()
@@ -30,7 +29,7 @@ namespace AQMod.Items.Weapons.Magic
             item.useTime = 32;
             item.UseSound = SoundID.Item8;
             item.rare = ItemRarityID.LightRed;
-            item.value = AQItem.OmegaStariteWeaponValue;
+            item.value = AQItem.Prices.OmegaStariteWeaponValue;
             item.shootSpeed = 24f;
             item.shoot = ModContent.ProjectileType<Projectiles.Magic.MagicWand>();
             item.autoReuse = true;

@@ -1,6 +1,5 @@
-﻿using AQMod.Assets.Textures;
-using AQMod.Common;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common.Utilities;
 using AQMod.Projectiles.Ranged.RayGunBullets;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -15,7 +14,7 @@ namespace AQMod.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.Raygun), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow")), item.type);
         }
 
         public override void SetDefaults()
@@ -33,7 +32,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.shootSpeed = 8f;
             item.autoReuse = true;
             item.UseSound = new LegacySoundStyle(SoundID.Trackable, 228);
-            item.value = AQItem.OmegaStariteWeaponValue;
+            item.value = AQItem.Prices.OmegaStariteWeaponValue;
             item.knockBack = 0.5f;
             item.useAmmo = AmmoID.Bullet;
         }

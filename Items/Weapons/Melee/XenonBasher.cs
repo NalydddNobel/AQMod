@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
-using AQMod.Common.ItemOverlays;
+using AQMod.Assets.ItemOverlays;
+using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Materials.NobleMushrooms;
@@ -18,7 +18,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyDynamicGlowmask(GlowID.XenonBasher, GetGlowmaskColor), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), GetGlowmaskColor), item.type);
         }
 
         private static Color GetGlowmaskColor()

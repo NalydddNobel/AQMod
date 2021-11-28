@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
@@ -45,7 +44,7 @@ namespace AQMod.Items.Materials.Energies
 
         public override void SetDefaults()
         {
-            AQItem.energy_SetDefaults(item, ItemRarityID.Green, AQItem.EnergySellValue);
+            AQItem.Similarities.Energy_SetDefaults(item, ItemRarityID.Green, AQItem.Prices.EnergySellValue);
         }
 
         public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 255);
@@ -59,7 +58,7 @@ namespace AQMod.Items.Materials.Energies
         {
             var color = outline(Main.GlobalTime * 2f);
             color.A = 0;
-            AQItem.energy_DoUpdate(item, color, new Vector3(0.6f, 0.1f, 0.65f));
+            AQItem.Similarities.Energy_DoUpdate(item, color, new Vector3(0.6f, 0.1f, 0.65f));
         }
     }
 }

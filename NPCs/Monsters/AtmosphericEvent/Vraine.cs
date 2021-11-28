@@ -72,9 +72,27 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
 
         public override void AI() // ai[1] is temperature (1 = hot, 2 = cold)
         {
+            if ((int)npc.ai[1] == -1)
+            {
+                if (npc.timeLeft > 100)
+                {
+                    npc.timeLeft = 100;
+                    transitionMax = 100;
+                    npc.ai[3] = transitionMax;
+                    npc.netUpdate = true;
+                }
+                var aQNPC2 = npc.GetGlobalNPC<AQNPC>();
+                aQNPC2.temperature = 0;
+                return;
+            }
             if ((int)npc.ai[1] == 0)
             {
                 npc.TargetClosest(faceTarget: false);
+                if (npc.HasValidTarget)
+                {
+                    npc.ai[1] = -1f;
+                    return;
+                }
                 npc.ai[1] = 2f;
                 npc.ai[2] = -1f;
                 int count = Main.rand.Next(3) + 1;
@@ -115,12 +133,11 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 {
                     npc.ai[3] = 0f;
                     aQNPC.temperature = (sbyte)(Temperature * (hot ? 1 : -1));
+                    npc.netUpdate = true;
                 }
                 else if (transitionMax != 0)
                 {
-                    float progress = 1f - npc.ai[3] / transitionMax;
-                    float temperature = MathHelper.Lerp(aQNPC.temperature, Temperature * (hot ? 1 : -1), progress);
-                    aQNPC.temperature = (sbyte)(int)temperature;
+                    aQNPC.temperature = (sbyte)(int)MathHelper.Lerp(aQNPC.temperature, Temperature * (hot ? 1 : -1), 1f - npc.ai[3] / transitionMax);
                 }
             }
             if ((int)npc.ai[2] == -1) // leader
@@ -380,7 +397,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             var offset = new Vector2(npc.width / 2f, npc.height / 2f);
             Vector2 origin = npc.frame.Size() / 2f;
             Vector2 drawPos = npc.Center - Main.screenPosition;
-
+            
             if ((int)npc.localAI[0] == 0)
             {
                 float mult = 1f / NPCID.Sets.TrailCacheLength[npc.type];
@@ -395,20 +412,27 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
 
             if (npc.ai[3] > 0f && transitionMax > 0)
             {
-                var frame = npc.frame;
-                if (npc.ai[1] == 1)
-                    frame.X = npc.frame.Width;
-                else
-                    frame.X = 0;
-
+                Texture2D overlayTexture;
                 float progress = npc.ai[3] / transitionMax;
-                Main.spriteBatch.Draw(texture, drawPos, frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), 1f - progress), npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(texture, drawPos, npc.frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), progress), npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
+                progress *= 2f;
+                progress -= 1f;
+                if ((int)npc.ai[1] == -1)
+                {
+                    progress = 1f - progress;
+                    overlayTexture = ModContent.GetTexture(this.GetPath("_Hot"));
+                }
+                else if ((int)npc.ai[1] == 1)
+                {
+                    overlayTexture = ModContent.GetTexture(this.GetPath("_Hot"));
+                }
+                else
+                {
+                    overlayTexture = ModContent.GetTexture(this.GetPath("_Cold"));
+                }
+                Main.spriteBatch.Draw(overlayTexture, drawPos, npc.frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), progress), npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
             }
-            else
-            {
-                Main.spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
-            }
+
+            Main.spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
 
             return false;
         }

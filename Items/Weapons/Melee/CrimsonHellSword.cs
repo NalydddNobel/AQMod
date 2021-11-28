@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -42,7 +41,7 @@ namespace AQMod.Items.Weapons.Melee
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return AQItem.GetAlphaDemonSiegeWeapon(lightColor);
+            return AQItem.Similarities.DemonSiegeItem_GetAlpha(lightColor);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

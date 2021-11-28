@@ -1,10 +1,7 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
-using AQMod.Common.ItemOverlays;
-using AQMod.Content.Dusts;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,7 +16,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.HorizonSkies), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow")), item.type);
         }
 
         public override void SetDefaults()

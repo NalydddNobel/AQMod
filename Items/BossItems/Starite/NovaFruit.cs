@@ -1,22 +1,27 @@
-﻿using AQMod.Assets.Graphics.ItemOverlays;
-using AQMod.Common;
+﻿using AQMod.Common;
 using AQMod.Common.Skies;
+using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Vanities.Dyes;
 using AQMod.Localization;
 using AQMod.NPCs.Boss.Starite;
 using Terraria;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.BossItems.Starite
 {
-    public class NovaFruit : ModItem
+    public class NovaFruit : ModItem, IItemOverlays
     {
+        private static readonly ShaderOverlay _shaderOverlay = new ShaderOverlay(() => GameShaders.Armor.GetShaderIdFromItemId(ModContent.ItemType<EnchantedDye>()));
+        IOverlayDrawWorld IItemOverlays.WorldDraw => _shaderOverlay;
+        IOverlayDrawInventory IItemOverlays.InventoryDraw => _shaderOverlay;
+        IOverlayDrawPlayerUse IItemOverlays.PlayerDraw => _shaderOverlay;
+
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[item.type] = (int)BossSpawnItemSortOrder.Abeemination;
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new EnchantmentOverlay(), item.type);
         }
 
         public override void SetDefaults()

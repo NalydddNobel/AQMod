@@ -7,6 +7,7 @@ using AQMod.Content.NoHitting;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Effects.ScreenEffects;
+using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;

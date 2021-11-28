@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common;
 using AQMod.Common.CustomRecipes;
 using AQMod.Content;
 using AQMod.Content.Dusts;
@@ -131,7 +130,7 @@ namespace AQMod.Items.Tools.Consumable
         {
             item.width = 20;
             item.height = 20;
-            item.value = AQItem.PotionValue * 2;
+            item.value = AQItem.Prices.PotionValue * 2;
             item.rare = ItemRarityID.Green;
             item.consumable = true;
             item.useTime = 17;

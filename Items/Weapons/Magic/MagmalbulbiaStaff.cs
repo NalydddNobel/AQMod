@@ -1,13 +1,7 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
-using AQMod.Common;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Common.Utilities;
-using AQMod.Effects;
-using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -21,7 +15,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             Item.staff[item.type] = true;
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new DynamicGlowmaskOverlayData(AQUtils.GetPath<MagmalbulbiaStaff>() + "_Glow", getGlowmaskColor), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(AQUtils.GetPath<MagmalbulbiaStaff>() + "_Glow", getGlowmaskColor), item.type);
         }
 
         private static Color getGlowmaskColor() => Color.Lerp(new Color(188, 175, 135, 0), new Color(144, 130, 111, 0), ((float)Math.Sin(Main.GlobalTime * 1.1f) + 1f) / 2f);
@@ -42,7 +36,7 @@ namespace AQMod.Items.Weapons.Magic
             item.mana = 11;
             item.autoReuse = true;
             item.UseSound = SoundID.Item95;
-            item.value = AQItem.EnergyWeaponValue;
+            item.value = AQItem.Prices.PostMechsEnergyWeaponValue;
             item.knockBack = 6f;
         }
 

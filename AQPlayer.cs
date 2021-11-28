@@ -49,6 +49,24 @@ namespace AQMod
         public const float CELESTE_Z_MULT = 0.0157f;
         public const int ARACHNOTRON_OLD_POS_LENGTH = 8;
 
+        public static class Layers
+        {
+            public static readonly PlayerLayer PostDrawHeldItem = new PlayerLayer("AQMod", "PostDrawHeldItem", (info) => 
+            {
+                var player = info.drawPlayer;
+                Item item = player.inventory[player.selectedItem];
+                if (info.shadow != 0f || player.frozen || ((player.itemAnimation <= 0 || item.useStyle == 0) && 
+                (item.holdStyle <= 0 || player.pulley)) || item.type <= ItemID.None || player.dead || item.noUseGraphic || 
+                (item.noWet && player.wet) || item.type < Main.maxItemTypes)
+                    return;
+                if (item.modItem is IItemOverlays itemOverlay)
+                {
+                    itemOverlay.PlayerDraw?.DrawUse(player, player.GetModPlayer<AQPlayer>(), item, info);
+                }
+                AQMod.ItemOverlays.GetOverlay(item.type)?.DrawHeld(player, player.GetModPlayer<AQPlayer>(), item, info);
+            });
+        }
+
         public const byte TEMPERATURE_REGEN_NORMAL = 32;
         public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
         public const byte TEMPERATURE_REGEN_ON_HIT = 120;
@@ -1225,8 +1243,8 @@ namespace AQMod
             i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("HeldItem"));
             if (i != -1)
             {
-                PlayerLayersCache.postDrawHeldItem.visible = true;
-                layers.Insert(i + 1, PlayerLayersCache.postDrawHeldItem);
+                Layers.PostDrawHeldItem.visible = true;
+                layers.Insert(i + 1, Layers.PostDrawHeldItem);
             }
             i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Wings"));
             if (i != -1)

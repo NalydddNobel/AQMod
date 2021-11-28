@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,7 +21,7 @@ namespace AQMod.Items.Weapons.Melee
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.PowPunch>();
             item.shootSpeed = 16f;
             item.UseSound = SoundID.Item1;
-            item.value = AQItem.DemonSiegeWeaponValue;
+            item.value = AQItem.Prices.DemonSiegeWeaponValue;
             item.noMelee = true;
             item.noUseGraphic = true;
             item.channel = true;

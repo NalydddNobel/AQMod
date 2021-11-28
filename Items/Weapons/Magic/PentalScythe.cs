@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
@@ -34,7 +33,7 @@ namespace AQMod.Items.Weapons.Magic
             item.mana = 24;
             item.autoReuse = true;
             item.UseSound = SoundID.Item8;
-            item.value = AQItem.EnergyWeaponValue;
+            item.value = AQItem.Prices.PostMechsEnergyWeaponValue;
             item.knockBack = 2.43f;
         }
 

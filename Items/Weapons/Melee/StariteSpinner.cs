@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,7 +23,7 @@ namespace AQMod.Items.Weapons.Melee
             item.melee = true;
             item.damage = 20;
             item.knockBack = 2.11f;
-            item.value = AQItem.GlimmerWeaponValue;
+            item.value = AQItem.Prices.GlimmerWeaponValue;
             item.UseSound = SoundID.Item1;
             item.rare = ItemRarityID.Green;
             item.channel = true;

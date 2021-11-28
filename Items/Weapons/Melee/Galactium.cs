@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -24,7 +23,7 @@ namespace AQMod.Items.Weapons.Melee
             item.rare = ItemRarityID.LightRed;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.Galactium>();
             item.shootSpeed = 15f;
-            item.value = AQItem.OmegaStariteWeaponValue;
+            item.value = AQItem.Prices.OmegaStariteWeaponValue;
             item.autoReuse = true;
             item.scale = 1.1f;
         }

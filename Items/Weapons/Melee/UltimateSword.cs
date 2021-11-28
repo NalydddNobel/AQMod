@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.Graphics.ItemOverlays;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,7 +22,7 @@ namespace AQMod.Items.Weapons.Melee
             item.useAnimation = 18;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
-            item.value = AQItem.OmegaStariteWeaponValue * 2;
+            item.value = AQItem.Prices.OmegaStariteWeaponValue * 2;
             item.damage = 65;
             item.melee = true;
             item.knockBack = 4f;

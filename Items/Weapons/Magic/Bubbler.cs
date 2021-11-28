@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,7 +28,7 @@ namespace AQMod.Items.Weapons.Magic
             item.mana = 5;
             item.autoReuse = true;
             item.UseSound = SoundID.Item85;
-            item.value = AQItem.CrabsonWeaponValue;
+            item.value = AQItem.Prices.CrabsonWeaponValue;
             item.noMelee = true;
         }
 

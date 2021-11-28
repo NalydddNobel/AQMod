@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
@@ -9,7 +8,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.ItemOverlays
+namespace AQMod.Assets.Graphics.ItemOverlays
 {
     public class UltimateSwordOverlayData : ItemOverlayData
     {
@@ -20,7 +19,7 @@ namespace AQMod.Common.ItemOverlays
 
             if (player.gravDir == -1f)
             {
-                DrawData drawData = new DrawData(texture, new Vector2((int)(info.itemLocation.X - Main.screenPosition.X), (int)(info.itemLocation.Y - Main.screenPosition.Y)), new Rectangle(0, 0, texture.Width, texture.Height), item.GetAlpha(drawColor), player.itemRotation, new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, 0f), item.scale, info.spriteEffects, 0);
+                var drawData = new DrawData(texture, new Vector2((int)(info.itemLocation.X - Main.screenPosition.X), (int)(info.itemLocation.Y - Main.screenPosition.Y)), new Rectangle(0, 0, texture.Width, texture.Height), item.GetAlpha(drawColor), player.itemRotation, new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, 0f), item.scale, info.spriteEffects, 0);
                 Main.playerDrawData.Add(drawData);
                 return;
             }
@@ -41,7 +40,7 @@ namespace AQMod.Common.ItemOverlays
         {
             var drawColor = new Color(128, 128, 128, 0);
             var texture = AQUtils.GetTextureobj<UltimateSword>("_Glow");
-            Vector2 drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
+            var drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
             var origin = Main.itemTexture[item.type].Size() / 2;
             Main.spriteBatch.Draw(texture, drawPosition, null, drawColor, rotation, origin, scale, SpriteEffects.None, 0f);
 

@@ -28,6 +28,7 @@ using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
 using AQMod.Effects.WorldEffects;
+using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
@@ -339,7 +340,7 @@ namespace AQMod
             DrawUtils.LegacyTextureCache.Setup();
             WorldLayers = new SceneLayersManager();
             WorldLayers.Setup(loadHooks: true);
-            WorldLayers.Register("GoreNest", new GoreNestLayer(test: false), SceneLayering.InfrontNPCs);
+            WorldLayers.Register("GoreNest", new GoreNestLayer(test: false), SceneLayering.BehindNPCs);
             WorldLayers.Register("UltimateSword", new UltimateSwordWorldOverlay(), SceneLayering.InfrontNPCs);
             WorldLayers.Register("ImpChains", new ImpChainLayer(), SceneLayering.BehindNPCs);
             WorldLayers.Register("CrabsonChains", new JerryCrabsonLayer(), SceneLayering.BehindTiles_BehindNPCs);

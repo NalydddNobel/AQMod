@@ -1,5 +1,4 @@
 ﻿using AQMod.Buffs;
-using AQMod.Common;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -19,7 +18,7 @@ namespace AQMod.Items.Consumables.Potion
             item.maxStack = 999;
             item.consumable = true;
             item.rare = ItemRarityID.LightRed;
-            item.value = AQItem.PotionValue;
+            item.value = AQItem.Prices.PotionValue;
             item.buffTime = 36000;
             item.buffType = ModContent.BuffType<Opposing>();
         }

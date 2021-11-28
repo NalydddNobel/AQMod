@@ -1,4 +1,4 @@
-﻿using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Walls;
 using Microsoft.Xna.Framework;
@@ -13,7 +13,7 @@ namespace AQMod.Items.Placeable.Wall
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new DynamicGlowmaskOverlayData(AQUtils.GetPath<MoonlightWall>() + "_Glow", getColor), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(AQUtils.GetPath<MoonlightWall>() + "_Glow", getColor), item.type);
         }
 
         private static Color getColor() => MoonlightWallWall.GetColor(0f);

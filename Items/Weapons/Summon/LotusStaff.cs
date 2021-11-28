@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using AQMod.Projectiles.Summon.LavaLotus;
@@ -34,7 +33,7 @@ namespace AQMod.Items.Weapons.Summon
             item.knockBack = 1f;
             item.UseSound = SoundID.Item45;
             item.noMelee = true;
-            item.value = AQItem.EnergyWeaponValue;
+            item.value = AQItem.Prices.PostMechsEnergyWeaponValue;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

@@ -1,6 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common;
-using AQMod.Common.ItemOverlays;
 using AQMod.Common.Utilities;
 using AQMod.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
@@ -33,7 +31,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.shootSpeed = 4f;
             item.useAmmo = AmmoID.Arrow;
             item.UseSound = SoundID.Item5;
-            item.value = AQItem.DemonSiegeWeaponValue;
+            item.value = AQItem.Prices.DemonSiegeWeaponValue;
             item.noMelee = true;
             item.autoReuse = true;
             item.knockBack = 6f;
@@ -41,7 +39,7 @@ namespace AQMod.Items.Weapons.Ranged
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return AQItem.GetAlphaDemonSiegeWeapon(lightColor);
+            return AQItem.Similarities.DemonSiegeItem_GetAlpha(lightColor);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

@@ -1,5 +1,5 @@
-﻿using AQMod.Assets.Textures;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -13,7 +13,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyLegacyGlowmask(GlowID.StariteBlade, new Color(200, 200, 200, 0)), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), new Color(200, 200, 200, 0)), item.type);
         }
 
         public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace AQMod.Items.Weapons.Melee
             item.useAnimation = 17;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
-            item.value = Item.sellPrice(silver: 80);
+            item.value = AQItem.Prices.GlimmerWeaponValue;
             item.damage = 38;
             item.melee = true;
             item.knockBack = 4.5f;

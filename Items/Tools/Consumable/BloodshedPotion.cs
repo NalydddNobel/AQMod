@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -20,7 +19,7 @@ namespace AQMod.Items.Tools.Consumable
             item.UseSound = SoundID.Item3;
             item.consumable = true;
             item.rare = ItemRarityID.Orange;
-            item.value = AQItem.PotionValue;
+            item.value = AQItem.Prices.PotionValue;
             item.maxStack = 999;
         }
 

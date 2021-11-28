@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Effects.ScreenEffects;
@@ -35,7 +34,7 @@ namespace AQMod.Items.Weapons.Magic
             item.mana = 30;
             item.autoReuse = true;
             item.UseSound = SoundID.Item20;
-            item.value = AQItem.DemonSiegeWeaponValue;
+            item.value = AQItem.Prices.DemonSiegeWeaponValue;
             item.knockBack = 2f;
         }
 

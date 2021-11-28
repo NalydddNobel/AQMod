@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +25,7 @@ namespace AQMod.Items.Weapons.Summon
             item.useStyle = ItemUseStyleID.HoldingUp;
             item.noMelee = true;
             item.knockBack = 5f;
-            item.value = AQItem.CrimsonWeaponValue;
+            item.value = AQItem.Prices.CrimsonWeaponValue;
             item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item44;
             item.shoot = ModContent.ProjectileType<Projectiles.Summon.CrimsonHand>();

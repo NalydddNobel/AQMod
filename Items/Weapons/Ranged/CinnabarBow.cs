@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Ranged
@@ -21,7 +20,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.shootSpeed = 8.5f;
             item.useAmmo = AmmoID.Arrow;
             item.UseSound = SoundID.Item5;
-            item.value = AQItem.CrabsonWeaponValue;
+            item.value = AQItem.Prices.CrabsonWeaponValue;
             item.noMelee = true;
             item.knockBack = 6.5f;
         }

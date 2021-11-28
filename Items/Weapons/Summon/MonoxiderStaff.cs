@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
@@ -30,7 +29,7 @@ namespace AQMod.Items.Weapons.Summon
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.noMelee = true;
             item.knockBack = 3f;
-            item.value = AQItem.PillarWeaponValue;
+            item.value = AQItem.Prices.PillarWeaponValue;
             item.rare = ItemRarityID.Red;
             item.UseSound = SoundID.Item44;
             item.shoot = ModContent.ProjectileType<Projectiles.Summon.Monoxider>();

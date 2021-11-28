@@ -1,16 +1,7 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
-using AQMod.Common.Config;
-using AQMod.Common.ItemOverlays;
+﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Common.Utilities;
-using AQMod.Common.WorldGeneration;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -21,7 +12,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlayData(AQUtils.GetPath(this) + "_Glow", new Color(200, 200, 200, 0)), item.type);
+                AQMod.ItemOverlays.Register(new GlowmaskOverlay(AQUtils.GetPath(this) + "_Glow", new Color(200, 200, 200, 0)), item.type);
         }
 
         public override void SetDefaults()
@@ -50,7 +41,7 @@ namespace AQMod.Items.Weapons.Melee
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return AQItem.GetAlphaDemonSiegeWeapon(lightColor);
+            return AQItem.Similarities.DemonSiegeItem_GetAlpha(lightColor);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

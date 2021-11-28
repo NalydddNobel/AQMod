@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -32,7 +31,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.autoReuse = true;
             item.UseSound = SoundID.Item99;
             item.rare = ItemRarityID.Red;
-            item.value = AQItem.PillarWeaponValue;
+            item.value = AQItem.Prices.PillarWeaponValue;
             item.noMelee = true;
         }
 

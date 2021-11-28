@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Melee
@@ -23,7 +22,7 @@ namespace AQMod.Items.Weapons.Melee
             item.melee = true;
             item.damage = 35;
             item.knockBack = 8f;
-            item.value = AQItem.DemonSiegeWeaponValue;
+            item.value = AQItem.Prices.DemonSiegeWeaponValue;
             item.UseSound = SoundID.Item1;
             item.rare = ItemRarityID.Orange;
             item.channel = true;

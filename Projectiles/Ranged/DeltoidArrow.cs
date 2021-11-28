@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
+using AQMod.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -119,7 +119,7 @@ namespace AQMod.Projectiles.Ranged
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return AQItem.GetAlphaDemonSiegeWeapon(lightColor);
+            return AQItem.Similarities.DemonSiegeItem_GetAlpha(lightColor);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

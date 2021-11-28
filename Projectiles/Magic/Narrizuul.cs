@@ -83,8 +83,8 @@ namespace AQMod.Projectiles.Magic
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = DrawUtils.LegacyTextureCache.Glows[GlowID.NarrenBolt];
-            Vector2 origin = texture.Size() / 2f;
+            Texture2D glow = ModContent.GetTexture(this.GetPath("_Glow"));
+            Vector2 origin = glow.Size() / 2f;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             float colorMult = 1f / ProjectileID.Sets.TrailCacheLength[projectile.type];
             int trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
@@ -100,8 +100,8 @@ namespace AQMod.Projectiles.Magic
                 if (trueOldPos.Count > 1)
                 {
                     var trail = new Trailshader(TextureCache.Trails[TrailTex.ThickLine], Trailshader.TextureTrail);
-                    var clr2 = NarrizuulRainbow(projectile.localAI[1]);
-                    trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20f - p * 20f), (p) => clr2 * 0.65f * (1f - p));
+                    var clr2 = NarrizuulRainbow(projectile.localAI[1]) * 3;
+                    trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20f - p * 20f), (p) => clr2 * (0.65f + (float)(Math.Sin(Main.GlobalTime + p * 20f) * 0.1f)) * (1f - p));
                     trail.Draw();
                 }
             }
@@ -114,18 +114,22 @@ namespace AQMod.Projectiles.Magic
                     float progress = 1f - 1f / trailLength * i;
                     var clr2 = NarrizuulRainbow(projectile.localAI[1] + i * 0.1f) * 0.225f;
                     var orig2 = Main.projectileTexture[projectile.type].Size() / 2f;
-                    Main.spriteBatch.Draw(texture, projectile.oldPos[i] + offset / 2f - Main.screenPosition, null, clr2 * progress, projectile.rotation, orig2, projectile.scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(glow, projectile.oldPos[i] + offset / 2f - Main.screenPosition, null, clr2 * progress, projectile.rotation, orig2, projectile.scale, SpriteEffects.None, 0f);
                 }
             }
-            texture = TextureCache.Lights[LightTex.Spotlight66x66];
-            spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, NarrizuulRainbow(projectile.localAI[1]) * 0.5f, projectile.rotation, texture.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            texture = Main.projectileTexture[projectile.type];
+            glow = TextureCache.Lights[LightTex.Spotlight66x66];
+            spriteBatch.Draw(glow, projectile.Center - Main.screenPosition, null, NarrizuulRainbow(projectile.localAI[1]) * 0.5f, projectile.rotation, glow.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            glow = Main.projectileTexture[projectile.type];
             var drawPos = projectile.Center - Main.screenPosition;
             var orig = Main.projectileTexture[projectile.type].Size() / 2f;
-            spriteBatch.Draw(texture, drawPos, null, new Color(250, 250, 250, 20), projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(this.GetTexture(), drawPos, null, new Color(250, 250, 250, 20), projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
             var clr = Color.Lerp(new Color(250, 250, 250, 20), NarrizuulRainbow(projectile.localAI[1]), 0.5f);
-            spriteBatch.Draw(texture, drawPos, null, clr * 0.5f, projectile.rotation, orig, projectile.scale + 0.2f + (float)Math.Sin(Main.GlobalTime * 20f) * 0.4f, SpriteEffects.None, 0f);
-            spriteBatch.Draw(texture, drawPos, null, clr * 0.32f, projectile.rotation + MathHelper.PiOver4, orig, projectile.scale + 0.1f + (float)Math.Sin(Main.GlobalTime * 20f + 1f) * 0.2f, SpriteEffects.None, 0f);
+            float scale1 = projectile.scale + (float)Math.Sin(Main.GlobalTime * 5f) * 0.4f;
+            spriteBatch.Draw(glow, drawPos, null, clr * 0.5f, projectile.rotation, orig, scale1 + 0.2f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(glow, drawPos, null, clr * 0.32f, projectile.rotation + MathHelper.PiOver4, orig, scale1 + 0.1f, SpriteEffects.None, 0f);
+
+            spriteBatch.Draw(glow, drawPos, null, clr * 0.2f, projectile.rotation, orig, (scale1 + 0.2f) * 1.5f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(glow, drawPos, null, clr * 0.1f, projectile.rotation + MathHelper.PiOver4, orig, (scale1 + 0.1f) * 1.5f, SpriteEffects.None, 0f);
             return false;
         }
 

@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -30,7 +29,7 @@ namespace AQMod.Items.Weapons.Summon
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.noMelee = true;
             item.knockBack = 5f;
-            item.value = AQItem.GlimmerWeaponValue;
+            item.value = AQItem.Prices.GlimmerWeaponValue;
             item.rare = ItemRarityID.Green;
             item.UseSound = SoundID.Item44;
             item.shoot = ModContent.ProjectileType<Projectiles.Summon.StariteMinion.StariteLeader>();
