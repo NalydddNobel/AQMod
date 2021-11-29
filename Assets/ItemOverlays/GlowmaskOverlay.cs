@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.Graphics;
+﻿using AQMod.Common.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -140,14 +140,14 @@ namespace AQMod.Assets.ItemOverlays
                 if (Shader != 0)
                 {
                     Main.spriteBatch.End();
-                    BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+                    BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
                     GameShaders.Armor.Apply(Shader, item, drawData);
                 }
                 drawData.Draw(Main.spriteBatch);
                 if (Shader != 0)
                 {
                     Main.spriteBatch.End();
-                    BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
+                    BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
                 }
             }
         }

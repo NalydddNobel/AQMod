@@ -253,7 +253,7 @@ namespace AQMod.Content.WorldEvents.CosmicEvent
                 return;
             if (spawnChance == -1)
                 spawnChance = GetBaseRarity();
-            if (Main.moonPhase != MoonPhaseID.FullMoon && NPC.AnyNPCs(NPCID.Dryad))
+            if (Main.moonPhase != Constants.MoonPhases.FullMoon && NPC.AnyNPCs(NPCID.Dryad))
             {
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {

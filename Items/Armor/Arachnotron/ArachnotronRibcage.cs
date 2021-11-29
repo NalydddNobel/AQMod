@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.PlayerLayers.EquipOverlays;
+using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using Terraria;

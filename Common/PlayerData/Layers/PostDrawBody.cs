@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.PlayerLayers.EquipOverlays;
+﻿using AQMod.Common.Graphics.PlayerEquips;
 using Terraria.ModLoader;
 
 namespace AQMod.Common.PlayerData.Layers

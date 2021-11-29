@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using System;

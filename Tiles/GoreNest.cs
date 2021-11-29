@@ -1,4 +1,4 @@
-﻿using AQMod.Common.SceneLayers;
+﻿using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Content.WorldEvents.DemonicEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

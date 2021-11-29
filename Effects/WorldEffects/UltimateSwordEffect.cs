@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.Graphics;
+﻿using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using System;

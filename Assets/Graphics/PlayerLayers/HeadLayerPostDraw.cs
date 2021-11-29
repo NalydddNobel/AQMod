@@ -1,5 +1,5 @@
-﻿using AQMod.Common.PlayerData;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Graphics.PlayerEquips;
+using AQMod.Common.PlayerData;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

@@ -1,5 +1,5 @@
-﻿using AQMod.Assets.Graphics.Particles;
-using AQMod.Assets.Graphics.ParticlesLayers;
+﻿using AQMod.Common.Graphics.Particles;
+using AQMod.Common.Graphics.ParticlesLayers;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;

@@ -1,6 +1,6 @@
-﻿using AQMod.Assets.PlayerLayers.EquipOverlays;
-using AQMod.Assets.Textures;
+﻿using AQMod.Assets.Textures;
 using AQMod.Common.Config;
+using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.PlayerData;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;

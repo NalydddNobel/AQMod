@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Graphics;
 using AQMod.Common.Config;
+using AQMod.Common.Graphics;
 using AQMod.Common.IO;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
@@ -82,12 +82,12 @@ namespace AQMod.Common.DeveloperTools
                 {
                     var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
                     Main.spriteBatch.End();
-                    BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
+                    BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Shader);
                     var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
                     effect.Apply(null, drawData);
                     drawData.Draw(Main.spriteBatch);
                     Main.spriteBatch.End();
-                    BatcherMethods.StartBatch_UI(Main.spriteBatch);
+                    BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Regular);
                     return false;
                 }
                 return true;

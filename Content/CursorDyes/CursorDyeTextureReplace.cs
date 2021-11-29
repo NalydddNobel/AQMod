@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Graphics;
+using AQMod.Common.Graphics;
 using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -36,7 +36,7 @@ namespace AQMod.Content.CursorDyes
                     try
                     {
                         Main.spriteBatch.End();
-                        BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
+                        BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Shader);
                         var effect = EffectCache.s_OutlineColor;
                         effect.UseColor(Main.MouseBorderColor);
                         effect.UseImageSize(texture.Size());
@@ -51,7 +51,7 @@ namespace AQMod.Content.CursorDyes
                 if (outline)
                 {
                     Main.spriteBatch.End();
-                    BatcherMethods.StartBatch_UI(Main.spriteBatch);
+                    BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Regular);
                 }
                 return true;
             }
@@ -75,7 +75,7 @@ namespace AQMod.Content.CursorDyes
                     try
                     {
                         Main.spriteBatch.End();
-                        BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
+                        BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Shader);
                         var effect = EffectCache.s_OutlineColor;
                         effect.UseColor(Main.MouseBorderColor);
                         effect.UseImageSize(texture.Size());
@@ -93,7 +93,7 @@ namespace AQMod.Content.CursorDyes
                 if (outline)
                 {
                     Main.spriteBatch.End();
-                    BatcherMethods.StartBatch_UI(Main.spriteBatch);
+                    BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Regular);
                 }
                 return true;
             }

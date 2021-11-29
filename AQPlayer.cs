@@ -1,11 +1,12 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Graphics.Particles;
-using AQMod.Assets.Graphics.ParticlesLayers;
 using AQMod.Assets.Graphics.PlayerLayers;
 using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Graphics.Particles;
+using AQMod.Common.Graphics.ParticlesLayers;
+using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.NetCode;
 using AQMod.Common.Skies;
 using AQMod.Common.Utilities;
@@ -51,14 +52,17 @@ namespace AQMod
 
         public static class Layers
         {
-            public static readonly PlayerLayer PostDrawHeldItem = new PlayerLayer("AQMod", "PostDrawHeldItem", (info) => 
+            public static readonly PlayerLayer PostDrawHeldItem = new PlayerLayer("AQMod", "PostDrawHeldItem", (info) =>
             {
                 var player = info.drawPlayer;
                 Item item = player.inventory[player.selectedItem];
-                if (info.shadow != 0f || player.frozen || ((player.itemAnimation <= 0 || item.useStyle == 0) && 
-                (item.holdStyle <= 0 || player.pulley)) || item.type <= ItemID.None || player.dead || item.noUseGraphic || 
+                if (info.shadow != 0f || player.frozen || ((player.itemAnimation <= 0 || item.useStyle == 0) &&
+                (item.holdStyle <= 0 || player.pulley)) || item.type <= ItemID.None || player.dead || item.noUseGraphic ||
                 (item.noWet && player.wet) || item.type < Main.maxItemTypes)
+                {
                     return;
+                }
+
                 if (item.modItem is IItemOverlays itemOverlay)
                 {
                     itemOverlay.PlayerDraw?.DrawUse(player, player.GetModPlayer<AQPlayer>(), item, info);

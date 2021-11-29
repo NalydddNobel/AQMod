@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Graphics;
+using AQMod.Common.Graphics;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using Microsoft.Xna.Framework;
@@ -108,15 +108,17 @@ namespace AQMod.Projectiles.Melee
                 sourceRect = new Rectangle(frame.X, frame.Y, frame.Width, texture.Height)
             };
             Main.spriteBatch.End();
-            BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+            BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
             var effect = EffectCache.s_SpikeFade;
             var sampler = TextureCache.Pixel.Value;
             effect.UseOpacity(1f / texture.Height * frameHeight + _portaloffset);
             effect.UseColor(new Vector3(0.65f, 0.3f, 1f));
             effect.Apply(drawData);
             drawData.Draw(Main.spriteBatch);
+            drawData.Draw(Main.spriteBatch);
+            drawData.Draw(Main.spriteBatch);
             Main.spriteBatch.End();
-            BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
+            BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
             return false;
         }
 

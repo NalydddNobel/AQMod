@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets.Textures;
+using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
 using AQMod.Effects;

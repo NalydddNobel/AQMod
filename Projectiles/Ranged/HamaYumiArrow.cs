@@ -3,7 +3,6 @@ using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Dusts;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

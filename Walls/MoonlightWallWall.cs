@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets.Textures;
+using AQMod.Common.Graphics;
 using AQMod.Common.Utilities;
 using AQMod.Items.Placeable.Wall;
 using Microsoft.Xna.Framework;
@@ -35,7 +36,7 @@ namespace AQMod.Walls
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            DrawMethods.DrawWall(i, j, ModContent.GetTexture(this.GetPath("_Glow")), GetColor(i + j));
+            Drawing.DrawWall(i, j, ModContent.GetTexture(this.GetPath("_Glow")), GetColor(i + j));
         }
     }
 }

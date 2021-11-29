@@ -1,6 +1,4 @@
-﻿using AQMod.Items.BossItems.Crabson;
-using AQMod.Items.BossItems.Starite;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,7 +32,7 @@ namespace AQMod.Tiles.Furniture
             switch (frameX / 54)
             {
                 case 0:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Placeable.NoHitPaintings.RockFromAnAlternateUniverse>());
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Placeable.RockFromAnAlternateUniverse>());
                 break;
             }
         }

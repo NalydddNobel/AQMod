@@ -1,23 +1,23 @@
 using AQMod.Assets;
 using AQMod.Assets.Graphics;
-using AQMod.Assets.Graphics.ParticlesLayers;
 using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Assets.ItemOverlays;
-using AQMod.Assets.PlayerLayers.EquipOverlays;
 using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.CrossMod;
 using AQMod.Common.DeveloperTools;
+using AQMod.Common.Graphics;
+using AQMod.Common.Graphics.PlayerEquips;
+using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Common.NetCode;
-using AQMod.Common.SceneLayers;
+using AQMod.Common.NoHitting;
 using AQMod.Common.Skies;
 using AQMod.Common.UserInterface;
 using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.MapMarkers;
-using AQMod.Content.NoHitting;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.AquaticEvent;
@@ -28,7 +28,6 @@ using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
@@ -39,12 +38,15 @@ using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Boss.Crabson;
 using AQMod.NPCs.Boss.Starite;
+using log4net;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
@@ -202,6 +204,94 @@ namespace AQMod
         private static Vector2 _lastScreenZoom;
         private static Vector2 _lastScreenView;
 
+        internal static class Debug
+        {
+            public static bool LogAutoload = true;
+
+            public struct DebugLogger
+            {
+                private readonly ILog _logger;
+
+                public DebugLogger(ILog logger)
+                {
+                    _logger = logger;
+                }
+
+                public void Log(object message)
+                {
+                    _logger.Debug(message);
+                }
+
+                public void Log(object message, object arg0)
+                {
+                    _logger.Debug(string.Format(message.ToString(), arg0));
+                }
+
+                public void Log(object message, params object[] args)
+                {
+                    _logger.Debug(string.Format(message.ToString(), args));
+                }
+
+                public void Log(object message, Exception exception)
+                {
+                    _logger.Debug(message, exception);
+                }
+            }
+
+            public static DebugLogger GetDebugLogger()
+            {
+                var logger = Instance.Logger;
+                logger.Info("Accessed debug logger at: " + Environment.StackTrace);
+                return new DebugLogger(logger);
+            }
+        }
+
+        internal static class Autoloading
+        {
+            private static List<IAutoloadType> _autoloadCache;
+
+            public static void Autoload(Assembly code)
+            {
+                _autoloadCache = new List<IAutoloadType>();
+                if (Debug.LogAutoload)
+                {
+                    var logger = Debug.GetDebugLogger();
+                    foreach (var t in code.GetTypes())
+                    {
+                        if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(IAutoloadType)))
+                        {
+                            var instance = (IAutoloadType)Activator.CreateInstance(t);
+                            instance.OnLoad();
+                            logger.Log("Created autoload instance of: {0}", t.FullName);
+                            _autoloadCache.Add(instance);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var t in code.GetTypes())
+                    {
+                        if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(IAutoloadType)))
+                        {
+                            var instance = (IAutoloadType)Activator.CreateInstance(t);
+                            instance.OnLoad();
+                            _autoloadCache.Add(instance);
+                        }
+                    }
+                }
+            }
+
+            public static void Unload()
+            {
+                if (_autoloadCache == null)
+                    return;
+                foreach (var autoload in _autoloadCache)
+                {
+                    autoload.Unload();
+                }
+            }
+        }
+
         public AQMod()
         {
             Properties = new ModProperties()
@@ -235,7 +325,6 @@ namespace AQMod
             MapMarkers = new MapMarkerManager();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             ModCallHelper.SetupCalls();
-
             On.Terraria.Chest.SetupShop += Chest_SetupShop;
             On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
             On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
@@ -244,13 +333,34 @@ namespace AQMod
             On.Terraria.Player.FishingLevel += GetFishingLevel;
             On.Terraria.Player.AddBuff += Player_AddBuff;
             On.Terraria.Player.QuickBuff += Player_QuickBuff;
-
             var server = AQConfigServer.Instance;
             ApplyServerConfig(server);
             if (!Main.dedServ)
             {
-                Load_ClientSide();
+                var client = AQConfigClient.Instance;
+                ApplyClientConfig(client);
+                Main.OnPreDraw += Main_OnPreDraw;
+                On.Terraria.ItemText.NewText += ItemText_NewText;
+                On.Terraria.Main.DrawTiles += Main_DrawTiles;
+                On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
+                ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
+                ArmorOverlays = new EquipOverlayLoader();
+                TextureCache.Load();
+                EffectCache.Load(this);
+                CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
+                GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
+                OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
+                DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
+                SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
+                GlimmerEventSky.Initialize();
+                Trailshader.Setup();
+                WorldLayers = new SceneLayersManager();
+                SceneLayersManager.Setup();
+                ScreenShakeManager.Load();
+                StarbyteColorCache.Init();
+                WorldEffects = new List<WorldVisualEffect>();
             }
+            Autoloading.Autoload(Code);
         }
 
         private int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
@@ -319,40 +429,6 @@ namespace AQMod
             orig(self, type, time1, quiet);
         }
 
-        private void Load_ClientSide()
-        {
-            var client = AQConfigClient.Instance;
-            ApplyClientConfig(client);
-            On.Terraria.ItemText.NewText += ItemText_NewText;
-            On.Terraria.Main.DrawTiles += Main_DrawTiles;
-            On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
-            ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
-            ArmorOverlays = new EquipOverlayLoader();
-            TextureCache.Load();
-            EffectCache.Load(this);
-            CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
-            GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
-            OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
-            DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
-            SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
-            GlimmerEventSky.Initialize();
-            Trailshader.Setup();
-            DrawUtils.LegacyTextureCache.Setup();
-            WorldLayers = new SceneLayersManager();
-            WorldLayers.Setup(loadHooks: true);
-            WorldLayers.Register("GoreNest", new GoreNestLayer(test: false), SceneLayering.BehindNPCs);
-            WorldLayers.Register("UltimateSword", new UltimateSwordWorldOverlay(), SceneLayering.InfrontNPCs);
-            WorldLayers.Register("ImpChains", new ImpChainLayer(), SceneLayering.BehindNPCs);
-            WorldLayers.Register("CrabsonChains", new JerryCrabsonLayer(), SceneLayering.BehindTiles_BehindNPCs);
-            WorldLayers.Register("ParticleLayer_PostDrawPlayer", new ParticleLayer_PostDrawPlayers(), SceneLayering.PostDrawPlayers);
-            WorldLayers.Register(HotAndColdCurrentLayer.Name, new HotAndColdCurrentLayer(), HotAndColdCurrentLayer.Layer);
-            WorldLayers.Register(CustomPickupTextLayer.Name, new CustomPickupTextLayer(), CustomPickupTextLayer.Layer);
-            ScreenShakeManager.Load();
-            StarbyteColorCache.Init();
-            Main.OnPreDraw += Main_OnPreDraw;
-            WorldEffects = new List<WorldVisualEffect>();
-        }
-
         private static void ItemText_NewText(On.Terraria.ItemText.orig_NewText orig, Item newItem, int stack, bool noStack, bool longText)
         {
             if (newItem != null && newItem.type > Main.maxItemTypes && newItem.modItem is Items.ICustomPickupText customPickupText)
@@ -412,8 +488,8 @@ namespace AQMod
         private void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
         {
             orig(self);
-            BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
-            WorldLayers.DrawLayer(SceneLayering.PostDrawPlayers);
+            BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+            SceneLayersManager.DrawLayer(SceneLayering.PostDrawPlayers);
             Main.spriteBatch.End();
         }
 
@@ -629,6 +705,7 @@ namespace AQMod
             // outside of AQMod
             Loading = true;
             Unloading = true;
+            Autoloading.Unload();
             HuntSystem.Unload();
 
             // in: AddRecipes()
@@ -655,14 +732,13 @@ namespace AQMod
             // v doesn't load on server v
             if (Main.dedServ)
             {
-                DrawUtils.UnloadAssets();
                 WorldEffects = null;
                 StarbyteColorCache.Unload();
                 ScreenShakeManager.Unload();
                 ArmorOverlays = null;
                 if (WorldLayers != null)
                 {
-                    WorldLayers.Unload();
+                    SceneLayersManager.Unload();
                     WorldLayers = null;
                 }
                 EffectCache.ParentPixelShader = null;
@@ -745,7 +821,7 @@ namespace AQMod
 
             if (Main.netMode != NetmodeID.Server)
             {
-                WorldLayers.UpdateLayers();
+                SceneLayersManager.UpdateLayers();
             }
         }
 

@@ -1,4 +1,4 @@
-﻿using AQMod.Common.Utilities;
+﻿using AQMod.Common.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -20,7 +20,7 @@ namespace AQMod.Projectiles.Bobbers
             var player = Main.player[projectile.owner];
             if (!projectile.bobber || player.inventory[player.selectedItem].holdStyle <= 0)
                 return false;
-            DrawMethods.DrawFishingLine(new Color(175, 146, 146, 255), player, projectile.position, projectile.width, projectile.height, projectile.velocity, projectile.localAI[0], new Vector2(45f, 39f));
+            Drawing.DrawFishingLine(new Color(175, 146, 146, 255), player, projectile.position, projectile.width, projectile.height, projectile.velocity, projectile.localAI[0], new Vector2(45f, 39f));
             return false;
         }
     }

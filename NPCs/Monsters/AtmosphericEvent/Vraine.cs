@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities;
 using AQMod.Items.Placeable.Banners;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

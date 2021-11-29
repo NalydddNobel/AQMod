@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Graphics;
 using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Items.Armor.Crab;
@@ -326,7 +327,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
             if ((legTip - kneePos).Length() > 8f)
             {
                 var chainTexture = ModContent.GetTexture(AQUtils.GetPath<StriderHookHook>("_Chain"));
-                DrawMethods.DrawChain_UseLighting(chainTexture, kneePos, legTip, screenPos);
+                Drawing.DrawChain_UseLighting(chainTexture, kneePos, legTip, screenPos);
             }
             Main.spriteBatch.Draw(texture, drawPosition - screenPos, _frames[1], Lighting.GetColor((int)drawPosition.X / 16, (int)drawPosition.Y / 16), npc.rotation + rotation, new Vector2(orig.X, 6f), npc.scale, effects, 0f);
         }

@@ -3,9 +3,10 @@ using AQMod.Assets.Textures;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
+using AQMod.Common.Graphics;
+using AQMod.Common.NoHitting;
 using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
-using AQMod.Content.NoHitting;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
@@ -1474,8 +1475,8 @@ namespace AQMod.NPCs.Boss.Starite
             {
                 if (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z > 0f)
                 {
-                    var drawPosition = Projector3D.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
-                    var drawScale = Projector3D.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
+                    var drawPosition = AQUtils.Projector3D.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
+                    var drawScale = AQUtils.Projector3D.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
                     foreach (var draw in drawOmegite)
                     {
                         draw.Invoke(
@@ -1549,8 +1550,8 @@ namespace AQMod.NPCs.Boss.Starite
             }
             for (int i = 0; i < sortedOmegites.Count; i++)
             {
-                var drawPosition = Projector3D.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
-                var drawScale = Projector3D.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
+                var drawPosition = AQUtils.Projector3D.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
+                var drawScale = AQUtils.Projector3D.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
                 foreach (var draw in drawOmegite)
                 {
                     draw.Invoke(

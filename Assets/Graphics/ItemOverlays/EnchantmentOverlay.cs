@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets.ItemOverlays;
+using AQMod.Common.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -84,7 +85,7 @@ namespace AQMod.Assets.Graphics.ItemOverlays
         public override bool PreDrawWorld(Item item, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
             Main.spriteBatch.End();
-            BatcherMethods.StartShaderBatch_GeneralEntities(Main.spriteBatch);
+            BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
 
             var frame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
             var drawPosition = new Vector2(item.position.X - Main.screenPosition.X + frame.Width / 2 + item.width / 2 - frame.Width / 2, item.position.Y - Main.screenPosition.Y + frame.Height / 2 + item.height - frame.Height);
@@ -96,20 +97,20 @@ namespace AQMod.Assets.Graphics.ItemOverlays
             drawData.Draw(Main.spriteBatch);
 
             Main.spriteBatch.End();
-            BatcherMethods.StartBatch_GeneralEntities(Main.spriteBatch);
+            BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
             return true;
         }
 
         public override bool PreDrawInventory(Player player, AQPlayer aQPlayer, Item item, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             Main.spriteBatch.End();
-            BatcherMethods.StartShaderBatch_UI(Main.spriteBatch);
+            BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Shader);
             var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
             var effect = EffectCache.s_Enchant;
             effect.Apply(drawData);
             drawData.Draw(Main.spriteBatch);
             Main.spriteBatch.End();
-            BatcherMethods.StartBatch_UI(Main.spriteBatch);
+            BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Regular);
             return true;
         }
     }
