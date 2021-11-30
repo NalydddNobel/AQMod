@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Consumables.Foods
+namespace AQMod.Items.Foods
 {
     public class SuspiciousLookingSteak : ModItem
     {
@@ -10,7 +10,7 @@ namespace AQMod.Items.Consumables.Foods
         {
             get
             {
-                string path = AQUtils.GetPath(this);
+                string path = this.GetPath();
                 if (AQMod.AprilFools)
                     return path + "_AprilFools";
                 return path;

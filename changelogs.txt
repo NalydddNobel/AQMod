@@ -1,3 +1,12 @@
+####### 1.2.3.5 #######
+
+Changes:
+- Hell's Boon now inflicts Corrupted Fire on true melee hits
+- Burnterizer now inflicts Crimson Fire on true melee hits
+- Fizzling Fire now inflicts Corrupted Fire
+- Hama Yumi now inflicts Corrupted Fire
+- Deltoid's base arrow now inflicts Crimson Fire, any arrows spawned by it will not inflict Crimson Fire
+
 ####### 1.2.3.4 #######
 
 Additions:

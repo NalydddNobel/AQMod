@@ -118,6 +118,8 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
         {
             if (Main.rand.NextBool(20))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<FishyFins>());
+            if (Main.rand.NextBool(10))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CheesePuff>());
             if (Main.rand.NextBool(8))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HermitShell>());
             if (Main.rand.NextBool())

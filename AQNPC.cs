@@ -1482,6 +1482,38 @@ namespace AQMod
                 return;
             switch (npc.type)
             {
+                case NPCID.SeekerHead:
+                {
+                    if (Main.rand.NextBool(10))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.SpicyEel>());
+                }
+                break;
+
+                case NPCID.DiggerHead:
+                {
+                    if (Main.rand.NextBool(10))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.SpicyEel>());
+                }
+                break;
+
+                case NPCID.RaggedCaster:
+                case NPCID.RaggedCasterOpenCoat:
+                {
+                    if (Main.rand.NextBool(10))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GrapePhanta>());
+                }
+                break;
+
+                case NPCID.RustyArmoredBonesAxe:
+                case NPCID.RustyArmoredBonesFlail:
+                case NPCID.RustyArmoredBonesSword:
+                case NPCID.RustyArmoredBonesSwordNoArmor:
+                {
+                    if (Main.rand.NextBool(40))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GrapePhanta>());
+                }
+                break;
+
                 case NPCID.AngryBones:
                 {
                     if (Main.rand.NextBool(80))

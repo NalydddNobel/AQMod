@@ -4,16 +4,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Consumables.Foods
+namespace AQMod.Items.Foods
 {
     public class GrapePhanta : ModItem, ISpecialFood
     {
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-            {
                 AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), new Color(200, 200, 200, 0)), item.type);
-            }
         }
 
         public override void SetDefaults()

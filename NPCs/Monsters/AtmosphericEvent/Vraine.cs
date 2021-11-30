@@ -383,10 +383,23 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
         public override void NPCLoot()
         {
             bool anyOthers = NPC.AnyNPCs(npc.type);
-            if (!anyOthers || Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
-            if (anyOthers && Main.rand.NextBool(5))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.Vrang>(), Main.rand.NextVRand(1, 3));
+            if (!anyOthers)
+            {
+                if (Main.rand.NextBool(3))
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
+                }
+                if (Main.rand.NextBool(5))
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.Vrang>(), Main.rand.NextVRand(1, 2));
+                }
+                if (Main.rand.NextBool(10))
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.Dyes.CensorDye>(), Main.rand.NextVRand(1, 3));
+                }
+            }
+            if (Main.rand.NextBool(10))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.PeeledCarrot>(), Main.rand.NextVRand(1, 3));
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)

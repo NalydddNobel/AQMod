@@ -84,6 +84,8 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
 
         public override void NPCLoot()
         {
+            if (Main.rand.NextBool(10))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CheesePuff>());
             if (Main.rand.NextBool(3))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
             if (Main.rand.NextBool())

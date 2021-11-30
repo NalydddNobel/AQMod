@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Consumables.Foods
+namespace AQMod.Items.Foods
 {
     public class LarvaEel : ModItem
     {

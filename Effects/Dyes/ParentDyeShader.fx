@@ -402,6 +402,10 @@ float4 SpikeFade(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
 
 technique Technique1
 {
+    pass CensorPass
+    {
+        PixelShader = compile ps_2_0 Censor();
+    }
     pass SpotlightPass
     {
         PixelShader = compile ps_2_0 Spotlight();

@@ -3,16 +3,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Consumables.Foods
+namespace AQMod.Items.Foods
 {
     public class NeutronJuice : ModItem
     {
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-            {
                 AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow")), item.type);
-            }
         }
 
         public override void SetDefaults()

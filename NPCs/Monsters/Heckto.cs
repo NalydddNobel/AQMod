@@ -117,6 +117,8 @@ namespace AQMod.NPCs.Monsters
         public override void NPCLoot()
         {
             Item.NewItem(npc.getRect(), ItemID.Ectoplasm, Main.rand.Next(3) + 1);
+            if (Main.rand.NextBool(10))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.RedLicorice>());
             if (Main.rand.NextBool(45))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
         }

@@ -2,7 +2,7 @@
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Content.WorldEvents.CosmicEvent;
-using AQMod.Items.Consumables.Foods;
+using AQMod.Items.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
