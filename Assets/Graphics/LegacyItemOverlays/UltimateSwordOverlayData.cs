@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace AQMod.Assets.Graphics.ItemOverlays
+namespace AQMod.Assets.Graphics.LegacyItemOverlays
 {
     public class UltimateSwordOverlayData : ItemOverlayData
     {

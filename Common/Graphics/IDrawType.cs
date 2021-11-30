@@ -1,4 +1,4 @@
-﻿namespace AQMod.Assets.Graphics
+﻿namespace AQMod.Common.Graphics
 {
     public interface IDrawType
     {
