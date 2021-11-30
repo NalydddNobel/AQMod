@@ -20,9 +20,12 @@ namespace AQMod.Assets
 
         internal static void Load(AQMod aQMod)
         {
-            ParentPixelShader = logGetEffect("Dyes/ParentDyeShader", aQMod);
-            GoreNestPortal = logGetEffect("GoreNest/GoreNestPortal", aQMod);
-            Trailshader = logGetEffect("Trails/Trailshader", aQMod);
+            AQMod.Debug.DebugLogger? logger = null;
+            if (AQMod.Debug.LogEffectLoading)
+                logger = AQMod.Debug.GetDebugLogger();
+            ParentPixelShader = logGetEffect("Dyes/ParentDyeShader", aQMod, logger);
+            GoreNestPortal = logGetEffect("GoreNest/GoreNestPortal", aQMod, logger);
+            Trailshader = logGetEffect("Trails/Trailshader", aQMod, logger);
 
             s_Outline = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "OutlinePass");
             s_OutlineColor = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "OutlineColorPass");
@@ -33,12 +36,11 @@ namespace AQMod.Assets
             s_Enchant = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "ImageScrollPass");
         }
 
-        private static Effect logGetEffect(string path, AQMod aQMod)
+        private static Effect logGetEffect(string name, AQMod aQMod, AQMod.Debug.DebugLogger? logger)
         {
-            aQMod.Logger.Info("Loading effect: Effects/" + path);
-            var effect = aQMod.GetEffect("Effects/" + path);
-            if (effect == null)
-                aQMod.Logger.Error("Failed to load effect");
+            if (logger != null)
+                logger.Value.Log("Loading effect: Effects/" + name);
+            var effect = aQMod.GetEffect("Effects/" + name);
             return effect;
         }
     }

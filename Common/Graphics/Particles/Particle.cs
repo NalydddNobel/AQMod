@@ -1,4 +1,4 @@
-﻿namespace AQMod.Common.Graphics.ParticlesLayers
+﻿namespace AQMod.Common.Graphics.Particles
 {
     public abstract class Particle
     {

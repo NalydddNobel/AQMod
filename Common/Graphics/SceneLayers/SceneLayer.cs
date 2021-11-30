@@ -30,6 +30,13 @@ namespace AQMod.Common.Graphics.SceneLayers
             Unload();
         }
 
+        /// <summary>
+        /// Called before nulling the layers dictionary array
+        /// </summary>
+        internal virtual void Unload()
+        {
+        }
+
         protected virtual void OnRegister(LayerKey key)
         {
         }
@@ -48,13 +55,6 @@ namespace AQMod.Common.Graphics.SceneLayers
         /// Called when loading a world
         /// </summary>
         internal virtual void Initialize()
-        {
-        }
-
-        /// <summary>
-        /// Called before nulling the layers dictionary array
-        /// </summary>
-        internal virtual void Unload()
         {
         }
     }

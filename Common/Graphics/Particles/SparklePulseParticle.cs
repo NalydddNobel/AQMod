@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 
-namespace AQMod.Common.Graphics.ParticlesLayers
+namespace AQMod.Common.Graphics.Particles
 {
     public class SparklePulseParticle : MonoParticle
     {

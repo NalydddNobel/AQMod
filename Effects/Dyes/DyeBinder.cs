@@ -19,9 +19,12 @@ namespace AQMod.Effects.Dyes
         {
             if (_loadDyes == null)
                 return;
+            AQMod.Debug.DebugLogger? logger = null;
+            if (AQMod.Debug.LogDyeBinding)
+                logger = AQMod.Debug.GetDebugLogger();
             foreach (var dye in _loadDyes)
             {
-                setupDye(dye);
+                setupDye(dye, logger);
             }
             _loadDyes = null;
         }
@@ -31,9 +34,10 @@ namespace AQMod.Effects.Dyes
             _loadDyes = null;
         }
 
-        private static void setupDye(DyeItem dye)
+        private static void setupDye(DyeItem dye, AQMod.Debug.DebugLogger? debugLogger)
         {
-            dye.mod.Logger.Info("Binding shader to " + dye.Name + " {Pass:" + dye.Pass + "}");
+            if (debugLogger != null)
+                debugLogger.Value.Log("Binding shader to " + dye.Name + " {Pass:" + dye.Pass + "}");
             GameShaders.Armor.BindShader(dye.item.type, dye.CreateShaderData);
         }
     }

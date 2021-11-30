@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.Graphics.Particles;
-using AQMod.Common.Graphics.ParticlesLayers;
+using AQMod.Common.Graphics.Particles;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;

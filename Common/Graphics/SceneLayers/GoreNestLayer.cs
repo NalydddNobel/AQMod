@@ -33,6 +33,15 @@ namespace AQMod.Common.Graphics.SceneLayers
             Key = key;
         }
 
+        internal override void Unload()
+        {
+            Key = LayerKey.Null;
+            x = null;
+            y = null;
+            index = 0;
+            reset = false;
+        }
+
         public static void AddCorrds(int i, int j)
         {
             if (index == -1 || reset)

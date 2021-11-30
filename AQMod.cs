@@ -1,5 +1,4 @@
 using AQMod.Assets;
-using AQMod.Assets.Graphics;
 using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Assets.ItemOverlays;
 using AQMod.Buffs.Debuffs.Temperature;
@@ -207,6 +206,8 @@ namespace AQMod
         internal static class Debug
         {
             public static bool LogAutoload = true;
+            public static bool LogDyeBinding = false;
+            public static bool LogEffectLoading = false;
 
             public struct DebugLogger
             {
@@ -339,7 +340,7 @@ namespace AQMod
             {
                 var client = AQConfigClient.Instance;
                 ApplyClientConfig(client);
-                Main.OnPreDraw += Main_OnPreDraw;
+                On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
                 On.Terraria.ItemText.NewText += ItemText_NewText;
                 On.Terraria.Main.DrawTiles += Main_DrawTiles;
                 On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
@@ -361,6 +362,15 @@ namespace AQMod
                 WorldEffects = new List<WorldVisualEffect>();
             }
             Autoloading.Autoload(Code);
+        }
+
+        private void Main_UpdateDisplaySettings(On.Terraria.Main.orig_UpdateDisplaySettings orig, Main self)
+        {
+            orig(self);
+            if (!Main.gameMenu && Main.graphics.GraphicsDevice != null && Main.spriteBatch != null)
+            {
+                HotAndColdCurrentLayer.DrawTarget();
+            }
         }
 
         private int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
@@ -437,14 +447,6 @@ namespace AQMod
                     return;
             }
             orig(newItem, stack, noStack, longText);
-        }
-
-        private void Main_OnPreDraw(GameTime obj) // this is based greatly on the Stargoop from Spirit Mod, thank you, whoever coded that.
-        {
-            if (!Main.gameMenu && Main.graphics.GraphicsDevice != null && Main.spriteBatch != null)
-            {
-                HotAndColdCurrentLayer.DrawTarget();
-            }
         }
 
         private static int GetFishingLevel(On.Terraria.Player.orig_FishingLevel orig, Player player)
@@ -614,7 +616,6 @@ namespace AQMod
             Split = new CrossModType("Split");
             Split.Load();
 
-            // TODO: Add content method instances that run here, which other mods can add to, so that adding to specific things is less hellish.
             Loading = false; // Sets Loading to false, so that some things no longer accept new content.
             RobsterHunts.SetupHunts();
             if (!Main.dedServ)
@@ -705,6 +706,7 @@ namespace AQMod
             // outside of AQMod
             Loading = true;
             Unloading = true;
+            cachedLoadTasks = null;
             Autoloading.Unload();
             HuntSystem.Unload();
 
@@ -718,7 +720,6 @@ namespace AQMod
             }
 
             // in: PostSetupContent()
-            cachedLoadTasks = null;
             DyeBinder.Unload();
             MapMarkers = null;
             AQItem.Sets.Unload();

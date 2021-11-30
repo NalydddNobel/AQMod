@@ -1,5 +1,4 @@
 ﻿using AQMod.Common.Graphics.Particles;
-using AQMod.Common.Graphics.ParticlesLayers;
 using AQMod.Common.NoHitting;
 using AQMod.Common.Utilities;
 using AQMod.Content;
@@ -414,7 +413,9 @@ namespace AQMod
                         {
                             string tryName = Lang.GetNPCName(i).Value;
                             if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
+                            {
                                 npcname = NPCLoader.GetNPC(i).Name;
+                            }
                             else
                             {
                                 npcname = tryName + "/" + NPCLoader.GetNPC(i).Name;
@@ -625,7 +626,9 @@ namespace AQMod
             else
             {
                 if (temperature < -100)
+                {
                     temperature = -100;
+                }
                 else if (temperature > 100)
                 {
                     temperature = 100;
@@ -780,7 +783,9 @@ namespace AQMod
             {
                 Color fireColor = Buffs.Debuffs.CorruptionHellfire.FireColor;
                 if (corruptHellfire && crimsonHellfire)
+                {
                     fireColor = Color.Lerp(fireColor, Buffs.Debuffs.CrimsonHellfire.FireColor, 0.5f);
+                }
                 else if (crimsonHellfire)
                 {
                     fireColor = Buffs.Debuffs.CrimsonHellfire.FireColor;
@@ -1282,7 +1287,9 @@ namespace AQMod
                 return;
             NPCLoader.blockLoot.Add(ItemID.Heart);
             if (npc.boss)
+            {
                 BreadsoulHealing.SpawnCluster(Main.player[_breadsoul], npc.Center, npc.Size.Length() / 2f, Main.rand.Next(10, 18), Main.rand.Next(120, 180));
+            }
             else
             {
                 var breadsoulCollector = Main.player[_breadsoul].Center;
@@ -1342,7 +1349,9 @@ namespace AQMod
         public override bool PreNPCLoot(NPC npc)
         {
             if (_lootLoop != 0)
+            {
                 NPCLoader.blockLoot.Add(ItemID.Heart);
+            }
             else
             {
                 UpdateBreadsoul(npc);
@@ -1587,7 +1596,9 @@ namespace AQMod
         public void ChangeTemperature(NPC npc, sbyte newTemperature)
         {
             if (hotDamage && newTemperature > 0)
+            {
                 newTemperature /= 2;
+            }
             else if (npc.coldDamage && newTemperature < 0)
             {
                 newTemperature /= 2;
@@ -1621,7 +1632,9 @@ namespace AQMod
                 temperature = newTemperature;
             }
             if (newTemperature < 0)
+            {
                 temperature--;
+            }
             else
             {
                 temperature++;

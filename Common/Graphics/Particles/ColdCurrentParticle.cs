@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace AQMod.Common.Graphics.ParticlesLayers
+namespace AQMod.Common.Graphics.Particles
 {
     public sealed class ColdCurrentParticle : MonoParticle
     {

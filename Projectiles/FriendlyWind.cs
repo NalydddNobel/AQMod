@@ -2,7 +2,7 @@
 using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Common;
 using AQMod.Common.Graphics.Particles;
-using AQMod.Common.Graphics.ParticlesLayers;
+using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.AtmosphericEvent;

@@ -19,6 +19,11 @@ namespace AQMod.Common.Graphics.SceneLayers
             Key = key;
         }
 
+        internal override void Unload()
+        {
+            Key = LayerKey.Null;
+        }
+
         protected override void Draw()
         {
             int trapImpType = ModContent.NPCType<Trapper>();

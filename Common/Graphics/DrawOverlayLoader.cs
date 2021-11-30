@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Assets.Graphics
+namespace AQMod.Common.Graphics
 {
     public sealed class DrawOverlayLoader<Overlay>
     {
@@ -61,13 +61,6 @@ namespace AQMod.Assets.Graphics
         public void Finish()
         {
             Array.Resize(ref _overlays, GetID(CompleteCap()));
-            try
-            {
-                Main.spriteBatch.End();
-            }
-            catch
-            {
-            }
         }
 
         private int GetID(int id)

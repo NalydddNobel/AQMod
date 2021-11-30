@@ -5,7 +5,6 @@ using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Graphics.Particles;
-using AQMod.Common.Graphics.ParticlesLayers;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.NetCode;
 using AQMod.Common.Skies;

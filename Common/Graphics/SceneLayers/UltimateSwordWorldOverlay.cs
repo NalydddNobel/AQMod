@@ -33,6 +33,12 @@ namespace AQMod.Common.Graphics.SceneLayers
             Key = key;
         }
 
+        internal override void Unload()
+        {
+            Key = LayerKey.Null;
+            _rand = null;
+        }
+
         protected override void Draw()
         {
             if (!closeEnoughToDraw() || OmegaStariteScene.SceneType > 1)

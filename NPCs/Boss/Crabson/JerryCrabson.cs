@@ -334,16 +334,16 @@ namespace AQMod.NPCs.Boss.Crabson
         {
         }
 
+        public bool ShouldDropCrabsol()
+        {
+            return (int)npc.ai[1] == 1;
+        }
+
         public override bool PreNPCLoot()
         {
             npc.position.Y -= npc.height / 2f;
             CrabSeason.CrabsonCachedID = -1;
             return true;
-        }
-
-        public bool ShouldDropCrabsol()
-        {
-            return (int)npc.ai[1] == 1;
         }
 
         public override void NPCLoot()

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 
 namespace AQMod.Assets.Graphics.SceneLayers
 {
@@ -16,9 +17,6 @@ namespace AQMod.Assets.Graphics.SceneLayers
         private static Effect _hotAndColdCurrentShader;
         private static List<IDrawType> _hotCurrentList;
         private static List<IDrawType> _coldCurrentList;
-
-        public static bool TargetsDrawn { get; private set; }
-
         private static RenderTarget2D hotTarget;
         private static RenderTarget2D coldTarget;
         private static RenderTarget2D finalTarget;
@@ -42,9 +40,23 @@ namespace AQMod.Assets.Graphics.SceneLayers
             Key = key;
         }
 
+        internal override void Unload()
+        {
+            Key = LayerKey.Null;
+            _graphics = null;
+            _hotAndColdCurrentShader = null;
+            _hotCurrentList = null;
+            _coldCurrentList = null;
+            hotTarget = null;
+            coldTarget = null;
+            finalTarget = null;
+        }
+
         internal static void Reset(GraphicsDevice graphics)
         {
             _graphics = graphics;
+            if (_graphics == null)
+                return;
             hotTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
             coldTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
             finalTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
@@ -62,11 +74,33 @@ namespace AQMod.Assets.Graphics.SceneLayers
 
         public static void DrawTarget()
         {
+            if (_hotCurrentList == null)
+            {
+                _hotCurrentList = new List<IDrawType>();
+            }
+            if (_coldCurrentList == null)
+            {
+                _coldCurrentList = new List<IDrawType>();
+            }
             if (_hotCurrentList.Count > 0 || _coldCurrentList.Count > 0)
             {
-                if (finalTarget == null || finalTarget.IsContentLost || hotTarget == null || hotTarget.IsContentLost || coldTarget == null || coldTarget.IsContentLost)
+                if (finalTarget == null || finalTarget.IsContentLost 
+                    || hotTarget == null || hotTarget.IsContentLost 
+                    || coldTarget == null || coldTarget.IsContentLost)
+                {
                     Reset(Main.graphics.GraphicsDevice);
-                var renderTargets = _graphics.GetRenderTargets();
+                }
+                if (_graphics == null)
+                    return;
+                RenderTargetBinding[] renderTargets;
+                try
+                {
+                    renderTargets = _graphics.GetRenderTargets();
+                }
+                catch
+                {
+                    return;
+                }
 
                 _graphics.SetRenderTarget(coldTarget);
                 _graphics.Clear(new Color(0, 0, 0, 0));
@@ -110,7 +144,6 @@ namespace AQMod.Assets.Graphics.SceneLayers
 
                 _hotCurrentList = new List<IDrawType>();
                 _coldCurrentList = new List<IDrawType>();
-                TargetsDrawn = true;
             }
             else
             {
@@ -126,18 +159,15 @@ namespace AQMod.Assets.Graphics.SceneLayers
 
                 BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
 
-                _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
-                _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
-                _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
-                _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
-
-                Main.spriteBatch.Draw(finalTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                var drawData = new DrawData(finalTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+                EffectCache.s_OutlineColor.UseColor(Color.Black);
+                EffectCache.s_OutlineColor.Apply(drawData);
+                drawData.Draw(Main.spriteBatch);
 
                 Main.spriteBatch.End();
 
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
             }
-            TargetsDrawn = false;
         }
     }
 }
