@@ -20,7 +20,7 @@ namespace AQMod.Items.Weapons.Melee
             item.useTime = 25;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.melee = true;
-            item.damage = 35;
+            item.damage = 21;
             item.knockBack = 8f;
             item.value = AQItem.Prices.DemonSiegeWeaponValue;
             item.UseSound = SoundID.Item1;

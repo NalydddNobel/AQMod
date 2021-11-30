@@ -27,7 +27,7 @@ namespace AQMod.Projectiles
                 projectile.ai[0] = 1;
                 projectile.rotation = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
             }
-            projectile.velocity *= 0.96f;
+            projectile.velocity *= 0.98f;
             projectile.rotation += projectile.velocity.Length() * 0.0157f;
 
             if (Main.myPlayer != projectile.owner)
