@@ -1,11 +1,79 @@
 ####### 1.2.3.5 #######
 
+Additions:
+Vrang, a boomerang-like weapon dropped from Vraines
+Censor Dye, a dye which censors you, dropped from Vraines
+Peeled Carrot, a food item dropped from Vraines
+Cheese Puff, a food item dropped from Crab enemies
+Red Licorice, a food item dropped from Heckto
+Floatstick, a glowstick which floats, crafted with Cosmic Energy
+
+- Made most Corruption enemies immune to Corruption Fire, and most Crimson enemies immune to Crimson Fire, and they instead take On Fire if you attempt to inflict those debuffs
+
 Changes:
+- Modifed how Deltoid functions
+- Increased the damage of Deltoid 
+* 20 -> 23
+
+- Omega Starite is now immune to all buffs/debuffs
+- Reduced Omega Starite's HP
+* 12250 -> 9500
+* (Expert: 19600 -> 15200) 
+
+- All starites enemies are now immune to Shadowflame, Cursed Flames, Frostburn, Ichor, Poison, Venom, Bleeding Stinky, Lovestruck, Wet, and Slimy 
+
+- Increased the HP of Vraines
+* 100 -> 275 (Expert: 356 ->  550) 
+
 - Hell's Boon now inflicts Corrupted Fire on true melee hits
 - Burnterizer now inflicts Crimson Fire on true melee hits
 - Fizzling Fire now inflicts Corrupted Fire
 - Hama Yumi now inflicts Corrupted Fire
 - Deltoid's base arrow now inflicts Crimson Fire, any arrows spawned by it will not inflict Crimson Fire
+- Space Shot's Star now inflicts Blue Fire
+- The Raygun, Ultimate Sword, Galactium and Magic Wand now inflict Sparkling 
+- The Ultimate Sword now only gives the "Ultima" buff for 5 seconds instead of 20
+- Nerfed the Ultimate Sword
+* Damage: 71 -> 65
+* KB: 6 -> 4
+* Scale: 1.35 -> 1.3
+* Use Time: 16 -> 18
+- Reduced the amount of free immune frames given to the player when attacking an enemy with the Ultimate Sword
+* 11 -> 5
+
+- Slightly modified the draw effects of Narrizuul
+
+- You can now only gets Ultima from critical hits
+- Enemies now only explode if they are below 1.2k HP and if your attack was a critical hit
+- Ultima Flares no longer go upwards, but instead have no gravity and halt themselves to a stop mid-air 
+
+- The Spoils Potion can no longer dupe money which enemies pick up in Expert Mode 
+
+- The Sunbask and Moonluna Mirror can now be crafted using Atmospheric Energy
+
+- Dysesthesia now plays a sound when it spawns in Demon Scythes
+- Lowered the damage of Dysesthesia 
+* 35 -> 21
+
+- Nerfed the Hyper Crystal's channeling distance, and modified how enemies are chosen to get channeled
+
+- The Crab Clock no longer says when Crab Season is active unless it's favorited
+- Increased the rate at which the Crab Clock increases crab season's timer by
+
+- Modified the sell price of some items:
+Starite Blade: 80 silver -> 75 silver
+Starite Spinner: 80 silver -> 75 silver
+Starite Staff: 80 silver -> 75 silver
+Starite Shooter: 80 silver -> 75 silver 
+
+Fixes:
+- Fixed a bug making all mods which loaded after Aequus having npcs/projectiles moveable with The Fan 
+- Fixed an error with the Hot and Cold Current effects
+- The Gore Nest portals now properly draw behind NPCs
+- Fixed an error with the Hot and Cold Current effects
+
+Removals:
+- Removed the Temperature Balloon NPC
 
 ####### 1.2.3.4 #######
 
