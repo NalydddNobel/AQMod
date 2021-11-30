@@ -10,10 +10,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
 {
     public class Vraine : ModNPC, IDecideFallThroughPlatforms
     {
-        public const int FramesX = 2;
         public const int Temperature = 40;
-
-        private bool _setupFrame; // no need to sync this since find frame stuff is client only (I think)
         public int transitionMax;
 
         public override void SetStaticDefaults()
@@ -86,7 +83,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             if ((int)npc.ai[1] == 0)
             {
                 npc.TargetClosest(faceTarget: false);
-                if (npc.HasValidTarget)
+                if (!npc.HasValidTarget)
                 {
                     npc.ai[1] = -1f;
                     return;
@@ -114,6 +111,10 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     lastNPC2 = n;
                 }
                 npc.netUpdate = true;
+            }
+            else if (!npc.HasValidTarget)
+            {
+                npc.ai[1] = -1f;
             }
 
             if (npc.collideX && npc.oldVelocity.X.Abs() > 2f)
@@ -362,12 +363,6 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
 
         public override void FindFrame(int frameHeight)
         {
-            if (!_setupFrame)
-            {
-                _setupFrame = true;
-                npc.frame.Width /= FramesX;
-            }
-            npc.frame.X = (int)(npc.frame.Width * (npc.ai[1] - 1));
             npc.frameCounter += 1.0d;
             if (npc.frameCounter > 4.0d)
             {
@@ -408,7 +403,10 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             var offset = new Vector2(npc.width / 2f, npc.height / 2f);
             Vector2 origin = npc.frame.Size() / 2f;
             Vector2 drawPos = npc.Center - Main.screenPosition;
-            
+
+            Main.NewText(npc.ai[0]);
+            Main.NewText(npc.ai[1], Main.DiscoColor);
+
             if ((int)npc.localAI[0] == 0)
             {
                 float mult = 1f / NPCID.Sets.TrailCacheLength[npc.type];
@@ -420,6 +418,8 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     Main.spriteBatch.Draw(texture, npc.oldPos[i] + offset - Main.screenPosition, npc.frame, trailColor * (mult * (NPCID.Sets.TrailCacheLength[npc.type] - i)), npc.oldRot[i], origin, npc.scale, SpriteEffects.None, 0f);
                 }
             }
+
+            Main.spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
 
             if (npc.ai[3] > 0f && transitionMax > 0)
             {
@@ -442,8 +442,6 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 }
                 Main.spriteBatch.Draw(overlayTexture, drawPos, npc.frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), progress), npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
             }
-
-            Main.spriteBatch.Draw(texture, drawPos, npc.frame, drawColor, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
 
             return false;
         }
