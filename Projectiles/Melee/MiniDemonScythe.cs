@@ -22,12 +22,10 @@ namespace AQMod.Projectiles.Melee
 
         public override void AI()
         {
-            //if (Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
-            //{
-            //    projectile.timeLeft -= 100;
-            //    if (projectile.timeLeft < 2)
-            //        projectile.timeLeft = 2;
-            //}
+            if (Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+            {
+                projectile.Kill();
+            }
         }
 
         public override Color? GetAlpha(Color lightColor)
