@@ -76,6 +76,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     npc.ai[3] = transitionMax;
                     npc.netUpdate = true;
                 }
+                npc.velocity.Y -= 0.25f;
                 var aQNPC2 = npc.GetGlobalNPC<AQNPC>();
                 aQNPC2.temperature = 0;
                 return;
