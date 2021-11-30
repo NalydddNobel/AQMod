@@ -159,10 +159,17 @@ namespace AQMod.Assets.Graphics.SceneLayers
 
                 BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
 
-                var drawData = new DrawData(finalTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
-                EffectCache.s_OutlineColor.UseColor(Color.Black);
-                EffectCache.s_OutlineColor.Apply(drawData);
-                drawData.Draw(Main.spriteBatch);
+                //var drawData = new DrawData(finalTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+                //EffectCache.s_OutlineColor.UseColor(Color.Black);
+                //EffectCache.s_OutlineColor.Apply(drawData);
+                //drawData.Draw(Main.spriteBatch);
+
+                _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
+                _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
+                _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
+                _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
+
+                Main.spriteBatch.Draw(finalTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
                 Main.spriteBatch.End();
 
