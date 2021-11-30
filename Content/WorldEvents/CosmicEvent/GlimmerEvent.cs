@@ -1,6 +1,5 @@
 ﻿using AQMod.Common;
 using AQMod.Common.NetCode;
-using AQMod.Common.Utilities;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.CosmicEvent;
 using AQMod.Tiles.TileEntities;

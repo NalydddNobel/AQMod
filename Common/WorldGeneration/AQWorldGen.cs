@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.Items.Materials;
+﻿using AQMod.Items.Materials;
 using AQMod.Localization;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;

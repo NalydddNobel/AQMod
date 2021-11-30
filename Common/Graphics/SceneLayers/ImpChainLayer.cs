@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.NPCs.Monsters.DemonicEvent;
+﻿using AQMod.NPCs.Monsters.DemonicEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

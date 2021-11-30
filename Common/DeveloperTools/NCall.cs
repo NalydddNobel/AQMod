@@ -1,9 +1,9 @@
-﻿using AQMod.Assets;
+﻿using AQMod;
+using AQMod.Assets;
 using AQMod.Common.Config;
 using AQMod.Common.Graphics;
 using AQMod.Common.IO;
 using AQMod.Common.Skies;
-using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Quest.Lobster;
@@ -227,7 +227,20 @@ namespace AQMod.Common.DeveloperTools
 
                 case "createsample":
                 {
-                    ThreadPool.QueueUserWorkItem(createSample, args);
+                    if (args[1][0] == '0')
+                    {
+                        string path = "";
+                        for (int i = 1; i < args[1].Length; i++)
+                        {
+                            path += args[1][i];
+                        }
+                        args[1] = path;
+                        ThreadPool.QueueUserWorkItem(createSample, args);
+                    }
+                    else
+                    {
+                        createSample(args);
+                    }
                 }
                 break;
 

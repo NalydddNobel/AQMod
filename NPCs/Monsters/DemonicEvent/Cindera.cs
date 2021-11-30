@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
 using AQMod.Common.Config;
-using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Materials.Energies;

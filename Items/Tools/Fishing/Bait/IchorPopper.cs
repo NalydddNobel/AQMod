@@ -4,15 +4,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Bait
+namespace AQMod.Items.Tools.Fishing.Bait
 {
-    public class MysticPopper : PopperBaitItem
+    public class IchorPopper : PopperBaitItem
     {
         public override void SetDefaults()
         {
             item.width = 6;
             item.height = 6;
-            item.bait = 50;
+            item.bait = 31;
             item.maxStack = 999;
             item.consumable = true;
             item.value = Item.sellPrice(silver: 1);
@@ -21,22 +21,21 @@ namespace AQMod.Items.Tools.Bait
 
         public override int GetExtraFishingPower(Player player, AQPlayer aQPlayer)
         {
-            if (player.ZoneHoly)
-                return 20;
+            if (player.ZoneCrimson)
+                return 35;
             return 0;
         }
 
         public override void PopperEffects(Player player, AQPlayer aQPlayer, Projectile bobber, Tile tile)
         {
-            AQMod.WorldEffects.Add(new FishingPopperEffect((int)bobber.position.X, (int)bobber.position.Y, tile.liquid, 58, default(Color)));
+            AQMod.WorldEffects.Add(new FishingPopperEffect((int)bobber.position.X, (int)bobber.position.Y, tile.liquid, 170, default(Color)));
         }
 
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.PixieDust, 10);
-            r.AddIngredient(ItemID.UnicornHorn);
-            r.AddIngredient(ItemID.HolyWater);
+            r.AddIngredient(ItemID.Ichor, 10);
+            r.AddIngredient(ItemID.BloodWater);
             r.AddTile(ModContent.TileType<Tiles.FishingCraftingStation>());
             r.SetResult(this, 10);
             r.AddRecipe();

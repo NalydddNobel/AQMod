@@ -2,7 +2,6 @@
 using AQMod.Assets.Textures;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
-using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Items.Vanities.Critters;

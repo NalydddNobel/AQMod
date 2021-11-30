@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.Items.Accessories;
+﻿using AQMod.Items.Accessories;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Weapons.Magic;

@@ -3,7 +3,6 @@ using AQMod.Assets.Textures;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Config;
-using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Consumables.Foods;

@@ -1,9 +1,8 @@
-﻿using AQMod.Common.Graphics;
-using AQMod.Common.Graphics.Particles;
+﻿using AQMod.Common.Graphics.Particles;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace AQMod.Assets.Graphics.DrawTypes
+namespace AQMod.Common.Graphics.DrawTypes
 {
     public class MonoParticleDraw : IDrawType
     {

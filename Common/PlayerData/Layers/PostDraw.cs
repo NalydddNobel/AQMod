@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Utilities;
 using AQMod.Items.Armor.Arachnotron;
 using AQMod.Projectiles;
 using Microsoft.Xna.Framework;

@@ -1,5 +1,4 @@
 ﻿using AQMod.Common.CustomRecipes;
-using AQMod.Common.Utilities;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,7 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
 
-namespace AQMod.Items.Tools.Consumable
+namespace AQMod.Items.Tools
 {
     public class PotionofContainersTag : ModItem
     {

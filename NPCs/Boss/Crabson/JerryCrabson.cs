@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
-using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Items.BossItems.Crabson;

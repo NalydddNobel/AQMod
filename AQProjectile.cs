@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.Items.Tools.Bait;
+﻿using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -7,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common
+namespace AQMod
 {
     public class AQProjectile : GlobalProjectile
     {
@@ -62,13 +61,15 @@ namespace AQMod.Common
                 {
                     try
                     {
-                        Projectile projectile = new Projectile();
+                        var projectile = new Projectile();
                         projectile.SetDefaults(i);
-                        if (projectile.aiStyle != AIStyles.BulletAI && projectile.aiStyle != AIStyles.ArrowAI && projectile.aiStyle != AIStyles.ThrownAI && 
-                            projectile.aiStyle != AIStyles.GrapplingHookAI && projectile.aiStyle != AIStyles.DemonSickleAI && projectile.aiStyle != AIStyles.BoulderAI && 
+                        if (projectile.aiStyle != AIStyles.BulletAI && projectile.aiStyle != AIStyles.ArrowAI && projectile.aiStyle != AIStyles.ThrownAI &&
+                            projectile.aiStyle != AIStyles.GrapplingHookAI && projectile.aiStyle != AIStyles.DemonSickleAI && projectile.aiStyle != AIStyles.BoulderAI &&
                             projectile.aiStyle != AIStyles.BoomerangAI && projectile.aiStyle != AIStyles.ExplosiveAI && projectile.aiStyle != AIStyles.HarpNotesAI &&
                             projectile.aiStyle != AIStyles.BounceAI && projectile.aiStyle != AIStyles.CrystalStormAI)
+                        {
                             UnaffectedByWind[i] = true;
+                        }
                     }
                     catch (Exception e)
                     {
@@ -79,9 +80,7 @@ namespace AQMod.Common
                         {
                             string tryName = Lang.GetNPCName(i).Value;
                             if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
-                            {
                                 projectileName = ProjectileLoader.GetProjectile(i).Name;
-                            }
                             else
                             {
                                 projectileName = tryName + "/" + ProjectileLoader.GetProjectile(i).Name;
@@ -152,9 +151,7 @@ namespace AQMod.Common
             {
                 temperatureUpdate = temperatureRate;
                 if (canHeat && temperature < 0)
-                {
                     temperature++;
-                }
                 else if (canFreeze && temperature > 0)
                 {
                     temperature--;
@@ -201,9 +198,7 @@ namespace AQMod.Common
                     {
                         int sonarPotionIndex = plr.FindBuffIndex(BuffID.Sonar);
                         if (sonarPotionIndex != -1)
-                        {
                             plr.buffTime[sonarPotionIndex] += 6000;
-                        }
                         else
                         {
                             plr.AddBuff(BuffID.Sonar, 6000);
@@ -213,9 +208,7 @@ namespace AQMod.Common
                     {
                         int fishingPotionIndex = plr.FindBuffIndex(BuffID.Fishing);
                         if (fishingPotionIndex != -1)
-                        {
                             plr.buffTime[fishingPotionIndex] += 600;
-                        }
                         else
                         {
                             plr.AddBuff(BuffID.Fishing, 600);
@@ -236,9 +229,7 @@ namespace AQMod.Common
                         {
                             int cratePotionIndex = plr.FindBuffIndex(BuffID.Crate);
                             if (cratePotionIndex != -1)
-                            {
                                 plr.buffTime[cratePotionIndex] += 1800;
-                            }
                             else
                             {
                                 plr.AddBuff(BuffID.Crate, 1800);
@@ -275,24 +266,24 @@ namespace AQMod.Common
                 if (newTemperature < 0)
                 {
                     if (temperature > newTemperature)
-                    {
                         temperature = newTemperature;
-                    }
                 }
                 else
+                {
                     temperature = 0;
+                }
             }
             else if (temperature > 0)
             {
                 if (newTemperature > 0)
                 {
                     if (temperature < newTemperature)
-                    {
                         temperature = newTemperature;
-                    }
                 }
                 else
+                {
                     temperature = 0;
+                }
             }
             else
             {
@@ -311,9 +302,7 @@ namespace AQMod.Common
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (Main.projectile[i].active && Main.projectile[i].type == type)
-                {
                     count++;
-                }
             }
             return count;
         }
@@ -323,14 +312,10 @@ namespace AQMod.Common
             float speed = 1f;
             var item = player.ItemInHand();
             if (item.shoot == projectile.type)
-            {
                 speed = item.shootSpeed * projectile.scale;
-            }
             Vector2 newVelocity = (Main.MouseWorld - rotatedRelativePoint).SafeNormalize(Vector2.UnitX * player.direction) * speed;
             if (projectile.velocity.X != newVelocity.X || projectile.velocity.Y != newVelocity.Y)
-            {
                 projectile.netUpdate = true;
-            }
             projectile.velocity = newVelocity;
         }
 
@@ -339,9 +324,9 @@ namespace AQMod.Common
             float velocityAngle = projectile.velocity.ToRotation();
             projectile.direction = (Math.Cos(velocityAngle) > 0.0).ToDirectionInt();
             float offset = offsetAmount * projectile.scale;
-            projectile.position = rotatedRelativePoint - (projectile.Size * 0.5f) + (velocityAngle.ToRotationVector2() * offset);
+            projectile.position = rotatedRelativePoint - projectile.Size * 0.5f + velocityAngle.ToRotationVector2() * offset;
             projectile.spriteDirection = projectile.direction;
-            projectile.rotation = velocityAngle + ((projectile.spriteDirection == -1).ToInt() * (float)Math.PI);
+            projectile.rotation = velocityAngle + (projectile.spriteDirection == -1).ToInt() * (float)Math.PI;
             player.ChangeDir(projectile.direction);
             player.itemRotation = (projectile.velocity * projectile.direction).ToRotation();
             player.heldProj = projectile.whoAmI;

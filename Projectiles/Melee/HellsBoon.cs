@@ -1,6 +1,6 @@
-﻿using AQMod.Assets;
+﻿using AQMod;
+using AQMod.Assets;
 using AQMod.Common.Graphics;
-using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

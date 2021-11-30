@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Tools.Consumable;
+﻿using AQMod.Items.Tools;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

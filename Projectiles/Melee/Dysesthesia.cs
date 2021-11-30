@@ -43,8 +43,8 @@ namespace AQMod.Projectiles.Melee
                     }
                     Main.PlaySound(SoundID.Item8, projectile.Center);
                     int type = ModContent.ProjectileType<MiniDemonScythe>();
-                    Projectile.NewProjectile(projectile.Center, normal, type, projectile.damage, projectile.knockBack, projectile.owner, projectile.identity);
-                    Projectile.NewProjectile(projectile.Center, -normal, type, projectile.damage, projectile.knockBack, projectile.owner, projectile.identity);
+                    Projectile.NewProjectile(projectile.Center, normal, type, projectile.damage, projectile.knockBack, projectile.owner);
+                    Projectile.NewProjectile(projectile.Center, -normal, type, projectile.damage, projectile.knockBack, projectile.owner);
                     projectile.localAI[1] = 0f;
                     projectile.netUpdate = true;
                 }

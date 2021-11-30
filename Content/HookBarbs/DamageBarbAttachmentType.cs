@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Utilities;
-using Terraria;
+﻿using Terraria;
 
 namespace AQMod.Content.HookBarbs
 {

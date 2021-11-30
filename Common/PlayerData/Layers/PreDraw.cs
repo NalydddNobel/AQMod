@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Utilities;
 using AQMod.Items.Vanities;
 using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles;

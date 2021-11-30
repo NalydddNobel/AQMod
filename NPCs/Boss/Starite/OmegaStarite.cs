@@ -5,7 +5,6 @@ using AQMod.Common;
 using AQMod.Common.Config;
 using AQMod.Common.Graphics;
 using AQMod.Common.NoHitting;
-using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Effects;

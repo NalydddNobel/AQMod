@@ -9,7 +9,6 @@ using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.NetCode;
 using AQMod.Common.Skies;
-using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.CosmicEvent;

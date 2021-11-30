@@ -1,7 +1,6 @@
 ﻿using AQMod.Items.Accessories;
 using AQMod.Items.Consumables.Foods;
 using AQMod.Items.Tools;
-using AQMod.Items.Tools.Consumable;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

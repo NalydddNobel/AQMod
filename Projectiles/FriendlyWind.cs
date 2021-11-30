@@ -1,9 +1,6 @@
-﻿using AQMod.Assets.Graphics.DrawTypes;
-using AQMod.Assets.Graphics.SceneLayers;
-using AQMod.Common;
+﻿using AQMod.Assets.Graphics.SceneLayers;
+using AQMod.Common.Graphics.DrawTypes;
 using AQMod.Common.Graphics.Particles;
-using AQMod.Common.Graphics.Particles;
-using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.AtmosphericEvent;
 using Microsoft.Xna.Framework;

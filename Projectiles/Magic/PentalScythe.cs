@@ -1,9 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
-using AQMod.Common.Utilities;
-using AQMod.Effects;
-using AQMod.Effects.ScreenEffects;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;

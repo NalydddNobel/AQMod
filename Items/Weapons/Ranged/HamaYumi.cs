@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common.Utilities;
 using AQMod.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;

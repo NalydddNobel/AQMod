@@ -1,11 +1,10 @@
-﻿using AQMod.Common.Utilities;
-using Terraria;
+﻿using Terraria;
 
 namespace AQMod.Content.WorldEvents
 {
-	/// <summary>
-	/// A replica of vanilla's windy day flags, also manages things with the wind.
-	/// </summary>
+    /// <summary>
+    /// A replica of vanilla's windy day flags, also manages things with the wind.
+    /// </summary>
     public static class ImitatedWindyDay
     {
 		public static bool OverrideVanillaWindUpdates { get; set; }

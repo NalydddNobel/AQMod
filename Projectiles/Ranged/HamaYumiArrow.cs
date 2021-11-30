@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Dusts;
 using AQMod.Effects.ScreenEffects;

@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common.Utilities;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using System;

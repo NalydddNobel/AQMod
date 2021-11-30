@@ -3,7 +3,7 @@ using AQMod.Content.Dusts;
 using AQMod.Items.Accessories;
 using AQMod.Items.Consumables.Foods;
 using AQMod.Items.Consumables.Potion;
-using AQMod.Items.Tools.Rods;
+using AQMod.Items.Tools.Fishing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

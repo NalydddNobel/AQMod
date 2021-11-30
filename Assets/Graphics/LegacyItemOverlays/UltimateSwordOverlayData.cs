@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common.Utilities;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

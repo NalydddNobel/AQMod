@@ -1,11 +1,10 @@
-﻿using AQMod.Common.Graphics;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Assets.Graphics.DrawTypes
+namespace AQMod.Common.Graphics.DrawTypes
 {
     public class ArrowDraw : IDrawType
     {

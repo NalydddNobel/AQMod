@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.Graphics.Particles;
 using AQMod.Common.NoHitting;
-using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents.AquaticEvent;
@@ -1021,7 +1020,7 @@ namespace AQMod
                     {
                         shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Consumables.Potion.SpoilsPotion>());
                         nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.Powders.GoldPowder>());
+                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.GoldPowder>());
                         nextSlot++;
                     }
                 }

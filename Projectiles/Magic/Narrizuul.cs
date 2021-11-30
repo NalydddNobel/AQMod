@@ -1,6 +1,6 @@
-﻿using AQMod.Assets;
+﻿using AQMod;
+using AQMod.Assets;
 using AQMod.Assets.Textures;
-using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;

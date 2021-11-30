@@ -20,6 +20,16 @@ namespace AQMod.Projectiles.Melee
             aiType = ProjectileID.DemonScythe;
         }
 
+        public override void AI()
+        {
+            //if (Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+            //{
+            //    projectile.timeLeft -= 100;
+            //    if (projectile.timeLeft < 2)
+            //        projectile.timeLeft = 2;
+            //}
+        }
+
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(250, 250, 250, 0);

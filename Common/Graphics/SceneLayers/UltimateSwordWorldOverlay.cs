@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.NetCode;
-using AQMod.Common.Utilities;
 using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Effects.WorldEffects;

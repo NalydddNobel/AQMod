@@ -1,4 +1,5 @@
-﻿using AQMod.Common.Graphics.SceneLayers;
+﻿using AQMod.Common.Graphics.DrawTypes;
+using AQMod.Common.Graphics.SceneLayers;
 using System.Collections.Generic;
 
 namespace AQMod.Common.Graphics.CustomPickupText

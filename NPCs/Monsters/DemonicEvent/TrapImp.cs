@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities.CursorDyes;

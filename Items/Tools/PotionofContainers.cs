@@ -1,10 +1,9 @@
-﻿using AQMod.Common.Utilities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Consumable
+namespace AQMod.Items.Tools
 {
     public class PotionofContainers : ModItem
     {

@@ -1,5 +1,4 @@
 ﻿using AQMod.Common.Skies;
-using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Content.WorldEvents.DemonicEvent;

@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Utilities;
 using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Localization;

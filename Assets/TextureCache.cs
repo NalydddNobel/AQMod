@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets.Textures;
 using AQMod.Common.Graphics.PlayerEquips;
-using AQMod.Common.Utilities;
 using AQMod.Content.CursorDyes;
 using AQMod.Effects;
 using AQMod.Items.Armor.Arachnotron;
@@ -143,11 +142,6 @@ namespace AQMod.Assets
         public static Texture2D GetTexture(this ModProjectile ModProjectile)
         {
             return GetProjectile(ModProjectile.projectile.type);
-        }
-
-        public static Texture2D GetTexture(this Projectile Projectile)
-        {
-            return GetProjectile(Projectile.type);
         }
 
         public static Texture2D GetProjectile(int type)

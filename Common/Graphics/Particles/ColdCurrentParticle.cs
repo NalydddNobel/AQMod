@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Graphics.DrawTypes;
 using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Assets.Textures;
+using AQMod.Common.Graphics.DrawTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

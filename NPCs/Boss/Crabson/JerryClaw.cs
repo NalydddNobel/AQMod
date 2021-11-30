@@ -1,6 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common;
-using AQMod.Common.Utilities;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;

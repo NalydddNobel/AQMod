@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.Items.Armor.Arachnotron;
+﻿using AQMod.Items.Armor.Arachnotron;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.Content.WorldEvents.AtmosphericEvent;
+﻿using AQMod.Content.WorldEvents.AtmosphericEvent;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

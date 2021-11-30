@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.NPCs.Boss.Crabson;
+﻿using AQMod.NPCs.Boss.Crabson;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;

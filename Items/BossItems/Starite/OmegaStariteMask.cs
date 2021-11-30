@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets.ItemOverlays;
 using AQMod.Common.Graphics.PlayerEquips;
-using AQMod.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

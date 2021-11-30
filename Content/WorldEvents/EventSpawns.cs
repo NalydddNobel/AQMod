@@ -4,7 +4,6 @@ using Terraria;
 using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.CosmicEvent;
-using AQMod.Common.Utilities;
 using System.Collections.Generic;
 using AQMod.NPCs.Monsters.AtmosphericEvent;
 

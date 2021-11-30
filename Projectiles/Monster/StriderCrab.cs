@@ -1,5 +1,5 @@
-﻿using AQMod.Assets;
-using AQMod.Common.Utilities;
+﻿using AQMod;
+using AQMod.Assets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

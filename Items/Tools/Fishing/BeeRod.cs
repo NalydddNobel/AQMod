@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Rods
+namespace AQMod.Items.Tools.Fishing
 {
     public class BeeRod : ModItem
     {

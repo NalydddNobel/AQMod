@@ -14,7 +14,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Items.Tools.Consumable
+namespace AQMod.Items.Tools
 {
     public class MoliteTag : ModItem
     {
