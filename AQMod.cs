@@ -333,6 +333,7 @@ namespace AQMod
             On.Terraria.Player.FishingLevel += GetFishingLevel;
             On.Terraria.Player.AddBuff += Player_AddBuff;
             On.Terraria.Player.QuickBuff += Player_QuickBuff;
+            On.Terraria.Player.PickTile += Player_PickTile;
             var server = AQConfigServer.Instance;
             ApplyServerConfig(server);
             if (!Main.dedServ)
@@ -361,6 +362,15 @@ namespace AQMod
                 WorldEffects = new List<WorldVisualEffect>();
             }
             Autoloading.Autoload(Code);
+        }
+
+        private void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
+        {
+            if (self.GetModPlayer<AQPlayer>().pickBreak)
+            {
+                pickPower /= 2;
+            }
+            orig(self, x, y, pickPower);
         }
 
         private void Main_UpdateDisplaySettings(On.Terraria.Main.orig_UpdateDisplaySettings orig, Main self)

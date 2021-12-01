@@ -32,6 +32,14 @@ namespace AQMod.Projectiles.Monster
             Main.dust[d].velocity = projectile.velocity * 0.25f;
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.rand.NextBool(8))
+            {
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.PickBreak>(), 480);
+            }
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             var texture = this.GetTexture();

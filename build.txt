@@ -1,9 +1,9 @@
 displayName = Aequus 
 author = Nalyd T.
-version = 1.2.3.7
+version = 1.2.3.8
 homepage = https://forums.terraria.org/index.php?threads/aequus.105402/
 hideResources = false
 hideCode = false
 includeSource = false
 includePBD = true
-buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, obj\*, bin\*, .vs\*, .cache\*
+buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, obj\*, bin\*, .vs\*, .cache\*

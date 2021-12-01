@@ -181,7 +181,6 @@ namespace AQMod
         public static bool arachnotronBodyTrail;
         internal static int _moneyTroughHackIndex = -1;
         internal static ISuperClunkyMoneyTroughTypeThing _moneyTroughHack;
-        public static bool RunningItemCheck { get; private set; }
 
         public Vector3[] celesteTorusOffsetsForDrawing;
 
@@ -673,7 +672,6 @@ namespace AQMod
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                RunningItemCheck = true;
                 var item = player.ItemInHand();
                 bool canMine = CanReach(player, item);
                 if (player.noBuilding)
@@ -682,21 +680,22 @@ namespace AQMod
                     crabAx = false;
                 else if (!crabAx)
                     crabAx = item.type == ModContent.ItemType<Items.Tools.Crabax>();
-                if (crabAx && (item.pick > 0 || item.axe > 0 || item.hammer > 0))
+                if (crabAx && (item.axe > 0))
                 {
                     if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && player.toolTime == 0 && player.itemAnimation > 0 && player.controlUseItem)
                     {
                         var rectangle = new Rectangle((int)(player.position.X + player.width / 2) / 16, (int)(player.position.Y + player.height / 2) / 16, 30, 30);
                         rectangle.X -= rectangle.Width / 2;
                         rectangle.Y -= rectangle.Height / 2;
-                        Main.NewText("x:" + rectangle.X + ",j:" + rectangle.Y);
+                        int hitCount = 0;
+                        const int HitCountMax = 8;
                         if (rectangle.X > 10 && rectangle.X < Main.maxTilesX - 10 && rectangle.Y > 10 && rectangle.Y < Main.maxTilesY - 10)
                         {
                             for (int i = rectangle.X; i < rectangle.X + rectangle.Width; i++)
                             {
                                 for (int j = rectangle.Y; j < rectangle.Y + rectangle.Height; j++)
-                                {    
-                                    if (Main.tile[i, j] == null) // TODO: trickle down trees to find stumps
+                                {
+                                    if (Main.tile[i, j] == null)
                                     {
                                         Main.tile[i, j] = new Tile();
                                         continue;
@@ -713,7 +712,84 @@ namespace AQMod
                                         {
                                             TileLoader.MineDamage(item.axe, ref tileDamage);
                                         }
-                                        if (item.axe > 0)
+                                        if (Main.tile[i, j].type == TileID.Trees)
+                                        {
+                                            int treeStumpX = i;
+                                            int treeStumpY = j;
+
+                                                if (Main.tile[treeStumpX, treeStumpY].frameY >= 198 && Main.tile[treeStumpX, treeStumpY].frameX == 44)
+                                                {
+                                                    treeStumpX++;
+                                                }
+                                                if (Main.tile[treeStumpX, treeStumpY].frameX == 66 && Main.tile[treeStumpX, treeStumpY].frameY <= 44)
+                                                {
+                                                    treeStumpX++;
+                                                }
+                                                if (Main.tile[treeStumpX, treeStumpY].frameX == 44 && Main.tile[treeStumpX, treeStumpY].frameY >= 132 && Main.tile[treeStumpX, treeStumpY].frameY <= 176)
+                                                {
+                                                    treeStumpX++;
+                                                }
+                                                if (Main.tile[treeStumpX, treeStumpY].frameY >= 198 && Main.tile[treeStumpX, treeStumpY].frameX == 66)
+                                                {
+                                                    treeStumpX--;
+                                                }
+                                                if (Main.tile[treeStumpX, treeStumpY].frameX == 88 && Main.tile[treeStumpX, treeStumpY].frameY >= 66 && Main.tile[treeStumpX, treeStumpY].frameY <= 110)
+                                                {
+                                                    treeStumpX--;
+                                                }
+                                                if (Main.tile[treeStumpX, treeStumpY].frameX == 22 && Main.tile[treeStumpX, treeStumpY].frameY >= 132 && Main.tile[treeStumpX, treeStumpY].frameY <= 176)
+                                                {
+                                                    treeStumpX--;
+                                                }
+
+                                            i = treeStumpX + 2; // skips the current index and the next one, since this entire tree has been completed
+                                            j = rectangle.Y;
+
+                                            for (; Main.tile[treeStumpX, treeStumpY].active() && Main.tile[treeStumpX, treeStumpY].type == 5 && Main.tile[treeStumpX, treeStumpY + 1].type == 5; treeStumpY++)
+                                            {
+                                            }
+
+                                            if (Player.tileTargetX == treeStumpX && Player.tileTargetY == treeStumpY)
+                                            {
+                                                break;
+                                            }
+
+                                            AchievementsHelper.CurrentlyMining = true;
+                                            if (!WorldGen.CanKillTile(treeStumpX, treeStumpY))
+                                            {
+                                                tileDamage = 0;
+                                            }
+                                            tileID = player.hitTile.HitObject(treeStumpX, treeStumpY, 1);
+                                            if (player.hitTile.AddDamage(tileID, tileDamage) >= 100)
+                                            {
+                                                player.hitTile.Clear(tileID);
+                                                WorldGen.KillTile(treeStumpX, treeStumpY);
+                                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                                {
+                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                WorldGen.KillTile(i, j, fail: true);
+                                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                                {
+                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY, 1f);
+                                                }
+                                            }
+                                            if (tileDamage != 0)
+                                            {
+                                                player.hitTile.Prune();
+                                                hitCount++;
+                                                if (hitCount > HitCountMax)
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                            AchievementsHelper.CurrentlyMining = false;
+                                            continue;
+                                        }
+                                        else
                                         {
                                             AchievementsHelper.CurrentlyMining = true;
                                             if (!WorldGen.CanKillTile(i, j))
@@ -740,10 +816,19 @@ namespace AQMod
                                             if (tileDamage != 0)
                                             {
                                                 player.hitTile.Prune();
+                                                hitCount++;
+                                                if (hitCount > HitCountMax)
+                                                {
+                                                    break;
+                                                }
                                             }
                                             AchievementsHelper.CurrentlyMining = false;
                                         }
                                     }
+                                }
+                                if (hitCount > HitCountMax)
+                                {
+                                    break;
                                 }
                             }
                         }
@@ -767,7 +852,6 @@ namespace AQMod
                         }
                     }
                 }
-                RunningItemCheck = false;
                 if (player.itemAnimation < 1 && player.inventory[player.selectedItem].modItem is ISpecialFood)
                 {
                     player.inventory[player.selectedItem].buffType = BuffID.WellFed;
@@ -1779,16 +1863,16 @@ namespace AQMod
         public static bool CanReach(Player player)
             => CanReach(player, Player.tileTargetX, Player.tileTargetY);
         public static bool CanReach(Player player, int x, int y)
-            => !player.noBuilding && player.position.X / 16f - Player.tileRangeX - player.blockRange <= x 
-            && (player.position.X + player.width) / 16f + Player.tileRangeX - 1f + player.blockRange >= x 
-            && player.position.Y / 16f - Player.tileRangeY - player.blockRange <= y 
+            => !player.noBuilding && player.position.X / 16f - Player.tileRangeX - player.blockRange <= x
+            && (player.position.X + player.width) / 16f + Player.tileRangeX - 1f + player.blockRange >= x
+            && player.position.Y / 16f - Player.tileRangeY - player.blockRange <= y
             && (player.position.Y + player.height) / 16f + Player.tileRangeY + 2f + player.blockRange >= y;
         public static bool CanReach(Player player, Item item)
             => CanReach(player, item, Player.tileTargetX, Player.tileTargetY);
         public static bool CanReach(Player player, Item item, int x, int y)
-            => player.position.X / 16f - Player.tileRangeX - item.tileBoost <= x 
+            => player.position.X / 16f - Player.tileRangeX - item.tileBoost <= x
             && (player.position.X + player.width) / 16f + Player.tileRangeX + item.tileBoost - 1f >= x
-            && player.position.Y / 16f - Player.tileRangeY - item.tileBoost <= y 
+            && player.position.Y / 16f - Player.tileRangeY - item.tileBoost <= y
             && (player.position.Y + player.height) / 16f + Player.tileRangeY + item.tileBoost - 2f >= y;
     }
 }

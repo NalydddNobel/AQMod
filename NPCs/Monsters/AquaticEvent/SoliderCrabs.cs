@@ -75,6 +75,14 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
             HandleGravity();
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.rand.NextBool(8))
+            {
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.PickBreak>(), 480);
+            }
+        }
+
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (CrabSeason.Active && Collision.WetCollision(new Vector2(spawnInfo.spawnTileX * 16f - 16f, spawnInfo.spawnTileY * 16f - 16f), 48, 48) && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)

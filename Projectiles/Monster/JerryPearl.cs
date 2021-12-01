@@ -78,6 +78,14 @@ namespace AQMod.Projectiles.Monster
             return false;
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.rand.NextBool(8))
+            {
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.PickBreak>(), 480);
+            }
+        }
+
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.Shatter, projectile.position);

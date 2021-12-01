@@ -66,6 +66,14 @@ namespace AQMod.Projectiles.Monster
             return true;
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.rand.NextBool(8))
+            {
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.PickBreak>(), 240);
+            }
+        }
+
         public override Color? GetAlpha(Color lightColor)
         {
             if (lightColor.R < 40)

@@ -70,6 +70,14 @@ namespace AQMod.Projectiles.Monster
             ImpactJerryBubbles();
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.rand.NextBool(8))
+            {
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.PickBreak>(), 480);
+            }
+        }
+
         public override Color? GetAlpha(Color lightColor)
         {
             if (lightColor.R < 40)

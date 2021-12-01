@@ -411,6 +411,14 @@ namespace AQMod.NPCs.Boss.Crabson
             }
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.rand.NextBool(8))
+            {
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.PickBreak>(), 480);
+            }
+        }
+
         private float _mouthRotation = 0f;
         private float _mouthGotoRotation = 0f;
         private float _mouthGotoLerp = 0.1f;

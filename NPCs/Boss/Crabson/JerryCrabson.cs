@@ -333,6 +333,14 @@ namespace AQMod.NPCs.Boss.Crabson
         {
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.rand.NextBool(8))
+            {
+                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.PickBreak>(), 480);
+            }
+        }
+
         public bool ShouldDropCrabsol()
         {
             return (int)npc.ai[1] == 1;
