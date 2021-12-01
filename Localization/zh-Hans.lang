@@ -670,6 +670,13 @@ ItemTooltip.CorruptPot=召唤一株腐化植物为你而战
 ItemTooltip.ATM=召唤一个用于存放物品的飞行保险箱\n将其放在你的保险箱里以便随时召唤它
 ItemTooltip.SpectralLens=切换敌人的掉落
 ItemTooltip.Globebulb=加快时间的流逝速度一小段时间
+
+ItemName.Crabax=蟹斧
+ItemTooltip.Crabax=能够同时砍伐多颗树木\n砍伐时长按右键以禁用此能力
+
+ItemName.Floatstick=浮光棒
+ItemTooltip.Floatstick=仅在潮湿情况下生效\n'我想你应该可以从名字中猜出这是做什么的'
+
 # Buffs
 BuffName.BlueFire=碧蓝之火
 BuffDescription.BlueFire=碧蓝之火灼烧着你的皮肤
