@@ -20,7 +20,7 @@ namespace AQMod.Items.Weapons.Melee
             item.useAnimation = 19;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
-            item.rare = ItemRarityID.LightRed;
+            item.rare = AQItem.Rarities.OmegaStariteRare;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.Galactium>();
             item.shootSpeed = 15f;
             item.value = AQItem.Prices.OmegaStariteWeaponValue;

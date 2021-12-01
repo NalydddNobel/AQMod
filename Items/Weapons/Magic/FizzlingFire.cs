@@ -27,7 +27,7 @@ namespace AQMod.Items.Weapons.Magic
             item.height = 40;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = ItemRarityID.Orange;
+            item.rare = AQItem.Rarities.GoreNestRare;
             item.shoot = ModContent.ProjectileType<Projectiles.Magic.FizzlingFire>();
             item.shootSpeed = 15f;
             item.mana = 30;

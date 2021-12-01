@@ -19,7 +19,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             item.width = 40;
             item.height = 40;
-            item.rare = ItemRarityID.Green;
+            item.rare = AQItem.Rarities.StariteWeaponRare;
             item.useTime = 17;
             item.useAnimation = 17;
             item.useStyle = ItemUseStyleID.SwingThrow;

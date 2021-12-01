@@ -17,7 +17,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             item.width = 50;
             item.height = 50;
-            item.rare = ItemRarityID.Pink;
+            item.rare = AQItem.Rarities.OmegaStariteRare + 1;
             item.useTime = 18;
             item.useAnimation = 18;
             item.useStyle = ItemUseStyleID.SwingThrow;

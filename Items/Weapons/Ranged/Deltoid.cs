@@ -25,7 +25,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.height = 30;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = ItemRarityID.Orange;
+            item.rare = AQItem.Rarities.GoreNestRare;
             item.shoot = ProjectileID.WoodenArrowFriendly;
             item.shootSpeed = 2.8f;
             item.useAmmo = AmmoID.Arrow;

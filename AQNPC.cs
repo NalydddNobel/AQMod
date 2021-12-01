@@ -859,6 +859,11 @@ namespace AQMod
 
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
+            if ((projectile.type == ProjectileID.MolotovFire || projectile.type == ProjectileID.MolotovFire2 || projectile.type == ProjectileID.MolotovFire3) &&
+                npc.type == NPCID.TheDestroyerBody)
+            {
+
+            }
             if (npc.townNPC)
             {
                 if (projectile.type == ModContent.ProjectileType<OmegaRay>())

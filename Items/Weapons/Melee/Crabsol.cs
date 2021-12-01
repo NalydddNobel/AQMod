@@ -19,7 +19,7 @@ namespace AQMod.Items.Weapons.Melee
             item.autoReuse = true;
             item.value = Item.sellPrice(gold: 5);
             item.UseSound = SoundID.Item1;
-            item.rare = ItemRarityID.Orange;
+            item.rare = AQItem.Rarities.CrabsonWeaponRare + 1;
             item.autoReuse = true;
         }
     }

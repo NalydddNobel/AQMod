@@ -25,7 +25,7 @@ namespace AQMod.Items.Weapons.Melee
             item.knockBack = 2.11f;
             item.value = AQItem.Prices.GlimmerWeaponValue;
             item.UseSound = SoundID.Item1;
-            item.rare = ItemRarityID.Green;
+            item.rare = AQItem.Rarities.StariteWeaponRare;
             item.channel = true;
             item.noMelee = true;
             item.noUseGraphic = true;

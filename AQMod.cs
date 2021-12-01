@@ -1004,9 +1004,24 @@ namespace AQMod
             return chance < 1 || rand.NextBool(chance);
         }
 
-        internal static bool DryadCanMoveIn()
+        internal static bool AnyBossDefeated()
         {
-            return NPC.downedSlimeKing || NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee || Main.hardMode;
+            return AnyVanillaBossDefeated() || AnyAequusBossDefeated();
+        }
+
+        internal static bool AnyAequusBossDefeated()
+        {
+            return WorldDefeats.DownedCrabson || WorldDefeats.DownedStarite;
+        }
+
+        internal static bool AnyVanillaBossDefeated()
+        {
+            return NPC.downedSlimeKing || 
+                NPC.downedBoss1 || 
+                NPC.downedBoss2 || 
+                NPC.downedBoss3 || 
+                NPC.downedQueenBee || 
+                Main.hardMode;
         }
 
         internal static bool reduceSpawnrates()

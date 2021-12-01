@@ -405,9 +405,6 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
             Vector2 origin = npc.frame.Size() / 2f;
             Vector2 drawPos = npc.Center - Main.screenPosition;
 
-            Main.NewText(npc.ai[0]);
-            Main.NewText(npc.ai[1], Main.DiscoColor);
-
             if ((int)npc.localAI[0] == 0)
             {
                 float mult = 1f / NPCID.Sets.TrailCacheLength[npc.type];

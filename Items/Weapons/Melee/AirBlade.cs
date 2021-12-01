@@ -17,7 +17,7 @@ namespace AQMod.Items.Weapons.Melee
             item.useTime = 14;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item1;
-            item.rare = ItemRarityID.Pink;
+            item.rare = AQItem.Rarities.GaleCurrentsRare;
             item.value = Item.sellPrice(silver: 75);
             item.shootSpeed = 12.5f;
             item.noMelee = true;
@@ -29,6 +29,19 @@ namespace AQMod.Items.Weapons.Melee
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[item.shoot] < 1;
+        }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<CrystalDagger>());
+            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>(), 5);
+            r.AddIngredient(ModContent.ItemType<Materials.Energies.OrganicEnergy>(), 2);
+            r.AddIngredient(ItemID.SoulofFlight, 12);
+            r.AddIngredient(ItemID.SoulofLight, 8);
+            r.AddTile(TileID.MythrilAnvil);
+            r.SetResult(this);
+            r.AddRecipe();
         }
     }
 }

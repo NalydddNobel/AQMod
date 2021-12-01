@@ -11,8 +11,8 @@ namespace AQMod.Items.Weapons.Melee
             item.width = 30;
             item.height = 30;
             item.melee = true;
-            item.damage = 21;
-            item.knockBack = 1.5f;
+            item.damage = 19;
+            item.knockBack = 2f;
             item.useAnimation = 8;
             item.useTime = 8;
             item.useStyle = ItemUseStyleID.HoldingOut;

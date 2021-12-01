@@ -60,7 +60,7 @@ namespace AQMod.Common
             switch (type)
             {
                 case TileID.ShadowOrbs:
-                return !AQMod.EvilProgressionLock || AQMod.DryadCanMoveIn() || Main.LocalPlayer.HeldItem.hammer >= 60;
+                return !AQMod.EvilProgressionLock || AQMod.AnyBossDefeated() || Main.LocalPlayer.HeldItem.hammer >= 60;
             }
             if (!Main.tileFrameImportant[type] && Main.tileSolid[type])
             {
@@ -78,10 +78,10 @@ namespace AQMod.Common
             {
                 case TileID.Ebonstone:
                 case TileID.Crimstone:
-                return !AQMod.EvilProgressionLock || NPC.downedBoss2 || Main.hardMode || j < 400;
+                return !AQMod.EvilProgressionLock || AQMod.AnyBossDefeated() || j < 400;
 
                 case TileID.ShadowOrbs:
-                return !AQMod.EvilProgressionLock || AQMod.DryadCanMoveIn();
+                return !AQMod.EvilProgressionLock || AQMod.AnyBossDefeated();
             }
             if (!Main.tileFrameImportant[type] && Main.tileSolid[type])
             {

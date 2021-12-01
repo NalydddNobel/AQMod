@@ -22,7 +22,7 @@ namespace AQMod.Items.Weapons.Melee
             item.useTime = 48;
             item.useAnimation = 24;
             item.autoReuse = true;
-            item.rare = ItemRarityID.Orange;
+            item.rare = AQItem.Rarities.GoreNestRare;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(gold: 1);

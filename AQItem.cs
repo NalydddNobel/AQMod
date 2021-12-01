@@ -41,9 +41,20 @@ namespace AQMod
             public static int GlimmerWeaponValue => Item.sellPrice(silver: 75);
             public static int DemonSiegeWeaponValue => Item.sellPrice(silver: 80);
             public static int OmegaStariteWeaponValue => Item.sellPrice(gold: 4, silver: 50);
-            public static int AtmosphericCurrentsValue => Item.sellPrice(gold: 4);
+            public static int GaleStreamsValue => Item.sellPrice(gold: 4);
             public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);
             public static int PillarWeaponValue => Item.sellPrice(gold: 10);
+        }
+
+        public static class Rarities
+        {
+            public const int CrabsonWeaponRare = ItemRarityID.Blue;
+            public const int StariteWeaponRare = ItemRarityID.Green;
+            public const int PetRare = ItemRarityID.Orange;
+            public const int GoreNestRare = ItemRarityID.LightRed;
+            public const int OmegaStariteRare = ItemRarityID.LightRed;
+            public const int GaleCurrentsRare = ItemRarityID.Pink;
+            public const int PillarWeaponRare = ItemRarityID.Red;
         }
 
         public static class Tooltips

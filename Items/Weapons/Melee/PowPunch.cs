@@ -17,7 +17,7 @@ namespace AQMod.Items.Weapons.Melee
             item.height = 30;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = ItemRarityID.Green;
+            item.rare = AQItem.Rarities.GoreNestRare;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.PowPunch>();
             item.shootSpeed = 16f;
             item.UseSound = SoundID.Item1;

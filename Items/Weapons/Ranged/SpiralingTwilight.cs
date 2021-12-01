@@ -29,7 +29,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.autoReuse = true;
             item.UseSound = SoundID.Item99;
-            item.rare = ItemRarityID.Red;
+            item.rare = AQItem.Rarities.PillarWeaponRare;
             item.value = AQItem.Prices.PillarWeaponValue;
             item.noMelee = true;
         }

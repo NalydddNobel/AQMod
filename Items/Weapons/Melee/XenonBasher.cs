@@ -32,7 +32,7 @@ namespace AQMod.Items.Weapons.Melee
             item.damage = 32;
             item.useTime = 32;
             item.useAnimation = 32;
-            item.rare = ItemRarityID.Blue;
+            item.rare = AQItem.Rarities.CrabsonWeaponRare;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(silver: 50);

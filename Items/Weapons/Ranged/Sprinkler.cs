@@ -13,24 +13,26 @@ namespace AQMod.Items.Weapons.Ranged
             item.width = 24;
             item.height = 8;
             item.ranged = true;
-            item.damage = 26;
-            item.useTime = 12;
-            item.useAnimation = 12;
+            item.damage = 20;
+            item.useTime = 20;
+            item.useAnimation = 20;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.knockBack = 4f;
+            item.knockBack = 3.5f;
             item.autoReuse = true;
             item.value = AQItem.Prices.PostMechsEnergyWeaponValue;
             item.useAmmo = AmmoID.Dart;
             item.shoot = ProjectileID.Seed;
-            item.shootSpeed = 28f;
+            item.shootSpeed = 24f;
             item.UseSound = SoundID.Item65;
             item.noMelee = true;
-            item.rare = ItemRarityID.Lime;
+            item.rare = AQItem.Rarities.GaleCurrentsRare;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int dustAmount = Main.rand.Next(10, 15);
+            if (Main.myPlayer != player.whoAmI || AQMod.EffectQuality < 0.3f)
+                return true;
+            int dustAmount = (int)(Main.rand.Next(5, 10) * AQMod.EffectQuality);
             var normalizedVelocity = Vector2.Normalize(new Vector2(speedX, speedY));
             Vector2 spawnPosition = position + normalizedVelocity * 46f + new Vector2(0, -4f);
             for (int i = 0; i < dustAmount; i++)
@@ -54,8 +56,10 @@ namespace AQMod.Items.Weapons.Ranged
         {
             var recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<StarPhish>());
-            recipe.AddIngredient(ModContent.ItemType<AquaticEnergy>(), 10);
-            recipe.AddIngredient(ItemID.ChlorophyteBar, 12);
+            recipe.AddIngredient(ModContent.ItemType<AtmosphericEnergy>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<AquaticEnergy>(), 2);
+            recipe.AddIngredient(ItemID.SoulofFlight, 12);
+            recipe.AddIngredient(ItemID.SoulofNight, 8);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -15,7 +15,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.height = 30;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = ItemRarityID.Blue;
+            item.rare = AQItem.Rarities.CrabsonWeaponRare;
             item.shoot = ProjectileID.WoodenArrowFriendly;
             item.shootSpeed = 8.5f;
             item.useAmmo = AmmoID.Arrow;

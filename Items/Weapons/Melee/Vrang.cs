@@ -19,7 +19,7 @@ namespace AQMod.Items.Weapons.Melee
             item.melee = true;
             item.damage = 39;
             item.knockBack = 3f;
-            item.value = AQItem.Prices.AtmosphericCurrentsValue;
+            item.value = AQItem.Prices.GaleStreamsValue;
             item.UseSound = SoundID.Item1;
             item.rare = ItemRarityID.Pink;
             item.channel = true;
