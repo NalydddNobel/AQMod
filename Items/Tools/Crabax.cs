@@ -12,12 +12,13 @@ namespace AQMod.Items.Tools
             item.height = 60;
             item.melee = true;
             item.damage = 20;
-            item.useTime = 30;
-            item.useAnimation = 30;
+            item.useTime = 28;
+            item.useAnimation = 28;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 10f;
             item.autoReuse = true;
             item.axe = 45; // has the highest axe power
+            item.tileBoost = 5;
             item.value = Item.sellPrice(gold: 1);
             item.UseSound = SoundID.Item1;
             item.rare = ItemRarityID.Blue;

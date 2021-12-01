@@ -19,6 +19,7 @@ namespace AQMod.Items.Tools
 			item.maxStack = 999;
 			item.consumable = true;
 			item.UseSound = SoundID.Item1;
+            item.rare = ItemRarityID.Blue;
 			item.useAnimation = 15;
 			item.useTime = 15;
 			item.noMelee = true;
@@ -29,6 +30,12 @@ namespace AQMod.Items.Tools
 		public override Color? GetAlpha(Color lightColor)
         {
             return new Color(190, 40, 220 + (int)(Math.Sin(Main.GlobalTime * 5f) * 40f));
+        }
+
+        public override void HoldItem(Player player)
+        {
+            Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + 12f * player.direction + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y), true);
+            Lighting.AddLight(position, item.GetAlpha(Color.White).ToVector3() * 0.8f);
         }
 
         public override void AddRecipes()

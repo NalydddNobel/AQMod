@@ -574,9 +574,6 @@ namespace AQMod
             return false;
         }
 
-        public static bool CanReach_IgnoreItemTileBoost(this Player player)
-            => !player.noBuilding && player.position.X / 16f - Player.tileRangeX - player.blockRange <= Player.tileTargetX && (player.position.X + player.width) / 16f + Player.tileRangeX - 1f + player.blockRange >= Player.tileTargetX && player.position.Y / 16f - Player.tileRangeY - player.blockRange <= Player.tileTargetY && (player.position.Y + player.height) / 16f + Player.tileRangeY + 2f + player.blockRange >= Player.tileTargetY;
-
         public static bool IsCloseEnoughTo(this float comparison, float intendedValue, float closeEnoughMargin = 1f)
         {
             return (comparison - intendedValue).Abs() <= closeEnoughMargin;

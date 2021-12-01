@@ -670,6 +670,13 @@ ItemTooltip.CorruptPot=Summons a corrupted plant to fight for you
 ItemTooltip.ATM=Summons a flying safe to store your items\nPlace in your Safe in order to have it always summoned
 ItemTooltip.SpectralLens=Toggles energy drops
 ItemTooltip.Globebulb=Speeds up time for a moment
+
+ItemName.Crabax=Crabax
+ItemTooltip.Crabax=Can chop multiple trees at once\nHold right click to disable this ability
+
+ItemName.Floatstick=Floatstick
+ItemTooltip.Floatstick=Works when wet\n'I think you can guess what this does from the name'
+
 # Buffs
 BuffName.BlueFire=Blue Fire
 BuffDescription.BlueFire=The immense heat burns off your skin

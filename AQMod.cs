@@ -340,9 +340,9 @@ namespace AQMod
                 var client = AQConfigClient.Instance;
                 ApplyClientConfig(client);
                 On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
-                On.Terraria.ItemText.NewText += ItemText_NewText;
                 On.Terraria.Main.DrawTiles += Main_DrawTiles;
                 On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
+                On.Terraria.ItemText.NewText += ItemText_NewText;
                 ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
                 ArmorOverlays = new EquipOverlayLoader();
                 TextureCache.Load();

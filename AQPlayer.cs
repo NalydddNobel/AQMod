@@ -31,6 +31,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Achievements;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -180,6 +181,7 @@ namespace AQMod
         public static bool arachnotronBodyTrail;
         internal static int _moneyTroughHackIndex = -1;
         internal static ISuperClunkyMoneyTroughTypeThing _moneyTroughHack;
+        public static bool RunningItemCheck { get; private set; }
 
         public Vector3[] celesteTorusOffsetsForDrawing;
 
@@ -272,6 +274,8 @@ namespace AQMod
         public byte mothmanExplosionDelay;
         public sbyte temperature;
         public byte temperatureRegen;
+        public bool pickBreak;
+        public bool crabAx;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -324,6 +328,7 @@ namespace AQMod
             EncoreBossKillCountRecord = new int[NPCLoader.NPCCount];
             grabReachMult = 1f;
             temperature = 0;
+            pickBreak = false;
         }
 
         public override void OnEnterWorld(Player player)
@@ -533,6 +538,8 @@ namespace AQMod
             grabReachMult = 1f;
             grapePhanta = false;
             mothmanMask = false;
+            pickBreak = false;
+            crabAx = false;
             if (temperature != 0)
             {
                 if (temperature < -100)
@@ -662,11 +669,111 @@ namespace AQMod
             clone.blueSpheres = blueSpheres;
         }
 
+        public override bool PreItemCheck()
+        {
+            if (Main.myPlayer == player.whoAmI)
+            {
+                RunningItemCheck = true;
+                var item = player.ItemInHand();
+                bool canMine = CanReach(player, item);
+                if (player.noBuilding)
+                    canMine = false;
+                if (Main.mouseRight || !canMine)
+                    crabAx = false;
+                else if (!crabAx)
+                    crabAx = item.type == ModContent.ItemType<Items.Tools.Crabax>();
+                if (crabAx && (item.pick > 0 || item.axe > 0 || item.hammer > 0))
+                {
+                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && player.itemTime == 0 && player.itemAnimation > 0 && player.controlUseItem)
+                    {
+                        var rectangle = new Rectangle((int)(player.position.X + player.width / 2) / 16, (int)(player.position.Y + player.height / 2) / 16, 30, 30);
+                        rectangle.X -= rectangle.Width / 2;
+                        rectangle.Y -= rectangle.Height / 2;
+                        Main.NewText("x:" + rectangle.X + ",j:" + rectangle.Y);
+                        if (rectangle.X > 10 && rectangle.X < Main.maxTilesX - 10 && rectangle.Y > 10 && rectangle.Y < Main.maxTilesY - 10)
+                        {
+                            Main.NewText("valid rectangle");
+                            for (int i = rectangle.X; i < rectangle.X + rectangle.Width; i++)
+                            {
+                                for (int j = rectangle.Y; j < rectangle.Y + rectangle.Height; j++)
+                                {
+                                    Main.NewText("i:" + i + ",j:" + j);
+                                    if (Main.tile[i, j] == null)
+                                    {
+                                        Main.tile[i, j] = new Tile();
+                                        continue;
+                                    }
+                                    if (Main.tile[i, j].active() && Main.tileAxe[Main.tile[i, j].type])
+                                    {
+                                        int tileID = player.hitTile.HitObject(i, j, 1);
+                                        int tileDamage = 0;
+                                        if (Main.tile[i, j].type == 80)
+                                        {
+                                            tileDamage += item.axe * 3;
+                                        }
+                                        else
+                                        {
+                                            TileLoader.MineDamage(item.axe, ref tileDamage);
+                                        }
+                                        if (item.axe > 0)
+                                        {
+                                            AchievementsHelper.CurrentlyMining = true;
+                                            if (!WorldGen.CanKillTile(i, j))
+                                            {
+                                                tileDamage = 0;
+                                            }
+                                            if (player.hitTile.AddDamage(tileID, tileDamage) >= 100)
+                                            {
+                                                player.hitTile.Clear(tileID);
+                                                WorldGen.KillTile(i, j);
+                                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                                {
+                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                WorldGen.KillTile(i, j, fail: true);
+                                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                                {
+                                                    NetMessage.SendData(17, -1, -1, null, 0, i, j, 1f);
+                                                }
+                                            }
+                                            if (tileDamage != 0)
+                                            {
+                                                player.hitTile.Prune();
+                                            }
+                                            AchievementsHelper.CurrentlyMining = false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return base.PreItemCheck();
+        }
+
         public override void PostItemCheck()
         {
-            if (player.itemAnimation < 1 && player.inventory[player.selectedItem].modItem is ISpecialFood)
+            if (Main.myPlayer == player.whoAmI)
             {
-                player.inventory[player.selectedItem].buffType = BuffID.WellFed;
+                if (crabAx)
+                {
+                    for (int i = 0; i < 20; i++)
+                    {
+                        for (int j = 0; j < 20; j++)
+                        {
+
+                        }
+                    }
+                }
+                RunningItemCheck = false;
+                if (player.itemAnimation < 1 && player.inventory[player.selectedItem].modItem is ISpecialFood)
+                {
+                    player.inventory[player.selectedItem].buffType = BuffID.WellFed;
+                }
             }
         }
 
@@ -1670,5 +1777,20 @@ namespace AQMod
             }
             return false;
         }
+
+        public static bool CanReach(Player player)
+            => CanReach(player, Player.tileTargetX, Player.tileTargetY);
+        public static bool CanReach(Player player, int x, int y)
+            => !player.noBuilding && player.position.X / 16f - Player.tileRangeX - player.blockRange <= x 
+            && (player.position.X + player.width) / 16f + Player.tileRangeX - 1f + player.blockRange >= x 
+            && player.position.Y / 16f - Player.tileRangeY - player.blockRange <= y 
+            && (player.position.Y + player.height) / 16f + Player.tileRangeY + 2f + player.blockRange >= y;
+        public static bool CanReach(Player player, Item item)
+            => CanReach(player, item, Player.tileTargetX, Player.tileTargetY);
+        public static bool CanReach(Player player, Item item, int x, int y)
+            => player.position.X / 16f - Player.tileRangeX - item.tileBoost <= x 
+            && (player.position.X + player.width) / 16f + Player.tileRangeX + item.tileBoost - 1f >= x
+            && player.position.Y / 16f - Player.tileRangeY - item.tileBoost <= y 
+            && (player.position.Y + player.height) / 16f + Player.tileRangeY + item.tileBoost - 2f >= y;
     }
 }
