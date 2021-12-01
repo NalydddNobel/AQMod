@@ -684,7 +684,7 @@ namespace AQMod
                     crabAx = item.type == ModContent.ItemType<Items.Tools.Crabax>();
                 if (crabAx && (item.pick > 0 || item.axe > 0 || item.hammer > 0))
                 {
-                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && player.itemTime == 0 && player.itemAnimation > 0 && player.controlUseItem)
+                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && player.toolTime == 0 && player.itemAnimation > 0 && player.controlUseItem)
                     {
                         var rectangle = new Rectangle((int)(player.position.X + player.width / 2) / 16, (int)(player.position.Y + player.height / 2) / 16, 30, 30);
                         rectangle.X -= rectangle.Width / 2;
@@ -692,13 +692,11 @@ namespace AQMod
                         Main.NewText("x:" + rectangle.X + ",j:" + rectangle.Y);
                         if (rectangle.X > 10 && rectangle.X < Main.maxTilesX - 10 && rectangle.Y > 10 && rectangle.Y < Main.maxTilesY - 10)
                         {
-                            Main.NewText("valid rectangle");
                             for (int i = rectangle.X; i < rectangle.X + rectangle.Width; i++)
                             {
                                 for (int j = rectangle.Y; j < rectangle.Y + rectangle.Height; j++)
-                                {
-                                    Main.NewText("i:" + i + ",j:" + j);
-                                    if (Main.tile[i, j] == null)
+                                {    
+                                    if (Main.tile[i, j] == null) // TODO: trickle down trees to find stumps
                                     {
                                         Main.tile[i, j] = new Tile();
                                         continue;
