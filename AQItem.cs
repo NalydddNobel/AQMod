@@ -216,6 +216,21 @@ namespace AQMod
             }
         }
 
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (Main.LocalPlayer.GetModPlayer<AQPlayer>().pickBreak)
+            {
+                foreach (var t in tooltips)
+                {
+                    if (t.mod == "Terraria" && t.Name == "PickPower")
+                    {
+                        t.text = (item.pick / 2) + Lang.tip[26].Value;
+                        t.overrideColor = new Color(128, 128, 128, 255);
+                    }
+                }
+            }
+        }
+
         internal static class Similarities
         {
             public static Vector2 GetItemDrawPos_NoAnimation(Item item)

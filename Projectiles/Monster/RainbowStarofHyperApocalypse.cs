@@ -39,7 +39,8 @@ namespace AQMod.Projectiles.Monster
             byte plr = Player.FindClosest(projectile.position, projectile.width, projectile.height);
             if (projectile.ai[1] == 0f)
                 projectile.ai[1] = projectile.velocity.Length();
-            projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(Main.player[plr].Center - projectile.Center) * projectile.ai[1], 0.02f);
+            projectile.velocity = Vector2.Lerp(projectile.velocity,
+            Vector2.Normalize(Main.player[plr].Center - projectile.Center) * projectile.ai[1], 0.02f);
             projectile.ai[0]++;
             projectile.rotation += 0.0628f;
             if (Main.rand.NextBool(12))

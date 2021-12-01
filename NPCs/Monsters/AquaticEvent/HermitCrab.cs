@@ -28,7 +28,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
             npc.damage = 20;
             npc.knockBackResist = 0.02f;
             npc.aiStyle = -1;
-            npc.value = Item.buyPrice(silver: 12);
+            npc.value = Item.buyPrice(silver: 5);
             npc.HitSound = SoundID.NPCHit2;
             npc.DeathSound = SoundID.NPCDeath8;
             npc.gfxOffY = -4;
