@@ -309,12 +309,21 @@ namespace AQMod
                     }
                     else
                     {
-                        AQPlayer.ConsumeItem_CheckMouseToo(player, item.type);
+                        if (ItemLoader.ConsumeItem(item, player))
+                        {
+                            item.stack--;
+                        }
                     }
                     if (item.UseSound != null)
                         Main.PlaySound(item.UseSound, player.Center);
                     if (!AQPlayer.IsQuickBuffing)
+                    {
+                        if (item.stack <= 0)
+                        {
+                            item.TurnToAir();
+                        }
                         return true;
+                    }
                 }
                 return false;
             }

@@ -274,6 +274,7 @@ namespace AQMod
         public byte temperatureRegen;
         public bool pickBreak;
         public bool crabAx;
+        public sbyte redSpriteWind;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }

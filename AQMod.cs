@@ -335,6 +335,7 @@ namespace AQMod
             On.Terraria.Player.AddBuff += Player_AddBuff;
             On.Terraria.Player.QuickBuff += Player_QuickBuff;
             On.Terraria.Player.PickTile += Player_PickTile;
+            On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
             var server = AQConfigServer.Instance;
             ApplyServerConfig(server);
             if (!Main.dedServ)
@@ -363,6 +364,56 @@ namespace AQMod
                 WorldEffects = new List<WorldVisualEffect>();
             }
             Autoloading.Autoload(Code);
+        }
+
+        private void Player_HorizontalMovement(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
+        {
+            orig(self);
+            var aQPlayer = self.GetModPlayer<AQPlayer>();
+            if (aQPlayer.redSpriteWind != 0 && !(self.mount.Active && self.velocity.Y == 0f && (self.controlLeft || self.controlRight)))
+            {
+                float windDirection = Math.Sign(aQPlayer.redSpriteWind) * 0.07f;
+                if (Math.Abs(Main.windSpeed) > 0.5f)
+                {
+                    windDirection *= 1.37f;
+                }
+                if (self.velocity.Y != 0f)
+                {
+                    windDirection *= 1.5f;
+                }
+                if (self.controlLeft || self.controlRight)
+                {
+                    windDirection *= 0.8f;
+                }
+                if (Math.Sign(self.direction) != Math.Sign(windDirection))
+                {
+                    self.accRunSpeed -= Math.Abs(windDirection) * 20f;
+                    self.maxRunSpeed -= Math.Abs(windDirection) * 20f;
+                }
+                if (windDirection < 0f && self.velocity.X > windDirection)
+                {
+                    self.velocity.X += windDirection;
+                    if (self.velocity.X < windDirection)
+                    {
+                        self.velocity.X = windDirection;
+                    }
+                }
+                if (windDirection > 0f && self.velocity.X < windDirection)
+                {
+                    self.velocity.X += windDirection;
+                    if (self.velocity.X > windDirection)
+                    {
+                        self.velocity.X = windDirection;
+                    }
+                }
+
+                if (!self.controlLeft && !self.controlRight)
+                {
+                    self.legFrameCounter = -1.0;
+                    self.legFrame.Y = 0;
+                }
+            }
+            aQPlayer.redSpriteWind = 0;
         }
 
         private void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
