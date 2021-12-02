@@ -243,10 +243,11 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                             }
                         }
 
-                        if (Main.netMode != NetmodeID.Server)
+                        if (Main.netMode != NetmodeID.Server && Main.ambientVolume > 0f)
                         {
                             if (Main.trackableSoundInstances[SoundID.BlizzardStrongLoop.Style].State != SoundState.Playing)
                             {
+                                Main.trackableSoundInstances[SoundID.BlizzardStrongLoop.Style].Volume = Main.ambientVolume;
                                 Main.trackableSoundInstances[SoundID.BlizzardStrongLoop.Style].Play();
                             }
                         }
@@ -332,23 +333,23 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     aQPlayer.redSpriteWind = (sbyte)-npc.direction;
                     if (npc.direction == -1)
                     {
-                        if (Main.player[npc.target].velocity.X < 2)
+                        if (Main.player[npc.target].velocity.X < 1f)
                         {
                             if (aQPlayer.temperatureRegen < 10 || aQPlayer.temperature == 0)
                             {
                                 aQPlayer.InflictTemperature(10);
-                                aQPlayer.temperatureRegen = 80;
+                                aQPlayer.temperatureRegen = 20;
                             }
                         }
                     }
                     else
                     {
-                        if (Main.player[npc.target].velocity.X > -2)
+                        if (Main.player[npc.target].velocity.X > -1f)
                         {
                             if (aQPlayer.temperatureRegen < 10 || aQPlayer.temperature == 0)
                             {
                                 aQPlayer.InflictTemperature(10);
-                                aQPlayer.temperatureRegen = 80;
+                                aQPlayer.temperatureRegen = 20;
                             }
                         }
                     }
