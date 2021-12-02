@@ -240,7 +240,21 @@ ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段
 # Buff Items #
 ##############
 ItemName.Baguette=法棍
+
 ItemName.NeutronJuice=中子酸奶
+ItemTooltip.NeutronJuice=小幅度提升大多数属性并且降低重力效果\n'重达数百万吨...比把保险箱放进保险箱还轻'
+BuffName.NeutronYogurt=中子酸奶
+BuffDescription.NeutronYogurt=小幅度提升大多数属性并且降低重力效果
+
+ItemName.RedLicorice=红甘草
+ItemTooltip.RedLicorice=中幅度提升大多数属性并且增加20点生命值
+BuffName.RedLicorice=红甘草
+BuffDescription.RedLicorice=中幅度提升大多数属性并且增加20点生命值
+
+ItemName.PeeledCarrot=去皮胡萝卜
+ItemTooltip.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视能力
+BuffName.PeeledCarrot=去皮胡萝卜
+BuffDescription.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视能力
 
 ItemName.GrapePhanta=幻影葡萄
 ItemTooltip.GrapePhanta=中幅度提升大多数属性\n大幅度提升魔法属性\n增加20点法力值
@@ -549,7 +563,6 @@ ItemTooltip.UltimateStarfruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.Omega
 ##############
 # Foods
 ItemTooltip.Baguette='蛋糕只是海绵般松软的面包'
-ItemTooltip.NeutronJuice='重达数百万吨... 比把保险箱放在保险箱里还轻'
 ItemTooltip.SuspiciousLookingSteak=使你获得许多增益\n'诅咒已除'
 ItemTooltip.SpicyEel=大幅度增加移动速度
 # Other Buffs Items
