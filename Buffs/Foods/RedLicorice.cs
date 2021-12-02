@@ -3,17 +3,15 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Foods
 {
-    public class NeutronYogurt : ModBuff
+    public class RedLicorice : ModBuff
     {
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<AQPlayer>().neutronYogurt = true;
             player.wellFed = true;
             player.statDefense += 3;
             player.allDamage += 0.075f;
             player.meleeSpeed += 0.075f;
 
-            player.meleeCrit += 3;
             player.rangedCrit += 3;
             player.magicCrit += 3;
             player.thrownCrit += 3;
@@ -21,7 +19,9 @@ namespace AQMod.Buffs.Foods
             player.minionKB += 0.75f;
             player.moveSpeed += 0.3f;
 
-            player.gravity *= 0.9f;
+            player.meleeDamage += 0.025f;
+            player.meleeCrit += 4;
+            player.statLifeMax2 += 20;
         }
     }
 }

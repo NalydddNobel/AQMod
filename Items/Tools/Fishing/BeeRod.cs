@@ -1,4 +1,5 @@
 ﻿using AQMod.Items.Materials.Energies;
+using AQMod.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -38,7 +39,7 @@ namespace AQMod.Items.Tools.Fishing
             r.AddIngredient(ModContent.ItemType<AquaticEnergy>());
             r.AddIngredient(ItemID.Hive, 20);
             r.AddIngredient(ItemID.BottledHoney);
-            r.AddTile(ModContent.TileType<Tiles.FishingCraftingStation>());
+            r.AddTile(ModContent.TileType<FishingCraftingStation>());
             r.SetResult(this);
             r.AddRecipe();
         }

@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common
+namespace AQMod.Common.CrossMod
 {
     internal class BossChecklistHelper
     {
@@ -100,7 +100,7 @@ namespace AQMod.Common
                         ModContent.NPCType<StriderCrab>(),
                     },
                     AQText.chooselocalizationtext("Crab Season", "蟹季"),
-                    () => WorldDefeats.DownedCrabson,
+                    () => WorldDefeats.DownedCrabSeason,
                     0,
                     new List<int>()
                     {

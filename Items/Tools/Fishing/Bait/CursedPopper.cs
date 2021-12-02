@@ -1,4 +1,5 @@
 ﻿using AQMod.Effects.WorldEffects;
+using AQMod.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -36,7 +37,7 @@ namespace AQMod.Items.Tools.Fishing.Bait
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.CursedFlame, 10);
             r.AddIngredient(ItemID.UnholyWater);
-            r.AddTile(ModContent.TileType<Tiles.FishingCraftingStation>());
+            r.AddTile(ModContent.TileType<FishingCraftingStation>());
             r.SetResult(this, 10);
             r.AddRecipe();
         }

@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable
+namespace AQMod.Items.Placeable.CraftingStations
 {
     public class FishingCraftingStation : ModItem
     {
@@ -14,7 +14,7 @@ namespace AQMod.Items.Placeable
             item.useTime = 10;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<Tiles.FishingCraftingStation>();
+            item.createTile = ModContent.TileType<Tiles.CraftingStations.FishingCraftingStation>();
             item.value = Item.buyPrice(gold: 5);
             item.consumable = true;
             item.useTurn = true;

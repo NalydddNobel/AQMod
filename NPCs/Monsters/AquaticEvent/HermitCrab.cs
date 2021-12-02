@@ -1,4 +1,5 @@
-﻿using AQMod.Content.WorldEvents.AquaticEvent;
+﻿using AQMod.Common;
+using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Items.Armor.Crab;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
@@ -124,6 +125,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
 
         public override void NPCLoot()
         {
+            WorldDefeats.DownedCrabSeason = true;
             if (Main.rand.NextBool(20))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<FishyFins>());
             if (Main.rand.NextBool(10))

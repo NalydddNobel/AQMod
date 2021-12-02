@@ -7,7 +7,6 @@ namespace AQMod.Buffs.Foods
     {
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<AQPlayer>().spicyEel = true;
             player.wellFed = true;
             player.statDefense += 3;
             player.allDamage += 0.075f;

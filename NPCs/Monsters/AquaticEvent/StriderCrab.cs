@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Common.Graphics;
 using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Items.Armor.Crab;
@@ -311,6 +312,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
 
         public override void NPCLoot()
         {
+            WorldDefeats.DownedCrabSeason = true;
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<StriderCarapace>());
             if (Main.rand.NextBool())

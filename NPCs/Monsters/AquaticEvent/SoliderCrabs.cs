@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Items.Materials;
@@ -92,6 +93,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
 
         public override void NPCLoot()
         {
+            WorldDefeats.DownedCrabSeason = true;
             if (Main.rand.NextBool(10))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CheesePuff>());
             if (Main.rand.NextBool(3))

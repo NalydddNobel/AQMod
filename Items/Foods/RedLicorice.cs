@@ -1,10 +1,11 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Foods
 {
-    public class RedLicorice : ModItem
+    public class RedLicorice : ModItem, ISpecialFood
     {
         public override void SetDefaults()
         {
@@ -19,7 +20,17 @@ namespace AQMod.Items.Foods
             item.useAnimation = 20;
             item.useTime = 20;
             item.buffType = BuffID.WellFed;
-            item.buffTime = 10800;
+            item.buffTime = 21600;
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(200, 200, 200, 100);
+        }
+
+        int ISpecialFood.ChangeBuff(Player player)
+        {
+            return ModContent.BuffType<Buffs.Foods.>();
         }
     }
 }

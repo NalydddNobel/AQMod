@@ -3,12 +3,12 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Foods
 {
-    public class NeutronYogurt : ModBuff
+    public class PeeledCarrot : ModBuff
     {
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<AQPlayer>().neutronYogurt = true;
             player.wellFed = true;
+            player.nightVision = true;
             player.statDefense += 3;
             player.allDamage += 0.075f;
             player.meleeSpeed += 0.075f;
@@ -20,8 +20,6 @@ namespace AQMod.Buffs.Foods
 
             player.minionKB += 0.75f;
             player.moveSpeed += 0.3f;
-
-            player.gravity *= 0.9f;
         }
     }
 }

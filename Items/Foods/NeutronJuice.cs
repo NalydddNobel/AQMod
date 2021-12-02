@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Foods
 {
-    public class NeutronJuice : ModItem
+    public class NeutronJuice : ModItem, ISpecialFood
     {
         public override void SetStaticDefaults()
         {
@@ -28,6 +28,11 @@ namespace AQMod.Items.Foods
             item.value = Item.buyPrice(silver: 20);
             item.buffType = BuffID.WellFed;
             item.buffTime = 36000;
+        }
+
+        int ISpecialFood.ChangeBuff(Player player)
+        {
+            return ModContent.BuffType<Buffs.Foods.NeutronYogurt>();
         }
     }
 }

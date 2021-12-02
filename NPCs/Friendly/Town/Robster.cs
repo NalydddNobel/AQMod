@@ -2,7 +2,7 @@
 using AQMod.Common;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Items.Accessories;
-using AQMod.Items.Placeable;
+using AQMod.Items.Placeable.CraftingStations;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;

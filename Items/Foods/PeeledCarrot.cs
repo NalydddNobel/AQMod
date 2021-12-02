@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Foods
 {
-    public class PeeledCarrot : ModItem
+    public class PeeledCarrot : ModItem, ISpecialFood
     {
         public override void SetDefaults()
         {
@@ -19,7 +19,12 @@ namespace AQMod.Items.Foods
             item.useAnimation = 20;
             item.useTime = 20;
             item.buffType = BuffID.WellFed;
-            item.buffTime = 10800;
+            item.buffTime = 72000;
+        }
+
+        int ISpecialFood.ChangeBuff(Player player)
+        {
+            return ModContent.BuffType<Buffs.Foods.PeeledCarrot>();
         }
     }
 }

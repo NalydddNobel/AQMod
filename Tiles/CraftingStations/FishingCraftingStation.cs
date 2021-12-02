@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace AQMod.Tiles
+namespace AQMod.Tiles.CraftingStations
 {
     public class FishingCraftingStation : ModTile
     {
@@ -26,7 +26,7 @@ namespace AQMod.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Placeable.FishingCraftingStation>());
+            Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Placeable.CraftingStations.FishingCraftingStation>());
         }
     }
 }

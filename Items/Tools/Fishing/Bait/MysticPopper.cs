@@ -1,4 +1,5 @@
 ﻿using AQMod.Effects.WorldEffects;
+using AQMod.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -37,7 +38,7 @@ namespace AQMod.Items.Tools.Fishing.Bait
             r.AddIngredient(ItemID.PixieDust, 10);
             r.AddIngredient(ItemID.UnicornHorn);
             r.AddIngredient(ItemID.HolyWater);
-            r.AddTile(ModContent.TileType<Tiles.FishingCraftingStation>());
+            r.AddTile(ModContent.TileType<FishingCraftingStation>());
             r.SetResult(this, 10);
             r.AddRecipe();
         }

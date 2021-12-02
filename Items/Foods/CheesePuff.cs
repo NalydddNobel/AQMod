@@ -19,7 +19,7 @@ namespace AQMod.Items.Foods
             item.useAnimation = 20;
             item.useTime = 20;
             item.buffType = BuffID.WellFed;
-            item.buffTime = 10800;
+            item.buffTime = 28800;
         }
     }
 }

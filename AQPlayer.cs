@@ -267,7 +267,6 @@ namespace AQMod
         public bool bossrush;
         public bool bossrushOld;
         public float grabReachMult; // until 1.4 comes
-        public bool grapePhanta;
         public bool neutronYogurt;
         public bool mothmanMask;
         public byte mothmanExplosionDelay;
@@ -535,7 +534,6 @@ namespace AQMod
             heartMoth = false;
             notFrostburn = false;
             grabReachMult = 1f;
-            grapePhanta = false;
             mothmanMask = false;
             pickBreak = false;
             crabAx = false;
@@ -682,7 +680,7 @@ namespace AQMod
                     crabAx = item.type == ModContent.ItemType<Items.Tools.Crabax>();
                 if (crabAx && (item.axe > 0))
                 {
-                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && player.toolTime == 0 && player.itemAnimation > 0 && player.controlUseItem)
+                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && player.toolTime <= 1 && player.itemAnimation > 0 && player.controlUseItem)
                     {
                         var rectangle = new Rectangle((int)(player.position.X + player.width / 2) / 16, (int)(player.position.Y + player.height / 2) / 16, 30, 30);
                         rectangle.X -= rectangle.Width / 2;

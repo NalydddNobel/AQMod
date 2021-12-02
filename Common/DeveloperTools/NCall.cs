@@ -119,6 +119,27 @@ namespace AQMod.Common.DeveloperTools
                 caller.Reply("Command doesn't exist.");
                 break;
 
+                case "downedglimmer":
+                case "downedstars":
+                WorldDefeats.DownedGlimmer = !WorldDefeats.DownedGlimmer;
+                break;
+
+                case "downedcrabseason":
+                case "downedcrabs":
+                WorldDefeats.DownedCrabSeason = !WorldDefeats.DownedCrabSeason;
+                break;
+
+                case "downedcrabson":
+                case "downedcrab":
+                WorldDefeats.DownedCrabson = !WorldDefeats.DownedCrabson;
+                break;
+
+                case "downedomegastarite":
+                case "downedomega":
+                case "downedstarite":
+                WorldDefeats.DownedStarite = !WorldDefeats.DownedStarite;
+                break;
+
                 case "itemperature":
                 {
                     sbyte newTemp = sbyte.Parse(args[1]);
@@ -290,6 +311,8 @@ namespace AQMod.Common.DeveloperTools
                 break;
 
                 case "downeddemonsiege":
+                case "downeddemon":
+                case "downedsiege":
                 WorldDefeats.DownedDemonSiege = !WorldDefeats.DownedDemonSiege;
                 break;
 

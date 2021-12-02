@@ -10,11 +10,12 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
     public class RedSprite : ModNPC
     {
         private bool _setupFrame;
-        public const int FramesX = 2;
+        public int frameIndex;
+        public const int FramesX = 3;
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[npc.type] = 7;
+            Main.npcFrameCount[npc.type] = 8;
         }
 
         public override void SetDefaults()
@@ -55,10 +56,12 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
 
         public override void FindFrame(int frameHeight)
         {
+            if (Main.netMode == NetmodeID.Server)
+                return;
             if (!_setupFrame)
             {
                 _setupFrame = true;
-                npc.frame.Width = npc.frame.Width / 2;
+                npc.frame.Width = npc.frame.Width / FramesX;
             }
             npc.frameCounter += 1.0d;
             if (npc.frameCounter > 4.0d)
@@ -66,6 +69,9 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 npc.frameCounter = 0.0d;
                 npc.frame.Y += frameHeight;
             }
+
+            npc.frame.Y = frameIndex * frameHeight;
+
             if (npc.frame.Y >= frameHeight * Main.npcFrameCount[npc.type])
             {
                 npc.frame.X += npc.frame.Width;

@@ -363,6 +363,10 @@ namespace AQMod.NPCs.Boss.Crabson
             }
             if (Main.rand.NextBool(10))
                 Item.NewItem(rect, ModContent.ItemType<CrabsonTrophy>());
+            if (CrabSeason.Active)
+            {
+                WorldDefeats.DownedCrabSeason = true;
+            }
             WorldDefeats.DownedCrabson = true;
             if (Main.expertMode)
             {
