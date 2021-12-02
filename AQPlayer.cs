@@ -906,6 +906,8 @@ namespace AQMod
             blueSpheres = false;
             sparkling = false;
             monoxiderCarry = 0;
+            temperature = 0;
+            temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
             if (Main.myPlayer == player.whoAmI)
             {
                 oldPosLength = 0;

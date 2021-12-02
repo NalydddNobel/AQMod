@@ -114,7 +114,7 @@ namespace AQMod.Content.WorldEvents
             {
                 if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
                     pool.Add(ModContent.NPCType<Vraine>(), 1f);
-                if (Main.hardMode)
+                if (AQMod.SudoHardmode)
                 {
                     pool[0] *= 0.1f;
                     if (!NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))

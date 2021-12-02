@@ -80,6 +80,9 @@ namespace AQMod
         /// </summary>
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
         public static bool CanUseAssets => !Loading && Main.netMode != NetmodeID.Server;
+        /// <summary>
+        /// If WoF or Omega Starite have been defeated
+        /// </summary>
         public static bool SudoHardmode => Main.hardMode || WorldDefeats.DownedStarite;
         /// <summary>
         /// Gets the center of the screen's draw coordinates
