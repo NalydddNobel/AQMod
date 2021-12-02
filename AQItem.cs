@@ -303,7 +303,14 @@ namespace AQMod
                 {
                     item.buffType = 0;
                     player.AddBuff(specialFood.ChangeBuff(player), item.buffTime);
-                    player.ConsumeItem(item.type);
+                    if (AQPlayer.IsQuickBuffing)
+                    {
+                        player.ConsumeItem(item.type);
+                    }
+                    else
+                    {
+                        AQPlayer.ConsumeItem_CheckMouseToo(player, item.type);
+                    }
                     if (item.UseSound != null)
                         Main.PlaySound(item.UseSound, player.Center);
                     if (!AQPlayer.IsQuickBuffing)

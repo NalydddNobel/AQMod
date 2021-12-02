@@ -25,19 +25,6 @@ namespace AQMod.Items.Foods
             item.buffTime = 25200;
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            for (int i = 0; i < tooltips.Count; i++)
-            {
-                TooltipLine t = tooltips[i];
-                if (t.mod == "Terraria" && t.Name == "WellFedExpert")
-                {
-                    tooltips.RemoveAt(i);
-                    break;
-                }
-            }
-        }
-
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);

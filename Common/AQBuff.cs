@@ -15,6 +15,9 @@ namespace AQMod.Common
                 IsFoodBuff[BuffID.WellFed] = true;
                 IsFoodBuff[ModContent.BuffType<Buffs.Foods.GrapePhanta>()] = true;
                 IsFoodBuff[ModContent.BuffType<Buffs.Foods.SpicyEel>()] = true;
+                IsFoodBuff[ModContent.BuffType<Buffs.Foods.NeutronYogurt>()] = true;
+                IsFoodBuff[ModContent.BuffType<Buffs.Foods.PeeledCarrot>()] = true;
+                IsFoodBuff[ModContent.BuffType<Buffs.Foods.RedLicorice>()] = true;
             }
 
             internal static void Unload()

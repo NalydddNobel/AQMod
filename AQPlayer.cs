@@ -468,8 +468,6 @@ namespace AQMod
             if (!Main.gamePaused && Main.instance.IsActive)
                 ScreenShakeManager.Update();
             AQUtils.UpdateSky((AQMod.CosmicEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
-            //if (AQConfigClient.Instance.ScreenDistortShader)
-            //    player.ManageSpecialBiomeVisuals(VisualsManager.DistortX, OmegaStarite.DistortShaderActive());
         }
 
         public override void ResetEffects()
@@ -1872,5 +1870,23 @@ namespace AQMod
             && (player.position.X + player.width) / 16f + Player.tileRangeX + item.tileBoost - 1f >= x
             && player.position.Y / 16f - Player.tileRangeY - item.tileBoost <= y
             && (player.position.Y + player.height) / 16f + Player.tileRangeY + item.tileBoost - 2f >= y;
+
+        public static bool ConsumeItem_CheckMouseToo(Player player, int type)
+        {
+            var item = player.ItemInHand();
+            if (item != null && item.type == type)
+            {
+                if (ItemLoader.ConsumeItem(item, player))
+                {
+                    item.stack--;
+                    if (item.stack <= 0)
+                    {
+                        item.TurnToAir();
+                    }
+                    return true;
+                }
+            }
+            return player.ConsumeItem(type);
+        }
     }
 }

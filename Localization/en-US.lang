@@ -240,7 +240,21 @@ ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInf
 # Buff Items #
 ##############
 ItemName.Baguette=Baguette
+
 ItemName.NeutronJuice=Neutron Yogurt
+ItemTooltip.NeutronJuice=Minor improvements to all stats and you have slightly lower gravity\n'Weighs millions of tons... still lighter than putting a safe in a safe'
+BuffName.NeutronYogurt=Neutron Yogurt
+BuffDescription.NeutronYogurt=Minor improvements to all stats and you have slightly lower gravity
+
+ItemName.RedLicorice=Red Licorice
+ItemTooltip.RedLicorice=Medium improvements to all stats and increases your life by 20
+BuffName.RedLicorice=Red Licorice
+BuffDescription.RedLicorice=Medium improvements to all stats and increases your life by 20
+
+ItemName.PeeledCarrot=Peeled Carrot
+ItemTooltip.PeeledCarrot=Medium improvements to all stats and grants you night vision
+BuffName.PeeledCarrot=Peeled Carrot
+BuffDescription.PeeledCarrot=Medium improvements to all stats and grants you night vision
 
 ItemName.GrapePhanta=Grape Phanta
 ItemTooltip.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
@@ -549,7 +563,6 @@ ItemTooltip.UltimateStarfruit=Left click summons {$Mods.AQMod.NPCName.OmegaStari
 ##############
 # Foods
 ItemTooltip.Baguette='Cake is just spongy bread'
-ItemTooltip.NeutronJuice='Weighs millions of tons... still lighter than putting a safe in a safe'
 ItemTooltip.SuspiciousLookingSteak=Gives multiple buffs\n'A curse has been lifted'
 ItemTooltip.SpicyEel=Greatly increases speed
 # Other Buffs Items

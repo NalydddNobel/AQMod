@@ -30,7 +30,7 @@ namespace AQMod.Items.Foods
 
         int ISpecialFood.ChangeBuff(Player player)
         {
-            return ModContent.BuffType<Buffs.Foods.>();
+            return ModContent.BuffType<Buffs.Foods.RedLicorice>();
         }
     }
 }

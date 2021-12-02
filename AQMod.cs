@@ -205,7 +205,7 @@ namespace AQMod
 
         internal static class Debug
         {
-            public static bool LogAutoload = true;
+            public static bool LogAutoload = false;
             public static bool LogDyeBinding = false;
             public static bool LogEffectLoading = false;
 
