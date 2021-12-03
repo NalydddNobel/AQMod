@@ -33,7 +33,7 @@ namespace AQMod.Content.WorldEvents
             {
                 if (player.position.Y < AQMod.SpaceLayer - (40 * 16f))
                 {
-                    if (AzureCurrents.MeteorTime())
+                    if (GaleStreams.MeteorTime())
                     {
                         spawnRate /= 2;
                         maxSpawns *= 2;
@@ -105,7 +105,7 @@ namespace AQMod.Content.WorldEvents
             }
             if (spawnInfo.spawnTileY < AQMod.SpaceLayerTile - 40)
             {
-                if (AzureCurrents.MeteorTime())
+                if (GaleStreams.MeteorTime())
                 {
                     pool.Add(ModContent.NPCType<Meteor>(), 2f);
                 }

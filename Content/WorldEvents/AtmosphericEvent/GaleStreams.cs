@@ -2,17 +2,18 @@
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AQMod.Content.WorldEvents.AtmosphericEvent
 {
-    public sealed class AzureCurrents
+    public sealed class GaleStreams : ModWorld
     {
         public static Color HotCurrentColor => new Color(43, 148, 240, 255);
         public static Color ColdCurrentColor => new Color(255, 94, 31, 255);
         public static Color NeutralCurrentColor => new Color(255, 255, 255, 255);
 
-        public bool IsActive { get; private set; }
-        public bool EventActive(Player player)
+        public static bool IsActive { get; private set; }
+        public static bool EventActive(Player player)
         {
             return IsActive && InSpace(player);
         }
@@ -42,12 +43,12 @@ namespace AQMod.Content.WorldEvents.AtmosphericEvent
             return y < 3000f; // 187.5 tiles
         }
 
-        internal void Reset()
+        internal static void Reset()
         {
             IsActive = false;
         }
 
-        internal void UpdateWorld()
+        public override void PostUpdate()
         {
             IsActive = ImitatedWindyDay.IsItAHappyWindyDay;
         }

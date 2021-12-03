@@ -407,7 +407,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.Dyes.CensorDye>(), Main.rand.NextVRand(1, 3));
                 }
             }
-            if (Main.rand.NextBool(10))
+            if (Main.rand.NextBool(100))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.PeeledCarrot>(), Main.rand.NextVRand(1, 3));
         }
 

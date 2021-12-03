@@ -4,7 +4,7 @@ using Terraria;
 
 namespace AQMod.Effects.ScreenEffects
 {
-    public sealed class ScreenShakeManager
+    public static class ScreenShakeManager
     {
         private static List<ScreenShakeFX> _screenShakes;
         private static Dictionary<string, ScreenShakeFX> _channeledShakes;

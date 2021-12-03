@@ -9,6 +9,7 @@ namespace AQMod.Content.WorldEvents
     {
 		public static bool OverrideVanillaWindUpdates { get; set; }
         public static bool IsItAHappyWindyDay { get; private set; }
+        public static bool IsItAHappyWindyDay_WindyEnough { get; private set; }
 
 		// these are statics in vanilla so why not here lol?
 		public static float MinWind;
@@ -32,19 +33,25 @@ namespace AQMod.Content.WorldEvents
         {
 			if (Main.cloudAlpha == 0f)
 			{
-				if (Main.time < 10800.0d || Main.time > 43200.0d || !Main.dayTime)
-				{
-					IsItAHappyWindyDay = false;
-					return;
-				}
 				float windSpeed = Main.windSpeedSet.Abs();
 				if (windSpeed < MinWind)
 				{
-					IsItAHappyWindyDay = false;
+					IsItAHappyWindyDay_WindyEnough = false;
 				}
 				if (windSpeed >= MaxWind)
 				{
-					IsItAHappyWindyDay = true;
+					IsItAHappyWindyDay_WindyEnough = true;
+				}
+				if (Main.time < 10800.0d || Main.time > 43200.0d || !Main.dayTime)
+				{
+					IsItAHappyWindyDay = false;
+				}
+                else
+                {
+					if (IsItAHappyWindyDay_WindyEnough)
+					{
+						IsItAHappyWindyDay = true;
+					}
 				}
 			}
 			else

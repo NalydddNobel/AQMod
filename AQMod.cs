@@ -195,7 +195,7 @@ namespace AQMod
         /// <summary>
         /// The active instance of the Azure Currents event
         /// </summary>
-        public static AzureCurrents AtmosphericEvent { get; set; }
+        public static GaleStreams AtmosphericEvent { get; set; }
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
@@ -325,7 +325,7 @@ namespace AQMod
             RobsterHunts = new RobsterHuntLoader();
             RobsterHunts.Setup(setupStatics: true);
             CosmicEvent = new GlimmerEvent();
-            AtmosphericEvent = new AzureCurrents();
+            AtmosphericEvent = new GaleStreams();
             MapMarkers = new MapMarkerManager();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             ModCallHelper.SetupCalls();

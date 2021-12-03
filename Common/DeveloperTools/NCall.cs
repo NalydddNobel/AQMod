@@ -66,11 +66,11 @@ namespace AQMod.Common.DeveloperTools
                 {
                     case 1:
                     {
-                        bool meteorTime = AzureCurrents.MeteorTime();
+                        bool meteorTime = GaleStreams.MeteorTime();
                         tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
                         tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < AQMod.SpaceLayer - (40 * 16f)).ToString()));
                         tooltips.Add(new TooltipLine(mod, "2", "windy day: " + ImitatedWindyDay.IsItAHappyWindyDay));
-                        tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + AQMod.AtmosphericEvent.IsActive));
+                        tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + GaleStreams.IsActive));
                     }
                     break;
                 }
@@ -161,19 +161,19 @@ namespace AQMod.Common.DeveloperTools
                     var b = Main.MouseWorld.ToTileCoordinates();
                     if (args.Length > 7)
                     {
-                        AzureCurrents.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]), ushort.Parse(args[7]));
+                        GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]), ushort.Parse(args[7]));
                     }
                     else if (args.Length > 6)
                     {
-                        AzureCurrents.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]));
+                        GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]));
                     }
                     else if (args.Length > 2)
                     {
-                        AzureCurrents.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]));
+                        GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]));
                     }
                     else
                     {
-                        AzureCurrents.CrashMeteor(b.X, b.Y, int.Parse(args[1]));
+                        GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]));
                     }
                 }
                 break;

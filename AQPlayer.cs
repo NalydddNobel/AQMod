@@ -1593,13 +1593,27 @@ namespace AQMod
             {
                 temperature = (sbyte)(newTemperature / 2);
             }
-            if (newTemperature < 0)
+            if (Main.expertMode)
             {
-                temperature -= 3;
+                if (newTemperature < 0)
+                {
+                    temperature -= 3;
+                }
+                else
+                {
+                    temperature += 3;
+                }
             }
             else
             {
-                temperature += 3;
+                if (newTemperature < 0)
+                {
+                    temperature -= 1;
+                }
+                else
+                {
+                    temperature += 1;
+                }
             }
         }
 

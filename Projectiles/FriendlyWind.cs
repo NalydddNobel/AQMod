@@ -119,7 +119,7 @@ namespace AQMod.Projectiles
                 var trueOldPos = projectile.oldPos.AsAddAll(new Vector2(projectile.width / 2f, projectile.height / 2f));
                 for (int i = 0; i < trueOldPos.Length; i++)
                 {
-                    ParticleLayers.AddParticle_PostDrawPlayers(new ColdCurrentParticle(trueOldPos[i], -projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.4f, 0.4f)) * 0.5f, AzureCurrents.NeutralCurrentColor, 0.75f));
+                    ParticleLayers.AddParticle_PostDrawPlayers(new ColdCurrentParticle(trueOldPos[i], -projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.4f, 0.4f)) * 0.5f, GaleStreams.NeutralCurrentColor, 0.75f));
                 }
                 var rect = new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height);
                 for (int i = 0; i < 5; i++)
@@ -135,7 +135,7 @@ namespace AQMod.Projectiles
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            var color = AzureCurrents.NeutralCurrentColor;
+            var color = GaleStreams.NeutralCurrentColor;
             color.A = 255;
             HotAndColdCurrentLayer.AddToCurrentList(new ArrowDraw(color, projectile.oldPos.AsAddAll(-Main.screenPosition + new Vector2(projectile.width / 2f, projectile.height / 2f)), projectile.velocity.ToRotation()));
             return false;
