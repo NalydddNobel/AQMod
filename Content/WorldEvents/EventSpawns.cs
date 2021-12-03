@@ -110,7 +110,7 @@ namespace AQMod.Content.WorldEvents
                     pool.Add(ModContent.NPCType<Meteor>(), 2f);
                 }
             }
-            if (AQMod.AtmosphericEvent.EventActive(spawnInfo.player))
+            if (GaleStreams.EventActive(spawnInfo.player))
             {
                 if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
                     pool.Add(ModContent.NPCType<Vraine>(), 1f);

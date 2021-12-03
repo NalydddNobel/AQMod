@@ -103,6 +103,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
         public const int PHASE_SUMMON_NIMBUS = 2;
         public const int PHASE_DIRECT_WIND_Transition = 3;
         public const int PHASE_THUNDERCLAP = 4;
+        public const int PHASE_THUNDERCLAP_Transition = 5;
 
         public override void AI()
         {
@@ -417,7 +418,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                             }
                         }
                     }
-                    if (npc.ai[1] > 30f)
+                    if (npc.ai[1] > (Main.expertMode ? 30f : 60f))
                     {
                         npc.ai[1] = 0f;
                         RandomizePhase(PHASE_DIRECT_WIND);
@@ -538,6 +539,15 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                                         }
                                     }
                                 }
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
+                                {
+                                    int damage = 100;
+                                    if (Main.expertMode)
+                                    {
+                                        damage = 75;
+                                    }
+                                    Projectile.NewProjectile(center + new Vector2(0f, 130f), Vector2.Zero, ModContent.ProjectileType<Projectiles.Monster.ThunderClap>(), damage, 1f, Main.myPlayer);
+                                }
                             }
                         }
                     }
@@ -552,6 +562,22 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         {
                             npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - center) * 20f, 0.02f);
                         }
+                    }
+                }
+                break;
+
+                case PHASE_THUNDERCLAP_Transition:
+                {
+                    Vector2 gotoPosition = new Vector2(Main.player[npc.target].position.X + Main.player[npc.target].width / 2f, Main.player[npc.target].position.Y - 300f);
+                    var v = new Vector2(90f, 0f).RotatedBy(npc.ai[2]);
+                    v.X *= 2.5f;
+                    gotoPosition += v;
+                    npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - center) * 20f, 0.02f);
+                    npc.ai[1]++;
+                    if (npc.ai[1] > (Main.expertMode ? 30f : 60f))
+                    {
+                        npc.ai[1] = 0f;
+                        RandomizePhase(PHASE_DIRECT_WIND);
                     }
                 }
                 break;
@@ -618,6 +644,10 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                         }
                     }
                 }
+                break;
+
+                case -1:
+                frameIndex = 1;
                 break;
 
                 case PHASE_DIRECT_WIND:

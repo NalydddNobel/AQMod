@@ -3,19 +3,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Monster
 {
     public class RedSpriteCloudLightning : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            ProjectileID.Sets.TrailingMode[projectile.type] = 0;
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 16;
-        }
-
         public override void SetDefaults()
         {
             projectile.width = 10;
@@ -33,7 +26,7 @@ namespace AQMod.Projectiles.Monster
 
         public override Color? GetAlpha(Color drawColor)
         {
-            return new Color(120, 120, 120, 0);
+            return new Color(255, 255, 255, 255);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
