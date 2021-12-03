@@ -17,7 +17,7 @@ using Terraria.Utilities;
 
 namespace AQMod.Content.WorldEvents.DemonicEvent
 {
-    public class DemonSiege
+    public static class DemonSiege
     {
         private static bool _active;
         public static bool IsActive => _active && X > 0 && Y > 0;
@@ -255,6 +255,17 @@ namespace AQMod.Content.WorldEvents.DemonicEvent
             {
                 if (PlayerActivator == Main.myPlayer)
                     Main.NewText(AQText.ModText("Common.DemonSiegeDeath"), TextColor);
+                Deactivate();
+                return;
+            }
+            if (Main.tile[X, Y] == null)
+            {
+                Main.tile[X, Y] = new Tile();
+                Deactivate();
+                return;
+            }
+            if (!Main.tile[X, Y].active() || Main.tile[X, Y].type != ModContent.TileType<GoreNest>())
+            {
                 Deactivate();
                 return;
             }

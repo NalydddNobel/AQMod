@@ -200,6 +200,7 @@ namespace AQMod
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
+        public static ModifiableMusic GaleStreamsMusic { get; private set; }
 
         internal static CrossModType Split { get; private set; }
 
@@ -357,6 +358,7 @@ namespace AQMod
                 GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
                 OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
                 DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
+                GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
                 SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
                 GlimmerEventSky.Initialize();
                 Trailshader.Setup();
@@ -809,6 +811,7 @@ namespace AQMod
                 EffectCache.ParentPixelShader = null;
                 //EffectCache.Instance = null;
                 GlimmerEventSky.Unload();
+                GaleStreamsMusic = null;
                 DemonSiegeMusic = null;
                 OmegaStariteMusic = null;
                 GlimmerEventMusic = null;
@@ -913,6 +916,11 @@ namespace AQMod
                     music = GlimmerEventMusic.GetMusicID();
                     priority = MusicPriority.Event;
                 }
+            }
+            else if (GaleStreams.EventActive(Main.LocalPlayer))
+            {
+                music = GaleStreamsMusic.GetMusicID();
+                priority = MusicPriority.Event;
             }
         }
 

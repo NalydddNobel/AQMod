@@ -7,20 +7,16 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common
+namespace AQMod
 {
     public class AQTile : GlobalTile
     {
         public override void RandomUpdate(int i, int j, int type)
         {
             if (Main.tile[i, j] == null)
-            {
                 Main.tile[i, j] = new Tile();
-            }
             if (WorldGen.genRand.NextBool(10000) && GoreNest.GrowGoreNest(i, j, true, true))
-            {
                 return;
-            }
             switch (type)
             {
                 case TileID.Stone:
@@ -47,9 +43,7 @@ namespace AQMod.Common
                 if (TileLoader.GetTile(tile.type).mod.Name == "AQMod")
                 {
                     if (!TileLoader.CanKillTile(i, j, tile.type, ref blockDamaged))
-                    {
                         return true;
-                    }
                 }
             }
             return false;
@@ -62,12 +56,10 @@ namespace AQMod.Common
                 case TileID.ShadowOrbs:
                 return !AQMod.EvilProgressionLock || AQMod.AnyBossDefeated() || Main.LocalPlayer.HeldItem.hammer >= 60;
             }
-            if (!Main.tileFrameImportant[type] && Main.tileSolid[type])
+            if (j > 1)
             {
                 if (ProtectedTile(i, j - 1))
-                {
                     return false;
-                }
             }
             return true;
         }
@@ -83,24 +75,20 @@ namespace AQMod.Common
                 case TileID.ShadowOrbs:
                 return !AQMod.EvilProgressionLock || AQMod.AnyBossDefeated();
             }
-            if (!Main.tileFrameImportant[type] && Main.tileSolid[type])
+            if (j > 1)
             {
                 if (ProtectedTile(i, j - 1))
-                {
                     return false;
-                }
             }
             return true;
         }
 
         public override bool Slope(int i, int j, int type)
         {
-            if (!Main.tileFrameImportant[type] && Main.tileSolid[type])
+            if (j > 1)
             {
                 if (ProtectedTile(i, j - 1))
-                {
                     return false;
-                }
             }
             return true;
         }

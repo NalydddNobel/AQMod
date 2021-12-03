@@ -1,3 +1,48 @@
+####### 1.2.4 #######
+
+Additions:
+New item: Baozhu, an upgrade to the Molotov Cocktail
+New item: Fluorescence, a material dropped from Red Sprites
+New debuff: Pick Break, lowers your tool speed and halves your pickaxe power, inflicted by crab enemies
+New NPC: Red Sprite, it can spawn naturally in Space during a windy day in hardmode (Gale Streams) 
+
+- Recipe for the Air Blade
+
+- Neutron Yogurt, Peeled Carrots, and Red Licorice now give custom buffs instead of Well Fed
+
+Changes:
+- Vraines now have lower stats in pre-Hardmode
+* They use the higher stats in Hardmode still
+* Life: 550 -> 320
+* Damage: 90 -> 64 
+
+- Crab Season now has its own downed flag, which gets triggered if you have kill a crab during crab season 
+
+- Increased the buff duration of multiple food items
+
+- Lowered the damage of the Crystal Dagger
+* 21 -> 19
+
+- Increased the rarity of Demon Siege weapons
+* Orange -> Light Red
+
+- Nerfed the Sprinkler, and modified its recipe
+* Damage: 26 -> 20
+* Use Time: 12 -> 20
+* Shoot Speed: 28 -> 24
+* Knockback 4 -> 3.5
+
+- Overhauled the Crabax
+
+- Added localization values for multiple things
+
+Fixes:
+- Grape Phanta will no longer increase the speed of your wings
+
+- Fixed an exploit where holding specific food items on your mouse meant you can eat them indefinitely
+
+- Dying now resets your temperature
+
 ####### 1.2.3.5 #######
 
 Additions:
