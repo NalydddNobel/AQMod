@@ -855,7 +855,6 @@ NPCName.Cindera=Cindera
 NPCName.Meteor=Meteor
 NPCName.TemperatureBalloon=Temperature Balloon
 NPCName.SpaceSquid=Space Squid
-NPCName.RedSprite=Red Sprite
 NPCName.Vraine=Vraine
 NPCName.Atmodrone=Atmodrone
 NPCName.HotCurrent=Hot Current
@@ -890,16 +889,21 @@ ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCNam
 
 ItemName.VraineBanner=Vraine Banner
 ItemTooltip.VraineBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Vraine}
-ItemName.TemperatureBalloonBanner=Temperature Balloon Banner
-ItemTooltip.TemperatureBalloonBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TemperatureBalloon}
-ItemName.RedSpriteBanner=Red Sprite Banner
-ItemTooltip.RedSpriteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.RedSprite}
 
 BuffName.PickBreak=Pick Break
 BuffDescription.PickBreak=Your mining power is halved
 
+NPCName.RedSprite=Red Sprite
+
+ProjectileName.RedSpriteCloud=Red Sprite
+ProjectileName.RedSpriteCloudLightning=Red Sprite
+ProjectileName.ThunderClap=Red Sprite
+
 BuffName.RedSpriteWind=Red Wind
 BuffDescription.RedSpriteWind=The wind moves you around!\nYou are increasing in temperature
+
+ItemName.RedSpriteBanner=Red Sprite Banner
+ItemTooltip.RedSpriteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.RedSprite}
 
 QuestFish.Crabdaughter=Seems like some new fish have entered the ocean recently, one of these fish seems to be related this massive crab with clam as claws. The only thing that makes me think it's related is that it's a clam with crab claws. It's an amazing sight so catch one for me.
 QuestFish.WaterFisg=It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.
