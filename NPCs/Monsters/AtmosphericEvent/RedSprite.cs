@@ -577,7 +577,7 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                     if (npc.ai[1] > (Main.expertMode ? 30f : 60f))
                     {
                         npc.ai[1] = 0f;
-                        RandomizePhase(PHASE_DIRECT_WIND);
+                        RandomizePhase(PHASE_THUNDERCLAP);
                     }
                 }
                 break;
@@ -603,11 +603,6 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                 {
                     break;
                 }
-            }
-            if (Main.mouseRight)
-            {
-                npc.ai[0] = PHASE_THUNDERCLAP;
-                Main.NewText("test");
             }
             npc.ai[1] = 0f;
             npc.netUpdate = true;
