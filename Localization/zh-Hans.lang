@@ -855,7 +855,6 @@ NPCName.Cindera=幻形蝠
 NPCName.Meteor=流星
 NPCName.TemperatureBalloon=探温风标
 NPCName.SpaceSquid=太空乌贼
-NPCName.RedSprite=红色精灵
 NPCName.Vraine=镰鸟
 NPCName.Atmodrone=大气无人机
 NPCName.HotCurrent=暖流
@@ -890,16 +889,21 @@ ItemTooltip.TrapperImpBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCNam
 
 ItemName.VraineBanner=镰鸟旗
 ItemTooltip.VraineBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Vraine}
-ItemName.TemperatureBalloonBanner=探温风标旗
-ItemTooltip.TemperatureBalloonBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TemperatureBalloon}
-ItemName.RedSpriteBanner=红色精灵旗
-ItemTooltip.RedSpriteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.RedSprite}
 
 BuffName.PickBreak=工具断裂
 BuffDescription.PickBreak=你的采矿能力被减半了
 
+NPCName.RedSprite=红色精灵
+
+ProjectileName.RedSpriteCloud=红色精灵
+ProjectileName.RedSpriteCloudLightning=红色精灵
+ProjectileName.ThunderClap=红色精灵
+
 BuffName.RedSpriteWind=红色狂风
 BuffDescription.RedSpriteWind=狂风正在你的周围移动!\n你的温度正在升高
+
+ItemName.RedSpriteBanner=红色精灵旗
+ItemTooltip.RedSpriteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.RedSprite}
 
 QuestFish.Crabdaughter=看起来海洋中最近涌入了某些新的鱼, 其中一条鱼似乎与爪子为蛤蜊的巨大螃蟹有关联. 尽管我所能想到的唯一关联是它的爪子为螃蟹爪子. 真是个奇观, 所以快给我抓一条!
 QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我曾见过一条内部充满清澈的水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
