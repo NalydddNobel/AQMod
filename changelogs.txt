@@ -1,7 +1,7 @@
 ####### 1.2.4.3 #######
 
 Additions:
-- Added a new NPC called the Physicist, she can enter town after Omega Starite has been defeated
+- Added a new NPC called the Physicist, she can move into town after Omega Starite has been defeated
 - Robster now sells Aquatic Energy for 3 gold
 
 Changes:
