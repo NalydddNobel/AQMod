@@ -176,7 +176,6 @@ namespace AQMod.NPCs.Friendly.Town
                                 {
                                     continue;
                                 }
-                                return Language.GetTextValue("Mods.AQMod.Physicist.Chat.BloodMoon.KillRequest." + Main.rand.Next(4), name, player.name);
                                 potentialText.Add(Language.GetTextValue("Mods.AQMod.Physicist.Chat.BloodMoon.KillRequest." + Main.rand.Next(4), name, player.name));
                                 killText = true;
                             }
