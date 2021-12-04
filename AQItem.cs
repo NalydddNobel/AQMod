@@ -34,7 +34,7 @@ namespace AQMod
         {
             public static int PotionValue => Item.sellPrice(silver: 2);
             public static int EnergySellValue => Item.sellPrice(silver: 10);
-            public static int EnergyBuyValue => Item.sellPrice(gold: 2);
+            public static int EnergyBuyValue => Item.buyPrice(gold: 3);
             public static int CrabsonWeaponValue => Item.sellPrice(silver: 25);
             public static int CorruptionWeaponValue => Item.sellPrice(silver: 50);
             public static int CrimsonWeaponValue => Item.sellPrice(silver: 55);

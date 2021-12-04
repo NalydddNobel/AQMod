@@ -1,6 +1,59 @@
-﻿##################################################################################
-# Common																		 #
-##################################################################################
+﻿### NPC Chat
+
+# Exporter
+NPCName.Robster=Exporter
+
+# Physicist
+NPCName.Physicist=Physicist
+Physicist.Chat.Introduction=Oh hello, my name is {0}. I came here after hearing about a strange phenomenon where cosmic entities try to intercept some sort of powerful source.
+Physicist.Chat.0={0}, in the flesh – or, rather, in a {1}
+Physicist.Chat.1=Well, it does seem there is something to chaos theory after all, yes?
+Physicist.Chat.2=The Administrator is very concerned that we get a conclusive analysis of today's sample. I gather they went to some lengths to get it.
+Physicist.Chat.3=Power to stage one emitters in three... two... one...
+Physicist.Chat.4=Stage two emitters activating... now.
+Physicist.Chat.5=I'm seeing predictable phase arrays.
+Physicist.Chat.6={0}, we cannot predict how long the system can operate at this level, nor how long the reading will take. Please work as quickly as you can.
+Physicist.Chat.7=Shutting down. Attempting shut down. It's not...it's-it's not...it's not shutting down...it's not...
+Physicist.Chat.8=Testing... testing... Everything seems to be in order.
+Physicist.Chat.9=Get away from there, {0}! I'm expecting an important message from {1}!
+Physicist.Chat.BloodMoon.0=This total lunar eclipse is very chaotic, nothing like on my original planet.
+Physicist.Chat.BloodMoon.1=Why would anyone go so crazy over this natural event of Rayleigh scattering?
+Physicist.Chat.BloodMoon.2=No, this is not the end of the world. Not yet atleast.
+Physicist.Chat.BloodMoon.KillRequest.0=This dumb {0} is getting annoying and destroying my science equipment! Go kill it, {1}.
+Physicist.Chat.BloodMoon.KillRequest.1=Could you kill that {0} outside? I haven't been able to do anything tonight because of them.
+Physicist.Chat.BloodMoon.KillRequest.2=I'm tired of the door getting torn down on by {0}s.
+Physicist.Chat.BloodMoon.KillRequest.3=Hey {1}, there's a {0} out there killing people! I'd like you to manage that thing instead of trying to have small talk with me.
+Physicist.Chat.BloodMoon.EvilBunny=These evil bunnies are so much more interesting than the cute ones! I should keep one as a pet.
+Physicist.Chat.BloodMoon.CrimsonWarning=I wouldn't go to the crimson if I were you... I sense something bad happens when the bloody, living, hive mind merges with the magical essense of this world's blood moons.
+Physicist.Chat.BloodMoon.NewMoon=Interesting, I thought blood moons couldn't happen during the new moon?
+Physicist.Chat.GlimmerEvent.0=Hmm, interesting, I didn't know that stars are somehow able to create intelligence from pure chaos...
+Physicist.Chat.GlimmerEvent.1=Why do I feel like the floor is sparkly, no one has mopped the floor in a while...
+Physicist.Chat.GlimmerEvent.2=Before nightfall, I saw a falling star which looked like it was going towards the ground... now that this event is happening, I'm pretty sure that it's one of those powerful sources.
+Physicist.Chat.GlimmerEvent.3=Sometimes I look into the sky and see another solar system... but it must be a mirage from the amount of light reflecting off the surface of the planet, even if I cannot prove that it is a mirage.
+Physicist.Chat.GlimmerEvent.Source.East=Somewhere to the east, there seems to be a powerful source which I would like to invesigate.
+Physicist.Chat.GlimmerEvent.Source.West=Somewhere to the west, there seems to be a powerful source which I would like to invesigate.
+Physicist.Chat.Purity.0=These woods are very calm... but also very susceptible to the spreading infections.
+Physicist.Chat.Purity.1=I once saw a little bunny, it died.
+Physicist.Chat.Purity.2=While this place is very interesting and calm, it definetly doesn't fit my criteria for work
+Physicist.Chat.Hallow.0=This place is such an insult to my beliefs...
+Physicist.Chat.Hallow.1=Fairies? Unicorns? Wizards!? This is such a hellhole!
+Physicist.Chat.Hallow.2=There's too much magic here, I can't stand it!
+Physicist.Chat.Hallow.3=I wish I could get out of here...
+Physicist.Chat.Hallow.4=What's next? The Great Mighty Poo is real?
+Physicist.Chat.Hallow.5=You cannot tell me that the core of Terraria contained THIS inside itself
+Physicist.Chat.Corruption=Get me out of this stinky, vile place.
+Physicist.Chat.Crimson=Get me out of this stinky, gorey place.
+# TODO: add these cross mod quotes into the dialogue
+Physicist.Chat.Mod.Split.LowTechRemote=Have you ever picked up one of those Low-tech remotes? I tried upgrading one of them to contact a strong alien force, but still I get "Connecting... Please, stay on the line."
+Physicist.Chat.Mod.Split.Spirit=One time I adventured in the jungle and found a funny lady, we enjoyed some nice cooked fish together
+Physicist.Chat.Mod.Split.Menace=Me and that Astrologist lady get along quite well, even if she has some strange beliefs.
+Physicist.Chat.Mod.Split.Vulcan=In one of my journeys in the underworld, I found an interesting person named Vulcan, they sounded sad...
+Physicist.Chat.Mod.Polarities.FractalDimension=I have noticed that a mathmatical structure has generated somewhere in the sky... I'd like to check it out someday
+Physicist.Chat.Mod.Polarities.Rapture=Somehow the light from the hallow is even stronger than before! Why does it feel like this world is always against me...
+Physicist.Chat.Mod.Fargowiltas.Mutant=You just buy boss summons from a weird looking monster? Weirdo.
+Physicist.Chat.Mod.Fargowiltas.Abominationn=You just buy event summons from a creepy looking reaper? Weirdo.
+Physicist.Chat.Mod.Fargowiltas.Deviantt=You just buy rare enemy summons from a dumb looking child? Weirdo.
+
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=On a true melee critical hit you gain greatly increased stats for a short while\nWhen the effect activates you gain the potion sickness debuff\nThis effect can only trigger if you don't have the potion sickness debuff
 Common.ArmorSetBonus_Lightbulb=Hunter and dangersense is always active
@@ -467,6 +520,11 @@ ItemTooltip.CrimsonHellSword=Shoots a wave of demonic energy
 ItemName.HellsBoon=Hell's Boon
 ItemName.Galactium=Galactium
 ItemTooltip.Galactium=Rains stars from the sky\nInflicts blue fire on true melee hits
+
+ItemName.OrbicularStargaizar=Orbicular Stargaizar
+BuffName.Harmony=Harmony
+BuffDescription.Harmony=Grealy increases your magical powers
+
 ItemName.KryptonSword=Krypton Sword
 ItemName.StariteBlade=Starite Blade
 ItemTooltip.StariteBlade=Inflicts blue fire on hit
@@ -839,7 +897,6 @@ NPCName.OmegaStarite=Omega Starite
 NPCName.MultiStarite=Multi Starite
 
 NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
-NPCName.Robster=Lobster
 NPCName.JerryCrabson=Jerry Crabson
 NPCName.JerryClaw=Jerry Claw
 NPCName.ArrowCrab=Arrow Crab

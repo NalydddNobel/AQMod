@@ -247,6 +247,9 @@ namespace AQMod.NPCs.Friendly.Town
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.AquaticEnergy>());
+            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
+            nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<FishingCraftingStation>());
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<BlurryDiscountCard>());

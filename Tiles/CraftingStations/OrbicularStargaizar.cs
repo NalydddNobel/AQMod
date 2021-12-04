@@ -37,7 +37,8 @@ namespace AQMod.Tiles.CraftingStations
 
         public override bool NewRightClick(int i, int j)
         {
-            Main.LocalPlayer.AddBuff(BuffID.Clairvoyance, 36000);
+            Main.PlaySound(SoundID.Item4);
+            Main.LocalPlayer.AddBuff(ModContent.BuffType<Buffs.Harmony>(), 54000);
             return true;
         }
 

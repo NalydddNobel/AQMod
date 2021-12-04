@@ -113,7 +113,7 @@ namespace AQMod.Content.WorldEvents.CosmicEvent
         /// <returns></returns>
         public bool CanShowInvasionProgress()
         {
-            if (IsActive && OmegaStariteScene.OmegaStariteIndexCache == -1)
+            if (SpawnsActive(Main.LocalPlayer) && OmegaStariteScene.OmegaStariteIndexCache == -1)
             {
                 if (GetTileDistance(Main.LocalPlayer) < MaxDistance)
                     return true;
