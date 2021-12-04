@@ -48,7 +48,7 @@ namespace AQMod.Tiles
             {
                 for (int i = area.X; i < area.X + size; i++)
                 {
-                    if (Framing.GetTileSafely(i, j + 1).active() && Main.tileSolid[Main.tile[i, j + 1].type] && !TileID.Sets.Grass[Main.tile[i, j + 1].type] &&
+                    if (Framing.GetTileSafely(i, j + 1).active() && Main.tileSolid[Main.tile[i, j + 1].type] && (Main.tile[i, j + 1].type == TileID.Stone || Main.tile[i, j + 1].type == TileID.Dirt) &&
                         (!Framing.GetTileSafely(i, j).active() || Main.tileCut[Main.tile[i, j].type]) &&
                         Main.tile[i, j].liquid > 0 && !Main.tile[i, j].lava() && !Main.tile[i, j].honey())
                     {

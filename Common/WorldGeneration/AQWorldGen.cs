@@ -345,7 +345,7 @@ namespace AQMod.Common.WorldGeneration
             for (int i = 0; i < 15000; i++)
             {
                 int x = WorldGen.genRand.Next(50, Main.maxTilesX - 50);
-                int y = WorldGen.genRand.Next(200, Main.maxTilesY - 240);
+                int y = WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow, Main.maxTilesY - 240);
                 int style = WorldGen.genRand.Next(3);
                 int size = WorldGen.genRand.Next(50, 150);
                 if (ExoticCoral.TryPlaceExoticBlotch(x, y, style, size))

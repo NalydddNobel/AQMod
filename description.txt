@@ -10,7 +10,7 @@ A discord link to the mod is in the homepage, if you like typing discord invite 
 [c/ff3377:>] 14 Enemies
 [c/ff3377:>] 3 Events
 [c/ff3377:>] 2 Bosses
-[c/ff3377:>] 1 Town NPC
+[c/ff3377:>] 2 Town NPCs
 [c/ff3377:>] 11 Tiles
 [c/ff3377:>] 2 Walls
 And importantly, many bugs!

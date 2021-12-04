@@ -6,6 +6,8 @@ Additions:
 
 Changes:
 - The "Lobster" NPC is now called the Exporter
+- Exotic Coral can now only grow on stone and dirt
+- Exotic Coral can now only generate underground
 
 Fixes:
 - The Glimmer Event invasion progress should no longer show when you are underground
