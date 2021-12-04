@@ -1,6 +1,59 @@
-##################################################################################
-# Common																		 #
-##################################################################################
+### NPC Chat
+
+# Exporter
+NPCName.Robster=发货人
+
+# Physicist
+NPCName.Physicist=物理学家
+Physicist.Chat.Introduction=哦你好, 我叫 {0}. 我听说宇宙实体正试图拦截一种强大的源后才来这的.
+Physicist.Chat.0={0}, 在血肉之中 – 更准确的说应该是, 在 {1}
+Physicist.Chat.1=好吧, 看起来混沌理论还是有点道理的, 不是吗?
+Physicist.Chat.2=管理员非常关心我们对今天的样本进行结论性的分析. 我猜他们肯定花了不少时间才弄到它.
+Physicist.Chat.3=第一级发射器激活三... 二... 一...
+Physicist.Chat.4=第二级发射器激活...现在.
+Physicist.Chat.5=我正在观看可观测的相位阵列
+Physicist.Chat.6={0}, 我们无法预测该系统能在这个水平上运行多久, 阅读并不会花上多长时间. 请尽可能快地工作.
+Physicist.Chat.7=闭嘴. 正在尝试闭嘴. 它不是...它是-它不是...它不是闭嘴...它不...
+Physicist.Chat.8=测试... 测试... 一切看起来似乎都井然有序.
+Physicist.Chat.9=走开, {0}! 我正等着从 {1} 那发来的重要讯息!
+Physicist.Chat.BloodMoon.0=这次的月全食非常混乱, 一点也不像我原来的那颗星球.
+Physicist.Chat.BloodMoon.1=为什么会有人对瑞利散射这一自然事件如此狂热?
+Physicist.Chat.BloodMoon.2=不, 这并不是世界末日. 至少现在还不是.
+Physicist.Chat.BloodMoon.KillRequest.0=愚蠢的 {0} 越来越烦人了并且正在摧毁我的科学设备, 去杀了它, {1}.
+Physicist.Chat.BloodMoon.KillRequest.1=你能杀了外面的那个 {0} 吗? 因为它们, 我今晚什么都做不了.
+Physicist.Chat.BloodMoon.KillRequest.2=我厌倦了大门总是被 {0} 拆下来.
+Physicist.Chat.BloodMoon.KillRequest.3=嘿 {1}, 外面有个 {0} 在杀人! 我希望你能处理好那件事, 而不是试着和我在这闲聊.
+Physicist.Chat.BloodMoon.EvilBunny=这些邪恶的兔子比可爱的兔子有趣多了! 我应该养一只作为宠物.
+Physicist.Chat.BloodMoon.CrimsonWarning=如果我是你, 我是不会去猩红之地的... 我能感觉到当血腥的、活生生的虫群意识与这个世界上血月的魔法精华融合在一起时将会发生一些不好的事情.
+Physicist.Chat.BloodMoon.NewMoon=有趣, 我曾认为血月不会在新月时出现?
+Physicist.Chat.GlimmerEvent.0=Hmm, 有趣, 我并不知道原来星辰在某种程度上能够从纯粹的混沌中创造智慧...
+Physicist.Chat.GlimmerEvent.1=为什么我觉得地板在发光, 很久都没有人擦过地板了...
+Physicist.Chat.GlimmerEvent.2=在夜幕来临之前, 我曾看到一颗流星砸向地面... 现在, 这种事件发生了, 我敢肯定, 这是其中一个源.
+Physicist.Chat.GlimmerEvent.3=有时我仰望天空时, 我会看到另一个太阳系... 但从地球表面反射的光的数量来看, 这一定是海市蜃楼, 即使我无法证明这是海市蜃楼.
+Physicist.Chat.GlimmerEvent.Source.East=在东边的某个敌方, 有一个强大的源, 我想去调查一下.
+Physicist.Chat.GlimmerEvent.Source.West=在西边的某个敌方, 有一个强大的源, 我想去调查一下.
+Physicist.Chat.Purity.0=这些树林非常的宁静... 但也很容易受到腐化的感染.
+Physicist.Chat.Purity.1=我曾看到过一只小兔子, 它死了.
+Physicist.Chat.Purity.2=虽然这个地方有趣又平静, 但绝对不符合我的工作标准.
+Physicist.Chat.Hallow.0=这个地方是对我信仰的侮辱...
+Physicist.Chat.Hallow.1=仙灵? 独角兽? 巫师!? 这简直是炼狱!
+Physicist.Chat.Hallow.2=这里有太多的魔法了, 我受不了了!
+Physicist.Chat.Hallow.3=我希望我能离开这里...
+Physicist.Chat.Hallow.4=下一个是什么? 超巨型大便是真的吗?
+Physicist.Chat.Hallow.5=别告诉我泰拉瑞亚的本源包括这个.
+Physicist.Chat.Corruption=把我从这个肮脏邪恶的地方弄出去.
+Physicist.Chat.Crimson=把我从这个肮脏血腥的地方弄出去.
+# TODO: add these cross mod quotes into the dialogue
+Physicist.Chat.Mod.Split.LowTechRemote=你有没有使用过那些低技术力的遥控器? 我曾试着升级其中一个来接触强大的外星人, 但我得到的回复只有"连接中... 请不要挂断连接."
+Physicist.Chat.Mod.Split.Spirit=有一次我在丛林里探险, 发现了一位有趣的女士, 我们一起吃了一些美味的熟鱼.
+Physicist.Chat.Mod.Split.Menace=我和那位占星女士相处的很好, 即便她有一些奇怪的信仰.
+Physicist.Chat.Mod.Split.Vulcan=在我的一次地狱之旅中, 我发现了一位名字为火神的有趣的人, 他看起来很悲伤.
+Physicist.Chat.Mod.Polarities.FractalDimension=我注意到在天空的某个地方出现了一个数学结构... 改天我得去看看.
+Physicist.Chat.Mod.Polarities.Rapture=来自神圣之地的光芒比以前要亮很多! 我感觉这个世界总是在针对我...
+Physicist.Chat.Mod.Fargowiltas.Mutant=你刚刚从一个看起来很诡异的怪物那买了Boss召唤物? 真是个怪人.
+Physicist.Chat.Mod.Fargowiltas.Abominationn=你刚刚从一个看起来很惊悚的收割者那买了Boss召唤物? 真是个怪人.
+Physicist.Chat.Mod.Fargowiltas.Deviantt=你刚刚从一个看起来很愚蠢的小孩那买了Boss召唤物? 真是个怪人.
+
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=真近战攻击造成暴击后使你的各项属性大幅度提升一小段时间\n当触发此效果时使你获得耐药性减益\n此效果仅在你没有耐药性减益时触发
 Common.ArmorSetBonus_Lightbulb=你现在拥有危险感和猎人增益
@@ -467,6 +520,11 @@ ItemTooltip.CrimsonHellSword=发射恶魔能量冲击波
 ItemName.HellsBoon=地狱之赐
 ItemName.Galactium=辰星坠
 ItemTooltip.Galactium=挥舞时召唤从天而降的微光星辰\n真近战攻击击中敌人时对其造成碧蓝之火减益
+
+ItemName.OrbicularStargaizar=观星法球
+BuffName.Harmony=和谐
+BuffDescription.Harmony=大幅度强化你的魔法能力
+
 ItemName.KryptonSword=氪制剑
 ItemName.StariteBlade=星源刃
 ItemTooltip.StariteBlade=击中敌人时对其造成碧蓝之火减益
@@ -839,7 +897,6 @@ NPCName.OmegaStarite=终末之星
 NPCName.MultiStarite=集群源星
 
 NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
-NPCName.Robster=龙虾
 NPCName.JerryCrabson=巨蟹蛤
 NPCName.JerryClaw=蟹蛤之爪
 NPCName.ArrowCrab=箭蟹
