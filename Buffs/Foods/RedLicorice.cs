@@ -21,7 +21,7 @@ namespace AQMod.Buffs.Foods
 
             player.meleeDamage += 0.025f;
             player.meleeCrit += 4;
-            player.statLifeMax2 += 20;
+            player.GetModPlayer<AQPlayer>().extraHP += 20;
         }
     }
 }

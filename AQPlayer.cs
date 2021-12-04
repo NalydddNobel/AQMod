@@ -275,6 +275,7 @@ namespace AQMod
         public bool pickBreak;
         public bool crabAx;
         public sbyte redSpriteWind;
+        public byte extraHP;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -536,6 +537,11 @@ namespace AQMod
             mothmanMask = false;
             pickBreak = false;
             crabAx = false;
+            if (extraHP > 60) // to cap life max buffs at 60
+            {
+                extraHP = 60;
+            }
+            player.statLifeMax2 += extraHP;
             if (temperature != 0)
             {
                 if (temperature < -100)

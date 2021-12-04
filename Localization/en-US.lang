@@ -315,7 +315,12 @@ BuffName.GrapePhanta=Grape Phanta
 BuffDescription.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
 
 ItemName.SuspiciousLookingSteak=Suspicious Looking Steak
+
 ItemName.SpicyEel=Spicy Eel
+ItemTooltip.SpicyEel=Greatly increases speed
+BuffName.SpicyEel=Spicy Eel
+BuffDescription.SpicyEel=Your speed is greatly increased
+
 # Other Buffs Items
 ItemName.MysteryGrail=Mystery Grail
 ItemName.OpposingPotion=Opposing Potion
@@ -622,7 +627,6 @@ ItemTooltip.UltimateStarfruit=Left click summons {$Mods.AQMod.NPCName.OmegaStari
 # Foods
 ItemTooltip.Baguette='Cake is just spongy bread'
 ItemTooltip.SuspiciousLookingSteak=Gives multiple buffs\n'A curse has been lifted'
-ItemTooltip.SpicyEel=Greatly increases speed
 # Other Buffs Items
 ItemTooltip.MysteryGrail=Gives you a random buff
 ItemTooltip.OpposingPotion=Makes some enemies drop opposing loot
@@ -775,8 +779,6 @@ BuffName.PrimeTime=Prime Time
 BuffDescription.PrimeTime=Your endurance is greatly increased and crits are twice as likely to occur
 BuffName.Opposing=Opposing
 BuffDescription.Opposing=Enemies have a chance to drop opposing loot
-BuffName.SpicyEelBuff=Spicy Eel
-BuffDescription.SpicyEelBuff=Your speed is greatly increased
 
 BuffName.Cold20=Cold
 BuffDescription.Cold20=You are below 20 degrees Fahrenheit
