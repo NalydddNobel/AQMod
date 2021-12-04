@@ -1,9 +1,11 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Content.Dusts;
+using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Consumables.Potion;
 using AQMod.Items.Foods;
 using AQMod.Items.Tools.Fishing;
+using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -226,6 +228,34 @@ namespace AQMod
                     {
                         t.text = (item.pick / 2) + Lang.tip[26].Value;
                         t.overrideColor = new Color(128, 128, 128, 255);
+                    }
+                }
+            }
+            if (item.type > Main.maxItemTypes)
+            {
+                if (item.modItem is IManaPerSecond m)
+                {
+                    int? value = m.ManaPerSecond;
+                    int manaCost;
+                    if (value != null)
+                    {
+                        manaCost = value.Value;
+                    }
+                    else
+                    {
+                        manaCost = Main.player[Main.myPlayer].GetManaCost(item);
+                        int usesPerSecond = 60 / PlayerHooks.TotalUseTime(item.useTime, Main.player[Main.myPlayer], item);
+                        if (usesPerSecond != 0)
+                        {
+                            manaCost *= usesPerSecond;
+                        }
+                    }
+                    foreach (var t in tooltips)
+                    {
+                        if (t.mod == "Terraria" && t.Name == "UseMana")
+                        {
+                            t.text = string.Format(AQText.ModText("Tooltips.ManaPerSecond").Value, manaCost);
+                        }
                     }
                 }
             }

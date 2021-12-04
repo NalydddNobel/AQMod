@@ -88,13 +88,10 @@ namespace AQMod.Projectiles.Magic
                 {
                     player.itemTime = 2;
                     projectile.friendly = laserScale > 0.1f;
-                    if (projectile.friendly)
+                    projectile.ai[0]++;
+                    if ((int)projectile.ai[0] > 60f)
                     {
-                        projectile.ai[0]++;
-                        if ((int)projectile.ai[0] > player.itemAnimationMax)
-                        {
-                            UpdateMana(player, rotatedRelativePoint, laserScale);
-                        }
+                        UpdateMana(player, rotatedRelativePoint, laserScale);
                     }
                 }
                 else

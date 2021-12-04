@@ -44,7 +44,7 @@ namespace AQMod.Projectiles.Monster
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition + new Vector2(electric, 0f).RotatedBy(MathHelper.PiOver4 * i + Main.GlobalTime * 5f), frame, new Color(150, 255, 0, 20), projectile.rotation, origin, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition + new Vector2(electric, 0f).RotatedBy(MathHelper.PiOver4 * i + Main.GlobalTime * 5f), frame, new Color(100, 20, 2, 0), projectile.rotation, origin, scale, SpriteEffects.None, 0f);
                 }
             }
             Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, lightColor, projectile.rotation, origin, scale, SpriteEffects.None, 0f);

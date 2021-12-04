@@ -1,5 +1,9 @@
 ﻿### NPC Chat
 
+# Tooltips
+
+Tooltips.ManaPerSecond=Uses {0} mana per second
+
 # Exporter
 NPCName.Robster=Exporter
 

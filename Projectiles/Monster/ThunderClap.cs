@@ -88,7 +88,7 @@ namespace AQMod.Projectiles.Monster
             var glowBright = new Color(200, 140, 30);
             var glowDark = new Color(80, 20, 2, 0);
 
-            Main.spriteBatch.Draw(glow, drawPosition + new Vector2(0f, projectile.ai[0] / 2f) - Main.screenPosition, new Rectangle(0, 0, glow.Width / 2, glow.Height), new Color(100, 20, 2, 0), projectile.rotation + MathHelper.PiOver2, thunderGlowOrig, glowScale * 1.5f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(glow, drawPosition + new Vector2(0f, projectile.ai[0] / 2f) - Main.screenPosition, new Rectangle(0, 0, glow.Width / 2, glow.Height), new Color(100, 20, 2, 0), projectile.rotation + MathHelper.PiOver2, thunderGlowOrig, new Vector2(glowScale.X, glowScale.Y * 1.5f), SpriteEffects.None, 0f);
 
             if (AQMod.EffectQuality >= 1f)
             {
@@ -128,13 +128,13 @@ namespace AQMod.Projectiles.Monster
                 length -= separation;
                 if (length < separation)
                 {
+                    var glow2 = TextureCache.Lights[LightTex.Spotlight66x66];
+                    var glow2Orig = glow2.Size() / 2f;
+                    Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, -frame.Height / 2f) - Main.screenPosition, null, glowBright, projectile.rotation, glow2Orig, scale * 2f, SpriteEffects.None, 0f);
                     frame.Y = 1 * frame.Height;
                     Main.spriteBatch.Draw(texture, position - Main.screenPosition, frame, lightColor, projectile.rotation, orig, scale, SpriteEffects.None, 0f);
                     frame.Y = 0;
                     Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, lightColor, projectile.rotation, orig, scale, SpriteEffects.None, 0f);
-                    var glow2 = TextureCache.Lights[LightTex.Spotlight66x66];
-                    var glow2Orig = glow2.Size() / 2f;
-                    Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, -frame.Height / 2f) - Main.screenPosition, null, glowBright, projectile.rotation, glow2Orig, scale * 2f, SpriteEffects.None, 0f);
                     frame.Y = frame.Height * 3;
                     Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, projectile.ai[0] - frame.Height / 2f) - Main.screenPosition, null, glowDark, projectile.rotation, glow2Orig, scale * 3f, SpriteEffects.None, 0f);
                     Main.spriteBatch.Draw(texture, drawPosition + new Vector2(0f, projectile.ai[0]) - Main.screenPosition, frame, lightColor, projectile.rotation, orig, scale, SpriteEffects.None, 0f);

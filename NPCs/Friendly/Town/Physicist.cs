@@ -235,7 +235,7 @@ namespace AQMod.NPCs.Friendly.Town
             if (!Main.dayTime)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.Starite.MythicStarfruit>());
-                shop.item[nextSlot].shopCustomPrice = Item.sellPrice(gold: 20);
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 20);
                 nextSlot++;
             }
         }

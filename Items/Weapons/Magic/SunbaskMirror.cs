@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Magic
 {
-    public class SunbaskMirror : ModItem
+    public class SunbaskMirror : ModItem, IManaPerSecond
     {
         public override void SetDefaults()
         {
@@ -19,7 +19,7 @@ namespace AQMod.Items.Weapons.Magic
             item.rare = ItemRarityID.Pink;
             item.shoot = ModContent.ProjectileType<Projectiles.Magic.SunbaskMirror>();
             item.shootSpeed = 24.11f;
-            item.mana = 11;
+            item.mana = 30;
             item.autoReuse = true;
             item.UseSound = SoundID.Item101;
             item.value = AQItem.Prices.GaleStreamsValue;
@@ -39,11 +39,13 @@ namespace AQMod.Items.Weapons.Magic
             r.AddIngredient(ItemID.MeteoriteBar, 20);
             r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>(), 5);
             r.AddIngredient(ModContent.ItemType<Materials.Energies.DemonicEnergy>(), 2);
+            r.AddIngredient(ModContent.ItemType<Materials.Fluorescence>(), 2);
             r.AddIngredient(ItemID.SoulofFlight, 12);
-            r.AddIngredient(ItemID.SoulofLight, 8);
             r.AddTile(TileID.MythrilAnvil);
             r.SetResult(this);
             r.AddRecipe();
         }
+
+        int? IManaPerSecond.ManaPerSecond => Main.LocalPlayer.GetManaCost(item);
     }
 }
