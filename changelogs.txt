@@ -1,3 +1,16 @@
+####### 1.2.4.3 #######
+
+Additions:
+- Added a new NPC called the Physicist, she can enter town after Omega Starite has been defeated
+- Robster now sells Aquatic Energy for 3 gold
+
+Changes:
+- The "Lobster" NPC is now called the Exporter
+
+Fixes:
+- The Glimmer Event invasion progress should no longer show when you are underground
+- Fixed a localization error with the Spicy Eel
+
 ####### 1.2.4 #######
 
 Additions:

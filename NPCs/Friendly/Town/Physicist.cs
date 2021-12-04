@@ -232,6 +232,12 @@ namespace AQMod.NPCs.Friendly.Town
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
             nextSlot++;
+            if (!Main.dayTime)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.Starite.MythicStarfruit>());
+                shop.item[nextSlot].shopCustomPrice = Item.sellPrice(gold: 20);
+                nextSlot++;
+            }
         }
 
         public override bool CanGoToStatue(bool toKingStatue)
