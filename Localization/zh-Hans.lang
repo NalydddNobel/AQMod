@@ -1,5 +1,9 @@
 ### NPC Chat
 
+# Tooltips
+
+Tooltips.ManaPerSecond=每秒消耗{0}点法力值
+
 # Exporter
 NPCName.Robster=发货人
 
