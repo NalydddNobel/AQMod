@@ -2,7 +2,7 @@
 using AQMod.Common.Graphics.DrawTypes;
 using AQMod.Common.Graphics.Particles;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.WorldEvents.AtmosphericEvent;
+using AQMod.Content.WorldEvents.GaleStreams;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

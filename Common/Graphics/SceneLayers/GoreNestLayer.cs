@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Content;
-using AQMod.Content.WorldEvents.DemonicEvent;
+using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

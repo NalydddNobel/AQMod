@@ -1,4 +1,4 @@
-﻿using AQMod.Content.WorldEvents.CosmicEvent;
+﻿using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -89,7 +89,7 @@ namespace AQMod.Items.Vanities
                         setText(key);
                     return true;
                 }
-                if (OmegaStariteScene.OmegaStariteIndexCache != -1 && Main.rand.NextBool())
+                if (OmegaStariteScenes.OmegaStariteIndexCache != -1 && Main.rand.NextBool())
                 {
                     if (TextKey == AQText.Key + "Common.EightballMisc3")
                     {

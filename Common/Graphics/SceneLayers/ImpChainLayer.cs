@@ -1,4 +1,4 @@
-﻿using AQMod.NPCs.Monsters.DemonicEvent;
+﻿using AQMod.NPCs.Monsters.DemonSiege;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

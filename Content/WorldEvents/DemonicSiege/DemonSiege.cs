@@ -6,7 +6,7 @@ using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Localization;
-using AQMod.NPCs.Monsters.DemonicEvent;
+using AQMod.NPCs.Monsters.DemonSiege;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -16,7 +16,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace AQMod.Content.WorldEvents.DemonicEvent
+namespace AQMod.Content.WorldEvents.DemonSiege
 {
     public static class DemonSiege
     {

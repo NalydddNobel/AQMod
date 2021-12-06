@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.NetCode;
 using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Melee;
 using AQMod.NPCs.Boss.Starite;
@@ -40,11 +40,11 @@ namespace AQMod.Common.Graphics.SceneLayers
 
         protected override void Draw()
         {
-            if (!closeEnoughToDraw() || OmegaStariteScene.SceneType > 1)
+            if (!closeEnoughToDraw() || OmegaStariteScenes.SceneType > 1)
                 return;
             var drawPos = swordPos();
-            if (OmegaStariteScene.OmegaStariteIndexCache == -1)
-                OmegaStariteScene.SceneType = 0;
+            if (OmegaStariteScenes.OmegaStariteIndexCache == -1)
+                OmegaStariteScenes.SceneType = 0;
             var texture = TextureCache.GetItem(ModContent.ItemType<UltimateSword>());
             var frame = new Rectangle(0, 0, texture.Width, texture.Height);
             var origin = new Vector2(frame.Width, 0f);
@@ -61,7 +61,7 @@ namespace AQMod.Common.Graphics.SceneLayers
             if (hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y) && AQMod.CosmicEvent.IsActive)
             {
                 int omegaStariteID = ModContent.NPCType<OmegaStarite>();
-                if (OmegaStariteScene.SceneType == 0 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16))
+                if (OmegaStariteScenes.SceneType == 0 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16))
                 {
                     var plr = Main.LocalPlayer;
                     plr.mouseInterface = true;
@@ -107,7 +107,7 @@ namespace AQMod.Common.Graphics.SceneLayers
 
         public override void Update()
         {
-            if (!AQMod.CosmicEvent.IsActive || OmegaStariteScene.SceneType > 1 || !closeEnoughToDraw())
+            if (!AQMod.CosmicEvent.IsActive || OmegaStariteScenes.SceneType > 1 || !closeEnoughToDraw())
                 return;
             var position = swordPos();
             Lighting.AddLight(position, new Vector3(1f, 1f, 1f));

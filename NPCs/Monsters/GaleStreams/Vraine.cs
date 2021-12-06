@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.AtmosphericEvent
+namespace AQMod.NPCs.Monsters.GaleStreams
 {
     public class Vraine : ModNPC, IDecideFallThroughPlatforms
     {

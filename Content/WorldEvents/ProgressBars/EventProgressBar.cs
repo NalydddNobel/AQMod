@@ -14,7 +14,7 @@ namespace AQMod.Content.WorldEvents.ProgressBars
         {
             return text;
         }
-        public virtual bool PreDraw(Texture2D texture, string eventName, Color nameBGColor)
+        public virtual bool PreDraw(Texture2D texture, string eventName, Color nameBGColor, float alpha)
         {
             return true;
         }

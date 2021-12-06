@@ -1,8 +1,8 @@
 ﻿using AQMod.Common.Skies;
-using AQMod.Content.WorldEvents.AtmosphericEvent;
-using AQMod.Content.WorldEvents.AquaticEvent;
-using AQMod.Content.WorldEvents.DemonicEvent;
-using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.GaleStreams;
+using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -19,7 +19,7 @@ namespace AQMod
 
         public override void Initialize()
         {
-            OmegaStariteScene.Initialize();
+            OmegaStariteScenes.Initialize();
             AQMod.CosmicEvent = new GlimmerEvent();
             AQMod.CosmicEvent.Init();
             CrabSeason.crabSeasonTimer = CrabSeason.CrabSeasonTimerMin;

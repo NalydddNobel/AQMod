@@ -1,6 +1,6 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
-using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
@@ -14,7 +14,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.CosmicEvent
+namespace AQMod.NPCs.Monsters.GlimmerEvent
 {
     public class SuperStarite : ModNPC, IDecideFallThroughPlatforms
     {
@@ -313,7 +313,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
                 Main.gore[g].scale *= 0.6f;
             }
             Lighting.AddLight(npc.Center, new Vector3(0.8f, 0.8f, 0.45f));
-            if (GlimmerEvent.CheckStariteDeath(npc))
+            if (Content.WorldEvents.GlimmerEvent.GlimmerEvent.CheckStariteDeath(npc))
             {
                 npc.life = -1;
                 npc.HitEffect();

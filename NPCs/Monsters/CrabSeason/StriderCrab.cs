@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.Graphics;
-using AQMod.Content.WorldEvents.AquaticEvent;
+using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Items.Armor.Crab;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
@@ -15,7 +15,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.AquaticEvent
+namespace AQMod.NPCs.Monsters.CrabSeason
 {
     public sealed class StriderCrab : ModNPC, IDecideFallThroughPlatforms
     {
@@ -305,7 +305,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (CrabSeason.Active && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
+            if (Content.WorldEvents.CrabSeason.CrabSeason.Active && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
                 return SpawnCondition.OceanMonster.Chance * 0.2f;
             return 0f;
         }

@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
-using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -248,7 +248,7 @@ namespace AQMod.Common.Skies
 
         private void DrawSky()
         {
-            if (OmegaStariteScene.OmegaStariteIndexCache != -1)
+            if (OmegaStariteScenes.OmegaStariteIndexCache != -1)
             {
                 int width = Main.screenWidth + 40;
                 int height = Main.screenHeight + 40;
@@ -404,7 +404,7 @@ namespace AQMod.Common.Skies
 
         public override float GetCloudAlpha()
         {
-            if (AQMod.CosmicEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1)
+            if (AQMod.CosmicEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1)
             {
                 _cloudAlpha = MathHelper.Lerp(_cloudAlpha, 0.25f, 0.01f);
             }

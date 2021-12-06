@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.DemonicEvent
+namespace AQMod.NPCs.Monsters.DemonSiege
 {
     public class Trapper : ModNPC, IDecideFallThroughPlatforms
     {

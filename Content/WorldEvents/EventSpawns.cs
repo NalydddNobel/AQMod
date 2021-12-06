@@ -1,11 +1,11 @@
 ﻿using AQMod.NPCs.Monsters;
 using Terraria.ModLoader;
 using Terraria;
-using AQMod.Content.WorldEvents.DemonicEvent;
-using AQMod.Content.WorldEvents.AtmosphericEvent;
-using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.WorldEvents.GaleStreams;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using System.Collections.Generic;
-using AQMod.NPCs.Monsters.AtmosphericEvent;
+using AQMod.NPCs.Monsters.GaleStreams;
 
 namespace AQMod.Content.WorldEvents
 {
@@ -24,7 +24,7 @@ namespace AQMod.Content.WorldEvents
                 maxSpawns = 0;
                 return;
             }
-            if (DemonSiege.CloseEnoughToDemonSiege(player))
+            if (DemonSiege.DemonSiege.CloseEnoughToDemonSiege(player))
             {
                 spawnRate *= 10;
                 maxSpawns = (int)(maxSpawns * 0.1);
@@ -33,7 +33,7 @@ namespace AQMod.Content.WorldEvents
             {
                 if (player.position.Y < AQMod.SpaceLayer - (40 * 16f))
                 {
-                    if (GaleStreams.MeteorTime())
+                    if (GaleStreams.GaleStreams.MeteorTime())
                     {
                         spawnRate /= 2;
                         maxSpawns *= 2;
@@ -52,11 +52,11 @@ namespace AQMod.Content.WorldEvents
                     pool.Clear();
                     return;
                 }
-                else if (tileDistance < GlimmerEvent.MaxDistance)
+                else if (tileDistance < GlimmerEvent.GlimmerEvent.MaxDistance)
                 {
-                    if (tileDistance > GlimmerEvent.HyperStariteDistance) // shouldn't divide by 0...
+                    if (tileDistance > GlimmerEvent.GlimmerEvent.HyperStariteDistance) // shouldn't divide by 0...
                     {
-                        float normalSpawnsMult = 1f - (1f / (tileDistance - GlimmerEvent.HyperStariteDistance));
+                        float normalSpawnsMult = 1f - (1f / (tileDistance - GlimmerEvent.GlimmerEvent.HyperStariteDistance));
                         IEnumerator<int> keys = pool.Keys.GetEnumerator();
                         int[] keyValue = new int[pool.Count];
                         for (int i = 0; i < pool.Count; i++)
@@ -90,32 +90,32 @@ namespace AQMod.Content.WorldEvents
                             pool[keyValue[i]] = 0f;
                         }
                     }
-                    int layerIndex = GlimmerEvent.GetLayerIndex(tileDistance);
+                    int layerIndex = GlimmerEvent.GlimmerEvent.GetLayerIndex(tileDistance);
                     if (layerIndex != -1)
                     {
                         for (int i = layerIndex - 1; i >= 0; i--)
                         {
-                            pool.Add(GlimmerEvent.Layers[i].NPCType, GlimmerEvent.Layers[i].SpawnChance);
+                            pool.Add(GlimmerEvent.GlimmerEvent.Layers[i].NPCType, GlimmerEvent.GlimmerEvent.Layers[i].SpawnChance);
                         }
-                        if (layerIndex == GlimmerEvent.Layers.Count - 1)
+                        if (layerIndex == GlimmerEvent.GlimmerEvent.Layers.Count - 1)
                         {
-                            pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, (AQUtils.GetGrad(0, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance));
+                            pool.Add(GlimmerEvent.GlimmerEvent.Layers[layerIndex].NPCType, (AQUtils.GetGrad(0, GlimmerEvent.GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.GlimmerEvent.Layers[layerIndex].SpawnChance));
                         }
                         else
                         {
-                            pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, 1f - (AQUtils.GetGrad(GlimmerEvent.Layers[layerIndex + 1].Distance, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance));
+                            pool.Add(GlimmerEvent.GlimmerEvent.Layers[layerIndex].NPCType, 1f - (AQUtils.GetGrad(GlimmerEvent.GlimmerEvent.Layers[layerIndex + 1].Distance, GlimmerEvent.GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.GlimmerEvent.Layers[layerIndex].SpawnChance));
                         }
                     }
                 }
             }
             if (spawnInfo.spawnTileY < AQMod.SpaceLayerTile - 40)
             {
-                if (GaleStreams.MeteorTime())
+                if (GaleStreams.GaleStreams.MeteorTime())
                 {
                     pool.Add(ModContent.NPCType<Meteor>(), 2f);
                 }
             }
-            if (GaleStreams.EventActive(spawnInfo.player))
+            if (GaleStreams.GaleStreams.EventActive(spawnInfo.player))
             {
                 if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
                     pool.Add(ModContent.NPCType<Vraine>(), 1f);

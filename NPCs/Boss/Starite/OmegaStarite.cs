@@ -5,7 +5,7 @@ using AQMod.Common;
 using AQMod.Common.Graphics;
 using AQMod.Common.NoHitting;
 using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
@@ -208,7 +208,7 @@ namespace AQMod.NPCs.Boss.Starite
         public void Init()
         {
             npc.TargetClosest(faceTarget: false);
-            OmegaStariteScene.OmegaStariteIndexCache = (short)npc.whoAmI;
+            OmegaStariteScenes.OmegaStariteIndexCache = (short)npc.whoAmI;
             orbs = new List<OmegaStariteOrb>();
             var center = npc.Center;
             if (Main.expertMode)
@@ -279,8 +279,8 @@ namespace AQMod.NPCs.Boss.Starite
             if (GlimmerEvent.CheckStariteDeath(npc))
             {
                 npc.life = -1;
-                OmegaStariteScene.OmegaStariteIndexCache = -1;
-                OmegaStariteScene.SceneType = 0;
+                OmegaStariteScenes.OmegaStariteIndexCache = -1;
+                OmegaStariteScenes.SceneType = 0;
                 npc.HitEffect();
                 Main.PlaySound(SoundID.Dig, npc.Center);
                 npc.active = false;
@@ -1046,8 +1046,8 @@ namespace AQMod.NPCs.Boss.Starite
                     if (center.Y > npc.ai[2])
                     {
                         int[] choices = new int[] { PHASE_HYPER_STARITE_PART0, PHASE_ASSAULT_PLAYER };
-                        if (OmegaStariteScene.SceneType == 1)
-                            OmegaStariteScene.SceneType = 2;
+                        if (OmegaStariteScenes.SceneType == 1)
+                            OmegaStariteScenes.SceneType = 2;
                         npc.ai[0] = choices[Main.rand.Next(choices.Length)];
                         npc.ai[1] = 0f;
                         npc.ai[2] = 0f;
@@ -1292,8 +1292,8 @@ namespace AQMod.NPCs.Boss.Starite
 
         public override bool PreNPCLoot()
         {
-            OmegaStariteScene.OmegaStariteIndexCache = -1;
-            OmegaStariteScene.SceneType = 3;
+            OmegaStariteScenes.OmegaStariteIndexCache = -1;
+            OmegaStariteScenes.SceneType = 3;
             return true;
         }
 

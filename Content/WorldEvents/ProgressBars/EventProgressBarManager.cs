@@ -77,16 +77,16 @@ namespace AQMod.Content.WorldEvents.ProgressBars
                 var texture = bar.IconTexture;
                 var eventName = bar.EventName;
                 var nameBGColor = bar.NameBGColor;
-                if (!bar.PreDraw(texture, eventName, nameBGColor))
+                float alpha = 0.5f + _invasionProgressAlpha * 0.5f;
+                int num11 = (int)(200f * alpha);
+                int num12 = (int)(45f * alpha);
+                var vector3 = new Vector2(Main.screenWidth - 120, Main.screenHeight - 40);
+
+                if (!bar.PreDraw(texture, eventName, nameBGColor, alpha))
                 {
                     return;
                 }
 
-                float alpha = 0.5f + _invasionProgressAlpha * 0.5f;
-
-                int num11 = (int)(200f * alpha);
-                int num12 = (int)(45f * alpha);
-                var vector3 = new Vector2(Main.screenWidth - 120, Main.screenHeight - 40);
                 Utils.DrawInvBG(Main.spriteBatch, new Rectangle((int)vector3.X - num11 / 2, (int)vector3.Y - num12 / 2, num11, num12), new Color(63, 65, 151, 255) * 0.785f);
 
                 _invasionProgress = bar.EventProgress;

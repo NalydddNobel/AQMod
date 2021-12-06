@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Content.WorldEvents.ProgressBars;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents.AtmosphericEvent
+namespace AQMod.Content.WorldEvents.GaleStreams
 {
     public sealed class GaleStreams : ModWorld
     {
@@ -17,6 +18,7 @@ namespace AQMod.Content.WorldEvents.AtmosphericEvent
         {
             return IsActive && InSpace(player);
         }
+
         public static bool MeteorTime()
         {
             if (Main.time < 3600)
@@ -41,6 +43,14 @@ namespace AQMod.Content.WorldEvents.AtmosphericEvent
         public static bool InSpace(float y)
         {
             return y < 3000f; // 187.5 tiles
+        }
+
+        internal static void Load()
+        {
+            if (!Main.dedServ)
+            {
+                EventProgressBarManager.AddBar(new GaleStreamsProgressBar());
+            }
         }
 
         internal static void Reset()

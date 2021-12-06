@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.WorldEvents.AquaticEvent;
+using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Items.BossItems.Crabson;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools;

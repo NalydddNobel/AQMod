@@ -17,10 +17,10 @@ using AQMod.Content.CursorDyes;
 using AQMod.Content.MapMarkers;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents;
-using AQMod.Content.WorldEvents.AquaticEvent;
-using AQMod.Content.WorldEvents.AtmosphericEvent;
-using AQMod.Content.WorldEvents.CosmicEvent;
-using AQMod.Content.WorldEvents.DemonicEvent;
+using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.WorldEvents.GaleStreams;
+using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.ProgressBars;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
@@ -817,14 +817,14 @@ namespace AQMod
         {
             DemonSiege.UpdateEvent();
 
-            if (OmegaStariteScene.OmegaStariteIndexCache > -1 && !Main.npc[OmegaStariteScene.OmegaStariteIndexCache].active)
+            if (OmegaStariteScenes.OmegaStariteIndexCache > -1 && !Main.npc[OmegaStariteScenes.OmegaStariteIndexCache].active)
             {
-                OmegaStariteScene.OmegaStariteIndexCache = -1;
+                OmegaStariteScenes.OmegaStariteIndexCache = -1;
             }
             if (Main.netMode != NetmodeID.MultiplayerClient && spawnStarite)
             {
-                OmegaStariteScene.OmegaStariteIndexCache = (short)NPC.NewNPC(AQMod.CosmicEvent.tileX * 16 + 8, AQMod.CosmicEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
-                OmegaStariteScene.SceneType = 1;
+                OmegaStariteScenes.OmegaStariteIndexCache = (short)NPC.NewNPC(AQMod.CosmicEvent.tileX * 16 + 8, AQMod.CosmicEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
+                OmegaStariteScenes.SceneType = 1;
                 spawnStarite = false;
                 BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", BossMessage);
             }

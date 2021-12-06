@@ -1,8 +1,8 @@
 ﻿using AQMod.Common.DeveloperTools;
 using AQMod.Content;
-using AQMod.Content.WorldEvents.AquaticEvent;
-using AQMod.Content.WorldEvents.CosmicEvent;
-using AQMod.Content.WorldEvents.DemonicEvent;
+using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.WorldEvents.DemonSiege;
 using MonoMod.RuntimeDetour;
 using System;
 using System.Collections.Generic;

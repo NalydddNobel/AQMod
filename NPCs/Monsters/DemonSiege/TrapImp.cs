@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Content.WorldEvents.DemonicEvent;
+using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Weapons.Melee;
@@ -10,7 +10,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.DemonicEvent
+namespace AQMod.NPCs.Monsters.DemonSiege
 {
     public class TrapImp : ModNPC, IDecideFallThroughPlatforms
     {
@@ -181,7 +181,7 @@ namespace AQMod.NPCs.Monsters.DemonicEvent
             if (Main.rand.NextBool(24))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicCursorDye>());
             if (Main.rand.NextBool(3))
-                Item.NewItem(npc.getRect(), DemonSiege.GetHellBannerDrop(Main.rand));
+                Item.NewItem(npc.getRect(), Content.WorldEvents.DemonSiege.DemonSiege.GetHellBannerDrop(Main.rand));
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());
         }

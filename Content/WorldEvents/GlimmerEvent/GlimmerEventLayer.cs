@@ -1,4 +1,4 @@
-﻿namespace AQMod.Content.WorldEvents.CosmicEvent
+﻿namespace AQMod.Content.WorldEvents.GlimmerEvent
 {
     public struct GlimmerEventLayer
     {

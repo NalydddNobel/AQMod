@@ -18,9 +18,9 @@ using AQMod.Items.Weapons.Summon;
 using AQMod.Localization;
 using AQMod.NPCs.Boss.Crabson;
 using AQMod.NPCs.Boss.Starite;
-using AQMod.NPCs.Monsters.AquaticEvent;
-using AQMod.NPCs.Monsters.CosmicEvent;
-using AQMod.NPCs.Monsters.DemonicEvent;
+using AQMod.NPCs.Monsters.CrabSeason;
+using AQMod.NPCs.Monsters.GlimmerEvent;
+using AQMod.NPCs.Monsters.DemonSiege;
 using System;
 using System.Collections.Generic;
 using Terraria.ID;
@@ -157,7 +157,7 @@ namespace AQMod.Common.CrossMod
                     ItemID.ObsidianRose,
                 };
                 string summonItems = "";
-                foreach (var upgrade in Content.WorldEvents.DemonicEvent.DemonSiege._upgrades)
+                foreach (var upgrade in Content.WorldEvents.DemonSiege.DemonSiege._upgrades)
                 {
                     if (summonItems != "")
                         summonItems += ", ";

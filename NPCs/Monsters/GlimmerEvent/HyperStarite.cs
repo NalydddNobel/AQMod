@@ -2,7 +2,6 @@
 using AQMod.Assets.Textures;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
-using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Foods;
 using AQMod.Items.Materials.Energies;
@@ -16,7 +15,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.CosmicEvent
+namespace AQMod.NPCs.Monsters.GlimmerEvent
 {
     public class HyperStarite : ModNPC
     {
@@ -113,7 +112,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
 
         public override void AI()
         {
-            if (GlimmerEvent.CheckStariteDeath(npc))
+            if (Content.WorldEvents.GlimmerEvent.GlimmerEvent.CheckStariteDeath(npc))
             {
                 npc.life = -1;
                 npc.HitEffect();
@@ -446,7 +445,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
                 Main.spriteBatch.Draw(texture3, drawPos, null, new Color(255, 255, 25, 150), rotation + MathHelper.PiOver2, new Vector2(texture3.Width / 2f, texture3.Height), new Vector2(npc.scale * 1.5f, npc.scale * 2f + 2f), SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture3, drawPos, null, new Color(255, 255, 25, 150) * 0.2f, rotation + MathHelper.PiOver2, new Vector2(texture3.Width / 2f, texture3.Height), new Vector2(npc.scale * 0.5f, npc.scale * 2f + 40f), SpriteEffects.None, 0f);
             }
-            Main.spriteBatch.Draw(texture, new Vector2((int)(npc.position.X + offset.X - Main.screenPosition.X), (int)(npc.position.Y + offset.Y - Main.screenPosition.Y)), npc.frame, new Color(60, 60, 60, 0) *  AQConfigClient.c_EffectIntensity, 0f, origin, npc.scale + 0.3f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2((int)(npc.position.X + offset.X - Main.screenPosition.X), (int)(npc.position.Y + offset.Y - Main.screenPosition.Y)), npc.frame, new Color(60, 60, 60, 0) * AQConfigClient.c_EffectIntensity, 0f, origin, npc.scale + 0.3f, SpriteEffects.None, 0f);
             return false;
         }
     }

@@ -1,5 +1,5 @@
 ﻿using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents.DemonicEvent;
+using AQMod.Content.WorldEvents.DemonSiege;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

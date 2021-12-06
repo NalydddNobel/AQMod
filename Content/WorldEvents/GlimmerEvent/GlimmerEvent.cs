@@ -3,7 +3,7 @@ using AQMod.Common.DeveloperTools;
 using AQMod.Common.NetCode;
 using AQMod.Content.WorldEvents.ProgressBars;
 using AQMod.Localization;
-using AQMod.NPCs.Monsters.CosmicEvent;
+using AQMod.NPCs.Monsters.GlimmerEvent;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents.CosmicEvent
+namespace AQMod.Content.WorldEvents.GlimmerEvent
 {
     public sealed class GlimmerEvent
     {
@@ -124,7 +124,7 @@ namespace AQMod.Content.WorldEvents.CosmicEvent
         /// <returns></returns>
         public static bool CanShowInvasionProgress()
         {
-            if (AQMod.CosmicEvent.SpawnsActive(Main.LocalPlayer) && OmegaStariteScene.OmegaStariteIndexCache == -1)
+            if (AQMod.CosmicEvent.SpawnsActive(Main.LocalPlayer) && OmegaStariteScenes.OmegaStariteIndexCache == -1)
             {
                 if (AQMod.CosmicEvent.GetTileDistance(Main.LocalPlayer) < MaxDistance)
                     return true;
@@ -183,7 +183,7 @@ namespace AQMod.Content.WorldEvents.CosmicEvent
 
         public void Activate(int x, int y, bool resetSpawnChance = true)
         {
-            OmegaStariteScene.SceneType = 0;
+            OmegaStariteScenes.SceneType = 0;
             if (resetSpawnChance)
                 spawnChance = GetBaseRarity();
             tileX = (ushort)x;
@@ -193,7 +193,7 @@ namespace AQMod.Content.WorldEvents.CosmicEvent
         public void Deactivate()
         {
             deactivationTimer = -1;
-            OmegaStariteScene.SceneType = 0;
+            OmegaStariteScenes.SceneType = 0;
             tileX = 0;
             tileY = 0;
             if (StariteDisco)

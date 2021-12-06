@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.AtmosphericEvent
+namespace AQMod.NPCs.Monsters.GaleStreams
 {
     [AutoloadBossHead()]
     public class RedSprite : ModNPC

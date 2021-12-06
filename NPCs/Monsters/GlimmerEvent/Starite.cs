@@ -1,6 +1,6 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
-using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Foods;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
@@ -10,7 +10,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.CosmicEvent
+namespace AQMod.NPCs.Monsters.GlimmerEvent
 {
     public class Starite : ModNPC
     {
@@ -187,7 +187,7 @@ namespace AQMod.NPCs.Monsters.CosmicEvent
             }
             Lighting.AddLight(npc.Center, new Vector3(0.4f, 0.4f, 0.2f));
             npc.rotation += npc.velocity.Length() * 0.0157f;
-            if (GlimmerEvent.CheckStariteDeath(npc))
+            if (Content.WorldEvents.GlimmerEvent.GlimmerEvent.CheckStariteDeath(npc))
             {
                 npc.life = -1;
                 npc.HitEffect();

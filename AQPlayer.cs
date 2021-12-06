@@ -9,7 +9,7 @@ using AQMod.Common.NetCode;
 using AQMod.Common.Skies;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
@@ -753,7 +753,7 @@ namespace AQMod
             }
             if (!Main.gamePaused && Main.instance.IsActive)
                 ScreenShakeManager.Update();
-            bool glimmerEvent = (AQMod.CosmicEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight;
+            bool glimmerEvent = (AQMod.CosmicEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight;
             AQUtils.UpdateSky(glimmerEvent, GlimmerEventSky.Name);
             if (glimmerEvent)
             {

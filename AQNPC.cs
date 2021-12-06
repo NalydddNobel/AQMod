@@ -2,7 +2,7 @@
 using AQMod.Common.NoHitting;
 using AQMod.Content;
 using AQMod.Content.Quest.Lobster;
-using AQMod.Content.WorldEvents.AquaticEvent;
+using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
@@ -16,7 +16,7 @@ using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.NPCs.Friendly.Town;
 using AQMod.NPCs.Monsters;
-using AQMod.NPCs.Monsters.DemonicEvent;
+using AQMod.NPCs.Monsters.DemonSiege;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -444,13 +444,13 @@ namespace AQMod
                 UnaffectedByWind[NPCID.DetonatingBubble] = false;
                 UnaffectedByWind[NPCID.DungeonSpirit] = false;
                 UnaffectedByWind[ModContent.NPCType<Heckto>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CosmicEvent.Starite>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.GlimmerEvent.Starite>()] = false;
                 UnaffectedByWind[ModContent.NPCType<TrapImp>()] = false;
                 UnaffectedByWind[ModContent.NPCType<Cindera>()] = false;
                 UnaffectedByWind[ModContent.NPCType<Meteor>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.AquaticEvent.ArrowCrab>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.AquaticEvent.StriderCrab>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.AquaticEvent.SoliderCrabs>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.ArrowCrab>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.StriderCrab>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.SoliderCrabs>()] = false;
             }
 
             internal static void UnloadSets()

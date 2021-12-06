@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace AQMod.Content.WorldEvents.CosmicEvent
+namespace AQMod.Content.WorldEvents.GlimmerEvent
 {
-    public static class OmegaStariteScene
+    public static class OmegaStariteScenes
     {
         /// <summary>
         /// A cache of the most recently spawned Omega Starite npc. Use this only for visual effects please. Defaults to -1.

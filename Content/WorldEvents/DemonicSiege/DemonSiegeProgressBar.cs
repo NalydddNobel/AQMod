@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents.DemonicEvent
+namespace AQMod.Content.WorldEvents.DemonSiege
 {
     public class DemonSiegeProgressBar : EventProgressBar
     {

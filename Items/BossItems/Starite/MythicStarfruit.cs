@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.DeveloperTools;
-using AQMod.Content.WorldEvents.CosmicEvent;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
 using AQMod.NPCs.Boss.Starite;

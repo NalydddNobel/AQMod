@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.WorldEvents.AquaticEvent;
+using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
@@ -11,7 +11,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.AquaticEvent
+namespace AQMod.NPCs.Monsters.CrabSeason
 {
     public class SoliderCrabs : ModNPC
     {
@@ -86,7 +86,7 @@ namespace AQMod.NPCs.Monsters.AquaticEvent
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (CrabSeason.Active && Collision.WetCollision(new Vector2(spawnInfo.spawnTileX * 16f - 16f, spawnInfo.spawnTileY * 16f - 16f), 48, 48) && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
+            if (Content.WorldEvents.CrabSeason.CrabSeason.Active && Collision.WetCollision(new Vector2(spawnInfo.spawnTileX * 16f - 16f, spawnInfo.spawnTileY * 16f - 16f), 48, 48) && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
                 return SpawnCondition.OceanMonster.Chance * 0.4f;
             return 0f;
         }

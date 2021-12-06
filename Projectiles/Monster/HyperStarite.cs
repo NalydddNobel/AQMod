@@ -20,7 +20,7 @@ namespace AQMod.Projectiles.Monster
         public override void AI()
         {
             var npc = Main.npc[(int)projectile.ai[0]];
-            if (npc.active && npc.type == ModContent.NPCType<NPCs.Monsters.CosmicEvent.HyperStarite>())
+            if (npc.active && npc.type == ModContent.NPCType<NPCs.Monsters.GlimmerEvent.HyperStarite>())
             {
                 var armLength = new Vector2(npc.height * npc.scale + npc.ai[3] + 18f, 0f);
                 float rotation = npc.rotation + MathHelper.TwoPi / 5f * projectile.ai[1];

@@ -21,7 +21,7 @@ namespace AQMod.Projectiles.Monster
 
         public Vector2 getKneecapPositionOffset()
         {
-            return new Vector2(projectile.width / 2f, projectile.height - NPCs.Monsters.AquaticEvent.StriderCrab.LEG_2_KNEECAP_Y_OFFSET);
+            return new Vector2(projectile.width / 2f, projectile.height - NPCs.Monsters.CrabSeason.StriderCrab.LEG_2_KNEECAP_Y_OFFSET);
         }
 
         public override void AI()
@@ -34,12 +34,12 @@ namespace AQMod.Projectiles.Monster
                 return;
             }
             int legID = (int)projectile.ai[0];
-            var strider = Main.npc[npcOwner].modNPC as NPCs.Monsters.AquaticEvent.StriderCrab;
+            var strider = Main.npc[npcOwner].modNPC as NPCs.Monsters.CrabSeason.StriderCrab;
             Vector2 connection = strider.GetLegPosition(legID, Main.npc[npcOwner].direction);
             var kneecapPositionOffset = getKneecapPositionOffset();
             var kneecapPosition = projectile.position + kneecapPositionOffset;
             var differenceFromConnection = kneecapPosition - connection;
-            if (differenceFromConnection.Length() > NPCs.Monsters.AquaticEvent.StriderCrab.LEG_1_LENGTH)
+            if (differenceFromConnection.Length() > NPCs.Monsters.CrabSeason.StriderCrab.LEG_1_LENGTH)
             {
                 float speed = Math.Max(differenceFromConnection.Length() / 16f, 6f);
                 var normal = Vector2.Normalize(-differenceFromConnection);
