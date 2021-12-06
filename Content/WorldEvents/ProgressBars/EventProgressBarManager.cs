@@ -61,16 +61,16 @@ namespace AQMod.Content.WorldEvents.ProgressBars
                 {
                     if (_invasionProgressAlpha > 0f)
                         _invasionProgressAlpha -= 0.05f;
-                }
-                else
-                {
-                    if (_invasionProgressAlpha < 1f)
-                        _invasionProgressAlpha += 0.05f;
                     else
                     {
                         ActiveBar = 255;
                         return;
                     }
+                }
+                else
+                {
+                    if (_invasionProgressAlpha < 1f)
+                        _invasionProgressAlpha += 0.05f;
                 }
 
                 var bar = _progressBars[ActiveBar];
