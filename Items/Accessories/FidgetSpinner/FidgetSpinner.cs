@@ -11,6 +11,8 @@ namespace AQMod.Items.Accessories.FidgetSpinner
     {
         public byte clr = 0;
 
+        public override bool CloneNewInstances => true;
+
         public override void SetDefaults()
         {
             item.width = 16;
@@ -87,26 +89,21 @@ namespace AQMod.Items.Accessories.FidgetSpinner
 
         public override void AddRecipes()
         {
-            clrRecipe(ItemID.RedDye, Constants.Paint.Red);
-            clrRecipe(ItemID.OrangeDye, Constants.Paint.Orange);
-            clrRecipe(ItemID.YellowDye, Constants.Paint.Yellow);
-            clrRecipe(ItemID.LimeDye, Constants.Paint.Lime);
-            clrRecipe(ItemID.GreenDye, Constants.Paint.Green);
-            clrRecipe(ItemID.TealDye, Constants.Paint.Teal);
-            clrRecipe(ItemID.CyanDye, Constants.Paint.Cyan);
-            clrRecipe(ItemID.SkyBlueDye, Constants.Paint.SkyBlue);
-            clrRecipe(ItemID.BlueDye, Constants.Paint.Blue);
-            clrRecipe(ItemID.PurpleDye, Constants.Paint.Purple);
-            clrRecipe(ItemID.VioletDye, Constants.Paint.Violet);
-            clrRecipe(ItemID.BrownDye, Constants.Paint.Brown);
-            clrRecipe(ItemID.SilverDye, Constants.Paint.None);
-            clrRecipe(ItemID.ShadowDye, Constants.Paint.Shadow);
-            clrRecipe(ItemID.RainbowDye, 255);
-        }
-
-        private void clrRecipe(int dye, byte clr)
-        {
-            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(dye, clr, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.RedDye, Constants.Paint.Red, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.OrangeDye, Constants.Paint.Orange, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.YellowDye, Constants.Paint.Yellow, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.LimeDye, Constants.Paint.Lime, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.GreenDye, Constants.Paint.Green, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.TealDye, Constants.Paint.Teal, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.CyanDye, Constants.Paint.Cyan, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.SkyBlueDye, Constants.Paint.SkyBlue, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.BlueDye, Constants.Paint.Blue, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.PurpleDye, Constants.Paint.Purple, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.VioletDye, Constants.Paint.Violet, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.BrownDye, Constants.Paint.Brown, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.SilverDye, Constants.Paint.None, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.ShadowDye, Constants.Paint.Shadow, this);
+            AQRecipes.r_FidgetSpinnerRecipe.ConstructRecipe(ItemID.RainbowDye, 255, this);
         }
     }
 }

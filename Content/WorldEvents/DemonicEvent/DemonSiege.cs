@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Content.Dusts;
+using AQMod.Content.WorldEvents.ProgressBars;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
@@ -101,6 +102,11 @@ namespace AQMod.Content.WorldEvents.DemonicEvent
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Cindera>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_CINDERA, 20));
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<TrapImp>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32));
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Magmalbubble>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32));
+
+            if (!Main.dedServ)
+            {
+                EventProgressBarManager.AddBar(new DemonSiegeProgressBar());
+            }
         }
 
         internal static void Unload()

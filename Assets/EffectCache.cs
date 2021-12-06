@@ -20,7 +20,8 @@ namespace AQMod.Assets
         public static MiscShaderData s_SpikeFade { get => GameShaders.Misc["AQMod:SpikeFade"]; set => GameShaders.Misc["AQMod:SpikeFade"] = value; }
         public static MiscShaderData s_Enchant { get => GameShaders.Misc["AQMod:Enchant"]; set => GameShaders.Misc["AQMod:Enchant"] = value; }
 
-        public static Filter f_Vignette { get => Filters.Scene["AQMod:Vignette"]; set => Filters.Scene["AQMod:Vignette"] = value; }
+        public static Filter f_Vignette { get => Filters.Scene[fn_Vignette]; set => Filters.Scene[fn_Vignette] = value; }
+        public const string fn_Vignette = "AQMod:Vignette";
 
         internal static void Load(AQMod aQMod)
         {
@@ -40,7 +41,7 @@ namespace AQMod.Assets
             s_SpikeFade = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "SpikeFadePass");
             s_Enchant = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "ImageScrollPass");
 
-            f_Vignette = new Filter(new ScreenShaderData(new Ref<Effect>(ParentScreenShader), "VignettePass"), EffectPriority.Medium);
+            f_Vignette = new Filter(new ScreenShaderData(new Ref<Effect>(ParentScreenShader), "VignettePass"), EffectPriority.High);
         }
 
         private static Effect logGetEffect(string name, AQMod aQMod, AQMod.Debug.DebugLogger? logger)

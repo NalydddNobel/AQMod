@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using AQMod.Tiles.Nature;
+using AQMod.Content.WorldEvents.ProgressBars;
 
 namespace AQMod
 {
@@ -26,6 +27,7 @@ namespace AQMod
             DemonSiege.Reset();
             if (Main.netMode != NetmodeID.Server)
                 AQMod.WorldEffects.Clear();
+            EventProgressBarManager.ActiveBar = 255;
         }
 
         public override TagCompound Save()

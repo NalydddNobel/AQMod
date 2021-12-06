@@ -21,6 +21,7 @@ using AQMod.Content.WorldEvents.AquaticEvent;
 using AQMod.Content.WorldEvents.AtmosphericEvent;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Content.WorldEvents.DemonicEvent;
+using AQMod.Content.WorldEvents.ProgressBars;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
@@ -719,6 +720,7 @@ namespace AQMod
             Loading = true;
             Unloading = true;
             cachedLoadTasks = null;
+            EventProgressBarManager.Unload();
             Autoloading.Unload();
             HuntSystem.Unload();
 
@@ -905,7 +907,7 @@ namespace AQMod
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Invasion Progress Bar", delegate ()
                 {
-                    InvasionUI.Apply();
+                    EventProgressBarManager.Draw();
                     return true;
                 }, InterfaceScaleType.UI));
             }

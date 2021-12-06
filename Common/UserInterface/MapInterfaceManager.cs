@@ -38,25 +38,6 @@ namespace AQMod.Common.UserInterface
             return new Vector2((mapPos.X - _map.X) / _mapScale, (mapPos.Y - _map.Y) / _mapScale);
         }
 
-        public static bool UnityTeleport(float x, float y, Vector2 drawPosition, Player player, bool allowedToTeleport)
-        {
-            var texture = TextureCache.UnityTeleportable.Value;
-            float scale = Main.UIScale * 0.8f;
-            drawPosition += new Vector2(-texture.Width / 2f, -texture.Height / 2f) * scale;
-            Main.spriteBatch.Draw(texture, drawPosition + new Vector2(2f, 0f), null, Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, drawPosition + new Vector2(-2f, 0f), null, Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, drawPosition + new Vector2(0f, 2f), null, Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, drawPosition + new Vector2(0f, -2f), null, Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, drawPosition, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            if (player.GetModPlayer<AQPlayer>().unityMirror && allowedToTeleport && Main.mouseLeft && Main.mouseLeftRelease)
-            {
-                Main.mapFullscreen = false;
-                player.UnityTeleport(new Vector2(x, y));
-                return true;
-            }
-            return false;
-        }
-
         public static void Apply(ref string mouseText, bool drawGlobes = true)
         {
             _mapScale = Main.mapFullscreenScale / Main.UIScale;

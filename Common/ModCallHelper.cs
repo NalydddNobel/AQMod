@@ -1,6 +1,7 @@
 ﻿using AQMod.Common.DeveloperTools;
 using AQMod.Content;
 using AQMod.Content.WorldEvents.AquaticEvent;
+using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Content.WorldEvents.DemonicEvent;
 using MonoMod.RuntimeDetour;
 using System;
@@ -52,7 +53,7 @@ namespace AQMod.Common
                     }
                 },
                 { "glimmerevent_spawnsactive", (o) => AQMod.CosmicEvent.SpawnsActive((Player)o[1]) },
-                { "glimmerevent_canshowinvasionprogress", (o) => AQMod.CosmicEvent.CanShowInvasionProgress() },
+                { "glimmerevent_canshowinvasionprogress", (o) => GlimmerEvent.CanShowInvasionProgress() },
                 { "glimmerevent_deactivate", (o) =>
                     {
                         AQMod.CosmicEvent.Deactivate();

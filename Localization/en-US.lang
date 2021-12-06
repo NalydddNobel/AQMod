@@ -75,6 +75,11 @@ Physicist.Chat.Mod.Fargowiltas.Mutant=You just buy boss summons from a weird loo
 Physicist.Chat.Mod.Fargowiltas.Abominationn=You just buy event summons from a creepy looking reaper? Weirdo.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=You just buy rare enemy summons from a dumb looking child? Weirdo.
 
+# Event Names
+
+EventName.DemonSiege=Demon Siege
+EventName.GlimmerEvent=Glimmer Event
+
 # Client Config
 
 ClientConfig.Header.Worldgen=World Gen

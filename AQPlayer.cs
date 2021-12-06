@@ -32,6 +32,7 @@ using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Achievements;
+using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -752,7 +753,30 @@ namespace AQMod
             }
             if (!Main.gamePaused && Main.instance.IsActive)
                 ScreenShakeManager.Update();
-            AQUtils.UpdateSky((AQMod.CosmicEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight, GlimmerEventSky.Name);
+            bool glimmerEvent = (AQMod.CosmicEvent.IsActive || OmegaStariteScene.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight;
+            AQUtils.UpdateSky(glimmerEvent, GlimmerEventSky.Name);
+            if (glimmerEvent)
+            {
+                float intensity = 0f;
+                float distance = (Main.player[Main.myPlayer].position.X - (AQMod.CosmicEvent.tileX * 16f + 8f)).Abs();
+                if (distance < 6400f)
+                {
+                    intensity += 1f - distance / 6400f;
+                }
+
+                var filter = EffectCache.f_Vignette;
+                var shader = EffectCache.f_Vignette.GetShader();
+                shader.UseIntensity(intensity * 1.5f);
+                if (!EffectCache.f_Vignette.IsActive())
+                {
+                    Filters.Scene.Activate(EffectCache.fn_Vignette);
+                }
+            }
+            else 
+            {
+                if (EffectCache.f_Vignette.IsActive())
+                    Filters.Scene.Deactivate(EffectCache.fn_Vignette);
+            }
         }
 
         public override void ResetEffects()

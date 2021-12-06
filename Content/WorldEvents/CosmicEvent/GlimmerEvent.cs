@@ -1,6 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Common.DeveloperTools;
 using AQMod.Common.NetCode;
+using AQMod.Content.WorldEvents.ProgressBars;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.CosmicEvent;
 using AQMod.Tiles.TileEntities;
@@ -51,6 +52,15 @@ namespace AQMod.Content.WorldEvents.CosmicEvent
                 new GlimmerEventLayer(ModContent.NPCType<SuperStarite>(), SuperStariteDistance, SuperStariteSpawnChance),
                 new GlimmerEventLayer(ModContent.NPCType<HyperStarite>(), HyperStariteDistance, HyperStariteSpawnChance),
             };
+            if (!Main.dedServ)
+            {
+                EventProgressBarManager.AddBar(new BasicEventProgressBar(
+                    () => CanShowInvasionProgress(),
+                    () => 1f - (float)AQMod.CosmicEvent.GetTileDistance(Main.LocalPlayer) / MaxDistance,
+                    "AQMod/Assets/Textures/EventIcon_GlimmerEvent",
+                    "Mods.AQMod.EventName.GlimmerEvent",
+                     new Color(120, 20, 110, 128)));
+            }
         }
 
         private static void _sortTest()
@@ -112,11 +122,11 @@ namespace AQMod.Content.WorldEvents.CosmicEvent
         /// Whether or not the invasion progress for the Glimmer Event can be shown
         /// </summary>
         /// <returns></returns>
-        public bool CanShowInvasionProgress()
+        public static bool CanShowInvasionProgress()
         {
-            if (SpawnsActive(Main.LocalPlayer) && OmegaStariteScene.OmegaStariteIndexCache == -1)
+            if (AQMod.CosmicEvent.SpawnsActive(Main.LocalPlayer) && OmegaStariteScene.OmegaStariteIndexCache == -1)
             {
-                if (GetTileDistance(Main.LocalPlayer) < MaxDistance)
+                if (AQMod.CosmicEvent.GetTileDistance(Main.LocalPlayer) < MaxDistance)
                     return true;
             }
             return false;

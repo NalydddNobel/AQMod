@@ -27,9 +27,6 @@ namespace AQMod.Assets
         public static Dictionary<TrailTex, Texture2D> Trails { get; private set; }
 
         public static Ref<Texture2D> Pixel { get; private set; }
-        public static Ref<Texture2D> DemonSiegeEventIcon { get; private set; }
-        public static Ref<Texture2D> GlimmerEventEventIcon { get; private set; }
-        public static Ref<Texture2D> UnityTeleportable { get; private set; }
         public static Ref<Texture2D> MapIconStarite { get; private set; }
         public static Ref<Texture2D> MapIconGlimmerEvent { get; private set; }
         public static Ref<Texture2D> MapIconEnemyBlip { get; private set; }
@@ -45,9 +42,6 @@ namespace AQMod.Assets
             ThreadPool.QueueUserWorkItem(LoadDictionaries);
 
             Pixel = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/Pixel"));
-            DemonSiegeEventIcon = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/EventIcon_DemonSiege"));
-            GlimmerEventEventIcon = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/EventIcon_GlimmerEvent"));
-            UnityTeleportable = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/UnityTeleportable"));
             MapIconStarite = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/MapIconStarite"));
             MapIconGlimmerEvent = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/MapIconGlimmerEvent"));
             MapIconEnemyBlip = new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/MapIconEnemyBlip"));
@@ -109,9 +103,6 @@ namespace AQMod.Assets
             MapIconEnemyBlip = null;
             MapIconGlimmerEvent = null;
             MapIconStarite = null;
-            UnityTeleportable = null;
-            GlimmerEventEventIcon = null;
-            DemonSiegeEventIcon = null;
             Pixel = null;
 
             PlayerHeadOverlays = null;
