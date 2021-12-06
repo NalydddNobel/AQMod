@@ -46,7 +46,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             if (AQMod.TonsofScreenShakes && Main.myPlayer == player.whoAmI)
             {
-                ScreenShakeManager.AddEffect(new BasicScreenShake(item.useTime, (int)(2 * AQMod.EffectIntensity)));
+                ScreenShakeManager.AddEffect(new BasicScreenShake(item.useTime, (int)(2 *  AQConfigClient.c_EffectIntensity)));
             }
             int randcount = Main.rand.Next(7);
             var velo = new Vector2(speedX, speedY);

@@ -6,17 +6,6 @@ namespace AQMod.Items.Foods
 {
     public class SuspiciousLookingSteak : ModItem
     {
-        public override string Texture
-        {
-            get
-            {
-                string path = this.GetPath();
-                if (AQMod.AprilFools)
-                    return path + "_AprilFools";
-                return path;
-            }
-        }
-
         public override void SetDefaults()
         {
             item.width = 20;

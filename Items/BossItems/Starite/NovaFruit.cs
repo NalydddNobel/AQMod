@@ -1,4 +1,4 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.DeveloperTools;
 using AQMod.Common.Skies;
 using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
@@ -21,7 +21,7 @@ namespace AQMod.Items.BossItems.Starite
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[item.type] = (int)BossSpawnItemSortOrder.Abeemination;
+            ItemID.Sets.SortingPriorityBossSpawns[item.type] = Constants.BossSpawnItemSortOrder.Abeemination;
         }
 
         public override void SetDefaults()

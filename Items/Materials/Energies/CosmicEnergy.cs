@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.ItemOverlays;
-using AQMod.Common.Config;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,8 +15,6 @@ namespace AQMod.Items.Materials.Energies
             get
             {
                 string path = AQUtils.GetPath<CosmicEnergy>();
-                if (AQMod.AprilFools)
-                    return path + "_AprilFools";
                 if (ModContent.GetInstance<AQConfigClient>().CosmicEnergyAlt)
                     return path + "_Alt";
                 return path;

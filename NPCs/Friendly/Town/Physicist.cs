@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.DeveloperTools;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -232,10 +233,11 @@ namespace AQMod.NPCs.Friendly.Town
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
             nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.FidgetSpinner.FidgetSpinner>());
+            nextSlot++;
             if (!Main.dayTime)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.Starite.MythicStarfruit>());
-                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 20);
                 nextSlot++;
             }
         }

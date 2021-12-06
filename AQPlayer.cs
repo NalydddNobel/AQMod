@@ -1,10 +1,8 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Graphics.LegacyPlayerLayers;
 using AQMod.Assets.Textures;
 using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
-using AQMod.Common.Config;
 using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.NetCode;
@@ -22,8 +20,10 @@ using AQMod.Items.Materials.Fish;
 using AQMod.Items.Placeable;
 using AQMod.Items.Placeable.Wall;
 using AQMod.Items.Quest.Angler;
+using AQMod.Items.Vanities;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
+using AQMod.Projectiles.Summon.ChomperMinion;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -52,6 +52,286 @@ namespace AQMod
 
         public static class Layers
         {
+            public static readonly PlayerHeadLayer PostDrawHead_Head = new PlayerHeadLayer("AQMod", "PostDraw", (info) =>
+            {
+                var player = info.drawPlayer;
+                AQPlayer aQPlayer = info.drawPlayer.GetModPlayer<AQPlayer>();
+                var drawingPlayer = info.drawPlayer.GetModPlayer<AQPlayer>();
+                if (drawingPlayer.mask >= 0)
+                {
+                    var drawData = new DrawData(TextureCache.PlayerMasks[(PlayerMaskID)drawingPlayer.mask], new Vector2((int)(info.drawPlayer.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.drawPlayer.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height)) + info.drawPlayer.headPosition + info.drawOrigin, info.drawPlayer.bodyFrame, info.armorColor, info.drawPlayer.headRotation, info.drawOrigin, info.scale, info.spriteEffects, 0);
+                    GameShaders.Armor.Apply(drawingPlayer.cMask, player, drawData);
+                    drawData.Draw(Main.spriteBatch);
+                    Main.pixelShader.CurrentTechnique.Passes[0].Apply();
+                }
+                if (drawingPlayer.headOverlay != -1)
+                {
+                    var drawData = new DrawData(TextureCache.PlayerHeadOverlays[(PlayerHeadOverlayID)drawingPlayer.headOverlay], new Vector2((int)(info.drawPlayer.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.drawPlayer.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height)) + info.drawPlayer.headPosition + info.drawOrigin, info.drawPlayer.bodyFrame, info.armorColor, info.drawPlayer.headRotation, info.drawOrigin, info.scale, info.spriteEffects, 0);
+                    if ((PlayerHeadOverlayID)drawingPlayer.headOverlay == PlayerHeadOverlayID.FishyFins)
+                        drawData.color = player.skinColor;
+                    drawData.position = new Vector2((int)drawData.position.X, (int)drawData.position.Y);
+                    GameShaders.Armor.Apply(drawingPlayer.cHeadOverlay, player, drawData);
+                    drawData.Draw(Main.spriteBatch);
+                    Main.pixelShader.CurrentTechnique.Passes[0].Apply();
+                }
+            });
+
+            public static readonly PlayerLayer PreDraw = new PlayerLayer("AQMod", "PreDraw", (info) =>
+            {
+                int whoAmI = info.drawPlayer.whoAmI;
+                var player = info.drawPlayer;
+                var aQPlayer = player.GetModPlayer<AQPlayer>();
+                var drawingPlayer = player.GetModPlayer<AQPlayer>();
+                if (info.shadow == 0f)
+                {
+                    if (aQPlayer.blueSpheres && drawingPlayer.celesteTorusOffsetsForDrawing != null)
+                    {
+                        var texture = TextureCache.GetProjectile(ModContent.ProjectileType<CelesteTorusCollider>());
+                        var frame = new Rectangle(0, 0, texture.Width, texture.Height);
+                        var orig = frame.Size() / 2f;
+                        for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)
+                        {
+                            var position = aQPlayer.GetCelesteTorusPositionOffset(i);
+                            float layerValue = AQUtils.Projector3D.GetParralaxScale(1f, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * CELESTE_Z_MULT);
+                            if (layerValue < 1f)
+                            {
+                                var center = info.position + new Vector2(player.width / 2 + (int)position.X, player.height / 2 + (int)position.Y);
+                                Main.playerDrawData.Add(new DrawData(texture, AQUtils.Projector3D.GetParralaxPosition(center, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.Projector3D.GetParralaxScale(aQPlayer.celesteTorusScale, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawingPlayer.cCelesteTorus, ignorePlayerRotation = true });
+                            }
+                        }
+                    }
+                    if (aQPlayer.chomper)
+                    {
+                        int count = 0;
+                        int type = ModContent.ProjectileType<Chomper>();
+                        var texture = TextureCache.GetProjectile(type);
+                        int frameHeight = texture.Height / Main.projFrames[type];
+                        var frame = new Rectangle(0, 0, texture.Width, frameHeight - 2);
+                        var textureOrig = frame.Size() / 2f;
+                        for (int i = 0; i < Main.maxProjectiles; i++)
+                        {
+                            if (Main.projectile[i].active && Main.projectile[i].type == type && Main.projectile[i].owner == info.drawPlayer.whoAmI)
+                            {
+                                var drawPosition = Main.projectile[i].Center;
+                                frame = new Rectangle(0, frameHeight * Main.projectile[i].frame, texture.Width, frameHeight - 2);
+                                var drawColor = Lighting.GetColor((int)drawPosition.X / 16, (int)drawPosition.Y / 16);
+                                float rotation;
+                                if (Main.projectile[i].spriteDirection == -1 && (int)Main.projectile[i].ai[1] > 0f)
+                                {
+                                    rotation = Main.projectile[i].rotation - MathHelper.Pi;
+                                }
+                                else
+                                {
+                                    rotation = Main.projectile[i].rotation;
+                                }
+                                if (Main.myPlayer == info.drawPlayer.whoAmI)
+                                {
+                                    DrawChomperChain(info.drawPlayer, Main.projectile[i], drawPosition, drawColor);
+                                    var chomperHead = (Chomper)Main.projectile[i].modProjectile;
+                                    if (chomperHead.eatingDelay != 0 && chomperHead.eatingDelay < 35)
+                                    {
+                                        float intensity = (10 - chomperHead.eatingDelay) / 2.5f *  AQConfigClient.c_EffectIntensity;
+                                        drawPosition.X += Main.rand.NextFloat(-intensity, intensity);
+                                        drawPosition.Y += Main.rand.NextFloat(-intensity, intensity);
+                                    }
+                                    drawPosition = new Vector2((int)(drawPosition.X - Main.screenPosition.X), (int)(drawPosition.Y - Main.screenPosition.Y));
+                                    Main.playerDrawData.Add(
+                                        new DrawData(texture, drawPosition, frame, drawColor, rotation, textureOrig, Main.projectile[i].scale, Main.projectile[i].spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0)
+                                        { ignorePlayerRotation = true });
+                                    if (count == 0)
+                                    {
+                                        if (aQPlayer.monoxiderBird)
+                                        {
+                                            var monoxiderHat = TextureCache.GetItem(ModContent.ItemType<MonoxideHat>());
+                                            var hatPos = new Vector2(drawPosition.X, drawPosition.Y) + new Vector2(0f, -Main.projectile[i].height / 2).RotatedBy(Main.projectile[i].rotation);
+                                            var monoxiderHatOrig = monoxiderHat.Size() / 2f;
+                                            hatPos = new Vector2((int)hatPos.X, (int)hatPos.Y);
+                                            Main.playerDrawData.Add(
+                                                new DrawData(monoxiderHat, hatPos, null, drawColor, Main.projectile[i].rotation, monoxiderHatOrig, Main.projectile[i].scale, SpriteEffects.None, 0)
+                                                { ignorePlayerRotation = true });
+                                            Main.playerDrawData.Add(
+                                                new DrawData(ModContent.GetTexture(AQUtils.GetPath<MonoxideHat>() + "_Glow"), hatPos, null, new Color(250, 250, 250, 0), Main.projectile[i].rotation, monoxiderHatOrig, Main.projectile[i].scale, SpriteEffects.None, 0)
+                                                { ignorePlayerRotation = true });
+                                            int headFrame = player.bodyFrame.Y / FRAME_HEIGHT;
+                                            if (player.gravDir == -1)
+                                                hatPos.Y += player.height + 8f;
+                                            Projectiles.Summon.Monoxider.DrawHead(player, aQPlayer, hatPos, ignorePlayerRotation: true);
+                                        }
+                                    }
+                                    count++;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            private static void DrawChomperChain(Player player, Projectile chomper, Vector2 drawPosition, Color drawColor)
+            {
+                var chomperHead = (Chomper)chomper.modProjectile;
+                int frameWidth = 16;
+                var frame = new Rectangle(0, 0, frameWidth - 2, 20);
+                var origin = frame.Size() / 2f;
+                float offset = chomper.width / 2f + frame.Height / 2f;
+                var texture = ModContent.GetTexture(AQUtils.GetPath<Chomper>("_Chain"));
+                Main.playerDrawData.Add(new DrawData(texture, new Vector2(drawPosition.X + chomper.width / 2 * -chomper.spriteDirection, drawPosition.Y), frame, drawColor, 0f, origin, chomper.scale, chomper.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0)
+                { ignorePlayerRotation = true });
+                int height = frame.Height - 4;
+                frame.Y += 2;
+                var playerCenter = player.Center;
+                var chainStart = chomper.Center + new Vector2((chomper.width / 2 + 4) * -chomper.spriteDirection, 0f);
+                var velo = Vector2.Normalize(Vector2.Lerp(chainStart + new Vector2(0f, height * 4f) - playerCenter, player.velocity, 0.5f)) * height;
+                var position = playerCenter;
+                var rand = new UnifiedRandom(chomper.whoAmI + player.name.GetHashCode());
+                if (AQConfigClient.c_EffectQuality >= 1f)
+                {
+                    for (int i = 0; i < 50; i++)
+                    {
+                        Main.playerDrawData.Add(new DrawData(
+                            texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
+                        { ignorePlayerRotation = true });
+                        velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
+                        if (Vector2.Distance(position, chainStart) <= height)
+                            break;
+                        velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f *  AQConfigClient.c_EffectIntensity);
+                        position += velo;
+                        float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
+                        velo.Y += gravity * 3f;
+                        velo.Normalize();
+                        velo *= height;
+                    }
+                }
+                else
+                {
+                    if (AQConfigClient.c_EffectQuality < 0.2f)
+                    {
+                        for (int i = 0; i < 50; i++)
+                        {
+                            Main.playerDrawData.Add(new DrawData(
+                                texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * (i % 3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
+                            { ignorePlayerRotation = true });
+                            velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
+                            if (Vector2.Distance(position, chainStart) <= height)
+                                break;
+                            position += velo;
+                            float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
+                            velo.Y += gravity * 3f;
+                            velo.Normalize();
+                            velo *= height;
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 50; i++)
+                        {
+                            Main.playerDrawData.Add(new DrawData(
+                                texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
+                            { ignorePlayerRotation = true });
+                            velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
+                            if (Vector2.Distance(position, chainStart) <= height)
+                                break;
+                            position += velo;
+                            float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
+                            velo.Y += gravity * 3f;
+                            velo.Normalize();
+                            velo *= height;
+                        }
+                    }
+                }
+                rand = new UnifiedRandom(chomper.whoAmI + 2 + player.name.GetHashCode());
+                texture = ModContent.GetTexture(AQUtils.GetPath<Chomper>("_Leaves"));
+                frame.Y -= 2;
+                int numLeaves = rand.Next(4) + 3;
+                float leafRotation = chomper.rotation;
+                if (chomper.spriteDirection == -1 && chomper.rotation.Abs() > MathHelper.PiOver2)
+                    leafRotation -= MathHelper.Pi;
+                float rotOff = MathHelper.PiOver2 / numLeaves;
+                float rotStart = leafRotation - MathHelper.PiOver4;
+                for (int i = 0; i < numLeaves; i++)
+                {
+                    var leavesPos = drawPosition + new Vector2((offset - rand.NextFloat(2f)) * -chomper.spriteDirection, 0f).RotatedBy(rotStart + rotOff * i) - Main.screenPosition;
+                    leafRotation = (drawPosition - Main.screenPosition - leavesPos).ToRotation();
+                    Main.playerDrawData.Add(new DrawData(texture, new Vector2((int)leavesPos.X, leavesPos.Y), new Rectangle(frame.X + frameWidth * rand.Next(4), frame.Y, frame.Width, frame.Height), drawColor, leafRotation + MathHelper.PiOver2, origin, chomper.scale + rand.NextFloat(0.2f), SpriteEffects.None, 0)
+                    { ignorePlayerRotation = true });
+                }
+            }
+
+            public static readonly PlayerLayer PostDraw = new PlayerLayer("AQMod", "PostDraw", (info) =>
+            {
+                int whoAmI = info.drawPlayer.whoAmI;
+                var aQMod = AQMod.Instance;
+                var player = info.drawPlayer;
+                var aQPlayer = player.GetModPlayer<AQPlayer>();
+                if (Main.myPlayer == info.drawPlayer.whoAmI && ShouldDrawOldPos(info.drawPlayer) && info.shadow == 0f)
+                {
+                    if (oldPosVisual != null && oldPosVisual.Length >= oldPosLength)
+                    {
+                        if (arachnotronHeadTrail)
+                        {
+                            if (info.shadow == 0f)
+                            {
+                                var headOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 10f) + info.drawPlayer.headPosition + info.headOrigin;
+                                var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
+                                var drawDiff = info.position - info.drawPlayer.position;
+                                var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronVisor>("_HeadGlow"));
+                                int count = aQPlayer.GetOldPosCountMaxed(ARACHNOTRON_OLD_POS_LENGTH);
+                                var clrMult = 1f / count;
+                                for (int i = 0; i < count; i++)
+                                {
+                                    float colorMult = 0.5f * (1f - (float)Math.Sin(Main.GlobalTime * 8f - i * 0.314f) * 0.2f);
+                                    var drawData = new DrawData(texture, new Vector2((int)(oldPosVisual[i].X - Main.screenPosition.X), (int)(oldPosVisual[i].Y - Main.screenPosition.Y)) + drawDiff + headOff, info.drawPlayer.bodyFrame, clr * (clrMult * (count - i)) * colorMult, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.headArmorShader };
+                                    Main.playerDrawData.Add(drawData);
+                                }
+                            }
+                        }
+                        if (arachnotronBodyTrail)
+                        {
+                            var bodyOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 4f) + info.drawPlayer.bodyPosition + new Vector2(info.drawPlayer.bodyFrame.Width / 2, info.drawPlayer.bodyFrame.Height / 2);
+                            var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
+                            var drawDiff = info.position - info.drawPlayer.position;
+                            var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronRibcage>("_BodyGlow"));
+                            int count = aQPlayer.GetOldPosCountMaxed(ARACHNOTRON_OLD_POS_LENGTH);
+                            if (info.shadow == 0f)
+                            {
+                                var clrMult = 1f / count;
+                                for (int i = 0; i < count; i++)
+                                {
+                                    float colorMult = 0.5f * (1f - (float)Math.Sin(Main.GlobalTime * 8f - i * 0.314f) * 0.2f);
+                                    var drawData = new DrawData(texture, new Vector2((int)(oldPosVisual[i].X - Main.screenPosition.X), (int)(oldPosVisual[i].Y - Main.screenPosition.Y)) + drawDiff + bodyOff, info.drawPlayer.bodyFrame, clr * (clrMult * (count - i)) * colorMult, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.bodyArmorShader };
+                                    Main.playerDrawData.Add(drawData);
+                                }
+                            }
+                        }
+                    }
+                    if (AQMod.GameWorldActive && oldPosLength > 0)
+                    {
+                        if (oldPosVisual == null || oldPosVisual.Length != oldPosLength)
+                            oldPosVisual = new Vector2[oldPosLength];
+                        for (int i = oldPosLength - 1; i > 0; i--)
+                        {
+                            oldPosVisual[i] = oldPosVisual[i - 1];
+                        }
+                        oldPosVisual[0] = player.position;
+                    }
+                }
+
+                if (info.shadow == 0f && aQPlayer.blueSpheres && aQPlayer.celesteTorusOffsetsForDrawing != null)
+                {
+                    var texture = TextureCache.GetProjectile(ModContent.ProjectileType<CelesteTorusCollider>());
+                    var frame = new Rectangle(0, 0, texture.Width, texture.Height);
+                    var orig = frame.Size() / 2f;
+                    for (int i = 0; i < MaxCelesteTorusOrbs; i++)
+                    {
+                        var position = aQPlayer.GetCelesteTorusPositionOffset(i);
+                        float layerValue = AQUtils.Projector3D.GetParralaxScale(1f, aQPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT);
+                        if (layerValue >= 1f)
+                        {
+                            var center = info.position + new Vector2(player.width / 2 + (int)position.X, player.height / 2 + (int)position.Y);
+                            Main.playerDrawData.Add(new DrawData(texture, AQUtils.Projector3D.GetParralaxPosition(center, aQPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.Projector3D.GetParralaxScale(aQPlayer.celesteTorusScale, aQPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = aQPlayer.cCelesteTorus, ignorePlayerRotation = true });
+                        }
+                    }
+                }
+            });
             public static readonly PlayerLayer PostDrawHeldItem = new PlayerLayer("AQMod", "PostDrawHeldItem", (info) =>
             {
                 var player = info.drawPlayer;
@@ -75,7 +355,7 @@ namespace AQMod
                 var aQPlayer = info.drawPlayer.GetModPlayer<AQPlayer>();
                 float opacity = 1f - info.shadow;
                 const float MagicOffsetForReversedGravity = 8f;
-                int headFrame = info.drawPlayer.bodyFrame.Y / AQPlayer.FRAME_HEIGHT;
+                int headFrame = info.drawPlayer.bodyFrame.Y / FRAME_HEIGHT;
                 float gravityOffset = 0f;
                 AQMod.ArmorOverlays.InvokeArmorOverlay(EquipLayering.Head, info);
                 if (info.drawPlayer.gravDir == -1)
@@ -179,6 +459,7 @@ namespace AQMod
         public static Vector2[] oldPosVisual;
         public static bool arachnotronHeadTrail;
         public static bool arachnotronBodyTrail;
+        internal static bool Fidget_Spinner_Force_Autoswing;
         internal static int _moneyTroughHackIndex = -1;
         internal static ISuperClunkyMoneyTroughTypeThing _moneyTroughHack;
 
@@ -276,6 +557,7 @@ namespace AQMod
         public bool crabAx;
         public sbyte redSpriteWind;
         public byte extraHP;
+        public bool fidgetSpinner;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -329,6 +611,7 @@ namespace AQMod
             grabReachMult = 1f;
             temperature = 0;
             pickBreak = false;
+            fidgetSpinner = false;
         }
 
         public override void OnEnterWorld(Player player)
@@ -537,6 +820,7 @@ namespace AQMod
             mothmanMask = false;
             pickBreak = false;
             crabAx = false;
+            fidgetSpinner = false;
             if (extraHP > 60) // to cap life max buffs at 60
             {
                 extraHP = 60;
@@ -675,7 +959,16 @@ namespace AQMod
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                var item = player.ItemInHand();
+                var item = player.inventory[player.selectedItem];
+                Fidget_Spinner_Force_Autoswing = false;
+                if (fidgetSpinner && player.selectedItem < Main.maxInventory && (Main.mouseItem == null || Main.mouseItem.type <= ItemID.None))
+                {
+                    if (CanForceAutoswing(player, item, ignoreChanneled: false))
+                    {
+                        Fidget_Spinner_Force_Autoswing = true;
+                        item.autoReuse = true;
+                    }
+                }
                 bool canMine = CanReach(player, item);
                 if (player.noBuilding)
                     canMine = false;
@@ -720,37 +1013,89 @@ namespace AQMod
                                             int treeStumpX = i;
                                             int treeStumpY = j;
 
-                                                if (Main.tile[treeStumpX, treeStumpY].frameY >= 198 && Main.tile[treeStumpX, treeStumpY].frameX == 44)
-                                                {
-                                                    treeStumpX++;
-                                                }
-                                                if (Main.tile[treeStumpX, treeStumpY].frameX == 66 && Main.tile[treeStumpX, treeStumpY].frameY <= 44)
-                                                {
-                                                    treeStumpX++;
-                                                }
-                                                if (Main.tile[treeStumpX, treeStumpY].frameX == 44 && Main.tile[treeStumpX, treeStumpY].frameY >= 132 && Main.tile[treeStumpX, treeStumpY].frameY <= 176)
-                                                {
-                                                    treeStumpX++;
-                                                }
-                                                if (Main.tile[treeStumpX, treeStumpY].frameY >= 198 && Main.tile[treeStumpX, treeStumpY].frameX == 66)
-                                                {
-                                                    treeStumpX--;
-                                                }
-                                                if (Main.tile[treeStumpX, treeStumpY].frameX == 88 && Main.tile[treeStumpX, treeStumpY].frameY >= 66 && Main.tile[treeStumpX, treeStumpY].frameY <= 110)
-                                                {
-                                                    treeStumpX--;
-                                                }
-                                                if (Main.tile[treeStumpX, treeStumpY].frameX == 22 && Main.tile[treeStumpX, treeStumpY].frameY >= 132 && Main.tile[treeStumpX, treeStumpY].frameY <= 176)
-                                                {
-                                                    treeStumpX--;
-                                                }
+                                            if (Main.tile[treeStumpX, treeStumpY].frameY >= 198 && Main.tile[treeStumpX, treeStumpY].frameX == 44)
+                                            {
+                                                treeStumpX++;
+                                            }
+                                            if (Main.tile[treeStumpX, treeStumpY].frameX == 66 && Main.tile[treeStumpX, treeStumpY].frameY <= 44)
+                                            {
+                                                treeStumpX++;
+                                            }
+                                            if (Main.tile[treeStumpX, treeStumpY].frameX == 44 && Main.tile[treeStumpX, treeStumpY].frameY >= 132 && Main.tile[treeStumpX, treeStumpY].frameY <= 176)
+                                            {
+                                                treeStumpX++;
+                                            }
+                                            if (Main.tile[treeStumpX, treeStumpY].frameY >= 198 && Main.tile[treeStumpX, treeStumpY].frameX == 66)
+                                            {
+                                                treeStumpX--;
+                                            }
+                                            if (Main.tile[treeStumpX, treeStumpY].frameX == 88 && Main.tile[treeStumpX, treeStumpY].frameY >= 66 && Main.tile[treeStumpX, treeStumpY].frameY <= 110)
+                                            {
+                                                treeStumpX--;
+                                            }
+                                            if (Main.tile[treeStumpX, treeStumpY].frameX == 22 && Main.tile[treeStumpX, treeStumpY].frameY >= 132 && Main.tile[treeStumpX, treeStumpY].frameY <= 176)
+                                            {
+                                                treeStumpX--;
+                                            }
 
                                             i = treeStumpX + 2; // skips the current index and the next one, since this entire tree has been completed
                                             j = rectangle.Y;
 
-                                            for (; Main.tile[treeStumpX, treeStumpY].active() && Main.tile[treeStumpX, treeStumpY].type == 5 && Main.tile[treeStumpX, treeStumpY + 1].type == 5; treeStumpY++)
+                                            for (; Main.tile[treeStumpX, treeStumpY].active() && Main.tile[treeStumpX, treeStumpY].type == TileID.Trees && Main.tile[treeStumpX, treeStumpY + 1].type == TileID.Trees; treeStumpY++)
                                             {
                                             }
+
+                                            if (Player.tileTargetX == treeStumpX && Player.tileTargetY == treeStumpY)
+                                            {
+                                                break;
+                                            }
+
+                                            AchievementsHelper.CurrentlyMining = true;
+                                            if (!WorldGen.CanKillTile(treeStumpX, treeStumpY))
+                                            {
+                                                tileDamage = 0;
+                                            }
+                                            tileID = player.hitTile.HitObject(treeStumpX, treeStumpY, 1);
+                                            if (player.hitTile.AddDamage(tileID, tileDamage) >= 100)
+                                            {
+                                                player.hitTile.Clear(tileID);
+                                                WorldGen.KillTile(treeStumpX, treeStumpY);
+                                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                                {
+                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                WorldGen.KillTile(i, j, fail: true);
+                                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                                {
+                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY, 1f);
+                                                }
+                                            }
+                                            if (tileDamage != 0)
+                                            {
+                                                player.hitTile.Prune();
+                                                hitCount++;
+                                                if (hitCount > HitCountMax)
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                            AchievementsHelper.CurrentlyMining = false;
+                                            continue;
+                                        }
+                                        else if (Main.tile[i, j].type == TileID.PalmTree)
+                                        {
+                                            int treeStumpX = i;
+                                            int treeStumpY = j;
+
+                                            for (; Main.tile[treeStumpX, treeStumpY].active() && Main.tile[treeStumpX, treeStumpY].type == TileID.PalmTree && Main.tile[treeStumpX, treeStumpY + 1].type == TileID.PalmTree; treeStumpY++)
+                                            {
+                                            }
+
+                                            i = treeStumpX + 2; // skips the current index and the next one, since this entire tree has been completed
+                                            j = rectangle.Y;
 
                                             if (Player.tileTargetX == treeStumpX && Player.tileTargetY == treeStumpY)
                                             {
@@ -845,21 +1190,32 @@ namespace AQMod
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                if (crabAx)
+                if (Fidget_Spinner_Force_Autoswing)
                 {
-                    for (int i = 0; i < 20; i++)
-                    {
-                        for (int j = 0; j < 20; j++)
-                        {
-
-                        }
-                    }
+                    player.inventory[player.selectedItem].autoReuse = false;
+                    Fidget_Spinner_Force_Autoswing = false;
                 }
                 if (player.itemAnimation < 1 && player.inventory[player.selectedItem].modItem is ISpecialFood)
                 {
                     player.inventory[player.selectedItem].buffType = BuffID.WellFed;
                 }
             }
+        }
+
+        public override float UseTimeMultiplier(Item item)
+        {
+            if (Fidget_Spinner_Force_Autoswing && item.damage > 0 && !item.channel)
+            {
+                if (item.useTime <= 10)
+                {
+                    return 0.3f;
+                }
+                if (item.useTime < 32)
+                {
+                    return 0.6f;
+                }
+            }
+            return base.UseTimeMultiplier(item);
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -1234,10 +1590,10 @@ namespace AQMod
                 if (Main.myPlayer == player.whoAmI)
                 {
                     Main.PlaySound(SoundID.Item74, targetCenter);
-                    int amount = (int)(25 * AQMod.EffectIntensity);
-                    if (AQMod.EffectQuality < 1f)
+                    int amount = (int)(25 *  AQConfigClient.c_EffectIntensity);
+                    if (AQConfigClient.c_EffectQuality < 1f)
                     {
-                        amount = (int)(amount * AQMod.EffectQuality);
+                        amount = (int)(amount * AQConfigClient.c_EffectQuality);
                     }
                     var pos = target.position - new Vector2(2f, 2f);
                     var rect = new Rectangle((int)pos.X, (int)pos.Y, target.width + 4, target.height + 4);
@@ -1252,10 +1608,10 @@ namespace AQMod
                             new MonoParticleEmber(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
                     }
-                    amount = (int)(120 * AQMod.EffectIntensity);
-                    if (AQMod.EffectQuality < 1f)
+                    amount = (int)(120 *  AQConfigClient.c_EffectIntensity);
+                    if (AQConfigClient.c_EffectQuality < 1f)
                     {
-                        amount = (int)(amount * AQMod.EffectQuality);
+                        amount = (int)(amount * AQConfigClient.c_EffectQuality);
                     }
                     if (AQMod.Screenshakes)
                     {
@@ -1543,16 +1899,16 @@ namespace AQMod
                 Layers.PostDrawHeldItem.visible = true;
                 layers.Insert(i + 1, Layers.PostDrawHeldItem);
             }
-            PlayerLayersCache.preDraw.visible = true;
-            layers.Insert(0, PlayerLayersCache.preDraw);
-            PlayerLayersCache.postDraw.visible = true;
-            layers.Add(PlayerLayersCache.postDraw);
+            Layers.PreDraw.visible = true;
+            layers.Insert(0, Layers.PreDraw);
+            Layers.PostDraw.visible = true;
+            layers.Add(Layers.PostDraw);
         }
 
         public override void ModifyDrawHeadLayers(List<PlayerHeadLayer> layers)
         {
-            PlayerLayersCache.postDrawHeadHead.visible = true;
-            layers.Add(PlayerLayersCache.postDrawHeadHead);
+            Layers.PostDrawHead_Head.visible = true;
+            layers.Add(Layers.PostDrawHead_Head);
         }
 
         public override void ModifyScreenPosition()
@@ -1910,6 +2266,19 @@ namespace AQMod
                 }
             }
             return player.ConsumeItem(type);
+        }
+
+        public static bool CanForceAutoswing(Player player, Item item, bool ignoreChanneled = false)
+        {
+            if (!item.autoReuse && item.useTime != 0 && item.useTime == item.useAnimation)
+            {
+                if (!ignoreChanneled && (item.channel || item.noUseGraphic))
+                {
+                    return player.ownedProjectileCounts[item.shoot] < item.stack;
+                }
+                return player.altFunctionUse != 2;
+            }
+            return false;
         }
     }
 }

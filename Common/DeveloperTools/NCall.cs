@@ -1,6 +1,5 @@
 ﻿using AQMod;
 using AQMod.Assets;
-using AQMod.Common.Config;
 using AQMod.Common.Graphics;
 using AQMod.Common.IO;
 using AQMod.Common.Skies;
@@ -15,6 +14,7 @@ using AQMod.Content.WorldEvents.DemonicEvent;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters;
 using AQMod.Tiles;
+using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -453,7 +453,7 @@ namespace AQMod.Common.DeveloperTools
                 break;
 
                 case "placecoral":
-                WorldGen.PlaceTile((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, ModContent.TileType<Tiles.ExoticCoral>(), true, false, -1, int.Parse(args[1]));
+                WorldGen.PlaceTile((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, ModContent.TileType<ExoticCoral>(), true, false, -1, int.Parse(args[1]));
                 break;
 
                 case "ravinetest":
@@ -467,13 +467,6 @@ namespace AQMod.Common.DeveloperTools
                 case "coraltest":
                 {
                     caller.Reply(ExoticCoral.TryPlaceExoticBlotch((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, WorldGen.genRand.Next(3), 50).ToString());
-                }
-                break;
-
-                case "tikitest":
-                {
-                    Main.NewText("Generating Biome...");
-                    Main.NewText("Generation Complete!");
                 }
                 break;
 

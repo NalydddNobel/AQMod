@@ -2,7 +2,6 @@
 using AQMod.Assets.Textures;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
-using AQMod.Common.Config;
 using AQMod.Common.Graphics;
 using AQMod.Common.NoHitting;
 using AQMod.Content.Dusts;
@@ -562,7 +561,7 @@ namespace AQMod.NPCs.Boss.Starite
                                     npc.localAI[1] = 1f;
                                     Main.PlaySound(SoundID.Trackable, npc.Center, 188);
                                     if (Main.netMode != NetmodeID.Server)
-                                        ScreenShakeManager.AddEffect(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f * AQMod.EffectIntensity));
+                                        ScreenShakeManager.AddEffect(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f *  AQConfigClient.c_EffectIntensity));
                                     int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaRay>(), 100, 1f, Main.myPlayer, npc.whoAmI);
                                     Main.projectile[p].scale = 0.75f;
                                 }
@@ -1405,7 +1404,7 @@ namespace AQMod.NPCs.Boss.Starite
                 drawColor.B = 80;
             var drawPos = npc.Center - Main.screenPosition;
             var sortedOmegites = new List<OmegaStariteOrb>(orbs);
-            float intensity = AQMod.EffectIntensity;
+            float intensity =  AQConfigClient.c_EffectIntensity;
             if ((int)npc.ai[0] == -1)
             {
                 intensity += npc.ai[1] / 20;

@@ -9,7 +9,7 @@ namespace AQMod.Items.Armor.Arachnotron
 {
     public class ArachnotronLegs : ModProjectile
     {
-        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
+        public override string Texture => "AQMod/" + TextureCache.None;
 
         public Vector2[] arms;
         public Vector2[] armRest;

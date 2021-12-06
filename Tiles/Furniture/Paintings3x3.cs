@@ -31,11 +31,7 @@ namespace AQMod.Tiles.Furniture
             switch (frameX / 54)
             {
                 case 0:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Dedicated.Developers.AStrangeIdea>());
-                break;
-
-                case 1:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<CrabsonTrophy>());
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Placeable.Furniture.AStrangeIdea>());
                 break;
             }
         }

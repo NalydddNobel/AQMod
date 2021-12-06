@@ -16,7 +16,6 @@ namespace AQMod.Items.Tools
             item.useAnimation = 28;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 10f;
-            item.autoReuse = true;
             item.axe = 45; // has the highest axe power
             item.tileBoost = 5;
             item.value = Item.sellPrice(gold: 1);

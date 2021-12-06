@@ -9,17 +9,6 @@ namespace AQMod.Items.Materials.Energies
 {
     public class OrganicEnergy : ModItem
     {
-        public override string Texture
-        {
-            get
-            {
-                string path = AQUtils.GetPath<OrganicEnergy>();
-                if (AQMod.AprilFools)
-                    return path + "_AprilFools";
-                return path;
-            }
-        }
-
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemNoGravity[item.type] = true;

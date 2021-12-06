@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.DeveloperTools;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,7 +41,7 @@ namespace AQMod
 
             public static float MultZ(float z)
             {
-                return z *= AQMod.Effect3Dness + 0.01f; // adding 0.001 because some things actually rely on z for layering
+                return z *= AQConfigClient.c_Effect3D + 0.01f; // adding 0.001 because some things actually rely on z for layering
             }
         }
 

@@ -37,7 +37,7 @@ namespace AQMod.Items.Vanities.CursorDyes
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Bottle);
-            r.AddRecipeGroup(AQMod.AnyEnergy);
+            r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyEnergy);
             r.AddTile(TileID.DyeVat);
             r.SetResult(this);
             r.AddRecipe();

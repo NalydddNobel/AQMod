@@ -523,12 +523,12 @@ namespace AQMod.NPCs.Monsters.AtmosphericEvent
                                 {
                                     Main.PlaySound(SoundID.Item122, gotoPosition);
                                     ScreenShakeManager.AddEffect(new BasicScreenShake(8, AQMod.MultIntensity(12)));
-                                    if (AQMod.EffectQuality > 0.2f)
+                                    if (AQConfigClient.c_EffectQuality > 0.2f)
                                     {
                                         int dustAmount = 50;
-                                        if (AQMod.EffectQuality < 1f)
+                                        if (AQConfigClient.c_EffectQuality < 1f)
                                         {
-                                            dustAmount = (int)(dustAmount * AQMod.EffectQuality);
+                                            dustAmount = (int)(dustAmount * AQConfigClient.c_EffectQuality);
                                         }
                                         float rot = MathHelper.TwoPi / dustAmount;
                                         for (int i = 0; i < dustAmount; i++)

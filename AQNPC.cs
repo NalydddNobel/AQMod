@@ -815,10 +815,10 @@ namespace AQMod
             {
                 if (sparkling)
                 {
-                    int amount = (int)(100 * AQMod.EffectIntensity);
-                    if (AQMod.EffectQuality < 1f)
-                        amount = (int)(amount * AQMod.EffectQuality);
-                    if (AQMod.Screenshakes)
+                    int amount = (int)(100 *  AQConfigClient.c_EffectIntensity);
+                    if (AQConfigClient.c_EffectQuality < 1f)
+                        amount = (int)(amount * AQConfigClient.c_EffectQuality);
+                    if (AQConfigClient.c_Screenshakes)
                         ScreenShakeManager.AddEffect(new BasicScreenShake(12, 6));
                     var npcCenter = npc.Center;
                     int p = Projectile.NewProjectile(npcCenter, Vector2.Normalize(npcCenter - Main.player[npc.target].Center), ModContent.ProjectileType<SparklingExplosion>(), 50, 5f, npc.target);
@@ -1023,8 +1023,6 @@ namespace AQMod
                     }
                     if (Main.hardMode)
                     {
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Consumables.Potion.SpoilsPotion>());
-                        nextSlot++;
                         shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.GoldPowder>());
                         nextSlot++;
                     }

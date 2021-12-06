@@ -67,7 +67,7 @@ namespace AQMod.Items.Dedicated
             ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + offset.RotatedBy(Main.GlobalTime + MathHelper.TwoPi / 6 * 2), new Color(0, 0, 255, 0), 
                 rotation, origin, baseScale);
 
-            if (AQMod.EffectQuality < 1f)
+            if (AQConfigClient.c_EffectQuality < 1f)
                 return;
 
             var texture = TextureCache.Lights[LightTex.Spotlight12x66];

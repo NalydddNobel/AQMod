@@ -3,7 +3,6 @@ using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Assets.ItemOverlays;
 using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
-using AQMod.Common.Config;
 using AQMod.Common.CrossMod;
 using AQMod.Common.DeveloperTools;
 using AQMod.Common.Graphics;
@@ -29,7 +28,6 @@ using AQMod.Effects.WorldEffects;
 using AQMod.Items.Accessories;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Materials.NobleMushrooms;
 using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Items.Vanities;
 using AQMod.Localization;
@@ -61,18 +59,6 @@ namespace AQMod
         /// Gets an instance of the mod. This is the same as calling <see cref="ModContent.GetInstance{T}"/> and passing <see cref="AQMod"/> as T. Except it's slightly cooler?
         /// </summary>
         public static AQMod Instance => ModContent.GetInstance<AQMod>();
-        /// <summary>
-        /// The name of the mod, to be honest I need to remove all references of this and replace it with "AQMod" since like... why
-        /// </summary>
-        public const string ModName = nameof(AQMod);
-        /// <summary>
-        /// The key for the Any Noble Mushrooms recipe group
-        /// </summary>
-        public const string AnyNobleMushroom = "AQMod:AnyNobleMushroom";
-        /// <summary>
-        /// The key for the Any Energy recipe group
-        /// </summary>
-        public const string AnyEnergy = "AQMod:AnyEnergy";
         public const int SpaceLayerTile = 200;
         public const int SpaceLayer = SpaceLayerTile * 16;
         /// <summary>
@@ -120,7 +106,6 @@ namespace AQMod
         /// The color used for most event messages like "A meteorite has landed!".
         /// </summary>
         internal static Color EventMessage => new Color(50, 255, 130, 255);
-        internal static bool DebugKeysPressed => Main.netMode == NetmodeID.SinglePlayer && AQConfigServer.Instance.debugCommand && Main.keyState.IsKeyDown(Keys.LeftShift) && Main.keyState.IsKeyDown(Keys.Q);
         internal static string DebugFolderPath => Main.SavePath + Path.DirectorySeparatorChar + "Mods" + Path.DirectorySeparatorChar + "Cache" + Path.DirectorySeparatorChar + "AQMod";
 
         public static bool spawnStarite;
@@ -134,20 +119,6 @@ namespace AQMod
         /// This is normally used to prevent threaded assets from loading
         /// </summary>
         internal static bool Unloading { get; private set; }
-        /// <summary>
-        /// A flag which gets raised if the mod detects that it's april fools. Use this for fun :)
-        /// </summary>
-        public static bool AprilFools { get; internal set; }
-        /// <summary>
-        /// Use this value to check if you should actually run unnecessary drawcode operations. Default value is 1.
-        /// </summary>
-        public static float EffectQuality { get; private set; }
-        /// <summary>
-        /// Use this value to tune down bright, flashy things. Default value is 1.
-        /// </summary>
-        public static float EffectIntensity { get; private set; }
-        public static float EffectIntensityMinus => 2f - EffectIntensity;
-        public static float Effect3Dness { get; private set; }
         public static float StariteBGMult { get; private set; }
         public static bool HarderOmegaStarite { get; private set; }
         public static bool EvilProgressionLock { get; private set; }
@@ -192,10 +163,6 @@ namespace AQMod
         /// The active instance of the Glimmer Event (event)
         /// </summary>
         public static GlimmerEvent CosmicEvent { get; set; }
-        /// <summary>
-        /// The active instance of the Azure Currents event
-        /// </summary>
-        public static GaleStreams AtmosphericEvent { get; set; }
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
@@ -306,11 +273,6 @@ namespace AQMod
                 AutoloadGores = true,
                 AutoloadSounds = true
             };
-            AprilFools = false;
-            if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
-            {
-                AprilFools = true;
-            }
             cachedLoadTasks = new List<CachedTask>();
             Loading = true;
         }
@@ -326,7 +288,6 @@ namespace AQMod
             RobsterHunts = new RobsterHuntLoader();
             RobsterHunts.Setup(setupStatics: true);
             CosmicEvent = new GlimmerEvent();
-            AtmosphericEvent = new GaleStreams();
             MapMarkers = new MapMarkerManager();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             ModCallHelper.SetupCalls();
@@ -340,6 +301,7 @@ namespace AQMod
             On.Terraria.Player.QuickBuff += Player_QuickBuff;
             On.Terraria.Player.PickTile += Player_PickTile;
             On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
+            AprilFools.UpdateActive();
             var server = AQConfigServer.Instance;
             ApplyServerConfig(server);
             if (!Main.dedServ)
@@ -577,6 +539,7 @@ namespace AQMod
             dayrateIncrease = 0;
             if (settingUpNight)
             {
+                AprilFools.UpdateActive();
                 OnTurnNight();
             }
         }
@@ -641,7 +604,6 @@ namespace AQMod
             DemonSiege.Setup(); // Sets up the Demon Siege event
             GlimmerEvent.Setup();
             BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
-            AQItem.Sets.Setup();
             MapMarkers.Setup(setupStatics: true);
             if (!Main.dedServ)
             {
@@ -655,23 +617,7 @@ namespace AQMod
         {
             AQNPC.Sets.LoadSets();
             AQProjectile.Sets.LoadSets();
-            var r = new RecipeGroup(() => Language.GetTextValue(AQText.Key + "Common.RecipeGroup_AnyNobleMushroom"), new[]
-            {
-                ModContent.ItemType<ArgonMushroom>(),
-                ModContent.ItemType<KryptonMushroom>(),
-                ModContent.ItemType<XenonMushroom>(),
-            });
-            RecipeGroup.RegisterGroup(AnyNobleMushroom, r);
-            r = new RecipeGroup(() => Language.GetTextValue(AQText.Key + "Common.RecipeGroup_AnyEnergy"), new[]
-            {
-                ModContent.ItemType<UltimateEnergy>(),
-                ModContent.ItemType<AquaticEnergy>(),
-                ModContent.ItemType<AtmosphericEnergy>(),
-                ModContent.ItemType<OrganicEnergy>(),
-                ModContent.ItemType<DemonicEnergy>(),
-                ModContent.ItemType<CosmicEnergy>(),
-            });
-            RecipeGroup.RegisterGroup(AnyEnergy, r);
+            AQRecipes.RecipeGroups.Setup();
         }
 
         public override void AddRecipes()
@@ -788,7 +734,6 @@ namespace AQMod
             // in: PostSetupContent()
             DyeBinder.Unload();
             MapMarkers = null;
-            AQItem.Sets.Unload();
             DemonSiege.Unload();
             AQProjectile.Sets.UnloadSets();
             NoHitManager.Unload();
@@ -1023,9 +968,6 @@ namespace AQMod
 
         public static void ApplyClientConfig(AQConfigClient clientConfig)
         {
-            EffectQuality = clientConfig.EffectQuality;
-            EffectIntensity = clientConfig.EffectIntensity;
-            Effect3Dness = clientConfig.Effect3D;
             ShowBackgroundStarites = clientConfig.BackgroundStarites;
             Screenshakes = clientConfig.Screenshakes;
             TonsofScreenShakes = clientConfig.TonsofScreenShakes;
@@ -1089,11 +1031,11 @@ namespace AQMod
 
         internal static bool AnyVanillaBossDefeated()
         {
-            return NPC.downedSlimeKing || 
-                NPC.downedBoss1 || 
-                NPC.downedBoss2 || 
-                NPC.downedBoss3 || 
-                NPC.downedQueenBee || 
+            return NPC.downedSlimeKing ||
+                NPC.downedBoss1 ||
+                NPC.downedBoss2 ||
+                NPC.downedBoss3 ||
+                NPC.downedQueenBee ||
                 Main.hardMode;
         }
 
@@ -1109,7 +1051,7 @@ namespace AQMod
 
         public static int MultIntensity(int input)
         {
-            return (int)(input * EffectIntensity);
+            return (int)(input * AQConfigClient.c_EffectIntensity);
         }
 
         public static TModProjectile NewModProjectile<TModProjectile>(Vector2 position, Vector2 velocity, int Type, int Damage, float KnockBack, int Owner, float ai0 = 0f, float ai1 = 0f) where TModProjectile : ModProjectile

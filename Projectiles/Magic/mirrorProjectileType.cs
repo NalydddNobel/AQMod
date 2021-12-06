@@ -105,7 +105,7 @@ namespace AQMod.Projectiles.Magic
                 projectile.timeLeft = 2;
             }
             AQProjectile.UpdateHeldProj(player, rotatedRelativePoint, DistanceFromPlayer, projectile);
-            if (AQMod.EffectQuality >= 1f && laserScale > 0.05f)
+            if (AQConfigClient.c_EffectQuality >= 1f && laserScale > 0.05f)
             {
                 float laserRot = projectile.rotation;
                 if (projectile.spriteDirection == -1)
@@ -113,7 +113,7 @@ namespace AQMod.Projectiles.Magic
                 float sunProgress = 1f - (player.itemAnimation - 2) / (float)(player.itemAnimationMax - 2);
                 if (sunProgress > 0.5f)
                 {
-                    int amount = (int)(12f * AQMod.EffectQuality);
+                    int amount = (int)(12f * AQConfigClient.c_EffectQuality);
                     float trueProgress = (sunProgress - 0.5f) * 2f;
                     int end = (int)(amount * trueProgress);
                     float lineMax = LaserLength * trueProgress;
@@ -202,7 +202,7 @@ namespace AQMod.Projectiles.Magic
                         var pos = laserStart + laserDir * i - Main.screenPosition;
                         Main.spriteBatch.Draw(laserTexture, pos, null, laserColor, laserRot, origin, localScale, effects, 0f);
                     }
-                    if (AQMod.EffectQuality >= 1f && laserScale > 0.05f) // rerun the laser code but draw some cool vfx instead
+                    if (AQConfigClient.c_EffectQuality >= 1f && laserScale > 0.05f) // rerun the laser code but draw some cool vfx instead
                     {
                         for (int i = 0; i < end; i++)
                         {
@@ -233,7 +233,7 @@ namespace AQMod.Projectiles.Magic
                     float progress = 1f / amount * i;
                     Main.spriteBatch.Draw(laserTexture, laserStart + laserDir * i - Main.screenPosition + new Vector2(0f, 10f), null, laserColor * (1f - progress), laserRot, origin, new Vector2(laserScale, laserScale * (1f - progress)), effects, 0f);
                 }
-                if (AQMod.EffectQuality >= 1f && laserScale > 0.05f)
+                if (AQConfigClient.c_EffectQuality >= 1f && laserScale > 0.05f)
                 {
                     for (int i = start; i < amount; i++)
                     {

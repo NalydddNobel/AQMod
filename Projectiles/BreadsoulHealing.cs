@@ -20,7 +20,7 @@ namespace AQMod.Projectiles
             float minSpeed = size * 0.05f;
             float maxSpeed = size * 0.1f;
             float off = size * 0.75f;
-            int dustAmount = (int)(12 * AQMod.EffectQuality);
+            int dustAmount = (int)(12 * AQConfigClient.c_EffectQuality);
             float dRot = MathHelper.TwoPi / dustAmount;
             for (int j = 0; j < dustAmount * 3; j++)
             {
@@ -127,7 +127,7 @@ namespace AQMod.Projectiles
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            if (AQMod.EffectQuality <= 1f)
+            if (AQConfigClient.c_EffectQuality <= 1f)
                 return true;
                 var texture = Main.projectileTexture[projectile.type];
             var origin = texture.Size() / 2f;

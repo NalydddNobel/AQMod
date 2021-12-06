@@ -166,7 +166,7 @@ namespace AQMod.Projectiles.Summon.ChomperMinion
                         npc.velocity = npc.rotation.ToRotationVector2() * 6f;
                         npc.Center = projectile.Center;
                         Main.PlaySound(SoundID.NPCDeath13.WithVolume(0.3f).WithPitchVariance(1f));
-                        npc.HitEffect(projectile.spriteDirection, 100f * AQMod.EffectIntensity);
+                        npc.HitEffect(projectile.spriteDirection, 100f *  AQConfigClient.c_EffectIntensity);
                         _eatenTypeCache = -1;
                     }
                 }

@@ -1,5 +1,22 @@
 ﻿### NPC Chat
 
+# Items
+
+ItemName.FidgetSpinner=Perpetuator
+ItemTooltip.FidgetSpinner=Non-autoswing items are slower, but gain autoswing
+
+ItemName.CrabBarb=Crab Barb
+ItemTooltip.CrabBarb=Your grappling hooks inflicts poison, and damage
+
+ItemName.CrimtaneBarb=Crimtane Barb
+ItemTooltip.CrimtaneBarb=Your grappling hooks inflicts damage
+
+ItemName.DemoniteBarb=Demonite Barb
+ItemTooltip.CrimtaneBarb=Your grappling hooks inflicts damage
+
+ItemName.MetalBarb=Metal Barb
+ItemTooltip.CrimtaneBarb=Your grappling hooks inflicts damage
+
 # Tooltips
 
 Tooltips.ManaPerSecond=Uses {0} mana per second
@@ -344,11 +361,6 @@ ItemName.LightbulbBreastplate=Lightbulb Breastplate
 ItemName.LightbulbGreaves=Lightbulb Greaves
 ItemName.LightbulbHelmet=Lightbulb Helmet
 ItemName.SuperDartTrapHat=Super Dart Trap Hat
-# Barbs
-ItemName.CrabBarb=Crab Barb
-ItemName.CrimtaneBarb=Crimtane Barb
-ItemName.DemoniteBarb=Demonite Barb
-ItemName.MetalBarb=Metal Barb
 # Map
 ItemName.CosmicTelescope=Cosmic Marker
 ItemName.DungeonMap=Bone Marker
@@ -649,8 +661,6 @@ ItemTooltip.DartTrapHat=Shoots poisioned darts while you are on the ground\nIncr
 ItemTooltip.LightbulbGreaves=Increases your max number of minions
 ItemTooltip.LightbulbHelmet=Slightly increases mana regeneration\nYou faintly emit light
 ItemTooltip.SuperDartTrapHat=Shoots poisioned darts while you are on the ground\nIncreases summon damage by 10%\nIncreases your max number of minions
-# Barbs
-ItemTooltip.CrabBarb=Inflicts poison when your grappling hook contacts an NPC
 # Map
 ItemTooltip.CosmicTelescope=Shows the center of the Glimmer Event on the map
 ItemTooltip.DungeonMap=Shows the location of the Dungeon if it has already been disovered\nYou can teleport to the dungeon using a Unity Mirror

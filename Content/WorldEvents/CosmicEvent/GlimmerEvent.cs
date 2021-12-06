@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.DeveloperTools;
 using AQMod.Common.NetCode;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.CosmicEvent;
@@ -241,11 +242,6 @@ namespace AQMod.Content.WorldEvents.CosmicEvent
             }
         }
 
-        public static bool CheckStariteDeath(NPC npc)
-        {
-            return Main.dayTime;
-        }
-
         public void OnTurnNight()
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -270,6 +266,11 @@ namespace AQMod.Content.WorldEvents.CosmicEvent
                     }
                 }
             }
+        }
+
+        public static bool CheckStariteDeath(NPC npc)
+        {
+            return Main.dayTime;
         }
     }
 }

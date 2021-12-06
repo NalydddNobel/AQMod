@@ -90,7 +90,7 @@ namespace AQMod.Projectiles.Monster
 
             Main.spriteBatch.Draw(glow, drawPosition + new Vector2(0f, projectile.ai[0] / 2f) - Main.screenPosition, new Rectangle(0, 0, glow.Width / 2, glow.Height), new Color(100, 20, 2, 0), projectile.rotation + MathHelper.PiOver2, thunderGlowOrig, new Vector2(glowScale.X, glowScale.Y * 1.5f), SpriteEffects.None, 0f);
 
-            if (AQMod.EffectQuality >= 1f)
+            if (AQConfigClient.c_EffectQuality >= 1f)
             {
                 var clr = new Color(255, 100, 0, 20);
                 for (int i = 0; i < 8; i++)

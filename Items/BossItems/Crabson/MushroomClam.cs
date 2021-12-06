@@ -1,4 +1,4 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.DeveloperTools;
 using AQMod.Items.Materials;
 using AQMod.Localization;
 using AQMod.NPCs.Boss.Crabson;
@@ -12,7 +12,7 @@ namespace AQMod.Items.BossItems.Crabson
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[item.type] = (int)BossSpawnItemSortOrder.SlimeCrown;
+            ItemID.Sets.SortingPriorityBossSpawns[item.type] = Constants.BossSpawnItemSortOrder.SlimeCrown;
         }
 
         public override void SetDefaults()

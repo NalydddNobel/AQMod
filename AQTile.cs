@@ -1,6 +1,7 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Content;
 using AQMod.Tiles;
+using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
 using Terraria;

@@ -2,7 +2,6 @@
 using AQMod.Content.Dusts;
 using AQMod.Items;
 using AQMod.Items.Accessories;
-using AQMod.Items.Consumables.Potion;
 using AQMod.Items.Foods;
 using AQMod.Items.Tools.Fishing;
 using AQMod.Localization;
@@ -12,26 +11,12 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using AQMod.Items.Potions;
 
 namespace AQMod
 {
     public class AQItem : GlobalItem
     {
-        public static class Sets
-        {
-            public static bool[] CantBeTurnedIntoMolitePotion { get; private set; }
-
-            internal static void Setup()
-            {
-                CantBeTurnedIntoMolitePotion = new bool[ItemLoader.ItemCount];
-            }
-
-            internal static void Unload()
-            {
-                CantBeTurnedIntoMolitePotion = null;
-            }
-        }
-
         public static class Prices
         {
             public static int PotionValue => Item.sellPrice(silver: 2);
@@ -220,14 +205,33 @@ namespace AQMod
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (Main.LocalPlayer.GetModPlayer<AQPlayer>().pickBreak)
+            var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
+            if (item.pick > 0 && aQPlayer.pickBreak)
             {
                 foreach (var t in tooltips)
                 {
                     if (t.mod == "Terraria" && t.Name == "PickPower")
                     {
-                        t.text = (item.pick / 2) + Lang.tip[26].Value;
+                        t.text = item.pick / 2 + Lang.tip[26].Value;
                         t.overrideColor = new Color(128, 128, 128, 255);
+                    }
+                }
+            }
+            if (aQPlayer.fidgetSpinner && !item.channel && AQPlayer.CanForceAutoswing(Main.LocalPlayer, item, ignoreChanneled: true))
+            {
+                foreach (var t in tooltips)
+                {
+                    if (t.mod == "Terraria" && t.Name == "Speed")
+                    {
+                        AQPlayer.Fidget_Spinner_Force_Autoswing = true;
+                        string text = AQUtils.UseTimeAnimationTooltip(PlayerHooks.TotalUseTime(item.useTime, Main.LocalPlayer, item));
+                        AQPlayer.Fidget_Spinner_Force_Autoswing = false;
+                        if (t.text != text)
+                        {
+                            t.text = text +
+                            " (" + Lang.GetItemName(ModContent.ItemType<Items.Accessories.FidgetSpinner.FidgetSpinner>()).Value + ")";
+                            t.overrideColor = new Color(200, 200, 200, 255);
+                        }
                     }
                 }
             }

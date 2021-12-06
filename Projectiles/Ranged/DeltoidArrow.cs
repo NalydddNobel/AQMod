@@ -128,7 +128,7 @@ namespace AQMod.Projectiles.Ranged
             var textureOrig = new Vector2(texture.Width / 2f, 10f);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             float rotation = projectile.rotation + MathHelper.PiOver2;
-            float intensity = AQMod.EffectIntensity;
+            float intensity =  AQConfigClient.c_EffectIntensity;
             if (projectile.timeLeft < 30)
                 intensity *= 30 - projectile.timeLeft;
             Main.spriteBatch.Draw(ModContent.GetTexture(AQUtils.GetPath(this) + "_Aura"), projectile.position + offset - Main.screenPosition, null, new Color(60, 2, 100, 0) * intensity, rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
@@ -140,7 +140,7 @@ namespace AQMod.Projectiles.Ranged
                 var spotlightTextureOrigin = spotlightTexture.Size() / 2f;
                 Main.spriteBatch.Draw(ModContent.GetTexture(AQUtils.GetPath(this) + "_Aura"), projectile.position + offset - Main.screenPosition, null, new Color(20, 8, 50, 0) * intensity, rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlightTexture, projectile.position + offset - Main.screenPosition, null, new Color(60, 10, 100, 0) * intensity, rotation, spotlightTextureOrigin, projectile.scale * intensity / 8f, SpriteEffects.None, 0f);
-                if (AQMod.EffectQuality >= 1f)
+                if (AQConfigClient.c_EffectQuality >= 1f)
                     Main.spriteBatch.Draw(spotlightTexture, projectile.position + offset - Main.screenPosition, null, new Color(10, 2, 40, 0) * (intensity / 5f), rotation, spotlightTextureOrigin, projectile.scale * intensity / 3, SpriteEffects.None, 0f);
             }
             return false;
@@ -159,26 +159,6 @@ namespace AQMod.Projectiles.Ranged
                 Main.dust[d].position = center + normal * Main.rand.NextFloat(r);
                 Main.dust[d].velocity = normal * Main.rand.NextFloat(0.65f, 3f);
             }
-        }
-    }
-
-    public class DeltoidArrowSpawn : ModProjectile
-    {
-        public override string Texture => AQMod.ModName + "/" + TextureCache.None;
-
-        public override void SetDefaults()
-        {
-            projectile.width = 8;
-            projectile.height = 16;
-            projectile.friendly = true;
-            projectile.ranged = true;
-            projectile.aiStyle = -1;
-            projectile.penetrate = -1;
-            projectile.tileCollide = false;
-            projectile.timeLeft = 20;
-            projectile.ignoreWater = true;
-            projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 24;
         }
     }
 }

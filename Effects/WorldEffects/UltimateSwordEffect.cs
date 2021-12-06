@@ -122,7 +122,7 @@ namespace AQMod.Effects.WorldEffects
                 int d = Dust.NewDust(new Vector2(x, y), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, _dustColor);
                 Main.dust[d].noGravity = true;
                 Main.dust[d].velocity *= 0.1f;
-                if (AQMod.EffectQuality >= 1f)
+                if (AQConfigClient.c_EffectQuality >= 1f)
                 {
                     float p = 1f - (progress * 0.5f);
                     Main.dust[d].scale *= p * p;

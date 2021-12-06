@@ -59,14 +59,13 @@ namespace AQMod.Common.UserInterface
 
         public static void Apply(ref string mouseText, bool drawGlobes = true)
         {
-            bool debug = AQMod.DebugKeysPressed;
             _mapScale = Main.mapFullscreenScale / Main.UIScale;
             _map = new Vector2(-(Main.mapFullscreenPos.X * _mapScale) + Main.screenWidth / 2, -(Main.mapFullscreenPos.Y * _mapScale) + Main.screenHeight / 2);
             float alpha = (float)Math.Sin(Main.GlobalTime * 7f) + 1f;
             var plr = Main.player[Main.myPlayer];
             var aQPlayer = plr.GetModPlayer<AQPlayer>();
 
-            if (!debug && (!drawGlobes || aQPlayer.nearGlobe <= 0))
+            if (!drawGlobes || aQPlayer.nearGlobe <= 0)
                 return;
 
             foreach (var t in TileEntity.ByID)
@@ -74,7 +73,7 @@ namespace AQMod.Common.UserInterface
                 var texture = TextureCache.MapIconGlobe.Value;
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var origin = frame.Size() / 2f;
-                if (t.Value is TEGlobe globe && (globe.Discovered || debug))
+                if (t.Value is TEGlobe globe && globe.Discovered)
                 {
                     var pos = MapPos(new Vector2(globe.Position.X + 1f, globe.Position.Y + 1f));
                     if (AQUtils.PositionOnScreen(pos, 8f))
@@ -90,34 +89,6 @@ namespace AQMod.Common.UserInterface
                         if (aQPlayer.globeX == globe.Position.X && aQPlayer.globeY == globe.Position.Y)
                             scale += alpha * 0.1f;
                         Main.spriteBatch.Draw(texture, pos, frame, new Color(255, 255, 255, 255), 0f, origin, scale, SpriteEffects.None, 0f);
-                    }
-                }
-            }
-
-            if (debug)
-            {
-                foreach (var t in TileEntity.ByID)
-                {
-                    var texture = TextureCache.MapIconGlobe.Value;
-                    var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                    var origin = frame.Size() / 2f;
-                    if (t.Value is TEGlimmeringStatue glimmer)
-                    {
-                        var pos = MapPos(new Vector2(glimmer.Position.X + 1f, glimmer.Position.Y + 1f));
-                        if (AQUtils.PositionOnScreen(pos, 8f))
-                        {
-                            var scale = Main.UIScale;
-                            var hitbox = Utils.CenteredRectangle(pos, new Vector2(texture.Width, texture.Height) * scale);
-                            if (hitbox.Contains(Main.mouseX, Main.mouseY))
-                            {
-                                if (string.IsNullOrEmpty(mouseText))
-                                    mouseText = Lang.GetItemName(ModContent.ItemType<Items.Placeable.GlimmeringStatue>()).Value;
-                                scale += 0.5f;
-                            }
-                            if (glimmer.discovered)
-                                scale += alpha * 0.1f;
-                            Main.spriteBatch.Draw(texture, pos, frame, new Color(0, 0, 255, 255), 0f, origin, scale, SpriteEffects.None, 0f);
-                        }
                     }
                 }
             }

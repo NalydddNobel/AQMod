@@ -32,7 +32,7 @@ namespace AQMod.Tiles.Furniture
             switch (frameX / 54)
             {
                 case 0:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Placeable.RockFromAnAlternateUniverse>());
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Placeable.Furniture.RockFromAnAlternateUniverse>());
                 break;
             }
         }

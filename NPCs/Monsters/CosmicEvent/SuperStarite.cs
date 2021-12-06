@@ -1,6 +1,5 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
-using AQMod.Common.Config;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Items.Foods;
 using AQMod.Items.Materials.Energies;

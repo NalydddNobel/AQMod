@@ -1,4 +1,4 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.DeveloperTools;
 using AQMod.Content.WorldEvents.CosmicEvent;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
@@ -13,7 +13,7 @@ namespace AQMod.Items.BossItems.Starite
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[item.type] = (int)BossSpawnItemSortOrder.WormFood;
+            ItemID.Sets.SortingPriorityBossSpawns[item.type] = Constants.BossSpawnItemSortOrder.WormFood;
         }
 
         public override void SetDefaults()
@@ -25,6 +25,8 @@ namespace AQMod.Items.BossItems.Starite
             item.useTime = 45;
             item.useStyle = ItemUseStyleID.HoldingUp;
             item.consumable = true;
+            item.maxStack = 999;
+            item.value = Item.buyPrice(gold: 10);
         }
 
         public override bool CanUseItem(Player player)

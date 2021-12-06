@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
+using AQMod.Content;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Items.Accessories;
 using AQMod.Items.Placeable.CraftingStations;
@@ -256,6 +257,8 @@ namespace AQMod.NPCs.Friendly.Town
             nextSlot++;
             if (Main.hardMode)
             {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Potions.SpoilsPotion>());
+                nextSlot++;
                 if (NPC.downedPirates)
                 {
                     if (Main.moonPhase <= 2)
@@ -347,7 +350,7 @@ namespace AQMod.NPCs.Friendly.Town
                         shop.item[nextSlot].shopCustomPrice = Item.buyPrice(silver: 2);
                         nextSlot++;
                     }
-                    if (AQMod.AprilFools) // graveyard
+                    if (AprilFools.Active) // graveyard
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.RichGravestone1);
                         shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);

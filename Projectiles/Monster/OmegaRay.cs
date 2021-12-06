@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Config;
-using AQMod.Content.Dusts;
+﻿using AQMod.Content.Dusts;
 using AQMod.NPCs.Boss.Starite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -88,7 +88,7 @@ namespace AQMod.Projectiles.Pets
             var frame = new Rectangle(0, frameHeight * projectile.frame, texture.Width, frameHeight - 2);
             Vector2 center = projectile.Center;
             var effects = projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            if (AQMod.EffectQuality >= 1f)
+            if (AQConfigClient.c_EffectQuality >= 1f)
             {
                 var spotlightTexture = TextureCache.Lights[Assets.Textures.LightTex.Spotlight20x20];
                 var spotlightOrig = spotlightTexture.Size() / 2f;
@@ -98,7 +98,7 @@ namespace AQMod.Projectiles.Pets
                 Main.spriteBatch.Draw(spotlightTexture, center - Main.screenPosition, null, spotlightColor * 0.1f, 0f, spotlightOrig, scale * 2f, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, projectile.scale, effects, 0f);
-            if (AQMod.EffectQuality >= 1f)
+            if (AQConfigClient.c_EffectQuality >= 1f)
             {
                 var spotlightTexture = TextureCache.Lights[Assets.Textures.LightTex.Spotlight20x20];
                 var spotlightOrig = spotlightTexture.Size() / 2f;

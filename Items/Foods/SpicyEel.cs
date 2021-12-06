@@ -29,12 +29,12 @@ namespace AQMod.Items.Foods
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ModContent.ItemType<LarvaEel>());
-            r.AddRecipeGroup(AQMod.AnyNobleMushroom);
+            r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyNobleMushroom);
             r.SetResult(this);
             r.AddRecipe();
             r = new ModRecipe(mod);
             r.AddIngredient(ModContent.ItemType<UltraEel>());
-            r.AddRecipeGroup(AQMod.AnyNobleMushroom);
+            r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyNobleMushroom);
             r.SetResult(this);
             r.AddRecipe();
         }

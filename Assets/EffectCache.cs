@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 
 namespace AQMod.Assets
@@ -7,6 +8,7 @@ namespace AQMod.Assets
     public static class EffectCache
     {
         public static Effect ParentPixelShader { get; internal set; }
+        public static Effect ParentScreenShader { get; internal set; }
         public static Effect GoreNestPortal { get; private set; }
         public static Effect Trailshader { get; private set; }
 
@@ -18,12 +20,15 @@ namespace AQMod.Assets
         public static MiscShaderData s_SpikeFade { get => GameShaders.Misc["AQMod:SpikeFade"]; set => GameShaders.Misc["AQMod:SpikeFade"] = value; }
         public static MiscShaderData s_Enchant { get => GameShaders.Misc["AQMod:Enchant"]; set => GameShaders.Misc["AQMod:Enchant"] = value; }
 
+        public static Filter f_Vignette { get => Filters.Scene["AQMod:Vignette"] set => Filters.Scene["AQMod:Vignette"] = value; }
+
         internal static void Load(AQMod aQMod)
         {
             AQMod.Debug.DebugLogger? logger = null;
             if (AQMod.Debug.LogEffectLoading)
                 logger = AQMod.Debug.GetDebugLogger();
             ParentPixelShader = logGetEffect("Dyes/ParentDyeShader", aQMod, logger);
+            ParentScreenShader = logGetEffect("ParentScreenShader", aQMod, logger);
             GoreNestPortal = logGetEffect("GoreNest/GoreNestPortal", aQMod, logger);
             Trailshader = logGetEffect("Trails/Trailshader", aQMod, logger);
 
@@ -34,6 +39,8 @@ namespace AQMod.Assets
             s_FadeYProgressAlpha = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "FadeYProgressAlphaPass");
             s_SpikeFade = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "SpikeFadePass");
             s_Enchant = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "ImageScrollPass");
+
+            f_Vignette = new Filter(new ScreenShaderData(new Ref<Effect>(ParentScreenShader), "VignettePass"), EffectPriority.Medium);
         }
 
         private static Effect logGetEffect(string name, AQMod aQMod, AQMod.Debug.DebugLogger? logger)

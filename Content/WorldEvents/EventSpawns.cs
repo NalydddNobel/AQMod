@@ -47,7 +47,12 @@ namespace AQMod.Content.WorldEvents
             if (AQMod.CosmicEvent.SpawnsActive(spawnInfo.player))
             {
                 int tileDistance = AQMod.CosmicEvent.GetTileDistance(spawnInfo.player);
-                if (tileDistance < GlimmerEvent.MaxDistance)
+                if (tileDistance < 30)
+                {
+                    pool.Clear();
+                    return;
+                }
+                else if (tileDistance < GlimmerEvent.MaxDistance)
                 {
                     if (tileDistance > GlimmerEvent.HyperStariteDistance) // shouldn't divide by 0...
                     {

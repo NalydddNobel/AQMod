@@ -119,10 +119,10 @@ namespace AQMod.Common.Graphics.SceneLayers
             }
             if (_swordEffectDelay > 0)
                 _swordEffectDelay--;
-            else if (_rand.NextBool(10 + (int)(20 * AQMod.EffectIntensityMinus)))
+            else if (_rand.NextBool(10 + (int)(20 * (1f - AQConfigClient.c_EffectIntensity))))
             {
                 AQMod.WorldEffects.Add(new UltimateSwordEffect(_rand));
-                _swordEffectDelay = (byte)(int)(8 * AQMod.EffectIntensityMinus);
+                _swordEffectDelay = (byte)(int)(8 * (1f - AQConfigClient.c_EffectIntensity));
             }
         }
     }
