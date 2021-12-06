@@ -1,5 +1,22 @@
 ### NPC Chat
 
+# Items
+
+ItemName.FidgetSpinner=永续仪
+ItemTooltip.FidgetSpinner=无法自动挥舞的物品速度变慢, 但可以自动挥舞
+
+ItemName.CrabBarb=螃蟹刺钩
+ItemTooltip.CrabBarb=你的钩爪会造成中毒和伤害
+
+ItemName.CrimtaneBarb=猩红刺钩
+ItemTooltip.CrimtaneBarb=你的钩爪会造成伤害
+
+ItemName.DemoniteBarb=恶魔刺钩
+ItemTooltip.CrimtaneBarb=你的钩爪会造成伤害
+
+ItemName.MetalBarb=金属刺钩
+ItemTooltip.CrimtaneBarb=你的钩爪会造成伤害
+
 # Tooltips
 
 Tooltips.ManaPerSecond=每秒消耗{0}点法力值
@@ -58,6 +75,19 @@ Physicist.Chat.Mod.Fargowiltas.Mutant=你刚刚从一个看起来很诡异的怪
 Physicist.Chat.Mod.Fargowiltas.Abominationn=你刚刚从一个看起来很惊悚的收割者那买了Boss召唤物? 真是个怪人.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=你刚刚从一个看起来很愚蠢的小孩那买了Boss召唤物? 真是个怪人.
 
+# Event Names
+
+EventName.DemonSiege=恶魔围攻
+EventName.GlimmerEvent=微光事件
+
+# Client Config
+
+ClientConfig.Header.Worldgen=世界生成
+ClientConfig.Screenshakes=屏幕震动
+ClientConfig.TonsofScreenShakes=额外的不必要的屏幕震动
+ClientConfig.OverrideVanillaChestLoot=覆盖原版宝箱战利品
+ClientConfig.OverrideVanillaChestLootTooltip=决定Aequus Mod中的特殊物品是否会覆盖箱子中的普通战利品\n若禁用, 则Aequus Mod中的特殊物品会和原版中的普通战利品一起生成
+
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=真近战攻击造成暴击后使你的各项属性大幅度提升一小段时间\n当触发此效果时使你获得耐药性减益\n此效果仅在你没有耐药性减益时触发
 Common.ArmorSetBonus_Lightbulb=你现在拥有危险感和猎人增益
@@ -73,8 +103,6 @@ Common.ConfigHeader_World=世界
 Common.ConfigHeader_Debug=调试模式
 #
 
-ClientConfig.Screenshakes=屏幕震动
-ClientConfig.TonsofScreenShakes=额外的不必要的屏幕震动
 
 Common.Config_DrawSpotlights=绘制灯光效果
 Common.Config_EffectQuality=效果质量
@@ -344,11 +372,6 @@ ItemName.LightbulbBreastplate=灯泡胸甲
 ItemName.LightbulbGreaves=灯泡护胫
 ItemName.LightbulbHelmet=灯泡头盔
 ItemName.SuperDartTrapHat=超级飞镖帽
-# Barbs
-ItemName.CrabBarb=螃蟹刺钩
-ItemName.CrimtaneBarb=猩红刺钩
-ItemName.DemoniteBarb=恶魔刺钩
-ItemName.MetalBarb=金属刺钩
 # Map
 ItemName.CosmicTelescope=星宇标记
 ItemName.DungeonMap=骨质标记
@@ -649,8 +672,6 @@ ItemTooltip.DartTrapHat=当你站在地面上时发射毒镖\n增加5%召唤伤�
 ItemTooltip.LightbulbGreaves=+1额外召唤栏
 ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n使你轻微发光
 ItemTooltip.SuperDartTrapHat=当你站在地面上时发射毒镖\n增加10%召唤伤害\n+2额外召唤栏
-# Barbs
-ItemTooltip.CrabBarb=钩爪击中NPC时会对其造成中毒减益
 # Map
 ItemTooltip.CosmicTelescope=在地图上显示微光事件的正中心
 ItemTooltip.DungeonMap=若地牢已被发现, 则在地图上显示地牢位置\n你可以使用清灵明镜传送至地牢
