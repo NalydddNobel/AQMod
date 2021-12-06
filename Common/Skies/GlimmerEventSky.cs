@@ -131,12 +131,6 @@ namespace AQMod.Common.Skies
             }
         }
 
-        public static void OnUpdateConfig(AQConfigClient config)
-        {
-            _starites = null;
-            _lonelyStarite = null;
-        }
-
         internal static void Initialize()
         {
             _random = new UnifiedRandom();

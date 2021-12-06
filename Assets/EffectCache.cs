@@ -20,7 +20,7 @@ namespace AQMod.Assets
         public static MiscShaderData s_SpikeFade { get => GameShaders.Misc["AQMod:SpikeFade"]; set => GameShaders.Misc["AQMod:SpikeFade"] = value; }
         public static MiscShaderData s_Enchant { get => GameShaders.Misc["AQMod:Enchant"]; set => GameShaders.Misc["AQMod:Enchant"] = value; }
 
-        public static Filter f_Vignette { get => Filters.Scene["AQMod:Vignette"] set => Filters.Scene["AQMod:Vignette"] = value; }
+        public static Filter f_Vignette { get => Filters.Scene["AQMod:Vignette"]; set => Filters.Scene["AQMod:Vignette"] = value; }
 
         internal static void Load(AQMod aQMod)
         {

@@ -9,17 +9,6 @@ namespace AQMod.Common.Graphics
 
     public static class Drawing
     {
-        public static void DrawLaser_1X(Texture2D texture, Vector2 textureOrigin, Vector2 drawPosition, Color color, Vector2 laserScale, Vector2 laserNormal, float laserImageRot, float laserLength = 2000f, SpriteEffects effects = SpriteEffects.None)
-        {
-
-            int amount = (int)(laserLength / ((texture.Width - 4) * laserScale.X));
-            laserNormal *= (textureOrigin.Y - 2) * 2f * laserScale.X;
-            for (int i = 0; i < amount; i++)
-            {
-                Main.spriteBatch.Draw(texture, drawPosition + laserNormal * i - Main.screenPosition, null, color, laserImageRot, textureOrigin, laserScale, effects, 0f);
-            }
-        }
-
         public static void DrawFishingLine(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 linePositionOffset)
         {
             var bobberCenter = new Vector2(bobberPosition.X + bobberWidth / 2f, bobberPosition.Y + bobberHeight / 2f);

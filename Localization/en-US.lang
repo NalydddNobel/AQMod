@@ -75,6 +75,14 @@ Physicist.Chat.Mod.Fargowiltas.Mutant=You just buy boss summons from a weird loo
 Physicist.Chat.Mod.Fargowiltas.Abominationn=You just buy event summons from a creepy looking reaper? Weirdo.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=You just buy rare enemy summons from a dumb looking child? Weirdo.
 
+# Client Config
+
+ClientConfig.Header.Worldgen=World Gen
+ClientConfig.Screenshakes=Screenshakes
+ClientConfig.TonsofScreenShakes=Extra Unnecessary Screenshakes
+ClientConfig.OverrideVanillaChestLoot=Overwrite Vanilla Chest Loot
+ClientConfig.OverrideVanillaChestLootTooltip=Whether or not special Aequus items will overwrite vanilla items in chests\nIf this is disabled, Aequus loot will generate with vanilla loot intact
+
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=On a true melee critical hit you gain greatly increased stats for a short while\nWhen the effect activates you gain the potion sickness debuff\nThis effect can only trigger if you don't have the potion sickness debuff
 Common.ArmorSetBonus_Lightbulb=Hunter and dangersense is always active
@@ -90,8 +98,6 @@ Common.ConfigHeader_World=World
 Common.ConfigHeader_Debug=Debug
 #
 
-ClientConfig.Screenshakes=Screenshakes
-ClientConfig.TonsofScreenShakes=Extra Unnecessary Screenshakes
 
 Common.Config_DrawSpotlights=Draw Spotlights
 Common.Config_EffectQuality=Effect Quality

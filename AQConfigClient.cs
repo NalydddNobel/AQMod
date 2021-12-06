@@ -2,6 +2,7 @@
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.ComponentModel;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
@@ -75,15 +76,34 @@ namespace AQMod
         [Range(0f, 1f)]
         public float StariteBackgroundLight { get; set; }
 
+        [Header("$" + AQText.Key + "ClientConfig.Header.Worldgen")]
+
+        [Label("$" + AQText.Key + "ClientConfig.OverrideVanillaChestLoot")]
+        [Tooltip("$" + AQText.Key + "ClientConfig.OverrideVanillaChestLootTooltip")]
+        [DefaultValue(true)]
+        public bool OverrideVanillaChestLoot;
+        public static bool c_OverrideVanillaChestLoot { get; private set; }
+
         [Header(AQText.ConfigHeaderKey + "Misc")]
 
         [Label(AQText.ConfigValueKey + "CosmicEnergyAlt")]
         [DefaultValue(false)]
         public bool CosmicEnergyAlt { get; set; }
+        public static bool c_CosmicEnergyAlt { get; private set; }
 
         [Label(AQText.ConfigValueKey + "ShowCompletedAnglerQuestsCount")]
         [DefaultValue(true)]
         public bool ShowCompletedQuestsCount { get; set; }
+
+        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
+        {
+            var client = (AQConfigClient)pendingConfig;
+            if (client.OverrideVanillaChestLoot != OverrideVanillaChestLoot)
+            {
+                return Main.gameMenu;
+            }
+            return base.AcceptClientChanges(pendingConfig, whoAmI, ref message);
+        }
 
         public override void OnChanged()
         {
@@ -93,8 +113,19 @@ namespace AQMod
             c_Screenshakes = Screenshakes;
             c_TonsofScreenShakes = TonsofScreenShakes;
             c_BackgroundStarites = BackgroundStarites;
+            if (c_BackgroundStarites != BackgroundStarites)
+            {
+                c_BackgroundStarites = BackgroundStarites;
+                GlimmerEventSky._starites = null;
+                GlimmerEventSky._lonelyStarite = null;
+            }
+            if (CosmicEnergyAlt != c_CosmicEnergyAlt)
+            {
+                c_CosmicEnergyAlt = CosmicEnergyAlt;
+                Main.itemTexture[ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>()] = 
+                    ModContent.GetTexture(ItemLoader.GetItem(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>()).Texture);
+            }
             AQMod.ApplyClientConfig(this);
-            GlimmerEventSky.OnUpdateConfig(this);
         }
     }
 }
