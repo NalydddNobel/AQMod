@@ -165,7 +165,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             }
 
             float distance = npc.Distance(Main.player[npc.target].Center);
-            if (distance > 1100f || distance < 150f)
+            if (distance > 1650f)
             {
                 npc.life = 0;
                 SoundID.Item111.PlaySound(npc.Center, 1.5f, 0.9f);
@@ -175,6 +175,13 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
             if (Collision.SolidCollision(npc.position, npc.width, 100))
             {
+                if (distance < 40f)
+                {
+                    npc.life = 0;
+                    SoundID.Item111.PlaySound(npc.Center, 1.5f, 0.9f);
+                    npc.HitEffect();
+                    npc.active = false;
+                }
                 if (npc.position.Y > Main.player[npc.target].position.Y)
                 {
                     if (npc.velocity.Y > 0f)
@@ -192,6 +199,13 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             }
             else
             {
+                if (distance < 150f)
+                {
+                    npc.life = 0;
+                    SoundID.Item111.PlaySound(npc.Center, 1.5f, 0.9f);
+                    npc.HitEffect();
+                    npc.active = false;
+                }
                 if (npc.position.Y > Main.player[npc.target].position.Y - 100f + Math.Sin(Main.time / 60f) * 30f)
                 {
                     if (npc.velocity.Y > -7f)
