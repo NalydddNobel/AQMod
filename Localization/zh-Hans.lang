@@ -108,6 +108,10 @@ ClientConfig.TonsofScreenShakes=额外的不必要的屏幕震动
 ClientConfig.OverrideVanillaChestLoot=覆盖原版宝箱战利品
 ClientConfig.OverrideVanillaChestLootTooltip=决定Aequus Mod中的特殊物品是否会覆盖箱子中的普通战利品\n若禁用, 则Aequus Mod中的特殊物品会和原版中的普通战利品一起生成
 
+# NPCs
+
+NPCName.StreamingBalloon=紊流气球
+
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=真近战攻击造成暴击后使你的各项属性大幅度提升一小段时间\n当触发此效果时使你获得耐药性减益\n此效果仅在你没有耐药性减益时触发
 Common.ArmorSetBonus_Lightbulb=你现在拥有危险感和猎人增益
