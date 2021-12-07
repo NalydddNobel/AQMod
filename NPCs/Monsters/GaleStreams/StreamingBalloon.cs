@@ -163,7 +163,8 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     npc.velocity.X += 0.1f;
             }
 
-            if (npc.Distance(Main.player[npc.target].Center) > 2000f)
+            float distance = npc.Distance(Main.player[npc.target].Center);
+            if (distance > 1100f || distance < 100f)
             {
                 npc.life = 0;
                 npc.HitEffect();
