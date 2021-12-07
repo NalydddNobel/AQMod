@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Assets.ItemOverlays
+namespace AQMod.Assets.LegacyItemOverlays
 {
     public abstract class ItemOverlayData
     {

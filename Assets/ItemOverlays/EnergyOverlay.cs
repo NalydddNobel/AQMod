@@ -5,9 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
 
-namespace AQMod.Assets.ItemOverlays
+namespace AQMod.Assets.LegacyItemOverlays
 {
     public class EnergyOverlay : ItemOverlayData
     {

@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.ItemOverlays;
+﻿using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Common.Graphics.PlayerEquips;
 using Terraria;
 using Terraria.ID;

@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.ItemOverlays;
+﻿using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;

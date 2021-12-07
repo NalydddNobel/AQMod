@@ -5,7 +5,7 @@ using System;
 using Terraria;
 using Terraria.DataStructures;
 
-namespace AQMod.Assets.ItemOverlays
+namespace AQMod.Assets.LegacyItemOverlays
 {
     public class OutlineOverlay : ItemOverlayData
     {

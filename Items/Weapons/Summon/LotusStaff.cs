@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.ItemOverlays;
+﻿using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Items.Materials.Energies;
 using AQMod.Projectiles.Summon.LavaLotus;
 using Microsoft.Xna.Framework;

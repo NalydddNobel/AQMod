@@ -45,7 +45,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
             return y < 3000f; // 187.5 tiles
         }
 
-        internal static void Load()
+        internal static void Setup()
         {
             if (!Main.dedServ)
             {
@@ -60,7 +60,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
 
         public override void PostUpdate()
         {
-            IsActive = ImitatedWindyDay.IsItAHappyWindyDay;
+            IsActive = ImitatedWindyDay.IsItAHappyWindyDay_WindyEnough;
         }
 
         public static bool CanCrashMeteor(int x, int y, int size = 40)

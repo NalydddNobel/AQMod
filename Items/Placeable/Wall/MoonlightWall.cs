@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.ItemOverlays;
+﻿using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Walls;
 using Microsoft.Xna.Framework;
 using Terraria;

@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Textures;
-using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Monster
 {
-    public class ThunderClap : ModProjectile
+    public class RedSpriteThunderClap : ModProjectile
     {
         public override void SetStaticDefaults()
         {

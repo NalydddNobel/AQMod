@@ -17,7 +17,7 @@ namespace AQMod.Items.Weapons.Melee
             item.useTime = 14;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item1;
-            item.rare = AQItem.Rarities.GaleCurrentsRare;
+            item.rare = AQItem.Rarities.GaleStreamsRare;
             item.value = Item.sellPrice(silver: 75);
             item.shootSpeed = 12.5f;
             item.noMelee = true;

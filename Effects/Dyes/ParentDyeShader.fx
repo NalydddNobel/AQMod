@@ -20,6 +20,16 @@ float FrameYFix(float2 coords)
     return y * 1 / frameSizeY;
 }
 
+float4 RedSprite(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
+{
+    float4 color = tex2D(uImage0, coords);
+    color = lerp(color, tex2D(uImage0, float2((coords.x + sin(uTime * 20 + FrameYFix(coords.y) * 30) * 0.05f) % 1, coords.y)), 0.5f);
+    color.r *= uColor.r;
+    color.g *= uColor.g;
+    color.b *= uColor.b; 
+    return color * sampleColor;
+}
+
 float4 Censor(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float2 pixel = coords * uImageSize0;
@@ -402,6 +412,10 @@ float4 SpikeFade(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
 
 technique Technique1
 {
+    pass RedSpritePass
+    {
+        PixelShader = compile ps_2_0 RedSprite();
+    }
     pass CensorPass
     {
         PixelShader = compile ps_2_0 Censor();

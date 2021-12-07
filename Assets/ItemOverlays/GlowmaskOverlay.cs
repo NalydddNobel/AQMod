@@ -8,7 +8,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Assets.ItemOverlays
+namespace AQMod.Assets.LegacyItemOverlays
 {
     public class GlowmaskOverlay : ItemOverlayData
     {
@@ -29,6 +29,7 @@ namespace AQMod.Assets.ItemOverlays
             GetDrawColor = () => DefaultGlowmaskColor;
             DrawInventory = drawInventory;
             Shader = shader;
+            texturetest();
         }
 
         internal GlowmaskOverlay(string path, Color color, int shader = 0, bool drawInventory = false)
@@ -37,6 +38,7 @@ namespace AQMod.Assets.ItemOverlays
             GetDrawColor = () => color;
             DrawInventory = drawInventory;
             Shader = shader;
+            texturetest();
         }
 
         internal GlowmaskOverlay(string path, Func<Color> color, int shader = 0, bool drawInventory = false)
@@ -45,6 +47,12 @@ namespace AQMod.Assets.ItemOverlays
             GetDrawColor = color;
             DrawInventory = drawInventory;
             Shader = shader;
+            texturetest();
+        }
+
+        private void texturetest()
+        {
+            ModContent.GetTexture(Path);
         }
 
         /// <summary>

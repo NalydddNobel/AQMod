@@ -25,7 +25,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.shootSpeed = 24f;
             item.UseSound = SoundID.Item65;
             item.noMelee = true;
-            item.rare = AQItem.Rarities.GaleCurrentsRare;
+            item.rare = AQItem.Rarities.GaleStreamsRare;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

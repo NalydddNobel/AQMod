@@ -1,3 +1,28 @@
+####### v1.2.4.4 #######
+
+Additions:
+New item: Perpetuator, lets non-autoswing items gain autoswing!.. At a small price
+New item: Red Sprite Trophy
+New item: Red Sprite Staff, an item crafted from Fluorescence which summons thunderclouds!
+New item: Thunder Clap, an item crafted from Fluorescence which summons thunderbolts from the sky!
+New item: Red Sprite Dye
+
+- All barbs now explicitly say "Your grappling hooks inflicts damage" 
+
+Changes:
+- The Spoils Potion is now sold by Robster instead of the Merchant
+- You can now stack Mythic Starfruits to 999
+- Lowered the buy price of the Mythic Starfruit
+* 20 gold -> 10 gold
+- Red Sprites can now drop the Nimbus Rod (1/4 chance)
+- Removed the recipes for the Flurry Boots and Sailfish Boots
+- Removed the recipe for the Discount Card
+
+Fixes:
+- Fixed some localization errors with Recipe Groups
+- The Crabax should no longer act weird on Palm Trees
+- The Gale Streams event should actually happen during night now
+
 ####### 1.2.4.3 #######
 
 Additions:

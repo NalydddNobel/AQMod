@@ -10,12 +10,12 @@ namespace AQMod.Content.WorldEvents.GaleStreams
 {
     public class GaleStreamsProgressBar : EventProgressBar
     {
-        public override Texture2D IconTexture => ModContent.GetTexture("AQMod/Assets/Textures/EventIcon_DemonSiege");
+        public override Texture2D IconTexture => ModContent.GetTexture("AQMod/Assets/Textures/UI/GaleStreamsInvasion");
         public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.GaleStreams");
         public override Color NameBGColor => new Color(20, 90 + (int)(Math.Sin(Main.GlobalTime * 5f) * 10), 90 + (int)(Math.Sin(Main.GlobalTime * 5f) * 10 + MathHelper.Pi), 128);
-        public override float EventProgress => 0f;
+        public override float EventProgress => (int)(Main.windSpeed * 100).Abs() / 300f;
 
         public override bool IsActive() => GaleStreams.EventActive(Main.LocalPlayer);
-        public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.EventProgress.GaleStreams", (int)Main.windSpeed * 100, 300);
+        public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.EventProgress.GaleStreams", (int)(Main.windSpeed * 100).Abs(), 300);
     }
 }

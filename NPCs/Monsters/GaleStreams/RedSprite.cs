@@ -519,7 +519,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         {
                             if (timer == 0)
                             {
-                                if (Main.netMode != NetmodeID.Server && AQMod.TonsofScreenShakes && (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
+                                if (Main.netMode != NetmodeID.Server && AQMod.Screenshakes && (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 {
                                     Main.PlaySound(SoundID.Item122, gotoPosition);
                                     ScreenShakeManager.AddEffect(new BasicScreenShake(8, AQMod.MultIntensity(12)));
@@ -546,7 +546,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                     {
                                         damage = 75;
                                     }
-                                    Projectile.NewProjectile(center + new Vector2(0f, 130f), Vector2.Zero, ModContent.ProjectileType<Projectiles.Monster.ThunderClap>(), damage, 1f, Main.myPlayer);
+                                    Projectile.NewProjectile(center + new Vector2(0f, 130f), Vector2.Zero, ModContent.ProjectileType<Projectiles.Monster.RedSpriteThunderClap>(), damage, 1f, Main.myPlayer);
                                 }
                             }
                         }
@@ -899,9 +899,21 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             Item.NewItem(npc.getRect(), ItemID.SoulofFlight, Main.rand.Next(5) + 2);
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Fluorescence>(), Main.rand.Next(10) + 10 + (Main.expertMode ? Main.rand.Next(5) : 0));
 
+            if (Main.rand.NextBool(2))
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>());
+            }
+            if (Main.rand.NextBool(4))
+            {
+                Item.NewItem(npc.getRect(), ItemID.NimbusRod);
+            }
             if (Main.rand.NextBool(8))
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.PeeledCarrot>());
+            }
+            if (Main.rand.NextBool(10))
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.BossItems.RedSpriteTrophy>());
             }
         }
 

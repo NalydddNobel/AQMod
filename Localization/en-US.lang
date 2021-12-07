@@ -1,6 +1,4 @@
-﻿### NPC Chat
-
-# Items
+﻿# Items
 
 ItemName.FidgetSpinner=Perpetuator
 ItemTooltip.FidgetSpinner=Non-autoswing items are slower, but gain autoswing
@@ -12,10 +10,25 @@ ItemName.CrimtaneBarb=Crimtane Barb
 ItemTooltip.CrimtaneBarb=Your grappling hooks inflicts damage
 
 ItemName.DemoniteBarb=Demonite Barb
-ItemTooltip.CrimtaneBarb=Your grappling hooks inflicts damage
+ItemTooltip.DemoniteBarb=Your grappling hooks inflicts damage
 
 ItemName.MetalBarb=Metal Barb
-ItemTooltip.CrimtaneBarb=Your grappling hooks inflicts damage
+ItemTooltip.MetalBarb=Your grappling hooks inflicts damage
+
+# Weapons
+
+ItemName.RedSpriteStaff=Red Sprite Staff
+ItemTooltip.RedSpriteStaff=Summons a red sprite to rain thunder down upon your foes\nCan cast four at once
+ProjectileName.RedSpriteStaff=Red Sprite Staff
+ProjectileName.RedSpriteStaffLightning=Red Sprite Staff
+
+ItemName.ThunderClap=Thunder Clap
+ItemTooltip.ThunderClap=Summons a thunderbolt from the sky
+ProjectileName.ThunderClap=Thunder Clap
+
+# Dyes
+
+ItemName.RedSpriteDye=Red Sprite Dye
 
 # Tooltips
 
@@ -75,10 +88,17 @@ Physicist.Chat.Mod.Fargowiltas.Mutant=You just buy boss summons from a weird loo
 Physicist.Chat.Mod.Fargowiltas.Abominationn=You just buy event summons from a creepy looking reaper? Weirdo.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=You just buy rare enemy summons from a dumb looking child? Weirdo.
 
-# Event Names
+# Events
 
 EventName.DemonSiege=Demon Siege
 EventName.GlimmerEvent=Glimmer Event
+EventName.GaleStreams=Gale Streams
+EventProgress.GaleStreams={0}mph/{1}mph
+
+# Recipe Groups
+
+RecipeGroup.AnyEnergy=Any Energy
+RecipeGroup.AnyNobleMushroom=Any Noble Mushroom
 
 # Client Config
 
@@ -981,7 +1001,7 @@ NPCName.RedSprite=Red Sprite
 
 ProjectileName.RedSpriteCloud=Red Sprite
 ProjectileName.RedSpriteCloudLightning=Red Sprite
-ProjectileName.ThunderClap=Red Sprite
+ProjectileName.RedSpriteThunderClap=Red Sprite
 
 BuffName.RedSpriteWind=Red Wind
 BuffDescription.RedSpriteWind=The wind moves you around!\nYou are increasing in temperature

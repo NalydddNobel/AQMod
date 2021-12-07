@@ -1,6 +1,6 @@
 using AQMod.Assets;
 using AQMod.Assets.Graphics.SceneLayers;
-using AQMod.Assets.ItemOverlays;
+using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
 using AQMod.Common.CrossMod;
@@ -51,6 +51,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
+using AQMod.Common.CrossMod.BossChecklist;
 
 namespace AQMod
 {
@@ -604,6 +605,7 @@ namespace AQMod
             NoHitManager.Setup();
             DemonSiege.Setup(); // Sets up the Demon Siege event
             GlimmerEvent.Setup();
+            GaleStreams.Setup();
             BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
             MapMarkers.Setup(setupStatics: true);
             if (!Main.dedServ)
@@ -670,26 +672,6 @@ namespace AQMod
             r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddTile(TileID.WorkBenches);
             r.SetResult(ItemID.HermesBoots);
-            r.AddRecipe();
-            r = new ModRecipe(this);
-            r.AddIngredient(ItemID.HermesBoots);
-            r.AddIngredient(ItemID.Snowball, 100);
-            r.AddTile(TileID.WorkBenches);
-            r.SetResult(ItemID.FlurryBoots);
-            r.AddRecipe();
-            r = new ModRecipe(this);
-            r.AddIngredient(ItemID.HermesBoots);
-            r.AddIngredient(ItemID.Goldfish, 5);
-            r.AddTile(TileID.WorkBenches);
-            r.SetResult(ItemID.SailfishBoots);
-            r.AddRecipe();
-
-            r = new ModRecipe(this);
-            r.AddIngredient(ModContent.ItemType<BlurryDiscountCard>());
-            r.AddIngredient(ModContent.ItemType<DemonicEnergy>(), 5);
-            r.AddIngredient(ItemID.SoulofNight, 8);
-            r.AddTile(TileID.Anvils);
-            r.SetResult(ItemID.DiscountCard);
             r.AddRecipe();
 
             foreach (var u in DemonSiege._upgrades)

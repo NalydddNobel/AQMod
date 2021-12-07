@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.CrossMod
+namespace AQMod.Common.CrossMod.BossChecklist
 {
     internal class BossChecklistHelper
     {

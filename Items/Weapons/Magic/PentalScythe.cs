@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.ItemOverlays;
+﻿using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using System;

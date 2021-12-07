@@ -40,7 +40,7 @@ namespace AQMod
             public const int PetRare = ItemRarityID.Orange;
             public const int GoreNestRare = ItemRarityID.LightRed;
             public const int OmegaStariteRare = ItemRarityID.LightRed;
-            public const int GaleCurrentsRare = ItemRarityID.Pink;
+            public const int GaleStreamsRare = ItemRarityID.Pink;
             public const int PillarWeaponRare = ItemRarityID.Red;
         }
 

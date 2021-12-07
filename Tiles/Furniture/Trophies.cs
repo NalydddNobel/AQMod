@@ -12,6 +12,7 @@ namespace AQMod.Tiles.Furniture
     {
         public const int OmegaStarite = 0;
         public const int Crabson = 1;
+        public const int RedSprite = 2;
 
         public override void SetDefaults()
         {
