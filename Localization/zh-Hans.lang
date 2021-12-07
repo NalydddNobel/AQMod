@@ -1,5 +1,3 @@
-### NPC Chat
-
 # Items
 
 ItemName.FidgetSpinner=永续仪
@@ -12,10 +10,25 @@ ItemName.CrimtaneBarb=猩红刺钩
 ItemTooltip.CrimtaneBarb=你的钩爪会造成伤害
 
 ItemName.DemoniteBarb=恶魔刺钩
-ItemTooltip.CrimtaneBarb=你的钩爪会造成伤害
+ItemTooltip.DemoniteBarb=你的钩爪会造成伤害
 
 ItemName.MetalBarb=金属刺钩
 ItemTooltip.CrimtaneBarb=你的钩爪会造成伤害
+
+# Weapons
+
+ItemName.RedSpriteStaff=红色精灵法杖
+ItemTooltip.RedSpriteStaff=召唤一朵红色精灵在你的敌人头顶降下雷鸣\n一次可以降下4个雷鸣
+ProjectileName.RedSpriteStaff=红色精灵法杖
+ProjectileName.RedSpriteStaffLightning=红色精灵法杖
+
+ItemName.ThunderClap=雷霆一击
+ItemTooltip.ThunderClap=召唤雷霆从天而降
+ProjectileName.ThunderClap=雷霆一击
+
+# Dyes
+
+ItemName.RedSpriteDye=红色精灵染料
 
 # Tooltips
 
@@ -33,7 +46,7 @@ Physicist.Chat.2=管理员非常关心我们对今天的样本进行结论性的
 Physicist.Chat.3=第一级发射器激活三... 二... 一...
 Physicist.Chat.4=第二级发射器激活...现在.
 Physicist.Chat.5=我正在观看可观测的相位阵列
-Physicist.Chat.6={0}, 我们无法预测该系统能在这个水平上运行多久, 阅读并不会花上多长时间. 请尽可能快地工作.
+Physicist.Chat.6={0}, 我们无法预测该系统能在这个水平上运行多久, 观测并不会花上多长时间. 请尽可能快地工作.
 Physicist.Chat.7=闭嘴. 正在尝试闭嘴. 它不是...它是-它不是...它不是闭嘴...它不...
 Physicist.Chat.8=测试... 测试... 一切看起来似乎都井然有序.
 Physicist.Chat.9=走开, {0}! 我正等着从 {1} 那发来的重要讯息!
@@ -75,10 +88,17 @@ Physicist.Chat.Mod.Fargowiltas.Mutant=你刚刚从一个看起来很诡异的怪
 Physicist.Chat.Mod.Fargowiltas.Abominationn=你刚刚从一个看起来很惊悚的收割者那买了Boss召唤物? 真是个怪人.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=你刚刚从一个看起来很愚蠢的小孩那买了Boss召唤物? 真是个怪人.
 
-# Event Names
+# Event
 
 EventName.DemonSiege=恶魔围攻
 EventName.GlimmerEvent=微光事件
+EventName.GaleStreams=紊流风暴
+EventProgress.GaleStreams={0}mph/{1}mph
+
+# Recipe Groups
+
+RecipeGroup.AnyEnergy=任意能量
+RecipeGroup.AnyNobleMushroom=任意华贵蘑菇
 
 # Client Config
 
@@ -981,7 +1001,7 @@ NPCName.RedSprite=红色精灵
 
 ProjectileName.RedSpriteCloud=红色精灵
 ProjectileName.RedSpriteCloudLightning=红色精灵
-ProjectileName.ThunderClap=红色精灵
+ProjectileName.RedSpriteThunderClap=红色精灵
 
 BuffName.RedSpriteWind=红色狂风
 BuffDescription.RedSpriteWind=狂风正在你的周围移动!\n你的温度正在升高
