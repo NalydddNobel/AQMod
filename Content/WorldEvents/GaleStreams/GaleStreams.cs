@@ -49,7 +49,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
         {
             if (!Main.dedServ)
             {
-                EventProgressBarManager.AddBar(new GaleStreamsProgressBar());
+                //EventProgressBarManager.AddBar(new GaleStreamsProgressBar());
             }
         }
 
