@@ -25,7 +25,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         {
             npc.width = 46;
             npc.height = 36;
-            npc.lifeMax = 200;
+            npc.lifeMax = 160;
             npc.damage = 40;
             npc.defense = 15;
             npc.HitSound = SoundID.DD2_GoblinHurt;
@@ -398,7 +398,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
                 }
-                if (Main.rand.NextBool(5))
+                if (Main.hardMode && Main.rand.NextBool(5))
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.Vrang>(), Main.rand.NextVRand(1, 2));
                 }

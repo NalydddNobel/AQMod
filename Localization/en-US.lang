@@ -108,6 +108,10 @@ ClientConfig.TonsofScreenShakes=Extra Unnecessary Screenshakes
 ClientConfig.OverrideVanillaChestLoot=Overwrite Vanilla Chest Loot
 ClientConfig.OverrideVanillaChestLootTooltip=Whether or not special Aequus items will overwrite vanilla items in chests\nIf this is disabled, Aequus loot will generate with vanilla loot intact
 
+# NPCs
+
+NPCName.StreamingBalloon=Streaming Balloon
+
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=On a true melee critical hit you gain greatly increased stats for a short while\nWhen the effect activates you gain the potion sickness debuff\nThis effect can only trigger if you don't have the potion sickness debuff
 Common.ArmorSetBonus_Lightbulb=Hunter and dangersense is always active

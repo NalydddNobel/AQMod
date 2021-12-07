@@ -117,14 +117,27 @@ namespace AQMod.Content.WorldEvents
             }
             if (GaleStreams.GaleStreams.EventActive(spawnInfo.player))
             {
-                if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
-                    pool.Add(ModContent.NPCType<Vraine>(), 1f);
+                float spawnMult = 1f;
                 if (AQMod.SudoHardmode)
                 {
-                    pool[0] *= 0.1f;
                     if (!NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))
+                    {
                         pool.Add(ModContent.NPCType<RedSprite>(), 1f);
+                    }
+                    else
+                    {
+                        spawnMult = 0.1f;
+                    }
+                    pool[0] *= 0.1f * spawnMult;
                 }
+                else
+                {
+                    pool[0] *= 0.4f;
+                }
+                if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
+                    pool.Add(ModContent.NPCType<Vraine>(), 0.8f * spawnMult);
+                if (NPC.CountNPCS(ModContent.NPCType<StreamingBalloon>()) < 3)
+                    pool.Add(ModContent.NPCType<StreamingBalloon>(), 1f * spawnMult);
             }
         }
     }

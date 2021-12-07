@@ -1,4 +1,4 @@
-####### v1.2.4.4 #######
+####### 1.2.4.4 #######
 
 Additions:
 New item: Perpetuator, lets non-autoswing items gain autoswing!.. At a small price

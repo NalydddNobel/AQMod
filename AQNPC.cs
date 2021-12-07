@@ -6,7 +6,6 @@ using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
-using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Dedicated.ContentCreators;
 using AQMod.Items.Dedicated.Contributors;
 using AQMod.Items.Materials;
@@ -815,7 +814,7 @@ namespace AQMod
             {
                 if (sparkling)
                 {
-                    int amount = (int)(100 *  AQConfigClient.c_EffectIntensity);
+                    int amount = (int)(100 * AQConfigClient.c_EffectIntensity);
                     if (AQConfigClient.c_EffectQuality < 1f)
                         amount = (int)(amount * AQConfigClient.c_EffectQuality);
                     if (AQConfigClient.c_Screenshakes)

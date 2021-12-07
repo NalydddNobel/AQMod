@@ -28,6 +28,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using AQMod.Content;
 
 namespace AQMod.Common.DeveloperTools
 {
@@ -117,6 +118,12 @@ namespace AQMod.Common.DeveloperTools
             {
                 default:
                 caller.Reply("Command doesn't exist.");
+                break;
+
+                case "april":
+                case "fools":
+                case "aprilfools":
+                AprilFools.Active = true;
                 break;
 
                 case "downedglimmer":
