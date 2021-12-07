@@ -3,7 +3,6 @@ using AQMod.Assets.Textures;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,35 +41,10 @@ namespace AQMod.Projectiles.Melee
             float minimumLength = 280f;
             if ((int)projectile.ai[0] == 0)
             {
-                List<Rectangle> validNPCHits = new List<Rectangle>();
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].active && !Main.npc[i].friendly && !Main.npc[i].dontTakeDamage)
-                    {
-                        validNPCHits.Add(Main.npc[i].getRect());
-                    }
-                }
                 float halfHeight = projectile.height / 2f;
                 int x = (int)(projectile.position.X + projectile.width / 2f) / 16;
                 for (float length = minimumLength; length < 1500f; length += 16f)
                 {
-                    bool end = false;
-                    foreach (var n in validNPCHits)
-                    {
-                        projectile.ai[0] = length + n.Height;
-                        if (projectile.Colliding(
-                            new Rectangle((int)projectile.position.X, (int)(projectile.position.Y + length), projectile.width, projectile.height), 
-                            n))
-                        {
-                            end = true;
-                            projectile.ai[0] = length + n.Height;
-                            break;
-                        }
-                    }
-                    if (end)
-                    {
-                        break;
-                    }
                     int y = (int)(projectile.position.Y + halfHeight + length) / 16;
                     projectile.ai[0] = y * 16f - projectile.position.Y;
                     if (Main.tile[x, y] == null)

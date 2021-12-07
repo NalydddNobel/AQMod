@@ -19,11 +19,11 @@ namespace AQMod.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            item.damage = 32;
+            item.damage = 44;
             item.width = 30;
             item.height = 30;
-            item.useTime = 30;
-            item.useAnimation = 10;
+            item.useTime = 40;
+            item.useAnimation = 16;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
             item.rare = AQItem.Rarities.GaleStreamsRare;
