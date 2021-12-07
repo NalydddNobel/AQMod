@@ -15,5 +15,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Effects\.comp\fxcompiler.exe" />
+    <None Include="Effects\.comp\Microsoft.Xna.Framework.Content.Pipeline.dll" />
+    <None Include="Effects\.comp\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll" />
+    <None Include="Effects\.comp\wcfxcompiler.dll" />
   </ItemGroup>
 </Project>

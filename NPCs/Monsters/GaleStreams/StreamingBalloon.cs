@@ -1,4 +1,5 @@
 ﻿using AQMod.Content;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -28,7 +29,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             npc.lifeMax = 1;
             npc.damage = 0;
             npc.defense = 0;
-            npc.DeathSound = SoundID.NPCDeath3;
+            npc.DeathSound = SoundID.Item111;
             npc.aiStyle = -1;
             npc.noGravity = true;
             npc.noTileCollide = true;
@@ -155,18 +156,19 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             if (npc.direction == -1)
             {
                 if (npc.velocity.X > -7f)
-                    npc.velocity.X -= 0.1f;
+                    npc.velocity.X -= 0.06f;
             }
             else
             {
                 if (npc.velocity.X < 7f)
-                    npc.velocity.X += 0.1f;
+                    npc.velocity.X += 0.06f;
             }
 
             float distance = npc.Distance(Main.player[npc.target].Center);
-            if (distance > 1100f || distance < 100f)
+            if (distance > 1100f || distance < 150f)
             {
                 npc.life = 0;
+                SoundID.Item111.PlaySound(npc.Center, 1.5f, 0.9f);
                 npc.HitEffect();
                 npc.active = false;
             }
@@ -190,7 +192,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             }
             else
             {
-                if (npc.position.Y > Main.player[npc.target].position.Y - 300f + Math.Sin(Main.time) * 100f)
+                if (npc.position.Y > Main.player[npc.target].position.Y - 100f + Math.Sin(Main.time / 60f) * 30f)
                 {
                     if (npc.velocity.Y > -7f)
                         npc.velocity.Y -= 0.1f;
@@ -201,9 +203,10 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         npc.velocity.Y *= 0.92f;
                     if (npc.velocity.Y < 12f)
                         npc.velocity.Y += 0.025f;
-                    if ((npc.position.X + npc.width / 2f - Main.player[npc.target].position.X + Main.player[npc.target].width / 2f).Abs() < 30f)
+                    if ((npc.position.X + npc.width / 2f - Main.player[npc.target].position.X + Main.player[npc.target].width / 2f).Abs() < 100f)
                     {
                         npc.life = 0;
+                        SoundID.Item111.PlaySound(npc.Center, 1.5f, 0.9f);
                         npc.HitEffect();
                         npc.active = false;
                     }
