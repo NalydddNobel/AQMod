@@ -26,6 +26,13 @@ ItemName.ThunderClap=雷霆一击
 ItemTooltip.ThunderClap=召唤雷霆从天而降
 ProjectileName.ThunderClap=雷霆一击
 
+ItemName.Umberserk=伞剑
+ItemTooltip.Umberserk={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n击中敌人后会使你的武器挥舞速度更快\n你的首次攻击必定造成暴击
+ItemName.Umberetta=伞枪
+ItemTooltip.Umberetta={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n发射雨伞叉
+ItemName.Umystick=神秘的伞
+ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n长按右键进行一次额外的跳跃
+
 # Dyes
 
 ItemName.RedSpriteDye=红色精灵染料
@@ -33,6 +40,9 @@ ItemName.RedSpriteDye=红色精灵染料
 # Tooltips
 
 Tooltips.ManaPerSecond=每秒消耗{0}点法力值
+Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果
+Tooltips.UmbrellaDamage={0}雨伞伤害
+Tooltips.UmbrellaMana=消耗{0}点伞力值
 
 # Exporter
 NPCName.Robster=发货人
