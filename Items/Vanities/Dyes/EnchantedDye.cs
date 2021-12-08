@@ -8,8 +8,8 @@ namespace AQMod.Items.Vanities.Dyes
 {
     public class EnchantedDye : DyeItem
     {
-        public override string Pass => "ImageScrollPass";
+        public override string Pass => "EnchantmentPass";
         public override ArmorShaderData CreateShaderData => new CustomTextureArmorShaderData(Effect, Pass,
-            new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/EnchantGlimmer")));
+            new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Textures/EnchantGlimmer"))).UseOpacity(0.8f);
     }
 }

@@ -1,9 +1,11 @@
 ﻿using AQMod.Common.DeveloperTools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AQMod.Items.Accessories.FidgetSpinner
 {
@@ -20,6 +22,29 @@ namespace AQMod.Items.Accessories.FidgetSpinner
             item.accessory = true;
             item.rare = AQItem.Rarities.OmegaStariteRare;
             item.value = Item.buyPrice(gold: 50);
+        }
+
+        public override TagCompound Save()
+        {
+            return new TagCompound()
+            {
+                ["paint"] = clr,
+            };
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            clr = tag.GetByte("paint");
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(clr);
+        }
+
+        public override void NetRecieve(BinaryReader reader)
+        {
+            clr = reader.ReadByte();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

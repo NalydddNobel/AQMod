@@ -26,6 +26,13 @@ ItemName.ThunderClap=Thunder Clap
 ItemTooltip.ThunderClap=Summons a thunderbolt from the sky
 ProjectileName.ThunderClap=Thunder Clap
 
+ItemName.Umberserk=Umberserk
+ItemTooltip.Umberserk={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nHitting enemies makes you swing your weapon faster\nYour first hit will always be a crit
+ItemName.Umberetta=Umberetta
+ItemTooltip.Umberetta={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nShoots umbrella harpoons
+ItemName.Umystick=Umystick
+ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nRight click while held to do an extra jump
+
 # Dyes
 
 ItemName.RedSpriteDye=Red Sprite Dye
@@ -33,6 +40,9 @@ ItemName.RedSpriteDye=Red Sprite Dye
 # Tooltips
 
 Tooltips.ManaPerSecond=Uses {0} mana per second
+Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed
+Tooltips.UmbrellaDamage={0} umbrella damage
+Tooltips.UmbrellaMana=Uses {0} umagicka
 
 # Exporter
 NPCName.Robster=Exporter

@@ -203,68 +203,6 @@ namespace AQMod
             }
         }
 
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
-            if (item.pick > 0 && aQPlayer.pickBreak)
-            {
-                foreach (var t in tooltips)
-                {
-                    if (t.mod == "Terraria" && t.Name == "PickPower")
-                    {
-                        t.text = item.pick / 2 + Lang.tip[26].Value;
-                        t.overrideColor = new Color(128, 128, 128, 255);
-                    }
-                }
-            }
-            if (aQPlayer.fidgetSpinner && !item.channel && AQPlayer.CanForceAutoswing(Main.LocalPlayer, item, ignoreChanneled: true))
-            {
-                foreach (var t in tooltips)
-                {
-                    if (t.mod == "Terraria" && t.Name == "Speed")
-                    {
-                        AQPlayer.Fidget_Spinner_Force_Autoswing = true;
-                        string text = AQUtils.UseTimeAnimationTooltip(PlayerHooks.TotalUseTime(item.useTime, Main.LocalPlayer, item));
-                        AQPlayer.Fidget_Spinner_Force_Autoswing = false;
-                        if (t.text != text)
-                        {
-                            t.text = text +
-                            " (" + Lang.GetItemName(ModContent.ItemType<Items.Accessories.FidgetSpinner.FidgetSpinner>()).Value + ")";
-                            t.overrideColor = new Color(200, 200, 200, 255);
-                        }
-                    }
-                }
-            }
-            if (item.type > Main.maxItemTypes)
-            {
-                if (item.modItem is IManaPerSecond m)
-                {
-                    int? value = m.ManaPerSecond;
-                    int manaCost;
-                    if (value != null)
-                    {
-                        manaCost = value.Value;
-                    }
-                    else
-                    {
-                        manaCost = Main.player[Main.myPlayer].GetManaCost(item);
-                        int usesPerSecond = 60 / PlayerHooks.TotalUseTime(item.useTime, Main.player[Main.myPlayer], item);
-                        if (usesPerSecond != 0)
-                        {
-                            manaCost *= usesPerSecond;
-                        }
-                    }
-                    foreach (var t in tooltips)
-                    {
-                        if (t.mod == "Terraria" && t.Name == "UseMana")
-                        {
-                            t.text = string.Format(AQText.ModText("Tooltips.ManaPerSecond").Value, manaCost);
-                        }
-                    }
-                }
-            }
-        }
-
         internal static class Similarities
         {
             public static Vector2 GetItemDrawPos_NoAnimation(Item item)

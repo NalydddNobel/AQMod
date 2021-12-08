@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.NPCs.Monsters.GaleStreams
 {
-    public class StreamingBalloon : ModNPC, IDecideFallThroughPlatforms
+    public class StreamingBalloon : ModNPC
     {
         private bool _setupFrame = false;
         public const int FramesX = 8;
@@ -348,11 +348,6 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, new Rectangle(npc.frame.X + npc.frame.Width * frameX, npc.frame.Y + npc.frame.Height, npc.frame.Width, npc.frame.Height), npcClr, npc.rotation, origin, npc.scale * scale, SpriteEffects.None, 0f);
             }
             return false;
-        }
-
-        bool IDecideFallThroughPlatforms.Decide()
-        {
-            return true;
         }
     }
 }

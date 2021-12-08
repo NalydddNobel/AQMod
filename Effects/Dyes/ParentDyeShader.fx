@@ -20,6 +20,21 @@ float FrameYFix(float2 coords)
     return y * 1 / frameSizeY;
 }
 
+float4 Enchantment(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
+{
+    float4 color = tex2D(uImage0, coords);
+    if (color.a == 0)
+    {
+        return color * sampleColor;
+    }
+    float textureY = FrameYFix(coords);
+    float4 mergeColor = tex2D(uImage1, float2((uTime * 0.21f + coords.x * 0.2) % 1, (uTime * 0.0042f + textureY * 0.2) % 1));
+    mergeColor *= min(min(mergeColor.r, mergeColor.g), mergeColor.b) + max(max(mergeColor.r, mergeColor.g), mergeColor.b) * uOpacity;
+    return float4(color.r * sampleColor.r + mergeColor.r * sampleColor.a,
+    color.g * sampleColor.g + mergeColor.g * sampleColor.a,
+    color.b * sampleColor.b + mergeColor.b * sampleColor.a, color.a * sampleColor.a);
+}
+
 float4 RedSprite(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float4 color = tex2D(uImage0, coords);
@@ -297,7 +312,7 @@ float4 ShieldBeams(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COL
 {
     float4 color = tex2D(uImage0, coords);
     float3 MERGEColor = uColor;
-    float intensity = ((sin((color.r * color.g * color.b) * 100 + uTime * 20 + coords.x * 10 + uWorldPosition.x / 16 * uDirection) + 1) / 2) * uOpacity;
+    float intensity = ((sin((color.r * color.g * color.b) * 100 + uTime * uOpacity + coords.x * 10 * uDirection) + 1) / 2) * uOpacity;
     float4 mergeColor = float4(MERGEColor.r * color.a, MERGEColor.g * color.a, MERGEColor.b * color.a, color.a);
     if (color.r < uLightSource.r * color.a)
     {
@@ -412,6 +427,10 @@ float4 SpikeFade(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
 
 technique Technique1
 {
+    pass EnchantmentPass
+    {
+        PixelShader = compile ps_2_0 Enchantment();
+    }
     pass RedSpritePass
     {
         PixelShader = compile ps_2_0 RedSprite();
