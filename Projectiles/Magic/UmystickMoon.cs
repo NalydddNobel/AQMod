@@ -40,7 +40,7 @@ namespace AQMod.Projectiles.Magic
             {
                 projectile.ai[0] = 1f;
                 projectile.frame = Main.rand.Next(Main.projFrames[projectile.type]);
-                projectile.rotation = projectile.velocity.ToRotation();
+                projectile.rotation = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
                 _glowClr = new Color(128, 70, 70, 0);
                 if (projectile.frame == 1)
                     _glowClr = new Color(90, 128, 50, 0);
@@ -91,6 +91,25 @@ namespace AQMod.Projectiles.Magic
             }
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 250, 250, 160), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             return false;
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            var center = projectile.Center;
+            float size = projectile.width / 2f;
+            if (Main.netMode != NetmodeID.Server)
+            {
+                AQSoundPlayer.PlaySound(SoundType.Item, "Sounds/Item/MysticUmbrellaDestroy_" + Main.rand.Next(4), 0.5f, 0.5f);
+            }
+            for (int i = 0; i < 30; i++)
+            {
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Content.Dusts.MonoDust>());
+                var n = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi).ToRotationVector2();
+                Main.dust[d].position = center + n * Main.rand.NextFloat(0f, size);
+                Main.dust[d].velocity = n * Main.rand.NextFloat(2f, 7f);
+                Main.dust[d].scale = Main.rand.NextFloat(0.8f, 1.75f);
+                Main.dust[d].color = _glowClr * Main.rand.NextFloat(0.8f, 2.5f);
+            }
         }
     }
 }
