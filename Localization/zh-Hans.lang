@@ -31,7 +31,9 @@ ItemTooltip.Umberserk={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n击中敌人后会�
 ItemName.Umberetta=伞枪
 ItemTooltip.Umberetta={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n发射雨伞叉
 ItemName.Umystick=神秘的伞
-ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n长按右键进行一次额外的跳跃
+ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n手持此物品时右键消耗大量法力值来进行一次额外的跳跃\n'看起来贼危险'
+BuffName.UmystickDelay=神秘的延迟
+BuffDescription.UmystickDelay=降低你的法力恢复速度, 你无法使用神秘的伞进行一次额外的跳跃
 
 # Dyes
 
@@ -40,9 +42,7 @@ ItemName.RedSpriteDye=红色精灵染料
 # Tooltips
 
 Tooltips.ManaPerSecond=每秒消耗{0}点法力值
-Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果
-Tooltips.UmbrellaDamage={0}雨伞伤害
-Tooltips.UmbrellaMana=消耗{0}点伞力值
+Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果\n你不会受到任何摔落伤害
 
 # Exporter
 NPCName.Robster=发货人
