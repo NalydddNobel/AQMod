@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Umbrella
+namespace AQMod.Items.Weapons.Magic
 {
     public class Umystick : ModItem
     {
@@ -13,7 +13,7 @@ namespace AQMod.Items.Weapons.Umbrella
         {
             item.width = 26;
             item.height = 26;
-            item.damage = 45;
+            item.damage = 47;
             item.useTime = 24;
             item.useAnimation = 24;
             item.rare = AQItem.Rarities.GaleStreamsRare + 1;
@@ -93,9 +93,7 @@ namespace AQMod.Items.Weapons.Umbrella
                             {
                                 float x = player.position.X + Main.rand.NextFloat(-24f, 22f);
                                 if (player.direction == 1)
-                                {
                                     x += player.width;
-                                }
                                 int d = Dust.NewDust(new Vector2(x, player.position.Y - 14f), 2, 2, 15);
                                 Main.dust[d].velocity.X *= 0.1f;
                                 Main.dust[d].velocity.Y = -player.velocity.Y * 0.2f;
@@ -104,17 +102,11 @@ namespace AQMod.Items.Weapons.Umbrella
                     }
                 }
             }
-            
+
             if (!player.pulley)
             {
                 player.itemRotation = 0f;
                 player.itemLocation.X += -player.direction * 20f;
-                //player.itemLocation.X = player.position.X + player.width / 2f - (float)(10f * -player.direction);
-                //player.itemLocation.Y = player.position.Y + 22f + player.mount.PlayerOffsetHitbox;
-                //if (player.gravDir == -1)
-                //{
-                //    player.itemLocation.Y = player.position.Y + player.height + (player.position.Y - player.itemLocation.Y);
-                //}
             }
         }
 

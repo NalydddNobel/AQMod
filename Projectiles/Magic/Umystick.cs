@@ -57,8 +57,8 @@ namespace AQMod.Projectiles.Magic
                     _gfxOffY = 14f;
                     if (Main.myPlayer == projectile.owner)
                     {
-                        AQSoundPlayer.PlaySound(SoundType.Item, "Sounds/Item/MysticUmbrellaShoot_" + Main.rand.Next(3), 0.45f, 0.2f);
-                        Projectile.NewProjectile(projectile.Center, projectile.velocity * 18f, ModContent.ProjectileType<UmystickMoon>(), projectile.damage, projectile.knockBack, projectile.owner);
+                        AQSoundPlayer.PlaySound(SoundType.Item, "Sounds/Item/MysticUmbrellaShoot_" + Main.rand.Next(3), 0.45f, 0.4f);
+                        Projectile.NewProjectile(projectile.Center, projectile.velocity * 27.5f, ModContent.ProjectileType<UmystickMoon>(), projectile.damage, projectile.knockBack, projectile.owner);
                     }
                 }
                 else
@@ -105,6 +105,10 @@ namespace AQMod.Projectiles.Magic
             if (player.itemTime <= 2)
             {
                 player.itemTime = 2;
+                if (projectile.ai[1] > 2)
+                {
+                    player.itemTime = (int)projectile.ai[1];
+                }
             }
             else
             {
@@ -113,6 +117,10 @@ namespace AQMod.Projectiles.Magic
             if (player.itemAnimation <= 2)
             {
                 player.itemAnimation = 2;
+                if (projectile.ai[1] > 2)
+                {
+                    player.itemTime = (int)projectile.ai[1];
+                }
             }
             projectile.timeLeft = 2;
             AQProjectile.UpdateHeldProj(player, rotatedRelativePoint, 36f, projectile);

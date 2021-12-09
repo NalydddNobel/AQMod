@@ -32,11 +32,11 @@ namespace AQMod.Sounds
         }
         public static void PlaySound(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume)
         {
-            Main.PlaySound((int)type, AQMod.Instance.GetSoundSlot(type, name), (int)position.X, (int)position.Y, volume);
+            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, name), volume);
         }
         public static void PlaySound(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume, float pitch)
         {
-            Main.PlaySound((int)type, AQMod.Instance.GetSoundSlot(type, name), (int)position.X, (int)position.Y, volume, pitch);
+            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, name), volume, pitch);
         }
         public static void PlaySound(Terraria.ModLoader.SoundType type, string name, float volume)
         {

@@ -112,6 +112,11 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                 ItemID.ShinyRedBalloon,
                                 ItemID.Starfury,
                             };
+                            if (AQMod.SudoHardmode)
+                            {
+                                Array.Resize(ref selectableLoot, selectableLoot.Length + 1);
+                                selectableLoot[selectableLoot.Length - 1] = ModContent.ItemType<Items.Weapons.Magic.Umystick>();
+                            }
                             npc.ai[1] = selectableLoot[Main.rand.Next(selectableLoot.Length)];
                         }
                         npc.ai[0] = n;
