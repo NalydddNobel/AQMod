@@ -20,6 +20,20 @@ float uSaturation;
 float4 uSourceRect;
 float2 uZoom;
 
+float4 SpotlightCoordinate(float2 coords : TEXCOORD0) : COLOR0
+{
+    //float2 drawPosition = uScreenPosition + uScreenResolution / 2;
+    float2 drawPosition = uTargetPosition - uScreenPosition;
+    float size = 120 * uIntensity;
+    float2 drawCoordinate = coords * uScreenResolution;
+    float distance = length(drawCoordinate - drawPosition);
+    if (distance < size)
+    {
+        return lerp(tex2D(uImage0, coords), float4(1, 1, 1, 1), 1 - distance / size);
+    }
+    return tex2D(uImage0, coords);
+}
+
 float4 Vignette(float2 coords : TEXCOORD0) : COLOR0
 {
     float4 color = tex2D(uImage0, coords);
@@ -30,6 +44,10 @@ float4 Vignette(float2 coords : TEXCOORD0) : COLOR0
 
 technique Technique1
 {
+    pass SpotlightCoordinatePass
+    {
+        PixelShader = compile ps_2_0 SpotlightCoordinate();
+    }
     pass VignettePass
     {
         PixelShader = compile ps_2_0 Vignette();
