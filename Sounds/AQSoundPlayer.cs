@@ -44,7 +44,7 @@ namespace AQMod.Sounds
         }
         public static void PlaySound(Terraria.ModLoader.SoundType type, string name, float volume, float pitch)
         {
-            Main.PlaySound((int)type, AQMod.Instance.GetSoundSlot(type, name), -1, -1, volume, pitch);
+            Main.PlaySound((int)type, -1, -1, AQMod.Instance.GetSoundSlot(type, name), volume, pitch);
         }
     }
 }

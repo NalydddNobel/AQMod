@@ -18,17 +18,29 @@ namespace AQMod.Items.Weapons.Umbrella
             item.useAnimation = 24;
             item.rare = AQItem.Rarities.GaleStreamsRare + 1;
             item.value = AQItem.Prices.GaleStreamsValue;
-            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item1;
             item.magic = true;
             item.knockBack = 4f;
-            item.autoReuse = true;
-            item.mana = 20;
+            item.mana = 12;
             item.holdStyle = Constants.HoldStyle.Umbrella;
+            item.channel = true;
+            item.noMelee = true;
+            item.shoot = ModContent.ProjectileType<Projectiles.Magic.Umystick>();
+            item.shootSpeed = 1f;
         }
 
         public override void HoldStyle(Player player)
         {
+            if (player.itemAnimation > 0)
+                return;
+            if (item.useStyle == ItemUseStyleID.HoldingOut)
+            {
+                item.useStyle = ItemUseStyleID.SwingThrow;
+                return;
+            }
+            item.noUseGraphic = false;
+            item.holdStyle = 2;
             bool maxSpeed = false;
             player.fallStart = (int)(player.position.Y / 16f);
             if (!player.controlDown)
@@ -55,7 +67,7 @@ namespace AQMod.Items.Weapons.Umbrella
                     if (Main.myPlayer == player.whoAmI && maxSpeed && !player.mouseInterface)
                     {
                         int oldMana = item.mana;
-                        item.mana *= 3;
+                        item.mana *= 5;
                         if (Main.mouseRight && Main.mouseRightRelease && player.CheckMana(item, pay: true))
                         {
                             player.AddBuff(ModContent.BuffType<Buffs.Debuffs.Delays.UmystickDelay>(), 180);
@@ -92,9 +104,29 @@ namespace AQMod.Items.Weapons.Umbrella
                     }
                 }
             }
+            
+            if (!player.pulley)
+            {
+                player.itemRotation = 0f;
+                player.itemLocation.X += -player.direction * 20f;
+                //player.itemLocation.X = player.position.X + player.width / 2f - (float)(10f * -player.direction);
+                //player.itemLocation.Y = player.position.Y + 22f + player.mount.PlayerOffsetHitbox;
+                //if (player.gravDir == -1)
+                //{
+                //    player.itemLocation.Y = player.position.Y + player.height + (player.position.Y - player.itemLocation.Y);
+                //}
+            }
+        }
 
-            player.itemRotation = 0f;
-            player.itemLocation.X += -player.direction * 20f;
+        public override bool CanUseItem(Player player)
+        {
+            if (base.CanUseItem(player) && player.CheckMana(item, pay: false))
+            {
+                item.noUseGraphic = true;
+                item.useStyle = ItemUseStyleID.HoldingOut;
+                return true;
+            }
+            return false;
         }
     }
 }
