@@ -19,8 +19,8 @@ namespace AQMod.Projectiles.Magic
 
         public override void SetDefaults()
         {
-            projectile.width = 10;
-            projectile.height = 10;
+            projectile.width = 28;
+            projectile.height = 28;
             projectile.friendly = true;
             projectile.tileCollide = false;
             projectile.penetrate = -1;
