@@ -31,7 +31,9 @@ ItemTooltip.Umberserk={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nHitting enemies mak
 ItemName.Umberetta=Umberetta
 ItemTooltip.Umberetta={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nShoots umbrella harpoons
 ItemName.Umystick=Umystick
-ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nRight click while held to do an extra jump
+ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nRight click while held to do an extra jump which costs a great amount of mana\n'Looks quite menacing'
+BuffName.UmystickDelay=Umystick Delay
+BuffDescription.UmystickDelay=Decreases your mana regen, and you can no longer use the Umystick to double jump
 
 # Dyes
 
@@ -40,9 +42,7 @@ ItemName.RedSpriteDye=Red Sprite Dye
 # Tooltips
 
 Tooltips.ManaPerSecond=Uses {0} mana per second
-Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed
-Tooltips.UmbrellaDamage={0} umbrella damage
-Tooltips.UmbrellaMana=Uses {0} umagicka
+Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed\nYou will not take any fall damage
 
 # Exporter
 NPCName.Robster=Exporter

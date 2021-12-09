@@ -1,6 +1,6 @@
 ﻿namespace AQMod.Common.DeveloperTools
 {
-    internal static class Constants
+    internal static class Constants // This class is free to steal, it's full of magic numbers vanilla uses
     {
         public const int UISize = 10;
 
@@ -118,6 +118,13 @@
                 }
                 return "Unknown";
             }
+        }
+
+        public static class HoldStyle
+        {
+            public const int Torch = 1;
+            public const int Umbrella = 2;
+            public const int Harp = 3;
         }
     }
 }

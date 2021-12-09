@@ -559,6 +559,7 @@ namespace AQMod
         public sbyte redSpriteWind;
         public byte extraHP;
         public bool fidgetSpinner;
+        public bool mysticUmbrellaDelay;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -613,6 +614,7 @@ namespace AQMod
             temperature = 0;
             pickBreak = false;
             fidgetSpinner = false;
+            mysticUmbrellaDelay = false;
         }
 
         public override void OnEnterWorld(Player player)
@@ -845,6 +847,7 @@ namespace AQMod
             pickBreak = false;
             crabAx = false;
             fidgetSpinner = false;
+            mysticUmbrellaDelay = false;
             if (extraHP > 60) // to cap life max buffs at 60
             {
                 extraHP = 60;

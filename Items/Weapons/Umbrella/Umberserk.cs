@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Umbrella
 {
-    public class Umberserk : ModItem, IUmbrellaDamage
+    public class Umberserk : ModItem
     {
         public override void SetDefaults()
         {

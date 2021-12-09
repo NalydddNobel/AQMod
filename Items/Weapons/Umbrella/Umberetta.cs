@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Umbrella
 {
-    public class Umberetta : ModItem, IUmbrellaDamage
+    public class Umberetta : ModItem
     {
         public override void SetDefaults()
         {
@@ -17,7 +17,8 @@ namespace AQMod.Items.Weapons.Umbrella
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.rare = AQItem.Rarities.GaleStreamsRare + 1;
             item.value = AQItem.Prices.GaleStreamsValue;
-            item.shoot = ModContent.ProjectileType<Projectiles.Ranged.Umberetta>();
+            item.shoot = ProjectileID.WoodenArrowFriendly;
+            item.useAmmo = ItemID.WoodenArrow;
             item.shootSpeed = 20f;
             item.UseSound = SoundID.Item5;
             item.noMelee = true;

@@ -6,4 +6,4 @@ hideResources = false
 hideCode = false
 includeSource = false
 includePBD = true
-buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, obj\*, bin\*, .vs\*, .cache\*
+buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, obj\*, bin\*, .vs\*, .cache\*, Effects\.comp\*

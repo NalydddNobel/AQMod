@@ -12,38 +12,6 @@ namespace AQMod.Items
 {
     public class TooltipModifier : GlobalItem
     {
-        public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
-        {
-            if (item.type > Main.maxItemTypes)
-            {
-                if (item.modItem is IUmbrellaDamage)
-                {
-                    if (line.mod == "Terraria")
-                    {
-                        string umbrellaText = "";
-                        if (line.Name == "Damage")
-                        {
-                            umbrellaText = Language.GetTextValue("Mods.AQMod.Tooltips.UmbrellaDamage", Main.LocalPlayer.GetWeaponDamage(item));
-                        }
-                        else if (line.Name == "UseMana")
-                        {
-                            umbrellaText = Language.GetTextValue("Mods.AQMod.Tooltips.UmbrellaMana", Main.LocalPlayer.GetManaCost(item));
-                        }
-                        if (umbrellaText != "")
-                        {
-                            var color = Colors.AlphaDarken(line.overrideColor.GetValueOrDefault(line.color));
-                            ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, Main.fontMouseText, umbrellaText,
-                                new Vector2(line.X, line.Y), color, line.rotation, line.origin, line.baseScale, line.maxWidth, line.spread);
-                            ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, umbrellaText,
-                                new Vector2(line.X, line.Y), Color.Black, line.rotation, line.origin, line.baseScale, ignoreColors: false);
-                            return false;
-                        }
-                    }
-                }
-            }
-            return base.PreDrawTooltipLine(item, line, ref yOffset);
-        }
-
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
