@@ -10,8 +10,8 @@ namespace AQMod.Common.Graphics.DrawTypes
     public class FriendlyWind : IDrawType
     {
         private readonly Color _color;
-        private List<Vector2> _trail;
-        private List<float> _trailRots;
+        private readonly List<Vector2> _trail;
+        private readonly List<float> _trailRots;
 
         public FriendlyWind(Color color, Vector2[] trail, float headRot = 0f)
         {

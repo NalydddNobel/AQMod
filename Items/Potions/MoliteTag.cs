@@ -55,7 +55,9 @@ namespace AQMod.Items.Potions
                         }
                         int itemType = int.Parse(id);
                         if (itemType >= Main.maxItemTypes)
+                        {
                             return Error;
+                        }
                         else
                         {
                             return new StarbytePotionTag(itemType);
@@ -78,7 +80,9 @@ namespace AQMod.Items.Potions
                         var modInstance = ModLoader.GetMod(mod);
                         int itemType = modInstance.ItemType(name);
                         if (itemType < Main.maxItemTypes)
+                        {
                             return Error;
+                        }
                         else
                         {
                             return new StarbytePotionTag(itemType);
@@ -94,7 +98,9 @@ namespace AQMod.Items.Potions
             public string GetKey()
             {
                 if (potionItemID < Main.maxItemTypes)
+                {
                     return "0:" + potionItemID + ";";
+                }
                 else
                 {
                     var item = new Item();

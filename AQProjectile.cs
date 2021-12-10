@@ -80,7 +80,9 @@ namespace AQMod
                         {
                             string tryName = Lang.GetNPCName(i).Value;
                             if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
+                            {
                                 projectileName = ProjectileLoader.GetProjectile(i).Name;
+                            }
                             else
                             {
                                 projectileName = tryName + "/" + ProjectileLoader.GetProjectile(i).Name;
@@ -151,7 +153,9 @@ namespace AQMod
             {
                 temperatureUpdate = temperatureRate;
                 if (canHeat && temperature < 0)
+                {
                     temperature++;
+                }
                 else if (canFreeze && temperature > 0)
                 {
                     temperature--;
@@ -198,7 +202,9 @@ namespace AQMod
                     {
                         int sonarPotionIndex = plr.FindBuffIndex(BuffID.Sonar);
                         if (sonarPotionIndex != -1)
+                        {
                             plr.buffTime[sonarPotionIndex] += 6000;
+                        }
                         else
                         {
                             plr.AddBuff(BuffID.Sonar, 6000);
@@ -208,7 +214,9 @@ namespace AQMod
                     {
                         int fishingPotionIndex = plr.FindBuffIndex(BuffID.Fishing);
                         if (fishingPotionIndex != -1)
+                        {
                             plr.buffTime[fishingPotionIndex] += 600;
+                        }
                         else
                         {
                             plr.AddBuff(BuffID.Fishing, 600);
@@ -229,7 +237,9 @@ namespace AQMod
                         {
                             int cratePotionIndex = plr.FindBuffIndex(BuffID.Crate);
                             if (cratePotionIndex != -1)
+                            {
                                 plr.buffTime[cratePotionIndex] += 1800;
+                            }
                             else
                             {
                                 plr.AddBuff(BuffID.Crate, 1800);

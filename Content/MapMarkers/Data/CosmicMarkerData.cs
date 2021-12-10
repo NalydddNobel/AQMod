@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common.UserInterface;
+﻿using AQMod.Common.UserInterface;
 using AQMod.Content.MapMarkers.Components;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Localization;

@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common.UserInterface;
+﻿using AQMod.Common.UserInterface;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.MapMarkers.Components;
 using AQMod.Tiles.TileEntities;

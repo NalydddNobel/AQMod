@@ -1,6 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Content.WorldEvents.DemonSiege;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;

@@ -26,12 +26,12 @@ namespace AQMod
 
             internal static void Setup()
             {
-                var r = new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyNobleMushroom"), 
+                var r = new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyNobleMushroom"),
                     ModContent.ItemType<ArgonMushroom>(),
                     ModContent.ItemType<KryptonMushroom>(),
                     ModContent.ItemType<XenonMushroom>());
                 RecipeGroup.RegisterGroup(AnyNobleMushroom, r);
-                r = new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyEnergy"), 
+                r = new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyEnergy"),
                     ModContent.ItemType<UltimateEnergy>(),
                     ModContent.ItemType<AquaticEnergy>(),
                     ModContent.ItemType<AtmosphericEnergy>(),

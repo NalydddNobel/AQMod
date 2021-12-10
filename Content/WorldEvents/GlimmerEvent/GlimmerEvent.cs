@@ -73,7 +73,9 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
                 ModContent.ItemType<Items.Vanities.Dyes.OutlineDye>(),
                 ModContent.ItemType<Items.Vanities.Dyes.ScrollDye>(),
             },
-            "Happens naturally at night. Can alternatively summoned with a [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Ends when the sun rises",
+            AQText.chooselocalizationtext(
+                en_US: "Happens naturally at night. Can alternatively summoned with a [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Ends when the sun rises",
+                zh_Hans: null),
             "AQMod/Assets/BossChecklist/GlimmerEvent",
             "AQMod/Assets/EventIcons/GlimmerEvent");
         internal override EventProgressBar ProgressBar => new BasicEventProgressBar(

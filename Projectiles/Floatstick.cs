@@ -1,6 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.WorldGeneration;
-using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

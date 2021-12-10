@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 
 namespace AQMod.Assets.Graphics.SceneLayers
 {
@@ -85,8 +84,8 @@ namespace AQMod.Assets.Graphics.SceneLayers
             }
             if (_hotCurrentList.Count > 0 || _coldCurrentList.Count > 0)
             {
-                if (finalTarget == null || finalTarget.IsContentLost 
-                    || hotTarget == null || hotTarget.IsContentLost 
+                if (finalTarget == null || finalTarget.IsContentLost
+                    || hotTarget == null || hotTarget.IsContentLost
                     || coldTarget == null || coldTarget.IsContentLost)
                 {
                     Reset(Main.graphics.GraphicsDevice);

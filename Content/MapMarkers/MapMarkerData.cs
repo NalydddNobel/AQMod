@@ -22,7 +22,7 @@ namespace AQMod.Content.MapMarkers
         protected virtual void Setup()
         {
         }
-        
+
         public virtual void OnAddToGlobe(Player player, AQPlayer aQPlayer, TEGlobe globe)
         {
             var rectangle = new Rectangle(globe.Position.X * 16, globe.Position.Y * 16, 32, 32);

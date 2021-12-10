@@ -1,12 +1,8 @@
-﻿using AQMod.Assets;
-using AQMod.Common.UserInterface;
+﻿using AQMod.Common.UserInterface;
 using AQMod.Content.MapMarkers.Components;
-using AQMod.Content.WorldEvents.GlimmerEvent;
-using AQMod.Localization;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 

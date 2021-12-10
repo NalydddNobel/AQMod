@@ -44,7 +44,7 @@ namespace AQMod.Items.Weapons.Summon
             int stariteParent = Projectile.NewProjectile(position, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
             int stariteChild = Projectile.NewProjectile(position + new Vector2(30f, 10f), new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.Summon.StariteMinion.Starite>(), damage, knockBack, player.whoAmI, stariteParent + 1);
             Main.projectile[stariteChild].minionSlots = 0;
-            stariteChild = Projectile.NewProjectile(position + new Vector2(-30f, 10f), new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.Summon.StariteMinion.Starite> (), damage, knockBack, player.whoAmI, stariteParent + 1);
+            stariteChild = Projectile.NewProjectile(position + new Vector2(-30f, 10f), new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.Summon.StariteMinion.Starite>(), damage, knockBack, player.whoAmI, stariteParent + 1);
             Main.projectile[stariteChild].minionSlots = 0;
             return false;
         }

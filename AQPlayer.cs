@@ -133,7 +133,7 @@ namespace AQMod
                                     var chomperHead = (Chomper)Main.projectile[i].modProjectile;
                                     if (chomperHead.eatingDelay != 0 && chomperHead.eatingDelay < 35)
                                     {
-                                        float intensity = (10 - chomperHead.eatingDelay) / 2.5f *  AQConfigClient.c_EffectIntensity;
+                                        float intensity = (10 - chomperHead.eatingDelay) / 2.5f * AQConfigClient.c_EffectIntensity;
                                         drawPosition.X += Main.rand.NextFloat(-intensity, intensity);
                                         drawPosition.Y += Main.rand.NextFloat(-intensity, intensity);
                                     }
@@ -196,7 +196,7 @@ namespace AQMod
                         velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
                         if (Vector2.Distance(position, chainStart) <= height)
                             break;
-                        velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f *  AQConfigClient.c_EffectIntensity);
+                        velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f * AQConfigClient.c_EffectIntensity);
                         position += velo;
                         float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
                         velo.Y += gravity * 3f;
@@ -777,7 +777,7 @@ namespace AQMod
                     Filters.Scene.Activate(EffectCache.fn_Vignette);
                 }
             }
-            else 
+            else
             {
                 if (EffectCache.f_Vignette.IsActive())
                     Filters.Scene.Deactivate(EffectCache.fn_Vignette);
@@ -856,6 +856,7 @@ namespace AQMod
                 extraHP = 60;
             }
             player.statLifeMax2 += extraHP;
+            extraHP = 0;
             if (temperature != 0)
             {
                 if (temperature < -100)
@@ -1620,7 +1621,7 @@ namespace AQMod
                 if (Main.myPlayer == player.whoAmI)
                 {
                     Main.PlaySound(SoundID.Item74, targetCenter);
-                    int amount = (int)(25 *  AQConfigClient.c_EffectIntensity);
+                    int amount = (int)(25 * AQConfigClient.c_EffectIntensity);
                     if (AQConfigClient.c_EffectQuality < 1f)
                     {
                         amount = (int)(amount * AQConfigClient.c_EffectQuality);
@@ -1638,7 +1639,7 @@ namespace AQMod
                             new MonoParticleEmber(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
                     }
-                    amount = (int)(120 *  AQConfigClient.c_EffectIntensity);
+                    amount = (int)(120 * AQConfigClient.c_EffectIntensity);
                     if (AQConfigClient.c_EffectQuality < 1f)
                     {
                         amount = (int)(amount * AQConfigClient.c_EffectQuality);

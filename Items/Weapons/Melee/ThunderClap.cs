@@ -51,7 +51,7 @@ namespace AQMod.Items.Weapons.Melee
                 {
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        AQSoundPlayer.PlaySound(SoundType.NPCHit, "Sounds/NPCHit/Slap_" + Main.rand.Next(2), target.Center, 0.4f);
+                        AQSoundPlayer.PlaySound(SoundType.NPCHit, "Sounds/NPCHit/Slap_" + Main.rand.Next(2), target.Center, 0.3f);
                     }
                     target.velocity = Vector2.Normalize(target.Center - player.Center) * player.GetWeaponKnockback(item, item.knockBack) * 1.75f * target.knockBackResist;
                 }
@@ -60,7 +60,7 @@ namespace AQMod.Items.Weapons.Melee
             {
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    AQSoundPlayer.PlaySound(SoundType.NPCHit, "Sounds/NPCHit/Slap_" + Main.rand.Next(2), target.Center, 0.4f);
+                    AQSoundPlayer.PlaySound(SoundType.NPCHit, "Sounds/NPCHit/Slap_" + Main.rand.Next(2), target.Center, 0.3f);
                 }
                 target.velocity = Vector2.Normalize(target.Center - player.Center) * player.GetWeaponKnockback(item, item.knockBack) * 2f * Math.Max(target.knockBackResist, 0.2f);
             }
@@ -71,7 +71,10 @@ namespace AQMod.Items.Weapons.Melee
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             int p = Projectile.NewProjectile(new Vector2(Main.MouseWorld.X + Main.rand.NextFloat(-20f, 20f), position.Y - 666f), new Vector2(0f, 0f), type, damage * 4, 0f, player.whoAmI);
-            Main.PlaySound(SoundID.Item122, position);
+            if (Main.netMode != NetmodeID.Server)
+            {
+                AQSoundPlayer.PlaySound(SoundType.Item, "Sounds/Item/ThunderClap_" + Main.rand.Next(2), position, 0.55f);
+            }
             if (AQMod.TonsofScreenShakes)
             {
                 ScreenShakeManager.AddEffect(new BasicScreenShake(16, 10));

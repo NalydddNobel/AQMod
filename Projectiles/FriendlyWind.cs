@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets.Graphics.SceneLayers;
-using AQMod.Common.Graphics.DrawTypes;
 using AQMod.Common.Graphics.Particles;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.GaleStreams;

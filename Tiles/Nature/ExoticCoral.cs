@@ -34,7 +34,9 @@ namespace AQMod.Tiles.Nature
             var halfSize = size / 2;
             var area = new Rectangle(x - halfSize, y - halfSize, size, size);
             if (area.X < 10)
+            {
                 area.X = 10;
+            }
             else if (area.X + area.Width > Main.maxTilesX - 10)
             {
                 area.X = Main.maxTilesX - 10 - area.Width;

@@ -4,7 +4,7 @@ namespace AQMod.Content.Quest.Angler.FishingLocations
 {
     internal class BeachFishing : IFishingLocation
     {
-        private int _chance;
+        private readonly int _chance;
 
         public BeachFishing(int chance = 1)
         {

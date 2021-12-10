@@ -41,7 +41,7 @@ namespace AQMod.Items.Tools
                     Main.windSpeedSet += -0.01f * (1f - speedY.Abs() / item.shootSpeed);
                 }
             }
-            else 
+            else
             {
                 if (Main.windSpeedSet < ImitatedWindyDay.MaxWindSpeed)
                 {

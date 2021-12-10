@@ -99,13 +99,27 @@ Physicist.Chat.Mod.Fargowiltas.Mutant=You just buy boss summons from a weird loo
 Physicist.Chat.Mod.Fargowiltas.Abominationn=You just buy event summons from a creepy looking reaper? Weirdo.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=You just buy rare enemy summons from a dumb looking child? Weirdo.
 
-# Events
+# Event and Boss Checklist stuff
+
+EventName.CrabSeason=Crab Season
+BossChecklistDesc.CrabSeason=Begins naturally and ends naturally at random times. You can check the time when the event begins and ends using a [i:{0}].
+EventWarning.CrabSeason=The warmth of the oceans increases...
+EventEnding.CrabSeason=The oceans become neutral again...
+BossChecklistDesc.JerryCrabson=Summoned by using a [i:{0}] at the beach.
 
 EventName.DemonSiege=Demon Siege
+BossChecklistDesc.DemonSiege=Can be summoned using: {0} at a Gore Nest.
+
 EventName.GlimmerEvent=Glimmer Event
+BossChecklistDesc.GlimmerEvent=Happens naturally at night. Can alternatively be summoned with a [i:{0}]. Ends when the sun rises.
+EventWarning.GlimmerEvent=A glimmer appears in the sky...
+EventEnding.GlimmerEvent=The glimmer begins to fade away...
+BossChecklistDesc.OmegaStarite=Summoned by using an {0} at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event.
+
 EventName.GaleStreams=Gale Streams
-BossChecklistDesc.GaleStreams=Begins when the wind is above 40 mph, and ends when it's less than 34 mph. You can modify the speed of the wind using [i:{0}]
+BossChecklistDesc.GaleStreams=Begins when the wind is above 40 mph, and ends when it's less than 34 mph. You can modify the speed of the wind using [i:{0}].
 EventProgress.GaleStreams={0}mph/{1}mph
+BossChecklistDesc.RedSprite=Occasionally appears during the Gale Streams!
 
 # Recipe Groups
 
@@ -273,12 +287,15 @@ Common.NoColorDistort=Color Distort Shader is not enabled
 Common.NoScrollShader=Scroll Shader is not enabled
 Common.NoHypnoShader=Hypno Shader is not enabled
 Common.NoOutlineShader=Outline Shader is not enabled
+
 Common.CrabSeason=Crab Season
 Common.CrabSeasonWarning=The warmth of the oceans increases...
 Common.CrabSeasonEnding=The oceans become neutral again...
+
 Common.GlimmerEvent=Glimmer Event
 Common.GlimmerEventWarning=A glimmer appears in the sky...
 Common.GlimmerEventEnding=The glimmer begins to fade away...
+
 Common.EnergyDoDrop=The energies of the world become stable...
 Common.EnergyDontDrop=The energies of the world return to chaos...
 Common.WorksInInventoryAndPiggyBank=Works in your inventory or piggy bank

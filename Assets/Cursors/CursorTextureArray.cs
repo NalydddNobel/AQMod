@@ -1,6 +1,5 @@
 ﻿using AQMod.Content.CursorDyes;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 

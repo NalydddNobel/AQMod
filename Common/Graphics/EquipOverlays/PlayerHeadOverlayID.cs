@@ -1,6 +1,6 @@
 ﻿namespace AQMod.Common.Graphics.PlayerEquips
 {
-    public static class PlayerHeadOverlayID 
+    public static class PlayerHeadOverlayID
     {
         public const ushort MonoxideHat = 0;
         public const ushort FinchHat = 1;

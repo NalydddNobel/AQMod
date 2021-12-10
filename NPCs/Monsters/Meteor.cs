@@ -1,5 +1,4 @@
-﻿using AQMod.Content.WorldEvents.GaleStreams;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -50,7 +49,9 @@ namespace AQMod.NPCs.Monsters
                     npc.defense = 0;
                     npc.ai[0] = 2f;
                     if (npc.HasValidTarget)
+                    {
                         Main.player[npc.target].ApplyDamageToNPC(npc, npc.lifeMax, npc.velocity.Length(), 0, false);
+                    }
                     else
                     {
                         npc.lifeMax = -1;

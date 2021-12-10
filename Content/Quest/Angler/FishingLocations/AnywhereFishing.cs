@@ -4,7 +4,7 @@ namespace AQMod.Content.Quest.Angler.FishingLocations
 {
     internal class AnywhereFishing : IFishingLocation
     {
-        private int _chance;
+        private readonly int _chance;
 
         public AnywhereFishing(int chance = 1)
         {

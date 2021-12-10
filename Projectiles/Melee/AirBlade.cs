@@ -1,5 +1,4 @@
-﻿using AQMod;
-using AQMod.Assets;
+﻿using AQMod.Assets;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -103,7 +102,7 @@ namespace AQMod.Projectiles.Melee
             float progress = 0f;
             if (projectile.localAI[0] != 0f)
                 progress = projectile.ai[0] / projectile.localAI[0];
-                lightColor *= 0.2f + progress * 0.4f;
+            lightColor *= 0.2f + progress * 0.4f;
             lightColor.A = 0;
             for (int i = 0; i < 4; i++)
             {
@@ -113,7 +112,7 @@ namespace AQMod.Projectiles.Melee
             {
                 texture = AQTextures.Lights[LightTex.Spotlight30x30];
                 frame = texture.Frame();
-                lightColor = new Color(130, 100, 12, 1) *  AQConfigClient.c_EffectIntensity;
+                lightColor = new Color(130, 100, 12, 1) * AQConfigClient.c_EffectIntensity;
                 origin = texture.Size() / 2f;
                 Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, lightColor * progress * 0.3f, 0f, origin, projectile.scale, effect, 0f);
                 Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, lightColor * progress, 0f, origin, new Vector2(projectile.scale * 2f, projectile.scale * 0.2f * progress), effect, 0f);

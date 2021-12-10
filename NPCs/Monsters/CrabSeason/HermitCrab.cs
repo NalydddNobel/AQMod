@@ -1,6 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.WorldEvents.CrabSeason;
-using AQMod.Items.Armor.Crab;
+using AQMod.Items.Armor;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities;

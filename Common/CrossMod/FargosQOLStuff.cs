@@ -60,10 +60,10 @@ namespace AQMod.Common.CrossMod
 
         private void createRecipes()
         {
-            createFargoRecipe<HermitCrabBanner, Items.Armor.Crab.HermitShell>();
+            createFargoRecipe<HermitCrabBanner, Items.Armor.HermitShell>();
             createFargoRecipe<HermitCrabBanner, FishyFins>();
-            createFargoRecipe<StriderCrabBanner, Items.Armor.Crab.StriderCarapace>();
-            createFargoRecipe<StriderCrabBanner, Items.Armor.Crab.StriderPalms>();
+            createFargoRecipe<StriderCrabBanner, Items.Armor.StriderCarapace>();
+            createFargoRecipe<StriderCrabBanner, Items.Armor.StriderPalms>();
             createFargoRecipe<StriderCrabBanner, Items.Tools.GrapplingHooks.StriderHook>();
             createFargoRecipe<StriderCrabBanner, FishyFins>();
 

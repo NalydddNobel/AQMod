@@ -2,23 +2,24 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Armor.Crab
+namespace AQMod.Items.Armor
 {
-    [AutoloadEquip(EquipType.Legs)]
-    public class StriderPalms : ModItem
+    [AutoloadEquip(EquipType.Head)]
+    public class HermitShell : ModItem
     {
         public override void SetDefaults()
         {
             item.width = 20;
             item.height = 20;
-            item.defense = 4;
+            item.defense = 2;
             item.rare = ItemRarityID.Blue;
         }
 
         public override void UpdateEquip(Player player)
         {
-            player.GetModPlayer<AQPlayer>().striderPalms = true;
-            player.minionDamage += 0.1f;
+            float speed = player.velocity.Length();
+            if (speed < 5f)
+                player.statDefense += (int)((5f - speed) * 2);
         }
     }
 }

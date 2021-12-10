@@ -9,8 +9,8 @@ namespace AQMod.Content.MapMarkers.Components
 {
     public sealed class MapMarkerLayerToggles
     {
-        private Player _player;
-        private AQPlayer _aQPlayer;
+        private readonly Player _player;
+        private readonly AQPlayer _aQPlayer;
         private readonly List<IGiveMapMarkerBuff> MapMarkerBuffs;
 
         public MapMarkerLayerToggles(Player player, AQPlayer aQPlayer)
@@ -24,7 +24,7 @@ namespace AQMod.Content.MapMarkers.Components
         {
             MapMarkerBuffs.Add(mapMarkerBuff);
         }
-        
+
         public void ApplyInterface(ref string mouseText)
         {
             if (MapMarkerBuffs.Count == 0)

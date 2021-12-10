@@ -4,6 +4,7 @@ using AQMod.Content.Dusts;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Localization;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -29,8 +30,8 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
         public override void SetDefaults()
         {
-            npc.width = 46;
-            npc.height = 36;
+            npc.width = 74;
+            npc.height = 50;
             npc.lifeMax = 2750;
             npc.damage = 45;
             npc.defense = 15;
@@ -56,6 +57,11 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.8);
+        }
+
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
+        {
+            return false;
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -525,7 +531,10 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             {
                                 if (Main.netMode != NetmodeID.Server && AQMod.Screenshakes && (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 {
-                                    Main.PlaySound(SoundID.Item122, gotoPosition);
+                                    if (Main.netMode != NetmodeID.Server)
+                                    {
+                                        AQSoundPlayer.PlaySound(SoundType.Item, "Sounds/Item/ThunderClap_" + Main.rand.Next(2), npc.Center, 0.6f);
+                                    }
                                     ScreenShakeManager.AddEffect(new BasicScreenShake(8, AQMod.MultIntensity(12)));
                                     if (AQConfigClient.c_EffectQuality > 0.2f)
                                     {
@@ -966,7 +975,9 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     () => WorldDefeats.DownedRedSprite,
                     6.67f,
                     ModContent.NPCType<RedSprite>(),
-                    AQText.chooselocalizationtext(en_US: "Red Sprite", zh_Hans: "红色精灵"),
+                    AQText.chooselocalizationtext(
+                        en_US: "Red Sprite",
+                        zh_Hans: "红色精灵"),
                     0,
                     new List<int>()
                     {
@@ -980,8 +991,10 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         ModContent.ItemType<Items.BossItems.RedSpriteTrophy>(),
                         ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>(),
                     },
-                    "Occasionally appears during the Gale Streams!",
-                    "AQMod/Assets/BossChecklist/RedSpriteEntry").AddEntry(bossChecklist);
+                    AQText.chooselocalizationtext(
+                        en_US: "Occasionally appears during the Gale Streams!",
+                        zh_Hans: null),
+                    "AQMod/Assets/BossChecklist/RedSprite").AddEntry(bossChecklist);
             }
             catch (Exception e)
             {

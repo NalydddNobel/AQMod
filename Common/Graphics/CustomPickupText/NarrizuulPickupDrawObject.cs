@@ -67,7 +67,9 @@ namespace AQMod.Common.Graphics.CustomPickupText
         {
             rotation = (float)Math.Sin(Main.GlobalTime * 2f) * 0.15f;
             if (lifeTime < 0)
+            {
                 scale -= 0.01f;
+            }
             else
             {
                 if (scale < 1f)

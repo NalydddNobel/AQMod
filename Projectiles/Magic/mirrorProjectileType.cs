@@ -1,5 +1,4 @@
-﻿using AQMod;
-using AQMod.Assets;
+﻿using AQMod.Assets;
 using AQMod.Content.Dusts;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;

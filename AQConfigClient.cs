@@ -122,7 +122,7 @@ namespace AQMod
             if (CosmicEnergyAlt != c_CosmicEnergyAlt)
             {
                 c_CosmicEnergyAlt = CosmicEnergyAlt;
-                Main.itemTexture[ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>()] = 
+                Main.itemTexture[ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>()] =
                     ModContent.GetTexture(ItemLoader.GetItem(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>()).Texture);
             }
             AQMod.ApplyClientConfig(this);

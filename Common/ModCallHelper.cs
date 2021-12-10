@@ -1,13 +1,10 @@
 ﻿using AQMod.Common.DeveloperTools;
-using AQMod.Content;
 using AQMod.Content.WorldEvents.CrabSeason;
-using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Content.WorldEvents.DemonSiege;
-using MonoMod.RuntimeDetour;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace AQMod.Common
 {
@@ -23,7 +20,7 @@ namespace AQMod.Common
                     {
                         AQMod.addLoadTask(new CachedTask((object)o[1], (Func<object, object>)o[2]));
                         return null;
-                    } 
+                    }
                 },
 
                 { "glimmerevent.tilex", (o) => AQMod.CosmicEvent.tileX },

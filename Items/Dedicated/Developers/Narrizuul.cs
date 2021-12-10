@@ -1,5 +1,4 @@
-﻿using AQMod.Assets.Graphics;
-using AQMod.Common.Graphics.CustomPickupText;
+﻿using AQMod.Common.Graphics.CustomPickupText;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

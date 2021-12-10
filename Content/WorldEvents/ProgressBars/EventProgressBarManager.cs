@@ -60,7 +60,9 @@ namespace AQMod.Content.WorldEvents.ProgressBars
                 if (currentInvasionType == byte.MaxValue)
                 {
                     if (_invasionProgressAlpha > 0f)
+                    {
                         _invasionProgressAlpha -= 0.05f;
+                    }
                     else
                     {
                         ActiveBar = 255;

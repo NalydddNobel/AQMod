@@ -1,5 +1,5 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
+﻿using AQMod.Common;
+using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Items.BossItems.Crabson;
@@ -9,9 +9,11 @@ using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
+using AQMod.Localization;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,8 +21,31 @@ using Terraria.ModLoader;
 namespace AQMod.NPCs.Boss.Crabson
 {
     [AutoloadBossHead]
-    public class JerryCrabson : ModNPC, IModifiableMusicNPC
+    public class JerryCrabson : AQBoss, IModifiableMusicNPC
     {
+        public override BossEntry? BossChecklistEntry => new BossEntry(
+            () => WorldDefeats.DownedCrabson,
+            2f,
+            ModContent.NPCType<JerryCrabson>(),
+            AQText.chooselocalizationtext("Jerry Crabson", "巨蟹蛤"),
+            ModContent.ItemType<MushroomClam>(),
+            new List<int>() {
+                ModContent.ItemType<Crabsol>(),
+                ModContent.ItemType<JerryClawFlail>(),
+                ModContent.ItemType<CinnabarBow>(),
+                ModContent.ItemType<Bubbler>(),
+                ModContent.ItemType<AquaticEnergy>(),
+            },
+            new List<int>()
+            {
+                ModContent.ItemType<CrabsonTrophy>(),
+                ModContent.ItemType<CrabsonMask>(),
+            },
+            AQText.chooselocalizationtext(
+                en_US: "Summoned by using a [i:" + ModContent.ItemType<MushroomClam>() + "] at the beach.",
+                zh_Hans: null),
+            "AQMod/Assets/BossChecklist/JerryCrabson");
+
         public override void SetDefaults()
         {
             npc.width = 90;

@@ -46,7 +46,9 @@ namespace AQMod.Items.Potions
         public override void UseStyle(Player player) // mostly reused logic from the Magic Mirror 
         {
             if (player.itemTime == 0)
+            {
                 player.itemTime = (int)(item.useTime / PlayerHooks.TotalUseTimeMultiplier(player, item));
+            }
             else if (player.itemTime == (int)(item.useTime / PlayerHooks.TotalUseTimeMultiplier(player, item)) / 2)
             {
                 for (int i = 0; i < 30; i++)

@@ -1,5 +1,4 @@
-﻿using AQMod;
-using AQMod.Assets;
+﻿using AQMod.Assets;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;

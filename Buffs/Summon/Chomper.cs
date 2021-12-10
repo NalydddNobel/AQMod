@@ -1,5 +1,4 @@
-﻿using AQMod.Projectiles.Summon.ChomperMinion;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Summon

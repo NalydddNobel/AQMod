@@ -284,17 +284,17 @@ namespace AQMod.Tiles
                 case ExoticBlueTorch:
                 {
                     float intensityMult = 1f;
-                        if (Main.tile[i, j].liquid > 0)
+                    if (Main.tile[i, j].liquid > 0)
+                    {
+                        intensityMult = 0.025f;
+                        var screenCenter = AQMod.ScreenCenter;
+                        var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
+                        var distance = (screenCenter - screenPosition).Length();
+                        if (distance < TorchIntensityDistance)
                         {
-                            intensityMult = 0.025f;
-                            var screenCenter = AQMod.ScreenCenter;
-                            var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
-                            var distance = (screenCenter - screenPosition).Length();
-                            if (distance < TorchIntensityDistance)
-                            {
-                                intensityMult += (1f - distance / TorchIntensityDistance) * 1.25f;
-                            }
+                            intensityMult += (1f - distance / TorchIntensityDistance) * 1.25f;
                         }
+                    }
                     ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (long)(uint)i);
                     Color color = new Color(100, 100, 100, 0) * intensityMult;
                     int frameX = Main.tile[i, j].frameX;

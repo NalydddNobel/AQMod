@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -59,11 +58,11 @@ namespace AQMod.Items.Dedicated
             Vector2 center = font.MeasureString(text) / 2f;
             ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, new Vector2(x, y), Color.Black, rotation, origin, baseScale);
             var offset = new Vector2(2f, 0);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + offset.RotatedBy(Main.GlobalTime), new Color(255, 0, 0, 0), 
+            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + offset.RotatedBy(Main.GlobalTime), new Color(255, 0, 0, 0),
                 rotation, origin, baseScale);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + offset.RotatedBy(Main.GlobalTime + MathHelper.TwoPi / 6), new Color(255, 255, 0, 0), 
+            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + offset.RotatedBy(Main.GlobalTime + MathHelper.TwoPi / 6), new Color(255, 255, 0, 0),
                 rotation, origin, baseScale);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + offset.RotatedBy(Main.GlobalTime + MathHelper.TwoPi / 6 * 2), new Color(0, 0, 255, 0), 
+            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + offset.RotatedBy(Main.GlobalTime + MathHelper.TwoPi / 6 * 2), new Color(0, 0, 255, 0),
                 rotation, origin, baseScale);
 
             if (AQConfigClient.c_EffectQuality < 1f)
@@ -73,16 +72,16 @@ namespace AQMod.Items.Dedicated
             var spotlightOrigin = new Vector2(6f, 33f);
             float spotlightRotation = rotation + MathHelper.PiOver2;
             var spotlightEffect = SpriteEffects.None;
-            Main.spriteBatch.Draw(texture, new Vector2(x, y) + center + 
-                new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f), -4f + 
+            Main.spriteBatch.Draw(texture, new Vector2(x, y) + center +
+                new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f), -4f +
                 (float)Math.Sin(Main.GlobalTime * 2.3134f)), null, new Color(0, 70, 0, 0), spotlightRotation,
                spotlightOrigin, new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime * 4f) * 0.145f, center.Y * 0.15f), spotlightEffect, 0f);
-            Main.spriteBatch.Draw(texture, new Vector2(x, y) + center + 
-                new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f + 5245f) * 4f, -4f + 
+            Main.spriteBatch.Draw(texture, new Vector2(x, y) + center +
+                new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f + 5245f) * 4f, -4f +
                 (float)Math.Sin(Main.GlobalTime * 2.3134f + 12f) * 2f), null, new Color(70, 70, 0, 0), spotlightRotation,
                 spotlightOrigin, new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime + 655f) * 0.2f, center.Y * 0.1435f), spotlightEffect, 0f);
-            Main.spriteBatch.Draw(texture, new Vector2(x, y) + center + 
-                new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f + 12f) * -4f, -4f + 
+            Main.spriteBatch.Draw(texture, new Vector2(x, y) + center +
+                new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f + 12f) * -4f, -4f +
                 (float)Math.Sin(Main.GlobalTime * 2.313f + 5245f) * -1.25f), null, new Color(0, 0, 70, 0), spotlightRotation,
                 spotlightOrigin, new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime * 2f + 777f) * 0.2f, center.Y * 0.25f), spotlightEffect, 0f);
         }

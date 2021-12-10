@@ -1,17 +1,15 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Content.Dusts;
-using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Foods;
+using AQMod.Items.Potions;
 using AQMod.Items.Tools.Fishing;
-using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using AQMod.Items.Potions;
 
 namespace AQMod
 {

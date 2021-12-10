@@ -1,12 +1,10 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
-using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Ranged;
-using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

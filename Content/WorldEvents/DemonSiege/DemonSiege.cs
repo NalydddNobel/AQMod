@@ -104,9 +104,9 @@ namespace AQMod.Content.WorldEvents.DemonSiege
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<TrapImp>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32));
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Magmalbubble>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32));
         }
-        internal override EventEntry? BossChecklistEntry 
+        internal override EventEntry? BossChecklistEntry
         {
-            get 
+            get
             {
                 var items = new List<int>()
                 {
@@ -128,7 +128,7 @@ namespace AQMod.Content.WorldEvents.DemonSiege
                 return new EventEntry(
                     () => WorldDefeats.DownedDemonSiege,
                     4.1f,
-                    new List<int>() 
+                    new List<int>()
                     {
                         ModContent.NPCType<Cindera>(),
                         ModContent.NPCType<Magmalbubble>(),
@@ -143,7 +143,9 @@ namespace AQMod.Content.WorldEvents.DemonSiege
                         ModContent.ItemType<Items.Vanities.CursorDyes.DemonicCursorDye>(),
                         ModContent.ItemType<Items.Vanities.Dyes.HellBeamDye>(),
                     },
-                    "Can be summoned using: " + summonItems + " at a Gore Nest.",
+                    AQText.chooselocalizationtext(
+                        en_US: "Can be summoned using: " + summonItems + " at a Gore Nest.",
+                        zh_Hans: null),
                     "AQMod/Assets/BossChecklist/DemonSiege",
                     "AQMod/Assets/EventIcons/DemonSiege");
             }

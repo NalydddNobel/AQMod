@@ -11,11 +11,11 @@ namespace AQMod.Assets
         private const string throwbackTexturePath = "AQMod/" + AQTextures.Error;
         private static readonly bool _debug = false;
 
-        private Ref<Texture2D>[] _textures;
-        private bool[] _loaded;
-        private bool[] _loadedProperly;
+        private readonly Ref<Texture2D>[] _textures;
+        private readonly bool[] _loaded;
+        private readonly bool[] _loadedProperly;
 
-        public bool IsNull => false; 
+        public bool IsNull => false;
         public string Path => _path;
 
         public bool Loaded(int index)
@@ -35,7 +35,7 @@ namespace AQMod.Assets
 
         internal static TextureArray FromType(Type t, int length, string extra = "")
         {
-            var textureAsset = new TextureArray(t.Namespace.Replace(".", "/") + "/" + t.Name + extra,length);
+            var textureAsset = new TextureArray(t.Namespace.Replace(".", "/") + "/" + t.Name + extra, length);
             return textureAsset;
         }
 

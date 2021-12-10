@@ -91,7 +91,9 @@ namespace AQMod.Common.Graphics.SceneLayers
         {
             float x = AQMod.CosmicEvent.tileX * 16f;
             if (Framing.GetTileSafely(AQMod.CosmicEvent.tileX, AQMod.CosmicEvent.tileY).type == ModContent.TileType<GlimmeringStatue>())
+            {
                 x += 16f;
+            }
             else
             {
                 x += 8f;
@@ -118,7 +120,9 @@ namespace AQMod.Common.Graphics.SceneLayers
                 Main.dust[d].noGravity = true;
             }
             if (_swordEffectDelay > 0)
+            {
                 _swordEffectDelay--;
+            }
             else if (_rand.NextBool(10 + (int)(20 * (1f - AQConfigClient.c_EffectIntensity))))
             {
                 AQMod.WorldEffects.Add(new UltimateSwordEffect(_rand));

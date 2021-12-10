@@ -102,7 +102,7 @@ namespace AQMod.Common.Graphics.SceneLayers
             if (behindTiles)
                 DrawLayer(SceneLayering.BehindTiles_BehindNPCs);
             else
-               DrawLayer(SceneLayering.BehindNPCs);
+                DrawLayer(SceneLayering.BehindNPCs);
             orig(self, behindTiles);
             if (behindTiles)
                 DrawLayer(SceneLayering.BehindTiles_InfrontNPCs);

@@ -39,7 +39,9 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                 ModContent.ItemType<Items.Vanities.Dyes.CensorDye>(),
                 ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>(),
             },
-            "Begins when the wind is above 40 mph, and ends when it's less than 34 mph. You can modify the speed of the wind using [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]",
+            AQText.chooselocalizationtext(
+                en_US: "Begins when the wind is above 40 mph, and ends when it's less than 34 mph. You can modify the speed of the wind using [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]",
+                zh_Hans: "风速大于40 mph时开始, 风速小于34 mph时结束. 你可以使用 [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "] 更改风速"),
             "AQMod/Assets/BossChecklist/GaleStreams",
             "AQMod/Assets/EventIcons/GaleStreams");
 

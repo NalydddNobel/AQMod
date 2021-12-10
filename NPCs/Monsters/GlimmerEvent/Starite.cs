@@ -1,6 +1,4 @@
 ﻿using AQMod.Buffs.Debuffs;
-using AQMod.Common;
-using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Foods;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;

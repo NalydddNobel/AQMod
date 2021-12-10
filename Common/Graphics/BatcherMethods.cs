@@ -21,7 +21,7 @@ namespace AQMod.Common.Graphics
             }
         }
 
-        public static class Dusts 
+        public static class Dusts
         {
             public static void Begin(SpriteBatch spriteBatch)
             {
@@ -33,7 +33,7 @@ namespace AQMod.Common.Graphics
             }
         }
 
-        public static class GeneralEntities 
+        public static class GeneralEntities
         {
             public static void Begin(SpriteBatch spriteBatch)
             {
@@ -57,7 +57,7 @@ namespace AQMod.Common.Graphics
             }
         }
 
-        public static class UI 
+        public static class UI
         {
             public static void Begin(SpriteBatch spriteBatch)
             {

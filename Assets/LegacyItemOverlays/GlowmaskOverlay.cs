@@ -14,7 +14,7 @@ namespace AQMod.Assets.LegacyItemOverlays
     {
         public readonly string Path;
         public readonly Func<Color> GetDrawColor;
-        public readonly bool DrawInventory; 
+        public readonly bool DrawInventory;
         public int Shader;
 
         public static Color DefaultGlowmaskColor => new Color(250, 250, 250, 0);

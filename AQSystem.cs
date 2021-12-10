@@ -1,15 +1,14 @@
 ﻿using AQMod.Common.Skies;
-using AQMod.Content.WorldEvents.GaleStreams;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.WorldEvents.ProgressBars;
+using AQMod.Tiles.Nature;
 using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using AQMod.Tiles.Nature;
-using AQMod.Content.WorldEvents.ProgressBars;
 
 namespace AQMod
 {

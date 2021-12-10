@@ -1,6 +1,4 @@
-﻿using AQMod.Items.BossItems.Crabson;
-using AQMod.Items.BossItems.Starite;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

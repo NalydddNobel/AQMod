@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Items.Materials.Energies;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;

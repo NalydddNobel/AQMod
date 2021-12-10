@@ -1,6 +1,4 @@
-﻿using AQMod.Common.CrossMod;
-using AQMod.Items.Vanities.Dyes;
-using AQMod.Tiles;
+﻿using AQMod.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

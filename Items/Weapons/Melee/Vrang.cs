@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace AQMod.Items.Weapons.Melee
 {
     public class Vrang : ModItem
-    {        
+    {
         public override void SetDefaults()
         {
             item.width = 24;

@@ -64,7 +64,7 @@ namespace AQMod.Projectiles
         {
             return new Color(200, 200, 200, 0);
         }
-        
+
         // ai[1] is buff time
         public override void AI()
         {
@@ -128,7 +128,7 @@ namespace AQMod.Projectiles
         {
             if (AQConfigClient.c_EffectQuality <= 1f)
                 return true;
-                var texture = Main.projectileTexture[projectile.type];
+            var texture = Main.projectileTexture[projectile.type];
             var origin = texture.Size() / 2f;
             var clr = projectile.GetAlpha(lightColor);
             var pos = projectile.Center;

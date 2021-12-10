@@ -30,7 +30,9 @@ namespace AQMod.Effects.ScreenEffects
         public static void ChannelEffect(string name, ScreenShakeFX effect)
         {
             if (_channeledShakes.ContainsKey(name))
+            {
                 _channeledShakes[name].AdoptChannel(effect);
+            }
             else
             {
                 effect.Setup();

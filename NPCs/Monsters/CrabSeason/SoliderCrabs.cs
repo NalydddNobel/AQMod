@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;

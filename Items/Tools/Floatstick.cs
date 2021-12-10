@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Items.Materials.Energies;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using AQMod.Items.Materials.Energies;
+using Terraria.ModLoader;
 
 namespace AQMod.Items.Tools
 {
@@ -11,23 +11,23 @@ namespace AQMod.Items.Tools
     {
         public override void SetDefaults()
         {
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.shootSpeed = 6f;
-			item.shoot = ModContent.ProjectileType<Projectiles.Floatstick>();
-			item.width = 12;
-			item.height = 12;
-			item.maxStack = 999;
-			item.consumable = true;
-			item.UseSound = SoundID.Item1;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.shootSpeed = 6f;
+            item.shoot = ModContent.ProjectileType<Projectiles.Floatstick>();
+            item.width = 12;
+            item.height = 12;
+            item.maxStack = 999;
+            item.consumable = true;
+            item.UseSound = SoundID.Item1;
             item.rare = ItemRarityID.Blue;
-			item.useAnimation = 15;
-			item.useTime = 15;
-			item.noMelee = true;
-			item.value = Item.sellPrice(copper: 50);
-			item.holdStyle = 1;
-		}
+            item.useAnimation = 15;
+            item.useTime = 15;
+            item.noMelee = true;
+            item.value = Item.sellPrice(copper: 50);
+            item.holdStyle = 1;
+        }
 
-		public override Color? GetAlpha(Color lightColor)
+        public override Color? GetAlpha(Color lightColor)
         {
             return new Color(190, 40, 220 + (int)(Math.Sin(Main.GlobalTime * 5f) * 40f));
         }

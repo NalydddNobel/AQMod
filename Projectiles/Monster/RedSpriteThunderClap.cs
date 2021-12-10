@@ -77,7 +77,7 @@ namespace AQMod.Projectiles.Monster
             lightColor = projectile.GetAlpha(lightColor);
             var frame = texture.Frame(1, Main.projFrames[projectile.type], 0, 0);
             var orig = new Vector2(texture.Width / 2f, frame.Height - 4f);
-            float electric = 2f + ((float)Math.Sin(Main.GlobalTime * 5f)+ 1f) * 2f;
+            float electric = 2f + ((float)Math.Sin(Main.GlobalTime * 5f) + 1f) * 2f;
 
             int separation = frame.Height - 6;
             var glow = AQTextures.Lights[LightTex.Spotlight240x66];

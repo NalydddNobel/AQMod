@@ -1,5 +1,6 @@
 ﻿using AQMod.Content.Dusts;
 using AQMod.Items.Materials.NobleMushrooms;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -38,6 +39,15 @@ namespace AQMod.Tiles.Nature
             AddMapEntry(new Color(144, 254, 2), name);
             AddMapEntry(new Color(0, 197, 208), name);
             disableSmartCursor = true;
+        }
+
+        public override bool KillSound(int i, int j)
+        {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                AQSoundPlayer.PlaySound(SoundType.Item, "Sounds/Item/TileHit/NobleMushroomHit_" + Main.rand.Next(3), new Vector2(i * 16, j * 16f), 0.5f, Main.rand.NextFloat(0.9f, 1.1f));
+            }
+            return false;
         }
 
         public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].frameX / 36);
@@ -99,6 +109,10 @@ namespace AQMod.Tiles.Nature
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                AQSoundPlayer.PlaySound(SoundType.Item, "Sounds/Item/TileHit/NobleMushroomDestroy", new Vector2(i * 16, j * 16f), 0.5f, Main.rand.NextFloat(-0.1f, 0.1f));
+            }
             switch (frameX / 36)
             {
                 default:

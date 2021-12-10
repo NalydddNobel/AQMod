@@ -18,9 +18,9 @@ using AQMod.Content.MapMarkers;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.GaleStreams;
 using AQMod.Content.WorldEvents.GlimmerEvent;
-using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.ProgressBars;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
@@ -38,7 +38,6 @@ using AQMod.NPCs.Boss.Starite;
 using log4net;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -51,7 +50,6 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
-using AQMod.Common.CrossMod.BossChecklist;
 
 namespace AQMod
 {
@@ -631,7 +629,6 @@ namespace AQMod
         {
             AQBuff.Sets.Setup();
             NoHitManager.Setup();
-            BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
             MapMarkers.Setup(setupStatics: true);
             if (!Main.dedServ)
             {

@@ -18,7 +18,7 @@ namespace AQMod.Projectiles
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {   
+        {
             target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 1200);
         }
     }

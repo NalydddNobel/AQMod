@@ -121,8 +121,10 @@ namespace AQMod.NPCs.Boss.Starite
                 ModContent.ItemType<RainbowOutlineDye>(),
                 ModContent.ItemType<DiscoDye>(),
             },
-            "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event",
-            "AQMod/Assets/BossChecklist/OmegaStariteEntry"
+            AQText.chooselocalizationtext(
+                en_US: "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event.",
+                zh_Hans: null),
+            "AQMod/Assets/BossChecklist/OmegaStarite"
         );
 
         public override void SetStaticDefaults()
@@ -276,7 +278,7 @@ namespace AQMod.NPCs.Boss.Starite
             outerRingRotation %= orbs[OmegaStariteOrb.INNER_RING].maxRotation;
             for (int i = OmegaStariteOrb.INNER_RING; i < OmegaStariteOrb.SPHERE_COUNT; i++)
             {
-                orbs[i].position = Vector3.Transform(new Vector3(orbs[i].radius, 0f, 0f), 
+                orbs[i].position = Vector3.Transform(new Vector3(orbs[i].radius, 0f, 0f),
                     Matrix.CreateFromYawPitchRoll(outerRingPitch, outerRingRoll, orbs[i].defRotation + outerRingRotation)) + new Vector3(center, 0f);
             }
         }
@@ -590,7 +592,7 @@ namespace AQMod.NPCs.Boss.Starite
                                     npc.localAI[1] = 1f;
                                     Main.PlaySound(SoundID.Trackable, npc.Center, 188);
                                     if (Main.netMode != NetmodeID.Server)
-                                        ScreenShakeManager.AddEffect(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f *  AQConfigClient.c_EffectIntensity));
+                                        ScreenShakeManager.AddEffect(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f * AQConfigClient.c_EffectIntensity));
                                     int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaRay>(), 100, 1f, Main.myPlayer, npc.whoAmI);
                                     Main.projectile[p].scale = 0.75f;
                                 }
@@ -1433,7 +1435,7 @@ namespace AQMod.NPCs.Boss.Starite
                 drawColor.B = 80;
             var drawPos = npc.Center - Main.screenPosition;
             var sortedOmegites = new List<OmegaStariteOrb>(orbs);
-            float intensity =  AQConfigClient.c_EffectIntensity;
+            float intensity = AQConfigClient.c_EffectIntensity;
             if ((int)npc.ai[0] == -1)
             {
                 intensity += npc.ai[1] / 20;

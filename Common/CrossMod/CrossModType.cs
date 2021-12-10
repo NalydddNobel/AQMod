@@ -7,7 +7,7 @@ namespace AQMod.Common.CrossMod
     {
         public string ModName { get; protected set; }
 
-        public CrossModType(string name) 
+        public CrossModType(string name)
         {
             ModName = name;
         }
