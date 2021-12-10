@@ -2,6 +2,7 @@
 using AQMod.Assets.Textures;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
+using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics;
 using AQMod.Common.NoHitting;
 using AQMod.Content.Dusts;
@@ -16,6 +17,7 @@ using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Vanities.Pets;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Ranged;
+using AQMod.Localization;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,7 +30,7 @@ using Terraria.ModLoader;
 namespace AQMod.NPCs.Boss.Starite
 {
     [AutoloadBossHead()]
-    public class OmegaStarite : ModNPC, IModifiableMusicNPC
+    public class OmegaStarite : AQBoss, IModifiableMusicNPC
     {
         public const float CIRCUMFERENCE = 120;
         public const float RADIUS = CIRCUMFERENCE / 2f;
@@ -95,6 +97,34 @@ namespace AQMod.NPCs.Boss.Starite
 
         public int skipDeathTimer;
         public List<OmegaStariteOrb> orbs;
+
+        public override BossEntry? BossChecklistEntry => new BossEntry(
+            () => WorldDefeats.DownedStarite,
+            6.1f,
+            ModContent.NPCType<OmegaStarite>(),
+            AQText.chooselocalizationtext(en_US: "Omega Starite", zh_Hans: "终末之星"),
+            ModContent.ItemType<NovaFruit>(),
+            new List<int>() {
+                ModContent.ItemType<Items.Accessories.CelesteTorus>(),
+                ModContent.ItemType<Items.Weapons.Melee.UltimateSword>(),
+                ModContent.ItemType<CosmicTelescope>(),
+                ModContent.ItemType<Raygun>(),
+                ModContent.ItemType<MagicWand>(),
+                ModContent.ItemType<CosmicEnergy>(),
+                ItemID.SoulofFlight,
+                ItemID.FallenStar,
+            },
+            new List<int>() {
+                ModContent.ItemType<OmegaStariteTrophy>(),
+                ModContent.ItemType<OmegaStariteMask>(),
+                ModContent.ItemType<DragonBall>(),
+                ModContent.ItemType<EnchantedDye>(),
+                ModContent.ItemType<RainbowOutlineDye>(),
+                ModContent.ItemType<DiscoDye>(),
+            },
+            "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event",
+            "AQMod/Assets/BossChecklist/OmegaStariteEntry"
+        );
 
         public override void SetStaticDefaults()
         {

@@ -1,14 +1,48 @@
-﻿using AQMod.Content.WorldEvents.ProgressBars;
+﻿using AQMod.Common;
+using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Content.WorldEvents.ProgressBars;
+using AQMod.Localization;
+using AQMod.NPCs.Monsters.GaleStreams;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Content.WorldEvents.GaleStreams
 {
-    public sealed class GaleStreams : ModWorld
+    public sealed class GaleStreams : WorldEvent
     {
+        internal override EventProgressBar ProgressBar => new GaleStreamsProgressBar();
+        internal override EventEntry? BossChecklistEntry => new EventEntry(
+            () => WorldDefeats.DownedGaleStreams,
+            6.66f,
+            new List<int>() {
+                ModContent.NPCType<Vraine>(),
+                ModContent.NPCType<StreamingBalloon>(),
+                ModContent.NPCType<RedSprite>(),
+            },
+            AQText.chooselocalizationtext(en_US: "Gale Streams", zh_Hans: "紊流风暴"),
+            0,
+            new List<int>()
+            {
+                ItemID.NimbusRod,
+                ModContent.ItemType<Items.Weapons.Melee.Vrang>(),
+                ModContent.ItemType<Items.Weapons.Magic.Umystick>(),
+                ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
+                ModContent.ItemType<Items.Materials.Fluorescence>(),
+                ModContent.ItemType<Items.Foods.PeeledCarrot>(),
+            },
+            new List<int>()
+            {
+                ModContent.ItemType<Items.Vanities.Dyes.CensorDye>(),
+                ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>(),
+            },
+            "Begins when the wind is above 40 mph, and ends when it's less than 34 mph. You can modify the speed of the wind using [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]",
+            "AQMod/Assets/BossChecklist/GaleStreamsEntry",
+            "AQMod/Assets/EventIcons/GaleStreamsInvasion");
+
         public static Color HotCurrentColor => new Color(43, 148, 240, 255);
         public static Color ColdCurrentColor => new Color(255, 94, 31, 255);
         public static Color NeutralCurrentColor => new Color(255, 255, 255, 255);
@@ -43,14 +77,6 @@ namespace AQMod.Content.WorldEvents.GaleStreams
         public static bool InSpace(float y)
         {
             return y < 3000f; // 187.5 tiles
-        }
-
-        internal static void Setup()
-        {
-            if (!Main.dedServ)
-            {
-                //EventProgressBarManager.AddBar(new GaleStreamsProgressBar());
-            }
         }
 
         internal static void Reset()

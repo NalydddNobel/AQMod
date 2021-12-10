@@ -7,6 +7,7 @@ namespace AQMod.Common.CrossMod.BossChecklist
     internal struct EventEntry : IBossChecklistEntryData
     {
         private readonly Func<bool> isDowned;
+        private readonly Func<bool> available;
         private readonly float progression;
         private readonly List<int> enemies;
         private readonly string eventName;
@@ -16,10 +17,11 @@ namespace AQMod.Common.CrossMod.BossChecklist
         private readonly string summonDescription;
         private readonly string despawnMessage;
         private readonly string portraitTexture;
+        private readonly string bossHead;
         private readonly AQMod _aQMod;
 
         public EventEntry(Func<bool> downed, float progression, List<int> enemies, string eventName, int summonItem = 0, List<int> loot = null, List<int> collectibles = null,
-            string summonDescription = null, string texture = null, string despawnMessage = null)
+            string summonDescription = null, string texture = null, string eventIcon = null, string despawnMessage = null, Func<bool> available = null)
         {
             isDowned = downed;
             this.progression = progression;
@@ -31,6 +33,8 @@ namespace AQMod.Common.CrossMod.BossChecklist
             this.summonDescription = summonDescription;
             portraitTexture = texture;
             this.despawnMessage = despawnMessage;
+            bossHead = eventIcon;
+            this.available = available;
             _aQMod = AQMod.Instance;
         }
 
@@ -47,7 +51,9 @@ namespace AQMod.Common.CrossMod.BossChecklist
             loot,
             summonDescription,
             despawnMessage,
-            portraitTexture);
+            portraitTexture,
+            bossHead,
+            available);
         }
     }
 }

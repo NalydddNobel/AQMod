@@ -46,31 +46,6 @@ namespace AQMod.Common.CrossMod.BossChecklist
                 if (bossChecklist == null)
                     return;
                 var b = new BossChecklistHelper(bossChecklist, aQMod);
-                b.AddBoss(6.1f,
-                    ModContent.NPCType<OmegaStarite>(),
-                    AQText.chooselocalizationtext(en_US: "Omega Starite", zh_Hans: "终末之星"),
-                    () => WorldDefeats.DownedStarite,
-                    ModContent.ItemType<NovaFruit>(),
-                    new List<int>() {
-                        ModContent.ItemType<OmegaStariteTrophy>(),
-                        ModContent.ItemType<OmegaStariteMask>(),
-                        ModContent.ItemType<DragonBall>(),
-                        ModContent.ItemType<EnchantedDye>(),
-                        ModContent.ItemType<RainbowOutlineDye>(),
-                        ModContent.ItemType<DiscoDye>(),
-                    },
-                    new List<int>() {
-                        ModContent.ItemType<CelesteTorus>(),
-                        ModContent.ItemType<UltimateSword>(),
-                        ModContent.ItemType<CosmicTelescope>(),
-                        ModContent.ItemType<Raygun>(),
-                        ModContent.ItemType<MagicWand>(),
-                        ModContent.ItemType<CosmicEnergy>(),
-                        ItemID.SoulofFlight,
-                        ItemID.FallenStar,
-                    },
-                    "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event",
-                    "AQMod/Assets/Textures/BossChecklist_OmegaStarite");
                 b.AddBoss(
                     2f,
                     ModContent.NPCType<JerryCrabson>(),

@@ -1,10 +1,14 @@
-﻿using AQMod.Content.Dusts;
+﻿using AQMod.Common;
+using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Content.Dusts;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Placeable.Banners;
+using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,7 +16,7 @@ using Terraria.ModLoader;
 namespace AQMod.NPCs.Monsters.GaleStreams
 {
     [AutoloadBossHead()]
-    public class RedSprite : ModNPC
+    public class RedSprite : ModNPC, ISetupContentType
     {
         private bool _setupFrame;
         public int frameIndex;
@@ -895,6 +899,8 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
         public override void NPCLoot()
         {
+            WorldDefeats.DownedGaleStreams = true;
+            WorldDefeats.DownedRedSprite = true;
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(), Main.rand.Next(2) + 2);
             Item.NewItem(npc.getRect(), ItemID.SoulofFlight, Main.rand.Next(5) + 2);
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Fluorescence>(), Main.rand.Next(10) + 10 + (Main.expertMode ? Main.rand.Next(5) : 0));
@@ -947,6 +953,42 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, npc.frame, drawColor, npc.rotation, origin, scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(this.GetTextureobj("_Glow"), drawPosition - Main.screenPosition, npc.frame, Color.White, npc.rotation, origin, scale, SpriteEffects.None, 0f);
             return false;
+        }
+
+        void ISetupContentType.SetupContent()
+        {
+            try
+            {
+                var bossChecklist = ModLoader.GetMod("BossChecklist");
+                if (bossChecklist == null)
+                    return;
+                new MinibossEntry(
+                    () => WorldDefeats.DownedRedSprite,
+                    6.67f,
+                    ModContent.NPCType<RedSprite>(),
+                    AQText.chooselocalizationtext(en_US: "Red Sprite", zh_Hans: "红色精灵"),
+                    0,
+                    new List<int>()
+                    {
+                        ItemID.NimbusRod,
+                        ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
+                        ModContent.ItemType<Items.Materials.Fluorescence>(),
+                        ModContent.ItemType<Items.Foods.PeeledCarrot>(),
+                    },
+                    new List<int>()
+                    {
+                        ModContent.ItemType<Items.BossItems.RedSpriteTrophy>(),
+                        ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>(),
+                    },
+                    "Occasionally appears during the Gale Streams!",
+                    "AQMod/Assets/BossChecklist/RedSpriteEntry").AddEntry(bossChecklist);
+            }
+            catch (Exception e)
+            {
+                mod.Logger.Error("An error occured when setting up boss checklist entries.");
+                mod.Logger.Error(e.Message);
+                mod.Logger.Error(e.StackTrace);
+            }
         }
     }
 }

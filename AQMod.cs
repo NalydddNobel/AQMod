@@ -255,6 +255,34 @@ namespace AQMod
                 }
             }
 
+            public static void SetupContent(Assembly code)
+            {
+                if (Debug.LogAutoload)
+                {
+                    var logger = Debug.GetDebugLogger();
+                    foreach (var t in code.GetTypes())
+                    {
+                        if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(ISetupContentType)))
+                        {
+                            var instance = (ISetupContentType)Activator.CreateInstance(t);
+                            logger.Log("Created autoload instance of: {0}", t.FullName);
+                            instance.SetupContent();
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var t in code.GetTypes())
+                    {
+                        if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(ISetupContentType)))
+                        {
+                            var instance = (ISetupContentType)Activator.CreateInstance(t);
+                            instance.SetupContent();
+                        }
+                    }
+                }
+            }
+
             public static void Unload()
             {
                 if (_autoloadCache == null)
@@ -605,13 +633,13 @@ namespace AQMod
             NoHitManager.Setup();
             DemonSiege.Setup(); // Sets up the Demon Siege event
             GlimmerEvent.Setup();
-            GaleStreams.Setup();
             BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
             MapMarkers.Setup(setupStatics: true);
             if (!Main.dedServ)
             {
                 DyeBinder.LoadDyes();
             }
+            Autoloading.SetupContent(Code);
             invokeTasks();
             cachedLoadTasks.Clear();
         }

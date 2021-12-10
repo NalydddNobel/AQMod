@@ -1,4 +1,5 @@
-﻿# Items
+﻿
+# Items
 
 ItemName.FidgetSpinner=Perpetuator
 ItemTooltip.FidgetSpinner=Non-autoswing items are slower, but gain autoswing
@@ -103,6 +104,7 @@ Physicist.Chat.Mod.Fargowiltas.Deviantt=You just buy rare enemy summons from a d
 EventName.DemonSiege=Demon Siege
 EventName.GlimmerEvent=Glimmer Event
 EventName.GaleStreams=Gale Streams
+BossChecklistDesc.GaleStreams=Begins when the wind is above 40 mph, and ends when it's less than 34 mph. You can modify the speed of the wind using [i:{0}]
 EventProgress.GaleStreams={0}mph/{1}mph
 
 # Recipe Groups

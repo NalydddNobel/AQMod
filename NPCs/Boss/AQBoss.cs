@@ -1,16 +1,13 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Content.WorldEvents.ProgressBars;
 using System;
-using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents
+namespace AQMod.NPCs.Boss
 {
-    public abstract class WorldEvent : ModWorld, ISetupContentType
+    public abstract class AQBoss : ModNPC, ISetupContentType
     {
-        internal virtual EventEntry? BossChecklistEntry => null;
-        internal virtual EventProgressBar ProgressBar => null;
+        public virtual BossEntry? BossChecklistEntry => null;
 
         void ISetupContentType.SetupContent()
         {
@@ -32,15 +29,12 @@ namespace AQMod.Content.WorldEvents
                 mod.Logger.Error(e.Message);
                 mod.Logger.Error(e.StackTrace);
             }
-            if (!Main.dedServ)
-            {
-                var bar = ProgressBar;
-                if (bar != null)
-                    EventProgressBarManager.AddBar(bar);
-            }
             PostSetupContent(mod);
         }
 
-        public virtual void PostSetupContent(Mod mod) { }
+        protected virtual void PostSetupContent(Mod mod)
+        {
+
+        }
     }
 }

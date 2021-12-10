@@ -2,7 +2,9 @@
 using AQMod.Content.Dusts;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Materials.Energies;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,7 +24,7 @@ namespace AQMod.Items.Weapons.Melee
             item.damage = 44;
             item.width = 30;
             item.height = 30;
-            item.useTime = 40;
+            item.useTime = 100;
             item.useAnimation = 16;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
@@ -43,13 +45,33 @@ namespace AQMod.Items.Weapons.Melee
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
+            knockBack = 1f;
+            if (AQNPC.Sets.UnaffectedByWind[target.type])
+            {
+                if (target.knockBackResist > 0)
+                {
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        AQSoundPlayer.PlaySound(SoundType.NPCHit, "Sounds/NPCHit/Slap_" + Main.rand.Next(2), target.Center, 0.4f);
+                    }
+                    target.velocity = Vector2.Normalize(target.Center - player.Center) * player.GetWeaponKnockback(item, item.knockBack) * 1.75f * target.knockBackResist;
+                }
+            }
+            else
+            {
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    AQSoundPlayer.PlaySound(SoundType.NPCHit, "Sounds/NPCHit/Slap_" + Main.rand.Next(2), target.Center, 0.4f);
+                }
+                target.velocity = Vector2.Normalize(target.Center - player.Center) * player.GetWeaponKnockback(item, item.knockBack) * 2f * Math.Max(target.knockBackResist, 0.2f);
+            }
             target.AddBuff(BuffID.OnFire, 800);
             target.GetGlobalNPC<AQNPC>().ChangeTemperature(target, 60);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int p = Projectile.NewProjectile(new Vector2(Main.MouseWorld.X + Main.rand.NextFloat(-20f, 20f), position.Y - 666f), new Vector2(0f, 0f), type, damage * 2, 0f, player.whoAmI);
+            int p = Projectile.NewProjectile(new Vector2(Main.MouseWorld.X + Main.rand.NextFloat(-20f, 20f), position.Y - 666f), new Vector2(0f, 0f), type, damage * 4, 0f, player.whoAmI);
             Main.PlaySound(SoundID.Item122, position);
             if (AQMod.TonsofScreenShakes)
             {

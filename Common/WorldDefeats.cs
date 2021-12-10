@@ -16,6 +16,7 @@ namespace AQMod.Common
         public static bool DownedDemonSiege { get; set; }
         public static bool DownedGaleStreams { get; set; }
         public static bool DownedCurrents { get; set; }
+        public static bool DownedRedSprite { get; set; }
 
         public override void Initialize()
         {
@@ -27,6 +28,7 @@ namespace AQMod.Common
             DownedCrabSeason = false;
             DownedGaleStreams = false;
             DownedCurrents = false;
+            DownedRedSprite = false;
         }
 
         public override TagCompound Save()
@@ -41,6 +43,7 @@ namespace AQMod.Common
                 ["DownedCrabSeason"] = DownedCrabSeason,
                 ["DownedGaleStreams"] = DownedGaleStreams,
                 ["DownedCurrents"] = DownedCurrents,
+                ["DownedRedSprite"] = DownedRedSprite,
             };
         }
 
@@ -51,16 +54,10 @@ namespace AQMod.Common
             DownedYinYang = tag.GetBool("DownedYinYang");
             DownedCrabson = tag.GetBool("DownedCrabson");
             DownedDemonSiege = tag.GetBool("DownedDemonSiege");
-            if (tag.ContainsKey("DownedCrabSeason"))
-            {
-                DownedCrabSeason = tag.GetBool("DownedCrabSeason");
-            }
-            else
-            {
-                DownedCrabSeason = DownedCrabson;
-            }
+            DownedCrabSeason = tag.GetBool("DownedCrabSeason");
             DownedGaleStreams = tag.GetBool("DownedGaleStreams");
             DownedCurrents = tag.GetBool("DownedCurrents");
+            DownedRedSprite = tag.GetBool("DownedRedSprite");
         }
     }
 }
