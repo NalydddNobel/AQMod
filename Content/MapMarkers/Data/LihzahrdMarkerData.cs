@@ -47,7 +47,9 @@ namespace AQMod.Content.MapMarkers.Data
             toggles.AddMapMarker(this);
             if (aQPlayer.lihzahrdMap)
             {
-                if (aQPlayer.showLihzahrdMap && CommonStructureSearchMethods.LihzahrdAltar(out var position) && (Main.Map[position.X, position.Y].Light > 40 || NPC.downedPlantBoss))
+                if (aQPlayer.showLihzahrdMap && 
+                    CommonStructureSearchMethods.LihzahrdAltar(out var position) && 
+                    (Main.Map[position.X, position.Y].Light > 40 || NPC.downedPlantBoss))
                 {
                     var mapIcon = ModContent.GetTexture("AQMod/Assets/Map/Dungeons");
                     var frame = new Rectangle(MapInterfaceManager.MapIconWidth * 4, 0, MapInterfaceManager.TrueMapIconWidth, MapInterfaceManager.MapIconHeight);
