@@ -99,13 +99,27 @@ Physicist.Chat.Mod.Fargowiltas.Mutant=你刚刚从一个看起来很诡异的怪
 Physicist.Chat.Mod.Fargowiltas.Abominationn=你刚刚从一个看起来很惊悚的收割者那买了Boss召唤物? 真是个怪人.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=你刚刚从一个看起来很愚蠢的小孩那买了Boss召唤物? 真是个怪人.
 
-# Event
+# Event and Boss Checklist stuff
+
+EventName.CrabSeason=蟹季
+BossChecklistDesc.CrabSeason=在随机的时间自然开始和结束. 你可以使用 [i:{0}] 来查看事件的开始和结束时间.
+EventWarning.CrabSeason=海洋的温度正在逐渐升高...
+EventEnding.CrabSeason=海洋再度变得冰冷...
+BossChecklistDesc.JerryCrabson=在海滩使用 [i:{0}] 召唤.
 
 EventName.DemonSiege=恶魔围攻
+BossChecklistDesc.DemonSiege=在血巢处使用 {0} 召唤.
+
 EventName.GlimmerEvent=微光事件
+BossChecklistDesc.GlimmerEvent=在夜晚自然开始. 也可以使用 [i:{0}] 召唤. 在太阳升起时结束.
+EventWarning.GlimmerEvent=天空中闪烁着微光...
+EventEnding.GlimmerEvent=微光渐渐消失...
+BossChecklistDesc.OmegaStarite=在夜晚使用 {0} 召唤. 也可以与微光事件中心的剑交互来召唤.
+
 EventName.GaleStreams=紊流风暴
 BossChecklistDesc.GaleStreams=风速大于40 mph时开始, 风速小于34 mph时结束. 你可以使用 [i:{0}] 更改风速
 EventProgress.GaleStreams={0} mph/{1} mph
+BossChecklistDesc.RedSprite=有几率出现在紊流风暴中!
 
 # Recipe Groups
 
@@ -273,12 +287,15 @@ Common.NoColorDistort=颜色扭曲特效着色器未启用
 Common.NoScrollShader=滚动特效着色器未启用
 Common.NoHypnoShader=色彩分离特效着色器未启用
 Common.NoOutlineShader=轮廓描边特效着色器未启用
+
 Common.CrabSeason=蟹季
 Common.CrabSeasonWarning=海洋的温度正在逐渐升高...
 Common.CrabSeasonEnding=海洋再度变得冰冷...
+
 Common.GlimmerEvent=微光事件
 Common.GlimmerEventWarning=天空中闪烁着微光...
 Common.GlimmerEventEnding=微光渐渐消失...
+
 Common.EnergyDoDrop=世界的能量再度变得稳定...
 Common.EnergyDontDrop=世界的能量又回到了混乱之中...
 Common.WorksInInventoryAndPiggyBank=放置在背包或猪猪存钱罐中即可生效
