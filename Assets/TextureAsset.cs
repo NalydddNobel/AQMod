@@ -5,12 +5,15 @@ using Terraria.ModLoader;
 
 namespace AQMod.Assets
 {
-    [Obsolete("Replace with ref textures")]
-    public sealed class TextureAsset : AssetItem<Texture2D>
+    public sealed class TextureAsset
     {
         private readonly string _path;
-        private const string throwbackTexturePath = "AQMod/" + TextureCache.Error;
+        private const string throwbackTexturePath = "AQMod/" + OldTextureCache.Error;
         private static readonly bool _debug = false;
+
+        private Ref<Texture2D> _texture;
+        private bool _loaded;
+        private bool _loadedProperly;
 
         internal TextureAsset(string path)
         {
@@ -32,12 +35,12 @@ namespace AQMod.Assets
             return textureAsset;
         }
 
-        public override void LoadAsset()
+        public void LoadAsset()
         {
             if (!_loaded)
             {
                 _loadedProperly = ModContent.TextureExists(_path);
-                _asset = new Ref<Texture2D>(_loadedProperly ? ModContent.GetTexture(_path) : ModContent.GetTexture(throwbackTexturePath));
+                _texture = new Ref<Texture2D>(_loadedProperly ? ModContent.GetTexture(_path) : ModContent.GetTexture(throwbackTexturePath));
                 _loaded = true;
             }
         }
@@ -45,6 +48,24 @@ namespace AQMod.Assets
         public string Path()
         {
             return _path;
+        }
+
+        public Ref<Texture2D> GetAsset()
+        {
+            LoadAsset();
+            return _texture;
+        }
+        public Texture2D GetValue()
+        {
+            return GetAsset().Value;
+        }
+        public bool Loaded()
+        {
+            return _loaded;
+        }
+        public bool LoadedProperly()
+        {
+            return _loadedProperly;
         }
     }
 }

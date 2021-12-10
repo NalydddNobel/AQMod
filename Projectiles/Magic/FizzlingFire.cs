@@ -126,7 +126,7 @@ namespace AQMod.Projectiles.Magic
                 return false;
             }
 
-            texture = TextureCache.Lights[Assets.Textures.LightTex.Spotlight66x66];
+            texture = OldTextureCache.Lights[Assets.Textures.LightTex.Spotlight66x66];
             frame = new Rectangle(0, 0, texture.Width, texture.Height);
             origin = frame.Size() / 2f;
             color = new Color(90, 90, 165, 0);

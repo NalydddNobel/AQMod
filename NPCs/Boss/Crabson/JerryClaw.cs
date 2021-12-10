@@ -434,7 +434,7 @@ namespace AQMod.NPCs.Boss.Crabson
                 if ((_mouthRotation - _mouthGotoRotation).Abs() < 0.0157f)
                     _mouthRotation = _mouthGotoRotation;
             }
-            var texture = TextureCache.GetNPC(npc.type);
+            var texture = OldTextureCache.GetNPC(npc.type);
             var drawPosition = npc.Center;
             var origin = npc.frame.Size() / 2f;
             var spriteEffects = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -442,7 +442,7 @@ namespace AQMod.NPCs.Boss.Crabson
             {
                 if (_showPearl)
                 {
-                    var pearlTexture = TextureCache.GetProjectile(ModContent.ProjectileType<JerryPearl>());
+                    var pearlTexture = OldTextureCache.GetProjectile(ModContent.ProjectileType<JerryPearl>());
                     var pearlFrame = new Rectangle(0, 0, pearlTexture.Width, pearlTexture.Height);
                     var pearlOrig = pearlFrame.Size() / 2f;
                     var pearlDrawPosition = drawPosition - Main.screenPosition;

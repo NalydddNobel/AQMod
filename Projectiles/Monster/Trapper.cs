@@ -100,7 +100,7 @@ namespace AQMod.Projectiles.Monster
 
     public class TrapperFireblastExplosion : ModProjectile
     {
-        public override string Texture => "AQMod/" + TextureCache.None;
+        public override string Texture => "AQMod/" + OldTextureCache.None;
 
         public override void SetDefaults()
         {

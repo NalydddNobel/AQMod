@@ -179,7 +179,7 @@ namespace AQMod.Items.Potions
             try
             {
                 var color = StarbyteColorCache.GetColor(potion.potionItemID);
-                var texture = TextureCache.GetItem(item.type);
+                var texture = OldTextureCache.GetItem(item.type);
                 Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, scale, SpriteEffects.None, 0f);
 
                 if (Main.keyState.IsKeyDown(Keys.LeftShift) || _usePotionBuffTexture && potion.BuffID < 0 || !_usePotionBuffTexture && potion.potionItemID <= 0 || ItemID.Sets.Deprecated[potion.potionItemID])
@@ -189,22 +189,22 @@ namespace AQMod.Items.Potions
                 {
                     try
                     {
-                        potionTexture = TextureCache.GetBuff(potion.BuffID);
+                        potionTexture = OldTextureCache.GetBuff(potion.BuffID);
                     }
                     catch
                     {
-                        potionTexture = TextureCache.GetBuff(BuffID.ObsidianSkin);
+                        potionTexture = OldTextureCache.GetBuff(BuffID.ObsidianSkin);
                     }
                 }
                 else
                 {
                     try
                     {
-                        potionTexture = TextureCache.GetItem(potion.potionItemID);
+                        potionTexture = OldTextureCache.GetItem(potion.potionItemID);
                     }
                     catch
                     {
-                        potionTexture = TextureCache.GetItem(ItemID.ObsidianSkinPotion);
+                        potionTexture = OldTextureCache.GetItem(ItemID.ObsidianSkinPotion);
                     }
                 }
                 float iconScale = 0.6f * scale;
@@ -225,7 +225,7 @@ namespace AQMod.Items.Potions
             try
             {
                 var color = StarbyteColorCache.GetColor(potion.potionItemID);
-                var texture = TextureCache.GetItem(item.type);
+                var texture = OldTextureCache.GetItem(item.type);
                 var drawCoordinates = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
                 var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var drawRotation = rotation;

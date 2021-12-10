@@ -32,7 +32,7 @@ namespace AQMod.Content.MapMarkers.Components
             {
                 IGiveMapMarkerBuff marker = MapMarkerBuffs[i];
                 int buffType = marker.BuffType();
-                var buffTexture = TextureCache.GetBuff(buffType);
+                var buffTexture = OldTextureCache.GetBuff(buffType);
                 float scale = Main.UIScale;
                 var drawPosition = new Vector2((8f + ((buffTexture.Width + 8f) * i)) * scale, (8f + buffTexture.Height / 2f) * scale);
                 var drawColor = new Color(255, 255, 255, 255);
@@ -47,7 +47,7 @@ namespace AQMod.Content.MapMarkers.Components
                     if (Main.mouseLeft && Main.mouseLeftRelease)
                         marker.ToggleMapMarkerBuff(_player, _aQPlayer);
                     mouseText = Lang.GetBuffName(buffType);
-                    Main.spriteBatch.Draw(TextureCache.BuffOutline.Value, drawPosition, null, drawColor, 0f, new Vector2(4f, 4f), scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(OldTextureCache.BuffOutline.Value, drawPosition, null, drawColor, 0f, new Vector2(4f, 4f), scale, SpriteEffects.None, 0f);
                 }
                 Main.spriteBatch.Draw(buffTexture, drawPosition, null, drawColor, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
             }

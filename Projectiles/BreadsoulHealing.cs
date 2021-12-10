@@ -134,7 +134,7 @@ namespace AQMod.Projectiles
             var clr = projectile.GetAlpha(lightColor);
             var pos = projectile.Center;
             Main.spriteBatch.Draw(texture, pos - Main.screenPosition, null, clr, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
-            var spotlight = TextureCache.Lights[LightTex.Spotlight30x30];
+            var spotlight = OldTextureCache.Lights[LightTex.Spotlight30x30];
             float lightScaleMult = 1f - projectile.velocity.Length() / 8f;
             if (lightScaleMult < 0.05f)
             {

@@ -28,7 +28,7 @@ namespace AQMod.Assets.Graphics.LegacyItemOverlays
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             drawColor = item.GetAlpha(drawColor);
             Main.playerDrawData.Add(new DrawData(texture, drawPosition, drawFrame, drawColor, player.itemRotation, swordOrigin, item.scale, info.spriteEffects, 0));
-            texture = TextureCache.GetItem(item.type);
+            texture = OldTextureCache.GetItem(item.type);
             float x = (float)Math.Sin(Main.GlobalTime / 2f) * 4f;
             drawColor *= 0.5f;
             Main.playerDrawData.Add(new DrawData(texture, drawPosition + new Vector2(x, 0f), drawFrame, drawColor, player.itemRotation, swordOrigin, item.scale, info.spriteEffects, 0));

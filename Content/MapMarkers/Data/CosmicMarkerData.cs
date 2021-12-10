@@ -39,7 +39,7 @@ namespace AQMod.Content.MapMarkers.Data
             if (aQPlayer.showCosmicMap && AQMod.CosmicEvent.IsActive)
             {
                 float alpha = (float)Math.Sin(Main.GlobalTime * 7f) + 1f;
-                var texture = TextureCache.MapIconGlimmerEvent.Value;
+                var texture = OldTextureCache.MapIconGlimmerEvent.Value;
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var drawPos = MapInterfaceManager.MapPos(new Vector2(AQMod.CosmicEvent.tileX + 0.5f, AQMod.CosmicEvent.tileY - 3f));
                 var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
@@ -51,7 +51,7 @@ namespace AQMod.Content.MapMarkers.Data
                     scale += 0.5f;
                 }
                 Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                texture = TextureCache.MapIconStarite.Value;
+                texture = OldTextureCache.MapIconStarite.Value;
                 var stariteFrame = new Rectangle(0, 0, texture.Width, 22);
                 var arrowUpFrame = new Rectangle(0, stariteFrame.Height + 2, texture.Width, 32);
                 var arrowDownFrame = new Rectangle(0, arrowUpFrame.Y + arrowUpFrame.Height + 2, texture.Width, 32);

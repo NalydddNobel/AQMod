@@ -97,7 +97,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                var texture = TextureCache.GetItem(item.type);
+                var texture = OldTextureCache.GetItem(item.type);
                 float length = texture.Size().Length();
                 Vector2 itemPosition = new Vector2((int)player.itemLocation.X, (int)player.itemLocation.Y);
                 Vector2 center = player.MountedCenter;
@@ -118,7 +118,7 @@ namespace AQMod.Items.Weapons.Melee
             if (AQMod.GameWorldActive)
             {
                 var center = item.Center;
-                var texture = TextureCache.GetItem(item.type);
+                var texture = OldTextureCache.GetItem(item.type);
                 var size = texture.Size();
                 var length = size.Length();
                 var origin = texture.Size() / 2f;

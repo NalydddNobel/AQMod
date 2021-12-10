@@ -8,7 +8,7 @@ namespace AQMod.Common.Graphics.Particles
 {
     public class SparkleParticle : MonoParticle
     {
-        public override Texture2D Texture => TextureCache.Particles[ParticleTex.Sparkle];
+        public override Texture2D Texture => OldTextureCache.Particles[ParticleTex.Sparkle];
 
         public SparkleParticle(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1f) : base(position, velocity, color, scale)
         {

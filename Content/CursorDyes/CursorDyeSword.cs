@@ -10,6 +10,6 @@ namespace AQMod.Content.CursorDyes
         }
 
         protected override bool HasOutlines => true;
-        protected override TEA<CursorType> TextureEnumeratorArray => TextureCache.SwordCursors;
+        protected override TEA<CursorType> TextureEnumeratorArray => OldTextureCache.SwordCursors;
     }
 }

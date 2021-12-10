@@ -311,6 +311,7 @@ namespace AQMod
         {
             Loading = true;
             Unloading = false;
+            TextureCache.Cache = new TextureCache();
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
             CursorDyes = new CursorDyeLoader();
@@ -344,7 +345,7 @@ namespace AQMod
                 On.Terraria.ItemText.NewText += ItemText_NewText;
                 ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
                 ArmorOverlays = new EquipOverlayLoader();
-                TextureCache.Load();
+                OldTextureCache.Load();
                 EffectCache.Load(this);
                 CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
                 GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
@@ -773,7 +774,7 @@ namespace AQMod
                 OmegaStariteMusic = null;
                 GlimmerEventMusic = null;
                 CrabsonMusic = null;
-                TextureCache.Unload();
+                OldTextureCache.Unload();
             }
             // ^ doesn't load on server ^
 
@@ -785,6 +786,7 @@ namespace AQMod
                 CursorDyes = null;
             }
             AQText.Unload();
+            TextureCache.Cache = null;
         }
 
         public override void MidUpdateInvasionNet()

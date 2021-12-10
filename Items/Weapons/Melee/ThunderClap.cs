@@ -45,7 +45,6 @@ namespace AQMod.Items.Weapons.Melee
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            knockBack = 1f;
             if (AQNPC.Sets.UnaffectedByWind[target.type])
             {
                 if (target.knockBackResist > 0)

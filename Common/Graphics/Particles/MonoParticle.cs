@@ -16,7 +16,7 @@ namespace AQMod.Common.Graphics.Particles
         public float rotation;
         public Color color;
 
-        public virtual Texture2D Texture => TextureCache.Particles[ParticleTex.Mono];
+        public virtual Texture2D Texture => OldTextureCache.Particles[ParticleTex.Mono];
         public virtual Color GetColor() => color;
 
         public MonoParticle(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1f)

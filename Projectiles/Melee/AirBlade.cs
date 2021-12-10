@@ -111,7 +111,7 @@ namespace AQMod.Projectiles.Melee
             }
             if (projectile.localAI[0] != 0f)
             {
-                texture = TextureCache.Lights[Assets.Textures.LightTex.Spotlight30x30];
+                texture = OldTextureCache.Lights[Assets.Textures.LightTex.Spotlight30x30];
                 frame = texture.Frame();
                 lightColor = new Color(130, 100, 12, 1) *  AQConfigClient.c_EffectIntensity;
                 origin = texture.Size() / 2f;

@@ -92,7 +92,7 @@ namespace AQMod.Common.Skies
 
             public void Draw(UnifiedRandom rand)
             {
-                var texture = TextureCache.BGStarite.Value;
+                var texture = OldTextureCache.BGStarite.Value;
                 switch (size)
                 {
                     default:
@@ -252,7 +252,7 @@ namespace AQMod.Common.Skies
             {
                 int width = Main.screenWidth + 40;
                 int height = Main.screenHeight + 40;
-                var texture = TextureCache.Lights[LightTex.Spotlight66x66];
+                var texture = OldTextureCache.Lights[LightTex.Spotlight66x66];
                 float scaleX = width / texture.Width * 1.75f;
                 float scaleY = height / texture.Height;
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
@@ -290,7 +290,7 @@ namespace AQMod.Common.Skies
                 {
                     int width = Main.screenWidth + 40;
                     int height = Main.screenHeight + 40;
-                    var texture = TextureCache.Lights[LightTex.Spotlight66x66];
+                    var texture = OldTextureCache.Lights[LightTex.Spotlight66x66];
                     float scaleX = width / texture.Width * 1.75f;
                     float scaleY = height / texture.Height;
                     var frame = new Rectangle(0, 0, texture.Width, texture.Height);

@@ -270,7 +270,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                     }
                     break;
                 }
-                var texture = TextureCache.GetNPC(ModContent.NPCType<SoliderCrabs>());
+                var texture = OldTextureCache.GetNPC(ModContent.NPCType<SoliderCrabs>());
                 Main.spriteBatch.Draw(texture, position + new Vector2(0f, yOff) - Main.screenPosition, rectangle, Lighting.GetColor((int)position.X / 16, (int)position.Y / 16), 0f, rectangle.Size() / 2f, 1f, SpriteEffects.None, 0f);
             }
         }
@@ -298,7 +298,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                 }
             }
             var frame = new Rectangle(0, 32, 52, 32);
-            Main.spriteBatch.Draw(TextureCache.GetNPC(npc.type), center + new Vector2(0f, 2f) - Main.screenPosition, frame, drawColor, npc.rotation, frame.Size() / 2f, npc.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(OldTextureCache.GetNPC(npc.type), center + new Vector2(0f, 2f) - Main.screenPosition, frame, drawColor, npc.rotation, frame.Size() / 2f, npc.scale, SpriteEffects.None, 0f);
             foreach (var vc in _visualCrabs)
             {
                 vc.Draw();

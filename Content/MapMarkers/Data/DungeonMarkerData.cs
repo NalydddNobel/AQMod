@@ -54,7 +54,7 @@ namespace AQMod.Content.MapMarkers.Data
             {
                 if (aQPlayer.showDungeonMap && (Main.Map[Main.dungeonX, Main.dungeonY].Light > 40 || NPC.downedBoss3 || Main.hardMode))
                 {
-                    var mapIcon = TextureCache.MapIconDungeons.Value;
+                    var mapIcon = OldTextureCache.MapIconDungeons.Value;
                     int iconFrame;
                     switch (Framing.GetTileSafely(Main.dungeonX, Main.dungeonY).type)
                     {

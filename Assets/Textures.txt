@@ -1,0 +1,4 @@
+﻿# Event Icons
+GaleStreamsInvasion = EventIcons/GaleStreamsInvasion
+DemonSiegeInvasion = EventIcons/DemonSiegeInvasion
+GlimmerEventInvasion = EventIcons/GlimmerEventInvasion

@@ -9,7 +9,7 @@ namespace AQMod.Common.Graphics.Particles
 {
     public class SparklePulseParticle : MonoParticle
     {
-        public override Texture2D Texture => TextureCache.Particles[ParticleTex.Sparkle];
+        public override Texture2D Texture => OldTextureCache.Particles[ParticleTex.Sparkle];
         private float _scale;
         public int timeLeft;
         private int _timeLeftMax;

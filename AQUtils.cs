@@ -506,7 +506,7 @@ namespace AQMod
         public static void DrawLine(Vector2 start, Vector2 end, int width, Color color)
         {
             var difference = end - start;
-            Main.spriteBatch.Draw(TextureCache.Pixel.Value, start, null, color, difference.ToRotation() - MathHelper.PiOver2, new Vector2(0.5f, 0f), new Vector2(width, difference.Length()), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(OldTextureCache.Pixel.Value, start, null, color, difference.ToRotation() - MathHelper.PiOver2, new Vector2(0.5f, 0f), new Vector2(width, difference.Length()), SpriteEffects.None, 0f);
         }
 
         public static T[][] CreateSameLengthArrayArray<T>(int length1, int length2)
@@ -701,12 +701,12 @@ namespace AQMod
 
         public static DrawData DrawRectangle_Data(Rectangle rectangle, Color color, Vector2 adjustment)
         {
-            return new DrawData(TextureCache.Pixel.Value, new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0);
+            return new DrawData(OldTextureCache.Pixel.Value, new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0);
         }
 
         public static void DrawRectangle(Rectangle rectangle, Color color, Vector2 adjustment)
         {
-            Main.spriteBatch.Draw(TextureCache.Pixel.Value, new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(OldTextureCache.Pixel.Value, new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0f);
         }
 
         public static void DrawUIBox(int width, int height, Vector2 topLeft, Color color)
@@ -727,7 +727,7 @@ namespace AQMod
         public static void DrawUIBox_HightlightedTop(int width, int height, Vector2 topLeft, Color color)
         {
             var orig = new Vector2(0f, 0f);
-            var uiTexture = TextureCache.UITexture.Value;
+            var uiTexture = OldTextureCache.UITexture.Value;
             Main.spriteBatch.Draw(uiTexture, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);

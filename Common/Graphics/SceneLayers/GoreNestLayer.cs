@@ -94,7 +94,7 @@ namespace AQMod.Common.Graphics.SceneLayers
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
                 if (DemonSiege.IsActive && DemonSiege.BaseItem != null && DemonSiege.BaseItem.type > ItemID.None && DemonSiege.altarTopLeft() == new Point(x[k], y[k]))
                 {
-                    var texture = TextureCache.GetItem(DemonSiege.BaseItem.type);
+                    var texture = OldTextureCache.GetItem(DemonSiege.BaseItem.type);
                     var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                     var origin = frame.Size() / 2f;
                     float scale = DemonSiege.BaseItem.scale;

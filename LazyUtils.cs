@@ -21,7 +21,7 @@ namespace AQMod
 
         public static Texture2D GetTexture(this Projectile Projectile)
         {
-            return TextureCache.GetProjectile(Projectile.type);
+            return OldTextureCache.GetProjectile(Projectile.type);
         }
     }
 }
