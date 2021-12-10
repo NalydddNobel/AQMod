@@ -1,3 +1,4 @@
+
 # Items
 
 ItemName.FidgetSpinner=永续仪
@@ -103,7 +104,8 @@ Physicist.Chat.Mod.Fargowiltas.Deviantt=你刚刚从一个看起来很愚蠢的�
 EventName.DemonSiege=恶魔围攻
 EventName.GlimmerEvent=微光事件
 EventName.GaleStreams=紊流风暴
-EventProgress.GaleStreams={0}mph/{1}mph
+BossChecklistDesc.GaleStreams=风速大于40 mph时开始, 风速小于34 mph时结束. 你可以使用 [i:{0}] 更改风速
+EventProgress.GaleStreams={0} mph/{1} mph
 
 # Recipe Groups
 
