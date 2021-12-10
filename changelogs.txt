@@ -1,3 +1,77 @@
+####### 1.2.4.7 #######
+
+Additions:
+Umystick, a cool umbrella weapon dropped from Streaming Slimes
+
+- The Gale Streams event now appears on Boss Checklist
+
+- Added a slap sound when you hit an enemy with the Thunder Clap
+- Gave the noble mushrooms custom hit/destroy sounds
+- The Thunder Clap now uses a custom sound
+
+Changes:
+- Some enemies can no longer be affected by wind:
+* Antlion
+* Paladin
+* Yeti
+* Krampus
+* Brain Scrambler
+* Ray Gunner
+* Martian Officer
+* Gray Grunt
+* Martian Engineer
+* Gigazapper
+* Scutlix (and the rider npc)
+* Stargazer
+* Twinkle Popper
+* Twinkle
+* Drakomire (and the rider npc)
+* Sroller
+* Selenian
+* Evolution Beast
+* Predictor
+* Storm Diver
+* Alien Hornet Queen
+* Alien Hornet
+* Alien Larva 
+* Vortexian
+* Nailhead
+* Eyezor
+* Goblin Summoner
+* Drakanian
+* Martian Walker
+* Strider Crab
+
+- Some enemies can now be affected by wind:
+* King Slime
+* Eye of Cthulhu
+* Brain of Cthulhu
+* Eater of Worlds (specifically the head)
+* Skeletron's Hands
+* Devourer (specifically the head)
+* Giant Worm (specifically the head)
+* Hornets
+* Man Eater
+* Snatcher 
+* Eater of Souls
+* Corruptor 
+* Crimera
+* Ice Elemental
+* Anomura Fungus
+* Mushi Ladybug
+* Ducks (the flying version)
+
+- Increased the size of Red Sprite's hitbox
+- The Red Sprite can no longer deal contact damage to players
+
+Fixes:
+- Fixed up the Enchanted Dye shader to support transparency, and be brighter
+- The Hell Beams dye is less intense and no longer uses your x coordinate for stuff 
+- Perpetuator Color now properly saves
+- Fixed Red Licorice giving you a practically permanent 60 HP boost
+- Hovering over Crab Season, the Glimmer Event, or the Demon Siege now shows their event icons instead of a question mark
+- The Lihzahrd Marker now properly works
+
 ####### 1.2.4.4 #######
 
 Additions:
