@@ -41,7 +41,7 @@ namespace AQMod.Content
                 {
                     try
                     {
-                        var texture = OldTextureCache.GetItem(item);
+                        var texture = TextureGrabber.GetItem(item);
                         var clrs = new Color[texture.Width * texture.Height];
                         texture.GetData(clrs, 0, clrs.Length);
                         int pixelPaddingX = 4;

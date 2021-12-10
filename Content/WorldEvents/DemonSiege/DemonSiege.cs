@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.ProgressBars;
 using AQMod.Effects.WorldEffects;
@@ -18,7 +19,7 @@ using Terraria.Utilities;
 
 namespace AQMod.Content.WorldEvents.DemonSiege
 {
-    public static class DemonSiege
+    public sealed class DemonSiege : WorldEvent
     {
         private static bool _active;
         public static bool IsActive => _active && X > 0 && Y > 0;
@@ -87,7 +88,7 @@ namespace AQMod.Content.WorldEvents.DemonSiege
             return null;
         }
 
-        internal static void Setup()
+        protected override void Setup(AQMod mod)
         {
             Reset();
             _upgrades = new List<DemonSiegeUpgrade>();
@@ -102,12 +103,52 @@ namespace AQMod.Content.WorldEvents.DemonSiege
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Cindera>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_CINDERA, 20));
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<TrapImp>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32));
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Magmalbubble>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32));
-
-            if (!Main.dedServ)
+        }
+        internal override EventEntry? BossChecklistEntry 
+        {
+            get 
             {
-                EventProgressBarManager.AddBar(new DemonSiegeProgressBar());
+                var items = new List<int>()
+                {
+                    ModContent.ItemType<Items.Materials.Energies.DemonicEnergy>(),
+                    ModContent.ItemType<Items.Accessories.DegenerationRing>(),
+                    ModContent.ItemType<PowPunch>(),
+                    ItemID.MagmaStone,
+                    ItemID.LavaCharm,
+                    ItemID.ObsidianRose,
+                };
+                string summonItems = "";
+                foreach (var upgrade in _upgrades)
+                {
+                    if (summonItems != "")
+                        summonItems += ", ";
+                    summonItems += "[i:" + upgrade.baseItem + "]";
+                    items.Add(upgrade.rewardItem);
+                }
+                return new EventEntry(
+                    () => WorldDefeats.DownedDemonSiege,
+                    4.1f,
+                    new List<int>() 
+                    {
+                        ModContent.NPCType<Cindera>(),
+                        ModContent.NPCType<Magmalbubble>(),
+                        ModContent.NPCType<TrapImp>(),
+                        ModContent.NPCType<Trapper>(),
+                    },
+                    AQText.chooselocalizationtext("Demon Siege", "恶魔围攻"),
+                    ItemID.LightsBane,
+                    items,
+                    new List<int>()
+                    {
+                        ModContent.ItemType<Items.Vanities.CursorDyes.DemonicCursorDye>(),
+                        ModContent.ItemType<Items.Vanities.Dyes.HellBeamDye>(),
+                    },
+                    "Can be summoned using: " + summonItems + " at a Gore Nest.",
+                    "AQMod/Assets/BossChecklist/DemonSiege",
+                    "AQMod/Assets/EventIcons/DemonSiege");
             }
         }
+        internal override EventProgressBar ProgressBar => new DemonSiegeProgressBar();
 
         internal static void Unload()
         {

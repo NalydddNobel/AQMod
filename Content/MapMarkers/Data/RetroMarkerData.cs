@@ -50,7 +50,7 @@ namespace AQMod.Content.MapMarkers.Data
             toggles.AddMapMarker(this);
             if (aQPlayer.showRetroMap)
             {
-                var texture = OldTextureCache.MapIconEnemyBlip.Value;
+                var texture = ModContent.GetTexture("AQMod/Assets/Map/EnemyBlip");
                 int frameHeight = texture.Height / 2;
                 int frameNumber = (int)(Main.GameUpdateCount % 24 / 12);
                 var frame = new Rectangle(0, frameHeight * frameNumber, texture.Width, frameHeight);

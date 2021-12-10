@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -8,7 +7,7 @@ namespace AQMod.Common.Graphics.Particles
 {
     public class MonoParticleEmber : MonoParticle
     {
-        public override Texture2D Texture => OldTextureCache.Particles[ParticleTex.MonoEmber];
+        public override Texture2D Texture => AQTextures.Particles[ParticleTex.MonoEmber];
 
         public MonoParticleEmber(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1f) : base(position, velocity, color, scale)
         {

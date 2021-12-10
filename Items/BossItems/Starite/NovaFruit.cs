@@ -12,12 +12,12 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.BossItems.Starite
 {
-    public class NovaFruit : ModItem, IItemOverlays
+    public class NovaFruit : ModItem, IItemOverlaysWorldDraw, IItemOverlaysDrawInventory, IItemOverlaysPlayerDraw
     {
         private static readonly ShaderOverlay _shaderOverlay = new ShaderOverlay(() => GameShaders.Armor.GetShaderIdFromItemId(ModContent.ItemType<EnchantedDye>()));
-        IOverlayDrawWorld IItemOverlays.WorldDraw => _shaderOverlay;
-        IOverlayDrawInventory IItemOverlays.InventoryDraw => _shaderOverlay;
-        IOverlayDrawPlayerUse IItemOverlays.PlayerDraw => _shaderOverlay;
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _shaderOverlay;
+        IOverlayDrawInventory IItemOverlaysDrawInventory.InventoryDraw => _shaderOverlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _shaderOverlay;
 
         public override void SetStaticDefaults()
         {

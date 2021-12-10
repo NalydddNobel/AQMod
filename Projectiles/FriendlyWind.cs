@@ -36,10 +36,9 @@ namespace AQMod.Projectiles
             projectile.height = 40;
             projectile.friendly = true;
             projectile.aiStyle = -1;
-            //projectile.hide = true;
             projectile.tileCollide = false;
             projectile.timeLeft = 240;
-            projectile.alpha = 0;
+            projectile.alpha = 255;
         }
 
         public override bool? CanCutTiles()
@@ -137,7 +136,7 @@ namespace AQMod.Projectiles
         {
             var color = GaleStreams.NeutralCurrentColor;
             color.A = 255;
-            HotAndColdCurrentLayer.AddToCurrentList(new ArrowDraw(color, projectile.oldPos.AsAddAll(-Main.screenPosition + new Vector2(projectile.width / 2f, projectile.height / 2f)), projectile.velocity.ToRotation()));
+            HotAndColdCurrentLayer.AddToCurrentList(new Common.Graphics.DrawTypes.FriendlyWind(color, projectile.oldPos.AsAddAll(-Main.screenPosition + new Vector2(projectile.width / 2f, projectile.height / 2f)), projectile.velocity.ToRotation()));
             return false;
         }
     }

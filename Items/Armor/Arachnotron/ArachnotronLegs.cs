@@ -9,7 +9,7 @@ namespace AQMod.Items.Armor.Arachnotron
 {
     public class ArachnotronLegs : ModProjectile
     {
-        public override string Texture => "AQMod/" + OldTextureCache.None;
+        public override string Texture => "AQMod/" + AQTextures.None;
 
         public Vector2[] arms;
         public Vector2[] armRest;
@@ -154,10 +154,11 @@ namespace AQMod.Items.Armor.Arachnotron
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            var texture = OldTextureCache.ArachnotronArms[ArachnotronLegsTextureType.LegInitial];
-            var texture2 = OldTextureCache.ArachnotronArms[ArachnotronLegsTextureType.Leg2ndPiece];
-            var texture3 = OldTextureCache.ArachnotronArms[ArachnotronLegsTextureType.LegInitialGlow];
-            var texture4 = OldTextureCache.ArachnotronArms[ArachnotronLegsTextureType.Leg2ndPieceGlow];
+            string path = GetType().Namespace.Replace('.', '/');
+            var texture = ModContent.GetTexture(path + "/ArachnotronLegInitialPiece");
+            var texture2 = ModContent.GetTexture(path + "/ArachnotronLeg2ndPiece");
+            var texture3 = ModContent.GetTexture(path + "/ArachnotronLegInitialPiece_Glow");
+            var texture4 = ModContent.GetTexture(path + "/ArachnotronLeg2ndPiece_Glow");
             projectile.gfxOffY = (float)Math.Sin(Main.GlobalTime * 2f);
             var drawOrig = projectile.position + new Vector2(projectile.width / 2f, projectile.height + projectile.gfxOffY);
             var orig = new Vector2(texture.Width / 2f, texture.Height);

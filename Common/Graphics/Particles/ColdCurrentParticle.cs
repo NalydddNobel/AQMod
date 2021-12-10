@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Graphics.SceneLayers;
-using AQMod.Assets.Textures;
 using AQMod.Common.Graphics.DrawTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,7 +9,7 @@ namespace AQMod.Common.Graphics.Particles
 {
     public sealed class ColdCurrentParticle : MonoParticle
     {
-        public override Texture2D Texture => OldTextureCache.Particles[ParticleTex.WindParticle];
+        public override Texture2D Texture => AQTextures.Particles[ParticleTex.WindParticle];
 
         public ColdCurrentParticle(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1) : base(position, velocity, color, scale)
         {

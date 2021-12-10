@@ -45,7 +45,7 @@ namespace AQMod.Common.Graphics.SceneLayers
             var drawPos = swordPos();
             if (OmegaStariteScenes.OmegaStariteIndexCache == -1)
                 OmegaStariteScenes.SceneType = 0;
-            var texture = OldTextureCache.GetItem(ModContent.ItemType<UltimateSword>());
+            var texture = TextureGrabber.GetItem(ModContent.ItemType<UltimateSword>());
             var frame = new Rectangle(0, 0, texture.Width, texture.Height);
             var origin = new Vector2(frame.Width, 0f);
             Main.spriteBatch.Draw(texture, drawPos - Main.screenPosition, frame, new Color(255, 255, 255, 255), MathHelper.PiOver4 * 3f, origin, 1f, SpriteEffects.None, 0f);

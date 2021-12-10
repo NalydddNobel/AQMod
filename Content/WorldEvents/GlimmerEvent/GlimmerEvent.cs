@@ -1,7 +1,9 @@
 ﻿using AQMod.Common;
+using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.DeveloperTools;
 using AQMod.Common.NetCode;
 using AQMod.Content.WorldEvents.ProgressBars;
+using AQMod.Items.BossItems.Starite;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GlimmerEvent;
 using AQMod.Tiles.TileEntities;
@@ -14,7 +16,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Content.WorldEvents.GlimmerEvent
 {
-    public sealed class GlimmerEvent
+    public sealed class GlimmerEvent : WorldEvent
     {
         public const ushort MaxDistance = 1650;
         public const ushort SuperStariteDistance = 1200;
@@ -44,7 +46,44 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
         internal Color stariteProjectileColor;
         public bool StariteDisco { get; set; }
 
-        internal static void Setup()
+        internal override EventEntry? BossChecklistEntry => new EventEntry(
+            () => WorldDefeats.DownedGlimmer,
+            2.1f,
+            new List<int>() {
+                ModContent.NPCType<Starite>(),
+                ModContent.NPCType<SuperStarite>(),
+                ModContent.NPCType<HyperStarite>(),
+            },
+            AQText.chooselocalizationtext("Glimmer Event", "微光事件"),
+            ModContent.ItemType<MythicStarfruit>(),
+            new List<int>()
+            {
+                ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>(),
+                ItemID.Nazar,
+                ModContent.ItemType<Items.Tools.MapMarkers.RetroGoggles>(),
+                ModContent.ItemType<Items.Weapons.Ranged.SpaceShot>(),
+                ModContent.ItemType<Items.Weapons.Summon.StariteStaff>(),
+                ModContent.ItemType<Items.Accessories.MoonShoes>(),
+                ModContent.ItemType<Items.Accessories.Ultranium>(),
+            },
+            new List<int>()
+            {
+                ModContent.ItemType<Items.Vanities.CelesitalEightBall>(),
+                ModContent.ItemType<Items.Vanities.Dyes.HypnoDye>(),
+                ModContent.ItemType<Items.Vanities.Dyes.OutlineDye>(),
+                ModContent.ItemType<Items.Vanities.Dyes.ScrollDye>(),
+            },
+            "Happens naturally at night. Can alternatively summoned with a [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Ends when the sun rises",
+            "AQMod/Assets/BossChecklist/GlimmerEvent",
+            "AQMod/Assets/EventIcons/GlimmerEvent");
+        internal override EventProgressBar ProgressBar => new BasicEventProgressBar(
+                    () => CanShowInvasionProgress(),
+                    () => 1f - (float)AQMod.CosmicEvent.GetTileDistance(Main.LocalPlayer) / MaxDistance,
+                    "AQMod/Assets/EventIcons/GlimmerEvent",
+                    "Mods.AQMod.EventName.GlimmerEvent",
+                     new Color(120, 20, 110, 128));
+
+        protected override void Setup(AQMod mod)
         {
             Layers = new List<GlimmerEventLayer>
             {
@@ -52,15 +91,6 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
                 new GlimmerEventLayer(ModContent.NPCType<SuperStarite>(), SuperStariteDistance, SuperStariteSpawnChance),
                 new GlimmerEventLayer(ModContent.NPCType<HyperStarite>(), HyperStariteDistance, HyperStariteSpawnChance),
             };
-            if (!Main.dedServ)
-            {
-                EventProgressBarManager.AddBar(new BasicEventProgressBar(
-                    () => CanShowInvasionProgress(),
-                    () => 1f - (float)AQMod.CosmicEvent.GetTileDistance(Main.LocalPlayer) / MaxDistance,
-                    "AQMod/Assets/Textures/EventIcon_GlimmerEvent",
-                    "Mods.AQMod.EventName.GlimmerEvent",
-                     new Color(120, 20, 110, 128)));
-            }
         }
 
         private static void _sortTest()

@@ -506,7 +506,7 @@ namespace AQMod
         public static void DrawLine(Vector2 start, Vector2 end, int width, Color color)
         {
             var difference = end - start;
-            Main.spriteBatch.Draw(OldTextureCache.Pixel.Value, start, null, color, difference.ToRotation() - MathHelper.PiOver2, new Vector2(0.5f, 0f), new Vector2(width, difference.Length()), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AQTextures.Pixel, start, null, color, difference.ToRotation() - MathHelper.PiOver2, new Vector2(0.5f, 0f), new Vector2(width, difference.Length()), SpriteEffects.None, 0f);
         }
 
         public static T[][] CreateSameLengthArrayArray<T>(int length1, int length2)
@@ -701,42 +701,12 @@ namespace AQMod
 
         public static DrawData DrawRectangle_Data(Rectangle rectangle, Color color, Vector2 adjustment)
         {
-            return new DrawData(OldTextureCache.Pixel.Value, new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0);
+            return new DrawData(AQTextures.Pixel, new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0);
         }
 
         public static void DrawRectangle(Rectangle rectangle, Color color, Vector2 adjustment)
         {
-            Main.spriteBatch.Draw(OldTextureCache.Pixel.Value, new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0f);
-        }
-
-        public static void DrawUIBox(int width, int height, Vector2 topLeft, Color color)
-        {
-            var orig = new Vector2(0f, 0f);
-            var uiTexture = ModContent.GetTexture("AQMod/Assets/Textures/UI");
-            Main.spriteBatch.Draw(uiTexture, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top left
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // top right
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom left
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, height), new Rectangle(24, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f); // bottom right
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(0f, Constants.UISize), new Rectangle(0, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f); // top left -> bottom left
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, Constants.UISize), new Rectangle(24, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f); // top right -> bottom right
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(Constants.UISize, 0f), new Rectangle(16, 0, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f); // top left -> top right
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(Constants.UISize, height), new Rectangle(16, 24, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f); // bottom left -> bottom right
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(Constants.UISize, Constants.UISize), new Rectangle(16, 16, 2, 2), color, 0f, orig, new Vector2((width - 10f) / 2f, (height - 10f) / 2f), SpriteEffects.None, 0f); // filling
-        }
-
-        public static void DrawUIBox_HightlightedTop(int width, int height, Vector2 topLeft, Color color)
-        {
-            var orig = new Vector2(0f, 0f);
-            var uiTexture = OldTextureCache.UITexture.Value;
-            Main.spriteBatch.Draw(uiTexture, topLeft, new Rectangle(0, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, 0f), new Rectangle(24, 0, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(0f, height), new Rectangle(0, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, height), new Rectangle(24, 24, 10, 10), color, 0f, orig, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(0f, Constants.UISize), new Rectangle(0, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(width, Constants.UISize), new Rectangle(24, 16, 10, 2), color, 0f, orig, new Vector2(1f, (height - 10f) / 2f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(Constants.UISize, 0f), new Rectangle(38, 0, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(Constants.UISize, height), new Rectangle(16, 24, 2, 10), color, 0f, orig, new Vector2((width - 10f) / 2f, 1f), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(uiTexture, topLeft + new Vector2(Constants.UISize, Constants.UISize), new Rectangle(16, 16, 2, 2), color, 0f, orig, new Vector2((width - 10f) / 2f, (height - 10f) / 2f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AQTextures.Pixel, new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0f);
         }
 
         public static void UpdateFilter(bool active, string name, Vector2 position = default(Vector2), params object[] args)

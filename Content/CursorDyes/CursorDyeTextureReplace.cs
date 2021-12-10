@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Assets.Cursors;
 using AQMod.Common.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,10 +12,12 @@ namespace AQMod.Content.CursorDyes
     {
         public CursorDyeTextureReplace(Mod mod, string name) : base(mod, name)
         {
+            Textures = new CursorTextureArray(Path);
         }
 
         protected virtual bool HasOutlines => true;
-        protected abstract TEA<CursorType> TextureEnumeratorArray { get; }
+        protected CursorTextureArray Textures { get; }
+        protected abstract string Path { get; }
 
         public override Vector2? DrawThickCursor(bool smart)
         {
@@ -24,10 +27,8 @@ namespace AQMod.Content.CursorDyes
         public sealed override bool PreDrawCursor(Player player, AQPlayer drawingPlayer, Vector2 bonus, bool smart)
         {
             var type = smart ? CursorType.SmartCursor : CursorType.Cursor;
-            var tea = TextureEnumeratorArray;
-            if (tea.ContainsTexture(type, true))
+            if (Textures.GetCursorTexture(type, out var texture))
             {
-                var texture = tea[type];
                 float scale = Main.cursorScale * 0.8f;
                 bool outline = HasOutlines;
                 if (outline)
@@ -64,10 +65,13 @@ namespace AQMod.Content.CursorDyes
                 return false;
             }
             var type = (CursorType)Main.cursorOverride;
-            var tea = TextureEnumeratorArray;
-            if (tea.ContainsTexture(type, true))
+            if (type >= CursorType.Count)
             {
-                var texture = tea[type];
+                return false;
+            }
+            var tea = Textures;
+            if (Textures.GetCursorTexture(type, out var texture))
+            {
                 bool outline = HasOutlines;
                 if (outline)
                 {

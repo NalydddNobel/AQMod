@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -119,7 +118,7 @@ namespace AQMod.Projectiles.Magic
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Vector2 drawpos = projectile.Center - Main.screenPosition;
-            Texture2D texture = OldTextureCache.Lights[LightTex.Spotlight66x66];
+            Texture2D texture = AQTextures.Lights[LightTex.Spotlight66x66];
             Main.spriteBatch.Draw(texture, drawpos, null, new Color(180, 160, 20, 255), 0f, texture.Size() / 2, projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(Main.projectileTexture[projectile.type], drawpos, null, new Color(255, 255, 255, 200), 0f, Main.projectileTexture[projectile.type].Size() / 2, projectile.scale, SpriteEffects.None, 0f);
             return false;

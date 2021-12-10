@@ -51,7 +51,7 @@ namespace AQMod.Common.UserInterface
 
             foreach (var t in TileEntity.ByID)
             {
-                var texture = OldTextureCache.MapIconGlobe.Value;
+                var texture = ModContent.GetTexture("AQMod/Assets/Map/Globe");
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var origin = frame.Size() / 2f;
                 if (t.Value is TEGlobe globe && globe.Discovered)

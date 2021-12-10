@@ -1,4 +1,24 @@
-﻿# Event Icons
+﻿
+BuffOutline=BuffOutline
+
+# Event Icons
 GaleStreamsInvasion = EventIcons/GaleStreamsInvasion
 DemonSiegeInvasion = EventIcons/DemonSiegeInvasion
 GlimmerEventInvasion = EventIcons/GlimmerEventInvasion
+
+# Map Backgrounds
+MapBGGlimmer=Map/Backgrounds/GlimmerEvent
+
+# Map Textures
+MapIconStarite = Map/Starite
+MapIconGlimmerEvent = Map/GlimmerEvent
+MapIconEnemyBlip = Map/EnemyBlip
+MapIconDungeons = Map/Dungeons
+MapIconGlobe = Map/Globe
+
+# Cursors
++cursor+DemonCursors = Cursors/Demon/Cursor_
++cursor+SwordCursors = Cursors/Sword/Cursor_
+
++1+EquipMasks = Equips/Masks/Mask_
++3+EquipHeadAccs = Equips/HeadAccs/HeadAcc_

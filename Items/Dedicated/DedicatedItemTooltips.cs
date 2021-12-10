@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -70,7 +69,7 @@ namespace AQMod.Items.Dedicated
             if (AQConfigClient.c_EffectQuality < 1f)
                 return;
 
-            var texture = OldTextureCache.Lights[LightTex.Spotlight12x66];
+            var texture = AQTextures.Lights[LightTex.Spotlight12x66];
             var spotlightOrigin = new Vector2(6f, 33f);
             float spotlightRotation = rotation + MathHelper.PiOver2;
             var spotlightEffect = SpriteEffects.None;

@@ -1,6 +1,5 @@
 ﻿using AQMod;
 using AQMod.Assets;
-using AQMod.Assets.Textures;
 using AQMod.Content.Dusts;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
@@ -185,7 +184,7 @@ namespace AQMod.Projectiles.Magic
                 int amount = (int)(LaserLength / ((laserTexture.Width - 4) * laserScale));
                 float speed = (laserOrig.X - 2) * 2f * laserScale;
                 var laserDir = default(Vector2);
-                var spotlight = OldTextureCache.Lights[LightTex.Spotlight66x66];
+                var spotlight = AQTextures.Lights[LightTex.Spotlight66x66];
                 var spotlightOrig = spotlight.Size() / 2f;
                 if (sunProgress > 0.5f && (projectile.spriteDirection == 1 || projectile.rotation < MathHelper.PiOver2))
                 {

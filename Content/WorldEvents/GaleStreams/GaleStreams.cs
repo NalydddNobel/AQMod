@@ -40,8 +40,8 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                 ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>(),
             },
             "Begins when the wind is above 40 mph, and ends when it's less than 34 mph. You can modify the speed of the wind using [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]",
-            "AQMod/Assets/BossChecklist/GaleStreamsEntry",
-            "AQMod/Assets/EventIcons/GaleStreamsInvasion");
+            "AQMod/Assets/BossChecklist/GaleStreams",
+            "AQMod/Assets/EventIcons/GaleStreams");
 
         public static Color HotCurrentColor => new Color(43, 148, 240, 255);
         public static Color ColdCurrentColor => new Color(255, 94, 31, 255);

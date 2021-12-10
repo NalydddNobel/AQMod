@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
 using AQMod.Content.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
@@ -83,10 +82,10 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             lightColor = GetColor();
-            var spotlight = OldTextureCache.Lights[LightTex.Spotlight24x24];
+            var spotlight = AQTextures.Lights[LightTex.Spotlight24x24];
             var center = projectile.Center;
             var orig = spotlight.Size() / 2f;
-            var texture = OldTextureCache.GetProjectile(projectile.type);
+            var texture = TextureGrabber.GetProjectile(projectile.type);
             var textureOrig = new Vector2(texture.Width / 2f, 2f);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             if (Trailshader.ShouldDrawVertexTrails(Trailshader.GetVertexDrawingContext_Projectile(projectile)))
@@ -100,7 +99,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new Trailshader(OldTextureCache.Trails[TrailTex.Line], Trailshader.TextureTrail);
+                    var trail = new Trailshader(AQTextures.Trails[TrailTex.Line], Trailshader.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(8f - p * 8f), (p) => lightColor * (1f - p));
                     trail.Draw();
                 }

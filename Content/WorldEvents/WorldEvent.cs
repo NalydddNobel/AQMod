@@ -15,6 +15,7 @@ namespace AQMod.Content.WorldEvents
         void ISetupContentType.SetupContent()
         {
             var mod = AQMod.Instance;
+            Setup(mod);
             try
             {
                 var bossChecklist = ModLoader.GetMod("BossChecklist");
@@ -38,9 +39,10 @@ namespace AQMod.Content.WorldEvents
                 if (bar != null)
                     EventProgressBarManager.AddBar(bar);
             }
-            PostSetupContent(mod);
+            PostSetup(mod);
         }
 
-        public virtual void PostSetupContent(Mod mod) { }
+        protected virtual void Setup(AQMod mod) { }
+        protected virtual void PostSetup(AQMod mod) { }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,6 +39,8 @@ namespace AQMod.Common.Skies
             public const int size0Y = 0;
             public const int size0Width = 2;
             public const int size0Height = 2;
+
+            internal static Texture2D _texture;
 
             public void Update(float midScreenX, float midScreenY, float value = 0f)
             {
@@ -92,7 +93,6 @@ namespace AQMod.Common.Skies
 
             public void Draw(UnifiedRandom rand)
             {
-                var texture = OldTextureCache.BGStarite.Value;
                 switch (size)
                 {
                     default:
@@ -100,7 +100,7 @@ namespace AQMod.Common.Skies
                         int x = size0Width * rand.Next(size0Frames);
                         var frame = new Rectangle(x, size0Y, size0Width, size0Height);
                         var orig = new Vector2(1f, 1f);
-                        Main.spriteBatch.Draw(texture, new Vector2((int)this.x, (int)y), frame, Color.White, rot, orig, 1f, SpriteEffects.None, 0f);
+                        Main.spriteBatch.Draw(_texture, new Vector2((int)this.x, (int)y), frame, Color.White, rot, orig, 1f, SpriteEffects.None, 0f);
                     }
                     break;
 
@@ -108,7 +108,7 @@ namespace AQMod.Common.Skies
                     {
                         var frame = new Rectangle(0, 4, 10, 10);
                         var orig = frame.Size() / 2f;
-                        Main.spriteBatch.Draw(texture, new Vector2((int)x, (int)y), frame, Color.White, rot, orig, 0.5f, SpriteEffects.None, 0f);
+                        Main.spriteBatch.Draw(_texture, new Vector2((int)x, (int)y), frame, Color.White, rot, orig, 0.5f, SpriteEffects.None, 0f);
                     }
                     break;
 
@@ -116,7 +116,7 @@ namespace AQMod.Common.Skies
                     {
                         var frame = new Rectangle(0, 16, 14, 14);
                         var orig = frame.Size() / 2f;
-                        Main.spriteBatch.Draw(texture, new Vector2((int)x, (int)y), frame, Color.White, rot, orig, 0.33f, SpriteEffects.None, 0f);
+                        Main.spriteBatch.Draw(_texture, new Vector2((int)x, (int)y), frame, Color.White, rot, orig, 0.33f, SpriteEffects.None, 0f);
                     }
                     break;
 
@@ -124,16 +124,17 @@ namespace AQMod.Common.Skies
                     {
                         var frame = new Rectangle(0, 52, 24, 22);
                         var orig = frame.Size() / 2f;
-                        Main.spriteBatch.Draw(texture, new Vector2((int)x, (int)y), frame, Color.White, rot, orig, 0.45f, SpriteEffects.None, 0f);
+                        Main.spriteBatch.Draw(_texture, new Vector2((int)x, (int)y), frame, Color.White, rot, orig, 0.45f, SpriteEffects.None, 0f);
                     }
                     break;
                 }
             }
         }
 
-        internal static void Initialize()
+        internal static void ModLoad()
         {
             _random = new UnifiedRandom();
+            BGStarite._texture = ModContent.GetTexture("AQMod/Assets/Backgrounds/Entities/Starite");
         }
 
         internal static void Unload()
@@ -252,7 +253,7 @@ namespace AQMod.Common.Skies
             {
                 int width = Main.screenWidth + 40;
                 int height = Main.screenHeight + 40;
-                var texture = OldTextureCache.Lights[LightTex.Spotlight66x66];
+                var texture = AQTextures.Lights[LightTex.Spotlight66x66];
                 float scaleX = width / texture.Width * 1.75f;
                 float scaleY = height / texture.Height;
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
@@ -290,7 +291,7 @@ namespace AQMod.Common.Skies
                 {
                     int width = Main.screenWidth + 40;
                     int height = Main.screenHeight + 40;
-                    var texture = OldTextureCache.Lights[LightTex.Spotlight66x66];
+                    var texture = AQTextures.Lights[LightTex.Spotlight66x66];
                     float scaleX = width / texture.Width * 1.75f;
                     float scaleY = height / texture.Height;
                     var frame = new Rectangle(0, 0, texture.Width, texture.Height);
@@ -417,7 +418,7 @@ namespace AQMod.Common.Skies
 
         public override void Reset()
         {
-            Initialize();
+            ModLoad();
         }
 
         public override void OnLoad() { }

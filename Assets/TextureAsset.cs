@@ -5,24 +5,20 @@ using Terraria.ModLoader;
 
 namespace AQMod.Assets
 {
-    public sealed class TextureAsset
+    public struct TextureAsset : ITextureComponent
     {
         private readonly string _path;
-        private const string throwbackTexturePath = "AQMod/" + OldTextureCache.Error;
+        private const string throwbackTexturePath = "AQMod/" + AQTextures.Error;
         private static readonly bool _debug = false;
 
         private Ref<Texture2D> _texture;
         private bool _loaded;
         private bool _loadedProperly;
 
-        internal TextureAsset(string path)
-        {
-            _path = path;
-            if (_debug)
-            {
-                LoadAsset();
-            }
-        }
+        public bool IsNull => _loaded;
+        public string Path => _path;
+        public bool Loaded => _loaded;
+        public bool LoadedProperly => _loadedProperly;
 
         internal static TextureAsset FromT<T>(string extra)
         {
@@ -35,7 +31,19 @@ namespace AQMod.Assets
             return textureAsset;
         }
 
-        public void LoadAsset()
+        internal TextureAsset(string path)
+        {
+            _path = path;
+            _loaded = false;
+            _loadedProperly = false;
+            _texture = null;
+            if (_debug)
+            {
+                LoadValue(null);
+            }
+        }
+
+        public void LoadValue(object context)
         {
             if (!_loaded)
             {
@@ -45,27 +53,9 @@ namespace AQMod.Assets
             }
         }
 
-        public string Path()
+        public Ref<Texture2D> GetRef(object context)
         {
-            return _path;
-        }
-
-        public Ref<Texture2D> GetAsset()
-        {
-            LoadAsset();
             return _texture;
-        }
-        public Texture2D GetValue()
-        {
-            return GetAsset().Value;
-        }
-        public bool Loaded()
-        {
-            return _loaded;
-        }
-        public bool LoadedProperly()
-        {
-            return _loadedProperly;
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿namespace AQMod.Common.Graphics.PlayerEquips
 {
-    public enum PlayerHeadOverlayID : ushort
+    public static class PlayerHeadOverlayID 
     {
-        MonoxideHat = 0,
-        FinchHat = 1,
-        MonoxideHatGlow = 2,
-        FishyFins = 3,
-        Count
+        public const ushort MonoxideHat = 0;
+        public const ushort FinchHat = 1;
+        public const ushort MonoxideHatGlow = 2;
+        public const ushort FishyFins = 3;
+        public const ushort Count = 4;
     }
 }

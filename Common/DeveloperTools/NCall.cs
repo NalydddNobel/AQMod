@@ -52,7 +52,7 @@ namespace AQMod.Common.DeveloperTools
             public override void UpdateEquip(Item item, Player player)
             {
                 if (headOverlay > -1)
-                    player.GetModPlayer<AQPlayer>().headOverlay = headOverlay;
+                    player.GetModPlayer<AQPlayer>().headAcc = headOverlay;
                 if (mask > -1)
                     player.GetModPlayer<AQPlayer>().mask = mask;
             }

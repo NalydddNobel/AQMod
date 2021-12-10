@@ -282,7 +282,7 @@ namespace AQMod.Projectiles.Summon
         {
             int headFrame = player.bodyFrame.Y / AQPlayer.FRAME_HEIGHT;
             var monoxiderBirdType = ModContent.ProjectileType<Monoxider>();
-            var monoxiderTexture = OldTextureCache.GetProjectile(monoxiderBirdType);
+            var monoxiderTexture = TextureGrabber.GetProjectile(monoxiderBirdType);
             var frame = new Rectangle(0, 0, monoxiderTexture.Width, monoxiderTexture.Height / Main.projFrames[monoxiderBirdType] - 2);
             var drawData = new DrawData(monoxiderTexture, default(Vector2), frame, default(Color), 0f, frame.Size() / 2f, 1f, player.direction == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0)
             { ignorePlayerRotation = ignorePlayerRotation };

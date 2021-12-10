@@ -397,7 +397,7 @@ namespace AQMod.NPCs.Friendly.Town
 
         public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset)
         {
-            item = OldTextureCache.GetItem(ModContent.ItemType<Crabsol>());
+            item = TextureGrabber.GetItem(ModContent.ItemType<Crabsol>());
             itemSize = 40;
             scale = 0.5f;
             offset = new Vector2(0f, 0f);

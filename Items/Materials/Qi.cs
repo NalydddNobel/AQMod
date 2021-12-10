@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Assets.Textures;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -34,7 +33,7 @@ namespace AQMod.Items.Materials
         private static void DrawEye(Vector2 drawPosition, Item item, float time, float rotation = 0f, float scale = 1f)
         {
             var config = ModContent.GetInstance<AQConfigClient>();
-            var texture = OldTextureCache.Lights[LightTex.Spotlight80x80];
+            var texture = AQTextures.Lights[LightTex.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             float timeSine = (float)Math.Sin(time);
@@ -60,7 +59,7 @@ namespace AQMod.Items.Materials
             if (config.EffectQuality < 1f)
                 return;
 
-            texture = OldTextureCache.Lights[LightTex.Spotlight80x80Half];
+            texture = AQTextures.Lights[LightTex.Spotlight80x80Half];
 
             scale3 = MathHelper.Clamp(((float)Math.Sin(time * 1.1f) + 1f) / 2f, 0.151f, 0.8f) * 0.9f;
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(b, b, b, 0) * scale3, rotation + time * 1.1f, drawOrigin, scale2 * scale3, SpriteEffects.None, 0f);
@@ -91,7 +90,7 @@ namespace AQMod.Items.Materials
                     distance = 888f;
                 distance -= 200f;
                 float mult = distance / 688f;
-                texture = OldTextureCache.Lights[LightTex.Spotlight80x80];
+                texture = AQTextures.Lights[LightTex.Spotlight80x80];
                 var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var drawOrigin = drawFrame.Size() / 2f;
                 Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(90, 90, 90, 60) * mult, rotation + MathHelper.PiOver4, drawOrigin, new Vector2(scale / 4f * mult, scale * 1.65f * mult), SpriteEffects.None, 0f);

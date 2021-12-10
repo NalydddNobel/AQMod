@@ -50,7 +50,7 @@ namespace AQMod.Content.MapMarkers.Data
             {
                 if (aQPlayer.showLihzahrdMap && CommonStructureSearchMethods.LihzahrdAltar(out var position) && (Main.Map[position.X, position.Y].Light > 40 || NPC.downedPlantBoss))
                 {
-                    var mapIcon = OldTextureCache.MapIconDungeons.Value;
+                    var mapIcon = ModContent.GetTexture("AQMod/Assets/Map/Dungeons");
                     var frame = new Rectangle(MapInterfaceManager.MapIconWidth * 4, 0, MapInterfaceManager.TrueMapIconWidth, MapInterfaceManager.MapIconHeight);
                     var drawPos = MapInterfaceManager.MapPos(new Vector2(position.X + 1.5f, position.Y - 0.5f));
                     var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(frame.Width, frame.Height) * Main.UIScale);

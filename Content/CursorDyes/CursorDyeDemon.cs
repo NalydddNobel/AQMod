@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace AQMod.Content.CursorDyes
 {
@@ -10,6 +9,6 @@ namespace AQMod.Content.CursorDyes
         }
 
         protected override bool HasOutlines => true;
-        protected override TEA<CursorType> TextureEnumeratorArray => OldTextureCache.DemonCursors;
+        protected override string Path => "AQMod/Assets/Cursors/Demon/Cursor_";
     }
 }

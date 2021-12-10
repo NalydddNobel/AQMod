@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
 using AQMod.Content.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
@@ -67,7 +66,7 @@ namespace AQMod.Projectiles.Monster
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader.FullDraw(OldTextureCache.Trails[TrailTex.Line], Trailshader.TextureTrail,
+                    Trailshader.FullDraw(AQTextures.Trails[TrailTex.Line], Trailshader.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }
@@ -89,10 +88,10 @@ namespace AQMod.Projectiles.Monster
             intensity *= ModContent.GetInstance<AQConfigClient>().EffectIntensity;
             if (intensity > 0f)
             {
-                var spotlight = OldTextureCache.Lights[LightTex.Spotlight66x66];
+                var spotlight = AQTextures.Lights[LightTex.Spotlight66x66];
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.25f, projectile.rotation, spotlightOrig, projectile.scale * intensity, SpriteEffects.None, 0f);
-                spotlight = OldTextureCache.Lights[LightTex.Spotlight240x66];
+                spotlight = AQTextures.Lights[LightTex.Spotlight240x66];
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.04f * intensity, (3f + (float)Math.Sin(Main.GlobalTime * 16f) * 0.2f) * intensity);
                 var spotlightDrawColor = drawColor * 0.2f;

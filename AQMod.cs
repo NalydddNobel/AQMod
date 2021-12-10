@@ -311,7 +311,6 @@ namespace AQMod
         {
             Loading = true;
             Unloading = false;
-            TextureCache.Cache = new TextureCache();
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
             CursorDyes = new CursorDyeLoader();
@@ -345,7 +344,7 @@ namespace AQMod
                 On.Terraria.ItemText.NewText += ItemText_NewText;
                 ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
                 ArmorOverlays = new EquipOverlayLoader();
-                OldTextureCache.Load();
+                AQTextures.Load();
                 EffectCache.Load(this);
                 CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
                 GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
@@ -353,7 +352,7 @@ namespace AQMod
                 DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
                 GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
                 SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
-                GlimmerEventSky.Initialize();
+                GlimmerEventSky.ModLoad();
                 Trailshader.Setup();
                 WorldLayers = new SceneLayersManager();
                 SceneLayersManager.Setup();
@@ -632,8 +631,6 @@ namespace AQMod
         {
             AQBuff.Sets.Setup();
             NoHitManager.Setup();
-            DemonSiege.Setup(); // Sets up the Demon Siege event
-            GlimmerEvent.Setup();
             BossChecklistHelper.Setup(this); // Sets up boss checklist entries for events and bosses
             MapMarkers.Setup(setupStatics: true);
             if (!Main.dedServ)
@@ -774,7 +771,7 @@ namespace AQMod
                 OmegaStariteMusic = null;
                 GlimmerEventMusic = null;
                 CrabsonMusic = null;
-                OldTextureCache.Unload();
+                AQTextures.Unload();
             }
             // ^ doesn't load on server ^
 
@@ -786,7 +783,6 @@ namespace AQMod
                 CursorDyes = null;
             }
             AQText.Unload();
-            TextureCache.Cache = null;
         }
 
         public override void MidUpdateInvasionNet()

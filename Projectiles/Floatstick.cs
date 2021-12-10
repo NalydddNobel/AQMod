@@ -1,4 +1,5 @@
-﻿using AQMod.Common.WorldGeneration;
+﻿using AQMod.Assets;
+using AQMod.Common.WorldGeneration;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -63,7 +64,9 @@ namespace AQMod.Projectiles
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            projectile.drawProjAtCenter(lightColor);
+            var texture = projectile.GetTexture();
+            var frame = texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
+            Main.spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, frame, projectile.GetAlpha(lightColor), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
     }

@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
 using AQMod.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -107,12 +106,12 @@ namespace AQMod.Projectiles.Magic
                 if (dist < 200f)
                 {
                     colorMult = 1f - (dist / StopFollowingMouseDistance);
-                    texture = OldTextureCache.Lights[LightTex.Spotlight10x50];
+                    texture = AQTextures.Lights[LightTex.Spotlight10x50];
                     frame = new Rectangle(0, 0, texture.Width, texture.Height);
                     color = new Color(205, 15, 15, 0) * colorMult;
                     origin = texture.Size() / 2f;
 
-                    var texture2 = OldTextureCache.Lights[LightTex.Spotlight20x20];
+                    var texture2 = AQTextures.Lights[LightTex.Spotlight20x20];
 
                     Main.spriteBatch.Draw(texture2, projectile.position + offset, null, color, projectile.rotation, texture2.Size() / 2f, projectile.scale * (colorMult * colorMult), SpriteEffects.None, 0f);
 

@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Content.Dusts;
+using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Materials.NobleMushrooms;
 using Microsoft.Xna.Framework;
@@ -12,12 +12,15 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Melee
 {
-    public class XenonBasher : ModItem
+    public class XenonBasher : ModItem, IItemOverlaysWorldDraw, IItemOverlaysDrawInventory, IItemOverlaysPlayerDraw
     {
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<XenonBasher>("_Glow"));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawInventory IItemOverlaysDrawInventory.InventoryDraw => _overlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
+
         public override void SetStaticDefaults()
         {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), GetGlowmaskColor), item.type);
         }
 
         private static Color GetGlowmaskColor()
@@ -97,7 +100,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                var texture = OldTextureCache.GetItem(item.type);
+                var texture = TextureGrabber.GetItem(item.type);
                 float length = texture.Size().Length();
                 Vector2 itemPosition = new Vector2((int)player.itemLocation.X, (int)player.itemLocation.Y);
                 Vector2 center = player.MountedCenter;
@@ -118,7 +121,7 @@ namespace AQMod.Items.Weapons.Melee
             if (AQMod.GameWorldActive)
             {
                 var center = item.Center;
-                var texture = OldTextureCache.GetItem(item.type);
+                var texture = TextureGrabber.GetItem(item.type);
                 var size = texture.Size();
                 var length = size.Length();
                 var origin = texture.Size() / 2f;

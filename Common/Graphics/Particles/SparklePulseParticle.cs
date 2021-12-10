@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Assets.Textures;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,7 +8,7 @@ namespace AQMod.Common.Graphics.Particles
 {
     public class SparklePulseParticle : MonoParticle
     {
-        public override Texture2D Texture => OldTextureCache.Particles[ParticleTex.Sparkle];
+        public override Texture2D Texture => AQTextures.Particles[ParticleTex.Sparkle];
         private float _scale;
         public int timeLeft;
         private int _timeLeftMax;
