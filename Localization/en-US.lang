@@ -1042,6 +1042,11 @@ BuffDescription.RedSpriteWind=The wind moves you around!\nYou are increasing in 
 ItemName.RedSpriteBanner=Red Sprite Banner
 ItemTooltip.RedSpriteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.RedSprite}
 
+NPCName.SolarSlime=Solar Slime
+
+ItemName.SolarSlimeBanner=Solar Slime Banner
+ItemTooltip.SolarSlimeBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SolarSlime}
+
 QuestFish.Crabdaughter=Seems like some new fish have entered the ocean recently, one of these fish seems to be related this massive crab with clam as claws. The only thing that makes me think it's related is that it's a clam with crab claws. It's an amazing sight so catch one for me.
 QuestFish.WaterFisg=It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.
 FishingLocation.AnywhereFishing=Caught anywhere
