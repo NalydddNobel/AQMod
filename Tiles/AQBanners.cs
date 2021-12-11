@@ -26,7 +26,7 @@ namespace AQMod.Tiles
         public const int Magmabubble = 8;
         public const int TrapperImp = 9;
         public const int Vraine = 10;
-        public const int TemperatureBalloon = 11;
+        public const int SolarSlime = 11;
         public const int RedSprite = 12;
 
         public override void SetDefaults()

@@ -11,7 +11,7 @@ namespace AQMod.Items.Placeable.Banners
         {
             item.width = 10;
             item.height = 24;
-            item.maxStack = 99;
+            item.maxStack = 999;
             item.useTurn = true;
             item.autoReuse = true;
             item.useAnimation = 15;

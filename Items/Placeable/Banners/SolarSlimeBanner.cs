@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Placeable.Banners
 {
-    public class VraineBanner : ModItem
+    public class SolarSlimeBanner : ModItem
     {
         public override void SetDefaults()
         {
@@ -21,7 +21,7 @@ namespace AQMod.Items.Placeable.Banners
             item.rare = ItemRarityID.Blue;
             item.value = Item.sellPrice(silver: 2);
             item.createTile = ModContent.TileType<AQBanners>();
-            item.placeStyle = AQBanners.Vraine;
+            item.placeStyle = AQBanners.SolarSlime;
         }
     }
 }
