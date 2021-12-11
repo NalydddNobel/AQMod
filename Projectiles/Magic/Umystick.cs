@@ -56,8 +56,13 @@ namespace AQMod.Projectiles.Magic
                     _gfxOffY = 14f;
                     if (Main.myPlayer == projectile.owner)
                     {
+                        var shootPosition = projectile.Center;
+                        if (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, player.position, player.width, player.height))
+                        {
+                            shootPosition = player.Center;
+                        }
                         AQSoundPlayer.PlaySound(SoundType.Item, "Sounds/Item/MysticUmbrellaShoot_" + Main.rand.Next(3), 0.45f, 0.4f);
-                        Projectile.NewProjectile(projectile.Center, projectile.velocity * 27.5f, ModContent.ProjectileType<UmystickMoon>(), projectile.damage, projectile.knockBack, projectile.owner);
+                        Projectile.NewProjectile(shootPosition, projectile.velocity * 27.5f, ModContent.ProjectileType<UmystickMoon>(), projectile.damage, projectile.knockBack, projectile.owner);
                     }
                 }
                 else
