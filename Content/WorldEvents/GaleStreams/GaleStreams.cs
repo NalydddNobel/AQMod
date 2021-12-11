@@ -32,7 +32,8 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                 ModContent.ItemType<Items.Weapons.Magic.Umystick>(),
                 ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
                 ModContent.ItemType<Items.Materials.Fluorescence>(),
-                ModContent.ItemType<Items.Foods.PeeledCarrot>(),
+                ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>(),
+                ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>(),
             },
             new List<int>()
             {

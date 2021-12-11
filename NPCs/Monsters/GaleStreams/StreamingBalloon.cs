@@ -102,15 +102,15 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         Main.npc[n].hide = true;
                         Main.npc[n].noTileCollide = true;
                         Main.npc[n].knockBackResist = 0f;
-                        if ((int)npc.ai[2] == NPCID.RedSlime ||
-                            (int)npc.ai[2] == NPCID.PurpleSlime ||
-                            (int)npc.ai[2] == NPCID.BlackSlime ||
-                            (int)npc.ai[2] == NPCID.JungleSlime)
+                        if (((int)npc.ai[2] == NPCID.BlueSlime ||
+                            (int)npc.ai[2] < 0) && Main.rand.NextBool())
                         {
                             int[] selectableLoot = new int[]
                             {
                                 ItemID.ShinyRedBalloon,
                                 ItemID.Starfury,
+                                ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>(),
+                                ModContent.ItemType<Items.Vanities.HairDyes.TemperatureHairDye>(),
                             };
                             if (AQMod.SudoHardmode)
                             {

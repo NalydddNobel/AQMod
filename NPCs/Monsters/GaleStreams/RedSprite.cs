@@ -924,7 +924,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             }
             if (Main.rand.NextBool(8))
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.PeeledCarrot>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>());
             }
             if (Main.rand.NextBool(10))
             {
@@ -984,7 +984,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         ItemID.NimbusRod,
                         ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
                         ModContent.ItemType<Items.Materials.Fluorescence>(),
-                        ModContent.ItemType<Items.Foods.PeeledCarrot>(),
+                        ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>(),
                     },
                     new List<int>()
                     {

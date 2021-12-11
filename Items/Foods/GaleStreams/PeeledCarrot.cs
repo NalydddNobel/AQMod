@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Foods
+namespace AQMod.Items.Foods.GaleStreams
 {
     public class PeeledCarrot : ModItem, ISpecialFood
     {
@@ -11,7 +11,7 @@ namespace AQMod.Items.Foods
             item.width = 20;
             item.height = 20;
             item.value = Item.sellPrice(silver: 15);
-            item.rare = ItemRarityID.LightRed;
+            item.rare = AQItem.Rarities.GaleStreamsRare - 1;
             item.maxStack = 999;
             item.consumable = true;
             item.UseSound = SoundID.Item2;

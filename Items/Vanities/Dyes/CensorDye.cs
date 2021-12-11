@@ -5,6 +5,10 @@ namespace AQMod.Items.Vanities.Dyes
     public class CensorDye : DyeItem
     {
         public override string Pass => "CensorPass";
-        public override ArmorShaderData CreateShaderData => base.CreateShaderData.UseOpacity(4f);
+
+        public override ArmorShaderData CreateShaderData()
+        {
+            return base.CreateShaderData().UseOpacity(4f);
+        }
     }
 }

@@ -7,6 +7,10 @@ namespace AQMod.Items.Vanities.Dyes
     {
         public override string Pass => "RedSpritePass";
         public override int Rarity => AQItem.Rarities.GaleStreamsRare - 1;
-        public override ArmorShaderData CreateShaderData => base.CreateShaderData.UseColor(new Color(140, 0, 21, 255));
+
+        public override ArmorShaderData CreateShaderData()
+        {
+            return base.CreateShaderData().UseColor(new Color(140, 0, 21, 255));
+        }
     }
 }

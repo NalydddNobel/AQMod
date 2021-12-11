@@ -408,7 +408,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 }
             }
             if (Main.rand.NextBool(100))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.PeeledCarrot>(), Main.rand.NextVRand(1, 3));
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>(), Main.rand.NextVRand(1, 3));
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)

@@ -25,8 +25,8 @@ namespace AQMod.Projectiles.Magic
 
         public override void SetDefaults()
         {
-            projectile.width = 10;
-            projectile.height = 10;
+            projectile.width = 24;
+            projectile.height = 24;
             projectile.friendly = true;
             projectile.magic = true;
             projectile.scale = 0.75f;
@@ -46,6 +46,14 @@ namespace AQMod.Projectiles.Magic
                     _glowClr = new Color(70, 70, 128, 0);
             }
             projectile.rotation += projectile.velocity.Length() * 0.0157f;
+        }
+
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+        {
+            width = 10;
+            height = 10;
+            fallThrough = true;
+            return true;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
