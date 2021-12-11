@@ -18,8 +18,8 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
         public override void SetDefaults()
         {
-            npc.width = 24;
-            npc.height = 24;
+            npc.width = 38;
+            npc.height = 26;
             npc.aiStyle = -1;
             npc.damage = 60;
             npc.defense = 10;
@@ -193,16 +193,16 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 {
                     if (npc.localAI[0] > 120f)
                     {
-                        npc.frame.Y = frameHeight * 7 + frameHeight * (((int)npc.localAI[0] - 120) / 3);
+                        npc.frame.Y = frameHeight * 10 + frameHeight * (((int)npc.localAI[0] - 120) / 3);
                     }
                     else
                     {
-                        npc.frame.Y = frameHeight * 7;
+                        npc.frame.Y = frameHeight * 10;
                     }
                 }
                 else
                 {
-                    npc.frame.Y = frameHeight * ((int)npc.localAI[0] / 3);
+                    npc.frame.Y = frameHeight * (((int)npc.localAI[0] / 3) + 3);
                 }
             }
             else
