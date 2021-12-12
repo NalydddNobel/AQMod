@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Content.Dusts;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
@@ -11,7 +12,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Monster
+namespace AQMod.Projectiles.Monster.Starite
 {
     public class OmegaBullet : ModProjectile
     {
@@ -42,7 +43,7 @@ namespace AQMod.Projectiles.Monster
             projectile.rotation += 0.0314f;
             if (Main.rand.NextBool(12))
             {
-                int d = Dust.NewDust(projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AQMod.CosmicEvent.stariteProjectileColor, 0.75f);
+                int d = Dust.NewDust(projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 0.75f);
                 Main.dust[d].velocity = projectile.velocity * 0.1f;
             }
         }
@@ -52,7 +53,7 @@ namespace AQMod.Projectiles.Monster
             var texture = Main.projectileTexture[projectile.type];
             var orig = texture.Size() / 2f;
             var drawPos = projectile.Center - Main.screenPosition;
-            var drawColor = AQMod.CosmicEvent.stariteProjectileColor;
+            var drawColor = GlimmerEvent.stariteProjectileColor;
             drawColor.A = 0;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             if (Trailshader.ShouldDrawVertexTrails(Trailshader.GetVertexDrawingContext_Projectile(projectile)))
@@ -113,7 +114,7 @@ namespace AQMod.Projectiles.Monster
             var velo = projectile.velocity * 0.5f;
             for (int i = 0; i < 25; i++)
             {
-                int d = Dust.NewDust(projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AQMod.CosmicEvent.stariteProjectileColor, 0.75f);
+                int d = Dust.NewDust(projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 0.75f);
                 Main.dust[d].velocity = velo;
             }
         }

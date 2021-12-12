@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Placeable.Furniture
 {
-    public class AStrangeIdea : ModItem
+    public class OmegaStaritePainting : ModItem
     {
         public override void SetDefaults()
         {
@@ -17,7 +17,7 @@ namespace AQMod.Items.Placeable.Furniture
             item.rare = ItemRarityID.Blue;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.createTile = ModContent.TileType<Tiles.Furniture.Trophies>();
-            item.placeStyle = Tiles.Furniture.Trophies.AStrangeIdea;
+            item.placeStyle = Tiles.Furniture.Trophies.OmegaStaritePainting;
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;

@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Accessories;
+﻿using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Dedicated.Contributors;
 using Terraria;
@@ -49,6 +50,32 @@ namespace AQMod.Common
                 {
                     shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.MonoxideHat>());
                     nextSlot++;
+                }
+                break;
+
+                case NPCID.DyeTrader:
+                {
+                    if (GlimmerEvent.IsActive)
+                    {
+                        if (Main.moonPhase != Constants.MoonPhases.FullMoon)
+                        {
+                            if (Main.moonPhase < 3)
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.DiscoDye>());
+                                nextSlot++;
+                            }
+                            else if (Main.moonPhase > 4)
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.RainbowOutlineDye>());
+                                nextSlot++;
+                            }
+                        }
+                    }
                 }
                 break;
 

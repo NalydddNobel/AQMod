@@ -1,11 +1,12 @@
 ﻿using AQMod.Content.Dusts;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Monster
+namespace AQMod.Projectiles.Monster.Starite
 {
     public class OmegaRay : ModProjectile
     {
@@ -69,7 +70,7 @@ namespace AQMod.Projectiles.Monster
             Vector2 normalizedRotation = new Vector2(1f, 0f).RotatedBy(projectile.rotation);
             Vector2 basePosition = drawPosition + normalizedRotation * NPCs.Boss.Starite.OmegaStarite.CIRCUMFERENCE;
             Vector2 origin = frame.Size() / 2f;
-            Color beamColor = AQMod.CosmicEvent.stariteProjectileColor * 0.065f;
+            Color beamColor = GlimmerEvent.stariteProjectileColor * 0.065f;
             float rotation = projectile.rotation - MathHelper.PiOver2;
             float baseScale = GetLaserScale();
             Main.spriteBatch.Draw(texture, basePosition, frame, beamColor, rotation, origin, new Vector2(1f * baseScale, 1f * baseScale), SpriteEffects.None, 0f);

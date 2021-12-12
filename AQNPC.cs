@@ -17,7 +17,7 @@ using AQMod.NPCs.Friendly.Town;
 using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.DemonSiege;
 using AQMod.Projectiles;
-using AQMod.Projectiles.Monster;
+using AQMod.Projectiles.Monster.Starite;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -1011,26 +1011,6 @@ namespace AQMod
 
         public override void PostAI(NPC npc)
         {
-            if (npc.type == NPCID.CultistBoss && Main.eclipse && Main.dayTime && (int)npc.ai[0] != 5f)
-            {
-                int neededMothronCount = 0;
-                if (npc.life * 2 < npc.lifeMax)
-                    neededMothronCount++;
-                if (npc.life * 4 < npc.lifeMax)
-                    neededMothronCount++;
-                neededMothronCount += NPC.CountNPCS(NPCID.CultistBossClone);
-                if (neededMothronCount > 0)
-                {
-                    int mothronCount = NPC.CountNPCS(NPCID.Mothron);
-                    int x = 100 * neededMothronCount / 2;
-                    for (int i = mothronCount; i < neededMothronCount; i++)
-                    {
-                        int spawnX = (int)npc.position.X + npc.width / 2 + x - 100 * i;
-                        int spawnY = (int)npc.position.Y + 1250;
-                        NPC.NewNPC(spawnX, spawnY, NPCID.Mothron);
-                    }
-                }
-            }
             if (MoonlightWallHelper.Instance.Active)
                 MoonlightWallHelper.Instance.End();
         }

@@ -19,8 +19,6 @@ namespace AQMod
         public override void Initialize()
         {
             OmegaStariteScenes.Initialize();
-            AQMod.CosmicEvent = new GlimmerEvent();
-            AQMod.CosmicEvent.Init();
             CrabSeason.crabSeasonTimer = CrabSeason.CrabSeasonTimerMin;
             CrabSeason.CrabsonCachedID = -1;
             DemonSiege.Reset();
@@ -31,14 +29,14 @@ namespace AQMod
 
         public override TagCompound Save()
         {
-            if (AQMod.CosmicEvent.deactivationTimer > 0)
-                AQMod.CosmicEvent.Deactivate();
+            if (GlimmerEvent.deactivationTimer > 0)
+                GlimmerEvent.Deactivate();
             var tag = new TagCompound()
             {
-                ["GlimmerEvent_active"] = AQMod.CosmicEvent.IsActive,
-                ["GlimmerEvent_X"] = (int)AQMod.CosmicEvent.tileX,
-                ["GlimmerEvent_Y"] = (int)AQMod.CosmicEvent.tileY,
-                ["GlimmerEvent_GlimmerChance"] = AQMod.CosmicEvent.spawnChance,
+                ["GlimmerEvent_active"] = GlimmerEvent.IsActive,
+                ["GlimmerEvent_X"] = (int)GlimmerEvent.tileX,
+                ["GlimmerEvent_Y"] = (int)GlimmerEvent.tileY,
+                ["GlimmerEvent_GlimmerChance"] = GlimmerEvent.spawnChance,
 
                 ["CrabSeason_crabSeasonTimer"] = CrabSeason.crabSeasonTimer,
             };
@@ -49,9 +47,9 @@ namespace AQMod
         {
             CrabSeason.crabSeasonTimer = tag.GetIntOrDefault("CrabSeason_crabSeasonTimer", CrabSeason.CrabSeasonTimerMin);
 
-            AQMod.CosmicEvent.tileX = (ushort)tag.GetInt("GlimmerEvent_X");
-            AQMod.CosmicEvent.tileY = (ushort)tag.GetInt("GlimmerEvent_Y");
-            AQMod.CosmicEvent.spawnChance = tag.GetInt("GlimmerEvent_GlimmerChance");
+            GlimmerEvent.tileX = (ushort)tag.GetInt("GlimmerEvent_X");
+            GlimmerEvent.tileY = (ushort)tag.GetInt("GlimmerEvent_Y");
+            GlimmerEvent.spawnChance = tag.GetInt("GlimmerEvent_GlimmerChance");
 
             if (!Main.dayTime)
                 GlimmerEventSky.InitNight();
@@ -59,7 +57,6 @@ namespace AQMod
 
         public override void PostUpdate()
         {
-            AQMod.CosmicEvent.UpdateWorld();
             CrabSeason.UpdateWorld();
         }
 
@@ -70,19 +67,19 @@ namespace AQMod
 
         public override void NetSend(BinaryWriter writer)
         {
-            if (AQMod.CosmicEvent.IsActive)
+            if (GlimmerEvent.IsActive)
             {
-                writer.Write(AQMod.CosmicEvent.tileX);
-                writer.Write(AQMod.CosmicEvent.tileY);
+                writer.Write(GlimmerEvent.tileX);
+                writer.Write(GlimmerEvent.tileY);
             }
-            writer.Write(AQMod.CosmicEvent.spawnChance);
+            writer.Write(GlimmerEvent.spawnChance);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
-            AQMod.CosmicEvent.tileX = reader.ReadUInt16();
-            AQMod.CosmicEvent.tileY = reader.ReadUInt16();
-            AQMod.CosmicEvent.spawnChance = reader.ReadInt32();
+            GlimmerEvent.tileX = reader.ReadUInt16();
+            GlimmerEvent.tileY = reader.ReadUInt16();
+            GlimmerEvent.spawnChance = reader.ReadInt32();
         }
     }
 }

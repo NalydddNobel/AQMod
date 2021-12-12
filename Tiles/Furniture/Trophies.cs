@@ -16,6 +16,8 @@ namespace AQMod.Tiles.Furniture
         public const int Crabson = 1;
         public const int RedSprite = 2;
         public const int AStrangeIdea = 3;
+        public const int RockFromAnAlternateUniverse = 4;
+        public const int OmegaStaritePainting = 5;
 
         public override void SetDefaults()
         {
@@ -34,7 +36,7 @@ namespace AQMod.Tiles.Furniture
 
         public override ushort GetMapOption(int i, int j)
         {
-            if (Main.tile[i, j].frameX >= 162 && Main.tile[i, j].frameX <= 198
+            if (Main.tile[i, j].frameX >= 162 && Main.tile[i, j].frameX <= 306
                 && Main.tile[i, j].frameY <= 108)
             {
                 return 1;
@@ -58,8 +60,12 @@ namespace AQMod.Tiles.Furniture
                 Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<RedSpriteTrophy>());
                 break;
 
-                case 3:
+                case AStrangeIdea:
                 Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<AStrangeIdea>());
+                break;
+
+                case RockFromAnAlternateUniverse:
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<RockFromAnAlternateUniverse>());
                 break;
             }
         }

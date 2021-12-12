@@ -111,7 +111,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
 
         public override void AI()
         {
-            if (Content.WorldEvents.GlimmerEvent.GlimmerEvent.CheckStariteDeath(npc))
+            if (Content.WorldEvents.GlimmerEvent.GlimmerEvent.ShouldKillStar(npc))
             {
                 npc.life = -1;
                 npc.HitEffect();
@@ -161,7 +161,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                                 for (int i = 0; i < 5; i++)
                                 {
                                     int damage = Main.expertMode ? 45 : 75;
-                                    int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.Monster.HyperStarite>(), damage, 1f, default, npc.whoAmI, i);
+                                    int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.Monster.Starite.HyperStarite>(), damage, 1f, default, npc.whoAmI, i);
                                     Main.projectile[p].netUpdate = true;
                                 }
                             }

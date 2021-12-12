@@ -107,9 +107,9 @@ namespace AQMod.Items.Vanities
                     }
                     return true;
                 }
-                if (AQMod.CosmicEvent.IsActive && Main.rand.NextBool())
+                if (GlimmerEvent.IsActive && Main.rand.NextBool())
                 {
-                    if ((int)(player.Center.X / 16) == AQMod.CosmicEvent.tileX)
+                    if ((int)(player.Center.X / 16) == GlimmerEvent.tileX)
                     {
                         key = AQText.Key + "Common.EightballMisc2";
                         spawnText(player, key);

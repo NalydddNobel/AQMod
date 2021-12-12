@@ -23,41 +23,41 @@ namespace AQMod.Common
                     }
                 },
 
-                { "glimmerevent.tilex", (o) => AQMod.CosmicEvent.tileX },
-                { "glimmerevent.tiley", (o) => AQMod.CosmicEvent.tileY },
-                { "glimmerevent.spawnchance", (o) => AQMod.CosmicEvent.spawnChance },
-                { "glimmerevent.deactivationtimer", (o) => AQMod.CosmicEvent.deactivationTimer },
-                { "glimmerevent.staritedisco", (o) => AQMod.CosmicEvent.StariteDisco },
+                { "glimmerevent.tilex", (o) => GlimmerEvent.tileX },
+                { "glimmerevent.tiley", (o) => GlimmerEvent.tileY },
+                { "glimmerevent.spawnchance", (o) => GlimmerEvent.spawnChance },
+                { "glimmerevent.deactivationtimer", (o) => GlimmerEvent.deactivationTimer },
+                { "glimmerevent.staritedisco", (o) => GlimmerEvent.StariteDisco },
 
-                { "glimmerevent.tilex_set", (o) => AQMod.CosmicEvent.tileX = (ushort)o[1] },
-                { "glimmerevent.tiley_set", (o) => AQMod.CosmicEvent.tileY = (ushort)o[1] },
-                { "glimmerevent.spawnchance_set", (o) => AQMod.CosmicEvent.spawnChance = (int)o[1] },
-                { "glimmerevent.deactivationtimer_set", (o) => AQMod.CosmicEvent.deactivationTimer = (int)o[1] },
-                { "glimmerevent.staritedisco_set", (o) => AQMod.CosmicEvent.StariteDisco = (bool)o[1] },
+                { "glimmerevent.tilex_set", (o) => GlimmerEvent.tileX = (ushort)o[1] },
+                { "glimmerevent.tiley_set", (o) => GlimmerEvent.tileY = (ushort)o[1] },
+                { "glimmerevent.spawnchance_set", (o) => GlimmerEvent.spawnChance = (int)o[1] },
+                { "glimmerevent.deactivationtimer_set", (o) => GlimmerEvent.deactivationTimer = (int)o[1] },
+                { "glimmerevent.staritedisco_set", (o) => GlimmerEvent.StariteDisco = (bool)o[1] },
 
-                { "glimmerevent_isactive", (o) => AQMod.CosmicEvent.IsActive },
-                { "glimmerevent_stariteprojectilecolor", (o) => AQMod.CosmicEvent.stariteProjectileColor },
+                { "glimmerevent_isactive", (o) => GlimmerEvent.IsActive },
+                { "glimmerevent_stariteprojectilecolor", (o) => GlimmerEvent.stariteProjectileColor },
                 { "glimmerevent_activate", (o) =>
                     {
                         if (o.Length > 1 && o[1] is bool flag)
                         {
-                            return AQMod.CosmicEvent.Activate(flag);
+                            return GlimmerEvent.Activate(flag);
                         }
                         else
                         {
-                            return AQMod.CosmicEvent.Activate();
+                            return GlimmerEvent.Activate();
                         }
                     }
                 },
-                { "glimmerevent_spawnsactive", (o) => AQMod.CosmicEvent.SpawnsActive((Player)o[1]) },
+                { "glimmerevent_spawnsactive", (o) => GlimmerEvent.SpawnsActive((Player)o[1]) },
                 { "glimmerevent_canshowinvasionprogress", (o) => GlimmerEvent.CanShowInvasionProgress() },
                 { "glimmerevent_deactivate", (o) =>
                     {
-                        AQMod.CosmicEvent.Deactivate();
+                        GlimmerEvent.Deactivate();
                         return null;
                     }
                 },
-                { "glimmerevent_gettiledistance", (o) => AQMod.CosmicEvent.GetTileDistance((Player)o[1]) },
+                { "glimmerevent_gettiledistance", (o) => GlimmerEvent.GetTileDistance((Player)o[1]) },
 
                 { "demonsiege.x", (o) => DemonSiege.X },
                 { "demonsiege.y", (o) => DemonSiege.Y },
@@ -110,16 +110,28 @@ namespace AQMod.Common
                 { "crabseasontimer_set", (o) => CrabSeason.crabSeasonTimer = (int)o[1] },
 
                 { "worlddefeats.downedcrabson", (o) => WorldDefeats.DownedCrabson },
-                { "worlddefeats.downeddemonsiege", (o) => WorldDefeats.DownedDemonSiege },
-                { "worlddefeats.downedglimmer", (o) => WorldDefeats.DownedGlimmer },
-                { "worlddefeats.downedstarite", (o) => WorldDefeats.DownedStarite },
-                { "worlddefeats.downedyinyang", (o) => WorldDefeats.DownedYinYang },
-
                 { "worlddefeats.downedcrabson_set", (o) => WorldDefeats.DownedCrabson = (bool)o[1]},
-                { "worlddefeats.downeddemonsiege_set", (o) => WorldDefeats.DownedDemonSiege = (bool)o[1]},
-                { "worlddefeats.downedglimmer_set", (o) => WorldDefeats.DownedGlimmer = (bool)o[1]},
+                { "worlddefeats.downedstarite", (o) => WorldDefeats.DownedStarite },
                 { "worlddefeats.downedstarite_set", (o) => WorldDefeats.DownedStarite = (bool)o[1]},
-                { "worlddefeats.downedyinyang_set", (o) => WorldDefeats.DownedYinYang = (bool)o[1]},
+                { "worlddefeats.nohitomegastarite", (o) => WorldDefeats.NoHitOmegaStarite },
+                { "worlddefeats.nohitomegastarite_set", (o) => WorldDefeats.NoHitOmegaStarite = (bool)o[1] },
+
+                { "worlddefeats.downedredsprite", (o) => WorldDefeats.DownedRedSprite },
+                { "worlddefeats.downedredsprite_set", (o) => WorldDefeats.DownedRedSprite = (bool)o[1]},
+
+                { "worlddefeats.downedcrabseason", (o) => WorldDefeats.DownedCrabSeason },
+                { "worlddefeats.downedcrabseason_set", (o) => WorldDefeats.DownedCrabSeason = (bool)o[1]},
+                { "worlddefeats.downedglimmer", (o) => WorldDefeats.DownedGlimmer },
+                { "worlddefeats.downedglimmer_set", (o) => WorldDefeats.DownedGlimmer = (bool)o[1]},
+                { "worlddefeats.downeddemonsiege", (o) => WorldDefeats.DownedDemonSiege },
+                { "worlddefeats.downeddemonsiege_set", (o) => WorldDefeats.DownedDemonSiege = (bool)o[1]},
+                { "worlddefeats.downedgalestreams", (o) => WorldDefeats.DownedGaleStreams },
+                { "worlddefeats.downedgalestreams_set", (o) => WorldDefeats.DownedGaleStreams = (bool)o[1]},
+
+                { "worlddefeats.obtainedmothmanmask", (o) => WorldDefeats.ObtainedMothmanMask },
+                { "worlddefeats.obtainedmothmanmask_set", (o) => WorldDefeats.ObtainedMothmanMask = (bool)o[1]},
+                { "worlddefeats.obtainedcatalystpainting", (o) => WorldDefeats.ObtainedCatalystPainting },
+                { "worlddefeats.obtainedcatalystpainting_set", (o) => WorldDefeats.ObtainedCatalystPainting = (bool)o[1]},
             };
         }
 

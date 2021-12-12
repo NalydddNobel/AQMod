@@ -30,7 +30,7 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
 
         public static Vector2 SwordDrawPosition()
         {
-            return new Vector2(AQMod.CosmicEvent.tileX * 16f, AQMod.CosmicEvent.tileY - 120f);
+            return new Vector2(GlimmerEvent.tileX * 16f, GlimmerEvent.tileY - 120f);
         }
 
         public static void InteractWithSword(Player player)

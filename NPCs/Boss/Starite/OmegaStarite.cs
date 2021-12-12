@@ -17,7 +17,7 @@ using AQMod.Items.Vanities.Pets;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Localization;
-using AQMod.Projectiles.Monster;
+using AQMod.Projectiles.Monster.Starite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -154,7 +154,7 @@ namespace AQMod.NPCs.Boss.Starite
             npc.trapImmune = true;
             npc.lavaImmune = true;
             bossBag = ModContent.ItemType<StariteBag>();
-            if (!AQMod.CosmicEvent.IsActive)
+            if (!GlimmerEvent.IsActive)
                 skipDeathTimer = 600;
             if (AQMod.CanUseAssets)
             {
@@ -233,7 +233,7 @@ namespace AQMod.NPCs.Boss.Starite
 
         public bool HardVersion()
         {
-            return AQMod.HarderOmegaStarite || AQMod.CosmicEvent.IsActive;
+            return AQMod.HarderOmegaStarite || GlimmerEvent.IsActive;
         }
 
         public void Init()
@@ -307,7 +307,7 @@ namespace AQMod.NPCs.Boss.Starite
 
         public override void AI()
         {
-            if (GlimmerEvent.CheckStariteDeath(npc))
+            if (GlimmerEvent.ShouldKillStar(npc))
             {
                 npc.life = -1;
                 OmegaStariteScenes.OmegaStariteIndexCache = -1;
@@ -655,9 +655,9 @@ namespace AQMod.NPCs.Boss.Starite
                             const int width = (int)(CIRCUMFERENCE * 2f);
                             const int height = 900;
                             Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AQMod.CosmicEvent.stariteProjectileColor, 2f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AQMod.CosmicEvent.stariteProjectileColor, 2f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AQMod.CosmicEvent.stariteProjectileColor, 2f);
+                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 2f);
+                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 2f);
+                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 2f);
                         }
                     }
                 }
@@ -1165,6 +1165,7 @@ namespace AQMod.NPCs.Boss.Starite
                 npc.lifeMax = -33333;
                 return true;
             }
+            npc.GetGlobalNPC<NoHitManager>().dontHitPlayers = true;
             npc.ai[0] = -1f;
             npc.ai[1] = 0f;
             npc.ai[2] = 0f;
@@ -1179,6 +1180,10 @@ namespace AQMod.NPCs.Boss.Starite
         {
             if (npc.life == -33333)
             {
+                if (NoHitManager.HasBeenNoHit(npc, Main.myPlayer))
+                {
+                    NoHitManager.PlayNoHitJingle(npc.Center);
+                }
                 float rotationOff = MathHelper.TwoPi / 80;
                 var center = npc.Center;
                 for (int i = 0; i < 80; i++)
@@ -1232,6 +1237,10 @@ namespace AQMod.NPCs.Boss.Starite
             }
             else if (npc.life <= 0)
             {
+                if (skipDeathTimer > 0 && NoHitManager.HasBeenNoHit(npc, Main.myPlayer))
+                {
+                    NoHitManager.PlayNoHitJingle(npc.Center);
+                }
                 for (int i = 0; i < 50; i++)
                 {
                     int d = Dust.NewDust(npc.position, npc.width, npc.height, 55);
@@ -1298,7 +1307,7 @@ namespace AQMod.NPCs.Boss.Starite
             {
                 if (damage > 300)
                 {
-                    AQMod.CosmicEvent.StariteDisco = true;
+                    GlimmerEvent.StariteDisco = true;
                     Vector2 velo = projectile.velocity * -1.2f;
                     for (int i = 0; i < 8; i++)
                     {
@@ -1330,15 +1339,15 @@ namespace AQMod.NPCs.Boss.Starite
 
         public override void NPCLoot()
         {
-            AQMod.CosmicEvent.deactivationTimer = 275;
+            GlimmerEvent.deactivationTimer = 275;
             var noHitManager = npc.GetGlobalNPC<NoHitManager>();
             bool anyoneNoHit = false;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
-                if (Main.player[i].active && !noHitManager.hitPlayer[i] && npc.playerInteraction[i])
+                if (NoHitManager.HasBeenNoHit(npc, i))
                 {
                     anyoneNoHit = true;
-                    break;
+                    AQItem.DropInstancedItem(i, npc.getRect(), ModContent.ItemType<Items.Placeable.Furniture.AStrangeIdea>());
                 }
             }
             if (anyoneNoHit || Main.rand.NextBool(10))
@@ -1382,7 +1391,7 @@ namespace AQMod.NPCs.Boss.Starite
             }
             WorldDefeats.DownedStarite = true;
             WorldDefeats.DownedGlimmer = true;
-            if (AQMod.CosmicEvent.IsActive)
+            if (GlimmerEvent.IsActive)
             {
                 switch (Main.rand.Next(3))
                 {
@@ -1459,7 +1468,7 @@ namespace AQMod.NPCs.Boss.Starite
             var spotlight = AQTextures.Lights[LightTex.Spotlight66x66];
             var spotlightOrig = spotlight.Size() / 2f;
             Color spotlightColor;
-            if (AQMod.CosmicEvent.StariteDisco)
+            if (GlimmerEvent.StariteDisco)
             {
                 spotlightColor = Main.DiscoColor;
                 spotlightColor.A = 0;
@@ -1547,7 +1556,7 @@ namespace AQMod.NPCs.Boss.Starite
                     if (trueOldPos.Count > 1)
                     {
                         const float radius = CIRCUMFERENCE / 2f;
-                        var trailClr = AQMod.CosmicEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
+                        var trailClr = GlimmerEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
                         var trail = new Trailshader(AQTextures.Trails[TrailTex.Line], Trailshader.TextureTrail);
                         trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
                         trail.Draw();
@@ -1561,7 +1570,7 @@ namespace AQMod.NPCs.Boss.Starite
                         if (npc.oldPos[i] == new Vector2(0f, 0f))
                             break;
                         float progress = 1f - 1f / trailLength * i;
-                        var trailClr = AQMod.CosmicEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
+                        var trailClr = GlimmerEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
                         trailClr.A = 0;
                         Main.spriteBatch.Draw(texture, npc.oldPos[i] + offset - Main.screenPosition, npc.frame, trailClr * 0.4f * progress, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
                     }

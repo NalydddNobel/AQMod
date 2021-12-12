@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -187,15 +188,15 @@ namespace AQMod.NPCs.Friendly.Town
                     }
                 }
             }
-            if (AQMod.CosmicEvent.SpawnsActive(player))
+            if (GlimmerEvent.SpawnsActive(player))
             {
                 potentialText.Add("Physicist.Chat.GlimmerEvent.0");
                 potentialText.Add("Physicist.Chat.GlimmerEvent.1");
                 potentialText.Add("Physicist.Chat.GlimmerEvent.2");
                 potentialText.Add("Physicist.Chat.GlimmerEvent.3");
-                if (AQMod.CosmicEvent.GetTileDistance(player) > 1000)
+                if (GlimmerEvent.GetTileDistance(player) > 1000)
                 {
-                    if (AQMod.CosmicEvent.tileX < ((int)(player.position.X + player.width / 2f) / 16f))
+                    if (GlimmerEvent.tileX < ((int)(player.position.X + player.width / 2f) / 16f))
                     {
                         potentialText.Add("Physicist.Chat.GlimmerEvent.Source.West");
                     }

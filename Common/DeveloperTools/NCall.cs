@@ -273,7 +273,7 @@ namespace AQMod.Common.DeveloperTools
 
                 case "glimmerlayer":
                 {
-                    caller.Reply("glimmer layer: " + GlimmerEvent.GetLayerIndex(AQMod.CosmicEvent.GetTileDistance(caller.Player)));
+                    caller.Reply("glimmer layer: " + GlimmerEvent.GetLayerIndex(GlimmerEvent.GetTileDistance(caller.Player)));
                 }
                 break;
 

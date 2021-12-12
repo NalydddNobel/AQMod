@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -6,6 +8,7 @@ using Terraria.ObjectData;
 
 namespace AQMod.Tiles.Furniture
 {
+    [Obsolete("Not used anymore.")]
     public class Paintings6x6 : ModTile
     {
         public const int RockFromAnAlternateUniverse = 0;
@@ -35,6 +38,12 @@ namespace AQMod.Tiles.Furniture
                 Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Placeable.Furniture.RockFromAnAlternateUniverse>());
                 break;
             }
+        }
+
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            WorldGen.KillTile(i, j);
+            return base.PreDraw(i, j, spriteBatch);
         }
     }
 }

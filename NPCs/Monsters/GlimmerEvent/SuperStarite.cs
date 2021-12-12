@@ -256,7 +256,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                     {
                         const float twoPiOver5 = MathHelper.TwoPi / 5f;
                         int damage = Main.hardMode && Main.expertMode ? 45 : 20;
-                        int type = ModContent.ProjectileType<Projectiles.Monster.SuperStarite>();
+                        int type = ModContent.ProjectileType<Projectiles.Monster.Starite.SuperStarite>();
                         float length = (float)Math.Sqrt(npc.width * npc.width + npc.height * npc.height) / 2f;
                         for (int i = 0; i < 5; i++)
                         {
@@ -311,7 +311,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                 Main.gore[g].scale *= 0.6f;
             }
             Lighting.AddLight(npc.Center, new Vector3(0.8f, 0.8f, 0.45f));
-            if (Content.WorldEvents.GlimmerEvent.GlimmerEvent.CheckStariteDeath(npc))
+            if (Content.WorldEvents.GlimmerEvent.GlimmerEvent.ShouldKillStar(npc))
             {
                 npc.life = -1;
                 npc.HitEffect();

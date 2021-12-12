@@ -35,12 +35,12 @@ namespace AQMod.Content.MapMarkers.Data
         public override void DrawMap(ref string mouseText, Player player, AQPlayer aQPlayer, MapMarkerLayerToggles toggles)
         {
             toggles.AddMapMarker(this);
-            if (aQPlayer.showCosmicMap && AQMod.CosmicEvent.IsActive)
+            if (aQPlayer.showCosmicMap && GlimmerEvent.IsActive)
             {
                 float alpha = (float)Math.Sin(Main.GlobalTime * 7f) + 1f;
                 var texture = ModContent.GetTexture("AQMod/Assets/Map/GlimmerEvent");
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                var drawPos = MapInterfaceManager.MapPos(new Vector2(AQMod.CosmicEvent.tileX + 0.5f, AQMod.CosmicEvent.tileY - 3f));
+                var drawPos = MapInterfaceManager.MapPos(new Vector2(GlimmerEvent.tileX + 0.5f, GlimmerEvent.tileY - 3f));
                 var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
                 var scale = Main.UIScale;
                 if (hitbox.Contains(Main.mouseX, Main.mouseY))
@@ -64,7 +64,7 @@ namespace AQMod.Content.MapMarkers.Data
                     for (int j = 0; j < 2; j++)
                     {
                         int d = j == 1 ? -1 : 1;
-                        var pos = new Vector2(AQMod.CosmicEvent.tileX + 0.5f + layer.Distance * d, 46f);
+                        var pos = new Vector2(GlimmerEvent.tileX + 0.5f + layer.Distance * d, 46f);
                         if (pos.X < 0f || pos.X > Main.maxTilesX)
                             continue;
                         for (int k = 0; k < 2; k++)

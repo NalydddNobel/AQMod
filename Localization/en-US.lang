@@ -1,8 +1,10 @@
 ﻿
-# Items
+# Accessories
 
 ItemName.FidgetSpinner=Perpetuator
 ItemTooltip.FidgetSpinner=Non-autoswing items are slower, but gain autoswing
+
+# Barbs
 
 ItemName.CrabBarb=Crab Barb
 ItemTooltip.CrabBarb=Your grappling hooks inflicts poison, and damage
@@ -98,6 +100,20 @@ Physicist.Chat.Mod.Polarities.Rapture=Somehow the light from the hallow is even 
 Physicist.Chat.Mod.Fargowiltas.Mutant=You just buy boss summons from a weird looking monster? Weirdo.
 Physicist.Chat.Mod.Fargowiltas.Abominationn=You just buy event summons from a creepy looking reaper? Weirdo.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=You just buy rare enemy summons from a dumb looking child? Weirdo.
+
+# Paintings
+
+PaintingSignature.NalydT=N.T.
+PaintingSignature.niker=N.
+
+ItemName.OmegaStaritePainting='{$Mods.AQMod.NPCName.OmegaStarite}'
+ItemTooltip.OmegaStaritePainting='You have no idea whats in store for you!'\n{$Mods.AQMod.PaintingSignature.niker}
+
+ItemName.RockFromAnAlternateUniverse='Rock from an Alternate Universe'
+ItemTooltip.RockFromAnAlternateUniverse='The great might of an interstellar nebula!'\n{$Mods.AQMod.PaintingSignature.NalydT}.. from another universe
+
+ItemName.AStrangeIdea='A Strange Idea...'
+ItemTooltip.AStrangeIdea='The birthplace of Aequus'\n{$Mods.AQMod.PaintingSignature.NalydT}
 
 # Event and Boss Checklist stuff
 
@@ -482,10 +498,6 @@ ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
 CommonTooltip.DedicatedItem=Dedicated Item
 CommonTooltip.ContentCreatorItem=Content Creator Item
 
-PaintingSignature.NalydT=N.T.
-
-ItemName.AStrangeIdea=A Strange Idea...
-ItemTooltip.AStrangeIdea={$Mods.AQMod.PaintingSignature.NalydT}
 ItemName.Narrizuul=Narrizuul
 ItemTooltip.Narrizuul=A relic birthed in an alternate universe\n'Smells like roses'
 
@@ -698,7 +710,6 @@ ItemTooltip.MushroomClam=Summons Jerry Crabson at the beach
 ItemTooltip.DragonBall=Summons a micro starite
 ItemTooltip.MythicStarfruit=Begins the Glimmer Event
 ItemTooltip.NovaFruit=Summons {$Mods.AQMod.NPCName.OmegaStarite} at night\n{$Mods.AQMod.Common.NotConsumable}
-ItemTooltip.OmegaStariteTrophy='You have no idea whats in store for you!'
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.UltimateStarfruit=Left click summons {$Mods.AQMod.NPCName.OmegaStarite} at night\nRight click toggles the Glimmer Event\n{$Mods.AQMod.Common.NotConsumable}
 ##############

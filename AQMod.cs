@@ -159,10 +159,6 @@ namespace AQMod
         /// The active list of World Effects, this is not initialized on the server
         /// </summary>
         public static List<WorldVisualEffect> WorldEffects { get; private set; }
-        /// <summary>
-        /// The active instance of the Glimmer Event (event)
-        /// </summary>
-        public static GlimmerEvent CosmicEvent { get; set; }
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
@@ -315,7 +311,6 @@ namespace AQMod
             CursorDyes.Setup(setupStatics: true);
             RobsterHunts = new RobsterHuntLoader();
             RobsterHunts.Setup(setupStatics: true);
-            CosmicEvent = new GlimmerEvent();
             MapMarkers = new MapMarkerManager();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             ModCallHelper.SetupCalls();
@@ -325,6 +320,9 @@ namespace AQMod
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
             On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
             On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
+            On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
+            On.Terraria.Main.DrawTiles += Main_DrawTiles;
+            On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
             On.Terraria.Player.FishingLevel += GetFishingLevel;
             On.Terraria.Player.AddBuff += Player_AddBuff;
             On.Terraria.Player.QuickBuff += Player_QuickBuff;
@@ -337,10 +335,6 @@ namespace AQMod
             {
                 var client = AQConfigClient.Instance;
                 ApplyClientConfig(client);
-                On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
-                On.Terraria.Main.DrawTiles += Main_DrawTiles;
-                On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
-                On.Terraria.ItemText.NewText += ItemText_NewText;
                 ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
                 ArmorOverlays = new EquipOverlayLoader();
                 AQTextures.Load();
@@ -553,16 +547,6 @@ namespace AQMod
             orig(self, type, time1, quiet);
         }
 
-        private static void ItemText_NewText(On.Terraria.ItemText.orig_NewText orig, Item newItem, int stack, bool noStack, bool longText)
-        {
-            if (newItem != null && newItem.type > Main.maxItemTypes && newItem.modItem is Items.ICustomPickupText customPickupText)
-            {
-                if (customPickupText.OnSpawnText(newItem, stack, noStack, longText))
-                    return;
-            }
-            orig(newItem, stack, noStack, longText);
-        }
-
         private static int GetFishingLevel(On.Terraria.Player.orig_FishingLevel orig, Player player)
         {
             int regularLevel = orig(player);
@@ -686,7 +670,6 @@ namespace AQMod
         public override void PostSetupContent()
         {
             AQBuff.Sets.Setup();
-            NoHitManager.Setup();
             MapMarkers.Setup(setupStatics: true);
             if (!Main.dedServ)
             {
@@ -801,7 +784,6 @@ namespace AQMod
             MapMarkers = null;
             DemonSiege.Unload();
             AQProjectile.Sets.UnloadSets();
-            NoHitManager.Unload();
             AQNPC.Sets.UnloadSets();
             AQBuff.Sets.Unload();
 
@@ -868,11 +850,11 @@ namespace AQMod
             }
             if (Main.netMode != NetmodeID.Server)
             {
-                CosmicEvent.stariteProjectileColor = CosmicEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : StariteProjectileColor;
+                GlimmerEvent.stariteProjectileColor = GlimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : StariteProjectileColor;
             }
             else
             {
-                CosmicEvent.stariteProjectileColor = CosmicEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : GlimmerEvent.StariteProjectileColorOrig;
+                GlimmerEvent.stariteProjectileColor = GlimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : GlimmerEvent.StariteProjectileColorOrig;
             }
         }
 
@@ -886,7 +868,7 @@ namespace AQMod
             }
             if (Main.netMode != NetmodeID.MultiplayerClient && spawnStarite)
             {
-                OmegaStariteScenes.OmegaStariteIndexCache = (short)NPC.NewNPC(AQMod.CosmicEvent.tileX * 16 + 8, AQMod.CosmicEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
+                OmegaStariteScenes.OmegaStariteIndexCache = (short)NPC.NewNPC(GlimmerEvent.tileX * 16 + 8, GlimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
                 OmegaStariteScenes.SceneType = 1;
                 spawnStarite = false;
                 BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", BossMessage);
@@ -918,9 +900,9 @@ namespace AQMod
                 music = DemonSiegeMusic.GetMusicID();
                 priority = MusicPriority.Event;
             }
-            else if (CosmicEvent.IsActive && player.position.Y < Main.worldSurface * 16.0)
+            else if (GlimmerEvent.IsActive && player.position.Y < Main.worldSurface * 16.0)
             {
-                int tileDistance = (int)(player.Center.X / 16 - CosmicEvent.tileX).Abs();
+                int tileDistance = (int)(player.Center.X / 16 - GlimmerEvent.tileX).Abs();
                 if (tileDistance < GlimmerEvent.MaxDistance)
                 {
                     music = GlimmerEventMusic.GetMusicID();
@@ -978,11 +960,11 @@ namespace AQMod
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            var messageID = NetworkingMethods.GetMessage(reader);
+            byte messageID = reader.ReadByte();
 
             switch (messageID)
             {
-                case NetType.SummonOmegaStarite:
+                case AQPacketID.SummonOmegaStarite:
                 {
                     if (Main.netMode == NetmodeID.Server)
                     {
@@ -991,17 +973,17 @@ namespace AQMod
                 }
                 break;
 
-                case NetType.UpdateGlimmerEvent:
+                case AQPacketID.UpdateGlimmerEvent:
                 {
-                    CosmicEvent.tileX = reader.ReadUInt16();
-                    CosmicEvent.tileY = reader.ReadUInt16();
-                    CosmicEvent.spawnChance = reader.ReadInt32();
-                    CosmicEvent.StariteDisco = reader.ReadBoolean();
-                    CosmicEvent.deactivationTimer = reader.ReadInt32();
+                    GlimmerEvent.tileX = reader.ReadUInt16();
+                    GlimmerEvent.tileY = reader.ReadUInt16();
+                    GlimmerEvent.spawnChance = reader.ReadInt32();
+                    GlimmerEvent.StariteDisco = reader.ReadBoolean();
+                    GlimmerEvent.deactivationTimer = reader.ReadInt32();
                 }
                 break;
 
-                case NetType.UpdateAQPlayerCelesteTorus:
+                case AQPacketID.UpdateAQPlayerCelesteTorus:
                 {
                     var player = Main.player[reader.ReadByte()];
                     var aQPlayer = player.GetModPlayer<AQPlayer>();
@@ -1011,7 +993,7 @@ namespace AQMod
                 }
                 break;
 
-                case NetType.UpdateAQPlayerEncoreKills:
+                case AQPacketID.UpdateAQPlayerEncoreKills:
                 {
                     var player = Main.player[reader.ReadByte()];
                     var aQPlayer = player.GetModPlayer<AQPlayer>();
@@ -1051,7 +1033,7 @@ namespace AQMod
 
         public static void OnTurnNight()
         {
-            CosmicEvent.OnTurnNight();
+            GlimmerEvent.OnTurnNight();
             if (Main.netMode != NetmodeID.Server)
             {
                 GlimmerEventSky.InitNight();

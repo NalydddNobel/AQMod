@@ -65,9 +65,9 @@ namespace AQMod.Common
                     pool[keyValue[i]] *= mult;
                 }
             }
-            if (AQMod.CosmicEvent.SpawnsActive(spawnInfo.player))
+            if (GlimmerEvent.SpawnsActive(spawnInfo.player))
             {
-                int tileDistance = AQMod.CosmicEvent.GetTileDistance(spawnInfo.player);
+                int tileDistance = GlimmerEvent.GetTileDistance(spawnInfo.player);
                 if (tileDistance < 30)
                 {
                     pool.Clear();

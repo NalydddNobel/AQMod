@@ -2,6 +2,7 @@
 using AQMod.Common;
 using AQMod.Content;
 using AQMod.Content.Quest.Lobster;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Placeable.CraftingStations;
 using AQMod.Items.Weapons.Melee;
@@ -158,7 +159,7 @@ namespace AQMod.NPCs.Friendly.Town
                     potentialText.Add(AQText.RobsterChat(6).Value);
             }
 
-            if (AQMod.CosmicEvent.IsActive)
+            if (GlimmerEvent.IsActive)
             {
                 potentialText.Add(AQText.RobsterChat(2).Value);
                 potentialText.Add(AQText.RobsterChat(3).Value);

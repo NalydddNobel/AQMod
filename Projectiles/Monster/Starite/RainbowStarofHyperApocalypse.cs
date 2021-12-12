@@ -11,7 +11,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Monster
+namespace AQMod.Projectiles.Monster.Starite
 {
     public class RainbowStarofHyperApocalypse : ModProjectile
     {

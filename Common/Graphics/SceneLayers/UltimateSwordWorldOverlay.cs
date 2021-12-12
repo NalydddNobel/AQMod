@@ -58,7 +58,7 @@ namespace AQMod.Common.Graphics.SceneLayers
 
             var hitbox = new Rectangle((int)drawPos.X - 10, (int)drawPos.Y - 60, 20, 60);
             Vector2 trueMouseworld = AQUtils.TrueMouseworld;
-            if (hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y) && AQMod.CosmicEvent.IsActive)
+            if (hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y) && GlimmerEvent.IsActive)
             {
                 int omegaStariteID = ModContent.NPCType<OmegaStarite>();
                 if (OmegaStariteScenes.SceneType == 0 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16))
@@ -75,7 +75,7 @@ namespace AQMod.Common.Graphics.SceneLayers
                         plr.tileInteractAttempted = true;
                         plr.tileInteractionHappened = true;
                         plr.releaseUseTile = false;
-                        NetworkingMethods.GlimmerEventNetSummonOmegaStarite();
+                        NetHelper.GlimmerEventNetSummonOmegaStarite();
                         Main.PlaySound(SoundID.Item, (int)drawPos.X, (int)drawPos.Y, 4, 0.5f, -2.5f);
                     }
                 }
@@ -89,8 +89,8 @@ namespace AQMod.Common.Graphics.SceneLayers
 
         public static Vector2 swordPos()
         {
-            float x = AQMod.CosmicEvent.tileX * 16f;
-            if (Framing.GetTileSafely(AQMod.CosmicEvent.tileX, AQMod.CosmicEvent.tileY).type == ModContent.TileType<GlimmeringStatue>())
+            float x = GlimmerEvent.tileX * 16f;
+            if (Framing.GetTileSafely(GlimmerEvent.tileX, GlimmerEvent.tileY).type == ModContent.TileType<GlimmeringStatue>())
             {
                 x += 16f;
             }
@@ -98,18 +98,18 @@ namespace AQMod.Common.Graphics.SceneLayers
             {
                 x += 8f;
             }
-            float y = AQMod.CosmicEvent.tileY * 16 - 80f + bobbingSin() * 8f;
+            float y = GlimmerEvent.tileY * 16 - 80f + bobbingSin() * 8f;
             return new Vector2(x, y);
         }
 
         private bool closeEnoughToDraw()
         {
-            return Main.LocalPlayer.position.X - AQMod.CosmicEvent.tileX * 16f < Main.screenWidth + 200f;
+            return Main.LocalPlayer.position.X - GlimmerEvent.tileX * 16f < Main.screenWidth + 200f;
         }
 
         public override void Update()
         {
-            if (!AQMod.CosmicEvent.IsActive || OmegaStariteScenes.SceneType > 1 || !closeEnoughToDraw())
+            if (!GlimmerEvent.IsActive || OmegaStariteScenes.SceneType > 1 || !closeEnoughToDraw())
                 return;
             var position = swordPos();
             Lighting.AddLight(position, new Vector3(1f, 1f, 1f));

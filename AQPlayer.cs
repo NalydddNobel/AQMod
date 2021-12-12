@@ -758,12 +758,12 @@ namespace AQMod
             }
             if (!Main.gamePaused && Main.instance.IsActive)
                 ScreenShakeManager.Update();
-            bool glimmerEvent = (AQMod.CosmicEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight;
+            bool glimmerEvent = (GlimmerEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight;
             AQUtils.UpdateSky(glimmerEvent, GlimmerEventSky.Name);
             if (glimmerEvent)
             {
                 float intensity = 0f;
-                float distance = (Main.player[Main.myPlayer].position.X - (AQMod.CosmicEvent.tileX * 16f + 8f)).Abs();
+                float distance = (Main.player[Main.myPlayer].position.X - (GlimmerEvent.tileX * 16f + 8f)).Abs();
                 if (distance < 6400f)
                 {
                     intensity += 1f - distance / 6400f;
@@ -963,7 +963,7 @@ namespace AQMod
             {
                 if (player.position.Y < Main.worldSurface * 16f)
                 {
-                    if (AQMod.CosmicEvent.IsActive)
+                    if (GlimmerEvent.IsActive)
                         return ModContent.GetTexture("AQMod/Assets/Map/Backgrounds/GlimmerEvent");
                 }
             }
@@ -1271,7 +1271,7 @@ namespace AQMod
             ModPacket packet = mod.GetPacket();
             if (NetUpdateKillCount)
             {
-                packet.Write(NetType.UpdateAQPlayerEncoreKills);
+                packet.Write(AQPacketID.UpdateAQPlayerEncoreKills);
                 packet.Write((byte)player.whoAmI);
                 byte[] buffer = SerializeBossKills();
                 packet.Write(buffer, 0, buffer.Length);
@@ -1285,7 +1285,7 @@ namespace AQMod
         private void Sync_CelesteTorus(int toWho = -1, int fromWho = -1)
         {
             var packet = mod.GetPacket();
-            packet.Write(NetType.UpdateAQPlayerCelesteTorus);
+            packet.Write(AQPacketID.UpdateAQPlayerCelesteTorus);
             packet.Write((byte)player.whoAmI);
             packet.Write(celesteTorusX);
             packet.Write(celesteTorusY);
@@ -1735,7 +1735,7 @@ namespace AQMod
                         return;
                     }
                 }
-                if (AQMod.CosmicEvent.IsActive)
+                if (GlimmerEvent.IsActive)
                 {
                     if (player.position.Y < Main.worldSurface * 16f)
                     {
@@ -1743,7 +1743,7 @@ namespace AQMod
                         {
                             caughtType = ModContent.ItemType<Fizzler>();
                         }
-                        else if (((int)(player.position.X / 16f + player.width / 2) - AQMod.CosmicEvent.tileX).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
+                        else if (((int)(player.position.X / 16f + player.width / 2) - GlimmerEvent.tileX).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
                         {
                             caughtType = ModContent.ItemType<UltraEel>();
                         }

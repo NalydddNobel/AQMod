@@ -11,8 +11,6 @@ namespace AQMod.Tiles.Furniture
     [Obsolete("Use trophies instead!")]
     public class Paintings3x3 : ModTile
     {
-        public const int AStrangeIdea = 0;
-
         public override void SetDefaults()
         {
             Main.tileFrameImportant[Type] = true;

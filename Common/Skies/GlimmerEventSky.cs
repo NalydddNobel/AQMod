@@ -151,9 +151,9 @@ namespace AQMod.Common.Skies
 
         public static void InitNight()
         {
-            if (!AQMod.CosmicEvent.IsActive)
+            if (!GlimmerEvent.IsActive)
             {
-                if (CanSpawnBGStarites() && AQMod.VariableLuck(AQMod.CosmicEvent.spawnChance, _random))
+                if (CanSpawnBGStarites() && AQMod.VariableLuck(GlimmerEvent.spawnChance, _random))
                 {
                     _lonelyStarite = new BGStarite
                     {
@@ -259,7 +259,7 @@ namespace AQMod.Common.Skies
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 Color color;
                 float y = Main.screenHeight / 2f + (325f - Main.screenPosition.Y / 16f);
-                if (AQMod.CosmicEvent.StariteDisco)
+                if (GlimmerEvent.StariteDisco)
                 {
                     color = new Color((int)(Main.DiscoR * 0.9f + Main.DiscoG * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoG * 0.9f + Main.DiscoR * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoB * 0.9f + Main.DiscoR * 0.05f + Main.DiscoG * 0.05f), 255);
                 }
@@ -279,11 +279,11 @@ namespace AQMod.Common.Skies
                         _glimmerLight = 0f;
                 }
             }
-            else if (AQMod.CosmicEvent.IsActive)
+            else if (GlimmerEvent.IsActive)
             {
                 if (CanSpawnBGStarites())
                     SpawnBGStarites(_random);
-                float tileDistance = (AQMod.CosmicEvent.tileX - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs();
+                float tileDistance = (GlimmerEvent.tileX - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs();
                 float intensity = (1f - tileDistance / GlimmerEvent.MaxDistance) * ModContent.GetInstance<AQConfigClient>().EffectIntensity;
                 if (Main.time < 200.0)
                     intensity *= (float)Main.time / 200f;
@@ -297,7 +297,7 @@ namespace AQMod.Common.Skies
                     var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                     Color color;
                     float y = Main.screenHeight / 2f + (325f - Main.screenPosition.Y / 16f);
-                    if (AQMod.CosmicEvent.StariteDisco)
+                    if (GlimmerEvent.StariteDisco)
                     {
                         color = new Color((int)(Main.DiscoR * 0.9f + Main.DiscoG * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoG * 0.9f + Main.DiscoR * 0.05f + Main.DiscoB * 0.05f), (int)(Main.DiscoB * 0.9f + Main.DiscoR * 0.05f + Main.DiscoG * 0.05f), 255);
                     }
@@ -405,7 +405,7 @@ namespace AQMod.Common.Skies
 
         public override float GetCloudAlpha()
         {
-            if (AQMod.CosmicEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1)
+            if (GlimmerEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1)
             {
                 _cloudAlpha = MathHelper.Lerp(_cloudAlpha, 0.25f, 0.01f);
             }

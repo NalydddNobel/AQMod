@@ -14,10 +14,10 @@ namespace AQMod.Items.Placeable.Furniture
             item.maxStack = 999;
             item.useTime = 10;
             item.useAnimation = 15;
-            item.rare = ItemRarityID.Purple;
+            item.rare = ItemRarityID.Blue;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<Tiles.Furniture.Paintings6x6>();
-            item.placeStyle = Tiles.Furniture.Paintings6x6.RockFromAnAlternateUniverse;
+            item.createTile = ModContent.TileType<Tiles.Furniture.Trophies>();
+            item.placeStyle = Tiles.Furniture.Trophies.RockFromAnAlternateUniverse;
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;

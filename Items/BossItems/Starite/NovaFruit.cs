@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Skies;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities.Dyes;
@@ -36,7 +37,7 @@ namespace AQMod.Items.BossItems.Starite
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime && !AQMod.CosmicEvent.IsActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !GlimmerEvent.IsActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool UseItem(Player player)

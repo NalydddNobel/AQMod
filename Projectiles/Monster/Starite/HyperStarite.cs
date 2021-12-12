@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Monster
+namespace AQMod.Projectiles.Monster.Starite
 {
     public class HyperStarite : ModProjectile
     {

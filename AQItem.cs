@@ -473,5 +473,30 @@ namespace AQMod
             }
             copper = value;
         }
+
+        public static void DropInstancedItem(int player, Rectangle rect, int item, int stack = 1)
+        {
+            DropInstancedItem(player, rect.X, rect.Y, rect.Width, rect.Height, item, stack);
+        }
+
+        public static void DropInstancedItem(int player, Vector2 Position, int width, int height, int item, int stack = 1)
+        {
+            DropInstancedItem(player, (int)Position.X, (int)Position.Y, width, height, item, stack);
+        }
+
+        public static void DropInstancedItem(int player, int x, int y, int width, int height, int item, int stack = 1)
+        {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                int i = Item.NewItem(x, y, width, height, item, stack, noBroadcast: true);
+                Main.itemLockoutTime[i] = 54000;
+                NetMessage.SendData(MessageID.InstancedItem, player, -1, null, i);
+                Main.item[i].active = false;
+            }
+            else if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Item.NewItem(x, y, width, height, item, stack);
+            }
+        }
     }
 }

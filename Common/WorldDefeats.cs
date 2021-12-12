@@ -8,27 +8,37 @@ namespace AQMod.Common
     /// </summary>
     public class WorldDefeats : ModWorld
     {
-        public static bool DownedGlimmer { get; set; }
-        public static bool DownedStarite { get; set; }
-        public static bool DownedYinYang { get; set; }
-        public static bool DownedCrabson { get; set; }
-        public static bool DownedCrabSeason { get; set; }
-        public static bool DownedDemonSiege { get; set; }
-        public static bool DownedGaleStreams { get; set; }
-        public static bool DownedCurrents { get; set; }
-        public static bool DownedRedSprite { get; set; }
+        public static bool DownedStarite;
+        public static bool DownedCrabson;
+        public static bool DownedCurrents;
+
+        public static bool DownedRedSprite;
+
+        public static bool DownedGlimmer;
+        public static bool DownedCrabSeason;
+        public static bool DownedDemonSiege;
+        public static bool DownedGaleStreams;
+
+        public static bool NoHitOmegaStarite { get; set; }
+
+        public static bool ObtainedMothmanMask { get; set; }
+        public static bool ObtainedCatalystPainting { get; set; }
 
         public override void Initialize()
         {
             DownedGlimmer = false;
             DownedStarite = false;
-            DownedYinYang = false;
             DownedCrabson = false;
             DownedDemonSiege = false;
             DownedCrabSeason = false;
             DownedGaleStreams = false;
             DownedCurrents = false;
             DownedRedSprite = false;
+
+            NoHitOmegaStarite = false;
+
+            ObtainedCatalystPainting = false;
+            ObtainedMothmanMask = false;
         }
 
         public override TagCompound Save()
@@ -37,13 +47,17 @@ namespace AQMod.Common
             {
                 ["DownedGlimmer"] = DownedGlimmer,
                 ["DownedStarite"] = DownedStarite,
-                ["DownedYinYang"] = DownedYinYang,
                 ["DownedCrabson"] = DownedCrabson,
                 ["DownedDemonSiege"] = DownedDemonSiege,
                 ["DownedCrabSeason"] = DownedCrabSeason,
                 ["DownedGaleStreams"] = DownedGaleStreams,
                 ["DownedCurrents"] = DownedCurrents,
                 ["DownedRedSprite"] = DownedRedSprite,
+
+                ["NoHitOmegaStarite"] = NoHitOmegaStarite,
+
+                ["ObtainedMothmanMask"] = ObtainedMothmanMask,
+                ["ObtainedCatalystPainting"] = ObtainedCatalystPainting,
             };
         }
 
@@ -51,13 +65,17 @@ namespace AQMod.Common
         {
             DownedGlimmer = tag.GetBool("DownedGlimmer");
             DownedStarite = tag.GetBool("DownedStarite");
-            DownedYinYang = tag.GetBool("DownedYinYang");
             DownedCrabson = tag.GetBool("DownedCrabson");
             DownedDemonSiege = tag.GetBool("DownedDemonSiege");
             DownedCrabSeason = tag.GetBool("DownedCrabSeason");
             DownedGaleStreams = tag.GetBool("DownedGaleStreams");
             DownedCurrents = tag.GetBool("DownedCurrents");
             DownedRedSprite = tag.GetBool("DownedRedSprite");
+
+            NoHitOmegaStarite = tag.GetBool("NoHitOmegaStarite");
+
+            ObtainedMothmanMask = tag.GetBool("ObtainedMothmanMask");
+            ObtainedCatalystPainting = tag.GetBool("ObtainedCatalystPainting");
         }
     }
 }
