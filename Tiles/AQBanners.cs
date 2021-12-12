@@ -128,13 +128,19 @@ namespace AQMod.Tiles
                     player.NPCBannerBuff[ModContent.NPCType<TrapImp>()] = true;
                     player.NPCBannerBuff[ModContent.NPCType<Trapper>()] = true;
                     break;
+
+                    case SolarSlime:
+                    player.NPCBannerBuff[ModContent.NPCType<WhiteSlime>()] = true;
+                    break;
+
                     case Vraine:
                     player.NPCBannerBuff[ModContent.NPCType<Vraine>()] = true;
                     break;
 
                     case RedSprite:
-                    //player.NPCBannerBuff[ModContent.NPCType<RedSprite>()] = true;
+                    player.NPCBannerBuff[ModContent.NPCType<RedSprite>()] = true;
                     break;
+
                     default:
                     return;
                 }

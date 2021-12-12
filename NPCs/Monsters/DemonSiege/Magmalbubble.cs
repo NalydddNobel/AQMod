@@ -189,7 +189,7 @@ namespace AQMod.NPCs.Monsters.DemonSiege
                 bool incrementTimer = true;
                 if (npc.ai[0] <= -20f)
                 {
-                    if (npc.collideY && npc.velocity.Y >= 0f)
+                    if (npc.velocity.Y == 0f)
                     {
                         int timer = (int)(-npc.ai[0] - 20);
                         if (timer <= 40 && (int)npc.ai[1] != 2)
@@ -250,7 +250,7 @@ namespace AQMod.NPCs.Monsters.DemonSiege
                     if (jumpTime > 40f)
                     {
                         incrementTimer = false;
-                        if (npc.collideY && npc.velocity.Y >= 0f)
+                        if (npc.velocity.Y >= 0f)
                         {
                             checkPlayerSights(chances: 8);
                             npc.TargetClosest();

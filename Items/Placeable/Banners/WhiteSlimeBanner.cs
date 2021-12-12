@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Placeable.Banners
 {
-    public class SolarSlimeBanner : ModItem
+    public class WhiteSlimeBanner : ModItem
     {
         public override void SetDefaults()
         {

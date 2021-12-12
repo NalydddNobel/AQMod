@@ -897,12 +897,6 @@ namespace AQMod.Common.DeveloperTools
                 }
                 break;
 
-                case "spotlight":
-                {
-                    result = new SpotlightCircle().CreateImage(int.Parse(args[2]), int.Parse(args[3]));
-                }
-                break;
-
                 case "fester":
                 {
                     if (args.Length > 4)
@@ -913,25 +907,6 @@ namespace AQMod.Common.DeveloperTools
                     {
                         result = new FesteringCircle(1f, 1f, 1f, 0.2f, 2f).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
                     }
-                }
-                break;
-
-                case "aura":
-                {
-                    var getTexture = ModContent.GetTexture(args[2]);
-                    int maxWidth = 4;
-                    if (args.Length > 3)
-                    {
-                        maxWidth = int.Parse(args[3]);
-                    }
-                    Vector3 tint = new Vector3(1f, 1f, 1f);
-                    if (args.Length > 4)
-                    {
-                        tint.X = float.Parse(args[4]);
-                        tint.Y = float.Parse(args[5]);
-                        tint.Z = float.Parse(args[6]);
-                    }
-                    result = new Aura(getTexture, tint, maxWidth).CreateImage(getTexture.Width, getTexture.Height);
                 }
                 break;
             }

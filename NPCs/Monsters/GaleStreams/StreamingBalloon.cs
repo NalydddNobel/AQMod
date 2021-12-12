@@ -132,6 +132,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             }
             if (!Main.npc[(int)npc.ai[0]].active)
             {
+                Item.NewItem(new Vector2(npc.position.X + npc.width / 2f - Main.npc[(int)npc.ai[0]].width / 2f, npc.position.Y + 66 - Main.npc[(int)npc.ai[0]].height / 2), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
                 npc.ai[0] = -1f;
                 npc.netUpdate = true;
                 return;

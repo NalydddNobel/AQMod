@@ -1,9 +1,7 @@
-﻿namespace AQMod.Common.DeveloperTools
+﻿namespace AQMod.Common
 {
     internal static class Constants // This class is free to steal, it's full of magic numbers vanilla uses
     {
-        public const int UISize = 10;
-
         public static class MoonPhases
         {
             public const int FullMoon = 0;
