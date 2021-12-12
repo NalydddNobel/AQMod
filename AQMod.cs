@@ -324,6 +324,7 @@ namespace AQMod
             On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
             On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
+            On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
             On.Terraria.Player.FishingLevel += GetFishingLevel;
             On.Terraria.Player.AddBuff += Player_AddBuff;
             On.Terraria.Player.QuickBuff += Player_QuickBuff;
@@ -359,6 +360,63 @@ namespace AQMod
                 WorldEffects = new List<WorldVisualEffect>();
             }
             Autoloading.Autoload(Code);
+        }
+
+        private void Main_UpdateWeather(On.Terraria.Main.orig_UpdateWeather orig, Main self, GameTime gameTime)
+        {
+            if (GaleStreams.EndEvent)
+            {
+                Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
+                if (Main.windSpeedSet.Abs() < 0.1f)
+                {
+                    GaleStreams.EndEvent = false;
+                }
+                Main.windSpeedTemp = Main.windSpeedSet;
+                return;
+            }
+            if (Main.netMode != NetmodeID.MultiplayerClient && (Main.netMode == NetmodeID.Server || !Main.gameMenu) 
+                && GaleStreams.IsActive)
+            {
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    if (Main.player[i].active && !Main.player[i].dead && GaleStreams.EventActive(Main.player[i]))
+                    {
+                        Main.cloudLimit = 200; // prevents the wind speed from naturally changing during the Gale Streams event
+                        if (Main.windSpeed < Main.windSpeedSet)
+                        {
+                            Main.windSpeed += 0.001f * Main.dayRate;
+                            if (Main.windSpeed > Main.windSpeedSet)
+                            {
+                                Main.windSpeed = Main.windSpeedSet;
+                            }
+                        }
+                        else if (Main.windSpeed > Main.windSpeedSet)
+                        {
+                            Main.windSpeed -= 0.001f * (float)Main.dayRate;
+                            if (Main.windSpeed < Main.windSpeedSet)
+                            {
+                                Main.windSpeed = Main.windSpeedSet;
+                            }
+                        }
+                        Main.weatherCounter -= Main.dayRate;
+                        if (Main.weatherCounter <= 0)
+                        {
+                            Main.weatherCounter = Main.rand.Next(3600, 18000);
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                NetMessage.SendData(MessageID.WorldData);
+                            }
+                        }
+                        return;
+                    }
+                }
+            }
+            if (Main.windSpeedSet.Abs() > 1f)
+            {
+                Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
+                Main.windSpeedTemp = Main.windSpeedSet;
+            }
+            orig(self, gameTime);
         }
 
         private void Player_HorizontalMovement(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
@@ -1051,7 +1109,7 @@ namespace AQMod
             return NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) || NPC.AnyNPCs(ModContent.NPCType<JerryCrabson>());
         }
 
-        public static bool ShouldReduceSpawns()
+        public static bool ShouldRemoveSpawns()
         {
             return ConfigReduceSpawnsWhenYouShould && reduceSpawnrates();
         }

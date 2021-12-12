@@ -13,16 +13,16 @@ namespace AQMod.Common
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            if (player.GetModPlayer<AQPlayer>().bossrush)
-            {
-                spawnRate *= 10;
-                maxSpawns = (int)(maxSpawns * 0.1);
-            }
-            else if (AQMod.ShouldReduceSpawns())
+            if (AQMod.ShouldRemoveSpawns())
             {
                 spawnRate = 1000;
                 maxSpawns = 0;
                 return;
+            }
+            if (player.GetModPlayer<AQPlayer>().bossrush)
+            {
+                spawnRate *= 10;
+                maxSpawns = (int)(maxSpawns * 0.1);
             }
             if (DemonSiege.CloseEnoughToDemonSiege(player))
             {
@@ -33,12 +33,17 @@ namespace AQMod.Common
             {
                 if (player.position.Y < AQMod.SpaceLayer - 40 * 16f)
                 {
-                    if (GaleStreams.MeteorTime())
+                    if (GaleStreams.MeteorTime() || GaleStreams.IsActive)
                     {
                         spawnRate /= 2;
                         maxSpawns *= 2;
                     }
                 }
+            }
+            if (NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))
+            {
+                spawnRate *= 3;
+                maxSpawns = (int)(maxSpawns * 0.75);
             }
         }
 
@@ -107,23 +112,22 @@ namespace AQMod.Common
             if (GaleStreams.EventActive(spawnInfo.player))
             {
                 float spawnMult = 0.9f;
-                if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
-                    pool.Add(ModContent.NPCType<Vraine>(), 0.8f);
-                if (NPC.CountNPCS(ModContent.NPCType<StreamingBalloon>()) < 3)
-                    pool.Add(ModContent.NPCType<StreamingBalloon>(), 1f);
                 if (AQMod.SudoHardmode)
                 {
-                    if (!NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))
+                    if (Main.windSpeed > 0.6f)
                     {
-                        pool.Add(ModContent.NPCType<RedSprite>(), 1f);
-                        spawnMult = 0.5f;
+                        if (!NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))
+                        {
+                            pool.Add(ModContent.NPCType<RedSprite>(), 0.1f);
+                        }
                     }
-                    else
-                    {
-                        spawnMult = 0.1f;
-                    }
+                    spawnMult = 0.1f;
                 }
                 DecreaseSpawns(spawnMult);
+                if (NPC.CountNPCS(ModContent.NPCType<Vraine>()) < 2)
+                    pool.Add(ModContent.NPCType<Vraine>(), 1f);
+                pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f);
+                pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f);
             }
         }
     }

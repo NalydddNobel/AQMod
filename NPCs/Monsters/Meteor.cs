@@ -54,16 +54,16 @@ namespace AQMod.NPCs.Monsters
                     }
                     else
                     {
-                        npc.lifeMax = -1;
+                        npc.life = -1;
                         npc.HitEffect();
                         npc.active = false;
                     }
                     npc.life = -1;
                     var p = npc.Center.ToTileCoordinates();
                     Main.PlaySound(SoundID.NPCDeath14, npc.Center);
-                    for (int i = 0; i < 50; i++)
+                    for (int i = 0; i < 80; i++)
                     {
-                        int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.8f, 1.75f));
+                        int d = Dust.NewDust(npc.position, npc.width, npc.height, DustID.Fire, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.8f, 2f));
                         Main.dust[d].noGravity = true;
                         Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
                     }
@@ -119,6 +119,7 @@ namespace AQMod.NPCs.Monsters
 
         public override void NPCLoot()
         {
+            Content.WorldEvents.GaleStreams.GaleStreams.ProgressEvent(Main.player[Player.FindClosest(npc.position, npc.width, npc.height)], 1);
             if ((int)npc.ai[0] == 2)
                 return;
             if (Main.rand.NextBool())

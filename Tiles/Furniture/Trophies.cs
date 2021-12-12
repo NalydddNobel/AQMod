@@ -1,5 +1,7 @@
-﻿using AQMod.Items.BossItems.Crabson;
+﻿using AQMod.Items.BossItems;
+using AQMod.Items.BossItems.Crabson;
 using AQMod.Items.BossItems.Starite;
+using AQMod.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -13,6 +15,7 @@ namespace AQMod.Tiles.Furniture
         public const int OmegaStarite = 0;
         public const int Crabson = 1;
         public const int RedSprite = 2;
+        public const int AStrangeIdea = 3;
 
         public override void SetDefaults()
         {
@@ -25,8 +28,18 @@ namespace AQMod.Tiles.Furniture
             TileObjectData.addTile(Type);
             dustType = 7;
             disableSmartCursor = true;
-            ModTranslation name = CreateMapEntryName("Trophies");
-            AddMapEntry(new Color(120, 85, 60), name);
+            AddMapEntry(new Color(120, 85, 60), CreateMapEntryName("Trophies"));
+            AddMapEntry(new Color(120, 85, 60), CreateMapEntryName("Painting"));
+        }
+
+        public override ushort GetMapOption(int i, int j)
+        {
+            if (Main.tile[i, j].frameX >= 162 && Main.tile[i, j].frameX <= 198
+                && Main.tile[i, j].frameY <= 108)
+            {
+                return 1;
+            }
+            return 0;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -39,6 +52,14 @@ namespace AQMod.Tiles.Furniture
 
                 case 1:
                 Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<CrabsonTrophy>());
+                break;
+
+                case 2:
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<RedSpriteTrophy>());
+                break;
+
+                case 3:
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<AStrangeIdea>());
                 break;
             }
         }

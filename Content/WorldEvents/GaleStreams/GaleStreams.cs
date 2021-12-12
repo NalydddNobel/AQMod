@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AQMod.Content.WorldEvents.GaleStreams
 {
@@ -20,6 +21,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
             6.66f,
             new List<int>() {
                 ModContent.NPCType<Vraine>(),
+                ModContent.NPCType<WhiteSlime>(),
                 ModContent.NPCType<StreamingBalloon>(),
                 ModContent.NPCType<RedSprite>(),
             },
@@ -51,9 +53,30 @@ namespace AQMod.Content.WorldEvents.GaleStreams
         public static Color NeutralCurrentColor => new Color(255, 255, 255, 255);
 
         public static bool IsActive { get; private set; }
+        public static bool EndEvent;
         public static bool EventActive(Player player)
         {
             return IsActive && InSpace(player);
+        }
+
+        public static void ProgressEvent(Player player, int points)
+        {
+            if (!AQMod.SudoHardmode || player.dead || !player.active || EndEvent)
+            {
+                return;
+            }
+            Main.windSpeedSet += Math.Sign(Main.windSpeedSet) * points / 100f;
+            if (Main.windSpeedSet >= 3f)
+            {
+                Main.windSpeedSet = 3f;
+                EndEvent = true;
+            }
+            else if (Main.windSpeedSet <= -3f)
+            {
+                Main.windSpeedSet = -3f;
+                EndEvent = true;
+            }
+            Main.windSpeedTemp = Main.windSpeedSet;
         }
 
         public static bool MeteorTime()
@@ -82,9 +105,17 @@ namespace AQMod.Content.WorldEvents.GaleStreams
             return y < 3000f; // 187.5 tiles
         }
 
-        internal static void Reset()
+        public override TagCompound Save()
         {
-            IsActive = false;
+            return new TagCompound() 
+            {
+                ["EndEvent"] = EndEvent,
+            };
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            EndEvent = tag.GetBool("EndEvent");
         }
 
         public override void PostUpdate()
@@ -273,7 +304,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
             }
 
             AQMod.BroadcastMessage(Lang.gen[59].Key, AQMod.EventMessage);
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 NetMessage.SendTileSquare(-1, minX, minY, size);
             }

@@ -16,8 +16,8 @@ namespace AQMod.Items.Placeable.Furniture
             item.useAnimation = 15;
             item.rare = ItemRarityID.Purple;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<Tiles.Furniture.Paintings3x3>();
-            item.placeStyle = Tiles.Furniture.Paintings3x3.AStrangeIdea;
+            item.createTile = ModContent.TileType<Tiles.Furniture.Trophies>();
+            item.placeStyle = Tiles.Furniture.Trophies.AStrangeIdea;
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;

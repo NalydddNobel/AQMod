@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -6,6 +8,7 @@ using Terraria.ObjectData;
 
 namespace AQMod.Tiles.Furniture
 {
+    [Obsolete("Use trophies instead!")]
     public class Paintings3x3 : ModTile
     {
         public const int AStrangeIdea = 0;
@@ -24,14 +27,12 @@ namespace AQMod.Tiles.Furniture
             AddMapEntry(new Color(120, 85, 60), CreateMapEntryName("Painting"));
         }
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            switch (frameX / 54)
-            {
-                case 0:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<Items.Placeable.Furniture.AStrangeIdea>());
-                break;
-            }
+            Main.tile[i, j].type = (ushort)ModContent.TileType<Trophies>();
+            Main.tile[i, j].frameX += 162;
+            NetMessage.SendTileSquare(-1, i, j, 1);
+            return base.PreDraw(i, j, spriteBatch);
         }
     }
 }

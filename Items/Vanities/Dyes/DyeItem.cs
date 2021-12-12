@@ -23,7 +23,7 @@ namespace AQMod.Items.Vanities.Dyes
         {
             if (!Main.dedServ)
             {
-                DyeBinder.AddDye(this);
+                GameShaders.Armor.BindShader(item.type, CreateShaderData());
             }
         }
 

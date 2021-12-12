@@ -908,6 +908,8 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
         public override void NPCLoot()
         {
+            if (npc.target != -1)
+                Content.WorldEvents.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 40);
             WorldDefeats.DownedGaleStreams = true;
             WorldDefeats.DownedRedSprite = true;
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(), Main.rand.Next(2) + 2);

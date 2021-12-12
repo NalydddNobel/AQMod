@@ -33,7 +33,6 @@ namespace AQMod.Items.Tools
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            //player.velocity += -new Vector2(speedX, speedY) / 2f; had too many infinite flight glitches :(
             if (speedX < 0f)
             {
                 if (Main.windSpeedSet > ImitatedWindyDay.MinWindSpeed)
@@ -48,6 +47,7 @@ namespace AQMod.Items.Tools
                     Main.windSpeedSet += 0.01f * (1f - speedY.Abs() / item.shootSpeed);
                 }
             }
+            Main.windSpeedTemp = Main.windSpeedSet;
             Projectiles.FriendlyWind.NewWind(player, position, new Vector2(speedX, speedY), item.knockBack / 10f, 60, 80);
             return false;
         }
