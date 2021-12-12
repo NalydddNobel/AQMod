@@ -94,7 +94,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
         {
             WorldDefeats.DownedCrabSeason = true;
             if (Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CheesePuff>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
             if (Main.rand.NextBool(3))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
             if (Main.rand.NextBool())

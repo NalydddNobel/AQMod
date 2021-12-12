@@ -1,5 +1,5 @@
 ﻿using AQMod.Buffs.Debuffs;
-using AQMod.Items.Foods;
+using AQMod.Items.Foods.GlimmerEvent;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
 using Microsoft.Xna.Framework;

@@ -760,7 +760,7 @@ namespace AQMod
                 ScreenShakeManager.Update();
             bool glimmerEvent = (GlimmerEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight;
             AQUtils.UpdateSky(glimmerEvent, GlimmerEventSky.Name);
-            if (glimmerEvent)
+            if (glimmerEvent && OmegaStariteScenes.OmegaStariteIndexCache == -1)
             {
                 float intensity = 0f;
                 float distance = (Main.player[Main.myPlayer].position.X - (GlimmerEvent.tileX * 16f + 8f)).Abs();
@@ -1771,7 +1771,7 @@ namespace AQMod
                     }
                 }
             }
-            if (liquidType == Tile.Liquid_Honey)
+            if (liquidType == Tile.Liquid_Honey && NPC.downedQueenBee)
             {
                 if (Main.rand.NextBool(3))
                 {

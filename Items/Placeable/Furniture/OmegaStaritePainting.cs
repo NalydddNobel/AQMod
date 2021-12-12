@@ -10,7 +10,7 @@ namespace AQMod.Items.Placeable.Furniture
         {
             item.width = 12;
             item.height = 12;
-            item.value = Item.sellPrice(silver: 5);
+            item.value = Item.buyPrice(gold: 10);
             item.maxStack = 999;
             item.useTime = 10;
             item.useAnimation = 15;

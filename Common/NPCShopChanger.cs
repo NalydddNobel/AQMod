@@ -2,6 +2,7 @@
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Dedicated.Contributors;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -53,9 +54,29 @@ namespace AQMod.Common
                 }
                 break;
 
+                case NPCID.Painter:
+                {
+                    if (GlimmerEvent.IsActive && WorldDefeats.DownedStarite)
+                    {
+                        if (Main.moonPhase != Constants.MoonPhases.FullMoon)
+                        {
+                            for (int i = 19; i < Chest.maxItems; i++) // skips most of the starting stuff, since that's all paint and blah
+                            {
+                                if (shop.item[i].type == ItemID.None || (shop.item[i].createTile == -1 && shop.item[i].paint == 0)) // at the very end of the paintings, and will intercept the slot for any walls or blank slots
+                                {
+                                    InterceptShop(shop, ModContent.ItemType<Items.Placeable.Furniture.OmegaStaritePainting>(), i, nextSlot);
+                                    break;
+                                }
+                            }
+                            nextSlot++;
+                        }
+                    }
+                }
+                break;
+
                 case NPCID.DyeTrader:
                 {
-                    if (GlimmerEvent.IsActive)
+                    if (GlimmerEvent.IsActive && WorldDefeats.DownedStarite)
                     {
                         if (Main.moonPhase != Constants.MoonPhases.FullMoon)
                         {
@@ -181,6 +202,66 @@ namespace AQMod.Common
                 }
                 break;
             }
+        }
+
+        public override void SetupTravelShop(int[] shop, ref int nextSlot)
+        {
+            if (AddFoodToTravelShop(shop, nextSlot))
+            {
+                nextSlot++;
+            }
+        }
+
+        private bool AddFoodToTravelShop(int[] shop, int slot)
+        {
+            List<int> foodChoices = new List<int>();
+            if (WorldDefeats.DownedCrabSeason)
+            {
+                foodChoices.Add(ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
+            }
+            if (WorldDefeats.DownedGlimmer)
+            {
+                foodChoices.Add(ModContent.ItemType<Items.Foods.GlimmerEvent.NeutronJuice>());
+            }
+            if (WorldDefeats.DownedGaleStreams)
+            {
+                foodChoices.Add(ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>());
+                foodChoices.Add(ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>());
+            }
+            if (NPC.downedQueenBee)
+            {
+                foodChoices.Add(ModContent.ItemType<Items.Foods.LarvaEel>());
+            }
+            if (NPC.downedPlantBoss)
+            {
+                foodChoices.Add(ModContent.ItemType<Items.Foods.RedLicorice>());
+                foodChoices.Add(ModContent.ItemType<Items.Foods.GrapePhanta>());
+            }
+            if (foodChoices.Count == 1)
+            {
+                shop[slot] = foodChoices[0];
+                return true;
+            }
+            else if (foodChoices.Count > 0)
+            {
+                shop[slot] = foodChoices[Main.rand.Next(foodChoices.Count)];
+                return true;
+            }
+            return false;
+        }
+
+        private static void InterceptShop(Chest shop, int itemID, int i, int currSlot)
+        {
+            if (currSlot >= Chest.maxItems)
+            {
+                currSlot = Chest.maxItems - 1;
+            }
+            for (int j = currSlot; j > i; j--)
+            {
+                shop.item[j] = shop.item[j - 1];
+            }
+            shop.item[i] = new Item(); // removes the object reference in the slot after this
+            shop.item[i].SetDefaults(itemID);
         }
     }
 }

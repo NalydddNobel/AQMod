@@ -83,7 +83,9 @@ namespace AQMod.Tiles
                 case Vraine:
                 Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<VraineBanner>());
                 break;
-
+                case SolarSlime:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<WhiteSlimeBanner>());
+                break;
                 case RedSprite:
                 Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<RedSpriteBanner>());
                 break;
@@ -129,12 +131,12 @@ namespace AQMod.Tiles
                     player.NPCBannerBuff[ModContent.NPCType<Trapper>()] = true;
                     break;
 
-                    case SolarSlime:
-                    player.NPCBannerBuff[ModContent.NPCType<WhiteSlime>()] = true;
-                    break;
-
                     case Vraine:
                     player.NPCBannerBuff[ModContent.NPCType<Vraine>()] = true;
+                    break;
+
+                    case SolarSlime:
+                    player.NPCBannerBuff[ModContent.NPCType<WhiteSlime>()] = true;
                     break;
 
                     case RedSprite:

@@ -1,3 +1,44 @@
+####### 1.2.4.8 #######
+
+Warning:
+- If you have placed down the "Rock from an Alternate Universe" painting before, it will now break itself due to it now having a new tile size 
+
+Additons:
+White Slime, a new enemy which spawns during the Gale Streams event
+Cinnamon Roll, a food item dropped from White Slimes... it's also glazed...
+Temperature Hair Dye, changes your hair color blue when you're cold, and red when you are warm
+Omega Starite painting, sold by the Painter during the Glimmer Event after Omega Starite has been defeated
+
+- Killing enemies spawned during the Gale Streams event now increases the speed of the wind
+- If you are in space, and the Gale Streams event is active, the wind speed will no longer naturally change
+- If the wind is above 100 mph, it will greatly decrease if you leave space
+
+- The Dye Trader now sells some new dyes during the Glimmer Event, after Omega Starite has been defeated
+
+- The Traveling Merchant now sells food items from Aequus depending on your progress
+
+Changes:
+- Streaming Balloons now have a 50% chance to not contain an item
+- Killing a slime attached to a Streaming Balloon now rewards you with Atmospheric Energy
+
+- Increased the size of the Umystick's projectile's hitboxes
+
+- Red Sprites can now only spawn if the wind is greater than 60 mph
+- Lowered the spawnrate of the Red Sprite compared to other Gale Streams enemies 
+- Spawnrates now lower when a Red Sprite is alive
+
+- Ominous numbers no longer appear when you right click a Glimmering Statue
+
+- Catching Combfish or Larva Eels now requires Queen Bee to be defeated
+
+Fixes:
+- Fixed an issue with Magmabubbles where they get stuck on Sloped tiles
+- The Red Sprite banner now makes you have increased stats against Red Sprites instead of Vraines
+- Fixed a small issue with The Fan where the world randomly decides to remove the wind speed you set
+- Breaking a placed Red Sprite Trophy should now give the proper item
+- Getting hit during Omega Starite's death animation no longer prevents you from "no-hitting" the boss, if you have "no-hit" it by then
+- The vignette filter applied near the Ultimate Sword now goes away when you activate it and start the Omega Starite battle
+
 ####### 1.2.4.7 #######
 
 Additions:

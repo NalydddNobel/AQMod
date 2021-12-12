@@ -134,7 +134,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<AquaticEnergy>());
             if (Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CheesePuff>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
         }
 
         private Vector2[] _feetPositions;

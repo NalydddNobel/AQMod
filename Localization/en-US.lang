@@ -33,6 +33,7 @@ ItemName.Umberserk=Umberserk
 ItemTooltip.Umberserk={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nHitting enemies makes you swing your weapon faster\nYour first hit will always be a crit
 ItemName.Umberetta=Umberetta
 ItemTooltip.Umberetta={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nShoots umbrella harpoons
+
 ItemName.Umystick=Umystick
 ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nRight click while held to do an extra jump which costs a great amount of mana\n'Looks quite menacing'
 BuffName.UmystickDelay=Umystick Delay
@@ -133,7 +134,7 @@ EventEnding.GlimmerEvent=The glimmer begins to fade away...
 BossChecklistDesc.OmegaStarite=Summoned by using an {0} at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event.
 
 EventName.GaleStreams=Gale Streams
-BossChecklistDesc.GaleStreams=Begins when the wind is above 40 mph, and ends when it's less than 34 mph. You can modify the speed of the wind using [i:{0}].
+BossChecklistDesc.GaleStreams=Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:{0}]
 EventProgress.GaleStreams={0}mph/{1}mph
 BossChecklistDesc.RedSprite=Occasionally appears during the Gale Streams!
 

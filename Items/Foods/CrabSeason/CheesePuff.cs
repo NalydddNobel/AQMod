@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Foods
+namespace AQMod.Items.Foods.CrabSeason
 {
     public class CheesePuff : ModItem
     {

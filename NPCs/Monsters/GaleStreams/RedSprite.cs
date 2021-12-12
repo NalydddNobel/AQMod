@@ -910,7 +910,6 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         {
             if (npc.target != -1)
                 Content.WorldEvents.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 40);
-            WorldDefeats.DownedGaleStreams = true;
             WorldDefeats.DownedRedSprite = true;
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(), Main.rand.Next(2) + 2);
             Item.NewItem(npc.getRect(), ItemID.SoulofFlight, Main.rand.Next(5) + 2);

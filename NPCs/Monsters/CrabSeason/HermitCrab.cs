@@ -128,7 +128,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             if (Main.rand.NextBool(20))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<FishyFins>());
             if (Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CheesePuff>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
             if (Main.rand.NextBool(8))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HermitShell>());
             if (Main.rand.NextBool())

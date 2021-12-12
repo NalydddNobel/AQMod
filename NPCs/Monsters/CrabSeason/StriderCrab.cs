@@ -318,7 +318,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<StriderHook>());
             if (Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CheesePuff>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
             if (Main.rand.NextBool(20))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<FishyFins>());
             Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>(), Main.rand.Next(3) + 2);

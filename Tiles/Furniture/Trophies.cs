@@ -67,6 +67,10 @@ namespace AQMod.Tiles.Furniture
                 case RockFromAnAlternateUniverse:
                 Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<RockFromAnAlternateUniverse>());
                 break;
+
+                case OmegaStaritePainting:
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<OmegaStaritePainting>());
+                break;
             }
         }
     }
