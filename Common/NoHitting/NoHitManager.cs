@@ -88,7 +88,9 @@ namespace AQMod.Common.NoHitting
         public static void PlayNoHitJingle(Vector2 position)
         {
             if (Vector2.Distance(position, Main.player[Main.myPlayer].Center) < 3000f)
+            {
                 AQSoundPlayer.PlaySound(SoundType.NPCHit, "Sounds/NPCHit/ThisIsNotASecretSound_S3K", position);
+            }
         }
 
         public override void AI(NPC npc)

@@ -367,6 +367,7 @@ ItemName.CrabsonMask=巨蟹蛤面具
 ItemName.MythicStarfruit=秘星果
 ItemName.NovaFruit=新星果
 ItemName.OmegaStariteMask=终末之星面具
+ItemName.OmegaStariteTrophy=终末之星纪念章
 ItemName.StariteBag=宝藏袋
 ItemName.UltimateStarfruit=终极星果
 ItemName.UltimateSword=最终之剑
@@ -697,7 +698,6 @@ ItemTooltip.MushroomClam=在海边使用以召唤巨蟹蛤
 ItemTooltip.DragonBall=召唤一个微型星之源
 ItemTooltip.MythicStarfruit=使用以召唤微光事件
 ItemTooltip.NovaFruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n{$Mods.AQMod.Common.NotConsumable}
-ItemTooltip.OmegaStariteTrophy='你不知道会发生什么!'
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.UltimateStarfruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n右键开始或结束微光事件\n{$Mods.AQMod.Common.NotConsumable}
 ##############

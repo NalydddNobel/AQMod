@@ -7,7 +7,7 @@ Additons:
 White Slime, a new enemy which spawns during the Gale Streams event
 Cinnamon Roll, a food item dropped from White Slimes... it's also glazed...
 Temperature Hair Dye, changes your hair color blue when you're cold, and red when you are warm
-Omega Starite painting, sold by the Painter during the Glimmer Event after Omega Starite has been defeated
+Omega Starite Painting, sold by the Painter during the Glimmer Event after Omega Starite has been defeated
 
 - Killing enemies spawned during the Gale Streams event now increases the speed of the wind
 - If you are in space, and the Gale Streams event is active, the wind speed will no longer naturally change
