@@ -1,6 +1,6 @@
 ﻿using AQMod.Content.Quest.Lobster;
 using AQMod.Localization;
-using AQMod.NPCs.Friendly.Town;
+using AQMod.NPCs.Town;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

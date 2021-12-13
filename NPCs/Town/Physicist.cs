@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Friendly.Town
+namespace AQMod.NPCs.Town
 {
     [AutoloadHead()]
     public class Physicist : ModNPC
@@ -37,6 +37,24 @@ namespace AQMod.NPCs.Friendly.Town
             npc.DeathSound = SoundID.NPCDeath1;
             npc.knockBackResist = 0.5f;
             animationType = NPCID.Guide;
+        }
+
+        public override void SetupShop(Chest shop, ref int nextSlot)
+        {
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.Cosmicanon>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.FidgetSpinner.FidgetSpinner>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.Starite.MythicStarfruit>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
+            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
+            nextSlot++;
+            if (!Main.dayTime && WorldDefeats.ObtainedUltimateSword)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
+                nextSlot++;
+            }
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -147,13 +165,9 @@ namespace AQMod.NPCs.Friendly.Town
                 potentialText.Add("Physicist.Chat.BloodMoon.1");
                 potentialText.Add("Physicist.Chat.BloodMoon.2");
                 if (WorldGen.crimson || WorldGen.tBlood > 0)
-                {
                     potentialText.Add("Physicist.Chat.BloodMoon.CrimsonWarning");
-                }
                 if (Main.moonPhase == Constants.MoonPhases.NewMoon)
-                {
                     potentialText.Add("Physicist.Chat.BloodMoon.NewMoon");
-                }
                 bool bunnyText = false;
                 bool killText = false;
                 for (int i = 0; i < Main.maxNPCs; i++)
@@ -174,17 +188,13 @@ namespace AQMod.NPCs.Friendly.Town
                             {
                                 string name = Main.npc[i].FullName;
                                 if (string.IsNullOrEmpty(name) || name == "???")
-                                {
                                     continue;
-                                }
                                 potentialText.Add(Language.GetTextValue("Mods.AQMod.Physicist.Chat.BloodMoon.KillRequest." + Main.rand.Next(4), name, player.name));
                                 killText = true;
                             }
                         }
                         if (bunnyText && killText)
-                        {
                             break;
-                        }
                     }
                 }
             }
@@ -196,10 +206,8 @@ namespace AQMod.NPCs.Friendly.Town
                 potentialText.Add("Physicist.Chat.GlimmerEvent.3");
                 if (GlimmerEvent.GetTileDistance(player) > 1000)
                 {
-                    if (GlimmerEvent.tileX < ((int)(player.position.X + player.width / 2f) / 16f))
-                    {
+                    if (GlimmerEvent.tileX < (int)(player.position.X + player.width / 2f) / 16f)
                         potentialText.Add("Physicist.Chat.GlimmerEvent.Source.West");
-                    }
                     else
                     {
                         potentialText.Add("Physicist.Chat.GlimmerEvent.Source.East");
@@ -209,9 +217,7 @@ namespace AQMod.NPCs.Friendly.Town
             string chosenText = potentialText[Main.rand.Next(potentialText.Count)];
             string text = Language.GetTextValue("Mods.AQMod." + chosenText);
             if (text == "Mods.AQMod." + chosenText)
-            {
                 return chosenText;
-            }
             return text;
         }
 
@@ -223,23 +229,7 @@ namespace AQMod.NPCs.Friendly.Town
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
         {
             if (firstButton)
-            {
                 shop = true;
-            }
-        }
-
-        public override void SetupShop(Chest shop, ref int nextSlot)
-        {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
-            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.FidgetSpinner.FidgetSpinner>());
-            nextSlot++;
-            if (!Main.dayTime)
-            {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.Starite.MythicStarfruit>());
-                nextSlot++;
-            }
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

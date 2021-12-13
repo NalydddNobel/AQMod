@@ -1,4 +1,5 @@
 ﻿using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace AQMod.Localization
 {
@@ -16,6 +17,15 @@ namespace AQMod.Localization
         public const int LangIDInterLightPet = 94;
 
         private static TextCallback callback;
+
+        public static string HotKey(ModHotKey key)
+        {
+            foreach (var k in key.GetAssignedKeys())
+            {
+                return Language.GetTextValue("Mods.AQMod.Common.KeyBound", k);
+            }
+            return Language.GetTextValue("Mods.AQMod.Common.KeyUnbound");
+        }
 
         internal static void UpdateCallback()
         {

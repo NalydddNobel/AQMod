@@ -43,10 +43,19 @@ BuffDescription.UmystickDelay=Decreases your mana regen, and you can no longer u
 
 ItemName.RedSpriteDye=Red Sprite Dye
 
+# Tools
+
+ItemName.Cosmicanon=Cosmicanon
+ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer Event from naturally spawning\n{$Mods.AQMod.Tooltips.PiggyBankFunction}
+ItemTooltipExtra.Cosmicanon=You can toggle this function by right clicking the item, or by pressing {0}
+ToggleCosmicanon.False=Moon events can occur again
+ToggleCosmicanon.True=Moon events can no longer occur
+
 # Tooltips
 
 Tooltips.ManaPerSecond=Uses {0} mana per second
 Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed\nYou will not take any fall damage
+Tooltips.InventoryPiggyBankFunction=Works in your inventory or piggy bank
 
 # Exporter
 NPCName.Robster=Exporter
@@ -154,6 +163,11 @@ ClientConfig.OverrideVanillaChestLootTooltip=Whether or not special Aequus items
 # NPCs
 
 NPCName.StreamingBalloon=Streaming Balloon
+
+# Common
+
+Common.KeyUnbound='Unbound Key'
+Common.KeyBound='{0}' Key
 
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=On a true melee critical hit you gain greatly increased stats for a short while\nWhen the effect activates you gain the potion sickness debuff\nThis effect can only trigger if you don't have the potion sickness debuff

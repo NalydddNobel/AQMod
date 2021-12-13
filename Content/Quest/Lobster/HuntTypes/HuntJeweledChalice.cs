@@ -1,4 +1,4 @@
-﻿using AQMod.NPCs.Friendly.Town;
+﻿using AQMod.NPCs.Town;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

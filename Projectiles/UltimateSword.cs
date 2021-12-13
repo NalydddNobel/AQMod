@@ -51,7 +51,9 @@ namespace AQMod.Projectiles
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
         {
-            fallThrough = true;
+            width = 36;
+            height = 36;
+            fallThrough = projectile.position.Y + projectile.height < Main.player[projectile.owner].position.Y;
             return true;
         }
 
@@ -69,7 +71,7 @@ namespace AQMod.Projectiles
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.Dig, projectile.position);
-            Item.NewItem(projectile.getRect(), (int)projectile.ai[0]);
+            AQItem.DropInstancedItem(projectile.owner, projectile.getRect(), ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
             var dust = ModContent.DustType<UltimaDust>();
             for (int i = 0; i < 50; i++)
             {

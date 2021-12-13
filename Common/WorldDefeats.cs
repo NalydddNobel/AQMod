@@ -21,6 +21,7 @@ namespace AQMod.Common
 
         public static bool NoHitOmegaStarite { get; set; }
 
+        public static bool ObtainedUltimateSword { get; set; }
         public static bool ObtainedMothmanMask { get; set; }
         public static bool ObtainedCatalystPainting { get; set; }
 
@@ -37,6 +38,7 @@ namespace AQMod.Common
 
             NoHitOmegaStarite = false;
 
+            ObtainedUltimateSword = false;
             ObtainedCatalystPainting = false;
             ObtainedMothmanMask = false;
         }
@@ -56,6 +58,7 @@ namespace AQMod.Common
 
                 ["NoHitOmegaStarite"] = NoHitOmegaStarite,
 
+                ["ObtainedUltimateSword"] = ObtainedUltimateSword,
                 ["ObtainedMothmanMask"] = ObtainedMothmanMask,
                 ["ObtainedCatalystPainting"] = ObtainedCatalystPainting,
             };

@@ -1416,6 +1416,7 @@ namespace AQMod.NPCs.Boss.Starite
 
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {
+                    WorldDefeats.ObtainedUltimateSword = true;
                     var plr = Main.player[i];
                     if (plr.active && npc.playerInteraction[i])
                         Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(2f, 6f) * (Main.rand.NextBool() ? -1f : 1f), -18f), ModContent.ProjectileType<Projectiles.UltimateSword>(), 0, 0f, i, ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());

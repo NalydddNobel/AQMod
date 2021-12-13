@@ -31,9 +31,11 @@ using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Achievements;
+using Terraria.GameInput;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
@@ -49,6 +51,10 @@ namespace AQMod
         public const int FRAME_COUNT = 20;
         public const float CELESTE_Z_MULT = 0.0157f;
         public const int ARACHNOTRON_OLD_POS_LENGTH = 8;
+        public const float AtmosphericCurrentsWindSpeed = 30f;
+        public const byte TEMPERATURE_REGEN_NORMAL = 32;
+        public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
+        public const byte TEMPERATURE_REGEN_ON_HIT = 120;
 
         public static class Layers
         {
@@ -455,9 +461,6 @@ namespace AQMod
             });
         }
 
-        public const byte TEMPERATURE_REGEN_NORMAL = 32;
-        public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
-        public const byte TEMPERATURE_REGEN_ON_HIT = 120;
 
         public static int oldPosLength;
         public static Vector2[] oldPosVisual;
@@ -563,6 +566,8 @@ namespace AQMod
         public byte extraHP;
         public bool fidgetSpinner;
         public bool mysticUmbrellaDelay;
+        public bool ignoreMoons;
+        public bool cosmicanon;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -572,9 +577,9 @@ namespace AQMod
         public int FishingPowerCache { get; set; }
         public int ExtractinatorCount { get; set; }
         public int CursorDyeID { get; private set; } = CursorDyeLoader.ID.None;
-        public string CursorDye { get; private set; } = "";
+        public string CursorDye { get; private set; } = ""; 
+        public bool IgnoreIgnoreMoons { get; set; }
 
-        public const float AtmosphericCurrentsWindSpeed = 30f;
         public static bool IsQuickBuffing { get; internal set; }
 
         public bool AtmosphericCurrentsEvent => player.ZoneSkyHeight && Main.windSpeed > 30f;
@@ -851,6 +856,8 @@ namespace AQMod
             crabAx = false;
             fidgetSpinner = false;
             mysticUmbrellaDelay = false;
+            cosmicanon = false;
+            ignoreMoons = false;
             if (extraHP > 60) // to cap life max buffs at 60
             {
                 extraHP = 60;
@@ -953,6 +960,22 @@ namespace AQMod
                         canDash = false;
                         break;
                     }
+                }
+            }
+        }
+
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (cosmicanon && AQMod.Keys.CosmicanonToggle.JustPressed)
+            {
+                IgnoreIgnoreMoons = !IgnoreIgnoreMoons;
+                if (IgnoreIgnoreMoons)
+                {
+                    Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
+                }
+                else
+                {
+                    Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.False"), new Color(230, 230, 255, 255));
                 }
             }
         }
@@ -2308,6 +2331,18 @@ namespace AQMod
                     return player.ownedProjectileCounts[item.shoot] < item.stack;
                 }
                 return player.altFunctionUse != 2;
+            }
+            return false;
+        }
+
+        public static bool IgnoreMoons()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && Main.player[i].GetModPlayer<AQPlayer>().ignoreMoons) // dead players also allow moons to be disabled
+                {
+                    return true;
+                }
             }
             return false;
         }

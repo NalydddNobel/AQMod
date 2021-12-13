@@ -81,7 +81,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     }
                     else
                     {
-                        if (npc.velocity.X.Abs() <= 0.1f && npc.oldVelocity.Y == npc.velocity.Y)
+                        if (npc.velocity.X.Abs() <= 3f)
                         {
                             if (npc.localAI[0] == 0 && Main.netMode != NetmodeID.Server)
                             {
@@ -255,6 +255,9 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             var screenPos = Main.screenPosition;
             var orig = new Vector2(npc.frame.Width / 2f, npc.frame.Height / 2f);
 
+            if (npc.frame.Y == npc.frame.Height)
+                drawPosition.Y += 0.1f;
+
             Main.spriteBatch.Draw(texture, drawPosition - screenPos, npc.frame, new Color(255, 255, 255, npc.alpha), npc.rotation, orig, npc.scale, SpriteEffects.None, 0f);
             return false;
         }
@@ -274,10 +277,16 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         {
             if (npc.target != -1)
                 Content.WorldEvents.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 10);
+
             Item.NewItem(npc.getRect(), ItemID.Gel, Main.rand.Next(9) + 10);
+
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
 
+            if (AQMod.SudoHardmode && Main.rand.NextBool(4))
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Magic.Umystick>());
+            }
             if (Main.rand.NextBool(8))
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>());

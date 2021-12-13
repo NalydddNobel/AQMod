@@ -16,7 +16,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Friendly.Town
+namespace AQMod.NPCs.Town
 {
     [AutoloadHead()]
     public class Robster : ModNPC
@@ -137,9 +137,7 @@ namespace AQMod.NPCs.Friendly.Town
                 if (Main.hardMode)
                 {
                     if (Main.moonPhase % 2 == 0)
-                    {
                         potentialText.Add(AQText.RobsterChat(9).Value);
-                    }
                     else
                     {
                         potentialText.Add(AQText.RobsterChat(10).Value);
@@ -175,15 +173,11 @@ namespace AQMod.NPCs.Friendly.Town
         {
             button = Language.GetTextValue("LegacyInterface.28");
             if (_resetQuest != 0)
-            {
                 button2 = AQText.ModText("Common.RobsterQuitHunt").Value;
-            }
             else
             {
                 if (HuntSystem.Hunt != null && HuntSystem.Hunt.IsHuntComplete(Main.LocalPlayer))
-                {
                     button2 = AQText.ModText("Common.CompleteRobsterHunt").Value;
-                }
                 else
                 {
                     button2 = AQText.ModText("Common.RobsterHunt").Value;
@@ -194,9 +188,7 @@ namespace AQMod.NPCs.Friendly.Town
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
         {
             if (firstButton)
-            {
                 shop = true;
-            }
             else
             {
                 if (_resetQuest == 2)
@@ -208,9 +200,7 @@ namespace AQMod.NPCs.Friendly.Town
                     _resetQuest = 0;
                 }
                 if (_resetQuest == 1)
-                {
                     Main.npcChatText = AQText.ModText("Common.RobsterQuitHuntQuestion").Value;
-                }
                 else
                 {
                     if (HuntSystem.Hunt == null)

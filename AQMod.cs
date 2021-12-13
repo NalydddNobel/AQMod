@@ -289,6 +289,346 @@ namespace AQMod
             }
         }
 
+        public static class Keys
+        {
+            public static ModHotKey CosmicanonToggle { get; private set; }
+
+            internal static void Load(AQMod mod)
+            {
+                CosmicanonToggle = mod.RegisterHotKey("{$Mods.AQMod.Keys.ComicanonToggle}", "P"); ;
+            }
+
+            internal static void Unload()
+            {
+                CosmicanonToggle = null;
+            }
+        }
+
+        public static class Edits
+        {
+            internal static bool PreventChat { get; private set; }
+
+            internal static void Load()
+            {
+                On.Terraria.Chest.SetupShop += Chest_SetupShop;
+                On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
+                On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
+                On.Terraria.Main.UpdateTime += Main_UpdateTime;
+                On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
+                On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
+                On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
+                On.Terraria.Main.NewText_string_byte_byte_byte_bool += Main_NewText_string_byte_byte_byte_bool;
+                On.Terraria.Main.DrawTiles += Main_DrawTiles;
+                On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
+                On.Terraria.Player.FishingLevel += GetFishingLevel;
+                On.Terraria.Player.AddBuff += Player_AddBuff;
+                On.Terraria.Player.QuickBuff += Player_QuickBuff;
+                On.Terraria.Player.PickTile += Player_PickTile;
+                On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
+            }
+
+            private static void Main_NewText_string_byte_byte_byte_bool(On.Terraria.Main.orig_NewText_string_byte_byte_byte_bool orig, string newText, byte R, byte G, byte B, bool force)
+            {
+                if (PreventChat)
+                {
+                    return;
+                }
+                orig(newText, R, G, B, force);
+            }
+
+            private static void Main_UpdateWeather(On.Terraria.Main.orig_UpdateWeather orig, Main self, GameTime gameTime)
+            {
+                if (GaleStreams.EndEvent)
+                {
+                    Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
+                    if (Main.windSpeedSet.Abs() < 0.1f)
+                    {
+                        GaleStreams.EndEvent = false;
+                    }
+                    Main.windSpeedTemp = Main.windSpeedSet;
+                    return;
+                }
+                if (Main.netMode != NetmodeID.MultiplayerClient && (Main.netMode == NetmodeID.Server || !Main.gameMenu)
+                    && GaleStreams.IsActive)
+                {
+                    for (int i = 0; i < Main.maxPlayers; i++)
+                    {
+                        if (Main.player[i].active && !Main.player[i].dead && GaleStreams.EventActive(Main.player[i]))
+                        {
+                            Main.cloudLimit = 200; // prevents the wind speed from naturally changing during the Gale Streams event
+                            if (Main.windSpeed < Main.windSpeedSet)
+                            {
+                                Main.windSpeed += 0.001f * Main.dayRate;
+                                if (Main.windSpeed > Main.windSpeedSet)
+                                {
+                                    Main.windSpeed = Main.windSpeedSet;
+                                }
+                            }
+                            else if (Main.windSpeed > Main.windSpeedSet)
+                            {
+                                Main.windSpeed -= 0.001f * (float)Main.dayRate;
+                                if (Main.windSpeed < Main.windSpeedSet)
+                                {
+                                    Main.windSpeed = Main.windSpeedSet;
+                                }
+                            }
+                            Main.weatherCounter -= Main.dayRate;
+                            if (Main.weatherCounter <= 0)
+                            {
+                                Main.weatherCounter = Main.rand.Next(3600, 18000);
+                                if (Main.netMode == NetmodeID.Server)
+                                {
+                                    NetMessage.SendData(MessageID.WorldData);
+                                }
+                            }
+                            return;
+                        }
+                    }
+                }
+                if (Main.windSpeedSet.Abs() > 1f)
+                {
+                    Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
+                    Main.windSpeedTemp = Main.windSpeedSet;
+                }
+                orig(self, gameTime);
+            }
+
+            private static void Player_HorizontalMovement(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
+            {
+                orig(self);
+                var aQPlayer = self.GetModPlayer<AQPlayer>();
+                if (aQPlayer.redSpriteWind != 0 && !(self.mount.Active && self.velocity.Y == 0f && (self.controlLeft || self.controlRight)))
+                {
+                    float windDirection = Math.Sign(aQPlayer.redSpriteWind) * 0.07f;
+                    if (Math.Abs(Main.windSpeed) > 0.5f)
+                    {
+                        windDirection *= 1.37f;
+                    }
+                    if (self.velocity.Y != 0f)
+                    {
+                        windDirection *= 1.5f;
+                    }
+                    if (self.controlLeft || self.controlRight)
+                    {
+                        windDirection *= 0.8f;
+                    }
+                    if (Math.Sign(self.direction) != Math.Sign(windDirection))
+                    {
+                        self.accRunSpeed -= Math.Abs(windDirection) * 20f;
+                        self.maxRunSpeed -= Math.Abs(windDirection) * 20f;
+                    }
+                    if (windDirection < 0f && self.velocity.X > windDirection)
+                    {
+                        self.velocity.X += windDirection;
+                        if (self.velocity.X < windDirection)
+                        {
+                            self.velocity.X = windDirection;
+                        }
+                    }
+                    if (windDirection > 0f && self.velocity.X < windDirection)
+                    {
+                        self.velocity.X += windDirection;
+                        if (self.velocity.X > windDirection)
+                        {
+                            self.velocity.X = windDirection;
+                        }
+                    }
+
+                    if (!self.controlLeft && !self.controlRight)
+                    {
+                        self.legFrameCounter = -1.0;
+                        self.legFrame.Y = 0;
+                    }
+                }
+                aQPlayer.redSpriteWind = 0;
+            }
+
+            private static void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
+            {
+                if (self.GetModPlayer<AQPlayer>().pickBreak)
+                {
+                    pickPower /= 2;
+                }
+                orig(self, x, y, pickPower);
+            }
+
+            private static void Main_UpdateDisplaySettings(On.Terraria.Main.orig_UpdateDisplaySettings orig, Main self)
+            {
+                orig(self);
+                if (!Main.gameMenu && Main.graphics.GraphicsDevice != null && Main.spriteBatch != null)
+                {
+                    HotAndColdCurrentLayer.DrawTarget();
+                }
+            }
+
+            private static int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
+            {
+                int originalValue = orig(X, Y, SpeedX, SpeedY, Type, Damage, KnockBack, Owner, ai0, ai1);
+                var projectile = Main.projectile[originalValue];
+                if (projectile.coldDamage || (projectile.friendly && projectile.owner != 255 && Main.player[projectile.owner].frostArmor && (projectile.melee || projectile.ranged)))
+                {
+                    var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
+                    aQProj.canHeat = false;
+                    aQProj.temperature = -15;
+                }
+                return originalValue;
+            }
+
+            private static void Player_QuickBuff(On.Terraria.Player.orig_QuickBuff orig, Player self)
+            {
+                AQPlayer.IsQuickBuffing = true;
+                orig(self);
+                AQPlayer.IsQuickBuffing = false;
+            }
+
+            private static void Player_AddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)
+            {
+                if (type >= Main.maxBuffTypes)
+                {
+                    var modBuff = ModContent.GetModBuff(type);
+                    if (modBuff is temperatureDebuff)
+                    {
+                        for (int i = 0; i < Player.MaxBuffs; i++)
+                        {
+                            if (self.buffTime[i] > 0)
+                            {
+                                if (self.buffType[i] == type)
+                                {
+                                    orig(self, type, time1, quiet);
+                                    return;
+                                }
+                                if (self.buffType[i] > Main.maxBuffTypes)
+                                {
+                                    var otherModBuff = ModContent.GetModBuff(self.buffType[i]);
+                                    if (otherModBuff is temperatureDebuff)
+                                    {
+                                        self.DelBuff(i);
+                                        orig(self, type, time1, quiet);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        orig(self, type, time1, quiet);
+                        return;
+                    }
+                }
+                if (AQBuff.Sets.IsFoodBuff[type])
+                {
+                    for (int i = 0; i < Player.MaxBuffs; i++)
+                    {
+                        if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.IsFoodBuff[self.buffType[i]])
+                        {
+                            self.DelBuff(i);
+                            i--;
+                        }
+                    }
+                }
+                orig(self, type, time1, quiet);
+            }
+
+            private static int GetFishingLevel(On.Terraria.Player.orig_FishingLevel orig, Player player)
+            {
+                int regularLevel = orig(player);
+                if (regularLevel <= 0)
+                    return regularLevel;
+                var aQPlayer = player.GetModPlayer<AQPlayer>();
+                Item baitItem = null;
+                for (int j = 0; j < 58; j++)
+                {
+                    if (player.inventory[j].stack > 0 && player.inventory[j].bait > 0)
+                    {
+                        baitItem = player.inventory[j];
+                        break;
+                    }
+                }
+                if (baitItem.modItem is PopperBaitItem popper)
+                {
+                    int popperPower = popper.GetExtraFishingPower(player, aQPlayer);
+                    if (popperPower > 0)
+                    {
+                        aQPlayer.PopperType = baitItem.type;
+                        aQPlayer.PopperBaitPower = popperPower;
+                    }
+                    else
+                    {
+                        aQPlayer.PopperType = 0;
+                        aQPlayer.PopperBaitPower = 0;
+                    }
+                }
+                else
+                {
+                    aQPlayer.PopperType = 0;
+                    aQPlayer.PopperBaitPower = 0;
+                }
+                aQPlayer.FishingPowerCache = regularLevel + aQPlayer.PopperBaitPower;
+                return aQPlayer.FishingPowerCache;
+            }
+
+            private static void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
+            {
+                orig(self);
+                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+                SceneLayersManager.DrawLayer(SceneLayering.PostDrawPlayers);
+                Main.spriteBatch.End();
+            }
+
+            private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)
+            {
+                orig();
+                Main.dayRate += dayrateIncrease;
+            }
+
+            private static void Main_UpdateTime(On.Terraria.Main.orig_UpdateTime orig)
+            {
+                bool settingUpNight = false;
+                Main.dayRate += dayrateIncrease;
+                if (Main.time + Main.dayRate > Main.dayLength)
+                    settingUpNight = true;
+                orig();
+                dayrateIncrease = 0;
+                if (settingUpNight)
+                {
+                    AprilFools.UpdateActive();
+                    OnTurnNight();
+                }
+            }
+
+            private static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
+            {
+                var plr = Main.LocalPlayer;
+                bool discount = plr.discount;
+                plr.discount = false;
+
+                orig(self, type);
+
+                plr.discount = discount;
+                if (discount)
+                {
+                    float discountPercentage = plr.GetModPlayer<AQPlayer>().discountPercentage;
+                    for (int i = 0; i < Chest.maxItems; i++)
+                    {
+                        if (self.item[i] != null && self.item[i].type != ItemID.None)
+                            self.item[i].value = (int)(self.item[i].value * discountPercentage);
+                    }
+                }
+            }
+
+            private static bool NPC_Collision_DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
+                self.type > Main.maxNPCTypes &&
+                self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ?
+                decideToFallThroughPlatforms.Decide() : orig(self);
+
+            private static void Main_DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Main self, bool solidOnly, int waterStyleOverride)
+            {
+                if (!solidOnly)
+                {
+                    GoreNestLayer.RefreshCoords();
+                }
+                orig(self, solidOnly, waterStyleOverride);
+            }
+        }
+
         public AQMod()
         {
             Properties = new ModProperties()
@@ -306,6 +646,8 @@ namespace AQMod
         {
             Loading = true;
             Unloading = false;
+            Keys.Load(this);
+            Edits.Load();
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
             CursorDyes = new CursorDyeLoader();
@@ -315,20 +657,6 @@ namespace AQMod
             MapMarkers = new MapMarkerManager();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             ModCallHelper.SetupCalls();
-            On.Terraria.Chest.SetupShop += Chest_SetupShop;
-            On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
-            On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
-            On.Terraria.Main.UpdateTime += Main_UpdateTime;
-            On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
-            On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
-            On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
-            On.Terraria.Main.DrawTiles += Main_DrawTiles;
-            On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
-            On.Terraria.Player.FishingLevel += GetFishingLevel;
-            On.Terraria.Player.AddBuff += Player_AddBuff;
-            On.Terraria.Player.QuickBuff += Player_QuickBuff;
-            On.Terraria.Player.PickTile += Player_PickTile;
-            On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
             AprilFools.UpdateActive();
             var server = AQConfigServer.Instance;
             ApplyServerConfig(server);
@@ -356,317 +684,6 @@ namespace AQMod
                 WorldEffects = new List<WorldVisualEffect>();
             }
             Autoloading.Autoload(Code);
-        }
-
-        private void Main_UpdateWeather(On.Terraria.Main.orig_UpdateWeather orig, Main self, GameTime gameTime)
-        {
-            if (GaleStreams.EndEvent)
-            {
-                Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
-                if (Main.windSpeedSet.Abs() < 0.1f)
-                {
-                    GaleStreams.EndEvent = false;
-                }
-                Main.windSpeedTemp = Main.windSpeedSet;
-                return;
-            }
-            if (Main.netMode != NetmodeID.MultiplayerClient && (Main.netMode == NetmodeID.Server || !Main.gameMenu) 
-                && GaleStreams.IsActive)
-            {
-                for (int i = 0; i < Main.maxPlayers; i++)
-                {
-                    if (Main.player[i].active && !Main.player[i].dead && GaleStreams.EventActive(Main.player[i]))
-                    {
-                        Main.cloudLimit = 200; // prevents the wind speed from naturally changing during the Gale Streams event
-                        if (Main.windSpeed < Main.windSpeedSet)
-                        {
-                            Main.windSpeed += 0.001f * Main.dayRate;
-                            if (Main.windSpeed > Main.windSpeedSet)
-                            {
-                                Main.windSpeed = Main.windSpeedSet;
-                            }
-                        }
-                        else if (Main.windSpeed > Main.windSpeedSet)
-                        {
-                            Main.windSpeed -= 0.001f * (float)Main.dayRate;
-                            if (Main.windSpeed < Main.windSpeedSet)
-                            {
-                                Main.windSpeed = Main.windSpeedSet;
-                            }
-                        }
-                        Main.weatherCounter -= Main.dayRate;
-                        if (Main.weatherCounter <= 0)
-                        {
-                            Main.weatherCounter = Main.rand.Next(3600, 18000);
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                NetMessage.SendData(MessageID.WorldData);
-                            }
-                        }
-                        return;
-                    }
-                }
-            }
-            if (Main.windSpeedSet.Abs() > 1f)
-            {
-                Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
-                Main.windSpeedTemp = Main.windSpeedSet;
-            }
-            orig(self, gameTime);
-        }
-
-        private void Player_HorizontalMovement(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
-        {
-            orig(self);
-            var aQPlayer = self.GetModPlayer<AQPlayer>();
-            if (aQPlayer.redSpriteWind != 0 && !(self.mount.Active && self.velocity.Y == 0f && (self.controlLeft || self.controlRight)))
-            {
-                float windDirection = Math.Sign(aQPlayer.redSpriteWind) * 0.07f;
-                if (Math.Abs(Main.windSpeed) > 0.5f)
-                {
-                    windDirection *= 1.37f;
-                }
-                if (self.velocity.Y != 0f)
-                {
-                    windDirection *= 1.5f;
-                }
-                if (self.controlLeft || self.controlRight)
-                {
-                    windDirection *= 0.8f;
-                }
-                if (Math.Sign(self.direction) != Math.Sign(windDirection))
-                {
-                    self.accRunSpeed -= Math.Abs(windDirection) * 20f;
-                    self.maxRunSpeed -= Math.Abs(windDirection) * 20f;
-                }
-                if (windDirection < 0f && self.velocity.X > windDirection)
-                {
-                    self.velocity.X += windDirection;
-                    if (self.velocity.X < windDirection)
-                    {
-                        self.velocity.X = windDirection;
-                    }
-                }
-                if (windDirection > 0f && self.velocity.X < windDirection)
-                {
-                    self.velocity.X += windDirection;
-                    if (self.velocity.X > windDirection)
-                    {
-                        self.velocity.X = windDirection;
-                    }
-                }
-
-                if (!self.controlLeft && !self.controlRight)
-                {
-                    self.legFrameCounter = -1.0;
-                    self.legFrame.Y = 0;
-                }
-            }
-            aQPlayer.redSpriteWind = 0;
-        }
-
-        private void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
-        {
-            if (self.GetModPlayer<AQPlayer>().pickBreak)
-            {
-                pickPower /= 2;
-            }
-            orig(self, x, y, pickPower);
-        }
-
-        private void Main_UpdateDisplaySettings(On.Terraria.Main.orig_UpdateDisplaySettings orig, Main self)
-        {
-            orig(self);
-            if (!Main.gameMenu && Main.graphics.GraphicsDevice != null && Main.spriteBatch != null)
-            {
-                HotAndColdCurrentLayer.DrawTarget();
-            }
-        }
-
-        private int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
-        {
-            int originalValue = orig(X, Y, SpeedX, SpeedY, Type, Damage, KnockBack, Owner, ai0, ai1);
-            var projectile = Main.projectile[originalValue];
-            if (projectile.coldDamage || (projectile.friendly && projectile.owner != 255 && Main.player[projectile.owner].frostArmor && (projectile.melee || projectile.ranged)))
-            {
-                var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
-                aQProj.canHeat = false;
-                aQProj.temperature = -15;
-            }
-            return originalValue;
-        }
-
-        private void Player_QuickBuff(On.Terraria.Player.orig_QuickBuff orig, Player self)
-        {
-            AQPlayer.IsQuickBuffing = true;
-            orig(self);
-            AQPlayer.IsQuickBuffing = false;
-        }
-
-        private void Player_AddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)
-        {
-            if (type >= Main.maxBuffTypes)
-            {
-                var modBuff = ModContent.GetModBuff(type);
-                if (modBuff is temperatureDebuff)
-                {
-                    for (int i = 0; i < Player.MaxBuffs; i++)
-                    {
-                        if (self.buffTime[i] > 0)
-                        {
-                            if (self.buffType[i] == type)
-                            {
-                                orig(self, type, time1, quiet);
-                                return;
-                            }
-                            if (self.buffType[i] > Main.maxBuffTypes)
-                            {
-                                var otherModBuff = ModContent.GetModBuff(self.buffType[i]);
-                                if (otherModBuff is temperatureDebuff)
-                                {
-                                    self.DelBuff(i);
-                                    orig(self, type, time1, quiet);
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                    orig(self, type, time1, quiet);
-                    return;
-                }
-            }
-            if (AQBuff.Sets.IsFoodBuff[type])
-            {
-                for (int i = 0; i < Player.MaxBuffs; i++)
-                {
-                    if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.IsFoodBuff[self.buffType[i]])
-                    {
-                        self.DelBuff(i);
-                        i--;
-                    }
-                }
-            }
-            orig(self, type, time1, quiet);
-        }
-
-        private static int GetFishingLevel(On.Terraria.Player.orig_FishingLevel orig, Player player)
-        {
-            int regularLevel = orig(player);
-            if (regularLevel <= 0)
-                return regularLevel;
-            var aQPlayer = player.GetModPlayer<AQPlayer>();
-            Item baitItem = null;
-            for (int j = 0; j < 58; j++)
-            {
-                if (player.inventory[j].stack > 0 && player.inventory[j].bait > 0)
-                {
-                    baitItem = player.inventory[j];
-                    break;
-                }
-            }
-            if (baitItem.modItem is PopperBaitItem popper)
-            {
-                int popperPower = popper.GetExtraFishingPower(player, aQPlayer);
-                if (popperPower > 0)
-                {
-                    aQPlayer.PopperType = baitItem.type;
-                    aQPlayer.PopperBaitPower = popperPower;
-                }
-                else
-                {
-                    aQPlayer.PopperType = 0;
-                    aQPlayer.PopperBaitPower = 0;
-                }
-            }
-            else
-            {
-                aQPlayer.PopperType = 0;
-                aQPlayer.PopperBaitPower = 0;
-            }
-            aQPlayer.FishingPowerCache = regularLevel + aQPlayer.PopperBaitPower;
-            return aQPlayer.FishingPowerCache;
-        }
-
-        private void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
-        {
-            orig(self);
-            BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
-            SceneLayersManager.DrawLayer(SceneLayering.PostDrawPlayers);
-            Main.spriteBatch.End();
-        }
-
-        private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)
-        {
-            orig();
-            Main.dayRate += dayrateIncrease;
-        }
-
-        private static void Main_UpdateTime(On.Terraria.Main.orig_UpdateTime orig)
-        {
-            bool settingUpNight = false;
-            Main.dayRate += dayrateIncrease;
-            if (Main.time + Main.dayRate > Main.dayLength)
-                settingUpNight = true;
-            orig();
-            dayrateIncrease = 0;
-            if (settingUpNight)
-            {
-                AprilFools.UpdateActive();
-                OnTurnNight();
-            }
-        }
-
-        /// <summary>
-        /// Modifies <see cref="Chest.SetupShop(int)"/> to make the <see cref="BusinessCard"/> and <see cref="BlurryDiscountCard"/> work by modifying <see cref="AQPlayer.discountPercentage"/>
-        /// </summary>
-        /// <param name="orig"></param>
-        /// <param name="self"></param>
-        /// <param name="type"></param>
-        private static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
-        {
-            var plr = Main.LocalPlayer;
-            bool discount = plr.discount;
-            plr.discount = false;
-
-            orig(self, type);
-
-            plr.discount = discount;
-            if (discount)
-            {
-                float discountPercentage = plr.GetModPlayer<AQPlayer>().discountPercentage;
-                for (int i = 0; i < Chest.maxItems; i++)
-                {
-                    if (self.item[i] != null && self.item[i].type != ItemID.None)
-                        self.item[i].value = (int)(self.item[i].value * discountPercentage);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Modifies NPC.Collision_DecideFallThroughPlatforms so that some npcs can... actually fall through platforms... is this implented in ModNPC at all? Since I can't find it :(
-        /// </summary>
-        /// <param name="orig"></param>
-        /// <param name="self"></param>
-        /// <returns></returns>
-        private static bool NPC_Collision_DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
-            self.type > Main.maxNPCTypes &&
-            self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ?
-            decideToFallThroughPlatforms.Decide() : orig(self);
-
-        /// <summary>
-        /// Modifies <see cref="Main.DrawTiles(bool, int)"/> so that special tile draw coordinates can be refreshed.
-        /// </summary>
-        /// <param name="orig"></param>
-        /// <param name="self"></param>
-        /// <param name="solidOnly"></param>
-        /// <param name="waterStyleOverride"></param>
-        private static void Main_DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Main self, bool solidOnly, int waterStyleOverride)
-        {
-            if (!solidOnly)
-            {
-                GoreNestLayer.RefreshCoords();
-            }
-            orig(self, solidOnly, waterStyleOverride);
         }
 
         public override void PostSetupContent()
