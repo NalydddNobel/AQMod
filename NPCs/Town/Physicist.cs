@@ -41,6 +41,8 @@ namespace AQMod.NPCs.Town
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.EquivalenceMachine>());
+            nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.Cosmicanon>());
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.FidgetSpinner.FidgetSpinner>());

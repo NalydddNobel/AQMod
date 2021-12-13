@@ -1,5 +1,4 @@
-﻿using AQMod.Content;
-using AQMod.Localization;
+﻿using AQMod.Localization;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
@@ -7,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Tools
 {
-    public class Cosmicanon : ModItem, IUpdatePiggybank
+    public class EquivalenceMachine : ModItem, IUpdatePiggybank
     {
         public override void SetDefaults()
         {
@@ -21,9 +20,8 @@ namespace AQMod.Items.Tools
         private void Update(Player player)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.cosmicanon = true;
-            if (!aQPlayer.IgnoreIgnoreMoons)
-                aQPlayer.ignoreMoons = true;
+            if (!aQPlayer.IgnoreAntiGravityItems)
+                aQPlayer.antiGravityItems = true;
         }
 
         public override void UpdateInventory(Player player)
@@ -45,15 +43,9 @@ namespace AQMod.Items.Tools
         {
             foreach (var t in tooltips)
             {
-                if (t.mod == "Terraria" && t.Name == "Tooltip0")
-                {
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.HotKey(AQMod.Keys.CosmicanonToggle));
-                }
                 if (t.mod == "Terraria" && t.Name == "Tooltip1")
                 {
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented", CosmicanonCounts.BloodMoonsPrevented);
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.GlimmersPrevented", CosmicanonCounts.GlimmersPrevented);
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.EclipsesPrevented", CosmicanonCounts.EclipsesPrevented);
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.HotKey(AQMod.Keys.EquivalenceMachineToggle));
                 }
             }
         }

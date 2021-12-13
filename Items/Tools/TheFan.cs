@@ -22,6 +22,7 @@ namespace AQMod.Items.Tools
             item.shoot = ModContent.ProjectileType<Projectiles.FriendlyWind>();
             item.shootSpeed = 9f;
             item.autoReuse = true;
+            item.value = Item.sellPrice(silver: 50);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

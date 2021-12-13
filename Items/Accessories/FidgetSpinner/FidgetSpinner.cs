@@ -21,7 +21,7 @@ namespace AQMod.Items.Accessories.FidgetSpinner
             item.height = 16;
             item.accessory = true;
             item.rare = AQItem.Rarities.OmegaStariteRare;
-            item.value = Item.buyPrice(gold: 50);
+            item.value = Item.buyPrice(gold: 80);
         }
 
         public override TagCompound Save()

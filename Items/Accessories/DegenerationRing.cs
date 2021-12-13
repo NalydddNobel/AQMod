@@ -11,7 +11,7 @@ namespace AQMod.Items.Accessories
         {
             item.width = 28;
             item.height = 28;
-            item.rare = ItemRarityID.Green;
+            item.rare = AQItem.Rarities.GoreNestRare;
             item.value = Item.sellPrice(silver: 80);
             item.accessory = true;
         }
@@ -23,6 +23,10 @@ namespace AQMod.Items.Accessories
             player.buffImmune[BuffID.Burning] = true;
             player.buffImmune[BuffID.CursedInferno] = true;
             player.buffImmune[BuffID.ShadowFlame] = true;
+            player.buffImmune[ModContent.BuffType<Buffs.Debuffs.BlueFire>()] = true;
+            player.buffImmune[ModContent.BuffType<Buffs.Debuffs.Sparkling>()] = true;
+            player.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
+            player.buffImmune[ModContent.BuffType<Buffs.Debuffs.CrimsonHellfire>()] = true;
         }
     }
 }

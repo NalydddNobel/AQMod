@@ -568,6 +568,7 @@ namespace AQMod
         public bool mysticUmbrellaDelay;
         public bool ignoreMoons;
         public bool cosmicanon;
+        public bool antiGravityItems;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -579,6 +580,7 @@ namespace AQMod
         public int CursorDyeID { get; private set; } = CursorDyeLoader.ID.None;
         public string CursorDye { get; private set; } = ""; 
         public bool IgnoreIgnoreMoons { get; set; }
+        public bool IgnoreAntiGravityItems { get; set; }
 
         public static bool IsQuickBuffing { get; internal set; }
 
@@ -709,11 +711,14 @@ namespace AQMod
                 ["CursorDye"] = CursorDye,
                 ["bosskills"] = SerializeBossKills(),
                 ["IgnoreIgnoreMoons"] = IgnoreIgnoreMoons,
+                ["IgnoreAntiGravityItems"] = IgnoreAntiGravityItems,
             };
         }
 
         public override void Load(TagCompound tag)
         {
+            IgnoreAntiGravityItems = tag.GetBool("IgnoreAntiGravityItems");
+            IgnoreIgnoreMoons = tag.GetBool("IgnoreIgnoreMoons");
             ExtractinatorCount = tag.GetInt("extractinatorCount");
             string dyeKey = tag.GetString("CursorDye");
             if (!string.IsNullOrEmpty(dyeKey) && AQStringCodes.DecodeName(dyeKey, out string cursorDyeMod, out string cursorDyeName))
@@ -859,6 +864,7 @@ namespace AQMod
             mysticUmbrellaDelay = false;
             cosmicanon = false;
             ignoreMoons = false;
+            antiGravityItems = false;
             if (extraHP > 60) // to cap life max buffs at 60
             {
                 extraHP = 60;
@@ -977,6 +983,18 @@ namespace AQMod
                 else
                 {
                     Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
+                }
+            }
+            if (antiGravityItems && AQMod.Keys.EquivalenceMachineToggle.JustPressed)
+            {
+                IgnoreIgnoreMoons = !IgnoreIgnoreMoons;
+                if (IgnoreIgnoreMoons)
+                {
+                    Main.NewText(Language.GetTextValue("Mods.AQMod.EquivalenceMachineToggle.False"), new Color(230, 230, 255, 255));
+                }
+                else
+                {
+                    Main.NewText(Language.GetTextValue("Mods.AQMod.EquivalenceMachineToggle.True"), new Color(230, 230, 255, 255));
                 }
             }
         }

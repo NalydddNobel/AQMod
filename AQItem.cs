@@ -15,6 +15,28 @@ namespace AQMod
 {
     public class AQItem : GlobalItem
     {
+        public static class Sets 
+        {
+            public static class Clones
+            {
+                public static bool[] ItemNoGravity { get; private set; }
+
+                internal static void Setup()
+                {
+                    ItemNoGravity = new bool[ItemLoader.ItemCount];
+                    for (int i = 0; i < ItemLoader.ItemCount; i++)
+                    {
+                        ItemNoGravity[i] = ItemID.Sets.ItemNoGravity[i];
+                    }
+                }
+
+                internal static void Unload()
+                {
+                    ItemNoGravity = null;
+                }
+            }
+        }
+
         public static class Prices
         {
             public static int PotionValue => Item.sellPrice(silver: 2);

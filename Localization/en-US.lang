@@ -4,6 +4,9 @@
 ItemName.FidgetSpinner=Perpetuator
 ItemTooltip.FidgetSpinner=Non-autoswing items are slower, but gain autoswing
 
+ItemName.DegenerationRing=Degeneration Ring
+ItemTooltip.DegenerationRing=Prevents most types of burning
+
 # Barbs
 
 ItemName.CrabBarb=Crab Barb
@@ -59,18 +62,24 @@ ItemName.RedSpriteDye=Red Sprite Dye
 
 ItemName.Cosmicanon=Cosmicanon
 ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer Event from naturally spawning\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
-ItemTooltipExtra.Cosmicanon=You can toggle this function by right clicking the item, or by pressing {0}
+ItemTooltipExtra.Cosmicanon=You can toggle this function by pressing {0}
 ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=Blood Moons Prevented: {0}
 ItemTooltipExtra.Cosmicanon.GlimmersPrevented=Glimmers Prevented: {0}
 ItemTooltipExtra.Cosmicanon.EclipsesPrevented=Eclipses Prevented: {0}
 ToggleCosmicanon.False=Moon events can occur again
 ToggleCosmicanon.True=Moon events can no longer occur
 
+ItemName.EquivalenceMachine=Equivalence Machine
+ItemTooltip.EquivalenceMachine=Nearby items float instead of falling\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
+EquivalenceMachineToggle.False=Nearby items will now fall
+EquivalenceMachineToggle.True=Nearby items will now float
+
 # Tooltips
 
 Tooltips.ManaPerSecond=Uses {0} mana per second
 Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed\nYou will not take any fall damage
 Tooltips.InventoryPiggyBankFunction=Works in your inventory or piggy bank
+Tooltips.ToggleKeyBind=You can toggle this function by pressing {0}
 
 # Exporter
 NPCName.Robster=Exporter
@@ -375,8 +384,6 @@ ItemName.CopperSeal=Copper Seal
 ItemName.SilverSeal=Silver Seal
 ItemName.GoldSeal=Gold Seal
 ItemName.PlatinumSeal=Platinum Seal
-# Rings
-ItemName.DegenerationRing=Degeneration Ring
 # Shields
 ItemName.TargeoftheBlodded=Shield of the Blooded
 # Shoes
@@ -712,8 +719,6 @@ ItemTooltip.CopperSeal=Fishing a crate will bless you with 30 seconds of the cra
 ItemTooltip.SilverSeal=Fishing anything will bless you with 10 seconds of the fishing potion buff
 ItemTooltip.GoldSeal=Fishing anything that can be sold for 1 gold blesses you with 1 minute of the sonar potion buff
 ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
-# Rings
-ItemTooltip.DegenerationRing=Makes you resist multiple types of burning
 # Shields
 ItemTooltip.TargeoftheBlodded=Increases armor penetration by 2\nAllows the ability to slide down walls\nImproved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
 # Shoes

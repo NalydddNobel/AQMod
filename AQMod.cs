@@ -289,15 +289,17 @@ namespace AQMod
         public static class Keys
         {
             public static ModHotKey CosmicanonToggle { get; private set; }
+            public static ModHotKey EquivalenceMachineToggle { get; private set; }
 
             internal static void Load(AQMod mod)
             {
                 CosmicanonToggle = mod.RegisterHotKey("Cosmicanon Toggle", "P");
-                ;
+                EquivalenceMachineToggle = mod.RegisterHotKey("Equivalence Machine Toggle", "O");
             }
 
             internal static void Unload()
             {
+                EquivalenceMachineToggle = null;
                 CosmicanonToggle = null;
             }
         }
@@ -311,6 +313,7 @@ namespace AQMod
 
             internal static void Load()
             {
+                On.Terraria.Item.UpdateItem += Item_UpdateItem;
                 On.Terraria.NetMessage.BroadcastChatMessage += NetMessage_BroadcastChatMessage;
                 On.Terraria.GameContent.Achievements.AchievementsHelper.NotifyProgressionEvent += AchievementsHelper_NotifyProgressionEvent;
                 On.Terraria.Chest.SetupShop += Chest_SetupShop;
@@ -328,6 +331,18 @@ namespace AQMod
                 On.Terraria.Player.QuickBuff += Player_QuickBuff;
                 On.Terraria.Player.PickTile += Player_PickTile;
                 On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
+            }
+
+            private static void Item_UpdateItem(On.Terraria.Item.orig_UpdateItem orig, Item self, int i)
+            {
+                if (Main.itemLockoutTime[i] > 0)
+                {
+                    orig(self, i);
+                    return;
+                }
+
+                EquivalenceMachineManager.UpdateItems();
+                orig(self, i);
             }
 
             private static void AchievementsHelper_NotifyProgressionEvent(On.Terraria.GameContent.Achievements.AchievementsHelper.orig_NotifyProgressionEvent orig, int eventID)
@@ -824,6 +839,7 @@ namespace AQMod
             }
 
             FargosQOLStuff.Setup(this);
+            AQItem.Sets.Clones.Setup();
         }
 
         /// <summary>
@@ -851,6 +867,7 @@ namespace AQMod
             HuntSystem.Unload();
 
             // in: AddRecipes()
+            AQItem.Sets.Clones.Unload();
             CelesitalEightBall.ResetStatics();
             ItemOverlays = null;
             if (Split != null)
