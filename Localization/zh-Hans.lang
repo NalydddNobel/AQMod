@@ -18,7 +18,19 @@ ItemTooltip.DemoniteBarb=你的钩爪会造成伤害
 ItemName.MetalBarb=金属刺钩
 ItemTooltip.MetalBarb=你的钩爪会造成伤害
 
+# Materials
+
+ItemName.Fluorescence=荧光
+
 # Weapons
+
+ItemName.Vrang=随流温刃
+ItemTooltip.Vrang=扔出三个快速移动的随流温刃
+
+ItemName.AirBlade=风之刃
+ItemTooltip.AirBlade=召唤魔法风刃
+ProjectileName.AirBlade=风之刃
+ProjectileName.AirBladeGhost=风之刃
 
 ItemName.RedSpriteStaff=红色精灵法杖
 ItemTooltip.RedSpriteStaff=召唤一朵红色精灵在你的敌人头顶降下雷鸣\n一次可以降下4个雷鸣
@@ -46,10 +58,13 @@ ItemName.RedSpriteDye=红色精灵染料
 # Tools
 
 ItemName.Cosmicanon=星宇律则
-ItemTooltip.Cosmicanon=阻止血月、日食和微光事件的自然生成\n{$Mods.AQMod.Tooltips.PiggyBankFunction}
+ItemTooltip.Cosmicanon=阻止血月、日食和微光事件的自然生成\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 ItemTooltipExtra.Cosmicanon=右键此物品或按下{0}以开关效果
-ToggleCosmicanon.False=月亮事件可自然发生
-ToggleCosmicanon.True=月亮事件不再自然发生
+ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=阻止血月: {0}
+ItemTooltipExtra.Cosmicanon.GlimmersPrevented=阻止微光事件: {0}
+ItemTooltipExtra.Cosmicanon.EclipsesPrevented=阻止日食: {0}
+ToggleCosmicanon.False=事件可自然发生
+ToggleCosmicanon.True=事件不再自然发生
 
 # Tooltips
 
@@ -903,8 +918,6 @@ BuffDescription.Hot80=你的体温高于80华氏度
 
 ###### Projectiles ######
 # Melee Weapon Projectiles
-ProjectileName.AirBlade=风之刃
-ProjectileName.AirBladeGhost=风之刃
 ProjectileName.Aphrodite=阿芙罗狄忒
 ProjectileName.ArgonSpear=氩制长枪
 ProjectileName.Burnterizer=焚焰剑
