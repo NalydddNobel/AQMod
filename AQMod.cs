@@ -1,5 +1,4 @@
 using AQMod.Assets;
-using AQMod.Assets.Graphics.SceneLayers;
 using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
@@ -9,7 +8,6 @@ using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Common.NetCode;
-using AQMod.Common.NoHitting;
 using AQMod.Common.Skies;
 using AQMod.Common.UserInterface;
 using AQMod.Content;
@@ -26,7 +24,6 @@ using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items.Accessories;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.Fishing.Bait;
@@ -295,7 +292,8 @@ namespace AQMod
 
             internal static void Load(AQMod mod)
             {
-                CosmicanonToggle = mod.RegisterHotKey("{$Mods.AQMod.Keys.ComicanonToggle}", "P"); ;
+                CosmicanonToggle = mod.RegisterHotKey("Cosmicanon Toggle", "P");
+                ;
             }
 
             internal static void Unload()
@@ -307,9 +305,14 @@ namespace AQMod
         public static class Edits
         {
             internal static bool PreventChat { get; private set; }
+            internal static bool PreventChatOnce { get; private set; }
+            internal static bool CosmicanonActive { get; private set; }
+            internal static bool UpdatingWorld { get; private set; }
 
             internal static void Load()
             {
+                On.Terraria.NetMessage.BroadcastChatMessage += NetMessage_BroadcastChatMessage;
+                On.Terraria.GameContent.Achievements.AchievementsHelper.NotifyProgressionEvent += AchievementsHelper_NotifyProgressionEvent;
                 On.Terraria.Chest.SetupShop += Chest_SetupShop;
                 On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
                 On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
@@ -327,8 +330,47 @@ namespace AQMod
                 On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
             }
 
+            private static void AchievementsHelper_NotifyProgressionEvent(On.Terraria.GameContent.Achievements.AchievementsHelper.orig_NotifyProgressionEvent orig, int eventID)
+            {
+                if (UpdatingWorld && CosmicanonActive && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    if (eventID == AchievementHelperID.Events.BloodMoonStart)
+                    {
+                        Main.bloodMoon = false;
+                        CosmicanonCounts.BloodMoonsPrevented++;
+                        PreventChatOnce = true;
+                    }
+                    if (eventID == AchievementHelperID.Events.EclipseStart)
+                    {
+                        Main.eclipse = false;
+                        CosmicanonCounts.EclipsesPrevented++;
+                        PreventChatOnce = true;
+                    }
+                }
+                orig(eventID);
+            }
+
+            private static void NetMessage_BroadcastChatMessage(On.Terraria.NetMessage.orig_BroadcastChatMessage orig, NetworkText text, Color color, int excludedPlayer)
+            {
+                if (PreventChatOnce)
+                {
+                    PreventChatOnce = false;
+                    return;
+                }
+                if (PreventChat)
+                {
+                    return;
+                }
+                orig(text, color, excludedPlayer);
+            }
+
             private static void Main_NewText_string_byte_byte_byte_bool(On.Terraria.Main.orig_NewText_string_byte_byte_byte_bool orig, string newText, byte R, byte G, byte B, bool force)
             {
+                if (PreventChatOnce)
+                {
+                    PreventChatOnce = false;
+                    return;
+                }
                 if (PreventChat)
                 {
                     return;
@@ -581,17 +623,36 @@ namespace AQMod
 
             private static void Main_UpdateTime(On.Terraria.Main.orig_UpdateTime orig)
             {
-                bool settingUpNight = false;
+                UpdatingWorld = true;
                 Main.dayRate += dayrateIncrease;
-                if (Main.time + Main.dayRate > Main.dayLength)
-                    settingUpNight = true;
-                orig();
-                dayrateIncrease = 0;
-                if (settingUpNight)
+                if (Main.dayTime)
                 {
-                    AprilFools.UpdateActive();
-                    OnTurnNight();
+                    if (Main.time + Main.dayRate > Main.dayLength)
+                    {
+                        CosmicanonActive = AQPlayer.IgnoreMoons();
+                        AprilFools.UpdateActive();
+                        GlimmerEvent.OnTurnNight();
+                        if (Main.netMode != NetmodeID.Server)
+                        {
+                            GlimmerEventSky.InitNight();
+                        }
+                    }
+                    orig();
+                    CosmicanonActive = false;
                 }
+                else
+                {
+                    if (Main.time + Main.dayRate > Main.nightLength)
+                    {
+                        CosmicanonActive = AQPlayer.IgnoreMoons();
+                    }
+                    orig();
+                    CosmicanonActive = false;
+                }
+                dayrateIncrease = 0;
+                PreventChat = false;
+                PreventChatOnce = false;
+                UpdatingWorld = false;
             }
 
             private static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
@@ -1049,15 +1110,6 @@ namespace AQMod
             HarderOmegaStarite = serverConfig.harderOmegaStarite;
             EvilProgressionLock = serverConfig.evilProgressionLock;
             ConfigReduceSpawnsWhenYouShould = serverConfig.reduceSpawns;
-        }
-
-        public static void OnTurnNight()
-        {
-            GlimmerEvent.OnTurnNight();
-            if (Main.netMode != NetmodeID.Server)
-            {
-                GlimmerEventSky.InitNight();
-            }
         }
 
         internal static void BroadcastMessage(string key, Color color)

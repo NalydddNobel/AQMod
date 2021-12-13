@@ -74,11 +74,6 @@ namespace AQMod.Localization
             return ModText("Common.GlimmerEvent");
         }
 
-        public static LocalizedText GlimmerEventWarning()
-        {
-            return ModText("Common.GlimmerEventWarning");
-        }
-
         public static LocalizedText GlimmerEventEnding()
         {
             return ModText("Common.GlimmerEventEnding");

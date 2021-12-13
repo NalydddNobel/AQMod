@@ -1,4 +1,5 @@
-﻿using AQMod.Localization;
+﻿using AQMod.Content;
+using AQMod.Localization;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
@@ -47,7 +48,12 @@ namespace AQMod.Items.Tools
                 if (t.mod == "Terraria" && t.Name == "Tooltip0")
                 {
                     t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon", AQText.HotKey(AQMod.Keys.CosmicanonToggle));
-                    break;
+                }
+                if (t.mod == "Terraria" && t.Name == "Tooltip1")
+                {
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented", CosmicanonCounts.BloodMoonsPrevented);
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.GlimmersPrevented", CosmicanonCounts.GlimmersPrevented);
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.EclipsesPrevented", CosmicanonCounts.EclipsesPrevented);
                 }
             }
         }

@@ -1,5 +1,5 @@
-﻿using AQMod.Assets.Graphics.SceneLayers;
-using AQMod.Common.Graphics.Particles;
+﻿using AQMod.Common.Graphics.Particles;
+using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.GaleStreams;
 using Microsoft.Xna.Framework;

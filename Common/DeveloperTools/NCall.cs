@@ -119,6 +119,37 @@ namespace AQMod.Common.DeveloperTools
                 caller.Reply("Command doesn't exist.");
                 break;
 
+                case "initnight":
+                {
+                    int count = 1;
+                    if (args.Length > 1)
+                    {
+                        count = int.Parse(args[1]);
+                    }
+                    Main.NewText(count);
+                    if (count == -1)
+                    {
+                        Main.dayTime = true;
+                        Main.time = Main.dayLength;
+                        break;
+                    }
+                    var method = typeof(Main).GetMethod("UpdateTime", BindingFlags.NonPublic | BindingFlags.Static);
+                    for (int i = 0; i < count; i++)
+                    {
+                        Main.dayTime = true;
+                        Main.time = 60;
+                        Main.bloodMoon = false;
+                        Main.stopMoonEvent();
+                        method.Invoke(null, null);
+
+                        Main.time = Main.dayLength;
+                        Main.fastForwardTime = false;
+                        AQMod.dayrateIncrease = 0;
+                        method.Invoke(null, null);
+                    }
+                }
+                break;
+
                 case "april":
                 case "fools":
                 case "aprilfools":
@@ -268,6 +299,12 @@ namespace AQMod.Common.DeveloperTools
                     {
                         createSample(args);
                     }
+                }
+                break;
+
+                case "glimmerspawn":
+                {
+                    caller.Reply("glimmer chance: " + GlimmerEvent.spawnChance);
                 }
                 break;
 
@@ -574,6 +611,13 @@ namespace AQMod.Common.DeveloperTools
                 }
                 break;
 
+                case "endinvasion":
+                {
+                    Main.invasionDelay = 0;
+                    Main.invasionType = 0;
+                }
+                break;
+
                 case "startinvasion1":
                 case "startgoblin":
                 {
@@ -608,13 +652,6 @@ namespace AQMod.Common.DeveloperTools
                 {
                     Main.invasionDelay = 0;
                     Main.StartInvasion(InvasionID.MartianMadness);
-                }
-                break;
-
-                case "initnight":
-                {
-                    Main.dayTime = true;
-                    Main.time = Main.dayLength - 2;
                 }
                 break;
 

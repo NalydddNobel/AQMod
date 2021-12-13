@@ -18,7 +18,19 @@ ItemTooltip.DemoniteBarb=Your grappling hooks inflicts damage
 ItemName.MetalBarb=Metal Barb
 ItemTooltip.MetalBarb=Your grappling hooks inflicts damage
 
+# Materials
+
+ItemName.Fluorescence=Fluorescence
+
 # Weapons
+
+ItemName.Vrang=Vrang
+ItemTooltip.Vrang=Throws 3 vraines which move very quickly
+
+ItemName.AirBlade=Air Blade
+ItemTooltip.AirBlade=Summons magical air blades
+ProjectileName.AirBlade=Air Blade
+ProjectileName.AirBladeGhost=Air Blade
 
 ItemName.RedSpriteStaff=Red Sprite Staff
 ItemTooltip.RedSpriteStaff=Summons a red sprite to rain thunder down upon your foes\nCan cast four at once
@@ -46,8 +58,11 @@ ItemName.RedSpriteDye=Red Sprite Dye
 # Tools
 
 ItemName.Cosmicanon=Cosmicanon
-ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer Event from naturally spawning\n{$Mods.AQMod.Tooltips.PiggyBankFunction}
+ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer Event from naturally spawning\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 ItemTooltipExtra.Cosmicanon=You can toggle this function by right clicking the item, or by pressing {0}
+ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=Blood Moons Prevented: {0}
+ItemTooltipExtra.Cosmicanon.GlimmersPrevented=Glimmers Prevented: {0}
+ItemTooltipExtra.Cosmicanon.EclipsesPrevented=Eclipses Prevented: {0}
 ToggleCosmicanon.False=Moon events can occur again
 ToggleCosmicanon.True=Moon events can no longer occur
 
@@ -903,8 +918,6 @@ BuffDescription.Hot80=You are above 80 degrees Fahrenheit
 
 ###### Projectiles ######
 # Melee Weapon Projectiles
-ProjectileName.AirBlade=Air Blade
-ProjectileName.AirBladeGhost=Air Blade
 ProjectileName.Aphrodite=Aphrodite
 ProjectileName.ArgonSpear=Argon Spear
 ProjectileName.Burnterizer=Burnterizer

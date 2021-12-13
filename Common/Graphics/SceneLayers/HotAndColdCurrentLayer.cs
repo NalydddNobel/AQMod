@@ -1,13 +1,11 @@
-﻿using AQMod.Common.Graphics;
-using AQMod.Common.Graphics.DrawTypes;
-using AQMod.Common.Graphics.SceneLayers;
+﻿using AQMod.Common.Graphics.DrawTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
-namespace AQMod.Assets.Graphics.SceneLayers
+namespace AQMod.Common.Graphics.SceneLayers
 {
     public sealed class HotAndColdCurrentLayer : SceneLayer
     {
@@ -57,9 +55,16 @@ namespace AQMod.Assets.Graphics.SceneLayers
             _graphics = graphics;
             if (_graphics == null)
                 return;
-            hotTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
-            coldTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
-            finalTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
+            try
+            {
+                hotTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
+                coldTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
+                finalTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
+            }
+            catch
+            {
+
+            }
         }
 
         public static void AddToHotCurrentList(IDrawType drawType)
@@ -75,13 +80,9 @@ namespace AQMod.Assets.Graphics.SceneLayers
         public static void DrawTarget()
         {
             if (_hotCurrentList == null)
-            {
                 _hotCurrentList = new List<IDrawType>();
-            }
             if (_coldCurrentList == null)
-            {
                 _coldCurrentList = new List<IDrawType>();
-            }
             if (_hotCurrentList.Count > 0 || _coldCurrentList.Count > 0)
             {
                 if (finalTarget == null || finalTarget.IsContentLost

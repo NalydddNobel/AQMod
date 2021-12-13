@@ -971,11 +971,11 @@ namespace AQMod
                 IgnoreIgnoreMoons = !IgnoreIgnoreMoons;
                 if (IgnoreIgnoreMoons)
                 {
-                    Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
+                    Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.False"), new Color(230, 230, 255, 255));
                 }
                 else
                 {
-                    Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.False"), new Color(230, 230, 255, 255));
+                    Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
                 }
             }
         }

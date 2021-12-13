@@ -25,9 +25,9 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
         public const float SuperStariteSpawnChance = 0.75f;
         public const float HyperStariteSpawnChance = 0.4f;
         public const float UltraStariteSpawnChance = 0.2f;
-        public const int EventBaseRarity = 1250;
-        public const int GlimmerDownedRarityAdd = 350;
-        public const int HardmodeRarityAdd = 350;
+        public const int EventBaseRarity = 200;
+        public const int GlimmerDownedRarityAdd = 250;
+        public const int HardmodeRarityAdd = 150;
 
         internal static Color StariteProjectileColorOrig => new Color(200, 10, 255, 0);
         public static Color TextColor => new Color(238, 17, 68, 255);
@@ -232,6 +232,10 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
                 {
                     tileX = (ushort)x;
                     tileY = ManageGlimmerY();
+                    if (resetSpawnChance)
+                    {
+                        spawnChance = GetBaseRarity();
+                    }
                     return true;
                 }
             }
@@ -279,21 +283,31 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 return;
-            if (spawnChance == -1)
+            bool ignoreMoons = AQPlayer.IgnoreMoons();
+            if (ignoreMoons || spawnChance == -1)
+            {
+                if (ignoreMoons)
+                {
+                    CosmicanonCounts.GlimmersPrevented++;
+                }
                 spawnChance = GetBaseRarity();
-            if (Main.moonPhase != Constants.MoonPhases.FullMoon && NPC.AnyNPCs(NPCID.Dryad))
+                return;
+            }
+            if (Main.moonPhase != Constants.MoonPhases.FullMoon && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
             {
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {
                     Player player = Main.player[i];
                     if (player.active && player.statLifeMax > 200)
                     {
-                        if (spawnChance > 0)
-                            spawnChance = Main.rand.Next(spawnChance);
-                        if (spawnChance <= 0 && Activate(resetSpawnChance: true))
+                        if (spawnChance <= 2 && Activate(resetSpawnChance: true))
                         {
-                            AQMod.BroadcastMessage(AQText.GlimmerEventWarning().Value, TextColor);
+                            AQMod.BroadcastMessage("Mods.AQMod.EventWarning.GlimmerEvent", TextColor);
                             NetHelper.GlimmerEventNetUpdate();
+                        }
+                        else
+                        {
+                            spawnChance -= Main.rand.Next(spawnChance) / 2;
                         }
                         break;
                     }
