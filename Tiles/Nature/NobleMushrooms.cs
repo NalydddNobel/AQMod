@@ -45,7 +45,7 @@ namespace AQMod.Tiles.Nature
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                AQSound.Play(SoundType.Item, AQSound.Paths.NobleMushroomHit, new Vector2(i * 16, j * 16f), 0.5f, Main.rand.NextFloat(0.9f, 1.1f));
+                AQSound.Play(SoundType.Custom, AQSound.Paths.NobleMushroomHit, new Vector2(i * 16, j * 16f), 0.5f, Main.rand.NextFloat(0.9f, 1.1f));
             }
             return false;
         }
@@ -111,7 +111,7 @@ namespace AQMod.Tiles.Nature
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                AQSound.Play(SoundType.Item, AQSound.Paths.NobleMushroomDestroy, new Vector2(i * 16, j * 16f), 0.5f, Main.rand.NextFloat(-0.1f, 0.1f));
+                AQSound.Play(SoundType.Custom, AQSound.Paths.NobleMushroomDestroy, new Vector2(i * 16, j * 16f), 0.5f, Main.rand.NextFloat(-0.1f, 0.1f));
             }
             switch (frameX / 36)
             {

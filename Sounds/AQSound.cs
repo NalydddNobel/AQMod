@@ -43,6 +43,7 @@ namespace AQMod.Sounds
             public static string NobleMushroomHit => nobleMushroomHit + Main.rand.Next(3);
             public const string NobleMushroomDestroy = "Sounds/Custom/NobleMushroom/Destroy";
             public const string MeteorKilled = "Sounds/NPCKilled/Meteor";
+            public const string Boowomp = "Sounds/NPCHit/Boowomp";
         }
 
         internal static void Play(this LegacySoundStyle sound)
