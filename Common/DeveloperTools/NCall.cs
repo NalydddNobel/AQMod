@@ -119,6 +119,35 @@ namespace AQMod.Common.DeveloperTools
                 caller.Reply("Command doesn't exist.");
                 break;
 
+                case "initday":
+                {
+                    int count = 1;
+                    if (args.Length > 1)
+                    {
+                        count = int.Parse(args[1]);
+                    }
+                    Main.NewText(count);
+                    if (count == -1)
+                    {
+                        Main.dayTime = false;
+                        Main.time = Main.nightLength;
+                        break;
+                    }
+                    var method = typeof(Main).GetMethod("UpdateTime", BindingFlags.NonPublic | BindingFlags.Static);
+                    for (int i = 0; i < count; i++)
+                    {
+                        Main.dayTime = false;
+                        Main.time = 60;
+                        method.Invoke(null, null);
+
+                        Main.time = Main.nightLength;
+                        Main.fastForwardTime = false;
+                        AQMod.dayrateIncrease = 0;
+                        method.Invoke(null, null);
+                    }
+                }
+                break;
+
                 case "initnight":
                 {
                     int count = 1;

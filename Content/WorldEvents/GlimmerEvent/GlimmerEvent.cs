@@ -283,13 +283,8 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 return;
-            bool ignoreMoons = AQPlayer.IgnoreMoons();
-            if (ignoreMoons || spawnChance == -1)
+            if (spawnChance == -1)
             {
-                if (ignoreMoons)
-                {
-                    CosmicanonCounts.GlimmersPrevented++;
-                }
                 spawnChance = GetBaseRarity();
                 return;
             }
@@ -302,8 +297,15 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
                     {
                         if (spawnChance <= 2 && Activate(resetSpawnChance: true))
                         {
-                            AQMod.BroadcastMessage("Mods.AQMod.EventWarning.GlimmerEvent", TextColor);
-                            NetHelper.GlimmerEventNetUpdate();
+                            if (AQPlayer.IgnoreMoons())
+                            {
+                                CosmicanonCounts.GlimmersPrevented++;
+                            }
+                            else
+                            {
+                                AQMod.BroadcastMessage("Mods.AQMod.EventWarning.GlimmerEvent", TextColor);
+                                NetHelper.GlimmerEventNetUpdate();
+                            }
                         }
                         else
                         {

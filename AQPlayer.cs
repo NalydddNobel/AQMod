@@ -708,6 +708,7 @@ namespace AQMod
                 ["extractinatorCount"] = ExtractinatorCount,
                 ["CursorDye"] = CursorDye,
                 ["bosskills"] = SerializeBossKills(),
+                ["IgnoreIgnoreMoons"] = IgnoreIgnoreMoons,
             };
         }
 

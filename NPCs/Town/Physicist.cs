@@ -251,7 +251,7 @@ namespace AQMod.NPCs.Town
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = ModContent.ProjectileType<Projectiles.Melee.Galactium>();
+            projType = ModContent.ProjectileType<Projectiles.Physicist>();
             attackDelay = 1;
         }
 
