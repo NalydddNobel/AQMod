@@ -81,7 +81,14 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     }
                     else
                     {
-                        npc.localAI[0]++;
+                        if (npc.velocity.X.Abs() <= 0.1f && npc.oldVelocity.Y == npc.velocity.Y)
+                        {
+                            if (npc.localAI[0] == 0 && Main.netMode != NetmodeID.Server)
+                            {
+                                AQSound.Play(SoundType.NPCHit, AQSound.Paths.Boowomp, npc.Center, 0.9f);
+                            }
+                            npc.localAI[0]++;
+                        }
                     }
                 }
             }
