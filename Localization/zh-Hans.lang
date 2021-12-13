@@ -1,8 +1,10 @@
 
-# Items
+# Accessories
 
 ItemName.FidgetSpinner=永续仪
 ItemTooltip.FidgetSpinner=无法自动挥舞的物品速度变慢, 但可以自动挥舞
+
+# Barbs
 
 ItemName.CrabBarb=螃蟹刺钩
 ItemTooltip.CrabBarb=你的钩爪会造成中毒和伤害
@@ -14,7 +16,7 @@ ItemName.DemoniteBarb=恶魔刺钩
 ItemTooltip.DemoniteBarb=你的钩爪会造成伤害
 
 ItemName.MetalBarb=金属刺钩
-ItemTooltip.CrimtaneBarb=你的钩爪会造成伤害
+ItemTooltip.MetalBarb=你的钩爪会造成伤害
 
 # Weapons
 
@@ -31,6 +33,7 @@ ItemName.Umberserk=伞剑
 ItemTooltip.Umberserk={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n击中敌人后会使你的武器挥舞速度更快\n你的首次攻击必定造成暴击
 ItemName.Umberetta=伞枪
 ItemTooltip.Umberetta={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n发射雨伞叉
+
 ItemName.Umystick=神秘的伞
 ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n手持此物品时右键消耗大量法力值来进行一次额外的跳跃\n'看起来贼危险'
 BuffName.UmystickDelay=神秘的延迟
@@ -99,6 +102,20 @@ Physicist.Chat.Mod.Fargowiltas.Mutant=你刚刚从一个看起来很诡异的怪
 Physicist.Chat.Mod.Fargowiltas.Abominationn=你刚刚从一个看起来很惊悚的收割者那买了Boss召唤物? 真是个怪人.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=你刚刚从一个看起来很愚蠢的小孩那买了Boss召唤物? 真是个怪人.
 
+# Paintings
+
+PaintingSignature.NalydT=N.T.
+PaintingSignature.niker=N.
+
+ItemName.OmegaStaritePainting='{$Mods.AQMod.NPCName.OmegaStarite}'
+ItemTooltip.OmegaStaritePainting='你不知道你会得到什么!'\n{$Mods.AQMod.PaintingSignature.niker}
+
+ItemName.RockFromAnAlternateUniverse='一块来自平行宇宙的石头'
+ItemTooltip.RockFromAnAlternateUniverse='星际星云的宏伟之力!'\n{$Mods.AQMod.PaintingSignature.NalydT}.. 来自另一个宇宙
+
+ItemName.AStrangeIdea='一个奇怪的想法...'
+ItemTooltip.AStrangeIdea='Aequus之起源'\n{$Mods.AQMod.PaintingSignature.NalydT}
+
 # Event and Boss Checklist stuff
 
 EventName.CrabSeason=蟹季
@@ -117,7 +134,7 @@ EventEnding.GlimmerEvent=微光渐渐消失...
 BossChecklistDesc.OmegaStarite=在夜晚使用 {0} 召唤. 也可以与微光事件中心的剑交互来召唤.
 
 EventName.GaleStreams=紊流风暴
-BossChecklistDesc.GaleStreams=风速大于40 mph时开始, 风速小于34 mph时结束. 你可以使用 [i:{0}] 更改风速
+BossChecklistDesc.GaleStreams=风速大于 40 mph 时开始, 风速小于 34 mph 时结束. 风速大于 300 mph 时同样会结束. 你可以使用 [i:{0}] 更改风速
 EventProgress.GaleStreams={0} mph/{1} mph
 BossChecklistDesc.RedSprite=有几率出现在紊流风暴中!
 
@@ -482,10 +499,6 @@ ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
 CommonTooltip.DedicatedItem=专属物品
 CommonTooltip.ContentCreatorItem=内容创建者物品
 
-PaintingSignature.NalydT=N.T.
-
-ItemName.AStrangeIdea=一个奇怪的想法...
-ItemTooltip.AStrangeIdea={$Mods.AQMod.PaintingSignature.NalydT}
 ItemName.Narrizuul=耀宇遗光
 ItemTooltip.Narrizuul=于异界形成的遗物\n'闻起来像玫瑰'
 
