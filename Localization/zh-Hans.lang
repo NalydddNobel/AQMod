@@ -43,10 +43,19 @@ BuffDescription.UmystickDelay=降低你的法力恢复速度, 你无法使用神
 
 ItemName.RedSpriteDye=红色精灵染料
 
+# Tools
+
+ItemName.Cosmicanon=星宇律则
+ItemTooltip.Cosmicanon=阻止血月、日食和微光事件的自然生成\n{$Mods.AQMod.Tooltips.PiggyBankFunction}
+ItemTooltipExtra.Cosmicanon=右键此物品或按下{0}以开关效果
+ToggleCosmicanon.False=月亮事件可自然发生
+ToggleCosmicanon.True=月亮事件不再自然发生
+
 # Tooltips
 
 Tooltips.ManaPerSecond=每秒消耗{0}点法力值
 Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果\n你不会受到任何摔落伤害
+Tooltips.InventoryPiggyBankFunction=放置于物品栏或猪猪存钱罐中即可生效
 
 # Exporter
 NPCName.Robster=发货人
@@ -154,6 +163,11 @@ ClientConfig.OverrideVanillaChestLootTooltip=决定Aequus Mod中的特殊物品�
 # NPCs
 
 NPCName.StreamingBalloon=紊流气球
+
+# Common
+
+Common.KeyUnbound='按键未绑定'
+Common.KeyBound='{0}'键
 
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=真近战攻击造成暴击后使你的各项属性大幅度提升一小段时间\n当触发此效果时使你获得耐药性减益\n此效果仅在你没有耐药性减益时触发
