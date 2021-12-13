@@ -160,7 +160,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             var normal = Vector2.Normalize(npc.Center - Main.npc[i].Center);
                             npc.Center = Main.npc[i].Center + normal * (Main.npc[i].width + 12f);
                             npc.velocity += normal * 10f;
-                            AQSoundPlayer.PlaySound(SoundID.Item86, npc.Center);
+                            SoundID.Item86.Play(npc.Center);
                             int n = NPC.NewNPC((int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, NPCID.BabySlime);
                             if (n > -1)
                             {
@@ -176,7 +176,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             var normal = Vector2.Normalize(npc.Center - Main.npc[i].Center);
                             npc.Center = Main.npc[i].Center + normal * 60f;
                             npc.velocity += normal * 10f;
-                            AQSoundPlayer.PlaySound(SoundID.Item86, npc.Center);
+                            SoundID.Item86.Play(npc.Center);
                             NPC n = new NPC();
                             n.SetDefaults(NPCID.MotherSlime);
                             float healthDifference = n.lifeMax / (float)Main.npc[i].lifeMax;

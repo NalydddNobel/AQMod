@@ -89,7 +89,7 @@ namespace AQMod.Common.NoHitting
         {
             if (Vector2.Distance(position, Main.player[Main.myPlayer].Center) < 3000f)
             {
-                AQSoundPlayer.PlaySound(SoundType.NPCHit, "Sounds/NPCHit/ThisIsNotASecretSound_S3K", position);
+                AQSound.Play(SoundType.NPCHit, AQSound.Paths.NoHit, position);
             }
         }
 

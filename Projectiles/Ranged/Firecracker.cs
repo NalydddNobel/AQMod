@@ -92,7 +92,7 @@ namespace AQMod.Projectiles.Ranged
             {
                 return;
             }
-            SoundID.Item14.PlaySound(projectile.Center, 0.6f, 0.5f);
+            SoundID.Item14.Play(projectile.Center, 0.6f, 0.5f);
             var center = projectile.Center;
             for (int i = 0; i < 20; i++)
             {

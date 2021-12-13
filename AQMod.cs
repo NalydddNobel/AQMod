@@ -35,6 +35,7 @@ using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Boss.Crabson;
 using AQMod.NPCs.Boss.Starite;
+using AQMod.Sounds;
 using log4net;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -334,6 +335,7 @@ namespace AQMod
             if (!Main.dedServ)
             {
                 var client = AQConfigClient.Instance;
+                AQSound.rand = new UnifiedRandom();
                 ApplyClientConfig(client);
                 ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
                 ArmorOverlays = new EquipOverlayLoader();
@@ -789,8 +791,9 @@ namespace AQMod
 
             // in: Load()
             // v doesn't load on server v
-            if (Main.dedServ)
+            if (!Main.dedServ)
             {
+                AQSound.rand = null;
                 WorldEffects = null;
                 StarbyteColorCache.Unload();
                 ScreenShakeManager.Unload();

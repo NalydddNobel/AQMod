@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Sounds;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -103,10 +104,7 @@ namespace AQMod.NPCs.Monsters
                 }
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    int npcX = (int)npc.position.X + npc.width / 2;
-                    int npcY = (int)npc.position.Y + npc.height / 2;
-                    var sound = mod.GetLegacySoundSlot(SoundType.NPCHit, "Sounds/NPCHit/Meteor_S3K");
-                    Main.PlaySound(sound.SoundId, npcX, npcY, sound.Style, 0.45f);
+                    AQSound.Play(SoundType.NPCKilled, AQSound.Paths.MeteorKilled, npc.Center);
                 }
             }
             else

@@ -533,7 +533,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                 {
                                     if (Main.netMode != NetmodeID.Server)
                                     {
-                                        AQSoundPlayer.PlaySound(SoundType.Item, "Sounds/Item/ThunderClap_" + Main.rand.Next(2), npc.Center, 0.6f);
+                                        AQSound.Play(SoundType.Item, AQSound.Paths.ThunderClap, npc.Center, 0.6f);
                                     }
                                     ScreenShakeManager.AddEffect(new BasicScreenShake(8, AQMod.MultIntensity(12)));
                                     if (AQConfigClient.c_EffectQuality > 0.2f)

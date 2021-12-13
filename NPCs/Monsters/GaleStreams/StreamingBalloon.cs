@@ -174,7 +174,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             if (distance > 1650f)
             {
                 npc.life = 0;
-                SoundID.Item111.PlaySound(npc.Center, 1.5f, 0.9f);
+                SoundID.Item111.Play(npc.Center, 1.5f, 0.9f);
                 npc.HitEffect();
                 npc.active = false;
             }
@@ -184,7 +184,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 if (distance < 40f)
                 {
                     npc.life = 0;
-                    SoundID.Item111.PlaySound(npc.Center, 1.5f, 0.9f);
+                    SoundID.Item111.Play(npc.Center, 1.5f, 0.9f);
                     npc.HitEffect();
                     npc.active = false;
                 }
@@ -208,7 +208,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 if (distance < 150f)
                 {
                     npc.life = 0;
-                    SoundID.Item111.PlaySound(npc.Center, 1.5f, 0.9f);
+                    SoundID.Item111.Play(npc.Center, 1.5f, 0.9f);
                     npc.HitEffect();
                     npc.active = false;
                 }
@@ -226,7 +226,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     if ((npc.position.X + npc.width / 2f - Main.player[npc.target].position.X + Main.player[npc.target].width / 2f).Abs() < 100f)
                     {
                         npc.life = 0;
-                        SoundID.Item111.PlaySound(npc.Center, 1.5f, 0.9f);
+                        SoundID.Item111.Play(npc.Center, 1.5f, 0.9f);
                         npc.HitEffect();
                         npc.active = false;
                     }
