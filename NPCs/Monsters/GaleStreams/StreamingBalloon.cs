@@ -240,6 +240,9 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             Main.npc[(int)npc.ai[0]].position.Y = npc.position.Y + 66 - Main.npc[(int)npc.ai[0]].height / 2;
             Main.npc[(int)npc.ai[0]].position -= npc.velocity;
             Main.npc[(int)npc.ai[0]].ai[0] = 0f;
+            Main.npc[(int)npc.ai[0]].hide = true;
+            Main.npc[(int)npc.ai[0]].noTileCollide = true;
+            Main.npc[(int)npc.ai[0]].knockBackResist = 0f;
             if (npc.ai[1] > 0f)
             {
                 Main.npc[(int)npc.ai[0]].ai[1] = npc.ai[1];
