@@ -987,8 +987,8 @@ namespace AQMod
             }
             if (antiGravityItems && AQMod.Keys.EquivalenceMachineToggle.JustPressed)
             {
-                IgnoreIgnoreMoons = !IgnoreIgnoreMoons;
-                if (IgnoreIgnoreMoons)
+                IgnoreAntiGravityItems = !IgnoreAntiGravityItems;
+                if (IgnoreAntiGravityItems)
                 {
                     Main.NewText(Language.GetTextValue("Mods.AQMod.EquivalenceMachineToggle.False"), new Color(230, 230, 255, 255));
                 }

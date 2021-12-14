@@ -1,3 +1,29 @@
+####### 1.2.4.10 #######
+
+Additions:
+Equivalence Machine, an item sold by the Physicist which makes nearby items float instead of fall
+Cosmicanon, an item sold by the Physicist which prevents Blood Moons, Eclipses, and Glimmers
+- The Physicist now sells the Ultimate Sword if you have beaten Omega Starite during the Glimmer Event
+- The Physicist now shoots a moon projectile instead of a Galactium projectile
+
+- Added a boowomp sound to the White Slime when it glomps
+
+- The White Slime can now drop the Umystick
+
+Changes:
+- Converted all sounds to ogg, this should make the mod MUCH smaller in size 
+- The Glimmer Event can no longer spawn naturally if a Blood Moon happens on the same night 
+- The Degeneration Ring now prevents more types of fire
+- Increased the buy price of the Perpetuator:
+* 50 gold -> 80 gold 
+- Increased the sell price of The Fan
+* No Value -> 50 silver
+
+Fixes:
+- Fixed an error where client side effects did not unload
+- The Ultimate Sword projectile spawned from Omega Starite when defeated during the Glimmer Event no longer goes through platforms below you
+- Fixed an issue regarding the Glimmer Event constantly respawning every night 
+
 ####### 1.2.4.8 #######
 
 Warning:
