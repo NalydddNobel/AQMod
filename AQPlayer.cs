@@ -14,6 +14,7 @@ using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Armor.Arachnotron;
+using AQMod.Items.DrawOverlays;
 using AQMod.Items.Foods;
 using AQMod.Items.Materials.Fish;
 using AQMod.Items.Placeable;
@@ -474,7 +475,7 @@ namespace AQMod
 
         public float discountPercentage;
         public bool blueSpheres;
-        public bool bossChanneling;
+        public bool hyperCrystal;
         public bool monoxiderBird;
         public bool sparkling;
         public bool chloroTransfer;
@@ -569,6 +570,7 @@ namespace AQMod
         public bool ignoreMoons;
         public bool cosmicanon;
         public bool antiGravityItems;
+        public bool equivalenceMachine;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -808,7 +810,7 @@ namespace AQMod
             }
             blueSpheres = false;
             discountPercentage = 0.8f;
-            bossChanneling = false;
+            hyperCrystal = false;
             monoxiderBird = false;
             sparkling = false;
             moonShoes = false;
@@ -865,6 +867,7 @@ namespace AQMod
             cosmicanon = false;
             ignoreMoons = false;
             antiGravityItems = false;
+            equivalenceMachine = false;
             if (extraHP > 60) // to cap life max buffs at 60
             {
                 extraHP = 60;
@@ -985,7 +988,7 @@ namespace AQMod
                     Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
                 }
             }
-            if (antiGravityItems && AQMod.Keys.EquivalenceMachineToggle.JustPressed)
+            if (equivalenceMachine && AQMod.Keys.EquivalenceMachineToggle.JustPressed)
             {
                 IgnoreAntiGravityItems = !IgnoreAntiGravityItems;
                 if (IgnoreAntiGravityItems)
@@ -1613,7 +1616,7 @@ namespace AQMod
             var targetCenter = target.Center;
             if (item.melee)
             {
-                if (bossChanneling)
+                if (hyperCrystal)
                 {
                     target.AddBuff(ModContent.BuffType<Sparkling>(), 120);
                     if (crit)
@@ -1637,7 +1640,7 @@ namespace AQMod
             var targetCenter = target.Center;
             if (proj.melee && proj.whoAmI == player.heldProj && proj.aiStyle != 99)
             {
-                if (bossChanneling)
+                if (hyperCrystal)
                 {
                     target.AddBuff(ModContent.BuffType<Sparkling>(), 120);
                     if (crit)

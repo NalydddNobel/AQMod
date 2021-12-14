@@ -1,4 +1,4 @@
-﻿namespace AQMod.Items
+﻿namespace AQMod.Items.DrawOverlays
 {
     public interface IItemOverlaysDrawInventory
     {

@@ -13,7 +13,7 @@ namespace AQMod.Items.Potions
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), getOutlineColor, drawInventory: true), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow"), getOutlineColor, drawInventory: true), item.type);
         }
 
         private Color getOutlineColor()

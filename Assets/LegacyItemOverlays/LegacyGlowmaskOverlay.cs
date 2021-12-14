@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Assets.LegacyItemOverlays
 {
-    public class GlowmaskOverlay : ItemOverlayData
+    public class LegacyGlowmaskOverlay : ItemOverlayData
     {
         public readonly string Path;
         public readonly Func<Color> GetDrawColor;
@@ -19,7 +19,7 @@ namespace AQMod.Assets.LegacyItemOverlays
 
         public static Color DefaultGlowmaskColor => new Color(250, 250, 250, 0);
 
-        internal GlowmaskOverlay(string path, int shader = 0, bool drawInventory = false)
+        internal LegacyGlowmaskOverlay(string path, int shader = 0, bool drawInventory = false)
         {
             Path = path;
             GetDrawColor = () => DefaultGlowmaskColor;
@@ -27,7 +27,7 @@ namespace AQMod.Assets.LegacyItemOverlays
             Shader = shader;
         }
 
-        internal GlowmaskOverlay(string path, Color color, int shader = 0, bool drawInventory = false)
+        internal LegacyGlowmaskOverlay(string path, Color color, int shader = 0, bool drawInventory = false)
         {
             Path = path;
             GetDrawColor = () => color;
@@ -35,7 +35,7 @@ namespace AQMod.Assets.LegacyItemOverlays
             Shader = shader;
         }
 
-        internal GlowmaskOverlay(string path, Func<Color> color, int shader = 0, bool drawInventory = false)
+        internal LegacyGlowmaskOverlay(string path, Func<Color> color, int shader = 0, bool drawInventory = false)
         {
             Path = path;
             GetDrawColor = color;

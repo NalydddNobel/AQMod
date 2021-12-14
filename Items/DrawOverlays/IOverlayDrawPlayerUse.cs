@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Items
+namespace AQMod.Items.DrawOverlays
 {
     public interface IOverlayDrawPlayerUse
     {

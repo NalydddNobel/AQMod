@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace AQMod.Items
+namespace AQMod.Items.DrawOverlays
 {
     public interface IOverlayDrawWorld
     {

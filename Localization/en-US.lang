@@ -408,7 +408,13 @@ ItemName.CelesteTorus=Celeste Torus
 ItemName.RustyKnife=Rusty Knife
 ItemName.Terraroot=Terraroot
 ItemName.Thunderbird=Thunderbird
+
 ItemName.Ultranium=Hyper Crystal
+ItemTooltip.Ultranium=True melee crits on enemies channels the damage to the closest boss\nYour attacks inflict sparkling\n5% increased melee critical strike chance
+
+ItemName.Quasicrystal=Quasicrystal
+ItemTooltip.Quasicrystal=True melee crits on enemies channels the damage to the closest boss\nCauses stars to fall when injured\nCauses sparkling and fire damage on attack\n5% increased melee critical strike chance
+
 ##############
 # Boss Items #
 ##############
@@ -733,7 +739,6 @@ ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe
 ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP when you die with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
 ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
 ItemTooltip.Thunderbird=Gives you a thunderous extra jump that refreshes every 2 seconds you must be moving in a direction to use the jump\nEnemies below you have a chance to get struck by lightning\nThe lightning becomes more powerful the lower your life
-ItemTooltip.Ultranium=Increases melee critical strike chance by 10%\nYour attacks inflict sparkling\nTrue melee crits on enemies channels the damage to the closest boss
 ##############
 # Boss Items #
 ##############

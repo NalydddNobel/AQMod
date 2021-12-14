@@ -16,7 +16,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), new Color(100, 100, 100, 0)), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow"), new Color(100, 100, 100, 0)), item.type);
         }
 
         public override void SetDefaults()

@@ -1,5 +1,5 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Common.Graphics.PlayerEquips;
+﻿using AQMod.Common.Graphics.PlayerEquips;
+using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
 using Terraria;
@@ -9,13 +9,15 @@ using Terraria.ModLoader;
 namespace AQMod.Items.Armor.Arachnotron
 {
     [AutoloadEquip(EquipType.Head)]
-    public class ArachnotronVisor : ModItem
+    public class ArachnotronVisor : ModItem, IItemOverlaysWorldDraw
     {
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<ArachnotronVisor>("_Glow"));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
             {
-                AQMod.ItemOverlays.Register(new GlowmaskOverlay(AQUtils.GetPath(this) + "_Glow"), item.type);
                 AQMod.ArmorOverlays.AddHeadOverlay<ArachnotronVisor>(new ArachnotronVisorOverlay());
             }
         }

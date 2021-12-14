@@ -12,7 +12,7 @@ namespace AQMod.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlay(AQUtils.GetPath(this) + "_Glow"), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(AQUtils.GetPath(this) + "_Glow"), item.type);
         }
 
         public override void SetDefaults()

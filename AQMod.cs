@@ -145,6 +145,7 @@ namespace AQMod
         /// The active instance of World Layers
         /// </summary>
         public static SceneLayersManager WorldLayers { get; private set; }
+        [Obsolete("Replaced with interfaces")]
         /// <summary>
         /// The active instance of Item Overlays, this is not initialized on the server
         /// </summary>

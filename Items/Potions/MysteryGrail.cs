@@ -11,7 +11,7 @@ namespace AQMod.Items.Potions
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 128), drawInventory: true), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow"), () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 128), drawInventory: true), item.type);
         }
 
         public override void SetDefaults()

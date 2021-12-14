@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Items.Dedicated;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated.Developers
+namespace AQMod.Items.Accessories
 {
     public class Thunderbird : ModItem, IDedicatedItem
     {

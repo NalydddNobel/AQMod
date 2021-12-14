@@ -20,6 +20,7 @@ namespace AQMod.Items.Tools
         private void Update(Player player)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
+            aQPlayer.equivalenceMachine = true;
             if (!aQPlayer.IgnoreAntiGravityItems)
                 aQPlayer.antiGravityItems = true;
         }

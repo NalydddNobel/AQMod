@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
+﻿using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -6,14 +6,16 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Summon
 {
-    public class StariteStaff : ModItem
+    public class StariteStaff : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<StariteStaff>("_Glow"));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
+
         public override void SetStaticDefaults()
         {
             ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow")), item.type);
         }
 
         public override void SetDefaults()

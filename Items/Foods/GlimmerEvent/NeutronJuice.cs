@@ -1,17 +1,15 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
+﻿using AQMod.Items.DrawOverlays;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Foods.GlimmerEvent
 {
-    public class NeutronJuice : ModItem, ISpecialFood
+    public class NeutronJuice : ModItem, ISpecialFood, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
-        public override void SetStaticDefaults()
-        {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow")), item.type);
-        }
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<NeutronJuice>("_Glow"));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
 
         public override void SetDefaults()
         {

@@ -40,6 +40,7 @@ namespace AQMod.Content
                                 int grabRange = 500;
                                 ItemLoader.GrabRange(Main.item[j], Main.player[i], ref grabRange);
                                 var diff = Main.item[j].Center - plrCenter;
+                                
                                 if (Math.Sqrt(diff.X * diff.X + diff.Y * diff.Y) < grabRange)
                                 {
                                     ItemID.Sets.ItemNoGravity[Main.item[j].type] = true;

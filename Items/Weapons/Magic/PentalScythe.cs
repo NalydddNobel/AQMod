@@ -13,7 +13,7 @@ namespace AQMod.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new GlowmaskOverlay(this.GetPath("_Glow"), new Color(200, 200, 200, 0)), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow"), new Color(200, 200, 200, 0)), item.type);
         }
 
         public override void SetDefaults()
