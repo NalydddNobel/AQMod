@@ -4,6 +4,9 @@
 ItemName.FidgetSpinner=永续仪
 ItemTooltip.FidgetSpinner=无法自动挥舞的物品速度变慢, 但可以自动挥舞
 
+ItemName.DegenerationRing=堕落魔戒
+ItemTooltip.DegenerationRing=阻止大多数种类的燃烧
+
 # Barbs
 
 ItemName.CrabBarb=螃蟹刺钩
@@ -59,18 +62,24 @@ ItemName.RedSpriteDye=红色精灵染料
 
 ItemName.Cosmicanon=星宇律则
 ItemTooltip.Cosmicanon=阻止血月、日食和微光事件的自然生成\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
-ItemTooltipExtra.Cosmicanon=右键此物品或按下{0}以开关效果
+ItemTooltipExtra.Cosmicanon=按下{0}以开关效果
 ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=阻止血月: {0}
 ItemTooltipExtra.Cosmicanon.GlimmersPrevented=阻止微光事件: {0}
 ItemTooltipExtra.Cosmicanon.EclipsesPrevented=阻止日食: {0}
 ToggleCosmicanon.False=事件可自然发生
 ToggleCosmicanon.True=事件不再自然发生
 
+ItemName.EquivalenceMachine=等均仪
+ItemTooltip.EquivalenceMachine=附近的物品会漂浮而非下落\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
+EquivalenceMachineToggle.False=附近的物品现在会下落
+EquivalenceMachineToggle.True=附近的物品现在会漂浮
+
 # Tooltips
 
 Tooltips.ManaPerSecond=每秒消耗{0}点法力值
 Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果\n你不会受到任何摔落伤害
 Tooltips.InventoryPiggyBankFunction=放置于物品栏或猪猪存钱罐中即可生效
+Tooltips.ToggleKeyBind=按下{0}以开关效果
 
 # Exporter
 NPCName.Robster=发货人
@@ -375,8 +384,6 @@ ItemName.CopperSeal=铜制容器
 ItemName.SilverSeal=银制容器
 ItemName.GoldSeal=金制容器
 ItemName.PlatinumSeal=钛金制容器
-# Rings
-ItemName.DegenerationRing=堕落魔戒
 # Shields
 ItemName.TargeoftheBlodded=尖刺盾牌
 # Shoes
@@ -712,8 +719,6 @@ ItemTooltip.CopperSeal=使用鱼竿钓到宝匣时使你获得30秒的宝匣增�
 ItemTooltip.SilverSeal=使用鱼竿钓到物品时使你获得10秒的钓鱼增益
 ItemTooltip.GoldSeal=使用鱼竿钓到任何售价为1金币的物品时使你获得1分钟的声呐增益
 ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
-# Rings
-ItemTooltip.DegenerationRing=使你获得多种燃烧抗性
 # Shields
 ItemTooltip.TargeoftheBlodded=增加2点护甲穿透\n可沿墙滑下\n结合{$ItemName.ClimbingClaws}或{$ItemName.ShoeSpikes}使用时可提升能力
 # Shoes
