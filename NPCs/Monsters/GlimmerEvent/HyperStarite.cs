@@ -156,15 +156,12 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                         {
                             npc.ai[0] = 1f;
                             npc.ai[1] = 0f;
-                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                            for (int i = 0; i < 5; i++)
                             {
-                                for (int i = 0; i < 5; i++)
-                                {
-                                    int damage = Main.expertMode ? 45 : 75;
-                                    int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.Monster.Starite.HyperStarite>(), damage, 1f, default, npc.whoAmI, i);
-                                    Main.projectile[p].netUpdate = true;
-                                }
+                                int damage = Main.expertMode ? 45 : 75;
+                                Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.Monster.Starite.HyperStarite>(), damage, 1f, Main.myPlayer, npc.whoAmI, i);
                             }
+                            npc.netUpdate = true;
                         }
                         else
                         {
@@ -184,12 +181,14 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                         {
                             npc.ai[0] = -1f;
                             npc.ai[1] = -0f;
+                            npc.netUpdate = true;
                         }
                         npc.ai[1]++;
                         if (npc.ai[1] >= 1200f)
                         {
                             npc.timeLeft = 0;
                             npc.ai[0] = -1f;
+                            npc.netUpdate = true;
                         }
                         npc.velocity *= 0.96f;
                         return;

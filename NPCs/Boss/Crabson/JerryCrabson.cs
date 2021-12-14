@@ -14,6 +14,7 @@ using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -422,6 +423,18 @@ namespace AQMod.NPCs.Boss.Crabson
                 break;
             }
             npc.position.Y += npc.height / 2f;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(npc.localAI[0]);
+            writer.Write(npc.localAI[1]);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            npc.localAI[0] = reader.ReadSingle();
+            npc.localAI[1] = reader.ReadSingle();
         }
 
         public ModifiableMusic GetMusic() => AQMod.CrabsonMusic;

@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.DeveloperTools;
+using AQMod.Common.NetCode;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.GlimmerEvent;
@@ -41,11 +42,15 @@ namespace AQMod.Common
                     {
                         if (o.Length > 1 && o[1] is bool flag)
                         {
-                            return GlimmerEvent.Activate(flag);
+                            bool value = GlimmerEvent.Activate(flag);
+                            NetHelper.GlimmerEventNetUpdate();
+                            return value;
                         }
                         else
                         {
-                            return GlimmerEvent.Activate();
+                            bool value = GlimmerEvent.Activate();
+                            NetHelper.GlimmerEventNetUpdate();
+                            return value;
                         }
                     }
                 },

@@ -8,6 +8,7 @@ using AQMod.NPCs.Monsters.GlimmerEvent;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -132,6 +133,31 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
                 if (!Framing.GetTileSafely(tileX, tileY).active() || Framing.GetTileSafely(tileX, tileY - 1).active())
                     tileY = ManageGlimmerY();
             }
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(IsActive);
+            if (IsActive)
+            {
+                writer.Write(tileX);
+                writer.Write(tileY);
+            }
+            writer.Write(spawnChance);
+            writer.Write(StariteDisco);
+            writer.Write(deactivationTimer);
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            if (reader.ReadBoolean())
+            {
+                tileX = reader.ReadUInt16();
+                tileY = reader.ReadUInt16();
+            }
+            spawnChance = reader.ReadInt32();
+            StariteDisco = reader.ReadBoolean();
+            deactivationTimer = reader.ReadInt32();
         }
 
         public static bool SpawnsActive(Player player)
@@ -300,6 +326,7 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
                             if (AQPlayer.IgnoreMoons())
                             {
                                 CosmicanonCounts.GlimmersPrevented++;
+                                NetHelper.PreventedGlimmer();
                             }
                             else
                             {

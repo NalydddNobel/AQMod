@@ -18,5 +18,11 @@
         /// Tells the server that the celeste torus needs to be updated
         /// </summary>
         public const byte UpdateAQPlayerCelesteTorus = 3;
+
+        public const byte PreventedBloodMoon = 4;
+        public const byte PreventedGlimmer = 5;
+        public const byte PreventedEclipse = 6;
+
+        public const byte BeginDemonSiege = 7;
     }
 }

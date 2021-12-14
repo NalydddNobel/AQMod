@@ -64,22 +64,5 @@ namespace AQMod
         {
             NobleMushroomsCount = tileCounts[ModContent.TileType<NobleMushrooms>()];
         }
-
-        public override void NetSend(BinaryWriter writer)
-        {
-            if (GlimmerEvent.IsActive)
-            {
-                writer.Write(GlimmerEvent.tileX);
-                writer.Write(GlimmerEvent.tileY);
-            }
-            writer.Write(GlimmerEvent.spawnChance);
-        }
-
-        public override void NetReceive(BinaryReader reader)
-        {
-            GlimmerEvent.tileX = reader.ReadUInt16();
-            GlimmerEvent.tileY = reader.ReadUInt16();
-            GlimmerEvent.spawnChance = reader.ReadInt32();
-        }
     }
 }

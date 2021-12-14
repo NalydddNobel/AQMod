@@ -1,7 +1,9 @@
-﻿using AQMod.Content.WorldEvents.GlimmerEvent;
+﻿using AQMod.Content;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AQMod.Common.NetCode
 {
@@ -17,6 +19,7 @@ namespace AQMod.Common.NetCode
             {
                 var p = AQMod.Instance.GetPacket();
                 p.Write(AQPacketID.SummonOmegaStarite);
+                p.Send();
             }
         }
 
@@ -32,6 +35,57 @@ namespace AQMod.Common.NetCode
             p.Write(GlimmerEvent.spawnChance);
             p.Write(GlimmerEvent.StariteDisco);
             p.Write(GlimmerEvent.deactivationTimer);
+
+            p.Send();
+        }
+
+        public static void PreventedBloodMoon()
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+                return;
+            var p = AQMod.Instance.GetPacket();
+            p.Write(AQPacketID.PreventedBloodMoon);
+            p.Write(CosmicanonCounts.BloodMoonsPrevented);
+            p.Send();
+        }
+
+        public static void PreventedGlimmer()
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+                return;
+            var p = AQMod.Instance.GetPacket();
+            p.Write(AQPacketID.PreventedGlimmer);
+            p.Write(CosmicanonCounts.GlimmersPrevented);
+            p.Send();
+        }
+
+        public static void PreventedEclipse()
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+                return;
+            var p = AQMod.Instance.GetPacket();
+            p.Write(AQPacketID.PreventedEclipse);
+            p.Write(CosmicanonCounts.EclipsesPrevented);
+            p.Send();
+        }
+
+        public static void BeginDemonSiege(int x, int y, int plr, Item item)
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+                return;
+            var p = AQMod.Instance.GetPacket();
+            p.Write(AQPacketID.BeginDemonSiege);
+            p.Write(x);
+            p.Write(y);
+            p.Write(plr);
+            p.Write(item.netID);
+            p.Write(item.stack);
+            p.Write(item.prefix);
+            if (item.type > Main.maxItemTypes)
+            {
+                item.modItem.NetSend(p);
+            }
+            p.Send();
         }
     }
 }

@@ -9,6 +9,7 @@ using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -126,9 +127,12 @@ namespace AQMod.NPCs.Monsters.CrabSeason
 
         public override void AI()
         {
-            if ((int)npc.ai[0] == 0f)
+            if (_legs == null)
             {
                 Init();
+            }
+            if ((int)npc.ai[0] == 0f)
+            {
                 npc.ai[0] += 1f;
             }
             npc.noGravity = true;

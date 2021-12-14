@@ -5,6 +5,7 @@ using AQMod.Localization;
 using AQMod.NPCs.Monsters.CrabSeason;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -87,6 +88,16 @@ namespace AQMod.Content.WorldEvents.CrabSeason
         {
             if (crabSeasonTimer < 0)
                 crabSeasonTimer = Main.rand.Next(CrabSeasonTimerMin, CrabSeasonTimerMax);
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(crabSeasonTimer);
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            crabSeasonTimer = reader.ReadInt32();
         }
     }
 }

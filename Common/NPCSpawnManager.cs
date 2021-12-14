@@ -13,121 +13,133 @@ namespace AQMod.Common
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            if (AQMod.ShouldRemoveSpawns())
+            try
             {
-                spawnRate = 1000;
-                maxSpawns = 0;
-                return;
-            }
-            if (player.GetModPlayer<AQPlayer>().bossrush)
-            {
-                spawnRate *= 10;
-                maxSpawns = (int)(maxSpawns * 0.1);
-            }
-            if (DemonSiege.CloseEnoughToDemonSiege(player))
-            {
-                spawnRate *= 10;
-                maxSpawns = (int)(maxSpawns * 0.1);
-            }
-            else
-            {
-                if (player.position.Y < AQMod.SpaceLayer - 40 * 16f)
+                if (AQMod.ShouldRemoveSpawns())
                 {
-                    if (GaleStreams.MeteorTime() || GaleStreams.IsActive)
+                    spawnRate += 10000;
+                    maxSpawns = 0;
+                    return;
+                }
+                if (player.GetModPlayer<AQPlayer>().bossrush)
+                {
+                    spawnRate *= 10;
+                    maxSpawns = (int)(maxSpawns * 0.1);
+                }
+                if (DemonSiege.CloseEnoughToDemonSiege(player))
+                {
+                    spawnRate *= 10;
+                    maxSpawns = (int)(maxSpawns * 0.1);
+                }
+                else
+                {
+                    if (player.position.Y < AQMod.SpaceLayer - 40 * 16f)
                     {
-                        spawnRate /= 2;
-                        maxSpawns *= 2;
+                        if (GaleStreams.MeteorTime() || GaleStreams.IsActive)
+                        {
+                            spawnRate /= 2;
+                            maxSpawns *= 2;
+                        }
                     }
                 }
+                if (NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))
+                {
+                    spawnRate *= 3;
+                    maxSpawns = (int)(maxSpawns * 0.75);
+                }
             }
-            if (NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))
+            catch
             {
-                spawnRate *= 3;
-                maxSpawns = (int)(maxSpawns * 0.75);
             }
         }
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            void DecreaseSpawns(float mult)
+            try
             {
-                IEnumerator<int> keys = pool.Keys.GetEnumerator();
-                int[] keyValue = new int[pool.Count];
-                for (int i = 0; i < pool.Count; i++)
+                void DecreaseSpawns(float mult)
                 {
-                    keyValue[i] = keys.Current;
-                    if (!keys.MoveNext())
-                        break;
-                }
-                keys.Dispose();
-                for (int i = 0; i < pool.Count; i++)
-                {
-                    pool[keyValue[i]] *= mult;
-                }
-            }
-            if (GlimmerEvent.SpawnsActive(spawnInfo.player))
-            {
-                int tileDistance = GlimmerEvent.GetTileDistance(spawnInfo.player);
-                if (tileDistance < 30)
-                {
-                    pool.Clear();
-                    return;
-                }
-                else if (tileDistance < GlimmerEvent.MaxDistance)
-                {
-                    if (tileDistance > GlimmerEvent.HyperStariteDistance) // shouldn't divide by 0...
+                    IEnumerator<int> keys = pool.Keys.GetEnumerator();
+                    int[] keyValue = new int[pool.Count];
+                    for (int i = 0; i < pool.Count; i++)
                     {
-                        DecreaseSpawns(1f - 1f / (tileDistance - GlimmerEvent.HyperStariteDistance));
+                        keyValue[i] = keys.Current;
+                        if (!keys.MoveNext())
+                            break;
                     }
-                    else
+                    keys.Dispose();
+                    for (int i = 0; i < pool.Count; i++)
                     {
-                        DecreaseSpawns(0f);
+                        pool[keyValue[i]] *= mult;
                     }
-                    int layerIndex = GlimmerEvent.GetLayerIndex(tileDistance);
-                    if (layerIndex != -1)
+                }
+                if (GlimmerEvent.SpawnsActive(spawnInfo.player))
+                {
+                    int tileDistance = GlimmerEvent.GetTileDistance(spawnInfo.player);
+                    if (tileDistance < 30)
                     {
-                        for (int i = layerIndex - 1; i >= 0; i--)
+                        pool.Clear();
+                        return;
+                    }
+                    else if (tileDistance < GlimmerEvent.MaxDistance)
+                    {
+                        if (tileDistance > GlimmerEvent.HyperStariteDistance) // shouldn't divide by 0...
                         {
-                            pool.Add(GlimmerEvent.Layers[i].NPCType, GlimmerEvent.Layers[i].SpawnChance);
-                        }
-                        if (layerIndex == GlimmerEvent.Layers.Count - 1)
-                        {
-                            pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, AQUtils.GetGrad(0, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance);
+                            DecreaseSpawns(1f - 1f / (tileDistance - GlimmerEvent.HyperStariteDistance));
                         }
                         else
                         {
-                            pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, 1f - AQUtils.GetGrad(GlimmerEvent.Layers[layerIndex + 1].Distance, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance);
+                            DecreaseSpawns(0f);
                         }
-                    }
-                }
-            }
-            if (spawnInfo.spawnTileY < AQMod.SpaceLayerTile - 40)
-            {
-                if (GaleStreams.MeteorTime())
-                {
-                    DecreaseSpawns(0.9f);
-                    pool.Add(ModContent.NPCType<Meteor>(), 2f);
-                }
-            }
-            if (GaleStreams.EventActive(spawnInfo.player))
-            {
-                float spawnMult = 0.9f;
-                if (AQMod.SudoHardmode)
-                {
-                    if (Main.windSpeed > 0.6f)
-                    {
-                        if (!NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))
+                        int layerIndex = GlimmerEvent.GetLayerIndex(tileDistance);
+                        if (layerIndex != -1)
                         {
-                            pool.Add(ModContent.NPCType<RedSprite>(), 0.1f);
+                            for (int i = layerIndex - 1; i >= 0; i--)
+                            {
+                                pool.Add(GlimmerEvent.Layers[i].NPCType, GlimmerEvent.Layers[i].SpawnChance);
+                            }
+                            if (layerIndex == GlimmerEvent.Layers.Count - 1)
+                            {
+                                pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, AQUtils.GetGrad(0, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance);
+                            }
+                            else
+                            {
+                                pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, 1f - AQUtils.GetGrad(GlimmerEvent.Layers[layerIndex + 1].Distance, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance);
+                            }
                         }
                     }
-                    spawnMult = 0.1f;
                 }
-                DecreaseSpawns(spawnMult);
-                if (NPC.CountNPCS(ModContent.NPCType<Vraine>()) < 2)
-                    pool.Add(ModContent.NPCType<Vraine>(), 1f);
-                pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f);
-                pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f);
+                if (spawnInfo.spawnTileY < AQMod.SpaceLayerTile - 40)
+                {
+                    if (GaleStreams.MeteorTime())
+                    {
+                        DecreaseSpawns(0.9f);
+                        pool.Add(ModContent.NPCType<Meteor>(), 2f);
+                    }
+                }
+                if (GaleStreams.EventActive(spawnInfo.player))
+                {
+                    float spawnMult = 0.9f;
+                    if (AQMod.SudoHardmode)
+                    {
+                        if (Main.windSpeed > 0.6f)
+                        {
+                            if (!NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))
+                            {
+                                pool.Add(ModContent.NPCType<RedSprite>(), 0.1f);
+                            }
+                        }
+                        spawnMult = 0.1f;
+                    }
+                    DecreaseSpawns(spawnMult);
+                    if (NPC.CountNPCS(ModContent.NPCType<Vraine>()) < 2)
+                        pool.Add(ModContent.NPCType<Vraine>(), 1f);
+                    pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f);
+                    pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f);
+                }
+            }
+            catch
+            {
             }
         }
     }

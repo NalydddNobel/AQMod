@@ -119,6 +119,26 @@ namespace AQMod.Common.DeveloperTools
                 caller.Reply("Command doesn't exist.");
                 break;
 
+                case "demonsiegei":
+                caller.Reply("x: " + DemonSiege.X);
+                caller.Reply("y: " + DemonSiege.Y);
+                caller.Reply("plr: " + DemonSiege.PlayerActivator + " (" + Main.player[DemonSiege.PlayerActivator] + ")");
+                if (DemonSiege.BaseItem != null)
+                   caller.Reply("item: " + DemonSiege.BaseItem.type + " (" + Lang.GetItemName(DemonSiege.BaseItem.type) + ")");
+                break;
+
+                case "staritescene":
+                {
+                    caller.Reply("scene: " + OmegaStariteScenes.SceneType + ", index: " + OmegaStariteScenes.OmegaStariteIndexCache);
+                }
+                break;
+
+                case "glimmerxy":
+                {
+                    caller.Reply("x: " + GlimmerEvent.tileX + ", y: " + GlimmerEvent.tileY);
+                }
+                break;
+
                 case "initday":
                 {
                     int count = 1;

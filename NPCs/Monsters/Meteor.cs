@@ -1,6 +1,7 @@
 ﻿using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -161,6 +162,16 @@ namespace AQMod.NPCs.Monsters
         public override void FindFrame(int frameHeight)
         {
             npc.frame.Y = frameHeight * (int)(npc.localAI[0] - 1f);
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(npc.localAI[0]);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            npc.localAI[0] = reader.ReadSingle();
         }
     }
 }

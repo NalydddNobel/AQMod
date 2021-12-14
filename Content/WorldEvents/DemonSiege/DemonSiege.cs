@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Common.NetCode;
 using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.ProgressBars;
 using AQMod.Effects.WorldEffects;
@@ -179,16 +180,23 @@ namespace AQMod.Content.WorldEvents.DemonSiege
             return false;
         }
 
-        public static bool Activate(int x, int y, int p, Item item)
+        public static bool Activate(int x, int y, int p, Item item, bool server = false)
         {
             if (CheckSpot(x, y))
             {
+                if (Main.netMode == NetmodeID.MultiplayerClient && !server)
+                {
+                    NetHelper.BeginDemonSiege(x, y, p, item);
+                }
                 BaseItem = item.Clone();
                 Upgrade = GetUpgrade(BaseItem).GetValueOrDefault(default(DemonSiegeUpgrade));
+                if (!server)
+                {
+                    item.TurnToAir();
+                    item.type = ItemID.None;
+                    item.prefix = 0;
+                }
                 PlayerActivator = (byte)p;
-                item.TurnToAir();
-                item.type = ItemID.None;
-                item.prefix = 0;
                 if (Upgrade.upgradeTime > 0)
                 {
                     UpgradeTime = Upgrade.upgradeTime;
@@ -207,7 +215,7 @@ namespace AQMod.Content.WorldEvents.DemonSiege
 
         public static void Deactivate()
         {
-            if (BaseItem != null && BaseItem.type > ItemID.None)
+            if (BaseItem != null && BaseItem.type > ItemID.None && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int x = X * 16 + 8;
                 int y = Y * 16 + 8;
@@ -229,7 +237,7 @@ namespace AQMod.Content.WorldEvents.DemonSiege
             var rectangle = altarRectangle();
             rectangle = new Rectangle(rectangle.X * 16, rectangle.Y * 16, rectangle.Width * 16, rectangle.Height * 16);
             rectangle.Y -= 32;
-            if (doEffects)
+            if (doEffects && Main.netMode != NetmodeID.Server)
             {
                 var center = new Vector2(rectangle.X + rectangle.Width / 2f, rectangle.Y + rectangle.Height / 2f);
                 Main.PlaySound(SoundID.DD2_DarkMageSummonSkeleton, new Vector2(center.X, center.Y));
@@ -275,7 +283,8 @@ namespace AQMod.Content.WorldEvents.DemonSiege
                     Main.dust[d].noGravity = true;
                 }
             }
-            Item.NewItem(rectangle, type, 1, false, prefix);
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+                Item.NewItem(rectangle, type, 1, false, prefix);
             BaseItem = null;
         }
 
@@ -335,115 +344,110 @@ namespace AQMod.Content.WorldEvents.DemonSiege
             else
             {
                 UpgradeTime--;
-                SpawnEnemies(player);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                    return;
+                if (spawnEnemyX != -1 && spawnEnemyY != -1)
+                {
+                    if (Main.netMode != NetmodeID.Server && spawnEnemyTimer == SPAWN_ENEMY_DELAY)
+                        AQMod.WorldEffects.Add(new DemonSiegeSpawnEffect(spawnEnemyX * 16 + 8, spawnEnemyY * 16 + 16, spawnEnemy));
+                    spawnEnemyTimer--;
+                    if (spawnEnemyTimer <= 0)
+                    {
+                        int n = NPC.NewNPC(spawnEnemyX * 16 + 8, spawnEnemyY * 16 + 16, spawnEnemy.type);
+                        Main.npc[n].position.X = spawnEnemyX * 16f + 8f - Main.npc[n].width / 2f;
+                        Main.npc[n].position.Y = spawnEnemyY * 16 + 16 - Main.npc[n].height;
+                        spawnEnemyTimer = 0;
+                        spawnEnemyX = -1;
+                        spawnEnemyY = -1;
+                        if (Main.netMode != NetmodeID.Server)
+                        {
+                            for (int i = 0; i < 50; i++)
+                            {
+                                int d = Dust.NewDust(Main.npc[n].position, Main.npc[n].width, Main.npc[n].height, ModContent.DustType<DemonSpawnDust>());
+                                Main.dust[d].velocity.X *= 0.666f;
+                                Main.dust[d].velocity.Y -= 3.666f;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (Main.rand.Next(GetSpawnChance()) != 0)
+                        return;
+                    var progression = Upgrade.progression;
+                    var enemies = new List<DemonSiegeEnemy>();
+                    for (int i = 0; i < _enemies.Count; i++)
+                    {
+                        if (_enemies[i].progression <= progression)
+                            enemies.Add(_enemies[i]);
+                    }
+                    var spawn = enemies[Main.rand.Next(enemies.Count)];
+                    if (spawn.type == ModContent.NPCType<TrapImp>())
+                    {
+                        int trapperCount = NPC.CountNPCS(ModContent.NPCType<Trapper>());
+                        if (trapperCount > 1 && Main.rand.Next(trapperCount) == 0)
+                            return;
+                    }
+                    int npcCount = NPC.CountNPCS(spawn.type);
+                    if (npcCount > 1 && Main.rand.Next(npcCount) == 0)
+                        return;
+                    int cX = 0;
+                    int cY = 0;
+                    int playerX = (int)((player.position.X + player.width / 2f) / 16f);
+                    int playerY = (int)((player.position.Y + player.height / 2f) / 16f);
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        int x = playerX + Main.rand.Next(-40, 40);
+                        int y = playerY + Main.rand.Next(-20, 20);
+                        if (i >= 999)
+                        {
+                            cX = x;
+                            cY = y;
+                            break;
+                        }
+                        if (x < 10)
+                        {
+                            x = 10;
+                        }
+                        else if (x > Main.maxTilesX - 10)
+                        {
+                            x = Main.maxTilesX - 10;
+                        }
+                        if (y < 10)
+                        {
+                            y = 10;
+                        }
+                        else if (y > Main.maxTilesY - 10)
+                        {
+                            y = Main.maxTilesY - 10;
+                        }
+                        if (Main.tile[x, y] == null)
+                            Main.tile[x, y] = new Tile();
+                        if (Main.tile[x, y].active() && Main.tileSolid[Main.tile[x, y].type])
+                            continue;
+                        if (!Main.tile[x, y + 1].active() || !Main.tileSolid[Main.tile[x, y + 1].type])
+                            continue;
+                        int xOff = x - playerX;
+                        int yOff = y - playerY;
+                        if (Math.Sqrt(xOff * xOff + yOff * yOff) < 12.0)
+                            continue;
+                        if (Math.Sqrt(xOff * xOff + yOff * yOff) > 24.0 && !Collision.CanHit(new Vector2(x * 16f, y * 16f), 16, 16, player.position, player.width, player.height))
+                            continue;
+                        cX = x;
+                        cY = y;
+                        break;
+                    }
+                    spawnEnemyX = cX;
+                    spawnEnemyY = cY;
+                    spawnEnemy = spawn;
+                    spawnEnemyTimer = spawn.spawnTime;
+                }
             }
         }
 
         private static int GetSpawnChance()
         {
             return Main.expertMode ? 150 : 300;
-        }
-
-        private static void SpawnEnemies(Player player)
-        {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-                return;
-            if (spawnEnemyX != -1 && spawnEnemyY != -1)
-            {
-                if (Main.netMode != NetmodeID.Server && spawnEnemyTimer == SPAWN_ENEMY_DELAY)
-                    AQMod.WorldEffects.Add(new DemonSiegeSpawnEffect(spawnEnemyX * 16 + 8, spawnEnemyY * 16 + 16, spawnEnemy));
-                spawnEnemyTimer--;
-                if (spawnEnemyTimer <= 0)
-                {
-                    int n = NPC.NewNPC(spawnEnemyX * 16 + 8, spawnEnemyY * 16 + 16, spawnEnemy.type);
-                    Main.npc[n].position.X = spawnEnemyX * 16f + 8f - Main.npc[n].width / 2f;
-                    Main.npc[n].position.Y = spawnEnemyY * 16 + 16 - Main.npc[n].height;
-                    spawnEnemyTimer = 0;
-                    spawnEnemyX = -1;
-                    spawnEnemyY = -1;
-                    if (Main.netMode != NetmodeID.Server)
-                    {
-                        for (int i = 0; i < 50; i++)
-                        {
-                            int d = Dust.NewDust(Main.npc[n].position, Main.npc[n].width, Main.npc[n].height, ModContent.DustType<DemonSpawnDust>());
-                            Main.dust[d].velocity.X *= 0.666f;
-                            Main.dust[d].velocity.Y -= 3.666f;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (Main.rand.Next(GetSpawnChance()) != 0)
-                    return;
-                var progression = Upgrade.progression;
-                var enemies = new List<DemonSiegeEnemy>();
-                for (int i = 0; i < _enemies.Count; i++)
-                {
-                    if (_enemies[i].progression <= progression)
-                        enemies.Add(_enemies[i]);
-                }
-                var spawn = enemies[Main.rand.Next(enemies.Count)];
-                if (spawn.type == ModContent.NPCType<TrapImp>())
-                {
-                    int trapperCount = NPC.CountNPCS(ModContent.NPCType<Trapper>());
-                    if (trapperCount > 1 && Main.rand.Next(trapperCount) == 0)
-                        return;
-                }
-                int npcCount = NPC.CountNPCS(spawn.type);
-                if (npcCount > 1 && Main.rand.Next(npcCount) == 0)
-                    return;
-                int cX = 0;
-                int cY = 0;
-                int playerX = (int)((player.position.X + player.width / 2f) / 16f);
-                int playerY = (int)((player.position.Y + player.height / 2f) / 16f);
-                for (int i = 0; i < 1000; i++)
-                {
-                    int x = playerX + Main.rand.Next(-40, 40);
-                    int y = playerY + Main.rand.Next(-20, 20);
-                    if (i >= 999)
-                    {
-                        cX = x;
-                        cY = y;
-                        break;
-                    }
-                    if (x < 10)
-                    {
-                        x = 10;
-                    }
-                    else if (x > Main.maxTilesX - 10)
-                    {
-                        x = Main.maxTilesX - 10;
-                    }
-                    if (y < 10)
-                    {
-                        y = 10;
-                    }
-                    else if (y > Main.maxTilesY - 10)
-                    {
-                        y = Main.maxTilesY - 10;
-                    }
-                    if (Main.tile[x, y] == null)
-                        Main.tile[x, y] = new Tile();
-                    if (Main.tile[x, y].active() && Main.tileSolid[Main.tile[x, y].type])
-                        continue;
-                    if (!Main.tile[x, y + 1].active() || !Main.tileSolid[Main.tile[x, y + 1].type])
-                        continue;
-                    int xOff = x - playerX;
-                    int yOff = y - playerY;
-                    if (Math.Sqrt(xOff * xOff + yOff * yOff) < 12.0)
-                        continue;
-                    if (Math.Sqrt(xOff * xOff + yOff * yOff) > 24.0 && !Collision.CanHit(new Vector2(x * 16f, y * 16f), 16, 16, player.position, player.width, player.height))
-                        continue;
-                    cX = x;
-                    cY = y;
-                    break;
-                }
-                spawnEnemyX = cX;
-                spawnEnemyY = cY;
-                spawnEnemy = spawn;
-                spawnEnemyTimer = spawn.spawnTime;
-            }
         }
 
         public static void Reset()

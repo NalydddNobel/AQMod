@@ -22,6 +22,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -202,6 +203,7 @@ namespace AQMod.NPCs.Boss.Starite
         private bool PlrCheck()
         {
             npc.TargetClosest(faceTarget: false);
+            npc.netUpdate = true;
             if (Main.player[npc.target].dead)
             {
                 npc.ai[0] = PHASE_GOODBYE;
@@ -1622,6 +1624,62 @@ namespace AQMod.NPCs.Boss.Starite
                 }
             }
             return false;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(skipDeathTimer);
+
+            writer.Write(innerRingPitch);
+            writer.Write(innerRingRoll);
+            writer.Write(innerRingRotation);
+
+            writer.Write(outerRingPitch);
+            writer.Write(outerRingRoll);
+            writer.Write(outerRingRotation);
+
+            writer.Write(orbs.Count);
+            for (int i = 0; i < orbs.Count; i++)
+            {
+                writer.Write(orbs[i].radius);
+                writer.Write(orbs[i].scale);
+                writer.Write(orbs[i].defRotation);
+                writer.Write(orbs[i].maxRotation);
+            }
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            skipDeathTimer = reader.ReadInt32();
+
+            innerRingPitch = reader.ReadSingle();
+            innerRingRoll = reader.ReadSingle();
+            innerRingRotation = reader.ReadSingle();
+
+            outerRingPitch = reader.ReadSingle();
+            outerRingRoll = reader.ReadSingle();
+            outerRingRotation = reader.ReadSingle();
+
+            int count = reader.ReadInt32();
+            if (orbs == null)
+            {
+                orbs = new List<OmegaStariteOrb>();
+            }
+            for (int i = 0; i < count; i++)
+            {
+                if (orbs.Count <= i)
+                {
+                    orbs.Add(new OmegaStariteOrb(Vector3.Zero, reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle()));
+                }
+                else
+                {
+                    orbs[i].radius = reader.ReadSingle();
+                    orbs[i].scale = reader.ReadSingle();
+                    reader.ReadSingle();
+                    reader.ReadSingle(); // useless.
+                }
+            }
+            Spin(npc.Center);
         }
 
         public ModifiableMusic GetMusic() => AQMod.OmegaStariteMusic;

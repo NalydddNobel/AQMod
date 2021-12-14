@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader;
+﻿using System.IO;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace AQMod.Content

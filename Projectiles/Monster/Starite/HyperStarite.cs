@@ -27,9 +27,9 @@ namespace AQMod.Projectiles.Monster.Starite
                 projectile.timeLeft = 16;
                 projectile.Center = npc.Center + armLength.RotatedBy(rotation - MathHelper.PiOver2);
             }
-            else
+            else if (projectile.timeLeft > 16)
             {
-                projectile.active = false;
+                projectile.timeLeft = 16;
             }
         }
     }
