@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Armor
@@ -12,6 +13,7 @@ namespace AQMod.Items.Armor
             item.height = 20;
             item.defense = 5;
             item.rare = ItemRarityID.Blue;
+            item.value = Item.sellPrice(silver: 80);
         }
     }
 }

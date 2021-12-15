@@ -13,6 +13,7 @@ namespace AQMod.Items.Armor
             item.height = 20;
             item.defense = 2;
             item.rare = ItemRarityID.Blue;
+            item.value = Item.sellPrice(silver: 50);
         }
 
         public override void UpdateEquip(Player player)

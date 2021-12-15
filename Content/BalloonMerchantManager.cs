@@ -3,7 +3,6 @@ using AQMod.NPCs.Town;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace AQMod.Content
 {
@@ -16,7 +15,7 @@ namespace AQMod.Content
                 return;
             }
             int merchant = BalloonMerchant.Find();
-            if (merchant == -1 && Main.rand.NextBool(1000))
+            if (merchant == -1 && (Main.windSpeed > 100f || Main.rand.NextBool(1250)))
             {
                 SpawnMerchant();
             }
@@ -59,7 +58,7 @@ namespace AQMod.Content
                     {
                         Main.tile[k, l] = new Tile();
                         continue;
-                    } 
+                    }
                     if (Main.tile[k, l].active())
                     {
                         return false;

@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Vanities.Critters
@@ -15,6 +16,7 @@ namespace AQMod.Items.Vanities.Critters
             item.useAnimation = 15;
             item.maxStack = 999;
             item.makeNPC = (short)ModContent.NPCType<NPCs.Friendly.Snobster>();
+            item.value = Item.sellPrice(silver: 5);
         }
     }
 }

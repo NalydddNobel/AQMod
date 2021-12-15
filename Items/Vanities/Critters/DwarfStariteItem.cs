@@ -1,4 +1,5 @@
 ﻿using AQMod.NPCs.Friendly;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,6 +17,7 @@ namespace AQMod.Items.Vanities.Critters
             item.useAnimation = 15;
             item.maxStack = 999;
             item.makeNPC = (short)ModContent.NPCType<DwarfStarite>();
+            item.value = Item.sellPrice(silver: 10);
         }
     }
 }
