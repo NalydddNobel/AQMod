@@ -1,6 +1,7 @@
 ﻿using AQMod.Content.WorldEvents.GaleStreams;
 using AQMod.NPCs.Town;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -57,8 +58,8 @@ namespace AQMod.Content
             return new TagCompound()
             {
                 ["MerchantSetup"] = MerchantSetup,
-                ["SellPlantSeeds"] = SellBanner,
-                ["SellBanner"] = SellPlantSeeds,
+                ["SellBanner"] = SellBanner,
+                ["SellPlantSeeds"] = SellPlantSeeds,
                 ["SellGoldCrate"] = SellGoldCrate,
                 ["SellCrates"] = SellCrates,
                 ["MaterialSold"] = MaterialSold,
@@ -69,13 +70,28 @@ namespace AQMod.Content
 
         public override void Load(TagCompound tag)
         {
-            //SellPlantSeeds = tag.GetBool("SellPlantSeeds");
-            //SellBanner = tag.GetInt("SellBanner");
-            //SellGoldCrate = tag.GetBool("SellGoldCrate");
-            //SellCrates = tag.GetBool("SellCrates");
-            //MaterialSold = tag.GetByte("MaterialSold");
-            //MerchantStealSeed = tag.GetInt("MerchantStealSeed");
-            //StealShopUseless = tag.GetBool("StealShopUseless");
+            try
+            {
+                MerchantSetup = tag.GetBool("MerchantSetup");
+
+                SellPlantSeeds = tag.GetBool("SellPlantSeeds");
+
+                SellBanner = tag.GetInt("SellBanner");
+
+                SellGoldCrate = tag.GetBool("SellGoldCrate");
+
+                SellCrates = tag.GetBool("SellCrates");
+
+                MaterialSold = tag.GetByte("MaterialSold");
+
+                MerchantStealSeed = tag.GetInt("MerchantStealSeed");
+
+                StealShopUseless = tag.GetBool("StealShopUseless");
+            }
+            catch (Exception e)
+            {
+                AQMod.Instance.Logger.Debug(e);
+            }
         }
 
         public override void NetSend(BinaryWriter writer)

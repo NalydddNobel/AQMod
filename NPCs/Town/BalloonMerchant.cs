@@ -659,36 +659,60 @@ namespace AQMod.NPCs.Town
             if (!BalloonMerchantManager.SettingUpShopStealing && NPC.CountNPCS(npc.type) == 1 && BalloonMerchantManager.MerchantStealSeed != -1)
             {
                 var value = StealShop((BalloonMerchantManager.MerchantStealSeed * 6969).Abs(), npc.whoAmI);
-                if (value.shopCustomPrice != null)
+                if (value != null)
                 {
-                    value.shopCustomPrice = (int)(value.shopCustomPrice.Value * 0.5f);
+                    if (value.shopCustomPrice != null)
+                    {
+                        value.shopCustomPrice = (int)(value.shopCustomPrice.Value * 0.5f);
+                    }
+                    else
+                    {
+                        value.value = (int)(value.value * 0.5f);
+                    }
+                    shop.item[nextSlot] = value;
+                    nextSlot++;
                 }
-                else
-                {
-                    value.value = (int)(value.value * 0.5f); 
-                }
-                shop.item[nextSlot] = value;
-                nextSlot++;
 
                 value = StealShop((BalloonMerchantManager.MerchantStealSeed * 420420).Abs(), npc.whoAmI);
-                if (value.shopCustomPrice != null)
+                if (value != null)
                 {
-                    value.shopCustomPrice = (int)(value.shopCustomPrice.Value * 0.75f);
+                    if (value.shopCustomPrice != null)
+                    {
+                        value.shopCustomPrice = (int)(value.shopCustomPrice.Value * 0.75f);
+                    }
+                    else
+                    {
+                        value.value = (int)(value.value * 0.75f);
+                        value.shopCustomPrice = value.value;
+                    }
+                    shop.item[nextSlot] = value;
+                    nextSlot++;
                 }
-                else
-                {
-                    value.value = (int)(value.value * 0.75f);
-                }
-                shop.item[nextSlot] = value;
-                nextSlot++;
 
-                shop.item[nextSlot] = StealShop(BalloonMerchantManager.MerchantStealSeed, npc.whoAmI);
-                nextSlot++;
+                value = StealShop(BalloonMerchantManager.MerchantStealSeed, npc.whoAmI);
+                if (value != null)
+                {
+                    shop.item[nextSlot] = value;
+                    nextSlot++;
+                }
             }
 
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
             shop.item[nextSlot].value = AQItem.Prices.EnergyBuyValue;
             nextSlot++;
+
+            if (WorldDefeats.DownedCrabson)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.PeaceCandle);
+                shop.item[nextSlot].value = Item.buyPrice(gold: 10);
+                nextSlot++;
+            }
+            if (NPC.downedBoss3)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.WaterCandle);
+                shop.item[nextSlot].value = Item.buyPrice(gold: 10);
+                nextSlot++;
+            }
         }
 
         private static Item StealShop(int seed, int whoAmI)
@@ -729,7 +753,6 @@ namespace AQMod.NPCs.Town
                                 {
                                     continue;
                                 }
-                                AQMod.Instance.Logger.Debug("stealing shop from: " + Lang.GetNPCName(Main.npc[i].type).Value);
                                 potentialShops.Add(tempShop);
                             }
                             catch
@@ -753,14 +776,12 @@ namespace AQMod.NPCs.Town
             }
             if (stealShop != null)
             {
-                AQMod.Instance.Logger.Debug("chosen shop contents: ");
                 var potentialItems = new List<Item>();
                 for (int i = 0; i < Chest.maxItems; i++)
                 {
-                    if (stealShop.item[i].type > ItemID.None && stealShop.item[i].stack > 0)
+                    if (stealShop.item[i].type > ItemID.None && stealShop.item[i].stack > 0 && stealShop.item[i].shopSpecialCurrency == CustomCurrencyID.None)
                     {
                         potentialItems.Add(stealShop.item[i]);
-                        AQMod.Instance.Logger.Debug(Lang.GetItemName(stealShop.item[i].type).Value);
                     }
                 }
                 return potentialItems[shopStealRand.Next(potentialItems.Count)].Clone();
@@ -977,7 +998,7 @@ namespace AQMod.NPCs.Town
                     bool notInTown = true;
                     for (int i = 0; i < Main.maxNPCs; i++)
                     {
-                        if (i != npc.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && (npc.Center - Main.npc[i].Center).Length() < 800f)
+                        if (i != npc.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && (npc.Center - Main.npc[i].Center).Length() < 1200f)
                         {
                             SetToTownNPC();
                             notInTown = false;

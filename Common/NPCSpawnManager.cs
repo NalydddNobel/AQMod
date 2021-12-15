@@ -1,10 +1,13 @@
 ﻿using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.GaleStreams;
 using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.WorldEvents.ProgressBars;
 using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.GaleStreams;
+using AQMod.NPCs.Town;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Common
@@ -13,13 +16,30 @@ namespace AQMod.Common
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
+            EventProgressBarManager.PlayerSafe = false;
             try
             {
                 if (AQMod.ShouldRemoveSpawns())
                 {
                     spawnRate += 10000;
                     maxSpawns = 0;
+                    EventProgressBarManager.PlayerSafe = true;
                     return;
+                }
+                int balloonMerchant = BalloonMerchant.Find();
+                if (balloonMerchant != -1)
+                {
+                    if ((Main.npc[balloonMerchant].Center - player.Center).Length() < 800f)
+                    {
+                        if (player.CountBuffs() < Player.MaxBuffs)
+                        {
+                            player.AddBuff(BuffID.PeaceCandle, 1, quiet: true);
+                        }
+                        spawnRate += 10000;
+                        maxSpawns = 0;
+                        EventProgressBarManager.PlayerSafe = true;
+                        return;
+                    }
                 }
                 if (player.GetModPlayer<AQPlayer>().bossrush)
                 {
@@ -57,6 +77,7 @@ namespace AQMod.Common
         {
             try
             {
+                EventProgressBarManager.PlayerSafe_GaleStreams = false;
                 void DecreaseSpawns(float mult)
                 {
                     IEnumerator<int> keys = pool.Keys.GetEnumerator();
@@ -117,8 +138,9 @@ namespace AQMod.Common
                         pool.Add(ModContent.NPCType<Meteor>(), 2f);
                     }
                 }
-                if (GaleStreams.EventActive(spawnInfo.player))
+                if (GaleStreams.EventActive(spawnInfo.player) && !spawnInfo.playerSafe)
                 {
+                    EventProgressBarManager.PlayerSafe_GaleStreams = true;
                     float spawnMult = 0.9f;
                     if (AQMod.SudoHardmode)
                     {
