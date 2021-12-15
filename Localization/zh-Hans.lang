@@ -1,4 +1,25 @@
+##############
 
+# Mod Description #
+
+Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不要太认真 :)
+
+重要讯息
+
+本Mod在多人游戏中无法正常运作, 自己玩的时候随便玩
+本Mod的资源可随意提取
+本Mod的Wiki稍微有点混乱, 现在请不要使用
+本Mod的主页有Discord链接, 如果你想自己输入Discord邀请链接, 在这:
+
+> 216 Items
+> 16 Enemies
+> 3 Events
+> 2 Bosses
+> 2 Town NPCs
+
+玩得开心
+
+##############
 # Accessories
 
 ItemName.FidgetSpinner=永续仪
@@ -80,6 +101,26 @@ Tooltips.ManaPerSecond=每秒消耗{0}点法力值
 Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果\n你不会受到任何摔落伤害
 Tooltips.InventoryPiggyBankFunction=放置于物品栏或猪猪存钱罐中即可生效
 Tooltips.ToggleKeyBind=按下{0}以开关效果
+
+# Balloon Merchant
+NPCName.BalloonMerchant=空中猎手
+BalloonMerchant.Chat.Introduction=你看起来是个有趣的人, 我以相当好的价格出售我收集的材料. 在风大的时候, 你会看到我在空中打猎.
+BalloonMerchant.Chat.Leaving.0=我必须走了, 下次狩猎的地点离这里很远.
+BalloonMerchant.Chat.Leaving.1=风停了, 我必须走了.
+BalloonMerchant.Chat.Leaving.2=我随风而行, 它们是我打猎的伙伴
+BalloonMerchant.Chat.Corruption=即使在如此恶劣的地方, 仍有可食用的肉类和植物.
+BalloonMerchant.Chat.Crimson=即使在如此血腥的地方, 仍有可食用的肉类和植物.
+BalloonMerchant.Chat.Hallow=一个有很多可以狩猎的独角兽的乌托邦.
+BalloonMerchant.Chat.0=在这样的空旷地带, 样许多鸟类和其他强壮的风野兽聚集在这里.
+BalloonMerchant.Chat.1=与你相比, 为什么攻击我的生物更少? 你说我减少敌人的生产率是什么意思? 为什么事情会在战斗中发生...?
+BalloonMerchant.Chat.2=不幸的是, 狗狗很怕高, 如果你和它们一起去打猎, 它们会从你的热气球上跳下去. 不要问我是否有这方面的经验.
+BalloonMerchant.Chat.3=我以前从这个篮子里掉出来过吗? 不. 别想摇晃它.
+BalloonMerchant.Chat.MeteorTime=流星在清晨出现, 夜幕降临时开始. 和它们一起飞行真是一次难得的经历.
+BalloonMerchant.Chat.Vraine=我必须提防镰鸟, 它们的喙锋利得足以在瞬间戳破这个气球.
+BalloonMerchant.Chat.StreamingBalloon=某些史莱姆似乎窃取了我狩猎气球的创意.
+BalloonMerchant.Chat.WhiteSlime=我曾试着混合白色史莱姆凝胶和黑色史莱姆凝胶, 不幸的是, 它并没有创造出一个完美的史莱姆, 仅仅是生成了一只黑色史莱姆, 为啥?!
+BalloonMerchant.Chat.RedSprite=红色精灵在气球中很容易处理, 它们将我退离它们, 这个气球是一个很好的保护装置, 可以防止传导攻击.
+BalloonMerchant.Chat.SpaceSquid=一只会发射激光束的太空乌贼, 它让我的脊椎发冷... 或者, 这种寒意可能是因为它在不断吸收热量, 以便为其武器提供能量.
 
 # Exporter
 NPCName.Robster=发货人
