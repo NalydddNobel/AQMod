@@ -105,7 +105,7 @@ namespace AQMod.NPCs.Monsters
                 }
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    AQSound.Play(SoundType.NPCKilled, AQSound.Paths.MeteorKilled, npc.Center);
+                    AQSound.Play(SoundType.NPCKilled, AQSound.Paths.MeteorKilled, npc.Center, 0.6f);
                 }
             }
             else

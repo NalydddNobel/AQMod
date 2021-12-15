@@ -1,10 +1,11 @@
-Aequus was created from me messing around with coding and stuff, so don't try to take the mod super serious pls :)
+﻿Aequus was created from me messing around with coding and stuff, so don't try to take the mod super serious pls :)
 
 # Important Info #
 The mod's assets are extractable
 The wiki is somewhat a mess, don't use it
 A discord link to the mod is in the homepage, if you like typing discord invite links yourself, here you go:
 [c/aaaaff:> https://discord.gg/pEKfVCnqe4]
+
 ##################
 [c/ff3377:>] 216 Items
 [c/ff3377:>] 16 Enemies
@@ -16,5 +17,16 @@ And importantly, many bugs!
 
 
 
+
 [c/ff3377:>] Have fun
 ######################
+Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不要太认真 :)
+
+# 重要讯息 #
+
+本Mod的资源可随意提取
+本Mod的Wiki稍微有点混乱, 现在请不要使用
+本Mod的主页有Discord链接, 如果你想自己输入Discord邀请链接, 在这:
+[c/aaaaff:> https://discord.gg/pEKfVCnqe4]
+
+[c/ff3377:>] 玩得开心

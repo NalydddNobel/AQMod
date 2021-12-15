@@ -1,6 +1,9 @@
 ﻿using AQMod.Common;
 using AQMod.Content;
 using AQMod.Content.WorldEvents.GaleStreams;
+using AQMod.Items.Materials;
+using AQMod.Items.Materials.NobleMushrooms;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,6 +13,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace AQMod.NPCs.Town
 {
@@ -51,35 +55,717 @@ namespace AQMod.NPCs.Town
             animationType = NPCID.Guide;
         }
 
-        private bool Offscreen()
+        public override void SetupShop(Chest shop, ref int nextSlot) // a combination of the travelling merchant and skeleton merchant, with items that are sold on specific circumstances and items which are chosen randomly
         {
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                Player player = Main.player[i];
-                if (player.active && (player.Center - npc.Center).Length() < 1000f)
-                    return false;
-            }
-            return true;
-        }
+            var player = Main.LocalPlayer;
 
-        public override void SetupShop(Chest shop, ref int nextSlot)
-        {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.EquivalenceMachine>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.Cosmicanon>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.FidgetSpinner.FidgetSpinner>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.Starite.MythicStarfruit>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
-            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
-            nextSlot++;
-            if (!Main.dayTime && WorldDefeats.ObtainedUltimateSword)
+            if (!BalloonMerchantManager.MerchantSetup)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
+                BalloonMerchantManager.SetupMerchant();
+            }
+
+            if (!Main.dayTime)
+            {
+                switch (Main.moonPhase)
+                {
+                    case Constants.MoonPhases.FullMoon:
+                    {
+                        if (WorldGen.shadowOrbSmashed)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.BloodWater);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.UnholyWater);
+                                nextSlot++;
+                            }
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.ShadowOrb);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.CrimsonHeart);
+                                nextSlot++;
+                            }
+                        }
+                        if (NPC.downedSlimeKing)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.Daybloom);
+                            nextSlot++;
+                        }
+                    }
+                    break;
+
+                    case Constants.MoonPhases.WaningGibbious:
+                    {
+                        if (WorldGen.shadowOrbSmashed)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.CrimsonRod);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Vilethorn);
+                                nextSlot++;
+                            }
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.BallOHurt);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.TheRottedFork);
+                                nextSlot++;
+                            }
+                        }
+                        if (NPC.downedBoss1)
+                        {
+                            if (BalloonMerchantManager.SellPlantSeeds)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.BlinkrootSeeds);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Blinkroot);
+                                nextSlot++;
+                            }
+                        }
+                    }
+                    break;
+
+                    case Constants.MoonPhases.ThirdQuarter:
+                    {
+                        if (WorldGen.shadowOrbSmashed)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.PanicNecklace);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.BandofStarpower);
+                                nextSlot++;
+                            }
+                        }
+                        if (NPC.downedBoss2)
+                        {
+                            if (BalloonMerchantManager.SellPlantSeeds)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.DeathweedSeeds);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Deathweed);
+                                nextSlot++;
+                            }
+                        }
+                    }
+                    break;
+
+                    case Constants.MoonPhases.WaningCrescent:
+                    {
+                        if (WorldGen.shadowOrbSmashed)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.TheUndertaker);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Musket);
+                                nextSlot++;
+                            }
+                        }
+                        if (NPC.downedQueenBee)
+                        {
+                            if (BalloonMerchantManager.SellPlantSeeds)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.MoonglowSeeds);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Moonglow);
+                                nextSlot++;
+                            }
+                        }
+                    }
+                    break;
+
+                    case Constants.MoonPhases.NewMoon:
+                    {
+                        if (WorldGen.shadowOrbSmashed)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.UnholyWater);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.BloodWater);
+                                nextSlot++;
+                            }
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.CrimsonHeart);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.ShadowOrb);
+                                nextSlot++;
+                            }
+                        }
+                        if (NPC.downedBoss2)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.CorruptPlanterBox);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.CrimsonPlanterBox);
+                                nextSlot++;
+                            }
+                        }
+                    }
+                    break;
+
+                    case Constants.MoonPhases.WaxingCrescent:
+                    {
+                        if (WorldGen.shadowOrbSmashed)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Musket);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.TheUndertaker);
+                                nextSlot++;
+                            }
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.TheRottedFork);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.BallOHurt);
+                                nextSlot++;
+                            }
+                        }
+                        if (NPC.downedBoss3)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                if (BalloonMerchantManager.SellPlantSeeds)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
+                                    nextSlot++;
+                                }
+                            }
+                            else
+                            {
+                                if (BalloonMerchantManager.SellPlantSeeds)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.ShiverthornSeeds);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.Shiverthorn);
+                                    nextSlot++;
+                                }
+                            }
+                        }
+                    }
+                    break;
+
+                    case Constants.MoonPhases.FirstQuarter:
+                    {
+                        if (WorldGen.shadowOrbSmashed)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.BandofStarpower);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.PanicNecklace);
+                                nextSlot++;
+                            }
+                        }
+                        if (NPC.downedBoss3)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                if (BalloonMerchantManager.SellPlantSeeds)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.ShiverthornSeeds);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.Shiverthorn);
+                                    nextSlot++;
+                                }
+                            }
+                            else
+                            {
+                                if (BalloonMerchantManager.SellPlantSeeds)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
+                                    nextSlot++;
+                                }
+                            }
+                        }
+                    }
+                    break;
+
+                    case Constants.MoonPhases.WaxingGibbious:
+                    {
+                        if (WorldGen.shadowOrbSmashed)
+                        {
+                            if (WorldGen.crimson)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Vilethorn);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.CrimsonRod);
+                                nextSlot++;
+                            }
+                        }
+                        if (Main.hardMode)
+                        {
+                            if (BalloonMerchantManager.SellPlantSeeds)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.FireblossomSeeds);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Fireblossom);
+                                nextSlot++;
+                            }
+                        }
+                    }
+                    break;
+                }
+                if (Main.time * 3.0 > Main.nightLength * 2.0)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.RestorationPotion);
+                    shop.item[nextSlot].value = Item.buyPrice(gold: 1);
+                    nextSlot++;
+                }
+                else if (Main.hardMode && Main.time * 3.0 > Main.nightLength)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.GreaterHealingPotion);
+                    shop.item[nextSlot].value = Item.buyPrice(gold: 3);
+                    nextSlot++;
+                }
+                else
+                {
+                    if (player.ZoneJungle)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.Honeyfin);
+                        shop.item[nextSlot].value = Item.buyPrice(gold: 3);
+                        nextSlot++;
+                    }
+                    else
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.HealingPotion);
+                        shop.item[nextSlot].value = Item.buyPrice(gold: 1);
+                        nextSlot++;
+                    }
+                }
+                if (player.ZoneJungle && Main.time * 3.0 > Main.nightLength)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.GrubSoup);
+                    shop.item[nextSlot].value = Item.buyPrice(gold: 3);
+                    nextSlot++;
+                }
+                if (Main.time * 4.0 < Main.nightLength)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.Feather);
+                    shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                    nextSlot++;
+                }
+            }
+            else
+            {
+                if (BalloonMerchantManager.SellBanner != 0)
+                {
+                    shop.item[nextSlot].SetDefaults(BalloonMerchantManager.SellBanner);
+                    shop.item[nextSlot].value = Item.buyPrice(gold: 10);
+                    nextSlot++;
+                }
+                if (BalloonMerchantManager.SellCrates && NPC.AnyNPCs(NPCID.Angler))
+                {
+                    if (player.ZoneCorrupt && WorldGen.shadowOrbSmashed)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.CorruptFishingCrate);
+                        shop.item[nextSlot].value = Item.buyPrice(platinum: 1);
+                        nextSlot++;
+                    }
+                    else if (player.ZoneCrimson && WorldGen.shadowOrbSmashed)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.CrimsonFishingCrate);
+                        shop.item[nextSlot].value = Item.buyPrice(platinum: 1);
+                        nextSlot++;
+                    }
+                    else if (player.ZoneHoly && Main.hardMode)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.HallowedFishingCrate);
+                        shop.item[nextSlot].value = Item.buyPrice(platinum: 1);
+                        nextSlot++;
+                    }
+                    else if (player.ZoneJungle && WorldGen.shadowOrbSmashed)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.JungleFishingCrate);
+                        shop.item[nextSlot].value = Item.buyPrice(platinum: 1);
+                        nextSlot++;
+                    }
+                    else if (NPC.downedBoss1)
+                    {
+                        if (NPC.downedBoss3 && player.HasItem(ItemID.GoldenKey))
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.GoldenKey);
+                            shop.item[nextSlot].value = Item.buyPrice(gold: 75);
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ItemID.LockBox);
+                            shop.item[nextSlot].value = Item.buyPrice(gold: 75);
+                            nextSlot++;
+                        }
+                        else
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.WoodenCrate);
+                            shop.item[nextSlot].value = Item.buyPrice(gold: 10);
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ItemID.IronCrate);
+                            shop.item[nextSlot].value = Item.buyPrice(gold: 25);
+                            nextSlot++;
+                        }
+                        if (NPC.downedBoss2 && BalloonMerchantManager.SellGoldCrate)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.GoldenCrate);
+                            shop.item[nextSlot].value = Item.buyPrice(gold: 75);
+                            nextSlot++;
+                        }
+                        else
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.FloatingIslandFishingCrate);
+                            shop.item[nextSlot].value = Item.buyPrice(gold: 75);
+                            nextSlot++;
+                        }
+                    }
+                }
+                switch (BalloonMerchantManager.MaterialSold)
+                {
+                    case 0:
+                    {
+                        if (Main.time * 2.0 > Main.dayLength)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.Vertebrae);
+                            shop.item[nextSlot].value = Item.buyPrice(silver: 20);
+                            nextSlot++;
+                        }
+                        else
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.RottenChunk);
+                            shop.item[nextSlot].value = Item.buyPrice(silver: 20);
+                            nextSlot++;
+                        }
+                    }
+                    break;
+
+                    case 1:
+                    {
+                        if (WorldGen.shadowOrbSmashed)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.Stinger);
+                            shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                            nextSlot++;
+                        }
+                    }
+                    break;
+
+                    case 2:
+                    {
+                        if (Main.hardMode && Main.time * 2.0 > Main.dayLength)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.PixieDust);
+                            shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                            nextSlot++;
+                        }
+                        else if (NPC.downedBoss3)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.Bone);
+                            shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                            nextSlot++;
+                        }
+                    }
+                    break;
+
+                    case 3:
+                    {
+                        if (Main.time * 2.0 > Main.dayLength)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.SharkFin);
+                            shop.item[nextSlot].value = Item.buyPrice(gold: 5);
+                            nextSlot++;
+                        }
+                        else
+                        {
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CrabShell>());
+                            shop.item[nextSlot].value = Item.buyPrice(silver: 20);
+                            nextSlot++;
+                        }
+                    }
+                    break;
+
+                    case 4:
+                    {
+                        if (Main.time * 3.0 > Main.dayLength * 2.0)
+                        {
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<KryptonMushroom>());
+                            shop.item[nextSlot].value = Item.buyPrice(gold: 1);
+                            nextSlot++;
+                        }
+                        else if (Main.time * 3.0 > Main.dayLength)
+                        {
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<ArgonMushroom>());
+                            shop.item[nextSlot].value = Item.buyPrice(gold: 1);
+                            nextSlot++;
+                        }
+                        else
+                        {
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<XenonMushroom>());
+                            shop.item[nextSlot].value = Item.buyPrice(gold: 1);
+                            nextSlot++;
+                        }
+                    }
+                    break;
+                }
+                if (player.ZoneCorrupt && BalloonMerchantManager.MaterialSold != 0)
+                {
+                    if (Main.time * 2.0 > Main.dayLength)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.Vertebrae);
+                        shop.item[nextSlot].value = Item.buyPrice(silver: 20);
+                        nextSlot++;
+                    }
+                    else
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.RottenChunk);
+                        shop.item[nextSlot].value = Item.buyPrice(silver: 20);
+                        nextSlot++;
+                    }
+                }
+                else if (player.ZoneCrimson && BalloonMerchantManager.MaterialSold != 0)
+                {
+                    if (Main.time * 2.0 > Main.dayLength)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.RottenChunk);
+                        shop.item[nextSlot].value = Item.buyPrice(silver: 20);
+                        nextSlot++;
+                    }
+                    else
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.Vertebrae);
+                        shop.item[nextSlot].value = Item.buyPrice(silver: 20);
+                        nextSlot++;
+                    }
+                }
+                else if (player.ZoneJungle && WorldGen.shadowOrbSmashed)
+                {
+                    if (BalloonMerchantManager.MaterialSold == 0)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.Stinger);
+                        shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                        nextSlot++;
+                    }
+                    else if (BalloonMerchantManager.MaterialSold == 2)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.Vine);
+                        shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                        nextSlot++;
+                    }
+                    else
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.JungleSpores);
+                        shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                        nextSlot++;
+                    }
+                }
+                else if (player.ZoneHoly && Main.hardMode)
+                {
+                    if (BalloonMerchantManager.MaterialSold == 2)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.UnicornHorn);
+                        shop.item[nextSlot].value = Item.buyPrice(gold: 5);
+                        nextSlot++;
+                    }
+                    else
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.PixieDust);
+                        shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                        nextSlot++;
+                    }
+                }
+                else if (WorldDefeats.DownedStarite && Main.time * 3.0 > Main.dayLength * 2.0)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.FallenStar);
+                    shop.item[nextSlot].value = Item.buyPrice(gold: 1);
+                    nextSlot++;
+                }
+
+                if (Main.time * 4.0 < Main.dayLength)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.Feather);
+                    shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                    nextSlot++;
+                }
+            }
+            
+            if (!BalloonMerchantManager.SettingUpShopStealing && NPC.CountNPCS(npc.type) == 1 && BalloonMerchantManager.MerchantStealSeed != -1)
+            {
+                var value = StealShop((BalloonMerchantManager.MerchantStealSeed * 6969).Abs(), npc.whoAmI);
+                if (value.shopCustomPrice != null)
+                {
+                    value.shopCustomPrice = (int)(value.shopCustomPrice.Value * 0.5f);
+                }
+                else
+                {
+                    value.value = (int)(value.value * 0.5f); 
+                }
+                shop.item[nextSlot] = value;
+                nextSlot++;
+
+                value = StealShop((BalloonMerchantManager.MerchantStealSeed * 420420).Abs(), npc.whoAmI);
+                if (value.shopCustomPrice != null)
+                {
+                    value.shopCustomPrice = (int)(value.shopCustomPrice.Value * 0.75f);
+                }
+                else
+                {
+                    value.value = (int)(value.value * 0.75f);
+                }
+                shop.item[nextSlot] = value;
+                nextSlot++;
+
+                shop.item[nextSlot] = StealShop(BalloonMerchantManager.MerchantStealSeed, npc.whoAmI);
                 nextSlot++;
             }
+
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
+            shop.item[nextSlot].value = AQItem.Prices.EnergyBuyValue;
+            nextSlot++;
+        }
+
+        private static Item StealShop(int seed, int whoAmI)
+        {
+            List<Chest> potentialShops = new List<Chest>();
+            BalloonMerchantManager.SettingUpShopStealing = true;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (i != whoAmI && Main.npc[i].active && Main.npc[i].townNPC)
+                {
+                    if (Main.npc[i].type > Main.maxNPCTypes)
+                    {
+                        try
+                        {
+                            var tempShop = new Chest();
+                            tempShop.SetupShop(Main.npc[i].type);
+                            if (tempShop.item[0].type == ItemID.None)
+                            {
+                                continue;
+                            }
+                            potentialShops.Add(tempShop);
+                        }
+                        catch
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        int shopID = Constants.ShopIDs.GetShopFromNPCID(Main.npc[i].type);
+                        if (shopID != -1)
+                        {
+                            try
+                            {
+                                var tempShop = new Chest();
+                                tempShop.SetupShop(shopID);
+                                if (tempShop.item[0].type == ItemID.None)
+                                {
+                                    continue;
+                                }
+                                AQMod.Instance.Logger.Debug("stealing shop from: " + Lang.GetNPCName(Main.npc[i].type).Value);
+                                potentialShops.Add(tempShop);
+                            }
+                            catch
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            BalloonMerchantManager.SettingUpShopStealing = false;
+            var shopStealRand = new UnifiedRandom(seed);
+            Chest stealShop = null;
+            if (potentialShops.Count > 1)
+            {
+                stealShop = potentialShops[shopStealRand.Next(potentialShops.Count)];
+            }
+            else if (potentialShops.Count == 1)
+            {
+                stealShop = potentialShops[0];
+            }
+            if (stealShop != null)
+            {
+                AQMod.Instance.Logger.Debug("chosen shop contents: ");
+                var potentialItems = new List<Item>();
+                for (int i = 0; i < Chest.maxItems; i++)
+                {
+                    if (stealShop.item[i].type > ItemID.None && stealShop.item[i].stack > 0)
+                    {
+                        potentialItems.Add(stealShop.item[i]);
+                        AQMod.Instance.Logger.Debug(Lang.GetItemName(stealShop.item[i].type).Value);
+                    }
+                }
+                return potentialItems[shopStealRand.Next(potentialItems.Count)].Clone();
+            }
+            return null;
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -207,10 +893,82 @@ namespace AQMod.NPCs.Town
             return text;
         }
 
+        private bool Offscreen()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+                if (player.active && (player.Center - npc.Center).Length() < 1000f)
+                    return false;
+            }
+            return true;
+        }
+
         public override void AI()
         {
             npc.homeless = true;
             bool offscreen = Offscreen();
+            if (npc.life < 80 && !npc.dontTakeDamage)
+            {
+                if (npc.aiStyle == 7)
+                {
+                    npc.aiStyle = -4;
+                }
+                else
+                {
+                    npc.aiStyle = -3;
+                }
+                npc.ai[0] = 0f;
+                npc.noGravity = true;
+                npc.noTileCollide = true;
+                npc.dontTakeDamage = true;
+                if (npc.velocity.X <= 0)
+                {
+                    npc.direction = -1;
+                    npc.spriteDirection = npc.direction;
+                }
+                else
+                {
+                    npc.direction = 1;
+                    npc.spriteDirection = npc.direction;
+                }
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    AQSound.Play(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
+                }
+            }
+            if (npc.aiStyle == -4)
+            {
+                if ((int)npc.ai[0] == 0)
+                {
+                    npc.ai[0]++;
+                    npc.velocity.Y = -6f;
+                }
+                else
+                {
+                    npc.velocity.Y += 0.3f;
+                }
+                if (offscreen)
+                {
+                    npc.active = false;
+                    npc.netSkip = -1;
+                    npc.life = 0;
+                }
+                return;
+            }
+            else if (npc.aiStyle == -3)
+            {
+                npc.velocity.Y -= 0.6f;
+                npc.noGravity = true;
+                npc.noTileCollide = true;
+                if (offscreen)
+                {
+                    npc.active = false;
+                    npc.netSkip = -1;
+                    npc.life = 0;
+                }
+                return;
+            }
             if (!_init)
             {
                 _init = true;
@@ -244,19 +1002,6 @@ namespace AQMod.NPCs.Town
                 return;
             }
 
-            if (npc.aiStyle == -3)
-            {
-                npc.velocity.Y -= 1f;
-                npc.noGravity = true;
-                npc.noTileCollide = true;
-                if (offscreen)
-                {
-                    npc.active = false;
-                    npc.netSkip = -1;
-                    npc.life = 0;
-                }
-                return;
-            }
             if (npc.aiStyle == -1)
             {
                 SetToBalloon();
@@ -427,6 +1172,18 @@ namespace AQMod.NPCs.Town
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
+            if (npc.aiStyle == -4)
+            {
+                var texture = ModContent.GetTexture(this.GetPath("_Flee"));
+                var frame = new Rectangle(0, texture.Height / 2 * ((int)(Main.GlobalTime * 10f) % 2), texture.Width, texture.Height / 2);
+                var effects = SpriteEffects.None;
+                if (npc.spriteDirection == 1)
+                {
+                    effects = SpriteEffects.FlipHorizontally;
+                }
+                Main.spriteBatch.Draw(texture, npc.Center - Main.screenPosition, frame, drawColor, 0f, frame.Size() / 2f, 1f, effects, 0f);
+                return false;
+            }
             if (npc.aiStyle != 7)
             {
                 var texture = ModContent.GetTexture(this.GetPath("_Basket"));
@@ -524,7 +1281,7 @@ namespace AQMod.NPCs.Town
                 Main.spriteBatch.Draw(texture, npc.Center - Main.screenPosition + new Vector2(0f, -yOff + 4f), frame, drawColor, 0f, new Vector2(frame.Width / 2f, frame.Height), 1f, SpriteEffects.None, 0f);
                 return false;
             }
-            return base.PreDraw(spriteBatch, drawColor);
+            return true;
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
@@ -571,6 +1328,70 @@ namespace AQMod.NPCs.Town
             randomOffset = 2f;
         }
 
+        public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+        {
+            crit = false;
+            if (damage > 79)
+            {
+                damage = 79;
+            }
+        }
+
+        public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            crit = false;
+            if (damage > 79)
+            {
+                damage = 79;
+            }
+        }
+
+        public override bool CheckDead()
+        {
+            if (npc.aiStyle == -4 || npc.aiStyle == -3)
+            {
+                return true;
+            }
+            npc.ai[0] = 0f;
+            if (npc.aiStyle == 7)
+            {
+                npc.aiStyle = -4;
+            }
+            else
+            {
+                npc.aiStyle = -3;
+            }
+            npc.noTileCollide = true;
+            npc.noGravity = true;
+            npc.life = npc.lifeMax;
+            if (Main.netMode != NetmodeID.Server)
+            {
+                AQSound.Play(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
+            }
+            if (npc.velocity.X <= 0)
+            {
+                npc.direction = -1;
+                npc.spriteDirection = npc.direction;
+            }
+            else
+            {
+                npc.direction = 1;
+                npc.spriteDirection = npc.direction;
+            }
+            npc.dontTakeDamage = true;
+            return false;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(npc.aiStyle);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            npc.aiStyle = reader.ReadInt32();
+        }
+
         public static BalloonMerchant FindInstance()
         {
             int index = Find();
@@ -587,16 +1408,6 @@ namespace AQMod.NPCs.Town
                     return i;
             }
             return -1;
-        }
-
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            writer.Write(npc.aiStyle);
-        }
-
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            npc.aiStyle = reader.ReadInt32();
         }
     }
 }

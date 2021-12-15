@@ -1,4 +1,6 @@
-﻿namespace AQMod.Common
+﻿using Terraria.ID;
+
+namespace AQMod.Common
 {
     internal static class Constants // This class is free to steal, it's full of magic numbers vanilla uses
     {
@@ -123,6 +125,119 @@
             public const int Torch = 1;
             public const int Umbrella = 2;
             public const int Harp = 3;
+        }
+
+        public static class ShopIDs
+        {
+            public const int Merchant = 1;
+            public const int ArmsDealer = 2;
+            public const int Dryad = 3;
+            public const int Demolitionist = 4;
+            public const int Clothier = 5;
+            public const int GoblinTinkerer = 6;
+            public const int Wizard = 7;
+            public const int Mechanic = 8;
+            public const int SantaClaus = 9;
+            public const int Truffle = 10;
+
+            public static int GetShopFromNPCID(int id)
+            {
+                switch (id)
+                {
+                    case NPCID.Merchant:
+                    return Merchant;
+                    case NPCID.ArmsDealer:
+                    return ArmsDealer;
+                    case NPCID.Dryad:
+                    return Dryad;
+                    case NPCID.Demolitionist:
+                    return Demolitionist;
+                    case NPCID.Clothier:
+                    return Clothier;
+                    case NPCID.GoblinTinkerer:
+                    return GoblinTinkerer;
+                    case NPCID.Wizard:
+                    return Wizard;
+                    case NPCID.Mechanic:
+                    return Mechanic;
+                    case NPCID.SantaClaus:
+                    return SantaClaus;
+                    case NPCID.Truffle:
+                    return Truffle;
+                    case NPCID.Steampunker:
+                    return 11;
+                    case NPCID.DyeTrader:
+                    return 12;
+                    case NPCID.PartyGirl:
+                    return 13;
+                    case NPCID.Cyborg:
+                    return 14;
+                    case NPCID.Painter:
+                    return 15;
+                    case NPCID.WitchDoctor:
+                    return 16;
+                    case NPCID.Pirate:
+                    return 17;
+                    case NPCID.Stylist:
+                    return 18;
+                    case NPCID.TravellingMerchant:
+                    return 19;
+                    case NPCID.SkeletonMerchant:
+                    return 20;
+                    case NPCID.DD2Bartender:
+                    return 21;
+                }
+                return -1;
+            }
+            public static int GetNPCIDFromShop(int id)
+            {
+                switch (id)
+                {
+                    case Merchant:
+                    return NPCID.Merchant;
+                    case ArmsDealer:
+                    return NPCID.ArmsDealer;
+                    case Dryad:
+                    return NPCID.Dryad;
+                    case Demolitionist:
+                    return NPCID.Demolitionist;
+                    case Clothier:
+                    return NPCID.Clothier;
+                    case GoblinTinkerer:
+                    return NPCID.GoblinTinkerer;
+                    case Wizard:
+                    return NPCID.Wizard;
+                    case Mechanic:
+                    return NPCID.Mechanic;
+                    case SantaClaus:
+                    return NPCID.SantaClaus;
+                    case Truffle:
+                    return NPCID.Truffle;
+                    case 11:
+                    return NPCID.Steampunker;
+                    case 12:
+                    return NPCID.DyeTrader;
+                    case 13:
+                    return NPCID.PartyGirl;
+                    case 14:
+                    return NPCID.Cyborg;
+                    case 15:
+                    return NPCID.Painter;
+                    case 16:
+                    return NPCID.WitchDoctor;
+                    case 17:
+                    return NPCID.Pirate;
+                    case 18:
+                    return NPCID.Stylist;
+                    case 19:
+                    return NPCID.TravellingMerchant;
+                    case 20:
+                    return NPCID.SkeletonMerchant;
+                    case 21:
+                    return NPCID.DD2Bartender;
+                }
+                return -1;
+            }
         }
     }
 }
