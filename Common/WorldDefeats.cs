@@ -25,6 +25,9 @@ namespace AQMod.Common
         public static bool ObtainedMothmanMask { get; set; }
         public static bool ObtainedCatalystPainting { get; set; }
 
+        public static bool HunterIntroduction { get; set; }
+        public static bool PhysicistIntroduction { get; set; }
+
         public override void Initialize()
         {
             DownedGlimmer = false;
@@ -61,6 +64,9 @@ namespace AQMod.Common
                 ["ObtainedUltimateSword"] = ObtainedUltimateSword,
                 ["ObtainedMothmanMask"] = ObtainedMothmanMask,
                 ["ObtainedCatalystPainting"] = ObtainedCatalystPainting,
+
+                ["HunterIntroduction"] = HunterIntroduction,
+                ["PhysicistIntroduction"] = PhysicistIntroduction,
             };
         }
 
@@ -77,8 +83,12 @@ namespace AQMod.Common
 
             NoHitOmegaStarite = tag.GetBool("NoHitOmegaStarite");
 
+            ObtainedUltimateSword = tag.GetBool("ObtainedUltimateSword");
             ObtainedMothmanMask = tag.GetBool("ObtainedMothmanMask");
             ObtainedCatalystPainting = tag.GetBool("ObtainedCatalystPainting");
+
+            HunterIntroduction = tag.GetBool("HunterIntroduction");
+            PhysicistIntroduction = tag.GetBool("PhysicistIntroduction");
         }
     }
 }

@@ -102,6 +102,26 @@ Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down wi
 Tooltips.InventoryPiggyBankFunction=Works in your inventory or piggy bank
 Tooltips.ToggleKeyBind=You can toggle this function by pressing {0}
 
+# Balloon Merchant
+NPCName.BalloonMerchant=Air Hunter
+BalloonMerchant.Chat.Introduction=You are an interesting looking person, I sell materials I have gathered at quite a good price. You can catch me hunting up in space while the wind is fierce.
+BalloonMerchant.Chat.Leaving.0=I must go, the next hunt starts far from here.
+BalloonMerchant.Chat.Leaving.1=The heavy winds have ended, I shall take my departure.
+BalloonMerchant.Chat.Leaving.2=I follow the winds, they are my partner for hunting.
+BalloonMerchant.Chat.Corruption=Even in such vile places, there are edible meats and plants.
+BalloonMerchant.Chat.Crimson=Even in such gorey places, there are edible meats and plants.
+BalloonMerchant.Chat.Hallow=A utopia, plenty of unicorns to go find and hunt.
+BalloonMerchant.Chat.0=Up here in the emptyness, many birds and other strong wind beasts flock here.
+BalloonMerchant.Chat.1=How come less creatures assault me compared to you? What do you mean I decrease enemy spawns? Why would things be giving birth mid-battle...?
+BalloonMerchant.Chat.2=Dogs are unfortunately afraid of heights, and will jump off your hot air balloon if you try to go hunting with them. Do not ask if I have experience with this.
+BalloonMerchant.Chat.3=Have I fallen out of this basket before? No. And don't even think about shaking it.
+BalloonMerchant.Chat.MeteorTime=Meteors come out during the early morning, and beginning of night. It is quite an experience to fly around with them.
+BalloonMerchant.Chat.Vraine=I must beware of Vraines, their beaks are sharp enough to blow up this balloon in an instant.
+BalloonMerchant.Chat.StreamingBalloon=Some slimes seem to have stolen my balloon idea for hunting...
+BalloonMerchant.Chat.WhiteSlime=I tried mixing white slime gel and black slime gel, unfortunately, instead of creating the perfect slime, it just gave birth to a regular black slime, what?!
+BalloonMerchant.Chat.RedSprite=Red Sprites are quite easy to manage in a balloon, they literally push me away from them, and this balloon is a great protector against conductive attacks.
+BalloonMerchant.Chat.SpaceSquid=A squid with laser beams, it brings a chill to my spine... or maybe that chill is from the constant absorption of heat in order to power up its weaponry...
+
 # Exporter
 NPCName.Robster=Exporter
 

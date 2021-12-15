@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Content
 {
-    public class EquivalenceMachineManager : GlobalItem
+    public sealed class EquivalenceMachineManager : GlobalItem
     {
         public static bool AntiGravity { get; private set; }
         public static bool AntiGravityReset { get; private set; }

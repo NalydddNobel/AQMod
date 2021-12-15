@@ -1,10 +1,9 @@
-﻿using System.IO;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace AQMod.Content
 {
-    public class CosmicanonCounts : ModWorld
+    public sealed class CosmicanonCounts : ModWorld
     {
         public static ushort BloodMoonsPrevented { get; set; }
         public static ushort GlimmersPrevented { get; set; }

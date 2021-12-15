@@ -505,6 +505,7 @@ namespace AQMod
                 UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.ArrowCrab>()] = false;
                 UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.StriderCrab>()] = false;
                 UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.SoliderCrabs>()] = false;
+                UnaffectedByWind[ModContent.NPCType<BalloonMerchant>()] = false;
             }
 
             internal static void UnloadSets()

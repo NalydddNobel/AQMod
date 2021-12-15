@@ -108,6 +108,11 @@ namespace AQMod.NPCs.Town
 
         public override string GetChat()
         {
+            if (!WorldDefeats.PhysicistIntroduction)
+            {
+                WorldDefeats.PhysicistIntroduction = true;
+                return Language.GetTextValue("Mods.AQMod.Physicist.Chat.Introduction", npc.GivenName);
+            }
             var potentialText = new List<string>();
             var player = Main.LocalPlayer;
             if (player.ZoneHoly)
