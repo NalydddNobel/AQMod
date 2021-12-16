@@ -11,11 +11,11 @@ Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不
 本Mod的Wiki稍微有点混乱, 现在请不要使用
 本Mod的主页有Discord链接, 如果你想自己输入Discord邀请链接, 在这:
 
-> 216 Items
-> 16 Enemies
-> 3 Events
-> 2 Bosses
-> 2 Town NPCs
+> 216个物品
+> 16个敌人
+> 3个事件
+> 2个Boss
+> 2个城镇NPC
 
 玩得开心
 
@@ -41,6 +41,10 @@ ItemTooltip.DemoniteBarb=你的钩爪会造成伤害
 
 ItemName.MetalBarb=金属刺钩
 ItemTooltip.MetalBarb=你的钩爪会造成伤害
+
+# Armor
+
+ItemName.SteelPlatedChestplate=钢板胸甲
 
 # Materials
 
