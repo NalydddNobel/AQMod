@@ -42,6 +42,10 @@ ItemTooltip.DemoniteBarb=Your grappling hooks inflicts damage
 ItemName.MetalBarb=Metal Barb
 ItemTooltip.MetalBarb=Your grappling hooks inflicts damage
 
+# Armor
+
+ItemName.SteelPlatedChestplate=Steel Plated Chestplate
+
 # Materials
 
 ItemName.Fluorescence=Fluorescence

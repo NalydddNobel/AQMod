@@ -74,7 +74,8 @@ namespace AQMod
                     drawData.Draw(Main.spriteBatch);
                     Main.pixelShader.CurrentTechnique.Passes[0].Apply();
                 }
-                if (drawingPlayer.headAcc != -1)
+                
+                if (drawingPlayer.headAcc >= 0)
                 {
                     var drawData = new DrawData(ModContent.GetTexture(HeadAccsPath + drawingPlayer.headAcc), new Vector2((int)(info.drawPlayer.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.drawPlayer.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height)) + info.drawPlayer.headPosition + info.drawOrigin, info.drawPlayer.bodyFrame, info.armorColor, info.drawPlayer.headRotation, info.drawOrigin, info.scale, info.spriteEffects, 0);
                     if (drawingPlayer.headAcc == PlayerHeadOverlayID.FishyFins)
@@ -424,13 +425,13 @@ namespace AQMod
                     {
                         default:
                         {
-                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.mask), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
                         }
                         break;
 
                         case PlayerHeadOverlayID.MonoxideHat:
                         {
-                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.mask), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
                             Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + PlayerHeadOverlayID.MonoxideHatGlow), position, info.drawPlayer.bodyFrame, new Color(opacity * 0.99f, opacity * 0.99f, opacity * 0.99f, 0f), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
                             if (aQPlayer.monoxiderBird && !aQPlayer.chomper)
                             {
@@ -450,7 +451,7 @@ namespace AQMod
 
                         case PlayerHeadOverlayID.FishyFins:
                         {
-                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.mask), position, info.drawPlayer.bodyFrame, Lighting.GetColor((int)info.position.X / 16, (int)info.position.Y / 16, info.drawPlayer.skinColor), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, Lighting.GetColor((int)info.position.X / 16, (int)info.position.Y / 16, info.drawPlayer.skinColor), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
                         }
                         break;
                     }
@@ -1400,7 +1401,7 @@ namespace AQMod
                     update.UpdateEquipVisuals(player, this, i);
             }
             if (player.GetModPlayer<AQPlayer>().monoxiderBird)
-                headAcc = (int)PlayerHeadOverlayID.MonoxideHat;
+                headAcc = PlayerHeadOverlayID.MonoxideHat;
         }
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)

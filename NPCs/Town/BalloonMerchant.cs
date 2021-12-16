@@ -697,6 +697,12 @@ namespace AQMod.NPCs.Town
                 }
             }
 
+            if (Main.dayTime && Main.time * 4.0 > Main.dayLength * 3.0)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.SteelPlate.SteelPlatedChestplate>());
+                nextSlot++;
+            }
+
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
             shop.item[nextSlot].value = AQItem.Prices.EnergyBuyValue;
             nextSlot++;
