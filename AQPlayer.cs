@@ -1324,7 +1324,7 @@ namespace AQMod
                 NetUpdateKillCount = false;
                 return;
             }
-            Sync_CelesteTorus();
+            Sync_CelesteTorus(toWho, fromWho);
         }
 
         private void Sync_CelesteTorus(int toWho = -1, int fromWho = -1)
