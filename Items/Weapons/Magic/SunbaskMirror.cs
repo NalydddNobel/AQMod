@@ -30,7 +30,7 @@ namespace AQMod.Items.Weapons.Magic
 
         public override bool CanUseItem(Player player)
         {
-            return Main.dayTime && AQItem.Similarities.Mirror_CanUseItem(player);
+            return Main.dayTime && AQItem.Reps.Mirror_CanUseItem(player);
         }
 
         public override void AddRecipes()

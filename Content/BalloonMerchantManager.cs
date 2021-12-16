@@ -145,6 +145,7 @@ namespace AQMod.Content
             MaterialSold = (byte)Main.rand.Next(5);
             MerchantStealSeed = Main.rand.Next(100, 2000000000); // did you know, the seed "0" gives you 3 waterleaf planter boxes... for me atleast...
             StealShopUseless = Main.rand.NextBool();
+            MerchantSetup = true;
             List<int> potentialBanners = new List<int>();
             for (int bannerID = 0; bannerID < NPCLoader.NPCCount; bannerID++)
             {
@@ -163,7 +164,6 @@ namespace AQMod.Content
             {
                 SellBanner = potentialBanners[0];
             }
-            MerchantSetup = true;
         }
 
         public static int SpawnMerchant()

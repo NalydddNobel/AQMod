@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
+﻿using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Materials.Energies
 {
-    public class CosmicEnergy : ModItem
+    public class CosmicEnergy : ModItem, IItemOverlaysWorldDraw, IItemOverlaysDrawInventory
     {
         public override string Texture
         {
@@ -21,26 +21,21 @@ namespace AQMod.Items.Materials.Energies
             }
         }
 
+        private static readonly EnergyOverlay _overlay = new EnergyOverlay(
+            () => Color.Lerp(new Color(210, 150, 255, 180), new Color(160, 50, 255, 180), ((float)Math.Sin(Main.GlobalTime * 2f) + 1f) / 2f),
+            () => Color.Lerp(new Color(180, 160, 255, 180), new Color(220, 2, 250, 11), ((float)Math.Sin(Main.GlobalTime * 4f) + 1f) / 2f));
+
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawInventory IItemOverlaysDrawInventory.InventoryDraw => _overlay;
+
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new EnergyOverlay(outline, spotlight, new Vector2(0f, 0f)), item.type);
-        }
-
-        private static Color outline(float colorOffset)
-        {
-            return Color.Lerp(new Color(210, 150, 255, 180), new Color(160, 50, 255, 180), ((float)Math.Sin(Main.GlobalTime * 2f) + 1f) / 2f);
-        }
-
-        private static Color spotlight(float colorOffset)
-        {
-            return Color.Lerp(new Color(180, 160, 255, 180), new Color(220, 2, 250, 11), ((float)Math.Sin(Main.GlobalTime * 4f) + 1f) / 2f);
         }
 
         public override void SetDefaults()
         {
-            AQItem.Similarities.Energy_SetDefaults(item, ItemRarityID.Green, AQItem.Prices.EnergySellValue);
+            AQItem.Reps.Energy_SetDefaults(item, ItemRarityID.Green, AQItem.Prices.EnergySellValue);
         }
 
         public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 255);
@@ -52,9 +47,8 @@ namespace AQMod.Items.Materials.Energies
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            var color = outline(Main.GlobalTime * 2f);
-            color.A = 0;
-            AQItem.Similarities.Energy_DoUpdate(item, color, new Vector3(0.6f, 0.1f, 0.65f));
+            AQItem.Reps.Energy_DoUpdate(item,
+                Color.Lerp(new Color(210, 150, 255, 0), new Color(160, 50, 255, 0), ((float)Math.Sin(Main.GlobalTime * 2f) + 1f) / 2f), new Vector3(0.6f, 0.1f, 0.65f));
         }
     }
 }

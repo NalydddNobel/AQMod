@@ -715,13 +715,15 @@ namespace AQMod.NPCs.Town
             }
         }
 
-        private static Item StealShop(int seed, int whoAmI)
+        private static Item StealShop(int seed, int whoAmI, int npc = -1)
         {
             List<Chest> potentialShops = new List<Chest>();
+            if (npc == -1)
+                npc = ModContent.NPCType<BalloonMerchant>();
             BalloonMerchantManager.SettingUpShopStealing = true;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (i != whoAmI && Main.npc[i].active && Main.npc[i].townNPC)
+                if (i != whoAmI && Main.npc[i].type != npc && Main.npc[i].active && Main.npc[i].townNPC)
                 {
                     if (Main.npc[i].type > Main.maxNPCTypes)
                     {
@@ -1307,7 +1309,8 @@ namespace AQMod.NPCs.Town
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            button = Language.GetTextValue("LegacyInterface.28");
+            if (GaleStreams.IsActive)
+                button = Language.GetTextValue("LegacyInterface.28");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)

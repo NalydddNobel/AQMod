@@ -223,7 +223,7 @@ namespace AQMod
             }
         }
 
-        internal static class Similarities
+        internal static class Reps
         {
             public static Vector2 GetItemDrawPos_NoAnimation(Item item)
             {

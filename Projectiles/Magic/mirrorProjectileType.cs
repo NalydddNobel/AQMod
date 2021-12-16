@@ -25,7 +25,7 @@ namespace AQMod.Projectiles.Magic
         {
             projectile.ai[0] = 0f;
             var item = player.ItemInHand();
-            if (AQItem.Similarities.Mirror_CanUseItem(player) && player.CheckMana(item, item.mana, pay: true, blockQuickMana: false))
+            if (AQItem.Reps.Mirror_CanUseItem(player) && player.CheckMana(item, item.mana, pay: true, blockQuickMana: false))
             {
                 var sound = SoundID.DD2_EtherianPortalSpawnEnemy;
                 var pos = projectile.Center;

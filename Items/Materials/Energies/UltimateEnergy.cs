@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets.LegacyItemOverlays;
+using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -7,28 +8,23 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Materials.Energies
 {
-    public class UltimateEnergy : ModItem
+    public class UltimateEnergy : ModItem, IItemOverlaysWorldDraw, IItemOverlaysDrawInventory
     {
+        private static readonly EnergyOverlay _overlay = new EnergyOverlay(
+             () => new Color(210 + Main.DiscoR, 210 + Main.DiscoG, 210 + Main.DiscoB, 180),
+             () => new Color(230 + Main.DiscoB / 2, 230 + Main.DiscoR / 2, 230 + Main.DiscoG / 2, 180), new Vector2(0f, -2f));
+
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawInventory IItemOverlaysDrawInventory.InventoryDraw => _overlay;
+
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new EnergyOverlay(outline, spotlight, new Vector2(0f, -2f)), item.type);
-        }
-
-        private static Color outline(float colorOffset)
-        {
-            return new Color(210 + Main.DiscoR, 210 + Main.DiscoG, 210 + Main.DiscoB, 180);
-        }
-
-        private static Color spotlight(float colorOffset)
-        {
-            return new Color(230 + Main.DiscoB / 2, 230 + Main.DiscoR / 2, 230 + Main.DiscoG / 2, 180);
         }
 
         public override void SetDefaults()
         {
-            AQItem.Similarities.Energy_SetDefaults(item, ItemRarityID.Lime, Item.sellPrice(gold: 1));
+            AQItem.Reps.Energy_SetDefaults(item, ItemRarityID.Lime, Item.sellPrice(gold: 1));
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -48,11 +44,8 @@ namespace AQMod.Items.Materials.Energies
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            var color = outline(Main.GlobalTime * 2f);
-            color.A = 0;
-            AQItem.Similarities.Energy_DoUpdate(item, color, new Vector3(0.7f, 0.7f, 0.7f));
+            AQItem.Reps.Energy_DoUpdate(item, new Color(210 + Main.DiscoR, 210 + Main.DiscoG, 210 + Main.DiscoB, 0), new Vector3(0.7f, 0.7f, 0.7f));
         }
-
 
         public override void AddRecipes()
         {

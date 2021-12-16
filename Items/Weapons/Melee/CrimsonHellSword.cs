@@ -40,7 +40,7 @@ namespace AQMod.Items.Weapons.Melee
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return AQItem.Similarities.DemonSiegeItem_GetAlpha(lightColor);
+            return AQItem.Reps.DemonSiegeItem_GetAlpha(lightColor);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

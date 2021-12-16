@@ -58,7 +58,7 @@ namespace AQMod.Items.Materials
             if (config.EffectQuality < 1f)
                 return;
 
-            texture = AQTextures.Lights[LightTex.Spotlight80x80Half];
+            texture = AQTextures.Lights[LightTex.Spotlight80x80HalfCropped];
 
             scale3 = MathHelper.Clamp(((float)Math.Sin(time * 1.1f) + 1f) / 2f, 0.151f, 0.8f) * 0.9f;
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(b, b, b, 0) * scale3, rotation + time * 1.1f, drawOrigin, scale2 * scale3, SpriteEffects.None, 0f);

@@ -216,6 +216,8 @@ namespace AQMod
 
         internal static class Autoloading
         {
+            public static bool LoadingArmorSets;
+
             private static List<IAutoloadType> _autoloadCache;
 
             public static void Autoload(Assembly code)

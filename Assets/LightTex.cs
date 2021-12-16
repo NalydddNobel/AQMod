@@ -9,7 +9,7 @@
         Spotlight12x66 = 4,
         Spotlight33x24 = 5,
         LightLine = 6,
-        Spotlight16x16 = 7,
+        Spotlight15x15 = 7,
         Spotlight20x20 = 8,
         Spotlight24x24 = 9,
         Spotlight36x36 = 10,
@@ -31,6 +31,12 @@
         Spotlight66x100 = 26,
         Spotlight80x80Half = 27,
         Spotlight80x80HalfCropped = 28,
+        Ray40 = 29,
+        Ray40Half = 30,
+        Ray80 = 31,
+        Ray80Half = 32,
+        Ray80WideBottom = 33,
+        Ray80WideBottomHalf = 34,
         Count
     }
 }
