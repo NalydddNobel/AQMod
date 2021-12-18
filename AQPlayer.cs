@@ -8,6 +8,7 @@ using AQMod.Common.NetCode;
 using AQMod.Common.Skies;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Dusts;
+using AQMod.Content.WorldEvents.GaleStreams;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
@@ -910,29 +911,32 @@ namespace AQMod
             {
                 temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
             }
-            if (temperature < -60)
+            if (GaleStreams.EventActive(player))
             {
-                player.AddBuff(ModContent.BuffType<Cold60>(), 4);
-            }
-            else if (temperature < -40)
-            {
-                player.AddBuff(ModContent.BuffType<Cold40>(), 4);
-            }
-            else if (temperature < -20)
-            {
-                player.AddBuff(ModContent.BuffType<Cold20>(), 4);
-            }
-            else if (temperature > 60)
-            {
-                player.AddBuff(ModContent.BuffType<Hot60>(), 4);
-            }
-            else if (temperature > 40)
-            {
-                player.AddBuff(ModContent.BuffType<Hot40>(), 4);
-            }
-            else if (temperature > 20)
-            {
-                player.AddBuff(ModContent.BuffType<Hot20>(), 4);
+                if (temperature < -60)
+                {
+                    player.AddBuff(ModContent.BuffType<Cold60>(), 4);
+                }
+                else if (temperature < -40)
+                {
+                    player.AddBuff(ModContent.BuffType<Cold40>(), 4);
+                }
+                else if (temperature < -20)
+                {
+                    player.AddBuff(ModContent.BuffType<Cold20>(), 4);
+                }
+                else if (temperature > 60)
+                {
+                    player.AddBuff(ModContent.BuffType<Hot60>(), 4);
+                }
+                else if (temperature > 40)
+                {
+                    player.AddBuff(ModContent.BuffType<Hot40>(), 4);
+                }
+                else if (temperature > 20)
+                {
+                    player.AddBuff(ModContent.BuffType<Hot20>(), 4);
+                }
             }
             if (mothmanExplosionDelay > 0)
                 mothmanExplosionDelay--;

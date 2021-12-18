@@ -362,9 +362,15 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
 
         public override void NPCLoot()
         {
-            WorldDefeats.DownedGlimmer = true;
-            if (NPC.downedBoss1)
-                Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
+            if (!WorldDefeats.DownedGlimmer)
+            {
+                WorldDefeats.DownedGlimmer = true;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.WorldData);
+                }
+            }
+            Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
             for (int i = 0; i < 2; i++)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<NeutronJuice>());
             if (Main.rand.NextBool(4))

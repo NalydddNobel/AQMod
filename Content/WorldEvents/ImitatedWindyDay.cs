@@ -1,11 +1,12 @@
 ﻿using Terraria;
+using Terraria.ModLoader;
 
 namespace AQMod.Content.WorldEvents
 {
     /// <summary>
     /// A replica of vanilla's windy day flags, also manages things with the wind.
     /// </summary>
-    public static class ImitatedWindyDay
+    public class ImitatedWindyDay : ModWorld
     {
         public static bool OverrideVanillaWindUpdates { get; set; }
         public static bool IsItAHappyWindyDay { get; private set; }
@@ -29,7 +30,7 @@ namespace AQMod.Content.WorldEvents
             }
         }
 
-        internal static void UpdateWindyDayFlags()
+        public override void PostUpdate()
         {
             if (Main.cloudAlpha == 0f)
             {

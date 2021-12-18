@@ -69,12 +69,20 @@ namespace AQMod.Content.WorldEvents.GaleStreams
             if (Main.windSpeedSet >= 3f)
             {
                 WorldDefeats.DownedGaleStreams = true;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.WorldData);
+                }
                 Main.windSpeedSet = 3f;
                 EndEvent = true;
             }
             else if (Main.windSpeedSet <= -3f)
             {
                 WorldDefeats.DownedGaleStreams = true;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.WorldData);
+                }
                 Main.windSpeedSet = -3f;
                 EndEvent = true;
             }

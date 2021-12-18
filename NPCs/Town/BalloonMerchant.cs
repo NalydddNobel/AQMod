@@ -879,6 +879,10 @@ namespace AQMod.NPCs.Town
             if (!WorldDefeats.HunterIntroduction)
             {
                 WorldDefeats.HunterIntroduction = true;
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendData(MessageID.WorldData, Main.myPlayer);
+                }
                 return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Introduction", npc.GivenName);
             }
             var potentialText = new List<string>();

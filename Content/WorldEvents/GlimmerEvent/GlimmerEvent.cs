@@ -120,7 +120,11 @@ namespace AQMod.Content.WorldEvents.GlimmerEvent
                 if (deactivationTimer == 0)
                 {
                     deactivationTimer = -1;
-                    AQMod.BroadcastMessage("Mods.AQMod.EventEnding.GlimmerEvent", TextColor);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        AQMod.BroadcastMessage("Mods.AQMod.EventEnding.GlimmerEvent", TextColor);
+                        NetMessage.SendData(MessageID.WorldData);
+                    }
                     Deactivate();
                 }
             }

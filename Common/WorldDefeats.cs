@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader;
+﻿using System.IO;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace AQMod.Common
@@ -89,6 +90,40 @@ namespace AQMod.Common
 
             HunterIntroduction = tag.GetBool("HunterIntroduction");
             PhysicistIntroduction = tag.GetBool("PhysicistIntroduction");
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(DownedGlimmer);
+            writer.Write(DownedStarite);
+            writer.Write(DownedCrabson);
+            writer.Write(DownedDemonSiege);
+            writer.Write(DownedCrabSeason);
+            writer.Write(DownedGaleStreams);
+            writer.Write(DownedCurrents);
+            writer.Write(DownedRedSprite);
+            writer.Write(NoHitOmegaStarite);
+            writer.Write(ObtainedUltimateSword);
+            writer.Write(ObtainedCatalystPainting);
+            writer.Write(ObtainedMothmanMask);
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            DownedGlimmer = reader.ReadBoolean();
+            DownedStarite = reader.ReadBoolean();
+            DownedCrabson = reader.ReadBoolean();
+            DownedDemonSiege = reader.ReadBoolean();
+            DownedCrabSeason = reader.ReadBoolean();
+            DownedGaleStreams = reader.ReadBoolean();
+            DownedCurrents = reader.ReadBoolean();
+            DownedRedSprite = reader.ReadBoolean();
+
+            NoHitOmegaStarite = reader.ReadBoolean();
+
+            ObtainedUltimateSword = reader.ReadBoolean();
+            ObtainedCatalystPainting = reader.ReadBoolean();
+            ObtainedMothmanMask = reader.ReadBoolean();
         }
     }
 }

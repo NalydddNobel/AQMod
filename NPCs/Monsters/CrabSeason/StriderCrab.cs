@@ -314,7 +314,14 @@ namespace AQMod.NPCs.Monsters.CrabSeason
 
         public override void NPCLoot()
         {
-            WorldDefeats.DownedCrabSeason = true;
+            if (!WorldDefeats.DownedCrabSeason)
+            {
+                WorldDefeats.DownedCrabSeason = true;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.WorldData);
+                }
+            }
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<StriderCarapace>());
             if (Main.rand.NextBool())

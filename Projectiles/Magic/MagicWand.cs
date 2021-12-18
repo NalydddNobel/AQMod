@@ -3,6 +3,7 @@ using AQMod.Content.Dusts;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -69,6 +70,16 @@ namespace AQMod.Projectiles.Magic
             {
                 projectile.localAI[0]++;
             }
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(projectile.timeLeft);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            projectile.timeLeft = reader.ReadInt32();
         }
 
         public override void Kill(int timeLeft)

@@ -2,8 +2,6 @@
 using AQMod.Content;
 using AQMod.Tiles;
 using AQMod.Tiles.Nature;
-using Microsoft.Xna.Framework;
-using System.Diagnostics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -96,38 +94,26 @@ namespace AQMod
 
         private static bool _veinmine;
         private static uint _veinmineUpdateDelay;
-        private static bool veinmineUseStopwatch => Main.netMode == NetmodeID.SinglePlayer;
 
         public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (Main.GameUpdateCount >= _veinmineUpdateDelay && VeinmineHelper.CanVeinmineAtAll(type) && !fail && !effectOnly && !_veinmine)
+            if (!Main.gameMenu && Main.netMode != NetmodeID.Server && !WorldGen.noTileActions && 
+                Main.GameUpdateCount >= _veinmineUpdateDelay && VeinmineHelper.CanVeinmineAtAll(type) && !fail && !effectOnly && !_veinmine)
             {
-                byte plr = Player.FindClosest(new Vector2(i * 16f, j * 16f), 16, 16);
-                if (Main.player[plr].GetModPlayer<AQPlayer>().veinmineTiles[type] && Player.tileTargetX == i && Player.tileTargetY == j && Main.player[plr].HeldItem.pick > 0)
+                try
                 {
-                    Stopwatch stopwatch = null;
-
-                    if (veinmineUseStopwatch)
+                    if (Main.player[Main.myPlayer].HeldItem.pick > 0 && Player.tileTargetX == i && Player.tileTargetY == j && Main.player[Main.myPlayer].GetModPlayer<AQPlayer>().veinmineTiles[type])
                     {
-                        stopwatch = new Stopwatch();
-                        stopwatch.Start();
-                    }
-
-                    noItem = true;
-                    _veinmine = true;
-                    VeinmineHelper.VeinmineTile(i, j, Main.player[plr]);
-                    _veinmine = false;
-
-                    if (veinmineUseStopwatch)
-                    {
-                        ModContent.GetInstance<AQMod>().Logger.Debug((uint)stopwatch.ElapsedMilliseconds * 10);
-                        _veinmineUpdateDelay = Main.GameUpdateCount + (uint)stopwatch.ElapsedMilliseconds * 10;
-                        stopwatch.Stop();
-                    }
-                    else
-                    {
+                        noItem = true;
+                        _veinmine = true;
+                        VeinmineHelper.VeinmineTile(i, j, Main.player[Main.myPlayer]);
+                        _veinmine = false;
                         _veinmineUpdateDelay = Main.GameUpdateCount + 10;
                     }
+                }
+                catch
+                {
+
                 }
             }
         }

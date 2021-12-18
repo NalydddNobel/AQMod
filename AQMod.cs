@@ -926,12 +926,6 @@ namespace AQMod
             AQText.Unload();
         }
 
-        public override void MidUpdateInvasionNet()
-        {
-            ImitatedWindyDay.Reset(resetNonUpdatedStatics: false);
-            ImitatedWindyDay.UpdateWindyDayFlags();
-        }
-
         public override void PreUpdateEntities()
         {
             if (!Main.dedServ)

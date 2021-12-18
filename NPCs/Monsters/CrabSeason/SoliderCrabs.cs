@@ -92,7 +92,6 @@ namespace AQMod.NPCs.Monsters.CrabSeason
 
         public override void NPCLoot()
         {
-            WorldDefeats.DownedCrabSeason = true;
             if (Main.rand.NextBool(10))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
             if (Main.rand.NextBool(3))

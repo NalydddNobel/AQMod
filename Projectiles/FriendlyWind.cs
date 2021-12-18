@@ -80,6 +80,7 @@ namespace AQMod.Projectiles
                     if (aQNPC.ShouldApplyWindMechanics(target) && projectile.getRect().Intersects(target.getRect()))
                     {
                         aQNPC.ApplyWindMechanics(target, Vector2.Normalize(projectile.velocity) * projectile.knockBack);
+                        target.netUpdate = true;
                     }
                 }
             }
@@ -92,6 +93,7 @@ namespace AQMod.Projectiles
                     if (aQProjectile.ShouldApplyWindMechanics(target) && projectile.Colliding(projectile.getRect(), target.getRect()))
                     {
                         aQProjectile.ApplyWindMechanics(target, Vector2.Normalize(projectile.velocity) * projectile.knockBack);
+                        target.netUpdate = true;
                     }
                 }
             }

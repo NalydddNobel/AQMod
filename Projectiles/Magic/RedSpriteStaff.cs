@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -108,6 +109,16 @@ namespace AQMod.Projectiles.Magic
                     projectile.ai[0] = 1f;
                 }
             }
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(projectile.timeLeft);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            projectile.timeLeft = reader.ReadInt32();
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

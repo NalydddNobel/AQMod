@@ -340,6 +340,10 @@ namespace AQMod.Content.WorldEvents.DemonSiege
                 UpgradeItem(doEffects: true);
                 Deactivate();
                 WorldDefeats.DownedDemonSiege = true;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.WorldData);
+                }
             }
             else
             {
