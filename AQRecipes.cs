@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Accessories.FidgetSpinner;
+﻿using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Items.Accessories.FidgetSpinner;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Materials.Fish;
 using AQMod.Items.Materials.NobleMushrooms;
@@ -120,6 +121,57 @@ namespace AQMod
                 var spinner = (FidgetSpinner)recipe.createItem.modItem;
                 spinner.clr = recipe._clr;
                 recipe.AddRecipe();
+            }
+        }
+
+        internal static void AddRecipes(AQMod aQMod)
+        {
+            var r = new ModRecipe(aQMod);
+            r.AddIngredient(ItemID.Bottle);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
+            r.AddIngredient(ItemID.Cloud, 20);
+            r.SetResult(ItemID.CloudinaBottle);
+            r.AddRecipe();
+            r = new ModRecipe(aQMod);
+            r.AddIngredient(ItemID.CloudinaBottle);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
+            r.AddIngredient(ItemID.SnowCloudBlock, 40);
+            r.SetResult(ItemID.BlizzardinaBottle);
+            r.AddRecipe();
+            r = new ModRecipe(aQMod);
+            r.AddIngredient(ItemID.CloudinaBottle);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
+            r.AddIngredient(ItemID.SandBlock, 40);
+            r.SetResult(ItemID.SandstorminaBottle);
+            r.AddRecipe();
+
+            r = new ModRecipe(aQMod);
+            r.AddIngredient(ItemID.HermesBoots);
+            r.AddIngredient(ItemID.WaterWalkingPotion);
+            r.AddIngredient(ModContent.ItemType<AquaticEnergy>(), 3);
+            r.AddIngredient(ModContent.ItemType<Items.Materials.CrabShell>(), 10);
+            r.AddTile(TileID.WorkBenches);
+            r.SetResult(ItemID.WaterWalkingBoots);
+            r.AddRecipe();
+
+            r = new ModRecipe(aQMod);
+            r.AddIngredient(ItemID.GreenThread);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
+            r.AddTile(TileID.WorkBenches);
+            r.SetResult(ItemID.HermesBoots);
+            r.AddRecipe();
+
+            if (ModContent.GetInstance<AQConfigServer>().demonSiegeDowngrades)
+            {
+                foreach (var u in DemonSiege._upgrades)
+                {
+                    r = new ModRecipe(aQMod);
+                    r.AddIngredient(u.rewardItem);
+                    r.AddIngredient(ModContent.ItemType<DemonicEnergy>());
+                    r.AddTile(TileID.DemonAltar);
+                    r.SetResult(u.baseItem);
+                    r.AddRecipe();
+                }
             }
         }
     }

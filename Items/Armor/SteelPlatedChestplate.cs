@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Armor.SteelPlate
+namespace AQMod.Items.Armor
 {
     [AutoloadEquip(EquipType.Body)]
     public class SteelPlatedChestplate : ModItem

@@ -49,11 +49,11 @@ namespace AQMod.Assets.Cursors
         {
             if (!_loaded[(int)context])
             {
-                string path = getPath(context);
-                _loadedProperly[(int)context] = ModContent.TextureExists(_path);
+                string path = getPath((int)context);
+                _loadedProperly[(int)context] = ModContent.TextureExists(path);
                 if (_loadedProperly[(int)context])
                 {
-                    _textures[(int)context] = new Ref<Texture2D>(ModContent.GetTexture(_path));
+                    _textures[(int)context] = new Ref<Texture2D>(ModContent.GetTexture(path));
                 }
                 _loaded[(int)context] = true;
             }

@@ -1,4 +1,4 @@
-﻿namespace AQMod.Assets
+﻿namespace AQMod.Common.Graphics.Particles
 {
     public enum ParticleTex
     {
@@ -6,6 +6,7 @@
         MonoEmber = 1,
         WindParticle = 2,
         Sparkle = 3,
+        BrightSparkle = 4,
         Count
     }
 }

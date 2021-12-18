@@ -118,9 +118,7 @@ namespace AQMod
         /// </summary>
         internal static bool Unloading { get; private set; }
         public static float StariteBGMult { get; private set; }
-        public static bool HarderOmegaStarite { get; private set; }
         public static bool EvilProgressionLock { get; private set; }
-        public static bool ConfigReduceSpawnsWhenYouShould { get; private set; }
         public static bool Screenshakes { get; private set; }
         public static bool TonsofScreenShakes { get; private set; }
         /// <summary>
@@ -802,64 +800,13 @@ namespace AQMod
             {
                 ItemOverlays.Finish();
             }
+
             CelesitalEightBall.ResetStatics();
 
-            var r = new ModRecipe(this);
-            r.AddIngredient(ItemID.Bottle);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
-            r.AddIngredient(ItemID.Cloud, 20);
-            r.SetResult(ItemID.CloudinaBottle);
-            r.AddRecipe();
-            r = new ModRecipe(this);
-            r.AddIngredient(ItemID.CloudinaBottle);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
-            r.AddIngredient(ItemID.SnowCloudBlock, 40);
-            r.SetResult(ItemID.BlizzardinaBottle);
-            r.AddRecipe();
-            r = new ModRecipe(this);
-            r.AddIngredient(ItemID.CloudinaBottle);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
-            r.AddIngredient(ItemID.SandBlock, 40);
-            r.SetResult(ItemID.SandstorminaBottle);
-            r.AddRecipe();
-
-            r = new ModRecipe(this);
-            r.AddIngredient(ItemID.HermesBoots);
-            r.AddIngredient(ItemID.WaterWalkingPotion);
-            r.AddIngredient(ModContent.ItemType<AquaticEnergy>(), 3);
-            r.AddIngredient(ModContent.ItemType<CrabShell>(), 10);
-            r.AddTile(TileID.WorkBenches);
-            r.SetResult(ItemID.WaterWalkingBoots);
-            r.AddRecipe();
-
-            r = new ModRecipe(this);
-            r.AddIngredient(ItemID.GreenThread);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
-            r.AddTile(TileID.WorkBenches);
-            r.SetResult(ItemID.HermesBoots);
-            r.AddRecipe();
-
-            foreach (var u in DemonSiege._upgrades)
-            {
-                DowngradeSiegeWeaponRecipe(u);
-            }
+            AQRecipes.AddRecipes(this);
 
             FargosQOLStuff.Setup(this);
             AQItem.Sets.Clones.Setup();
-        }
-
-        /// <summary>
-        /// Automatically creates and registers a recipe used to downgrade a Demon Siege weapon back into its original item <para>TODO: Make the recipe keep the reforge of the item when you craft the downgrade</para>
-        /// </summary>
-        /// <param name="u"></param>
-        private void DowngradeSiegeWeaponRecipe(DemonSiegeUpgrade u)
-        {
-            var r = new ModRecipe(this);
-            r.AddIngredient(u.rewardItem);
-            r.AddIngredient(ModContent.ItemType<DemonicEnergy>());
-            r.AddTile(TileID.DemonAltar);
-            r.SetResult(u.baseItem);
-            r.AddRecipe();
         }
 
         public override void Unload()
@@ -1239,9 +1186,7 @@ namespace AQMod
 
         public static void ApplyServerConfig(AQConfigServer serverConfig)
         {
-            HarderOmegaStarite = serverConfig.harderOmegaStarite;
             EvilProgressionLock = serverConfig.evilProgressionLock;
-            ConfigReduceSpawnsWhenYouShould = serverConfig.reduceSpawns;
         }
 
         internal static void BroadcastMessage(string key, Color color)
@@ -1297,7 +1242,7 @@ namespace AQMod
 
         public static bool ShouldRemoveSpawns()
         {
-            return ConfigReduceSpawnsWhenYouShould && reduceSpawnrates();
+            return ModContent.GetInstance<AQConfigServer>().reduceSpawns && reduceSpawnrates();
         }
 
         public static int MultIntensity(int input)

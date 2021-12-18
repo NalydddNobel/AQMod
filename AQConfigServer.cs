@@ -14,6 +14,14 @@ namespace AQMod
 
         public static AQConfigServer Instance => ModContent.GetInstance<AQConfigServer>();
 
+        [Header("$" + AQText.Key + "ServerConfig.Header.QualityOfLife")]
+
+        [Label("$" + AQText.Key + "ServerConfig.DemonSiegeDowngrades")]
+        [Tooltip("$" + AQText.Key + "ServerConfig.DemonSiegeDowngradesTooltip")]
+        [DefaultValue(false)]
+        [ReloadRequired()]
+        public bool demonSiegeDowngrades;
+
         [Header(AQText.ConfigHeaderKey + "World")]
 
         [Label(AQText.ConfigValueKey + "HarderOmegaStarite")]

@@ -699,7 +699,7 @@ namespace AQMod.NPCs.Town
 
             if (Main.dayTime && Main.time * 4.0 > Main.dayLength * 3.0)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.SteelPlate.SteelPlatedChestplate>());
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.SteelPlatedChestplate>());
                 nextSlot++;
             }
 

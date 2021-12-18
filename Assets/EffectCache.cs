@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using AQMod.Effects.GoreNest;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
@@ -35,7 +37,9 @@ namespace AQMod.Assets
 
             s_Outline = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "OutlinePass");
             s_OutlineColor = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "OutlineColorPass");
-            s_GoreNestPortal = new MiscShaderData(new Ref<Effect>(GoreNestPortal), "DemonicPortalPass");
+            s_GoreNestPortal = new GoreNestShaderData(new Ref<Effect>(GoreNestPortal), "DemonicPortalPass")
+                .UseColor(new Vector3(5f, 0f, 0f)).UseSecondaryColor(new Vector3(4f, 0, 2f))
+                .UseSaturation(1f).UseOpacity(1f);
             s_Spotlight = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "SpotlightPass");
             s_FadeYProgressAlpha = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "FadeYProgressAlphaPass");
             s_SpikeFade = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "SpikeFadePass");

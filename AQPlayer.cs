@@ -274,56 +274,71 @@ namespace AQMod
                 var aQMod = AQMod.Instance;
                 var player = info.drawPlayer;
                 var aQPlayer = player.GetModPlayer<AQPlayer>();
-                if (Main.myPlayer == info.drawPlayer.whoAmI && ShouldDrawOldPos(info.drawPlayer) && info.shadow == 0f)
+                if (Main.myPlayer == info.drawPlayer.whoAmI && info.shadow == 0f)
                 {
-                    if (oldPosVisual != null && oldPosVisual.Length >= oldPosLength)
+                    bool updateOldPos = true;
+                    if (ShouldDrawOldPos(info.drawPlayer))
                     {
-                        if (arachnotronHeadTrail)
+                        if (oldPosVisual != null && oldPosVisual.Length >= oldPosLength)
                         {
-                            if (info.shadow == 0f)
+                            if (arachnotronHeadTrail)
                             {
-                                var headOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 10f) + info.drawPlayer.headPosition + info.headOrigin;
-                                var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
-                                var drawDiff = info.position - info.drawPlayer.position;
-                                var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronVisor>("_HeadGlow"));
-                                int count = aQPlayer.GetOldPosCountMaxed(ARACHNOTRON_OLD_POS_LENGTH);
-                                var clrMult = 1f / count;
-                                for (int i = 0; i < count; i++)
+                                if (info.shadow == 0f)
                                 {
-                                    float colorMult = 0.5f * (1f - (float)Math.Sin(Main.GlobalTime * 8f - i * 0.314f) * 0.2f);
-                                    var drawData = new DrawData(texture, new Vector2((int)(oldPosVisual[i].X - Main.screenPosition.X), (int)(oldPosVisual[i].Y - Main.screenPosition.Y)) + drawDiff + headOff, info.drawPlayer.bodyFrame, clr * (clrMult * (count - i)) * colorMult, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.headArmorShader };
-                                    Main.playerDrawData.Add(drawData);
+                                    var headOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 10f) + info.drawPlayer.headPosition + info.headOrigin;
+                                    var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
+                                    var drawDiff = info.position - info.drawPlayer.position;
+                                    var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronVisor>("_HeadGlow"));
+                                    int count = aQPlayer.GetOldPosCountMaxed(ARACHNOTRON_OLD_POS_LENGTH);
+                                    var clrMult = 1f / count;
+                                    for (int i = 0; i < count; i++)
+                                    {
+                                        float colorMult = 0.5f * (1f - (float)Math.Sin(Main.GlobalTime * 8f - i * 0.314f) * 0.2f);
+                                        var drawData = new DrawData(texture, new Vector2((int)(oldPosVisual[i].X - Main.screenPosition.X), (int)(oldPosVisual[i].Y - Main.screenPosition.Y)) + drawDiff + headOff, info.drawPlayer.bodyFrame, clr * (clrMult * (count - i)) * colorMult, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.headArmorShader };
+                                        Main.playerDrawData.Add(drawData);
+                                    }
                                 }
                             }
-                        }
-                        if (arachnotronBodyTrail)
-                        {
-                            var bodyOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 4f) + info.drawPlayer.bodyPosition + new Vector2(info.drawPlayer.bodyFrame.Width / 2, info.drawPlayer.bodyFrame.Height / 2);
-                            var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
-                            var drawDiff = info.position - info.drawPlayer.position;
-                            var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronRibcage>("_BodyGlow"));
-                            int count = aQPlayer.GetOldPosCountMaxed(ARACHNOTRON_OLD_POS_LENGTH);
-                            if (info.shadow == 0f)
+                            if (arachnotronBodyTrail)
                             {
-                                var clrMult = 1f / count;
-                                for (int i = 0; i < count; i++)
+                                var bodyOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 4f) + info.drawPlayer.bodyPosition + new Vector2(info.drawPlayer.bodyFrame.Width / 2, info.drawPlayer.bodyFrame.Height / 2);
+                                var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
+                                var drawDiff = info.position - info.drawPlayer.position;
+                                var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronRibcage>("_BodyGlow"));
+                                int count = aQPlayer.GetOldPosCountMaxed(ARACHNOTRON_OLD_POS_LENGTH);
+                                if (info.shadow == 0f)
                                 {
-                                    float colorMult = 0.5f * (1f - (float)Math.Sin(Main.GlobalTime * 8f - i * 0.314f) * 0.2f);
-                                    var drawData = new DrawData(texture, new Vector2((int)(oldPosVisual[i].X - Main.screenPosition.X), (int)(oldPosVisual[i].Y - Main.screenPosition.Y)) + drawDiff + bodyOff, info.drawPlayer.bodyFrame, clr * (clrMult * (count - i)) * colorMult, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.bodyArmorShader };
-                                    Main.playerDrawData.Add(drawData);
+                                    var clrMult = 1f / count;
+                                    for (int i = 0; i < count; i++)
+                                    {
+                                        float colorMult = 0.5f * (1f - (float)Math.Sin(Main.GlobalTime * 8f - i * 0.314f) * 0.2f);
+                                        var drawData = new DrawData(texture, new Vector2((int)(oldPosVisual[i].X - Main.screenPosition.X), (int)(oldPosVisual[i].Y - Main.screenPosition.Y)) + drawDiff + bodyOff, info.drawPlayer.bodyFrame, clr * (clrMult * (count - i)) * colorMult, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.bodyArmorShader };
+                                        Main.playerDrawData.Add(drawData);
+                                    }
                                 }
                             }
                         }
                     }
-                    if (AQMod.GameWorldActive && oldPosLength > 0)
+                    else
                     {
-                        if (oldPosVisual == null || oldPosVisual.Length != oldPosLength)
-                            oldPosVisual = new Vector2[oldPosLength];
-                        for (int i = oldPosLength - 1; i > 0; i--)
+                        updateOldPos = false;
+                    }
+                    if (updateOldPos)
+                    {
+                        if (AQMod.GameWorldActive && oldPosLength > 0)
                         {
-                            oldPosVisual[i] = oldPosVisual[i - 1];
+                            if (oldPosVisual == null || oldPosVisual.Length != oldPosLength)
+                                oldPosVisual = new Vector2[oldPosLength];
+                            for (int i = oldPosLength - 1; i > 0; i--)
+                            {
+                                oldPosVisual[i] = oldPosVisual[i - 1];
+                            }
+                            oldPosVisual[0] = player.position;
                         }
-                        oldPosVisual[0] = player.position;
+                    }
+                    else
+                    {
+                        oldPosVisual = null;
                     }
                 }
 

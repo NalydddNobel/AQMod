@@ -235,7 +235,7 @@ namespace AQMod.NPCs.Boss.Starite
 
         public bool HardVersion()
         {
-            return AQMod.HarderOmegaStarite || GlimmerEvent.IsActive;
+            return ModContent.GetInstance<AQConfigServer>().harderOmegaStarite || GlimmerEvent.IsActive;
         }
 
         public void Init()

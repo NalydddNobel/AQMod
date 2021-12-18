@@ -146,8 +146,6 @@ namespace AQMod.Items.Potions
             SetupPotionStats();
         }
 
-        private static readonly bool _usePotionBuffTexture = true;
-
         public override bool UseItem(Player player)
         {
             if (Main.netMode != NetmodeID.Server)
@@ -188,30 +186,16 @@ namespace AQMod.Items.Potions
                 var texture = TextureGrabber.GetItem(item.type);
                 Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, scale, SpriteEffects.None, 0f);
 
-                if (Main.keyState.IsKeyDown(Keys.LeftShift) || _usePotionBuffTexture && potion.BuffID < 0 || !_usePotionBuffTexture && potion.potionItemID <= 0 || ItemID.Sets.Deprecated[potion.potionItemID])
+                if (potion.BuffID < 0)
                     return;
                 Texture2D potionTexture;
-                if (_usePotionBuffTexture)
+                try
                 {
-                    try
-                    {
-                        potionTexture = TextureGrabber.GetBuff(potion.BuffID);
-                    }
-                    catch
-                    {
-                        potionTexture = TextureGrabber.GetBuff(BuffID.ObsidianSkin);
-                    }
+                    potionTexture = TextureGrabber.GetBuff(potion.BuffID);
                 }
-                else
+                catch
                 {
-                    try
-                    {
-                        potionTexture = TextureGrabber.GetItem(potion.potionItemID);
-                    }
-                    catch
-                    {
-                        potionTexture = TextureGrabber.GetItem(ItemID.ObsidianSkinPotion);
-                    }
+                    potionTexture = TextureGrabber.GetBuff(BuffID.ObsidianSkin);
                 }
                 float iconScale = 0.6f * scale;
                 Vector2 drawPos = position + frame.Size() / 2f * scale + new Vector2((40f - potionTexture.Width) * iconScale * Main.inventoryScale + 4f, (40f - potionTexture.Height) * iconScale * Main.inventoryScale + 4f);

@@ -232,6 +232,12 @@ ClientConfig.TonsofScreenShakes=Extra Unnecessary Screenshakes
 ClientConfig.OverrideVanillaChestLoot=Overwrite Vanilla Chest Loot
 ClientConfig.OverrideVanillaChestLootTooltip=Whether or not special Aequus items will overwrite vanilla items in chests\nIf this is disabled, Aequus loot will generate with vanilla loot intact
 
+# Server Config
+
+ServerConfig.Header.QualityOfLife=Quality of Life
+ServerConfig.DemonSiegeDowngrades=Demon Siege Downgrades
+ServerConfig.DemonSiegeDowngradesTooltip=Adds recipes for downgrading weapons upgraded at the Demon Siege.
+
 # NPCs
 
 NPCName.StreamingBalloon=Streaming Balloon
