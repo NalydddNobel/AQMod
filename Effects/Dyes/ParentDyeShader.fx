@@ -312,7 +312,7 @@ float4 ShieldBeams(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COL
 {
     float4 color = tex2D(uImage0, coords);
     float3 MERGEColor = uColor;
-    float intensity = ((sin((color.r * color.g * color.b) * 100 + uTime * uOpacity + coords.x * 10 * uDirection) + 1) / 2) * uOpacity;
+    float intensity = ((sin((color.r * color.g * color.b) * 100 + uTime * uOpacity + coords.x * 10 * uDirection) + 1) / 2) * uSaturation;
     float4 mergeColor = float4(MERGEColor.r * color.a, MERGEColor.g * color.a, MERGEColor.b * color.a, color.a);
     if (color.r < uLightSource.r * color.a)
     {
