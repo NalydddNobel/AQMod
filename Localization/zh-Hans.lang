@@ -50,6 +50,9 @@ ItemName.SteelPlatedChestplate=钢板胸甲
 
 ItemName.Fluorescence=荧光
 
+ItemName.JellyManaCrystal=凝胶法力晶体
+ItemName.HeartPiece=心之碎片
+
 # Weapons
 
 ItemName.Vrang=随流温刃
