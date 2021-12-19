@@ -8,7 +8,6 @@ namespace AQMod.Assets.Cursors
     public struct CursorTextureArray : ITextureComponent
     {
         private readonly string _path;
-        private static readonly bool _debug = false;
 
         private readonly Ref<Texture2D>[] _textures;
         private readonly bool[] _loaded;
@@ -34,15 +33,15 @@ namespace AQMod.Assets.Cursors
             _loaded = new bool[length];
             _loadedProperly = new bool[length];
             _textures = new Ref<Texture2D>[length];
-            if (_debug)
-            {
-                LoadValue(null);
-            }
         }
 
-        private string getPath(object context)
+        private string getPath(int id)
         {
-            return _path + context.ToString();
+            if (id == -1)
+            {
+                return _path + "_Reroll";
+            }
+            return _path + id.ToString();
         }
 
         public void LoadValue(object context)

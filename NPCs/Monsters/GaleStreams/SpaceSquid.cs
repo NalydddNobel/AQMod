@@ -261,21 +261,22 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             npc.netUpdate = true;
                         }
                         npc.ai[3]++;
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 4f, 0.006f);
-                        int timer = (int)(npc.ai[2] - 60) % 5;
+                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 10f, 0.006f);
+                        int timeBetweenShots = 3 + npc.life / (npc.lifeMax / 3);
+                        int timer = (int)(npc.ai[2] - 60) % timeBetweenShots;
                         if (timer == 0)
                         {
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 var velocity = new Vector2(10f, 0f).RotatedBy(npc.ai[3] * 0.12f);
-                                Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidSnowflake>(), 20, 1f, Main.myPlayer);
+                                Projectile.NewProjectile(npc.Center + velocity * 4f, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidSnowflake>(), 20, 1f, Main.myPlayer);
                             }
                             if (Main.netMode != NetmodeID.Server)
                             {
                                 AQSound.Play(SoundType.Item, "Sounds/Item/Combo", npc.Center);
                             }
                         }
-                        if (npc.ai[2] > 180f)
+                        if (npc.ai[2] > 180f + (6 - timeBetweenShots) * 40f)
                         {
                             npc.ai[2] = 0f;
                             npc.ai[3] = 0f;
@@ -457,7 +458,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         {
                             npc.frameCounter = 0.0d;
                             frameIndex++;
-                            if (frameIndex > 19)
+                            if (frameIndex > 23)
                             {
                                 frameIndex = 24;
                                 npc.spriteDirection = npc.direction;
@@ -471,15 +472,11 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             frameIndex = 24;
                         }
                         npc.frameCounter += 1.0d;
-                        if (frameIndex == 28)
-                        {
-                            frameIndex++;
-                        }
                         if (npc.frameCounter > 4.0d)
                         {
                             npc.frameCounter = 0.0d;
                             frameIndex++;
-                            if (frameIndex > 29)
+                            if (frameIndex > 28)
                             {
                                 frameIndex = 25;
                             }
@@ -540,7 +537,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 var auraTexture = this.GetTextureobj("_Aura");
                 for (int i = 0; i < 8; i++)
                 {
-                    Main.spriteBatch.Draw(auraTexture, drawPosition - Main.screenPosition + new Vector2(aura, 0f).RotatedBy(MathHelper.PiOver4 * i), npc.frame, new Color(255, 255, 255, 20), npc.rotation, origin, scale, effects, 0f);
+                    Main.spriteBatch.Draw(auraTexture, drawPosition - Main.screenPosition + new Vector2(aura, 0f).RotatedBy(MathHelper.PiOver4 * i), npc.frame, new Color(120, 120, 120, 20), npc.rotation, origin, scale, effects, 0f);
                 }
             }
 

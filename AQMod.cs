@@ -24,8 +24,6 @@ using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items.Materials;
-using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Items.Vanities;
 using AQMod.Localization;
@@ -42,6 +40,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Terraria;
+using Terraria.GameInput;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.Localization;
@@ -166,6 +165,8 @@ namespace AQMod
 
         private static Vector2 _lastScreenZoom;
         private static Vector2 _lastScreenView;
+
+        public static bool RerollCursor;
 
         internal static class Debug
         {
@@ -315,6 +316,7 @@ namespace AQMod
 
             internal static void Load()
             {
+                On.Terraria.UI.ItemSlot.OverrideHover += ItemSlot_OverrideHover;
                 On.Terraria.Item.UpdateItem += Item_UpdateItem;
                 On.Terraria.NetMessage.BroadcastChatMessage += NetMessage_BroadcastChatMessage;
                 On.Terraria.GameContent.Achievements.AchievementsHelper.NotifyProgressionEvent += AchievementsHelper_NotifyProgressionEvent;
@@ -328,11 +330,133 @@ namespace AQMod
                 On.Terraria.Main.NewText_string_byte_byte_byte_bool += Main_NewText_string_byte_byte_byte_bool;
                 On.Terraria.Main.DrawTiles += Main_DrawTiles;
                 On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
+                On.Terraria.Main.CursorColor += Main_CursorColor;
+                On.Terraria.Main.DrawCursor += Main_DrawCursor;
+                On.Terraria.Main.DrawThickCursor += Main_DrawThickCursor;
+                On.Terraria.Main.DrawInterface_36_Cursor += Main_DrawInterface_36_Cursor;
                 On.Terraria.Player.FishingLevel += GetFishingLevel;
                 On.Terraria.Player.AddBuff += Player_AddBuff;
                 On.Terraria.Player.QuickBuff += Player_QuickBuff;
                 On.Terraria.Player.PickTile += Player_PickTile;
                 On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
+            }
+
+            internal static Color _oldCursorColor;
+            internal static Color _newCursorColor;
+            public static bool OverrideColor { get; internal set; }
+
+            internal static bool ShouldApplyCustomCursor()
+            {
+                return !AQMod.Loading && !Main.gameMenu && Main.myPlayer >= 0 && Main.LocalPlayer.active;
+            }
+
+            // ON edits
+            private static Vector2 Main_DrawThickCursor(On.Terraria.Main.orig_DrawThickCursor orig, bool smart)
+            {
+                if (ShouldApplyCustomCursor())
+                {
+                    var type = Main.LocalPlayer.GetModPlayer<AQPlayer>().CursorDyeID;
+                    if (type != CursorDyeLoader.ID.None)
+                    {
+                        var value = AQMod.CursorDyes.GetContent(type).DrawThickCursor(smart);
+                        if (value != null)
+                            return value.Value;
+                    }
+                }
+                return orig(smart);
+            }
+
+            private static void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Vector2 bonus, bool smart)
+            {
+                if (ShouldApplyCustomCursor() && !PlayerInput.UsingGamepad)
+                {
+                    var player = Main.LocalPlayer;
+                    var drawingPlayer = player.GetModPlayer<AQPlayer>();
+                    if (drawingPlayer.CursorDyeID != CursorDyeLoader.ID.None)
+                    {
+                        var cursorDye = CursorDyes.GetContent(drawingPlayer.CursorDyeID);
+                        if (!cursorDye.PreDrawCursor(player, drawingPlayer, bonus, smart))
+                            orig(bonus, smart);
+                        cursorDye.PostDrawCursor(player, drawingPlayer, bonus, smart);
+                    }
+                    else
+                    {
+                        orig(bonus, smart);
+                    }
+                }
+                else
+                {
+                    orig(bonus, smart);
+                }
+            }
+
+            private static void Main_DrawInterface_36_Cursor(On.Terraria.Main.orig_DrawInterface_36_Cursor orig)
+            {
+                if (ShouldApplyCustomCursor())
+                {
+                    var player = Main.LocalPlayer;
+                    var aQPlayer = player.GetModPlayer<AQPlayer>();
+                    if (aQPlayer.CursorDyeID != CursorDyeLoader.ID.None)
+                    {
+                        var cursorDye = CursorDyes.GetContent(aQPlayer.CursorDyeID);
+                        if (!cursorDye.PreDrawCursorOverrides(player, aQPlayer))
+                        {
+                            if (RerollCursor)
+                            {
+                                Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Cursors/Cursor_Reroll"), new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), Main.cursorScale, SpriteEffects.None, 0f);
+                            }
+                            else
+                            {
+                                orig();
+                            }
+                        }
+                        cursorDye.PostDrawCursorOverrides(player, aQPlayer);
+                    }
+                    else
+                    {
+                        if (RerollCursor)
+                        {
+                            Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Cursors/Cursor_Reroll"), new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), Main.cursorScale, SpriteEffects.None, 0f);
+                        }
+                        else
+                        {
+                            orig();
+                        }
+                    }
+                }
+                else
+                {
+                    orig();
+                }
+                RerollCursor = false;
+            }
+
+            private static void Main_CursorColor(On.Terraria.Main.orig_CursorColor orig)
+            {
+                if (ShouldApplyCustomCursor() && OverrideColor)
+                {
+                    _oldCursorColor = Main.mouseColor;
+                    Main.mouseColor = _newCursorColor;
+                    orig();
+                    Main.mouseColor = _oldCursorColor;
+                    _newCursorColor = Main.mouseColor;
+                }
+                else
+                {
+                    orig();
+                }
+            }
+
+            private static void ItemSlot_OverrideHover(On.Terraria.UI.ItemSlot.orig_OverrideHover orig, Item[] inv, int context, int slot)
+            {
+                if (inv[slot].type > Main.maxItemTypes && inv[slot].stack > 0 && inv[slot].modItem is Items.IInventoryHover hover)
+                {
+                    if (hover.CursorHover(inv, context, slot))
+                    {
+                        return;
+                    }
+                }
+                orig(inv, context, slot);
             }
 
             private static void Item_UpdateItem(On.Terraria.Item.orig_UpdateItem orig, Item self, int i)
@@ -991,7 +1115,14 @@ namespace AQMod
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            CursorDyeLoader.UpdateColor();
+            Edits.OverrideColor = false;
+            var player = Main.LocalPlayer;
+            var drawingPlayer = player.GetModPlayer<AQPlayer>();
+            if (drawingPlayer.CursorDyeID != CursorDyeLoader.ID.None)
+            {
+                var cursorDye = CursorDyes.GetContent(drawingPlayer.CursorDyeID);
+                Edits.OverrideColor = cursorDye.ApplyColor(player, drawingPlayer, out Edits._newCursorColor);
+            }
             var index = layers.FindIndex((l) => l.Name.Equals("Vanilla: Invasion Progress Bars"));
             if (index != -1)
             {
@@ -1056,7 +1187,7 @@ namespace AQMod
                     if (Debug.LogNetcode)
                     {
                         var l = Debug.GetDebugLogger();
-                        l.Log("Updating celeste torus positions for: (" + player.name +")");
+                        l.Log("Updating celeste torus positions for: (" + player.name + ")");
                         l.Log("x: " + aQPlayer.celesteTorusX);
                         l.Log("y: " + aQPlayer.celesteTorusY);
                         l.Log("z: " + aQPlayer.celesteTorusZ);

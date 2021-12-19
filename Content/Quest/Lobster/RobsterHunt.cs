@@ -83,7 +83,7 @@ namespace AQMod.Content.Quest.Lobster
 
         public void RegularQuestCompleteChat()
         {
-            Main.npcChatText = AQText.ModText("Common.RobsterRandomHuntComplete" + Main.rand.Next(6)).Value;
+            Main.npcChatText = AQText.ModText("Common.RobsterRandomHuntComplete" + Main.rand.Next(5)).Value;
         }
 
         public void RegularQuestRewards(Player player)

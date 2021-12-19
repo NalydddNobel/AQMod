@@ -1,6 +1,6 @@
 ﻿namespace AQMod.Content.CursorDyes
 {
-    public enum CursorType : byte
+    public enum CursorType : int
     {
         Cursor = 0,
         SmartCursor = 1,
@@ -15,6 +15,7 @@
         SellItemCursor = 10,
         CursorOutline = 11,
         SmartCursorOutline = 12,
-        Count // gamepad cursors are not in this because gamepad support is... non-existent                           
+        Reroll = 13,
+        Count // gamepad cursors are not in this because gamepad support is... non-existent
     }
 }

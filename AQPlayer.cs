@@ -588,6 +588,8 @@ namespace AQMod
         public bool cosmicanon;
         public bool antiGravityItems;
         public bool equivalenceMachine;
+        public bool hasReroller;
+        public bool rerollerHover;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
