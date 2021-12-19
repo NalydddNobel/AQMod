@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.IO;
 using AQMod.Content.WorldEvents.GaleStreams;
-using AQMod.NPCs.Town;
+using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

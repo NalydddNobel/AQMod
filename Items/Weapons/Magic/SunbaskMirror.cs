@@ -38,8 +38,7 @@ namespace AQMod.Items.Weapons.Magic
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.MeteoriteBar, 20);
             r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>(), 5);
-            r.AddIngredient(ModContent.ItemType<Materials.Energies.DemonicEnergy>(), 2);
-            r.AddIngredient(ModContent.ItemType<Materials.Fluorescence>(), 2);
+            r.AddIngredient(ModContent.ItemType<Materials.Fluorescence>(), 12);
             r.AddIngredient(ItemID.SoulofFlight, 12);
             r.AddTile(TileID.MythrilAnvil);
             r.SetResult(this);

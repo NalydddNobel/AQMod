@@ -15,7 +15,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace AQMod.NPCs.Town
+namespace AQMod.NPCs.Friendly
 {
     [AutoloadHead()]
     public class BalloonMerchant : ModNPC
@@ -60,9 +60,7 @@ namespace AQMod.NPCs.Town
             var player = Main.LocalPlayer;
 
             if (!BalloonMerchantManager.MerchantSetup)
-            {
                 BalloonMerchantManager.SetupMerchant();
-            }
 
             if (!Main.dayTime)
             {
@@ -655,16 +653,14 @@ namespace AQMod.NPCs.Town
                     nextSlot++;
                 }
             }
-            
+
             if (!BalloonMerchantManager.SettingUpShopStealing && NPC.CountNPCS(npc.type) == 1 && BalloonMerchantManager.MerchantStealSeed != -1)
             {
                 var value = StealShop((BalloonMerchantManager.MerchantStealSeed * 6969).Abs(), npc.whoAmI);
                 if (value != null)
                 {
                     if (value.shopCustomPrice != null)
-                    {
                         value.shopCustomPrice = (int)(value.shopCustomPrice.Value * 0.5f);
-                    }
                     else
                     {
                         value.value = (int)(value.value * 0.5f);
@@ -677,9 +673,7 @@ namespace AQMod.NPCs.Town
                 if (value != null)
                 {
                     if (value.shopCustomPrice != null)
-                    {
                         value.shopCustomPrice = (int)(value.shopCustomPrice.Value * 0.75f);
-                    }
                     else
                     {
                         value.value = (int)(value.value * 0.75f);
@@ -723,7 +717,7 @@ namespace AQMod.NPCs.Town
 
         private static Item StealShop(int seed, int whoAmI, int npc = -1)
         {
-            List<Chest> potentialShops = new List<Chest>();
+            var potentialShops = new List<Chest>();
             if (npc == -1)
                 npc = ModContent.NPCType<BalloonMerchant>();
             BalloonMerchantManager.SettingUpShopStealing = true;
@@ -738,9 +732,7 @@ namespace AQMod.NPCs.Town
                             var tempShop = new Chest();
                             tempShop.SetupShop(Main.npc[i].type);
                             if (tempShop.item[0].type == ItemID.None)
-                            {
                                 continue;
-                            }
                             potentialShops.Add(tempShop);
                         }
                         catch
@@ -758,9 +750,7 @@ namespace AQMod.NPCs.Town
                                 var tempShop = new Chest();
                                 tempShop.SetupShop(shopID);
                                 if (tempShop.item[0].type == ItemID.None)
-                                {
                                     continue;
-                                }
                                 potentialShops.Add(tempShop);
                             }
                             catch
@@ -775,9 +765,7 @@ namespace AQMod.NPCs.Town
             var shopStealRand = new UnifiedRandom(seed);
             Chest stealShop = null;
             if (potentialShops.Count > 1)
-            {
                 stealShop = potentialShops[shopStealRand.Next(potentialShops.Count)];
-            }
             else if (potentialShops.Count == 1)
             {
                 stealShop = potentialShops[0];
@@ -788,9 +776,7 @@ namespace AQMod.NPCs.Town
                 for (int i = 0; i < Chest.maxItems; i++)
                 {
                     if (stealShop.item[i].type > ItemID.None && stealShop.item[i].stack > 0 && stealShop.item[i].shopSpecialCurrency == CustomCurrencyID.None)
-                    {
                         potentialItems.Add(stealShop.item[i]);
-                    }
                 }
                 return potentialItems[shopStealRand.Next(potentialItems.Count)].Clone();
             }
@@ -873,24 +859,18 @@ namespace AQMod.NPCs.Town
         public override string GetChat()
         {
             if (!GaleStreams.IsActive)
-            {
                 return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Leaving." + Main.rand.Next(3));
-            }
             if (!WorldDefeats.HunterIntroduction)
             {
                 WorldDefeats.HunterIntroduction = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                {
                     NetMessage.SendData(MessageID.WorldData, Main.myPlayer);
-                }
                 return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Introduction", npc.GivenName);
             }
             var potentialText = new List<string>();
             var player = Main.LocalPlayer;
             if (player.ZoneHoly)
-            {
                 potentialText.Add("BalloonMerchant.Chat.Hallow");
-            }
             else if (player.ZoneCorrupt)
             {
                 return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Corruption");
@@ -915,9 +895,7 @@ namespace AQMod.NPCs.Town
             }
 
             if (GaleStreams.MeteorTime())
-            {
                 potentialText.Add("BalloonMerchant.Chat.MeteorTime");
-            }
 
             string chosenText = potentialText[Main.rand.Next(potentialText.Count)];
             string text = Language.GetTextValue("Mods.AQMod." + chosenText);
@@ -944,9 +922,7 @@ namespace AQMod.NPCs.Town
             if (npc.life < 80 && !npc.dontTakeDamage)
             {
                 if (npc.aiStyle == 7)
-                {
                     npc.aiStyle = -4;
-                }
                 else
                 {
                     npc.aiStyle = -3;
@@ -966,9 +942,7 @@ namespace AQMod.NPCs.Town
                     npc.spriteDirection = npc.direction;
                 }
                 if (Main.netMode != NetmodeID.Server)
-                {
                     AQSound.Play(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
-                }
             }
             if (npc.aiStyle == -4)
             {
@@ -1029,23 +1003,19 @@ namespace AQMod.NPCs.Town
                 return;
             }
             if (npc.position.X <= 240f || npc.position.X + npc.width > Main.maxTilesX * 16f - 240f
-                || (npc.aiStyle == 7 && offscreen && Main.rand.NextBool(1500)))
+                || npc.aiStyle == 7 && offscreen && Main.rand.NextBool(1500))
             {
                 BalloonMerchantManager.SpawnMerchant(npc.whoAmI);
                 return;
             }
 
             if (npc.aiStyle == -1)
-            {
                 SetToBalloon();
-            }
             if (npc.aiStyle == -2)
             {
                 npc.noGravity = true;
                 if (offscreen)
-                {
                     npc.noTileCollide = true;
-                }
                 else if (npc.noTileCollide && !Collision.SolidCollision(npc.position, npc.width, npc.height))
                 {
                     npc.noTileCollide = false;
@@ -1067,9 +1037,7 @@ namespace AQMod.NPCs.Town
                 else
                 {
                     if (npc.velocity.Y.Abs() > 3f)
-                    {
                         npc.velocity.Y *= 0.99f;
-                    }
                     else
                     {
                         npc.velocity.Y += Main.rand.NextFloat(-0.005f, 0.005f) + npc.velocity.Y * 0.0025f;
@@ -1123,16 +1091,12 @@ namespace AQMod.NPCs.Town
                         if (windSpeed < 0f)
                         {
                             if (npc.velocity.X > windSpeed)
-                            {
                                 npc.velocity.X -= 0.025f;
-                            }
                         }
                         else
                         {
                             if (npc.velocity.X < windSpeed)
-                            {
                                 npc.velocity.X += 0.025f;
-                            }
                         }
                     }
                     else
@@ -1165,9 +1129,7 @@ namespace AQMod.NPCs.Town
             npc.aiStyle = -2;
             npc.velocity = Vector2.Normalize(Main.MouseWorld - npc.Center);
             if (npc.velocity.X <= 0)
-            {
                 npc.spriteDirection = -1;
-            }
             else
             {
                 npc.spriteDirection = 1;
@@ -1211,9 +1173,7 @@ namespace AQMod.NPCs.Town
                 var frame = new Rectangle(0, texture.Height / 2 * ((int)(Main.GlobalTime * 10f) % 2), texture.Width, texture.Height / 2);
                 var effects = SpriteEffects.None;
                 if (npc.spriteDirection == 1)
-                {
                     effects = SpriteEffects.FlipHorizontally;
-                }
                 Main.spriteBatch.Draw(texture, npc.Center - Main.screenPosition, frame, drawColor, 0f, frame.Size() / 2f, 1f, effects, 0f);
                 return false;
             }
@@ -1230,9 +1190,7 @@ namespace AQMod.NPCs.Town
                         if (_oldSpriteDirection == -1)
                         {
                             if (_balloonFrame < 5 || _balloonFrame > 23)
-                            {
                                 _balloonFrame = 5;
-                            }
                             else
                             {
                                 _balloonFrame++;
@@ -1247,9 +1205,7 @@ namespace AQMod.NPCs.Town
                         {
                             _balloonFrame++;
                             if (_balloonFrame < 41)
-                            {
                                 _balloonFrame = 41;
-                            }
                             if (_balloonFrame > 59)
                             {
                                 _oldSpriteDirection = npc.spriteDirection;
@@ -1273,9 +1229,7 @@ namespace AQMod.NPCs.Town
                             _balloonFrameCounter = 0;
                             _balloonFrame++;
                             if (_balloonFrame > 40)
-                            {
                                 _balloonFrame = 37;
-                            }
                         }
                     }
                     else
@@ -1291,20 +1245,14 @@ namespace AQMod.NPCs.Town
                             _balloonFrameCounter = 0;
                             _balloonFrame++;
                             if (_balloonFrame > 4)
-                            {
                                 _balloonFrame = 1;
-                            }
                         }
                     }
                 }
                 if (frameX == -1)
-                {
                     frameX = _balloonFrame / 18;
-                }
                 if (_balloonColor == 0)
-                {
                     _balloonColor = Main.rand.Next(5) + 1;
-                }
                 var frame = new Rectangle(texture.Width / 4 * frameX, texture.Height / 18 * (_balloonFrame % 18), texture.Width / 4, texture.Height / 18);
                 Main.spriteBatch.Draw(texture, npc.Center - Main.screenPosition, frame, drawColor, 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
 
@@ -1366,31 +1314,23 @@ namespace AQMod.NPCs.Town
         {
             crit = false;
             if (damage > 79)
-            {
                 damage = 79;
-            }
         }
 
         public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             crit = false;
             if (damage > 79)
-            {
                 damage = 79;
-            }
         }
 
         public override bool CheckDead()
         {
             if (npc.aiStyle == -4 || npc.aiStyle == -3)
-            {
                 return true;
-            }
             npc.ai[0] = 0f;
             if (npc.aiStyle == 7)
-            {
                 npc.aiStyle = -4;
-            }
             else
             {
                 npc.aiStyle = -3;
@@ -1399,9 +1339,7 @@ namespace AQMod.NPCs.Town
             npc.noGravity = true;
             npc.life = npc.lifeMax;
             if (Main.netMode != NetmodeID.Server)
-            {
                 AQSound.Play(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
-            }
             if (npc.velocity.X <= 0)
             {
                 npc.direction = -1;

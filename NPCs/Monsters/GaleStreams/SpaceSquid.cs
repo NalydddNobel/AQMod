@@ -222,7 +222,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     if (npc.ai[1] > 20f)
                     {
                         npc.spriteDirection = npc.direction;
-                        AdvancePhase(Phase_ChangeDirection);
+                        AdvancePhase((int)npc.ai[2]);
                     }
                 }
                 break;
@@ -313,8 +313,9 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             }
             if (curPhase != Phase_ChangeDirection && npc.direction != npc.spriteDirection)
             {
-                npc.ai[0] = Phase_ChangeDirection;
                 npc.ai[1] = 0f;
+                npc.ai[2] = npc.ai[0];
+                npc.ai[0] = Phase_ChangeDirection;
                 frameIndex = 19;
                 return;
             }
@@ -506,7 +507,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             WorldDefeats.DownedSpaceSquid = true;
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(), Main.rand.Next(2) + 2);
             Item.NewItem(npc.getRect(), ItemID.SoulofFlight, Main.rand.Next(5) + 2);
-            //Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Fluorescence>(), Main.rand.Next(10) + 10 + (Main.expertMode ? Main.rand.Next(5) : 0));
+            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.SiphonTentacle>(), Main.rand.Next(10) + 10 + (Main.expertMode ? Main.rand.Next(5) : 0));
 
             if (Main.rand.NextBool(8))
             {

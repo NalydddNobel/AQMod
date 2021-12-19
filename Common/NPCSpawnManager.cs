@@ -2,9 +2,9 @@
 using AQMod.Content.WorldEvents.GaleStreams;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Content.WorldEvents.ProgressBars;
+using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.GaleStreams;
-using AQMod.NPCs.Town;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

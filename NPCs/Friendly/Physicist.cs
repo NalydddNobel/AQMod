@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Town
+namespace AQMod.NPCs.Friendly
 {
     [AutoloadHead()]
     public class Physicist : ModNPC
@@ -112,9 +112,7 @@ namespace AQMod.NPCs.Town
             {
                 WorldDefeats.PhysicistIntroduction = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                {
                     NetMessage.SendData(MessageID.WorldData, Main.myPlayer);
-                }
                 return Language.GetTextValue("Mods.AQMod.Physicist.Chat.Introduction", npc.GivenName);
             }
             var potentialText = new List<string>();

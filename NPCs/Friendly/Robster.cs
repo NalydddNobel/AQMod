@@ -16,7 +16,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Town
+namespace AQMod.NPCs.Friendly
 {
     [AutoloadHead()]
     public class Robster : ModNPC
