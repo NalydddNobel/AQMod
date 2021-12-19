@@ -14,6 +14,7 @@ namespace AQMod.Common
         public static bool DownedCurrents;
 
         public static bool DownedRedSprite;
+        public static bool DownedSpaceSquid;
 
         public static bool DownedGlimmer;
         public static bool DownedCrabSeason;
@@ -39,6 +40,7 @@ namespace AQMod.Common
             DownedGaleStreams = false;
             DownedCurrents = false;
             DownedRedSprite = false;
+            DownedSpaceSquid = false;
 
             NoHitOmegaStarite = false;
 
@@ -59,6 +61,7 @@ namespace AQMod.Common
                 ["DownedGaleStreams"] = DownedGaleStreams,
                 ["DownedCurrents"] = DownedCurrents,
                 ["DownedRedSprite"] = DownedRedSprite,
+                ["DownedSpaceSquid"] = DownedSpaceSquid,
 
                 ["NoHitOmegaStarite"] = NoHitOmegaStarite,
 
@@ -81,6 +84,7 @@ namespace AQMod.Common
             DownedGaleStreams = tag.GetBool("DownedGaleStreams");
             DownedCurrents = tag.GetBool("DownedCurrents");
             DownedRedSprite = tag.GetBool("DownedRedSprite");
+            DownedRedSprite = tag.GetBool("DownedSpaceSquid");
 
             NoHitOmegaStarite = tag.GetBool("NoHitOmegaStarite");
 
@@ -106,6 +110,7 @@ namespace AQMod.Common
             writer.Write(ObtainedUltimateSword);
             writer.Write(ObtainedCatalystPainting);
             writer.Write(ObtainedMothmanMask);
+            writer.Write(DownedSpaceSquid);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -124,6 +129,8 @@ namespace AQMod.Common
             ObtainedUltimateSword = reader.ReadBoolean();
             ObtainedCatalystPainting = reader.ReadBoolean();
             ObtainedMothmanMask = reader.ReadBoolean();
+
+            DownedSpaceSquid = reader.ReadBoolean();
         }
     }
 }

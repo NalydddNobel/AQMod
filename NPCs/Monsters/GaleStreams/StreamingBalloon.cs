@@ -235,14 +235,17 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
             npc.rotation = npc.velocity.X * 0.01f;
 
-            Main.npc[(int)npc.ai[0]].velocity = npc.velocity;
-            Main.npc[(int)npc.ai[0]].position.X = npc.position.X + npc.width / 2f - Main.npc[(int)npc.ai[0]].width / 2f;
-            Main.npc[(int)npc.ai[0]].position.Y = npc.position.Y + 66 - Main.npc[(int)npc.ai[0]].height / 2;
-            Main.npc[(int)npc.ai[0]].position -= npc.velocity;
-            Main.npc[(int)npc.ai[0]].ai[0] = 0f;
-            Main.npc[(int)npc.ai[0]].hide = true;
-            Main.npc[(int)npc.ai[0]].noTileCollide = true;
-            Main.npc[(int)npc.ai[0]].knockBackResist = 0f;
+            if (npc.active)
+            {
+                Main.npc[(int)npc.ai[0]].velocity = npc.velocity;
+                Main.npc[(int)npc.ai[0]].position.X = npc.position.X + npc.width / 2f - Main.npc[(int)npc.ai[0]].width / 2f;
+                Main.npc[(int)npc.ai[0]].position.Y = npc.position.Y + 66 - Main.npc[(int)npc.ai[0]].height / 2;
+                Main.npc[(int)npc.ai[0]].position -= npc.velocity;
+                Main.npc[(int)npc.ai[0]].ai[0] = 0f;
+                Main.npc[(int)npc.ai[0]].hide = true;
+                Main.npc[(int)npc.ai[0]].noTileCollide = true;
+                Main.npc[(int)npc.ai[0]].knockBackResist = 0f;
+            }
             if (npc.ai[1] > 0f)
             {
                 Main.npc[(int)npc.ai[0]].ai[1] = npc.ai[1];

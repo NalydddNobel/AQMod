@@ -7,6 +7,7 @@
         WindParticle = 2,
         Sparkle = 3,
         BrightSparkle = 4,
+        SpaceSquidSnowflake = 5,
         Count
     }
 }

@@ -32,7 +32,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         {
             npc.width = 74;
             npc.height = 50;
-            npc.lifeMax = 2750;
+            npc.lifeMax = 3250;
             npc.damage = 45;
             npc.defense = 15;
             npc.knockBackResist = 0f;
@@ -40,7 +40,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             npc.DeathSound = SoundID.NPCDeath33;
             npc.aiStyle = -1;
             npc.noGravity = true;
-            npc.value = Item.buyPrice(silver: 30);
+            npc.value = Item.buyPrice(gold: 2);
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.buffImmune[BuffID.Ichor] = true;
