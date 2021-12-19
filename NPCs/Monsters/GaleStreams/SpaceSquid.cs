@@ -124,6 +124,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public const int Phase_Goodbye = -1;
         public const int Phase_SpaceGun = 1;
         public const int Phase_ChangeDirection = 2;
+        public const int Phase_SnowflakeSpiral = 3;
 
         public override void AI()
         {
@@ -195,19 +196,19 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                 var velocity = new Vector2(20f * npc.direction, 0f);
                                 if (Main.netMode != NetmodeID.MultiplayerClient)
                                 {
-                                    Projectile.NewProjectile(spawnPosition, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 50, 1f, Main.myPlayer);
-                                    Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 50, 1f, Main.myPlayer);
-                                    Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(-MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 50, 1f, Main.myPlayer);
+                                    Projectile.NewProjectile(spawnPosition, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 30, 1f, Main.myPlayer);
+                                    Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
+                                    Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(-MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
                                 }
                             }
                         }
                         npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 4f, 0.001f);
-                        npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 20f - center.Y) / 4f, 0.01f);
+                        npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 4f, 0.01f);
                     }
                     else
                     {
                         npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 4f, 0.05f);
-                        npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 20f - center.Y) / 4f, 0.1f);
+                        npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 4f, 0.1f);
                     }
                     npc.ai[1]++;
                     npc.rotation = npc.velocity.X * 0.01f;
@@ -222,6 +223,56 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     {
                         npc.spriteDirection = npc.direction;
                         AdvancePhase(Phase_ChangeDirection);
+                    }
+                }
+                break;
+
+                case Phase_SnowflakeSpiral:
+                {
+                    var gotoPosition = new Vector2(125f * -npc.direction, 0f).RotatedBy(npc.ai[1] * 0.08f);
+                    gotoPosition = Main.player[npc.target].Center + new Vector2(gotoPosition.X * 2f, gotoPosition.Y);
+                    if ((int)npc.ai[1] == 0)
+                    {
+                        npc.ai[1] = Main.rand.NextFloat(MathHelper.Pi * 12.56f);
+                    }
+                    npc.ai[2]++;
+                    if (npc.ai[2] > 120f)
+                    {
+                        npc.ai[1] += 0.2f;
+                        if ((int)npc.ai[3] == 0)
+                        {
+                            npc.ai[3] = Main.rand.NextFloat(MathHelper.Pi * 6f);
+                        }
+                        npc.ai[3]++;
+                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 4f, 0.1f);
+                        int timer = (int)(npc.ai[1] - 60) % 5;
+                        if (timer == 0)
+                        {
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                            {
+                                var velocity = new Vector2(10f, 0f).RotatedBy(npc.ai[3] * 0.12f);
+                                Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidSnowflake>(), 20, 1f, Main.myPlayer);
+                            }
+                        }
+                        if (npc.ai[2] > 180f)
+                        {
+                            npc.ai[2] = 0f;
+                            npc.ai[3] = 0f;
+                            if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
+                            {
+                                npc.direction = -1;
+                            }
+                            else
+                            {
+                                npc.direction = 1;
+                            }
+                            AdvancePhase(Phase_SnowflakeSpiral);
+                        }
+                    }
+                    else
+                    {
+                        npc.ai[1]++;
+                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 20f, 0.1f);
                     }
                 }
                 break;
@@ -244,12 +295,16 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 frameIndex = 19;
                 return;
             }
+            int[] selectablePhases = new int[] { Phase_SpaceGun, Phase_SnowflakeSpiral };
             for (int i = 0; i < 50; i++)
             {
-                npc.ai[0] = Phase_SpaceGun;
+                npc.ai[0] = selectablePhases[Main.rand.Next(selectablePhases.Length)];
+                if ((int)npc.ai[0] != curPhase)
+                {
+                    break;
+                }
             }
             npc.ai[1] = 0f;
-            frameIndex = 0;
         }
 
         public override void FindFrame(int frameHeight)
@@ -279,7 +334,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 }
                 break;
 
-                case -1:
+                case Phase_Goodbye:
                 frameIndex = 20;
                 break;
 
@@ -302,6 +357,23 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             }
                         }
                     }
+                    else if (frameIndex > 13)
+                    {
+                        npc.frameCounter += 1.0d;
+                        if (frameIndex > 18)
+                        {
+                            frameIndex = 18;
+                        }
+                        if (npc.frameCounter > 4.0d)
+                        {
+                            npc.frameCounter = 0.0d;
+                            frameIndex--;
+                            if (frameIndex == 13)
+                            {
+                                frameIndex = 0;
+                            }
+                        }
+                    }
                     else if (frameIndex > 7)
                     {
                         npc.frameCounter += 1.0d;
@@ -318,32 +390,34 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     else
                     {
                         npc.frameCounter += 1.0d;
-                        if (npc.frameCounter > 4.0d)
-                        {
-                            npc.frameCounter = 0.0d;
-                            frameIndex++;
-                            if (frameIndex > 7)
+                            if (npc.frameCounter > 4.0d)
                             {
-                                frameIndex = 0;
+                                npc.frameCounter = 0.0d;
+                                frameIndex++;
+                                if (frameIndex > 7)
+                                {
+                                    frameIndex = 0;
+                                }
                             }
-                        }
                     }
                 }
                 break;
 
-                case 2:
-                if (frameIndex < 19)
+                case Phase_ChangeDirection:
                 {
-                    frameIndex = 19;
-                }
-                npc.frameCounter += 1.0d;
-                if (npc.frameCounter > 4.0d)
-                {
-                    npc.frameCounter = 0.0d;
-                    frameIndex++;
-                    if (frameIndex > 23)
+                    if (frameIndex < 19)
                     {
-                        frameIndex = 23;
+                        frameIndex = 19;
+                    }
+                    npc.frameCounter += 1.0d;
+                    if (npc.frameCounter > 4.0d)
+                    {
+                        npc.frameCounter = 0.0d;
+                        frameIndex++;
+                        if (frameIndex > 23)
+                        {
+                            frameIndex = 23;
+                        }
                     }
                 }
                 break;
@@ -381,7 +455,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         {
             var texture = Main.npcTexture[npc.type];
             var drawPosition = npc.Center;
-            var origin = new Vector2(npc.frame.Width / 2f, npc.frame.Height / 2f - 14f);
+            var origin = new Vector2(npc.frame.Width / 2f, npc.frame.Height / 2f);
             Vector2 scale = new Vector2(npc.scale, npc.scale);
             float aura = 3f + (float)Math.Sin(Main.GlobalTime * 5f);
             float speedX = npc.velocity.X.Abs();
@@ -403,7 +477,6 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     Main.spriteBatch.Draw(auraTexture, drawPosition - Main.screenPosition + new Vector2(aura, 0f).RotatedBy(MathHelper.PiOver4 * i), npc.frame, new Color(255, 255, 255, 20), npc.rotation, origin, scale, effects, 0f);
                 }
             }
-
 
             Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, npc.frame, drawColor, npc.rotation, origin, scale, effects, 0f);
             Main.spriteBatch.Draw(this.GetTextureobj("_Glow"), drawPosition - Main.screenPosition, npc.frame, Color.White, npc.rotation, origin, scale, effects, 0f);

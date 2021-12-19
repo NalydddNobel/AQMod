@@ -19,7 +19,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 16;
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
         }
 
         public override void SetDefaults()
@@ -31,6 +31,9 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             projectile.timeLeft = 360;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
+
+            projectile.GetGlobalProjectile<AQProjectile>().canHeat = false;
+            projectile.GetGlobalProjectile<AQProjectile>().temperature = -40;
         }
 
         public override void AI()
@@ -73,7 +76,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             }
             Main.spriteBatch.Draw(texture, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
             var spotlight = AQTextures.Lights[LightTex.Spotlight15x15];
-            Main.spriteBatch.Draw(texture, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), projectile.rotation, spotlight.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
     }

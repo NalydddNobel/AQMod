@@ -25,7 +25,7 @@ namespace AQMod.Common.Graphics.Particles
 
         public override void OnAdd()
         {
-            frame = new Rectangle(0, 0, 49, 49);
+            frame = new Rectangle(0, 0, 29, 29);
             origin = frame.Size() / 2f;
         }
 

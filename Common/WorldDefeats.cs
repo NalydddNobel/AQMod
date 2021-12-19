@@ -84,7 +84,7 @@ namespace AQMod.Common
             DownedGaleStreams = tag.GetBool("DownedGaleStreams");
             DownedCurrents = tag.GetBool("DownedCurrents");
             DownedRedSprite = tag.GetBool("DownedRedSprite");
-            DownedRedSprite = tag.GetBool("DownedSpaceSquid");
+            DownedSpaceSquid = tag.GetBool("DownedSpaceSquid");
 
             NoHitOmegaStarite = tag.GetBool("NoHitOmegaStarite");
 
