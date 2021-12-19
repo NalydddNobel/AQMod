@@ -166,13 +166,20 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             {
                 case Phase_SpaceGun:
                 {
-                    npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 200f - center.X) / 4f, 0.01f);
                     if (npc.ai[1] >= 120f)
                     {
-                        if ((int)npc.ai[1] >= 360)
+                        if ((int)npc.ai[1] >= 200)
                         {
-                            if ((int)npc.ai[1] >= 400)
+                            if ((int)npc.ai[1] >= 240)
                             {
+                                if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
+                                {
+                                    npc.direction = -1;
+                                }
+                                else
+                                {
+                                    npc.direction = 1;
+                                }
                                 AdvancePhase(Phase_SpaceGun);
                             }
                             npc.velocity *= 0.95f;
@@ -185,7 +192,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                 frameIndex = 8;
                                 SoundID.Item33.Play(npc.Center);
                                 var spawnPosition = new Vector2(npc.position.X + (npc.direction == 1 ? npc.width + 20f : -20), npc.position.Y + npc.height / 2f);
-                                var velocity = new Vector2(12f * npc.direction, 0f);
+                                var velocity = new Vector2(20f * npc.direction, 0f);
                                 if (Main.netMode != NetmodeID.MultiplayerClient)
                                 {
                                     Projectile.NewProjectile(spawnPosition, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 50, 1f, Main.myPlayer);
@@ -194,11 +201,13 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                 }
                             }
                         }
-                        npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y - center.Y) / 4f, 0.01f);
+                        npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 4f, 0.001f);
+                        npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 20f - center.Y) / 4f, 0.01f);
                     }
                     else
                     {
-                        npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y - center.Y) / 4f, 0.1f);
+                        npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 4f, 0.05f);
+                        npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 20f - center.Y) / 4f, 0.1f);
                     }
                     npc.ai[1]++;
                     npc.rotation = npc.velocity.X * 0.01f;
@@ -276,7 +285,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
                 case Phase_SpaceGun:
                 {
-                    if ((int)npc.ai[1] >= 360)
+                    if ((int)npc.ai[1] >= 200)
                     {
                         if (frameIndex < 13)
                         {
@@ -289,14 +298,14 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             frameIndex++;
                             if (frameIndex > 18)
                             {
-                                frameIndex = 0;
+                                frameIndex = 18;
                             }
                         }
                     }
                     else if (frameIndex > 7)
                     {
                         npc.frameCounter += 1.0d;
-                        if (npc.frameCounter > 2.0d)
+                        if (npc.frameCounter > 3.0d)
                         {
                             npc.frameCounter = 0.0d;
                             frameIndex++;

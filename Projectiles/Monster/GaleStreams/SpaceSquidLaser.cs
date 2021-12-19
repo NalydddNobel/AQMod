@@ -24,8 +24,8 @@ namespace AQMod.Projectiles.Monster.GaleStreams
 
         public override void SetDefaults()
         {
-            projectile.width = 10;
-            projectile.height = 10;
+            projectile.width = 6;
+            projectile.height = 6;
             projectile.hostile = true;
             projectile.aiStyle = -1;
             projectile.timeLeft = 360;
@@ -56,7 +56,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader.FullDraw(AQTextures.Trails[TrailTex.Line], Trailshader.TextureTrail,
+                    Trailshader.FullDraw(AQTextures.Trails[TrailTex.ThickerLine], Trailshader.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }
@@ -71,29 +71,9 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                     Main.spriteBatch.Draw(texture, projectile.oldPos[i] + offset - Main.screenPosition, null, drawColor * progress, projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
                 }
             }
-            float intensity = 0f;
-            float playerDistance = (Main.player[Main.myPlayer].Center - projectile.Center).Length();
-            if (playerDistance < 480f)
-                intensity = 1f - playerDistance / 480f;
-            intensity *= ModContent.GetInstance<AQConfigClient>().EffectIntensity;
-            if (intensity > 0f)
-            {
-                var spotlight = AQTextures.Lights[LightTex.Spotlight66x66];
-                var spotlightOrig = spotlight.Size() / 2f;
-                Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.25f, projectile.rotation, spotlightOrig, projectile.scale * intensity, SpriteEffects.None, 0f);
-                spotlight = AQTextures.Lights[LightTex.Spotlight240x66];
-                spotlightOrig = spotlight.Size() / 2f;
-                var crossScale = new Vector2(0.04f * intensity, (3f + (float)Math.Sin(Main.GlobalTime * 16f) * 0.2f) * intensity);
-                var spotlightDrawColor = drawColor * 0.2f;
-                spotlightDrawColor = Color.Lerp(spotlightDrawColor, new Color(128, 128, 128, 0), 0.3f);
-                Main.spriteBatch.Draw(spotlight, drawPos, null, spotlightDrawColor, 0f, spotlightOrig, crossScale, SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(spotlight, drawPos, null, spotlightDrawColor, MathHelper.PiOver2, spotlightOrig, crossScale, SpriteEffects.None, 0f);
-                crossScale.X *= 2f;
-                crossScale.Y *= 1.5f;
-                Main.spriteBatch.Draw(spotlight, drawPos, null, spotlightDrawColor * 0.25f, 0f, spotlightOrig, crossScale, SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(spotlight, drawPos, null, spotlightDrawColor * 0.25f, MathHelper.PiOver2, spotlightOrig, crossScale, SpriteEffects.None, 0f);
-            }
-            Main.spriteBatch.Draw(texture, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 255), projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
+            var spotlight = AQTextures.Lights[LightTex.Spotlight15x15];
+            Main.spriteBatch.Draw(texture, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
     }
