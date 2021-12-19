@@ -229,11 +229,27 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
                 case Phase_SnowflakeSpiral:
                 {
-                    var gotoPosition = new Vector2(125f * -npc.direction, 0f).RotatedBy(npc.ai[1] * 0.08f);
+                    var gotoPosition = new Vector2(205f * -npc.direction, 0f).RotatedBy(npc.ai[1] * 0.01f);
                     gotoPosition = Main.player[npc.target].Center + new Vector2(gotoPosition.X * 2f, gotoPosition.Y);
+                    if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
+                    {
+                        npc.direction = -1;
+                    }
+                    else
+                    {
+                        npc.direction = 1;
+                    }
+                    if (npc.spriteDirection != npc.direction)
+                    {
+                        if (frameIndex >= 24)
+                        {
+                            frameIndex = 19;
+                        }
+                    }
                     if ((int)npc.ai[1] == 0)
                     {
-                        npc.ai[1] = Main.rand.NextFloat(MathHelper.Pi * 12.56f);
+                        npc.ai[1] = Main.rand.NextFloat(MathHelper.Pi * 100f);
+                        npc.netUpdate = true;
                     }
                     npc.ai[2]++;
                     if (npc.ai[2] > 120f)
@@ -242,16 +258,21 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         if ((int)npc.ai[3] == 0)
                         {
                             npc.ai[3] = Main.rand.NextFloat(MathHelper.Pi * 6f);
+                            npc.netUpdate = true;
                         }
                         npc.ai[3]++;
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 4f, 0.1f);
-                        int timer = (int)(npc.ai[1] - 60) % 5;
+                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 4f, 0.006f);
+                        int timer = (int)(npc.ai[2] - 60) % 5;
                         if (timer == 0)
                         {
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 var velocity = new Vector2(10f, 0f).RotatedBy(npc.ai[3] * 0.12f);
                                 Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidSnowflake>(), 20, 1f, Main.myPlayer);
+                            }
+                            if (Main.netMode != NetmodeID.Server)
+                            {
+                                AQSound.Play(SoundType.Item, "Sounds/Item/Combo", npc.Center);
                             }
                         }
                         if (npc.ai[2] > 180f)
@@ -272,8 +293,9 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     else
                     {
                         npc.ai[1]++;
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 20f, 0.1f);
+                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 20f, 0.01f);
                     }
+                    npc.rotation = Utils.AngleLerp(npc.rotation, 0f, 0.1f);
                 }
                 break;
             }
@@ -390,15 +412,15 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     else
                     {
                         npc.frameCounter += 1.0d;
-                            if (npc.frameCounter > 4.0d)
+                        if (npc.frameCounter > 4.0d)
+                        {
+                            npc.frameCounter = 0.0d;
+                            frameIndex++;
+                            if (frameIndex > 7)
                             {
-                                npc.frameCounter = 0.0d;
-                                frameIndex++;
-                                if (frameIndex > 7)
-                                {
-                                    frameIndex = 0;
-                                }
+                                frameIndex = 0;
                             }
+                        }
                     }
                 }
                 break;
@@ -417,6 +439,50 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         if (frameIndex > 23)
                         {
                             frameIndex = 23;
+                        }
+                    }
+                }
+                break;
+
+                case Phase_SnowflakeSpiral:
+                {
+                    if (npc.direction != npc.spriteDirection)
+                    {
+                        if (frameIndex < 19)
+                        {
+                            frameIndex = 19;
+                        }
+                        npc.frameCounter += 1.0d;
+                        if (npc.frameCounter > 4.0d)
+                        {
+                            npc.frameCounter = 0.0d;
+                            frameIndex++;
+                            if (frameIndex > 19)
+                            {
+                                frameIndex = 24;
+                                npc.spriteDirection = npc.direction;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (frameIndex < 24)
+                        {
+                            frameIndex = 24;
+                        }
+                        npc.frameCounter += 1.0d;
+                        if (frameIndex == 28)
+                        {
+                            frameIndex++;
+                        }
+                        if (npc.frameCounter > 4.0d)
+                        {
+                            npc.frameCounter = 0.0d;
+                            frameIndex++;
+                            if (frameIndex > 29)
+                            {
+                                frameIndex = 25;
+                            }
                         }
                     }
                 }
