@@ -41,16 +41,35 @@ namespace AQMod.Content.NameTags
             int slotX = SlotX + (int)(56f * 0.8f);
             Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/UI/RenameItem"), new Vector2(SlotX, SlotY), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), 0.8f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(Main.inventoryBack3Texture, new Vector2(slotX, SlotY), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), 0.8f, SpriteEffects.None, 0f);
-            bool hover = Main.mouseX > slotX && Main.mouseX < slotX + Main.inventoryBackTexture.Width * 0.8f && Main.mouseY > SlotY && Main.mouseY < SlotY + Main.inventoryBackTexture.Height * 0.8f;
-            if (hover)
+            bool hover;
+            bool hover2 = Main.mouseX > SlotX && Main.mouseX < SlotX + Main.inventoryBackTexture.Width * 0.8f && Main.mouseY > SlotY && Main.mouseY < SlotY + Main.inventoryBackTexture.Height * 0.8f;
+            if (hover2)
             {
+                Main.HoverItem = new Item();
+                Main.hoverItemName = Language.GetTextValue("Mods.AQMod.BalloonMerchant.RenameItem.PressHere");
                 player.mouseInterface = true;
+                hover = false;
             }
-            int price = -1;
-            if (item != null)
+            else
             {
-                price = NameTagItem.RenamePrice(item);
-                if (Main.mouseX > SlotX && Main.mouseX < SlotX + Main.inventoryBackTexture.Width * 0.8f && Main.mouseY > SlotY && Main.mouseY < SlotY + Main.inventoryBackTexture.Height * 0.8f)
+                hover = Main.mouseX > slotX && Main.mouseX < slotX + Main.inventoryBackTexture.Width * 0.8f && Main.mouseY > SlotY && Main.mouseY < SlotY + Main.inventoryBackTexture.Height * 0.8f;
+                if (hover)
+                {
+                    player.mouseInterface = true;
+                }
+            }
+            if (hover && Main.mouseLeft && Main.mouseLeftRelease && renameItemSlot.CanSwapItem(item, Main.mouseItem))
+            {
+                if (item == null)
+                {
+                    item = new Item();
+                }
+                renameItemSlot.SwapItem(ref item, ref Main.mouseItem);
+            }
+            if (item != null && !item.IsAir)
+            {
+                int price = NameTagItem.RenamePrice(item);
+                if (hover2)
                 {
                     if (Main.mouseLeft && Main.mouseLeftRelease && price != -1 && player.CanBuyItem(price, customCurrency: -1))
                     {
@@ -70,23 +89,12 @@ namespace AQMod.Content.NameTags
                             textUI.text = "";
                         }
                     }
-                    Main.HoverItem = new Item();
-                    Main.hoverItemName = Language.GetTextValue("Mods.AQMod.BalloonMerchant.RenameItem.PressHere");
-                    hover = false;
-                    player.mouseInterface = true;
-                    if (hover && Main.mouseLeft && Main.mouseLeftRelease && renameItemSlot.CanSwapItem(item, Main.mouseItem))
-                    {
-                        renameItemSlot.SwapItem(ref item, ref Main.mouseItem);
-                    }
                 }
-                if (hover)
+                else if (hover)
                 {
                     UIHelper.HoverItem(item);
                 }
                 textUI.Draw(SlotX, SlotY + (int)(Main.inventoryBack3Texture.Height * 0.8f) + 4, 440, 32, 64, new Color(50, 106, 46, 255));
-            }
-            if (item != null && !item.IsAir)
-            {
                 float oldScale = Main.inventoryScale;
                 Main.inventoryScale = 0.8f;
                 UIHelper.DrawItemInv(new Vector2(slotX, SlotY), item);

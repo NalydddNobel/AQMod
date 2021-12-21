@@ -37,7 +37,7 @@ namespace AQMod.Content
                         {
                             if (i < tooltips.Count - 1)
                             {
-                                if (tooltips[i + 1].overrideColor != null)
+                                if (tooltips[i + 1].overrideColor == null)
                                 {
                                     tooltips[i + 1].overrideColor = new Color(255, 255, 255, 255);
                                 }
