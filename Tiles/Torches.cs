@@ -1,4 +1,5 @@
-﻿using AQMod.Dusts.NobleMushrooms;
+﻿using AQMod.Common.Graphics;
+using AQMod.Dusts.NobleMushrooms;
 using AQMod.Items.Placeable.Torch;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -139,7 +140,7 @@ namespace AQMod.Tiles
                         if (Main.tile[i, j].liquid > 0)
                         {
                             float intensityMult = 0.1f;
-                            var screenCenter = AQMod.ScreenCenter;
+                            var screenCenter = AQGraphics.Data.ScreenCenter;
                             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
                             var distance = (screenCenter - screenPosition).Length();
                             if (distance < TorchIntensityDistance)
@@ -163,7 +164,7 @@ namespace AQMod.Tiles
                         if (Main.tile[i, j].liquid > 0)
                         {
                             float intensityMult = 0.1f;
-                            var screenCenter = AQMod.ScreenCenter;
+                            var screenCenter = AQGraphics.Data.ScreenCenter;
                             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
                             var distance = (screenCenter - screenPosition).Length();
                             if (distance < TorchIntensityDistance)
@@ -187,7 +188,7 @@ namespace AQMod.Tiles
                         if (Main.tile[i, j].liquid > 0)
                         {
                             float intensityMult = 0.1f;
-                            var screenCenter = AQMod.ScreenCenter;
+                            var screenCenter = AQGraphics.Data.ScreenCenter;
                             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
                             var distance = (screenCenter - screenPosition).Length();
                             if (distance < TorchIntensityDistance)
@@ -287,7 +288,7 @@ namespace AQMod.Tiles
                     if (Main.tile[i, j].liquid > 0)
                     {
                         intensityMult = 0.025f;
-                        var screenCenter = AQMod.ScreenCenter;
+                        var screenCenter = AQGraphics.Data.ScreenCenter;
                         var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
                         var distance = (screenCenter - screenPosition).Length();
                         if (distance < TorchIntensityDistance)

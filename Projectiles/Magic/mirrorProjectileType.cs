@@ -167,10 +167,6 @@ namespace AQMod.Projectiles.Magic
             var player = Main.player[projectile.owner];
             if (laserScale > 0f)
             {
-                if (AQMod.TonsofScreenShakes && Main.myPlayer == projectile.owner)
-                {
-                    DoScreenShake(player, laserScale);
-                }
                 float sunProgress = 1f - (player.itemAnimation - 2) / (float)(player.itemAnimationMax - 2);
                 var laserStart = center;
                 laserScale *= 0.465f;

@@ -44,9 +44,9 @@ namespace AQMod.Projectiles
                     Main.dust[d].noGravity = true;
                 }
             }
-            if (AQMod.TonsofScreenShakes)
+            if (AQConfigClient.c_TonsofScreenShakes)
             {
-                ScreenShakeManager.AddEffect(new BasicScreenShake(16, 8));
+                ScreenShakeManager.AddShake(new BasicScreenShake(16, 8));
             }
         }
 

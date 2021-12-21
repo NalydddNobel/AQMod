@@ -46,6 +46,7 @@ namespace AQMod.Content.MapMarkers.Data
             toggles.AddMapMarker(this);
             if (aQPlayer.showRetroMap)
             {
+                var color = ModContent.GetInstance<AQConfigClient>().MapBlipColor;
                 var texture = ModContent.GetTexture("AQMod/Assets/Map/EnemyBlip");
                 int frameHeight = texture.Height / 2;
                 int frameNumber = (int)(Main.GameUpdateCount % 24 / 12);
@@ -57,7 +58,6 @@ namespace AQMod.Content.MapMarkers.Data
                     if (Main.npc[i].active && !AQNPC.Sets.NoMapBlip[Main.npc[i].type] && Main.npc[i].GetBossHeadTextureIndex() == -1 && !Main.npc[i].townNPC)
                     {
                         var drawPos = MapInterfaceManager.MapPos(Main.npc[i].Center / 16f);
-                        var color = AQMod.MapBlipColor;
                         byte r = color.R;
                         if (r < 10)
                             r = 10;

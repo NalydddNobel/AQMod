@@ -179,8 +179,8 @@ namespace AQMod.Projectiles.Ranged
                 int height = (y + bottomY - (y + topY)) * 16;
                 int p = Projectile.NewProjectile(x3, (y + topY) * 16f, 0f, 0f, type, (int)(projectile.damage * 1.5f), projectile.knockBack, projectile.owner);
                 Main.projectile[p].height = height;
-                if (Main.myPlayer == projectile.owner && AQMod.TonsofScreenShakes)
-                    ScreenShakeManager.AddEffect(new BasicScreenShake(20, AQMod.MultIntensity(2)));
+                if (Main.myPlayer == projectile.owner && AQConfigClient.c_TonsofScreenShakes)
+                    ScreenShakeManager.AddShake(new BasicScreenShake(20, AQMod.MultIntensity(2)));
             }
         }
     }

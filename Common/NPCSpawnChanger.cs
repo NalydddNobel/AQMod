@@ -16,14 +16,14 @@ namespace AQMod.Common
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            EventProgressBarManager.PlayerSafe = false;
+            EventProgressBarLoader.PlayerSafe = false;
             try
             {
                 if (AQMod.ShouldRemoveSpawns())
                 {
                     spawnRate += 10000;
                     maxSpawns = 0;
-                    EventProgressBarManager.PlayerSafe = true;
+                    EventProgressBarLoader.PlayerSafe = true;
                     return;
                 }
                 int balloonMerchant = BalloonMerchant.Find();
@@ -37,7 +37,7 @@ namespace AQMod.Common
                         }
                         spawnRate += 10000;
                         maxSpawns = 0;
-                        EventProgressBarManager.PlayerSafe = true;
+                        EventProgressBarLoader.PlayerSafe = true;
                         return;
                     }
                 }
@@ -77,7 +77,7 @@ namespace AQMod.Common
         {
             try
             {
-                EventProgressBarManager.PlayerSafe_GaleStreams = false;
+                EventProgressBarLoader.PlayerSafe_GaleStreams = false;
                 void DecreaseSpawns(float mult)
                 {
                     IEnumerator<int> keys = pool.Keys.GetEnumerator();
@@ -140,7 +140,7 @@ namespace AQMod.Common
                 }
                 if (GaleStreams.EventActive(spawnInfo.player) && !spawnInfo.playerSafe)
                 {
-                    EventProgressBarManager.PlayerSafe_GaleStreams = true;
+                    EventProgressBarLoader.PlayerSafe_GaleStreams = true;
                     bool decSpawns = true;
                     if (AQMod.SudoHardmode)
                     {

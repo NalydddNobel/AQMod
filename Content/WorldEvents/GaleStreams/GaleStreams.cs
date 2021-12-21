@@ -313,7 +313,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                 }
             }
 
-            AQMod.BroadcastMessage(Lang.gen[59].Key, AQMod.EventMessage);
+            AQMod.BroadcastMessage(Lang.gen[59].Key, Constants.ChatColors.EventMessage);
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 NetMessage.SendTileSquare(-1, minX, minY, size);

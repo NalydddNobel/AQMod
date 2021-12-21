@@ -1,12 +1,14 @@
 ﻿using AQMod.Content.Quest.Lobster.HuntTypes;
+using Terraria.ModLoader;
 
 namespace AQMod.Content.Quest.Lobster
 {
     public class RobsterHuntLoader : ContentLoader<RobsterHunt>
     {
-        public override void Setup(bool setupStatics = false)
+        public static RobsterHuntLoader Instance { get => ModContent.GetInstance<RobsterHuntLoader>(); }
+
+        public override void Load()
         {
-            base.Setup(setupStatics);
             var mod = AQMod.Instance;
             AddContent(new HuntJeweledChalice(mod, "JeweledChalice"));
             AddContent(new HuntJeweledCandelabra(mod, "JeweledCandelabra"));

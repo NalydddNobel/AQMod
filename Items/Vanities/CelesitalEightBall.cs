@@ -1,4 +1,5 @@
-﻿using AQMod.Content.WorldEvents.GlimmerEvent;
+﻿using AQMod.Common;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Vanities
 {
-    public class CelesitalEightBall : ModItem
+    public class CelesitalEightBall : ModItem, IAutoloadType
     {
         public static string TextKey { get; private set; }
         public static object[] Arguments { get; private set; }
@@ -194,6 +195,16 @@ namespace AQMod.Items.Vanities
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(mod, "EightBall", GetTextValue()));
+        }
+
+        void IAutoloadType.OnLoad()
+        {
+            ResetStatics();
+        }
+
+        void IAutoloadType.Unload()
+        {
+            ResetStatics();
         }
     }
 }

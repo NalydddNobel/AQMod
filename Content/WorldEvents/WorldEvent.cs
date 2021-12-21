@@ -37,7 +37,7 @@ namespace AQMod.Content.WorldEvents
             {
                 var bar = ProgressBar;
                 if (bar != null)
-                    EventProgressBarManager.AddBar(bar);
+                    EventProgressBarLoader.AddBar(bar);
             }
             PostSetup(mod);
         }

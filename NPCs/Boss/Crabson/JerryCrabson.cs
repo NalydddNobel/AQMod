@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Items.BossItems.Crabson;
@@ -64,7 +65,7 @@ namespace AQMod.NPCs.Boss.Crabson
             npc.behindTiles = true;
             bossBag = ModContent.ItemType<CrabsonBag>();
             npc.buffImmune[BuffID.Suffocation] = true;
-            if (AQMod.CanUseAssets)
+            if (AQGraphics.CanUseAssets)
             {
                 music = GetMusic().GetMusicID();
                 musicPriority = MusicPriority.BossLow;

@@ -94,11 +94,11 @@ namespace AQMod.Projectiles.Magic
             int projectileX = (int)projectile.position.X + projectile.width / 2;
             int projectileY = (int)projectile.position.Y + projectile.height / 2;
             Main.PlaySound(SoundID.DD2_BetsyFireballShot.SoundId, projectileX, projectileY, SoundID.DD2_BetsyFireballShot.Style, 0.85f, -0.25f);
-            if (Main.myPlayer == projectile.owner && AQMod.TonsofScreenShakes)
+            if (Main.myPlayer == projectile.owner && AQConfigClient.c_TonsofScreenShakes)
             {
                 float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
                 if (distance < 800)
-                    ScreenShakeManager.AddEffect(new BasicScreenShake(12, AQMod.MultIntensity((int)(1600f - distance) / 300)));
+                    ScreenShakeManager.AddShake(new BasicScreenShake(12, AQMod.MultIntensity((int)(1600f - distance) / 300)));
             }
 
             int height = 12 * 16;

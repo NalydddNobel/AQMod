@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Common.Graphics;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -121,7 +122,7 @@ namespace AQMod.Content
 
         public static string GetItemName(Item item)
         {
-            if (AQMod.CanUseAssets)
+            if (AQGraphics.CanUseAssets)
             {
                 try
                 {

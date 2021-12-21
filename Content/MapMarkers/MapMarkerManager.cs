@@ -1,4 +1,5 @@
-﻿using AQMod.Content.MapMarkers.Data;
+﻿using AQMod.Common;
+using AQMod.Content.MapMarkers.Data;
 using AQMod.Items.Tools.MapMarkers;
 using System.Collections.Generic;
 using Terraria;
@@ -6,21 +7,28 @@ using Terraria.ModLoader;
 
 namespace AQMod.Content.MapMarkers
 {
-    public class MapMarkerManager
+    public class MapMarkerManager : IAutoloadType
     {
+        public static MapMarkerManager Instance => ModContent.GetInstance<MapMarkerManager>();
+
         private readonly Dictionary<string, MapMarkerData> _mapMarkers;
 
-        internal MapMarkerManager()
+        public MapMarkerManager()
         {
             _mapMarkers = new Dictionary<string, MapMarkerData>();
         }
 
-        internal void Setup(bool setupStatics = false)
+        void IAutoloadType.OnLoad()
         {
+            ContentInstance.Register(this);
             addMapMarker(new CosmicMarkerData("CosmicMarker", ModContent.ItemType<CosmicTelescope>()));
             addMapMarker(new DungeonMarkerData("DungeonMarker", ModContent.ItemType<DungeonMap>()));
             addMapMarker(new LihzahrdMarkerData("LihzahrdMarker", ModContent.ItemType<LihzahrdMap>()));
             addMapMarker(new RetroMarkerData("RetroMarker", ModContent.ItemType<RetroGoggles>()));
+        }
+
+        void IAutoloadType.Unload()
+        {
         }
 
         /// <summary>

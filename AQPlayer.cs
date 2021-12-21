@@ -744,7 +744,7 @@ namespace AQMod
             string dyeKey = tag.GetString("CursorDye");
             if (!string.IsNullOrEmpty(dyeKey) && AQStringCodes.DecodeName(dyeKey, out string cursorDyeMod, out string cursorDyeName))
             {
-                SetCursorDye(AQMod.CursorDyes.GetContentID(cursorDyeMod, cursorDyeName));
+                SetCursorDye(CursorDyeLoader.Instance.GetContentID(cursorDyeMod, cursorDyeName));
             }
             else
             {
@@ -1578,10 +1578,10 @@ namespace AQMod
                 var type = ModContent.DustType<MonoDust>();
                 Vector2 position = target.Center - new Vector2(size / 2);
                 int length = (int)(Main.npc[boss].Center - targCenter).Length();
-                if (Main.myPlayer == player.whoAmI && AQMod.TonsofScreenShakes)
+                if (Main.myPlayer == player.whoAmI && AQConfigClient.c_TonsofScreenShakes)
                 {
                     if (length < 800)
-                        ScreenShakeManager.AddEffect(new BasicScreenShake(12, AQMod.MultIntensity((800 - length) / 128)));
+                        ScreenShakeManager.AddShake(new BasicScreenShake(12, AQMod.MultIntensity((800 - length) / 128)));
                 }
                 int dustLength = length / size;
                 const float offset = MathHelper.TwoPi / 3f;
@@ -1728,9 +1728,9 @@ namespace AQMod
                     {
                         amount = (int)(amount * AQConfigClient.c_EffectQuality);
                     }
-                    if (AQMod.Screenshakes)
+                    if (AQConfigClient.c_Screenshakes)
                     {
-                        ScreenShakeManager.AddEffect(new BasicScreenShake(16, 8));
+                        ScreenShakeManager.AddShake(new BasicScreenShake(16, 8));
                     }
                     mothmanExplosionDelay = 60;
                     int p = Projectile.NewProjectile(targetCenter, Vector2.Normalize(targetCenter - player.Center), ModContent.ProjectileType<MothmanCritExplosion>(), damage * 2, knockback * 1.5f, player.whoAmI, 0f, target.whoAmI);
@@ -2203,7 +2203,7 @@ namespace AQMod
 
         public void SetCursorDye(int type)
         {
-            if (type <= CursorDyeLoader.ID.None || type > AQMod.CursorDyes.Count)
+            if (type <= CursorDyeLoader.ID.None || type > CursorDyeLoader.Instance.Count)
             {
                 CursorDyeID = CursorDyeLoader.ID.None;
                 CursorDye = "";
@@ -2211,7 +2211,7 @@ namespace AQMod
             else
             {
                 CursorDyeID = type;
-                var cursorDye = AQMod.CursorDyes.GetContent(type);
+                var cursorDye = CursorDyeLoader.Instance.GetContent(type);
                 CursorDye = AQStringCodes.EncodeName(cursorDye.Mod, cursorDye.Name);
             }
         }

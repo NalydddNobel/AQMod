@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -111,7 +112,7 @@ namespace AQMod.Effects.Trails
         public void Draw()
         {
             var vertexShader = EffectCache.Trailshader;
-            vertexShader.Parameters["WVP"].SetValue(AQMod.WorldViewPoint);
+            vertexShader.Parameters["WVP"].SetValue(AQGraphics.Data.WorldViewPoint);
             vertexShader.Parameters["imageTexture"].SetValue(_texture);
             vertexShader.Parameters["strength"].SetValue(1f);
             vertexShader.CurrentTechnique.Passes[_pass].Apply();

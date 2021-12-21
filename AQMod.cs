@@ -25,9 +25,7 @@ using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items;
 using AQMod.Items.Tools.Fishing.Bait;
-using AQMod.Items.Vanities;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Boss.Crabson;
@@ -54,58 +52,18 @@ namespace AQMod
 {
     public class AQMod : Mod
     {
-        /// <summary>
-        /// Gets an instance of the mod. This is the same as calling <see cref="ModContent.GetInstance{T}"/> and passing <see cref="AQMod"/> as T. Except it's slightly cooler?
-        /// </summary>
         public static AQMod Instance => ModContent.GetInstance<AQMod>();
+
         public const int SpaceLayerTile = 200;
         public const int SpaceLayer = SpaceLayerTile * 16;
         /// <summary>
         /// Basically guesses if the game is still active, should only really use for drawing methods that do things like summon dust
         /// </summary>
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
-        public static bool CanUseAssets => !Loading && Main.netMode != NetmodeID.Server;
         /// <summary>
         /// If WoF or Omega Starite have been defeated
         /// </summary>
         public static bool SudoHardmode => Main.hardMode || WorldDefeats.DownedStarite;
-        /// <summary>
-        /// Gets the center of the screen's draw coordinates
-        /// </summary>
-        internal static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
-        /// <summary>
-        /// Gets the center of the screen's world coordinates
-        /// </summary>
-        internal static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
-        /// <summary>
-        /// The world view point matrix
-        /// </summary>
-        internal static Matrix WorldViewPoint
-        {
-            get
-            {
-                GraphicsDevice graphics = Main.graphics.GraphicsDevice;
-                Vector2 zoom = Main.GameViewMatrix.Zoom;
-                int width = graphics.Viewport.Width;
-                int height = graphics.Viewport.Height;
-                Matrix Zoom = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(width / 2, height / -2, 0) * Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(zoom.X, zoom.Y, 1f);
-                Matrix Projection = Matrix.CreateOrthographic(width, height, 0, 1000);
-                return Zoom * Projection;
-            }
-        }
-        /// <summary>
-        /// The zero for drawing tiles correctly
-        /// </summary>
-        internal static Vector2 TileZero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
-        /// <summary>
-        /// The color used for most menacing messages like "The Twins has awoken!".
-        /// </summary>
-        internal static Color BossMessage => new Color(175, 75, 255, 255);
-        /// <summary>
-        /// The color used for most event messages like "A meteorite has landed!".
-        /// </summary>
-        internal static Color EventMessage => new Color(50, 255, 130, 255);
-        internal static string DebugFolderPath => Main.SavePath + Path.DirectorySeparatorChar + "Mods" + Path.DirectorySeparatorChar + "Cache" + Path.DirectorySeparatorChar + "AQMod";
 
         public static bool spawnStarite;
         public static int dayrateIncrease;
@@ -120,24 +78,12 @@ namespace AQMod
         internal static bool Unloading { get; private set; }
         public static float StariteBGMult { get; private set; }
         public static bool EvilProgressionLock { get; private set; }
-        public static bool Screenshakes { get; private set; }
-        public static bool TonsofScreenShakes { get; private set; }
         /// <summary>
         /// Whether or not the background starites from the Glimmer Event should be shown. Default value is true
         /// </summary>
         public static bool ShowBackgroundStarites { get; private set; }
-        public static Color MapBlipColor { get; private set; }
-        public static Color StariteProjectileColor { get; private set; }
         public static Color StariteAuraColor { get; private set; }
-        /// <summary>
-        /// The active instance of the Cursor Dyes Loader.
-        /// </summary>
-        public static CursorDyeLoader CursorDyes { get; private set; }
-        /// <summary>
-        /// The active instance of the Robster Hunts Loader.
-        /// </summary>
-        public static RobsterHuntLoader RobsterHunts { get; private set; }
-        public static MapMarkerManager MapMarkers { get; private set; }
+        public static MapMarkerManager MapMarkers => ModContent.GetInstance<MapMarkerManager>();
 
         private static List<CachedTask> cachedLoadTasks;
         /// <summary>
@@ -162,8 +108,6 @@ namespace AQMod
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
         public static ModifiableMusic GaleStreamsMusic { get; private set; }
-
-        internal static CrossModType Split { get; private set; }
 
         private static Vector2 _lastScreenZoom;
         private static Vector2 _lastScreenView;
@@ -360,7 +304,7 @@ namespace AQMod
                     var type = Main.LocalPlayer.GetModPlayer<AQPlayer>().CursorDyeID;
                     if (type != CursorDyeLoader.ID.None)
                     {
-                        var value = AQMod.CursorDyes.GetContent(type).DrawThickCursor(smart);
+                        var value = CursorDyeLoader.Instance.GetContent(type).DrawThickCursor(smart);
                         if (value != null)
                             return value.Value;
                     }
@@ -376,7 +320,7 @@ namespace AQMod
                     var drawingPlayer = player.GetModPlayer<AQPlayer>();
                     if (drawingPlayer.CursorDyeID != CursorDyeLoader.ID.None)
                     {
-                        var cursorDye = CursorDyes.GetContent(drawingPlayer.CursorDyeID);
+                        var cursorDye = CursorDyeLoader.Instance.GetContent(drawingPlayer.CursorDyeID);
                         if (!cursorDye.PreDrawCursor(player, drawingPlayer, bonus, smart))
                             orig(bonus, smart);
                         cursorDye.PostDrawCursor(player, drawingPlayer, bonus, smart);
@@ -400,7 +344,7 @@ namespace AQMod
                     var aQPlayer = player.GetModPlayer<AQPlayer>();
                     if (aQPlayer.CursorDyeID != CursorDyeLoader.ID.None)
                     {
-                        var cursorDye = CursorDyes.GetContent(aQPlayer.CursorDyeID);
+                        var cursorDye = CursorDyeLoader.Instance.GetContent(aQPlayer.CursorDyeID);
                         if (!cursorDye.PreDrawCursorOverrides(player, aQPlayer))
                         {
                             if (RerollCursor)
@@ -856,12 +800,7 @@ namespace AQMod
             Edits.Load();
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
-            CursorDyes = new CursorDyeLoader();
-            CursorDyes.Setup(setupStatics: true);
-            RobsterHunts = new RobsterHuntLoader();
-            RobsterHunts.Setup(setupStatics: true);
-            MapMarkers = new MapMarkerManager();
-            MoonlightWallHelper.Instance = new MoonlightWallHelper();
+
             ModCallHelper.SetupCalls();
             AprilFoolsJoke.UpdateActive();
             var server = AQConfigServer.Instance;
@@ -895,7 +834,6 @@ namespace AQMod
         public override void PostSetupContent()
         {
             AQBuff.Sets.Setup();
-            MapMarkers.Setup(setupStatics: true);
             if (!Main.dedServ)
             {
                 DyeBinder.LoadDyes();
@@ -917,17 +855,12 @@ namespace AQMod
             invokeTasks();
             cachedLoadTasks = null;
 
-            Split = new CrossModType("Split");
-            Split.Load();
-
             Loading = false; // Sets Loading to false, so that some things no longer accept new content.
-            RobsterHunts.SetupHunts();
+            RobsterHuntLoader.Instance.SetupHunts();
             if (!Main.dedServ)
             {
                 ItemOverlays.Finish();
             }
-
-            CelesitalEightBall.ResetStatics();
 
             AQRecipes.AddRecipes(this);
 
@@ -941,30 +874,18 @@ namespace AQMod
             Loading = true;
             Unloading = true;
             cachedLoadTasks = null;
-            EventProgressBarManager.Unload();
             Autoloading.Unload();
-            HuntSystem.Unload();
+            EventProgressBarLoader.Unload();
 
-            // in: AddRecipes()
             AQItem.Sets.Clones.Unload();
-            CelesitalEightBall.ResetStatics();
             ItemOverlays = null;
-            if (Split != null)
-            {
-                Split.Unload();
-                Split = null;
-            }
 
-            // in: PostSetupContent()
             DyeBinder.Unload();
-            MapMarkers = null;
             DemonSiege.Unload();
             AQProjectile.Sets.UnloadSets();
             AQNPC.Sets.UnloadSets();
             AQBuff.Sets.Unload();
 
-            // in: Load()
-            // v doesn't load on server v
             if (!Main.dedServ)
             {
                 AQSound.rand = null;
@@ -987,15 +908,8 @@ namespace AQMod
                 CrabsonMusic = null;
                 AQTextures.Unload();
             }
-            // ^ doesn't load on server ^
 
             ModCallHelper.Unload();
-            MoonlightWallHelper.Instance = null;
-            if (CursorDyes != null)
-            {
-                CursorDyes.Unload();
-                CursorDyes = null;
-            }
             AQText.Unload();
         }
 
@@ -1019,9 +933,10 @@ namespace AQMod
                     }
                 }
             }
+
             if (Main.netMode != NetmodeID.Server)
             {
-                GlimmerEvent.stariteProjectileColor = GlimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : StariteProjectileColor;
+                GlimmerEvent.stariteProjectileColor = GlimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : ModContent.GetInstance<AQConfigClient>().StariteProjColor;
             }
             else
             {
@@ -1042,7 +957,7 @@ namespace AQMod
                 OmegaStariteScenes.OmegaStariteIndexCache = (short)NPC.NewNPC(GlimmerEvent.tileX * 16 + 8, GlimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
                 OmegaStariteScenes.SceneType = 1;
                 spawnStarite = false;
-                BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", BossMessage);
+                BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", Constants.ChatColors.BossMessage);
             }
 
             if (CrabSeason.CrabsonCachedID > -1 && !Main.npc[CrabSeason.CrabsonCachedID].active)
@@ -1087,24 +1002,6 @@ namespace AQMod
             }
         }
 
-        public static void SetupNewMusic()
-        {
-            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || Loading)
-            {
-                return;
-            }
-            if (Main.npc != null && Main.npc.Length >= Main.maxNPCs)
-            {
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].modNPC is IModifiableMusicNPC modifiableMusicNPC)
-                    {
-                        Main.npc[i].modNPC.music = modifiableMusicNPC.GetMusic().GetMusicID();
-                    }
-                }
-            }
-        }
-
         public override void PostDrawFullscreenMap(ref string mouseText)
         {
             MapInterfaceManager.Apply(ref mouseText, drawGlobes: true);
@@ -1122,14 +1019,14 @@ namespace AQMod
             var drawingPlayer = player.GetModPlayer<AQPlayer>();
             if (drawingPlayer.CursorDyeID != CursorDyeLoader.ID.None)
             {
-                var cursorDye = CursorDyes.GetContent(drawingPlayer.CursorDyeID);
+                var cursorDye = CursorDyeLoader.Instance.GetContent(drawingPlayer.CursorDyeID);
                 Edits.OverrideColor = cursorDye.ApplyColor(player, drawingPlayer, out Edits._newCursorColor);
             }
             var index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
             if (index != -1)
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Rename Item Interface",
-                    () => 
+                    () =>
                     {
                         RenameItemInterface.Draw();
                         return true;
@@ -1142,7 +1039,7 @@ namespace AQMod
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Invasion Progress Bar", () =>
                 {
-                    EventProgressBarManager.Draw();
+                    EventProgressBarLoader.Draw();
                     return true;
                 }, InterfaceScaleType.UI));
             }
@@ -1321,10 +1218,6 @@ namespace AQMod
         public static void ApplyClientConfig(AQConfigClient clientConfig)
         {
             ShowBackgroundStarites = clientConfig.BackgroundStarites;
-            Screenshakes = clientConfig.Screenshakes;
-            TonsofScreenShakes = clientConfig.TonsofScreenShakes;
-            StariteProjectileColor = clientConfig.StariteProjColor;
-            MapBlipColor = clientConfig.MapBlipColor;
             StariteAuraColor = clientConfig.StariteAuraColor;
             StariteBGMult = clientConfig.StariteBackgroundLight;
         }
@@ -1427,6 +1320,24 @@ namespace AQMod
                     aQMod.Logger.Error("An error occured when invoking cached load tasks.");
                     aQMod.Logger.Error(e.Message);
                     aQMod.Logger.Error(e.StackTrace);
+                }
+            }
+        }
+
+        public static void SetupNewMusic()
+        {
+            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || Loading)
+            {
+                return;
+            }
+            if (Main.npc != null && Main.npc.Length >= Main.maxNPCs)
+            {
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].modNPC is IModifiableMusicNPC modifiableMusicNPC)
+                    {
+                        Main.npc[i].modNPC.music = modifiableMusicNPC.GetMusic().GetMusicID();
+                    }
                 }
             }
         }

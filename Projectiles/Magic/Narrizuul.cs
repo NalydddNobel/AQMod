@@ -129,11 +129,11 @@ namespace AQMod.Projectiles.Magic
 
         public override void Kill(int timeLeft)
         {
-            if (Main.myPlayer == projectile.owner && AQMod.TonsofScreenShakes)
+            if (Main.myPlayer == projectile.owner && AQConfigClient.c_TonsofScreenShakes)
             {
                 float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
                 if (distance < 800)
-                    ScreenShakeManager.AddEffect(new BasicScreenShake(8, AQMod.MultIntensity((int)(800f - distance) / 128)));
+                    ScreenShakeManager.AddShake(new BasicScreenShake(8, AQMod.MultIntensity((int)(800f - distance) / 128)));
             }
             Color color = NarrizuulRainbow(projectile.localAI[1]) * 1.5f;
             for (int i = 0; i < 20; i++)

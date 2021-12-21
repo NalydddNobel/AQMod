@@ -53,12 +53,12 @@ namespace AQMod.Projectiles.Melee
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.Item14, projectile.position);
-            if (Main.myPlayer == projectile.owner && AQMod.TonsofScreenShakes)
+            if (Main.myPlayer == projectile.owner && AQConfigClient.c_TonsofScreenShakes)
             {
                 float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
                 if (distance < 700)
                 {
-                    ScreenShakeManager.AddEffect(new BasicScreenShake(8, AQMod.MultIntensity((int)(700f - distance) / 32)));
+                    ScreenShakeManager.AddShake(new BasicScreenShake(8, AQMod.MultIntensity((int)(700f - distance) / 32)));
                 }
             }
             int p = Projectile.NewProjectile(projectile.Center, Vector2.Zero, ModContent.ProjectileType<BurnterizerExplosion>(), 30, projectile.knockBack, projectile.owner);

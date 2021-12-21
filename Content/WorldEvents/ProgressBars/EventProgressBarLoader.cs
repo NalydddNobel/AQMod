@@ -6,7 +6,7 @@ using Terraria.Localization;
 
 namespace AQMod.Content.WorldEvents.ProgressBars
 {
-    public static class EventProgressBarManager
+    public static class EventProgressBarLoader
     {
         public static byte ActiveBar { get; internal set; } = 255;
         public static bool PlayerSafe { get; internal set; }

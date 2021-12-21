@@ -276,11 +276,11 @@ namespace AQMod.NPCs.Boss.Crabson
                         npc.netUpdate = true;
                         npc.localAI[2] = 1f;
                         var spawnPos = new Vector2(npc.position.X, npc.position.Y + npc.height - 2);
-                        if (Main.netMode != NetmodeID.Server && AQMod.TonsofScreenShakes)
+                        if (Main.netMode != NetmodeID.Server && AQConfigClient.c_TonsofScreenShakes)
                         {
                             float distance = Vector2.Distance(npc.Center, Main.LocalPlayer.Center);
                             if (distance < 600)
-                                ScreenShakeManager.AddEffect(new BasicScreenShake(16, AQMod.MultIntensity((int)(600f - distance) / 64)));
+                                ScreenShakeManager.AddShake(new BasicScreenShake(16, AQMod.MultIntensity((int)(600f - distance) / 64)));
                         }
                         Main.PlaySound(SoundID.Item14, npc.position);
                         for (int i = 0; i < 40; i++)

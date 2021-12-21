@@ -140,7 +140,7 @@ namespace AQMod.Items.Tools.GrapplingHooks
             float playerLength = (player.Center - projectile.Center).Length();
             var chainTexture = ModContent.GetTexture(this.GetPath("_Chain"));
             float textureHeight = chainTexture.Height - 2f;
-            Drawing.DrawChain_UseLighting(chainTexture, projectile.Center, player.Center, Main.screenPosition);
+            AQGraphics.Drawing.DrawChain_UseLighting(chainTexture, projectile.Center, player.Center, Main.screenPosition);
             var texture = projectile.GetTexture();
             Main.spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, lightColor, projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0f);
             return false;

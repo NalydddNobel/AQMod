@@ -21,7 +21,7 @@ namespace AQMod.Effects.ScreenEffects
             _screenShakes = null;
         }
 
-        public static void AddEffect(ScreenShakeFX effect)
+        public static void AddShake(ScreenShakeFX effect)
         {
             effect.Setup();
             _screenShakes.Add(effect);

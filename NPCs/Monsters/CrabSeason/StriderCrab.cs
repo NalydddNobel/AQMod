@@ -347,7 +347,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             if ((legTip - kneePos).Length() > 8f)
             {
                 var chainTexture = ModContent.GetTexture(AQUtils.GetPath<StriderHookHook>("_Chain"));
-                Drawing.DrawChain_UseLighting(chainTexture, kneePos, legTip, screenPos);
+                AQGraphics.Drawing.DrawChain_UseLighting(chainTexture, kneePos, legTip, screenPos);
             }
             Main.spriteBatch.Draw(texture, drawPosition - screenPos, _frames[1], Lighting.GetColor((int)drawPosition.X / 16, (int)drawPosition.Y / 16), npc.rotation + rotation, new Vector2(orig.X, 6f), npc.scale, effects, 0f);
         }

@@ -1,9 +1,16 @@
-﻿using Terraria.ID;
+﻿using Microsoft.Xna.Framework;
+using Terraria.ID;
 
 namespace AQMod.Common
 {
     internal static class Constants // This class is free to steal, it's full of magic numbers vanilla uses
     {
+        public static class ChatColors
+        {         
+            internal static Color BossMessage => new Color(175, 75, 255, 255);
+            internal static Color EventMessage => new Color(50, 255, 130, 255);
+        }
+
         public static class MoonPhases
         {
             public const int FullMoon = 0;

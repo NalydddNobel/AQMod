@@ -35,7 +35,7 @@ namespace AQMod.Items.BossItems.Crabson
         public override bool UseItem(Player player)
         {
             NPC.NewNPC((int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<JerryCrabson>(), 0, 0f, 0f, 0f, 0f, player.whoAmI);
-            Main.NewText(AQText.ModText("Common.AwakenedCrabson"), AQMod.BossMessage);
+            Main.NewText(AQText.ModText("Common.AwakenedCrabson"), Constants.ChatColors.BossMessage);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

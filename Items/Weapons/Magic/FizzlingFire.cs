@@ -44,9 +44,9 @@ namespace AQMod.Items.Weapons.Magic
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (AQMod.TonsofScreenShakes && Main.myPlayer == player.whoAmI)
+            if (AQConfigClient.c_TonsofScreenShakes && Main.myPlayer == player.whoAmI)
             {
-                ScreenShakeManager.AddEffect(new BasicScreenShake(item.useTime, (int)(2 * AQConfigClient.c_EffectIntensity)));
+                ScreenShakeManager.AddShake(new BasicScreenShake(item.useTime, (int)(2 * AQConfigClient.c_EffectIntensity)));
             }
             int randcount = Main.rand.Next(7);
             var velo = new Vector2(speedX, speedY);

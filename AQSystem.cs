@@ -24,7 +24,7 @@ namespace AQMod
             DemonSiege.Reset();
             if (Main.netMode != NetmodeID.Server)
                 AQMod.WorldEffects.Clear();
-            EventProgressBarManager.ActiveBar = 255;
+            EventProgressBarLoader.ActiveBar = 255;
         }
 
         public override TagCompound Save()

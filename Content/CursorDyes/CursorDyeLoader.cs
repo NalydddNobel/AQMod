@@ -1,4 +1,6 @@
-﻿namespace AQMod.Content.CursorDyes
+﻿using Terraria.ModLoader;
+
+namespace AQMod.Content.CursorDyes
 {
     public class CursorDyeLoader : ContentLoader<CursorDye>
     {
@@ -11,10 +13,10 @@
             public const int Demon = 3;
         }
 
-        public override void Setup(bool setupStatics = false)
-        {
-            base.Setup(setupStatics);
+        public static CursorDyeLoader Instance { get => ModContent.GetInstance<CursorDyeLoader>(); }
 
+        public override void Load()
+        {
             var mod = AQMod.Instance;
             AddContent(new CursorDyeHealth(mod, "Health"));
             AddContent(new CursorDyeMana(mod, "Mana"));

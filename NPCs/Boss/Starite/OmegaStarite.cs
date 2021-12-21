@@ -159,7 +159,7 @@ namespace AQMod.NPCs.Boss.Starite
 
             if (!GlimmerEvent.IsActive)
                 skipDeathTimer = 600;
-            if (AQMod.CanUseAssets)
+            if (AQGraphics.CanUseAssets)
             {
                 music = GetMusic().GetMusicID();
                 musicPriority = MusicPriority.BossMedium;
@@ -600,7 +600,7 @@ namespace AQMod.NPCs.Boss.Starite
                                     npc.localAI[1] = 1f;
                                     Main.PlaySound(SoundID.Trackable, npc.Center, 188);
                                     if (Main.netMode != NetmodeID.Server)
-                                        ScreenShakeManager.AddEffect(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f * AQConfigClient.c_EffectIntensity));
+                                        ScreenShakeManager.AddShake(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f * AQConfigClient.c_EffectIntensity));
                                     int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaRay>(), 100, 1f, Main.myPlayer, npc.whoAmI);
                                     Main.projectile[p].scale = 0.75f;
                                 }
@@ -1486,7 +1486,7 @@ namespace AQMod.NPCs.Boss.Starite
             {
                 spotlightColor = AQMod.StariteAuraColor;
             }
-            var drawOmegite = new List<DrawMethod>();
+            var drawOmegite = new List<AQGraphics.DrawMethod>();
             if (ModContent.GetInstance<AQConfigClient>().EffectQuality >= 1f)
             {
                 drawOmegite.Add(delegate (Texture2D texture1, Vector2 position, Rectangle? frame1, Color color, float scale, Vector2 origin1, float rotation, SpriteEffects effects, float layerDepth)

@@ -33,7 +33,7 @@ namespace AQMod.Walls
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            Drawing.DrawWall(i, j, ModContent.GetTexture(this.GetPath("_Glow")), GetColor(i + j));
+            AQGraphics.Drawing.DrawWall(i, j, ModContent.GetTexture(this.GetPath("_Glow")), GetColor(i + j));
         }
     }
 }

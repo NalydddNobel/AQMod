@@ -8,11 +8,10 @@ namespace AQMod.Content
     /// <summary>
     /// Helps manage things that interact with the Moonlight Wall
     /// </summary>
-    public class MoonlightWallHelper
+    public static class MoonlightWallHelper
     {
-        private bool _dayTime;
-        public static MoonlightWallHelper Instance;
-        public bool Active { get; private set; }
+        private static bool _dayTime;
+        public static bool Active { get; private set; }
 
         public static bool BehindMoonlightWall(Vector2 center)
         {
@@ -30,14 +29,14 @@ namespace AQMod.Content
                 : Framing.GetTileSafely(x, y).wall == ModContent.WallType<MoonlightWallWall>();
         }
 
-        public void Begin()
+        public static void Begin()
         {
             Active = true;
             _dayTime = Main.dayTime;
             Main.dayTime = false;
         }
 
-        public void End()
+        public static void End()
         {
             Active = false;
             Main.dayTime = _dayTime;

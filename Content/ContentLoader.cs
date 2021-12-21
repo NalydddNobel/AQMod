@@ -1,23 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using AQMod.Common;
+using System.Collections.Generic;
+using Terraria.ModLoader;
 
 namespace AQMod.Content
 {
-    public abstract class ContentLoader<T> where T : ContentItem
+    public abstract class ContentLoader<T> : IAutoloadType where T : ContentItem
     {
         protected List<T> _content;
         protected int _contentCount;
 
         public int Count => _contentCount;
 
-        public virtual void Setup(bool setupStatics = false)
+        void IAutoloadType.OnLoad()
         {
+            ContentInstance.Register(this);
             _content = new List<T>();
             _contentCount = 0;
+            Load();
+        }
+
+        void IAutoloadType.Unload()
+        {
+            Unload();
+            _content = null;
+        }
+
+        public virtual void Load()
+        {
         }
 
         public virtual void Unload()
         {
-            _content = null;
         }
 
         public virtual int AddContent(T item)

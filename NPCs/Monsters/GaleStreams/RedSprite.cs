@@ -529,13 +529,13 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         {
                             if (timer == 0)
                             {
-                                if (Main.netMode != NetmodeID.Server && AQMod.Screenshakes && (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
+                                if (Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes && (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 {
                                     if (Main.netMode != NetmodeID.Server)
                                     {
                                         AQSound.Play(SoundType.Item, AQSound.Paths.ThunderClap, npc.Center, 0.6f);
                                     }
-                                    ScreenShakeManager.AddEffect(new BasicScreenShake(8, AQMod.MultIntensity(12)));
+                                    ScreenShakeManager.AddShake(new BasicScreenShake(8, AQMod.MultIntensity(12)));
                                     if (AQConfigClient.c_EffectQuality > 0.2f)
                                     {
                                         int dustAmount = 50;

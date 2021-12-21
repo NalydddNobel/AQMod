@@ -32,7 +32,14 @@ namespace AQMod
 
                 internal static void Unload()
                 {
-                    ItemNoGravity = null;
+                    if (ItemNoGravity != null)
+                    {
+                        for (int i = 0; i < Main.maxItemTypes; i++)
+                        {
+                            ItemID.Sets.ItemNoGravity[i] = ItemNoGravity[i];
+                        }
+                        ItemNoGravity = null;
+                    }
                 }
             }
         }

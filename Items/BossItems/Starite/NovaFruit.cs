@@ -45,7 +45,7 @@ namespace AQMod.Items.BossItems.Starite
             if (Main.myPlayer == player.whoAmI)
                 GlimmerEventSky._glimmerLight = 1f;
             NPC.NewNPC((int)player.position.X, (int)player.position.Y - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, player.whoAmI);
-            AQMod.BroadcastMessage(AQText.Key + "Common.AwakenedOmegaStarite", AQMod.BossMessage);
+            AQMod.BroadcastMessage(AQText.Key + "Common.AwakenedOmegaStarite", Constants.ChatColors.BossMessage);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

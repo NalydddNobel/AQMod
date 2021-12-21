@@ -34,6 +34,7 @@ namespace AQMod.Content.Quest.Lobster
                 tag["QuestsCompleted"] = (int)QuestsCompleted;
                 if (_targetNPCType != -1)
                     tag["TargetNPC"] = new ModNPCIO().GetKey(_targetNPCType);
+                Hunt = null;
                 return tag;
             }
             return null;
@@ -44,7 +45,7 @@ namespace AQMod.Content.Quest.Lobster
             if (tag.ContainsKey("Hunt"))
             {
                 string key = tag.GetString("Hunt");
-                Hunt = AQMod.RobsterHunts.GetContent(key);
+                Hunt = RobsterHuntLoader.Instance.GetContent(key);
                 QuestsCompleted = (ushort)tag.GetInt("QuestsCompleted");
                 if (tag.ContainsKey("TargetNPC"))
                     _targetNPCType = tag.GetInt("TargetNPC");
@@ -90,9 +91,10 @@ namespace AQMod.Content.Quest.Lobster
         /// <returns></returns>
         public static bool RandomizeHunt(Player player)
         {
-            for (int i = 0; i < 10; i++)
+            var huntLoader = RobsterHuntLoader.Instance;
+            for (int i = 0; i < 15; i++)
             {
-                var hunt = AQMod.RobsterHunts.GetContent(Main.rand.Next(AQMod.RobsterHunts.Count));
+                var hunt = huntLoader.GetContent(Main.rand.Next(huntLoader.Count));
                 if (hunt.CanStart(player))
                 {
                     Hunt = hunt;
@@ -151,7 +153,5 @@ namespace AQMod.Content.Quest.Lobster
             }
             return foundOut;
         }
-
-        internal static void Unload() { Hunt = null; }
     }
 }

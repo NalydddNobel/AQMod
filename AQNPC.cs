@@ -874,7 +874,7 @@ namespace AQMod
                     if (AQConfigClient.c_EffectQuality < 1f)
                         amount = (int)(amount * AQConfigClient.c_EffectQuality);
                     if (AQConfigClient.c_Screenshakes)
-                        ScreenShakeManager.AddEffect(new BasicScreenShake(12, 6));
+                        ScreenShakeManager.AddShake(new BasicScreenShake(12, 6));
                     var npcCenter = npc.Center;
                     int p = Projectile.NewProjectile(npcCenter, Vector2.Normalize(npcCenter - Main.player[npc.target].Center), ModContent.ProjectileType<SparklingExplosion>(), 50, 5f, npc.target);
                     var size = Main.projectile[p].Size;
@@ -941,10 +941,10 @@ namespace AQMod
 
         public override bool PreAI(NPC npc)
         {
-            if (MoonlightWallHelper.Instance.Active) // in case the NPC before this one broke and skipped PostAI, if there's a next NPC then it would hopefully fix it
-                MoonlightWallHelper.Instance.End();
+            if (MoonlightWallHelper.Active) // in case the NPC before this one broke and skipped PostAI, if there's a next NPC then it would hopefully fix it
+                MoonlightWallHelper.End();
             if (MoonlightWallHelper.BehindMoonlightWall(npc.Center))
-                MoonlightWallHelper.Instance.Begin();
+                MoonlightWallHelper.Begin();
             if (npc.aiStyle == 13 && npc.ai[0] == 0 && npc.ai[1] == 0)
             {
                 Point pos = npc.Center.ToTileCoordinates();
@@ -1012,8 +1012,8 @@ namespace AQMod
 
         public override void PostAI(NPC npc)
         {
-            if (MoonlightWallHelper.Instance.Active)
-                MoonlightWallHelper.Instance.End();
+            if (MoonlightWallHelper.Active)
+                MoonlightWallHelper.End();
         }
 
         public override void SetupTravelShop(int[] shop, ref int nextSlot)

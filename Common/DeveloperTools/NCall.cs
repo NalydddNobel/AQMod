@@ -93,6 +93,8 @@ namespace AQMod.Common.DeveloperTools
             }
         }
 
+        public static string DebugFolderPath => Main.SavePath + Path.DirectorySeparatorChar + "Mods" + Path.DirectorySeparatorChar + "Cache" + Path.DirectorySeparatorChar + "AQMod";
+
         public override bool Autoload(ref string name)
         {
             return ModContent.GetInstance<AQConfigServer>().debugCommand;
@@ -291,7 +293,7 @@ namespace AQMod.Common.DeveloperTools
                 case "writeencore":
                 {
                     var aQPlayer = caller.Player.GetModPlayer<AQPlayer>();
-                    string path = AQMod.DebugFolderPath;
+                    string path = DebugFolderPath;
                     Directory.CreateDirectory(path);
                     var buffer = aQPlayer.SerializeBossKills();
                     var stream = File.Create(path + Path.DirectorySeparatorChar + "encorekills.txt", buffer.Length);
@@ -916,10 +918,10 @@ namespace AQMod.Common.DeveloperTools
                     var drawingPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
                     caller.Reply(nameof(AQPlayer.CursorDyeID) + ":" + drawingPlayer.CursorDyeID);
                     caller.Reply(nameof(AQPlayer.CursorDye) + ":" + drawingPlayer.CursorDye);
-                    caller.Reply(nameof(AQMod.CursorDyes.Count) + ":" + AQMod.CursorDyes.Count);
-                    for (int i = 0; i < AQMod.CursorDyes.Count; i++)
+                    caller.Reply(nameof(CursorDyeLoader.Instance.Count) + ":" + CursorDyeLoader.Instance.Count);
+                    for (int i = 0; i < CursorDyeLoader.Instance.Count; i++)
                     {
-                        var cursorDye = AQMod.CursorDyes.GetContent(i);
+                        var cursorDye = CursorDyeLoader.Instance.GetContent(i);
                         caller.Reply(nameof(CursorDye.Mod) + i + ":" + cursorDye.Mod);
                         caller.Reply(nameof(CursorDye.Name) + i + ":" + cursorDye.Name);
                     }
@@ -1008,7 +1010,7 @@ namespace AQMod.Common.DeveloperTools
                 }
                 break;
             }
-            string path = AQMod.DebugFolderPath;
+            string path = DebugFolderPath;
             Directory.CreateDirectory(path);
             result.SaveAsPng(File.Create(path + Path.DirectorySeparatorChar + "ncallresult.png"), result.Width, result.Height);
             Main.NewText("image complete!");
