@@ -16,6 +16,7 @@ namespace AQMod.Tiles.CraftingStations
             TileObjectData.addTile(Type);
             dustType = 15;
             disableSmartCursor = true;
+            adjTiles = new int[] { TileID.CrystalBall, };
             AddMapEntry(new Color(190, 200, 255, 255), Lang.GetItemName(ModContent.ItemType<Items.Placeable.CraftingStations.OrbicularStargaizar>()));
         }
 

@@ -167,48 +167,89 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             {
                 case Phase_SpaceGun:
                 {
-                    if (npc.ai[1] >= 120f)
+                    bool runOtherAis = true;
+                    bool noDeathray = true;
+                    if (Main.expertMode && npc.life * 2 < npc.lifeMax)
                     {
-                        if ((int)npc.ai[1] >= 200)
+                        noDeathray = false;
+                        if ((int)npc.ai[1] == 202)
                         {
-                            if ((int)npc.ai[1] >= 240)
+                            if (Main.netMode != NetmodeID.Server && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
                             {
-                                if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
-                                {
-                                    npc.direction = -1;
-                                }
-                                else
-                                {
-                                    npc.direction = 1;
-                                }
-                                AdvancePhase(Phase_SpaceGun);
+                                AQSound.Play(SoundType.Item, "Sounds/Item/SpaceSquid/ShootDeathray");
                             }
-                            npc.velocity *= 0.95f;
+                        }
+                        if ((int)npc.ai[1] >= 260)
+                        {
+                            runOtherAis = false;
+                            if ((int)npc.ai[2] < 1)
+                            {
+                                npc.ai[2]++;
+                                npc.velocity.X = -npc.direction * 10f;
+                                Projectile.NewProjectile(npc.Center, new Vector2(20f * npc.direction, 0f), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 30, 1f, Main.myPlayer);
+                            }
+                            if (npc.velocity.Length() > 5f)
+                            {
+                                npc.velocity *= 0.95f;
+                                if (npc.velocity.Length() < 5f)
+                                {
+                                    npc.velocity = Vector2.Normalize(npc.velocity) * 5f;
+                                }
+                            }
+                        }
+                        if ((int)npc.ai[1] >= 330)
+                        {
+                            AdvancePhase(Phase_SpaceGun);
+                        }
+                    }
+                    if (runOtherAis)
+                    {
+                        if (npc.ai[1] >= 120f)
+                        {
+                            if ((int)npc.ai[1] >= 200)
+                            {
+                                if (noDeathray && (int)npc.ai[1] >= 240)
+                                {
+                                    if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
+                                    {
+                                        npc.direction = -1;
+                                    }
+                                    else
+                                    {
+                                        npc.direction = 1;
+                                    }
+                                    AdvancePhase(Phase_SpaceGun);
+                                    npc.velocity *= 0.95f;
+                                }
+                            }
+                            else
+                            {
+                                int timer = (int)(npc.ai[1] - 120) % 10;
+                                if (timer == 0)
+                                {
+                                    frameIndex = 8;
+                                    if (Main.netMode != NetmodeID.Server)
+                                    {
+                                        AQSound.Play(SoundType.Item, "Sounds/Item/SpaceSquid/ShootLaser");
+                                    }
+                                    var spawnPosition = new Vector2(npc.position.X + (npc.direction == 1 ? npc.width + 20f : -20), npc.position.Y + npc.height / 2f);
+                                    var velocity = new Vector2(20f * npc.direction, 0f);
+                                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                                    {
+                                        Projectile.NewProjectile(spawnPosition, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 30, 1f, Main.myPlayer);
+                                        Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
+                                        Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(-MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
+                                    }
+                                }
+                            }
+                            npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 4f, 0.001f);
+                            npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 4f, 0.01f);
                         }
                         else
                         {
-                            int timer = (int)(npc.ai[1] - 120) % 10;
-                            if (timer == 0)
-                            {
-                                frameIndex = 8;
-                                SoundID.Item33.Play(npc.Center);
-                                var spawnPosition = new Vector2(npc.position.X + (npc.direction == 1 ? npc.width + 20f : -20), npc.position.Y + npc.height / 2f);
-                                var velocity = new Vector2(20f * npc.direction, 0f);
-                                if (Main.netMode != NetmodeID.MultiplayerClient)
-                                {
-                                    Projectile.NewProjectile(spawnPosition, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 30, 1f, Main.myPlayer);
-                                    Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
-                                    Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(-MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
-                                }
-                            }
+                            npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 4f, 0.05f);
+                            npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 4f, 0.1f);
                         }
-                        npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 4f, 0.001f);
-                        npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 4f, 0.01f);
-                    }
-                    else
-                    {
-                        npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 4f, 0.05f);
-                        npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 4f, 0.1f);
                     }
                     npc.ai[1]++;
                     npc.rotation = npc.velocity.X * 0.01f;
