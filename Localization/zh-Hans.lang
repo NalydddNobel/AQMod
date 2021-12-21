@@ -27,6 +27,12 @@ ItemTooltip.FidgetSpinner=无法自动挥舞的物品速度变慢, 但可以自�
 
 ItemName.DegenerationRing=堕落魔戒
 ItemTooltip.DegenerationRing=阻止大多数种类的燃烧
+ItemName.HeatedAmulet=灼炎护符
+ItemTooltip.HeatedAmulet=阻止大多数种类的燃烧\n降低来自紊流风暴敌人的热源强度
+ItemName.FreezingAmulet=霜结护符
+ItemTooltip.FreezingAmulet=阻止大多数种类的冻结\n降低来自紊流风暴敌人的冷源强度
+ItemName.NormalizerAmulet=化一护符
+ItemTooltip.NormalizerAmulet=阻止大多数种类的冻结\n降低来自紊流风暴敌人的温度源强度
 
 # Barbs
 
@@ -128,6 +134,10 @@ BalloonMerchant.Chat.StreamingBalloon=某些史莱姆似乎窃取了我狩猎气
 BalloonMerchant.Chat.WhiteSlime=我曾试着混合白色史莱姆凝胶和黑色史莱姆凝胶, 不幸的是, 它并没有创造出一个完美的史莱姆, 仅仅是生成了一只黑色史莱姆, 为啥?!
 BalloonMerchant.Chat.RedSprite=红色精灵在气球中很容易处理, 它们将我退离它们, 这个气球是一个很好的保护装置, 可以防止传导攻击.
 BalloonMerchant.Chat.SpaceSquid=一只会发射激光束的太空乌贼, 它让我的脊椎发冷... 或者, 这种寒意可能是因为它在不断吸收热量, 以便为其武器提供能量.
+
+BalloonMerchant.RenameItem.PlaceHere=放置于此处来重命名你的物品
+BalloonMerchant.RenameItem.PressHere=按下来设置你物品的名字
+BalloonMerchant.RenameItem.ChatButton=重命名物品
 
 # Exporter
 NPCName.Robster=发货人
