@@ -25,6 +25,7 @@ using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
 using AQMod.Effects.WorldEffects;
+using AQMod.Items;
 using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Items.Vanities;
 using AQMod.Localization;

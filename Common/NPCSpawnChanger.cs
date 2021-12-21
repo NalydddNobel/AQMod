@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Common
 {
-    public class NPCSpawnManager : GlobalNPC
+    public class NPCSpawnChanger : GlobalNPC
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
@@ -62,7 +62,7 @@ namespace AQMod.Common
                         }
                     }
                 }
-                if (NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))
+                if (NPC.AnyNPCs(ModContent.NPCType<RedSprite>()) || NPC.AnyNPCs(ModContent.NPCType<SpaceSquid>()))
                 {
                     spawnRate *= 3;
                     maxSpawns = (int)(maxSpawns * 0.75);
@@ -141,19 +141,25 @@ namespace AQMod.Common
                 if (GaleStreams.EventActive(spawnInfo.player) && !spawnInfo.playerSafe)
                 {
                     EventProgressBarManager.PlayerSafe_GaleStreams = true;
-                    float spawnMult = 0.9f;
+                    bool decSpawns = true;
                     if (AQMod.SudoHardmode)
                     {
-                        if (Main.windSpeed > 0.6f)
+                        if (Main.windSpeed.Abs() > 0.6f)
                         {
-                            if (!NPC.AnyNPCs(ModContent.NPCType<RedSprite>()))
+                            bool minibossActive = NPC.AnyNPCs(ModContent.NPCType<RedSprite>()) || NPC.AnyNPCs(ModContent.NPCType<SpaceSquid>());
+                            if (!minibossActive)
                             {
-                                pool.Add(ModContent.NPCType<RedSprite>(), 0.1f);
+                                DecreaseSpawns(0.1f);
+                                decSpawns = false;
+                                pool.Add(ModContent.NPCType<RedSprite>(), 0.06f);
+                                pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f);
                             }
                         }
-                        spawnMult = 0.1f;
                     }
-                    DecreaseSpawns(spawnMult);
+                    if (decSpawns)
+                    {
+                        DecreaseSpawns(0.9f);
+                    }
                     if (NPC.CountNPCS(ModContent.NPCType<Vraine>()) < 2)
                         pool.Add(ModContent.NPCType<Vraine>(), 1f);
                     pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f);

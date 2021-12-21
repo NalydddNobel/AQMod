@@ -12,7 +12,7 @@ namespace AQMod.Sounds
 
         public static class Paths
         {
-            public const string NoHit = "Sounds/NPCDeath/NoHit";
+            public const string NoHit = "Sounds/NPCKilled/NoHit";
 
             public const string thunderClapSlap = "Sounds/NPCHit/Slap_";
             /// <summary>
