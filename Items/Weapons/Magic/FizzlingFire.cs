@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Content.Dusts;
+using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Terraria;

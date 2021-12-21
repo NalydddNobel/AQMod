@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
@@ -111,7 +112,7 @@ namespace AQMod.Projectiles
                 AQSound.Play(SoundType.Item, AQSound.Paths.MysticUmbrellaDestroy, projectile.Center, 0.3f, -0.5f);
             for (int i = 0; i < 30; i++)
             {
-                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Content.Dusts.MonoDust>());
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>());
                 var n = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi).ToRotationVector2();
                 Main.dust[d].position = center + n * Main.rand.NextFloat(0f, size);
                 Main.dust[d].velocity = n * Main.rand.NextFloat(2f, 7f);

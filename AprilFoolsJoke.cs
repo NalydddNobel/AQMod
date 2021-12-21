@@ -1,10 +1,10 @@
-﻿using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader.Default;
 
-namespace AQMod.Content
+namespace AQMod
 {
-    public static class AprilFools
+    public static class AprilFoolsJoke
     {
         public static bool Active { get; internal set; }
 
@@ -12,13 +12,9 @@ namespace AQMod.Content
         {
             Active = false;
             if (Main.netMode != NetmodeID.SinglePlayer)
-            {
                 return;
-            }
-            if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
-            {
+            if (AprilFools.CheckAprilFools())
                 Active = true;
-            }
         }
     }
 }

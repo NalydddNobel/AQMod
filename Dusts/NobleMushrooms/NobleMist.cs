@@ -3,9 +3,9 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.Dusts
+namespace AQMod.Dusts.NobleMushrooms
 {
-    public abstract class Mist : ModDust
+    public abstract class NobleMist : ModDust
     {
         public override void OnSpawn(Dust dust)
         {

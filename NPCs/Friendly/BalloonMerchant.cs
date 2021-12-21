@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Content;
+using AQMod.Content.NameTags;
 using AQMod.Content.WorldEvents.GaleStreams;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.NobleMushrooms;
@@ -53,6 +54,29 @@ namespace AQMod.NPCs.Friendly
             npc.DeathSound = SoundID.NPCDeath1;
             npc.knockBackResist = 0.5f;
             animationType = NPCID.Guide;
+        }
+
+        public override void SetChatButtons(ref string button, ref string button2)
+        {
+            if (GaleStreams.IsActive)
+            {
+                button = Language.GetTextValue("LegacyInterface.28");
+                button2 = Language.GetTextValue("Mods.AQMod.BalloonMerchant.RenameItem.ChatButton");
+            }
+        }
+
+        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        {
+            if (firstButton)
+            {
+                shop = true;
+            }
+            else
+            {
+                Main.playerInventory = true;
+                Main.npcChatText = "";
+                RenameItemInterface.IsActive = true;
+            }
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot) // a combination of the travelling merchant and skeleton merchant, with items that are sold on specific circumstances and items which are chosen randomly
@@ -1263,22 +1287,6 @@ namespace AQMod.NPCs.Friendly
                 return false;
             }
             return true;
-        }
-
-        public override void SetChatButtons(ref string button, ref string button2)
-        {
-            if (GaleStreams.IsActive)
-                button = Language.GetTextValue("LegacyInterface.28");
-        }
-
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
-        {
-            if (firstButton)
-                shop = true;
-            else if (npc.aiStyle == 7)
-                SetToBalloon();
-            else
-                SetToTownNPC();
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.Dusts;
+using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

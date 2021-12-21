@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.WorldGeneration;
-using AQMod.Content.Dusts;
+using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;

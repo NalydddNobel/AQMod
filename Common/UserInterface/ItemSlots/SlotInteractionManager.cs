@@ -7,7 +7,7 @@ namespace AQMod.Content.UserInterface.ItemSlots
     {
         public virtual bool CanSwapItem(Item slotItem, Item mouseItem)
         {
-            return slotItem.type > ItemID.None || mouseItem.type > ItemID.None;
+            return !slotItem.IsAir || !mouseItem.IsAir;
         }
 
         public virtual void SwapItem(ref Item slotItem, ref Item mouseItem)

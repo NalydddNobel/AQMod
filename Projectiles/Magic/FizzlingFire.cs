@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Content.Dusts;
+using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

@@ -1,14 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics.Particles;
-using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents.GlimmerEvent;
-using AQMod.Effects;
-using AQMod.Effects.ScreenEffects;
-using AQMod.Effects.Trails;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

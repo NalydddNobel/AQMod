@@ -1,4 +1,5 @@
-﻿using AQMod.Sounds;
+﻿using AQMod.Dusts;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -148,7 +149,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
             npc.velocity.Y += 0.5f;
 
-            int d = Dust.NewDust(dustRect.TopLeft(), dustRect.Width, dustRect.Height, ModContent.DustType<Content.Dusts.MonoDust>(), 0f, 0f, 0, new Color(120, 120, 120, 0));
+            int d = Dust.NewDust(dustRect.TopLeft(), dustRect.Width, dustRect.Height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(120, 120, 120, 0));
             Main.dust[d].velocity *= 0.1f;
             Main.dust[d].scale = Main.rand.NextFloat(1f, 1.5f);
         }

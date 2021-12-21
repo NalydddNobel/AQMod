@@ -1,8 +1,8 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.NetCode;
-using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.ProgressBars;
+using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;

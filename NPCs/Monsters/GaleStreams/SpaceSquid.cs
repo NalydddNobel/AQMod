@@ -1,7 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics.Particles;
-using AQMod.Content.Dusts;
+using AQMod.Dusts.GaleStreams;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Localization;
 using AQMod.Sounds;

@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Content.Dusts;
+using AQMod.Dusts.GaleStreams;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Materials.Energies;
 using AQMod.Sounds;

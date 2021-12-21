@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.Dusts
+namespace AQMod.Dusts.NobleMushrooms
 {
-    public class KryptonDust : ModDust
+    public class XenonDust : ModDust
     {
         public override void OnSpawn(Dust dust)
         {

@@ -1,8 +1,10 @@
 ﻿using AQMod.Assets;
+using AQMod.Effects.Dyes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -77,7 +79,16 @@ namespace AQMod.Projectiles.Pets
                 if (projectile.frame >= Main.projFrames[projectile.type])
                     projectile.frame = 0;
             }
-            Lighting.AddLight(projectile.Center, LightColor().ToVector3());
+            Vector3 lightColor;
+            if (Main.player[projectile.owner].cLight > 0)
+            {
+                lightColor = DyeHelper.ModifyLight(GameShaders.Armor.GetSecondaryShader(Main.player[projectile.owner].cLight, Main.player[projectile.owner]), LightColor().ToVector3());
+            }
+            else
+            {
+                lightColor = LightColor().ToVector3();
+            }
+            Lighting.AddLight(projectile.Center, lightColor);
             projectile.spriteDirection = player.direction;
         }
 

@@ -1,4 +1,4 @@
-﻿using AQMod.Content.Dusts;
+﻿using AQMod.Dusts.NobleMushrooms;
 using AQMod.Items.Placeable.Torch;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

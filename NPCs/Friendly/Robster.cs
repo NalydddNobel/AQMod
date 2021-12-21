@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
-using AQMod.Content;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Placeable.CraftingStations;
@@ -341,7 +340,7 @@ namespace AQMod.NPCs.Friendly
                         shop.item[nextSlot].shopCustomPrice = Item.buyPrice(silver: 2);
                         nextSlot++;
                     }
-                    if (AprilFools.Active) // graveyard
+                    if (AprilFoolsJoke.Active) // graveyard
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.RichGravestone1);
                         shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);

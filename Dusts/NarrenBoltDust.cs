@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.Dusts
+namespace AQMod.Dusts
 {
     public class NarrenBoltDust : ModDust
     {

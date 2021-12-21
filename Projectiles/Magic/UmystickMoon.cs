@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
@@ -109,12 +110,12 @@ namespace AQMod.Projectiles.Magic
             }
             for (int i = 0; i < 30; i++)
             {
-                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Content.Dusts.MonoDust>());
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>());
                 var n = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi).ToRotationVector2();
                 Main.dust[d].position = center + n * Main.rand.NextFloat(0f, size);
                 Main.dust[d].velocity = n * Main.rand.NextFloat(2f, 7f);
                 Main.dust[d].scale = Main.rand.NextFloat(0.8f, 1.75f);
-                Main.dust[d].color = _glowClr * Main.rand.NextFloat(0.8f, 2.5f);
+                Main.dust[d].color = _glowClr * Main.rand.NextFloat(0.8f, 2f);
             }
         }
     }

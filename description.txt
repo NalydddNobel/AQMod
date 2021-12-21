@@ -7,7 +7,7 @@ A discord link to the mod is in the homepage, if you like typing discord invite 
 [c/aaaaff:> https://discord.gg/pEKfVCnqe4]
 
 ##################
-[c/ff3377:>] 217 Items
+[c/ff3377:>] 218 Items
 [c/ff3377:>] 16 Enemies
 [c/ff3377:>] 4 Events
 [c/ff3377:>] 2 Bosses
@@ -29,7 +29,7 @@ Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不
 本Mod的主页有Discord链接, 如果你想自己输入Discord邀请链接, 在这:
 [c/aaaaff:> https://discord.gg/pEKfVCnqe4]
 
-[c/ff3377:>] 217个物品
+[c/ff3377:>] 218个物品
 [c/ff3377:>] 16个敌人
 [c/ff3377:>] 4个事件
 [c/ff3377:>] 2个Boss

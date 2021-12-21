@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Content;
 using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Effects;
 using Microsoft.Xna.Framework;
@@ -77,7 +76,7 @@ namespace AQMod.Common.Graphics.SceneLayers
 
         private static Color portalColor()
         {
-            if (AprilFools.Active)
+            if (AprilFoolsJoke.Active)
                 return Main.DiscoColor;
             return Color.Red;
         }

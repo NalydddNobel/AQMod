@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.WorldGeneration;
-using AQMod.Content.Dusts;
+using AQMod.Dusts;
 using AQMod.Items.Accessories;
 using AQMod.Items.Foods;
 using AQMod.Items.Potions;
@@ -466,34 +466,6 @@ namespace AQMod
             }
             if (value > 0)
                 Item.NewItem(rect, ItemID.CopperCoin, value);
-        }
-
-        public static void ConvertToMoney(int value, out int platinum, out int gold, out int silver, out int copper)
-        {
-            platinum = 0;
-            gold = 0;
-            silver = 0;
-            copper = 0;
-            if (value >= Item.platinum)
-            {
-                platinum = value / Item.platinum;
-                value -= Item.platinum * platinum;
-                if (value <= 0)
-                    return;
-            }
-            if (value >= Item.gold)
-            {
-                gold = value / Item.gold;
-                value -= Item.gold * gold;
-                if (value <= 0)
-                    return;
-            }
-            if (value >= Item.silver)
-            {
-                silver = value / Item.silver;
-                value -= Item.silver * silver;
-            }
-            copper = value;
         }
 
         public static void DropInstancedItem(int player, Rectangle rect, int item, int stack = 1)

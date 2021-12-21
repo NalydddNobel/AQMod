@@ -1,4 +1,4 @@
-﻿using AQMod.Content.Dusts;
+﻿using AQMod.Dusts.NobleMushrooms;
 using AQMod.Items.Materials.NobleMushrooms;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;

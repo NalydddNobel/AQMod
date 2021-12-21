@@ -8,7 +8,7 @@ using Terraria.UI.Chat;
 
 namespace AQMod.Common.UserInterface
 {
-    public class UIManager
+    public class UIHelper
     {
         public struct InventoryItemDrawResults
         {
@@ -30,9 +30,11 @@ namespace AQMod.Common.UserInterface
 
         public static InventoryItemDrawResults DrawItemInv(Vector2 position, Item item, Color? color = null)
         {
-            var drawResults = new InventoryItemDrawResults();
-            drawResults.item = item;
-            drawResults.texture = Main.itemTexture[item.type];
+            var drawResults = new InventoryItemDrawResults
+            {
+                item = item,
+                texture = Main.itemTexture[item.type]
+            };
             drawResults.frame = Main.itemAnimations[item.type] == null ? drawResults.texture.Frame() : Main.itemAnimations[item.type].GetFrame(drawResults.texture);
             drawResults.scale2 = 1f;
             drawResults.color = Color.White;
@@ -66,9 +68,11 @@ namespace AQMod.Common.UserInterface
 
         public static InventoryItemDrawResults GetDrawResults(Vector2 position, Item item)
         {
-            var drawResults = new InventoryItemDrawResults();
-            drawResults.item = item;
-            drawResults.texture = Main.itemTexture[item.type];
+            var drawResults = new InventoryItemDrawResults
+            {
+                item = item,
+                texture = Main.itemTexture[item.type],
+            };
             drawResults.frame = Main.itemAnimations[item.type] == null ? drawResults.texture.Frame() : Main.itemAnimations[item.type].GetFrame(drawResults.texture);
             drawResults.scale2 = 1f;
             drawResults.color = Color.White;

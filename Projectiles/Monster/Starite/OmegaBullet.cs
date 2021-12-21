@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
-using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;

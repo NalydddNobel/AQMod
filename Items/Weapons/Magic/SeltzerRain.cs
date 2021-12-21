@@ -1,4 +1,4 @@
-﻿using AQMod.Content.Dusts;
+﻿using AQMod.Dusts;
 using AQMod.Items.Materials.Fish;
 using Microsoft.Xna.Framework;
 using Terraria;

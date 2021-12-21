@@ -3,7 +3,6 @@ using AQMod.Common.Graphics;
 using AQMod.Common.IO;
 using AQMod.Common.Skies;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents;
@@ -119,6 +118,19 @@ namespace AQMod.Common.DeveloperTools
                 caller.Reply("Command doesn't exist.");
                 break;
 
+                case "nametagitem":
+                {
+                    string name = "";
+                    for (int i = 1; i < args.Length; i++)
+                    {
+                        if (i > 1)
+                            name += " ";
+                        name += args[i];
+                    }
+                    caller.Player.HeldItem.GetGlobalItem<Content.NameTagItem>().nameTag = name;
+                }
+                break;
+
                 case "demonsiegei":
                 caller.Reply("x: " + DemonSiege.X);
                 caller.Reply("y: " + DemonSiege.Y);
@@ -202,7 +214,7 @@ namespace AQMod.Common.DeveloperTools
                 case "april":
                 case "fools":
                 case "aprilfools":
-                AprilFools.Active = true;
+                AprilFoolsJoke.Active = true;
                 break;
 
                 case "downedglimmer":

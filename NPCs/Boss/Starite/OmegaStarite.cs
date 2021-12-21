@@ -4,8 +4,8 @@ using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics;
 using AQMod.Common.NoHitting;
-using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
@@ -26,6 +26,7 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
 
 namespace AQMod.NPCs.Boss.Starite
 {
@@ -155,12 +156,17 @@ namespace AQMod.NPCs.Boss.Starite
             npc.trapImmune = true;
             npc.lavaImmune = true;
             bossBag = ModContent.ItemType<StariteBag>();
+
             if (!GlimmerEvent.IsActive)
                 skipDeathTimer = 600;
             if (AQMod.CanUseAssets)
             {
                 music = GetMusic().GetMusicID();
                 musicPriority = MusicPriority.BossMedium;
+                if (AprilFoolsJoke.Active)
+                {
+                    npc.GivenName = "Omega Starite, Living Galaxy the Omega Being";
+                }
             }
         }
 

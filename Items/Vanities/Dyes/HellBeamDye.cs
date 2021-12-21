@@ -10,7 +10,7 @@ namespace AQMod.Items.Vanities.Dyes
 
         public override ArmorShaderData CreateShaderData()
         {
-            return new LightSourceAsThirdColorVariableArmorShaderData(Effect, Pass,
+            return new HellBeamsDyeShaderData(Effect, Pass,
                 new Vector3(0.3f, 0.2f, 0f)).UseColor(new Vector3(1f, 0.8f, 0.1f)).UseSecondaryColor(1.8f, 0.8f, 0.6f).UseOpacity(5f).UseSaturation(1f);
         }
     }

@@ -1,4 +1,4 @@
-﻿using AQMod.Content.Dusts;
+﻿using AQMod.Dusts;
 using AQMod.Items.Dedicated.ContentCreators;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
-using AQMod.Content.Dusts;
+using AQMod.Dusts;
+using AQMod.Dusts.NobleMushrooms;
 using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Materials.NobleMushrooms;

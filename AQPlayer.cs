@@ -7,9 +7,9 @@ using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.NetCode;
 using AQMod.Common.Skies;
 using AQMod.Content.CursorDyes;
-using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.GaleStreams;
 using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
@@ -588,8 +588,8 @@ namespace AQMod
         public bool cosmicanon;
         public bool antiGravityItems;
         public bool equivalenceMachine;
-        public bool hasReroller;
-        public bool rerollerHover;
+        public bool hotAmulet;
+        public bool coldAmulet;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -816,6 +816,55 @@ namespace AQMod
             }
         }
 
+        private void UpdateTemperatureRegen()
+        {
+            if (temperature != 0)
+            {
+                sbyte minTemp = -100;
+                sbyte maxTemp = 100;
+                if (coldAmulet)
+                {
+                    minTemp = -60;
+                }
+                if (hotAmulet)
+                {
+                    maxTemp = 60;
+                }
+                if (temperature < minTemp)
+                {
+                    temperature = minTemp;
+                }
+                else if (temperature > maxTemp)
+                {
+                    temperature = maxTemp;
+                }
+                if (temperatureRegen == 0)
+                {
+                    temperatureRegen = TEMPERATURE_REGEN_NORMAL;
+                    if (player.resistCold && temperature < 0)
+                    {
+                        temperatureRegen = TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP;
+                    }
+                    if (temperature < 0)
+                    {
+                        temperature++;
+                    }
+                    else
+                    {
+                        temperature--;
+                    }
+                }
+                else
+                {
+                    temperatureRegen--;
+                }
+            }
+            else
+            {
+                temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
+            }
+        }
+
         public override void ResetEffects()
         {
             if (Main.myPlayer == player.whoAmI)
@@ -893,41 +942,9 @@ namespace AQMod
             }
             player.statLifeMax2 += extraHP;
             extraHP = 0;
-            if (temperature != 0)
-            {
-                if (temperature < -100)
-                {
-                    temperature = -100;
-                }
-                else if (temperature > 100)
-                {
-                    temperature = 100;
-                }
-                if (temperatureRegen == 0)
-                {
-                    temperatureRegen = TEMPERATURE_REGEN_NORMAL;
-                    if (player.resistCold && temperature < 0)
-                    {
-                        temperatureRegen = TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP;
-                    }
-                    if (temperature < 0)
-                    {
-                        temperature++;
-                    }
-                    else
-                    {
-                        temperature--;
-                    }
-                }
-                else
-                {
-                    temperatureRegen--;
-                }
-            }
-            else
-            {
-                temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
-            }
+            UpdateTemperatureRegen();
+            hotAmulet = false;
+            coldAmulet = false;
             if (GaleStreams.EventActive(player))
             {
                 if (temperature < -60)

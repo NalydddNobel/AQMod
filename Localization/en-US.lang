@@ -27,6 +27,12 @@ ItemTooltip.FidgetSpinner=Non-autoswing items are slower, but gain autoswing
 
 ItemName.DegenerationRing=Degeneration Ring
 ItemTooltip.DegenerationRing=Prevents most types of burning
+ItemName.HeatedAmulet=Heated Amulet
+ItemTooltip.HeatedAmulet=Prevents most types of burning\nLowers the intensity of hot sources from gale streams enemies
+ItemName.FreezingAmulet=Freezing Amulet
+ItemTooltip.FreezingAmulet=Prevents most types of freezing\nLowers the intensity of cold sources from gale streams enemies
+ItemName.NormalizerAmulet=Normalized Amulet
+ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers the intensity of temperature sources from gale streams enemies
 
 # Barbs
 
@@ -128,6 +134,10 @@ BalloonMerchant.Chat.StreamingBalloon=Some slimes seem to have stolen my balloon
 BalloonMerchant.Chat.WhiteSlime=I tried mixing white slime gel and black slime gel, unfortunately, instead of creating the perfect slime, it just gave birth to a regular black slime, what?!
 BalloonMerchant.Chat.RedSprite=Red Sprites are quite easy to manage in a balloon, they literally push me away from them, and this balloon is a great protector against conductive attacks.
 BalloonMerchant.Chat.SpaceSquid=A squid with laser beams, it brings a chill to my spine... or maybe that chill is from the constant absorption of heat in order to power up its weaponry...
+
+BalloonMerchant.RenameItem.PlaceHere=Place here to rename your item
+BalloonMerchant.RenameItem.PressHere=Press to set the item's name
+BalloonMerchant.RenameItem.ChatButton=Rename Items
 
 # Exporter
 NPCName.Robster=Exporter

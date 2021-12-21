@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Content.Dusts;
+using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
@@ -24,8 +24,8 @@ namespace AQMod.Projectiles.Magic
 
         public override void SetDefaults()
         {
-            projectile.width = 72;
-            projectile.height = 72;
+            projectile.width = 32;
+            projectile.height = 32;
             projectile.friendly = true;
             projectile.magic = true;
             projectile.timeLeft = 80;
@@ -70,10 +70,7 @@ namespace AQMod.Projectiles.Magic
             }
             if (Main.rand.NextBool(4))
             {
-                int d = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<NarrenBoltDust>());
-                Main.dust[d].position -= Main.dust[d].frame.Size() / 2f;
-                Main.dust[d].color = NarrizuulRainbow(projectile.localAI[1]) * 1.5f;
-                Main.dust[d].velocity = Vector2.Zero;
+                SpawnPatterns.SpawnDustCentered(projectile.Center, ModContent.DustType<NarrenBoltDust>(), new Vector2(0f, 0f), NarrizuulRainbow(projectile.localAI[1]) * 1.5f);
             }
             Lighting.AddLight(projectile.Center, (NarrizuulRainbow(projectile.localAI[1]) * 1.5f).ToVector3() * projectile.scale);
         }

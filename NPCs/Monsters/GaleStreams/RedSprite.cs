@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Content.Dusts;
+using AQMod.Dusts.GaleStreams;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Localization;

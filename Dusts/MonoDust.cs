@@ -1,8 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Effects.Dyes;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.Dusts
+namespace AQMod.Dusts
 {
     public class MonoDust : ModDust
     {
@@ -23,7 +24,16 @@ namespace AQMod.Content.Dusts
             if (dust.scale <= 0.1f)
                 dust.active = false;
             if (!dust.noLight)
-                Lighting.AddLight(dust.position, dust.color.ToVector3() * 0.5f);
+            {
+                Vector3 lightColor;
+                if (dust.shader != null)
+                    lightColor = DyeHelper.ModifyLight(dust.shader, dust.color.ToVector3() * 0.5f);
+                else
+                {
+                    lightColor = dust.color.ToVector3() * 0.5f;
+                }
+                Lighting.AddLight(dust.position, lightColor);
+            }
             dust.position += dust.velocity;
             return false;
         }

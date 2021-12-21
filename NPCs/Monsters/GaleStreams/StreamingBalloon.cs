@@ -1,5 +1,4 @@
-﻿using AQMod.Content;
-using AQMod.Sounds;
+﻿using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -70,7 +69,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 {
                     if (npc.HasValidTarget)
                     {
-                        if (AprilFools.Active)
+                        if (AprilFoolsJoke.Active)
                         {
                             npc.ai[2] = NPCID.LavaSlime;
                         }

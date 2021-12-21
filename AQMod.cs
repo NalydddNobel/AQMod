@@ -13,6 +13,7 @@ using AQMod.Common.UserInterface;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.MapMarkers;
+using AQMod.Content.NameTags;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.CrabSeason;
@@ -773,7 +774,7 @@ namespace AQMod
                     if (Main.time + Main.dayRate > Main.dayLength)
                     {
                         CosmicanonActive = AQPlayer.IgnoreMoons();
-                        AprilFools.UpdateActive();
+                        AprilFoolsJoke.UpdateActive();
                         GlimmerEvent.OnTurnNight();
                         if (Main.netMode != NetmodeID.Server)
                         {
@@ -861,7 +862,7 @@ namespace AQMod
             MapMarkers = new MapMarkerManager();
             MoonlightWallHelper.Instance = new MoonlightWallHelper();
             ModCallHelper.SetupCalls();
-            AprilFools.UpdateActive();
+            AprilFoolsJoke.UpdateActive();
             var server = AQConfigServer.Instance;
             ApplyServerConfig(server);
             if (!Main.dedServ)
@@ -1123,10 +1124,22 @@ namespace AQMod
                 var cursorDye = CursorDyes.GetContent(drawingPlayer.CursorDyeID);
                 Edits.OverrideColor = cursorDye.ApplyColor(player, drawingPlayer, out Edits._newCursorColor);
             }
-            var index = layers.FindIndex((l) => l.Name.Equals("Vanilla: Invasion Progress Bars"));
+            var index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
             if (index != -1)
             {
-                layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Invasion Progress Bar", delegate ()
+                layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Rename Item Interface",
+                    () => 
+                    {
+                        RenameItemInterface.Draw();
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+            }
+            index = layers.FindIndex((l) => l.Name.Equals("Vanilla: Invasion Progress Bars"));
+            if (index != -1)
+            {
+                layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Invasion Progress Bar", () =>
                 {
                     EventProgressBarManager.Draw();
                     return true;

@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.Graphics.SceneLayers;
-using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

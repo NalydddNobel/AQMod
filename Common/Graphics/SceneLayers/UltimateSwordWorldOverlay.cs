@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.NetCode;
-using AQMod.Content.Dusts;
 using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Melee;
 using AQMod.NPCs.Boss.Starite;

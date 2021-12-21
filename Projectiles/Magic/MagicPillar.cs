@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.Graphics.Particles;
-using AQMod.Content.Dusts;
+using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

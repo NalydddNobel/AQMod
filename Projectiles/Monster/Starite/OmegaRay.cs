@@ -1,5 +1,5 @@
-﻿using AQMod.Content.Dusts;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+﻿using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
