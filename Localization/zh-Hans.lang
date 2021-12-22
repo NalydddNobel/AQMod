@@ -108,6 +108,9 @@ ItemTooltip.EquivalenceMachine=附近的物品会漂浮而非下落\n{$Mods.AQMo
 EquivalenceMachineToggle.False=附近的物品现在会下落
 EquivalenceMachineToggle.True=附近的物品现在会漂浮
 
+ItemName.IWillBeBack='我将归来'
+ItemTooltip.IWillBeBack=可在不击杀向导的情况下招呼血肉墙\n右键使所有城镇NPC免疫岩浆
+
 # Tooltips
 
 Tooltips.ManaPerSecond=每秒消耗{0}点法力值
@@ -234,6 +237,8 @@ BossChecklistDesc.RedSprite=有几率出现在紊流风暴中!
 RecipeGroup.AnyEnergy=任意能量
 RecipeGroup.AnyNobleMushroom=任意华贵蘑菇
 
+Config.RequiresReload=需要重新加载.
+
 # Client Config
 
 ClientConfig.Header.Worldgen=世界生成
@@ -244,9 +249,29 @@ ClientConfig.OverrideVanillaChestLootTooltip=决定Aequus Mod中的特殊物品�
 
 # Server Config
 
-ServerConfig.Header.QualityOfLife=生活品质
+ServerConfig.Name=服务器设置
+
+ServerConfig.Header.QualityOfLife=[c/ffdddd:生活品质]
+ServerConfig.Header.World=[c/ddeeff:世界]
+ServerConfig.Header.Debug=[c/ffeedd:调试]
+
 ServerConfig.DemonSiegeDowngrades=恶魔围攻降级
-ServerConfig.DemonSiegeDowngradesTooltip=增加恶魔围攻事件升级武器的降低合成表
+ServerConfig.DemonSiegeDowngradesTooltip=增加恶魔围攻事件升级武器的降低合成表.\n{$Mods.AQMod.Config.RequiresReload}
+
+ServerConfig.ReduceSpawns=Boss战期间减少刷怪率
+ServerConfig.ReduceSpawnsTooltip=实际上是在Aequus Mod的Boss战期间禁用刷怪率.\n如果世界中有什么东西正降低刷怪率, 则需要重新加载.
+
+ServerConfig.EvilProgressionLock=World-锁定邪恶地形时期
+ServerConfig.EvilProgressionLockTooltip=黑檀石、猩红石、暗影珠和猩红之心无法再被爆炸物摧毁, 直至你击败任意一个Boss.
+
+ServerConfig.HarderOmegaStarite=总是困难版本的终末之星AI
+ServerConfig.HarderOmegaStariteTooltip=与微光事件中的强化版终末之星战斗, 即使此时并不处于微光事件\n但终末之星并不会在微光事件外掉落最终之剑\n终末之星存活时无法更改此项设置.
+
+ServerConfig.JellyfishNecklace=蓝色水母不再掉落水母项链 ([i:1303])
+ServerConfig.JellyfishNecklaceTooltip=若禁用此项, 则蓝色水母能够有几率同时掉落水母项链和防震项圈.
+
+ServerConfig.DebugCommand=调试模式 (/ncall)
+ServerConfig.DebugCommandTooltip=启用 /ncall 调试命令.\n{$Mods.AQMod.Config.RequiresReload}
 
 # NPCs
 
@@ -263,7 +288,6 @@ Common.ArmorSetBonus_Lightbulb=你现在拥有危险感和猎人增益
 #
 # Config Names
 Common.ConfigName_AQConfigClient=客户端设置
-Common.ConfigName_AQConfigServer=服务器设置
 #
 # Config Headers
 Common.ConfigHeader_Visuals=视觉效果
@@ -300,14 +324,6 @@ Common.Config_ShowCompletedAnglerQuestsCount=显示已完成的渔夫的任务�
 Common.Config_ShowCompletedRobsterQuestsCount=显示已完成的龙虾掠夺者的任务次数
 Common.Config_CosmicEnergyAlt=星宇能量 (备用贴图)
 Common.Config_MarkerMapUIType=地图标记UI的类型 (位置)
-# (Server Config)
-Common.Config_HarderOmegaStarite=总是困难版本的终末之星
-Common.Config_HarderOmegaStariteTooltip=与微光事件中的强化版终末之星战斗, 即使此时并不处于微光事件\n但终末之星并不会在微光事件外掉落最终之剑
-Common.Config_ReduceSpawns=Boss战期间减少刷怪率 (仅适用于Aequus Mod的Boss)
-Common.Config_EvilProgressionLock=锁定邪恶地形时期
-Common.Config_EvilProgressionLockTooltip=黑檀石、猩红石、暗影珠和猩红之心无法再被爆炸物摧毁
-Common.Config_AprilFools=愚人节
-Common.Config_DebugCommand=调试模式 (/ncall)
 # Eightball
 Common.EightballAnswer0=是的
 Common.EightballAnswer1=我的消息来源说不
@@ -1104,7 +1120,6 @@ NPCName.Cindera=幻形蝠
 
 NPCName.Meteor=流星
 NPCName.TemperatureBalloon=探温风标
-NPCName.SpaceSquid=太空乌贼
 NPCName.Vraine=镰鸟
 NPCName.Atmodrone=大气无人机
 NPCName.HotCurrent=暖流
@@ -1159,6 +1174,15 @@ NPCName.WhiteSlime=白色史莱姆
 
 ItemName.WhiteSlimeBanner=白色史莱姆旗
 ItemTooltip.WhiteSlimeBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.WhiteSlime}
+
+NPCName.SpaceSquid=太空乌贼
+
+ItemName.SpaceSquidTrophy=太空乌贼纪念章
+ItemName.SpaceSquidBanner=太空乌贼旗
+ItemTooltip.SpaceSquidBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SpaceSquid}
+
+ProjectileName.SpaceSquidLaser=Space Squid
+ProjectileName.SpaceSquidDeathray=Space Squid
 
 QuestFish.Crabdaughter=看起来海洋中最近涌入了某些新的鱼, 其中一条鱼似乎与爪子为蛤蜊的巨大螃蟹有关联. 尽管我所能想到的唯一关联是它的爪子为螃蟹爪子. 真是个奇观, 所以快给我抓一条!
 QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我曾见过一条内部充满清澈的水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
