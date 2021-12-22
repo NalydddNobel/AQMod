@@ -45,7 +45,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             var drawPos = projectile.Center - Main.screenPosition;
             var drawColor = new Color(30, 255, 30, 0);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (Trailshader.ShouldDrawVertexTrails(Trailshader.GetVertexDrawingContext_Projectile(projectile)))
+            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
@@ -56,7 +56,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader.FullDraw(AQTextures.Trails[TrailTex.ThickerLine], Trailshader.TextureTrail,
+                    VertexStrip.FullDraw(AQTextures.Trails[TrailTex.ThickerLine], VertexStrip.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }

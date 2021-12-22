@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Effects.Trails
 {
-    public class Trailshader
+    public struct VertexStrip
     {
         private readonly Texture2D _texture;
         private readonly string _pass;
@@ -30,15 +30,20 @@ namespace AQMod.Effects.Trails
 
         private class VertexDrawingContext_Projectile : IVertexDrawingContext
         {
+            private Projectile _projectile;
+
             public VertexDrawingContext_Projectile(Projectile projectile)
             {
+                _projectile = projectile;
             }
 
             private static bool _shouldDrawTrails;
 
             bool IVertexDrawingContext.ShouldDraw()
             {
-                return _shouldDrawTrails;
+                if (_projectile.friendly)
+                    return _shouldDrawTrails;
+                return true;
             }
 
             internal static void setup()
@@ -57,20 +62,45 @@ namespace AQMod.Effects.Trails
             return context == null ? true : context.ShouldDraw();
         }
 
-        public Trailshader(Texture2D texture, string pass)
+        public VertexStrip(Texture2D texture, string pass)
         {
             _texture = texture;
             _pass = pass;
+            _positions = null;
         }
 
-        public static void FullDraw(Texture2D texture, string pass, Vector2[] positions, Func<float, Vector2> getWidth, Func<float, Color> getColor)
+        public static void FullDraw(Texture2D texture, string pass, Vector2[] positions, Func<float, Vector2> getWidth, Func<float, Color> getColor, float progressAdd = 0f, float coordsMult = 1f)
         {
-            var trail = new Trailshader(texture, pass);
-            trail.PrepareVertices(positions, getWidth, getColor);
+            var trail = new VertexStrip(texture, pass);
+            trail.PrepareVertices(positions, getWidth, getColor, progressAdd, coordsMult);
             trail.Draw();
         }
 
-        public void PrepareVertices(Vector2[] positions, Func<float, Vector2> getWidth, Func<float, Color> getColor)
+        public static void ReversedGravity(Vector2[] list)
+        {
+            if (Main.player[Main.myPlayer].gravDir == 1)
+            {
+                return;
+            }
+            for (int i = 0; i < list.Length; i++)
+            {
+                list[i] = new Vector2(list[i].X, -list[i].Y + Main.screenHeight);
+            }
+        }
+
+        public static void ReversedGravity(List<Vector2> list)
+        {
+            if (Main.player[Main.myPlayer].gravDir == 1)
+            {
+                return;
+            }
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i] = new Vector2(list[i].X, -list[i].Y + Main.screenHeight);
+            }
+        }
+
+        public void PrepareVertices(Vector2[] positions, Func<float, Vector2> getWidth, Func<float, Color> getColor, float progressAdd = 0f, float coordsMult = 1f)
         {
             _positions = new List<VertexPositionColorTexture>();
             for (int i = 0; i < positions.Length - 1; i++)
@@ -87,12 +117,12 @@ namespace AQMod.Effects.Trails
                 float coord2 = off1.Length() < off2.Length() ? 0 : 1;
                 Color col1 = getColor(prog1);
                 Color col2 = getColor(prog2);
-                _positions.Add(new VertexPositionColorTexture(new Vector3(pos1 + off1, 0f), col1, new Vector2(prog1, coord1)));
-                _positions.Add(new VertexPositionColorTexture(new Vector3(pos1 - off1, 0f), col1, new Vector2(prog1, coord2)));
-                _positions.Add(new VertexPositionColorTexture(new Vector3(pos2 + off2, 0f), col2, new Vector2(prog2, coord1)));
-                _positions.Add(new VertexPositionColorTexture(new Vector3(pos2 + off2, 0f), col2, new Vector2(prog2, coord1)));
-                _positions.Add(new VertexPositionColorTexture(new Vector3(pos2 - off2, 0f), col2, new Vector2(prog2, coord2)));
-                _positions.Add(new VertexPositionColorTexture(new Vector3(pos1 - off1, 0f), col1, new Vector2(prog1, coord2)));
+                _positions.Add(new VertexPositionColorTexture(new Vector3(pos1 + off1, 0f), col1, new Vector2((prog1 + progressAdd) * coordsMult % 1, coord1)));
+                _positions.Add(new VertexPositionColorTexture(new Vector3(pos1 - off1, 0f), col1, new Vector2((prog1 + progressAdd) * coordsMult % 1, coord2)));
+                _positions.Add(new VertexPositionColorTexture(new Vector3(pos2 + off2, 0f), col2, new Vector2((prog2 + progressAdd) * coordsMult % 1, coord1)));
+                _positions.Add(new VertexPositionColorTexture(new Vector3(pos2 + off2, 0f), col2, new Vector2((prog2 + progressAdd) * coordsMult % 1, coord1)));
+                _positions.Add(new VertexPositionColorTexture(new Vector3(pos2 - off2, 0f), col2, new Vector2((prog2 + progressAdd) * coordsMult % 1, coord2)));
+                _positions.Add(new VertexPositionColorTexture(new Vector3(pos1 - off1, 0f), col1, new Vector2((prog1 + progressAdd) * coordsMult % 1, coord2)));
             }
         }
 

@@ -64,7 +64,7 @@ namespace AQMod.Projectiles.Magic
             var origin = frame.Size() / 2f;
             var center = projectile.Center;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (Trailshader.ShouldDrawVertexTrails(Trailshader.GetVertexDrawingContext_Projectile(projectile)))
+            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
@@ -75,7 +75,7 @@ namespace AQMod.Projectiles.Magic
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new Trailshader(AQTextures.Trails[TrailTex.ThickLine], Trailshader.TextureTrail);
+                    var trail = new VertexStrip(AQTextures.Trails[TrailTex.ThickLine], VertexStrip.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(14f - p * 14f) * projectile.scale, (p) => _glowClr * (1f - p));
                     trail.Draw();
                 }

@@ -1,7 +1,9 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics.Particles;
+using AQMod.Dusts;
 using AQMod.Dusts.GaleStreams;
+using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Localization;
 using AQMod.Sounds;
@@ -21,6 +23,15 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         private bool _setupFrame;
         public int frameIndex;
         public const int FramesX = 8;
+
+        internal static Vector2 GetEyePosition(NPC npc)
+        {
+            if (npc.direction == -1)
+            {
+                return npc.position + new Vector2(4f, npc.height / 2f - 2f);
+            }
+            return npc.position + new Vector2(npc.width - 4f, npc.height / 2f - 2f);
+        }
 
         public override void SetStaticDefaults()
         {
@@ -46,7 +57,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             npc.buffImmune[BuffID.ShadowFlame] = true;
             npc.buffImmune[BuffID.Bleeding] = true;
             banner = npc.type;
-            bannerItem = ModContent.ItemType<RedSpriteBanner>();
+            bannerItem = ModContent.ItemType<SpaceSquidBanner>();
             npc.noTileCollide = true;
 
             var aQNPC = npc.GetGlobalNPC<AQNPC>();
@@ -174,27 +185,50 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         noDeathray = false;
                         if ((int)npc.ai[1] == 202)
                         {
+                            npc.ai[2] = 0f;
                             if (Main.netMode != NetmodeID.Server && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
                             {
                                 AQSound.Play(SoundType.Item, "Sounds/Item/SpaceSquid/ShootDeathray");
                             }
                         }
-                        if ((int)npc.ai[1] >= 260)
+                        if ((int)npc.ai[1] >= 245)
                         {
                             runOtherAis = false;
                             if ((int)npc.ai[2] < 1)
                             {
                                 npc.ai[2]++;
-                                npc.velocity.X = -npc.direction * 10f;
-                                Projectile.NewProjectile(npc.Center, new Vector2(20f * npc.direction, 0f), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 30, 1f, Main.myPlayer);
-                            }
-                            if (npc.velocity.Length() > 5f)
-                            {
-                                npc.velocity *= 0.95f;
-                                if (npc.velocity.Length() < 5f)
+                                npc.velocity.X = -npc.direction * 12.5f;
+                                if (Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
                                 {
-                                    npc.velocity = Vector2.Normalize(npc.velocity) * 5f;
+                                    ScreenShakeManager.AddShake(new BasicScreenShake(4, 8));
                                 }
+                                int p = Projectile.NewProjectile(GetEyePosition(npc), new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidDeathray>(), 70, 1f, Main.myPlayer);
+                                Main.projectile[p].ai[0] = npc.whoAmI + 1;
+                                Main.projectile[p].direction = npc.direction;
+                            }
+                            if (npc.velocity.Length() > 2f)
+                            {
+                                npc.velocity *= 0.92f;
+                                if (npc.velocity.Length() < 2f)
+                                {
+                                    npc.velocity = Vector2.Normalize(npc.velocity) * 2f;
+                                }
+                            }
+                        }
+                        else if ((int)npc.ai[1] > 200)
+                        {
+                            var eyePos = GetEyePosition(npc);
+                            SpawnPatterns.SpawnDustCentered(eyePos, ModContent.DustType<MonoDust>(), new Vector2(0f, 0f), new Color(10, 255, 20, 0), 0.9f);
+                            int spawnChance = 3 - (int)(npc.ai[1] - 210) / 8;
+                            if (spawnChance <= 1 || Main.rand.NextBool(spawnChance))
+                            {
+                                var spawnPos = eyePos + new Vector2(Main.rand.NextFloat(-60f, 60f), Main.rand.NextFloat(-60f, 60f));
+                                SpawnPatterns.SpawnDustCentered(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 8f + npc.velocity, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.9f, 1.35f));
+                            }
+                            if (spawnChance <= 1)
+                            {
+                                var spawnPos = eyePos + new Vector2(Main.rand.NextFloat(-120f, 120f), Main.rand.NextFloat(-120f, 120f));
+                                SpawnPatterns.SpawnDustCentered(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 12f + npc.velocity, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.5f, 0.75f));
                             }
                         }
                         if ((int)npc.ai[1] >= 330)
@@ -242,13 +276,13 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                     }
                                 }
                             }
-                            npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 4f, 0.001f);
-                            npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 4f, 0.01f);
+                            npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 16f, 0.001f);
+                            npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 8f, 0.01f);
                         }
                         else
                         {
-                            npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 4f, 0.05f);
-                            npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 4f, 0.1f);
+                            npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 16f, 0.05f);
+                            npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 8f, 0.1f);
                         }
                     }
                     npc.ai[1]++;
@@ -553,6 +587,10 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             if (Main.rand.NextBool(8))
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>());
+            }
+            if (Main.rand.NextBool(10))
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.BossItems.SpaceSquidTrophy>());
             }
         }
 

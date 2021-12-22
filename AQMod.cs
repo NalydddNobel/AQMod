@@ -821,7 +821,7 @@ namespace AQMod
                 GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
                 SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
                 GlimmerEventSky.ModLoad();
-                Trailshader.Setup();
+                VertexStrip.Setup();
                 WorldLayers = new SceneLayersManager();
                 SceneLayersManager.Setup();
                 ScreenShakeManager.Load();

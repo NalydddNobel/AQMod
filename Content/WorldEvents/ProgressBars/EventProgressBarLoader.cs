@@ -10,7 +10,7 @@ namespace AQMod.Content.WorldEvents.ProgressBars
     {
         public static byte ActiveBar { get; internal set; } = 255;
         public static bool PlayerSafe { get; internal set; }
-        public static bool PlayerSafe_GaleStreams { get; internal set; }
+        public static bool ShouldShowGaleStreamsProgressBar { get; internal set; }
 
         private static int NextIndex;
         private static EventProgressBar[] _progressBars;

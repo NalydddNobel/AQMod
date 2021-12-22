@@ -55,7 +55,11 @@ namespace AQMod.Common
                 {
                     if (player.position.Y < AQMod.SpaceLayer - 40 * 16f)
                     {
-                        if (GaleStreams.MeteorTime() || GaleStreams.IsActive)
+                        if (GaleStreams.IsActive)
+                        {
+                            spawnRate /= 2;
+                        }
+                        if (GaleStreams.MeteorTime())
                         {
                             spawnRate /= 2;
                             maxSpawns *= 2;
@@ -77,7 +81,7 @@ namespace AQMod.Common
         {
             try
             {
-                EventProgressBarLoader.PlayerSafe_GaleStreams = false;
+                EventProgressBarLoader.ShouldShowGaleStreamsProgressBar = false;
                 void DecreaseSpawns(float mult)
                 {
                     IEnumerator<int> keys = pool.Keys.GetEnumerator();
@@ -140,7 +144,7 @@ namespace AQMod.Common
                 }
                 if (GaleStreams.EventActive(spawnInfo.player) && !spawnInfo.playerSafe)
                 {
-                    EventProgressBarLoader.PlayerSafe_GaleStreams = true;
+                    EventProgressBarLoader.ShouldShowGaleStreamsProgressBar = true;
                     bool decSpawns = true;
                     if (AQMod.SudoHardmode)
                     {
@@ -162,7 +166,8 @@ namespace AQMod.Common
                     }
                     if (NPC.CountNPCS(ModContent.NPCType<Vraine>()) < 2)
                         pool.Add(ModContent.NPCType<Vraine>(), 1f);
-                    pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f);
+                    if (WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY))
+                        pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f);
                     pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f);
                 }
             }

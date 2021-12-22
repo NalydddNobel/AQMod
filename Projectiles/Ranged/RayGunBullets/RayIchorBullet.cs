@@ -88,7 +88,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
             var texture = TextureGrabber.GetProjectile(projectile.type);
             var textureOrig = new Vector2(texture.Width / 2f, 2f);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (Trailshader.ShouldDrawVertexTrails(Trailshader.GetVertexDrawingContext_Projectile(projectile)))
+            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
@@ -99,7 +99,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new Trailshader(AQTextures.Trails[TrailTex.Line], Trailshader.TextureTrail);
+                    var trail = new VertexStrip(AQTextures.Trails[TrailTex.Line], VertexStrip.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(8f - p * 8f), (p) => lightColor * (1f - p));
                     trail.Draw();
                 }

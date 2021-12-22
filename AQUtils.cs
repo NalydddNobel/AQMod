@@ -44,6 +44,18 @@ namespace AQMod
             }
         }
 
+        private struct InfiniteLine
+        {
+            public Vector2 position;
+            public float rotation;
+
+            public InfiniteLine(Vector2 position, float rotation)
+            {
+                this.position = position;
+                this.rotation = rotation;
+            }
+        }
+
         public static Vector2[] AsAddAll(this Vector2[] v, Vector2 sub)
         {
             var clone = new Vector2[v.Length];

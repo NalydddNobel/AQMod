@@ -18,6 +18,7 @@ namespace AQMod.Tiles.Furniture
         public const int AStrangeIdea = 3;
         public const int RockFromAnAlternateUniverse = 4;
         public const int OmegaStaritePainting = 5;
+        public const int SpaceSquid = 6;
 
         public override void SetDefaults()
         {
@@ -70,6 +71,10 @@ namespace AQMod.Tiles.Furniture
 
                 case OmegaStaritePainting:
                 Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<OmegaStaritePainting>());
+                break;
+
+                case SpaceSquid:
+                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<SpaceSquidTrophy>());
                 break;
             }
         }

@@ -28,6 +28,7 @@ namespace AQMod.Tiles
         public const int Vraine = 10;
         public const int SolarSlime = 11;
         public const int RedSprite = 12;
+        public const int SpaceSquid = 13;
 
         public override void SetDefaults()
         {
@@ -89,6 +90,9 @@ namespace AQMod.Tiles
                 case RedSprite:
                 Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<RedSpriteBanner>());
                 break;
+                case SpaceSquid:
+                Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<SpaceSquidBanner>());
+                break;
             }
         }
 
@@ -141,6 +145,10 @@ namespace AQMod.Tiles
 
                     case RedSprite:
                     player.NPCBannerBuff[ModContent.NPCType<RedSprite>()] = true;
+                    break;
+
+                    case SpaceSquid:
+                    player.NPCBannerBuff[ModContent.NPCType<SpaceSquid>()] = true;
                     break;
 
                     default:

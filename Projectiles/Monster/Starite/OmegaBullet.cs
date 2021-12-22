@@ -56,7 +56,7 @@ namespace AQMod.Projectiles.Monster.Starite
             var drawColor = GlimmerEvent.stariteProjectileColor;
             drawColor.A = 0;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (Trailshader.ShouldDrawVertexTrails(Trailshader.GetVertexDrawingContext_Projectile(projectile)))
+            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
@@ -67,7 +67,7 @@ namespace AQMod.Projectiles.Monster.Starite
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    Trailshader.FullDraw(AQTextures.Trails[TrailTex.Line], Trailshader.TextureTrail,
+                    VertexStrip.FullDraw(AQTextures.Trails[TrailTex.Line], VertexStrip.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }

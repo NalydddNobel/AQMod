@@ -26,7 +26,6 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Default;
 
 namespace AQMod.NPCs.Boss.Starite
 {
@@ -1553,22 +1552,28 @@ namespace AQMod.NPCs.Boss.Starite
             spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity - (int)intensity)), npc.rotation, spotlightOrig, npc.scale * 2.5f + ((int)intensity + 1), SpriteEffects.None, 0f);
             if ((npc.position - npc.oldPos[1]).Length() > 0.01f)
             {
-                if (Trailshader.ShouldDrawVertexTrails())
+                if (VertexStrip.ShouldDrawVertexTrails())
                 {
                     var trueOldPos = new List<Vector2>();
                     for (int i = 0; i < NPCID.Sets.TrailCacheLength[npc.type]; i++)
                     {
                         if (npc.oldPos[i] == new Vector2(0f, 0f))
                             break;
-                        trueOldPos.Add(ScreenShakeManager.UpsideDownScreenSupport(npc.oldPos[i] + offset - Main.screenPosition));
+                        trueOldPos.Add(npc.oldPos[i] + offset - Main.screenPosition);
                     }
                     if (trueOldPos.Count > 1)
                     {
+                        VertexStrip.ReversedGravity(trueOldPos);
                         const float radius = CIRCUMFERENCE / 2f;
-                        var trailClr = GlimmerEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                        var trail = new Trailshader(AQTextures.Trails[TrailTex.Line], Trailshader.TextureTrail);
-                        trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
-                        trail.Draw();
+                        Vector2[] arr;
+                        arr = trueOldPos.ToArray();
+                        if (arr.Length > 1)
+                        {
+                            var trailClr = GlimmerEvent.StariteDisco ? Main.DiscoColor : new Color(35, 85, 255, 120);
+                            var trail = new VertexStrip(AQTextures.Trails[TrailTex.Line], VertexStrip.TextureTrail);
+                            trail.PrepareVertices(arr, (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
+                            trail.Draw();
+                        }
                     }
                 }
                 else
