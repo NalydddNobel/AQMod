@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.UserInterface;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -71,23 +72,31 @@ namespace AQMod.Content.NameTags
                 int price = NameTagItem.RenamePrice(item);
                 if (hover2)
                 {
-                    if (Main.mouseLeft && Main.mouseLeftRelease && price != -1 && player.CanBuyItem(price, customCurrency: -1))
+                    if (Main.mouseLeft && Main.mouseLeftRelease && price != -1)
                     {
-                        player.BuyItem(price, -1);
-                        if (textUI.text != "")
+                        if (player.CanBuyItem(price, customCurrency: -1))
                         {
-                            Main.PlaySound(SoundID.Item1);
-                            var nameTagItem = item.GetGlobalItem<NameTagItem>();
-                            string itemName = textUI.text;
-                            if (string.IsNullOrWhiteSpace(itemName))
+                            if (textUI.text != "")
                             {
-                                itemName = "";
+                                player.BuyItem(price, -1);
+                                AQSound.Play(SoundType.Item, "Sounds/Item/Select", 0.5f);
+                                var nameTagItem = item.GetGlobalItem<NameTagItem>();
+                                string itemName = textUI.text;
+                                if (string.IsNullOrWhiteSpace(itemName))
+                                {
+                                    itemName = "";
+                                }
+                                nameTagItem.nameTag = itemName;
+                                nameTagItem.timesRenamed++;
+                                nameTagItem.UpdateName(item);
+                                textUI.text = "";
                             }
-                            nameTagItem.nameTag = itemName;
-                            nameTagItem.timesRenamed++;
-                            nameTagItem.UpdateName(item);
-                            textUI.text = "";
                         }
+                        else
+                        {
+                            AQSound.Play(SoundType.Item, "Sounds/Item/Mouse", 0.5f);
+                        }
+
                     }
                 }
                 else if (hover)

@@ -22,6 +22,9 @@ Have fun
 ##############
 # Accessories
 
+ItemName.ShockCollar=Shock Collar
+ItemTooltip.ShockCollar=Increases damage by 5%\nIncreases crit chance by 10% while in the water
+
 ItemName.FidgetSpinner=Perpetuator
 ItemTooltip.FidgetSpinner=Non-autoswing items are slower, but gain autoswing
 

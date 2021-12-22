@@ -19,6 +19,14 @@ namespace AQMod.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<AQPlayer>().shockCollar = true;
+            player.allDamageMult += 0.05f;
+            if (player.wet)
+            {
+                player.meleeCrit += 10;
+                player.rangedCrit += 10;
+                player.magicCrit += 10;
+                player.thrownCrit += 10;
+            }
         }
     }
 }

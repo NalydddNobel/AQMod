@@ -988,9 +988,10 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         zh_Hans: "红色精灵"),
                     0,
                     new List<int>()
-                    {
+                    { 
                         ItemID.NimbusRod,
                         ModContent.ItemType<Items.Tools.Fishing.Nimrod>(),
+                        ItemID.SoulofFlight,
                         ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
                         ModContent.ItemType<Items.Materials.Fluorescence>(),
                         ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>(),

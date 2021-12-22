@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -62,6 +63,7 @@ namespace AQMod.Projectiles.Bobbers
                         if (projectile.velocity.Length() < 1f)
                         {
                             gotoPosition.Y = -20;
+                            SoundID.Item8.Play(projectile.Center);
                             Projectile.NewProjectile(projectile.Center, new Vector2(0f, 1f), ModContent.ProjectileType<NimrodElectric>(), projectile.damage, projectile.knockBack, projectile.owner);
                             Projectile.NewProjectile(projectile.Center + new Vector2(20f, 0f), new Vector2(1f, 1f), ModContent.ProjectileType<NimrodElectric>(), projectile.damage, projectile.knockBack, projectile.owner);
                             Projectile.NewProjectile(projectile.Center + new Vector2(-20f, 0f), new Vector2(-1f, 1f), ModContent.ProjectileType<NimrodElectric>(), projectile.damage, projectile.knockBack, projectile.owner);

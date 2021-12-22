@@ -1,3 +1,40 @@
+####### 1.2.5.5 #######
+
+Additions:
+Space Squid, an miniboss which spawns during the Gale Streams event
+Space Squid Banner, and Space Squid Trophy
+Siphon Tentacle, a material dropped from the Space Squid
+Heated Amulet, crafted using materials dropped from the Red Sprite, upgrade the Degeneration Ring
+Freezing Amulet, crafted using materials dropped from the Space Squid, prevents you from getting multiple cold-related debuffs
+Nimrod, a fishing rod dropped from Red Sprites
+Shock Collar, an accessory dropped from Blue Jellyfishes
+
+A secret item obtained from hell... maybe if you tortured one of your own town NPCs down there...
+
+The Air Merchant now lets you rename items
+
+Changes:
+- Miner's Flashlight no longer costs mana
+- The Miner's Flashlight is now sold by the Air Merchant instead of the Travelling Merchant
+
+- Increased the health of the Red Sprite
+- Modified the recipes for the Moonluna and Sunbask Mirror
+- Some lights are now modified by dyes
+
+Fixes:
+- Hopefully fixed Red Sprites being super rare
+- Fixed Red Sprites not spawning at all if the wind is going towards the west
+- Fixed an issue where slimes spawned from the Streaming Balloons are sometimes invisible
+- Fixed the progress bar for the Gale Streams event acting funky
+
+- Fixed some minor bugs regarding the Balloon Merchant not being treated like a proper traveler NPC
+- Fixed a minor bug where if you tried to name an item nothing, it would cost you money and not rename the item
+
+- The Orbicular Stargaizar now counts as a Crystal Ball
+
+- Fixed a rare localization error when you complete a Robster hunt
+- Fixed an issue with the special item jingle creating an error instead of playing the sound
+
 ####### 1.2.5 #######
 
 Additions:

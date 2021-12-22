@@ -643,12 +643,14 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     0,
                     new List<int>()
                     {
+                        ItemID.SoulofFlight,
                         ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
+                        ModContent.ItemType<Items.Materials.SiphonTentacle>(),
                         ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>(),
                     },
                     new List<int>()
                     {
-                        //ModContent.ItemType<Items.BossItems.RedSpriteTrophy>(),
+                        ModContent.ItemType<Items.BossItems.SpaceSquidTrophy>(),
                         //ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>(),
                     },
                     AQText.chooselocalizationtext(
