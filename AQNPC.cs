@@ -13,6 +13,7 @@ using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Vanities.CursorDyes;
+using AQMod.NPCs;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.DemonSiege;
@@ -1012,6 +1013,7 @@ namespace AQMod
 
         public override void PostAI(NPC npc)
         {
+            
             if (MoonlightWallHelper.Active)
                 MoonlightWallHelper.End();
         }
@@ -1253,45 +1255,14 @@ namespace AQMod
             return true;
         }
 
-        public override bool SpecialNPCLoot(NPC npc)
-        {
-            if (Sets.HecktoplasmDungeonEnemy[npc.type] && npc.lifeMax > 100)
-            {
-                if (npc.HasPlayerTarget && Main.hardMode && NPC.downedPlantBoss && Main.player[npc.target].ZoneDungeon)
-                {
-                    int spawnChance = 13;
-                    if (Main.expertMode)
-                        spawnChance = 9;
-                    var center = npc.Center;
-                    if (Main.wallDungeon[Main.tile[(int)center.X / 16, (int)center.Y / 16].wall] && Main.rand.Next(spawnChance) == 0)
-                        NPC.NewNPC((int)center.X, (int)center.Y, ModContent.NPCType<Heckto>());
-                }
-                npc.lifeMax = 99;
-                npc.NPCLoot();
-                return true;
-            }
-            return false;
-        }
-
         public override void NPCLoot(NPC npc)
         {
-            byte p = Player.FindClosest(npc.position, npc.width, npc.height);
-            var plr = Main.player[p];
-            AQPlayer aQPlayer = plr.GetModPlayer<AQPlayer>();
             if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type])
                 return;
-            if (!npc.boss && !npc.friendly && !Sets.NoSpoilLoot[npc.type] && _lootLoop < aQPlayer.spoiled)
-            {
-                _lootLoop++;
-                if ((int)npc.extraValue > 0)
-                {
-                    AQItem.DropMoney((int)npc.extraValue, npc.getRect());
-                    npc.extraValue = 0;
-                }
-                npc.NPCLoot();
-                _lootLoop = 0;
-            }
-            if (_lootLoop == 0)
+            byte p = Player.FindClosest(npc.position, npc.width, npc.height);
+            var plr = Main.player[p];
+            var aQPlayer = plr.GetModPlayer<AQPlayer>();
+            if (NPCLootLooper.CurrentNPCLootLoop == 0)
             {
                 ManageDreadsoul(npc);
                 EncoreKill(npc);

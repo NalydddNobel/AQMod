@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace AQMod.Common
 {
-    internal static class Constants // This class is free to steal, it's full of magic numbers vanilla uses
+    internal static class Constants // This class is kinda free to steal, it's full of magic numbers and stuff that vanilla uses
     {
         public static class ChatColors
         {         

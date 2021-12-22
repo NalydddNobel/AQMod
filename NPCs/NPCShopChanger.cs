@@ -1,4 +1,5 @@
-﻿using AQMod.Content.WorldEvents.GlimmerEvent;
+﻿using AQMod.Common;
+using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Dedicated.Contributors;
@@ -7,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common
+namespace AQMod.NPCs
 {
     public class NPCShopChanger : GlobalNPC
     {
@@ -62,7 +63,7 @@ namespace AQMod.Common
                         {
                             for (int i = 19; i < Chest.maxItems; i++) // skips most of the starting stuff, since that's all paint and blah
                             {
-                                if (shop.item[i].type == ItemID.None || (shop.item[i].createTile == -1 && shop.item[i].paint == 0)) // at the very end of the paintings, and will intercept the slot for any walls or blank slots
+                                if (shop.item[i].type == ItemID.None || shop.item[i].createTile == -1 && shop.item[i].paint == 0) // at the very end of the paintings, and will intercept the slot for any walls or blank slots
                                 {
                                     InterceptShop(shop, ModContent.ItemType<Items.Placeable.Furniture.OmegaStaritePainting>(), i, nextSlot);
                                     break;
@@ -207,31 +208,23 @@ namespace AQMod.Common
         public override void SetupTravelShop(int[] shop, ref int nextSlot)
         {
             if (AddFoodToTravelShop(shop, nextSlot))
-            {
                 nextSlot++;
-            }
         }
 
         private bool AddFoodToTravelShop(int[] shop, int slot)
         {
-            List<int> foodChoices = new List<int>();
+            var foodChoices = new List<int>();
             if (WorldDefeats.DownedCrabSeason)
-            {
                 foodChoices.Add(ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
-            }
             if (WorldDefeats.DownedGlimmer)
-            {
                 foodChoices.Add(ModContent.ItemType<Items.Foods.GlimmerEvent.NeutronJuice>());
-            }
             if (WorldDefeats.DownedGaleStreams)
             {
                 foodChoices.Add(ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>());
                 foodChoices.Add(ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>());
             }
             if (NPC.downedQueenBee)
-            {
                 foodChoices.Add(ModContent.ItemType<Items.Foods.LarvaEel>());
-            }
             if (NPC.downedPlantBoss)
             {
                 foodChoices.Add(ModContent.ItemType<Items.Foods.RedLicorice>());
@@ -253,9 +246,7 @@ namespace AQMod.Common
         private static void InterceptShop(Chest shop, int itemID, int i, int currSlot)
         {
             if (currSlot >= Chest.maxItems)
-            {
                 currSlot = Chest.maxItems - 1;
-            }
             for (int j = currSlot; j > i; j--)
             {
                 shop.item[j] = shop.item[j - 1];

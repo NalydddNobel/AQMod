@@ -803,7 +803,7 @@ namespace AQMod
 
             ModCallHelper.SetupCalls();
             AprilFoolsJoke.UpdateActive();
-            var server = AQConfigServer.Instance;
+            var server = ModContent.GetInstance<AQConfigServer>();
             ApplyServerConfig(server);
             if (!Main.dedServ)
             {
@@ -1273,30 +1273,9 @@ namespace AQMod
                 Main.hardMode;
         }
 
-        internal static bool reduceSpawnrates()
-        {
-            return NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) || NPC.AnyNPCs(ModContent.NPCType<JerryCrabson>());
-        }
-
-        public static bool ShouldRemoveSpawns()
-        {
-            return ModContent.GetInstance<AQConfigServer>().reduceSpawns && reduceSpawnrates();
-        }
-
         public static int MultIntensity(int input)
         {
             return (int)(input * AQConfigClient.c_EffectIntensity);
-        }
-
-        public static TModProjectile NewModProjectile<TModProjectile>(Vector2 position, Vector2 velocity, int Type, int Damage, float KnockBack, int Owner, float ai0 = 0f, float ai1 = 0f) where TModProjectile : ModProjectile
-        {
-            return (TModProjectile)Main.projectile[Projectile.NewProjectile(position, velocity, Type, Damage, KnockBack, Owner, ai0, ai1)].modProjectile;
-        }
-
-        public static TModProjectile NewModProjectile<TModProjectile>(out int index, Vector2 position, Vector2 velocity, int Type, int Damage, float KnockBack, int Owner, float ai0 = 0f, float ai1 = 0f) where TModProjectile : ModProjectile
-        {
-            index = Projectile.NewProjectile(position, velocity, Type, Damage, KnockBack, Owner, ai0, ai1);
-            return (TModProjectile)Main.projectile[index].modProjectile;
         }
 
         internal static void addLoadTask(CachedTask task)

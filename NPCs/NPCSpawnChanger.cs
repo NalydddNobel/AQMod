@@ -10,7 +10,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common
+namespace AQMod.NPCs
 {
     public class NPCSpawnChanger : GlobalNPC
     {
@@ -19,7 +19,7 @@ namespace AQMod.Common
             EventProgressBarLoader.PlayerSafe = false;
             try
             {
-                if (AQMod.ShouldRemoveSpawns())
+                if (AQConfigServer.ShouldRemoveSpawns())
                 {
                     spawnRate += 10000;
                     maxSpawns = 0;
@@ -32,9 +32,7 @@ namespace AQMod.Common
                     if ((Main.npc[balloonMerchant].Center - player.Center).Length() < 800f)
                     {
                         if (player.CountBuffs() < Player.MaxBuffs)
-                        {
                             player.AddBuff(BuffID.PeaceCandle, 1, quiet: true);
-                        }
                         spawnRate += 10000;
                         maxSpawns = 0;
                         EventProgressBarLoader.PlayerSafe = true;
@@ -56,9 +54,7 @@ namespace AQMod.Common
                     if (player.position.Y < AQMod.SpaceLayer - 40 * 16f)
                     {
                         if (GaleStreams.IsActive)
-                        {
                             spawnRate /= 2;
-                        }
                         if (GaleStreams.MeteorTime())
                         {
                             spawnRate /= 2;
@@ -109,9 +105,7 @@ namespace AQMod.Common
                     else if (tileDistance < GlimmerEvent.MaxDistance)
                     {
                         if (tileDistance > GlimmerEvent.HyperStariteDistance) // shouldn't divide by 0...
-                        {
                             DecreaseSpawns(1f - 1f / (tileDistance - GlimmerEvent.HyperStariteDistance));
-                        }
                         else
                         {
                             DecreaseSpawns(0f);
@@ -124,9 +118,7 @@ namespace AQMod.Common
                                 pool.Add(GlimmerEvent.Layers[i].NPCType, GlimmerEvent.Layers[i].SpawnChance);
                             }
                             if (layerIndex == GlimmerEvent.Layers.Count - 1)
-                            {
                                 pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, AQUtils.GetGrad(0, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance);
-                            }
                             else
                             {
                                 pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, 1f - AQUtils.GetGrad(GlimmerEvent.Layers[layerIndex + 1].Distance, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance);
@@ -161,9 +153,7 @@ namespace AQMod.Common
                         }
                     }
                     if (decSpawns)
-                    {
                         DecreaseSpawns(0.9f);
-                    }
                     if (NPC.CountNPCS(ModContent.NPCType<Vraine>()) < 2)
                         pool.Add(ModContent.NPCType<Vraine>(), 1f);
                     if (WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY))

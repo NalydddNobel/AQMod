@@ -27,6 +27,8 @@ namespace AQMod.NPCs.Friendly
         private int _balloonColor;
         private bool _init;
 
+        public int currentAction;
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[npc.type] = 25;
@@ -45,8 +47,7 @@ namespace AQMod.NPCs.Friendly
             npc.friendly = true;
             npc.width = 18;
             npc.height = 40;
-            npc.aiStyle = 7;
-            npc.aiAction = 1;
+            npc.aiStyle = AQNPC.AIStyles.PassiveAI;
             npc.damage = 10;
             npc.defense = 15;
             npc.lifeMax = 250;
@@ -54,6 +55,7 @@ namespace AQMod.NPCs.Friendly
             npc.DeathSound = SoundID.NPCDeath1;
             npc.knockBackResist = 0.5f;
             animationType = NPCID.Guide;
+            currentAction = 7;
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
@@ -939,17 +941,26 @@ namespace AQMod.NPCs.Friendly
             return true;
         }
 
-        public override void AI()
+        public override bool PreAI()
         {
             npc.homeless = true;
+            if (currentAction != 7)
+            {
+                return !base.PreAI();
+            }
+            return base.PreAI();
+        }
+
+        public override void PostAI()
+        {
             bool offscreen = Offscreen();
             if (npc.life < 80 && !npc.dontTakeDamage)
             {
-                if (npc.aiStyle == 7)
-                    npc.aiStyle = -4;
+                if (currentAction == 7)
+                    currentAction = -4;
                 else
                 {
-                    npc.aiStyle = -3;
+                    currentAction = -3;
                 }
                 npc.ai[0] = 0f;
                 npc.noGravity = true;
@@ -968,7 +979,7 @@ namespace AQMod.NPCs.Friendly
                 if (Main.netMode != NetmodeID.Server)
                     AQSound.Play(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
             }
-            if (npc.aiStyle == -4)
+            if (currentAction == -4)
             {
                 if ((int)npc.ai[0] == 0)
                 {
@@ -987,7 +998,7 @@ namespace AQMod.NPCs.Friendly
                 }
                 return;
             }
-            else if (npc.aiStyle == -3)
+            else if (currentAction == -3)
             {
                 npc.velocity.Y -= 0.6f;
                 npc.noGravity = true;
@@ -1027,15 +1038,15 @@ namespace AQMod.NPCs.Friendly
                 return;
             }
             if (npc.position.X <= 240f || npc.position.X + npc.width > Main.maxTilesX * 16f - 240f
-                || npc.aiStyle == 7 && offscreen && Main.rand.NextBool(1500))
+                || currentAction == 7 && offscreen && Main.rand.NextBool(1500))
             {
                 BalloonMerchantManager.SpawnMerchant(npc.whoAmI);
                 return;
             }
 
-            if (npc.aiStyle == -1)
+            if (currentAction == -1)
                 SetToBalloon();
-            if (npc.aiStyle == -2)
+            if (currentAction == -2)
             {
                 npc.noGravity = true;
                 if (offscreen)
@@ -1047,7 +1058,7 @@ namespace AQMod.NPCs.Friendly
                 bool canSwitchDirection = true;
                 if (npc.position.Y > 3600f)
                 {
-                    npc.aiStyle = -3;
+                    currentAction = -3;
                     npc.netUpdate = true;
                 }
                 else if (npc.position.Y > 3000f)
@@ -1150,7 +1161,7 @@ namespace AQMod.NPCs.Friendly
 
         private void SetToBalloon()
         {
-            npc.aiStyle = -2;
+            currentAction = -2;
             npc.velocity = Vector2.Normalize(Main.MouseWorld - npc.Center);
             if (npc.velocity.X <= 0)
                 npc.spriteDirection = -1;
@@ -1173,7 +1184,7 @@ namespace AQMod.NPCs.Friendly
 
         private void SetToTownNPC()
         {
-            npc.aiStyle = 7;
+            currentAction = 7;
             npc.noTileCollide = false;
             npc.noGravity = false;
             npc.netUpdate = true;
@@ -1191,7 +1202,7 @@ namespace AQMod.NPCs.Friendly
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if (npc.aiStyle == -4)
+            if (currentAction == -4)
             {
                 var texture = ModContent.GetTexture(this.GetPath("_Flee"));
                 var frame = new Rectangle(0, texture.Height / 2 * ((int)(Main.GlobalTime * 10f) % 2), texture.Width, texture.Height / 2);
@@ -1201,7 +1212,7 @@ namespace AQMod.NPCs.Friendly
                 Main.spriteBatch.Draw(texture, npc.Center - Main.screenPosition, frame, drawColor, 0f, frame.Size() / 2f, 1f, effects, 0f);
                 return false;
             }
-            if (npc.aiStyle != 7)
+            if (currentAction != 7)
             {
                 var texture = ModContent.GetTexture(this.GetPath("_Basket"));
                 int frameX = -1;
@@ -1334,14 +1345,14 @@ namespace AQMod.NPCs.Friendly
 
         public override bool CheckDead()
         {
-            if (npc.aiStyle == -4 || npc.aiStyle == -3)
+            if (currentAction == -4 || currentAction == -3)
                 return true;
             npc.ai[0] = 0f;
-            if (npc.aiStyle == 7)
-                npc.aiStyle = -4;
+            if (currentAction == 7)
+                currentAction = -4;
             else
             {
-                npc.aiStyle = -3;
+                currentAction = -3;
             }
             npc.noTileCollide = true;
             npc.noGravity = true;
@@ -1364,12 +1375,12 @@ namespace AQMod.NPCs.Friendly
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write(npc.aiStyle);
+            writer.Write(currentAction);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            npc.aiStyle = reader.ReadInt32();
+            currentAction = reader.ReadInt32();
         }
 
         public static BalloonMerchant FindInstance()

@@ -4,7 +4,6 @@ using AQMod.Content.WorldEvents.DemonSiege;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Content.WorldEvents.ProgressBars;
 using AQMod.Tiles.Nature;
-using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

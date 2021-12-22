@@ -30,6 +30,8 @@ namespace AQMod.Common
         public static bool HunterIntroduction { get; set; }
         public static bool PhysicistIntroduction { get; set; }
 
+        public static bool TownNPCLavaImmunity { get; set; }
+
         public override void Initialize()
         {
             DownedGlimmer = false;
@@ -47,6 +49,9 @@ namespace AQMod.Common
             ObtainedUltimateSword = false;
             ObtainedCatalystPainting = false;
             ObtainedMothmanMask = false;
+
+            HunterIntroduction = false;
+            PhysicistIntroduction = false;
         }
 
         public override TagCompound Save()
@@ -71,6 +76,8 @@ namespace AQMod.Common
 
                 ["HunterIntroduction"] = HunterIntroduction,
                 ["PhysicistIntroduction"] = PhysicistIntroduction,
+
+                ["IWillBeBackLavaImmunity"] = TownNPCLavaImmunity,
             };
         }
 
@@ -94,6 +101,8 @@ namespace AQMod.Common
 
             HunterIntroduction = tag.GetBool("HunterIntroduction");
             PhysicistIntroduction = tag.GetBool("PhysicistIntroduction");
+
+            TownNPCLavaImmunity = tag.GetBool("IWillBeBackLavaImmunity");
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -111,6 +120,7 @@ namespace AQMod.Common
             writer.Write(ObtainedCatalystPainting);
             writer.Write(ObtainedMothmanMask);
             writer.Write(DownedSpaceSquid);
+            writer.Write(TownNPCLavaImmunity);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -131,6 +141,7 @@ namespace AQMod.Common
             ObtainedMothmanMask = reader.ReadBoolean();
 
             DownedSpaceSquid = reader.ReadBoolean();
+            TownNPCLavaImmunity = reader.ReadBoolean();
         }
     }
 }

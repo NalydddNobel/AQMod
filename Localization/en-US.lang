@@ -108,6 +108,9 @@ ItemTooltip.EquivalenceMachine=Nearby items float instead of falling\n{$Mods.AQM
 EquivalenceMachineToggle.False=Nearby items will now fall
 EquivalenceMachineToggle.True=Nearby items will now float
 
+ItemName.IWillBeBack='I'll Be Back'
+ItemTooltip.IWillBeBack=Summons the Wall of Flesh without murdering the Guide\nRight click to make all town NPCs immune to lava
+
 # Tooltips
 
 Tooltips.ManaPerSecond=Uses {0} mana per second
@@ -234,6 +237,8 @@ BossChecklistDesc.RedSprite=Occasionally appears during the Gale Streams!
 RecipeGroup.AnyEnergy=Any Energy
 RecipeGroup.AnyNobleMushroom=Any Noble Mushroom
 
+Config.RequiresReload=Requires a reload.
+
 # Client Config
 
 ClientConfig.Header.Worldgen=World Gen
@@ -244,9 +249,29 @@ ClientConfig.OverrideVanillaChestLootTooltip=Whether or not special Aequus items
 
 # Server Config
 
-ServerConfig.Header.QualityOfLife=Quality of Life
+ServerConfig.Name=Server Config
+
+ServerConfig.Header.QualityOfLife=[c/ffdddd:Quality of Life]
+ServerConfig.Header.World=[c/ddeeff:World]
+ServerConfig.Header.Debug=[c/ffeedd:Debug]
+
 ServerConfig.DemonSiegeDowngrades=Demon Siege Downgrades
-ServerConfig.DemonSiegeDowngradesTooltip=Adds recipes for downgrading weapons upgraded at the Demon Siege.
+ServerConfig.DemonSiegeDowngradesTooltip=Adds recipes for downgrading weapons upgraded at the Demon Siege.\n{$Mods.AQMod.Config.RequiresReload}
+
+ServerConfig.ReduceSpawns=Reduce Spawns during Bossfights
+ServerConfig.ReduceSpawnsTooltip=Practically disables spawns for Aequus bossfights.\nWould require a reload if anything in the world is currently reducing spawns.
+
+ServerConfig.EvilProgressionLock=World-Evil Progression Lock
+ServerConfig.EvilProgressionLockTooltip=Ebonstone, Crimstone, Shadow Orbs and Crimson Hearts can no longer be destroyed by explosives until a boss has been defeated.
+
+ServerConfig.HarderOmegaStarite=Omega Starite always uses Harder AI
+ServerConfig.HarderOmegaStariteTooltip=Makes Omega Starite always use its Glimmer Event version even when the Glimmer Event is not active\nThis will not mean it will drop the Ultimate Sword outside of the Glimmer Event\nCannot be changed if Omega Starite is alive.
+
+ServerConfig.JellyfishNecklace=Remove Jellyfish Necklace drop from Blue Jellyfish ([i:1303])
+ServerConfig.JellyfishNecklaceTooltip=If you disable this, the Blue Jellyfish would be able to drop both the Jellyfish Necklace and Shock Collar.
+
+ServerConfig.DebugCommand=Debug Mode (/ncall)
+ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod.Config.RequiresReload}
 
 # NPCs
 
@@ -263,7 +288,6 @@ Common.ArmorSetBonus_Lightbulb=Hunter and dangersense is always active
 #
 # Config Names
 Common.ConfigName_AQConfigClient=Client Config
-Common.ConfigName_AQConfigServer=Server Config
 #
 # Config Headers
 Common.ConfigHeader_Visuals=Visuals
@@ -300,14 +324,6 @@ Common.Config_ShowCompletedAnglerQuestsCount=Show Completed Angler Quests Count
 Common.Config_ShowCompletedRobsterQuestsCount=Show Completed Robster Hunts Count
 Common.Config_CosmicEnergyAlt=Cosmic Energy (Alt Texture)
 Common.Config_MarkerMapUIType=Marker Map UI Type
-# (Server Config)
-Common.Config_HarderOmegaStarite=Always Harder Omega Starite
-Common.Config_HarderOmegaStariteTooltip=Makes Omega Starite always use its Glimmer Event version even when the Glimmer Event is not active\nThis will not mean it will drop the Ultimate Sword outside of the Glimmer Event
-Common.Config_ReduceSpawns=Reduce Spawns when Aequus bosses are active
-Common.Config_EvilProgressionLock=Evil Progression Lock
-Common.Config_EvilProgressionLockTooltip=Ebonstone, Crimstone, Shadow Orbs and Crimson Hearts can no longer be destroyed by explosives
-Common.Config_AprilFools=April Fools
-Common.Config_DebugCommand=Debug Mode (/ncall)
 # Eightball
 Common.EightballAnswer0=Yes
 Common.EightballAnswer1=My sources say no
