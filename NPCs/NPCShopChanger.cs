@@ -161,39 +161,6 @@ namespace AQMod.NPCs
                     var plr = Main.LocalPlayer;
                     if (!Main.dayTime)
                     {
-                        switch (Main.moonPhase)
-                        {
-                            case 0:
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.MiningPotion);
-                                nextSlot++;
-                            }
-                            break;
-
-                            case 1:
-                            case 2:
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
-                                nextSlot++;
-                            }
-                            break;
-
-                            case 3:
-                            case 4:
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.MiningPants);
-                                nextSlot++;
-                            }
-                            break;
-
-                            case 5:
-                            case 6:
-                            {
-                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<MinersFlashlight>());
-                                nextSlot++;
-                            }
-                            break;
-                        }
                         if (Main.bloodMoon && !Main.hardMode && AQMod.SudoHardmode)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.SlapHand);

@@ -921,7 +921,14 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             }
             if (Main.rand.NextBool(4))
             {
-                Item.NewItem(npc.getRect(), ItemID.NimbusRod);
+                if (Main.rand.NextBool())
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tools.Fishing.Nimrod>());
+                }
+                else
+                {
+                    Item.NewItem(npc.getRect(), ItemID.NimbusRod);
+                }
             }
             if (Main.rand.NextBool(8))
             {
@@ -983,6 +990,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     new List<int>()
                     {
                         ItemID.NimbusRod,
+                        ModContent.ItemType<Items.Tools.Fishing.Nimrod>(),
                         ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
                         ModContent.ItemType<Items.Materials.Fluorescence>(),
                         ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>(),

@@ -13,6 +13,7 @@ A discord link to the mod is in the homepage, if you like typing discord invite 
 [c/ff3377:>] 2 Bosses
 [c/ff3377:>] 3 Town NPCs
 And importantly, many bugs!
+(Please report bugs either on the forum page, or discord server!)
 ##################
 
 

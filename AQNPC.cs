@@ -555,7 +555,6 @@ namespace AQMod
         public static bool BossRush { get; private set; }
         public static byte BossRushPlayer { get; private set; }
 
-        private static byte _lootLoop;
         private static int _breadsoul = 0;
 
         public override bool InstancePerEntity => true;
@@ -1236,7 +1235,7 @@ namespace AQMod
 
         public override bool PreNPCLoot(NPC npc)
         {
-            if (_lootLoop != 0)
+            if (NPCLootLooper.CurrentNPCLootLoop != 0)
             {
                 NPCLoader.blockLoot.Add(ItemID.Heart);
             }
@@ -1251,6 +1250,17 @@ namespace AQMod
                     AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterNPCDeath", Robster.RobsterBroadcastMessageColor);
                     AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterNPCDeath2", Robster.RobsterBroadcastMessageColor);
                 }
+            }
+            switch (npc.type)
+            {
+                case NPCID.BlueJellyfish:
+                {
+                    if (ModContent.GetInstance<AQConfigServer>().removeJellyfishNecklace)
+                    {
+                        NPCLoader.blockLoot.Add(ItemID.JellyfishNecklace);
+                    }
+                }
+                break;
             }
             return true;
         }
@@ -1267,19 +1277,23 @@ namespace AQMod
                 ManageDreadsoul(npc);
                 EncoreKill(npc);
             }
-            if (npc.townNPC && npc.position.Y > (Main.maxTilesY - 200) * 16f)
+            if (npc.townNPC && npc.position.Y > (Main.maxTilesY - 200) * 16f) // does this for any town NPC because why not?
             {
                 var check = new Rectangle((int)npc.position.X / 16, (int)npc.position.Y / 16, 2, 3);
+                bool spawnedItem = false;
                 for (int i = check.X; i <= check.X + check.Width; i++)
                 {
                     for (int j = check.Y; j <= check.Y + check.Height; j++)
                     {
                         if (Framing.GetTileSafely(i, j).liquid > 0 && Main.tile[i, j].lava())
                         {
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<Baguette>());
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<IWillBeBack>());
+                            spawnedItem = true;
                             break;
                         }
                     }
+                    if (spawnedItem)
+                        break;
                 }
             }
             if (Main.netMode == NetmodeID.SinglePlayer)
@@ -1340,6 +1354,14 @@ namespace AQMod
                 return;
             switch (npc.type)
             {
+                case NPCID.BlueJellyfish:
+                case NPCID.GreenJellyfish:
+                {
+                    if (Main.rand.NextBool(15))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<ShockCollar>());
+                }
+                break;
+
                 case NPCID.SeekerHead:
                 {
                     if (Main.rand.NextBool(10))

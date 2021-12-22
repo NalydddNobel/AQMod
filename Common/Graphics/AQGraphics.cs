@@ -42,6 +42,154 @@ namespace AQMod.Common.Graphics
 
         public static class Drawing
         {
+            public static void DrawFishingLine_NoLighting_UseCustomOrigin(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 lineOrigin)
+            {
+                var bobberCenter = new Vector2(bobberPosition.X + bobberWidth / 2f, bobberPosition.Y + bobberHeight / 2f);
+                int type = player.inventory[player.selectedItem].type;
+
+                Vector2 playerToProjectile = bobberCenter - lineOrigin;
+                bool canDraw = true;
+                if (playerToProjectile.X == 0f && playerToProjectile.Y == 0f)
+                    return;
+                float playerToProjectileMagnitude = playerToProjectile.Length();
+                playerToProjectileMagnitude = 12f / playerToProjectileMagnitude;
+                playerToProjectile *= playerToProjectileMagnitude;
+                lineOrigin -= playerToProjectile;
+                playerToProjectile = bobberCenter - lineOrigin;
+                float widthAdd = bobberWidth * 0.5f;
+                float heightAdd = bobberHeight * 0.1f;
+                while (canDraw)
+                {
+                    float height = 12f;
+                    float positionMagnitude = playerToProjectile.Length();
+                    if (float.IsNaN(positionMagnitude) || float.IsNaN(positionMagnitude))
+                        break;
+
+                    if (positionMagnitude < 20f)
+                    {
+                        height = positionMagnitude - 8f;
+                        canDraw = false;
+                    }
+                    playerToProjectile *= 12f / positionMagnitude;
+                    lineOrigin += playerToProjectile;
+                    playerToProjectile.X = bobberPosition.X + widthAdd - lineOrigin.X;
+                    playerToProjectile.Y = bobberPosition.Y + heightAdd - lineOrigin.Y;
+                    if (positionMagnitude > 12f)
+                    {
+                        float positionInverseMultiplier = 0.3f;
+                        float absVelocitySum = Math.Abs(bobberVelocity.X) + Math.Abs(bobberVelocity.Y);
+                        if (absVelocitySum > 16f)
+                            absVelocitySum = 16f;
+                        absVelocitySum = 1f - absVelocitySum / 16f;
+                        positionInverseMultiplier *= absVelocitySum;
+                        absVelocitySum = positionMagnitude / 80f;
+                        if (absVelocitySum > 1f)
+                            absVelocitySum = 1f;
+                        positionInverseMultiplier *= absVelocitySum;
+                        if (positionInverseMultiplier < 0f)
+                            positionInverseMultiplier = 0f;
+                        absVelocitySum = 1f - velocitySum / 100f;
+                        positionInverseMultiplier *= absVelocitySum;
+                        if (playerToProjectile.Y > 0f)
+                        {
+                            playerToProjectile.Y *= 1f + positionInverseMultiplier;
+                            playerToProjectile.X *= 1f - positionInverseMultiplier;
+                        }
+                        else
+                        {
+                            absVelocitySum = Math.Abs(bobberVelocity.X) / 3f;
+                            if (absVelocitySum > 1f)
+                                absVelocitySum = 1f;
+                            absVelocitySum -= 0.5f;
+                            positionInverseMultiplier *= absVelocitySum;
+                            if (positionInverseMultiplier > 0f)
+                                positionInverseMultiplier *= 2f;
+                            playerToProjectile.Y *= 1f + positionInverseMultiplier;
+                            playerToProjectile.X *= 1f - positionInverseMultiplier;
+                        }
+                    }
+                    float rotation = playerToProjectile.ToRotation() - MathHelper.PiOver2;
+                    Main.spriteBatch.Draw(Main.fishingLineTexture, new Vector2(lineOrigin.X - Main.screenPosition.X + Main.fishingLineTexture.Width * 0.5f, lineOrigin.Y - Main.screenPosition.Y + Main.fishingLineTexture.Height * 0.5f), new Rectangle(0, 0, Main.fishingLineTexture.Width, (int)height), color, rotation, new Vector2(Main.fishingLineTexture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
+                }
+            }
+            public static void DrawFishingLine_NoLighting(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 linePositionOffset)
+            {
+                var bobberCenter = new Vector2(bobberPosition.X + bobberWidth / 2f, bobberPosition.Y + bobberHeight / 2f);
+                Vector2 lineOrigin = player.MountedCenter;
+                lineOrigin.Y += player.gfxOffY;
+                int type = player.inventory[player.selectedItem].type;
+                lineOrigin.X += linePositionOffset.X * player.direction;
+                if (player.direction < 0)
+                    lineOrigin.X -= 13f;
+                lineOrigin.Y -= linePositionOffset.Y * player.gravDir;
+                if (player.gravDir == -1)
+                    lineOrigin.Y -= 12f;
+                lineOrigin = player.RotatedRelativePoint(lineOrigin + new Vector2(8f), true) - new Vector2(8f);
+                Vector2 playerToProjectile = bobberCenter - lineOrigin;
+                bool canDraw = true;
+                if (playerToProjectile.X == 0f && playerToProjectile.Y == 0f)
+                    return;
+                float playerToProjectileMagnitude = playerToProjectile.Length();
+                playerToProjectileMagnitude = 12f / playerToProjectileMagnitude;
+                playerToProjectile *= playerToProjectileMagnitude;
+                lineOrigin -= playerToProjectile;
+                playerToProjectile = bobberCenter - lineOrigin;
+                float widthAdd = bobberWidth * 0.5f;
+                float heightAdd = bobberHeight * 0.1f;
+                while (canDraw)
+                {
+                    float height = 12f;
+                    float positionMagnitude = playerToProjectile.Length();
+                    if (float.IsNaN(positionMagnitude) || float.IsNaN(positionMagnitude))
+                        break;
+
+                    if (positionMagnitude < 20f)
+                    {
+                        height = positionMagnitude - 8f;
+                        canDraw = false;
+                    }
+                    playerToProjectile *= 12f / positionMagnitude;
+                    lineOrigin += playerToProjectile;
+                    playerToProjectile.X = bobberPosition.X + widthAdd - lineOrigin.X;
+                    playerToProjectile.Y = bobberPosition.Y + heightAdd - lineOrigin.Y;
+                    if (positionMagnitude > 12f)
+                    {
+                        float positionInverseMultiplier = 0.3f;
+                        float absVelocitySum = Math.Abs(bobberVelocity.X) + Math.Abs(bobberVelocity.Y);
+                        if (absVelocitySum > 16f)
+                            absVelocitySum = 16f;
+                        absVelocitySum = 1f - absVelocitySum / 16f;
+                        positionInverseMultiplier *= absVelocitySum;
+                        absVelocitySum = positionMagnitude / 80f;
+                        if (absVelocitySum > 1f)
+                            absVelocitySum = 1f;
+                        positionInverseMultiplier *= absVelocitySum;
+                        if (positionInverseMultiplier < 0f)
+                            positionInverseMultiplier = 0f;
+                        absVelocitySum = 1f - velocitySum / 100f;
+                        positionInverseMultiplier *= absVelocitySum;
+                        if (playerToProjectile.Y > 0f)
+                        {
+                            playerToProjectile.Y *= 1f + positionInverseMultiplier;
+                            playerToProjectile.X *= 1f - positionInverseMultiplier;
+                        }
+                        else
+                        {
+                            absVelocitySum = Math.Abs(bobberVelocity.X) / 3f;
+                            if (absVelocitySum > 1f)
+                                absVelocitySum = 1f;
+                            absVelocitySum -= 0.5f;
+                            positionInverseMultiplier *= absVelocitySum;
+                            if (positionInverseMultiplier > 0f)
+                                positionInverseMultiplier *= 2f;
+                            playerToProjectile.Y *= 1f + positionInverseMultiplier;
+                            playerToProjectile.X *= 1f - positionInverseMultiplier;
+                        }
+                    }
+                    float rotation = playerToProjectile.ToRotation() - MathHelper.PiOver2;
+                    Main.spriteBatch.Draw(Main.fishingLineTexture, new Vector2(lineOrigin.X - Main.screenPosition.X + Main.fishingLineTexture.Width * 0.5f, lineOrigin.Y - Main.screenPosition.Y + Main.fishingLineTexture.Height * 0.5f), new Rectangle(0, 0, Main.fishingLineTexture.Width, (int)height), color, rotation, new Vector2(Main.fishingLineTexture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
+                }
+            }
             public static void DrawFishingLine(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 linePositionOffset)
             {
                 var bobberCenter = new Vector2(bobberPosition.X + bobberWidth / 2f, bobberPosition.Y + bobberHeight / 2f);

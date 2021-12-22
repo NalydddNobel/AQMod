@@ -110,6 +110,14 @@ EquivalenceMachineToggle.True=Nearby items will now float
 
 ItemName.IWillBeBack='I'll Be Back'
 ItemTooltip.IWillBeBack=Summons the Wall of Flesh without murdering the Guide\nRight click to make all town NPCs immune to lava
+IWillBeBackToggle.True=Town NPCs will now resist lava
+IWillBeBackToggle.False=Town NPCs will no longer resist lava
+
+ItemName.Nimrod=Nimrod
+ItemTooltip.Nimrod=Summons a fishing cloud which spawns 3 lightning bobbers to catch fish\nCatches fish faster during the rain
+
+ItemName.MinersFlashlight=Miner's Flashlight
+ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shown by the light\nHide the accessory to disable the flashlight
 
 # Tooltips
 
@@ -570,7 +578,6 @@ ItemName.DungeonMap=Bone Marker
 ItemName.LihzahrdMap=Lihzahrd Marker
 ItemName.RetroGoggles=Retro Marker
 # Spelunker
-ItemName.MinersFlashlight=Miner's Flashlight
 ItemName.Extractor=Extractor
 ########
 # Misc #
@@ -862,7 +869,6 @@ ItemTooltip.DungeonMap=Shows the location of the Dungeon if it has already been 
 ItemTooltip.LihzahrdMap=Shows the location of the Lihzahrd Altar if it has already been disovered or Plantera has been defeated\nYou can teleport to the Lihzahrd Altar using a Unity Mirror if Plantera has been defeated
 ItemTooltip.RetroGoggles=Shows enemies as a pink blip on the fullscreen map
 # Spelunker
-ItemTooltip.MinersFlashlight=Exposed treasure shimmers when shown by the flashlight
 ItemTooltip.Extractor=You gain immunity to suffocation\nFalling Silt and Slush now deal x4 less damage\nIf the accessory is not marked as hidden:\nYou obtain the ability to veinmine silt slush and desert fossils\nExtracting something at the Extractinator will show your extractination count 
 ########
 # Misc #

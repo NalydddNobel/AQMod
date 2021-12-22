@@ -10,7 +10,7 @@ namespace AQMod.NPCs
         public override bool CloneNewInstances => true;
 
         public bool isNPCLootLooping;
-        public static byte CurrentNPCLootLoop = 255;
+        public static byte CurrentNPCLootLoop = 0;
 
         public override void NPCLoot(NPC npc)
         {

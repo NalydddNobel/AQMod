@@ -443,6 +443,11 @@ namespace AQMod.NPCs.Friendly
                     shop.item[nextSlot].value = Item.buyPrice(silver: 50);
                     nextSlot++;
                 }
+                if (Main.time * 4.0 > Main.nightLength * 3.0)
+                {
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.MinersFlashlight>());
+                    nextSlot++;
+                }
             }
             else
             {

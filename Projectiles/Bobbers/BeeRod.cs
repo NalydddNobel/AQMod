@@ -52,6 +52,7 @@ namespace AQMod.Projectiles.Bobbers
                 projectile.velocity *= 0.1f;
                 visualRotation = projectile.rotation;
                 dropDelay = 20;
+                projectile.netUpdate = true;
             }
             else
             {

@@ -32,6 +32,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                 ItemID.NimbusRod,
                 ModContent.ItemType<Items.Weapons.Melee.Vrang>(),
                 ModContent.ItemType<Items.Weapons.Magic.Umystick>(),
+                ModContent.ItemType<Items.Tools.Fishing.Nimrod>(),
                 ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
                 ModContent.ItemType<Items.Materials.Fluorescence>(),
                 ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>(),

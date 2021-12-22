@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Common.Graphics.Particles;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -6,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories
 {
+    [AutoloadEquip(EquipType.HandsOn)]
     public class MinersFlashlight : ModItem
     {
         private const int FlashlightReps = 16;
@@ -17,7 +19,7 @@ namespace AQMod.Items.Accessories
             item.width = 20;
             item.height = 20;
             item.rare = ItemRarityID.Green;
-            item.value = Item.sellPrice(gold: 5);
+            item.value = Item.buyPrice(gold: 25);
             item.mana = 15;
             item.accessory = true;
         }
@@ -26,23 +28,7 @@ namespace AQMod.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (hideVisual)
-                return;
-            var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.spelunkerEquipTimer++;
-            if (aQPlayer.spelunkerEquipTimer > 60)
-            {
-                if (player.CheckMana(item, -1, true))
-                {
-                    player.manaRegenDelay = (int)player.maxRegenDelay;
-                    aQPlayer.spelunkerEquipTimer = 0;
-                }
-                else
-                {
-                    return;
-                }
-            }
-            if (player.statMana < player.GetManaCost(item))
+            if (hideVisual || Main.myPlayer != player.whoAmI)
                 return;
             var toMouseNormal = Vector2.Normalize(Main.MouseWorld - player.Center);
             var center = player.Center;
@@ -88,6 +74,13 @@ namespace AQMod.Items.Accessories
                             {
                                 int d = Dust.NewDust(new Vector2(x2 * 16f, y2 * 16f), 16, 16, 204);
                                 Main.dust[d].velocity *= 0.05f;
+                            }
+                            if (shineRarity <= 1 || Main.rand.NextBool((int)(shineRarity * 0.075f)))
+                            {
+                                ParticleLayers.AddParticle_PostDrawPlayers(
+                                    new BrightSparkle(new Vector2(x2 * 16f + Main.rand.NextFloat(16f), y2 * 16f + Main.rand.NextFloat(16f)), 
+                                    new Vector2(Main.rand.NextFloat(0.1f, 0.2f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi)), 
+                                    new Color(255, 240, 120, 2), Main.rand.NextFloat(0.6f, 0.75f)));
                             }
                         }
                     }
