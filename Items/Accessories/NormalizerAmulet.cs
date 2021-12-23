@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories
 {
+    [AutoloadEquip(EquipType.Neck)]
     public class NormalizerAmulet : ModItem
     {
         public override void SetDefaults()

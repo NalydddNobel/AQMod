@@ -20,6 +20,18 @@ float FrameYFix(float2 coords)
     return y * 1 / frameSizeY;
 }
 
+float4 HoriztonalWave(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
+{
+    float4 color = tex2D(uImage0, coords);
+    float ySine = sin(uTime * 20 + coords.x * 30);
+    float3 multiplyColor = lerp(uColor, uSecondaryColor, (sin(uTime * 3 + FrameYFix(coords.y) + ySine * 2) + 1) / 2);
+    color = lerp(color, tex2D(uImage0, float2(coords.x, (coords.y + ySine * (1 / uImageSize0.y * 2)) % 1)), 0.5f);
+    color.r *= multiplyColor.r;
+    color.g *= multiplyColor.g;
+    color.b *= multiplyColor.b;
+    return color * sampleColor;
+}
+
 float4 Enchantment(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float4 color = tex2D(uImage0, coords);
@@ -427,6 +439,10 @@ float4 SpikeFade(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
 
 technique Technique1
 {
+    pass HoriztonalWavePass
+    {
+        PixelShader = compile ps_2_0 HoriztonalWave();
+    }
     pass EnchantmentPass
     {
         PixelShader = compile ps_2_0 Enchantment();

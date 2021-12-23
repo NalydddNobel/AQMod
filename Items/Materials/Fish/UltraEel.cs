@@ -1,10 +1,11 @@
-﻿using Terraria;
+﻿using AQMod.Content.Fishing;
+using AQMod.Content.WorldEvents.GlimmerEvent;
+using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AQMod.Items.Materials.Fish
 {
-    public class UltraEel : ModItem
+    public class UltraEel : FishingItem
     {
         public override void SetDefaults()
         {
@@ -13,6 +14,12 @@ namespace AQMod.Items.Materials.Fish
             item.value = Item.sellPrice(silver: 10);
             item.rare = ItemRarityID.Orange;
             item.maxStack = 999;
+        }
+
+        public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
+        {
+            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
+                && !Main.dayTime && GlimmerEvent.GetTileDistance(player) < GlimmerEvent.MaxDistance;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Terraria;
 
-namespace AQMod.Content.Quest.Angler.FishingLocations
+namespace AQMod.Content.Fishing.FishingLocations
 {
     internal class AnywhereFishing : IFishingLocation
     {
@@ -15,7 +15,7 @@ namespace AQMod.Content.Quest.Angler.FishingLocations
 
         bool IFishingLocation.CatchFish(Player player, Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer)
         {
-            return player.ZoneBeach && (_chance <= 1 || Main.rand.NextBool(_chance));
+            return player.ZoneBeach && liquidType == Tile.Liquid_Water && (_chance <= 1 || Main.rand.NextBool(_chance));
         }
     }
 }

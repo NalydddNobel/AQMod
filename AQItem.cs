@@ -17,6 +17,25 @@ namespace AQMod
     {
         public static class Sets 
         {
+            public static bool IsCrate(int type)
+            {
+                switch (type)
+                {
+                    default:
+                    return false;
+                    case ItemID.WoodenCrate:
+                    case ItemID.CorruptFishingCrate:
+                    case ItemID.CrimsonFishingCrate:
+                    case ItemID.DungeonFishingCrate:
+                    case ItemID.FloatingIslandFishingCrate:
+                    case ItemID.GoldenCrate:
+                    case ItemID.HallowedFishingCrate:
+                    case ItemID.IronCrate:
+                    case ItemID.JungleFishingCrate:
+                    return true;
+                }
+            }
+
             public static class Clones
             {
                 public static bool[] ItemNoGravity { get; private set; }
@@ -65,9 +84,9 @@ namespace AQMod
             public const int CrabsonWeaponRare = ItemRarityID.Blue;
             public const int StariteWeaponRare = ItemRarityID.Green;
             public const int PetRare = ItemRarityID.Orange;
-            public const int GoreNestRare = ItemRarityID.LightRed;
+            public const int GoreNestRare = ItemRarityID.Orange;
             public const int OmegaStariteRare = ItemRarityID.LightRed;
-            public const int GaleStreamsRare = ItemRarityID.Pink;
+            public const int GaleStreamsRare = ItemRarityID.LightRed;
             public const int PillarWeaponRare = ItemRarityID.Red;
         }
 

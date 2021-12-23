@@ -1,10 +1,10 @@
-﻿using AQMod.Common.Graphics.CustomPickupText;
+﻿using AQMod.Items.Dedicated;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated.Developers
+namespace AQMod.Items.Weapons.Magic
 {
     public class Narrizuul : ModItem, IDedicatedItem
     {

@@ -1,4 +1,4 @@
-﻿using AQMod.Content.Quest.Angler.FishingLocations;
+﻿using AQMod.Content.Fishing.FishingLocations;
 using AQMod.Localization;
 using Terraria.ModLoader;
 

@@ -1,6 +1,6 @@
 ﻿using Terraria;
 
-namespace AQMod.Content.Quest.Angler.FishingLocations
+namespace AQMod.Content.Fishing.FishingLocations
 {
     public interface IFishingLocation
     {

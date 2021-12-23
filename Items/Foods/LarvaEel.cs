@@ -1,10 +1,11 @@
-﻿using Terraria;
+﻿using AQMod.Content.Fishing;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Foods
 {
-    public class LarvaEel : ModItem
+    public class LarvaEel : FishingItem
     {
         public override void SetDefaults()
         {
@@ -22,6 +23,11 @@ namespace AQMod.Items.Foods
             item.healLife = 100;
             item.buffType = BuffID.Honey;
             item.buffTime = 10800;
+        }
+
+        public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
+        {
+            return liquidType == Tile.Liquid_Honey && worldLayer < FishLoader.WorldLayers.HellLayer;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.Quest.Angler.FishingLocations;
+using AQMod.Content.Fishing.FishingLocations;
 
 namespace AQMod.Items.Quest.Angler
 {

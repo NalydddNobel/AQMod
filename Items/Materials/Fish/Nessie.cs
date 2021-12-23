@@ -1,10 +1,12 @@
-﻿using Terraria;
+﻿using AQMod.Content.Fishing;
+using AQMod.Content.WorldEvents.GlimmerEvent;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Materials.Fish
 {
-    public class Nessie : ModItem
+    public class Nessie : FishingItem
     {
         public override void SetDefaults()
         {
@@ -13,6 +15,12 @@ namespace AQMod.Items.Materials.Fish
             item.value = Item.sellPrice(silver: 40);
             item.rare = ItemRarityID.Blue;
             item.maxStack = 999;
+        }
+
+        public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
+        {
+            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
+                && !Main.dayTime && GlimmerEvent.GetTileDistance(player) < GlimmerEvent.MaxDistance;
         }
 
         public override void AddRecipes()

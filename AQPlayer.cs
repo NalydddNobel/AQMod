@@ -7,6 +7,7 @@ using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.NetCode;
 using AQMod.Common.Skies;
 using AQMod.Content.CursorDyes;
+using AQMod.Content.Fishing;
 using AQMod.Content.WorldEvents.GaleStreams;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Dusts;
@@ -1811,63 +1812,71 @@ namespace AQMod
 
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
-            if (liquidType == Tile.Liquid_Water)
+            //if (liquidType == Tile.Liquid_Water)
+            //{
+            //    //if (GlimmerEvent.IsActive)
+            //    //{
+            //    //    if (player.position.Y < Main.worldSurface * 16f)
+            //    //    {
+            //    //        if (player.ZoneCorrupt && Main.rand.NextBool(5))
+            //    //        {
+            //    //            caughtType = ModContent.ItemType<Fizzler>();
+            //    //        }
+            //    //        else if (((int)(player.position.X / 16f + player.width / 2) - GlimmerEvent.tileX).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
+            //    //        {
+            //    //            caughtType = ModContent.ItemType<UltraEel>();
+            //    //        }
+            //    //        else if (Main.rand.NextBool(6))
+            //    //        {
+            //    //            caughtType = ModContent.ItemType<Nessie>();
+            //    //        }
+            //    //        else if (Main.rand.NextBool(8))
+            //    //        {
+            //    //            caughtType = ModContent.ItemType<Blobfish>();
+            //    //        }
+            //    //        else if (Main.rand.NextBool(6))
+            //    //        {
+            //    //            caughtType = ModContent.ItemType<GlimmeringStatue>();
+            //    //        }
+            //    //        else if (Main.rand.NextBool(6))
+            //    //        {
+            //    //            caughtType = ModContent.ItemType<MoonlightWall>();
+            //    //        }
+            //    //        else
+            //    //        {
+            //    //            if (caughtType == ItemID.Bass || caughtType == ItemID.NeonTetra || caughtType == ItemID.Salmon)
+            //    //                caughtType = ModContent.ItemType<Molite>();
+            //    //        }
+            //    //    }
+            //    //}
+            //}
+            if (questFish > Main.maxItems && ItemLoader.GetItem(questFish) is AnglerQuestItem anglerQuestItem)
             {
-                if (questFish > Main.maxItems && ItemLoader.GetItem(questFish) is AnglerQuestItem anglerQuestItem)
+                if (anglerQuestItem.FishingLocation.CatchFish(player, fishingRod, bait, power, liquidType, poolSize, worldLayer))
                 {
-                    if (anglerQuestItem.FishingLocation.CatchFish(player, fishingRod, bait, power, liquidType, poolSize, worldLayer))
-                    {
-                        caughtType = questFish;
-                        return;
-                    }
-                }
-                if (GlimmerEvent.IsActive)
-                {
-                    if (player.position.Y < Main.worldSurface * 16f)
-                    {
-                        if (player.ZoneCorrupt && Main.rand.NextBool(5))
-                        {
-                            caughtType = ModContent.ItemType<Fizzler>();
-                        }
-                        else if (((int)(player.position.X / 16f + player.width / 2) - GlimmerEvent.tileX).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
-                        {
-                            caughtType = ModContent.ItemType<UltraEel>();
-                        }
-                        else if (Main.rand.NextBool(6))
-                        {
-                            caughtType = ModContent.ItemType<Nessie>();
-                        }
-                        else if (Main.rand.NextBool(8))
-                        {
-                            caughtType = ModContent.ItemType<Blobfish>();
-                        }
-                        else if (Main.rand.NextBool(6))
-                        {
-                            caughtType = ModContent.ItemType<GlimmeringStatue>();
-                        }
-                        else if (Main.rand.NextBool(6))
-                        {
-                            caughtType = ModContent.ItemType<MoonlightWall>();
-                        }
-                        else
-                        {
-                            if (caughtType == ItemID.Bass || caughtType == ItemID.NeonTetra || caughtType == ItemID.Salmon)
-                                caughtType = ModContent.ItemType<Molite>();
-                        }
-                    }
+                    caughtType = questFish;
+                    junk = false;
+                    return;
                 }
             }
-            if (liquidType == Tile.Liquid_Honey && NPC.downedQueenBee)
+            int fish = FishLoader.PoolFish(player, this, fishingRod, bait, power, liquidType, poolSize, worldLayer, questFish, caughtType);
+            if (fish != 0)
             {
-                if (Main.rand.NextBool(3))
-                {
-                    caughtType = ModContent.ItemType<Combfish>();
-                }
-                else if (Main.rand.NextBool(5))
-                {
-                    caughtType = ModContent.ItemType<LarvaEel>();
-                }
+                caughtType = fish;
+                junk = false;
+                return;
             }
+            //if (liquidType == Tile.Liquid_Honey && NPC.downedQueenBee)
+            //{
+            //    if (Main.rand.NextBool(3))
+            //    {
+            //        caughtType = ModContent.ItemType<Combfish>();
+            //    }
+            //    else if (Main.rand.NextBool(5))
+            //    {
+            //        caughtType = ModContent.ItemType<LarvaEel>();
+            //    }
+            //}
         }
 
         private Vector2 getCataDustSpawnPos(int gravityOffset, int headFrame)

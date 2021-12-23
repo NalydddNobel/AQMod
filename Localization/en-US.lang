@@ -94,6 +94,7 @@ BuffDescription.UmystickDelay=Decreases your mana regen, and you can no longer u
 # Dyes
 
 ItemName.RedSpriteDye=Red Sprite Dye
+ItemName.FrostbiteDye=Frostbite Dye
 
 # Tools
 
