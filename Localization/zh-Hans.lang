@@ -22,6 +22,9 @@ Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不
 ##############
 # Accessories
 
+ItemName.ShockCollar=冲击项圈
+ItemTooltip.ShockCollar=增加5%上海\n在水中时增加10%暴击率
+
 ItemName.FidgetSpinner=永续仪
 ItemTooltip.FidgetSpinner=无法自动挥舞的物品速度变慢, 但可以自动挥舞
 
@@ -109,7 +112,15 @@ EquivalenceMachineToggle.False=附近的物品现在会下落
 EquivalenceMachineToggle.True=附近的物品现在会漂浮
 
 ItemName.IWillBeBack='我将归来'
-ItemTooltip.IWillBeBack=可在不击杀向导的情况下招呼血肉墙\n右键使所有城镇NPC免疫岩浆
+ItemTooltip.IWillBeBack=可在不击杀向导的情况下召唤血肉墙\n右键使所有城镇NPC免疫岩浆
+IWillBeBackToggle.True=城镇NPC现在会免疫岩浆
+IWillBeBackToggle.False=城镇NPC现在不再会免疫岩浆
+
+ItemName.Nimrod=猎手
+ItemTooltip.Nimrod=召唤一朵捕鱼云朵, 其会生成三个闪电浮标来捕鱼\n在下雨时, 捕鱼速度更快
+
+ItemName.MinersFlashlight=矿工的手电筒
+ItemTooltip.MinersFlashlight=你会向你的光标位置发射一束光\n被光照到的宝藏会发光\n关闭饰品可见性来禁用手电筒效果
 
 # Tooltips
 
@@ -268,7 +279,7 @@ ServerConfig.HarderOmegaStarite=总是困难版本的终末之星AI
 ServerConfig.HarderOmegaStariteTooltip=与微光事件中的强化版终末之星战斗, 即使此时并不处于微光事件\n但终末之星并不会在微光事件外掉落最终之剑\n终末之星存活时无法更改此项设置.
 
 ServerConfig.JellyfishNecklace=蓝色水母不再掉落水母项链 ([i:1303])
-ServerConfig.JellyfishNecklaceTooltip=若禁用此项, 则蓝色水母能够有几率同时掉落水母项链和防震项圈.
+ServerConfig.JellyfishNecklaceTooltip=若禁用此项, 则蓝色水母能够有几率同时掉落水母项链和冲击项圈.
 
 ServerConfig.DebugCommand=调试模式 (/ncall)
 ServerConfig.DebugCommandTooltip=启用 /ncall 调试命令.\n{$Mods.AQMod.Config.RequiresReload}
@@ -570,7 +581,6 @@ ItemName.DungeonMap=骨质标记
 ItemName.LihzahrdMap=神庙标记
 ItemName.RetroGoggles=复古标记
 # Spelunker
-ItemName.MinersFlashlight=矿工的明灯
 ItemName.Extractor=提炼器
 ########
 # Misc #
@@ -862,7 +872,6 @@ ItemTooltip.DungeonMap=若地牢已被发现, 则在地图上显示地牢位置\
 ItemTooltip.LihzahrdMap=若神庙祭坛已被发现或世纪之花已被击败, 则在地图上显示神庙祭坛的位置\n在击败世纪之花后，你可以使用清灵明镜传送至神庙祭坛
 ItemTooltip.RetroGoggles=在地图上以粉色光点显示敌人的位置
 # Spelunker
-ItemTooltip.MinersFlashlight=被手电筒照到的宝藏会发出闪光
 ItemTooltip.Extractor=使你免疫窒息减益\n下落的泥沙块和雪泥块对你造成的伤害降低4倍\n如果启用此饰品的可见性:\n使你获得提炼泥沙块、雪泥块和沙漠化石的能力\n在提炼机处提炼某些东西时会显示提炼的次数
 ########
 # Misc #
