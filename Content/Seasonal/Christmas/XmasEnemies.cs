@@ -20,7 +20,7 @@ namespace AQMod.Content.Seasonal.Christmas
                 {
                     npc.SetDefaults(NPCID.UndeadViking);
                 }
-                if (AQNPC.Sets.IsAZombie(npc.type, includeBloodZombies: true))
+                if ((npc.type != NPCID.ZombieEskimo || npc.type != NPCID.ArmedZombieEskimo) && AQNPC.Sets.IsAZombie(npc.type, includeBloodZombies: true))
                 {
                     npc.SetDefaults(NPCID.SnowFlinx);
                 }
@@ -30,8 +30,8 @@ namespace AQMod.Content.Seasonal.Christmas
                 }
                 if (npc.type != NPCID.IceSlime && npc.type != NPCID.SpikedIceSlime)
                 {
-                    if (npc.type == NPCID.SlimeSpiked || 
-                        npc.type == NPCID.SpikedJungleSlime || 
+                    if (npc.type == NPCID.SlimeSpiked ||
+                        npc.type == NPCID.SpikedJungleSlime ||
                         npc.type == ModContent.NPCType<NPCs.Monsters.GaleStreams.WhiteSlime>())
                     {
                         npc.SetDefaults(NPCID.SpikedIceSlime);
@@ -62,26 +62,53 @@ namespace AQMod.Content.Seasonal.Christmas
 
         public override void NPCLoot(NPC npc)
         {
-            if (npc.type == NPCID.Retinazer || 
-                npc.type == NPCID.Spazmatism || 
-                npc.type == NPCID.SkeletronPrime || 
-                npc.type == NPCID.TheDestroyer)
+            if (XmasSeeds.XmasWorld)
             {
-                bool dropTempleKey = NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3;
-                if (dropTempleKey)
+                if (npc.type == NPCID.Retinazer ||
+                    npc.type == NPCID.Spazmatism ||
+                    npc.type == NPCID.SkeletronPrime ||
+                    npc.type == NPCID.TheDestroyer)
                 {
-                    if (npc.type == NPCID.Retinazer)
+                    bool dropTempleKey = NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3;
+                    if (dropTempleKey)
                     {
-                        dropTempleKey = NPC.AnyNPCs(NPCID.Spazmatism);
+                        if (npc.type == NPCID.Retinazer)
+                        {
+                            dropTempleKey = NPC.AnyNPCs(NPCID.Spazmatism);
+                        }
+                        else if (npc.type == NPCID.Spazmatism)
+                        {
+                            dropTempleKey = NPC.AnyNPCs(NPCID.Retinazer);
+                        }
                     }
-                    else if (npc.type == NPCID.Spazmatism)
+                    if (dropTempleKey)
                     {
-                        dropTempleKey = NPC.AnyNPCs(NPCID.Retinazer);
+                        Item.NewItem(npc.getRect(), ItemID.TempleKey);
+                        NPC.downedPlantBoss = true;
                     }
                 }
-                if (dropTempleKey)
+
+                if (npc.type == NPCID.QueenBee)
                 {
-                    Item.NewItem(npc.getRect(), ItemID.TempleKey);
+                    Item.NewItem(npc.getRect(), ItemID.Hive, Main.rand.Next(150, 250));
+                    Item.NewItem(npc.getRect(), ItemID.HoneyBlock, Main.rand.Next(20, 50));
+                    Item.NewItem(npc.getRect(), ItemID.JungleSpores, Main.rand.Next(10, 20));
+                    Item.NewItem(npc.getRect(), ItemID.Vine, Main.rand.Next(2, 5));
+                    Item.NewItem(npc.getRect(), ItemID.Stinger, Main.rand.Next(10, 20));
+                    Item.NewItem(npc.getRect(), ItemID.HoneyBucket);
+                }
+
+                if (npc.type == NPCID.Golem)
+                {
+                    NPC planteraFake = new NPC
+                    {
+                        position = npc.position,
+                        width = npc.width,
+                        height = npc.height,
+                    };
+                    planteraFake.SetDefaults(NPCID.Plantera);
+                    planteraFake.NPCLoot();
+                    Item.NewItem(npc.getRect(), ItemID.ChlorophyteOre, Main.rand.Next(150, 250));
                 }
             }
         }

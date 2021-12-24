@@ -90,8 +90,10 @@ namespace AQMod.Items
         {
             switch (GiftType)
             {
-                case 0:
-                tooltips.Add(new TooltipLine(mod, "Xmas", Language.GetTextValue("Mods.AQMod.XmasGift.Tooltip")) { overrideColor = new Color(100, 40, 128, 255)});
+                case 1:
+                {
+                    tooltips.Add(new TooltipLine(mod, "Xmas", Language.GetTextValue("Mods.AQMod.XmasGift.Tooltip")) { overrideColor = new Color(100, 40, 128, 255) });
+                }
                 break;
             }
         }

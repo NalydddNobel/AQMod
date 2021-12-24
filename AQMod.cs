@@ -312,8 +312,9 @@ namespace AQMod
 
             private static void Main_DrawBG_XMasBG(On.Terraria.Main.orig_DrawBG orig, Main self)
             {
-                bool christmasBackground = XmasSeeds.XmasWorld && WorldGen.gen;
-                bool snowflakes = XmasSeeds.XmasWorld;
+                bool christmasBackground = XmasSeeds.XmasWorld && WorldGen.gen; // originally this also ran on the title screen,
+                                                                                // but for some reason there were conflicts with Modder's Toolkit
+                bool snowflakes = XmasSeeds.XmasWorld; // I like the snowflakes on the title screen :)
                 if (Loading || Unloading)
                 {
                     christmasBackground = false;

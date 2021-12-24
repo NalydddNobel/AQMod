@@ -53,7 +53,7 @@ namespace AQMod
             switch (type)
             {
                 case TileID.ShadowOrbs:
-                return !AQMod.EvilProgressionLock || AQMod.AnyBossDefeated() || Main.LocalPlayer.HeldItem.hammer >= 60;
+                return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || AQMod.AnyBossDefeated() || Main.LocalPlayer.HeldItem.hammer >= 60;
             }
             if (j > 1)
             {

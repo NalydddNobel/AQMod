@@ -48,33 +48,23 @@ namespace AQMod.Content.Seasonal.Christmas
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
-            InsertInto("Remove Water From Sand", UpdateSnow(0), tasks, 1); // these tasks have been chosen to be the most safest ones to insert into... I hope
-            InsertInto("Temple", UpdateSnow(1), tasks, 1);
-            InsertInto("Quick Cleanup", UpdateSnow(2), tasks, 1);
-            InsertInto("Spawn Point", UpdateSnow(3), tasks);
-            InsertInto("Micro Biomes", UpdateSnow(4), tasks, 1);
-            InsertInto("Slush Check", new PassLegacy("AQMod: UpdateChristmasText", (p) =>
-            {
-                if (XmasWorld)
-                {
-                    generatingSnowBiomeText = true;
-                    if (generationProgress != null)
-                        generationProgress.Message = Lang.gen[56].Value;
-                }
-            }), tasks);
-        }
-
-        private static bool InsertInto(string name, PassLegacy pass, List<GenPass> passes, int offset = 0)
-        {
-            int index = passes.FindIndex((t) => t.Name == name);
+            int index = tasks.FindIndex((t) => t.Name == "Slush Check");
             if (index != -1)
             {
-                passes.Insert(index + offset, pass);
+                tasks.Insert(index, new PassLegacy("AQMod UpdateChristmasText", (p) =>
+                {
+                    if (XmasWorld)
+                    {
+                        generatingSnowBiomeText = true;
+                        if (generationProgress != null)
+                            generationProgress.Message = Lang.gen[56].Value;
+                    }
+                }));
             }
-            return false;
+            tasks.Insert(tasks.Count - 1, UpdateSnow());
         }
 
-        private static PassLegacy UpdateSnow(int index) => new PassLegacy("AQMod: UpdateSnow " + index, (p) =>
+        private static PassLegacy UpdateSnow() => new PassLegacy("AQMod UpdateSnow", (p) =>
         {
             if (!XmasWorld)
             {
@@ -108,38 +98,38 @@ namespace AQMod.Content.Seasonal.Christmas
                         replaceBlock = false;
                     }
                     bool replaceWall = true;
+                    if (Main.tile[i, j].wall == WallID.SnowWallUnsafe ||
+                        Main.tile[i, j].wall == WallID.SnowBrick ||
+                        Main.tile[i, j].wall == WallID.IceBrick ||
+                        Main.tile[i, j].wall == WallID.IceUnsafe)
+                    {
+                        replaceWall = false;
+                    }
                     if (Main.tile[i, j].type == TileID.Containers2)
                     {
                         Main.tile[i, j].type = TileID.Containers;
                         replaceBlock = false;
                     }
-                    if (Main.tile[i, j].type == TileID.Vines ||
-                        Main.tile[i, j].type == TileID.HallowedVines ||
-                        Main.tile[i, j].type == TileID.CrimsonVines ||
-                        Main.tile[i, j].type == TileID.JungleVines)
+                    else if (Main.tile[i, j].type == TileID.Vines ||
+                       Main.tile[i, j].type == TileID.HallowedVines ||
+                       Main.tile[i, j].type == TileID.CrimsonVines ||
+                       Main.tile[i, j].type == TileID.JungleVines)
                     {
                         Main.tile[i, j].type = TileID.IceBlock;
                         Main.tile[i, j].inActive(true);
                         replaceBlock = false;
                     }
-                    if (Main.tile[i, j].type == ModContent.TileType<Tiles.Torches>())
+                    else if (Main.tile[i, j].type == ModContent.TileType<Tiles.Torches>())
                     {
                         Main.tile[i, j].type = TileID.Torches;
                         replaceBlock = false;
                     }
-                    if (Main.tile[i, j].wall == WallID.SnowWallUnsafe || 
-                        Main.tile[i, j].wall == WallID.SnowBrick || 
-                        Main.tile[i, j].wall == WallID.IceBrick || 
-                        Main.tile[i, j].wall == WallID.IceUnsafe)
-                    {
-                        replaceWall = false;
-                    }
-                    if (Main.tile[i, j].type == TileID.BlueDungeonBrick)
+                    else if (Main.tile[i, j].type == TileID.BlueDungeonBrick)
                     {
                         replaceBlock = false;
                     }
-                    else if (Main.tile[i, j].type == TileID.PinkDungeonBrick || 
-                    Main.tile[i, j].type == TileID.GreenDungeonBrick)
+                    else if (Main.tile[i, j].type == TileID.PinkDungeonBrick ||
+                        Main.tile[i, j].type == TileID.GreenDungeonBrick)
                     {
                         Main.tile[i, j].type = TileID.BlueDungeonBrick;
                         replaceBlock = false;
@@ -214,23 +204,35 @@ namespace AQMod.Content.Seasonal.Christmas
                        Main.tile[i, j].type == TileID.GreenMoss ||
                        Main.tile[i, j].type == TileID.PurpleMoss ||
                        Main.tile[i, j].type == TileID.RedMoss ||
-                       Main.tile[i, j].type == TileID.LavaMoss ||
-                       Main.tile[i, j].type == TileID.ObsidianBrick)
+                       Main.tile[i, j].type == TileID.LavaMoss)
+                    {
+                        Main.tile[i, j].type = TileID.GreenCandyCaneBlock;
+                        replaceBlock = false;
+                    }
+                    else if (Main.tile[i, j].type == TileID.ObsidianBrick)
                     {
                         Main.tile[i, j].type = TileID.SnowBrick;
                         replaceBlock = false;
                     }
-                    if (Main.tile[i, j].type == TileID.HellstoneBrick)
+                    else if (Main.tile[i, j].type == TileID.HellstoneBrick)
                     {
                         Main.tile[i, j].type = TileID.IceBrick;
                         replaceBlock = false;
                     }
+
                     if (Main.tile[i, j].wall == WallID.BlueDungeon ||
                         Main.tile[i, j].wall == WallID.BlueDungeonSlab ||
                         Main.tile[i, j].wall == WallID.BlueDungeonSlabUnsafe ||
                         Main.tile[i, j].wall == WallID.BlueDungeonTile ||
                         Main.tile[i, j].wall == WallID.BlueDungeonTileUnsafe ||
-                        Main.tile[i, j].wall == WallID.BlueDungeonUnsafe)
+                        Main.tile[i, j].wall == WallID.BlueDungeonUnsafe ||
+                        Main.tile[i, j].wall == WallID.Glass ||
+                        Main.tile[i, j].wall == WallID.BlueStainedGlass ||
+                        Main.tile[i, j].wall == WallID.GreenStainedGlass ||
+                        Main.tile[i, j].wall == WallID.PurpleStainedGlass ||
+                        Main.tile[i, j].wall == WallID.RedStainedGlass ||
+                        Main.tile[i, j].wall == WallID.YellowStainedGlass ||
+                        Main.tile[i, j].wall == WallID.RainbowStainedGlass)
                     {
                         replaceWall = false;
                     }
@@ -271,13 +273,69 @@ namespace AQMod.Content.Seasonal.Christmas
                         replaceWall = false;
                     }
                     else if (Main.tile[i, j].wall == WallID.ObsidianBrick ||
-                        Main.tile[i, j].wall == WallID.GreenDungeonUnsafe)
+                        Main.tile[i, j].wall == WallID.ObsidianBrickUnsafe ||
+                        Main.tile[i, j].wall == WallID.DiscWall)
                     {
-                        Main.tile[i, j].wall = WallID.BlueDungeonUnsafe;
+                        Main.tile[i, j].wall = WallID.SnowBrick;
+                        replaceWall = false;
+                    }
+                    else if (Main.tile[i, j].wall == WallID.HellstoneBrick ||
+                        Main.tile[i, j].wall == WallID.HellstoneBrickUnsafe)
+                    {
+                        Main.tile[i, j].wall = WallID.IceBrick;
+                        replaceWall = false;
+                    }
+                    else if (Main.tile[i, j].wall == WallID.Grass ||
+                    Main.tile[i, j].wall == WallID.GrassUnsafe ||
+                    Main.tile[i, j].wall == WallID.Dirt ||
+                    Main.tile[i, j].wall == WallID.DirtUnsafe ||
+                    Main.tile[i, j].wall == WallID.DirtUnsafe1 ||
+                    Main.tile[i, j].wall == WallID.DirtUnsafe2 ||
+                    Main.tile[i, j].wall == WallID.DirtUnsafe3 ||
+                    Main.tile[i, j].wall == WallID.DirtUnsafe4 ||
+                    Main.tile[i, j].wall == WallID.MudUnsafe ||
+                    Main.tile[i, j].wall == WallID.Jungle ||
+                    Main.tile[i, j].wall == WallID.JungleUnsafe ||
+                    Main.tile[i, j].wall == WallID.JungleUnsafe1 ||
+                    Main.tile[i, j].wall == WallID.JungleUnsafe2 ||
+                    Main.tile[i, j].wall == WallID.JungleUnsafe3 ||
+                    Main.tile[i, j].wall == WallID.JungleUnsafe4)
+                    {
+                        Main.tile[i, j].wall = WallID.SnowWallUnsafe;
+                        replaceWall = false;
+                    }
+                    else if (Main.tile[i, j].wall == WallID.EbonstoneUnsafe ||
+                        Main.tile[i, j].wall == WallID.CorruptionUnsafe1 ||
+                        Main.tile[i, j].wall == WallID.CorruptionUnsafe2 ||
+                        Main.tile[i, j].wall == WallID.CorruptionUnsafe3 ||
+                        Main.tile[i, j].wall == WallID.CorruptionUnsafe4 ||
+                        Main.tile[i, j].wall == WallID.CorruptGrassUnsafe ||
+                        Main.tile[i, j].wall == WallID.CorruptHardenedSand ||
+                        Main.tile[i, j].wall == WallID.CorruptSandstone)
+                    {
+                        Main.tile[i, j].wallColor(Constants.Paint.Purple);
+                        Main.tile[i, j].wall = WallID.IceUnsafe;
+                        replaceWall = false;
+                    }
+                    else if (Main.tile[i, j].wall == WallID.CrimstoneUnsafe ||
+                        Main.tile[i, j].wall == WallID.CrimsonGrassUnsafe ||
+                        Main.tile[i, j].wall == WallID.CrimsonUnsafe2 ||
+                        Main.tile[i, j].wall == WallID.CrimsonUnsafe3 ||
+                        Main.tile[i, j].wall == WallID.CrimsonUnsafe4 ||
+                        Main.tile[i, j].wall == WallID.CrimsonGrassUnsafe ||
+                        Main.tile[i, j].wall == WallID.CrimsonHardenedSand ||
+                        Main.tile[i, j].wall == WallID.CrimsonSandstone)
+                    {
+                        Main.tile[i, j].wallColor(Constants.Paint.Red);
+                        Main.tile[i, j].wall = WallID.IceUnsafe;
                         replaceWall = false;
                     }
 
-                    if (Main.tile[i, j].type == TileID.Stalactite)
+                    if (Main.tile[i, j].type == TileID.Presents)
+                    {
+                        replaceBlock = false;
+                    }
+                    else if (Main.tile[i, j].type == TileID.Stalactite)
                     {
                         Main.tile[i, j].frameX = (short)(Main.tile[i, j].frameX % 54);
                         replaceBlock = false;
@@ -393,6 +451,7 @@ namespace AQMod.Content.Seasonal.Christmas
 
         public override void PreUpdate()
         {
+            snowflakeWind = Main.windSpeed;
             if (XmasWorld)
             {
                 Main.xMas = true;
