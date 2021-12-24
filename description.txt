@@ -20,6 +20,7 @@ And importantly, many bugs!
 
 
 [c/ff3377:>] Have fun
+[c/ff3377:>] Happy Holidays! Create a world with the seed "Aequus Xmas" for a special world!
 ######################
 Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不要太认真 :)
 
