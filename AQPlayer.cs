@@ -8,6 +8,7 @@ using AQMod.Common.NetCode;
 using AQMod.Common.Skies;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Fishing;
+using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.WorldEvents.GaleStreams;
 using AQMod.Content.WorldEvents.GlimmerEvent;
 using AQMod.Dusts;
@@ -1046,6 +1047,10 @@ namespace AQMod
 
         public override Texture2D GetMapBackgroundImage()
         {
+            if (XmasSeeds.XmasWorld && WorldGen.gen)
+            {
+                return ModContent.GetTexture("Terraria/MapBG12");
+            }
             if (!player.ZoneCorrupt && !player.ZoneCrimson && !player.ZoneHoly && !player.ZoneDesert && !player.ZoneJungle)
             {
                 if (player.position.Y < Main.worldSurface * 16f)

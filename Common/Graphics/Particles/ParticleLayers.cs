@@ -52,7 +52,7 @@ namespace AQMod.Common.Graphics.Particles
             ParticleLayer_PostDrawPlayers.Key.GetLayer<ParticleLayer_PostDrawPlayers>().AddParticle(particle);
         }
 
-        internal static void UpdateParticles(List<Particle> particles)
+        internal static void UpdateParticles<T>(List<T> particles) where T : Particle
         {
             for (int i = 0; i < particles.Count; i++)
             {
@@ -64,7 +64,7 @@ namespace AQMod.Common.Graphics.Particles
             }
         }
 
-        internal static void DrawParticles(List<Particle> particles)
+        internal static void DrawParticles<T>(List<T> particles) where T : Particle
         {
             for (int i = 0; i < particles.Count; i++)
             {

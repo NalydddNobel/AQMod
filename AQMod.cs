@@ -5,6 +5,7 @@ using AQMod.Common;
 using AQMod.Common.CrossMod;
 using AQMod.Common.DeveloperTools;
 using AQMod.Common.Graphics;
+using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Common.NetCode;
@@ -15,6 +16,7 @@ using AQMod.Content.CursorDyes;
 using AQMod.Content.MapMarkers;
 using AQMod.Content.NameTags;
 using AQMod.Content.Quest.Lobster;
+using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
@@ -28,7 +30,6 @@ using AQMod.Effects.WorldEffects;
 using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Localization;
 using AQMod.NPCs;
-using AQMod.NPCs.Boss.Crabson;
 using AQMod.NPCs.Boss.Starite;
 using AQMod.Sounds;
 using log4net;
@@ -47,6 +48,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
+using Terraria.World.Generation;
 
 namespace AQMod
 {
@@ -262,6 +264,7 @@ namespace AQMod
 
             internal static void Load()
             {
+                On.Terraria.GameContent.UI.States.UIWorldLoad.ctor += UIWorldLoad_ctor;
                 On.Terraria.UI.ItemSlot.OverrideHover += ItemSlot_OverrideHover;
                 On.Terraria.Item.UpdateItem += Item_UpdateItem;
                 On.Terraria.NetMessage.BroadcastChatMessage += NetMessage_BroadcastChatMessage;
@@ -269,6 +272,10 @@ namespace AQMod
                 On.Terraria.Chest.SetupShop += Chest_SetupShop;
                 On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
                 On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
+                if (ModContent.GetInstance<AQConfigClient>().XmasBackground)
+                {
+                    On.Terraria.Main.DrawBG += Main_DrawBG_XMasBG;
+                }
                 On.Terraria.Main.UpdateTime += Main_UpdateTime;
                 On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
                 On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
@@ -285,6 +292,115 @@ namespace AQMod
                 On.Terraria.Player.QuickBuff += Player_QuickBuff;
                 On.Terraria.Player.PickTile += Player_PickTile;
                 On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
+            }
+
+            private static void UIWorldLoad_ctor(On.Terraria.GameContent.UI.States.UIWorldLoad.orig_ctor orig, Terraria.GameContent.UI.States.UIWorldLoad self, Terraria.World.Generation.GenerationProgress progress)
+            {
+                if (XmasSeeds.XmasWorld)
+                {
+                    XmasSeeds.realGenerationProgress = progress;
+                    XmasSeeds.generationProgress = new GenerationProgress
+                    {
+                        Value = progress.Value,
+                        TotalWeight = progress.TotalWeight,
+                        CurrentPassWeight = 1f,
+                    };
+                    progress = XmasSeeds.generationProgress;
+                }
+                orig(self, progress);
+            }
+
+            private static void Main_DrawBG_XMasBG(On.Terraria.Main.orig_DrawBG orig, Main self)
+            {
+                if (Loading || Unloading)
+                {
+                    orig(self);
+                    return;
+                }
+                bool christmasBackground = XmasSeeds.XmasWorld && Main.gameMenu;
+                bool snowflakes = XmasSeeds.XmasWorld;
+                if (christmasBackground)
+                {
+                    if (XmasSeeds.generationProgress != null)
+                    {
+                        XmasSeeds.generationProgress.Value = Main.rand.NextFloat(0f, 1f);
+                        if (!XmasSeeds.generatingSnowBiomeText)
+                            XmasSeeds.generationProgress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.ChristmasSpirit") + ", " + Language.GetTextValue("Mods.AQMod.WorldGen.ChristmasSpiritProgress" + XmasSeeds.snowflakeRandom.Next(16));
+                    }
+                }
+                if (Main.mapFullscreen)
+                {
+                    orig(self);
+                    return;
+                }
+                bool oldGameMenu = Main.gameMenu;
+                if (christmasBackground)
+                {
+                    Main.snowTiles = 10000;
+                    if (Main.myPlayer > -1 || Main.player[Main.myPlayer] != null)
+                    {
+                        var plr = Main.LocalPlayer;
+                        plr.ZoneGlowshroom = false;
+                        plr.ZoneDesert = false;
+                        plr.ZoneBeach = false;
+                        plr.ZoneJungle = false;
+                        plr.ZoneHoly = false;
+                        plr.ZoneCrimson = false;
+                        plr.ZoneCorrupt = false;
+                        plr.ZoneSnow = true;
+                        plr.position.X = Main.maxTilesX * 8f;
+                    }
+                    Main.screenPosition.X = Main.maxTilesX * 8f + (float)Math.Sin(Main.GlobalTime * 0.2f) * 1250f;
+                    Main.screenPosition.Y = 2200f + (float)Math.Sin(Main.GlobalTime) * 80f;
+                    Main.gameMenu = false;
+                }
+                if (snowflakes)
+                {
+                    if (XmasSeeds.farBGSnowflakes == null)
+                    {
+                        XmasSeeds.farBGSnowflakes = new List<FarBGSnowflake>();
+                    }
+
+                    if (XmasSeeds.snowflakeRandom == null)
+                    {
+                        XmasSeeds.snowflakeRandom = new UnifiedRandom();
+                    }
+
+                    var snowflake = new FarBGSnowflake(new Vector2(XmasSeeds.snowflakeRandom.Next(-200, Main.screenWidth + 200), -XmasSeeds.snowflakeRandom.Next(100, 250)));
+                    snowflake.OnAdd();
+                    XmasSeeds.farBGSnowflakes.Add(snowflake);
+                    ParticleLayers.UpdateParticles(XmasSeeds.farBGSnowflakes);
+                    ParticleLayers.DrawParticles(XmasSeeds.farBGSnowflakes);
+                }
+                else
+                {
+                    XmasSeeds.farBGSnowflakes = null;
+                }
+                orig(self);
+                if (snowflakes)
+                {
+                    if (XmasSeeds.closeBGSnowflakes == null)
+                    {
+                        XmasSeeds.closeBGSnowflakes = new List<CloseBGSnowflake>();
+                    }
+                    if (XmasSeeds.snowflakeRandom.NextBool(10))
+                    {
+                        var snowflake = new CloseBGSnowflake(new Vector2(Main.screenPosition.X + XmasSeeds.snowflakeRandom.Next(-200, Main.screenWidth + 200), Main.screenPosition.Y - XmasSeeds.snowflakeRandom.Next(100, 250)));
+                        snowflake.OnAdd();
+                        XmasSeeds.closeBGSnowflakes.Add(snowflake);
+                    }
+                    ParticleLayers.UpdateParticles(XmasSeeds.closeBGSnowflakes);
+                    ParticleLayers.DrawParticles(XmasSeeds.closeBGSnowflakes);
+                }
+                else
+                {
+                    XmasSeeds.generatingSnowBiomeText = false;
+                    XmasSeeds.realGenerationProgress = null;
+                    XmasSeeds.generationProgress = null;
+                    XmasSeeds.snowflakeRandom = null;
+                    XmasSeeds.closeBGSnowflakes = null;
+                }
+                Main.gameMenu = oldGameMenu;
             }
 
             internal static Color _oldCursorColor;
@@ -834,6 +950,7 @@ namespace AQMod
         public override void PostSetupContent()
         {
             AQBuff.Sets.Setup();
+            AQItem.Sets.Setup();
             if (!Main.dedServ)
             {
                 DyeBinder.LoadDyes();
@@ -884,6 +1001,7 @@ namespace AQMod
             DemonSiege.Unload();
             AQProjectile.Sets.UnloadSets();
             AQNPC.Sets.UnloadSets();
+            AQItem.Sets.Unload();
             AQBuff.Sets.Unload();
 
             if (!Main.dedServ)

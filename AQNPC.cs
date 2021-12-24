@@ -106,7 +106,27 @@ namespace AQMod
             public static bool[] UnaffectedByWind { get; private set; }
             public static bool[] BossRelatedEnemy { get; private set; }
 
-            public static bool IsAZombie(int type, bool includeBloodZombies = false)
+            public static bool IsASkeleton(int type, bool includeHardmodeSkeletons = true, bool includeHoplites = true)
+            {
+                if (includeHardmodeSkeletons && (type == NPCID.ArmoredSkeleton || type == NPCID.SkeletonArcher))
+                    return true;
+                if (includeHoplites && type == NPCID.GreekSkeleton)
+                    return true;
+                return type == NPCID.Skeleton ||
+                    type == NPCID.SkeletonAlien ||
+                    type == NPCID.SkeletonAstonaut ||
+                    type == NPCID.SkeletonTopHat ||
+                    type == NPCID.HeadacheSkeleton ||
+                    type == NPCID.MisassembledSkeleton ||
+                    type == NPCID.PantlessSkeleton ||
+                    type == NPCID.BoneThrowingSkeleton ||
+                    type == NPCID.BoneThrowingSkeleton2 ||
+                    type == NPCID.BoneThrowingSkeleton3 ||
+                    type == NPCID.BoneThrowingSkeleton4 ||
+                    type == NPCID.GreekSkeleton;
+            }
+
+            public static bool IsAZombie(int type, bool includeBloodZombies = true)
             {
                 if (includeBloodZombies && type == NPCID.BloodZombie)
                     return true;

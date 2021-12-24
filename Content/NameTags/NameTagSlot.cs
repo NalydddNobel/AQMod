@@ -8,7 +8,7 @@ namespace AQMod.Content.NameTags
     {
         public override bool CanSwapItem(Item slotItem, Item mouseItem)
         {
-            if (!mouseItem.IsAir && mouseItem.maxStack == 1)
+            if (!mouseItem.IsAir && mouseItem.maxStack == 1 && AQItem.Sets.CanBeRenamed[mouseItem.type])
                 return true;
             if (!slotItem.IsAir && mouseItem.IsAir)
                 return true;

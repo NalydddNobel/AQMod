@@ -1,4 +1,5 @@
-﻿using AQMod.Sounds;
+﻿using AQMod.Content.Seasonal.Christmas;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -72,6 +73,10 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         if (AprilFoolsJoke.Active)
                         {
                             npc.ai[2] = NPCID.LavaSlime;
+                        }
+                        else if (XmasSeeds.XmasWorld)
+                        {
+                            npc.ai[2] = Main.rand.NextBool() ? NPCID.IceSlime : NPCID.SpikedIceSlime;
                         }
                         else
                         {

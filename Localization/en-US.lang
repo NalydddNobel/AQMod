@@ -253,6 +253,11 @@ Config.RequiresReload=Requires a reload.
 
 # Client Config
 
+ClientConfig.Name=Client Config
+
+ClientConfig.XmasBackground=Xmas Background
+ClientConfig.XmasBackgroundTooltip=Whether or not to use a Xmas background in special xmas worlds\n{$Mods.AQMod.Config.RequiresReload}
+
 ClientConfig.Header.Worldgen=World Gen
 ClientConfig.Screenshakes=Screenshakes
 ClientConfig.TonsofScreenShakes=Extra Unnecessary Screenshakes
@@ -284,6 +289,26 @@ ServerConfig.JellyfishNecklaceTooltip=If you disable this, the Blue Jellyfish wo
 
 ServerConfig.DebugCommand=Debug Mode (/ncall)
 ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod.Config.RequiresReload}
+
+# Worldgen
+
+WorldGen.ChristmasSpirit=The Christmas Spirit
+WorldGen.ChristmasSpiritProgress0=Current Progress: (Something/Something%)
+WorldGen.ChristmasSpiritProgress1=Current Progress: (Santa Magic%)
+WorldGen.ChristmasSpiritProgress2=Current Progress: (Hello)
+WorldGen.ChristmasSpiritProgress3=Current Progress: (Elf/Elf%)
+WorldGen.ChristmasSpiritProgress4=Current Progress: (100%)
+WorldGen.ChristmasSpiritProgress5=Current Progress: (99.9999999999999999999999999999999999999998%)
+WorldGen.ChristmasSpiritProgress6=Current Progress: (99.999999999999999999999999999999999999998%)
+WorldGen.ChristmasSpiritProgress7=Current Progress: (99.99999999999999999965998%)
+WorldGen.ChristmasSpiritProgress8=Current Progress: (99.992%)
+WorldGen.ChristmasSpiritProgress9=Current Progress: (99.91%)
+WorldGen.ChristmasSpiritProgress10=Current Progress: (99.9%)
+WorldGen.ChristmasSpiritProgress11=Current Progress: (99%)
+WorldGen.ChristmasSpiritProgress12=Current Progress: (95%)
+WorldGen.ChristmasSpiritProgress13=Current Progress: (80%)
+WorldGen.ChristmasSpiritProgress14=Current Progress: (50%)
+WorldGen.ChristmasSpiritProgress15=Current Progress: (0%)
 
 # NPCs
 

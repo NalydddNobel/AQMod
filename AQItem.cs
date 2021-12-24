@@ -17,6 +17,8 @@ namespace AQMod
     {
         public static class Sets 
         {
+            public static bool[] CanBeRenamed { get; private set; }
+
             public static bool IsCrate(int type)
             {
                 switch (type)
@@ -60,6 +62,17 @@ namespace AQMod
                         ItemNoGravity = null;
                     }
                 }
+            }
+
+            internal static void Setup()
+            {
+                CanBeRenamed = new bool[ItemLoader.ItemCount];
+                CanBeRenamed[ModContent.ItemType<Items.GiftItem>()] = false;
+            }
+
+            internal static void Unload()
+            {
+                CanBeRenamed = null;
             }
         }
 

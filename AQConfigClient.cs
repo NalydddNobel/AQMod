@@ -8,7 +8,8 @@ using Terraria.ModLoader.Config;
 
 namespace AQMod
 {
-    [Label(AQText.ConfigNameKey + "AQConfigClient")]
+    [Label("$Mods.AQMod.ClientConfig.Name")]
+    [BackgroundColor(10, 10, 40, 220)]
     public class AQConfigClient : ModConfig
     {
         public static AQConfigClient Instance => ModContent.GetInstance<AQConfigClient>();
@@ -56,6 +57,13 @@ namespace AQMod
         [DefaultValue(true)]
         public bool BackgroundStarites { get; set; }
         public static bool c_BackgroundStarites { get; private set; }
+
+        [BackgroundColor(75, 80, 100, 180)]
+        [Label("$Mods.AQMod.ClientConfig.XmasBackground")]
+        [Tooltip("$Mods.AQMod.ClientConfig.XmasBackgroundTooltip")]
+        [DefaultValue(true)]
+        [ReloadRequired()]
+        public bool XmasBackground { get; set; }
 
         [Label(AQText.ConfigValueKey + "MapBlipColor")]
         [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorNoAlpha]
