@@ -253,6 +253,11 @@ Config.RequiresReload=需要重新加载.
 
 # Client Config
 
+ClientConfig.Name=客户端设置
+
+ClientConfig.XmasBackground=圣诞节背景
+ClientConfig.XmasBackgroundTooltip=决定是否在特殊的圣诞节世界中使用圣诞节背景\n{$Mods.AQMod.Config.RequiresReload}
+
 ClientConfig.Header.Worldgen=世界生成
 ClientConfig.Screenshakes=屏幕震动
 ClientConfig.TonsofScreenShakes=额外的不必要的屏幕震动
@@ -284,6 +289,33 @@ ServerConfig.JellyfishNecklaceTooltip=若禁用此项, 则蓝色水母能够有�
 
 ServerConfig.DebugCommand=调试模式 (/ncall)
 ServerConfig.DebugCommandTooltip=启用 /ncall 调试命令.\n{$Mods.AQMod.Config.RequiresReload}
+
+# Christmas
+
+XmasGift.Tooltip=你是乖孩子还是淘气鬼..?
+XmasGift.Nice=你今年表现不错!
+XmasGift.Naughty=你今年很淘气...
+MerryXmas.0=祝你圣诞快乐, {0}
+MerryXmas.1=祝你节日快乐, {0}
+MerryXmas.2=向你致以节日的问候, {0}
+
+WorldGen.ChristmasSpirit=圣诞节贴图
+WorldGen.ChristmasSpiritProgress0=当前进度: (某些东西/某些东西%)
+WorldGen.ChristmasSpiritProgress1=当前进度: (圣诞老人的魔法%)
+WorldGen.ChristmasSpiritProgress2=当前进度: (你好)
+WorldGen.ChristmasSpiritProgress3=当前进度: (小精灵/小精灵%)
+WorldGen.ChristmasSpiritProgress4=当前进度: (100%)
+WorldGen.ChristmasSpiritProgress5=当前进度: (99.9999999999999999999999999999999999999998%)
+WorldGen.ChristmasSpiritProgress6=当前进度: (99.999999999999999999999999999999999999998%)
+WorldGen.ChristmasSpiritProgress7=当前进度: (99.99999999999999999965998%)
+WorldGen.ChristmasSpiritProgress8=当前进度: (99.992%)
+WorldGen.ChristmasSpiritProgress9=当前进度: (99.91%)
+WorldGen.ChristmasSpiritProgress10=当前进度: (99.9%)
+WorldGen.ChristmasSpiritProgress11=当前进度: (99%)
+WorldGen.ChristmasSpiritProgress12=当前进度: (95%)
+WorldGen.ChristmasSpiritProgress13=当前进度: (80%)
+WorldGen.ChristmasSpiritProgress14=当前进度: (50%)
+WorldGen.ChristmasSpiritProgress15=当前进度: (0%)
 
 # NPCs
 
