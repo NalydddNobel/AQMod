@@ -377,8 +377,8 @@ namespace AQMod.Content.Seasonal.Christmas
                     }
                     if (Main.tile[i, j].type == TileID.Pots)
                     {
-                        Main.tile[i, j].frameX = (short)(Main.tile[i, j].frameY % 108 + 144);
-                        Main.tile[i, j].color(Constants.Paint.Blue);
+                        Main.tile[i, j].frameY = (short)(Main.tile[i, j].frameY % 108 + 144);
+                        Main.tile[i, j].color(Constants.Paint.SkyBlue);
                         replaceBlock = false;
                     }
                     if (j < Main.maxTilesY - 1)
