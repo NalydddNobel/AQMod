@@ -65,6 +65,13 @@ namespace AQMod
         [ReloadRequired()]
         public bool XmasBackground { get; set; }
 
+        [BackgroundColor(75, 80, 100, 180)]
+        [Label("$Mods.AQMod.ClientConfig.XmasProgressMeterOverride")]
+        [Tooltip("$Mods.AQMod.ClientConfig.XmasProgressMeterOverrideTooltip")]
+        [DefaultValue(true)]
+        [ReloadRequired()]
+        public bool XmasProgressMeterOverride { get; set; }
+
         [Label(AQText.ConfigValueKey + "MapBlipColor")]
         [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorNoAlpha]
         public Color MapBlipColor { get; set; }

@@ -264,7 +264,10 @@ namespace AQMod
 
             internal static void Load()
             {
-                On.Terraria.GameContent.UI.States.UIWorldLoad.ctor += UIWorldLoad_ctor;
+                if (ModContent.GetInstance<AQConfigClient>().XmasProgressMeterOverride)
+                {
+                    On.Terraria.GameContent.UI.States.UIWorldLoad.ctor += UIWorldLoad_ctor_Xmas;
+                }
                 On.Terraria.UI.ItemSlot.OverrideHover += ItemSlot_OverrideHover;
                 On.Terraria.Item.UpdateItem += Item_UpdateItem;
                 On.Terraria.NetMessage.BroadcastChatMessage += NetMessage_BroadcastChatMessage;
@@ -294,7 +297,7 @@ namespace AQMod
                 On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
             }
 
-            private static void UIWorldLoad_ctor(On.Terraria.GameContent.UI.States.UIWorldLoad.orig_ctor orig, Terraria.GameContent.UI.States.UIWorldLoad self, Terraria.World.Generation.GenerationProgress progress)
+            private static void UIWorldLoad_ctor_Xmas(On.Terraria.GameContent.UI.States.UIWorldLoad.orig_ctor orig, Terraria.GameContent.UI.States.UIWorldLoad self, Terraria.World.Generation.GenerationProgress progress)
             {
                 if (XmasSeeds.XmasWorld)
                 {

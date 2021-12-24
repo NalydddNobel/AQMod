@@ -256,7 +256,10 @@ Config.RequiresReload=Requires a reload.
 ClientConfig.Name=Client Config
 
 ClientConfig.XmasBackground=Xmas Background
-ClientConfig.XmasBackgroundTooltip=Whether or not to use a Xmas background in special xmas worlds\n{$Mods.AQMod.Config.RequiresReload}
+ClientConfig.XmasBackgroundTooltip=Whether or not to use a Xmas background in special Xmas worlds\n{$Mods.AQMod.Config.RequiresReload}
+
+ClientConfig.XmasProgressMeterOverride=Xmas Progress Meter Override
+ClientConfig.XmasProgressMeterOverrideTooltip=Whether or not to have the "AQ Xmas" seed override your worldgen progress bar. This sometimes has conflicts with Worldgen Previewer\n{$Mods.AQMod.Config.RequiresReload}
 
 ClientConfig.Header.Worldgen=World Gen
 ClientConfig.Screenshakes=Screenshakes

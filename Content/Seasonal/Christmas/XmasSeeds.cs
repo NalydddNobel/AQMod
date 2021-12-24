@@ -32,6 +32,8 @@ namespace AQMod.Content.Seasonal.Christmas
                 case "xmas":
                 case "aqxmas":
                 case "aq xmas":
+                case "aequus xmas":
+                case "aequus christmas":
                 return true;
             }
             return false;
@@ -214,7 +216,8 @@ namespace AQMod.Content.Seasonal.Christmas
                         Main.tile[i, j].type = TileID.SnowBrick;
                         replaceBlock = false;
                     }
-                    else if (Main.tile[i, j].type == TileID.HellstoneBrick)
+                    else if (Main.tile[i, j].type == TileID.Sunplate || 
+                        Main.tile[i, j].type == TileID.HellstoneBrick)
                     {
                         Main.tile[i, j].type = TileID.IceBrick;
                         replaceBlock = false;
