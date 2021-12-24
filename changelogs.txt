@@ -9,6 +9,9 @@ Changes:
 - Changed the recipe for the Argon Spear to use a Spear instead of the Vine Sword
 - Renamed the Vine Sword to "Turnblock Hammer"
 
+Fixes:
+- Hopefully fixed a rare crash which can happen on mod initalization
+
 ####### 1.3 #######
 
 Additions:

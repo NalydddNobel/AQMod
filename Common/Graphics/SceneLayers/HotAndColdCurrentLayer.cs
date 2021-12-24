@@ -32,7 +32,6 @@ namespace AQMod.Common.Graphics.SceneLayers
             {
                 throw new Exception("There was an error while loading the Hot and Cold current shader. Try loading shaders in a higher quality or something?");
             }
-            Reset(Main.graphics.GraphicsDevice);
             _hotCurrentList = new List<IDrawType>();
             _coldCurrentList = new List<IDrawType>();
             Key = key;

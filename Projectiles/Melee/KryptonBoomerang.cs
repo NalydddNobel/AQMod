@@ -32,10 +32,6 @@ namespace AQMod.Projectiles.Melee
                 projectile.tileCollide = false;
                 float speed = Math.Max((Main.player[projectile.owner].Center - projectile.Center).Length() / 140f, 10f);
                 projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(Main.player[projectile.owner].Center - projectile.Center) * speed, Math.Max(1f - (Main.player[projectile.owner].Center - projectile.Center).Length() / 50f, 0.01f));
-                if (projectile.velocity.Length() < 10f)
-                {
-                    projectile.velocity = Vector2.Normalize(projectile.velocity) * 10f;
-                }
                 if ((projectile.Center - Main.player[projectile.owner].Center).Length() < 20f)
                 {
                     projectile.Kill();
