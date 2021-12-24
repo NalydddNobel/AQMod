@@ -290,7 +290,13 @@ ServerConfig.JellyfishNecklaceTooltip=If you disable this, the Blue Jellyfish wo
 ServerConfig.DebugCommand=Debug Mode (/ncall)
 ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod.Config.RequiresReload}
 
-# Worldgen
+# Christmas
+
+XmasGift.Nice=You were nice this year!
+XmasGift.Naughty=You were naughty this year...
+MerryXmas.0=Merry Xmas to you, {0}
+MerryXmas.1=Happy Holidays to you, {0}
+MerryXmas.2=Seasons Greetings to you, {0}
 
 WorldGen.ChristmasSpirit=The Christmas Spirit
 WorldGen.ChristmasSpiritProgress0=Current Progress: (Something/Something%)
