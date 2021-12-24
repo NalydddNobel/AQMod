@@ -341,7 +341,7 @@ namespace AQMod.Content.Seasonal.Christmas
                     else if (Main.tile[i, j].type == TileID.Stalactite)
                     {
                         Main.tile[i, j].frameX = (short)(Main.tile[i, j].frameX % 54);
-                        Main.tile[i, j].wallColor(Main.tile[i, j].color());
+                        Main.tile[i, j].color(Main.tile[i, j].wallColor());
                         replaceBlock = false;
                     }
                     else if (Main.tile[i, j].type == TileID.LihzahrdBrick ||
