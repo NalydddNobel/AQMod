@@ -41,14 +41,17 @@ namespace AQMod.Content.Seasonal.Christmas
 
         public override void PostUpdate()
         {
-            if (Main.myPlayer == player.whoAmI && XmasSeeds.XmasWorld && !givenXmasGift)
+            if (Main.myPlayer == player.whoAmI)
             {
                 var now = DateTime.Now;
-                if (now.Month == 12 && now.Day == 24)
+                if (now.Month == 12 && now.Day == 25)
                 {
-                    givenXmasGift = true;
-                    player.QuickSpawnClonedItem(GiftItem.CreateGiftItem(1));
-                    Main.NewText(Language.GetTextValue("Mods.AQMod.MerryXmas." + new UnifiedRandom(Main.LocalPlayer.name.GetHashCode()).Next(2), player.name), new Color(230, 230, 255, 255));
+                    if (!givenXmasGift && XmasSeeds.XmasWorld)
+                    {
+                        givenXmasGift = true;
+                        player.QuickSpawnClonedItem(GiftItem.CreateGiftItem(1));
+                        Main.NewText(Language.GetTextValue("Mods.AQMod.MerryXmas." + new UnifiedRandom(Main.LocalPlayer.name.GetHashCode()).Next(2), player.name), new Color(230, 230, 255, 255));
+                    }
                 }
                 else
                 {

@@ -292,6 +292,7 @@ ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod
 
 # Christmas
 
+XmasGift.Tooltip=Will you be naughty or nice..?
 XmasGift.Nice=You were nice this year!
 XmasGift.Naughty=You were naughty this year...
 MerryXmas.0=Merry Xmas to you, {0}

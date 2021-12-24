@@ -312,13 +312,13 @@ namespace AQMod
 
             private static void Main_DrawBG_XMasBG(On.Terraria.Main.orig_DrawBG orig, Main self)
             {
+                bool christmasBackground = XmasSeeds.XmasWorld && WorldGen.gen;
+                bool snowflakes = XmasSeeds.XmasWorld;
                 if (Loading || Unloading)
                 {
-                    orig(self);
-                    return;
+                    christmasBackground = false;
+                    snowflakes = false;
                 }
-                bool christmasBackground = XmasSeeds.XmasWorld && Main.gameMenu;
-                bool snowflakes = XmasSeeds.XmasWorld;
                 if (christmasBackground)
                 {
                     if (XmasSeeds.generationProgress != null)
