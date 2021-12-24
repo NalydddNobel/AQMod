@@ -12,7 +12,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             item.width = 40;
             item.height = 40;
-            item.damage = 25;
+            item.damage = 18;
             item.useTime = 20;
             item.useAnimation = 20;
             item.rare = AQItem.Rarities.CrabsonWeaponRare;
@@ -22,6 +22,16 @@ namespace AQMod.Items.Weapons.Melee
             item.melee = true;
             item.knockBack = 5f;
             item.scale = 1.1f;
+            item.noMelee = true;
+            item.noUseGraphic = true;
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.KryptonBoomerang>();
+            item.shootSpeed = 5f;
+            item.autoReuse = true;
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            return player.ownedProjectileCounts[item.shoot] < 1;
         }
 
         public override void AddRecipes()
