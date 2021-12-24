@@ -1,3 +1,14 @@
+####### 1.3.0.1 #######
+
+Changes:
+- Made the Vine Sword spawn naturally in wooden chests, and drop from the Crab enemy
+- Made the Crystal Blade spawn naturally in ice chests
+- Removed the crafting recipes for the Noble Mushrooms
+- Overhauled Xenon basher
+- Changed the Krypton Sword into a boomerang, and renamed it "Krypton Boomerang", and made it require a wooden boomerang to craft instead of the Vine Sword
+- Changed the recipe for the Argon Spear to use a Spear instead of the Vine Sword
+- Renamed the Vine Sword to "Turnblock Hammer"
+
 ####### 1.3 #######
 
 Additions:

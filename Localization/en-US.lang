@@ -65,6 +65,11 @@ ItemName.HeartPiece=Heart Piece
 
 # Weapons
 
+ItemName.VineSword=Turnblock Hammer
+
+ItemName.KryptonSword=Krypton Boomerang
+ItemTooltip.KryptonSword=Throws a krypton boomerang which inflicts multiple debuffs
+
 ItemName.Vrang=Vrang
 ItemTooltip.Vrang=Throws 3 vraines which move very quickly
 
@@ -795,10 +800,8 @@ ItemName.OrbicularStargaizar=Orbicular Stargaizar
 BuffName.Harmony=Harmony
 BuffDescription.Harmony=Grealy increases your magical powers
 
-ItemName.KryptonSword=Krypton Sword
 ItemName.StariteBlade=Starite Blade
 ItemTooltip.StariteBlade=Inflicts blue fire on hit
-ItemName.VineSword=Vine Sword
 ItemName.XenonBasher=Xenon Basher
 # Ranged
 # Bows

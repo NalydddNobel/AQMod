@@ -36,7 +36,7 @@ namespace AQMod.Items.Weapons.Melee
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<VineSword>());
+            r.AddIngredient(ItemID.Spear);
             r.AddIngredient(ModContent.ItemType<ArgonMushroom>(), 2);
             r.AddIngredient(ModContent.ItemType<AquaticEnergy>(), 3);
             r.AddTile(TileID.WorkBenches);

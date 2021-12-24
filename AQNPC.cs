@@ -1459,6 +1459,10 @@ namespace AQMod
 
                 case NPCID.Crab:
                 {
+                    if (Main.rand.NextBool(10))
+                    {
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.VineSword>());
+                    }
                     if (CrabSeason.Active)
                     {
                         if (Main.moonPhase % 2 == 0 && !aQPlayer.altEvilDrops || Main.moonPhase % 2 == 1 && aQPlayer.altEvilDrops)

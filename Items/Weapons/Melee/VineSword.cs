@@ -19,14 +19,5 @@ namespace AQMod.Items.Weapons.Melee
             item.melee = true;
             item.knockBack = 2f;
         }
-
-        public override void AddRecipes()
-        {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Mushroom, 10);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
     }
 }

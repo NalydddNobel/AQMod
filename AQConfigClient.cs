@@ -56,7 +56,7 @@ namespace AQMod
         [Label("$" + AQText.Key + "ClientConfig.OverrideVanillaChestLoot")]
         [Tooltip("$" + AQText.Key + "ClientConfig.OverrideVanillaChestLootTooltip")]
         [DefaultValue(true)]
-        public bool OverrideVanillaChestLoot { get; private set; }
+        public bool OverrideVanillaChestLoot { get; set; }
         public static bool c_OverrideVanillaChestLoot { get; private set; }
 
         [Header("$Mods.AQMod.ClientConfig.Header.Starite")]

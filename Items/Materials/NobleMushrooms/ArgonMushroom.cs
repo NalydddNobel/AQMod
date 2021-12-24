@@ -21,14 +21,5 @@ namespace AQMod.Items.Materials.NobleMushrooms
             item.useTurn = true;
             item.autoReuse = true;
         }
-
-        public override void AddRecipes()
-        {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Mushroom);
-            r.AddIngredient(ItemID.Amethyst);
-            r.SetResult(this);
-            r.AddRecipe();
-        }
     }
 }

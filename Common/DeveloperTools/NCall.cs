@@ -5,6 +5,7 @@ using AQMod.Common.Skies;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Quest.Lobster;
+using AQMod.Content.World.Generation;
 using AQMod.Content.WorldEvents;
 using AQMod.Content.WorldEvents.CrabSeason;
 using AQMod.Content.WorldEvents.DemonSiege;
@@ -118,6 +119,12 @@ namespace AQMod.Common.DeveloperTools
             {
                 default:
                 caller.Reply("Command doesn't exist.");
+                break;
+
+                case "chestloot":
+                {
+                    ChestLoot.AddLoot(Chest.FindChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y));
+                }
                 break;
 
                 case "nametagitem":
