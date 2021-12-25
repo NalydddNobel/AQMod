@@ -18,6 +18,7 @@ Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不
 > 2个城镇NPC
 
 玩得开心
+节日快乐! 输入种子 "Aequus Xmas" 来创建一个特殊的世界!
 
 ##############
 # Accessories
@@ -64,8 +65,13 @@ ItemName.HeartPiece=心之碎片
 
 # Weapons
 
-ItemName.Vrang=随流温刃
-ItemTooltip.Vrang=扔出三个快速移动的随流温刃
+ItemName.VineSword=变向锤
+
+ItemName.KryptonSword=氪制回旋镖
+ItemTooltip.KryptonSword=能够穿透敌人并回旋移动\n击中敌人时会对其造成多种减益
+
+ItemName.Vrang=镰刃
+ItemTooltip.Vrang=扔出三个快速移动的镰刃
 
 ItemName.AirBlade=风之刃
 ItemTooltip.AirBlade=召唤魔法风刃
@@ -255,8 +261,33 @@ Config.RequiresReload=需要重新加载.
 
 ClientConfig.Name=客户端设置
 
+ClientConfig.Header.Starite=星源视觉效果
+ClientConfig.Header.Xmas=圣诞节
+ClientConfig.Header.UI=用户界面
+
+ClientConfig.Effect3D=3D效果
+ClientConfig.Effect3DTooltip=数值越高3D效果越明显, 数值越低3D效果越扁平
+
+ClientConfig.BackgroundStarites=星源背景
+ClientConfig.BackgroundStaritesTooltip=决定当微光事件进行时背景是否出现小星星
+
+ClientConfig.StariteProjColor=星源弹幕颜色
+ClientConfig.StariteProjColorTooltip=某些星源弹幕的颜色
+
+ClientConfig.StariteAuraColor=星源氛围颜色
+ClientConfig.StariteAuraColorTooltip=终末之星和微光事件背景氛围的颜色
+
+ClientConfig.StariteBackgroundLight=星源背景强度
+ClientConfig.StariteBackgroundLightTooltip=数值越低星源背景越透明\n若你看不清终末之星或其弹幕, 可以尝试更改数值
+
 ClientConfig.XmasBackground=圣诞节背景
 ClientConfig.XmasBackgroundTooltip=决定是否在特殊的圣诞节世界中使用圣诞节背景\n{$Mods.AQMod.Config.RequiresReload}
+
+ClientConfig.XmasProgressMeterOverride=圣诞进度条覆盖
+ClientConfig.XmasProgressMeterOverrideTooltip=决定是否让种子 "Aequus Xmas" 覆盖世界生成进度条. 该项在某些时候会与世界生成预览冲突\n{$Mods.AQMod.Config.RequiresReload}
+
+ClientConfig.MapBlipColor=地图光点颜色
+ClientConfig.MapBlipColorTooltip=复古标记显示的地图光点的颜色
 
 ClientConfig.Header.Worldgen=世界生成
 ClientConfig.Screenshakes=屏幕震动
@@ -344,30 +375,11 @@ Common.ConfigHeader_Debug=调试模式
 Common.Config_DrawSpotlights=绘制灯光效果
 Common.Config_EffectQuality=效果质量
 Common.Config_EffectIntensity=效果强度
-Common.Config_Effect3D=3D效果
-Common.Config_Effect3DTooltip=数值越高3D效果越明显, 数值越低3D效果越扁平
-Common.Config_StariteBackgroundLight=星源背景亮度
-Common.Config_StariteBackgroundLightTooltip=决定微光事件背景光的亮度
-Common.Config_StariteAuraColor=星源氛围颜色
-Common.Config_StariteAuraColorTooltip=终末之星和微光事件整体氛围的颜色
 Common.Config_LoadItemOverlays=加载物品覆盖层
-Common.Config_BackgroundStarites=星源背景
-Common.Config_StariteProjColor=星源弹幕的颜色
 #
-Common.Config_TrailShader=启用尾痕残影着色器
-Common.Config_ScrollShader=启用滚动特效着色器
-Common.Config_HypnoShader=启用色彩分离特效着色器
-Common.Config_OutlineShader=启用轮廓特效着色器
-Common.Config_ScreenDistortShader=启用屏幕扭曲特效着色器
-Common.Config_PortalShader=启用传送门特效着色器
-Common.Config_ColorDistortShader=启用颜色失真特效着色器
-Common.Config_SpotlightShader=启用灯光效果着色器
-#
-Common.Config_MapBlipColor=地图光点的颜色
 Common.Config_ShowCompletedAnglerQuestsCount=显示已完成的渔夫的任务次数
 Common.Config_ShowCompletedRobsterQuestsCount=显示已完成的龙虾掠夺者的任务次数
 Common.Config_CosmicEnergyAlt=星宇能量 (备用贴图)
-Common.Config_MarkerMapUIType=地图标记UI的类型 (位置)
 # Eightball
 Common.EightballAnswer0=是的
 Common.EightballAnswer1=我的消息来源说不
@@ -788,10 +800,8 @@ ItemName.OrbicularStargaizar=观星法球
 BuffName.Harmony=和谐
 BuffDescription.Harmony=大幅度强化你的魔法能力
 
-ItemName.KryptonSword=氪制剑
 ItemName.StariteBlade=星源刃
 ItemTooltip.StariteBlade=击中敌人时对其造成碧蓝之火减益
-ItemName.VineSword=藤蔓长剑
 ItemName.XenonBasher=氙制轻剑
 # Ranged
 # Bows
