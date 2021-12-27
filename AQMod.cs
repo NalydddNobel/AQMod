@@ -88,10 +88,6 @@ namespace AQMod
         public static MapMarkerManager MapMarkers => ModContent.GetInstance<MapMarkerManager>();
 
         private static List<CachedTask> cachedLoadTasks;
-        /// <summary>
-        /// The active instance of World Layers
-        /// </summary>
-        public static SceneLayersManager WorldLayers { get; private set; }
         [Obsolete("Replaced with interfaces")]
         /// <summary>
         /// The active instance of Item Overlays, this is not initialized on the server
@@ -111,8 +107,8 @@ namespace AQMod
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
         public static ModifiableMusic GaleStreamsMusic { get; private set; }
 
-        private static Vector2 _lastScreenZoom;
-        private static Vector2 _lastScreenView;
+        internal static Vector2 _lastScreenZoom;
+        internal static Vector2 _lastScreenView;
 
         public static bool RerollCursor;
 
@@ -275,6 +271,7 @@ namespace AQMod
                 On.Terraria.Chest.SetupShop += Chest_SetupShop;
                 On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
                 On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
+                On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
                 if (ModContent.GetInstance<AQConfigClient>().XmasBackground)
                 {
                     On.Terraria.Main.DrawBG += Main_DrawBG_XMasBG;
@@ -295,6 +292,19 @@ namespace AQMod
                 On.Terraria.Player.QuickBuff += Player_QuickBuff;
                 On.Terraria.Player.PickTile += Player_PickTile;
                 On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
+            }
+
+            private static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
+            {
+                if (behindTiles)
+                    SceneLayersManager.DrawLayer(SceneLayering.BehindTiles_BehindNPCs);
+                else
+                    SceneLayersManager.DrawLayer(SceneLayering.BehindNPCs);
+                orig(self, behindTiles);
+                if (behindTiles)
+                    SceneLayersManager.DrawLayer(SceneLayering.BehindTiles_InfrontNPCs);
+                else
+                    SceneLayersManager.DrawLayer(SceneLayering.InfrontNPCs);
             }
 
             private static void UIWorldLoad_ctor_Xmas(On.Terraria.GameContent.UI.States.UIWorldLoad.orig_ctor orig, Terraria.GameContent.UI.States.UIWorldLoad self, Terraria.World.Generation.GenerationProgress progress)
@@ -416,7 +426,6 @@ namespace AQMod
                 return !AQMod.Loading && !Main.gameMenu && Main.myPlayer >= 0 && Main.LocalPlayer.active;
             }
 
-            // ON edits
             private static Vector2 Main_DrawThickCursor(On.Terraria.Main.orig_DrawThickCursor orig, bool smart)
             {
                 if (ShouldApplyCustomCursor())
@@ -708,7 +717,10 @@ namespace AQMod
                 orig(self);
                 if (!Main.gameMenu && Main.graphics.GraphicsDevice != null && Main.spriteBatch != null)
                 {
-                    HotAndColdCurrentLayer.DrawTarget();
+                    SceneLayersManager.DrawLayer(SceneLayering.PreRender);
+                    SceneLayersManager.RenderTargetLayers.PreRender();
+                    _lastScreenZoom = new Vector2(Main.screenWidth, Main.screenHeight);
+                    _lastScreenView = Main.ViewSize;
                 }
             }
 
@@ -942,7 +954,6 @@ namespace AQMod
                 SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
                 GlimmerEventSky.ModLoad();
                 VertexStrip.Setup();
-                WorldLayers = new SceneLayersManager();
                 SceneLayersManager.Setup();
                 ScreenShakeManager.Load();
                 StarbyteColorCache.Init();
@@ -1015,11 +1026,7 @@ namespace AQMod
                 StarbyteColorCache.Unload();
                 ScreenShakeManager.Unload();
                 ArmorOverlays = null;
-                if (WorldLayers != null)
-                {
-                    SceneLayersManager.Unload();
-                    WorldLayers = null;
-                }
+                SceneLayersManager.Unload();
                 EffectCache.ParentPixelShader = null;
                 //EffectCache.Instance = null;
                 GlimmerEventSky.Unload();
@@ -1039,12 +1046,6 @@ namespace AQMod
         {
             if (!Main.dedServ)
             {
-                if ((_lastScreenView != Main.ViewSize || _lastScreenZoom != new Vector2(Main.screenWidth, Main.screenHeight)))
-                {
-                    HotAndColdCurrentLayer.Reset(Main.graphics.GraphicsDevice);
-                }
-                _lastScreenZoom = new Vector2(Main.screenWidth, Main.screenHeight);
-                _lastScreenView = Main.ViewSize;
                 for (int i = 0; i < WorldEffects.Count; i++)
                 {
                     var v = WorldEffects[i];

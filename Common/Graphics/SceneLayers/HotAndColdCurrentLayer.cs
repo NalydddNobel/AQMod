@@ -7,7 +7,7 @@ using Terraria;
 
 namespace AQMod.Common.Graphics.SceneLayers
 {
-    public sealed class HotAndColdCurrentLayer : SceneLayer
+    public sealed class HotAndColdCurrentLayer : RenderTargetLayerType
     {
         public static LayerKey Key { get; private set; }
 
@@ -15,9 +15,8 @@ namespace AQMod.Common.Graphics.SceneLayers
         private static Effect _hotAndColdCurrentShader;
         private static List<IDrawType> _hotCurrentList;
         private static List<IDrawType> _coldCurrentList;
-        private static RenderTarget2D hotTarget;
-        private static RenderTarget2D coldTarget;
-        private static RenderTarget2D finalTarget;
+        private static RenderTarget2D _hotTarget;
+        private static RenderTarget2D _coldTarget;
 
         public override string Name => "HotAndColdCurrent";
         public override SceneLayering Layering => SceneLayering.BehindNPCs;
@@ -44,26 +43,9 @@ namespace AQMod.Common.Graphics.SceneLayers
             _hotAndColdCurrentShader = null;
             _hotCurrentList = null;
             _coldCurrentList = null;
-            hotTarget = null;
-            coldTarget = null;
-            finalTarget = null;
-        }
-
-        internal static void Reset(GraphicsDevice graphics)
-        {
-            _graphics = graphics;
-            if (_graphics == null)
-                return;
-            try
-            {
-                hotTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
-                coldTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
-                finalTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
-            }
-            catch
-            {
-
-            }
+            _hotTarget = null;
+            _coldTarget = null;
+            _finalTarget = null;
         }
 
         public static void AddToHotCurrentList(IDrawType drawType)
@@ -76,7 +58,25 @@ namespace AQMod.Common.Graphics.SceneLayers
             _coldCurrentList.Add(drawType);
         }
 
-        public static void DrawTarget()
+        public override bool ShouldReset()
+        {
+            return base.ShouldReset() 
+                || _finalTarget == null || _finalTarget.IsContentLost
+                || _hotTarget == null || _hotTarget.IsContentLost
+                || _coldTarget == null || _coldTarget.IsContentLost;
+        }
+
+        public override void ResetTargets(GraphicsDevice graphics)
+        {
+            _graphics = graphics;
+            if (_graphics == null)
+                return;
+            _hotTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
+            _coldTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
+            _finalTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
+        }
+
+        public override void DrawTargets()
         {
             if (_hotCurrentList == null)
                 _hotCurrentList = new List<IDrawType>();
@@ -84,12 +84,6 @@ namespace AQMod.Common.Graphics.SceneLayers
                 _coldCurrentList = new List<IDrawType>();
             if (_hotCurrentList.Count > 0 || _coldCurrentList.Count > 0)
             {
-                if (finalTarget == null || finalTarget.IsContentLost
-                    || hotTarget == null || hotTarget.IsContentLost
-                    || coldTarget == null || coldTarget.IsContentLost)
-                {
-                    Reset(Main.graphics.GraphicsDevice);
-                }
                 if (_graphics == null)
                     return;
                 RenderTargetBinding[] renderTargets;
@@ -102,7 +96,7 @@ namespace AQMod.Common.Graphics.SceneLayers
                     return;
                 }
 
-                _graphics.SetRenderTarget(coldTarget);
+                _graphics.SetRenderTarget(_coldTarget);
                 _graphics.Clear(new Color(0, 0, 0, 0));
 
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null);
@@ -114,7 +108,7 @@ namespace AQMod.Common.Graphics.SceneLayers
 
                 Main.spriteBatch.End();
 
-                _graphics.SetRenderTarget(hotTarget);
+                _graphics.SetRenderTarget(_hotTarget);
                 _graphics.Clear(new Color(0, 0, 0, 0));
 
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null);
@@ -126,17 +120,17 @@ namespace AQMod.Common.Graphics.SceneLayers
 
                 Main.spriteBatch.End();
 
-                _graphics.SetRenderTarget(finalTarget);
+                _graphics.SetRenderTarget(_finalTarget);
                 _graphics.Clear(new Color(0, 0, 0, 0));
 
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null);
 
-                _graphics.Textures[1] = hotTarget;
+                _graphics.Textures[1] = _hotTarget;
 
                 _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
                 _hotAndColdCurrentShader.CurrentTechnique.Passes["MergeColorsPass"].Apply();
 
-                Main.spriteBatch.Draw(coldTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(_coldTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
                 Main.spriteBatch.End();
 
@@ -147,34 +141,23 @@ namespace AQMod.Common.Graphics.SceneLayers
             }
             else
             {
-                finalTarget = null;
+                _finalTarget = null;
             }
         }
 
-        protected override void Draw()
+        protected override void PreDrawFinal()
         {
-            if (finalTarget != null && !finalTarget.IsContentLost)
-            {
-                Main.spriteBatch.End();
-
-                BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
-
-                //var drawData = new DrawData(finalTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
-                //EffectCache.s_OutlineColor.UseColor(Color.Black);
-                //EffectCache.s_OutlineColor.Apply(drawData);
-                //drawData.Draw(Main.spriteBatch);
-
-                _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
-                _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
-                _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
-                _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
-
-                Main.spriteBatch.Draw(finalTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-
-                Main.spriteBatch.End();
-
-                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
-            }
+            Main.spriteBatch.End();
+            BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
+            _hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
+            _hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
+            _hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
+            _hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
+        }
+        protected override void PostDrawFinal()
+        {
+            Main.spriteBatch.End();
+            BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
         }
     }
 }

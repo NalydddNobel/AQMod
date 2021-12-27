@@ -5,12 +5,13 @@
     /// </summary>
     public enum SceneLayering : byte
     {
-        BehindTiles_BehindNPCs = 0,
-        BehindTiles_InfrontNPCs = 1,
-        BehindNPCs = 2,
-        InfrontNPCs = 3,
-        PreDrawPlayers = 4,
-        PostDrawPlayers = 5,
+        PreRender = 0,
+        BehindTiles_BehindNPCs = 1,
+        BehindTiles_InfrontNPCs = 2,
+        BehindNPCs = 3,
+        InfrontNPCs = 4,
+        PreDrawPlayers = 5,
+        PostDrawPlayers = 6,
         Count
     }
 }

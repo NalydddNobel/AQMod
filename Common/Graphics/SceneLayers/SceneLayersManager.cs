@@ -3,9 +3,55 @@ using Terraria;
 
 namespace AQMod.Common.Graphics.SceneLayers
 {
-    public sealed class SceneLayersManager
+    public static class SceneLayersManager
     {
         private static Dictionary<string, SceneLayer>[] layers;
+
+        public static class RenderTargetLayers
+        {
+            private static Dictionary<string, RenderTargetLayerType>[] _renderTargetLayers;
+
+            internal static bool RegisterRenderTargetLayer(string name, RenderTargetLayerType value, SceneLayering layering)
+            {
+                if (AQMod.Loading)
+                {
+                    _renderTargetLayers[(int)layering].Add(name, value);
+                    return true;
+                }
+                return false;
+            }
+
+            internal static void Setup()
+            {
+                _renderTargetLayers = new Dictionary<string, RenderTargetLayerType>[(byte)SceneLayering.Count];
+                for (byte i = 0; i < (byte)SceneLayering.Count; i++)
+                {
+                    _renderTargetLayers[i] = new Dictionary<string, RenderTargetLayerType>();
+                }
+            }
+
+            internal static void PreRender()
+            {
+                if (Main.gameMenu)
+                    return;
+                foreach (var layerArr in _renderTargetLayers)
+                {
+                    foreach (var layer in layerArr)
+                    {
+                        if (layer.Value.ShouldReset())
+                        {
+                            layer.Value.ResetTargets(Main.instance.GraphicsDevice);
+                        }
+                        layer.Value.DrawTargets();
+                    }
+                }
+            }
+
+            public static RenderTargetLayerType GetLayer(SceneLayering layering, string name)
+            {
+                return _renderTargetLayers[(byte)layering][name];
+            }
+        }
 
         internal static LayerKey Register(string name, SceneLayer layer, SceneLayering layering)
         {
@@ -89,25 +135,12 @@ namespace AQMod.Common.Graphics.SceneLayers
 
         internal static void Setup()
         {
-            On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
             layers = new Dictionary<string, SceneLayer>[(byte)SceneLayering.Count];
             for (byte i = 0; i < (byte)SceneLayering.Count; i++)
             {
                 layers[i] = new Dictionary<string, SceneLayer>();
             }
-        }
-
-        private static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
-        {
-            if (behindTiles)
-                DrawLayer(SceneLayering.BehindTiles_BehindNPCs);
-            else
-                DrawLayer(SceneLayering.BehindNPCs);
-            orig(self, behindTiles);
-            if (behindTiles)
-                DrawLayer(SceneLayering.BehindTiles_InfrontNPCs);
-            else
-                DrawLayer(SceneLayering.InfrontNPCs);
+            RenderTargetLayers.Setup();
         }
 
         internal static void Unload()
