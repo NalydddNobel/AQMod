@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Assets.Effects.Trails
 {
-    public struct VertexStrip
+    public struct AQVertexStrip
     {
         private readonly Texture2D _texture;
         private readonly string _pass;
@@ -16,51 +16,7 @@ namespace AQMod.Assets.Effects.Trails
 
         public const string TextureTrail = "Texture";
 
-        internal static void Setup()
-        {
-            VertexDrawingContext_Projectile.setup();
-        }
-
-        public interface IVertexDrawingContext
-        {
-            bool ShouldDraw();
-        }
-
-        private class VertexDrawingContext_Projectile : IVertexDrawingContext
-        {
-            private Projectile _projectile;
-
-            public VertexDrawingContext_Projectile(Projectile projectile)
-            {
-                _projectile = projectile;
-            }
-
-            private static bool _shouldDrawTrails;
-
-            bool IVertexDrawingContext.ShouldDraw()
-            {
-                if (_projectile.friendly)
-                    return _shouldDrawTrails;
-                return true;
-            }
-
-            internal static void setup()
-            {
-                _shouldDrawTrails = ModLoader.GetMod("ShaderLib") == null;
-            }
-        }
-
-        public static IVertexDrawingContext GetVertexDrawingContext_Projectile(Projectile projectile)
-        {
-            return new VertexDrawingContext_Projectile(projectile);
-        }
-
-        public static bool ShouldDrawVertexTrails(IVertexDrawingContext context = null)
-        {
-            return context == null ? true : context.ShouldDraw();
-        }
-
-        public VertexStrip(Texture2D texture, string pass)
+        public AQVertexStrip(Texture2D texture, string pass)
         {
             _texture = texture;
             _pass = pass;
@@ -69,7 +25,7 @@ namespace AQMod.Assets.Effects.Trails
 
         public static void FullDraw(Texture2D texture, string pass, Vector2[] positions, Func<float, Vector2> getWidth, Func<float, Color> getColor, float progressAdd = 0f, float coordsMult = 1f)
         {
-            var trail = new VertexStrip(texture, pass);
+            var trail = new AQVertexStrip(texture, pass);
             trail.PrepareVertices(positions, getWidth, getColor, progressAdd, coordsMult);
             trail.Draw();
         }

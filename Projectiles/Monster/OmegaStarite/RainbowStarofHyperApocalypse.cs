@@ -80,37 +80,22 @@ namespace AQMod.Projectiles.Monster.OmegaStarite
             if (playerDistance < 1200f)
                 intensity = 1f - playerDistance / 1200f;
             intensity *= options.FXIntensity;
-            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(Projectile)))
+            var trueOldPos = new List<Vector2>();
+            for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Projectile.type]; i++)
             {
-                var trueOldPos = new List<Vector2>();
-                for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Projectile.type]; i++)
-                {
-                    if (Projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    trueOldPos.Add(Projectile.oldPos[i] + offset - Main.screenPosition);
-                }
-                if (trueOldPos.Count > 1)
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        var trail = new VertexStrip(TextureAssets.Extra[ExtrasID.RainbowRodTrailShape].Value, VertexStrip.TextureTrail);
-                        trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTimeWrappedHourly + p) * 0.5f * (1f - p));
-                        trail.Draw();
-                    }
-                    // amazing code
-                }
+                if (Projectile.oldPos[i] == new Vector2(0f, 0f))
+                    break;
+                trueOldPos.Add(Projectile.oldPos[i] + offset - Main.screenPosition);
             }
-            else
+            if (trueOldPos.Count > 1)
             {
-                int trailLength = ProjectileID.Sets.TrailCacheLength[Projectile.type];
-                for (int i = 0; i < trailLength; i++)
+                for (int i = 0; i < 4; i++)
                 {
-                    if (Projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    float progress = 1f - 1f / trailLength * i;
-                    var trailClr = getColor(Main.GlobalTimeWrappedHourly + progress) * 0.5f;
-                    Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, trailClr * progress, Projectile.rotation, orig, Projectile.scale, SpriteEffects.None, 0f);
+                    var trail = new AQVertexStrip(TextureAssets.Extra[ExtrasID.RainbowRodTrailShape].Value, AQVertexStrip.TextureTrail);
+                    trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTimeWrappedHourly + p) * 0.5f * (1f - p));
+                    trail.Draw();
                 }
+                // amazing code
             }
             if (intensity > 0f)
             {

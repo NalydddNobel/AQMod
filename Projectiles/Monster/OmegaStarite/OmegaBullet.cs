@@ -56,35 +56,21 @@ namespace AQMod.Projectiles.Monster.OmegaStarite
             var drawColor = options.StariteProjectileColoring;
             drawColor.A = 0;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
-            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(Projectile)))
+            var trueOldPos = new List<Vector2>();
+            for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Projectile.type]; i++)
             {
-                var trueOldPos = new List<Vector2>();
-                for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Projectile.type]; i++)
-                {
-                    if (Projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    trueOldPos.Add(Projectile.oldPos[i] + offset - Main.screenPosition);
-                }
-                if (trueOldPos.Count > 1)
-                {
-                    var asset = TextureAssets.Extra[ExtrasID.RainbowRodTrailShape];
-                    if (asset.Value != null)
-                    {
-                        VertexStrip.ReversedGravity(trueOldPos);
-                        VertexStrip.FullDraw(asset.Value, VertexStrip.TextureTrail,
-                            trueOldPos.ToArray(), (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p));
-                    }
-                }
+                if (Projectile.oldPos[i] == new Vector2(0f, 0f))
+                    break;
+                trueOldPos.Add(Projectile.oldPos[i] + offset - Main.screenPosition);
             }
-            else
+            if (trueOldPos.Count > 1)
             {
-                int trailLength = ProjectileID.Sets.TrailCacheLength[Projectile.type];
-                for (int i = 0; i < trailLength; i++)
+                var asset = TextureAssets.Extra[ExtrasID.RainbowRodTrailShape];
+                if (asset.Value != null)
                 {
-                    if (Projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    float progress = 1f - 1f / trailLength * i;
-                    Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, drawColor * progress, Projectile.rotation, orig, Projectile.scale, SpriteEffects.None, 0f);
+                    AQVertexStrip.ReversedGravity(trueOldPos);
+                    AQVertexStrip.FullDraw(asset.Value, AQVertexStrip.TextureTrail,
+                        trueOldPos.ToArray(), (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p));
                 }
             }
             float intensity = 0f;

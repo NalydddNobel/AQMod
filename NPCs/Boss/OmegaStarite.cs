@@ -1262,7 +1262,7 @@ namespace AQMod.NPCs.Boss
             float deathSpotlightScale = 0f;
             if (intensity > 3f)
                 deathSpotlightScale = NPC.scale * (intensity - 2.1f) * ((float)Math.Sin(NPC.ai[1] * 0.1f) + 1f) / 2f;
-            var spotlight = AQTextures.Lights.Request(LightTex.Spotlight66x66);           
+            var spotlight = AQTextures.Lights.Request(LightTex.Spotlight66x66);
             if (spotlight == null)
             {
                 return false;
@@ -1345,41 +1345,25 @@ namespace AQMod.NPCs.Boss
             spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity - (int)intensity)), NPC.rotation, spotlightOrig, NPC.scale * 2.5f + ((int)intensity + 1), SpriteEffects.None, 0f);
             if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f)
             {
-                if (VertexStrip.ShouldDrawVertexTrails())
+                var trueOldPos = new List<Vector2>();
+                for (int i = 0; i < NPCID.Sets.TrailCacheLength[NPC.type]; i++)
                 {
-                    var trueOldPos = new List<Vector2>();
-                    for (int i = 0; i < NPCID.Sets.TrailCacheLength[NPC.type]; i++)
-                    {
-                        if (NPC.oldPos[i] == new Vector2(0f, 0f))
-                            break;
-                        trueOldPos.Add(NPC.oldPos[i] + offset - Main.screenPosition);
-                    }
-                    if (trueOldPos.Count > 1)
-                    {
-                        VertexStrip.ReversedGravity(trueOldPos);
-                        const float radius = CIRCUMFERENCE / 2f;
-                        Vector2[] arr;
-                        arr = trueOldPos.ToArray();
-                        if (arr.Length > 1)
-                        {
-                            var trailClr = GlimmerEvent.DiscoParty ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                            var trail = new VertexStrip(TextureAssets.Extra[ExtrasID.RainbowRodTrailShape].Value, VertexStrip.TextureTrail);
-                            trail.PrepareVertices(arr, (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
-                            trail.Draw();
-                        }
-                    }
+                    if (NPC.oldPos[i] == new Vector2(0f, 0f))
+                        break;
+                    trueOldPos.Add(NPC.oldPos[i] + offset - Main.screenPosition);
                 }
-                else
+                if (trueOldPos.Count > 1)
                 {
-                    int trailLength = NPCID.Sets.TrailCacheLength[NPC.type];
-                    for (int i = 0; i < trailLength; i++)
+                    AQVertexStrip.ReversedGravity(trueOldPos);
+                    const float radius = CIRCUMFERENCE / 2f;
+                    Vector2[] arr;
+                    arr = trueOldPos.ToArray();
+                    if (arr.Length > 1)
                     {
-                        if (NPC.oldPos[i] == new Vector2(0f, 0f))
-                            break;
-                        float progress = 1f - 1f / trailLength * i;
                         var trailClr = GlimmerEvent.DiscoParty ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                        trailClr.A = 0;
-                        Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset - Main.screenPosition, NPC.frame, trailClr * 0.4f * progress, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                        var trail = new AQVertexStrip(TextureAssets.Extra[ExtrasID.RainbowRodTrailShape].Value, AQVertexStrip.TextureTrail);
+                        trail.PrepareVertices(arr, (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
+                        trail.Draw();
                     }
                 }
             }

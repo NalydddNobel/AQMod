@@ -31,7 +31,7 @@ namespace AQMod.Items.Weapons.Melee.Yoyo
             Item.noMelee = true;
             Item.noUseGraphic = true;
             Item.shootSpeed = 10f;
-            //Item.shoot = ModContent.ProjectileType<Projectiles.Melee.StariteSpinner>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.Yoyo.StariteSpinner>();
         }
 
         public override void AddRecipes()
