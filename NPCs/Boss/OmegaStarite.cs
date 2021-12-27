@@ -485,7 +485,7 @@ namespace AQMod.NPCs.Boss
                                         float lifePercent = NPC.life / (float)NPC.lifeMax;
                                         if (lifePercent < 0.75f)
                                         {
-                                            SoundEngine.PlaySound(SoundID.Trackable, NPC.Center, 55 + Main.rand.Next(3));
+                                            SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, NPC.Center);
                                             var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - NPC.Center;
                                             var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 7.5f;
                                             int type = ModContent.ProjectileType<OmegaBullet>();
@@ -496,7 +496,7 @@ namespace AQMod.NPCs.Boss
                                             {
                                                 float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
                                                 var position = center + diff.RotatedBy(rot);
-                                                SoundEngine.PlaySound(SoundID.Trackable, position, 55 + Main.rand.Next(3));
+                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, position);
                                                 Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), position, shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
                                             }
                                         }
@@ -555,7 +555,7 @@ namespace AQMod.NPCs.Boss
                                     if (PlrCheck())
                                     {
                                         NPC.localAI[1] = 1f;
-                                        SoundEngine.PlaySound(SoundID.Trackable, NPC.Center, 188);
+                                        SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen, NPC.Center);
                                         //if (Main.netMode != NetmodeID.Server)
                                         //    ScreenShakeManager.AddShake(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f * AQConfigClient.c_EffectIntensity));
                                         int p = Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaRay>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
@@ -592,7 +592,7 @@ namespace AQMod.NPCs.Boss
                                             {
                                                 float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
                                                 var position = center + diff.RotatedBy(rot);
-                                                SoundEngine.PlaySound(SoundID.Trackable, position, 55 + Main.rand.Next(3));
+                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, position);
                                                 Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), position, shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
                                             }
                                         }
@@ -603,14 +603,14 @@ namespace AQMod.NPCs.Boss
                                 if (NPC.soundDelay <= 0)
                                 {
                                     NPC.soundDelay = 60;
-                                    SoundEngine.PlaySound(SoundID.Trackable, NPC.Center, 189 + Main.rand.Next(3));
+                                    SoundEngine.PlaySound(SoundID.DD2_EtherianPortalSpawnEnemy, NPC.Center);
                                 }
                                 if (NPC.soundDelay > 0)
                                     NPC.soundDelay--;
                                 if (innerRingRoll > MathHelper.PiOver2 * 7f)
                                 {
                                     NPC.soundDelay = 0;
-                                    SoundEngine.PlaySound(SoundID.Trackable, NPC.Center, 188);
+                                    SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen, NPC.Center);
                                     NPC.ai[2] = 1200f;
                                     innerRingRoll = -MathHelper.PiOver2;
                                 }
@@ -739,7 +739,7 @@ namespace AQMod.NPCs.Boss
                                 break;
                             if (NPC.ai[1] == 0f)
                             {
-                                SoundEngine.PlaySound(SoundID.Trackable, NPC.Center, 40 + Main.rand.Next(3));
+                                SoundEngine.PlaySound(SoundID.DD2_BetsyWindAttack, NPC.Center);
                                 NPC.ai[1] = plrCenter.X + player.velocity.X * 20f;
                                 NPC.ai[2] = plrCenter.Y + player.velocity.Y * 20f;
                             }
@@ -762,7 +762,7 @@ namespace AQMod.NPCs.Boss
                                             float lifePercent = NPC.life / (float)NPC.lifeMax;
                                             if (Main.expertMode && lifePercent < 0.75f || lifePercent < 0.6f)
                                             {
-                                                SoundEngine.PlaySound(SoundID.Trackable, NPC.Center, 55 + Main.rand.Next(3));
+                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, NPC.Center);
                                                 int type = ModContent.ProjectileType<OmegaBullet>();
                                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;
                                                 int damage = 30;
@@ -881,7 +881,7 @@ namespace AQMod.NPCs.Boss
                                             float lifePercent = NPC.life / (float)NPC.lifeMax;
                                             if (lifePercent < 0.75f)
                                             {
-                                                SoundEngine.PlaySound(SoundID.Trackable, NPC.Center, 55 + Main.rand.Next(3));
+                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, NPC.Center);
                                                 var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - NPC.Center;
                                                 var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 6f;
                                                 int type = ModContent.ProjectileType<OmegaBullet>();
@@ -963,7 +963,7 @@ namespace AQMod.NPCs.Boss
                         {
                             if (PlrCheck())
                             {
-                                SoundEngine.PlaySound(SoundID.Trackable, NPC.Center, 40 + Main.rand.Next(3));
+                                SoundEngine.PlaySound(SoundID.DD2_BetsyWindAttack, NPC.Center);
                                 NPC.ai[1] = plrCenter.X + player.velocity.X * 20f;
                                 NPC.ai[2] = plrCenter.Y + player.velocity.Y * 20f;
                             }
