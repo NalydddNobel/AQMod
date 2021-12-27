@@ -42,11 +42,11 @@ namespace AQMod.Items.Weapons.Summon
 
         public override void AddRecipes()
         {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.CrimtaneBar, 15);
-            recipe.AddIngredient(ItemID.TissueSample, 8);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.DemoniteBar, 15);
+            r.AddIngredient(ItemID.ShadowScale, 8);
+            r.SetResult(this);
+            r.AddRecipe();
         }
     }
 }
