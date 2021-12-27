@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Assets.Effects.Trails;
+using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
@@ -304,114 +305,6 @@ namespace AQMod.NPCs.Boss
                     }
                     break;
 
-                case 1002:
-                    {
-                        NPC.ai[2]++;
-                        if (NPC.ai[2] > 300f)
-                        {
-                            if (NPC.ai[1] > 0.0314)
-                            {
-                                NPC.ai[1] -= 0.0005f;
-                            }
-                            else
-                            {
-                                NPC.ai[1] = 0.0314f;
-                            }
-                            innerRingRotation += NPC.ai[1];
-                            outerRingRotation += NPC.ai[1] * 0.5f;
-                            bool innerRing = false;
-                            if (orbs[0].radius > orbs[0].defRadius)
-                                SetInnerRingRadius(orbs[0].radius - MathHelper.Pi);
-                            else
-                                innerRing = true;
-                            bool outerRing = false;
-                            if (orbs[OmegaStariteOrb.INNER_RING].radius > orbs[OmegaStariteOrb.INNER_RING].defRadius)
-                                SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].radius - MathHelper.PiOver2 * 3f);
-                            else
-                                outerRing = true;
-                            if (innerRing && outerRing)
-                            {
-                                SetInnerRingRadius(orbs[0].defRadius);
-                                SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].defRadius);
-                                if (PlrCheck())
-                                {
-                                    var choices = new List<int>
-                                {
-                                    PHASE_ASSAULT_PLAYER,
-                                };
-                                    if (NPC.life / (float)NPC.lifeMax < (Main.expertMode ? 0.5f : 0.33f))
-                                        choices.Add(PHASE_STAR_BULLETS);
-                                    if (choices.Count == 1)
-                                    {
-                                        NPC.ai[0] = choices[0];
-                                    }
-                                    else
-                                    {
-                                        NPC.ai[0] = choices[Main.rand.Next(choices.Count)];
-                                    }
-                                    NPC.ai[1] = 0f;
-                                    NPC.ai[2] = 0f;
-                                    NPC.ai[3] = 0f;
-                                    NPC.localAI[1] = 0f;
-                                }
-                            }
-                        }
-                        else if ((center - plrCenter).Length() > 1800f)
-                        {
-                            NPC.ai[2] = 300f;
-                            innerRingRotation += NPC.ai[1];
-                            outerRingRotation += NPC.ai[1] * 0.5f;
-                        }
-                        else
-                        {
-                            if (NPC.ai[1] >= 0.0628f)
-                            {
-                                NPC.ai[1] = 0.0628f;
-                            }
-                            else
-                            {
-                                NPC.ai[1] += 0.0002f;
-                            }
-                            innerRingRotation += NPC.ai[1];
-                            outerRingRotation += NPC.ai[1] * 0.5f;
-                            NPC.localAI[1]++;
-                            SetInnerRingRadius(MathHelper.Lerp(orbs[0].radius, orbs[0].defRadius * NPC.ai[3] + (float)Math.Sin(NPC.localAI[1] * 0.0314f) * 60f, 0.25f));
-                            SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius * (NPC.ai[3] + 1f), 0.025f));
-                            if (NPC.ai[2] > 100f)
-                            {
-                                if (Main.netMode != NetmodeID.MultiplayerClient)
-                                {
-                                    if (Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
-                                    {
-                                        NPC.localAI[0]++;
-                                        if (NPC.localAI[0] > (Main.expertMode ? 3f : 12f))
-                                        {
-                                            float lifePercent = NPC.life / (float)NPC.lifeMax;
-                                            if (lifePercent < 0.75f)
-                                            {
-                                                var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - NPC.Center;
-                                                var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 12f;
-                                                int type = ModContent.ProjectileType<OmegaBullet>();
-                                                int damage = 30;
-                                                if (Main.expertMode)
-                                                    damage = 20;
-                                                for (int i = 0; i < OmegaStariteOrb.OUTER_RING; i++)
-                                                {
-                                                    float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
-                                                    var position = center + diff.RotatedBy(rot);
-                                                    SoundEngine.PlaySound(SoundID.Trackable, position, 55 + Main.rand.Next(3));
-                                                    Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), position, shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
-                                                }
-                                            }
-                                            NPC.localAI[0] = 0f;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    break;
-
                 case PHASE_OMEGA_LASER_PART0:
                     {
                         if (NPC.ai[1] == 0f)
@@ -485,7 +378,7 @@ namespace AQMod.NPCs.Boss
                                         float lifePercent = NPC.life / (float)NPC.lifeMax;
                                         if (lifePercent < 0.75f)
                                         {
-                                            SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, NPC.Center);
+                                            SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, NPC.Center);
                                             var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - NPC.Center;
                                             var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 7.5f;
                                             int type = ModContent.ProjectileType<OmegaBullet>();
@@ -496,7 +389,7 @@ namespace AQMod.NPCs.Boss
                                             {
                                                 float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
                                                 var position = center + diff.RotatedBy(rot);
-                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, position);
+                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, position);
                                                 Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), position, shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
                                             }
                                         }
@@ -592,7 +485,7 @@ namespace AQMod.NPCs.Boss
                                             {
                                                 float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
                                                 var position = center + diff.RotatedBy(rot);
-                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, position);
+                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, position);
                                                 Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), position, shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
                                             }
                                         }
@@ -762,7 +655,7 @@ namespace AQMod.NPCs.Boss
                                             float lifePercent = NPC.life / (float)NPC.lifeMax;
                                             if (Main.expertMode && lifePercent < 0.75f || lifePercent < 0.6f)
                                             {
-                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, NPC.Center);
+                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, NPC.Center);
                                                 int type = ModContent.ProjectileType<OmegaBullet>();
                                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;
                                                 int damage = 30;
@@ -881,7 +774,7 @@ namespace AQMod.NPCs.Boss
                                             float lifePercent = NPC.life / (float)NPC.lifeMax;
                                             if (lifePercent < 0.75f)
                                             {
-                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, NPC.Center);
+                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal, NPC.Center);
                                                 var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - NPC.Center;
                                                 var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 6f;
                                                 int type = ModContent.ProjectileType<OmegaBullet>();
@@ -1248,8 +1141,8 @@ namespace AQMod.NPCs.Boss
         {
             if (Main.expertMode)
             {
-                //if (Main.rand.NextBool())
-                //    target.AddBuff(ModContent.BuffType<BlueFire>(), 120);
+                if (Main.rand.NextBool())
+                    target.AddBuff(ModContent.BuffType<BlueFire>(), 120);
                 if (Main.rand.NextBool())
                     target.AddBuff(BuffID.Blackout, 360);
             }
