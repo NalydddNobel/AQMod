@@ -18,8 +18,8 @@ float4 WavyStuff(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
     float4 color = tex2D(uImage0, coords);
     float2 pixelSize = 1 / uImageSize0 * 2;
     float intensity = length(float2(coords.x - 0.5f, coords.y - 0.5f));
-    coords.x += sin(intensity * 2022 + uTime) * pixelSize.x * 8 * intensity;
-    coords.y += sin(intensity * 3322 + uTime) * pixelSize.y * 8 * intensity;
+    coords.x += sin(intensity * 2022 + uTime) * pixelSize.x * 20 * intensity;
+    coords.y += sin(intensity * 3322 + uTime) * pixelSize.y * 20 * intensity;
     return tex2D(uImage0, coords);
 }
 
