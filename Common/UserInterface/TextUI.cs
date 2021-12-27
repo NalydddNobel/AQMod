@@ -15,7 +15,7 @@ namespace AQMod.Common.UserInterface
 			text = "";
         }
 
-		public void Draw(int x, int y, int width, int height, int maxText = -1, Color color = default(Color), int textOffset = 6)
+		public void Draw(int x, int y, int width, int height, int maxText = -1, Color color = default(Color), int textOffsetY = 5)
 		{
 			if (color == default(Color))
             {
@@ -61,7 +61,7 @@ namespace AQMod.Common.UserInterface
 			if (drawnText != "")
 			{
 				var measurement = Main.fontMouseText.MeasureString(drawnText);
-				ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, drawnText, new Vector2(x + 8f, y + height / 2f - measurement.Y / 2f + textOffset), Color.White, 0f, Vector2.Zero, Vector2.One);
+				ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, drawnText, new Vector2(x + 8f, y + height / 2f - measurement.Y / 2f + textOffsetY), Color.White, 0f, Vector2.Zero, Vector2.One);
             }
 
 			Main.spriteBatch.End();

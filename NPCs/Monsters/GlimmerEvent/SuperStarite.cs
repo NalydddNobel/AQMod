@@ -5,6 +5,7 @@ using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Ranged;
+using AQMod.Items.Weapons.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -331,7 +332,14 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
             }
             if (Main.rand.NextBool(4))
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<SpaceShot>());
+                if (Main.rand.NextBool())
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<SpaceShot>());
+                }
+                else
+                {
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<StariteStaff>());
+                }
             }
             if (Main.rand.NextBool(5))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());

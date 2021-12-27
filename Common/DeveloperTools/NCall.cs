@@ -121,6 +121,12 @@ namespace AQMod.Common.DeveloperTools
                 caller.Reply("Command doesn't exist.");
                 break;
 
+                case "wikiitem":
+                {
+                    WikiTestStuff.basicwikipage(AQMod.Instance.GetItem(args[1]));
+                }
+                break;
+
                 case "chestloot":
                 {
                     ChestLoot.AddLoot(Chest.FindChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y));
