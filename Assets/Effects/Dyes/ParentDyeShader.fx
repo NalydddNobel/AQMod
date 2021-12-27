@@ -12,7 +12,11 @@ float uDirection;
 float3 uLightSource;
 float2 uImageSize0;
 float2 uImageSize1;
+
 float4 uShaderSpecificData;
+float2 uTargetPosition;
+float4 uLegacyArmorSourceRect;
+float2 uLegacyArmorSheetSize;
 
 float FrameYFix(float2 coords)
 {

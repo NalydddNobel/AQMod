@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
 
 namespace AQMod
 {
@@ -33,6 +35,19 @@ namespace AQMod
             {
                 return z *= options.OmegaStarite3DPronunciation + 0.01f; // adding 0.001 because some things actually rely on z for layering
             }
+        }
+
+        internal static void BroadcastMessage(string key, Color color)
+        {
+            Main.NewText(Language.GetTextValue(key), color);
+            //if (Main.netMode == NetmodeID.Server)
+            //{
+                
+            //    NetMessage.BroadcastChatMessage(NetworkText.FromKey(key), color);
+            //}
+            //else if (Main.netMode == NetmodeID.SinglePlayer)
+            //{
+            //}
         }
 
         public static string GetPath<T>()
