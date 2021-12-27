@@ -11,6 +11,7 @@ namespace AQMod.Items.Weapons.Melee.Yoyo
             ItemID.Sets.Yoyo[Item.type] = true;
             ItemID.Sets.GamepadExtraRange[Item.type] = 12;
             ItemID.Sets.GamepadSmartQuickReach[Item.type] = true;
+            AQItem.CreativeMode.SingleItem(this);
         }
 
         public override void SetDefaults()

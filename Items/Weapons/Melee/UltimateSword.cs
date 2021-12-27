@@ -16,6 +16,11 @@ namespace AQMod.Items.Weapons.Melee
         IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => this;
         IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => this;
 
+        public override void SetStaticDefaults()
+        {
+            AQItem.CreativeMode.SingleItem(this);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 50;

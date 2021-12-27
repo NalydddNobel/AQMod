@@ -1,6 +1,7 @@
 ﻿using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -33,6 +34,50 @@ namespace AQMod
             public const int OmegaStariteRare = ItemRarityID.LightRed;
             public const int GaleStreamsRare = ItemRarityID.LightRed;
             public const int PillarWeaponRare = ItemRarityID.Red;
+        }
+
+        public static class CreativeMode
+        {
+            internal static void SingleItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 1;
+            }
+            internal static void TreasureBagItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 3;
+            }
+            internal static void UniqueConsumableItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 3;
+            }
+            internal static void UnimportantMaterialItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 5;
+            }
+            internal static void IngredientSeedsItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 25;
+            }
+            internal static void MaterialItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 25;
+            }
+            internal static void BarItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 25;
+            }
+            internal static void AmmoItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 99;
+            }
+            internal static void ConsumableLightItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 100;
+            }
+            internal static void TileItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 100;
+            }
         }
 
         public static void Energy_SetDefaults(Item item, int rarity, int price)

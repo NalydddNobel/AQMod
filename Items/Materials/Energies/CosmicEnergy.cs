@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -20,6 +21,8 @@ namespace AQMod.Items.Materials.Energies
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemNoGravity[Item.type] = true;
+            ItemID.Sets.SortingPriorityMaterials[Item.type] = 30000; 
+            AQItem.CreativeMode.MaterialItem(this);
         }
 
         public override void SetDefaults()
