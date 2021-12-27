@@ -1,5 +1,4 @@
-﻿using AQMod.Effects.Dyes;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -26,9 +25,9 @@ namespace AQMod.Dusts
             if (!dust.noLight)
             {
                 Vector3 lightColor;
-                if (dust.shader != null)
-                    lightColor = DyeHelper.ModifyLight(dust.shader, dust.color.ToVector3() * 0.5f);
-                else
+                //if (dust.shader != null)
+                //    lightColor = DyeHelper.ModifyLight(dust.shader, dust.color.ToVector3() * 0.5f);
+                //else
                 {
                     lightColor = dust.color.ToVector3() * 0.5f;
                 }

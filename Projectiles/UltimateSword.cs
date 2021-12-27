@@ -1,7 +1,10 @@
 ﻿using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,49 +14,60 @@ namespace AQMod.Projectiles
     {
         public override void SetDefaults()
         {
-            projectile.width = 0;
-            projectile.height = 0;
-            projectile.aiStyle = -1;
-            projectile.friendly = true;
+            Projectile.width = 0;
+            Projectile.height = 0;
+            Projectile.aiStyle = -1;
+            Projectile.friendly = true;
         }
 
         public override void AI()
         {
-            if (projectile.ai[0] == 0)
-                projectile.Kill();
-            if (projectile.width == 0 && projectile.height == 0)
+            if (Projectile.ai[0] == 0)
+                Projectile.Kill();
+            if (Projectile.width == 0 && Projectile.height == 0)
             {
                 var item = new Item();
-                item.SetDefaults((int)projectile.ai[0]);
-                projectile.width = item.width;
-                projectile.height = item.height;
-                projectile.position = new Vector2(projectile.position.X - projectile.width / 2f, projectile.position.Y - projectile.height / 2f);
+                item.SetDefaults((int)Projectile.ai[0]);
+                Projectile.width = item.width;
+                Projectile.height = item.height;
+                Projectile.position = new Vector2(Projectile.position.X - Projectile.width / 2f, Projectile.position.Y - Projectile.height / 2f);
             }
-            projectile.velocity.X *= 0.98f;
-            projectile.velocity.Y += 0.35f;
-            projectile.rotation += MathHelper.Clamp(projectile.velocity.Length() * 0.0157f, 0.0728f, 0.157f);
+            Projectile.velocity.X *= 0.98f;
+            Projectile.velocity.Y += 0.35f;
+            Projectile.rotation += MathHelper.Clamp(Projectile.velocity.Length() * 0.0157f, 0.0728f, 0.157f);
         }
 
         public override void PostAI()
         {
             if (Main.rand.NextBool())
-                Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<UltimaDust>());
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(250, 250, 250, 0), 0.8f);
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(ref Color lightColor)
         {
-            var texture = Main.itemTexture[(int)projectile.ai[0]];
-            var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-            spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, frame, lightColor, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(AQUtils.GetTextureobj<Items.Weapons.Melee.UltimateSword>("_Glow"), projectile.Center - Main.screenPosition, frame, new Color(250, 250, 250, 0), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            Main.instance.LoadItem(ModContent.ItemType<Items.Weapons.Melee.UltimateSword>()); 
+            var asset = TextureAssets.Item[ModContent.ItemType<Items.Weapons.Melee.UltimateSword>()];
+            if (asset.Value != null)
+            {
+                var texture = asset.Value;
+                var frame = new Rectangle(0, 0, texture.Width, texture.Height);
+                Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, frame, lightColor, Projectile.rotation, frame.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
+
+                asset = ModContent.Request<Texture2D>(AQUtils.GetPath<Items.Weapons.Melee.UltimateSword>("_Glow"), AssetRequestMode.AsyncLoad);
+
+                if (asset.Value != null)
+                {
+                    Main.spriteBatch.Draw(asset.Value, Projectile.Center - Main.screenPosition, frame, new Color(250, 250, 250, 0), Projectile.rotation, frame.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
+                }
+            }
             return false;
         }
 
-        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
             width = 36;
             height = 36;
-            fallThrough = projectile.position.Y + projectile.height < Main.player[projectile.owner].position.Y;
+            fallThrough = Projectile.position.Y + Projectile.height < Main.player[Projectile.owner].position.Y;
             return true;
         }
 
@@ -61,8 +75,8 @@ namespace AQMod.Projectiles
         {
             if (oldVelocity.Length() > 6f)
             {
-                projectile.velocity = oldVelocity * -0.4f;
-                projectile.velocity.X += Main.rand.NextFloat(-1f, 1f);
+                Projectile.velocity = oldVelocity * -0.4f;
+                Projectile.velocity.X += Main.rand.NextFloat(-1f, 1f);
                 return false;
             }
             return true;
@@ -70,12 +84,13 @@ namespace AQMod.Projectiles
 
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.Dig, projectile.position);
-            AQItem.DropInstancedItem(projectile.owner, projectile.getRect(), ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
-            var dust = ModContent.DustType<UltimaDust>();
+            SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+            //AQItem.DropInstancedItem(Projectile.owner, Projectile.getRect(), ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
+            Item.NewItem(Projectile.getRect(), ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
+            var dust = ModContent.DustType<MonoDust>();
             for (int i = 0; i < 50; i++)
             {
-                Dust.NewDust(projectile.position, projectile.width, projectile.height, dust);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, dust, 0f, 0f, 0, new Color(250, 250, 250, 0), 0.8f);
             }
         }
     }
