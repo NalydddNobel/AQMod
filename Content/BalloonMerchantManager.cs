@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.IO;
-using AQMod.Content.WorldEvents.GaleStreams;
+using AQMod.Content.World.Events.GaleStreams;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System;

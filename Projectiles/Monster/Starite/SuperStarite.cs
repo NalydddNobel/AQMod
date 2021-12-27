@@ -1,4 +1,4 @@
-﻿using AQMod.Content.WorldEvents.GlimmerEvent;
+﻿using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.UserInterface;
 using AQMod.Content.MapMarkers.Components;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Localization;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;

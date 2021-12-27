@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Content.Quest.Lobster;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Items.Placeable.CraftingStations;
 using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;

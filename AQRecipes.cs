@@ -1,4 +1,4 @@
-﻿using AQMod.Content.WorldEvents.DemonSiege;
+﻿using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Items.Accessories.FidgetSpinner;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Materials.Fish;

@@ -1,8 +1,8 @@
 ﻿using AQMod.Common.DeveloperTools;
 using AQMod.Common.NetCode;
-using AQMod.Content.WorldEvents.CrabSeason;
-using AQMod.Content.WorldEvents.DemonSiege;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.LegacyWorldEvents.CrabSeason;
+using AQMod.Content.LegacyWorldEvents.DemonSiege;
+using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using System;
 using System.Collections.Generic;
 using Terraria;

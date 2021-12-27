@@ -1,7 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Content;
 using AQMod.Content.NameTags;
-using AQMod.Content.WorldEvents.GaleStreams;
+using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.NobleMushrooms;
 using AQMod.Sounds;

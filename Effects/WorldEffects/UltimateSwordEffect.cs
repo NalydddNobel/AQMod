@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.Graphics.SceneLayers;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using System;

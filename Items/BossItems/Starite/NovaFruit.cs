@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Skies;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities.Dyes;

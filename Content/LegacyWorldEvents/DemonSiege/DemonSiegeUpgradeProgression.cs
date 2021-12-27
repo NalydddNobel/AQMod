@@ -1,4 +1,4 @@
-﻿namespace AQMod.Content.WorldEvents.DemonSiege
+﻿namespace AQMod.Content.LegacyWorldEvents.DemonSiege
 {
     public enum DemonSiegeUpgradeProgression : byte
     {

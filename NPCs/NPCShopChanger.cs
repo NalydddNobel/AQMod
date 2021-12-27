@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Dedicated.Contributors;

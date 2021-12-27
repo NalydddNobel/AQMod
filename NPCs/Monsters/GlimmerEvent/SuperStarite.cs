@@ -311,7 +311,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                 Main.gore[g].scale *= 0.6f;
             }
             Lighting.AddLight(npc.Center, new Vector3(0.8f, 0.8f, 0.45f));
-            if (Content.WorldEvents.GlimmerEvent.GlimmerEvent.ShouldKillStar(npc))
+            if (Content.LegacyWorldEvents.GlimmerEvent.GlimmerEvent.ShouldKillStar(npc))
             {
                 npc.life = -1;
                 npc.HitEffect();

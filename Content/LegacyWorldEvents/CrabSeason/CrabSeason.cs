@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Content.World.Events;
 using AQMod.Items.Tools;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.CrabSeason;
@@ -9,7 +10,7 @@ using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents.CrabSeason
+namespace AQMod.Content.LegacyWorldEvents.CrabSeason
 {
     public sealed class CrabSeason : WorldEvent
     {

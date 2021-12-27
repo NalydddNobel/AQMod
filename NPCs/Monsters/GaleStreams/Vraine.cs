@@ -392,7 +392,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void NPCLoot()
         {
             if (npc.target != -1)
-                Content.WorldEvents.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 2);
+                Content.World.Events.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 2);
             bool anyOthers = NPC.AnyNPCs(npc.type);
             if (!anyOthers)
             {

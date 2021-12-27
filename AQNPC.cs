@@ -2,7 +2,7 @@
 using AQMod.Common.NoHitting;
 using AQMod.Content;
 using AQMod.Content.Quest.Lobster;
-using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.LegacyWorldEvents.CrabSeason;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
@@ -24,6 +24,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using AQMod.NPCs.Monsters.GaleStreams;
 
 namespace AQMod
 {

@@ -578,12 +578,16 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void NPCLoot()
         {
             if (npc.target != -1)
-                Content.WorldEvents.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 40);
+                Content.World.Events.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 40);
             WorldDefeats.DownedSpaceSquid = true;
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(), Main.rand.Next(2) + 2);
             Item.NewItem(npc.getRect(), ItemID.SoulofFlight, Main.rand.Next(5) + 2);
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.SiphonTentacle>(), Main.rand.Next(10) + 10 + (Main.expertMode ? Main.rand.Next(5) : 0));
 
+            if (Main.rand.NextBool(2))
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.Dyes.FrostbiteDye>());
+            }
             if (Main.rand.NextBool(8))
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>());

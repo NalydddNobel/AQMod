@@ -4,7 +4,7 @@ using System;
 using Terraria;
 using Terraria.Localization;
 
-namespace AQMod.Content.WorldEvents.ProgressBars
+namespace AQMod.Content.World.Events.ProgressBars
 {
     public static class EventProgressBarLoader
     {
@@ -62,9 +62,7 @@ namespace AQMod.Content.WorldEvents.ProgressBars
                 if (currentInvasionType == byte.MaxValue)
                 {
                     if (_invasionProgressAlpha > 0f)
-                    {
                         _invasionProgressAlpha -= 0.05f;
-                    }
                     else
                     {
                         ActiveBar = 255;
@@ -87,9 +85,7 @@ namespace AQMod.Content.WorldEvents.ProgressBars
                 var vector3 = new Vector2(Main.screenWidth - 120, Main.screenHeight - 40);
 
                 if (!bar.PreDraw(texture, eventName, nameBGColor, alpha))
-                {
                     return;
-                }
 
                 Utils.DrawInvBG(Main.spriteBatch, new Rectangle((int)vector3.X - num11 / 2, (int)vector3.Y - num12 / 2, num11, num12), new Color(63, 65, 151, 255) * 0.785f);
 

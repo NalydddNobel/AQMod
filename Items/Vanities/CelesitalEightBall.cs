@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.WorldEvents.GlimmerEvent;
+using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

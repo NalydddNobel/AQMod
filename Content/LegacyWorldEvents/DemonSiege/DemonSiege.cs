@@ -1,7 +1,8 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.NetCode;
-using AQMod.Content.WorldEvents.ProgressBars;
+using AQMod.Content.World.Events;
+using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Magic;
@@ -18,7 +19,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace AQMod.Content.WorldEvents.DemonSiege
+namespace AQMod.Content.LegacyWorldEvents.DemonSiege
 {
     public sealed class DemonSiege : WorldEvent
     {

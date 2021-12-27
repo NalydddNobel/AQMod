@@ -909,7 +909,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void NPCLoot()
         {
             if (npc.target != -1)
-                Content.WorldEvents.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 40);
+               Content.World.Events.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 40);
             WorldDefeats.DownedRedSprite = true;
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(), Main.rand.Next(2) + 2);
             Item.NewItem(npc.getRect(), ItemID.SoulofFlight, Main.rand.Next(5) + 2);
@@ -988,7 +988,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         zh_Hans: "红色精灵"),
                     0,
                     new List<int>()
-                    { 
+                    {
                         ItemID.NimbusRod,
                         ModContent.ItemType<Items.Tools.Fishing.Nimrod>(),
                         ItemID.SoulofFlight,

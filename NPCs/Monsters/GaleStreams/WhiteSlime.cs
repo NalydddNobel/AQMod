@@ -277,7 +277,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void NPCLoot()
         {
             if (npc.target != -1)
-                Content.WorldEvents.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 10);
+                Content.World.Events.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 10);
 
             Item.NewItem(npc.getRect(), ItemID.Gel, Main.rand.Next(9) + 10);
 

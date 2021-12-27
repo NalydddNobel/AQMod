@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Content.WorldEvents.ProgressBars;
+using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GaleStreams;
 using Microsoft.Xna.Framework;
@@ -11,7 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Content.WorldEvents.GaleStreams
+namespace AQMod.Content.World.Events.GaleStreams
 {
     public sealed class GaleStreams : WorldEvent
     {
@@ -36,13 +36,18 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                 ModContent.ItemType<Items.Tools.Fishing.Nimrod>(),
                 ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
                 ModContent.ItemType<Items.Materials.Fluorescence>(),
+                ModContent.ItemType<Items.Materials.SiphonTentacle>(),
+                ItemID.SoulofFlight,
                 ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>(),
                 ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>(),
             },
             new List<int>()
             {
+                ModContent.ItemType<Items.BossItems.RedSpriteTrophy>(),
+                ModContent.ItemType<Items.BossItems.SpaceSquidTrophy>(),
                 ModContent.ItemType<Items.Vanities.Dyes.CensorDye>(),
                 ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>(),
+                ModContent.ItemType<Items.Vanities.Dyes.FrostbiteDye>(),
             },
             AQText.chooselocalizationtext(
                 en_US: "Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]",
@@ -64,17 +69,13 @@ namespace AQMod.Content.WorldEvents.GaleStreams
         public static void ProgressEvent(Player player, int points)
         {
             if (!AQMod.SudoHardmode || player.dead || !player.active || EndEvent)
-            {
                 return;
-            }
             Main.windSpeedSet += Math.Sign(Main.windSpeedSet) * points / 100f;
             if (Main.windSpeedSet >= 3f)
             {
                 WorldDefeats.DownedGaleStreams = true;
                 if (Main.netMode == NetmodeID.Server)
-                {
                     NetMessage.SendData(MessageID.WorldData);
-                }
                 Main.windSpeedSet = 3f;
                 EndEvent = true;
             }
@@ -82,9 +83,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
             {
                 WorldDefeats.DownedGaleStreams = true;
                 if (Main.netMode == NetmodeID.Server)
-                {
                     NetMessage.SendData(MessageID.WorldData);
-                }
                 Main.windSpeedSet = -3f;
                 EndEvent = true;
             }
@@ -96,9 +95,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
             if (Main.time < 3600)
                 return true;
             if (Main.dayTime)
-            {
                 return Main.time > Main.dayLength - 3600;
-            }
             return Main.time > Main.nightLength - 3600;
         }
 
@@ -119,7 +116,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
 
         public override TagCompound Save()
         {
-            return new TagCompound() 
+            return new TagCompound()
             {
                 ["EndEvent"] = EndEvent,
             };
@@ -151,9 +148,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                         continue;
                     }
                     if (Main.tileContainer[Main.tile[i, j].type])
-                    {
                         return false;
-                    }
                 }
             }
             return true;
@@ -188,9 +183,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                         {
                             WorldGen.KillTile(i, j, fail: false, effectOnly: false, noItem: false);
                             if (Main.tileSolid[type])
-                            {
                                 Main.tile[i, j].active(active: true);
-                            }
                         }
                         Main.tile[i, j].type = tileType;
                     }
@@ -218,17 +211,15 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                     int distance = (int)Math.Sqrt(iX * iX + iY * iY);
                     if (distance < halfSize && WorldGen.genRand.NextBool(25))
                     {
-                        int scatterX = AQUtils.NextVRand(Main.rand, -scatter, scatter);
-                        int scatterY = AQUtils.NextVRand(Main.rand, -scatter, scatter);
+                        int scatterX = Main.rand.NextVRand(-scatter, scatter);
+                        int scatterY = Main.rand.NextVRand(-scatter, scatter);
                         bool active = Main.tile[i + scatterX, j + scatterY].active();
                         int type = Main.tile[i + scatterX, j + scatterY].type;
                         if (type != tileType)
                         {
                             WorldGen.KillTile(i + scatterX, j + scatterY, fail: false, effectOnly: false, noItem: false);
                             if (active && Main.tileSolid[type])
-                            {
                                 Main.tile[i + scatterX, j + scatterY].active(active: true);
-                            }
                         }
                         Main.tile[i + scatterX, j + scatterY].type = tileType;
                     }
@@ -256,9 +247,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                     int iY = j - y;
                     int distance = (int)Math.Sqrt(iX * iX + iY * iY);
                     if (distance < halfSize)
-                    {
                         Main.tile[i, j].active(active: false);
-                    }
                 }
             }
 
@@ -279,8 +268,8 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                         int distance = (int)Math.Sqrt(iX * iX + iY * iY);
                         if (distance < halfSize)
                         {
-                            int scatterX = AQUtils.NextVRand(Main.rand, -1, 1);
-                            int scatterY = AQUtils.NextVRand(Main.rand, -1, 1);
+                            int scatterX = Main.rand.NextVRand(-1, 1);
+                            int scatterY = Main.rand.NextVRand(-1, 1);
                             Main.tile[i + scatterX, j + scatterY].active(active: false);
                         }
                     }
@@ -308,18 +297,14 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                     if (distance < halfSize)
                     {
                         if (Main.tile[i, j].active() && Main.tile[i, j].type == tileType)
-                        {
                             WorldGen.SquareTileFrame(i, j, true);
-                        }
                     }
                 }
             }
 
             AQMod.BroadcastMessage(Lang.gen[59].Key, Constants.ChatColors.EventMessage);
             if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
                 NetMessage.SendTileSquare(-1, minX, minY, size);
-            }
         }
     }
 }

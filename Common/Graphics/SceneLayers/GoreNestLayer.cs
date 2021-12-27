@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Content.WorldEvents.DemonSiege;
+using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

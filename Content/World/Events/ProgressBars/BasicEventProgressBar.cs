@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents.ProgressBars
+namespace AQMod.Content.World.Events.ProgressBars
 {
     internal sealed class BasicEventProgressBar : EventProgressBar
     {

@@ -1,11 +1,11 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Content.WorldEvents.ProgressBars;
+using AQMod.Content.World.Events.ProgressBars;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents
+namespace AQMod.Content.World.Events
 {
     public abstract class WorldEvent : ModWorld, ISetupContentType
     {
@@ -23,9 +23,7 @@ namespace AQMod.Content.WorldEvents
                     return;
                 var entry = BossChecklistEntry;
                 if (entry != null)
-                {
                     entry.Value.AddEntry(bossChecklist);
-                }
             }
             catch (Exception e)
             {

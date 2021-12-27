@@ -1,8 +1,8 @@
 ﻿using AQMod.Common.Skies;
-using AQMod.Content.WorldEvents.CrabSeason;
-using AQMod.Content.WorldEvents.DemonSiege;
-using AQMod.Content.WorldEvents.GlimmerEvent;
-using AQMod.Content.WorldEvents.ProgressBars;
+using AQMod.Content.World.Events.ProgressBars;
+using AQMod.Content.LegacyWorldEvents.CrabSeason;
+using AQMod.Content.LegacyWorldEvents.DemonSiege;
+using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Tiles.Nature;
 using Terraria;
 using Terraria.ID;

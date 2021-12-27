@@ -2,7 +2,7 @@
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.WorldEvents.CrabSeason;
+using AQMod.Content.LegacyWorldEvents.CrabSeason;
 using AQMod.Items.BossItems.Crabson;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools;

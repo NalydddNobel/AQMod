@@ -1,4 +1,4 @@
-﻿using AQMod.Content.WorldEvents.DemonSiege;
+﻿using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using System;

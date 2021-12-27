@@ -1,4 +1,4 @@
-﻿using AQMod.Content.WorldEvents.ProgressBars;
+﻿using AQMod.Content.World.Events.ProgressBars;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents.GaleStreams
+namespace AQMod.Content.World.Events.GaleStreams
 {
     public class GaleStreamsProgressBar : EventProgressBar
     {

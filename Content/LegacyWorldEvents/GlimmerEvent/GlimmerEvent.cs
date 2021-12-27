@@ -1,7 +1,8 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.NetCode;
-using AQMod.Content.WorldEvents.ProgressBars;
+using AQMod.Content.World.Events;
+using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Items.BossItems.Starite;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GlimmerEvent;
@@ -14,7 +15,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents.GlimmerEvent
+namespace AQMod.Content.LegacyWorldEvents.GlimmerEvent
 {
     public sealed class GlimmerEvent : WorldEvent
     {

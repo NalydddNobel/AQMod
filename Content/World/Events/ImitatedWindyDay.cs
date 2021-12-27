@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.WorldEvents
+namespace AQMod.Content.World.Events
 {
     /// <summary>
     /// A replica of vanilla's windy day flags, also manages things with the wind.
@@ -36,23 +36,15 @@ namespace AQMod.Content.WorldEvents
             {
                 float windSpeed = Main.windSpeedSet.Abs();
                 if (windSpeed < MinWind)
-                {
                     IsItAHappyWindyDay_WindyEnough = false;
-                }
                 if (windSpeed >= MaxWind)
-                {
                     IsItAHappyWindyDay_WindyEnough = true;
-                }
                 if (Main.time < 10800.0d || Main.time > 43200.0d || !Main.dayTime)
-                {
                     IsItAHappyWindyDay = false;
-                }
                 else
                 {
                     if (IsItAHappyWindyDay_WindyEnough)
-                    {
                         IsItAHappyWindyDay = true;
-                    }
                 }
             }
             else
