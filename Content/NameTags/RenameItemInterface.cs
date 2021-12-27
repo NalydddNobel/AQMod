@@ -14,6 +14,7 @@ namespace AQMod.Content.NameTags
     public static class RenameItemInterface
     {
         public static bool IsActive { get; internal set; }
+        private static bool initItemSlot;
         private const int SlotX = 20;
         private const int SlotY = 270;
         private static Item item;
@@ -66,9 +67,14 @@ namespace AQMod.Content.NameTags
                     item = new Item();
                 }
                 renameItemSlot.SwapItem(ref item, ref Main.mouseItem);
+                initItemSlot = false;
             }
             if (item != null && !item.IsAir)
             {
+                if (!initItemSlot)
+                {
+                    textUI.text = item.Name;
+                }
                 int price = NameTagItem.RenamePrice(item);
                 if (hover2)
                 {
@@ -134,6 +140,7 @@ namespace AQMod.Content.NameTags
             }
             else
             {
+                initItemSlot = false;
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, Language.GetTextValue("Mods.AQMod.BalloonMerchant.RenameItem.PlaceHere"), new Vector2(slotX + 50, SlotY), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
             }
         }

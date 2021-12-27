@@ -28,10 +28,6 @@ namespace AQMod.Projectiles.Melee
             }
             player.itemAnimation = 10;
             player.itemTime = 10;
-            int direction = projectile.Center.X > player.Center.X ? 1 : -1;
-            player.ChangeDir(direction);
-            projectile.direction = direction;
-            projectile.spriteDirection = -direction;
             Vector2 difference = player.MountedCenter - projectile.Center;
             float length = difference.Length();
             if (projectile.ai[0] == 0f)
@@ -53,41 +49,25 @@ namespace AQMod.Projectiles.Melee
             }
             else if (projectile.ai[0] == 1f)
             {
-                float elasticFactorA = 18f / player.meleeSpeed;
-                float elasticFactorB = 1f / player.meleeSpeed;
-                float maxStretchLength = 300f;
-                if (projectile.ai[1] == 1f)
-                    projectile.tileCollide = false;
-                if (!player.channel || length > maxStretchLength || !projectile.tileCollide)
+                projectile.ai[1] += 0.01f;
+                if (projectile.ai[1] >= 1)
                 {
-                    projectile.ai[1] = 1f;
-                    if (projectile.tileCollide)
-                        projectile.netUpdate = true;
-                    projectile.tileCollide = false;
-                    if (length < 20f)
-                        projectile.Kill();
+                    projectile.Kill();
                 }
-                if (!projectile.tileCollide)
-                    elasticFactorB *= 2f;
-                int restingChainLength = 60;
-                if (length > restingChainLength || !projectile.tileCollide)
+                projectile.tileCollide = false;
+                float speed = Math.Max((Main.player[projectile.owner].Center - projectile.Center).Length() / 4f, 22f);
+                projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(Main.player[projectile.owner].Center - projectile.Center) * speed, Math.Max(1f - (Main.player[projectile.owner].Center - projectile.Center).Length() / 50f, projectile.ai[1]));
+                if ((projectile.Center - Main.player[projectile.owner].Center).Length() < 36f)
                 {
-                    var elasticAcceleration = difference * elasticFactorA / length - projectile.velocity;
-                    elasticAcceleration *= elasticFactorB / elasticAcceleration.Length();
-                    projectile.velocity *= 0.98f;
-                    projectile.velocity += elasticAcceleration;
+                    projectile.Kill();
                 }
-                else
-                {
-                    if (Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y) < 6f)
-                    {
-                        projectile.velocity.X *= 0.96f;
-                        projectile.velocity.Y += 0.2f;
-                    }
-                    if (player.velocity.X == 0f)
-                        projectile.velocity.X *= 0.96f;
-                }
-
+            }
+            if (projectile.active)
+            {
+                int direction = projectile.Center.X > player.Center.X ? 1 : -1;
+                player.ChangeDir(direction);
+                projectile.direction = direction;
+                projectile.spriteDirection = -direction;
             }
             projectile.rotation = difference.ToRotation() - MathHelper.PiOver2;
         }

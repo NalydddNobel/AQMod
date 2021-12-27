@@ -44,7 +44,7 @@ namespace AQMod.Projectiles.Melee
                     return;
                 }
                 projectile.ai[0] += 0.05f;
-                projectile.velocity = Vector2.Lerp(projectile.velocity, new Vector2(projectile.ai[0], 0f).RotatedBy((Main.npc[target].Center - projectile.Center).ToRotation()), projectile.ai[0] * 0.005f);
+                projectile.velocity = Vector2.Lerp(projectile.velocity, new Vector2(projectile.ai[0], 0f).RotatedBy((Main.npc[target].Center - projectile.Center).ToRotation()), projectile.ai[0] * 0.05f);
                 if (Main.rand.NextBool(4))
                 {
                     int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<XenonDust>());
