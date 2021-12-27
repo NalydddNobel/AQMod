@@ -5,6 +5,11 @@ namespace AQMod.Items.BossItems.Starite
 {
     public class OmegaStariteTrophy : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            AQItem.CreativeMode.SingleItem(this);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 30;

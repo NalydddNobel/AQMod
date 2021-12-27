@@ -4,6 +4,7 @@ using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
+using AQMod.Items.BossItems.Starite;
 using AQMod.Projectiles.Monster.OmegaStarite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -127,7 +128,7 @@ namespace AQMod.NPCs.Boss
             NPC.noTileCollide = true;
             NPC.trapImmune = true;
             NPC.lavaImmune = true;
-            //bossBag = ModContent.ItemType<StariteBag>();
+            BossBag = ModContent.ItemType<StariteBag>();
 
             if (!GlimmerEvent.IsActive)
                 skipDeathTimer = 600;

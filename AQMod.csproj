@@ -14,6 +14,7 @@
     <None Include="Assets\Effects\.comp\fxcompiler.exe" />
     <None Include="Assets\Effects\.comp\Microsoft.Xna.Framework.Content.Pipeline.dll" />
     <None Include="Assets\Effects\.comp\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll" />
+    <None Include="Assets\Effects\.comp\ParentDyeShader.fx" />
     <None Include="Assets\Effects\.comp\wcfxcompiler.dll" />
   </ItemGroup>
 </Project>

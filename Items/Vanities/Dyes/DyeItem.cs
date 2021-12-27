@@ -24,6 +24,7 @@ namespace AQMod.Items.Vanities.Dyes
             {
                 GameShaders.Armor.BindShader(Item.type, CreateShaderData());
             }
+            AQItem.CreativeMode.DyeItem(this);
         }
 
         public override void SetDefaults()

@@ -20,6 +20,7 @@ namespace AQMod.Items.BossItems.Starite
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Item.type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.Abeemination];
+            AQItem.CreativeMode.SingleItem(this);
         }
 
         public override void SetDefaults()

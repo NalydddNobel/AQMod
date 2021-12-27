@@ -42,6 +42,10 @@ namespace AQMod
             {
                 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 1;
             }
+            internal static void DyeItem(ModItem ModItem)
+            {
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 3;
+            }
             internal static void TreasureBagItem(ModItem ModItem)
             {
                 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ModItem.Type] = 3;

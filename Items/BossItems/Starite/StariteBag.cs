@@ -6,19 +6,13 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.BossItems.Starite
 {
-    public class StariteBag : ModItem
+    public class StariteBag : BossBagItem
     {
-        public override void SetDefaults()
-        {
-            Item.maxStack = 999;
-            Item.consumable = true;
-            Item.width = 24;
-            Item.height = 24;
-            Item.rare = ItemRarityID.LightRed;
-            Item.expert = true;
-        }
+        protected override bool CanDropDevArmor => false;
 
-        public override bool CanRightClick() => true;
+        protected override int rarity => AQItem.Rarities.OmegaStariteRare;
+
+        public override int BossBagNPC => ModContent.NPCType<OmegaStarite>();
 
         public override void OpenBossBag(Player player)
         {
@@ -36,7 +30,5 @@ namespace AQMod.Items.BossItems.Starite
             player.QuickSpawnItem(ItemID.FallenStar, 20 + Main.rand.Next(10));
             player.QuickSpawnItem(ItemID.SoulofFlight, 8 + Main.rand.Next(4));
         }
-
-        public override int BossBagNPC => ModContent.NPCType<OmegaStarite>();
     }
 }
