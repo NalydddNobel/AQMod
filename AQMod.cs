@@ -423,7 +423,7 @@ namespace AQMod
 
             internal static bool ShouldApplyCustomCursor()
             {
-                return !AQMod.Loading && !Main.gameMenu && Main.myPlayer >= 0 && Main.LocalPlayer.active;
+                return !Loading && !Unloading && !Main.gameMenu && Main.myPlayer >= 0 && Main.LocalPlayer.active;
             }
 
             private static Vector2 Main_DrawThickCursor(On.Terraria.Main.orig_DrawThickCursor orig, bool smart)

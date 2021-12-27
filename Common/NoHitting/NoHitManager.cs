@@ -1,5 +1,4 @@
-﻿using AQMod.NPCs.Boss.Starite;
-using AQMod.Sounds;
+﻿using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

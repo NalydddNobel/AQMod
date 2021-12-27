@@ -40,6 +40,7 @@ namespace AQMod.Common.Graphics.SceneLayers
                     {
                         if (layer.Value.ShouldReset())
                         {
+                            AQMod.Instance.Logger.Debug(layer.Value.Name + " is resetting");
                             layer.Value.ResetTargets(Main.instance.GraphicsDevice);
                         }
                         layer.Value.DrawTargets();

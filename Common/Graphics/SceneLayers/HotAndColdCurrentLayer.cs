@@ -23,6 +23,7 @@ namespace AQMod.Common.Graphics.SceneLayers
 
         protected override void OnRegister(LayerKey key)
         {
+            base.OnRegister(key);
             try
             {
                 _hotAndColdCurrentShader = AQMod.Instance.GetEffect("Effects/HotAndColdCurrent/HotAndColdCurrent");
@@ -58,14 +59,6 @@ namespace AQMod.Common.Graphics.SceneLayers
             _coldCurrentList.Add(drawType);
         }
 
-        public override bool ShouldReset()
-        {
-            return base.ShouldReset() 
-                || _finalTarget == null || _finalTarget.IsContentLost
-                || _hotTarget == null || _hotTarget.IsContentLost
-                || _coldTarget == null || _coldTarget.IsContentLost;
-        }
-
         public override void ResetTargets(GraphicsDevice graphics)
         {
             _graphics = graphics;
@@ -86,6 +79,12 @@ namespace AQMod.Common.Graphics.SceneLayers
             {
                 if (_graphics == null)
                     return;
+                if (_finalTarget == null || _finalTarget.IsContentLost
+                || _hotTarget == null || _hotTarget.IsContentLost
+                || _coldTarget == null || _coldTarget.IsContentLost)
+                {
+                    ResetTargets(Main.instance.GraphicsDevice);
+                }
                 RenderTargetBinding[] renderTargets;
                 try
                 {
