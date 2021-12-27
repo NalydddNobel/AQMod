@@ -24,6 +24,7 @@ namespace AQMod.Content.WorldEvents.GaleStreams
                 ModContent.NPCType<WhiteSlime>(),
                 ModContent.NPCType<StreamingBalloon>(),
                 ModContent.NPCType<RedSprite>(),
+                ModContent.NPCType<SpaceSquid>(),
             },
             AQText.chooselocalizationtext(en_US: "Gale Streams", zh_Hans: "紊流风暴"),
             0,
