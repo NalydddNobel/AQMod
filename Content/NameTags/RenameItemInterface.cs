@@ -74,6 +74,7 @@ namespace AQMod.Content.NameTags
                 if (!initItemSlot)
                 {
                     textUI.text = item.Name;
+                    initItemSlot = true;
                 }
                 int price = NameTagItem.RenamePrice(item);
                 if (hover2)
@@ -109,7 +110,7 @@ namespace AQMod.Content.NameTags
                 {
                     UIHelper.HoverItem(item);
                 }
-                textUI.Draw(SlotX, SlotY + (int)(Main.inventoryBack3Texture.Height * 0.8f) + 4, 440, 32, 64, new Color(50, 106, 46, 255));
+                textUI.Draw(SlotX, SlotY + (int)(Main.inventoryBack3Texture.Height * 0.8f) + 18, 440, 32, 64, new Color(50, 106, 46, 255));
                 float oldScale = Main.inventoryScale;
                 Main.inventoryScale = 0.8f;
                 UIHelper.DrawItemInv(new Vector2(slotX, SlotY), item);

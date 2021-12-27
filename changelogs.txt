@@ -9,8 +9,18 @@ Changes:
 - Changed the recipe for the Argon Spear to use a Spear instead of the Vine Sword
 - Renamed the Vine Sword to "Turnblock Hammer"
 
+- Modified the visuals on The Fan's wind
+- Made the Jerry Claw (flail weapon) much faster and throw two claws
+
 Fixes:
 - Hopefully fixed a rare crash which can happen on mod initalization
+
+- Fixed a very rare issue regarding the Wind from The Fan not rendering 
+
+- Fixed a crash which can happen when renaming items at the Balloon Merchant
+
+- Space Squid now properly drops Frostbite Dye
+- Fixed the boss checklist entry for the Gale Streams event to include Space Squid's loot
 
 ####### 1.3 #######
 
