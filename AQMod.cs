@@ -107,8 +107,8 @@ namespace AQMod
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
         public static ModifiableMusic GaleStreamsMusic { get; private set; }
 
-        internal static Vector2 _lastScreenZoom;
-        internal static Vector2 _lastScreenView;
+        internal static int _lastScreenWidth;
+        internal static int _lastScreenHeight;
 
         public static bool RerollCursor;
 
@@ -719,8 +719,8 @@ namespace AQMod
                 {
                     SceneLayersManager.DrawLayer(SceneLayering.PreRender);
                     SceneLayersManager.RenderTargetLayers.PreRender();
-                    _lastScreenZoom = new Vector2(Main.screenWidth, Main.screenHeight);
-                    _lastScreenView = Main.ViewSize;
+                    _lastScreenWidth = Main.screenWidth;
+                    _lastScreenHeight = Main.screenHeight;
                 }
             }
 
@@ -928,6 +928,8 @@ namespace AQMod
         {
             Loading = true;
             Unloading = false;
+            _lastScreenWidth = 0;
+            _lastScreenHeight = 0;
             Keys.Load(this);
             Edits.Load();
             AQText.Load();

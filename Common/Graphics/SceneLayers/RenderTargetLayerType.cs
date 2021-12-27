@@ -10,7 +10,7 @@ namespace AQMod.Common.Graphics.SceneLayers
 
         public virtual bool ShouldReset()
         {
-            return AQMod._lastScreenView != Main.ViewSize || AQMod._lastScreenZoom != new Vector2(Main.screenWidth, Main.screenHeight);
+            return AQMod._lastScreenWidth != Main.screenWidth || AQMod._lastScreenHeight != Main.screenHeight;
         }
         public abstract void ResetTargets(GraphicsDevice graphics);
         public abstract void DrawTargets();

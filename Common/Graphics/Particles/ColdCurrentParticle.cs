@@ -23,7 +23,7 @@ namespace AQMod.Common.Graphics.Particles
 
         public override void Draw()
         {
-            HotAndColdCurrentLayer.AddToCurrentList(new MonoParticleDraw(this));
+            WindLayer.AddToCurrentList(new MonoParticleDraw(this));
         }
     }
 }

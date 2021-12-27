@@ -137,7 +137,7 @@ namespace AQMod.Projectiles
         {
             var color = GaleStreams.NeutralCurrentColor;
             color.A = 255;
-            HotAndColdCurrentLayer.AddToCurrentList(new Common.Graphics.DrawTypes.FriendlyWind(color, projectile.oldPos.AsAddAll(-Main.screenPosition + new Vector2(projectile.width / 2f, projectile.height / 2f)), projectile.velocity.ToRotation()));
+            WindLayer.AddToCurrentList(new Common.Graphics.DrawTypes.FriendlyWind(color, projectile.oldPos.AsAddAll(-Main.screenPosition + new Vector2(projectile.width / 2f, projectile.height / 2f)), projectile.velocity.ToRotation()));
             return false;
         }
     }
