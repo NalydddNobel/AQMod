@@ -1,10 +1,11 @@
 ﻿using AQMod.Assets;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics;
 using AQMod.Common.NoHitting;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
+using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
@@ -1483,7 +1484,7 @@ namespace AQMod.NPCs.Boss.Starite
             }
             else
             {
-                spotlightColor = AQMod.StariteAuraColor;
+                spotlightColor = ModContent.GetInstance<StariteConfig>().AuraColoring;
             }
             var drawOmegite = new List<AQGraphics.DrawMethod>();
             if (ModContent.GetInstance<AQConfigClient>().EffectQuality >= 1f)

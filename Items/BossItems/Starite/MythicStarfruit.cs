@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
+using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
 using AQMod.NPCs.Boss.Starite;

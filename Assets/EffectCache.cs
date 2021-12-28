@@ -13,6 +13,7 @@ namespace AQMod.Assets
         public static Effect ParentScreenShader { get; internal set; }
         public static Effect GoreNestPortal { get; private set; }
         public static Effect Trailshader { get; private set; }
+        public static Effect GlimmerEventBackground { get; private set; }
 
         public static MiscShaderData s_Outline { get => GameShaders.Misc["AQMod:Outline"]; set => GameShaders.Misc["AQMod:Outline"] = value; }
         public static MiscShaderData s_OutlineColor { get => GameShaders.Misc["AQMod:OutlineColor"]; set => GameShaders.Misc["AQMod:OutlineColor"] = value; }
@@ -34,6 +35,7 @@ namespace AQMod.Assets
             ParentScreenShader = logGetEffect("ParentScreenShader", aQMod, logger);
             GoreNestPortal = logGetEffect("GoreNest/GoreNestPortal", aQMod, logger);
             Trailshader = logGetEffect("Trails/Trailshader", aQMod, logger);
+            GlimmerEventBackground = logGetEffect("GlimmerEventBackground", aQMod, logger);
 
             s_Outline = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "OutlinePass");
             s_OutlineColor = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "OutlineColorPass");

@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
+using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Vanities.Critters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

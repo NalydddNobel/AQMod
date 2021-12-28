@@ -1,5 +1,5 @@
 ﻿using AQMod.Content;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
+using AQMod.Content.World.Events.GlimmerEvent;
 using System.IO;
 using Terraria;
 using Terraria.ID;

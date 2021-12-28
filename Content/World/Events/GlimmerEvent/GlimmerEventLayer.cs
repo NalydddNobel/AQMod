@@ -1,4 +1,4 @@
-﻿namespace AQMod.Content.LegacyWorldEvents.GlimmerEvent
+﻿namespace AQMod.Content.World.Events.GlimmerEvent
 {
     public struct GlimmerEventLayer
     {

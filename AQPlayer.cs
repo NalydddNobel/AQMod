@@ -5,12 +5,10 @@ using AQMod.Common;
 using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.NetCode;
-using AQMod.Common.Skies;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Fishing;
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events.GaleStreams;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
@@ -43,6 +41,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
+using AQMod.Common.Configuration;
+using AQMod.Content.World.Events.GlimmerEvent;
 
 namespace AQMod
 {
@@ -795,7 +795,7 @@ namespace AQMod
                 ScreenShakeManager.Update();
             bool glimmerEvent = (GlimmerEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1) && player.position.Y < Main.worldSurface * 16f + Main.screenHeight;
             AQUtils.UpdateSky(glimmerEvent, GlimmerEventSky.Name);
-            if (glimmerEvent && OmegaStariteScenes.OmegaStariteIndexCache == -1)
+            if (glimmerEvent && OmegaStariteScenes.OmegaStariteIndexCache == -1 && ModContent.GetInstance<StariteConfig>().UltimateSwordVignette)
             {
                 float intensity = 0f;
                 float distance = (Main.player[Main.myPlayer].position.X - (GlimmerEvent.tileX * 16f + 8f)).Abs();
@@ -806,7 +806,7 @@ namespace AQMod
 
                 var filter = EffectCache.f_Vignette;
                 var shader = EffectCache.f_Vignette.GetShader();
-                shader.UseIntensity(intensity * 1.5f);
+                shader.UseIntensity(intensity * 1.25f);
                 if (!EffectCache.f_Vignette.IsActive())
                 {
                     Filters.Scene.Activate(EffectCache.fn_Vignette);

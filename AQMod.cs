@@ -9,7 +9,6 @@ using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Common.NetCode;
-using AQMod.Common.Skies;
 using AQMod.Common.UserInterface;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
@@ -22,7 +21,6 @@ using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Content.LegacyWorldEvents.CrabSeason;
 using AQMod.Content.LegacyWorldEvents.DemonSiege;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
@@ -49,6 +47,8 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
 using Terraria.World.Generation;
+using AQMod.Common.Configuration;
+using AQMod.Content.World.Events.GlimmerEvent;
 
 namespace AQMod
 {
@@ -78,13 +78,7 @@ namespace AQMod
         /// This is normally used to prevent threaded assets from loading
         /// </summary>
         internal static bool Unloading { get; private set; }
-        public static float StariteBGMult { get; private set; }
         public static bool EvilProgressionLock { get; private set; }
-        /// <summary>
-        /// Whether or not the background starites from the Glimmer Event should be shown. Default value is true
-        /// </summary>
-        public static bool ShowBackgroundStarites { get; private set; }
-        public static Color StariteAuraColor { get; private set; }
         public static MapMarkerManager MapMarkers => ModContent.GetInstance<MapMarkerManager>();
 
         private static List<CachedTask> cachedLoadTasks;
@@ -943,7 +937,6 @@ namespace AQMod
             {
                 var client = AQConfigClient.Instance;
                 AQSound.rand = new UnifiedRandom();
-                ApplyClientConfig(client);
                 ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
                 ArmorOverlays = new EquipOverlayLoader();
                 AQTextures.Load();
@@ -1059,13 +1052,15 @@ namespace AQMod
                 }
             }
 
-            if (Main.netMode != NetmodeID.Server)
+            if (GlimmerEvent.StariteDisco)
             {
-                GlimmerEvent.stariteProjectileColor = GlimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : ModContent.GetInstance<AQConfigClient>().StariteProjColor;
+                GlimmerEvent.stariteProjectileColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
             }
             else
             {
-                GlimmerEvent.stariteProjectileColor = GlimmerEvent.StariteDisco ? new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) : GlimmerEvent.StariteProjectileColorOrig;
+                GlimmerEvent.stariteProjectileColor = Main.netMode != NetmodeID.Server
+                    ? ModContent.GetInstance<StariteConfig>().StariteProjectileColoring
+                    : GlimmerEvent.StariteProjectileColorOrig;
             }
         }
 
@@ -1338,13 +1333,6 @@ namespace AQMod
                 return ModCallHelper.InvokeCall(args);
             }
             return null;
-        }
-
-        public static void ApplyClientConfig(AQConfigClient clientConfig)
-        {
-            ShowBackgroundStarites = clientConfig.BackgroundStarites;
-            StariteAuraColor = clientConfig.StariteAuraColor;
-            StariteBGMult = clientConfig.StariteBackgroundLight;
         }
 
         public static void ApplyServerConfig(AQConfigServer serverConfig)

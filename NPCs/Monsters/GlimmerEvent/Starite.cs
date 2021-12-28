@@ -185,7 +185,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
             }
             Lighting.AddLight(npc.Center, new Vector3(0.4f, 0.4f, 0.2f));
             npc.rotation += npc.velocity.Length() * 0.0157f;
-            if (Content.LegacyWorldEvents.GlimmerEvent.GlimmerEvent.ShouldKillStar(npc))
+            if (AQMod.Content.World.Events.GlimmerEvent.GlimmerEvent.ShouldKillStar(npc))
             {
                 npc.life = -1;
                 npc.HitEffect();

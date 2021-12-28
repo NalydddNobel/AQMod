@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.UserInterface;
 using AQMod.Content.MapMarkers.Components;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Localization;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
@@ -8,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ModLoader;
+using AQMod.Content.World.Events.GlimmerEvent;
 
 namespace AQMod.Content.MapMarkers.Data
 {

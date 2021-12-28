@@ -59,42 +59,6 @@ namespace AQMod
         public bool OverrideVanillaChestLoot { get; set; }
         public static bool c_OverrideVanillaChestLoot { get; private set; }
 
-        [Header("$Mods.AQMod.ClientConfig.Header.Starite")]
-
-        [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ClientConfig.Effect3D")]
-        [Tooltip("$Mods.AQMod.ClientConfig.Effect3DTooltip")]
-        [DefaultValue(1f)]
-        [Range(0f, 1.5f)]
-        public float Effect3D { get; set; }
-        public static float c_Effect3D { get; private set; }
-
-        [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ClientConfig.BackgroundStarites")]
-        [Tooltip("$Mods.AQMod.ClientConfig.BackgroundStaritesTooltip")]
-        [DefaultValue(true)]
-        public bool BackgroundStarites { get; set; }
-        public static bool c_BackgroundStarites { get; private set; }
-
-        [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ClientConfig.StariteProjColor")]
-        [Tooltip("$Mods.AQMod.ClientConfig.StariteProjColorTooltip")]
-        [DefaultValue(typeof(Color), "200, 10, 255, 0"), ColorNoAlpha]
-        public Color StariteProjColor { get; set; }
-
-        [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ClientConfig.StariteAuraColor")]
-        [Tooltip("$Mods.AQMod.ClientConfig.StariteAuraColorTooltip")]
-        [DefaultValue(typeof(Color), "100, 100, 255, 0"), ColorNoAlpha]
-        public Color StariteAuraColor { get; set; }
-
-        [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ClientConfig.StariteBackgroundLight")]
-        [Tooltip("$Mods.AQMod.ClientConfig.StariteBackgroundLightTooltip")]
-        [DefaultValue(1f)]
-        [Range(0f, 1f)]
-        public float StariteBackgroundLight { get; set; }
-
         [Header("$Mods.AQMod.ClientConfig.Header.Xmas")]
 
         [BackgroundColor(75, 80, 100, 180)]
@@ -146,23 +110,14 @@ namespace AQMod
         {
             c_EffectQuality = EffectQuality;
             c_EffectIntensity = EffectIntensity;
-            c_Effect3D = Effect3D;
             c_Screenshakes = Screenshakes;
             c_TonsofScreenShakes = TonsofScreenShakes;
-            c_BackgroundStarites = BackgroundStarites;
-            if (c_BackgroundStarites != BackgroundStarites)
-            {
-                c_BackgroundStarites = BackgroundStarites;
-                GlimmerEventSky._starites = null;
-                GlimmerEventSky._lonelyStarite = null;
-            }
             if (CosmicEnergyAlt != c_CosmicEnergyAlt)
             {
                 c_CosmicEnergyAlt = CosmicEnergyAlt;
                 Main.itemTexture[ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>()] =
                     ModContent.GetTexture(ItemLoader.GetItem(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>()).Texture);
             }
-            AQMod.ApplyClientConfig(this);
         }
     }
 }

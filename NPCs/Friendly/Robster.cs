@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Content.Quest.Lobster;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Items.Placeable.CraftingStations;
 using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
@@ -14,6 +13,7 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using AQMod.Content.World.Events.GlimmerEvent;
 
 namespace AQMod.NPCs.Friendly
 {

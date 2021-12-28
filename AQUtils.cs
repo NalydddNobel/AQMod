@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Configuration;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,20 +41,13 @@ namespace AQMod
 
             public static float MultZ(float z)
             {
-                return z *= AQConfigClient.c_Effect3D + 0.01f; // adding 0.001 because some things actually rely on z for layering
+                return z *= ModContent.GetInstance<StariteConfig>().Effect3D + 0.01f; // adding 0.001 because some things actually rely on z for layering
             }
         }
 
-        private struct InfiniteLine
+        public static class Star
         {
-            public Vector2 position;
-            public float rotation;
 
-            public InfiniteLine(Vector2 position, float rotation)
-            {
-                this.position = position;
-                this.rotation = rotation;
-            }
         }
 
         public static Vector2[] AsAddAll(this Vector2[] v, Vector2 sub)

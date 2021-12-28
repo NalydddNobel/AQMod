@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace AQMod.Content.LegacyWorldEvents.GlimmerEvent
+namespace AQMod.Content.World.Events.GlimmerEvent
 {
     public static class OmegaStariteScenes
     {

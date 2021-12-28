@@ -2,7 +2,7 @@
 using AQMod.Common.NetCode;
 using AQMod.Content.LegacyWorldEvents.CrabSeason;
 using AQMod.Content.LegacyWorldEvents.DemonSiege;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
+using AQMod.Content.World.Events.GlimmerEvent;
 using System;
 using System.Collections.Generic;
 using Terraria;

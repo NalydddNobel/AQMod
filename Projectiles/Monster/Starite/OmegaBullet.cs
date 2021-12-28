@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
+using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;

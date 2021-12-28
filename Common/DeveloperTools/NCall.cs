@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics;
 using AQMod.Common.IO;
-using AQMod.Common.Skies;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Quest.Lobster;
@@ -10,7 +9,6 @@ using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Generation;
 using AQMod.Content.LegacyWorldEvents.CrabSeason;
 using AQMod.Content.LegacyWorldEvents.DemonSiege;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters;
 using AQMod.Tiles;
@@ -28,6 +26,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using AQMod.Content.World.Events.GlimmerEvent;
 
 namespace AQMod.Common.DeveloperTools
 {

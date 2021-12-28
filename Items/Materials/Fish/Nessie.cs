@@ -1,5 +1,5 @@
 ﻿using AQMod.Content.Fishing;
-using AQMod.Content.LegacyWorldEvents.GlimmerEvent;
+using AQMod.Content.World.Events.GlimmerEvent;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
