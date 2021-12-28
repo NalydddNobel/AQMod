@@ -5,6 +5,7 @@ using AQMod.Common.Skies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
@@ -235,7 +236,76 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public static class FallingStars
         {
+            public static List<StarModule> stars;
 
+            public class StarModule
+            {
+                public Star parent;
+
+                public Vector2[] oldPos;
+                public Vector2 position;
+                public Vector2 normal;
+                public float speedGainedOverTime;
+                public Vector2 velocity;
+                public int lifeTime;
+                public int lifeTimeMax;
+                private float _scale;
+                private Vector2 _origin;
+
+                public StarModule(int star, UnifiedRandom rand)
+                {
+                    parent = Main.star[star];
+                    position = Main.star[star].position;
+                    speedGainedOverTime = rand.NextFloat(0.0025f, 0.025f);
+                    normal = new Vector2(0f, 1f).RotatedBy(rand.NextFloat(-MathHelper.PiOver2, MathHelper.PiOver2));
+                    lifeTime = rand.Next(120, 360);
+                    lifeTimeMax = lifeTime;
+                    _scale = Main.star[star].scale;
+                    oldPos = new Vector2[10];
+                }
+
+                /// <summary>
+                /// Return true to remove this Star Module from the pool
+                /// </summary>
+                /// <returns></returns>
+                public bool Update()
+                {
+                    if (Main.dayTime)
+                        return true;
+                    parent.scale = 0.1f;
+                    lifeTime -= Main.dayRate;
+                    if (lifeTime <= 0)
+                    {
+                        return true;
+                    }
+                    for (int i = 0; i < Main.dayRate; i++)
+                    {
+                        velocity += normal * speedGainedOverTime;
+
+                        position += velocity;
+
+                        AQUtils.CyclePositions(oldPos, position);
+                    }
+                    return false;
+                }
+
+                public void Render()
+                {
+                    var texture = Main.starTexture[parent.type];
+                    for (int i = 0; i < oldPos.Length; i++)
+                    {
+                        if (oldPos[i] != Vector2.Zero)
+                        {
+                            var drawPosition2 = AQUtils.BackgroundStars.GetRenderPosition(oldPos[i]);
+                            float progress = 1f / oldPos.Length * i;
+                            Main.spriteBatch.Draw(texture, drawPosition2, null, 
+                                Color.Lerp(new Color(255, 255, 255, 255) * _scale, BackgroundAura.AuraColoring, 1f - progress) * (1f - progress), parent.rotation, _origin, _scale, SpriteEffects.None, 0f);
+                        }
+                    }
+                    var drawPosition = AQUtils.BackgroundStars.GetRenderPosition(position);
+                    Main.spriteBatch.Draw(texture, drawPosition, null, new Color(255, 255, 255, 255) * _scale, parent.rotation, _origin, _scale, SpriteEffects.None, 0f);
+                }
+            }
         }
 
         public static bool CanSpawnBGStarites()
@@ -268,6 +338,34 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public override void Update(GameTime gameTime)
         {
+            if (!Main.dayTime)
+            {
+                if (FallingStars.stars == null)
+                {
+                    FallingStars.stars = new List<FallingStars.StarModule>();
+                }
+
+                if (rand.NextBool(1000))
+                {
+                    FallingStars.stars.Add(new FallingStars.StarModule(rand.Next(Main.numStars), rand));
+                }
+
+                if (FallingStars.stars.Count != 0)
+                {
+                    for (int i = 0; i < FallingStars.stars.Count; i++)
+                    {
+                        if (FallingStars.stars[i].Update())
+                        {
+                            FallingStars.stars.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                FallingStars.stars = null;
+            }
             if (_starites != null)
             {
                 float midX = Main.screenWidth / 2f + (float)Math.Sin(Main.GlobalTime) * 125f;
@@ -356,6 +454,15 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                     BackgroundAura.Deactivate(transitionSpeed: 0.01f);
                 }
                 BackgroundAura.UpdateAura();
+
+                if (FallingStars.stars != null && FallingStars.stars.Count != 0)
+                {
+                    foreach (var s in FallingStars.stars)
+                    {
+                        s.Render();
+                    }
+                }
+
                 if (BackgroundAura.AuraStillVisible)
                 {
                     var config = ModContent.GetInstance<StariteConfig>();

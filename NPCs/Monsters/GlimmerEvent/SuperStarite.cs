@@ -96,6 +96,13 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
 
         public override void AI()
         {
+            if (Content.World.Events.GlimmerEvent.GlimmerEvent.ShouldKillStar(npc))
+            {
+                npc.life = -1;
+                npc.HitEffect();
+                npc.active = false;
+                return;
+            }
             Vector2 center = npc.Center;
             const float collisionMult = 0.75f;
             bool collisonEffects = false;
@@ -273,26 +280,6 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                 npc.rotation += npc.velocity.Length() * 0.0157f;
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            if (Main.expertMode)
-            {
-                target.AddBuff(ModContent.BuffType<BlueFire>(), 120);
-                target.AddBuff(BuffID.Blackout, 600);
-                if (Main.rand.NextBool(4))
-                    target.AddBuff(BuffID.Cursed, 120);
-            }
-            else
-            {
-                if (Main.rand.NextBool(4))
-                    target.AddBuff(BuffID.OnFire, 120);
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.Darkness, 600);
-                if (Main.rand.NextBool(12))
-                    target.AddBuff(BuffID.Cursed, 120);
-            }
-        }
-
         public override void PostAI()
         {
             if (Main.rand.NextBool(20))
@@ -312,11 +299,25 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                 Main.gore[g].scale *= 0.6f;
             }
             Lighting.AddLight(npc.Center, new Vector3(0.8f, 0.8f, 0.45f));
-            if (AQMod.Content.World.Events.GlimmerEvent.GlimmerEvent.ShouldKillStar(npc))
+        }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.expertMode)
             {
-                npc.life = -1;
-                npc.HitEffect();
-                npc.active = false;
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 120);
+                target.AddBuff(BuffID.Blackout, 600);
+                if (Main.rand.NextBool(4))
+                    target.AddBuff(BuffID.Cursed, 120);
+            }
+            else
+            {
+                if (Main.rand.NextBool(4))
+                    target.AddBuff(BuffID.OnFire, 120);
+                if (Main.rand.NextBool())
+                    target.AddBuff(BuffID.Darkness, 600);
+                if (Main.rand.NextBool(12))
+                    target.AddBuff(BuffID.Cursed, 120);
             }
         }
 

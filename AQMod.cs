@@ -947,7 +947,6 @@ namespace AQMod
                 DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
                 GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
                 SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
-                GlimmerEventSky.ModLoad();
                 VertexStrip.Setup();
                 SceneLayersManager.Setup();
                 ScreenShakeManager.Load();
@@ -1022,9 +1021,7 @@ namespace AQMod
                 ScreenShakeManager.Unload();
                 ArmorOverlays = null;
                 SceneLayersManager.Unload();
-                EffectCache.ParentPixelShader = null;
-                //EffectCache.Instance = null;
-                GlimmerEventSky.Unload();
+                EffectCache.Unload();
                 GaleStreamsMusic = null;
                 DemonSiegeMusic = null;
                 OmegaStariteMusic = null;

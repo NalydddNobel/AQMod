@@ -22,7 +22,15 @@ namespace AQMod
 {
     internal static class AQUtils
     {
-        public static class Projector3D
+        public static int BGTop;
+        private static readonly FieldInfo _bgtopfield = typeof(Main).GetField("bgTop", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        public static int _BGTop()
+        {
+            return BGTop = (int)_bgtopfield.GetValue(Main.instance);
+        }
+
+        public static class OmegaStarite3DHelper
         {
             public const float Z_VIEW = -20f;
 
@@ -45,9 +53,26 @@ namespace AQMod
             }
         }
 
-        public static class Star
+        public static class BackgroundStars
         {
+            public static Vector2 GetRenderPosition(Star star)
+            {
+                return GetRenderPosition(new Vector2(star.position.X + Main.starTexture[star.type].Width * 0.5f, star.position.Y + Main.starTexture[star.type].Height * 0.5f));
+            }
+            public static Vector2 GetRenderPosition(Vector2 position)
+            {
+                return new Vector2(position.X * (Main.screenWidth / 800f),
+                    position.Y * (Main.screenHeight / 600f) + BGTop);
+            }
+        }
 
+        public static void CyclePositions(Vector2[] oldPos, Vector2 newPos)
+        {
+            for (int i = oldPos.Length -1; i > 0; i--)
+            {
+                oldPos[i] = oldPos[i - 1];
+            }
+            oldPos[0] = newPos;
         }
 
         public static Vector2[] AsAddAll(this Vector2[] v, Vector2 sub)

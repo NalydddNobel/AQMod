@@ -9,8 +9,8 @@ namespace AQMod.Assets
 {
     public static class EffectCache
     {
-        public static Effect ParentPixelShader { get; internal set; }
-        public static Effect ParentScreenShader { get; internal set; }
+        public static Effect ParentPixelShader { get; private set; }
+        public static Effect ParentScreenShader { get; private set; }
         public static Effect GoreNestPortal { get; private set; }
         public static Effect Trailshader { get; private set; }
         public static Effect GlimmerEventBackground { get; private set; }
@@ -56,6 +56,15 @@ namespace AQMod.Assets
                 logger.Value.Log("Loading effect: Effects/" + name);
             var effect = aQMod.GetEffect("Effects/" + name);
             return effect;
+        }
+
+        internal static void Unload()
+        {
+            ParentPixelShader = null;
+            ParentScreenShader = null;
+            Trailshader = null;
+            GoreNestPortal = null;
+            GlimmerEventBackground = null;
         }
     }
 }
