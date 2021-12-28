@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Graphics.Effects;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -207,7 +208,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 effect.Parameters["color"].SetValue(color.ToVector3());
                 effect.Techniques[0].Passes["BackgroundEffectPass"].Apply();
 
-                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 200, Main.screenWidth, Main.screenHeight), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
 
                 Main.spriteBatch.End();
                 BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Regular);
@@ -240,6 +241,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
             public class StarModule
             {
+                public int parentIndex;
                 public Star parent;
 
                 public Vector2[] oldPos;
@@ -254,14 +256,16 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
                 public StarModule(int star, UnifiedRandom rand)
                 {
+                    parentIndex = star;
                     parent = Main.star[star];
                     position = Main.star[star].position;
-                    speedGainedOverTime = rand.NextFloat(0.0025f, 0.025f);
-                    normal = new Vector2(0f, 1f).RotatedBy(rand.NextFloat(-MathHelper.PiOver2, MathHelper.PiOver2));
-                    lifeTime = rand.Next(120, 360);
+                    speedGainedOverTime = rand.NextFloat(0.01f, 0.05f) * parent.scale;
+                    normal = new Vector2(0f, 1f).RotatedBy(rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4));
+                    lifeTime = 360;
                     lifeTimeMax = lifeTime;
                     _scale = Main.star[star].scale;
-                    oldPos = new Vector2[10];
+                    oldPos = new Vector2[50];
+                    _origin = Main.starTexture[parent.type].Size() / 2f;
                 }
 
                 /// <summary>
@@ -272,7 +276,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 {
                     if (Main.dayTime)
                         return true;
-                    parent.scale = 0.1f;
+                    parent.twinkle = 0.01f;
                     lifeTime -= Main.dayRate;
                     if (lifeTime <= 0)
                     {
@@ -282,15 +286,19 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                     {
                         velocity += normal * speedGainedOverTime;
 
-                        position += velocity;
+                        for (int j = 0; j < 5; j++)
+                        {
+                            position += velocity / 5f; 
+                            AQUtils.CyclePositions(oldPos, position);
 
-                        AQUtils.CyclePositions(oldPos, position);
+                        }
                     }
                     return false;
                 }
 
                 public void Render()
                 {
+                    int timeExisting = lifeTimeMax - lifeTime;
                     var texture = Main.starTexture[parent.type];
                     for (int i = 0; i < oldPos.Length; i++)
                     {
@@ -299,11 +307,46 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                             var drawPosition2 = AQUtils.BackgroundStars.GetRenderPosition(oldPos[i]);
                             float progress = 1f / oldPos.Length * i;
                             Main.spriteBatch.Draw(texture, drawPosition2, null, 
-                                Color.Lerp(new Color(255, 255, 255, 255) * _scale, BackgroundAura.AuraColoring, 1f - progress) * (1f - progress), parent.rotation, _origin, _scale, SpriteEffects.None, 0f);
+                                Color.Lerp(new Color(128, 128, 128, 0) * _scale, BackgroundAura.AuraColoring * 0.8f, 1f - progress) * (1f - progress), parent.rotation, _origin, _scale * 0.8f * (1f - progress), SpriteEffects.None, 0f);
                         }
                     }
                     var drawPosition = AQUtils.BackgroundStars.GetRenderPosition(position);
                     Main.spriteBatch.Draw(texture, drawPosition, null, new Color(255, 255, 255, 255) * _scale, parent.rotation, _origin, _scale, SpriteEffects.None, 0f);
+
+                    if (ModContent.GetInstance<AQConfigClient>().EffectQuality >= 1f)
+                    {
+                        if (timeExisting > 11)
+                        {
+                            float glowIn = 1f;
+                            if (timeExisting < 20)
+                            {
+                                glowIn = (timeExisting - 10) / 10f;
+                            }
+                            var spotlightTexture = AQTextures.Lights[LightTex.Spotlight15x15];
+                            var spotlightOrigin = spotlightTexture.Size() / 2f;
+                            float spotlightScale = 0.6f * _scale * velocity.Length() / 20f;
+
+                            if (timeExisting > 40 && (_scale < 0.4f || timeExisting < 60))
+                            {
+                                float shimmer = timeExisting % 10 / 10f; 
+                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(255, 255, 255, 255) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer, shimmer * 0.3f), SpriteEffects.None, 0f);
+                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(255, 255, 255, 255) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer * 0.3f, shimmer), SpriteEffects.None, 0f);
+                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, BackgroundAura.AuraColoring * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer, shimmer * 0.3f) * 1.5f, SpriteEffects.None, 0f);
+                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, BackgroundAura.AuraColoring * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer * 0.3f, shimmer) * 1.5f, SpriteEffects.None, 0f);
+                            }
+
+                            for (int i = 0; i < oldPos.Length; i++)
+                            {
+                                if (oldPos[i] != Vector2.Zero)
+                                {
+                                    var drawPosition2 = AQUtils.BackgroundStars.GetRenderPosition(oldPos[i]);
+                                    float progress = 1f / oldPos.Length * i;
+                                    Main.spriteBatch.Draw(spotlightTexture, drawPosition2, null,
+                                        Color.Lerp(new Color(255, 255, 255, 0) * _scale, BackgroundAura.AuraColoring * 1.25f, 1f - progress) * (1f - progress) * glowIn, parent.rotation, spotlightOrigin, spotlightScale * (1f - progress), SpriteEffects.None, 0f);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -332,81 +375,9 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             }
             else
             {
-                SpawnBGStarites(random);
+                if (CanSpawnBGStarites())
+                    SpawnBGStarites(random);
             }
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            if (!Main.dayTime)
-            {
-                if (FallingStars.stars == null)
-                {
-                    FallingStars.stars = new List<FallingStars.StarModule>();
-                }
-
-                if (rand.NextBool(1000))
-                {
-                    FallingStars.stars.Add(new FallingStars.StarModule(rand.Next(Main.numStars), rand));
-                }
-
-                if (FallingStars.stars.Count != 0)
-                {
-                    for (int i = 0; i < FallingStars.stars.Count; i++)
-                    {
-                        if (FallingStars.stars[i].Update())
-                        {
-                            FallingStars.stars.RemoveAt(i);
-                            i--;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                FallingStars.stars = null;
-            }
-            if (_starites != null)
-            {
-                float midX = Main.screenWidth / 2f + (float)Math.Sin(Main.GlobalTime) * 125f;
-                float midY = Main.screenHeight / 2f + (float)Math.Cos(Main.GlobalTime) * 125f;
-                for (int i = 0; i < 120; i++)
-                {
-                    _starites[i].Update(midX, midY, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.X / Main.screenPosition.Y + i * 0.0125f));
-                }
-                for (int i = 120; i < 135; i++)
-                {
-                    _starites[i].Update(midX, midY - Main.screenHeight / 2f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y / Main.screenPosition.X + i * 0.12f));
-                }
-                for (int i = 135; i < 145; i++)
-                {
-                    _starites[i].Update(midX, midY - Main.screenHeight / 3f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y * Main.screenPosition.X + i * 0.12f));
-                }
-                for (int i = 145; i < 150; i++)
-                {
-                    _starites[i].Update(midX, midY - Main.screenHeight / 5f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y * Main.screenPosition.X + i));
-                }
-            }
-            else if (_lonelyStarite != null)
-            {
-                if (_lonelyStariteTimeLeft == 0)
-                {
-                    _lonelyStarite.x += _lonelyStarite.velocityX;
-                    _lonelyStarite.y += _lonelyStarite.velocityY;
-                    if (_lonelyStarite.x <= -30f || _lonelyStarite.x >= Main.screenWidth + 30 || _lonelyStarite.y <= -30f || _lonelyStarite.y > Main.screenHeight + 30)
-                        _lonelyStarite = null;
-                }
-                else
-                {
-                    _lonelyStariteTimeLeft--;
-                    var plr = Main.LocalPlayer;
-                    _lonelyStariteX = Main.screenWidth / 2f + (float)Math.Sin(Main.GlobalTime * 10f) * 175f + plr.velocity.X * 2f;
-                    _lonelyStariteY = Main.screenHeight / 2f + (float)Math.Cos(Main.GlobalTime * 10f) * 175f + plr.velocity.Y * 2f;
-                    _lonelyStarite.Update(_lonelyStariteX, _lonelyStariteY, (float)Math.Sin(Main.GlobalTime) * 0.1f);
-                }
-            }
-            if (Main.dayTime)
-                _lonelyStarite = null;
         }
 
         public static void SpawnBGStarites(UnifiedRandom random)
@@ -441,8 +412,89 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             }
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            if (!Main.dayTime)
+            {
+                if (FallingStars.stars == null)
+                {
+                    FallingStars.stars = new List<FallingStars.StarModule>();
+                }
+
+                if (rand.NextBool(10))
+                {
+                    int star = rand.Next(Main.numStars);
+                    if (Main.star[star].twinkle > 0.8f && FallingStars.stars.Find((s) => star == s.parentIndex) == null)
+                    {
+                        FallingStars.stars.Add(new FallingStars.StarModule(star, rand));
+                    }
+                }
+
+                if (FallingStars.stars.Count != 0)
+                {
+                    for (int i = 0; i < FallingStars.stars.Count; i++)
+                    {
+                        if (FallingStars.stars[i].Update())
+                        {
+                            FallingStars.stars.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                FallingStars.stars = null;
+            }
+            if (_starites != null)
+            {
+                float midX = Main.screenWidth / 2f + (float)Math.Sin(Main.GlobalTime) * 125f;
+                float midY = Main.screenHeight / 2f + (float)Math.Cos(Main.GlobalTime) * 125f;
+                for (int i = 0; i < 120; i++)
+                {
+                    _starites[i].Update(midX, midY, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.X / Main.screenPosition.Y + i * 0.0125f) + rand.NextFloat(1f, 4f));
+                }
+                for (int i = 120; i < 135; i++)
+                {
+                    _starites[i].Update(midX, midY - Main.screenHeight / 2f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y / Main.screenPosition.X + i * 0.12f) + rand.NextFloat(1f, 4f));
+                }
+                for (int i = 135; i < 145; i++)
+                {
+                    _starites[i].Update(midX, midY - Main.screenHeight / 3f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y * Main.screenPosition.X + i * 0.12f) + rand.NextFloat(1f, 4f));
+                }
+                for (int i = 145; i < 150; i++)
+                {
+                    _starites[i].Update(midX, midY - Main.screenHeight / 5f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y * Main.screenPosition.X + i) + rand.NextFloat(1f, 4f));
+                }
+            }
+            else if (_lonelyStarite != null)
+            {
+                if (_lonelyStariteTimeLeft == 0)
+                {
+                    _lonelyStarite.x += _lonelyStarite.velocityX;
+                    _lonelyStarite.y += _lonelyStarite.velocityY;
+                    if (_lonelyStarite.x <= -30f || _lonelyStarite.x >= Main.screenWidth + 30 || _lonelyStarite.y <= -30f || _lonelyStarite.y > Main.screenHeight + 30)
+                        _lonelyStarite = null;
+                }
+                else
+                {
+                    _lonelyStariteTimeLeft--;
+                    var plr = Main.LocalPlayer;
+                    _lonelyStariteX = Main.screenWidth / 2f + (float)Math.Sin(Main.GlobalTime * 10f) * 175f + plr.velocity.X * 2f;
+                    _lonelyStariteY = Main.screenHeight / 2f + (float)Math.Cos(Main.GlobalTime * 10f) * 175f + plr.velocity.Y * 2f;
+                    _lonelyStarite.Update(_lonelyStariteX, _lonelyStariteY, (float)Math.Sin(Main.GlobalTime) * 0.1f);
+                }
+            }
+            if (Main.dayTime)
+                _lonelyStarite = null;
+        }
+
         public override void Draw(SpriteBatch spriteBatch, float minDepth, float maxDepth)
         {
+            if (BGStarite._texture == null)
+            {
+                BGStarite._texture = ModContent.GetTexture("AQMod/Assets/Backgrounds/Entities/Starite");
+            }
             if (maxDepth == float.MaxValue && minDepth != float.MaxValue)
             {
                 if (GlimmerEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1)
@@ -453,15 +505,8 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 {
                     BackgroundAura.Deactivate(transitionSpeed: 0.01f);
                 }
-                BackgroundAura.UpdateAura();
 
-                if (FallingStars.stars != null && FallingStars.stars.Count != 0)
-                {
-                    foreach (var s in FallingStars.stars)
-                    {
-                        s.Render();
-                    }
-                }
+                BackgroundAura.UpdateAura();
 
                 if (BackgroundAura.AuraStillVisible)
                 {
@@ -481,6 +526,17 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                     if (_lonelyStarite != null && (_lonelyStarite.size == 0 || !Main.BackgroundEnabled))
                         _lonelyStarite.Draw(rand);
                 }
+
+                if (FallingStars.stars != null && FallingStars.stars.Count != 0)
+                {
+                    AQUtils.BGTop = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
+                    //Main.NewText(AQUtils.BGTop, Main.DiscoColor);
+                    foreach (var s in FallingStars.stars)
+                    {
+                        s.Render();
+                    }
+                }
+
                 if (_starites != null)
                 {
                     if (Main.BackgroundEnabled)

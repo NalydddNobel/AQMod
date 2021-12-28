@@ -1393,6 +1393,7 @@ namespace AQMod
             monoxiderCarry = 0;
             temperature = 0;
             temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
+            notFrostburn = false;
             if (Main.myPlayer == player.whoAmI)
             {
                 oldPosLength = 0;

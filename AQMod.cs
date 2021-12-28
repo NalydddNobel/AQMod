@@ -1022,6 +1022,7 @@ namespace AQMod
                 ArmorOverlays = null;
                 SceneLayersManager.Unload();
                 EffectCache.Unload();
+                GlimmerEventSky.BGStarite._texture = null;
                 GaleStreamsMusic = null;
                 DemonSiegeMusic = null;
                 OmegaStariteMusic = null;
