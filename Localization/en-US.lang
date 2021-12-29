@@ -257,6 +257,17 @@ RecipeGroup.AnyNobleMushroom=Any Noble Mushroom
 
 Config.RequiresReload=Requires a reload.
 
+# Config
+
+StariteConfig.BackgroundStars=Background Falling Stars
+StariteConfig.BackgroundStarsTooltip=Whether or not to have background falling stars like in 1.4 during the Glimmer Event
+
+StariteConfig.BackgroundAurora=Background Aurora
+StariteConfig.BackgroundAuroraTooltip=Whether or not to have a background aurora effect during the Glimmer Event
+
+StariteConfig.UltimateSwordVignette=Ultimate Sword Vignette
+StariteConfig.UltimateSwordVignetteTooltip=Whether or not to have a vignette effect when you get near the Ultimate Sword
+
 # Client Config
 
 ClientConfig.Name=Client Config
@@ -264,9 +275,6 @@ ClientConfig.Name=Client Config
 ClientConfig.Header.Starite=Starite Visuals
 ClientConfig.Header.Xmas=Xmas
 ClientConfig.Header.UI=User Interface
-
-StariteConfig.UltimateSwordVignette=Ultimate Sword Vignette
-StariteConfig.UltimateSwordVignetteTooltip=Whether or not to have a vignette effect when you get near the Ultimate Sword
 
 ClientConfig.Effect3D=3D Effectiveness
 ClientConfig.Effect3DTooltip=Higher values make 3D effects more pronounced, and lower values make 3D effects look more flat.

@@ -5,6 +5,7 @@ using Terraria.ModLoader.Config;
 
 namespace AQMod.Common.Configuration
 {
+    [Label("$Mods.AQMod.StariteConfig.Name")]
     public sealed class StariteConfig : AQConfig
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;
@@ -28,13 +29,13 @@ namespace AQMod.Common.Configuration
         [Label("$Mods.AQMod.StariteConfig.BackgroundStars")]
         [Tooltip("$Mods.AQMod.StariteConfig.BackgroundStarsTooltip")]
         [DefaultValue(true)]
-        public float BackgroundStars { get; set; }
+        public bool BackgroundStars { get; set; }
 
         [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.StariteConfig.BackgroundShader")]
-        [Tooltip("$Mods.AQMod.StariteConfig.BackgroundShaderTooltip")]
+        [Label("$Mods.AQMod.StariteConfig.BackgroundAurora")]
+        [Tooltip("$Mods.AQMod.StariteConfig.BackgroundAuroraTooltip")]
         [DefaultValue(true)]
-        public float BackgroundShader { get; set; }
+        public bool BackgroundAurora { get; set; }
 
         [BackgroundColor(13, 166, 231, 180)]
         [Label("$Mods.AQMod.StariteConfig.UltimateSwordVignette")]

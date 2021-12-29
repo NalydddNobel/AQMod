@@ -206,7 +206,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                     {
                         if (transition > 0f)
                         {
-                            transition += transitionSpeed;
+                            transition -= transitionSpeed;
                             if (transition < 0f)
                             {
                                 transition = 0f;
@@ -219,7 +219,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             internal static void RenderAura()
             {
                 var color = AuraColoring * transition * Brightness;
-
+                var config = ModContent.GetInstance<StariteConfig>();
                 Main.spriteBatch.End();
                 BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Shader);
 
@@ -232,15 +232,16 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 effect.Techniques[0].Passes["BackgroundEffectPass"].Apply();
                 Main.instance.GraphicsDevice.Textures[1] = ModContent.GetTexture("Terraria/Misc/Noise");
 
-                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 200 + AQUtils.BGTop, Main.screenWidth, Main.screenHeight), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 200 + AQUtils.BGTop * 2, Main.screenWidth, Main.screenHeight), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
 
-                RenderAuroras(effect);
+                if (config.BackgroundAurora)
+                    RenderAuroras(effect, config);
 
                 Main.spriteBatch.End();
                 BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Regular);
             }
 
-            private static void RenderAuroras(Effect effect)
+            private static void RenderAuroras(Effect effect, StariteConfig config)
             {
                 Main.spriteBatch.End();
                 BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Shader);
@@ -249,14 +250,14 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 effect.Parameters["time"].SetValue(Main.GlobalTime + Main.screenPosition.X / 800f);
                 effect.Techniques[0].Passes["MagicalCurrentAuroraPass"].Apply();
                 
-                var color = Color.Lerp(AuraColoring, ModContent.GetInstance<StariteConfig>().StariteProjectileColoring, ((float)Math.Sin(Main.GlobalTime) + 1f) * 2f);
+                var color = Color.Lerp(AuraColoring, config.StariteProjectileColoring, ((float)Math.Sin(Main.GlobalTime) + 1f) * 2f);
                 if (GlimmerEvent.StariteDisco)
                 {
                     color = Main.DiscoColor;
                 }
-                color *= 0.35f * Brightness;
+                color *= 0.35f * transition * Brightness;
                 color.A = 0;
-                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, AQUtils.BGTop, Main.screenWidth, Main.screenHeight), null,
+                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 40 + AQUtils.BGTop / 2, Main.screenWidth, Main.screenHeight), null,
                     color, 0f, Vector2.Zero, SpriteEffects.None, 0f) ;
             }
 
@@ -460,8 +461,16 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public override void Update(GameTime gameTime)
         {
+            if (_active)
+            {
+                BackgroundAura.Activate(transitionSpeed: 0.01f);
+            }
+            else
+            {
+                BackgroundAura.Deactivate(transitionSpeed: 0.01f);
+            }
             int tileDistance = GlimmerEvent.GetTileDistance(Main.LocalPlayer);
-            if (!Main.dayTime)
+            if (!Main.dayTime && ModContent.GetInstance<StariteConfig>().BackgroundStars)
             {
                 if (FallingStars.stars == null)
                 {
@@ -551,7 +560,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 {
                     for (int i = 0; i < 120; i++)
                     {
-                        _starites[i].Update(midX, midY, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.X / Main.screenPosition.Y + i * 0.0125f) + rand.NextFloat(0.01f, 0.02f));
+                        _starites[i].Update(midX, midY, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.X / Main.screenPosition.Y + i * 0.0125f) + rand.NextFloat(0.06f, 0.18f));
                     }
                     for (int i = 120; i < 135; i++)
                     {
