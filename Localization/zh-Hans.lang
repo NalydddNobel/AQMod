@@ -265,6 +265,9 @@ ClientConfig.Header.Starite=星源视觉效果
 ClientConfig.Header.Xmas=圣诞节
 ClientConfig.Header.UI=用户界面
 
+StariteConfig.UltimateSwordVignette=最终之剑晕映
+StariteConfig.UltimateSwordVignetteTooltip=决定当你靠近最终之剑时是否会出现晕映效果
+
 ClientConfig.Effect3D=3D效果
 ClientConfig.Effect3DTooltip=数值越高3D效果越明显, 数值越低3D效果越扁平
 
