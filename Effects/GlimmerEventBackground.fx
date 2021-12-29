@@ -55,7 +55,7 @@ float4 MagicalCurrentAurora(float4 sampleColor : COLOR0, float2 coords : TEXCOOR
             }
         }
     }
-    return float4(0, 0, 0, 1);
+    return float4(0, 0, 0, 0);
 }
 
 technique Technique1

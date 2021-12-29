@@ -144,9 +144,9 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
             public static float AuroraMin;
             public static float AuroraMax;
-            public static float AuroraY;
+            public static float AuroraMinSpeed;
 
-            public static bool AuraStillVisible => (transition > 0f || active) && Brightness > 0f;
+            public static bool AuraStillVisible => (transition > 0.02f || active) && Brightness > 0f;
 
             public static void Activate(float transitionSpeed = 0.01f)
             {
@@ -181,6 +181,26 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                                 transition = 1f;
                             }
                         }
+
+                        AuroraMin = (float)Math.Sin(Main.GlobalTime * 0.01f);
+                        AuroraMax = (float)Math.Cos(Main.GlobalTime * 0.005f);
+
+                        if (AuroraMin < 0.05f)
+                        {
+                            AuroraMin = 0.05f;
+                        }
+                        if (AuroraMin > 0.05f)
+                        {
+                            AuroraMin = 0.05f;
+                        }
+                        if (AuroraMax < AuroraMin + 0.1f)
+                        {
+                            AuroraMax = AuroraMin + 0.1f;
+                        }
+                        if (AuroraMax > AuroraMin + 0.3f)
+                        {
+                            AuroraMax = AuroraMin + 0.3f;
+                        }
                     }
                     else
                     {
@@ -198,7 +218,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
             internal static void RenderAura()
             {
-                Color color = AuraColoring * transition * Brightness;
+                var color = AuraColoring * transition * Brightness;
 
                 Main.spriteBatch.End();
                 BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Shader);
@@ -209,19 +229,10 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 effect.Parameters["time"].SetValue(Main.GlobalTime);
                 effect.Parameters["screenOrigin"].SetValue(new Vector2(0.5f, 0.8f));
                 effect.Parameters["color"].SetValue(color.ToVector3());
-                if (AuroraMin < 0.05f)
-                {
-                    AuroraMin = 0.05f;
-                }
-                if (AuroraMax < AuroraMin + 0.05f)
-                {
-                    AuroraMax = AuroraMin + 0.05f;
-                }
-                effect.Parameters["minRange"].SetValue(AuroraMin);
-                effect.Parameters["maxRange"].SetValue(AuroraMax);
                 effect.Techniques[0].Passes["BackgroundEffectPass"].Apply();
+                Main.instance.GraphicsDevice.Textures[1] = ModContent.GetTexture("Terraria/Misc/Noise");
 
-                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 200, Main.screenWidth, Main.screenHeight), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 200 + AQUtils.BGTop, Main.screenWidth, Main.screenHeight), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
 
                 RenderAuroras(effect);
 
@@ -233,21 +244,20 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             {
                 Main.spriteBatch.End();
                 BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Shader);
+                effect.Parameters["minRange"].SetValue((int)(AuroraMin * 150) / 150f);
+                effect.Parameters["maxRange"].SetValue((int)(AuroraMax * 150) / 150f);
+                effect.Parameters["time"].SetValue(Main.GlobalTime + Main.screenPosition.X / 800f);
                 effect.Techniques[0].Passes["MagicalCurrentAuroraPass"].Apply();
-
-                AuroraY += Main.rand.NextFloat(-0.1f, 0.1f);
-
-                if (AuroraY < 0f)
+                
+                var color = Color.Lerp(AuraColoring, ModContent.GetInstance<StariteConfig>().StariteProjectileColoring, ((float)Math.Sin(Main.GlobalTime) + 1f) * 2f);
+                if (GlimmerEvent.StariteDisco)
                 {
-                    AuroraY = 0f;
+                    color = Main.DiscoColor;
                 }
-                else if (AuroraY > 200f)
-                {
-                    AuroraY = 200f;
-                }
-
-                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, (int)AuroraY, Main.screenWidth, Main.screenHeight), null, 
-                    Color.Lerp(AuraColoring, ModContent.GetInstance<StariteConfig>().StariteProjectileColoring, ((float)Math.Sin(Main.GlobalTime) + 1f) * 2f), 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                color *= 0.35f * Brightness;
+                color.A = 0;
+                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, AQUtils.BGTop, Main.screenWidth, Main.screenHeight), null,
+                    color, 0f, Vector2.Zero, SpriteEffects.None, 0f) ;
             }
 
             internal static void RenderAuraOld()
@@ -450,6 +460,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public override void Update(GameTime gameTime)
         {
+            int tileDistance = GlimmerEvent.GetTileDistance(Main.LocalPlayer);
             if (!Main.dayTime)
             {
                 if (FallingStars.stars == null)
@@ -457,7 +468,13 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                     FallingStars.stars = new List<FallingStars.StarModule>();
                 }
 
-                if (rand.NextBool(10))
+                int starFallChance = 10;
+                if (tileDistance > GlimmerEvent.SuperStariteDistance)
+                {
+                    starFallChance = 128;
+                }
+
+                if (_active && rand.NextBool(starFallChance))
                 {
                     int star = rand.Next(Main.numStars);
                     if (Main.star[star].twinkle > 0.8f && FallingStars.stars.Find((s) => star == s.parentIndex) == null)
@@ -477,6 +494,10 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                         }
                     }
                 }
+                else if (!_active)
+                {
+                    FallingStars.stars = null;
+                }
             }
             else
             {
@@ -486,21 +507,64 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             {
                 float midX = Main.screenWidth / 2f + (float)Math.Sin(Main.GlobalTime) * 125f;
                 float midY = Main.screenHeight / 2f + (float)Math.Cos(Main.GlobalTime) * 125f;
-                for (int i = 0; i < 120; i++)
+                if (!_active || Main.gameMenu || tileDistance > GlimmerEvent.MaxDistance)
                 {
-                    _starites[i].Update(midX, midY, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.X / Main.screenPosition.Y + i * 0.0125f) + rand.NextFloat(1f, 4f));
+                    for (int i = 0; i < 120; i++)
+                    {
+                        _starites[i].velocityY += -0.01f;
+                    }
+                    for (int i = 120; i < 135; i++)
+                    {
+                        _starites[i].velocityY += -0.0125f;
+                    }
+                    for (int i = 135; i < 145; i++)
+                    {
+                        _starites[i].velocityY += -0.015f;
+                    }
+                    for (int i = 145; i < 150; i++)
+                    {
+                        _starites[i].velocityY += -0.02f;
+                    }
+                    for (int i = 0; i < 150; i++)
+                    {
+                        if (_starites[i].y > -20f)
+                        {
+                            break;
+                        }
+                        if (i == 149)
+                        {
+                            _starites = null;
+                            break;
+                        }
+                    }
+                    if (_starites != null)
+                    {
+                        for (int i = 0; i < 150; i++)
+                        {
+                            _starites[i].velocityX *= 0.9f;
+                            _starites[i].x += _starites[i].velocityX;
+                            _starites[i].y += _starites[i].velocityY;
+                        }
+                    }
                 }
-                for (int i = 120; i < 135; i++)
+                else
                 {
-                    _starites[i].Update(midX, midY - Main.screenHeight / 2f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y / Main.screenPosition.X + i * 0.12f) + rand.NextFloat(1f, 4f));
-                }
-                for (int i = 135; i < 145; i++)
-                {
-                    _starites[i].Update(midX, midY - Main.screenHeight / 3f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y * Main.screenPosition.X + i * 0.12f) + rand.NextFloat(1f, 4f));
-                }
-                for (int i = 145; i < 150; i++)
-                {
-                    _starites[i].Update(midX, midY - Main.screenHeight / 5f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y * Main.screenPosition.X + i) + rand.NextFloat(1f, 4f));
+                    for (int i = 0; i < 120; i++)
+                    {
+                        _starites[i].Update(midX, midY, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.X / Main.screenPosition.Y + i * 0.0125f) + rand.NextFloat(0.01f, 0.02f));
+                    }
+                    for (int i = 120; i < 135; i++)
+                    {
+                        _starites[i].Update(midX, midY - Main.screenHeight / 2f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y / Main.screenPosition.X + i * 0.12f) + rand.NextFloat(0.01f, 0.02f));
+                    }
+                    for (int i = 135; i < 145; i++)
+                    {
+                        _starites[i].Update(midX, midY - Main.screenHeight / 3f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y * Main.screenPosition.X + i * 0.12f) + rand.NextFloat(0.01f, 0.02f));
+                    }
+                    for (int i = 145; i < 150; i++)
+                    {
+                        _starites[i].Update(midX, midY - Main.screenHeight / 5f, (float)Math.Sin(Main.GlobalTime * 0.25f + Main.screenPosition.Y * Main.screenPosition.X + i) + rand.NextFloat(0.01f, 0.02f));
+                    }
                 }
             }
             else if (_lonelyStarite != null)
@@ -533,15 +597,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             }
             if (maxDepth == float.MaxValue && minDepth != float.MaxValue)
             {
-                if (GlimmerEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1)
-                {
-                    BackgroundAura.Activate(transitionSpeed: 0.01f);
-                }
-                else
-                {
-                    BackgroundAura.Deactivate(transitionSpeed: 0.01f);
-                }
-
                 BackgroundAura.UpdateAura();
 
                 if (BackgroundAura.AuraStillVisible)
@@ -648,7 +703,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public override bool IsActive()
         {
-            return _active;
+            return (_active || _starites != null || BackgroundAura.AuraStillVisible || FallingStars.stars != null) && !AQMod.Loading;
         }
 
         public override float GetCloudAlpha()
@@ -673,11 +728,13 @@ namespace AQMod.Content.World.Events.GlimmerEvent
         public override void Activate(Vector2 position, params object[] args)
         {
             _active = true;
+            BackgroundAura.Activate(0.01f);
         }
 
         public override void Deactivate(params object[] args)
         {
             _active = false;
+            BackgroundAura.Deactivate(0.01f);
         }
     }
 }
