@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Graphics.Effects;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -143,6 +142,10 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             public static Color AuraColoring;
             public static float Brightness;
 
+            public static float AuroraMin;
+            public static float AuroraMax;
+            public static float AuroraY;
+
             public static bool AuraStillVisible => (transition > 0f || active) && Brightness > 0f;
 
             public static void Activate(float transitionSpeed = 0.01f)
@@ -206,12 +209,45 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 effect.Parameters["time"].SetValue(Main.GlobalTime);
                 effect.Parameters["screenOrigin"].SetValue(new Vector2(0.5f, 0.8f));
                 effect.Parameters["color"].SetValue(color.ToVector3());
+                if (AuroraMin < 0.05f)
+                {
+                    AuroraMin = 0.05f;
+                }
+                if (AuroraMax < AuroraMin + 0.05f)
+                {
+                    AuroraMax = AuroraMin + 0.05f;
+                }
+                effect.Parameters["minRange"].SetValue(AuroraMin);
+                effect.Parameters["maxRange"].SetValue(AuroraMax);
                 effect.Techniques[0].Passes["BackgroundEffectPass"].Apply();
 
                 Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 200, Main.screenWidth, Main.screenHeight), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
 
+                RenderAuroras(effect);
+
                 Main.spriteBatch.End();
                 BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Regular);
+            }
+
+            private static void RenderAuroras(Effect effect)
+            {
+                Main.spriteBatch.End();
+                BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Shader);
+                effect.Techniques[0].Passes["MagicalCurrentAuroraPass"].Apply();
+
+                AuroraY += Main.rand.NextFloat(-0.1f, 0.1f);
+
+                if (AuroraY < 0f)
+                {
+                    AuroraY = 0f;
+                }
+                else if (AuroraY > 200f)
+                {
+                    AuroraY = 200f;
+                }
+
+                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, (int)AuroraY, Main.screenWidth, Main.screenHeight), null, 
+                    Color.Lerp(AuraColoring, ModContent.GetInstance<StariteConfig>().StariteProjectileColoring, ((float)Math.Sin(Main.GlobalTime) + 1f) * 2f), 0f, Vector2.Zero, SpriteEffects.None, 0f);
             }
 
             internal static void RenderAuraOld()
@@ -288,7 +324,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
                         for (int j = 0; j < 5; j++)
                         {
-                            position += velocity / 5f; 
+                            position += velocity / 5f;
                             AQUtils.CyclePositions(oldPos, position);
 
                         }
@@ -306,7 +342,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                         {
                             var drawPosition2 = AQUtils.BackgroundStars.GetRenderPosition(oldPos[i]);
                             float progress = 1f / oldPos.Length * i;
-                            Main.spriteBatch.Draw(texture, drawPosition2, null, 
+                            Main.spriteBatch.Draw(texture, drawPosition2, null,
                                 Color.Lerp(new Color(128, 128, 128, 0) * _scale, BackgroundAura.AuraColoring * 0.8f, 1f - progress) * (1f - progress), parent.rotation, _origin, _scale * 0.8f * (1f - progress), SpriteEffects.None, 0f);
                         }
                     }
@@ -328,7 +364,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
                             if (timeExisting > 40 && (_scale < 0.4f || timeExisting < 60))
                             {
-                                float shimmer = timeExisting % 10 / 10f; 
+                                float shimmer = timeExisting % 10 / 10f;
                                 Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(255, 255, 255, 255) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer, shimmer * 0.3f), SpriteEffects.None, 0f);
                                 Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(255, 255, 255, 255) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer * 0.3f, shimmer), SpriteEffects.None, 0f);
                                 Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, BackgroundAura.AuraColoring * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer, shimmer * 0.3f) * 1.5f, SpriteEffects.None, 0f);
