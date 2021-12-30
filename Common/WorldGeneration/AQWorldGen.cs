@@ -246,7 +246,7 @@ namespace AQMod.Common.WorldGeneration
             for (int i = 0; i < requiredMushrooms; i++)
             {
                 int index = WorldGen.genRand.Next(validSpots.Count);
-                WorldGen.Place2x2Horizontal(validSpots[index].X, validSpots[index].Y, (ushort)tileType, style + WorldGen.genRand.Next(3));
+                WorldGen.Place2x2Horizontal(validSpots[index].X, validSpots[index].Y, (ushort)tileType, style);
                 if (Main.tile[validSpots[index].X, validSpots[index].Y].type == tileType)
                 {
                     int verticalStyle = WorldGen.genRand.Next(3);
