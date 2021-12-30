@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Content.CursorDyes
 {
-    public abstract class CursorDye : ContentItem
+    public abstract class CursorDye : ListedContentItem
     {
         public CursorDye(Mod mod, string name) : base(mod, name)
         {

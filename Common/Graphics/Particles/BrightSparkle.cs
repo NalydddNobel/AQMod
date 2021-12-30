@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace AQMod.Common.Graphics.Particles
+namespace AQMod.Common.Graphics.Particles.Types
 {
-    public class BrightSparkle : Particle
+    public class BrightSparkle : ParticleType
     {
         public Rectangle frame;
         public Vector2 origin;

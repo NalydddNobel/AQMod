@@ -38,17 +38,12 @@ ItemTooltip.FreezingAmulet=Prevents most types of freezing\nLowers the intensity
 ItemName.NormalizerAmulet=Normalized Amulet
 ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers the intensity of temperature sources from gale streams enemies
 
-# Barbs
-
 ItemName.CrabBarb=Crab Barb
 ItemTooltip.CrabBarb=Your grappling hooks inflicts poison, and damage
-
 ItemName.CrimtaneBarb=Crimtane Barb
 ItemTooltip.CrimtaneBarb=Your grappling hooks inflicts damage
-
 ItemName.DemoniteBarb=Demonite Barb
 ItemTooltip.DemoniteBarb=Your grappling hooks inflicts damage
-
 ItemName.MetalBarb=Metal Barb
 ItemTooltip.MetalBarb=Your grappling hooks inflicts damage
 
@@ -57,16 +52,18 @@ ItemTooltip.MetalBarb=Your grappling hooks inflicts damage
 ItemName.SteelPlatedChestplate=Steel Plated Chestplate
 
 # Materials
-
 ItemName.Fluorescence=Fluorescence
+
+ItemName.NuclearFeather=Nuclear Feather
+ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
+ItemName.Qi=Qi
+ItemTooltip.Qi={$Mods.AQMod.Tooltips.Unobtainable}\nA mystical energy created by extreme philosophical forces
 
 ItemName.JellyManaCrystal=Jelly Mana Crystal
 ItemName.HeartPiece=Heart Piece
 
 # Weapons
-
 ItemName.VineSword=Turnblock Hammer
-
 ItemName.KryptonSword=Krypton Boomerang
 ItemTooltip.KryptonSword=Cuts through enemies and can be swung around\nInflicts multiple debuffs
 
@@ -82,28 +79,23 @@ ItemName.RedSpriteStaff=Red Sprite Staff
 ItemTooltip.RedSpriteStaff=Summons a red sprite to rain thunder down upon your foes\nCan cast four at once
 ProjectileName.RedSpriteStaff=Red Sprite Staff
 ProjectileName.RedSpriteStaffLightning=Red Sprite Staff
-
 ItemName.ThunderClap=Thunder Clap
 ItemTooltip.ThunderClap=Summons a thunderbolt from the sky
 ProjectileName.ThunderClap=Thunder Clap
-
-ItemName.Umberserk=Umberserk
-ItemTooltip.Umberserk={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nHitting enemies makes you swing your weapon faster\nYour first hit will always be a crit
-ItemName.Umberetta=Umberetta
-ItemTooltip.Umberetta={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nShoots umbrella harpoons
 
 ItemName.Umystick=Umystick
 ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nRight click while held to do an extra jump which costs a great amount of mana\n'Looks quite menacing'
 BuffName.UmystickDelay=Umystick Delay
 BuffDescription.UmystickDelay=Decreases your mana regen, and you can no longer use the Umystick to double jump
 
-# Dyes
+ItemName.Narrizuul=Narrizuul
+ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n'Smells like roses'
 
+# Dyes
 ItemName.RedSpriteDye=Red Sprite Dye
 ItemName.FrostbiteDye=Frostbite Dye
 
 # Tools
-
 ItemName.Cosmicanon=Cosmicanon
 ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer Event from naturally spawning\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 ItemTooltipExtra.Cosmicanon=You can toggle this function by pressing {0}
@@ -129,8 +121,36 @@ ItemTooltip.Nimrod=Summons a fishing cloud which spawns 3 lightning bobbers to c
 ItemName.MinersFlashlight=Miner's Flashlight
 ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shown by the light\nHide the accessory to disable the flashlight
 
-# Tooltips
+# Potions
+ItemName.MysteryGrail=Mysterious Grail
+ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\nGives you a random buff
 
+# Fish
+ItemName.VampireSquid=Vampire Squid
+ItemTooltip.VampireSquid=Gives you vampirism
+
+ItemName.Blobfish=Blobfish
+ItemTooltip.Blobfish='Looking at it without puking requires you to not have gag reflexes'
+
+ItemName.Fizzler=Fizzler
+
+ItemName.Nessie=Nessie
+
+ItemName.UltraEel=Ultra Eel
+ItemTooltip.UltraEel=The offspring of an ancient starite species
+
+ItemName.Combfish=Combfish
+ItemTooltip.Combfish=Has regenerative properties
+
+ItemName.LarvaEel=Larva Eel
+ItemTooltip.LarvaEel=Gives you 3 minutes of honey but inflicts potion sickness
+
+# Quest Fish
+ItemName.WaterFisg=Water Fish
+ItemName.Crabdaughter=Crabdaughter
+
+# Tooltips
+Tooltips.Unobtainable=A relic birthed in an alternate universe
 Tooltips.ManaPerSecond=Uses {0} mana per second
 Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed\nYou will not take any fall damage
 Tooltips.InventoryPiggyBankFunction=Works in your inventory or piggy bank
@@ -363,6 +383,10 @@ WorldGen.ChristmasSpiritProgress15=Current Progress: (0%)
 
 NPCName.StreamingBalloon=Streaming Balloon
 
+BuffName.Sparkling=Shimmering
+BuffDescription.Sparkling=You are shimmering
+ProjectileName.SparklingExplosion=Shimmering Explosion
+
 # Common
 
 Common.KeyUnbound='Unbound Key'
@@ -557,10 +581,10 @@ ItemName.Terraroot=Terraroot
 ItemName.Thunderbird=Thunderbird
 
 ItemName.Ultranium=Hyper Crystal
-ItemTooltip.Ultranium=True melee crits on enemies channels the damage to the closest boss\nYour attacks inflict sparkling\n5% increased melee critical strike chance
+ItemTooltip.Ultranium=True melee crits on enemies channels the damage to the closest boss\nYour attacks inflict shimmering\n5% increased melee critical strike chance
 
 ItemName.Quasicrystal=Quasicrystal
-ItemTooltip.Quasicrystal=True melee crits on enemies channels the damage to the closest boss\nCauses stars to fall when injured\nCauses sparkling and fire damage on attack\n5% increased melee critical strike chance
+ItemTooltip.Quasicrystal=True melee crits on enemies channels the damage to the closest boss\nCauses stars to fall when injured\nCauses shimmering and fire damage on attack\n5% increased melee critical strike chance
 
 ##############
 # Boss Items #
@@ -578,7 +602,7 @@ ItemName.StariteBag=Treasure Bag
 ItemName.UltimateStarfruit=Ultimate Starfruit
 ItemName.UltimateSword=Ultimate Sword
 ProjectileName.UltimateSword=Ultimate Sword
-ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts sparkling on hit
+ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
 
 ##############
 # Buff Items #
@@ -613,7 +637,6 @@ BuffName.SpicyEel=Spicy Eel
 BuffDescription.SpicyEel=Your speed is greatly increased
 
 # Other Buffs Items
-ItemName.MysteryGrail=Mystery Grail
 ItemName.OpposingPotion=Opposing Potion
 ItemName.PotionofBossrushium=Encore Potion
 ItemName.SpoilsPotion=Spoils Potion
@@ -655,16 +678,6 @@ ItemName.MysticPopper=Mystic Popper
 # Rods
 ItemName.CrabRod=Crab Rod
 ItemName.BeeRod=Buzzrod
-# Fish
-ItemName.Blobfish=Blobfish
-ItemName.Fizzler=Fizzler
-ItemName.Nessie=Nessie
-ItemName.UltraEel=Ultra Eel
-ItemName.Combfish=Combfish
-ItemName.LarvaEel=Larva Eel
-# Quest Fish
-ItemName.WaterFisg=Water Fish
-ItemName.Crabdaughter=Crabdaughter
 # Quest Robster
 ItemName.Snobster=Snobster
 ItemName.JeweledChalice=Jeweled Chalice
@@ -680,21 +693,16 @@ ItemName.CrabClock=Crab Clock
 ItemName.Lightbulb=Lightbulb
 ItemName.Molite=Starbyte
 ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
-ItemName.NuclearFeather=Nuclear Feather
 ItemName.PotionofContainers=Containers Potion
 ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
 
 CommonTooltip.DedicatedItem=Dedicated Item
 CommonTooltip.ContentCreatorItem=Content Creator Item
 
-ItemName.Narrizuul=Narrizuul
-ItemTooltip.Narrizuul=A relic birthed in an alternate universe\n'Smells like roses'
-
 ItemName.MothmanMask=Mothman Mask
 ItemTooltip.MothmanMask=All effects only occur if you are at max health\n15% increased damage and critical strike chance\nIncreases the knockback of your minions\nCrits inflicts blue fire to nearby enemies
 ProjectileName.MothmanCritExplosion=Mothman Mask
 
-ItemName.Qi=Qi
 #############
 # Placeable #
 #############
@@ -716,7 +724,7 @@ ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 ItemName.UltrabrightBlueTorch=Ultrabright Blue Torch
 ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
-ItemName.SparklingTorch=Sparkling Torch
+ItemName.SparklingTorch=Shimmering Torch
 ItemTooltip.SparklingTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
 # Walls
@@ -903,7 +911,6 @@ ItemTooltip.UltimateStarfruit=Left click summons {$Mods.AQMod.NPCName.OmegaStari
 ItemTooltip.Baguette='Cake is just spongy bread'
 ItemTooltip.SuspiciousLookingSteak=Gives multiple buffs\n'A curse has been lifted'
 # Other Buffs Items
-ItemTooltip.MysteryGrail=Gives you a random buff
 ItemTooltip.OpposingPotion=Makes some enemies drop opposing loot
 ItemTooltip.PotionofBossrushium=Bosses respawn when defeated
 ItemTooltip.SpoilsPotion=Non-Boss Enemies drop 2 times more loot
@@ -938,11 +945,6 @@ ItemTooltip.IchorPopper=Increases bait power by 35% when in the crimson
 ItemTooltip.MysticPopper=Increases bait power by 25% when in the hallow
 # Rods
 ItemTooltip.BeeRod=Throws flying bee bobbers\nThrows 3 lines when using the Hive Pack
-# Fish
-ItemTooltip.Fizzler=It's corrupted and glimmering
-ItemTooltip.UltraEel=The offspring of an ancient starite species
-ItemTooltip.Combfish='The scales of this fish are not edible'
-ItemTooltip.LarvaEel=Gives you 3 minutes of honey and 60 seconds of potion sickness
 # Quest Robster
 ItemTooltip.JeweledChalice={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledCandelabra={$Mods.AQMod.Common.ReturnToLobster}
@@ -954,10 +956,8 @@ ItemTooltip.BloodshedPotion=Teleports you to the location of your most recent de
 ItemTooltip.CrabShell=It's oddly mishapen
 ItemTooltip.CrabClock=Speeds up ocean's natural fluctuations
 ItemTooltip.Molite=Doubles the length of potions
-ItemTooltip.NuclearFeather=Created from nuclear fusion\n'They say it's from the flawless wings of Yatagaratsu'
 ItemTooltip.PotionofContainers=Teleports you to a random chest in the world
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
-ItemTooltip.Qi=A mystical energy created by extreme philosophical forces
 #############
 # Placeable #
 #############
@@ -1131,7 +1131,6 @@ ProjectileName.FriendlyWind=Friendly Wind
 ProjectileName.GoldPowder=Gold Powder
 ProjectileName.HyperCrystalExplosion=Hyper Crystal
 ProjectileName.KelBall=Kel's Ball
-ProjectileName.SparklingExplosion=Sparkling Explosion
 
 # Pets
 ProjectileName.ATM=ATM

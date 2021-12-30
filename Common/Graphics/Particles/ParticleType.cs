@@ -1,6 +1,6 @@
 ﻿namespace AQMod.Common.Graphics.Particles
 {
-    public abstract class Particle
+    public abstract class ParticleType
     {
         public virtual void OnAdd()
         {

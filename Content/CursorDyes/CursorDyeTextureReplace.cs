@@ -60,15 +60,15 @@ namespace AQMod.Content.CursorDyes
 
         public override bool PreDrawCursorOverrides(Player player, AQPlayer drawingPlayer)
         {
-            if (Main.cursorOverride < 0 && !AQMod.RerollCursor)
+            if (Main.cursorOverride < 0)
             {
                 return false;
             }
             var type = (CursorType)Main.cursorOverride;
-            if (AQMod.RerollCursor)
-            {
-                type = CursorType.Reroll;
-            }
+            //if (AQMod.RerollCursor)
+            //{
+            //    type = CursorType.Reroll;
+            //}
             if (type >= CursorType.Count)
             {
                 return false;

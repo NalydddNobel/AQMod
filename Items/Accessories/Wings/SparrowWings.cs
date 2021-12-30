@@ -25,44 +25,28 @@ namespace AQMod.Items.Accessories.Wings
 
         public override bool WingUpdate(Player player, bool inUse)
         {
-            if (inUse)
+            if (inUse && Main.rand.NextBool(4))
             {
-                player.wingFrameCounter++;
-                if (player.wingFrameCounter > 6)
+                int width = 20;
+                int height = 20;
+                Vector2 pos = player.direction == 1
+                    ? new Vector2(player.position.X - width, player.position.Y + player.height / 2f - height)
+                    : new Vector2(player.position.X + player.width, player.position.Y + player.height / 2f - height);
+                if (player.gravDir == -1)
+                    pos.Y += 8f;
+                if (Main.rand.NextBool(4))
                 {
-                    player.wingFrame++;
-                    player.wingFrameCounter = 0;
-                    if (player.wingFrame >= 3)
-                        player.wingFrame = 0;
+                    Gore.NewGore(pos + new Vector2(Main.rand.Next(width), Main.rand.Next(height)), player.velocity * -0.2f, Main.rand.NextBool(4) ? 16 : 17, 0.4f);
                 }
-                if (Main.rand.NextBool(7))
+                else
                 {
-                    int width = 20;
-                    int height = 20;
-                    Vector2 pos = player.direction == 1
-                        ? new Vector2(player.position.X - width, player.position.Y + player.height / 2f - height)
-                        : new Vector2(player.position.X + player.width, player.position.Y + player.height / 2f - height);
-                    if (player.gravDir == -1)
-                        pos.Y += 8f;
-                    if (Main.rand.NextBool())
-                    {
-                        Gore.NewGore(pos + new Vector2(Main.rand.Next(width), Main.rand.Next(height)), player.velocity * -0.2f, 16 + Main.rand.Next(2), 0.5f);
-                    }
-                    else
-                    {
-                        Dust.NewDust(pos, width, height, 58);
-                    }
+                    int d = Dust.NewDust(pos, width, height, 15, 0f, 0f, 0, default(Color), Main.rand.NextFloat(1f, 1.6f));
+                    Main.dust[d].noGravity = true;
+                    Main.dust[d].velocity += -player.velocity;
+                    Main.dust[d].velocity *= 0.1f;
                 }
             }
-            else if (player.velocity.Y != 0f)
-            {
-                player.wingFrame = 2;
-            }
-            else
-            {
-                player.wingFrame = 0;
-            }
-            return true;
+            return false;
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)

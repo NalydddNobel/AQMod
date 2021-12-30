@@ -269,7 +269,7 @@ namespace AQMod.NPCs.Boss.Starite
                 spawnRing(center, OmegaStariteOrb.OUTER_RING, CIRCUMFERENCE * OmegaStariteOrb.OUTER_RING_CIRCUMFERENCE_MULT, OmegaStariteOrb.OUTER_RING_SCALE);
             }
             int damage = GetOmegiteDamage();
-            Projectile.NewProjectile(npc.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.Monster.OmegaStarite>(), damage, 1f, Main.myPlayer, npc.whoAmI);
+            Projectile.NewProjectile(npc.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.Monster.Starite.OmegaStarite>(), damage, 1f, Main.myPlayer, npc.whoAmI);
         }
 
         public void SetInnerRingRotation(Vector2 center)

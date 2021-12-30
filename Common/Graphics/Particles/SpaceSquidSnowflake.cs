@@ -6,7 +6,7 @@ using Terraria;
 
 namespace AQMod.Common.Graphics.Particles
 {
-    public class SpaceSquidSnowflake : Particle
+    public class SpaceSquidSnowflake : ParticleType
     {
         public Rectangle frame;
         public Vector2 origin;

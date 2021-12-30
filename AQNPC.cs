@@ -25,6 +25,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using AQMod.NPCs.Monsters.GaleStreams;
+using AQMod.Common.Graphics.Particles.Types;
 
 namespace AQMod
 {
@@ -580,7 +581,7 @@ namespace AQMod
 
         public override bool InstancePerEntity => true;
 
-        public bool sparkling;
+        public bool shimmering;
         /// <summary>
         /// Blue Fire
         /// </summary>
@@ -602,7 +603,7 @@ namespace AQMod
 
         public override void ResetEffects(NPC npc)
         {
-            sparkling = false;
+            shimmering = false;
             notFrostburn = false;
             windStruckOld = windStruck;
             windStruck = false;
@@ -773,7 +774,7 @@ namespace AQMod
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-            if (sparkling)
+            if (shimmering)
             {
                 if (npc.lifeRegen > 0)
                     npc.lifeRegen = 0;
@@ -801,7 +802,7 @@ namespace AQMod
 
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {
-            if (sparkling)
+            if (shimmering)
             {
                 if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
                 {
@@ -811,26 +812,28 @@ namespace AQMod
                     float size = npc.Size.Length() / 2f;
                     var velocity = normal * Main.rand.NextFloat(size / 12f, size / 6f);
                     velocity += -npc.velocity * 0.3f;
+                    velocity *= 0.05f;
                     float npcVelocityLength = npc.velocity.Length();
                     ParticleLayers.AddParticle_PostDrawPlayers(
-                        new MonoParticleEmber(dustPos, velocity,
-                        new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
+                        new MonoParticle(dustPos, velocity,
+                        new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f), Main.rand.NextFloat(0.3f, 1f)));
+
                     ParticleLayers.AddParticle_PostDrawPlayers(
-                        new MonoParticleEmber(dustPos, velocity,
-                        new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f) * 0.2f, 1.5f));
-                    int sparkleChance = 30;
-                    if (npcVelocityLength > 8f)
-                        sparkleChance /= 2;
+                        new MonoParticle(dustPos, velocity,
+                        new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f) * 0.2f, 0.5f));
+
                     if (Main.rand.NextBool(30))
                     {
-                        var sparkleClr = new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f);
+                        dustPos = npc.position + new Vector2(Main.rand.Next(npc.width + 4) - 2f, Main.rand.Next(npc.height + 4) - 2f);
+                        normal = Vector2.Normalize(dustPos - center);
+                        velocity = normal * Main.rand.NextFloat(size / 12f, size / 6f);
+                        velocity += -npc.velocity * 0.3f;
+                        velocity *= 0.01f;
+
+                        var sparkleClr = new Color(0.5f, Main.rand.NextFloat(0.1f, 0.5f), Main.rand.NextFloat(0.1f, 0.55f), 0f);
                         ParticleLayers.AddParticle_PostDrawPlayers(
-                            new SparkleParticle(dustPos, velocity,
-                            sparkleClr, 1.5f));
-                        ParticleLayers.AddParticle_PostDrawPlayers(
-                            new SparkleParticle(dustPos, velocity,
-                            sparkleClr * 0.5f, 1f)
-                            { rotation = MathHelper.PiOver4 });
+                            new BrightSparkle(dustPos, velocity,
+                            sparkleClr, 1f));
                     }
                 }
                 Lighting.AddLight(npc.Center, 0.25f, 0.25f, 0.25f);
@@ -889,7 +892,7 @@ namespace AQMod
         {
             if (npc.life < 0 && npc.HasValidTarget && Main.myPlayer == npc.target && npc.CanBeChasedBy(Main.player[npc.target]))
             {
-                if (sparkling)
+                if (shimmering)
                 {
                     int amount = (int)(100 * AQConfigClient.c_EffectIntensity);
                     if (AQConfigClient.c_EffectQuality < 1f)

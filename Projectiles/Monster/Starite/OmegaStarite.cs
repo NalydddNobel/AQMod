@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Monster
+namespace AQMod.Projectiles.Monster.Starite
 {
     public class OmegaStarite : ModProjectile
     {
@@ -38,6 +38,11 @@ namespace AQMod.Projectiles.Monster
                     return true;
             }
             return false;
+        }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            Main.npc[(int)projectile.ai[0]].modNPC.OnHitPlayer(target, damage, crit); // janky magic :trollface:
         }
     }
 }

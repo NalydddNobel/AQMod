@@ -2,6 +2,7 @@
 using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.NetCode;
@@ -9,6 +10,7 @@ using AQMod.Content.CursorDyes;
 using AQMod.Content.Fishing;
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events.GaleStreams;
+using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
@@ -17,9 +19,6 @@ using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.DrawOverlays;
 using AQMod.Items.Foods;
-using AQMod.Items.Materials.Fish;
-using AQMod.Items.Placeable;
-using AQMod.Items.Placeable.Wall;
 using AQMod.Items.Quest.Angler;
 using AQMod.Items.Vanities;
 using AQMod.Projectiles;
@@ -41,8 +40,6 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
-using AQMod.Common.Configuration;
-using AQMod.Content.World.Events.GlimmerEvent;
 
 namespace AQMod
 {
@@ -77,7 +74,7 @@ namespace AQMod
                     drawData.Draw(Main.spriteBatch);
                     Main.pixelShader.CurrentTechnique.Passes[0].Apply();
                 }
-                
+
                 if (drawingPlayer.headAcc >= 0)
                 {
                     var drawData = new DrawData(ModContent.GetTexture(HeadAccsPath + drawingPlayer.headAcc), new Vector2((int)(info.drawPlayer.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.drawPlayer.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height)) + info.drawPlayer.headPosition + info.drawOrigin, info.drawPlayer.bodyFrame, info.armorColor, info.drawPlayer.headRotation, info.drawOrigin, info.scale, info.spriteEffects, 0);
@@ -397,41 +394,41 @@ namespace AQMod
                     switch ((PlayerMaskID)aQPlayer.mask)
                     {
                         default:
-                        {
-                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(MasksPath + aQPlayer.mask), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                        }
-                        break;
+                            {
+                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(MasksPath + aQPlayer.mask), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                            }
+                            break;
 
                         case PlayerMaskID.CataMask:
-                        {
-                            if (aQPlayer.cMask > 0)
-                                aQPlayer.cataEyeColor = new Color(100, 100, 100, 0);
-                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(MasksPath + aQPlayer.mask), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                            if (player.statLife == player.statLifeMax2 && info.drawPlayer.headRotation == 0)
                             {
-                                var texture = AQTextures.Lights[LightTex.Spotlight240x66];
-                                var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                                var orig = frame.Size() / 2f;
-                                var scale = new Vector2((float)(Math.Sin(Main.GlobalTime * 10f) + 1f) * 0.04f + 0.2f, 0.1f);
-                                var eyeGlowPos = position + new Vector2(2f * player.direction, Main.OffsetsPlayerHeadgear[headFrame].Y);
-                                var eyeGlowColor = aQPlayer.cataEyeColor;
-                                var value = AQUtils.GetGrad(0.25f, 0.45f, scale.X) * 0.5f;
-                                var config = ModContent.GetInstance<AQConfigClient>();
-                                var colorMult = ModContent.GetInstance<AQConfigClient>().EffectIntensity * (1f - info.shadow);
-                                Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, 0f, orig, scale, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.3f * colorMult, 0f, orig, scale * (1.1f + value * 2), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                if (ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
+                                if (aQPlayer.cMask > 0)
+                                    aQPlayer.cataEyeColor = new Color(100, 100, 100, 0);
+                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(MasksPath + aQPlayer.mask), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                if (player.statLife == player.statLifeMax2 && info.drawPlayer.headRotation == 0)
                                 {
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.35f * colorMult, MathHelper.PiOver4, orig, scale * (1f - value) * 0.75f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.35f * colorMult, -MathHelper.PiOver4, orig, scale * (1f - value) * 0.75f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.2f * colorMult, MathHelper.PiOver2, orig, scale * (1f - value), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                    var texture = AQTextures.Lights[LightTex.Spotlight240x66];
+                                    var frame = new Rectangle(0, 0, texture.Width, texture.Height);
+                                    var orig = frame.Size() / 2f;
+                                    var scale = new Vector2((float)(Math.Sin(Main.GlobalTime * 10f) + 1f) * 0.04f + 0.2f, 0.1f);
+                                    var eyeGlowPos = position + new Vector2(2f * player.direction, Main.OffsetsPlayerHeadgear[headFrame].Y);
+                                    var eyeGlowColor = aQPlayer.cataEyeColor;
+                                    var value = AQUtils.GetGrad(0.25f, 0.45f, scale.X) * 0.5f;
+                                    var config = ModContent.GetInstance<AQConfigClient>();
+                                    var colorMult = ModContent.GetInstance<AQConfigClient>().EffectIntensity * (1f - info.shadow);
+                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, 0f, orig, scale, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.3f * colorMult, 0f, orig, scale * (1.1f + value * 2), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                    if (ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
+                                    {
+                                        Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.35f * colorMult, MathHelper.PiOver4, orig, scale * (1f - value) * 0.75f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                        Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.35f * colorMult, -MathHelper.PiOver4, orig, scale * (1f - value) * 0.75f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                        Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.2f * colorMult, MathHelper.PiOver2, orig, scale * (1f - value), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                    }
+                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, MathHelper.PiOver2, orig, scale * 0.5f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
+                                    if (ModContent.GetInstance<AQConfigClient>().EffectIntensity > 1.5f && ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
+                                        Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.15f * colorMult, 0f, orig, scale * (2f + value * 3f), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
                                 }
-                                Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, MathHelper.PiOver2, orig, scale * 0.5f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                if (ModContent.GetInstance<AQConfigClient>().EffectIntensity > 1.5f && ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.15f * colorMult, 0f, orig, scale * (2f + value * 3f), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
                             }
-                        }
-                        break;
+                            break;
                     }
                 }
                 if (aQPlayer.headAcc >= 0)
@@ -442,36 +439,36 @@ namespace AQMod
                     switch (aQPlayer.headAcc)
                     {
                         default:
-                        {
-                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
-                        }
-                        break;
+                            {
+                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                            }
+                            break;
 
                         case PlayerHeadOverlayID.MonoxideHat:
-                        {
-                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
-                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + PlayerHeadOverlayID.MonoxideHatGlow), position, info.drawPlayer.bodyFrame, new Color(opacity * 0.99f, opacity * 0.99f, opacity * 0.99f, 0f), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
-                            if (aQPlayer.monoxiderBird && !aQPlayer.chomper)
                             {
-                                var hatPos = position;
-                                if (player.gravDir == -1)
+                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + PlayerHeadOverlayID.MonoxideHatGlow), position, info.drawPlayer.bodyFrame, new Color(opacity * 0.99f, opacity * 0.99f, opacity * 0.99f, 0f), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                                if (aQPlayer.monoxiderBird && !aQPlayer.chomper)
                                 {
-                                    hatPos.Y += player.height + Main.OffsetsPlayerHeadgear[headFrame].Y + 8f;
+                                    var hatPos = position;
+                                    if (player.gravDir == -1)
+                                    {
+                                        hatPos.Y += player.height + Main.OffsetsPlayerHeadgear[headFrame].Y + 8f;
+                                    }
+                                    else
+                                    {
+                                        hatPos.Y += Main.OffsetsPlayerHeadgear[headFrame].Y;
+                                    }
+                                    Projectiles.Summon.Monoxider.DrawHead(player, aQPlayer, hatPos, ignorePlayerRotation: false);
                                 }
-                                else
-                                {
-                                    hatPos.Y += Main.OffsetsPlayerHeadgear[headFrame].Y;
-                                }
-                                Projectiles.Summon.Monoxider.DrawHead(player, aQPlayer, hatPos, ignorePlayerRotation: false);
                             }
-                        }
-                        break;
+                            break;
 
                         case PlayerHeadOverlayID.FishyFins:
-                        {
-                            Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, Lighting.GetColor((int)info.position.X / 16, (int)info.position.Y / 16, info.drawPlayer.skinColor), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
-                        }
-                        break;
+                            {
+                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, Lighting.GetColor((int)info.position.X / 16, (int)info.position.Y / 16, info.drawPlayer.skinColor), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
+                            }
+                            break;
                     }
                 }
             });
@@ -480,7 +477,6 @@ namespace AQMod
                 AQMod.ArmorOverlays.InvokeArmorOverlay(EquipLayering.Body, info);
             });
         }
-
 
         public static int oldPosLength;
         public static Vector2[] oldPosVisual;
@@ -601,8 +597,8 @@ namespace AQMod
         public int PopperBaitPower { get; set; }
         public int FishingPowerCache { get; set; }
         public int ExtractinatorCount { get; set; }
-        public int CursorDyeID { get; private set; } = CursorDyeLoader.ID.None;
-        public string CursorDye { get; private set; } = ""; 
+        public int CursorDyeID { get; private set; } = CursorDyeManager.ID.None;
+        public string CursorDye { get; private set; } = "";
         public bool IgnoreIgnoreMoons { get; set; }
         public bool IgnoreAntiGravityItems { get; set; }
 
@@ -747,11 +743,11 @@ namespace AQMod
             string dyeKey = tag.GetString("CursorDye");
             if (!string.IsNullOrEmpty(dyeKey) && AQStringCodes.DecodeName(dyeKey, out string cursorDyeMod, out string cursorDyeName))
             {
-                SetCursorDye(CursorDyeLoader.Instance.GetContentID(cursorDyeMod, cursorDyeName));
+                SetCursorDye(CursorDyeManager.Instance.GetContentID(cursorDyeMod, cursorDyeName));
             }
             else
             {
-                SetCursorDye(CursorDyeLoader.ID.None);
+                SetCursorDye(CursorDyeManager.ID.None);
             }
             byte[] buffer = tag.GetByteArray("bosskills");
             if (buffer == null || buffer.Length == 0)
@@ -796,7 +792,7 @@ namespace AQMod
 
             bool glimmerEvent = (GlimmerEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1) && Main.screenPosition.Y < Main.worldSurface * 16f + Main.screenHeight;
             AQUtils.UpdateSky(glimmerEvent, GlimmerEventSky.Name);
-            
+
             if (glimmerEvent && OmegaStariteScenes.OmegaStariteIndexCache == -1 && ModContent.GetInstance<StariteConfig>().UltimateSwordVignette)
             {
                 float intensity = 0f;
@@ -1021,7 +1017,7 @@ namespace AQMod
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (cosmicanon && AQMod.Keys.CosmicanonToggle.JustPressed)
+            if (cosmicanon && AQMod.Keybinds.CosmicanonToggle.JustPressed)
             {
                 IgnoreIgnoreMoons = !IgnoreIgnoreMoons;
                 if (IgnoreIgnoreMoons)
@@ -1033,7 +1029,7 @@ namespace AQMod
                     Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
                 }
             }
-            if (equivalenceMachine && AQMod.Keys.EquivalenceMachineToggle.JustPressed)
+            if (equivalenceMachine && AQMod.Keybinds.EquivalenceMachineToggle.JustPressed)
             {
                 IgnoreAntiGravityItems = !IgnoreAntiGravityItems;
                 if (IgnoreAntiGravityItems)
@@ -1540,11 +1536,11 @@ namespace AQMod
             {
                 case ProjectileID.SiltBall:
                 case ProjectileID.SlushBall:
-                {
-                    if (extractinator)
-                        damage /= 4;
-                }
-                break;
+                    {
+                        if (extractinator)
+                            damage /= 4;
+                    }
+                    break;
             }
             var aQProjectile = proj.GetGlobalProjectile<AQProjectile>();
             if (aQProjectile.temperature != 0)
@@ -1647,11 +1643,11 @@ namespace AQMod
                 case NPCID.CultistDragonHead:
                 case NPCID.CultistDragonTail:
                 case NPCID.AncientCultistSquidhead:
-                {
-                    if (mothmanMask)
-                        damage /= 2;
-                }
-                break;
+                    {
+                        if (mothmanMask)
+                            damage /= 2;
+                    }
+                    break;
             }
             var aQNPC = npc.GetGlobalNPC<AQNPC>();
             if (aQNPC.temperature != 0)
@@ -1975,28 +1971,28 @@ namespace AQMod
                 switch ((PlayerMaskID)mask)
                 {
                     case PlayerMaskID.CataMask:
-                    {
-                        if (cMask > 0)
-                            cataEyeColor = new Color(100, 100, 100, 0);
-                        if (!player.mount.Active && !player.merman && !player.wereWolf && player.statLife == player.statLifeMax2)
                         {
-                            float dustAmount = (Main.rand.Next(2, 3) + 1) * ModContent.GetInstance<AQConfigClient>().EffectQuality;
-                            if (dustAmount < 1f)
+                            if (cMask > 0)
+                                cataEyeColor = new Color(100, 100, 100, 0);
+                            if (!player.mount.Active && !player.merman && !player.wereWolf && player.statLife == player.statLifeMax2)
                             {
-                                if (Main.rand.NextFloat(dustAmount) > 0.1f)
-                                    CataEyeDust(getCataDustSpawnPos(gravityOffset, headFrame));
-                            }
-                            else
-                            {
-                                var spawnPos = getCataDustSpawnPos(gravityOffset, headFrame);
-                                for (int i = 0; i < dustAmount; i++)
+                                float dustAmount = (Main.rand.Next(2, 3) + 1) * ModContent.GetInstance<AQConfigClient>().EffectQuality;
+                                if (dustAmount < 1f)
                                 {
-                                    CataEyeDust(spawnPos);
+                                    if (Main.rand.NextFloat(dustAmount) > 0.1f)
+                                        CataEyeDust(getCataDustSpawnPos(gravityOffset, headFrame));
+                                }
+                                else
+                                {
+                                    var spawnPos = getCataDustSpawnPos(gravityOffset, headFrame);
+                                    for (int i = 0; i < dustAmount; i++)
+                                    {
+                                        CataEyeDust(spawnPos);
+                                    }
                                 }
                             }
                         }
-                    }
-                    break;
+                        break;
                 }
             }
             var aQPlayer = drawInfo.drawPlayer.GetModPlayer<AQPlayer>();
@@ -2222,15 +2218,15 @@ namespace AQMod
 
         public void SetCursorDye(int type)
         {
-            if (type <= CursorDyeLoader.ID.None || type > CursorDyeLoader.Instance.Count)
+            if (type <= CursorDyeManager.ID.None || type > CursorDyeManager.Instance.Count)
             {
-                CursorDyeID = CursorDyeLoader.ID.None;
+                CursorDyeID = CursorDyeManager.ID.None;
                 CursorDye = "";
             }
             else
             {
                 CursorDyeID = type;
-                var cursorDye = CursorDyeLoader.Instance.GetContent(type);
+                var cursorDye = CursorDyeManager.Instance.GetContent(type);
                 CursorDye = AQStringCodes.EncodeName(cursorDye.Mod, cursorDye.Name);
             }
         }

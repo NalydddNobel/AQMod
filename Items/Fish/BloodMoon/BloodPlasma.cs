@@ -1,25 +1,24 @@
 ﻿using AQMod.Content.Fishing;
-using AQMod.Content.World.Events.GlimmerEvent;
 using Terraria;
 using Terraria.ID;
 
-namespace AQMod.Items.Materials.Fish
+namespace AQMod.Items.Fish.BloodMoon
 {
-    public class UltraEel : FishingItem
+    public class BloodPlasma : FishingItem
     {
         public override void SetDefaults()
         {
             item.width = 20;
             item.height = 20;
-            item.value = Item.sellPrice(silver: 10);
-            item.rare = ItemRarityID.Orange;
+            item.value = Item.sellPrice(silver: 50);
+            item.rare = ItemRarityID.Green;
             item.maxStack = 999;
         }
 
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
         {
             return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
-                && !Main.dayTime && GlimmerEvent.GetTileDistance(player) < GlimmerEvent.MaxDistance;
+                && !Main.dayTime && Main.bloodMoon;
         }
     }
 }

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Content
 {
-    public abstract class ContentLoader<T> : IAutoloadType where T : ContentItem
+    public abstract class ContentLoader<T> : IAutoloadType where T : ListedContentItem
     {
         protected List<T> _content;
         protected int _contentCount;
@@ -16,24 +16,24 @@ namespace AQMod.Content
             ContentInstance.Register(this);
             _content = new List<T>();
             _contentCount = 0;
-            Load();
+            Load(AQMod.Instance);
         }
 
         void IAutoloadType.Unload()
         {
-            Unload();
+            Unload(AQMod.Instance);
             _content = null;
         }
 
-        public virtual void Load()
+        public virtual void Load(AQMod aQMod)
         {
         }
 
-        public virtual void Unload()
+        public virtual void Unload(AQMod aQMod)
         {
         }
 
-        public virtual int AddContent(T item)
+        public virtual int InitializeContent(T item)
         {
             if (AQMod.Loading)
             {

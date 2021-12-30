@@ -6,7 +6,7 @@ using Terraria.ModLoader.IO;
 
 namespace AQMod.Content.Quest.Lobster
 {
-    public abstract class RobsterHunt : ContentItem
+    public abstract class RobsterHunt : ListedContentItem
     {
         public RobsterHunt(Mod mod, string name) : base(mod, name)
         {

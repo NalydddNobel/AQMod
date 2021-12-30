@@ -5,7 +5,7 @@ using Terraria;
 
 namespace AQMod.Common.Graphics.Particles
 {
-    public class MonoParticle : Particle
+    public class MonoParticle : ParticleType
     {
         public Rectangle frame;
         public Vector2 origin;

@@ -104,8 +104,6 @@ namespace AQMod
         internal static int _lastScreenWidth;
         internal static int _lastScreenHeight;
 
-        public static bool RerollCursor;
-
         internal static class Debug
         {
             public static bool LogAutoload = false;
@@ -151,83 +149,7 @@ namespace AQMod
             }
         }
 
-        internal static class Autoloading
-        {
-            public static bool LoadingArmorSets;
-
-            private static List<IAutoloadType> _autoloadCache;
-
-            public static void Autoload(Assembly code)
-            {
-                _autoloadCache = new List<IAutoloadType>();
-                if (Debug.LogAutoload)
-                {
-                    var logger = Debug.GetDebugLogger();
-                    foreach (var t in code.GetTypes())
-                    {
-                        if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(IAutoloadType)))
-                        {
-                            var instance = (IAutoloadType)Activator.CreateInstance(t);
-                            instance.OnLoad();
-                            logger.Log("Created autoload instance of: {0}", t.FullName);
-                            _autoloadCache.Add(instance);
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (var t in code.GetTypes())
-                    {
-                        if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(IAutoloadType)))
-                        {
-                            var instance = (IAutoloadType)Activator.CreateInstance(t);
-                            instance.OnLoad();
-                            _autoloadCache.Add(instance);
-                        }
-                    }
-                }
-            }
-
-            public static void SetupContent(Assembly code)
-            {
-                if (Debug.LogAutoload)
-                {
-                    var logger = Debug.GetDebugLogger();
-                    foreach (var t in code.GetTypes())
-                    {
-                        if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(ISetupContentType)))
-                        {
-                            var instance = (ISetupContentType)Activator.CreateInstance(t);
-                            logger.Log("Created autoload instance of: {0}", t.FullName);
-                            instance.SetupContent();
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (var t in code.GetTypes())
-                    {
-                        if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(ISetupContentType)))
-                        {
-                            var instance = (ISetupContentType)Activator.CreateInstance(t);
-                            instance.SetupContent();
-                        }
-                    }
-                }
-            }
-
-            public static void Unload()
-            {
-                if (_autoloadCache == null)
-                    return;
-                foreach (var autoload in _autoloadCache)
-                {
-                    autoload.Unload();
-                }
-            }
-        }
-
-        public static class Keys
+        public static class Keybinds
         {
             public static ModHotKey CosmicanonToggle { get; private set; }
             public static ModHotKey EquivalenceMachineToggle { get; private set; }
@@ -286,6 +208,14 @@ namespace AQMod
                 On.Terraria.Player.QuickBuff += Player_QuickBuff;
                 On.Terraria.Player.PickTile += Player_PickTile;
                 On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
+            }
+
+            private static void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
+            {
+                orig(self);
+                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+                SceneLayersManager.DrawLayer(SceneLayering.PostDrawPlayers);
+                Main.spriteBatch.End();
             }
 
             private static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
@@ -377,8 +307,8 @@ namespace AQMod
                     var snowflake = new FarBGSnowflake(new Vector2(XmasSeeds.snowflakeRandom.Next(-200, Main.screenWidth + 200), -XmasSeeds.snowflakeRandom.Next(100, 250)));
                     snowflake.OnAdd();
                     XmasSeeds.farBGSnowflakes.Add(snowflake);
-                    ParticleLayers.UpdateParticles(XmasSeeds.farBGSnowflakes);
-                    ParticleLayers.DrawParticles(XmasSeeds.farBGSnowflakes);
+                    Particle.UpdateParticles(XmasSeeds.farBGSnowflakes);
+                    Particle.DrawParticles(XmasSeeds.farBGSnowflakes);
                 }
                 else
                 {
@@ -397,8 +327,8 @@ namespace AQMod
                         snowflake.OnAdd();
                         XmasSeeds.closeBGSnowflakes.Add(snowflake);
                     }
-                    ParticleLayers.UpdateParticles(XmasSeeds.closeBGSnowflakes);
-                    ParticleLayers.DrawParticles(XmasSeeds.closeBGSnowflakes);
+                    Particle.UpdateParticles(XmasSeeds.closeBGSnowflakes);
+                    Particle.DrawParticles(XmasSeeds.closeBGSnowflakes);
                 }
                 else
                 {
@@ -425,9 +355,9 @@ namespace AQMod
                 if (ShouldApplyCustomCursor())
                 {
                     var type = Main.LocalPlayer.GetModPlayer<AQPlayer>().CursorDyeID;
-                    if (type != CursorDyeLoader.ID.None)
+                    if (type != CursorDyeManager.ID.None)
                     {
-                        var value = CursorDyeLoader.Instance.GetContent(type).DrawThickCursor(smart);
+                        var value = CursorDyeManager.Instance.GetContent(type).DrawThickCursor(smart);
                         if (value != null)
                             return value.Value;
                     }
@@ -441,9 +371,9 @@ namespace AQMod
                 {
                     var player = Main.LocalPlayer;
                     var drawingPlayer = player.GetModPlayer<AQPlayer>();
-                    if (drawingPlayer.CursorDyeID != CursorDyeLoader.ID.None)
+                    if (drawingPlayer.CursorDyeID != CursorDyeManager.ID.None)
                     {
-                        var cursorDye = CursorDyeLoader.Instance.GetContent(drawingPlayer.CursorDyeID);
+                        var cursorDye = CursorDyeManager.Instance.GetContent(drawingPlayer.CursorDyeID);
                         if (!cursorDye.PreDrawCursor(player, drawingPlayer, bonus, smart))
                             orig(bonus, smart);
                         cursorDye.PostDrawCursor(player, drawingPlayer, bonus, smart);
@@ -465,16 +395,16 @@ namespace AQMod
                 {
                     var player = Main.LocalPlayer;
                     var aQPlayer = player.GetModPlayer<AQPlayer>();
-                    if (aQPlayer.CursorDyeID != CursorDyeLoader.ID.None)
+                    if (aQPlayer.CursorDyeID != CursorDyeManager.ID.None)
                     {
-                        var cursorDye = CursorDyeLoader.Instance.GetContent(aQPlayer.CursorDyeID);
+                        var cursorDye = CursorDyeManager.Instance.GetContent(aQPlayer.CursorDyeID);
                         if (!cursorDye.PreDrawCursorOverrides(player, aQPlayer))
                         {
-                            if (RerollCursor)
-                            {
-                                Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Cursors/Cursor_Reroll"), new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), Main.cursorScale, SpriteEffects.None, 0f);
-                            }
-                            else
+                            //if (RerollCursor)
+                            //{
+                            //    Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Cursors/Cursor_Reroll"), new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), Main.cursorScale, SpriteEffects.None, 0f);
+                            //}
+                            //else
                             {
                                 orig();
                             }
@@ -483,11 +413,11 @@ namespace AQMod
                     }
                     else
                     {
-                        if (RerollCursor)
-                        {
-                            Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Cursors/Cursor_Reroll"), new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), Main.cursorScale, SpriteEffects.None, 0f);
-                        }
-                        else
+                        //if (RerollCursor)
+                        //{
+                        //    Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Cursors/Cursor_Reroll"), new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), Main.cursorScale, SpriteEffects.None, 0f);
+                        //}
+                        //else
                         {
                             orig();
                         }
@@ -497,7 +427,7 @@ namespace AQMod
                 {
                     orig();
                 }
-                RerollCursor = false;
+                //RerollCursor = false;
             }
 
             private static void Main_CursorColor(On.Terraria.Main.orig_CursorColor orig)
@@ -822,14 +752,6 @@ namespace AQMod
                 return aQPlayer.FishingPowerCache;
             }
 
-            private static void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
-            {
-                orig(self);
-                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
-                SceneLayersManager.DrawLayer(SceneLayering.PostDrawPlayers);
-                Main.spriteBatch.End();
-            }
-
             private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)
             {
                 orig();
@@ -924,7 +846,7 @@ namespace AQMod
             Unloading = false;
             _lastScreenWidth = 0;
             _lastScreenHeight = 0;
-            Keys.Load(this);
+            Keybinds.Load(this);
             Edits.Load();
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
@@ -1135,9 +1057,9 @@ namespace AQMod
             Edits.OverrideColor = false;
             var player = Main.LocalPlayer;
             var drawingPlayer = player.GetModPlayer<AQPlayer>();
-            if (drawingPlayer.CursorDyeID != CursorDyeLoader.ID.None)
+            if (drawingPlayer.CursorDyeID != CursorDyeManager.ID.None)
             {
-                var cursorDye = CursorDyeLoader.Instance.GetContent(drawingPlayer.CursorDyeID);
+                var cursorDye = CursorDyeManager.Instance.GetContent(drawingPlayer.CursorDyeID);
                 Edits.OverrideColor = cursorDye.ApplyColor(player, drawingPlayer, out Edits._newCursorColor);
             }
             var index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));

@@ -20,7 +20,7 @@ namespace AQMod.Buffs.Debuffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<AQNPC>().sparkling = true;
+            npc.GetGlobalNPC<AQNPC>().shimmering = true;
         }
     }
 }

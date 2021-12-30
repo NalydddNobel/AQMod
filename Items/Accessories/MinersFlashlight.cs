@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Graphics.Particles;
+using AQMod.Common.Graphics.Particles.Types;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Buffs.Debuffs.Delays
+namespace AQMod.Buffs.Delays
 {
     public class UmystickDelay : ModBuff
     {

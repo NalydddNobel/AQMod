@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Materials.Fish;
+﻿using AQMod.Items.Fish;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,7 +1,7 @@
 ﻿using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Items.Accessories.FidgetSpinner;
+using AQMod.Items.Fish;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Materials.Fish;
 using AQMod.Items.Materials.NobleMushrooms;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools;

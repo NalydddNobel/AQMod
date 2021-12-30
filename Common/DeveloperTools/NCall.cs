@@ -930,10 +930,10 @@ namespace AQMod.Common.DeveloperTools
                     var drawingPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
                     caller.Reply(nameof(AQPlayer.CursorDyeID) + ":" + drawingPlayer.CursorDyeID);
                     caller.Reply(nameof(AQPlayer.CursorDye) + ":" + drawingPlayer.CursorDye);
-                    caller.Reply(nameof(CursorDyeLoader.Instance.Count) + ":" + CursorDyeLoader.Instance.Count);
-                    for (int i = 0; i < CursorDyeLoader.Instance.Count; i++)
+                    caller.Reply(nameof(CursorDyeManager.Instance.Count) + ":" + CursorDyeManager.Instance.Count);
+                    for (int i = 0; i < CursorDyeManager.Instance.Count; i++)
                     {
-                        var cursorDye = CursorDyeLoader.Instance.GetContent(i);
+                        var cursorDye = CursorDyeManager.Instance.GetContent(i);
                         caller.Reply(nameof(CursorDye.Mod) + i + ":" + cursorDye.Mod);
                         caller.Reply(nameof(CursorDye.Name) + i + ":" + cursorDye.Name);
                     }

@@ -25,12 +25,12 @@ namespace AQMod.Items.Vanities.CursorDyes
 
         public override bool CanUseItem(Player player)
         {
-            return player.GetModPlayer<AQPlayer>().CursorDyeID != CursorDyeLoader.ID.Health;
+            return player.GetModPlayer<AQPlayer>().CursorDyeID != CursorDyeManager.ID.Health;
         }
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<AQPlayer>().SetCursorDye(CursorDyeLoader.ID.Health);
+            player.GetModPlayer<AQPlayer>().SetCursorDye(CursorDyeManager.ID.Health);
             return true;
         }
 

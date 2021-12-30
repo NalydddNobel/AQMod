@@ -7,7 +7,7 @@ using Terraria;
 
 namespace AQMod.Content.Seasonal.Christmas
 {
-    public class CloseBGSnowflake : Particle
+    public class CloseBGSnowflake : Common.Graphics.Particles.ParticleType
     {
         public Rectangle frame;
         public Vector2 origin;

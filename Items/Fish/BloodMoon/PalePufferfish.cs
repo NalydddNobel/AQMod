@@ -1,18 +1,16 @@
 ﻿using AQMod.Content.Fishing;
-using AQMod.Content.World.Events.GlimmerEvent;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace AQMod.Items.Materials.Fish
+namespace AQMod.Items.Fish.BloodMoon
 {
-    public class Molite : FishingItem
+    public class PalePufferfish : FishingItem
     {
         public override void SetDefaults()
         {
             item.width = 20;
             item.height = 20;
-            item.value = Item.sellPrice(silver: 10);
+            item.value = Item.sellPrice(silver: 50);
             item.rare = ItemRarityID.Green;
             item.maxStack = 999;
         }
@@ -20,16 +18,7 @@ namespace AQMod.Items.Materials.Fish
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
         {
             return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
-                && !Main.dayTime && GlimmerEvent.GetTileDistance(player) < GlimmerEvent.MaxDistance;
-        }
-
-        public override void AddRecipes()
-        {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(item.type);
-            r.AddTile(TileID.CookingPots);
-            r.SetResult(ItemID.CookedShrimp, 5);
-            r.AddRecipe();
+                && !Main.dayTime && Main.bloodMoon;
         }
     }
 }

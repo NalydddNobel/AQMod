@@ -46,7 +46,7 @@ namespace AQMod.Items.Tools
             {
                 if (t.mod == "Terraria" && t.Name == "Tooltip1")
                 {
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.HotKey(AQMod.Keys.EquivalenceMachineToggle));
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.HotKey(AQMod.Keybinds.EquivalenceMachineToggle));
                 }
             }
         }

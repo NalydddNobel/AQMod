@@ -7,11 +7,10 @@ namespace AQMod.Content.Quest.Lobster
     {
         public static RobsterHuntLoader Instance { get => ModContent.GetInstance<RobsterHuntLoader>(); }
 
-        public override void Load()
+        public override void Load(AQMod mod)
         {
-            var mod = AQMod.Instance;
-            AddContent(new HuntJeweledChalice(mod, "JeweledChalice"));
-            AddContent(new HuntJeweledCandelabra(mod, "JeweledCandelabra"));
+            InitializeContent(new HuntJeweledChalice(mod, "JeweledChalice"));
+            InitializeContent(new HuntJeweledCandelabra(mod, "JeweledCandelabra"));
         }
 
         /// <summary>

@@ -7,11 +7,11 @@ namespace AQMod.Common.Graphics.Particles
     {
         private abstract class particlelayer : SceneLayer
         {
-            private List<Particle> _particles;
+            private List<ParticleType> _particles;
 
             protected sealed override void OnRegister(LayerKey key)
             {
-                _particles = new List<Particle>();
+                _particles = new List<ParticleType>();
                 setupKey(key);
             }
 
@@ -20,7 +20,7 @@ namespace AQMod.Common.Graphics.Particles
             public sealed override string Name => "Particles_" + Layering.ToString();
             public sealed override SceneLayering Layering => SceneLayering.PostDrawPlayers;
 
-            public void AddParticle(Particle particle)
+            public void AddParticle(ParticleType particle)
             {
                 particle.OnAdd();
                 _particles.Add(particle);
@@ -47,12 +47,12 @@ namespace AQMod.Common.Graphics.Particles
             }
         }
 
-        public static void AddParticle_PostDrawPlayers(Particle particle)
+        public static void AddParticle_PostDrawPlayers(ParticleType particle)
         {
             ParticleLayer_PostDrawPlayers.Key.GetLayer<ParticleLayer_PostDrawPlayers>().AddParticle(particle);
         }
 
-        internal static void UpdateParticles<T>(List<T> particles) where T : Particle
+        internal static void UpdateParticles<T>(List<T> particles) where T : ParticleType
         {
             for (int i = 0; i < particles.Count; i++)
             {
@@ -64,7 +64,7 @@ namespace AQMod.Common.Graphics.Particles
             }
         }
 
-        internal static void DrawParticles<T>(List<T> particles) where T : Particle
+        internal static void DrawParticles<T>(List<T> particles) where T : ParticleType
         {
             for (int i = 0; i < particles.Count; i++)
             {
