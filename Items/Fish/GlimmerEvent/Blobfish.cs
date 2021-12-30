@@ -1,10 +1,9 @@
 ﻿using AQMod.Content.Fishing;
-using AQMod.Content.World.Events.GlimmerEvent;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fish
+namespace AQMod.Items.Fish.GlimmerEvent
 {
     public class Blobfish : FishingItem
     {
@@ -20,7 +19,7 @@ namespace AQMod.Items.Fish
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
         {
             return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
-                && !Main.dayTime && GlimmerEvent.GetTileDistance(player) < GlimmerEvent.MaxDistance;
+                && !Main.dayTime && Content.World.Events.GlimmerEvent.GlimmerEvent.GetTileDistance(player) < Content.World.Events.GlimmerEvent.GlimmerEvent.MaxDistance;
         }
 
         public override void AddRecipes()

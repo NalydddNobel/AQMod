@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Fish;
+﻿using AQMod.Items.Fish.GlimmerEvent;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

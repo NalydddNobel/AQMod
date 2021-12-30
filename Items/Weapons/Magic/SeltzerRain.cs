@@ -1,5 +1,5 @@
 ﻿using AQMod.Dusts;
-using AQMod.Items.Fish;
+using AQMod.Items.Fish.Corruption;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

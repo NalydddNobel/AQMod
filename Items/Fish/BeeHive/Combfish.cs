@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fish
+namespace AQMod.Items.Fish.BeeHive
 {
     public class Combfish : FishingItem
     {
