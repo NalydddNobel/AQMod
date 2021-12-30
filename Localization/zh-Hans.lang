@@ -121,13 +121,29 @@ ItemTooltip.Nimrod=召唤一朵捕鱼云朵, 其会生成三个闪电浮标来�
 ItemName.MinersFlashlight=矿工的手电筒
 ItemTooltip.MinersFlashlight=你会向你的光标位置发射一束光\n被光照到的宝藏会发光\n关闭饰品可见性来禁用手电筒效果
 
+ItemName.UltimateSword=最终之剑
+ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
+ProjectileName.UltimateSword=最终之剑
+
 # Potions
 ItemName.MysteryGrail=神秘圣杯
 ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\n使你获得随机的增益或减益
 
 # Fish
+ItemName.PalePufferfish=苍白河豚
+ItemTooltip.PalePufferfish=能治愈你身上的许多种减益\n能治愈血咒
+
+ItemName.BloodPlasma=血浆
+ItemTooltip.BloodPlasma=当你受到致死攻击时会自动饮用一瓶治疗药水
+
 ItemName.VampireSquid=吸血乌贼
-ItemTooltip.VampireSquid=使你获得吸血
+ItemTooltip.VampireSquid=使你获得血咒
+
+BuffName.Vampirism=血咒
+BuffDescription.Vampirism=在这之后你可能会变成吸血鬼...
+
+BuffName.VampirismDay=日光
+BuffDescription.VampirismDay=你的各项属性大幅度降低, 且你无法再通过食物获得增益
 
 ItemName.Blobfish=水滴鱼
 ItemTooltip.Blobfish='要想看着它而不吐出来需要你没有呕吐反射'
@@ -600,9 +616,6 @@ ItemName.OmegaStariteMask=终末之星面具
 ItemName.OmegaStariteTrophy=终末之星纪念章
 ItemName.StariteBag=宝藏袋
 ItemName.UltimateStarfruit=终极星果
-ItemName.UltimateSword=最终之剑
-ProjectileName.UltimateSword=最终之剑
-ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
 
 ##############
 # Buff Items #
