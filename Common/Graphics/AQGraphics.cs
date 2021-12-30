@@ -40,8 +40,46 @@ namespace AQMod.Common.Graphics
             internal static Vector2 TileZero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         }
 
-        public static class Drawing
+        public static class Rendering
         {
+            public static void DrawTileWithSloping(Tile tile, Texture2D texture, Vector2 drawCoordinates, Color drawColor, int frameX, int frameY, int width, int height)
+            {
+                if (tile.slope() == 0 && !tile.halfBrick())
+                {
+                    Main.spriteBatch.Draw(texture, drawCoordinates, new Rectangle(frameX, frameY, width, height), drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                }
+                else if (tile.halfBrick())
+                {
+                    Main.spriteBatch.Draw(texture, new Vector2(drawCoordinates.X, drawCoordinates.Y + 10), new Rectangle(frameX, frameY, width, 6), drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                }
+                else
+                {
+                    byte b = tile.slope();
+                    for (int i = 0; i < 8; i++)
+                    {
+                        int num10 = i << 1;
+                        Rectangle frame = new Rectangle(frameX, frameY + i * 2, num10, 2);
+                        int xOffset = 0;
+                        switch (b)
+                        {
+                            case 2:
+                                frame.X = 16 - num10;
+                                xOffset = 16 - num10;
+                                break;
+                            case 3:
+                                frame.Width = 16 - num10;
+                                break;
+                            case 4:
+                                frame.Width = 14 - num10;
+                                frame.X = num10 + 2;
+                                xOffset = num10 + 2;
+                                break;
+                        }
+                        Main.spriteBatch.Draw(texture, new Vector2(drawCoordinates.X + (float)xOffset, drawCoordinates.Y + i * 2), frame, drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                    }
+                }
+            }
+
             public static void DrawFishingLine_NoLighting_UseCustomOrigin(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 lineOrigin)
             {
                 var bobberCenter = new Vector2(bobberPosition.X + bobberWidth / 2f, bobberPosition.Y + bobberHeight / 2f);

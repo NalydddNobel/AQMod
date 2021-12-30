@@ -121,6 +121,61 @@ namespace AQMod.Common.DeveloperTools
                     caller.Reply("Command doesn't exist.");
                     break;
 
+                case "place":
+                    {
+                        int createTile = 0;
+                        if (int.TryParse(args[1], out createTile))
+                        {
+                            caller.Player.HeldItem.createTile = createTile;
+                        }
+                        else
+                        {
+                            bool writeHelp = false;
+                            try
+                            {
+                                bool findTerraria = true;
+                                if (args.Length > 2)
+                                {
+                                    if (args[1] != "Terraria")
+                                    {
+                                        string modName = AQStringCodes.DecodeModName(args[1]);
+                                        caller.Reply("Finding tile from mod: " + modName);
+                                        var modType = ModLoader.GetMod(modName);
+                                        if (modType == null)
+                                        {
+                                            caller.Reply("Mod doesn't exist.");
+                                        }
+                                        else
+                                        {
+                                            caller.Player.HeldItem.createTile = modType.TileType(args[2]);
+                                            findTerraria = false;
+                                        }
+                                    }
+                                }
+                                if (findTerraria)
+                                {
+                                    caller.Player.HeldItem.createTile = ItemID.Search.GetId(args[1]);
+                                }
+                            }
+                            catch
+                            {
+                                writeHelp = true;
+                            }
+                            if (writeHelp)
+                            {
+                                caller.Reply("You can find a tile by name by writing /ncall place {MOD} {NAME}");
+                                caller.Reply("You can write no mod to try to find tiles from vanilla");
+                            }
+                        }
+                    }
+                    break;
+
+                case "consumable":
+                    {
+                        caller.Player.HeldItem.consumable = !caller.Player.HeldItem.consumable;
+                    }
+                    break;
+
                 case "vampirism":
                     {
                         caller.Player.GetModPlayer<VampirismPlayer>().Vampirism = ushort.Parse(args[1]);
@@ -584,7 +639,7 @@ namespace AQMod.Common.DeveloperTools
                 case "ravinetest":
                     {
                         Main.NewText("Generating Ravine...");
-                        AQWorldGen.PlaceOceanRavine((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, caller.Player.HeldItem.placeStyle);
+                        CrabCrevice.PlaceLegacyOceanRavine((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, caller.Player.HeldItem.placeStyle);
                         Main.NewText("Generation Complete!");
                     }
                     break;
