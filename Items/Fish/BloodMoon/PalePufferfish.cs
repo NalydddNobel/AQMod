@@ -43,7 +43,7 @@ namespace AQMod.Items.Fish.BloodMoon
                 }
             }
             player.GetModPlayer<VampirismPlayer>().Vampirism = 0;
-            return base.UseItem(player);
+            return true;
         }
     }
 }

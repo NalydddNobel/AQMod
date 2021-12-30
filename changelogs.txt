@@ -1,12 +1,12 @@
 ####### 1.3.1 ######
 
 Additions:
-- Added a new config which manages everything related to Starites and the Glimmer Event
-
 - Added the Depthscale, fishable in the Corruption after the Eater of Worlds has been defeated
 - Added the Fleshscale, fishable in the Crimson after the Brain of Cthulhu has been defeated
 - Added the Vampire Squid, fishable during the Blood Moon in Hardmode
 - Added the Pale Pufferfish, and Blood Plasma, both fishable during the Blood Moon
+
+- Added a new config which manages everything related to Starites and the Glimmer Event
 
 Changes:
 - Overhauled the Glimmer Event's background
@@ -14,7 +14,9 @@ Changes:
 
 - Omega Starite's orbs now inflict Blue Fire
 
-- Resprited Sparrow Wings, Blobfish, Combfish, Ultra Eel,
+- Resprited Sparrow Wings, Blobfish, Combfish, Ultra Eel, Encore Buff, Harmony Buff, Opposing Buff, Prime Time Buff, Spectre Healing Buff,
+Spoiled Buff, Supercharged Buff, Chomper Summon Buff, Crimson Hand Summon Buff, Monoxider Summon Buff, Starite Summon Buff, Omega Starite Pet Buff,
+Heart Moth Buff, Grape Phanta Buff, Neutron Yogurt Buff, Peeled Carrot Buff, Red Licorice Buff, and Spicy Eel Buff
 
 Fixes:
 - Fixed the Corrupt Pot using Crimtane and Tissue Samples instead of Demonite and Shadow Scales
