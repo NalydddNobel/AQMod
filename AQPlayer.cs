@@ -589,6 +589,7 @@ namespace AQMod
         public bool hotAmulet;
         public bool coldAmulet;
         public bool shockCollar;
+        public bool healBeforeDeath;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -938,6 +939,7 @@ namespace AQMod
             antiGravityItems = false;
             equivalenceMachine = false;
             shockCollar = false;
+            healBeforeDeath = false;
             if (extraHP > 60) // to cap life max buffs at 60
             {
                 extraHP = 60;
@@ -1408,6 +1410,15 @@ namespace AQMod
 
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
+            if (healBeforeDeath && player.potionDelay <= 0)
+            {
+                if (player.statLife < 0)
+                {
+                    player.statLife = 1;
+                }
+                player.QuickHeal();
+                return false;
+            }
             if (omori)
             {
                 if (omoriDeathTimer <= 0)

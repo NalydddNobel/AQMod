@@ -33,13 +33,13 @@ namespace AQMod.Items.Fish.BloodMoon
 
         public override bool RandomCatchFail()
         {
-            return Main.rand.NextBool(25);
+            return Main.rand.NextBool(65);
         }
 
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
         {
             return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
-                && !Main.dayTime && Main.bloodMoon;
+                && !Main.dayTime && Main.bloodMoon && Main.hardMode;
         }
     }
 }

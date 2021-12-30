@@ -108,11 +108,12 @@ namespace AQMod.Content.Players
                 }
                 if (daylightBurning)
                 {
-                    for (int i = 0; i < BuffLoader.BuffCount; i++)
+                    for (int i = 0; i < Player.MaxBuffs; i++)
                     {
-                        if (AQBuff.Sets.IsFoodBuff[i])
+                        if (player.buffTime[i] > 0 && AQBuff.Sets.IsFoodBuff[player.buffType[i]])
                         {
-                            player.buffImmune[i] = true;
+                            player.DelBuff(i);
+                            break;
                         }
                     }
                 }

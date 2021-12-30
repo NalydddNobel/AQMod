@@ -133,6 +133,9 @@ ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\nGives you a random
 ItemName.PalePufferfish=Pale Pufferfish
 ItemTooltip.PalePufferfish=Can cure you of many debuffs\nCan cure vampirism
 
+ItemName.BloodPlasma=Blood Plasma
+ItemTooltip.BloodPlasma=You will drink a healing potion when you get fatally hit
+
 ItemName.VampireSquid=Vampire Squid
 ItemTooltip.VampireSquid=Gives you vampirism
 

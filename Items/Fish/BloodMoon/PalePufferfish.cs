@@ -11,6 +11,7 @@ namespace AQMod.Items.Fish.BloodMoon
         {
             item.width = 20;
             item.height = 20;
+            item.consumable = true;
             item.value = Item.sellPrice(silver: 50);
             item.rare = ItemRarityID.Orange;
             item.useStyle = ItemUseStyleID.EatingUsing;
@@ -22,7 +23,7 @@ namespace AQMod.Items.Fish.BloodMoon
 
         public override bool RandomCatchFail()
         {
-            return Main.rand.NextBool(25);
+            return Main.rand.NextBool(35);
         }
 
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
