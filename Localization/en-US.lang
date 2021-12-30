@@ -289,7 +289,7 @@ BossChecklistDesc.RedSprite=Occasionally appears during the Gale Streams!
 # Recipe Groups
 
 RecipeGroup.AnyEnergy=Any Energy
-RecipeGroup.AnyNobleMushroom=Any Noble Mushroom
+RecipeGroup.AnyNobleMushroom=Any Noble Spore
 
 Config.RequiresReload=Requires a reload.
 
@@ -720,9 +720,9 @@ ProjectileName.MothmanCritExplosion=Mothman Mask
 # Placeable #
 #############
 # Mushrooms
-ItemName.ArgonMushroom=Argon Mushroom
-ItemName.KryptonMushroom=Krypton Mushroom
-ItemName.XenonMushroom=Xenon Mushroom
+ItemName.ArgonMushroom=Argon Spore
+ItemName.KryptonMushroom=Krypton Spore
+ItemName.XenonMushroom=Xenon Spore
 # Torches
 ItemName.ExoticRedTorch=Exotic Red Torch
 ItemName.ExoticGreenTorch=Exotic Green Torch

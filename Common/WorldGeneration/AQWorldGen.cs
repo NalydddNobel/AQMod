@@ -246,7 +246,21 @@ namespace AQMod.Common.WorldGeneration
             for (int i = 0; i < requiredMushrooms; i++)
             {
                 int index = WorldGen.genRand.Next(validSpots.Count);
-                WorldGen.Place2x2Horizontal(validSpots[index].X, validSpots[index].Y, (ushort)tileType, style);
+                WorldGen.Place2x2Horizontal(validSpots[index].X, validSpots[index].Y, (ushort)tileType, style + WorldGen.genRand.Next(3));
+                if (Main.tile[validSpots[index].X, validSpots[index].Y].type == tileType)
+                {
+                    int verticalStyle = WorldGen.genRand.Next(3);
+                    if (verticalStyle != 0)
+                    {
+                        int mushroomX = validSpots[index].X - Main.tile[validSpots[index].X, validSpots[index].Y].frameX % 36 / 18;
+                        int mushroomY = validSpots[index].Y - Main.tile[validSpots[index].X, validSpots[index].Y].frameY % 38 / 18;
+
+                        Main.tile[mushroomX, mushroomY].frameY += (short)(38 * verticalStyle);
+                        Main.tile[mushroomX + 1, mushroomY].frameY += (short)(38 * verticalStyle);
+                        Main.tile[mushroomX, mushroomY + 1].frameY += (short)(38 * verticalStyle);
+                        Main.tile[mushroomX + 1, mushroomY + 1].frameY += (short)(38 * verticalStyle);
+                    }
+                }
                 validSpots.RemoveAt(index);
             }
             return true;

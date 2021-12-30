@@ -33,6 +33,7 @@ namespace AQMod.Tiles.Nature
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18, };
             TileObjectData.newTile.StyleHorizontal = true;
+            TileObjectData.newTile.StyleWrapLimit = 3;
             TileObjectData.addTile(Type);
             var name = CreateMapEntryName("NobleMushrooms");
             AddMapEntry(new Color(208, 0, 126), name);
@@ -58,25 +59,25 @@ namespace AQMod.Tiles.Nature
             {
                 default:
                 {
-                    r = 1.04f;
+                    r = 0.52f;
                     g = 0f;
-                    b = 0.63f;
+                    b = 0.31f;
                 }
                 break;
 
                 case 1:
                 {
-                    r = 0.72f;
-                    g = 1.27f;
-                    b = 0.01f;
+                    r = 0.36f;
+                    g = 0.7f;
+                    b = 0f;
                 }
                 break;
 
                 case 2:
                 {
                     r = 0f;
-                    g = 0.99f;
-                    b = 1.04f;
+                    g = 0.49f;
+                    b = 0.52f;
                 }
                 break;
             }
