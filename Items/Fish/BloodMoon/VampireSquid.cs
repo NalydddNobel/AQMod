@@ -1,4 +1,4 @@
-﻿using AQMod.Buffs.Timers;
+﻿using AQMod.Buffs.Vampire;
 using AQMod.Content.Fishing;
 using AQMod.Content.Players;
 using Terraria;
@@ -16,14 +16,24 @@ namespace AQMod.Items.Fish.BloodMoon
             item.value = Item.sellPrice(gold: 3);
             item.consumable = true;
             item.rare = ItemRarityID.Orange;
+            item.useStyle = ItemUseStyleID.EatingUsing;
+            item.UseSound = SoundID.Item2;
+            item.useTime = 17;
+            item.useAnimation = 17;
             item.buffTime = 10800;
             item.buffType = ModContent.BuffType<Vampirism>();
+            item.maxStack = 999;
         }
 
         public override bool UseItem(Player player)
         {
             player.GetModPlayer<VampirismPlayer>().GiveVampirism(item.buffTime);
             return base.UseItem(player);
+        }
+
+        public override bool RandomCatchFail()
+        {
+            return Main.rand.NextBool(25);
         }
 
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)

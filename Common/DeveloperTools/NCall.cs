@@ -3,12 +3,14 @@ using AQMod.Common.Graphics;
 using AQMod.Common.IO;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
+using AQMod.Content.LegacyWorldEvents.CrabSeason;
+using AQMod.Content.LegacyWorldEvents.DemonSiege;
+using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.GaleStreams;
+using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Generation;
-using AQMod.Content.LegacyWorldEvents.CrabSeason;
-using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters;
 using AQMod.Tiles;
@@ -26,7 +28,6 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using AQMod.Content.World.Events.GlimmerEvent;
 
 namespace AQMod.Common.DeveloperTools
 {
@@ -64,14 +65,14 @@ namespace AQMod.Common.DeveloperTools
                 switch (debug)
                 {
                     case 1:
-                    {
-                        bool meteorTime = GaleStreams.MeteorTime();
-                        tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
-                        tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < AQMod.SpaceLayer - (40 * 16f)).ToString()));
-                        tooltips.Add(new TooltipLine(mod, "2", "windy day: " + ImitatedWindyDay.IsItAHappyWindyDay));
-                        tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + GaleStreams.IsActive));
-                    }
-                    break;
+                        {
+                            bool meteorTime = GaleStreams.MeteorTime();
+                            tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
+                            tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < AQMod.SpaceLayer - (40 * 16f)).ToString()));
+                            tooltips.Add(new TooltipLine(mod, "2", "windy day: " + ImitatedWindyDay.IsItAHappyWindyDay));
+                            tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + GaleStreams.IsActive));
+                        }
+                        break;
                 }
             }
 
@@ -117,626 +118,632 @@ namespace AQMod.Common.DeveloperTools
             switch (callType)
             {
                 default:
-                caller.Reply("Command doesn't exist.");
-                break;
+                    caller.Reply("Command doesn't exist.");
+                    break;
+
+                case "vampirism":
+                    {
+                        caller.Player.GetModPlayer<VampirismPlayer>().Vampirism = ushort.Parse(args[1]);
+                    }
+                    break;
 
                 case "wikiitem":
-                {
-                    WikiTestStuff.basicwikipage(AQMod.Instance.GetItem(args[1]));
-                }
-                break;
+                    {
+                        WikiTestStuff.basicwikipage(AQMod.Instance.GetItem(args[1]));
+                    }
+                    break;
 
                 case "chestloot":
-                {
-                    ChestLoot.AddLoot(Chest.FindChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y));
-                }
-                break;
+                    {
+                        ChestLoot.AddLoot(Chest.FindChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y));
+                    }
+                    break;
 
                 case "nametagitem":
-                {
-                    string name = "";
-                    for (int i = 1; i < args.Length; i++)
                     {
-                        if (i > 1)
-                            name += " ";
-                        name += args[i];
+                        string name = "";
+                        for (int i = 1; i < args.Length; i++)
+                        {
+                            if (i > 1)
+                                name += " ";
+                            name += args[i];
+                        }
+                        caller.Player.HeldItem.GetGlobalItem<Content.NameTagItem>().nameTag = name;
                     }
-                    caller.Player.HeldItem.GetGlobalItem<Content.NameTagItem>().nameTag = name;
-                }
-                break;
+                    break;
 
                 case "demonsiegei":
-                caller.Reply("x: " + DemonSiege.X);
-                caller.Reply("y: " + DemonSiege.Y);
-                caller.Reply("plr: " + DemonSiege.PlayerActivator + " (" + Main.player[DemonSiege.PlayerActivator] + ")");
-                if (DemonSiege.BaseItem != null)
-                   caller.Reply("item: " + DemonSiege.BaseItem.type + " (" + Lang.GetItemName(DemonSiege.BaseItem.type) + ")");
-                break;
+                    caller.Reply("x: " + DemonSiege.X);
+                    caller.Reply("y: " + DemonSiege.Y);
+                    caller.Reply("plr: " + DemonSiege.PlayerActivator + " (" + Main.player[DemonSiege.PlayerActivator] + ")");
+                    if (DemonSiege.BaseItem != null)
+                        caller.Reply("item: " + DemonSiege.BaseItem.type + " (" + Lang.GetItemName(DemonSiege.BaseItem.type) + ")");
+                    break;
 
                 case "staritescene":
-                {
-                    caller.Reply("scene: " + OmegaStariteScenes.SceneType + ", index: " + OmegaStariteScenes.OmegaStariteIndexCache);
-                }
-                break;
+                    {
+                        caller.Reply("scene: " + OmegaStariteScenes.SceneType + ", index: " + OmegaStariteScenes.OmegaStariteIndexCache);
+                    }
+                    break;
 
                 case "glimmerxy":
-                {
-                    caller.Reply("x: " + GlimmerEvent.tileX + ", y: " + GlimmerEvent.tileY);
-                }
-                break;
+                    {
+                        caller.Reply("x: " + GlimmerEvent.tileX + ", y: " + GlimmerEvent.tileY);
+                    }
+                    break;
 
                 case "initday":
-                {
-                    int count = 1;
-                    if (args.Length > 1)
                     {
-                        count = int.Parse(args[1]);
-                    }
-                    Main.NewText(count);
-                    if (count == -1)
-                    {
-                        Main.dayTime = false;
-                        Main.time = Main.nightLength;
-                        break;
-                    }
-                    var method = typeof(Main).GetMethod("UpdateTime", BindingFlags.NonPublic | BindingFlags.Static);
-                    for (int i = 0; i < count; i++)
-                    {
-                        Main.dayTime = false;
-                        Main.time = 60;
-                        method.Invoke(null, null);
+                        int count = 1;
+                        if (args.Length > 1)
+                        {
+                            count = int.Parse(args[1]);
+                        }
+                        Main.NewText(count);
+                        if (count == -1)
+                        {
+                            Main.dayTime = false;
+                            Main.time = Main.nightLength;
+                            break;
+                        }
+                        var method = typeof(Main).GetMethod("UpdateTime", BindingFlags.NonPublic | BindingFlags.Static);
+                        for (int i = 0; i < count; i++)
+                        {
+                            Main.dayTime = false;
+                            Main.time = 60;
+                            method.Invoke(null, null);
 
-                        Main.time = Main.nightLength;
-                        Main.fastForwardTime = false;
-                        AQMod.dayrateIncrease = 0;
-                        method.Invoke(null, null);
+                            Main.time = Main.nightLength;
+                            Main.fastForwardTime = false;
+                            AQMod.dayrateIncrease = 0;
+                            method.Invoke(null, null);
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case "initnight":
-                {
-                    int count = 1;
-                    if (args.Length > 1)
                     {
-                        count = int.Parse(args[1]);
-                    }
-                    Main.NewText(count);
-                    if (count == -1)
-                    {
-                        Main.dayTime = true;
-                        Main.time = Main.dayLength;
-                        break;
-                    }
-                    var method = typeof(Main).GetMethod("UpdateTime", BindingFlags.NonPublic | BindingFlags.Static);
-                    for (int i = 0; i < count; i++)
-                    {
-                        Main.dayTime = true;
-                        Main.time = 60;
-                        Main.bloodMoon = false;
-                        Main.stopMoonEvent();
-                        method.Invoke(null, null);
+                        int count = 1;
+                        if (args.Length > 1)
+                        {
+                            count = int.Parse(args[1]);
+                        }
+                        Main.NewText(count);
+                        if (count == -1)
+                        {
+                            Main.dayTime = true;
+                            Main.time = Main.dayLength;
+                            break;
+                        }
+                        var method = typeof(Main).GetMethod("UpdateTime", BindingFlags.NonPublic | BindingFlags.Static);
+                        for (int i = 0; i < count; i++)
+                        {
+                            Main.dayTime = true;
+                            Main.time = 60;
+                            Main.bloodMoon = false;
+                            Main.stopMoonEvent();
+                            method.Invoke(null, null);
 
-                        Main.time = Main.dayLength;
-                        Main.fastForwardTime = false;
-                        AQMod.dayrateIncrease = 0;
-                        method.Invoke(null, null);
+                            Main.time = Main.dayLength;
+                            Main.fastForwardTime = false;
+                            AQMod.dayrateIncrease = 0;
+                            method.Invoke(null, null);
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case "april":
                 case "fools":
                 case "aprilfools":
-                AprilFoolsJoke.Active = true;
-                break;
+                    AprilFoolsJoke.Active = true;
+                    break;
 
                 case "downedglimmer":
                 case "downedstars":
-                WorldDefeats.DownedGlimmer = !WorldDefeats.DownedGlimmer;
-                break;
+                    WorldDefeats.DownedGlimmer = !WorldDefeats.DownedGlimmer;
+                    break;
 
                 case "downedcrabseason":
                 case "downedcrabs":
-                WorldDefeats.DownedCrabSeason = !WorldDefeats.DownedCrabSeason;
-                break;
+                    WorldDefeats.DownedCrabSeason = !WorldDefeats.DownedCrabSeason;
+                    break;
 
                 case "downedcrabson":
                 case "downedcrab":
-                WorldDefeats.DownedCrabson = !WorldDefeats.DownedCrabson;
-                break;
+                    WorldDefeats.DownedCrabson = !WorldDefeats.DownedCrabson;
+                    break;
 
                 case "downedomegastarite":
                 case "downedomega":
                 case "downedstarite":
-                WorldDefeats.DownedStarite = !WorldDefeats.DownedStarite;
-                break;
+                    WorldDefeats.DownedStarite = !WorldDefeats.DownedStarite;
+                    break;
 
                 case "itemperature":
-                {
-                    sbyte newTemp = sbyte.Parse(args[1]);
-                    caller.Reply("changing temperature to: " + newTemp);
-                    caller.Player.GetModPlayer<AQPlayer>().InflictTemperature(newTemp);
-                }
-                break;
+                    {
+                        sbyte newTemp = sbyte.Parse(args[1]);
+                        caller.Reply("changing temperature to: " + newTemp);
+                        caller.Player.GetModPlayer<AQPlayer>().InflictTemperature(newTemp);
+                    }
+                    break;
 
                 case "settemperature":
-                {
-                    sbyte newTemp = sbyte.Parse(args[1]);
-                    caller.Reply("changing temperature to: " + newTemp);
-                    caller.Player.GetModPlayer<AQPlayer>().temperature = newTemp;
-                }
-                break;
+                    {
+                        sbyte newTemp = sbyte.Parse(args[1]);
+                        caller.Reply("changing temperature to: " + newTemp);
+                        caller.Player.GetModPlayer<AQPlayer>().temperature = newTemp;
+                    }
+                    break;
 
                 case "meteor":
-                {
-                    var b = Main.MouseWorld.ToTileCoordinates();
-                    if (args.Length > 7)
                     {
-                        GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]), ushort.Parse(args[7]));
+                        var b = Main.MouseWorld.ToTileCoordinates();
+                        if (args.Length > 7)
+                        {
+                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]), ushort.Parse(args[7]));
+                        }
+                        else if (args.Length > 6)
+                        {
+                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]));
+                        }
+                        else if (args.Length > 2)
+                        {
+                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]));
+                        }
+                        else
+                        {
+                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]));
+                        }
                     }
-                    else if (args.Length > 6)
-                    {
-                        GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]));
-                    }
-                    else if (args.Length > 2)
-                    {
-                        GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]));
-                    }
-                    else
-                    {
-                        GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]));
-                    }
-                }
-                break;
+                    break;
 
                 case "resettmerch":
-                {
-                    Chest.SetupTravelShop();
-                }
-                break;
+                    {
+                        Chest.SetupTravelShop();
+                    }
+                    break;
 
                 case "debugi":
-                {
-                    caller.Player.HeldItem.GetGlobalItem<NCallGlobalItem>().debug = byte.Parse(args[1]);
-                }
-                break;
+                    {
+                        caller.Player.HeldItem.GetGlobalItem<NCallGlobalItem>().debug = byte.Parse(args[1]);
+                    }
+                    break;
 
                 case "writeencore":
-                {
-                    var aQPlayer = caller.Player.GetModPlayer<AQPlayer>();
-                    string path = DebugFolderPath;
-                    Directory.CreateDirectory(path);
-                    var buffer = aQPlayer.SerializeBossKills();
-                    var stream = File.Create(path + Path.DirectorySeparatorChar + "encorekills.txt", buffer.Length);
-                    stream.Write(buffer, 0, buffer.Length);
-                    Utils.OpenFolder(path);
-                    aQPlayer.DeserialzeBossKills(buffer);
-                }
-                break;
+                    {
+                        var aQPlayer = caller.Player.GetModPlayer<AQPlayer>();
+                        string path = DebugFolderPath;
+                        Directory.CreateDirectory(path);
+                        var buffer = aQPlayer.SerializeBossKills();
+                        var stream = File.Create(path + Path.DirectorySeparatorChar + "encorekills.txt", buffer.Length);
+                        stream.Write(buffer, 0, buffer.Length);
+                        Utils.OpenFolder(path);
+                        aQPlayer.DeserialzeBossKills(buffer);
+                    }
+                    break;
 
                 case "npcssetname":
-                {
-                    string name = args[1];
-                    for (int i = 2; i < args.Length; i++)
                     {
-                        name += " " + args[i];
+                        string name = args[1];
+                        for (int i = 2; i < args.Length; i++)
+                        {
+                            name += " " + args[i];
+                        }
+                        for (int i = 0; i < Main.maxNPCs; i++)
+                        {
+                            Main.npc[i].GivenName = name;
+                        }
                     }
-                    for (int i = 0; i < Main.maxNPCs; i++)
-                    {
-                        Main.npc[i].GivenName = name;
-                    }
-                }
-                break;
+                    break;
 
                 case "npcssethp":
-                {
-                    int hp = int.Parse(args[1]);
-                    for (int i = 0; i < Main.maxNPCs; i++)
                     {
-                        Main.npc[i].lifeMax = hp;
-                        Main.npc[i].life = hp;
+                        int hp = int.Parse(args[1]);
+                        for (int i = 0; i < Main.maxNPCs; i++)
+                        {
+                            Main.npc[i].lifeMax = hp;
+                            Main.npc[i].life = hp;
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case "generateglimmers":
-                {
-                    AQWorldGen.GenerateGlimmeringStatues(null);
-                }
-                break;
+                    {
+                        AQWorldGen.GenerateGlimmeringStatues(null);
+                    }
+                    break;
 
                 case "generateglobes":
-                {
-                    AQWorldGen.GenerateGlobeTemples(null);
-                }
-                break;
+                    {
+                        AQWorldGen.GenerateGlobeTemples(null);
+                    }
+                    break;
 
                 case "placeglimmer":
-                {
-                    caller.Reply("placed correctly: " + GlimmeringStatue.TryGenGlimmeringStatue((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
-                }
-                break;
+                    {
+                        caller.Reply("placed correctly: " + GlimmeringStatue.TryGenGlimmeringStatue((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
+                    }
+                    break;
 
                 case "createsample":
-                {
-                    if (args[1][0] == '0')
                     {
-                        string path = "";
-                        for (int i = 1; i < args[1].Length; i++)
+                        if (args[1][0] == '0')
                         {
-                            path += args[1][i];
+                            string path = "";
+                            for (int i = 1; i < args[1].Length; i++)
+                            {
+                                path += args[1][i];
+                            }
+                            args[1] = path;
+                            ThreadPool.QueueUserWorkItem(createSample, args);
                         }
-                        args[1] = path;
-                        ThreadPool.QueueUserWorkItem(createSample, args);
+                        else
+                        {
+                            createSample(args);
+                        }
                     }
-                    else
-                    {
-                        createSample(args);
-                    }
-                }
-                break;
+                    break;
 
                 case "glimmerspawn":
-                {
-                    caller.Reply("glimmer chance: " + GlimmerEvent.spawnChance);
-                }
-                break;
+                    {
+                        caller.Reply("glimmer chance: " + GlimmerEvent.spawnChance);
+                    }
+                    break;
 
                 case "glimmerlayer":
-                {
-                    caller.Reply("glimmer layer: " + GlimmerEvent.GetLayerIndex(GlimmerEvent.GetTileDistance(caller.Player)));
-                }
-                break;
+                    {
+                        caller.Reply("glimmer layer: " + GlimmerEvent.GetLayerIndex(GlimmerEvent.GetTileDistance(caller.Player)));
+                    }
+                    break;
 
                 case "placeglobe":
-                {
-                    caller.Reply("placed correctly: " + Globe.GenGlobeTemple((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
-                }
-                break;
+                    {
+                        caller.Reply("placed correctly: " + Globe.GenGlobeTemple((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
+                    }
+                    break;
 
                 case "placeuglobe":
-                {
-                    caller.Reply("placed correctly: " + Globe.PlaceUndiscoveredGlobe(Main.MouseWorld.ToTileCoordinates()));
-                }
-                break;
+                    {
+                        caller.Reply("placed correctly: " + Globe.PlaceUndiscoveredGlobe(Main.MouseWorld.ToTileCoordinates()));
+                    }
+                    break;
 
                 case "robstersave":
-                {
-                    caller.Reply("Hunt Key: " + HuntSystem.Hunt.GetKey());
-                    if (HuntSystem.TargetNPC != -1)
                     {
-                        var modNPCIO = new ModNPCIO();
-                        string key = modNPCIO.GetKey(HuntSystem._targetNPCType);
-                        caller.Reply("Target NPC: " + key);
-                        int npcType = modNPCIO.GetID(key);
-                        HuntSystem.SetNPCTarget(npcType);
-                        caller.Reply("Attempt reload NPC type: " + npcType + " (" + Lang.GetNPCNameValue(npcType) + "), ((" + Main.npc[HuntSystem.TargetNPC].FullName + "))");
+                        caller.Reply("Hunt Key: " + HuntSystem.Hunt.GetKey());
+                        if (HuntSystem.TargetNPC != -1)
+                        {
+                            var modNPCIO = new ModNPCIO();
+                            string key = modNPCIO.GetKey(HuntSystem._targetNPCType);
+                            caller.Reply("Target NPC: " + key);
+                            int npcType = modNPCIO.GetID(key);
+                            HuntSystem.SetNPCTarget(npcType);
+                            caller.Reply("Attempt reload NPC type: " + npcType + " (" + Lang.GetNPCNameValue(npcType) + "), ((" + Main.npc[HuntSystem.TargetNPC].FullName + "))");
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case "gorenests":
-                AQWorldGen.GenerateGoreNests(null);
-                break;
+                    AQWorldGen.GenerateGoreNests(null);
+                    break;
 
                 case "gorenest2":
-                caller.Reply(GoreNest.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, true, true).ToString());
-                break;
+                    caller.Reply(GoreNest.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, true, true).ToString());
+                    break;
 
                 case "gorenest":
-                caller.Reply(GoreNest.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, false, false).ToString());
-                break;
+                    caller.Reply(GoreNest.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, false, false).ToString());
+                    break;
 
                 case "downeddemonsiege":
                 case "downeddemon":
                 case "downedsiege":
-                WorldDefeats.DownedDemonSiege = !WorldDefeats.DownedDemonSiege;
-                break;
+                    WorldDefeats.DownedDemonSiege = !WorldDefeats.DownedDemonSiege;
+                    break;
 
                 case "demonsiegequick":
-                DemonSiege.UpgradeItem();
-                DemonSiege.Deactivate();
-                WorldDefeats.DownedDemonSiege = true;
-                break;
+                    DemonSiege.UpgradeItem();
+                    DemonSiege.Deactivate();
+                    WorldDefeats.DownedDemonSiege = true;
+                    break;
 
                 case "demonsiegeend":
-                DemonSiege.Deactivate();
-                break;
+                    DemonSiege.Deactivate();
+                    break;
 
                 case "fish":
-                {
-                    var aQPlayer = caller.Player.GetModPlayer<AQPlayer>();
-                    caller.Reply("fishing power cache: " + aQPlayer.FishingPowerCache.ToString());
-                    caller.Reply("popper power: " + aQPlayer.PopperBaitPower.ToString());
-                    caller.Reply("popper type: " + aQPlayer.PopperType.ToString() + "( [i:" + aQPlayer.PopperType.ToString() + "] )");
-                }
-                break;
+                    {
+                        var aQPlayer = caller.Player.GetModPlayer<AQPlayer>();
+                        caller.Reply("fishing power cache: " + aQPlayer.FishingPowerCache.ToString());
+                        caller.Reply("popper power: " + aQPlayer.PopperBaitPower.ToString());
+                        caller.Reply("popper type: " + aQPlayer.PopperType.ToString() + "( [i:" + aQPlayer.PopperType.ToString() + "] )");
+                    }
+                    break;
 
                 case "crabseasontimer2":
-                if (args.Length > 1)
-                {
-                    CrabSeason.crabSeasonTimer = int.Parse(args[1]);
-                }
-                if (CrabSeason.crabSeasonTimer < 0)
-                {
-                    caller.Reply(-CrabSeason.crabSeasonTimer + " until crab season ends");
-                }
-                else
-                {
-                    caller.Reply(CrabSeason.crabSeasonTimer + " until crab season starts");
-                }
-                break;
-
-                case "crabseasontimer":
-                if (args.Length > 1)
-                {
-                    CrabSeason.crabSeasonTimer = int.Parse(args[1]);
-                }
-                if (CrabSeason.crabSeasonTimer < 0)
-                {
-                    caller.Reply(AQUtils.TimeText2(-CrabSeason.crabSeasonTimer) + " until crab season ends");
-                }
-                else
-                {
-                    caller.Reply(AQUtils.TimeText2(CrabSeason.crabSeasonTimer) + " until crab season starts");
-                }
-                break;
-
-                case "crabseasonstart":
-                {
-                    CrabSeason.Activate();
-                    AQMod.BroadcastMessage(AQText.Key + "Common.CrabSeasonWarning", CrabSeason.TextColor);
-                }
-                break;
-
-                case "alllang":
-                {
-                    int i = 0;
-                    while (true)
+                    if (args.Length > 1)
                     {
-                        var g = GameCulture.FromLegacyId(i);
-                        caller.Reply(i + ": " + g.CultureInfo.Name);
-                        i++;
+                        CrabSeason.crabSeasonTimer = int.Parse(args[1]);
                     }
-                }
-
-                case "langmerge2":
-                {
-                    LangHelper.MergeEnglish(GameCulture.FromLegacyId(int.Parse(args[1])));
-                }
-                break;
-
-                case "langmerge":
-                {
-                    LangHelper.Merge(GameCulture.FromLegacyId(int.Parse(args[1])));
-                }
-                break;
-
-                case "windspeed":
-                {
-                    Main.windSpeedSet = int.Parse(args[1]);
-                }
-                break;
-
-                case "weirdunusedcutscenethingy":
-                {
-                    CinematicManager.Instance.PlayFilm(new DD2Film());
-                }
-                break;
-
-                case "aquest":
-                {
-                    if (args.Length == 1)
+                    if (CrabSeason.crabSeasonTimer < 0)
                     {
-                        caller.Reply("Angler Quest: " + Main.anglerQuest + " ([i:" + Main.anglerQuestItemNetIDs[Main.anglerQuest] + "])");
-                        caller.Reply("Angler Quest Finished: " + Main.anglerQuestFinished);
+                        caller.Reply(-CrabSeason.crabSeasonTimer + " until crab season ends");
                     }
                     else
                     {
-                        switch (args[1])
+                        caller.Reply(CrabSeason.crabSeasonTimer + " until crab season starts");
+                    }
+                    break;
+
+                case "crabseasontimer":
+                    if (args.Length > 1)
+                    {
+                        CrabSeason.crabSeasonTimer = int.Parse(args[1]);
+                    }
+                    if (CrabSeason.crabSeasonTimer < 0)
+                    {
+                        caller.Reply(AQUtils.TimeText2(-CrabSeason.crabSeasonTimer) + " until crab season ends");
+                    }
+                    else
+                    {
+                        caller.Reply(AQUtils.TimeText2(CrabSeason.crabSeasonTimer) + " until crab season starts");
+                    }
+                    break;
+
+                case "crabseasonstart":
+                    {
+                        CrabSeason.Activate();
+                        AQMod.BroadcastMessage(AQText.Key + "Common.CrabSeasonWarning", CrabSeason.TextColor);
+                    }
+                    break;
+
+                case "alllang":
+                    {
+                        int i = 0;
+                        while (true)
                         {
-                            default:
-                            {
-                                Main.anglerQuest = int.Parse(args[1]);
-                                caller.Reply("Set Angler Quest to: " + Main.anglerQuest + " ([i:" + Main.anglerQuestItemNetIDs[Main.anglerQuest] + "])");
-                            }
-                            break;
-
-                            case "showall":
-                            {
-                                for (int i = 0; i < Main.anglerQuestItemNetIDs.Length; i++)
-                                {
-                                    caller.Reply(i + ": [i:" + Main.anglerQuestItemNetIDs[i] + "]");
-                                }
-                            }
-                            break;
-
-                            case "true":
-                            {
-                                Main.anglerQuestFinished = true;
-                                caller.Reply("Set Angler Quest Finished: " + Main.anglerQuestFinished);
-                            }
-                            break;
-
-                            case "false":
-                            {
-                                Main.anglerQuestFinished = false;
-                                caller.Reply("Set Angler Quest Finished: " + Main.anglerQuestFinished);
-                            }
-                            break;
+                            var g = GameCulture.FromLegacyId(i);
+                            caller.Reply(i + ": " + g.CultureInfo.Name);
+                            i++;
                         }
                     }
-                }
-                break;
+
+                case "langmerge2":
+                    {
+                        LangHelper.MergeEnglish(GameCulture.FromLegacyId(int.Parse(args[1])));
+                    }
+                    break;
+
+                case "langmerge":
+                    {
+                        LangHelper.Merge(GameCulture.FromLegacyId(int.Parse(args[1])));
+                    }
+                    break;
+
+                case "windspeed":
+                    {
+                        Main.windSpeedSet = int.Parse(args[1]);
+                    }
+                    break;
+
+                case "weirdunusedcutscenethingy":
+                    {
+                        CinematicManager.Instance.PlayFilm(new DD2Film());
+                    }
+                    break;
+
+                case "aquest":
+                    {
+                        if (args.Length == 1)
+                        {
+                            caller.Reply("Angler Quest: " + Main.anglerQuest + " ([i:" + Main.anglerQuestItemNetIDs[Main.anglerQuest] + "])");
+                            caller.Reply("Angler Quest Finished: " + Main.anglerQuestFinished);
+                        }
+                        else
+                        {
+                            switch (args[1])
+                            {
+                                default:
+                                    {
+                                        Main.anglerQuest = int.Parse(args[1]);
+                                        caller.Reply("Set Angler Quest to: " + Main.anglerQuest + " ([i:" + Main.anglerQuestItemNetIDs[Main.anglerQuest] + "])");
+                                    }
+                                    break;
+
+                                case "showall":
+                                    {
+                                        for (int i = 0; i < Main.anglerQuestItemNetIDs.Length; i++)
+                                        {
+                                            caller.Reply(i + ": [i:" + Main.anglerQuestItemNetIDs[i] + "]");
+                                        }
+                                    }
+                                    break;
+
+                                case "true":
+                                    {
+                                        Main.anglerQuestFinished = true;
+                                        caller.Reply("Set Angler Quest Finished: " + Main.anglerQuestFinished);
+                                    }
+                                    break;
+
+                                case "false":
+                                    {
+                                        Main.anglerQuestFinished = false;
+                                        caller.Reply("Set Angler Quest Finished: " + Main.anglerQuestFinished);
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                    break;
 
                 case "placecoral":
-                WorldGen.PlaceTile((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, ModContent.TileType<ExoticCoral>(), true, false, -1, int.Parse(args[1]));
-                break;
+                    WorldGen.PlaceTile((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, ModContent.TileType<ExoticCoral>(), true, false, -1, int.Parse(args[1]));
+                    break;
 
                 case "ravinetest":
-                {
-                    Main.NewText("Generating Ravine...");
-                    AQWorldGen.PlaceOceanRavine((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, caller.Player.HeldItem.placeStyle);
-                    Main.NewText("Generation Complete!");
-                }
-                break;
+                    {
+                        Main.NewText("Generating Ravine...");
+                        AQWorldGen.PlaceOceanRavine((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, caller.Player.HeldItem.placeStyle);
+                        Main.NewText("Generation Complete!");
+                    }
+                    break;
 
                 case "coraltest":
-                {
-                    caller.Reply(ExoticCoral.TryPlaceExoticBlotch((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, WorldGen.genRand.Next(3), 50).ToString());
-                }
-                break;
+                    {
+                        caller.Reply(ExoticCoral.TryPlaceExoticBlotch((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, WorldGen.genRand.Next(3), 50).ToString());
+                    }
+                    break;
 
                 case "render":
-                if (args.Length > 1)
-                {
-                    object captureLock = new object();
-                    Monitor.Enter(captureLock);
-                    Main.GlobalTimerPaused = true;
-
-                    string saveLocation = Main.SavePath + Path.DirectorySeparatorChar + "render_output_" + args[1] + Path.DirectorySeparatorChar;
-                    Directory.CreateDirectory(saveLocation);
-
-                    switch (args[1])
+                    if (args.Length > 1)
                     {
-                        case "omegastarite":
+                        object captureLock = new object();
+                        Monitor.Enter(captureLock);
+                        Main.GlobalTimerPaused = true;
+
+                        string saveLocation = Main.SavePath + Path.DirectorySeparatorChar + "render_output_" + args[1] + Path.DirectorySeparatorChar;
+                        Directory.CreateDirectory(saveLocation);
+
+                        switch (args[1])
                         {
-                            NPC npc = new NPC();
-                            npc.SetDefaults(ModContent.NPCType<NPCs.Boss.Starite.OmegaStarite>());
-                            var drawPos = Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
-                            npc.Center = drawPos;
-                            var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)npc.modNPC;
-                            omegaStarite.Init();
-                            for (int i = 0; i < 240; i++)
-                            {
-                                var capture = new RenderTarget2D(Main.spriteBatch.GraphicsDevice, Main.screenWidth, Main.screenHeight, false, Main.spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-                                var captureBatch = Main.spriteBatch;
+                            case "omegastarite":
+                                {
+                                    NPC npc = new NPC();
+                                    npc.SetDefaults(ModContent.NPCType<NPCs.Boss.Starite.OmegaStarite>());
+                                    var drawPos = Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+                                    npc.Center = drawPos;
+                                    var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)npc.modNPC;
+                                    omegaStarite.Init();
+                                    for (int i = 0; i < 240; i++)
+                                    {
+                                        var capture = new RenderTarget2D(Main.spriteBatch.GraphicsDevice, Main.screenWidth, Main.screenHeight, false, Main.spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
+                                        var captureBatch = Main.spriteBatch;
 
-                                captureBatch.GraphicsDevice.SetRenderTarget(capture);
-                                captureBatch.GraphicsDevice.Clear(Color.Transparent);
+                                        captureBatch.GraphicsDevice.SetRenderTarget(capture);
+                                        captureBatch.GraphicsDevice.Clear(Color.Transparent);
 
-                                captureBatch.Begin();
+                                        captureBatch.Begin();
 
-                                omegaStarite.npc.FindFrame();
-                                omegaStarite.innerRingRotation += 0.0314f;
-                                omegaStarite.innerRingRoll += 0.0157f;
-                                omegaStarite.innerRingPitch += 0.01f;
-                                omegaStarite.outerRingRotation += 0.0157f;
-                                omegaStarite.outerRingRoll += 0.0314f;
-                                omegaStarite.outerRingPitch += 0.011f;
+                                        omegaStarite.npc.FindFrame();
+                                        omegaStarite.innerRingRotation += 0.0314f;
+                                        omegaStarite.innerRingRoll += 0.0157f;
+                                        omegaStarite.innerRingPitch += 0.01f;
+                                        omegaStarite.outerRingRotation += 0.0157f;
+                                        omegaStarite.outerRingRoll += 0.0314f;
+                                        omegaStarite.outerRingPitch += 0.011f;
 
-                                omegaStarite.Spin(drawPos);
-                                npc.modNPC.PreDraw(Main.spriteBatch, Color.White);
+                                        omegaStarite.Spin(drawPos);
+                                        npc.modNPC.PreDraw(Main.spriteBatch, Color.White);
 
-                                captureBatch.End();
+                                        captureBatch.End();
 
-                                captureBatch.GraphicsDevice.SetRenderTarget(null);
+                                        captureBatch.GraphicsDevice.SetRenderTarget(null);
 
-                                var stream = File.Create(saveLocation + "Frame_" + i + ".png");
-                                capture.SaveAsPng(stream, capture.Width, capture.Height);
-                                stream.Dispose();
-                            }
+                                        var stream = File.Create(saveLocation + "Frame_" + i + ".png");
+                                        capture.SaveAsPng(stream, capture.Width, capture.Height);
+                                        stream.Dispose();
+                                    }
+                                }
+                                break;
+
+                            case "omegastaritebosschecklistrender":
+                                {
+                                    var capture = new RenderTarget2D(Main.spriteBatch.GraphicsDevice, Main.screenWidth, Main.screenHeight, false, Main.spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
+                                    var captureBatch = Main.spriteBatch;
+
+                                    captureBatch.GraphicsDevice.SetRenderTarget(capture);
+                                    captureBatch.GraphicsDevice.Clear(Color.Transparent);
+
+                                    captureBatch.Begin();
+
+                                    NPC npc = new NPC();
+                                    npc.SetDefaults(ModContent.NPCType<NPCs.Boss.Starite.OmegaStarite>());
+
+                                    npc.Center = Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+                                    var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)npc.modNPC;
+                                    omegaStarite.Init();
+                                    omegaStarite.innerRingRoll = -0.8f;
+                                    omegaStarite.outerRingRoll = -0.865f;
+                                    omegaStarite.Spin(npc.Center);
+                                    npc.modNPC.PreDraw(Main.spriteBatch, Color.White);
+
+                                    captureBatch.End();
+
+                                    captureBatch.GraphicsDevice.SetRenderTarget(null);
+
+                                    var stream = File.Create(saveLocation + "Frame_0.png");
+                                    capture.SaveAsPng(stream, capture.Width, capture.Height);
+                                    stream.Dispose();
+                                }
+                                break;
                         }
-                        break;
 
-                        case "omegastaritebosschecklistrender":
-                        {
-                            var capture = new RenderTarget2D(Main.spriteBatch.GraphicsDevice, Main.screenWidth, Main.screenHeight, false, Main.spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-                            var captureBatch = Main.spriteBatch;
-
-                            captureBatch.GraphicsDevice.SetRenderTarget(capture);
-                            captureBatch.GraphicsDevice.Clear(Color.Transparent);
-
-                            captureBatch.Begin();
-
-                            NPC npc = new NPC();
-                            npc.SetDefaults(ModContent.NPCType<NPCs.Boss.Starite.OmegaStarite>());
-
-                            npc.Center = Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
-                            var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)npc.modNPC;
-                            omegaStarite.Init();
-                            omegaStarite.innerRingRoll = -0.8f;
-                            omegaStarite.outerRingRoll = -0.865f;
-                            omegaStarite.Spin(npc.Center);
-                            npc.modNPC.PreDraw(Main.spriteBatch, Color.White);
-
-                            captureBatch.End();
-
-                            captureBatch.GraphicsDevice.SetRenderTarget(null);
-
-                            var stream = File.Create(saveLocation + "Frame_0.png");
-                            capture.SaveAsPng(stream, capture.Width, capture.Height);
-                            stream.Dispose();
-                        }
-                        break;
+                        Monitor.Exit(captureLock);
                     }
-
-                    Monitor.Exit(captureLock);
-                }
-                else
-                {
-                    caller.Reply("render failed");
-                }
-                break;
+                    else
+                    {
+                        caller.Reply("render failed");
+                    }
+                    break;
 
                 case "noblemushrooms":
-                {
-                    caller.Reply("can place noble group: " + AQWorldGen.TryPlaceNobleGroup(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y, WorldGen.genRand.Next(3), WorldGen.genRand.Next(30, 75)).ToString());
-                }
-                break;
+                    {
+                        caller.Reply("can place noble group: " + AQWorldGen.TryPlaceNobleGroup(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y, WorldGen.genRand.Next(3), WorldGen.genRand.Next(30, 75)).ToString());
+                    }
+                    break;
 
                 case "endinvasion":
-                {
-                    Main.invasionDelay = 0;
-                    Main.invasionType = 0;
-                }
-                break;
+                    {
+                        Main.invasionDelay = 0;
+                        Main.invasionType = 0;
+                    }
+                    break;
 
                 case "startinvasion1":
                 case "startgoblin":
-                {
-                    Main.invasionDelay = 0;
-                    Main.StartInvasion(InvasionID.GoblinArmy);
-                }
-                break;
+                    {
+                        Main.invasionDelay = 0;
+                        Main.StartInvasion(InvasionID.GoblinArmy);
+                    }
+                    break;
 
                 case "startinvasion2":
                 case "startsnowlegion":
                 case "startfrostlegion":
-                {
-                    Main.invasionDelay = 0;
-                    Main.StartInvasion(InvasionID.SnowLegion);
-                }
-                break;
+                    {
+                        Main.invasionDelay = 0;
+                        Main.StartInvasion(InvasionID.SnowLegion);
+                    }
+                    break;
 
                 case "startinvasion3":
                 case "startpirate":
                 case "startpirates":
                 case "startpirateinvasion":
-                {
-                    Main.invasionDelay = 0;
-                    Main.StartInvasion(InvasionID.PirateInvasion);
-                }
-                break;
+                    {
+                        Main.invasionDelay = 0;
+                        Main.StartInvasion(InvasionID.PirateInvasion);
+                    }
+                    break;
 
                 case "startinvasion4":
                 case "startmartian":
                 case "startmartians":
                 case "startmartianmaddness":
-                {
-                    Main.invasionDelay = 0;
-                    Main.StartInvasion(InvasionID.MartianMadness);
-                }
-                break;
+                    {
+                        Main.invasionDelay = 0;
+                        Main.StartInvasion(InvasionID.MartianMadness);
+                    }
+                    break;
 
                 case "downedskeletron":
                 case "downedboss3":
-                {
-                    NPC.downedBoss3 = !NPC.downedBoss3;
-                    caller.Reply(NPC.downedBoss3.ToString());
-                }
-                break;
+                    {
+                        NPC.downedBoss3 = !NPC.downedBoss3;
+                        caller.Reply(NPC.downedBoss3.ToString());
+                    }
+                    break;
 
                 case "downedcrimson":
                 case "downedcorrupt":
@@ -746,253 +753,253 @@ namespace AQMod.Common.DeveloperTools
                 case "downedboc":
                 case "downedeow":
                 case "downedboss2":
-                {
-                    NPC.downedBoss2 = !NPC.downedBoss2;
-                    caller.Reply(NPC.downedBoss2.ToString());
-                }
-                break;
+                    {
+                        NPC.downedBoss2 = !NPC.downedBoss2;
+                        caller.Reply(NPC.downedBoss2.ToString());
+                    }
+                    break;
 
                 case "downedeye":
                 case "downedeyeofcthulhu":
                 case "downedeoc":
                 case "downedboss1":
-                {
-                    NPC.downedBoss1 = !NPC.downedBoss1;
-                    caller.Reply(NPC.downedBoss1.ToString());
-                }
-                break;
+                    {
+                        NPC.downedBoss1 = !NPC.downedBoss1;
+                        caller.Reply(NPC.downedBoss1.ToString());
+                    }
+                    break;
 
                 case "downedplantera":
                 case "downedplant":
                 case "downedplantboss":
-                {
-                    NPC.downedPlantBoss = !NPC.downedPlantBoss;
-                    caller.Reply(NPC.downedPlantBoss.ToString());
-                }
-                break;
+                    {
+                        NPC.downedPlantBoss = !NPC.downedPlantBoss;
+                        caller.Reply(NPC.downedPlantBoss.ToString());
+                    }
+                    break;
 
                 case "downedmoonlord":
                 case "downedml":
-                {
-                    NPC.downedMoonlord = !NPC.downedMoonlord;
-                    caller.Reply(NPC.downedMoonlord.ToString());
-                }
-                break;
+                    {
+                        NPC.downedMoonlord = !NPC.downedMoonlord;
+                        caller.Reply(NPC.downedMoonlord.ToString());
+                    }
+                    break;
 
                 case "downedgolem":
                 case "downedgolemboss":
-                {
-                    NPC.downedGolemBoss = !NPC.downedGolemBoss;
-                    caller.Reply(NPC.downedGolemBoss.ToString());
-                }
-                break;
+                    {
+                        NPC.downedGolemBoss = !NPC.downedGolemBoss;
+                        caller.Reply(NPC.downedGolemBoss.ToString());
+                    }
+                    break;
 
                 case "downedmech1":
                 case "downeddestroyer":
-                {
-                    NPC.downedMechBoss1 = !NPC.downedMechBoss1;
-                    caller.Reply(NPC.downedMechBoss1.ToString());
-                }
-                break;
+                    {
+                        NPC.downedMechBoss1 = !NPC.downedMechBoss1;
+                        caller.Reply(NPC.downedMechBoss1.ToString());
+                    }
+                    break;
 
                 case "downedmech2":
                 case "downedtwins":
-                {
-                    NPC.downedMechBoss2 = !NPC.downedMechBoss2;
-                    caller.Reply(NPC.downedMechBoss2.ToString());
-                }
-                break;
+                    {
+                        NPC.downedMechBoss2 = !NPC.downedMechBoss2;
+                        caller.Reply(NPC.downedMechBoss2.ToString());
+                    }
+                    break;
 
                 case "downedmech3":
                 case "downedprime":
                 case "downedskeletronprime":
-                {
-                    NPC.downedMechBoss3 = !NPC.downedMechBoss3;
-                    caller.Reply(NPC.downedMechBoss3.ToString());
-                }
-                break;
+                    {
+                        NPC.downedMechBoss3 = !NPC.downedMechBoss3;
+                        caller.Reply(NPC.downedMechBoss3.ToString());
+                    }
+                    break;
 
                 case "tikichesttrap":
-                {
-                    AQWorldGen.TryPlaceFakeTikiChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y);
-                }
-                break;
+                    {
+                        AQWorldGen.TryPlaceFakeTikiChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y);
+                    }
+                    break;
 
                 case "tikichest":
-                {
-                    AQWorldGen.TryPlaceTikiChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y, out int _);
-                }
-                break;
+                    {
+                        AQWorldGen.TryPlaceTikiChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y, out int _);
+                    }
+                    break;
 
                 case "bloodmoon":
-                {
-                    Main.dayTime = false;
-                    Main.time = 0;
-                    Main.bloodMoon = !Main.bloodMoon;
-                    Main.pumpkinMoon = false;
-                    Main.snowMoon = false;
-                }
-                break;
+                    {
+                        Main.dayTime = false;
+                        Main.time = 0;
+                        Main.bloodMoon = !Main.bloodMoon;
+                        Main.pumpkinMoon = false;
+                        Main.snowMoon = false;
+                    }
+                    break;
 
                 case "bloodmimic":
-                {
-                    if (args.Length == 1 || int.Parse(args[1]) == 0)
                     {
-                        NPC.NewNPC((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, ModContent.NPCType<BloodMimic>());
-                    }
-                    else if (int.Parse(args[1]) == 1)
-                    {
-                        NPC npc = new NPC();
-                        BloodMimic._usePlayerRectangle = false;
-                        npc.SetDefaults(ModContent.NPCType<BloodMimic>());
-                        int tileX = (int)Main.MouseWorld.X / 16;
-                        int tileY = (int)Main.MouseWorld.Y / 16;
-                        npc.modNPC.SpawnNPC(tileX, tileY);
-                        BloodMimic._usePlayerRectangle = true;
-                    }
-                    else if (int.Parse(args[1]) == 2)
-                    {
-                        NPC npc = new NPC();
-                        npc.SetDefaults(ModContent.NPCType<BloodMimic>());
-                        int tileX = (int)Main.MouseWorld.X / 16;
-                        int tileY = (int)Main.MouseWorld.Y / 16;
-                        npc.modNPC.SpawnNPC(tileX - (NPC.safeRangeX + 20) * caller.Player.direction, tileY);
-                    }
-                }
-                break;
-
-                case "moonphase":
-                {
-                    if (args.Length > 1)
-                        Main.moonPhase = int.Parse(args[1]);
-                    caller.Reply(AQText.moonPhaseName(Main.moonPhase) + "(" + Main.moonPhase + ")");
-                }
-                break;
-
-                case "hardmode":
-                {
-                    Main.hardMode = !Main.hardMode;
-                    if (!Main.hardMode)
-                    {
-                        caller.Reply("Hard Mode is disabled");
-                    }
-                    else
-                    {
-                        caller.Reply("Hard Mode is enabled");
-                    }
-                }
-                break;
-
-                case "worldmode":
-                {
-                    Main.expertMode = !Main.expertMode;
-                    if (!Main.expertMode)
-                    {
-                        caller.Reply("Expert Mode is disabled");
-                    }
-                    else
-                    {
-                        caller.Reply("Expert Mode is enabled");
-                    }
-                }
-                break;
-
-                case "otest":
-                {
-                    Item item = new Item();
-                    item.SetDefaults(ItemID.TwinMask);
-                    var global = item.GetGlobalItem<NCallGlobalItem>();
-                    for (int i = 1; i < args.Length; i++)
-                    {
-                        switch (args[i])
+                        if (args.Length == 1 || int.Parse(args[1]) == 0)
                         {
-                            case "mask":
-                            {
-                                i++;
-                                global.mask = int.Parse(args[i]);
-                            }
-                            break;
-
-                            case "headOverlay":
-                            {
-                                i++;
-                                global.headOverlay = int.Parse(args[i]);
-                            }
-                            break;
+                            NPC.NewNPC((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, ModContent.NPCType<BloodMimic>());
+                        }
+                        else if (int.Parse(args[1]) == 1)
+                        {
+                            NPC npc = new NPC();
+                            BloodMimic._usePlayerRectangle = false;
+                            npc.SetDefaults(ModContent.NPCType<BloodMimic>());
+                            int tileX = (int)Main.MouseWorld.X / 16;
+                            int tileY = (int)Main.MouseWorld.Y / 16;
+                            npc.modNPC.SpawnNPC(tileX, tileY);
+                            BloodMimic._usePlayerRectangle = true;
+                        }
+                        else if (int.Parse(args[1]) == 2)
+                        {
+                            NPC npc = new NPC();
+                            npc.SetDefaults(ModContent.NPCType<BloodMimic>());
+                            int tileX = (int)Main.MouseWorld.X / 16;
+                            int tileY = (int)Main.MouseWorld.Y / 16;
+                            npc.modNPC.SpawnNPC(tileX - (NPC.safeRangeX + 20) * caller.Player.direction, tileY);
                         }
                     }
-                    caller.Player.QuickSpawnClonedItem(item);
-                }
-                break;
+                    break;
+
+                case "moonphase":
+                    {
+                        if (args.Length > 1)
+                            Main.moonPhase = int.Parse(args[1]);
+                        caller.Reply(AQText.moonPhaseName(Main.moonPhase) + "(" + Main.moonPhase + ")");
+                    }
+                    break;
+
+                case "hardmode":
+                    {
+                        Main.hardMode = !Main.hardMode;
+                        if (!Main.hardMode)
+                        {
+                            caller.Reply("Hard Mode is disabled");
+                        }
+                        else
+                        {
+                            caller.Reply("Hard Mode is enabled");
+                        }
+                    }
+                    break;
+
+                case "worldmode":
+                    {
+                        Main.expertMode = !Main.expertMode;
+                        if (!Main.expertMode)
+                        {
+                            caller.Reply("Expert Mode is disabled");
+                        }
+                        else
+                        {
+                            caller.Reply("Expert Mode is enabled");
+                        }
+                    }
+                    break;
+
+                case "otest":
+                    {
+                        Item item = new Item();
+                        item.SetDefaults(ItemID.TwinMask);
+                        var global = item.GetGlobalItem<NCallGlobalItem>();
+                        for (int i = 1; i < args.Length; i++)
+                        {
+                            switch (args[i])
+                            {
+                                case "mask":
+                                    {
+                                        i++;
+                                        global.mask = int.Parse(args[i]);
+                                    }
+                                    break;
+
+                                case "headOverlay":
+                                    {
+                                        i++;
+                                        global.headOverlay = int.Parse(args[i]);
+                                    }
+                                    break;
+                            }
+                        }
+                        caller.Player.QuickSpawnClonedItem(item);
+                    }
+                    break;
 
                 case "checkcursor":
-                {
-                    var drawingPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
-                    caller.Reply(nameof(AQPlayer.CursorDyeID) + ":" + drawingPlayer.CursorDyeID);
-                    caller.Reply(nameof(AQPlayer.CursorDye) + ":" + drawingPlayer.CursorDye);
-                    caller.Reply(nameof(CursorDyeManager.Instance.Count) + ":" + CursorDyeManager.Instance.Count);
-                    for (int i = 0; i < CursorDyeManager.Instance.Count; i++)
                     {
-                        var cursorDye = CursorDyeManager.Instance.GetContent(i);
-                        caller.Reply(nameof(CursorDye.Mod) + i + ":" + cursorDye.Mod);
-                        caller.Reply(nameof(CursorDye.Name) + i + ":" + cursorDye.Name);
+                        var drawingPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
+                        caller.Reply(nameof(AQPlayer.CursorDyeID) + ":" + drawingPlayer.CursorDyeID);
+                        caller.Reply(nameof(AQPlayer.CursorDye) + ":" + drawingPlayer.CursorDye);
+                        caller.Reply(nameof(CursorDyeManager.Instance.Count) + ":" + CursorDyeManager.Instance.Count);
+                        for (int i = 0; i < CursorDyeManager.Instance.Count; i++)
+                        {
+                            var cursorDye = CursorDyeManager.Instance.GetContent(i);
+                            caller.Reply(nameof(CursorDye.Mod) + i + ":" + cursorDye.Mod);
+                            caller.Reply(nameof(CursorDye.Name) + i + ":" + cursorDye.Name);
+                        }
+                        caller.Reply(nameof(Main.cursorColor) + ":" + Main.cursorColor);
+                        caller.Reply(nameof(Main.mouseColor) + ":" + Main.mouseColor);
                     }
-                    caller.Reply(nameof(Main.cursorColor) + ":" + Main.cursorColor);
-                    caller.Reply(nameof(Main.mouseColor) + ":" + Main.mouseColor);
-                }
-                break;
+                    break;
 
                 case "modencode":
-                {
-                    var text = AQStringCodes.EncodeModName(args[1]);
-                    caller.Reply("encoded: " + text, Colors.RarityGreen);
-                    caller.Reply("read code: " + AQStringCodes.DecodeModName(text).ToString(), Colors.RarityAmber);
-                }
-                break;
+                    {
+                        var text = AQStringCodes.EncodeModName(args[1]);
+                        caller.Reply("encoded: " + text, Colors.RarityGreen);
+                        caller.Reply("read code: " + AQStringCodes.DecodeModName(text).ToString(), Colors.RarityAmber);
+                    }
+                    break;
 
                 case "anpc":
-                {
-                    var field = typeof(NPC).GetField(args[1], BindingFlags.Public | BindingFlags.Static);
-                    if (field != null)
                     {
-                        field.SetValue(new NPC(), false);
+                        var field = typeof(NPC).GetField(args[1], BindingFlags.Public | BindingFlags.Static);
+                        if (field != null)
+                        {
+                            field.SetValue(new NPC(), false);
+                        }
+                        else
+                        {
+                            caller.Reply(args[1] + " does not have a static value");
+                        }
                     }
-                    else
-                    {
-                        caller.Reply(args[1] + " does not have a static value");
-                    }
-                }
-                break;
+                    break;
 
                 case "aqplrvars":
-                {
-                    var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
-                    Main.NewText(nameof(AQPlayer.omoriDeathTimer) + ":" + aQPlayer.omoriDeathTimer);
-                }
-                break;
+                    {
+                        var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
+                        Main.NewText(nameof(AQPlayer.omoriDeathTimer) + ":" + aQPlayer.omoriDeathTimer);
+                    }
+                    break;
 
                 case "omori":
-                {
-                    Main.LocalPlayer.GetModPlayer<AQPlayer>().omoriDeathTimer = 1;
-                }
-                break;
+                    {
+                        Main.LocalPlayer.GetModPlayer<AQPlayer>().omoriDeathTimer = 1;
+                    }
+                    break;
 
                 case "goodbyelonelystarite":
-                GlimmerEventSky._lonelyStariteTimeLeft = 0;
-                break;
+                    GlimmerEventSky._lonelyStariteTimeLeft = 0;
+                    break;
 
                 case "goodbyelonelystarite2":
-                GlimmerEventSky._lonelyStariteTimeLeft = 0;
-                GlimmerEventSky._lonelyStarite = null;
-                break;
+                    GlimmerEventSky._lonelyStariteTimeLeft = 0;
+                    GlimmerEventSky._lonelyStarite = null;
+                    break;
 
                 case "lastcall":
-                {
-                    string[] oldLastCall = lastCall;
-                    Action(caller, input, lastCall);
-                    lastCall = oldLastCall;
-                    return;
-                }
+                    {
+                        string[] oldLastCall = lastCall;
+                        Action(caller, input, lastCall);
+                        lastCall = oldLastCall;
+                        return;
+                    }
             }
             lastCall = args;
         }
@@ -1004,23 +1011,23 @@ namespace AQMod.Common.DeveloperTools
             switch (args[1])
             {
                 case "alphafix":
-                {
-                    result = new AlphaFixer(args[2]).CreateImage(int.Parse(args[3]), int.Parse(args[4]));
-                }
-                break;
+                    {
+                        result = new AlphaFixer(args[2]).CreateImage(int.Parse(args[3]), int.Parse(args[4]));
+                    }
+                    break;
 
                 case "fester":
-                {
-                    if (args.Length > 4)
                     {
-                        result = new FesteringCircle(float.Parse(args[4]), float.Parse(args[5]), float.Parse(args[6]), float.Parse(args[7]), float.Parse(args[8])).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
+                        if (args.Length > 4)
+                        {
+                            result = new FesteringCircle(float.Parse(args[4]), float.Parse(args[5]), float.Parse(args[6]), float.Parse(args[7]), float.Parse(args[8])).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
+                        }
+                        else
+                        {
+                            result = new FesteringCircle(1f, 1f, 1f, 0.2f, 2f).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
+                        }
                     }
-                    else
-                    {
-                        result = new FesteringCircle(1f, 1f, 1f, 0.2f, 2f).CreateImage(int.Parse(args[2]), int.Parse(args[3]));
-                    }
-                }
-                break;
+                    break;
             }
             string path = DebugFolderPath;
             Directory.CreateDirectory(path);

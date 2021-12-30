@@ -121,13 +121,26 @@ ItemTooltip.Nimrod=Summons a fishing cloud which spawns 3 lightning bobbers to c
 ItemName.MinersFlashlight=Miner's Flashlight
 ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shown by the light\nHide the accessory to disable the flashlight
 
+ItemName.UltimateSword=Ultimate Sword
+ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
+ProjectileName.UltimateSword=Ultimate Sword
+
 # Potions
 ItemName.MysteryGrail=Mysterious Grail
 ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\nGives you a random buff
 
 # Fish
+ItemName.PalePufferfish=Pale Pufferfish
+ItemTooltip.PalePufferfish=Can cure you of many debuffs\nCan cure vampirism
+
 ItemName.VampireSquid=Vampire Squid
 ItemTooltip.VampireSquid=Gives you vampirism
+
+BuffName.Vampirism=Vampirism
+BuffDescription.Vampirism=You may become a vampire after this...
+
+BuffName.VampirismDay=Sunlight
+BuffDescription.VampirismDay=Greatly decreased stats, you no longer get buffs from food
 
 ItemName.Blobfish=Blobfish
 ItemTooltip.Blobfish='Looking at it without puking requires you to not have gag reflexes'
@@ -600,9 +613,6 @@ ItemName.OmegaStariteMask=Omega Starite Mask
 ItemName.OmegaStariteTrophy=Omega Starite Trophy
 ItemName.StariteBag=Treasure Bag
 ItemName.UltimateStarfruit=Ultimate Starfruit
-ItemName.UltimateSword=Ultimate Sword
-ProjectileName.UltimateSword=Ultimate Sword
-ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
 
 ##############
 # Buff Items #

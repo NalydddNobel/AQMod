@@ -70,7 +70,7 @@ namespace AQMod.Items.Weapons.Magic
                         item.mana *= 5;
                         if (Main.mouseRight && Main.mouseRightRelease && player.CheckMana(item, pay: true))
                         {
-                            player.AddBuff(ModContent.BuffType<Buffs.Delays.UmystickDelay>(), 180);
+                            player.AddBuff(ModContent.BuffType<Buffs.Timers.UmystickDelay>(), 180);
                             AQSound.Play(SoundType.Item, AQSound.Paths.MysticUmbrellaJump, 0.6f);
                             player.velocity.Y = -12f;
                         }
@@ -81,7 +81,7 @@ namespace AQMod.Items.Weapons.Magic
                 {
                     if (player.velocity.Y < 0f)
                     {
-                        int buffID = player.FindBuffIndex(ModContent.BuffType<Buffs.Delays.UmystickDelay>());
+                        int buffID = player.FindBuffIndex(ModContent.BuffType<Buffs.Timers.UmystickDelay>());
                         if (buffID != -1 && player.buffTime[buffID] > 120)
                         {
                             if (Main.myPlayer == player.whoAmI && Main.mouseRight)

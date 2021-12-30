@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Buffs.Delays
+namespace AQMod.Buffs.Timers
 {
     public abstract class TimerActiveBuff : ModBuff
     {
@@ -14,7 +14,7 @@ namespace AQMod.Buffs.Delays
             {
                 return;
             }
-            player.buffTime[buffIndex] = timer * 32 + 4;
+            player.buffTime[buffIndex] = timer + 2;
         }
     }
 }

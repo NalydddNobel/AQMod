@@ -1,9 +1,8 @@
-﻿using AQMod.Buffs.Delays;
+﻿using AQMod.Buffs.Timers;
 using AQMod.Content.Players;
 using Terraria;
-using Terraria.ModLoader;
 
-namespace AQMod.Buffs.Timers
+namespace AQMod.Buffs.Vampire
 {
     public class Vampirism : TimerActiveBuff
     {
@@ -14,13 +13,19 @@ namespace AQMod.Buffs.Timers
 
         public override void SetDefaults()
         {
+            Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<AQPlayer>().bossrush = true;
-            player.aggro += 1000;
+            if (player.GetModPlayer<VampirismPlayer>().IsVampire)
+            {
+                player.DelBuff(buffIndex);
+                buffIndex--;
+                return;
+            }
+            base.Update(player, ref buffIndex);
         }
     }
 }
