@@ -38,17 +38,12 @@ ItemTooltip.FreezingAmulet=阻止大多数种类的冻结\n降低来自紊流风
 ItemName.NormalizerAmulet=化一护符
 ItemTooltip.NormalizerAmulet=阻止大多数种类的冻结\n降低来自紊流风暴敌人的温度源强度
 
-# Barbs
-
 ItemName.CrabBarb=螃蟹刺钩
 ItemTooltip.CrabBarb=你的钩爪会造成中毒和伤害
-
 ItemName.CrimtaneBarb=猩红刺钩
 ItemTooltip.CrimtaneBarb=你的钩爪会造成伤害
-
 ItemName.DemoniteBarb=恶魔刺钩
 ItemTooltip.DemoniteBarb=你的钩爪会造成伤害
-
 ItemName.MetalBarb=金属刺钩
 ItemTooltip.MetalBarb=你的钩爪会造成伤害
 
@@ -57,16 +52,18 @@ ItemTooltip.MetalBarb=你的钩爪会造成伤害
 ItemName.SteelPlatedChestplate=钢板胸甲
 
 # Materials
-
 ItemName.Fluorescence=荧光
+
+ItemName.NuclearFeather=核子之羽
+ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
+ItemName.Qi=气
+ItemTooltip.Qi={$Mods.AQMod.Tooltips.Unobtainable}\n一种由终极哲学力量创造出的神秘能量
 
 ItemName.JellyManaCrystal=凝胶法力晶体
 ItemName.HeartPiece=心之碎片
 
 # Weapons
-
 ItemName.VineSword=变向锤
-
 ItemName.KryptonSword=氪制回旋镖
 ItemTooltip.KryptonSword=能够穿透敌人并回旋移动\n击中敌人时会对其造成多种减益
 
@@ -82,28 +79,23 @@ ItemName.RedSpriteStaff=红色精灵法杖
 ItemTooltip.RedSpriteStaff=召唤一朵红色精灵在你的敌人头顶降下雷鸣\n一次可以降下4个雷鸣
 ProjectileName.RedSpriteStaff=红色精灵法杖
 ProjectileName.RedSpriteStaffLightning=红色精灵法杖
-
 ItemName.ThunderClap=雷霆一击
 ItemTooltip.ThunderClap=召唤雷霆从天而降
 ProjectileName.ThunderClap=雷霆一击
 
-ItemName.Umberserk=伞剑
-ItemTooltip.Umberserk={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n击中敌人后会使你的武器挥舞速度更快\n你的首次攻击必定造成暴击
-ItemName.Umberetta=伞枪
-ItemTooltip.Umberetta={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n发射雨伞叉
-
 ItemName.Umystick=神秘的伞
 ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n手持此物品时右键消耗大量法力值来进行一次额外的跳跃\n'看起来贼危险'
-BuffName.UmystickDelay=神秘的延迟
-BuffDescription.UmystickDelay=降低你的法力恢复速度, 你无法使用神秘的伞进行一次额外的跳跃
+BuffName.UmystickDelay=秘伞延迟
+BuffDescription.UmystickDelay=你的法力恢复速度降低, 且无法使用神秘的伞进行额外的跳跃
+
+ItemName.Narrizuul=耀宇遗光
+ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n'闻起来像玫瑰'
 
 # Dyes
-
 ItemName.RedSpriteDye=红色精灵染料
 ItemName.FrostbiteDye=霜寒染料
 
 # Tools
-
 ItemName.Cosmicanon=星宇律则
 ItemTooltip.Cosmicanon=阻止血月、日食和微光事件的自然生成\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 ItemTooltipExtra.Cosmicanon=按下{0}以开关效果
@@ -129,8 +121,36 @@ ItemTooltip.Nimrod=召唤一朵捕鱼云朵, 其会生成三个闪电浮标来�
 ItemName.MinersFlashlight=矿工的手电筒
 ItemTooltip.MinersFlashlight=你会向你的光标位置发射一束光\n被光照到的宝藏会发光\n关闭饰品可见性来禁用手电筒效果
 
-# Tooltips
+# Potions
+ItemName.MysteryGrail=神秘圣杯
+ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\n使你获得随机的增益或减益
 
+# Fish
+ItemName.VampireSquid=吸血乌贼
+ItemTooltip.VampireSquid=使你获得吸血
+
+ItemName.Blobfish=水滴鱼
+ItemTooltip.Blobfish='要想看着它而不吐出来需要你没有呕吐反射'
+
+ItemName.Fizzler=星灼鱼
+
+ItemName.Nessie=尼斯湖水怪
+
+ItemName.UltraEel=超级进化鳗
+ItemTooltip.UltraEel=一种非常古老的星源物种的后代
+
+ItemName.Combfish=纵带盔鱼
+ItemTooltip.Combfish=具有再生特性
+
+ItemName.LarvaEel=寄生鳗幼虫
+ItemTooltip.LarvaEel=使你获得3分钟蜂蜜增益和耐药性减益
+
+# Quest Fish
+ItemName.WaterFisg=水鱼
+ItemName.Crabdaughter=蟹蛤之子
+
+# Tooltips
+Tooltips.Unobtainable=自另一宇宙形成的遗物
 Tooltips.ManaPerSecond=每秒消耗{0}点法力值
 Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果\n你不会受到任何摔落伤害
 Tooltips.InventoryPiggyBankFunction=放置于物品栏或猪猪存钱罐中即可生效
@@ -257,6 +277,17 @@ RecipeGroup.AnyNobleMushroom=任意华贵蘑菇
 
 Config.RequiresReload=需要重新加载.
 
+# Config
+
+StariteConfig.BackgroundStars=背景落星
+StariteConfig.BackgroundStarsTooltip=决定微光事件期间的背景是否会出现类似1.4版本中的落星
+
+StariteConfig.BackgroundAurora=背景极光
+StariteConfig.BackgroundAuroraTooltip=决定微光事件期间的背景是否会出现极光效果
+
+StariteConfig.UltimateSwordVignette=最终之剑晕映
+StariteConfig.UltimateSwordVignetteTooltip=决定当你靠近最终之剑时是否会出现晕映效果
+
 # Client Config
 
 ClientConfig.Name=客户端设置
@@ -265,14 +296,11 @@ ClientConfig.Header.Starite=星源视觉效果
 ClientConfig.Header.Xmas=圣诞节
 ClientConfig.Header.UI=用户界面
 
-StariteConfig.UltimateSwordVignette=最终之剑晕映
-StariteConfig.UltimateSwordVignetteTooltip=决定当你靠近最终之剑时是否会出现晕映效果
-
 ClientConfig.Effect3D=3D效果
 ClientConfig.Effect3DTooltip=数值越高3D效果越明显, 数值越低3D效果越扁平
 
 ClientConfig.BackgroundStarites=星源背景
-ClientConfig.BackgroundStaritesTooltip=决定当微光事件进行时背景是否出现小星星
+ClientConfig.BackgroundStaritesTooltip=决定当微光事件期间的背景是否会出现小星星
 
 ClientConfig.StariteProjColor=星源弹幕颜色
 ClientConfig.StariteProjColorTooltip=某些星源弹幕的颜色
@@ -354,6 +382,10 @@ WorldGen.ChristmasSpiritProgress15=当前进度: (0%)
 # NPCs
 
 NPCName.StreamingBalloon=紊流气球
+
+BuffName.Sparkling=闪光
+BuffDescription.Sparkling=你在闪闪发光
+ProjectileName.SparklingExplosion=闪光爆炸
 
 # Common
 
@@ -549,10 +581,10 @@ ItemName.Terraroot=地之根茎
 ItemName.Thunderbird=雷鸟塑像
 
 ItemName.Ultranium=超载晶体
-ItemTooltip.Ultranium=真近战攻击造成暴击时会将伤害弹射至离你最近的Boss\n击中敌人会对其造成闪烁减益\n增加5%近战暴击率
+ItemTooltip.Ultranium=真近战攻击造成暴击时会将伤害弹射至离你最近的Boss\n击中敌人会对其造成闪光减益\n增加5%近战暴击率
 
 ItemName.Quasicrystal=准晶体
-ItemTooltip.Quasicrystal=真近战攻击造成暴击时会将伤害弹射至离你最近的Boss\n受伤时召唤星星从天而降\n击中敌人会造成闪烁和火焰伤害\n增加5%近战暴击率
+ItemTooltip.Quasicrystal=真近战攻击造成暴击时会将伤害弹射至离你最近的Boss\n受伤时召唤星星从天而降\n击中敌人会造成闪光和火焰伤害\n增加5%近战暴击率
 
 ##############
 # Boss Items #
@@ -570,7 +602,7 @@ ItemName.StariteBag=宝藏袋
 ItemName.UltimateStarfruit=终极星果
 ItemName.UltimateSword=最终之剑
 ProjectileName.UltimateSword=最终之剑
-ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时生成闪光
+ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
 
 ##############
 # Buff Items #
@@ -605,7 +637,6 @@ BuffName.SpicyEel=香辣鳗鱼
 BuffDescription.SpicyEel=大幅度增加移动速度
 
 # Other Buffs Items
-ItemName.MysteryGrail=神秘圣杯
 ItemName.OpposingPotion=对立药水
 ItemName.PotionofBossrushium=安可药水
 ItemName.SpoilsPotion=战利品药水
@@ -647,16 +678,6 @@ ItemName.MysticPopper=秘圣响饵
 # Rods
 ItemName.CrabRod=螃蟹钓竿
 ItemName.BeeRod=蜜蜂钓竿
-# Fish
-ItemName.Blobfish=水滴鱼
-ItemName.Fizzler=星灼鱼
-ItemName.Nessie=尼斯湖水怪
-ItemName.UltraEel=超级进化鳗
-ItemName.Combfish=纵带盔鱼
-ItemName.LarvaEel=寄生鳗幼虫
-# Quest Fish
-ItemName.WaterFisg=水鱼
-ItemName.Crabdaughter=蟹蛤之子
 # Quest Robster
 ItemName.Snobster=势利鬼虾
 ItemName.JeweledChalice=宝石杯
@@ -672,21 +693,16 @@ ItemName.CrabClock=蟹钟
 ItemName.Lightbulb=灯泡
 ItemName.Molite=元星鱼
 ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
-ItemName.NuclearFeather=核子之羽
 ItemName.PotionofContainers=传箱药水
 ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
 
 CommonTooltip.DedicatedItem=专属物品
 CommonTooltip.ContentCreatorItem=内容创建者物品
 
-ItemName.Narrizuul=耀宇遗光
-ItemTooltip.Narrizuul=于异界形成的遗物\n'闻起来像玫瑰'
-
 ItemName.MothmanMask=天蛾人面具
 ItemTooltip.MothmanMask=所有效果仅在你的生命值为满时生效\n增加15%暴击伤害和暴击率\n增加召唤物击退\n攻击造成暴击时对敌人造成碧蓝之火减益
 ProjectileName.MothmanCritExplosion=天蛾人面具
 
-ItemName.Qi=气
 #############
 # Placeable #
 #############
@@ -708,7 +724,7 @@ ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 ItemName.UltrabrightBlueTorch=超亮蓝火把
 ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
-ItemName.SparklingTorch=闪亮火把
+ItemName.SparklingTorch=闪光火把
 ItemTooltip.SparklingTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
 # Walls
@@ -895,7 +911,6 @@ ItemTooltip.UltimateStarfruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.Omega
 ItemTooltip.Baguette='蛋糕只是海绵般松软的面包'
 ItemTooltip.SuspiciousLookingSteak=使你获得许多增益\n'诅咒已除'
 # Other Buffs Items
-ItemTooltip.MysteryGrail=使你获得随机的增益或减益
 ItemTooltip.OpposingPotion=使某些敌人掉落与其主题相反的物品\n(例如肉后血地怪会掉光明之魂)
 ItemTooltip.PotionofBossrushium=Boss被击败时会再次生成
 ItemTooltip.SpoilsPotion=非Boss敌人在死亡时掉落的战利品的数量翻倍
@@ -930,11 +945,6 @@ ItemTooltip.IchorPopper=在猩红之地钓鱼时增加35%鱼饵力
 ItemTooltip.MysticPopper=在神圣之地钓鱼时增加25%鱼饵力
 # Rods
 ItemTooltip.BeeRod=扔出飞行的蜜蜂浮标\n在佩戴蜂巢背包时会扔出3枚浮标
-# Fish
-ItemTooltip.Fizzler=它被腐蚀了且散发着微弱的光芒
-ItemTooltip.UltraEel=一种非常古老的星源物种的后代
-ItemTooltip.Combfish='这种鱼的鳞片无法食用'
-ItemTooltip.LarvaEel=使你获得3分钟蜂蜜增益和60秒耐药性减益
 # Quest Robster
 ItemTooltip.JeweledChalice={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledCandelabra={$Mods.AQMod.Common.ReturnToLobster}
@@ -946,10 +956,8 @@ ItemTooltip.BloodshedPotion=将你传送至上次死亡时的位置
 ItemTooltip.CrabShell=畸形, 真是诡异
 ItemTooltip.CrabClock=加快海洋的自然波动
 ItemTooltip.Molite=与药水结合使用时可翻倍药水的持续时间
-ItemTooltip.NuclearFeather=在核聚变的过程中形成\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
 ItemTooltip.PotionofContainers=将你传送至随机一个箱子
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
-ItemTooltip.Qi=由终极哲学之力创造出的神秘能量
 #############
 # Placeable #
 #############
@@ -1123,7 +1131,6 @@ ProjectileName.FriendlyWind=友善的风
 ProjectileName.GoldPowder=黄金之尘
 ProjectileName.HyperCrystalExplosion=超载爆破
 ProjectileName.KelBall=Kel的球球
-ProjectileName.SparklingExplosion=闪光爆破
 
 # Pets
 ProjectileName.ATM=ATM
