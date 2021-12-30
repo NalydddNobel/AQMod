@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -55,11 +56,24 @@ namespace AQMod.Content
                         if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                         {
                             tooltips[i].text = nameTag;
+                            if (nameTag == "_jeb")
+                            {
+                                tooltips[i].overrideColor = Main.DiscoColor;
+                            }
                             break;
                         }
                     }
                 }
             }
+        }
+
+        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            return base.PreDrawInInventory(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+        }
+
+        public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
         }
 
         public override bool NeedsSaving(Item item)

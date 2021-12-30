@@ -14,6 +14,7 @@ namespace AQMod.Tiles.Nature
     {
         public static readonly int[] generationTiles = new int[]
         {
+            TileID.Sand,
             TileID.Stone,
             TileID.Ebonstone,
             TileID.Crimstone,
