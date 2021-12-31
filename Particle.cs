@@ -6,17 +6,8 @@ namespace AQMod
 {
     public static class Particle
     {
-        public static ParticleRenderer<ParticleType> PostDrawPlayers;
-
-        internal static void UpdateParticles<T>(ParticleRenderer<T> renderer) where T : ParticleType
-        {
-            UpdateParticles(renderer._particles);
-        }
-
-        internal static void DrawParticles<T>(ParticleRenderer<T> renderer) where T : ParticleType
-        {
-            DrawParticles(renderer._particles);
-        }
+        public static readonly ParticleLayer<ParticleType> PreDrawProjectiles = new ParticleLayer<ParticleType>();
+        public static readonly ParticleLayer<ParticleType> PostDrawPlayers = new ParticleLayer<ParticleType>();
 
         internal static void UpdateParticles<T>(List<T> particles) where T : ParticleType
         {

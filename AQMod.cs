@@ -49,6 +49,7 @@ using Terraria.Utilities;
 using Terraria.World.Generation;
 using AQMod.Common.Configuration;
 using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Common.Graphics.Particles.Rendering;
 
 namespace AQMod
 {
@@ -197,6 +198,7 @@ namespace AQMod
                 On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
                 On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
                 On.Terraria.Main.NewText_string_byte_byte_byte_bool += Main_NewText_string_byte_byte_byte_bool;
+                On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
                 On.Terraria.Main.DrawTiles += Main_DrawTiles;
                 On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
                 On.Terraria.Main.CursorColor += Main_CursorColor;
@@ -210,10 +212,19 @@ namespace AQMod
                 On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
             }
 
+            private static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
+            {
+                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+                Particle.PreDrawProjectiles.Render();
+                Main.spriteBatch.End();
+                orig(self);
+            }
+
             private static void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
             {
                 orig(self);
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+                Particle.PostDrawPlayers.Render();
                 SceneLayersManager.DrawLayer(SceneLayering.PostDrawPlayers);
                 Main.spriteBatch.End();
             }

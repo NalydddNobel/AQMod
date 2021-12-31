@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics.Particles;
-using AQMod.Common.Graphics.Particles.Types;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

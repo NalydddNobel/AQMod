@@ -101,6 +101,7 @@ namespace AQMod
             public const int OmegaStariteRare = ItemRarityID.LightRed;
             public const int GaleStreamsRare = ItemRarityID.LightRed;
             public const int PillarWeaponRare = ItemRarityID.Red;
+            public const int DedicatedItem = ItemRarityID.Cyan;
         }
 
         public static class Tooltips

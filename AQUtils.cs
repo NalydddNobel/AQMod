@@ -995,5 +995,16 @@ namespace AQMod
         {
             Main.spriteBatch.Begin(sortMode, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.Transform);
         }
+
+        public static Vector2 RandomPosition(this Projectile projectile, int sizeDecrease = 0, UnifiedRandom rand = null)
+        {
+            return RandomPosition(new Rectangle((int)projectile.position.X + sizeDecrease, (int)projectile.position.Y + sizeDecrease, projectile.width - sizeDecrease * 2, projectile.height - sizeDecrease * 2), rand);
+        }
+
+        public static Vector2 RandomPosition(this Rectangle rectangle, UnifiedRandom rand = null)
+        {
+            rand = rand ?? Main.rand;
+            return new Vector2(rectangle.X + rand.NextFloat(rectangle.Width), rectangle.Y + rand.NextFloat(rectangle.Height));
+        }
     }
 }

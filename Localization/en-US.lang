@@ -91,6 +91,10 @@ BuffDescription.UmystickDelay=Decreases your mana regen, and you can no longer u
 ItemName.Narrizuul=Narrizuul
 ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n'Smells like roses'
 
+ItemName.StudiesoftheInkblot=Studies of the Inkblot
+ItemTooltip.StudiesoftheInkblot={$Mods.AQMod.Tooltips.Unobtainable}
+ProjectileName.StudiesoftheInkblot=Studies of the Inkblot
+
 # Dyes
 ItemName.RedSpriteDye=Red Sprite Dye
 ItemName.FrostbiteDye=Frostbite Dye
@@ -252,14 +256,14 @@ Physicist.Chat.Mod.Fargowiltas.Deviantt=You just buy rare enemy summons from a d
 
 # Paintings
 
-PaintingSignature.NalydT=N.T.
-PaintingSignature.niker=N.
+PaintingSignature.NalydT='N.T.'
+PaintingSignature.niker='N.'
 
 ItemName.OmegaStaritePainting='{$Mods.AQMod.NPCName.OmegaStarite}'
 ItemTooltip.OmegaStaritePainting='You have no idea whats in store for you!'\n{$Mods.AQMod.PaintingSignature.niker}
 
 ItemName.RockFromAnAlternateUniverse='Rock from an Alternate Universe'
-ItemTooltip.RockFromAnAlternateUniverse='The great might of an interstellar nebula!'\n{$Mods.AQMod.PaintingSignature.NalydT}.. from another universe
+ItemTooltip.RockFromAnAlternateUniverse='The great might of an interstellar nebula!'\n'N.T... from another universe'
 
 ItemName.AStrangeIdea='A Strange Idea...'
 ItemTooltip.AStrangeIdea='The birthplace of Aequus'\n{$Mods.AQMod.PaintingSignature.NalydT}

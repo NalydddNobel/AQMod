@@ -35,7 +35,7 @@ namespace AQMod.Items.Placeable.Torch
                 float scale = Main.rand.NextFloat(0.88f, 1f);
                 var particlePos = new Vector2(player.itemLocation.X + (12f + Main.rand.NextFloat(-2f, 2f)) * player.direction, player.itemLocation.Y - (20f + Main.rand.NextFloat(-2f, 2f)) * player.gravDir);
                 var particleVelocity = new Vector2(player.velocity.X * 0.1f, player.velocity.Y * 0.1f - 3f + Main.rand.NextFloat(-3f, 1f));
-                ParticleLayers.AddParticle_PostDrawPlayers(new MonoParticleEmber(particlePos,
+                ParticleLayers.AddParticle_PostDrawPlayers(new EmberParticle(particlePos,
                     particleVelocity,
                     new Color(240, 240, 255, 0) * scale,
                     scale));

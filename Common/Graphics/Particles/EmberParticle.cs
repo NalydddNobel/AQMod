@@ -5,11 +5,11 @@ using Terraria;
 
 namespace AQMod.Common.Graphics.Particles
 {
-    public class MonoParticleEmber : MonoParticle
+    public class EmberParticle : MonoParticle
     {
         public override Texture2D Texture => AQTextures.Particles[ParticleTex.MonoEmber];
 
-        public MonoParticleEmber(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1f) : base(position, velocity, color, scale)
+        public EmberParticle(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1f) : base(position, velocity, color, scale)
         {
         }
 

@@ -1,8 +1,8 @@
 ﻿using AQMod.Common.Graphics.Particles;
 using AQMod.Common.NoHitting;
 using AQMod.Content;
-using AQMod.Content.Quest.Lobster;
 using AQMod.Content.LegacyWorldEvents.CrabSeason;
+using AQMod.Content.Quest.Lobster;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
@@ -17,6 +17,7 @@ using AQMod.NPCs;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.DemonSiege;
+using AQMod.NPCs.Monsters.GaleStreams;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Monster.Starite;
 using Microsoft.Xna.Framework;
@@ -24,8 +25,6 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using AQMod.NPCs.Monsters.GaleStreams;
-using AQMod.Common.Graphics.Particles.Types;
 
 namespace AQMod
 {
@@ -655,10 +654,10 @@ namespace AQMod
                     case NPCID.DesertGhoulCorruption:
                     case NPCID.PigronCorruption:
                     case NPCID.SandsharkCorrupt:
-                    {
-                        npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
-                    }
-                    break;
+                        {
+                            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
+                        }
+                        break;
 
                     case NPCID.Crimera:
                     case NPCID.FaceMonster:
@@ -679,10 +678,10 @@ namespace AQMod
                     case NPCID.BigMimicCrimson:
                     case NPCID.CrimsonBunny:
                     case NPCID.CrimsonPenguin:
-                    {
-                        npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CrimsonHellfire>()] = true;
-                    }
-                    break;
+                        {
+                            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CrimsonHellfire>()] = true;
+                        }
+                        break;
                 }
             }
         }
@@ -732,42 +731,42 @@ namespace AQMod
                 case NPCID.EaterofWorldsHead:
                 case NPCID.EaterofWorldsBody:
                 case NPCID.EaterofWorldsTail:
-                {
-                    switch (otherType)
                     {
-                        case NPCID.EaterofWorldsHead:
-                        case NPCID.EaterofWorldsBody:
-                        case NPCID.EaterofWorldsTail:
-                        return true;
+                        switch (otherType)
+                        {
+                            case NPCID.EaterofWorldsHead:
+                            case NPCID.EaterofWorldsBody:
+                            case NPCID.EaterofWorldsTail:
+                                return true;
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case NPCID.TheDestroyer:
                 case NPCID.TheDestroyerBody:
                 case NPCID.TheDestroyerTail:
-                {
-                    switch (otherType)
                     {
-                        case NPCID.TheDestroyer:
-                        case NPCID.TheDestroyerBody:
-                        case NPCID.TheDestroyerTail:
-                        return true;
+                        switch (otherType)
+                        {
+                            case NPCID.TheDestroyer:
+                            case NPCID.TheDestroyerBody:
+                            case NPCID.TheDestroyerTail:
+                                return true;
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case NPCID.TheHungry:
                 case NPCID.TheHungryII:
-                {
-                    switch (otherType)
                     {
-                        case NPCID.TheHungry:
-                        case NPCID.TheHungryII:
-                        return true;
+                        switch (otherType)
+                        {
+                            case NPCID.TheHungry:
+                            case NPCID.TheHungryII:
+                                return true;
+                        }
                     }
-                }
-                break;
+                    break;
             }
             return false;
         }
@@ -851,7 +850,7 @@ namespace AQMod
                         var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
                         var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                         ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
+                            new EmberParticle(dustPos, new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
                     }
                 }
@@ -877,10 +876,10 @@ namespace AQMod
                         var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                         var velocity = new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f);
                         ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, velocity,
+                            new EmberParticle(dustPos, velocity,
                             fireColor, Main.rand.NextFloat(0.8f, 1.1f)));
                         ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, velocity,
+                            new EmberParticle(dustPos, velocity,
                             fireColor * 0.2f, 1.5f));
                     }
                 }
@@ -910,10 +909,10 @@ namespace AQMod
                         var dustPos = npcCenter + offset;
                         var velocity = normal * Main.rand.NextFloat(6f, 12f);
                         ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, velocity,
+                            new EmberParticle(dustPos, velocity,
                             new Color(0.9f, Main.rand.NextFloat(0.7f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
                         ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, velocity,
+                            new EmberParticle(dustPos, velocity,
                             new Color(0.9f, Main.rand.NextFloat(0.7f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f) * 0.2f, 1.5f));
                         if (Main.rand.NextBool(14))
                         {
@@ -996,47 +995,47 @@ namespace AQMod
             switch (npc.type)
             {
                 case NPCID.Ghost:
-                {
-                    if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().ghostAmulet)
                     {
-                        npc.life = -1;
-                        npc.HitEffect();
-                        npc.active = false;
-                        return false;
+                        if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().ghostAmulet)
+                        {
+                            npc.life = -1;
+                            npc.HitEffect();
+                            npc.active = false;
+                            return false;
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case NPCID.VoodooDemon:
-                {
-                    if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().voodooAmulet)
                     {
-                        npc.life = -1;
-                        npc.HitEffect();
-                        npc.active = false;
-                        return false;
+                        if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().voodooAmulet)
+                        {
+                            npc.life = -1;
+                            npc.HitEffect();
+                            npc.active = false;
+                            return false;
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case NPCID.WyvernHead:
-                {
-                    if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().wyvernAmulet)
                     {
-                        npc.life = -1;
-                        npc.HitEffect();
-                        npc.active = false;
-                        return false;
+                        if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().wyvernAmulet)
+                        {
+                            npc.life = -1;
+                            npc.HitEffect();
+                            npc.active = false;
+                            return false;
+                        }
                     }
-                }
-                break;
+                    break;
             }
             return true;
         }
 
         public override void PostAI(NPC npc)
         {
-            
+
             if (MoonlightWallHelper.Active)
                 MoonlightWallHelper.End();
         }
@@ -1278,13 +1277,13 @@ namespace AQMod
             switch (npc.type)
             {
                 case NPCID.BlueJellyfish:
-                {
-                    if (ModContent.GetInstance<AQConfigServer>().removeJellyfishNecklace)
                     {
-                        NPCLoader.blockLoot.Add(ItemID.JellyfishNecklace);
+                        if (ModContent.GetInstance<AQConfigServer>().removeJellyfishNecklace)
+                        {
+                            NPCLoader.blockLoot.Add(ItemID.JellyfishNecklace);
+                        }
                     }
-                }
-                break;
+                    break;
             }
             return true;
         }
@@ -1380,155 +1379,155 @@ namespace AQMod
             {
                 case NPCID.BlueJellyfish:
                 case NPCID.GreenJellyfish:
-                {
-                    if (Main.rand.NextBool(15))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<ShockCollar>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(15))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<ShockCollar>());
+                    }
+                    break;
 
                 case NPCID.SeekerHead:
-                {
-                    if (Main.rand.NextBool(10))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.SpicyEel>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(10))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.SpicyEel>());
+                    }
+                    break;
 
                 case NPCID.DiggerHead:
-                {
-                    if (Main.rand.NextBool(10))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.SpicyEel>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(10))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.SpicyEel>());
+                    }
+                    break;
 
                 case NPCID.RaggedCaster:
                 case NPCID.RaggedCasterOpenCoat:
-                {
-                    if (Main.rand.NextBool(10))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GrapePhanta>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(10))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GrapePhanta>());
+                    }
+                    break;
 
                 case NPCID.RustyArmoredBonesAxe:
                 case NPCID.RustyArmoredBonesFlail:
                 case NPCID.RustyArmoredBonesSword:
                 case NPCID.RustyArmoredBonesSwordNoArmor:
-                {
-                    if (Main.rand.NextBool(40))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GrapePhanta>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(40))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GrapePhanta>());
+                    }
+                    break;
 
                 case NPCID.AngryBones:
-                {
-                    if (Main.rand.NextBool(80))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(80))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
+                    }
+                    break;
 
                 case NPCID.DarkCaster:
-                {
-                    if (Main.rand.NextBool(50))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(50))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
+                    }
+                    break;
 
                 case NPCID.CursedSkull:
-                {
-                    if (Main.rand.NextBool(30))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(30))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
+                    }
+                    break;
 
                 case NPCID.Lihzahrd:
                 case NPCID.LihzahrdCrawler:
-                {
-                    if (Main.rand.NextBool(50))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(50))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
+                    }
+                    break;
 
                 case NPCID.FlyingSnake:
-                {
-                    if (Main.rand.NextBool(50))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(50))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
+                    }
+                    break;
 
                 case NPCID.UndeadViking:
-                {
-                    if (Main.rand.NextBool(6))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.CrystalDagger>());
-                }
-                break;
+                    {
+                        if (Main.rand.NextBool(6))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.CrystalDagger>());
+                    }
+                    break;
 
                 case NPCID.Crab:
-                {
-                    if (Main.rand.NextBool(10))
                     {
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.VineSword>());
+                        if (Main.rand.NextBool(10))
+                        {
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.VineSword>());
+                        }
+                        if (CrabSeason.Active)
+                        {
+                            if (Main.moonPhase % 2 == 0 && !aQPlayer.altEvilDrops || Main.moonPhase % 2 == 1 && aQPlayer.altEvilDrops)
+                                Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
+                        }
+                        else
+                        {
+                            bool hasItem = Main.player[p].HasItem(ModContent.ItemType<CrabClock>());
+                            if (Main.rand.NextBool(hasItem ? 10 : 4))
+                                Item.NewItem(npc.getRect(), ModContent.ItemType<CrabClock>());
+                            if (Main.rand.NextBool())
+                                Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
+                        }
                     }
-                    if (CrabSeason.Active)
-                    {
-                        if (Main.moonPhase % 2 == 0 && !aQPlayer.altEvilDrops || Main.moonPhase % 2 == 1 && aQPlayer.altEvilDrops)
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
-                    }
-                    else
-                    {
-                        bool hasItem = Main.player[p].HasItem(ModContent.ItemType<CrabClock>());
-                        if (Main.rand.NextBool(hasItem ? 10 : 4))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<CrabClock>());
-                        if (Main.rand.NextBool())
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
-                    }
-                }
-                break;
+                    break;
 
                 case NPCID.DarkMummy:
-                {
-                    if (aQPlayer.altEvilDrops && Main.rand.NextBool(10))
-                        Item.NewItem(npc.getRect(), ItemID.LightShard);
-                }
-                break;
+                    {
+                        if (aQPlayer.altEvilDrops && Main.rand.NextBool(10))
+                            Item.NewItem(npc.getRect(), ItemID.LightShard);
+                    }
+                    break;
 
                 case NPCID.LightMummy:
-                {
-                    if (aQPlayer.altEvilDrops && Main.rand.NextBool(10))
-                        Item.NewItem(npc.getRect(), ItemID.DarkShard);
-                }
-                break;
+                    {
+                        if (aQPlayer.altEvilDrops && Main.rand.NextBool(10))
+                            Item.NewItem(npc.getRect(), ItemID.DarkShard);
+                    }
+                    break;
 
                 case NPCID.DungeonSpirit:
-                if (Main.rand.NextBool(45))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Breadsoul>());
-                break;
+                    if (Main.rand.NextBool(45))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Breadsoul>());
+                    break;
 
                 case NPCID.Necromancer:
-                if (Main.rand.NextBool(30))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Breadsoul>());
-                break;
+                    if (Main.rand.NextBool(30))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Breadsoul>());
+                    break;
 
                 case NPCID.DiabolistRed:
                 case NPCID.DiabolistWhite:
-                if (Main.rand.NextBool(30))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
-                break;
+                    if (Main.rand.NextBool(30))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
+                    break;
 
                 case NPCID.GingerbreadMan:
-                if (Main.rand.NextBool(1000))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Baguette>());
-                break;
+                    if (Main.rand.NextBool(1000))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Baguette>());
+                    break;
 
                 case NPCID.Mothron:
-                if (NPC.downedAncientCultist && (npc.playerInteraction[p] && npc.GetGlobalNPC<NoHitManager>().hitPlayer[p] || Main.rand.NextBool(10)))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<MothmanMask>());
-                break;
+                    if (NPC.downedAncientCultist && (npc.playerInteraction[p] && npc.GetGlobalNPC<NoHitManager>().hitPlayer[p] || Main.rand.NextBool(10)))
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<MothmanMask>());
+                    break;
 
                 case NPCID.Golem:
-                {
-                    if (Main.moonPhase == 0)
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<RustyKnife>());
-                }
-                break;
+                    {
+                        if (Main.moonPhase == 0)
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<RustyKnife>());
+                    }
+                    break;
             }
         }
 
@@ -1606,55 +1605,55 @@ namespace AQMod
                 case NPCID.BunnySlimed:
                 case NPCID.BunnyXmas:
                 case NPCID.PartyBunny:
-                {
-                    Main.npc[i].Transform(NPCID.GoldBunny);
-                }
-                return true;
+                    {
+                        Main.npc[i].Transform(NPCID.GoldBunny);
+                    }
+                    return true;
 
                 case NPCID.Squirrel:
                 case NPCID.SquirrelRed:
-                {
-                    Main.npc[i].Transform(NPCID.SquirrelGold);
-                }
-                return true;
+                    {
+                        Main.npc[i].Transform(NPCID.SquirrelGold);
+                    }
+                    return true;
 
                 case NPCID.Bird:
                 case NPCID.BirdBlue:
                 case NPCID.BirdRed:
-                {
-                    Main.npc[i].Transform(NPCID.GoldBird);
-                }
-                return true;
+                    {
+                        Main.npc[i].Transform(NPCID.GoldBird);
+                    }
+                    return true;
 
                 case NPCID.Butterfly:
-                {
-                    Main.npc[i].Transform(NPCID.GoldButterfly);
-                }
-                return true;
+                    {
+                        Main.npc[i].Transform(NPCID.GoldButterfly);
+                    }
+                    return true;
 
                 case NPCID.Frog:
-                {
-                    Main.npc[i].Transform(NPCID.GoldFrog);
-                }
-                return true;
+                    {
+                        Main.npc[i].Transform(NPCID.GoldFrog);
+                    }
+                    return true;
 
                 case NPCID.Grasshopper:
-                {
-                    Main.npc[i].Transform(NPCID.GoldGrasshopper);
-                }
-                return true;
+                    {
+                        Main.npc[i].Transform(NPCID.GoldGrasshopper);
+                    }
+                    return true;
 
                 case NPCID.Mouse:
-                {
-                    Main.npc[i].Transform(NPCID.GoldMouse);
-                }
-                return true;
+                    {
+                        Main.npc[i].Transform(NPCID.GoldMouse);
+                    }
+                    return true;
 
                 case NPCID.Worm:
-                {
-                    Main.npc[i].Transform(NPCID.GoldWorm);
-                }
-                return true;
+                    {
+                        Main.npc[i].Transform(NPCID.GoldWorm);
+                    }
+                    return true;
             }
             return false;
         }

@@ -1735,10 +1735,10 @@ namespace AQMod
                         var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                         var velocity = new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-10f, 2f).Abs());
                         ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, velocity,
+                            new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
                         ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, velocity,
+                            new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
                     }
                     amount = (int)(120 * AQConfigClient.c_EffectIntensity);
@@ -1761,10 +1761,10 @@ namespace AQMod
                         var dustPos = targetCenter + offset;
                         var velocity = normal * Main.rand.NextFloat(6f, 12f);
                         ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, velocity,
+                            new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
                         ParticleLayers.AddParticle_PostDrawPlayers(
-                            new MonoParticleEmber(dustPos, velocity,
+                            new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
                         if (Main.rand.NextBool(14))
                         {
@@ -1958,7 +1958,7 @@ namespace AQMod
                             var rect = new Rectangle((int)pos.X, (int)pos.Y, player.width + 4, player.height + 4);
                             var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                             ParticleLayers.AddParticle_PostDrawPlayers(
-                                new MonoParticleEmber(dustPos, new Vector2((player.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((player.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
+                                new EmberParticle(dustPos, new Vector2((player.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((player.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
                                 new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
                         }
                     }
