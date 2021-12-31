@@ -47,7 +47,7 @@ namespace AQMod.NPCs.Friendly
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.FidgetSpinner.FidgetSpinner>());
             nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.Starite.MythicStarfruit>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.MythicStarfruit>());
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;

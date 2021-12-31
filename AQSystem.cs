@@ -27,15 +27,8 @@ namespace AQMod
 
         public override TagCompound Save()
         {
-            if (GlimmerEvent.deactivationTimer > 0)
-                GlimmerEvent.Deactivate();
             var tag = new TagCompound()
             {
-                ["GlimmerEvent_active"] = GlimmerEvent.IsActive,
-                ["GlimmerEvent_X"] = (int)GlimmerEvent.tileX,
-                ["GlimmerEvent_Y"] = (int)GlimmerEvent.tileY,
-                ["GlimmerEvent_GlimmerChance"] = GlimmerEvent.spawnChance,
-
                 ["CrabSeason_crabSeasonTimer"] = CrabSeason.crabSeasonTimer,
             };
             return tag;
@@ -45,9 +38,11 @@ namespace AQMod
         {
             CrabSeason.crabSeasonTimer = tag.GetIntOrDefault("CrabSeason_crabSeasonTimer", CrabSeason.CrabSeasonTimerMin);
 
-            GlimmerEvent.tileX = (ushort)tag.GetInt("GlimmerEvent_X");
-            GlimmerEvent.tileY = (ushort)tag.GetInt("GlimmerEvent_Y");
-            GlimmerEvent.spawnChance = tag.GetInt("GlimmerEvent_GlimmerChance");
+            if (tag.ContainsKey("GlimmerEvent_active"))
+            {
+                GlimmerEvent.tileX = (ushort)tag.GetInt("GlimmerEvent_X");
+                GlimmerEvent.tileY = (ushort)tag.GetInt("GlimmerEvent_Y");
+            }
 
             if (!Main.dayTime)
                 GlimmerEventSky.InitNight();

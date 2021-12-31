@@ -1,11 +1,13 @@
 ﻿using AQMod.Common.Graphics.PlayerEquips;
+using AQMod.Content.DedicatedItemTags;
+using AQMod.Items.Dedicated;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated.ContentCreators
+namespace AQMod.Items.Accessories
 {
     public class MothmanMask : ModItem, IDedicatedItem, IUpdateEquipVisuals
     {
@@ -14,7 +16,7 @@ namespace AQMod.Items.Dedicated.ContentCreators
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = ItemRarityID.Red;
+            item.rare = AQItem.Rarities.DedicatedItem;
             item.value = Item.sellPrice(gold: 15);
         }
 
@@ -57,7 +59,7 @@ namespace AQMod.Items.Dedicated.ContentCreators
             }
         }
 
-        Color IDedicatedItem.DedicatedItemColor => DedicatedColors.Youtuber;
-        IDedicationType IDedicatedItem.DedicationType => new ContentCreatorDedication();
+        Color IDedicatedItem.DedicatedItemColor => BasicDedication.YoutuberColor;
+        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
     }
 }

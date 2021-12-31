@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.BossItems.Starite
+namespace AQMod.Items.BossItems
 {
     public class MythicStarfruit : ModItem
     {
@@ -36,7 +36,7 @@ namespace AQMod.Items.BossItems.Starite
 
         public override bool UseItem(Player player)
         {
-            GlimmerEvent.Activate(resetSpawnChance: false);
+            GlimmerEvent.Activate();
             AQMod.BroadcastMessage(AQText.Key + "Common.GlimmerEventWarning", GlimmerEvent.TextColor);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
@@ -45,14 +45,12 @@ namespace AQMod.Items.BossItems.Starite
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddIngredient(ItemID.DemoniteBar, 5);
             r.AddIngredient(ItemID.FallenStar);
             r.AddTile(TileID.DemonAltar);
             r.SetResult(this);
             r.AddRecipe();
             r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddIngredient(ItemID.CrimtaneBar, 5);
             r.AddIngredient(ItemID.FallenStar);
             r.AddTile(TileID.DemonAltar);

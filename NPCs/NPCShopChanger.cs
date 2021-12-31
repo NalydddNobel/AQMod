@@ -2,7 +2,7 @@
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FishingSeals;
-using AQMod.Items.Dedicated.Contributors;
+using AQMod.Items.Foods;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

@@ -2,18 +2,59 @@
 using AQMod.Common.NetCode;
 using AQMod.Content.LegacyWorldEvents.CrabSeason;
 using AQMod.Content.LegacyWorldEvents.DemonSiege;
+using AQMod.Content.World;
+using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AQMod.Common
 {
-    internal static class ModCallHelper
+    internal static class ModCallDictionary
     {
+        public static class Auto
+        {
+            public static void CreateCallsForType<T>() where T : class
+            {
+                object instance = null;
+                try
+                {
+                    instance = ModContent.GetInstance<T>();
+                }
+                catch
+                {
+                }
+                if (instance == null)
+                    CreateCallsForType((T)Activator.CreateInstance(typeof(T)));
+                else
+                    CreateCallsForType((T)instance);
+            }
+            public static void CreateCallsForType<T>(T Instance) where T : class
+            {
+                string typeName = typeof(T).Name.ToLower();
+                var fields = typeof(T).GetFields();
+                foreach (var f in fields)
+                {
+                    AQMod.Instance.Logger.Debug(typeName + "." + f.Name.ToLower());
+                    _calls.Add(typeName + "." + f.Name.ToLower(), (o) => f.GetValue(Instance));
+                    if (!f.IsInitOnly)
+                    {
+                        _calls.Add(typeName + "." + f.Name.ToLower() + "_set", (o) =>
+                        {
+                            f.SetValue(Instance, o[1]);
+                            return o[1];
+                        });
+                    }
+                }
+            }
+        }
+
         private static Dictionary<string, Func<object[], object>> _calls;
 
-        public static void SetupCalls()
+
+        public static void Load()
         {
             _calls = new Dictionary<string, Func<object[], object>>
             {
@@ -24,34 +65,23 @@ namespace AQMod.Common
                     }
                 },
 
-                { "glimmerevent.tilex", (o) => GlimmerEvent.tileX },
-                { "glimmerevent.tiley", (o) => GlimmerEvent.tileY },
-                { "glimmerevent.spawnchance", (o) => GlimmerEvent.spawnChance },
-                { "glimmerevent.deactivationtimer", (o) => GlimmerEvent.deactivationTimer },
+                //{ "glimmerevent.tilex", (o) => GlimmerEvent.tileX },
+                //{ "glimmerevent.tiley", (o) => GlimmerEvent.tileY },
+                //{ "glimmerevent.deactivationtimer", (o) => GlimmerEvent.deactivationTimer },
                 { "glimmerevent.staritedisco", (o) => GlimmerEvent.StariteDisco },
 
-                { "glimmerevent.tilex_set", (o) => GlimmerEvent.tileX = (ushort)o[1] },
-                { "glimmerevent.tiley_set", (o) => GlimmerEvent.tileY = (ushort)o[1] },
-                { "glimmerevent.spawnchance_set", (o) => GlimmerEvent.spawnChance = (int)o[1] },
-                { "glimmerevent.deactivationtimer_set", (o) => GlimmerEvent.deactivationTimer = (int)o[1] },
+                //{ "glimmerevent.tilex_set", (o) => GlimmerEvent.tileX = (ushort)o[1] },
+                //{ "glimmerevent.tiley_set", (o) => GlimmerEvent.tileY = (ushort)o[1] },
+                //{ "glimmerevent.deactivationtimer_set", (o) => GlimmerEvent.deactivationTimer = (int)o[1] },
                 { "glimmerevent.staritedisco_set", (o) => GlimmerEvent.StariteDisco = (bool)o[1] },
 
                 { "glimmerevent_isactive", (o) => GlimmerEvent.IsActive },
                 { "glimmerevent_stariteprojectilecolor", (o) => GlimmerEvent.stariteProjectileColor },
                 { "glimmerevent_activate", (o) =>
                     {
-                        if (o.Length > 1 && o[1] is bool flag)
-                        {
-                            bool value = GlimmerEvent.Activate(flag);
-                            NetHelper.GlimmerEventNetUpdate();
-                            return value;
-                        }
-                        else
-                        {
-                            bool value = GlimmerEvent.Activate();
-                            NetHelper.GlimmerEventNetUpdate();
-                            return value;
-                        }
+                        bool value = GlimmerEvent.Activate();
+                        NetHelper.GlimmerEventNetUpdate();
+                        return value;
                     }
                 },
                 { "glimmerevent_spawnsactive", (o) => GlimmerEvent.SpawnsActive((Player)o[1]) },
@@ -138,6 +168,12 @@ namespace AQMod.Common
                 { "worlddefeats.obtainedcatalystpainting", (o) => WorldDefeats.ObtainedCatalystPainting },
                 { "worlddefeats.obtainedcatalystpainting_set", (o) => WorldDefeats.ObtainedCatalystPainting = (bool)o[1]},
             };
+
+            Auto.CreateCallsForType(ModContent.GetInstance<GlimmerEvent>());
+            Auto.CreateCallsForType(ModContent.GetInstance<GaleStreams>());
+            Auto.CreateCallsForType(ModContent.GetInstance<PassingDays>());
+
+            checkifnalydisstupid();
         }
 
         private static void checkifnalydisstupid()

@@ -2,25 +2,26 @@ using AQMod.Assets;
 using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Common.CrossMod;
 using AQMod.Common.DeveloperTools;
 using AQMod.Common.Graphics;
-using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Common.NetCode;
 using AQMod.Common.UserInterface;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
+using AQMod.Content.LegacyWorldEvents.CrabSeason;
+using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Content.MapMarkers;
 using AQMod.Content.NameTags;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.GaleStreams;
+using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Events.ProgressBars;
-using AQMod.Content.LegacyWorldEvents.CrabSeason;
-using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
@@ -32,12 +33,9 @@ using AQMod.NPCs.Boss.Starite;
 using AQMod.Sounds;
 using log4net;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.Graphics.Effects;
@@ -47,9 +45,6 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
 using Terraria.World.Generation;
-using AQMod.Common.Configuration;
-using AQMod.Content.World.Events.GlimmerEvent;
-using AQMod.Common.Graphics.Particles.Rendering;
 
 namespace AQMod
 {
@@ -779,7 +774,6 @@ namespace AQMod
                     {
                         CosmicanonActive = AQPlayer.IgnoreMoons();
                         AprilFoolsJoke.UpdateActive();
-                        GlimmerEvent.OnTurnNight();
                         if (Main.netMode != NetmodeID.Server)
                         {
                             GlimmerEventSky.InitNight();
@@ -862,7 +856,7 @@ namespace AQMod
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
 
-            ModCallHelper.SetupCalls();
+            ModCallDictionary.Load();
             AprilFoolsJoke.UpdateActive();
             var server = ModContent.GetInstance<AQConfigServer>();
             ApplyServerConfig(server);
@@ -964,7 +958,7 @@ namespace AQMod
                 AQTextures.Unload();
             }
 
-            ModCallHelper.Unload();
+            ModCallDictionary.Unload();
             AQText.Unload();
         }
 
@@ -1103,165 +1097,163 @@ namespace AQMod
             switch (messageID)
             {
                 case AQPacketID.SummonOmegaStarite:
-                {
-                    if (Main.netMode == NetmodeID.Server)
                     {
-                        spawnStarite = true;
-                    }
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            spawnStarite = true;
+                        }
 
-                    if (Debug.LogNetcode)
-                    {
-                        var l = Debug.GetDebugLogger();
-                        l.Log("Summoning Omega Starite...");
+                        if (Debug.LogNetcode)
+                        {
+                            var l = Debug.GetDebugLogger();
+                            l.Log("Summoning Omega Starite...");
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case AQPacketID.UpdateGlimmerEvent:
-                {
-                    GlimmerEvent.tileX = reader.ReadUInt16();
-                    GlimmerEvent.tileY = reader.ReadUInt16();
-                    GlimmerEvent.spawnChance = reader.ReadInt32();
-                    GlimmerEvent.StariteDisco = reader.ReadBoolean();
-                    GlimmerEvent.deactivationTimer = reader.ReadInt32();
-
-                    if (Debug.LogNetcode)
                     {
-                        var l = Debug.GetDebugLogger();
-                        l.Log("Updating Glimmer Event");
-                        l.Log("x: " + GlimmerEvent.tileX);
-                        l.Log("y: " + GlimmerEvent.tileY);
-                        l.Log("spawn chance: " + GlimmerEvent.spawnChance);
-                        l.Log("starite disco: " + GlimmerEvent.StariteDisco);
-                        l.Log("deactivation timer: " + GlimmerEvent.deactivationTimer);
+                        GlimmerEvent.tileX = reader.ReadUInt16();
+                        GlimmerEvent.tileY = reader.ReadUInt16();
+                        GlimmerEvent.StariteDisco = reader.ReadBoolean();
+                        GlimmerEvent.deactivationTimer = reader.ReadInt32();
+
+                        if (Debug.LogNetcode)
+                        {
+                            var l = Debug.GetDebugLogger();
+                            l.Log("Updating Glimmer Event");
+                            l.Log("x: " + GlimmerEvent.tileX);
+                            l.Log("y: " + GlimmerEvent.tileY);
+                            l.Log("starite disco: " + GlimmerEvent.StariteDisco);
+                            l.Log("deactivation timer: " + GlimmerEvent.deactivationTimer);
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case AQPacketID.UpdateAQPlayerCelesteTorus:
-                {
-                    var player = Main.player[reader.ReadByte()];
-                    var aQPlayer = player.GetModPlayer<AQPlayer>();
-                    aQPlayer.celesteTorusX = reader.ReadSingle();
-                    aQPlayer.celesteTorusY = reader.ReadSingle();
-                    aQPlayer.celesteTorusZ = reader.ReadSingle();
-
-                    if (Debug.LogNetcode)
                     {
-                        var l = Debug.GetDebugLogger();
-                        l.Log("Updating celeste torus positions for: (" + player.name + ")");
-                        l.Log("x: " + aQPlayer.celesteTorusX);
-                        l.Log("y: " + aQPlayer.celesteTorusY);
-                        l.Log("z: " + aQPlayer.celesteTorusZ);
+                        var player = Main.player[reader.ReadByte()];
+                        var aQPlayer = player.GetModPlayer<AQPlayer>();
+                        aQPlayer.celesteTorusX = reader.ReadSingle();
+                        aQPlayer.celesteTorusY = reader.ReadSingle();
+                        aQPlayer.celesteTorusZ = reader.ReadSingle();
+
+                        if (Debug.LogNetcode)
+                        {
+                            var l = Debug.GetDebugLogger();
+                            l.Log("Updating celeste torus positions for: (" + player.name + ")");
+                            l.Log("x: " + aQPlayer.celesteTorusX);
+                            l.Log("y: " + aQPlayer.celesteTorusY);
+                            l.Log("z: " + aQPlayer.celesteTorusZ);
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case AQPacketID.UpdateAQPlayerEncoreKills:
-                {
-                    var player = Main.player[reader.ReadByte()];
-                    var aQPlayer = player.GetModPlayer<AQPlayer>();
-                    byte[] buffer = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));
-                    aQPlayer.DeserialzeBossKills(buffer);
-                }
-                break;
+                    {
+                        var player = Main.player[reader.ReadByte()];
+                        var aQPlayer = player.GetModPlayer<AQPlayer>();
+                        byte[] buffer = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));
+                        aQPlayer.DeserialzeBossKills(buffer);
+                    }
+                    break;
 
                 case AQPacketID.PreventedBloodMoon:
-                {
-                    Debug.DebugLogger? l = null;
-                    if (Debug.LogNetcode)
                     {
-                        l = Debug.GetDebugLogger();
-                        l.Value.Log("Old Blood Moons Prevented: " + CosmicanonCounts.EclipsesPrevented);
-                    }
+                        Debug.DebugLogger? l = null;
+                        if (Debug.LogNetcode)
+                        {
+                            l = Debug.GetDebugLogger();
+                            l.Value.Log("Old Blood Moons Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        }
 
-                    CosmicanonCounts.BloodMoonsPrevented = reader.ReadUInt16();
+                        CosmicanonCounts.BloodMoonsPrevented = reader.ReadUInt16();
 
-                    if (Debug.LogNetcode)
-                    {
-                        l.Value.Log("Updated Blood Moons Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        if (Debug.LogNetcode)
+                        {
+                            l.Value.Log("Updated Blood Moons Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case AQPacketID.PreventedGlimmer:
-                {
-                    Debug.DebugLogger? l = null;
-                    if (Debug.LogNetcode)
                     {
-                        l = Debug.GetDebugLogger();
-                        l.Value.Log("Old Glimmers Prevented: " + CosmicanonCounts.EclipsesPrevented);
-                    }
+                        Debug.DebugLogger? l = null;
+                        if (Debug.LogNetcode)
+                        {
+                            l = Debug.GetDebugLogger();
+                            l.Value.Log("Old Glimmers Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        }
 
-                    CosmicanonCounts.GlimmersPrevented = reader.ReadUInt16();
+                        CosmicanonCounts.GlimmersPrevented = reader.ReadUInt16();
 
-                    if (Debug.LogNetcode)
-                    {
-                        l.Value.Log("Updated Glimmers Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        if (Debug.LogNetcode)
+                        {
+                            l.Value.Log("Updated Glimmers Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case AQPacketID.PreventedEclipse:
-                {
-                    Debug.DebugLogger? l = null;
-                    if (Debug.LogNetcode)
                     {
-                        l = Debug.GetDebugLogger();
-                        l.Value.Log("Old Eclipses Prevented: " + CosmicanonCounts.EclipsesPrevented);
-                    }
+                        Debug.DebugLogger? l = null;
+                        if (Debug.LogNetcode)
+                        {
+                            l = Debug.GetDebugLogger();
+                            l.Value.Log("Old Eclipses Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        }
 
-                    CosmicanonCounts.EclipsesPrevented = reader.ReadUInt16();
+                        CosmicanonCounts.EclipsesPrevented = reader.ReadUInt16();
 
-                    if (Debug.LogNetcode)
-                    {
-                        l.Value.Log("Updated Eclipses Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        if (Debug.LogNetcode)
+                        {
+                            l.Value.Log("Updated Eclipses Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case AQPacketID.BeginDemonSiege:
-                {
-                    int x = reader.ReadInt32();
-                    int y = reader.ReadInt32();
-                    int player = reader.ReadInt32();
-                    int itemType = reader.ReadInt32();
-                    int itemStack = reader.ReadInt32();
-                    int itemPrefix = reader.ReadByte();
-
-                    Item item = new Item();
-
-                    item.netDefaults(itemType);
-                    item.stack = itemStack;
-                    item.Prefix(itemPrefix);
-
-                    if (itemType > Main.maxItemTypes)
                     {
-                        item.modItem.NetRecieve(reader);
-                    }
+                        int x = reader.ReadInt32();
+                        int y = reader.ReadInt32();
+                        int player = reader.ReadInt32();
+                        int itemType = reader.ReadInt32();
+                        int itemStack = reader.ReadInt32();
+                        int itemPrefix = reader.ReadByte();
 
-                    if (Debug.LogNetcode)
-                    {
-                        var l = Debug.GetDebugLogger();
-                        l.Log("x: " + x);
-                        l.Log("y: " + y);
-                        l.Log("player activator: " + player + " (" + Main.player[player].name + ")");
-                        l.Log("item Type: " + itemType + " (" + Lang.GetItemName(item.type) + ")");
-                        l.Log("item Stack: " + itemStack);
-                        l.Log("item Prefix: " + itemPrefix);
-                    }
+                        Item item = new Item();
 
-                    DemonSiege.Activate(x, y, player, item, server: true);
-                }
-                break;
+                        item.netDefaults(itemType);
+                        item.stack = itemStack;
+                        item.Prefix(itemPrefix);
+
+                        if (itemType > Main.maxItemTypes)
+                        {
+                            item.modItem.NetRecieve(reader);
+                        }
+
+                        if (Debug.LogNetcode)
+                        {
+                            var l = Debug.GetDebugLogger();
+                            l.Log("x: " + x);
+                            l.Log("y: " + y);
+                            l.Log("player activator: " + player + " (" + Main.player[player].name + ")");
+                            l.Log("item Type: " + itemType + " (" + Lang.GetItemName(item.type) + ")");
+                            l.Log("item Stack: " + itemStack);
+                            l.Log("item Prefix: " + itemPrefix);
+                        }
+
+                        DemonSiege.Activate(x, y, player, item, server: true);
+                    }
+                    break;
             }
         }
 
         public override object Call(params object[] args)
         {
-            if (ModCallHelper.VerifyCall(args))
+            if (ModCallDictionary.VerifyCall(args))
             {
-                return ModCallHelper.InvokeCall(args);
+                return ModCallDictionary.InvokeCall(args);
             }
             return null;
         }

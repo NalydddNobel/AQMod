@@ -121,6 +121,17 @@ namespace AQMod.Common.DeveloperTools
                     caller.Reply("Command doesn't exist.");
                     break;
 
+                case "call":
+                    {
+                        var argList = new string[args.Length - 1];
+                        for (int i = 1; i < args.Length; i++)
+                        {
+                            argList[i - 1] = args[i];
+                        }
+                        caller.Reply(AQMod.Instance.Call(argList).ToString());
+                    }
+                    break;
+
                 case "place":
                     {
                         int createTile = 0;
@@ -436,12 +447,6 @@ namespace AQMod.Common.DeveloperTools
                         {
                             createSample(args);
                         }
-                    }
-                    break;
-
-                case "glimmerspawn":
-                    {
-                        caller.Reply("glimmer chance: " + GlimmerEvent.spawnChance);
                     }
                     break;
 
@@ -1037,15 +1042,6 @@ namespace AQMod.Common.DeveloperTools
                     {
                         Main.LocalPlayer.GetModPlayer<AQPlayer>().omoriDeathTimer = 1;
                     }
-                    break;
-
-                case "goodbyelonelystarite":
-                    GlimmerEventSky._lonelyStariteTimeLeft = 0;
-                    break;
-
-                case "goodbyelonelystarite2":
-                    GlimmerEventSky._lonelyStariteTimeLeft = 0;
-                    GlimmerEventSky._lonelyStarite = null;
                     break;
 
                 case "lastcall":

@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Dedicated;
+﻿using AQMod.Content.DedicatedItemTags;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -14,7 +14,7 @@ namespace AQMod.Items.Accessories
             item.width = 24;
             item.height = 24;
             item.accessory = true;
-            item.rare = ItemRarityID.Orange;
+            item.rare = AQItem.Rarities.DedicatedItem;
             item.value = Item.sellPrice(gold: 5);
         }
 
@@ -119,6 +119,6 @@ namespace AQMod.Items.Accessories
         }
 
         Color IDedicatedItem.DedicatedItemColor => new Color(200, 125, 255, 255);
-        IDedicationType IDedicatedItem.DedicationType => new ContributorDedication();
+        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
     }
 }

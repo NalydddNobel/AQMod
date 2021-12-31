@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Content.DedicatedItemTags;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated.ContentCreators
+namespace AQMod.Items.Accessories
 {
     public class Dreadsoul : ModItem, IDedicatedItem
     {
@@ -12,7 +12,7 @@ namespace AQMod.Items.Dedicated.ContentCreators
             item.width = 24;
             item.height = 24;
             item.accessory = true;
-            item.rare = ItemRarityID.Yellow;
+            item.rare = AQItem.Rarities.DedicatedItem;
             item.value = Item.sellPrice(gold: 10);
         }
 
@@ -26,7 +26,7 @@ namespace AQMod.Items.Dedicated.ContentCreators
             player.GetModPlayer<AQPlayer>().dreadsoul = true;
         }
 
-        Color IDedicatedItem.DedicatedItemColor => DedicatedColors.Youtuber;
-        IDedicationType IDedicatedItem.DedicationType => new ContentCreatorDedication();
+        Color IDedicatedItem.DedicatedItemColor => BasicDedication.YoutuberColor;
+        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
     }
 }

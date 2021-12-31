@@ -21,10 +21,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
         private float _cloudAlpha;
         private static bool _active;
 
-        public static float _lonelyStariteX;
-        public static float _lonelyStariteY;
-        public static float _lonelyStariteTimeLeft;
-        public static BGStarite _lonelyStarite;
         public static BGStarite[] _starites;
 
         public class BGStarite
@@ -400,7 +396,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public static bool CanSpawnBGStarites()
         {
-            return _starites == null && ModContent.GetInstance<StariteConfig>().BackgroundStarites;
+            return _starites == null && ModContent.GetInstance<StariteConfig>().BackgroundStarites && GlimmerEvent.GetTileDistance(Main.LocalPlayer) < GlimmerEvent.MaxDistance;
         }
 
         public static void InitNight()
@@ -409,16 +405,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             var random = sky.rand;
             if (!GlimmerEvent.IsActive)
             {
-                if (CanSpawnBGStarites() && AQMod.VariableLuck(GlimmerEvent.spawnChance, random))
-                {
-                    _lonelyStarite = new BGStarite
-                    {
-                        x = Main.screenWidth / 2f + random.Next(-20, 20),
-                        y = random.Next(-40, -12),
-                        size = random.Next(4)
-                    };
-                    _lonelyStariteTimeLeft = random.Next(1000, (int)Main.nightLength);
-                }
             }
             else
             {
@@ -576,26 +562,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                     }
                 }
             }
-            else if (_lonelyStarite != null)
-            {
-                if (_lonelyStariteTimeLeft == 0)
-                {
-                    _lonelyStarite.x += _lonelyStarite.velocityX;
-                    _lonelyStarite.y += _lonelyStarite.velocityY;
-                    if (_lonelyStarite.x <= -30f || _lonelyStarite.x >= Main.screenWidth + 30 || _lonelyStarite.y <= -30f || _lonelyStarite.y > Main.screenHeight + 30)
-                        _lonelyStarite = null;
-                }
-                else
-                {
-                    _lonelyStariteTimeLeft--;
-                    var plr = Main.LocalPlayer;
-                    _lonelyStariteX = Main.screenWidth / 2f + (float)Math.Sin(Main.GlobalTime * 10f) * 175f + plr.velocity.X * 2f;
-                    _lonelyStariteY = Main.screenHeight / 2f + (float)Math.Cos(Main.GlobalTime * 10f) * 175f + plr.velocity.Y * 2f;
-                    _lonelyStarite.Update(_lonelyStariteX, _lonelyStariteY, (float)Math.Sin(Main.GlobalTime) * 0.1f);
-                }
-            }
-            if (Main.dayTime)
-                _lonelyStarite = null;
         }
 
         public override void Draw(SpriteBatch spriteBatch, float minDepth, float maxDepth)
@@ -623,8 +589,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 else
                 {
                     _starites = null;
-                    if (_lonelyStarite != null && (_lonelyStarite.size == 0 || !Main.BackgroundEnabled))
-                        _lonelyStarite.Draw(rand);
                 }
 
                 if (FallingStars.stars != null && FallingStars.stars.Count != 0)
@@ -682,29 +646,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                         {
                             _starites[i].Draw(rand);
                         }
-                    }
-                }
-                else if (_lonelyStarite != null && _lonelyStarite.size > 0)
-                {
-                    const float layerDepth = 7f;
-                    const float layerDepth2 = 4f;
-                    const float layerDepth3 = 2f;
-                    switch (_lonelyStarite.size)
-                    {
-                        case 1:
-                            if (maxDepth <= layerDepth && minDepth >= layerDepth2)
-                                _lonelyStarite.Draw(rand);
-                            break;
-
-                        case 2:
-                            if (maxDepth <= layerDepth2 && minDepth >= layerDepth3)
-                                _lonelyStarite.Draw(rand);
-                            break;
-
-                        case 3:
-                            if (minDepth <= layerDepth3)
-                                _lonelyStarite.Draw(rand);
-                            break;
                     }
                 }
             }

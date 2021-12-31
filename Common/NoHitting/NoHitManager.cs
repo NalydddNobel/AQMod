@@ -1,4 +1,5 @@
-﻿using AQMod.Sounds;
+﻿using AQMod.Items.Accessories;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -144,7 +145,7 @@ namespace AQMod.Common.NoHitting
                             if (rewardOption == 2)
                             {
                                 WorldDefeats.ObtainedMothmanMask = true;
-                                AQItem.DropInstancedItem(i, npc.getRect(), ModContent.ItemType<Items.Dedicated.ContentCreators.MothmanMask>());
+                                AQItem.DropInstancedItem(i, npc.getRect(), ModContent.ItemType<MothmanMask>());
                             }
                             else
                             {

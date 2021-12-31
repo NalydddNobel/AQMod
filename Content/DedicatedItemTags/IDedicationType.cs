@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated
+namespace AQMod.Content.DedicatedItemTags
 {
     public interface IDedicationType
     {

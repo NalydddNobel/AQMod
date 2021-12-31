@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace AQMod.Items.Dedicated
+namespace AQMod.Content.DedicatedItemTags
 {
     public interface IDedicatedItem
     {

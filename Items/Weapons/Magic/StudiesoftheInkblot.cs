@@ -1,7 +1,7 @@
-﻿using AQMod.Items.Dedicated;
+﻿using AQMod.Content.DedicatedItemTags;
+using AQMod.Items.Dedicated;
 using AQMod.Projectiles.Magic;
 using AQMod.Sounds;
-using AQMod.Sounds.Item;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -16,7 +16,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             item.width = 80;
             item.height = 80;
-            item.damage = 75;
+            item.damage = 100;
             item.knockBack = 0f;
             item.magic = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
@@ -32,7 +32,7 @@ namespace AQMod.Items.Weapons.Magic
         }
 
         Color IDedicatedItem.DedicatedItemColor => new Color(110, 110, 128, 255);
-        IDedicationType IDedicatedItem.DedicationType => new ContributorDedication();
+        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
 
         public override void HoldItem(Player player)
         {
@@ -61,8 +61,12 @@ namespace AQMod.Items.Weapons.Magic
                     Main.projectile[p].frame = Main.projectile[i].frame;
                 }
             }
-            if ((int)Main.GameUpdateCount % 2 == 0)
-                AQSound.Play(SoundType.Item, "Sounds/Item/TouhouShoot");
+
+            int p2 = Projectile.NewProjectile(position, Vector2.Normalize(Main.MouseWorld - position) * 0.01f, ModContent.ProjectileType<StudiesoftheInkblotBullet>(), damage, knockBack, player.whoAmI, 0f, speed);
+            Main.projectile[p2].localAI[0] = 1.5f;
+
+            if (((int)Main.GameUpdateCount % 3) == 0)
+                AQSound.Play(SoundType.Item, "Sounds/Item/TouhouShoot", 0.5f, -0.01f);
             return false;
         }
     }

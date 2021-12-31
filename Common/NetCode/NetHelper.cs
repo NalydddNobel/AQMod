@@ -32,7 +32,6 @@ namespace AQMod.Common.NetCode
 
             p.Write(GlimmerEvent.tileX);
             p.Write(GlimmerEvent.tileY);
-            p.Write(GlimmerEvent.spawnChance);
             p.Write(GlimmerEvent.StariteDisco);
             p.Write(GlimmerEvent.deactivationTimer);
 

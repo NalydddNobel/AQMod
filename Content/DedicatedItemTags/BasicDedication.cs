@@ -1,10 +1,14 @@
-﻿using AQMod.Localization;
+﻿using AQMod.Items.Dedicated;
+using AQMod.Localization;
+using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated
+namespace AQMod.Content.DedicatedItemTags
 {
-    public class ContributorDedication : IDedicationType
+    public class BasicDedication : IDedicationType
     {
+        public static Color YoutuberColor => new Color(250, 80, 80, 255);
+
         public string Text => AQText.ModText("CommonTooltip.DedicatedItem").Value;
 
         public void Draw(DrawableTooltipLine line)

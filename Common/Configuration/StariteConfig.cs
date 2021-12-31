@@ -66,7 +66,6 @@ namespace AQMod.Common.Configuration
         {
             base.OnChanged();
             GlimmerEventSky._starites = null;
-            GlimmerEventSky._lonelyStarite = null;
         }
     }
 }

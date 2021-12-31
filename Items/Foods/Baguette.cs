@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Content.DedicatedItemTags;
+using AQMod.Items.Dedicated;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated.Contributors
+namespace AQMod.Items.Foods
 {
     public class Baguette : ModItem, IDedicatedItem
     {
@@ -24,6 +26,6 @@ namespace AQMod.Items.Dedicated.Contributors
         }
 
         Color IDedicatedItem.DedicatedItemColor => new Color(187, 142, 42, 255);
-        IDedicationType IDedicatedItem.DedicationType => new ContributorDedication();
+        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
     }
 }

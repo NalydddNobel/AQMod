@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Content.DedicatedItemTags;
+using AQMod.Items.Dedicated;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dedicated.Contributors
+namespace AQMod.Items.Accessories
 {
     public class RustyKnife : ModItem, IDedicatedItem
     {
@@ -22,6 +24,6 @@ namespace AQMod.Items.Dedicated.Contributors
         }
 
         Color IDedicatedItem.DedicatedItemColor => new Color(30, 255, 60, 255);
-        IDedicationType IDedicatedItem.DedicationType => new ContributorDedication();
+        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
     }
 }

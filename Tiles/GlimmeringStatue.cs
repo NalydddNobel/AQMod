@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.WorldGeneration;
+using AQMod.Content.World;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
@@ -86,7 +87,7 @@ namespace AQMod.Tiles
             int x = i - (tile.frameX % 36 / 18);
             int y = j - (tile.frameY / 18);
             int index = ModContent.GetInstance<TEGlimmeringStatue>().Find(x, y);
-            if (index != -1 && !GlimmerEvent.IsActive && (GlimmerEvent.spawnChance <= 1 || Main.rand.NextBool(GlimmerEvent.spawnChance)))
+            if (index != -1 && !GlimmerEvent.IsActive && (PassingDays.daysPassedSinceLastGlimmerEvent <= 1 || Main.rand.NextBool(PassingDays.daysPassedSinceLastGlimmerEvent)))
             {
                 int d = Dust.NewDust(new Vector2(x * 16f, y * 16f), 32, 16, dustType);
                 Main.dust[d].noGravity = true;
@@ -109,7 +110,7 @@ namespace AQMod.Tiles
             int x = i - (tile.frameX / 18 % 2);
             int y = j - (tile.frameY / 18 % 3);
             int index = ModContent.GetInstance<TEGlimmeringStatue>().Find(x, y);
-            if (index != -1 && !GlimmerEvent.IsActive && GlimmerEvent.spawnChance > 0)
+            if (index != -1 && !GlimmerEvent.IsActive && PassingDays.daysPassedSinceLastGlimmerEvent > 0)
             {
                 int d = Dust.NewDust(new Vector2(x * 16f, y * 16f), 32, 16, dustType);
                 Main.dust[d].noGravity = true;

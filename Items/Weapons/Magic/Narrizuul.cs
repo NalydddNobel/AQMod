@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Dedicated;
+﻿using AQMod.Content.DedicatedItemTags;
+using AQMod.Items.Dedicated;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -52,6 +53,6 @@ namespace AQMod.Items.Weapons.Magic
         }
 
         Color IDedicatedItem.DedicatedItemColor => new Color(160, 80, 250, 255);
-        IDedicationType IDedicatedItem.DedicationType => new ContributorDedication();
+        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
     }
 }

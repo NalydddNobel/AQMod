@@ -2,7 +2,7 @@
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.NetCode;
 using AQMod.Content.World.Events.ProgressBars;
-using AQMod.Items.BossItems.Starite;
+using AQMod.Items.BossItems;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GlimmerEvent;
 using AQMod.Tiles.TileEntities;
@@ -13,6 +13,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AQMod.Content.World.Events.GlimmerEvent
 {
@@ -37,7 +38,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
         public static bool IsActive => tileX != 0;
         public static ushort tileX;
         public static ushort tileY;
-        public static int spawnChance;
         public static int deactivationTimer = -1;
         public static Color stariteProjectileColor { get; internal set; }
         public static bool StariteDisco { get; internal set; }
@@ -95,19 +95,69 @@ namespace AQMod.Content.World.Events.GlimmerEvent
         {
             tileX = 0;
             tileY = 0;
-            spawnChance = -1;
             StariteDisco = false;
             stariteProjectileColor = StariteProjectileColorOrig;
             deactivationTimer = -1;
         }
 
+        public override TagCompound Save()
+        {
+            if (deactivationTimer > 0)
+                Deactivate();
+            var tag = new TagCompound()
+            {
+                ["X"] = (int)tileX,
+                ["Y"] = (int)tileY,
+            };
+            return tag;
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            tileX = (ushort)tag.GetInt("GlimmerEvent_X");
+            tileY = (ushort)tag.GetInt("GlimmerEvent_Y");
+
+            if (!Main.dayTime)
+                GlimmerEventSky.InitNight();
+        }
+
         public override void PostUpdate()
         {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+                return;
             if (Main.dayTime || Main.pumpkinMoon || Main.snowMoon)
             {
                 if (IsActive)
                     Deactivate();
                 return;
+            }
+            if (Main.time == 0.0)
+            {
+                if (PassingDays.daysPassedSinceLastGlimmerEvent > 4 && Main.moonPhase != Constants.MoonPhases.FullMoon && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
+                {
+                    for (int i = 0; i < Main.maxPlayers; i++)
+                    {
+                        Player player = Main.player[i];
+                        if (player.active && player.statLifeMax > 200)
+                        {
+                            if ((PassingDays.daysPassedSinceLastGlimmerEvent > 9 || Main.rand.NextBool(12 - PassingDays.daysPassedSinceLastGlimmerEvent)) && Activate())
+                            {
+                                PassingDays.daysPassedSinceLastGlimmerEvent = 0;
+                                if (AQPlayer.IgnoreMoons())
+                                {
+                                    CosmicanonCounts.GlimmersPrevented++;
+                                    NetHelper.PreventedGlimmer();
+                                }
+                                else
+                                {
+                                    AQMod.BroadcastMessage("Mods.AQMod.EventWarning.GlimmerEvent", TextColor);
+                                    NetHelper.GlimmerEventNetUpdate();
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
             }
             if (!IsActive)
             {
@@ -147,7 +197,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 writer.Write(tileX);
                 writer.Write(tileY);
             }
-            writer.Write(spawnChance);
             writer.Write(StariteDisco);
             writer.Write(deactivationTimer);
         }
@@ -159,7 +208,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 tileX = reader.ReadUInt16();
                 tileY = reader.ReadUInt16();
             }
-            spawnChance = reader.ReadInt32();
             StariteDisco = reader.ReadBoolean();
             deactivationTimer = reader.ReadInt32();
         }
@@ -219,7 +267,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             return false;
         }
 
-        public static bool Activate(bool resetSpawnChance = true)
+        public static bool Activate()
         {
             var statuePlacements = new List<TEGlimmeringStatue>();
             foreach (var t in TileEntity.ByID)
@@ -231,12 +279,12 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             {
                 if (statuePlacements.Count == 1)
                 {
-                    Activate(statuePlacements[0].Position.X, statuePlacements[0].Position.Y, resetSpawnChance);
+                    Activate(statuePlacements[0].Position.X, statuePlacements[0].Position.Y);
                 }
                 else
                 {
                     int randIndex = Main.rand.Next(statuePlacements.Count);
-                    Activate(statuePlacements[randIndex].Position.X, statuePlacements[randIndex].Position.Y, resetSpawnChance);
+                    Activate(statuePlacements[randIndex].Position.X, statuePlacements[randIndex].Position.Y);
                 }
                 return true;
             }
@@ -262,21 +310,15 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 {
                     tileX = (ushort)x;
                     tileY = ManageGlimmerY();
-                    if (resetSpawnChance)
-                    {
-                        spawnChance = GetBaseRarity();
-                    }
                     return true;
                 }
             }
             return false;
         }
 
-        public static void Activate(int x, int y, bool resetSpawnChance = true)
+        public static void Activate(int x, int y)
         {
             OmegaStariteScenes.SceneType = 0;
-            if (resetSpawnChance)
-                spawnChance = GetBaseRarity();
             tileX = (ushort)x;
             tileY = (ushort)y;
         }
@@ -311,41 +353,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public static void OnTurnNight()
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-                return;
-            if (spawnChance == -1)
-            {
-                spawnChance = GetBaseRarity();
-                return;
-            }
-            if (Main.moonPhase != Constants.MoonPhases.FullMoon && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
-            {
-                for (int i = 0; i < Main.maxPlayers; i++)
-                {
-                    Player player = Main.player[i];
-                    if (player.active && player.statLifeMax > 200)
-                    {
-                        if (spawnChance <= 2 && Activate(resetSpawnChance: true))
-                        {
-                            if (AQPlayer.IgnoreMoons())
-                            {
-                                CosmicanonCounts.GlimmersPrevented++;
-                                NetHelper.PreventedGlimmer();
-                            }
-                            else
-                            {
-                                AQMod.BroadcastMessage("Mods.AQMod.EventWarning.GlimmerEvent", TextColor);
-                                NetHelper.GlimmerEventNetUpdate();
-                            }
-                        }
-                        else
-                        {
-                            spawnChance -= Main.rand.Next(spawnChance) / 2;
-                        }
-                        break;
-                    }
-                }
-            }
         }
 
         public static bool ShouldKillStar(NPC npc)
