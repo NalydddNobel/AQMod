@@ -289,7 +289,7 @@ BossChecklistDesc.RedSprite=有几率出现在紊流风暴中!
 # Recipe Groups
 
 RecipeGroup.AnyEnergy=任意能量
-RecipeGroup.AnyNobleMushroom=任意华贵蘑菇
+RecipeGroup.AnyNobleMushroom=任意华贵孢子
 
 Config.RequiresReload=需要重新加载.
 
@@ -720,9 +720,9 @@ ProjectileName.MothmanCritExplosion=天蛾人面具
 # Placeable #
 #############
 # Mushrooms
-ItemName.ArgonMushroom=氩蘑菇
-ItemName.KryptonMushroom=氪蘑菇
-ItemName.XenonMushroom=氙蘑菇
+ItemName.ArgonMushroom=氩孢子
+ItemName.KryptonMushroom=氪孢子
+ItemName.XenonMushroom=氙孢子
 # Torches
 ItemName.ExoticRedTorch=奇异的红色火把
 ItemName.ExoticGreenTorch=奇异的绿色火把
