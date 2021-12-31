@@ -9,7 +9,8 @@ namespace AQMod.Common.Graphics
     internal static class AQGraphics
     {
         public static class Data
-        {         
+        {
+            public static bool CanUseAssets => !AQMod.Loading && Main.netMode != NetmodeID.Server;
             /// <summary>
             /// Gets the center of the screen's draw coordinates
             /// </summary>

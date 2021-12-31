@@ -159,7 +159,7 @@ namespace AQMod.NPCs.Boss.Starite
 
             if (!GlimmerEvent.IsActive)
                 skipDeathTimer = 600;
-            if (AQGraphics.CanUseAssets)
+            if (AQGraphics.Data.CanUseAssets)
             {
                 music = GetMusic().GetMusicID();
                 musicPriority = MusicPriority.BossMedium;
