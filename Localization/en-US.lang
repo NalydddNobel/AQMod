@@ -92,8 +92,8 @@ ItemName.Narrizuul=Narrizuul
 ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n'Smells like roses'
 
 ItemName.StudiesoftheInkblot=Studies of the Inkblot
-ItemTooltip.StudiesoftheInkblot={$Mods.AQMod.Tooltips.Unobtainable}
-ProjectileName.StudiesoftheInkblot=Studies of the Inkblot
+ItemTooltip.StudiesoftheInkblot='Rorschach in Danmaku'
+ProjectileName.StudiesoftheInkblotBullet=Studies of the Inkblot
 
 # Dyes
 ItemName.RedSpriteDye=Red Sprite Dye
