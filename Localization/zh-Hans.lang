@@ -91,6 +91,10 @@ BuffDescription.UmystickDelay=你的法力恢复速度降低, 且无法使用神
 ItemName.Narrizuul=耀宇遗光
 ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n'闻起来像玫瑰'
 
+ItemName.StudiesoftheInkblot=墨迹研究学
+ItemTooltip.StudiesoftheInkblot='弹幕中的罗夏'
+ProjectileName.StudiesoftheInkblotBullet=墨迹研究学
+
 # Dyes
 ItemName.RedSpriteDye=红色精灵染料
 ItemName.FrostbiteDye=霜寒染料
@@ -252,14 +256,14 @@ Physicist.Chat.Mod.Fargowiltas.Deviantt=你刚刚从一个看起来很愚蠢的�
 
 # Paintings
 
-PaintingSignature.NalydT=N.T.
-PaintingSignature.niker=N.
+PaintingSignature.NalydT='N.T.'
+PaintingSignature.niker='N.'
 
 ItemName.OmegaStaritePainting='{$Mods.AQMod.NPCName.OmegaStarite}'
 ItemTooltip.OmegaStaritePainting='你不知道你会得到什么!'\n{$Mods.AQMod.PaintingSignature.niker}
 
 ItemName.RockFromAnAlternateUniverse='一块来自平行宇宙的石头'
-ItemTooltip.RockFromAnAlternateUniverse='星际星云的宏伟之力!'\n{$Mods.AQMod.PaintingSignature.NalydT}.. 来自另一个宇宙
+ItemTooltip.RockFromAnAlternateUniverse='星际星云的宏伟之力!'\n'N.T... 来自另一个宇宙'
 
 ItemName.AStrangeIdea='一个奇怪的想法...'
 ItemTooltip.AStrangeIdea='Aequus之起源'\n{$Mods.AQMod.PaintingSignature.NalydT}
