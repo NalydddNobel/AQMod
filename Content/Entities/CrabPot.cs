@@ -14,7 +14,7 @@ using Terraria.UI.Chat;
 
 namespace AQMod.Content.Entities
 {
-    public sealed class CrabPot : Entity, TagSerializable, IAutoloadType
+    public sealed class CrabPot : Entity, TagSerializable, IAutoloadType // TODO: Tons of netcode!
     {
         public const int maxCrabPots = 150;
         public const int frameCount = 2;
@@ -26,6 +26,8 @@ namespace AQMod.Content.Entities
         public uint existence;
         public bool hasBait;
         public int item;
+        public byte killTap;
+        private byte killTapDelay;
 
         public bool LavaProof => data.HasFlag(CrabPotDataFlags.LavaProof);
 
@@ -92,8 +94,12 @@ namespace AQMod.Content.Entities
             lavaWet = false;
             honeyWet = false;
 
+            hasBait = false;
             data = 0;
             existence = 0;
+            item = 0;
+            killTap = 0;
+            killTapDelay = 0;
         }
 
         public void Update()
@@ -103,6 +109,14 @@ namespace AQMod.Content.Entities
                 return;
             }
 
+            if (killTapDelay == 0)
+            {
+                killTap = 0;
+            }
+            else
+            {
+                killTapDelay--;
+            }
             _gravity = 0.1f;
             _terminalVelocity = 7f;
             if (velocity.Length() > 0.01f)
@@ -111,15 +125,16 @@ namespace AQMod.Content.Entities
             }
             int x = (int)(position.X + width / 2f) / 16;
             int y = (int)(position.Y + height / 2f) / 16;
+            hasBait = true;
             if (wet)
             {
                 FloatOnWater(x, y);
-                if (item <= 0)
+                if (item <= 0 && velocity.Length() < 0.01f && hasBait)
                 {
                     FishingCheck();
                 }
             }
-            else if (existence > 120 && velocity.Length() < 0.1f || WorldGen.InWorld(x, y, 24))
+            else if ((existence > 120 && velocity.Length() < 0.1f) || !WorldGen.InWorld(x, y, 24))
             {
                 Kill();
             }
@@ -230,11 +245,20 @@ namespace AQMod.Content.Entities
 
         private void FishingCheck()
         {
-            item = Main.LocalPlayer.HeldItem.type;
             if (!FishingCheckRNG())
             {
                 return;
             }
+
+            hasBait = false;
+            wetCount = 0;
+            velocity.Y += 6f;
+            item = FishingCheckGetItem();
+        }
+
+        private int FishingCheckGetItem()
+        {
+            return 0;
         }
 
         private void FloatOnWater(int x, int y)
@@ -346,21 +370,75 @@ namespace AQMod.Content.Entities
                 var outlineTexture = HighlightTexture;
                 plr.noThrow = 2;
                 plr.showItemIcon = true;
-                plr.showItemIcon2 = DataToCrabPotItemID(data);
+                Item bait = null;
+                if (item > 0 && !ItemID.Sets.Deprecated[item])
+                {
+                    plr.showItemIcon2 = item;
+                }
+                else
+                {
+                    bait = findBaitItem(plr);
+                    if (bait != null)
+                    {
+                        plr.showItemIcon2 = bait.type;
+                    }
+                    else
+                    {
+                        plr.showItemIcon2 = DataToCrabPotItemID(data);
+                    }
+                }
                 if (PlayerInput.UsingGamepad)
                     plr.GamepadEnableGrappleCooldown();
                 Main.spriteBatch.Draw(outlineTexture, drawCoordinates, _frame, Color.Lerp(lightColor, Main.OurFavoriteColor, 0.5f), _rotation, _frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
-                if (item > 0)
+                if (Main.mouseRight && Main.mouseRightRelease)
                 {
-                    if (Main.mouseRight && Main.mouseRightRelease && Player.StopMoneyTroughFromWorking == 0)
+                    if (item > 0)
                     {
                         Main.mouseRightRelease = false;
                         Item.NewItem(getRect(), item);
                         Main.PlaySound(SoundID.Grab);
                         item = 0;
                     }
+                    else 
+                    {
+                        if (bait == null)
+                            bait = findBaitItem(plr);
+                        if (bait != null)
+                        {
+                            hasBait = true; 
+                            if (bait.consumable)
+                            {
+                                bait.stack--;
+                                if (bait.stack <= 0)
+                                {
+                                    bait.TurnToAir();
+                                }
+                            }
+                        }
+                    }
                 }
             }
+        }
+
+        private Item findBaitItem(Player plr)
+        {
+            Item bait = null;
+            if (plr.HeldItem.bait > 0)
+            {
+                bait = plr.HeldItem;
+            }
+            else
+            {
+                for (int i = 0; i < Main.maxInventory; i++)
+                {
+                    if (plr.inventory[i].type > 0 && plr.inventory[i].stack > 0 && plr.inventory[i].bait > 0)
+                    {
+                        bait = plr.inventory[i];
+                        break;
+                    }
+                }
+            }
+            return bait;
         }
 
         public void Render()
@@ -379,7 +457,23 @@ namespace AQMod.Content.Entities
                 drawCoordinates.Y += (float)Math.Sin(Main.GlobalTime + position.X * 0.01f) * 2f;
             }
             var lightColor = Lighting.GetColor(((int)position.X + width / 2) / 16, ((int)position.Y + height / 2) / 16);
+            if (killTapDelay > 10)
+            {
+                drawCoordinates += new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f));
+            }
             HandleInteractions(drawCoordinates, lightColor, out bool hovering);
+
+            if (hovering && Main.mouseLeft)
+            {
+                killTap++;
+                killTapDelay = 12;
+                Main.PlaySound(SoundID.Tink, -1, -1, 1, 0.8f, 1f);
+                if (killTap > 3)
+                {
+                    Kill();
+                }
+            }
+
             Main.spriteBatch.Draw(Texture, drawCoordinates, _frame, lightColor, _rotation, _origin, 1f, SpriteEffects.None, 0f);
         }
 
@@ -451,6 +545,7 @@ namespace AQMod.Content.Entities
                 ["Y"] = position.Y,
                 ["data"] = (byte)data,
                 ["item"] = item,
+                ["hasBait"] = hasBait,
             };
         }
 
@@ -461,6 +556,7 @@ namespace AQMod.Content.Entities
                 default:
                     active = true;
                     Setup((CrabPotDataFlags)tag.GetByte("data"));
+                    hasBait = tag.GetBool("hasBait");
                     item = tag.GetInt("item");
                     position.X = tag.GetFloat("X");
                     position.Y = tag.GetFloat("Y");
