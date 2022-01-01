@@ -294,10 +294,11 @@ BossChecklistDesc.RedSprite=Occasionally appears during the Gale Streams!
 
 RecipeGroup.AnyEnergy=Any Energy
 RecipeGroup.AnyNobleMushroom=Any Noble Spore
-
-Config.RequiresReload=Requires a reload.
+RecipeGroup.CopperOrTin=Copper or Tin
 
 # Config
+
+Config.RequiresReload=Requires a reload.
 
 StariteConfig.BackgroundStars=Background Falling Stars
 StariteConfig.BackgroundStarsTooltip=Whether or not to have background falling stars like in 1.4 during the Glimmer Event

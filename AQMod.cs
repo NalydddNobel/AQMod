@@ -12,6 +12,7 @@ using AQMod.Common.NetCode;
 using AQMod.Common.UserInterface;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
+using AQMod.Content.Entities;
 using AQMod.Content.LegacyWorldEvents.CrabSeason;
 using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Content.MapMarkers;
@@ -219,6 +220,10 @@ namespace AQMod
             {
                 orig(self);
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+                for (int i = 0; i < CrabPot.maxCrabPots; i++)
+                {
+                    CrabPot.crabPots[i].Render();
+                }
                 Particle.PostDrawPlayers.Render();
                 SceneLayersManager.DrawLayer(SceneLayering.PostDrawPlayers);
                 Main.spriteBatch.End();
@@ -649,6 +654,7 @@ namespace AQMod
                 {
                     SceneLayersManager.DrawLayer(SceneLayering.PreRender);
                     SceneLayersManager.RenderTargetLayers.PreRender();
+                    AQGraphics.Rendering.Culling.update();
                     _lastScreenWidth = Main.screenWidth;
                     _lastScreenHeight = Main.screenHeight;
                 }

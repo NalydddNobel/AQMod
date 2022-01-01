@@ -28,7 +28,7 @@ namespace AQMod.Common.UserInterface
             return position + inventoryBackTexture.Size() / 2f * Main.inventoryScale;
         }
 
-        public static InventoryItemDrawResults DrawItemInv(Vector2 position, Item item, Color? color = null)
+        public static InventoryItemDrawResults DrawItemInv(Vector2 position, Item item, Color? color = null, int maxSize = 32)
         {
             var drawResults = new InventoryItemDrawResults
             {
@@ -56,8 +56,8 @@ namespace AQMod.Common.UserInterface
                 drawResults.drawColor = new Color(r * r2, g * g2, b * b2, a * a2);
             }
             float scale = 1f;
-            if (drawResults.frame.Width > 32 || drawResults.frame.Height > 32)
-                scale = drawResults.frame.Width <= drawResults.frame.Height ? 32f / drawResults.frame.Height : 32f / drawResults.frame.Width;
+            if (drawResults.frame.Width > maxSize || drawResults.frame.Height > maxSize)
+                scale = drawResults.frame.Width <= drawResults.frame.Height ? (float)maxSize / drawResults.frame.Height : (float)maxSize / drawResults.frame.Width;
             drawResults.scale = scale * Main.inventoryScale;
             Vector2 backSize = Main.inventoryBack3Texture.Size() * Main.inventoryScale;
             drawResults.origin = drawResults.frame.Size() * (drawResults.scale2 / 2f - 0.5f);

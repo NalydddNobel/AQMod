@@ -24,22 +24,32 @@ namespace AQMod
             /// The key for the Any Energy recipe group
             /// </summary>
             public const string AnyEnergy = "AQMod:AnyEnergy";
+            /// <summary>
+            /// The key for the Any Energy recipe group
+            /// </summary>
+            public const string CopperOrTin = "AQMod:CopperOrTin";
 
             internal static void Setup()
             {
-                var r = new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyNobleMushroom"),
+                RecipeGroup.RegisterGroup(AnyNobleMushroom, 
+                    new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyNobleMushroom"),
                     ModContent.ItemType<ArgonMushroom>(),
                     ModContent.ItemType<KryptonMushroom>(),
-                    ModContent.ItemType<XenonMushroom>());
-                RecipeGroup.RegisterGroup(AnyNobleMushroom, r);
-                r = new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyEnergy"),
+                    ModContent.ItemType<XenonMushroom>()));
+
+                RecipeGroup.RegisterGroup(AnyEnergy, 
+                    new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyEnergy"),
                     ModContent.ItemType<UltimateEnergy>(),
                     ModContent.ItemType<AquaticEnergy>(),
                     ModContent.ItemType<AtmosphericEnergy>(),
                     ModContent.ItemType<OrganicEnergy>(),
                     ModContent.ItemType<DemonicEnergy>(),
-                    ModContent.ItemType<CosmicEnergy>());
-                RecipeGroup.RegisterGroup(AnyEnergy, r);
+                    ModContent.ItemType<CosmicEnergy>()));
+
+                RecipeGroup.RegisterGroup(CopperOrTin, 
+                    new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.CopperOrTin"),
+                    ItemID.CopperBar, 
+                    ItemID.TinBar));
             }
         }
 

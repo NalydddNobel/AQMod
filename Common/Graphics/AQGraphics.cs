@@ -39,10 +39,28 @@ namespace AQMod.Common.Graphics
                 }
             }
             internal static Vector2 TileZero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
+            internal static Rectangle renderRectangle;
         }
 
         public static class Rendering
         {
+            public static class Culling
+            {
+                internal static bool InScreen(Vector2 position)
+                {
+                    return InScreen(new Rectangle((int)position.X, (int)position.Y, 1, 1));
+                }
+                internal static bool InScreen(Rectangle rectangle)
+                {
+                    return Data.renderRectangle.Intersects(rectangle);
+                }
+
+                internal static void update()
+                {
+                    Data.renderRectangle = new Rectangle(-20, -20, Main.screenWidth + 20, Main.screenHeight + 20);
+                }
+            }
+ 
             public static void DrawTileWithSloping(Tile tile, Texture2D texture, Vector2 drawCoordinates, Color drawColor, int frameX, int frameY, int width, int height)
             {
                 if (tile.slope() == 0 && !tile.halfBrick())
@@ -352,7 +370,5 @@ namespace AQMod.Common.Graphics
         }
 
         internal delegate void DrawMethod(Texture2D texture, Vector2 position, Rectangle? frame, Color color, float scale, Vector2 origin, float rotation, SpriteEffects effects, float layerDepth);
-
-        public static bool CanUseAssets => !AQMod.Loading && Main.netMode != NetmodeID.Server;
     }
 }
