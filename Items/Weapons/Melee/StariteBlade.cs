@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets.LegacyItemOverlays;
+using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -7,8 +8,12 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Melee
 {
-    public class StariteBlade : ModItem
+    public class StariteBlade : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<StariteBlade>("_Glow"));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
+
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)

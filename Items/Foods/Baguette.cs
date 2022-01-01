@@ -1,5 +1,4 @@
 ﻿using AQMod.Content.DedicatedItemTags;
-using AQMod.Items.Dedicated;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -19,10 +18,15 @@ namespace AQMod.Items.Foods
             item.UseSound = SoundID.Item2;
             item.maxStack = 999;
             item.consumable = true;
-            item.rare = ItemRarityID.Orange;
+            item.rare = AQItem.Rarities.DedicatedItem;
             item.value = Item.buyPrice(silver: 80);
             item.buffType = BuffID.WellFed;
             item.buffTime = 216000;
+        }
+
+        public override bool CanBurnInLava()
+        {
+            return true;
         }
 
         Color IDedicatedItem.DedicatedItemColor => new Color(187, 142, 42, 255);

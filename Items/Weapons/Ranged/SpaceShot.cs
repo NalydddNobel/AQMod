@@ -1,4 +1,5 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
+﻿using AQMod.Items.DrawOverlays;
+using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -6,13 +7,11 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Ranged
 {
-    public class SpaceShot : ModItem
+    public class SpaceShot : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
-        public override void SetStaticDefaults()
-        {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow"), new Color(200, 200, 200, 0)), item.type);
-        }
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<SpaceShot>("_Glow"));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
 
         public override void SetDefaults()
         {
@@ -37,6 +36,17 @@ namespace AQMod.Items.Weapons.Ranged
         {
             Projectile.NewProjectile(position, new Vector2(speedX, speedY), ModContent.ProjectileType<Projectiles.Ranged.SpaceShot>(), damage, knockBack, player.whoAmI, type);
             return false;
+        }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.FlintlockPistol);
+            r.AddIngredient(ItemID.FallenStar, 8);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
+            r.AddTile(TileID.Anvils);
+            r.SetResult(this);
+            r.AddRecipe();
         }
     }
 }

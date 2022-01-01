@@ -27,7 +27,7 @@ namespace AQMod.Content.Entities
         public static CrabPot[] crabPots { get; private set; }
 
         public CrabPotDataFlags data;
-        public uint existence;
+        public byte invalidLocationKillDelay;
         public bool hasBait;
         public int item;
         public byte killTap;
@@ -63,7 +63,7 @@ namespace AQMod.Content.Entities
             width = 12;
             height = 10;
             this.data = data;
-            existence = 0;
+            invalidLocationKillDelay = 120;
             item = 0;
             if (Main.netMode != NetmodeID.Server)
                 SetupFrame();
@@ -100,7 +100,7 @@ namespace AQMod.Content.Entities
 
             hasBait = false;
             data = 0;
-            existence = 0;
+            invalidLocationKillDelay = 120;
             item = 0;
             killTap = 0;
             killTapDelay = 0;
@@ -131,18 +131,19 @@ namespace AQMod.Content.Entities
             int y = (int)(position.Y + height / 2f) / 16;
             if (wet)
             {
+                invalidLocationKillDelay = 120;
                 FloatOnWater(x, y);
                 if (item <= 0 && velocity.Length() < 0.01f && hasBait)
                 {
                     FishingCheck();
                 }
             }
-            else if ((existence > 120 && velocity.Length() < 0.1f) || !WorldGen.InWorld(x, y, 24))
+            else if ((invalidLocationKillDelay == 0 && velocity.Length() < 0.1f) || !WorldGen.InWorld(x, y, 24))
             {
                 Kill();
             }
-            existence++;
-
+            if (invalidLocationKillDelay != 0)
+                invalidLocationKillDelay++;
 
             oldVelocity = velocity;
             velocity.Y += _gravity;
@@ -194,6 +195,12 @@ namespace AQMod.Content.Entities
                 honeyWet = false;
             }
 
+            if (lavaWet && !LavaProof)
+            {
+                Kill();
+                return;
+            }
+
             var bump = velocity;
             velocity = Collision.TileCollision(position, velocity, width, height);
             if (velocity.X != bump.X && bump.X.Abs() > 1f)
@@ -243,7 +250,7 @@ namespace AQMod.Content.Entities
 
         private bool FishingCheckRNG()
         {
-            return Main.rand.NextBool(2);
+            return Main.rand.NextBool(60);
             //return Main.rand.NextBool(2500);
         }
 
@@ -254,23 +261,31 @@ namespace AQMod.Content.Entities
                 return;
             }
 
-            hasBait = false;
-            wetCount = 0;
-            velocity.Y += 6f;
             item = FishingCheckGetItem();
+            if (item != 0)
+            {
+                hasBait = false;
+                wetCount = 0;
+                velocity.X += Main.rand.NextFloat(-0.1f, 0.1f);
+                velocity.Y += 1f;
+            }
         }
 
         private int FishingCheckGetItem()
         {
+            if (honeyWet)
+            {
+                return 0;
+            }
             var point = Center.ToTileCoordinates();
             int worldLayer = (!(point.Y < Main.worldSurface * 0.5)) ? ((point.Y < Main.worldSurface) ? 1 : ((point.Y < Main.rockLayer) ? 2 : ((point.Y >= Main.maxTilesY - 300) ? 4 : 3))) : 0;
-            
-            if (worldLayer == FishLoader.WorldLayers.HellLayer)
+
+            if (LavaProof && lavaWet)
             {
-                if (LavaProof && lavaWet)
-                {
-                    return Main.rand.NextBool() ? ItemID.FlarefinKoi : ItemID.Obsidifish;
-                }
+                return Main.rand.NextBool() ? ItemID.FlarefinKoi : ItemID.Obsidifish;
+            }
+            else if (worldLayer == FishLoader.WorldLayers.HellLayer)
+            {
                 return 0;
             }
 
@@ -293,24 +308,27 @@ namespace AQMod.Content.Entities
                 {
                     continue;
                 }
-                switch (tile.type)
+                if (!ocean)
                 {
-                    case TileID.Sand:
-                    case TileID.Ebonsand:
-                    case TileID.Crimsand:
-                    case TileID.Pearlsand:
-                    case TileID.HardenedSand:
-                    case TileID.CorruptHardenedSand:
-                    case TileID.CrimsonHardenedSand:
-                    case TileID.HallowHardenedSand:
-                    case TileID.Sandstone:
-                    case TileID.CorruptSandstone:
-                    case TileID.CrimsonSandstone:
-                    case TileID.HallowSandstone:
-                        {
-                            desert = true;
-                        }
-                        break;
+                    switch (tile.type)
+                    {
+                        case TileID.Sand:
+                        case TileID.Ebonsand:
+                        case TileID.Crimsand:
+                        case TileID.Pearlsand:
+                        case TileID.HardenedSand:
+                        case TileID.CorruptHardenedSand:
+                        case TileID.CrimsonHardenedSand:
+                        case TileID.HallowHardenedSand:
+                        case TileID.Sandstone:
+                        case TileID.CorruptSandstone:
+                        case TileID.CrimsonSandstone:
+                        case TileID.HallowSandstone:
+                            {
+                                desert = true;
+                            }
+                            break;
+                    }
                 }
                 if (tile.wall == WallID.Sandstone)
                 {

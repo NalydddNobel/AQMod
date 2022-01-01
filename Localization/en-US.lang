@@ -134,6 +134,9 @@ ItemName.MysteryGrail=Mysterious Grail
 ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\nGives you a random buff
 
 # Fish
+ItemName.CrabPot=Crab Pot
+ItemTooltip.CrabPot=Uses bait to catch things in the water
+
 ItemName.PalePufferfish=Pale Pufferfish
 ItemTooltip.PalePufferfish=Can cure you of many debuffs\nCan cure vampirism
 
