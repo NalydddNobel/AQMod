@@ -1,5 +1,9 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Graphics;
+using AQMod.Content.Fishing;
+using AQMod.Items.Fish.BloodMoon;
+using AQMod.Items.Fish.Corruption;
+using AQMod.Items.Fish.Crimson;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -125,7 +129,6 @@ namespace AQMod.Content.Entities
             }
             int x = (int)(position.X + width / 2f) / 16;
             int y = (int)(position.Y + height / 2f) / 16;
-            hasBait = true;
             if (wet)
             {
                 FloatOnWater(x, y);
@@ -240,7 +243,8 @@ namespace AQMod.Content.Entities
 
         private bool FishingCheckRNG()
         {
-            return Main.rand.NextBool(2500);
+            return Main.rand.NextBool(2);
+            //return Main.rand.NextBool(2500);
         }
 
         private void FishingCheck()
@@ -258,6 +262,172 @@ namespace AQMod.Content.Entities
 
         private int FishingCheckGetItem()
         {
+            var point = Center.ToTileCoordinates();
+            int worldLayer = (!(point.Y < Main.worldSurface * 0.5)) ? ((point.Y < Main.worldSurface) ? 1 : ((point.Y < Main.rockLayer) ? 2 : ((point.Y >= Main.maxTilesY - 300) ? 4 : 3))) : 0;
+            
+            if (worldLayer == FishLoader.WorldLayers.HellLayer)
+            {
+                if (LavaProof && lavaWet)
+                {
+                    return Main.rand.NextBool() ? ItemID.FlarefinKoi : ItemID.Obsidifish;
+                }
+                return 0;
+            }
+
+            bool ocean = position.X < 3200f || position.X > Main.maxTilesX * 16f - 3200f;
+            bool crimson = false;
+            bool corruption = false;
+            bool desert = false;
+            bool jungle = false;
+            bool hallow = false;
+            bool snow = false;
+
+            for (int j = 0; j < 30; j++)
+            {
+                if (point.Y + j > Main.maxTilesY - 10)
+                {
+                    continue;
+                }
+                var tile = Main.tile[point.X, point.Y + j];
+                if (tile == null)
+                {
+                    continue;
+                }
+                switch (tile.type)
+                {
+                    case TileID.Sand:
+                    case TileID.Ebonsand:
+                    case TileID.Crimsand:
+                    case TileID.Pearlsand:
+                    case TileID.HardenedSand:
+                    case TileID.CorruptHardenedSand:
+                    case TileID.CrimsonHardenedSand:
+                    case TileID.HallowHardenedSand:
+                    case TileID.Sandstone:
+                    case TileID.CorruptSandstone:
+                    case TileID.CrimsonSandstone:
+                    case TileID.HallowSandstone:
+                        {
+                            desert = true;
+                        }
+                        break;
+                }
+                if (tile.wall == WallID.Sandstone)
+                {
+                    desert = true;
+                }
+                if (TileID.Sets.Snow[tile.type] || TileID.Sets.Conversion.Ice[tile.type])
+                {
+                    snow = true;
+                }
+                if (TileID.Sets.Hallow[tile.type])
+                {
+                    hallow = true;
+                    break;
+                }
+                if (TileID.Sets.Corrupt[tile.type])
+                {
+                    corruption = true;
+                    break;
+                }
+                if (TileID.Sets.Crimson[tile.type])
+                {
+                    crimson = true;
+                    break;
+                }
+                if (tile.type == TileID.JungleGrass || tile.type == TileID.LihzahrdBrick)
+                {
+                    jungle = true;
+                    break;
+                }
+            }
+
+            bool spawnGenericFish = !crimson && !corruption && !desert && !ocean && !jungle && !snow;
+
+            List<int> selectableFish = new List<int>();
+            // TODO: Add custom items instead of these sudo regular fishing tables!
+            // TODO 2: Aadd custom crab pot item support through mod calls?
+            if (worldLayer <= FishLoader.WorldLayers.Overworld)
+            {
+                if (Main.bloodMoon)
+                {
+                    selectableFish.Add(ModContent.ItemType<PalePufferfish>());
+                    if (Main.hardMode)
+                        selectableFish.Add(ModContent.ItemType<VampireSquid>());
+                }
+                if (spawnGenericFish)
+                {
+
+                }
+            }
+            if (crimson)
+            {
+                selectableFish.Add(ItemID.Hemopiranha);
+                selectableFish.Add(ItemID.CrimsonTigerfish);
+                if (NPC.downedBoss2)
+                {
+                    selectableFish.Add(ModContent.ItemType<Fleshscale>());
+                }
+            }
+            else if (corruption)
+            {
+                selectableFish.Add(ItemID.Ebonkoi);
+                if (!Main.dayTime)
+                {
+                    selectableFish.Add(ModContent.ItemType<Fizzler>());
+                }
+                if (NPC.downedBoss2)
+                {
+                    selectableFish.Add(ModContent.ItemType<Depthscale>());
+                }
+            }
+            else if (jungle)
+            {
+                selectableFish.Add(ItemID.DoubleCod);
+                selectableFish.Add(ItemID.VariegatedLardfish);
+            }
+            else if (hallow)
+            {
+                selectableFish.Add(ItemID.PrincessFish);
+                selectableFish.Add(ItemID.Prismite);
+                if (worldLayer == FishLoader.WorldLayers.UndergroundLayer || worldLayer == FishLoader.WorldLayers.CavernLayer)
+                    selectableFish.Add(ItemID.ChaosFish);
+            }
+            if (ocean && worldLayer == FishLoader.WorldLayers.Overworld)
+            {
+                selectableFish.Add(ItemID.Shrimp);
+                selectableFish.Add(ItemID.BlueJellyfish);
+                selectableFish.Add(ItemID.GreenJellyfish);
+                selectableFish.Add(ItemID.PinkJellyfish);
+            }
+            else if (snow)
+            {
+                selectableFish.Add(ItemID.AtlanticCod);
+                selectableFish.Add(ItemID.FrostMinnow);
+            }
+
+            if (spawnGenericFish)
+            {
+                if (worldLayer == FishLoader.WorldLayers.Space)
+                {
+                    selectableFish.Add(ItemID.Damselfish);
+                }
+                else if (worldLayer == FishLoader.WorldLayers.UndergroundLayer || worldLayer == FishLoader.WorldLayers.CavernLayer)
+                {
+                    selectableFish.Add(ItemID.Stinkfish);
+                    selectableFish.Add(ItemID.SpecularFish);
+                    selectableFish.Add(ItemID.ArmoredCavefish);
+                }
+                if (worldLayer <= FishLoader.WorldLayers.Overworld)
+                {
+                    selectableFish.Add(ItemID.Bass);
+                }
+            }
+
+            if (selectableFish.Count == 1)
+                return selectableFish[0];
+            if (selectableFish.Count > 1)
+                return selectableFish[Main.rand.Next(selectableFish.Count)];
             return 0;
         }
 
@@ -361,9 +531,8 @@ namespace AQMod.Content.Entities
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontItemStack, item.stack.ToString(), position + new Vector2(10f, 26f), Main.inventoryBack, 0f, Vector2.Zero, new Vector2(1f), -1f, 1f);
         }
 
-        private void HandleInteractions(Vector2 drawCoordinates, Color lightColor, out bool hovering)
+        private void HandleInteractions(Vector2 drawCoordinates, Color lightColor)
         {
-            hovering = false;
             var plr = Main.LocalPlayer;
             if (getRect().Contains(Main.MouseWorld.ToPoint()) && plr.IsInTileInteractionRange((int)position.X / 16, (int)position.Y / 16))
             {
@@ -377,7 +546,10 @@ namespace AQMod.Content.Entities
                 }
                 else
                 {
-                    bait = findBaitItem(plr);
+                    if (!hasBait)
+                    {
+                        bait = findBaitItem(plr);
+                    }
                     if (bait != null)
                     {
                         plr.showItemIcon2 = bait.type;
@@ -390,6 +562,20 @@ namespace AQMod.Content.Entities
                 if (PlayerInput.UsingGamepad)
                     plr.GamepadEnableGrappleCooldown();
                 Main.spriteBatch.Draw(outlineTexture, drawCoordinates, _frame, Color.Lerp(lightColor, Main.OurFavoriteColor, 0.5f), _rotation, _frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
+                if (Main.mouseLeft && Main.mouseLeftRelease)
+                {
+                    if (plr.HeldItem.pick > 0)
+                    {
+                        killTap = 3;
+                    }
+                    killTap++;
+                    killTapDelay = 12;
+                    Main.PlaySound(SoundID.Tink, -1, -1, 1, 0.8f, 0.5f);
+                    if (killTap > 3)
+                    {
+                        Kill();
+                    }
+                }
                 if (Main.mouseRight && Main.mouseRightRelease)
                 {
                     if (item > 0)
@@ -399,13 +585,14 @@ namespace AQMod.Content.Entities
                         Main.PlaySound(SoundID.Grab);
                         item = 0;
                     }
-                    else 
+                    else if (!hasBait)
                     {
                         if (bait == null)
                             bait = findBaitItem(plr);
                         if (bait != null)
                         {
-                            hasBait = true; 
+                            hasBait = true;
+                            Main.PlaySound(SoundID.Grab);
                             if (bait.consumable)
                             {
                                 bait.stack--;
@@ -457,22 +644,11 @@ namespace AQMod.Content.Entities
                 drawCoordinates.Y += (float)Math.Sin(Main.GlobalTime + position.X * 0.01f) * 2f;
             }
             var lightColor = Lighting.GetColor(((int)position.X + width / 2) / 16, ((int)position.Y + height / 2) / 16);
-            if (killTapDelay > 10)
+            if (killTapDelay > 4)
             {
                 drawCoordinates += new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f));
             }
-            HandleInteractions(drawCoordinates, lightColor, out bool hovering);
-
-            if (hovering && Main.mouseLeft)
-            {
-                killTap++;
-                killTapDelay = 12;
-                Main.PlaySound(SoundID.Tink, -1, -1, 1, 0.8f, 1f);
-                if (killTap > 3)
-                {
-                    Kill();
-                }
-            }
+            HandleInteractions(drawCoordinates, lightColor);
 
             Main.spriteBatch.Draw(Texture, drawCoordinates, _frame, lightColor, _rotation, _origin, 1f, SpriteEffects.None, 0f);
         }
