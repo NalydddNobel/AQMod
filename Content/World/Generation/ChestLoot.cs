@@ -73,7 +73,7 @@ namespace AQMod.Content.World.Generation
                     PlaceBuriedChest(x, y, out int chestID, TileID.Dirt, WallID.Dirt, 0);
                     if (chestID != -1)
                     {
-                        i += 500;
+                        i += 100;
                         if (Main.chest[chestID] == null)
                             Main.chest[chestID] = new Chest();
                         var c = Main.chest[chestID];

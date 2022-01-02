@@ -28,7 +28,7 @@ namespace AQMod.Content.World.Generation
                 {
                     if (CanPlaceLegacyOceanRavine(x, j))
                     {
-                        int style = WorldGen.genRand.Next(3) + 3;
+                        int style = WorldGen.genRand.Next(3);
                         PlaceLegacyOceanRavine(x, j, style);
                         i += 1000;
                         break;
