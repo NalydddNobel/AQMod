@@ -60,6 +60,7 @@ namespace AQMod.Tiles
             TileObjectData.newTile.Height = 3;
             TileObjectData.newTile.Origin = new Point16(1, 2);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 18 };
+            TileObjectData.newTile.AnchorInvalidTiles = new[] { (int)TileID.MagicalIceBlock, };
             TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(ModContent.GetInstance<TEGlimmeringStatue>().Hook_AfterPlacement, -1, 0, false);
             TileObjectData.addTile(Type);
             AddMapEntry(new Color(75, 139, 166), Lang.GetItemName(ModContent.ItemType<Items.Placeable.GlimmeringStatue>()));

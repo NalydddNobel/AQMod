@@ -33,67 +33,6 @@ namespace AQMod.Common.DeveloperTools
 {
     internal class NCall : ModCommand
     {
-        public class NCallGlobalItem : GlobalItem
-        {
-            public override bool Autoload(ref string name)
-            {
-                return ModContent.GetInstance<AQConfigServer>().debugCommand;
-            }
-
-            public override bool InstancePerEntity => true;
-
-            public override bool CloneNewInstances => true;
-
-            public int headOverlay = -1;
-            public int mask = -1;
-            public byte debug = 0;
-
-            public override void UpdateEquip(Item item, Player player)
-            {
-                if (headOverlay > -1)
-                    player.GetModPlayer<AQPlayer>().headAcc = headOverlay;
-                if (mask > -1)
-                    player.GetModPlayer<AQPlayer>().mask = mask;
-            }
-
-            public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-            {
-                if (headOverlay > -1)
-                    tooltips.Add(new TooltipLine(mod, "headOverlay", "headOverlay: " + headOverlay));
-                if (mask > -1)
-                    tooltips.Add(new TooltipLine(mod, "mask", "mask: " + mask));
-                switch (debug)
-                {
-                    case 1:
-                        {
-                            bool meteorTime = GaleStreams.MeteorTime();
-                            tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
-                            tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < AQMod.SpaceLayer - (40 * 16f)).ToString()));
-                            tooltips.Add(new TooltipLine(mod, "2", "windy day: " + ImitatedWindyDay.IsItAHappyWindyDay));
-                            tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + GaleStreams.IsActive));
-                        }
-                        break;
-                }
-            }
-
-            public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-            {
-                if (debug > 0 && AQMod.ItemOverlays.GetOverlay(item.type) == null)
-                {
-                    var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
-                    Main.spriteBatch.End();
-                    BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Shader);
-                    var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
-                    effect.Apply(null, drawData);
-                    drawData.Draw(Main.spriteBatch);
-                    Main.spriteBatch.End();
-                    BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Regular);
-                    return false;
-                }
-                return true;
-            }
-        }
-
         public static string DebugFolderPath => Main.SavePath + Path.DirectorySeparatorChar + "Mods" + Path.DirectorySeparatorChar + "Cache" + Path.DirectorySeparatorChar + "AQMod";
 
         public override bool Autoload(ref string name)
@@ -119,6 +58,24 @@ namespace AQMod.Common.DeveloperTools
             {
                 default:
                     caller.Reply("Command doesn't exist.");
+                    break;
+
+                case "gen":
+                    {
+                        switch (args[1].ToLower())
+                        {
+                            case "buriedchests":
+                                ChestLoot.Buried.GenerateDirtChests(null);
+                                break;
+                        }
+                    }
+                    break;
+
+                case "buriedchest":
+                    {
+                        ChestLoot.Buried.PlaceBuriedChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y, out int chestID, caller.Player.HeldItem.createTile, WallID.Dirt, caller.Player.HeldItem.placeStyle);
+                        caller.Reply(chestID.ToString());
+                    }
                     break;
 
                 case "call":
@@ -1085,6 +1042,67 @@ namespace AQMod.Common.DeveloperTools
             result.SaveAsPng(File.Create(path + Path.DirectorySeparatorChar + "ncallresult.png"), result.Width, result.Height);
             Main.NewText("image complete!");
             Utils.OpenFolder(path);
+        }
+
+        public class NCallGlobalItem : GlobalItem
+        {
+            public override bool Autoload(ref string name)
+            {
+                return ModContent.GetInstance<AQConfigServer>().debugCommand;
+            }
+
+            public override bool InstancePerEntity => true;
+
+            public override bool CloneNewInstances => true;
+
+            public int headOverlay = -1;
+            public int mask = -1;
+            public byte debug = 0;
+
+            public override void UpdateEquip(Item item, Player player)
+            {
+                if (headOverlay > -1)
+                    player.GetModPlayer<AQPlayer>().headAcc = headOverlay;
+                if (mask > -1)
+                    player.GetModPlayer<AQPlayer>().mask = mask;
+            }
+
+            public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+            {
+                if (headOverlay > -1)
+                    tooltips.Add(new TooltipLine(mod, "headOverlay", "headOverlay: " + headOverlay));
+                if (mask > -1)
+                    tooltips.Add(new TooltipLine(mod, "mask", "mask: " + mask));
+                switch (debug)
+                {
+                    case 1:
+                        {
+                            bool meteorTime = GaleStreams.MeteorTime();
+                            tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
+                            tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < AQMod.SpaceLayer - (40 * 16f)).ToString()));
+                            tooltips.Add(new TooltipLine(mod, "2", "windy day: " + ImitatedWindyDay.IsItAHappyWindyDay));
+                            tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + GaleStreams.IsActive));
+                        }
+                        break;
+                }
+            }
+
+            public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+            {
+                if (debug > 0 && AQMod.ItemOverlays.GetOverlay(item.type) == null)
+                {
+                    var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
+                    Main.spriteBatch.End();
+                    BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Shader);
+                    var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
+                    effect.Apply(null, drawData);
+                    drawData.Draw(Main.spriteBatch);
+                    Main.spriteBatch.End();
+                    BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Regular);
+                    return false;
+                }
+                return true;
+            }
         }
     }
 }

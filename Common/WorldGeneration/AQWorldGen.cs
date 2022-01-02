@@ -411,6 +411,7 @@ namespace AQMod.Common.WorldGeneration
                 tasks.Insert(i, getPass("Tiki Chests", GenerateTikiChests));
                 tasks.Insert(i, getPass("Candelabra Traps", GenerateCandelabraTraps));
                 tasks.Insert(i, getPass("Exotic Coral", GenerateExoticBlotches));
+                tasks.Insert(i, getPass("AQMod: Buried Chests", ChestLoot.Buried.GenerateDirtChests));
             }
         }
 

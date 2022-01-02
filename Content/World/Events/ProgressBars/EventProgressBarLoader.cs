@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Common;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -6,7 +7,7 @@ using Terraria.Localization;
 
 namespace AQMod.Content.World.Events.ProgressBars
 {
-    public static class EventProgressBarLoader
+    public sealed class EventProgressBarLoader : IAutoloadType
     {
         public static byte ActiveBar { get; internal set; } = 255;
         public static bool PlayerSafe { get; internal set; }
@@ -39,9 +40,10 @@ namespace AQMod.Content.World.Events.ProgressBars
             NextIndex++;
         }
 
+
         internal static void Draw()
         {
-            if (Main.invasionProgressAlpha > 0f && _invasionProgressAlpha <= 0f)
+            if (_progressBars == null || Main.invasionProgressAlpha > 0f && _invasionProgressAlpha <= 0f)
             {
                 ActiveBar = 255;
                 return;
@@ -125,7 +127,13 @@ namespace AQMod.Content.World.Events.ProgressBars
             }
         }
 
-        internal static void Unload()
+        void IAutoloadType.OnLoad()
+        {
+            if (_progressBars == null)
+                _progressBars = new EventProgressBar[0];
+        }
+
+        void IAutoloadType.Unload()
         {
             _progressBars = null;
             NextIndex = 0;

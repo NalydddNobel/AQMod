@@ -934,7 +934,6 @@ namespace AQMod
             Unloading = true;
             cachedLoadTasks = null;
             Autoloading.Unload();
-            EventProgressBarLoader.Unload();
 
             AQItem.Sets.Clones.Unload();
             ItemOverlays = null;
@@ -1090,7 +1089,13 @@ namespace AQMod
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Invasion Progress Bar", () =>
                 {
-                    EventProgressBarLoader.Draw();
+                    try
+                    {
+                        EventProgressBarLoader.Draw();
+                    }
+                    catch
+                    {
+                    }
                     return true;
                 }, InterfaceScaleType.UI));
             }

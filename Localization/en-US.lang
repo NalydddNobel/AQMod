@@ -376,6 +376,10 @@ ServerConfig.JellyfishNecklaceTooltip=If you disable this, the Blue Jellyfish wo
 ServerConfig.DebugCommand=Debug Mode (/ncall)
 ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod.Config.RequiresReload}
 
+# Worldgen
+
+WorldGen.BuriedDirtChests=Aequus: Generating Buried Dirt Chests
+
 # Christmas
 
 XmasGift.Tooltip=Will you be naughty or nice..?
@@ -1282,3 +1286,4 @@ MapObject.Banners=Banner
 MapObject.ExoticCoral=Exotic Coral
 MapObject.FishingCraftingStation=Fishing Utility Crafting Station
 MapObject.NobleMushrooms=Noble Mushroom
+MapObject.BuriedDirtChest=Buried Dirt Chest
