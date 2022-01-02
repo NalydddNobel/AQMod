@@ -437,15 +437,32 @@ namespace AQMod.Common.DeveloperTools
                     }
                     break;
 
+                case "robstersave2":
+                    {
+                        caller.Reply("Hunt Key: " + HuntSystem.Hunt.GetKey());
+                        if (HuntSystem.TargetNPC != -1)
+                        {
+                            var tag = SpecialTagCompounds.NPC.SaveNPCID(HuntSystem._targetNPCType);
+                            var dict = tag.test_RipOutTagData();
+                            foreach (var pair in dict)
+                            {
+                                caller.Reply(pair.Key + ": " + pair.Value.ToString());
+                            }
+                            int npcType = SpecialTagCompounds.NPC.GetNPCID(tag);
+                            HuntSystem.SetNPCTarget(npcType);
+                            caller.Reply("Attempt reload NPC type: " + npcType + " (" + Lang.GetNPCNameValue(npcType) + "), ((" + Main.npc[HuntSystem.TargetNPC].FullName + "))");
+                        }
+                    }
+                    break;
+
                 case "robstersave":
                     {
                         caller.Reply("Hunt Key: " + HuntSystem.Hunt.GetKey());
                         if (HuntSystem.TargetNPC != -1)
                         {
-                            var modNPCIO = new ModNPCIO();
-                            string key = modNPCIO.GetKey(HuntSystem._targetNPCType);
+                            string key = ModNPCIO.GetKey(HuntSystem._targetNPCType);
                             caller.Reply("Target NPC: " + key);
-                            int npcType = modNPCIO.GetID(key);
+                            int npcType = ModNPCIO.GetID(key);
                             HuntSystem.SetNPCTarget(npcType);
                             caller.Reply("Attempt reload NPC type: " + npcType + " (" + Lang.GetNPCNameValue(npcType) + "), ((" + Main.npc[HuntSystem.TargetNPC].FullName + "))");
                         }

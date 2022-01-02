@@ -33,7 +33,7 @@ namespace AQMod.Content.Quest.Lobster
                 tag["Hunt"] = Hunt.GetKey();
                 tag["QuestsCompleted"] = (int)QuestsCompleted;
                 if (_targetNPCType != -1)
-                    tag["TargetNPC"] = new ModNPCIO().GetKey(_targetNPCType);
+                    tag["TargetNPC"] = ModNPCIO.GetKey(_targetNPCType);
                 Hunt = null;
                 return tag;
             }

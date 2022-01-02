@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.Utilities;
 
-namespace AQMod.Common.Skies
+namespace AQMod.Common.Graphics
 {
     /// <summary>
     /// An abstract custom sky which contains many useful methods.
@@ -154,7 +154,7 @@ namespace AQMod.Common.Skies
 
         protected Color getBGColor(float colorMultiplier = 1f)
         {
-            Color color = new Color(Main.bgColor.ToVector4() * 0.9f + new Vector4(0.1f)) * 0.8f; 
+            Color color = new Color(Main.bgColor.ToVector4() * 0.9f + new Vector4(0.1f)) * 0.8f;
             return new Color((int)(color.R * colorMultiplier), (int)(color.G * colorMultiplier), (int)(color.B * colorMultiplier), (int)(color.A * colorMultiplier));
         }
 

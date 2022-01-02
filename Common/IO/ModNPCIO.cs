@@ -3,16 +3,16 @@ using Terraria.ModLoader;
 
 namespace AQMod.Common.IO
 {
-    public class ModNPCIO : ModContentIO<NPC>
+    public static class ModNPCIO
     {
-        public override string GetKey(int type)
+        public static string GetKey(int type)
         {
             var npc = new NPC();
             npc.SetDefaults(type);
             return GetKey(npc);
         }
 
-        public override string GetKey(NPC value)
+        public static string GetKey(NPC value)
         {
             if (value.type < Main.maxNPCs)
             {
@@ -21,7 +21,7 @@ namespace AQMod.Common.IO
             return "1:" + value.modNPC.mod.Name + ":" + value.modNPC.Name + ";";
         }
 
-        public override int GetID(string key)
+        public static int GetID(string key)
         {
             if (string.IsNullOrEmpty(key))
             {

@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
-using AQMod.Common.Skies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

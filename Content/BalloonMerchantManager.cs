@@ -1,4 +1,4 @@
-﻿using AQMod.Common.IO;
+﻿using AQMod.Common;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
@@ -59,7 +59,7 @@ namespace AQMod.Content
             return new TagCompound()
             {
                 ["MerchantSetup"] = MerchantSetup,
-                ["SellBanner2"] = Tags.Item.SaveItemID(SellBanner),
+                ["SellBanner2"] = SpecialTagCompounds.Item.SaveItemID(SellBanner),
                 ["SellPlantSeeds"] = SellPlantSeeds,
                 ["SellGoldCrate"] = SellGoldCrate,
                 ["SellCrates"] = SellCrates,
@@ -77,7 +77,7 @@ namespace AQMod.Content
 
                 SellPlantSeeds = tag.GetBool("SellPlantSeeds");
 
-                SellBanner = Tags.Item.GetItemID(tag.GetCompound("SellBanner2"));
+                SellBanner = SpecialTagCompounds.Item.GetItemID(tag.GetCompound("SellBanner2"));
 
                 SellGoldCrate = tag.GetBool("SellGoldCrate");
 
