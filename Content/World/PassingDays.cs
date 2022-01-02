@@ -9,6 +9,9 @@ namespace AQMod.Content.World
         public static int daysPassed;
         public static int daysPassedSinceLastGlimmerEvent;
 
+        public static bool OnTurnDay => Main.dayTime && Main.time == 0.0;
+        public static bool OnTurnNight => !Main.dayTime && Main.time == 0.0;
+
         public override void Initialize()
         {
             daysPassed = 0;
@@ -32,7 +35,7 @@ namespace AQMod.Content.World
 
         public override void PostUpdate()
         {
-            if (Main.dayTime && Main.time == 0.0)
+            if (OnTurnDay)
             {
                 daysPassed++;
                 daysPassedSinceLastGlimmerEvent++;

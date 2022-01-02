@@ -46,6 +46,9 @@ namespace AQMod.Common.DeveloperTools
 
         private static string[] lastCall = null;
 
+        private static int mX => Main.MouseWorld.ToTileCoordinates().X; // these are highly unoptimal because I am lazy + these are test commands so idc
+        private static int mY => Main.MouseWorld.ToTileCoordinates().Y;
+
         public override void Action(CommandCaller caller, string input, string[] args)
         {
             if (args.Length == 0)
@@ -67,7 +70,16 @@ namespace AQMod.Common.DeveloperTools
                             case "buriedchests":
                                 ChestLoot.Buried.GenerateDirtChests(null);
                                 break;
+                            case "waterfixer":
+                                WaterCleaner.PassFix1TileHighWater(null);
+                                break;
                         }
+                    }
+                    break;
+
+                case "waterfix":
+                    {
+                        WaterCleaner.ApplyFix(mX, mY);
                     }
                     break;
 

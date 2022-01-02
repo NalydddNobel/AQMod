@@ -5,6 +5,7 @@ using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Content.World;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Content.World.FallingStars;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -172,6 +173,7 @@ namespace AQMod.Common
             Auto.CreateCallsForType(ModContent.GetInstance<GlimmerEvent>());
             Auto.CreateCallsForType(ModContent.GetInstance<GaleStreams>());
             Auto.CreateCallsForType(ModContent.GetInstance<PassingDays>());
+            Auto.CreateCallsForType(ModContent.GetInstance<ImitatedFallingStars>());
 
             checkifnalydisstupid();
         }

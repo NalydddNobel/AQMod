@@ -31,8 +31,18 @@ namespace AQMod.Content.Entities
 
         public override void Load(TagCompound tag)
         {
-            var version = new Version(tag.GetString("Version"));
-            CrabPot.LoadData(tag, version);
+            if (!tag.ContainsKey("Version"))
+            {
+                return;
+            }
+            try
+            {
+                var version = new Version(tag.GetString("Version"));
+                CrabPot.LoadData(tag, version);
+            }
+            catch
+            {
+            }
         }
     }
 }

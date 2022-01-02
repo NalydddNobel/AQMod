@@ -58,7 +58,7 @@ namespace AQMod.Projectiles.Ranged
         public override void AI()
         {
             var center = projectile.Center;
-            Lighting.AddLight(center, new Vector3(0.3f, 0.65f, 0.2f));
+            Lighting.AddLight(center, new Vector3(0.6f, 0.1f, 0.45f));
             if ((int)projectile.ai[0] == -1)
             {
                 projectile.extraUpdates = 1;
@@ -77,7 +77,7 @@ namespace AQMod.Projectiles.Ranged
                 }
                 return;
             }
-            projectile.velocity.Y += 0.05f;
+            projectile.velocity.Y += 0.02f;
             getTarget(out int targetIndex, out float distance);
             if (targetIndex != -1)
             {

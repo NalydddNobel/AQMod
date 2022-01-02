@@ -50,15 +50,6 @@ namespace AQMod
         public bool TonsofScreenShakes { get; set; }
         public static bool c_TonsofScreenShakes { get; private set; }
 
-        [Header("$" + AQText.Key + "ClientConfig.Header.Worldgen")]
-
-        [BackgroundColor(166, 166, 12, 180)]
-        [Label("$" + AQText.Key + "ClientConfig.OverrideVanillaChestLoot")]
-        [Tooltip("$" + AQText.Key + "ClientConfig.OverrideVanillaChestLootTooltip")]
-        [DefaultValue(true)]
-        public bool OverrideVanillaChestLoot { get; set; }
-        public static bool c_OverrideVanillaChestLoot { get; private set; }
-
         [Header("$Mods.AQMod.ClientConfig.Header.Xmas")]
 
         [BackgroundColor(75, 80, 100, 180)]
@@ -95,16 +86,6 @@ namespace AQMod
         [BackgroundColor(12, 12, 190, 180)]
         [DefaultValue(true)]
         public bool ShowCompletedQuestsCount { get; set; }
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            var client = (AQConfigClient)pendingConfig;
-            if (client.OverrideVanillaChestLoot != OverrideVanillaChestLoot)
-            {
-                return Main.gameMenu;
-            }
-            return base.AcceptClientChanges(pendingConfig, whoAmI, ref message);
-        }
 
         public override void OnChanged()
         {

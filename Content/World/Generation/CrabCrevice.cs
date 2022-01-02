@@ -1,4 +1,5 @@
-﻿using AQMod.Tiles;
+﻿using AQMod.Common.Configuration;
+using AQMod.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -13,6 +14,10 @@ namespace AQMod.Content.World.Generation
 
         public static void GenerateLegacyRavines(GenerationProgress progress)
         {
+            if (!ModContent.GetInstance<WorldGenOptions>().generateOceanRavines)
+            {
+                return;
+            }
             progress.Message = Language.GetTextValue("Mods.AQMod.Common.OceanRavines");
             for (int i = 0; i < 5000; i++)
             {
@@ -97,7 +102,7 @@ namespace AQMod.Content.World.Generation
                 for (int n = 0; n < height; n++)
                 {
                     x3 += xAdds[n];
-                    for (int m = -5; m < 20; m++)
+                    for (int m = -10; m < 20; m++)
                     {
                         GrassType.SpreadGrassToSurroundings(x3 + m, y + n, TileID.Sand, mossTile);
                         GrassType.SpreadGrassToSurroundings(x3 + m, y + n, TileID.HardenedSand, mossTile);

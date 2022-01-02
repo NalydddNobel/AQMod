@@ -2,6 +2,7 @@
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.NetCode;
 using AQMod.Content.World.Events.ProgressBars;
+using AQMod.Content.World.FallingStars;
 using AQMod.Items.BossItems;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GlimmerEvent;
@@ -120,6 +121,36 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 GlimmerEventSky.InitNight();
         }
 
+        public override void PreUpdate()
+        {
+            if (PassingDays.OnTurnNight && PassingDays.daysPassedSinceLastGlimmerEvent > 4 
+                && Main.moonPhase != Constants.MoonPhases.FullMoon && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
+            {
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    Player player = Main.player[i];
+                    if (player.active && player.statLifeMax > 200)
+                    {
+                        if ((PassingDays.daysPassedSinceLastGlimmerEvent > 9 || Main.rand.NextBool(12 - PassingDays.daysPassedSinceLastGlimmerEvent)) && Activate())
+                        {
+                            PassingDays.daysPassedSinceLastGlimmerEvent = 0;
+                            if (AQPlayer.IgnoreMoons())
+                            {
+                                CosmicanonCounts.GlimmersPrevented++;
+                                NetHelper.PreventedGlimmer();
+                            }
+                            else
+                            {
+                                AQMod.BroadcastMessage("Mods.AQMod.EventWarning.GlimmerEvent", TextColor);
+                                NetHelper.GlimmerEventNetUpdate();
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
         public override void PostUpdate()
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -130,39 +161,17 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                     Deactivate();
                 return;
             }
-            if (Main.time == 0.0)
-            {
-                if (PassingDays.daysPassedSinceLastGlimmerEvent > 4 && Main.moonPhase != Constants.MoonPhases.FullMoon && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
-                {
-                    for (int i = 0; i < Main.maxPlayers; i++)
-                    {
-                        Player player = Main.player[i];
-                        if (player.active && player.statLifeMax > 200)
-                        {
-                            if ((PassingDays.daysPassedSinceLastGlimmerEvent > 9 || Main.rand.NextBool(12 - PassingDays.daysPassedSinceLastGlimmerEvent)) && Activate())
-                            {
-                                PassingDays.daysPassedSinceLastGlimmerEvent = 0;
-                                if (AQPlayer.IgnoreMoons())
-                                {
-                                    CosmicanonCounts.GlimmersPrevented++;
-                                    NetHelper.PreventedGlimmer();
-                                }
-                                else
-                                {
-                                    AQMod.BroadcastMessage("Mods.AQMod.EventWarning.GlimmerEvent", TextColor);
-                                    NetHelper.GlimmerEventNetUpdate();
-                                }
-                            }
-                            break;
-                        }
-                    }
-                }
-            }
             if (!IsActive)
             {
                 deactivationTimer = -1;
                 return;
             }
+
+            if (Main.rand.Next(8000) < (10f * Main.maxTilesX / 4200f))
+            {
+                ImitatedFallingStars.CastFallingStar();
+            }
+
             if (deactivationTimer > 0)
             {
                 deactivationTimer--;

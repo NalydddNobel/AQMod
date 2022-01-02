@@ -46,9 +46,17 @@ namespace AQMod.Common.Graphics
         {
             public static class Culling
             {
+                internal static bool InScreenWorld(Vector2 position)
+                {
+                    return InScreen(position - Main.screenPosition);
+                }
                 internal static bool InScreen(Vector2 position)
                 {
                     return InScreen(new Rectangle((int)position.X, (int)position.Y, 1, 1));
+                }
+                internal static bool InScreenWorld(Rectangle rectangle)
+                {
+                    return InScreen(new Rectangle(rectangle.X - (int)Main.screenPosition.X, rectangle.Y - (int)Main.screenPosition.Y, rectangle.Width, rectangle.Height));
                 }
                 internal static bool InScreen(Rectangle rectangle)
                 {

@@ -347,8 +347,6 @@ ClientConfig.MapBlipColorTooltip=The color of the little blips shown by the Retr
 ClientConfig.Header.Worldgen=World Gen
 ClientConfig.Screenshakes=Screenshakes
 ClientConfig.TonsofScreenShakes=Extra Unnecessary Screenshakes
-ClientConfig.OverrideVanillaChestLoot=Overwrite Vanilla Chest Loot
-ClientConfig.OverrideVanillaChestLootTooltip=Whether or not special Aequus items will overwrite vanilla items in chests\nIf this is disabled, Aequus loot will generate with vanilla loot intact
 
 # Server Config
 
@@ -378,6 +376,22 @@ ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod
 
 # Worldgen
 
+WorldGenOptions.Name=World Gen Options
+
+WorldGenOptions.Header.OnWorldCreation=On World Creation:
+WorldGenOptions.Header.ChestLoot=Chest Loot:
+
+WorldGenOptions.overrideVanillaChestLoot=Overwrite Vanilla Chest Loot
+WorldGenOptions.overrideVanillaChestLootTooltip=Whether or not special Aequus items will overwrite vanilla items in chests.\nIf this is disabled, Aequus loot will generate with all previous loot intact.
+
+WorldGenOptions.generateOceanRavines=Ocean Ravines
+WorldGenOptions.generateOceanRavinesTooltip=Whether or not to generate ocean ravines.
+
+WorldGenOptions.fixBabyPools=Fix Baby Pools
+WorldGenOptions.fixBabyPoolsTooltip=Removes those 1 block tall pools of water which generate on the surface.\nMay cause minor issues with structures that generate on the surface with water.
+
+
+WorldGen.Fix1TileHighWater=Aequus: Fixing Baby Pools
 WorldGen.BuriedDirtChests=Aequus: Generating Buried Dirt Chests
 
 # Christmas

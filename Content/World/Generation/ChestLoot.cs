@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.Configuration;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -185,7 +186,7 @@ namespace AQMod.Content.World.Generation
 
         public static void MainLoot(Chest chest, int item)
         {
-            if (ModContent.GetInstance<AQConfigClient>().OverrideVanillaChestLoot)
+            if (ModContent.GetInstance<WorldGenOptions>().overrideVanillaChestLoot)
             {
                 chest.item[0].SetDefaults(item);
             }

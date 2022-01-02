@@ -393,24 +393,30 @@ namespace AQMod.Common.WorldGeneration
             if (i != -1)
             {
                 i++;
-                tasks.Insert(i, getPass("Ocean Ravines", CrabCrevice.GenerateLegacyRavines));
+                tasks.Insert(i, getPass("AQMod: Ocean Ravines", CrabCrevice.GenerateLegacyRavines));
             }
             i = tasks.FindIndex((t) => t.Name.Equals("Hellforge"));
             if (i != -1)
             {
                 i++;
-                tasks.Insert(i, getPass("Gore Nests", GenerateGoreNests));
-                tasks.Insert(i, getPass("Globe Temples", GenerateGlobeTemples));
-                tasks.Insert(i, getPass("Glimmering Statues", GenerateGlimmeringStatues));
+                tasks.Insert(i, getPass("AQMod: Gore Nests", GenerateGoreNests));
+                tasks.Insert(i, getPass("AQMod: Globe Temples", GenerateGlobeTemples));
+                tasks.Insert(i, getPass("AQMod: Glimmering Statues", GenerateGlimmeringStatues));
+            }
+            i = tasks.FindIndex((t) => t.Name.Equals("Settle Liquids"));
+            if (i != -1)
+            {
+                i++;
+                tasks.Insert(i, getPass("AQMod: Fix Baby Pools", WaterCleaner.PassFix1TileHighWater));
             }
             i = tasks.FindIndex((t) => t.Name.Equals("Micro Biomes"));
             if (i != -1)
             {
                 i++;
-                tasks.Insert(i, getPass("Noble Mushrooms", GenerateNobleMushrooms));
-                tasks.Insert(i, getPass("Tiki Chests", GenerateTikiChests));
-                tasks.Insert(i, getPass("Candelabra Traps", GenerateCandelabraTraps));
-                tasks.Insert(i, getPass("Exotic Coral", GenerateExoticBlotches));
+                tasks.Insert(i, getPass("AQMod: Noble Mushrooms", GenerateNobleMushrooms));
+                tasks.Insert(i, getPass("AQMod: Tiki Chests", GenerateTikiChests));
+                tasks.Insert(i, getPass("AQMod: Candelabra Traps", GenerateCandelabraTraps));
+                tasks.Insert(i, getPass("AQMod: Exotic Coral", GenerateExoticBlotches));
                 tasks.Insert(i, getPass("AQMod: Buried Chests", ChestLoot.Buried.GenerateDirtChests));
             }
         }
