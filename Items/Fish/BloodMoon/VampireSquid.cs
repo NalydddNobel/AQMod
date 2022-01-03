@@ -25,6 +25,11 @@ namespace AQMod.Items.Fish.BloodMoon
             item.maxStack = 999;
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            return !player.GetModPlayer<VampirismPlayer>().IsVampire;
+        }
+
         public override bool UseItem(Player player)
         {
             player.GetModPlayer<VampirismPlayer>().GiveVampirism(item.buffTime);

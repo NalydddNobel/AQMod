@@ -9,6 +9,7 @@ using AQMod.Items.Tools;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
+using AQMod.Items.Weapons.Melee.Flail;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Localization;
 using AQMod.Projectiles.Monster;

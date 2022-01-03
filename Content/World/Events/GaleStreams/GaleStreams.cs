@@ -1,6 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Content.World.Events.ProgressBars;
+using AQMod.Items.Weapons.Melee.Boomerang;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GaleStreams;
 using Microsoft.Xna.Framework;
@@ -31,7 +32,7 @@ namespace AQMod.Content.World.Events.GaleStreams
             new List<int>()
             {
                 ItemID.NimbusRod,
-                ModContent.ItemType<Items.Weapons.Melee.Vrang>(),
+                ModContent.ItemType<Vrang>(),
                 ModContent.ItemType<Items.Weapons.Magic.Umystick>(),
                 ModContent.ItemType<Items.Tools.Fishing.Nimrod>(),
                 ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),

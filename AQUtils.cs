@@ -66,6 +66,11 @@ namespace AQMod
             }
         }
 
+        public static float Wave(float time, float minimum, float maximum)
+        {
+            return minimum + ((float)Math.Sin(time) + 1f) / 2f * (maximum - minimum);
+        }
+
         public static void CyclePositions(Vector2[] oldPos, Vector2 newPos)
         {
             for (int i = oldPos.Length -1; i > 0; i--)

@@ -66,7 +66,7 @@ namespace AQMod.Items.Weapons.Magic
             Main.projectile[p2].localAI[0] = 1.5f;
 
             if (((int)Main.GameUpdateCount % 3) == 0)
-                AQSound.Play(SoundType.Item, "Sounds/Item/TouhouShoot", 0.5f, -0.01f);
+                AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/TouhouShoot", 0.5f, -0.01f);
             return false;
         }
     }

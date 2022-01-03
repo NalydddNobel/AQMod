@@ -71,7 +71,7 @@ namespace AQMod.Items.Weapons.Magic
                         if (Main.mouseRight && Main.mouseRightRelease && player.CheckMana(item, pay: true))
                         {
                             player.AddBuff(ModContent.BuffType<Buffs.Timers.UmystickDelay>(), 180);
-                            AQSound.Play(SoundType.Item, AQSound.Paths.MysticUmbrellaJump, 0.6f);
+                            AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.MysticUmbrellaJump, 0.6f);
                             player.velocity.Y = -12f;
                         }
                         item.mana = oldMana;

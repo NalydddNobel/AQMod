@@ -102,7 +102,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
                 }
                 if (Main.netMode != NetmodeID.Server)
-                    AQSound.Play(SoundType.NPCKilled, AQSound.Paths.MeteorKilled, npc.Center, 0.6f);
+                    AQSound.LegacyPlay(SoundType.NPCKilled, AQSound.Paths.MeteorKilled, npc.Center, 0.6f);
             }
             else
             {

@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee
+namespace AQMod.Items.Weapons.Melee.Dagger
 {
     public class CrystalDagger : ModItem
     {

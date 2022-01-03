@@ -1,8 +1,12 @@
-﻿using AQMod.Items.Materials.Energies;
+﻿using AQMod.Common.Graphics;
+using AQMod.Items.Materials.Energies;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee
+namespace AQMod.Items.Weapons.Melee.Yoyo
 {
     public class StariteSpinner : ModItem
     {
@@ -31,6 +35,18 @@ namespace AQMod.Items.Weapons.Melee
             item.noUseGraphic = true;
             item.shootSpeed = 10f;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.StariteSpinner>();
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            int b = (int)(255 * AQUtils.Wave(Main.GlobalTime * 6f, 0.9f, 1f));
+            return new Color(b, b, b, 255);
+        }
+
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        {
+            AQGraphics.Rendering.DrawFallenStarAura(item, spriteBatch, scale, new Color(80, 80, 50, 50), new Color(150, 150, 130, 127));
+            return true;
         }
 
         public override void AddRecipes()

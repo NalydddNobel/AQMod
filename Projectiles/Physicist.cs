@@ -109,7 +109,7 @@ namespace AQMod.Projectiles
             var center = projectile.Center;
             float size = projectile.width / 2f;
             if (Main.netMode != NetmodeID.Server)
-                AQSound.Play(SoundType.Item, AQSound.Paths.MysticUmbrellaDestroy, projectile.Center, 0.3f, -0.5f);
+                AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.MysticUmbrellaDestroy, projectile.Center, 0.3f, -0.5f);
             for (int i = 0; i < 30; i++)
             {
                 int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>());

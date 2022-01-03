@@ -3,6 +3,7 @@ using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Foods;
+using AQMod.Items.Foods.Dungeon;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -191,11 +192,11 @@ namespace AQMod.NPCs
                 foodChoices.Add(ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>());
             }
             if (NPC.downedQueenBee)
-                foodChoices.Add(ModContent.ItemType<Items.Foods.LarvaEel>());
+                foodChoices.Add(ModContent.ItemType<LarvaEel>());
             if (NPC.downedPlantBoss)
             {
-                foodChoices.Add(ModContent.ItemType<Items.Foods.RedLicorice>());
-                foodChoices.Add(ModContent.ItemType<Items.Foods.GrapePhanta>());
+                foodChoices.Add(ModContent.ItemType<Items.Foods.Dungeon.RedLicorice>());
+                foodChoices.Add(ModContent.ItemType<GrapePhanta>());
             }
             if (foodChoices.Count == 1)
             {

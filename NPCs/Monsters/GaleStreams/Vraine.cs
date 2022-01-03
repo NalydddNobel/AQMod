@@ -1,4 +1,5 @@
 ﻿using AQMod.Items.Placeable.Banners;
+using AQMod.Items.Weapons.Melee.Boomerang;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -402,7 +403,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 }
                 if (Main.hardMode && Main.rand.NextBool(5))
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.Vrang>(), Main.rand.NextVRand(1, 2));
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Vrang>(), Main.rand.NextVRand(1, 2));
                 }
                 if (Main.rand.NextBool(10))
                 {

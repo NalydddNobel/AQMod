@@ -1,5 +1,6 @@
 ﻿using AQMod.Dusts;
 using AQMod.Items.Accessories;
+using AQMod.Items.Foods.Dungeon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -118,7 +119,7 @@ namespace AQMod.NPCs.Monsters
         {
             Item.NewItem(npc.getRect(), ItemID.Ectoplasm, Main.rand.Next(3) + 1);
             if (Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.RedLicorice>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<RedLicorice>());
             if (Main.rand.NextBool(45))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
         }

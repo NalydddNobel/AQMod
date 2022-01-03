@@ -1,8 +1,9 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee
+namespace AQMod.Items.Weapons.Melee.Dagger
 {
     public class AirBlade : ModItem
     {
@@ -24,6 +25,11 @@ namespace AQMod.Items.Weapons.Melee
             item.noUseGraphic = true;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.AirBlade>();
             item.autoReuse = true;
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(250, 250, 250, 250) * AQUtils.Wave(Main.GlobalTime * 6f, 0.9f, 1f);
         }
 
         public override bool CanUseItem(Player player)

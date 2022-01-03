@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Configuration;
+using AQMod.Items.Weapons.Melee.Dagger;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -177,7 +178,7 @@ namespace AQMod.Content.World.Generation
                 {
                     if (WorldGen.genRand.NextBool(4))
                     {
-                        MainLoot(c, ModContent.ItemType<Items.Weapons.Melee.CrystalDagger>());
+                        MainLoot(c, ModContent.ItemType<CrystalDagger>());
                     }
                 }
                 break;

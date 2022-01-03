@@ -4,28 +4,27 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee
+namespace AQMod.Items.Weapons.Melee.Spear
 {
-    public class KryptonSword : ModItem
+    public class ArgonSpear : ModItem
     {
         public override void SetDefaults()
         {
-            item.width = 40;
-            item.height = 40;
-            item.damage = 18;
-            item.useTime = 20;
-            item.useAnimation = 20;
-            item.rare = AQItem.Rarities.CrabsonWeaponRare;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item1;
-            item.value = Item.sellPrice(silver: 40);
+            item.width = 30;
+            item.height = 30;
             item.melee = true;
-            item.knockBack = 5f;
-            item.scale = 1.1f;
+            item.damage = 15;
+            item.knockBack = 1f;
+            item.useAnimation = 32;
+            item.useTime = 48;
+            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.UseSound = SoundID.Item1;
+            item.rare = AQItem.Rarities.CrabsonWeaponRare;
+            item.value = Item.sellPrice(silver: 40);
+            item.shootSpeed = 7.5f;
             item.noMelee = true;
             item.noUseGraphic = true;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.KryptonBoomerang>();
-            item.shootSpeed = 5f;
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.ArgonSpear>();
             item.autoReuse = true;
         }
 
@@ -37,8 +36,8 @@ namespace AQMod.Items.Weapons.Melee
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.WoodenBoomerang);
-            r.AddIngredient(ModContent.ItemType<KryptonMushroom>(), 2);
+            r.AddIngredient(ItemID.Spear);
+            r.AddIngredient(ModContent.ItemType<ArgonMushroom>(), 2);
             r.AddIngredient(ModContent.ItemType<AquaticEnergy>(), 3);
             r.AddTile(TileID.WorkBenches);
             r.SetResult(this);

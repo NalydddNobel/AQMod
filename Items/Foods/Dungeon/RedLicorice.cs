@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Foods
+namespace AQMod.Items.Foods.Dungeon
 {
     public class RedLicorice : ModItem, ISpecialFood
     {

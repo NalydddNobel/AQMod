@@ -85,29 +85,8 @@ namespace AQMod.Content.World.FallingStars
         {
             if (shimmering)
             {
-                Rectangle frame;
-                if (Main.itemAnimations[item.type] != null)
-                {
-                    frame = Main.itemAnimations[item.type].GetFrame(Main.itemTexture[item.type]);
-                }
-                else
-                {
-                    frame = Main.itemTexture[item.type].Frame();
-                }
-                Vector2 vector = frame.Size() / 2f;
-                Vector2 vector2 = new Vector2((float)(item.width / 2) - vector.X, item.height - frame.Height);
-                Vector2 vector3 = item.position - Main.screenPosition + vector + vector2;
-                float num7 = (float)Main.GameUpdateCount / 240f + Main.GlobalTime * 0.04f;
-                float globalTimeWrappedHourly2 = Main.GlobalTime;
-                globalTimeWrappedHourly2 %= 5f;
-                globalTimeWrappedHourly2 /= 2.5f;
-                if (globalTimeWrappedHourly2 >= 1f)
-                {
-                    globalTimeWrappedHourly2 = 2f - globalTimeWrappedHourly2;
-                }
-                globalTimeWrappedHourly2 = globalTimeWrappedHourly2 * 0.5f + 0.5f;
-                var auraColor = new Color(50, 50, 255, 50);
-                var auraColor2 = new Color(120, 120, 255, 127);
+                var auraColor = default(Color);
+                var auraColor2 = default(Color);
                 switch (item.type)
                 {
                     case ItemID.ManaCrystal:
@@ -118,19 +97,12 @@ namespace AQMod.Content.World.FallingStars
                         break;
                     case ItemID.LifeCrystal:
                         {
-                            auraColor = new Color(50, 100, 60, 50);
-                            auraColor2 = new Color(130, 200, 150, 127);
+                            auraColor = new Color(100, 20, 110, 50);
+                            auraColor2 = new Color(230, 30, 250, 127);
                         }
                         break;
                 }
-                for (float num8 = 0f; num8 < 1f; num8 += 0.25f)
-                {
-                    spriteBatch.Draw(Main.itemTexture[item.type], vector3 + new Vector2(0f, 8f).RotatedBy((num8 + num7) * ((float)Math.PI * 2f)) * globalTimeWrappedHourly2, frame, auraColor, item.velocity.X * 0.2f, vector, scale, SpriteEffects.None, 0f);
-                }
-                for (float num9 = 0f; num9 < 1f; num9 += 0.34f)
-                {
-                    spriteBatch.Draw(Main.itemTexture[item.type], vector3 + new Vector2(0f, 4f).RotatedBy((num9 + num7) * ((float)Math.PI * 2f)) * globalTimeWrappedHourly2, frame, auraColor2, item.velocity.X * 0.2f, vector, scale, SpriteEffects.None, 0f);
-                }
+                AQGraphics.Rendering.DrawFallenStarAura(item, spriteBatch, scale, auraColor, auraColor2);
             }
             return base.PreDrawInWorld(item, spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
         }

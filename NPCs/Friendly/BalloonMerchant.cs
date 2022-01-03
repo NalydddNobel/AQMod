@@ -982,7 +982,7 @@ namespace AQMod.NPCs.Friendly
                     npc.spriteDirection = npc.direction;
                 }
                 if (Main.netMode != NetmodeID.Server)
-                    AQSound.Play(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
+                    AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
             }
             if (currentAction == -4)
             {
@@ -1363,7 +1363,7 @@ namespace AQMod.NPCs.Friendly
             npc.noGravity = true;
             npc.life = npc.lifeMax;
             if (Main.netMode != NetmodeID.Server)
-                AQSound.Play(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
+                AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
             if (npc.velocity.X <= 0)
             {
                 npc.direction = -1;

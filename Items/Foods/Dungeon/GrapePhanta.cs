@@ -1,18 +1,15 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using Microsoft.Xna.Framework;
+﻿using AQMod.Items.DrawOverlays;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Foods
+namespace AQMod.Items.Foods.Dungeon
 {
-    public class GrapePhanta : ModItem, ISpecialFood
+    public class GrapePhanta : ModItem, ISpecialFood, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
-        public override void SetStaticDefaults()
-        {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow"), new Color(200, 200, 200, 0)), item.type);
-        }
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<GrapePhanta>("_Glow"));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
 
         public override void SetDefaults()
         {

@@ -106,7 +106,7 @@ namespace AQMod.Projectiles.Magic
             float size = projectile.width / 2f;
             if (Main.netMode != NetmodeID.Server)
             {
-                AQSound.Play(SoundType.Item, AQSound.Paths.MysticUmbrellaDestroy, projectile.Center, 0.5f, -0.25f);
+                AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.MysticUmbrellaDestroy, projectile.Center, 0.5f, -0.25f);
             }
             for (int i = 0; i < 30; i++)
             {

@@ -60,10 +60,10 @@ namespace AQMod.Projectiles.Melee
                     Projectile.NewProjectile(center, projectile.velocity * 1.2f, ModContent.ProjectileType<HorizonSkiesBolt>(), projectile.damage, projectile.knockBack, projectile.owner, MathHelper.PiOver2);
                     for (int i = 0; i < 30; i++)
                     {
-                        int d = Dust.NewDust(center + new Vector2((float)Math.Sin(i) * 10f, 0f).RotatedBy(rotation), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Items.Weapons.Melee.HorizonSkies.Blue);
+                        int d = Dust.NewDust(center + new Vector2((float)Math.Sin(i) * 10f, 0f).RotatedBy(rotation), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Items.Weapons.Melee.Spear.HorizonSkies.Blue);
                         Main.dust[d].velocity += projectile.velocity;
                         Main.dust[d].noGravity = true;
-                        d = Dust.NewDust(center + new Vector2((float)Math.Cos(i) * 10f, 0f).RotatedBy(rotation), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Items.Weapons.Melee.HorizonSkies.Orange);
+                        d = Dust.NewDust(center + new Vector2((float)Math.Cos(i) * 10f, 0f).RotatedBy(rotation), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Items.Weapons.Melee.Spear.HorizonSkies.Orange);
                         Main.dust[d].velocity += projectile.velocity;
                         Main.dust[d].noGravity = true;
                     }

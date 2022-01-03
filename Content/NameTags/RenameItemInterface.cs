@@ -86,7 +86,7 @@ namespace AQMod.Content.NameTags
                             if (textUI.text != "")
                             {
                                 player.BuyItem(price, -1);
-                                AQSound.Play(SoundType.Item, "Sounds/Item/Select", 0.5f);
+                                AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/Select", 0.5f);
                                 var nameTagItem = item.GetGlobalItem<NameTagItem>();
                                 string itemName = textUI.text;
                                 if (string.IsNullOrWhiteSpace(itemName))
@@ -101,7 +101,7 @@ namespace AQMod.Content.NameTags
                         }
                         else
                         {
-                            AQSound.Play(SoundType.Item, "Sounds/Item/Mouse", 0.5f);
+                            AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/Mouse", 0.5f);
                         }
 
                     }

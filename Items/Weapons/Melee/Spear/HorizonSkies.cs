@@ -1,22 +1,20 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
+﻿using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee
+namespace AQMod.Items.Weapons.Melee.Spear
 {
-    public class HorizonSkies : ModItem
+    public class HorizonSkies : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<HorizonSkies>("_Glow"));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
+
         public static Color Blue => new Color(144, 144, 255, 128);
         public static Color Orange => new Color(150, 110, 66, 128);
-
-        public override void SetStaticDefaults()
-        {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow")), item.type);
-        }
 
         public override void SetDefaults()
         {
@@ -42,15 +40,15 @@ namespace AQMod.Items.Weapons.Melee
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.HallowedBar, 15);
-            recipe.AddIngredient(ModContent.ItemType<UltimateEnergy>());
-            recipe.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 10);
-            recipe.AddIngredient(ItemID.SoulofLight, 8);
-            recipe.AddIngredient(ItemID.SoulofNight, 8);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.HallowedBar, 15);
+            r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 10);
+            r.AddIngredient(ItemID.SoulofLight, 8);
+            r.AddIngredient(ItemID.SoulofNight, 8);
+            r.AddTile(TileID.MythrilAnvil);
+            r.SetResult(this);
+            r.AddRecipe();
         }
     }
 }

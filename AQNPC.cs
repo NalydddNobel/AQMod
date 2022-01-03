@@ -7,11 +7,13 @@ using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Foods;
+using AQMod.Items.Foods.Dungeon;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.MapMarkers;
 using AQMod.Items.Vanities.CursorDyes;
+using AQMod.Items.Weapons.Melee.Dagger;
 using AQMod.NPCs;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters;
@@ -1387,14 +1389,14 @@ namespace AQMod
                 case NPCID.SeekerHead:
                     {
                         if (Main.rand.NextBool(10))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.SpicyEel>());
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<SpicyEel>());
                     }
                     break;
 
                 case NPCID.DiggerHead:
                     {
                         if (Main.rand.NextBool(10))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.SpicyEel>());
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<SpicyEel>());
                     }
                     break;
 
@@ -1402,7 +1404,7 @@ namespace AQMod
                 case NPCID.RaggedCasterOpenCoat:
                     {
                         if (Main.rand.NextBool(10))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GrapePhanta>());
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<GrapePhanta>());
                     }
                     break;
 
@@ -1412,7 +1414,7 @@ namespace AQMod
                 case NPCID.RustyArmoredBonesSwordNoArmor:
                     {
                         if (Main.rand.NextBool(40))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GrapePhanta>());
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<GrapePhanta>());
                     }
                     break;
 
@@ -1455,7 +1457,7 @@ namespace AQMod
                 case NPCID.UndeadViking:
                     {
                         if (Main.rand.NextBool(6))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.CrystalDagger>());
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<CrystalDagger>());
                     }
                     break;
 

@@ -188,7 +188,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             npc.ai[2] = 0f;
                             if (Main.netMode != NetmodeID.Server && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
                             {
-                                AQSound.Play(SoundType.Item, "Sounds/Item/SpaceSquid/ShootDeathray");
+                                AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SpaceSquid/ShootDeathray");
                             }
                         }
                         if ((int)npc.ai[1] >= 245)
@@ -264,7 +264,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                     frameIndex = 8;
                                     if (Main.netMode != NetmodeID.Server)
                                     {
-                                        AQSound.Play(SoundType.Item, "Sounds/Item/SpaceSquid/ShootLaser");
+                                        AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SpaceSquid/ShootLaser");
                                     }
                                     var spawnPosition = new Vector2(npc.position.X + (npc.direction == 1 ? npc.width + 20f : -20), npc.position.Y + npc.height / 2f);
                                     var velocity = new Vector2(20f * npc.direction, 0f);
@@ -348,7 +348,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             }
                             if (Main.netMode != NetmodeID.Server)
                             {
-                                AQSound.Play(SoundType.Item, "Sounds/Item/Combo", npc.Center);
+                                AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/Combo", npc.Center);
                             }
                         }
                         if (npc.ai[2] > 180f + (6 - timeBetweenShots) * 40f)

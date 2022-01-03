@@ -86,7 +86,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         {
                             if (npc.localAI[0] == 0 && Main.netMode != NetmodeID.Server)
                             {
-                                AQSound.Play(SoundType.NPCHit, AQSound.Paths.Boowomp, npc.Center, 0.9f);
+                                AQSound.LegacyPlay(SoundType.NPCHit, AQSound.Paths.Boowomp, npc.Center, 0.9f);
                             }
                             npc.localAI[0]++;
                         }

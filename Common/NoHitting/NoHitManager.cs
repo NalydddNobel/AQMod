@@ -89,7 +89,7 @@ namespace AQMod.Common.NoHitting
         {
             if (Vector2.Distance(position, Main.player[Main.myPlayer].Center) < 3000f)
             {
-                AQSound.Play(SoundType.NPCKilled, AQSound.Paths.NoHit, position);
+                AQSound.LegacyPlay(SoundType.NPCKilled, AQSound.Paths.NoHit, position);
             }
         }
 

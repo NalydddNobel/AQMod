@@ -69,6 +69,44 @@ namespace AQMod.Common.Graphics
                 }
             }
  
+            public static void DrawFallenStarAura(Item item, SpriteBatch spriteBatch, float scale, Color auraColor = default(Color), Color auraColor2 = default(Color))
+            {
+                Rectangle frame;
+                if (Main.itemAnimations[item.type] != null)
+                {
+                    frame = Main.itemAnimations[item.type].GetFrame(Main.itemTexture[item.type]);
+                }
+                else
+                {
+                    frame = Main.itemTexture[item.type].Frame();
+                }
+                var vector = frame.Size() / 2f;
+                var vector2 = new Vector2(item.width / 2 - vector.X, item.height - frame.Height);
+                var vector3 = item.position - Main.screenPosition + vector + vector2;
+                float time = Main.GameUpdateCount / 240f + Main.GlobalTime * 0.04f;
+                float globalTimeWrappedHourly2 = Main.GlobalTime;
+                globalTimeWrappedHourly2 %= 5f;
+                globalTimeWrappedHourly2 /= 2.5f;
+                if (globalTimeWrappedHourly2 >= 1f)
+                {
+                    globalTimeWrappedHourly2 = 2f - globalTimeWrappedHourly2;
+                }
+                globalTimeWrappedHourly2 = globalTimeWrappedHourly2 * 0.5f + 0.5f;
+                if (auraColor == default(Color))
+                {
+                    auraColor = new Color(50, 50, 255, 50);
+                    auraColor2 = new Color(120, 120, 255, 127);
+                }
+                for (float f = 0f; f < 1f; f += 0.25f)
+                {
+                    spriteBatch.Draw(Main.itemTexture[item.type], vector3 + new Vector2(0f, 8f).RotatedBy((f + time) * ((float)Math.PI * 2f)) * globalTimeWrappedHourly2, frame, auraColor, item.velocity.X * 0.2f, vector, scale, SpriteEffects.None, 0f);
+                }
+                for (float f = 0f; f < 1f; f += 0.34f)
+                {
+                    spriteBatch.Draw(Main.itemTexture[item.type], vector3 + new Vector2(0f, 4f).RotatedBy((f + time) * ((float)Math.PI * 2f)) * globalTimeWrappedHourly2, frame, auraColor2, item.velocity.X * 0.2f, vector, scale, SpriteEffects.None, 0f);
+                }
+            }
+
             public static void DrawTileWithSloping(Tile tile, Texture2D texture, Vector2 drawCoordinates, Color drawColor, int frameX, int frameY, int width, int height)
             {
                 if (tile.slope() == 0 && !tile.halfBrick())

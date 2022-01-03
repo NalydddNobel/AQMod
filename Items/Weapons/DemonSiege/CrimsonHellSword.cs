@@ -4,14 +4,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee
+namespace AQMod.Items.Weapons.DemonSiege
 {
     public class CrimsonHellSword : ModItem
     {
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(AQUtils.GetPath(this) + "_Glow", new Color(200, 200, 200, 0)), item.type);
+                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath() + "_Glow", () => new Color(200, 200, 200, 0) * AQUtils.Wave(Main.GlobalTime * 6f, 0.9f, 1f)), item.type);
         }
 
         public override void SetDefaults()

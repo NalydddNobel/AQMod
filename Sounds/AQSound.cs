@@ -46,6 +46,11 @@ namespace AQMod.Sounds
             public const string Boowomp = "Sounds/NPCHit/Boowomp";
         }
 
+        private static string qpath(Terraria.ModLoader.SoundType type, string path)
+        {
+            return "Sounds/" + type.ToString() + "/" + path;
+        }
+
         internal static void Play(this LegacySoundStyle sound)
         {
             Main.PlaySound(sound);
@@ -62,27 +67,37 @@ namespace AQMod.Sounds
         {
             Main.PlaySound(sound.SoundId, (int)position.X, (int)position.Y, sound.Style, volume, pitch);
         }
+
         internal static void Play(Terraria.ModLoader.SoundType type, string name)
         {
-            Main.PlaySound((int)type, -1, -1, AQMod.Instance.GetSoundSlot(type, name));
-        }
-        internal static void Play(Terraria.ModLoader.SoundType type, string name, Vector2 position)
-        {
-            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, name));
+            Main.PlaySound((int)type, -1, -1, AQMod.Instance.GetSoundSlot(type, qpath(type, name)));
         }
         internal static void Play(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume)
         {
+            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, qpath(type, name)), volume);
+        }
+
+        internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name)
+        {
+            Main.PlaySound((int)type, -1, -1, AQMod.Instance.GetSoundSlot(type, name));
+        }
+        internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name, Vector2 position)
+        {
+            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, name));
+        }
+        internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume)
+        {
             Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, name), volume);
         }
-        internal static void Play(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume, float pitch)
+        internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume, float pitch)
         {
             Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, name), volume, pitch);
         }
-        internal static void Play(Terraria.ModLoader.SoundType type, string name, float volume)
+        internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name, float volume)
         {
             Main.PlaySound((int)type, -1, -1, AQMod.Instance.GetSoundSlot(type, name), volume);
         }
-        internal static void Play(Terraria.ModLoader.SoundType type, string name, float volume, float pitch)
+        internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name, float volume, float pitch)
         {
             Main.PlaySound((int)type, -1, -1, AQMod.Instance.GetSoundSlot(type, name), volume, pitch);
         }

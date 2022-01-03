@@ -4,6 +4,9 @@ using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Vanities;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Vanities.Dyes;
+using AQMod.Items.Weapons.Melee;
+using AQMod.Items.Weapons.Melee.Dagger;
+using AQMod.Items.Weapons.Melee.Flail;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -80,10 +83,10 @@ namespace AQMod.Common.CrossMod
             createFargoRecipe<MagmabubbleBanner, Items.Accessories.DegenerationRing>();
             createFargoRecipe<MagmabubbleBanner>(ItemID.LavaCharm);
             createFargoRecipe<TrapperImpBanner>(ItemID.ObsidianRose);
-            createFargoRecipe<TrapperImpBanner, Items.Weapons.Melee.PowPunch>();
+            createFargoRecipe<TrapperImpBanner, PowPunch>();
             createFargoRecipe<TrapperImpBanner, DemonicCursorDye>();
 
-            createFargoRecipeBannerInput<Items.Weapons.Melee.CrystalDagger>(ItemID.UndeadVikingBanner);
+            createFargoRecipeBannerInput<CrystalDagger>(ItemID.UndeadVikingBanner);
 
             createFargoRecipe(ItemID.MimicBanner, ItemID.AdhesiveBandage);
             createFargoRecipe(ItemID.MimicBanner, ItemID.SharkToothNecklace);
@@ -98,7 +101,7 @@ namespace AQMod.Common.CrossMod
             createFargoRecipeBannerInput<Items.Accessories.Breadsoul>(ItemID.DungeonSpiritBanner);
             createFargoRecipeBannerInput<Items.Accessories.Dreadsoul>(ItemID.DungeonSpiritBanner);
 
-            createFargoRecipe<CrabsonTrophy, Items.Weapons.Melee.JerryClawFlail>();
+            createFargoRecipe<CrabsonTrophy, JerryClawFlail>();
             createFargoRecipe<CrabsonTrophy, Items.Weapons.Ranged.CinnabarBow>();
             createFargoRecipe<CrabsonTrophy, Items.Weapons.Magic.Bubbler>();
 
