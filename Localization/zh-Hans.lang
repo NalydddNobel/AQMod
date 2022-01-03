@@ -347,8 +347,6 @@ ClientConfig.MapBlipColorTooltip=复古标记显示的地图光点的颜色
 ClientConfig.Header.Worldgen=世界生成
 ClientConfig.Screenshakes=屏幕震动
 ClientConfig.TonsofScreenShakes=额外的不必要的屏幕震动
-ClientConfig.OverrideVanillaChestLoot=覆盖原版宝箱战利品
-ClientConfig.OverrideVanillaChestLootTooltip=决定Aequus Mod中的特殊物品是否会覆盖箱子中的普通战利品\n若禁用, 则Aequus Mod中的特殊物品会和原版中的普通战利品一起生成
 
 # Server Config
 
@@ -378,6 +376,22 @@ ServerConfig.DebugCommandTooltip=启用 /ncall 调试命令.\n{$Mods.AQMod.Confi
 
 # Worldgen
 
+WorldGenOptions.Name=世界生成选项
+
+WorldGenOptions.Header.OnWorldCreation=创造世界时:
+WorldGenOptions.Header.ChestLoot=宝箱战利品:
+
+WorldGenOptions.overrideVanillaChestLoot=覆盖原版宝箱战利品
+WorldGenOptions.overrideVanillaChestLootTooltip=决定Aequus Mod中的特殊物品是否会覆盖箱子中的普通战利品\n若禁用, 则Aequus Mod中的特殊物品会和原版中的普通战利品一起生成.
+
+WorldGenOptions.generateOceanRavines=海沟
+WorldGenOptions.generateOceanRavinesTooltip=决定是否生成海沟.
+
+WorldGenOptions.fixBabyPools=修复小水坑
+WorldGenOptions.fixBabyPoolsTooltip=移除地表上生成的1格物块高的水坑.\n可能会导致在地表生成的与水有关的构造出现小问题.
+
+
+WorldGen.Fix1TileHighWater=Aequus: 正在修复小水坑
 WorldGen.BuriedDirtChests=Aequus: 正在生成被掩埋的土箱
 
 # Christmas
