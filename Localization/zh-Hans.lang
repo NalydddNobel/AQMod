@@ -63,6 +63,18 @@ ItemName.JellyManaCrystal=凝胶法力晶体
 ItemName.HeartPiece=心之碎片
 
 # Weapons
+
+ItemName.StariteBlade=星源剑
+ItemTooltip.StariteBlade=击中敌人时会对其造成碧蓝之火减益\n'邪恶永远无法触及的神圣之刃'
+
+ItemName.StariteSpinner=星源轮转
+ItemTooltip.StariteSpinner=击中敌人时偶尔会对其造成碧蓝之火减益\n'它在旋转吗? 还是我们在绕着它旋转?'
+
+ItemName.StariteStaff=星源法杖
+ItemTooltip.StariteStaff=召唤一颗迅捷星之源为你而战
+BuffName.Starite=星之源
+BuffDescription.Starite=星之源会为你而战
+
 ItemName.VineSword=变向锤
 ItemName.KryptonSword=氪制回旋镖
 ItemTooltip.KryptonSword=能够穿透敌人并回旋移动\n击中敌人时会对其造成多种减益
@@ -840,8 +852,6 @@ ItemTooltip.Aphrodite=击中敌人时对其造成热恋减益, 使其造成的�
 ItemName.Venus=维纳斯
 ItemTooltip.Venus=击中敌人时对其造成热恋减益, 使其造成的伤害降低10%并受到10%额外伤害\n如果敌人离你很近则有几率使其中毒
 
-ItemName.StariteSpinner=星源涡
-
 ItemName.Dysesthesia=苦痛之触
 ItemTooltip.Dysesthesia=召唤恶魔之镰\n如果敌人离其很近则释放腐狱之火攻击敌人
 ProjectileName.Dysesthesia=苦痛之触
@@ -858,8 +868,6 @@ ItemName.OrbicularStargaizar=观星法球
 BuffName.Harmony=和谐
 BuffDescription.Harmony=大幅度强化你的魔法能力
 
-ItemName.StariteBlade=星源刃
-ItemTooltip.StariteBlade=击中敌人时对其造成碧蓝之火减益
 ItemName.XenonBasher=氙制轻剑
 # Ranged
 # Bows
@@ -880,9 +888,6 @@ ItemName.MonoxiderStaff=日驭金乌杖
 ItemTooltip.MonoxiderStaff=召唤一只金乌为你而战
 BuffName.Monoxider=金乌
 BuffDescription.Monoxider=金乌会为你而战
-ItemName.StariteStaff=星源召唤杖
-BuffName.Starite=星之源
-BuffDescription.Starite=星之源会为你而战
 ItemName.CrimsonHandStaff=猩红血手法杖
 BuffName.CrimsonHand=猩红血手
 BuffDescription.CrimsonHand=猩红血手会为你而战
@@ -1049,7 +1054,6 @@ ItemTooltip.SpaceShot=发射一颗星星, 随后再发射其使用的子弹
 # Sentry
 ItemTooltip.LotusStaff=召唤一朵熔岩之莲为你而战\n{$Mods.AQMod.Common.DoesntMinionTarget}
 # Other Summon
-ItemTooltip.StariteStaff=召唤3个星之源为你而战
 ItemTooltip.CrimsonHandStaff=召唤一个猩红血手为你而战
 ItemTooltip.CorruptPot=召唤一株腐化植物为你而战
 # Other Item Tooltips
