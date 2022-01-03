@@ -16,6 +16,8 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -106,7 +108,11 @@ namespace AQMod.NPCs.Boss
         {
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             NPCID.Sets.TrailCacheLength[NPC.type] = 60;
+            NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() { ImmuneToAllBuffsThatAreNotWhips = true, };
+
+            NPCID.Sets.BossBestiaryPriority.Add(Type);
+
             Main.npcFrameCount[NPC.type] = 14;
         }
 
@@ -128,6 +134,9 @@ namespace AQMod.NPCs.Boss
             NPC.noTileCollide = true;
             NPC.trapImmune = true;
             NPC.lavaImmune = true;
+
+            NPC.BossBar = ModContent.GetInstance<OmegaStariteBossBar>();
+
             BossBag = ModContent.ItemType<StariteBag>();
 
             if (!GlimmerEvent.IsActive)
@@ -141,6 +150,28 @@ namespace AQMod.NPCs.Boss
             //        NPC.GivenName = "Omega Starite, Living Galaxy the Omega Being";
             //    }
             //}
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
+				new FlavorTextBestiaryInfoElement("Mods.AQMod.Bestiary.OmegaStarite")
+            });
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.BossBag(BossBag));
+
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OmegaStariteTrophy>(), 10));
+
+            //npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<OmegaStariteRelic>()));
+            //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DragonBall>(), 4));
+
+            var notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+            notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<OmegaStariteMask>(), 7));
+            npcLoot.Add(notExpertRule);
         }
 
         public override Color? GetAlpha(Color drawColor)
@@ -157,7 +188,6 @@ namespace AQMod.NPCs.Boss
         {
             return Main.expertMode ? 25 : 30;
         }
-
         public bool IsOmegaLaserActive()
         {
             return NPC.ai[0] == PHASE_OMEGA_LASER && NPC.ai[2] < 1200f;
@@ -275,7 +305,7 @@ namespace AQMod.NPCs.Boss
 
         public override void AI()
         {
-            if (GlimmerEvent.ShouldKillStar(NPC))
+            if (Main.dayTime)
             {
                 NPC.life = -1;
                 Scene.CurrentScene = Scene.ID.NoScene;
@@ -1223,9 +1253,30 @@ namespace AQMod.NPCs.Boss
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                if ((int)NPC.ai[0] == 0)
+                {
+                    Init(); 
+                    NPC.ai[0] = 1f;
+                }
+                innerRingRotation += 0.0314f;
+                innerRingRoll += 0.0157f;
+                innerRingPitch += 0.01f;
+
+                outerRingRotation += 0.0157f;
+                outerRingRoll += 0.0314f;
+                outerRingPitch += 0.011f;
+                Spin(NPC.Center);
+                AQUtils.OmegaStariteHelper.ScreenView();
+            }
+            else
+            {
+                AQUtils.OmegaStariteHelper.WorldView();
+            }
             if (orbs == null)
             {
-                return false;
+                return true;
             }
             drawColor *= 5f;
             if (drawColor.R < 80)
@@ -1234,7 +1285,7 @@ namespace AQMod.NPCs.Boss
                 drawColor.G = 80;
             if (drawColor.B < 80)
                 drawColor.B = 80;
-            var drawPos = NPC.Center - Main.screenPosition;
+            var drawPos = NPC.Center - screenPos;
             var sortedOmegites = new List<OmegaStariteOrb>(orbs);
             var options = ClientOptions.Instance;
             float intensity = options.FXIntensity;
@@ -1315,7 +1366,7 @@ namespace AQMod.NPCs.Boss
             {
                 if (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z > 0f)
                 {
-                    var drawPosition = AQUtils.OmegaStariteHelper.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
+                    var drawPosition = AQUtils.OmegaStariteHelper.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - screenPos;
                     var drawScale = AQUtils.OmegaStariteHelper.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
                     foreach (var draw in drawOmegite)
                     {
@@ -1351,7 +1402,7 @@ namespace AQMod.NPCs.Boss
                 {
                     if (NPC.oldPos[i] == new Vector2(0f, 0f))
                         break;
-                    trueOldPos.Add(NPC.oldPos[i] + offset - Main.screenPosition);
+                    trueOldPos.Add(NPC.oldPos[i] + offset - screenPos);
                 }
                 if (trueOldPos.Count > 1)
                 {
@@ -1380,7 +1431,7 @@ namespace AQMod.NPCs.Boss
             }
             for (int i = 0; i < sortedOmegites.Count; i++)
             {
-                var drawPosition = AQUtils.OmegaStariteHelper.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - Main.screenPosition;
+                var drawPosition = AQUtils.OmegaStariteHelper.GetParralaxPosition(new Vector2(sortedOmegites[i].position.X + sortedOmegites[i].drawOffset.X, sortedOmegites[i].position.Y + sortedOmegites[i].drawOffset.Y), sortedOmegites[i].position.Z * 0.00728f) - screenPos;
                 var drawScale = AQUtils.OmegaStariteHelper.GetParralaxScale(sortedOmegites[i].scale, (sortedOmegites[i].position.Z + sortedOmegites[i].drawOffset.Z) * 0.0314f);
                 foreach (var draw in drawOmegite)
                 {

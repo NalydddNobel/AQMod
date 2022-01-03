@@ -12,10 +12,10 @@ namespace AQMod.Items.DrawOverlays
 {
     public class ShaderOverlay : IOverlayDrawWorld, IOverlayDrawInventory, IOverlayDrawPlayerUse
     {
-        public readonly string Path;
-        public readonly Func<Color> GetDrawColor;
-        public readonly bool DrawInventory;
-        public Func<int> dyeItemID;
+        private readonly string Path;
+        private readonly Func<Color> GetDrawColor;
+        private readonly bool DrawInventory;
+        private readonly Func<int> GetDyeItemID;
 
         public static Color DefaultGlowmaskColor => new Color(255, 255, 255, 255);
 
@@ -27,7 +27,7 @@ namespace AQMod.Items.DrawOverlays
             else
                 GetDrawColor = getColor;
             DrawInventory = drawInventory;
-            dyeItemID = shaderID;
+            GetDyeItemID = shaderID;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace AQMod.Items.DrawOverlays
                 var drawData = new DrawData(texture, drawCoordinates, drawFrame, GetDrawColor(), drawRotation, origin, scale, SpriteEffects.None, 0);
                 Main.spriteBatch.End();
                 BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
-                GameShaders.Armor.GetShaderFromItemId(dyeItemID()).Apply(item, drawData);
+                GameShaders.Armor.GetShaderFromItemId(GetDyeItemID()).Apply(item, drawData);
                 drawData.Draw(Main.spriteBatch);
                 Main.spriteBatch.End();
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
@@ -84,7 +84,14 @@ namespace AQMod.Items.DrawOverlays
                     return;
                 }
                 var texture = asset.Value;
-                Main.spriteBatch.Draw(texture, position, frame, GetDrawColor(), 0f, origin, scale, SpriteEffects.None, 0f);
+                var drawData = new DrawData(texture, position, frame, GetDrawColor(), 0f, origin, scale, SpriteEffects.None, 0);
+                Main.spriteBatch.End();
+                BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Shader);
+                GameShaders.Armor.GetShaderFromItemId(GetDyeItemID()).Apply(item, drawData);
+                drawData.Draw(Main.spriteBatch);
+                Main.spriteBatch.End();
+                BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Regular);
+
             }
         }
 
@@ -96,7 +103,7 @@ namespace AQMod.Items.DrawOverlays
                 return;
             }
             var texture = asset.Value;
-            int Shader = GameShaders.Armor.GetShaderIdFromItemId(dyeItemID());
+            int Shader = GameShaders.Armor.GetShaderIdFromItemId(GetDyeItemID());
             if (item.useStyle == ItemUseStyleID.Shoot)
             {
                 if (Item.staff[item.type])

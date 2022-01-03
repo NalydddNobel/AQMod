@@ -11,13 +11,22 @@ namespace AQMod
     {
         public static class OmegaStariteHelper
         {
+            public static Vector2 ViewCenter;
+            public static void ScreenView()
+            {
+                ViewCenter = new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+            }
+            public static void WorldView()
+            {
+                ViewCenter = new Vector2(Main.screenPosition.X + Main.screenWidth / 2f, Main.screenPosition.Y + Main.screenHeight / 2f);
+            }
+
             public const float Z_VIEW = -20f;
 
             internal static Vector2 GetParralaxPosition(Vector2 origin, float z)
             {
                 z = MultZ(z);
-                var viewPos = new Vector2(Main.screenPosition.X + Main.screenWidth / 2f, Main.screenPosition.Y + Main.screenHeight / 2f);
-                return new Vector2(origin.X - (1f - (-Z_VIEW / (z - Z_VIEW))) * (origin.X - viewPos.X), origin.Y - (1f - (-Z_VIEW / (z - Z_VIEW))) * (origin.Y - viewPos.Y));
+                return new Vector2(origin.X - (1f - (-Z_VIEW / (z - Z_VIEW))) * (origin.X - ViewCenter.X), origin.Y - (1f - (-Z_VIEW / (z - Z_VIEW))) * (origin.Y - ViewCenter.Y));
             }
 
             public static float GetParralaxScale(float originalScale, float z)

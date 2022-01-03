@@ -16,6 +16,7 @@ namespace AQMod.Projectiles.Monster.OmegaStarite
             Projectile.hostile = true;
             Projectile.ignoreWater = true;
             Projectile.hide = true;
+            Projectile.timeLeft = 16;
         }
 
         public override void AI()

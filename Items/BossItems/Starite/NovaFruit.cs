@@ -12,7 +12,7 @@ namespace AQMod.Items.BossItems.Starite
 {
     public class NovaFruit : ModItem, IItemOverlaysWorldDraw, IItemOverlaysDrawInventory, IItemOverlaysPlayerDraw
     {
-        private static readonly ShaderOverlay _shaderOverlay = new ShaderOverlay(AQUtils.GetPath<NovaFruit>(), () => ModContent.ItemType<EnchantedDye>());
+        private static readonly ShaderOverlay _shaderOverlay = new ShaderOverlay(AQUtils.GetPath<NovaFruit>(), () => ModContent.ItemType<EnchantedDye>(), default, drawInventory: true);
         IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _shaderOverlay;
         IOverlayDrawInventory IItemOverlaysDrawInventory.InventoryDraw => _shaderOverlay;
         IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _shaderOverlay;

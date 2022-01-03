@@ -915,18 +915,29 @@ Mods: {
 			ToggleKeyBind: You can toggle this function by pressing {0}
 		}
 
+		Bestiary: {
+			OmegaStarite: 
+			'''
+			Birthed through a violent death of a star, the chaotic fragments created life which could live while being blasted with gamma rays.
+			This formation of starite cannot think, and can only rely on the instinct to consume ultimate energy.
+			'''
+		}
+
 		NPCName: {
+			BloodMimic: "{$NPCName.Mimic}"
+			Heckto: Heckto
+
 			BalloonMerchant: Air Hunter
 			Robster: Exporter
 			Physicist: Physicist
-			StreamingBalloon: Streaming Balloon
+
 			DwarfStarite: Dwarf Starite
 			Starite: Starite
 			SuperStarite: Super Starite
 			HyperStarite: Hyper Starite
 			UltraStarite: Ultra Starite
 			OmegaStarite: Omega Starite
-			MultiStarite: Multi Starite
+
 			Snobster: "{$Mods.AQMod.ItemName.Snobster}"
 			JerryCrabson: Jerry Crabson
 			JerryClaw: Jerry Claw
@@ -934,18 +945,17 @@ Mods: {
 			SoliderCrabs: Solider Crabs
 			HermitCrab: Hermit Crab
 			StriderCrab: Strider Crab
+
 			Magmalbubble: Magmabubble
 			TrapImp: Trapper Imp
 			Trapper: Trapper
 			Cindera: Cindera
+
 			Meteor: Meteor
-			TemperatureBalloon: Temperature Balloon
 			Vraine: Vraine
-			Atmodrone: Atmodrone
 			HotCurrent: Hot Current
 			ColdCurrent: Cold Current
-			BloodMimic: "{$NPCName.Mimic}"
-			Heckto: Heckto
+			StreamingBalloon: Streaming Balloon
 			RedSprite: Red Sprite
 			WhiteSlime: White Slime
 			SpaceSquid: Space Squid

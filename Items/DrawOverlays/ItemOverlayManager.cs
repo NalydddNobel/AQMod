@@ -12,7 +12,7 @@ namespace AQMod.Items.DrawOverlays
             if (item.type < Main.maxItemTypes)
                 return true;
             if (item.ModItem is IItemOverlaysDrawInventory itemOverlay &&
-                itemOverlay.InventoryDraw.PreDrawInv(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale) == true)
+                itemOverlay.InventoryDraw.PreDrawInv(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale))
             {
                 return false;
             }
@@ -34,7 +34,7 @@ namespace AQMod.Items.DrawOverlays
             if (item.type < Main.maxItemTypes)
                 return true;
             if (item.ModItem is IItemOverlaysWorldDraw itemOverlay &&
-                itemOverlay.WorldDraw.PreDrawWorld(item, lightColor, alphaColor, ref rotation, ref scale, whoAmI) == true)
+                itemOverlay.WorldDraw.PreDrawWorld(item, lightColor, alphaColor, ref rotation, ref scale, whoAmI))
             {
                 return false;
             }
