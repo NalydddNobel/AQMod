@@ -14,7 +14,7 @@ namespace AQMod.Buffs.Summon
         public override void Update(Player player, ref int buffIndex)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.StariteMinion.StariteLeader>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.Starite>()] > 0)
             {
                 aQPlayer.stariteMinion = true;
             }

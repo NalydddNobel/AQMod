@@ -11,10 +11,10 @@ namespace AQMod.Items.Weapons.Melee.Dagger
             item.width = 30;
             item.height = 30;
             item.melee = true;
-            item.damage = 19;
+            item.damage = 12;
             item.knockBack = 2f;
-            item.useAnimation = 8;
-            item.useTime = 8;
+            item.useAnimation = 10;
+            item.useTime = 10;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item1;
             item.rare = ItemRarityID.Green;

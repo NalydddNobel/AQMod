@@ -63,6 +63,18 @@ ItemName.JellyManaCrystal=Jelly Mana Crystal
 ItemName.HeartPiece=Heart Piece
 
 # Weapons
+
+ItemName.StariteBlade=Starite Blade
+ItemTooltip.StariteBlade=Inflicts blue fire on hit\n'The sacred blade that evil can never touch'
+
+ItemName.StariteSpinner=Starite Spinner
+ItemTooltip.StariteSpinner=Occasionally inflicts blue fire on hit\n'Is it rotating? Or are we just orbiting around it?'
+
+ItemName.StariteStaff=Starite Staff
+ItemTooltip.StariteStaff=Summons a speedy starite to fight for you
+BuffName.Starite=Starite
+BuffDescription.Starite=The starite will fight for you
+
 ItemName.VineSword=Turnblock Hammer
 ItemName.KryptonSword=Krypton Boomerang
 ItemTooltip.KryptonSword=Cuts through enemies and can be swung around\nInflicts multiple debuffs
@@ -840,8 +852,6 @@ ItemTooltip.Aphrodite=Give enemies lovestruck which decreases their damage infli
 ItemName.Venus=Venus
 ItemTooltip.Venus=Give enemies lovestruck which decreases their damage inflicted by 10%, and increases their damage taken by 10%\nHas a chance to poison enemies if they are very close to you
 
-ItemName.StariteSpinner=Starite Spinner
-
 ItemName.Dysesthesia=Dysesthesia
 ItemTooltip.Dysesthesia=Summons demon scythes\nInflicts enemies with corrupt hellfire if they are very close
 ProjectileName.Dysesthesia=Dysesthesia
@@ -858,8 +868,6 @@ ItemName.OrbicularStargaizar=Orbicular Stargaizar
 BuffName.Harmony=Harmony
 BuffDescription.Harmony=Grealy increases your magical powers
 
-ItemName.StariteBlade=Starite Blade
-ItemTooltip.StariteBlade=Inflicts blue fire on hit
 ItemName.XenonBasher=Xenon Basher
 # Ranged
 # Bows
@@ -880,9 +888,6 @@ ItemName.MonoxiderStaff=Monoxider Staff
 ItemTooltip.MonoxiderStaff=Summons a monoxide finch to fight for you
 BuffName.Monoxider=Monoxider
 BuffDescription.Monoxider=The monoxider will fight for you
-ItemName.StariteStaff=Starite Staff
-BuffName.Starite=Starite
-BuffDescription.Starite=The starite will fight for you
 ItemName.CrimsonHandStaff=Crimson Hand Staff
 BuffName.CrimsonHand=Crimson Hand
 BuffDescription.CrimsonHand=The crimson hand will fight for you
@@ -1049,7 +1054,6 @@ ItemTooltip.SpaceShot=Shoots a star which then shoots bullets
 # Sentry
 ItemTooltip.LotusStaff=Summons a magma lotus to fight for you\n{$Mods.AQMod.Common.DoesntMinionTarget}
 # Other Summon
-ItemTooltip.StariteStaff=Summons 3 starites to fight for you
 ItemTooltip.CrimsonHandStaff=Summons a crimson hand to fight for you
 ItemTooltip.CorruptPot=Summons a corrupted plant to fight for you
 # Other Item Tooltips
