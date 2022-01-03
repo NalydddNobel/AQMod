@@ -221,10 +221,7 @@ namespace AQMod.Projectiles.Summon
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
         {
-            if (Main.player[projectile.owner].position.Y < projectile.position.Y + projectile.height)
-            {
-                fallThrough = true;
-            }
+            fallThrough = true;
             return base.TileCollideStyle(ref width, ref height, ref fallThrough);
         }
 
