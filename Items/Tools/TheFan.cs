@@ -50,7 +50,7 @@ namespace AQMod.Items.Tools
             }
             Main.windSpeedTemp = Main.windSpeedSet;
             if (Main.netMode != NetmodeID.SinglePlayer)
-                NetMessage.SendData(MessageID.WorldData, Main.myPlayer);
+                NetHelper.UpdateWindSpeeds();
             Projectiles.FriendlyWind.NewWind(player, position, new Vector2(speedX, speedY), item.knockBack / 10f, 60, 80);
             return false;
         }

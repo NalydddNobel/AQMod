@@ -8,7 +8,6 @@ using AQMod.Common.DeveloperTools;
 using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.Graphics.SceneLayers;
-using AQMod.Common.NetCode;
 using AQMod.Common.UserInterface;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
@@ -141,7 +140,7 @@ namespace AQMod
             public static DebugLogger GetDebugLogger()
             {
                 var logger = Instance.Logger;
-                logger.Info("Accessed debug logger at: " + Environment.StackTrace);
+                //logger.Info("Accessed debug logger at: " + Environment.StackTrace);
                 return new DebugLogger(logger);
             }
         }
@@ -561,7 +560,7 @@ namespace AQMod
                             }
                             else if (Main.windSpeed > Main.windSpeedSet)
                             {
-                                Main.windSpeed -= 0.001f * (float)Main.dayRate;
+                                Main.windSpeed -= 0.001f * Main.dayRate;
                                 if (Main.windSpeed < Main.windSpeedSet)
                                 {
                                     Main.windSpeed = Main.windSpeedSet;
@@ -1004,10 +1003,16 @@ namespace AQMod
             }
             if (Main.netMode != NetmodeID.MultiplayerClient && spawnStarite)
             {
-                OmegaStariteScenes.OmegaStariteIndexCache = (short)NPC.NewNPC(GlimmerEvent.tileX * 16 + 8, GlimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Main.myPlayer);
-                OmegaStariteScenes.SceneType = 1;
+                int n = OmegaStariteScenes.OmegaStariteIndexCache = 
+                    (short)NPC.NewNPC(GlimmerEvent.tileX * 16 + 8, GlimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 
+                    0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Player.FindClosest(new Vector2(GlimmerEvent.tileX * 16f, GlimmerEvent.tileY * 16f), 16, 16));
+                if (n != -1)
+                {
+                    Main.npc[n].netUpdate = true;
+                    OmegaStariteScenes.SceneType = 1;
+                    BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", Constants.ChatColors.BossMessage);
+                }
                 spawnStarite = false;
-                BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", Constants.ChatColors.BossMessage);
             }
 
             if (CrabSeason.CrabsonCachedID > -1 && !Main.npc[CrabSeason.CrabsonCachedID].active)
@@ -1103,161 +1108,7 @@ namespace AQMod
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            byte messageID = reader.ReadByte();
-
-            switch (messageID)
-            {
-                case AQPacketID.SummonOmegaStarite:
-                    {
-                        if (Main.netMode == NetmodeID.Server)
-                        {
-                            spawnStarite = true;
-                        }
-
-                        if (Debug.LogNetcode)
-                        {
-                            var l = Debug.GetDebugLogger();
-                            l.Log("Summoning Omega Starite...");
-                        }
-                    }
-                    break;
-
-                case AQPacketID.UpdateGlimmerEvent:
-                    {
-                        GlimmerEvent.tileX = reader.ReadUInt16();
-                        GlimmerEvent.tileY = reader.ReadUInt16();
-                        GlimmerEvent.StariteDisco = reader.ReadBoolean();
-                        GlimmerEvent.deactivationTimer = reader.ReadInt32();
-
-                        if (Debug.LogNetcode)
-                        {
-                            var l = Debug.GetDebugLogger();
-                            l.Log("Updating Glimmer Event");
-                            l.Log("x: " + GlimmerEvent.tileX);
-                            l.Log("y: " + GlimmerEvent.tileY);
-                            l.Log("starite disco: " + GlimmerEvent.StariteDisco);
-                            l.Log("deactivation timer: " + GlimmerEvent.deactivationTimer);
-                        }
-                    }
-                    break;
-
-                case AQPacketID.UpdateAQPlayerCelesteTorus:
-                    {
-                        var player = Main.player[reader.ReadByte()];
-                        var aQPlayer = player.GetModPlayer<AQPlayer>();
-                        aQPlayer.celesteTorusX = reader.ReadSingle();
-                        aQPlayer.celesteTorusY = reader.ReadSingle();
-                        aQPlayer.celesteTorusZ = reader.ReadSingle();
-
-                        if (Debug.LogNetcode)
-                        {
-                            var l = Debug.GetDebugLogger();
-                            l.Log("Updating celeste torus positions for: (" + player.name + ")");
-                            l.Log("x: " + aQPlayer.celesteTorusX);
-                            l.Log("y: " + aQPlayer.celesteTorusY);
-                            l.Log("z: " + aQPlayer.celesteTorusZ);
-                        }
-                    }
-                    break;
-
-                case AQPacketID.UpdateAQPlayerEncoreKills:
-                    {
-                        var player = Main.player[reader.ReadByte()];
-                        var aQPlayer = player.GetModPlayer<AQPlayer>();
-                        byte[] buffer = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));
-                        aQPlayer.DeserialzeBossKills(buffer);
-                    }
-                    break;
-
-                case AQPacketID.PreventedBloodMoon:
-                    {
-                        Debug.DebugLogger? l = null;
-                        if (Debug.LogNetcode)
-                        {
-                            l = Debug.GetDebugLogger();
-                            l.Value.Log("Old Blood Moons Prevented: " + CosmicanonCounts.EclipsesPrevented);
-                        }
-
-                        CosmicanonCounts.BloodMoonsPrevented = reader.ReadUInt16();
-
-                        if (Debug.LogNetcode)
-                        {
-                            l.Value.Log("Updated Blood Moons Prevented: " + CosmicanonCounts.EclipsesPrevented);
-                        }
-                    }
-                    break;
-
-                case AQPacketID.PreventedGlimmer:
-                    {
-                        Debug.DebugLogger? l = null;
-                        if (Debug.LogNetcode)
-                        {
-                            l = Debug.GetDebugLogger();
-                            l.Value.Log("Old Glimmers Prevented: " + CosmicanonCounts.EclipsesPrevented);
-                        }
-
-                        CosmicanonCounts.GlimmersPrevented = reader.ReadUInt16();
-
-                        if (Debug.LogNetcode)
-                        {
-                            l.Value.Log("Updated Glimmers Prevented: " + CosmicanonCounts.EclipsesPrevented);
-                        }
-                    }
-                    break;
-
-                case AQPacketID.PreventedEclipse:
-                    {
-                        Debug.DebugLogger? l = null;
-                        if (Debug.LogNetcode)
-                        {
-                            l = Debug.GetDebugLogger();
-                            l.Value.Log("Old Eclipses Prevented: " + CosmicanonCounts.EclipsesPrevented);
-                        }
-
-                        CosmicanonCounts.EclipsesPrevented = reader.ReadUInt16();
-
-                        if (Debug.LogNetcode)
-                        {
-                            l.Value.Log("Updated Eclipses Prevented: " + CosmicanonCounts.EclipsesPrevented);
-                        }
-                    }
-                    break;
-
-                case AQPacketID.BeginDemonSiege:
-                    {
-                        int x = reader.ReadInt32();
-                        int y = reader.ReadInt32();
-                        int player = reader.ReadInt32();
-                        int itemType = reader.ReadInt32();
-                        int itemStack = reader.ReadInt32();
-                        int itemPrefix = reader.ReadByte();
-
-                        Item item = new Item();
-
-                        item.netDefaults(itemType);
-                        item.stack = itemStack;
-                        item.Prefix(itemPrefix);
-
-                        if (itemType > Main.maxItemTypes)
-                        {
-                            item.modItem.NetRecieve(reader);
-                        }
-
-                        if (Debug.LogNetcode)
-                        {
-                            var l = Debug.GetDebugLogger();
-                            l.Log("x: " + x);
-                            l.Log("y: " + y);
-                            l.Log("player activator: " + player + " (" + Main.player[player].name + ")");
-                            l.Log("item Type: " + itemType + " (" + Lang.GetItemName(item.type) + ")");
-                            l.Log("item Stack: " + itemStack);
-                            l.Log("item Prefix: " + itemPrefix);
-                        }
-
-                        DemonSiege.Activate(x, y, player, item, server: true);
-                    }
-                    break;
-            }
+            NetHelper.ReadPacket(reader, whoAmI);
         }
 
         public override object Call(params object[] args)

@@ -5,7 +5,6 @@ using AQMod.Common;
 using AQMod.Common.Configuration;
 using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
-using AQMod.Common.NetCode;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Fishing;
 using AQMod.Content.Seasonal.Christmas;
@@ -1363,11 +1362,11 @@ namespace AQMod
             ModPacket packet = mod.GetPacket();
             if (NetUpdateKillCount)
             {
-                packet.Write(AQPacketID.UpdateAQPlayerEncoreKills);
-                packet.Write((byte)player.whoAmI);
-                byte[] buffer = SerializeBossKills();
-                packet.Write(buffer, 0, buffer.Length);
-                packet.Send(toWho, fromWho);
+                //packet.Write(AQPacketID.UpdateAQPlayerEncoreKills);
+                //packet.Write((byte)player.whoAmI);
+                //byte[] buffer = SerializeBossKills();
+                //packet.Write(buffer, 0, buffer.Length);
+                //packet.Send(toWho, fromWho);
                 NetUpdateKillCount = false;
                 return;
             }
@@ -1376,13 +1375,14 @@ namespace AQMod
 
         private void Sync_CelesteTorus(int toWho = -1, int fromWho = -1)
         {
-            var packet = mod.GetPacket();
-            packet.Write(AQPacketID.UpdateAQPlayerCelesteTorus);
-            packet.Write((byte)player.whoAmI);
-            packet.Write(celesteTorusX);
-            packet.Write(celesteTorusY);
-            packet.Write(celesteTorusZ);
-            packet.Send(toWho, fromWho);
+            return;
+            //var packet = mod.GetPacket();
+            //packet.Write(AQPacketID.UpdateAQPlayerCelesteTorus);
+            //packet.Write((byte)player.whoAmI);
+            //packet.Write(celesteTorusX);
+            //packet.Write(celesteTorusY);
+            //packet.Write(celesteTorusZ);
+            //packet.Send(toWho, fromWho);
         }
 
         public override void UpdateDead()

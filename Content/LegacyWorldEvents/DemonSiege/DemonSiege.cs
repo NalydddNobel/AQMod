@@ -1,6 +1,5 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Common.NetCode;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Dusts;
@@ -16,6 +15,7 @@ using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -183,23 +183,23 @@ namespace AQMod.Content.LegacyWorldEvents.DemonSiege
             return false;
         }
 
-        public static bool Activate(int x, int y, int p, Item item, bool server = false)
+        public static bool Activate(int x, int y, int plr, Item item, bool fromServer = false)
         {
             if (CheckSpot(x, y))
             {
-                if (Main.netMode == NetmodeID.MultiplayerClient && !server)
+                if (Main.netMode == NetmodeID.MultiplayerClient && !fromServer)
                 {
-                    NetHelper.BeginDemonSiege(x, y, p, item);
+                    NetHelper.RequestDemonSiege(x, y, plr, item);
                 }
                 BaseItem = item.Clone();
                 Upgrade = GetUpgrade(BaseItem).GetValueOrDefault(default(DemonSiegeUpgrade));
-                if (!server)
+                if (!fromServer)
                 {
                     item.TurnToAir();
                     item.type = ItemID.None;
                     item.prefix = 0;
                 }
-                PlayerActivator = (byte)p;
+                PlayerActivator = (byte)plr;
                 if (Upgrade.upgradeTime > 0)
                 {
                     UpgradeTime = Upgrade.upgradeTime;
@@ -467,6 +467,30 @@ namespace AQMod.Content.LegacyWorldEvents.DemonSiege
             UpgradeTime = 1;
             BaseItem = null;
             PlayerActivator = byte.MaxValue;
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(_active);
+            if (_active)
+            {
+                writer.Write(spawnEnemyX);
+                writer.Write(spawnEnemyY);
+                writer.Write(spawnEnemyTimer);
+                writer.Write(UpgradeTime);
+            }
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            _active = reader.ReadBoolean();
+            if (_active)
+            {
+                spawnEnemyX = reader.ReadInt32();
+                spawnEnemyY = reader.ReadInt32();
+                spawnEnemyTimer = reader.ReadInt32();
+                UpgradeTime = reader.ReadUInt16();
+            }
         }
     }
 }

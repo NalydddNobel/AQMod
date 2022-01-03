@@ -7,6 +7,7 @@ using AQMod.NPCs.Monsters.GaleStreams;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -76,7 +77,7 @@ namespace AQMod.Content.World.Events.GaleStreams
             {
                 WorldDefeats.DownedGaleStreams = true;
                 if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendData(MessageID.WorldData);
+                    NetHelper.UpdateWindSpeeds();
                 Main.windSpeedSet = 3f;
                 EndEvent = true;
             }
@@ -84,7 +85,7 @@ namespace AQMod.Content.World.Events.GaleStreams
             {
                 WorldDefeats.DownedGaleStreams = true;
                 if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendData(MessageID.WorldData);
+                    NetHelper.UpdateWindSpeeds();
                 Main.windSpeedSet = -3f;
                 EndEvent = true;
             }
@@ -131,6 +132,16 @@ namespace AQMod.Content.World.Events.GaleStreams
         public override void PostUpdate()
         {
             IsActive = ImitatedWindyDay.IsItAHappyWindyDay_WindyEnough;
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(IsActive);
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            IsActive = reader.ReadBoolean();
         }
 
         public static bool CanCrashMeteor(int x, int y, int size = 40)

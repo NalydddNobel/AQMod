@@ -269,7 +269,8 @@ namespace AQMod.NPCs.Boss.Starite
                 spawnRing(center, OmegaStariteOrb.OUTER_RING, CIRCUMFERENCE * OmegaStariteOrb.OUTER_RING_CIRCUMFERENCE_MULT, OmegaStariteOrb.OUTER_RING_SCALE);
             }
             int damage = GetOmegiteDamage();
-            Projectile.NewProjectile(npc.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.Monster.Starite.OmegaStarite>(), damage, 1f, Main.myPlayer, npc.whoAmI);
+            Projectile.NewProjectile(npc.Center, Vector2.Zero,
+                ModContent.ProjectileType<Projectiles.Monster.Starite.OmegaStarite>(), damage, 1f, Main.myPlayer, npc.whoAmI);
         }
 
         public void SetInnerRingRotation(Vector2 center)
@@ -325,6 +326,8 @@ namespace AQMod.NPCs.Boss.Starite
                 npc.active = false;
                 return;
             }
+            //Main.NewText(npc.ai[0]);
+            //AQMod.Instance.Logger.Debug(npc.ai[0]);
             if (skipDeathTimer > 0)
                 skipDeathTimer--;
             bool hardVersion = HardVersion();
@@ -335,96 +338,289 @@ namespace AQMod.NPCs.Boss.Starite
             switch ((int)npc.ai[0])
             {
                 default:
-                {
-                    innerRingRotation += 0.0314f;
-                    innerRingRoll += 0.0157f;
-                    innerRingPitch += 0.01f;
+                    {
+                        innerRingRotation += 0.0314f;
+                        innerRingRoll += 0.0157f;
+                        innerRingPitch += 0.01f;
 
-                    outerRingRotation += 0.0157f;
-                    outerRingRoll += 0.0314f;
-                    outerRingPitch += 0.011f;
-                    npc.Center = plrCenter + new Vector2(0f, -CIRCUMFERENCE * 2f);
-                }
-                break;
+                        outerRingRotation += 0.0157f;
+                        outerRingRoll += 0.0314f;
+                        outerRingPitch += 0.011f;
+                        npc.Center = plrCenter + new Vector2(0f, -CIRCUMFERENCE * 2f);
+                    }
+                    break;
 
                 case 1002:
-                {
-                    npc.ai[2]++;
-                    if (npc.ai[2] > 300f)
                     {
-                        if (npc.ai[1] > 0.0314)
+                        npc.ai[2]++;
+                        if (npc.ai[2] > 300f)
                         {
-                            npc.ai[1] -= 0.0005f;
-                        }
-                        else
-                        {
-                            npc.ai[1] = 0.0314f;
-                        }
-                        innerRingRotation += npc.ai[1];
-                        outerRingRotation += npc.ai[1] * 0.5f;
-                        bool innerRing = false;
-                        if (orbs[0].radius > orbs[0].defRadius)
-                            SetInnerRingRadius(orbs[0].radius - MathHelper.Pi);
-                        else
-                            innerRing = true;
-                        bool outerRing = false;
-                        if (orbs[OmegaStariteOrb.INNER_RING].radius > orbs[OmegaStariteOrb.INNER_RING].defRadius)
-                            SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].radius - MathHelper.PiOver2 * 3f);
-                        else
-                            outerRing = true;
-                        if (innerRing && outerRing)
-                        {
-                            SetInnerRingRadius(orbs[0].defRadius);
-                            SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].defRadius);
-                            if (PlrCheck())
+                            if (npc.ai[1] > 0.0314)
                             {
-                                var choices = new List<int>
+                                npc.ai[1] -= 0.0005f;
+                            }
+                            else
+                            {
+                                npc.ai[1] = 0.0314f;
+                            }
+                            innerRingRotation += npc.ai[1];
+                            outerRingRotation += npc.ai[1] * 0.5f;
+                            bool innerRing = false;
+                            if (orbs[0].radius > orbs[0].defRadius)
+                                SetInnerRingRadius(orbs[0].radius - MathHelper.Pi);
+                            else
+                                innerRing = true;
+                            bool outerRing = false;
+                            if (orbs[OmegaStariteOrb.INNER_RING].radius > orbs[OmegaStariteOrb.INNER_RING].defRadius)
+                                SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].radius - MathHelper.PiOver2 * 3f);
+                            else
+                                outerRing = true;
+                            if (innerRing && outerRing)
+                            {
+                                SetInnerRingRadius(orbs[0].defRadius);
+                                SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].defRadius);
+                                if (PlrCheck())
+                                {
+                                    var choices = new List<int>
                                 {
                                     PHASE_ASSAULT_PLAYER,
                                 };
-                                if (npc.life / (float)npc.lifeMax < (Main.expertMode ? 0.5f : 0.33f))
-                                    choices.Add(PHASE_STAR_BULLETS);
-                                if (choices.Count == 1)
-                                {
-                                    npc.ai[0] = choices[0];
+                                    if (npc.life / (float)npc.lifeMax < (Main.expertMode ? 0.5f : 0.33f))
+                                        choices.Add(PHASE_STAR_BULLETS);
+                                    if (choices.Count == 1)
+                                    {
+                                        npc.ai[0] = choices[0];
+                                    }
+                                    else
+                                    {
+                                        npc.ai[0] = choices[Main.rand.Next(choices.Count)];
+                                    }
+                                    npc.ai[1] = 0f;
+                                    npc.ai[2] = 0f;
+                                    npc.ai[3] = 0f;
+                                    npc.localAI[1] = 0f;
                                 }
-                                else
-                                {
-                                    npc.ai[0] = choices[Main.rand.Next(choices.Count)];
-                                }
-                                npc.ai[1] = 0f;
-                                npc.ai[2] = 0f;
-                                npc.ai[3] = 0f;
-                                npc.localAI[1] = 0f;
                             }
                         }
-                    }
-                    else if ((center - plrCenter).Length() > 1800f)
-                    {
-                        npc.ai[2] = 300f;
-                        innerRingRotation += npc.ai[1];
-                        outerRingRotation += npc.ai[1] * 0.5f;
-                    }
-                    else
-                    {
-                        if (npc.ai[1] >= 0.0628f)
+                        else if ((center - plrCenter).Length() > 1800f)
                         {
-                            npc.ai[1] = 0.0628f;
+                            npc.ai[2] = 300f;
+                            innerRingRotation += npc.ai[1];
+                            outerRingRotation += npc.ai[1] * 0.5f;
                         }
                         else
                         {
-                            npc.ai[1] += 0.0002f;
-                        }
-                        innerRingRotation += npc.ai[1];
-                        outerRingRotation += npc.ai[1] * 0.5f;
-                        npc.localAI[1]++;
-                        SetInnerRingRadius(MathHelper.Lerp(orbs[0].radius, orbs[0].defRadius * npc.ai[3] + (float)Math.Sin(npc.localAI[1] * 0.0314f) * 60f, 0.25f));
-                        SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius * (npc.ai[3] + 1f), 0.025f));
-                        if (npc.ai[2] > 100f)
-                        {
-                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                            if (npc.ai[1] >= 0.0628f)
                             {
+                                npc.ai[1] = 0.0628f;
+                            }
+                            else
+                            {
+                                npc.ai[1] += 0.0002f;
+                            }
+                            innerRingRotation += npc.ai[1];
+                            outerRingRotation += npc.ai[1] * 0.5f;
+                            npc.localAI[1]++;
+                            SetInnerRingRadius(MathHelper.Lerp(orbs[0].radius, orbs[0].defRadius * npc.ai[3] + (float)Math.Sin(npc.localAI[1] * 0.0314f) * 60f, 0.25f));
+                            SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius * (npc.ai[3] + 1f), 0.025f));
+                            if (npc.ai[2] > 100f)
+                            {
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
+                                {
+                                    if (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
+                                    {
+                                        npc.localAI[0]++;
+                                        if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
+                                        {
+                                            float lifePercent = npc.life / (float)npc.lifeMax;
+                                            if (lifePercent < 0.75f)
+                                            {
+                                                var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - npc.Center;
+                                                var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 12f;
+                                                int type = ModContent.ProjectileType<OmegaBullet>();
+                                                int damage = 30;
+                                                if (Main.expertMode)
+                                                    damage = 20;
+                                                for (int i = 0; i < OmegaStariteOrb.OUTER_RING; i++)
+                                                {
+                                                    float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
+                                                    var position = center + diff.RotatedBy(rot);
+                                                    Main.PlaySound(SoundID.Trackable, position, 55 + Main.rand.Next(3));
+                                                    Projectile.NewProjectile(position, shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
+                                                }
+                                            }
+                                            npc.localAI[0] = 0f;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+
+                case PHASE_OMEGA_LASER_PART0:
+                    {
+                        if (npc.ai[1] == 0f)
+                        {
+                            innerRingPitch %= MathHelper.Pi;
+                            innerRingRoll %= MathHelper.Pi;
+                            outerRingPitch %= MathHelper.Pi;
+                            outerRingRoll %= MathHelper.Pi;
+                        }
+                        npc.ai[1] += 0.0002f;
+                        const float lerpValue = 0.025f;
+                        const float xLerp = 0f;
+                        const float yLerp = 0f;
+                        innerRingPitch = innerRingPitch.AngleLerp(MathHelper.PiOver2, lerpValue);
+                        innerRingRoll = innerRingRoll.AngleLerp(-MathHelper.PiOver2, lerpValue);
+                        outerRingPitch = outerRingPitch.AngleLerp(xLerp, lerpValue);
+                        outerRingRoll = outerRingRoll.AngleLerp(yLerp, lerpValue);
+                        if (npc.ai[1] > 0.0314f)
+                        {
+                            const float marginOfError = 0.314f;
+                            if (innerRingPitch.IsCloseEnoughTo(MathHelper.PiOver2, marginOfError) &&
+                                innerRingRoll.IsCloseEnoughTo(-MathHelper.PiOver2, marginOfError) &&
+                                outerRingPitch.IsCloseEnoughTo(yLerp, marginOfError) &&
+                                outerRingRoll.IsCloseEnoughTo(yLerp, marginOfError))
+                            {
+                                npc.velocity = Vector2.Normalize(plrCenter - center) * npc.velocity.Length();
+                                innerRingPitch = MathHelper.PiOver2;
+                                innerRingRoll = -MathHelper.PiOver2;
+                                outerRingPitch = xLerp;
+                                outerRingRoll = yLerp;
+                                if (PlrCheck())
+                                {
+                                    npc.ai[0] = PHASE_OMEGA_LASER;
+                                    npc.ai[1] = 0f;
+                                    npc.ai[3] = 3f + (1f - npc.life / (float)npc.lifeMax) * 1.5f;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            innerRingRotation += 0.0314f - npc.ai[1];
+                            outerRingRotation += 0.0157f - npc.ai[1] * 0.5f;
+                        }
+                    }
+                    break;
+
+                case PHASE_OMEGA_LASER:
+                    {
+                        npc.ai[2]++;
+                        if (npc.ai[2] > 1200f)
+                        {
+                            if (npc.ai[1] > 0.0314)
+                            {
+                                npc.ai[1] -= 0.0005f;
+                            }
+                            else
+                            {
+                                npc.ai[1] = 0.0314f;
+                            }
+                            innerRingRotation += npc.ai[1];
+                            outerRingRotation += npc.ai[1] * 0.5f;
+                            bool outerRing = false;
+                            if (orbs[OmegaStariteOrb.INNER_RING].radius > orbs[OmegaStariteOrb.INNER_RING].defRadius)
+                            {
+                                SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].radius - MathHelper.PiOver2 * 3f);
                                 if (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
+                                {
+                                    npc.localAI[0]++;
+                                    if (npc.localAI[0] > (Main.expertMode ? 12f : 60f))
+                                    {
+                                        float lifePercent = npc.life / (float)npc.lifeMax;
+                                        if (lifePercent < 0.75f)
+                                        {
+                                            Main.PlaySound(SoundID.Trackable, npc.Center, 55 + Main.rand.Next(3));
+                                            var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - npc.Center;
+                                            var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 7.5f;
+                                            int type = ModContent.ProjectileType<OmegaBullet>();
+                                            int damage = 25;
+                                            if (Main.expertMode)
+                                                damage = 18;
+                                            for (int i = 0; i < OmegaStariteOrb.OUTER_RING; i++)
+                                            {
+                                                float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
+                                                var position = center + diff.RotatedBy(rot);
+                                                Main.PlaySound(SoundID.Trackable, position, 55 + Main.rand.Next(3));
+                                                Projectile.NewProjectile(position, shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
+                                            }
+                                        }
+                                        npc.localAI[0] = 0f;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                outerRing = true;
+                            }
+                            if (outerRing)
+                            {
+                                SetInnerRingRadius(orbs[0].defRadius);
+                                SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].defRadius);
+                                if (PlrCheck())
+                                {
+                                    var choices = new List<int>
+                                {
+                                    PHASE_ASSAULT_PLAYER,
+                                    PHASE_STAR_BULLETS,
+                                };
+                                    npc.ai[0] = choices[Main.rand.Next(choices.Count)];
+                                    npc.ai[1] = 0f;
+                                    npc.ai[2] = 0f;
+                                    npc.ai[3] = 0f;
+                                    npc.localAI[0] = 0f;
+                                    npc.localAI[1] = 0f;
+                                    npc.localAI[2] = 0f;
+                                }
+                            }
+                        }
+                        else if ((center - plrCenter).Length() > 1800f)
+                        {
+                            npc.ai[2] = 300f;
+                            innerRingRotation += npc.ai[1];
+                            outerRingRotation += npc.ai[1] * 0.5f;
+                        }
+                        else
+                        {
+                            if (npc.ai[1] >= 0.0628f)
+                            {
+                                npc.ai[1] = 0.0628f;
+                            }
+                            else
+                            {
+                                npc.ai[1] += 0.0002f;
+                            }
+                            innerRingRotation += npc.ai[1];
+                            outerRingRotation += npc.ai[1] * 0.5f;
+                            SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius * (npc.ai[3] + 1f), 0.025f));
+                            if (npc.ai[2] > 100f)
+                            {
+                                if (npc.localAI[1] == 0f)
+                                {
+                                    if (PlrCheck())
+                                    {
+                                        npc.localAI[1] = 1f;
+                                        Main.PlaySound(SoundID.Trackable, npc.Center, 188);
+                                        if (Main.netMode != NetmodeID.Server)
+                                            ScreenShakeManager.AddShake(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f * AQConfigClient.c_EffectIntensity));
+                                        int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaRay>(), 100, 1f, Main.myPlayer, npc.whoAmI);
+                                        Main.projectile[p].scale = 0.75f;
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                if (innerRingRoll > MathHelper.PiOver2 * 6f)
+                                {
+                                    npc.localAI[2] -= Main.expertMode ? 0.001f : 0.00045f;
+                                }
+                                else
+                                {
+                                    npc.localAI[2] += Main.expertMode ? 0.00015f : 0.000085f;
+                                }
+                                if (Main.netMode != NetmodeID.MultiplayerClient && (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius))
                                 {
                                     npc.localAI[0]++;
                                     if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
@@ -449,669 +645,481 @@ namespace AQMod.NPCs.Boss.Starite
                                         npc.localAI[0] = 0f;
                                     }
                                 }
-                            }
-                        }
-                    }
-                }
-                break;
-
-                case PHASE_OMEGA_LASER_PART0:
-                {
-                    if (npc.ai[1] == 0f)
-                    {
-                        innerRingPitch %= MathHelper.Pi;
-                        innerRingRoll %= MathHelper.Pi;
-                        outerRingPitch %= MathHelper.Pi;
-                        outerRingRoll %= MathHelper.Pi;
-                    }
-                    npc.ai[1] += 0.0002f;
-                    const float lerpValue = 0.025f;
-                    const float xLerp = 0f;
-                    const float yLerp = 0f;
-                    innerRingPitch = innerRingPitch.AngleLerp(MathHelper.PiOver2, lerpValue);
-                    innerRingRoll = innerRingRoll.AngleLerp(-MathHelper.PiOver2, lerpValue);
-                    outerRingPitch = outerRingPitch.AngleLerp(xLerp, lerpValue);
-                    outerRingRoll = outerRingRoll.AngleLerp(yLerp, lerpValue);
-                    if (npc.ai[1] > 0.0314f)
-                    {
-                        const float marginOfError = 0.314f;
-                        if (innerRingPitch.IsCloseEnoughTo(MathHelper.PiOver2, marginOfError) &&
-                            innerRingRoll.IsCloseEnoughTo(-MathHelper.PiOver2, marginOfError) &&
-                            outerRingPitch.IsCloseEnoughTo(yLerp, marginOfError) &&
-                            outerRingRoll.IsCloseEnoughTo(yLerp, marginOfError))
-                        {
-                            npc.velocity = Vector2.Normalize(plrCenter - center) * npc.velocity.Length();
-                            innerRingPitch = MathHelper.PiOver2;
-                            innerRingRoll = -MathHelper.PiOver2;
-                            outerRingPitch = xLerp;
-                            outerRingRoll = yLerp;
-                            if (PlrCheck())
-                            {
-                                npc.ai[0] = PHASE_OMEGA_LASER;
-                                npc.ai[1] = 0f;
-                                npc.ai[3] = 3f + (1f - npc.life / (float)npc.lifeMax) * 1.5f;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        innerRingRotation += 0.0314f - npc.ai[1];
-                        outerRingRotation += 0.0157f - npc.ai[1] * 0.5f;
-                    }
-                }
-                break;
-
-                case PHASE_OMEGA_LASER:
-                {
-                    npc.ai[2]++;
-                    if (npc.ai[2] > 1200f)
-                    {
-                        if (npc.ai[1] > 0.0314)
-                        {
-                            npc.ai[1] -= 0.0005f;
-                        }
-                        else
-                        {
-                            npc.ai[1] = 0.0314f;
-                        }
-                        innerRingRotation += npc.ai[1];
-                        outerRingRotation += npc.ai[1] * 0.5f;
-                        bool outerRing = false;
-                        if (orbs[OmegaStariteOrb.INNER_RING].radius > orbs[OmegaStariteOrb.INNER_RING].defRadius)
-                        {
-                            SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].radius - MathHelper.PiOver2 * 3f);
-                            if (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
-                            {
-                                npc.localAI[0]++;
-                                if (npc.localAI[0] > (Main.expertMode ? 12f : 60f))
+                                innerRingRoll += npc.localAI[2];
+                                if (npc.soundDelay <= 0)
                                 {
-                                    float lifePercent = npc.life / (float)npc.lifeMax;
-                                    if (lifePercent < 0.75f)
-                                    {
-                                        Main.PlaySound(SoundID.Trackable, npc.Center, 55 + Main.rand.Next(3));
-                                        var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - npc.Center;
-                                        var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 7.5f;
-                                        int type = ModContent.ProjectileType<OmegaBullet>();
-                                        int damage = 25;
-                                        if (Main.expertMode)
-                                            damage = 18;
-                                        for (int i = 0; i < OmegaStariteOrb.OUTER_RING; i++)
-                                        {
-                                            float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
-                                            var position = center + diff.RotatedBy(rot);
-                                            Main.PlaySound(SoundID.Trackable, position, 55 + Main.rand.Next(3));
-                                            Projectile.NewProjectile(position, shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
-                                        }
-                                    }
-                                    npc.localAI[0] = 0f;
+                                    npc.soundDelay = 60;
+                                    Main.PlaySound(SoundID.Trackable, npc.Center, 189 + Main.rand.Next(3));
                                 }
-                            }
-                        }
-                        else
-                        {
-                            outerRing = true;
-                        }
-                        if (outerRing)
-                        {
-                            SetInnerRingRadius(orbs[0].defRadius);
-                            SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].defRadius);
-                            if (PlrCheck())
-                            {
-                                var choices = new List<int>
+                                if (npc.soundDelay > 0)
+                                    npc.soundDelay--;
+                                if (innerRingRoll > MathHelper.PiOver2 * 7f)
                                 {
-                                    PHASE_ASSAULT_PLAYER,
-                                    PHASE_STAR_BULLETS,
-                                };
-                                npc.ai[0] = choices[Main.rand.Next(choices.Count)];
-                                npc.ai[1] = 0f;
-                                npc.ai[2] = 0f;
-                                npc.ai[3] = 0f;
-                                npc.localAI[0] = 0f;
-                                npc.localAI[1] = 0f;
-                                npc.localAI[2] = 0f;
-                            }
-                        }
-                    }
-                    else if ((center - plrCenter).Length() > 1800f)
-                    {
-                        npc.ai[2] = 300f;
-                        innerRingRotation += npc.ai[1];
-                        outerRingRotation += npc.ai[1] * 0.5f;
-                    }
-                    else
-                    {
-                        if (npc.ai[1] >= 0.0628f)
-                        {
-                            npc.ai[1] = 0.0628f;
-                        }
-                        else
-                        {
-                            npc.ai[1] += 0.0002f;
-                        }
-                        innerRingRotation += npc.ai[1];
-                        outerRingRotation += npc.ai[1] * 0.5f;
-                        SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius * (npc.ai[3] + 1f), 0.025f));
-                        if (npc.ai[2] > 100f)
-                        {
-                            if (npc.localAI[1] == 0f)
-                            {
-                                if (PlrCheck())
-                                {
-                                    npc.localAI[1] = 1f;
+                                    npc.soundDelay = 0;
                                     Main.PlaySound(SoundID.Trackable, npc.Center, 188);
-                                    if (Main.netMode != NetmodeID.Server)
-                                        ScreenShakeManager.AddShake(new OmegaStariteScreenShake(AQMod.MultIntensity(8), 0.02f * AQConfigClient.c_EffectIntensity));
-                                    int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaRay>(), 100, 1f, Main.myPlayer, npc.whoAmI);
-                                    Main.projectile[p].scale = 0.75f;
+                                    npc.ai[2] = 1200f;
+                                    innerRingRoll = -MathHelper.PiOver2;
                                 }
-                                else
-                                {
-                                    break;
-                                }
-                            }
-                            if (innerRingRoll > MathHelper.PiOver2 * 6f)
-                            {
-                                npc.localAI[2] -= Main.expertMode ? 0.001f : 0.00045f;
                             }
                             else
                             {
-                                npc.localAI[2] += Main.expertMode ? 0.00015f : 0.000085f;
+                                const int width = (int)(CIRCUMFERENCE * 2f);
+                                const int height = 900;
+                                Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 2f);
                             }
-                            if (Main.netMode != NetmodeID.MultiplayerClient && (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius))
-                            {
-                                npc.localAI[0]++;
-                                if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
-                                {
-                                    float lifePercent = npc.life / (float)npc.lifeMax;
-                                    if (lifePercent < 0.75f)
-                                    {
-                                        var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - npc.Center;
-                                        var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 12f;
-                                        int type = ModContent.ProjectileType<OmegaBullet>();
-                                        int damage = 30;
-                                        if (Main.expertMode)
-                                            damage = 20;
-                                        for (int i = 0; i < OmegaStariteOrb.OUTER_RING; i++)
-                                        {
-                                            float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
-                                            var position = center + diff.RotatedBy(rot);
-                                            Main.PlaySound(SoundID.Trackable, position, 55 + Main.rand.Next(3));
-                                            Projectile.NewProjectile(position, shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
-                                        }
-                                    }
-                                    npc.localAI[0] = 0f;
-                                }
-                            }
-                            innerRingRoll += npc.localAI[2];
-                            if (npc.soundDelay <= 0)
-                            {
-                                npc.soundDelay = 60;
-                                Main.PlaySound(SoundID.Trackable, npc.Center, 189 + Main.rand.Next(3));
-                            }
-                            if (npc.soundDelay > 0)
-                                npc.soundDelay--;
-                            if (innerRingRoll > MathHelper.PiOver2 * 7f)
-                            {
-                                npc.soundDelay = 0;
-                                Main.PlaySound(SoundID.Trackable, npc.Center, 188);
-                                npc.ai[2] = 1200f;
-                                innerRingRoll = -MathHelper.PiOver2;
-                            }
-                        }
-                        else
-                        {
-                            const int width = (int)(CIRCUMFERENCE * 2f);
-                            const int height = 900;
-                            Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 2f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 2f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColor, 2f);
                         }
                     }
-                }
-                break;
+                    break;
 
                 case PHASE_STAR_BULLETS:
-                {
-                    innerRingRotation += 0.0314f;
-                    innerRingRoll += 0.0157f;
-                    innerRingPitch += 0.01f;
-
-                    outerRingRotation += 0.0157f;
-                    outerRingRoll += 0.0314f;
-                    outerRingPitch += 0.011f;
-
-                    npc.ai[1]++;
-
-                    if (npc.ai[2] == 0f)
                     {
-                        if (Main.expertMode)
-                        {
-                            npc.ai[2] = 18f;
-                            npc.ai[3] = 96f;
-                        }
-                        else
-                        {
-                            npc.ai[2] = 7.65f;
-                            npc.ai[3] = 192f;
-                        }
-                    }
+                        innerRingRotation += 0.0314f;
+                        innerRingRoll += 0.0157f;
+                        innerRingPitch += 0.01f;
 
-                    if (npc.ai[1] % npc.ai[3] == 0f)
-                    {
-                        if (PlrCheck())
-                        {
-                            Main.PlaySound(SoundID.Item125);
-                            int type = ModContent.ProjectileType<OmegaBullet>();
-                            float speed2 = Main.expertMode ? 12.5f : 5.5f;
-                            int damage = 30;
-                            if (Main.expertMode)
-                                damage = 20;
-                            for (int i = 0; i < 5; i++)
-                            {
-                                var v = new Vector2(0f, -1f).RotatedBy(MathHelper.TwoPi / 5f * i);
-                                int p = Projectile.NewProjectile(center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
-                                Main.projectile[p].timeLeft += 120;
-                            }
-                            speed2 *= 1.2f;
-                            for (int i = 0; i < 5; i++)
-                            {
-                                var v = new Vector2(0f, -1f).RotatedBy(MathHelper.TwoPi / 5f * i);
-                                Projectile.NewProjectile(center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
-                            }
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                    float distance = (center - plrCenter).Length();
-                    if (distance > CIRCUMFERENCE * 3.75f)
-                    {
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(plrCenter - center) * npc.ai[2], 0.02f);
-                    }
-                    else if (distance < CIRCUMFERENCE * 2.25f)
-                    {
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(center - plrCenter) * npc.ai[2], 0.02f);
-                    }
-                    else
-                    {
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(plrCenter - center).RotatedBy(MathHelper.PiOver2) * npc.ai[2], 0.02f);
-                    }
+                        outerRingRotation += 0.0157f;
+                        outerRingRoll += 0.0314f;
+                        outerRingPitch += 0.011f;
 
-                    if (npc.ai[1] > 480f)
-                    {
-                        npc.ai[0] = PHASE_HYPER_STARITE_PART0;
-                        npc.ai[1] = 0f;
-                        npc.ai[2] = 0f;
-                        npc.ai[3] = 0f;
-                    }
-                }
-                break;
-
-                case PHASE_ASSAULT_PLAYER:
-                {
-                    innerRingRotation += 0.0314f;
-                    innerRingRoll += 0.0157f;
-                    innerRingPitch += 0.01f;
-
-                    outerRingRotation += 0.0157f;
-                    outerRingRoll += 0.0314f;
-                    outerRingPitch += 0.011f;
-
-                    if (npc.ai[1] < 0f)
-                    {
                         npc.ai[1]++;
+
                         if (npc.ai[2] == 0f)
+                        {
+                            if (Main.expertMode)
+                            {
+                                npc.ai[2] = 18f;
+                                npc.ai[3] = 96f;
+                            }
+                            else
+                            {
+                                npc.ai[2] = 7.65f;
+                                npc.ai[3] = 192f;
+                            }
+                        }
+
+                        if (npc.ai[1] % npc.ai[3] == 0f)
                         {
                             if (PlrCheck())
                             {
-                                npc.ai[2] = Main.expertMode ? 18f : 6f;
+                                Main.PlaySound(SoundID.Item125);
+                                int type = ModContent.ProjectileType<OmegaBullet>();
+                                float speed2 = Main.expertMode ? 12.5f : 5.5f;
+                                int damage = 30;
+                                if (Main.expertMode)
+                                    damage = 20;
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    var v = new Vector2(0f, -1f).RotatedBy(MathHelper.TwoPi / 5f * i);
+                                    int p = Projectile.NewProjectile(center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
+                                    Main.projectile[p].timeLeft += 120;
+                                }
+                                speed2 *= 1.2f;
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    var v = new Vector2(0f, -1f).RotatedBy(MathHelper.TwoPi / 5f * i);
+                                    Projectile.NewProjectile(center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
+                                }
                             }
                             else
                             {
                                 break;
                             }
                         }
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(plrCenter - center) * npc.ai[2], 0.02f);
-                    }
-                    else
-                    {
-                        if (!PlrCheck())
-                            break;
-                        if (npc.ai[1] == 0f)
+                        float distance = (center - plrCenter).Length();
+                        if (distance > CIRCUMFERENCE * 3.75f)
                         {
-                            Main.PlaySound(SoundID.Trackable, npc.Center, 40 + Main.rand.Next(3));
-                            npc.ai[1] = plrCenter.X + player.velocity.X * 20f;
-                            npc.ai[2] = plrCenter.Y + player.velocity.Y * 20f;
+                            npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(plrCenter - center) * npc.ai[2], 0.02f);
                         }
-                        if ((center - new Vector2(npc.ai[1], npc.ai[2])).Length() < CIRCUMFERENCE)
+                        else if (distance < CIRCUMFERENCE * 2.25f)
                         {
-                            npc.ai[3]++;
-                            if (npc.ai[3] > 5)
+                            npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(center - plrCenter) * npc.ai[2], 0.02f);
+                        }
+                        else
+                        {
+                            npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(plrCenter - center).RotatedBy(MathHelper.PiOver2) * npc.ai[2], 0.02f);
+                        }
+
+                        if (npc.ai[1] > 480f)
+                        {
+                            npc.ai[0] = PHASE_HYPER_STARITE_PART0;
+                            npc.ai[1] = 0f;
+                            npc.ai[2] = 0f;
+                            npc.ai[3] = 0f;
+                        }
+                    }
+                    break;
+
+                case PHASE_ASSAULT_PLAYER:
+                    {
+                        innerRingRotation += 0.0314f;
+                        innerRingRoll += 0.0157f;
+                        innerRingPitch += 0.01f;
+
+                        outerRingRotation += 0.0157f;
+                        outerRingRoll += 0.0314f;
+                        outerRingPitch += 0.011f;
+
+                        if (npc.ai[1] < 0f)
+                        {
+                            npc.ai[1]++;
+                            if (npc.ai[2] == 0f)
                             {
-                                npc.ai[0] = PHASE_HYPER_STARITE_PART0;
-                                npc.ai[1] = 0f;
-                                npc.ai[3] = 0f;
+                                if (PlrCheck())
+                                {
+                                    npc.ai[2] = Main.expertMode ? 18f : 6f;
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(plrCenter - center) * npc.ai[2], 0.02f);
+                        }
+                        else
+                        {
+                            if (!PlrCheck())
+                                break;
+                            if (npc.ai[1] == 0f)
+                            {
+                                Main.PlaySound(SoundID.Trackable, npc.Center, 40 + Main.rand.Next(3));
+                                npc.ai[1] = plrCenter.X + player.velocity.X * 20f;
+                                npc.ai[2] = plrCenter.Y + player.velocity.Y * 20f;
+                            }
+                            if ((center - new Vector2(npc.ai[1], npc.ai[2])).Length() < CIRCUMFERENCE)
+                            {
+                                npc.ai[3]++;
+                                if (npc.ai[3] > 5)
+                                {
+                                    npc.ai[0] = PHASE_HYPER_STARITE_PART0;
+                                    npc.ai[1] = 0f;
+                                    npc.ai[3] = 0f;
+                                }
+                                else
+                                {
+                                    npc.ai[1] = -npc.ai[3] * 16;
+                                    if (hardVersion || Vector2.Distance(plrCenter, center) > 400f)
+                                    {
+                                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                                        {
+                                            float lifePercent = npc.life / (float)npc.lifeMax;
+                                            if (Main.expertMode && lifePercent < 0.75f || lifePercent < 0.6f)
+                                            {
+                                                Main.PlaySound(SoundID.Trackable, npc.Center, 55 + Main.rand.Next(3));
+                                                int type = ModContent.ProjectileType<OmegaBullet>();
+                                                float speed2 = Main.expertMode ? 12.5f : 5.5f;
+                                                int damage = 30;
+                                                if (Main.expertMode)
+                                                    damage = 20;
+                                                for (int i = 0; i < 5; i++)
+                                                {
+                                                    var v = new Vector2(0f, -1f).RotatedBy(MathHelper.TwoPi / 5f * i);
+                                                    int p = Projectile.NewProjectile(center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
+                                                    Main.projectile[p].timeLeft += 120;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    npc.netUpdate = true;
+                                }
+                                npc.ai[2] = 0f;
                             }
                             else
                             {
-                                npc.ai[1] = -npc.ai[3] * 16;
-                                if (hardVersion || Vector2.Distance(plrCenter, center) > 400f)
-                                {
-                                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                                    {
-                                        float lifePercent = npc.life / (float)npc.lifeMax;
-                                        if (Main.expertMode && lifePercent < 0.75f || lifePercent < 0.6f)
-                                        {
-                                            Main.PlaySound(SoundID.Trackable, npc.Center, 55 + Main.rand.Next(3));
-                                            int type = ModContent.ProjectileType<OmegaBullet>();
-                                            float speed2 = Main.expertMode ? 12.5f : 5.5f;
-                                            int damage = 30;
-                                            if (Main.expertMode)
-                                                damage = 20;
-                                            for (int i = 0; i < 5; i++)
-                                            {
-                                                var v = new Vector2(0f, -1f).RotatedBy(MathHelper.TwoPi / 5f * i);
-                                                int p = Projectile.NewProjectile(center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
-                                                Main.projectile[p].timeLeft += 120;
-                                            }
-                                        }
-                                    }
-                                }
-                                npc.netUpdate = true;
+                                npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - center) * 20f, 0.025f);
                             }
-                            npc.ai[2] = 0f;
-                        }
-                        else
-                        {
-                            npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - center) * 20f, 0.025f);
                         }
                     }
-                }
-                break;
+                    break;
 
                 case PHASE_HYPER_STARITE_PART2_ALT:
                 case PHASE_HYPER_STARITE_PART2:
-                {
-                    npc.ai[2]++;
-                    if (npc.ai[2] > 300f)
                     {
-                        if (npc.ai[1] > 0.0314)
+                        npc.ai[2]++;
+                        if (npc.ai[2] > 300f)
                         {
-                            npc.ai[1] -= 0.0005f;
-                        }
-                        else
-                        {
-                            npc.ai[1] = 0.0314f;
-                        }
-                        innerRingRotation += npc.ai[1];
-                        outerRingRotation += npc.ai[1] * 0.5f;
-                        bool innerRing = false;
-                        if (orbs[0].radius > orbs[0].defRadius)
-                        {
-                            SetInnerRingRadius(orbs[0].radius - MathHelper.Pi);
-                        }
-                        else
-                        {
-                            innerRing = true;
-                        }
-                        bool outerRing = false;
-                        if (orbs[OmegaStariteOrb.INNER_RING].radius > orbs[OmegaStariteOrb.INNER_RING].defRadius)
-                        {
-                            SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].radius - MathHelper.PiOver2 * 3f);
-                        }
-                        else
-                        {
-                            outerRing = true;
-                        }
-                        if (innerRing && outerRing)
-                        {
-                            SetInnerRingRadius(orbs[0].defRadius);
-                            SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].defRadius);
-                            if (PlrCheck())
+                            if (npc.ai[1] > 0.0314)
                             {
-                                var choices = new List<int>
+                                npc.ai[1] -= 0.0005f;
+                            }
+                            else
+                            {
+                                npc.ai[1] = 0.0314f;
+                            }
+                            innerRingRotation += npc.ai[1];
+                            outerRingRotation += npc.ai[1] * 0.5f;
+                            bool innerRing = false;
+                            if (orbs[0].radius > orbs[0].defRadius)
+                            {
+                                SetInnerRingRadius(orbs[0].radius - MathHelper.Pi);
+                            }
+                            else
+                            {
+                                innerRing = true;
+                            }
+                            bool outerRing = false;
+                            if (orbs[OmegaStariteOrb.INNER_RING].radius > orbs[OmegaStariteOrb.INNER_RING].defRadius)
+                            {
+                                SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].radius - MathHelper.PiOver2 * 3f);
+                            }
+                            else
+                            {
+                                outerRing = true;
+                            }
+                            if (innerRing && outerRing)
+                            {
+                                SetInnerRingRadius(orbs[0].defRadius);
+                                SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].defRadius);
+                                if (PlrCheck())
+                                {
+                                    var choices = new List<int>
                                 {
                                     PHASE_ASSAULT_PLAYER,
                                 };
-                                if (npc.life / (float)npc.lifeMax < (Main.expertMode ? 0.5f : 0.33f))
-                                    choices.Add(PHASE_STAR_BULLETS);
-                                if (choices.Count == 1)
-                                {
-                                    npc.ai[0] = choices[0];
+                                    if (npc.life / (float)npc.lifeMax < (Main.expertMode ? 0.5f : 0.33f))
+                                        choices.Add(PHASE_STAR_BULLETS);
+                                    if (choices.Count == 1)
+                                    {
+                                        npc.ai[0] = choices[0];
+                                    }
+                                    else
+                                    {
+                                        npc.ai[0] = choices[Main.rand.Next(choices.Count)];
+                                    }
+                                    npc.ai[1] = 0f;
+                                    npc.ai[2] = 0f;
+                                    npc.ai[3] = 0f;
                                 }
-                                else
-                                {
-                                    npc.ai[0] = choices[Main.rand.Next(choices.Count)];
-                                }
-                                npc.ai[1] = 0f;
-                                npc.ai[2] = 0f;
-                                npc.ai[3] = 0f;
                             }
                         }
-                    }
-                    else if ((center - plrCenter).Length() > 1800f)
-                    {
-                        npc.ai[2] = 300f;
-                        innerRingRotation += npc.ai[1];
-                        outerRingRotation += npc.ai[1] * 0.5f;
-                    }
-                    else
-                    {
-                        if (npc.ai[1] >= 0.0628f)
+                        else if ((center - plrCenter).Length() > 1800f)
                         {
-                            npc.ai[1] = 0.0628f;
+                            npc.ai[2] = 300f;
+                            innerRingRotation += npc.ai[1];
+                            outerRingRotation += npc.ai[1] * 0.5f;
                         }
                         else
                         {
-                            npc.ai[1] += 0.0002f;
-                        }
-                        innerRingRotation += npc.ai[1];
-                        outerRingRotation += npc.ai[1] * 0.5f;
-                        SetInnerRingRadius(MathHelper.Lerp(orbs[0].radius, orbs[0].defRadius * npc.ai[3], 0.025f));
-                        SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius * (npc.ai[3] + 1f), 0.025f));
-                        if (npc.ai[2] > 100f)
-                        {
-                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                            if (npc.ai[1] >= 0.0628f)
                             {
-                                if (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
+                                npc.ai[1] = 0.0628f;
+                            }
+                            else
+                            {
+                                npc.ai[1] += 0.0002f;
+                            }
+                            innerRingRotation += npc.ai[1];
+                            outerRingRotation += npc.ai[1] * 0.5f;
+                            SetInnerRingRadius(MathHelper.Lerp(orbs[0].radius, orbs[0].defRadius * npc.ai[3], 0.025f));
+                            SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius * (npc.ai[3] + 1f), 0.025f));
+                            if (npc.ai[2] > 100f)
+                            {
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
                                 {
-                                    npc.localAI[0]++;
-                                    if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
+                                    if (hardVersion || Vector2.Distance(plrCenter, center) > orbs[OmegaStariteOrb.INNER_RING].radius)
                                     {
-                                        float lifePercent = npc.life / (float)npc.lifeMax;
-                                        if (lifePercent < 0.75f)
+                                        npc.localAI[0]++;
+                                        if (npc.localAI[0] > (Main.expertMode ? 3f : 12f))
                                         {
-                                            Main.PlaySound(SoundID.Trackable, npc.Center, 55 + Main.rand.Next(3));
-                                            var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - npc.Center;
-                                            var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 6f;
-                                            int type = ModContent.ProjectileType<OmegaBullet>();
-                                            int damage = 30;
-                                            if (Main.expertMode)
-                                                damage = 20;
-                                            for (int i = 0; i < OmegaStariteOrb.OUTER_RING; i++)
+                                            float lifePercent = npc.life / (float)npc.lifeMax;
+                                            if (lifePercent < 0.75f)
                                             {
-                                                float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
-                                                Projectile.NewProjectile(center + diff.RotatedBy(rot), shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
+                                                Main.PlaySound(SoundID.Trackable, npc.Center, 55 + Main.rand.Next(3));
+                                                var diff = new Vector2(orbs[OmegaStariteOrb.INNER_RING].position.X, orbs[OmegaStariteOrb.INNER_RING].position.Y) - npc.Center;
+                                                var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * 6f;
+                                                int type = ModContent.ProjectileType<OmegaBullet>();
+                                                int damage = 30;
+                                                if (Main.expertMode)
+                                                    damage = 20;
+                                                for (int i = 0; i < OmegaStariteOrb.OUTER_RING; i++)
+                                                {
+                                                    float rot = orbs[i + OmegaStariteOrb.INNER_RING].maxRotation * i;
+                                                    Projectile.NewProjectile(center + diff.RotatedBy(rot), shootDir.RotatedBy(rot), type, damage, 1f, player.whoAmI);
+                                                }
                                             }
+                                            npc.localAI[0] = 0f;
                                         }
-                                        npc.localAI[0] = 0f;
                                     }
                                 }
                             }
                         }
                     }
-                }
-                break;
+                    break;
 
                 case PHASE_HYPER_STARITE_PART1:
-                {
-                    if (npc.ai[1] == 0f)
                     {
-                        innerRingPitch %= MathHelper.Pi;
-                        innerRingRoll %= MathHelper.Pi;
-                        outerRingPitch %= MathHelper.Pi;
-                        outerRingRoll %= MathHelper.Pi;
-                    }
-                    npc.ai[1] += 0.0002f;
-                    const float lerpValue = 0.025f;
-                    const float xLerp = 0f;
-                    const float yLerp = 0f;
-                    innerRingPitch = innerRingPitch.AngleLerp(xLerp, lerpValue);
-                    innerRingRoll = innerRingRoll.AngleLerp(yLerp, lerpValue);
-                    outerRingPitch = outerRingPitch.AngleLerp(xLerp, lerpValue);
-                    outerRingRoll = outerRingRoll.AngleLerp(yLerp, lerpValue);
-                    if (npc.ai[1] > 0.0314f)
-                    {
-                        const float marginOfError = 0.314f;
-                        if (innerRingPitch.IsCloseEnoughTo(xLerp, marginOfError) &&
-                            outerRingPitch.IsCloseEnoughTo(xLerp, marginOfError) &&
-                            innerRingRoll.IsCloseEnoughTo(xLerp, marginOfError) &&
-                            outerRingRoll.IsCloseEnoughTo(xLerp, marginOfError))
+                        if (npc.ai[1] == 0f)
                         {
-                            npc.velocity = Vector2.Normalize(plrCenter - center) * npc.velocity.Length();
-                            innerRingPitch = 0f;
-                            innerRingRoll = 0f;
-                            outerRingPitch = 0f;
-                            outerRingRoll = 0f;
-                            if (PlrCheck())
+                            innerRingPitch %= MathHelper.Pi;
+                            innerRingRoll %= MathHelper.Pi;
+                            outerRingPitch %= MathHelper.Pi;
+                            outerRingRoll %= MathHelper.Pi;
+                        }
+                        npc.ai[1] += 0.0002f;
+                        const float lerpValue = 0.025f;
+                        const float xLerp = 0f;
+                        const float yLerp = 0f;
+                        innerRingPitch = innerRingPitch.AngleLerp(xLerp, lerpValue);
+                        innerRingRoll = innerRingRoll.AngleLerp(yLerp, lerpValue);
+                        outerRingPitch = outerRingPitch.AngleLerp(xLerp, lerpValue);
+                        outerRingRoll = outerRingRoll.AngleLerp(yLerp, lerpValue);
+                        if (npc.ai[1] > 0.0314f)
+                        {
+                            const float marginOfError = 0.314f;
+                            if (innerRingPitch.IsCloseEnoughTo(xLerp, marginOfError) &&
+                                outerRingPitch.IsCloseEnoughTo(xLerp, marginOfError) &&
+                                innerRingRoll.IsCloseEnoughTo(xLerp, marginOfError) &&
+                                outerRingRoll.IsCloseEnoughTo(xLerp, marginOfError))
                             {
-                                npc.ai[0] = Main.rand.NextBool() ? PHASE_HYPER_STARITE_PART2 : PHASE_HYPER_STARITE_PART2_ALT;
-                                npc.ai[1] = 0f;
-                                npc.ai[3] = 3f + (1f - npc.life / (float)npc.lifeMax) * 1.5f;
+                                npc.velocity = Vector2.Normalize(plrCenter - center) * npc.velocity.Length();
+                                innerRingPitch = 0f;
+                                innerRingRoll = 0f;
+                                outerRingPitch = 0f;
+                                outerRingRoll = 0f;
+                                if (PlrCheck())
+                                {
+                                    npc.ai[0] = Main.rand.NextBool() ? PHASE_HYPER_STARITE_PART2 : PHASE_HYPER_STARITE_PART2_ALT;
+                                    npc.ai[1] = 0f;
+                                    npc.ai[3] = 3f + (1f - npc.life / (float)npc.lifeMax) * 1.5f;
+                                }
                             }
                         }
+                        else
+                        {
+                            innerRingRotation += 0.0314f - npc.ai[1];
+                            outerRingRotation += 0.0157f - npc.ai[1] * 0.5f;
+                        }
                     }
-                    else
-                    {
-                        innerRingRotation += 0.0314f - npc.ai[1];
-                        outerRingRotation += 0.0157f - npc.ai[1] * 0.5f;
-                    }
-                }
-                break;
+                    break;
 
                 case PHASE_HYPER_STARITE_PART0:
-                {
-                    innerRingRotation += 0.0314f;
-                    innerRingRoll += 0.0157f;
-                    innerRingPitch += 0.01f;
-                    outerRingRotation += 0.0157f;
-                    outerRingRoll += 0.0314f;
-                    outerRingPitch += 0.011f;
-                    SetInnerRingRadius(MathHelper.Lerp(orbs[0].radius, orbs[0].defRadius * 0.75f, 0.1f));
-                    SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius * 0.75f, 0.1f));
-                    if (npc.ai[1] == 0f)
                     {
-                        if (PlrCheck())
+                        innerRingRotation += 0.0314f;
+                        innerRingRoll += 0.0157f;
+                        innerRingPitch += 0.01f;
+                        outerRingRotation += 0.0157f;
+                        outerRingRoll += 0.0314f;
+                        outerRingPitch += 0.011f;
+                        SetInnerRingRadius(MathHelper.Lerp(orbs[0].radius, orbs[0].defRadius * 0.75f, 0.1f));
+                        SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius * 0.75f, 0.1f));
+                        if (npc.ai[1] == 0f)
                         {
-                            Main.PlaySound(SoundID.Trackable, npc.Center, 40 + Main.rand.Next(3));
-                            npc.ai[1] = plrCenter.X + player.velocity.X * 20f;
-                            npc.ai[2] = plrCenter.Y + player.velocity.Y * 20f;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                    if ((center - new Vector2(npc.ai[1], npc.ai[2])).Length() < CIRCUMFERENCE)
-                    {
-                        if (npc.velocity.Length() < 2f)
-                        {
-                            SetInnerRingRadius(orbs[0].defRadius);
-                            SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].defRadius);
                             if (PlrCheck())
                             {
-                                npc.velocity *= 0.1f;
-                                if (npc.life / (float)npc.lifeMax < 0.5f)
+                                Main.PlaySound(SoundID.Trackable, npc.Center, 40 + Main.rand.Next(3));
+                                npc.ai[1] = plrCenter.X + player.velocity.X * 20f;
+                                npc.ai[2] = plrCenter.Y + player.velocity.Y * 20f; 
+                                npc.netUpdate = true;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        if ((center - new Vector2(npc.ai[1], npc.ai[2])).Length() < CIRCUMFERENCE)
+                        {
+                            if (npc.velocity.Length() < 2f)
+                            {
+                                SetInnerRingRadius(orbs[0].defRadius);
+                                SetOuterRingRadius(orbs[OmegaStariteOrb.INNER_RING].defRadius);
+                                if (PlrCheck())
                                 {
-                                    npc.ai[0] = PHASE_OMEGA_LASER_PART0;
+                                    npc.velocity *= 0.1f;
+                                    if (npc.life / (float)npc.lifeMax < 0.5f)
+                                    {
+                                        npc.ai[0] = PHASE_OMEGA_LASER_PART0;
+                                    }
+                                    else
+                                    {
+                                        npc.ai[0] = PHASE_HYPER_STARITE_PART1;
+                                    }
+                                    npc.ai[1] = 0f;
+                                    npc.ai[2] = 0f;
                                 }
-                                else
-                                {
-                                    npc.ai[0] = PHASE_HYPER_STARITE_PART1;
-                                }
-                                npc.ai[1] = 0f;
-                                npc.ai[2] = 0f;
+                            }
+                            else
+                            {
+                                SetInnerRingRadius(MathHelper.Lerp(orbs[0].radius, orbs[0].defRadius, 0.1f));
+                                SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius, 0.1f));
+                                npc.velocity *= 0.925f;
                             }
                         }
                         else
                         {
-                            SetInnerRingRadius(MathHelper.Lerp(orbs[0].radius, orbs[0].defRadius, 0.1f));
-                            SetOuterRingRadius(MathHelper.Lerp(orbs[OmegaStariteOrb.INNER_RING].radius, orbs[OmegaStariteOrb.INNER_RING].defRadius, 0.1f));
-                            npc.velocity *= 0.925f;
+                            npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - center) * 30f, 0.025f);
                         }
                     }
-                    else
-                    {
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(new Vector2(npc.ai[1], npc.ai[2]) - center) * 30f, 0.025f);
-                    }
-                }
-                break;
+                    break;
 
                 case PHASE_INIT:
-                {
-                    var choices = new List<int>
+                    {
+                        var choices = new List<int>
                     {
                         PHASE_ASSAULT_PLAYER,
                         PHASE_HYPER_STARITE_PART0,
                     };
-                    npc.ai[0] = choices[Main.rand.Next(choices.Count)];
-                    Init();
-                }
-                break;
+                        npc.ai[0] = choices[Main.rand.Next(choices.Count)];
+                        Init();
+                        npc.netUpdate = true;
+                    }
+                    break;
 
                 case PHASE_DEAD:
-                {
-                    npc.ai[1] += 0.5f;
-                    if (npc.ai[1] > DEATH_TIME * 1.314f)
                     {
-                        npc.life = -33333;
-                        npc.HitEffect();
-                        npc.checkDead();
+                        npc.ai[1] += 0.5f;
+                        if (npc.ai[1] > DEATH_TIME * 1.314f)
+                        {
+                            npc.life = -33333;
+                            npc.HitEffect();
+                            npc.checkDead();
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case PHASE_NOVA:
-                {
-                    if (npc.ai[1] == 0f)
                     {
-                        int target = npc.target;
-                        Init();
-                        npc.target = target;
-                        npc.ai[2] = plrCenter.Y - CIRCUMFERENCE * 2.5f;
+                        if (npc.ai[1] == 0f)
+                        {
+                            int target = npc.target;
+                            Init();
+                            npc.netUpdate = true;
+                            npc.target = target;
+                            npc.ai[2] = plrCenter.Y - CIRCUMFERENCE * 2.5f;
+                        }
+                        if (center.Y > npc.ai[2])
+                        {
+                            int[] choices = new int[] { PHASE_HYPER_STARITE_PART0, PHASE_ASSAULT_PLAYER };
+                            if (OmegaStariteScenes.SceneType == 1)
+                                OmegaStariteScenes.SceneType = 2;
+                            npc.ai[0] = choices[Main.rand.Next(choices.Length)];
+                            npc.ai[1] = 0f;
+                            npc.ai[2] = 0f;
+                            npc.netUpdate = true;
+                        }
+                        else
+                        {
+                            npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(new Vector2(center.X, npc.ai[2]) - center) * 36f, 0.025f);
+                        }
                     }
-                    if (center.Y > npc.ai[2])
-                    {
-                        int[] choices = new int[] { PHASE_HYPER_STARITE_PART0, PHASE_ASSAULT_PLAYER };
-                        if (OmegaStariteScenes.SceneType == 1)
-                            OmegaStariteScenes.SceneType = 2;
-                        npc.ai[0] = choices[Main.rand.Next(choices.Length)];
-                        npc.ai[1] = 0f;
-                        npc.ai[2] = 0f;
-                    }
-                    else
-                    {
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(new Vector2(center.X, npc.ai[2]) - center) * 36f, 0.025f);
-                    }
-                }
-                break;
+                    break;
 
                 case PHASE_GOODBYE:
-                {
-                    if (npc.timeLeft > 120)
-                        npc.timeLeft = 120;
-                    npc.velocity.X *= 0.975f;
-                    npc.velocity.Y -= 0.2f;
-                    innerRingRotation += 0.0314f;
-                    innerRingRoll += 0.0157f;
-                    innerRingPitch += 0.01f;
-                    outerRingRotation += 0.0157f;
-                    outerRingRoll += 0.0314f;
-                    outerRingPitch += 0.011f;
-                }
-                break;
+                    {
+                        if (npc.timeLeft > 120)
+                            npc.timeLeft = 120;
+                        npc.velocity.X *= 0.975f;
+                        npc.velocity.Y -= 0.2f;
+
+                        innerRingRotation += 0.0314f;
+                        innerRingRoll += 0.0157f;
+                        innerRingPitch += 0.01f;
+                        outerRingRotation += 0.0157f;
+                        outerRingRoll += 0.0314f;
+                        outerRingPitch += 0.011f;
+                    }
+                    break;
             }
             Spin(center);
             if (npc.ai[0] != -1)
@@ -1143,6 +1151,10 @@ namespace AQMod.NPCs.Boss.Starite
                     int g = Gore.NewGore(npc.position + new Vector2(Main.rand.Next(npc.width - 4), Main.rand.Next(npc.height - 4)), new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)), 16 + Main.rand.Next(2));
                     Main.gore[g].scale *= 0.6f;
                 }
+            }
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
             }
             Lighting.AddLight(npc.Center, new Vector3(1.2f, 1.2f, 2.2f));
             foreach (var orb in orbs)
@@ -1404,22 +1416,22 @@ namespace AQMod.NPCs.Boss.Starite
                 switch (Main.rand.Next(3))
                 {
                     default:
-                    {
-                        npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<EnchantedDye>());
-                    }
-                    break;
+                        {
+                            npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<EnchantedDye>());
+                        }
+                        break;
 
                     case 1:
-                    {
-                        npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<RainbowOutlineDye>());
-                    }
-                    break;
+                        {
+                            npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<RainbowOutlineDye>());
+                        }
+                        break;
 
                     case 2:
-                    {
-                        npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<DiscoDye>());
-                    }
-                    break;
+                        {
+                            npc.DropItemInstanced(npc.position, new Vector2(npc.width, npc.height), ModContent.ItemType<DiscoDye>());
+                        }
+                        break;
                 }
 
                 for (int i = 0; i < Main.maxPlayers; i++)

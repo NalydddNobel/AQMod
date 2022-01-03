@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Monster.Starite
@@ -18,13 +19,31 @@ namespace AQMod.Projectiles.Monster.Starite
             projectile.hide = true;
         }
 
+        public override bool CanDamage()
+        {
+            return projectile.ai[1] > 0;
+        }
+
         public override void AI()
         {
-            var omegaStarite = Main.npc[(int)projectile.ai[0]];
-            if (!omegaStarite.active || omegaStarite.ai[0] == -1f)
-                return;
-            projectile.timeLeft = 2;
-            projectile.Center = omegaStarite.Center;
+            if (Main.netMode == NetmodeID.Server)
+            {
+                var omegaStarite = Main.npc[(int)projectile.ai[0]];
+                if (!omegaStarite.active || omegaStarite.ai[0] == -1f || !(omegaStarite.modNPC is NPCs.Boss.Starite.OmegaStarite))
+                    return; 
+                projectile.ai[1] = 1f;
+                projectile.timeLeft = 32;
+                projectile.Center = omegaStarite.Center;
+            }
+            else
+            {
+                projectile.ai[1] = 1f;
+                var omegaStarite = Main.npc[(int)projectile.ai[0]];
+                if (!omegaStarite.active || omegaStarite.ai[0] == -1f)
+                    return;
+                projectile.timeLeft = 2;
+                projectile.Center = omegaStarite.Center;
+            }
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)

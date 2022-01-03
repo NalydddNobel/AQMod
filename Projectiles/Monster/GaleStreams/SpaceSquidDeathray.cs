@@ -5,6 +5,7 @@ using AQMod.NPCs.Monsters.GaleStreams;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,6 +28,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             projectile.timeLeft = 360;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
+            projectile.netImportant = true;
             projectile.manualDirectionChange = true;
 
             projectile.GetGlobalProjectile<AQProjectile>().canHeat = false;
@@ -36,7 +38,13 @@ namespace AQMod.Projectiles.Monster.GaleStreams
         public override void AI()
         {
             if (projectile.direction == 0)
-                projectile.direction = -1;
+            {
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    projectile.direction = -1;
+                }
+                projectile.netUpdate = true;
+            }
             if (Main.expertMode)
             {
                 if ((int)projectile.ai[1] == 0)
@@ -44,6 +52,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                     projectile.width = (int)(projectile.width * 1.5f);
                     projectile.height = (int)(projectile.height * 1.5f);
                     projectile.ai[1]++;
+                    projectile.netUpdate = true;
                 }
             }
             if ((int)(projectile.ai[0] - 1) > -1)
@@ -58,6 +67,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                     if (Main.expertMode)
                     {
                         projectile.height -= 1;
+                        projectile.netUpdate = true;
                     }
                     if (projectile.height < 2 || Main.npc[(int)(projectile.ai[0] - 1)].ai[1] > 328f)
                     {
@@ -66,6 +76,16 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                 }
                 projectile.Center = SpaceSquid.GetEyePosition(Main.npc[(int)(projectile.ai[0] - 1)]) + new Vector2(projectile.direction * 10f, 0f);
             }
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(projectile.direction);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            projectile.direction = reader.ReadInt32();
         }
 
         public const int LaserLength = 2000;

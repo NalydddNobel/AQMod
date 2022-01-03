@@ -1,6 +1,5 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Common.NetCode;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Content.World.FallingStars;
 using AQMod.Items.BossItems;
@@ -28,9 +27,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
         public const float SuperStariteSpawnChance = 0.75f;
         public const float HyperStariteSpawnChance = 0.4f;
         public const float UltraStariteSpawnChance = 0.2f;
-        public const int EventBaseRarity = 200;
-        public const int GlimmerDownedRarityAdd = 250;
-        public const int HardmodeRarityAdd = 150;
 
         internal static Color StariteProjectileColorOrig => new Color(200, 10, 255, 0);
         public static Color TextColor => new Color(238, 17, 68, 255);
@@ -142,7 +138,10 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                             else
                             {
                                 AQMod.BroadcastMessage("Mods.AQMod.EventWarning.GlimmerEvent", TextColor);
-                                NetHelper.GlimmerEventNetUpdate();
+                                if (Main.netMode == NetmodeID.Server)
+                                {
+                                    NetHelper.ActivateGlimmerEvent();
+                                }
                             }
                         }
                         break;
@@ -249,17 +248,6 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             }
             Layers = list;
         }
-
-        public static int GetBaseRarity()
-        {
-            int rarity = EventBaseRarity;
-            if (Main.hardMode)
-                rarity += HardmodeRarityAdd;
-            if (WorldDefeats.DownedGlimmer)
-                rarity += GlimmerDownedRarityAdd;
-            return rarity;
-        }
-
 
         /// <summary>
         /// Whether or not the invasion progress for the Glimmer Event can be shown

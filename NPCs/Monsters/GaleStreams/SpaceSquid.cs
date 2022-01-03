@@ -177,203 +177,206 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             switch ((int)npc.ai[0])
             {
                 case Phase_SpaceGun:
-                {
-                    bool runOtherAis = true;
-                    bool noDeathray = true;
-                    if (Main.expertMode && npc.life * 2 < npc.lifeMax)
                     {
-                        noDeathray = false;
-                        if ((int)npc.ai[1] == 202)
+                        bool runOtherAis = true;
+                        bool noDeathray = true;
+                        if (Main.expertMode && npc.life * 2 < npc.lifeMax)
                         {
-                            npc.ai[2] = 0f;
-                            if (Main.netMode != NetmodeID.Server && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
+                            noDeathray = false;
+                            if ((int)npc.ai[1] == 202)
                             {
-                                AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SpaceSquid/ShootDeathray");
-                            }
-                        }
-                        if ((int)npc.ai[1] >= 245)
-                        {
-                            runOtherAis = false;
-                            if ((int)npc.ai[2] < 1)
-                            {
-                                npc.ai[2]++;
-                                npc.velocity.X = -npc.direction * 12.5f;
-                                if (Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
+                                npc.ai[2] = 0f;
+                                if (Main.netMode != NetmodeID.Server && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
                                 {
-                                    ScreenShakeManager.AddShake(new BasicScreenShake(4, 8));
-                                }
-                                int p = Projectile.NewProjectile(GetEyePosition(npc), new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidDeathray>(), 70, 1f, Main.myPlayer);
-                                Main.projectile[p].ai[0] = npc.whoAmI + 1;
-                                Main.projectile[p].direction = npc.direction;
-                            }
-                            if (npc.velocity.Length() > 2f)
-                            {
-                                npc.velocity *= 0.92f;
-                                if (npc.velocity.Length() < 2f)
-                                {
-                                    npc.velocity = Vector2.Normalize(npc.velocity) * 2f;
+                                    AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SpaceSquid/ShootDeathray");
                                 }
                             }
-                        }
-                        else if ((int)npc.ai[1] > 200)
-                        {
-                            var eyePos = GetEyePosition(npc);
-                            SpawnPatterns.SpawnDustCentered(eyePos, ModContent.DustType<MonoDust>(), new Vector2(0f, 0f), new Color(10, 255, 20, 0), 0.9f);
-                            int spawnChance = 3 - (int)(npc.ai[1] - 210) / 8;
-                            if (spawnChance <= 1 || Main.rand.NextBool(spawnChance))
+                            if ((int)npc.ai[1] >= 245)
                             {
-                                var spawnPos = eyePos + new Vector2(Main.rand.NextFloat(-60f, 60f), Main.rand.NextFloat(-60f, 60f));
-                                SpawnPatterns.SpawnDustCentered(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 8f + npc.velocity, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.9f, 1.35f));
-                            }
-                            if (spawnChance <= 1)
-                            {
-                                var spawnPos = eyePos + new Vector2(Main.rand.NextFloat(-120f, 120f), Main.rand.NextFloat(-120f, 120f));
-                                SpawnPatterns.SpawnDustCentered(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 12f + npc.velocity, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.5f, 0.75f));
-                            }
-                        }
-                        if ((int)npc.ai[1] >= 330)
-                        {
-                            AdvancePhase(Phase_SpaceGun);
-                        }
-                    }
-                    if (runOtherAis)
-                    {
-                        if (npc.ai[1] >= 120f)
-                        {
-                            if ((int)npc.ai[1] >= 200)
-                            {
-                                if (noDeathray && (int)npc.ai[1] >= 240)
+                                runOtherAis = false;
+                                if ((int)npc.ai[2] < 1)
                                 {
-                                    if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
+                                    npc.ai[2]++;
+                                    npc.velocity.X = -npc.direction * 12.5f;
+                                    if (Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
                                     {
-                                        npc.direction = -1;
+                                        ScreenShakeManager.AddShake(new BasicScreenShake(4, 8));
                                     }
-                                    else
+                                    if (Main.netMode != NetmodeID.MultiplayerClient)
                                     {
-                                        npc.direction = 1;
+                                        int p = Projectile.NewProjectile(GetEyePosition(npc), new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidDeathray>(), 70, 1f, Main.myPlayer);
+                                        Main.projectile[p].ai[0] = npc.whoAmI + 1;
+                                        Main.projectile[p].direction = npc.direction;
                                     }
-                                    AdvancePhase(Phase_SpaceGun);
-                                    npc.velocity *= 0.95f;
                                 }
+                                if (npc.velocity.Length() > 2f)
+                                {
+                                    npc.velocity *= 0.92f;
+                                    if (npc.velocity.Length() < 2f)
+                                    {
+                                        npc.velocity = Vector2.Normalize(npc.velocity) * 2f;
+                                    }
+                                }
+                            }
+                            else if ((int)npc.ai[1] > 200)
+                            {
+                                var eyePos = GetEyePosition(npc);
+                                SpawnPatterns.SpawnDustCentered(eyePos, ModContent.DustType<MonoDust>(), new Vector2(0f, 0f), new Color(10, 255, 20, 0), 0.9f);
+                                int spawnChance = 3 - (int)(npc.ai[1] - 210) / 8;
+                                if (spawnChance <= 1 || Main.rand.NextBool(spawnChance))
+                                {
+                                    var spawnPos = eyePos + new Vector2(Main.rand.NextFloat(-60f, 60f), Main.rand.NextFloat(-60f, 60f));
+                                    SpawnPatterns.SpawnDustCentered(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 8f + npc.velocity, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.9f, 1.35f));
+                                }
+                                if (spawnChance <= 1)
+                                {
+                                    var spawnPos = eyePos + new Vector2(Main.rand.NextFloat(-120f, 120f), Main.rand.NextFloat(-120f, 120f));
+                                    SpawnPatterns.SpawnDustCentered(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 12f + npc.velocity, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.5f, 0.75f));
+                                }
+                            }
+                            if ((int)npc.ai[1] >= 330)
+                            {
+                                AdvancePhase(Phase_SpaceGun);
+                            }
+                        }
+                        if (runOtherAis)
+                        {
+                            if (npc.ai[1] >= 120f)
+                            {
+                                if ((int)npc.ai[1] >= 200)
+                                {
+                                    if (noDeathray && (int)npc.ai[1] >= 240)
+                                    {
+                                        if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
+                                        {
+                                            npc.direction = -1;
+                                        }
+                                        else
+                                        {
+                                            npc.direction = 1;
+                                        }
+                                        AdvancePhase(Phase_SpaceGun);
+                                        npc.velocity *= 0.95f;
+                                    }
+                                }
+                                else
+                                {
+                                    int timer = (int)(npc.ai[1] - 120) % 10;
+                                    if (timer == 0)
+                                    {
+                                        frameIndex = 8;
+                                        if (Main.netMode != NetmodeID.Server)
+                                        {
+                                            AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SpaceSquid/ShootLaser");
+                                        }
+                                        var spawnPosition = new Vector2(npc.position.X + (npc.direction == 1 ? npc.width + 20f : -20), npc.position.Y + npc.height / 2f);
+                                        var velocity = new Vector2(20f * npc.direction, 0f);
+                                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                                        {
+                                            Projectile.NewProjectile(spawnPosition, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 30, 1f, Main.myPlayer);
+                                            Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
+                                            Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(-MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
+                                        }
+                                    }
+                                }
+                                npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 16f, 0.001f);
+                                npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 8f, 0.01f);
                             }
                             else
                             {
-                                int timer = (int)(npc.ai[1] - 120) % 10;
-                                if (timer == 0)
-                                {
-                                    frameIndex = 8;
-                                    if (Main.netMode != NetmodeID.Server)
-                                    {
-                                        AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SpaceSquid/ShootLaser");
-                                    }
-                                    var spawnPosition = new Vector2(npc.position.X + (npc.direction == 1 ? npc.width + 20f : -20), npc.position.Y + npc.height / 2f);
-                                    var velocity = new Vector2(20f * npc.direction, 0f);
-                                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                                    {
-                                        Projectile.NewProjectile(spawnPosition, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 30, 1f, Main.myPlayer);
-                                        Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
-                                        Projectile.NewProjectile(spawnPosition, velocity.RotatedBy(-MathHelper.PiOver4), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
-                                    }
-                                }
+                                npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 16f, 0.05f);
+                                npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 8f, 0.1f);
                             }
-                            npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 16f, 0.001f);
-                            npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 8f, 0.01f);
+                        }
+                        npc.ai[1]++;
+                        npc.rotation = npc.velocity.X * 0.01f;
+                    }
+                    break;
+
+                case Phase_ChangeDirection:
+                    {
+                        npc.velocity *= 0.8f;
+                        npc.ai[1]++;
+                        if (npc.ai[1] > 20f)
+                        {
+                            npc.spriteDirection = npc.direction;
+                            AdvancePhase((int)npc.ai[2]);
+                        }
+                    }
+                    break;
+
+                case Phase_SnowflakeSpiral:
+                    {
+                        var gotoPosition = new Vector2(205f * -npc.direction, 0f).RotatedBy(npc.ai[1] * 0.01f);
+                        gotoPosition = Main.player[npc.target].Center + new Vector2(gotoPosition.X * 2f, gotoPosition.Y);
+                        if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
+                        {
+                            npc.direction = -1;
                         }
                         else
                         {
-                            npc.velocity.X = MathHelper.Lerp(npc.velocity.X, (Main.player[npc.target].position.X - npc.direction * 300f - center.X) / 16f, 0.05f);
-                            npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, (Main.player[npc.target].position.Y + 6f - center.Y) / 8f, 0.1f);
+                            npc.direction = 1;
                         }
-                    }
-                    npc.ai[1]++;
-                    npc.rotation = npc.velocity.X * 0.01f;
-                }
-                break;
-
-                case Phase_ChangeDirection:
-                {
-                    npc.velocity *= 0.8f;
-                    npc.ai[1]++;
-                    if (npc.ai[1] > 20f)
-                    {
-                        npc.spriteDirection = npc.direction;
-                        AdvancePhase((int)npc.ai[2]);
-                    }
-                }
-                break;
-
-                case Phase_SnowflakeSpiral:
-                {
-                    var gotoPosition = new Vector2(205f * -npc.direction, 0f).RotatedBy(npc.ai[1] * 0.01f);
-                    gotoPosition = Main.player[npc.target].Center + new Vector2(gotoPosition.X * 2f, gotoPosition.Y);
-                    if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
-                    {
-                        npc.direction = -1;
-                    }
-                    else
-                    {
-                        npc.direction = 1;
-                    }
-                    if (npc.spriteDirection != npc.direction)
-                    {
-                        if (frameIndex >= 24)
+                        if (npc.spriteDirection != npc.direction)
                         {
-                            frameIndex = 19;
+                            if (frameIndex >= 24)
+                            {
+                                frameIndex = 19;
+                            }
                         }
-                    }
-                    if ((int)npc.ai[1] == 0)
-                    {
-                        npc.ai[1] = Main.rand.NextFloat(MathHelper.Pi * 100f);
-                        npc.netUpdate = true;
-                    }
-                    npc.ai[2]++;
-                    if (npc.ai[2] > 120f)
-                    {
-                        npc.ai[1] += 0.2f;
-                        if ((int)npc.ai[3] == 0)
+                        if ((int)npc.ai[1] == 0)
                         {
-                            npc.ai[3] = Main.rand.NextFloat(MathHelper.Pi * 6f);
+                            npc.ai[1] = Main.rand.NextFloat(MathHelper.Pi * 100f);
                             npc.netUpdate = true;
                         }
-                        npc.ai[3]++;
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 10f, 0.006f);
-                        int timeBetweenShots = 3 + npc.life / (npc.lifeMax / 3);
-                        int timer = (int)(npc.ai[2] - 60) % timeBetweenShots;
-                        if (timer == 0)
+                        npc.ai[2]++;
+                        if (npc.ai[2] > 120f)
                         {
-                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                            npc.ai[1] += 0.2f;
+                            if ((int)npc.ai[3] == 0)
                             {
-                                var velocity = new Vector2(10f, 0f).RotatedBy(npc.ai[3] * 0.12f);
-                                Projectile.NewProjectile(npc.Center + velocity * 4f, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidSnowflake>(), 20, 1f, Main.myPlayer);
+                                npc.ai[3] = Main.rand.NextFloat(MathHelper.Pi * 6f);
+                                npc.netUpdate = true;
                             }
-                            if (Main.netMode != NetmodeID.Server)
+                            npc.ai[3]++;
+                            npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 10f, 0.006f);
+                            int timeBetweenShots = 3 + npc.life / (npc.lifeMax / 3);
+                            int timer = (int)(npc.ai[2] - 60) % timeBetweenShots;
+                            if (timer == 0)
                             {
-                                AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/Combo", npc.Center);
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
+                                {
+                                    var velocity = new Vector2(10f, 0f).RotatedBy(npc.ai[3] * 0.12f);
+                                    Projectile.NewProjectile(npc.Center + velocity * 4f, velocity, ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidSnowflake>(), 20, 1f, Main.myPlayer);
+                                }
+                                if (Main.netMode != NetmodeID.Server)
+                                {
+                                    AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/Combo", npc.Center);
+                                }
+                            }
+                            if (npc.ai[2] > 180f + (6 - timeBetweenShots) * 40f)
+                            {
+                                npc.ai[2] = 0f;
+                                npc.ai[3] = 0f;
+                                if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
+                                {
+                                    npc.direction = -1;
+                                }
+                                else
+                                {
+                                    npc.direction = 1;
+                                }
+                                AdvancePhase(Phase_SnowflakeSpiral);
                             }
                         }
-                        if (npc.ai[2] > 180f + (6 - timeBetweenShots) * 40f)
+                        else
                         {
-                            npc.ai[2] = 0f;
-                            npc.ai[3] = 0f;
-                            if (Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f)
-                            {
-                                npc.direction = -1;
-                            }
-                            else
-                            {
-                                npc.direction = 1;
-                            }
-                            AdvancePhase(Phase_SnowflakeSpiral);
+                            npc.ai[1]++;
+                            npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 20f, 0.01f);
                         }
+                        npc.rotation = Utils.AngleLerp(npc.rotation, 0f, 0.1f);
                     }
-                    else
-                    {
-                        npc.ai[1]++;
-                        npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 20f, 0.01f);
-                    }
-                    npc.rotation = Utils.AngleLerp(npc.rotation, 0f, 0.1f);
-                }
-                break;
+                    break;
             }
         }
 
@@ -419,111 +422,90 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             switch ((int)npc.ai[0])
             {
                 default:
-                {
-                    npc.frameCounter += 1.0d;
-                    if (npc.frameCounter > 2.0d)
                     {
-                        npc.frameCounter = 0.0d;
-                        frameIndex++;
-                        if (frameIndex >= Main.npcFrameCount[npc.type] * FramesX)
-                        {
-                            frameIndex = 0;
-                        }
-                    }
-                }
-                break;
-
-                case Phase_Goodbye:
-                frameIndex = 20;
-                break;
-
-                case Phase_SpaceGun:
-                {
-                    if ((int)npc.ai[1] >= 200)
-                    {
-                        if (frameIndex < 13)
-                        {
-                            frameIndex = 13;
-                        }
                         npc.frameCounter += 1.0d;
-                        if (npc.frameCounter > 4.0d)
+                        if (npc.frameCounter > 2.0d)
                         {
                             npc.frameCounter = 0.0d;
                             frameIndex++;
+                            if (frameIndex >= Main.npcFrameCount[npc.type] * FramesX)
+                            {
+                                frameIndex = 0;
+                            }
+                        }
+                    }
+                    break;
+
+                case Phase_Goodbye:
+                    frameIndex = 20;
+                    break;
+
+                case Phase_SpaceGun:
+                    {
+                        if ((int)npc.ai[1] >= 200)
+                        {
+                            if (frameIndex < 13)
+                            {
+                                frameIndex = 13;
+                            }
+                            npc.frameCounter += 1.0d;
+                            if (npc.frameCounter > 4.0d)
+                            {
+                                npc.frameCounter = 0.0d;
+                                frameIndex++;
+                                if (frameIndex > 18)
+                                {
+                                    frameIndex = 18;
+                                }
+                            }
+                        }
+                        else if (frameIndex > 13)
+                        {
+                            npc.frameCounter += 1.0d;
                             if (frameIndex > 18)
                             {
                                 frameIndex = 18;
                             }
-                        }
-                    }
-                    else if (frameIndex > 13)
-                    {
-                        npc.frameCounter += 1.0d;
-                        if (frameIndex > 18)
-                        {
-                            frameIndex = 18;
-                        }
-                        if (npc.frameCounter > 4.0d)
-                        {
-                            npc.frameCounter = 0.0d;
-                            frameIndex--;
-                            if (frameIndex == 13)
+                            if (npc.frameCounter > 4.0d)
                             {
-                                frameIndex = 0;
+                                npc.frameCounter = 0.0d;
+                                frameIndex--;
+                                if (frameIndex == 13)
+                                {
+                                    frameIndex = 0;
+                                }
+                            }
+                        }
+                        else if (frameIndex > 7)
+                        {
+                            npc.frameCounter += 1.0d;
+                            if (npc.frameCounter > 3.0d)
+                            {
+                                npc.frameCounter = 0.0d;
+                                frameIndex++;
+                                if (frameIndex > 12)
+                                {
+                                    frameIndex = 12;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            npc.frameCounter += 1.0d;
+                            if (npc.frameCounter > 4.0d)
+                            {
+                                npc.frameCounter = 0.0d;
+                                frameIndex++;
+                                if (frameIndex > 7)
+                                {
+                                    frameIndex = 0;
+                                }
                             }
                         }
                     }
-                    else if (frameIndex > 7)
-                    {
-                        npc.frameCounter += 1.0d;
-                        if (npc.frameCounter > 3.0d)
-                        {
-                            npc.frameCounter = 0.0d;
-                            frameIndex++;
-                            if (frameIndex > 12)
-                            {
-                                frameIndex = 12;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        npc.frameCounter += 1.0d;
-                        if (npc.frameCounter > 4.0d)
-                        {
-                            npc.frameCounter = 0.0d;
-                            frameIndex++;
-                            if (frameIndex > 7)
-                            {
-                                frameIndex = 0;
-                            }
-                        }
-                    }
-                }
-                break;
+                    break;
 
                 case Phase_ChangeDirection:
-                {
-                    if (frameIndex < 19)
-                    {
-                        frameIndex = 19;
-                    }
-                    npc.frameCounter += 1.0d;
-                    if (npc.frameCounter > 4.0d)
-                    {
-                        npc.frameCounter = 0.0d;
-                        frameIndex++;
-                        if (frameIndex > 23)
-                        {
-                            frameIndex = 23;
-                        }
-                    }
-                }
-                break;
-
-                case Phase_SnowflakeSpiral:
-                {
-                    if (npc.direction != npc.spriteDirection)
                     {
                         if (frameIndex < 19)
                         {
@@ -536,30 +518,51 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             frameIndex++;
                             if (frameIndex > 23)
                             {
-                                frameIndex = 24;
-                                npc.spriteDirection = npc.direction;
+                                frameIndex = 23;
                             }
                         }
                     }
-                    else
+                    break;
+
+                case Phase_SnowflakeSpiral:
                     {
-                        if (frameIndex < 24)
+                        if (npc.direction != npc.spriteDirection)
                         {
-                            frameIndex = 24;
-                        }
-                        npc.frameCounter += 1.0d;
-                        if (npc.frameCounter > 4.0d)
-                        {
-                            npc.frameCounter = 0.0d;
-                            frameIndex++;
-                            if (frameIndex > 28)
+                            if (frameIndex < 19)
                             {
-                                frameIndex = 25;
+                                frameIndex = 19;
+                            }
+                            npc.frameCounter += 1.0d;
+                            if (npc.frameCounter > 4.0d)
+                            {
+                                npc.frameCounter = 0.0d;
+                                frameIndex++;
+                                if (frameIndex > 23)
+                                {
+                                    frameIndex = 24;
+                                    npc.spriteDirection = npc.direction;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (frameIndex < 24)
+                            {
+                                frameIndex = 24;
+                            }
+                            npc.frameCounter += 1.0d;
+                            if (npc.frameCounter > 4.0d)
+                            {
+                                npc.frameCounter = 0.0d;
+                                frameIndex++;
+                                if (frameIndex > 28)
+                                {
+                                    frameIndex = 25;
+                                }
                             }
                         }
                     }
-                }
-                break;
+                    break;
             }
 
             npc.frame.Y = frameIndex * frameHeight;

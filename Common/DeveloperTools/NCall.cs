@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics;
 using AQMod.Common.IO;
+using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.LegacyWorldEvents.CrabSeason;
@@ -34,6 +35,7 @@ namespace AQMod.Common.DeveloperTools
     internal class NCall : ModCommand
     {
         public static string DebugFolderPath => Main.SavePath + Path.DirectorySeparatorChar + "Mods" + Path.DirectorySeparatorChar + "Cache" + Path.DirectorySeparatorChar + "AQMod";
+        private static QuickSearchList<string> quickSearchList;
 
         public override bool Autoload(ref string name)
         {
@@ -61,6 +63,34 @@ namespace AQMod.Common.DeveloperTools
             {
                 default:
                     caller.Reply("Command doesn't exist.");
+                    break;
+
+                case "qslget":
+                    {
+                        if (int.TryParse(args[1], out int result))
+                        {
+                            caller.Reply(quickSearchList.Find(result));
+                        }
+                        else
+                        {
+                            caller.Reply(quickSearchList.Find(args[1]));
+                        }
+                    }
+                    break;
+
+                case "qsl":
+                    {
+                        if (quickSearchList == null)
+                        {
+                            quickSearchList = new QuickSearchList<string>();
+                        }
+                        quickSearchList.Add(args[1]);
+                        var arr = quickSearchList.ToArray();
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            caller.Reply(i + ": " + arr[i]);
+                        }
+                    }
                     break;
 
                 case "gen":

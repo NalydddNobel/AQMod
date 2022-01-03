@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.NetCode;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
@@ -40,7 +39,8 @@ namespace AQMod.Common.Graphics.SceneLayers
 
         protected override void Draw()
         {
-            if (!closeEnoughToDraw() || OmegaStariteScenes.SceneType > 1)
+            if (!closeEnoughToDraw() || OmegaStariteScenes.SceneType > 1 || 
+                (Main.netMode != NetmodeID.SinglePlayer && NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>())))
                 return;
             var drawPos = swordPos();
             if (OmegaStariteScenes.OmegaStariteIndexCache == -1)
@@ -75,7 +75,14 @@ namespace AQMod.Common.Graphics.SceneLayers
                         plr.tileInteractAttempted = true;
                         plr.tileInteractionHappened = true;
                         plr.releaseUseTile = false;
-                        NetHelper.GlimmerEventNetSummonOmegaStarite();
+                        if (Main.netMode == NetmodeID.SinglePlayer)
+                        {
+                            AQMod.spawnStarite = true;
+                        }
+                        else
+                        {
+                            NetHelper.RequestOmegaStarite();
+                        }
                         Main.PlaySound(SoundID.Item, (int)drawPos.X, (int)drawPos.Y, 4, 0.5f, -2.5f);
                     }
                 }

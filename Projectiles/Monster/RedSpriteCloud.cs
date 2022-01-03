@@ -103,6 +103,7 @@ namespace AQMod.Projectiles.Monster
                 if (projectile.timeLeft < 2)
                 {
                     projectile.timeLeft = 600;
+                    projectile.netUpdate = true;
                     projectile.ai[0] = 1f;
                 }
             }

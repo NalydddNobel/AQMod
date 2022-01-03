@@ -1,5 +1,4 @@
 ﻿using AQMod.Common.DeveloperTools;
-using AQMod.Common.NetCode;
 using AQMod.Content.LegacyWorldEvents.CrabSeason;
 using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Content.World;
@@ -9,6 +8,7 @@ using AQMod.Content.World.FallingStars;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Common
@@ -81,7 +81,7 @@ namespace AQMod.Common
                 { "glimmerevent_activate", (o) =>
                     {
                         bool value = GlimmerEvent.Activate();
-                        NetHelper.GlimmerEventNetUpdate();
+                        NetMessage.SendData(MessageID.WorldData);
                         return value;
                     }
                 },

@@ -102,12 +102,21 @@ namespace AQMod.Content
 
         public override void NetSend(Item item, BinaryWriter writer)
         {
-            writer.Write(nameTag);
+            if (nameTag != null)
+            {
+                writer.Write(true);
+                writer.Write(nameTag);
+            }
+            else
+            {
+                writer.Write(false);
+            }
         }
 
         public override void NetReceive(Item item, BinaryReader reader)
         {
-            nameTag = reader.ReadString();
+            if (reader.ReadBoolean())
+                nameTag = reader.ReadString();
         }
 
         public bool HasNameTag()

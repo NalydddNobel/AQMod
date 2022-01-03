@@ -895,7 +895,7 @@ namespace AQMod.NPCs.Friendly
             {
                 WorldDefeats.HunterIntroduction = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                    NetMessage.SendData(MessageID.WorldData, Main.myPlayer);
+                    NetHelper.FlagSet(NetHelper.PacketType.Flag_AirHunterIntroduction);
                 return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Introduction", npc.GivenName);
             }
             var potentialText = new List<string>();

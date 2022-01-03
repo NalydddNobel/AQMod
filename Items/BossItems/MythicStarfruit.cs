@@ -36,7 +36,11 @@ namespace AQMod.Items.BossItems
 
         public override bool UseItem(Player player)
         {
-            GlimmerEvent.Activate();
+            if (Main.myPlayer == player.whoAmI)
+            {
+                GlimmerEvent.Activate();
+                NetHelper.ActivateGlimmerEvent();
+            }
             AQMod.BroadcastMessage(AQText.Key + "Common.GlimmerEventWarning", GlimmerEvent.TextColor);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
