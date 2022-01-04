@@ -1,4 +1,4 @@
-﻿[c/d1bbe7:Overview]
+﻿[c/ffff64:Overview]
 Aequus is a Terraria content mod which adds new items, enemies, and loot.
 
 The mod's assets are extractable
@@ -6,7 +6,7 @@ The mod's assets are extractable
 A discord link to the mod is in the homepage, if you like typing discord invite links yourself, here you go:
 [c/aaaaff:> https://discord.gg/pEKfVCnqe4]
 
-[c/d1bbe7:Includes:]
+[c/ffff64:Includes:]
 [c/ff3377:>] 230+ Items
 [c/ff3377:>] A single boss
 [c/ff3377:>] 4 special minibosses
@@ -14,9 +14,9 @@ A discord link to the mod is in the homepage, if you like typing discord invite 
 [c/ff3377:>] 4 Unique Events
 [c/ff3377:>] 3 Friendly NPCs
 [c/ff3377:>] Full support for English language and Chinese language, with quite a few Russian translations!
-[c/d1bbe7:And importantly, many bugs!]
+[c/ffff64:And importantly, many bugs!]
 (Please report bugs either on the forum page, or discord server!)
-[c/d1bbe7:Side Note:] Aequus was created from me messing around with coding and stuff, so don't try to take the mod super serious pls :)
+[c/ffff64:Side Note:] Aequus was created from me messing around with coding and stuff, so don't try to take the mod super serious pls :)
 
 ######################
 Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不要太认真 :)
