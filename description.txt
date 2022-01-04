@@ -1,35 +1,29 @@
-﻿Aequus was created from me messing around with coding and stuff, so don't try to take the mod super serious pls :)
+﻿[c/d1bbe7:Overview]
+Aequus is a Terraria content mod which adds new items, enemies, and loot.
 
-# Important Info #
 The mod's assets are extractable
-The wiki is somewhat a mess, don't use it
 
 A discord link to the mod is in the homepage, if you like typing discord invite links yourself, here you go:
 [c/aaaaff:> https://discord.gg/pEKfVCnqe4]
 
-##################
-[c/ff3377:>] 200+ Items
-[c/ff3377:>] 16 Enemies
-[c/ff3377:>] 4 Events
-[c/ff3377:>] 2 Bosses
-[c/ff3377:>] 3 Town NPCs
-[c/ff3377:>] Support for English, and Chinese languages
-And importantly, many bugs!
+[c/d1bbe7:Includes:]
+[c/ff3377:>] 230+ Items
+[c/ff3377:>] A single boss
+[c/ff3377:>] 4 special minibosses
+[c/ff3377:>] 15+ Enemies
+[c/ff3377:>] 4 Unique Events
+[c/ff3377:>] 3 Friendly NPCs
+[c/ff3377:>] Full support for English language and Chinese language, with quite a few Russian translations!
+[c/d1bbe7:And importantly, many bugs!]
 (Please report bugs either on the forum page, or discord server!)
-##################
+[c/d1bbe7:Side Note:] Aequus was created from me messing around with coding and stuff, so don't try to take the mod super serious pls :)
 
-
-
-
-[c/ff3377:>] Have fun
-[c/ff3377:>] Happy Holidays! Create a world with the seed "Aequus Xmas" for a special world!
 ######################
 Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不要太认真 :)
 
 # 重要讯息 #
 
 本Mod的资源可随意提取
-本Mod的Wiki稍微有点混乱, 现在请不要使用
 本Mod的主页有Discord链接, 如果你想自己输入Discord邀请链接, 在这:
 [c/aaaaff:> https://discord.gg/pEKfVCnqe4]
 
