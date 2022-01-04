@@ -315,6 +315,8 @@ RecipeGroup.CopperOrTin=铜或铅
 
 Config.RequiresReload=需要重新加载.
 
+StariteConfig.Name=微光事件视觉效果
+
 StariteConfig.BackgroundStars=背景落星
 StariteConfig.BackgroundStarsTooltip=决定微光事件期间的背景是否会出现类似1.4版本中的落星
 

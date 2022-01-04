@@ -19,20 +19,22 @@ A discord link to the mod is in the homepage, if you like typing discord invite 
 [c/ffff64:Side Note:] Aequus was created from me messing around with coding and stuff, so don't try to take the mod super serious pls :)
 
 ######################
-Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不要太认真 :)
-
-# 重要讯息 #
+[c/ffff64:概述]
+Aequus是一个添加了很多新物品、敌人和战利品的Terraria内容模组.
 
 本Mod的资源可随意提取
-本Mod的主页有Discord链接, 如果你想自己输入Discord邀请链接, 在这:
+
+本Mod的主页有Discord链接, 如果你想自己输入Discord邀请链接, 请点这:
 [c/aaaaff:> https://discord.gg/pEKfVCnqe4]
 
-[c/ff3377:>] 200+个物品
-[c/ff3377:>] 16个敌人
-[c/ff3377:>] 4个事件
-[c/ff3377:>] 2个Boss
-[c/ff3377:>] 2个城镇NPC
-重要的是, 有很多Bug!
+[c/ffff64:包括:]
+[c/ff3377:>] 超过230个物品
+[c/ff3377:>] 1个Boss
+[c/ff3377:>] 4个特殊的小Boss
+[c/ff3377:>] 超过15个敌人
+[c/ff3377:>] 4个独特事件
+[c/ff3377:>] 3个友善的NPC
+[c/ff3377:>] 完全支持英语和以后可能会重新翻译的汉语, 以及相当多的俄语翻译!
+[c/ffff64:更重要的是, 有很多Bug!]
 (请到论坛主页或Discord服务器反馈Bug!)
-[c/ff3377:>] 玩得开心
-[c/ff3377:>] 节日快乐! 输入种子 "Aequus Xmas" 来创建一个特殊的世界!
+[c/ffff64:旁注:] Aequus是由我在代码和其他东西上胡搞瞎搞整出来的Mod, 玩的时候请不要太认真 :)
