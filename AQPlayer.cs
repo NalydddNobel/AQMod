@@ -589,6 +589,7 @@ namespace AQMod
         public bool coldAmulet;
         public bool shockCollar;
         public bool healBeforeDeath;
+        public bool glowString;
 
         public bool NetUpdateKillCount;
         public int[] CurrentEncoreKillCount { get; private set; }
@@ -939,6 +940,7 @@ namespace AQMod
             equivalenceMachine = false;
             shockCollar = false;
             healBeforeDeath = false;
+            glowString = false;
             if (extraHP > 60) // to cap life max buffs at 60
             {
                 extraHP = 60;

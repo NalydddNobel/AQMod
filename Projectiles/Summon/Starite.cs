@@ -79,7 +79,7 @@ namespace AQMod.Projectiles.Summon
                         var difference = projectile.Center - center;
                         float c = (float)Math.Sqrt(difference.X * difference.X + difference.Y * difference.Y);
                         if (Collision.CanHitLine(projectile.position, projectile.width, projectile.height, projectile.position, projectile.width, projectile.height))
-                            c *= 2;
+                            c *= 12;
                         if (c < dist)
                         {
                             target = i;

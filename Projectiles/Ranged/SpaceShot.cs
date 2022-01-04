@@ -72,17 +72,17 @@ namespace AQMod.Projectiles.Ranged
             }
             for (float f = 0f; f < 1f; f += 0.125f)
             {
-                Dust.NewDustPerfect(projectile.Center, ModContent.DustType<Dusts.MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * (MathHelper.Pi * 2f) + Main.rand.NextFloat() * 0.3f) * (3f + Main.rand.NextFloat() * 3f), 150, Color.CornflowerBlue * 0.3f).noGravity = true;
+                Dust.NewDustPerfect(projectile.Center, ModContent.DustType<Dusts.MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * (MathHelper.Pi * 2f) + Main.rand.NextFloat() * 0.3f) * (3f + Main.rand.NextFloat() * 3f), 150, Color.CornflowerBlue * 0.85f).noGravity = true;
             }
             for (float f = 0f; f < 1f; f += 0.25f)
             {
-                Dust.NewDustPerfect(projectile.Center, ModContent.DustType<Dusts.MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * (MathHelper.Pi * 2f) + Main.rand.NextFloat() * 0.2f) * (1f + Main.rand.NextFloat() * 2f), 150, Color.Gold * 0.5f).noGravity = true;
+                Dust.NewDustPerfect(projectile.Center, ModContent.DustType<Dusts.MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * (MathHelper.Pi * 2f) + Main.rand.NextFloat() * 0.2f) * (1f + Main.rand.NextFloat() * 2f), 150, Color.Gold * 0.9f).noGravity = true;
             }
-            if (AQGraphics.Rendering.Culling.InScreenWorld(projectile.getRect()) && Main.rand.Next(6) == 0)
+            if (AQGraphics.Rendering.Culling.InScreenWorld(projectile.getRect()))
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    Gore.NewGore(projectile.position, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * projectile.velocity.Length(), Utils.SelectRandom<int>(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                    Gore.NewGore(projectile.position, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * projectile.velocity.Length() * 0.3f, Utils.SelectRandom<int>(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
                 }
             }
             if (Main.myPlayer == projectile.owner)

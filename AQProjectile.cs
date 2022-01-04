@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Tools.Fishing.Bait;
+﻿using AQMod.Common.Graphics;
+using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -183,6 +184,54 @@ namespace AQMod
                         item.SetDefaults(aQPlayer.PopperType);
                         ((PopperBaitItem)item.modItem).PopperEffects(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
                     }
+                }
+            }
+            if (projectile.aiStyle == 99 && Main.netMode != NetmodeID.Server && 
+                Main.player[projectile.owner].GetModPlayer<AQPlayer>().glowString && 
+                AQGraphics.Rendering.Culling.InScreenWorld(Utils.CenteredRectangle(projectile.Center, new Vector2(200f, 200f))))
+            {
+                var center = projectile.Center;
+                var playerCenter = Main.player[projectile.owner].MountedCenter;
+                playerCenter.Y += Main.player[projectile.owner].gfxOffY;
+                float differenceX = center.X - playerCenter.X;
+                float differenceY = center.Y - playerCenter.Y;
+
+                float length = (float)Math.Sqrt(differenceX * differenceX + differenceY * differenceY);
+                float add = Math.Min(length / 32f, 4f);
+                var toYoyo = Vector2.Normalize(center - playerCenter);
+                for (float l = 0f; l < length; l += add)
+                {
+                    int stringColor = Main.player[projectile.owner].stringColor;
+                    Color lightColor = WorldGen.paintColor(stringColor);
+                    if (lightColor.R < 75)
+                    {
+                        lightColor.R = 75;
+                    }
+                    if (lightColor.G < 75)
+                    {
+                        lightColor.G = 75;
+                    }
+                    if (lightColor.B < 75)
+                    {
+                        lightColor.B = 75;
+                    }
+                    switch (stringColor)
+                    {
+                        case 13:
+                            lightColor = new Color(20, 20, 20);
+                            break;
+                        case 0:
+                        case 14:
+                            lightColor = new Color(200, 200, 200);
+                            break;
+                        case 28:
+                            lightColor = new Color(163, 116, 91);
+                            break;
+                        case 27:
+                            lightColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                            break;
+                    }
+                    Lighting.AddLight(playerCenter + toYoyo * l, lightColor.ToVector3() * 0.6f);
                 }
             }
             return true;

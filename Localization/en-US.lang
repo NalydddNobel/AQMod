@@ -23,6 +23,9 @@ Happy Holidays! Create a world with the seed "Aequus Xmas" for a special world!
 ##############
 # Accessories
 
+ItemName.GlowString=Glow String
+ItemTooltip.GlowString=Makes your yoyo string glow in the dark\nIncreases yoyo range
+
 ItemName.ShockCollar=Shock Collar
 ItemTooltip.ShockCollar=Increases damage by 5%\nIncreases crit chance by 10% while in the water
 
