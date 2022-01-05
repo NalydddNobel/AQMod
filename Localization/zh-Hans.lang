@@ -23,6 +23,9 @@ Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不
 ##############
 # Accessories
 
+ItemName.GlowString=发光细绳
+ItemTooltip.GlowString=你的悠悠球线在黑暗中会发出光亮\n增加悠悠球距离
+
 ItemName.ShockCollar=冲击项圈
 ItemTooltip.ShockCollar=增加5%上海\n在水中时增加10%暴击率
 
@@ -190,6 +193,20 @@ Tooltips.ManaPerSecond=每秒消耗{0}点法力值
 Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果\n你不会受到任何摔落伤害
 Tooltips.InventoryPiggyBankFunction=放置于物品栏或猪猪存钱罐中即可生效
 Tooltips.ToggleKeyBind=按下{0}以开关效果
+
+NPCName.Memorialist=请愿者
+
+Memorialist.Chat.0=啥? 你认为我是个怪胎? 那你最近肯定没有照过镜子.
+Memorialist.Chat.1=以撒是谁? 听起来像是个爱哭的孩子的名字.
+Memorialist.Chat.2=你需要我帮忙吗? 你肯定不是一个好英雄.
+Memorialist.Chat.3=我在想我的朋友Meru去哪了.
+Memorialist.Chat.4=你说我看起来像动物学家是什么意思? 我讨厌动物!
+Memorialist.Chat.5=我曾有个人型的蝙蝠朋友. 他们真的很喜欢谈论关于你们人类的敏感话题, 那简直太棒了. 有一天, 他们想知道我是否想成为一只蝙蝠, 我没法拒绝.
+
+Memorialist.Chat.Exporter=那个龙虾的东西...他叫什么名字? {0}? 他几乎和我一样对犯罪上瘾!
+Memorialist.Chat.Physicist={0} 是个失败者. 甚至不认为我是真实存在的! 她简直是个疯子.
+
+Memorialist.Chat.Mod.Split.Sheep=你有没有看见雪地里有一只毛茸茸的羊? 它看起来非常适合用于献祭.
 
 # Balloon Merchant
 NPCName.BalloonMerchant=空中猎手
