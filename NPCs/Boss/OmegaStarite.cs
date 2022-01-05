@@ -140,6 +140,7 @@ namespace AQMod.NPCs.Boss
         public Ring[] rings;
         public int skipDeathTimer;
         private bool _playedSpawnSound;
+        private bool _playedLaserSound;
         private byte _hitShake;
 
         public override BossEntry? BossChecklistEntry => new BossEntry(
@@ -835,31 +836,30 @@ namespace AQMod.NPCs.Boss
                         }
                         else
                         {
-                            if (Main.netMode != NetmodeID.Server)
-                            {
-                                int id = mod.GetSoundSlot(SoundType.Item, "Sounds/Item/OmegaStarite/novaspawn");
-                                float length = Vector2.Distance(npc.Center, Main.player[npc.target].Center);
-                                if (!_playedSpawnSound)
-                                {
-                                    Main.soundInstanceItem[id].Stop();
-                                    Main.soundInstanceItem[id] = Main.soundItem[id].CreateInstance();
-                                }
-                                if (length > 1000f)
-                                {
-                                    if (_playedSpawnSound)
-                                        Main.soundInstanceItem[id].Volume = 0.01f;
-                                }
-                                else
-                                {
-                                    Main.soundInstanceItem[id].Volume = 1f - length / 1250f;
-                                }
-                                if (!_playedSpawnSound)
-                                {
-                                    Main.soundInstanceItem[id].Play();
-                                    _playedSpawnSound = true;
-                                }
-                                Main.soundInstanceItem[id].Pitch = 0f;
-                            }
+                            //if (Main.netMode != NetmodeID.Server) //Could not get this to work!
+                            //{
+                            //    int id = mod.GetSoundSlot(SoundType.Item, "Sounds/Item/OmegaStarite/novaspawn");
+                            //    float length = Vector2.Distance(npc.Center, Main.player[npc.target].Center);
+                            //    if (!_playedSpawnSound)
+                            //    {
+                            //        Main.soundInstanceItem[id].Stop();
+                            //        Main.soundInstanceItem[id] = Main.soundItem[id].CreateInstance();
+                            //    }
+                            //    if (length > 1000f)
+                            //    {
+                            //        Main.soundInstanceItem[id].Volume = 0.1f;
+                            //    }
+                            //    else
+                            //    {
+                            //        Main.soundInstanceItem[id].Volume = 1f - length / 1250f;
+                            //    }
+                            //    if (!_playedSpawnSound)
+                            //    {
+                            //        Main.soundInstanceItem[id].Play();
+                            //        _playedSpawnSound = true;
+                            //    }
+                            //    Main.soundInstanceItem[id].Pitch = 0f;
+                            //}
                             npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(new Vector2(center.X, npc.ai[2]) - center) * 36f, 0.025f);
                         }
                     }
@@ -1141,6 +1141,7 @@ namespace AQMod.NPCs.Boss
             }
             else if (npc.life <= 0)
             {
+                AQSound.Play(SoundType.NPCHit, "OmegaStarite/hit" + Main.rand.Next(3), npc.Center, 0.6f);
                 if (skipDeathTimer > 0)
                 {
                     if (NoHitManager.HasBeenNoHit(npc, Main.myPlayer))
@@ -1196,7 +1197,7 @@ namespace AQMod.NPCs.Boss
             }
             else
             {
-                AQSound.Play(SoundType.NPCHit, "OmegaStarite/hit" + Main.rand.Next(3), npc.Center, 0.75f);
+                AQSound.Play(SoundType.NPCHit, "OmegaStarite/hit" + Main.rand.Next(3), npc.Center, 0.6f);
                 byte shake = (byte)MathHelper.Clamp((int)(damage / 8), 4, 10);
                 if (shake > _hitShake)
                 {

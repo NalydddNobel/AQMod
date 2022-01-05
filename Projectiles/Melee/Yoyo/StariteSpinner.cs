@@ -5,28 +5,24 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Melee
+namespace AQMod.Projectiles.Melee.Yoyo
 {
-    public class StariteSpinner : ModProjectile
+    public class StariteSpinner : YoyoType
     {
+        protected override float LifeTimeMultiplier => 10f;
+        protected override float TopSpeed => 16.5f;
+        protected override float MaxRange => 280f;
+
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type] = 10f;
-            ProjectileID.Sets.YoyosMaximumRange[projectile.type] = 280f;
-            ProjectileID.Sets.YoyosTopSpeed[projectile.type] = 16.5f;
+            base.SetStaticDefaults();
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 4;
             ProjectileID.Sets.TrailingMode[projectile.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            projectile.extraUpdates = 0;
-            projectile.width = 20;
-            projectile.height = 20;
-            projectile.aiStyle = 99;
-            projectile.friendly = true;
-            projectile.penetrate = -1;
-            projectile.melee = true;
+            base.SetDefaults();
             projectile.scale = 0.9f;
         }
 
