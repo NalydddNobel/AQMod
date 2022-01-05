@@ -73,6 +73,9 @@ ItemTooltip.StariteBlade=击中敌人时会对其造成碧蓝之火减益\n'邪�
 ItemName.StariteSpinner=星源轮转
 ItemTooltip.StariteSpinner=击中敌人时偶尔会对其造成碧蓝之火减益\n'它在旋转吗? 还是我们在绕着它旋转?'
 
+ItemName.Resonance=共振
+ItemTooltip.Resonance=速度极快并且在击中敌人时几乎不会回弹\n击中敌人时偶尔会使其被灼烧\n'你不觉得我们该重新计算那些共振阻尼因子吗?'
+
 ItemName.StariteStaff=星源法杖
 ItemTooltip.StariteStaff=召唤一颗迅捷星之源为你而战
 BuffName.Starite=星之源
