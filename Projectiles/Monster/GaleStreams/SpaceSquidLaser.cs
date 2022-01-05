@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Effects.Trails;
+using AQMod.Effects.Trails.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -45,7 +45,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             var drawPos = projectile.Center - Main.screenPosition;
             var drawColor = new Color(30, 255, 30, 0);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimitivesRender.ShouldDrawVertexTrails(PrimitivesRender.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
@@ -56,7 +56,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    VertexStrip.FullDraw(AQTextures.Trails[TrailTex.ThickerLine], VertexStrip.TextureTrail,
+                    PrimitivesRender.FullDraw(AQTextures.Trails[TrailTex.ThickerLine], PrimitivesRender.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }

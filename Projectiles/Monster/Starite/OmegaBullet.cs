@@ -3,7 +3,7 @@ using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Effects.Trails;
+using AQMod.Effects.Trails.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -57,7 +57,7 @@ namespace AQMod.Projectiles.Monster.Starite
             var drawColor = GlimmerEvent.stariteProjectileColoring;
             drawColor.A = 0;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimitivesRender.ShouldDrawVertexTrails(PrimitivesRender.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
@@ -68,7 +68,7 @@ namespace AQMod.Projectiles.Monster.Starite
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    VertexStrip.FullDraw(AQTextures.Trails[TrailTex.Line], VertexStrip.TextureTrail,
+                    PrimitivesRender.FullDraw(AQTextures.Trails[TrailTex.Line], PrimitivesRender.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }

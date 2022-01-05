@@ -27,12 +27,7 @@ namespace AQMod.Items.Foods
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<LarvaEel>());
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyNobleMushroom);
-            r.SetResult(this);
-            r.AddRecipe();
-            r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<UltraEel>());
+            r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyEel);
             r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyNobleMushroom);
             r.SetResult(this);
             r.AddRecipe();

@@ -330,6 +330,10 @@ BossChecklistDesc.RedSprite=Occasionally appears during the Gale Streams!
 RecipeGroup.AnyEnergy=Any Energy
 RecipeGroup.AnyNobleMushroom=Any Noble Spore
 RecipeGroup.CopperOrTin=Copper or Tin
+RecipeGroup.DemoniteBarOrCrimtaneBar=Demonite Bar or Crimtane Bar
+RecipeGroup.ShadowScaleOrTissueSample=Shadow Scale or Tissue Sample
+RecipeGroup.CascadeOrHelfire=Cascade or Helfire
+RecipeGroup.AnyEel=Any Eel
 
 # Config
 

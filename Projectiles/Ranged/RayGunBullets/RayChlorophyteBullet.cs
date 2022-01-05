@@ -11,7 +11,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
     {
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 32;
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 400;
             ProjectileID.Sets.TrailingMode[projectile.type] = 2;
         }
 
@@ -45,23 +45,6 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
             if (!projectile.hide)
             {
                 projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
-                int dustType = ModContent.DustType<MonoDust>();
-                var dustColor = GetColor();
-                Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, dustType, 0f, 0f, 0, dustColor, 1.25f)].velocity *= 0.015f;
-                projectile.localAI[0]++;
-                if (projectile.localAI[0] > 20f)
-                {
-                    projectile.localAI[0] = 0f;
-                    int count = 10;
-                    float r = MathHelper.TwoPi / count;
-                    for (int i = 0; i < count; i++)
-                    {
-                        int d = Dust.NewDust(center, 2, 2, dustType, 0f, 0f, 0, dustColor, 0.75f);
-                        Main.dust[d].velocity = new Vector2(4f, 0f).RotatedBy(r * i);
-                        Main.dust[d].velocity.X *= 0.2f;
-                        Main.dust[d].velocity = Main.dust[d].velocity.RotatedBy(projectile.rotation - MathHelper.PiOver2);
-                    }
-                }
             }
             else if (projectile.localAI[1] > 3f)
             {

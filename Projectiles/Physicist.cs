@@ -2,7 +2,7 @@
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Effects.Trails;
+using AQMod.Effects.Trails.Rendering;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -68,7 +68,7 @@ namespace AQMod.Projectiles
             var origin = frame.Size() / 2f;
             var center = projectile.Center;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimitivesRender.ShouldDrawVertexTrails(PrimitivesRender.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
@@ -79,7 +79,7 @@ namespace AQMod.Projectiles
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new VertexStrip(AQTextures.Trails[TrailTex.ThickLine], VertexStrip.TextureTrail);
+                    var trail = new PrimitivesRender(AQTextures.Trails[TrailTex.ThickLine], PrimitivesRender.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(14f - p * 14f) * projectile.scale, (p) => _glowClr * (1f - p));
                     trail.Draw();
                 }

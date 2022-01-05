@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Effects.Trails
+namespace AQMod.Effects.Trails.Rendering
 {
-    public struct VertexStrip
+    public struct PrimitivesRender
     {
         private readonly Texture2D _texture;
         private readonly string _pass;
@@ -62,16 +62,30 @@ namespace AQMod.Effects.Trails
             return context == null ? true : context.ShouldDraw();
         }
 
-        public VertexStrip(Texture2D texture, string pass)
+        public PrimitivesRender(Texture2D texture, string pass)
         {
             _texture = texture;
             _pass = pass;
             _positions = null;
         }
 
+        public static List<Vector2> GetValidRenderingPositions(Vector2[] oldPos, Vector2 offset)
+        {
+            var trueOldPos = new List<Vector2>();
+            for (int i = 0; i < oldPos.Length; i++)
+            {
+                if (oldPos[i] == new Vector2(0f, 0f))
+                    break;
+                if (i != 0 && oldPos[i - 1] == oldPos[i])
+                    continue;
+                trueOldPos.Add(oldPos[i] + offset);
+            }
+            return trueOldPos;
+        }
+
         public static void FullDraw(Texture2D texture, string pass, Vector2[] positions, Func<float, Vector2> getWidth, Func<float, Color> getColor, float progressAdd = 0f, float coordsMult = 1f)
         {
-            var trail = new VertexStrip(texture, pass);
+            var trail = new PrimitivesRender(texture, pass);
             trail.PrepareVertices(positions, getWidth, getColor, progressAdd, coordsMult);
             trail.Draw();
         }

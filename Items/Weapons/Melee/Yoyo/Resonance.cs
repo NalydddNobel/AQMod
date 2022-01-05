@@ -69,17 +69,8 @@ namespace AQMod.Items.Weapons.Melee.Yoyo
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<StariteSpinner>());
-            r.AddIngredient(ItemID.Cascade);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 10);
-            r.AddIngredient(ItemID.SoulofFlight, 5);
-            r.AddTile(TileID.Anvils);
-            r.SetResult(this);
-            r.AddRecipe();
-
-            r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<StariteSpinner>());
-            r.AddIngredient(ItemID.HelFire);
+            r.AddIngredient(ModContent.ItemType<StariteSpinner>(), 1);
+            r.AddRecipeGroup(AQRecipes.RecipeGroups.CascadeOrHelfire, 1);
             r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 10);
             r.AddIngredient(ItemID.SoulofFlight, 5);
             r.AddTile(TileID.Anvils);

@@ -1,6 +1,7 @@
 ﻿using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Items.Accessories.FidgetSpinner;
 using AQMod.Items.Fish.GlimmerEvent;
+using AQMod.Items.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Materials.NobleMushrooms;
 using AQMod.Items.Potions;
@@ -16,18 +17,13 @@ namespace AQMod
     {
         public static class RecipeGroups
         {
-            /// <summary>
-            /// The key for the Any Noble Mushrooms recipe group
-            /// </summary>
             public const string AnyNobleMushroom = "AQMod:AnyNobleMushroom";
-            /// <summary>
-            /// The key for the Any Energy recipe group
-            /// </summary>
             public const string AnyEnergy = "AQMod:AnyEnergy";
-            /// <summary>
-            /// The key for the Any Energy recipe group
-            /// </summary>
             public const string CopperOrTin = "AQMod:CopperOrTin";
+            public const string DemoniteBarOrCrimtaneBar = "AQMod:DemoniteBarOrCrimtaneBar";
+            public const string ShadowScaleOrTissueSample = "AQMod:ShadowScaleOrTissueSample";
+            public const string CascadeOrHelfire = "AQMod:CascadeOrHelfire";
+            public const string AnyEel = "AQMod:AnyEel";
 
             internal static void Setup()
             {
@@ -36,7 +32,6 @@ namespace AQMod
                     ModContent.ItemType<ArgonMushroom>(),
                     ModContent.ItemType<KryptonMushroom>(),
                     ModContent.ItemType<XenonMushroom>()));
-
                 RecipeGroup.RegisterGroup(AnyEnergy, 
                     new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyEnergy"),
                     ModContent.ItemType<UltimateEnergy>(),
@@ -45,11 +40,26 @@ namespace AQMod
                     ModContent.ItemType<OrganicEnergy>(),
                     ModContent.ItemType<DemonicEnergy>(),
                     ModContent.ItemType<CosmicEnergy>()));
-
                 RecipeGroup.RegisterGroup(CopperOrTin, 
                     new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.CopperOrTin"),
                     ItemID.CopperBar, 
                     ItemID.TinBar));
+                RecipeGroup.RegisterGroup(DemoniteBarOrCrimtaneBar, 
+                    new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.DemoniteBarOrCrimtaneBar"),
+                    ItemID.DemoniteBar, 
+                    ItemID.CrimtaneBar));
+                RecipeGroup.RegisterGroup(ShadowScaleOrTissueSample, 
+                    new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.ShadowScaleOrTissueSample"),
+                    ItemID.ShadowScale, 
+                    ItemID.TissueSample));
+                RecipeGroup.RegisterGroup(CascadeOrHelfire, 
+                    new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.CascadeOrHelfire"),
+                    ItemID.Cascade, 
+                    ItemID.HelFire));
+                RecipeGroup.RegisterGroup(AnyEel, 
+                    new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyEel"),
+                    ModContent.ItemType<UltraEel>(),
+                    ModContent.ItemType<LarvaEel>()));
             }
         }
 

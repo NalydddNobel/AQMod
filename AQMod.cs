@@ -23,7 +23,7 @@ using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Effects.Trails;
+using AQMod.Effects.Trails.Rendering;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Localization;
@@ -201,6 +201,7 @@ namespace AQMod
             {
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
                 Particle.PreDrawProjectiles.Render();
+                Trail.PreDrawProjectiles.Render();
                 Main.spriteBatch.End();
                 orig(self);
             }
@@ -868,7 +869,7 @@ namespace AQMod
                 DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
                 GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
                 SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
-                VertexStrip.Setup();
+                PrimitivesRender.Setup();
                 SceneLayersManager.Setup();
                 ScreenShakeManager.Load();
                 StarbyteColorCache.Init();

@@ -1,4 +1,90 @@
-####### 1.3.1 ######
+####### 1.3.2 #######
+
+Additions:
+Studies of the Inkblot, an unobtainable post-ML weapon.
+Crab Pot, a tool which lets you catch small fish while you're away!
+Glow String, a yoyo string which makes your yoyo string emit light!
+Resonance, an upgrade to Cascade (and the Starite Spinner)
+
+Secret buried chests which can spawn in the dirt. However they are invisible to the Spelunker Potion and Metal Detector!
+
+A world gen feature which clears out 1 tile high pools of water, can be disabled through a config
+
+Now randomly during the night, a Life Crystal or Mana Crystal can fall down like a Fallen Star!
+
+Omega Starite now has a new hit sound and also slightly shakes when hit
+
+Added a sound for when you inflict enemies with the "Blue Fire" debuff
+
+Changes:
+- Rewrote a portion of the description
+
+- Overhauled the internals of Omega Starite
+- Omega Starite's bullets no longer collide with tiles
+- The bullets shot from Omega Starite during the orbiting rings phase now increase in speed if you are far away
+- The Exotic Torches and Exotic Corals now use the time of day in order to determine their brightness
+- Removed the Cosmic Energy required to make the Mythic Starfruit
+- The Space Shot is no longer dropped by Super Starite, and is now crafted
+- Modified the visuals for the Starite Blade and Starite Spinner
+- Made the White Slime's jump slightly smarter
+- Removed the bullets required to craft the Terraroot
+- Created recipe groups so most items now only have one recipe
+
+- Made the Glimmer Event more common, and modified the way it spawns to be certain that it's common enough
+* It should now take at most 9 days between Glimmers, and at minimum 4
+
+- Increased the amount of Cosmic Energy required to craft Galactium
+* 5 -> 10
+
+- Nerfed the Starite Sword
+* Damage: 38 -> 30
+* Autoswing: False -> True
+
+- Nerfed the Starite Spinner
+* Damage: 20 -> 16
+
+- Nerfed the Space Shot
+* Use Time: 30 -> 36 (slower)
+* Autoswing: False -> True
+* The bullets shot from the star now have a slightly randomized velocity rotation 
+* The bullets from the Space Shot now deal half damage, except for the one that is going at the same velocity as the star
+
+- Buffed the Starite Staff:
+* Damage: 18 -> 24
+* Minion moves x2 as fast
+* Summons 1 star instead of 3 
+
+- Nerfed the Raygun
+* Damage: 32 -> 28
+* Knockback: 0.5 -> 1.5
+* Use Time: 16 -> 18 (slower)
+* Shoot Speed: 24 -> 52.5
+
+- Nerfed the Crystal Dagger
+Damage: 19 -> 12
+Use Time: 8 -> 10 (slower)
+
+Fixes:
+- Baguettes can now burn in lava
+- Fixed some localization errors with configs
+- Hopefully fixed an issue with Event Progress Bars
+- The Light emitted from the Hama Yumi is no longer bright green
+- Many special tiles can no longer be placed on ice created by the Ice Rod
+- Fixed the background starites from the Glimmer Event constantly respawning when they should be leaving
+- Fixed the Ocean Ravines generating improperly
+- Fixed quick buff eating a Vampire Squid every frame if you are a vampire 
+- Fixed an error regarding name tags net sending null strings in multiplayer
+- Fixed The Fan and Gale Streams enemies not syncing their wind speed adjustments in multiplayer
+- The Gale Streams event should now properly activate in multiplayer
+- The clouds from the Red Sprite should no longer appear invisible in multiplayer
+- Space Squid should no longer spawn extra projectiles in multiplayer
+- Fixed various things related to the Glimmer Event in multiplayer
+- Hopefully fixed an issue with Omega Starite spawning improperly during the Glimmer Event
+- The Starite minion can no longer see through walls
+- Fixed somes issues with incorrect sound folder paths, giving errors when playing sounds
+- Meteor bullets shot by the Raygun should now properly pierce and bounce of tiles
+
+####### 1.3.1 #######
 
 Additions:
 - Added the Depthscale, fishable in the Corruption after the Eater of Worlds has been defeated

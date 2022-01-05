@@ -108,11 +108,11 @@ namespace AQMod
             }
         }
 
-        public static void AddAll(this List<Vector2> v, Vector2 sub)
+        public static void AddAll(this List<Vector2> v, Vector2 add)
         {
             for (int i = 0; i < v.Count; i++)
             {
-                v[i] = new Vector2(v[i].X + sub.X, v[i].Y + sub.Y);
+                v[i] = new Vector2(v[i].X + add.X, v[i].Y + add.Y);
             }
         }
 

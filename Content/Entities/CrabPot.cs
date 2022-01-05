@@ -250,8 +250,8 @@ namespace AQMod.Content.Entities
 
         private bool FishingCheckRNG()
         {
-            return Main.rand.NextBool(60);
-            //return Main.rand.NextBool(2500);
+            //return Main.rand.NextBool(60);
+            return Main.rand.NextBool(5500);
         }
 
         private void FishingCheck()

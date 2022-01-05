@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Effects;
-using AQMod.Effects.Trails;
+using AQMod.Effects.Trails.Rendering;
 using AQMod.NPCs.Monsters.GaleStreams;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -123,7 +123,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                     projectile.Center - Main.screenPosition,
                     projectile.Center + new Vector2(Main.screenWidth * projectile.direction, 0f) - Main.screenPosition,
                     projectile.Center + new Vector2(Main.screenWidth * 2f * projectile.direction, 0f) - Main.screenPosition, };
-            VertexStrip.ReversedGravity(arr);
+            PrimitivesRender.ReversedGravity(arr);
             var smokeLineColor = drawColor * ((float)Math.Sin(Main.GlobalTime * 12f) + 2f);
             if (AQConfigClient.c_EffectQuality > 0.2f)
             {
@@ -135,24 +135,24 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                 {
                     initialArr[i] = center + new Vector2(200f / amount * i * projectile.direction, 0f) - Main.screenPosition;
                 }
-                VertexStrip.ReversedGravity(initialArr);
-                VertexStrip.FullDraw(AQTextures.Trails[TrailTex.ThickLine], VertexStrip.TextureTrail,
+                PrimitivesRender.ReversedGravity(initialArr);
+                PrimitivesRender.FullDraw(AQTextures.Trails[TrailTex.ThickLine], PrimitivesRender.TextureTrail,
                 initialArr, (p) => new Vector2(projectile.height * ((1f - p) * (1f - p))), (p) => drawColor * (1f - p));
                 initialArr[0] = center - Main.screenPosition;
                 for (int i = 1; i < amount; i++)
                 {
                     initialArr[i] = center + new Vector2(20f / amount * i * -projectile.direction, 0f) - Main.screenPosition;
                 }
-                VertexStrip.ReversedGravity(initialArr);
-                VertexStrip.FullDraw(AQTextures.Trails[TrailTex.ThickLine], VertexStrip.TextureTrail,
+                PrimitivesRender.ReversedGravity(initialArr);
+                PrimitivesRender.FullDraw(AQTextures.Trails[TrailTex.ThickLine], PrimitivesRender.TextureTrail,
                 initialArr, (p) => new Vector2(projectile.height * ((1f - p) * (1f - p))), (p) => drawColor * (1f - p));
-                VertexStrip.FullDraw(AQTextures.Trails[TrailTex.SmokeLine], VertexStrip.TextureTrail,
+                PrimitivesRender.FullDraw(AQTextures.Trails[TrailTex.SmokeLine], PrimitivesRender.TextureTrail,
                 initialArr, (p) => new Vector2(projectile.height * ((1f - p) * (1f - p))), (p) => smokeLineColor * (1f - p), Main.GlobalTime * 20f, 20f);
             }
 
-            VertexStrip.FullDraw(AQTextures.Trails[TrailTex.ThickLine], VertexStrip.TextureTrail,
+            PrimitivesRender.FullDraw(AQTextures.Trails[TrailTex.ThickLine], PrimitivesRender.TextureTrail,
                 arr, (p) => new Vector2(projectile.height), (p) => drawColor);
-            VertexStrip.FullDraw(AQTextures.Trails[TrailTex.SmokeLine], VertexStrip.TextureTrail,
+            PrimitivesRender.FullDraw(AQTextures.Trails[TrailTex.SmokeLine], PrimitivesRender.TextureTrail,
                 arr, (p) => new Vector2(projectile.height), (p) => smokeLineColor, Main.GlobalTime * 0.5f, 4f);
             var spotlight = AQTextures.Lights[LightTex.Spotlight100x100];
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.4f, projectile.rotation, spotlight.Size() / 2f, projectile.scale * (projectile.height / 32f), SpriteEffects.None, 0f);

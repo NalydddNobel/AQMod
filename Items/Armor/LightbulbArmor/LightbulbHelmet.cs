@@ -40,14 +40,7 @@ namespace AQMod.Items.Armor.LightbulbArmor
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.CopperBar, 8);
-            r.AddRecipeGroup("IronBar", 3);
-            r.AddIngredient(ModContent.ItemType<Lightbulb>(), 2);
-            r.AddTile(TileID.Anvils);
-            r.SetResult(this);
-            r.AddRecipe();
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.TinBar, 8);
+            r.AddRecipeGroup(AQRecipes.RecipeGroups.CopperOrTin, 8);
             r.AddRecipeGroup("IronBar", 3);
             r.AddIngredient(ModContent.ItemType<Lightbulb>(), 2);
             r.AddTile(TileID.Anvils);

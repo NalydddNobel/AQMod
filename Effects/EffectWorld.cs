@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.Graphics.Particles
+namespace AQMod.Effects
 {
-    internal sealed class ParticleWorld : ModWorld
+    internal sealed class EffectWorld : ModWorld
     {
         public override void Initialize()
         {
@@ -12,6 +12,8 @@ namespace AQMod.Common.Graphics.Particles
             {
                 Particle.PreDrawProjectiles.Initialize();
                 Particle.PostDrawPlayers.Initialize();
+
+                Trail.PreDrawProjectiles.Initialize();
             }
         }
 
@@ -21,6 +23,8 @@ namespace AQMod.Common.Graphics.Particles
             {
                 Particle.PreDrawProjectiles.UpdateParticles();
                 Particle.PostDrawPlayers.UpdateParticles();
+
+                Trail.PreDrawProjectiles.UpdateTrails();
             }
         }
     }

@@ -3,6 +3,7 @@ using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
+using AQMod.Effects.Trails.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -20,24 +21,27 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
             switch (type)
             {
                 case ProjectileID.Bullet:
-                return ModContent.ProjectileType<RayBullet>();
+                    return ModContent.ProjectileType<RayBullet>();
                 case ProjectileID.MeteorShot:
-                return ModContent.ProjectileType<RayMeteorBullet>();
+                    return ModContent.ProjectileType<RayMeteorBullet>();
                 case ProjectileID.ChlorophyteBullet:
-                return ModContent.ProjectileType<RayChlorophyteBullet>();
+                    return ModContent.ProjectileType<RayChlorophyteBullet>();
                 case ProjectileID.VenomBullet:
-                return ModContent.ProjectileType<RayVenomBullet>();
+                    return ModContent.ProjectileType<RayVenomBullet>();
                 case ProjectileID.CursedBullet:
-                return ModContent.ProjectileType<RayCursedBullet>();
+                    return ModContent.ProjectileType<RayCursedBullet>();
                 case ProjectileID.IchorBullet:
-                return ModContent.ProjectileType<RayIchorBullet>();
+                    return ModContent.ProjectileType<RayIchorBullet>();
             }
             return type;
         }
 
+        protected Func<float, Vector2> GetSizeMethod() => (p) => new Vector2(8f - p * 8f);
+        protected Func<float, Color> GetColorMethod(Color lightColor) => (p) => lightColor * (1f - p);
+
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[projectile.type] = 14;
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 200;
             ProjectileID.Sets.TrailingMode[projectile.type] = 2;
         }
 
@@ -49,7 +53,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
             projectile.ranged = true;
             projectile.friendly = true;
             projectile.timeLeft = 600;
-            projectile.extraUpdates = 2;
+            projectile.extraUpdates = 6;
             projectile.hide = true;
         }
 
@@ -84,23 +88,6 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
             if (!projectile.hide)
             {
                 projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
-                int dustType = ModContent.DustType<MonoDust>();
-                var dustColor = GetColor();
-                Main.dust[Dust.NewDust(projectile.position, projectile.width, projectile.height, dustType, 0f, 0f, 0, dustColor, 1.25f)].velocity *= 0.015f;
-                projectile.localAI[0]++;
-                if (projectile.localAI[0] > 20f)
-                {
-                    projectile.localAI[0] = 0f;
-                    int count = 10;
-                    float r = MathHelper.TwoPi / count;
-                    for (int i = 0; i < count; i++)
-                    {
-                        int d = Dust.NewDust(center, 2, 2, dustType, 0f, 0f, 0, dustColor, 0.75f);
-                        Main.dust[d].velocity = new Vector2(4f, 0f).RotatedBy(r * i);
-                        Main.dust[d].velocity.X *= 0.2f;
-                        Main.dust[d].velocity = Main.dust[d].velocity.RotatedBy(projectile.rotation - MathHelper.PiOver2);
-                    }
-                }
             }
         }
 
@@ -113,20 +100,13 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
             var texture = TextureGrabber.GetProjectile(projectile.type);
             var textureOrig = new Vector2(texture.Width / 2f, 2f);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimitivesRender.ShouldDrawVertexTrails(PrimitivesRender.GetVertexDrawingContext_Projectile(projectile)))
             {
-                var trueOldPos = new List<Vector2>();
-                for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
+                var renderingPositions = PrimitivesRender.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f - Main.screenPosition.X, projectile.height / 2f - Main.screenPosition.Y));
+                if (renderingPositions.Count > 1)
                 {
-                    if (projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    trueOldPos.Add(ScreenShakeManager.UpsideDownScreenSupport(projectile.oldPos[i] + offset - Main.screenPosition));
-                }
-                if (trueOldPos.Count > 1)
-                {
-                    var trail = new VertexStrip(AQTextures.Trails[TrailTex.Line], VertexStrip.TextureTrail);
-                    trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(8f - p * 8f), (p) => lightColor * (1f - p));
-                    trail.Draw();
+                    PrimitivesRender.FullDraw(AQTextures.Trails[TrailTex.ThickerLine], PrimitivesRender.TextureTrail,
+                        renderingPositions.ToArray(), GetSizeMethod(), GetColorMethod(lightColor));
                 }
             }
             else
@@ -174,6 +154,16 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
 
         public override void Kill(int timeLeft)
         {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                var renderingPositions = PrimitivesRender.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f, projectile.height / 2f));
+                if (renderingPositions.Count > 3)
+                {
+                    renderingPositions.RemoveAt(renderingPositions.Count - 1);
+                    Trail.PreDrawProjectiles.NewTrail(new DeathTrail(AQTextures.Trails[TrailTex.ThickerLine], PrimitivesRender.TextureTrail,
+                    renderingPositions, GetSizeMethod(), GetColorMethod(GetColor()), default, default, projectile.extraUpdates));
+                }
+            }
             int dustType = ModContent.DustType<MonoDust>();
             var dustColor = GetColor();
             for (int i = 0; i < 10; i++)

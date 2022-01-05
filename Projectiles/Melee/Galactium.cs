@@ -2,7 +2,7 @@
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Effects.Trails;
+using AQMod.Effects.Trails.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -111,7 +111,7 @@ namespace AQMod.Projectiles.Melee
                 }
             }
             float intensity = (0.1f + (1f - dist / 400f) * 0.9f) * ModContent.GetInstance<AQConfigClient>().EffectIntensity * ((255 - projectile.localAI[0]) / 255f);
-            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimitivesRender.ShouldDrawVertexTrails(PrimitivesRender.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
@@ -122,7 +122,7 @@ namespace AQMod.Projectiles.Melee
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new VertexStrip(AQTextures.Trails[TrailTex.Line], VertexStrip.TextureTrail);
+                    var trail = new PrimitivesRender(AQTextures.Trails[TrailTex.Line], PrimitivesRender.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity), (p) => color(projectile.timeLeft - p) * 0.5f * (1f - p));
                     trail.Draw();
                 }

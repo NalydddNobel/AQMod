@@ -38,14 +38,7 @@ namespace AQMod.Items.Armor
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.DartTrap);
-            r.AddIngredient(ItemID.CopperBar, 8);
-            r.AddRecipeGroup("PresurePlate");
-            r.AddTile(TileID.Anvils);
-            r.SetResult(this);
-            r.AddRecipe();
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.DartTrap);
-            r.AddIngredient(ItemID.TinBar, 8);
+            r.AddRecipeGroup(AQRecipes.RecipeGroups.CopperOrTin, 8);
             r.AddRecipeGroup("PresurePlate");
             r.AddTile(TileID.Anvils);
             r.SetResult(this);

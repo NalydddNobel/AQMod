@@ -3,7 +3,7 @@ using AQMod.Common.Graphics;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
-using AQMod.Effects.Trails;
+using AQMod.Effects.Trails.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -83,7 +83,7 @@ namespace AQMod.Projectiles.Magic
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             float colorMult = 1f / ProjectileID.Sets.TrailCacheLength[projectile.type];
             int trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
-            if (VertexStrip.ShouldDrawVertexTrails(VertexStrip.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimitivesRender.ShouldDrawVertexTrails(PrimitivesRender.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < trailLength; i++)
@@ -94,7 +94,7 @@ namespace AQMod.Projectiles.Magic
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new VertexStrip(AQTextures.Trails[TrailTex.ThickLine], VertexStrip.TextureTrail);
+                    var trail = new PrimitivesRender(AQTextures.Trails[TrailTex.ThickLine], PrimitivesRender.TextureTrail);
                     var clr2 = NarrizuulRainbow(projectile.localAI[1]) * 3;
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20f - p * 20f), (p) => clr2 * (0.65f + (float)(Math.Sin(Main.GlobalTime + p * 20f) * 0.1f)) * (1f - p));
                     trail.Draw();

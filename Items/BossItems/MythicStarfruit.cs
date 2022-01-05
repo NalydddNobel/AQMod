@@ -49,13 +49,7 @@ namespace AQMod.Items.BossItems
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.DemoniteBar, 5);
-            r.AddIngredient(ItemID.FallenStar);
-            r.AddTile(TileID.DemonAltar);
-            r.SetResult(this);
-            r.AddRecipe();
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.CrimtaneBar, 5);
+            r.AddRecipeGroup(AQRecipes.RecipeGroups.DemoniteBarOrCrimtaneBar, 5);
             r.AddIngredient(ItemID.FallenStar);
             r.AddTile(TileID.DemonAltar);
             r.SetResult(this);
