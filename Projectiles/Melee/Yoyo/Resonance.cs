@@ -103,8 +103,10 @@ namespace AQMod.Projectiles.Melee.Yoyo
                 colorMultiplier *= colorMultiplier;
                 Main.spriteBatch.Draw(spotlight, projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(100, 70, 1, 0) * colorMultiplier, 0f, spotlightOrigin, projectile.scale, SpriteEffects.None, 0f);
             }
+
             Main.spriteBatch.Draw(spotlight, projectile.position + offset - Main.screenPosition, null, new Color(125, 80, 60, 0), 0f, spotlightOrigin, projectile.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(spotlight, projectile.position + offset - Main.screenPosition, null, new Color(55, 25, 10, 0), 0f, spotlightOrigin, projectile.scale * 2f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AQTextures.Lights[LightTex.Spotlight66x66], projectile.position + offset - Main.screenPosition, null, new Color(55, 25, 10, 0), 0f, AQTextures.Lights[LightTex.Spotlight66x66].Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            
             Main.spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition, null, new Color(255, 255, 255, 255), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition, null, new Color(255, 255, 255, 0) * AQUtils.Wave(Main.GlobalTime * 6f, 0f, 0.5f), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
 

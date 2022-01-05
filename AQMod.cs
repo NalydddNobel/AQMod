@@ -975,7 +975,8 @@ namespace AQMod
             {
                 AQGraphics.TimerBasedOnTimeOfDay += (float)Main.dayLength;
             }
-            AQGraphics.TimerBasedOnTimeOfDay /= MathHelper.TwoPi;
+            AQGraphics.TimerBasedOnTimeOfDay /= 60f;
+
             if (GlimmerEvent.stariteDiscoParty)
             {
                 GlimmerEvent.stariteProjectileColoring = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
