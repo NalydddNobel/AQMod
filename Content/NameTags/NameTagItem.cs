@@ -145,7 +145,7 @@ namespace AQMod.Content
 
         public static string GetItemName(Item item)
         {
-            if (AQGraphics.Data.CanUseAssets)
+            if (AQGraphics.CanUseAssets)
             {
                 try
                 {

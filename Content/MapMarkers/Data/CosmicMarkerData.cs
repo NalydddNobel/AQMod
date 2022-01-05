@@ -35,7 +35,7 @@ namespace AQMod.Content.MapMarkers.Data
         public override void DrawMap(ref string mouseText, Player player, AQPlayer aQPlayer, MapMarkerLayerToggles toggles)
         {
             toggles.AddMapMarker(this);
-            if (aQPlayer.showCosmicMap && GlimmerEvent.IsActive)
+            if (aQPlayer.showCosmicMap && GlimmerEvent.IsGlimmerEventCurrentlyActive())
             {
                 float alpha = (float)Math.Sin(Main.GlobalTime * 7f) + 1f;
                 var texture = ModContent.GetTexture("AQMod/Assets/Map/GlimmerEvent");

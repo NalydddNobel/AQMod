@@ -3,7 +3,7 @@ using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Melee;
-using AQMod.NPCs.Boss.Starite;
+using AQMod.NPCs.Boss;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -58,7 +58,7 @@ namespace AQMod.Common.Graphics.SceneLayers
 
             var hitbox = new Rectangle((int)drawPos.X - 10, (int)drawPos.Y - 60, 20, 60);
             Vector2 trueMouseworld = AQUtils.TrueMouseworld;
-            if (hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y) && GlimmerEvent.IsActive)
+            if (hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y) && GlimmerEvent.IsGlimmerEventCurrentlyActive())
             {
                 int omegaStariteID = ModContent.NPCType<OmegaStarite>();
                 if (OmegaStariteScenes.SceneType == 0 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16))
@@ -116,7 +116,7 @@ namespace AQMod.Common.Graphics.SceneLayers
 
         public override void Update()
         {
-            if (!GlimmerEvent.IsActive || OmegaStariteScenes.SceneType > 1 || !closeEnoughToDraw())
+            if (!GlimmerEvent.IsGlimmerEventCurrentlyActive() || OmegaStariteScenes.SceneType > 1 || !closeEnoughToDraw())
                 return;
             var position = swordPos();
             Lighting.AddLight(position, new Vector3(1f, 1f, 1f));

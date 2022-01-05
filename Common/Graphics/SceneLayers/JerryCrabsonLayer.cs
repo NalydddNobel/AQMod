@@ -33,8 +33,8 @@ namespace AQMod.Common.Graphics.SceneLayers
                     if (Main.npc[i].type == crabsonType)
                     {
                         var crabsonPosition = Main.npc[i].Center;
-                        AQGraphics.Rendering.DrawJerryChain(chain, new Vector2(crabsonPosition.X - 24f, crabsonPosition.Y), Main.npc[(int)Main.npc[i].localAI[0]].Center);
-                        AQGraphics.Rendering.DrawJerryChain(chain, new Vector2(crabsonPosition.X + 24f, crabsonPosition.Y), Main.npc[(int)Main.npc[i].localAI[1]].Center);
+                        AQGraphics.Rendering.JerryChain(chain, new Vector2(crabsonPosition.X - 24f, crabsonPosition.Y), Main.npc[(int)Main.npc[i].localAI[0]].Center);
+                        AQGraphics.Rendering.JerryChain(chain, new Vector2(crabsonPosition.X + 24f, crabsonPosition.Y), Main.npc[(int)Main.npc[i].localAI[1]].Center);
                     }
                 }
             }

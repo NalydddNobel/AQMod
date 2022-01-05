@@ -307,7 +307,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Content.LegacyWorldEvents.CrabSeason.CrabSeason.Active && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
+            if (Content.World.Events.CrabSeason.Active && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
                 return SpawnCondition.OceanMonster.Chance * 0.2f;
             return 0f;
         }
@@ -347,7 +347,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             if ((legTip - kneePos).Length() > 8f)
             {
                 var chainTexture = ModContent.GetTexture(AQUtils.GetPath<StriderHookHook>("_Chain"));
-                AQGraphics.Rendering.DrawChain_UseLighting(chainTexture, kneePos, legTip, screenPos);
+                AQGraphics.Rendering.BasicChain_UseLighting(chainTexture, kneePos, legTip, screenPos);
             }
             Main.spriteBatch.Draw(texture, drawPosition - screenPos, _frames[1], Lighting.GetColor((int)drawPosition.X / 16, (int)drawPosition.Y / 16), npc.rotation + rotation, new Vector2(orig.X, 6f), npc.scale, effects, 0f);
         }

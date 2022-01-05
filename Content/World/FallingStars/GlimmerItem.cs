@@ -25,7 +25,7 @@ namespace AQMod.Content.World.FallingStars
                     {
                         Dust.NewDust(item.position, item.width, item.height, 15, item.velocity.X, item.velocity.Y, 150, default(Color), 1.2f);
                     }
-                    if (AQGraphics.Rendering.Culling.InScreenWorld(item.getRect()))
+                    if (AQGraphics.Cull_WorldPosition(item.getRect()))
                     {
                         for (int k = 0; k < 3; k++)
                         {
@@ -102,7 +102,7 @@ namespace AQMod.Content.World.FallingStars
                         }
                         break;
                 }
-                AQGraphics.Rendering.DrawFallenStarAura(item, spriteBatch, scale, auraColor, auraColor2);
+                AQGraphics.Rendering.FallenStarAura(item, spriteBatch, scale, auraColor, auraColor2);
             }
             return base.PreDrawInWorld(item, spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
         }

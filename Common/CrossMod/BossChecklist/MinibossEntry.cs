@@ -35,7 +35,7 @@ namespace AQMod.Common.CrossMod.BossChecklist
             this.despawnMessage = despawnMessage;
             this.bossHeadTexture = bossHeadTexture;
             this.available = available;
-            _aQMod = AQMod.Instance;
+            _aQMod = AQMod.GetInstance();
         }
 
         public MinibossEntry(Func<bool> downed, float progression, List<int> boss, string eventName, int summonItem = 0, List<int> loot = null, List<int> collectibles = null,
@@ -53,7 +53,7 @@ namespace AQMod.Common.CrossMod.BossChecklist
             this.despawnMessage = despawnMessage;
             this.bossHeadTexture = bossHeadTexture;
             this.available = available;
-            _aQMod = AQMod.Instance;
+            _aQMod = AQMod.GetInstance();
         }
 
         public void AddEntry(Mod bossChecklist)

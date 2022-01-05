@@ -4,11 +4,10 @@ using AQMod.Common.IO;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
-using AQMod.Content.LegacyWorldEvents.CrabSeason;
-using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.World.Events;
+using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Generation;
@@ -127,7 +126,7 @@ namespace AQMod.Common.DeveloperTools
                         {
                             argList[i - 1] = args[i];
                         }
-                        caller.Reply(AQMod.Instance.Call(argList).ToString());
+                        caller.Reply(AQMod.GetInstance().Call(argList).ToString());
                     }
                     break;
 
@@ -194,7 +193,7 @@ namespace AQMod.Common.DeveloperTools
 
                 case "wikiitem":
                     {
-                        WikiTestStuff.basicwikipage(AQMod.Instance.GetItem(args[1]));
+                        WikiTestStuff.basicwikipage(AQMod.GetInstance().GetItem(args[1]));
                     }
                     break;
 
@@ -451,7 +450,7 @@ namespace AQMod.Common.DeveloperTools
 
                 case "glimmerlayer":
                     {
-                        caller.Reply("glimmer layer: " + GlimmerEvent.GetLayerIndex(GlimmerEvent.GetTileDistance(caller.Player)));
+                        caller.Reply("glimmer layer: " + GlimmerEvent.GetLayerIndexThroughTileDistance(GlimmerEvent.GetTileDistanceUsingPlayer(caller.Player)));
                     }
                     break;
 
@@ -668,98 +667,6 @@ namespace AQMod.Common.DeveloperTools
                 case "coraltest":
                     {
                         caller.Reply(ExoticCoral.TryPlaceExoticBlotch((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, WorldGen.genRand.Next(3), 50).ToString());
-                    }
-                    break;
-
-                case "render":
-                    if (args.Length > 1)
-                    {
-                        object captureLock = new object();
-                        Monitor.Enter(captureLock);
-                        Main.GlobalTimerPaused = true;
-
-                        string saveLocation = Main.SavePath + Path.DirectorySeparatorChar + "render_output_" + args[1] + Path.DirectorySeparatorChar;
-                        Directory.CreateDirectory(saveLocation);
-
-                        switch (args[1])
-                        {
-                            case "omegastarite":
-                                {
-                                    NPC npc = new NPC();
-                                    npc.SetDefaults(ModContent.NPCType<NPCs.Boss.Starite.OmegaStarite>());
-                                    var drawPos = Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
-                                    npc.Center = drawPos;
-                                    var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)npc.modNPC;
-                                    omegaStarite.Init();
-                                    for (int i = 0; i < 240; i++)
-                                    {
-                                        var capture = new RenderTarget2D(Main.spriteBatch.GraphicsDevice, Main.screenWidth, Main.screenHeight, false, Main.spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-                                        var captureBatch = Main.spriteBatch;
-
-                                        captureBatch.GraphicsDevice.SetRenderTarget(capture);
-                                        captureBatch.GraphicsDevice.Clear(Color.Transparent);
-
-                                        captureBatch.Begin();
-
-                                        omegaStarite.npc.FindFrame();
-                                        omegaStarite.innerRingRotation += 0.0314f;
-                                        omegaStarite.innerRingRoll += 0.0157f;
-                                        omegaStarite.innerRingPitch += 0.01f;
-                                        omegaStarite.outerRingRotation += 0.0157f;
-                                        omegaStarite.outerRingRoll += 0.0314f;
-                                        omegaStarite.outerRingPitch += 0.011f;
-
-                                        omegaStarite.Spin(drawPos);
-                                        npc.modNPC.PreDraw(Main.spriteBatch, Color.White);
-
-                                        captureBatch.End();
-
-                                        captureBatch.GraphicsDevice.SetRenderTarget(null);
-
-                                        var stream = File.Create(saveLocation + "Frame_" + i + ".png");
-                                        capture.SaveAsPng(stream, capture.Width, capture.Height);
-                                        stream.Dispose();
-                                    }
-                                }
-                                break;
-
-                            case "omegastaritebosschecklistrender":
-                                {
-                                    var capture = new RenderTarget2D(Main.spriteBatch.GraphicsDevice, Main.screenWidth, Main.screenHeight, false, Main.spriteBatch.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
-                                    var captureBatch = Main.spriteBatch;
-
-                                    captureBatch.GraphicsDevice.SetRenderTarget(capture);
-                                    captureBatch.GraphicsDevice.Clear(Color.Transparent);
-
-                                    captureBatch.Begin();
-
-                                    NPC npc = new NPC();
-                                    npc.SetDefaults(ModContent.NPCType<NPCs.Boss.Starite.OmegaStarite>());
-
-                                    npc.Center = Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
-                                    var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)npc.modNPC;
-                                    omegaStarite.Init();
-                                    omegaStarite.innerRingRoll = -0.8f;
-                                    omegaStarite.outerRingRoll = -0.865f;
-                                    omegaStarite.Spin(npc.Center);
-                                    npc.modNPC.PreDraw(Main.spriteBatch, Color.White);
-
-                                    captureBatch.End();
-
-                                    captureBatch.GraphicsDevice.SetRenderTarget(null);
-
-                                    var stream = File.Create(saveLocation + "Frame_0.png");
-                                    capture.SaveAsPng(stream, capture.Width, capture.Height);
-                                    stream.Dispose();
-                                }
-                                break;
-                        }
-
-                        Monitor.Exit(captureLock);
-                    }
-                    else
-                    {
-                        caller.Reply("render failed");
                     }
                     break;
 
@@ -1138,7 +1045,7 @@ namespace AQMod.Common.DeveloperTools
                         {
                             bool meteorTime = GaleStreams.MeteorTime();
                             tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
-                            tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < AQMod.SpaceLayer - (40 * 16f)).ToString()));
+                            tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < 2560f).ToString()));
                             tooltips.Add(new TooltipLine(mod, "2", "windy day: " + ImitatedWindyDay.IsItAHappyWindyDay));
                             tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + GaleStreams.IsActive));
                         }

@@ -18,7 +18,7 @@ namespace AQMod.Localization
         {
             if (callbackDelay == 0)
             {
-                AQMod.Instance.Logger.Error("Missing text: " + key);
+                AQMod.GetInstance().Logger.Error("Missing text: " + key);
             }
             else
             {

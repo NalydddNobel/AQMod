@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Graphics;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -280,7 +281,7 @@ namespace AQMod.NPCs.Boss.Crabson
                         {
                             float distance = Vector2.Distance(npc.Center, Main.LocalPlayer.Center);
                             if (distance < 600)
-                                ScreenShakeManager.AddShake(new BasicScreenShake(16, AQMod.MultIntensity((int)(600f - distance) / 64)));
+                                ScreenShakeManager.AddShake(new BasicScreenShake(16, AQGraphics.MultIntensity((int)(600f - distance) / 64)));
                         }
                         Main.PlaySound(SoundID.Item14, npc.position);
                         for (int i = 0; i < 40; i++)

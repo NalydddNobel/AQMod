@@ -51,5 +51,14 @@ namespace AQMod.Items.Accessories.Yoyo
             return false;
         }
 
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.WhiteString);
+            r.AddIngredient(ModContent.ItemType<Materials.Energies.CosmicEnergy>(), 3);
+            r.AddTile(TileID.Loom);
+            r.SetResult(this);
+            r.AddRecipe();
+        }
     }
 }

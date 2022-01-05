@@ -75,7 +75,7 @@ namespace AQMod
                     catch (Exception e)
                     {
                         UnaffectedByWind[i] = true;
-                        var l = AQMod.Instance.Logger;
+                        var l = AQMod.GetInstance().Logger;
                         string projectileName;
                         if (i > Main.maxProjectileTypes)
                         {
@@ -188,7 +188,7 @@ namespace AQMod
             }
             if (projectile.aiStyle == 99 && Main.netMode != NetmodeID.Server && 
                 Main.player[projectile.owner].GetModPlayer<AQPlayer>().glowString && 
-                AQGraphics.Rendering.Culling.InScreenWorld(Utils.CenteredRectangle(projectile.Center, new Vector2(200f, 200f))))
+                AQGraphics.Cull(Utils.CenteredRectangle(projectile.Center - Main.screenPosition, new Vector2(200f, 200f))))
             {
                 var center = projectile.Center;
                 var playerCenter = Main.player[projectile.owner].MountedCenter;

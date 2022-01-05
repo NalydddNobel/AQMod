@@ -919,7 +919,7 @@ namespace AQMod.NPCs.Friendly
             potentialText.Add("BalloonMerchant.Chat.StreamingBalloon");
             potentialText.Add("BalloonMerchant.Chat.WhiteSlime");
 
-            if (AQMod.SudoHardmode)
+            if (WorldDefeats.SudoHardmode)
             {
                 potentialText.Add("BalloonMerchant.Chat.RedSprite");
                 potentialText.Add("BalloonMerchant.Chat.SpaceSquid");

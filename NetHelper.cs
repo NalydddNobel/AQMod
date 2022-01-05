@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Content;
-using AQMod.Content.LegacyWorldEvents.DemonSiege;
+using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GlimmerEvent;
 using System.IO;
 using Terraria;
@@ -52,7 +52,7 @@ namespace AQMod
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
                 return;
-            var p = AQMod.Instance.GetPacket();
+            var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.RequestDemonSiege);
             p.Write(x);
             p.Write(y);
@@ -70,7 +70,7 @@ namespace AQMod
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
                 return;
-            var p = AQMod.Instance.GetPacket();
+            var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.RequestDemonSiege);
             p.Write(x);
             p.Write(y);
@@ -81,14 +81,14 @@ namespace AQMod
         #region Glimmer Event 
         public static void RequestOmegaStarite()
         {
-            var p = AQMod.Instance.GetPacket();
+            var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.RequestOmegaStarite);
             p.Send();
         }
 
         public static void ActivateGlimmerEvent()
         {
-            var p = AQMod.Instance.GetPacket();
+            var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.ActivateGlimmerEvent);
             p.Write(GlimmerEvent.tileX);
             p.Write(GlimmerEvent.tileY);
@@ -99,13 +99,13 @@ namespace AQMod
         #region Misc
         public static void FlagSet(ushort type)
         {
-            var p = AQMod.Instance.GetPacket();
+            var p = AQMod.GetInstance().GetPacket();
             p.Write(type);
             p.Send();
         }
         public static void UpdateWindSpeeds()
         {
-            var p = AQMod.Instance.GetPacket();
+            var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.UpdateWindSpeeds);
             p.Write(Main.windSpeedSet);
             p.Write(Main.windSpeedSpeed);
@@ -117,7 +117,7 @@ namespace AQMod
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
                 return;
-            var p = AQMod.Instance.GetPacket();
+            var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.PreventedBloodMoon);
             p.Write(CosmicanonCounts.BloodMoonsPrevented);
             p.Send();
@@ -127,7 +127,7 @@ namespace AQMod
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
                 return;
-            var p = AQMod.Instance.GetPacket();
+            var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.PreventedGlimmer);
             p.Write(CosmicanonCounts.GlimmersPrevented);
             p.Send();
@@ -137,7 +137,7 @@ namespace AQMod
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
                 return;
-            var p = AQMod.Instance.GetPacket();
+            var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.PreventedEclipse);
             p.Write(CosmicanonCounts.EclipsesPrevented);
             p.Send();

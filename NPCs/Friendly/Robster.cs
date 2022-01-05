@@ -156,7 +156,7 @@ namespace AQMod.NPCs.Friendly
                     potentialText.Add(AQText.RobsterChat(6).Value);
             }
 
-            if (GlimmerEvent.IsActive)
+            if (GlimmerEvent.IsGlimmerEventCurrentlyActive())
             {
                 potentialText.Add(AQText.RobsterChat(2).Value);
                 potentialText.Add(AQText.RobsterChat(3).Value);

@@ -212,13 +212,13 @@ namespace AQMod.NPCs.Friendly
                     }
                 }
             }
-            if (GlimmerEvent.SpawnsActive(player))
+            if (GlimmerEvent.AreStariteSpawnsCurrentlyActive(player))
             {
                 potentialText.Add("Physicist.Chat.GlimmerEvent.0");
                 potentialText.Add("Physicist.Chat.GlimmerEvent.1");
                 potentialText.Add("Physicist.Chat.GlimmerEvent.2");
                 potentialText.Add("Physicist.Chat.GlimmerEvent.3");
-                if (GlimmerEvent.GetTileDistance(player) > 1000)
+                if (GlimmerEvent.GetTileDistanceUsingPlayer(player) > 1000)
                 {
                     if (GlimmerEvent.tileX < (int)(player.position.X + player.width / 2f) / 16f)
                         potentialText.Add("Physicist.Chat.GlimmerEvent.Source.West");

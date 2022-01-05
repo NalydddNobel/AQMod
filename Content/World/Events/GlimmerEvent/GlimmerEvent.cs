@@ -32,12 +32,12 @@ namespace AQMod.Content.World.Events.GlimmerEvent
         public static Color TextColor => new Color(238, 17, 68, 255);
         public static List<GlimmerEventLayer> Layers { get; private set; }
 
-        public static bool IsActive => tileX != 0;
         public static ushort tileX;
         public static ushort tileY;
-        public static int deactivationTimer = -1;
-        public static Color stariteProjectileColor { get; internal set; }
-        public static bool StariteDisco { get; internal set; }
+        public static int deactivationDelay = -1;
+        public static Color stariteProjectileColoring;
+        public static bool stariteDiscoParty;
+        public static bool renderUltimateSword;
 
         internal override EventEntry? BossChecklistEntry => new EventEntry(
             () => WorldDefeats.DownedGlimmer,
@@ -71,8 +71,8 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             "AQMod/Assets/BossChecklist/GlimmerEvent",
             "AQMod/Assets/EventIcons/GlimmerEvent");
         internal override EventProgressBar ProgressBar => new BasicEventProgressBar(
-                    () => CanShowInvasionProgress(),
-                    () => 1f - (float)GetTileDistance(Main.LocalPlayer) / MaxDistance,
+                    () => IsAbleToShowInvasionProgressBar(),
+                    () => 1f - (float)GetTileDistanceUsingPlayer(Main.LocalPlayer) / MaxDistance,
                     "AQMod/Assets/EventIcons/GlimmerEvent",
                     "Mods.AQMod.EventName.GlimmerEvent",
                      new Color(120, 20, 110, 128));
@@ -91,14 +91,14 @@ namespace AQMod.Content.World.Events.GlimmerEvent
         {
             tileX = 0;
             tileY = 0;
-            StariteDisco = false;
-            stariteProjectileColor = StariteProjectileColorOrig;
-            deactivationTimer = -1;
+            stariteDiscoParty = false;
+            stariteProjectileColoring = StariteProjectileColorOrig;
+            deactivationDelay = -1;
         }
 
         public override TagCompound Save()
         {
-            if (deactivationTimer > 0)
+            if (deactivationDelay > 0)
                 Deactivate();
             var tag = new TagCompound()
             {
@@ -156,13 +156,13 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 return;
             if (Main.dayTime || Main.pumpkinMoon || Main.snowMoon)
             {
-                if (IsActive)
+                if (IsGlimmerEventCurrentlyActive())
                     Deactivate();
                 return;
             }
-            if (!IsActive)
+            if (!IsGlimmerEventCurrentlyActive())
             {
-                deactivationTimer = -1;
+                deactivationDelay = -1;
                 return;
             }
 
@@ -171,12 +171,12 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 ImitatedFallingStars.CastFallingStar();
             }
 
-            if (deactivationTimer > 0)
+            if (deactivationDelay > 0)
             {
-                deactivationTimer--;
-                if (deactivationTimer == 0)
+                deactivationDelay--;
+                if (deactivationDelay == 0)
                 {
-                    deactivationTimer = -1;
+                    deactivationDelay = -1;
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         AQMod.BroadcastMessage("Mods.AQMod.EventEnding.GlimmerEvent", TextColor);
@@ -185,27 +185,27 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                     Deactivate();
                 }
             }
-            if (tileY == 0)
+            if (tileY == 0 || tileY == (ushort)Main.worldSurface)
             {
-                tileY = ManageGlimmerY();
+                ManageGlimmerEventYCoordinate();
             }
             else
             {
                 if (!Framing.GetTileSafely(tileX, tileY).active() || Framing.GetTileSafely(tileX, tileY - 1).active())
-                    tileY = ManageGlimmerY();
+                    ManageGlimmerEventYCoordinate();
             }
         }
 
         public override void NetSend(BinaryWriter writer)
         {
-            writer.Write(IsActive);
-            if (IsActive)
+            writer.Write(IsGlimmerEventCurrentlyActive());
+            if (IsGlimmerEventCurrentlyActive())
             {
                 writer.Write(tileX);
                 writer.Write(tileY);
             }
-            writer.Write(StariteDisco);
-            writer.Write(deactivationTimer);
+            writer.Write(stariteDiscoParty);
+            writer.Write(deactivationDelay);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -215,16 +215,36 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 tileX = reader.ReadUInt16();
                 tileY = reader.ReadUInt16();
             }
-            StariteDisco = reader.ReadBoolean();
-            deactivationTimer = reader.ReadInt32();
+            else
+            {
+                tileX = 0;
+                tileY = 0;
+            }
+            stariteDiscoParty = reader.ReadBoolean();
+            deactivationDelay = reader.ReadInt32();
         }
 
-        public static bool SpawnsActive(Player player)
+        public static bool IsGlimmerEventCurrentlyActive()
         {
-            return IsActive && deactivationTimer <= 0 && player.position.Y < (Main.worldSurface + 50) * 16;
+            return tileX != 0;
         }
 
-        public static int GetLayerIndex(int tileDistance)
+        public static bool AreStariteSpawnsCurrentlyActive(Player player)
+        {
+            return IsGlimmerEventCurrentlyActive() && deactivationDelay <= 0 && player.position.Y < (Main.worldSurface + 50) * 16;
+        }
+
+        public static bool IsAbleToShowInvasionProgressBar()
+        {
+            if (AreStariteSpawnsCurrentlyActive(Main.LocalPlayer) && OmegaStariteScenes.OmegaStariteIndexCache == -1)
+            {
+                if (GetTileDistanceUsingPlayer(Main.LocalPlayer) < MaxDistance)
+                    return true;
+            }
+            return false;
+        }
+
+        public static int GetLayerIndexThroughTileDistance(int tileDistance)
         {
             int layerIndex = -1;
             for (int i = Layers.Count - 1; i >= 0; i--)
@@ -238,29 +258,22 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             return layerIndex;
         }
 
-        public static void SortLayers()
+        public static void ManageGlimmerEventYCoordinate()
         {
-            Layers.Sort((l, l2) => l.Distance.CompareTo(l2.Distance));
-            var list = new List<GlimmerEventLayer>();
-            for (int i = Layers.Count - 1; i >= 0; i--) // reverses the order of the layers
+            for (ushort j = 180; j < Main.worldSurface; j++)
             {
-                list.Add(Layers[i]);
+                if (Framing.GetTileSafely(tileX, j).active() && Main.tileSolid[Main.tile[tileX, j].type] && !Main.tileSolidTop[Main.tile[tileX, j].type])
+                {
+                    tileY = j;
+                    return;
+                }
             }
-            Layers = list;
+            tileY = (ushort)Main.worldSurface;
         }
 
-        /// <summary>
-        /// Whether or not the invasion progress for the Glimmer Event can be shown
-        /// </summary>
-        /// <returns></returns>
-        public static bool CanShowInvasionProgress()
+        public static int GetTileDistanceUsingPlayer(Player player)
         {
-            if (SpawnsActive(Main.LocalPlayer) && OmegaStariteScenes.OmegaStariteIndexCache == -1)
-            {
-                if (GetTileDistance(Main.LocalPlayer) < MaxDistance)
-                    return true;
-            }
-            return false;
+            return (int)((player.position.X + player.width) / 16 - tileX).Abs();
         }
 
         public static bool Activate()
@@ -275,12 +288,12 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             {
                 if (statuePlacements.Count == 1)
                 {
-                    Activate(statuePlacements[0].Position.X, statuePlacements[0].Position.Y);
+                    ActivateAtCoordinates(statuePlacements[0].Position.X, statuePlacements[0].Position.Y);
                 }
                 else
                 {
                     int randIndex = Main.rand.Next(statuePlacements.Count);
-                    Activate(statuePlacements[randIndex].Position.X, statuePlacements[randIndex].Position.Y);
+                    ActivateAtCoordinates(statuePlacements[randIndex].Position.X, statuePlacements[randIndex].Position.Y);
                 }
                 return true;
             }
@@ -305,15 +318,16 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 if (!invaildSpot)
                 {
                     tileX = (ushort)x;
-                    tileY = ManageGlimmerY();
+                    ManageGlimmerEventYCoordinate();
                     return true;
                 }
             }
             return false;
         }
 
-        public static void Activate(int x, int y)
+        public static void ActivateAtCoordinates(int x, int y)
         {
+            renderUltimateSword = true;
             OmegaStariteScenes.SceneType = 0;
             tileX = (ushort)x;
             tileY = (ushort)y;
@@ -321,39 +335,15 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public static void Deactivate()
         {
-            deactivationTimer = -1;
+            deactivationDelay = -1;
             OmegaStariteScenes.SceneType = 0;
             tileX = 0;
             tileY = 0;
-            if (StariteDisco)
+            if (stariteDiscoParty)
             {
-                StariteDisco = false;
-                stariteProjectileColor = StariteProjectileColorOrig;
+                stariteDiscoParty = false;
+                stariteProjectileColoring = StariteProjectileColorOrig;
             }
-        }
-
-        internal static ushort ManageGlimmerY()
-        {
-            for (ushort j = 180; j < Main.worldSurface; j++)
-            {
-                if (Framing.GetTileSafely(tileX, j).active() && Main.tileSolid[Main.tile[tileX, j].type] && !Main.tileSolidTop[Main.tile[tileX, j].type])
-                    return j;
-            }
-            return (ushort)Main.worldSurface;
-        }
-
-        public static int GetTileDistance(Player player)
-        {
-            return (int)((player.position.X + player.width) / 16 - tileX).Abs();
-        }
-
-        public static void OnTurnNight()
-        {
-        }
-
-        public static bool ShouldKillStar(NPC npc)
-        {
-            return Main.dayTime;
         }
     }
 }

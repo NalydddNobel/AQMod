@@ -29,7 +29,7 @@ namespace AQMod.Projectiles.Monster.Starite
             if (Main.netMode == NetmodeID.Server)
             {
                 var omegaStarite = Main.npc[(int)projectile.ai[0]];
-                if (!omegaStarite.active || omegaStarite.ai[0] == -1f || !(omegaStarite.modNPC is NPCs.Boss.Starite.OmegaStarite))
+                if (!omegaStarite.active || omegaStarite.ai[0] == -1f || !(omegaStarite.modNPC is NPCs.Boss.OmegaStarite))
                     return; 
                 projectile.ai[1] = 1f;
                 projectile.timeLeft = 32;
@@ -48,13 +48,14 @@ namespace AQMod.Projectiles.Monster.Starite
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)Main.npc[(int)projectile.ai[0]].modNPC;
-            for (int i = 0; i < omegaStarite.orbs.Count; i++)
+            var omegaStarite = (NPCs.Boss.OmegaStarite)Main.npc[(int)projectile.ai[0]].modNPC;
+            for (int i = 0; i < omegaStarite.rings.Length; i++)
             {
-                var collisionCenter = new Vector2(omegaStarite.orbs[i].position.X, omegaStarite.orbs[i].position.Y);
-                Rectangle rect = Utils.CenteredRectangle(collisionCenter, new Vector2(50f, 50f));
-                if (rect.Intersects(targetHitbox))
-                    return true;
+                for (int j = 0; j < omegaStarite.rings[i].amountOfSegments; j++)
+                {
+                    if (omegaStarite.rings[i].CachedHitboxes[j].Intersects(targetHitbox))
+                        return true;
+                }
             }
             return false;
         }

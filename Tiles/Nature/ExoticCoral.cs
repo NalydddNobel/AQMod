@@ -90,12 +90,12 @@ namespace AQMod.Tiles.Nature
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             float intensityMult = 0.1f;
-            var screenCenter = AQGraphics.Data.ScreenCenter;
+            var screenCenter = AQGraphics.ScreenCenter;
             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
             var distance = (screenCenter - screenPosition).Length();
             if (distance < GlowDistance)
                 intensityMult += 1f - distance / GlowDistance;
-            float time = Main.GlobalTime * 2f + (i + j) * 0.125f;
+            float time = AQGraphics.TimerBasedOnTimeOfDay * 2f + (i + j) * 0.125f;
             switch (Main.tile[i, j].frameX / 18)
             {
                 case 0:

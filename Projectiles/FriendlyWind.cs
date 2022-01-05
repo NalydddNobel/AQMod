@@ -1,4 +1,5 @@
-﻿using AQMod.Common.Graphics.Particles;
+﻿using AQMod.Common.Graphics;
+using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.World.Events.GaleStreams;
@@ -97,7 +98,7 @@ namespace AQMod.Projectiles
                     }
                 }
             }
-            if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive && Main.rand.NextBool(3))
+            if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive && Main.rand.NextBool(3))
             {
                 var rect = new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height);
                 var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
@@ -114,7 +115,7 @@ namespace AQMod.Projectiles
 
         public override void Kill(int timeLeft)
         {
-            if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
+            if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
             {
                 var trueOldPos = projectile.oldPos.AsAddAll(new Vector2(projectile.width / 2f, projectile.height / 2f));
                 for (int i = 0; i < trueOldPos.Length; i++)

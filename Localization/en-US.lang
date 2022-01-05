@@ -194,6 +194,20 @@ Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down wi
 Tooltips.InventoryPiggyBankFunction=Works in your inventory or piggy bank
 Tooltips.ToggleKeyBind=You can toggle this function by pressing {0}
 
+NPCName.Memorialist=Memorialist
+
+Memorialist.Chat.0=What? Do you think I'm a freak? You must have not looked in the mirror recently.
+Memorialist.Chat.1=Who's Issac? Sounds like the name of a crybaby kid.
+Memorialist.Chat.2=You need a service from me? You must not be a good hero.
+Memorialist.Chat.3=I wonder where my friend Meru has gone.
+Memorialist.Chat.4=What do you mean I look like a Zoologist? I hate animals!
+Memorialist.Chat.5=I used to be pals with an anthropomorphic bat. They really liked talking about touchy subjects about you humans, it was so awesome. One day they wanted to see if I wanted to be a bat, I couldn't say no.
+
+Memorialist.Chat.Exporter=That lobster thing... what's his name? {0}? He's almost as addicted to crime as me!
+Memorialist.Chat.Physicist={0} is such a loser. Doesn't even think I am real! She's absolutely insane.
+
+Memorialist.Chat.Mod.Split.Sheep=Have you seen one of those fluffy sheep around the snow? They look awfully good for a sacrifice.
+
 # Balloon Merchant
 NPCName.BalloonMerchant=Air Hunter
 BalloonMerchant.Chat.Introduction=You are an interesting looking person, I sell materials I have gathered at quite a good price. You can catch me hunting up in space while the wind is fierce.

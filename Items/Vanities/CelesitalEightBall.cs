@@ -108,7 +108,7 @@ namespace AQMod.Items.Vanities
                     }
                     return true;
                 }
-                if (GlimmerEvent.IsActive && Main.rand.NextBool())
+                if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && Main.rand.NextBool())
                 {
                     if ((int)(player.Center.X / 16) == GlimmerEvent.tileX)
                     {

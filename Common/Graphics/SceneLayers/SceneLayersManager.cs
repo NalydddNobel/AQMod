@@ -40,7 +40,7 @@ namespace AQMod.Common.Graphics.SceneLayers
                     {
                         if (layer.Value.ShouldReset())
                         {
-                            AQMod.Instance.Logger.Debug(layer.Value.Name + " is resetting");
+                            //AQMod.GetInstance().Logger.Debug(layer.Value.Name + " is resetting");
                             layer.Value.ResetTargets(Main.instance.GraphicsDevice);
                         }
                         layer.Value.DrawTargets();
@@ -169,9 +169,9 @@ namespace AQMod.Common.Graphics.SceneLayers
                 }
                 catch
                 {
-                    if (AQMod.Instance != null && AQMod.Instance.Logger != null)
+                    if (AQMod.GetInstance() != null && AQMod.GetInstance().Logger != null)
                     {
-                        var l = AQMod.Instance.Logger;
+                        var l = AQMod.GetInstance().Logger;
                         l.Error("Couldn't fully unload scene layers");
                         l.Error("Failed Step: " + failedStep);
                         l.Error("Failed Layer: " + failedLayer);

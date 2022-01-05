@@ -1,4 +1,5 @@
-﻿using AQMod.Dusts;
+﻿using AQMod.Common;
+using AQMod.Dusts;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -44,7 +45,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.75f);
-            if (AQMod.SudoHardmode)
+            if (WorldDefeats.SudoHardmode)
             {
                 npc.lifeMax *= 2;
                 npc.knockBackResist = 0f;
@@ -86,7 +87,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         {
                             if (npc.localAI[0] == 0 && Main.netMode != NetmodeID.Server)
                             {
-                                AQSound.LegacyPlay(SoundType.NPCHit, AQSound.Paths.Boowomp, npc.Center, 0.9f);
+                                AQSound.Play(SoundType.NPCHit, "boowomp", npc.Center, 0.9f);
                             }
                             npc.localAI[0]++;
                         }
@@ -115,22 +116,51 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         npc.TargetClosest();
                         npc.ai[1] = 0f;
                         npc.ai[0] += 960f;
+                        bool close = false;
+                        if (npc.HasValidTarget)
+                        {
+                            close = Vector2.Distance(npc.Center, Main.player[npc.target].Center) < 360f;
+                        }
                         if (npc.ai[0] > 5000f)
                         {
                             npc.ai[0] = -80f;
                             npc.ai[1] = 1f;
-                            npc.velocity.Y += -18f;
-                            npc.velocity.X += 6f * npc.direction;
+                            if (close)
+                            {
+                                npc.velocity.Y += -12f;
+                                npc.velocity.X += 8f * npc.direction;
+                            }
+                            else
+                            {
+                                npc.velocity.Y += -18f;
+                                npc.velocity.X += 6f * npc.direction;
+                            }
                         }
                         else if (npc.ai[0] > 3000f && npc.ai[0] < 4000f)
                         {
-                            npc.velocity.Y += -9.5f;
-                            npc.velocity.X += 9f * npc.direction;
+                            if (close)
+                            {
+                                npc.velocity.Y += -4f;
+                                npc.velocity.X += 10f * npc.direction;
+                            }
+                            else
+                            {
+                                npc.velocity.Y += -9.5f;
+                                npc.velocity.X += 9f * npc.direction;
+                            }
                         }
                         else
                         {
-                            npc.velocity.Y += -13.5f;
-                            npc.velocity.X += 6f * npc.direction;
+                            if (close)
+                            {
+                                npc.velocity.Y += -8.5f;
+                                npc.velocity.X += 7.5f * npc.direction;
+                            }
+                            else
+                            {
+                                npc.velocity.Y += -13.5f;
+                                npc.velocity.X += 6f * npc.direction;
+                            }
                         }
                         npc.noTileCollide = true;
                         npc.netUpdate = true;
@@ -284,7 +314,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
 
-            if (AQMod.SudoHardmode && Main.rand.NextBool(4))
+            if (WorldDefeats.SudoHardmode && Main.rand.NextBool(4))
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Magic.Umystick>());
             }

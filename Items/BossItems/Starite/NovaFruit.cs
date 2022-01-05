@@ -4,7 +4,7 @@ using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Localization;
-using AQMod.NPCs.Boss.Starite;
+using AQMod.NPCs.Boss;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -36,7 +36,7 @@ namespace AQMod.Items.BossItems.Starite
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime && !GlimmerEvent.IsActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !GlimmerEvent.IsGlimmerEventCurrentlyActive() && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool UseItem(Player player)

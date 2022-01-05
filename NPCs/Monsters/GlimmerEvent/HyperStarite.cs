@@ -111,7 +111,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
 
         public override void AI()
         {
-            if (Content.World.Events.GlimmerEvent.GlimmerEvent.ShouldKillStar(npc))
+            if (Main.dayTime)
             {
                 npc.life = -1;
                 npc.HitEffect();

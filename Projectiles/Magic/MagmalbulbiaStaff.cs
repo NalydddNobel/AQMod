@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Graphics;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -51,7 +52,7 @@ namespace AQMod.Projectiles.Magic
                 float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
                 if (distance < 400)
                 {
-                    ScreenShakeManager.AddShake(new BasicScreenShake(8, AQMod.MultIntensity((int)(400f - distance) / 32)));
+                    ScreenShakeManager.AddShake(new BasicScreenShake(8, AQGraphics.MultIntensity((int)(400f - distance) / 32)));
                 }
             }
             MagmalbulbiaStaffExplosion.Explode(projectile.Center + projectile.velocity, projectile.damage / 2, projectile.damage, projectile.knockBack, projectile.owner);

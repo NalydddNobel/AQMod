@@ -12,13 +12,12 @@ using AQMod.Common.UserInterface;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Entities;
-using AQMod.Content.LegacyWorldEvents.CrabSeason;
-using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Content.MapMarkers;
 using AQMod.Content.NameTags;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events;
+using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Events.ProgressBars;
@@ -29,7 +28,7 @@ using AQMod.Effects.WorldEffects;
 using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Localization;
 using AQMod.NPCs;
-using AQMod.NPCs.Boss.Starite;
+using AQMod.NPCs.Boss;
 using AQMod.Sounds;
 using log4net;
 using Microsoft.Xna.Framework;
@@ -50,18 +49,10 @@ namespace AQMod
 {
     public class AQMod : Mod
     {
-        public static AQMod Instance => ModContent.GetInstance<AQMod>();
-
-        public const int SpaceLayerTile = 200;
-        public const int SpaceLayer = SpaceLayerTile * 16;
-        /// <summary>
-        /// Basically guesses if the game is still active, should only really use for drawing methods that do things like summon dust
-        /// </summary>
-        public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
-        /// <summary>
-        /// If WoF or Omega Starite have been defeated
-        /// </summary>
-        public static bool SudoHardmode => Main.hardMode || WorldDefeats.DownedStarite;
+        public static AQMod GetInstance()
+        {
+            return ModContent.GetInstance<AQMod>();
+        }
 
         public static bool spawnStarite;
         public static int dayrateIncrease;
@@ -74,10 +65,9 @@ namespace AQMod
         /// This is normally used to prevent threaded assets from loading
         /// </summary>
         internal static bool Unloading { get; private set; }
-        public static bool EvilProgressionLock { get; private set; }
         public static MapMarkerManager MapMarkers => ModContent.GetInstance<MapMarkerManager>();
 
-        private static List<CachedTask> cachedLoadTasks;
+        internal static List<CachedTask> cachedLoadTasks;
         [Obsolete("Replaced with interfaces")]
         /// <summary>
         /// The active instance of Item Overlays, this is not initialized on the server
@@ -139,7 +129,7 @@ namespace AQMod
 
             public static DebugLogger GetDebugLogger()
             {
-                var logger = Instance.Logger;
+                var logger = GetInstance().Logger;
                 //logger.Info("Accessed debug logger at: " + Environment.StackTrace);
                 return new DebugLogger(logger);
             }
@@ -653,7 +643,7 @@ namespace AQMod
                 {
                     SceneLayersManager.DrawLayer(SceneLayering.PreRender);
                     SceneLayersManager.RenderTargetLayers.PreRender();
-                    AQGraphics.Rendering.Culling.update();
+                    AQGraphics.renderBox = new Rectangle(-20, -20, Main.screenWidth + 20, Main.screenHeight + 20);
                     _lastScreenWidth = Main.screenWidth;
                     _lastScreenHeight = Main.screenHeight;
                 }
@@ -864,7 +854,6 @@ namespace AQMod
             ModCallDictionary.Load();
             AprilFoolsJoke.UpdateActive();
             var server = ModContent.GetInstance<AQConfigServer>();
-            ApplyServerConfig(server);
             if (!Main.dedServ)
             {
                 var client = AQConfigClient.Instance;
@@ -981,13 +970,19 @@ namespace AQMod
                 }
             }
 
-            if (GlimmerEvent.StariteDisco)
+            AQGraphics.TimerBasedOnTimeOfDay = (float)Main.time;
+            if (!Main.dayTime)
             {
-                GlimmerEvent.stariteProjectileColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
+                AQGraphics.TimerBasedOnTimeOfDay += (float)Main.dayLength;
+            }
+            AQGraphics.TimerBasedOnTimeOfDay /= MathHelper.TwoPi;
+            if (GlimmerEvent.stariteDiscoParty)
+            {
+                GlimmerEvent.stariteProjectileColoring = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
             }
             else
             {
-                GlimmerEvent.stariteProjectileColor = Main.netMode != NetmodeID.Server
+                GlimmerEvent.stariteProjectileColoring = Main.netMode != NetmodeID.Server
                     ? ModContent.GetInstance<StariteConfig>().StariteProjectileColoring
                     : GlimmerEvent.StariteProjectileColorOrig;
             }
@@ -1041,7 +1036,7 @@ namespace AQMod
                 music = DemonSiegeMusic.GetMusicID();
                 priority = MusicPriority.Event;
             }
-            else if (GlimmerEvent.IsActive && player.position.Y < Main.worldSurface * 16.0)
+            else if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && player.position.Y < Main.worldSurface * 16.0)
             {
                 int tileDistance = (int)(player.Center.X / 16 - GlimmerEvent.tileX).Abs();
                 if (tileDistance < GlimmerEvent.MaxDistance)
@@ -1060,11 +1055,6 @@ namespace AQMod
         public override void PostDrawFullscreenMap(ref string mouseText)
         {
             MapInterfaceManager.Apply(ref mouseText, drawGlobes: true);
-        }
-
-        private static Vector2 GetMapPosition(Vector2 map, Vector2 tileCoords, float mapScale)
-        {
-            return new Vector2(tileCoords.X * mapScale + map.X, tileCoords.Y * mapScale + map.Y);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -1120,11 +1110,6 @@ namespace AQMod
             return null;
         }
 
-        public static void ApplyServerConfig(AQConfigServer serverConfig)
-        {
-            EvilProgressionLock = serverConfig.evilProgressionLock;
-        }
-
         internal static void BroadcastMessage(string key, Color color)
         {
             if (Main.netMode == NetmodeID.Server)
@@ -1142,43 +1127,8 @@ namespace AQMod
             return 61 + random.Next(3);
         }
 
-        internal static bool VariableLuck(int chance)
-        {
-            return VariableLuck(chance, Main.rand);
-        }
-        internal static bool VariableLuck(int chance, UnifiedRandom rand)
-        {
-            return chance < 1 || rand.NextBool(chance);
-        }
-
-        internal static bool AnyBossDefeated()
-        {
-            return AnyVanillaBossDefeated() || AnyAequusBossDefeated();
-        }
-
-        internal static bool AnyAequusBossDefeated()
-        {
-            return WorldDefeats.DownedCrabson || WorldDefeats.DownedStarite;
-        }
-
-        internal static bool AnyVanillaBossDefeated()
-        {
-            return NPC.downedSlimeKing ||
-                NPC.downedBoss1 ||
-                NPC.downedBoss2 ||
-                NPC.downedBoss3 ||
-                NPC.downedQueenBee ||
-                Main.hardMode;
-        }
-
-        public static int MultIntensity(int input)
-        {
-            return (int)(input * AQConfigClient.c_EffectIntensity);
-        }
-
         internal static void addLoadTask(CachedTask task)
         {
-            cachedLoadTasks.Add(task);
         }
 
         private static void invokeTasks()
@@ -1193,7 +1143,7 @@ namespace AQMod
                 }
                 catch (Exception e)
                 {
-                    var aQMod = Instance;
+                    var aQMod = GetInstance();
                     aQMod.Logger.Error("An error occured when invoking cached load tasks.");
                     aQMod.Logger.Error(e.Message);
                     aQMod.Logger.Error(e.StackTrace);

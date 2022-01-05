@@ -2,7 +2,7 @@
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
-using AQMod.NPCs.Boss.Starite;
+using AQMod.NPCs.Boss;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,7 +31,7 @@ namespace AQMod.Items.BossItems
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime && !GlimmerEvent.IsActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !GlimmerEvent.IsGlimmerEventCurrentlyActive() && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool UseItem(Player player)

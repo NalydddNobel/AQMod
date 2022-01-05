@@ -1,8 +1,9 @@
-﻿using AQMod.Common.Graphics.Particles;
+﻿using AQMod.Common.Graphics;
+using AQMod.Common.Graphics.Particles;
 using AQMod.Common.NoHitting;
 using AQMod.Content;
-using AQMod.Content.LegacyWorldEvents.CrabSeason;
 using AQMod.Content.Quest.Lobster;
+using AQMod.Content.World.Events;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
@@ -428,7 +429,7 @@ namespace AQMod
                     catch (Exception e)
                     {
                         UnaffectedByWind[i] = true;
-                        var l = AQMod.Instance.Logger;
+                        var l = AQMod.GetInstance().Logger;
                         string npcname;
                         if (i > Main.maxNPCTypes)
                         {
@@ -804,7 +805,7 @@ namespace AQMod
         {
             if (shimmering)
             {
-                if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
+                if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
                 {
                     var center = npc.Center;
                     var dustPos = npc.position + new Vector2(Main.rand.Next(npc.width + 4) - 2f, Main.rand.Next(npc.height + 4) - 2f);
@@ -840,7 +841,7 @@ namespace AQMod
             }
             if (notFrostburn)
             {
-                if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
+                if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
                 {
                     int amount = (npc.width + npc.height) / 30;
                     if (amount < 3)
@@ -868,7 +869,7 @@ namespace AQMod
                 {
                     fireColor = Buffs.Debuffs.CrimsonHellfire.FireColor;
                 }
-                if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
+                if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
                 {
                     var pos = npc.position - new Vector2(2f, 2f);
                     var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);

@@ -35,7 +35,7 @@ namespace AQMod.Common.CrossMod.BossChecklist
             this.despawnMessage = despawnMessage;
             bossHead = eventIcon;
             this.available = available;
-            _aQMod = AQMod.Instance;
+            _aQMod = AQMod.GetInstance();
         }
 
         public void AddEntry(Mod bossChecklist)

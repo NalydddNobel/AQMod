@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -31,6 +32,11 @@ namespace AQMod.Common
         public static bool PhysicistIntroduction { get; set; }
 
         public static bool TownNPCLavaImmunity { get; set; }
+
+        /// <summary>
+        /// If WoF or Omega Starite have been defeated
+        /// </summary>
+        public static bool SudoHardmode => Main.hardMode || WorldDefeats.DownedStarite;
 
         public override void Initialize()
         {
@@ -142,6 +148,26 @@ namespace AQMod.Common
 
             DownedSpaceSquid = reader.ReadBoolean();
             TownNPCLavaImmunity = reader.ReadBoolean();
+        }
+
+        internal static bool AnyBossDefeated()
+        {
+            return AnyVanillaBossDefeated() || AnyAequusBossDefeated();
+        }
+
+        public static bool AnyAequusBossDefeated()
+        {
+            return DownedCrabson || DownedStarite;
+        }
+
+        internal static bool AnyVanillaBossDefeated()
+        {
+            return NPC.downedSlimeKing ||
+                NPC.downedBoss1 ||
+                NPC.downedBoss2 ||
+                NPC.downedBoss3 ||
+                NPC.downedQueenBee ||
+                Main.hardMode;
         }
     }
 }

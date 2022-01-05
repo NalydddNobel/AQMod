@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace AQMod.Content.LegacyWorldEvents.DemonSiege
+namespace AQMod.Content.World.Events.DemonSiege
 {
     public struct DemonSiegeEnemy
     {

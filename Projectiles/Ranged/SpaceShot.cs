@@ -78,7 +78,7 @@ namespace AQMod.Projectiles.Ranged
             {
                 Dust.NewDustPerfect(projectile.Center, ModContent.DustType<Dusts.MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * (MathHelper.Pi * 2f) + Main.rand.NextFloat() * 0.2f) * (1f + Main.rand.NextFloat() * 2f), 150, Color.Gold * 0.9f).noGravity = true;
             }
-            if (AQGraphics.Rendering.Culling.InScreenWorld(projectile.getRect()))
+            if (AQGraphics.Cull_WorldPosition(projectile.getRect()))
             {
                 for (int i = 0; i < 3; i++)
                 {
@@ -94,16 +94,13 @@ namespace AQMod.Projectiles.Ranged
                 for (float rotAdd = 0; rotAdd < 6.28f; rotAdd += 1.26f)
                 {
                     float rot = velocityRotation + rotAdd;
+                    int damage = projectile.damage;
                     if (rotAdd != 0)
                     {
                         rot += Main.rand.NextFloat(-0.1f, 0.1f);
+                        damage /= 2;
                     }
-                    int p = Projectile.NewProjectile(center, new Vector2(speed, 0f).RotatedBy(rot), type, projectile.damage, projectile.knockBack, projectile.owner);
-                    // gives all weapons an extra penetration,
-                    // this is mostly for removing non-penetrating bullets dealing ~x3 more damage on contact shots,
-                    // doesn't effect players who use that "penetration fixer" mod
-                    if (Main.projectile[p].penetrate >= 0)
-                        Main.projectile[p].penetrate++; 
+                    int p = Projectile.NewProjectile(center, new Vector2(speed, 0f).RotatedBy(rot), type, damage, projectile.knockBack, projectile.owner);
                 }
             }
         }

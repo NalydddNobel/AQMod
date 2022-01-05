@@ -11,7 +11,7 @@ namespace AQMod.NPCs.Boss
 
         void ISetupContentType.SetupContent()
         {
-            var mod = AQMod.Instance;
+            var mod = AQMod.GetInstance();
             try
             {
                 var bossChecklist = ModLoader.GetMod("BossChecklist");

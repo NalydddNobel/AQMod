@@ -26,19 +26,19 @@ namespace AQMod.Projectiles.Monster.Starite
             projectile.timeLeft *= 5;
         }
 
-        private const float size = NPCs.Boss.Starite.OmegaStarite.CIRCUMFERENCE * 4f;
+        private const float size = NPCs.Boss.OmegaStarite.Circumference* 4f;
 
         public override void AI()
         {
             var npc = Main.npc[(int)projectile.ai[0]];
-            var omegaStarite = (NPCs.Boss.Starite.OmegaStarite)npc.modNPC;
+            var omegaStarite = (NPCs.Boss.OmegaStarite)npc.modNPC;
             if (!npc.active)
             {
                 projectile.Kill();
                 return;
             }
             projectile.Center = npc.Center;
-            projectile.rotation = -omegaStarite.innerRingRoll;
+            projectile.rotation = -omegaStarite.rings[0].roll;
             if (omegaStarite.IsOmegaLaserActive())
                 projectile.timeLeft = LASER_DEATH_TIME;
         }
@@ -56,7 +56,7 @@ namespace AQMod.Projectiles.Monster.Starite
         {
             float _ = float.NaN;
             var normal = new Vector2(1f, 0f).RotatedBy(projectile.rotation);
-            var offset = normal * NPCs.Boss.Starite.OmegaStarite.CIRCUMFERENCE;
+            var offset = normal * NPCs.Boss.OmegaStarite.Circumference;
             Vector2 end = projectile.Center + offset + normal * NORMAL_BEAM_LENGTH;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), projectile.Center + offset, end, size * projectile.scale, ref _);
         }
@@ -68,9 +68,9 @@ namespace AQMod.Projectiles.Monster.Starite
             var frame = new Rectangle(0, 0, texture.Width, texture.Height / Main.projFrames[projectile.type]);
             float timeSin = (float)(Math.Sin(Main.GlobalTime) + 1f) / 2f;
             Vector2 normalizedRotation = new Vector2(1f, 0f).RotatedBy(projectile.rotation);
-            Vector2 basePosition = drawPosition + normalizedRotation * NPCs.Boss.Starite.OmegaStarite.CIRCUMFERENCE;
+            Vector2 basePosition = drawPosition + normalizedRotation * NPCs.Boss.OmegaStarite.Circumference;
             Vector2 origin = frame.Size() / 2f;
-            Color beamColor = GlimmerEvent.stariteProjectileColor * 0.065f;
+            Color beamColor = GlimmerEvent.stariteProjectileColoring * 0.065f;
             float rotation = projectile.rotation - MathHelper.PiOver2;
             float baseScale = GetLaserScale();
             Main.spriteBatch.Draw(texture, basePosition, frame, beamColor, rotation, origin, new Vector2(1f * baseScale, 1f * baseScale), SpriteEffects.None, 0f);
@@ -98,7 +98,7 @@ namespace AQMod.Projectiles.Monster.Starite
             Vector2 dustVelocityNormal = new Vector2(1f, 0f).RotatedBy(projectile.rotation - MathHelper.PiOver2);
             Vector2 dustPositionOffset = dustVelocityNormal * (size / 2 - 60f) * baseScale;
             int type = ModContent.DustType<MonoDust>();
-            Vector2 spawnBase = projectile.Center + normalizedRotation * (NPCs.Boss.Starite.OmegaStarite.CIRCUMFERENCE + 30f);
+            Vector2 spawnBase = projectile.Center + normalizedRotation * (NPCs.Boss.OmegaStarite.Circumference + 30f);
             for (int i = 0; i < dustAmount; i++)
             {
                 float x = Main.rand.NextFloat(0f, length) * 60f;

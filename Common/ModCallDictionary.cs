@@ -1,7 +1,7 @@
 ﻿using AQMod.Common.DeveloperTools;
-using AQMod.Content.LegacyWorldEvents.CrabSeason;
-using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Content.World;
+using AQMod.Content.World.Events;
+using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.FallingStars;
@@ -38,7 +38,7 @@ namespace AQMod.Common
                 var fields = typeof(T).GetFields();
                 foreach (var f in fields)
                 {
-                    AQMod.Instance.Logger.Debug(typeName + "." + f.Name.ToLower());
+                    AQMod.GetInstance().Logger.Debug(typeName + "." + f.Name.ToLower());
                     _calls.Add(typeName + "." + f.Name.ToLower(), (o) => f.GetValue(Instance));
                     if (!f.IsInitOnly)
                     {
@@ -60,24 +60,18 @@ namespace AQMod.Common
             _calls = new Dictionary<string, Func<object[], object>>
             {
                 { "addloadtask", (o) =>
-                    {
-                        AQMod.addLoadTask(new CachedTask((object)o[1], (Func<object, object>)o[2]));
+                    {            
+                        AQMod.cachedLoadTasks.Add(new CachedTask((object)o[1], (Func<object, object>)o[2]));
                         return null;
                     }
                 },
 
-                //{ "glimmerevent.tilex", (o) => GlimmerEvent.tileX },
-                //{ "glimmerevent.tiley", (o) => GlimmerEvent.tileY },
-                //{ "glimmerevent.deactivationtimer", (o) => GlimmerEvent.deactivationTimer },
-                { "glimmerevent.staritedisco", (o) => GlimmerEvent.StariteDisco },
+                { "glimmerevent.staritedisco", (o) => GlimmerEvent.stariteDiscoParty },
 
-                //{ "glimmerevent.tilex_set", (o) => GlimmerEvent.tileX = (ushort)o[1] },
-                //{ "glimmerevent.tiley_set", (o) => GlimmerEvent.tileY = (ushort)o[1] },
-                //{ "glimmerevent.deactivationtimer_set", (o) => GlimmerEvent.deactivationTimer = (int)o[1] },
-                { "glimmerevent.staritedisco_set", (o) => GlimmerEvent.StariteDisco = (bool)o[1] },
+                { "glimmerevent.staritedisco_set", (o) => GlimmerEvent.stariteDiscoParty = (bool)o[1] },
 
-                { "glimmerevent_isactive", (o) => GlimmerEvent.IsActive },
-                { "glimmerevent_stariteprojectilecolor", (o) => GlimmerEvent.stariteProjectileColor },
+                { "glimmerevent_isactive", (o) => GlimmerEvent.IsGlimmerEventCurrentlyActive() },
+                { "glimmerevent_stariteprojectilecolor", (o) => GlimmerEvent.stariteProjectileColoring },
                 { "glimmerevent_activate", (o) =>
                     {
                         bool value = GlimmerEvent.Activate();
@@ -85,15 +79,15 @@ namespace AQMod.Common
                         return value;
                     }
                 },
-                { "glimmerevent_spawnsactive", (o) => GlimmerEvent.SpawnsActive((Player)o[1]) },
-                { "glimmerevent_canshowinvasionprogress", (o) => GlimmerEvent.CanShowInvasionProgress() },
+                { "glimmerevent_spawnsactive", (o) => GlimmerEvent.AreStariteSpawnsCurrentlyActive((Player)o[1]) },
+                { "glimmerevent_canshowinvasionprogress", (o) => GlimmerEvent.IsAbleToShowInvasionProgressBar() },
                 { "glimmerevent_deactivate", (o) =>
                     {
                         GlimmerEvent.Deactivate();
                         return null;
                     }
                 },
-                { "glimmerevent_gettiledistance", (o) => GlimmerEvent.GetTileDistance((Player)o[1]) },
+                { "glimmerevent_gettiledistance", (o) => GlimmerEvent.GetTileDistanceUsingPlayer((Player)o[1]) },
 
                 { "demonsiege.x", (o) => DemonSiege.X },
                 { "demonsiege.y", (o) => DemonSiege.Y },

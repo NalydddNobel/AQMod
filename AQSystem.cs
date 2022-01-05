@@ -1,12 +1,12 @@
 ﻿using AQMod.Content.World.Events.ProgressBars;
-using AQMod.Content.LegacyWorldEvents.CrabSeason;
-using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.Tiles.Nature;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Content.World.Events;
 
 namespace AQMod
 {

@@ -142,7 +142,7 @@ namespace AQMod.Projectiles.Bobbers
             var player = Main.player[projectile.owner];
             if (!projectile.bobber || player.inventory[player.selectedItem].holdStyle <= 0)
                 return false;
-            AQGraphics.Rendering.DrawFishingLine_NoLighting(new Color(0, 172, 255, 200), player, projectile.position, projectile.width / 2, projectile.height, projectile.velocity, projectile.localAI[0], new Vector2(42f, 30f));
+            AQGraphics.Rendering.FishingLine_NoLighting(new Color(0, 172, 255, 200), player, projectile.position, projectile.width / 2, projectile.height, projectile.velocity, projectile.localAI[0], new Vector2(42f, 30f));
             return false;
         }
 

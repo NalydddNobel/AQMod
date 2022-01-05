@@ -246,7 +246,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 effect.Techniques[0].Passes["MagicalCurrentAuroraPass"].Apply();
                 
                 var color = Color.Lerp(AuraColoring, config.StariteProjectileColoring, ((float)Math.Sin(Main.GlobalTime) + 1f) * 2f);
-                if (GlimmerEvent.StariteDisco)
+                if (GlimmerEvent.stariteDiscoParty)
                 {
                     color = Main.DiscoColor;
                 }
@@ -395,14 +395,14 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public static bool CanSpawnBGStarites()
         {
-            return _starites == null && ModContent.GetInstance<StariteConfig>().BackgroundStarites && GlimmerEvent.GetTileDistance(Main.LocalPlayer) < GlimmerEvent.MaxDistance;
+            return _starites == null && ModContent.GetInstance<StariteConfig>().BackgroundStarites && GlimmerEvent.GetTileDistanceUsingPlayer(Main.LocalPlayer) < GlimmerEvent.MaxDistance;
         }
 
         public static void InitNight()
         {
             var sky = (GlimmerEventSky)SkyManager.Instance[key: Name];
             var random = sky.rand;
-            if (!GlimmerEvent.IsActive)
+            if (!GlimmerEvent.IsGlimmerEventCurrentlyActive())
             {
             }
             else
@@ -454,7 +454,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             {
                 BackgroundAura.Deactivate(transitionSpeed: 0.01f);
             }
-            int tileDistance = GlimmerEvent.GetTileDistance(Main.LocalPlayer);
+            int tileDistance = GlimmerEvent.GetTileDistanceUsingPlayer(Main.LocalPlayer);
             if (!Main.dayTime && ModContent.GetInstance<StariteConfig>().BackgroundStars)
             {
                 if (FallingStars.stars == null)
@@ -576,7 +576,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 if (BackgroundAura.AuraStillVisible)
                 {
                     var config = ModContent.GetInstance<StariteConfig>();
-                    if (GlimmerEvent.IsActive)
+                    if (GlimmerEvent.IsGlimmerEventCurrentlyActive())
                     {
                         if (CanSpawnBGStarites())
                             SpawnBGStarites(rand);
@@ -657,7 +657,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public override float GetCloudAlpha()
         {
-            if (GlimmerEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1)
+            if (GlimmerEvent.IsGlimmerEventCurrentlyActive() || OmegaStariteScenes.OmegaStariteIndexCache != -1)
             {
                 _cloudAlpha = MathHelper.Lerp(_cloudAlpha, 0.25f, 0.01f);
             }

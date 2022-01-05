@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Placeable.Banners;
+﻿using AQMod.Common;
+using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Weapons.Melee.Boomerang;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -43,14 +44,14 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            if (!AQMod.SudoHardmode)
+            if (WorldDefeats.SudoHardmode)
             {
-                npc.lifeMax = (int)(npc.lifeMax * 0.8f);
-                npc.damage = (int)(npc.damage * 0.8f);
+                npc.lifeMax = (int)(npc.lifeMax * 1.375f);
             }
             else
             {
-                npc.lifeMax = (int)(npc.lifeMax * 1.375f);
+                npc.lifeMax = (int)(npc.lifeMax * 0.8f);
+                npc.damage = (int)(npc.damage * 0.8f);
             }
         }
 

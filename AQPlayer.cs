@@ -3,6 +3,7 @@ using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Debuffs.Temperature;
 using AQMod.Common;
 using AQMod.Common.Configuration;
+using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Content.CursorDyes;
@@ -269,7 +270,7 @@ namespace AQMod
             public static readonly PlayerLayer PostDraw = new PlayerLayer("AQMod", "PostDraw", (info) =>
             {
                 int whoAmI = info.drawPlayer.whoAmI;
-                var aQMod = AQMod.Instance;
+                var aQMod = AQMod.GetInstance();
                 var player = info.drawPlayer;
                 var aQPlayer = player.GetModPlayer<AQPlayer>();
                 if (Main.myPlayer == info.drawPlayer.whoAmI && info.shadow == 0f)
@@ -323,7 +324,7 @@ namespace AQMod
                     }
                     if (updateOldPos)
                     {
-                        if (AQMod.GameWorldActive && oldPosLength > 0)
+                        if (AQGraphics.GameWorldActive && oldPosLength > 0)
                         {
                             if (oldPosVisual == null || oldPosVisual.Length != oldPosLength)
                                 oldPosVisual = new Vector2[oldPosLength];
@@ -791,7 +792,7 @@ namespace AQMod
             if (!Main.gamePaused && Main.instance.IsActive)
                 ScreenShakeManager.Update();
 
-            bool glimmerEvent = (GlimmerEvent.IsActive || OmegaStariteScenes.OmegaStariteIndexCache != -1) && Main.screenPosition.Y < Main.worldSurface * 16f + Main.screenHeight;
+            bool glimmerEvent = (GlimmerEvent.IsGlimmerEventCurrentlyActive() || OmegaStariteScenes.OmegaStariteIndexCache != -1) && Main.screenPosition.Y < Main.worldSurface * 16f + Main.screenHeight;
             AQUtils.UpdateSky(glimmerEvent, GlimmerEventSky.Name);
 
             if (glimmerEvent && OmegaStariteScenes.OmegaStariteIndexCache == -1 && ModContent.GetInstance<StariteConfig>().UltimateSwordVignette)
@@ -1056,7 +1057,7 @@ namespace AQMod
             {
                 if (player.position.Y < Main.worldSurface * 16f)
                 {
-                    if (GlimmerEvent.IsActive)
+                    if (GlimmerEvent.IsGlimmerEventCurrentlyActive())
                         return ModContent.GetTexture("AQMod/Assets/Map/Backgrounds/GlimmerEvent");
                 }
             }
@@ -1601,7 +1602,7 @@ namespace AQMod
                 if (Main.myPlayer == player.whoAmI && AQConfigClient.c_TonsofScreenShakes)
                 {
                     if (length < 800)
-                        ScreenShakeManager.AddShake(new BasicScreenShake(12, AQMod.MultIntensity((800 - length) / 128)));
+                        ScreenShakeManager.AddShake(new BasicScreenShake(12, AQGraphics.MultIntensity((800 - length) / 128)));
                 }
                 int dustLength = length / size;
                 const float offset = MathHelper.TwoPi / 3f;
@@ -1952,7 +1953,7 @@ namespace AQMod
                 }
                 if (notFrostburn)
                 {
-                    if (Main.netMode != NetmodeID.Server && AQMod.GameWorldActive)
+                    if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
                     {
                         for (int i = 0; i < 3; i++)
                         {

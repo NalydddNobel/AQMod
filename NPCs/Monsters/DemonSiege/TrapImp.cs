@@ -179,7 +179,7 @@ namespace AQMod.NPCs.Monsters.DemonSiege
             if (Main.rand.NextBool(24))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicCursorDye>());
             if (Main.rand.NextBool(3))
-                Item.NewItem(npc.getRect(), Content.LegacyWorldEvents.DemonSiege.DemonSiege.GetHellBannerDrop(Main.rand));
+                Item.NewItem(npc.getRect(), Content.World.Events.DemonSiege.DemonSiege.GetHellBannerDrop(Main.rand));
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());
         }

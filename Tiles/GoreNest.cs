@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.Graphics.SceneLayers;
-using AQMod.Content.LegacyWorldEvents.DemonSiege;
+using AQMod.Content.World.Events.DemonSiege;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

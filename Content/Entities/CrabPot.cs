@@ -648,7 +648,7 @@ namespace AQMod.Content.Entities
 
         public void Render()
         {
-            if (!active || !AQGraphics.Rendering.Culling.InScreen(new Rectangle((int)(position.X - Main.screenPosition.X - 10), (int)(position.Y - Main.screenPosition.Y - 40), width + 20, height + 40)))
+            if (!active || !AQGraphics.Cull(new Rectangle((int)(position.X - Main.screenPosition.X - 10), (int)(position.Y - Main.screenPosition.Y - 40), width + 20, height + 40)))
             {
                 return;
             }
@@ -769,7 +769,7 @@ namespace AQMod.Content.Entities
                 }
             }
             var crabbyTaggies = new List<TagCompound>();
-            AQMod.Instance.Logger.Debug(pots.Count);
+            //AQMod.GetInstance().Logger.Debug(pots.Count);
             tag["CrabPotCount"] = pots.Count;
 
             for (int i = 0; i < pots.Count; i++)

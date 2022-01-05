@@ -43,7 +43,7 @@ namespace AQMod.Tiles.CrabCrevice
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            AQGraphics.Rendering.DrawTileWithSloping(Main.tile[i, j], ModContent.GetTexture(this.GetPath("_Glow")), new Vector2(i * 16f, j * 16f) + AQGraphics.Data.TileZero - Main.screenPosition, new Color(200, 200, 200, 0), Main.tile[i, j].frameX, Main.tile[i, j].frameY, 16, 16);
+            AQGraphics.Rendering.TileWithSloping(Main.tile[i, j], ModContent.GetTexture(this.GetPath("_Glow")), new Vector2(i * 16f, j * 16f) + AQGraphics.TileZero - Main.screenPosition, new Color(200, 200, 200, 0), Main.tile[i, j].frameX, Main.tile[i, j].frameY, 16, 16);
         }
     }
 }

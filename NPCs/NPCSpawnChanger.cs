@@ -1,6 +1,5 @@
 ﻿using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.ProgressBars;
-using AQMod.Content.LegacyWorldEvents.DemonSiege;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters.GaleStreams;
 using System.Collections.Generic;
@@ -8,6 +7,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Common;
+using AQMod.Content.World.Events.DemonSiege;
 
 namespace AQMod.NPCs
 {
@@ -50,7 +51,7 @@ namespace AQMod.NPCs
                 }
                 else
                 {
-                    if (player.position.Y < AQMod.SpaceLayer - 40 * 16f)
+                    if (player.position.Y < GaleStreams.MinimumGaleStreamsSpawnOverride) // 160 tiles from the very top of the world
                     {
                         if (GaleStreams.IsActive)
                             spawnRate /= 2;
@@ -93,9 +94,9 @@ namespace AQMod.NPCs
                         pool[keyValue[i]] *= mult;
                     }
                 }
-                if (GlimmerEvent.SpawnsActive(spawnInfo.player))
+                if (GlimmerEvent.AreStariteSpawnsCurrentlyActive(spawnInfo.player))
                 {
-                    int tileDistance = GlimmerEvent.GetTileDistance(spawnInfo.player);
+                    int tileDistance = GlimmerEvent.GetTileDistanceUsingPlayer(spawnInfo.player);
                     if (tileDistance < 30)
                     {
                         pool.Clear();
@@ -109,7 +110,7 @@ namespace AQMod.NPCs
                         {
                             DecreaseSpawns(0f);
                         }
-                        int layerIndex = GlimmerEvent.GetLayerIndex(tileDistance);
+                        int layerIndex = GlimmerEvent.GetLayerIndexThroughTileDistance(tileDistance);
                         if (layerIndex != -1)
                         {
                             for (int i = layerIndex - 1; i >= 0; i--)
@@ -125,7 +126,7 @@ namespace AQMod.NPCs
                         }
                     }
                 }
-                if (spawnInfo.spawnTileY < AQMod.SpaceLayerTile - 40)
+                if (spawnInfo.spawnTileY < 160)
                 {
                     if (GaleStreams.MeteorTime())
                     {
@@ -137,7 +138,7 @@ namespace AQMod.NPCs
                 {
                     EventProgressBarLoader.ShouldShowGaleStreamsProgressBar = true;
                     bool decSpawns = true;
-                    if (AQMod.SudoHardmode)
+                    if (WorldDefeats.SudoHardmode)
                     {
                         if (Main.windSpeed.Abs() > 0.6f)
                         {

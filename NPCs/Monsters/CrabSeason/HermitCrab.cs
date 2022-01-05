@@ -117,7 +117,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Content.LegacyWorldEvents.CrabSeason.CrabSeason.Active && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
+            if (Content.World.Events.CrabSeason.Active && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
                 return SpawnCondition.OceanMonster.Chance * 0.6f;
             return 0f;
         }

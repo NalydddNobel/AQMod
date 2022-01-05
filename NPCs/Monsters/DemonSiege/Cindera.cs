@@ -353,7 +353,7 @@ namespace AQMod.NPCs.Monsters.DemonSiege
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HellBeamDye>());
             if (Main.rand.NextBool(12))
                 Item.NewItem(npc.getRect(), ItemID.MagmaStone);
-            if (Main.rand.NextBool(Main.expertMode ? 12 : 16) && Content.LegacyWorldEvents.DemonSiege.DemonSiege.IsActive)
+            if (Main.rand.NextBool(Main.expertMode ? 12 : 16) && Content.World.Events.DemonSiege.DemonSiege.IsActive)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DegenerationRing>());
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());

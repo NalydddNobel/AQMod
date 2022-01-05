@@ -13,7 +13,7 @@ namespace AQMod.Content.World.FallingStars
     {
         public static int SpawnManaCrystal;
         public static int SpawnLifeCrystal;
-        public static bool CanCosmicBurpHappen => !GlimmerEvent.IsActive && !Main.bloodMoon;
+        public static bool CanCosmicBurpHappen => !GlimmerEvent.IsGlimmerEventCurrentlyActive() && !Main.bloodMoon;
 
         public override void Initialize()
         {
@@ -25,7 +25,7 @@ namespace AQMod.Content.World.FallingStars
         {
             return new TagCompound()
             {
-                ["Version"] = AQMod.Instance.Version.ToString(),
+                ["Version"] = AQMod.GetInstance().Version.ToString(),
                 ["SpawnManaCrystal"] = SpawnManaCrystal,
                 ["SpawnLifeCrystal"] = SpawnLifeCrystal,
             };

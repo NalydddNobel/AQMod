@@ -17,6 +17,8 @@ namespace AQMod.Content.World.Events.GaleStreams
 {
     public sealed class GaleStreams : WorldEvent
     {
+        public const int MinimumMeteorSpawningTileY = 160;
+        public const float MinimumGaleStreamsSpawnOverride = 2560f;
         internal override EventProgressBar ProgressBar => new GaleStreamsProgressBar();
         internal override EventEntry? BossChecklistEntry => new EventEntry(
             () => WorldDefeats.DownedGaleStreams,
@@ -70,7 +72,7 @@ namespace AQMod.Content.World.Events.GaleStreams
 
         public static void ProgressEvent(Player player, int points)
         {
-            if (!AQMod.SudoHardmode || player.dead || !player.active || EndEvent)
+            if (!WorldDefeats.SudoHardmode || player.dead || !player.active || EndEvent)
                 return;
             Main.windSpeedSet += Math.Sign(Main.windSpeedSet) * points / 100f;
             if (Main.windSpeedSet >= 3f)

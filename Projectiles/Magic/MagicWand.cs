@@ -1,4 +1,5 @@
-﻿using AQMod.Common.Graphics.Particles;
+﻿using AQMod.Common.Graphics;
+using AQMod.Common.Graphics.Particles;
 using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
@@ -98,7 +99,7 @@ namespace AQMod.Projectiles.Magic
             {
                 float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
                 if (distance < 800)
-                    ScreenShakeManager.AddShake(new BasicScreenShake(12, AQMod.MultIntensity((int)(1600f - distance) / 300)));
+                    ScreenShakeManager.AddShake(new BasicScreenShake(12, AQGraphics.MultIntensity((int)(1600f - distance) / 300)));
             }
 
             int height = 12 * 16;

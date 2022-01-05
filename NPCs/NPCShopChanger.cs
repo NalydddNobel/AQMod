@@ -58,7 +58,7 @@ namespace AQMod.NPCs
 
                 case NPCID.Painter:
                 {
-                    if (GlimmerEvent.IsActive && WorldDefeats.DownedStarite)
+                    if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite)
                     {
                         if (Main.moonPhase != Constants.MoonPhases.FullMoon)
                         {
@@ -78,7 +78,7 @@ namespace AQMod.NPCs
 
                 case NPCID.DyeTrader:
                 {
-                    if (GlimmerEvent.IsActive && WorldDefeats.DownedStarite)
+                    if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite)
                     {
                         if (Main.moonPhase != Constants.MoonPhases.FullMoon)
                         {
@@ -162,7 +162,7 @@ namespace AQMod.NPCs
                     var plr = Main.LocalPlayer;
                     if (!Main.dayTime)
                     {
-                        if (Main.bloodMoon && !Main.hardMode && AQMod.SudoHardmode)
+                        if (Main.bloodMoon && !Main.hardMode && WorldDefeats.SudoHardmode)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.SlapHand);
                             nextSlot++;

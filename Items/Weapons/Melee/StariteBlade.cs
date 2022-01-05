@@ -42,7 +42,7 @@ namespace AQMod.Items.Weapons.Melee
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
-            AQGraphics.Rendering.DrawFallenStarAura(item, spriteBatch, scale, new Color(20, 20, 80, 50), new Color(50, 50, 180, 127));
+            AQGraphics.Rendering.FallenStarAura(item, spriteBatch, scale, new Color(20, 20, 80, 50), new Color(50, 50, 180, 127));
             Rectangle frame;
             if (Main.itemAnimations[item.type] != null)
             {

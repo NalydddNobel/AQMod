@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Common.Graphics;
 using AQMod.Dusts.GaleStreams;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Placeable.Banners;
@@ -535,7 +536,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                     {
                                         AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.ThunderClap, npc.Center, 0.6f);
                                     }
-                                    ScreenShakeManager.AddShake(new BasicScreenShake(8, AQMod.MultIntensity(12)));
+                                    ScreenShakeManager.AddShake(new BasicScreenShake(8, AQGraphics.MultIntensity(12)));
                                     if (AQConfigClient.c_EffectQuality > 0.2f)
                                     {
                                         int dustAmount = 50;

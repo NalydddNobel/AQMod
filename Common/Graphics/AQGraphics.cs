@@ -8,68 +8,57 @@ namespace AQMod.Common.Graphics
 {
     internal static class AQGraphics
     {
-        public static class Data
-        {
-            public static bool CanUseAssets => !AQMod.Loading && Main.netMode != NetmodeID.Server;
-            /// <summary>
-            /// Gets the center of the screen's draw coordinates
-            /// </summary>
-            internal static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
-            /// <summary>
-            /// Gets the center of the screen's world coordinates
-            /// </summary>
-            internal static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
-            /// <summary>
-            /// The world view point matrix
-            /// </summary>
-            internal static Matrix WorldViewPoint
-            {
-                get
-                {
-                    GraphicsDevice graphics = Main.graphics.GraphicsDevice;
-                    Vector2 screenZoom = Main.GameViewMatrix.Zoom;
-                    int width = graphics.Viewport.Width;
-                    int height = graphics.Viewport.Height;
+        public static bool CanUseAssets => !AQMod.Loading && Main.netMode != NetmodeID.Server;
+        public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
+        public static float TimerBasedOnTimeOfDay;
 
-                    var zoom = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
-                        Matrix.CreateTranslation(width / 2f, height / -2f, 0) *
-                        Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(screenZoom.X, screenZoom.Y, 1f);
-                    var projection = Matrix.CreateOrthographic(width, height, 0, 1000);
-                    return zoom * projection;
-                }
+        public static Vector2 TileZero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
+        public static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+        public static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
+        public static Matrix WorldViewPoint
+        {
+            get
+            {
+                GraphicsDevice graphics = Main.graphics.GraphicsDevice;
+                Vector2 screenZoom = Main.GameViewMatrix.Zoom;
+                int width = graphics.Viewport.Width;
+                int height = graphics.Viewport.Height;
+
+                var zoom = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
+                    Matrix.CreateTranslation(width / 2f, height / -2f, 0) *
+                    Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(screenZoom.X, screenZoom.Y, 1f);
+                var projection = Matrix.CreateOrthographic(width, height, 0, 1000);
+                return zoom * projection;
             }
-            internal static Vector2 TileZero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
-            internal static Rectangle renderRectangle;
+        }
+
+        public static Rectangle renderBox;
+
+        internal static bool Cull_WorldPosition(Vector2 position)
+        {
+            return Cull(position - Main.screenPosition);
+        }
+        internal static bool Cull(Vector2 position)
+        {
+            return Cull(new Rectangle((int)position.X, (int)position.Y, 1, 1));
+        }
+        internal static bool Cull_WorldPosition(Rectangle rectangle)
+        {
+            return Cull(new Rectangle(rectangle.X - (int)Main.screenPosition.X, rectangle.Y - (int)Main.screenPosition.Y, rectangle.Width, rectangle.Height));
+        }
+        internal static bool Cull(Rectangle rectangle)
+        {
+            return renderBox.Intersects(rectangle);
+        }
+
+        public static int MultIntensity(int input)
+        {
+            return (int)(input * AQConfigClient.c_EffectIntensity);
         }
 
         public static class Rendering
-        {
-            public static class Culling
-            {
-                internal static bool InScreenWorld(Vector2 position)
-                {
-                    return InScreen(position - Main.screenPosition);
-                }
-                internal static bool InScreen(Vector2 position)
-                {
-                    return InScreen(new Rectangle((int)position.X, (int)position.Y, 1, 1));
-                }
-                internal static bool InScreenWorld(Rectangle rectangle)
-                {
-                    return InScreen(new Rectangle(rectangle.X - (int)Main.screenPosition.X, rectangle.Y - (int)Main.screenPosition.Y, rectangle.Width, rectangle.Height));
-                }
-                internal static bool InScreen(Rectangle rectangle)
-                {
-                    return Data.renderRectangle.Intersects(rectangle);
-                }
-
-                internal static void update()
-                {
-                    Data.renderRectangle = new Rectangle(-20, -20, Main.screenWidth + 20, Main.screenHeight + 20);
-                }
-            }
- 
-            public static void DrawFallenStarAura(Item item, SpriteBatch spriteBatch, float scale, Color auraColor = default(Color), Color auraColor2 = default(Color))
+        { 
+            public static void FallenStarAura(Item item, SpriteBatch spriteBatch, float scale, Color auraColor = default(Color), Color auraColor2 = default(Color))
             {
                 Rectangle frame;
                 if (Main.itemAnimations[item.type] != null)
@@ -107,7 +96,7 @@ namespace AQMod.Common.Graphics
                 }
             }
 
-            public static void DrawTileWithSloping(Tile tile, Texture2D texture, Vector2 drawCoordinates, Color drawColor, int frameX, int frameY, int width, int height)
+            public static void TileWithSloping(Tile tile, Texture2D texture, Vector2 drawCoordinates, Color drawColor, int frameX, int frameY, int width, int height)
             {
                 if (tile.slope() == 0 && !tile.halfBrick())
                 {
@@ -144,8 +133,13 @@ namespace AQMod.Common.Graphics
                     }
                 }
             }
+            public static void Wall(int i, int j, Texture2D texture, Color color)
+            {
+                var tile = Main.tile[i, j];
+                Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X - 8, j * 16 - (int)Main.screenPosition.Y - 8) + TileZero, new Rectangle(tile.wallFrameX(), tile.wallFrameY() + Main.wallFrame[tile.wall] * 180, 32, 32), color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            }
 
-            public static void DrawFishingLine_NoLighting_UseCustomOrigin(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 lineOrigin)
+            public static void FishingLine_NoLighting_UseCustomOrigin(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 lineOrigin)
             {
                 var bobberCenter = new Vector2(bobberPosition.X + bobberWidth / 2f, bobberPosition.Y + bobberHeight / 2f);
                 int type = player.inventory[player.selectedItem].type;
@@ -215,7 +209,7 @@ namespace AQMod.Common.Graphics
                     Main.spriteBatch.Draw(Main.fishingLineTexture, new Vector2(lineOrigin.X - Main.screenPosition.X + Main.fishingLineTexture.Width * 0.5f, lineOrigin.Y - Main.screenPosition.Y + Main.fishingLineTexture.Height * 0.5f), new Rectangle(0, 0, Main.fishingLineTexture.Width, (int)height), color, rotation, new Vector2(Main.fishingLineTexture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
                 }
             }
-            public static void DrawFishingLine_NoLighting(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 linePositionOffset)
+            public static void FishingLine_NoLighting(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 linePositionOffset)
             {
                 var bobberCenter = new Vector2(bobberPosition.X + bobberWidth / 2f, bobberPosition.Y + bobberHeight / 2f);
                 Vector2 lineOrigin = player.MountedCenter;
@@ -293,7 +287,7 @@ namespace AQMod.Common.Graphics
                     Main.spriteBatch.Draw(Main.fishingLineTexture, new Vector2(lineOrigin.X - Main.screenPosition.X + Main.fishingLineTexture.Width * 0.5f, lineOrigin.Y - Main.screenPosition.Y + Main.fishingLineTexture.Height * 0.5f), new Rectangle(0, 0, Main.fishingLineTexture.Width, (int)height), color, rotation, new Vector2(Main.fishingLineTexture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0f);
                 }
             }
-            public static void DrawFishingLine(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 linePositionOffset)
+            public static void FishingLine(Color color, Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 linePositionOffset)
             {
                 var bobberCenter = new Vector2(bobberPosition.X + bobberWidth / 2f, bobberPosition.Y + bobberHeight / 2f);
                 Vector2 lineOrigin = player.MountedCenter;
@@ -373,13 +367,7 @@ namespace AQMod.Common.Graphics
                 }
             }
 
-            public static void DrawWall(int i, int j, Texture2D texture, Color color)
-            {
-                var tile = Main.tile[i, j];
-                Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X - 8, j * 16 - (int)Main.screenPosition.Y - 8) + AQGraphics.Data.TileZero, new Rectangle(tile.wallFrameX(), tile.wallFrameY() + Main.wallFrame[tile.wall] * 180, 32, 32), color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            }
-
-            public static void DrawChain_UseLighting(Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos)
+            public static void BasicChain_UseLighting(Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos)
             {
                 int height = chain.Height - 2;
                 Vector2 velocity = endPosition - currentPosition;
@@ -394,8 +382,7 @@ namespace AQMod.Common.Graphics
                     Main.spriteBatch.Draw(chain, position - screenPos, null, Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), rotation, origin, 1f, SpriteEffects.None, 0f);
                 }
             }
-
-            public static void DrawJerryChain(Texture2D chain, Vector2 currentPosition, Vector2 endPosition)
+            public static void JerryChain(Texture2D chain, Vector2 currentPosition, Vector2 endPosition)
             {
                 int height = chain.Height - 2;
                 var velo = Vector2.Normalize(endPosition + new Vector2(0f, height * 4f) - currentPosition) * height;

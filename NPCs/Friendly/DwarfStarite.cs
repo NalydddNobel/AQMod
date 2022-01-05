@@ -41,7 +41,7 @@ namespace AQMod.NPCs.Friendly
 
         public override void AI()
         {
-            if (GlimmerEvent.ShouldKillStar(npc))
+            if (Main.dayTime)
             {
                 npc.life = -1;
                 npc.HitEffect();
@@ -238,7 +238,7 @@ namespace AQMod.NPCs.Friendly
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (GlimmerEvent.IsActive && spawnInfo.player.position.Y < Main.worldSurface * 16f)
+            if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && spawnInfo.player.position.Y < Main.worldSurface * 16f)
                 return 1f;
             return 0f;
         }

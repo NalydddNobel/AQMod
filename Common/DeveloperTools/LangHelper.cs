@@ -10,7 +10,7 @@ namespace AQMod.Common.DeveloperTools
         public static void Merge(GameCulture culture)
         {
             string fileLocation = "Localization/" + culture.CultureInfo.Name + ".lang";
-            var aQMod = AQMod.Instance;
+            var aQMod = AQMod.GetInstance();
             var stream = aQMod.GetFileStream(fileLocation, false);
             aQMod.Logger.Debug(fileLocation);
             if (stream == null)
@@ -98,7 +98,7 @@ namespace AQMod.Common.DeveloperTools
         {
             string fileLocation = "Localization/" + culture.CultureInfo.Name + ".lang";
             string fileLocationEnglish = "Localization/" + GameCulture.English.CultureInfo.Name + ".lang";
-            var aQMod = AQMod.Instance;
+            var aQMod = AQMod.GetInstance();
             aQMod.Logger.Debug("Getting mod file:" + fileLocationEnglish);
             var stream = aQMod.GetFileStream(fileLocationEnglish, false);
             aQMod.Logger.Debug(fileLocation);

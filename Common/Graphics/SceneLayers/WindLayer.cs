@@ -27,7 +27,7 @@ namespace AQMod.Common.Graphics.SceneLayers
             base.OnRegister(key);
             try
             {
-                _windShader = AQMod.Instance.GetEffect("Effects/WindShader");
+                _windShader = AQMod.GetInstance().GetEffect("Effects/WindShader");
             }
             catch
             {

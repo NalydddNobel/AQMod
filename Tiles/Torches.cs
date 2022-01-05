@@ -132,17 +132,15 @@ namespace AQMod.Tiles
 
                     case 3:
                     {
-                        float time = Main.GlobalTime;
-                        r = ((float)Math.Sin(time) + 1f) / 4f;
-                        g = ((float)Math.Cos(time) + 1f) / 16f;
-                        b = ((float)Math.Sin(time * 0.85f) + 1f) / 16f;
+                        r = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 4f;
+                        g = ((float)Math.Cos(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 16f;
+                        b = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay * 0.85f) + 1f) / 16f;
 
                         if (Main.tile[i, j].liquid > 0)
                         {
                             float intensityMult = 0.1f;
-                            var screenCenter = AQGraphics.Data.ScreenCenter;
                             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
-                            var distance = (screenCenter - screenPosition).Length();
+                            var distance = (AQGraphics.ScreenCenter - screenPosition).Length();
                             if (distance < TorchIntensityDistance)
                             {
                                 intensityMult += 1f - distance / TorchIntensityDistance;
@@ -156,17 +154,15 @@ namespace AQMod.Tiles
 
                     case 4:
                     {
-                        float time = Main.GlobalTime;
-                        r = ((float)Math.Sin(time) + 1f) / 16f;
-                        g = ((float)Math.Cos(time) + 1f) / 4f;
-                        b = ((float)Math.Sin(time * 0.85f) + 1f) / 16f;
+                        r = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 16f;
+                        g = ((float)Math.Cos(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 4f;
+                        b = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay * 0.85f) + 1f) / 16f;
 
                         if (Main.tile[i, j].liquid > 0)
                         {
                             float intensityMult = 0.1f;
-                            var screenCenter = AQGraphics.Data.ScreenCenter;
                             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
-                            var distance = (screenCenter - screenPosition).Length();
+                            var distance = (AQGraphics.ScreenCenter - screenPosition).Length();
                             if (distance < TorchIntensityDistance)
                             {
                                 intensityMult += 1f - distance / TorchIntensityDistance;
@@ -180,17 +176,15 @@ namespace AQMod.Tiles
 
                     case 5:
                     {
-                        float time = Main.GlobalTime;
-                        r = ((float)Math.Sin(time) + 1f) / 16f;
-                        g = ((float)Math.Cos(time) + 1f) / 16f;
-                        b = ((float)Math.Sin(time * 0.85f) + 1f) / 4f;
+                        r = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 16f;
+                        g = ((float)Math.Cos(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 16f;
+                        b = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay * 0.85f) + 1f) / 4f;
 
                         if (Main.tile[i, j].liquid > 0)
                         {
                             float intensityMult = 0.1f;
-                            var screenCenter = AQGraphics.Data.ScreenCenter;
                             var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
-                            var distance = (screenCenter - screenPosition).Length();
+                            var distance = (AQGraphics.ScreenCenter - screenPosition).Length();
                             if (distance < TorchIntensityDistance)
                             {
                                 intensityMult += 1f - distance / TorchIntensityDistance;
@@ -230,37 +224,37 @@ namespace AQMod.Tiles
         {
             switch (Main.tile[i, j].frameY / 22)
             {
-                case 0:
+                case UltrabrightRedTorch:
                 {
                     Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<UltrabrightRedTorch>());
                 }
                 break;
 
-                case 1:
+                case UltrabrightGreenTorch:
                 {
                     Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<UltrabrightGreenTorch>());
                 }
                 break;
 
-                case 2:
+                case UltrabrightBlueTorch:
                 {
                     Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<UltrabrightBlueTorch>());
                 }
                 break;
 
-                case 3:
+                case ExoticRedTorch:
                 {
                     Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<ExoticRedTorch>());
                 }
                 break;
 
-                case 4:
+                case ExoticGreenTorch:
                 {
                     Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<ExoticGreenTorch>());
                 }
                 break;
 
-                case 5:
+                case ExoticBlueTorch:
                 {
                     Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<ExoticBlueTorch>());
                 }
@@ -288,9 +282,8 @@ namespace AQMod.Tiles
                     if (Main.tile[i, j].liquid > 0)
                     {
                         intensityMult = 0.025f;
-                        var screenCenter = AQGraphics.Data.ScreenCenter;
                         var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
-                        var distance = (screenCenter - screenPosition).Length();
+                        var distance = (AQGraphics.ScreenCenter - screenPosition).Length();
                         if (distance < TorchIntensityDistance)
                         {
                             intensityMult += (1f - distance / TorchIntensityDistance) * 1.25f;

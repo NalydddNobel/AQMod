@@ -1,6 +1,6 @@
 ﻿using AQMod.Localization;
+using AQMod.NPCs.Boss;
 using AQMod.NPCs.Boss.Crabson;
-using AQMod.NPCs.Boss.Starite;
 using System.ComponentModel;
 using Terraria;
 using Terraria.ModLoader;
@@ -77,11 +77,6 @@ namespace AQMod
             if (p.reduceSpawns != reduceSpawns)
                 return reduceSpawnrates();
             return false;
-        }
-
-        public override void OnChanged()
-        {
-            AQMod.ApplyServerConfig(this);
         }
 
         internal static bool reduceSpawnrates()

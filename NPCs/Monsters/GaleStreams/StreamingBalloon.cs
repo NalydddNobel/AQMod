@@ -1,4 +1,5 @@
-﻿using AQMod.Content.Seasonal.Christmas;
+﻿using AQMod.Common;
+using AQMod.Content.Seasonal.Christmas;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -90,7 +91,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                 NPCID.SpikedJungleSlime,
                                 NPCID.SpikedIceSlime,
                             };
-                            if (AQMod.SudoHardmode)
+                            if (WorldDefeats.SudoHardmode)
                             {
                                 Array.Resize(ref selectableEnemies, selectableEnemies.Length + 1);
                                 selectableEnemies[selectableEnemies.Length - 1] = NPCID.ToxicSludge;
@@ -116,7 +117,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                 ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>(),
                                 ModContent.ItemType<Items.Vanities.HairDyes.TemperatureHairDye>(),
                             };
-                            if (AQMod.SudoHardmode)
+                            if (WorldDefeats.SudoHardmode)
                             {
                                 Array.Resize(ref selectableLoot, selectableLoot.Length + 1);
                                 selectableLoot[selectableLoot.Length - 1] = ModContent.ItemType<Items.Weapons.Magic.Umystick>();

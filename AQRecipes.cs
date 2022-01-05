@@ -1,4 +1,4 @@
-﻿using AQMod.Content.LegacyWorldEvents.DemonSiege;
+﻿using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Items.Accessories.FidgetSpinner;
 using AQMod.Items.Fish.GlimmerEvent;
 using AQMod.Items.Materials.Energies;

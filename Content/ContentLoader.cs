@@ -16,12 +16,12 @@ namespace AQMod.Content
             ContentInstance.Register(this);
             _content = new List<T>();
             _contentCount = 0;
-            Load(AQMod.Instance);
+            Load(AQMod.GetInstance());
         }
 
         void IAutoloadType.Unload()
         {
-            Unload(AQMod.Instance);
+            Unload(AQMod.GetInstance());
             _content = null;
         }
 

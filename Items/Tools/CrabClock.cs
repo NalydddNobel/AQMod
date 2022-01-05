@@ -1,4 +1,4 @@
-﻿using AQMod.Content.LegacyWorldEvents.CrabSeason;
+﻿using AQMod.Content.World.Events;
 using AQMod.Localization;
 using System.Collections.Generic;
 using Terraria;
