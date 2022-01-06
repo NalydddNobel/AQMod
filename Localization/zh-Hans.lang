@@ -321,7 +321,7 @@ EventEnding.GlimmerEvent=微光渐渐消失...
 BossChecklistDesc.OmegaStarite=在夜晚使用 {0} 召唤. 也可以与微光事件中心的剑交互来召唤.
 
 EventName.GaleStreams=紊流风暴
-BossChecklistDesc.GaleStreams=风速大于 40 mph 时开始, 风速小于 34 mph 时结束. 风速大于 300 mph 时同样会结束. 你可以使用 [i:{0}] 更改风速
+BossChecklistDesc.GaleStreams=风速大于 40 mph 时开始, 风速小于 34 mph 时结束. 风速大于 300 mph 时同样会结束. 你可以使用 [i:{0}] 更改风速.
 EventProgress.GaleStreams={0} mph/{1} mph
 BossChecklistDesc.RedSprite=有几率出现在紊流风暴中!
 
@@ -330,6 +330,10 @@ BossChecklistDesc.RedSprite=有几率出现在紊流风暴中!
 RecipeGroup.AnyEnergy=任意能量
 RecipeGroup.AnyNobleMushroom=任意华贵孢子
 RecipeGroup.CopperOrTin=铜或铅
+RecipeGroup.DemoniteBarOrCrimtaneBar=魔矿锭或猩红矿锭
+RecipeGroup.ShadowScaleOrTissueSample=暗影鳞片或组织样本
+RecipeGroup.CascadeOrHelfire=喷流球或狱火球
+RecipeGroup.AnyEel=任意鳗鱼
 
 # Config
 
