@@ -35,20 +35,20 @@ ItemTooltip.FidgetSpinner=Non-autoswing items are slower, but gain autoswing
 ItemName.DegenerationRing=Degeneration Ring
 ItemTooltip.DegenerationRing=Prevents most types of burning
 ItemName.HeatedAmulet=Heated Amulet
-ItemTooltip.HeatedAmulet=Prevents most types of burning\nLowers the intensity of hot sources from gale streams enemies
+ItemTooltip.HeatedAmulet=Prevents most types of burning\nLowers the intensity of hot sources from Gale Streams enemies
 ItemName.FreezingAmulet=Freezing Amulet
-ItemTooltip.FreezingAmulet=Prevents most types of freezing\nLowers the intensity of cold sources from gale streams enemies
+ItemTooltip.FreezingAmulet=Prevents most types of freezing\nLowers the intensity of cold sources from Gale Streams enemies
 ItemName.NormalizerAmulet=Normalized Amulet
-ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers the intensity of temperature sources from gale streams enemies
+ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers the intensity of temperature sources from Gale Streams enemies
 
 ItemName.CrabBarb=Crab Barb
-ItemTooltip.CrabBarb=Your grappling hooks inflicts poison, and damage
+ItemTooltip.CrabBarb=Your grappling hooks inflict poison and damage
 ItemName.CrimtaneBarb=Crimtane Barb
-ItemTooltip.CrimtaneBarb=Your grappling hooks inflicts damage
+ItemTooltip.CrimtaneBarb=Your grappling hooks inflict damage
 ItemName.DemoniteBarb=Demonite Barb
-ItemTooltip.DemoniteBarb=Your grappling hooks inflicts damage
+ItemTooltip.DemoniteBarb=Your grappling hooks inflict damage
 ItemName.MetalBarb=Metal Barb
-ItemTooltip.MetalBarb=Your grappling hooks inflicts damage
+ItemTooltip.MetalBarb=Your grappling hooks inflict damage
 
 # Armor
 
@@ -77,16 +77,16 @@ ItemName.Resonance=Resonance
 ItemTooltip.Resonance=Has very high speed and barely gets knocked back when hitting enemies\nOccasionally burns enemies on hit\n'Don't you think we should recalculate those resonance dampening factors again?'
 
 ItemName.StariteStaff=Starite Staff
-ItemTooltip.StariteStaff=Summons a speedy starite to fight for you
+ItemTooltip.StariteStaff=Summons a speedy Starite to fight for you
 BuffName.Starite=Starite
-BuffDescription.Starite=The starite will fight for you
+BuffDescription.Starite=The Starite will fight for you
 
 ItemName.VineSword=Turnblock Hammer
 ItemName.KryptonSword=Krypton Boomerang
 ItemTooltip.KryptonSword=Cuts through enemies and can be swung around\nInflicts multiple debuffs
 
 ItemName.Vrang=Vrang
-ItemTooltip.Vrang=Throws 3 vraines which move very quickly
+ItemTooltip.Vrang=Throws 3 Vraines which move very quickly
 
 ItemName.AirBlade=Air Blade
 ItemTooltip.AirBlade=Summons magical air blades
@@ -94,7 +94,7 @@ ProjectileName.AirBlade=Air Blade
 ProjectileName.AirBladeGhost=Air Blade
 
 ItemName.RedSpriteStaff=Red Sprite Staff
-ItemTooltip.RedSpriteStaff=Summons a red sprite to rain thunder down upon your foes\nCan cast four at once
+ItemTooltip.RedSpriteStaff=Summons a Red Sprite to rain thunder down upon your foes\nUp to four can be casted at one time
 ProjectileName.RedSpriteStaff=Red Sprite Staff
 ProjectileName.RedSpriteStaffLightning=Red Sprite Staff
 ItemName.ThunderClap=Thunder Clap
@@ -122,7 +122,7 @@ ItemName.Cosmicanon=Cosmicanon
 ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer Event from naturally spawning\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 ItemTooltipExtra.Cosmicanon=You can toggle this function by pressing {0}
 ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=Blood Moons Prevented: {0}
-ItemTooltipExtra.Cosmicanon.GlimmersPrevented=Glimmers Prevented: {0}
+ItemTooltipExtra.Cosmicanon.GlimmersPrevented=Glimmer Events Prevented: {0}
 ItemTooltipExtra.Cosmicanon.EclipsesPrevented=Eclipses Prevented: {0}
 ToggleCosmicanon.False=Moon events can occur again
 ToggleCosmicanon.True=Moon events can no longer occur
@@ -141,7 +141,7 @@ ItemName.Nimrod=Nimrod
 ItemTooltip.Nimrod=Summons a fishing cloud which spawns 3 lightning bobbers to catch fish\nCatches fish faster during the rain
 
 ItemName.MinersFlashlight=Miner's Flashlight
-ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shown by the light\nHide the accessory to disable the flashlight
+ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shone on by the light\nHide the accessory to disable the flashlight
 
 ItemName.UltimateSword=Ultimate Sword
 ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
@@ -178,7 +178,7 @@ ItemName.Fizzler=Fizzler
 ItemName.Nessie=Nessie
 
 ItemName.UltraEel=Ultra Eel
-ItemTooltip.UltraEel=The offspring of an ancient starite species
+ItemTooltip.UltraEel=The offspring of an ancient Starite species
 
 ItemName.Combfish=Combfish
 ItemTooltip.Combfish=Has regenerative properties
@@ -220,7 +220,7 @@ BalloonMerchant.Chat.Leaving.2=I follow the winds, they are my partner for hunti
 BalloonMerchant.Chat.Corruption=Even in such vile places, there are edible meats and plants.
 BalloonMerchant.Chat.Crimson=Even in such gorey places, there are edible meats and plants.
 BalloonMerchant.Chat.Hallow=A utopia, plenty of unicorns to go find and hunt.
-BalloonMerchant.Chat.0=Up here in the emptyness, many birds and other strong wind beasts flock here.
+BalloonMerchant.Chat.0=Up here in the emptiness, many birds and other strong wind beasts flock here.
 BalloonMerchant.Chat.1=How come less creatures assault me compared to you? What do you mean I decrease enemy spawns? Why would things be giving birth mid-battle...?
 BalloonMerchant.Chat.2=Dogs are unfortunately afraid of heights, and will jump off your hot air balloon if you try to go hunting with them. Do not ask if I have experience with this.
 BalloonMerchant.Chat.3=Have I fallen out of this basket before? No. And don't even think about shaking it.
@@ -259,7 +259,7 @@ Physicist.Chat.BloodMoon.KillRequest.1=Could you kill that {0} outside? I haven'
 Physicist.Chat.BloodMoon.KillRequest.2=I'm tired of the door getting torn down on by {0}s.
 Physicist.Chat.BloodMoon.KillRequest.3=Hey {1}, there's a {0} out there killing people! I'd like you to manage that thing instead of trying to have small talk with me.
 Physicist.Chat.BloodMoon.EvilBunny=These evil bunnies are so much more interesting than the cute ones! I should keep one as a pet.
-Physicist.Chat.BloodMoon.CrimsonWarning=I wouldn't go to the crimson if I were you... I sense something bad happens when the bloody, living, hive mind merges with the magical essense of this world's blood moons.
+Physicist.Chat.BloodMoon.CrimsonWarning=I wouldn't go to the crimson if I were you... I sense something bad happens when the bloody, living hive mind merges with the magical essense of this world's blood moons.
 Physicist.Chat.BloodMoon.NewMoon=Interesting, I thought blood moons couldn't happen during the new moon?
 Physicist.Chat.GlimmerEvent.0=Hmm, interesting, I didn't know that stars are somehow able to create intelligence from pure chaos...
 Physicist.Chat.GlimmerEvent.1=Why do I feel like the floor is sparkly, no one has mopped the floor in a while...
@@ -268,14 +268,14 @@ Physicist.Chat.GlimmerEvent.3=Sometimes I look into the sky and see another sola
 Physicist.Chat.GlimmerEvent.Source.East=Somewhere to the east, there seems to be a powerful source which I would like to invesigate.
 Physicist.Chat.GlimmerEvent.Source.West=Somewhere to the west, there seems to be a powerful source which I would like to invesigate.
 Physicist.Chat.Purity.0=These woods are very calm... but also very susceptible to the spreading infections.
-Physicist.Chat.Purity.1=I once saw a little bunny, it died.
-Physicist.Chat.Purity.2=While this place is very interesting and calm, it definetly doesn't fit my criteria for work
+Physicist.Chat.Purity.1=I once saw a little bunny... it died.
+Physicist.Chat.Purity.2=While this place is very interesting and calm, it definetly doesn't fit my criteria for work.
 Physicist.Chat.Hallow.0=This place is such an insult to my beliefs...
 Physicist.Chat.Hallow.1=Fairies? Unicorns? Wizards!? This is such a hellhole!
 Physicist.Chat.Hallow.2=There's too much magic here, I can't stand it!
 Physicist.Chat.Hallow.3=I wish I could get out of here...
 Physicist.Chat.Hallow.4=What's next? The Great Mighty Poo is real?
-Physicist.Chat.Hallow.5=You cannot tell me that the core of Terraria contained THIS inside itself
+Physicist.Chat.Hallow.5=You cannot tell me that the core of Terraria contained THIS inside itself!
 Physicist.Chat.Corruption=Get me out of this stinky, vile place.
 Physicist.Chat.Crimson=Get me out of this stinky, gorey place.
 # TODO: add these cross mod quotes into the dialogue
@@ -295,7 +295,7 @@ PaintingSignature.NalydT='N.T.'
 PaintingSignature.niker='N.'
 
 ItemName.OmegaStaritePainting='{$Mods.AQMod.NPCName.OmegaStarite}'
-ItemTooltip.OmegaStaritePainting='You have no idea whats in store for you!'\n{$Mods.AQMod.PaintingSignature.niker}
+ItemTooltip.OmegaStaritePainting='You have no idea what's in store for you!'\n{$Mods.AQMod.PaintingSignature.niker}
 
 ItemName.RockFromAnAlternateUniverse='Rock from an Alternate Universe'
 ItemTooltip.RockFromAnAlternateUniverse='The great might of an interstellar nebula!'\n'N.T... from another universe'
@@ -306,7 +306,7 @@ ItemTooltip.AStrangeIdea='The birthplace of Aequus'\n{$Mods.AQMod.PaintingSignat
 # Event and Boss Checklist stuff
 
 EventName.CrabSeason=Crab Season
-BossChecklistDesc.CrabSeason=Begins naturally and ends naturally at random times. You can check the time when the event begins and ends using a [i:{0}].
+BossChecklistDesc.CrabSeason=Begins naturally and ends naturally at random times. You can check the time when the event begins and ends as well as speed up its cycle using a [i:{0}].
 EventWarning.CrabSeason=The warmth of the oceans increases...
 EventEnding.CrabSeason=The oceans become neutral again...
 BossChecklistDesc.JerryCrabson=Summoned by using a [i:{0}] at the beach.
@@ -324,6 +324,7 @@ EventName.GaleStreams=Gale Streams
 BossChecklistDesc.GaleStreams=Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:{0}]
 EventProgress.GaleStreams={0}mph/{1}mph
 BossChecklistDesc.RedSprite=Occasionally appears during the Gale Streams!
+BossChecklistDesc.SpaceSquid=Occasionally appears during the Gale Streams!
 
 # Recipe Groups
 
@@ -371,7 +372,7 @@ ClientConfig.StariteAuraColor=Starite Aura Color
 ClientConfig.StariteAuraColorTooltip=The color of the background aura, and the aura around Omega Starite
 
 ClientConfig.StariteBackgroundLight=Starite Background Intensity
-ClientConfig.StariteBackgroundLightTooltip=Lower values make the starite background more transparent\nCan be useful if you have trouble seeing Omega Starite or its projectiles
+ClientConfig.StariteBackgroundLightTooltip=Lower values make the Starite background more transparent\nCan be useful if you have trouble seeing Omega Starite or its projectiles
 
 ClientConfig.XmasBackground=Xmas Background
 ClientConfig.XmasBackgroundTooltip=Whether or not to use a Xmas background in special Xmas worlds\n{$Mods.AQMod.Config.RequiresReload}
@@ -474,7 +475,7 @@ Common.KeyBound='{0}' Key
 
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=On a true melee critical hit you gain greatly increased stats for a short while\nWhen the effect activates you gain the potion sickness debuff\nThis effect can only trigger if you don't have the potion sickness debuff
-Common.ArmorSetBonus_Lightbulb=Hunter and dangersense is always active
+Common.ArmorSetBonus_Lightbulb=Hunter and dangersense are always active
 #
 # Config Names
 Common.ConfigName_AQConfigClient=Client Config
@@ -546,32 +547,32 @@ Common.RecipeGroup_AnyEnergy=Any Energy
 Common.RobsterChat0=There is a reason I don't like other lobsters... it's because my own brother betrayed me.
 Common.RobsterChat1=Do you know what I have been through?
 Common.RobsterChat2=The floor below me seems to be glowing... this feels like reversed fog.
-Common.RobsterChat3=Starites can be such a pain I tell you, atleast they make for good cereal.
+Common.RobsterChat3=Starites can be such a pain, I tell you. At least they make for good cereal.
 Common.RobsterChat4=There's this sword I saw somewhere in the distance. I wonder what happens if someone tried to touch it...
 Common.RobsterChat5=Y'know, I was never a fan of horror movies and this is absolutely freaking me out.
 Common.RobsterChat6=I saw a suspicious moth wearing a blue cloak, looked a bit like a cultist. It told me that Mothron stole a powerful piece of equipment. I am not gonna try to kill one of those giant Moths though.
 Common.RobsterChat7=Blood Moons were very scary when sailing through the ocean. I don't know how many Zombie Mermen our crew has killed.
 Common.RobsterChat8=Tell those little eye flappers I said 'hi'.
-Common.RobsterChat9=I was fishing at the lake tonight and got ambushed by an anthropomorphic shark. Ugly thing I tell you.
-Common.RobsterChat10=I was fishing at the lake tonight and got ambushed by a giant red eel. Ugly thing I tell you.
-Common.RobsterChat11=I once dared {0} to fish during the blood moon. He caught this massive nautalis, I actually felt afraid.
+Common.RobsterChat9=I was fishing at the lake tonight and got ambushed by an anthropomorphic shark. Ugly thing, I tell you.
+Common.RobsterChat10=I was fishing at the lake tonight and got ambushed by a giant red eel. Ugly thing, I tell you.
+Common.RobsterChat11=I once dared {0} to fish during the blood moon. He caught this massive nautilus! I was terrified.
 Common.RobsterChat12=Whoever gave me this hat forgot to make it fit me... I can't see a thing!
 Common.RobsterChat13=I feel really dumb that I forgot my own name. How would anyone even do that?
 Common.RobsterChat14=Thanks for finding my card. It reminded me of how much I love ripping people off and stealing their things.
-Common.RobsterNPCDeath=The town NPC that Robster wants you to steal isn't here anymore...
-Common.RobsterNPCDeath2=Ask Robster to begin a different hunt
+Common.RobsterNPCDeath=The town NPC that Robster wants you to steal from isn't here anymore...
+Common.RobsterNPCDeath2=Ask Robster to begin a different hunt.
 Common.RobsterFail=You didn't obtain the special item sneakily enough...
 Common.RobsterFailAccident=The special item was accidentally destroyed...
 Common.HuntJeweledChalice=I saw someone with a very special Jeweled Chalice. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
 Common.HuntJeweledCandelabra=I saw someone with a very special Jeweled Candelabra. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
-Common.RobsterRandomHunt0=I saw someone with a very special {0}. I want you to steal it from them
+Common.RobsterRandomHunt0=I saw someone with a very special {0}. I want you to steal it from them.
 Common.RobsterCantDoRandomHunt=I don't have anything for you to do.
 Common.RobsterSawInSomeonesHouse=I think I saw it in {0}'s house.
 Common.RobsterRandomHuntComplete0=You got it, very nice... I bet they didn't suspect a thing.
 Common.RobsterRandomHuntComplete1=Ooohoohoohoohoo yes yes yes yeesssss you got it. I can't wait to sell this out on the seas.
-Common.RobsterRandomHuntComplete2=Dumb cricket, I don't even think they remember buying that. Ah whatever I'm just going to take this trinket and use it for... something better
+Common.RobsterRandomHuntComplete2=Dumb cricket, I don't even think they remember buying that. Ah, whatever, I'm just going to take this trinket and use it for... something better.
 Common.RobsterRandomHuntComplete3=Looks like the gems got a bit scuffed... whatever. Here's your pay.
-Common.RobsterRandomHuntComplete4=They say steal from the rich and give to the poor, but I think we should do the opposite. OH and here's your payment.
+Common.RobsterRandomHuntComplete4=They say steal from the rich and give to the poor, but I think we should do the opposite. OH! And here's your payment.
 Common.RobsterHunt=Hunt
 Common.CompleteRobsterHunt=Complete Hunt
 Common.RobsterQuitHunt=Quit Hunt
@@ -661,10 +662,10 @@ ItemName.Terraroot=Terraroot
 ItemName.Thunderbird=Thunderbird
 
 ItemName.Ultranium=Hyper Crystal
-ItemTooltip.Ultranium=True melee crits on enemies channels the damage to the closest boss\nYour attacks inflict shimmering\n5% increased melee critical strike chance
+ItemTooltip.Ultranium=True melee crits on enemies channel the damage to the closest boss\nYour attacks inflict shimmering\n5% increased melee critical strike chance
 
 ItemName.Quasicrystal=Quasicrystal
-ItemTooltip.Quasicrystal=True melee crits on enemies channels the damage to the closest boss\nCauses stars to fall when injured\nCauses shimmering and fire damage on attack\n5% increased melee critical strike chance
+ItemTooltip.Quasicrystal=True melee crits on enemies channel the damage to the closest boss\nCauses stars to fall when injured\nCauses shimmering and fire damage on attack\n5% increased melee critical strike chance
 
 ##############
 # Boss Items #
@@ -874,9 +875,9 @@ ItemName.ArgonSpear=Argon Spear
 ItemName.HorizonSkies=Horizon Skies
 # Yoyos
 ItemName.Aphrodite=Aphrodite
-ItemTooltip.Aphrodite=Give enemies lovestruck which decreases their damage inflicted by 10%, and increases their damage taken by 10%
+ItemTooltip.Aphrodite=Give enemies lovestruck which decreases their damage inflicted by 10% and increases their damage taken by 10%
 ItemName.Venus=Venus
-ItemTooltip.Venus=Give enemies lovestruck which decreases their damage inflicted by 10%, and increases their damage taken by 10%\nHas a chance to poison enemies if they are very close to you
+ItemTooltip.Venus=Give enemies lovestruck which decreases their damage inflicted by 10% and increases their damage taken by 10%\nHas a chance to poison enemies if they are very close to you
 
 ItemName.Dysesthesia=Dysesthesia
 ItemTooltip.Dysesthesia=Summons demon scythes\nInflicts enemies with corrupt hellfire if they are very close
@@ -948,7 +949,7 @@ ItemTooltip.SilverSeal=Fishing anything will bless you with 10 seconds of the fi
 ItemTooltip.GoldSeal=Fishing anything that can be sold for 1 gold blesses you with 1 minute of the sonar potion buff
 ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
 # Shields
-ItemTooltip.TargeoftheBlodded=Increases armor penetration by 2\nAllows the ability to slide down walls\nImproved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
+ItemTooltip.TargeoftheBlodded=Increases armor penetration by 2\nAllows the player to slide down walls\nImproved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
 # Shoes
 ItemTooltip.MoonShoes=Allows slow fall\nHold down to revert to regular gravity and hold up to lower gravity even more\n'HE-HE'
 # Shop Cards
@@ -957,10 +958,10 @@ ItemTooltip.BusinessCard=Shops have even lower prices\n{$Mods.AQMod.Common.Works
 # Wings
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 # Other Accessories 
-ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe radius speed damage and knockback are all determined by various stats\nIncreases flight time by 2 seconds
+ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe radius, speed, damage, and knockback are all determined by various stats\nIncreases flight time by 2 seconds
 ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP when you die with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
 ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
-ItemTooltip.Thunderbird=Gives you a thunderous extra jump that refreshes every 2 seconds you must be moving in a direction to use the jump\nEnemies below you have a chance to get struck by lightning\nThe lightning becomes more powerful the lower your life
+ItemTooltip.Thunderbird=Gives you a thunderous extra jump that refreshes every 2 seconds\nYou must be moving in a direction to use the jump\nEnemies below you have a chance to get struck by lightning\nThe lightning becomes more powerful the lower your life
 ##############
 # Boss Items #
 ##############
@@ -969,7 +970,7 @@ ItemTooltip.Crabsol=Only the strongest of people can wield this weapon in honor
 ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.MushroomClam=Summons Jerry Crabson at the beach
 # Omega Starite
-ItemTooltip.DragonBall=Summons a micro starite
+ItemTooltip.DragonBall=Summons a micro Starite
 ItemTooltip.MythicStarfruit=Begins the Glimmer Event
 ItemTooltip.NovaFruit=Summons {$Mods.AQMod.NPCName.OmegaStarite} at night\n{$Mods.AQMod.Common.NotConsumable}
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
@@ -1003,7 +1004,7 @@ ItemTooltip.DungeonMap=Shows the location of the Dungeon if it has already been 
 ItemTooltip.LihzahrdMap=Shows the location of the Lihzahrd Altar if it has already been disovered or Plantera has been defeated\nYou can teleport to the Lihzahrd Altar using a Unity Mirror if Plantera has been defeated
 ItemTooltip.RetroGoggles=Shows enemies as a pink blip on the fullscreen map
 # Spelunker
-ItemTooltip.Extractor=You gain immunity to suffocation\nFalling Silt and Slush now deal x4 less damage\nIf the accessory is not marked as hidden:\nYou obtain the ability to veinmine silt slush and desert fossils\nExtracting something at the Extractinator will show your extractination count 
+ItemTooltip.Extractor=You gain immunity to suffocation\nFalling Silt and Slush now deal four times less damage\nIf the accessory is not marked as hidden:\nYou obtain the ability to veinmine silt slush and desert fossils\nExtracting something at the Extractinator will show your extractination count 
 ########
 # Misc #
 ########
@@ -1023,8 +1024,8 @@ ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
 ItemTooltip.BloodshedPotion=Teleports you to the location of your most recent death
-ItemTooltip.CrabShell=It's oddly mishapen
-ItemTooltip.CrabClock=Speeds up ocean's natural fluctuations
+ItemTooltip.CrabShell=It's oddly misshapen
+ItemTooltip.CrabClock=Speeds up the ocean's natural fluctuations
 ItemTooltip.Molite=Doubles the length of potions
 ItemTooltip.PotionofContainers=Teleports you to a random chest in the world
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
@@ -1040,7 +1041,7 @@ ItemTooltip.GlimmeringStatue=Has a very high chance to attract the Ultimate Swor
 # Other Placeables
 ItemTooltip.FishingCraftingStation=Used to craft special fishing items
 ItemTooltip.GlobeItem=Can be drawn on with markers
-ItemTooltip.DragonBall=Summons a micro starite
+ItemTooltip.DragonBall=Summons a micro Starite
 ItemTooltip.HeartLamp=Summons a heart moth which increases life regen
 ItemTooltip.MonoxideHat='Became a vanity item due to popular demand'
 ItemTooltip.CelesitalEightBall=Right click to use as a normal 8-Ball\nHas special text depending on the world state
@@ -1054,7 +1055,7 @@ ItemTooltip.GebulbaStaff=Shoots bouncy slimeballs\n'Boing!'
 ItemTooltip.MagicWand=Shoots a bolt towards your cursor which explodes into horizontal waves
 ItemTooltip.MagmalbulbiaStaff=Shoots firey magmaballs that explode off tiles\n'EXPLOSION! EXPLOSION! EXPLOSION!'
 ItemTooltip.SeltzerRain=Shoots 5 fizzy orbs which follow your cursor for a short while\nThe fizzy orbs soon start fleeing from your cursor
-ItemTooltip.FizzlingFire=Shoots powerful blue flames\nCannot be used while mana sick
+ItemTooltip.FizzlingFire=Shoots powerful blue flames\nCannot be used if you have mana sickness
 # Tomes
 ItemTooltip.PentalScythe=Shoots firey demon scythes that target your enemies
 # Melee
@@ -1103,7 +1104,7 @@ BuffDescription.MicroStarite=The smallest solar system imaginable
 BuffName.HeartMoth=Heart Moth
 BuffDescription.HeartMoth=Gives you increased life regen and emits light
 BuffName.CosmicMarker=Cosmic Marker
-BuffDescription.CosmicMarker=The glimmer event's center is shown on the map
+BuffDescription.CosmicMarker=The Glimmer Event's center is shown on the map
 BuffName.RetroMarker=Retro Marker
 BuffDescription.RetroMarker=Enemies appear as pink blobs on the map
 BuffName.DungeonMarker=Dungeon Marker
@@ -1113,7 +1114,7 @@ BuffDescription.LihzahrdMarker=The Lihzahrd Altar is shown on the map
 BuffName.Bossrush=Encore
 BuffDescription.Bossrush=Bosses respawn when defeated
 BuffName.Ultima=Ultima
-BuffDescription.Ultima=The blade of ultima blesses you
+BuffDescription.Ultima=The blade of Ultima blesses you
 BuffName.SpectreHealing=Spectre Healing
 BuffDescription.SpectreHealing=You are healing at rapid speeds
 BuffName.PrimeTime=Prime Time
@@ -1240,7 +1241,7 @@ NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
 NPCName.JerryCrabson=Jerry Crabson
 NPCName.JerryClaw=Jerry Claw
 NPCName.ArrowCrab=Arrow Crab
-NPCName.SoliderCrabs=Solider Crabs
+NPCName.SoliderCrabs=Soldier Crabs
 NPCName.HermitCrab=Hermit Crab
 NPCName.StriderCrab=Strider Crab
 
@@ -1271,7 +1272,7 @@ ItemName.ArrowCrabBanner=Arrow Crab Banner
 ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
 ItemName.HermitCrabBanner=Hermit Crab Banner
 ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
-ItemName.SoliderCrabsBanner=Solider Crabs Banner
+ItemName.SoliderCrabsBanner=Soldier Crabs Banner
 ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
 ItemName.StriderCrabBanner=Strider Crab Banner
 ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
