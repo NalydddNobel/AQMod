@@ -11,6 +11,7 @@ using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Generation;
+using AQMod.Effects.Particles;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters;
 using AQMod.Tiles;
@@ -18,6 +19,7 @@ using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -62,6 +64,23 @@ namespace AQMod.Common.DeveloperTools
             {
                 default:
                     caller.Reply("Command doesn't exist.");
+                    break;
+
+                case "enumarrayvsdictionary":
+                    {
+                        var stopWatch = new Stopwatch();
+                        stopWatch.Start();
+
+                        for (int i = 0; i < 100000000; i++)
+                        {
+                            var t = AQTextures.Particles[ParticleTex.SpaceSquidSnowflake];
+                            if (t.IsDisposed)
+                                t.Dispose();
+                        }
+
+                        stopWatch.Stop();
+                        AQMod.GetInstance().Logger.Debug(stopWatch.ElapsedMilliseconds);
+                    }
                     break;
 
                 case "qslget":

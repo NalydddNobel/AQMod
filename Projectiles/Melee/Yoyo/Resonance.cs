@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Graphics.Particles;
+using AQMod.Effects.Particles;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -106,7 +106,7 @@ namespace AQMod.Projectiles.Melee.Yoyo
 
             Main.spriteBatch.Draw(spotlight, projectile.position + offset - Main.screenPosition, null, new Color(125, 80, 60, 0), 0f, spotlightOrigin, projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(AQTextures.Lights[LightTex.Spotlight66x66], projectile.position + offset - Main.screenPosition, null, new Color(55, 25, 10, 0), 0f, AQTextures.Lights[LightTex.Spotlight66x66].Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            
+
             Main.spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition, null, new Color(255, 255, 255, 255), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition, null, new Color(255, 255, 255, 0) * AQUtils.Wave(Main.GlobalTime * 6f, 0f, 0.5f), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
 

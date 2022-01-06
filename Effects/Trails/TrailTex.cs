@@ -1,13 +1,13 @@
 ﻿namespace AQMod.Effects
 {
-    public enum TrailTex : byte
+    public static class TrailTex
     {
-        Line = 0,
-        SmokeLine = 1,
-        FadingLightLine = 2,
-        ThickLine = 3,
-        VERYThickLine = 4,
-        ThickerLine = 5,
-        Count
+        public const int Line = 0;
+        public const int SmokeLine = 1;
+        public const int FadingLightLine = 2;
+        public const int ThickLine = 3;
+        public const int VERYThickLine = 4;
+        public const int ThickerLine = 5;
+        public const int Count = 6;
     }
 }

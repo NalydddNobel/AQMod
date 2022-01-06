@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using AQMod.Common.Graphics.Particles;
+using System.Collections.Generic;
 
-namespace AQMod.Common.Graphics.Particles.Rendering
+namespace AQMod.Effects.Particles
 {
     public sealed class ParticleLayer<TParticle> where TParticle : ParticleType
     {

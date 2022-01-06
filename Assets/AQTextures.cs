@@ -1,8 +1,10 @@
-﻿using AQMod.Common.Graphics.Particles;
+﻿using AQMod.Common.Utilities;
 using AQMod.Effects;
+using AQMod.Effects.Particles;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Terraria.ModLoader;
 
 namespace AQMod.Assets
@@ -12,9 +14,9 @@ namespace AQMod.Assets
         public const string None = "Assets/empty";
         public const string Error = "Assets/error";
 
-        public static Dictionary<ParticleTex, Texture2D> Particles { get; private set; }
-        public static Dictionary<LightTex, Texture2D> Lights { get; private set; }
-        public static Dictionary<TrailTex, Texture2D> Trails { get; private set; }
+        public static Texture2D[] Particles { get; private set; }
+        public static Texture2D[] Lights { get; private set; }
+        public static Texture2D[] Trails { get; private set; }
 
         public static Texture2D Pixel { get; private set; }
 
@@ -26,12 +28,22 @@ namespace AQMod.Assets
 
         private static void LoadDictionaries()
         {
-            Particles = FillDictionary(ParticleTex.Count, "AQMod/Assets/Particles/Particle_");
-            Lights = FillDictionary(LightTex.Count, "AQMod/Assets/Lights/Light_");
-            Trails = FillDictionary(TrailTex.Count, "AQMod/Assets/Trails/Trail_");
+            Particles = FillArray(ParticleTex.Count, "Particles/Particle_");
+            Lights = FillArray(LightTex.Count, "Lights/Light_");
+            Trails = FillArray(TrailTex.Count, "Trails/Trail_");
         }
 
-        private static Dictionary<TEnum, Texture2D> FillDictionary<TEnum>(TEnum count, string pathWithoutNumbers) where TEnum : Enum
+        internal static Texture2D[] FillArray(int count, string pathWithoutNumbers)
+        {
+            var t = new Texture2D[count];
+            for (int i = 0; i < count; i++)
+            {
+                t[i] = ModContent.GetTexture("AQMod/Assets/" + pathWithoutNumbers + i);
+            }
+            return t;
+        }
+
+        internal static Dictionary<TEnum, Texture2D> FillDictionary<TEnum>(TEnum count, string pathWithoutNumbers) where TEnum : Enum
         {
             try
             {

@@ -1,42 +1,42 @@
 ﻿namespace AQMod.Assets
 {
-    public enum LightTex : byte
+    public static class LightTex
     {
-        Spotlight30x30 = 0,
-        Spotlight66x66 = 1,
-        Spotlight66x66Negative = 2,
-        Spotlight240x66 = 3,
-        Spotlight12x66 = 4,
-        Spotlight33x24 = 5,
-        LightLine = 6,
-        Spotlight15x15 = 7,
-        Spotlight20x20 = 8,
-        Spotlight24x24 = 9,
-        Spotlight36x36 = 10,
-        Spotlight48x48 = 11,
-        Spotlight100x100 = 12,
-        Spotlight250x250 = 13,
-        Spotlight80x80 = 14,
-        Spotlight8x8 = 15,
-        LightPillarSmall = 16,
-        LightPillar = 17,
-        Spotlight10x100 = 18,
-        Spotlight10x50 = 19,
-        Spotlight20x100 = 20,
-        Spotlight20x50 = 21,
-        Spotlight25x50 = 22,
-        Spotlight33x50 = 23,
-        Spotlight40x100 = 24,
-        Spotlight50x100 = 25,
-        Spotlight66x100 = 26,
-        Spotlight80x80Half = 27,
-        Spotlight80x80HalfCropped = 28,
-        Ray40 = 29,
-        Ray40Half = 30,
-        Ray80 = 31,
-        Ray80Half = 32,
-        Ray80WideBottom = 33,
-        Ray80WideBottomHalf = 34,
-        Count
+        public const int Spotlight30x30 = 0;
+        public const int Spotlight66x66 = 1;
+        public const int Spotlight66x66Negative = 2;
+        public const int Spotlight240x66 = 3;
+        public const int Spotlight12x66 = 4;
+        public const int Spotlight33x24 = 5;
+        public const int LightLine = 6;
+        public const int Spotlight15x15 = 7;
+        public const int Spotlight20x20 = 8;
+        public const int Spotlight24x24 = 9;
+        public const int Spotlight36x36 = 10;
+        public const int Spotlight48x48 = 11;
+        public const int Spotlight100x100 = 12;
+        public const int Spotlight250x250 = 13;
+        public const int Spotlight80x80 = 14;
+        public const int Spotlight8x8 = 15;
+        public const int LightPillarSmall = 16;
+        public const int LightPillar = 17;
+        public const int Spotlight10x100 = 18;
+        public const int Spotlight10x50 = 19;
+        public const int Spotlight20x100 = 20;
+        public const int Spotlight20x50 = 21;
+        public const int Spotlight25x50 = 22;
+        public const int Spotlight33x50 = 23;
+        public const int Spotlight40x100 = 24;
+        public const int Spotlight50x100 = 25;
+        public const int Spotlight66x100 = 26;
+        public const int Spotlight80x80Half = 27;
+        public const int Spotlight80x80HalfCropped = 28;
+        public const int Ray40 = 29;
+        public const int Ray40Half = 30;
+        public const int Ray80 = 31;
+        public const int Ray80Half = 32;
+        public const int Ray80WideBottom = 33;
+        public const int Ray80WideBottomHalf = 34;
+        public const int Count = 35;
     }
 }

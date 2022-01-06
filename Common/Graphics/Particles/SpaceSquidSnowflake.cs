@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Effects.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

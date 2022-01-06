@@ -1,9 +1,10 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Graphics.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace AQMod.Common.Graphics.Particles
+namespace AQMod.Effects.Particles
 {
     public class EmberParticleSubtractColorUsingScale : MonoParticle
     {
