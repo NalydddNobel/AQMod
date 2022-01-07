@@ -113,6 +113,14 @@ ItemName.StudiesoftheInkblot=墨迹研究学
 ItemTooltip.StudiesoftheInkblot='弹幕中的罗夏'
 ProjectileName.StudiesoftheInkblotBullet=墨迹研究学
 
+ItemName.CursedKey=诅咒钥匙
+ItemTooltip.CursedKey=召唤一个捕魂钩为你而战
+ProjectileName.TrapperMinion=捕魂钩
+ProjectileName.TrapperMinionBlast=捕魂钩
+ProjectileName.TrapperMinionExplosion=捕魂钩
+BuffName.Trapper=捕魂钩
+BuffDescription.Trapper=捕魂钩会为你而战
+
 # Dyes
 ItemName.RedSpriteDye=红色精灵染料
 ItemName.FrostbiteDye=霜寒染料
