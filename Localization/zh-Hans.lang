@@ -94,7 +94,7 @@ ProjectileName.AirBlade=风之刃
 ProjectileName.AirBladeGhost=风之刃
 
 ItemName.RedSpriteStaff=红色精灵法杖
-ItemTooltip.RedSpriteStaff=召唤一朵红色精灵在你的敌人头顶降下雷鸣\n一次可以降下4个雷鸣
+ItemTooltip.RedSpriteStaff=召唤一朵红色精灵在你的敌人头顶降下雷鸣\n一次至多可降下4个雷鸣
 ProjectileName.RedSpriteStaff=红色精灵法杖
 ProjectileName.RedSpriteStaffLightning=红色精灵法杖
 ItemName.ThunderClap=雷霆一击
@@ -268,14 +268,14 @@ Physicist.Chat.GlimmerEvent.3=有时我仰望天空时, 我会看到另一个太
 Physicist.Chat.GlimmerEvent.Source.East=在东边的某个敌方, 有一个强大的源, 我想去调查一下.
 Physicist.Chat.GlimmerEvent.Source.West=在西边的某个敌方, 有一个强大的源, 我想去调查一下.
 Physicist.Chat.Purity.0=这些树林非常的宁静... 但也很容易受到腐化的感染.
-Physicist.Chat.Purity.1=我曾看到过一只小兔子, 它死了.
+Physicist.Chat.Purity.1=我曾看到过一只小兔子... 它死了.
 Physicist.Chat.Purity.2=虽然这个地方有趣又平静, 但绝对不符合我的工作标准.
 Physicist.Chat.Hallow.0=这个地方是对我信仰的侮辱...
 Physicist.Chat.Hallow.1=仙灵? 独角兽? 巫师!? 这简直是炼狱!
 Physicist.Chat.Hallow.2=这里有太多的魔法了, 我受不了了!
 Physicist.Chat.Hallow.3=我希望我能离开这里...
 Physicist.Chat.Hallow.4=下一个是什么? 超巨型大便是真的吗?
-Physicist.Chat.Hallow.5=别告诉我泰拉瑞亚的本源包括这个.
+Physicist.Chat.Hallow.5=别告诉我泰拉瑞亚的本源包括这个!
 Physicist.Chat.Corruption=把我从这个肮脏邪恶的地方弄出去.
 Physicist.Chat.Crimson=把我从这个肮脏血腥的地方弄出去.
 # TODO: add these cross mod quotes into the dialogue
@@ -306,7 +306,7 @@ ItemTooltip.AStrangeIdea='Aequus之起源'\n{$Mods.AQMod.PaintingSignature.Nalyd
 # Event and Boss Checklist stuff
 
 EventName.CrabSeason=蟹季
-BossChecklistDesc.CrabSeason=在随机的时间自然开始和结束. 你可以使用 [i:{0}] 来查看事件的开始和结束时间.
+BossChecklistDesc.CrabSeason=在随机的时间自然开始和结束. 你可以使用 [i:{0}] 来加速时间的循环并查看事件的开始和结束时间.
 EventWarning.CrabSeason=海洋的温度正在逐渐升高...
 EventEnding.CrabSeason=海洋再度变得冰冷...
 BossChecklistDesc.JerryCrabson=在海滩使用 [i:{0}] 召唤.
@@ -323,7 +323,8 @@ BossChecklistDesc.OmegaStarite=在夜晚使用 {0} 召唤. 也可以与微光事
 EventName.GaleStreams=紊流风暴
 BossChecklistDesc.GaleStreams=风速大于 40 mph 时开始, 风速小于 34 mph 时结束. 风速大于 300 mph 时同样会结束. 你可以使用 [i:{0}] 更改风速.
 EventProgress.GaleStreams={0} mph/{1} mph
-BossChecklistDesc.RedSprite=有几率出现在紊流风暴中!
+BossChecklistDesc.RedSprite=偶尔出现在紊流风暴中!
+BossChecklistDesc.SpaceSquid=偶尔出现在紊流风暴中!
 
 # Recipe Groups
 
@@ -559,7 +560,7 @@ Common.RobsterChat12=给了我这顶帽子的人并不知道这个帽子对我�
 Common.RobsterChat13=我真傻, 我竟然把我自己的给忘了. 除我之外还有第二个把自己名字忘了的人吗?
 Common.RobsterChat14=感谢你帮忙找到了我的卡片, 这让我想起了过去我是多么的喜欢掠夺别人东西.
 Common.RobsterNPCDeath=龙虾掠夺者想要你偷窃的东西已经不在原位了...
-Common.RobsterNPCDeath2=询问龙虾掠夺者以开始另一场不同的狩猎
+Common.RobsterNPCDeath2=询问龙虾掠夺者以开始另一场不同的狩猎.
 Common.RobsterFail=你并没有足够小心翼翼的偷到东西...
 Common.RobsterFailAccident=这件特别的东西被你不小心弄坏了...
 Common.HuntJeweledChalice=我看见某人拿着一件特别的宝石杯. 它上面还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
@@ -960,7 +961,7 @@ ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 ItemTooltip.CelesteTorus=在你的周围召唤一圈环绕着你的球体\n球体的半径、速度、伤害和击退都根据你不同的属性决定\n延长2秒飞行时间
 ItemTooltip.RustyKnife=召唤你的朋友为你而战\n当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间\n'为什么你要拿着锋利的刀锋而不是刀把?'
 ItemTooltip.Terraroot=有几率将火枪子弹转化为叶绿弹
-ItemTooltip.Thunderbird=使你获得雷鸣之跃能力, 每2秒刷新一次, 你必须朝着某个方向移动才能使用跳跃\n在你下边的敌人会遭受雷击\n你的生命值越低, 雷击的频率越高
+ItemTooltip.Thunderbird=使你获得雷鸣之跃能力, 每2秒刷新一次\n你必须朝着某个方向移动才能使用跳跃\n在你下边的敌人会遭受雷击\n你的生命值越低, 雷击的频率越高
 ##############
 # Boss Items #
 ##############
@@ -1240,7 +1241,7 @@ NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
 NPCName.JerryCrabson=巨蟹蛤
 NPCName.JerryClaw=蟹蛤之爪
 NPCName.ArrowCrab=箭蟹
-NPCName.SoliderCrabs=大闸蟹
+NPCName.SoliderCrabs=兵蟹
 NPCName.HermitCrab=寄居蟹
 NPCName.StriderCrab=长足蟹
 
@@ -1271,7 +1272,7 @@ ItemName.ArrowCrabBanner=箭蟹旗
 ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
 ItemName.HermitCrabBanner=寄居蟹旗
 ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
-ItemName.SoliderCrabsBanner=大闸蟹旗
+ItemName.SoliderCrabsBanner=兵蟹旗
 ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
 ItemName.StriderCrabBanner=长足蟹旗
 ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
