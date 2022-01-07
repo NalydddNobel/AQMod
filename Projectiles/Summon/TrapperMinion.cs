@@ -163,7 +163,7 @@ namespace AQMod.Projectiles.Summon
             chainVelocity *= height;
             float rotation = chainVelocity.ToRotation() + MathHelper.PiOver2;
 
-            float wave = AQUtils.Wave(AQGraphics.TimerBasedOnTimeOfDay * 10f, 0.9f, 1.1f);
+            float wave = AQUtils.Wave(Main.GlobalTime * 10f, 0.9f, 1.1f);
             const int fade = 5;
             bool shouldFadeFromMouse = AQPlayer.ShouldDoFadingBecauseOfToolsOrSomething(Main.player[projectile.owner]);
             for (int j = 1; j < reps; j++)

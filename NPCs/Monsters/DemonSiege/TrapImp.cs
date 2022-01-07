@@ -168,26 +168,7 @@ namespace AQMod.NPCs.Monsters.DemonSiege
         {
             if (Main.rand.NextBool(5))
             {
-                switch (Main.rand.Next(3)) 
-                {
-                    case 0:
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.ObsidianRose);
-                        }
-                        break;
-
-                    case 1:
-                        {
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<PowPunch>());
-                        }
-                        break;
-
-                    case 2:
-                        {
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<CursedKey>());
-                        }
-                        break;
-                }
+                Item.NewItem(npc.getRect(), ItemID.ObsidianRose);
             }
             if (Main.rand.NextBool(24))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicCursorDye>());

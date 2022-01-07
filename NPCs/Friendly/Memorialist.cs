@@ -40,6 +40,12 @@ namespace AQMod.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.PowPunch>());
+            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistWeaponBuyValue;
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Summon.CursedKey>());
+            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistWeaponBuyValue;
+            nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.DemonicEnergy>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
             nextSlot++;
@@ -141,14 +147,14 @@ namespace AQMod.NPCs.Friendly
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = ModContent.ProjectileType<Projectiles.Physicist>();
+            projType = ModContent.ProjectileType<Projectiles.Memorialist>();
             attackDelay = 1;
         }
 
         public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
         {
-            multiplier = 12f;
-            randomOffset = 2f;
+            multiplier = 6f;
+            randomOffset = 1.5f;
         }
     }
 }
