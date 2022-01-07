@@ -23,7 +23,7 @@ using AQMod.Items.Quest.Angler;
 using AQMod.Items.Vanities;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
-using AQMod.Projectiles.Summon.ChomperMinion;
+using AQMod.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -530,7 +530,6 @@ namespace AQMod
         public int celesteTorusMaxRadius;
         public float celesteTorusSpeed;
         public float celesteTorusScale;
-        public bool unityMirror;
         public bool stariteMinion;
         public bool spicyEel;
         public bool striderPalms;
@@ -541,8 +540,11 @@ namespace AQMod
         public bool[] veinmineTiles;
         public bool degenerationRing;
         public ushort shieldLife;
+
         public bool crimsonHands;
         public bool chomper;
+        public bool trapperImp;
+
         public bool cosmicMap;
         public bool dungeonMap;
         public bool lihzahrdMap;
@@ -902,7 +904,6 @@ namespace AQMod
             ghostAmulet = false;
             extractinatorVisible = false;
             altEvilDrops = false;
-            unityMirror = false;
             stariteMinion = false;
             spicyEel = false;
             striderPalmsOld = striderPalms;
@@ -912,8 +913,11 @@ namespace AQMod
             wyvernAmuletHeld = InVanitySlot(player, ModContent.ItemType<WyvernAmulet>());
             veinmineTiles = new bool[TileLoader.TileCount];
             shieldLife = 0;
+
             crimsonHands = false;
             chomper = false;
+            trapperImp = false;
+
             dungeonMap = false;
             lihzahrdMap = false;
             headMinionCarryXOld = headMinionCarryX;
@@ -2311,7 +2315,7 @@ namespace AQMod
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.HeadMinion[Main.projectile[i].type] && Main.projectile[i].owner == player)
+                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.MinionHeadType[Main.projectile[i].type] && Main.projectile[i].owner == player)
                     Main.projectile[i].Kill();
             }
         }
@@ -2435,6 +2439,16 @@ namespace AQMod
                 }
             }
             return false;
+        }
+
+        public static bool ShouldDoFadingBecauseOfToolsOrSomething(Player player)
+        {
+            if (player.HeldItem == null || player.HeldItem.type <= ItemID.None)
+            {
+                return false;
+            }
+            var item = player.HeldItem;
+            return item.pick > 0 || item.axe > 0 || item.hammer > 0 || item.createTile > 0 || item.createWall > 0 || item.tileWand > 0;
         }
     }
 }

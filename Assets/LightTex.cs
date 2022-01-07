@@ -1,6 +1,9 @@
-﻿namespace AQMod.Assets
+﻿using AQMod.Common.DeveloperTools;
+
+namespace AQMod.Assets
 {
-    public static class LightTex
+    [Identity(typeof(LightTex))]
+    public sealed class LightTex
     {
         public const int Spotlight30x30 = 0;
         public const int Spotlight66x66 = 1;

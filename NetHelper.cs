@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.DeveloperTools;
 using AQMod.Content;
 using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GlimmerEvent;
@@ -148,10 +149,10 @@ namespace AQMod
         {
             ushort messageID = reader.ReadUInt16();
 
-            AQMod.Debug.DebugLogger? l = null;
-            if (AQMod.Debug.LogNetcode)
+            aqdebug.DebugLogger? l = null;
+            if (aqdebug.LogNetcode)
             {
-                l = AQMod.Debug.GetDebugLogger();
+                l = aqdebug.GetDebugLogger();
                 l.Value.Log("Message ID: " + messageID);
             }
 
@@ -235,7 +236,7 @@ namespace AQMod
                             item.modItem.NetRecieve(reader);
                         }
 
-                        if (AQMod.Debug.LogNetcode)
+                        if (aqdebug.LogNetcode)
                         {
                             l.Value.Log("x: " + x);
                             l.Value.Log("y: " + y);

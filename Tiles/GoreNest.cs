@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Effects.GoreNest;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -167,7 +168,9 @@ namespace AQMod.Tiles
         public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref Color drawColor, ref int nextSpecialDrawIndex)
         {
             if (Main.tile[i, j].frameX == 0 && Main.tile[i, j].frameY == 0)
-                GoreNestLayer.AddCorrds(i, j);
+            {
+                GoreNestRenderer.AddCorrdinates(i, j);
+            }
         }
     }
 }

@@ -1011,5 +1011,15 @@ namespace AQMod
             rand = rand ?? Main.rand;
             return new Vector2(rectangle.X + rand.NextFloat(rectangle.Width), rectangle.Y + rand.NextFloat(rectangle.Height));
         }
+
+        public static int RoundUp(this float value)
+        {
+            int down = (int)value;
+            if (value - down > 0f)
+            {
+                return down + 1;
+            }
+            return down;
+        }
     }
 }

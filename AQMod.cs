@@ -22,6 +22,7 @@ using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Effects.Dyes;
+using AQMod.Effects.GoreNest;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Effects.WorldEffects;
@@ -30,8 +31,8 @@ using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Boss;
 using AQMod.Sounds;
-using log4net;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -90,51 +91,6 @@ namespace AQMod
         internal static int _lastScreenWidth;
         internal static int _lastScreenHeight;
 
-        internal static class Debug
-        {
-            public static bool LogAutoload = false;
-            public static bool LogDyeBinding = false;
-            public static bool LogEffectLoading = false;
-            public static bool LogNetcode = true;
-
-            public struct DebugLogger
-            {
-                private readonly ILog _logger;
-
-                public DebugLogger(ILog logger)
-                {
-                    _logger = logger;
-                }
-
-                public void Log(object message)
-                {
-                    _logger.Debug(message);
-                }
-
-                public void Log(object message, object arg0)
-                {
-                    _logger.Debug(string.Format(message.ToString(), arg0));
-                }
-
-                public void Log(object message, params object[] args)
-                {
-                    _logger.Debug(string.Format(message.ToString(), args));
-                }
-
-                public void Log(object message, Exception exception)
-                {
-                    _logger.Debug(message, exception);
-                }
-            }
-
-            public static DebugLogger GetDebugLogger()
-            {
-                var logger = GetInstance().Logger;
-                //logger.Info("Accessed debug logger at: " + Environment.StackTrace);
-                return new DebugLogger(logger);
-            }
-        }
-
         public static class Keybinds
         {
             public static ModHotKey CosmicanonToggle { get; private set; }
@@ -173,7 +129,6 @@ namespace AQMod
                 On.Terraria.Chest.SetupShop += Chest_SetupShop;
                 On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
                 On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
-                On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
                 if (ModContent.GetInstance<AQConfigClient>().XmasBackground)
                 {
                     On.Terraria.Main.DrawBG += Main_DrawBG_XMasBG;
@@ -184,7 +139,6 @@ namespace AQMod
                 On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
                 On.Terraria.Main.NewText_string_byte_byte_byte_bool += Main_NewText_string_byte_byte_byte_bool;
                 On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
-                On.Terraria.Main.DrawTiles += Main_DrawTiles;
                 On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
                 On.Terraria.Main.CursorColor += Main_CursorColor;
                 On.Terraria.Main.DrawCursor += Main_DrawCursor;
@@ -219,18 +173,6 @@ namespace AQMod
                 Main.spriteBatch.End();
             }
 
-            private static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
-            {
-                if (behindTiles)
-                    SceneLayersManager.DrawLayer(SceneLayering.BehindTiles_BehindNPCs);
-                else
-                    SceneLayersManager.DrawLayer(SceneLayering.BehindNPCs);
-                orig(self, behindTiles);
-                if (behindTiles)
-                    SceneLayersManager.DrawLayer(SceneLayering.BehindTiles_InfrontNPCs);
-                else
-                    SceneLayersManager.DrawLayer(SceneLayering.InfrontNPCs);
-            }
 
             private static void UIWorldLoad_ctor_Xmas(On.Terraria.GameContent.UI.States.UIWorldLoad.orig_ctor orig, Terraria.GameContent.UI.States.UIWorldLoad self, Terraria.World.Generation.GenerationProgress progress)
             {
@@ -817,15 +759,6 @@ namespace AQMod
                 self.type > Main.maxNPCTypes &&
                 self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ?
                 decideToFallThroughPlatforms.Decide() : orig(self);
-
-            private static void Main_DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Main self, bool solidOnly, int waterStyleOverride)
-            {
-                if (!solidOnly)
-                {
-                    GoreNestLayer.RefreshCoords();
-                }
-                orig(self, solidOnly, waterStyleOverride);
-            }
         }
 
         public AQMod()
@@ -848,6 +781,7 @@ namespace AQMod
             _lastScreenWidth = 0;
             _lastScreenHeight = 0;
             Keybinds.Load(this);
+            Common.Edits.LoadHooks();
             Edits.Load();
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
@@ -1000,8 +934,8 @@ namespace AQMod
             }
             if (Main.netMode != NetmodeID.MultiplayerClient && spawnStarite)
             {
-                int n = OmegaStariteScenes.OmegaStariteIndexCache = 
-                    (short)NPC.NewNPC(GlimmerEvent.tileX * 16 + 8, GlimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(), 
+                int n = OmegaStariteScenes.OmegaStariteIndexCache =
+                    (short)NPC.NewNPC(GlimmerEvent.tileX * 16 + 8, GlimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(),
                     0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Player.FindClosest(new Vector2(GlimmerEvent.tileX * 16f, GlimmerEvent.tileY * 16f), 16, 16));
                 if (n != -1)
                 {
@@ -1169,6 +1103,15 @@ namespace AQMod
                     }
                 }
             }
+        }
+
+        public static Texture2D LoggableTexture(string path)
+        {
+            if (aqdebug.LogTextureLoading)
+            {
+                aqdebug.GetDebugLogger().Log("Loading Texture: " + path);
+            }
+            return ModContent.GetTexture(path);
         }
     }
 }

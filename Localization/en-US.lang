@@ -113,6 +113,14 @@ ItemName.StudiesoftheInkblot=Studies of the Inkblot
 ItemTooltip.StudiesoftheInkblot='Rorschach in Danmaku'
 ProjectileName.StudiesoftheInkblotBullet=Studies of the Inkblot
 
+ItemName.CursedKey=Cursed Key
+ItemTooltip.CursedKey=Summons a trapper to fight for you
+ProjectileName.TrapperMinion=Trapper
+ProjectileName.TrapperMinionBlast=Trapper
+ProjectileName.TrapperMinionExplosion=Trapper
+BuffName.Trapper=Trapper
+BuffDescription.Trapper=The trapper will fight for you
+
 # Dyes
 ItemName.RedSpriteDye=Red Sprite Dye
 ItemName.FrostbiteDye=Frostbite Dye

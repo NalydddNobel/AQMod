@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Summon.ChomperMinion
+namespace AQMod.Projectiles.Summon
 {
     public class Chomper : ModProjectile
     {
@@ -75,7 +75,7 @@ namespace AQMod.Projectiles.Summon.ChomperMinion
             if (aQPlayer.chomper)
                 projectile.timeLeft = 2;
             int target = -1;
-            float distance = 900f + (25f * (player.ownedProjectileCounts[projectile.type] - 1));
+            float distance = 900f + 25f * (player.ownedProjectileCounts[projectile.type] - 1);
 
             if (player.HasMinionAttackTargetNPC)
             {
@@ -124,7 +124,7 @@ namespace AQMod.Projectiles.Summon.ChomperMinion
                         if (leaderIndex == -1)
                         {
                             leaderIndex = i;
-                            aQPlayer.SetMinionCarryPos((int)projectile.position.X + (projectile.width / 2), (int)projectile.position.Y);
+                            aQPlayer.SetMinionCarryPos((int)projectile.position.X + projectile.width / 2, (int)projectile.position.Y);
                         }
                         count++;
                         index = count;
@@ -210,7 +210,7 @@ namespace AQMod.Projectiles.Summon.ChomperMinion
                 }
                 else
                 {
-                    projectile.rotation = Utils.AngleLerp(projectile.rotation, 0f, 0.025f);
+                    projectile.rotation = projectile.rotation.AngleLerp(0f, 0.025f);
                 }
                 if (eatingDelay > 0)
                 {
@@ -305,7 +305,7 @@ namespace AQMod.Projectiles.Summon.ChomperMinion
                         {
                             if (count == 0)
                             {
-                                aQPlayer.SetMinionCarryPos((int)projectile.position.X + (projectile.width / 2), (int)projectile.position.Y);
+                                aQPlayer.SetMinionCarryPos((int)projectile.position.X + projectile.width / 2, (int)projectile.position.Y);
                             }
                             count++;
                             index = count;
@@ -357,7 +357,7 @@ namespace AQMod.Projectiles.Summon.ChomperMinion
                         {
 
                         }
-                        projectile.rotation = Utils.AngleLerp(projectile.rotation, 0f, 0.025f);
+                        projectile.rotation = projectile.rotation.AngleLerp(0f, 0.025f);
                     }
                     projectile.rotation = (Main.npc[target].Center - projectile.Center).ToRotation();
                 }
@@ -404,15 +404,15 @@ namespace AQMod.Projectiles.Summon.ChomperMinion
                 switch (target.type)
                 {
                     default:
-                    Main.PlaySound(SoundID.Item2, target.Center);
-                    break;
+                        Main.PlaySound(SoundID.Item2, target.Center);
+                        break;
 
                     case NPCID.BlueSlime:
                     case NPCID.SpikedIceSlime:
                     case NPCID.SpikedJungleSlime:
                     case NPCID.SlimeSpiked:
-                    Main.PlaySound(SoundID.Item3, target.Center);
-                    break;
+                        Main.PlaySound(SoundID.Item3, target.Center);
+                        break;
                 }
                 int oldLife = target.life;
                 target.life = -1;

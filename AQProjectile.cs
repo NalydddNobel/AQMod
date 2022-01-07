@@ -44,17 +44,17 @@ namespace AQMod
 
         public static class Sets
         {
-            public static bool[] UntaggableProjectile { get; private set; }
-            public static bool[] HeadMinion { get; private set; }
+            public static bool[] MinionHeadType { get; private set; }
+            public static bool[] MinionRotationalType { get; private set; }
             public static bool[] UnaffectedByWind { get; private set; }
 
             internal static void LoadSets()
             {
-                UntaggableProjectile = new bool[ProjectileLoader.ProjectileCount];
-                UntaggableProjectile[ModContent.ProjectileType<CelesteTorusCollider>()] = true;
+                MinionHeadType = new bool[ProjectileLoader.ProjectileCount];
+                MinionHeadType[ModContent.ProjectileType<Projectiles.Summon.Monoxider>()] = true;
 
-                HeadMinion = new bool[ProjectileLoader.ProjectileCount];
-                HeadMinion[ModContent.ProjectileType<Projectiles.Summon.Monoxider>()] = true;
+                MinionRotationalType = new bool[ProjectileLoader.ProjectileCount];
+                MinionRotationalType[ModContent.ProjectileType<Projectiles.Summon.TrapperMinion>()] = true;
 
                 UnaffectedByWind = new bool[ProjectileLoader.ProjectileCount];
 
@@ -102,8 +102,8 @@ namespace AQMod
 
             internal static void UnloadSets()
             {
-                UntaggableProjectile = null;
-                HeadMinion = null;
+                MinionHeadType = null;
+                MinionRotationalType = null;
                 UnaffectedByWind = null;
             }
         }
@@ -437,6 +437,77 @@ namespace AQMod
                 }
             }
             return owner;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inGroup">Arg 1 is the projectile from the loop, Arg 2 is the projectile parameter in this method</param>
+        /// <param name="projectile"></param>
+        /// <param name="count"></param>
+        /// <param name="whoAmI"></param>
+        internal static void GetProjectileGroupStats(Func<Projectile, bool> inGroup, out int count, out int whoAmI, int projectile = -1)
+        {
+            count = 0;
+            whoAmI = 0;
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && inGroup(Main.projectile[i]))
+                {
+                    if (i == projectile)
+                    {
+                        whoAmI = count;
+                    }
+                    count++;
+                }
+            }
+        }
+
+        internal static void GetProjectileGroupStats_RotationalType(out int count, out int whoAmI, Projectile projectile)
+        {
+            GetProjectileGroupStats((p) => p.owner == projectile.owner && Sets.MinionRotationalType[p.type], out count, out whoAmI, projectile.whoAmI);
+        }
+
+        /// <summary>
+        /// Gets a radian which is a suggested rotation offset from the player. Rotate a Vector which goes upwards in order for this to apply correctly: new Vector2(0f, -1f)
+        /// </summary>
+        /// <param name="projectile"></param>
+        /// <returns></returns>
+        public static float GetSuggestedRotation(Projectile projectile)
+        {
+            GetProjectileGroupStats_RotationalType(out int count, out int whoAmI, projectile);
+            if (count == 0)
+            {
+                return 0f; // ???
+            }
+            return GetSuggestedRotation(projectile, count, whoAmI);
+        }
+
+        public static float GetSuggestedRotation(Projectile projectile, int count, int whoAmI)
+        {
+            bool ownsChomper = Main.player[projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.Chomper>()] > 0;
+            return InternalGetSuggestedRotation(ownsChomper, count, whoAmI);
+        }
+
+        internal static float InternalGetSuggestedRotation(bool ownsChomper, int rotationalCount, int rotationalIndex)
+        {
+            float startingRotation = 0f;
+            float maxRotation = MathHelper.TwoPi;
+            if (ownsChomper)
+            {
+                if (rotationalCount == 1)
+                {
+                    return MathHelper.Pi; // 180 degrees from the player, this makes it go downwards.
+                }
+                startingRotation = MathHelper.PiOver2; // starts at a 90* angle
+                maxRotation = MathHelper.Pi; // can only rotate 180 degrees instead of 360
+            }
+            return startingRotation + (maxRotation / rotationalCount) * rotationalIndex;
+        }
+
+        public static float GetSuggestedRadius(Projectile projectile, float wantedRadius)
+        {
+            return wantedRadius;
         }
     }
 }

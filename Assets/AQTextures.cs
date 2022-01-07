@@ -1,10 +1,7 @@
-﻿using AQMod.Common.Utilities;
+﻿using AQMod.Common.DeveloperTools;
 using AQMod.Effects;
 using AQMod.Effects.Particles;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Terraria.ModLoader;
 
 namespace AQMod.Assets
@@ -28,41 +25,22 @@ namespace AQMod.Assets
 
         private static void LoadDictionaries()
         {
-            Particles = FillArray(ParticleTex.Count, "Particles/Particle_");
-            Lights = FillArray(LightTex.Count, "Lights/Light_");
-            Trails = FillArray(TrailTex.Count, "Trails/Trail_");
+            aqdebug.SupressLogAccess();
+            Particles = FillArray<ParticleTex>("Particles/Particle");
+            Lights = FillArray<LightTex>("Lights/Light");
+            Trails = FillArray<TrailTex>("Trails/Trail");
+            aqdebug.RepairLogAccess();
         }
 
-        internal static Texture2D[] FillArray(int count, string pathWithoutNumbers)
+        private static Texture2D[] FillArray<T>(string pathWithoutNumbers) where T : class
         {
+            int count = IdentityAttribute.GetCount<T>();
             var t = new Texture2D[count];
             for (int i = 0; i < count; i++)
             {
-                t[i] = ModContent.GetTexture("AQMod/Assets/" + pathWithoutNumbers + i);
+                t[i] = AQMod.LoggableTexture("AQMod/Assets/" + pathWithoutNumbers + "_" + i);
             }
             return t;
-        }
-
-        internal static Dictionary<TEnum, Texture2D> FillDictionary<TEnum>(TEnum count, string pathWithoutNumbers) where TEnum : Enum
-        {
-            try
-            {
-                int max = count.GetHashCode();
-                var d = new Dictionary<TEnum, Texture2D>(max);
-                for (ushort i = 0; i < max; i++)
-                {
-                    if (AQMod.Unloading)
-                    {
-                        return null;
-                    }
-                    d.Add(i.ToEnum<TEnum>(), ModContent.GetTexture(pathWithoutNumbers + i));
-                }
-                return d;
-            }
-            catch
-            {
-                return null;
-            }
         }
 
         internal static void Unload()

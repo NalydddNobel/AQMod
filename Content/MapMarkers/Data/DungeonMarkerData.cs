@@ -80,7 +80,7 @@ namespace AQMod.Content.MapMarkers.Data
                         scale += 0.1f;
                     }
                     Main.spriteBatch.Draw(mapIcon, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                    if (player.GetModPlayer<AQPlayer>().unityMirror && NPC.downedPlantBoss && hovering && Main.mouseLeft && Main.mouseLeftRelease)
+                    if (NPC.downedPlantBoss && hovering && Main.mouseLeft && Main.mouseLeftRelease)
                     {
                         Main.mapFullscreen = false;
                         player.UnityTeleport(new Vector2((Main.dungeonX + 0.5f) * 16f, Main.dungeonY * 16f - Main.LocalPlayer.height));

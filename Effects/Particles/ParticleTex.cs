@@ -1,6 +1,9 @@
-﻿namespace AQMod.Effects.Particles
+﻿using AQMod.Common.DeveloperTools;
+
+namespace AQMod.Effects.Particles
 {
-    public static class  ParticleTex
+    [Identity(typeof(ParticleTex))]
+    public sealed class ParticleTex
     {
         public const int Mono = 0;
         public const int MonoEmber = 1;

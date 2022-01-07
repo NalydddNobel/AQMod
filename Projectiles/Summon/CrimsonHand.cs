@@ -61,7 +61,6 @@ namespace AQMod.Projectiles.Summon
         {
             Player player = Main.player[projectile.owner];
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            var drawingPlayer = player.GetModPlayer<AQPlayer>();
             var center = projectile.Center;
             if (player.dead)
                 aQPlayer.crimsonHands = false;

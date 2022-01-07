@@ -1,6 +1,7 @@
 ﻿using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Weapons.Melee;
+using AQMod.Items.Weapons.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -167,13 +168,25 @@ namespace AQMod.NPCs.Monsters.DemonSiege
         {
             if (Main.rand.NextBool(5))
             {
-                if (Main.rand.NextBool())
+                switch (Main.rand.Next(3)) 
                 {
-                    Item.NewItem(npc.getRect(), ItemID.ObsidianRose);
-                }
-                else
-                {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<PowPunch>());
+                    case 0:
+                        {
+                            Item.NewItem(npc.getRect(), ItemID.ObsidianRose);
+                        }
+                        break;
+
+                    case 1:
+                        {
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<PowPunch>());
+                        }
+                        break;
+
+                    case 2:
+                        {
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<CursedKey>());
+                        }
+                        break;
                 }
             }
             if (Main.rand.NextBool(24))

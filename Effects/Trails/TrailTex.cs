@@ -1,6 +1,9 @@
-﻿namespace AQMod.Effects
+﻿using AQMod.Common.DeveloperTools;
+
+namespace AQMod.Effects
 {
-    public static class TrailTex
+    [Identity(typeof(TrailTex))]
+    public sealed class TrailTex
     {
         public const int Line = 0;
         public const int SmokeLine = 1;

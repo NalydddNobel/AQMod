@@ -4,7 +4,6 @@ using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items.Weapons.DemonSiege;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Yoyo;

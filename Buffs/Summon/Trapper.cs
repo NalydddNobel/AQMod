@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Summon
 {
-    public class Chomper : ModBuff
+    public class Trapper : ModBuff
     {
         public override void SetDefaults()
         {
@@ -14,11 +14,11 @@ namespace AQMod.Buffs.Summon
         public override void Update(Player player, ref int buffIndex)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.Chomper>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.TrapperMinion>()] > 0)
             {
-                aQPlayer.chomper = true;
+                aQPlayer.trapperImp = true;
             }
-            if (!aQPlayer.chomper)
+            if (!aQPlayer.trapperImp)
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;

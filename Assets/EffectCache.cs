@@ -1,4 +1,5 @@
-﻿using AQMod.Effects.GoreNest;
+﻿using AQMod.Common.DeveloperTools;
+using AQMod.Effects.GoreNest;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -28,9 +29,9 @@ namespace AQMod.Assets
 
         internal static void Load(AQMod aQMod)
         {
-            AQMod.Debug.DebugLogger? logger = null;
-            if (AQMod.Debug.LogEffectLoading)
-                logger = AQMod.Debug.GetDebugLogger();
+            aqdebug.DebugLogger? logger = null;
+            if (aqdebug.LogEffectLoading)
+                logger = aqdebug.GetDebugLogger();
             ParentPixelShader = logGetEffect("Dyes/ParentDyeShader", aQMod, logger);
             ParentScreenShader = logGetEffect("ParentScreenShader", aQMod, logger);
             GoreNestPortal = logGetEffect("GoreNest/GoreNestPortal", aQMod, logger);
@@ -50,7 +51,7 @@ namespace AQMod.Assets
             f_Vignette = new Filter(new ScreenShaderData(new Ref<Effect>(ParentScreenShader), "VignettePass"), EffectPriority.High);
         }
 
-        private static Effect logGetEffect(string name, AQMod aQMod, AQMod.Debug.DebugLogger? logger)
+        private static Effect logGetEffect(string name, AQMod aQMod, aqdebug.DebugLogger? logger)
         {
             if (logger != null)
                 logger.Value.Log("Loading effect: Effects/" + name);

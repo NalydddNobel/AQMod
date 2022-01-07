@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Vanities.Dyes;
+﻿using AQMod.Common.DeveloperTools;
+using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Vanities.HairDyes;
 using System.Collections.Generic;
 using Terraria.Graphics.Shaders;
@@ -26,11 +27,11 @@ namespace AQMod.Effects.Dyes
 
         public static void LoadDyes()
         {
-            AQMod.Debug.DebugLogger? logger = null;
+            aqdebug.DebugLogger? logger = null;
             if (_loadDyes != null)
             {
-                if (AQMod.Debug.LogDyeBinding)
-                    logger = AQMod.Debug.GetDebugLogger();
+                if (aqdebug.LogDyeBinding)
+                    logger = aqdebug.GetDebugLogger();
                 foreach (var dye in _loadDyes)
                 {
                     setupDye(dye, logger);
@@ -39,8 +40,8 @@ namespace AQMod.Effects.Dyes
             }
             if (_loadHairDyes != null)
             {
-                if (logger != null && AQMod.Debug.LogDyeBinding)
-                    logger = AQMod.Debug.GetDebugLogger();
+                if (logger != null && aqdebug.LogDyeBinding)
+                    logger = aqdebug.GetDebugLogger();
                 foreach (var dye in _loadHairDyes)
                 {
                     setupDye(dye, logger);
@@ -55,14 +56,14 @@ namespace AQMod.Effects.Dyes
             _loadHairDyes = null;
         }
 
-        private static void setupDye(HairDyeItem dye, AQMod.Debug.DebugLogger? debugLogger)
+        private static void setupDye(HairDyeItem dye, aqdebug.DebugLogger? debugLogger)
         {
             if (debugLogger != null)
                 debugLogger.Value.Log("Binding hair dye to " + dye.Name);
             GameShaders.Hair.BindShader(dye.item.type, dye.CreateShaderData());
         }
 
-        private static void setupDye(DyeItem dye, AQMod.Debug.DebugLogger? debugLogger)
+        private static void setupDye(DyeItem dye, aqdebug.DebugLogger? debugLogger)
         {
             if (debugLogger != null)
                 debugLogger.Value.Log("Binding shader to " + dye.Name + " {Pass:" + dye.Pass + "}");
