@@ -121,6 +121,12 @@ ProjectileName.TrapperMinionExplosion=捕魂钩
 BuffName.Trapper=捕魂钩
 BuffDescription.Trapper=捕魂钩会为你而战
 
+ItemName.PiranhaPot=食人罐
+ItemTooltip.PiranhaPot=召唤一株邪恶的食人植物为你而战
+ProjectileName.PiranhaPlant=食人植物
+BuffName.PiranhaPlant=食人植物
+BuffDescription.PiranhaPlant=食人植物会为你而战
+
 # Dyes
 ItemName.RedSpriteDye=红色精灵染料
 ItemName.FrostbiteDye=霜寒染料
