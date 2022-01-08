@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Summon.LavaLotus
+namespace AQMod.Projectiles.Summon
 {
     public class Lotus : ModProjectile
     {

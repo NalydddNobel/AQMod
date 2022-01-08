@@ -8,11 +8,11 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Summon
 {
-    public class Chomper : ModProjectile
+    public class PiranhaPlant : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            Main.projFrames[projectile.type] = 3;
+            Main.projFrames[projectile.type] = 4;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
@@ -22,8 +22,8 @@ namespace AQMod.Projectiles.Summon
         public override void SetDefaults()
         {
             projectile.netImportant = true;
-            projectile.width = 38;
-            projectile.height = 38;
+            projectile.width = 50;
+            projectile.height = 50;
             projectile.friendly = true;
             projectile.minion = true;
             projectile.minionSlots = 1;
@@ -57,6 +57,14 @@ namespace AQMod.Projectiles.Summon
             }
         }
 
+        public float _gotoX;
+        public float _gotoY;
+        public int _targetCache = -1;
+        public int _eatenTypeCache = -1;
+
+        public int damageDelay;
+        public int eatingDelay;
+
         private void Movement(Vector2 center, float time, float rotation, int count, int index)
         {
             float idleDistance = projectile.width * 2.5f + Main.player[projectile.owner].width + 8f * count;
@@ -69,22 +77,14 @@ namespace AQMod.Projectiles.Summon
             GotoPosition(gotoPosition, MathHelper.Clamp(l / 1000f, 0.1f, 0.5f));
         }
 
-        public float _gotoX;
-        public float _gotoY;
-        public int _targetCache = -1;
-        public int _eatenTypeCache = -1;
-
-        public int damageDelay;
-        public int eatingDelay;
-
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
             var aQPlayer = player.GetModPlayer<AQPlayer>();
             var center = projectile.Center;
             if (player.dead)
-                aQPlayer.chomper = false;
-            if (aQPlayer.chomper)
+                aQPlayer.piranhaPlant = false;
+            if (aQPlayer.piranhaPlant)
                 projectile.timeLeft = 2;
             int target = -1;
             float distance = 1000f;
@@ -144,7 +144,7 @@ namespace AQMod.Projectiles.Summon
                     else if (Main.projectile[i].active && AQProjectile.Sets.MinionChomperType[Main.projectile[i].type]
                         && Main.projectile[i].owner == projectile.owner)
                     {
-                        if (Main.projectile[i].type == projectile.type && Main.projectile[i].ai[1] < 120)
+                        if (Main.projectile[i].type == ModContent.ProjectileType<Chomper>() && Main.projectile[i].ai[1] < 120)
                         {
                             continue;
                         }
@@ -251,9 +251,9 @@ namespace AQMod.Projectiles.Summon
                 projectile.ai[1]++;
                 if ((int)projectile.ai[1] < 120)
                 {
-                    if (projectile.ai[1] < 110 && CanEat(Main.npc[target]))
+                    if (projectile.ai[1] < 100)
                     {
-                        projectile.ai[1] += Main.rand.NextFloat(4f);
+                        projectile.ai[1] += Main.rand.NextFloat(10f);
                     }
                     if (damageDelay > 0)
                     {
@@ -324,7 +324,7 @@ namespace AQMod.Projectiles.Summon
                         else if (Main.projectile[i].active && AQProjectile.Sets.MinionChomperType[Main.projectile[i].type]
                             && Main.projectile[i].owner == projectile.owner)
                         {
-                            if (Main.projectile[i].type == projectile.type && Main.projectile[i].ai[1] < 120)
+                            if (Main.projectile[i].type == ModContent.ProjectileType<Chomper>() && Main.projectile[i].ai[1] < 120)
                             {
                                 continue;
                             }
@@ -353,26 +353,78 @@ namespace AQMod.Projectiles.Summon
                         {
                             projectile.rotation += MathHelper.PiOver2;
                         }
-                        else if (projectile.rotation > MathHelper.PiOver2)
-                        {
-
-                        }
                         projectile.rotation = projectile.rotation.AngleLerp(0f, 0.025f);
                     }
                     projectile.rotation = (Main.npc[target].Center - projectile.Center).ToRotation();
                 }
                 else
                 {
-                    if ((int)projectile.ai[1] == 120)
+                    if (CanEat(Main.npc[target]))
                     {
-                        projectile.velocity = Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 13f;
-                        projectile.netUpdate = true;
+                        if ((int)projectile.ai[1] == 120)
+                        {
+                            projectile.velocity = Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 20f;
+                            projectile.netUpdate = true;
+                        }
+                        projectile.ai[1] += Main.rand.NextFloat(0.5f, 2f);
+                        if ((int)projectile.ai[1] > 180)
+                        {
+                            projectile.ai[1] = 0f;
+                            projectile.netUpdate = true;
+                        }
                     }
-                    projectile.ai[1] += Main.rand.NextFloat(0.5f, 2f);
-                    if ((int)projectile.ai[1] > 180)
+                    else
                     {
-                        projectile.ai[1] = 0f;
-                        projectile.netUpdate = true;
+                        projectile.frame = 3; 
+                        if ((int)projectile.ai[1] == 120)
+                        {
+                            Main.PlaySound(SoundID.Item8, projectile.Center);
+                            if (Main.myPlayer == projectile.owner)
+                            {
+                                Projectile.NewProjectile(projectile.Center, Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 20f, ModContent.ProjectileType<Projectiles.Memorialist>(), projectile.damage, projectile.knockBack, projectile.owner);
+                            }
+                        }
+                        projectile.ai[1] += Main.rand.NextFloat(0.5f, 2.5f);
+                        if ((int)projectile.ai[1] > 175)
+                        {
+                            projectile.ai[1] = 0f;
+                            projectile.netUpdate = true;
+                        }
+
+                        int count = 0;
+                        int index = 0;
+                        for (int i = 0; i < Main.maxProjectiles; i++)
+                        {
+                            if (i == projectile.whoAmI)
+                            {
+                                if (count == 0)
+                                {
+                                    aQPlayer.SetMinionCarryPos((int)projectile.position.X + projectile.width / 2, (int)projectile.position.Y);
+                                }
+                                count++;
+                                index = count;
+                            }
+                            else if (Main.projectile[i].active && AQProjectile.Sets.MinionChomperType[Main.projectile[i].type]
+                                && Main.projectile[i].owner == projectile.owner)
+                            {
+                                if (Main.projectile[i].type == ModContent.ProjectileType<Chomper>() && Main.projectile[i].ai[1] < 120)
+                                {
+                                    continue;
+                                }
+                                count++;
+                            }
+                        }
+                        float rotation;
+                        if (count == 1)
+                        {
+                            rotation = 0f;
+                        }
+                        else
+                        {
+                            rotation = MathHelper.PiOver2 / (count - 1) * (index - 1) - MathHelper.PiOver4;
+                        }
+
+                        Movement(center, 0f, rotation, count, index);
                     }
                 }
             }
@@ -380,7 +432,7 @@ namespace AQMod.Projectiles.Summon
 
         public bool CanEat(NPC npc)
         {
-            return eatingDelay <= 0 && !npc.boss && npc.width * npc.height <= projectile.width * projectile.height && npc.life <= 100;
+            return eatingDelay <= 0 && !npc.boss && npc.width * npc.height <= projectile.width * projectile.height && npc.life <= 300;
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

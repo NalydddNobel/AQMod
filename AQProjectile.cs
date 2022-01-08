@@ -45,6 +45,7 @@ namespace AQMod
         public static class Sets
         {
             public static bool[] MinionHeadType { get; private set; }
+            public static bool[] MinionChomperType { get; private set; }
             public static bool[] MinionRotationalType { get; private set; }
             public static bool[] UnaffectedByWind { get; private set; }
 
@@ -52,6 +53,10 @@ namespace AQMod
             {
                 MinionHeadType = new bool[ProjectileLoader.ProjectileCount];
                 MinionHeadType[ModContent.ProjectileType<Projectiles.Summon.Monoxider>()] = true;
+
+                MinionChomperType = new bool[ProjectileLoader.ProjectileCount];
+                MinionChomperType[ModContent.ProjectileType<Projectiles.Summon.Chomper>()] = true;
+                MinionChomperType[ModContent.ProjectileType<Projectiles.Summon.PiranhaPlant>()] = true;
 
                 MinionRotationalType = new bool[ProjectileLoader.ProjectileCount];
                 MinionRotationalType[ModContent.ProjectileType<Projectiles.Summon.TrapperMinion>()] = true;

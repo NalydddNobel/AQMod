@@ -8,6 +8,7 @@ using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Yoyo;
 using AQMod.Items.Weapons.Ranged;
+using AQMod.Items.Weapons.Summon;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.DemonSiege;
 using AQMod.Tiles;
@@ -101,6 +102,7 @@ namespace AQMod.Content.World.Events.DemonSiege
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.DemonBow, ModContent.ItemType<HamaYumi>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.TendonBow, ModContent.ItemType<Deltoid>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ModContent.ItemType<SeltzerRain>(), ModContent.ItemType<FizzlingFire>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
+            AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ModContent.ItemType<CorruptPot>(), ModContent.ItemType<PiranhaPot>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
 
             _enemies = new List<DemonSiegeEnemy>();
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Cindera>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_CINDERA, 20));

@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Items.Materials.Energies;
-using AQMod.Projectiles.Summon.LavaLotus;
+using AQMod.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

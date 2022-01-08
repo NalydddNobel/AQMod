@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Summon.LavaLotus
+namespace AQMod.Projectiles.Summon
 {
     public class LotusShot : ModProjectile
     {

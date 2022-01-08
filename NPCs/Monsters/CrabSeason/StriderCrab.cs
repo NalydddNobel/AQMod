@@ -93,22 +93,26 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                     Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood, npc.velocity.X, npc.velocity.X, 0, default(Color), 1.25f);
                 }
                 var center = npc.Center;
-                for (int i = 0; i < _legs.Length; i++)
+
+                if (_legs != null)
                 {
-                    var position = GetLegPosition(i, npc.direction);
-                    var kneePos = _legs[i].projectile.position + _legs[i].getKneecapPositionOffset();
-                    float rotation = (kneePos - position).ToRotation();
-                    rotation += MathHelper.PiOver2 * 3;
-                    Main.gore[Gore.NewGore(position, npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_4"))].rotation = rotation;
-                    for (int j = 0; j < 8; j++)
-                        Dust.NewDust(position + new Vector2(-10f, -10f), 20, 20, DustID.Blood, npc.velocity.X, npc.velocity.X, 0);
-                    Main.gore[Gore.NewGore(position + new Vector2(15f, 0f).RotatedBy(rotation), npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_5"))].rotation = rotation;
-                    Main.gore[Gore.NewGore(kneePos, npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_6"))].rotation = 0f;
-                    for (int j = 0; j < 6; j++)
-                        Dust.NewDust(kneePos + new Vector2(-10f, -10f), 20, 20, DustID.Blood, npc.velocity.X, npc.velocity.X, 0, default(Color), 0.8f);
-                    Main.gore[Gore.NewGore(kneePos + new Vector2(0f, 15f), npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_5"))].rotation = 0f;
-                    Main.gore[Gore.NewGore(kneePos + new Vector2(0f, 65f), npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_8"))].rotation = 0f;
-                    Main.gore[Gore.NewGore(kneePos + new Vector2(0f, 80f), npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_5"))].rotation = 0f;
+                    for (int i = 0; i < _legs.Length; i++)
+                    {
+                        var position = GetLegPosition(i, npc.direction);
+                        var kneePos = _legs[i].projectile.position + _legs[i].getKneecapPositionOffset();
+                        float rotation = (kneePos - position).ToRotation();
+                        rotation += MathHelper.PiOver2 * 3;
+                        Main.gore[Gore.NewGore(position, npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_4"))].rotation = rotation;
+                        for (int j = 0; j < 8; j++)
+                            Dust.NewDust(position + new Vector2(-10f, -10f), 20, 20, DustID.Blood, npc.velocity.X, npc.velocity.X, 0);
+                        Main.gore[Gore.NewGore(position + new Vector2(15f, 0f).RotatedBy(rotation), npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_5"))].rotation = rotation;
+                        Main.gore[Gore.NewGore(kneePos, npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_6"))].rotation = 0f;
+                        for (int j = 0; j < 6; j++)
+                            Dust.NewDust(kneePos + new Vector2(-10f, -10f), 20, 20, DustID.Blood, npc.velocity.X, npc.velocity.X, 0, default(Color), 0.8f);
+                        Main.gore[Gore.NewGore(kneePos + new Vector2(0f, 15f), npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_5"))].rotation = 0f;
+                        Main.gore[Gore.NewGore(kneePos + new Vector2(0f, 65f), npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_8"))].rotation = 0f;
+                        Main.gore[Gore.NewGore(kneePos + new Vector2(0f, 80f), npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_5"))].rotation = 0f;
+                    }
                 }
 
                 Gore.NewGore(center + new Vector2(4f * npc.direction, 10f), npc.velocity, mod.GetGoreSlot("Gores/StriderCrab_2"));

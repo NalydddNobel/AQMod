@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Gores;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Weapons.Melee.Boomerang;
 using Microsoft.Xna.Framework;
@@ -65,14 +66,16 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 }
                 if ((int)npc.ai[1] == 1)
                 {
-                    Gore.NewGore(npc.Center + Vector2.Normalize(npc.oldVelocity) * npc.width / 2f, npc.velocity * 0.25f, mod.GetGoreSlot("Gores/Brollow_1"));
+                    AQGore.NewGore(npc.Center + Vector2.Normalize(npc.oldVelocity) * npc.width / 2f, 
+                        npc.velocity * 0.25f, "GaleStreams/brollow_1");
                 }
                 else
                 {
-                    Gore.NewGore(npc.Center + Vector2.Normalize(npc.oldVelocity) * npc.width / 2f, npc.velocity * 0.25f, mod.GetGoreSlot("Gores/Brollow_0"));
+                    AQGore.NewGore(npc.Center + Vector2.Normalize(npc.oldVelocity) * npc.width / 2f, 
+                        npc.velocity * 0.25f, "GaleStreams/brollow_0");
                 }
-                Gore.NewGore(npc.Center, npc.velocity.RotatedBy(-0.1f) * 0.25f, mod.GetGoreSlot("Gores/Brollow_2"));
-                Gore.NewGore(npc.Center, npc.velocity.RotatedBy(0.1f) * 0.25f, mod.GetGoreSlot("Gores/Brollow_3"));
+                AQGore.NewGore(npc.getRect(), npc.velocity.RotatedBy(-0.1f) * 0.25f, "GaleStreams/brollow_2");
+                AQGore.NewGore(npc.getRect(), npc.velocity.RotatedBy(0.1f) * 0.25f, "GaleStreams/brollow_3");
             }
             else
             {

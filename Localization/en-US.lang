@@ -121,6 +121,12 @@ ProjectileName.TrapperMinionExplosion=Trapper
 BuffName.Trapper=Trapper
 BuffDescription.Trapper=The trapper will fight for you
 
+ItemName.PiranhaPot=Piranha Pot
+ItemTooltip.PiranhaPot=Summons a vicious piranha plant to fight for you
+ProjectileName.PiranhaPlant=Piranha Plant
+BuffName.PiranhaPlant=Piranha Plant
+BuffDescription.PiranhaPlant=The piranha plant will fight for you
+
 # Dyes
 ItemName.RedSpriteDye=Red Sprite Dye
 ItemName.FrostbiteDye=Frostbite Dye
