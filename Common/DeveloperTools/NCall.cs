@@ -394,14 +394,15 @@ namespace AQMod.Common.DeveloperTools
 
                 case "writeencore":
                     {
-                        var aQPlayer = caller.Player.GetModPlayer<AQPlayer>();
+                        var bossEncore = caller.Player.GetModPlayer<BossEncorePlayer>();
                         string path = DebugFolderPath;
                         Directory.CreateDirectory(path);
-                        var buffer = aQPlayer.SerializeBossKills();
+                        var buffer = bossEncore.SerializeEncoreRecords();
                         var stream = File.Create(path + Path.DirectorySeparatorChar + "encorekills.txt", buffer.Length);
                         stream.Write(buffer, 0, buffer.Length);
                         Utils.OpenFolder(path);
-                        aQPlayer.DeserialzeBossKills(buffer);
+                        bossEncore.DeserialzeEncoreRecords(buffer);
+                        stream.Dispose();
                     }
                     break;
 

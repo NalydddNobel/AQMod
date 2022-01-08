@@ -892,6 +892,13 @@ namespace AQMod
 
         public override void PreUpdateEntities()
         {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                Particle.PreDrawProjectiles.UpdateParticles();
+                Particle.PostDrawPlayers.UpdateParticles();
+
+                Trail.PreDrawProjectiles.UpdateTrails();
+            }
             if (!Main.dedServ)
             {
                 for (int i = 0; i < WorldEffects.Count; i++)

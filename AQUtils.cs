@@ -66,6 +66,23 @@ namespace AQMod
             }
         }
 
+        public static string Spill<T>(this T[] array)
+        {
+            string text = "Nothing is inside this array.";
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (i == 0)
+                {
+                    text = array[0].ToString();
+                }
+                else
+                {
+                    text += ", " + (array[i] == null ? "null value" : array[i].ToString());
+                }
+            }
+            return text;
+        }
+
         public static float Wave(float time, float minimum, float maximum)
         {
             return minimum + ((float)Math.Sin(time) + 1f) / 2f * (maximum - minimum);

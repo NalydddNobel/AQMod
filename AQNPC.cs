@@ -2,6 +2,7 @@
 using AQMod.Common.Graphics.Particles;
 using AQMod.Common.NoHitting;
 using AQMod.Content;
+using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.World.Events;
 using AQMod.Effects.ScreenEffects;
@@ -1092,21 +1093,28 @@ namespace AQMod
             for (int k = 0; k < Main.maxPlayers; k++)
             {
                 var player = Main.player[k];
-                var aQPlayer = player.GetModPlayer<AQPlayer>();
-                if (Main.netMode == NetmodeID.Server)
+                if (!player.active || player.dead)
                 {
-                    aQPlayer.NetUpdateKillCount = true;
-                    aQPlayer.SyncPlayer(-1, player.whoAmI, false);
+                    continue;
                 }
+                var aQPlayer = player.GetModPlayer<AQPlayer>();
+                var bossRushPlayer = player.GetModPlayer<BossEncorePlayer>();
                 if (!aQPlayer.bossrush)
                 {
-                    aQPlayer.CurrentEncoreKillCount[npc.type] = 0;
+                    bossRushPlayer.CurrentEncoreKillCount[npc.type] = 0;
                     return;
                 }
-                aQPlayer.CurrentEncoreKillCount[npc.type]++;
-                if (aQPlayer.CurrentEncoreKillCount[npc.type] > aQPlayer.EncoreBossKillCountRecord[npc.type])
-                    aQPlayer.EncoreBossKillCountRecord[npc.type] = aQPlayer.CurrentEncoreKillCount[npc.type];
-                CombatText.NewText(player.getRect(), Main.mouseColor, aQPlayer.CurrentEncoreKillCount[npc.type], true);
+                bossRushPlayer.CurrentEncoreKillCount[npc.type]++;
+                if (bossRushPlayer.CurrentEncoreKillCount[npc.type] > bossRushPlayer.EncoreBossKillCountRecord[npc.type])
+                    bossRushPlayer.EncoreBossKillCountRecord[npc.type] = bossRushPlayer.CurrentEncoreKillCount[npc.type];
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetHelper.NetCombatText(player.getRect(), Main.mouseColor, bossRushPlayer.CurrentEncoreKillCount[npc.type]);
+                }
+                else
+                {
+                    CombatText.NewText(player.getRect(), Main.mouseColor, bossRushPlayer.CurrentEncoreKillCount[npc.type], true);
+                }
                 float x = player.position.X + player.width / 2f;
                 if (npc.type == NPCID.TheDestroyer && npc.lifeMax <= 0)
                 {
@@ -1122,6 +1130,7 @@ namespace AQMod
                 }
                 int n = NPC.NewNPC((int)x, (int)player.position.Y - 600, npc.type);
                 NPC boss = Main.npc[n];
+                boss.netUpdate = true;
                 float yOff = boss.height * 2f;
                 float healthScale = bossRushScale(npc.lifeMax);
                 float damageScale = MathHelper.Clamp(healthScale, 1.01f, 1.15f);
@@ -1173,6 +1182,10 @@ namespace AQMod
                         if (i > 1)
                             arm.ai[3] = 150f;
                     }
+                }
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetHelper.SyncEncoreData(bossRushPlayer);
                 }
             }
         }

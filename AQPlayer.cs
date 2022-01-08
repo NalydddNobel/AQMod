@@ -684,7 +684,6 @@ namespace AQMod
         public bool glowString;
 
         public bool NetUpdateKillCount;
-        public int[] CurrentEncoreKillCount { get; private set; }
         public int[] EncoreBossKillCountRecord { get; private set; }
         public int PopperType { get; set; }
         public int PopperBaitPower { get; set; }
@@ -731,8 +730,6 @@ namespace AQMod
             notFrostburn = false;
             bossrush = false;
             bossrushOld = false;
-            CurrentEncoreKillCount = new int[NPCLoader.NPCCount];
-            EncoreBossKillCountRecord = new int[NPCLoader.NPCCount];
             grabReachMult = 1f;
             temperature = 0;
             pickBreak = false;
@@ -746,83 +743,12 @@ namespace AQMod
                 GlimmerEventSky.InitNight();
         }
 
-        public byte[] SerializeBossKills()
-        {
-            var writer = new BinaryWriter(new MemoryStream(1024));
-            if (EncoreBossKillCountRecord == null)
-            {
-                writer.Write(false);
-                return ((MemoryStream)writer.BaseStream).GetBuffer();
-            }
-            writer.Write(true);
-            writer.Write((byte)0);
-            for (int i = 0; i < EncoreBossKillCountRecord.Length; i++)
-            {
-                if (EncoreBossKillCountRecord[i] != 0)
-                {
-                    writer.Write(true);
-                    if (i >= Main.maxNPCTypes)
-                    {
-                        writer.Write(true);
-                        var ModNPC = NPCLoader.GetNPC(i);
-                        writer.Write(ModNPC.mod.Name);
-                        writer.Write(ModNPC.Name);
-                        writer.Write(EncoreBossKillCountRecord[i]);
-                    }
-                    else
-                    {
-                        writer.Write(false);
-                        writer.Write(i);
-                        writer.Write(EncoreBossKillCountRecord[i]);
-                    }
-                }
-            }
-            writer.Write(false);
-            return ((MemoryStream)writer.BaseStream).GetBuffer();
-        }
-
-        public void DeserialzeBossKills(byte[] buffer)
-        {
-            var reader = new BinaryReader(new MemoryStream(buffer));
-            if (!reader.ReadBoolean())
-                return;
-            byte save = reader.ReadByte();
-            while (reader.ReadBoolean())
-            {
-                if (reader.ReadBoolean())
-                {
-                    string mod = reader.ReadString();
-                    string name = reader.ReadString();
-                    int kills = reader.ReadInt32();
-                    try
-                    {
-                        var Mod = ModLoader.GetMod(mod);
-                        if (Mod == null)
-                            continue;
-                        int type = Mod.NPCType(name);
-                        if (type != -1)
-                            EncoreBossKillCountRecord[type] = kills;
-                    }
-                    catch
-                    {
-                    }
-                }
-                else
-                {
-                    int type = reader.ReadInt32();
-                    int kills = reader.ReadInt32();
-                    EncoreBossKillCountRecord[type] = kills;
-                }
-            }
-        }
-
         public override TagCompound Save()
         {
             return new TagCompound()
             {
                 ["extractinatorCount"] = ExtractinatorCount,
                 ["CursorDye"] = CursorDye,
-                ["bosskills"] = SerializeBossKills(),
                 ["IgnoreIgnoreMoons"] = IgnoreIgnoreMoons,
                 ["IgnoreAntiGravityItems"] = IgnoreAntiGravityItems,
             };
@@ -842,10 +768,6 @@ namespace AQMod
             {
                 SetCursorDye(CursorDyeManager.ID.None);
             }
-            byte[] buffer = tag.GetByteArray("bosskills");
-            if (buffer == null || buffer.Length == 0)
-                return;
-            DeserialzeBossKills(buffer);
         }
 
         public override void UpdateBiomeVisuals()
@@ -1076,14 +998,6 @@ namespace AQMod
                 mothmanExplosionDelay--;
             if (bossrushOld != bossrush)
             {
-                if (bossrush)
-                {
-
-                }
-                else
-                {
-                    CurrentEncoreKillCount = new int[NPCLoader.NPCCount];
-                }
             }
             bossrushOld = bossrush;
             bossrush = false;
@@ -1164,8 +1078,6 @@ namespace AQMod
             clone.celesteTorusX = celesteTorusX;
             clone.celesteTorusY = celesteTorusY;
             clone.celesteTorusZ = celesteTorusZ;
-            clone.CurrentEncoreKillCount = CurrentEncoreKillCount;
-            clone.EncoreBossKillCountRecord = EncoreBossKillCountRecord;
             clone.breadsoul = breadsoul;
             clone.dreadsoul = dreadsoul;
             clone.dartHead = dartHead;

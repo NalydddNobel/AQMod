@@ -1,8 +1,10 @@
 ﻿using AQMod.Common;
 using AQMod.Common.DeveloperTools;
 using AQMod.Content;
+using AQMod.Content.Players;
 using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GlimmerEvent;
+using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -17,6 +19,8 @@ namespace AQMod
             public const ushort PreventedGlimmer = 1;
             public const ushort PreventedEclipse = 2;
             public const ushort UpdateWindSpeeds = 3;
+            public const ushort CombatText = 4;
+            public const ushort CombatNumber = 5;
 
             public const ushort ActivateGlimmerEvent = 500;
             public const ushort RequestOmegaStarite = 1000;
@@ -26,6 +30,8 @@ namespace AQMod
             public const ushort Flag_ExporterIntroduction = 10000;
             public const ushort Flag_PhysicistIntroduction = 10001;
             public const ushort Flag_AirHunterIntroduction = 10002;
+
+            public const ushort Player_SyncEncoreData = 20000;
         }
 
         internal class PacketInvokerType
@@ -97,6 +103,21 @@ namespace AQMod
         }
         #endregion
 
+        #region Player
+
+        public static void SyncEncoreData(BossEncorePlayer bossEncore)
+        {
+            var p = AQMod.GetInstance().GetPacket();
+            p.Write(PacketType.Player_SyncEncoreData);
+            p.Write(bossEncore.player.whoAmI);
+            var buffer = bossEncore.SerializeEncoreRecords();
+            p.Write(buffer.Length);
+            p.Write(buffer);
+            p.Send();
+        }
+
+        #endregion
+
         #region Misc
         public static void FlagSet(ushort type)
         {
@@ -104,6 +125,81 @@ namespace AQMod
             p.Write(type);
             p.Send();
         }
+
+        public static void NetCombatText(Rectangle rect, Color color, int amount, bool dramatic = false, bool dot = false)
+        {
+            var p = AQMod.GetInstance().GetPacket();
+            p.Write(PacketType.CombatNumber);
+            p.Write(true);
+            p.Write(rect.X);
+            p.Write(rect.Y);
+            p.Write(rect.Width);
+            p.Write(rect.Height);
+            if (color == default(Color))
+            {
+                color = new Color(255, 255, 255, 255);
+            }
+            p.Write(color.R);
+            p.Write(color.G);
+            p.Write(color.B);
+            p.Write(amount);
+            p.Send();
+        }
+        public static void NetCombatText(Vector2 position, Color color, int amount)
+        {
+            var p = AQMod.GetInstance().GetPacket();
+            p.Write(PacketType.CombatNumber);
+            p.Write(false);
+            p.Write(position.X);
+            p.Write(position.Y);
+            if (color == default(Color))
+            {
+                color = new Color(255, 255, 255, 255);
+            }
+            p.Write(color.R);
+            p.Write(color.G);
+            p.Write(color.B);
+            p.Write(amount);
+            p.Send();
+        }
+
+        public static void NetCombatText(Rectangle rect, Color color, string text)
+        {
+            var p = AQMod.GetInstance().GetPacket();
+            p.Write(PacketType.CombatText);
+            p.Write(true);
+            p.Write(rect.X);
+            p.Write(rect.Y);
+            p.Write(rect.Width);
+            p.Write(rect.Height);
+            if (color == default(Color))
+            {
+                color = new Color(255, 255, 255, 255);
+            }
+            p.Write(color.R);
+            p.Write(color.G);
+            p.Write(color.B);
+            p.Write(text);
+            p.Send();
+        }
+        public static void NetCombatText(Vector2 position, Color color, string text)
+        {
+            var p = AQMod.GetInstance().GetPacket();
+            p.Write(PacketType.CombatText);
+            p.Write(false);
+            p.Write(position.X);
+            p.Write(position.Y);
+            if (color == default(Color))
+            {
+                color = new Color(255, 255, 255, 255);
+            }
+            p.Write(color.R);
+            p.Write(color.G);
+            p.Write(color.B);
+            p.Write(text);
+            p.Send();
+        }
+
         public static void UpdateWindSpeeds()
         {
             var p = AQMod.GetInstance().GetPacket();
@@ -158,6 +254,53 @@ namespace AQMod
 
             switch (messageID)
             {
+                case PacketType.CombatText:
+                case PacketType.CombatNumber:
+                    {
+                        Rectangle rect;
+                        if (reader.ReadBoolean())
+                        {
+                            rect = new Rectangle(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+                        }
+                        else
+                        {
+                            Vector2 position = new Vector2(reader.ReadSingle(), reader.ReadSingle());
+                            rect = new Rectangle((int)position.X, (int)position.Y, 2, 2);
+                        }
+                        var color = new Color(reader.ReadByte(), reader.ReadByte(), reader.ReadByte());
+                        // Reading all of this data so that the server doesn't have a random packet or something.
+                        if (messageID == PacketType.CombatNumber) 
+                        {
+                            int amount = reader.ReadInt32();
+                            if (Main.netMode != NetmodeID.Server)
+                            {
+                                int c = CombatText.NewText(rect, color, amount, true);
+                            }
+                        }
+                        else
+                        {
+                            string text = reader.ReadString();
+                            if (Main.netMode != NetmodeID.Server)
+                            {
+                                int c = CombatText.NewText(rect, color, 0, true);
+                                Main.combatText[c].text = text; // TODO: make it properly center the text with the string measurement.
+                            }
+                        }
+                    }
+                    break;
+
+                case PacketType.Player_SyncEncoreData:
+                    {
+                        int p = reader.ReadInt32();
+                        l?.Log("Syncing encore data from: " + Main.player[p].name);
+                        int bufferLength = reader.ReadInt32();
+                        l?.Log("buffer length: " + bufferLength);
+                        var buffer = reader.ReadBytes(bufferLength);
+                        l?.Log("Spilling bytes: " + buffer.Spill());
+                        Main.player[p].GetModPlayer<BossEncorePlayer>().DeserialzeEncoreRecords(buffer);
+                    }
+                    break;
+
                 case PacketType.PreventedBloodMoon:
                     {
                         l?.Log("Old Blood Moons Prevented: " + CosmicanonCounts.EclipsesPrevented);

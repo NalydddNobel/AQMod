@@ -16,16 +16,5 @@ namespace AQMod.Effects
                 Trail.PreDrawProjectiles.Initialize();
             }
         }
-
-        public override void PostUpdate()
-        {
-            if (Main.netMode != NetmodeID.Server)
-            {
-                Particle.PreDrawProjectiles.UpdateParticles();
-                Particle.PostDrawPlayers.UpdateParticles();
-
-                Trail.PreDrawProjectiles.UpdateTrails();
-            }
-        }
     }
 }
