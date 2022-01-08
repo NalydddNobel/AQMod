@@ -25,9 +25,7 @@ namespace AQMod.Projectiles.Monster
             projectile.aiStyle = -1;
             projectile.ignoreWater = true;
 
-            var aQProjectile = projectile.GetGlobalProjectile<AQProjectile>();
-            aQProjectile.canFreeze = false;
-            aQProjectile.temperature = 20;
+            projectile.GetGlobalProjectile<AQProjectile>().SetupTemperatureStats(20);
         }
 
         public override Color? GetAlpha(Color drawColor)

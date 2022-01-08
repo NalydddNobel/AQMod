@@ -1,6 +1,6 @@
 using AQMod.Assets;
 using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Buffs.Debuffs.Temperature;
+using AQMod.Buffs.Temperature;
 using AQMod.Common;
 using AQMod.Common.Configuration;
 using AQMod.Common.CrossMod;

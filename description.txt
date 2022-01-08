@@ -12,7 +12,7 @@ A discord link to the mod is in the homepage, if you like typing discord invite 
 [c/ff3377:>] 4 special minibosses
 [c/ff3377:>] 15+ Enemies
 [c/ff3377:>] 4 Unique Events
-[c/ff3377:>] 3 Friendly NPCs
+[c/ff3377:>] 4 Friendly NPCs
 [c/ff3377:>] Full support for English language and Chinese language, with quite a few Russian translations!
 [c/ffff64:And importantly, many bugs!]
 (Please report bugs either on the forum page, or discord server!)
@@ -33,7 +33,7 @@ Aequus是一个添加了很多新物品、敌人和战利品的Terraria内容模
 [c/ff3377:>] 4个特殊的小Boss
 [c/ff3377:>] 超过15个敌人
 [c/ff3377:>] 4个独特事件
-[c/ff3377:>] 3个友善的NPC
+[c/ff3377:>] 4个友善的NPC
 [c/ff3377:>] 完全支持英语和以后可能会重新翻译的汉语, 以及相当多的俄语翻译!
 [c/ffff64:更重要的是, 有很多Bug!]
 (请到论坛主页或Discord服务器反馈Bug!)

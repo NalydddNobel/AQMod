@@ -1,5 +1,6 @@
 ﻿using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools;
+using AQMod.Items.Tools.Axe;
 using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee.Flail;

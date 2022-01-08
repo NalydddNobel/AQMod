@@ -138,9 +138,26 @@ namespace AQMod
 
         public override void SetDefaults(Projectile projectile)
         {
-            temperature = 0;
-            temperatureRate = 8;
+            if (temperature == 0)
+            {
+                temperature = 0;
+                temperatureRate = 8;
+            }
             temperatureUpdate = 0;
+        }
+
+        public void SetupTemperatureStats(sbyte temperature, byte temperatureRate = 8)
+        {
+            if (temperature < 0)
+            {
+                canHeat = false;
+            }
+            else
+            {
+                canFreeze = false;
+            }
+            this.temperature = temperature;
+            this.temperatureRate = temperatureRate;
         }
 
         public void ApplyWindMechanics(Projectile projectile, Vector2 wind)
@@ -490,7 +507,8 @@ namespace AQMod
 
         public static float GetSuggestedRotation(Projectile projectile, int count, int whoAmI)
         {
-            bool ownsChomper = Main.player[projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.Chomper>()] > 0;
+            bool ownsChomper = Main.player[projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.Chomper>()] > 0 || 
+                Main.player[projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.PiranhaPlant>()] > 0;
             return InternalGetSuggestedRotation(ownsChomper, count, whoAmI);
         }
 
@@ -498,16 +516,18 @@ namespace AQMod
         {
             float startingRotation = 0f;
             float maxRotation = MathHelper.TwoPi;
+            int useCount = rotationalCount;
             if (ownsChomper)
             {
                 if (rotationalCount == 1)
                 {
                     return MathHelper.Pi; // 180 degrees from the player, this makes it go downwards.
                 }
+                useCount--;
                 startingRotation = MathHelper.PiOver2; // starts at a 90* angle
                 maxRotation = MathHelper.Pi; // can only rotate 180 degrees instead of 360
             }
-            return startingRotation + (maxRotation / rotationalCount) * rotationalIndex;
+            return startingRotation + (maxRotation / useCount) * rotationalIndex;
         }
 
         public static float GetSuggestedRadius(Projectile projectile, float wantedRadius)

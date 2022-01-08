@@ -24,9 +24,7 @@ namespace AQMod.Projectiles.Monster
             projectile.ignoreWater = true;
             projectile.timeLeft = 16;
 
-            var aQProjectile = projectile.GetGlobalProjectile<AQProjectile>();
-            aQProjectile.canFreeze = false;
-            aQProjectile.temperature = 20;
+            projectile.GetGlobalProjectile<AQProjectile>().SetupTemperatureStats(20);
         }
 
         public override void AI()

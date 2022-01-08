@@ -186,7 +186,7 @@ namespace AQMod.Common.WorldGeneration
                 if (TryPlaceNobleGroup(x, y, style, size))
                 {
                     TryPlaceNobleGroup(x, y, style, size + 10);
-                    TryPlaceNobleGroup(x, y, style, size + 10);
+                    TryPlaceNobleGroup(x, y, style, size + 20);
                     i += 450;
                 }
             }

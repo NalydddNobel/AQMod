@@ -6,6 +6,7 @@ using AQMod.Content.World.Events;
 using AQMod.Items.BossItems.Crabson;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools;
+using AQMod.Items.Tools.Axe;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
@@ -33,10 +34,12 @@ namespace AQMod.NPCs.Boss.Crabson
             AQText.chooselocalizationtext("Jerry Crabson", "巨蟹蛤"),
             ModContent.ItemType<MushroomClam>(),
             new List<int>() {
+                ModContent.ItemType<Crabax>(),
                 ModContent.ItemType<Crabsol>(),
                 ModContent.ItemType<JerryClawFlail>(),
                 ModContent.ItemType<CinnabarBow>(),
                 ModContent.ItemType<Bubbler>(),
+                ModContent.ItemType<CrabClock>(),
                 ModContent.ItemType<AquaticEnergy>(),
             },
             new List<int>()

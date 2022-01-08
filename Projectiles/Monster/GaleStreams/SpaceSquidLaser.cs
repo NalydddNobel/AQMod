@@ -29,8 +29,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
 
-            projectile.GetGlobalProjectile<AQProjectile>().canHeat = false;
-            projectile.GetGlobalProjectile<AQProjectile>().temperature = -40;
+            projectile.GetGlobalProjectile<AQProjectile>().SetupTemperatureStats(-40);
         }
 
         public override void AI()

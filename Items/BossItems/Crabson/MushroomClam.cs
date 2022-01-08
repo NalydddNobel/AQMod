@@ -12,7 +12,7 @@ namespace AQMod.Items.BossItems.Crabson
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[item.type] = Constants.BossSpawnItemSortOrder.SlimeCrown;
+            ItemID.Sets.SortingPriorityBossSpawns[item.type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.SlimeCrown];
         }
 
         public override void SetDefaults()
@@ -43,8 +43,8 @@ namespace AQMod.Items.BossItems.Crabson
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<CrabShell>(), 5);
-            r.AddRecipeGroup("AQMod:AnyNobleMushroom");
+            r.AddIngredient(ModContent.ItemType<CrabShell>(), 4);
+            r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyNobleMushroom);
             r.AddTile(TileID.DemonAltar);
             r.SetResult(this);
             r.AddRecipe();

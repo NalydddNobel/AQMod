@@ -124,7 +124,7 @@ namespace AQMod
             if (AQWorldGen.check2x2(x, y - 1))
             {
                 int style = WorldGen.genRand.Next(3);
-                WorldGen.PlaceTile(x, y - 1, ModContent.TileType<NobleMushrooms>(), true, true, -1, style);
+                WorldGen.PlaceTile(x, y - 1, ModContent.TileType<NobleMushrooms>(), true, true, -1, style + WorldGen.genRand.Next(3) * 3);
                 return true;
             }
             return false;

@@ -20,9 +20,7 @@ namespace AQMod.Projectiles.Magic
             projectile.ignoreWater = true;
             projectile.timeLeft = 90;
 
-            var aQProjectile = projectile.GetGlobalProjectile<AQProjectile>();
-            aQProjectile.canFreeze = false;
-            aQProjectile.temperature = 20;
+            projectile.GetGlobalProjectile<AQProjectile>().SetupTemperatureStats(20);
         }
 
         public override Color? GetAlpha(Color drawColor)

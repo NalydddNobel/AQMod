@@ -139,7 +139,17 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
         public override void AI()
         {
-            if ((int)npc.ai[0] == Phase_Goodbye)
+            bool leave = (int)npc.ai[0] == Phase_Goodbye;
+            if (!npc.HasValidTarget)
+            {
+                npc.ai[0] = -1;
+                leave = true;
+            }
+            else if (!leave && Main.player[npc.target].position.Y > Content.World.Events.GaleStreams.GaleStreams.MinimumGaleStreamsSpawnOverride)
+            {
+                leave = true;
+            }
+            if (leave)
             {
                 if (npc.timeLeft < 20)
                 {

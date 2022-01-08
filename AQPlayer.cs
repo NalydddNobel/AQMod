@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Buffs.Debuffs;
-using AQMod.Buffs.Debuffs.Temperature;
+using AQMod.Buffs.Temperature;
 using AQMod.Common;
 using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
@@ -20,6 +20,7 @@ using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.DrawOverlays;
 using AQMod.Items.Foods;
 using AQMod.Items.Quest.Angler;
+using AQMod.Items.Tools.Axe;
 using AQMod.Items.Vanities;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
@@ -1193,7 +1194,7 @@ namespace AQMod
                 if (Main.mouseRight || !canMine)
                     crabAx = false;
                 else if (!crabAx)
-                    crabAx = item.type == ModContent.ItemType<Items.Tools.Crabax>();
+                    crabAx = item.type == ModContent.ItemType<Crabax>();
                 if (crabAx && (item.axe > 0))
                 {
                     if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && player.toolTime <= 1 && player.itemAnimation > 0 && player.controlUseItem)

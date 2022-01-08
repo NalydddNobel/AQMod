@@ -1,17 +1,14 @@
 ﻿using Terraria;
 using Terraria.ID;
 
-namespace AQMod.Buffs.Debuffs.Temperature
+namespace AQMod.Buffs.Temperature
 {
-    public class Hot60 : temperatureDebuff
+    public class Hot40 : temperatureDebuff
     {
-        protected override bool Cold => false;
-
         public override void Update(Player player, ref int buffIndex)
         {
             base.Update(player, ref buffIndex);
             player.AddBuff(BuffID.OnFire, 1);
-            player.AddBuff(BuffID.Burning, 1);
         }
     }
 }
