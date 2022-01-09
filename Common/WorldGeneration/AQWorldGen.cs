@@ -154,12 +154,12 @@ namespace AQMod.Common.WorldGeneration
                     {
                         WorldGen.KillTile(x, y + 3 + i);
                         WorldGen.PlaceTile(x, y + 3 + i, TileID.Explosives);
-                        AQUtils.TileABLine(x, y, x, y + 3 + i, delegate (int x2, int y2)
+                        AQUtils.PointAtoPointB(x, y, x, y + 3 + i, delegate (int x2, int y2)
                         {
                             WorldGen.PlaceWire(x2, y2);
                             return true;
                         });
-                        AQUtils.TileABLine(x - 1, y, x + 2, y, delegate (int x2, int y2)
+                        AQUtils.PointAtoPointB(x - 1, y, x + 2, y, delegate (int x2, int y2)
                         {
                             WorldGen.PlaceWire(x2, y2);
                             return true;
@@ -313,7 +313,7 @@ namespace AQMod.Common.WorldGeneration
                     WorldGen.KillTile(pressurePlate.X, pressurePlate.Y);
                     Main.tile[pressurePlate.X, pressurePlate.Y + 1].active(active: true);
                     WorldGen.PlaceTile(pressurePlate.X, pressurePlate.Y, TileID.PressurePlates, true, true);
-                    AQUtils.TileABLine(pressurePlate.X, pressurePlate.Y, x, y, delegate (int x3, int y3)
+                    AQUtils.PointAtoPointB(pressurePlate.X, pressurePlate.Y, x, y, delegate (int x3, int y3)
                     {
                         WorldGen.PlaceWire(x3, y3);
                         return true;
@@ -340,7 +340,7 @@ namespace AQMod.Common.WorldGeneration
                         if (dynamite != new Point())
                         {
                             WorldGen.PlaceTile(pressurePlate2.X, pressurePlate2.Y, TileID.PressurePlates, true, true);
-                            AQUtils.TileABLine(pressurePlate2.X, pressurePlate2.Y, dynamite.X, dynamite.Y, delegate (int x3, int y3)
+                            AQUtils.PointAtoPointB(pressurePlate2.X, pressurePlate2.Y, dynamite.X, dynamite.Y, delegate (int x3, int y3)
                             {
                                 WorldGen.PlaceWire2(x3, y3);
                                 return true;

@@ -1,4 +1,6 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Graphics.SceneLayers;
+using AQMod.Content.Players;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
@@ -13,36 +15,25 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace AQMod.Common.Graphics.SceneLayers
+namespace AQMod.Effects
 {
-    public sealed class UltimateSwordWorldOverlay : SceneLayer
+    public static class CustomRenderUltimateSword
     {
-        public static LayerKey Key { get; private set; }
+        private static byte _swordEffectDelay;
+        private static UnifiedRandom _rand;
 
-        private byte _swordEffectDelay;
-        private UnifiedRandom _rand;
-
-        public override string Name => "UltimateSword";
-        public override SceneLayering Layering => SceneLayering.BehindNPCs;
-
-        protected override void OnRegister(LayerKey key)
+        internal static void Initialize()
         {
+            _swordEffectDelay = 0;
             _rand = new UnifiedRandom();
-            Key = key;
         }
 
-        internal override void Unload()
+        internal static void RenderUltimateSword()
         {
-            Key = LayerKey.Null;
-            _rand = null;
-        }
-
-        protected override void Draw()
-        {
-            if (!closeEnoughToDraw() || OmegaStariteScenes.SceneType > 1 || 
-                (Main.netMode != NetmodeID.SinglePlayer && NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>())))
+            if (!IsCloseEnoughToDraw() || OmegaStariteScenes.SceneType > 1 ||
+                Main.netMode != NetmodeID.SinglePlayer && NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()))
                 return;
-            var drawPos = swordPos();
+            var drawPos = SwordPos();
             if (OmegaStariteScenes.OmegaStariteIndexCache == -1)
                 OmegaStariteScenes.SceneType = 0;
             var texture = TextureGrabber.GetItem(ModContent.ItemType<UltimateSword>());
@@ -50,7 +41,7 @@ namespace AQMod.Common.Graphics.SceneLayers
             var origin = new Vector2(frame.Width, 0f);
             Main.spriteBatch.Draw(texture, drawPos - Main.screenPosition, frame, new Color(255, 255, 255, 255), MathHelper.PiOver4 * 3f, origin, 1f, SpriteEffects.None, 0f);
 
-            float bobbing = (bobbingSin() + 1f) / 2f;
+            float bobbing = (Bobbing() + 1f) / 2f;
             var blurTexture = ModContent.GetTexture(AQUtils.GetPath<UltimateSword>("_Blur"));
             var blurFrame = new Rectangle(0, 0, blurTexture.Width, blurTexture.Height);
             var blurOrigin = new Vector2(origin.X, blurTexture.Height - texture.Height);
@@ -89,36 +80,11 @@ namespace AQMod.Common.Graphics.SceneLayers
             }
         }
 
-        public static float bobbingSin()
+        internal static void UpdateUltimateSword()
         {
-            return (float)Math.Sin(Main.GameUpdateCount * 0.0157f);
-        }
-
-        public static Vector2 swordPos()
-        {
-            float x = GlimmerEvent.tileX * 16f;
-            if (Framing.GetTileSafely(GlimmerEvent.tileX, GlimmerEvent.tileY).type == ModContent.TileType<GlimmeringStatue>())
-            {
-                x += 16f;
-            }
-            else
-            {
-                x += 8f;
-            }
-            float y = GlimmerEvent.tileY * 16 - 80f + bobbingSin() * 8f;
-            return new Vector2(x, y);
-        }
-
-        private bool closeEnoughToDraw()
-        {
-            return Main.LocalPlayer.position.X - GlimmerEvent.tileX * 16f < Main.screenWidth + 200f;
-        }
-
-        public override void Update()
-        {
-            if (!GlimmerEvent.IsGlimmerEventCurrentlyActive() || OmegaStariteScenes.SceneType > 1 || !closeEnoughToDraw())
+            if (!GlimmerEvent.IsGlimmerEventCurrentlyActive() || OmegaStariteScenes.SceneType > 1 || !IsCloseEnoughToDraw())
                 return;
-            var position = swordPos();
+            var position = SwordPos();
             Lighting.AddLight(position, new Vector3(1f, 1f, 1f));
             if (_rand.NextBool(10))
             {
@@ -135,6 +101,31 @@ namespace AQMod.Common.Graphics.SceneLayers
                 AQMod.WorldEffects.Add(new UltimateSwordEffect(_rand));
                 _swordEffectDelay = (byte)(int)(8 * (1f - AQConfigClient.c_EffectIntensity));
             }
+        }
+
+        internal static float Bobbing()
+        {
+            return (float)Math.Sin(Main.GameUpdateCount * 0.0157f);
+        }
+
+        internal static Vector2 SwordPos()
+        {
+            float x = GlimmerEvent.tileX * 16f;
+            if (Framing.GetTileSafely(GlimmerEvent.tileX, GlimmerEvent.tileY).type == ModContent.TileType<GlimmeringStatue>())
+            {
+                x += 16f;
+            }
+            else
+            {
+                x += 8f;
+            }
+            float y = GlimmerEvent.tileY * 16 - 80f + Bobbing() * 8f;
+            return new Vector2(x, y);
+        }
+
+        private static bool IsCloseEnoughToDraw()
+        {
+            return Main.LocalPlayer.position.X - GlimmerEvent.tileX * 16f < Main.screenWidth + 200f;
         }
     }
 }

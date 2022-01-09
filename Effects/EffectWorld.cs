@@ -14,6 +14,8 @@ namespace AQMod.Effects
                 Particle.PostDrawPlayers.Initialize();
 
                 Trail.PreDrawProjectiles.Initialize();
+
+                CustomRenderUltimateSword.Initialize();
             }
         }
     }

@@ -296,7 +296,7 @@ namespace AQMod
                         int bufferLength = reader.ReadInt32();
                         l?.Log("buffer length: " + bufferLength);
                         var buffer = reader.ReadBytes(bufferLength);
-                        l?.Log("Spilling bytes: " + buffer.Spill());
+                        l?.Log("Spilling bytes: " + buffer.SpillArray());
                         Main.player[p].GetModPlayer<BossEncorePlayer>().DeserialzeEncoreRecords(buffer);
                     }
                     break;
@@ -409,35 +409,6 @@ namespace AQMod
                         WorldDefeats.HunterIntroduction = true;
                     }
                     break;
-
-                    //case AQPacketID.UpdateAQPlayerCelesteTorus:
-                    //    {
-                    //        var player = Main.player[reader.ReadByte()];
-                    //        var aQPlayer = player.GetModPlayer<AQPlayer>();
-                    //        aQPlayer.celesteTorusX = reader.ReadSingle();
-                    //        aQPlayer.celesteTorusY = reader.ReadSingle();
-                    //        aQPlayer.celesteTorusZ = reader.ReadSingle();
-
-                    //        if (Debug.LogNetcode)
-                    //        {
-                    //            var l = Debug.GetDebugLogger();
-                    //            l.Log("Updating celeste torus positions for: (" + player.name + ")");
-                    //            l.Log("x: " + aQPlayer.celesteTorusX);
-                    //            l.Log("y: " + aQPlayer.celesteTorusY);
-                    //            l.Log("z: " + aQPlayer.celesteTorusZ);
-                    //        }
-                    //    }
-                    //    break;
-
-                    //case AQPacketID.UpdateAQPlayerEncoreKills:
-                    //    {
-                    //        var player = Main.player[reader.ReadByte()];
-                    //        var aQPlayer = player.GetModPlayer<AQPlayer>();
-                    //        byte[] buffer = reader.ReadBytes((int)(reader.BaseStream.Length - reader.BaseStream.Position));
-                    //        aQPlayer.DeserialzeBossKills(buffer);
-                    //    }
-                    //    break;
-                    //    break;
             }
         }
     }

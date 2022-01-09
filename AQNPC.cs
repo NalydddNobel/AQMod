@@ -1483,7 +1483,7 @@ namespace AQMod
                         }
                         if (CrabSeason.Active)
                         {
-                            if (Main.moonPhase % 2 == 0 && !aQPlayer.altEvilDrops || Main.moonPhase % 2 == 1 && aQPlayer.altEvilDrops)
+                            if ((Main.moonPhase % 2 == 0 && !aQPlayer.altEvilDrops) || (Main.moonPhase % 2 == 1 && aQPlayer.altEvilDrops))
                                 Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
                         }
                         else
@@ -1533,7 +1533,7 @@ namespace AQMod
                     break;
 
                 case NPCID.Mothron:
-                    if (NPC.downedAncientCultist && (npc.playerInteraction[p] && npc.GetGlobalNPC<NoHitManager>().hitPlayer[p] || Main.rand.NextBool(10)))
+                    if (NPC.downedAncientCultist && ((npc.playerInteraction[p] && npc.GetGlobalNPC<NoHitManager>().hitPlayer[p]) || Main.rand.NextBool(10)))
                         Item.NewItem(npc.getRect(), ModContent.ItemType<MothmanMask>());
                     break;
 

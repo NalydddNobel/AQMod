@@ -227,7 +227,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 effect.Techniques[0].Passes["BackgroundEffectPass"].Apply();
                 Main.instance.GraphicsDevice.Textures[1] = ModContent.GetTexture("Terraria/Misc/Noise");
 
-                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 200 + AQUtils.BGTop * 2, Main.screenWidth, Main.screenHeight), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 200 + AQUtils.RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop * 2, Main.screenWidth, Main.screenHeight), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
 
                 if (config.BackgroundAurora)
                     RenderAuroras(effect, config);
@@ -252,7 +252,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 }
                 color *= 0.35f * transition * Brightness;
                 color.A = 0;
-                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 40 + AQUtils.BGTop / 2, Main.screenWidth, Main.screenHeight), null,
+                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 40 + AQUtils.RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop / 2, Main.screenWidth, Main.screenHeight), null,
                     color, 0f, Vector2.Zero, SpriteEffects.None, 0f) ;
             }
 
@@ -592,7 +592,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
                 if (FallingStars.stars != null && FallingStars.stars.Count != 0)
                 {
-                    AQUtils.BGTop = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
+                    AQUtils.RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
                     //Main.NewText(AQUtils.BGTop, Main.DiscoColor);
                     foreach (var s in FallingStars.stars)
                     {

@@ -22,12 +22,17 @@ namespace AQMod
 {
     internal static class AQUtils
     {
-        public static int BGTop;
-        private static readonly FieldInfo _bgtopfield = typeof(Main).GetField("bgTop", BindingFlags.NonPublic | BindingFlags.Instance);
+        public static Vector2 TrueMouseworld => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix)) + Main.screenPosition;
 
-        public static int _BGTop()
+        public static class RedAndYourFunnyPrivateVariablesWhichAreKindaImportant
         {
-            return BGTop = (int)_bgtopfield.GetValue(Main.instance);
+            private static readonly FieldInfo _bgtopfield = typeof(Main).GetField("bgTop", BindingFlags.NonPublic | BindingFlags.Instance);
+            public static int Main_bgTop { get; set; }
+
+            public static int GetMain_bgTop()
+            {
+                return Main_bgTop = (int)_bgtopfield.GetValue(Main.instance);
+            }
         }
 
         public static class OmegaStarite3DHelper
@@ -62,11 +67,11 @@ namespace AQMod
             public static Vector2 GetRenderPosition(Vector2 position)
             {
                 return new Vector2(position.X * (Main.screenWidth / 800f),
-                    position.Y * (Main.screenHeight / 600f) + BGTop);
+                    position.Y * (Main.screenHeight / 600f) + RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop);
             }
         }
 
-        public static string Spill<T>(this T[] array)
+        public static string SpillArray<T>(this T[] array)
         {
             string text = "Nothing is inside this array.";
             for (int i = 0; i < array.Length; i++)
@@ -419,139 +424,15 @@ namespace AQMod
             return segments;
         }
 
-        public static string UseTimeAnimationTooltip(float useAnimation)
-        {
-            if (useAnimation <= 8)
-            {
-                return Lang.tip[6].Value;
-            }
-            else if (useAnimation <= 20)
-            {
-                return Lang.tip[7].Value;
-            }
-            else if (useAnimation <= 25)
-            {
-                return Lang.tip[8].Value;
-            }
-            else if (useAnimation <= 30)
-            {
-                return Lang.tip[9].Value;
-            }
-            else if (useAnimation <= 35)
-            {
-                return Lang.tip[10].Value;
-            }
-            else if (useAnimation <= 45)
-            {
-                return Lang.tip[11].Value;
-            }
-            else if (useAnimation <= 55)
-            {
-                return Lang.tip[12].Value;
-            }
-            return Lang.tip[13].Value;
-        }
-
-        public static string KnockbackItemTooltip(float knockback)
-        {
-            if (knockback == 0f)
-            {
-                return Lang.tip[14].Value;
-            }
-            else if (knockback <= 1.5)
-            {
-                return Lang.tip[15].Value;
-            }
-            else if (knockback <= 3f)
-            {
-                return Lang.tip[16].Value;
-            }
-            else if (knockback <= 4f)
-            {
-                return Lang.tip[17].Value;
-            }
-            else if (knockback <= 6f)
-            {
-                return Lang.tip[18].Value;
-            }
-            else if (knockback <= 7f)
-            {
-                return Lang.tip[19].Value;
-            }
-            else if (knockback <= 9f)
-            {
-                return Lang.tip[20].Value;
-            }
-            else if (knockback <= 11f)
-            {
-                return Lang.tip[21].Value;
-            }
-            return Lang.tip[22].Value;
-        }
-
         public static Color colorLerps(Color[] colors, float time)
         {
             int index = (int)time;
             return Color.Lerp(colors[index % colors.Length], colors[(index + 1) % colors.Length], time % 1f);
         }
 
-        public static void UpdatePlayerVisualAccessories(Item item, Player player)
-        {
-            if (item.handOnSlot > 0)
-                player.handon = item.handOnSlot;
-            if (item.handOffSlot > 0)
-                player.handoff = item.handOffSlot;
-            if (item.backSlot > 0)
-                player.back = item.backSlot;
-            if (item.frontSlot > 0)
-                player.front = item.frontSlot;
-            if (item.shoeSlot > 0)
-                player.shoe = item.shoeSlot;
-            if (item.waistSlot > 0)
-                player.waist = item.waistSlot;
-            if (item.shieldSlot > 0)
-                player.shield = item.shieldSlot;
-            if (item.neckSlot > 0)
-                player.neck = item.neckSlot;
-            if (item.faceSlot > 0)
-                player.face = item.faceSlot;
-            if (item.balloonSlot > 0)
-                player.balloon = item.balloonSlot;
-            if (item.wingSlot > 0)
-                player.wings = item.wingSlot;
-        }
-
-        public static void UpdatePlayerVisualAccessoriesDyes(Item item, Item dye, Player player)
-        {
-            if (item.handOnSlot > 0)
-                player.cHandOn = dye.dye;
-            if (item.handOffSlot > 0)
-                player.cHandOff = dye.dye;
-            if (item.backSlot > 0)
-                player.cBack = dye.dye;
-            if (item.frontSlot > 0)
-                player.cFront = dye.dye;
-            if (item.shoeSlot > 0)
-                player.cShoe = dye.dye;
-            if (item.waistSlot > 0)
-                player.cWaist = dye.dye;
-            if (item.shieldSlot > 0)
-                player.cShield = dye.dye;
-            if (item.neckSlot > 0)
-                player.cNeck = dye.dye;
-            if (item.faceSlot > 0)
-                player.cFace = dye.dye;
-            if (item.balloonSlot > 0)
-                player.cBalloon = dye.dye;
-            if (item.wingSlot > 0)
-                player.cWings = dye.dye;
-            if (item.type == ItemID.FlyingCarpet)
-                player.cCarpet = dye.dye;
-        }
-
         public static bool CanNPCBeHitByProjectile(NPC npc, Projectile projectile)
         {
-            if (npc.dontTakeDamage || (projectile.usesLocalNPCImmunity || projectile.usesIDStaticNPCImmunity) && (!projectile.usesLocalNPCImmunity || projectile.localNPCImmunity[npc.whoAmI] != 0) && (!projectile.usesIDStaticNPCImmunity || !Projectile.IsNPCImmune(projectile.type, npc.whoAmI)))
+            if (npc.dontTakeDamage || ((projectile.usesLocalNPCImmunity || projectile.usesIDStaticNPCImmunity) && (!projectile.usesLocalNPCImmunity || projectile.localNPCImmunity[npc.whoAmI] != 0) && (!projectile.usesIDStaticNPCImmunity || !Projectile.IsNPCImmune(projectile.type, npc.whoAmI))))
                 return false;
             return true;
         }
@@ -830,23 +711,7 @@ namespace AQMod
             return min + rand.Next(max - min + 1);
         }
 
-        public static Vector2 TrueMouseworld => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix)) + Main.screenPosition;
-
-        /// <summary>
-        /// Method taken from 1.4, remove when porting.
-        /// </summary>
-        /// <param name="plr"></param>
-        /// <param name="targetX"></param>
-        /// <param name="targetY"></param>
-        /// <returns></returns>
-        public static bool IsInTileInteractionRange(this Player plr, int targetX, int targetY)
-        {
-            if (plr.position.X / 16f - Player.tileRangeX <= targetX && (plr.position.X + plr.width) / 16f + Player.tileRangeX - 1f >= targetX && plr.position.Y / 16f - Player.tileRangeY <= targetY)
-                return (plr.position.Y + plr.height) / 16f + Player.tileRangeY - 2f >= targetY;
-            return false;
-        }
-
-        public static float GetGrad(float min, float max, float x)
+        public static float GetParabola(float min, float max, float x)
         {
             float xGradient = (x - min) / (float)(max - min);
             return 1f - (float)Math.Pow(1f - xGradient, 2);
@@ -863,7 +728,7 @@ namespace AQMod
             }
         }
 
-        public static void TileABLine(int x, int y, int x2, int y2, Utils.PerLinePoint method)
+        public static void PointAtoPointB(int x, int y, int x2, int y2, Utils.PerLinePoint method)
         {
             int xDir = x > x2 ? -1 : 1;
             int yDir = y > y2 ? -1 : 1;
@@ -891,9 +756,7 @@ namespace AQMod
         public static Color UseA(this Color color, int alpha) => new Color(color.R, color.G, color.B, alpha);
         public static Color UseA(this Color color, float alpha) => new Color(color.R, color.G, color.B, (int)(alpha * 255));
 
-        public static AQPlayer GetAQPlayer(this Player plr) => plr.GetModPlayer<AQPlayer>();
-
-        public static string GetKeyNames(this ModHotKey key, int keyValue = 0)
+        public static string GetKeybindNames(this ModHotKey key, int keyValue = 0)
         {
             List<string> keys = key.GetAssignedKeys();
             if (keys == null || keys.Count == 0)
@@ -917,16 +780,6 @@ namespace AQMod
             }
         }
 
-        public static Vector3 NormalizedRotations(Vector3 rotations)
-        {
-            return Vector3.Transform(Vector3.One, Matrix.CreateFromYawPitchRoll(rotations.X, rotations.Y, rotations.Z));
-        }
-
-        public static Vector3 GetRotations(this Vector3 value)
-        {
-            return new Vector3((float)Math.Atan2(value.Z, value.Y), (float)Math.Atan2(value.Z, value.X), (float)Math.Atan2(value.Y, value.X));
-        }
-
         public static void SetItemHoldout(this Player player, float rotation, int direction)
         {
             player.itemRotation = rotation;
@@ -936,13 +789,19 @@ namespace AQMod
                 player.itemRotation -= MathHelper.Pi;
         }
 
-        public static Color LerpColors(Color[] colors, float position)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="colors"></param>
+        /// <param name="time">The index of the color chosen depends on this value, a time of 0 means index 0 is choses, 0.5 is a mixture of index 0 and 1, 1 is index 1, 1.5 is a mixture of 1 and 2, ect...<para>Automatically wraps the time based on the array's length</para></param>
+        /// <returns></returns>
+        public static Color LerpColors(Color[] colors, float time)
         {
-            int index = (int)(position % colors.Length);
-            return Color.Lerp(colors[index], colors[(index + 1) % (colors.Length - 1)], position % 1f);
+            int index = (int)(time % colors.Length);
+            return Color.Lerp(colors[index], colors[(index + 1) % (colors.Length - 1)], time % 1f);
         }
 
-        public static Vector2[] GetPointCircle(Vector2 center, float radius, int amount = 20)
+        public static Vector2[] GetCircle(Vector2 center, float radius, int amount = 20)
         {
             var points = new Vector2[amount];
             float rot = MathHelper.TwoPi / amount;
@@ -963,19 +822,6 @@ namespace AQMod
         public static byte SetBit(this ref byte b, byte bit, bool value)
         {
             return value ? (b |= (byte)(1 << bit)) : (b &= (byte)~(1 << bit));
-        }
-
-        public static bool IsntFriendly(this NPC npc)
-        {
-            return npc.active && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC;
-        }
-
-        public static void SetLiquidSpeed(this NPC npc, float water = 0.5f, float lava = 0.5f, float honey = 0.25f)
-        {
-            var type = typeof(NPC);
-            type.GetField("waterMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, water);
-            type.GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, lava);
-            type.GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, honey);
         }
 
         public static float GetHue(this Color color)
@@ -1011,11 +857,6 @@ namespace AQMod
         public static float Abs(this float value)
         {
             return value >= 0 ? value : value * -1f;
-        }
-
-        public static void BeginNPCDraw(SpriteSortMode sortMode = SpriteSortMode.Deferred)
-        {
-            Main.spriteBatch.Begin(sortMode, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.Transform);
         }
 
         public static Vector2 RandomPosition(this Projectile projectile, int sizeDecrease = 0, UnifiedRandom rand = null)

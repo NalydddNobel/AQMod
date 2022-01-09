@@ -119,14 +119,18 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void AI()
         {
             bool leave = (int)npc.ai[0] == -1;
-            if (!npc.HasValidTarget)
+            if (!leave && Main.player[npc.target].position.Y > Content.World.Events.GaleStreams.GaleStreams.MinimumGaleStreamsSpawnOverride)
             {
-                npc.ai[0] = -1;
                 leave = true;
             }
-            else if (!leave && Main.player[npc.target].position.Y > Content.World.Events.GaleStreams.GaleStreams.MinimumGaleStreamsSpawnOverride)
+            else if ((int)npc.ai[0] == 0)
             {
-                leave = true;
+                npc.TargetClosest(faceTarget: false);
+                if (!npc.HasValidTarget)
+                {
+                    npc.ai[0] = -1;
+                    leave = true;
+                }
             }
             if (leave)
             {
@@ -141,7 +145,6 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             var center = npc.Center;
             if ((int)npc.ai[0] == 0)
             {
-                npc.TargetClosest(faceTarget: false);
                 if (!npc.HasValidTarget)
                 {
                     npc.ai[0] = -1;

@@ -39,7 +39,8 @@ namespace AQMod.Items.BossItems
             if (Main.myPlayer == player.whoAmI)
             {
                 GlimmerEvent.Activate();
-                NetHelper.ActivateGlimmerEvent();
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                    NetHelper.ActivateGlimmerEvent();
             }
             AQMod.BroadcastMessage(AQText.Key + "Common.GlimmerEventWarning", GlimmerEvent.TextColor);
             Main.PlaySound(SoundID.Roar, player.position, 0);

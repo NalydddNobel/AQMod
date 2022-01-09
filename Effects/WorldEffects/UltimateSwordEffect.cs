@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Graphics.SceneLayers;
-using AQMod.Content.World.Events.GlimmerEvent;
+﻿using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using System;
@@ -117,7 +116,7 @@ namespace AQMod.Effects.WorldEffects
                 {
                     _time += _existence * (0.0005f * (1f - progress));
                 }
-                var s = UltimateSwordWorldOverlay.swordPos();
+                var s = CustomRenderUltimateSword.SwordPos();
                 int x = (int)s.X + (int)(Math.Sin(_time) * _maxWidth);
                 int y = (int)s.Y - (int)((1f - progress) * _maxHeight);
                 int d = Dust.NewDust(new Vector2(x, y), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, _dustColor);

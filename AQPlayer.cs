@@ -8,6 +8,7 @@ using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Fishing;
+using AQMod.Content.Players;
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
@@ -22,6 +23,7 @@ using AQMod.Items.Foods;
 using AQMod.Items.Quest.Angler;
 using AQMod.Items.Tools.Axe;
 using AQMod.Items.Vanities;
+using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
 using AQMod.Projectiles.Summon;
@@ -500,7 +502,7 @@ namespace AQMod
                                     var scale = new Vector2((float)(Math.Sin(Main.GlobalTime * 10f) + 1f) * 0.04f + 0.2f, 0.1f);
                                     var eyeGlowPos = position + new Vector2(2f * player.direction, Main.OffsetsPlayerHeadgear[headFrame].Y);
                                     var eyeGlowColor = aQPlayer.cataEyeColor;
-                                    var value = AQUtils.GetGrad(0.25f, 0.45f, scale.X) * 0.5f;
+                                    var value = AQUtils.GetParabola(0.25f, 0.45f, scale.X) * 0.5f;
                                     var config = ModContent.GetInstance<AQConfigClient>();
                                     var colorMult = ModContent.GetInstance<AQConfigClient>().EffectIntensity * (1f - info.shadow);
                                     Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, 0f, orig, scale, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
@@ -1289,7 +1291,7 @@ namespace AQMod
                                                 WorldGen.KillTile(i, j, fail: true);
                                                 if (Main.netMode == NetmodeID.MultiplayerClient)
                                                 {
-                                                    NetMessage.SendData(17, -1, -1, null, 0, i, j, 1f);
+                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j, 1f);
                                                 }
                                             }
                                             if (tileDamage != 0)
@@ -2420,6 +2422,10 @@ namespace AQMod
 
         public static bool CanForceAutoswing(Player player, Item item, bool ignoreChanneled = false)
         {
+            if (AQItem.Sets.CantForceAutoswing[item.type])
+            {
+                return false;
+            }
             if (!item.autoReuse && item.useTime != 0 && item.useTime == item.useAnimation)
             {
                 if (!ignoreChanneled && (item.channel || item.noUseGraphic))
@@ -2450,7 +2456,7 @@ namespace AQMod
                 return false;
             }
             var item = player.HeldItem;
-            return item.pick > 0 || item.axe > 0 || item.hammer > 0 || item.createTile > 0 || item.createWall > 0 || item.tileWand > 0;
+            return item.pick > 0 || item.axe > 0 || item.hammer > 0 || item.createTile > TileID.Dirt || item.createWall > 0 || item.tileWand > 0;
         }
     }
 }

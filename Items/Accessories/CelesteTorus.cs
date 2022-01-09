@@ -24,7 +24,7 @@ namespace AQMod.Items.Accessories
                 int line = AQItem.Tooltips.FindVanillaTooltipLineIndex(tooltips, "Damage");
                 var player = Main.LocalPlayer;
                 var aQPlayer = player.GetModPlayer<AQPlayer>();
-                tooltips.Insert(line, new TooltipLine(mod, "Knockback", AQUtils.KnockbackItemTooltip(aQPlayer.GetCelesteTorusKnockback())));
+                tooltips.Insert(line, new TooltipLine(mod, "Knockback", TooltipText.KnockbackItemTooltip(6.5f)));
                 tooltips.Insert(line, new TooltipLine(mod, "Damage", aQPlayer.GetCelesteTorusDamage() + " damage"));
             }
             catch

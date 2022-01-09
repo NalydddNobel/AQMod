@@ -21,6 +21,7 @@ using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Events.ProgressBars;
+using AQMod.Effects;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.GoreNest;
 using AQMod.Effects.ScreenEffects;
@@ -421,14 +422,16 @@ namespace AQMod
                     {
                         Main.bloodMoon = false;
                         CosmicanonCounts.BloodMoonsPrevented++;
-                        NetHelper.PreventedBloodMoon();
+                        if (Main.netMode == NetmodeID.Server)
+                            NetHelper.PreventedBloodMoon();
                         PreventChatOnce = true;
                     }
                     if (eventID == AchievementHelperID.Events.EclipseStart)
                     {
                         Main.eclipse = false;
                         CosmicanonCounts.EclipsesPrevented++;
-                        NetHelper.PreventedEclipse();
+                        if (Main.netMode == NetmodeID.Server)
+                            NetHelper.PreventedEclipse();
                         PreventChatOnce = true;
                     }
                 }
@@ -960,6 +963,7 @@ namespace AQMod
 
             if (Main.netMode != NetmodeID.Server)
             {
+                CustomRenderUltimateSword.UpdateUltimateSword();
                 SceneLayersManager.UpdateLayers();
             }
         }

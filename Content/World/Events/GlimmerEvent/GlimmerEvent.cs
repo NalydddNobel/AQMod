@@ -133,15 +133,14 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                             if (AQPlayer.IgnoreMoons())
                             {
                                 CosmicanonCounts.GlimmersPrevented++;
-                                NetHelper.PreventedGlimmer();
+                                if (Main.netMode == NetmodeID.Server)
+                                    NetHelper.PreventedGlimmer();
                             }
                             else
                             {
                                 AQMod.BroadcastMessage("Mods.AQMod.EventWarning.GlimmerEvent", TextColor);
                                 if (Main.netMode == NetmodeID.Server)
-                                {
                                     NetHelper.ActivateGlimmerEvent();
-                                }
                             }
                         }
                         break;

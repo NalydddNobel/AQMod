@@ -1,6 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Graphics;
 using AQMod.Content.Fishing;
+using AQMod.Content.Players;
 using AQMod.Items.Fish.BloodMoon;
 using AQMod.Items.Fish.Corruption;
 using AQMod.Items.Fish.Crimson;

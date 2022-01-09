@@ -26,6 +26,7 @@ namespace AQMod.Common
             else
             {
                 GoreNestRenderer.RenderGoreNests();
+                CustomRenderUltimateSword.RenderUltimateSword();
                 CustomRenderTrapperChains.RenderTrapperChains();
                 SceneLayersManager.DrawLayer(SceneLayering.BehindNPCs);
             }
