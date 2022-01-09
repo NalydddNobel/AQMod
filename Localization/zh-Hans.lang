@@ -131,6 +131,10 @@ BuffDescription.PiranhaPlant=食人植物会为你而战
 ItemName.RedSpriteDye=红色精灵染料
 ItemName.FrostbiteDye=霜寒染料
 
+# Furniture
+ItemName.HellTombstone=地狱墓碑
+MapObject.HellTombstone=地狱墓碑
+
 # Tools
 ItemName.Cosmicanon=星宇律则
 ItemTooltip.Cosmicanon=阻止血月、日食和微光事件的自然生成\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
@@ -145,6 +149,11 @@ ItemName.EquivalenceMachine=等均仪
 ItemTooltip.EquivalenceMachine=附近的物品会漂浮而非下落\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 EquivalenceMachineToggle.False=附近的物品现在会下落
 EquivalenceMachineToggle.True=附近的物品现在会漂浮
+
+ItemName.GhostlyGrave=幽魂冢
+ItemTooltip.GhostlyGrave=可在你死亡后阻止墓碑的生成
+GhostlyGrave.False=你现在会掉落墓碑
+GhostlyGrave.True=你现在不会掉落墓碑
 
 ItemName.IWillBeBack='我将归来'
 ItemTooltip.IWillBeBack=可在不击杀向导的情况下召唤血肉墙\n右键使所有城镇NPC免疫岩浆
