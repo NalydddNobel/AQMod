@@ -48,6 +48,7 @@ namespace AQMod
             public static bool[] MinionChomperType { get; private set; }
             public static bool[] MinionRotationalType { get; private set; }
             public static bool[] UnaffectedByWind { get; private set; }
+            public static bool[] IsGravestone { get; private set; }
 
             internal static void LoadSets()
             {
@@ -60,6 +61,19 @@ namespace AQMod
 
                 MinionRotationalType = new bool[ProjectileLoader.ProjectileCount];
                 MinionRotationalType[ModContent.ProjectileType<Projectiles.Summon.TrapperMinion>()] = true;
+
+                IsGravestone = new bool[ProjectileLoader.ProjectileCount];
+                IsGravestone[ProjectileID.Tombstone] = true;
+                IsGravestone[ProjectileID.GraveMarker] = true;
+                IsGravestone[ProjectileID.CrossGraveMarker] = true;
+                IsGravestone[ProjectileID.Headstone] = true;
+                IsGravestone[ProjectileID.Gravestone] = true;
+                IsGravestone[ProjectileID.Obelisk] = true;
+                IsGravestone[ProjectileID.RichGravestone1] = true;
+                IsGravestone[ProjectileID.RichGravestone2] = true;
+                IsGravestone[ProjectileID.RichGravestone3] = true;
+                IsGravestone[ProjectileID.RichGravestone4] = true;
+                IsGravestone[ProjectileID.RichGravestone5] = true;
 
                 UnaffectedByWind = new bool[ProjectileLoader.ProjectileCount];
 

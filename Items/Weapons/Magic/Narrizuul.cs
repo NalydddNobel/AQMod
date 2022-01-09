@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Magic
 {
-    public class Narrizuul : ModItem, IDedicatedItem
+    public class Narrizuul : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -51,8 +51,5 @@ namespace AQMod.Items.Weapons.Magic
             Projectile.NewProjectile(position, new Vector2(speedX, speedY).RotatedBy(-MathHelper.PiOver4 * 0.5f), type, damage, knockBack, player.whoAmI);
             return true;
         }
-
-        Color IDedicatedItem.DedicatedItemColor => new Color(160, 80, 250, 255);
-        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
     }
 }

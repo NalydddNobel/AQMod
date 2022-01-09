@@ -1,7 +1,9 @@
 ﻿using AQMod.Common.Graphics.SceneLayers;
+using AQMod.Content.Players;
 using AQMod.Effects;
 using AQMod.Effects.GoreNest;
 using Terraria;
+using Terraria.ID;
 
 namespace AQMod.Common
 {
@@ -11,10 +13,40 @@ namespace AQMod.Common
         {
             On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
             On.Terraria.Main.DrawTiles += Main_DrawTiles;
+
+            On.Terraria.Player.DropTombstone += Player_DropTombstone;
+            
+            On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
         }
 
         internal static void UnloadHooks() // I am pretty sure TModLoader automatically unloads hooks, so this will just be used in some other cases
         {
+        }
+
+        private static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, Terraria.Localization.NetworkText deathText, int hitDirection)
+        {
+            var tombstonesPlayer = self.GetModPlayer<TombstonesPlayer>();
+            if (tombstonesPlayer.disableTombstones)
+            {
+                return;
+            }
+            if (Main.netMode != NetmodeID.MultiplayerClient && tombstonesPlayer.CreateTombstone(coinsOwned, deathText, hitDirection))
+            {
+                orig(self, coinsOwned, deathText, hitDirection);
+            }
+        }
+
+        private static int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
+        {
+            int originalValue = orig(X, Y, SpeedX, SpeedY, Type, Damage, KnockBack, Owner, ai0, ai1);
+            var projectile = Main.projectile[originalValue];
+            if (projectile.coldDamage || (projectile.friendly && projectile.owner != 255 && Main.player[projectile.owner].frostArmor && (projectile.melee || projectile.ranged)))
+            {
+                var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
+                aQProj.canHeat = false;
+                aQProj.temperature = -15;
+            }
+            return originalValue;
         }
 
         private static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)

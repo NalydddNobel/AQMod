@@ -131,6 +131,10 @@ BuffDescription.PiranhaPlant=The piranha plant will fight for you
 ItemName.RedSpriteDye=Red Sprite Dye
 ItemName.FrostbiteDye=Frostbite Dye
 
+# Furniture
+ItemName.HellTombstone=Hell Tombstone
+MapObject.HellTombstone=Hell Tombstone
+
 # Tools
 ItemName.Cosmicanon=Cosmicanon
 ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer Event from naturally spawning\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
@@ -145,6 +149,11 @@ ItemName.EquivalenceMachine=Equivalence Machine
 ItemTooltip.EquivalenceMachine=Nearby items float instead of falling\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 EquivalenceMachineToggle.False=Nearby items will now fall
 EquivalenceMachineToggle.True=Nearby items will now float
+
+ItemName.GhostlyGrave=Ghostly Grave
+ItemTooltip.GhostlyGrave=Can disable graves from spawning upon your death
+GhostlyGrave.False=You will now drop graves again
+GhostlyGrave.True=You will no longer drop graves
 
 ItemName.IWillBeBack='I'll Be Back'
 ItemTooltip.IWillBeBack=Summons the Wall of Flesh without murdering the Guide\nRight click to make all town NPCs immune to lava

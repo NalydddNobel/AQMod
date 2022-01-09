@@ -1,4 +1,8 @@
 ﻿using AQMod.Common;
+using AQMod.Items.Materials.Energies;
+using AQMod.Items.Tools;
+using AQMod.Items.Weapons.Melee;
+using AQMod.Items.Weapons.Summon;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -40,13 +44,15 @@ namespace AQMod.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.PowPunch>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<GhostlyGrave>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<PowPunch>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistWeaponBuyValue;
             nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Summon.CursedKey>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CursedKey>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistWeaponBuyValue;
             nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.DemonicEnergy>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<DemonicEnergy>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
             nextSlot++;
         }
