@@ -127,6 +127,10 @@ ProjectileName.PiranhaPlant=食人植物
 BuffName.PiranhaPlant=食人植物
 BuffDescription.PiranhaPlant=食人植物会为你而战
 
+ItemName.Skrawler=皮肤焚烧者
+ItemTooltip.Skrawler=发射致命的火焰弹幕
+ProjectileName.Skrawler=皮肤焚烧者
+
 # Dyes
 ItemName.RedSpriteDye=红色精灵染料
 ItemName.FrostbiteDye=霜寒染料
