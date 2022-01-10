@@ -113,10 +113,5 @@ namespace AQMod.Content.Quest.Lobster
         {
             return null;
         }
-
-        public virtual void Load(TagCompound tag)
-        {
-
-        }
     }
 }

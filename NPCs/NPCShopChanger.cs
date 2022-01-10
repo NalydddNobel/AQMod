@@ -49,7 +49,7 @@ namespace AQMod.NPCs
                         {
                             for (int i = 19; i < Chest.maxItems; i++) // skips most of the starting stuff, since that's all paint and blah
                             {
-                                if (shop.item[i].type == ItemID.None || shop.item[i].createTile == -1 && shop.item[i].paint == 0) // at the very end of the paintings, and will intercept the slot for any walls or blank slots
+                                if (shop.item[i].type == ItemID.None || (shop.item[i].createTile == -1 && shop.item[i].paint == 0)) // at the very end of the paintings, and will intercept the slot for any walls or blank slots
                                 {
                                     InterceptShop(shop, ModContent.ItemType<Items.Placeable.Furniture.OmegaStaritePainting>(), i, nextSlot);
                                     break;

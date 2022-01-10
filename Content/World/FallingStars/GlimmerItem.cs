@@ -33,11 +33,11 @@ namespace AQMod.Content.World.FallingStars
                         }
                     }
                     item.active = false;
-                    item.type = 0;
+                    item.type = ItemID.None;
                     item.stack = 0;
-                    if (Main.netMode == 2)
+                    if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(21, -1, -1, null, item.whoAmI);
+                        NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item.whoAmI);
                     }
                 }
                 else

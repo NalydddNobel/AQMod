@@ -74,7 +74,7 @@ namespace AQMod.Common.DeveloperTools
                 string tooltip = "";
                 for (int k = 0; k < item.ToolTip.Lines; k++)
                 {
-                    if (k == 0 && item.type >= 1533 && item.type <= 1537 && !NPC.downedPlantBoss)
+                    if (k == 0 && item.type >= ItemID.JungleKey && item.type <= ItemID.FrozenKey && !NPC.downedPlantBoss)
                     {
                         tooltip += Lang.tip[59].Value;
                     }
@@ -164,7 +164,7 @@ namespace AQMod.Common.DeveloperTools
 
                     for (int i = 0; i < rec.requiredItem.Length; i++)
                     {
-                        if (rec.requiredItem[i].type > 0)
+                        if (rec.requiredItem[i].type > ItemID.None)
                         {
                             lwrite("| " + itemname(rec.requiredItem[i].type) + " | " + rec.requiredItem[i].stack);
                         }

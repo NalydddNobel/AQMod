@@ -598,9 +598,9 @@ namespace AQMod.Common.WorldGeneration
                 if (Main.tile[x, y].active() && (Main.tile[x, y].type == 3 || Main.tile[x, y].type == 20 || Main.tile[x, y].type == 24 || Main.tile[x, y].type == 27 || Main.tile[x, y].type == 73 || Main.tile[x, y].type == 201))
                 {
                     WorldGen.KillTile(x, y);
-                    if (Main.netMode == 2)
+                    if (Main.netMode == NetmodeID.Server)
                     {
-                        NetMessage.SendData(17, -1, -1, null, 0, x, y);
+                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, x, y);
                     }
                 }
             }
@@ -646,7 +646,7 @@ namespace AQMod.Common.WorldGeneration
                                 if (num43 < num32 && Main.tile[x, yMinus1].liquid == byte.MaxValue && Main.tile[x, yMinus1 - 1].liquid == byte.MaxValue && Main.tile[x, yMinus1 - 2].liquid == byte.MaxValue && Main.tile[x, yMinus1 - 3].liquid == byte.MaxValue && Main.tile[x, yMinus1 - 4].liquid == byte.MaxValue)
                                 {
                                     WorldGen.PlaceTile(x, yMinus1, 81, mute: true);
-                                    if (Main.netMode == 2 && Main.tile[x, yMinus1].active())
+                                    if (Main.netMode == NetmodeID.Server && Main.tile[x, yMinus1].active())
                                     {
                                         NetMessage.SendTileSquare(-1, x, yMinus1, 1);
                                     }
@@ -696,7 +696,7 @@ namespace AQMod.Common.WorldGeneration
                         {
                             WorldGen.PlaceTight(x, y + 1, 165);
                             WorldGen.SquareTileFrame(x, y + 1);
-                            if (Main.netMode == 2 && Main.tile[x, y + 1].active())
+                            if (Main.netMode == NetmodeID.Server && Main.tile[x, y + 1].active())
                             {
                                 NetMessage.SendTileSquare(-1, x, y + 1, 3);
                             }
@@ -715,7 +715,7 @@ namespace AQMod.Common.WorldGeneration
                     if (!Main.tile[x, yMinus1].active() && WorldGen.genRand.Next(2) == 0)
                     {
                         WorldGen.PlaceTile(x, yMinus1, 3, mute: true);
-                        if (Main.netMode == 2 && Main.tile[x, yMinus1].active())
+                        if (Main.netMode == NetmodeID.Server && Main.tile[x, yMinus1].active())
                         {
                             NetMessage.SendTileSquare(-1, x, yMinus1, 1);
                         }
@@ -741,7 +741,7 @@ namespace AQMod.Common.WorldGeneration
                         if (num54 < 6)
                         {
                             WorldGen.PlacePumpkin(x, yMinus1);
-                            if (Main.netMode == 2 && Main.tile[x, yMinus1].type == 254)
+                            if (Main.netMode == NetmodeID.Server && Main.tile[x, yMinus1].type == 254)
                             {
                                 NetMessage.SendTileSquare(-1, x, yMinus1, 4);
                             }
@@ -750,7 +750,7 @@ namespace AQMod.Common.WorldGeneration
                     if (!Main.tile[x, yMinus1].active() && WorldGen.genRand.Next(12) == 0 && num51 == 2 && WorldGen.PlaceTile(x, yMinus1, 3, mute: true))
                     {
                         Main.tile[x, yMinus1].color(Main.tile[x, y].color());
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, x, yMinus1, 1);
                         }
@@ -758,7 +758,7 @@ namespace AQMod.Common.WorldGeneration
                     if (!Main.tile[x, yMinus1].active() && WorldGen.genRand.Next(10) == 0 && num51 == 23 && WorldGen.PlaceTile(x, yMinus1, 24, mute: true))
                     {
                         Main.tile[x, yMinus1].color(Main.tile[x, y].color());
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, x, yMinus1, 1);
                         }
@@ -766,7 +766,7 @@ namespace AQMod.Common.WorldGeneration
                     if (!Main.tile[x, yMinus1].active() && WorldGen.genRand.Next(10) == 0 && num51 == 109 && WorldGen.PlaceTile(x, yMinus1, 110, mute: true))
                     {
                         Main.tile[x, yMinus1].color(Main.tile[x, y].color());
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, x, yMinus1, 1);
                         }
@@ -774,7 +774,7 @@ namespace AQMod.Common.WorldGeneration
                     if (!Main.tile[x, yMinus1].active() && WorldGen.genRand.Next(10) == 0 && num51 == 199 && WorldGen.PlaceTile(x, yMinus1, 201, mute: true))
                     {
                         Main.tile[x, yMinus1].color(Main.tile[x, y].color());
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, x, yMinus1, 1);
                         }
@@ -844,7 +844,7 @@ namespace AQMod.Common.WorldGeneration
                             }
                         }
                     }
-                    if (Main.netMode == 2 && flag12)
+                    if (Main.netMode == NetmodeID.Server && flag12)
                     {
                         NetMessage.SendTileSquare(-1, x, y, 3);
                     }
@@ -864,7 +864,7 @@ namespace AQMod.Common.WorldGeneration
                         Main.tile[x, y].frameX = (short)(198 + WorldGen.genRand.Next(10) * 18);
                     }
                     Main.tile[x, y].type = 73;
-                    if (Main.netMode == 2)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendTileSquare(-1, x, y, 3);
                     }
@@ -872,7 +872,7 @@ namespace AQMod.Common.WorldGeneration
                 if (Main.tile[x, y].type == 110 && WorldGen.genRand.Next(20) == 0 && Main.tile[x, y].frameX < 144)
                 {
                     Main.tile[x, y].type = 113;
-                    if (Main.netMode == 2)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendTileSquare(-1, x, y, 3);
                     }
@@ -958,7 +958,7 @@ namespace AQMod.Common.WorldGeneration
                                     Main.tile[num58, num59].type = 32;
                                     Main.tile[num58, num59].active(active: true);
                                     WorldGen.SquareTileFrame(num58, num59);
-                                    if (Main.netMode == 2)
+                                    if (Main.netMode == NetmodeID.Server)
                                     {
                                         NetMessage.SendTileSquare(-1, num58, num59, 3);
                                     }
@@ -997,7 +997,7 @@ namespace AQMod.Common.WorldGeneration
                     if (flag25)
                     {
                         Main.tile[num68, num69].wall = 81;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, num68, num69, 3);
                         }
@@ -1029,7 +1029,7 @@ namespace AQMod.Common.WorldGeneration
                     if (flag26)
                     {
                         Main.tile[num72, num73].wall = 69;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, num72, num73, 3);
                         }
@@ -1061,7 +1061,7 @@ namespace AQMod.Common.WorldGeneration
                     if (flag27)
                     {
                         Main.tile[num77, num78].wall = 70;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, num77, num78, 3);
                         }
@@ -1097,7 +1097,7 @@ namespace AQMod.Common.WorldGeneration
                     Main.tile[num82, num83].active(active: true);
                     Main.tile[num82, num83].color(Main.tile[x, y].color());
                     WorldGen.SquareTileFrame(num82, num83);
-                    if (Main.netMode == 2)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendTileSquare(-1, num82, num83, 3);
                     }
@@ -1113,7 +1113,7 @@ namespace AQMod.Common.WorldGeneration
                     {
                         Main.tile[x, yMinus1].color(Main.tile[x, y].color());
                     }
-                    if (Main.netMode == 2 && Main.tile[x, yMinus1].active())
+                    if (Main.netMode == NetmodeID.Server && Main.tile[x, yMinus1].active())
                     {
                         NetMessage.SendTileSquare(-1, x, yMinus1, 1);
                     }
@@ -1142,7 +1142,7 @@ namespace AQMod.Common.WorldGeneration
                         }
                     }
                 }
-                if (Main.netMode == 2 && flag3)
+                if (Main.netMode == NetmodeID.Server && flag3)
                 {
                     NetMessage.SendTileSquare(-1, x, y, 3);
                 }
@@ -1157,7 +1157,7 @@ namespace AQMod.Common.WorldGeneration
                     {
                         Main.tile[x, yMinus1].color(Main.tile[x, y].color());
                     }
-                    if (Main.netMode == 2 && Main.tile[x, yMinus1].active())
+                    if (Main.netMode == NetmodeID.Server && Main.tile[x, yMinus1].active())
                     {
                         NetMessage.SendTileSquare(-1, x, yMinus1, 1);
                     }
@@ -1174,14 +1174,14 @@ namespace AQMod.Common.WorldGeneration
                     WorldGen.PlaceJunglePlant(x, yMinus1, 233, WorldGen.genRand.Next(8), 0);
                     if (Main.tile[x, yMinus1].type == 233)
                     {
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, x, yMinus1, 4);
                         }
                         else
                         {
                             WorldGen.PlaceJunglePlant(x, yMinus1, 233, WorldGen.genRand.Next(12), 1);
-                            if (Main.tile[x, yMinus1].type == 233 && Main.netMode == 2)
+                            if (Main.tile[x, yMinus1].type == 233 && Main.netMode == NetmodeID.Server)
                             {
                                 NetMessage.SendTileSquare(-1, x, yMinus1, 3);
                             }
@@ -1204,7 +1204,7 @@ namespace AQMod.Common.WorldGeneration
                         }
                     }
                 }
-                if (Main.netMode == 2 && flag4)
+                if (Main.netMode == NetmodeID.Server && flag4)
                 {
                     NetMessage.SendTileSquare(-1, x, y, 3);
                 }
@@ -1216,7 +1216,7 @@ namespace AQMod.Common.WorldGeneration
                     Main.tile[x, y].frameX = (short)(162 + WorldGen.genRand.Next(8) * 18);
                 }
                 Main.tile[x, y].type = 74;
-                if (Main.netMode == 2)
+                if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendTileSquare(-1, x, y, 3);
                 }
@@ -1244,7 +1244,7 @@ namespace AQMod.Common.WorldGeneration
                     Main.tile[num90, num91].type = 62;
                     Main.tile[num90, num91].active(active: true);
                     WorldGen.SquareTileFrame(num90, num91);
-                    if (Main.netMode == 2)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendTileSquare(-1, num90, num91, 3);
                     }
@@ -1273,7 +1273,7 @@ namespace AQMod.Common.WorldGeneration
                     Main.tile[num93, num94].type = 115;
                     Main.tile[num93, num94].active(active: true);
                     WorldGen.SquareTileFrame(num93, num94);
-                    if (Main.netMode == 2)
+                    if (Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendTileSquare(-1, num93, num94, 3);
                     }
@@ -1306,7 +1306,7 @@ namespace AQMod.Common.WorldGeneration
                 Main.tile[num97, num98].type = 205;
                 Main.tile[num97, num98].active(active: true);
                 WorldGen.SquareTileFrame(num97, num98);
-                if (Main.netMode == 2)
+                if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendTileSquare(-1, num97, num98, 3);
                 }
@@ -1370,7 +1370,7 @@ namespace AQMod.Common.WorldGeneration
                     if (Main.tile[num100, num101].type == 23 && !Main.tile[num100, num104].active() && WorldGen.genRand.Next(1) == 0)
                     {
                         WorldGen.PlaceTile(num100, num104, 24, mute: true);
-                        if (Main.netMode == 2 && Main.tile[num100, num104].active())
+                        if (Main.netMode == NetmodeID.Server && Main.tile[num100, num104].active())
                         {
                             NetMessage.SendTileSquare(-1, num100, num104, 1);
                         }
@@ -1456,7 +1456,7 @@ namespace AQMod.Common.WorldGeneration
                                         Main.tile[num106, num108].type = 32;
                                         Main.tile[num106, num108].active(active: true);
                                         WorldGen.SquareTileFrame(num106, num108);
-                                        if (Main.netMode == 2)
+                                        if (Main.netMode == NetmodeID.Server)
                                         {
                                             NetMessage.SendTileSquare(-1, num106, num108, 3);
                                         }
@@ -1488,7 +1488,7 @@ namespace AQMod.Common.WorldGeneration
                                 }
                             }
                         }
-                        if (Main.netMode == 2 && flag9)
+                        if (Main.netMode == NetmodeID.Server && flag9)
                         {
                             NetMessage.SendTileSquare(-1, num100, num101, 3);
                         }
@@ -1499,7 +1499,7 @@ namespace AQMod.Common.WorldGeneration
                         if (!Main.tile[num100, num104].active() && WorldGen.genRand.Next(10) == 0)
                         {
                             WorldGen.PlaceTile(num100, num104, 61, mute: true);
-                            if (Main.netMode == 2 && Main.tile[num100, num104].active())
+                            if (Main.netMode == NetmodeID.Server && Main.tile[num100, num104].active())
                             {
                                 NetMessage.SendTileSquare(-1, num100, num104, 1);
                             }
@@ -1526,7 +1526,7 @@ namespace AQMod.Common.WorldGeneration
                                     WorldGen.PlaceJunglePlant(num100, num104, 238, 0, 0);
                                     WorldGen.SquareTileFrame(num100, num104);
                                     WorldGen.SquareTileFrame(num100 + 1, num104 + 1);
-                                    if (Main.tile[num100, num104].type == 238 && Main.netMode == 2)
+                                    if (Main.tile[num100, num104].type == 238 && Main.netMode == NetmodeID.Server)
                                     {
                                         NetMessage.SendTileSquare(-1, num100, num104, 4);
                                     }
@@ -1556,7 +1556,7 @@ namespace AQMod.Common.WorldGeneration
                                     WorldGen.PlaceJunglePlant(num100, num104, TileID.LifeFruit, WorldGen.genRand.Next(3), 0);
                                     WorldGen.SquareTileFrame(num100, num104);
                                     WorldGen.SquareTileFrame(num100 + 1, num104 + 1);
-                                    if (Main.tile[num100, num104].type == 236 && Main.netMode == 2)
+                                    if (Main.tile[num100, num104].type == 236 && Main.netMode == NetmodeID.Server)
                                     {
                                         NetMessage.SendTileSquare(-1, num100, num104, 4);
                                     }
@@ -1574,7 +1574,7 @@ namespace AQMod.Common.WorldGeneration
                                     else
                                     {
                                         WorldGen.PlaceJunglePlant(num100, num104, 233, WorldGen.genRand.Next(12), 1);
-                                        if (Main.tile[num100, num104].type == 233 && Main.netMode == 2)
+                                        if (Main.tile[num100, num104].type == 233 && Main.netMode == NetmodeID.Server)
                                         {
                                             NetMessage.SendTileSquare(-1, num100, num104, 3);
                                         }
@@ -1598,7 +1598,7 @@ namespace AQMod.Common.WorldGeneration
                                 }
                             }
                         }
-                        if (Main.netMode == 2 && flag13)
+                        if (Main.netMode == NetmodeID.Server && flag13)
                         {
                             NetMessage.SendTileSquare(-1, num100, num101, 3);
                         }
@@ -1610,7 +1610,7 @@ namespace AQMod.Common.WorldGeneration
                             Main.tile[num100, num101].frameX = (short)(162 + WorldGen.genRand.Next(8) * 18);
                         }
                         Main.tile[num100, num101].type = 74;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, num100, num101, 3);
                         }
@@ -1638,7 +1638,7 @@ namespace AQMod.Common.WorldGeneration
                             Main.tile[num129, num130].type = 62;
                             Main.tile[num129, num130].active(active: true);
                             WorldGen.SquareTileFrame(num129, num130);
-                            if (Main.netMode == 2)
+                            if (Main.netMode == NetmodeID.Server)
                             {
                                 NetMessage.SendTileSquare(-1, num129, num130, 3);
                             }
@@ -1711,7 +1711,7 @@ namespace AQMod.Common.WorldGeneration
                                     Main.tile[num137, num138].frameY = (short)((num138 - num131) * 18);
                                 }
                             }
-                            if (Main.netMode == 2)
+                            if (Main.netMode == NetmodeID.Server)
                             {
                                 NetMessage.SendTileSquare(-1, num100, num131, 3);
                             }
@@ -1798,7 +1798,7 @@ namespace AQMod.Common.WorldGeneration
                                         Main.tile[num3, num4].type = 69;
                                         Main.tile[num3, num4].active(active: true);
                                         WorldGen.SquareTileFrame(num3, num4);
-                                        if (Main.netMode == 2)
+                                        if (Main.netMode == NetmodeID.Server)
                                         {
                                             NetMessage.SendTileSquare(-1, num3, num4, 3);
                                         }
@@ -1837,7 +1837,7 @@ namespace AQMod.Common.WorldGeneration
                             {
                                 WorldGen.PlaceTight(num100, num101 + 1, 165);
                                 WorldGen.SquareTileFrame(num100, num101 + 1);
-                                if (Main.netMode == 2 && Main.tile[num100, num101 + 1].active())
+                                if (Main.netMode == NetmodeID.Server && Main.tile[num100, num101 + 1].active())
                                 {
                                     NetMessage.SendTileSquare(-1, num100, num101 + 1, 3);
                                 }
@@ -1863,7 +1863,7 @@ namespace AQMod.Common.WorldGeneration
                                 }
                             }
                         }
-                        if (Main.netMode == 2 && flag17)
+                        if (Main.netMode == NetmodeID.Server && flag17)
                         {
                             NetMessage.SendTileSquare(-1, num100, num101, 3);
                         }
@@ -1889,7 +1889,7 @@ namespace AQMod.Common.WorldGeneration
                             if (!Main.tile[num18, num19].active())
                             {
                                 WorldGen.PlaceTile(num18, num19, 184, mute: true);
-                                if (Main.netMode == 2 && Main.tile[num18, num19].active())
+                                if (Main.netMode == NetmodeID.Server && Main.tile[num18, num19].active())
                                 {
                                     NetMessage.SendTileSquare(-1, num18, num19, 1);
                                 }
@@ -1902,7 +1902,7 @@ namespace AQMod.Common.WorldGeneration
                         if (!Main.tile[num100, num104].active() && WorldGen.genRand.Next(10) == 0)
                         {
                             WorldGen.PlaceTile(num100, num104, 71, mute: true);
-                            if (Main.netMode == 2 && Main.tile[num100, num104].active())
+                            if (Main.netMode == NetmodeID.Server && Main.tile[num100, num104].active())
                             {
                                 NetMessage.SendTileSquare(-1, num100, num104, 1);
                             }
@@ -1927,7 +1927,7 @@ namespace AQMod.Common.WorldGeneration
                                 }
                             }
                         }
-                        if (Main.netMode == 2 && flag18)
+                        if (Main.netMode == NetmodeID.Server && flag18)
                         {
                             NetMessage.SendTileSquare(-1, num100, num101, 3);
                         }
@@ -1958,7 +1958,7 @@ namespace AQMod.Common.WorldGeneration
                         {
                             WorldGen.PlaceTile(num100, num101, 51, mute: true);
                             WorldGen.TileFrame(num100, num101, resetFrame: true);
-                            if (Main.netMode == 2)
+                            if (Main.netMode == NetmodeID.Server)
                             {
                                 NetMessage.SendTileSquare(-1, num100, num101, 3);
                             }
@@ -1991,7 +1991,7 @@ namespace AQMod.Common.WorldGeneration
                     if (flag20)
                     {
                         Main.tile[num29, num30].wall = 81;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, num29, num30, 3);
                         }
@@ -2023,7 +2023,7 @@ namespace AQMod.Common.WorldGeneration
                     if (flag21)
                     {
                         Main.tile[num34, num35].wall = 69;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, num34, num35, 3);
                         }
@@ -2055,7 +2055,7 @@ namespace AQMod.Common.WorldGeneration
                     if (flag22)
                     {
                         Main.tile[num38, num39].wall = 70;
-                        if (Main.netMode == 2)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendTileSquare(-1, num38, num39, 3);
                         }

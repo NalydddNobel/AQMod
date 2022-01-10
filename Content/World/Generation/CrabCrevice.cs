@@ -1,5 +1,7 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Tiles;
+using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -10,7 +12,113 @@ namespace AQMod.Content.World.Generation
 {
     public static class CrabCrevice
     {
+        private struct Circle
+        {
+            public int X;
+            public int Y;
+            public int Radius;
+            public Circle(int x, int y, int radius)
+            {
+                X = x;
+                Y = y;
+                Radius = radius;
+            }
+            public bool Inside(int x, int y)
+            {
+                int x2 = x - X;
+                int y2 = y - Y;
+                return Math.Sqrt(x2 * x2 + y2 * y2) <= Radius;
+            }
+            public double Distance(int x, int y)
+            {
+                int x2 = x - X;
+                int y2 = y - Y;
+                return Math.Sqrt(x2 * x2 + y2 * y2);
+            }
+        }
 
+        private static Circle FixedCircle( int x,  int y, int radius)
+        {
+            if (x - radius < 10)
+            {
+                x = radius + 10;
+            }
+            else if (x + radius > Main.maxTilesX - 10)
+            {
+                x = Main.maxTilesX - 10 - radius;
+            }
+            if (y - radius < 10)
+            {
+                y = radius + 10;
+            }
+            else if (y + radius > Main.maxTilesY - 10)
+            {
+                y = Main.maxTilesY - 10 - radius;
+            }
+            return new Circle(x, y, radius);
+        }
+
+        private static bool IsValidCircleForGeneratingCave(int x, int y, int radius)
+        {
+            return IsValidCircleForGeneratingCave(new Circle(x, y, radius));
+        }
+
+        private static bool IsValidCircleForGeneratingCave(Circle circle)
+        {
+            for (int i = 0; i < circle.Radius * 2; i++)
+            {
+                for (int j = 0; j < circle.Radius * 2; j++)
+                {
+                    int x = circle.X + i - circle.Radius;
+                    int y = circle.Y + j - circle.Radius;
+                    if (circle.Inside(x, y))
+                    {
+                        if (Main.tile[x, y] == null)
+                        {
+                            Main.tile[x, y] = new Tile();
+                            return false;
+                        }
+                        if (!Main.tile[x, y].active() || !Main.tile[x, y].Solid())
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        public static bool GenerateCreviceCave(int x, int y, int minScale, int maxScale, int steps)
+        {
+            List<Circle> validCircles = new List<Circle>();
+            for (int i = maxScale; i > minScale; i--)
+            {
+                var c = FixedCircle(x, y, i);
+                if (IsValidCircleForGeneratingCave(c))
+                {
+                    validCircles.Add(c);
+                    break;
+                }
+            }
+            if (validCircles.Count == 0)
+            {
+                return false;
+            }
+            int testType = TileID.Demonite;
+            for (int i = 0; i < validCircles[0].Radius * 2; i++)
+            {
+                for (int j = 0; j < validCircles[0].Radius * 2; j++)
+                {
+                    int x2 = validCircles[0].X + i - validCircles[0].Radius;
+                    int y2 = validCircles[0].Y + j - validCircles[0].Radius;
+                    if (validCircles[0].Inside(x2, y2))
+                    {
+                        Main.tile[x2, y2].type = (ushort)testType;
+                    }
+                }
+            }
+            return true;
+        }
 
         public static void GenerateLegacyRavines(GenerationProgress progress)
         {

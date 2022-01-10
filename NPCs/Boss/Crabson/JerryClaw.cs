@@ -313,7 +313,7 @@ namespace AQMod.NPCs.Boss.Crabson
                 else if ((int)npc.ai[2] == 2)
                 {
                     npc.ai[3] = 0f;
-                    if (!Collision.SolidCollision(npc.position, npc.width, npc.height) && canHit || npc.getRect().Intersects(new Rectangle((int)Main.player[npc.target].position.X, (int)Main.player[npc.target].position.Y, Main.player[npc.target].width, Main.player[npc.target].height)))
+                    if ((!Collision.SolidCollision(npc.position, npc.width, npc.height) && canHit) || npc.getRect().Intersects(new Rectangle((int)Main.player[npc.target].position.X, (int)Main.player[npc.target].position.Y, Main.player[npc.target].width, Main.player[npc.target].height)))
                     {
                         npc.target = Main.npc[otherClaw].target;
                         npc.ai[2] = Main.npc[otherClaw].ai[2];
@@ -428,8 +428,6 @@ namespace AQMod.NPCs.Boss.Crabson
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if (false)
-                _mouthGotoRotation = (int)((Main.MouseWorld - npc.Center).ToRotation() * 100) / 100f;
             if (_mouthGotoRotation != _mouthRotation)
             {
                 _mouthRotation = _mouthRotation.AngleLerp(_mouthGotoRotation, _mouthGotoLerp);

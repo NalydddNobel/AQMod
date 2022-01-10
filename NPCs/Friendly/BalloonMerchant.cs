@@ -1043,7 +1043,7 @@ namespace AQMod.NPCs.Friendly
                 return;
             }
             if (npc.position.X <= 240f || npc.position.X + npc.width > Main.maxTilesX * 16f - 240f
-                || currentAction == 7 && offscreen && Main.rand.NextBool(1500))
+                || (currentAction == 7 && offscreen && Main.rand.NextBool(1500)))
             {
                 BalloonMerchantManager.SpawnMerchant(npc.whoAmI);
                 return;

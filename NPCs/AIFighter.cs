@@ -131,7 +131,7 @@ namespace AQMod.NPCs
                     {
                         float num85 = position3.Y + npc.height - num84;
                         float num86 = 16.1f;
-                        if (npc.type == 163 || npc.type == 164 || npc.type == 236 || npc.type == 239 || npc.type == 530)
+                        if (npc.type == NPCID.BlackRecluse || npc.type == NPCID.WallCreeper || npc.type == NPCID.JungleCreeper || npc.type == NPCID.BloodCrawler || npc.type == NPCID.DesertScorpionWalk)
                             num86 += 8f;
                         if (num85 <= num86)
                         {

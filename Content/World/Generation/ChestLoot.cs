@@ -202,7 +202,7 @@ namespace AQMod.Content.World.Generation
             int i = 0;
             for (int j = 0; j < Chest.maxItems; j++)
             {
-                if (chest.item[j] != null && chest.item[j].type > 0)
+                if (chest.item[j] != null && chest.item[j].type > ItemID.None)
                 {
                     i++;
                 }

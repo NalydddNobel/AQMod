@@ -139,8 +139,6 @@ namespace AQMod.NPCs.Boss
 
         public Ring[] rings;
         public int skipDeathTimer;
-        private bool _playedSpawnSound;
-        private bool _playedLaserSound;
         private byte _hitShake;
 
         public override BossEntry? BossChecklistEntry => new BossEntry(

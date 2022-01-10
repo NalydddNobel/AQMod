@@ -637,7 +637,7 @@ namespace AQMod.Content.Entities
             {
                 for (int i = 0; i < Main.maxInventory; i++)
                 {
-                    if (plr.inventory[i].type > 0 && plr.inventory[i].stack > 0 && plr.inventory[i].bait > 0)
+                    if (plr.inventory[i].type > ItemID.None && plr.inventory[i].stack > 0 && plr.inventory[i].bait > 0)
                     {
                         bait = plr.inventory[i];
                         break;

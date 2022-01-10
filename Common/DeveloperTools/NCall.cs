@@ -66,6 +66,12 @@ namespace AQMod.Common.DeveloperTools
                     caller.Reply("Command doesn't exist.");
                     break;
 
+                case "gencc":
+                    {
+                        CrabCrevice.GenerateCreviceCave(mX, mY, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]));
+                    }
+                    break;
+
                 case "enumarrayvsdictionary":
                     {
                         var stopWatch = new Stopwatch();
