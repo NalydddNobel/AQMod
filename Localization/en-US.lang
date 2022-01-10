@@ -367,6 +367,22 @@ RecipeGroup.AnyEel=Any Eel
 
 Config.RequiresReload=Requires a reload.
 
+DiscordRichPresenceConfig.Name=Discord Rich Presence
+DiscordRichPresenceConfig.Header.DRP=[c/eeffee:Options]
+
+DiscordRichPresenceConfig.enableDiscordRichPresence=Enable Discord Rich Presence
+DiscordRichPresenceConfig.enableDiscordRichPresenceTooltip=Whether or not Aequus' Discord Rich Presence support should be loaded
+
+DiscordRichPresenceConfig.miniBossRichPresence=Presence for Minibosses
+DiscordRichPresenceConfig.miniBossRichPresenceTooltip=Will add a rich presence for any Aequus enemy considered a 'miniboss'
+
+DiscordRichPresenceConfig.eventRichPresence=Presence for Events
+DiscordRichPresenceConfig.eventRichPresenceTooltip=Will add a rich presence for all Aequus events
+
+#
+
+StariteConfig.Name=Glimmer Event Visuals
+
 StariteConfig.Name=Glimmer Event Visuals
 
 StariteConfig.BackgroundStars=Background Falling Stars

@@ -792,8 +792,10 @@ namespace AQMod
         {
             AQBuff.Sets.Setup();
             AQItem.Sets.Setup();
+            CensusSupport.AddSupport(this);
             if (!Main.dedServ)
             {
+                DiscordRichPresenceSupport.AddSupport(this);
                 DyeBinder.LoadDyes();
             }
             Autoloading.SetupContent(Code);

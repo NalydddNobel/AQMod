@@ -14,6 +14,7 @@ A discord link to the mod is in the homepage, if you like typing discord invite 
 [c/ff3377:>] 4 Unique Events
 [c/ff3377:>] 4 Friendly NPCs
 [c/ff3377:>] Full support for English language and Chinese language, with quite a few Russian translations!
+[c/ff3377:>] Support for Boss Checklist, Census, and the Discord Rich Presence mod!
 [c/ffff64:And importantly, many bugs!]
 (Please report bugs either on the forum page, or discord server!)
 [c/ffff64:Side Note:] Aequus was created from me messing around with coding and stuff, so don't try to take the mod super serious pls :)
