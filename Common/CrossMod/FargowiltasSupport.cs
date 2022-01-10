@@ -14,11 +14,11 @@ using Terraria.ModLoader;
 
 namespace AQMod.Common.CrossMod
 {
-    internal sealed class FargosQOLStuff
+    internal sealed class FargowiltasSupport
     {
         private readonly AQMod _aQMod1;
         private readonly Mod _fargowiltas;
-        private FargosQOLStuff(Mod fargos, AQMod aQMod)
+        private FargowiltasSupport(Mod fargos, AQMod aQMod)
         {
             _fargowiltas = fargos;
             _aQMod1 = aQMod;
@@ -28,13 +28,13 @@ namespace AQMod.Common.CrossMod
 
         public static void Setup(AQMod aQMod)
         {
-            FargosQOLStuff f = null;
+            FargowiltasSupport f = null;
             try
             {
                 var fargos = ModLoader.GetMod("Fargowiltas");
                 if (fargos == null)
                     return;
-                f = new FargosQOLStuff(fargos, aQMod);
+                f = new FargowiltasSupport(fargos, aQMod);
                 FargowiltasActive = true;
             }
             catch (Exception)
@@ -95,7 +95,7 @@ namespace AQMod.Common.CrossMod
             r.AddIngredient(ItemID.MimicBanner);
             r.AddIngredient(ItemID.Bone, 5);
             r.AddTile(TileID.Solidifier);
-            r.SetResult(ModContent.ItemType<Items.Tools.ATM>());
+            r.SetResult(ModContent.ItemType<Items.Tools.Utility.ATM>());
             r.AddRecipe();
 
             createFargoRecipeBannerInput<Items.Accessories.Breadsoul>(ItemID.DungeonSpiritBanner);

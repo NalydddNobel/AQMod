@@ -14,6 +14,8 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Items.Tools.MagicPowders;
+using AQMod.Items.Potions;
 
 namespace AQMod.NPCs.Friendly
 {
@@ -238,127 +240,24 @@ namespace AQMod.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.AquaticEnergy>());
-            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<FishingCraftingStation>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<BlurryDiscountCard>());
-            nextSlot++;
             if (Main.hardMode)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Potions.SpoilsPotion>());
-                nextSlot++;
                 if (NPC.downedPirates)
                 {
-                    if (Main.moonPhase <= 2)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.DiscountCard);
-                        nextSlot++;
-                    }
-                    else if (Main.moonPhase <= 5)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.LuckyCoin);
-                        nextSlot++;
-                    }
-                    else
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GreedyRing);
-                        nextSlot++;
-                    }
-                    shop.item[nextSlot].SetDefaults(ItemID.Cutlass);
+                    shop.item[nextSlot].SetDefaults(ItemID.DiscountCard);
                     nextSlot++;
-                    if (NPC.downedPlantBoss)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CoinGun);
-                        nextSlot++;
-                    }
-                    switch (Main.moonPhase)
-                    {
-                        default:
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenChair);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenTable);
-                        nextSlot++;
-                        break;
-                        case 1:
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenWorkbench);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenDoor);
-                        nextSlot++;
-                        break;
-                        case 2:
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenBed);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenSofa);
-                        nextSlot++;
-                        break;
-                        case 3:
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenChest);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenDresser);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
-                        nextSlot++;
-                        break;
-                        case 4:
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenToilet);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenBathtub);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenSink);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
-
-                        nextSlot++;
-                        break;
-                        case 5:
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenCandle);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenLamp);
-                        nextSlot++;
-                        break;
-                        case 6:
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenClock);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenPiano);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenBookcase);
-                        nextSlot++;
-                        break;
-                        case 7:
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenChandelier);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenLantern);
-                        nextSlot++;
-                        break;
-                    }
-                    if (Main.moonPhase % 2 == 0)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.GoldenPlatform);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(silver: 2);
-                        nextSlot++;
-                    }
-                    if (AprilFoolsJoke.Active) // graveyard
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.RichGravestone1);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.RichGravestone2);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.RichGravestone3);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.RichGravestone4);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.RichGravestone5);
-                        shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
-                        nextSlot++;
-                    }
                 }
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<BlurryDiscountCard>());
+                nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<SpoilsPotion>());
+                nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<GoldPowder>());
+                nextSlot++;
+            }
+            else
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<BlurryDiscountCard>());
+                nextSlot++;
             }
             if (NPC.downedBoss3 && Main.moonPhase % 2 == 1)
             {
@@ -366,6 +265,11 @@ namespace AQMod.NPCs.Friendly
                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 15);
                 nextSlot++;
             }
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<FishingCraftingStation>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.AquaticEnergy>());
+            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
+            nextSlot++;
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

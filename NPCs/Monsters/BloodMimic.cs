@@ -1,7 +1,7 @@
 ﻿using AQMod.Items.Accessories;
 using AQMod.Items.Foods;
 using AQMod.Items.Potions;
-using AQMod.Items.Tools;
+using AQMod.Items.Tools.Utility;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

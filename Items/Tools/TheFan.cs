@@ -1,4 +1,5 @@
 ﻿using AQMod.Content.World.Events;
+using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -7,8 +8,12 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Tools
 {
-    public class TheFan : ModItem
+    public class TheFan : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<TheFan>("_Glow"));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -22,7 +27,7 @@ namespace AQMod.Items.Tools
             item.shoot = ModContent.ProjectileType<Projectiles.FriendlyWind>();
             item.shootSpeed = 9f;
             item.autoReuse = true;
-            item.value = Item.sellPrice(silver: 50);
+            item.value = Item.buyPrice(gold: 50);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

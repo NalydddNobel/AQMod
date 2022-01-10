@@ -1,18 +1,23 @@
-﻿using AQMod.Content.World.Events.ProgressBars;
+﻿using AQMod.Content.World.Events;
+using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Tiles.Nature;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using AQMod.Content.World.Events.GlimmerEvent;
-using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events;
 
 namespace AQMod
 {
     public class AQSystem : ModWorld
     {
         public static int NobleMushroomsCount { get; private set; }
+
+        public static int DayrateIncrease { get; set; }
+
+        public static bool UpdatingWorld { get; internal set; }
+        public static bool CosmicanonActive { get; internal set; }
 
         public override void Initialize()
         {
@@ -37,12 +42,6 @@ namespace AQMod
         public override void Load(TagCompound tag)
         {
             CrabSeason.crabSeasonTimer = tag.GetIntOrDefault("CrabSeason_crabSeasonTimer", CrabSeason.CrabSeasonTimerMin);
-
-            if (tag.ContainsKey("GlimmerEvent_active"))
-            {
-                GlimmerEvent.tileX = (ushort)tag.GetInt("GlimmerEvent_X");
-                GlimmerEvent.tileY = (ushort)tag.GetInt("GlimmerEvent_Y");
-            }
 
             if (!Main.dayTime)
                 GlimmerEventSky.InitNight();

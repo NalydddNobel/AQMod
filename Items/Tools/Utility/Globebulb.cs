@@ -1,4 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
+﻿using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
@@ -7,20 +7,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools
+namespace AQMod.Items.Tools.Utility
 {
-    public class Globebulb : ModItem
+    public class Globebulb : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
-        public override void SetStaticDefaults()
-        {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow"), getGlowmaskColor, drawInventory: true), item.type);
-        }
-
-        private static Color getGlowmaskColor()
-        {
-            return Color.Lerp(new Color(95, 80, 20, 0), new Color(0, 0, 0, 0), ((float)Math.Sin(Main.GlobalTime * 15f) + 1f) * 0.25f + 0.25f);
-        }
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<Globebulb>("_Glow"),
+            () => Color.Lerp(new Color(95, 80, 20, 0), new Color(0, 0, 0, 0), ((float)Math.Sin(Main.GlobalTime * 15f) + 1f) * 0.25f + 0.25f));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
 
         public override void SetDefaults()
         {
@@ -44,7 +38,7 @@ namespace AQMod.Items.Tools
         public override bool UseItem(Player player)
         {
             if (Main.myPlayer == player.whoAmI || Main.netMode == NetmodeID.Server)
-                AQMod.dayrateIncrease += 24;
+                AQSystem.DayrateIncrease += 24;
             return false;
         }
 

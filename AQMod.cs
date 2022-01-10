@@ -112,11 +112,6 @@ namespace AQMod
 
         public static class Edits
         {
-            internal static bool PreventChat { get; private set; }
-            internal static bool PreventChatOnce { get; private set; }
-            internal static bool CosmicanonActive { get; private set; }
-            internal static bool UpdatingWorld { get; private set; }
-
             internal static void Load()
             {
                 if (ModContent.GetInstance<AQConfigClient>().XmasProgressMeterOverride)
@@ -124,7 +119,6 @@ namespace AQMod
                     On.Terraria.GameContent.UI.States.UIWorldLoad.ctor += UIWorldLoad_ctor_Xmas;
                 }
                 On.Terraria.UI.ItemSlot.OverrideHover += ItemSlot_OverrideHover;
-                On.Terraria.NetMessage.BroadcastChatMessage += NetMessage_BroadcastChatMessage;
                 On.Terraria.GameContent.Achievements.AchievementsHelper.NotifyProgressionEvent += AchievementsHelper_NotifyProgressionEvent;
                 On.Terraria.Chest.SetupShop += Chest_SetupShop;
                 On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
@@ -132,11 +126,9 @@ namespace AQMod
                 {
                     On.Terraria.Main.DrawBG += Main_DrawBG_XMasBG;
                 }
-                On.Terraria.Main.UpdateTime += Main_UpdateTime;
                 On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
                 On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
                 On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
-                On.Terraria.Main.NewText_string_byte_byte_byte_bool += Main_NewText_string_byte_byte_byte_bool;
                 On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
                 On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
                 On.Terraria.Main.CursorColor += Main_CursorColor;
@@ -402,7 +394,7 @@ namespace AQMod
 
             private static void AchievementsHelper_NotifyProgressionEvent(On.Terraria.GameContent.Achievements.AchievementsHelper.orig_NotifyProgressionEvent orig, int eventID)
             {
-                if (UpdatingWorld && CosmicanonActive && Main.netMode != NetmodeID.MultiplayerClient)
+                if (AQSystem.UpdatingWorld && AQSystem.CosmicanonActive && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     if (eventID == AchievementHelperID.Events.BloodMoonStart)
                     {
@@ -410,7 +402,7 @@ namespace AQMod
                         CosmicanonCounts.BloodMoonsPrevented++;
                         if (Main.netMode == NetmodeID.Server)
                             NetHelper.PreventedBloodMoon();
-                        PreventChatOnce = true;
+                        MessageBroadcast.PreventChatOnce = true;
                     }
                     if (eventID == AchievementHelperID.Events.EclipseStart)
                     {
@@ -418,38 +410,10 @@ namespace AQMod
                         CosmicanonCounts.EclipsesPrevented++;
                         if (Main.netMode == NetmodeID.Server)
                             NetHelper.PreventedEclipse();
-                        PreventChatOnce = true;
+                        MessageBroadcast.PreventChatOnce = true;
                     }
                 }
                 orig(eventID);
-            }
-
-            private static void NetMessage_BroadcastChatMessage(On.Terraria.NetMessage.orig_BroadcastChatMessage orig, NetworkText text, Color color, int excludedPlayer)
-            {
-                if (PreventChatOnce)
-                {
-                    PreventChatOnce = false;
-                    return;
-                }
-                if (PreventChat)
-                {
-                    return;
-                }
-                orig(text, color, excludedPlayer);
-            }
-
-            private static void Main_NewText_string_byte_byte_byte_bool(On.Terraria.Main.orig_NewText_string_byte_byte_byte_bool orig, string newText, byte R, byte G, byte B, bool force)
-            {
-                if (PreventChatOnce)
-                {
-                    PreventChatOnce = false;
-                    return;
-                }
-                if (PreventChat)
-                {
-                    return;
-                }
-                orig(newText, R, G, B, force);
             }
 
             private static void Main_UpdateWeather(On.Terraria.Main.orig_UpdateWeather orig, Main self, GameTime gameTime)
@@ -675,40 +639,7 @@ namespace AQMod
             private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)
             {
                 orig();
-                Main.dayRate += dayrateIncrease;
-            }
-
-            private static void Main_UpdateTime(On.Terraria.Main.orig_UpdateTime orig)
-            {
-                UpdatingWorld = true;
-                Main.dayRate += dayrateIncrease;
-                if (Main.dayTime)
-                {
-                    if (Main.time + Main.dayRate > Main.dayLength)
-                    {
-                        CosmicanonActive = AQPlayer.IgnoreMoons();
-                        AprilFoolsJoke.UpdateActive();
-                        if (Main.netMode != NetmodeID.Server)
-                        {
-                            GlimmerEventSky.InitNight();
-                        }
-                    }
-                    orig();
-                    CosmicanonActive = false;
-                }
-                else
-                {
-                    if (Main.time + Main.dayRate > Main.nightLength)
-                    {
-                        CosmicanonActive = AQPlayer.IgnoreMoons();
-                    }
-                    orig();
-                    CosmicanonActive = false;
-                }
-                dayrateIncrease = 0;
-                PreventChat = false;
-                PreventChatOnce = false;
-                UpdatingWorld = false;
+                Main.dayRate += AQSystem.DayrateIncrease;
             }
 
             private static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
@@ -824,7 +755,7 @@ namespace AQMod
 
             AQRecipes.AddRecipes(this);
 
-            FargosQOLStuff.Setup(this);
+            FargowiltasSupport.Setup(this);
             AQItem.Sets.Clones.Setup();
         }
 

@@ -1,15 +1,11 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Content.Players;
-using AQMod.Items.Materials;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Content.Players;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools
+namespace AQMod.Items.Tools.Utility
 {
     public class GhostlyGrave : ModItem
     {

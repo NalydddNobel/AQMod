@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Tools;
+using AQMod.Items.Tools.Utility;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Summon;
 using System.Collections.Generic;
@@ -55,6 +55,11 @@ namespace AQMod.NPCs.Friendly
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<DemonicEnergy>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
             nextSlot++;
+            if (!Main.dayTime && Main.bloodMoon)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.WhoopieCushion);
+                nextSlot++;
+            }
         }
 
         public override void HitEffect(int hitDirection, double damage)

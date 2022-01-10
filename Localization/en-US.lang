@@ -159,6 +159,11 @@ ItemTooltip.GhostlyGrave=Can disable graves from spawning upon your death
 GhostlyGrave.False=You will now drop graves again
 GhostlyGrave.True=You will no longer drop graves
 
+ItemName.Stardrop=Stardrop
+ItemTooltip.Stardrop=Can allow town NPCs to move in during the night
+Stardrop.False=Town NPCs can no longer move in during the night
+Stardrop.True=Town NPCs can now move in during the night
+
 ItemName.IWillBeBack='I'll Be Back'
 ItemTooltip.IWillBeBack=Summons the Wall of Flesh without murdering the Guide\nRight click to make all town NPCs immune to lava
 IWillBeBackToggle.True=Town NPCs will now resist lava

@@ -1,5 +1,8 @@
 ﻿using AQMod.Common;
 using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Items.Accessories;
+using AQMod.Items.Tools;
+using AQMod.Items.Tools.Utility;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -41,27 +44,34 @@ namespace AQMod.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.EquivalenceMachine>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Stardrop>());
             nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.Cosmicanon>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<EquivalenceMachine>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.FidgetSpinner.FidgetSpinner>());
             nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.MythicStarfruit>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
-            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
-            nextSlot++;
-            if (!Main.dayTime && WorldDefeats.ObtainedUltimateSword)
+            if (Main.dayTime)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<TheFan>());
+                nextSlot++;
+            }
+            else if (WorldDefeats.ObtainedUltimateSword)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
                 nextSlot++;
             }
             if (WorldDefeats.TownNPCLavaImmunity) // in case someone activates the immunity, then looses the toggle :)
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.IWillBeBack>());
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<IWillBeBack>());
                 nextSlot++;
             }
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.MythicStarfruit>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
+            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
+            nextSlot++;
         }
 
         public override void HitEffect(int hitDirection, double damage)

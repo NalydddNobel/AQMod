@@ -1,13 +1,12 @@
-﻿using AQMod.Content;
-using AQMod.Localization;
+﻿using AQMod.Localization;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools
+namespace AQMod.Items.Accessories
 {
-    public class Cosmicanon : ModItem, IUpdatePiggybank
+    public class EquivalenceMachine : ModItem, IUpdatePiggybank
     {
         public override void SetDefaults()
         {
@@ -15,15 +14,15 @@ namespace AQMod.Items.Tools
             item.height = 16;
             item.accessory = true;
             item.rare = AQItem.Rarities.OmegaStariteRare;
-            item.value = Item.buyPrice(gold: 60);
+            item.value = Item.buyPrice(gold: 80);
         }
 
         private void Update(Player player)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.cosmicanon = true;
-            if (!aQPlayer.IgnoreIgnoreMoons)
-                aQPlayer.ignoreMoons = true;
+            aQPlayer.hasEquivalenceMachine = true;
+            if (!aQPlayer.IgnoreAntiGravityItems)
+                aQPlayer.antiGravityItems = true;
         }
 
         public override void UpdateInventory(Player player)
@@ -45,15 +44,9 @@ namespace AQMod.Items.Tools
         {
             foreach (var t in tooltips)
             {
-                if (t.mod == "Terraria" && t.Name == "Tooltip0")
-                {
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.KeybindText(AQMod.Keybinds.CosmicanonToggle));
-                }
                 if (t.mod == "Terraria" && t.Name == "Tooltip1")
                 {
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented", CosmicanonCounts.BloodMoonsPrevented);
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.GlimmersPrevented", CosmicanonCounts.GlimmersPrevented);
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.EclipsesPrevented", CosmicanonCounts.EclipsesPrevented);
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.KeybindText(AQMod.Keybinds.EquivalenceMachineToggle));
                 }
             }
         }

@@ -49,7 +49,7 @@ namespace AQMod.Projectiles.Pets
                 var outlineTexture = ModContent.GetTexture(this.GetPath("_Highlight"));
                 plr.noThrow = 2;
                 plr.showItemIcon = true;
-                plr.showItemIcon2 = ModContent.ItemType<Items.Tools.ATM>();
+                plr.showItemIcon2 = ModContent.ItemType<Items.Tools.Utility.ATM>();
                 if (PlayerInput.UsingGamepad)
                     plr.GamepadEnableGrappleCooldown();
                 spriteBatch.Draw(outlineTexture, drawPos, null, Color.Lerp(lightColor, Main.OurFavoriteColor, 0.5f), projectile.rotation, outlineTexture.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);

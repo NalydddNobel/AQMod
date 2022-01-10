@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Items.Tools;
+using AQMod.Items.Tools.Utility;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.CrabSeason;
 using Microsoft.Xna.Framework;

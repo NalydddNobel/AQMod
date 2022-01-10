@@ -32,6 +32,7 @@ namespace AQMod.Common
         public static bool PhysicistIntroduction { get; set; }
 
         public static bool TownNPCLavaImmunity { get; set; }
+        public static bool TownNPCMoveAtNight { get; set; }
 
         /// <summary>
         /// If WoF or Omega Starite have been defeated
@@ -84,6 +85,7 @@ namespace AQMod.Common
                 ["PhysicistIntroduction"] = PhysicistIntroduction,
 
                 ["IWillBeBackLavaImmunity"] = TownNPCLavaImmunity,
+                ["TownNPCMoveAtNight"] = TownNPCMoveAtNight,
             };
         }
 
@@ -109,6 +111,7 @@ namespace AQMod.Common
             PhysicistIntroduction = tag.GetBool("PhysicistIntroduction");
 
             TownNPCLavaImmunity = tag.GetBool("IWillBeBackLavaImmunity");
+            TownNPCMoveAtNight = tag.GetBool("TownNPCMoveAtNight");
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -127,6 +130,7 @@ namespace AQMod.Common
             writer.Write(ObtainedMothmanMask);
             writer.Write(DownedSpaceSquid);
             writer.Write(TownNPCLavaImmunity);
+            writer.Write(TownNPCMoveAtNight);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -147,7 +151,9 @@ namespace AQMod.Common
             ObtainedMothmanMask = reader.ReadBoolean();
 
             DownedSpaceSquid = reader.ReadBoolean();
+
             TownNPCLavaImmunity = reader.ReadBoolean();
+            TownNPCMoveAtNight = reader.ReadBoolean();
         }
 
         internal static bool AnyBossDefeated()

@@ -4,6 +4,7 @@ using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Foods;
 using AQMod.Items.Foods.Dungeon;
+using AQMod.Items.Tools.MagicPowders;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -28,22 +29,6 @@ namespace AQMod.NPCs
                             nextSlot++;
                             break;
                         }
-                    }
-                    if (Main.hardMode)
-                    {
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Tools.GoldPowder>());
-                        nextSlot++;
-                    }
-                }
-                break;
-
-                case NPCID.Dryad:
-                {
-                    var plr = Main.LocalPlayer;
-                    if (Main.hardMode && NPC.downedPlantBoss)
-                    {
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<Baguette>());
-                        nextSlot++;
                     }
                 }
                 break;
@@ -98,16 +83,6 @@ namespace AQMod.NPCs
                                 nextSlot++;
                             }
                         }
-                    }
-                }
-                break;
-
-                case NPCID.PartyGirl:
-                {
-                    if (!Main.dayTime && Main.moonPhase == 0)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.WhoopieCushion);
-                        nextSlot++;
                     }
                 }
                 break;

@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools
+namespace AQMod.Items.Tools.Utility
 {
     public class ATM : ModItem, IUpdatePlayerSafe
     {
