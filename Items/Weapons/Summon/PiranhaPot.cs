@@ -15,7 +15,7 @@ namespace AQMod.Items.Weapons.Summon
 
         public override void SetDefaults()
         {
-            item.damage = 30;
+            item.damage = 24;
             item.summon = true;
             item.mana = 10;
             item.width = 26;

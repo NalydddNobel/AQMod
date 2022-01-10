@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Effects.Trails.Rendering
 {
-    public struct PrimitivesRender
+    public struct PrimitivesRenderer
     {
         private readonly Texture2D _texture;
         private readonly string _pass;
@@ -62,7 +62,7 @@ namespace AQMod.Effects.Trails.Rendering
             return context == null ? true : context.ShouldDraw();
         }
 
-        public PrimitivesRender(Texture2D texture, string pass)
+        public PrimitivesRenderer(Texture2D texture, string pass)
         {
             _texture = texture;
             _pass = pass;
@@ -85,7 +85,7 @@ namespace AQMod.Effects.Trails.Rendering
 
         public static void FullDraw(Texture2D texture, string pass, Vector2[] positions, Func<float, Vector2> getWidth, Func<float, Color> getColor, float progressAdd = 0f, float coordsMult = 1f)
         {
-            var trail = new PrimitivesRender(texture, pass);
+            var trail = new PrimitivesRenderer(texture, pass);
             trail.PrepareVertices(positions, getWidth, getColor, progressAdd, coordsMult);
             trail.Draw();
         }

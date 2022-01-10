@@ -1,6 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Effects;
+using AQMod.Sounds;
+using AQMod.Tiles;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -10,6 +14,12 @@ namespace AQMod.Projectiles.Summon
 {
     public class PiranhaPlant : ModProjectile
     {
+        public const int MaxOutset = 20;
+
+        // I'm so evil I use custom variables now!
+        public Vector2 anchorLocation;
+        public int targetRetract;
+
         public override void SetStaticDefaults()
         {
             Main.projFrames[projectile.type] = 4;
@@ -22,8 +32,8 @@ namespace AQMod.Projectiles.Summon
         public override void SetDefaults()
         {
             projectile.netImportant = true;
-            projectile.width = 50;
-            projectile.height = 50;
+            projectile.width = 40;
+            projectile.height = 40;
             projectile.friendly = true;
             projectile.minion = true;
             projectile.minionSlots = 1;
@@ -31,50 +41,170 @@ namespace AQMod.Projectiles.Summon
             projectile.timeLeft *= 5;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.hide = true;
-            projectile.usesIDStaticNPCImmunity = true;
-            projectile.idStaticNPCHitCooldown = 1;
             projectile.manualDirectionChange = true;
         }
 
         public override bool? CanCutTiles() => false;
-        public override bool MinionContactDamage() => (int)projectile.ai[1] > 120 && damageDelay <= 0;
+        public override bool MinionContactDamage() => projectile.ai[1] > -1;
 
-        private void GotoPosition(Vector2 gotopos, float amount)
+        private void GotoLocation(Vector2 location, int target, int offsetTileSize = 10)
         {
-            _gotoX = gotopos.X;
-            _gotoY = gotopos.Y;
-            var lerpPosition = Vector2.Lerp(projectile.Center, gotopos, amount);
-            var difference = lerpPosition - projectile.Center;
-            projectile.velocity = difference;
-            if (difference.X < 0f)
+            if (anchorLocation != default(Vector2) && target == -1 && Vector2.Distance(anchorLocation, location) < 128f)
             {
-                projectile.direction = -1;
+                return;
+            }
+            int x = (int)location.X / 16;
+            int y = (int)location.Y / 16;
+            List<Vector2> validPositions = new List<Vector2>();
+            new Rectangle(x - offsetTileSize, y - offsetTileSize, offsetTileSize * 2, offsetTileSize * 2).KeepInWorld(11)
+                .RectangleMethod((tileX, tileY) =>
+                {
+                    var tile = Main.tile[tileX, tileY];
+                    if (tile == null)
+                    {
+                        Main.tile[tileX, tileY] = new Tile();
+                        return true;
+                    }
+                    if (tile.active())
+                    {
+                        if (tile.SolidTop())
+                        {
+                            if (!Main.tile[tileX, tileY - 1].active() || !Main.tile[tileX, tileY - 1].Solid() || Main.tile[tileX, tileY - 1].IsASolidTop())
+                            {
+                                validPositions.Add(new Vector2(tileX * 16f + 8f, tileY * 16f - 2f));
+                            }
+                        }
+                        else if (tile.Solid())
+                        {
+                            if (!Main.tile[tileX, tileY - 1].active() || !Main.tile[tileX, tileY - 1].Solid() || Main.tile[tileX, tileY - 1].IsASolidTop())
+                            {
+                                validPositions.Add(new Vector2(tileX * 16f + 8f, tileY * 16f - 2f));
+                            }
+                            if (!Main.tile[tileX, tileY + 1].active() || !Main.tile[tileX, tileY + 1].Solid() || Main.tile[tileX, tileY + 1].IsASolidTop())
+                            {
+                                validPositions.Add(new Vector2(tileX * 16f + 8f, tileY * 16f + 18f));
+                            }
+                            if (!Main.tile[tileX + 1, tileY].active() || !Main.tile[tileX + 1, tileY].Solid() || Main.tile[tileX + 1, tileY].IsASolidTop())
+                            {
+                                validPositions.Add(new Vector2(tileX * 16f + 18f, tileY * 16f + 8f));
+                            }
+                            if (!Main.tile[tileX - 1, tileY].active() || !Main.tile[tileX - 1, tileY].Solid() || Main.tile[tileX - 1, tileY].IsASolidTop())
+                            {
+                                validPositions.Add(new Vector2(tileX * 16f - 2f, tileY * 16f + 8f));
+                            }
+                        }
+                    }
+                    return true;
+                });
+            if (validPositions.Count == 0)
+            {
+                if (target == -1)
+                {
+                    projectile.ai[1] = -2f;
+                    anchorLocation = Main.player[projectile.owner].Center;
+                }
+                else
+                {
+                    var oldTargetPosition = Main.npc[target].position;
+                    Main.npc[target].Center = Main.player[projectile.owner].Center;
+                    GotoLocation(Main.npc[target].Center, target, offsetTileSize); // Go to the player instead!
+                    Main.npc[target].position = oldTargetPosition;
+                    if ((int)projectile.ai[0] > -1)
+                    {
+                        DetermineVelocity(target);
+                    }
+                }
+                return;
             }
             else
             {
-                projectile.direction = 1;
+                int choice = 0;
+                if (target != -1)
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        choice = Main.rand.Next(validPositions.Count);
+                        if (Collision.CanHitLine(validPositions[choice], 2, 2, Main.npc[target].position, Main.npc[target].width, Main.npc[target].height))
+                        {
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    choice = Main.rand.Next(validPositions.Count);
+                }
+                anchorLocation = validPositions[choice];
+            }
+            if ((int)projectile.ai[1] == -2)
+            {
+                projectile.ai[1] = -3f;
+            }
+            else if ((int)projectile.ai[0] <= 0)
+            {
+                projectile.Center = anchorLocation;
+                DetermineVelocity(target);
+                projectile.ai[0] = 1f;
+                projectile.ai[1] = 1f;
+            }
+            else if (projectile.ai[1] >= 0f)
+            {
+                projectile.ai[1] = -1f;
             }
         }
 
-        public float _gotoX;
-        public float _gotoY;
-        public int _targetCache = -1;
-        public int _eatenTypeCache = -1;
-
-        public int damageDelay;
-        public int eatingDelay;
-
-        private void Movement(Vector2 center, float time, float rotation, int count, int index)
+        private void DetermineVelocity(int target)
         {
-            float idleDistance = projectile.width * 2.5f + Main.player[projectile.owner].width + 8f * count;
-            var off = new Vector2(0f, -idleDistance).RotatedBy(rotation);
-            time += index * 0.6f;
-            off += new Vector2((float)Math.Sin(time) * 4, (float)Math.Cos(time) * 4);
-            var gotoPosition = Main.player[projectile.owner].Center + off;
-            var difference = gotoPosition - center;
-            float l = difference.Length();
-            GotoPosition(gotoPosition, MathHelper.Clamp(l / 1000f, 0.1f, 0.5f));
+            if (target != -1 && Vector2.Distance(Main.npc[target].Center, projectile.Center) > 100f)
+            {
+                projectile.velocity = Vector2.Normalize(Main.npc[target].Center - projectile.Center);
+                if (!Collision.CanHitLine(projectile.Center, 2, 2, projectile.Center + projectile.velocity * 12f, 2, 2))
+                {
+                    DetermineVelocity(-1);
+                }
+            }
+            else
+            {
+                var c = projectile.Center;
+                for (int i = 0; i < 1000; i++)
+                {
+                    float r = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
+                    var v = r.ToRotationVector2();
+                    if (Collision.CanHitLine(c, 2, 2, c + v * 12f, 2, 2))
+                    {
+                        projectile.velocity = v;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private Vector2 MinionPosition()
+        {
+            return new Vector2(Main.player[projectile.owner].position.X + Main.player[projectile.owner].width / 2f + (projectile.width * (projectile.minionPos + 1) + 8) * -Main.player[projectile.owner].direction,
+                    Main.player[projectile.owner].position.Y + Main.player[projectile.owner].height);
+        }
+
+        private void GoToASpot(int target, int offsetTileSize = 10)
+        {
+            if (Main.myPlayer != projectile.owner)
+            {
+                return;
+            }
+            if (target == -1)
+            {
+                GotoLocation(MinionPosition(), target, offsetTileSize);
+            }
+            else
+            {
+                GotoLocation(Main.npc[target].Center, target, offsetTileSize);
+            }
+            projectile.netUpdate = true;
+        }
+
+        private void ResetTargetRetractTimer()
+        {
+            targetRetract = 60;
         }
 
         public override void AI()
@@ -87,7 +217,67 @@ namespace AQMod.Projectiles.Summon
             if (aQPlayer.piranhaPlant)
                 projectile.timeLeft = 2;
             int target = -1;
-            float distance = 1000f;
+            float distance = 1500f;
+
+            if ((int)projectile.ai[1] == -2 || (int)projectile.ai[1] == -3)
+            {
+                if (Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center) > 2000f)
+                {
+                    projectile.Center = Main.player[projectile.owner].Center;
+                    projectile.velocity *= 0.1f;
+                }
+                if ((int)projectile.ai[1] == -2)
+                {
+                    GoToASpot(-1, 5);
+                    if (Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center) > 100f)
+                    {
+                        projectile.velocity = Vector2.Lerp(projectile.velocity, (Main.player[projectile.owner].Center - projectile.Center) / 16f, 0.025f);
+                    }
+                }
+                else
+                {
+                    if (Vector2.Distance(projectile.Center, anchorLocation) > 40f)
+                    {
+                        projectile.velocity = Vector2.Lerp(projectile.velocity, (anchorLocation - projectile.Center) / 6f, 0.1f);
+                    }
+                    else
+                    {
+                        projectile.ai[1] = 1f;
+                        projectile.Center = anchorLocation;
+                        DetermineVelocity(-1);
+                        return;
+                    }
+                }
+                projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
+
+                for (int i = 0; i < Main.maxProjectiles; i++)
+                {
+                    if (i != projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && Main.projectile[i].type == projectile.type)
+                    {
+                        if (Main.projectile[i].getRect().Intersects(projectile.getRect()))
+                        {
+                            projectile.velocity += Vector2.Normalize(projectile.Center - Main.projectile[i].Center) * 0.2f;
+                        }
+                    }
+                }
+
+                if (projectile.frame < 2)
+                {
+                    projectile.frame = 2;
+                }
+
+                projectile.frameCounter++;
+                if (projectile.frameCounter > 4)
+                {
+                    projectile.frameCounter = 0;
+                    projectile.frame++;
+                    if (projectile.frame > 3)
+                    {
+                        projectile.frame = 2;
+                    }
+                }
+                return;
+            }
 
             if (player.HasMinionAttackTargetNPC)
             {
@@ -110,7 +300,7 @@ namespace AQMod.Projectiles.Summon
                         var difference = npc.Center - center;
                         float c = (float)Math.Sqrt(difference.X * difference.X + difference.Y * difference.Y);
                         if (!Collision.CanHitLine(npc.position, npc.width, npc.height, Main.player[projectile.owner].position, Main.player[projectile.owner].width, Main.player[projectile.owner].height))
-                            c *= 8;
+                            c *= 2;
                         if (c < distance)
                         {
                             target = i;
@@ -120,381 +310,144 @@ namespace AQMod.Projectiles.Summon
                 }
             }
 
-            _targetCache = target;
-            if (target == -1)
+            if (anchorLocation == default(Vector2))
             {
-                damageDelay = 0;
-                projectile.direction = Main.player[projectile.owner].direction;
-                projectile.spriteDirection = projectile.direction;
-                int count = 0;
-                int index = 0;
-                int leaderIndex = -1;
-                for (int i = 0; i < Main.maxProjectiles; i++)
+                GoToASpot(target);
+            }
+
+            projectile.Center = anchorLocation + projectile.velocity * (projectile.ai[0] - 8f);
+            projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
+
+            if ((int)projectile.ai[1] == -1)
+            {
+                ResetTargetRetractTimer();
+                if (projectile.ai[0] <= 0f)
                 {
-                    if (i == projectile.whoAmI)
+                    int size = 16;
+                    if (target == -1)
                     {
-                        if (leaderIndex == -1)
-                        {
-                            leaderIndex = i;
-                            aQPlayer.SetMinionCarryPos((int)projectile.position.X + projectile.width / 2, (int)projectile.position.Y);
-                        }
-                        count++;
-                        index = count;
+                        size = 4;
                     }
-                    else if (Main.projectile[i].active && AQProjectile.Sets.MinionChomperType[Main.projectile[i].type]
-                        && Main.projectile[i].owner == projectile.owner)
+                    else if (Main.npc[target].noGravity)
                     {
-                        if (Main.projectile[i].type == ModContent.ProjectileType<Chomper>() && Main.projectile[i].ai[1] < 120)
-                        {
-                            continue;
-                        }
-                        if (leaderIndex == -1)
-                        {
-                            leaderIndex = i;
-                        }
-                        count++;
+                        size += 8;
                     }
-                }
-                float rotation;
-                if (count == 1)
-                {
-                    rotation = 0f;
+                    GoToASpot(target, size);
                 }
                 else
                 {
-                    rotation = MathHelper.PiOver2 / (count - 1) * (index - 1) - MathHelper.PiOver4;
+                    projectile.ai[0] -= 1f + (MaxOutset - projectile.ai[0]) * 0.1f;
                 }
-                if (eatingDelay > 0)
+            }
+            else
+            {
+                if (projectile.ai[0] < MaxOutset)
                 {
-                    eatingDelay--;
-                }
-                if (eatingDelay < 20)
-                {
-                    if (_eatenTypeCache != -1)
+                    projectile.ai[0] += 1f + (MaxOutset - projectile.ai[0]) * 0.1f;
+                    if (projectile.ai[0] > MaxOutset)
                     {
-                        NPC npc = new NPC();
-                        npc.SetDefaults(_eatenTypeCache);
-                        npc.life = -1;
-                        npc.rotation = projectile.rotation;
-                        if (projectile.spriteDirection == -1)
-                        {
-                            npc.rotation += MathHelper.Pi;
-                        }
-                        npc.velocity = npc.rotation.ToRotationVector2() * 6f;
-                        npc.Center = projectile.Center;
-                        Main.PlaySound(SoundID.NPCDeath13.WithVolume(0.3f).WithPitchVariance(1f));
-                        npc.HitEffect(projectile.spriteDirection, 100f * AQConfigClient.c_EffectIntensity);
-                        _eatenTypeCache = -1;
+                        projectile.ai[0] = MaxOutset;
                     }
                 }
-                if (projectile.ai[0] < 0f && Main.myPlayer == projectile.owner)
+                if (target == -1)
                 {
-                    damageDelay = 0;
-                    projectile.ai[0] = 0f;
-                    projectile.ai[1] = 0f;
-                }
-                projectile.ai[0] += 0.08f;
-                float time;
-                if (leaderIndex != -1 && Main.projectile[leaderIndex].ai[0] > 0f)
-                {
-                    if (leaderIndex == projectile.whoAmI)
+                    ResetTargetRetractTimer();
+                    if (Vector2.Distance(projectile.Center, MinionPosition()) > 320f)
                     {
-                        projectile.ai[0] += 0.04f;
+                        projectile.ai[1] = -1f;
+                    }
+                }
+                else
+                {
+                    if (Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center) > 2250f)
+                    {
+                        projectile.ai[1] = -1f;
+                        ResetTargetRetractTimer();
                     }
                     else
                     {
-                        projectile.ai[0] = 0f;
+                        targetRetract--;
+                        if (!Collision.CanHitLine(projectile.position, projectile.width, projectile.height, Main.npc[target].position, Main.npc[target].width, Main.npc[target].height))
+                        {
+                            if (targetRetract > 50)
+                            {
+                                targetRetract -= 3;
+                                if (targetRetract <= 51)
+                                {
+                                    targetRetract = 49;
+                                }
+                            }
+                            else
+                            {
+                                targetRetract -= 3;
+                            }
+                        }
+                        if (targetRetract == 50)
+                        {
+                            if (Main.netMode != NetmodeID.Server)
+                                SoundID.Item8.Play(projectile.Center);
+                            if (Main.myPlayer == projectile.owner)
+                                Projectile.NewProjectile(projectile.Center, Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 10f,
+                                    ModContent.ProjectileType<PiranhaPlantFireball>(), projectile.damage, projectile.knockBack, projectile.owner);
+                        }
+                        else if (targetRetract <= 0)
+                        {
+                            targetRetract = 120;
+                            projectile.ai[1] = -1f;
+                        }
                     }
-                    time = Main.projectile[leaderIndex].ai[0];
                 }
-                else
-                {
-                    time = projectile.ai[0];
-                    projectile.ai[0] += 0.04f;
-                }
+            }
 
-                Movement(center, time, rotation, count, index);
-
-                if (projectile.rotation.Abs() < 0.1f)
-                {
-                    projectile.rotation = 0f;
-                }
-                else
-                {
-                    projectile.rotation = projectile.rotation.AngleLerp(0f, 0.025f);
-                }
-                if (eatingDelay > 0)
+            projectile.frameCounter++;
+            if (projectile.frameCounter > 6)
+            {
+                projectile.frameCounter = 0;
+                projectile.frame++;
+                if (projectile.frame > 1)
                 {
                     projectile.frame = 0;
-                    if (eatingDelay < 35)
-                    {
-                        projectile.frame = 2;
-                    }
                 }
-                else
-                {
-                    projectile.frameCounter++;
-                    if (projectile.frameCounter > 5)
-                    {
-                        projectile.frameCounter = 0;
-                        projectile.frame++;
-                        if (projectile.frame >= 3)
-                        {
-                            projectile.frame = 0;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                projectile.ai[0] = -1f;
-                projectile.ai[1]++;
-                if ((int)projectile.ai[1] < 120)
-                {
-                    if (projectile.ai[1] < 100)
-                    {
-                        projectile.ai[1] += Main.rand.NextFloat(10f);
-                    }
-                    if (damageDelay > 0)
-                    {
-                        damageDelay--;
-                        if ((int)projectile.ai[1] > 110)
-                        {
-                            projectile.ai[1] = 110f;
-                        }
-                    }
-                    if (eatingDelay > 0)
-                    {
-                        eatingDelay--;
-                        if ((int)projectile.ai[1] > 110)
-                        {
-                            projectile.ai[1] = 110f;
-                        }
-                        if (eatingDelay <= 20 && _eatenTypeCache != -1 && Main.myPlayer == projectile.owner)
-                        {
-                            if (_eatenTypeCache != -1)
-                            {
-                                NPC npc = new NPC();
-                                npc.SetDefaults(_eatenTypeCache);
-                                npc.life = -1;
-                                npc.rotation = projectile.rotation;
-                                npc.velocity = projectile.rotation.ToRotationVector2() * 6f;
-                                npc.Center = projectile.Center;
-                                Main.PlaySound(SoundID.NPCDeath13.WithVolume(0.3f).WithPitchVariance(1f));
-                                npc.HitEffect(projectile.spriteDirection, 100);
-                                _eatenTypeCache = -1;
-                            }
-                        }
-                        projectile.frame = 0;
-                        if (eatingDelay < 35)
-                        {
-                            projectile.frame = 2;
-                        }
-                    }
-                    else
-                    {
-                        if ((int)projectile.ai[1] < 40)
-                        {
-                            projectile.frame = 0;
-                        }
-                        else if ((int)projectile.ai[1] < 80)
-                        {
-                            projectile.frame = 1;
-                        }
-                        else
-                        {
-                            projectile.frame = 2;
-                        }
-                    }
-                    projectile.direction = Main.npc[target].Center.X < projectile.Center.X ? -1 : 1;
-                    projectile.spriteDirection = projectile.direction;
-                    int count = 0;
-                    int index = 0;
-                    for (int i = 0; i < Main.maxProjectiles; i++)
-                    {
-                        if (i == projectile.whoAmI)
-                        {
-                            if (count == 0)
-                            {
-                                aQPlayer.SetMinionCarryPos((int)projectile.position.X + projectile.width / 2, (int)projectile.position.Y);
-                            }
-                            count++;
-                            index = count;
-                        }
-                        else if (Main.projectile[i].active && AQProjectile.Sets.MinionChomperType[Main.projectile[i].type]
-                            && Main.projectile[i].owner == projectile.owner)
-                        {
-                            if (Main.projectile[i].type == ModContent.ProjectileType<Chomper>() && Main.projectile[i].ai[1] < 120)
-                            {
-                                continue;
-                            }
-                            count++;
-                        }
-                    }
-                    float rotation;
-                    if (count == 1)
-                    {
-                        rotation = 0f;
-                    }
-                    else
-                    {
-                        rotation = MathHelper.PiOver2 / (count - 1) * (index - 1) - MathHelper.PiOver4;
-                    }
-
-                    Movement(center, 0f, rotation, count, index);
-
-                    if (projectile.rotation.Abs() < 0.1f)
-                    {
-                        projectile.rotation = 0f;
-                    }
-                    else
-                    {
-                        if (projectile.rotation < -MathHelper.PiOver2)
-                        {
-                            projectile.rotation += MathHelper.PiOver2;
-                        }
-                        projectile.rotation = projectile.rotation.AngleLerp(0f, 0.025f);
-                    }
-                    projectile.rotation = (Main.npc[target].Center - projectile.Center).ToRotation();
-                }
-                else
-                {
-                    if (CanEat(Main.npc[target]))
-                    {
-                        if ((int)projectile.ai[1] == 120)
-                        {
-                            projectile.velocity = Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 20f;
-                            projectile.netUpdate = true;
-                        }
-                        projectile.ai[1] += Main.rand.NextFloat(0.5f, 2f);
-                        if ((int)projectile.ai[1] > 180)
-                        {
-                            projectile.ai[1] = 0f;
-                            projectile.netUpdate = true;
-                        }
-                    }
-                    else
-                    {
-                        projectile.frame = 3; 
-                        if ((int)projectile.ai[1] == 120)
-                        {
-                            Main.PlaySound(SoundID.Item8, projectile.Center);
-                            if (Main.myPlayer == projectile.owner)
-                            {
-                                Projectile.NewProjectile(projectile.Center, Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 20f, ModContent.ProjectileType<Projectiles.Memorialist>(), projectile.damage, projectile.knockBack, projectile.owner);
-                            }
-                        }
-                        projectile.ai[1] += Main.rand.NextFloat(0.5f, 2.5f);
-                        if ((int)projectile.ai[1] > 175)
-                        {
-                            projectile.ai[1] = 0f;
-                            projectile.netUpdate = true;
-                        }
-
-                        int count = 0;
-                        int index = 0;
-                        for (int i = 0; i < Main.maxProjectiles; i++)
-                        {
-                            if (i == projectile.whoAmI)
-                            {
-                                if (count == 0)
-                                {
-                                    aQPlayer.SetMinionCarryPos((int)projectile.position.X + projectile.width / 2, (int)projectile.position.Y);
-                                }
-                                count++;
-                                index = count;
-                            }
-                            else if (Main.projectile[i].active && AQProjectile.Sets.MinionChomperType[Main.projectile[i].type]
-                                && Main.projectile[i].owner == projectile.owner)
-                            {
-                                if (Main.projectile[i].type == ModContent.ProjectileType<Chomper>() && Main.projectile[i].ai[1] < 120)
-                                {
-                                    continue;
-                                }
-                                count++;
-                            }
-                        }
-                        float rotation;
-                        if (count == 1)
-                        {
-                            rotation = 0f;
-                        }
-                        else
-                        {
-                            rotation = MathHelper.PiOver2 / (count - 1) * (index - 1) - MathHelper.PiOver4;
-                        }
-
-                        Movement(center, 0f, rotation, count, index);
-                    }
-                }
-            }
-        }
-
-        public bool CanEat(NPC npc)
-        {
-            return eatingDelay <= 0 && !npc.boss && npc.width * npc.height <= projectile.width * projectile.height && npc.life <= 300;
-        }
-
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            if (target.Center.X < Main.player[projectile.owner].Center.X)
-            {
-                hitDirection = -1;
-            }
-            else
-            {
-                hitDirection = 1;
-            }
-            projectile.ai[1] = 0f;
-            damageDelay = damage;
-            if (CanEat(target))
-            {
-                damage = 0;
-                damageDelay = target.life;
-                eatingDelay = 120;
-                _eatenTypeCache = target.netID;
-                switch (target.type)
-                {
-                    default:
-                        Main.PlaySound(SoundID.Item2, target.Center);
-                        break;
-
-                    case NPCID.BlueSlime:
-                    case NPCID.SpikedIceSlime:
-                    case NPCID.SpikedJungleSlime:
-                    case NPCID.SlimeSpiked:
-                        Main.PlaySound(SoundID.Item3, target.Center);
-                        break;
-                }
-                int oldLife = target.life;
-                target.life = -1;
-                target.active = false;
-                target.NPCLoot();
             }
         }
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write(damageDelay);
-            writer.Write(eatingDelay);
+            writer.Write(anchorLocation.X);
+            writer.Write(anchorLocation.Y);
+            writer.Write(targetRetract);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            damageDelay = reader.ReadInt32();
-            eatingDelay = reader.ReadInt32();
+            anchorLocation.X = reader.ReadSingle();
+            anchorLocation.Y = reader.ReadSingle();
+            targetRetract = reader.ReadInt32();
         }
+
+        //public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI)
+        //{
+        //    Main.instance.DrawCacheProjsBehindNPCsAndTiles.Add(index);
+        //}
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = Main.projectileTexture[projectile.type];
-            int frameHeight = texture.Height / Main.projFrames[projectile.type];
-            Rectangle frame = new Rectangle(0, projectile.frame * frameHeight, texture.Width, frameHeight);
-            Vector2 center = new Vector2(projectile.width / 2, projectile.height / 2);
-            var effects = projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            var drawPos = projectile.position + center - Main.screenPosition;
-            drawPos = new Vector2((int)drawPos.X, (int)drawPos.Y);
-            Main.spriteBatch.Draw(texture, drawPos, frame, lightColor, projectile.rotation, frame.Size() / 2f, 1f, effects, 0f);
+            if (CustomRenderBehindTiles.DrawingNow)
+            {
+                Texture2D texture = Main.projectileTexture[projectile.type];
+                int frameHeight = texture.Height / Main.projFrames[projectile.type];
+                Rectangle frame = new Rectangle(0, projectile.frame * frameHeight, texture.Width, frameHeight);
+                Vector2 offset = new Vector2(projectile.width / 2, projectile.height / 2);
+                var effects = projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+                var drawPos = projectile.position + offset - Main.screenPosition;
+                drawPos = new Vector2((int)drawPos.X, (int)drawPos.Y);
+                Main.spriteBatch.Draw(texture, drawPos, frame, lightColor, projectile.rotation, frame.Size() / 2f, 1f, effects, 0f);
+            }
+            else
+            {
+                if (CustomRenderBehindTiles.DrawProjsCache != null)
+                    CustomRenderBehindTiles.DrawProjsCache.Add(projectile.whoAmI);
+            }
             return false;
         }
     }

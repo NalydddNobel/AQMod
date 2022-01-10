@@ -64,12 +64,12 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
             var texture = TextureGrabber.GetProjectile(projectile.type);
             var textureOrig = new Vector2(texture.Width / 2f, 2f);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (PrimitivesRender.ShouldDrawVertexTrails(PrimitivesRender.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
             {
-                var renderingPositions = PrimitivesRender.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f - Main.screenPosition.X, projectile.height / 2f - Main.screenPosition.Y));
+                var renderingPositions = PrimitivesRenderer.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f - Main.screenPosition.X, projectile.height / 2f - Main.screenPosition.Y));
                 if (renderingPositions.Count > 1)
                 {
-                    PrimitivesRender.FullDraw(AQTextures.Trails[TrailTex.ThickerLine], PrimitivesRender.TextureTrail,
+                    PrimitivesRenderer.FullDraw(AQTextures.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
                         renderingPositions.ToArray(), GetSizeMethod(), GetColorMethod(lightColor));
                 }
             }
@@ -115,11 +115,11 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                var renderingPositions = PrimitivesRender.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f, projectile.height / 2f));
+                var renderingPositions = PrimitivesRenderer.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f, projectile.height / 2f));
                 if (renderingPositions.Count > 3)
                 {
                     renderingPositions.RemoveAt(renderingPositions.Count - 1);
-                    Trail.PreDrawProjectiles.NewTrail(new DeathTrail(AQTextures.Trails[TrailTex.ThickerLine], PrimitivesRender.TextureTrail,
+                    Trail.PreDrawProjectiles.NewTrail(new DeathTrail(AQTextures.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
                     renderingPositions, GetSizeMethod(), GetColorMethod(GetColor()), default, default, projectile.extraUpdates));
                 }
             }

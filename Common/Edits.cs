@@ -21,6 +21,7 @@ namespace AQMod.Common
 
         internal static void UnloadHooks() // I am pretty sure TModLoader automatically unloads hooks, so this will just be used in some other cases
         {
+            CustomRenderBehindTiles.DrawProjsCache = null;
         }
 
         private static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, Terraria.Localization.NetworkText deathText, int hitDirection)
@@ -65,6 +66,7 @@ namespace AQMod.Common
             orig(self, behindTiles);
             if (behindTiles)
             {
+                CustomRenderBehindTiles.Render();
                 SceneLayersManager.DrawLayer(SceneLayering.BehindTiles_InfrontNPCs);
             }
             else

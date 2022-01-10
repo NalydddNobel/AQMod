@@ -124,7 +124,6 @@ namespace AQMod
                     On.Terraria.GameContent.UI.States.UIWorldLoad.ctor += UIWorldLoad_ctor_Xmas;
                 }
                 On.Terraria.UI.ItemSlot.OverrideHover += ItemSlot_OverrideHover;
-                On.Terraria.Item.UpdateItem += Item_UpdateItem;
                 On.Terraria.NetMessage.BroadcastChatMessage += NetMessage_BroadcastChatMessage;
                 On.Terraria.GameContent.Achievements.AchievementsHelper.NotifyProgressionEvent += AchievementsHelper_NotifyProgressionEvent;
                 On.Terraria.Chest.SetupShop += Chest_SetupShop;
@@ -399,18 +398,6 @@ namespace AQMod
                     }
                 }
                 orig(inv, context, slot);
-            }
-
-            private static void Item_UpdateItem(On.Terraria.Item.orig_UpdateItem orig, Item self, int i)
-            {
-                if (Main.itemLockoutTime[i] > 0)
-                {
-                    orig(self, i);
-                    return;
-                }
-
-                EquivalenceMachineManager.UpdateItems();
-                orig(self, i);
             }
 
             private static void AchievementsHelper_NotifyProgressionEvent(On.Terraria.GameContent.Achievements.AchievementsHelper.orig_NotifyProgressionEvent orig, int eventID)
@@ -792,7 +779,7 @@ namespace AQMod
                 DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
                 GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
                 SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
-                PrimitivesRender.Setup();
+                PrimitivesRenderer.Setup();
                 SceneLayersManager.Setup();
                 ScreenShakeManager.Load();
                 StarbyteColorCache.Init();

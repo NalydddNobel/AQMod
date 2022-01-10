@@ -1374,7 +1374,7 @@ namespace AQMod.NPCs.Boss
             spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity - (int)intensity)), npc.rotation, spotlightOrig, npc.scale * 2.5f + ((int)intensity + 1), SpriteEffects.None, 0f);
             if ((npc.position - npc.oldPos[1]).Length() > 0.01f)
             {
-                if (PrimitivesRender.ShouldDrawVertexTrails())
+                if (PrimitivesRenderer.ShouldDrawVertexTrails())
                 {
                     var trueOldPos = new List<Vector2>();
                     for (int i = 0; i < NPCID.Sets.TrailCacheLength[npc.type]; i++)
@@ -1385,14 +1385,14 @@ namespace AQMod.NPCs.Boss
                     }
                     if (trueOldPos.Count > 1)
                     {
-                        PrimitivesRender.ReversedGravity(trueOldPos);
+                        PrimitivesRenderer.ReversedGravity(trueOldPos);
                         const float radius = Circumference / 2f;
                         Vector2[] arr;
                         arr = trueOldPos.ToArray();
                         if (arr.Length > 1)
                         {
                             var trailClr = GlimmerEvent.stariteDiscoParty ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                            var trail = new PrimitivesRender(AQTextures.Trails[TrailTex.Line], PrimitivesRender.TextureTrail);
+                            var trail = new PrimitivesRenderer(AQTextures.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail);
                             trail.PrepareVertices(arr, (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
                             trail.Draw();
                         }

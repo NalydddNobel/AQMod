@@ -18,7 +18,7 @@ namespace AQMod.Localization
 
         private static TextCallback callback;
 
-        public static string HotKey(ModHotKey key)
+        public static string KeybindText(ModHotKey key)
         {
             foreach (var k in key.GetAssignedKeys())
             {

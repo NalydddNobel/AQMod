@@ -127,6 +127,10 @@ ProjectileName.PiranhaPlant=Piranha Plant
 BuffName.PiranhaPlant=Piranha Plant
 BuffDescription.PiranhaPlant=The piranha plant will fight for you
 
+ItemName.Skrawler=Skrawler
+ItemTooltip.Skrawler=Shoots a deadly flame bolt
+ProjectileName.Skrawler=Skrawler
+
 # Dyes
 ItemName.RedSpriteDye=Red Sprite Dye
 ItemName.FrostbiteDye=Frostbite Dye

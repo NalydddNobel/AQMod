@@ -79,7 +79,7 @@ namespace AQMod.Projectiles.Monster.Starite
             if (playerDistance < 1200f)
                 intensity = 1f - playerDistance / 1200f;
             intensity *= ModContent.GetInstance<AQConfigClient>().EffectIntensity;
-            if (PrimitivesRender.ShouldDrawVertexTrails(PrimitivesRender.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
@@ -92,7 +92,7 @@ namespace AQMod.Projectiles.Monster.Starite
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        var trail = new PrimitivesRender(AQTextures.Trails[TrailTex.Line], PrimitivesRender.TextureTrail);
+                        var trail = new PrimitivesRenderer(AQTextures.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail);
                         trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTime + p) * 0.5f * (1f - p));
                         trail.Draw();
                     }

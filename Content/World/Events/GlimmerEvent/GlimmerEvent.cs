@@ -127,7 +127,10 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                     Player player = Main.player[i];
                     if (player.active && player.statLifeMax > 200)
                     {
-                        if ((PassingDays.daysPassedSinceLastGlimmerEvent > 9 || Main.rand.NextBool(12 - PassingDays.daysPassedSinceLastGlimmerEvent)) && Activate())
+                        bool activateGlimmerEvent = WorldDefeats.DownedStarite
+                            ? PassingDays.daysPassedSinceLastGlimmerEvent > 16 || Main.rand.NextBool(22 - PassingDays.daysPassedSinceLastGlimmerEvent)
+                            : PassingDays.daysPassedSinceLastGlimmerEvent > 12 || Main.rand.NextBool(18 - PassingDays.daysPassedSinceLastGlimmerEvent);
+                        if (activateGlimmerEvent && Activate())
                         {
                             PassingDays.daysPassedSinceLastGlimmerEvent = 0;
                             if (AQPlayer.IgnoreMoons())

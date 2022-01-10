@@ -45,7 +45,7 @@ namespace AQMod.Effects.Trails
 
         public override void Render()
         {
-            PrimitivesRender.FullDraw(_texture, _pass, _positions.AsAddAll(-Main.screenPosition).ToArray(), 
+            PrimitivesRenderer.FullDraw(_texture, _pass, _positions.AsAddAll(-Main.screenPosition).ToArray(), 
                 _getSize, _getColor, _progressAdd, _coordsMult);
         }
     }

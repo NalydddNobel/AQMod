@@ -1,3 +1,44 @@
+####### 1.3.3 #######
+
+Additions:
+The Memorialist, a town NPC which loves death and ashes
+Cursed Key, a summoner weapon sold by the Memorialist!
+Ghostly Grave, a utility item sold by the Memorialist which disables tombstones from spawning when you die!
+Piranha Pot, a summoner weapon obtained by using the Corrupted Pot at a Gore Nest!
+Skrawler, a magic weapon obtained by using the Scarlet Sea at a Gore Nest!
+
+When you die in the Underworld, you will now drop a special demonic tombstone!
+
+Changes:
+- The Pow Punch is now sold by the Memorialist instead of dropped by Trapper Imps 
+- Some minions now use your position for targeting enemies instead of their own position, this should let them see better in enclosed spaces
+- The Red Sprite and Space Squid now flee if you are not in space
+- Added the Crabax and Crab Clock to Crabson's boss checklist entry
+- The Mushroom Clam now requires 4 Crab Shells instead of 5
+- Gave each temperature debuff a sprite
+- Removed the Dedicated Item text on Narrizuul
+- Increased the size of the Fizzing Fire's hitbox, and also made it look more like a flame
+- Made the Glimmer Event less common after Omega Starite has been defeated, and also made it very slightly less common in general
+
+- Made the Cosmicanon cheaper
+* 80 gold -> 60 gold
+
+- Resprited the Equivalence Machine
+
+Fixes:
+- The Celeste Torus no longer changes its knockback on its tooltip based on your movement speed
+- Fixed a (previously undetectable) bug where Strider Crabs created an error when spawning their gore when eaten by a Chomper 
+- Greatly improved the performance related to getting textures from an array
+- You can now properly teleport to the Dungeon and Temple using the Dungeon and Temple Marker
+- Fixed projectiles with a temperature value accidentally resetting back to 0 right after being created
+- White Slimes now have a proper temperature value 
+- Fixed a bug with the Encore Potion consistently giving an error once an NPC dies
+- Encore Records now use string codes which should very slightly reduce the amount of data they save
+- Greatly improved the syncing of Encore Records in multiplayer by fixing multiple errors in data syncing
+- Fixed some particles not updating at all in multiplayer
+- Fixed some errors regarding random packets being sent during singleplayer (curse you netcode!)
+- Internally reworked the Equivalence Machine's function to work better in multiplayer and break less
+
 ####### 1.3.2 #######
 
 Additions:

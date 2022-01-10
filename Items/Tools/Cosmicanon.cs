@@ -15,7 +15,7 @@ namespace AQMod.Items.Tools
             item.height = 16;
             item.accessory = true;
             item.rare = AQItem.Rarities.OmegaStariteRare;
-            item.value = Item.buyPrice(gold: 80);
+            item.value = Item.buyPrice(gold: 60);
         }
 
         private void Update(Player player)
@@ -47,7 +47,7 @@ namespace AQMod.Items.Tools
             {
                 if (t.mod == "Terraria" && t.Name == "Tooltip0")
                 {
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.HotKey(AQMod.Keybinds.CosmicanonToggle));
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.KeybindText(AQMod.Keybinds.CosmicanonToggle));
                 }
                 if (t.mod == "Terraria" && t.Name == "Tooltip1")
                 {

@@ -20,7 +20,7 @@ namespace AQMod.Items.Tools
         private void Update(Player player)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.equivalenceMachine = true;
+            aQPlayer.hasEquivalenceMachine = true;
             if (!aQPlayer.IgnoreAntiGravityItems)
                 aQPlayer.antiGravityItems = true;
         }
@@ -46,7 +46,7 @@ namespace AQMod.Items.Tools
             {
                 if (t.mod == "Terraria" && t.Name == "Tooltip1")
                 {
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.HotKey(AQMod.Keybinds.EquivalenceMachineToggle));
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.KeybindText(AQMod.Keybinds.EquivalenceMachineToggle));
                 }
             }
         }

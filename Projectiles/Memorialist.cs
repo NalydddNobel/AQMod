@@ -54,7 +54,7 @@ namespace AQMod.Projectiles
             var center = projectile.Center;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             int trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
-            if (PrimitivesRender.ShouldDrawVertexTrails(PrimitivesRender.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
             {
                 var trueOldPos = new List<Vector2>();
                 for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
@@ -65,7 +65,7 @@ namespace AQMod.Projectiles
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new PrimitivesRender(AQTextures.Trails[TrailTex.ThickLine], PrimitivesRender.TextureTrail);
+                    var trail = new PrimitivesRenderer(AQTextures.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(14f - p * 14f) * projectile.scale, 
                         (p) => Color.Lerp(new Color(255, 255, 50, 20), new Color(255, 10, 10, 0), p) * (1f - p));
                     trail.Draw();

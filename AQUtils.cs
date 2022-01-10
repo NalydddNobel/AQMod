@@ -71,6 +71,27 @@ namespace AQMod
             }
         }
 
+        public static Rectangle KeepInWorld(this Rectangle rectangle, int fluff = 10)
+        {
+            if (rectangle.X < fluff)
+            {
+                rectangle.X = fluff;
+            }
+            else if (rectangle.X + rectangle.Width > Main.maxTilesX - fluff)
+            {
+                rectangle.X = Main.maxTilesX - fluff - rectangle.Width;
+            }
+            if (rectangle.Y < fluff)
+            {
+                rectangle.Y = fluff;
+            }
+            else if (rectangle.Y + rectangle.Height > Main.maxTilesY - fluff)
+            {
+                rectangle.Y = Main.maxTilesY - fluff - rectangle.Height;
+            }
+            return rectangle;
+        }
+
         public static string SpillArray<T>(this T[] array)
         {
             string text = "Nothing is inside this array.";
@@ -717,7 +738,7 @@ namespace AQMod
             return 1f - (float)Math.Pow(1f - xGradient, 2);
         }
 
-        public static void RectangleMethod(Rectangle rect, Utils.PerLinePoint method)
+        public static void RectangleMethod(this Rectangle rect, Utils.PerLinePoint method)
         {
             for (int i = rect.X; i < rect.X + rect.Width; i++)
             {

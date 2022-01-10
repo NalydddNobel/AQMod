@@ -6,6 +6,7 @@ using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
+using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Fishing;
 using AQMod.Content.Players;
@@ -118,10 +119,9 @@ namespace AQMod
                     {
                         int count = 0;
                         int type = ModContent.ProjectileType<Chomper>();
-                        int type2 = ModContent.ProjectileType<PiranhaPlant>();
                         for (int i = 0; i < Main.maxProjectiles; i++)
                         {
-                            if (Main.projectile[i].active && (Main.projectile[i].type == type || Main.projectile[i].type == type2) && Main.projectile[i].owner == info.drawPlayer.whoAmI)
+                            if (Main.projectile[i].active && (Main.projectile[i].type == type) && Main.projectile[i].owner == info.drawPlayer.whoAmI)
                             {
                                 var texture = TextureGrabber.GetProjectile(Main.projectile[i].type);
                                 int frameHeight = texture.Height / Main.projFrames[Main.projectile[i].type];
@@ -140,17 +140,17 @@ namespace AQMod
                                     rotation = Main.projectile[i].rotation;
                                 }
                                 DrawChomperChain(info.drawPlayer, Main.projectile[i], drawPosition, drawColor);
-                                if (Main.projectile[i].modProjectile is PiranhaPlant)
-                                {
-                                    var piranhaPlant = (PiranhaPlant)Main.projectile[i].modProjectile;
-                                    if (piranhaPlant.eatingDelay != 0 && piranhaPlant.eatingDelay < 35)
-                                    {
-                                        float intensity = (10 - piranhaPlant.eatingDelay) / 2.5f * AQConfigClient.c_EffectIntensity;
-                                        drawPosition.X += Main.rand.NextFloat(-intensity, intensity);
-                                        drawPosition.Y += Main.rand.NextFloat(-intensity, intensity);
-                                    }
-                                }
-                                else
+                                //if (Main.projectile[i].modProjectile is PiranhaPlant)
+                                //{
+                                //    var piranhaPlant = (PiranhaPlant)Main.projectile[i].modProjectile;
+                                //    if (piranhaPlant.eatingDelay != 0 && piranhaPlant.eatingDelay < 35)
+                                //    {
+                                //        float intensity = (10 - piranhaPlant.eatingDelay) / 2.5f * AQConfigClient.c_EffectIntensity;
+                                //        drawPosition.X += Main.rand.NextFloat(-intensity, intensity);
+                                //        drawPosition.Y += Main.rand.NextFloat(-intensity, intensity);
+                                //    }
+                                //}
+                                //else
                                 {
                                     var chomperHead = (Chomper)Main.projectile[i].modProjectile;
                                     if (chomperHead.eatingDelay != 0 && chomperHead.eatingDelay < 35)
@@ -193,80 +193,80 @@ namespace AQMod
 
             private static void DrawChomperChain(Player player, Projectile chomper, Vector2 drawPosition, Color drawColor)
             {
-                if (chomper.modProjectile is PiranhaPlant)
-                {
-                    var piranhaPlant = (PiranhaPlant)chomper.modProjectile;
-                    int frameWidth = 16;
-                    var frame = new Rectangle(0, 0, frameWidth - 2, 20);
-                    var origin = frame.Size() / 2f;
-                    float offset = chomper.width / 2f + frame.Height / 2f;
-                    var chainTexture = ModContent.GetTexture(AQUtils.GetPath<PiranhaPlant>("_Chain"));
-                    Main.playerDrawData.Add(new DrawData(chainTexture, new Vector2(drawPosition.X + chomper.width / 2 * -chomper.spriteDirection, drawPosition.Y), frame, drawColor, 0f, origin, chomper.scale, chomper.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0)
-                    { ignorePlayerRotation = true });
-                    int height = frame.Height - 4;
-                    frame.Y += 2;
-                    var playerCenter = player.Center;
-                    var chainStart = chomper.Center + new Vector2((chomper.width / 2 + 4) * -chomper.spriteDirection, 0f);
-                    var velo = Vector2.Normalize(Vector2.Lerp(chainStart + new Vector2(0f, height * 4f) - playerCenter, player.velocity, 0.5f)) * height;
-                    var position = playerCenter;
-                    var rand = new UnifiedRandom(chomper.whoAmI + player.name.GetHashCode());
-                    if (AQConfigClient.c_EffectQuality >= 1f)
-                    {
-                        for (int i = 0; i < 50; i++)
-                        {
-                            Main.playerDrawData.Add(new DrawData(
-                                chainTexture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                            { ignorePlayerRotation = true });
-                            velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                            if (Vector2.Distance(position, chainStart) <= height)
-                                break;
-                            velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f * AQConfigClient.c_EffectIntensity);
-                            position += velo;
-                            float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                            velo.Y += gravity * 3f;
-                            velo.Normalize();
-                            velo *= height;
-                        }
-                    }
-                    else
-                    {
-                        if (AQConfigClient.c_EffectQuality < 0.2f)
-                        {
-                            for (int i = 0; i < 50; i++)
-                            {
-                                Main.playerDrawData.Add(new DrawData(
-                                    chainTexture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * (i % 3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                                { ignorePlayerRotation = true });
-                                velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                                if (Vector2.Distance(position, chainStart) <= height)
-                                    break;
-                                position += velo;
-                                float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                                velo.Y += gravity * 3f;
-                                velo.Normalize();
-                                velo *= height;
-                            }
-                        }
-                        else
-                        {
-                            for (int i = 0; i < 50; i++)
-                            {
-                                Main.playerDrawData.Add(new DrawData(
-                                    chainTexture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                                { ignorePlayerRotation = true });
-                                velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                                if (Vector2.Distance(position, chainStart) <= height)
-                                    break;
-                                position += velo;
-                                float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                                velo.Y += gravity * 3f;
-                                velo.Normalize();
-                                velo *= height;
-                            }
-                        }
-                    }
-                }
-                else
+                //if (chomper.modProjectile is PiranhaPlant)
+                //{
+                //    var piranhaPlant = (PiranhaPlant)chomper.modProjectile;
+                //    int frameWidth = 16;
+                //    var frame = new Rectangle(0, 0, frameWidth - 2, 20);
+                //    var origin = frame.Size() / 2f;
+                //    float offset = chomper.width / 2f + frame.Height / 2f;
+                //    var chainTexture = ModContent.GetTexture(AQUtils.GetPath<PiranhaPlant>("_Chain"));
+                //    Main.playerDrawData.Add(new DrawData(chainTexture, new Vector2(drawPosition.X + chomper.width / 2 * -chomper.spriteDirection, drawPosition.Y), frame, drawColor, 0f, origin, chomper.scale, chomper.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0)
+                //    { ignorePlayerRotation = true });
+                //    int height = frame.Height - 4;
+                //    frame.Y += 2;
+                //    var playerCenter = player.Center;
+                //    var chainStart = chomper.Center + new Vector2((chomper.width / 2 + 4) * -chomper.spriteDirection, 0f);
+                //    var velo = Vector2.Normalize(Vector2.Lerp(chainStart + new Vector2(0f, height * 4f) - playerCenter, player.velocity, 0.5f)) * height;
+                //    var position = playerCenter;
+                //    var rand = new UnifiedRandom(chomper.whoAmI + player.name.GetHashCode());
+                //    if (AQConfigClient.c_EffectQuality >= 1f)
+                //    {
+                //        for (int i = 0; i < 50; i++)
+                //        {
+                //            Main.playerDrawData.Add(new DrawData(
+                //                chainTexture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
+                //            { ignorePlayerRotation = true });
+                //            velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
+                //            if (Vector2.Distance(position, chainStart) <= height)
+                //                break;
+                //            velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f * AQConfigClient.c_EffectIntensity);
+                //            position += velo;
+                //            float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
+                //            velo.Y += gravity * 3f;
+                //            velo.Normalize();
+                //            velo *= height;
+                //        }
+                //    }
+                //    else
+                //    {
+                //        if (AQConfigClient.c_EffectQuality < 0.2f)
+                //        {
+                //            for (int i = 0; i < 50; i++)
+                //            {
+                //                Main.playerDrawData.Add(new DrawData(
+                //                    chainTexture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * (i % 3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
+                //                { ignorePlayerRotation = true });
+                //                velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
+                //                if (Vector2.Distance(position, chainStart) <= height)
+                //                    break;
+                //                position += velo;
+                //                float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
+                //                velo.Y += gravity * 3f;
+                //                velo.Normalize();
+                //                velo *= height;
+                //            }
+                //        }
+                //        else
+                //        {
+                //            for (int i = 0; i < 50; i++)
+                //            {
+                //                Main.playerDrawData.Add(new DrawData(
+                //                    chainTexture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
+                //                { ignorePlayerRotation = true });
+                //                velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
+                //                if (Vector2.Distance(position, chainStart) <= height)
+                //                    break;
+                //                position += velo;
+                //                float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
+                //                velo.Y += gravity * 3f;
+                //                velo.Normalize();
+                //                velo *= height;
+                //            }
+                //        }
+                //    }
+                //}
+                //else
                 {
                     var chomperHead = (Chomper)chomper.modProjectile;
                     int frameWidth = 16;
@@ -678,7 +678,7 @@ namespace AQMod
         public bool ignoreMoons;
         public bool cosmicanon;
         public bool antiGravityItems;
-        public bool equivalenceMachine;
+        public bool hasEquivalenceMachine;
         public bool hotAmulet;
         public bool coldAmulet;
         public bool shockCollar;
@@ -956,7 +956,7 @@ namespace AQMod
             cosmicanon = false;
             ignoreMoons = false;
             antiGravityItems = false;
-            equivalenceMachine = false;
+            hasEquivalenceMachine = false;
             shockCollar = false;
             healBeforeDeath = false;
             glowString = false;
@@ -1043,7 +1043,7 @@ namespace AQMod
                     Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
                 }
             }
-            if (equivalenceMachine && AQMod.Keybinds.EquivalenceMachineToggle.JustPressed)
+            if (hasEquivalenceMachine && AQMod.Keybinds.EquivalenceMachineToggle.JustPressed)
             {
                 IgnoreAntiGravityItems = !IgnoreAntiGravityItems;
                 if (IgnoreAntiGravityItems)
@@ -1448,7 +1448,7 @@ namespace AQMod
         public override void PostUpdateBuffs()
         {
             monoxiderCarry = 0;
-            var monoxider = ModContent.ProjectileType<Projectiles.Summon.Monoxider>();
+            var monoxider = ModContent.ProjectileType<Monoxider>();
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile p = Main.projectile[i];
@@ -1544,6 +1544,10 @@ namespace AQMod
             {
                 if (omoriDeathTimer <= 0)
                     omoriDeathTimer = 1;
+            }
+            if (antiGravityItems)
+            {
+                EquivalenceMachineItemManager.AntiGravityNearbyItems(player.Center, 200f, 20);
             }
             if (spicyEel)
             {

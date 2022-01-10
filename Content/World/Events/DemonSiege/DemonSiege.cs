@@ -102,6 +102,7 @@ namespace AQMod.Content.World.Events.DemonSiege
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.DemonBow, ModContent.ItemType<HamaYumi>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ItemID.TendonBow, ModContent.ItemType<Deltoid>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ModContent.ItemType<SeltzerRain>(), ModContent.ItemType<FizzlingFire>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
+            AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ModContent.ItemType<ScarletSea>(), ModContent.ItemType<Skrawler>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
             AddDemonSeigeUpgrade(new DemonSiegeUpgrade(ModContent.ItemType<CorruptPot>(), ModContent.ItemType<PiranhaPot>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode));
 
             _enemies = new List<DemonSiegeEnemy>();
@@ -109,6 +110,7 @@ namespace AQMod.Content.World.Events.DemonSiege
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<TrapImp>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32));
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Magmalbubble>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32));
         }
+
         internal override EventEntry? BossChecklistEntry
         {
             get

@@ -1,6 +1,7 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
+﻿using AQMod.Common.Graphics;
 using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
+using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -8,20 +9,22 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Magic
 {
-    public class FizzlingFire : ModItem
+    public sealed class FizzlingFire : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<FizzlingFire>("_Glow"), new Color(128, 128, 128, 0));
+        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
+
         public override void SetStaticDefaults()
         {
             Item.staff[item.type] = true;
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(AQUtils.GetPath(this) + "_Glow", new Color(128, 128, 128, 0)), item.type);
         }
 
         public override void SetDefaults()
         {
             item.damage = 25;
             item.magic = true;
-            item.useTime = 4;
+            item.useTime = 2;
             item.useAnimation = 20;
             item.width = 40;
             item.height = 40;
@@ -29,7 +32,7 @@ namespace AQMod.Items.Weapons.Magic
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.rare = AQItem.Rarities.GoreNestRare;
             item.shoot = ModContent.ProjectileType<Projectiles.Magic.FizzlingFire>();
-            item.shootSpeed = 15f;
+            item.shootSpeed = 11.5f;
             item.mana = 30;
             item.autoReuse = true;
             item.UseSound = SoundID.Item20;
@@ -48,15 +51,19 @@ namespace AQMod.Items.Weapons.Magic
             {
                 ScreenShakeManager.AddShake(new BasicScreenShake(item.useTime, (int)(2 * AQConfigClient.c_EffectIntensity)));
             }
-            int randcount = Main.rand.Next(7);
+            int randcount = 3 + Main.rand.Next(4);
             var velo = new Vector2(speedX, speedY);
-            position += Vector2.Normalize(velo) * Main.rand.NextFloat(item.width, item.width * 1.5f);
+            position += Vector2.Normalize(velo) * (item.width * 1.5f);
             for (int i = 0; i < randcount; i++)
             {
-                var velo2 = velo.RotatedBy(Main.rand.NextFloat(-0.25f, 0.25f));
-                int p = Projectile.NewProjectile(position + velo2 * Main.rand.NextFloat(1f, 3f), velo2, type, damage, knockBack, player.whoAmI);
-                Main.projectile[p].scale = Main.rand.NextFloat(0.1f, 1.65f);
-                Main.projectile[p].timeLeft = Main.rand.Next(20, 40);
+                var velo2 = velo.RotatedBy(Main.rand.NextFloat(-0.05f, 0.05f) + AQUtils.Wave(AQGraphics.TimerBasedOnTimeOfDay * 12f, -0.1f, 0.1f));
+                int p = Projectile.NewProjectile(position + velo2 * Main.rand.NextFloat(0.5f, 3f), velo2, type, damage, knockBack, player.whoAmI);
+                Main.projectile[p].scale = Main.rand.NextFloat(0.5f, 1.65f);
+                Main.projectile[p].timeLeft = Main.rand.Next(30, 45);
+                if (Main.projectile[p].timeLeft >= 40)
+                {
+                    Main.projectile[p].scale *= 0.3f;
+                }
                 for (int j = 0; j < 5; j++)
                 {
                     int d = Dust.NewDust(Main.projectile[p].position, Main.projectile[p].width, Main.projectile[p].height, ModContent.DustType<MonoDust>());

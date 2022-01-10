@@ -57,7 +57,6 @@ namespace AQMod
 
                 MinionChomperType = new bool[ProjectileLoader.ProjectileCount];
                 MinionChomperType[ModContent.ProjectileType<Projectiles.Summon.Chomper>()] = true;
-                MinionChomperType[ModContent.ProjectileType<Projectiles.Summon.PiranhaPlant>()] = true;
 
                 MinionRotationalType = new bool[ProjectileLoader.ProjectileCount];
                 MinionRotationalType[ModContent.ProjectileType<Projectiles.Summon.TrapperMinion>()] = true;
@@ -521,8 +520,7 @@ namespace AQMod
 
         public static float GetSuggestedRotation(Projectile projectile, int count, int whoAmI)
         {
-            bool ownsChomper = Main.player[projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.Chomper>()] > 0 || 
-                Main.player[projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.PiranhaPlant>()] > 0;
+            bool ownsChomper = Main.player[projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.Chomper>()] > 0;
             return InternalGetSuggestedRotation(ownsChomper, count, whoAmI);
         }
 
