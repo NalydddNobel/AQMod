@@ -11,7 +11,7 @@ using AQMod.Items.Weapons.Ranged;
 using AQMod.Items.Weapons.Summon;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.DemonSiege;
-using AQMod.Tiles;
+using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

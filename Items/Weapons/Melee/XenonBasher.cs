@@ -1,5 +1,5 @@
 ﻿using AQMod.Items.Materials.Energies;
-using AQMod.Items.Materials.NobleMushrooms;
+using AQMod.Items.Placeable.Nature;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

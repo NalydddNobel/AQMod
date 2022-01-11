@@ -15,7 +15,7 @@ namespace AQMod.Items.Placeable.Nature
             item.useTime = 10;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<Tiles.Nature.ExoticCoral>();
+            item.createTile = ModContent.TileType<Tiles.Nature.CrabCrevice.ExoticCoral>();
             item.consumable = true;
             item.placeStyle = 8;
             item.useTurn = true;

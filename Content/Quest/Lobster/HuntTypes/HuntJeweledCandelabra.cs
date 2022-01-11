@@ -31,8 +31,8 @@ namespace AQMod.Content.Quest.Lobster.HuntTypes
                             int randomY = checkRectangle.Y + Main.rand.Next(checkRectangle.Height);
                             if (!Framing.GetTileSafely(randomX, randomY).active() && !Framing.GetTileSafely(randomX, randomY + 1).active() && !Framing.GetTileSafely(randomX + 1, randomY).active() && !Framing.GetTileSafely(randomX + 1, randomY + 1).active() && Framing.GetTileSafely(randomX, randomY + 2).active() && Main.tileSolidTop[Main.tile[randomX, randomY + 2].type] && Framing.GetTileSafely(randomX + 1, randomY + 2).active() && Main.tileSolidTop[Main.tile[randomX + 1, randomY + 2].type])
                             {
-                                WorldGen.PlaceTile(randomX, randomY, ModContent.TileType<Tiles.LobsterQuests.JeweledCandelabra>(), true, false, -1, 0);
-                                if (Framing.GetTileSafely(randomX, randomY).type == ModContent.TileType<Tiles.LobsterQuests.JeweledCandelabra>())
+                                WorldGen.PlaceTile(randomX, randomY, ModContent.TileType<Tiles.Furniture.ExporterQuest.JeweledCandelabra>(), true, false, -1, 0);
+                                if (Framing.GetTileSafely(randomX, randomY).type == ModContent.TileType<Tiles.Furniture.ExporterQuest.JeweledCandelabra>())
                                 {
                                     HuntSystem.SetNPCTarget(npc, npcID: false);
                                     return true;

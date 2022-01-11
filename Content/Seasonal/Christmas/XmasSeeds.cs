@@ -121,7 +121,7 @@ namespace AQMod.Content.Seasonal.Christmas
                         Main.tile[i, j].inActive(true);
                         replaceBlock = false;
                     }
-                    else if (Main.tile[i, j].type == ModContent.TileType<Tiles.Torches>())
+                    else if (Main.tile[i, j].type == ModContent.TileType<Tiles.Furniture.Torches>())
                     {
                         Main.tile[i, j].type = TileID.Torches;
                         replaceBlock = false;

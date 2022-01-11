@@ -1,4 +1,4 @@
-﻿using AQMod.Tiles;
+﻿using AQMod.Tiles.Furniture;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

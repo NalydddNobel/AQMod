@@ -1,4 +1,5 @@
 ﻿using AQMod.Content.MapMarkers;
+using AQMod.Tiles.Furniture;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;

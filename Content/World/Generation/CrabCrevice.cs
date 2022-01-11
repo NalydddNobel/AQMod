@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Tiles;
+using AQMod.Tiles.Furniture;
 using AQMod.Walls;
 using Microsoft.Xna.Framework;
 using System;
@@ -443,22 +444,22 @@ namespace AQMod.Content.World.Generation
             WorldGen.digTunnel(x, y + height, digDir, 1f, 5, 6, true);
             if (mossStyle != -1)
             {
-                int mossTile = ModContent.TileType<Tiles.CrabCrevice.ArgonMossSand>();
+                int mossTile = ModContent.TileType<Tiles.Nature.CrabCrevice.ArgonMossSand>();
                 if (mossStyle == 1)
                 {
-                    mossTile = ModContent.TileType<Tiles.CrabCrevice.KryptonMossSand>();
+                    mossTile = ModContent.TileType<Tiles.Nature.CrabCrevice.KryptonMossSand>();
                 }
                 else if (mossStyle == 2)
                 {
-                    mossTile = ModContent.TileType<Tiles.CrabCrevice.XenonMossSand>();
+                    mossTile = ModContent.TileType<Tiles.Nature.CrabCrevice.XenonMossSand>();
                 }
                 for (int n = 0; n < height; n++)
                 {
                     x3 += xAdds[n];
                     for (int m = -10; m < 20; m++)
                     {
-                        GrassType.SpreadGrassToSurroundings(x3 + m, y + n, TileID.Sand, mossTile);
-                        GrassType.SpreadGrassToSurroundings(x3 + m, y + n, TileID.HardenedSand, mossTile);
+                        GrassTileType.SpreadGrassToSurroundings(x3 + m, y + n, TileID.Sand, mossTile);
+                        GrassTileType.SpreadGrassToSurroundings(x3 + m, y + n, TileID.HardenedSand, mossTile);
                         WorldGen.SquareTileFrame(x3 + m, y + n, true);
                     }
                     if (WorldGen.genRand.NextBool(5))

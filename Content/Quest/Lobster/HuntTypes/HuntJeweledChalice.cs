@@ -36,8 +36,8 @@ namespace AQMod.Content.Quest.Lobster.HuntTypes
                             int randomY = checkRectangle.Y + Main.rand.Next(checkRectangle.Height);
                             if (!Framing.GetTileSafely(randomX, randomY).active() && Framing.GetTileSafely(randomX, randomY + 1).active() && Main.tileSolidTop[Main.tile[randomX, randomY + 1].type])
                             {
-                                WorldGen.PlaceTile(randomX, randomY, ModContent.TileType<Tiles.LobsterQuests.JeweledChalice>(), true, false, -1, 0);
-                                if (Framing.GetTileSafely(randomX, randomY).type == ModContent.TileType<Tiles.LobsterQuests.JeweledChalice>())
+                                WorldGen.PlaceTile(randomX, randomY, ModContent.TileType<Tiles.Furniture.ExporterQuest.JeweledChalice>(), true, false, -1, 0);
+                                if (Framing.GetTileSafely(randomX, randomY).type == ModContent.TileType<Tiles.Furniture.ExporterQuest.JeweledChalice>())
                                 {
                                     HuntSystem.SetNPCTarget(npc, npcID: false);
                                     return true;

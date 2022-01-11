@@ -1,8 +1,8 @@
 ﻿using AQMod.Common;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content;
-using AQMod.Tiles;
 using AQMod.Tiles.Nature;
+using AQMod.Tiles.Nature.CrabCrevice;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,7 +22,7 @@ namespace AQMod
                 case TileID.Stone:
                 if (j > Main.rockLayer && WorldGen.genRand.NextBool(300))
                 {
-                    if (PlaceRandomNobleMushroom(i, j))
+                    if (NobleMushroomsNew.Place(i, j))
                         return;
                 }
                 break;
@@ -119,15 +119,16 @@ namespace AQMod
             }
         }
 
-        internal static bool PlaceRandomNobleMushroom(int x, int y)
+        public static class WindFXHelper
         {
-            if (AQWorldGen.check2x2(x, y - 1))
+            public static bool WindBlocked(int i, int j)
             {
-                int style = WorldGen.genRand.Next(3);
-                WorldGen.PlaceTile(x, y - 1, ModContent.TileType<NobleMushrooms>(), true, true, -1, style + WorldGen.genRand.Next(3) * 3);
-                return true;
+                return WindBlocked(Main.tile[i, j]);
             }
-            return false;
+            public static bool WindBlocked(Tile tile)
+            {
+                return tile.wall != 0;
+            }
         }
     }
 }

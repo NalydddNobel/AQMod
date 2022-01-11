@@ -6,7 +6,7 @@ using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Melee;
 using AQMod.NPCs.Boss;
-using AQMod.Tiles;
+using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

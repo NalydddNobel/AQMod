@@ -1,5 +1,5 @@
 ﻿using AQMod.Content.MapMarkers.Components;
-using AQMod.Items.Placeable;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

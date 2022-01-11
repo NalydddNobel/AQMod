@@ -21,6 +21,12 @@ Have fun
 Happy Holidays! Create a world with the seed "Aequus Xmas" for a special world!
 
 ##############
+Items
+##############
+
+ItemName.MushroomClam=Exotic Clam
+ItemTooltip.MushroomClam=Summons Jerry Crabson at the beach
+
 # Accessories
 
 ItemName.GlowString=Glow String
@@ -135,9 +141,21 @@ ProjectileName.Skrawler=Skrawler
 ItemName.RedSpriteDye=Red Sprite Dye
 ItemName.FrostbiteDye=Frostbite Dye
 
-# Furniture
+# Tiles
 ItemName.HellTombstone=Hell Tombstone
 MapObject.HellTombstone=Hell Tombstone
+
+ItemName.GoreNestItem=Gore Nest
+ItemTooltip.GoreNestItem=Use an item crafted with demonite or crimtane at this altar
+MapObject.GoreNest=Gore Nest
+
+ItemName.ArgonMushroom=Argon Mushroom
+ItemTooltip.ArgonMushroom==Emits red light\n'Dormant and inanimate'
+ItemName.KryptonMushroom=Krypton Mushroom
+ItemTooltip.KryptonMushroom=Emits green light\n'Can show vital weaknesses in super beings'
+ItemName.XenonMushroom=Xenon Mushroom
+ItemTooltip.XenonMushroom=Emits blue light
+MapObject.NobleMushrooms=Noble Mushroom
 
 # Tools
 ItemName.Cosmicanon=Cosmicanon
@@ -361,7 +379,7 @@ BossChecklistDesc.SpaceSquid=Occasionally appears during the Gale Streams!
 # Recipe Groups
 
 RecipeGroup.AnyEnergy=Any Energy
-RecipeGroup.AnyNobleMushroom=Any Noble Spore
+RecipeGroup.AnyNobleMushroom=Any Noble Mushroom
 RecipeGroup.CopperOrTin=Copper or Tin
 RecipeGroup.DemoniteBarOrCrimtaneBar=Demonite Bar or Crimtane Bar
 RecipeGroup.ShadowScaleOrTissueSample=Shadow Scale or Tissue Sample
@@ -587,10 +605,6 @@ Common.WorldGen_GoreNests=Generating Gore Nests...
 Common.WorldGen_Globes=Generating Globes...
 Common.WorldGen_GlimmeringStatues=Generating Glimmering Statues...
 #
-# Recipe Groups
-Common.RecipeGroup_AnyNobleMushroom=Any Noble Mushroom
-Common.RecipeGroup_AnyEnergy=Any Energy
-#
 # Robster
 Common.RobsterChat0=There is a reason I don't like other lobsters... it's because my own brother betrayed me.
 Common.RobsterChat1=Do you know what I have been through?
@@ -661,7 +675,6 @@ Common.NotConsumable=Does not get consumed
 Common.TorchCanBePlacedInLiquids=Can be placed in liquids
 Common.ReturnToLobster=Return this to the Lobster
 Common.IchorDartShotgunTag=Ichor Darts spawn pre-split
-Common.NobleMushroomScent=Crabs cannot resist its scent
 Common.EnableThing=Enable {0}?
 Common.DisableThing=Disable {0}?
 Common.UnassignedKey0=Unassigned Key
@@ -720,7 +733,6 @@ ItemTooltip.Quasicrystal=True melee crits on enemies channel the damage to the c
 ##############
 ItemName.Crabsol=Crabsol
 ItemName.CrabsonBag=Treasure Bag
-ItemName.MushroomClam=Mushroom Clam
 ItemName.CrabsonTrophy=Jerry Crabson Trophy
 ItemName.CrabsonMask=Jerry Crabson Mask
 ItemName.MythicStarfruit=Mythic Starfruit
@@ -832,10 +844,6 @@ ProjectileName.MothmanCritExplosion=Mothman Mask
 #############
 # Placeable #
 #############
-# Mushrooms
-ItemName.ArgonMushroom=Argon Spore
-ItemName.KryptonMushroom=Krypton Spore
-ItemName.XenonMushroom=Xenon Spore
 # Torches
 ItemName.ExoticRedTorch=Exotic Red Torch
 ItemName.ExoticGreenTorch=Exotic Green Torch
@@ -863,7 +871,6 @@ ItemName.ExoticCoral=Exotic Coral
 ItemName.ExoticStarfish=Exotic Starfish
 ItemName.FishingCraftingStation=Fishing Utility Crafting Station
 ItemName.GlobeItem=Unity Globe
-ItemName.GoreNestItem=Gore Nest
 ItemName.PlaceableShadowOrb=Shadow Orb (Placeable)
 ItemName.PlaceableCrimsonHeart=Crimson Heart (Placeable)
 ############
@@ -1016,7 +1023,6 @@ ItemTooltip.Thunderbird=Gives you a thunderous extra jump that refreshes every 2
 # Crabson
 ItemTooltip.Crabsol=Only the strongest of people can wield this weapon in honor
 ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
-ItemTooltip.MushroomClam=Summons Jerry Crabson at the beach
 # Omega Starite
 ItemTooltip.DragonBall=Summons a micro Starite
 ItemTooltip.MythicStarfruit=Begins the Glimmer Event
@@ -1080,10 +1086,6 @@ ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 #############
 # Placeable #
 #############
-# Mushrooms
-ItemTooltip.ArgonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
-ItemTooltip.KryptonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
-ItemTooltip.XenonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 # World Interactors
 ItemTooltip.GlimmeringStatue=Has a very high chance to attract the Ultimate Sword during the Glimmer Event
 # Other Placeables
@@ -1378,5 +1380,4 @@ MapObject.Trophies=Trophy
 MapObject.Banners=Banner
 MapObject.ExoticCoral=Exotic Coral
 MapObject.FishingCraftingStation=Fishing Utility Crafting Station
-MapObject.NobleMushrooms=Noble Mushroom
 MapObject.BuriedDirtChest=Buried Dirt Chest

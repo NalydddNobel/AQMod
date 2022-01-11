@@ -3,7 +3,7 @@ using AQMod.Items.Accessories.FidgetSpinner;
 using AQMod.Items.Fish.GlimmerEvent;
 using AQMod.Items.Foods;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Materials.NobleMushrooms;
+using AQMod.Items.Placeable.Nature;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools;
 using Terraria;

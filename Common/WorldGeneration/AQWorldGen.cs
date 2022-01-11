@@ -1,8 +1,9 @@
 ﻿using AQMod.Content.World.Generation;
 using AQMod.Items.Materials;
 using AQMod.Localization;
-using AQMod.Tiles;
+using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
+using AQMod.Tiles.Nature.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -199,7 +200,8 @@ namespace AQMod.Common.WorldGeneration
             int requiredMushrooms = size / 15;
             var validSpots = new List<Point>();
             var invalidX = new List<int>();
-            var tileType = ModContent.TileType<NobleMushrooms>();
+            var tileType = ModContent.TileType<NobleMushroomsNew>();
+            var anchorValidTiles = NobleMushroomsNew.AnchorValidTiles;
             for (int j = area.Y; j < area.Y + size; j++)
             {
                 for (int i = area.X; i < area.X + size; i++)
@@ -214,9 +216,9 @@ namespace AQMod.Common.WorldGeneration
                     {
                         var type = Main.tile[i, j + 1].type;
                         bool canPlace = false;
-                        for (int k = 0; k < NobleMushrooms.generationTiles.Length; k++)
+                        for (int k = 0; k < anchorValidTiles.Length; k++)
                         {
-                            if (NobleMushrooms.generationTiles[k] == type)
+                            if (anchorValidTiles[k] == type)
                             {
                                 canPlace = true;
                                 break;
@@ -224,9 +226,9 @@ namespace AQMod.Common.WorldGeneration
                         }
                         type = Main.tile[i + 1, j + 1].type;
                         bool canPlace2 = false;
-                        for (int k = 0; k < NobleMushrooms.generationTiles.Length; k++)
+                        for (int k = 0; k < anchorValidTiles.Length; k++)
                         {
-                            if (NobleMushrooms.generationTiles[k] == type)
+                            if (anchorValidTiles[k] == type)
                             {
                                 canPlace2 = true;
                                 break;

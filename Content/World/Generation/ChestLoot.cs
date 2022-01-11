@@ -1,6 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Configuration;
 using AQMod.Items.Weapons.Melee.Dagger;
+using AQMod.Tiles.Furniture.Containers;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -52,8 +53,8 @@ namespace AQMod.Content.World.Generation
                     Main.tile[i, j - 1].wall = (ushort)placeWallType;
                     Main.tile[i + 1, j - 1].wall = (ushort)placeWallType;
 
-                    WorldGen.PlaceTile(i, j, ModContent.TileType<Tiles.Furniture.BuriedChests>(), mute: true, forced: true, style: style);
-                    if (Main.tile[i, j].type == ModContent.TileType<Tiles.Furniture.BuriedChests>() && (chestID = Chest.FindChest(i, j - 1)) != -1)
+                    WorldGen.PlaceTile(i, j, ModContent.TileType<BuriedChests>(), mute: true, forced: true, style: style);
+                    if (Main.tile[i, j].type == ModContent.TileType<BuriedChests>() && (chestID = Chest.FindChest(i, j - 1)) != -1)
                     {
                         return true;
                     }
@@ -78,7 +79,7 @@ namespace AQMod.Content.World.Generation
                         if (Main.chest[chestID] == null)
                             Main.chest[chestID] = new Chest();
                         var c = Main.chest[chestID];
-                        switch (chestLootID) 
+                        switch (chestLootID)
                         {
                             case 0:
                                 c.item[0].SetDefaults(ItemID.HermesBoots);
@@ -95,12 +96,12 @@ namespace AQMod.Content.World.Generation
                         {
                             c.item[currentIndex].SetDefaults(ItemID.MagicMirror);
                             currentIndex++;
-                        }                        
+                        }
                         if (WorldGen.genRand.NextBool())
                         {
                             c.item[currentIndex].SetDefaults(ItemID.HerbBag);
                             currentIndex++;
-                        }                        
+                        }
                         if (WorldGen.genRand.NextBool())
                         {
                             c.item[currentIndex].SetDefaults(ItemID.Grenade);
@@ -132,7 +133,7 @@ namespace AQMod.Content.World.Generation
                         }
                         c.item[currentIndex].SetDefaults(ItemID.Torch);
                         c.item[currentIndex].stack = 12 + WorldGen.genRand.Next(17);
-                        currentIndex++; 
+                        currentIndex++;
                         if (WorldGen.genRand.NextBool())
                         {
                             c.item[currentIndex].SetDefaults(ItemID.Bottle);
@@ -166,22 +167,22 @@ namespace AQMod.Content.World.Generation
             switch (Constants.ChestStyles.GetChestStyle(c))
             {
                 case Constants.ChestStyles.Wood:
-                {
-                    if (WorldGen.genRand.NextBool(4))
                     {
-                        MainLoot(c, ModContent.ItemType<Items.Weapons.Melee.VineSword>());
+                        if (WorldGen.genRand.NextBool(4))
+                        {
+                            MainLoot(c, ModContent.ItemType<Items.Weapons.Melee.VineSword>());
+                        }
                     }
-                }
-                break;
+                    break;
 
                 case Constants.ChestStyles.Ice:
-                {
-                    if (WorldGen.genRand.NextBool(4))
                     {
-                        MainLoot(c, ModContent.ItemType<CrystalDagger>());
+                        if (WorldGen.genRand.NextBool(4))
+                        {
+                            MainLoot(c, ModContent.ItemType<CrystalDagger>());
+                        }
                     }
-                }
-                break;
+                    break;
             }
         }
 

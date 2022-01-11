@@ -3,7 +3,7 @@ using AQMod.Content;
 using AQMod.Content.NameTags;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Items.Materials;
-using AQMod.Items.Materials.NobleMushrooms;
+using AQMod.Items.Placeable.Nature;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

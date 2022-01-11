@@ -14,8 +14,9 @@ using AQMod.Content.World.Generation;
 using AQMod.Effects.Particles;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters;
-using AQMod.Tiles;
+using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
+using AQMod.Tiles.Nature.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -64,6 +65,15 @@ namespace AQMod.Common.DeveloperTools
             {
                 default:
                     caller.Reply("Command doesn't exist.");
+                    break;
+
+                case "genccmushroom":
+                    NobleMushroomsNew.Place(mX, mY);
+                    break;
+
+                case "pvntinv":
+                    Main.invasionDelay = 0;
+                    Main.invasionType = 0;
                     break;
 
                 case "i":

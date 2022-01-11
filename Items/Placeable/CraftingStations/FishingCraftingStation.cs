@@ -14,7 +14,7 @@ namespace AQMod.Items.Placeable.CraftingStations
             item.useTime = 10;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<Tiles.CraftingStations.FishingCraftingStation>();
+            item.createTile = ModContent.TileType<Tiles.Furniture.FishingCraftingStation>();
             item.value = Item.buyPrice(gold: 5);
             item.consumable = true;
             item.useTurn = true;

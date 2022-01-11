@@ -1,5 +1,5 @@
 ﻿using AQMod.Effects.WorldEffects;
-using AQMod.Tiles.CraftingStations;
+using AQMod.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

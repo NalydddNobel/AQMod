@@ -22,10 +22,10 @@ namespace AQMod.Items.Placeable.Torch
             item.useTime = 10;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.Torches>();
+            item.createTile = ModContent.TileType<Tiles.Furniture.Torches>();
             item.flame = true;
             item.value = 50;
-            item.placeStyle = Tiles.Torches.ExoticGreenTorch;
+            item.placeStyle = Tiles.Furniture.Torches.ExoticGreenTorch;
         }
 
         public override void HoldItem(Player player)
