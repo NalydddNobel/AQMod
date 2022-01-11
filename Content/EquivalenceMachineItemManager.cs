@@ -20,18 +20,18 @@ namespace AQMod.Content
         {
             if (noGravity > 0)
             {
-                item.velocity *= 0.97f;
+                item.velocity.Y *= 0.95f;
                 gravity = 0f;
                 noGravity--;
             }
         }
 
-        public static void AntiGravityNearbyItems(Vector2 position, float minimumDistance, byte duration)
+        public static void AntiGravityNearbyItems(Vector2 position, float distanceMultiplier, byte duration, Player player)
         {
             for (int i = 0; i < Main.maxItems; i++)
             {
                 if (Main.item[i].active && !ItemID.Sets.ItemNoGravity[Main.item[i].type] 
-                    && Vector2.Distance(Main.item[i].Center, position) < minimumDistance)
+                    && Vector2.Distance(Main.item[i].Center, position) < AQItem.GetGrabRange(Main.item[i], player) * distanceMultiplier)
                 {
                     Main.item[i].GetGlobalItem<EquivalenceMachineItemManager>().noGravity = duration;
                 }

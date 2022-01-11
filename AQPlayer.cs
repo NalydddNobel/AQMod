@@ -1547,7 +1547,7 @@ namespace AQMod
             }
             if (antiGravityItems)
             {
-                EquivalenceMachineItemManager.AntiGravityNearbyItems(player.Center, 200f, 20);
+                EquivalenceMachineItemManager.AntiGravityNearbyItems(player.Center, 2f * grabReachMult, 20, player);
             }
             if (spicyEel)
             {

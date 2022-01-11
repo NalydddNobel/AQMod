@@ -6,6 +6,7 @@ using AQMod.Items.Potions;
 using AQMod.Items.Tools.Fishing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -535,6 +536,21 @@ namespace AQMod
             {
                 Item.NewItem(x, y, width, height, item, stack);
             }
+        }
+
+        public static int GetGrabRange(Item item, Player player)
+        {
+            int grabRange = Player.defaultItemGrabRange;
+            if (player.manaMagnet && (item.type == ItemID.Star || item.type == ItemID.SoulCake || item.type == ItemID.SugarPlum))
+            {
+                grabRange += Item.manaGrabRange;
+            }
+            if (player.lifeMagnet && (item.type == ItemID.Heart || item.type == ItemID.CandyApple || item.type == ItemID.CandyCane))
+            {
+                grabRange += Item.lifeGrabRange;
+            }
+            ItemLoader.GrabRange(item, player, ref grabRange);
+            return grabRange;
         }
     }
 }

@@ -12,8 +12,8 @@ namespace AQMod.Items.Tools.Axe
             item.height = 60;
             item.melee = true;
             item.damage = 20;
-            item.useTime = 28;
-            item.useAnimation = 28;
+            item.useTime = 60;
+            item.useAnimation = 60;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 10f;
             item.axe = 45; // has the highest axe power

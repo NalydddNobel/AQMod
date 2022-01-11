@@ -16,7 +16,7 @@ namespace AQMod.Items.Placeable.Nature
             item.useTime = 10;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<NobleMushrooms>();
+            item.createTile = ModContent.TileType<NobleMushroomsNew>();
             item.placeStyle = 3;
             item.consumable = true;
             item.useTurn = true;

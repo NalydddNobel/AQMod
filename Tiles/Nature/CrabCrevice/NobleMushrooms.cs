@@ -35,7 +35,6 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18, };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.StyleWrapLimit = 3;
-            TileObjectData.newTile.RandomStyleRange = 3;
             TileObjectData.addTile(Type);
             var name = CreateMapEntryName("NobleMushrooms");
             AddMapEntry(new Color(208, 0, 126), name);

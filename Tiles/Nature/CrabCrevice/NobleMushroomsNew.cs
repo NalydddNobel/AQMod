@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -24,6 +25,9 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18, };
             TileObjectData.newTile.StyleHorizontal = true;
+            TileObjectData.newTile.RandomStyleRange = 3;
+            TileObjectData.newTile.LavaDeath = true;
+            TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
                 TileID.Sand,
@@ -172,7 +176,6 @@ namespace AQMod.Tiles.Nature.CrabCrevice
                                 }
                             }
                         }
-                        //Main.NewText("Rendering! " + (drawPosition - Main.screenPosition + AQGraphics.TileZero));
                         if (applyWind)
                         {
                             float windPower = ((float)Math.Cos(Main.GlobalTime * MathHelper.Pi + i * 0.1f) + 1f) / 2f * 0.8f * Main.windSpeed;
@@ -182,7 +185,7 @@ namespace AQMod.Tiles.Nature.CrabCrevice
                         }
                     }
 
-                    Main.spriteBatch.Draw(Main.tileTexture[Type], drawPosition - Main.screenPosition + AQGraphics.TileZero, drawFrame,
+                    Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Render")), drawPosition - Main.screenPosition + AQGraphics.TileZero, drawFrame,
                         Lighting.GetColor(drawPosition.TileX(), drawPosition.TileY()), rotation, drawOrigin, 1f, SpriteEffects.None, 0f);
                 }
                 if (!Main.gamePaused && Main.instance.IsActive)
