@@ -110,8 +110,8 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public override void Load(TagCompound tag)
         {
-            tileX = (ushort)tag.GetInt("GlimmerEvent_X");
-            tileY = (ushort)tag.GetInt("GlimmerEvent_Y");
+            tileX = (ushort)tag.GetInt("X");
+            tileY = (ushort)tag.GetInt("Y");
 
             if (!Main.dayTime)
                 GlimmerEventSky.InitNight();

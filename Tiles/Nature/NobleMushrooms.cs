@@ -52,7 +52,7 @@ namespace AQMod.Tiles.Nature
             return false;
         }
 
-        public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].frameX / 36);
+        public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].frameX / 36 % 3);
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {

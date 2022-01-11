@@ -358,14 +358,14 @@ namespace AQMod.Common.WorldGeneration
         public static void GenerateExoticBlotches(GenerationProgress progress)
         {
             progress.Message = Language.GetTextValue(AQText.Key + "Common.RandomStructures_ExoticCoralBlotches");
-            for (int i = 0; i < 15000; i++)
+            for (int i = 0; i < 6000; i++)
             {
                 int x = WorldGen.genRand.Next(50, Main.maxTilesX - 50);
                 int y = WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow, Main.maxTilesY - 240);
                 int style = WorldGen.genRand.Next(3);
                 int size = WorldGen.genRand.Next(50, 150);
                 if (ExoticCoral.TryPlaceExoticBlotch(x, y, style, size))
-                    i += 150;
+                    i += 500;
             }
         }
 
@@ -393,7 +393,7 @@ namespace AQMod.Common.WorldGeneration
             if (i != -1)
             {
                 i++;
-                tasks.Insert(i, getPass("AQMod: Ocean Ravines", CrabCrevice.GenerateLegacyRavines));
+                tasks.Insert(i, getPass("AQMod: Crab Crevice", CrabCrevice.GenerateCrabCrevice));
             }
             i = tasks.FindIndex((t) => t.Name.Equals("Hellforge"));
             if (i != -1)

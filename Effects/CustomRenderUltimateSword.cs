@@ -30,12 +30,11 @@ namespace AQMod.Effects
 
         internal static void RenderUltimateSword()
         {
-            if (!IsCloseEnoughToDraw() || OmegaStariteScenes.SceneType > 1 ||
-                Main.netMode != NetmodeID.SinglePlayer && NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()))
+            if (OmegaStariteScenes.OmegaStariteIndexCache == -1 && GlimmerEvent.deactivationDelay <= 0)
+                OmegaStariteScenes.SceneType = 0;
+            if (!IsCloseEnoughToDraw() || OmegaStariteScenes.SceneType > 1)
                 return;
             var drawPos = SwordPos();
-            if (OmegaStariteScenes.OmegaStariteIndexCache == -1)
-                OmegaStariteScenes.SceneType = 0;
             var texture = TextureGrabber.GetItem(ModContent.ItemType<UltimateSword>());
             var frame = new Rectangle(0, 0, texture.Width, texture.Height);
             var origin = new Vector2(frame.Width, 0f);

@@ -66,9 +66,22 @@ namespace AQMod.Common.DeveloperTools
                     caller.Reply("Command doesn't exist.");
                     break;
 
+                case "i":
+                    if (caller.Player.dead)
+                    {
+                        caller.Player.respawnTimer = 2;
+                    }
+                    break;
+
+                case "genccsand":
+                    {
+                        CrabCrevice.CreateSandAreaForCrevice(mX, mY);
+                    }
+                    break;
+
                 case "gencc":
                     {
-                        CrabCrevice.GenerateCreviceCave(mX, mY, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]));
+                        CrabCrevice.GenerateCreviceCave(mX, mY, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]));
                     }
                     break;
 
