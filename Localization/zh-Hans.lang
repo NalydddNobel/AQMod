@@ -159,6 +159,11 @@ ItemTooltip.GhostlyGrave=可在你死亡后阻止墓碑的生成
 GhostlyGrave.False=你现在会掉落墓碑
 GhostlyGrave.True=你现在不会掉落墓碑
 
+ItemName.Stardrop=星之果实
+ItemTooltip.Stardrop=可允许城镇NPC在夜间入住
+Stardrop.False=城镇NPC现在无法在夜间入住
+Stardrop.True=城镇NPC现在可在夜间入住
+
 ItemName.IWillBeBack='我将归来'
 ItemTooltip.IWillBeBack=可在不击杀向导的情况下召唤血肉墙\n右键使所有城镇NPC免疫岩浆
 IWillBeBackToggle.True=城镇NPC现在会免疫岩浆
@@ -366,6 +371,22 @@ RecipeGroup.AnyEel=任意鳗鱼
 # Config
 
 Config.RequiresReload=需要重新加载.
+
+DiscordRichPresenceConfig.Name=Discord Rich Presence
+DiscordRichPresenceConfig.Header.DRP=[c/eeffee:选项]
+
+DiscordRichPresenceConfig.enableDiscordRichPresence=启用 Discord Rich Presence
+DiscordRichPresenceConfig.enableDiscordRichPresenceTooltip=决定是否加载 Aequus 支持的 Discord Rich Presence
+
+DiscordRichPresenceConfig.miniBossRichPresence=小Boss Presence
+DiscordRichPresenceConfig.miniBossRichPresenceTooltip=会为 Aequus 中经过考虑的'小Boss'添加一个 rich presence
+
+DiscordRichPresenceConfig.eventRichPresence=事件 Presence
+DiscordRichPresenceConfig.eventRichPresenceTooltip=会为所有 Aequus 事件添加一个 rich presence
+
+#
+
+StariteConfig.Name=微光事件视觉效果
 
 StariteConfig.Name=微光事件视觉效果
 
