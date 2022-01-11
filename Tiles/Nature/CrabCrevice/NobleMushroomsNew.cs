@@ -175,7 +175,7 @@ namespace AQMod.Tiles.Nature.CrabCrevice
                         //Main.NewText("Rendering! " + (drawPosition - Main.screenPosition + AQGraphics.TileZero));
                         if (applyWind)
                         {
-                            float windPower = ((float)Math.Cos(Main.GlobalTime * MathHelper.TwoPi + i * 0.1f) + 1f) / 2f * 0.8f * Main.windSpeed;
+                            float windPower = ((float)Math.Cos(Main.GlobalTime * MathHelper.Pi + i * 0.1f) + 1f) / 2f * 0.8f * Main.windSpeed;
                             drawPosition.X += windPower;
                             drawPosition.Y += windPower.Abs();
                             rotation = windPower * 0.1f;

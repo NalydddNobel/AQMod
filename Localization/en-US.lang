@@ -150,11 +150,11 @@ ItemTooltip.GoreNestItem=Use an item crafted with demonite or crimtane at this a
 MapObject.GoreNest=Gore Nest
 
 ItemName.ArgonMushroom=Argon Mushroom
-ItemTooltip.ArgonMushroom==Emits red light\n'Dormant and inanimate'
+ItemTooltip.ArgonMushroom=Emits red light\n'Dormant and inanimate'
 ItemName.KryptonMushroom=Krypton Mushroom
 ItemTooltip.KryptonMushroom=Emits green light\n'Can show vital weaknesses in super beings'
 ItemName.XenonMushroom=Xenon Mushroom
-ItemTooltip.XenonMushroom=Emits blue light
+ItemTooltip.XenonMushroom=Emits blue light\n'Gets brighter when you touch it'
 MapObject.NobleMushrooms=Noble Mushroom
 
 # Tools
