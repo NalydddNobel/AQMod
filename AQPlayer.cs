@@ -32,7 +32,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Achievements;
@@ -50,523 +49,15 @@ namespace AQMod
     public sealed class AQPlayer : ModPlayer
     {
         public const int MaxCelesteTorusOrbs = 5;
-        public const int MAX_ARMOR = 20;
-        public const int DYE_WRAP = MAX_ARMOR / 2;
+        public const int MaxArmor = 20;
+        public const int MaxDye = MaxArmor / 2;
         public const int FRAME_HEIGHT = 56;
         public const int FRAME_COUNT = 20;
         public const float CELESTE_Z_MULT = 0.0157f;
         public const int ARACHNOTRON_OLD_POS_LENGTH = 8;
-        public const float AtmosphericCurrentsWindSpeed = 30f;
         public const byte TEMPERATURE_REGEN_NORMAL = 32;
         public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
         public const byte TEMPERATURE_REGEN_ON_HIT = 120;
-
-        public static class Layers
-        {
-            public const string MasksPath = "AQMod/Assets/Equips/Masks/Mask_";
-            public const string HeadAccsPath = "AQMod/Assets/Equips/HeadAccs/HeadAcc_";
-
-            public static readonly PlayerHeadLayer PostDrawHead_Head = new PlayerHeadLayer("AQMod", "PostDraw", (info) =>
-            {
-                var player = info.drawPlayer;
-                AQPlayer aQPlayer = info.drawPlayer.GetModPlayer<AQPlayer>();
-                var drawingPlayer = info.drawPlayer.GetModPlayer<AQPlayer>();
-                if (drawingPlayer.mask >= 0)
-                {
-                    var drawData = new DrawData(ModContent.GetTexture(MasksPath + drawingPlayer.mask), new Vector2((int)(info.drawPlayer.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.drawPlayer.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height)) + info.drawPlayer.headPosition + info.drawOrigin, info.drawPlayer.bodyFrame, info.armorColor, info.drawPlayer.headRotation, info.drawOrigin, info.scale, info.spriteEffects, 0);
-                    GameShaders.Armor.Apply(drawingPlayer.cMask, player, drawData);
-                    drawData.Draw(Main.spriteBatch);
-                    Main.pixelShader.CurrentTechnique.Passes[0].Apply();
-                }
-
-                if (drawingPlayer.headAcc >= 0)
-                {
-                    var drawData = new DrawData(ModContent.GetTexture(HeadAccsPath + drawingPlayer.headAcc), new Vector2((int)(info.drawPlayer.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.drawPlayer.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height)) + info.drawPlayer.headPosition + info.drawOrigin, info.drawPlayer.bodyFrame, info.armorColor, info.drawPlayer.headRotation, info.drawOrigin, info.scale, info.spriteEffects, 0);
-                    if (drawingPlayer.headAcc == PlayerHeadOverlayID.FishyFins)
-                        drawData.color = player.skinColor;
-                    drawData.position = new Vector2((int)drawData.position.X, (int)drawData.position.Y);
-                    GameShaders.Armor.Apply(drawingPlayer.cHeadAcc, player, drawData);
-                    drawData.Draw(Main.spriteBatch);
-                    Main.pixelShader.CurrentTechnique.Passes[0].Apply();
-                }
-            });
-
-            public static readonly PlayerLayer PreDraw = new PlayerLayer("AQMod", "PreDraw", (info) =>
-            {
-                int whoAmI = info.drawPlayer.whoAmI;
-                var player = info.drawPlayer;
-                var aQPlayer = player.GetModPlayer<AQPlayer>();
-                var drawingPlayer = player.GetModPlayer<AQPlayer>();
-                if (info.shadow == 0f)
-                {
-                    if (aQPlayer.blueSpheres && drawingPlayer.celesteTorusOffsetsForDrawing != null)
-                    {
-                        var texture = TextureGrabber.GetProjectile(ModContent.ProjectileType<CelesteTorusCollider>());
-                        var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                        var orig = frame.Size() / 2f;
-                        for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)
-                        {
-                            var position = aQPlayer.GetCelesteTorusPositionOffset(i);
-                            float layerValue = AQUtils.OmegaStarite3DHelper.GetParralaxScale(1f, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * CELESTE_Z_MULT);
-                            if (layerValue < 1f)
-                            {
-                                var center = info.position + new Vector2(player.width / 2 + (int)position.X, player.height / 2 + (int)position.Y);
-                                Main.playerDrawData.Add(new DrawData(texture, AQUtils.OmegaStarite3DHelper.GetParralaxPosition(center, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.OmegaStarite3DHelper.GetParralaxScale(aQPlayer.celesteTorusScale, drawingPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawingPlayer.cCelesteTorus, ignorePlayerRotation = true });
-                            }
-                        }
-                    }
-                    if (aQPlayer.chomper || aQPlayer.piranhaPlant)
-                    {
-                        int count = 0;
-                        int type = ModContent.ProjectileType<Chomper>();
-                        for (int i = 0; i < Main.maxProjectiles; i++)
-                        {
-                            if (Main.projectile[i].active && (Main.projectile[i].type == type) && Main.projectile[i].owner == info.drawPlayer.whoAmI)
-                            {
-                                var texture = TextureGrabber.GetProjectile(Main.projectile[i].type);
-                                int frameHeight = texture.Height / Main.projFrames[Main.projectile[i].type];
-                                var frame = new Rectangle(0, 0, texture.Width, frameHeight - 2);
-                                var textureOrig = frame.Size() / 2f;
-                                var drawPosition = Main.projectile[i].Center;
-                                frame = new Rectangle(0, frameHeight * Main.projectile[i].frame, texture.Width, frameHeight - 2);
-                                var drawColor = Lighting.GetColor((int)drawPosition.X / 16, (int)drawPosition.Y / 16);
-                                float rotation;
-                                if (Main.projectile[i].spriteDirection == -1 && (int)Main.projectile[i].ai[1] > 0f)
-                                {
-                                    rotation = Main.projectile[i].rotation - MathHelper.Pi;
-                                }
-                                else
-                                {
-                                    rotation = Main.projectile[i].rotation;
-                                }
-                                DrawChomperChain(info.drawPlayer, Main.projectile[i], drawPosition, drawColor);
-                                //if (Main.projectile[i].modProjectile is PiranhaPlant)
-                                //{
-                                //    var piranhaPlant = (PiranhaPlant)Main.projectile[i].modProjectile;
-                                //    if (piranhaPlant.eatingDelay != 0 && piranhaPlant.eatingDelay < 35)
-                                //    {
-                                //        float intensity = (10 - piranhaPlant.eatingDelay) / 2.5f * AQConfigClient.c_EffectIntensity;
-                                //        drawPosition.X += Main.rand.NextFloat(-intensity, intensity);
-                                //        drawPosition.Y += Main.rand.NextFloat(-intensity, intensity);
-                                //    }
-                                //}
-                                //else
-                                {
-                                    var chomperHead = (Chomper)Main.projectile[i].modProjectile;
-                                    if (chomperHead.eatingDelay != 0 && chomperHead.eatingDelay < 35)
-                                    {
-                                        float intensity = (10 - chomperHead.eatingDelay) / 2.5f * AQConfigClient.c_EffectIntensity;
-                                        drawPosition.X += Main.rand.NextFloat(-intensity, intensity);
-                                        drawPosition.Y += Main.rand.NextFloat(-intensity, intensity);
-                                    }
-                                }
-                                drawPosition = new Vector2((int)(drawPosition.X - Main.screenPosition.X), (int)(drawPosition.Y - Main.screenPosition.Y));
-                                Main.playerDrawData.Add(
-                                    new DrawData(texture, drawPosition, frame, drawColor, rotation, textureOrig, Main.projectile[i].scale, Main.projectile[i].spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0)
-                                    { ignorePlayerRotation = true });
-                                if (count == 0)
-                                {
-                                    if (aQPlayer.monoxiderBird)
-                                    {
-                                        var monoxiderHat = TextureGrabber.GetItem(ModContent.ItemType<MonoxideHat>());
-                                        var hatPos = new Vector2(drawPosition.X, drawPosition.Y) + new Vector2(0f, -Main.projectile[i].height / 2).RotatedBy(Main.projectile[i].rotation);
-                                        var monoxiderHatOrig = monoxiderHat.Size() / 2f;
-                                        hatPos = new Vector2((int)hatPos.X, (int)hatPos.Y);
-                                        Main.playerDrawData.Add(
-                                            new DrawData(monoxiderHat, hatPos, null, drawColor, Main.projectile[i].rotation, monoxiderHatOrig, Main.projectile[i].scale, SpriteEffects.None, 0)
-                                            { ignorePlayerRotation = true });
-                                        Main.playerDrawData.Add(
-                                            new DrawData(ModContent.GetTexture(AQUtils.GetPath<MonoxideHat>() + "_Glow"), hatPos, null, new Color(250, 250, 250, 0), Main.projectile[i].rotation, monoxiderHatOrig, Main.projectile[i].scale, SpriteEffects.None, 0)
-                                            { ignorePlayerRotation = true });
-                                        int headFrame = player.bodyFrame.Y / FRAME_HEIGHT;
-                                        if (player.gravDir == -1)
-                                            hatPos.Y += player.height + 8f;
-                                        Monoxider.DrawHead(player, aQPlayer, hatPos, ignorePlayerRotation: true);
-                                    }
-                                }
-                                count++;
-                            }
-                        }
-                    }
-                }
-            });
-
-            private static void DrawChomperChain(Player player, Projectile chomper, Vector2 drawPosition, Color drawColor)
-            {
-                //if (chomper.modProjectile is PiranhaPlant)
-                //{
-                //    var piranhaPlant = (PiranhaPlant)chomper.modProjectile;
-                //    int frameWidth = 16;
-                //    var frame = new Rectangle(0, 0, frameWidth - 2, 20);
-                //    var origin = frame.Size() / 2f;
-                //    float offset = chomper.width / 2f + frame.Height / 2f;
-                //    var chainTexture = ModContent.GetTexture(AQUtils.GetPath<PiranhaPlant>("_Chain"));
-                //    Main.playerDrawData.Add(new DrawData(chainTexture, new Vector2(drawPosition.X + chomper.width / 2 * -chomper.spriteDirection, drawPosition.Y), frame, drawColor, 0f, origin, chomper.scale, chomper.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0)
-                //    { ignorePlayerRotation = true });
-                //    int height = frame.Height - 4;
-                //    frame.Y += 2;
-                //    var playerCenter = player.Center;
-                //    var chainStart = chomper.Center + new Vector2((chomper.width / 2 + 4) * -chomper.spriteDirection, 0f);
-                //    var velo = Vector2.Normalize(Vector2.Lerp(chainStart + new Vector2(0f, height * 4f) - playerCenter, player.velocity, 0.5f)) * height;
-                //    var position = playerCenter;
-                //    var rand = new UnifiedRandom(chomper.whoAmI + player.name.GetHashCode());
-                //    if (AQConfigClient.c_EffectQuality >= 1f)
-                //    {
-                //        for (int i = 0; i < 50; i++)
-                //        {
-                //            Main.playerDrawData.Add(new DrawData(
-                //                chainTexture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                //            { ignorePlayerRotation = true });
-                //            velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                //            if (Vector2.Distance(position, chainStart) <= height)
-                //                break;
-                //            velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f * AQConfigClient.c_EffectIntensity);
-                //            position += velo;
-                //            float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                //            velo.Y += gravity * 3f;
-                //            velo.Normalize();
-                //            velo *= height;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if (AQConfigClient.c_EffectQuality < 0.2f)
-                //        {
-                //            for (int i = 0; i < 50; i++)
-                //            {
-                //                Main.playerDrawData.Add(new DrawData(
-                //                    chainTexture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * (i % 3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                //                { ignorePlayerRotation = true });
-                //                velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                //                if (Vector2.Distance(position, chainStart) <= height)
-                //                    break;
-                //                position += velo;
-                //                float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                //                velo.Y += gravity * 3f;
-                //                velo.Normalize();
-                //                velo *= height;
-                //            }
-                //        }
-                //        else
-                //        {
-                //            for (int i = 0; i < 50; i++)
-                //            {
-                //                Main.playerDrawData.Add(new DrawData(
-                //                    chainTexture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                //                { ignorePlayerRotation = true });
-                //                velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                //                if (Vector2.Distance(position, chainStart) <= height)
-                //                    break;
-                //                position += velo;
-                //                float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                //                velo.Y += gravity * 3f;
-                //                velo.Normalize();
-                //                velo *= height;
-                //            }
-                //        }
-                //    }
-                //}
-                //else
-                {
-                    var chomperHead = (Chomper)chomper.modProjectile;
-                    int frameWidth = 16;
-                    var frame = new Rectangle(0, 0, frameWidth - 2, 20);
-                    var origin = frame.Size() / 2f;
-                    float offset = chomper.width / 2f + frame.Height / 2f;
-                    var texture = ModContent.GetTexture(AQUtils.GetPath<Chomper>("_Chain"));
-                    Main.playerDrawData.Add(new DrawData(texture, new Vector2(drawPosition.X + chomper.width / 2 * -chomper.spriteDirection, drawPosition.Y), frame, drawColor, 0f, origin, chomper.scale, chomper.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0)
-                    { ignorePlayerRotation = true });
-                    int height = frame.Height - 4;
-                    frame.Y += 2;
-                    var playerCenter = player.Center;
-                    var chainStart = chomper.Center + new Vector2((chomper.width / 2 + 4) * -chomper.spriteDirection, 0f);
-                    var velo = Vector2.Normalize(Vector2.Lerp(chainStart + new Vector2(0f, height * 4f) - playerCenter, player.velocity, 0.5f)) * height;
-                    var position = playerCenter;
-                    var rand = new UnifiedRandom(chomper.whoAmI + player.name.GetHashCode());
-                    if (AQConfigClient.c_EffectQuality >= 1f)
-                    {
-                        for (int i = 0; i < 50; i++)
-                        {
-                            Main.playerDrawData.Add(new DrawData(
-                                texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                            { ignorePlayerRotation = true });
-                            velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                            if (Vector2.Distance(position, chainStart) <= height)
-                                break;
-                            velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f * AQConfigClient.c_EffectIntensity);
-                            position += velo;
-                            float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                            velo.Y += gravity * 3f;
-                            velo.Normalize();
-                            velo *= height;
-                        }
-                    }
-                    else
-                    {
-                        if (AQConfigClient.c_EffectQuality < 0.2f)
-                        {
-                            for (int i = 0; i < 50; i++)
-                            {
-                                Main.playerDrawData.Add(new DrawData(
-                                    texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * (i % 3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                                { ignorePlayerRotation = true });
-                                velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                                if (Vector2.Distance(position, chainStart) <= height)
-                                    break;
-                                position += velo;
-                                float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                                velo.Y += gravity * 3f;
-                                velo.Normalize();
-                                velo *= height;
-                            }
-                        }
-                        else
-                        {
-                            for (int i = 0; i < 50; i++)
-                            {
-                                Main.playerDrawData.Add(new DrawData(
-                                    texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                                { ignorePlayerRotation = true });
-                                velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                                if (Vector2.Distance(position, chainStart) <= height)
-                                    break;
-                                position += velo;
-                                float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                                velo.Y += gravity * 3f;
-                                velo.Normalize();
-                                velo *= height;
-                            }
-                        }
-                    }
-                    rand = new UnifiedRandom(chomper.whoAmI + 2 + player.name.GetHashCode());
-                    texture = ModContent.GetTexture(AQUtils.GetPath<Chomper>("_Leaves"));
-                    frame.Y -= 2;
-                    int numLeaves = rand.Next(4) + 3;
-                    float leafRotation = chomper.rotation;
-                    if (chomper.spriteDirection == -1 && chomper.rotation.Abs() > MathHelper.PiOver2)
-                        leafRotation -= MathHelper.Pi;
-                    float rotOff = MathHelper.PiOver2 / numLeaves;
-                    float rotStart = leafRotation - MathHelper.PiOver4;
-                    for (int i = 0; i < numLeaves; i++)
-                    {
-                        var leavesPos = drawPosition + new Vector2((offset - rand.NextFloat(2f)) * -chomper.spriteDirection, 0f).RotatedBy(rotStart + rotOff * i) - Main.screenPosition;
-                        leafRotation = (drawPosition - Main.screenPosition - leavesPos).ToRotation();
-                        Main.playerDrawData.Add(new DrawData(texture, new Vector2((int)leavesPos.X, leavesPos.Y), new Rectangle(frame.X + frameWidth * rand.Next(4), frame.Y, frame.Width, frame.Height), drawColor, leafRotation + MathHelper.PiOver2, origin, chomper.scale + rand.NextFloat(0.2f), SpriteEffects.None, 0)
-                        { ignorePlayerRotation = true });
-                    }
-                }
-            }
-
-            public static readonly PlayerLayer PostDraw = new PlayerLayer("AQMod", "PostDraw", (info) =>
-            {
-                int whoAmI = info.drawPlayer.whoAmI;
-                var aQMod = AQMod.GetInstance();
-                var player = info.drawPlayer;
-                var aQPlayer = player.GetModPlayer<AQPlayer>();
-                if (Main.myPlayer == info.drawPlayer.whoAmI && info.shadow == 0f)
-                {
-                    bool updateOldPos = true;
-                    if (ShouldDrawOldPos(info.drawPlayer))
-                    {
-                        if (oldPosVisual != null && oldPosVisual.Length >= oldPosLength)
-                        {
-                            if (arachnotronHeadTrail)
-                            {
-                                if (info.shadow == 0f)
-                                {
-                                    var headOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 10f) + info.drawPlayer.headPosition + info.headOrigin;
-                                    var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
-                                    var drawDiff = info.position - info.drawPlayer.position;
-                                    var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronVisor>("_HeadGlow"));
-                                    int count = aQPlayer.GetOldPosCountMaxed(ARACHNOTRON_OLD_POS_LENGTH);
-                                    var clrMult = 1f / count;
-                                    for (int i = 0; i < count; i++)
-                                    {
-                                        float colorMult = 0.5f * (1f - (float)Math.Sin(Main.GlobalTime * 8f - i * 0.314f) * 0.2f);
-                                        var drawData = new DrawData(texture, new Vector2((int)(oldPosVisual[i].X - Main.screenPosition.X), (int)(oldPosVisual[i].Y - Main.screenPosition.Y)) + drawDiff + headOff, info.drawPlayer.bodyFrame, clr * (clrMult * (count - i)) * colorMult, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.headArmorShader };
-                                        Main.playerDrawData.Add(drawData);
-                                    }
-                                }
-                            }
-                            if (arachnotronBodyTrail)
-                            {
-                                var bodyOff = new Vector2(-info.drawPlayer.bodyFrame.Width / 2 + (float)(info.drawPlayer.width / 2), info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + 4f) + info.drawPlayer.bodyPosition + new Vector2(info.drawPlayer.bodyFrame.Width / 2, info.drawPlayer.bodyFrame.Height / 2);
-                                var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
-                                var drawDiff = info.position - info.drawPlayer.position;
-                                var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronRibcage>("_BodyGlow"));
-                                int count = aQPlayer.GetOldPosCountMaxed(ARACHNOTRON_OLD_POS_LENGTH);
-                                if (info.shadow == 0f)
-                                {
-                                    var clrMult = 1f / count;
-                                    for (int i = 0; i < count; i++)
-                                    {
-                                        float colorMult = 0.5f * (1f - (float)Math.Sin(Main.GlobalTime * 8f - i * 0.314f) * 0.2f);
-                                        var drawData = new DrawData(texture, new Vector2((int)(oldPosVisual[i].X - Main.screenPosition.X), (int)(oldPosVisual[i].Y - Main.screenPosition.Y)) + drawDiff + bodyOff, info.drawPlayer.bodyFrame, clr * (clrMult * (count - i)) * colorMult, info.drawPlayer.bodyRotation, info.bodyOrigin, 1f, info.spriteEffects, 0) { shader = info.bodyArmorShader };
-                                        Main.playerDrawData.Add(drawData);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        updateOldPos = false;
-                    }
-                    if (updateOldPos)
-                    {
-                        if (AQGraphics.GameWorldActive && oldPosLength > 0)
-                        {
-                            if (oldPosVisual == null || oldPosVisual.Length != oldPosLength)
-                                oldPosVisual = new Vector2[oldPosLength];
-                            for (int i = oldPosLength - 1; i > 0; i--)
-                            {
-                                oldPosVisual[i] = oldPosVisual[i - 1];
-                            }
-                            oldPosVisual[0] = player.position;
-                        }
-                    }
-                    else
-                    {
-                        oldPosVisual = null;
-                    }
-                }
-
-                if (info.shadow == 0f && aQPlayer.blueSpheres && aQPlayer.celesteTorusOffsetsForDrawing != null)
-                {
-                    var texture = TextureGrabber.GetProjectile(ModContent.ProjectileType<CelesteTorusCollider>());
-                    var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                    var orig = frame.Size() / 2f;
-                    for (int i = 0; i < MaxCelesteTorusOrbs; i++)
-                    {
-                        var position = aQPlayer.GetCelesteTorusPositionOffset(i);
-                        float layerValue = AQUtils.OmegaStarite3DHelper.GetParralaxScale(1f, aQPlayer.celesteTorusOffsetsForDrawing[i].Z * CELESTE_Z_MULT);
-                        if (layerValue >= 1f)
-                        {
-                            var center = info.position + new Vector2(player.width / 2 + (int)position.X, player.height / 2 + (int)position.Y);
-                            Main.playerDrawData.Add(new DrawData(texture, AQUtils.OmegaStarite3DHelper.GetParralaxPosition(center, aQPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.OmegaStarite3DHelper.GetParralaxScale(aQPlayer.celesteTorusScale, aQPlayer.celesteTorusOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = aQPlayer.cCelesteTorus, ignorePlayerRotation = true });
-                        }
-                    }
-                }
-            });
-            public static readonly PlayerLayer PostDrawHeldItem = new PlayerLayer("AQMod", "PostDrawHeldItem", (info) =>
-            {
-                var player = info.drawPlayer;
-                Item item = player.inventory[player.selectedItem];
-
-                if (info.shadow != 0f || player.frozen || ((player.itemAnimation <= 0 || item.useStyle == 0) &&
-                (item.holdStyle <= 0 || player.pulley)) || item.type <= ItemID.None || player.dead || item.noUseGraphic ||
-                (item.noWet && player.wet) || item.type < Main.maxItemTypes)
-                {
-                    return;
-                }
-
-                if (item.modItem is IItemOverlaysPlayerDraw itemOverlay)
-                {
-                    itemOverlay.PlayerDraw.DrawUse(player, player.GetModPlayer<AQPlayer>(), item, info);
-                }
-                AQMod.ItemOverlays.GetOverlay(item.type)?.DrawHeld(player, player.GetModPlayer<AQPlayer>(), item, info);
-            });
-            public static readonly PlayerLayer PostDrawHead = new PlayerLayer("AQMod", "PostDrawHead", (info) =>
-            {
-                var player = info.drawPlayer;
-                var aQPlayer = info.drawPlayer.GetModPlayer<AQPlayer>();
-                float opacity = 1f - info.shadow;
-                const float MagicOffsetForReversedGravity = 8f;
-                int headFrame = info.drawPlayer.bodyFrame.Y / FRAME_HEIGHT;
-                float gravityOffset = 0f;
-                AQMod.ArmorOverlays.InvokeArmorOverlay(EquipLayering.Head, info);
-                if (info.drawPlayer.gravDir == -1)
-                    gravityOffset = MagicOffsetForReversedGravity;
-                if (aQPlayer.mask >= 0)
-                {
-                    Vector2 position = new Vector2((int)(info.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + gravityOffset)) + info.drawPlayer.headPosition + info.headOrigin;
-                    Color color = Lighting.GetColor((int)info.position.X / 16, (int)(info.position.Y + gravityOffset) / 16) * opacity;
-                    switch ((PlayerMaskID)aQPlayer.mask)
-                    {
-                        default:
-                            {
-                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(MasksPath + aQPlayer.mask), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                            }
-                            break;
-
-                        case PlayerMaskID.CataMask:
-                            {
-                                if (aQPlayer.cMask > 0)
-                                    aQPlayer.cataEyeColor = new Color(100, 100, 100, 0);
-                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(MasksPath + aQPlayer.mask), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                if (player.statLife == player.statLifeMax2 && info.drawPlayer.headRotation == 0)
-                                {
-                                    var texture = AQTextures.Lights[LightTex.Spotlight240x66];
-                                    var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                                    var orig = frame.Size() / 2f;
-                                    var scale = new Vector2((float)(Math.Sin(Main.GlobalTime * 10f) + 1f) * 0.04f + 0.2f, 0.1f);
-                                    var eyeGlowPos = position + new Vector2(2f * player.direction, Main.OffsetsPlayerHeadgear[headFrame].Y);
-                                    var eyeGlowColor = aQPlayer.cataEyeColor;
-                                    var value = AQUtils.GetParabola(0.25f, 0.45f, scale.X) * 0.5f;
-                                    var config = ModContent.GetInstance<AQConfigClient>();
-                                    var colorMult = ModContent.GetInstance<AQConfigClient>().EffectIntensity * (1f - info.shadow);
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, 0f, orig, scale, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.3f * colorMult, 0f, orig, scale * (1.1f + value * 2), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                    if (ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
-                                    {
-                                        Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.35f * colorMult, MathHelper.PiOver4, orig, scale * (1f - value) * 0.75f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                        Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.35f * colorMult, -MathHelper.PiOver4, orig, scale * (1f - value) * 0.75f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                        Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.2f * colorMult, MathHelper.PiOver2, orig, scale * (1f - value), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                    }
-                                    Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * colorMult, MathHelper.PiOver2, orig, scale * 0.5f, info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                    if (ModContent.GetInstance<AQConfigClient>().EffectIntensity > 1.5f && ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
-                                        Main.playerDrawData.Add(new DrawData(texture, eyeGlowPos, frame, eyeGlowColor * 0.15f * colorMult, 0f, orig, scale * (2f + value * 3f), info.spriteEffects, 0) { shader = aQPlayer.cMask, });
-                                }
-                            }
-                            break;
-                    }
-                }
-                if (aQPlayer.headAcc >= 0)
-                {
-                    Vector2 position = new Vector2((int)(info.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height + gravityOffset)) + info.drawPlayer.headPosition + info.headOrigin;
-                    Color color = Lighting.GetColor((int)info.position.X / 16, (int)info.position.Y / 16) * opacity;
-                    int shader = aQPlayer.cHeadAcc;
-                    switch (aQPlayer.headAcc)
-                    {
-                        default:
-                            {
-                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
-                            }
-                            break;
-
-                        case PlayerHeadOverlayID.MonoxideHat:
-                            {
-                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
-                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + PlayerHeadOverlayID.MonoxideHatGlow), position, info.drawPlayer.bodyFrame, new Color(opacity * 0.99f, opacity * 0.99f, opacity * 0.99f, 0f), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
-                                if (aQPlayer.monoxiderBird && !aQPlayer.chomper && !aQPlayer.piranhaPlant)
-                                {
-                                    var hatPos = position;
-                                    if (player.gravDir == -1)
-                                    {
-                                        hatPos.Y += player.height + Main.OffsetsPlayerHeadgear[headFrame].Y + 8f;
-                                    }
-                                    else
-                                    {
-                                        hatPos.Y += Main.OffsetsPlayerHeadgear[headFrame].Y;
-                                    }
-                                    Monoxider.DrawHead(player, aQPlayer, hatPos, ignorePlayerRotation: false);
-                                }
-                            }
-                            break;
-
-                        case PlayerHeadOverlayID.FishyFins:
-                            {
-                                Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(HeadAccsPath + aQPlayer.headAcc), position, info.drawPlayer.bodyFrame, Lighting.GetColor((int)info.position.X / 16, (int)info.position.Y / 16, info.drawPlayer.skinColor), info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
-                            }
-                            break;
-                    }
-                }
-            });
-            public static readonly PlayerLayer PostDrawBody = new PlayerLayer("AQMod", "PostDrawBody", (info) =>
-            {
-                AQMod.ArmorOverlays.InvokeArmorOverlay(EquipLayering.Body, info);
-            });
-        }
 
         public static int oldPosLength;
         public static Vector2[] oldPosVisual;
@@ -575,8 +66,6 @@ namespace AQMod
         internal static bool Fidget_Spinner_Force_Autoswing;
         internal static int _moneyTroughHackIndex = -1;
         internal static ISuperClunkyMoneyTroughTypeThing _moneyTroughHack;
-
-        public Vector3[] celesteTorusOffsetsForDrawing;
 
         public float discountPercentage;
         public bool blueSpheres;
@@ -652,13 +141,8 @@ namespace AQMod
         public int headMinionCarryY;
         public int headMinionCarryXOld;
         public int headMinionCarryYOld;
-        public Color cataEyeColor;
         public byte monoxiderCarry;
-        public int headAcc = -1;
-        public int mask = -1;
-        public int cHeadAcc;
-        public int cMask;
-        public int cCelesteTorus;
+
         public bool heartMoth;
         public bool notFrostburn;
         public bool bossrush;
@@ -684,8 +168,6 @@ namespace AQMod
         public bool shockCollar;
         public bool healBeforeDeath;
         public bool glowString;
-
-        public bool NetUpdateKillCount;
         public int[] EncoreBossKillCountRecord { get; private set; }
         public int PopperType { get; set; }
         public int PopperBaitPower { get; set; }
@@ -711,14 +193,8 @@ namespace AQMod
             headMinionCarryY = 0;
             headMinionCarryXOld = 0;
             headMinionCarryYOld = 0;
-            headAcc = -1;
-            mask = -1;
-            CursorDyeID = 0;
-            cHeadAcc = 0;
-            cMask = 0;
-            cCelesteTorus = 0;
             monoxiderCarry = 0;
-            cataEyeColor = new Color(50, 155, 255, 0);
+            CursorDyeID = CursorDyeManager.ID.None;
             showCosmicMap = true;
             showDungeonMap = true;
             showLihzahrdMap = true;
@@ -938,13 +414,7 @@ namespace AQMod
             headMinionCarryYOld = headMinionCarryY;
             headMinionCarryX = 0;
             headMinionCarryY = 0;
-            headAcc = -1;
-            mask = -1;
-            cHeadAcc = 0;
-            cMask = 0;
-            cCelesteTorus = 0;
             monoxiderCarry = 0;
-            cataEyeColor = new Color(50, 155, 255, 0);
             heartMoth = false;
             notFrostburn = false;
             grabReachMult = 1f;
@@ -1356,7 +826,6 @@ namespace AQMod
             var clone = (AQPlayer)clientPlayer;
             if (clone.bossrush)
             {
-                NetUpdateKillCount = true;
                 SyncPlayer(-1, player.whoAmI, true);
             }
             else
@@ -1371,16 +840,6 @@ namespace AQMod
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
             ModPacket packet = mod.GetPacket();
-            if (NetUpdateKillCount)
-            {
-                //packet.Write(AQPacketID.UpdateAQPlayerEncoreKills);
-                //packet.Write((byte)player.whoAmI);
-                //byte[] buffer = SerializeBossKills();
-                //packet.Write(buffer, 0, buffer.Length);
-                //packet.Send(toWho, fromWho);
-                NetUpdateKillCount = false;
-                return;
-            }
             Sync_CelesteTorus(toWho, fromWho);
         }
 
@@ -1455,20 +914,6 @@ namespace AQMod
                 if (p.active && p.type == monoxider && p.ai[0] > 0f)
                     monoxiderCarry++;
             }
-        }
-
-        public override void UpdateVanityAccessories()
-        {
-            for (int i = 0; i < MAX_ARMOR; i++)
-            {
-                if (player.armor[i].type <= Main.maxItemTypes)
-                    continue;
-                bool hidden = i < 10 && player.hideVisual[i];
-                if (player.armor[i].modItem is IUpdateEquipVisuals update && !hidden)
-                    update.UpdateEquipVisuals(player, this, i);
-            }
-            if (player.GetModPlayer<AQPlayer>().monoxiderBird)
-                headAcc = PlayerHeadOverlayID.MonoxideHat;
         }
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
@@ -1909,164 +1354,6 @@ namespace AQMod
             //}
         }
 
-        private Vector2 getCataDustSpawnPos(int gravityOffset, int headFrame)
-        {
-            var spawnPos = new Vector2((int)(player.position.X + player.width / 2) - 3f, (int)(player.position.Y + 12f + gravityOffset) + Main.OffsetsPlayerHeadgear[headFrame].Y) + player.headPosition;
-            if (player.direction == -1)
-                spawnPos.X -= 4f;
-            spawnPos.X -= 0.6f;
-            spawnPos.Y -= 0.6f;
-            return spawnPos;
-        }
-
-        private void CataEyeDust(Vector2 spawnPos)
-        {
-            int d = Dust.NewDust(spawnPos + new Vector2(0f, -6f), 6, 6, ModContent.DustType<MonoDust>(), 0, 0, 0, cataEyeColor);
-            if (Main.rand.NextBool(600))
-            {
-                Main.dust[d].velocity = player.velocity.RotatedBy(Main.rand.NextFloat(-0.025f, 0.025f)) * 1.5f;
-                Main.dust[d].velocity.X += Main.windSpeed * 20f + player.velocity.X / -2f;
-                Main.dust[d].velocity.Y -= Main.rand.NextFloat(8f, 16f);
-                Main.dust[d].scale *= Main.rand.NextFloat(0.65f, 2f);
-            }
-            else
-            {
-                Main.dust[d].velocity = player.velocity * 1.1f;
-                Main.dust[d].velocity.X += Main.windSpeed * 2.5f + player.velocity.X / -2f;
-                Main.dust[d].velocity.Y -= Main.rand.NextFloat(4f, 5.65f);
-                Main.dust[d].scale *= Main.rand.NextFloat(0.95f, 1.4f);
-            }
-
-            Main.dust[d].shader = GameShaders.Armor.GetSecondaryShader(cMask, player);
-            Main.playerDrawDust.Add(d);
-        }
-
-        public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
-        {
-            if (Main.myPlayer == drawInfo.drawPlayer.whoAmI)
-            {
-                oldPosLength = 0;
-                arachnotronHeadTrail = false;
-                arachnotronBodyTrail = false;
-            }
-            if (drawInfo.shadow == 0f)
-            {
-                if (sparkling)
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        int d = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width + 4, player.height + 4, ModContent.DustType<UltimaDust>(), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), Main.rand.NextFloat(0.45f, 1f));
-                        Main.dust[d].velocity *= 2.65f;
-                        Main.dust[d].velocity.Y -= 2f;
-                        Main.playerDrawDust.Add(d);
-                    }
-                    Lighting.AddLight(player.Center, 1f, 1f, 1f);
-                    fullBright = true;
-                }
-                if (notFrostburn)
-                {
-                    if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            var pos = drawInfo.position - new Vector2(2f, 2f);
-                            var rect = new Rectangle((int)pos.X, (int)pos.Y, player.width + 4, player.height + 4);
-                            var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                            ParticleLayers.AddParticle_PostDrawPlayers(
-                                new EmberParticle(dustPos, new Vector2((player.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((player.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
-                                new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
-                        }
-                    }
-                    Lighting.AddLight(player.Center, 0.4f, 0.4f, 1f);
-                    fullBright = true;
-                }
-                for (int i = 0; i < DYE_WRAP; i++)
-                {
-                    if (player.armor[i].type > Main.maxItemTypes && !player.hideVisual[i] && player.armor[i].modItem is IUpdateEquipVisuals updateVanity)
-                        updateVanity.UpdateEquipVisuals(player, this, i);
-                }
-                for (int i = DYE_WRAP; i < MAX_ARMOR; i++)
-                {
-                    if (player.armor[i].type > Main.maxItemTypes && player.armor[i].modItem is IUpdateEquipVisuals updateVanity)
-                        updateVanity.UpdateEquipVisuals(player, this, i);
-                }
-                int gravityOffset = 0;
-                int headFrame = player.bodyFrame.Y / FRAME_HEIGHT;
-                if (player.gravDir == -1)
-                    gravityOffset = 8;
-                switch ((PlayerMaskID)mask)
-                {
-                    case PlayerMaskID.CataMask:
-                        {
-                            if (cMask > 0)
-                                cataEyeColor = new Color(100, 100, 100, 0);
-                            if (!player.mount.Active && !player.merman && !player.wereWolf && player.statLife == player.statLifeMax2)
-                            {
-                                float dustAmount = (Main.rand.Next(2, 3) + 1) * ModContent.GetInstance<AQConfigClient>().EffectQuality;
-                                if (dustAmount < 1f)
-                                {
-                                    if (Main.rand.NextFloat(dustAmount) > 0.1f)
-                                        CataEyeDust(getCataDustSpawnPos(gravityOffset, headFrame));
-                                }
-                                else
-                                {
-                                    var spawnPos = getCataDustSpawnPos(gravityOffset, headFrame);
-                                    for (int i = 0; i < dustAmount; i++)
-                                    {
-                                        CataEyeDust(spawnPos);
-                                    }
-                                }
-                            }
-                        }
-                        break;
-                }
-            }
-            var aQPlayer = drawInfo.drawPlayer.GetModPlayer<AQPlayer>();
-            var drawPlayer = drawInfo.drawPlayer.GetModPlayer<AQPlayer>();
-            if (aQPlayer.blueSpheres)
-            {
-                celesteTorusOffsetsForDrawing = new Vector3[MaxCelesteTorusOrbs];
-                for (int i = 0; i < MaxCelesteTorusOrbs; i++)
-                {
-                    celesteTorusOffsetsForDrawing[i] = aQPlayer.GetCelesteTorusPositionOffset(i);
-                }
-            }
-            if (!aQPlayer.piranhaPlant && !aQPlayer.chomper && aQPlayer.monoxiderBird)
-                aQPlayer.headAcc = (byte)PlayerHeadOverlayID.MonoxideHat;
-        }
-
-        public override void ModifyDrawLayers(List<PlayerLayer> layers)
-        {
-            int i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Head"));
-            if (i != -1)
-            {
-                Layers.PostDrawHead.visible = true;
-                layers.Insert(i + 1, Layers.PostDrawHead);
-            }
-            i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Body"));
-            if (i != -1)
-            {
-                Layers.PostDrawBody.visible = true;
-                layers.Insert(i + 1, Layers.PostDrawBody);
-            }
-            i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("HeldItem"));
-            if (i != -1)
-            {
-                Layers.PostDrawHeldItem.visible = true;
-                layers.Insert(i + 1, Layers.PostDrawHeldItem);
-            }
-            Layers.PreDraw.visible = true;
-            layers.Insert(0, Layers.PreDraw);
-            Layers.PostDraw.visible = true;
-            layers.Add(Layers.PostDraw);
-        }
-
-        public override void ModifyDrawHeadLayers(List<PlayerHeadLayer> layers)
-        {
-            Layers.PostDrawHead_Head.visible = true;
-            layers.Add(Layers.PostDrawHead_Head);
-        }
-
         public override void ModifyScreenPosition()
         {
             ScreenShakeManager.ModifyScreenPosition();
@@ -2235,13 +1522,6 @@ namespace AQMod
             return count;
         }
 
-        public static bool ShouldDrawOldPos(Player player)
-        {
-            if (player.mount.Active || player.frozen || player.stoned || player.GetModPlayer<AQPlayer>().mask >= 0)
-                return false;
-            return true;
-        }
-
         public void SetCursorDye(int type)
         {
             if (type <= CursorDyeManager.ID.None || type > CursorDyeManager.Instance.Count)
@@ -2383,7 +1663,7 @@ namespace AQMod
 
         public static bool InVanitySlot(Player player, int type)
         {
-            for (int i = DYE_WRAP; i < MAX_ARMOR; i++)
+            for (int i = MaxDye; i < MaxArmor; i++)
             {
                 if (player.armor[i].type == type)
                     return true;

@@ -91,7 +91,7 @@ namespace AQMod.Common.DeveloperTools
 
                 case "gencc":
                     {
-                        CrabCrevice.GenerateCreviceCave(mX, mY, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]));
+                        CrabCrevice.GenerateCreviceCave(mX, mY, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]));
                     }
                     break;
 
@@ -948,14 +948,14 @@ namespace AQMod.Common.DeveloperTools
                                 case "mask":
                                     {
                                         i++;
-                                        global.mask = int.Parse(args[i]);
+                                        global.mask = byte.Parse(args[i]);
                                     }
                                     break;
 
                                 case "headOverlay":
                                     {
                                         i++;
-                                        global.headOverlay = int.Parse(args[i]);
+                                        global.headOverlay = byte.Parse(args[i]);
                                     }
                                     break;
                             }
@@ -1070,23 +1070,23 @@ namespace AQMod.Common.DeveloperTools
 
             public override bool CloneNewInstances => true;
 
-            public int headOverlay = -1;
-            public int mask = -1;
+            public byte headOverlay = PlayerHeadAccID.None;
+            public byte mask = PlayerMaskID.None;
             public byte debug = 0;
 
             public override void UpdateEquip(Item item, Player player)
             {
-                if (headOverlay > -1)
-                    player.GetModPlayer<AQPlayer>().headAcc = headOverlay;
-                if (mask > -1)
-                    player.GetModPlayer<AQPlayer>().mask = mask;
+                if (headOverlay > 0)
+                    player.GetModPlayer<PlayerDrawEffects>().headAcc = headOverlay;
+                if (mask > 0)
+                    player.GetModPlayer<PlayerDrawEffects>().mask = mask;
             }
 
             public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
             {
-                if (headOverlay > -1)
+                if (headOverlay > 0)
                     tooltips.Add(new TooltipLine(mod, "headOverlay", "headOverlay: " + headOverlay));
-                if (mask > -1)
+                if (mask > 0)
                     tooltips.Add(new TooltipLine(mod, "mask", "mask: " + mask));
                 switch (debug)
                 {

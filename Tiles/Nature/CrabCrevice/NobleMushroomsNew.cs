@@ -44,6 +44,7 @@ namespace AQMod.Tiles.Nature.CrabCrevice
                 ModContent.TileType<ArgonMossSand>(),
                 ModContent.TileType<KryptonMossSand>(),
                 ModContent.TileType<XenonMossSand>(),
+                ModContent.TileType<SedimentSand>(),
             };
             TileObjectData.addTile(Type);
             var name = CreateMapEntryName("NobleMushrooms");
@@ -223,7 +224,7 @@ namespace AQMod.Tiles.Nature.CrabCrevice
 
         internal static bool Place(int x, int y)
         {
-            return Place(x, y, WorldGen.genRand.Next(3));
+            return Place(x, y, WorldGen.genRand.Next(9));
         }
 
         internal static bool Place(int x, int y, int style)

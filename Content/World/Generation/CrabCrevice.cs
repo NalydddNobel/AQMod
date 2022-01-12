@@ -1,6 +1,7 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Tiles;
 using AQMod.Tiles.Furniture;
+using AQMod.Tiles.Nature.CrabCrevice;
 using AQMod.Walls;
 using Microsoft.Xna.Framework;
 using System;
@@ -181,6 +182,8 @@ namespace AQMod.Content.World.Generation
                         {
                             placeTiles.Add(new Point(x2, y2));
                         }
+                        if (y2 > (int)Main.worldSurface)
+                            Main.tile[x2, y2].wall = (ushort)ModContent.WallType<OceanRavineWall>();
                     }
                 }
             }
@@ -217,7 +220,7 @@ namespace AQMod.Content.World.Generation
             }
         }
 
-        public static bool GenerateCreviceCave(int x, int y, int minScale, int maxScale, int steps, int borderTile = TileID.HardenedSand)
+        public static bool GenerateCreviceCave(int x, int y, int minScale, int maxScale, int steps)
         {
             List<Circle> validCircles = new List<Circle>();
             for (int i = maxScale; i > minScale; i--)
@@ -236,7 +239,6 @@ namespace AQMod.Content.World.Generation
             validCircles.Add(validCircles[0].GetRandomCircleInsideCircle(validCircles[0].Radius / 3, minScale, maxScale, WorldGen.genRand));
             if (validCircles[1].IsInvalid)
             {
-                //Main.NewText("c2 was considered invalid!");
                 return false;
             }
             for (int i = 0; i < steps; i++)
@@ -265,8 +267,8 @@ namespace AQMod.Content.World.Generation
                                 for (int n = -2; n <= 2; n++)
                                 {
                                     Main.tile[x2 + m, y2 + n].active(active: true);
-                                    Main.tile[x2 + m, y2 + n].type = (ushort)borderTile;
-                                    Main.tile[x2, y2].wall = (ushort)ModContent.WallType<OceanRavineWall>();
+                                    Main.tile[x2 + m, y2 + n].type = (ushort)ModContent.TileType<SedimentSand>();
+                                    Main.tile[x2 + m, y2 + n].wall = (ushort)ModContent.WallType<OceanRavineWall>();
                                 }
                             }
                         }

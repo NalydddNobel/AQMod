@@ -1,10 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AQMod.Tiles
 {
     internal static class TileUtils
     {
+        public static class Merging
+        {
+        }
+
+        internal static void MergeWith(this ModTile tile, int other)
+        {
+            Main.tileMerge[tile.Type][other] = true;
+            Main.tileMerge[other][tile.Type] = true;
+        }
+
         public static int TileX(this Vector2 position)
         {
             return (int)position.X / 16;

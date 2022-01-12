@@ -1,4 +1,4 @@
-﻿using AQMod.Common.Graphics.PlayerEquips;
+﻿using AQMod.Content.Players;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -24,10 +24,10 @@ namespace AQMod.Items.Vanities
             return null;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer drawingPlayer, int i)
+        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
         {
-            drawingPlayer.headAcc = (int)PlayerHeadOverlayID.FishyFins;
-            drawingPlayer.cHeadAcc = player.dye[i % AQPlayer.DYE_WRAP].dye;
+            drawEffects.headAcc = (int)PlayerHeadAccID.FishyFins;
+            drawEffects.cHeadAcc = player.dye[i % AQPlayer.MaxDye].dye;
         }
     }
 }

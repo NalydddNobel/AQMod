@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Common.Graphics.PlayerEquips;
+using AQMod.Content.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,10 +24,10 @@ namespace AQMod.Items.Vanities
             item.vanity = true;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer drawingPlayer, int i)
+        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
         {
-            drawingPlayer.headAcc = (int)PlayerHeadOverlayID.MonoxideHat;
-            drawingPlayer.cHeadAcc = player.dye[i % AQPlayer.DYE_WRAP].dye;
+            drawEffects.headAcc = (int)PlayerHeadAccID.MonoxideHat;
+            drawEffects.cHeadAcc = player.dye[i % AQPlayer.MaxDye].dye;
         }
     }
 }
