@@ -21,6 +21,12 @@ Aequus是由我胡搞瞎搞的代码和东西整出来的Mod, 玩的时候请不
 节日快乐! 输入种子 "Aequus Xmas" 来创建一个特殊的世界!
 
 ##############
+Items
+##############
+
+ItemName.MushroomClam=异界蛤蜊
+ItemTooltip.MushroomClam=在海滩处使用以召唤巨蟹蛤
+
 # Accessories
 
 ItemName.GlowString=发光细绳
@@ -135,9 +141,21 @@ ProjectileName.Skrawler=皮肤焚烧者
 ItemName.RedSpriteDye=红色精灵染料
 ItemName.FrostbiteDye=霜寒染料
 
-# Furniture
+# Tiles
 ItemName.HellTombstone=地狱墓碑
 MapObject.HellTombstone=地狱墓碑
+
+ItemName.GoreNestItem=血巢
+ItemTooltip.GoreNestItem=在祭坛处使用由魔矿锭或猩红矿锭制成的物品
+MapObject.GoreNest=血巢
+
+ItemName.ArgonMushroom=氩蘑菇
+ItemTooltip.ArgonMushroom=散发着红光\n'休眠中并且无生命迹象'
+ItemName.KryptonMushroom=氪蘑菇
+ItemTooltip.KryptonMushroom=散发着绿光\n'可以显示超级生物的致命弱点'
+ItemName.XenonMushroom=氙蘑菇
+ItemTooltip.XenonMushroom=散发着蓝光\n'当你触摸它时, 它变得更亮了'
+MapObject.NobleMushrooms=华贵蘑菇
 
 # Tools
 ItemName.Cosmicanon=星宇律则
@@ -361,7 +379,7 @@ BossChecklistDesc.SpaceSquid=偶尔出现在紊流风暴中!
 # Recipe Groups
 
 RecipeGroup.AnyEnergy=任意能量
-RecipeGroup.AnyNobleMushroom=任意华贵孢子
+RecipeGroup.AnyNobleMushroom=任意华贵蘑菇
 RecipeGroup.CopperOrTin=铜或铅
 RecipeGroup.DemoniteBarOrCrimtaneBar=魔矿锭或猩红矿锭
 RecipeGroup.ShadowScaleOrTissueSample=暗影鳞片或组织样本
@@ -587,10 +605,6 @@ Common.WorldGen_GoreNests=正在生成血巢...
 Common.WorldGen_Globes=正在生成地球仪...
 Common.WorldGen_GlimmeringStatues=正在生成烁光雕像...
 #
-# Recipe Groups
-Common.RecipeGroup_AnyNobleMushroom=任意华贵蘑菇
-Common.RecipeGroup_AnyEnergy=任意能量
-#
 # Robster
 Common.RobsterChat0=我不喜欢其他的龙虾是有原因的...因为我的兄弟姐妹背叛了我.
 Common.RobsterChat1=你知道我经历过什么吗?
@@ -661,7 +675,6 @@ Common.NotConsumable=不消耗
 Common.TorchCanBePlacedInLiquids=可放置在液体中
 Common.ReturnToLobster=请将此物交付于龙虾掠夺者
 Common.IchorDartShotgunTag=使用灵液镖作为弹药时直接发射分裂灵液镖
-Common.NobleMushroomScent=蟹类无法抗拒它的气味
 Common.EnableThing=启用{0}?
 Common.DisableThing=禁用{0}?
 Common.UnassignedKey0=Unassigned Key
@@ -720,7 +733,6 @@ ItemTooltip.Quasicrystal=真近战攻击造成暴击时会将伤害弹射至离�
 ##############
 ItemName.Crabsol=蟹壳剑
 ItemName.CrabsonBag=宝藏袋
-ItemName.MushroomClam=蕈蛤
 ItemName.CrabsonTrophy=巨蟹蛤纪念章
 ItemName.CrabsonMask=巨蟹蛤面具
 ItemName.MythicStarfruit=秘星果
@@ -832,10 +844,6 @@ ProjectileName.MothmanCritExplosion=天蛾人面具
 #############
 # Placeable #
 #############
-# Mushrooms
-ItemName.ArgonMushroom=氩孢子
-ItemName.KryptonMushroom=氪孢子
-ItemName.XenonMushroom=氙孢子
 # Torches
 ItemName.ExoticRedTorch=奇异的红色火把
 ItemName.ExoticGreenTorch=奇异的绿色火把
@@ -863,7 +871,6 @@ ItemName.ExoticCoral=奇异珊瑚
 ItemName.ExoticStarfish=奇异海星
 ItemName.FishingCraftingStation=渔具加工站
 ItemName.GlobeItem=节点地球仪
-ItemName.GoreNestItem=血巢
 ItemName.PlaceableShadowOrb=暗影珠 (可放置)
 ItemName.PlaceableCrimsonHeart=猩红之心 (可放置)
 ############
@@ -1016,7 +1023,6 @@ ItemTooltip.Thunderbird=使你获得雷鸣之跃能力, 每2秒刷新一次\n你
 # Crabson
 ItemTooltip.Crabsol=只有最强壮的人才能举起这把剑
 ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
-ItemTooltip.MushroomClam=在海边使用以召唤巨蟹蛤
 # Omega Starite
 ItemTooltip.DragonBall=召唤一个微型星之源
 ItemTooltip.MythicStarfruit=使用以召唤微光事件
@@ -1080,10 +1086,6 @@ ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 #############
 # Placeable #
 #############
-# Mushrooms
-ItemTooltip.ArgonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
-ItemTooltip.KryptonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
-ItemTooltip.XenonMushroom={$Mods.AQMod.Common.NobleMushroomScent}
 # World Interactors
 ItemTooltip.GlimmeringStatue=在微光事件持续期间有很高几率吸引最终之剑至此
 # Other Placeables
@@ -1378,5 +1380,4 @@ MapObject.Trophies=纪念章
 MapObject.Banners=旗
 MapObject.ExoticCoral=奇异珊瑚
 MapObject.FishingCraftingStation=渔具加工站
-MapObject.NobleMushrooms=华贵蘑菇
 MapObject.BuriedDirtChest=被掩埋的土箱
