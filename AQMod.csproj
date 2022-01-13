@@ -21,7 +21,6 @@
     <None Include="Effects\.comp\wcfxcompiler.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Items\Materials\NobleMushrooms\" />
     <Folder Include="Sounds\Item\SpaceSquid\" />
   </ItemGroup>
 </Project>
