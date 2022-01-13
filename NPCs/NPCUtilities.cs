@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace AQMod.NPCs
 {

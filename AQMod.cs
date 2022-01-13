@@ -131,15 +131,16 @@ namespace AQMod
                 On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
                 On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
                 On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
-                On.Terraria.Main.CursorColor += Main_CursorColor;
-                On.Terraria.Main.DrawCursor += Main_DrawCursor;
-                On.Terraria.Main.DrawThickCursor += Main_DrawThickCursor;
-                On.Terraria.Main.DrawInterface_36_Cursor += Main_DrawInterface_36_Cursor;
                 On.Terraria.Player.FishingLevel += GetFishingLevel;
                 On.Terraria.Player.AddBuff += Player_AddBuff;
                 On.Terraria.Player.QuickBuff += Player_QuickBuff;
                 On.Terraria.Player.PickTile += Player_PickTile;
                 On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
+
+                On.Terraria.Main.CursorColor += CursorDyeManager.Hooks.Main_CursorColor;
+                On.Terraria.Main.DrawCursor += CursorDyeManager.Hooks.Main_DrawCursor;
+                On.Terraria.Main.DrawThickCursor += CursorDyeManager.Hooks.Main_DrawThickCursor;
+                On.Terraria.Main.DrawInterface_36_Cursor += CursorDyeManager.Hooks.Main_DrawInterface_36_Cursor;
             }
 
             private static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
@@ -273,111 +274,6 @@ namespace AQMod
                     XmasSeeds.closeBGSnowflakes = null;
                 }
                 Main.gameMenu = oldGameMenu;
-            }
-
-            internal static Color _oldCursorColor;
-            internal static Color _newCursorColor;
-            public static bool OverrideColor { get; internal set; }
-
-            internal static bool ShouldApplyCustomCursor()
-            {
-                return !Loading && !Unloading && !Main.gameMenu && Main.myPlayer >= 0 && Main.LocalPlayer.active;
-            }
-
-            private static Vector2 Main_DrawThickCursor(On.Terraria.Main.orig_DrawThickCursor orig, bool smart)
-            {
-                if (ShouldApplyCustomCursor())
-                {
-                    var type = Main.LocalPlayer.GetModPlayer<AQPlayer>().CursorDyeID;
-                    if (type != CursorDyeManager.ID.None)
-                    {
-                        var value = CursorDyeManager.Instance.GetContent(type).DrawThickCursor(smart);
-                        if (value != null)
-                            return value.Value;
-                    }
-                }
-                return orig(smart);
-            }
-
-            private static void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Vector2 bonus, bool smart)
-            {
-                if (ShouldApplyCustomCursor() && !PlayerInput.UsingGamepad)
-                {
-                    var player = Main.LocalPlayer;
-                    var drawingPlayer = player.GetModPlayer<AQPlayer>();
-                    if (drawingPlayer.CursorDyeID != CursorDyeManager.ID.None)
-                    {
-                        var cursorDye = CursorDyeManager.Instance.GetContent(drawingPlayer.CursorDyeID);
-                        if (!cursorDye.PreDrawCursor(player, drawingPlayer, bonus, smart))
-                            orig(bonus, smart);
-                        cursorDye.PostDrawCursor(player, drawingPlayer, bonus, smart);
-                    }
-                    else
-                    {
-                        orig(bonus, smart);
-                    }
-                }
-                else
-                {
-                    orig(bonus, smart);
-                }
-            }
-
-            private static void Main_DrawInterface_36_Cursor(On.Terraria.Main.orig_DrawInterface_36_Cursor orig)
-            {
-                if (ShouldApplyCustomCursor())
-                {
-                    var player = Main.LocalPlayer;
-                    var aQPlayer = player.GetModPlayer<AQPlayer>();
-                    if (aQPlayer.CursorDyeID != CursorDyeManager.ID.None)
-                    {
-                        var cursorDye = CursorDyeManager.Instance.GetContent(aQPlayer.CursorDyeID);
-                        if (!cursorDye.PreDrawCursorOverrides(player, aQPlayer))
-                        {
-                            //if (RerollCursor)
-                            //{
-                            //    Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Cursors/Cursor_Reroll"), new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), Main.cursorScale, SpriteEffects.None, 0f);
-                            //}
-                            //else
-                            {
-                                orig();
-                            }
-                        }
-                        cursorDye.PostDrawCursorOverrides(player, aQPlayer);
-                    }
-                    else
-                    {
-                        //if (RerollCursor)
-                        //{
-                        //    Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Cursors/Cursor_Reroll"), new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), Main.cursorScale, SpriteEffects.None, 0f);
-                        //}
-                        //else
-                        {
-                            orig();
-                        }
-                    }
-                }
-                else
-                {
-                    orig();
-                }
-                //RerollCursor = false;
-            }
-
-            private static void Main_CursorColor(On.Terraria.Main.orig_CursorColor orig)
-            {
-                if (ShouldApplyCustomCursor() && OverrideColor)
-                {
-                    _oldCursorColor = Main.mouseColor;
-                    Main.mouseColor = _newCursorColor;
-                    orig();
-                    Main.mouseColor = _oldCursorColor;
-                    _newCursorColor = Main.mouseColor;
-                }
-                else
-                {
-                    orig();
-                }
             }
 
             private static void ItemSlot_OverrideHover(On.Terraria.UI.ItemSlot.orig_OverrideHover orig, Item[] inv, int context, int slot)
@@ -910,16 +806,13 @@ namespace AQMod
             MapInterfaceManager.Apply(ref mouseText, drawGlobes: true);
         }
 
+        public override void UpdateUI(GameTime gameTime)
+        {
+        }
+
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            Edits.OverrideColor = false;
-            var player = Main.LocalPlayer;
-            var drawingPlayer = player.GetModPlayer<AQPlayer>();
-            if (drawingPlayer.CursorDyeID != CursorDyeManager.ID.None)
-            {
-                var cursorDye = CursorDyeManager.Instance.GetContent(drawingPlayer.CursorDyeID);
-                Edits.OverrideColor = cursorDye.ApplyColor(player, drawingPlayer, out Edits._newCursorColor);
-            }
+            
             var index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
             if (index != -1)
             {

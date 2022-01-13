@@ -1,4 +1,5 @@
-﻿using AQMod.Content.CursorDyes;
+﻿using AQMod.Common.ID;
+using AQMod.Content.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,12 +25,12 @@ namespace AQMod.Items.Vanities.CursorDyes
 
         public override bool CanUseItem(Player player)
         {
-            return player.GetModPlayer<AQPlayer>().CursorDyeID != CursorDyeManager.ID.None;
+            return player.GetModPlayer<PlayerCursorDyes>().cursorDye != CursorDyeID.None;
         }
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<AQPlayer>().SetCursorDye(CursorDyeManager.ID.None);
+            player.GetModPlayer<PlayerCursorDyes>().cursorDye = CursorDyeID.None;
             return true;
         }
 

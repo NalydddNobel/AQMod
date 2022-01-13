@@ -34,7 +34,7 @@ namespace AQMod.Content.Players
         public const string Path_Masks = "AQMod/Assets/Equips/Masks/Mask_";
         public const string Path_HeadAccs = "AQMod/Assets/Equips/HeadAccs/HeadAcc_";
 
-        public static int ClientOldPositionsLength;
+        public static int ClientOldPositionsLengthCache;
         public static Vector2[] ClientOldPositionsCache;
         public static bool ArachnotronHeadTrail;
         public static bool ArachnotronBodyTrail;
@@ -278,7 +278,7 @@ namespace AQMod.Content.Players
                 bool updateOldPos = true;
                 if (ShouldDrawOldPos(info.drawPlayer))
                 {
-                    if (ClientOldPositionsCache != null && ClientOldPositionsCache.Length >= ClientOldPositionsLength)
+                    if (ClientOldPositionsCache != null && ClientOldPositionsCache.Length >= ClientOldPositionsLengthCache)
                     {
                         if (ArachnotronHeadTrail)
                         {
@@ -288,7 +288,7 @@ namespace AQMod.Content.Players
                                 var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
                                 var drawDiff = info.position - info.drawPlayer.position;
                                 var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronVisor>("_HeadGlow"));
-                                int count = aQPlayer.GetOldPosCountMaxed(Draw_ArachnotronArmorOldPositionLength);
+                                int count = GetOldPosCountMaxed(Draw_ArachnotronArmorOldPositionLength);
                                 var clrMult = 1f / count;
                                 for (int i = 0; i < count; i++)
                                 {
@@ -304,7 +304,7 @@ namespace AQMod.Content.Players
                             var clr = new Color(255, 255, 255, 0) * (1f - info.shadow);
                             var drawDiff = info.position - info.drawPlayer.position;
                             var texture = ModContent.GetTexture(AQUtils.GetPath<ArachnotronRibcage>("_BodyGlow"));
-                            int count = aQPlayer.GetOldPosCountMaxed(Draw_ArachnotronArmorOldPositionLength);
+                            int count = GetOldPosCountMaxed(Draw_ArachnotronArmorOldPositionLength);
                             if (info.shadow == 0f)
                             {
                                 var clrMult = 1f / count;
@@ -324,11 +324,11 @@ namespace AQMod.Content.Players
                 }
                 if (updateOldPos)
                 {
-                    if (AQGraphics.GameWorldActive && ClientOldPositionsLength > 0)
+                    if (AQGraphics.GameWorldActive && ClientOldPositionsLengthCache > 0)
                     {
-                        if (ClientOldPositionsCache == null || ClientOldPositionsCache.Length != ClientOldPositionsLength)
-                            ClientOldPositionsCache = new Vector2[ClientOldPositionsLength];
-                        for (int i = ClientOldPositionsLength - 1; i > 0; i--)
+                        if (ClientOldPositionsCache == null || ClientOldPositionsCache.Length != ClientOldPositionsLengthCache)
+                            ClientOldPositionsCache = new Vector2[ClientOldPositionsLengthCache];
+                        for (int i = ClientOldPositionsLengthCache - 1; i > 0; i--)
                         {
                             ClientOldPositionsCache[i] = ClientOldPositionsCache[i - 1];
                         }
@@ -521,7 +521,7 @@ namespace AQMod.Content.Players
         {
             if (Main.myPlayer == drawInfo.drawPlayer.whoAmI)
             {
-                ClientOldPositionsLength = 0;
+                ClientOldPositionsLengthCache = 0;
                 ArachnotronHeadTrail = false;
                 ArachnotronBodyTrail = false;
             }
@@ -680,6 +680,17 @@ namespace AQMod.Content.Players
             if (player.mount.Active || player.frozen || player.stoned || player.GetModPlayer<PlayerDrawEffects>().mask > 0)
                 return false;
             return true;
+        }
+
+        public static int GetOldPosCountMaxed(int maxCount)
+        {
+            int count = 0;
+            for (; count < maxCount; count++)
+            {
+                if (ClientOldPositionsCache[count] == default(Vector2))
+                    break;
+            }
+            return count;
         }
     }
 }

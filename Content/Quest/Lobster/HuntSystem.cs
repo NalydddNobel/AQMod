@@ -1,5 +1,4 @@
-﻿using AQMod.Common.IO;
-using AQMod.NPCs;
+﻿using AQMod.NPCs;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;

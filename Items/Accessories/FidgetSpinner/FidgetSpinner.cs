@@ -67,7 +67,7 @@ namespace AQMod.Items.Accessories.FidgetSpinner
                 }
                 else
                 {
-                    string path = this.GetPath("_" + IDEnumerators.GetClrName(clr));
+                    string path = this.GetPath("_" + IDEnumerators.GetPaintName(clr));
                     if (ModContent.TextureExists(path))
                     {
                         var texture = ModContent.GetTexture(path);
@@ -97,7 +97,7 @@ namespace AQMod.Items.Accessories.FidgetSpinner
                 }
                 else
                 {
-                    string path = this.GetPath("_" + PaintID.GetClrName(clr));
+                    string path = this.GetPath("_" + IDEnumerators.GetPaintName(clr));
                     if (ModContent.TextureExists(path))
                     {
                         var texture = ModContent.GetTexture(path);

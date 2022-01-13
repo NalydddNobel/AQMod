@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics;
-using AQMod.Common.IO;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.CursorDyes;
@@ -11,7 +10,6 @@ using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Generation;
-using AQMod.Effects.Particles;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Monsters;
@@ -21,7 +19,6 @@ using AQMod.Tiles.Nature.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -32,7 +29,6 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace AQMod.Common.DeveloperTools
 {
@@ -939,16 +935,8 @@ namespace AQMod.Common.DeveloperTools
 
                 case "checkcursor":
                     {
-                        var drawingPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
-                        caller.Reply(nameof(AQPlayer.CursorDyeID) + ":" + drawingPlayer.CursorDyeID);
-                        caller.Reply(nameof(AQPlayer.CursorDye) + ":" + drawingPlayer.CursorDye);
-                        caller.Reply(nameof(CursorDyeManager.Instance.Count) + ":" + CursorDyeManager.Instance.Count);
-                        for (int i = 0; i < CursorDyeManager.Instance.Count; i++)
-                        {
-                            var cursorDye = CursorDyeManager.Instance.GetContent(i);
-                            caller.Reply(nameof(CursorDye.Mod) + i + ":" + cursorDye.Mod);
-                            caller.Reply(nameof(CursorDye.Name) + i + ":" + cursorDye.Name);
-                        }
+                        var p = Main.LocalPlayer.GetModPlayer<PlayerCursorDyes>();
+                        caller.Reply(nameof(PlayerCursorDyes.cursorDye) + ":" + p.cursorDye);
                         caller.Reply(nameof(Main.cursorColor) + ":" + Main.cursorColor);
                         caller.Reply(nameof(Main.mouseColor) + ":" + Main.mouseColor);
                     }

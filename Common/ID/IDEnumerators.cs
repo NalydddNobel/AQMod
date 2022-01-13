@@ -9,7 +9,7 @@ namespace AQMod.Common.ID
         /// </summary>
         /// <param name="clr"></param>
         /// <returns></returns>
-        public static string GetClrName(byte clr) // TODO: ADD THE DEEP COLORS
+        public static string GetPaintName(byte clr) // TODO: ADD THE DEEP COLORS
         {
             switch (clr)
             {

@@ -5,7 +5,6 @@ using AQMod.Common;
 using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.Particles;
-using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Fishing;
@@ -19,11 +18,9 @@ using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.DrawOverlays;
 using AQMod.Items.Foods;
 using AQMod.Items.Quest.Angler;
 using AQMod.Items.Tools.Axe;
-using AQMod.Items.Vanities;
 using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
@@ -37,7 +34,6 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Achievements;
 using Terraria.GameInput;
 using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -59,10 +55,6 @@ namespace AQMod
         public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
         public const byte TEMPERATURE_REGEN_ON_HIT = 120;
 
-        public static int oldPosLength;
-        public static Vector2[] oldPosVisual;
-        public static bool arachnotronHeadTrail;
-        public static bool arachnotronBodyTrail;
         internal static bool Fidget_Spinner_Force_Autoswing;
         internal static int _moneyTroughHackIndex = -1;
         internal static ISuperClunkyMoneyTroughTypeThing _moneyTroughHack;
@@ -168,13 +160,12 @@ namespace AQMod
         public bool shockCollar;
         public bool healBeforeDeath;
         public bool glowString;
-        public int[] EncoreBossKillCountRecord { get; private set; }
+
         public int PopperType { get; set; }
         public int PopperBaitPower { get; set; }
         public int FishingPowerCache { get; set; }
         public int ExtractinatorCount { get; set; }
-        public int CursorDyeID { get; private set; } = CursorDyeManager.ID.None;
-        public string CursorDye { get; private set; } = "";
+
         public bool IgnoreIgnoreMoons { get; set; }
         public bool IgnoreAntiGravityItems { get; set; }
 
@@ -194,15 +185,10 @@ namespace AQMod
             headMinionCarryXOld = 0;
             headMinionCarryYOld = 0;
             monoxiderCarry = 0;
-            CursorDyeID = CursorDyeManager.ID.None;
             showCosmicMap = true;
             showDungeonMap = true;
             showLihzahrdMap = true;
             showRetroMap = true;
-            oldPosLength = 0;
-            oldPosVisual = null;
-            arachnotronHeadTrail = false;
-            arachnotronBodyTrail = false;
             _moneyTroughHack = null;
             _moneyTroughHackIndex = -1;
             notFrostburn = false;
@@ -226,7 +212,6 @@ namespace AQMod
             return new TagCompound()
             {
                 ["extractinatorCount"] = ExtractinatorCount,
-                ["CursorDye"] = CursorDye,
                 ["IgnoreIgnoreMoons"] = IgnoreIgnoreMoons,
                 ["IgnoreAntiGravityItems"] = IgnoreAntiGravityItems,
             };
@@ -237,15 +222,6 @@ namespace AQMod
             IgnoreAntiGravityItems = tag.GetBool("IgnoreAntiGravityItems");
             IgnoreIgnoreMoons = tag.GetBool("IgnoreIgnoreMoons");
             ExtractinatorCount = tag.GetInt("extractinatorCount");
-            string dyeKey = tag.GetString("CursorDye");
-            if (!string.IsNullOrEmpty(dyeKey) && AQStringCodes.DecodeName(dyeKey, out string cursorDyeMod, out string cursorDyeName))
-            {
-                SetCursorDye(CursorDyeManager.Instance.GetContentID(cursorDyeMod, cursorDyeName));
-            }
-            else
-            {
-                SetCursorDye(CursorDyeManager.ID.None);
-            }
         }
 
         public override void UpdateBiomeVisuals()
@@ -864,11 +840,6 @@ namespace AQMod
             temperature = 0;
             temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
             notFrostburn = false;
-            if (Main.myPlayer == player.whoAmI)
-            {
-                oldPosLength = 0;
-                oldPosVisual = null;
-            }
         }
 
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -1509,32 +1480,6 @@ namespace AQMod
         public float GetCelesteTorusKnockback()
         {
             return 6.5f + player.velocity.Length() * 0.8f;
-        }
-
-        public int GetOldPosCountMaxed(int maxCount)
-        {
-            int count = 0;
-            for (; count < maxCount; count++)
-            {
-                if (oldPosVisual[count] == default(Vector2))
-                    break;
-            }
-            return count;
-        }
-
-        public void SetCursorDye(int type)
-        {
-            if (type <= CursorDyeManager.ID.None || type > CursorDyeManager.Instance.Count)
-            {
-                CursorDyeID = CursorDyeManager.ID.None;
-                CursorDye = "";
-            }
-            else
-            {
-                CursorDyeID = type;
-                var cursorDye = CursorDyeManager.Instance.GetContent(type);
-                CursorDye = AQStringCodes.EncodeName(cursorDye.Mod, cursorDye.Name);
-            }
         }
 
         public void SetMinionCarryPos(int x, int y)

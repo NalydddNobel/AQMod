@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Armor.Arachnotron;
+﻿using AQMod.Content.Players;
+using AQMod.Items.Armor.Arachnotron;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -18,9 +19,9 @@ namespace AQMod.Common.Graphics.PlayerEquips
             {
                 if (Main.myPlayer == info.drawPlayer.whoAmI)
                 {
-                    if (AQPlayer.oldPosLength < AQPlayer.ARACHNOTRON_OLD_POS_LENGTH)
-                        AQPlayer.oldPosLength = AQPlayer.ARACHNOTRON_OLD_POS_LENGTH;
-                    AQPlayer.arachnotronBodyTrail = true;
+                    if (PlayerDrawEffects.ClientOldPositionsLengthCache < PlayerDrawEffects.Draw_ArachnotronArmorOldPositionLength)
+                        PlayerDrawEffects.ClientOldPositionsLengthCache = PlayerDrawEffects.Draw_ArachnotronArmorOldPositionLength;
+                    PlayerDrawEffects.ArachnotronBodyTrail = true;
                 }
                 GetBasicPlayerDrawInfo(info, out Vector2 bodyPosition, out float opacity);
                 var clr = new Color(250, 250, 250, 0);

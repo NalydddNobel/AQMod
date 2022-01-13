@@ -1,26 +1,138 @@
-﻿using Terraria.ModLoader;
+﻿using AQMod.Assets;
+using AQMod.Common.Graphics;
+using AQMod.Common.ID;
+using AQMod.Content.CursorDyes.Components;
+using AQMod.Content.Players;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.GameInput;
+using Terraria.ModLoader;
 
 namespace AQMod.Content.CursorDyes
 {
-    public class CursorDyeManager : ContentLoader<CursorDye>
+    public static class CursorDyeManager
     {
-        public static class ID
+        private static CursorDyeData[] _data;
+        public static CursorDyeData GetDataFromCursorDyeID(byte cursorDye)
         {
-            public const int None = -1;
-            public const int Health = 0;
-            public const int Mana = 1;
-            public const int Sword = 2;
-            public const int Demon = 3;
+            return _data[cursorDye - 1];
+        }
+        public static bool OverridingColor { get; private set; }
+
+        public static void Update()
+        {
+            byte cursorDye = PlayerCursorDyes.LocalCursorDye;
+            if (cursorDye != CursorDyeID.None)
+            {
+                OverridingColor = true;
+            }
+            OverridingColor = false;
         }
 
-        public static CursorDyeManager Instance { get => ModContent.GetInstance<CursorDyeManager>(); }
-
-        public override void Load(AQMod mod)
+        internal static void Initialize()
         {
-            InitializeContent(new CursorDyeHealth(mod, "Health"));
-            InitializeContent(new CursorDyeMana(mod, "Mana"));
-            InitializeContent(new CursorDyeSword(mod, "Sword"));
-            InitializeContent(new CursorDyeDemon(mod, "Demon"));
+            _data = new CursorDyeData[CursorDyeID.NormalCount];
+            _data[CursorDyeID.Health - 1] = new CursorDyeData(new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(20, 1, 1, 255), new Color(255, 40, 40, 255), Main.player[Main.myPlayer].statLife / (float)Main.player[Main.myPlayer].statLifeMax2)));
+            _data[CursorDyeID.Mana - 1] = new CursorDyeData(new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(255, 255, 255, 255), new Color(40, 40, 255, 255), Main.player[Main.myPlayer].statMana / (float)Main.player[Main.myPlayer].statManaMax2)));
+            _data[CursorDyeID.Sword - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Assets/UI/cursor_sword"));
+            _data[CursorDyeID.Demon - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Assets/UI/cursor_demon", () => Main.cursorOverride != 6));
+        }
+
+        internal static string InternalGetOverrideName(int cursorOverride)
+        {
+            switch (cursorOverride)
+            {
+                case CursorOverrideID.None:
+                    return "";
+                case CursorOverrideID.Smart:
+                    return "_smart";
+            }
+            return "_";
+        }
+
+        public static class Hooks
+        {
+            internal static Color OldCursorColor;
+            internal static Color NewCursorColor;
+
+            internal static bool ShouldApplyCustomCursor()
+            {
+                return !AQMod.Loading && !AQMod.Unloading && !Main.gameMenu && Main.myPlayer >= 0 && Main.player[Main.myPlayer] != null && Main.player[Main.myPlayer].active;
+            }
+
+            internal static Vector2 Main_DrawThickCursor(On.Terraria.Main.orig_DrawThickCursor orig, bool smart)
+            {
+                if (ShouldApplyCustomCursor())
+                {
+                    byte cursorDye = PlayerCursorDyes.LocalCursorDye;
+                    if (cursorDye != CursorDyeID.None)
+                    {
+                        var data = GetDataFromCursorDyeID(cursorDye);
+                        if (data.CursorDyeThickCursorBonus != null)
+                            return data.CursorDyeThickCursorBonus.Value;
+                    }
+                }
+                return orig(smart);
+            }
+
+            internal static void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Vector2 bonus, bool smart)
+            {
+                if (ShouldApplyCustomCursor() && !PlayerInput.UsingGamepad)
+                {
+                    byte id = PlayerCursorDyes.LocalCursorDye;
+                    if (id != CursorDyeID.None)
+                    {
+                        var data = GetDataFromCursorDyeID(id);
+                        if (data.PreRender(cursorOverride: false, smart))
+                        {
+                            orig(bonus, smart);
+                        }
+                        data.PostRender(cursorOverride: false, smart);
+                    }
+                }
+                else
+                {
+                    orig(bonus, smart);
+                }
+            }
+
+            internal static void Main_DrawInterface_36_Cursor(On.Terraria.Main.orig_DrawInterface_36_Cursor orig)
+            {
+                if (ShouldApplyCustomCursor() && !PlayerInput.UsingGamepad)
+                {
+                    byte id = PlayerCursorDyes.LocalCursorDye;
+                    if (id != CursorDyeID.None)
+                    {
+                        var data = GetDataFromCursorDyeID(id);
+                        if (data.PreRender(cursorOverride: true))
+                        {
+                            orig();
+                        }
+                        data.PostRender(cursorOverride: true);
+                    }
+                }
+                else
+                {
+                    orig();
+                }
+            }
+
+            internal static void Main_CursorColor(On.Terraria.Main.orig_CursorColor orig)
+            {
+                if (ShouldApplyCustomCursor() && OverridingColor)
+                {
+                    OldCursorColor = Main.mouseColor;
+                    Main.mouseColor = NewCursorColor;
+                    orig();
+                    Main.mouseColor = OldCursorColor;
+                    NewCursorColor = Main.mouseColor;
+                }
+                else
+                {
+                    orig();
+                }
+            }
         }
     }
 }
