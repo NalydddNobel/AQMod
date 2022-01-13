@@ -19,6 +19,7 @@ namespace AQMod.Content.CursorDyes.Components
 
         void ICursorDyeComponent.OnUpdateUI()
         {
+            CursorDyeManager.OverridingColor = true;
             CursorDyeManager.Hooks.NewCursorColor = GetColor();
         }
     }

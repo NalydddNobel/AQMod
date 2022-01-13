@@ -1,14 +1,10 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
-using AQMod.Common.Graphics;
+﻿using AQMod.Common;
 using AQMod.Common.ID;
 using AQMod.Content.CursorDyes.Components;
 using AQMod.Content.Players;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameInput;
-using Terraria.ModLoader;
 
 namespace AQMod.Content.CursorDyes
 {
@@ -129,11 +125,11 @@ namespace AQMod.Content.CursorDyes
                     if (id != CursorDyeID.None)
                     {
                         var data = GetDataFromCursorDyeID(id);
-                        if (data.PreRender(cursorOverride: true))
+                        if (data.PreRender(cursorOverride: true, Main.SmartCursorEnabled))
                         {
                             orig();
                         }
-                        data.PostRender(cursorOverride: true);
+                        data.PostRender(cursorOverride: true, Main.SmartCursorShowing);
                     }
                     else
                     {

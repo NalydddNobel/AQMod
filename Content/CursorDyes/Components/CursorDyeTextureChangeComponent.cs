@@ -36,17 +36,11 @@ namespace AQMod.Content.CursorDyes.Components
                 if (Main.cursorOverride > 0)
                 {
                     texturePath += CursorDyeManager.InternalGetOverrideName(Main.cursorOverride);
-                    Main.NewText(texturePath, Color.Yellow);
-                }
-                else
-                {
-                    return true;
                 }
             }
             else if (smart)
             {
                 texturePath += "_smart";
-                Main.NewText(texturePath, Color.Red);
             }
             if (ModContent.TextureExists(texturePath))
             {
@@ -71,7 +65,7 @@ namespace AQMod.Content.CursorDyes.Components
 
                 float scale = Main.cursorScale * 0.8f;
                 Main.spriteBatch.Draw(texture, new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
-                
+
                 if (outline)
                 {
                     Main.spriteBatch.End();
