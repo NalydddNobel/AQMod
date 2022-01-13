@@ -30,7 +30,6 @@ namespace AQMod.Common
             }
         }
 
-
         internal static void NetMessage_BroadcastChatMessage(On.Terraria.NetMessage.orig_BroadcastChatMessage orig, NetworkText text, Color color, int excludedPlayer)
         {
             if (PreventChatOnce)
@@ -49,7 +48,7 @@ namespace AQMod.Common
             if (PreventChatOnce)
             {
                 PreventChatOnce = false;
-                return;
+                    return;
             }
             if (PreventChat)
             {

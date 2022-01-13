@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Dusts;
+using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -92,8 +93,8 @@ namespace AQMod.Projectiles
                             int d = Dust.NewDust(pos, 16, 16, ModContent.DustType<MonoDust>(), 0f, 0f, 254, new Color(240 + (int)(Main.DiscoR / 255f * 10f), 240 + (int)(Main.DiscoG / 255f * 10f), 240 + (int)(Main.DiscoB / 255f * 10f), 120), 1.65f);
                             Main.dust[d].velocity *= 0.05f;
                         }
-                        AQWorldGen.RandomUpdateTile_Spreading(i, j, maxValue: -1);
-                        AQWorldGen.RandomUpdateTile_Misc(i, j, maxValue: -1);
+                        TileUtils.RandomUpdate_Spreading(i, j, maxValue: -1);
+                        TileUtils.RandomUpdate_Misc(i, j, maxValue: -1);
                     }
                 }
             }

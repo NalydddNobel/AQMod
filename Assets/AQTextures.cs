@@ -25,11 +25,13 @@ namespace AQMod.Assets
 
         private static void LoadDictionaries()
         {
-            aqdebug.SupressLogAccess();
+            if (aqdebug.LogTextureLoading)
+                aqdebug.SupressLogAccessMessage();
             Particles = FillArray<ParticleTex>("Particles/Particle");
             Lights = FillArray<LightTex>("Lights/Light");
             Trails = FillArray<TrailTex>("Trails/Trail");
-            aqdebug.RepairLogAccess();
+            if (aqdebug.LogTextureLoading)
+                aqdebug.RepairLogAccessMessage();
         }
 
         private static Texture2D[] FillArray<T>(string pathWithoutNumbers) where T : class

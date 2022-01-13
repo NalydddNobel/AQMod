@@ -14,7 +14,9 @@ namespace AQMod.Common.DeveloperTools
         public static bool LogDyeBinding = false;
         public static bool LogEffectLoading = false;
         public static bool LogNetcode = true;
-        public static bool LogTextureLoading = true;
+        public static bool LogTextureLoading = false;
+        public static bool LogModCallObjectInitialization = false;
+        public static bool LogModCalls = true;
 
         public struct DebugLogger
         {
@@ -23,6 +25,26 @@ namespace AQMod.Common.DeveloperTools
             public DebugLogger(ILog logger)
             {
                 _logger = logger;
+            }
+
+            public void Log(string message)
+            {
+                _logger.Debug(message);
+            }
+
+            public void Log(string message, object arg0)
+            {
+                _logger.Debug(string.Format(message.ToString(), arg0));
+            }
+
+            public void Log(string message, params object[] args)
+            {
+                _logger.Debug(string.Format(message.ToString(), args));
+            }
+
+            public void Log(string message, Exception exception)
+            {
+                _logger.Debug(message, exception);
             }
 
             public void Log(object message)
@@ -53,22 +75,22 @@ namespace AQMod.Common.DeveloperTools
             return new DebugLogger(logger);
         }
 
-        public static void SupressLogAccess()
+        private static void InternalLogAccess(ILog logger)
+        {
+            if (LogAccess)
+                logger.Info("Accessed debug logger at: " + Environment.StackTrace);
+        }
+
+        public static void SupressLogAccessMessage()
         {
             oldLogAccess = LogAccess;
             InternalLogAccess(ModContent.GetInstance<AQMod>().Logger);
             LogAccess = false;
         }
 
-        public static void RepairLogAccess()
+        public static void RepairLogAccessMessage()
         {
             LogAccess = oldLogAccess;
-        }
-
-        private static void InternalLogAccess(ILog logger)
-        {
-            if (LogAccess)
-                logger.Info("Accessed debug logger at: " + Environment.StackTrace);
         }
     }
 }

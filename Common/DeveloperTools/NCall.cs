@@ -95,23 +95,6 @@ namespace AQMod.Common.DeveloperTools
                     }
                     break;
 
-                case "enumarrayvsdictionary":
-                    {
-                        var stopWatch = new Stopwatch();
-                        stopWatch.Start();
-
-                        for (int i = 0; i < 100000000; i++)
-                        {
-                            var t = AQTextures.Particles[ParticleTex.SpaceSquidSnowflake];
-                            if (t.IsDisposed)
-                                t.Dispose();
-                        }
-
-                        stopWatch.Stop();
-                        AQMod.GetInstance().Logger.Debug(stopWatch.ElapsedMilliseconds);
-                    }
-                    break;
-
                 case "qslget":
                     {
                         if (int.TryParse(args[1], out int result))
@@ -631,18 +614,6 @@ namespace AQMod.Common.DeveloperTools
                             i++;
                         }
                     }
-
-                case "langmerge2":
-                    {
-                        LangHelper.MergeEnglish(GameCulture.FromLegacyId(int.Parse(args[1])));
-                    }
-                    break;
-
-                case "langmerge":
-                    {
-                        LangHelper.Merge(GameCulture.FromLegacyId(int.Parse(args[1])));
-                    }
-                    break;
 
                 case "windspeed":
                     {

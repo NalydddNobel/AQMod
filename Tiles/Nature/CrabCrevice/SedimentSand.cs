@@ -25,7 +25,10 @@ namespace AQMod.Tiles.Nature.CrabCrevice
         {
             if (WorldGen.genRand.NextBool(4))
             {
-                WeepingVine.GrowVine(i, j);
+                if (WeepingVine.GrowVine(i, j))
+                {
+                    WorldGen.TileFrame(i, j, resetFrame: true);
+                }
             }
         }
     }

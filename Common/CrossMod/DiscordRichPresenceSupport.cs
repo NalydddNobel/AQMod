@@ -22,7 +22,7 @@ namespace AQMod.Common.CrossMod
             try
             {
                 var config = ModContent.GetInstance<DiscordRichPresenceConfig>();
-                if (config.enableDiscordRichPresence)
+                if (config != null && config.enableDiscordRichPresence)
                 {
                     var drp = GetMod();
                     if (drp != null)

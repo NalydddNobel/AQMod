@@ -328,6 +328,34 @@ namespace AQMod.Content.World.Generation
             return true;
         }
 
+        public static void AddVines()
+        {
+            for (int i = 10; i < Main.maxTilesX - 10; i++)
+            {
+                for (int j = 10; j < Main.maxTilesY - 10; j++)
+                {
+                    if (Main.tile[i, j] == null)
+                    {
+                        Main.tile[i, j] = new Tile();
+                        continue;
+                    }
+                    if (Main.tile[i, j].type == ModContent.TileType<SedimentSand>())
+                    {
+                        if (Main.tile[i, j + 1] == null)
+                        {
+                            Main.tile[i, j + 1] = new Tile();
+                        }
+                        else if (Main.tile[i, j + 1].active())
+                        {
+                            continue;
+                        }
+                        for (int k = 0; k < 30 && Main.tile[i, j].type == ModContent.TileType<SedimentSand>(); k++)
+                            TileLoader.RandomUpdate(i, j, Main.tile[i, j].type);
+                    }
+                }
+            }
+        }
+
         public static void GenerateCrabCrevice(GenerationProgress progress)
         {
             if (!ModContent.GetInstance<WorldGenOptions>().generateOceanRavines)
@@ -366,6 +394,7 @@ namespace AQMod.Content.World.Generation
                     k += 650;
                 }
             }
+            AddVines();
         }
 
         public static void GenerateLegacyRavines(GenerationProgress progress)

@@ -36,9 +36,12 @@ namespace AQMod.Common
             {
                 string typeName = typeof(T).Name.ToLower();
                 var fields = typeof(T).GetFields();
+                aqdebug.DebugLogger? l = null;
+                if (aqdebug.LogModCallObjectInitialization)
+                    l = aqdebug.GetDebugLogger();
                 foreach (var f in fields)
                 {
-                    AQMod.GetInstance().Logger.Debug(typeName + "." + f.Name.ToLower());
+                    l?.Log(typeName + "." + f.Name.ToLower());
                     _calls.Add(typeName + "." + f.Name.ToLower(), (o) => f.GetValue(Instance));
                     if (!f.IsInitOnly)
                     {
@@ -53,7 +56,6 @@ namespace AQMod.Common
         }
 
         private static Dictionary<string, Func<object[], object>> _calls;
-
 
         public static void Load()
         {
@@ -169,7 +171,7 @@ namespace AQMod.Common
             Auto.CreateCallsForType(ModContent.GetInstance<PassingDays>());
             Auto.CreateCallsForType(ModContent.GetInstance<ImitatedFallingStars>());
 
-            checkifnalydisstupid();
+            //checkifnalydisstupid();
         }
 
         private static void checkifnalydisstupid()
@@ -203,7 +205,27 @@ namespace AQMod.Common
             string callType = ((string)args[0]).ToLower();
             if (_calls.TryGetValue(callType, out var method))
             {
-                return method.Invoke(args);
+                if (aqdebug.LogModCalls)
+                {
+                    aqdebug.GetDebugLogger().Log("calling type: " + callType);
+                }
+                var value = method.Invoke(args);
+                if (aqdebug.LogModCalls)
+                {
+                    if (value == null)
+                    {
+                        aqdebug.GetDebugLogger().Log("call has returned a null value");
+                    }
+                    else
+                    {
+                        aqdebug.GetDebugLogger().Log("call has returned a value of " + value.GetType().FullName + " (" + value.ToString() + ")");
+                    }
+                }
+                return value;
+            }
+            if (aqdebug.LogModCalls)
+            {
+                aqdebug.GetDebugLogger().Log("Invalid call type! (" + callType + ")");
             }
             return null;
         }
