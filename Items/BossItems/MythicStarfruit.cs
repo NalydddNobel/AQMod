@@ -1,6 +1,5 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.ID;
 using AQMod.Content.World.Events.GlimmerEvent;
-using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
 using AQMod.NPCs.Boss;
 using Terraria;
@@ -13,7 +12,7 @@ namespace AQMod.Items.BossItems
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[item.type] = Constants.BossSpawnItemSortOrder.WormFood;
+            ItemID.Sets.SortingPriorityBossSpawns[item.type] = ItemSortingID.BossSummon_WormFood;
         }
 
         public override void SetDefaults()

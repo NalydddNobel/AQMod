@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.ID;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Tools;
@@ -190,7 +191,7 @@ namespace AQMod.NPCs.Friendly
                 potentialText.Add("Physicist.Chat.BloodMoon.2");
                 if (WorldGen.crimson || WorldGen.tBlood > 0)
                     potentialText.Add("Physicist.Chat.BloodMoon.CrimsonWarning");
-                if (Main.moonPhase == Constants.MoonPhases.NewMoon)
+                if (Main.moonPhase == MoonPhases.NewMoon)
                     potentialText.Add("Physicist.Chat.BloodMoon.NewMoon");
                 bool bunnyText = false;
                 bool killText = false;

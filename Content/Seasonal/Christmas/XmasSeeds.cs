@@ -141,20 +141,20 @@ namespace AQMod.Content.Seasonal.Christmas
                         if (!Chest.isLocked(i, j) && (Main.tile[i, j].frameX < 648 || Main.tile[i, j].frameX >= 1008) && (Main.tile[i, j].frameX < 1188 || Main.tile[i, j].frameX >= 1244))
                         {
                             Main.tile[i, j].frameX = (short)(Main.tile[i, j].frameX % 36 + 396);
-                            Main.tile[i, j].color(Constants.Paint.SkyBlue);
+                            Main.tile[i, j].color(PaintID.SkyBlue);
                             replaceBlock = false;
                         }
                     }
                     else if (Main.tile[i, j].type == TileID.Torches)
                     {
                         Main.tile[i, j].frameY = 198;
-                        Main.tile[i, j].color(Constants.Paint.SkyBlue);
+                        Main.tile[i, j].color(PaintID.SkyBlue);
                         replaceBlock = false;
                     }
                     else if (Main.tile[i, j].type == TileID.Platforms)
                     {
                         Main.tile[i, j].frameY = 630;
-                        Main.tile[i, j].color(Constants.Paint.SkyBlue);
+                        Main.tile[i, j].color(PaintID.SkyBlue);
                         replaceBlock = false;
                     }
                     else if (Main.tile[i, j].type == TileID.WoodenBeam)
@@ -316,7 +316,7 @@ namespace AQMod.Content.Seasonal.Christmas
                         Main.tile[i, j].wall == WallID.CorruptHardenedSand ||
                         Main.tile[i, j].wall == WallID.CorruptSandstone)
                     {
-                        Main.tile[i, j].wallColor(Constants.Paint.Purple);
+                        Main.tile[i, j].wallColor(PaintID.Purple);
                         Main.tile[i, j].wall = WallID.IceUnsafe;
                         replaceWall = false;
                     }
@@ -329,7 +329,7 @@ namespace AQMod.Content.Seasonal.Christmas
                         Main.tile[i, j].wall == WallID.CrimsonHardenedSand ||
                         Main.tile[i, j].wall == WallID.CrimsonSandstone)
                     {
-                        Main.tile[i, j].wallColor(Constants.Paint.Red);
+                        Main.tile[i, j].wallColor(PaintID.Red);
                         Main.tile[i, j].wall = WallID.IceUnsafe;
                         replaceWall = false;
                     }
@@ -360,7 +360,7 @@ namespace AQMod.Content.Seasonal.Christmas
                         Main.tileContainer[Main.tile[i, j].type] ||
                         (Main.tileFrameImportant[Main.tile[i, j].type] && Main.tile[i, j].type != TileID.Trees))
                     {
-                        Main.tile[i, j].color(Constants.Paint.DeepBlue);
+                        Main.tile[i, j].color(PaintID.DeepBlue);
                         replaceBlock = false;
                     }
                     if (Main.tile[i, j].type == TileID.Plants ||
@@ -372,13 +372,13 @@ namespace AQMod.Content.Seasonal.Christmas
                         Main.tile[i, j].type == TileID.JunglePlants2 ||
                         Main.tile[i, j].type == TileID.MushroomPlants)
                     {
-                        Main.tile[i, j].color(Constants.Paint.White);
+                        Main.tile[i, j].color(PaintID.White);
                         replaceBlock = false;
                     }
                     if (Main.tile[i, j].type == TileID.Pots)
                     {
                         Main.tile[i, j].frameY = (short)(Main.tile[i, j].frameY % 108 + 144);
-                        Main.tile[i, j].color(Constants.Paint.SkyBlue);
+                        Main.tile[i, j].color(PaintID.SkyBlue);
                         replaceBlock = false;
                     }
                     if (j < Main.maxTilesY - 1)
@@ -402,7 +402,7 @@ namespace AQMod.Content.Seasonal.Christmas
                         Main.tile[i, j].wall == WallID.LihzahrdBrickUnsafe ||
                         Main.tile[i, j].wall == WallID.SpiderUnsafe)
                     {
-                        Main.tile[i, j].wallColor(Constants.Paint.DeepBlue);
+                        Main.tile[i, j].wallColor(PaintID.DeepBlue);
                         replaceWall = false;
                     }
 

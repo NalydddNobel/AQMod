@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.ID;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Vanities.Critters;

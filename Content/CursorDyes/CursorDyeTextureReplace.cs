@@ -12,12 +12,10 @@ namespace AQMod.Content.CursorDyes
     {
         public CursorDyeTextureReplace(Mod mod, string name) : base(mod, name)
         {
-            Textures = new CursorTextureArray(Path);
         }
 
         protected virtual bool HasOutlines => true;
-        protected CursorTextureArray Textures { get; }
-        protected abstract string Path { get; }
+        protected abstract string TextureName { get; }
 
         public override Vector2? DrawThickCursor(bool smart)
         {
@@ -27,7 +25,7 @@ namespace AQMod.Content.CursorDyes
         public sealed override bool PreDrawCursor(Player player, AQPlayer drawingPlayer, Vector2 bonus, bool smart)
         {
             var type = smart ? CursorType.SmartCursor : CursorType.Cursor;
-            if (Textures.GetCursorTexture(type, out var texture))
+            if (ModContent.TextureExists("AQMod/Assets/UI/cursor_" + TextureName + "_" + ))
             {
                 float scale = Main.cursorScale * 0.8f;
                 bool outline = HasOutlines;

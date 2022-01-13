@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Configuration;
+using AQMod.Common.ID;
 using AQMod.Items.Weapons.Melee.Dagger;
 using AQMod.Tiles.Furniture.Containers;
 using Terraria;
@@ -164,9 +165,9 @@ namespace AQMod.Content.World.Generation
         public static void AddLoot(int i)
         {
             Chest c = Main.chest[i];
-            switch (Constants.ChestStyles.GetChestStyle(c))
+            switch (ChestStyles.GetChestStyle(c))
             {
-                case Constants.ChestStyles.Wood:
+                case ChestStyles.Wood:
                     {
                         if (WorldGen.genRand.NextBool(4))
                         {
@@ -175,7 +176,7 @@ namespace AQMod.Content.World.Generation
                     }
                     break;
 
-                case Constants.ChestStyles.Ice:
+                case ChestStyles.Ice:
                     {
                         if (WorldGen.genRand.NextBool(4))
                         {

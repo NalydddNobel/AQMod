@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.ID;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FishingSeals;
@@ -43,9 +44,7 @@ namespace AQMod.NPCs
 
                 case NPCID.Painter:
                 {
-                    if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite)
-                    {
-                        if (Main.moonPhase != Constants.MoonPhases.FullMoon)
+                        if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite && Main.moonPhase != MoonPhases.FullMoon)
                         {
                             for (int i = 19; i < Chest.maxItems; i++) // skips most of the starting stuff, since that's all paint and blah
                             {
@@ -58,14 +57,13 @@ namespace AQMod.NPCs
                             nextSlot++;
                         }
                     }
-                }
                 break;
 
                 case NPCID.DyeTrader:
                 {
                     if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite)
                     {
-                        if (Main.moonPhase != Constants.MoonPhases.FullMoon)
+                        if (Main.moonPhase != MoonPhases.FullMoon)
                         {
                             if (Main.moonPhase < 3)
                             {

@@ -8,6 +8,7 @@ using AQMod.Common.DeveloperTools;
 using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.Graphics.SceneLayers;
+using AQMod.Common.ID;
 using AQMod.Common.UserInterface;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
@@ -23,7 +24,6 @@ using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
-using AQMod.Effects.GoreNest;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Effects.WorldEffects;
@@ -857,7 +857,7 @@ namespace AQMod
                 {
                     Main.npc[n].netUpdate = true;
                     OmegaStariteScenes.SceneType = 1;
-                    BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", Constants.ChatColors.BossMessage);
+                    BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", CommonColors.BossMessage);
                 }
                 spawnStarite = false;
             }

@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.ID;
 using AQMod.Content;
 using AQMod.Content.NameTags;
 using AQMod.Content.World.Events.GaleStreams;
@@ -92,7 +93,7 @@ namespace AQMod.NPCs.Friendly
             {
                 switch (Main.moonPhase)
                 {
-                    case Constants.MoonPhases.FullMoon:
+                    case MoonPhases.FullMoon:
                     {
                         if (WorldGen.shadowOrbSmashed)
                         {
@@ -125,7 +126,7 @@ namespace AQMod.NPCs.Friendly
                     }
                     break;
 
-                    case Constants.MoonPhases.WaningGibbious:
+                    case MoonPhases.WaningGibbious:
                     {
                         if (WorldGen.shadowOrbSmashed)
                         {
@@ -166,7 +167,7 @@ namespace AQMod.NPCs.Friendly
                     }
                     break;
 
-                    case Constants.MoonPhases.ThirdQuarter:
+                    case MoonPhases.ThirdQuarter:
                     {
                         if (WorldGen.shadowOrbSmashed)
                         {
@@ -197,7 +198,7 @@ namespace AQMod.NPCs.Friendly
                     }
                     break;
 
-                    case Constants.MoonPhases.WaningCrescent:
+                    case MoonPhases.WaningCrescent:
                     {
                         if (WorldGen.shadowOrbSmashed)
                         {
@@ -228,7 +229,7 @@ namespace AQMod.NPCs.Friendly
                     }
                     break;
 
-                    case Constants.MoonPhases.NewMoon:
+                    case MoonPhases.NewMoon:
                     {
                         if (WorldGen.shadowOrbSmashed)
                         {
@@ -269,7 +270,7 @@ namespace AQMod.NPCs.Friendly
                     }
                     break;
 
-                    case Constants.MoonPhases.WaxingCrescent:
+                    case MoonPhases.WaxingCrescent:
                     {
                         if (WorldGen.shadowOrbSmashed)
                         {
@@ -326,7 +327,7 @@ namespace AQMod.NPCs.Friendly
                     }
                     break;
 
-                    case Constants.MoonPhases.FirstQuarter:
+                    case MoonPhases.FirstQuarter:
                     {
                         if (WorldGen.shadowOrbSmashed)
                         {
@@ -373,7 +374,7 @@ namespace AQMod.NPCs.Friendly
                     }
                     break;
 
-                    case Constants.MoonPhases.WaxingGibbious:
+                    case MoonPhases.WaxingGibbious:
                     {
                         if (WorldGen.shadowOrbSmashed)
                         {
@@ -773,7 +774,7 @@ namespace AQMod.NPCs.Friendly
                     }
                     else
                     {
-                        int shopID = Constants.ShopIDs.GetShopFromNPCID(Main.npc[i].type);
+                        int shopID = ShopID.GetShopFromNPCID(Main.npc[i].type);
                         if (shopID != -1)
                         {
                             try

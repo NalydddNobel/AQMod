@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.ID;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -10,7 +11,7 @@ namespace AQMod.Items.Tools.Utility
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[item.type] = Constants.BossSpawnItemSortOrder.Abeemination;
+            ItemID.Sets.SortingPriorityBossSpawns[item.type] = ItemSortingID.BossSummon_Abeemination;
         }
 
         public override void SetDefaults()

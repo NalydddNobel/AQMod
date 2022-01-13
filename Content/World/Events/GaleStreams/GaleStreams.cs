@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Common.ID;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Items.Weapons.Melee.Boomerang;
 using AQMod.Localization;
@@ -316,7 +317,7 @@ namespace AQMod.Content.World.Events.GaleStreams
                 }
             }
 
-            AQMod.BroadcastMessage(Lang.gen[59].Key, Constants.ChatColors.EventMessage);
+            AQMod.BroadcastMessage(Lang.gen[59].Key, CommonColors.EventMessage);
             if (Main.netMode != NetmodeID.MultiplayerClient)
                 NetMessage.SendTileSquare(-1, minX, minY, size);
         }

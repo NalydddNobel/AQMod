@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.DeveloperTools;
 
-namespace AQMod.Assets
+namespace AQMod.Common.ID
 {
     [Identity(typeof(LightTex))]
     public sealed class LightTex

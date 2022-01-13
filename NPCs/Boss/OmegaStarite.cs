@@ -4,6 +4,7 @@ using AQMod.Common;
 using AQMod.Common.Configuration;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics;
+using AQMod.Common.ID;
 using AQMod.Common.NoHitting;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;

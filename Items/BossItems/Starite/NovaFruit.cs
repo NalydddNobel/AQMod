@@ -1,4 +1,4 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.ID;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
@@ -21,7 +21,7 @@ namespace AQMod.Items.BossItems.Starite
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[item.type] = Constants.BossSpawnItemSortOrder.Abeemination;
+            ItemID.Sets.SortingPriorityBossSpawns[item.type] = ItemSortingID.BossSummon_Abeemination;
         }
 
         public override void SetDefaults()
@@ -44,7 +44,7 @@ namespace AQMod.Items.BossItems.Starite
             if (Main.myPlayer == player.whoAmI)
                 GlimmerEventSky._glimmerLight = 1f;
             NPC.NewNPC((int)player.position.X, (int)player.position.Y - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, player.whoAmI);
-            AQMod.BroadcastMessage(AQText.Key + "Common.AwakenedOmegaStarite", Constants.ChatColors.BossMessage);
+            AQMod.BroadcastMessage(AQText.Key + "Common.AwakenedOmegaStarite", CommonColors.BossMessage);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

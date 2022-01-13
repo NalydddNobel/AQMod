@@ -2,7 +2,7 @@
 
 namespace AQMod.Content.CursorDyes
 {
-    public sealed class CursorDyeDemon : CursorDyeTextureReplace
+    public sealed class CursorDyeDemon : LegacyCursorDyeTextureReplace
     {
         public CursorDyeDemon(Mod mod, string name) : base(mod, name)
         {

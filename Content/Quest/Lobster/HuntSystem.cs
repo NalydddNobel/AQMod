@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.IO;
+using AQMod.NPCs;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -33,7 +34,7 @@ namespace AQMod.Content.Quest.Lobster
                 tag["Hunt"] = Hunt.GetKey();
                 tag["QuestsCompleted"] = (int)QuestsCompleted;
                 if (_targetNPCType != -1)
-                    tag["TargetNPC"] = ModNPCIO.GetKey(_targetNPCType);
+                    tag["TargetNPC"] = NPCUtilities.IO.GetSerializationKey(_targetNPCType);
                 Hunt = null;
                 return tag;
             }

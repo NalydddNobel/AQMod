@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.ID;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -23,7 +24,7 @@ namespace AQMod.Items.Weapons.Magic
             item.magic = true;
             item.knockBack = 4f;
             item.mana = 12;
-            item.holdStyle = Constants.HoldStyle.Umbrella;
+            item.holdStyle = HoldStyleID.Umbrella;
             item.channel = true;
             item.noMelee = true;
             item.shoot = ModContent.ProjectileType<Projectiles.Magic.Umystick>();

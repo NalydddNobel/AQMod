@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Common.ID;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Content.World.FallingStars;
 using AQMod.Items.BossItems;
@@ -73,7 +74,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
         internal override EventProgressBar ProgressBar => new BasicEventProgressBar(
                     () => IsAbleToShowInvasionProgressBar(),
                     () => 1f - (float)GetTileDistanceUsingPlayer(Main.LocalPlayer) / MaxDistance,
-                    "AQMod/Assets/EventIcons/GlimmerEvent",
+                    "AQMod/Assets/UI/event_glimmerevent",
                     "Mods.AQMod.EventName.GlimmerEvent",
                      new Color(120, 20, 110, 128));
 
@@ -120,7 +121,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
         public override void PreUpdate()
         {
             if (PassingDays.OnTurnNight && PassingDays.daysPassedSinceLastGlimmerEvent > 4 
-                && Main.moonPhase != Constants.MoonPhases.FullMoon && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
+                && Main.moonPhase != MoonPhases.FullMoon && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
             {
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {

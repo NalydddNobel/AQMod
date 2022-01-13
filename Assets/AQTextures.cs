@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.DeveloperTools;
+using AQMod.Common.ID;
 using AQMod.Effects;
 using AQMod.Effects.Particles;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,12 +20,7 @@ namespace AQMod.Assets
 
         internal static void Load()
         {
-            Pixel = ModContent.GetTexture("AQMod/Assets/Pixel");
-            LoadDictionaries();
-        }
-
-        private static void LoadDictionaries()
-        {
+            Pixel = ModContent.GetTexture("AQMod/Assets/pixel");
             if (aqdebug.LogTextureLoading)
                 aqdebug.SupressLogAccessMessage();
             Particles = FillArray<ParticleTex>("Particles/Particle");

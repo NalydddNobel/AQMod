@@ -13,6 +13,7 @@ using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Generation;
 using AQMod.Effects.Particles;
 using AQMod.Localization;
+using AQMod.NPCs;
 using AQMod.NPCs.Monsters;
 using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
@@ -31,6 +32,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace AQMod.Common.DeveloperTools
 {
@@ -521,9 +523,9 @@ namespace AQMod.Common.DeveloperTools
                         caller.Reply("Hunt Key: " + HuntSystem.Hunt.GetKey());
                         if (HuntSystem.TargetNPC != -1)
                         {
-                            string key = ModNPCIO.GetKey(HuntSystem._targetNPCType);
+                            string key = NPCUtilities.IO.GetSerializationKey(HuntSystem._targetNPCType);
                             caller.Reply("Target NPC: " + key);
-                            int npcType = ModNPCIO.GetID(key);
+                            int npcType = NPCUtilities.IO.DeserializeKey(key);
                             HuntSystem.SetNPCTarget(npcType);
                             caller.Reply("Attempt reload NPC type: " + npcType + " (" + Lang.GetNPCNameValue(npcType) + "), ((" + Main.npc[HuntSystem.TargetNPC].FullName + "))");
                         }

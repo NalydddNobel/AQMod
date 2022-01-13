@@ -2,6 +2,7 @@
 using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
+using AQMod.Common.ID;
 using AQMod.Dusts;
 using AQMod.Items;
 using AQMod.Items.Armor.Arachnotron;
