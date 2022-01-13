@@ -936,6 +936,7 @@ namespace AQMod.Common.DeveloperTools
                 case "checkcursor":
                     {
                         var p = Main.LocalPlayer.GetModPlayer<PlayerCursorDyes>();
+                        caller.Reply(nameof(PlayerCursorDyes.cursorDye) + "2:" + PlayerCursorDyes.LocalCursorDye);
                         caller.Reply(nameof(PlayerCursorDyes.cursorDye) + ":" + p.cursorDye);
                         caller.Reply(nameof(Main.cursorColor) + ":" + Main.cursorColor);
                         caller.Reply(nameof(Main.mouseColor) + ":" + Main.mouseColor);

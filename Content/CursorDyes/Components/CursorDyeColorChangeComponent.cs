@@ -13,6 +13,7 @@ namespace AQMod.Content.CursorDyes.Components
         }
         public CursorDyeColorChangeComponent(Func<Color> getColor)
         {
+            CursorDyeManager.OverridingColor = true;
             GetColor = getColor;
         }
 

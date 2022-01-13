@@ -34,7 +34,7 @@ namespace AQMod.Content.CursorDyes.Components
             if (cursorOverride)
             {
                 if (Main.cursorOverride > 0)
-                    texturePath += "_" + CursorDyeManager.InternalGetOverrideName(Main.cursorOverride);
+                    texturePath += CursorDyeManager.InternalGetOverrideName(Main.cursorOverride);
                 else
                     return true;
             }

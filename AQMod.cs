@@ -812,7 +812,7 @@ namespace AQMod
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            
+            CursorDyeManager.Update();
             var index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
             if (index != -1)
             {

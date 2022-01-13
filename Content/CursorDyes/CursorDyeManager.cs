@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Content.CursorDyes.Components;
@@ -11,32 +12,23 @@ using Terraria.ModLoader;
 
 namespace AQMod.Content.CursorDyes
 {
-    public static class CursorDyeManager
+    public sealed class CursorDyeManager : IAutoloadType
     {
         private static CursorDyeData[] _data;
         public static CursorDyeData GetDataFromCursorDyeID(byte cursorDye)
         {
             return _data[cursorDye - 1];
         }
-        public static bool OverridingColor { get; private set; }
+        public static bool OverridingColor { get; set; }
 
         public static void Update()
         {
+            OverridingColor = false;
             byte cursorDye = PlayerCursorDyes.LocalCursorDye;
             if (cursorDye != CursorDyeID.None)
             {
-                OverridingColor = true;
+                GetDataFromCursorDyeID(cursorDye).UpdateComponents();
             }
-            OverridingColor = false;
-        }
-
-        internal static void Initialize()
-        {
-            _data = new CursorDyeData[CursorDyeID.NormalCount];
-            _data[CursorDyeID.Health - 1] = new CursorDyeData(new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(20, 1, 1, 255), new Color(255, 40, 40, 255), Main.player[Main.myPlayer].statLife / (float)Main.player[Main.myPlayer].statLifeMax2)));
-            _data[CursorDyeID.Mana - 1] = new CursorDyeData(new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(255, 255, 255, 255), new Color(40, 40, 255, 255), Main.player[Main.myPlayer].statMana / (float)Main.player[Main.myPlayer].statManaMax2)));
-            _data[CursorDyeID.Sword - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Assets/UI/cursor_sword"));
-            _data[CursorDyeID.Demon - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Assets/UI/cursor_demon", () => Main.cursorOverride != 6));
         }
 
         internal static string InternalGetOverrideName(int cursorOverride)
@@ -47,8 +39,34 @@ namespace AQMod.Content.CursorDyes
                     return "";
                 case CursorOverrideID.Smart:
                     return "_smart";
+                case CursorOverrideID.Search:
+                    return "_search";
+                case CursorOverrideID.Trash:
+                    return "_trash";
+                case CursorOverrideID.Into:
+                    return "_into";
+                case CursorOverrideID.IntoChest:
+                    return "_intochest";
+                case CursorOverrideID.FromChest:
+                    return "_fromchest";
+                case CursorOverrideID.Sell:
+                    return "_sell";
             }
             return "_";
+        }
+
+        void IAutoloadType.OnLoad()
+        {
+            _data = new CursorDyeData[CursorDyeID.NormalCount];
+            _data[CursorDyeID.Health - 1] = new CursorDyeData(new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(20, 1, 1, 255), new Color(255, 40, 40, 255), Main.player[Main.myPlayer].statLife / (float)Main.player[Main.myPlayer].statLifeMax2)));
+            _data[CursorDyeID.Mana - 1] = new CursorDyeData(new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(255, 255, 255, 255), new Color(40, 40, 255, 255), Main.player[Main.myPlayer].statMana / (float)Main.player[Main.myPlayer].statManaMax2)));
+            _data[CursorDyeID.Sword - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Assets/UI/cursor_sword"));
+            _data[CursorDyeID.Demon - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Assets/UI/cursor_demon", () => Main.cursorOverride != 6));
+        }
+
+        void IAutoloadType.Unload()
+        {
+            _data = null;
         }
 
         public static class Hooks
@@ -65,10 +83,10 @@ namespace AQMod.Content.CursorDyes
             {
                 if (ShouldApplyCustomCursor())
                 {
-                    byte cursorDye = PlayerCursorDyes.LocalCursorDye;
-                    if (cursorDye != CursorDyeID.None)
+                    byte id = PlayerCursorDyes.LocalCursorDye;
+                    if (id != CursorDyeID.None)
                     {
-                        var data = GetDataFromCursorDyeID(cursorDye);
+                        var data = GetDataFromCursorDyeID(id);
                         if (data.CursorDyeThickCursorBonus != null)
                             return data.CursorDyeThickCursorBonus.Value;
                     }
@@ -90,6 +108,10 @@ namespace AQMod.Content.CursorDyes
                         }
                         data.PostRender(cursorOverride: false, smart);
                     }
+                    else
+                    {
+                        orig(bonus, smart);
+                    }
                 }
                 else
                 {
@@ -110,6 +132,10 @@ namespace AQMod.Content.CursorDyes
                             orig();
                         }
                         data.PostRender(cursorOverride: true);
+                    }
+                    else
+                    {
+                        orig();
                     }
                 }
                 else

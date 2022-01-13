@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace AQMod.Content.CursorDyes
 {
-    public struct CursorDyeData
+    public sealed class CursorDyeData
     {
         public readonly Vector2? CursorDyeThickCursorBonus;
         private readonly ICursorDyeComponent[] _components;
@@ -11,7 +11,7 @@ namespace AQMod.Content.CursorDyes
         public CursorDyeData(params ICursorDyeComponent[] components)
         {
             CursorDyeThickCursorBonus = null;
-               _components = components;
+            _components = components;
         }
         public CursorDyeData(Vector2 thickCursorBonus, params ICursorDyeComponent[] components)
         {
@@ -32,11 +32,14 @@ namespace AQMod.Content.CursorDyes
 
         public bool PreRender(bool cursorOverride, bool smart = false)
         {
-            foreach (CursorDyeTextureChangeComponent c in _components)
+            if (_components != null)
             {
-                if (!c.PreRender(cursorOverride, smart))
+                foreach (ICursorDyeComponent co in _components)
                 {
-                    return false;
+                    if (co is CursorDyeTextureChangeComponent c && !c.PreRender(cursorOverride, smart))
+                    {
+                        return false;
+                    }
                 }
             }
             return true;
@@ -44,9 +47,15 @@ namespace AQMod.Content.CursorDyes
 
         public void PostRender(bool cursorOverride, bool smart = false)
         {
-            foreach (CursorDyeTextureChangeComponent c in _components)
+            if (_components != null)
             {
-                c.PostRender(cursorOverride, smart);
+                foreach (ICursorDyeComponent co in _components)
+                {
+                    if (co is CursorDyeTextureChangeComponent c)
+                    {
+                        c.PostRender(cursorOverride, smart);
+                    }
+                }
             }
         }
     }
