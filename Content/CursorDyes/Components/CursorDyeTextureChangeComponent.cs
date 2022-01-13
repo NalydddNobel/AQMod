@@ -42,6 +42,7 @@ namespace AQMod.Content.CursorDyes.Components
             {
                 texturePath += "_smart";
             }
+            Main.NewText(texturePath);
             if (ModContent.TextureExists(texturePath))
             {
                 var texture = ModContent.GetTexture(texturePath);

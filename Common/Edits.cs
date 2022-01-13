@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Graphics.SceneLayers;
+using AQMod.Content.CursorDyes;
 using AQMod.Content.Players;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Effects;
@@ -21,6 +22,11 @@ namespace AQMod.Common
             On.Terraria.Main.DrawTiles += Main_DrawTiles;
             On.Terraria.Main.UpdateTime += Main_UpdateTime;
 
+            On.Terraria.Main.CursorColor += CursorDyeManager.Hooks.Main_CursorColor;
+            On.Terraria.Main.DrawCursor += CursorDyeManager.Hooks.Main_DrawCursor;
+            On.Terraria.Main.DrawThickCursor += CursorDyeManager.Hooks.Main_DrawThickCursor;
+            On.Terraria.Main.DrawInterface_36_Cursor += CursorDyeManager.Hooks.Main_DrawInterface_36_Cursor;
+
             On.Terraria.Player.DropTombstone += Player_DropTombstone;
 
             On.Terraria.NetMessage.BroadcastChatMessage += MessageBroadcast.NetMessage_BroadcastChatMessage;
@@ -31,6 +37,22 @@ namespace AQMod.Common
 
         internal static void UnloadHooks() // I am pretty sure TModLoader automatically unloads hooks, so this will just be used in some other cases
         {
+            On.Terraria.Main.DrawNPCs -= Main_DrawNPCs;
+            On.Terraria.Main.DrawTiles -= Main_DrawTiles;
+            On.Terraria.Main.UpdateTime -= Main_UpdateTime;
+
+            On.Terraria.Main.CursorColor -= CursorDyeManager.Hooks.Main_CursorColor;
+            On.Terraria.Main.DrawCursor -= CursorDyeManager.Hooks.Main_DrawCursor;
+            On.Terraria.Main.DrawThickCursor -= CursorDyeManager.Hooks.Main_DrawThickCursor;
+            On.Terraria.Main.DrawInterface_36_Cursor -= CursorDyeManager.Hooks.Main_DrawInterface_36_Cursor;
+
+            On.Terraria.Player.DropTombstone += Player_DropTombstone;
+
+            On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float -= Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
+
+            On.Terraria.NetMessage.BroadcastChatMessage -= MessageBroadcast.NetMessage_BroadcastChatMessage;
+            On.Terraria.Main.NewText_string_byte_byte_byte_bool -= MessageBroadcast.Main_NewText_string_byte_byte_byte_bool;
+
             Main_UpdateTime_SpawnTownNPCs = null;
             CustomRenderBehindTiles.DrawProjsCache = null;
         }

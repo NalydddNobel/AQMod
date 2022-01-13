@@ -41,6 +41,8 @@ namespace AQMod.Content.CursorDyes
                     return "_smart";
                 case CursorOverrideID.Search:
                     return "_search";
+                case CursorOverrideID.Favorite:
+                    return "_favorite";
                 case CursorOverrideID.Trash:
                     return "_trash";
                 case CursorOverrideID.Into:

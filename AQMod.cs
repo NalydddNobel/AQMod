@@ -136,11 +136,6 @@ namespace AQMod
                 On.Terraria.Player.QuickBuff += Player_QuickBuff;
                 On.Terraria.Player.PickTile += Player_PickTile;
                 On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
-
-                On.Terraria.Main.CursorColor += CursorDyeManager.Hooks.Main_CursorColor;
-                On.Terraria.Main.DrawCursor += CursorDyeManager.Hooks.Main_DrawCursor;
-                On.Terraria.Main.DrawThickCursor += CursorDyeManager.Hooks.Main_DrawThickCursor;
-                On.Terraria.Main.DrawInterface_36_Cursor += CursorDyeManager.Hooks.Main_DrawInterface_36_Cursor;
             }
 
             private static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
@@ -662,6 +657,7 @@ namespace AQMod
             Unloading = true;
             cachedLoadTasks = null;
             Autoloading.Unload();
+            Common.Edits.UnloadHooks();
 
             AQItem.Sets.Clones.Unload();
             ItemOverlays = null;
