@@ -34,15 +34,20 @@ namespace AQMod.Content.CursorDyes.Components
             if (cursorOverride)
             {
                 if (Main.cursorOverride > 0)
+                {
                     texturePath += CursorDyeManager.InternalGetOverrideName(Main.cursorOverride);
+                    Main.NewText(texturePath, Color.Yellow);
+                }
                 else
+                {
                     return true;
+                }
             }
             else if (smart)
             {
                 texturePath += "_smart";
+                Main.NewText(texturePath, Color.Red);
             }
-            Main.NewText(texturePath);
             if (ModContent.TextureExists(texturePath))
             {
                 var texture = ModContent.GetTexture(texturePath);
