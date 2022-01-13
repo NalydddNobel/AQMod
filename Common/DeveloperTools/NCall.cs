@@ -65,6 +65,10 @@ namespace AQMod.Common.DeveloperTools
                     caller.Reply("Command doesn't exist.");
                     break;
 
+                case "cursordye":
+                    caller.Player.GetModPlayer<PlayerCursorDyes>().cursorDye = byte.Parse(args[1]);
+                    break;
+
                 case "genccmushroom":
                     NobleMushroomsNew.Place(mX, mY);
                     break;

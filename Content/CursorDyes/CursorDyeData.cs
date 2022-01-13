@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace AQMod.Content.CursorDyes
 {
-    public sealed class CursorDyeData
+    public struct CursorDyeData
     {
         public readonly Vector2? CursorDyeThickCursorBonus;
         private readonly ICursorDyeComponent[] _components;

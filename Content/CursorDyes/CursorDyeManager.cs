@@ -60,6 +60,7 @@ namespace AQMod.Content.CursorDyes
             _data[CursorDyeID.Mana - 1] = new CursorDyeData(new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(255, 255, 255, 255), new Color(40, 40, 255, 255), Main.player[Main.myPlayer].statMana / (float)Main.player[Main.myPlayer].statManaMax2)));
             _data[CursorDyeID.Sword - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Assets/UI/cursor_sword"));
             _data[CursorDyeID.Demon - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Assets/UI/cursor_demon", () => Main.cursorOverride != 6));
+            _data[CursorDyeID.WhackAZombie - 1] = new CursorDyeData(new WhackAZombieComponent());
         }
 
         void IAutoloadType.Unload()

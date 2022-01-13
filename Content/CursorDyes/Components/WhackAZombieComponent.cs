@@ -2,51 +2,41 @@
 using AQMod.Common.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace AQMod.Content.CursorDyes.Components
 {
-    public class CursorDyeTextureChangeComponent : ICursorDyeComponent
+    internal class WhackAZombieComponent : CursorDyeTextureChangeComponent
     {
-        protected readonly string _texture;
-        protected readonly Func<bool> shouldDrawOutline;
-
-        public CursorDyeTextureChangeComponent(string texture)
-        {
-            _texture = texture;
-            shouldDrawOutline = () => true;
-        }
-        public CursorDyeTextureChangeComponent(string texture, Func<bool> shouldDrawOutline)
-        {
-            _texture = texture;
-            this.shouldDrawOutline = shouldDrawOutline;
-        }
-
-        void ICursorDyeComponent.OnUpdateUI()
+        public WhackAZombieComponent() : base("AQMod/Assets/UI/cursor_whack")
         {
         }
 
-        public virtual bool PreRender(bool cursorOverride, bool smart = false)
+        public override bool PreRender(bool cursorOverride, bool smart = false)
         {
             string texturePath = _texture;
             if (cursorOverride)
             {
                 if (Main.cursorOverride > 0)
                 {
-                    texturePath += CursorDyeManager.InternalGetOverrideName(Main.cursorOverride);
+                    return true;
                 }
             }
             else if (smart)
             {
-                texturePath += "_smart";
+                return true;
+            }
+            bool outline = true;
+            if (Main.mouseLeft)
+            {
+                outline = false;
+                texturePath += "press";
             }
             if (ModContent.TextureExists(texturePath))
             {
                 var texture = ModContent.GetTexture(texturePath);
 
-                bool outline = shouldDrawOutline();
                 if (outline)
                 {
                     try
@@ -64,7 +54,7 @@ namespace AQMod.Content.CursorDyes.Components
                 }
 
                 float scale = Main.cursorScale * 0.8f;
-                Main.spriteBatch.Draw(texture, new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, new Vector2(Main.mouseX - 8f, Main.mouseY - 8f), null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
 
                 if (outline)
                 {
@@ -73,15 +63,12 @@ namespace AQMod.Content.CursorDyes.Components
                 }
                 else if (ModContent.TextureExists(texturePath + "_outline"))
                 {
-                    Main.spriteBatch.Draw(ModContent.GetTexture(texturePath + "_outline"), new Vector2(Main.mouseX, Main.mouseY), null, Main.MouseBorderColor, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(ModContent.GetTexture(texturePath + "_outline"), new Vector2(Main.mouseX - 8f, Main.mouseY - 8f), null, Main.MouseBorderColor, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
                 }
                 return false;
             }
             return true;
         }
 
-        public virtual void PostRender(bool cursorOverride, bool smart)
-        {
-        }
     }
 }

@@ -41,7 +41,7 @@ namespace AQMod.Projectiles.Magic
         }
 
         protected Func<float, Vector2> GetSizeMethod() => (p) => new Vector2(2f, 2f);
-        protected Func<float, Color> GetColorMethod() => (p) => Color.Lerp(new Color(100, 255, 10, 0), new Color(255, 50, 10, 0), p) * (1f - p);
+        protected Func<float, Color> GetColorMethod() => (p) => Color.Lerp(new Color(255, 230, 10, 250), new Color(255, 50, 10, 0), p) * (1f - p);
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {

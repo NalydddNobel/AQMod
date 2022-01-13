@@ -87,7 +87,8 @@ ItemTooltip.StariteStaff=Summons a speedy Starite to fight for you
 BuffName.Starite=Starite
 BuffDescription.Starite=The Starite will fight for you
 
-ItemName.VineSword=Turnblock Hammer
+ItemName.VineSword=Mallet
+ItemTooltip.VineSword=Whack nearby enemies using your mouse\nMakes pots have special drops
 ItemName.KryptonSword=Krypton Boomerang
 ItemTooltip.KryptonSword=Cuts through enemies and can be swung around\nInflicts multiple debuffs
 

@@ -1,4 +1,7 @@
-﻿using Terraria;
+﻿using AQMod.Common.ID;
+using AQMod.Content.Players;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,16 +11,36 @@ namespace AQMod.Items.Weapons.Melee
     {
         public override void SetDefaults()
         {
-            item.width = 40;
-            item.height = 40;
-            item.damage = 13;
-            item.useTime = 18;
-            item.useAnimation = 18;
-            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.width = 30;
+            item.height = 30;
+            item.damage = 9;
+            item.useTime = 4;
+            item.useAnimation = 4;
+            item.useStyle = ItemUseStyleID.HoldingOut;
+            item.noUseGraphic = true;
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(silver: 2);
             item.melee = true;
-            item.knockBack = 2f;
+            item.knockBack = 1.25f;
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.WhackAZombie>();
+        }
+
+        public override void HoldItem(Player player)
+        {
+            player.GetModPlayer<PlayerCursorDyes>().VisibleCursorDye = CursorDyeID.WhackAZombie;
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            position = Main.MouseWorld;
+            var normal = Vector2.Normalize(position - player.Center);
+            speedX = normal.X * 0.1f;
+            speedY = normal.Y * 0.1f;
+            if (Vector2.Distance(position, player.Center) > 200f)
+            {
+                position = player.Center + normal * 200f;
+            }
+            return base.Shoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
     }
 }
