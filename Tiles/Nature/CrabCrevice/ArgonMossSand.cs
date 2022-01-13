@@ -17,8 +17,6 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             base.SetDefaults();
 
             AddMapEntry(new Color(208, 0, 126));
-            //AddMapEntry(new Color(114, 254, 2));
-            //AddMapEntry(new Color(0, 197, 208));
 
             dustType = 32;
             drop = ItemID.SandBlock;
