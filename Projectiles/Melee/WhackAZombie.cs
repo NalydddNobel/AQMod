@@ -11,7 +11,7 @@ namespace AQMod.Projectiles.Melee
         {
             projectile.width = 30;
             projectile.height = 30;
-            projectile.timeLeft = 2;
+            projectile.timeLeft = 4;
             projectile.friendly = true;
             projectile.magic = true;
             projectile.aiStyle = -1;
@@ -19,15 +19,6 @@ namespace AQMod.Projectiles.Melee
             projectile.penetrate = -1;
             projectile.tileCollide = false;
             projectile.ownerHitCheck = true;
-        }
-
-        public override void AI()
-        {
-            if (projectile.ai[0] > 0)
-            {
-                projectile.active = false;
-            }
-            projectile.ai[0]++;
         }
     }
 }

@@ -330,43 +330,6 @@ namespace AQMod
             }
         }
 
-        public override bool CanUseItem(Item item, Player player)
-        {
-            if (item.modItem is ISpecialFood specialFood)
-            {
-                if (AQPlayer.IsQuickBuffing && AQPlayer.HasFoodBuff(player.whoAmI))
-                    return false;
-                if (base.CanUseItem(item, player))
-                {
-                    item.buffType = 0;
-                    player.AddBuff(specialFood.ChangeBuff(player), item.buffTime);
-                    if (AQPlayer.IsQuickBuffing)
-                    {
-                        player.ConsumeItem(item.type);
-                    }
-                    else
-                    {
-                        if (ItemLoader.ConsumeItem(item, player))
-                        {
-                            item.stack--;
-                        }
-                    }
-                    if (item.UseSound != null)
-                        Main.PlaySound(item.UseSound, player.Center);
-                    if (!AQPlayer.IsQuickBuffing)
-                    {
-                        if (item.stack <= 0)
-                        {
-                            item.TurnToAir();
-                        }
-                        return true;
-                    }
-                }
-                return false;
-            }
-            return base.CanUseItem(item, player);
-        }
-
         public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
         {
             if (player.GetModPlayer<AQPlayer>().spicyEel)

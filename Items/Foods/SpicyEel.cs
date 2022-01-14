@@ -1,11 +1,10 @@
-﻿using AQMod.Items.Fish.GlimmerEvent;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Foods
 {
-    public class SpicyEel : ModItem, ISpecialFood
+    public class SpicyEel : ModItem
     {
         public override void SetDefaults()
         {
@@ -20,7 +19,7 @@ namespace AQMod.Items.Foods
             item.consumable = true;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(silver: 50);
-            item.buffType = BuffID.WellFed;
+            item.buffType = ModContent.BuffType<Buffs.Foods.SpicyEel>();
             item.buffTime = 25200;
         }
 
@@ -31,11 +30,6 @@ namespace AQMod.Items.Foods
             r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyNobleMushroom);
             r.SetResult(this);
             r.AddRecipe();
-        }
-
-        int ISpecialFood.ChangeBuff(Player player)
-        {
-            return ModContent.BuffType<Buffs.Foods.SpicyEel>();
         }
     }
 }

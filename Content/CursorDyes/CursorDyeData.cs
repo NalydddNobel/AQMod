@@ -5,17 +5,17 @@ namespace AQMod.Content.CursorDyes
 {
     public struct CursorDyeData
     {
-        public readonly Vector2? CursorDyeThickCursorBonus;
+        public readonly Vector2? CursorDyeThickCursor;
         private readonly ICursorDyeComponent[] _components;
 
         public CursorDyeData(params ICursorDyeComponent[] components)
         {
-            CursorDyeThickCursorBonus = null;
+            CursorDyeThickCursor = new Vector2(2f);
             _components = components;
         }
         public CursorDyeData(Vector2 thickCursorBonus, params ICursorDyeComponent[] components)
         {
-            CursorDyeThickCursorBonus = thickCursorBonus;
+            CursorDyeThickCursor = thickCursorBonus;
             _components = components;
         }
 

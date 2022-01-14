@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Foods.GaleStreams
 {
-    public class PeeledCarrot : ModItem, ISpecialFood
+    public class PeeledCarrot : ModItem
     {
         public override void SetDefaults()
         {
@@ -18,13 +18,8 @@ namespace AQMod.Items.Foods.GaleStreams
             item.useStyle = ItemUseStyleID.EatingUsing;
             item.useAnimation = 20;
             item.useTime = 20;
-            item.buffType = BuffID.WellFed;
+            item.buffType = ModContent.BuffType<Buffs.Foods.PeeledCarrot>();
             item.buffTime = 72000;
-        }
-
-        int ISpecialFood.ChangeBuff(Player player)
-        {
-            return ModContent.BuffType<Buffs.Foods.PeeledCarrot>();
         }
     }
 }

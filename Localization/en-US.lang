@@ -1,25 +1,4 @@
-﻿##############
-
-# Mod Description #
-
-Aequus was created from me messing around with coding and stuff, so don't try to take the mod super serious pls :)
-
-Important Info
-
-This mod does not function properly in multiplayer, play it at your own volition
-The mod's assets are extractable
-The wiki is somewhat a mess, don't use it
-A discord link to the mod is in the homepage, if you like typing discord invite links yourself, here you go:
-
-> 216 Items
-> 16 Enemies
-> 3 Events
-> 2 Bosses
-> 2 Town NPCs
-
-Have fun
-Happy Holidays! Create a world with the seed "Aequus Xmas" for a special world!
-
+﻿
 ##############
 Items
 ##############
@@ -54,7 +33,7 @@ ItemTooltip.DemoniteBarb=Your grappling hooks inflict damage
 ItemName.MetalBarb=Metal Barb
 ItemTooltip.MetalBarb=Your grappling hooks inflict damage
 
-ItemName.CrabBarb=Carb
+ItemName.CrabBarb=Crab Barb
 ItemTooltip.CrabBarb=Your grappling hooks inflict poison and damage
 
 # Armor
@@ -68,9 +47,6 @@ ItemName.NuclearFeather=Nuclear Feather
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
 ItemName.Qi=Qi
 ItemTooltip.Qi={$Mods.AQMod.Tooltips.Unobtainable}\nA mystical energy created by extreme philosophical forces
-
-ItemName.JellyManaCrystal=Jelly Mana Crystal
-ItemName.HeartPiece=Heart Piece
 
 # Weapons
 
@@ -138,6 +114,9 @@ BuffDescription.PiranhaPlant=The piranha plant will fight for you
 ItemName.Skrawler=Skrawler
 ItemTooltip.Skrawler=Shoots a deadly flame bolt
 ProjectileName.Skrawler=Skrawler
+
+ItemName.SnowflakeCannon=Snowflake Cannon
+ItemTooltip.SnowflakeCannon=Launches many snowballs at once\n66% chance to not consume ammo
 
 # Dyes
 ItemName.RedSpriteDye=Red Sprite Dye

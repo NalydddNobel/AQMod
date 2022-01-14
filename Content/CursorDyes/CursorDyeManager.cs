@@ -86,8 +86,8 @@ namespace AQMod.Content.CursorDyes
                     if (id != CursorDyeID.None)
                     {
                         var data = GetDataFromCursorDyeID(id);
-                        if (data.CursorDyeThickCursorBonus != null)
-                            return data.CursorDyeThickCursorBonus.Value;
+                        if (data.CursorDyeThickCursor != null)
+                            return data.CursorDyeThickCursor.Value;
                     }
                 }
                 return orig(smart);

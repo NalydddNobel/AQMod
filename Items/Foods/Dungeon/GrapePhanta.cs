@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Foods.Dungeon
 {
-    public class GrapePhanta : ModItem, ISpecialFood, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
+    public class GrapePhanta : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
         private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<GrapePhanta>("_Glow"));
         IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
@@ -24,13 +24,9 @@ namespace AQMod.Items.Foods.Dungeon
             item.consumable = true;
             item.rare = ItemRarityID.Yellow;
             item.value = Item.buyPrice(silver: 20);
-            item.buffType = BuffID.WellFed;
+            item.buffType = ModContent.BuffType<Buffs.Foods.GrapePhanta>();
+            //item.buffType = BuffID.WellFed;
             item.buffTime = 28800;
-        }
-
-        int ISpecialFood.ChangeBuff(Player player)
-        {
-            return ModContent.BuffType<Buffs.Foods.GrapePhanta>();
         }
     }
 }

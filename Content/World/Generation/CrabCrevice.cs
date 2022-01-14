@@ -371,7 +371,7 @@ namespace AQMod.Content.World.Generation
                 {
                     continue;
                 }
-                int chestY = genX + WorldGen.genRand.Next(-10, 200);
+                int chestY = genY + WorldGen.genRand.Next(-10, 200);
                 if (chestY < 30 || chestY > Main.maxTilesY - 30)
                 {
                     continue;

@@ -12,6 +12,7 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
             this.MergeWith(TileID.Sand);
+            this.MergeWith(TileID.HardenedSand);
             AddMapEntry(new Color(150, 180, 110));
             TileID.Sets.ChecksForMerge[Type] = true;
 

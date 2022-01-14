@@ -774,10 +774,6 @@ namespace AQMod
                     player.inventory[player.selectedItem].autoReuse = false;
                     Fidget_Spinner_Force_Autoswing = false;
                 }
-                if (player.itemAnimation < 1 && player.inventory[player.selectedItem].modItem is ISpecialFood)
-                {
-                    player.inventory[player.selectedItem].buffType = BuffID.WellFed;
-                }
             }
         }
 

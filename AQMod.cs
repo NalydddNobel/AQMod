@@ -803,11 +803,17 @@ namespace AQMod
 
         public override void UpdateUI(GameTime gameTime)
         {
+            UIUtilities.GameInterfaceLayersAreBeingDrawn = false;
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             CursorDyeManager.Update();
+            layers.Insert(0, new LegacyGameInterfaceLayer("AQMod: UpdateUtilities", () =>
+            {
+                UIUtilities.GameInterfaceLayersAreBeingDrawn = true;
+                return true;
+            }, InterfaceScaleType.None));
             var index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
             if (index != -1)
             {

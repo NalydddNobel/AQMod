@@ -28,7 +28,7 @@ namespace AQMod.Content.CursorDyes.Components
                 return true;
             }
             bool outline = true;
-            if (Main.mouseLeft)
+            if (AQProjectile.CountProjectiles(Main.LocalPlayer.HeldItem.shoot) > 0)
             {
                 outline = false;
                 texturePath += "press";
@@ -63,7 +63,7 @@ namespace AQMod.Content.CursorDyes.Components
                 }
                 else if (ModContent.TextureExists(texturePath + "_outline"))
                 {
-                    Main.spriteBatch.Draw(ModContent.GetTexture(texturePath + "_outline"), new Vector2(Main.mouseX - 8f, Main.mouseY - 8f), null, Main.MouseBorderColor, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(ModContent.GetTexture(texturePath + "_outline"), new Vector2(Main.mouseX - 8f, Main.mouseY - 8f), null, Main.MouseBorderColor.UseA(255), 0f, default(Vector2), scale, SpriteEffects.None, 0f);
                 }
                 return false;
             }

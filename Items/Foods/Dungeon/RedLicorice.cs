@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Foods.Dungeon
 {
-    public class RedLicorice : ModItem, ISpecialFood
+    public class RedLicorice : ModItem
     {
         public override void SetDefaults()
         {
@@ -19,18 +19,13 @@ namespace AQMod.Items.Foods.Dungeon
             item.useStyle = ItemUseStyleID.EatingUsing;
             item.useAnimation = 20;
             item.useTime = 20;
-            item.buffType = BuffID.WellFed;
+            item.buffType = ModContent.BuffType<Buffs.Foods.RedLicorice>();
             item.buffTime = 21600;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(200, 200, 200, 100);
-        }
-
-        int ISpecialFood.ChangeBuff(Player player)
-        {
-            return ModContent.BuffType<Buffs.Foods.RedLicorice>();
+            return new Color(250, 250, 250, 200);
         }
     }
 }

@@ -73,7 +73,7 @@ namespace AQMod.Content.CursorDyes.Components
                 }
                 else if (ModContent.TextureExists(texturePath + "_outline"))
                 {
-                    Main.spriteBatch.Draw(ModContent.GetTexture(texturePath + "_outline"), new Vector2(Main.mouseX, Main.mouseY), null, Main.MouseBorderColor, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(ModContent.GetTexture(texturePath + "_outline"), new Vector2(Main.mouseX, Main.mouseY), null, Main.MouseBorderColor.UseA(255), 0f, default(Vector2), scale, SpriteEffects.None, 0f);
                 }
                 return false;
             }
