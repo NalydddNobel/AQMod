@@ -47,14 +47,15 @@ ItemTooltip.FreezingAmulet=Prevents most types of freezing\nLowers the intensity
 ItemName.NormalizerAmulet=Normalized Amulet
 ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers the intensity of temperature sources from Gale Streams enemies
 
-ItemName.CrabBarb=Crab Barb
-ItemTooltip.CrabBarb=Your grappling hooks inflict poison and damage
 ItemName.CrimtaneBarb=Crimtane Barb
 ItemTooltip.CrimtaneBarb=Your grappling hooks inflict damage
 ItemName.DemoniteBarb=Demonite Barb
 ItemTooltip.DemoniteBarb=Your grappling hooks inflict damage
 ItemName.MetalBarb=Metal Barb
 ItemTooltip.MetalBarb=Your grappling hooks inflict damage
+
+ItemName.CrabBarb=Carb
+ItemTooltip.CrabBarb=Your grappling hooks inflict poison and damage
 
 # Armor
 

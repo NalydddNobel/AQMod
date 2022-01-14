@@ -14,6 +14,7 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\.projects\p_banners.ase" />
     <None Include="Assets\.projects\p_icon.ase" />
     <None Include="Assets\.projects\icon_Christmas.png" />
     <None Include="Assets\.projects\icon_Halloween.png" />

@@ -1,4 +1,8 @@
 ﻿using AQMod.Common.Configuration;
+using AQMod.Common.ID;
+using AQMod.Items.Accessories.Barbs;
+using AQMod.Items.Weapons.Melee;
+using AQMod.Items.Weapons.Ranged;
 using AQMod.Tiles;
 using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature.CrabCrevice;
@@ -17,6 +21,8 @@ namespace AQMod.Content.World.Generation
 {
     public static class CrabCrevice
     {
+        private const int Size = 160;
+
         private struct Circle
         {
             public int X;
@@ -145,33 +151,32 @@ namespace AQMod.Content.World.Generation
 
         public static void CreateSandAreaForCrevice(int x, int y)
         {
-            const int radius = 160;
-            if (x - radius < 10)
+            if (x - Size < 10)
             {
-                x = radius + 10;
+                x = Size + 10;
             }
-            else if (x + radius > Main.maxTilesX - 10)
+            else if (x + Size > Main.maxTilesX - 10)
             {
-                x = Main.maxTilesX - 10 - radius;
+                x = Main.maxTilesX - 10 - Size;
             }
-            if (y - radius < 10)
+            if (y - Size < 10)
             {
-                y = radius + 10;
+                y = Size + 10;
             }
-            else if (y + radius > Main.maxTilesY - 10)
+            else if (y + Size > Main.maxTilesY - 10)
             {
-                y = Main.maxTilesY - 10 - radius;
+                y = Main.maxTilesY - 10 - Size;
             }
             List<Point> placeTiles = new List<Point>();
-            for (int i = 0; i < radius * 2; i++)
+            for (int i = 0; i < Size * 2; i++)
             {
-                for (int j = 0; j < radius * 3; j++) // A bit overkill of an extra check, but whatever
+                for (int j = 0; j < Size * 3; j++) // A bit overkill of an extra check, but whatever
                 {
-                    int x2 = x + i - radius;
-                    int y2 = y + j - radius;
+                    int x2 = x + i - Size;
+                    int y2 = y + j - Size;
                     int x3 = x2 - x;
                     int y3 = y2 - y;
-                    if (Math.Sqrt(x3 * x3 + y3 * y3 * 0.6f) <= radius)
+                    if (Math.Sqrt(x3 * x3 + y3 * y3 * 0.6f) <= Size)
                     {
                         if (Main.tile[x2, y2] == null)
                         {
@@ -328,7 +333,7 @@ namespace AQMod.Content.World.Generation
             return true;
         }
 
-        public static void AddVines()
+        private static void AddVines()
         {
             for (int i = 10; i < Main.maxTilesX - 10; i++)
             {
@@ -354,6 +359,58 @@ namespace AQMod.Content.World.Generation
                     }
                 }
             }
+        }
+
+        private static void AddChests(int genX, int genY)
+        {
+            int count = 0;
+            for (int i = 0; i < 25000; i++)
+            {
+                int chestX = genX + WorldGen.genRand.Next(-120, 120);
+                if (chestX < 30 || chestX > Main.maxTilesX - 30)
+                {
+                    continue;
+                }
+                int chestY = genX + WorldGen.genRand.Next(-10, 200);
+                if (chestY < 30 || chestY > Main.maxTilesY - 30)
+                {
+                    continue;
+                }
+                WorldGen.PlaceTile(chestX, chestY, TileID.Containers, mute: true, forced: false, ChestStyles.Palm);
+                if (Main.tile[chestX, chestY].type == TileID.Containers)
+                {
+                    FillWithLoot(Chest.FindChest(chestX, chestY - 1), count);
+                    count++;
+                    i += 2500;
+                }
+            }
+        }
+
+        private static void FillWithLoot(int chest, int count)
+        {
+            if (chest == -1 || Main.chest[chest] == null)
+                return;
+            var c = Main.chest[chest];
+            int i = 0;
+            switch (count % 3) 
+            {
+                default:
+                    {
+                        c.item[i].SetDefaults(ModContent.ItemType<StarPhish>());
+                    }
+                    break;
+                case 1:
+                    {
+                        c.item[i].SetDefaults(ModContent.ItemType<VineSword>());
+                    }
+                    break;
+                case 2:
+                    {
+                        c.item[i].SetDefaults(ModContent.ItemType<CrabBarb>());
+                    }
+                    break;
+            }
+            i++;
         }
 
         public static void GenerateCrabCrevice(GenerationProgress progress)
@@ -394,6 +451,7 @@ namespace AQMod.Content.World.Generation
                     k += 650;
                 }
             }
+            AddChests(crabCreviceLocationX, crabCreviceLocationY);
             AddVines();
         }
 

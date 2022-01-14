@@ -49,16 +49,5 @@ namespace AQMod.Items.Weapons.Ranged
             }
             return true;
         }
-
-        public override void AddRecipes()
-        {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Blowpipe);
-            recipe.AddIngredient(ItemID.Starfish, 10);
-            recipe.AddIngredient(ItemID.FallenStar, 5);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
     }
 }

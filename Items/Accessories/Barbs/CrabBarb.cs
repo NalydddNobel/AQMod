@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.BarbItems
+namespace AQMod.Items.Accessories.Barbs
 {
     public class CrabBarb : ModItem
     {
