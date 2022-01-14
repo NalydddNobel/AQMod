@@ -87,7 +87,8 @@ ItemTooltip.StariteStaff=召唤一颗迅捷星之源为你而战
 BuffName.Starite=星之源
 BuffDescription.Starite=星之源会为你而战
 
-ItemName.VineSword=变向锤
+ItemName.VineSword=棒槌
+ItemTooltip.VineSword=会重击你光标附近的敌人\n使罐子拥有特殊掉落
 ItemName.KryptonSword=氪制回旋镖
 ItemTooltip.KryptonSword=能够穿透敌人并回旋移动\n击中敌人时会对其造成多种减益
 
