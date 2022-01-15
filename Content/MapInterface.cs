@@ -86,7 +86,7 @@ namespace AQMod.Content
             var player = Main.LocalPlayer;
             var upgrades = player.GetModPlayer<PlayerMapUpgrades>();
 
-            Main.NewText(upgrades.VialOfBlood.ToString());
+            //Main.NewText(upgrades.VialOfBlood.ToString());
 
             if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.VialOfBlood) && (Main.Map[Main.dungeonX, Main.dungeonY].Light > 40 || NPC.downedBoss3 || Main.hardMode))
             {
@@ -112,12 +112,12 @@ namespace AQMod.Content
                         }
                     }
                 }
-                DrawMapIcon(out bool hovering, icon, Main.dungeonX + 0.5f, Main.dungeonY - 2.5f, interactable: true, Main.dungeonX > Main.maxTilesX / 2 ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
+                DrawMapIcon(out bool hovering, icon, Main.dungeonX + 0.5f, Main.dungeonY - 2.5f, interactable: true, ((Main.dungeonX > Main.maxTilesX / 2) ? SpriteEffects.FlipHorizontally : SpriteEffects.None));
                 if (hovering)
                 {
                     if (Main.mouseLeft && Main.mouseLeftRelease)
                     {
-                        TeleportPlayer(new Vector2(Main.dungeonX + 8f, Main.dungeonY - 16f));
+                        TeleportPlayer(new Vector2(Main.dungeonX * 16f + 8f, Main.dungeonY * 16f - 16f));
                     }
                     mouseText = Language.GetTextValue("Mods.AQMod.MapObject.Dungeon");
                 }
@@ -132,7 +132,7 @@ namespace AQMod.Content
                     {
                         if (Main.mouseLeft && Main.mouseLeftRelease)
                         {
-                            TeleportPlayer(altarLocation.ToWorldCoordinates(new Vector2(24f, 8f)));
+                            TeleportPlayer(altarLocation.ToWorldCoordinates(new Vector2(24f, -8f)));
                         }
                         mouseText = Language.GetTextValue("ItemName.LihzahrdAltar");
                     }
@@ -241,7 +241,7 @@ namespace AQMod.Content
             {
                 scale *= 2f;
             }
-            Main.spriteBatch.Draw(mapIcon, drawPos, spriteFrame, new Color(255, 255, 255, 255), 0f, SpriteOrigin, scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(mapIcon, drawPos, spriteFrame, new Color(255, 255, 255, 255), 0f, SpriteOrigin, scale, effects, 0f);
         }
 
         private static void TeleportPlayer(Vector2 location)
