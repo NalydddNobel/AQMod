@@ -1,6 +1,6 @@
 ﻿using AQMod.Items.Accessories;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Tools.MapMarkers;
+using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.NPCs.Boss;

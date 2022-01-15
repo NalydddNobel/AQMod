@@ -494,12 +494,6 @@ namespace AQMod.Common.DeveloperTools
                     }
                     break;
 
-                case "placeuglobe":
-                    {
-                        caller.Reply("placed correctly: " + Globe.PlaceUndiscoveredGlobe(Main.MouseWorld.ToTileCoordinates()));
-                    }
-                    break;
-
                 case "robstersave2":
                     {
                         caller.Reply("Hunt Key: " + HuntSystem.Hunt.GetKey());
@@ -674,21 +668,11 @@ namespace AQMod.Common.DeveloperTools
                     }
                     break;
 
-                case "placecoral":
-                    WorldGen.PlaceTile((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, ModContent.TileType<ExoticCoral>(), true, false, -1, int.Parse(args[1]));
-                    break;
-
                 case "ravinetest":
                     {
                         Main.NewText("Generating Ravine...");
                         CrabCrevice.PlaceLegacyOceanRavine((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, caller.Player.HeldItem.placeStyle);
                         Main.NewText("Generation Complete!");
-                    }
-                    break;
-
-                case "coraltest":
-                    {
-                        caller.Reply(ExoticCoral.TryPlaceExoticBlotch((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, WorldGen.genRand.Next(3), 50).ToString());
                     }
                     break;
 

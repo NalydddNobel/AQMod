@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Items.Placeable.Furniture;
+using AQMod.Items.Tools.Map;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -62,34 +63,7 @@ namespace AQMod.Tiles.Furniture
                     Main.tile[x - 1 + i, y - height - 1].type = TileID.GrayBrick;
                 }
                 WorldGen.PlaceTile(x, y, TileID.Tables);
-                PlaceUndisoveredGlobe(x + WorldGen.genRand.Next(2), y - 2);
-                return true;
-            }
-            return false;
-        }
-
-        public static bool PlaceUndisoveredGlobe(int x, int y)
-        {
-            return PlaceUndiscoveredGlobe(new Point(x, y));
-        }
-
-        public static bool PlaceUndiscoveredGlobe(Point p)
-        {
-            WorldGen.PlaceTile(p.X, p.Y, ModContent.TileType<Globe>());
-            Tile tile = Main.tile[p.X, p.Y];
-            if (tile.type == ModContent.TileType<Globe>())
-            {
-                var objectData = TileObjectData.GetTileData(tile);
-                int x = p.X - tile.frameX % 36 / 18;
-                int y = p.Y - tile.frameY / 18;
-                objectData.HookPostPlaceMyPlayer.hook(x, y, tile.type, objectData.Style, 0);
-                int index = ModContent.GetInstance<TEGlobe>().Find(x, y);
-                if (index == -1)
-                {
-                    return false;
-                }
-                TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
-                globe.Discovered = false;
+                WorldGen.PlaceTile(x + WorldGen.genRand.Next(2), y - 2, ModContent.TileType<Globe>());
                 return true;
             }
             return false;
@@ -108,93 +82,33 @@ namespace AQMod.Tiles.Furniture
             AddMapEntry(new Color(180, 180, 180), Lang.GetItemName(ModContent.ItemType<GlobeItem>()));
         }
 
-        public override bool HasSmartInteract()
-        {
-            return true;
-        }
-
-        public override void MouseOver(int i, int j)
-        {
-            Tile tile = Main.tile[i, j];
-            int x = i - tile.frameX % 36 / 18;
-            int y = j - tile.frameY / 18;
-            int index = ModContent.GetInstance<TEGlobe>().Find(x, y);
-            var plr = Main.LocalPlayer;
-            if (index == -1)
-            {
-                plr.noThrow = 2;
-                plr.showItemIcon = true;
-                plr.showItemIcon2 = ModContent.ItemType<GlobeItem>();
-                return;
-            }
-            TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
-            var item = AQMod.MapMarkers.FindMarker(Main.player[Main.myPlayer].inventory);
-            if (item.Item1 != null)
-            {
-                plr.noThrow = 2;
-                plr.showItemIcon = true;
-                plr.showItemIcon2 = item.Item1.type;
-            }
-        }
-
-        public override bool NewRightClick(int i, int j)
-        {
-            Tile tile = Main.tile[i, j];
-            int x = i - tile.frameX % 36 / 18;
-            int y = j - tile.frameY / 18;
-            int index = ModContent.GetInstance<TEGlobe>().Find(x, y);
-            if (index == -1)
-            {
-                return false;
-            }
-            TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
-            var item = AQMod.MapMarkers.FindMarker(Main.player[Main.myPlayer].inventory);
-            if (item.Item1 != null && !globe.HasMarker(item.Item2))
-            {
-                Main.PlaySound(SoundID.Grab);
-                item.Item2.OnAddToGlobe(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), globe);
-                globe.AddMarker(item.Item2);
-                Main.LocalPlayer.ConsumeItem(item.Item1.type);
-            }
-            //else
-            //{
-            //    foreach (var marker in globe.Markers)
-            //    {
-            //        Main.NewText(marker.Name);
-            //    }
-            //}
-            return true;
-        }
-
-        public override void NearbyEffects(int i, int j, bool closer)
-        {
-            var plr = Main.LocalPlayer;
-            if (Vector2.Distance(new Vector2(i * 16f, j * 16f), plr.Center) < 200f)
-            {
-                Tile tile = Main.tile[i, j];
-                int x = i - tile.frameX % 36 / 18;
-                int y = j - tile.frameY / 18;
-                int index = ModContent.GetInstance<TEGlobe>().Find(x, y);
-                if (index == -1)
-                {
-                    return;
-                }
-                TEGlobe globe = (TEGlobe)TileEntity.ByID[index];
-                globe.Discover();
-                var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
-                aQPlayer.nearGlobe = 32;
-                aQPlayer.globeX = (ushort)globe.Position.X;
-                aQPlayer.globeY = (ushort)globe.Position.Y;
-                foreach (var m in globe.Markers)
-                {
-                    m.NearbyEffects(globe);
-                }
-            }
-        }
-
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<GlobeItem>());
+            int index = ModContent.GetInstance<TEGlobe>().Find(i, j); 
+            if (index == -1)
+            {
+                var g = (TEGlobe)TileEntity.ByID[index];
+                foreach (var text in g.LegacyMarkers)
+                {
+                    switch (text) 
+                    {
+                        case "CosmicMarker":
+                            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<CosmicTelescope>());
+                            break;
+                        case "DungeonMarker":
+                            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<DungeonMap>());
+                            break;
+                        case "LihzahrdMarker":
+                            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<LihzahrdMap>());
+                            break;
+                        case "RetroMarker":
+                            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<RetroGoggles>());
+                            break;
+                    }
+                }
+                return;
+            }
             ModContent.GetInstance<TEGlobe>().Kill(i, j);
         }
     }

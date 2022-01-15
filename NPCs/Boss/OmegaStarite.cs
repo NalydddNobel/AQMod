@@ -13,7 +13,7 @@ using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Items.BossItems.Starite;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Tools.MapMarkers;
+using AQMod.Items.Tools.Map;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Vanities.Pets;
 using AQMod.Items.Weapons.Magic;

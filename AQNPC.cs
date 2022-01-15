@@ -12,7 +12,7 @@ using AQMod.Items.Foods;
 using AQMod.Items.Foods.Dungeon;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Tools.MapMarkers;
+using AQMod.Items.Tools.Map;
 using AQMod.Items.Tools.Utility;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Weapons.Melee.Dagger;

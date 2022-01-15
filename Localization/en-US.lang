@@ -36,6 +36,9 @@ ItemTooltip.MetalBarb=Your grappling hooks inflict damage
 ItemName.CrabBarb=Crab Barb
 ItemTooltip.CrabBarb=Your grappling hooks inflict poison and damage
 
+ItemName.MinersFlashlight=Miner's Flashlight
+ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shone on by the light\nHide the accessory to disable the flashlight
+
 # Armor
 
 ItemName.SteelPlatedChestplate=Steel Plated Chestplate
@@ -65,7 +68,8 @@ BuffName.Starite=Starite
 BuffDescription.Starite=The Starite will fight for you
 
 ItemName.VineSword=Mallet
-ItemTooltip.VineSword=Whack nearby enemies using your mouse\nMakes pots have special drops
+ItemTooltip.VineSword=Whack nearby enemies using your mouse
+# \nMakes pots have special drops
 ItemName.KryptonSword=Krypton Boomerang
 ItemTooltip.KryptonSword=Cuts through enemies and can be swung around\nInflicts multiple debuffs
 
@@ -117,6 +121,10 @@ ProjectileName.Skrawler=Skrawler
 
 ItemName.SnowflakeCannon=Snowflake Cannon
 ItemTooltip.SnowflakeCannon=Launches many snowballs at once\n66% chance to not consume ammo
+
+ItemName.UltimateSword=Ultimate Sword
+ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
+ProjectileName.UltimateSword=Ultimate Sword
 
 # Dyes
 ItemName.RedSpriteDye=Red Sprite Dye
@@ -171,12 +179,20 @@ IWillBeBackToggle.False=Town NPCs will no longer resist lava
 ItemName.Nimrod=Nimrod
 ItemTooltip.Nimrod=Summons a fishing cloud which spawns 3 lightning bobbers to catch fish\nCatches fish faster during the rain
 
-ItemName.MinersFlashlight=Miner's Flashlight
-ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shone on by the light\nHide the accessory to disable the flashlight
+ItemName.CosmicTelescope=Cosmic Telescope
+ItemTooltip.CosmicTelescope=Shows the location of the Glimmer Event and some other related info on the map
 
-ItemName.UltimateSword=Ultimate Sword
-ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
-ProjectileName.UltimateSword=Ultimate Sword
+ItemName.DungeonMap=Vial of Blood
+ItemTooltip.DungeonMap=Shows the location of the Dungeon\nPressing the map icon of the Dungeon allows you to teleport to it
+
+ItemName.LihzahrdMap=Cabbage
+ItemTooltip.LihzahrdMap=Shows the location of the Lihzahrd Altar\nPressing on the map icon of the Lihzahrd Altar allows you to teleport to it
+
+ItemName.RetroGoggles=Blighted Soul
+ItemTooltip.RetroGoggles=Enemies appear as a blip on the fullscreen map
+
+ItemName.Beeswax=Beeswax
+ItemTooltip.LihzahrdMap=Shows the location of any visible Plantera bulbs
 
 # Potions
 ItemName.MysteryGrail=Mysterious Grail
@@ -220,6 +236,12 @@ ItemTooltip.LarvaEel=Gives you 3 minutes of honey but inflicts potion sickness
 # Quest Fish
 ItemName.WaterFisg=Water Fish
 ItemName.Crabdaughter=Crabdaughter
+
+# Foods
+ItemName.PeeledCarrot=Dragon Carrot
+ItemTooltip.PeeledCarrot=Medium improvements to all stats and grants you night vision
+BuffName.PeeledCarrot=Dragon Carrot
+BuffDescription.PeeledCarrot=Medium improvements to all stats and grants you night vision
 
 # Tooltips
 Tooltips.Unobtainable=A relic birthed in an alternate universe
@@ -428,7 +450,7 @@ ClientConfig.XmasProgressMeterOverride=Xmas Progress Meter Override
 ClientConfig.XmasProgressMeterOverrideTooltip=Whether or not to have the "AQ Xmas" seed override your worldgen progress bar. This sometimes has conflicts with Worldgen Previewer\n{$Mods.AQMod.Config.RequiresReload}
 
 ClientConfig.MapBlipColor=Map Blip Color
-ClientConfig.MapBlipColorTooltip=The color of the little blips shown by the Retro Marker
+ClientConfig.MapBlipColorTooltip=The color of the little blips shown by the Blighted Soul
 
 ClientConfig.Header.Worldgen=World Gen
 ClientConfig.Screenshakes=Screenshakes
@@ -738,11 +760,6 @@ ItemTooltip.RedLicorice=Medium improvements to all stats and increases your life
 BuffName.RedLicorice=Red Licorice
 BuffDescription.RedLicorice=Medium improvements to all stats and increases your life by 20
 
-ItemName.PeeledCarrot=Peeled Carrot
-ItemTooltip.PeeledCarrot=Medium improvements to all stats and grants you night vision
-BuffName.PeeledCarrot=Peeled Carrot
-BuffDescription.PeeledCarrot=Medium improvements to all stats and grants you night vision
-
 ItemName.GrapePhanta=Grape Phanta
 ItemTooltip.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
 BuffName.GrapePhanta=Grape Phanta
@@ -773,12 +790,6 @@ ItemName.LightbulbBreastplate=Lightbulb Breastplate
 ItemName.LightbulbGreaves=Lightbulb Greaves
 ItemName.LightbulbHelmet=Lightbulb Helmet
 ItemName.SuperDartTrapHat=Super Dart Trap Hat
-# Map
-ItemName.CosmicTelescope=Cosmic Marker
-ItemName.DungeonMap=Bone Marker
-ItemName.LihzahrdMap=Lihzahrd Marker
-ItemName.RetroGoggles=Retro Marker
-# Spelunker
 ItemName.Extractor=Extractor
 ########
 # Misc #
@@ -1033,11 +1044,6 @@ ItemTooltip.DartTrapHat=Shoots poisioned darts while you are on the ground\nIncr
 ItemTooltip.LightbulbGreaves=Increases your max number of minions
 ItemTooltip.LightbulbHelmet=Slightly increases mana regeneration\nYou faintly emit light
 ItemTooltip.SuperDartTrapHat=Shoots poisioned darts while you are on the ground\nIncreases summon damage by 10%\nIncreases your max number of minions
-# Map
-ItemTooltip.CosmicTelescope=Shows the center of the Glimmer Event on the map
-ItemTooltip.DungeonMap=Shows the location of the Dungeon if it has already been disovered\nYou can teleport to the dungeon using a Unity Mirror
-ItemTooltip.LihzahrdMap=Shows the location of the Lihzahrd Altar if it has already been disovered or Plantera has been defeated\nYou can teleport to the Lihzahrd Altar using a Unity Mirror if Plantera has been defeated
-ItemTooltip.RetroGoggles=Shows enemies as a pink blip on the fullscreen map
 # Spelunker
 ItemTooltip.Extractor=You gain immunity to suffocation\nFalling Silt and Slush now deal four times less damage\nIf the accessory is not marked as hidden:\nYou obtain the ability to veinmine silt slush and desert fossils\nExtracting something at the Extractinator will show your extractination count 
 ########
@@ -1071,7 +1077,7 @@ ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 ItemTooltip.GlimmeringStatue=Has a very high chance to attract the Ultimate Sword during the Glimmer Event
 # Other Placeables
 ItemTooltip.FishingCraftingStation=Used to craft special fishing items
-ItemTooltip.GlobeItem=Can be drawn on with markers
+ItemTooltip.GlobeItem='Explore the world'
 ItemTooltip.DragonBall=Summons a micro Starite
 ItemTooltip.HeartLamp=Summons a heart moth which increases life regen
 ItemTooltip.MonoxideHat='Became a vanity item due to popular demand'
@@ -1134,14 +1140,6 @@ BuffName.MicroStarite=Micro Starite
 BuffDescription.MicroStarite=The smallest solar system imaginable
 BuffName.HeartMoth=Heart Moth
 BuffDescription.HeartMoth=Gives you increased life regen and emits light
-BuffName.CosmicMarker=Cosmic Marker
-BuffDescription.CosmicMarker=The Glimmer Event's center is shown on the map
-BuffName.RetroMarker=Retro Marker
-BuffDescription.RetroMarker=Enemies appear as pink blobs on the map
-BuffName.DungeonMarker=Dungeon Marker
-BuffDescription.DungeonMarker=The Dungeon is shown on the map
-BuffName.LihzahrdMarker=Lihzahrd Marker
-BuffDescription.LihzahrdMarker=The Lihzahrd Altar is shown on the map
 BuffName.Bossrush=Encore
 BuffDescription.Bossrush=Bosses respawn when defeated
 BuffName.Ultima=Ultima
@@ -1362,3 +1360,4 @@ MapObject.Banners=Banner
 MapObject.ExoticCoral=Exotic Coral
 MapObject.FishingCraftingStation=Fishing Utility Crafting Station
 MapObject.BuriedDirtChest=Buried Dirt Chest
+MapObject.Dungeon=Dungeon

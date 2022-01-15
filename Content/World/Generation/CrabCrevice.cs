@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Common.ID;
+using AQMod.Common.WorldGeneration;
 using AQMod.Items.Accessories.Barbs;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
@@ -361,6 +362,54 @@ namespace AQMod.Content.World.Generation
             }
         }
 
+        private static void AddExoticCoral(int x, int y)
+        {
+            if (x - Size < 10)
+            {
+                x = Size + 10;
+            }
+            else if (x + Size > Main.maxTilesX - 10)
+            {
+                x = Main.maxTilesX - 10 - Size;
+            }
+            if (y - Size < 10)
+            {
+                y = Size + 10;
+            }
+            else if (y + Size > Main.maxTilesY - 10)
+            {
+                y = Main.maxTilesY - 10 - Size;
+            }
+            for (int i = 0; i < Size * 2; i++)
+            {
+                for (int j = 0; j < Size * 3; j++)
+                {
+                    int x2 = x + i - Size;
+                    int y2 = y + j - Size;
+                    int x3 = x2 - x;
+                    int y3 = y2 - y;
+                    if (Math.Sqrt(x3 * x3 + y3 * y3 * 0.6f) <= Size)
+                    {
+                        if (Main.tile[x2, y2] == null)
+                        {
+                            Main.tile[x2, y2] = new Tile();
+                            continue;
+                        }
+                        if (Main.tile[x2, y2 + 1] == null)
+                        {
+                            Main.tile[x2, y2 + 1] = new Tile();
+                            continue;
+                        }
+                        if (!Main.tile[x2, y2].active() && Main.tile[x2, y2].liquid == 255 && 
+                            Main.tile[x2, y2 + 1].active() && ExoticCoralNew.CanBePlacedOnType(Main.tile[x2, y2 + 1].type))
+                        {
+                            WorldGen.PlaceTile(x2, y2, ModContent.TileType<ExoticCoralNew>(), mute: true, forced: false, style: ExoticCoralNew.GetRandomStyle(WorldGen.genRand.Next(3)));
+                        }
+                    }
+                }
+            }
+        }
+
         private static void AddChests(int genX, int genY)
         {
             int count = 0;
@@ -452,6 +501,7 @@ namespace AQMod.Content.World.Generation
                 }
             }
             AddChests(crabCreviceLocationX, crabCreviceLocationY);
+            AddExoticCoral(crabCreviceLocationX, crabCreviceLocationY);
             AddVines();
         }
 

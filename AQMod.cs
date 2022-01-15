@@ -9,11 +9,9 @@ using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Common.ID;
-using AQMod.Common.UserInterface;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Entities;
-using AQMod.Content.MapMarkers;
 using AQMod.Content.NameTags;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.Seasonal.Christmas;
@@ -66,7 +64,6 @@ namespace AQMod
         /// This is normally used to prevent threaded assets from loading
         /// </summary>
         internal static bool Unloading { get; private set; }
-        public static MapMarkerManager MapMarkers => ModContent.GetInstance<MapMarkerManager>();
 
         internal static List<CachedTask> cachedLoadTasks;
         [Obsolete("Replaced with interfaces")]
@@ -798,7 +795,8 @@ namespace AQMod
 
         public override void PostDrawFullscreenMap(ref string mouseText)
         {
-            MapInterfaceManager.Apply(ref mouseText, drawGlobes: true);
+            MapInterface.RenderOnMap(ref mouseText);
+            MapInterface.RenderOverlayingUI();
         }
 
         public override void UpdateUI(GameTime gameTime)

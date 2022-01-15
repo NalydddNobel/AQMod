@@ -54,7 +54,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             {
                 ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>(),
                 ItemID.Nazar,
-                ModContent.ItemType<Items.Tools.MapMarkers.RetroGoggles>(),
+                ModContent.ItemType<Items.Tools.Map.RetroGoggles>(),
                 ModContent.ItemType<Items.Weapons.Summon.StariteStaff>(),
                 ModContent.ItemType<Items.Accessories.MoonShoes>(),
                 ModContent.ItemType<Items.Accessories.Ultranium>(),

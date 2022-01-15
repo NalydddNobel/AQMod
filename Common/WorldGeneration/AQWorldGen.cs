@@ -363,29 +363,12 @@ namespace AQMod.Common.WorldGeneration
             for (int i = 0; i < 6000; i++)
             {
                 int x = WorldGen.genRand.Next(50, Main.maxTilesX - 50);
-                int y = WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow, Main.maxTilesY - 240);
+                int y = WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow + 80, Main.maxTilesY - 240);
                 int style = WorldGen.genRand.Next(3);
                 int size = WorldGen.genRand.Next(50, 150);
-                if (ExoticCoral.TryPlaceExoticBlotch(x, y, style, size))
+                if (ExoticCoralNew.TryPlaceExoticBlotch(x, y, style, size))
                     i += 500;
             }
-        }
-
-        public static bool PlaceRobsterQuestTile(int style = 6)
-        {
-            int x = WorldGen.genRand.Next(90, 200);
-            if (WorldGen.genRand.NextBool())
-                x = Main.maxTilesX - x;
-            for (int j = 200; j < Main.worldSurface; j++)
-            {
-                if (!Framing.GetTileSafely(x, j).active() && Main.tile[x, j].liquid > 0 && Framing.GetTileSafely(x, j + 1).active())
-                {
-                    WorldGen.PlaceTile(x, j, ModContent.TileType<ExoticCoral>(), true, false, -1, style);
-                    if (Framing.GetTileSafely(x, j).active() && Main.tile[x, j].type == ModContent.TileType<ExoticCoral>())
-                        return true;
-                }
-            }
-            return false;
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)

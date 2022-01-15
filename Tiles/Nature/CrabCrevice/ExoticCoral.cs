@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -13,6 +14,17 @@ namespace AQMod.Tiles.Nature.CrabCrevice
 {
     public class ExoticCoral : ModTile
     {
+        public static int[] AnchorValidTiles => TileObjectData.GetTileData(ModContent.TileType<ExoticCoral>(), 0, 0).AnchorValidTiles;
+        public static bool CanBePlacedOnType(int type)
+        {
+            foreach(int t in AnchorValidTiles)
+            {
+                if (t == type)
+                    return true;
+            }
+            return false;
+        }
+
         public static int GetStyle(int style, UnifiedRandom random)
         {
             switch (style)
@@ -76,6 +88,10 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             TileObjectData.newTile.CoordinateHeights = new[] { 20, };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.RandomStyleRange = 6;
+            TileObjectData.newTile.LavaDeath = true;
+            TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
+            TileObjectData.newTile.WaterPlacement = LiquidPlacement.OnlyInLiquid;
+            TileObjectData.newTile.AnchorValidTiles = new int[] { TileID.Dirt, TileID.Stone, TileID.Obsidian, TileID.Sand, TileID.HardenedSand, };
             TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
             TileObjectData.newSubTile.RandomStyleRange = 3;
             TileObjectData.addSubTile(8);
@@ -200,6 +216,34 @@ namespace AQMod.Tiles.Nature.CrabCrevice
                     break;
             }
             return true;
+        }
+
+        public override void RandomUpdate(int i, int j)
+        {
+            switch (Main.tile[i, j].frameX) 
+            {
+                case 0:
+                case 54:
+                    {
+                        Main.tile[i, j].type = (ushort)ModContent.TileType<ExoticCoralNew>();
+                        Main.tile[i, j].frameX = 0;
+                    }
+                    break;
+                case 18:
+                case 72:
+                    {
+                        Main.tile[i, j].type = (ushort)ModContent.TileType<ExoticCoralNew>();
+                        Main.tile[i, j].frameX = 88;
+                    }
+                    break;                
+                case 36:
+                case 90:
+                    {
+                        Main.tile[i, j].type = (ushort)ModContent.TileType<ExoticCoralNew>();
+                        Main.tile[i, j].frameX = 176;
+                    }
+                    break;
+            }
         }
     }
 }

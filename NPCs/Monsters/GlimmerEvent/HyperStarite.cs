@@ -6,7 +6,7 @@ using AQMod.Items.Accessories;
 using AQMod.Items.Foods.GlimmerEvent;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
-using AQMod.Items.Tools.MapMarkers;
+using AQMod.Items.Tools.Map;
 using AQMod.Items.Vanities.Dyes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -379,7 +379,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                 var drops = new List<int>()
                 {
                     ModContent.ItemType<MoonShoes>(),
-                    ModContent.ItemType<RetroGoggles>(),
+                    ModContent.ItemType<MoonShoes>(),
                 };
                 if (NPC.downedBoss2)
                     drops.Add(ModContent.ItemType<Ultranium>());

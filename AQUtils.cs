@@ -840,7 +840,7 @@ namespace AQMod
             return (b & 1 << bit) != 0;
         }
 
-        public static byte SetBit(this ref byte b, byte bit, bool value)
+        public static byte SetBit(this byte b, byte bit, bool value)
         {
             return value ? (b |= (byte)(1 << bit)) : (b &= (byte)~(1 << bit));
         }

@@ -6,7 +6,7 @@ namespace AQMod.Common.WorldGeneration
 {
     internal static class CommonStructureSearchMethods
     {
-        public static bool LihzahrdAltar(out Point position)
+        public static bool LihzahrdAltar(out Point altarLocation)
         {
             for (int i = 0; i < Main.maxTilesX; i++)
             {
@@ -15,12 +15,12 @@ namespace AQMod.Common.WorldGeneration
                     var tile = Framing.GetTileSafely(i, j);
                     if (tile.active() && tile.type == TileID.LihzahrdAltar)
                     {
-                        position = new Point(i, j);
+                        altarLocation = new Point(i, j);
                         return true;
                     }
                 }
             }
-            position = default(Point);
+            altarLocation = default(Point);
             return false;
         }
     }
