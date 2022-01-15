@@ -34,6 +34,9 @@ namespace AQMod.Content
 
         public static Action<Player, List<MapLayerToggle>> AddMapLayerToggles;
 
+        private static byte _mapRefresh = 0;
+        private static List<Point> _planteraBulbsPositionCache;
+
         public struct MapLayerToggle
         {
             private readonly Func<bool> isActive;
@@ -93,6 +96,51 @@ namespace AQMod.Content
 
             //Main.NewText(upgrades.VialOfBlood.ToString());
 
+            if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.Beeswax))
+            {
+                if (_planteraBulbsPositionCache == null)
+                {
+                    _planteraBulbsPositionCache = new List<Point>();
+                }
+                for (int i = 50; i < Main.maxTilesX - 50; i++)
+                {
+                    for (int j = 50; j < Main.maxTilesY - 50; j++)
+                    {
+                        if (Main.tile[i, j] == null)
+                        {
+                            Main.tile[i, j] = new Tile();
+                            continue;
+                        }
+                        if (!Main.tile[i, j].active() || Main.Map[i, j].Light < 40)
+                        {
+                            continue;
+                        }
+                        if (Main.tile[i, j].type == TileID.PlanteraBulb && Main.tile[i, j].frameX == 0 && Main.tile[i, j].frameY == 0)
+                        {
+                            _planteraBulbsPositionCache.Add(new Point(i, j));
+                            j++;
+                        }
+                    }
+                }
+                foreach (var p in _planteraBulbsPositionCache)
+                {
+                    DrawMapIcon(out bool hovering, Icon_PlanteraBulb, p.X + 1f, p.Y, interactable: Main.hardMode);
+                    if (hovering)
+                    {
+                        if (Main.mouseLeft && Main.mouseLeftRelease)
+                        {
+                            TeleportPlayer(new Vector2(p.X * 16f + 16f, p.Y * 16f - 16f));
+                            return;
+                        }
+                        mouseText = Language.GetTextValue("MapObject.PlanterasBulb");
+                    }
+                }
+            }
+            else
+            {
+                _planteraBulbsPositionCache = null;
+            }
+
             if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.VialOfBlood) && (Main.Map[Main.dungeonX, Main.dungeonY].Light > 40 || NPC.downedBoss3 || Main.hardMode))
             {
                 byte icon = Icon_DungeonColorless;
@@ -123,6 +171,7 @@ namespace AQMod.Content
                     if (Main.mouseLeft && Main.mouseLeftRelease)
                     {
                         TeleportPlayer(new Vector2(Main.dungeonX * 16f + 8f, Main.dungeonY * 16f - 48f));
+                        return;
                     }
                     mouseText = Language.GetTextValue("Mods.AQMod.MapObject.Dungeon");
                 }
@@ -138,6 +187,7 @@ namespace AQMod.Content
                         if (Main.mouseLeft && Main.mouseLeftRelease)
                         {
                             TeleportPlayer(altarLocation.ToWorldCoordinates(new Vector2(24f, -8f)));
+                            return;
                         }
                         mouseText = Language.GetTextValue("ItemName.LihzahrdAltar");
                     }
@@ -227,6 +277,14 @@ namespace AQMod.Content
                     }
                 }
             }
+
+            if (_mapRefresh == 0)
+            {
+                _planteraBulbsPositionCache = null;
+            }
+            _mapRefresh++;
+            if (_mapRefresh > 60)
+                _mapRefresh = 0;
         }
 
         private static void DrawMapIcon(byte frame, float x, float y, bool teleportable = false)
@@ -293,30 +351,6 @@ namespace AQMod.Content
             {
                 mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
                     () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
-                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
             }
 
             if (AddMapLayerToggles != null)
@@ -326,9 +360,9 @@ namespace AQMod.Content
 
             if (mapLayerToggles.Count > 0)
             {
-                int buffIconSeparation = 26 * 2; 
+                int buffIconSeparation = 26 * 2;
                 int slotsUntilWrap = 4;
-                int width = 16 + Math.Min(mapLayerToggles.Count, slotsUntilWrap) * buffIconSeparation;
+                int width = 15 + Math.Min(mapLayerToggles.Count, slotsUntilWrap) * buffIconSeparation;
                 var uiConfig = ModContent.GetInstance<UIConfiguration>();
                 int x = (int)uiConfig.MapUITogglesPosition.X;
                 //x = Main.mouseX; For testing
