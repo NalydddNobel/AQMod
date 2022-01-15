@@ -796,7 +796,7 @@ namespace AQMod
         public override void PostDrawFullscreenMap(ref string mouseText)
         {
             MapInterface.RenderOnMap(ref mouseText);
-            MapInterface.RenderOverlayingUI();
+            MapInterface.RenderOverlayingUI(ref mouseText);
         }
 
         public override void UpdateUI(GameTime gameTime)

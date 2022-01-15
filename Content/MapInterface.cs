@@ -1,10 +1,12 @@
-﻿using AQMod.Common.WorldGeneration;
+﻿using AQMod.Common.Configuration;
+using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -26,14 +28,20 @@ namespace AQMod.Content
         public const int SpritePadding = 2;
         public static readonly Vector2 SpriteOrigin = new Vector2(SpriteWidth / 2f, SpriteHeight / 2f);
 
+        private static Vector2 _map;
+        private static float _mapScale;
+        private static float _mapTogglesAlpha = 0.1f;
+
+        public static Action<Player, List<MapLayerToggle>> AddMapLayerToggles;
+
         public struct MapLayerToggle
         {
             private readonly Func<bool> isActive;
-            private readonly Action<Player> toggle;
+            private readonly Action toggle;
             public string HoverKey;
             public readonly Texture2D Texture;
 
-            public MapLayerToggle(Texture2D texture, string key, Func<bool> isActive, Action<Player> toggle)
+            public MapLayerToggle(Texture2D texture, string key, Func<bool> isActive, Action toggle)
             {
                 HoverKey = key;
                 this.isActive = isActive;
@@ -46,9 +54,9 @@ namespace AQMod.Content
                 return isActive();
             }
 
-            public void Toggle(Player player)
+            public void Toggle()
             {
-                toggle(player);
+                toggle();
             }
 
             public string HoverText()
@@ -56,9 +64,6 @@ namespace AQMod.Content
                 return Language.GetTextValue(HoverKey);
             }
         }
-
-        private static Vector2 _map;
-        private static float _mapScale;
 
         public static Vector2 MapDrawPosition(Vector2 tileCoords)
         {
@@ -117,7 +122,7 @@ namespace AQMod.Content
                 {
                     if (Main.mouseLeft && Main.mouseLeftRelease)
                     {
-                        TeleportPlayer(new Vector2(Main.dungeonX * 16f + 8f, Main.dungeonY * 16f - 16f));
+                        TeleportPlayer(new Vector2(Main.dungeonX * 16f + 8f, Main.dungeonY * 16f - 48f));
                     }
                     mouseText = Language.GetTextValue("Mods.AQMod.MapObject.Dungeon");
                 }
@@ -253,10 +258,169 @@ namespace AQMod.Content
             NetMessage.SendData(MessageID.Teleport, -1, -1, null, 0, Main.myPlayer, location.X, location.Y, -1);
         }
 
-        internal static void RenderOverlayingUI()
+        internal static void RenderOverlayingUI(ref string mouseText)
         {
             var player = Main.LocalPlayer;
             var upgrades = player.GetModPlayer<PlayerMapUpgrades>();
+
+            List<MapLayerToggle> mapLayerToggles = new List<MapLayerToggle>();
+
+            if (PlayerMapUpgrades.HasMapUpgrade(upgrades.CosmicTelescope))
+            {
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_cosmictelescope"), "Mods.AQMod.MapLayerToggle.CosmicTelescope",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.CosmicTelescope), () => PlayerMapUpgrades.Visibility(ref upgrades.CosmicTelescope)));
+            }
+
+            if (PlayerMapUpgrades.HasMapUpgrade(upgrades.VialOfBlood))
+            {
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_vialofblood"), "Mods.AQMod.MapLayerToggle.VialOfBlood",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.VialOfBlood), () => PlayerMapUpgrades.Visibility(ref upgrades.VialOfBlood)));
+            }
+
+            if (PlayerMapUpgrades.HasMapUpgrade(upgrades.Beeswax))
+            {
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_beeswax"), "Mods.AQMod.MapLayerToggle.Beeswax",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.Beeswax), () => PlayerMapUpgrades.Visibility(ref upgrades.Beeswax)));
+            }
+
+            if (PlayerMapUpgrades.HasMapUpgrade(upgrades.Cabbage))
+            {
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_cabbage"), "Mods.AQMod.MapLayerToggle.Cabbage",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.Cabbage), () => PlayerMapUpgrades.Visibility(ref upgrades.Cabbage)));
+            }
+
+            if (PlayerMapUpgrades.HasMapUpgrade(upgrades.BlightedSoul))
+            {
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                    () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
+            }
+
+            if (AddMapLayerToggles != null)
+            {
+                AddMapLayerToggles(player, mapLayerToggles);
+            }
+
+            if (mapLayerToggles.Count > 0)
+            {
+                int buffIconSeparation = 26 * 2; 
+                int slotsUntilWrap = 4;
+                int width = 16 + Math.Min(mapLayerToggles.Count, slotsUntilWrap) * buffIconSeparation;
+                var uiConfig = ModContent.GetInstance<UIConfiguration>();
+                int x = (int)uiConfig.MapUITogglesPosition.X;
+                //x = Main.mouseX; For testing
+                if (x + width > Main.screenWidth - 60)
+                {
+                    x = Main.screenWidth - 60 - width;
+                }
+                int y = (int)uiConfig.MapUITogglesPosition.Y;
+
+                int height = 64;
+                if (mapLayerToggles.Count > slotsUntilWrap)
+                {
+                    height += buffIconSeparation * ((mapLayerToggles.Count - 1) / slotsUntilWrap);
+                }
+                if (y + height > Main.screenHeight - 20)
+                {
+                    y = Main.screenHeight - 20 - height;
+                }
+
+                Utils.DrawInvBG(Main.spriteBatch, new Rectangle(x, y, width, height), new Color(45, 51, 111, 255) * _mapTogglesAlpha);
+
+                if (new Rectangle(x, y, width, height).Contains(Main.mouseX, Main.mouseY))
+                {
+                    Main.LocalPlayer.mouseInterface = true;
+                    if (_mapTogglesAlpha < 1f)
+                    {
+                        _mapTogglesAlpha += 0.1f;
+                        if (_mapTogglesAlpha > 1f)
+                        {
+                            _mapTogglesAlpha = 1f;
+                        }
+                    }
+                }
+                else
+                {
+                    if (_mapTogglesAlpha > 0.33f)
+                    {
+                        _mapTogglesAlpha -= 0.02f;
+                        if (_mapTogglesAlpha < 0.33f)
+                        {
+                            _mapTogglesAlpha = 0.33f;
+                        }
+                    }
+                }
+                byte b = (byte)(int)(255f * _mapTogglesAlpha);
+                for (int i = 0; i < mapLayerToggles.Count; i++)
+                {
+                    byte clr = b;
+                    if (!mapLayerToggles[i].IsActive())
+                    {
+                        clr /= 2;
+                    }
+                    byte a = b;
+                    int toggleX = x + 10 + i % slotsUntilWrap * buffIconSeparation;
+                    int toggleY = y + 10 + buffIconSeparation * (i / slotsUntilWrap);
+
+                    var destinationRectangle = new Rectangle(toggleX, toggleY, buffIconSeparation - 8, buffIconSeparation - 8);
+
+                    bool hovering = destinationRectangle.Contains(Main.mouseX, Main.mouseY);
+                    if (hovering)
+                    {
+                        mouseText = mapLayerToggles[i].HoverText();
+                        if (Main.mouseLeft && Main.mouseLeftRelease)
+                        {
+                            Main.mouseLeftRelease = false;
+                            mapLayerToggles[i].Toggle();
+                            if (mapLayerToggles[i].IsActive())
+                            {
+                                Main.PlaySound(SoundID.MenuOpen);
+                            }
+                            else
+                            {
+                                Main.PlaySound(SoundID.MenuClose);
+                            }
+                        }
+                        if (_mapTogglesAlpha < 1f)
+                        {
+                            _mapTogglesAlpha = 1f;
+                            a = 255;
+                            clr = 255;
+                        }
+                        Main.spriteBatch.Draw(mapLayerToggles[i].Texture, new Rectangle(destinationRectangle.X + 2, destinationRectangle.Y, destinationRectangle.Width, destinationRectangle.Height), new Color(0, 0, 0, a));
+                        Main.spriteBatch.Draw(mapLayerToggles[i].Texture, new Rectangle(destinationRectangle.X - 2, destinationRectangle.Y, destinationRectangle.Width, destinationRectangle.Height), new Color(0, 0, 0, a));
+                        Main.spriteBatch.Draw(mapLayerToggles[i].Texture, new Rectangle(destinationRectangle.X, destinationRectangle.Y + 2, destinationRectangle.Width, destinationRectangle.Height), new Color(0, 0, 0, a));
+                        Main.spriteBatch.Draw(mapLayerToggles[i].Texture, new Rectangle(destinationRectangle.X, destinationRectangle.Y - 2, destinationRectangle.Width, destinationRectangle.Height), new Color(0, 0, 0, a));
+                    }
+
+                    Main.spriteBatch.Draw(mapLayerToggles[i].Texture, destinationRectangle, new Color(clr, clr, clr, a));
+                    if (hovering)
+                        Main.spriteBatch.Draw(mapLayerToggles[i].Texture, destinationRectangle, new Color(clr, clr, clr, 0));
+                }
+            }
         }
     }
 }

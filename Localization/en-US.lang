@@ -181,18 +181,23 @@ ItemTooltip.Nimrod=Summons a fishing cloud which spawns 3 lightning bobbers to c
 
 ItemName.CosmicTelescope=Cosmic Telescope
 ItemTooltip.CosmicTelescope=Shows the location of the Glimmer Event and some other related info on the map
+MapLayerToggle.CosmicTelescope='Cosmic Telescope'\nShows the location of the Glimmer Event and some other related info on the map
 
 ItemName.DungeonMap=Vial of Blood
 ItemTooltip.DungeonMap=Shows the location of the Dungeon\nPressing the map icon of the Dungeon allows you to teleport to it
+MapLayerToggle.VialOfBlood='Vial of Blood'\nShows the location of the Dungeon\nPressing the map icon of the Dungeon allows you to teleport to it
 
 ItemName.LihzahrdMap=Cabbage
 ItemTooltip.LihzahrdMap=Shows the location of the Lihzahrd Altar\nPressing on the map icon of the Lihzahrd Altar allows you to teleport to it
+MapLayerToggle.Cabbage='Cabbage'\nShows the location of the Lihzahrd Altar\nPressing on the map icon of the Lihzahrd Altar allows you to teleport to it
 
 ItemName.RetroGoggles=Blighted Soul
 ItemTooltip.RetroGoggles=Enemies appear as a blip on the fullscreen map
+MapLayerToggle.BlightedSoul='Blighted Soul'\nEnemies appear as a blip on the fullscreen map
 
 ItemName.Beeswax=Beeswax
-ItemTooltip.LihzahrdMap=Shows the location of any visible Plantera bulbs
+ItemTooltip.Beeswax=Shows the location of any visible Plantera bulbs
+MapLayerToggle.Beeswax='Beeswax'\nShows the location of any visible Plantera bulbs
 
 # Potions
 ItemName.MysteryGrail=Mysterious Grail
