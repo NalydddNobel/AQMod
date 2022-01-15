@@ -36,6 +36,9 @@ ItemTooltip.MetalBarb=你的钩爪会造成伤害
 ItemName.CrabBarb=螃蟹刺钩
 ItemTooltip.CrabBarb=你的钩爪会造成中毒和伤害
 
+ItemName.MinersFlashlight=矿工的手电筒
+ItemTooltip.MinersFlashlight=你会向你的光标位置发射一束光\n被光照到的宝藏会发光\n关闭饰品可见性来禁用手电筒效果
+
 # Armor
 
 ItemName.SteelPlatedChestplate=钢板胸甲
@@ -65,7 +68,8 @@ BuffName.Starite=星之源
 BuffDescription.Starite=星之源会为你而战
 
 ItemName.VineSword=棒槌
-ItemTooltip.VineSword=会重击你光标附近的敌人\n使罐子拥有特殊掉落
+ItemTooltip.VineSword=打击你光标附近的敌人
+# \n使罐子拥有特殊掉落
 ItemName.KryptonSword=氪制回旋镖
 ItemTooltip.KryptonSword=能够穿透敌人并回旋移动\n击中敌人时会对其造成多种减益
 
@@ -117,6 +121,10 @@ ProjectileName.Skrawler=皮肤焚烧者
 
 ItemName.SnowflakeCannon=雪花大炮
 ItemTooltip.SnowflakeCannon=发射许多雪球\n66%几率不消耗弹药
+
+ItemName.UltimateSword=最终之剑
+ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
+ProjectileName.UltimateSword=最终之剑
 
 # Dyes
 ItemName.RedSpriteDye=红色精灵染料
@@ -171,12 +179,25 @@ IWillBeBackToggle.False=城镇NPC现在不再会免疫岩浆
 ItemName.Nimrod=猎手
 ItemTooltip.Nimrod=召唤一朵捕鱼云朵, 其会生成三个闪电浮标来捕鱼\n在下雨时, 捕鱼速度更快
 
-ItemName.MinersFlashlight=矿工的手电筒
-ItemTooltip.MinersFlashlight=你会向你的光标位置发射一束光\n被光照到的宝藏会发光\n关闭饰品可见性来禁用手电筒效果
+temName.CosmicTelescope=宇宙望远镜
+ItemTooltip.CosmicTelescope=显示微光事件的位置以及地图上的一些其他相关信息
+MapLayerToggle.CosmicTelescope='宇宙望远镜'\n显示微光事件的位置以及地图上的一些其他相关信息
 
-ItemName.UltimateSword=最终之剑
-ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
-ProjectileName.UltimateSword=最终之剑
+ItemName.DungeonMap=血瓶
+ItemTooltip.DungeonMap=显示地牢的位置\n点击地牢的地图图标可以传送至地牢
+MapLayerToggle.VialOfBlood='血瓶'\n显示地牢的位置\n点击地牢的地图图标可以传送至地牢
+
+ItemName.LihzahrdMap=卷心菜
+ItemTooltip.LihzahrdMap=显示神庙祭坛的位置\n点击神庙祭坛的地图图标可以传送至神庙祭坛
+MapLayerToggle.Cabbage='卷心菜'\n显示神庙祭坛的位置\n点击神庙祭坛的地图图标可以传送至神庙祭坛
+
+ItemName.RetroGoggles=折磨之魂
+ItemTooltip.RetroGoggles=在大地图上以粉色光点显示敌人的位置
+MapLayerToggle.BlightedSoul='折磨之魂'\n在大地图上以粉色光点显示敌人的位置
+
+ItemName.Beeswax=蜂蜡
+ItemTooltip.Beeswax=显示所有可见的世纪之花花苞的位置
+MapLayerToggle.Beeswax='蜂蜡'\n显示所有可见的世纪之花花苞的位置
 
 # Potions
 ItemName.MysteryGrail=神秘圣杯
@@ -220,6 +241,12 @@ ItemTooltip.LarvaEel=使你获得3分钟蜂蜜增益和耐药性减益
 # Quest Fish
 ItemName.WaterFisg=水鱼
 ItemName.Crabdaughter=蟹蛤之子
+
+# Foods
+ItemName.PeeledCarrot=胡龙卜
+ItemTooltip.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视能力
+BuffName.PeeledCarrot=胡龙卜
+BuffDescription.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视能力
 
 # Tooltips
 Tooltips.Unobtainable=自另一宇宙形成的遗物
@@ -428,7 +455,7 @@ ClientConfig.XmasProgressMeterOverride=圣诞进度条覆盖
 ClientConfig.XmasProgressMeterOverrideTooltip=决定是否让种子 "Aequus Xmas" 覆盖世界生成进度条. 该项在某些时候会与世界生成预览冲突\n{$Mods.AQMod.Config.RequiresReload}
 
 ClientConfig.MapBlipColor=地图光点颜色
-ClientConfig.MapBlipColorTooltip=复古标记显示的地图光点的颜色
+ClientConfig.MapBlipColorTooltip=折磨之魂显示的地图光点的颜色
 
 ClientConfig.Header.Worldgen=世界生成
 ClientConfig.Screenshakes=屏幕震动
@@ -738,11 +765,6 @@ ItemTooltip.RedLicorice=中幅度提升大多数属性并且增加20点生命值
 BuffName.RedLicorice=红甘草
 BuffDescription.RedLicorice=中幅度提升大多数属性并且增加20点生命值
 
-ItemName.PeeledCarrot=去皮胡萝卜
-ItemTooltip.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视能力
-BuffName.PeeledCarrot=去皮胡萝卜
-BuffDescription.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视能力
-
 ItemName.GrapePhanta=幻影葡萄
 ItemTooltip.GrapePhanta=中幅度提升大多数属性\n大幅度提升魔法属性\n增加20点法力值
 BuffName.GrapePhanta=幻影葡萄
@@ -773,12 +795,6 @@ ItemName.LightbulbBreastplate=灯泡胸甲
 ItemName.LightbulbGreaves=灯泡护胫
 ItemName.LightbulbHelmet=灯泡头盔
 ItemName.SuperDartTrapHat=超级飞镖帽
-# Map
-ItemName.CosmicTelescope=星宇标记
-ItemName.DungeonMap=骨质标记
-ItemName.LihzahrdMap=神庙标记
-ItemName.RetroGoggles=复古标记
-# Spelunker
 ItemName.Extractor=提炼器
 ########
 # Misc #
@@ -1033,11 +1049,6 @@ ItemTooltip.DartTrapHat=当你站在地面上时发射毒镖\n增加5%召唤伤�
 ItemTooltip.LightbulbGreaves=+1额外召唤栏
 ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n使你轻微发光
 ItemTooltip.SuperDartTrapHat=当你站在地面上时发射毒镖\n增加10%召唤伤害\n+2额外召唤栏
-# Map
-ItemTooltip.CosmicTelescope=在地图上显示微光事件的正中心
-ItemTooltip.DungeonMap=若地牢已被发现, 则在地图上显示地牢位置\n你可以使用清灵明镜传送至地牢
-ItemTooltip.LihzahrdMap=若神庙祭坛已被发现或世纪之花已被击败, 则在地图上显示神庙祭坛的位置\n在击败世纪之花后，你可以使用清灵明镜传送至神庙祭坛
-ItemTooltip.RetroGoggles=在地图上以粉色光点显示敌人的位置
 # Spelunker
 ItemTooltip.Extractor=使你免疫窒息减益\n下落的泥沙块和雪泥块对你造成的伤害降低4倍\n如果启用此饰品的可见性:\n使你获得提炼泥沙块、雪泥块和沙漠化石的能力\n在提炼机处提炼某些东西时会显示提炼的次数
 ########
@@ -1071,7 +1082,7 @@ ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 ItemTooltip.GlimmeringStatue=在微光事件持续期间有很高几率吸引最终之剑至此
 # Other Placeables
 ItemTooltip.FishingCraftingStation=用于制作特殊的钓鱼物品
-ItemTooltip.GlobeItem=可使用标记物品进行绘制
+ItemTooltip.GlobeItem='探索世界'
 ItemTooltip.DragonBall=召唤一个微型星之源
 ItemTooltip.HeartLamp=召唤一只会增加你生命恢复速度的心蛾
 ItemTooltip.MonoxideHat='因人们需求而变成一件装饰物品'
@@ -1134,14 +1145,6 @@ BuffName.MicroStarite=微型星之源
 BuffDescription.MicroStarite=你所能想象的最小的类太阳系
 BuffName.HeartMoth=心蛾
 BuffDescription.HeartMoth=增加你的生命恢复速度并提供光照
-BuffName.CosmicMarker=星宇标记
-BuffDescription.CosmicMarker=在地图上显示微光事件的正中心
-BuffName.RetroMarker=复古标记
-BuffDescription.RetroMarker=在地图上以粉色光点显示敌人的位置
-BuffName.DungeonMarker=地牢标记
-BuffDescription.DungeonMarker=在地图上显示地牢的位置
-BuffName.LihzahrdMarker=神庙标记
-BuffDescription.LihzahrdMarker=在地图上显示神庙祭坛的位置
 BuffName.Bossrush=安可
 BuffDescription.Bossrush=Boss被击败时会再次生成
 BuffName.Ultima=最终之力
@@ -1344,11 +1347,11 @@ ItemName.SpaceSquidTrophy=太空乌贼纪念章
 ItemName.SpaceSquidBanner=太空乌贼旗
 ItemTooltip.SpaceSquidBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SpaceSquid}
 
-ProjectileName.SpaceSquidLaser=Space Squid
-ProjectileName.SpaceSquidDeathray=Space Squid
+ProjectileName.SpaceSquidLaser=太空乌贼
+ProjectileName.SpaceSquidDeathray=太空乌贼
 
 QuestFish.Crabdaughter=看起来海洋中最近涌入了某些新的鱼, 其中一条鱼似乎与爪子为蛤蜊的巨大螃蟹有关联. 尽管我所能想到的唯一关联是它的爪子为螃蟹爪子. 真是个奇观, 所以快给我抓一条!
-QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我曾见过一条内部充满清澈的水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
+QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我曾见过一条内部充满清水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
 FishingLocation.AnywhereFishing=抓捕位置: 任意位置
 FishingLocation.BeachFishing=抓捕位置: 海洋
 
@@ -1362,3 +1365,4 @@ MapObject.Banners=旗
 MapObject.ExoticCoral=奇异珊瑚
 MapObject.FishingCraftingStation=渔具加工站
 MapObject.BuriedDirtChest=被掩埋的土箱
+MapObject.Dungeon=地牢
