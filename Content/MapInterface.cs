@@ -129,8 +129,8 @@ namespace AQMod.Content
                     {
                         if (Main.mouseLeft && Main.mouseLeftRelease)
                         {
-                            TeleportPlayer(new Vector2(p.X * 16f + 16f, p.Y * 16f - 16f));
-                            return;
+                            //TeleportPlayer(new Vector2(p.X * 16f + 16f, p.Y * 16f - 16f));
+                            //return;
                         }
                         mouseText = Language.GetTextValue("MapObject.PlanterasBulb");
                     }
