@@ -100,28 +100,56 @@ namespace AQMod.Content
             {
                 if (_planteraBulbsPositionCache == null)
                 {
-                    _planteraBulbsPositionCache = new List<Point>();
+                    _planteraBulbsPositionCache = new List<Point>(); 
+                    _mapRefresh = 0;
                 }
-                for (int i = 50; i < Main.maxTilesX - 50; i++)
+                if (_mapRefresh < 16)
                 {
-                    for (int j = 50; j < Main.maxTilesY - 50; j++)
+                    int startX = 50 + Main.maxTilesX / 16 * _mapRefresh;
+                    int endX = Math.Min(50 + Main.maxTilesX / 16 * (_mapRefresh + 1), Main.maxTilesX - 50);
+                    if (_planteraBulbsPositionCache.Count == 1 && startX <= _planteraBulbsPositionCache[0].X && endX > _planteraBulbsPositionCache[0].X)
                     {
-                        if (Main.tile[i, j] == null)
+                        _planteraBulbsPositionCache = new List<Point>();
+                    }
+                    for (int k = 0; k < _planteraBulbsPositionCache.Count; k++)
+                    {
+                        if (_planteraBulbsPositionCache[k].X > endX)
                         {
-                            Main.tile[i, j] = new Tile();
-                            continue;
+                            if (k == 0)
+                            {
+                                break;
+                            }
+                            var list = _planteraBulbsPositionCache;
+                            _planteraBulbsPositionCache = new List<Point>();
+                            for (int l = k - 1; l < list.Count; l++)
+                            {
+                                _planteraBulbsPositionCache.Add(list[l]);
+                            }
+                            break;
                         }
-                        if (!Main.tile[i, j].active() || Main.Map[i, j].Light < 40)
+                    }
+                    for (int i = startX; i < endX; i++)
+                    {
+                        for (int j = 50; j < Main.maxTilesY - 50; j++)
                         {
-                            continue;
-                        }
-                        if (Main.tile[i, j].type == TileID.PlanteraBulb && Main.tile[i, j].frameX == 0 && Main.tile[i, j].frameY == 0)
-                        {
-                            _planteraBulbsPositionCache.Add(new Point(i, j));
-                            j++;
+                            if (Main.tile[i, j] == null)
+                            {
+                                Main.tile[i, j] = new Tile();
+                                continue;
+                            }
+                            if (!Main.tile[i, j].active() || Main.Map[i, j].Light < 40)
+                            {
+                                continue;
+                            }
+                            if (Main.tile[i, j].type == TileID.PlanteraBulb && Main.tile[i, j].frameX == 0 && Main.tile[i, j].frameY == 0)
+                            {
+                                _planteraBulbsPositionCache.Add(new Point(i, j));
+                                j++;
+                            }
                         }
                     }
                 }
+                Main.NewText(_planteraBulbsPositionCache.Count);
                 foreach (var p in _planteraBulbsPositionCache)
                 {
                     DrawMapIcon(out bool hovering, Icon_PlanteraBulb, p.X + 1f, p.Y, interactable: Main.hardMode);
@@ -278,10 +306,6 @@ namespace AQMod.Content
                 }
             }
 
-            if (_mapRefresh == 0)
-            {
-                _planteraBulbsPositionCache = null;
-            }
             _mapRefresh++;
             if (_mapRefresh > 60)
                 _mapRefresh = 0;
