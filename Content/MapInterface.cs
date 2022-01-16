@@ -113,19 +113,10 @@ namespace AQMod.Content
                     }
                     for (int k = 0; k < _planteraBulbsPositionCache.Count; k++)
                     {
-                        if (_planteraBulbsPositionCache[k].X > endX)
+                        if (_planteraBulbsPositionCache[k].X >= startX && _planteraBulbsPositionCache[k].X < endX)
                         {
-                            if (k == 0)
-                            {
-                                break;
-                            }
-                            var list = _planteraBulbsPositionCache;
-                            _planteraBulbsPositionCache = new List<Point>();
-                            for (int l = k - 1; l < list.Count; l++)
-                            {
-                                _planteraBulbsPositionCache.Add(list[l]);
-                            }
-                            break;
+                            _planteraBulbsPositionCache.RemoveAt(k);
+                            k--;
                         }
                     }
                     for (int i = startX; i < endX; i++)
@@ -149,7 +140,7 @@ namespace AQMod.Content
                         }
                     }
                 }
-                Main.NewText(_planteraBulbsPositionCache.Count);
+                //Main.NewText(_planteraBulbsPositionCache.Count);
                 foreach (var p in _planteraBulbsPositionCache)
                 {
                     DrawMapIcon(out bool hovering, Icon_PlanteraBulb, p.X + 1f, p.Y, interactable: Main.hardMode);
