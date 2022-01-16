@@ -1,6 +1,7 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.World.Events.GaleStreams;
+using AQMod.Effects.Particles;
 using AQMod.Effects.Wind;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

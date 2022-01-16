@@ -10,6 +10,7 @@ using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
+using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
