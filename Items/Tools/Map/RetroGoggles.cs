@@ -23,10 +23,11 @@ namespace AQMod.Items.Tools.Map
             item.rare = ItemRarityID.Green;
             item.value = Item.sellPrice(gold: 2);
             item.consumable = true;
-            item.useStyle = ItemUseStyleID.HoldingUp;
             item.useAnimation = 50;
             item.useTime = 50;
             item.noUseGraphic = true;
+            item.UseSound = SoundID.Item8;
+            item.useStyle = ItemUseStyleID.HoldingUp;
         }
 
         public override Color? GetAlpha(Color lightColor)

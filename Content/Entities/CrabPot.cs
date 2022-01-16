@@ -1,10 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Graphics;
-using AQMod.Content.Fishing;
 using AQMod.Content.Players;
-using AQMod.Items.Fish.BloodMoon;
-using AQMod.Items.Fish.Corruption;
-using AQMod.Items.Fish.Crimson;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -251,7 +247,6 @@ namespace AQMod.Content.Entities
 
         private bool FishingCheckRNG()
         {
-            //return Main.rand.NextBool(60);
             return Main.rand.NextBool(5500);
         }
 
@@ -274,180 +269,7 @@ namespace AQMod.Content.Entities
 
         private int FishingCheckGetItem()
         {
-            if (honeyWet)
-            {
-                return 0;
-            }
-            var point = Center.ToTileCoordinates();
-            int worldLayer = (!(point.Y < Main.worldSurface * 0.5)) ? ((point.Y < Main.worldSurface) ? 1 : ((point.Y < Main.rockLayer) ? 2 : ((point.Y >= Main.maxTilesY - 300) ? 4 : 3))) : 0;
-
-            if (LavaProof && lavaWet)
-            {
-                return Main.rand.NextBool() ? ItemID.FlarefinKoi : ItemID.Obsidifish;
-            }
-            else if (worldLayer == FishLoader.WorldLayers.HellLayer)
-            {
-                return 0;
-            }
-
-            bool ocean = position.X < 3200f || position.X > Main.maxTilesX * 16f - 3200f;
-            bool crimson = false;
-            bool corruption = false;
-            bool desert = false;
-            bool jungle = false;
-            bool hallow = false;
-            bool snow = false;
-
-            for (int j = 0; j < 30; j++)
-            {
-                if (point.Y + j > Main.maxTilesY - 10)
-                {
-                    continue;
-                }
-                var tile = Main.tile[point.X, point.Y + j];
-                if (tile == null)
-                {
-                    continue;
-                }
-                if (!ocean)
-                {
-                    switch (tile.type)
-                    {
-                        case TileID.Sand:
-                        case TileID.Ebonsand:
-                        case TileID.Crimsand:
-                        case TileID.Pearlsand:
-                        case TileID.HardenedSand:
-                        case TileID.CorruptHardenedSand:
-                        case TileID.CrimsonHardenedSand:
-                        case TileID.HallowHardenedSand:
-                        case TileID.Sandstone:
-                        case TileID.CorruptSandstone:
-                        case TileID.CrimsonSandstone:
-                        case TileID.HallowSandstone:
-                            {
-                                desert = true;
-                            }
-                            break;
-                    }
-                }
-                if (tile.wall == WallID.Sandstone)
-                {
-                    desert = true;
-                }
-                if (TileID.Sets.Snow[tile.type] || TileID.Sets.Conversion.Ice[tile.type])
-                {
-                    snow = true;
-                }
-                if (TileID.Sets.Hallow[tile.type])
-                {
-                    hallow = true;
-                    break;
-                }
-                if (TileID.Sets.Corrupt[tile.type])
-                {
-                    corruption = true;
-                    break;
-                }
-                if (TileID.Sets.Crimson[tile.type])
-                {
-                    crimson = true;
-                    break;
-                }
-                if (tile.type == TileID.JungleGrass || tile.type == TileID.LihzahrdBrick)
-                {
-                    jungle = true;
-                    break;
-                }
-            }
-
-            bool spawnGenericFish = !crimson && !corruption && !desert && !ocean && !jungle && !snow;
-
-            List<int> selectableFish = new List<int>();
-            // TODO: Add custom items instead of these sudo regular fishing tables!
-            // TODO 2: Aadd custom crab pot item support through mod calls?
-            if (worldLayer <= FishLoader.WorldLayers.Overworld)
-            {
-                if (Main.bloodMoon)
-                {
-                    selectableFish.Add(ModContent.ItemType<PalePufferfish>());
-                    if (Main.hardMode)
-                        selectableFish.Add(ModContent.ItemType<VampireSquid>());
-                }
-                if (spawnGenericFish)
-                {
-
-                }
-            }
-            if (crimson)
-            {
-                selectableFish.Add(ItemID.Hemopiranha);
-                selectableFish.Add(ItemID.CrimsonTigerfish);
-                if (NPC.downedBoss2)
-                {
-                    selectableFish.Add(ModContent.ItemType<Fleshscale>());
-                }
-            }
-            else if (corruption)
-            {
-                selectableFish.Add(ItemID.Ebonkoi);
-                if (!Main.dayTime)
-                {
-                    selectableFish.Add(ModContent.ItemType<Fizzler>());
-                }
-                if (NPC.downedBoss2)
-                {
-                    selectableFish.Add(ModContent.ItemType<Depthscale>());
-                }
-            }
-            else if (jungle)
-            {
-                selectableFish.Add(ItemID.DoubleCod);
-                selectableFish.Add(ItemID.VariegatedLardfish);
-            }
-            else if (hallow)
-            {
-                selectableFish.Add(ItemID.PrincessFish);
-                selectableFish.Add(ItemID.Prismite);
-                if (worldLayer == FishLoader.WorldLayers.UndergroundLayer || worldLayer == FishLoader.WorldLayers.CavernLayer)
-                    selectableFish.Add(ItemID.ChaosFish);
-            }
-            if (ocean && worldLayer == FishLoader.WorldLayers.Overworld)
-            {
-                selectableFish.Add(ItemID.Shrimp);
-                selectableFish.Add(ItemID.BlueJellyfish);
-                selectableFish.Add(ItemID.GreenJellyfish);
-                selectableFish.Add(ItemID.PinkJellyfish);
-            }
-            else if (snow)
-            {
-                selectableFish.Add(ItemID.AtlanticCod);
-                selectableFish.Add(ItemID.FrostMinnow);
-            }
-
-            if (spawnGenericFish)
-            {
-                if (worldLayer == FishLoader.WorldLayers.Space)
-                {
-                    selectableFish.Add(ItemID.Damselfish);
-                }
-                else if (worldLayer == FishLoader.WorldLayers.UndergroundLayer || worldLayer == FishLoader.WorldLayers.CavernLayer)
-                {
-                    selectableFish.Add(ItemID.Stinkfish);
-                    selectableFish.Add(ItemID.SpecularFish);
-                    selectableFish.Add(ItemID.ArmoredCavefish);
-                }
-                if (worldLayer <= FishLoader.WorldLayers.Overworld)
-                {
-                    selectableFish.Add(ItemID.Bass);
-                }
-            }
-
-            if (selectableFish.Count == 1)
-                return selectableFish[0];
-            if (selectableFish.Count > 1)
-                return selectableFish[Main.rand.Next(selectableFish.Count)];
-            return 0;
+            return CrabPotLootTables.CaptureFish(((int)position.X + width / 2) / 16, ((int)position.Y + height / 2) / 16, (byte)(lavaWet ? Tile.Liquid_Lava : honeyWet ? Tile.Liquid_Honey : Tile.Liquid_Water));
         }
 
         private void FloatOnWater(int x, int y)

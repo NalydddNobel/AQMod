@@ -15,9 +15,10 @@ namespace AQMod.Items.Tools.Map
             item.rare = ItemRarityID.Green;
             item.value = Item.sellPrice(gold: 2);
             item.consumable = true;
-            item.useStyle = ItemUseStyleID.HoldingUp;
             item.useAnimation = 50;
             item.useTime = 50;
+            item.UseSound = SoundID.Item2;
+            item.useStyle = ItemUseStyleID.EatingUsing;
         }
 
         public override bool UseItem(Player player)

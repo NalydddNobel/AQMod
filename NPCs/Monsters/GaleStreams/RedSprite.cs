@@ -953,6 +953,10 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.BossItems.RedSpriteTrophy>());
             }
+            if (Main.rand.NextBool(5))
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tools.Map.RetroGoggles>());
+            }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
@@ -1006,6 +1010,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     {
                         ItemID.NimbusRod,
                         ModContent.ItemType<Items.Tools.Fishing.Nimrod>(),
+                        ModContent.ItemType<Items.Tools.Map.RetroGoggles>(),
                         ItemID.SoulofFlight,
                         ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
                         ModContent.ItemType<Items.Materials.Fluorescence>(),
