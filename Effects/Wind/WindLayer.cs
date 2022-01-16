@@ -112,18 +112,21 @@ namespace AQMod.Effects.Wind
 
         internal static void DrawFinal()
         {
-            Main.spriteBatch.End();
-            BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
+            if (_finalTarget != null && !_finalTarget.IsDisposed && !_finalTarget.IsContentLost)
+            {
+                Main.spriteBatch.End();
+                BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
 
-            _windShader.Parameters["uTime"].SetValue(Main.GlobalTime);
-            _windShader.Parameters["uSourceRect"].SetValue(new Vector4(0, 0, Main.screenWidth, Main.screenHeight));
-            _windShader.Parameters["uImageSize0"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
-            _windShader.Techniques[0].Passes["MakeTransparentPass"].Apply();
+                _windShader.Parameters["uTime"].SetValue(Main.GlobalTime);
+                _windShader.Parameters["uSourceRect"].SetValue(new Vector4(0, 0, Main.screenWidth, Main.screenHeight));
+                _windShader.Parameters["uImageSize0"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
+                _windShader.Techniques[0].Passes["MakeTransparentPass"].Apply();
 
-            Main.spriteBatch.Draw(_finalTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(_finalTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-            Main.spriteBatch.End();
-            BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+                Main.spriteBatch.End();
+                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+            }
         }
 
         void IAutoloadType.OnLoad()
