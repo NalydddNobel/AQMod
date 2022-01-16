@@ -1,5 +1,6 @@
 ﻿using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
+using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -32,58 +33,58 @@ namespace AQMod.Effects.WorldEffects
             switch (colorType)
             {
                 default:
-                {
-                    _dustColor = new Color(255, 255, 100, 0);
-                }
-                break;
+                    {
+                        _dustColor = new Color(255, 255, 100, 0);
+                    }
+                    break;
 
                 case 1:
-                {
-                    _dustColor = new Color(140, 50, 255, 0);
-                }
-                break;
+                    {
+                        _dustColor = new Color(140, 50, 255, 0);
+                    }
+                    break;
 
                 case 2:
-                {
-                    _dustColor = new Color(255, 255, 255, 0);
-                }
-                break;
+                    {
+                        _dustColor = new Color(255, 255, 255, 0);
+                    }
+                    break;
 
                 case 3:
-                {
-                    _dustColor = new Color(255, 100, 255, 0);
-                }
-                break;
+                    {
+                        _dustColor = new Color(255, 100, 255, 0);
+                    }
+                    break;
 
                 case 4:
-                {
-                    _dustColor = new Color(255, 160, 255, 0);
-                }
-                break;
+                    {
+                        _dustColor = new Color(255, 160, 255, 0);
+                    }
+                    break;
 
                 case 5:
-                {
-                    _dustColor = new Color(160, 255, 180, 0);
-                }
-                break;
+                    {
+                        _dustColor = new Color(160, 255, 180, 0);
+                    }
+                    break;
 
                 case 6:
-                {
-                    _dustColor = new Color(40, 255, 150, 0);
-                }
-                break;
+                    {
+                        _dustColor = new Color(40, 255, 150, 0);
+                    }
+                    break;
 
                 case 7:
-                {
-                    _dustColor = new Color(180, 255, 50, 0);
-                }
-                break;
+                    {
+                        _dustColor = new Color(180, 255, 50, 0);
+                    }
+                    break;
 
                 case 8:
-                {
-                    _dustColor = new Color(255, 100, 180, 0);
-                }
-                break;
+                    {
+                        _dustColor = new Color(255, 100, 180, 0);
+                    }
+                    break;
             }
         }
 
@@ -116,15 +117,24 @@ namespace AQMod.Effects.WorldEffects
                 {
                     _time += _existence * (0.0005f * (1f - progress));
                 }
-                var s = CustomRenderUltimateSword.SwordPos();
-                int x = (int)s.X + (int)(Math.Sin(_time) * _maxWidth);
-                int y = (int)s.Y - (int)((1f - progress) * _maxHeight);
+                int x = (int)(Math.Sin(_time) * _maxWidth);
+                int y = (int)((1f - progress) * _maxHeight);
+                y += (int)(GlimmerEvent.tileY * 16f - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f);
+                x += GlimmerEvent.tileX * 16;
+                if (Framing.GetTileSafely(GlimmerEvent.tileX, GlimmerEvent.tileY).type == ModContent.TileType<GlimmeringStatue>())
+                {
+                    x += 16;
+                }
+                else
+                {
+                    x += 8;
+                }
                 int d = Dust.NewDust(new Vector2(x, y), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, _dustColor);
                 Main.dust[d].noGravity = true;
                 Main.dust[d].velocity *= 0.1f;
                 if (AQConfigClient.c_EffectQuality >= 1f)
                 {
-                    float p = 1f - (progress * 0.5f);
+                    float p = 1f - progress * 0.5f;
                     Main.dust[d].scale *= p * p;
                     if (_rand.NextBool(20))
                     {

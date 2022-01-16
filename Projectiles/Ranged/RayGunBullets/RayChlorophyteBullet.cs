@@ -1,9 +1,7 @@
-﻿using AQMod.Dusts;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Ranged.RayGunBullets
 {

@@ -10,10 +10,10 @@
             switch (text)
             {
                 default:
-                return text;
+                    return text;
 
                 case "AQMod":
-                return AQMod_Key;
+                    return AQMod_Key;
             }
         }
 
@@ -22,10 +22,10 @@
             switch (text)
             {
                 default:
-                return text;
+                    return text;
 
                 case AQMod_Key:
-                return "AQMod";
+                    return "AQMod";
             }
         }
 

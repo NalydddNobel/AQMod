@@ -12,7 +12,7 @@ namespace AQMod.Items.Vanities.Dyes
 
         public override ArmorShaderData CreateShaderData()
         {
-            return new ArmorShaderDataModifyLightColor(Effect, Pass, (v) => 
+            return new ArmorShaderDataModifyLightColor(Effect, Pass, (v) =>
             {
                 var color = v;
                 float time = Main.GlobalTime * 20;
@@ -22,7 +22,7 @@ namespace AQMod.Items.Vanities.Dyes
                 color.Y = MathHelper.Lerp(color.Y, gLERP, 0.5f);
                 float bLERP = (float)(Math.Sin(color.Z * 10 + time + color.X)) / 2f;
                 color.Z = MathHelper.Lerp(color.Z, bLERP, 0.5f);
-                return color; 
+                return color;
             }).UseOpacity(1f);
         }
     }

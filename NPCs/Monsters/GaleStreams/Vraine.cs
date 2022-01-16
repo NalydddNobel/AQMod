@@ -66,12 +66,12 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 }
                 if ((int)npc.ai[1] == 1)
                 {
-                    AQGore.NewGore(npc.Center + Vector2.Normalize(npc.oldVelocity) * npc.width / 2f, 
+                    AQGore.NewGore(npc.Center + Vector2.Normalize(npc.oldVelocity) * npc.width / 2f,
                         npc.velocity * 0.25f, "GaleStreams/brollow_1");
                 }
                 else
                 {
-                    AQGore.NewGore(npc.Center + Vector2.Normalize(npc.oldVelocity) * npc.width / 2f, 
+                    AQGore.NewGore(npc.Center + Vector2.Normalize(npc.oldVelocity) * npc.width / 2f,
                         npc.velocity * 0.25f, "GaleStreams/brollow_0");
                 }
                 AQGore.NewGore(npc.getRect(), npc.velocity.RotatedBy(-0.1f) * 0.25f, "GaleStreams/brollow_2");

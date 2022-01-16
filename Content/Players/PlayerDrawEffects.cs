@@ -1,9 +1,9 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics;
-using AQMod.Common.Graphics.Particles;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.ID;
 using AQMod.Dusts;
+using AQMod.Effects.Particles;
 using AQMod.Items;
 using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.DrawOverlays;
@@ -178,32 +178,51 @@ namespace AQMod.Content.Players
 
         private static void DrawChomperChain(Player player, Projectile chomper, Vector2 drawPosition, Color drawColor)
         {
-                var chomperHead = (Chomper)chomper.modProjectile;
-                int frameWidth = 16;
-                var frame = new Rectangle(0, 0, frameWidth - 2, 20);
-                var origin = frame.Size() / 2f;
-                float offset = chomper.width / 2f + frame.Height / 2f;
-                var texture = ModContent.GetTexture(AQUtils.GetPath<Chomper>("_Chain"));
-                Main.playerDrawData.Add(new DrawData(texture, new Vector2(drawPosition.X + chomper.width / 2 * -chomper.spriteDirection, drawPosition.Y), frame, drawColor, 0f, origin, chomper.scale, chomper.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0)
-                { ignorePlayerRotation = true });
-                int height = frame.Height - 4;
-                frame.Y += 2;
-                var playerCenter = player.Center;
-                var chainStart = chomper.Center + new Vector2((chomper.width / 2 + 4) * -chomper.spriteDirection, 0f);
-                var velo = Vector2.Normalize(Vector2.Lerp(chainStart + new Vector2(0f, height * 4f) - playerCenter, player.velocity, 0.5f)) * height;
-                var position = playerCenter;
-                var rand = new UnifiedRandom(chomper.whoAmI + player.name.GetHashCode());
-                if (AQConfigClient.c_EffectQuality >= 1f)
+            var chomperHead = (Chomper)chomper.modProjectile;
+            int frameWidth = 16;
+            var frame = new Rectangle(0, 0, frameWidth - 2, 20);
+            var origin = frame.Size() / 2f;
+            float offset = chomper.width / 2f + frame.Height / 2f;
+            var texture = ModContent.GetTexture(AQUtils.GetPath<Chomper>("_Chain"));
+            Main.playerDrawData.Add(new DrawData(texture, new Vector2(drawPosition.X + chomper.width / 2 * -chomper.spriteDirection, drawPosition.Y), frame, drawColor, 0f, origin, chomper.scale, chomper.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0)
+            { ignorePlayerRotation = true });
+            int height = frame.Height - 4;
+            frame.Y += 2;
+            var playerCenter = player.Center;
+            var chainStart = chomper.Center + new Vector2((chomper.width / 2 + 4) * -chomper.spriteDirection, 0f);
+            var velo = Vector2.Normalize(Vector2.Lerp(chainStart + new Vector2(0f, height * 4f) - playerCenter, player.velocity, 0.5f)) * height;
+            var position = playerCenter;
+            var rand = new UnifiedRandom(chomper.whoAmI + player.name.GetHashCode());
+            if (AQConfigClient.c_EffectQuality >= 1f)
+            {
+                for (int i = 0; i < 50; i++)
+                {
+                    Main.playerDrawData.Add(new DrawData(
+                        texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
+                    { ignorePlayerRotation = true });
+                    velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
+                    if (Vector2.Distance(position, chainStart) <= height)
+                        break;
+                    velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f * AQConfigClient.c_EffectIntensity);
+                    position += velo;
+                    float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
+                    velo.Y += gravity * 3f;
+                    velo.Normalize();
+                    velo *= height;
+                }
+            }
+            else
+            {
+                if (AQConfigClient.c_EffectQuality < 0.2f)
                 {
                     for (int i = 0; i < 50; i++)
                     {
                         Main.playerDrawData.Add(new DrawData(
-                            texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
+                            texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * (i % 3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
                         { ignorePlayerRotation = true });
                         velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
                         if (Vector2.Distance(position, chainStart) <= height)
                             break;
-                        velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f * AQConfigClient.c_EffectIntensity);
                         position += velo;
                         float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
                         velo.Y += gravity * 3f;
@@ -213,57 +232,38 @@ namespace AQMod.Content.Players
                 }
                 else
                 {
-                    if (AQConfigClient.c_EffectQuality < 0.2f)
+                    for (int i = 0; i < 50; i++)
                     {
-                        for (int i = 0; i < 50; i++)
-                        {
-                            Main.playerDrawData.Add(new DrawData(
-                                texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * (i % 3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                            { ignorePlayerRotation = true });
-                            velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                            if (Vector2.Distance(position, chainStart) <= height)
-                                break;
-                            position += velo;
-                            float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                            velo.Y += gravity * 3f;
-                            velo.Normalize();
-                            velo *= height;
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < 50; i++)
-                        {
-                            Main.playerDrawData.Add(new DrawData(
-                                texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
-                            { ignorePlayerRotation = true });
-                            velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
-                            if (Vector2.Distance(position, chainStart) <= height)
-                                break;
-                            position += velo;
-                            float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
-                            velo.Y += gravity * 3f;
-                            velo.Normalize();
-                            velo *= height;
-                        }
+                        Main.playerDrawData.Add(new DrawData(
+                            texture, new Vector2((int)(position.X - Main.screenPosition.X), (int)(position.Y - Main.screenPosition.Y)), new Rectangle(frame.X + frameWidth + frameWidth * rand.Next(3), frame.Y, frame.Width, frame.Height), Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), velo.ToRotation() + MathHelper.PiOver2, origin, 1f, SpriteEffects.None, 0)
+                        { ignorePlayerRotation = true });
+                        velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
+                        if (Vector2.Distance(position, chainStart) <= height)
+                            break;
+                        position += velo;
+                        float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
+                        velo.Y += gravity * 3f;
+                        velo.Normalize();
+                        velo *= height;
                     }
                 }
-                rand = new UnifiedRandom(chomper.whoAmI + 2 + player.name.GetHashCode());
-                texture = ModContent.GetTexture(AQUtils.GetPath<Chomper>("_Leaves"));
-                frame.Y -= 2;
-                int numLeaves = rand.Next(4) + 3;
-                float leafRotation = chomper.rotation;
-                if (chomper.spriteDirection == -1 && chomper.rotation.Abs() > MathHelper.PiOver2)
-                    leafRotation -= MathHelper.Pi;
-                float rotOff = MathHelper.PiOver2 / numLeaves;
-                float rotStart = leafRotation - MathHelper.PiOver4;
-                for (int i = 0; i < numLeaves; i++)
-                {
-                    var leavesPos = drawPosition + new Vector2((offset - rand.NextFloat(2f)) * -chomper.spriteDirection, 0f).RotatedBy(rotStart + rotOff * i) - Main.screenPosition;
-                    leafRotation = (drawPosition - Main.screenPosition - leavesPos).ToRotation();
-                    Main.playerDrawData.Add(new DrawData(texture, new Vector2((int)leavesPos.X, leavesPos.Y), new Rectangle(frame.X + frameWidth * rand.Next(4), frame.Y, frame.Width, frame.Height), drawColor, leafRotation + MathHelper.PiOver2, origin, chomper.scale + rand.NextFloat(0.2f), SpriteEffects.None, 0)
-                    { ignorePlayerRotation = true });
-                }
+            }
+            rand = new UnifiedRandom(chomper.whoAmI + 2 + player.name.GetHashCode());
+            texture = ModContent.GetTexture(AQUtils.GetPath<Chomper>("_Leaves"));
+            frame.Y -= 2;
+            int numLeaves = rand.Next(4) + 3;
+            float leafRotation = chomper.rotation;
+            if (chomper.spriteDirection == -1 && chomper.rotation.Abs() > MathHelper.PiOver2)
+                leafRotation -= MathHelper.Pi;
+            float rotOff = MathHelper.PiOver2 / numLeaves;
+            float rotStart = leafRotation - MathHelper.PiOver4;
+            for (int i = 0; i < numLeaves; i++)
+            {
+                var leavesPos = drawPosition + new Vector2((offset - rand.NextFloat(2f)) * -chomper.spriteDirection, 0f).RotatedBy(rotStart + rotOff * i) - Main.screenPosition;
+                leafRotation = (drawPosition - Main.screenPosition - leavesPos).ToRotation();
+                Main.playerDrawData.Add(new DrawData(texture, new Vector2((int)leavesPos.X, leavesPos.Y), new Rectangle(frame.X + frameWidth * rand.Next(4), frame.Y, frame.Width, frame.Height), drawColor, leafRotation + MathHelper.PiOver2, origin, chomper.scale + rand.NextFloat(0.2f), SpriteEffects.None, 0)
+                { ignorePlayerRotation = true });
+            }
         }
 
         internal static readonly PlayerLayer PostDraw = new PlayerLayer("AQMod", "PostDraw", (info) =>

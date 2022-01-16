@@ -1,5 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Projectiles.Ranged.RayGunBullets;
+﻿using AQMod.Projectiles.Ranged.RayGunBullets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;

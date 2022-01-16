@@ -50,32 +50,32 @@ namespace AQMod.Tiles.Furniture
             switch (frameX / 54)
             {
                 case 0:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<OmegaStariteTrophy>());
-                break;
+                    Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<OmegaStariteTrophy>());
+                    break;
 
                 case 1:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<CrabsonTrophy>());
-                break;
+                    Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<CrabsonTrophy>());
+                    break;
 
                 case 2:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<RedSpriteTrophy>());
-                break;
+                    Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<RedSpriteTrophy>());
+                    break;
 
                 case AStrangeIdea:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<AStrangeIdea>());
-                break;
+                    Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<AStrangeIdea>());
+                    break;
 
                 case RockFromAnAlternateUniverse:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<RockFromAnAlternateUniverse>());
-                break;
+                    Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<RockFromAnAlternateUniverse>());
+                    break;
 
                 case OmegaStaritePainting:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<OmegaStaritePainting>());
-                break;
+                    Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<OmegaStaritePainting>());
+                    break;
 
                 case SpaceSquid:
-                Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<SpaceSquidTrophy>());
-                break;
+                    Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<SpaceSquidTrophy>());
+                    break;
             }
         }
     }

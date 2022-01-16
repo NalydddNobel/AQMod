@@ -1,7 +1,6 @@
 ﻿using AQMod.Common.DeveloperTools;
 using AQMod.Common.ID;
 using AQMod.Effects;
-using AQMod.Effects.Particles;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 

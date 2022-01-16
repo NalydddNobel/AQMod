@@ -1,5 +1,4 @@
-﻿using System;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace AQMod.Content.Players

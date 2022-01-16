@@ -17,7 +17,7 @@ namespace AQMod.Tiles.Nature.CrabCrevice
         public static int[] AnchorValidTiles => TileObjectData.GetTileData(ModContent.TileType<ExoticCoral>(), 0, 0).AnchorValidTiles;
         public static bool CanBePlacedOnType(int type)
         {
-            foreach(int t in AnchorValidTiles)
+            foreach (int t in AnchorValidTiles)
             {
                 if (t == type)
                     return true;
@@ -220,7 +220,7 @@ namespace AQMod.Tiles.Nature.CrabCrevice
 
         public override void RandomUpdate(int i, int j)
         {
-            switch (Main.tile[i, j].frameX) 
+            switch (Main.tile[i, j].frameX)
             {
                 case 0:
                 case 54:
@@ -235,7 +235,7 @@ namespace AQMod.Tiles.Nature.CrabCrevice
                         Main.tile[i, j].type = (ushort)ModContent.TileType<ExoticCoralNew>();
                         Main.tile[i, j].frameX = 88;
                     }
-                    break;                
+                    break;
                 case 36:
                 case 90:
                     {

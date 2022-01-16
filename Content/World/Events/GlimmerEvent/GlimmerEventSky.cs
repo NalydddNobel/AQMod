@@ -245,7 +245,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 effect.Parameters["maxRange"].SetValue((int)(AuroraMax * 150) / 150f);
                 effect.Parameters["time"].SetValue(Main.GlobalTime + Main.screenPosition.X / 800f);
                 effect.Techniques[0].Passes["MagicalCurrentAuroraPass"].Apply();
-                
+
                 var color = Color.Lerp(AuraColoring, config.StariteProjectileColoring, ((float)Math.Sin(Main.GlobalTime) + 1f) * 2f);
                 if (GlimmerEvent.stariteDiscoParty)
                 {
@@ -254,7 +254,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 color *= 0.35f * transition * Brightness;
                 color.A = 0;
                 Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 40 + AQUtils.RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop / 2, Main.screenWidth, Main.screenHeight), null,
-                    color, 0f, Vector2.Zero, SpriteEffects.None, 0f) ;
+                    color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
             }
 
             internal static void RenderAuraOld()

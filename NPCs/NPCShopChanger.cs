@@ -1,11 +1,9 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events.GlimmerEvent;
-using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Foods;
 using AQMod.Items.Foods.Dungeon;
-using AQMod.Items.Tools.MagicPowders;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -20,30 +18,30 @@ namespace AQMod.NPCs
             switch (type)
             {
                 case NPCID.Merchant:
-                {
-                    for (int i = 0; i < Main.maxInventory; i++)
                     {
-                        if (Main.player[Main.myPlayer].inventory[i].useAmmo == AmmoID.Dart)
+                        for (int i = 0; i < Main.maxInventory; i++)
                         {
-                            shop.item[nextSlot].SetDefaults(ItemID.Seed);
-                            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(copper: 10);
-                            nextSlot++;
-                            break;
+                            if (Main.player[Main.myPlayer].inventory[i].useAmmo == AmmoID.Dart)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Seed);
+                                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(copper: 10);
+                                nextSlot++;
+                                break;
+                            }
                         }
                     }
-                }
-                break;
+                    break;
 
                 case NPCID.Clothier:
-                if (Main.eclipse)
-                {
-                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.MonoxideHat>());
-                    nextSlot++;
-                }
-                break;
+                    if (Main.eclipse)
+                    {
+                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.MonoxideHat>());
+                        nextSlot++;
+                    }
+                    break;
 
                 case NPCID.Painter:
-                {
+                    {
                         if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite && Main.moonPhase != MoonPhases.FullMoon)
                         {
                             for (int i = 19; i < Chest.maxItems; i++) // skips most of the starting stuff, since that's all paint and blah
@@ -57,92 +55,92 @@ namespace AQMod.NPCs
                             nextSlot++;
                         }
                     }
-                break;
+                    break;
 
                 case NPCID.DyeTrader:
-                {
-                    if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite)
                     {
-                        if (Main.moonPhase != MoonPhases.FullMoon)
+                        if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite)
                         {
-                            if (Main.moonPhase < 3)
+                            if (Main.moonPhase != MoonPhases.FullMoon)
                             {
-                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.DiscoDye>());
-                                nextSlot++;
-                            }
-                            else if (Main.moonPhase > 4)
-                            {
-                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.RainbowOutlineDye>());
-                                nextSlot++;
+                                if (Main.moonPhase < 3)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.DiscoDye>());
+                                    nextSlot++;
+                                }
+                                else if (Main.moonPhase > 4)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.RainbowOutlineDye>());
+                                    nextSlot++;
+                                }
                             }
                         }
                     }
-                }
-                break;
+                    break;
 
                 case NPCID.Pirate:
-                {
-                    if (Main.player[Main.myPlayer].anglerQuestsFinished >= 20)
                     {
-                        shop.item[nextSlot].SetDefaults(ItemID.AnglerPants);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.AnglerVest);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<GoldSeal>());
-                        nextSlot++;
-                    }
-                    else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 15)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.AnglerVest);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
-                        nextSlot++;
-                    }
-                    else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 10)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
-                        nextSlot++;
-                    }
-                    else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 2)
-                    {
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
-                        nextSlot++;
-                    }
-                }
-                break;
-
-                case NPCID.SkeletonMerchant:
-                {
-                    var plr = Main.LocalPlayer;
-                    if (!Main.dayTime)
-                    {
-                        if (Main.bloodMoon && !Main.hardMode && WorldDefeats.SudoHardmode)
+                        if (Main.player[Main.myPlayer].anglerQuestsFinished >= 20)
                         {
-                            shop.item[nextSlot].SetDefaults(ItemID.SlapHand);
+                            shop.item[nextSlot].SetDefaults(ItemID.AnglerPants);
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ItemID.AnglerVest);
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<GoldSeal>());
+                            nextSlot++;
+                        }
+                        else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 15)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.AnglerVest);
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
+                            nextSlot++;
+                        }
+                        else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 10)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
+                            nextSlot++;
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
+                            nextSlot++;
+                        }
+                        else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 2)
+                        {
+                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
                             nextSlot++;
                         }
                     }
-                }
-                break;
+                    break;
+
+                case NPCID.SkeletonMerchant:
+                    {
+                        var plr = Main.LocalPlayer;
+                        if (!Main.dayTime)
+                        {
+                            if (Main.bloodMoon && !Main.hardMode && WorldDefeats.SudoHardmode)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.SlapHand);
+                                nextSlot++;
+                            }
+                        }
+                    }
+                    break;
             }
         }
 

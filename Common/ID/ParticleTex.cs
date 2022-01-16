@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.DeveloperTools;
 
-namespace AQMod.Effects.Particles
+namespace AQMod.Common.ID
 {
     [Identity(typeof(ParticleTex))]
     public sealed class ParticleTex

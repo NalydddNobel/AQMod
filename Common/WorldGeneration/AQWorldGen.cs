@@ -5,10 +5,8 @@ using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Enums;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.Localization;
@@ -40,16 +38,16 @@ namespace AQMod.Common.WorldGeneration
                 switch (r)
                 {
                     default:
-                    rect = rectSpace;
-                    break;
+                        rect = rectSpace;
+                        break;
 
                     case 1:
-                    rect = rectLeft;
-                    break;
+                        rect = rectLeft;
+                        break;
 
                     case 2:
-                    rect = rectRight;
-                    break;
+                        rect = rectRight;
+                        break;
                 }
                 int x = WorldGen.genRand.Next(rect.X, rect.X + rect.Width);
                 int y = WorldGen.genRand.Next(rect.Y, rect.Y + rect.Height);

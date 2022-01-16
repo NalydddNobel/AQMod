@@ -276,19 +276,19 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             switch (type)
             {
                 case NPCID.BlueSlime:
-                return 1;
+                    return 1;
                 case NPCID.LavaSlime:
-                return 2;
+                    return 2;
                 case NPCID.ToxicSludge:
-                return 3;
+                    return 3;
                 case NPCID.SpikedJungleSlime:
-                return 4;
+                    return 4;
                 case NPCID.IceSlime:
-                return 5;
+                    return 5;
                 case NPCID.SpikedIceSlime:
-                return 6;
+                    return 6;
                 case NPCID.IlluminantSlime:
-                return 7;
+                    return 7;
             }
             return -1;
         }

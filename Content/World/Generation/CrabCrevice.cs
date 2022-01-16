@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Common.ID;
-using AQMod.Common.WorldGeneration;
 using AQMod.Items.Accessories.Barbs;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
@@ -93,7 +92,7 @@ namespace AQMod.Content.World.Generation
             }
         }
 
-        private static Circle FixedCircle(int x,  int y, int radius)
+        private static Circle FixedCircle(int x, int y, int radius)
         {
             if (x - radius < 10)
             {
@@ -302,7 +301,7 @@ namespace AQMod.Content.World.Generation
             {
                 maxWater = 125;
             }
-            
+
             for (int k = 0; k < validCircles.Count; k++)
             {
                 for (int i = 0; i < validCircles[k].Radius * 2; i++)
@@ -400,7 +399,7 @@ namespace AQMod.Content.World.Generation
                             Main.tile[x2, y2 + 1] = new Tile();
                             continue;
                         }
-                        if (!Main.tile[x2, y2].active() && Main.tile[x2, y2].liquid == 255 && 
+                        if (!Main.tile[x2, y2].active() && Main.tile[x2, y2].liquid == 255 &&
                             Main.tile[x2, y2 + 1].active() && ExoticCoralNew.CanBePlacedOnType(Main.tile[x2, y2 + 1].type))
                         {
                             WorldGen.PlaceTile(x2, y2, ModContent.TileType<ExoticCoralNew>(), mute: true, forced: false, style: ExoticCoralNew.GetRandomStyle(WorldGen.genRand.Next(3)));
@@ -441,7 +440,7 @@ namespace AQMod.Content.World.Generation
                 return;
             var c = Main.chest[chest];
             int i = 0;
-            switch (count % 3) 
+            switch (count % 3)
             {
                 default:
                     {

@@ -1,9 +1,6 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace AQMod.Items.Materials
 {

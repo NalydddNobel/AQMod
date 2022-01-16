@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Items.Armor;
+﻿using AQMod.Items.Armor;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Vanities;
@@ -56,8 +55,8 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                 switch ((int)npc.localAI[0])
                 {
                     default:
-                    Gore.NewGore(center, npc.velocity, mod.GetGoreSlot("Gores/HermitCrab_1"));
-                    break;
+                        Gore.NewGore(center, npc.velocity, mod.GetGoreSlot("Gores/HermitCrab_1"));
+                        break;
                 }
             }
             else

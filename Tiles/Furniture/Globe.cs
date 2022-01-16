@@ -85,13 +85,13 @@ namespace AQMod.Tiles.Furniture
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<GlobeItem>());
-            int index = ModContent.GetInstance<TEGlobe>().Find(i, j); 
+            int index = ModContent.GetInstance<TEGlobe>().Find(i, j);
             if (index == -1)
             {
                 var g = (TEGlobe)TileEntity.ByID[index];
                 foreach (var text in g.LegacyMarkers)
                 {
-                    switch (text) 
+                    switch (text)
                     {
                         case "CosmicMarker":
                             Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<CosmicTelescope>());

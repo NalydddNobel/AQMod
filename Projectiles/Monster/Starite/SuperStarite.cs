@@ -36,19 +36,19 @@ namespace AQMod.Projectiles.Monster.Starite
             switch (projectile.ai[0])
             {
                 case 2:
-                projectile.velocity *= 0.99f;
-                if (projectile.velocity.Length() < 0.25f)
-                {
-                    projectile.timeLeft = 2;
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    projectile.velocity *= 0.99f;
+                    if (projectile.velocity.Length() < 0.25f)
                     {
-                        for (int i = 0; i < 5; i++)
+                        projectile.timeLeft = 2;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
+                            for (int i = 0; i < 5; i++)
+                            {
 
+                            }
                         }
                     }
-                }
-                break;
+                    break;
             }
         }
 

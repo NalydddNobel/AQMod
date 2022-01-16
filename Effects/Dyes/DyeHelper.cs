@@ -55,11 +55,11 @@ namespace AQMod.Effects.Dyes
             {
                 switch (passName)
                 {
-                    case "ArmorColored": 
-                    {
-                        var shaderColor = (Vector3)_armorShaderDataColorField.GetValue(dye);
-                        return light * shaderColor;
-                    }
+                    case "ArmorColored":
+                        {
+                            var shaderColor = (Vector3)_armorShaderDataColorField.GetValue(dye);
+                            return light * shaderColor;
+                        }
                 }
             }
             return light;

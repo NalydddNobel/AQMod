@@ -57,7 +57,7 @@ namespace AQMod.Common.CrossMod
                             }),
                                 "the edge of the Glimmer",
                                 "biome_glimmerevent", 50f, "mod_aequus");
-                            drp.Call("AddBiome", (Func<bool>)(() => 
+                            drp.Call("AddBiome", (Func<bool>)(() =>
                             {
                                 if (!GlimmerEvent.IsGlimmerEventCurrentlyActive())
                                 {

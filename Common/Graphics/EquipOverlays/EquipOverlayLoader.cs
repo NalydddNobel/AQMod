@@ -47,11 +47,11 @@ namespace AQMod.Common.Graphics.PlayerEquips
             switch (type)
             {
                 case EquipLayering.Head:
-                return EquipType.Head;
+                    return EquipType.Head;
                 case EquipLayering.Body:
-                return EquipType.Body;
+                    return EquipType.Body;
                 case EquipLayering.Legs:
-                return EquipType.Legs;
+                    return EquipType.Legs;
             }
             return (EquipType)(-1);
         }
@@ -62,22 +62,22 @@ namespace AQMod.Common.Graphics.PlayerEquips
             switch (type)
             {
                 case EquipLayering.Head:
-                slot = info.drawPlayer.head;
-                if (slot < Main.numArmorHead)
-                    return;
-                break;
+                    slot = info.drawPlayer.head;
+                    if (slot < Main.numArmorHead)
+                        return;
+                    break;
                 case EquipLayering.Body:
-                slot = info.drawPlayer.body;
-                if (slot < Main.numArmorBody)
-                    return;
-                break;
+                    slot = info.drawPlayer.body;
+                    if (slot < Main.numArmorBody)
+                        return;
+                    break;
                 case EquipLayering.Legs:
-                slot = info.drawPlayer.legs;
-                if (slot < Main.numArmorLegs)
-                    return;
-                break;
+                    slot = info.drawPlayer.legs;
+                    if (slot < Main.numArmorLegs)
+                        return;
+                    break;
                 default:
-                return;
+                    return;
             }
             var equipType = ArmorOverlayToEquipType(type);
             var texture = EquipLoader.GetEquipTexture(equipType, slot);

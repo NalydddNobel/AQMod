@@ -1,5 +1,4 @@
-﻿using AQMod.Localization;
-using AQMod.NPCs.Boss;
+﻿using AQMod.NPCs.Boss;
 using AQMod.NPCs.Boss.Crabson;
 using System.ComponentModel;
 using Terraria;
@@ -67,7 +66,7 @@ namespace AQMod
                 return false;
             }
             var p = (AQConfigServer)pendingConfig;
-            if (p.debugCommand != debugCommand || 
+            if (p.debugCommand != debugCommand ||
                 p.demonSiegeDowngrades != demonSiegeDowngrades)
             {
                 return true;

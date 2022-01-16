@@ -270,44 +270,44 @@ ClientConfig.Effect3D=3Д Эффективность
 ClientConfig.Effect3DTooltip=Более высокие значения делают 3Д эффекты более выраженными, и более низкие значения делают 3Д эффекты более плоскими.
 
 ClientConfig.BackgroundStarites=Фон Жизнезвёзд
-ClientConfig.BackgroundStaritesTooltip=Whether or not to have small Starites in the background while the Glimmer Event is active
+ClientConfig.BackgroundStaritesTooltip=На заднем плане есть маленькие Жизнезвёзды во время Мерцающего События
 
-ClientConfig.StariteProjColor=Starite Projectile Color
-ClientConfig.StariteProjColorTooltip=The color of some Starite projectiles
+ClientConfig.StariteProjColor=Цвет снаряда Жизнезвезды
+ClientConfig.StariteProjColorTooltip=Цвет некоторых снарядов Жизнезвезды
 
-ClientConfig.StariteAuraColor=Starite Aura Color
-ClientConfig.StariteAuraColorTooltip=The color of the background aura, and the aura around Omega Starite
+ClientConfig.StariteAuraColor=Цвет ауры Жизнезвезды
+ClientConfig.StariteAuraColorTooltip=Цвет ауры фона и ауры вокруг Омега Жизнезвезды
 
-ClientConfig.StariteBackgroundLight=Starite Background Intensity
-ClientConfig.StariteBackgroundLightTooltip=Lower values make the starite background more transparent\nCan be useful if you have trouble seeing Omega Starite or its projectiles
+ClientConfig.StariteBackgroundLight=Интенсивность фона Жизнезвезды
+ClientConfig.StariteBackgroundLightTooltip=Меньшие значения делают фон жизнезвезды более прозрачным\nЭто может быть полезно если вы не можете увидеть Омега Жизнезвезду или его снаряды
 
-ClientConfig.XmasBackground=Xmas Background
-ClientConfig.XmasBackgroundTooltip=Whether or not to use a Xmas background in special Xmas worlds\n{$Mods.AQMod.Config.RequiresReload}
+ClientConfig.XmasBackground=Рождественский фон
+ClientConfig.XmasBackgroundTooltip=Использовать ли Рождественский фон в специальных Рождественских мирах\n{$Mods.AQMod.Config.RequiresReload}
 
-ClientConfig.XmasProgressMeterOverride=Xmas Progress Meter Override
-ClientConfig.XmasProgressMeterOverrideTooltip=Whether or not to have the "AQ Xmas" seed override your worldgen progress bar. This sometimes has conflicts with Worldgen Previewer\n{$Mods.AQMod.Config.RequiresReload}
+ClientConfig.XmasProgressMeterOverride=Счётчик Рождества
+ClientConfig.XmasProgressMeterOverrideTooltip=Будет ли "AQ Xmas" семечко перекрывать индикатор прогресса создания мира. Это иногда конфликтует с Worldgen Previewer\n{$Mods.AQMod.Config.RequiresReload}
 
-ClientConfig.MapBlipColor=Map Blip Color
-ClientConfig.MapBlipColorTooltip=The color of the little blips shown by the Retro Marker
+ClientConfig.MapBlipColor=Цвет Метки на Карте
+ClientConfig.MapBlipColorTooltip=Цвет маленьких меток будет виден Ретро Маркером
 
-ClientConfig.Header.Worldgen=World Gen
-ClientConfig.Screenshakes=Screenshakes
-ClientConfig.TonsofScreenShakes=Extra Unnecessary Screenshakes
+ClientConfig.Header.Worldgen=Генерация Мира
+ClientConfig.Screenshakes=Држание Экрана
+ClientConfig.TonsofScreenShakes=Ненужные Дрожания Экрана
 ClientConfig.OverrideVanillaChestLoot=Overwrite Vanilla Chest Loot
-ClientConfig.OverrideVanillaChestLootTooltip=Whether or not special Aequus items will overwrite vanilla items in chests\nIf this is disabled, Aequus loot will generate with vanilla loot intact
+ClientConfig.OverrideVanillaChestLootTooltip=Будут ли особенные предметы Аэквууса перезаписывать ванильные предметы в сундуках\nЕсли это отключено, лут Аэквууса будет генерироваться вместе с ванильным лутом
 
 # Server Config
 
-ServerConfig.Name=Server Config
+ServerConfig.Name=Настройки сервера
 
 ServerConfig.Header.QualityOfLife=[c/ffdddd:Quality of Life]
 ServerConfig.Header.World=[c/ddeeff:World]
 ServerConfig.Header.Debug=[c/ffeedd:Debug]
 
-ServerConfig.DemonSiegeDowngrades=Demon Siege Downgrades
-ServerConfig.DemonSiegeDowngradesTooltip=Adds recipes for downgrading weapons upgraded at the Demon Siege.\n{$Mods.AQMod.Config.RequiresReload}
+ServerConfig.DemonSiegeDowngrades=Осада Демонов Понижает Рейтинг
+ServerConfig.DemonSiegeDowngradesTooltip=Добовляет рецепты для понижения качестваа оружия улудшаемые в Осаде Демонов.\n{$Mods.AQMod.Config.RequiresReload}
 
-ServerConfig.ReduceSpawns=Reduce Spawns during Bossfights
+ServerConfig.ReduceSpawns=Уменьшает скоростть возрождения во время битв с боссами
 ServerConfig.ReduceSpawnsTooltip=Practically disables spawns for Aequus bossfights.\nWould require a reload if anything in the world is currently reducing spawns.
 
 ServerConfig.EvilProgressionLock=World-Evil Progression Lock

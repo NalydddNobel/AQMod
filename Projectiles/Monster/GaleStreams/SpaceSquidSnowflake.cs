@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Graphics.Particles;
 using AQMod.Common.ID;
+using AQMod.Effects.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -40,7 +40,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(8))
             {
                 var spawnPosition = new Vector2(projectile.position.X + Main.rand.NextFloat(projectile.width), projectile.position.Y + Main.rand.NextFloat(projectile.height));
-                ParticleLayers.AddParticle_PostDrawPlayers(new BrightSparkle(spawnPosition, projectile.velocity * 0.1f, new Color(100, 100, 255, 200), Main.rand.NextFloat(0.9f, 1.5f)));
+                Particle.PostDrawPlayers.AddParticle(new BrightSparkle(spawnPosition, projectile.velocity * 0.1f, new Color(100, 100, 255, 200), Main.rand.NextFloat(0.9f, 1.5f)));
             }
         }
 

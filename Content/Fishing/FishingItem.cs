@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace AQMod.Content.Fishing

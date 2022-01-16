@@ -31,7 +31,9 @@ namespace AQMod.NPCs.Boss.Crabson
             () => WorldDefeats.DownedCrabson,
             2f,
             ModContent.NPCType<JerryCrabson>(),
-            AQText.chooselocalizationtext("Jerry Crabson", "巨蟹蛤"),
+            AQText.chooselocalizationtext(
+                en_US: "Jerry Crabson",
+                zh_Hans: "巨蟹蛤"),
             ModContent.ItemType<MushroomClam>(),
             new List<int>() {
                 ModContent.ItemType<Crabax>(),
@@ -280,17 +282,17 @@ namespace AQMod.NPCs.Boss.Crabson
             switch (Main.tile[x, y].type)
             {
                 case TileID.Sand:
-                {
-                    int crabsonX2 = crabsonX + npc.width / 2;
-                    for (int i = 0; i < 50; i++)
                     {
-                        Dust.NewDust(npc.position, npc.width, npc.height, 32);
-                        //var position = new Vector2(crabsonX + Main.rand.Next(npc.width), crabsonY);
-                        //Main.dust[Dust.NewDust(position, 2, 2, 51, 0f, 0f, 0, Color.White, 1f)].velocity = new Vector2(position.X * 0.125f - crabsonX2, -9f);
+                        int crabsonX2 = crabsonX + npc.width / 2;
+                        for (int i = 0; i < 50; i++)
+                        {
+                            Dust.NewDust(npc.position, npc.width, npc.height, 32);
+                            //var position = new Vector2(crabsonX + Main.rand.Next(npc.width), crabsonY);
+                            //Main.dust[Dust.NewDust(position, 2, 2, 51, 0f, 0f, 0, Color.White, 1f)].velocity = new Vector2(position.X * 0.125f - crabsonX2, -9f);
+                        }
+                        Main.PlaySound(SoundID.Item14, npc.position);
                     }
-                    Main.PlaySound(SoundID.Item14, npc.position);
-                }
-                break;
+                    break;
             }
         }
 
@@ -410,22 +412,22 @@ namespace AQMod.NPCs.Boss.Crabson
             switch (Main.rand.Next(3))
             {
                 default:
-                {
-                    Item.NewItem(rect, ModContent.ItemType<Bubbler>());
-                }
-                break;
+                    {
+                        Item.NewItem(rect, ModContent.ItemType<Bubbler>());
+                    }
+                    break;
 
                 case 1:
-                {
-                    Item.NewItem(rect, ModContent.ItemType<CinnabarBow>());
-                }
-                break;
+                    {
+                        Item.NewItem(rect, ModContent.ItemType<CinnabarBow>());
+                    }
+                    break;
 
                 case 2:
-                {
-                    Item.NewItem(rect, ModContent.ItemType<JerryClawFlail>());
-                }
-                break;
+                    {
+                        Item.NewItem(rect, ModContent.ItemType<JerryClawFlail>());
+                    }
+                    break;
             }
             npc.position.Y += npc.height / 2f;
         }

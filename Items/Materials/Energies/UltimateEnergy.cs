@@ -1,5 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Items.DrawOverlays;
+﻿using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

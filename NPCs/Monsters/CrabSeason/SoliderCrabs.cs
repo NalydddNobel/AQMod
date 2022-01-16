@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common;
 using AQMod.Common.WorldGeneration;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
@@ -170,8 +169,8 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                 {
                     case 0:
                     case 1:
-                    frame = (int)Main.GameUpdateCount % 12 / 6;
-                    break;
+                        frame = (int)Main.GameUpdateCount % 12 / 6;
+                        break;
                 }
 
                 float distanceX = npc.Center.X - position.X;
@@ -251,22 +250,22 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                 switch (frame)
                 {
                     default:
-                    {
-                        rectangle = new Rectangle(0, 0, 24, 16);
-                    }
-                    break;
+                        {
+                            rectangle = new Rectangle(0, 0, 24, 16);
+                        }
+                        break;
 
                     case 1:
-                    {
-                        rectangle = new Rectangle(26, 0, 24, 16);
-                    }
-                    break;
+                        {
+                            rectangle = new Rectangle(26, 0, 24, 16);
+                        }
+                        break;
 
                     case 2:
-                    {
-                        rectangle = new Rectangle(0, 18, 12, 12);
-                    }
-                    break;
+                        {
+                            rectangle = new Rectangle(0, 18, 12, 12);
+                        }
+                        break;
                 }
                 var texture = TextureGrabber.GetNPC(ModContent.NPCType<SoliderCrabs>());
                 Main.spriteBatch.Draw(texture, position + new Vector2(0f, yOff) - Main.screenPosition, rectangle, Lighting.GetColor((int)position.X / 16, (int)position.Y / 16), 0f, rectangle.Size() / 2f, 1f, SpriteEffects.None, 0f);

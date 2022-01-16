@@ -1,6 +1,5 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Common.Graphics.Particles;
 using AQMod.Dusts;
 using AQMod.Dusts.GaleStreams;
 using AQMod.Effects.ScreenEffects;
@@ -89,7 +88,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 for (int i = 0; i < 10; i++)
                 {
                     var spawnPos = npc.position + new Vector2(Main.rand.Next(npc.width), Main.rand.Next(20));
-                    ParticleLayers.AddParticle_PostDrawPlayers(new SpaceSquidSnowflake(spawnPos, new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f)), default(Color), Main.rand.NextFloat(0.6f, 1.2f)));
+                    Particle.PostDrawPlayers.AddParticle(new SpaceSquidSnowflake(spawnPos, new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f)), default(Color), Main.rand.NextFloat(0.6f, 1.2f)));
                 }
                 for (int i = 0; i < 3; i++)
                 {
@@ -110,7 +109,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 if (Main.rand.NextBool(20))
                 {
                     var spawnPos = npc.position + new Vector2(Main.rand.Next(-10, 10) + npc.width, Main.rand.Next(20));
-                    ParticleLayers.AddParticle_PostDrawPlayers(new SpaceSquidSnowflake(spawnPos, new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f))));
+                    Particle.PostDrawPlayers.AddParticle(new SpaceSquidSnowflake(spawnPos, new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f))));
                 }
             }
         }
@@ -680,7 +679,8 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     },
                     AQText.chooselocalizationtext(
                         en_US: "Occasionally appears during the Gale Streams!",
-                        zh_Hans: null),
+                        zh_Hans: "偶尔出现在紊流风暴中!",
+                        ru_RU: "Иногда появляется во время Штормовых Потоков!"),
                     "AQMod/Assets/BossChecklist/SpaceSquid").AddEntry(bossChecklist);
             }
             catch (Exception e)

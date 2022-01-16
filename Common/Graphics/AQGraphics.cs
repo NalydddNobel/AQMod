@@ -51,13 +51,18 @@ namespace AQMod.Common.Graphics
             return renderBox.Intersects(rectangle);
         }
 
+        internal static void SetCullPadding(int padding = 20)
+        {
+            renderBox = new Rectangle(-padding, -padding, Main.screenWidth + padding * 2, Main.screenHeight + padding * 2);
+        }
+
         public static int MultIntensity(int input)
         {
             return (int)(input * AQConfigClient.c_EffectIntensity);
         }
 
         public static class Rendering
-        { 
+        {
             public static void FallenStarAura(Item item, SpriteBatch spriteBatch, float scale, Color auraColor = default(Color), Color auraColor2 = default(Color))
             {
                 Rectangle frame;

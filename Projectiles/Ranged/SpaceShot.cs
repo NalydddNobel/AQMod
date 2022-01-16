@@ -78,6 +78,7 @@ namespace AQMod.Projectiles.Ranged
             {
                 Dust.NewDustPerfect(projectile.Center, ModContent.DustType<Dusts.MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * (MathHelper.Pi * 2f) + Main.rand.NextFloat() * 0.2f) * (1f + Main.rand.NextFloat() * 2f), 150, Color.Gold * 0.9f).noGravity = true;
             }
+            AQGraphics.SetCullPadding();
             if (AQGraphics.Cull_WorldPosition(projectile.getRect()))
             {
                 for (int i = 0; i < 3; i++)

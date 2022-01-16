@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Graphics.Particles;
-using AQMod.Effects.Particles;
+﻿using AQMod.Effects.Particles;
 using System.Collections.Generic;
 
 namespace AQMod

@@ -2,13 +2,11 @@
 using AQMod.Common.ID;
 using AQMod.Dusts;
 using AQMod.Effects;
-using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails;
 using AQMod.Effects.Trails.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

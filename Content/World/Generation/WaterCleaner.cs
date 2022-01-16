@@ -43,7 +43,7 @@ namespace AQMod.Content.World.Generation
                 Main.tile[x, y + 1] = new Tile();
                 return;
             }
-            if (Main.tile[x, y - 1].liquid == 0 && (!Main.tile[x, y -1].active() || Main.tileCut[Main.tile[x, y - 1].type]) && Main.tile[x, y].liquid > 0 && (!Main.tile[x, y].active() || Main.tileCut[Main.tile[x, y].type]) && Main.tile[x, y + 1].active() && Main.tileSolid[Main.tile[x, y + 1].type] && !Main.tileSolidTop[Main.tile[x, y + 1].type])
+            if (Main.tile[x, y - 1].liquid == 0 && (!Main.tile[x, y - 1].active() || Main.tileCut[Main.tile[x, y - 1].type]) && Main.tile[x, y].liquid > 0 && (!Main.tile[x, y].active() || Main.tileCut[Main.tile[x, y].type]) && Main.tile[x, y + 1].active() && Main.tileSolid[Main.tile[x, y + 1].type] && !Main.tileSolidTop[Main.tile[x, y + 1].type])
             {
                 Main.tile[x, y].active(active: true);
                 Main.tile[x, y].type = Main.tile[x, y + 1].type;

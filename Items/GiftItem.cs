@@ -57,32 +57,32 @@ namespace AQMod.Items
             switch (GiftType)
             {
                 case 1:
-                {
-                    bool nice = player.name.ToLower() == "nalyd t.";
-                    if (!nice)
                     {
-                        nice = new UnifiedRandom(Main.LocalPlayer.name.GetHashCode()).NextBool(160);
-                    }
-                    if (nice)
-                    {
-                        if (Main.myPlayer == player.whoAmI) // I am pretty sure this hook runs on the client that right clicks this item but whatever.
+                        bool nice = player.name.ToLower() == "nalyd t.";
+                        if (!nice)
                         {
-                            int text = CombatText.NewText(player.getRect(), new Color(230, 230, 255, 255), 0, true);
-                            Main.combatText[text].text = Language.GetTextValue("Mods.AQMod.XmasGift.Nice");
+                            nice = new UnifiedRandom(Main.LocalPlayer.name.GetHashCode()).NextBool(160);
                         }
-                        player.QuickSpawnItem(ModContent.ItemType<Weapons.Magic.Narrizuul>());
-                    }
-                    else
-                    {
-                        if (Main.myPlayer == player.whoAmI)
+                        if (nice)
                         {
-                            int text = CombatText.NewText(player.getRect(), new Color(230, 230, 255, 255), 0, true);
-                            Main.combatText[text].text = Language.GetTextValue("Mods.AQMod.XmasGift.Naughty");
+                            if (Main.myPlayer == player.whoAmI) // I am pretty sure this hook runs on the client that right clicks this item but whatever.
+                            {
+                                int text = CombatText.NewText(player.getRect(), new Color(230, 230, 255, 255), 0, true);
+                                Main.combatText[text].text = Language.GetTextValue("Mods.AQMod.XmasGift.Nice");
+                            }
+                            player.QuickSpawnItem(ModContent.ItemType<Weapons.Magic.Narrizuul>());
                         }
-                        player.QuickSpawnItem(ItemID.Coal);
+                        else
+                        {
+                            if (Main.myPlayer == player.whoAmI)
+                            {
+                                int text = CombatText.NewText(player.getRect(), new Color(230, 230, 255, 255), 0, true);
+                                Main.combatText[text].text = Language.GetTextValue("Mods.AQMod.XmasGift.Naughty");
+                            }
+                            player.QuickSpawnItem(ItemID.Coal);
+                        }
                     }
-                }
-                break;
+                    break;
             }
         }
 
@@ -91,10 +91,10 @@ namespace AQMod.Items
             switch (GiftType)
             {
                 case 1:
-                {
-                    tooltips.Add(new TooltipLine(mod, "Xmas", Language.GetTextValue("Mods.AQMod.XmasGift.Tooltip")) { overrideColor = new Color(100, 40, 128, 255) });
-                }
-                break;
+                    {
+                        tooltips.Add(new TooltipLine(mod, "Xmas", Language.GetTextValue("Mods.AQMod.XmasGift.Tooltip")) { overrideColor = new Color(100, 40, 128, 255) });
+                    }
+                    break;
             }
         }
 
@@ -126,24 +126,24 @@ namespace AQMod.Items
             switch (GiftType)
             {
                 case 1:
-                {
-                    var rand = new UnifiedRandom(Main.LocalPlayer.name.GetHashCode());
-                    Color bodyColor = new Color(rand.Next(10) + 100, 255, rand.Next(50) + 100, 255);
-                    Color bowColor = new Color(255, rand.Next(10) + 10, rand.Next(50) + 25, 255);
-                    if (rand.NextBool())
                     {
-                        var oldBody = bodyColor;
-                        bodyColor = bowColor;
-                        bowColor = oldBody;
-                    }
-                    var drawCoordinates = new Vector2(item.position.X - Main.screenPosition.X + Main.itemTexture[item.type].Width / 2 + item.width / 2 - Main.itemTexture[item.type].Width / 2, item.position.Y - Main.screenPosition.Y + Main.itemTexture[item.type].Height / 2 + item.height - Main.itemTexture[item.type].Height + 2f);
-                    var drawFrame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
-                    var origin = Main.itemTexture[item.type].Size() / 2;
+                        var rand = new UnifiedRandom(Main.LocalPlayer.name.GetHashCode());
+                        Color bodyColor = new Color(rand.Next(10) + 100, 255, rand.Next(50) + 100, 255);
+                        Color bowColor = new Color(255, rand.Next(10) + 10, rand.Next(50) + 25, 255);
+                        if (rand.NextBool())
+                        {
+                            var oldBody = bodyColor;
+                            bodyColor = bowColor;
+                            bowColor = oldBody;
+                        }
+                        var drawCoordinates = new Vector2(item.position.X - Main.screenPosition.X + Main.itemTexture[item.type].Width / 2 + item.width / 2 - Main.itemTexture[item.type].Width / 2, item.position.Y - Main.screenPosition.Y + Main.itemTexture[item.type].Height / 2 + item.height - Main.itemTexture[item.type].Height + 2f);
+                        var drawFrame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
+                        var origin = Main.itemTexture[item.type].Size() / 2;
 
-                    Main.spriteBatch.Draw(Main.itemTexture[item.type], drawCoordinates, drawFrame, bodyColor, rotation, origin, scale, SpriteEffects.None, 0f);
-                    Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Bow")), drawCoordinates, drawFrame, bowColor, rotation, origin, scale, SpriteEffects.None, 0f);
-                }
-                return false;
+                        Main.spriteBatch.Draw(Main.itemTexture[item.type], drawCoordinates, drawFrame, bodyColor, rotation, origin, scale, SpriteEffects.None, 0f);
+                        Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Bow")), drawCoordinates, drawFrame, bowColor, rotation, origin, scale, SpriteEffects.None, 0f);
+                    }
+                    return false;
             }
             return base.PreDrawInWorld(spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
         }
@@ -153,20 +153,20 @@ namespace AQMod.Items
             switch (GiftType)
             {
                 case 1:
-                {
-                    var rand = new UnifiedRandom(Main.LocalPlayer.name.GetHashCode());
-                    Color bodyColor = new Color(rand.Next(10) + 100, 255, rand.Next(50) + 100, 255);
-                    Color bowColor = new Color(255, rand.Next(10) + 10, rand.Next(50) + 25, 255);
-                    if (rand.NextBool())
                     {
-                        var oldBody = bodyColor;
-                        bodyColor = bowColor;
-                        bowColor = oldBody;
+                        var rand = new UnifiedRandom(Main.LocalPlayer.name.GetHashCode());
+                        Color bodyColor = new Color(rand.Next(10) + 100, 255, rand.Next(50) + 100, 255);
+                        Color bowColor = new Color(255, rand.Next(10) + 10, rand.Next(50) + 25, 255);
+                        if (rand.NextBool())
+                        {
+                            var oldBody = bodyColor;
+                            bodyColor = bowColor;
+                            bowColor = oldBody;
+                        }
+                        Main.spriteBatch.Draw(Main.itemTexture[item.type], position, frame, bodyColor, 0f, origin, scale, SpriteEffects.None, 0f);
+                        Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Bow")), position, frame, bowColor, 0f, origin, scale, SpriteEffects.None, 0f);
                     }
-                    Main.spriteBatch.Draw(Main.itemTexture[item.type], position, frame, bodyColor, 0f, origin, scale, SpriteEffects.None, 0f);
-                    Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Bow")), position, frame, bowColor, 0f, origin, scale, SpriteEffects.None, 0f);
-                }
-                return false;
+                    return false;
             }
             return true;
         }

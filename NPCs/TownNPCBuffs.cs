@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AQMod.Common;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using AQMod.Common;
+using Terraria.ModLoader;
 
 namespace AQMod.NPCs
 {

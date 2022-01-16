@@ -32,9 +32,13 @@ namespace AQMod.Localization
             callback?.UpdateCallback();
         }
 
-        public static string chooselocalizationtext(string en_US, string zh_Hans = null)
+        public static string chooselocalizationtext(string en_US, string zh_Hans = null, string ru_RU = null)
         {
-            if (zh_Hans != null && Language.ActiveCulture == GameCulture.Chinese)
+            if (ru_RU != null && Language.ActiveCulture == GameCulture.Russian)
+            {
+                return ru_RU;
+            }
+            else if (zh_Hans != null && Language.ActiveCulture == GameCulture.Chinese)
             {
                 return zh_Hans;
             }
@@ -99,49 +103,49 @@ namespace AQMod.Localization
             switch (phase)
             {
                 default:
-                {
-                    return "Unknown";
-                }
+                    {
+                        return "Unknown";
+                    }
 
                 case 0:
-                {
-                    return "Full Moon";
-                }
+                    {
+                        return "Full Moon";
+                    }
 
                 case 1:
-                {
-                    return "Waning Gibbious";
-                }
+                    {
+                        return "Waning Gibbious";
+                    }
 
                 case 2:
-                {
-                    return "Third Quarter";
-                }
+                    {
+                        return "Third Quarter";
+                    }
 
                 case 3:
-                {
-                    return "Waning Crescent";
-                }
+                    {
+                        return "Waning Crescent";
+                    }
 
                 case 4:
-                {
-                    return "New Moon";
-                }
+                    {
+                        return "New Moon";
+                    }
 
                 case 5:
-                {
-                    return "Waxing Crescent";
-                }
+                    {
+                        return "Waxing Crescent";
+                    }
 
                 case 6:
-                {
-                    return "First Quarter";
-                }
+                    {
+                        return "First Quarter";
+                    }
 
                 case 7:
-                {
-                    return "Waxing Gibbious";
-                }
+                    {
+                        return "Waxing Gibbious";
+                    }
             }
         }
 

@@ -7,7 +7,6 @@ using AQMod.Common.CrossMod;
 using AQMod.Common.DeveloperTools;
 using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.PlayerEquips;
-using AQMod.Common.Graphics.SceneLayers;
 using AQMod.Common.ID;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
@@ -22,6 +21,7 @@ using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
+using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Effects.WorldEffects;
@@ -85,9 +85,6 @@ namespace AQMod
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
         public static ModifiableMusic GaleStreamsMusic { get; private set; }
 
-        internal static int _lastScreenWidth;
-        internal static int _lastScreenHeight;
-
         public static class Keybinds
         {
             public static ModHotKey CosmicanonToggle { get; private set; }
@@ -124,7 +121,6 @@ namespace AQMod
                 }
                 On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
                 On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
-                On.Terraria.Main.UpdateDisplaySettings += Main_UpdateDisplaySettings;
                 On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
                 On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
                 On.Terraria.Player.FishingLevel += GetFishingLevel;
@@ -146,13 +142,13 @@ namespace AQMod
             private static void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
             {
                 orig(self);
+                AQGraphics.SetCullPadding();
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
                 for (int i = 0; i < CrabPot.maxCrabPots; i++)
                 {
                     CrabPot.crabPots[i].Render();
                 }
                 Particle.PostDrawPlayers.Render();
-                SceneLayersManager.DrawLayer(SceneLayering.PostDrawPlayers);
                 Main.spriteBatch.End();
             }
 
@@ -220,9 +216,9 @@ namespace AQMod
                 }
                 if (snowflakes)
                 {
-                    if (XmasSeeds.farBGSnowflakes == null)
+                    if (XmasSeeds.farSnowflakes == null)
                     {
-                        XmasSeeds.farBGSnowflakes = new List<FarBGSnowflake>();
+                        XmasSeeds.farSnowflakes = new ParticleLayer<FarBGSnowflake>();
                     }
 
                     if (XmasSeeds.snowflakeRandom == null)
@@ -230,31 +226,27 @@ namespace AQMod
                         XmasSeeds.snowflakeRandom = new UnifiedRandom();
                     }
 
-                    var snowflake = new FarBGSnowflake(new Vector2(XmasSeeds.snowflakeRandom.Next(-200, Main.screenWidth + 200), -XmasSeeds.snowflakeRandom.Next(100, 250)));
-                    snowflake.OnAdd();
-                    XmasSeeds.farBGSnowflakes.Add(snowflake);
-                    Particle.UpdateParticles(XmasSeeds.farBGSnowflakes);
-                    Particle.DrawParticles(XmasSeeds.farBGSnowflakes);
+                    XmasSeeds.farSnowflakes.AddParticle(new FarBGSnowflake(new Vector2(XmasSeeds.snowflakeRandom.Next(-200, Main.screenWidth + 200), -XmasSeeds.snowflakeRandom.Next(100, 250))));
+                    XmasSeeds.farSnowflakes.UpdateParticles();
+                    XmasSeeds.farSnowflakes.Render();
                 }
                 else
                 {
-                    XmasSeeds.farBGSnowflakes = null;
+                    XmasSeeds.farSnowflakes = null;
                 }
                 orig(self);
                 if (snowflakes)
                 {
-                    if (XmasSeeds.closeBGSnowflakes == null)
+                    if (XmasSeeds.closeSnowflakes == null)
                     {
-                        XmasSeeds.closeBGSnowflakes = new List<CloseBGSnowflake>();
+                        XmasSeeds.closeSnowflakes = new ParticleLayer<CloseBGSnowflake>();
                     }
                     if (XmasSeeds.snowflakeRandom.NextBool(10))
                     {
-                        var snowflake = new CloseBGSnowflake(new Vector2(Main.screenPosition.X + XmasSeeds.snowflakeRandom.Next(-200, Main.screenWidth + 200), Main.screenPosition.Y - XmasSeeds.snowflakeRandom.Next(100, 250)));
-                        snowflake.OnAdd();
-                        XmasSeeds.closeBGSnowflakes.Add(snowflake);
+                        XmasSeeds.closeSnowflakes.AddParticle(new CloseBGSnowflake(new Vector2(Main.screenPosition.X + XmasSeeds.snowflakeRandom.Next(-200, Main.screenWidth + 200), Main.screenPosition.Y - XmasSeeds.snowflakeRandom.Next(100, 250))));
                     }
-                    Particle.UpdateParticles(XmasSeeds.closeBGSnowflakes);
-                    Particle.DrawParticles(XmasSeeds.closeBGSnowflakes);
+                    XmasSeeds.farSnowflakes.UpdateParticles();
+                    XmasSeeds.farSnowflakes.Render();
                 }
                 else
                 {
@@ -262,7 +254,7 @@ namespace AQMod
                     XmasSeeds.realGenerationProgress = null;
                     XmasSeeds.generationProgress = null;
                     XmasSeeds.snowflakeRandom = null;
-                    XmasSeeds.closeBGSnowflakes = null;
+                    XmasSeeds.closeSnowflakes = null;
                 }
                 Main.gameMenu = oldGameMenu;
             }
@@ -281,7 +273,7 @@ namespace AQMod
 
             private static void AchievementsHelper_NotifyProgressionEvent(On.Terraria.GameContent.Achievements.AchievementsHelper.orig_NotifyProgressionEvent orig, int eventID)
             {
-                if (AQSystem.UpdatingWorld && AQSystem.CosmicanonActive && Main.netMode != NetmodeID.MultiplayerClient)
+                if (AQSystem.UpdatingTime && AQSystem.CosmicanonActive && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     if (eventID == AchievementHelperID.Events.BloodMoonStart)
                     {
@@ -417,19 +409,6 @@ namespace AQMod
                     pickPower /= 2;
                 }
                 orig(self, x, y, pickPower);
-            }
-
-            private static void Main_UpdateDisplaySettings(On.Terraria.Main.orig_UpdateDisplaySettings orig, Main self)
-            {
-                orig(self);
-                if (!Main.gameMenu && Main.graphics.GraphicsDevice != null && Main.spriteBatch != null)
-                {
-                    SceneLayersManager.DrawLayer(SceneLayering.PreRender);
-                    SceneLayersManager.RenderTargetLayers.PreRender();
-                    AQGraphics.renderBox = new Rectangle(-20, -20, Main.screenWidth + 20, Main.screenHeight + 20);
-                    _lastScreenWidth = Main.screenWidth;
-                    _lastScreenHeight = Main.screenHeight;
-                }
             }
 
             private static void Player_QuickBuff(On.Terraria.Player.orig_QuickBuff orig, Player self)
@@ -572,8 +551,8 @@ namespace AQMod
         {
             Loading = true;
             Unloading = false;
-            _lastScreenWidth = 0;
-            _lastScreenHeight = 0;
+            GameWorldRenders.Hooks.LastScreenWidth = 0;
+            GameWorldRenders.Hooks.LastScreenHeight = 0;
             Keybinds.Load(this);
             Common.Edits.LoadHooks();
             Edits.Load();
@@ -598,7 +577,6 @@ namespace AQMod
                 GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
                 SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
                 PrimitivesRenderer.Setup();
-                SceneLayersManager.Setup();
                 ScreenShakeManager.Load();
                 StarbyteColorCache.Init();
                 WorldEffects = new List<WorldVisualEffect>();
@@ -654,6 +632,7 @@ namespace AQMod
             cachedLoadTasks = null;
             Autoloading.Unload();
             Common.Edits.UnloadHooks();
+            CustomRenderBehindTiles.DrawProjsCache = null;
 
             AQItem.Sets.Clones.Unload();
             ItemOverlays = null;
@@ -672,7 +651,6 @@ namespace AQMod
                 StarbyteColorCache.Unload();
                 ScreenShakeManager.Unload();
                 ArmorOverlays = null;
-                SceneLayersManager.Unload();
                 EffectCache.Unload();
                 GlimmerEventSky.BGStarite._texture = null;
                 GaleStreamsMusic = null;
@@ -757,8 +735,7 @@ namespace AQMod
 
             if (Main.netMode != NetmodeID.Server)
             {
-                CustomRenderUltimateSword.UpdateUltimateSword();
-                SceneLayersManager.UpdateLayers();
+                GameWorldRenders.DoUpdate();
             }
         }
 

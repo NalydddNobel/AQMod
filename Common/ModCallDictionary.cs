@@ -62,7 +62,7 @@ namespace AQMod.Common
             _calls = new Dictionary<string, Func<object[], object>>
             {
                 { "addloadtask", (o) =>
-                    {            
+                    {
                         AQMod.cachedLoadTasks.Add(new CachedTask((object)o[1], (Func<object, object>)o[2]));
                         return null;
                     }

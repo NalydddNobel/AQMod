@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.ID;
+﻿using AQMod.Common.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;

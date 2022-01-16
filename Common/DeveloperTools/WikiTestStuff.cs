@@ -15,7 +15,7 @@ namespace AQMod.Common.DeveloperTools
 
         private static void setupstream(ModItem modItem)
         {
-            string path = NCall.DebugFolderPath + Path.DirectorySeparatorChar + 
+            string path = NCall.DebugFolderPath + Path.DirectorySeparatorChar +
                 "WikiItems";
             Directory.CreateDirectory(path);
             _stream = File.Create(path + Path.DirectorySeparatorChar + modItem.Name + ".txt");
@@ -46,7 +46,7 @@ namespace AQMod.Common.DeveloperTools
             setupstream(modItem);
 
             write("{{mod sub-page}}");
-            lwrite("item name: " +modItem.Name);
+            lwrite("item name: " + modItem.Name);
             writeitem(modItem.item);
             writeitemrecipe(modItem.item);
 
@@ -132,7 +132,7 @@ namespace AQMod.Common.DeveloperTools
             switch (type)
             {
                 case TileID.Anvils:
-                return "Anvil";
+                    return "Anvil";
             }
             return "Unknown";
         }

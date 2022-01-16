@@ -1,10 +1,10 @@
 ﻿using AQMod.Assets;
-using AQMod.Effects.Particles;
+using AQMod.Common.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace AQMod.Common.Graphics.Particles
+namespace AQMod.Effects.Particles
 {
     public class MonoParticle : ParticleType
     {

@@ -30,7 +30,7 @@ namespace AQMod.Projectiles.Monster.Starite
             {
                 var omegaStarite = Main.npc[(int)projectile.ai[0]];
                 if (!omegaStarite.active || omegaStarite.ai[0] == -1f || !(omegaStarite.modNPC is NPCs.Boss.OmegaStarite))
-                    return; 
+                    return;
                 projectile.ai[1] = 1f;
                 projectile.timeLeft = 32;
                 projectile.Center = omegaStarite.Center;

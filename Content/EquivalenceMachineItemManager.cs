@@ -30,7 +30,7 @@ namespace AQMod.Content
         {
             for (int i = 0; i < Main.maxItems; i++)
             {
-                if (Main.item[i].active && !ItemID.Sets.ItemNoGravity[Main.item[i].type] 
+                if (Main.item[i].active && !ItemID.Sets.ItemNoGravity[Main.item[i].type]
                     && Vector2.Distance(Main.item[i].Center, position) < AQItem.GetGrabRange(Main.item[i], player) * distanceMultiplier)
                 {
                     Main.item[i].GetGlobalItem<EquivalenceMachineItemManager>().noGravity = duration;

@@ -1,4 +1,4 @@
-﻿using AQMod.Common;
+﻿using AQMod.Effects.Particles;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Generation;
@@ -14,8 +14,8 @@ namespace AQMod.Content.Seasonal.Christmas
     {
         public static float snowflakeWind;
         public static UnifiedRandom snowflakeRandom;
-        public static List<FarBGSnowflake> farBGSnowflakes;
-        public static List<CloseBGSnowflake> closeBGSnowflakes;
+        public static ParticleLayer<FarBGSnowflake> farSnowflakes;
+        public static ParticleLayer<CloseBGSnowflake> closeSnowflakes;
         public static GenerationProgress generationProgress;
         public static GenerationProgress realGenerationProgress;
         public static bool generatingSnowBiomeText;
@@ -34,7 +34,7 @@ namespace AQMod.Content.Seasonal.Christmas
                 case "aq xmas":
                 case "aequus xmas":
                 case "aequus christmas":
-                return true;
+                    return true;
             }
             return false;
         }
@@ -216,7 +216,7 @@ namespace AQMod.Content.Seasonal.Christmas
                         Main.tile[i, j].type = TileID.SnowBrick;
                         replaceBlock = false;
                     }
-                    else if (Main.tile[i, j].type == TileID.Sunplate || 
+                    else if (Main.tile[i, j].type == TileID.Sunplate ||
                         Main.tile[i, j].type == TileID.HellstoneBrick)
                     {
                         Main.tile[i, j].type = TileID.IceBrick;

@@ -1,7 +1,6 @@
 ﻿using AQMod.Common;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 
 namespace AQMod.Content.Fishing
 {

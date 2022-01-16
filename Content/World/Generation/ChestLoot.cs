@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.Configuration;
+﻿using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Items.Weapons.Melee.Dagger;
 using AQMod.Tiles.Furniture.Containers;

@@ -67,7 +67,7 @@ namespace AQMod.Projectiles
                 if (trueOldPos.Count > 1)
                 {
                     var trail = new PrimitivesRenderer(AQTextures.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail);
-                    trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(14f - p * 14f) * projectile.scale, 
+                    trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(14f - p * 14f) * projectile.scale,
                         (p) => Color.Lerp(new Color(255, 255, 50, 20), new Color(255, 10, 10, 0), p) * (1f - p));
                     trail.Draw();
                 }

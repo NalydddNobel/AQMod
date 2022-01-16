@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.ID;
+﻿using AQMod.Common.ID;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;

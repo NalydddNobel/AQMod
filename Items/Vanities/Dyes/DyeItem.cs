@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Effects.Dyes;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;

@@ -1,12 +1,10 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Dusts;
 using AQMod.Items.Accessories;
-using AQMod.Items.Foods;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools.Fishing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -16,7 +14,7 @@ namespace AQMod
 {
     public class AQItem : GlobalItem
     {
-        public static class Sets 
+        public static class Sets
         {
             public static bool[] CantBeRenamed { get; private set; }
             public static bool[] CantForceAutoswing { get; private set; }
@@ -26,7 +24,7 @@ namespace AQMod
                 switch (type)
                 {
                     default:
-                    return false;
+                        return false;
                     case ItemID.WoodenCrate:
                     case ItemID.CorruptFishingCrate:
                     case ItemID.CrimsonFishingCrate:
@@ -36,7 +34,7 @@ namespace AQMod
                     case ItemID.HallowedFishingCrate:
                     case ItemID.IronCrate:
                     case ItemID.JungleFishingCrate:
-                    return true;
+                        return true;
                 }
             }
 
@@ -116,7 +114,68 @@ namespace AQMod
                 switch (tooltipName)
                 {
                     case "Damage":
-                    {
+                        {
+                            for (int i = tooltips.Count - 1; i >= 0; i--)
+                            {
+                                TooltipLine t = tooltips[i];
+                                if (t.mod != "Terraria")
+                                    continue;
+                                switch (t.Name)
+                                {
+                                    case "Favorite":
+                                    case "FavoriteDesc":
+                                    case "Social":
+                                    case "SocialDesc":
+                                    case "Damage":
+                                        return i + 1;
+                                }
+                            }
+                        }
+                        break;
+
+                    case "Tooltip#":
+                        for (int i = tooltips.Count - 1; i >= 0; i--)
+                        {
+                            TooltipLine t = tooltips[i];
+                            if (t.mod != "Terraria")
+                                continue;
+                            if (t.Name.StartsWith("Tooltip"))
+                                return i;
+                            switch (t.Name)
+                            {
+                                case "Favorite":
+                                case "FavoriteDesc":
+                                case "Social":
+                                case "SocialDesc":
+                                case "Damage":
+                                case "CritChance":
+                                case "Speed":
+                                case "Knockback":
+                                case "FishingPower":
+                                case "NeedsBait":
+                                case "BaitPower":
+                                case "Equipable":
+                                case "WandConsumes":
+                                case "Quest":
+                                case "Vanity":
+                                case "Defense":
+                                case "PickPower":
+                                case "AxePower":
+                                case "HammerPower":
+                                case "TileBoost":
+                                case "HealLife":
+                                case "HealMana":
+                                case "UseMana":
+                                case "Placeable":
+                                case "Ammo":
+                                case "Consumable":
+                                case "Material":
+                                    return i + 1;
+                            }
+                        }
+                        break;
+
+                    case "Equipable":
                         for (int i = tooltips.Count - 1; i >= 0; i--)
                         {
                             TooltipLine t = tooltips[i];
@@ -129,140 +188,79 @@ namespace AQMod
                                 case "Social":
                                 case "SocialDesc":
                                 case "Damage":
-                                return i + 1;
+                                case "CritChance":
+                                case "Speed":
+                                case "Knockback":
+                                case "FishingPower":
+                                case "NeedsBait":
+                                case "BaitPower":
+                                case "Equipable":
+                                case "Tooltip0":
+                                    return i + 1;
                             }
                         }
-                    }
-                    break;
-
-                    case "Tooltip#":
-                    for (int i = tooltips.Count - 1; i >= 0; i--)
-                    {
-                        TooltipLine t = tooltips[i];
-                        if (t.mod != "Terraria")
-                            continue;
-                        if (t.Name.StartsWith("Tooltip"))
-                            return i;
-                        switch (t.Name)
-                        {
-                            case "Favorite":
-                            case "FavoriteDesc":
-                            case "Social":
-                            case "SocialDesc":
-                            case "Damage":
-                            case "CritChance":
-                            case "Speed":
-                            case "Knockback":
-                            case "FishingPower":
-                            case "NeedsBait":
-                            case "BaitPower":
-                            case "Equipable":
-                            case "WandConsumes":
-                            case "Quest":
-                            case "Vanity":
-                            case "Defense":
-                            case "PickPower":
-                            case "AxePower":
-                            case "HammerPower":
-                            case "TileBoost":
-                            case "HealLife":
-                            case "HealMana":
-                            case "UseMana":
-                            case "Placeable":
-                            case "Ammo":
-                            case "Consumable":
-                            case "Material":
-                            return i + 1;
-                        }
-                    }
-                    break;
-
-                    case "Equipable":
-                    for (int i = tooltips.Count - 1; i >= 0; i--)
-                    {
-                        TooltipLine t = tooltips[i];
-                        if (t.mod != "Terraria")
-                            continue;
-                        switch (t.Name)
-                        {
-                            case "Favorite":
-                            case "FavoriteDesc":
-                            case "Social":
-                            case "SocialDesc":
-                            case "Damage":
-                            case "CritChance":
-                            case "Speed":
-                            case "Knockback":
-                            case "FishingPower":
-                            case "NeedsBait":
-                            case "BaitPower":
-                            case "Equipable":
-                            case "Tooltip0":
-                            return i + 1;
-                        }
-                    }
-                    break;
+                        break;
 
                     case "Expert":
-                    for (int i = tooltips.Count - 1; i >= 0; i--)
-                    {
-                        TooltipLine t = tooltips[i];
-                        if (t.mod != "Terraria")
-                            continue;
-                        if (t.Name.StartsWith("Tooltip"))
-                            return i + 1;
-                        switch (t.Name)
+                        for (int i = tooltips.Count - 1; i >= 0; i--)
                         {
-                            case "Favorite":
-                            case "FavoriteDesc":
-                            case "Social":
-                            case "SocialDesc":
-                            case "Damage":
-                            case "CritChance":
-                            case "Speed":
-                            case "Knockback":
-                            case "FishingPower":
-                            case "NeedsBait":
-                            case "BaitPower":
-                            case "Equipable":
-                            case "WandConsumes":
-                            case "Quest":
-                            case "Vanity":
-                            case "Defense":
-                            case "PickPower":
-                            case "AxePower":
-                            case "HammerPower":
-                            case "TileBoost":
-                            case "HealLife":
-                            case "HealMana":
-                            case "UseMana":
-                            case "Placeable":
-                            case "Ammo":
-                            case "Consumable":
-                            case "Material":
-                            case "EtherianManaWarning":
-                            case "WellFedExpert":
-                            case "BuffTime":
-                            case "OneDropLogo":
-                            case "PrefixDamage":
-                            case "PrefixSpeed":
-                            case "PrefixCritChance":
-                            case "PrefixUseMana":
-                            case "PrefixSize":
-                            case "PrefixShootSpeed":
-                            case "PrefixKnockback":
-                            case "PrefixAccDefense":
-                            case "PrefixAccMaxMana":
-                            case "PrefixAccCritChance":
-                            case "PrefixAccDamage":
-                            case "PrefixAccMoveSpeed":
-                            case "PrefixAccMeleeSpeed":
-                            case "SetBonus":
-                            case "Expert":
-                            return i + 1;
+                            TooltipLine t = tooltips[i];
+                            if (t.mod != "Terraria")
+                                continue;
+                            if (t.Name.StartsWith("Tooltip"))
+                                return i + 1;
+                            switch (t.Name)
+                            {
+                                case "Favorite":
+                                case "FavoriteDesc":
+                                case "Social":
+                                case "SocialDesc":
+                                case "Damage":
+                                case "CritChance":
+                                case "Speed":
+                                case "Knockback":
+                                case "FishingPower":
+                                case "NeedsBait":
+                                case "BaitPower":
+                                case "Equipable":
+                                case "WandConsumes":
+                                case "Quest":
+                                case "Vanity":
+                                case "Defense":
+                                case "PickPower":
+                                case "AxePower":
+                                case "HammerPower":
+                                case "TileBoost":
+                                case "HealLife":
+                                case "HealMana":
+                                case "UseMana":
+                                case "Placeable":
+                                case "Ammo":
+                                case "Consumable":
+                                case "Material":
+                                case "EtherianManaWarning":
+                                case "WellFedExpert":
+                                case "BuffTime":
+                                case "OneDropLogo":
+                                case "PrefixDamage":
+                                case "PrefixSpeed":
+                                case "PrefixCritChance":
+                                case "PrefixUseMana":
+                                case "PrefixSize":
+                                case "PrefixShootSpeed":
+                                case "PrefixKnockback":
+                                case "PrefixAccDefense":
+                                case "PrefixAccMaxMana":
+                                case "PrefixAccCritChance":
+                                case "PrefixAccDamage":
+                                case "PrefixAccMoveSpeed":
+                                case "PrefixAccMeleeSpeed":
+                                case "SetBonus":
+                                case "Expert":
+                                    return i + 1;
+                            }
                         }
-                    }
-                    break;
+                        break;
                 }
                 return 1;
             }
@@ -372,25 +370,25 @@ namespace AQMod
             switch (context)
             {
                 case "bossBag":
-                {
-                    switch (arg)
                     {
-                        case ItemID.QueenBeeBossBag:
+                        switch (arg)
                         {
-                            if (Main.rand.NextBool())
-                                player.QuickSpawnItem(ModContent.ItemType<BeeRod>());
-                        }
-                        break;
+                            case ItemID.QueenBeeBossBag:
+                                {
+                                    if (Main.rand.NextBool())
+                                        player.QuickSpawnItem(ModContent.ItemType<BeeRod>());
+                                }
+                                break;
 
-                        case ItemID.WallOfFleshBossBag:
-                        {
-                            if (Main.hardMode)
-                                player.QuickSpawnItem(ModContent.ItemType<OpposingPotion>(), Main.rand.Next(4) + 1);
+                            case ItemID.WallOfFleshBossBag:
+                                {
+                                    if (Main.hardMode)
+                                        player.QuickSpawnItem(ModContent.ItemType<OpposingPotion>(), Main.rand.Next(4) + 1);
+                                }
+                                break;
                         }
-                        break;
                     }
-                }
-                break;
+                    break;
             }
         }
 

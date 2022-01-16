@@ -1,6 +1,5 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
@@ -142,7 +141,10 @@ namespace AQMod.Content.World.Events.DemonSiege
                         ModContent.NPCType<TrapImp>(),
                         ModContent.NPCType<Trapper>(),
                     },
-                    AQText.chooselocalizationtext("Demon Siege", "恶魔围攻"),
+                    AQText.chooselocalizationtext(
+                        en_US: "Demon Siege",
+                        zh_Hans: "恶魔围攻",
+                        ru_RU: "Осада Демонов"),
                     ItemID.LightsBane,
                     items,
                     new List<int>()
@@ -152,7 +154,8 @@ namespace AQMod.Content.World.Events.DemonSiege
                     },
                     AQText.chooselocalizationtext(
                         en_US: "Can be summoned using: " + summonItems + " at a Gore Nest.",
-                        zh_Hans: null),
+                        zh_Hans: "在血巢处使用 " + summonItems + " 召唤.",
+                        ru_RU: "Можно призвать используя: " + summonItems + " в кровавом гнезде."),
                     "AQMod/Assets/BossChecklist/DemonSiege",
                     "AQMod/Assets/EventIcons/DemonSiege");
             }

@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.ID;
+﻿using AQMod.Common.ID;
 using AQMod.Items.Materials;
 using AQMod.Localization;
 using AQMod.NPCs.Boss.Crabson;

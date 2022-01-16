@@ -151,7 +151,7 @@ namespace AQMod.Content
             for (int bannerID = 0; bannerID < NPCLoader.NPCCount; bannerID++)
             {
                 int npcID = Item.BannerToNPC(bannerID);
-                if (npcID > 0 && !NPCID.Sets.ExcludedFromDeathTally[npcID] && !NPCID.Sets.BelongsToInvasionOldOnesArmy[npcID] && 
+                if (npcID > 0 && !NPCID.Sets.ExcludedFromDeathTally[npcID] && !NPCID.Sets.BelongsToInvasionOldOnesArmy[npcID] &&
                     NPC.killCount[bannerID] > ItemID.Sets.KillsToBanner[Item.BannerToItem(bannerID)])
                 {
                     potentialBanners.Add(Item.BannerToItem(bannerID));

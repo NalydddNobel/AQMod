@@ -1,6 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Common.Graphics;
-using AQMod.Items.DrawOverlays;
+﻿using AQMod.Common.Graphics;
 using AQMod.Items.Materials.Energies;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
@@ -93,7 +91,7 @@ namespace AQMod.Items.Weapons.Melee
             }
             for (int i = 0; i < dustAmount; i++)
             {
-                Dust.NewDustPerfect(target.Center, ModContent.DustType<Dusts.MonoSparkleDust>(), 
+                Dust.NewDustPerfect(target.Center, ModContent.DustType<Dusts.MonoSparkleDust>(),
                     Vector2.UnitX.RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi)) * (4f + Main.rand.NextFloat() * 4f), 150, new Color(150, 170, 200, 100)).noGravity = true;
             }
         }

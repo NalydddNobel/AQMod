@@ -1,5 +1,4 @@
 ﻿using AQMod.Content.DedicatedItemTags;
-using AQMod.Items.Dedicated;
 using AQMod.Projectiles.Magic;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;

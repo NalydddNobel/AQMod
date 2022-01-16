@@ -32,7 +32,7 @@ namespace AQMod.Content.World.Events
                 ModContent.NPCType<HermitCrab>(),
                 ModContent.NPCType<StriderCrab>(),
             },
-            AQText.chooselocalizationtext("Crab Season", "蟹季"),
+            AQText.chooselocalizationtext("Crab Season", "蟹季", "Сезон Крабов"),
             0,
             new List<int>()
             {
@@ -48,7 +48,8 @@ namespace AQMod.Content.World.Events
             },
             AQText.chooselocalizationtext(
                 en_US: "Begins naturally and ends naturally at random times. You can check the time when the event begins and ends using a [i:" + ModContent.ItemType<CrabClock>() + "].",
-                zh_Hans: null),
+                zh_Hans: "在夜晚自然开始. 也可以使用 [i:" + ModContent.ItemType<CrabClock>() + "] 召唤. 在太阳升起时结束.",
+                ru_RU: "Начинается и заканчивается естественным образом в случайное время. Вы можете посмотреть когда событие начинается и заканчивается используя [i:" + ModContent.ItemType<CrabClock>() + "]."),
             "AQMod/Assets/BossChecklist/CrabSeason",
             "");
 

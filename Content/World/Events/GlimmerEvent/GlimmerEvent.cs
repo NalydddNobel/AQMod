@@ -48,7 +48,10 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 ModContent.NPCType<SuperStarite>(),
                 ModContent.NPCType<HyperStarite>(),
             },
-            AQText.chooselocalizationtext("Glimmer Event", "微光事件"),
+            AQText.chooselocalizationtext(
+                en_US: "Glimmer Event",
+                zh_Hans: "微光事件",
+                ru_RU: "Мерцающее Событие"),
             ModContent.ItemType<MythicStarfruit>(),
             new List<int>()
             {
@@ -67,7 +70,8 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             },
             AQText.chooselocalizationtext(
                 en_US: "Happens naturally at night. Can alternatively summoned with a [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Ends when the sun rises",
-                zh_Hans: null),
+                zh_Hans: "在夜晚自然开始. 也可以使用 [i:" + ModContent.ItemType<MythicStarfruit>() + "] 召唤. 在太阳升起时结束.",
+                ru_RU: "Натурально появляется ночью. Также можно призвать с помощью [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Кончается когда всходит солнце."),
             "AQMod/Assets/BossChecklist/GlimmerEvent",
             "AQMod/Assets/EventIcons/GlimmerEvent");
         internal override EventProgressBar ProgressBar => new BasicEventProgressBar(
@@ -119,7 +123,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
 
         public override void PreUpdate()
         {
-            if (PassingDays.OnTurnNight && PassingDays.daysPassedSinceLastGlimmerEvent > 4 
+            if (PassingDays.OnTurnNight && PassingDays.daysPassedSinceLastGlimmerEvent > 4
                 && Main.moonPhase != MoonPhases.FullMoon && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
             {
                 for (int i = 0; i < Main.maxPlayers; i++)

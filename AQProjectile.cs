@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Items.Tools.Fishing.Bait;
-using AQMod.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -221,9 +220,10 @@ namespace AQMod
                     }
                 }
             }
-            if (projectile.aiStyle == 99 && Main.netMode != NetmodeID.Server && 
-                Main.player[projectile.owner].GetModPlayer<AQPlayer>().glowString && 
-                AQGraphics.Cull(Utils.CenteredRectangle(projectile.Center - Main.screenPosition, new Vector2(200f, 200f))))
+            AQGraphics.SetCullPadding(padding: 200);
+            if (projectile.aiStyle == 99 && Main.netMode != NetmodeID.Server &&
+                Main.player[projectile.owner].GetModPlayer<AQPlayer>().glowString &&
+                AQGraphics.Cull(projectile.getRect()))
             {
                 var center = projectile.Center;
                 var playerCenter = Main.player[projectile.owner].MountedCenter;
@@ -317,28 +317,28 @@ namespace AQMod
                         case ItemID.GoldenCrate:
                         case ItemID.IronCrate:
                         case ItemID.WoodenCrate:
-                        if (aQPlr.copperSeal)
-                        {
-                            int cratePotionIndex = plr.FindBuffIndex(BuffID.Crate);
-                            if (cratePotionIndex != -1)
+                            if (aQPlr.copperSeal)
                             {
-                                plr.buffTime[cratePotionIndex] += 1800;
+                                int cratePotionIndex = plr.FindBuffIndex(BuffID.Crate);
+                                if (cratePotionIndex != -1)
+                                {
+                                    plr.buffTime[cratePotionIndex] += 1800;
+                                }
+                                else
+                                {
+                                    plr.AddBuff(BuffID.Crate, 1800);
+                                }
                             }
-                            else
-                            {
-                                plr.AddBuff(BuffID.Crate, 1800);
-                            }
-                        }
-                        break;
+                            break;
 
                         default:
-                        if (projectile.ai[1] > Main.maxItemTypes)
-                        {
-                            var modItem = ItemLoader.GetItem((int)projectile.ai[1]);
-                            if (modItem.CanRightClick())
-                                goto case ItemID.WoodenCrate;
-                        }
-                        break;
+                            if (projectile.ai[1] > Main.maxItemTypes)
+                            {
+                                var modItem = ItemLoader.GetItem((int)projectile.ai[1]);
+                                if (modItem.CanRightClick())
+                                    goto case ItemID.WoodenCrate;
+                            }
+                            break;
                     }
                 }
             }

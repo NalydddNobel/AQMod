@@ -1,12 +1,9 @@
 ﻿using AQMod.Assets;
 using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Temperature;
-using AQMod.Common;
 using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
-using AQMod.Common.Graphics.Particles;
 using AQMod.Content;
-using AQMod.Content.CursorDyes;
 using AQMod.Content.Fishing;
 using AQMod.Content.Players;
 using AQMod.Content.Seasonal.Christmas;
@@ -18,7 +15,6 @@ using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.Foods;
 using AQMod.Items.Quest.Angler;
 using AQMod.Items.Tools.Axe;
 using AQMod.NPCs;
@@ -1161,10 +1157,10 @@ namespace AQMod
                     {
                         var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                         var velocity = new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-10f, 2f).Abs());
-                        ParticleLayers.AddParticle_PostDrawPlayers(
+                        Particle.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
-                        ParticleLayers.AddParticle_PostDrawPlayers(
+                        Particle.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
                     }
@@ -1187,19 +1183,19 @@ namespace AQMod
                         var normal = Vector2.Normalize(offset);
                         var dustPos = targetCenter + offset;
                         var velocity = normal * Main.rand.NextFloat(6f, 12f);
-                        ParticleLayers.AddParticle_PostDrawPlayers(
+                        Particle.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
-                        ParticleLayers.AddParticle_PostDrawPlayers(
+                        Particle.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
                         if (Main.rand.NextBool(14))
                         {
                             var sparkleClr = new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f);
-                            ParticleLayers.AddParticle_PostDrawPlayers(
+                            Particle.PostDrawPlayers.AddParticle(
                                 new SparkleParticle(dustPos, velocity,
                                 sparkleClr, 1.5f));
-                            ParticleLayers.AddParticle_PostDrawPlayers(
+                            Particle.PostDrawPlayers.AddParticle(
                                 new SparkleParticle(dustPos, velocity,
                                 sparkleClr * 0.5f, 1f)
                                 { rotation = MathHelper.PiOver4 });

@@ -94,31 +94,31 @@ namespace AQMod.NPCs.Friendly
             switch (WorldGen.genRand.Next(12))
             {
                 default:
-                return "Rose";
+                    return "Rose";
                 case 0:
-                return "Deahdeah";
+                    return "Deahdeah";
                 case 1:
-                return "Lina";
+                    return "Lina";
                 case 2:
-                return "Peach";
+                    return "Peach";
                 case 3:
-                return "Lumian";
+                    return "Lumian";
                 case 4:
-                return "Astrajanelon";
+                    return "Astrajanelon";
                 case 5:
-                return "Astrablaghn";
+                    return "Astrablaghn";
                 case 6:
-                return "Stoffien";
+                    return "Stoffien";
                 case 7:
-                return "Constructa";
+                    return "Constructa";
                 case 8:
-                return "Eridani";
+                    return "Eridani";
                 case 9:
-                return "Asphodene";
+                    return "Asphodene";
                 case 10:
-                return "Termina";
+                    return "Termina";
                 case 11:
-                return "Kristal";
+                    return "Kristal";
             }
         }
 

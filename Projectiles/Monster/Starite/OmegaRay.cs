@@ -26,7 +26,7 @@ namespace AQMod.Projectiles.Monster.Starite
             projectile.timeLeft *= 5;
         }
 
-        private const float size = NPCs.Boss.OmegaStarite.Circumference* 4f;
+        private const float size = NPCs.Boss.OmegaStarite.Circumference * 4f;
 
         public override void AI()
         {

@@ -1,6 +1,5 @@
 ﻿using AQMod.Content.DedicatedItemTags;
 using AQMod.Content.Players;
-using AQMod.Items.Dedicated;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

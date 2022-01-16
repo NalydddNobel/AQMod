@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Graphics.Particles;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -35,15 +34,15 @@ namespace AQMod.Items.Placeable.Torch
                 float scale = Main.rand.NextFloat(0.88f, 1f);
                 var particlePos = new Vector2(player.itemLocation.X + (12f + Main.rand.NextFloat(-2f, 2f)) * player.direction, player.itemLocation.Y - (20f + Main.rand.NextFloat(-2f, 2f)) * player.gravDir);
                 var particleVelocity = new Vector2(player.velocity.X * 0.1f, player.velocity.Y * 0.1f - 3f + Main.rand.NextFloat(-3f, 1f));
-                ParticleLayers.AddParticle_PostDrawPlayers(new EmberParticle(particlePos,
+                Particle.PostDrawPlayers.AddParticle(new EmberParticle(particlePos,
                     particleVelocity,
                     new Color(240, 240, 255, 0) * scale,
                     scale));
-                ParticleLayers.AddParticle_PostDrawPlayers(new SparkleParticle(particlePos,
+                Particle.PostDrawPlayers.AddParticle(new SparkleParticle(particlePos,
                     particleVelocity,
                     new Color(240, 240, 255, 0) * scale,
                     scale * 0.33f));
-                ParticleLayers.AddParticle_PostDrawPlayers(new SparkleParticle(particlePos,
+                Particle.PostDrawPlayers.AddParticle(new SparkleParticle(particlePos,
                     particleVelocity,
                     new Color(200, 200, 240, 0) * scale,
                     scale * 0.1f)

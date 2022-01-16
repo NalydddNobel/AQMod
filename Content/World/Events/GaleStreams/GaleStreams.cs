@@ -31,7 +31,10 @@ namespace AQMod.Content.World.Events.GaleStreams
                 ModContent.NPCType<RedSprite>(),
                 ModContent.NPCType<SpaceSquid>(),
             },
-            AQText.chooselocalizationtext(en_US: "Gale Streams", zh_Hans: "紊流风暴"),
+            AQText.chooselocalizationtext(
+                en_US: "Gale Streams",
+                zh_Hans: "紊流风暴",
+                ru_RU: "Штормовые Потоки"),
             0,
             new List<int>()
             {
@@ -56,7 +59,8 @@ namespace AQMod.Content.World.Events.GaleStreams
             },
             AQText.chooselocalizationtext(
                 en_US: "Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]",
-                zh_Hans: "风速大于40 mph时开始, 风速小于34 mph时结束. 你可以使用 [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "] 更改风速"),
+                zh_Hans: "风速大于40 mph时开始, 风速小于34 mph时结束. 你可以使用 [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "] 更改风速",
+                ru_RU: "Начинается когда скорость ветра превышает 40 миль в час, и заканчивается когда скорость ветра ниже 34 миль в час. Также закончится если скорость ветра превисит 300 миль в час. Вы можете изменять скорость ветра используя [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]"),
             "AQMod/Assets/BossChecklist/GaleStreams",
             "AQMod/Assets/EventIcons/GaleStreams");
 

@@ -269,7 +269,7 @@ namespace AQMod
                         }
                         var color = new Color(reader.ReadByte(), reader.ReadByte(), reader.ReadByte());
                         // Reading all of this data so that the server doesn't have a random packet or something.
-                        if (messageID == PacketType.CombatNumber) 
+                        if (messageID == PacketType.CombatNumber)
                         {
                             int amount = reader.ReadInt32();
                             if (Main.netMode != NetmodeID.Server)

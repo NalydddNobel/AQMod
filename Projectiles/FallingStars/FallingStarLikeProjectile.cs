@@ -63,7 +63,7 @@ namespace AQMod.Projectiles.FallingStars
                 projectile.localAI[0] = 1f;
             }
             projectile.rotation += (Math.Abs(projectile.velocity.X) + Math.Abs(projectile.velocity.Y)) * 0.01f * projectile.direction;
-
+            AQGraphics.SetCullPadding();
             if (AQGraphics.Cull_WorldPosition(projectile.getRect()) && Main.rand.Next(6) == 0)
             {
                 Gore.NewGore(projectile.position, projectile.velocity * 0.2f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17));
@@ -121,6 +121,7 @@ namespace AQMod.Projectiles.FallingStars
             {
                 Dust.NewDustPerfect(projectile.Center, ModContent.DustType<Dusts.MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, SparkleDustColorGold).noGravity = true;
             }
+            AQGraphics.SetCullPadding();
             if (AQGraphics.Cull_WorldPosition(projectile.getRect()) && Main.rand.Next(6) == 0)
             {
                 for (int i = 0; i < StarsAmountOnKill; i++)

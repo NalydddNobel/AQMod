@@ -1,4 +1,7 @@
-﻿using AQMod.Content.World.Events.GaleStreams;
+﻿using AQMod.Common;
+using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Content.World.Events.GaleStreams;
+using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters.GaleStreams;
@@ -6,9 +9,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using AQMod.Content.World.Events.GlimmerEvent;
-using AQMod.Common;
-using AQMod.Content.World.Events.DemonSiege;
 
 namespace AQMod.NPCs
 {

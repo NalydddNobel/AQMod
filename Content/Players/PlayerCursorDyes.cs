@@ -6,7 +6,7 @@ namespace AQMod.Content.Players
 {
     public sealed class PlayerCursorDyes : ModPlayer
     {
-        public static byte LocalCursorDye => 
+        public static byte LocalCursorDye =>
             (byte)((Main.myPlayer == -1 || Main.player[Main.myPlayer] == null) ? 0 : Main.player[Main.myPlayer].GetModPlayer<PlayerCursorDyes>().VisibleCursorDye);
 
         public byte cursorDye;

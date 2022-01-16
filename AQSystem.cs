@@ -16,7 +16,7 @@ namespace AQMod
 
         public static int DayrateIncrease { get; set; }
 
-        public static bool UpdatingWorld { get; internal set; }
+        public static bool UpdatingTime { get; internal set; }
         public static bool CosmicanonActive { get; internal set; }
 
         public override void Initialize()

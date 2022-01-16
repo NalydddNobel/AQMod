@@ -94,316 +94,316 @@ namespace AQMod.NPCs.Friendly
                 switch (Main.moonPhase)
                 {
                     case MoonPhases.FullMoon:
-                    {
-                        if (WorldGen.shadowOrbSmashed)
                         {
-                            if (WorldGen.crimson)
+                            if (WorldGen.shadowOrbSmashed)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.BloodWater);
-                                nextSlot++;
+                                if (WorldGen.crimson)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.BloodWater);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.UnholyWater);
+                                    nextSlot++;
+                                }
+                                if (WorldGen.crimson)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.ShadowOrb);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.CrimsonHeart);
+                                    nextSlot++;
+                                }
                             }
-                            else
+                            if (NPC.downedSlimeKing)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.UnholyWater);
-                                nextSlot++;
-                            }
-                            if (WorldGen.crimson)
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.ShadowOrb);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.CrimsonHeart);
+                                shop.item[nextSlot].SetDefaults(ItemID.Daybloom);
                                 nextSlot++;
                             }
                         }
-                        if (NPC.downedSlimeKing)
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.Daybloom);
-                            nextSlot++;
-                        }
-                    }
-                    break;
+                        break;
 
                     case MoonPhases.WaningGibbious:
-                    {
-                        if (WorldGen.shadowOrbSmashed)
                         {
-                            if (WorldGen.crimson)
+                            if (WorldGen.shadowOrbSmashed)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.CrimsonRod);
-                                nextSlot++;
+                                if (WorldGen.crimson)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.CrimsonRod);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.Vilethorn);
+                                    nextSlot++;
+                                }
+                                if (WorldGen.crimson)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.BallOHurt);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.TheRottedFork);
+                                    nextSlot++;
+                                }
                             }
-                            else
+                            if (NPC.downedBoss1)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.Vilethorn);
-                                nextSlot++;
-                            }
-                            if (WorldGen.crimson)
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.BallOHurt);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.TheRottedFork);
-                                nextSlot++;
+                                if (BalloonMerchantManager.SellPlantSeeds)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.BlinkrootSeeds);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.Blinkroot);
+                                    nextSlot++;
+                                }
                             }
                         }
-                        if (NPC.downedBoss1)
-                        {
-                            if (BalloonMerchantManager.SellPlantSeeds)
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.BlinkrootSeeds);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.Blinkroot);
-                                nextSlot++;
-                            }
-                        }
-                    }
-                    break;
+                        break;
 
                     case MoonPhases.ThirdQuarter:
-                    {
-                        if (WorldGen.shadowOrbSmashed)
                         {
-                            if (WorldGen.crimson)
+                            if (WorldGen.shadowOrbSmashed)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.PanicNecklace);
-                                nextSlot++;
+                                if (WorldGen.crimson)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.PanicNecklace);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.BandofStarpower);
+                                    nextSlot++;
+                                }
                             }
-                            else
+                            if (NPC.downedBoss2)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.BandofStarpower);
-                                nextSlot++;
+                                if (BalloonMerchantManager.SellPlantSeeds)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.DeathweedSeeds);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.Deathweed);
+                                    nextSlot++;
+                                }
                             }
                         }
-                        if (NPC.downedBoss2)
-                        {
-                            if (BalloonMerchantManager.SellPlantSeeds)
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.DeathweedSeeds);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.Deathweed);
-                                nextSlot++;
-                            }
-                        }
-                    }
-                    break;
+                        break;
 
                     case MoonPhases.WaningCrescent:
-                    {
-                        if (WorldGen.shadowOrbSmashed)
                         {
-                            if (WorldGen.crimson)
+                            if (WorldGen.shadowOrbSmashed)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.TheUndertaker);
-                                nextSlot++;
+                                if (WorldGen.crimson)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.TheUndertaker);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.Musket);
+                                    nextSlot++;
+                                }
                             }
-                            else
+                            if (NPC.downedQueenBee)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.Musket);
-                                nextSlot++;
+                                if (BalloonMerchantManager.SellPlantSeeds)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.MoonglowSeeds);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.Moonglow);
+                                    nextSlot++;
+                                }
                             }
                         }
-                        if (NPC.downedQueenBee)
-                        {
-                            if (BalloonMerchantManager.SellPlantSeeds)
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.MoonglowSeeds);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.Moonglow);
-                                nextSlot++;
-                            }
-                        }
-                    }
-                    break;
+                        break;
 
                     case MoonPhases.NewMoon:
-                    {
-                        if (WorldGen.shadowOrbSmashed)
                         {
-                            if (WorldGen.crimson)
+                            if (WorldGen.shadowOrbSmashed)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.UnholyWater);
-                                nextSlot++;
+                                if (WorldGen.crimson)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.UnholyWater);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.BloodWater);
+                                    nextSlot++;
+                                }
+                                if (WorldGen.crimson)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.CrimsonHeart);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.ShadowOrb);
+                                    nextSlot++;
+                                }
                             }
-                            else
+                            if (NPC.downedBoss2)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.BloodWater);
-                                nextSlot++;
-                            }
-                            if (WorldGen.crimson)
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.CrimsonHeart);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.ShadowOrb);
-                                nextSlot++;
+                                if (WorldGen.crimson)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.CorruptPlanterBox);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.CrimsonPlanterBox);
+                                    nextSlot++;
+                                }
                             }
                         }
-                        if (NPC.downedBoss2)
-                        {
-                            if (WorldGen.crimson)
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.CorruptPlanterBox);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.CrimsonPlanterBox);
-                                nextSlot++;
-                            }
-                        }
-                    }
-                    break;
+                        break;
 
                     case MoonPhases.WaxingCrescent:
-                    {
-                        if (WorldGen.shadowOrbSmashed)
                         {
-                            if (WorldGen.crimson)
+                            if (WorldGen.shadowOrbSmashed)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.Musket);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.TheUndertaker);
-                                nextSlot++;
-                            }
-                            if (WorldGen.crimson)
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.TheRottedFork);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.BallOHurt);
-                                nextSlot++;
-                            }
-                        }
-                        if (NPC.downedBoss3)
-                        {
-                            if (WorldGen.crimson)
-                            {
-                                if (BalloonMerchantManager.SellPlantSeeds)
+                                if (WorldGen.crimson)
                                 {
-                                    shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
+                                    shop.item[nextSlot].SetDefaults(ItemID.Musket);
                                     nextSlot++;
                                 }
                                 else
                                 {
-                                    shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
+                                    shop.item[nextSlot].SetDefaults(ItemID.TheUndertaker);
                                     nextSlot++;
                                 }
-                            }
-                            else
-                            {
-                                if (BalloonMerchantManager.SellPlantSeeds)
+                                if (WorldGen.crimson)
                                 {
-                                    shop.item[nextSlot].SetDefaults(ItemID.ShiverthornSeeds);
+                                    shop.item[nextSlot].SetDefaults(ItemID.TheRottedFork);
                                     nextSlot++;
                                 }
                                 else
                                 {
-                                    shop.item[nextSlot].SetDefaults(ItemID.Shiverthorn);
+                                    shop.item[nextSlot].SetDefaults(ItemID.BallOHurt);
                                     nextSlot++;
                                 }
                             }
+                            if (NPC.downedBoss3)
+                            {
+                                if (WorldGen.crimson)
+                                {
+                                    if (BalloonMerchantManager.SellPlantSeeds)
+                                    {
+                                        shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
+                                        nextSlot++;
+                                    }
+                                    else
+                                    {
+                                        shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
+                                        nextSlot++;
+                                    }
+                                }
+                                else
+                                {
+                                    if (BalloonMerchantManager.SellPlantSeeds)
+                                    {
+                                        shop.item[nextSlot].SetDefaults(ItemID.ShiverthornSeeds);
+                                        nextSlot++;
+                                    }
+                                    else
+                                    {
+                                        shop.item[nextSlot].SetDefaults(ItemID.Shiverthorn);
+                                        nextSlot++;
+                                    }
+                                }
+                            }
                         }
-                    }
-                    break;
+                        break;
 
                     case MoonPhases.FirstQuarter:
-                    {
-                        if (WorldGen.shadowOrbSmashed)
                         {
-                            if (WorldGen.crimson)
+                            if (WorldGen.shadowOrbSmashed)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.BandofStarpower);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.PanicNecklace);
-                                nextSlot++;
-                            }
-                        }
-                        if (NPC.downedBoss3)
-                        {
-                            if (WorldGen.crimson)
-                            {
-                                if (BalloonMerchantManager.SellPlantSeeds)
+                                if (WorldGen.crimson)
                                 {
-                                    shop.item[nextSlot].SetDefaults(ItemID.ShiverthornSeeds);
+                                    shop.item[nextSlot].SetDefaults(ItemID.BandofStarpower);
                                     nextSlot++;
                                 }
                                 else
                                 {
-                                    shop.item[nextSlot].SetDefaults(ItemID.Shiverthorn);
+                                    shop.item[nextSlot].SetDefaults(ItemID.PanicNecklace);
                                     nextSlot++;
                                 }
                             }
-                            else
+                            if (NPC.downedBoss3)
                             {
-                                if (BalloonMerchantManager.SellPlantSeeds)
+                                if (WorldGen.crimson)
                                 {
-                                    shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
-                                    nextSlot++;
+                                    if (BalloonMerchantManager.SellPlantSeeds)
+                                    {
+                                        shop.item[nextSlot].SetDefaults(ItemID.ShiverthornSeeds);
+                                        nextSlot++;
+                                    }
+                                    else
+                                    {
+                                        shop.item[nextSlot].SetDefaults(ItemID.Shiverthorn);
+                                        nextSlot++;
+                                    }
                                 }
                                 else
                                 {
-                                    shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
-                                    nextSlot++;
+                                    if (BalloonMerchantManager.SellPlantSeeds)
+                                    {
+                                        shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
+                                        nextSlot++;
+                                    }
+                                    else
+                                    {
+                                        shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
+                                        nextSlot++;
+                                    }
                                 }
                             }
                         }
-                    }
-                    break;
+                        break;
 
                     case MoonPhases.WaxingGibbious:
-                    {
-                        if (WorldGen.shadowOrbSmashed)
                         {
-                            if (WorldGen.crimson)
+                            if (WorldGen.shadowOrbSmashed)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.Vilethorn);
-                                nextSlot++;
+                                if (WorldGen.crimson)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.Vilethorn);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.CrimsonRod);
+                                    nextSlot++;
+                                }
                             }
-                            else
+                            if (Main.hardMode)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.CrimsonRod);
-                                nextSlot++;
+                                if (BalloonMerchantManager.SellPlantSeeds)
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.FireblossomSeeds);
+                                    nextSlot++;
+                                }
+                                else
+                                {
+                                    shop.item[nextSlot].SetDefaults(ItemID.Fireblossom);
+                                    nextSlot++;
+                                }
                             }
                         }
-                        if (Main.hardMode)
-                        {
-                            if (BalloonMerchantManager.SellPlantSeeds)
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.FireblossomSeeds);
-                                nextSlot++;
-                            }
-                            else
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.Fireblossom);
-                                nextSlot++;
-                            }
-                        }
-                    }
-                    break;
+                        break;
                 }
                 if (Main.time * 3.0 > Main.nightLength * 2.0)
                 {
@@ -521,89 +521,89 @@ namespace AQMod.NPCs.Friendly
                 switch (BalloonMerchantManager.MaterialSold)
                 {
                     case 0:
-                    {
-                        if (Main.time * 2.0 > Main.dayLength)
                         {
-                            shop.item[nextSlot].SetDefaults(ItemID.Vertebrae);
-                            shop.item[nextSlot].value = Item.buyPrice(silver: 20);
-                            nextSlot++;
+                            if (Main.time * 2.0 > Main.dayLength)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Vertebrae);
+                                shop.item[nextSlot].value = Item.buyPrice(silver: 20);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.RottenChunk);
+                                shop.item[nextSlot].value = Item.buyPrice(silver: 20);
+                                nextSlot++;
+                            }
                         }
-                        else
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.RottenChunk);
-                            shop.item[nextSlot].value = Item.buyPrice(silver: 20);
-                            nextSlot++;
-                        }
-                    }
-                    break;
+                        break;
 
                     case 1:
-                    {
-                        if (WorldGen.shadowOrbSmashed)
                         {
-                            shop.item[nextSlot].SetDefaults(ItemID.Stinger);
-                            shop.item[nextSlot].value = Item.buyPrice(silver: 50);
-                            nextSlot++;
+                            if (WorldGen.shadowOrbSmashed)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Stinger);
+                                shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                                nextSlot++;
+                            }
                         }
-                    }
-                    break;
+                        break;
 
                     case 2:
-                    {
-                        if (Main.hardMode && Main.time * 2.0 > Main.dayLength)
                         {
-                            shop.item[nextSlot].SetDefaults(ItemID.PixieDust);
-                            shop.item[nextSlot].value = Item.buyPrice(silver: 50);
-                            nextSlot++;
+                            if (Main.hardMode && Main.time * 2.0 > Main.dayLength)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.PixieDust);
+                                shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                                nextSlot++;
+                            }
+                            else if (NPC.downedBoss3)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.Bone);
+                                shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                                nextSlot++;
+                            }
                         }
-                        else if (NPC.downedBoss3)
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.Bone);
-                            shop.item[nextSlot].value = Item.buyPrice(silver: 50);
-                            nextSlot++;
-                        }
-                    }
-                    break;
+                        break;
 
                     case 3:
-                    {
-                        if (Main.time * 2.0 > Main.dayLength)
                         {
-                            shop.item[nextSlot].SetDefaults(ItemID.SharkFin);
-                            shop.item[nextSlot].value = Item.buyPrice(gold: 5);
-                            nextSlot++;
+                            if (Main.time * 2.0 > Main.dayLength)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.SharkFin);
+                                shop.item[nextSlot].value = Item.buyPrice(gold: 5);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<CrabShell>());
+                                shop.item[nextSlot].value = Item.buyPrice(silver: 20);
+                                nextSlot++;
+                            }
                         }
-                        else
-                        {
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CrabShell>());
-                            shop.item[nextSlot].value = Item.buyPrice(silver: 20);
-                            nextSlot++;
-                        }
-                    }
-                    break;
+                        break;
 
                     case 4:
-                    {
-                        if (Main.time * 3.0 > Main.dayLength * 2.0)
                         {
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<KryptonMushroom>());
-                            shop.item[nextSlot].value = Item.buyPrice(gold: 1);
-                            nextSlot++;
+                            if (Main.time * 3.0 > Main.dayLength * 2.0)
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<KryptonMushroom>());
+                                shop.item[nextSlot].value = Item.buyPrice(gold: 1);
+                                nextSlot++;
+                            }
+                            else if (Main.time * 3.0 > Main.dayLength)
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<ArgonMushroom>());
+                                shop.item[nextSlot].value = Item.buyPrice(gold: 1);
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<XenonMushroom>());
+                                shop.item[nextSlot].value = Item.buyPrice(gold: 1);
+                                nextSlot++;
+                            }
                         }
-                        else if (Main.time * 3.0 > Main.dayLength)
-                        {
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<ArgonMushroom>());
-                            shop.item[nextSlot].value = Item.buyPrice(gold: 1);
-                            nextSlot++;
-                        }
-                        else
-                        {
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<XenonMushroom>());
-                            shop.item[nextSlot].value = Item.buyPrice(gold: 1);
-                            nextSlot++;
-                        }
-                    }
-                    break;
+                        break;
                 }
                 if (player.ZoneCorrupt && BalloonMerchantManager.MaterialSold != 0)
                 {
@@ -834,57 +834,57 @@ namespace AQMod.NPCs.Friendly
             switch (WorldGen.genRand.Next(25))
             {
                 default:
-                return "Link";
+                    return "Link";
                 case 0:
-                return "Buddy";
+                    return "Buddy";
                 case 1:
-                return "Dobby";
+                    return "Dobby";
                 case 2:
-                return "Winky";
+                    return "Winky";
                 case 3:
-                return "Hermey";
+                    return "Hermey";
                 case 4:
-                return "Altmer";
+                    return "Altmer";
                 case 5:
-                return "Summerset";
+                    return "Summerset";
                 case 6:
-                return "Calcelmo";
+                    return "Calcelmo";
                 case 7:
-                return "Ancano";
+                    return "Ancano";
                 case 8:
-                return "Nurelion";
+                    return "Nurelion";
                 case 9:
-                return "Vingalmo";
+                    return "Vingalmo";
                 case 10:
-                return "Bosmer";
+                    return "Bosmer";
                 case 11:
-                return "Faendal";
+                    return "Faendal";
                 case 12:
-                return "Malborn";
+                    return "Malborn";
                 case 13:
-                return "Niruin";
+                    return "Niruin";
                 case 14:
-                return "Enthir";
+                    return "Enthir";
                 case 15:
-                return "Dunmer";
+                    return "Dunmer";
                 case 16:
-                return "Aranea";
+                    return "Aranea";
                 case 17:
-                return "Ienith";
+                    return "Ienith";
                 case 18:
-                return "Brand-Shei";
+                    return "Brand-Shei";
                 case 19:
-                return "Telvanni";
+                    return "Telvanni";
                 case 20:
-                return "Jenassa";
+                    return "Jenassa";
                 case 21:
-                return "Erandur";
+                    return "Erandur";
                 case 22:
-                return "Neloth";
+                    return "Neloth";
                 case 23:
-                return "Gelebor";
+                    return "Gelebor";
                 case 24:
-                return "Vyrthur";
+                    return "Vyrthur";
             }
         }
 

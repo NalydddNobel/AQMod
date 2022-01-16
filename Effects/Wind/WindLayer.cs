@@ -1,58 +1,28 @@
-﻿using AQMod.Common.Graphics.DrawTypes;
+﻿using AQMod.Common;
+using AQMod.Common.Graphics;
+using AQMod.Common.Graphics.DrawTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
-using Terraria.ID;
 
-namespace AQMod.Common.Graphics.SceneLayers
+namespace AQMod.Effects.Wind
 {
-    public sealed class WindLayer : RenderTargetLayerType
+    public sealed class WindLayer : IAutoloadType
     {
-        public static LayerKey Key { get; private set; }
-
         private static GraphicsDevice _graphics;
         private static Effect _windShader;
         private static List<IDrawType> windDraws;
         private static RenderTarget2D _windTarget;
-
-        public override string Name => "HotAndColdCurrent";
-        public override SceneLayering Layering => SceneLayering.BehindNPCs;
-
-        protected override void OnRegister(LayerKey key)
-        {
-            base.OnRegister(key);
-            try
-            {
-                _windShader = AQMod.GetInstance().GetEffect("Effects/WindShader");
-            }
-            catch
-            {
-                throw new Exception("There was an error while loading the Hot and Cold current shader. Try loading shaders in a higher quality or something?");
-            }
-            windDraws = new List<IDrawType>();
-            Key = key;
-        }
-
-        internal override void Unload()
-        {
-            Key = LayerKey.Null;
-            _graphics = null;
-            _windShader = null;
-            windDraws = null;
-            _windTarget = null;
-            _finalTarget = null;
-        }
+        private static RenderTarget2D _finalTarget;
 
         public static void AddToCurrentList(IDrawType drawType)
         {
             windDraws.Add(drawType);
         }
 
-        public override void ResetTargets(GraphicsDevice graphics)
+        public static void ResetTargets(GraphicsDevice graphics)
         {
             _graphics = graphics;
             if (_graphics == null)
@@ -61,7 +31,7 @@ namespace AQMod.Common.Graphics.SceneLayers
             _finalTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
         }
 
-        public override void DrawTargets()
+        internal static void DrawTargets()
         {
             if (windDraws == null)
                 windDraws = new List<IDrawType>();
@@ -140,28 +110,42 @@ namespace AQMod.Common.Graphics.SceneLayers
             }
         }
 
-        protected override void PreDrawFinal()
+        internal static void DrawFinal()
         {
             Main.spriteBatch.End();
             BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
-
-            //_hotAndColdCurrentShader.Parameters["uScreenResolution"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
-            //_hotAndColdCurrentShader.Parameters["uThicknessFromEdge"].SetValue(3f);
-            //_hotAndColdCurrentShader.Parameters["uOutlineThickness"].SetValue(2.5f);
-            //_hotAndColdCurrentShader.CurrentTechnique.Passes["DoOutlinePass"].Apply();
 
             _windShader.Parameters["uTime"].SetValue(Main.GlobalTime);
             _windShader.Parameters["uSourceRect"].SetValue(new Vector4(0, 0, Main.screenWidth, Main.screenHeight));
             _windShader.Parameters["uImageSize0"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
             _windShader.Techniques[0].Passes["MakeTransparentPass"].Apply();
 
-            //var shader = GameShaders.Armor.GetSecondaryShader(GameShaders.Armor.GetShaderIdFromItemId(ItemID.AcidDye), null);
-            //shader.Apply(null, new DrawData(_finalTarget, Vector2.Zero, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0));
-        }
-        protected override void PostDrawFinal()
-        {
+            Main.spriteBatch.Draw(_finalTarget, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
             Main.spriteBatch.End();
             BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+        }
+
+        void IAutoloadType.OnLoad()
+        {
+            try
+            {
+                _windShader = AQMod.GetInstance().GetEffect("Effects/Wind/WindShader");
+            }
+            catch
+            {
+                throw new Exception("There was an error while loading the Wind current shader. Try loading shaders in a higher/lower quality or smth?");
+            }
+            windDraws = new List<IDrawType>();
+        }
+
+        void IAutoloadType.Unload()
+        {
+            _graphics = null;
+            _windShader = null;
+            windDraws = null;
+            _windTarget = null;
+            _finalTarget = null;
         }
     }
 }

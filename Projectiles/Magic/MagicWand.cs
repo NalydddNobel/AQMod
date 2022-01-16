@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.Graphics;
-using AQMod.Common.Graphics.Particles;
 using AQMod.Dusts;
+using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using System;
@@ -53,16 +53,16 @@ namespace AQMod.Projectiles.Magic
                         var pos = projectile.position - new Vector2(2f, 2f);
                         var rect = new Rectangle((int)pos.X, (int)pos.Y, projectile.width + 4, projectile.height + 4);
                         var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                        ParticleLayers.AddParticle_PostDrawPlayers(
+                        Particle.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, -projectile.velocity * Main.rand.NextFloat(0.015f, 0.1f),
                             new Color(255, 150, 150, 0)));
                     }
                     float scale = Main.rand.NextFloat(1.25f, 2.25f);
                     var dustPos1 = projectile.Center + Vector2.Normalize(projectile.velocity) * (projectile.width / 2f - 6f);
-                    ParticleLayers.AddParticle_PostDrawPlayers(
+                    Particle.PostDrawPlayers.AddParticle(
                         new EmberParticle(dustPos1, velo,
                         new Color(220, 220, 220, 0), scale));
-                    ParticleLayers.AddParticle_PostDrawPlayers(
+                    Particle.PostDrawPlayers.AddParticle(
                         new EmberParticle(dustPos1, velo,
                         new Color(60, 45, 45, 0), scale * 2f));
                 }
@@ -116,7 +116,7 @@ namespace AQMod.Projectiles.Magic
                 {
                     var velo = projectile.velocity * 0.015f;
                     var particlePos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                    ParticleLayers.AddParticle_PostDrawPlayers(
+                    Particle.PostDrawPlayers.AddParticle(
                         new EmberParticle(particlePos, new Vector2(Main.rand.NextFloat(-2.5f, 2.5f), Main.rand.NextFloat(-0.1f, 0.1f)),
                         new Color(255, 180, 180, 0), 1.35f));
                 }

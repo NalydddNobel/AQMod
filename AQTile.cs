@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Common.WorldGeneration;
 using AQMod.Content;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
@@ -20,14 +19,14 @@ namespace AQMod
             switch (type)
             {
                 case TileID.Stone:
-                if (j > Main.rockLayer && WorldGen.genRand.NextBool(300))
-                {
-                    if (NobleMushroomsNew.Place(i, j))
-                        return;
-                }
-                break;
+                    if (j > Main.rockLayer && WorldGen.genRand.NextBool(300))
+                    {
+                        if (NobleMushroomsNew.Place(i, j))
+                            return;
+                    }
+                    break;
             }
-            if (WorldGen.genRand.NextBool(3000) && j > 200 && !Main.tile[i, j].active() && Framing.GetTileSafely(i, j + 1).active() 
+            if (WorldGen.genRand.NextBool(3000) && j > 200 && !Main.tile[i, j].active() && Framing.GetTileSafely(i, j + 1).active()
                 && Main.tileSolid[Main.tile[i, j + 1].type] && Main.tile[i, j].liquid > 0 && !Main.tile[i, j].lava() && !Main.tile[i, j].honey())
             {
                 WorldGen.PlaceTile(i, j, ModContent.TileType<ExoticCoralNew>(), true, false, -1, ExoticCoralNew.GetRandomStyle(WorldGen.genRand.Next(3)));
@@ -55,7 +54,7 @@ namespace AQMod
             switch (type)
             {
                 case TileID.ShadowOrbs:
-                return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated() || Main.LocalPlayer.HeldItem.hammer >= 60;
+                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated() || Main.LocalPlayer.HeldItem.hammer >= 60;
             }
             if (j > 1)
             {
@@ -71,10 +70,10 @@ namespace AQMod
             {
                 case TileID.Ebonstone:
                 case TileID.Crimstone:
-                return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated() || j < 400;
+                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated() || j < 400;
 
                 case TileID.ShadowOrbs:
-                return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated();
+                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated();
             }
             if (j > 1)
             {
@@ -99,7 +98,7 @@ namespace AQMod
 
         public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (!Main.gameMenu && Main.netMode != NetmodeID.Server && !WorldGen.noTileActions && 
+            if (!Main.gameMenu && Main.netMode != NetmodeID.Server && !WorldGen.noTileActions &&
                 Main.GameUpdateCount >= _veinmineUpdateDelay && VeinmineHelper.CanVeinmineAtAll(type) && !fail && !effectOnly && !_veinmine)
             {
                 try

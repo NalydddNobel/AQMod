@@ -1,8 +1,11 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Content.Quest.Lobster;
+using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Placeable.CraftingStations;
+using AQMod.Items.Potions;
 using AQMod.Items.Tools;
+using AQMod.Items.Tools.MagicPowders;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
@@ -13,9 +16,6 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using AQMod.Content.World.Events.GlimmerEvent;
-using AQMod.Items.Tools.MagicPowders;
-using AQMod.Items.Potions;
 
 namespace AQMod.NPCs.Friendly
 {
@@ -81,31 +81,31 @@ namespace AQMod.NPCs.Friendly
             switch (WorldGen.genRand.Next(12))
             {
                 default:
-                return "Larry";
+                    return "Larry";
                 case 0:
-                return "Ronald";
+                    return "Ronald";
                 case 1:
-                return "Captain";
+                    return "Captain";
                 case 2:
-                return "Crabort";
+                    return "Crabort";
                 case 3:
-                return "Robson";
+                    return "Robson";
                 case 4:
-                return "Geezer";
+                    return "Geezer";
                 case 5:
-                return "Albrecht";
+                    return "Albrecht";
                 case 6:
-                return "Eugene";
+                    return "Eugene";
                 case 7:
-                return "Utagawa";
+                    return "Utagawa";
                 case 8:
-                return "Ebirah";
+                    return "Ebirah";
                 case 9:
-                return "Tamatoa";
+                    return "Tamatoa";
                 case 10:
-                return "Crablante";
+                    return "Crablante";
                 case 11:
-                return "Robster";
+                    return "Robster";
             }
         }
 

@@ -1,7 +1,6 @@
 ﻿using AQMod.Common.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -43,7 +42,7 @@ namespace AQMod.Content.World.FallingStars
                 else
                 {
                     var dustColor = default(Color);
-                    switch (item.type) 
+                    switch (item.type)
                     {
                         default:
                             {

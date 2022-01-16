@@ -1,6 +1,5 @@
 ﻿using AQMod.Effects.Dyes;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.Graphics.Shaders;
 
 namespace AQMod.Items.Vanities.Dyes

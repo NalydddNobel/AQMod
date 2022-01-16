@@ -9,7 +9,7 @@ namespace AQMod.Common.Configuration
     {
         // Most Worldgen is done clientside I think,
         // but this config could also be used for Hardmode structures?
-        public override ConfigScope Mode => ConfigScope.ServerSide; 
+        public override ConfigScope Mode => ConfigScope.ServerSide;
 
         [Header("$Mods.AQMod.WorldGenOptions.Header.OnWorldCreation")]
 

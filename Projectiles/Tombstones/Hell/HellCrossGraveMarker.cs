@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Tiles.Furniture;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
-using AQMod.Tiles.Furniture;
 
 namespace AQMod.Projectiles.Tombstones.Hell
 {

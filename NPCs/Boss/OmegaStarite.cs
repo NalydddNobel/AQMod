@@ -64,7 +64,7 @@ namespace AQMod.NPCs.Boss
 
             public Vector3 rotationVelocity;
 
-            public Ring (int amount, float radiusFromOrigin, float scale)
+            public Ring(int amount, float radiusFromOrigin, float scale)
             {
                 amountOfSegments = (byte)amount;
                 rotationOrbLoop = MathHelper.TwoPi / amountOfSegments;
@@ -677,10 +677,10 @@ namespace AQMod.NPCs.Boss
                             rings[1].radiusFromOrigin = MathHelper.Lerp(rings[1].radiusFromOrigin, rings[1].originalRadiusFromOrigin * (npc.ai[3] + 1f), 0.025f);
                             if (npc.ai[2] > 100f)
                             {
-                                    if (Vector2.Distance(plrCenter, center) > rings[0].radiusFromOrigin)
-                                    {
+                                if (Vector2.Distance(plrCenter, center) > rings[0].radiusFromOrigin)
+                                {
                                     ShootProjectilesFromOuterRing();
-                                    }
+                                }
                             }
                         }
                     }
@@ -820,7 +820,7 @@ namespace AQMod.NPCs.Boss
                             Initialize();
                             npc.netUpdate = true;
                             npc.target = target;
-                            npc.ai[2] = plrCenter.Y - Circumference * 2.5f; 
+                            npc.ai[2] = plrCenter.Y - Circumference * 2.5f;
                         }
                         LerpToDefaultRotationVelocity();
                         if (center.Y > npc.ai[2])
@@ -942,7 +942,7 @@ namespace AQMod.NPCs.Boss
             {
                 delay /= 2;
             }
-            if (npc.localAI[0] > delay )
+            if (npc.localAI[0] > delay)
             {
                 float lifePercent = npc.life / (float)npc.lifeMax;
                 if (lifePercent < 0.75f)
@@ -1105,6 +1105,7 @@ namespace AQMod.NPCs.Boss
                 {
                     Dust.NewDustPerfect(npc.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
                 }
+                AQGraphics.SetCullPadding();
                 if (AQGraphics.Cull_WorldPosition(npc.getRect()))
                 {
                     for (int k = 0; k < 7; k++)
@@ -1147,6 +1148,7 @@ namespace AQMod.NPCs.Boss
                     {
                         NoHitManager.PlayNoHitJingle(npc.Center);
                     }
+                    AQGraphics.SetCullPadding();
                     for (int i = 0; i < rings.Length; i++)
                     {
                         for (int j = 0; j < rings[i].amountOfSegments; j++)
@@ -1185,6 +1187,7 @@ namespace AQMod.NPCs.Boss
                 {
                     Dust.NewDustPerfect(npc.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
                 }
+                AQGraphics.SetCullPadding();
                 if (AQGraphics.Cull_WorldPosition(npc.getRect()))
                 {
                     for (int k = 0; k < 7; k++)
@@ -1259,7 +1262,7 @@ namespace AQMod.NPCs.Boss
             var drawPos = npc.Center - Main.screenPosition;
             drawPos.X = (int)drawPos.X;
             drawPos.Y = (int)drawPos.Y;
-            var positions = new List<Vector4>(); 
+            var positions = new List<Vector4>();
             for (int i = 0; i < rings.Length; i++)
             {
                 for (int j = 0; j < rings[i].amountOfSegments; j++)

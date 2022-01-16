@@ -27,12 +27,12 @@ namespace AQMod
 
             internal static void Setup()
             {
-                RecipeGroup.RegisterGroup(AnyNobleMushroom, 
+                RecipeGroup.RegisterGroup(AnyNobleMushroom,
                     new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyNobleMushroom"),
                     ModContent.ItemType<ArgonMushroom>(),
                     ModContent.ItemType<KryptonMushroom>(),
                     ModContent.ItemType<XenonMushroom>()));
-                RecipeGroup.RegisterGroup(AnyEnergy, 
+                RecipeGroup.RegisterGroup(AnyEnergy,
                     new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyEnergy"),
                     ModContent.ItemType<UltimateEnergy>(),
                     ModContent.ItemType<AquaticEnergy>(),
@@ -40,23 +40,23 @@ namespace AQMod
                     ModContent.ItemType<OrganicEnergy>(),
                     ModContent.ItemType<DemonicEnergy>(),
                     ModContent.ItemType<CosmicEnergy>()));
-                RecipeGroup.RegisterGroup(CopperOrTin, 
+                RecipeGroup.RegisterGroup(CopperOrTin,
                     new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.CopperOrTin"),
-                    ItemID.CopperBar, 
+                    ItemID.CopperBar,
                     ItemID.TinBar));
-                RecipeGroup.RegisterGroup(DemoniteBarOrCrimtaneBar, 
+                RecipeGroup.RegisterGroup(DemoniteBarOrCrimtaneBar,
                     new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.DemoniteBarOrCrimtaneBar"),
-                    ItemID.DemoniteBar, 
+                    ItemID.DemoniteBar,
                     ItemID.CrimtaneBar));
-                RecipeGroup.RegisterGroup(ShadowScaleOrTissueSample, 
+                RecipeGroup.RegisterGroup(ShadowScaleOrTissueSample,
                     new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.ShadowScaleOrTissueSample"),
-                    ItemID.ShadowScale, 
+                    ItemID.ShadowScale,
                     ItemID.TissueSample));
-                RecipeGroup.RegisterGroup(CascadeOrHelfire, 
+                RecipeGroup.RegisterGroup(CascadeOrHelfire,
                     new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.CascadeOrHelfire"),
-                    ItemID.Cascade, 
+                    ItemID.Cascade,
                     ItemID.HelFire));
-                RecipeGroup.RegisterGroup(AnyEel, 
+                RecipeGroup.RegisterGroup(AnyEel,
                     new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyEel"),
                     ModContent.ItemType<UltraEel>(),
                     ModContent.ItemType<LarvaEel>()));

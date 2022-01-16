@@ -116,7 +116,7 @@ namespace AQMod
 
         public static void CyclePositions(Vector2[] oldPos, Vector2 newPos)
         {
-            for (int i = oldPos.Length -1; i > 0; i--)
+            for (int i = oldPos.Length - 1; i > 0; i--)
             {
                 oldPos[i] = oldPos[i - 1];
             }
@@ -622,42 +622,42 @@ namespace AQMod
             switch (rarity)
             {
                 default:
-                return new Color(255, 255, 255, 255);
+                    return new Color(255, 255, 255, 255);
 
                 case ItemRarityID.Blue:
-                return Colors.RarityBlue;
+                    return Colors.RarityBlue;
 
                 case ItemRarityID.Green:
-                return Colors.RarityGreen;
+                    return Colors.RarityGreen;
 
                 case ItemRarityID.Orange:
-                return Colors.RarityOrange;
+                    return Colors.RarityOrange;
 
                 case ItemRarityID.LightRed:
-                return Colors.RarityRed;
+                    return Colors.RarityRed;
 
                 case ItemRarityID.Pink:
-                return Colors.RarityPink;
+                    return Colors.RarityPink;
 
                 case ItemRarityID.LightPurple:
-                return Colors.RarityPurple;
+                    return Colors.RarityPurple;
 
                 case ItemRarityID.Lime:
-                return Colors.RarityLime;
+                    return Colors.RarityLime;
 
                 case ItemRarityID.Yellow:
-                return Colors.RarityYellow;
+                    return Colors.RarityYellow;
 
                 case ItemRarityID.Cyan:
-                return Colors.RarityCyan;
+                    return Colors.RarityCyan;
 
                 // TODO: look into the vanilla source for the Red and Purple rarities
 
                 case ItemRarityID.Gray:
-                return Colors.RarityTrash;
+                    return Colors.RarityTrash;
 
                 case ItemRarityID.Expert:
-                return Main.DiscoColor;
+                    return Main.DiscoColor;
             }
         }
 

@@ -2,7 +2,6 @@
 using AQMod.Common.Graphics;
 using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.CursorDyes;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.World.Events;

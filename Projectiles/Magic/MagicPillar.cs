@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Graphics.Particles;
-using AQMod.Dusts;
+﻿using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -45,19 +44,19 @@ namespace AQMod.Projectiles.Magic
                 {
                     for (int i = 0; i < 7 * AQConfigClient.c_EffectQuality; i++)
                     {
-                        ParticleLayers.AddParticle_PostDrawPlayers(
+                        Particle.PostDrawPlayers.AddParticle(
                            new EmberParticle(new Vector2(x, projectile.position.Y + Main.rand.NextFloat(projectile.height)), new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
                            new Color(255, 150, 150, 0), Main.rand.NextFloat(0.6f, 1.1f)));
                     }
                     var position = new Vector2(x, projectile.position.Y + Main.rand.NextFloat(projectile.height));
                     float scale = Main.rand.NextFloat(0.6f, 1.1f);
-                    ParticleLayers.AddParticle_PostDrawPlayers(
+                    Particle.PostDrawPlayers.AddParticle(
                         new EmberParticle(position, new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
                         new Color(255, 222, 222, 0), scale));
-                    ParticleLayers.AddParticle_PostDrawPlayers(
+                    Particle.PostDrawPlayers.AddParticle(
                         new EmberParticle(position, new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
                         new Color(100, 60, 60, 0), scale * 1.65f));
-                    ParticleLayers.AddParticle_PostDrawPlayers(
+                    Particle.PostDrawPlayers.AddParticle(
                         new EmberParticle(new Vector2(x, projectile.position.Y + Main.rand.NextFloat(projectile.height)), new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
                         new Color(255, 180, 180, 0), Main.rand.NextFloat(1f, 2.6f)));
                 }
