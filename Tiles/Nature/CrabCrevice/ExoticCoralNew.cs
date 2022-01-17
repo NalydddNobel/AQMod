@@ -36,7 +36,15 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.newTile.WaterPlacement = LiquidPlacement.OnlyInLiquid;
-            TileObjectData.newTile.AnchorValidTiles = new int[] { TileID.Dirt, TileID.Stone, TileID.Obsidian, TileID.Sand, TileID.HardenedSand, ModContent.TileType<SedimentSand>(), };
+            TileObjectData.newTile.AnchorValidTiles = new int[] 
+            { 
+                TileID.Dirt, 
+                TileID.Stone, 
+                TileID.Obsidian,
+                TileID.Sand,
+                TileID.HardenedSand, 
+                ModContent.TileType<SedimentSand>(), 
+            };
             TileObjectData.addTile(Type);
             AddMapEntry(new Color(255, 0, 148), CreateMapEntryName("ExoticCoral"));
             AddMapEntry(new Color(0, 232, 95), CreateMapEntryName("ExoticCoral"));
@@ -47,7 +55,8 @@ namespace AQMod.Tiles.Nature.CrabCrevice
 
         public override ushort GetMapOption(int i, int j)
         {
-            return (ushort)(Main.tile[i, j].frameX / 88);
+            ushort option = (ushort)(Main.tile[i, j].frameX / 88);
+            return option;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
@@ -168,7 +177,6 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             }
             int required = size / 4;
             var validSpots = new List<Point>();
-            var tileType = ModContent.TileType<ExoticCoralNew>();
             for (int j = area.Y; j < area.Y + size; j++)
             {
                 for (int i = area.X; i < area.X + size; i++)
@@ -186,7 +194,12 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             for (int i = 0; i < required; i++)
             {
                 int index = WorldGen.genRand.Next(validSpots.Count);
-                WorldGen.PlaceTile(validSpots[index].X, validSpots[index].Y, (ushort)tileType, true, true, -1, GetRandomStyle(style));
+                Main.tile[validSpots[index].X, validSpots[index].Y].active(active: true);
+                Main.tile[validSpots[index].X, validSpots[index].Y].halfBrick(halfBrick: false);
+                Main.tile[validSpots[index].X, validSpots[index].Y].slope(slope: 0);
+                Main.tile[validSpots[index].X, validSpots[index].Y].type = (ushort)ModContent.TileType<ExoticCoralNew>();
+                Main.tile[validSpots[index].X, validSpots[index].Y].frameX = (short)(22 * GetRandomStyle(style));
+                Main.tile[validSpots[index].X, validSpots[index].Y].frameY = 0;
                 validSpots.RemoveAt(index);
             }
             return true;
@@ -194,14 +207,15 @@ namespace AQMod.Tiles.Nature.CrabCrevice
 
         public static int GetRandomStyle(int style)
         {
-            return style * 4 + WorldGen.genRand.Next(4);
+            style = style * 4 + WorldGen.genRand.Next(4);
+            return style;
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             var drawFrame = new Rectangle(Main.tile[i, j].frameX, 0, 20, 28);
             var drawOrigin = new Vector2(10f, 18f);
-            var drawPosition = new Vector2(i * 16f + drawOrigin.X - 8f, j * 16f + drawOrigin.Y - 10f);
+            var drawPosition = new Vector2(i * 16f + drawOrigin.X, j * 16f + drawOrigin.Y - 10f);
             float rotation = 0f;
             if (j < (int)Main.worldSurface && Main.tile[i, j].wall == 0)
             {

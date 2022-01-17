@@ -1,4 +1,5 @@
-﻿using AQMod.Common;
+﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events.ProgressBars;
@@ -62,7 +63,7 @@ namespace AQMod.Content.World.Events.GaleStreams
                 zh_Hans: "风速大于40 mph时开始, 风速小于34 mph时结束. 你可以使用 [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "] 更改风速",
                 ru_RU: "Начинается когда скорость ветра превышает 40 миль в час, и заканчивается когда скорость ветра ниже 34 миль в час. Также закончится если скорость ветра превисит 300 миль в час. Вы можете изменять скорость ветра используя [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]"),
             "AQMod/Assets/BossChecklist/GaleStreams",
-            "AQMod/Assets/EventIcons/GaleStreams");
+            TexturePaths.EventIcons + "galestreams");
 
         public static Color HotCurrentColor => new Color(43, 148, 240, 255);
         public static Color ColdCurrentColor => new Color(255, 94, 31, 255);

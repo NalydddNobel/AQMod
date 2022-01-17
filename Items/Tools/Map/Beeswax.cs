@@ -21,6 +21,11 @@ namespace AQMod.Items.Tools.Map
             item.useStyle = ItemUseStyleID.EatingUsing;
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            return player.GetModPlayer<PlayerMapUpgrades>().Beeswax == PlayerMapUpgrades.MapUpgrade.NotObtained;
+        }
+
         public override bool UseItem(Player player)
         {
             player.GetModPlayer<PlayerMapUpgrades>().Beeswax = PlayerMapUpgrades.MapUpgrade.Visible;

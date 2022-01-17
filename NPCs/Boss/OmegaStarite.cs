@@ -1537,7 +1537,7 @@ namespace AQMod.NPCs.Boss
             else
             {
                 var rect = npc.getRect();
-                if (Main.rand.NextBool())
+                if (Main.rand.NextBool(3))
                     Item.NewItem(rect, ModContent.ItemType<CosmicTelescope>());
                 int[] choices = new int[]
                 {

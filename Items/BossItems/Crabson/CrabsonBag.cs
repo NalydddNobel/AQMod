@@ -32,8 +32,6 @@ namespace AQMod.Items.BossItems.Crabson
             player.QuickSpawnItem(ModContent.ItemType<Crabax>());
             if (Main.rand.NextBool(3))
                 player.QuickSpawnItem(ModContent.ItemType<CrabClock>());
-            if (Main.rand.NextBool())
-                player.QuickSpawnItem(ModContent.ItemType<CrabRod>());
             player.QuickSpawnItem(ModContent.ItemType<AquaticEnergy>(), Main.rand.NextVRand(5, 8));
             var choices = new List<int>()
             {

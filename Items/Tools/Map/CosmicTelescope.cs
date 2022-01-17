@@ -21,6 +21,11 @@ namespace AQMod.Items.Tools.Map
             item.useStyle = ItemUseStyleID.HoldingUp;
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            return player.GetModPlayer<PlayerMapUpgrades>().CosmicTelescope == PlayerMapUpgrades.MapUpgrade.NotObtained;
+        }
+
         public override bool UseItem(Player player)
         {
             var mapUpgrades = player.GetModPlayer<PlayerMapUpgrades>();

@@ -45,6 +45,11 @@ ItemName.SteelPlatedChestplate=Steel Plated Chestplate
 
 # Materials
 ItemName.Fluorescence=Fluorescence
+ItemName.SiphonTentacle=Siphon Tentacle
+
+ItemName.CrustaciumBar=Crustacium Bar
+ItemName.CrustaciumBlob=Crustacium Blob
+ItemName.CrustaciumOre=Crustacium Ore
 
 ItemName.NuclearFeather=Nuclear Feather
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
@@ -503,6 +508,13 @@ WorldGenOptions.generateOceanRavinesTooltip=Whether or not to generate ocean rav
 WorldGenOptions.fixBabyPools=Fix Baby Pools
 WorldGenOptions.fixBabyPoolsTooltip=Removes those 1 block tall pools of water which generate on the surface.\nMay cause minor issues with structures that generate on the surface with water.
 
+WorldGen.CrabCrevice=Aequus: Generating Crab Crevice
+WorldGen.CrabCrevice.Sand=Aequus: Generating Crab Crevice... Sand Circle
+WorldGen.CrabCrevice.Caves=Aequus: Generating Crab Crevice... Caves
+WorldGen.CrabCrevice.FinalCave=Aequus: Generating Crab Crevice... Big Caves
+WorldGen.CrabCrevice.Chests=Aequus: Generating Crab Crevice... Treasure
+WorldGen.CrabCrevice.Vines=Aequus: Generating Crab Crevice... Foliage
+WorldGen.CrabCrevice.Ores=Aequus: Generating Crab Crevice... Ores
 
 WorldGen.Fix1TileHighWater=Aequus: Fixing Baby Pools
 WorldGen.BuriedDirtChests=Aequus: Generating Buried Dirt Chests
@@ -1366,3 +1378,4 @@ MapObject.ExoticCoral=Exotic Coral
 MapObject.FishingCraftingStation=Fishing Utility Crafting Station
 MapObject.BuriedDirtChest=Buried Dirt Chest
 MapObject.Dungeon=Dungeon
+MapObject.Crustacium=Crustacium

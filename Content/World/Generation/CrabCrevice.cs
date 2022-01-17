@@ -1,10 +1,12 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Items.Accessories.Barbs;
+using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Tiles;
 using AQMod.Tiles.Furniture;
+using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
 using AQMod.Walls;
 using Microsoft.Xna.Framework;
@@ -90,6 +92,39 @@ namespace AQMod.Content.World.Generation
                 }
                 return new Circle(-1, -1, -1);
             }
+            public Circle GetRandomCircleInsideCircleNoAirCheck(int minDistanceFromEdge, int minScale, int maxScale, UnifiedRandom rand)
+            {
+                List<Point> testPoints = new List<Point>();
+                for (int i = 0; i < Radius * 2; i++)
+                {
+                    for (int j = 0; j < Radius * 2; j++)
+                    {
+                        int x = X + i - Radius;
+                        int y = Y + j - Radius;
+                        if (Distance(x, y) < Radius - minDistanceFromEdge)
+                        {
+                            if (Main.tile[x, y] == null)
+                            {
+                                Main.tile[x, y] = new Tile();
+                                continue;
+                            }
+                            if (!Main.tile[x, y].active() || !Main.tile[x, y].Solid())
+                            {
+                                continue;
+                            }
+                            testPoints.Add(new Point(x, y));
+                        }
+                    }
+                }
+                int chosenPoint = rand.Next(testPoints.Count);
+                int size = rand.Next(minScale, maxScale);
+                return FixedCircle(testPoints[chosenPoint].X, testPoints[chosenPoint].Y, size);
+            }
+        }
+
+        private static bool CanOverwriteTile(Tile tile)
+        {
+            return !Main.tileDungeon[tile.type] && !Main.wallDungeon[tile.wall];
         }
 
         private static Circle FixedCircle(int x, int y, int radius)
@@ -137,7 +172,7 @@ namespace AQMod.Content.World.Generation
                                     Main.tile[x + k, y + l] = new Tile();
                                     return false;
                                 }
-                                if (!Main.tile[x + k, y + l].active() || !Main.tile[x + k, y + l].Solid())
+                                if ((!Main.tile[x + k, y + l].active() || !Main.tile[x + k, y + l].Solid()) && CanOverwriteTile(Main.tile[x + k, y + l]))
                                 {
                                     return false;
                                 }
@@ -183,12 +218,13 @@ namespace AQMod.Content.World.Generation
                             Main.tile[x2, y2] = new Tile();
                             continue;
                         }
-                        if (Main.tile[x2, y2].active())
+                        if (CanOverwriteTile(Main.tile[x2, y2]))
                         {
-                            placeTiles.Add(new Point(x2, y2));
+                            if (Main.tile[x2, y2].active())
+                                placeTiles.Add(new Point(x2, y2));
+                            if (y2 > (int)Main.worldSurface)
+                                Main.tile[x2, y2].wall = (ushort)ModContent.WallType<OceanRavineWall>();
                         }
-                        if (y2 > (int)Main.worldSurface)
-                            Main.tile[x2, y2].wall = (ushort)ModContent.WallType<OceanRavineWall>();
                     }
                 }
             }
@@ -225,6 +261,47 @@ namespace AQMod.Content.World.Generation
             }
         }
 
+        private static bool HasUnOverwriteableTiles(Circle circle)
+        {
+            for (int i = 0; i < circle.Radius * 2; i++)
+            {
+                for (int j = 0; j < circle.Radius * 2; j++)
+                {
+                    int x2 = circle.X + i - circle.Radius;
+                    int y2 = circle.Y + j - circle.Radius;
+                    if (circle.Inside(x2, y2) && !CanOverwriteTile(Main.tile[x2, y2]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        private static bool CanGenCrustaciumVein(Circle circle)
+        {
+            bool anySand = false;
+            for (int i = 0; i < circle.Radius * 2; i++)
+            {
+                for (int j = 0; j < circle.Radius * 2; j++)
+                {
+                    int x2 = circle.X + i - circle.Radius;
+                    int y2 = circle.Y + j - circle.Radius;
+                    if (circle.Inside(x2, y2))
+                    {
+                        if (Main.tile[x2, y2].type == TileID.Sand)
+                        {
+                            anySand = true;
+                        }
+                        else if ((Main.tile[x2, y2].type == ModContent.TileType<CrustaciumFlesh>() || Main.tile[x2, y2].type == ModContent.TileType<CrustaciumShell>()))
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return anySand;
+        }
+
         public static bool GenerateCreviceCave(int x, int y, int minScale, int maxScale, int steps)
         {
             List<Circle> validCircles = new List<Circle>();
@@ -242,7 +319,7 @@ namespace AQMod.Content.World.Generation
                 return false;
             }
             validCircles.Add(validCircles[0].GetRandomCircleInsideCircle(validCircles[0].Radius / 3, minScale, maxScale, WorldGen.genRand));
-            if (validCircles[1].IsInvalid)
+            if (validCircles[1].IsInvalid || HasUnOverwriteableTiles(validCircles[1]))
             {
                 return false;
             }
@@ -250,7 +327,7 @@ namespace AQMod.Content.World.Generation
             {
                 int chosenCircle = WorldGen.genRand.Next(validCircles.Count);
                 validCircles.Add(validCircles[chosenCircle].GetRandomCircleInsideCircle(validCircles[chosenCircle].Radius / 4, minScale, maxScale, WorldGen.genRand));
-                if (validCircles[validCircles.Count - 1].IsInvalid)
+                if (validCircles[validCircles.Count - 1].IsInvalid || HasUnOverwriteableTiles(validCircles[validCircles.Count - 1]))
                 {
                     //Main.NewText("c" + (i + 2) + " was considered invalid!");
                     return false;
@@ -313,7 +390,14 @@ namespace AQMod.Content.World.Generation
                         if (validCircles[k].Inside(x2, y2))
                         {
                             Main.tile[x2, y2].active(active: false);
-                            Main.tile[x2, y2].liquid = (byte)WorldGen.genRand.Next(minWater, maxWater);
+                            if (minWater > 100 && Main.tile[x2, y2 + 1].active() && Main.tile[x2, y2 + 1].Solid())
+                            {
+                                Main.tile[x2, y2].liquid = 255;
+                            }
+                            else
+                            {
+                                Main.tile[x2, y2].liquid = (byte)WorldGen.genRand.Next(minWater, maxWater);
+                            }
                         }
                     }
                 }
@@ -361,58 +445,86 @@ namespace AQMod.Content.World.Generation
             }
         }
 
-        private static void AddExoticCoral(int x, int y)
+        private static bool AddCrustacium(int x, int y, int power, int steps)
         {
-            if (x - Size < 10)
+            List<Circle> circles = new List<Circle>();
+            for (int i = power * 2; i > power; i--)
             {
-                x = Size + 10;
-            }
-            else if (x + Size > Main.maxTilesX - 10)
-            {
-                x = Main.maxTilesX - 10 - Size;
-            }
-            if (y - Size < 10)
-            {
-                y = Size + 10;
-            }
-            else if (y + Size > Main.maxTilesY - 10)
-            {
-                y = Main.maxTilesY - 10 - Size;
-            }
-            for (int i = 0; i < Size * 2; i++)
-            {
-                for (int j = 0; j < Size * 3; j++)
+                var c = FixedCircle(x, y, i);
+                if (IsValidCircleForGeneratingCave(c))
                 {
-                    int x2 = x + i - Size;
-                    int y2 = y + j - Size;
-                    int x3 = x2 - x;
-                    int y3 = y2 - y;
-                    if (Math.Sqrt(x3 * x3 + y3 * y3 * 0.6f) <= Size)
+                    circles.Add(c);
+                    break;
+                }
+            }
+            if (circles.Count == 0)
+            {
+                return false;
+            }
+            for (int i = 1; i < steps; i++)
+            {
+                var c = FixedCircle(x + WorldGen.genRand.Next(-i, i), y + WorldGen.genRand.Next(-i, i), WorldGen.genRand.Next(power, power * 2));
+                if (!CanGenCrustaciumVein(c))
+                {
+                    return false;
+                }
+                circles.Add(c);
+            }
+            for (int k = 0; k < circles.Count; k++)
+            {
+                for (int i = 0; i < circles[k].Radius * 2; i++)
+                {
+                    for (int j = 0; j < circles[k].Radius * 2; j++)
                     {
-                        if (Main.tile[x2, y2] == null)
+                        int x2 = circles[k].X + i - circles[k].Radius;
+                        int y2 = circles[k].Y + j - circles[k].Radius;
+                        if (circles[k].Inside(x2, y2) && Main.tile[x2, y2].active() && Main.tile[x2, y2].Solid())
                         {
-                            Main.tile[x2, y2] = new Tile();
-                            continue;
-                        }
-                        if (Main.tile[x2, y2 + 1] == null)
-                        {
-                            Main.tile[x2, y2 + 1] = new Tile();
-                            continue;
-                        }
-                        if (!Main.tile[x2, y2].active() && Main.tile[x2, y2].liquid == 255 &&
-                            Main.tile[x2, y2 + 1].active() && ExoticCoralNew.CanBePlacedOnType(Main.tile[x2, y2 + 1].type))
-                        {
-                            WorldGen.PlaceTile(x2, y2, ModContent.TileType<ExoticCoralNew>(), mute: true, forced: false, style: ExoticCoralNew.GetRandomStyle(WorldGen.genRand.Next(3)));
+                            Main.tile[x2, y2].active(active: true);
+                            Main.tile[x2, y2].type = (ushort)ModContent.TileType<CrustaciumFlesh>();
                         }
                     }
                 }
             }
+
+            for (int k = 0; k < circles.Count; k++)
+            {
+                for (int i = 0; i < circles[k].Radius * 2; i++)
+                {
+                    for (int j = 0; j < circles[k].Radius * 2; j++)
+                    {
+                        int x2 = circles[k].X + i - circles[k].Radius;
+                        int y2 = circles[k].Y + j - circles[k].Radius;
+                        if (circles[k].Inside(x2, y2) && Main.tile[x2, y2].active() &&
+                            Main.tile[x2, y2].type == ModContent.TileType<CrustaciumFlesh>())
+                        {
+                            if (CrustaciumFlesh.ShouldConvertToShell(x2, y2))
+                            {
+                                Main.tile[x2, y2].type = (ushort)ModContent.TileType<CrustaciumShell>();
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int k = 0; k < circles.Count; k++)
+            {
+                for (int i = 0; i < circles[k].Radius * 2; i++)
+                {
+                    for (int j = 0; j < circles[k].Radius * 2; j++)
+                    {
+                        WorldGen.SquareWallFrame(circles[k].X + i - circles[k].Radius, circles[k].Y + j - circles[k].Radius, true);
+                        WorldGen.SquareTileFrame(circles[k].X + i - circles[k].Radius, circles[k].Y + j - circles[k].Radius, true);
+                    }
+                }
+            }
+            return true;
         }
 
         private static void AddChests(int genX, int genY)
         {
             int count = 0;
-            for (int i = 0; i < 25000; i++)
+            for (int i = 0; i < 50000; i++)
             {
                 int chestX = genX + WorldGen.genRand.Next(-120, 120);
                 if (chestX < 30 || chestX > Main.maxTilesX - 30)
@@ -424,12 +536,75 @@ namespace AQMod.Content.World.Generation
                 {
                     continue;
                 }
-                WorldGen.PlaceTile(chestX, chestY, TileID.Containers, mute: true, forced: false, ChestStyles.Palm);
-                if (Main.tile[chestX, chestY].type == TileID.Containers)
+                if (Main.tile[chestX, chestY] == null)
                 {
-                    FillWithLoot(Chest.FindChest(chestX, chestY - 1), count);
-                    count++;
-                    i += 2500;
+                    Main.tile[chestX, chestY] = new Tile();
+                    continue;
+                }
+                if (Main.tile[chestX, chestY + 1] == null)
+                {
+                    Main.tile[chestX, chestY + 1] = new Tile();
+                    continue;
+                }
+                if (Main.tile[chestX + 1, chestY] == null)
+                {
+                    Main.tile[chestX + 1, chestY] = new Tile();
+                    continue;
+                }
+                if (Main.tile[chestX + 1, chestY + 1] == null)
+                {
+                    Main.tile[chestX + 1, chestY + 1] = new Tile();
+                    continue;
+                }
+                if (Main.tile[chestX, chestY - 1] == null)
+                {
+                    Main.tile[chestX, chestY - 1] = new Tile();
+                    continue;
+                }
+                if (Main.tile[chestX + 1, chestY - 1] == null)
+                {
+                    Main.tile[chestX + 1, chestY - 1] = new Tile();
+                    continue;
+                }
+                if (Main.tile[chestX, chestY + 1].active() && Main.tile[chestX, chestY + 1].Solid()
+                    && Main.tile[chestX + 1, chestY + 1].active() && Main.tile[chestX + 1, chestY + 1].Solid() && Main.tile[chestX, chestY].wall == ModContent.WallType<OceanRavineWall>())
+                {
+                    bool validSpot = true;
+                    for (int k = 0; k < 2; k++)
+                    {
+                        for (int l = 0; l < 2; l++)
+                        {
+                            if (Main.tile[chestX + k, chestY + l - 1].active() &&
+                                !Main.tileCut[Main.tile[chestX + k, chestY + l - 1].type] &&
+                                Main.tile[chestX + k, chestY + l - 1].type != ModContent.TileType<ExoticCoralNew>())
+                            {
+                                validSpot = false;
+                                k = 2;
+                                break;
+                            }
+                        }
+                    }
+                    if (validSpot)
+                    {
+                        for (int k = 0; k < 2; k++)
+                        {
+                            for (int l = 0; l < 2; l++)
+                            {
+                                Main.tile[chestX + k, chestY + l - 1].active(active: false);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                    int chest = WorldGen.PlaceChest(chestX, chestY, TileID.Containers, style: ChestStyles.Palm);
+                    if (chest != -1 && Main.tile[chestX, chestY].type == TileID.Containers)
+                    {
+                        FillWithLoot(Chest.FindChest(chestX, chestY - 1), count);
+                        count++;
+                        i += 3500;
+                    }
                 }
             }
         }
@@ -440,7 +615,7 @@ namespace AQMod.Content.World.Generation
                 return;
             var c = Main.chest[chest];
             int i = 0;
-            switch (count % 3)
+            switch (count % 4)
             {
                 default:
                     {
@@ -457,7 +632,76 @@ namespace AQMod.Content.World.Generation
                         c.item[i].SetDefaults(ModContent.ItemType<CrabBarb>());
                     }
                     break;
+                case 3:
+                    {
+                        c.item[i].SetDefaults(ModContent.ItemType<CrabRod>());
+                    }
+                    break;
             }
+            i++;
+            if (WorldGen.genRand.NextBool())
+            {
+                switch (WorldGen.genRand.Next(3))
+                {
+                    case 0:
+                        {
+                            c.item[i].SetDefaults(ItemID.DivingHelmet);
+                            i++;
+                        }
+                        break;
+
+                    case 1:
+                        {
+                            c.item[i].SetDefaults(ModContent.ItemType<CrabRod>());
+                            i++;
+                        }
+                        break;
+
+                    case 2:
+                        {
+                            c.item[i].SetDefaults(ItemID.GoldenCrate);
+                            i++;
+                        }
+                        break;
+                }
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[i].SetDefaults(ItemID.GillsPotion);
+                c.item[i].stack = WorldGen.genRand.Next(1, 4);
+                i++;
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[i].SetDefaults(ItemID.WaterWalkingPotion);
+                c.item[i].stack = WorldGen.genRand.Next(1, 4);
+                i++;
+            }
+            if (WorldGen.genRand.NextBool(4))
+            {
+                c.item[i].SetDefaults(ItemID.IronCrate);
+                i++;
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[i].SetDefaults(ItemID.HealingPotion);
+                c.item[i].stack = 2 + WorldGen.genRand.Next(5);
+                i++;
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[i].SetDefaults(ItemID.WoodenCrate);
+                c.item[i].stack = 1 + WorldGen.genRand.Next(2);
+                i++;
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[i].SetDefaults(ItemID.PinkJellyfish);
+                c.item[i].stack = 1 + WorldGen.genRand.Next(2);
+                i++;
+            }
+            c.item[i].SetDefaults(ItemID.Glowstick);
+            c.item[i].stack = WorldGen.genRand.Next(80, 200);
             i++;
         }
 
@@ -467,7 +711,7 @@ namespace AQMod.Content.World.Generation
             {
                 return;
             }
-            progress.Message = Language.GetTextValue("Mods.AQMod.Common.CrabCrevice");
+            progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice");
             int crabCreviceLocationX = 0;
             int crabCreviceLocationY = 0;
             for (int i = 0; i < 5000; i++)
@@ -488,19 +732,127 @@ namespace AQMod.Content.World.Generation
                     }
                 }
             }
+
+            progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice.Sand");
             CreateSandAreaForCrevice(crabCreviceLocationX, crabCreviceLocationY + 40);
+
+            progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice.FinalCave");
+            int finalCaveStart = -50;
+            int finalCaveX;
+            if (crabCreviceLocationX < Main.maxTilesX / 2)
+            {
+                finalCaveX = crabCreviceLocationX + WorldGen.genRand.Next(60);
+            }
+            else
+            {
+                finalCaveX = crabCreviceLocationX + WorldGen.genRand.Next(-60, 0);
+            }
+            if (finalCaveX + finalCaveStart < 30)
+            {
+                finalCaveStart = 30 - finalCaveX;
+            }
+            int finalCaveEnd = 50;
+            if (finalCaveX + finalCaveEnd > Main.maxTilesX - 30)
+            {
+                finalCaveEnd = Main.maxTilesX - 30 - finalCaveX;
+            }
+            List<Circle> finalCaveCircles = new List<Circle>();
+            for (int k = finalCaveStart; k < finalCaveEnd; k++)
+            {
+                float finalCaveProgress = 1f / (finalCaveStart.Abs() + finalCaveEnd.Abs()) * k.Abs();
+                var circle = new Circle(finalCaveX + k, crabCreviceLocationY + 180, WorldGen.genRand.Next(2, 14) + ((int)(Math.Sin((finalCaveProgress.Abs() - 0.5f) * MathHelper.Pi) * 9.0)).Abs());
+                if (!HasUnOverwriteableTiles(circle))
+                {
+                    finalCaveCircles.Add(circle);
+                }
+            }
+
+            for (int k = 0; k < finalCaveCircles.Count; k++)
+            {
+                for (int i = 0; i < finalCaveCircles[k].Radius * 2; i++)
+                {
+                    for (int j = 0; j < finalCaveCircles[k].Radius * 2; j++)
+                    {
+                        int x2 = finalCaveCircles[k].X + i - finalCaveCircles[k].Radius;
+                        int y2 = finalCaveCircles[k].Y + j - finalCaveCircles[k].Radius;
+                        if (finalCaveCircles[k].Inside(x2, y2))
+                        {
+                            for (int m = -2; m <= 2; m++)
+                            {
+                                for (int n = -2; n <= 2; n++)
+                                {
+                                    Main.tile[x2 + m, y2 + n].active(active: true);
+                                    Main.tile[x2 + m, y2 + n].type = (ushort)ModContent.TileType<SedimentSand>();
+                                    Main.tile[x2 + m, y2 + n].wall = (ushort)ModContent.WallType<OceanRavineWall>();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int k = 0; k < finalCaveCircles.Count; k++)
+            {
+                for (int i = 0; i < finalCaveCircles[k].Radius * 2; i++)
+                {
+                    for (int j = 0; j < finalCaveCircles[k].Radius * 2; j++)
+                    {
+                        int x2 = finalCaveCircles[k].X + i - finalCaveCircles[k].Radius;
+                        int y2 = finalCaveCircles[k].Y + j - finalCaveCircles[k].Radius;
+                        if (finalCaveCircles[k].Inside(x2, y2))
+                        {
+                            Main.tile[x2, y2].active(active: false);
+                            if (Main.tile[x2, y2 + 1].active() && Main.tile[x2, y2 + 1].Solid())
+                            {
+                                Main.tile[x2, y2].liquid = 255;
+                            }
+                            else
+                            {
+                                Main.tile[x2, y2].liquid = (byte)WorldGen.genRand.Next(10, 255);
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int k = 0; k < finalCaveCircles.Count; k++)
+            {
+                for (int i = 0; i < finalCaveCircles[k].Radius * 2; i++)
+                {
+                    for (int j = 0; j < finalCaveCircles[k].Radius * 2; j++)
+                    {
+                        WorldGen.SquareWallFrame(finalCaveCircles[k].X + i - finalCaveCircles[k].Radius, finalCaveCircles[k].Y + j - finalCaveCircles[k].Radius, true);
+                        WorldGen.SquareTileFrame(finalCaveCircles[k].X + i - finalCaveCircles[k].Radius, finalCaveCircles[k].Y + j - finalCaveCircles[k].Radius, true);
+                    }
+                }
+            }
+
+            progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice.Caves");
             for (int k = 0; k < 20000; k++)
             {
-                int caveX = crabCreviceLocationX + WorldGen.genRand.Next(-120, 120);
-                int caveY = crabCreviceLocationY + WorldGen.genRand.Next(-10, 200);
+                int caveX = crabCreviceLocationX + WorldGen.genRand.Next(-156, 156);
+                int caveY = crabCreviceLocationY + WorldGen.genRand.Next(-10, 220);
                 int minScale = WorldGen.genRand.Next(4, 8);
                 if (GenerateCreviceCave(caveX, caveY, minScale, minScale + WorldGen.genRand.Next(4, 18), WorldGen.genRand.Next(80, 250)))
                 {
-                    k += 650;
+                    k += 200;
                 }
             }
+
+            progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice.Ores");
+            for (int k = 0; k < 4250000; k++)
+            {
+                int caveX = crabCreviceLocationX + WorldGen.genRand.Next(-200, 200);
+                int caveY = crabCreviceLocationY + WorldGen.genRand.Next(40, 260);
+                if (AddCrustacium(caveX, caveY, WorldGen.genRand.Next(4, 12), WorldGen.genRand.Next(3, 8)))
+                {
+                    k += 400000;
+                }
+            }
+
+            progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice.Chests");
             AddChests(crabCreviceLocationX, crabCreviceLocationY);
-            AddExoticCoral(crabCreviceLocationX, crabCreviceLocationY);
+            progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice.Vines");
             AddVines();
         }
 

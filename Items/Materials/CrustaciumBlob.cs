@@ -1,9 +1,9 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable.Nature
+namespace AQMod.Items.Materials
 {
-    public class AlgaeBlock : ModItem
+    public class CrustaciumBlob : ModItem
     {
         public override void SetDefaults()
         {
@@ -13,7 +13,8 @@ namespace AQMod.Items.Placeable.Nature
             item.useTime = 10;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<Tiles.Nature.CrabCrevice.Algae>();
+            item.rare = ItemRarityID.Blue;
+            item.createTile = ModContent.TileType<Tiles.Nature.CrustaciumFlesh>();
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;

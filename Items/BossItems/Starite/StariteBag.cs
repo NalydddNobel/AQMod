@@ -29,7 +29,8 @@ namespace AQMod.Items.BossItems.Starite
             if (Main.rand.NextBool(7))
                 player.QuickSpawnItem(ModContent.ItemType<OmegaStariteMask>());
             player.QuickSpawnItem(ModContent.ItemType<CelesteTorus>());
-            player.QuickSpawnItem(ModContent.ItemType<CosmicTelescope>());
+            if (Main.rand.NextBool(3))
+                player.QuickSpawnItem(ModContent.ItemType<CosmicTelescope>());
             int[] choices = new int[]
             {
                 ModContent.ItemType<MagicWand>(),

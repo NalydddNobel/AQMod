@@ -11,8 +11,8 @@ namespace AQMod.Items.Tools.Map
     {
         public override void SetStaticDefaults()
         {
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(8, 4));
             ItemID.Sets.ItemNoGravity[item.type] = true;
+            ItemID.Sets.ItemIconPulse[item.type] = true;
         }
 
         public override void SetDefaults()
@@ -33,6 +33,11 @@ namespace AQMod.Items.Tools.Map
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 200);
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            return player.GetModPlayer<PlayerMapUpgrades>().BlightedSoul == PlayerMapUpgrades.MapUpgrade.NotObtained;
         }
 
         public override bool UseItem(Player player)

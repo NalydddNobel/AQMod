@@ -1,4 +1,5 @@
-﻿using AQMod.Common.Configuration;
+﻿using AQMod.Assets;
+using AQMod.Common.Configuration;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
 using AQMod.Content.World.Events.GlimmerEvent;
@@ -93,8 +94,6 @@ namespace AQMod.Content
 
             var player = Main.LocalPlayer;
             var upgrades = player.GetModPlayer<PlayerMapUpgrades>();
-
-            //Main.NewText(upgrades.VialOfBlood.ToString());
 
             if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.Beeswax))
             {
@@ -309,7 +308,7 @@ namespace AQMod.Content
 
         private static void DrawMapIcon(out bool hovering, byte frame, float x, float y, bool interactable = false, SpriteEffects effects = SpriteEffects.None)
         {
-            var mapIcon = ModContent.GetTexture("AQMod/Assets/UI/map_structures");
+            var mapIcon = ModContent.GetTexture(TexturePaths.MapUI + "structures");
             var spriteFrame = new Rectangle((SpriteWidth + SpritePadding) * frame, 0, SpriteWidth, SpriteHeight);
             var drawPos = MapDrawPosition(new Vector2(x, y));
             var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(spriteFrame.Width, spriteFrame.Height) * Main.UIScale);
@@ -377,7 +376,7 @@ namespace AQMod.Content
             {
                 int buffIconSeparation = 26 * 2;
                 int slotsUntilWrap = 4;
-                int width = 15 + Math.Min(mapLayerToggles.Count, slotsUntilWrap) * buffIconSeparation;
+                int width = 12 + Math.Min(mapLayerToggles.Count, slotsUntilWrap) * buffIconSeparation;
                 var uiConfig = ModContent.GetInstance<UIConfiguration>();
                 int x = (int)uiConfig.MapUITogglesPosition.X;
                 //x = Main.mouseX; For testing

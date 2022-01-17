@@ -21,6 +21,11 @@ namespace AQMod.Items.Tools.Map
             item.useStyle = ItemUseStyleID.EatingUsing;
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            return player.GetModPlayer<PlayerMapUpgrades>().VialOfBlood == PlayerMapUpgrades.MapUpgrade.NotObtained;
+        }
+
         public override bool UseItem(Player player)
         {
             var mapUpgrades = player.GetModPlayer<PlayerMapUpgrades>();

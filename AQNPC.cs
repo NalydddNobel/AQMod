@@ -1432,42 +1432,6 @@ namespace AQMod
                     }
                     break;
 
-                case NPCID.AngryBones:
-                    {
-                        if (Main.rand.NextBool(80))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
-                    }
-                    break;
-
-                case NPCID.DarkCaster:
-                    {
-                        if (Main.rand.NextBool(50))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
-                    }
-                    break;
-
-                case NPCID.CursedSkull:
-                    {
-                        if (Main.rand.NextBool(30))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<DungeonMap>());
-                    }
-                    break;
-
-                case NPCID.Lihzahrd:
-                case NPCID.LihzahrdCrawler:
-                    {
-                        if (Main.rand.NextBool(50))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
-                    }
-                    break;
-
-                case NPCID.FlyingSnake:
-                    {
-                        if (Main.rand.NextBool(50))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<LihzahrdMap>());
-                    }
-                    break;
-
                 case NPCID.UndeadViking:
                     {
                         if (Main.rand.NextBool(6))

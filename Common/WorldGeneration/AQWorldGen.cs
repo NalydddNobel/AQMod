@@ -97,82 +97,6 @@ namespace AQMod.Common.WorldGeneration
             }
         }
 
-        internal static void GenerateTikiChests(GenerationProgress progress)
-        {
-            progress.Message = Language.GetTextValue(AQText.Key + "Common.RandomStructures_TikiChest");
-            int halfX = Main.maxTilesX / 2;
-            bool flag = WorldGen.genRand.NextBool();
-            int tikiChests = Main.maxTilesX / 900;
-            for (int i = 0; i < 100000; i++)
-            {
-                int xOffset = WorldGen.genRand.Next(80, 200);
-                int x = flag ? Main.maxTilesX - xOffset : xOffset;
-                int y = WorldGen.genRand.Next(200, 500);
-                if (TryPlaceTikiChest(x, y, out int chest))
-                {
-                    Chest c = Main.chest[chest];
-                    int index = 0;
-                    c.item[index].SetDefaults(ModContent.ItemType<CrabShell>());
-                    c.item[index].stack = WorldGen.genRand.Next(18, 25) + 1;
-                    index++;
-                    tikiChests--;
-                    if (tikiChests <= 0)
-                        break;
-                }
-            }
-            for (int i = 0; i < 100000; i++)
-            {
-                int _ = WorldGen.genRand.Next(80, 200);
-                int x = flag ? Main.maxTilesX - _ : _;
-                int y = WorldGen.genRand.Next(200, 500);
-                if (TryPlaceFakeTikiChest(x, y))
-                    break;
-            }
-        }
-
-        public static bool TryPlaceTikiChest(int x, int y, out int chest)
-        {
-            if (check2x2_Liquid(x, y) && check1x3_Liquid(x - 1, y) && check1x3_Liquid(x + 2, y))
-            {
-                chest = WorldGen.PlaceChest(x, y, 21, false, 0);
-                WorldGen.PlaceTile(x - 1, y, TileID.Lamps);
-                WorldGen.PlaceTile(x + 2, y, TileID.Lamps);
-                return true;
-            }
-            chest = -1;
-            return false;
-        }
-
-        public static bool TryPlaceFakeTikiChest(int x, int y)
-        {
-            if (check2x2_Liquid(x, y) && check1x3_Liquid(x - 1, y) && check1x3_Liquid(x + 2, y))
-            {
-                for (int i = 0; i < 6; i++)
-                {
-                    if (ActiveAndUncuttable(x, y + 4 + i) && NotSloped(x, y + 4 + i))
-                    {
-                        WorldGen.KillTile(x, y + 3 + i);
-                        WorldGen.PlaceTile(x, y + 3 + i, TileID.Explosives);
-                        AQUtils.PointAtoPointB(x, y, x, y + 3 + i, delegate (int x2, int y2)
-                        {
-                            WorldGen.PlaceWire(x2, y2);
-                            return true;
-                        });
-                        AQUtils.PointAtoPointB(x - 1, y, x + 2, y, delegate (int x2, int y2)
-                        {
-                            WorldGen.PlaceWire(x2, y2);
-                            return true;
-                        });
-                        WorldGen.Place2x2(x + 1, y, TileID.FakeContainers, 0);
-                        WorldGen.PlaceTile(x - 1, y, TileID.Lamps);
-                        WorldGen.PlaceTile(x + 2, y, TileID.Lamps);
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
         internal static void GenerateNobleMushrooms(GenerationProgress progress)
         {
             progress.Message = Language.GetTextValue(AQText.Key + "Common.RandomStructures_NobleMushrooms");
@@ -362,10 +286,36 @@ namespace AQMod.Common.WorldGeneration
             {
                 int x = WorldGen.genRand.Next(50, Main.maxTilesX - 50);
                 int y = WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow + 80, Main.maxTilesY - 240);
+
                 int style = WorldGen.genRand.Next(3);
                 int size = WorldGen.genRand.Next(50, 150);
                 if (ExoticCoralNew.TryPlaceExoticBlotch(x, y, style, size))
                     i += 500;
+            }
+            for (int i = 50; i < Main.maxTilesX - 50;  i++)
+            {
+                for (int j = 50; j < Main.maxTilesY - 50; j++)
+                {
+                    if (Main.tile[i, j] == null)
+                    {
+                        Main.tile[i, j] = new Tile();
+                        continue;
+                    }
+                    if (Main.tile[i, j + 1] == null)
+                    {
+                        Main.tile[i, j + 1] = new Tile();
+                        continue;
+                    }
+                    if (!Main.tile[i, j].active() && Main.tile[i, j].liquid > 40 && Main.tile[i, j + 1].active() && !Main.tile[i, j + 1].halfBrick() && Main.tile[i, j + 1].slope() == 0 && Main.tile[i, j + 1].type == ModContent.TileType<SedimentSand>())
+                    {
+                        Main.tile[i, j].active(active: true);
+                        Main.tile[i, j].halfBrick(halfBrick: false);
+                        Main.tile[i, j].slope(slope: 0);
+                        Main.tile[i, j].type = (ushort)ModContent.TileType<ExoticCoralNew>();
+                        Main.tile[i, j].frameX = (short)(22 * ExoticCoralNew.GetRandomStyle(WorldGen.genRand.Next(3)));
+                        Main.tile[i, j].frameY = 0;
+                    }
+                }
             }
         }
 
@@ -397,7 +347,6 @@ namespace AQMod.Common.WorldGeneration
             {
                 i++;
                 tasks.Insert(i, getPass("AQMod: Noble Mushrooms", GenerateNobleMushrooms));
-                tasks.Insert(i, getPass("AQMod: Tiki Chests", GenerateTikiChests));
                 tasks.Insert(i, getPass("AQMod: Candelabra Traps", GenerateCandelabraTraps));
                 tasks.Insert(i, getPass("AQMod: Exotic Coral", GenerateExoticBlotches));
                 tasks.Insert(i, getPass("AQMod: Buried Chests", ChestLoot.Buried.GenerateDirtChests));

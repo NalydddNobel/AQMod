@@ -772,6 +772,8 @@ namespace AQMod
 
         public override void PostDrawFullscreenMap(ref string mouseText)
         {
+            if (WorldGen.gen)
+                return;
             MapInterface.RenderOnMap(ref mouseText);
             MapInterface.RenderOverlayingUI(ref mouseText);
         }

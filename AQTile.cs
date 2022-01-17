@@ -29,7 +29,12 @@ namespace AQMod
             if (WorldGen.genRand.NextBool(3000) && j > 200 && !Main.tile[i, j].active() && Framing.GetTileSafely(i, j + 1).active()
                 && Main.tileSolid[Main.tile[i, j + 1].type] && Main.tile[i, j].liquid > 0 && !Main.tile[i, j].lava() && !Main.tile[i, j].honey())
             {
-                WorldGen.PlaceTile(i, j, ModContent.TileType<ExoticCoralNew>(), true, false, -1, ExoticCoralNew.GetRandomStyle(WorldGen.genRand.Next(3)));
+                Main.tile[i, j].active(active: true);
+                Main.tile[i, j].halfBrick(halfBrick: false);
+                Main.tile[i, j].slope(slope: 0);
+                Main.tile[i, j].type = (ushort)ModContent.TileType<ExoticCoralNew>();
+                Main.tile[i, j].frameX = (short)(22 * ExoticCoralNew.GetRandomStyle(WorldGen.genRand.Next(3)));
+                Main.tile[i, j].frameY = 0;
                 return;
             }
         }

@@ -1,4 +1,5 @@
-﻿using AQMod.Common;
+﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Dusts;
@@ -157,7 +158,7 @@ namespace AQMod.Content.World.Events.DemonSiege
                         zh_Hans: "在血巢处使用 " + summonItems + " 召唤.",
                         ru_RU: "Можно призвать используя: " + summonItems + " в кровавом гнезде."),
                     "AQMod/Assets/BossChecklist/DemonSiege",
-                    "AQMod/Assets/EventIcons/DemonSiege");
+                    TexturePaths.EventIcons + "demonsiege");
             }
         }
         internal override EventProgressBar ProgressBar => new DemonSiegeProgressBar();

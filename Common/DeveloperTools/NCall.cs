@@ -807,18 +807,6 @@ namespace AQMod.Common.DeveloperTools
                     }
                     break;
 
-                case "tikichesttrap":
-                    {
-                        AQWorldGen.TryPlaceFakeTikiChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y);
-                    }
-                    break;
-
-                case "tikichest":
-                    {
-                        AQWorldGen.TryPlaceTikiChest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y, out int _);
-                    }
-                    break;
-
                 case "bloodmoon":
                     {
                         Main.dayTime = false;

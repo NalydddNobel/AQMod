@@ -1,4 +1,5 @@
-﻿using AQMod.Common;
+﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events.ProgressBars;
@@ -73,7 +74,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                 zh_Hans: "在夜晚自然开始. 也可以使用 [i:" + ModContent.ItemType<MythicStarfruit>() + "] 召唤. 在太阳升起时结束.",
                 ru_RU: "Натурально появляется ночью. Также можно призвать с помощью [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Кончается когда всходит солнце."),
             "AQMod/Assets/BossChecklist/GlimmerEvent",
-            "AQMod/Assets/EventIcons/GlimmerEvent");
+            TexturePaths.EventIcons + "glimmerevent");
         internal override EventProgressBar ProgressBar => new BasicEventProgressBar(
                     () => IsAbleToShowInvasionProgressBar(),
                     () => 1f - (float)GetTileDistanceUsingPlayer(Main.LocalPlayer) / MaxDistance,

@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Common.ID;
+using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Melee.Dagger;
 using AQMod.Tiles.Furniture.Containers;
 using Terraria;
@@ -184,11 +185,20 @@ namespace AQMod.Content.World.Generation
                     }
                     break;
 
+                case ChestStyles.LockedGold:
+                    {
+                        if (Main.wallDungeon[Main.tile[c.x, c.y].type] && WorldGen.genRand.NextBool(3))
+                        {
+                            InsertLoot(c, ModContent.ItemType<DungeonMap>(), 1, CountAllActiveItemIndices(c));
+                        }
+                    }
+                    break;
+
                 case ChestStyles.Lihzahrd:
                     {
                         if (WorldGen.genRand.NextBool(3))
                         {
-                            InsertLoot(c, ModContent.ItemType<Items.Tools.Map.LihzahrdMap>(), 0, CountAllActiveItemIndices(c));
+                            InsertLoot(c, ModContent.ItemType<LihzahrdMap>(), 1, CountAllActiveItemIndices(c));
                         }
                     }
                     break;

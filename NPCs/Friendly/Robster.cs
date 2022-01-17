@@ -71,6 +71,11 @@ namespace AQMod.NPCs.Friendly
             }
         }
 
+        public override void AI()
+        {
+            npc.breath = 200;
+        }
+
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
             return WorldDefeats.DownedCrabson;
