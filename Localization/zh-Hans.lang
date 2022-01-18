@@ -45,6 +45,11 @@ ItemName.SteelPlatedChestplate=钢板胸甲
 
 # Materials
 ItemName.Fluorescence=荧光
+ItemName.SiphonTentacle=虹吸触手
+
+ItemName.CrustaciumBar=硬壳锭
+ItemName.CrustaciumBlob=硬壳血肉
+ItemName.CrustaciumOre=硬壳矿
 
 ItemName.NuclearFeather=核子之羽
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
@@ -503,6 +508,13 @@ WorldGenOptions.generateOceanRavinesTooltip=决定是否生成海沟.
 WorldGenOptions.fixBabyPools=修复小水坑
 WorldGenOptions.fixBabyPoolsTooltip=移除地表上生成的1格物块高的水坑.\n可能会导致在地表生成的与水有关的构造出现小问题.
 
+WorldGen.CrabCrevice=Aequus: 正在生成蟹状裂痕
+WorldGen.CrabCrevice.Sand=Aequus: 正在生成蟹状裂痕... 沙圈
+WorldGen.CrabCrevice.Caves=Aequus: 正在生成蟹状裂痕... 洞穴
+WorldGen.CrabCrevice.FinalCave=Aequus: 正在生成蟹状裂痕... 大型洞穴
+WorldGen.CrabCrevice.Chests=Aequus: 正在生成蟹状裂痕... 宝藏
+WorldGen.CrabCrevice.Vines=Aequus: 正在生成蟹状裂痕... 植被
+WorldGen.CrabCrevice.Ores=Aequus: 正在生成蟹状裂痕... 矿石
 
 WorldGen.Fix1TileHighWater=Aequus: 正在修复小水坑
 WorldGen.BuriedDirtChests=Aequus: 正在生成被掩埋的土箱
@@ -1366,3 +1378,4 @@ MapObject.ExoticCoral=奇异珊瑚
 MapObject.FishingCraftingStation=渔具加工站
 MapObject.BuriedDirtChest=被掩埋的土箱
 MapObject.Dungeon=地牢
+MapObject.Crustacium=硬壳
