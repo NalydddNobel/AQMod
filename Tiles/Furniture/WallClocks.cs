@@ -19,6 +19,7 @@ namespace AQMod.Tiles.Furniture
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
+            TileID.Sets.HasOutlines[Type] = true;
             TileID.Sets.FramesOnKillWall[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };

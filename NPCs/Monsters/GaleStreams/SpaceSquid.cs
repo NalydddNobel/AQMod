@@ -234,17 +234,17 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             else if ((int)npc.ai[1] > 200)
                             {
                                 var eyePos = GetEyePosition(npc);
-                                SpawnPatterns.SpawnDustCentered(eyePos, ModContent.DustType<MonoDust>(), new Vector2(0f, 0f), new Color(10, 255, 20, 0), 0.9f);
+                                Dust.NewDustPerfect(eyePos, ModContent.DustType<MonoDust>(), new Vector2(0f, 0f), 0, new Color(10, 255, 20, 0), 0.9f);
                                 int spawnChance = 3 - (int)(npc.ai[1] - 210) / 8;
                                 if (spawnChance <= 1 || Main.rand.NextBool(spawnChance))
                                 {
                                     var spawnPos = eyePos + new Vector2(Main.rand.NextFloat(-60f, 60f), Main.rand.NextFloat(-60f, 60f));
-                                    SpawnPatterns.SpawnDustCentered(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 8f + npc.velocity, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.9f, 1.35f));
+                                    Dust.NewDustPerfect(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 8f + npc.velocity, 0, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.9f, 1.35f));
                                 }
                                 if (spawnChance <= 1)
                                 {
                                     var spawnPos = eyePos + new Vector2(Main.rand.NextFloat(-120f, 120f), Main.rand.NextFloat(-120f, 120f));
-                                    SpawnPatterns.SpawnDustCentered(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 12f + npc.velocity, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.5f, 0.75f));
+                                    Dust.NewDustPerfect(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 12f + npc.velocity, 0, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.5f, 0.75f));
                                 }
                             }
                             if ((int)npc.ai[1] >= 330)

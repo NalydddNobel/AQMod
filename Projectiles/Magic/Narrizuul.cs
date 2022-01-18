@@ -72,7 +72,9 @@ namespace AQMod.Projectiles.Magic
             }
             if (Main.rand.NextBool(4))
             {
-                SpawnPatterns.SpawnDustCentered(projectile.Center, ModContent.DustType<NarrenBoltDust>(), new Vector2(0f, 0f), NarrizuulRainbow(projectile.localAI[1]) * 1.5f);
+                Dust.NewDustPerfect(projectile.Center, ModContent.DustType<MonoDust>(), projectile.velocity * -0.05f, 0, NarrizuulRainbow(projectile.localAI[1]) * 1.5f);
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, NarrizuulRainbow(projectile.localAI[1]) * 0.3f);
+                Main.dust[d].velocity = projectile.velocity * 0.125f;
             }
             Lighting.AddLight(projectile.Center, (NarrizuulRainbow(projectile.localAI[1]) * 1.5f).ToVector3() * projectile.scale);
         }
@@ -140,17 +142,18 @@ namespace AQMod.Projectiles.Magic
             Color color = NarrizuulRainbow(projectile.localAI[1]) * 1.5f;
             for (int i = 0; i < 20; i++)
             {
-                int d = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<NarrenBoltDust>());
+                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>());
                 Main.dust[d].scale *= Main.rand.NextFloat(1.1f, 1.7f);
-                Main.dust[d].color = color;
-                Main.dust[d].velocity = new Vector2(6, 0).RotatedByRandom(MathHelper.TwoPi);
+                Main.dust[d].color = color * Main.dust[d].scale;
+                Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(3f, 7.5f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
             }
             for (int i = 0; i < 30; i++)
             {
-                int d = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<NarrenBoltDust>());
-                Main.dust[d].scale *= Main.rand.NextFloat(1.1f, 1.7f);
-                Main.dust[d].color = NarrizuulRainbow(projectile.localAI[1] + i * 0.1f) * 1.5f;
-                Main.dust[d].velocity = new Vector2(6, 0).RotatedByRandom(MathHelper.TwoPi);
+                int d = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<MonoSparkleDust>());
+                Main.dust[d].scale *= Main.rand.NextFloat(0.8f, 1.4f);
+                Main.dust[d].color = NarrizuulRainbow(projectile.localAI[1] + i * 0.1f) * 1.5f * Main.dust[d].scale;
+                Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(3f, 7.5f), 0).RotatedByRandom(MathHelper.TwoPi);
+                Main.dust[d].alpha = Main.rand.Next(30);
             }
             if (Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center) < Math.Sqrt(Main.screenWidth * Main.screenWidth + Main.screenHeight * Main.screenHeight))
                 Main.PlaySound(SoundID.Item14, projectile.Center);

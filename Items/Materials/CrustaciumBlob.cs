@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using AQMod.Tiles;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Materials
@@ -14,7 +15,7 @@ namespace AQMod.Items.Materials
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.rare = ItemRarityID.Blue;
-            item.createTile = ModContent.TileType<AQMod.Tiles.CrustaciumFlesh>();
+            item.createTile = ModContent.TileType<CrustaciumFlesh>();
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;
