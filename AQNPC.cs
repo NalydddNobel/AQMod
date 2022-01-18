@@ -12,6 +12,7 @@ using AQMod.Items.Foods;
 using AQMod.Items.Foods.Dungeon;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Tools.Utility;
 using AQMod.Items.Vanities.CursorDyes;
@@ -1436,28 +1437,6 @@ namespace AQMod
                     {
                         if (Main.rand.NextBool(6))
                             Item.NewItem(npc.getRect(), ModContent.ItemType<CrystalDagger>());
-                    }
-                    break;
-
-                case NPCID.Crab:
-                    {
-                        if (Main.rand.NextBool(10))
-                        {
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Melee.VineSword>());
-                        }
-                        if (CrabSeason.Active)
-                        {
-                            if ((Main.moonPhase % 2 == 0 && !aQPlayer.altEvilDrops) || (Main.moonPhase % 2 == 1 && aQPlayer.altEvilDrops))
-                                Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
-                        }
-                        else
-                        {
-                            bool hasItem = Main.player[p].HasItem(ModContent.ItemType<CrabClock>());
-                            if (Main.rand.NextBool(hasItem ? 10 : 4))
-                                Item.NewItem(npc.getRect(), ModContent.ItemType<CrabClock>());
-                            if (Main.rand.NextBool())
-                                Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
-                        }
                     }
                     break;
 

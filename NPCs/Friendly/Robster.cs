@@ -3,6 +3,7 @@ using AQMod.Common;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Placeable.CraftingStations;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.MagicPowders;
@@ -271,6 +272,8 @@ namespace AQMod.NPCs.Friendly
                 nextSlot++;
             }
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<FishingCraftingStation>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CrabClock>());
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.AquaticEnergy>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;

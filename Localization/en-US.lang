@@ -253,6 +253,10 @@ ItemTooltip.PeeledCarrot=Medium improvements to all stats and grants you night v
 BuffName.PeeledCarrot=Dragon Carrot
 BuffDescription.PeeledCarrot=Medium improvements to all stats and grants you night vision
 
+# Furniture
+ItemName.CrabClock=Crab Wall Clock
+ItemTooltip.CrabClock='What time is it? Crabby time.'
+
 # Tooltips
 Tooltips.Unobtainable=A relic birthed in an alternate universe
 Tooltips.ManaPerSecond=Uses {0} mana per second
@@ -836,7 +840,6 @@ ItemName.JeweledTable=Jeweled Table
 ItemName.DwarfStariteItem=Dwarf Starite
 ItemName.BloodshedPotion=Bloodshed Potion
 ItemName.CrabShell=Crab Shell
-ItemName.CrabClock=Crab Clock
 ItemName.Lightbulb=Lightbulb
 ItemName.Molite=Starbyte
 ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
@@ -1083,7 +1086,6 @@ ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
 ItemTooltip.BloodshedPotion=Teleports you to the location of your most recent death
 ItemTooltip.CrabShell=It's oddly misshapen
-ItemTooltip.CrabClock=Speeds up the ocean's natural fluctuations
 ItemTooltip.Molite=Doubles the length of potions
 ItemTooltip.PotionofContainers=Teleports you to a random chest in the world
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
@@ -1367,10 +1369,6 @@ QuestFish.WaterFisg=It's strange to say this, but I'm awfully thirsty. I saw thi
 FishingLocation.AnywhereFishing=Caught anywhere
 FishingLocation.BeachFishing=Caught in Ocean
 
-CrabClock.Ends={0} until crab season ends
-CrabClock.Starts={0} until crab season starts
-CrabClock.Favorite=Favorite this item to see the time
-
 MapObject.Painting=Painting
 MapObject.Trophies=Trophy
 MapObject.Banners=Banner
@@ -1379,3 +1377,4 @@ MapObject.FishingCraftingStation=Fishing Utility Crafting Station
 MapObject.BuriedDirtChest=Buried Dirt Chest
 MapObject.Dungeon=Dungeon
 MapObject.Crustacium=Crustacium
+MapObject.WallClocks=Wall Clock

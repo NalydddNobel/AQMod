@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using AQMod.Tiles.Furniture;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Materials
@@ -14,7 +15,8 @@ namespace AQMod.Items.Materials
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.rare = ItemRarityID.Blue;
-            item.createTile = ModContent.TileType<Tiles.Nature.CrustaciumFlesh>();
+            item.createTile = ModContent.TileType<AQBars>();
+            item.placeStyle = AQBars.CrustaciumBar;
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;

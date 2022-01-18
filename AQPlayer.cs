@@ -22,6 +22,7 @@ using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
 using AQMod.Projectiles.Summon;
+using AQMod.Walls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -168,7 +169,9 @@ namespace AQMod
 
         public static bool IsQuickBuffing { get; internal set; }
 
-        public bool AtmosphericCurrentsEvent => player.ZoneSkyHeight && Main.windSpeed > 30f;
+        public bool ZoneAtmosphericCurrentsEvent;
+        public bool ZoneCrabSeason;
+        public bool ZoneCrabCrevice;
 
         public override void Initialize()
         {
@@ -281,6 +284,14 @@ namespace AQMod
                 if (EffectCache.f_Vignette.IsActive())
                     Filters.Scene.Deactivate(EffectCache.fn_Vignette);
             }
+        }
+
+        public override void UpdateBiomes()
+        {
+            int x = (int)(player.position.X + player.width / 2) / 16;
+            int y = (int)(player.position.Y + player.height / 2) / 16;
+            ZoneAtmosphericCurrentsEvent = player.ZoneSkyHeight && Main.windSpeed > 30f;
+            ZoneCrabCrevice = Main.tile[x, y].wall == ModContent.WallType<OceanRavineWall>();
         }
 
         private void UpdateTemperatureRegen()

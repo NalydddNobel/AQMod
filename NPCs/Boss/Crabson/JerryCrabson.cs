@@ -5,8 +5,8 @@ using AQMod.Common.WorldGeneration;
 using AQMod.Content.World.Events;
 using AQMod.Items.BossItems.Crabson;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Tools.Axe;
-using AQMod.Items.Tools.Utility;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
@@ -41,7 +41,6 @@ namespace AQMod.NPCs.Boss.Crabson
                 ModContent.ItemType<JerryClawFlail>(),
                 ModContent.ItemType<CinnabarBow>(),
                 ModContent.ItemType<Bubbler>(),
-                ModContent.ItemType<CrabClock>(),
                 ModContent.ItemType<AquaticEnergy>(),
             },
             new List<int>()
@@ -406,8 +405,6 @@ namespace AQMod.NPCs.Boss.Crabson
                 npc.DropBossBags();
                 return;
             }
-            if (Main.rand.NextBool(6))
-                Item.NewItem(rect, ModContent.ItemType<CrabClock>());
             Item.NewItem(rect, ModContent.ItemType<AquaticEnergy>(), Main.rand.NextVRand(3, 5));
             switch (Main.rand.Next(3))
             {

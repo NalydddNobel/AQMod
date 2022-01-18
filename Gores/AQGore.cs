@@ -24,6 +24,16 @@ namespace AQMod.Gores
             return path + "_" + min + rand.Next(max - min);
         }
 
+        public static int GetID(string name)
+        {
+            return ModGore.GetGoreSlot("AQMod/Gores/" + name);
+        }
+
+        public static int GetID<T>() where T : ModGore
+        {
+            return ModGore.GetGoreSlot((typeof(T).Namespace + '/' + typeof(T).Name).Replace('.', '/'));
+        }
+
         public static void NewGore(Rectangle rect, string name, float scale = 1f)
         {
             NewGore(rect, ModGore.GetGoreSlot("AQMod/Gores/" + name), scale);

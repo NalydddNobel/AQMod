@@ -1,7 +1,7 @@
 ﻿using AQMod.Items.Materials.Energies;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Tools.Axe;
 using AQMod.Items.Tools.Fishing;
-using AQMod.Items.Tools.Utility;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee.Flail;
 using AQMod.Items.Weapons.Ranged;
@@ -30,8 +30,6 @@ namespace AQMod.Items.BossItems.Crabson
         public override void OpenBossBag(Player player)
         {
             player.QuickSpawnItem(ModContent.ItemType<Crabax>());
-            if (Main.rand.NextBool(3))
-                player.QuickSpawnItem(ModContent.ItemType<CrabClock>());
             player.QuickSpawnItem(ModContent.ItemType<AquaticEnergy>(), Main.rand.NextVRand(5, 8));
             var choices = new List<int>()
             {

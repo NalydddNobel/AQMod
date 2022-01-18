@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Items.Tools.Utility;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.CrabSeason;
 using Microsoft.Xna.Framework;
@@ -65,16 +65,13 @@ namespace AQMod.Content.World.Events
                 if (crabSeasonTimer - crabSeasonTimerRate <= 0)
                 {
                     Activate();
-                    if (Main.LocalPlayer.HeldItem.modItem is CrabClock)
-                        AQMod.BroadcastMessage(AQText.ModText("Common.CrabSeasonWarning").Value, TextColor);
                 }
             }
             crabSeasonTimer -= crabSeasonTimerRate;
             if (crabSeasonTimer <= -CrabSeasonTimerMin)
             {
                 Deactivate();
-                if (Main.LocalPlayer.HeldItem.modItem is CrabClock)
-                    AQMod.BroadcastMessage(AQText.ModText("Common.CrabSeasonEnding").Value, TextColor);
+
             }
             crabSeasonTimerRate = 1;
         }

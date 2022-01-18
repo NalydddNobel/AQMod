@@ -48,5 +48,29 @@ namespace AQMod.Common
                 AQSystem.UpdatingTime = false;
             }
         }
+
+        public const double MaxTime = Main.dayLength + Main.nightLength;
+        public const double HourMultiplier = 60d * 60d;
+        public const double FourHoursThirtyMinutes = HourMultiplier * 4.5d;
+
+        public static double GetInGameTime()
+        {
+            return Main.dayTime ? Main.time : Main.dayLength + Main.time;
+        }
+
+        public static double GetInGameTimePercentage()
+        {
+            return GetInGameTime() / MaxTime;
+        }
+
+        public static double GetInGameTimePercentageUsing12AMAs0Percent()
+        {
+            double time = GetInGameTime() + FourHoursThirtyMinutes;
+            if (time > MaxTime)
+            {
+                time -= MaxTime; // wrap around
+            }
+            return time / MaxTime;
+        }
     }
 }
