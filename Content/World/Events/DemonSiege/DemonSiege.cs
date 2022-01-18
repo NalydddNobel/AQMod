@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Magic;

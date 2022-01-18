@@ -1,4 +1,5 @@
-﻿using AQMod.Dusts.Splashes;
+﻿using AQMod.Content.Players;
+using AQMod.Dusts.Splashes;
 using AQMod.Gores;
 using AQMod.Gores.Droplets;
 using Microsoft.Xna.Framework;
@@ -11,7 +12,7 @@ namespace AQMod.Content.World
     {
         public override bool ChooseWaterStyle()
         {
-            return Main.player[Main.myPlayer].GetModPlayer<AQPlayer>().ZoneCrabCrevice && Main.player[Main.myPlayer].position.Y >= Main.worldSurface * 16f;
+            return Main.player[Main.myPlayer].GetModPlayer<PlayerBiomes>().zoneCrabCrevice && Main.player[Main.myPlayer].position.Y >= Main.worldSurface * 16f;
         }
 
         public override int ChooseWaterfallStyle()

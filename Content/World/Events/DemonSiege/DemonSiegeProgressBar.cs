@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World.Events.ProgressBars;
+﻿using AQMod.Assets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,7 +10,7 @@ namespace AQMod.Content.World.Events.DemonSiege
 {
     public class DemonSiegeProgressBar : EventProgressBar
     {
-        public override Texture2D IconTexture => ModContent.GetTexture("AQMod/Assets/UI/event_demonsiege");
+        public override Texture2D IconTexture => ModContent.GetTexture(TexturePaths.EventIcons + "demonsiege");
         public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.DemonSiege");
         public override Color NameBGColor => new Color(120, 90 + (int)(Math.Sin(Main.GlobalTime * 5f) * 10), 20, 128);
         public override float EventProgress => 1f - DemonSiege.UpgradeTime / (float)DemonSiege.Upgrade.upgradeTime;

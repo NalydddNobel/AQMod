@@ -18,7 +18,6 @@ using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
-using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.Particles;

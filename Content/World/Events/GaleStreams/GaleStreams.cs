@@ -2,7 +2,6 @@
 using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.ID;
-using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Items.Weapons.Melee.Boomerang;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GaleStreams;

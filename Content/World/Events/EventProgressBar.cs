@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace AQMod.Content.World.Events.ProgressBars
+namespace AQMod.Content.World.Events
 {
     public abstract class EventProgressBar
     {

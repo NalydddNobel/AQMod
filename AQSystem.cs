@@ -1,7 +1,6 @@
 ﻿using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GlimmerEvent;
-using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Tiles.Nature.CrabCrevice;
 using Terraria;
 using Terraria.ID;

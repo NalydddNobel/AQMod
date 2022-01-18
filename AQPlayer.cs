@@ -53,7 +53,8 @@ namespace AQMod
         public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
         public const byte TEMPERATURE_REGEN_ON_HIT = 120;
 
-        internal static bool Fidget_Spinner_Force_Autoswing;
+        public static bool Fidget_Spinner_Force_Autoswing { get; internal set; }
+        public static bool IsQuickBuffing { get; internal set; }
         internal static int _moneyTroughHackIndex = -1;
         internal static ISuperClunkyMoneyTroughTypeThing _moneyTroughHack;
 
@@ -167,12 +168,6 @@ namespace AQMod
         public bool IgnoreIgnoreMoons { get; set; }
         public bool IgnoreAntiGravityItems { get; set; }
 
-        public static bool IsQuickBuffing { get; internal set; }
-
-        public bool ZoneAtmosphericCurrentsEvent;
-        public bool ZoneCrabSeason;
-        public bool ZoneCrabCrevice;
-
         public override void Initialize()
         {
             omoriDeathTimer = 1;
@@ -258,40 +253,6 @@ namespace AQMod
             }
             if (!Main.gamePaused && Main.instance.IsActive)
                 ScreenShakeManager.Update();
-
-            bool glimmerEvent = (GlimmerEvent.IsGlimmerEventCurrentlyActive() || OmegaStariteScenes.OmegaStariteIndexCache != -1) && Main.screenPosition.Y < Main.worldSurface * 16f + Main.screenHeight;
-            AQUtils.UpdateSky(glimmerEvent, GlimmerEventSky.Name);
-
-            if (glimmerEvent && OmegaStariteScenes.OmegaStariteIndexCache == -1 && ModContent.GetInstance<StariteConfig>().UltimateSwordVignette)
-            {
-                float intensity = 0f;
-                float distance = (Main.player[Main.myPlayer].position.X - (GlimmerEvent.tileX * 16f + 8f)).Abs();
-                if (distance < 6400f)
-                {
-                    intensity += 1f - distance / 6400f;
-                }
-
-                var filter = EffectCache.f_Vignette;
-                var shader = EffectCache.f_Vignette.GetShader();
-                shader.UseIntensity(intensity * 1.25f);
-                if (!EffectCache.f_Vignette.IsActive())
-                {
-                    Filters.Scene.Activate(EffectCache.fn_Vignette);
-                }
-            }
-            else
-            {
-                if (EffectCache.f_Vignette.IsActive())
-                    Filters.Scene.Deactivate(EffectCache.fn_Vignette);
-            }
-        }
-
-        public override void UpdateBiomes()
-        {
-            int x = (int)(player.position.X + player.width / 2) / 16;
-            int y = (int)(player.position.Y + player.height / 2) / 16;
-            ZoneAtmosphericCurrentsEvent = player.ZoneSkyHeight && Main.windSpeed > 30f;
-            ZoneCrabCrevice = Main.tile[x, y].wall == ModContent.WallType<OceanRavineWall>();
         }
 
         private void UpdateTemperatureRegen()
@@ -509,23 +470,6 @@ namespace AQMod
                     Main.NewText(Language.GetTextValue("Mods.AQMod.EquivalenceMachineToggle.True"), new Color(230, 230, 255, 255));
                 }
             }
-        }
-
-        public override Texture2D GetMapBackgroundImage()
-        {
-            if (XmasSeeds.XmasWorld && WorldGen.gen)
-            {
-                return ModContent.GetTexture("Terraria/MapBG12");
-            }
-            if (!player.ZoneCorrupt && !player.ZoneCrimson && !player.ZoneHoly && !player.ZoneDesert && !player.ZoneJungle)
-            {
-                if (player.position.Y < Main.worldSurface * 16f)
-                {
-                    if (GlimmerEvent.IsGlimmerEventCurrentlyActive())
-                        return ModContent.GetTexture("AQMod/Assets/Map/Backgrounds/GlimmerEvent");
-                }
-            }
-            return null;
         }
 
         public override void clientClone(ModPlayer clientClone)
@@ -810,29 +754,12 @@ namespace AQMod
             }
             else
             {
-                if (clone.blueSpheres)
-                {
-                    Sync_CelesteTorus(toWho: -1, fromWho: -1);
-                }
             }
         }
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
-            ModPacket packet = mod.GetPacket();
-            Sync_CelesteTorus(toWho, fromWho);
-        }
-
-        private void Sync_CelesteTorus(int toWho = -1, int fromWho = -1)
-        {
-            return;
-            //var packet = mod.GetPacket();
-            //packet.Write(AQPacketID.UpdateAQPlayerCelesteTorus);
-            //packet.Write((byte)player.whoAmI);
-            //packet.Write(celesteTorusX);
-            //packet.Write(celesteTorusY);
-            //packet.Write(celesteTorusZ);
-            //packet.Send(toWho, fromWho);
+            //ModPacket packet = mod.GetPacket();
         }
 
         public override void UpdateDead()

@@ -2,7 +2,6 @@
 using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.ID;
-using AQMod.Content.World.Events.ProgressBars;
 using AQMod.Content.World.FallingStars;
 using AQMod.Items.BossItems;
 using AQMod.Localization;
@@ -78,7 +77,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
         internal override EventProgressBar ProgressBar => new BasicEventProgressBar(
                     () => IsAbleToShowInvasionProgressBar(),
                     () => 1f - (float)GetTileDistanceUsingPlayer(Main.LocalPlayer) / MaxDistance,
-                    "AQMod/Assets/UI/event_glimmerevent",
+                    TexturePaths.EventIcons + "glimmerevent",
                     "Mods.AQMod.EventName.GlimmerEvent",
                      new Color(120, 20, 110, 128));
 

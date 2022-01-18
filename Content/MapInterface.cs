@@ -214,7 +214,7 @@ namespace AQMod.Content
 
             if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.CosmicTelescope) && GlimmerEvent.IsGlimmerEventCurrentlyActive())
             {
-                var texture = ModContent.GetTexture("AQMod/Assets/UI/map_ultimatesword");
+                var texture = ModContent.GetTexture(TexturePaths.MapUI + "ultimatesword");
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var drawPos = MapDrawPosition(new Vector2(GlimmerEvent.tileX + 0.5f, GlimmerEvent.tileY - 3f));
                 var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
@@ -225,7 +225,7 @@ namespace AQMod.Content
                     scale += 0.5f;
                 }
                 Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                texture = ModContent.GetTexture("AQMod/Assets/UI/map_cosmictelescope");
+                texture = ModContent.GetTexture(TexturePaths.MapUI + "staritelayers");
                 var stariteFrame = new Rectangle(0, 0, texture.Width, 22);
                 var arrowUpFrame = new Rectangle(0, stariteFrame.Height + 2, texture.Width, 32);
                 var arrowDownFrame = new Rectangle(0, arrowUpFrame.Y + arrowUpFrame.Height + 2, texture.Width, 32);
@@ -271,7 +271,7 @@ namespace AQMod.Content
             if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul))
             {
                 var color = ModContent.GetInstance<AQConfigClient>().MapBlipColor;
-                var texture = ModContent.GetTexture("AQMod/Assets/UI/map_enemyblip");
+                var texture = ModContent.GetTexture(TexturePaths.MapUI + "enemyblip");
                 int frameHeight = texture.Height / 2;
                 int frameNumber = (int)(Main.GameUpdateCount % 24 / 12);
                 var frame = new Rectangle(0, frameHeight * frameNumber, texture.Width, frameHeight);
@@ -339,31 +339,31 @@ namespace AQMod.Content
 
             if (PlayerMapUpgrades.HasMapUpgrade(upgrades.CosmicTelescope))
             {
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_cosmictelescope"), "Mods.AQMod.MapLayerToggle.CosmicTelescope",
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture(TexturePaths.MapUIToggles + "cosmictelescope"), "Mods.AQMod.MapLayerToggle.CosmicTelescope",
                     () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.CosmicTelescope), () => PlayerMapUpgrades.Visibility(ref upgrades.CosmicTelescope)));
             }
 
             if (PlayerMapUpgrades.HasMapUpgrade(upgrades.VialOfBlood))
             {
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_vialofblood"), "Mods.AQMod.MapLayerToggle.VialOfBlood",
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture(TexturePaths.MapUIToggles + "vialofblood"), "Mods.AQMod.MapLayerToggle.VialOfBlood",
                     () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.VialOfBlood), () => PlayerMapUpgrades.Visibility(ref upgrades.VialOfBlood)));
             }
 
             if (PlayerMapUpgrades.HasMapUpgrade(upgrades.Beeswax))
             {
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_beeswax"), "Mods.AQMod.MapLayerToggle.Beeswax",
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture(TexturePaths.MapUIToggles + "beeswax"), "Mods.AQMod.MapLayerToggle.Beeswax",
                     () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.Beeswax), () => PlayerMapUpgrades.Visibility(ref upgrades.Beeswax)));
             }
 
             if (PlayerMapUpgrades.HasMapUpgrade(upgrades.Cabbage))
             {
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_cabbage"), "Mods.AQMod.MapLayerToggle.Cabbage",
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture(TexturePaths.MapUIToggles + "cabbage"), "Mods.AQMod.MapLayerToggle.Cabbage",
                     () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.Cabbage), () => PlayerMapUpgrades.Visibility(ref upgrades.Cabbage)));
             }
 
             if (PlayerMapUpgrades.HasMapUpgrade(upgrades.BlightedSoul))
             {
-                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture("AQMod/Assets/UI/map_uitoggle_blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
+                mapLayerToggles.Add(new MapLayerToggle(ModContent.GetTexture(TexturePaths.MapUIToggles + "blightedsoul"), "Mods.AQMod.MapLayerToggle.BlightedSoul",
                     () => PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul), () => PlayerMapUpgrades.Visibility(ref upgrades.BlightedSoul)));
             }
 

@@ -1,6 +1,5 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Content.World.Events.ProgressBars;
 using System;
 using Terraria;
 using Terraria.ModLoader;
