@@ -140,14 +140,14 @@ namespace AQMod.Projectiles.Magic
                     ScreenShakeManager.AddShake(new BasicScreenShake(8, AQGraphics.MultIntensity((int)(800f - distance) / 128)));
             }
             Color color = NarrizuulRainbow(projectile.localAI[1]) * 1.5f;
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 15; i++)
             {
                 int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>());
                 Main.dust[d].scale *= Main.rand.NextFloat(1.1f, 1.7f);
                 Main.dust[d].color = color * Main.dust[d].scale;
                 Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(3f, 7.5f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
             }
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 5; i++)
             {
                 int d = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<MonoSparkleDust>());
                 Main.dust[d].scale *= Main.rand.NextFloat(0.8f, 1.4f);
