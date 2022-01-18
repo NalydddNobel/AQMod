@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Tiles.Nature
+namespace AQMod.Tiles
 {
     public class CrustaciumFlesh : ModTile
     {

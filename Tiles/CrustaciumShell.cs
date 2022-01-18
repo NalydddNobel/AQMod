@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Tiles.Nature
+namespace AQMod.Tiles
 {
     public class CrustaciumShell : ModTile
     {
@@ -13,7 +13,7 @@ namespace AQMod.Tiles.Nature
             TileID.Sets.Ore[Type] = true;
             Main.tileSpelunker[Type] = true;
             Main.tileValue[Type] = 415;
-            Main.tileShine2[Type] = true; 
+            Main.tileShine2[Type] = true;
             Main.tileShine[Type] = 975;
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;

@@ -6,7 +6,6 @@ using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Tiles;
 using AQMod.Tiles.Furniture;
-using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
 using AQMod.Walls;
 using Microsoft.Xna.Framework;

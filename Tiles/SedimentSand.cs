@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Tiles.Nature.CrabCrevice;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Tiles.Nature.CrabCrevice
+namespace AQMod.Tiles
 {
     public class SedimentSand : ModTile
     {

@@ -253,9 +253,15 @@ ItemTooltip.PeeledCarrot=Medium improvements to all stats and grants you night v
 BuffName.PeeledCarrot=Dragon Carrot
 BuffDescription.PeeledCarrot=Medium improvements to all stats and grants you night vision
 
+# Tiles
+ItemName.SedimentSandBlock=Sedimentary Sand Block
+
 # Furniture
 ItemName.CrabClock=Crab Wall Clock
 ItemTooltip.CrabClock='What time is it? Crabby time.'
+
+# Walls
+ItemName.OceanRavineWall=Crab Crevice Wall
 
 # Tooltips
 Tooltips.Unobtainable=A relic birthed in an alternate universe

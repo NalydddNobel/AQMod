@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable.Nature
+namespace AQMod.Items.Placeable
 {
     public class SedimentSandBlock : ModItem
     {
@@ -13,7 +13,7 @@ namespace AQMod.Items.Placeable.Nature
             item.useTime = 10;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<Tiles.Nature.CrabCrevice.SedimentSand>();
+            item.createTile = ModContent.TileType<Tiles.SedimentSand>();
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;

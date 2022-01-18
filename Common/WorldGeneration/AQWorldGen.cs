@@ -1,6 +1,7 @@
 ﻿using AQMod.Content.World.Generation;
 using AQMod.Items.Materials;
 using AQMod.Localization;
+using AQMod.Tiles;
 using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;

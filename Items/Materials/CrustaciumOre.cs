@@ -14,7 +14,7 @@ namespace AQMod.Items.Materials
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.rare = ItemRarityID.Blue;
-            item.createTile = ModContent.TileType<Tiles.Nature.CrustaciumShell>();
+            item.createTile = ModContent.TileType<AQMod.Tiles.CrustaciumShell>();
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;
