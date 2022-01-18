@@ -253,6 +253,10 @@ ItemTooltip.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视�
 BuffName.PeeledCarrot=胡龙卜
 BuffDescription.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视能力
 
+# Furniture
+ItemName.CrabClock=螃蟹挂钟
+ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
+
 # Tooltips
 Tooltips.Unobtainable=自另一宇宙形成的遗物
 Tooltips.ManaPerSecond=每秒消耗{0}点法力值
@@ -836,7 +840,6 @@ ItemName.JeweledTable=宝石桌
 ItemName.DwarfStariteItem=侏儒源星
 ItemName.BloodshedPotion=喋血药水
 ItemName.CrabShell=蟹壳
-ItemName.CrabClock=蟹钟
 ItemName.Lightbulb=灯泡
 ItemName.Molite=元星鱼
 ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
@@ -1083,7 +1086,6 @@ ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
 ItemTooltip.BloodshedPotion=将你传送至上次死亡时的位置
 ItemTooltip.CrabShell=畸形, 真是诡异
-ItemTooltip.CrabClock=加快海洋的自然波动
 ItemTooltip.Molite=与药水结合使用时可翻倍药水的持续时间
 ItemTooltip.PotionofContainers=将你传送至随机一个箱子
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
@@ -1367,10 +1369,6 @@ QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我�
 FishingLocation.AnywhereFishing=抓捕位置: 任意位置
 FishingLocation.BeachFishing=抓捕位置: 海洋
 
-CrabClock.Ends=距离蟹季结束还剩{0}
-CrabClock.Starts=距离蟹季开始还剩{0}
-CrabClock.Favorite=将此物品标记为收藏以查看时间
-
 MapObject.Painting=画作
 MapObject.Trophies=纪念章
 MapObject.Banners=旗
@@ -1379,3 +1377,4 @@ MapObject.FishingCraftingStation=渔具加工站
 MapObject.BuriedDirtChest=被掩埋的土箱
 MapObject.Dungeon=地牢
 MapObject.Crustacium=硬壳
+MapObject.WallClocks=挂钟
