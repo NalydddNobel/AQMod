@@ -158,13 +158,12 @@ ItemTooltipExtra.Cosmicanon=按下{0}以开关效果
 ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=阻止血月: {0}
 ItemTooltipExtra.Cosmicanon.GlimmersPrevented=阻止微光事件: {0}
 ItemTooltipExtra.Cosmicanon.EclipsesPrevented=阻止日食: {0}
+
 ToggleCosmicanon.False=事件可自然发生
 ToggleCosmicanon.True=事件不再自然发生
 
 ItemName.EquivalenceMachine=等均仪
-ItemTooltip.EquivalenceMachine=附近的物品会漂浮而非下落\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
-EquivalenceMachineToggle.False=附近的物品现在会下落
-EquivalenceMachineToggle.True=附近的物品现在会漂浮
+ItemTooltip.EquivalenceMachine=附近的物品会现在漂浮而非下落
 
 ItemName.GhostlyGrave=幽魂冢
 ItemTooltip.GhostlyGrave=可在你死亡后阻止墓碑的生成
@@ -388,6 +387,7 @@ EventName.DemonSiege=恶魔围攻
 BossChecklistDesc.DemonSiege=在血巢处使用 {0} 召唤.
 
 EventName.GlimmerEvent=微光事件
+EventProgress.GlimmerEvent=离中心 {0} 格远
 BossChecklistDesc.GlimmerEvent=在夜晚自然开始. 也可以使用 [i:{0}] 召唤. 在太阳升起时结束.
 EventWarning.GlimmerEvent=天空中闪烁着微光...
 EventEnding.GlimmerEvent=微光渐渐消失...
@@ -412,6 +412,12 @@ RecipeGroup.AnyEel=任意鳗鱼
 # Config
 
 Config.RequiresReload=需要重新加载.
+
+UIConfiguration.Name=UI选项
+UIConfiguration.Header.UI=用户界面
+
+UIConfiguration.MapUITogglesPosition=地图UI: 图标切换位置
+UIConfiguration.MapUITogglesPositionTooltip=移动在地图上的图标切换UI, 如果它的位置发生变化则会立即投射至地图上的对应位置
 
 DiscordRichPresenceConfig.Name=Discord Rich Presence
 DiscordRichPresenceConfig.Header.DRP=[c/eeffee:选项]
@@ -512,8 +518,8 @@ WorldGenOptions.Header.ChestLoot=宝箱战利品:
 WorldGenOptions.overrideVanillaChestLoot=覆盖原版宝箱战利品
 WorldGenOptions.overrideVanillaChestLootTooltip=决定Aequus Mod中的特殊物品是否会覆盖箱子中的普通战利品\n若禁用, 则Aequus Mod中的特殊物品会和原版中的普通战利品一起生成.
 
-WorldGenOptions.generateOceanRavines=海沟
-WorldGenOptions.generateOceanRavinesTooltip=决定是否生成海沟.
+WorldGenOptions.generateOceanRavines=蟹状裂隙
+WorldGenOptions.generateOceanRavinesTooltip=决定是否生成蟹状裂隙.
 
 WorldGenOptions.fixBabyPools=修复小水坑
 WorldGenOptions.fixBabyPoolsTooltip=移除地表上生成的1格物块高的水坑.\n可能会导致在地表生成的与水有关的构造出现小问题.
