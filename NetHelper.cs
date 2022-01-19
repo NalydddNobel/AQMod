@@ -346,6 +346,7 @@ namespace AQMod
                         if (Main.netMode == NetmodeID.Server) // do not run on multiplayer clients!
                         {
                             AQMod.spawnStarite = true;
+                            WorldDefeats.OmegaStariteIntroduction = true;
                             l?.Log("Setting AQMod.spawnStarite to true!");
                         }
                     }

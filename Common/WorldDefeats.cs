@@ -30,6 +30,7 @@ namespace AQMod.Common
 
         public static bool HunterIntroduction { get; set; }
         public static bool PhysicistIntroduction { get; set; }
+        public static bool OmegaStariteIntroduction { get; set; }
 
         public static bool TownNPCLavaImmunity { get; set; }
         public static bool TownNPCMoveAtNight { get; set; }
@@ -59,6 +60,10 @@ namespace AQMod.Common
 
             HunterIntroduction = false;
             PhysicistIntroduction = false;
+            OmegaStariteIntroduction = false;
+
+            TownNPCLavaImmunity = false;
+            TownNPCMoveAtNight = false;
         }
 
         public override TagCompound Save()
@@ -83,6 +88,7 @@ namespace AQMod.Common
 
                 ["HunterIntroduction"] = HunterIntroduction,
                 ["PhysicistIntroduction"] = PhysicistIntroduction,
+                ["OmegaStariteIntroduction"] = OmegaStariteIntroduction,
 
                 ["IWillBeBackLavaImmunity"] = TownNPCLavaImmunity,
                 ["TownNPCMoveAtNight"] = TownNPCMoveAtNight,
@@ -109,6 +115,7 @@ namespace AQMod.Common
 
             HunterIntroduction = tag.GetBool("HunterIntroduction");
             PhysicistIntroduction = tag.GetBool("PhysicistIntroduction");
+            OmegaStariteIntroduction = tag.GetBool("OmegaStariteIntroduction");
 
             TownNPCLavaImmunity = tag.GetBool("IWillBeBackLavaImmunity");
             TownNPCMoveAtNight = tag.GetBool("TownNPCMoveAtNight");
@@ -131,6 +138,7 @@ namespace AQMod.Common
             writer.Write(DownedSpaceSquid);
             writer.Write(TownNPCLavaImmunity);
             writer.Write(TownNPCMoveAtNight);
+            writer.Write(OmegaStariteIntroduction);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -154,6 +162,7 @@ namespace AQMod.Common
 
             TownNPCLavaImmunity = reader.ReadBoolean();
             TownNPCMoveAtNight = reader.ReadBoolean();
+            OmegaStariteIntroduction = reader.ReadBoolean();
         }
 
         internal static bool AnyBossDefeated()

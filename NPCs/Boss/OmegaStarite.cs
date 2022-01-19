@@ -144,7 +144,7 @@ namespace AQMod.NPCs.Boss
 
         public override BossEntry? BossChecklistEntry => new BossEntry(
             () => WorldDefeats.DownedStarite,
-            6.1f,
+            6f,
             ModContent.NPCType<OmegaStarite>(),
             AQText.chooselocalizationtext(en_US: "Omega Starite", zh_Hans: "终末之星"),
             ModContent.ItemType<NovaFruit>(),
@@ -169,7 +169,9 @@ namespace AQMod.NPCs.Boss
             AQText.chooselocalizationtext(
                 en_US: "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event.",
                 zh_Hans: null),
-            "AQMod/Assets/BossChecklist/OmegaStarite"
+            "AQMod/Assets/BossChecklist/OmegaStarite",
+            null, 
+            () => WorldDefeats.OmegaStariteIntroduction || WorldDefeats.OmegaStariteIntroduction || Main.hardMode
         );
 
         public override void SetStaticDefaults()

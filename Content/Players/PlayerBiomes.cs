@@ -59,12 +59,26 @@ namespace AQMod.Content.Players
             {
                 return ModContent.GetTexture("Terraria/MapBG12");
             }
-            if (!player.ZoneCorrupt && !player.ZoneCrimson && !player.ZoneHoly && !player.ZoneDesert && !player.ZoneJungle)
+            if (!player.ZoneCorrupt && !player.ZoneCrimson && !player.ZoneHoly && !player.ZoneJungle)
             {
                 if (player.position.Y < Main.worldSurface * 16f)
                 {
-                    if (GlimmerEvent.IsGlimmerEventCurrentlyActive())
+                    if (!player.ZoneDesert && GlimmerEvent.IsGlimmerEventCurrentlyActive())
+                    {
+                        if (GlimmerEvent.GetTileDistanceUsingPlayer(player) < GlimmerEvent.UltraStariteDistance)
+                        {
+                            return ModContent.GetTexture(TexturePaths.MapBackgrounds + "ultimatesword");
+                        }
                         return ModContent.GetTexture(TexturePaths.MapBackgrounds + "glimmerevent");
+                    }
+                    else if (zoneCrabSeason || zoneCrabCrevice)
+                    {
+                        return ModContent.GetTexture(TexturePaths.MapBackgrounds + "crabseason");
+                    }
+                }
+                else if (zoneCrabCrevice)
+                {
+                    return ModContent.GetTexture(TexturePaths.MapBackgrounds + "crabcrevice");
                 }
             }
             return null;

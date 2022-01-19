@@ -387,6 +387,7 @@ EventName.DemonSiege=Demon Siege
 BossChecklistDesc.DemonSiege=Can be summoned using: {0} at a Gore Nest.
 
 EventName.GlimmerEvent=Glimmer Event
+EventProgress.GlimmerEvent={0} tiles away from the center
 BossChecklistDesc.GlimmerEvent=Happens naturally at night. Can alternatively be summoned with a [i:{0}]. Ends when the sun rises.
 EventWarning.GlimmerEvent=A glimmer appears in the sky...
 EventEnding.GlimmerEvent=The glimmer begins to fade away...
@@ -411,6 +412,12 @@ RecipeGroup.AnyEel=Any Eel
 # Config
 
 Config.RequiresReload=Requires a reload.
+
+UIConfiguration.Name=UI Options
+UIConfiguration.Header.UI=User Interface
+
+UIConfiguration.MapUITogglesPosition=Map UI: Icon Toggle Pos
+UIConfiguration.MapUITogglesPositionTooltip=Moves the Icon Toggle UI on the map, instantly snaps onto screen if its position goes off
 
 DiscordRichPresenceConfig.Name=Discord Rich Presence
 DiscordRichPresenceConfig.Header.DRP=[c/eeffee:Options]
@@ -511,8 +518,8 @@ WorldGenOptions.Header.ChestLoot=Chest Loot:
 WorldGenOptions.overrideVanillaChestLoot=Overwrite Vanilla Chest Loot
 WorldGenOptions.overrideVanillaChestLootTooltip=Whether or not special Aequus items will overwrite vanilla items in chests.\nIf this is disabled, Aequus loot will generate with all previous loot intact.
 
-WorldGenOptions.generateOceanRavines=Ocean Ravines
-WorldGenOptions.generateOceanRavinesTooltip=Whether or not to generate ocean ravines.
+WorldGenOptions.generateOceanRavines=Crab Crevice
+WorldGenOptions.generateOceanRavinesTooltip=Whether or not to generate the crab crevice.
 
 WorldGenOptions.fixBabyPools=Fix Baby Pools
 WorldGenOptions.fixBabyPoolsTooltip=Removes those 1 block tall pools of water which generate on the surface.\nMay cause minor issues with structures that generate on the surface with water.

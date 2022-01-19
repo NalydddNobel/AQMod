@@ -1,4 +1,5 @@
-﻿using AQMod.Common.Graphics;
+﻿using AQMod.Common;
+using AQMod.Common.Graphics;
 using AQMod.Content.Players;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
@@ -118,6 +119,7 @@ namespace AQMod.Effects
                                     if (Main.netMode == NetmodeID.SinglePlayer)
                                     {
                                         AQMod.spawnStarite = true;
+                                        WorldDefeats.OmegaStariteIntroduction = true;
                                     }
                                     else
                                     {
