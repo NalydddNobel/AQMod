@@ -146,7 +146,10 @@ namespace AQMod.NPCs.Boss
             () => WorldDefeats.DownedStarite,
             6f,
             ModContent.NPCType<OmegaStarite>(),
-            AQText.chooselocalizationtext(en_US: "Omega Starite", zh_Hans: "终末之星"),
+            AQText.chooselocalizationtext(
+                en_US: "Omega Starite", 
+                zh_Hans: "终末之星",
+                ru_RU: "Омега Жизнезвезда"),
             ModContent.ItemType<NovaFruit>(),
             new List<int>() {
                 ModContent.ItemType<Items.Accessories.CelesteTorus>(),
@@ -168,7 +171,8 @@ namespace AQMod.NPCs.Boss
             },
             AQText.chooselocalizationtext(
                 en_US: "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event.",
-                zh_Hans: null),
+                zh_Hans: "在夜晚使用 [i:" + ModContent.ItemType<NovaFruit>() + "] 召唤. 也可以与微光事件中心的剑交互来召唤.",
+                ru_RU: "Можно призвать используя [i:" + ModContent.ItemType<NovaFruit>() + "] ночью. Также можно призвать взаимодействуя с мечом который расположен в центре Мерцающего События."),
             "AQMod/Assets/BossChecklist/OmegaStarite",
             null, 
             () => WorldDefeats.OmegaStariteIntroduction || WorldDefeats.OmegaStariteIntroduction || Main.hardMode
