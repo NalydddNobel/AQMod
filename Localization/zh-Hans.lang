@@ -253,9 +253,15 @@ ItemTooltip.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视�
 BuffName.PeeledCarrot=胡龙卜
 BuffDescription.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视能力
 
+# Tiles
+ItemName.SedimentSandBlock=沉积沙块
+
 # Furniture
 ItemName.CrabClock=螃蟹挂钟
 ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
+
+# Walls
+ItemName.OceanRavineWall=蟹状裂隙墙
 
 # Tooltips
 Tooltips.Unobtainable=自另一宇宙形成的遗物
@@ -512,13 +518,13 @@ WorldGenOptions.generateOceanRavinesTooltip=决定是否生成海沟.
 WorldGenOptions.fixBabyPools=修复小水坑
 WorldGenOptions.fixBabyPoolsTooltip=移除地表上生成的1格物块高的水坑.\n可能会导致在地表生成的与水有关的构造出现小问题.
 
-WorldGen.CrabCrevice=Aequus: 正在生成蟹状裂痕
-WorldGen.CrabCrevice.Sand=Aequus: 正在生成蟹状裂痕... 沙圈
-WorldGen.CrabCrevice.Caves=Aequus: 正在生成蟹状裂痕... 洞穴
-WorldGen.CrabCrevice.FinalCave=Aequus: 正在生成蟹状裂痕... 大型洞穴
-WorldGen.CrabCrevice.Chests=Aequus: 正在生成蟹状裂痕... 宝藏
-WorldGen.CrabCrevice.Vines=Aequus: 正在生成蟹状裂痕... 植被
-WorldGen.CrabCrevice.Ores=Aequus: 正在生成蟹状裂痕... 矿石
+WorldGen.CrabCrevice=Aequus: 正在生成蟹状裂隙
+WorldGen.CrabCrevice.Sand=Aequus: 正在生成蟹状裂隙... 沙圈
+WorldGen.CrabCrevice.Caves=Aequus: 正在生成蟹状裂隙... 洞穴
+WorldGen.CrabCrevice.FinalCave=Aequus: 正在生成蟹状裂隙... 大型洞穴
+WorldGen.CrabCrevice.Chests=Aequus: 正在生成蟹状裂隙... 宝藏
+WorldGen.CrabCrevice.Vines=Aequus: 正在生成蟹状裂隙... 植被
+WorldGen.CrabCrevice.Ores=Aequus: 正在生成蟹状裂隙... 矿石
 
 WorldGen.Fix1TileHighWater=Aequus: 正在修复小水坑
 WorldGen.BuriedDirtChests=Aequus: 正在生成被掩埋的土箱
