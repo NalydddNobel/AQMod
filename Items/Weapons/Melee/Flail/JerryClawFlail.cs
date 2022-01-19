@@ -17,11 +17,11 @@ namespace AQMod.Items.Weapons.Melee.Flail
             item.height = 30;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = AQItem.Rarities.CrabsonWeaponRare;
+            item.rare = AQItem.Rarities.CrabCreviceRare;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.JerryClawFlail>();
             item.shootSpeed = 22f;
             item.UseSound = SoundID.Item1;
-            item.value = AQItem.Prices.CrabsonWeaponValue;
+            item.value = AQItem.Prices.CrabCreviceValue;
             item.noMelee = true;
             item.noUseGraphic = true;
             item.channel = true;

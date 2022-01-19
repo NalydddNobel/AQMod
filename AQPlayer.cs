@@ -1,12 +1,9 @@
-﻿using AQMod.Assets;
-using AQMod.Buffs.Debuffs;
+﻿using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Temperature;
-using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
 using AQMod.Content;
 using AQMod.Content.Fishing;
 using AQMod.Content.Players;
-using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
@@ -22,16 +19,13 @@ using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Pets;
 using AQMod.Projectiles.Summon;
-using AQMod.Walls;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Achievements;
 using Terraria.GameInput;
-using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -61,7 +55,6 @@ namespace AQMod
         public float discountPercentage;
         public bool blueSpheres;
         public bool hyperCrystal;
-        public bool monoxiderBird;
         public bool sparkling;
         public bool chloroTransfer;
         public bool altEvilDrops;
@@ -85,7 +78,7 @@ namespace AQMod
         public bool omori;
         public int omoriDeathTimer;
         public int spelunkerEquipTimer;
-        public bool microStarite;
+        public bool omegaStarite;
         public byte spoiled;
         public bool wyvernAmulet;
         public bool voodooAmulet;
@@ -100,41 +93,14 @@ namespace AQMod
         public int celesteTorusMaxRadius;
         public float celesteTorusSpeed;
         public float celesteTorusScale;
-        public bool stariteMinion;
         public bool spicyEel;
         public bool striderPalms;
         public bool striderPalmsOld;
         public bool wyvernAmuletHeld;
         public bool voodooAmuletHeld;
         public bool ghostAmuletHeld;
-        public bool[] veinmineTiles;
         public bool degenerationRing;
         public ushort shieldLife;
-
-        public bool crimsonHands;
-        public bool chomper;
-        public bool piranhaPlant;
-        public bool trapperImp;
-
-        public bool cosmicMap;
-        public bool dungeonMap;
-        public bool lihzahrdMap;
-        public bool retroMap;
-        public bool showCosmicMap = true;
-        public bool showDungeonMap = true;
-        public bool showLihzahrdMap = true;
-        public bool showRetroMap = true;
-        public byte nearGlobe;
-        public ushort globeX;
-        public ushort globeY;
-        public bool hasMinionCarry;
-        public int headMinionCarryX;
-        public int headMinionCarryY;
-        public int headMinionCarryXOld;
-        public int headMinionCarryYOld;
-        public byte monoxiderCarry;
-
-        public bool heartMoth;
         public bool notFrostburn;
         public bool bossrush;
         public bool bossrushOld;
@@ -153,20 +119,38 @@ namespace AQMod
         public bool ignoreMoons;
         public bool cosmicanon;
         public bool antiGravityItems;
-        public bool hasEquivalenceMachine;
         public bool hotAmulet;
         public bool coldAmulet;
         public bool shockCollar;
         public bool healBeforeDeath;
         public bool glowString;
+        public bool pearlAmulet;
 
-        public int PopperType { get; set; }
-        public int PopperBaitPower { get; set; }
-        public int FishingPowerCache { get; set; }
-        public int ExtractinatorCount { get; set; }
+        public bool heartMoth;
 
-        public bool IgnoreIgnoreMoons { get; set; }
-        public bool IgnoreAntiGravityItems { get; set; }
+        public bool crimsonHands;
+        public bool chomper;
+        public bool piranhaPlant;
+        public bool trapperImp;
+        public bool starite;
+        public bool monoxiderBird;
+
+        public bool hasMinionCarry;
+        public int headMinionCarryX;
+        public int headMinionCarryY;
+        public int headMinionCarryXOld;
+        public int headMinionCarryYOld;
+        public byte monoxiderCarry;
+
+        public bool[] VeinmineTiles;
+
+        public int popperType;
+        public int popperBaitPower;
+        public int fishingPowerCache;
+
+        public int ExtractinatorCount;
+
+        public bool IgnoreIgnoreMoons;
 
         public override void Initialize()
         {
@@ -174,16 +158,11 @@ namespace AQMod
             arachnotron = false;
             spoiled = 0;
             sparkling = false;
-            nearGlobe = 0;
             headMinionCarryX = 0;
             headMinionCarryY = 0;
             headMinionCarryXOld = 0;
             headMinionCarryYOld = 0;
             monoxiderCarry = 0;
-            showCosmicMap = true;
-            showDungeonMap = true;
-            showLihzahrdMap = true;
-            showRetroMap = true;
             _moneyTroughHack = null;
             _moneyTroughHackIndex = -1;
             notFrostburn = false;
@@ -208,13 +187,11 @@ namespace AQMod
             {
                 ["extractinatorCount"] = ExtractinatorCount,
                 ["IgnoreIgnoreMoons"] = IgnoreIgnoreMoons,
-                ["IgnoreAntiGravityItems"] = IgnoreAntiGravityItems,
             };
         }
 
         public override void Load(TagCompound tag)
         {
-            IgnoreAntiGravityItems = tag.GetBool("IgnoreAntiGravityItems");
             IgnoreIgnoreMoons = tag.GetBool("IgnoreIgnoreMoons");
             ExtractinatorCount = tag.GetInt("extractinatorCount");
         }
@@ -331,21 +308,21 @@ namespace AQMod
             arachnotron = false;
             primeTime = false;
             omori = false;
-            microStarite = false;
+            omegaStarite = false;
             spoiled = 0;
             wyvernAmulet = false;
             voodooAmulet = false;
             ghostAmulet = false;
             extractinatorVisible = false;
             altEvilDrops = false;
-            stariteMinion = false;
+            starite = false;
             spicyEel = false;
             striderPalmsOld = striderPalms;
             striderPalms = false;
             ghostAmuletHeld = InVanitySlot(player, ModContent.ItemType<GhostAmulet>());
             voodooAmuletHeld = InVanitySlot(player, ModContent.ItemType<VoodooAmulet>());
             wyvernAmuletHeld = InVanitySlot(player, ModContent.ItemType<WyvernAmulet>());
-            veinmineTiles = new bool[TileLoader.TileCount];
+            VeinmineTiles = new bool[TileLoader.TileCount];
             shieldLife = 0;
 
             crimsonHands = false;
@@ -353,8 +330,6 @@ namespace AQMod
             piranhaPlant = false;
             trapperImp = false;
 
-            dungeonMap = false;
-            lihzahrdMap = false;
             headMinionCarryXOld = headMinionCarryX;
             headMinionCarryYOld = headMinionCarryY;
             headMinionCarryX = 0;
@@ -371,10 +346,10 @@ namespace AQMod
             cosmicanon = false;
             ignoreMoons = false;
             antiGravityItems = false;
-            hasEquivalenceMachine = false;
             shockCollar = false;
             healBeforeDeath = false;
             glowString = false;
+            pearlAmulet = false;
             if (extraHP > 60) // to cap life max buffs at 60
             {
                 extraHP = 60;
@@ -418,8 +393,6 @@ namespace AQMod
             }
             bossrushOld = bossrush;
             bossrush = false;
-            if (nearGlobe > 0)
-                nearGlobe--;
             if (!dartHead)
                 dartTrapHatTimer = 240;
             dartHead = false;
@@ -456,18 +429,6 @@ namespace AQMod
                 else
                 {
                     Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
-                }
-            }
-            if (hasEquivalenceMachine && AQMod.Keybinds.EquivalenceMachineToggle.JustPressed)
-            {
-                IgnoreAntiGravityItems = !IgnoreAntiGravityItems;
-                if (IgnoreAntiGravityItems)
-                {
-                    Main.NewText(Language.GetTextValue("Mods.AQMod.EquivalenceMachineToggle.False"), new Color(230, 230, 255, 255));
-                }
-                else
-                {
-                    Main.NewText(Language.GetTextValue("Mods.AQMod.EquivalenceMachineToggle.True"), new Color(230, 230, 255, 255));
                 }
             }
         }

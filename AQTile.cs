@@ -108,7 +108,7 @@ namespace AQMod
             {
                 try
                 {
-                    if (Main.player[Main.myPlayer].HeldItem.pick > 0 && Player.tileTargetX == i && Player.tileTargetY == j && Main.player[Main.myPlayer].GetModPlayer<AQPlayer>().veinmineTiles[type])
+                    if (Main.player[Main.myPlayer].HeldItem.pick > 0 && Player.tileTargetX == i && Player.tileTargetY == j && Main.player[Main.myPlayer].GetModPlayer<AQPlayer>().VeinmineTiles[type])
                     {
                         noItem = true;
                         _veinmine = true;

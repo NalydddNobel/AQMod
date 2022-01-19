@@ -1,12 +1,9 @@
-﻿using AQMod.Localization;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.Localization;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories
 {
-    public class EquivalenceMachine : ModItem, IUpdatePiggybank
+    public class EquivalenceMachine : ModItem
     {
         public override void SetDefaults()
         {
@@ -17,38 +14,9 @@ namespace AQMod.Items.Accessories
             item.value = Item.buyPrice(gold: 80);
         }
 
-        private void Update(Player player)
-        {
-            var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.hasEquivalenceMachine = true;
-            if (!aQPlayer.IgnoreAntiGravityItems)
-                aQPlayer.antiGravityItems = true;
-        }
-
-        public override void UpdateInventory(Player player)
-        {
-            Update(player);
-        }
-
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            Update(player);
-        }
-
-        void IUpdatePiggybank.UpdatePiggyBank(Player player, int i)
-        {
-            Update(player);
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            foreach (var t in tooltips)
-            {
-                if (t.mod == "Terraria" && t.Name == "Tooltip1")
-                {
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.Tooltips.ToggleKeyBind", AQText.KeybindText(AQMod.Keybinds.EquivalenceMachineToggle));
-                }
-            }
+            player.GetModPlayer<AQPlayer>().antiGravityItems = true;
         }
     }
 }

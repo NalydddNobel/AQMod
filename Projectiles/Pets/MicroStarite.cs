@@ -31,8 +31,8 @@ namespace AQMod.Projectiles.Pets
             Player player = Main.player[projectile.owner];
             AQPlayer aQPlayer = player.GetModPlayer<AQPlayer>();
             if (player.dead)
-                aQPlayer.microStarite = false;
-            if (aQPlayer.microStarite)
+                aQPlayer.omegaStarite = false;
+            if (aQPlayer.omegaStarite)
                 projectile.timeLeft = 2;
             Vector2 gotoPos = player.Center;
             var center = projectile.Center;

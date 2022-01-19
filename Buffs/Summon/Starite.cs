@@ -16,9 +16,9 @@ namespace AQMod.Buffs.Summon
             var aQPlayer = player.GetModPlayer<AQPlayer>();
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.Starite>()] > 0)
             {
-                aQPlayer.stariteMinion = true;
+                aQPlayer.starite = true;
             }
-            if (!aQPlayer.stariteMinion)
+            if (!aQPlayer.starite)
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;

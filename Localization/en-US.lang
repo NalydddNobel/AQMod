@@ -158,13 +158,12 @@ ItemTooltipExtra.Cosmicanon=You can toggle this function by pressing {0}
 ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=Blood Moons Prevented: {0}
 ItemTooltipExtra.Cosmicanon.GlimmersPrevented=Glimmer Events Prevented: {0}
 ItemTooltipExtra.Cosmicanon.EclipsesPrevented=Eclipses Prevented: {0}
+
 ToggleCosmicanon.False=Moon events can occur again
 ToggleCosmicanon.True=Moon events can no longer occur
 
 ItemName.EquivalenceMachine=Equivalence Machine
-ItemTooltip.EquivalenceMachine=Nearby items float instead of falling\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
-EquivalenceMachineToggle.False=Nearby items will now fall
-EquivalenceMachineToggle.True=Nearby items will now float
+ItemTooltip.EquivalenceMachine=Nearby items float instead of falling
 
 ItemName.GhostlyGrave=Ghostly Grave
 ItemTooltip.GhostlyGrave=Can disable graves from spawning upon your death

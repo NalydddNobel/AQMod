@@ -556,9 +556,9 @@ namespace AQMod.Common.DeveloperTools
                 case "fish":
                     {
                         var aQPlayer = caller.Player.GetModPlayer<AQPlayer>();
-                        caller.Reply("fishing power cache: " + aQPlayer.FishingPowerCache.ToString());
-                        caller.Reply("popper power: " + aQPlayer.PopperBaitPower.ToString());
-                        caller.Reply("popper type: " + aQPlayer.PopperType.ToString() + "( [i:" + aQPlayer.PopperType.ToString() + "] )");
+                        caller.Reply("fishing power cache: " + aQPlayer.fishingPowerCache.ToString());
+                        caller.Reply("popper power: " + aQPlayer.popperBaitPower.ToString());
+                        caller.Reply("popper type: " + aQPlayer.popperType.ToString() + "( [i:" + aQPlayer.popperType.ToString() + "] )");
                     }
                     break;
 

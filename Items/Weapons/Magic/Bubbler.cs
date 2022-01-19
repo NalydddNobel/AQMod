@@ -28,7 +28,7 @@ namespace AQMod.Items.Weapons.Magic
             item.mana = 5;
             item.autoReuse = true;
             item.UseSound = SoundID.Item85;
-            item.value = AQItem.Prices.CrabsonWeaponValue;
+            item.value = AQItem.Prices.CrabCreviceValue;
             item.noMelee = true;
         }
 

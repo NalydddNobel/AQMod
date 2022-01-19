@@ -202,20 +202,20 @@ namespace AQMod
                 if (projectile.ai[1] > 0f && projectile.localAI[1] >= 0f) // on catch effects
                 {
                     var aQPlayer = Main.player[projectile.owner].GetModPlayer<AQPlayer>();
-                    if (aQPlayer.PopperType > 0)
+                    if (aQPlayer.popperType > 0)
                     {
                         var item = new Item();
-                        item.SetDefaults(aQPlayer.PopperType);
+                        item.SetDefaults(aQPlayer.popperType);
                         ((PopperBaitItem)item.modItem).OnCatchEffect(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
                     }
                 }
                 else if (projectile.ai[0] <= 0f && projectile.wet && projectile.rotation != 0f) // When it enters the water
                 {
                     var aQPlayer = Main.player[projectile.owner].GetModPlayer<AQPlayer>();
-                    if (aQPlayer.PopperType > 0)
+                    if (aQPlayer.popperType > 0)
                     {
                         var item = new Item();
-                        item.SetDefaults(aQPlayer.PopperType);
+                        item.SetDefaults(aQPlayer.popperType);
                         ((PopperBaitItem)item.modItem).PopperEffects(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
                     }
                 }

@@ -23,9 +23,9 @@ namespace AQMod.Items.Accessories
             if (!hideVisual)
             {
                 aQPlayer.extractinatorVisible = true;
-                aQPlayer.veinmineTiles[TileID.Silt] = true;
-                aQPlayer.veinmineTiles[TileID.Slush] = true;
-                aQPlayer.veinmineTiles[TileID.DesertFossil] = true;
+                aQPlayer.VeinmineTiles[TileID.Silt] = true;
+                aQPlayer.VeinmineTiles[TileID.Slush] = true;
+                aQPlayer.VeinmineTiles[TileID.DesertFossil] = true;
             }
         }
     }

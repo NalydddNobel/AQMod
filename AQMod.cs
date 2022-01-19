@@ -483,22 +483,22 @@ namespace AQMod
                     int popperPower = popper.GetExtraFishingPower(player, aQPlayer);
                     if (popperPower > 0)
                     {
-                        aQPlayer.PopperType = baitItem.type;
-                        aQPlayer.PopperBaitPower = popperPower;
+                        aQPlayer.popperType = baitItem.type;
+                        aQPlayer.popperBaitPower = popperPower;
                     }
                     else
                     {
-                        aQPlayer.PopperType = 0;
-                        aQPlayer.PopperBaitPower = 0;
+                        aQPlayer.popperType = 0;
+                        aQPlayer.popperBaitPower = 0;
                     }
                 }
                 else
                 {
-                    aQPlayer.PopperType = 0;
-                    aQPlayer.PopperBaitPower = 0;
+                    aQPlayer.popperType = 0;
+                    aQPlayer.popperBaitPower = 0;
                 }
-                aQPlayer.FishingPowerCache = regularLevel + aQPlayer.PopperBaitPower;
-                return aQPlayer.FishingPowerCache;
+                aQPlayer.fishingPowerCache = regularLevel + aQPlayer.popperBaitPower;
+                return aQPlayer.fishingPowerCache;
             }
 
             private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)

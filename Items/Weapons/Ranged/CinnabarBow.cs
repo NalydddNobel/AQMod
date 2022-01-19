@@ -15,12 +15,12 @@ namespace AQMod.Items.Weapons.Ranged
             item.height = 30;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = AQItem.Rarities.CrabsonWeaponRare;
+            item.rare = AQItem.Rarities.CrabCreviceRare;
             item.shoot = ProjectileID.WoodenArrowFriendly;
             item.shootSpeed = 8.5f;
             item.useAmmo = AmmoID.Arrow;
             item.UseSound = SoundID.Item5;
-            item.value = AQItem.Prices.CrabsonWeaponValue;
+            item.value = AQItem.Prices.CrabCreviceValue;
             item.noMelee = true;
             item.knockBack = 6.5f;
         }

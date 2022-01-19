@@ -43,8 +43,8 @@ namespace AQMod.Projectiles.Summon
             var aQPlayer = player.GetModPlayer<AQPlayer>();
             var center = projectile.Center;
             if (player.dead)
-                aQPlayer.stariteMinion = false;
-            if (aQPlayer.stariteMinion)
+                aQPlayer.starite = false;
+            if (aQPlayer.starite)
                 projectile.timeLeft = 2;
 
             if (!projectile.tileCollide)

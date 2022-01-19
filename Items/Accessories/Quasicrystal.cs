@@ -9,7 +9,7 @@ namespace AQMod.Items.Accessories
 {
     public class Quasicrystal : ModItem, IItemOverlaysWorldDraw
     {
-        private static GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<Quasicrystal>("_Glow"), () => new Color(50, 50, 50, 0) * ((float)Math.Sin(Main.GlobalTime * 3f) + 1f));
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<Quasicrystal>("_Glow"), () => new Color(50, 50, 50, 0) * ((float)Math.Sin(Main.GlobalTime * 3f) + 1f));
         IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
 
         public override void SetDefaults()

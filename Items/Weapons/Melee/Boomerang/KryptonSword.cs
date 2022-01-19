@@ -15,7 +15,7 @@ namespace AQMod.Items.Weapons.Melee.Boomerang
             item.damage = 18;
             item.useTime = 20;
             item.useAnimation = 20;
-            item.rare = AQItem.Rarities.CrabsonWeaponRare;
+            item.rare = AQItem.Rarities.CrabCreviceRare;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(silver: 40);
