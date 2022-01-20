@@ -7,7 +7,7 @@ using AQMod.Effects.GoreNest;
 using AQMod.Effects.Wind;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Melee;
-using AQMod.NPCs.Boss.Crabson;
+using AQMod.NPCs.Boss;
 using AQMod.NPCs.Monsters.DemonSiege;
 using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;

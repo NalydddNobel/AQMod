@@ -1,13 +1,6 @@
-﻿using AQMod.Common;
-using AQMod.Common.CrossMod.BossChecklist;
-using AQMod.Items.Placeable.Furniture;
-using AQMod.Localization;
-using AQMod.NPCs.Monsters.CrabSeason;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace AQMod.Content.World.Events
 {
@@ -22,36 +15,6 @@ namespace AQMod.Content.World.Events
 
         public static bool Active => crabSeasonTimer < 0;
         public static short CrabsonCachedID { get; set; } = -1;
-
-        internal override EventEntry? BossChecklistEntry => new EventEntry(
-            () => WorldDefeats.DownedCrabSeason,
-            0.5f,
-            new List<int>() {
-                ModContent.NPCType<ArrowCrab>(),
-                ModContent.NPCType<SoliderCrabs>(),
-                ModContent.NPCType<HermitCrab>(),
-                ModContent.NPCType<StriderCrab>(),
-            },
-            AQText.chooselocalizationtext("Crab Season", "蟹季", "Сезон Крабов"),
-            0,
-            new List<int>()
-            {
-                ModContent.ItemType<Items.Materials.CrabShell>(),
-                ModContent.ItemType<Items.Armor.HermitShell>(),
-                ModContent.ItemType<Items.Armor.StriderCarapace>(),
-                ModContent.ItemType<Items.Armor.StriderPalms>(),
-                ModContent.ItemType<Items.Tools.GrapplingHooks.StriderHook>(),
-            },
-            new List<int>()
-            {
-                ModContent.ItemType<Items.Vanities.FishyFins>(),
-            },
-            AQText.chooselocalizationtext(
-                en_US: "Begins naturally and ends naturally at random times. You can check the time when the event begins and ends using a [i:" + ModContent.ItemType<CrabClock>() + "].",
-                zh_Hans: "在夜晚自然开始. 也可以使用 [i:" + ModContent.ItemType<CrabClock>() + "] 召唤. 在太阳升起时结束.",
-                ru_RU: "Начинается и заканчивается естественным образом в случайное время. Вы можете посмотреть когда событие начинается и заканчивается используя [i:" + ModContent.ItemType<CrabClock>() + "]."),
-            "AQMod/Assets/BossChecklist/CrabSeason",
-            "");
 
         public static bool InActiveZone(Player player)
         {

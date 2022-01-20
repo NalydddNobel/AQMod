@@ -1,8 +1,8 @@
 ﻿using AQMod.Common.ID;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.DrawOverlays;
+using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Vanities.Dyes;
 using AQMod.Localization;
 using AQMod.NPCs.Boss;
 using Terraria;

@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Common.ID;
-using AQMod.Items.Accessories.Barbs;
+using AQMod.Items.Accessories;
 using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;

@@ -4,6 +4,8 @@ using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.ID;
 using AQMod.Content.World.FallingStars;
 using AQMod.Items.BossItems;
+using AQMod.Items.Dyes;
+using AQMod.Items.Tools;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GlimmerEvent;
 using AQMod.Tiles.TileEntities;
@@ -63,10 +65,10 @@ namespace AQMod.Content.World.Events.GlimmerEvent
             },
             new List<int>()
             {
-                ModContent.ItemType<Items.Vanities.CelesitalEightBall>(),
-                ModContent.ItemType<Items.Vanities.Dyes.HypnoDye>(),
-                ModContent.ItemType<Items.Vanities.Dyes.OutlineDye>(),
-                ModContent.ItemType<Items.Vanities.Dyes.ScrollDye>(),
+                ModContent.ItemType<CelesitalEightBall>(),
+                ModContent.ItemType<HypnoDye>(),
+                ModContent.ItemType<OutlineDye>(),
+                ModContent.ItemType<ScrollDye>(),
             },
             AQText.chooselocalizationtext(
                 en_US: "Happens naturally at night. Can alternatively summoned with a [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Ends when the sun rises",

@@ -1,5 +1,5 @@
-﻿using AQMod.Items.Materials.Energies;
-using AQMod.Items.Vanities.CursorDyes;
+﻿using AQMod.Items.Dyes.Cursor;
+using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

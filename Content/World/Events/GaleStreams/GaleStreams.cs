@@ -2,6 +2,7 @@
 using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.ID;
+using AQMod.Items.Dyes;
 using AQMod.Items.Weapons.Melee.Boomerang;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GaleStreams;
@@ -53,9 +54,9 @@ namespace AQMod.Content.World.Events.GaleStreams
             {
                 ModContent.ItemType<Items.BossItems.RedSpriteTrophy>(),
                 ModContent.ItemType<Items.BossItems.SpaceSquidTrophy>(),
-                ModContent.ItemType<Items.Vanities.Dyes.CensorDye>(),
-                ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>(),
-                ModContent.ItemType<Items.Vanities.Dyes.FrostbiteDye>(),
+                ModContent.ItemType<CensorDye>(),
+                ModContent.ItemType<RedSpriteDye>(),
+                ModContent.ItemType<FrostbiteDye>(),
             },
             AQText.chooselocalizationtext(
                 en_US: "Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]",

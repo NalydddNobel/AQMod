@@ -2,7 +2,7 @@
 using AQMod.Common.ID;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.World.Events.GlimmerEvent;
-using AQMod.Items.Vanities.Critters;
+using AQMod.Items.Critters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

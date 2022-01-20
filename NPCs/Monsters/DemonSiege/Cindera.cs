@@ -1,8 +1,8 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
 using AQMod.Items.Accessories;
+using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Vanities.Dyes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

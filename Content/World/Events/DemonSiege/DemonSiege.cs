@@ -3,6 +3,8 @@ using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
+using AQMod.Items.Dyes;
+using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Yoyo;
@@ -149,8 +151,8 @@ namespace AQMod.Content.World.Events.DemonSiege
                     items,
                     new List<int>()
                     {
-                        ModContent.ItemType<Items.Vanities.CursorDyes.DemonicCursorDye>(),
-                        ModContent.ItemType<Items.Vanities.Dyes.HellBeamDye>(),
+                        ModContent.ItemType<DemonicCursorDye>(),
+                        ModContent.ItemType<HellBeamDye>(),
                     },
                     AQText.chooselocalizationtext(
                         en_US: "Can be summoned using: " + summonItems + " at a Gore Nest.",

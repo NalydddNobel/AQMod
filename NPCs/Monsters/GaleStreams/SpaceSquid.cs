@@ -4,6 +4,7 @@ using AQMod.Dusts;
 using AQMod.Dusts.GaleStreams;
 using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
+using AQMod.Items.Dyes;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Localization;
 using AQMod.Sounds;
@@ -602,7 +603,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
             if (Main.rand.NextBool(2))
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.Dyes.FrostbiteDye>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<FrostbiteDye>());
             }
             if (Main.rand.NextBool(8))
             {

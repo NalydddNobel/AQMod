@@ -1,7 +1,8 @@
 ﻿using AQMod.Buffs.Debuffs;
+using AQMod.Items.Dyes;
 using AQMod.Items.Foods.GlimmerEvent;
 using AQMod.Items.Placeable.Banners;
-using AQMod.Items.Vanities.Dyes;
+using AQMod.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -276,7 +277,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
         public override void NPCLoot()
         {
             if (Main.rand.NextBool(50))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.CelesitalEightBall>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<CelesitalEightBall>());
             if (NPC.downedBoss1)
             {
                 if (Main.rand.NextBool(10))

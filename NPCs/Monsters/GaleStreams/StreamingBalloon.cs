@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Content.Seasonal.Christmas;
+using AQMod.Items.Dyes.Hair;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -115,7 +116,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                                 ItemID.ShinyRedBalloon,
                                 ItemID.Starfury,
                                 ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>(),
-                                ModContent.ItemType<Items.Vanities.HairDyes.TemperatureHairDye>(),
+                                ModContent.ItemType<TemperatureHairDye>(),
                             };
                             if (WorldDefeats.SudoHardmode)
                             {

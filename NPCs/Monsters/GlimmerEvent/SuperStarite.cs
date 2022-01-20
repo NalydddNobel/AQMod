@@ -1,9 +1,9 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
+using AQMod.Items.Dyes;
 using AQMod.Items.Foods.GlimmerEvent;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
-using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

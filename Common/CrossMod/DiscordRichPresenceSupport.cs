@@ -4,7 +4,6 @@ using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.NPCs.Boss;
-using AQMod.NPCs.Boss.Crabson;
 using AQMod.NPCs.Monsters.GaleStreams;
 using System;
 using System.Collections.Generic;

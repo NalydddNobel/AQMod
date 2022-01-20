@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Gores;
+using AQMod.Items.Dyes;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Weapons.Melee.Boomerang;
 using Microsoft.Xna.Framework;
@@ -411,7 +412,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 }
                 if (Main.rand.NextBool(10))
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.Dyes.CensorDye>(), Main.rand.NextVRand(1, 3));
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<CensorDye>(), Main.rand.NextVRand(1, 3));
                 }
             }
             if (Main.rand.NextBool(100))

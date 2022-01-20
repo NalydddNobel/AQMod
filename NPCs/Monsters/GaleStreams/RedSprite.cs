@@ -3,6 +3,7 @@ using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics;
 using AQMod.Dusts.GaleStreams;
 using AQMod.Effects.ScreenEffects;
+using AQMod.Items.Dyes;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Localization;
 using AQMod.Sounds;
@@ -932,7 +933,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
             if (Main.rand.NextBool(2))
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<RedSpriteDye>());
             }
             if (Main.rand.NextBool(4))
             {
@@ -1019,7 +1020,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     new List<int>()
                     {
                         ModContent.ItemType<Items.BossItems.RedSpriteTrophy>(),
-                        ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>(),
+                        ModContent.ItemType<RedSpriteDye>(),
                     },
                     AQText.chooselocalizationtext(
                         en_US: "Occasionally appears during the Gale Streams!",

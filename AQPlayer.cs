@@ -125,6 +125,7 @@ namespace AQMod
         public bool pearlAmulet;
 
         public bool heartMoth;
+        public bool anglerFish;
 
         public bool crimsonHands;
         public bool chomper;
@@ -292,7 +293,10 @@ namespace AQMod
             headMinionCarryX = 0;
             headMinionCarryY = 0;
             monoxiderCarry = 0;
+
             heartMoth = false;
+            anglerFish = false;
+
             notFrostburn = false;
             grabReachMult = 1f;
             mothmanMask = false;

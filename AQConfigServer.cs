@@ -1,5 +1,4 @@
 ﻿using AQMod.NPCs.Boss;
-using AQMod.NPCs.Boss.Crabson;
 using System.ComponentModel;
 using Terraria;
 using Terraria.ModLoader;

@@ -2,6 +2,8 @@
 using AQMod.Common.ID;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Accessories.FishingSeals;
+using AQMod.Items.Accessories.Vanity;
+using AQMod.Items.Dyes;
 using AQMod.Items.Foods;
 using AQMod.Items.Foods.Dungeon;
 using System.Collections.Generic;
@@ -35,7 +37,7 @@ namespace AQMod.NPCs
                 case NPCID.Clothier:
                     if (Main.eclipse)
                     {
-                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.MonoxideHat>());
+                        shop.item[nextSlot].SetDefaults(ModContent.ItemType<MonoxideHat>());
                         nextSlot++;
                     }
                     break;
@@ -65,17 +67,17 @@ namespace AQMod.NPCs
                             {
                                 if (Main.moonPhase < 3)
                                 {
-                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.DiscoDye>());
+                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<DiscoDye>());
                                     nextSlot++;
                                 }
                                 else if (Main.moonPhase > 4)
                                 {
-                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
+                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<EnchantedDye>());
                                     nextSlot++;
                                 }
                                 else
                                 {
-                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Vanities.Dyes.RainbowOutlineDye>());
+                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<RainbowOutlineDye>());
                                     nextSlot++;
                                 }
                             }

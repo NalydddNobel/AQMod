@@ -1,7 +1,7 @@
 ﻿using AQMod.Common.ID;
 using AQMod.Items.Materials;
 using AQMod.Localization;
-using AQMod.NPCs.Boss.Crabson;
+using AQMod.NPCs.Boss;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

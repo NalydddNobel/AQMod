@@ -1,9 +1,10 @@
-﻿using AQMod.Items.BossItems.Crabson;
+﻿using AQMod.Items.Accessories.Vanity;
+using AQMod.Items.BossItems.Crabson;
 using AQMod.Items.BossItems.Starite;
+using AQMod.Items.Dyes;
+using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Placeable.Banners;
-using AQMod.Items.Vanities;
-using AQMod.Items.Vanities.CursorDyes;
-using AQMod.Items.Vanities.Dyes;
+using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Flail;
 using System;

@@ -1046,7 +1046,7 @@ namespace AQMod.Common.DeveloperTools
                     var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
                     Main.spriteBatch.End();
                     BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Shader);
-                    var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<Items.Vanities.Dyes.EnchantedDye>());
+                    var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<Items.Dyes.EnchantedDye>());
                     effect.Apply(null, drawData);
                     drawData.Draw(Main.spriteBatch);
                     Main.spriteBatch.End();

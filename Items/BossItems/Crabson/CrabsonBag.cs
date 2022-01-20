@@ -5,7 +5,7 @@ using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee.Flail;
 using AQMod.Items.Weapons.Ranged;
-using AQMod.NPCs.Boss.Crabson;
+using AQMod.NPCs.Boss;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

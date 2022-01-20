@@ -1,7 +1,7 @@
-﻿using AQMod.Items.Armor;
+﻿using AQMod.Items.Accessories.Vanity;
+using AQMod.Items.Armor;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Vanities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
