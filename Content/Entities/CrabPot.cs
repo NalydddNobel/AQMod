@@ -505,8 +505,8 @@ namespace AQMod.Content.Entities
 
             if (!Main.dedServ)
             {
-                Texture = ModContent.GetTexture("AQMod/Assets/crabPot");
-                HighlightTexture = ModContent.GetTexture("AQMod/Assets/crabPot_highlight");
+                Texture = ModContent.GetTexture("AQMod/Assets/crabpot");
+                HighlightTexture = ModContent.GetTexture("AQMod/Assets/crabpot_highlight");
             }
         }
 
