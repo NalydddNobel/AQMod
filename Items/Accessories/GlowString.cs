@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.Yoyo
+namespace AQMod.Items.Accessories
 {
     public class GlowString : ModItem
     {
