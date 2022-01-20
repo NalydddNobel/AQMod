@@ -17,7 +17,6 @@ namespace AQMod.Items.Pets
             item.UseSound = SoundID.Item2;
             item.value = Item.sellPrice(gold: 1);
             item.rare = ItemRarityID.Green;
-            item.expert = true;
             item.shoot = ModContent.ProjectileType<Projectiles.Pets.AnglerFish>();
             item.buffType = ModContent.BuffType<Buffs.Pets.AnglerFish>();
         }
