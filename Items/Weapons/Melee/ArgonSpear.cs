@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee.Spear
+namespace AQMod.Items.Weapons.Melee
 {
     public class ArgonSpear : ModItem
     {

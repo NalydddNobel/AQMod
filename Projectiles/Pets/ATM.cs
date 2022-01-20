@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Pets
 {
-    public class ATM : ModProjectile, ISuperClunkyMoneyTroughTypeThing
+    public class ATM : ModProjectile, PlayerCustomMoneyTrough.ISuperClunkyMoneyTroughTypeThing
     {
         public override string Texture => "Terraria/Item_" + ItemID.Safe;
 
@@ -56,13 +56,14 @@ namespace AQMod.Projectiles.Pets
                 if (Main.mouseRight && Main.mouseRightRelease && Player.StopMoneyTroughFromWorking == 0)
                 {
                     Main.mouseRightRelease = false;
+                    PlayerCustomMoneyTrough.ManageMiscThingsToPreventBugsHopefully();
                     if (Main.player[Main.myPlayer].chest == -3)
                     {
-                        AQPlayer.CloseMoneyTrough();
+                        PlayerCustomMoneyTrough.CloseMoneyTrough();
                     }
                     else
                     {
-                        AQPlayer.OpenMoneyTrough(this, projectile.whoAmI);
+                        PlayerCustomMoneyTrough.OpenMoneyTrough(this, projectile.whoAmI);
                     }
                 }
             }
@@ -70,13 +71,13 @@ namespace AQMod.Projectiles.Pets
             return false;
         }
 
-        int ISuperClunkyMoneyTroughTypeThing.ChestType => -3;
-        int ISuperClunkyMoneyTroughTypeThing.ProjectileType => ModContent.ProjectileType<ATM>();
-        void ISuperClunkyMoneyTroughTypeThing.OnOpen()
+        int PlayerCustomMoneyTrough.ISuperClunkyMoneyTroughTypeThing.ChestType => -3;
+        int PlayerCustomMoneyTrough.ISuperClunkyMoneyTroughTypeThing.ProjectileType => ModContent.ProjectileType<ATM>();
+        void PlayerCustomMoneyTrough.ISuperClunkyMoneyTroughTypeThing.OnOpen()
         {
             Main.PlaySound(SoundID.Item97);
         }
-        void ISuperClunkyMoneyTroughTypeThing.OnClose()
+        void PlayerCustomMoneyTrough.ISuperClunkyMoneyTroughTypeThing.OnClose()
         {
             Main.PlaySound(SoundID.Item97);
         }

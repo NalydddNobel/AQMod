@@ -1,7 +1,7 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Items.Tools.Map;
-using AQMod.Items.Weapons.Melee.Dagger;
+using AQMod.Items.Weapons.Melee;
 using AQMod.Tiles.Furniture.Containers;
 using Terraria;
 using Terraria.ID;

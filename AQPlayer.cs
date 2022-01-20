@@ -49,8 +49,6 @@ namespace AQMod
 
         public static bool Fidget_Spinner_Force_Autoswing { get; internal set; }
         public static bool IsQuickBuffing { get; internal set; }
-        internal static int _moneyTroughHackIndex = -1;
-        internal static ISuperClunkyMoneyTroughTypeThing _moneyTroughHack;
 
         public float discountPercentage;
         public bool blueSpheres;
@@ -163,8 +161,6 @@ namespace AQMod
             headMinionCarryXOld = 0;
             headMinionCarryYOld = 0;
             monoxiderCarry = 0;
-            _moneyTroughHack = null;
-            _moneyTroughHackIndex = -1;
             notFrostburn = false;
             bossrush = false;
             bossrushOld = false;
@@ -198,36 +194,6 @@ namespace AQMod
 
         public override void UpdateBiomeVisuals()
         {
-            if (_moneyTroughHack == null)
-                _moneyTroughHackIndex = -1;
-            if (_moneyTroughHackIndex > -1)
-            {
-                if (player.flyingPigChest >= 0 || player.chest != -3 || !Main.projectile[_moneyTroughHackIndex].active || Main.projectile[_moneyTroughHackIndex].type != ModContent.ProjectileType<ATM>())
-                {
-                    _moneyTroughHackIndex = -1;
-                    _moneyTroughHack = null;
-                }
-                else
-                {
-                    player.chestX = ((int)Main.projectile[_moneyTroughHackIndex].position.X + Main.projectile[_moneyTroughHackIndex].width / 2) / 16;
-                    player.chestY = ((int)Main.projectile[_moneyTroughHackIndex].position.Y + Main.projectile[_moneyTroughHackIndex].height / 2) / 16;
-                    if (!player.IsInTileInteractionRange(player.chestX, player.chestY))
-                    {
-                        if (player.chest != -1)
-                            _moneyTroughHack.OnClose();
-                        player.flyingPigChest = -1;
-                        _moneyTroughHackIndex = -1;
-                        player.chest = -1;
-                        Recipe.FindRecipes();
-                    }
-                    else
-                    {
-                        player.flyingPigChest = _moneyTroughHackIndex;
-                        player.chest = -2;
-                        Main.projectile[_moneyTroughHackIndex].type = ProjectileID.FlyingPiggyBank;
-                    }
-                }
-            }
             if (!Main.gamePaused && Main.instance.IsActive)
                 ScreenShakeManager.Update();
         }
@@ -283,15 +249,6 @@ namespace AQMod
 
         public override void ResetEffects()
         {
-            if (Main.myPlayer == player.whoAmI)
-            {
-                if (_moneyTroughHackIndex > -1)
-                {
-                    player.flyingPigChest = -1;
-                    player.chest = _moneyTroughHack.ChestType;
-                    Main.projectile[_moneyTroughHackIndex].type = _moneyTroughHack.ProjectileType;
-                }
-            }
             blueSpheres = false;
             discountPercentage = 0.8f;
             hyperCrystal = false;
@@ -1464,38 +1421,6 @@ namespace AQMod
             if (critChance <= 0)
                 return false;
             return rand.NextBool(100 - critChance);
-        }
-
-        public static bool CloseMoneyTrough()
-        {
-            if (_moneyTroughHack != null)
-            {
-                _moneyTroughHack.OnClose();
-                Main.LocalPlayer.chest = -1;
-                Recipe.FindRecipes();
-                return true;
-            }
-            return false;
-        }
-
-        public static bool OpenMoneyTrough(ISuperClunkyMoneyTroughTypeThing moneyTrough, int index)
-        {
-            if (_moneyTroughHack == null)
-            {
-                _moneyTroughHack = moneyTrough;
-                _moneyTroughHackIndex = index;
-                var plr = Main.LocalPlayer;
-                plr.chest = moneyTrough.ChestType;
-                plr.chestX = (int)(Main.projectile[index].Center.X / 16f);
-                plr.chestY = (int)(Main.projectile[index].Center.Y / 16f);
-                plr.talkNPC = -1;
-                Main.npcShop = 0;
-                Main.playerInventory = true;
-                moneyTrough.OnOpen();
-                Recipe.FindRecipes();
-                return true;
-            }
-            return false;
         }
 
         public static bool InVanitySlot(Player player, int type)

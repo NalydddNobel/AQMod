@@ -5,7 +5,6 @@ using AQMod.Items.Vanities;
 using AQMod.Items.Vanities.CursorDyes;
 using AQMod.Items.Vanities.Dyes;
 using AQMod.Items.Weapons.Melee;
-using AQMod.Items.Weapons.Melee.Dagger;
 using AQMod.Items.Weapons.Melee.Flail;
 using System;
 using Terraria;

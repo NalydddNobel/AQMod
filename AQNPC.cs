@@ -16,7 +16,7 @@ using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Tools.Utility;
 using AQMod.Items.Vanities.CursorDyes;
-using AQMod.Items.Weapons.Melee.Dagger;
+using AQMod.Items.Weapons.Melee;
 using AQMod.NPCs;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters;
@@ -580,9 +580,7 @@ namespace AQMod
         public static bool BossRush { get; private set; }
         public static byte BossRushPlayer { get; private set; }
 
-        private static int _breadsoul = 0;
-
-        public override bool InstancePerEntity => true;
+        public static int BreadsoulTarget = 0;
 
         public bool shimmering;
         /// <summary>
@@ -603,6 +601,8 @@ namespace AQMod
 
         public bool hotDamage;
         public sbyte temperature;
+
+        public override bool InstancePerEntity => true;
 
         public override void ResetEffects(NPC npc)
         {
@@ -687,6 +687,25 @@ namespace AQMod
                         }
                         break;
                 }
+            }
+
+            switch (npc.type) 
+            {
+                case NPCID.Hellbat:
+                case NPCID.Lavabat:
+                case NPCID.LavaSlime:
+                case NPCID.BlazingWheel:
+                case NPCID.FireImp:
+                case NPCID.BurningSphere:
+                case NPCID.MeteorHead:
+                case NPCID.HellArmoredBones:
+                case NPCID.HellArmoredBonesMace:
+                case NPCID.HellArmoredBonesSpikeShield:
+                case NPCID.HellArmoredBonesSword:
+                    {
+                        hotDamage = true;
+                    }
+                    break;
             }
         }
 
@@ -1193,7 +1212,7 @@ namespace AQMod
 
         private void UpdateBreadsoul(NPC npc)
         {
-            _breadsoul = -1;
+            BreadsoulTarget = -1;
             float breadsoulDistance = 2000f;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
@@ -1204,26 +1223,26 @@ namespace AQMod
                     float distance = Vector2.Distance(plr.Center, npc.Center);
                     if (aQPlr.breadsoul && distance < breadsoulDistance)
                     {
-                        _breadsoul = i;
+                        BreadsoulTarget = i;
                         breadsoulDistance = distance;
                     }
                 }
             }
-            if (_breadsoul == -1)
+            if (BreadsoulTarget == -1)
                 return;
             NPCLoader.blockLoot.Add(ItemID.Heart);
             if (npc.boss)
             {
-                BreadsoulHealing.SpawnCluster(Main.player[_breadsoul], npc.Center, npc.Size.Length() / 2f, Main.rand.Next(10, 18), Main.rand.Next(120, 180));
+                BreadsoulHealing.SpawnCluster(Main.player[BreadsoulTarget], npc.Center, npc.Size.Length() / 2f, Main.rand.Next(10, 18), Main.rand.Next(120, 180));
             }
             else
             {
-                var breadsoulCollector = Main.player[_breadsoul].Center;
-                int lowestPercentPlayer = _breadsoul;
-                float lifePercent = Main.player[_breadsoul].statLife / (float)Main.player[_breadsoul].statLifeMax2;
+                var breadsoulCollector = Main.player[BreadsoulTarget].Center;
+                int lowestPercentPlayer = BreadsoulTarget;
+                float lifePercent = Main.player[BreadsoulTarget].statLife / (float)Main.player[BreadsoulTarget].statLifeMax2;
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {
-                    if (i == _breadsoul || Main.player[i].dead || !Main.player[i].active)
+                    if (i == BreadsoulTarget || Main.player[i].dead || !Main.player[i].active)
                         continue;
                     if (Vector2.Distance(breadsoulCollector, Main.player[i].Center) < 2000f)
                     {
@@ -1239,7 +1258,7 @@ namespace AQMod
                     return;
                 int chance = (int)(lifePercent * 40) + Main.player[lowestPercentPlayer].statDefense / 3;
                 if (chance <= 1 || Main.rand.NextBool(chance))
-                    BreadsoulHealing.SpawnCluster(Main.player[_breadsoul], npc.Center, Main.rand.Next(3, 6), Main.rand.Next(25, 35));
+                    BreadsoulHealing.SpawnCluster(Main.player[BreadsoulTarget], npc.Center, Main.rand.Next(3, 6), Main.rand.Next(25, 35));
             }
         }
 

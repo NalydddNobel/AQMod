@@ -20,6 +20,7 @@
     <None Include="Assets\.projects\icon_Halloween.png" />
     <None Include="Assets\.projects\icon_Orig.png" />
     <None Include="Assets\.projects\p_mushroomstuff.ase" />
+    <None Include="Assets\.projects\p_trophy.ase" />
     <None Include="Effects\.comp\fxcompiler.exe" />
     <None Include="Effects\.comp\GlimmerEventBackground.fx" />
     <None Include="Effects\.comp\Microsoft.Xna.Framework.Content.Pipeline.dll" />

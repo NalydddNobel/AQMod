@@ -1,19 +1,15 @@
 ﻿using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee.Spear
+namespace AQMod.Items.Weapons.Melee
 {
     public class HorizonSkies : ModItem, IItemOverlaysWorldDraw
     {
         private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<HorizonSkies>("_Glow"));
         IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
-
-        public static Color Blue => new Color(144, 144, 255, 128);
-        public static Color Orange => new Color(150, 110, 66, 128);
 
         public override void SetDefaults()
         {

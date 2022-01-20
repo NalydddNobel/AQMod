@@ -31,10 +31,10 @@ namespace AQMod.Projectiles.Melee
             Main.projectile[p].direction = projectile.velocity.X < 0f ? -1 : 1;
             for (int i = 0; i < 50; i++)
             {
-                int d = Dust.NewDust(realPos, Main.projectile[p].width, Main.projectile[p].height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Items.Weapons.Melee.Spear.HorizonSkies.Blue);
+                int d = Dust.NewDust(realPos, Main.projectile[p].width, Main.projectile[p].height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, HorizonSkies.BlueDustColoring);
                 Main.dust[d].velocity = Vector2.Normalize(Main.dust[d].position - position) * 10f;
                 Main.dust[d].noGravity = true;
-                d = Dust.NewDust(realPos, Main.projectile[p].width, Main.projectile[p].height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Items.Weapons.Melee.Spear.HorizonSkies.Orange);
+                d = Dust.NewDust(realPos, Main.projectile[p].width, Main.projectile[p].height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, HorizonSkies.OrangeDustColoring);
                 Main.dust[d].velocity = Vector2.Normalize(Main.dust[d].position - position) * 10f;
                 Main.dust[d].noGravity = true;
             }
@@ -71,10 +71,12 @@ namespace AQMod.Projectiles.Melee
             projectile.velocity.Y += 0.04f;
             projectile.velocity.X *= 0.9999f;
             Vector2 center = projectile.Center;
-            int d = Dust.NewDust(center + new Vector2((float)Math.Sin(projectile.ai[0]) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Items.Weapons.Melee.Spear.HorizonSkies.Blue);
+            int d = Dust.NewDust(center + new Vector2((float)Math.Sin(projectile.ai[0]) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, 
+                HorizonSkies.BlueDustColoring);
             Main.dust[d].velocity *= 0.01f;
             Main.dust[d].noGravity = true;
-            d = Dust.NewDust(center + new Vector2((float)Math.Sin(projectile.ai[0] + MathHelper.Pi) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Items.Weapons.Melee.Spear.HorizonSkies.Orange);
+            d = Dust.NewDust(center + new Vector2((float)Math.Sin(projectile.ai[0] + MathHelper.Pi) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, 
+                HorizonSkies.OrangeDustColoring);
             Main.dust[d].velocity *= 0.01f;
             Main.dust[d].noGravity = true;
             projectile.ai[0] += 0.314f;

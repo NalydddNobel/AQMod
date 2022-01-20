@@ -9,6 +9,9 @@ namespace AQMod.Projectiles.Melee
 {
     public class HorizonSkies : ModProjectile
     {
+        public static Color BlueDustColoring => new Color(144, 144, 255, 128);
+        public static Color OrangeDustColoring => new Color(150, 110, 66, 128);
+
         public override void SetDefaults()
         {
             projectile.width = 18;
@@ -60,10 +63,10 @@ namespace AQMod.Projectiles.Melee
                     Projectile.NewProjectile(center, projectile.velocity * 1.2f, ModContent.ProjectileType<HorizonSkiesBolt>(), projectile.damage, projectile.knockBack, projectile.owner, MathHelper.PiOver2);
                     for (int i = 0; i < 30; i++)
                     {
-                        int d = Dust.NewDust(center + new Vector2((float)Math.Sin(i) * 10f, 0f).RotatedBy(rotation), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Items.Weapons.Melee.Spear.HorizonSkies.Blue);
+                        int d = Dust.NewDust(center + new Vector2((float)Math.Sin(i) * 10f, 0f).RotatedBy(rotation), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, BlueDustColoring);
                         Main.dust[d].velocity += projectile.velocity;
                         Main.dust[d].noGravity = true;
-                        d = Dust.NewDust(center + new Vector2((float)Math.Cos(i) * 10f, 0f).RotatedBy(rotation), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Items.Weapons.Melee.Spear.HorizonSkies.Orange);
+                        d = Dust.NewDust(center + new Vector2((float)Math.Cos(i) * 10f, 0f).RotatedBy(rotation), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, OrangeDustColoring);
                         Main.dust[d].velocity += projectile.velocity;
                         Main.dust[d].noGravity = true;
                     }

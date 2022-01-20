@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee.Dagger
+namespace AQMod.Items.Weapons.Melee
 {
     public class AirBlade : ModItem
     {
