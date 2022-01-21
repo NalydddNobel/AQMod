@@ -1,10 +1,9 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Placeable.Wall
 {
-    public class OceanRavineWall : ModItem
+    public class PetrifiedWoodWall : ModItem
     {
         public override void SetDefaults()
         {
@@ -14,15 +13,10 @@ namespace AQMod.Items.Placeable.Wall
             item.useTime = 7;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createWall = ModContent.WallType<Walls.OceanRavineWall>();
+            item.createWall = ModContent.WallType<Walls.PetrifiedWoodWall>();
             item.consumable = true;
             item.autoReuse = true;
             item.useTurn = true;
-        }
-
-        public override void CaughtFishStack(ref int stack)
-        {
-            stack = Main.rand.Next(80, stack + 120);
         }
     }
 }

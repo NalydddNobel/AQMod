@@ -354,6 +354,26 @@ namespace AQMod.Common.WorldGeneration
             }
         }
 
+        public override void PostWorldGen()
+        {
+            for (int i = 20; i < Main.maxTilesX - 20; i++)
+            {
+                for (int j = 20; j < Main.maxTilesY - 20; j++)
+                {
+                    if (Main.tile[i, j] == null)
+                    {
+                        Main.tile[i, j] = new Tile();
+                        break;
+                    }
+                    //if (Main.tile[i, j].type == ModContent.TileType<AQPlatforms>())
+                    //{
+                    //    Main.tile[i, j].frameX = 0;
+                    //    Main.tile[i, j].frameY = 0;
+                    //}
+                }
+            }
+        }
+
         internal static void KillRectangle(Rectangle rect)
         {
             for (int i = rect.X; i < rect.X + rect.Width; i++)

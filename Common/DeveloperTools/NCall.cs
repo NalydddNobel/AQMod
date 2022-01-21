@@ -64,6 +64,13 @@ namespace AQMod.Common.DeveloperTools
                     caller.Reply("Command doesn't exist.");
                     break;
 
+                case "tframes":
+                    {
+                        caller.Reply(Main.tile[mX, mY].frameX.ToString());
+                        caller.Reply(Main.tile[mX, mY].frameY.ToString(), Color.Yellow);
+                    }
+                    break;
+
                 case "cursordye":
                     caller.Player.GetModPlayer<PlayerCursorDyes>().cursorDye = byte.Parse(args[1]);
                     break;
@@ -81,6 +88,12 @@ namespace AQMod.Common.DeveloperTools
                     if (caller.Player.dead)
                     {
                         caller.Player.respawnTimer = 2;
+                    }
+                    break;
+
+                case "genccship":
+                    {
+                        CrabCrevice.GenPirateShip(mX, mY);
                     }
                     break;
 

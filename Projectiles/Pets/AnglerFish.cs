@@ -23,6 +23,7 @@ namespace AQMod.Projectiles.Pets
             projectile.tileCollide = false;
             projectile.friendly = true;
             projectile.aiStyle = -1;
+            projectile.scale = 0.86f;
         }
 
         public Color LightColor()

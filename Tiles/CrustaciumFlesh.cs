@@ -31,7 +31,7 @@ namespace AQMod.Tiles
 
         public override void RandomUpdate(int i, int j)
         {
-            if (WorldGen.genRand.NextBool(25) && ShouldConvertToShell(i, j))
+            if (WorldGen.genRand.NextBool(4) && ShouldConvertToShell(i, j))
             {
                 Main.tile[i, j].type = (ushort)ModContent.TileType<CrustaciumShell>();
             }

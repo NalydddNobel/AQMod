@@ -21,7 +21,8 @@ namespace AQMod.Content.Players
             int x = (int)(player.position.X + player.width / 2) / 16;
             int y = (int)(player.position.Y + player.height / 2) / 16;
             zoneAtmosphericCurrentsEvent = player.ZoneSkyHeight && Main.windSpeed > 30f;
-            zoneCrabCrevice = Main.tile[x, y].wall == ModContent.WallType<OceanRavineWall>();
+            zoneCrabCrevice = Main.tile[x, y].wall == ModContent.WallType<OceanRavineWall>() || 
+                Main.tile[x, y].wall == ModContent.WallType<PetrifiedWoodWall>();
         }
 
         public override void UpdateBiomeVisuals()
