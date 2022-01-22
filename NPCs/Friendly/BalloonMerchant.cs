@@ -723,7 +723,7 @@ namespace AQMod.NPCs.Friendly
                 }
             }
 
-            if (Main.dayTime && Main.time * 4.0 > Main.dayLength * 3.0)
+            if (NPC.downedBoss2 || (Main.dayTime && Main.time * 4.0 > Main.dayLength * 3.0))
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Armor.SteelPlatedChestplate>());
                 nextSlot++;

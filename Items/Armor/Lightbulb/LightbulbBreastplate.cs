@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Armor.LightbulbArmor
+namespace AQMod.Items.Armor.Lightbulb
 {
     [AutoloadEquip(EquipType.Body)]
     public class LightbulbBreastplate : ModItem
@@ -27,7 +27,7 @@ namespace AQMod.Items.Armor.LightbulbArmor
             var r = new ModRecipe(mod);
             r.AddRecipeGroup(AQRecipes.RecipeGroups.CopperOrTin, 12);
             r.AddRecipeGroup("IronBar", 5);
-            r.AddIngredient(ModContent.ItemType<Lightbulb>(), 3);
+            r.AddIngredient(ModContent.ItemType<Materials.Lightbulb>(), 3);
             r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();

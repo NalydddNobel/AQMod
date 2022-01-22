@@ -3,6 +3,8 @@
     public static class AQStringCodes
     {
         private const string AQMod_Key = "@";
+        private const string Split_Key = "$";
+        private const string Polarities_Key = "%";
 
         public static string EncodeModName(object obj)
         {
@@ -14,6 +16,12 @@
 
                 case "AQMod":
                     return AQMod_Key;
+
+                case "Split":
+                    return Split_Key;
+
+                case "Polarities":
+                    return Polarities_Key;
             }
         }
 
@@ -26,6 +34,12 @@
 
                 case AQMod_Key:
                     return "AQMod";
+
+                case Split_Key:
+                    return "Split";
+
+                case Polarities_Key:
+                    return "Polarities";
             }
         }
 
@@ -58,6 +72,29 @@
             mod = default(string);
             name = default(string);
             return false;
+        }
+
+        public static string ExtractParameterText(string text, int position = 0)
+        {
+            return ExtractParameterText(text, ref position);
+        }
+
+        public static string ExtractParameterText(string text, ref int position)
+        {
+            string extract = "";
+            for (; position < text.Length; position++)
+            {
+                if (text[position] == ':')
+                {
+                    break;
+                }
+                if (text[position] == '#')
+                {
+                    continue;
+                }
+                extract += text[position];
+            }
+            return extract;
         }
     }
 }

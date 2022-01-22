@@ -73,6 +73,19 @@ namespace AQMod.Tiles
             }
         }
 
+        public static int FrameForPlatformSloping(byte slope)
+        {
+            if (slope == 1)
+            {
+                return 144;
+            }
+            if (slope == 1)
+            {
+                return 180;
+            }
+            return 0;
+        }
+
         internal static void MergeWith(this ModTile tile, int other)
         {
             Main.tileMerge[tile.Type][other] = true;

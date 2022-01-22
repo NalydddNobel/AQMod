@@ -5,6 +5,7 @@ using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters.GaleStreams;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -145,20 +146,20 @@ namespace AQMod.NPCs
                             bool minibossActive = NPC.AnyNPCs(ModContent.NPCType<RedSprite>()) || NPC.AnyNPCs(ModContent.NPCType<SpaceSquid>());
                             if (!minibossActive)
                             {
-                                DecreaseSpawns(0.1f);
+                                DecreaseSpawns(MathHelper.Lerp(1f, 0.1f, SpawnCondition.Sky.Chance));
                                 decSpawns = false;
-                                pool.Add(ModContent.NPCType<RedSprite>(), 0.06f);
-                                pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f);
+                                pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
+                                pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
                             }
                         }
                     }
                     if (decSpawns)
-                        DecreaseSpawns(0.9f);
+                        DecreaseSpawns(MathHelper.Lerp(1f, 0.9f, SpawnCondition.Sky.Chance));
                     if (NPC.CountNPCS(ModContent.NPCType<Vraine>()) < 2)
-                        pool.Add(ModContent.NPCType<Vraine>(), 1f);
+                        pool.Add(ModContent.NPCType<Vraine>(), 1f * SpawnCondition.Sky.Chance);
                     if (WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY))
-                        pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f);
-                    pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f);
+                        pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f * SpawnCondition.Sky.Chance);
+                    pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f * SpawnCondition.Sky.Chance);
                 }
             }
             catch

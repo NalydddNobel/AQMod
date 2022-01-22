@@ -121,6 +121,13 @@ namespace AQMod
         public bool healBeforeDeath;
         public bool glowString;
         public bool pearlAmulet;
+        public bool darkAmulet;
+        public bool lightAmulet;
+
+        public float evilEnemyDR;
+        public float holyEnemyDR;
+
+        public bool setBonusLightbulb;
 
         public bool heartMoth;
         public bool anglerFish;
@@ -248,7 +255,8 @@ namespace AQMod
 
         public override void ResetEffects()
         {
-            blueSpheres = false;
+            setBonusLightbulb = false;
+               blueSpheres = false;
             discountPercentage = 0.8f;
             hyperCrystal = false;
             monoxiderBird = false;
@@ -677,11 +685,6 @@ namespace AQMod
             }
         }
 
-        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-        {
-            //ModPacket packet = mod.GetPacket();
-        }
-
         public override void UpdateDead()
         {
             omori = false;
@@ -825,15 +828,13 @@ namespace AQMod
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-            switch (proj.type)
+            if (proj.trap && setBonusLightbulb)
             {
-                case ProjectileID.SiltBall:
-                case ProjectileID.SlushBall:
-                    {
-                        if (extractinator)
-                            damage /= 4;
-                    }
-                    break;
+                damage = (int)(damage * 0.7f);
+            }
+            if (extractinator && AQProjectile.Sets.DamageReductionExtractor[proj.type])
+            {
+                damage /= 4;
             }
             var aQProjectile = proj.GetGlobalProjectile<AQProjectile>();
             if (aQProjectile.temperature != 0)
@@ -841,84 +842,6 @@ namespace AQMod
                 InflictTemperature(aQProjectile.temperature);
             }
         }
-
-        public static bool CanBossChannel(NPC npc)
-        {
-            if (npc.chaseable || npc.dontTakeDamage)
-            {
-                return false;
-            }
-            return npc.boss || AQNPC.Sets.BossRelatedEnemy[npc.type];
-        }
-
-        public void DoHyperCrystalChannel(NPC target, int damage, float knockback, Vector2 center, Vector2 targCenter)
-        {
-            if (target.SpawnedFromStatue || target.type == NPCID.TargetDummy || CanBossChannel(target))
-                return;
-            int boss = -1;
-            float closestDist = 1200f;
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                NPC npc = Main.npc[i];
-                if (npc.active && CanBossChannel(npc))
-                {
-                    float dist = (npc.Center - center).Length();
-                    if (dist < closestDist)
-                    {
-                        boss = i;
-                        closestDist = dist;
-                    }
-                }
-            }
-            if (boss != -1)
-            {
-                int dmg = damage > target.lifeMax ? target.lifeMax : damage;
-                var normal = Vector2.Normalize(Main.npc[boss].Center - targCenter);
-                int size = 4;
-                var type = ModContent.DustType<MonoDust>();
-                Vector2 position = target.Center - new Vector2(size / 2);
-                int length = (int)(Main.npc[boss].Center - targCenter).Length();
-                if (Main.myPlayer == player.whoAmI && AQConfigClient.c_TonsofScreenShakes)
-                {
-                    if (length < 800)
-                        ScreenShakeManager.AddShake(new BasicScreenShake(12, AQGraphics.MultIntensity((800 - length) / 128)));
-                }
-                int dustLength = length / size;
-                const float offset = MathHelper.TwoPi / 3f;
-                for (int i = 0; i < dustLength; i++)
-                {
-                    Vector2 pos = position + normal * (i * size);
-                    for (int j = 0; j < 6; j++)
-                    {
-                        int d = Dust.NewDust(pos, size, size, type);
-                        float positionLength = Main.dust[d].position.Length() / 32f;
-                        Main.dust[d].color = new Color(
-                            (float)Math.Sin(positionLength) + 1f,
-                            (float)Math.Sin(positionLength + offset) + 1f,
-                            (float)Math.Sin(positionLength + offset * 2f) + 1f,
-                            0.5f);
-                    }
-                }
-                for (int i = 0; i < 8; i++)
-                {
-                    Vector2 normal2 = new Vector2(1f, 0f).RotatedBy(MathHelper.PiOver4 * i);
-                    for (int j = 0; j < 4; j++)
-                    {
-
-                        float positionLength1 = (targCenter + normal2 * (j * 8f)).Length() / 32f;
-                        var color = new Color(
-                            (float)Math.Sin(positionLength1) + 1f,
-                            (float)Math.Sin(positionLength1 + offset) + 1f,
-                            (float)Math.Sin(positionLength1 + offset * 2f) + 1f,
-                            0.5f);
-                        int d = Dust.NewDust(targCenter, 1, 1, type, default, default, default, color);
-                        Main.dust[d].velocity = normal2 * (j * 3.5f);
-                    }
-                }
-                Projectile.NewProjectile(Main.npc[boss].Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalExplosion>(), dmg * 2, knockback * 2, player.whoAmI);
-            }
-        }
-
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
@@ -995,73 +918,6 @@ namespace AQMod
                 }
             }
             HitNPCEffects(target, targetCenter, damage, knockback, crit);
-        }
-
-        private void HitNPCEffects(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
-        {
-            if (mothmanMask && mothmanExplosionDelay == 0 && player.statLife >= player.statLifeMax2 && crit && !target.buffImmune[ModContent.BuffType<BlueFire>()] && target.type != NPCID.TargetDummy)
-            {
-                target.AddBuff(ModContent.BuffType<BlueFire>(), 480);
-                if (Main.myPlayer == player.whoAmI)
-                {
-                    Main.PlaySound(SoundID.Item74, targetCenter);
-                    int amount = (int)(25 * AQConfigClient.c_EffectIntensity);
-                    if (AQConfigClient.c_EffectQuality < 1f)
-                    {
-                        amount = (int)(amount * AQConfigClient.c_EffectQuality);
-                    }
-                    var pos = target.position - new Vector2(2f, 2f);
-                    var rect = new Rectangle((int)pos.X, (int)pos.Y, target.width + 4, target.height + 4);
-                    for (int i = 0; i < amount; i++)
-                    {
-                        var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                        var velocity = new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-10f, 2f).Abs());
-                        Particle.PostDrawPlayers.AddParticle(
-                            new EmberParticle(dustPos, velocity,
-                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
-                        Particle.PostDrawPlayers.AddParticle(
-                            new EmberParticle(dustPos, velocity,
-                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
-                    }
-                    amount = (int)(120 * AQConfigClient.c_EffectIntensity);
-                    if (AQConfigClient.c_EffectQuality < 1f)
-                    {
-                        amount = (int)(amount * AQConfigClient.c_EffectQuality);
-                    }
-                    if (AQConfigClient.c_Screenshakes)
-                    {
-                        ScreenShakeManager.AddShake(new BasicScreenShake(16, 8));
-                    }
-                    mothmanExplosionDelay = 60;
-                    int p = Projectile.NewProjectile(targetCenter, Vector2.Normalize(targetCenter - player.Center), ModContent.ProjectileType<MothmanCritExplosion>(), damage * 2, knockback * 1.5f, player.whoAmI, 0f, target.whoAmI);
-                    var size = Main.projectile[p].Size;
-                    float radius = size.Length() / 5f;
-                    for (int i = 0; i < amount; i++)
-                    {
-                        var offset = new Vector2(Main.rand.NextFloat(radius), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
-                        var normal = Vector2.Normalize(offset);
-                        var dustPos = targetCenter + offset;
-                        var velocity = normal * Main.rand.NextFloat(6f, 12f);
-                        Particle.PostDrawPlayers.AddParticle(
-                            new EmberParticle(dustPos, velocity,
-                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
-                        Particle.PostDrawPlayers.AddParticle(
-                            new EmberParticle(dustPos, velocity,
-                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
-                        if (Main.rand.NextBool(14))
-                        {
-                            var sparkleClr = new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f);
-                            Particle.PostDrawPlayers.AddParticle(
-                                new SparkleParticle(dustPos, velocity,
-                                sparkleClr, 1.5f));
-                            Particle.PostDrawPlayers.AddParticle(
-                                new SparkleParticle(dustPos, velocity,
-                                sparkleClr * 0.5f, 1f)
-                                { rotation = MathHelper.PiOver4 });
-                        }
-                    }
-                }
-            }
         }
 
         public override void UpdateBadLifeRegen()
@@ -1179,6 +1035,150 @@ namespace AQMod
         public override void ModifyScreenPosition()
         {
             ScreenShakeManager.ModifyScreenPosition();
+        }
+
+        public static bool CanBossChannel(NPC npc)
+        {
+            if (npc.chaseable || npc.dontTakeDamage)
+            {
+                return false;
+            }
+            return npc.boss || AQNPC.Sets.BossRelatedEnemy[npc.type];
+        }
+
+        public void DoHyperCrystalChannel(NPC target, int damage, float knockback, Vector2 center, Vector2 targCenter)
+        {
+            if (target.SpawnedFromStatue || target.type == NPCID.TargetDummy || CanBossChannel(target))
+                return;
+            int boss = -1;
+            float closestDist = 1200f;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+                if (npc.active && CanBossChannel(npc))
+                {
+                    float dist = (npc.Center - center).Length();
+                    if (dist < closestDist)
+                    {
+                        boss = i;
+                        closestDist = dist;
+                    }
+                }
+            }
+            if (boss != -1)
+            {
+                int dmg = damage > target.lifeMax ? target.lifeMax : damage;
+                var normal = Vector2.Normalize(Main.npc[boss].Center - targCenter);
+                int size = 4;
+                var type = ModContent.DustType<MonoDust>();
+                Vector2 position = target.Center - new Vector2(size / 2);
+                int length = (int)(Main.npc[boss].Center - targCenter).Length();
+                if (Main.myPlayer == player.whoAmI && AQConfigClient.c_TonsofScreenShakes)
+                {
+                    if (length < 800)
+                        ScreenShakeManager.AddShake(new BasicScreenShake(12, AQGraphics.MultIntensity((800 - length) / 128)));
+                }
+                int dustLength = length / size;
+                const float offset = MathHelper.TwoPi / 3f;
+                for (int i = 0; i < dustLength; i++)
+                {
+                    Vector2 pos = position + normal * (i * size);
+                    for (int j = 0; j < 6; j++)
+                    {
+                        int d = Dust.NewDust(pos, size, size, type);
+                        float positionLength = Main.dust[d].position.Length() / 32f;
+                        Main.dust[d].color = new Color(
+                            (float)Math.Sin(positionLength) + 1f,
+                            (float)Math.Sin(positionLength + offset) + 1f,
+                            (float)Math.Sin(positionLength + offset * 2f) + 1f,
+                            0.5f);
+                    }
+                }
+                for (int i = 0; i < 8; i++)
+                {
+                    Vector2 normal2 = new Vector2(1f, 0f).RotatedBy(MathHelper.PiOver4 * i);
+                    for (int j = 0; j < 4; j++)
+                    {
+
+                        float positionLength1 = (targCenter + normal2 * (j * 8f)).Length() / 32f;
+                        var color = new Color(
+                            (float)Math.Sin(positionLength1) + 1f,
+                            (float)Math.Sin(positionLength1 + offset) + 1f,
+                            (float)Math.Sin(positionLength1 + offset * 2f) + 1f,
+                            0.5f);
+                        int d = Dust.NewDust(targCenter, 1, 1, type, default, default, default, color);
+                        Main.dust[d].velocity = normal2 * (j * 3.5f);
+                    }
+                }
+                Projectile.NewProjectile(Main.npc[boss].Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalExplosion>(), dmg * 2, knockback * 2, player.whoAmI);
+            }
+        }
+
+        private void HitNPCEffects(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
+        {
+            if (mothmanMask && mothmanExplosionDelay == 0 && player.statLife >= player.statLifeMax2 && crit && !target.buffImmune[ModContent.BuffType<BlueFire>()] && target.type != NPCID.TargetDummy)
+            {
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 480);
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    Main.PlaySound(SoundID.Item74, targetCenter);
+                    int amount = (int)(25 * AQConfigClient.c_EffectIntensity);
+                    if (AQConfigClient.c_EffectQuality < 1f)
+                    {
+                        amount = (int)(amount * AQConfigClient.c_EffectQuality);
+                    }
+                    var pos = target.position - new Vector2(2f, 2f);
+                    var rect = new Rectangle((int)pos.X, (int)pos.Y, target.width + 4, target.height + 4);
+                    for (int i = 0; i < amount; i++)
+                    {
+                        var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                        var velocity = new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-10f, 2f).Abs());
+                        Particle.PostDrawPlayers.AddParticle(
+                            new EmberParticle(dustPos, velocity,
+                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
+                        Particle.PostDrawPlayers.AddParticle(
+                            new EmberParticle(dustPos, velocity,
+                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
+                    }
+                    amount = (int)(120 * AQConfigClient.c_EffectIntensity);
+                    if (AQConfigClient.c_EffectQuality < 1f)
+                    {
+                        amount = (int)(amount * AQConfigClient.c_EffectQuality);
+                    }
+                    if (AQConfigClient.c_Screenshakes)
+                    {
+                        ScreenShakeManager.AddShake(new BasicScreenShake(16, 8));
+                    }
+                    mothmanExplosionDelay = 60;
+                    int p = Projectile.NewProjectile(targetCenter, Vector2.Normalize(targetCenter - player.Center), ModContent.ProjectileType<MothmanCritExplosion>(), damage * 2, knockback * 1.5f, player.whoAmI, 0f, target.whoAmI);
+                    var size = Main.projectile[p].Size;
+                    float radius = size.Length() / 5f;
+                    for (int i = 0; i < amount; i++)
+                    {
+                        var offset = new Vector2(Main.rand.NextFloat(radius), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+                        var normal = Vector2.Normalize(offset);
+                        var dustPos = targetCenter + offset;
+                        var velocity = normal * Main.rand.NextFloat(6f, 12f);
+                        Particle.PostDrawPlayers.AddParticle(
+                            new EmberParticle(dustPos, velocity,
+                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
+                        Particle.PostDrawPlayers.AddParticle(
+                            new EmberParticle(dustPos, velocity,
+                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
+                        if (Main.rand.NextBool(14))
+                        {
+                            var sparkleClr = new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f);
+                            Particle.PostDrawPlayers.AddParticle(
+                                new SparkleParticle(dustPos, velocity,
+                                sparkleClr, 1.5f));
+                            Particle.PostDrawPlayers.AddParticle(
+                                new SparkleParticle(dustPos, velocity,
+                                sparkleClr * 0.5f, 1f)
+                                { rotation = MathHelper.PiOver4 });
+                        }
+                    }
+                }
+            }
         }
 
         public void InflictTemperature(sbyte newTemperature)

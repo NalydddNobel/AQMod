@@ -25,6 +25,7 @@ namespace AQMod.Content.World.Generation
     {
         private const int Size = 160;
         internal static List<Vector3> platformGenList;
+        private static int PirateChestCount = 0;
 
         private struct Circle
         {
@@ -602,7 +603,7 @@ namespace AQMod.Content.World.Generation
                     int chest = WorldGen.PlaceChest(chestX, chestY, TileID.Containers, style: ChestStyles.Palm);
                     if (chest != -1 && Main.tile[chestX, chestY].type == TileID.Containers)
                     {
-                        FillWithLoot(Chest.FindChest(chestX, chestY - 1), count);
+                        FillPalmChest(Chest.FindChest(chestX, chestY - 1), count);
                         count++;
                         i += 3500;
                     }
@@ -610,7 +611,7 @@ namespace AQMod.Content.World.Generation
             }
         }
 
-        private static void FillWithLoot(int chest, int count)
+        private static void FillPalmChest(int chest, int count)
         {
             if (chest == -1 || Main.chest[chest] == null)
                 return;
@@ -636,6 +637,87 @@ namespace AQMod.Content.World.Generation
                 case 3:
                     {
                         c.item[i].SetDefaults(ModContent.ItemType<CrabRod>());
+                    }
+                    break;
+            }
+            i++;
+            if (WorldGen.genRand.NextBool())
+            {
+                switch (WorldGen.genRand.Next(3))
+                {
+                    case 0:
+                        {
+                            c.item[i].SetDefaults(ItemID.DivingHelmet);
+                            i++;
+                        }
+                        break;
+
+                    case 1:
+                        {
+                            c.item[i].SetDefaults(ModContent.ItemType<CrabRod>());
+                            i++;
+                        }
+                        break;
+
+                    case 2:
+                        {
+                            c.item[i].SetDefaults(ModContent.ItemType<YuckyOrb>());
+                            i++;
+                        }
+                        break;
+                }
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[i].SetDefaults(ItemID.GillsPotion);
+                c.item[i].stack = WorldGen.genRand.Next(1, 4);
+                i++;
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[i].SetDefaults(ItemID.WaterWalkingPotion);
+                c.item[i].stack = WorldGen.genRand.Next(1, 4);
+                i++;
+            }
+            if (WorldGen.genRand.NextBool(4))
+            {
+                c.item[i].SetDefaults(ItemID.IronCrate);
+                i++;
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[i].SetDefaults(ItemID.HealingPotion);
+                c.item[i].stack = 2 + WorldGen.genRand.Next(5);
+                i++;
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[i].SetDefaults(ItemID.WoodenCrate);
+                c.item[i].stack = 1 + WorldGen.genRand.Next(2);
+                i++;
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[i].SetDefaults(ItemID.PinkJellyfish);
+                c.item[i].stack = 1 + WorldGen.genRand.Next(2);
+                i++;
+            }
+            c.item[i].SetDefaults(ItemID.Glowstick);
+            c.item[i].stack = WorldGen.genRand.Next(80, 200);
+            i++;
+        }
+
+        private static void FillPirateChest(int chest, int count)
+        {
+            if (chest == -1 || Main.chest[chest] == null)
+                return;
+            var c = Main.chest[chest];
+            int i = 0;
+            switch (count % 4)
+            {
+                default:
+                    {
+                        c.item[i].SetDefaults(ModContent.ItemType<PearlAmulet>());
                     }
                     break;
             }
@@ -948,6 +1030,25 @@ namespace AQMod.Content.World.Generation
                 }
             }
 
+            int tableX = WorldGen.genRand.Next(8, length - 10) * direction;
+            WorldGen.PlaceTile(x + tableX, y + 7, ModContent.TileType<AQTables>(), mute: true, forced: true, style: AQTables.PetrifiedWood);
+            if (WorldGen.genRand.NextBool())
+            {
+                WorldGen.PlaceTile(x + tableX - 2, y + 7, ModContent.TileType<AQChairs>(), mute: true, forced: true, style: AQChairs.PetrifiedWood);
+            }
+            else
+            {
+                WorldGen.PlaceTile(x + tableX + 2, y + 7, ModContent.TileType<AQChairs>(), mute: true, forced: true, style: AQChairs.PetrifiedWood);
+            }
+            //WorldGen.PlaceTile(x + tableX + 3, y + 6, TileID.Dirt, mute: true, forced: true, style: AQChairs.PetrifiedWood);
+
+            int chest = WorldGen.PlaceChest(x + 7 * direction, y + 7, TileID.Containers, style: ChestStyles.Gold);
+            if (chest != -1)
+            {
+                FillPirateChest(chest, PirateChestCount);
+                PirateChestCount++;
+            }
+
             for (int k = 0; k < length + 10; k++)
             {
                 for (int l = -sailHeight; l < 20; l++)
@@ -968,12 +1069,16 @@ namespace AQMod.Content.World.Generation
                 WorldGen.PlaceTile(p.X, p.Y, ModContent.TileType<PetrifiedWoodPlatform>(), mute: true, forced: true);
                 Main.tile[p.X, p.Y].halfBrick(halfBrick: false);
                 Main.tile[p.X, p.Y].slope(slope: (byte)(int)v.Z);
+                Main.tile[p.X, p.Y].frameX = (short)TileUtils.FrameForPlatformSloping(Main.tile[p.X, p.Y].slope());
+                Main.tile[p.X, p.Y].frameY = 0;
+                WorldGen.SquareTileFrame(p.X, p.Y, resetFrame: true);
             }
             platformGenList = null;
         }
 
         public static void GenerateCrabCrevice(GenerationProgress progress)
         {
+            PirateChestCount = 0;
             if (!ModContent.GetInstance<WorldGenOptions>().generateOceanRavines)
             {
                 return;
@@ -983,6 +1088,15 @@ namespace AQMod.Content.World.Generation
             progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice");
             int crabCreviceLocationX = 0;
             int crabCreviceLocationY = 0;
+            int reccomendedDir = 0;
+            if (AQMod.CalamityModEnabled)
+            {
+                reccomendedDir = Main.dungeonX * 2 < Main.maxTilesX ? 1 : -1;
+            }
+            else if (AQMod.ThoriumModEnabled)
+            {
+                reccomendedDir = Main.dungeonX * 2 < Main.maxTilesX ? -1 : 1;
+            }
             for (int i = 0; i < 5000; i++)
             {
                 int x = WorldGen.genRand.Next(90, 200);
@@ -992,8 +1106,27 @@ namespace AQMod.Content.World.Generation
                 {
                     if (CanPlaceLegacyOceanRavine(x, j))
                     {
-                        crabCreviceLocationX = x;
-                        crabCreviceLocationY = j;
+                        if (reccomendedDir == 0 || crabCreviceLocationX == 0)
+                        {
+                            crabCreviceLocationX = x;
+                            crabCreviceLocationY = j;
+                        }
+                        else if (reccomendedDir == -1)
+                        {
+                            if (x * 2 < Main.maxTilesX)
+                            {
+                                crabCreviceLocationX = x;
+                                crabCreviceLocationY = j;
+                            }
+                        }
+                        else
+                        {
+                            if (x * 2 > Main.maxTilesX)
+                            {
+                                crabCreviceLocationX = x;
+                                crabCreviceLocationY = j;
+                            }
+                        }
                         int style = WorldGen.genRand.Next(3);
                         PlaceLegacyOceanRavine(x, j, style);
                         i += 1000;

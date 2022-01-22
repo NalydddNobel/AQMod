@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.DeveloperTools;
 using AQMod.Common.ID;
-using AQMod.Effects;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 
@@ -31,7 +30,7 @@ namespace AQMod.Assets
 
         private static Texture2D[] FillArray<T>(string pathWithoutNumbers) where T : class
         {
-            int count = IdentityAttribute.GetCount<T>();
+            int count = SetConstantsIdentityAttribute.GetCount<T>();
             var t = new Texture2D[count];
             for (int i = 0; i < count; i++)
             {

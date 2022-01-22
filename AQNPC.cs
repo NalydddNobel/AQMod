@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Graphics;
+using AQMod.Common.ID;
 using AQMod.Common.NoHitting;
 using AQMod.Content;
 using AQMod.Content.Players;
@@ -34,72 +35,6 @@ namespace AQMod
 {
     public class AQNPC : GlobalNPC
     {
-        internal static class AIStyles // personal ai style list
-        {
-            public const int BoundNPCAI = 0;
-            public const int SlimeAI = 1;
-            public const int DemonEyeAI = 2;
-            public const int FighterAI = 3;
-            public const int EoCAI = 4;
-            public const int FlyingAI = 5;
-            public const int WormAI = 6;
-            public const int PassiveAI = 7;
-            public const int CasterAI = 8;
-            public const int SpellAI = 9;
-            public const int CursedSkullAI = 10;
-            public const int SkeletronAI = 11;
-            public const int SkeletronHandAI = 12;
-            public const int ManEaterAI = 13;
-            public const int BatAI = 14;
-            public const int KingSlimeAI = 15;
-            public const int FishAI = 16;
-            public const int VultureAI = 17;
-            public const int JellyfishAI = 18;
-            public const int AntlionAI = 19;
-            public const int SpikeBallAI = 20;
-            public const int BlazingWheelAI = 21;
-            public const int HoveringAI = 22;
-            public const int EnchantedSwordAI = 23;
-            public const int BirdCritterAI = 24;
-            public const int MimicAI = 25;
-            public const int UnicornAI = 26;
-            public const int WoFAI = 27;
-            public const int TheHungryAI = 28;
-
-            public const int SnowmanAI = 38;
-            public const int TortiseAI = 39;
-            public const int SpiderAI = 40;
-            public const int DerplingAI = 41;
-
-            public const int FlyingFishAI = 44;
-
-            public const int AngryNimbusAI = 49;
-            public const int SporeAI = 50;
-
-            public const int DungeonSpiritAI = 56;
-            public const int MourningWoodAI = 57;
-            public const int PumpkingAI = 58;
-            public const int PumpkingScytheAI = 59;
-            public const int IceQueenAI = 60;
-            public const int SantaNKIAI = 61;
-            public const int ElfCopterAI = 62;
-            public const int FlockoAI = 63;
-            public const int FireflyAI = 64;
-            public const int ButterflyAI = 65;
-            public const int WormCritterAI = 66;
-            public const int SnailAI = 67;
-            public const int DuckAI = 68;
-            public const int DukeFishronAI = 69;
-
-            public const int BiomeMimicAI = 87;
-            public const int MothronAI = 88;
-
-            public const int GraniteElementalAI = 91;
-
-            public const int SandElementalAI = 102;
-            public const int SandSharkAI = 103;
-        }
-
         public static class Sets
         {
             public static bool[] NoSpoilLoot { get; private set; }
@@ -110,45 +45,62 @@ namespace AQMod
             public static bool[] DemonSiegeEnemy { get; private set; }
             public static bool[] UnaffectedByWind { get; private set; }
             public static bool[] BossRelatedEnemy { get; private set; }
+            public static bool[] HardmodeEnemy { get; private set; }
+            public static bool[] IsACaveSkeleton { get; private set; }
+            public static bool[] IsAZombie { get; private set; }
 
-            public static bool IsASkeleton(int type, bool includeHardmodeSkeletons = true, bool includeHoplites = true)
+            internal static void InternalInitalize(AQMod mod)
             {
-                if (includeHardmodeSkeletons && (type == NPCID.ArmoredSkeleton || type == NPCID.SkeletonArcher))
-                    return true;
-                if (includeHoplites && type == NPCID.GreekSkeleton)
-                    return true;
-                return type == NPCID.Skeleton ||
-                    type == NPCID.SkeletonAlien ||
-                    type == NPCID.SkeletonAstonaut ||
-                    type == NPCID.SkeletonTopHat ||
-                    type == NPCID.HeadacheSkeleton ||
-                    type == NPCID.MisassembledSkeleton ||
-                    type == NPCID.PantlessSkeleton ||
-                    type == NPCID.BoneThrowingSkeleton ||
-                    type == NPCID.BoneThrowingSkeleton2 ||
-                    type == NPCID.BoneThrowingSkeleton3 ||
-                    type == NPCID.BoneThrowingSkeleton4 ||
-                    type == NPCID.GreekSkeleton;
-            }
+                SetUtils.Length = NPCLoader.NPCCount;
+                SetUtils.GetIDFromType = (m, n) => m.NPCType(n);
+                IsAZombie = SetUtils.CreateFlagSet(NPCID.Zombie, NPCID.BaldZombie, NPCID.PincushionZombie, NPCID.SlimedZombie, NPCID.SwampZombie,
+                    NPCID.TwiggyZombie, NPCID.FemaleZombie, NPCID.ZombieRaincoat, NPCID.ZombieRaincoat, NPCID.ZombieXmas, NPCID.ZombieSweater, NPCID.BloodZombie,
+                    NPCID.ZombieDoctor, NPCID.ZombieEskimo, NPCID.ZombiePixie, NPCID.ZombieSuperman, NPCID.ArmedZombie, NPCID.ArmedZombieCenx, NPCID.ArmedZombieEskimo,
+                    NPCID.ArmedZombiePincussion, NPCID.ArmedZombieSlimed, NPCID.ArmedZombieSwamp, NPCID.ArmedZombieTwiggy);
 
-            public static bool IsAZombie(int type, bool includeBloodZombies = true)
-            {
-                if (includeBloodZombies && type == NPCID.BloodZombie)
-                    return true;
-                return type == NPCID.Zombie ||
-                type == NPCID.BaldZombie ||
-                type == NPCID.PincushionZombie ||
-                type == NPCID.SlimedZombie ||
-                type == NPCID.SwampZombie ||
-                type == NPCID.TwiggyZombie ||
-                type == NPCID.FemaleZombie ||
-                type == NPCID.ZombieRaincoat ||
-                type == NPCID.ZombieXmas ||
-                type == NPCID.ZombieSweater;
-            }
+                // I'll complete this list someday... atleast the vanilla part SCREW the modded part ever being complete!
+                HardmodeEnemy = SetUtils.CreateFlagSet(NPCID.ArmoredSkeleton, NPCID.SkeletonArcher, NPCID.PossessedArmor, NPCID.Wraith, NPCID.Clown, NPCID.AnglerFish, NPCID.Mimic,
+                    NPCID.IlluminantBat, NPCID.IlluminantSlime, NPCID.Corruptor, NPCID.CorruptSlime, NPCID.Clinger, NPCID.CursedHammer, NPCID.BigMimicCorruption, NPCID.Herpling, NPCID.Crimslime,
+                    NPCID.IchorSticker, NPCID.FloatyGross, NPCID.CrimsonAxe, NPCID.BigMimicCrimson, NPCID.BigMimicHallow, NPCID.BigMimicJungle, NPCID.MossHornet, NPCID.AngryTrapper, NPCID.GiantTortoise,
+                    NPCID.Derpling, NPCID.GiantFlyingFox, NPCID.Moth, NPCID.ToxicSludge, NPCID.Unicorn, NPCID.Werewolf, NPCID.Wolf, NPCID.WanderingEye, NPCID.SeekerHead, NPCID.SeekerBody, NPCID.SeekerTail,
+                    NPCID.Slimer, NPCID.HoppinJack, NPCID.Gastropod, NPCID.Arapaima, NPCID.ArmoredViking, NPCID.IceElemental, NPCID.IceGolem, NPCID.EnchantedSword, NPCID.DiggerHead, NPCID.DiggerBody, NPCID.DiggerTail,
+                    NPCID.DungeonSpirit, NPCID.BlueArmoredBones, NPCID.BlueArmoredBonesMace, NPCID.BlueArmoredBonesNoPants, NPCID.BlueArmoredBonesSword, NPCID.HellArmoredBones, NPCID.HellArmoredBonesMace, NPCID.HellArmoredBonesSpikeShield, NPCID.HellArmoredBonesSword,
+                    NPCID.CultistArcherBlue, NPCID.CultistArcherWhite, NPCID.CultistDevote, NPCID.SkeletonCommando, NPCID.ChaosElemental, NPCID.RuneWizard, NPCID.IcyMerman, NPCID.JungleCreeper, NPCID.JungleCreeperWall, NPCID.Necromancer, NPCID.NecromancerArmored,
+                    NPCID.DiabolistRed, NPCID.DiabolistWhite, NPCID.RaggedCaster, NPCID.RaggedCasterOpenCoat, NPCID.SkeletonSniper, NPCID.TacticalSkeleton, NPCID.WyvernHead, NPCID.WyvernBody, NPCID.WyvernBody2, NPCID.WyvernBody3, NPCID.WyvernLegs, NPCID.WyvernTail,
+                    // Polarities
+                    "%:Aequorean", "%:Amphisbaena", "%:ChaosCrawler", "%:BisectorHead", "%:BisectorHeadHitbox", "%:BisectorBody1", "%:BisectorBody2", "%:BisectorTail", 
+                    "%:BrineDweller", "%:GreatStarSlime", "%:HydraHead", "%:HydraBody",
+                    "%:Limeshell", "%:Alkalabomination", "%:Spitter", "%:ConeShell", "%:SeaSerpentHead", "%:SeaSerpentBody", "%:SeaSerpentTail", 
+                    "%:Kraken", "%:KrakenTentacle", "%:KrakenHitbox", "%:SparkCrawler", 
+                    "%:FractalFern", "%:Euryopter", "%:FractalSlimeLarge", "%:FractalSlimeMedium", "%:FractalSlimeSmall",
+                    "%:DustSprite", "%:SeaAnomaly", "%:SeaAnomalyHitbox", "%:TurbulenceSpark", "%:Shockflake", "%:MoltenSpirit", 
+                    "%:ConvectiveWandererHead", "%:ConvectiveWandererBody", "%:ConvectiveWandererTail", "%:MegaMenger", "%:FractalSpirit",
+                    "%:Orthoconic", "%:OrthoconicHitbox", "%:Painbow", "%:Trailblazer", "%:IlluminantScourer", "%:SunKnight", "%:SunServitor", "%:Pegasus", 
+                    "%:RavenousCursedHead", "%:RavenousCursedBody", "%:RavenousCursedTail", "%:LivingSpineHead", "%:LivingSpineBody", "%:LivingSpineTail",
+                    "%:Uraraneid", "%:LightEater", "%:ScytheFlier", "%:SunPixie", "%:Esophage", "%:EsophageHitbox", "%:EsophageLeg", "%:EclipsePixie", "%:SunMoth", 
+                    "%:MoonButterfly", "%:Hemorrphage", "%:HemorrphageLeg", "%:HemorrphageTentacle",
+                    "%:Electris", "%:Magneton", "%:PlanetPixie",
+                    // Split
+                    "$:Breathtaker", "$:Idler", "$:Latopus", "$:Savage", "$:Toiler", "$:Unfairy", "$:Darknut", "$:GreatToxicSludge", "$:HauntedAnchor",
+                    "$:Moonwalker", "$:Muskeleton", "$:ShinyPixie", "$:SkeletonJester", "$:TectonicMimic", "$:Thriller", "$:Echo", "$:Threater", "$:MindFlayer", "$:Fairyfly",
+                    "$:Paraffin", "$:Mirage", "$:Insurgent", "$:Seth");
 
-            internal static void LoadSets()
-            {
+                IsACaveSkeleton = new bool[NPCLoader.NPCCount];
+                IsACaveSkeleton[NPCID.GreekSkeleton] = true;
+                IsACaveSkeleton[NPCID.Skeleton] = true;
+                IsACaveSkeleton[NPCID.SkeletonAlien] = true;
+                IsACaveSkeleton[NPCID.SkeletonAstonaut] = true;
+                IsACaveSkeleton[NPCID.SkeletonTopHat] = true;
+                IsACaveSkeleton[NPCID.HeadacheSkeleton] = true;
+                IsACaveSkeleton[NPCID.MisassembledSkeleton] = true;
+                IsACaveSkeleton[NPCID.PantlessSkeleton] = true;
+                IsACaveSkeleton[NPCID.BoneThrowingSkeleton] = true;
+                IsACaveSkeleton[NPCID.BoneThrowingSkeleton2] = true;
+                IsACaveSkeleton[NPCID.BoneThrowingSkeleton3] = true;
+                IsACaveSkeleton[NPCID.BoneThrowingSkeleton4] = true;
+                IsACaveSkeleton[NPCID.ArmoredSkeleton] = true;
+                IsACaveSkeleton[NPCID.SkeletonArcher] = true;
+
                 BossRelatedEnemy = new bool[NPCLoader.NPCCount];
                 BossRelatedEnemy[NPCID.ServantofCthulhu] = true;
                 BossRelatedEnemy[NPCID.PirateShipCannon] = true;
@@ -420,8 +372,16 @@ namespace AQMod
                     }
                     try
                     {
-                        var npc = new NPC();
-                        npc.SetDefaults(i);
+                        NPC npc;
+                        if (i > Main.maxNPCTypes)
+                        {
+                            npc = NPCLoader.GetNPC(i).npc;
+                        }
+                        else
+                        {
+                            npc = new NPC();
+                            npc.SetDefaults(i);
+                        }
                         if (npc.aiStyle != AIStyles.DemonEyeAI && npc.aiStyle != AIStyles.FlyingAI && npc.aiStyle != AIStyles.SpellAI && npc.aiStyle != AIStyles.EnchantedSwordAI && npc.aiStyle != AIStyles.SpiderAI &&
                             (npc.noGravity || npc.boss))
                         {
@@ -572,6 +532,72 @@ namespace AQMod
                 }
                 return count;
             }
+        }
+
+        internal static class AIStyles // personal ai style list
+        {
+            public const int BoundNPCAI = 0;
+            public const int SlimeAI = 1;
+            public const int DemonEyeAI = 2;
+            public const int FighterAI = 3;
+            public const int EoCAI = 4;
+            public const int FlyingAI = 5;
+            public const int WormAI = 6;
+            public const int PassiveAI = 7;
+            public const int CasterAI = 8;
+            public const int SpellAI = 9;
+            public const int CursedSkullAI = 10;
+            public const int SkeletronAI = 11;
+            public const int SkeletronHandAI = 12;
+            public const int ManEaterAI = 13;
+            public const int BatAI = 14;
+            public const int KingSlimeAI = 15;
+            public const int FishAI = 16;
+            public const int VultureAI = 17;
+            public const int JellyfishAI = 18;
+            public const int AntlionAI = 19;
+            public const int SpikeBallAI = 20;
+            public const int BlazingWheelAI = 21;
+            public const int HoveringAI = 22;
+            public const int EnchantedSwordAI = 23;
+            public const int BirdCritterAI = 24;
+            public const int MimicAI = 25;
+            public const int UnicornAI = 26;
+            public const int WoFAI = 27;
+            public const int TheHungryAI = 28;
+
+            public const int SnowmanAI = 38;
+            public const int TortiseAI = 39;
+            public const int SpiderAI = 40;
+            public const int DerplingAI = 41;
+
+            public const int FlyingFishAI = 44;
+
+            public const int AngryNimbusAI = 49;
+            public const int SporeAI = 50;
+
+            public const int DungeonSpiritAI = 56;
+            public const int MourningWoodAI = 57;
+            public const int PumpkingAI = 58;
+            public const int PumpkingScytheAI = 59;
+            public const int IceQueenAI = 60;
+            public const int SantaNKIAI = 61;
+            public const int ElfCopterAI = 62;
+            public const int FlockoAI = 63;
+            public const int FireflyAI = 64;
+            public const int ButterflyAI = 65;
+            public const int WormCritterAI = 66;
+            public const int SnailAI = 67;
+            public const int DuckAI = 68;
+            public const int DukeFishronAI = 69;
+
+            public const int BiomeMimicAI = 87;
+            public const int MothronAI = 88;
+
+            public const int GraniteElementalAI = 91;
+
+            public const int SandElementalAI = 102;
+            public const int SandSharkAI = 103;
         }
 
         internal static Color GreenSlimeColor => new Color(0, 220, 40, 100);

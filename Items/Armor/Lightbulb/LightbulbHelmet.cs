@@ -1,11 +1,10 @@
-﻿using AQMod.Items.Materials;
-using AQMod.Localization;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Armor.LightbulbArmor
+namespace AQMod.Items.Armor.Lightbulb
 {
     [AutoloadEquip(EquipType.Head)]
     public class LightbulbHelmet : ModItem
@@ -22,7 +21,7 @@ namespace AQMod.Items.Armor.LightbulbArmor
         public override void UpdateEquip(Player player)
         {
             player.manaRegenBonus++;
-            Lighting.AddLight(new Vector2(player.position.X + player.width / 2f, player.position.Y + 2), new Vector3(0.4f, 0.35f, 0.1f));
+            Lighting.AddLight(new Vector2(player.position.X + player.width / 2f, player.position.Y + 2), new Vector3(0.75f, 0.65f, 0.2f));
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -32,7 +31,8 @@ namespace AQMod.Items.Armor.LightbulbArmor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = AQText.ArmorSetBonus("Lightbulb").Value;
+            player.GetModPlayer<AQPlayer>().setBonusLightbulb = true;
+            player.setBonus = Language.GetTextValue("Mods.AQMod.ArmorSetBonus.Lightbulb");
             player.dangerSense = true;
             player.detectCreature = true;
         }
@@ -42,7 +42,7 @@ namespace AQMod.Items.Armor.LightbulbArmor
             var r = new ModRecipe(mod);
             r.AddRecipeGroup(AQRecipes.RecipeGroups.CopperOrTin, 8);
             r.AddRecipeGroup("IronBar", 3);
-            r.AddIngredient(ModContent.ItemType<Lightbulb>(), 2);
+            r.AddIngredient(ModContent.ItemType<Materials.Lightbulb>(), 2);
             r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();

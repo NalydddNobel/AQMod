@@ -39,9 +39,17 @@ ItemTooltip.CrabBarb=Your grappling hooks inflict poison and damage
 ItemName.MinersFlashlight=Miner's Flashlight
 ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shone on by the light\nHide the accessory to disable the flashlight
 
+ItemName.DarkAmulet=Dark Amulet
+ItemTooltip.DarkAmulet=You take 10% less damage from unholy enemies
+
+ItemName.LightAmulet=Light Amulet
+ItemTooltip.LightAmulet=You take 10% less damage from holy enemies
+
 # Armor
 
 ItemName.SteelPlatedChestplate=Steel Plated Chestplate
+ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% less damage
+ArmorSetBonus.SkyrimArmor=5% increased damage reduction\n10% decreased movement speed\n'You are carrying too much to be able to run'
 
 # Materials
 ItemName.Fluorescence=Fluorescence
@@ -130,6 +138,10 @@ ItemTooltip.SnowflakeCannon=Launches many snowballs at once\n66% chance to not c
 ItemName.UltimateSword=Ultimate Sword
 ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
 ProjectileName.UltimateSword=Ultimate Sword
+
+# Dyes
+ItemName.YuckyOrb=Yucky Orb
+ItemTooltip.YuckyOrb=Summons a pet angler fish to provide light
 
 # Dyes
 ItemName.RedSpriteDye=Red Sprite Dye
@@ -577,7 +589,6 @@ Common.KeyBound='{0}' Key
 
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=On a true melee critical hit you gain greatly increased stats for a short while\nWhen the effect activates you gain the potion sickness debuff\nThis effect can only trigger if you don't have the potion sickness debuff
-Common.ArmorSetBonus_Lightbulb=Hunter and dangersense are always active
 #
 # Config Names
 Common.ConfigName_AQConfigClient=Client Config
@@ -1390,3 +1401,5 @@ MapObject.BuriedDirtChest=Buried Dirt Chest
 MapObject.Dungeon=Dungeon
 MapObject.Crustacium=Crustacium
 MapObject.WallClocks=Wall Clock
+MapObject.AQChairs=Chair
+MapObject.AQTables=Table

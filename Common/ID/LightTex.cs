@@ -1,8 +1,6 @@
-﻿using AQMod.Common.DeveloperTools;
-
-namespace AQMod.Common.ID
+﻿namespace AQMod.Common.ID
 {
-    [Identity(typeof(LightTex))]
+    [SetConstantsIdentity(typeof(LightTex))]
     public sealed class LightTex
     {
         public const int Spotlight30x30 = 0;

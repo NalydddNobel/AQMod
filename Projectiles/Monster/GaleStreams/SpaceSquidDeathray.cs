@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
-using AQMod.Effects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.NPCs.Monsters.GaleStreams;
 using Microsoft.Xna.Framework;

@@ -1,5 +1,4 @@
-﻿using AQMod.Tiles.Furniture;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Placeable
@@ -18,6 +17,18 @@ namespace AQMod.Items.Placeable
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;
+        }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<PetrifiedWood>());
+            r.SetResult(this, 2);
+            r.AddRecipe();
+            r = new ModRecipe(mod);
+            r.AddIngredient(this, 2);
+            r.SetResult(ModContent.ItemType<PetrifiedWood>());
+            r.AddRecipe();
         }
     }
 }

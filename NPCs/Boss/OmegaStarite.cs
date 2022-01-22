@@ -8,7 +8,6 @@ using AQMod.Common.ID;
 using AQMod.Common.NoHitting;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
-using AQMod.Effects;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Items.BossItems.Starite;

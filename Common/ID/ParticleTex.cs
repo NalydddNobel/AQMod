@@ -2,7 +2,7 @@
 
 namespace AQMod.Common.ID
 {
-    [Identity(typeof(ParticleTex))]
+    [SetConstantsIdentity(typeof(ParticleTex))]
     public sealed class ParticleTex
     {
         public const int Mono = 0;

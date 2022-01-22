@@ -27,10 +27,9 @@ namespace AQMod.Tiles.Furniture
             TileObjectData.newTile.StyleMultiplier = 27;
             TileObjectData.newTile.StyleWrapLimit = 27;
             TileObjectData.newTile.UsesCustomCanPlace = false;
-            TileObjectData.newTile.LavaDeath = true;
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
-            AddMapEntry(CommonColors.FurnitureColor);
+            AddMapEntry(CommonColors.Furniture);
             dustType = DustID.Dirt;
             drop = ModContent.ItemType<Items.Placeable.PetrifiedWoodPlatform>();
             disableSmartCursor = true;
@@ -51,9 +50,9 @@ namespace AQMod.Tiles.Furniture
         {
             if (Main.tile[i, j].frameY != 0)
             {
-                Main.tile[i, j].frameX = 0;
+                Main.tile[i, j].frameX = (short)TileUtils.FrameForPlatformSloping(Main.tile[i, j].slope());
                 Main.tile[i, j].frameY = 0;
-                WorldGen.TileFrame(i, j, resetFrame: true, noBreak: true);
+                WorldGen.SquareTileFrame(i, j, resetFrame: true);
             }
         }
     }

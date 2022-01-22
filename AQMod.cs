@@ -29,7 +29,6 @@ using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Boss;
 using AQMod.Sounds;
-using AQMod.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -84,6 +83,12 @@ namespace AQMod
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
         public static ModifiableMusic GaleStreamsMusic { get; private set; }
+
+        public static bool CalamityModEnabled { get; private set; }
+        public static bool ThoriumModEnabled { get; private set; }
+        public static bool FargowiltasEnabled { get; private set; }
+        public static bool PolaritiesEnabled { get; private set; }
+        public static bool SplitEnabled { get; private set; }
 
         public static class Keybinds
         {
@@ -581,6 +586,56 @@ namespace AQMod
                 StarbyteColorCache.Init();
                 WorldEffects = new List<WorldVisualEffect>();
             }
+
+            CalamityModEnabled = false;
+            ThoriumModEnabled = false;
+            FargowiltasEnabled = false;
+
+            try
+            {
+                CalamityModEnabled = ModLoader.GetMod("CalamityMod") != null;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Mod failed to be checked active: CalamityMod", ex);
+            }
+
+            try
+            {
+                ThoriumModEnabled = ModLoader.GetMod("ThoriumMod") != null;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Mod failed to be checked active: ThoriumMod", ex);
+            }
+
+            try
+            {
+                FargowiltasEnabled = ModLoader.GetMod("Fargowiltas") != null;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Mod failed to be checked active: Fargowiltas", ex);
+            }
+
+            try
+            {
+                PolaritiesEnabled = ModLoader.GetMod("Polarities") != null;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Mod failed to be checked active: Polarities", ex);
+            }
+
+            try
+            {
+                SplitEnabled = ModLoader.GetMod("Split") != null;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("Mod failed to be checked active: Split", ex);
+            }
+
             Autoloading.Autoload(Code);
         }
 
@@ -588,6 +643,7 @@ namespace AQMod
         {
             AQBuff.Sets.Setup();
             AQItem.Sets.Setup();
+            AQNPC.Sets.InternalInitalize(this);
             CensusSupport.AddSupport(this);
             if (!Main.dedServ)
             {
@@ -601,7 +657,6 @@ namespace AQMod
 
         public override void AddRecipeGroups()
         {
-            AQNPC.Sets.LoadSets();
             AQProjectile.Sets.LoadSets();
             AQRecipes.RecipeGroups.Setup();
         }

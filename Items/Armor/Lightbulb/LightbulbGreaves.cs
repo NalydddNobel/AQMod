@@ -1,9 +1,8 @@
-﻿using AQMod.Items.Materials;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Armor.LightbulbArmor
+namespace AQMod.Items.Armor.Lightbulb
 {
     [AutoloadEquip(EquipType.Legs)]
     public class LightbulbGreaves : ModItem
@@ -27,7 +26,7 @@ namespace AQMod.Items.Armor.LightbulbArmor
             var r = new ModRecipe(mod);
             r.AddRecipeGroup(AQRecipes.RecipeGroups.CopperOrTin, 8);
             r.AddRecipeGroup("IronBar", 3);
-            r.AddIngredient(ModContent.ItemType<Lightbulb>(), 2);
+            r.AddIngredient(ModContent.ItemType<Materials.Lightbulb>(), 2);
             r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();

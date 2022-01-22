@@ -1,8 +1,6 @@
-﻿using AQMod.Common.DeveloperTools;
-
-namespace AQMod.Effects
+﻿namespace AQMod.Common.ID
 {
-    [Identity(typeof(TrailTex))]
+    [SetConstantsIdentity(typeof(TrailTex))]
     public sealed class TrailTex
     {
         public const int Line = 0;
