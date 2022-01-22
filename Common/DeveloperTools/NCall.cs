@@ -94,6 +94,7 @@ namespace AQMod.Common.DeveloperTools
                 case "genccship":
                     {
                         CrabCrevice.GenPirateShip(mX, mY);
+                        CrabCrevice.PlacePlatformGenList();
                     }
                     break;
 

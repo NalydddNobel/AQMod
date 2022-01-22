@@ -24,6 +24,7 @@ namespace AQMod.Content.World.Generation
     public static class CrabCrevice
     {
         private const int Size = 160;
+        internal static List<Vector3> platformGenList;
 
         private struct Circle
         {
@@ -428,7 +429,7 @@ namespace AQMod.Content.World.Generation
                         Main.tile[i, j] = new Tile();
                         continue;
                     }
-                    if (Main.tile[i, j].type == ModContent.TileType<SedimentSand>())
+                    if (Main.tile[i, j].type == ModContent.TileType<SedimentSand>() || Main.tile[i, j].type == ModContent.TileType<PetrifiedWood>())
                     {
                         if (Main.tile[i, j + 1] == null)
                         {
@@ -438,7 +439,7 @@ namespace AQMod.Content.World.Generation
                         {
                             continue;
                         }
-                        for (int k = 0; k < 30 && Main.tile[i, j].type == ModContent.TileType<SedimentSand>(); k++)
+                        for (int k = 0; k < 30; k++)
                             TileLoader.RandomUpdate(i, j, Main.tile[i, j].type);
                     }
                 }
@@ -707,6 +708,20 @@ namespace AQMod.Content.World.Generation
 
         public static void GenPirateShip(int x, int y)
         {
+            GenPirateShip(x, y, WorldGen.genRand.NextBool() ? 1 : -1);
+        }
+
+        public static void GenPirateShip(int x, int y, int direction)
+        {
+            GenPirateShip(x, y, direction, WorldGen.genRand.Next(35, 51));
+        }
+
+        public static void GenPirateShip(int x, int y, int direction, int length)
+        {
+            if (platformGenList == null)
+            {
+                platformGenList = new List<Vector3>();
+            }
             if (x < 40)
             {
                 x = 40;
@@ -715,8 +730,6 @@ namespace AQMod.Content.World.Generation
             {
                 x = Main.maxTilesX - 40;
             }
-            int direction = WorldGen.genRand.NextBool() ? 1 : -1;
-            int length = WorldGen.genRand.Next(35, 51);
             if (direction == -1)
             {
                 if (x - length < 20)
@@ -741,9 +754,9 @@ namespace AQMod.Content.World.Generation
                 {
                     if (k > 3 && k < 9)
                     {
-                        Main.tile[x + k * direction, y].type = (ushort)ModContent.TileType<AQPlatforms>();
+                        Main.tile[x + k * direction, y].type = (ushort)ModContent.TileType<PetrifiedWoodPlatform>();
                         Main.tile[x + k * direction, y].frameX = 0;
-                        Main.tile[x + k * direction, y].frameX = 18 * AQPlatforms.PetrifiedWood;
+                        Main.tile[x + k * direction, y].frameX = 0;
                     }
                     Main.tile[x + k * direction, y + 8].active(active: true);
                     Main.tile[x + k * direction, y + 8].type = (ushort)ModContent.TileType<PetrifiedWood>();
@@ -762,9 +775,9 @@ namespace AQMod.Content.World.Generation
                 {
                     if (k < 13)
                     {
-                        Main.tile[x + k * direction, y + 8].type = (ushort)ModContent.TileType<AQPlatforms>();
+                        Main.tile[x + k * direction, y + 8].type = (ushort)ModContent.TileType<PetrifiedWoodPlatform>();
                         Main.tile[x + k * direction, y + 8].frameX = 0;
-                        Main.tile[x + k * direction, y + 8].frameX = 18 * AQPlatforms.PetrifiedWood;
+                        Main.tile[x + k * direction, y + 8].frameX = 0;
                     }
                     Main.tile[x + k * direction, y + 13].active(active: true);
                     Main.tile[x + k * direction, y + 13].type = (ushort)ModContent.TileType<PetrifiedWood>();
@@ -774,9 +787,9 @@ namespace AQMod.Content.World.Generation
                     {
                         Main.tile[x + k * direction, y + 9 + l].wall = (ushort)ModContent.WallType<PetrifiedWoodWall>();
                     }
-                    for (int l = 1; l < 4; l++)
+                    for (int l = 1; l < 5; l++)
                     {
-                        Main.tile[x + k * direction, y + 9 + l].active(active: false);
+                        Main.tile[x + k * direction, y + 8 + l].active(active: false);
                     }
                 }
             }
@@ -788,9 +801,9 @@ namespace AQMod.Content.World.Generation
                 Main.tile[x + (k + length - 5) * direction, y - 1].halfBrick(halfBrick: false);
             }
             Main.tile[x + (length - 6) * direction, y - 1].active(active: true);
-            Main.tile[x + (length - 6) * direction, y - 1].type = (ushort)ModContent.TileType<AQPlatforms>();
+            Main.tile[x + (length - 6) * direction, y - 1].type = (ushort)ModContent.TileType<PetrifiedWoodPlatform>();
             Main.tile[x + (length - 6) * direction, y - 1].frameX = 0;
-            Main.tile[x + (length - 6) * direction, y - 1].frameY = 18 * AQPlatforms.PetrifiedWood;
+            Main.tile[x + (length - 6) * direction, y - 1].frameY = 0;
             Main.tile[x + (length - 6) * direction, y - 1].halfBrick(halfBrick: false);
             if (direction == -1)
             {
@@ -803,7 +816,7 @@ namespace AQMod.Content.World.Generation
 
             // platform at tip
             Main.tile[x + (length + 5) * direction, y - 1].active(active: true);
-            Main.tile[x + (length + 5) * direction, y - 1].type = (ushort)ModContent.TileType<AQPlatforms>();
+            Main.tile[x + (length + 5) * direction, y - 1].type = (ushort)ModContent.TileType<PetrifiedWoodPlatform>();
             Main.tile[x + (length + 5) * direction, y - 1].frameX = 0;
             Main.tile[x + (length + 5) * direction, y - 1].frameY = 0;
             Main.tile[x + (length + 5) * direction, y - 1].slope(slope: 0);
@@ -846,8 +859,8 @@ namespace AQMod.Content.World.Generation
                 }
             }
 
-            // 1st floor wall front
-            for (int k = 0; k < 8; k++)
+            // wall front
+            for (int k = 0; k < 13; k++)
             {
                 Main.tile[x + (length - k - 1) * direction, y + k].active(active: true);
                 Main.tile[x + (length - k - 1) * direction, y + k].type = (ushort)ModContent.TileType<PetrifiedWood>();
@@ -864,14 +877,99 @@ namespace AQMod.Content.World.Generation
                 }
             }
 
+            int sailHeight = WorldGen.genRand.Next(18, 30);
+            int sailX = x + (length / 2) * direction;
+
+            for (int k = 1; k < sailHeight; k++)
+            {
+                Main.tile[sailX, y - k].active(active: true);
+                Main.tile[sailX, y - k].type = (ushort)ModContent.TileType<PetrifiedWoodPlatform>();
+                Main.tile[sailX, y - k].wall = (ushort)ModContent.WallType<PetrifiedWoodWall>();
+                Main.tile[sailX, y - k].slope(slope: 0);
+                Main.tile[sailX, y - k].halfBrick(halfBrick: false);
+                if (Main.tile[sailX, y - k - 3].active() && Main.tile[sailX, y - k - 3].Solid())
+                {
+                    sailHeight = k + 1;
+                    break;
+                }
+                if (k % 9 == 0)
+                {
+                    int sailWidth = WorldGen.genRand.Next(12, 18);
+                    int down = 0;
+                    int pdown = 0;
+                    for (int m = -sailWidth; m < sailWidth; m++)
+                    {
+                        int a = m * direction;
+                        for (int i = -1; i < 2; i++)
+                        {
+                            for (int j = -1; j < 2; j++)
+                            {
+                                if (Main.tile[sailX + a + i, y - k + down + j].active() && 
+                                    Main.tile[sailX + a + i, y - k + down + j].type != ModContent.TileType<PetrifiedWood>() &&
+                                    Main.tile[sailX + a + i, y - k + down + j].type != ModContent.TileType<PetrifiedWoodPlatform>() &&
+                                    Main.tile[sailX + a + i, y - k + down + j].Solid())
+                                {
+                                    if (m < 0)
+                                        goto Next;
+                                    else
+                                        goto End;
+                                }
+                            }
+                        }
+
+                        Main.tile[sailX + a, y - k + down].active(active: true);
+                        Main.tile[sailX + a, y - k + down].type = (ushort)ModContent.TileType<PetrifiedWoodPlatform>();
+                        Main.tile[sailX + a, y - k + down].halfBrick(halfBrick: false);
+                        if (pdown == down && m > (-sailWidth + 3) && m.Abs() > 2 && m < (sailWidth - 3) && WorldGen.genRand.NextBool(8))
+                        {
+                            if (direction == -1)
+                            {
+                                Main.tile[sailX + a, y - k + down].slope(slope: 2);
+                                platformGenList.Add(new Vector3(sailX + a, y - k + down, 2));
+                            }
+                            else
+                            {
+                                platformGenList.Add(new Vector3(sailX + a, y - k + down, 1)); 
+                                Main.tile[sailX + a, y - k + down].slope(slope: 1);
+                            }
+                            down++;
+                        }
+                        else
+                        {
+                            pdown = down;
+                            Main.tile[sailX + a, y - k + down].slope(slope: 0);
+                        }
+
+                    Next:
+                        continue;
+                    End:
+                        break;
+                    }
+                }
+            }
+
             for (int k = 0; k < length + 10; k++)
             {
-                for (int l = 0; l < 20; l++)
+                for (int l = -sailHeight; l < 20; l++)
                 {
                     WorldGen.SquareTileFrame(x + k * direction, y + l, resetFrame: true);
                     WorldGen.SquareWallFrame(x + k * direction, y + l, resetFrame: true);
                 }
             }
+        }
+
+        internal static void PlacePlatformGenList()
+        {
+            if (platformGenList == null)
+                return;
+            foreach (var v in platformGenList)
+            {
+                var p = new Point((int)v.X, (int)v.Y);
+                WorldGen.PlaceTile(p.X, p.Y, ModContent.TileType<PetrifiedWoodPlatform>(), mute: true, forced: true);
+                Main.tile[p.X, p.Y].halfBrick(halfBrick: false);
+                Main.tile[p.X, p.Y].slope(slope: (byte)(int)v.Z);
+            }
+            platformGenList = null;
         }
 
         public static void GenerateCrabCrevice(GenerationProgress progress)
@@ -880,6 +978,8 @@ namespace AQMod.Content.World.Generation
             {
                 return;
             }
+            if (platformGenList == null)
+                platformGenList = new List<Vector3>();
             progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice");
             int crabCreviceLocationX = 0;
             int crabCreviceLocationY = 0;
@@ -996,8 +1096,8 @@ namespace AQMod.Content.World.Generation
                 }
             }
 
-            GenPirateShip(finalCaveX - 50, crabCreviceLocationY + 190 + WorldGen.genRand.Next(-8, 5));
-            GenPirateShip(finalCaveX + 50, crabCreviceLocationY + 192 + WorldGen.genRand.Next(-5, 8));
+            GenPirateShip(finalCaveX - 50, crabCreviceLocationY + 190 + WorldGen.genRand.Next(-8, 5), 1);
+            GenPirateShip(finalCaveX + 50, crabCreviceLocationY + 192 + WorldGen.genRand.Next(-5, 8), -1);
 
             progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice.Caves");
             for (int k = 0; k < 20000; k++)
@@ -1061,7 +1161,7 @@ namespace AQMod.Content.World.Generation
         public static void PlaceLegacyOceanRavine(int x, int y, int mossStyle = -1, int tileType = TileID.HardenedSand, int tileType2 = TileID.Sand, int wallType = 0)
         {
             if (wallType == 0)
-                wallType = ModContent.WallType<Walls.OceanRavineWall>();
+                wallType = ModContent.WallType<OceanRavineWall>();
             int height = WorldGen.genRand.Next(40, 120);
             int digDir = x < Main.maxTilesX / 2 ? 1 : -1;
             int[] xAdds = new int[height];

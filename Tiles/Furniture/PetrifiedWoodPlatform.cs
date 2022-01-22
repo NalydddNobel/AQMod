@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.ID;
-using AQMod.Items.Placeable;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,9 +7,8 @@ using Terraria.ObjectData;
 
 namespace AQMod.Tiles.Furniture
 {
-    public sealed class AQPlatforms : ModTile
+    public sealed class PetrifiedWoodPlatform : ModTile
     {
-        public const int PetrifiedWood = 0;
 
         public override void SetDefaults()
         {
@@ -33,7 +32,7 @@ namespace AQMod.Tiles.Furniture
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
             AddMapEntry(CommonColors.FurnitureColor);
             dustType = DustID.Dirt;
-            drop = ModContent.ItemType<PetrifiedWoodPlatform>();
+            drop = ModContent.ItemType<Items.Placeable.PetrifiedWoodPlatform>();
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Platforms };
         }
@@ -48,13 +47,14 @@ namespace AQMod.Tiles.Furniture
             num = fail ? 1 : 3;
         }
 
-        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
         {
-            if (WorldGen.gen)
+            if (Main.tile[i, j].frameY != 0)
             {
-                return false;
+                Main.tile[i, j].frameX = 0;
+                Main.tile[i, j].frameY = 0;
+                WorldGen.TileFrame(i, j, resetFrame: true, noBreak: true);
             }
-            return base.TileFrame(i, j, ref resetFrame, ref noBreak);
         }
     }
 }

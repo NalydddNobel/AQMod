@@ -14,8 +14,7 @@ namespace AQMod.Items.Placeable
             item.useTime = 10;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<AQPlatforms>();
-            item.placeStyle = AQPlatforms.PetrifiedWood;
+            item.createTile = ModContent.TileType<Tiles.Furniture.PetrifiedWoodPlatform>();
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;

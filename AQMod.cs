@@ -29,6 +29,7 @@ using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Boss;
 using AQMod.Sounds;
+using AQMod.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

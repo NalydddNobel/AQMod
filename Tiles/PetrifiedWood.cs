@@ -25,7 +25,7 @@ namespace AQMod.Tiles
 
         public override void RandomUpdate(int i, int j)
         {
-            if (WorldGen.genRand.NextBool(4) && Main.tile[i, j + 1] != null 
+            if (WorldGen.genRand.NextBool(80) && Main.tile[i, j + 1] != null 
                 && (Main.tile[i, j + 1].wall == ModContent.WallType<OceanRavineWall>() || Main.tile[i, j + 1].wall == ModContent.WallType<PetrifiedWoodWall>()))
             {
                 if (WeepingVine.GrowVine(i, j))

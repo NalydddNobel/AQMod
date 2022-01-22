@@ -1,5 +1,4 @@
-﻿using AQMod.Tiles.Furniture;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Placeable
@@ -15,7 +14,6 @@ namespace AQMod.Items.Placeable
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.createTile = ModContent.TileType<Tiles.PetrifiedWood>();
-            item.placeStyle = AQPlatforms.PetrifiedWood;
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;
