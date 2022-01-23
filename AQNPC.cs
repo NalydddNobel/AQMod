@@ -1,4 +1,5 @@
-﻿using AQMod.Common.Graphics;
+﻿using AQMod.Common.CrossMod;
+using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Common.NoHitting;
 using AQMod.Content;
@@ -48,11 +49,45 @@ namespace AQMod
             public static bool[] HardmodeEnemy { get; private set; }
             public static bool[] IsACaveSkeleton { get; private set; }
             public static bool[] IsAZombie { get; private set; }
+            public static bool[] IsWormSegment { get; private set; }
+            public static bool[] IsWormBody { get; private set; }
+
+            public static bool IsWormHead(int type)
+            {
+                return IsWormSegment[type] && !IsWormBody[type];
+            }
 
             internal static void InternalInitalize(AQMod mod)
             {
                 SetUtils.Length = NPCLoader.NPCCount;
                 SetUtils.GetIDFromType = (m, n) => m.NPCType(n);
+
+                IsWormBody = SetUtils.CreateFlagSet(NPCID.EaterofWorldsBody, NPCID.BoneSerpentBody, NPCID.CultistDragonBody1, NPCID.CultistDragonBody2, NPCID.CultistDragonBody3, NPCID.CultistDragonBody4, NPCID.DevourerBody,
+                    NPCID.DuneSplicerBody, NPCID.EaterofWorldsBody, NPCID.GiantWormBody, NPCID.LeechBody, NPCID.SeekerBody, NPCID.SolarCrawltipedeBody, NPCID.StardustWormBody, NPCID.TheDestroyerBody, NPCID.TombCrawlerBody, NPCID.WyvernBody, NPCID.WyvernBody2, NPCID.WyvernBody3,
+                    NPCID.BoneSerpentTail, NPCID.CultistDragonTail, NPCID.DevourerTail, NPCID.DiggerTail, NPCID.DuneSplicerTail, NPCID.EaterofWorldsTail, NPCID.GiantWormTail, NPCID.LeechTail, NPCID.SeekerTail, NPCID.SolarCrawltipedeTail, NPCID.StardustWormTail, NPCID.TheDestroyerTail,
+                    NPCID.TombCrawlerTail, NPCID.WyvernTail,
+                    // Calamity Mod
+                    "!:ArmoredDiggerBody", "!:ArmoredDiggerTail", "!:GulperEelBody", "!:GulperEelBodyAlt", "!:GulperEelTail", "!:DesertScourgeBody", "!:DesertNuisanceTail", "!:PerforatorBodySmall", "!:PerforatorBodyMedium", "!:PerforatorBodyLarge",
+                    "!:PerforatorTailSmall", "!:PerforatorTailMedium", "!:PerforatorTailLarge", "!:AquaticScourgeBody", "!:AquaticScourgeTail", "!:AquaticSeekerBody", "!:AquaticSeekerTail", "!:AstrumDeusBodySpectral", "!:AstrumDeusTailSpectral", "!:StormWeaverBody", "!:StormWeaverTail",
+                    "!:DevourerofGodsBody", "!:DevourerofGodsTail", "!:DevourerofGodsBody2", "!:DevourerofGodsTail2", "!:SCalWormHead", "!:SCalWormBody", "!:SCalWormBodyWeak", "!:SCalWormArm", "!:SCalWormTail", "!:ThanatosBody1", "!:ThanatosBody2", "!:ThanatosTail", "!:EidolonWyrmHeadHuge",
+                    "!:EidolonWyrmBody", "!:EidolonWyrmBodyAlt", "!:EidolonWyrmBodyAltHuge", "!:EidolonWyrmBodyHuge", "!:EidolonWyrmTail", "!:EidolonWyrmTailHuge",
+                    // Polarities
+                    "%:BisectorBody1", "%:BisectorBody2", "%:BisectorTail", "%:SeaSerpentBody", "%:SeaSerpentTail", "%:ConvectiveWandererBody", "%:ConvectiveWandererTail", "%:RavenousCursedBody", "%:RavenousCursedTail", "%:LivingSpineBody", "%:LivingSpineTail"
+                    );
+
+                IsWormSegment = SetUtils.CreateFlagSet(NPCID.BoneSerpentHead, NPCID.CultistDragonHead, NPCID.DevourerHead, NPCID.DiggerHead, NPCID.DuneSplicerHead, NPCID.EaterofWorldsHead, NPCID.GiantWormHead, NPCID.LeechHead, NPCID.SeekerHead,
+                    NPCID.SolarCrawltipedeHead, NPCID.StardustWormHead, NPCID.TombCrawlerHead, NPCID.WyvernHead, NPCID.TheDestroyer,
+                    // Calamity Mod
+                    "!:ArmoredDiggerHead", "!:GulperEelHead", "!:DesertScourgeHead", "!:DesertNuisanceHead", "!:PerforatorHeadSmall", "!:PerforatorHeadMedium", "!:PerforatorHeadLarge", "!:ArmoredDiggerBody", "!:AquaticScourgeHead", "!:AquaticSeekerHead",
+                    "!:AstrumDeusHeadSpectral", "!:StormWeaverHead", "!:DevourerofGodsHead", "!:DevourerofGodsHead2", "!:ThanatosHead", "!:EidolonWyrmHead",
+                    // Polarities
+                    "%:BisectorHead", "%:BisectorHeadHitbox", "%:SeaSerpentHead", "%:ConvectiveWandererHead", "%:RavenousCursedHead", "%:LivingSpineHead"
+                    );
+                for (int i = 0; i < NPCLoader.NPCCount; i++)
+                {
+                    IsWormSegment[i] = IsWormBody[i];
+                }
+
                 IsAZombie = SetUtils.CreateFlagSet(NPCID.Zombie, NPCID.BaldZombie, NPCID.PincushionZombie, NPCID.SlimedZombie, NPCID.SwampZombie,
                     NPCID.TwiggyZombie, NPCID.FemaleZombie, NPCID.ZombieRaincoat, NPCID.ZombieRaincoat, NPCID.ZombieXmas, NPCID.ZombieSweater, NPCID.BloodZombie,
                     NPCID.ZombieDoctor, NPCID.ZombieEskimo, NPCID.ZombiePixie, NPCID.ZombieSuperman, NPCID.ArmedZombie, NPCID.ArmedZombieCenx, NPCID.ArmedZombieEskimo,
@@ -67,6 +102,8 @@ namespace AQMod
                     NPCID.DungeonSpirit, NPCID.BlueArmoredBones, NPCID.BlueArmoredBonesMace, NPCID.BlueArmoredBonesNoPants, NPCID.BlueArmoredBonesSword, NPCID.HellArmoredBones, NPCID.HellArmoredBonesMace, NPCID.HellArmoredBonesSpikeShield, NPCID.HellArmoredBonesSword,
                     NPCID.CultistArcherBlue, NPCID.CultistArcherWhite, NPCID.CultistDevote, NPCID.SkeletonCommando, NPCID.ChaosElemental, NPCID.RuneWizard, NPCID.IcyMerman, NPCID.JungleCreeper, NPCID.JungleCreeperWall, NPCID.Necromancer, NPCID.NecromancerArmored,
                     NPCID.DiabolistRed, NPCID.DiabolistWhite, NPCID.RaggedCaster, NPCID.RaggedCasterOpenCoat, NPCID.SkeletonSniper, NPCID.TacticalSkeleton, NPCID.WyvernHead, NPCID.WyvernBody, NPCID.WyvernBody2, NPCID.WyvernBody3, NPCID.WyvernLegs, NPCID.WyvernTail,
+                    // Aequus
+                    typeof(Heckto), typeof(RedSprite), typeof(SpaceSquid),
                     // Polarities
                     "%:Aequorean", "%:Amphisbaena", "%:ChaosCrawler", "%:BisectorHead", "%:BisectorHeadHitbox", "%:BisectorBody1", "%:BisectorBody2", "%:BisectorTail", 
                     "%:BrineDweller", "%:GreatStarSlime", "%:HydraHead", "%:HydraBody",
@@ -85,21 +122,8 @@ namespace AQMod
                     "$:Moonwalker", "$:Muskeleton", "$:ShinyPixie", "$:SkeletonJester", "$:TectonicMimic", "$:Thriller", "$:Echo", "$:Threater", "$:MindFlayer", "$:Fairyfly",
                     "$:Paraffin", "$:Mirage", "$:Insurgent", "$:Seth");
 
-                IsACaveSkeleton = new bool[NPCLoader.NPCCount];
-                IsACaveSkeleton[NPCID.GreekSkeleton] = true;
-                IsACaveSkeleton[NPCID.Skeleton] = true;
-                IsACaveSkeleton[NPCID.SkeletonAlien] = true;
-                IsACaveSkeleton[NPCID.SkeletonAstonaut] = true;
-                IsACaveSkeleton[NPCID.SkeletonTopHat] = true;
-                IsACaveSkeleton[NPCID.HeadacheSkeleton] = true;
-                IsACaveSkeleton[NPCID.MisassembledSkeleton] = true;
-                IsACaveSkeleton[NPCID.PantlessSkeleton] = true;
-                IsACaveSkeleton[NPCID.BoneThrowingSkeleton] = true;
-                IsACaveSkeleton[NPCID.BoneThrowingSkeleton2] = true;
-                IsACaveSkeleton[NPCID.BoneThrowingSkeleton3] = true;
-                IsACaveSkeleton[NPCID.BoneThrowingSkeleton4] = true;
-                IsACaveSkeleton[NPCID.ArmoredSkeleton] = true;
-                IsACaveSkeleton[NPCID.SkeletonArcher] = true;
+                IsACaveSkeleton = SetUtils.CreateFlagSet(NPCID.GreekSkeleton, NPCID.Skeleton, NPCID.SkeletonAlien, NPCID.SkeletonAstonaut, NPCID.SkeletonTopHat, NPCID.HeadacheSkeleton, NPCID.MisassembledSkeleton, NPCID.PantlessSkeleton,
+                    NPCID.BoneThrowingSkeleton, NPCID.BoneThrowingSkeleton2, NPCID.BoneThrowingSkeleton3, NPCID.BoneThrowingSkeleton4, NPCID.ArmoredSkeleton, NPCID.SkeletonArcher);
 
                 BossRelatedEnemy = new bool[NPCLoader.NPCCount];
                 BossRelatedEnemy[NPCID.ServantofCthulhu] = true;

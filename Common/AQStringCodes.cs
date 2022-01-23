@@ -5,6 +5,7 @@
         private const string AQMod_Key = "@";
         private const string Split_Key = "$";
         private const string Polarities_Key = "%";
+        private const string CalamityMod_Key = "!";
 
         public static string EncodeModName(object obj)
         {
@@ -22,6 +23,9 @@
 
                 case "Polarities":
                     return Polarities_Key;
+
+                case "CalamityMod":
+                    return CalamityMod_Key;
             }
         }
 
@@ -40,6 +44,9 @@
 
                 case Polarities_Key:
                     return "Polarities";
+
+                case CalamityMod_Key:
+                    return "CalamityMod";
             }
         }
 

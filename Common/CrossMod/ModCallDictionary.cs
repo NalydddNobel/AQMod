@@ -7,11 +7,12 @@ using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.FallingStars;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common
+namespace AQMod.Common.CrossMod
 {
     internal static class ModCallDictionary
     {
@@ -34,22 +35,57 @@ namespace AQMod.Common
             }
             public static void CreateCallsForType<T>(T Instance) where T : class
             {
+                var attributes = typeof(T).GetCustomAttributes(inherit: true);
+                foreach (var attr in attributes)
+                {
+                    if (attr is CallSpecialAttribute)
+                    {
+                        InternalCreateCalls(Instance, (CallSpecialAttribute)attr);
+                        return;
+                    }
+                }
+                InternalCreateCalls(Instance);
+            }
+
+            private static void InternalCreateCalls<T>(T Instance, CallSpecialAttribute attr) where T : class
+            {
+                attr.type = Instance.GetType();
+                if (attr.AddCallsForFields)
+                    InternalCreateCalls(attr.Name, Instance, attr.Fields, null);
+                attr.CustomCreateCalls(Instance, _calls);
+                attr.type = null;
+            }
+
+            private static void InternalCreateCalls<T>(T Instance) where T : class
+            {
                 string typeName = typeof(T).Name.ToLower();
                 var fields = typeof(T).GetFields();
+                InternalCreateCalls(typeName, Instance, fields, null);
+            }
+
+            private static void InternalCreateCalls<T>(string typeName, T Instance, FieldInfo[] fields, PropertyInfo[] properties)
+            {
                 aqdebug.DebugLogger? l = null;
                 if (aqdebug.LogModCallObjectInitialization)
                     l = aqdebug.GetDebugLogger();
-                foreach (var f in fields)
+                if (fields != null)
                 {
-                    l?.Log(typeName + "." + f.Name.ToLower());
-                    _calls.Add(typeName + "." + f.Name.ToLower(), (o) => f.GetValue(Instance));
-                    if (!f.IsInitOnly)
+                    foreach (var f in fields)
                     {
-                        _calls.Add(typeName + "." + f.Name.ToLower() + "_set", (o) =>
+                        if (f.GetCustomAttribute<ModCallLeaveOutAttribute>() != null)
                         {
-                            f.SetValue(Instance, o[1]);
-                            return o[1];
-                        });
+                            continue;
+                        }
+                        l?.Log(typeName + "." + f.Name.ToLower());
+                        _calls.Add(typeName + "." + f.Name.ToLower(), (o) => f.GetValue(Instance));
+                        if (!f.IsInitOnly)
+                        {
+                            _calls.Add(typeName + "." + f.Name.ToLower() + "_set", (o) =>
+                            {
+                                f.SetValue(Instance, o[1]);
+                                return o[1];
+                            });
+                        }
                     }
                 }
             }
@@ -63,7 +99,7 @@ namespace AQMod.Common
             {
                 { "addloadtask", (o) =>
                     {
-                        AQMod.cachedLoadTasks.Add(new CachedTask((object)o[1], (Func<object, object>)o[2]));
+                        AQMod.cachedLoadTasks.Add(new CachedTask(o[1], (Func<object, object>)o[2]));
                         return null;
                     }
                 },
