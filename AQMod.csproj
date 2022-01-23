@@ -16,6 +16,7 @@
   <ItemGroup>
     <None Include="Assets\.projects\p_buff.ase" />
     <None Include="Assets\.projects\p_banners.ase" />
+    <None Include="Assets\.projects\p_dyes.ase" />
     <None Include="Assets\.projects\p_icon.ase" />
     <None Include="Assets\.projects\icon_Christmas.png" />
     <None Include="Assets\.projects\icon_Halloween.png" />
