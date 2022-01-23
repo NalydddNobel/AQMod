@@ -39,9 +39,17 @@ ItemTooltip.CrabBarb=你的钩爪会造成中毒和伤害
 ItemName.MinersFlashlight=矿工的手电筒
 ItemTooltip.MinersFlashlight=你会向你的光标位置发射一束光\n被光照到的宝藏会发光\n关闭饰品可见性来禁用手电筒效果
 
+ItemName.DarkAmulet=黑暗护符
+ItemTooltip.DarkAmulet=你从非光明敌人处受到的伤害降低10%
+
+ItemName.LightAmulet=光明护符
+ItemTooltip.LightAmulet=你从光明敌人处受到的伤害降低10%
+
 # Armor
 
 ItemName.SteelPlatedChestplate=钢板胸甲
+ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱造成的伤害降低30%
+ArmorSetBonus.SkyrimArmor=增加5%伤害减免\n降低10%移动速度\n'你身上背的东西太多了, 你跑不动了'
 
 # Materials
 ItemName.Fluorescence=荧光
@@ -130,6 +138,10 @@ ItemTooltip.SnowflakeCannon=发射许多雪球\n66%几率不消耗弹药
 ItemName.UltimateSword=最终之剑
 ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
 ProjectileName.UltimateSword=最终之剑
+
+# Dyes
+ItemName.YuckyOrb=恶心的球
+ItemTooltip.YuckyOrb=召唤一只会提供光亮的宠物鮟鱇鱼
 
 # Dyes
 ItemName.RedSpriteDye=红色精灵染料
@@ -577,7 +589,6 @@ Common.KeyBound='{0}'键
 
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=真近战攻击造成暴击后使你的各项属性大幅度提升一小段时间\n当触发此效果时使你获得耐药性减益\n此效果仅在你没有耐药性减益时触发
-Common.ArmorSetBonus_Lightbulb=你现在拥有危险感和猎人增益
 #
 # Config Names
 Common.ConfigName_AQConfigClient=客户端设置
@@ -1390,3 +1401,5 @@ MapObject.BuriedDirtChest=被掩埋的土箱
 MapObject.Dungeon=地牢
 MapObject.Crustacium=硬壳
 MapObject.WallClocks=挂钟
+MapObject.AQChairs=椅子
+MapObject.AQTables=桌子
