@@ -40,10 +40,10 @@ ItemName.MinersFlashlight=Miner's Flashlight
 ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shone on by the light\nHide the accessory to disable the flashlight
 
 ItemName.DarkAmulet=Dark Amulet
-ItemTooltip.DarkAmulet=You take 10% less damage from unholy enemies
+ItemTooltip.DarkAmulet=You take 10% less damage from unholy enemies\nYour grappling hooks inflict damage
 
 ItemName.LightAmulet=Light Amulet
-ItemTooltip.LightAmulet=You take 10% less damage from holy enemies
+ItemTooltip.LightAmulet=You take 10% less damage from holy enemies\nIncreases armor penetration by 5
 
 # Armor
 
@@ -139,9 +139,11 @@ ItemName.UltimateSword=Ultimate Sword
 ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
 ProjectileName.UltimateSword=Ultimate Sword
 
-# Dyes
+# Pets
 ItemName.YuckyOrb=Yucky Orb
 ItemTooltip.YuckyOrb=Summons a pet angler fish to provide light
+BuffName.AnglerFish=Angler Fish
+BuffDescription.AnglerFish=Is secretly attracted to its own light
 
 # Dyes
 ItemName.RedSpriteDye=Red Sprite Dye
@@ -420,6 +422,7 @@ RecipeGroup.DemoniteBarOrCrimtaneBar=Demonite Bar or Crimtane Bar
 RecipeGroup.ShadowScaleOrTissueSample=Shadow Scale or Tissue Sample
 RecipeGroup.CascadeOrHelfire=Cascade or Helfire
 RecipeGroup.AnyEel=Any Eel
+RecipeGroup.EvilBarb=Either Evil Barbs
 
 # Config
 

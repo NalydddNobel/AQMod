@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
+using AQMod.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -77,7 +78,7 @@ namespace AQMod.Projectiles.Melee
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.OnFire, 800);
-            target.GetGlobalNPC<AQNPC>().ChangeTemperature(target, 60);
+            target.GetGlobalNPC<NPCTemperatureManager>().ChangeTemperature(target, 60);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

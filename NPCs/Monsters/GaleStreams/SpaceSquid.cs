@@ -52,6 +52,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             npc.aiStyle = -1;
             npc.noGravity = true;
             npc.value = Item.buyPrice(gold: 2);
+            npc.coldDamage = true;
             npc.buffImmune[BuffID.OnFire] = true;
             npc.buffImmune[BuffID.CursedInferno] = true;
             npc.buffImmune[BuffID.Ichor] = true;
@@ -61,8 +62,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             bannerItem = ModContent.ItemType<SpaceSquidBanner>();
             npc.noTileCollide = true;
 
-            var aQNPC = npc.GetGlobalNPC<AQNPC>();
-            aQNPC.temperature = -40;
+            npc.GetGlobalNPC<NPCTemperatureManager>().temperature = -40;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

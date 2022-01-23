@@ -30,6 +30,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             projectile.tileCollide = false;
             projectile.netImportant = true;
             projectile.manualDirectionChange = true;
+            projectile.coldDamage = true;
 
             projectile.GetGlobalProjectile<AQProjectile>().SetupTemperatureStats(-40);
         }

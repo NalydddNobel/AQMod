@@ -186,6 +186,8 @@ namespace AQMod.Common.CrossMod
 
                 { "worlddefeats.downedredsprite", (o) => WorldDefeats.DownedRedSprite },
                 { "worlddefeats.downedredsprite_set", (o) => WorldDefeats.DownedRedSprite = (bool)o[1]},
+                { "worlddefeats.downedspacesquid", (o) => WorldDefeats.DownedSpaceSquid },
+                { "worlddefeats.downedspacesquid_set", (o) => WorldDefeats.DownedSpaceSquid = (bool)o[1]},
 
                 { "worlddefeats.downedcrabseason", (o) => WorldDefeats.DownedCrabSeason },
                 { "worlddefeats.downedcrabseason_set", (o) => WorldDefeats.DownedCrabSeason = (bool)o[1]},

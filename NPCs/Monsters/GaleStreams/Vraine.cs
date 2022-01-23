@@ -96,8 +96,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     npc.netUpdate = true;
                 }
                 npc.velocity.Y -= 0.25f;
-                var aQNPC2 = npc.GetGlobalNPC<AQNPC>();
-                aQNPC2.temperature = 0;
+                npc.GetGlobalNPC<NPCTemperatureManager>().temperature = 0;
                 return;
             }
             if ((int)npc.ai[1] == 0)
@@ -143,7 +142,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 npc.velocity.Y = -npc.oldVelocity.Y * 0.8f;
 
             bool hot = (int)npc.ai[1] == 1;
-            var aQNPC = npc.GetGlobalNPC<AQNPC>();
+            npc.coldDamage = !hot;
             var center = npc.Center;
             if (npc.ai[3] > 0f)
             {
@@ -151,12 +150,12 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 if (npc.ai[3] <= 0)
                 {
                     npc.ai[3] = 0f;
-                    aQNPC.temperature = (sbyte)(Temperature * (hot ? 1 : -1));
+                    npc.GetGlobalNPC<NPCTemperatureManager>().temperature = (sbyte)(Temperature * (hot ? 1 : -1));
                     npc.netUpdate = true;
                 }
                 else if (transitionMax != 0)
                 {
-                    aQNPC.temperature = (sbyte)(int)MathHelper.Lerp(aQNPC.temperature, Temperature * (hot ? 1 : -1), 1f - npc.ai[3] / transitionMax);
+                    npc.GetGlobalNPC<NPCTemperatureManager>().temperature = (sbyte)(int)MathHelper.Lerp(npc.GetGlobalNPC<NPCTemperatureManager>().temperature, Temperature * (hot ? 1 : -1), 1f - npc.ai[3] / transitionMax);
                 }
             }
             if ((int)npc.ai[2] == -1) // leader

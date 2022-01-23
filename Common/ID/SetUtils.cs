@@ -56,6 +56,11 @@ namespace AQMod.Common.ID
                             position++;
                             string name = AQStringCodes.ExtractParameterText(_keyValue, ref position);
                             _value = GetIDFromType(mod, name);
+                            if (_value == 0)
+                            {
+                                AQMod.GetInstance().Logger.Warn(modName + "-" + name + " does not have an ID.");
+                                return -1;
+                            }
                         }
                         catch
                         {

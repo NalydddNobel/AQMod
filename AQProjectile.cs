@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Items.Tools.Fishing.Bait;
+using AQMod.NPCs;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -358,8 +359,8 @@ namespace AQMod
         {
             if (temperature != 0)
             {
-                var aQNPC = target.GetGlobalNPC<AQNPC>();
-                aQNPC.ChangeTemperature(target, temperature);
+                var npcTemperature = target.GetGlobalNPC<NPCTemperatureManager>();
+                npcTemperature.ChangeTemperature(target, temperature);
             }
         }
 

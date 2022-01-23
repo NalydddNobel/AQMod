@@ -25,6 +25,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             projectile.timeLeft = 360;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
+            projectile.coldDamage = true;
 
             projectile.GetGlobalProjectile<AQProjectile>().SetupTemperatureStats(-40);
         }

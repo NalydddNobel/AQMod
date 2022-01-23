@@ -1,11 +1,9 @@
-﻿using AQMod.Common.CrossMod;
-using AQMod.Common.Graphics;
+﻿using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Common.NoHitting;
 using AQMod.Content;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
-using AQMod.Content.World.Events;
 using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Accessories;
@@ -13,10 +11,7 @@ using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Foods;
 using AQMod.Items.Foods.Dungeon;
-using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Placeable.Furniture;
-using AQMod.Items.Tools.Map;
 using AQMod.Items.Tools.Utility;
 using AQMod.Items.Weapons.Melee;
 using AQMod.NPCs;
@@ -51,6 +46,8 @@ namespace AQMod
             public static bool[] IsAZombie { get; private set; }
             public static bool[] IsWormSegment { get; private set; }
             public static bool[] IsWormBody { get; private set; }
+            public static bool[] Unholy { get; private set; }
+            public static bool[] Holy { get; private set; }
 
             public static bool IsWormHead(int type)
             {
@@ -62,17 +59,42 @@ namespace AQMod
                 SetUtils.Length = NPCLoader.NPCCount;
                 SetUtils.GetIDFromType = (m, n) => m.NPCType(n);
 
+                Unholy = SetUtils.CreateFlagSet(NPCID.EaterofSouls, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.DevourerHead, NPCID.DevourerBody, NPCID.DevourerTail, NPCID.SeekerHead, NPCID.SeekerBody, NPCID.SeekerTail,
+                    NPCID.Corruptor, NPCID.CorruptBunny, NPCID.CorruptGoldfish, NPCID.CorruptPenguin, NPCID.CorruptSlime, NPCID.Slimer, NPCID.BigMimicCorruption, NPCID.BigMimicCorruption, NPCID.DesertGhoulCorruption, NPCID.DesertGhoulCorruption, NPCID.PigronCorruption, NPCID.SandsharkCorrupt,
+                    NPCID.DarkMummy, NPCID.DesertLamiaDark, NPCID.Crimera, NPCID.Crimslime, NPCID.CursedHammer, NPCID.CrimsonAxe, NPCID.CrimsonBunny, NPCID.CrimsonGoldfish, NPCID.CrimsonPenguin, NPCID.BigMimicCrimson, NPCID.DesertGhoulCrimson, NPCID.PigronCrimson, NPCID.SandsharkCrimson, NPCID.BrainofCthulhu, NPCID.Creeper,
+                    NPCID.Wraith, NPCID.Herpling, NPCID.Hellhound, NPCID.Scarecrow1, NPCID.Scarecrow2, NPCID.Scarecrow3, NPCID.Scarecrow4, NPCID.Scarecrow5, NPCID.Scarecrow6, NPCID.Scarecrow7, NPCID.Scarecrow8, NPCID.Scarecrow9, NPCID.Scarecrow10, NPCID.Splinterling, NPCID.MourningWood, NPCID.VileSpit, NPCID.Pumpking,
+                    NPCID.PumpkingBlade, NPCID.BloodCrawler, NPCID.BloodCrawlerWall, NPCID.BloodFeeder, NPCID.BloodJelly, NPCID.FaceMonster, NPCID.DesertDjinn,
+                    // Polarities
+                    "%:Esophage", "%:EsophageHitbox", "%:EsophageLeg", "%:LightEater", "%:LivingSpineHead", "%:LivingSpineBody", "%:LivingSpineTail", "%:RavenousCursedHead", "%:RavenousCursedBody", "%:RavenousCursedTail",
+                    "%:ScytheFlier", "%:Uraraneid", "%:TendrilAmalgam",
+                    // Split
+                    "$:Decaying", "$:Spotter", "$:Stalker",
+                    // Calamity Mod
+                    "!:Aries", "!:AstralachneaGround", "!:AstralachneaWall", "!:AstralProbe", "!:AstralSeekerSpit", "!:AstralSlime", "!:Atlas", "!:BigSightseer", "!:FusionFeeder",
+                    "!:Hadarian", "!:Hive", "!:Hiveling", "!:Mantis", "!:Nova", "!:SmallSightseer", "!:StellarCulex", "!:Twinkler", "!:AstrumAureus", "!:AstrumDeusHeadSpectral", "!:AstrumDeusBodySpectral", "!:AstrumDeusTailSpectral",
+                    "!:DankCreeper", "!:DarkHeart", "!:HiveBlob", "!:HiveBlob2", "!:HiveCyst", "!:HiveMind", "!:PerforatorCyst", "!:PerforatorHive", "!:PerforatorHeadSmall", "!:PerforatorHeadMedium", "!:PerforatorHeadLarge", "!:PerforatorBodySmall", "!:PerforatorBodyMedium", "!:PerforatorBodyLarge", "!:PerforatorTailSmall", "!:PerforatorTailMedium", "!:PerforatorTailLarge",
+                    "!:SlimeGod", "!:SlimeGodCore", "!:SlimeGodRun", "!:SlimeGodRunSplit", "!:SlimeGodSplit", "!:SlimeSpawnCorrupt", "!:SlimeSpawnCorrupt2", "!:SlimeSpawnCrimson", "!:SlimeSpawnCrimson2", "!:CrimulanBlightSlime", "!:EbonianBlightSlime"
+                    );
+
+                Holy = SetUtils.CreateFlagSet(NPCID.Pixie, NPCID.ZombiePixie, NPCID.Unicorn, NPCID.EnchantedSword, NPCID.RainbowSlime, NPCID.Gastropod, NPCID.LightMummy, NPCID.BigMimicHallow, NPCID.DesertGhoulHallow, NPCID.PigronHallow, NPCID.SandsharkHallow, 
+                    NPCID.ChaosElemental,
+                    // Polarities
+                    "%:SunPixie", "%:Aequorean", "%:IlluminantScourer", "%:Painbow", "%:SunKnight", "%:SunServitor", "%:Trailblazer",
+                    // Split 
+                    "$:Echo", "$:Fairyfly", "$:ShinyPixie", "$:SkeletonJester"
+                    );
+
                 IsWormBody = SetUtils.CreateFlagSet(NPCID.EaterofWorldsBody, NPCID.BoneSerpentBody, NPCID.CultistDragonBody1, NPCID.CultistDragonBody2, NPCID.CultistDragonBody3, NPCID.CultistDragonBody4, NPCID.DevourerBody,
                     NPCID.DuneSplicerBody, NPCID.EaterofWorldsBody, NPCID.GiantWormBody, NPCID.LeechBody, NPCID.SeekerBody, NPCID.SolarCrawltipedeBody, NPCID.StardustWormBody, NPCID.TheDestroyerBody, NPCID.TombCrawlerBody, NPCID.WyvernBody, NPCID.WyvernBody2, NPCID.WyvernBody3,
                     NPCID.BoneSerpentTail, NPCID.CultistDragonTail, NPCID.DevourerTail, NPCID.DiggerTail, NPCID.DuneSplicerTail, NPCID.EaterofWorldsTail, NPCID.GiantWormTail, NPCID.LeechTail, NPCID.SeekerTail, NPCID.SolarCrawltipedeTail, NPCID.StardustWormTail, NPCID.TheDestroyerTail,
                     NPCID.TombCrawlerTail, NPCID.WyvernTail,
+                    // Polarities
+                    "%:BisectorBody1", "%:BisectorBody2", "%:BisectorTail", "%:SeaSerpentBody", "%:SeaSerpentTail", "%:ConvectiveWandererBody", "%:ConvectiveWandererTail", "%:RavenousCursedBody", "%:RavenousCursedTail", "%:LivingSpineBody", "%:LivingSpineTail",
                     // Calamity Mod
                     "!:ArmoredDiggerBody", "!:ArmoredDiggerTail", "!:GulperEelBody", "!:GulperEelBodyAlt", "!:GulperEelTail", "!:DesertScourgeBody", "!:DesertNuisanceTail", "!:PerforatorBodySmall", "!:PerforatorBodyMedium", "!:PerforatorBodyLarge",
                     "!:PerforatorTailSmall", "!:PerforatorTailMedium", "!:PerforatorTailLarge", "!:AquaticScourgeBody", "!:AquaticScourgeTail", "!:AquaticSeekerBody", "!:AquaticSeekerTail", "!:AstrumDeusBodySpectral", "!:AstrumDeusTailSpectral", "!:StormWeaverBody", "!:StormWeaverTail",
                     "!:DevourerofGodsBody", "!:DevourerofGodsTail", "!:DevourerofGodsBody2", "!:DevourerofGodsTail2", "!:SCalWormHead", "!:SCalWormBody", "!:SCalWormBodyWeak", "!:SCalWormArm", "!:SCalWormTail", "!:ThanatosBody1", "!:ThanatosBody2", "!:ThanatosTail", "!:EidolonWyrmHeadHuge",
-                    "!:EidolonWyrmBody", "!:EidolonWyrmBodyAlt", "!:EidolonWyrmBodyAltHuge", "!:EidolonWyrmBodyHuge", "!:EidolonWyrmTail", "!:EidolonWyrmTailHuge",
-                    // Polarities
-                    "%:BisectorBody1", "%:BisectorBody2", "%:BisectorTail", "%:SeaSerpentBody", "%:SeaSerpentTail", "%:ConvectiveWandererBody", "%:ConvectiveWandererTail", "%:RavenousCursedBody", "%:RavenousCursedTail", "%:LivingSpineBody", "%:LivingSpineTail"
+                    "!:EidolonWyrmBody", "!:EidolonWyrmBodyAlt", "!:EidolonWyrmBodyAltHuge", "!:EidolonWyrmBodyHuge", "!:EidolonWyrmTail", "!:EidolonWyrmTailHuge"
                     );
 
                 IsWormSegment = SetUtils.CreateFlagSet(NPCID.BoneSerpentHead, NPCID.CultistDragonHead, NPCID.DevourerHead, NPCID.DiggerHead, NPCID.DuneSplicerHead, NPCID.EaterofWorldsHead, NPCID.GiantWormHead, NPCID.LeechHead, NPCID.SeekerHead,
@@ -105,18 +127,18 @@ namespace AQMod
                     // Aequus
                     typeof(Heckto), typeof(RedSprite), typeof(SpaceSquid),
                     // Polarities
-                    "%:Aequorean", "%:Amphisbaena", "%:ChaosCrawler", "%:BisectorHead", "%:BisectorHeadHitbox", "%:BisectorBody1", "%:BisectorBody2", "%:BisectorTail", 
+                    "%:Aequorean", "%:Amphisbaena", "%:ChaosCrawler", "%:BisectorHead", "%:BisectorHeadHitbox", "%:BisectorBody1", "%:BisectorBody2", "%:BisectorTail",
                     "%:BrineDweller", "%:GreatStarSlime", "%:HydraHead", "%:HydraBody",
-                    "%:Limeshell", "%:Alkalabomination", "%:Spitter", "%:ConeShell", "%:SeaSerpentHead", "%:SeaSerpentBody", "%:SeaSerpentTail", 
-                    "%:Kraken", "%:KrakenTentacle", "%:KrakenHitbox", "%:SparkCrawler", 
+                    "%:Limeshell", "%:Alkalabomination", "%:Spitter", "%:ConeShell", "%:SeaSerpentHead", "%:SeaSerpentBody", "%:SeaSerpentTail",
+                    "%:Kraken", "%:KrakenTentacle", "%:KrakenHitbox", "%:SparkCrawler",
                     "%:FractalFern", "%:Euryopter", "%:FractalSlimeLarge", "%:FractalSlimeMedium", "%:FractalSlimeSmall",
-                    "%:DustSprite", "%:SeaAnomaly", "%:SeaAnomalyHitbox", "%:TurbulenceSpark", "%:Shockflake", "%:MoltenSpirit", 
+                    "%:DustSprite", "%:SeaAnomaly", "%:SeaAnomalyHitbox", "%:TurbulenceSpark", "%:Shockflake", "%:MoltenSpirit",
                     "%:ConvectiveWandererHead", "%:ConvectiveWandererBody", "%:ConvectiveWandererTail", "%:MegaMenger", "%:FractalSpirit",
-                    "%:Orthoconic", "%:OrthoconicHitbox", "%:Painbow", "%:Trailblazer", "%:IlluminantScourer", "%:SunKnight", "%:SunServitor", "%:Pegasus", 
+                    "%:Orthoconic", "%:OrthoconicHitbox", "%:Painbow", "%:Trailblazer", "%:IlluminantScourer", "%:SunKnight", "%:SunServitor", "%:Pegasus",
                     "%:RavenousCursedHead", "%:RavenousCursedBody", "%:RavenousCursedTail", "%:LivingSpineHead", "%:LivingSpineBody", "%:LivingSpineTail",
-                    "%:Uraraneid", "%:LightEater", "%:ScytheFlier", "%:SunPixie", "%:Esophage", "%:EsophageHitbox", "%:EsophageLeg", "%:EclipsePixie", "%:SunMoth", 
+                    "%:Uraraneid", "%:LightEater", "%:ScytheFlier", "%:SunPixie", "%:Esophage", "%:EsophageHitbox", "%:EsophageLeg", "%:EclipsePixie", "%:SunMoth",
                     "%:MoonButterfly", "%:Hemorrphage", "%:HemorrphageLeg", "%:HemorrphageTentacle",
-                    "%:Electris", "%:Magneton", "%:PlanetPixie",
+                    "%:Electris", "%:Magneton", "%:PlanetPixie", "%:TendrilAmalgam",
                     // Split
                     "$:Breathtaker", "$:Idler", "$:Latopus", "$:Savage", "$:Toiler", "$:Unfairy", "$:Darknut", "$:GreatToxicSludge", "$:HauntedAnchor",
                     "$:Moonwalker", "$:Muskeleton", "$:ShinyPixie", "$:SkeletonJester", "$:TectonicMimic", "$:Thriller", "$:Echo", "$:Threater", "$:MindFlayer", "$:Fairyfly",
@@ -125,6 +147,11 @@ namespace AQMod
                 IsACaveSkeleton = SetUtils.CreateFlagSet(NPCID.GreekSkeleton, NPCID.Skeleton, NPCID.SkeletonAlien, NPCID.SkeletonAstonaut, NPCID.SkeletonTopHat, NPCID.HeadacheSkeleton, NPCID.MisassembledSkeleton, NPCID.PantlessSkeleton,
                     NPCID.BoneThrowingSkeleton, NPCID.BoneThrowingSkeleton2, NPCID.BoneThrowingSkeleton3, NPCID.BoneThrowingSkeleton4, NPCID.ArmoredSkeleton, NPCID.SkeletonArcher);
 
+                DemonSiegeEnemy = SetUtils.CreateFlagSet(typeof(Magmalbubble), typeof(TrapImp), typeof(Trapper), typeof(Cindera));
+
+                EnemyDungeonSprit = new bool[NPCLoader.NPCCount];
+                EnemyDungeonSprit[NPCID.DungeonSpirit] = true;
+                EnemyDungeonSprit[ModContent.NPCType<Heckto>()] = true;
                 BossRelatedEnemy = new bool[NPCLoader.NPCCount];
                 BossRelatedEnemy[NPCID.ServantofCthulhu] = true;
                 BossRelatedEnemy[NPCID.PirateShipCannon] = true;
@@ -159,15 +186,6 @@ namespace AQMod
                 BossRelatedEnemy[NPCID.Creeper] = true;
                 BossRelatedEnemy[NPCID.BeeSmall] = true;
                 BossRelatedEnemy[NPCID.Bee] = true;
-
-                DemonSiegeEnemy = new bool[NPCLoader.NPCCount];
-                DemonSiegeEnemy[ModContent.NPCType<Magmalbubble>()] = true;
-                DemonSiegeEnemy[ModContent.NPCType<TrapImp>()] = true;
-                DemonSiegeEnemy[ModContent.NPCType<Cindera>()] = true;
-
-                EnemyDungeonSprit = new bool[NPCLoader.NPCCount];
-                EnemyDungeonSprit[NPCID.DungeonSpirit] = true;
-                EnemyDungeonSprit[ModContent.NPCType<Heckto>()] = true;
 
                 HecktoplasmDungeonEnemy = new bool[NPCLoader.NPCCount];
                 HecktoplasmDungeonEnemy[NPCID.DiabolistRed] = true;
@@ -649,9 +667,6 @@ namespace AQMod
         public bool corruptHellfire;
         public bool crimsonHellfire;
 
-        public bool hotDamage;
-        public sbyte temperature;
-
         public override bool InstancePerEntity => true;
 
         public override void ResetEffects(NPC npc)
@@ -736,50 +751,6 @@ namespace AQMod
                             npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CrimsonHellfire>()] = true;
                         }
                         break;
-                }
-            }
-
-            switch (npc.type) 
-            {
-                case NPCID.Hellbat:
-                case NPCID.Lavabat:
-                case NPCID.LavaSlime:
-                case NPCID.BlazingWheel:
-                case NPCID.FireImp:
-                case NPCID.BurningSphere:
-                case NPCID.MeteorHead:
-                case NPCID.HellArmoredBones:
-                case NPCID.HellArmoredBonesMace:
-                case NPCID.HellArmoredBonesSpikeShield:
-                case NPCID.HellArmoredBonesSword:
-                    {
-                        hotDamage = true;
-                    }
-                    break;
-            }
-        }
-
-        public override void AI(NPC npc)
-        {
-            if (hotDamage)
-            {
-                if (temperature < 100)
-                    temperature++;
-            }
-            else if (npc.coldDamage)
-            {
-                if (temperature > -100)
-                    temperature--;
-            }
-            else
-            {
-                if (temperature < -100)
-                {
-                    temperature = -100;
-                }
-                else if (temperature > 100)
-                {
-                    temperature = 100;
                 }
             }
         }
@@ -1555,54 +1526,6 @@ namespace AQMod
                             Item.NewItem(npc.getRect(), ModContent.ItemType<RustyKnife>());
                     }
                     break;
-            }
-        }
-
-        public void ChangeTemperature(NPC npc, sbyte newTemperature)
-        {
-            if (hotDamage && newTemperature > 0)
-            {
-                newTemperature /= 2;
-            }
-            else if (npc.coldDamage && newTemperature < 0)
-            {
-                newTemperature /= 2;
-            }
-            if (temperature < 0)
-            {
-                if (newTemperature < 0)
-                {
-                    if (temperature > newTemperature)
-                        temperature = newTemperature;
-                }
-                else
-                {
-                    temperature = 0;
-                }
-            }
-            else if (temperature > 0)
-            {
-                if (newTemperature > 0)
-                {
-                    if (temperature < newTemperature)
-                        temperature = newTemperature;
-                }
-                else
-                {
-                    temperature = 0;
-                }
-            }
-            else
-            {
-                temperature = newTemperature;
-            }
-            if (newTemperature < 0)
-            {
-                temperature--;
-            }
-            else
-            {
-                temperature++;
             }
         }
 

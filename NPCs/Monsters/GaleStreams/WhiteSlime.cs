@@ -38,11 +38,11 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             npc.buffImmune[BuffID.ShadowFlame] = true;
             npc.buffImmune[BuffID.Confused] = false;
             npc.SetLiquidSpeed(water: 1f, lava: 1f);
+
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Placeable.Banners.WhiteSlimeBanner>();
 
-            var aQNPC = npc.GetGlobalNPC<AQNPC>();
-            aQNPC.temperature = 40;
+            npc.GetGlobalNPC<NPCTemperatureManager>().temperature = 40;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

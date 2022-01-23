@@ -14,7 +14,7 @@ namespace AQMod.Common.CrossMod
             NameOverride = name;
         }
 
-        protected virtual string Name => (NameOverride ?? type.Name).ToLower();
+        public virtual string Name => (NameOverride ?? type.Name).ToLower();
         public virtual FieldInfo[] Fields => type.GetFields();
         public virtual bool AddCallsForFields => true;
         public virtual void CustomCreateCalls(object instance, Dictionary<string, Func<object[], object>> callList)

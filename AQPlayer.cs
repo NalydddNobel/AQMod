@@ -317,6 +317,9 @@ namespace AQMod
             healBeforeDeath = false;
             glowString = false;
             pearlAmulet = false;
+            lightAmulet = false;
+            darkAmulet = false;
+
             if (extraHP > 60) // to cap life max buffs at 60
             {
                 extraHP = 60;
@@ -865,10 +868,18 @@ namespace AQMod
                     }
                     break;
             }
-            var aQNPC = npc.GetGlobalNPC<AQNPC>();
-            if (aQNPC.temperature != 0)
+            if (lightAmulet && AQNPC.Sets.Holy[npc.type])
             {
-                InflictTemperature(aQNPC.temperature);
+                damage = (int)(damage * 0.9f);
+            }
+            if (darkAmulet && AQNPC.Sets.Unholy[npc.type])
+            {
+                damage = (int)(damage * 0.9f);
+            }
+            var npcTemperature = npc.GetGlobalNPC<NPCTemperatureManager>();
+            if (npcTemperature.temperature != 0)
+            {
+                InflictTemperature(npcTemperature.temperature);
             }
         }
 
