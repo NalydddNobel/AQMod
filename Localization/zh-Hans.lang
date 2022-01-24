@@ -40,10 +40,13 @@ ItemName.MinersFlashlight=矿工的手电筒
 ItemTooltip.MinersFlashlight=你会向你的光标位置发射一束光\n被光照到的宝藏会发光\n关闭饰品可见性来禁用手电筒效果
 
 ItemName.DarkAmulet=黑暗护符
-ItemTooltip.DarkAmulet=你从非光明敌人处受到的伤害降低10%
+ItemTooltip.DarkAmulet=你从不洁敌人处受到的伤害降低10%\n你的钩爪会造成伤害
 
 ItemName.LightAmulet=光明护符
-ItemTooltip.LightAmulet=你从光明敌人处受到的伤害降低10%
+ItemTooltip.LightAmulet=你从光明敌人处受到的伤害降低10%\n增加5点护甲穿透
+
+ItemName.NeutralityAmulet=中性护符
+ItemTooltip.NeutralityAmulet=你从光明和不洁敌人处受到的伤害降低10%\n增加5点护甲穿透\n你的钩爪会造成伤害
 
 # Armor
 
@@ -139,13 +142,32 @@ ItemName.UltimateSword=最终之剑
 ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
 ProjectileName.UltimateSword=最终之剑
 
-# Dyes
+# Pets
 ItemName.YuckyOrb=恶心的球
 ItemTooltip.YuckyOrb=召唤一只会提供光亮的宠物鮟鱇鱼
+BuffName.AnglerFish=鮟鱇鱼
+BuffDescription.AnglerFish=它被自己所发出的光明暗中吸引
 
 # Dyes
-ItemName.RedSpriteDye=红色精灵染料
+ItemName.CursorDyeRemover=光标染料移除剂
+ItemTooltip.CursorDyeRemover=移除光标染料的效果
+
+ItemName.HealthCursorDye=生命光标染料
+ItemName.ManaCursorDye=法力光标染料
+ItemName.SwordCursorDye=剑刃光标染料
+ItemName.DemonicCursorDye=恶魔光标染料
+
+ItemName.RedSpriteDye=灼炎染料
 ItemName.FrostbiteDye=霜寒染料
+ItemName.EnchantedDye=附魔染料
+ItemName.ScrollDye=眩惑染料
+ItemName.HellBeamDye=狱光染料
+ItemName.BreakdownDye=故障染料
+ItemName.DiscoDye=迪斯科染料
+ItemName.HypnoDye=色彩分离染料
+ItemName.SimplifiedDye=简化染料
+ItemName.OutlineDye=轮廓描边染料
+ItemName.RainbowOutlineDye=彩虹轮廓描边染料
 
 # Tiles
 ItemName.HellTombstone=地狱墓碑
@@ -420,6 +442,7 @@ RecipeGroup.DemoniteBarOrCrimtaneBar=魔矿锭或猩红矿锭
 RecipeGroup.ShadowScaleOrTissueSample=暗影鳞片或组织样本
 RecipeGroup.CascadeOrHelfire=喷流球或狱火球
 RecipeGroup.AnyEel=任意鳗鱼
+RecipeGroup.EvilBarb=邪恶钩刺之一
 
 # Config
 
@@ -916,22 +939,6 @@ ItemName.FishyFins=可疑的鱼鳍
 ItemName.CelesitalEightBall=星界八号球
 ItemName.DragonBall=龙珠
 ItemName.HeartLamp=心灯
-# Cursor Dyes
-ItemName.CursorDyeRemover=光标染料移除剂
-ItemName.HealthCursorDye=生命光标染料
-ItemName.ManaCursorDye=法力光标染料
-ItemName.SwordCursorDye=剑刃光标染料
-ItemName.DemonicCursorDye=恶魔光标染料
-# Dyes
-ItemName.EnchantedDye=附魔染料
-ItemName.ScrollDye=眩惑染料
-ItemName.HellBeamDye=狱光染料
-ItemName.BreakdownDye=故障染料
-ItemName.DiscoDye=迪斯科染料
-ItemName.HypnoDye=色彩分离染料
-ItemName.SimplifiedDye=简化染料
-ItemName.OutlineDye=轮廓描边染料
-ItemName.RainbowOutlineDye=彩虹轮廓描边染料
 ###########
 # Weapons #
 ###########
@@ -1092,8 +1099,6 @@ ItemTooltip.Extractor=使你免疫窒息减益\n下落的泥沙块和雪泥块�
 ########
 # Misc #
 ########
-# Cursor Dyes
-ItemTooltip.CursorDyeRemover=移除光标染料的效果
 # Bait
 ItemTooltip.CursedPopper=在腐化之地钓鱼时增加30%鱼饵力
 ItemTooltip.IchorPopper=在猩红之地钓鱼时增加35%鱼饵力
