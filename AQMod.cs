@@ -27,7 +27,7 @@ using AQMod.Effects.WorldEffects;
 using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Localization;
 using AQMod.NPCs;
-using AQMod.NPCs.Boss;
+using AQMod.NPCs.Bosses;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

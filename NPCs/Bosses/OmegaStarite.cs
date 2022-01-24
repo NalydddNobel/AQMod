@@ -18,6 +18,7 @@ using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Localization;
+using AQMod.NPCs.Bosses;
 using AQMod.Projectiles.Monster.Starite;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
@@ -29,7 +30,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Boss
+namespace AQMod.NPCs.Bosses
 {
     [AutoloadBossHead()]
     public class OmegaStarite : AQBoss, IModifiableMusicNPC

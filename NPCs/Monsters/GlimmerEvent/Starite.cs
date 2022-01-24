@@ -1,6 +1,6 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Items.Dyes;
-using AQMod.Items.Foods.GlimmerEvent;
+using AQMod.Items.Foods;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Tools;
 using Microsoft.Xna.Framework;

@@ -1,7 +1,7 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Items.Dyes;
-using AQMod.Items.Foods.GlimmerEvent;
+using AQMod.Items.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Weapons.Summon;

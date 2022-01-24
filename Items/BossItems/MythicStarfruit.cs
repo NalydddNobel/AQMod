@@ -1,7 +1,7 @@
 ﻿using AQMod.Common.ID;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Localization;
-using AQMod.NPCs.Boss;
+using AQMod.NPCs.Bosses;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

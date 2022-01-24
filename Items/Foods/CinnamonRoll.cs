@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Foods.GaleStreams
+namespace AQMod.Items.Foods
 {
     public class CinnamonRoll : ModItem
     {

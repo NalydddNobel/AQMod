@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fish.Corruption
+namespace AQMod.Items.Fish
 {
-    public class Depthscale : FishingItem
+    public class Fleshscale : FishingItem
     {
         public override void SetDefaults()
         {
@@ -18,7 +18,7 @@ namespace AQMod.Items.Fish.Corruption
 
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
         {
-            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.HellLayer && player.ZoneCorrupt && NPC.downedBoss2;
+            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.HellLayer && player.ZoneCrimson && NPC.downedBoss2;
         }
 
         public override void AddRecipes()
@@ -26,7 +26,7 @@ namespace AQMod.Items.Fish.Corruption
             var r = new ModRecipe(mod);
             r.AddIngredient(item.type);
             r.AddTile(TileID.Anvils);
-            r.SetResult(ItemID.ShadowScale, 5);
+            r.SetResult(ItemID.TissueSample, 5);
             r.AddRecipe();
         }
     }

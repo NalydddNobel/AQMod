@@ -1,11 +1,11 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
+using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Accessories.Vanity;
 using AQMod.Items.Dyes;
 using AQMod.Items.Foods;
-using AQMod.Items.Foods.Dungeon;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -61,25 +61,62 @@ namespace AQMod.NPCs
 
                 case NPCID.DyeTrader:
                     {
-                        if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite)
+                        if (Main.player[Main.myPlayer].ZoneBeach)
+                        {
+                            if (Main.moonPhase < 4)
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<BreakdownDye>());
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<SimplifiedDye>());
+                                nextSlot++;
+                            }
+                        }
+                        if (!Main.dayTime && WorldDefeats.DownedStarite)
                         {
                             if (Main.moonPhase != MoonPhases.FullMoon)
                             {
                                 if (Main.moonPhase < 3)
                                 {
+                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<HypnoDye>());
+                                    nextSlot++;
                                     shop.item[nextSlot].SetDefaults(ModContent.ItemType<DiscoDye>());
                                     nextSlot++;
                                 }
                                 else if (Main.moonPhase > 4)
                                 {
+                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<ScrollDye>());
+                                    nextSlot++;
                                     shop.item[nextSlot].SetDefaults(ModContent.ItemType<EnchantedDye>());
                                     nextSlot++;
                                 }
                                 else
                                 {
+                                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<OutlineDye>());
+                                    nextSlot++;
                                     shop.item[nextSlot].SetDefaults(ModContent.ItemType<RainbowOutlineDye>());
                                     nextSlot++;
                                 }
+                            }
+                        }
+                        if (WorldDefeats.DownedGaleStreams && Main.player[Main.myPlayer].position.Y < GaleStreams.MinimumGaleStreamsSpawnOverride)
+                        {
+                            if (Main.moonPhase < 3)
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<CensorDye>());
+                                nextSlot++;
+                            }
+                            else if (Main.moonPhase > 4)
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<RedSpriteDye>());
+                                nextSlot++;
+                            }
+                            else
+                            {
+                                shop.item[nextSlot].SetDefaults(ModContent.ItemType<FrostbiteDye>());
+                                nextSlot++;
                             }
                         }
                     }
@@ -144,44 +181,6 @@ namespace AQMod.NPCs
                     }
                     break;
             }
-        }
-
-        public override void SetupTravelShop(int[] shop, ref int nextSlot)
-        {
-            if (AddFoodToTravelShop(shop, nextSlot))
-                nextSlot++;
-        }
-
-        private bool AddFoodToTravelShop(int[] shop, int slot)
-        {
-            var foodChoices = new List<int>();
-            if (WorldDefeats.DownedCrabSeason)
-                foodChoices.Add(ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
-            if (WorldDefeats.DownedGlimmer)
-                foodChoices.Add(ModContent.ItemType<Items.Foods.GlimmerEvent.NeutronJuice>());
-            if (WorldDefeats.DownedGaleStreams)
-            {
-                foodChoices.Add(ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>());
-                foodChoices.Add(ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>());
-            }
-            if (NPC.downedQueenBee)
-                foodChoices.Add(ModContent.ItemType<LarvaEel>());
-            if (NPC.downedPlantBoss)
-            {
-                foodChoices.Add(ModContent.ItemType<Items.Foods.Dungeon.RedLicorice>());
-                foodChoices.Add(ModContent.ItemType<GrapePhanta>());
-            }
-            if (foodChoices.Count == 1)
-            {
-                shop[slot] = foodChoices[0];
-                return true;
-            }
-            else if (foodChoices.Count > 0)
-            {
-                shop[slot] = foodChoices[Main.rand.Next(foodChoices.Count)];
-                return true;
-            }
-            return false;
         }
 
         private static void InterceptShop(Chest shop, int itemID, int i, int currSlot)

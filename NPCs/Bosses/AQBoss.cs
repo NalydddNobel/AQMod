@@ -3,7 +3,7 @@ using AQMod.Common.CrossMod.BossChecklist;
 using System;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Boss
+namespace AQMod.NPCs.Bosses
 {
     public abstract class AQBoss : ModNPC, ISetupContentType
     {

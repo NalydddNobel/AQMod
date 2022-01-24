@@ -3,30 +3,34 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fish.Crimson
+namespace AQMod.Items.Fish
 {
-    public class Fleshscale : FishingItem
+    public class Combfish : FishingItem
     {
         public override void SetDefaults()
         {
             item.width = 20;
             item.height = 20;
-            item.value = Item.sellPrice(silver: 20);
-            item.rare = ItemRarityID.Blue;
+            item.value = Item.sellPrice(silver: 10);
+            item.rare = ItemRarityID.Green;
             item.maxStack = 999;
         }
 
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
         {
-            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.HellLayer && player.ZoneCrimson && NPC.downedBoss2;
+            return liquidType == Tile.Liquid_Honey && worldLayer < FishLoader.WorldLayers.HellLayer;
         }
 
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.BottledWater);
             r.AddIngredient(item.type);
-            r.AddTile(TileID.Anvils);
-            r.SetResult(ItemID.TissueSample, 5);
+            r.AddIngredient(ItemID.Moonglow);
+            r.AddIngredient(ItemID.Shiverthorn);
+            r.AddIngredient(ItemID.Waterleaf);
+            r.AddTile(TileID.Bottles);
+            r.SetResult(ItemID.LifeforcePotion);
             r.AddRecipe();
         }
     }

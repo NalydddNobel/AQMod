@@ -10,7 +10,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Boss
+namespace AQMod.NPCs.Bosses
 {
     [AutoloadBossHead]
     public class JerryClaw : ModNPC, IDecideFallThroughPlatforms

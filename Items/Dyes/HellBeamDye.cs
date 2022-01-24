@@ -1,11 +1,14 @@
 ﻿using AQMod.Effects.Dyes;
 using Microsoft.Xna.Framework;
 using Terraria.Graphics.Shaders;
+using Terraria.ID;
 
 namespace AQMod.Items.Dyes
 {
     public class HellBeamDye : DyeItem
     {
+        public override int Rarity => ItemRarityID.Green;
+
         public override string Pass => "ShieldBeamsPass";
 
         public override ArmorShaderData CreateShaderData()

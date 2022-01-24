@@ -3,7 +3,7 @@ using AQMod.Content.Players;
 using Terraria;
 using Terraria.ID;
 
-namespace AQMod.Items.Fish.BloodMoon
+namespace AQMod.Items.Fish
 {
     public class PalePufferfish : FishingItem
     {

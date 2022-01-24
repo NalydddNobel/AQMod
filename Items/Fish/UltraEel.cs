@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
-namespace AQMod.Items.Fish.GlimmerEvent
+namespace AQMod.Items.Fish
 {
     public class UltraEel : FishingItem
     {

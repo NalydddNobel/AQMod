@@ -2,12 +2,15 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Dyes
 {
     public class EnchantedDye : DyeItem
     {
+        public override int Rarity => ItemRarityID.Orange;
+
         public override string Pass => "EnchantmentPass";
 
         public override ArmorShaderData CreateShaderData()

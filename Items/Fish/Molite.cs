@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fish.BeeHive
+namespace AQMod.Items.Fish
 {
-    public class Combfish : FishingItem
+    public class Molite : FishingItem
     {
         public override void SetDefaults()
         {
@@ -18,19 +18,16 @@ namespace AQMod.Items.Fish.BeeHive
 
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
         {
-            return liquidType == Tile.Liquid_Honey && worldLayer < FishLoader.WorldLayers.HellLayer;
+            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
+                && !Main.dayTime && Content.World.Events.GlimmerEvent.GlimmerEvent.GetTileDistanceUsingPlayer(player) < Content.World.Events.GlimmerEvent.GlimmerEvent.MaxDistance;
         }
 
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.BottledWater);
             r.AddIngredient(item.type);
-            r.AddIngredient(ItemID.Moonglow);
-            r.AddIngredient(ItemID.Shiverthorn);
-            r.AddIngredient(ItemID.Waterleaf);
-            r.AddTile(TileID.Bottles);
-            r.SetResult(ItemID.LifeforcePotion);
+            r.AddTile(TileID.CookingPots);
+            r.SetResult(ItemID.CookedShrimp, 5);
             r.AddRecipe();
         }
     }

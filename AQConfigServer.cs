@@ -1,4 +1,4 @@
-﻿using AQMod.NPCs.Boss;
+﻿using AQMod.NPCs.Bosses;
 using System.ComponentModel;
 using Terraria;
 using Terraria.ModLoader;

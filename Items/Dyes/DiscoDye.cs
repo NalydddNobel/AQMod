@@ -3,11 +3,14 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
+using Terraria.ID;
 
 namespace AQMod.Items.Dyes
 {
     public class DiscoDye : DyeItem
     {
+        public override int Rarity => ItemRarityID.Orange;
+
         public override string Pass => "RainbowPass";
 
         public override ArmorShaderData CreateShaderData()

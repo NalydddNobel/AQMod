@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Dusts;
+using AQMod.Items.Foods;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -323,7 +324,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             }
             if (Main.rand.NextBool(8))
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<CinnamonRoll>());
             }
         }
     }

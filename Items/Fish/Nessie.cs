@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fish.GlimmerEvent
+namespace AQMod.Items.Fish
 {
     public class Nessie : FishingItem
     {

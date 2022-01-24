@@ -3,6 +3,7 @@ using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.ID;
 using AQMod.Items.Dyes;
+using AQMod.Items.Foods;
 using AQMod.Items.Weapons.Melee.Boomerang;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GaleStreams;
@@ -47,8 +48,8 @@ namespace AQMod.Content.World.Events.GaleStreams
                 ModContent.ItemType<Items.Materials.Fluorescence>(),
                 ModContent.ItemType<Items.Materials.SiphonTentacle>(),
                 ItemID.SoulofFlight,
-                ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>(),
-                ModContent.ItemType<Items.Foods.GaleStreams.CinnamonRoll>(),
+                ModContent.ItemType<PeeledCarrot>(),
+                ModContent.ItemType<CinnamonRoll>(),
             },
             new List<int>()
             {

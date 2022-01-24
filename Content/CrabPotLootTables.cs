@@ -1,8 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Content.Fishing;
-using AQMod.Items.Fish.BloodMoon;
-using AQMod.Items.Fish.Corruption;
-using AQMod.Items.Fish.Crimson;
+using AQMod.Items.Fish;
 using System;
 using System.Collections.Generic;
 using Terraria;

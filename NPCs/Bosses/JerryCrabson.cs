@@ -13,6 +13,7 @@ using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Flail;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Localization;
+using AQMod.NPCs.Bosses;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using System;
@@ -22,7 +23,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Boss
+namespace AQMod.NPCs.Bosses
 {
     [AutoloadBossHead]
     public class JerryCrabson : AQBoss, IModifiableMusicNPC

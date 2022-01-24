@@ -5,6 +5,7 @@ using AQMod.Dusts.GaleStreams;
 using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Dyes;
+using AQMod.Items.Foods;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Localization;
 using AQMod.Sounds;
@@ -607,7 +608,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             }
             if (Main.rand.NextBool(8))
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<PeeledCarrot>());
             }
             if (Main.rand.NextBool(10))
             {
@@ -672,7 +673,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         ItemID.SoulofFlight,
                         ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
                         ModContent.ItemType<Items.Materials.SiphonTentacle>(),
-                        ModContent.ItemType<Items.Foods.GaleStreams.PeeledCarrot>(),
+                        ModContent.ItemType<PeeledCarrot>(),
                     },
                     new List<int>()
                     {

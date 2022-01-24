@@ -29,7 +29,7 @@ namespace AQMod.Projectiles.Monster.Starite
             if (Main.netMode == NetmodeID.Server)
             {
                 var omegaStarite = Main.npc[(int)projectile.ai[0]];
-                if (!omegaStarite.active || omegaStarite.ai[0] == -1f || !(omegaStarite.modNPC is NPCs.Boss.OmegaStarite))
+                if (!omegaStarite.active || omegaStarite.ai[0] == -1f || !(omegaStarite.modNPC is NPCs.Bosses.OmegaStarite))
                     return;
                 projectile.ai[1] = 1f;
                 projectile.timeLeft = 32;
@@ -48,7 +48,7 @@ namespace AQMod.Projectiles.Monster.Starite
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            var omegaStarite = (NPCs.Boss.OmegaStarite)Main.npc[(int)projectile.ai[0]].modNPC;
+            var omegaStarite = (NPCs.Bosses.OmegaStarite)Main.npc[(int)projectile.ai[0]].modNPC;
             for (int i = 0; i < omegaStarite.rings.Length; i++)
             {
                 for (int j = 0; j < omegaStarite.rings[i].amountOfSegments; j++)

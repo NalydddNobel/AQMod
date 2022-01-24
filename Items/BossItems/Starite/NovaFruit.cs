@@ -4,7 +4,7 @@ using AQMod.Items.DrawOverlays;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
-using AQMod.NPCs.Boss;
+using AQMod.NPCs.Bosses;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;

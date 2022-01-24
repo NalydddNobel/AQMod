@@ -1,7 +1,7 @@
 ﻿using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FidgetSpinner;
-using AQMod.Items.Fish.GlimmerEvent;
+using AQMod.Items.Fish;
 using AQMod.Items.Foods;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Nature;

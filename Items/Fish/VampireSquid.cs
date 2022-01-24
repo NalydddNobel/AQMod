@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Fish.BloodMoon
+namespace AQMod.Items.Fish
 {
     public class VampireSquid : FishingItem
     {

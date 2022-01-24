@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Foods.GlimmerEvent
+namespace AQMod.Items.Foods
 {
     public class NeutronJuice : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
     {
