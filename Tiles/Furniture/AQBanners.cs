@@ -1,4 +1,5 @@
 ﻿using AQMod.Items.Placeable.Banners;
+using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters.CrabSeason;
 using AQMod.NPCs.Monsters.DemonSiege;
 using AQMod.NPCs.Monsters.GaleStreams;

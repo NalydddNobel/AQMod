@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.WorldGeneration;
+using AQMod.Items.Foods;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
@@ -92,7 +93,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
         public override void NPCLoot()
         {
             if (Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<CheesePuff>());
             if (Main.rand.NextBool(3))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
             if (Main.rand.NextBool())

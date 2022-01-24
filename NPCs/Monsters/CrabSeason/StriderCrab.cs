@@ -2,6 +2,7 @@
 using AQMod.Common.Graphics;
 using AQMod.Items.Accessories.Vanity;
 using AQMod.Items.Armor;
+using AQMod.Items.Foods;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.GrapplingHooks;
@@ -332,7 +333,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<StriderHook>());
             if (Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<CheesePuff>());
             if (Main.rand.NextBool(20))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<FishyFins>());
             Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>(), Main.rand.Next(3) + 2);

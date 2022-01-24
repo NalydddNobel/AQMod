@@ -1,5 +1,6 @@
 ﻿using AQMod.Items.Accessories.Vanity;
 using AQMod.Items.Armor;
+using AQMod.Items.Foods;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
@@ -8,12 +9,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.CrabSeason
+namespace AQMod.NPCs.Friendly
 {
-    public class HermitCrab : AIFighter, IDecideFallThroughPlatforms
+    public class HermitCrab : ModNPC
     {
-        public const int FramesX = 2;
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[npc.type] = 4;
@@ -23,9 +22,8 @@ namespace AQMod.NPCs.Monsters.CrabSeason
         {
             npc.width = 24;
             npc.height = 24;
-            npc.lifeMax = 50;
-            npc.damage = 20;
-            npc.knockBackResist = 0.02f;
+            npc.lifeMax = 100;
+            npc.knockBackResist = 0.002f;
             npc.aiStyle = -1;
             npc.value = Item.buyPrice(silver: 5);
             npc.HitSound = SoundID.NPCHit2;
@@ -126,7 +124,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             if (Main.rand.NextBool(20))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<FishyFins>());
             if (Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Foods.CrabSeason.CheesePuff>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<CheesePuff>());
             if (Main.rand.NextBool(8))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HermitShell>());
             if (Main.rand.NextBool())
