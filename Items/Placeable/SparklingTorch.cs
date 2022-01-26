@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable.Torch
+namespace AQMod.Items.Placeable
 {
     public class SparklingTorch : ModItem
     {
@@ -66,9 +66,9 @@ namespace AQMod.Items.Placeable.Torch
         public override void AddRecipes()
         {
             var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Torch, 50);
+            recipe.AddIngredient(ItemID.Torch, 120);
             recipe.AddIngredient(ModContent.ItemType<CosmicEnergy>());
-            recipe.SetResult(this, 50);
+            recipe.SetResult(this, 120);
             recipe.AddRecipe();
         }
     }

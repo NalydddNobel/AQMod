@@ -41,9 +41,9 @@ namespace AQMod.Items
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Glowstick, 80);
+            r.AddIngredient(ItemID.Glowstick, 200);
             r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
-            r.SetResult(this, 80);
+            r.SetResult(this, 200);
             r.AddRecipe();
         }
     }

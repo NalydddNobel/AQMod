@@ -370,7 +370,8 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                     NetMessage.SendData(MessageID.WorldData);
                 }
             }
-            Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
+            if (Main.rand.NextBool())
+                Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
             for (int i = 0; i < 2; i++)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<NeutronJuice>());
             if (Main.rand.NextBool(4))

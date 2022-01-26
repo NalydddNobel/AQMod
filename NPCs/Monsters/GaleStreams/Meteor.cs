@@ -1,4 +1,5 @@
-﻿using AQMod.Sounds;
+﻿using AQMod.Content.World;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -42,7 +43,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 npc.velocity = new Vector2(Main.rand.NextFloat(1f, 2.5f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
                 npc.localAI[0] = Main.rand.Next(Main.npcFrameCount[npc.type]) + 1f;
             }
-            if (!Content.World.Events.GaleStreams.GaleStreams.InSpace(npc.position.Y))
+            if (!EventGaleStreams.InSpace(npc.position.Y))
             {
                 npc.noGravity = false;
                 if (npc.collideX || npc.collideY)
@@ -68,13 +69,13 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
                     }
                     if (Main.netMode != NetmodeID.MultiplayerClient && npc.oldVelocity.Length() > 7.5f &&
-                        Content.World.Events.GaleStreams.GaleStreams.CanCrashMeteor(p.X, p.Y, 24))
+                        EventGaleStreams.CanCrashMeteor(p.X, p.Y, 24))
                     {
-                        Content.World.Events.GaleStreams.GaleStreams.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
+                        EventGaleStreams.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
                     }
                 }
             }
-            else if (!Content.World.Events.GaleStreams.GaleStreams.InMeteorSpawnZone(npc.position.Y))
+            else if (!EventGaleStreams.InMeteorSpawnZone(npc.position.Y))
             {
                 npc.velocity.Y -= 0.01f;
             }
@@ -92,7 +93,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 for (int i = 0; i < 25; i++)
                 {
                     int d = Dust.NewDust(npc.position, npc.width, npc.height, 23, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
-                    Main.dust[d].noGravity = Content.World.Events.GaleStreams.GaleStreams.InSpace(npc.position.Y);
+                    Main.dust[d].noGravity = EventGaleStreams.InSpace(npc.position.Y);
                     Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
                 }
                 for (int i = 0; i < 10; i++)
@@ -107,14 +108,14 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             else
             {
                 int d = Dust.NewDust(npc.position, npc.width, npc.height, 23, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
-                Main.dust[d].noGravity = Content.World.Events.GaleStreams.GaleStreams.InSpace(npc.position.Y);
+                Main.dust[d].noGravity = EventGaleStreams.InSpace(npc.position.Y);
                 Main.dust[d].velocity = (Main.dust[d].position - npc.Center) / 8f;
             }
         }
 
         public override void NPCLoot()
         {
-            Content.World.Events.GaleStreams.GaleStreams.ProgressEvent(Main.player[Player.FindClosest(npc.position, npc.width, npc.height)], 1);
+            EventGaleStreams.ProgressEvent(Main.player[Player.FindClosest(npc.position, npc.width, npc.height)], 1);
             if ((int)npc.ai[0] == 2)
                 return;
             if (Main.rand.NextBool())

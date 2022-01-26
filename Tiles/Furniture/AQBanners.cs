@@ -64,9 +64,6 @@ namespace AQMod.Tiles.Furniture
                 case ArrowCrab:
                     Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<ArrowCrabBanner>());
                     break;
-                case HermitCrab:
-                    Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<HermitCrabBanner>());
-                    break;
                 case SoliderCrabs:
                     Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<SoliderCrabsBanner>());
                     break;

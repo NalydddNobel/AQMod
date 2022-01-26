@@ -1,7 +1,4 @@
-﻿using AQMod.Items.BossItems;
-using AQMod.Items.BossItems.Crabson;
-using AQMod.Items.BossItems.Starite;
-using AQMod.Items.Placeable.Furniture;
+﻿using AQMod.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

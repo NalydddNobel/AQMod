@@ -38,7 +38,7 @@ namespace AQMod.Items.Weapons.Melee
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.HallowedBar, 15);
             r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 10);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 5);
             r.AddIngredient(ItemID.SoulofLight, 8);
             r.AddIngredient(ItemID.SoulofNight, 8);
             r.AddTile(TileID.MythrilAnvil);

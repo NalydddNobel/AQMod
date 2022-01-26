@@ -12,11 +12,12 @@ using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Entities;
 using AQMod.Content.NameTags;
+using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.Seasonal.Christmas;
+using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
@@ -28,6 +29,7 @@ using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
+using AQMod.NPCs.Friendly;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -283,7 +285,7 @@ namespace AQMod
                     if (eventID == AchievementHelperID.Events.BloodMoonStart)
                     {
                         Main.bloodMoon = false;
-                        CosmicanonCounts.BloodMoonsPrevented++;
+                        CosmicanonWorldData.BloodMoonsPrevented++;
                         if (Main.netMode == NetmodeID.Server)
                             NetHelper.PreventedBloodMoon();
                         MessageBroadcast.PreventChatOnce = true;
@@ -291,7 +293,7 @@ namespace AQMod
                     if (eventID == AchievementHelperID.Events.EclipseStart)
                     {
                         Main.eclipse = false;
-                        CosmicanonCounts.EclipsesPrevented++;
+                        CosmicanonWorldData.EclipsesPrevented++;
                         if (Main.netMode == NetmodeID.Server)
                             NetHelper.PreventedEclipse();
                         MessageBroadcast.PreventChatOnce = true;
@@ -302,22 +304,22 @@ namespace AQMod
 
             private static void Main_UpdateWeather(On.Terraria.Main.orig_UpdateWeather orig, Main self, GameTime gameTime)
             {
-                if (GaleStreams.EndEvent)
+                if (EventGaleStreams.EndEvent)
                 {
                     Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
                     if (Main.windSpeedSet.Abs() < 0.1f)
                     {
-                        GaleStreams.EndEvent = false;
+                        EventGaleStreams.EndEvent = false;
                     }
                     Main.windSpeedTemp = Main.windSpeedSet;
                     return;
                 }
                 if (Main.netMode != NetmodeID.MultiplayerClient && (Main.netMode == NetmodeID.Server || !Main.gameMenu)
-                    && GaleStreams.IsActive)
+                    && EventGaleStreams.IsActive)
                 {
                     for (int i = 0; i < Main.maxPlayers; i++)
                     {
-                        if (Main.player[i].active && !Main.player[i].dead && GaleStreams.EventActive(Main.player[i]))
+                        if (Main.player[i].active && !Main.player[i].dead && EventGaleStreams.EventActive(Main.player[i]))
                         {
                             Main.cloudLimit = 200; // prevents the wind speed from naturally changing during the Gale Streams event
                             if (Main.windSpeed < Main.windSpeedSet)
@@ -782,12 +784,6 @@ namespace AQMod
                 }
                 spawnStarite = false;
             }
-
-            if (CrabSeason.CrabsonCachedID > -1 && !Main.npc[CrabSeason.CrabsonCachedID].active)
-            {
-                CrabSeason.CrabsonCachedID = -1;
-            }
-
             if (Main.netMode != NetmodeID.Server)
             {
                 GameWorldRenders.DoUpdate();
@@ -818,7 +814,7 @@ namespace AQMod
                     priority = MusicPriority.Event;
                 }
             }
-            else if (GaleStreams.EventActive(Main.LocalPlayer))
+            else if (EventGaleStreams.EventActive(Main.LocalPlayer))
             {
                 music = GaleStreamsMusic.GetMusicID();
                 priority = MusicPriority.Event;

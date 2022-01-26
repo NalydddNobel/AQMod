@@ -1,5 +1,7 @@
-﻿using AQMod.Items.Accessories.FidgetSpinner;
+﻿using AQMod.Content.Players;
+using AQMod.Items.Accessories.FidgetSpinner;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
@@ -11,63 +13,107 @@ namespace AQMod.Items
     {
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
-            if (item.type > Main.maxItemTypes)
+            try
             {
-                if (item.modItem is IManaPerSecond m)
+                var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
+                if (item.type > Main.maxItemTypes)
                 {
-                    int? value = m.ManaPerSecond;
-                    int manaCost;
-                    if (value != null)
+                    if (item.modItem is IManaPerSecond m)
                     {
-                        manaCost = value.Value;
+                        int? value = m.ManaPerSecond;
+                        int manaCost;
+                        if (value != null)
+                        {
+                            manaCost = value.Value;
+                        }
+                        else
+                        {
+                            manaCost = Main.player[Main.myPlayer].GetManaCost(item);
+                            int usesPerSecond = 60 / PlayerHooks.TotalUseTime(item.useTime, Main.player[Main.myPlayer], item);
+                            if (usesPerSecond != 0)
+                            {
+                                manaCost *= usesPerSecond;
+                            }
+                        }
+                        foreach (var t in tooltips)
+                        {
+                            if (t.mod == "Terraria" && t.Name == "UseMana")
+                            {
+                                t.text = string.Format(Language.GetTextValue("Mods.AQMod.Tooltips.ManaPerSecond"), manaCost);
+                            }
+                        }
+                    }
+                }
+                if (item.pick > 0 && aQPlayer.pickBreak)
+                {
+                    foreach (var t in tooltips)
+                    {
+                        if (t.mod == "Terraria" && t.Name == "PickPower")
+                        {
+                            t.text = item.pick / 2 + Language.GetTextValue("LegacyTooltip.26");
+                            t.overrideColor = new Color(128, 128, 128, 255);
+                        }
+                    }
+                }
+                if (aQPlayer.fidgetSpinner && !item.channel && AQPlayer.CanForceAutoswing(Main.LocalPlayer, item, ignoreChanneled: true))
+                {
+                    foreach (var t in tooltips)
+                    {
+                        if (t.mod == "Terraria" && t.Name == "Speed")
+                        {
+                            AQPlayer.Fidget_Spinner_Force_Autoswing = true;
+                            string text = UseTimeAnimationTooltip(PlayerHooks.TotalUseTime(item.useTime, Main.LocalPlayer, item));
+                            AQPlayer.Fidget_Spinner_Force_Autoswing = false;
+                            if (t.text != text)
+                            {
+                                t.text = text +
+                                " (" + Lang.GetItemName(ModContent.ItemType<FidgetSpinner>()).Value + ")";
+                                t.overrideColor = new Color(200, 200, 200, 255);
+                            }
+                        }
+                    }
+                }
+                if (!PlayerStorage.hoverStorage.IsAir)
+                {
+                    var span = PlayerStorage.hoverStorage.TimeSinceStored;
+                    int seconds = (int)span.TotalSeconds;
+                    int minutes = seconds / 60;
+                    int hours = minutes / 60;
+                    int days = hours / 24;
+                    int months = days / 30;
+                    string text;
+                    if (Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftAlt))
+                    {
+                        text = Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift)
+                            ? Language.GetTextValue("Mods.AQMod.HermitCrab.Second" + (seconds == 1 ? "" : "s") + "Ago", seconds)
+                            : Language.GetTextValue("Mods.AQMod.HermitCrab.StoredAt", PlayerStorage.hoverStorage.WhenStored);
+                    }
+                    else if (months > 0)
+                    {
+                        text = Language.GetTextValue("Mods.AQMod.HermitCrab.Month" + (months == 1 ? "" : "s") + "Ago", months);
+                    }
+                    else if (days > 0)
+                    {
+                        text = Language.GetTextValue("Mods.AQMod.HermitCrab.Day" + (days == 1 ? "" : "s") + "Ago", days);
+                    }
+                    else if (hours > 0)
+                    {
+                        text = Language.GetTextValue("Mods.AQMod.HermitCrab.Hour" + (hours == 1 ? "" : "s") + "Ago", hours);
+                    }
+                    else if (minutes > 0)
+                    {
+                        text =Language.GetTextValue("Mods.AQMod.HermitCrab.Minute" + (minutes == 1 ? "" : "s") + "Ago", minutes);
                     }
                     else
                     {
-                        manaCost = Main.player[Main.myPlayer].GetManaCost(item);
-                        int usesPerSecond = 60 / PlayerHooks.TotalUseTime(item.useTime, Main.player[Main.myPlayer], item);
-                        if (usesPerSecond != 0)
-                        {
-                            manaCost *= usesPerSecond;
-                        }
+                        text = Language.GetTextValue("Mods.AQMod.HermitCrab.Second" + (seconds == 1 ? "" : "s") + "Ago", seconds);
                     }
-                    foreach (var t in tooltips)
-                    {
-                        if (t.mod == "Terraria" && t.Name == "UseMana")
-                        {
-                            t.text = string.Format(Language.GetTextValue("Mods.AQMod.Tooltips.ManaPerSecond"), manaCost);
-                        }
-                    }
+                    tooltips.Add(new TooltipLine(mod, "StorageDate", text));
+                    PlayerStorage.hoverStorage = new PlayerStorage.HermitCrabStorage();
                 }
             }
-            if (item.pick > 0 && aQPlayer.pickBreak)
+            catch
             {
-                foreach (var t in tooltips)
-                {
-                    if (t.mod == "Terraria" && t.Name == "PickPower")
-                    {
-                        t.text = item.pick / 2 + Language.GetTextValue("LegacyTooltip.26");
-                        t.overrideColor = new Color(128, 128, 128, 255);
-                    }
-                }
-            }
-            if (aQPlayer.fidgetSpinner && !item.channel && AQPlayer.CanForceAutoswing(Main.LocalPlayer, item, ignoreChanneled: true))
-            {
-                foreach (var t in tooltips)
-                {
-                    if (t.mod == "Terraria" && t.Name == "Speed")
-                    {
-                        AQPlayer.Fidget_Spinner_Force_Autoswing = true;
-                        string text = TooltipText.UseTimeAnimationTooltip(PlayerHooks.TotalUseTime(item.useTime, Main.LocalPlayer, item));
-                        AQPlayer.Fidget_Spinner_Force_Autoswing = false;
-                        if (t.text != text)
-                        {
-                            t.text = text +
-                            " (" + Lang.GetItemName(ModContent.ItemType<FidgetSpinner>()).Value + ")";
-                            t.overrideColor = new Color(200, 200, 200, 255);
-                        }
-                    }
-                }
             }
         }
 

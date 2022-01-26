@@ -1,9 +1,9 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.BossItems
+namespace AQMod.Items.Placeable.Furniture
 {
-    public class SpaceSquidTrophy : ModItem
+    public class OmegaStariteTrophy : ModItem
     {
         public override void SetDefaults()
         {
@@ -19,7 +19,7 @@ namespace AQMod.Items.BossItems
             item.value = 50000;
             item.rare = ItemRarityID.Blue;
             item.createTile = ModContent.TileType<Tiles.Furniture.Trophies>();
-            item.placeStyle = Tiles.Furniture.Trophies.SpaceSquid;
+            item.placeStyle = Tiles.Furniture.Trophies.OmegaStarite;
         }
     }
 }

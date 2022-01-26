@@ -1,7 +1,7 @@
 ﻿using AQMod.Common;
+using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters.GaleStreams;
@@ -52,11 +52,11 @@ namespace AQMod.NPCs
                 }
                 else
                 {
-                    if (player.position.Y < GaleStreams.MinimumGaleStreamsSpawnOverride) // 160 tiles from the very top of the world
+                    if (player.position.Y < EventGaleStreams.MinimumGaleStreamsSpawnOverride) // 160 tiles from the very top of the world
                     {
-                        if (GaleStreams.IsActive)
+                        if (EventGaleStreams.IsActive)
                             spawnRate /= 2;
-                        if (GaleStreams.MeteorTime())
+                        if (EventGaleStreams.MeteorTime())
                         {
                             spawnRate /= 2;
                             maxSpawns *= 2;
@@ -129,13 +129,13 @@ namespace AQMod.NPCs
                 }
                 if (spawnInfo.spawnTileY < 160)
                 {
-                    if (GaleStreams.MeteorTime())
+                    if (EventGaleStreams.MeteorTime())
                     {
                         DecreaseSpawns(0.9f);
                         pool.Add(ModContent.NPCType<Meteor>(), 2f);
                     }
                 }
-                if (GaleStreams.EventActive(spawnInfo.player) && !spawnInfo.playerSafe)
+                if (EventGaleStreams.EventActive(spawnInfo.player) && !spawnInfo.playerSafe)
                 {
                     EventProgressBarLoader.ShouldShowGaleStreamsProgressBar = true;
                     bool decSpawns = true;

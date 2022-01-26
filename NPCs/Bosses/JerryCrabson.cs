@@ -3,7 +3,8 @@ using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.World.Events;
-using AQMod.Items.BossItems.Crabson;
+using AQMod.Items;
+using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Furniture;
@@ -158,7 +159,6 @@ namespace AQMod.NPCs.Bosses
                 npc.TargetClosest();
                 Main.npc[n].target = npc.target;
                 Main.npc[n1].target = npc.target;
-                CrabSeason.CrabsonCachedID = (short)npc.whoAmI;
             }
             if (!Main.npc[(int)npc.localAI[0]].active || !Main.npc[(int)npc.localAI[1]].active)
             {
@@ -382,7 +382,6 @@ namespace AQMod.NPCs.Bosses
         public override bool PreNPCLoot()
         {
             npc.position.Y -= npc.height / 2f;
-            CrabSeason.CrabsonCachedID = -1;
             return true;
         }
 
@@ -396,10 +395,6 @@ namespace AQMod.NPCs.Bosses
             }
             if (Main.rand.NextBool(10))
                 Item.NewItem(rect, ModContent.ItemType<CrabsonTrophy>());
-            if (CrabSeason.Active)
-            {
-                WorldDefeats.DownedCrabSeason = true;
-            }
             WorldDefeats.DownedCrabson = true;
             if (Main.expertMode)
             {

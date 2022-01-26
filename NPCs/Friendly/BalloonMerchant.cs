@@ -1,8 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
-using AQMod.Content;
 using AQMod.Content.NameTags;
-using AQMod.Content.World.Events.GaleStreams;
+using AQMod.Content.World;
 using AQMod.Items.Materials;
 using AQMod.Items.Placeable.Nature;
 using AQMod.Sounds;
@@ -61,7 +60,7 @@ namespace AQMod.NPCs.Friendly
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            if (GaleStreams.IsActive)
+            if (EventGaleStreams.IsActive)
             {
                 button = Language.GetTextValue("LegacyInterface.28");
                 button2 = Language.GetTextValue("Mods.AQMod.BalloonMerchant.RenameItem.ChatButton");
@@ -86,8 +85,8 @@ namespace AQMod.NPCs.Friendly
         {
             var player = Main.LocalPlayer;
 
-            if (!BalloonMerchantManager.MerchantSetup)
-                BalloonMerchantManager.SetupMerchant();
+            if (!AirHunterWorldData.MerchantSetup)
+                AirHunterWorldData.SetupMerchant();
 
             if (!Main.dayTime)
             {
@@ -153,7 +152,7 @@ namespace AQMod.NPCs.Friendly
                             }
                             if (NPC.downedBoss1)
                             {
-                                if (BalloonMerchantManager.SellPlantSeeds)
+                                if (AirHunterWorldData.SellPlantSeeds)
                                 {
                                     shop.item[nextSlot].SetDefaults(ItemID.BlinkrootSeeds);
                                     nextSlot++;
@@ -184,7 +183,7 @@ namespace AQMod.NPCs.Friendly
                             }
                             if (NPC.downedBoss2)
                             {
-                                if (BalloonMerchantManager.SellPlantSeeds)
+                                if (AirHunterWorldData.SellPlantSeeds)
                                 {
                                     shop.item[nextSlot].SetDefaults(ItemID.DeathweedSeeds);
                                     nextSlot++;
@@ -215,7 +214,7 @@ namespace AQMod.NPCs.Friendly
                             }
                             if (NPC.downedQueenBee)
                             {
-                                if (BalloonMerchantManager.SellPlantSeeds)
+                                if (AirHunterWorldData.SellPlantSeeds)
                                 {
                                     shop.item[nextSlot].SetDefaults(ItemID.MoonglowSeeds);
                                     nextSlot++;
@@ -299,7 +298,7 @@ namespace AQMod.NPCs.Friendly
                             {
                                 if (WorldGen.crimson)
                                 {
-                                    if (BalloonMerchantManager.SellPlantSeeds)
+                                    if (AirHunterWorldData.SellPlantSeeds)
                                     {
                                         shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
                                         nextSlot++;
@@ -312,7 +311,7 @@ namespace AQMod.NPCs.Friendly
                                 }
                                 else
                                 {
-                                    if (BalloonMerchantManager.SellPlantSeeds)
+                                    if (AirHunterWorldData.SellPlantSeeds)
                                     {
                                         shop.item[nextSlot].SetDefaults(ItemID.ShiverthornSeeds);
                                         nextSlot++;
@@ -346,7 +345,7 @@ namespace AQMod.NPCs.Friendly
                             {
                                 if (WorldGen.crimson)
                                 {
-                                    if (BalloonMerchantManager.SellPlantSeeds)
+                                    if (AirHunterWorldData.SellPlantSeeds)
                                     {
                                         shop.item[nextSlot].SetDefaults(ItemID.ShiverthornSeeds);
                                         nextSlot++;
@@ -359,7 +358,7 @@ namespace AQMod.NPCs.Friendly
                                 }
                                 else
                                 {
-                                    if (BalloonMerchantManager.SellPlantSeeds)
+                                    if (AirHunterWorldData.SellPlantSeeds)
                                     {
                                         shop.item[nextSlot].SetDefaults(ItemID.WaterleafSeeds);
                                         nextSlot++;
@@ -391,7 +390,7 @@ namespace AQMod.NPCs.Friendly
                             }
                             if (Main.hardMode)
                             {
-                                if (BalloonMerchantManager.SellPlantSeeds)
+                                if (AirHunterWorldData.SellPlantSeeds)
                                 {
                                     shop.item[nextSlot].SetDefaults(ItemID.FireblossomSeeds);
                                     nextSlot++;
@@ -452,13 +451,13 @@ namespace AQMod.NPCs.Friendly
             }
             else
             {
-                if (BalloonMerchantManager.SellBanner != 0)
+                if (AirHunterWorldData.SellBanner != 0)
                 {
-                    shop.item[nextSlot].SetDefaults(BalloonMerchantManager.SellBanner);
+                    shop.item[nextSlot].SetDefaults(AirHunterWorldData.SellBanner);
                     shop.item[nextSlot].value = Item.buyPrice(gold: 10);
                     nextSlot++;
                 }
-                if (BalloonMerchantManager.SellCrates && NPC.AnyNPCs(NPCID.Angler))
+                if (AirHunterWorldData.SellCrates && NPC.AnyNPCs(NPCID.Angler))
                 {
                     if (player.ZoneCorrupt && WorldGen.shadowOrbSmashed)
                     {
@@ -504,7 +503,7 @@ namespace AQMod.NPCs.Friendly
                             shop.item[nextSlot].value = Item.buyPrice(gold: 25);
                             nextSlot++;
                         }
-                        if (NPC.downedBoss2 && BalloonMerchantManager.SellGoldCrate)
+                        if (NPC.downedBoss2 && AirHunterWorldData.SellGoldCrate)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.GoldenCrate);
                             shop.item[nextSlot].value = Item.buyPrice(gold: 75);
@@ -518,7 +517,7 @@ namespace AQMod.NPCs.Friendly
                         }
                     }
                 }
-                switch (BalloonMerchantManager.MaterialSold)
+                switch (AirHunterWorldData.MaterialSold)
                 {
                     case 0:
                         {
@@ -605,7 +604,7 @@ namespace AQMod.NPCs.Friendly
                         }
                         break;
                 }
-                if (player.ZoneCorrupt && BalloonMerchantManager.MaterialSold != 0)
+                if (player.ZoneCorrupt && AirHunterWorldData.MaterialSold != 0)
                 {
                     if (Main.time * 2.0 > Main.dayLength)
                     {
@@ -620,7 +619,7 @@ namespace AQMod.NPCs.Friendly
                         nextSlot++;
                     }
                 }
-                else if (player.ZoneCrimson && BalloonMerchantManager.MaterialSold != 0)
+                else if (player.ZoneCrimson && AirHunterWorldData.MaterialSold != 0)
                 {
                     if (Main.time * 2.0 > Main.dayLength)
                     {
@@ -637,13 +636,13 @@ namespace AQMod.NPCs.Friendly
                 }
                 else if (player.ZoneJungle && WorldGen.shadowOrbSmashed)
                 {
-                    if (BalloonMerchantManager.MaterialSold == 0)
+                    if (AirHunterWorldData.MaterialSold == 0)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.Stinger);
                         shop.item[nextSlot].value = Item.buyPrice(silver: 50);
                         nextSlot++;
                     }
-                    else if (BalloonMerchantManager.MaterialSold == 2)
+                    else if (AirHunterWorldData.MaterialSold == 2)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.Vine);
                         shop.item[nextSlot].value = Item.buyPrice(silver: 50);
@@ -658,7 +657,7 @@ namespace AQMod.NPCs.Friendly
                 }
                 else if (player.ZoneHoly && Main.hardMode)
                 {
-                    if (BalloonMerchantManager.MaterialSold == 2)
+                    if (AirHunterWorldData.MaterialSold == 2)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.UnicornHorn);
                         shop.item[nextSlot].value = Item.buyPrice(gold: 5);
@@ -686,9 +685,9 @@ namespace AQMod.NPCs.Friendly
                 }
             }
 
-            if (!BalloonMerchantManager.SettingUpShopStealing && NPC.CountNPCS(npc.type) == 1 && BalloonMerchantManager.MerchantStealSeed != -1)
+            if (!AirHunterWorldData.SettingUpShopStealing && NPC.CountNPCS(npc.type) == 1 && AirHunterWorldData.MerchantStealSeed != -1)
             {
-                var value = StealShop((BalloonMerchantManager.MerchantStealSeed * 6969).Abs(), npc.whoAmI);
+                var value = StealShop((AirHunterWorldData.MerchantStealSeed * 6969).Abs(), npc.whoAmI);
                 if (value != null)
                 {
                     if (value.shopCustomPrice != null)
@@ -701,7 +700,7 @@ namespace AQMod.NPCs.Friendly
                     nextSlot++;
                 }
 
-                value = StealShop((BalloonMerchantManager.MerchantStealSeed * 420420).Abs(), npc.whoAmI);
+                value = StealShop((AirHunterWorldData.MerchantStealSeed * 420420).Abs(), npc.whoAmI);
                 if (value != null)
                 {
                     if (value.shopCustomPrice != null)
@@ -715,7 +714,7 @@ namespace AQMod.NPCs.Friendly
                     nextSlot++;
                 }
 
-                value = StealShop(BalloonMerchantManager.MerchantStealSeed, npc.whoAmI);
+                value = StealShop(AirHunterWorldData.MerchantStealSeed, npc.whoAmI);
                 if (value != null)
                 {
                     shop.item[nextSlot] = value;
@@ -752,7 +751,7 @@ namespace AQMod.NPCs.Friendly
             var potentialShops = new List<Chest>();
             if (npc == -1)
                 npc = ModContent.NPCType<BalloonMerchant>();
-            BalloonMerchantManager.SettingUpShopStealing = true;
+            AirHunterWorldData.SettingUpShopStealing = true;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (i != whoAmI && Main.npc[i].type != npc && Main.npc[i].active && Main.npc[i].townNPC)
@@ -793,7 +792,7 @@ namespace AQMod.NPCs.Friendly
                     }
                 }
             }
-            BalloonMerchantManager.SettingUpShopStealing = false;
+            AirHunterWorldData.SettingUpShopStealing = false;
             var shopStealRand = new UnifiedRandom(seed);
             Chest stealShop = null;
             if (potentialShops.Count > 1)
@@ -890,13 +889,13 @@ namespace AQMod.NPCs.Friendly
 
         public override string GetChat()
         {
-            if (!GaleStreams.IsActive)
+            if (!EventGaleStreams.IsActive)
                 return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Leaving." + Main.rand.Next(3));
             if (!WorldDefeats.HunterIntroduction)
             {
                 WorldDefeats.HunterIntroduction = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                    NetHelper.FlagSet(NetHelper.PacketType.Flag_AirHunterIntroduction);
+                    NetHelper.Sync(NetHelper.PacketType.Flag_AirHunterIntroduction);
                 return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Introduction", npc.GivenName);
             }
             var potentialText = new List<string>();
@@ -926,7 +925,7 @@ namespace AQMod.NPCs.Friendly
                 potentialText.Add("BalloonMerchant.Chat.SpaceSquid");
             }
 
-            if (GaleStreams.MeteorTime())
+            if (EventGaleStreams.MeteorTime())
                 potentialText.Add("BalloonMerchant.Chat.MeteorTime");
 
             string chosenText = potentialText[Main.rand.Next(potentialText.Count)];
@@ -1020,7 +1019,7 @@ namespace AQMod.NPCs.Friendly
             if (!_init)
             {
                 _init = true;
-                if (GaleStreams.IsActive)
+                if (EventGaleStreams.IsActive)
                 {
                     bool notInTown = true;
                     for (int i = 0; i < Main.maxNPCs; i++)
@@ -1036,7 +1035,7 @@ namespace AQMod.NPCs.Friendly
                         SetToBalloon();
                 }
             }
-            if (!GaleStreams.IsActive && offscreen)
+            if (!EventGaleStreams.IsActive && offscreen)
             {
                 npc.active = false;
                 npc.netSkip = -1;
@@ -1046,7 +1045,7 @@ namespace AQMod.NPCs.Friendly
             if (npc.position.X <= 240f || npc.position.X + npc.width > Main.maxTilesX * 16f - 240f
                 || (currentAction == 7 && offscreen && Main.rand.NextBool(1500)))
             {
-                BalloonMerchantManager.SpawnMerchant(npc.whoAmI);
+                AirHunterWorldData.SpawnMerchant(npc.whoAmI);
                 return;
             }
 
@@ -1084,7 +1083,7 @@ namespace AQMod.NPCs.Friendly
                         npc.velocity.Y += Main.rand.NextFloat(-0.005f, 0.005f) + npc.velocity.Y * 0.0025f;
                     }
                     bool foundStoppingSpot = false;
-                    if (GaleStreams.IsActive)
+                    if (EventGaleStreams.IsActive)
                     {
                         if (!npc.noTileCollide)
                         {

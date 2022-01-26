@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,7 +29,7 @@ namespace AQMod.Items.Placeable.CraftingStations
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.CrystalBall);
             r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 5);
-            r.AddIngredient(ItemID.SoulofFlight, 20);
+            r.AddIngredient(ModContent.ItemType<LightMatter>(), 10);
             r.AddIngredient(ItemID.SoulofNight, 10);
             r.AddTile(TileID.MythrilAnvil);
             r.SetResult(this);

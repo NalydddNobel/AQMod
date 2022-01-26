@@ -1,6 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.Utility;
@@ -68,7 +69,7 @@ namespace AQMod.NPCs.Friendly
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<IWillBeBack>());
                 nextSlot++;
             }
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossItems.MythicStarfruit>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<MythicStarfruit>());
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
@@ -128,7 +129,7 @@ namespace AQMod.NPCs.Friendly
             {
                 WorldDefeats.PhysicistIntroduction = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                    NetHelper.FlagSet(NetHelper.PacketType.Flag_PhysicistIntroduction);
+                    NetHelper.Sync(NetHelper.PacketType.Flag_PhysicistIntroduction);
                 return Language.GetTextValue("Mods.AQMod.Physicist.Chat.Introduction", npc.GivenName);
             }
             var potentialText = new List<string>();

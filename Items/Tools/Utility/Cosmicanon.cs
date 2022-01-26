@@ -51,9 +51,9 @@ namespace AQMod.Items.Tools.Utility
                 }
                 if (t.mod == "Terraria" && t.Name == "Tooltip1")
                 {
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented", CosmicanonCounts.BloodMoonsPrevented);
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.GlimmersPrevented", CosmicanonCounts.GlimmersPrevented);
-                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.EclipsesPrevented", CosmicanonCounts.EclipsesPrevented);
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented", CosmicanonWorldData.BloodMoonsPrevented);
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.GlimmersPrevented", CosmicanonWorldData.GlimmersPrevented);
+                    t.text += "\n" + Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.Cosmicanon.EclipsesPrevented", CosmicanonWorldData.EclipsesPrevented);
                 }
             }
         }

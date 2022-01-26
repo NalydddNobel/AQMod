@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Pets
 {
-    public class ATM : ModProjectile, PlayerCustomMoneyTrough.ISuperClunkyMoneyTroughTypeThing
+    public class ATM : ModProjectile, PlayerStorage.ISuperClunkyMoneyTroughTypeThing
     {
         public override string Texture => "Terraria/Item_" + ItemID.Safe;
 
@@ -56,14 +56,14 @@ namespace AQMod.Projectiles.Pets
                 if (Main.mouseRight && Main.mouseRightRelease && Player.StopMoneyTroughFromWorking == 0)
                 {
                     Main.mouseRightRelease = false;
-                    PlayerCustomMoneyTrough.ManageMiscThingsToPreventBugsHopefully();
+                    PlayerStorage.ManageMiscThingsToPreventBugsHopefully();
                     if (Main.player[Main.myPlayer].chest == -3)
                     {
-                        PlayerCustomMoneyTrough.CloseMoneyTrough();
+                        PlayerStorage.CloseMoneyTrough();
                     }
                     else
                     {
-                        PlayerCustomMoneyTrough.OpenMoneyTrough(this, projectile.whoAmI);
+                        PlayerStorage.OpenMoneyTrough(this, projectile.whoAmI);
                     }
                 }
             }
@@ -71,13 +71,13 @@ namespace AQMod.Projectiles.Pets
             return false;
         }
 
-        int PlayerCustomMoneyTrough.ISuperClunkyMoneyTroughTypeThing.ChestType => -3;
-        int PlayerCustomMoneyTrough.ISuperClunkyMoneyTroughTypeThing.ProjectileType => ModContent.ProjectileType<ATM>();
-        void PlayerCustomMoneyTrough.ISuperClunkyMoneyTroughTypeThing.OnOpen()
+        int PlayerStorage.ISuperClunkyMoneyTroughTypeThing.ChestType => -3;
+        int PlayerStorage.ISuperClunkyMoneyTroughTypeThing.ProjectileType => ModContent.ProjectileType<ATM>();
+        void PlayerStorage.ISuperClunkyMoneyTroughTypeThing.OnOpen()
         {
             Main.PlaySound(SoundID.Item97);
         }
-        void PlayerCustomMoneyTrough.ISuperClunkyMoneyTroughTypeThing.OnClose()
+        void PlayerStorage.ISuperClunkyMoneyTroughTypeThing.OnClose()
         {
             Main.PlaySound(SoundID.Item97);
         }

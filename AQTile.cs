@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content;
+using AQMod.Content.World;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
 using Terraria;
@@ -98,28 +98,28 @@ namespace AQMod
             return true;
         }
 
-        private static bool _veinmine;
-        private static uint _veinmineUpdateDelay;
-
         public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (!Main.gameMenu && Main.netMode != NetmodeID.Server && !WorldGen.noTileActions &&
-                Main.GameUpdateCount >= _veinmineUpdateDelay && VeinmineHelper.CanVeinmineAtAll(type) && !fail && !effectOnly && !_veinmine)
+            if (Main.netMode != NetmodeID.Server && !Main.gameMenu && !WorldGen.noTileActions 
+                && VeinmineWorldData.CanVeinmineAtAll(type) && !fail && !effectOnly)
             {
                 try
                 {
-                    if (Main.player[Main.myPlayer].HeldItem.pick > 0 && Player.tileTargetX == i && Player.tileTargetY == j && Main.player[Main.myPlayer].GetModPlayer<AQPlayer>().VeinmineTiles[type])
+                    if (Main.player[Main.myPlayer].HeldItem.pick > 0 && Player.tileTargetX == i && Player.tileTargetY == j 
+                        && Main.player[Main.myPlayer].GetModPlayer<AQPlayer>().VeinmineTiles[type])
                     {
-                        noItem = true;
-                        _veinmine = true;
-                        VeinmineHelper.VeinmineTile(i, j, Main.player[Main.myPlayer]);
-                        _veinmine = false;
-                        _veinmineUpdateDelay = Main.GameUpdateCount + 10;
+                        if (Main.netMode == NetmodeID.SinglePlayer)
+                        {
+                            VeinmineWorldData.AddUpdateTarget(i, j, VeinmineWorldData.veinmineReps);
+                        }
+                        else
+                        {
+                            NetHelper.RequestVeinmine(i, j, Main.myPlayer);
+                        }
                     }
                 }
                 catch
                 {
-
                 }
             }
         }

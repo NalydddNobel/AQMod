@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Content.World;
 using AQMod.Gores;
 using AQMod.Items.Dyes;
 using AQMod.Items.Foods;
@@ -398,7 +399,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void NPCLoot()
         {
             if (npc.target != -1)
-                Content.World.Events.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 2);
+                EventGaleStreams.ProgressEvent(Main.player[npc.target], 2);
             bool anyOthers = NPC.AnyNPCs(npc.type);
             if (!anyOthers)
             {

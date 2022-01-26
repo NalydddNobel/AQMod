@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Configuration;
+using AQMod.Content.Players;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -69,6 +70,48 @@ namespace AQMod
                 return new Vector2(position.X * (Main.screenWidth / 800f),
                     position.Y * (Main.screenHeight / 600f) + RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop);
             }
+        }
+
+        public static PlayerBiomes Biomes(this Player player)
+        {
+            return player.GetModPlayer<PlayerBiomes>();
+        }
+
+        public static List<T> CutNullIndicesToList<T>(this T[] arr) where T : class
+        {
+            var list = new List<T>();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] != null)
+                    list.Add(arr[i]);
+            }
+            return list;
+        }
+
+        public static T[] CutNullIndices<T>(this T[] arr) where T : class
+        {
+            return CutNullIndicesToList(arr).ToArray();
+        }
+
+        public static T2[] Convert<T, T2>(this T[] arr, Func<T, T2> toOtherType)
+        {
+            var arr2 = new T2[arr.Length];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr2[i] = toOtherType(arr[i]);
+            }
+            return arr2;
+        }
+
+        public static int DoCount<T>(this T[] arr, Func<T, bool> validItem)
+        {
+            int count = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (validItem(arr[i]))
+                    count++;
+            }
+            return count;
         }
 
         public static Rectangle KeepInWorld(this Rectangle rectangle, int fluff = 10)

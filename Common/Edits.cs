@@ -28,6 +28,8 @@ namespace AQMod.Common
             On.Terraria.Main.NewText_string_byte_byte_byte_bool += MessageBroadcast.Hooks.Main_NewText_string_byte_byte_byte_bool;
 
             On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
+
+            On.Terraria.UI.ItemSlot.MouseHover_ItemArray_int_int += PlayerStorage.Hooks.ItemSlot_MouseHover_ItemArray_int_int;
         }
 
         internal static void UnloadHooks() // I am pretty sure TModLoader automatically unloads hooks, so this will just be used in some other cases

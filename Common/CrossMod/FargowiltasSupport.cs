@@ -1,9 +1,8 @@
 ﻿using AQMod.Items.Accessories.Vanity;
-using AQMod.Items.BossItems.Crabson;
-using AQMod.Items.BossItems.Starite;
 using AQMod.Items.Dyes;
 using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Placeable.Banners;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Flail;
@@ -63,8 +62,6 @@ namespace AQMod.Common.CrossMod
 
         private void createRecipes()
         {
-            createFargoRecipe<HermitCrabBanner, Items.Armor.HermitShell>();
-            createFargoRecipe<HermitCrabBanner, FishyFins>();
             createFargoRecipe<StriderCrabBanner, Items.Armor.StriderCarapace>();
             createFargoRecipe<StriderCrabBanner, Items.Armor.StriderPalms>();
             createFargoRecipe<StriderCrabBanner, Items.Tools.GrapplingHooks.StriderHook>();

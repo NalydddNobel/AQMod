@@ -1,8 +1,8 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Common.ID;
-using AQMod.Content;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
+using AQMod.Content.World;
 using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Dyes.Cursor;
@@ -491,6 +491,7 @@ namespace AQMod
                 UnaffectedByWind[NPCID.SolarSpearman] = true;
                 UnaffectedByWind[NPCID.MartianWalker] = true;
                 UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.StriderCrab>()] = true;
+                UnaffectedByWind[ModContent.NPCType<HermitCrab>()] = true;
 
                 UnaffectedByWind[NPCID.KingSlime] = false;
                 UnaffectedByWind[NPCID.EyeofCthulhu] = false;
@@ -1000,10 +1001,10 @@ namespace AQMod
 
         public override bool PreAI(NPC npc)
         {
-            if (MoonlightWallHelper.Active) // in case the NPC before this one broke and skipped PostAI, if there's a next NPC then it would hopefully fix it
-                MoonlightWallHelper.End();
-            if (MoonlightWallHelper.BehindMoonlightWall(npc.Center))
-                MoonlightWallHelper.Begin();
+            if (MoonlightWallManager.CurrentlyCachingDaytimeFlag) // in case the NPC before this one broke and skipped PostAI, if there's a next NPC then it would hopefully fix it
+                MoonlightWallManager.End();
+            if (MoonlightWallManager.BehindMoonlightWall(npc.Center))
+                MoonlightWallManager.Begin();
             if (npc.aiStyle == 13 && npc.ai[0] == 0 && npc.ai[1] == 0)
             {
                 Point pos = npc.Center.ToTileCoordinates();
@@ -1071,8 +1072,8 @@ namespace AQMod
 
         public override void PostAI(NPC npc)
         {
-            if (MoonlightWallHelper.Active)
-                MoonlightWallHelper.End();
+            if (MoonlightWallManager.CurrentlyCachingDaytimeFlag)
+                MoonlightWallManager.End();
         }
 
         public override void SetupTravelShop(int[] shop, ref int nextSlot)

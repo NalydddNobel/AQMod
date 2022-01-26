@@ -2,7 +2,6 @@
 using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.FallingStars;
 using System;
@@ -174,9 +173,6 @@ namespace AQMod.Common.CrossMod
                     }
                 },
 
-                { "crabseasontimer", (o) => CrabSeason.crabSeasonTimer },
-                { "crabseasontimer_set", (o) => CrabSeason.crabSeasonTimer = (int)o[1] },
-
                 { "worlddefeats.downedcrabson", (o) => WorldDefeats.DownedCrabson },
                 { "worlddefeats.downedcrabson_set", (o) => WorldDefeats.DownedCrabson = (bool)o[1]},
                 { "worlddefeats.downedstarite", (o) => WorldDefeats.DownedStarite },
@@ -205,7 +201,7 @@ namespace AQMod.Common.CrossMod
             };
 
             Auto.CreateCallsForType(ModContent.GetInstance<GlimmerEvent>());
-            Auto.CreateCallsForType(ModContent.GetInstance<GaleStreams>());
+            Auto.CreateCallsForType(ModContent.GetInstance<EventGaleStreams>());
             Auto.CreateCallsForType(ModContent.GetInstance<PassingDays>());
             Auto.CreateCallsForType(ModContent.GetInstance<ImitatedFallingStars>());
 

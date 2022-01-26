@@ -1,4 +1,6 @@
 ﻿using AQMod.Items.Accessories;
+using AQMod.Items.Armor;
+using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Magic;
@@ -8,7 +10,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.BossItems.Starite
+namespace AQMod.Items
 {
     public class StariteBag : ModItem
     {
@@ -39,7 +41,7 @@ namespace AQMod.Items.BossItems.Starite
             player.QuickSpawnItem(choices[Main.rand.Next(choices.Length)]);
             player.QuickSpawnItem(ModContent.ItemType<CosmicEnergy>(), Main.rand.NextVRand(5, 8));
             player.QuickSpawnItem(ItemID.FallenStar, Main.rand.NextVRand(20, 30));
-            player.QuickSpawnItem(ItemID.SoulofFlight, Main.rand.NextVRand(8, 12));
+            player.QuickSpawnItem(ModContent.ItemType<LightMatter>(), Main.rand.NextVRand(18, 24));
         }
 
         public override int BossBagNPC => ModContent.NPCType<OmegaStarite>();

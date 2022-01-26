@@ -62,10 +62,11 @@ ItemName.CrustaciumBar=Crustacium Bar
 ItemName.CrustaciumBlob=Crustacium Blob
 ItemName.CrustaciumOre=Crustacium Ore
 
+ItemName.LightMatter=Light Matter
+ItemTooltip.LightMatter=Radiates light and interstellar power
+
 ItemName.NuclearFeather=Nuclear Feather
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
-ItemName.Qi=Qi
-ItemTooltip.Qi={$Mods.AQMod.Tooltips.Unobtainable}\nA mystical energy created by extreme philosophical forces
 
 # Weapons
 
@@ -316,6 +317,30 @@ Memorialist.Chat.Exporter=That lobster thing... what's his name? {0}? He's almos
 Memorialist.Chat.Physicist={0} is such a loser. Doesn't even think I am real! She's absolutely insane.
 
 Memorialist.Chat.Mod.Split.Sheep=Have you seen one of those fluffy sheep around the snow? They look awfully good for a sacrifice.
+
+# Hermit Crab
+NPCName.HermitCrab=Hermit Crab
+
+HermitCrab.Storage=Storage
+HermitCrab.StorageFull=Your storage is full!
+
+HermitCrab.Chat.0=You have many things I wish to buy. I'm sure we can strike a bargain.
+HermitCrab.Chat.1=Haggling with you can be so... entertaining. Let's make a deal.
+HermitCrab.Chat.2=My skin feels itchy when I'm outside of my shell... make this quick
+HermitCrab.Chat.3=Have you seen any lobsters? I've been trying to stay away from them, for some reason they have a thirst for crabby blood
+HermitCrab.BloodMoon=I remember one of these nights, my friend turned into a feral creature and attacked me! I can't even trust my own kind.
+
+HermitCrab.StoredAt=Stored at {0}
+HermitCrab.SecondAgo=Stored this item {0} second ago
+HermitCrab.SecondsAgo=Stored this item {0} seconds ago
+HermitCrab.MinuteAgo=Stored this item {0} minute ago
+HermitCrab.MinutesAgo=Stored this item {0} minutes ago
+HermitCrab.HourAgo=Stored this item {0} hour ago
+HermitCrab.HoursAgo=Stored this item {0} hours ago
+HermitCrab.DayAgo=Stored this item {0} day ago
+HermitCrab.DaysAgo=Stored this item {0} days ago
+HermitCrab.MonthAgo=Stored this item {0} month ago
+HermitCrab.MonthsAgo=Stored this item {0} months ago
 
 # Balloon Merchant
 NPCName.BalloonMerchant=Air Hunter
@@ -1318,7 +1343,6 @@ NPCName.JerryCrabson=Jerry Crabson
 NPCName.JerryClaw=Jerry Claw
 NPCName.ArrowCrab=Arrow Crab
 NPCName.SoliderCrabs=Soldier Crabs
-NPCName.HermitCrab=Hermit Crab
 NPCName.StriderCrab=Strider Crab
 
 NPCName.Magmalbubble=Magmabubble

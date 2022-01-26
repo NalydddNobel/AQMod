@@ -1,12 +1,15 @@
 ﻿using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Dusts.GaleStreams;
 using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
+using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
 using AQMod.Items.Foods;
 using AQMod.Items.Placeable.Banners;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Localization;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
@@ -142,7 +145,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void AI()
         {
             bool leave = (int)npc.ai[0] == -1;
-            if (!leave && Main.player[npc.target].position.Y > Content.World.Events.GaleStreams.GaleStreams.MinimumGaleStreamsSpawnOverride)
+            if (!leave && Main.player[npc.target].position.Y > EventGaleStreams.MinimumGaleStreamsSpawnOverride)
             {
                 leave = true;
             }
@@ -596,12 +599,16 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void NPCLoot()
         {
             if (npc.target != -1)
-                Content.World.Events.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 40);
+                EventGaleStreams.ProgressEvent(Main.player[npc.target], 40);
             WorldDefeats.DownedSpaceSquid = true;
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(), Main.rand.Next(2) + 2);
             Item.NewItem(npc.getRect(), ItemID.SoulofFlight, Main.rand.Next(5) + 2);
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.SiphonTentacle>(), Main.rand.Next(10) + 10 + (Main.expertMode ? Main.rand.Next(5) : 0));
 
+            if (Main.rand.NextBool(7))
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<SpaceSquidMask>());
+            }
             if (Main.rand.NextBool(2))
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<FrostbiteDye>());
@@ -612,7 +619,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             }
             if (Main.rand.NextBool(10))
             {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.BossItems.SpaceSquidTrophy>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<SpaceSquidTrophy>());
             }
             if (Main.rand.NextBool(5))
             {
@@ -677,8 +684,9 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                     },
                     new List<int>()
                     {
-                        ModContent.ItemType<Items.BossItems.SpaceSquidTrophy>(),
-                        //ModContent.ItemType<Items.Vanities.Dyes.RedSpriteDye>(),
+                        ModContent.ItemType<SpaceSquidTrophy>(),
+                        ModContent.ItemType<SpaceSquidMask>(),
+                        ModContent.ItemType<FrostbiteDye>(),
                     },
                     AQText.chooselocalizationtext(
                         en_US: "Occasionally appears during the Gale Streams!",

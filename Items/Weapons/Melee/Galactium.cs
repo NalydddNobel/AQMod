@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Graphics;
+using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
@@ -118,8 +119,8 @@ namespace AQMod.Items.Weapons.Melee
             var r = new ModRecipe(mod);
             r.AddIngredient(ModContent.ItemType<StariteBlade>());
             r.AddIngredient(ItemID.Starfury);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 10);
-            r.AddIngredient(ItemID.SoulofFlight, 5);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 5);
+            r.AddIngredient(ModContent.ItemType<LightMatter>(), 8);
             r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();

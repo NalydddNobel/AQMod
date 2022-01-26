@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -68,8 +69,8 @@ namespace AQMod.Items.Accessories.Wings
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.FallenStar, 25);
-            recipe.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 15);
-            recipe.AddIngredient(ItemID.SoulofFlight, 5);
+            recipe.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<LightMatter>(), 8);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

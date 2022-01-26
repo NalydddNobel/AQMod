@@ -309,12 +309,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            if (Content.World.Events.CrabSeason.Active && spawnInfo.spawnTileY < Main.worldSurface && SpawnCondition.OceanMonster.Active)
-                return SpawnCondition.OceanMonster.Chance * 0.2f;
-            return 0f;
-        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.player.Biomes().zoneCrabCrevice ? 0.01f : 0f;
 
         public override void NPCLoot()
         {

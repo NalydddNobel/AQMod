@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Content.World.Events.GaleStreams;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System;
@@ -10,9 +9,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Content
+namespace AQMod.Content.World
 {
-    public sealed class BalloonMerchantManager : ModWorld
+    public sealed class AirHunterWorldData : ModWorld
     {
         public static bool MerchantSetup;
         public static bool SellPlantSeeds;
@@ -27,7 +26,7 @@ namespace AQMod.Content
 
         public override void PreUpdate()
         {
-            if (!GaleStreams.IsActive)
+            if (!EventGaleStreams.IsActive)
             {
                 if (MerchantSetup)
                     ResetMerchant();
@@ -36,7 +35,7 @@ namespace AQMod.Content
             int merchant = BalloonMerchant.Find();
             if (merchant == -1)
             {
-                if ((Main.windSpeed > 100f || Main.rand.NextBool(1250)))
+                if (Main.windSpeed > 100f || Main.rand.NextBool(1250))
                 {
                     SetupMerchant();
                     SpawnMerchant();

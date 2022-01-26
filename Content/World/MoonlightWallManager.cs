@@ -3,15 +3,15 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Content
+namespace AQMod.Content.World
 {
     /// <summary>
     /// Helps manage things that interact with the Moonlight Wall
     /// </summary>
-    public static class MoonlightWallHelper
+    public static class MoonlightWallManager
     {
-        private static bool _dayTime;
-        public static bool Active { get; private set; }
+        private static bool _dayTimeCache;
+        public static bool CurrentlyCachingDaytimeFlag { get; private set; }
 
         public static bool BehindMoonlightWall(Vector2 center)
         {
@@ -31,15 +31,15 @@ namespace AQMod.Content
 
         public static void Begin()
         {
-            Active = true;
-            _dayTime = Main.dayTime;
+            CurrentlyCachingDaytimeFlag = true;
+            _dayTimeCache = Main.dayTime;
             Main.dayTime = false;
         }
 
         public static void End()
         {
-            Active = false;
-            Main.dayTime = _dayTime;
+            CurrentlyCachingDaytimeFlag = false;
+            Main.dayTime = _dayTimeCache;
         }
     }
 }

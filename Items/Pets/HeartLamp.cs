@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -34,8 +35,8 @@ namespace AQMod.Items.Pets
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.LifeCrystal, 3);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 8);
-            r.AddIngredient(ItemID.SoulofFlight, 5);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 2);
+            r.AddIngredient(ModContent.ItemType<LightMatter>(), 5);
             r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();

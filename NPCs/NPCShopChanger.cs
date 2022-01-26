@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
-using AQMod.Content.World.Events.GaleStreams;
+using AQMod.Content.World;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Accessories.Vanity;
@@ -101,7 +101,7 @@ namespace AQMod.NPCs
                                 }
                             }
                         }
-                        if (WorldDefeats.DownedGaleStreams && Main.player[Main.myPlayer].position.Y < GaleStreams.MinimumGaleStreamsSpawnOverride)
+                        if (WorldDefeats.DownedGaleStreams && Main.player[Main.myPlayer].position.Y < EventGaleStreams.MinimumGaleStreamsSpawnOverride)
                         {
                             if (Main.moonPhase < 3)
                             {

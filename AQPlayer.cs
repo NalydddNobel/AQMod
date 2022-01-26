@@ -3,7 +3,7 @@ using AQMod.Buffs.Temperature;
 using AQMod.Common.Graphics;
 using AQMod.Content;
 using AQMod.Content.Fishing;
-using AQMod.Content.World.Events.GaleStreams;
+using AQMod.Content.World;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
 using AQMod.Effects.Particles;
@@ -329,7 +329,7 @@ namespace AQMod
             UpdateTemperatureRegen();
             hotAmulet = false;
             coldAmulet = false;
-            if (GaleStreams.EventActive(player))
+            if (EventGaleStreams.EventActive(player))
             {
                 if (temperature < -60)
                 {

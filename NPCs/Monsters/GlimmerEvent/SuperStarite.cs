@@ -334,7 +334,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<StariteStaff>());
             }
-            if (Main.rand.NextBool(5))
+            if (Main.rand.NextBool(8))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
 
             if (Main.rand.NextBool())

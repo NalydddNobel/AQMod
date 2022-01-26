@@ -150,6 +150,41 @@ namespace AQMod
             }
         }
 
+        public class r_GlowString : ModRecipe
+        {
+            private readonly byte _clr;
+
+            public r_GlowString(Mod mod, byte clr) : base(mod)
+            {
+                _clr = clr;
+            }
+
+            public override void OnCraft(Item item)
+            {
+                ((GlowString)item.modItem).clr = _clr;
+            }
+
+            internal static void ConstructRecipe(int stringItem, int dyeItem, byte clr, ModItem item)
+            {
+                var r = new r_GlowString(item.mod, clr);
+                r.AddIngredient(ModContent.ItemType<GlowString>());
+                r.AddIngredient(dyeItem);
+                r.AddTile(TileID.DyeVat);
+                r.SetResult(item);
+                var glowString = (GlowString)r.createItem.modItem;
+                glowString.clr = r._clr;
+                r.AddRecipe();
+                r = new r_GlowString(item.mod, clr);
+                r.AddIngredient(stringItem);
+                r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
+                r.AddTile(TileID.DyeVat);
+                r.SetResult(item);
+                glowString = (GlowString)r.createItem.modItem;
+                glowString.clr = r._clr;
+                r.AddRecipe();
+            }
+        }
+
         internal static void AddRecipes(AQMod aQMod)
         {
             var r = new ModRecipe(aQMod);
@@ -160,13 +195,13 @@ namespace AQMod
             r.AddRecipe();
             r = new ModRecipe(aQMod);
             r.AddIngredient(ItemID.CloudinaBottle);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddIngredient(ItemID.SnowCloudBlock, 40);
             r.SetResult(ItemID.BlizzardinaBottle);
             r.AddRecipe();
             r = new ModRecipe(aQMod);
             r.AddIngredient(ItemID.CloudinaBottle);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddIngredient(ItemID.SandBlock, 40);
             r.SetResult(ItemID.SandstorminaBottle);
             r.AddRecipe();

@@ -2,8 +2,10 @@
 using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.ID;
+using AQMod.Content.World.Events;
 using AQMod.Items.Dyes;
 using AQMod.Items.Foods;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Weapons.Melee.Boomerang;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters.GaleStreams;
@@ -16,13 +18,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Content.World.Events.GaleStreams
+namespace AQMod.Content.World
 {
-    public sealed class GaleStreams : WorldEvent
+    public sealed class EventGaleStreams : WorldEvent
     {
         public const int MinimumMeteorSpawningTileY = 160;
         public const float MinimumGaleStreamsSpawnOverride = 2560f;
-        internal override EventProgressBar ProgressBar => new GaleStreamsProgressBar();
+        internal override EventProgressBar ProgressBar => new ProgressBarGaleStreams();
         internal override EventEntry? BossChecklistEntry => new EventEntry(
             () => WorldDefeats.DownedGaleStreams,
             6.66f,
@@ -53,8 +55,8 @@ namespace AQMod.Content.World.Events.GaleStreams
             },
             new List<int>()
             {
-                ModContent.ItemType<Items.BossItems.RedSpriteTrophy>(),
-                ModContent.ItemType<Items.BossItems.SpaceSquidTrophy>(),
+                ModContent.ItemType<RedSpriteTrophy>(),
+                ModContent.ItemType<SpaceSquidTrophy>(),
                 ModContent.ItemType<CensorDye>(),
                 ModContent.ItemType<RedSpriteDye>(),
                 ModContent.ItemType<FrostbiteDye>(),

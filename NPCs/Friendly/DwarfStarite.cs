@@ -113,10 +113,6 @@ namespace AQMod.NPCs.Friendly
             npc.rotation += npc.velocity.X * 0.004f;
             if ((int)npc.frameCounter == 0 && Main.rand.NextBool(400))
                 npc.frameCounter = 1.0;
-        }
-
-        public override void PostAI()
-        {
             if ((int)npc.frameCounter != 0)
             {
                 if (Main.rand.NextBool(10))

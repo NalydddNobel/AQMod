@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Items.Foods;
 using AQMod.Sounds;
@@ -311,7 +312,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void NPCLoot()
         {
             if (npc.target != -1)
-                Content.World.Events.GaleStreams.GaleStreams.ProgressEvent(Main.player[npc.target], 10);
+                EventGaleStreams.ProgressEvent(Main.player[npc.target], 10);
 
             Item.NewItem(npc.getRect(), ItemID.Gel, Main.rand.Next(9) + 10);
 

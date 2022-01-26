@@ -100,8 +100,8 @@ namespace AQMod.Items.Weapons.Melee
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.WoodenSword);
-            r.AddIngredient(ItemID.FallenStar, 8);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 3);
+            r.AddIngredient(ItemID.FallenStar, 5);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();

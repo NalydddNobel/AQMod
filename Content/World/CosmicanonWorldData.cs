@@ -3,7 +3,7 @@ using Terraria.ModLoader.IO;
 
 namespace AQMod.Content
 {
-    public sealed class CosmicanonCounts : ModWorld
+    public sealed class CosmicanonWorldData : ModWorld
     {
         public static ushort BloodMoonsPrevented { get; set; }
         public static ushort GlimmersPrevented { get; set; }

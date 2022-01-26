@@ -1,7 +1,7 @@
 ﻿using AQMod.Common.Configuration;
+using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.NPCs.Bosses;
 using AQMod.NPCs.Monsters.GaleStreams;
@@ -38,7 +38,7 @@ namespace AQMod.Common.CrossMod
 
                         if (config.eventRichPresence)
                         {
-                            drp.Call("AddBiome", (Func<bool>)(() => CrabSeason.InActiveZone(Main.LocalPlayer)), "Crab Season",
+                            drp.Call("AddBiome", (Func<bool>)(() => Main.LocalPlayer.Biomes().zoneCrabCrevice), "Crab Crevice",
                                 "biome_crabseason", 50f, "mod_aequus");
 
                             drp.Call("AddBiome", (Func<bool>)(() =>
@@ -99,7 +99,7 @@ namespace AQMod.Common.CrossMod
                             drp.Call("AddBiome", (Func<bool>)(() => DemonSiege.CloseEnoughToDemonSiege(Main.LocalPlayer)),
                                 "Demon Siege",
                                 "biome_demonsiege", 50f, "mod_aequus");
-                            drp.Call("AddBiome", (Func<bool>)(() => GaleStreams.EventActive(Main.LocalPlayer)),
+                            drp.Call("AddBiome", (Func<bool>)(() => EventGaleStreams.EventActive(Main.LocalPlayer)),
                                 "Gale Streams",
                                 "biome_galestreams", 50f, "mod_aequus");
                         }

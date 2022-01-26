@@ -6,7 +6,7 @@ using Terraria.ID;
 
 namespace AQMod.Content
 {
-    public class StarbyteColorCache
+    public static class StarbyteColorCache
     {
         private static Dictionary<ushort, Color> _colorsCache;
 

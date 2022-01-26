@@ -6,9 +6,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee.Yoyo
+namespace AQMod.Items.Weapons.Melee
 {
-    public class Resonance : ModItem
+    public class StariteSpinner : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -25,16 +25,16 @@ namespace AQMod.Items.Weapons.Melee.Yoyo
             item.useTime = 25;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.melee = true;
-            item.damage = 36;
-            item.knockBack = 4.11f;
-            item.value = AQItem.Prices.OmegaStariteWeaponValue;
+            item.damage = 16;
+            item.knockBack = 2.11f;
+            item.value = AQItem.Prices.GlimmerWeaponValue;
             item.UseSound = SoundID.Item1;
-            item.rare = AQItem.Rarities.OmegaStariteRare;
+            item.rare = AQItem.Rarities.StariteWeaponRare;
             item.channel = true;
             item.noMelee = true;
             item.noUseGraphic = true;
-            item.shootSpeed = 20f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.Yoyo.Resonance>();
+            item.shootSpeed = 10f;
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.Yoyo.StariteSpinner>();
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -49,7 +49,7 @@ namespace AQMod.Items.Weapons.Melee.Yoyo
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
-            AQGraphics.Rendering.FallenStarAura(item, spriteBatch, scale, new Color(40, 40, 40, 40), new Color(100, 70, 70, 100));
+            AQGraphics.Rendering.FallenStarAura(item, spriteBatch, scale, new Color(20, 20, 80, 50), new Color(50, 50, 180, 127));
             Rectangle frame;
             if (Main.itemAnimations[item.type] != null)
             {
@@ -69,10 +69,9 @@ namespace AQMod.Items.Weapons.Melee.Yoyo
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<StariteSpinner>(), 1);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.CascadeOrHelfire, 1);
-            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 10);
-            r.AddIngredient(ItemID.SoulofFlight, 5);
+            r.AddIngredient(ItemID.WoodYoyo);
+            r.AddIngredient(ItemID.FallenStar, 5);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();

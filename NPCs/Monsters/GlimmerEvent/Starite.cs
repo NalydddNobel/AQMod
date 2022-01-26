@@ -278,11 +278,6 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
         {
             if (Main.rand.NextBool(50))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CelesitalEightBall>());
-            if (NPC.downedBoss1)
-            {
-                if (Main.rand.NextBool(10))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
-            }
             if (Main.rand.NextBool(5))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<NeutronJuice>());
             if (Main.rand.NextBool(50))

@@ -3,7 +3,7 @@ using AQMod.Common;
 using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.ID;
 using AQMod.Content.World.FallingStars;
-using AQMod.Items.BossItems;
+using AQMod.Items;
 using AQMod.Items.Dyes;
 using AQMod.Items.Tools;
 using AQMod.Localization;
@@ -136,7 +136,7 @@ namespace AQMod.Content.World.Events.GlimmerEvent
                             PassingDays.daysPassedSinceLastGlimmerEvent = 0;
                             if (AQPlayer.IgnoreMoons())
                             {
-                                CosmicanonCounts.GlimmersPrevented++;
+                                CosmicanonWorldData.GlimmersPrevented++;
                                 if (Main.netMode == NetmodeID.Server)
                                     NetHelper.PreventedGlimmer();
                             }

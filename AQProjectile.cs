@@ -231,53 +231,55 @@ namespace AQMod
                     }
                 }
             }
-            AQGraphics.SetCullPadding(padding: 200);
             if (projectile.aiStyle == 99 && Main.netMode != NetmodeID.Server &&
-                Main.player[projectile.owner].GetModPlayer<AQPlayer>().glowString &&
-                AQGraphics.Cull(projectile.getRect()))
+                Main.player[projectile.owner].GetModPlayer<AQPlayer>().glowString)
             {
-                var center = projectile.Center;
-                var playerCenter = Main.player[projectile.owner].MountedCenter;
-                playerCenter.Y += Main.player[projectile.owner].gfxOffY;
-                float differenceX = center.X - playerCenter.X;
-                float differenceY = center.Y - playerCenter.Y;
-
-                float length = (float)Math.Sqrt(differenceX * differenceX + differenceY * differenceY);
-                float add = Math.Min(length / 32f, 4f);
-                var toYoyo = Vector2.Normalize(center - playerCenter);
-                for (float l = 0f; l < length; l += add)
+                AQGraphics.SetCullPadding(padding: 200);
+                if (AQGraphics.Cull_WorldPosition(projectile.getRect()))
                 {
-                    int stringColor = Main.player[projectile.owner].stringColor;
-                    Color lightColor = WorldGen.paintColor(stringColor);
-                    if (lightColor.R < 75)
+                    var center = projectile.Center;
+                    var playerCenter = Main.player[projectile.owner].MountedCenter;
+                    playerCenter.Y += Main.player[projectile.owner].gfxOffY;
+                    float differenceX = center.X - playerCenter.X;
+                    float differenceY = center.Y - playerCenter.Y;
+
+                    float length = (float)Math.Sqrt(differenceX * differenceX + differenceY * differenceY);
+                    float add = Math.Min(length / 32f, 4f);
+                    var toYoyo = Vector2.Normalize(center - playerCenter);
+                    for (float l = 0f; l < length; l += add)
                     {
-                        lightColor.R = 75;
+                        int stringColor = Main.player[projectile.owner].stringColor;
+                        Color lightColor = WorldGen.paintColor(stringColor);
+                        if (lightColor.R < 75)
+                        {
+                            lightColor.R = 75;
+                        }
+                        if (lightColor.G < 75)
+                        {
+                            lightColor.G = 75;
+                        }
+                        if (lightColor.B < 75)
+                        {
+                            lightColor.B = 75;
+                        }
+                        switch (stringColor)
+                        {
+                            case 13:
+                                lightColor = new Color(20, 20, 20);
+                                break;
+                            case 0:
+                            case 14:
+                                lightColor = new Color(200, 200, 200);
+                                break;
+                            case 28:
+                                lightColor = new Color(163, 116, 91);
+                                break;
+                            case 27:
+                                lightColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                                break;
+                        }
+                        Lighting.AddLight(playerCenter + toYoyo * l, lightColor.ToVector3() * 0.6f);
                     }
-                    if (lightColor.G < 75)
-                    {
-                        lightColor.G = 75;
-                    }
-                    if (lightColor.B < 75)
-                    {
-                        lightColor.B = 75;
-                    }
-                    switch (stringColor)
-                    {
-                        case 13:
-                            lightColor = new Color(20, 20, 20);
-                            break;
-                        case 0:
-                        case 14:
-                            lightColor = new Color(200, 200, 200);
-                            break;
-                        case 28:
-                            lightColor = new Color(163, 116, 91);
-                            break;
-                        case 27:
-                            lightColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
-                            break;
-                    }
-                    Lighting.AddLight(playerCenter + toYoyo * l, lightColor.ToVector3() * 0.6f);
                 }
             }
             return true;

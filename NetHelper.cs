@@ -2,6 +2,7 @@
 using AQMod.Common.DeveloperTools;
 using AQMod.Content;
 using AQMod.Content.Players;
+using AQMod.Content.World;
 using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Events.GlimmerEvent;
 using Microsoft.Xna.Framework;
@@ -21,6 +22,7 @@ namespace AQMod
             public const ushort UpdateWindSpeeds = 3;
             public const ushort CombatText = 4;
             public const ushort CombatNumber = 5;
+            public const ushort RequestVeinmine = 6;
 
             public const ushort ActivateGlimmerEvent = 500;
             public const ushort RequestOmegaStarite = 1000;
@@ -32,26 +34,6 @@ namespace AQMod
             public const ushort Flag_AirHunterIntroduction = 10002;
 
             public const ushort Player_SyncEncoreData = 20000;
-        }
-
-        internal class PacketInvokerType
-        {
-            public readonly ushort Type;
-
-            public PacketInvokerType(ushort type)
-            {
-                Type = type;
-            }
-
-            public override int GetHashCode()
-            {
-                return Type;
-            }
-
-            public static PacketInvokerType GetType(ushort type)
-            {
-                return null;
-            }
         }
 
         #region Demon Siege
@@ -119,13 +101,6 @@ namespace AQMod
         #endregion
 
         #region Misc
-        public static void FlagSet(ushort type)
-        {
-            var p = AQMod.GetInstance().GetPacket();
-            p.Write(type);
-            p.Send();
-        }
-
         public static void NetCombatText(Rectangle rect, Color color, int amount, bool dramatic = false, bool dot = false)
         {
             var p = AQMod.GetInstance().GetPacket();
@@ -216,7 +191,7 @@ namespace AQMod
                 return;
             var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.PreventedBloodMoon);
-            p.Write(CosmicanonCounts.BloodMoonsPrevented);
+            p.Write(CosmicanonWorldData.BloodMoonsPrevented);
             p.Send();
         }
 
@@ -226,7 +201,7 @@ namespace AQMod
                 return;
             var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.PreventedGlimmer);
-            p.Write(CosmicanonCounts.GlimmersPrevented);
+            p.Write(CosmicanonWorldData.GlimmersPrevented);
             p.Send();
         }
 
@@ -236,10 +211,32 @@ namespace AQMod
                 return;
             var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.PreventedEclipse);
-            p.Write(CosmicanonCounts.EclipsesPrevented);
+            p.Write(CosmicanonWorldData.EclipsesPrevented);
             p.Send();
         }
         #endregion
+
+        public static void RequestVeinmine(int i, int j, int plr)
+        {
+            RequestVeinmine((ushort)i, (ushort)j, (byte)plr);
+        }
+
+        public static void RequestVeinmine(ushort i, ushort j, byte plr)
+        {
+            var p = AQMod.GetInstance().GetPacket();
+            p.Write(PacketType.RequestVeinmine);
+            p.Write(i);
+            p.Write(j);
+            p.Write(plr);
+            p.Send();
+        }
+
+        public static void Sync(ushort type)
+        {
+            var p = AQMod.GetInstance().GetPacket();
+            p.Write(type);
+            p.Send();
+        }
 
         public static void ReadPacket(BinaryReader reader, int sender)
         {
@@ -254,6 +251,12 @@ namespace AQMod
 
             switch (messageID)
             {
+                case PacketType.RequestVeinmine:
+                    {
+                        VeinmineWorldData.AddUpdateTarget(reader.ReadUInt16(), reader.ReadUInt16(), reader.ReadByte());
+                    }
+                    break;
+
                 case PacketType.CombatText:
                 case PacketType.CombatNumber:
                     {
@@ -303,29 +306,29 @@ namespace AQMod
 
                 case PacketType.PreventedBloodMoon:
                     {
-                        l?.Log("Old Blood Moons Prevented: " + CosmicanonCounts.EclipsesPrevented);
-                        CosmicanonCounts.BloodMoonsPrevented = reader.ReadUInt16();
-                        l?.Log("Updated Blood Moons Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        l?.Log("Old Blood Moons Prevented: " + CosmicanonWorldData.EclipsesPrevented);
+                        CosmicanonWorldData.BloodMoonsPrevented = reader.ReadUInt16();
+                        l?.Log("Updated Blood Moons Prevented: " + CosmicanonWorldData.EclipsesPrevented);
                     }
                     break;
 
                 case PacketType.PreventedGlimmer:
                     {
-                        l?.Log("Old Glimmers Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        l?.Log("Old Glimmers Prevented: " + CosmicanonWorldData.EclipsesPrevented);
 
-                        CosmicanonCounts.GlimmersPrevented = reader.ReadUInt16();
+                        CosmicanonWorldData.GlimmersPrevented = reader.ReadUInt16();
 
-                        l?.Log("Updated Glimmers Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        l?.Log("Updated Glimmers Prevented: " + CosmicanonWorldData.EclipsesPrevented);
                     }
                     break;
 
                 case PacketType.PreventedEclipse:
                     {
-                        l?.Log("Old Eclipses Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        l?.Log("Old Eclipses Prevented: " + CosmicanonWorldData.EclipsesPrevented);
 
-                        CosmicanonCounts.EclipsesPrevented = reader.ReadUInt16();
+                        CosmicanonWorldData.EclipsesPrevented = reader.ReadUInt16();
 
-                        l?.Log("Updated Eclipses Prevented: " + CosmicanonCounts.EclipsesPrevented);
+                        l?.Log("Updated Eclipses Prevented: " + CosmicanonWorldData.EclipsesPrevented);
                     }
                     break;
 

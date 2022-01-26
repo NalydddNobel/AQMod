@@ -4,9 +4,9 @@ using AQMod.Common.Utilities;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
+using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GaleStreams;
 using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.Generation;
 using AQMod.Localization;
@@ -62,6 +62,12 @@ namespace AQMod.Common.DeveloperTools
             {
                 default:
                     caller.Reply("Command doesn't exist.");
+                    break;
+
+                case "mana":
+                    {
+                        caller.Player.HeldItem.mana = int.Parse(args[1]);
+                    }
                     break;
 
                 case "tframes":
@@ -390,19 +396,19 @@ namespace AQMod.Common.DeveloperTools
                         var b = Main.MouseWorld.ToTileCoordinates();
                         if (args.Length > 7)
                         {
-                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]), ushort.Parse(args[7]));
+                            EventGaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]), ushort.Parse(args[7]));
                         }
                         else if (args.Length > 6)
                         {
-                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]));
+                            EventGaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]));
                         }
                         else if (args.Length > 2)
                         {
-                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]));
+                            EventGaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]));
                         }
                         else
                         {
-                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]));
+                            EventGaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]));
                         }
                     }
                     break;
@@ -573,43 +579,6 @@ namespace AQMod.Common.DeveloperTools
                         caller.Reply("fishing power cache: " + aQPlayer.fishingPowerCache.ToString());
                         caller.Reply("popper power: " + aQPlayer.popperBaitPower.ToString());
                         caller.Reply("popper type: " + aQPlayer.popperType.ToString() + "( [i:" + aQPlayer.popperType.ToString() + "] )");
-                    }
-                    break;
-
-                case "crabseasontimer2":
-                    if (args.Length > 1)
-                    {
-                        CrabSeason.crabSeasonTimer = int.Parse(args[1]);
-                    }
-                    if (CrabSeason.crabSeasonTimer < 0)
-                    {
-                        caller.Reply(-CrabSeason.crabSeasonTimer + " until crab season ends");
-                    }
-                    else
-                    {
-                        caller.Reply(CrabSeason.crabSeasonTimer + " until crab season starts");
-                    }
-                    break;
-
-                case "crabseasontimer":
-                    if (args.Length > 1)
-                    {
-                        CrabSeason.crabSeasonTimer = int.Parse(args[1]);
-                    }
-                    if (CrabSeason.crabSeasonTimer < 0)
-                    {
-                        caller.Reply(AQUtils.TimeText2(-CrabSeason.crabSeasonTimer) + " until crab season ends");
-                    }
-                    else
-                    {
-                        caller.Reply(AQUtils.TimeText2(CrabSeason.crabSeasonTimer) + " until crab season starts");
-                    }
-                    break;
-
-                case "crabseasonstart":
-                    {
-                        CrabSeason.Activate();
-                        AQMod.BroadcastMessage(AQText.Key + "Common.CrabSeasonWarning", CrabSeason.TextColor);
                     }
                     break;
 
@@ -1043,11 +1012,11 @@ namespace AQMod.Common.DeveloperTools
                 {
                     case 1:
                         {
-                            bool meteorTime = GaleStreams.MeteorTime();
+                            bool meteorTime = EventGaleStreams.MeteorTime();
                             tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
                             tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < 2560f).ToString()));
                             tooltips.Add(new TooltipLine(mod, "2", "windy day: " + ImitatedWindyDay.IsItAHappyWindyDay));
-                            tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + GaleStreams.IsActive));
+                            tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + EventGaleStreams.IsActive));
                         }
                         break;
                 }

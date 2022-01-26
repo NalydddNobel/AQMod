@@ -10,10 +10,13 @@ using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
-using AQMod.Items.BossItems.Starite;
+using AQMod.Items;
+using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
+using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Pets;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Ranged;
@@ -158,7 +161,7 @@ namespace AQMod.NPCs.Bosses
                 ModContent.ItemType<Raygun>(),
                 ModContent.ItemType<MagicWand>(),
                 ModContent.ItemType<CosmicEnergy>(),
-                ItemID.SoulofFlight,
+                ModContent.ItemType<LightMatter>(),
                 ItemID.FallenStar,
             },
             new List<int>() {
@@ -1551,9 +1554,9 @@ namespace AQMod.NPCs.Bosses
                     ModContent.ItemType<Raygun>(),
                 };
                 Item.NewItem(rect, choices[Main.rand.Next(choices.Length)]);
-                Item.NewItem(rect, ModContent.ItemType<CosmicEnergy>(), Main.rand.NextVRand(2, 5));
+                Item.NewItem(rect, ModContent.ItemType<CosmicEnergy>(), Main.rand.NextVRand(6, 10));
                 Item.NewItem(rect, ItemID.FallenStar, Main.rand.NextVRand(15, 20));
-                Item.NewItem(rect, ItemID.SoulofFlight, Main.rand.NextVRand(2, 5));
+                Item.NewItem(rect, ModContent.ItemType<LightMatter>(), Main.rand.NextVRand(10, 18));
             }
             WorldDefeats.DownedStarite = true;
             WorldDefeats.DownedGlimmer = true;
