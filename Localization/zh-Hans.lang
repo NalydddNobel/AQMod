@@ -48,6 +48,9 @@ ItemTooltip.LightAmulet=你从光明敌人处受到的伤害降低10%\n增加5�
 ItemName.NeutralityAmulet=中性护符
 ItemTooltip.NeutralityAmulet=你从光明和不洁敌人处受到的伤害降低10%\n增加5点护甲穿透\n你的钩爪会造成伤害
 
+ItemName.Extractor=提炼器
+ItemTooltip.Extractor=增加10%挖掘速度\n下落的方块对你造成的伤害降低\n在提炼机处提炼某些东西时会显示提炼的次数
+
 # Armor
 
 ItemName.SteelPlatedChestplate=钢板胸甲
@@ -75,6 +78,7 @@ ItemTooltip.StariteBlade=击中敌人时会对其造成碧蓝之火减益\n'邪�
 
 ItemName.StariteSpinner=星源轮转
 ItemTooltip.StariteSpinner=击中敌人时偶尔会对其造成碧蓝之火减益\n'它在旋转吗? 还是我们在绕着它旋转?'
+ProjectileName.StariteSpinnerProjectile=星源轮转
 
 ItemName.Resonance=共振
 ItemTooltip.Resonance=速度极快并且在击中敌人时几乎不会回弹\n击中敌人时偶尔会使其被灼烧\n'你不觉得我们该重新计算那些共振阻尼因子吗?'
@@ -882,7 +886,6 @@ ItemName.LightbulbBreastplate=灯泡胸甲
 ItemName.LightbulbGreaves=灯泡护胫
 ItemName.LightbulbHelmet=灯泡头盔
 ItemName.SuperDartTrapHat=超级飞镖帽
-ItemName.Extractor=提炼器
 ########
 # Misc #
 ########
@@ -1119,8 +1122,6 @@ ItemTooltip.DartTrapHat=当你站在地面上时发射毒镖\n增加5%召唤伤�
 ItemTooltip.LightbulbGreaves=+1额外召唤栏
 ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n使你轻微发光
 ItemTooltip.SuperDartTrapHat=当你站在地面上时发射毒镖\n增加10%召唤伤害\n+2额外召唤栏
-# Spelunker
-ItemTooltip.Extractor=使你免疫窒息减益\n下落的泥沙块和雪泥块对你造成的伤害降低4倍\n如果启用此饰品的可见性:\n使你获得提炼泥沙块、雪泥块和沙漠化石的能力\n在提炼机处提炼某些东西时会显示提炼的次数
 ########
 # Misc #
 ########
@@ -1255,7 +1256,6 @@ ProjectileName.HorizonSkiesExplosion=空之视界
 ProjectileName.JerryClawFlail=蟹蛤之爪
 ProjectileName.PowPunch=链拳
 ProjectileName.PowPunchExplosion=链拳
-ProjectileName.StariteSpinner=星源涡
 ProjectileName.UltimaFlare=绚彩圣焰
 ProjectileName.XenonBasher=氙制轻剑
 ProjectileName.Venus=维纳斯
