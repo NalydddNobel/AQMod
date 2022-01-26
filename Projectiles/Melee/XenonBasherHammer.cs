@@ -37,7 +37,7 @@ namespace AQMod.Projectiles.Melee
         {
             float mushroomSpeed = knockback / 2f;
             var spawnPosition = target.Center;
-            int type = ModContent.ProjectileType<XenonBasher>();
+            int type = ModContent.ProjectileType<XenonBasherSpore>();
             float speed = 6f * Main.player[projectile.owner].meleeSpeed;
             int amount = Main.rand.Next(3) + 1;
             if (crit)

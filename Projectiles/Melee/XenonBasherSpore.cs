@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Melee
 {
-    public class XenonBasher : ModProjectile
+    public class XenonBasherSpore : ModProjectile
     {
         public override void SetDefaults()
         {

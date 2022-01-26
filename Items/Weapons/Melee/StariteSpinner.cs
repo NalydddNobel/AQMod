@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Items.Materials.Energies;
+using AQMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -34,7 +35,7 @@ namespace AQMod.Items.Weapons.Melee
             item.noMelee = true;
             item.noUseGraphic = true;
             item.shootSpeed = 10f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.Yoyo.StariteSpinner>();
+            item.shoot = ModContent.ProjectileType<StariteSpinnerProjectile>();
         }
 
         public override Color? GetAlpha(Color lightColor)

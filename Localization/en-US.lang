@@ -78,6 +78,7 @@ ItemTooltip.StariteBlade=Inflicts blue fire on hit\n'The sacred blade that evil 
 
 ItemName.StariteSpinner=Starite Spinner
 ItemTooltip.StariteSpinner=Occasionally inflicts blue fire on hit\n'Is it rotating? Or are we just orbiting around it?'
+ProjectileName.StariteSpinnerProjectile=Starite Spinner
 
 ItemName.Resonance=Resonance
 ItemTooltip.Resonance=Has very high speed and barely gets knocked back when hitting enemies\nOccasionally burns enemies on hit\n'Don't you think we should recalculate those resonance dampening factors again?'
@@ -1255,7 +1256,6 @@ ProjectileName.HorizonSkiesExplosion=Horizon Skies
 ProjectileName.JerryClawFlail=Jerry Claw
 ProjectileName.PowPunch=Pow Punch
 ProjectileName.PowPunchExplosion=Pow Punch
-ProjectileName.StariteSpinner=Starite Spinner
 ProjectileName.UltimaFlare=Ultima Flare
 ProjectileName.XenonBasher=Xenon Basher
 ProjectileName.Venus=Venus

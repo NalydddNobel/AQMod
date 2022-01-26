@@ -5,9 +5,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Melee.Yoyo
+namespace AQMod.Projectiles.Melee
 {
-    public class StariteSpinner : YoyoType
+    public class StariteSpinnerProjectile : YoyoType
     {
         protected override float LifeTimeMultiplier => 10f;
         protected override float TopSpeed => 16.5f;

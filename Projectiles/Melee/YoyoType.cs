@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Melee.Yoyo
+namespace AQMod.Projectiles.Melee
 {
     public abstract class YoyoType : ModProjectile
     {

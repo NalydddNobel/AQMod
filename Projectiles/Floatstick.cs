@@ -18,6 +18,7 @@ namespace AQMod.Projectiles
             projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.ignoreWater = true;
+            projectile.timeLeft *= 5;
         }
 
         public override void AI()

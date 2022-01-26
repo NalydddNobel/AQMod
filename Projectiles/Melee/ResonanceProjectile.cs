@@ -8,9 +8,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Melee.Yoyo
+namespace AQMod.Projectiles.Melee
 {
-    public class Resonance : YoyoType
+    public class ResonanceProjectile : YoyoType
     {
         protected override float LifeTimeMultiplier => 45f;
         protected override float TopSpeed => 6f;
@@ -100,7 +100,7 @@ namespace AQMod.Projectiles.Melee.Yoyo
             var spotlightOrigin = spotlight.Size() / 2f;
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
             {
-                float colorMultiplier = (mult * (ProjectileID.Sets.TrailCacheLength[projectile.type] - i));
+                float colorMultiplier = mult * (ProjectileID.Sets.TrailCacheLength[projectile.type] - i);
                 colorMultiplier *= colorMultiplier;
                 Main.spriteBatch.Draw(spotlight, projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(100, 70, 1, 0) * colorMultiplier, 0f, spotlightOrigin, projectile.scale, SpriteEffects.None, 0f);
             }
