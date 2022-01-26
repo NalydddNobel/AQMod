@@ -613,6 +613,8 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
+            DemonSiege.InternalSetup();
+
             AQBuff.Sets.InternalInitalize();
             AQItem.Sets.InternalInitalize();
             AQNPC.Sets.InternalInitalize();

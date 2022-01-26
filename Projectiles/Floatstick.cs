@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -34,7 +35,7 @@ namespace AQMod.Projectiles
                 return;
             }
 
-            Lighting.AddLight(projectile.Center, projectile.GetAlpha(Color.White).ToVector3());
+            Lighting.AddLight(projectile.Center, projectile.GetAlpha(Color.White).ToVector3() * 2f);
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -64,7 +65,17 @@ namespace AQMod.Projectiles
         {
             var texture = projectile.GetTexture();
             var frame = texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
-            Main.spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, frame, projectile.GetAlpha(lightColor), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+
+            var drawPosition = projectile.Center - Main.screenPosition;
+            for (float f = 0f; f < 1f; f += 0.125f)
+            {
+                Main.spriteBatch.Draw(texture, drawPosition + new Vector2(2f * projectile.scale, 0f).RotatedBy(AQGraphics.TimerBasedOnTimeOfDay + f * MathHelper.TwoPi), frame, projectile.GetAlpha(lightColor) * 0.1f, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            }
+
+            Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Lights/Spotlight"), drawPosition, null, projectile.GetAlpha(lightColor) * 0.4f, projectile.rotation, new Vector2(33f, 33f), projectile.scale * AQUtils.Wave(Main.GlobalTime * 2f, 0.4f, 0.5f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Lights/Spotlight"), drawPosition, null, projectile.GetAlpha(lightColor) * 0.08f, projectile.rotation, new Vector2(33f, 33f), projectile.scale * AQUtils.Wave(Main.GlobalTime * 2f, 0.4f, 0.5f) * 2f, SpriteEffects.None, 0f);
+
+            Main.spriteBatch.Draw(texture, drawPosition, frame, projectile.GetAlpha(lightColor), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
     }

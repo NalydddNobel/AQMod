@@ -93,7 +93,7 @@ namespace AQMod.Content.World.Events.DemonSiege
             return null;
         }
 
-        protected override void Setup(AQMod mod)
+        public static void InternalSetup()
         {
             Reset();
             _upgrades = new List<DemonSiegeUpgrade>();
@@ -112,56 +112,6 @@ namespace AQMod.Content.World.Events.DemonSiege
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Magmalbubble>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32));
         }
 
-        internal override BossChecklistEventEntryData? BossChecklistEntry
-        {
-            get
-            {
-                var items = new List<int>()
-                {
-                    ModContent.ItemType<Items.Materials.Energies.DemonicEnergy>(),
-                    ModContent.ItemType<Items.Accessories.DegenerationRing>(),
-                    ModContent.ItemType<PowPunch>(),
-                    ItemID.MagmaStone,
-                    ItemID.LavaCharm,
-                    ItemID.ObsidianRose,
-                };
-                string summonItems = "";
-                foreach (var upgrade in _upgrades)
-                {
-                    if (summonItems != "")
-                        summonItems += ", ";
-                    summonItems += "[i:" + upgrade.baseItem + "]";
-                    items.Add(upgrade.rewardItem);
-                }
-                return new BossChecklistEventEntryData(
-                    () => WorldDefeats.DownedDemonSiege,
-                    4.1f,
-                    new List<int>()
-                    {
-                        ModContent.NPCType<Cindera>(),
-                        ModContent.NPCType<Magmalbubble>(),
-                        ModContent.NPCType<TrapImp>(),
-                        ModContent.NPCType<Trapper>(),
-                    },
-                    AQText.chooselocalizationtext(
-                        en_US: "Demon Siege",
-                        zh_Hans: "恶魔围攻",
-                        ru_RU: "Осада Демонов"),
-                    ItemID.LightsBane,
-                    items,
-                    new List<int>()
-                    {
-                        ModContent.ItemType<DemonicCursorDye>(),
-                        ModContent.ItemType<HellBeamDye>(),
-                    },
-                    AQText.chooselocalizationtext(
-                        en_US: "Can be summoned using: " + summonItems + " at a Gore Nest.",
-                        zh_Hans: "在血巢处使用 " + summonItems + " 召唤.",
-                        ru_RU: "Можно призвать используя: " + summonItems + " в кровавом гнезде."),
-                    "AQMod/Assets/BossChecklist/DemonSiege",
-                    TexturePaths.EventIcons + "demonsiege");
-            }
-        }
         internal override EventProgressBar ProgressBar => new DemonSiegeProgressBar();
 
         internal static void Unload()

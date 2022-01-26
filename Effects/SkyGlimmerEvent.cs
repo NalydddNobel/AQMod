@@ -129,150 +129,6 @@ namespace AQMod.Effects
             }
         }
 
-        public static class BackgroundAura
-        {
-            private static bool active;
-            private static float transition;
-            private static float transitionSpeed;
-
-            public static Color AuraColoring;
-            public static float Brightness;
-
-            public static float AuroraMin;
-            public static float AuroraMax;
-            public static float AuroraMinSpeed;
-
-            public static bool AuraStillVisible => (transition > 0.02f || active) && Brightness > 0f;
-
-            public static void Activate(float transitionSpeed = 0.01f)
-            {
-                active = true;
-                BackgroundAura.transitionSpeed = transitionSpeed;
-            }
-
-            public static void Deactivate(float transitionSpeed = 0.01f)
-            {
-                active = false;
-                BackgroundAura.transitionSpeed = transitionSpeed;
-            }
-
-            internal static void UpdateAura()
-            {
-                Brightness = 1f;
-                AuraColoring = new Color(13, 166, 231, 180);
-                if (AuraStillVisible)
-                {
-                    if (transitionSpeed < 0.01f)
-                    {
-                        transitionSpeed = 0.01f;
-                    }
-                    if (active)
-                    {
-                        if (transition < 1f)
-                        {
-                            transition += transitionSpeed;
-                            if (transition > 1f)
-                            {
-                                transition = 1f;
-                            }
-                        }
-
-                        AuroraMin = (float)Math.Sin(Main.GlobalTime * 0.01f);
-                        AuroraMax = (float)Math.Cos(Main.GlobalTime * 0.005f);
-
-                        if (AuroraMin < 0.05f)
-                        {
-                            AuroraMin = 0.05f;
-                        }
-                        if (AuroraMin > 0.05f)
-                        {
-                            AuroraMin = 0.05f;
-                        }
-                        if (AuroraMax < AuroraMin + 0.1f)
-                        {
-                            AuroraMax = AuroraMin + 0.1f;
-                        }
-                        if (AuroraMax > AuroraMin + 0.3f)
-                        {
-                            AuroraMax = AuroraMin + 0.3f;
-                        }
-                    }
-                    else
-                    {
-                        if (transition > 0f)
-                        {
-                            transition -= transitionSpeed;
-                            if (transition < 0f)
-                            {
-                                transition = 0f;
-                            }
-                        }
-                    }
-                }
-            }
-
-            internal static void RenderAura()
-            {
-                var color = AuraColoring * transition * Brightness;
-                Main.spriteBatch.End();
-                BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Shader);
-
-                var effect = EffectCache.GlimmerEventBackground;
-                effect.Parameters["intensity"].SetValue(2f);
-                effect.Parameters["pulse"].SetValue((float)Math.Sin(Main.GlobalTime * 0.0628f) * (float)Math.Cos(Main.GlobalTime * 0.14f) * 2.1f);
-                effect.Parameters["time"].SetValue(Main.GlobalTime);
-                effect.Parameters["screenOrigin"].SetValue(new Vector2(0.5f, 0.8f));
-                effect.Parameters["color"].SetValue(color.ToVector3());
-                effect.Techniques[0].Passes["BackgroundEffectPass"].Apply();
-                Main.instance.GraphicsDevice.Textures[1] = ModContent.GetTexture("Terraria/Misc/Noise");
-
-                RenderAuroras(effect);
-
-                Main.spriteBatch.End();
-                BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Regular);
-            }
-
-            private static void RenderAuroras(Effect effect)
-            {
-                Main.spriteBatch.End();
-                BatcherMethods.Background.Begin(Main.spriteBatch, BatcherMethods.Shader);
-                effect.Parameters["minRange"].SetValue((int)(AuroraMin * 150) / 150f);
-                effect.Parameters["maxRange"].SetValue((int)(AuroraMax * 150) / 150f);
-                effect.Parameters["time"].SetValue(Main.GlobalTime + Main.screenPosition.X / 800f);
-                effect.Techniques[0].Passes["MagicalCurrentAuroraPass"].Apply();
-
-                var color = Color.Lerp(AuraColoring, EventGlimmer.stariteProjectileColoring, ((float)Math.Sin(Main.GlobalTime) + 1f) * 2f);
-                if (EventGlimmer.stariteDiscoParty)
-                {
-                    color = Main.DiscoColor;
-                }
-                color *= 0.35f * transition * Brightness;
-                color.A = 0;
-                Main.spriteBatch.Draw(AQTextures.Pixel, new Rectangle(0, 40 + AQUtils.RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop / 2, Main.screenWidth, Main.screenHeight), null,
-                    color, 0f, Vector2.Zero, SpriteEffects.None, 0f);
-            }
-
-            internal static void RenderAuraOld()
-            {
-                int width = Main.screenWidth + 40;
-                int height = Main.screenHeight + 40;
-                var texture = AQTextures.Lights[LightTex.Spotlight66x66];
-                float scaleX = width / texture.Width * 1.75f;
-                float scaleY = height / texture.Height;
-                var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                Color color = AuraColoring * transition * Brightness;
-                float y = Main.screenHeight / 2f + (325f - Main.screenPosition.Y / 16f);
-                float x = Main.screenWidth / 2f;
-                Main.spriteBatch.Draw(texture, new Vector2(x, y), null, color, 0f, frame.Size() / 2f, new Vector2(scaleX, scaleY), SpriteEffects.None, 0f);
-                if (_glimmerLight > 0f)
-                {
-                    _glimmerLight -= 0.0125f;
-                    if (_glimmerLight < 0f)
-                        _glimmerLight = 0f;
-                }
-            }
-        }
-
         public static class FallingStars
         {
             public static List<StarModule> stars;
@@ -345,7 +201,7 @@ namespace AQMod.Effects
                             var drawPosition2 = AQUtils.BackgroundStars.GetRenderPosition(oldPos[i]);
                             float progress = 1f / oldPos.Length * i;
                             Main.spriteBatch.Draw(texture, drawPosition2, null,
-                                Color.Lerp(new Color(128, 128, 128, 0) * _scale, BackgroundAura.AuraColoring * 0.8f, 1f - progress) * (1f - progress), parent.rotation, _origin, _scale * 0.8f * (1f - progress), SpriteEffects.None, 0f);
+                                Color.Lerp(new Color(128, 128, 128, 0) * _scale, new Color(30, 70, 120) * 0.8f, 1f - progress) * (1f - progress), parent.rotation, _origin, _scale * 0.8f * (1f - progress), SpriteEffects.None, 0f);
                         }
                     }
                     var drawPosition = AQUtils.BackgroundStars.GetRenderPosition(position);
@@ -369,8 +225,8 @@ namespace AQMod.Effects
                                 float shimmer = timeExisting % 10 / 10f;
                                 Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(255, 255, 255, 255) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer, shimmer * 0.3f), SpriteEffects.None, 0f);
                                 Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(255, 255, 255, 255) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer * 0.3f, shimmer), SpriteEffects.None, 0f);
-                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, BackgroundAura.AuraColoring * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer, shimmer * 0.3f) * 1.5f, SpriteEffects.None, 0f);
-                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, BackgroundAura.AuraColoring * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer * 0.3f, shimmer) * 1.5f, SpriteEffects.None, 0f);
+                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(30, 70, 120) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer, shimmer * 0.3f) * 1.5f, SpriteEffects.None, 0f);
+                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(30, 70, 120) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer * 0.3f, shimmer) * 1.5f, SpriteEffects.None, 0f);
                             }
 
                             for (int i = 0; i < oldPos.Length; i++)
@@ -380,7 +236,7 @@ namespace AQMod.Effects
                                     var drawPosition2 = AQUtils.BackgroundStars.GetRenderPosition(oldPos[i]);
                                     float progress = 1f / oldPos.Length * i;
                                     Main.spriteBatch.Draw(spotlightTexture, drawPosition2, null,
-                                        Color.Lerp(new Color(255, 255, 255, 0) * _scale, BackgroundAura.AuraColoring * 1.25f, 1f - progress) * (1f - progress) * glowIn, parent.rotation, spotlightOrigin, spotlightScale * (1f - progress), SpriteEffects.None, 0f);
+                                        Color.Lerp(new Color(255, 255, 255, 0) * _scale, new Color(30, 70, 120) * 1.25f, 1f - progress) * (1f - progress) * glowIn, parent.rotation, spotlightOrigin, spotlightScale * (1f - progress), SpriteEffects.None, 0f);
                                 }
                             }
                         }
@@ -442,14 +298,6 @@ namespace AQMod.Effects
 
         public override void Update(GameTime gameTime)
         {
-            if (_active)
-            {
-                BackgroundAura.Activate(transitionSpeed: 0.01f);
-            }
-            else
-            {
-                BackgroundAura.Deactivate(transitionSpeed: 0.01f);
-            }
             int tileDistance = EventGlimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
             if (!Main.dayTime)
             {
@@ -567,33 +415,23 @@ namespace AQMod.Effects
             }
             if (maxDepth == float.MaxValue && minDepth != float.MaxValue)
             {
-                int y = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
-                var clr = Color.White * Opacity;
-                byte a = clr.A;
-                clr.A = a;
-                var destinationRectangle = new Rectangle(0, 0, Main.screenWidth, Main.screenHeight);
-                destinationRectangle.Height -= y;
-                destinationRectangle.Height += (int)(Math.Sin(Main.GlobalTime) * 10);
-                spriteBatch.Draw(ModContent.GetTexture("AQMod/Effects/SkyGlimmerEvent"), destinationRectangle, clr);
-
-
-                BackgroundAura.UpdateAura();
-
-                if (BackgroundAura.AuraStillVisible)
+                if (EventGlimmer.IsGlimmerEventCurrentlyActive())
                 {
-                    if (EventGlimmer.IsGlimmerEventCurrentlyActive())
-                    {
-                        if (ShouldSpawnBGStarites())
-                            SpawnBGStarites(rand);
-                        BackgroundAura.Brightness *= 1f - (EventGlimmer.tileX - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs() / EventGlimmer.MaxDistance;
-                    }
-                    if (BackgroundAura.AuraStillVisible)
-                        BackgroundAura.RenderAura();
+                    if (ShouldSpawnBGStarites())
+                        SpawnBGStarites(rand);
                 }
                 else
                 {
                     _starites = null;
                 }
+
+                int y = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
+                var clr = Color.White * (1f - Opacity) * (1f - (EventGlimmer.tileX - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs() / EventGlimmer.MaxDistance);
+                clr.A = (byte)(int)(255 * (1f - Opacity));
+                var destinationRectangle = new Rectangle(0, 0, Main.screenWidth, Main.screenHeight);
+                destinationRectangle.Height -= y;
+                destinationRectangle.Height += (int)(Math.Sin(Main.GlobalTime) * 10);
+                spriteBatch.Draw(ModContent.GetTexture("AQMod/Effects/SkyGlimmerEvent"), destinationRectangle, clr);
 
                 if (FallingStars.stars != null && FallingStars.stars.Count != 0)
                 {
@@ -657,7 +495,7 @@ namespace AQMod.Effects
 
         public override bool IsActive()
         {
-            return (_active || _starites != null || BackgroundAura.AuraStillVisible || FallingStars.stars != null) && !AQMod.Loading;
+            return (_active || _starites != null || FallingStars.stars != null) && !AQMod.Loading;
         }
 
         public override float GetCloudAlpha()
@@ -682,13 +520,11 @@ namespace AQMod.Effects
         public override void Activate(Vector2 position, params object[] args)
         {
             _active = true;
-            BackgroundAura.Activate(0.01f);
         }
 
         public override void Deactivate(params object[] args)
         {
             _active = false;
-            BackgroundAura.Deactivate(0.01f);
         }
     }
 }

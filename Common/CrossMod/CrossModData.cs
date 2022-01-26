@@ -20,7 +20,7 @@ namespace AQMod.Common.CrossMod
             mod = null;
             try
             {
-                mod = ModLoader.GetMod(this.name);
+                mod = ModLoader.GetMod(name);
             }
             catch (Exception ex)
             {

@@ -1,8 +1,10 @@
 ﻿using AQMod.Assets;
+using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
+using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Foods;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
@@ -18,6 +20,7 @@ using AQMod.Items.Weapons.Ranged;
 using AQMod.Items.Weapons.Summon;
 using AQMod.Localization;
 using AQMod.NPCs.Bosses;
+using AQMod.NPCs.Monsters.DemonSiege;
 using AQMod.NPCs.Monsters.GaleStreams;
 using AQMod.NPCs.Monsters.GlimmerEvent;
 using System;
@@ -254,7 +257,7 @@ namespace AQMod.Common.CrossMod
                 ItemID.NimbusRod,
                 ModContent.ItemType<Vrang>(),
                 ModContent.ItemType<Umystick>(),
-                ModContent.ItemType<Items.Tools.Fishing.Nimrod>(),
+                ModContent.ItemType<Nimrod>(),
                 ModContent.ItemType<AtmosphericEnergy>(),
                 ModContent.ItemType<Fluorescence>(),
                 ModContent.ItemType<SiphonTentacle>(),
@@ -269,6 +272,55 @@ namespace AQMod.Common.CrossMod
             null,
             "AQMod/Content/World/BossChecklistGaleStreams",
             "AQMod/Content/World/GaleStreams",
+            null);
+
+            var items = new List<int>()
+                {
+                    ModContent.ItemType<DemonicEnergy>(),
+                    ModContent.ItemType<DegenerationRing>(),
+                    ModContent.ItemType<PowPunch>(),
+                    ItemID.MagmaStone,
+                    ItemID.LavaCharm,
+                    ItemID.ObsidianRose,
+                };
+            string summonItems = "";
+            foreach (var upgrade in DemonSiege._upgrades)
+            {
+                if (summonItems != "")
+                    summonItems += ", ";
+                summonItems += "[i:" + upgrade.baseItem + "]";
+                items.Add(upgrade.rewardItem);
+            }
+
+            AQMod.bossChecklist.mod.Call("AddEvent",
+            4.1f,
+            new List<int>()
+            {
+                ModContent.NPCType<Cindera>(),
+                ModContent.NPCType<Magmalbubble>(),
+                ModContent.NPCType<TrapImp>(),
+                ModContent.NPCType<Trapper>(),
+            },
+            aQMod,
+            AQText.chooselocalizationtext(
+                   en_US: "Demon Siege",
+                   zh_Hans: "恶魔围攻",
+                   ru_RU: "Осада Демонов"),
+            (Func<bool>)(() => WorldDefeats.DownedGaleStreams),
+            0,
+            new List<int>()
+            {
+                ModContent.ItemType<DemonicCursorDye>(),
+                ModContent.ItemType<HellBeamDye>(),
+            },
+            items,
+            AQText.chooselocalizationtext(
+                   en_US: "Can be summoned using: " + summonItems + " at a Gore Nest.",
+                   zh_Hans: "在血巢处使用 " + summonItems + " 召唤.",
+                   ru_RU: "Можно призвать используя: " + summonItems + " в кровавом гнезде."),
+            null,
+            "AQMod/Content/World/BossChecklistDemonSiege",
+            "AQMod/Content/World/DemonSiege",
             null);
         }
     }

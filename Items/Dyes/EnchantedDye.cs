@@ -16,7 +16,7 @@ namespace AQMod.Items.Dyes
         public override ArmorShaderData CreateShaderData()
         {
             return new CustomTextureArmorShaderData(Effect, Pass,
-                new Ref<Texture2D>(ModContent.GetTexture("AQMod/Assets/Samplers/EnchantGlimmer"))).UseOpacity(0.8f);
+                new Ref<Texture2D>(ModContent.GetTexture("AQMod/Effects/EnchantGlimmer"))).UseOpacity(0.8f);
         }
     }
 }
