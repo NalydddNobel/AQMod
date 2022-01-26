@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
-using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Common.CrossMod;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events;
 using AQMod.Items.Dyes;
@@ -25,48 +25,6 @@ namespace AQMod.Content.World
         public const int MinimumMeteorSpawningTileY = 160;
         public const float MinimumGaleStreamsSpawnOverride = 2560f;
         internal override EventProgressBar ProgressBar => new ProgressBarGaleStreams();
-        internal override EventEntry? BossChecklistEntry => new EventEntry(
-            () => WorldDefeats.DownedGaleStreams,
-            6.66f,
-            new List<int>() {
-                ModContent.NPCType<Vraine>(),
-                ModContent.NPCType<WhiteSlime>(),
-                ModContent.NPCType<StreamingBalloon>(),
-                ModContent.NPCType<RedSprite>(),
-                ModContent.NPCType<SpaceSquid>(),
-            },
-            AQText.chooselocalizationtext(
-                en_US: "Gale Streams",
-                zh_Hans: "紊流风暴",
-                ru_RU: "Штормовые Потоки"),
-            0,
-            new List<int>()
-            {
-                ItemID.NimbusRod,
-                ModContent.ItemType<Vrang>(),
-                ModContent.ItemType<Items.Weapons.Magic.Umystick>(),
-                ModContent.ItemType<Items.Tools.Fishing.Nimrod>(),
-                ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
-                ModContent.ItemType<Items.Materials.Fluorescence>(),
-                ModContent.ItemType<Items.Materials.SiphonTentacle>(),
-                ItemID.SoulofFlight,
-                ModContent.ItemType<PeeledCarrot>(),
-                ModContent.ItemType<CinnamonRoll>(),
-            },
-            new List<int>()
-            {
-                ModContent.ItemType<RedSpriteTrophy>(),
-                ModContent.ItemType<SpaceSquidTrophy>(),
-                ModContent.ItemType<CensorDye>(),
-                ModContent.ItemType<RedSpriteDye>(),
-                ModContent.ItemType<FrostbiteDye>(),
-            },
-            AQText.chooselocalizationtext(
-                en_US: "Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]",
-                zh_Hans: "风速大于40 mph时开始, 风速小于34 mph时结束. 你可以使用 [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "] 更改风速",
-                ru_RU: "Начинается когда скорость ветра превышает 40 миль в час, и заканчивается когда скорость ветра ниже 34 миль в час. Также закончится если скорость ветра превисит 300 миль в час. Вы можете изменять скорость ветра используя [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]"),
-            "AQMod/Assets/BossChecklist/GaleStreams",
-            TexturePaths.EventIcons + "galestreams");
 
         public static Color HotCurrentColor => new Color(43, 148, 240, 255);
         public static Color ColdCurrentColor => new Color(255, 94, 31, 255);

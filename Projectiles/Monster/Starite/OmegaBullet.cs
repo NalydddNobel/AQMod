@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
-using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
@@ -44,7 +44,7 @@ namespace AQMod.Projectiles.Monster.Starite
             projectile.rotation += 0.0314f;
             if (Main.rand.NextBool(12))
             {
-                int d = Dust.NewDust(projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColoring, 0.75f);
+                int d = Dust.NewDust(projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, EventGlimmer.stariteProjectileColoring, 0.75f);
                 Main.dust[d].velocity = projectile.velocity * 0.1f;
             }
         }
@@ -54,7 +54,7 @@ namespace AQMod.Projectiles.Monster.Starite
             var texture = Main.projectileTexture[projectile.type];
             var orig = texture.Size() / 2f;
             var drawPos = projectile.Center - Main.screenPosition;
-            var drawColor = GlimmerEvent.stariteProjectileColoring;
+            var drawColor = EventGlimmer.stariteProjectileColoring;
             drawColor.A = 0;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
@@ -115,7 +115,7 @@ namespace AQMod.Projectiles.Monster.Starite
             var velo = projectile.velocity * 0.5f;
             for (int i = 0; i < 25; i++)
             {
-                int d = Dust.NewDust(projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColoring, 0.75f);
+                int d = Dust.NewDust(projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, EventGlimmer.stariteProjectileColoring, 0.75f);
                 Main.dust[d].velocity = velo;
             }
         }

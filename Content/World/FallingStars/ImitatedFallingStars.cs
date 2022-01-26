@@ -1,5 +1,4 @@
-﻿using AQMod.Content.World.Events.GlimmerEvent;
-using AQMod.Projectiles.FallingStars;
+﻿using AQMod.Projectiles.FallingStars;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -13,7 +12,7 @@ namespace AQMod.Content.World.FallingStars
     {
         public static int SpawnManaCrystal;
         public static int SpawnLifeCrystal;
-        public static bool CanCosmicBurpHappen => !GlimmerEvent.IsGlimmerEventCurrentlyActive() && !Main.bloodMoon;
+        public static bool CanCosmicBurpHappen => !EventGlimmer.IsGlimmerEventCurrentlyActive() && !Main.bloodMoon;
 
         public override void Initialize()
         {

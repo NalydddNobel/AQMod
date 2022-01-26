@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.World;
+using AQMod.Common.ID;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
 using Terraria;
@@ -10,6 +10,19 @@ namespace AQMod
 {
     public class AQTile : GlobalTile
     {
+        public static class Sets 
+        { 
+            public static bool[] CanFixWaterOnType { get; private set; }
+
+            internal static void InternalInitalize()
+            {
+                SetUtils.Length = NPCLoader.NPCCount;
+                SetUtils.GetIDFromType = (m, t) => m.TileType(t);
+
+                CanFixWaterOnType = SetUtils.CreateFlagSet(TileID.Grass, TileID.CorruptGrass, TileID.FleshGrass, TileID.SnowBlock, TileID.IceBlock, TileID.Sand);
+            }
+        }
+
         public override void RandomUpdate(int i, int j, int type)
         {
             if (Main.tile[i, j] == null)
@@ -96,32 +109,6 @@ namespace AQMod
                     return false;
             }
             return true;
-        }
-
-        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
-        {
-            if (Main.netMode != NetmodeID.Server && !Main.gameMenu && !WorldGen.noTileActions 
-                && VeinmineWorldData.CanVeinmineAtAll(type) && !fail && !effectOnly)
-            {
-                try
-                {
-                    if (Main.player[Main.myPlayer].HeldItem.pick > 0 && Player.tileTargetX == i && Player.tileTargetY == j 
-                        && Main.player[Main.myPlayer].GetModPlayer<AQPlayer>().VeinmineTiles[type])
-                    {
-                        if (Main.netMode == NetmodeID.SinglePlayer)
-                        {
-                            VeinmineWorldData.AddUpdateTarget(i, j, VeinmineWorldData.veinmineReps);
-                        }
-                        else
-                        {
-                            NetHelper.RequestVeinmine(i, j, Main.myPlayer);
-                        }
-                    }
-                }
-                catch
-                {
-                }
-            }
         }
 
         public static class WindFXHelper

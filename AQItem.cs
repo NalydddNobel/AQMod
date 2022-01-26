@@ -64,7 +64,7 @@ namespace AQMod
                 }
             }
 
-            internal static void Setup()
+            internal static void InternalInitalize()
             {
                 CantBeRenamed = new bool[ItemLoader.ItemCount];
                 CantBeRenamed[ModContent.ItemType<Items.GiftItem>()] = true;

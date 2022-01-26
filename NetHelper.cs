@@ -1,10 +1,9 @@
 ﻿using AQMod.Common;
-using AQMod.Common.DeveloperTools;
+using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.Players;
 using AQMod.Content.World;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GlimmerEvent;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
@@ -22,7 +21,6 @@ namespace AQMod
             public const ushort UpdateWindSpeeds = 3;
             public const ushort CombatText = 4;
             public const ushort CombatNumber = 5;
-            public const ushort RequestVeinmine = 6;
 
             public const ushort ActivateGlimmerEvent = 500;
             public const ushort RequestOmegaStarite = 1000;
@@ -79,8 +77,8 @@ namespace AQMod
         {
             var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.ActivateGlimmerEvent);
-            p.Write(GlimmerEvent.tileX);
-            p.Write(GlimmerEvent.tileY);
+            p.Write(EventGlimmer.tileX);
+            p.Write(EventGlimmer.tileY);
             p.Send();
         }
         #endregion
@@ -216,21 +214,6 @@ namespace AQMod
         }
         #endregion
 
-        public static void RequestVeinmine(int i, int j, int plr)
-        {
-            RequestVeinmine((ushort)i, (ushort)j, (byte)plr);
-        }
-
-        public static void RequestVeinmine(ushort i, ushort j, byte plr)
-        {
-            var p = AQMod.GetInstance().GetPacket();
-            p.Write(PacketType.RequestVeinmine);
-            p.Write(i);
-            p.Write(j);
-            p.Write(plr);
-            p.Send();
-        }
-
         public static void Sync(ushort type)
         {
             var p = AQMod.GetInstance().GetPacket();
@@ -242,21 +225,15 @@ namespace AQMod
         {
             ushort messageID = reader.ReadUInt16();
 
-            aqdebug.DebugLogger? l = null;
-            if (aqdebug.LogNetcode)
+            DebugUtilities.Logger? l = null;
+            if (DebugUtilities.LogNetcode)
             {
-                l = aqdebug.GetDebugLogger();
+                l = DebugUtilities.GetDebugLogger();
                 l.Value.Log("Message ID: " + messageID);
             }
 
             switch (messageID)
             {
-                case PacketType.RequestVeinmine:
-                    {
-                        VeinmineWorldData.AddUpdateTarget(reader.ReadUInt16(), reader.ReadUInt16(), reader.ReadByte());
-                    }
-                    break;
-
                 case PacketType.CombatText:
                 case PacketType.CombatNumber:
                     {
@@ -357,9 +334,9 @@ namespace AQMod
 
                 case PacketType.ActivateGlimmerEvent:
                     {
-                        GlimmerEvent.tileX = reader.ReadUInt16();
-                        GlimmerEvent.tileY = reader.ReadUInt16();
-                        l?.Log("Activated Glimmer Event at: {x:" + GlimmerEvent.tileX + ", y:" + GlimmerEvent.tileY + "}!");
+                        EventGlimmer.tileX = reader.ReadUInt16();
+                        EventGlimmer.tileY = reader.ReadUInt16();
+                        l?.Log("Activated Glimmer Event at: {x:" + EventGlimmer.tileX + ", y:" + EventGlimmer.tileY + "}!");
                     }
                     break;
 
@@ -383,7 +360,7 @@ namespace AQMod
                             item.modItem.NetRecieve(reader);
                         }
 
-                        if (aqdebug.LogNetcode)
+                        if (DebugUtilities.LogNetcode)
                         {
                             l.Value.Log("x: " + x);
                             l.Value.Log("y: " + y);

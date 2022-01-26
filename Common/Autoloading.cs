@@ -1,4 +1,4 @@
-﻿using AQMod.Common.DeveloperTools;
+﻿using AQMod.Common.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +13,9 @@ namespace AQMod.Common
         public static void Autoload(Assembly code)
         {
             _autoloadCache = new List<IAutoloadType>();
-            if (aqdebug.LogAutoload)
+            if (DebugUtilities.LogAutoload)
             {
-                var logger = aqdebug.GetDebugLogger();
+                var logger = DebugUtilities.GetDebugLogger();
                 foreach (var t in code.GetTypes())
                 {
                     if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(IAutoloadType)))
@@ -43,9 +43,9 @@ namespace AQMod.Common
 
         public static void SetupContent(Assembly code)
         {
-            if (aqdebug.LogAutoload)
+            if (DebugUtilities.LogAutoload)
             {
-                var logger = aqdebug.GetDebugLogger();
+                var logger = DebugUtilities.GetDebugLogger();
                 foreach (var t in code.GetTypes())
                 {
                     if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(ISetupContentType)))

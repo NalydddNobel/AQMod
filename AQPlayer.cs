@@ -4,8 +4,8 @@ using AQMod.Common.Graphics;
 using AQMod.Content;
 using AQMod.Content.Fishing;
 using AQMod.Content.World;
-using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Dusts;
+using AQMod.Effects;
 using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
@@ -146,8 +146,6 @@ namespace AQMod
         public int headMinionCarryYOld;
         public byte monoxiderCarry;
 
-        public bool[] VeinmineTiles;
-
         public int popperType;
         public int popperBaitPower;
         public int fishingPowerCache;
@@ -180,7 +178,7 @@ namespace AQMod
         public override void OnEnterWorld(Player player)
         {
             if (!Main.dayTime && Main.netMode != NetmodeID.MultiplayerClient && Main.myPlayer == player.whoAmI)
-                GlimmerEventSky.InitNight();
+                SkyGlimmerEvent.InitNight();
         }
 
         public override TagCompound Save()
@@ -286,7 +284,6 @@ namespace AQMod
             ghostAmuletHeld = InVanitySlot(player, ModContent.ItemType<GhostAmulet>());
             voodooAmuletHeld = InVanitySlot(player, ModContent.ItemType<VoodooAmulet>());
             wyvernAmuletHeld = InVanitySlot(player, ModContent.ItemType<WyvernAmulet>());
-            VeinmineTiles = new bool[TileLoader.TileCount];
             shieldLife = 0;
 
             crimsonHands = false;

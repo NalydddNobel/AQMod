@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Common.CrossMod;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -8,7 +8,7 @@ namespace AQMod.Content.World.Events
 {
     public abstract class WorldEvent : ModWorld, ISetupContentType
     {
-        internal virtual EventEntry? BossChecklistEntry => null;
+        internal virtual BossChecklistEventEntryData? BossChecklistEntry => null;
         internal virtual EventProgressBar ProgressBar => null;
 
         void ISetupContentType.SetupContent()

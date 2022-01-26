@@ -11,7 +11,7 @@ namespace AQMod
             public static bool[] CanBeTurnedIntoMolite { get; private set; }
             public static bool[] IsFoodBuff { get; private set; }
 
-            internal static void Setup()
+            internal static void InternalInitalize()
             {
                 IsFoodBuff = new bool[BuffLoader.BuffCount];
                 IsFoodBuff[BuffID.WellFed] = true;

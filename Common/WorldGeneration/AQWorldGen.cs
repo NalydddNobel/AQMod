@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World.Generation;
+﻿using AQMod.Content.World;
 using AQMod.Items.Materials;
 using AQMod.Localization;
 using AQMod.Tiles;
@@ -322,15 +322,7 @@ namespace AQMod.Common.WorldGeneration
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
-            CrabCrevice.platformGenList = new List<Vector3>();
-
             int i;
-            i = tasks.FindIndex((t) => t.Name.Equals("Beaches"));
-            if (i != -1)
-            {
-                i++;
-                tasks.Insert(i, getPass("AQMod: Crab Crevice", CrabCrevice.GenerateCrabCrevice));
-            }
             i = tasks.FindIndex((t) => t.Name.Equals("Hellforge"));
             if (i != -1)
             {
@@ -343,7 +335,7 @@ namespace AQMod.Common.WorldGeneration
             if (i != -1)
             {
                 i++;
-                tasks.Insert(i, getPass("AQMod: Fix Baby Pools", WaterCleaner.PassFix1TileHighWater));
+                tasks.Insert(i, getPass("AQMod: Fix Baby Pools", GenerationWaterCleaner.PassFix1TileHighWater));
             }
             i = tasks.FindIndex((t) => t.Name.Equals("Micro Biomes"));
             if (i != -1)
@@ -352,13 +344,7 @@ namespace AQMod.Common.WorldGeneration
                 tasks.Insert(i, getPass("AQMod: Noble Mushrooms", GenerateNobleMushrooms));
                 tasks.Insert(i, getPass("AQMod: Candelabra Traps", GenerateCandelabraTraps));
                 tasks.Insert(i, getPass("AQMod: Exotic Coral", GenerateExoticBlotches));
-                tasks.Insert(i, getPass("AQMod: Buried Chests", ChestLoot.Buried.GenerateDirtChests));
             }
-        }
-
-        public override void PostWorldGen()
-        {
-            CrabCrevice.PlacePlatformGenList();
         }
 
         internal static void KillRectangle(Rectangle rect)

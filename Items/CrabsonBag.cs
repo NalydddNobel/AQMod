@@ -1,7 +1,7 @@
 ﻿using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.Axe;
 using AQMod.Items.Weapons.Magic;
-using AQMod.Items.Weapons.Melee.Flail;
+using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.NPCs.Bosses;
 using System.Collections.Generic;

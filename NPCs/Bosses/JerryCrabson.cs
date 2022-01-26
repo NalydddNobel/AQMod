@@ -1,24 +1,16 @@
 ﻿using AQMod.Common;
-using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.World.Events;
 using AQMod.Items;
-using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Furniture;
-using AQMod.Items.Tools.Axe;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
-using AQMod.Items.Weapons.Melee.Flail;
 using AQMod.Items.Weapons.Ranged;
-using AQMod.Localization;
-using AQMod.NPCs.Bosses;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -29,32 +21,6 @@ namespace AQMod.NPCs.Bosses
     [AutoloadBossHead]
     public class JerryCrabson : AQBoss, IModifiableMusicNPC
     {
-        public override BossEntry? BossChecklistEntry => new BossEntry(
-            () => WorldDefeats.DownedCrabson,
-            2f,
-            ModContent.NPCType<JerryCrabson>(),
-            AQText.chooselocalizationtext(
-                en_US: "Jerry Crabson",
-                zh_Hans: "巨蟹蛤"),
-            ModContent.ItemType<MushroomClam>(),
-            new List<int>() {
-                ModContent.ItemType<Crabax>(),
-                ModContent.ItemType<Crabsol>(),
-                ModContent.ItemType<JerryClawFlail>(),
-                ModContent.ItemType<CinnabarBow>(),
-                ModContent.ItemType<Bubbler>(),
-                ModContent.ItemType<AquaticEnergy>(),
-            },
-            new List<int>()
-            {
-                ModContent.ItemType<CrabsonTrophy>(),
-                ModContent.ItemType<CrabsonMask>(),
-            },
-            AQText.chooselocalizationtext(
-                en_US: "Summoned by using a [i:" + ModContent.ItemType<MushroomClam>() + "] at the beach.",
-                zh_Hans: null),
-            "AQMod/Assets/BossChecklist/JerryCrabson");
-
         public override void SetDefaults()
         {
             npc.width = 90;

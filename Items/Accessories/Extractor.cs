@@ -20,12 +20,10 @@ namespace AQMod.Items.Accessories
             player.buffImmune[BuffID.Suffocation] = true;
             var aQPlayer = player.GetModPlayer<AQPlayer>();
             aQPlayer.extractinator = true;
+            player.pickSpeed -= 0.1f;
             if (!hideVisual)
             {
                 aQPlayer.extractinatorVisible = true;
-                aQPlayer.VeinmineTiles[TileID.Silt] = true;
-                aQPlayer.VeinmineTiles[TileID.Slush] = true;
-                aQPlayer.VeinmineTiles[TileID.DesertFossil] = true;
             }
         }
     }

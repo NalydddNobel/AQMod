@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.ID;
-using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Content.World;
+using AQMod.Effects;
 using AQMod.Items.DrawOverlays;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
@@ -36,13 +37,13 @@ namespace AQMod.Items
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime && !GlimmerEvent.IsGlimmerEventCurrentlyActive() && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !EventGlimmer.IsGlimmerEventCurrentlyActive() && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool UseItem(Player player)
         {
             if (Main.myPlayer == player.whoAmI)
-                GlimmerEventSky._glimmerLight = 1f;
+                SkyGlimmerEvent._glimmerLight = 1f;
             NPC.NewNPC((int)player.position.X, (int)player.position.Y - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, player.whoAmI);
             AQMod.BroadcastMessage(AQText.Key + "Common.AwakenedOmegaStarite", CommonColors.BossMessage);
             Main.PlaySound(SoundID.Roar, player.position, 0);

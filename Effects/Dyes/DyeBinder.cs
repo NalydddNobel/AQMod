@@ -1,4 +1,4 @@
-﻿using AQMod.Common.DeveloperTools;
+﻿using AQMod.Common.Utilities;
 using AQMod.Items.Dyes;
 using AQMod.Items.Dyes.Hair;
 using System.Collections.Generic;
@@ -27,11 +27,11 @@ namespace AQMod.Effects.Dyes
 
         public static void LoadDyes()
         {
-            aqdebug.DebugLogger? logger = null;
+            DebugUtilities.Logger? logger = null;
             if (_loadDyes != null)
             {
-                if (aqdebug.LogDyeBinding)
-                    logger = aqdebug.GetDebugLogger();
+                if (DebugUtilities.LogDyeBinding)
+                    logger = DebugUtilities.GetDebugLogger();
                 foreach (var dye in _loadDyes)
                 {
                     setupDye(dye, logger);
@@ -40,8 +40,8 @@ namespace AQMod.Effects.Dyes
             }
             if (_loadHairDyes != null)
             {
-                if (logger != null && aqdebug.LogDyeBinding)
-                    logger = aqdebug.GetDebugLogger();
+                if (logger != null && DebugUtilities.LogDyeBinding)
+                    logger = DebugUtilities.GetDebugLogger();
                 foreach (var dye in _loadHairDyes)
                 {
                     setupDye(dye, logger);
@@ -56,14 +56,14 @@ namespace AQMod.Effects.Dyes
             _loadHairDyes = null;
         }
 
-        private static void setupDye(HairDyeItem dye, aqdebug.DebugLogger? debugLogger)
+        private static void setupDye(HairDyeItem dye, DebugUtilities.Logger? debugLogger)
         {
             if (debugLogger != null)
                 debugLogger.Value.Log("Binding hair dye to " + dye.Name);
             GameShaders.Hair.BindShader(dye.item.type, dye.CreateShaderData());
         }
 
-        private static void setupDye(DyeItem dye, aqdebug.DebugLogger? debugLogger)
+        private static void setupDye(DyeItem dye, DebugUtilities.Logger? debugLogger)
         {
             if (debugLogger != null)
                 debugLogger.Value.Log("Binding shader to " + dye.Name + " {Pass:" + dye.Pass + "}");

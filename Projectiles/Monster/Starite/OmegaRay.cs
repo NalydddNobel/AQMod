@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World.Events.GlimmerEvent;
+﻿using AQMod.Content.World;
 using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -70,7 +70,7 @@ namespace AQMod.Projectiles.Monster.Starite
             Vector2 normalizedRotation = new Vector2(1f, 0f).RotatedBy(projectile.rotation);
             Vector2 basePosition = drawPosition + normalizedRotation * NPCs.Bosses.OmegaStarite.Circumference;
             Vector2 origin = frame.Size() / 2f;
-            Color beamColor = GlimmerEvent.stariteProjectileColoring * 0.065f;
+            Color beamColor = EventGlimmer.stariteProjectileColoring * 0.065f;
             float rotation = projectile.rotation - MathHelper.PiOver2;
             float baseScale = GetLaserScale();
             Main.spriteBatch.Draw(texture, basePosition, frame, beamColor, rotation, origin, new Vector2(1f * baseScale, 1f * baseScale), SpriteEffects.None, 0f);

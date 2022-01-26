@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Content.Quest.Lobster;
-using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Content.World;
 using AQMod.Items.Placeable.CraftingStations;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
@@ -164,7 +164,7 @@ namespace AQMod.NPCs.Friendly
                     potentialText.Add(AQText.RobsterChat(6).Value);
             }
 
-            if (GlimmerEvent.IsGlimmerEventCurrentlyActive())
+            if (EventGlimmer.IsGlimmerEventCurrentlyActive())
             {
                 potentialText.Add(AQText.RobsterChat(2).Value);
                 potentialText.Add(AQText.RobsterChat(3).Value);

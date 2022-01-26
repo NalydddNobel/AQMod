@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
-using AQMod.Common.CrossMod.BossChecklist;
+using AQMod.Common.CrossMod;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Dyes;
@@ -112,7 +112,7 @@ namespace AQMod.Content.World.Events.DemonSiege
             AddDemonSeigeEnemy(DemonSiegeEnemy.FromT<Magmalbubble>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32));
         }
 
-        internal override EventEntry? BossChecklistEntry
+        internal override BossChecklistEventEntryData? BossChecklistEntry
         {
             get
             {
@@ -133,7 +133,7 @@ namespace AQMod.Content.World.Events.DemonSiege
                     summonItems += "[i:" + upgrade.baseItem + "]";
                     items.Add(upgrade.rewardItem);
                 }
-                return new EventEntry(
+                return new BossChecklistEventEntryData(
                     () => WorldDefeats.DownedDemonSiege,
                     4.1f,
                     new List<int>()

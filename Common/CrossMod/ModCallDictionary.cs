@@ -1,8 +1,7 @@
-﻿using AQMod.Common.DeveloperTools;
+﻿using AQMod.Common.Utilities;
 using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Content.World.FallingStars;
 using System;
 using System.Collections.Generic;
@@ -64,9 +63,9 @@ namespace AQMod.Common.CrossMod
 
             private static void InternalCreateCalls<T>(string typeName, T Instance, FieldInfo[] fields, PropertyInfo[] properties)
             {
-                aqdebug.DebugLogger? l = null;
-                if (aqdebug.LogModCallObjectInitialization)
-                    l = aqdebug.GetDebugLogger();
+                DebugUtilities.Logger? l = null;
+                if (DebugUtilities.LogModCallObjectInitialization)
+                    l = DebugUtilities.GetDebugLogger();
                 if (fields != null)
                 {
                     foreach (var f in fields)
@@ -103,28 +102,28 @@ namespace AQMod.Common.CrossMod
                     }
                 },
 
-                { "glimmerevent.staritedisco", (o) => GlimmerEvent.stariteDiscoParty },
+                { "glimmerevent.staritedisco", (o) => EventGlimmer.stariteDiscoParty },
 
-                { "glimmerevent.staritedisco_set", (o) => GlimmerEvent.stariteDiscoParty = (bool)o[1] },
+                { "glimmerevent.staritedisco_set", (o) => EventGlimmer.stariteDiscoParty = (bool)o[1] },
 
-                { "glimmerevent_isactive", (o) => GlimmerEvent.IsGlimmerEventCurrentlyActive() },
-                { "glimmerevent_stariteprojectilecolor", (o) => GlimmerEvent.stariteProjectileColoring },
+                { "glimmerevent_isactive", (o) => EventGlimmer.IsGlimmerEventCurrentlyActive() },
+                { "glimmerevent_stariteprojectilecolor", (o) => EventGlimmer.stariteProjectileColoring },
                 { "glimmerevent_activate", (o) =>
                     {
-                        bool value = GlimmerEvent.Activate();
+                        bool value = EventGlimmer.Activate();
                         NetMessage.SendData(MessageID.WorldData);
                         return value;
                     }
                 },
-                { "glimmerevent_spawnsactive", (o) => GlimmerEvent.AreStariteSpawnsCurrentlyActive((Player)o[1]) },
-                { "glimmerevent_canshowinvasionprogress", (o) => GlimmerEvent.IsAbleToShowInvasionProgressBar() },
+                { "glimmerevent_spawnsactive", (o) => EventGlimmer.AreStariteSpawnsCurrentlyActive((Player)o[1]) },
+                { "glimmerevent_canshowinvasionprogress", (o) => EventGlimmer.IsAbleToShowInvasionProgressBar() },
                 { "glimmerevent_deactivate", (o) =>
                     {
-                        GlimmerEvent.Deactivate();
+                        EventGlimmer.Deactivate();
                         return null;
                     }
                 },
-                { "glimmerevent_gettiledistance", (o) => GlimmerEvent.GetTileDistanceUsingPlayer((Player)o[1]) },
+                { "glimmerevent_gettiledistance", (o) => EventGlimmer.GetTileDistanceUsingPlayer((Player)o[1]) },
 
                 { "demonsiege.x", (o) => DemonSiege.X },
                 { "demonsiege.y", (o) => DemonSiege.Y },
@@ -200,7 +199,7 @@ namespace AQMod.Common.CrossMod
                 { "worlddefeats.obtainedcatalystpainting_set", (o) => WorldDefeats.ObtainedCatalystPainting = (bool)o[1]},
             };
 
-            Auto.CreateCallsForType(ModContent.GetInstance<GlimmerEvent>());
+            Auto.CreateCallsForType(ModContent.GetInstance<EventGlimmer>());
             Auto.CreateCallsForType(ModContent.GetInstance<EventGaleStreams>());
             Auto.CreateCallsForType(ModContent.GetInstance<PassingDays>());
             Auto.CreateCallsForType(ModContent.GetInstance<ImitatedFallingStars>());
@@ -239,27 +238,27 @@ namespace AQMod.Common.CrossMod
             string callType = ((string)args[0]).ToLower();
             if (_calls.TryGetValue(callType, out var method))
             {
-                if (aqdebug.LogModCalls)
+                if (DebugUtilities.LogModCalls)
                 {
-                    aqdebug.GetDebugLogger().Log("calling type: " + callType);
+                    DebugUtilities.GetDebugLogger().Log("calling type: " + callType);
                 }
                 var value = method.Invoke(args);
-                if (aqdebug.LogModCalls)
+                if (DebugUtilities.LogModCalls)
                 {
                     if (value == null)
                     {
-                        aqdebug.GetDebugLogger().Log("call has returned a null value");
+                        DebugUtilities.GetDebugLogger().Log("call has returned a null value");
                     }
                     else
                     {
-                        aqdebug.GetDebugLogger().Log("call has returned a value of " + value.GetType().FullName + " (" + value.ToString() + ")");
+                        DebugUtilities.GetDebugLogger().Log("call has returned a value of " + value.GetType().FullName + " (" + value.ToString() + ")");
                     }
                 }
                 return value;
             }
-            if (aqdebug.LogModCalls)
+            if (DebugUtilities.LogModCalls)
             {
-                aqdebug.GetDebugLogger().Log("Invalid call type! (" + callType + ")");
+                DebugUtilities.GetDebugLogger().Log("Invalid call type! (" + callType + ")");
             }
             return null;
         }

@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World.Events.GlimmerEvent;
+﻿using AQMod.Effects;
 using System.Reflection;
 using Terraria;
 using Terraria.ID;
@@ -23,7 +23,7 @@ namespace AQMod.Common
                         AprilFoolsJoke.UpdateActive();
                         if (Main.netMode != NetmodeID.Server)
                         {
-                            GlimmerEventSky.InitNight();
+                            SkyGlimmerEvent.InitNight();
                         }
                     }
                     orig();

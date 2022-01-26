@@ -2,7 +2,7 @@
 using AQMod.Common.Configuration;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
-using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Content.World;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -212,11 +212,11 @@ namespace AQMod.Content
                 }
             }
 
-            if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.CosmicTelescope) && GlimmerEvent.IsGlimmerEventCurrentlyActive())
+            if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.CosmicTelescope) && EventGlimmer.IsGlimmerEventCurrentlyActive())
             {
                 var texture = ModContent.GetTexture(TexturePaths.MapUI + "ultimatesword");
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-                var drawPos = MapDrawPosition(new Vector2(GlimmerEvent.tileX + 0.5f, GlimmerEvent.tileY - 3f));
+                var drawPos = MapDrawPosition(new Vector2(EventGlimmer.tileX + 0.5f, EventGlimmer.tileY - 3f));
                 var hitbox = Utils.CenteredRectangle(drawPos, new Vector2(texture.Width, texture.Height) * Main.UIScale);
                 var scale = Main.UIScale;
                 if (hitbox.Contains(Main.mouseX, Main.mouseY))
@@ -233,13 +233,13 @@ namespace AQMod.Content
                 var arrowUpOrig = new Vector2(arrowUpFrame.Width / 2f, 0f);
                 var arrowDownOrig = new Vector2(arrowUpOrig.X, arrowUpFrame.Height);
                 float arrowBobbingY = alpha * 2f;
-                for (int i = 0; i < GlimmerEvent.Layers.Count; i++)
+                for (int i = 0; i < EventGlimmer.Layers.Count; i++)
                 {
-                    var layer = GlimmerEvent.Layers[i];
+                    var layer = EventGlimmer.Layers[i];
                     for (int j = 0; j < 2; j++)
                     {
                         int d = j == 1 ? -1 : 1;
-                        var pos = new Vector2(GlimmerEvent.tileX + 0.5f + layer.Distance * d, 46f);
+                        var pos = new Vector2(EventGlimmer.tileX + 0.5f + layer.Distance * d, 46f);
                         if (pos.X < 0f || pos.X > Main.maxTilesX)
                             continue;
                         for (int k = 0; k < 2; k++)

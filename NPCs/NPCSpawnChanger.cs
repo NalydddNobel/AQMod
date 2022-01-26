@@ -2,7 +2,6 @@
 using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters.GaleStreams;
 using Microsoft.Xna.Framework;
@@ -95,34 +94,34 @@ namespace AQMod.NPCs
                         pool[keyValue[i]] *= mult;
                     }
                 }
-                if (GlimmerEvent.AreStariteSpawnsCurrentlyActive(spawnInfo.player))
+                if (EventGlimmer.AreStariteSpawnsCurrentlyActive(spawnInfo.player))
                 {
-                    int tileDistance = GlimmerEvent.GetTileDistanceUsingPlayer(spawnInfo.player);
+                    int tileDistance = EventGlimmer.GetTileDistanceUsingPlayer(spawnInfo.player);
                     if (tileDistance < 30)
                     {
                         pool.Clear();
                         return;
                     }
-                    else if (tileDistance < GlimmerEvent.MaxDistance)
+                    else if (tileDistance < EventGlimmer.MaxDistance)
                     {
-                        if (tileDistance > GlimmerEvent.HyperStariteDistance) // shouldn't divide by 0...
-                            DecreaseSpawns(1f - 1f / (tileDistance - GlimmerEvent.HyperStariteDistance));
+                        if (tileDistance > EventGlimmer.HyperStariteDistance) // shouldn't divide by 0...
+                            DecreaseSpawns(1f - 1f / (tileDistance - EventGlimmer.HyperStariteDistance));
                         else
                         {
                             DecreaseSpawns(0f);
                         }
-                        int layerIndex = GlimmerEvent.GetLayerIndexThroughTileDistance(tileDistance);
+                        int layerIndex = EventGlimmer.GetLayerIndexThroughTileDistance(tileDistance);
                         if (layerIndex != -1)
                         {
                             for (int i = layerIndex - 1; i >= 0; i--)
                             {
-                                pool.Add(GlimmerEvent.Layers[i].NPCType, GlimmerEvent.Layers[i].SpawnChance);
+                                pool.Add(EventGlimmer.Layers[i].NPCType, EventGlimmer.Layers[i].SpawnChance);
                             }
-                            if (layerIndex == GlimmerEvent.Layers.Count - 1)
-                                pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, AQUtils.GetParabola(0, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance);
+                            if (layerIndex == EventGlimmer.Layers.Count - 1)
+                                pool.Add(EventGlimmer.Layers[layerIndex].NPCType, AQUtils.GetParabola(0, EventGlimmer.Layers[layerIndex].Distance, tileDistance) * EventGlimmer.Layers[layerIndex].SpawnChance);
                             else
                             {
-                                pool.Add(GlimmerEvent.Layers[layerIndex].NPCType, 1f - AQUtils.GetParabola(GlimmerEvent.Layers[layerIndex + 1].Distance, GlimmerEvent.Layers[layerIndex].Distance, tileDistance) * GlimmerEvent.Layers[layerIndex].SpawnChance);
+                                pool.Add(EventGlimmer.Layers[layerIndex].NPCType, 1f - AQUtils.GetParabola(EventGlimmer.Layers[layerIndex + 1].Distance, EventGlimmer.Layers[layerIndex].Distance, tileDistance) * EventGlimmer.Layers[layerIndex].SpawnChance);
                             }
                         }
                     }

@@ -1,8 +1,6 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Content.World;
-using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.NPCs.Bosses;
 using AQMod.NPCs.Monsters.GaleStreams;
 using System;
@@ -14,16 +12,14 @@ namespace AQMod.Common.CrossMod
 {
     internal static class DiscordRichPresenceSupport
     {
-        public static Mod GetMod() => ModLoader.GetMod("DiscordRP");
-
-        public static void AddSupport(AQMod aQMod)
+        public static void AddSupport()
         {
             try
             {
                 var config = ModContent.GetInstance<DiscordRichPresenceConfig>();
                 if (config != null && config.enableDiscordRichPresence)
                 {
-                    var drp = GetMod();
+                    var drp = AQMod.discordRP.mod;
                     if (drp != null)
                     {
                         drp.Call("AddClient", "930160636749574155", "mod_aequus");
@@ -43,56 +39,56 @@ namespace AQMod.Common.CrossMod
 
                             drp.Call("AddBiome", (Func<bool>)(() =>
                             {
-                                if (!GlimmerEvent.IsGlimmerEventCurrentlyActive())
+                                if (!EventGlimmer.IsGlimmerEventCurrentlyActive())
                                 {
                                     return false;
                                 }
-                                int tileDistance = GlimmerEvent.GetTileDistanceUsingPlayer(Main.LocalPlayer);
-                                if (tileDistance > GlimmerEvent.SuperStariteDistance)
+                                int tileDistance = EventGlimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
+                                if (tileDistance > EventGlimmer.SuperStariteDistance)
                                 {
                                     return false;
                                 }
-                                return tileDistance <= GlimmerEvent.MaxDistance;
+                                return tileDistance <= EventGlimmer.MaxDistance;
                             }),
                                 "the edge of the Glimmer",
                                 "biome_glimmerevent", 50f, "mod_aequus");
                             drp.Call("AddBiome", (Func<bool>)(() =>
                             {
-                                if (!GlimmerEvent.IsGlimmerEventCurrentlyActive())
+                                if (!EventGlimmer.IsGlimmerEventCurrentlyActive())
                                 {
                                     return false;
                                 }
-                                int tileDistance = GlimmerEvent.GetTileDistanceUsingPlayer(Main.LocalPlayer);
-                                if (tileDistance > GlimmerEvent.HyperStariteDistance)
+                                int tileDistance = EventGlimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
+                                if (tileDistance > EventGlimmer.HyperStariteDistance)
                                 {
                                     return false;
                                 }
-                                return tileDistance <= GlimmerEvent.SuperStariteDistance;
+                                return tileDistance <= EventGlimmer.SuperStariteDistance;
                             }),
                                 "Glimmer Event! Super Starites!",
                                 "biome_glimmerevent", 50f, "mod_aequus");
                             drp.Call("AddBiome", (Func<bool>)(() =>
                             {
-                                if (!GlimmerEvent.IsGlimmerEventCurrentlyActive())
+                                if (!EventGlimmer.IsGlimmerEventCurrentlyActive())
                                 {
                                     return false;
                                 }
-                                int tileDistance = GlimmerEvent.GetTileDistanceUsingPlayer(Main.LocalPlayer);
-                                if (tileDistance > GlimmerEvent.UltraStariteDistance)
+                                int tileDistance = EventGlimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
+                                if (tileDistance > EventGlimmer.UltraStariteDistance)
                                 {
                                     return false;
                                 }
-                                return tileDistance <= GlimmerEvent.HyperStariteDistance;
+                                return tileDistance <= EventGlimmer.HyperStariteDistance;
                             }),
                                 "Glimmer Event! Hyper Starites!",
                                 "biome_glimmerevent", 50f, "mod_aequus");
                             drp.Call("AddBiome", (Func<bool>)(() =>
                             {
-                                if (!GlimmerEvent.IsGlimmerEventCurrentlyActive())
+                                if (!EventGlimmer.IsGlimmerEventCurrentlyActive())
                                 {
                                     return false;
                                 }
-                                return GlimmerEvent.GetTileDistanceUsingPlayer(Main.LocalPlayer) <= GlimmerEvent.UltraStariteDistance;
+                                return EventGlimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer) <= EventGlimmer.UltraStariteDistance;
                             }),
                                 "the Ultimate Sword...",
                                 "biome_glimmerevent", 50f, "mod_aequus");

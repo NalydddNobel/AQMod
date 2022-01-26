@@ -48,6 +48,9 @@ ItemTooltip.LightAmulet=You take 10% less damage from holy enemies\nIncreases ar
 ItemName.NeutralityAmulet=Neutrality Amulet
 ItemTooltip.NeutralityAmulet=You take 10% less damage from holy and unholy enemies\nIncreases armor penetration by 5\nYour grappling hooks inflict damage
 
+ItemName.Extractor=Extractor
+ItemTooltip.Extractor=10% increased mining speed\nFalling blocks deal less damage\nExtracting at the Extractinator will show your extractination count 
+
 # Armor
 
 ItemName.SteelPlatedChestplate=Steel Plated Chestplate
@@ -882,7 +885,6 @@ ItemName.LightbulbBreastplate=Lightbulb Breastplate
 ItemName.LightbulbGreaves=Lightbulb Greaves
 ItemName.LightbulbHelmet=Lightbulb Helmet
 ItemName.SuperDartTrapHat=Super Dart Trap Hat
-ItemName.Extractor=Extractor
 ########
 # Misc #
 ########
@@ -1119,8 +1121,6 @@ ItemTooltip.DartTrapHat=Shoots poisioned darts while you are on the ground\nIncr
 ItemTooltip.LightbulbGreaves=Increases your max number of minions
 ItemTooltip.LightbulbHelmet=Slightly increases mana regeneration\nYou faintly emit light
 ItemTooltip.SuperDartTrapHat=Shoots poisioned darts while you are on the ground\nIncreases summon damage by 10%\nIncreases your max number of minions
-# Spelunker
-ItemTooltip.Extractor=You gain immunity to suffocation\nFalling Silt and Slush now deal four times less damage\nIf the accessory is not marked as hidden:\nYou obtain the ability to veinmine silt slush and desert fossils\nExtracting something at the Extractinator will show your extractination count 
 ########
 # Misc #
 ########

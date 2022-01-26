@@ -1,6 +1,4 @@
-﻿using AQMod.Common.DeveloperTools;
-
-namespace AQMod.Common.ID
+﻿namespace AQMod.Common.ID
 {
     [SetConstantsIdentity(typeof(ParticleTex))]
     public sealed class ParticleTex

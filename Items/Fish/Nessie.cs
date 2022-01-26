@@ -19,7 +19,7 @@ namespace AQMod.Items.Fish
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
         {
             return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
-                && !Main.dayTime && Content.World.Events.GlimmerEvent.GlimmerEvent.GetTileDistanceUsingPlayer(player) < Content.World.Events.GlimmerEvent.GlimmerEvent.MaxDistance;
+                && !Main.dayTime && AQMod.Content.World.EventGlimmer.GetTileDistanceUsingPlayer(player) < AQMod.Content.World.EventGlimmer.MaxDistance;
         }
 
         public override void AddRecipes()

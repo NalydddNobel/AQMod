@@ -1,17 +1,14 @@
 ﻿using AQMod.Assets;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
-using AQMod.Common.Configuration;
-using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Common.NoHitting;
-using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Items;
-using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
@@ -20,8 +17,6 @@ using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Ranged;
-using AQMod.Localization;
-using AQMod.NPCs.Bosses;
 using AQMod.Projectiles.Monster.Starite;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
@@ -145,42 +140,6 @@ namespace AQMod.NPCs.Bosses
         public int skipDeathTimer;
         private byte _hitShake;
 
-        public override BossEntry? BossChecklistEntry => new BossEntry(
-            () => WorldDefeats.DownedStarite,
-            6f,
-            ModContent.NPCType<OmegaStarite>(),
-            AQText.chooselocalizationtext(
-                en_US: "Omega Starite", 
-                zh_Hans: "终末之星",
-                ru_RU: "Омега Жизнезвезда"),
-            ModContent.ItemType<NovaFruit>(),
-            new List<int>() {
-                ModContent.ItemType<Items.Accessories.CelesteTorus>(),
-                ModContent.ItemType<Items.Weapons.Melee.UltimateSword>(),
-                ModContent.ItemType<CosmicTelescope>(),
-                ModContent.ItemType<Raygun>(),
-                ModContent.ItemType<MagicWand>(),
-                ModContent.ItemType<CosmicEnergy>(),
-                ModContent.ItemType<LightMatter>(),
-                ItemID.FallenStar,
-            },
-            new List<int>() {
-                ModContent.ItemType<OmegaStariteTrophy>(),
-                ModContent.ItemType<OmegaStariteMask>(),
-                ModContent.ItemType<DragonBall>(),
-                ModContent.ItemType<EnchantedDye>(),
-                ModContent.ItemType<RainbowOutlineDye>(),
-                ModContent.ItemType<DiscoDye>(),
-            },
-            AQText.chooselocalizationtext(
-                en_US: "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event.",
-                zh_Hans: "在夜晚使用 [i:" + ModContent.ItemType<NovaFruit>() + "] 召唤. 也可以与微光事件中心的剑交互来召唤.",
-                ru_RU: "Можно призвать используя [i:" + ModContent.ItemType<NovaFruit>() + "] ночью. Также можно призвать взаимодействуя с мечом который расположен в центре Мерцающего События."),
-            "AQMod/Assets/BossChecklist/OmegaStarite",
-            null, 
-            () => WorldDefeats.OmegaStariteIntroduction || WorldDefeats.OmegaStariteIntroduction || Main.hardMode
-        );
-
         public override void SetStaticDefaults()
         {
             NPCID.Sets.TrailingMode[npc.type] = 7;
@@ -208,7 +167,7 @@ namespace AQMod.NPCs.Bosses
             npc.lavaImmune = true;
             bossBag = ModContent.ItemType<StariteBag>();
 
-            if (!GlimmerEvent.IsGlimmerEventCurrentlyActive())
+            if (!EventGlimmer.IsGlimmerEventCurrentlyActive())
                 skipDeathTimer = 600;
             if (AQGraphics.CanUseAssets)
             {
@@ -271,7 +230,6 @@ namespace AQMod.NPCs.Bosses
         public void Initialize()
         {
             npc.TargetClosest(faceTarget: false);
-            OmegaStariteScenes.OmegaStariteIndexCache = (short)npc.whoAmI;
             var center = npc.Center;
             rings = new Ring[2];
             if (Main.expertMode)
@@ -299,13 +257,13 @@ namespace AQMod.NPCs.Bosses
             if (Main.dayTime)
             {
                 npc.life = -1;
-                OmegaStariteScenes.OmegaStariteIndexCache = -1;
-                OmegaStariteScenes.SceneType = 0;
+                EventGlimmer.OmegaStarite = -1;
                 npc.HitEffect();
                 Main.PlaySound(SoundID.Dig, npc.Center);
                 npc.active = false;
                 return;
             }
+            EventGlimmer.OmegaStarite = (short)npc.whoAmI;
             //Main.NewText(npc.ai[0]);
             //AQMod.Instance.Logger.Debug(npc.ai[0]);
             if (skipDeathTimer > 0)
@@ -488,9 +446,9 @@ namespace AQMod.NPCs.Bosses
                                 const int width = (int)(Circumference * 2f);
                                 const int height = 900;
                                 Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColoring, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColoring, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerEvent.stariteProjectileColoring, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, EventGlimmer.stariteProjectileColoring, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, EventGlimmer.stariteProjectileColoring, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, EventGlimmer.stariteProjectileColoring, 2f);
                             }
                         }
                     }
@@ -835,8 +793,6 @@ namespace AQMod.NPCs.Bosses
                         if (center.Y > npc.ai[2])
                         {
                             int[] choices = new int[] { PHASE_HYPER_STARITE_PART0, PHASE_ASSAULT_PLAYER };
-                            if (OmegaStariteScenes.SceneType == 1)
-                                OmegaStariteScenes.SceneType = 2;
                             npc.ai[0] = choices[Main.rand.Next(choices.Length)];
                             npc.ai[1] = 0f;
                             npc.ai[2] = 0f;
@@ -1309,14 +1265,14 @@ namespace AQMod.NPCs.Bosses
             var spotlight = AQTextures.Lights[LightTex.Spotlight66x66];
             var spotlightOrig = spotlight.Size() / 2f;
             Color spotlightColor;
-            if (GlimmerEvent.stariteDiscoParty)
+            if (EventGlimmer.stariteDiscoParty)
             {
                 spotlightColor = Main.DiscoColor;
                 spotlightColor.A = 0;
             }
             else
             {
-                spotlightColor = ModContent.GetInstance<StariteConfig>().AuraColoring;
+                spotlightColor = new Color(13, 166, 231, 180);
             }
             var drawOmegite = new List<AQGraphics.DrawMethod>();
             if (ModContent.GetInstance<AQConfigClient>().EffectQuality >= 1f)
@@ -1402,7 +1358,7 @@ namespace AQMod.NPCs.Bosses
                         arr = trueOldPos.ToArray();
                         if (arr.Length > 1)
                         {
-                            var trailClr = GlimmerEvent.stariteDiscoParty ? Main.DiscoColor : new Color(35, 85, 255, 120);
+                            var trailClr = EventGlimmer.stariteDiscoParty ? Main.DiscoColor : new Color(35, 85, 255, 120);
                             var trail = new PrimitivesRenderer(AQTextures.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail);
                             trail.PrepareVertices(arr, (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
                             trail.Draw();
@@ -1417,7 +1373,7 @@ namespace AQMod.NPCs.Bosses
                         if (npc.oldPos[i] == new Vector2(0f, 0f))
                             break;
                         float progress = 1f - 1f / trailLength * i;
-                        var trailClr = GlimmerEvent.stariteDiscoParty ? Main.DiscoColor : new Color(35, 85, 255, 120);
+                        var trailClr = EventGlimmer.stariteDiscoParty ? Main.DiscoColor : new Color(35, 85, 255, 120);
                         trailClr.A = 0;
                         Main.spriteBatch.Draw(texture, npc.oldPos[i] + offset - Main.screenPosition, npc.frame, trailClr * 0.4f * progress, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
                     }
@@ -1476,7 +1432,7 @@ namespace AQMod.NPCs.Bosses
             {
                 if (damage > 300)
                 {
-                    GlimmerEvent.stariteDiscoParty = true;
+                    EventGlimmer.stariteDiscoParty = true;
                     Vector2 velo = projectile.velocity * -1.2f;
                     for (int i = 0; i < 8; i++)
                     {
@@ -1499,16 +1455,9 @@ namespace AQMod.NPCs.Bosses
             potionType = ItemID.HealingPotion;
         }
 
-        public override bool PreNPCLoot()
-        {
-            OmegaStariteScenes.OmegaStariteIndexCache = -1;
-            OmegaStariteScenes.SceneType = 3;
-            return true;
-        }
-
         public override void NPCLoot()
         {
-            GlimmerEvent.deactivationDelay = 275;
+            EventGlimmer.deactivationDelay = 275;
             var noHitManager = npc.GetGlobalNPC<NoHitManager>();
             bool anyoneNoHit = false;
             for (int i = 0; i < Main.maxPlayers; i++)
@@ -1560,7 +1509,7 @@ namespace AQMod.NPCs.Bosses
             }
             WorldDefeats.DownedStarite = true;
             WorldDefeats.DownedGlimmer = true;
-            if (GlimmerEvent.IsGlimmerEventCurrentlyActive())
+            if (EventGlimmer.IsGlimmerEventCurrentlyActive())
             {
                 switch (Main.rand.Next(3))
                 {

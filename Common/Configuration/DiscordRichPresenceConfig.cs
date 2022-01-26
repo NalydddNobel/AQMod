@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.CrossMod;
 using System.ComponentModel;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
 namespace AQMod.Common.Configuration
@@ -17,7 +18,7 @@ namespace AQMod.Common.Configuration
         {
             try
             {
-                return DiscordRichPresenceSupport.GetMod() != null;
+                return ModLoader.GetMod("DiscordRP") != null;
             }
             catch
             {

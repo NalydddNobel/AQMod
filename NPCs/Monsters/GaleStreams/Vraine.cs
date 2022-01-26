@@ -4,7 +4,7 @@ using AQMod.Gores;
 using AQMod.Items.Dyes;
 using AQMod.Items.Foods;
 using AQMod.Items.Placeable.Banners;
-using AQMod.Items.Weapons.Melee.Boomerang;
+using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;

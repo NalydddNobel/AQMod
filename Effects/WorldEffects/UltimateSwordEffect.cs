@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World.Events.GlimmerEvent;
+﻿using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
@@ -20,7 +20,7 @@ namespace AQMod.Effects.WorldEffects
         private Color _dustColor;
         private readonly UnifiedRandom _rand;
 
-        public UltimateSwordEffect(UnifiedRandom rand) : base(GlimmerEvent.tileX * 16, GlimmerEvent.tileY * 16)
+        public UltimateSwordEffect(UnifiedRandom rand) : base(EventGlimmer.tileX * 16, EventGlimmer.tileY * 16)
         {
             _rand = rand;
             _time = rand.NextFloat(0f, MathHelper.PiOver2 * 3f);
@@ -88,7 +88,7 @@ namespace AQMod.Effects.WorldEffects
             }
         }
 
-        public UltimateSwordEffect(float timeOffset, float maxWidth, float maxHeight, int lifespan, int reps, Color dustColor, int seed = -1) : base(GlimmerEvent.tileX * 16, GlimmerEvent.tileY * 16)
+        public UltimateSwordEffect(float timeOffset, float maxWidth, float maxHeight, int lifespan, int reps, Color dustColor, int seed = -1) : base(EventGlimmer.tileX * 16, EventGlimmer.tileY * 16)
         {
             if (seed == -1)
                 _rand = new UnifiedRandom();
@@ -119,9 +119,9 @@ namespace AQMod.Effects.WorldEffects
                 }
                 int x = (int)(Math.Sin(_time) * _maxWidth);
                 int y = (int)((1f - progress) * _maxHeight);
-                y += (int)(GlimmerEvent.tileY * 16f - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f);
-                x += GlimmerEvent.tileX * 16;
-                if (Framing.GetTileSafely(GlimmerEvent.tileX, GlimmerEvent.tileY).type == ModContent.TileType<GlimmeringStatue>())
+                y += (int)(EventGlimmer.tileY * 16f - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f);
+                x += EventGlimmer.tileX * 16;
+                if (Framing.GetTileSafely(EventGlimmer.tileX, EventGlimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
                 {
                     x += 16;
                 }

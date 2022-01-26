@@ -5,7 +5,6 @@ using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
-using AQMod.Items.Weapons.Melee.Flail;
 using System;
 using Terraria;
 using Terraria.ID;

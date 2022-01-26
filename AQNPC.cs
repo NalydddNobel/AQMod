@@ -46,7 +46,7 @@ namespace AQMod
                 return IsWormSegment[type] && !IsWormBody[type];
             }
 
-            internal static void InternalInitalize(AQMod mod)
+            internal static void InternalInitalize()
             {
                 SetUtils.Length = NPCLoader.NPCCount;
                 SetUtils.GetIDFromType = (m, n) => m.NPCType(n);

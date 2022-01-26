@@ -1,11 +1,10 @@
 ﻿using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Effects;
 using AQMod.Tiles.Nature.CrabCrevice;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace AQMod
 {
@@ -20,12 +19,11 @@ namespace AQMod
 
         public override void Initialize()
         {
-            OmegaStariteScenes.Initialize();
             DemonSiege.Reset();
             if (Main.netMode != NetmodeID.Server)
                 AQMod.WorldEffects.Clear();
             if (!Main.dayTime)
-                GlimmerEventSky.InitNight();
+                SkyGlimmerEvent.InitNight();
             EventProgressBarLoader.ActiveBar = 255;
         }
 

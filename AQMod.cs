@@ -2,23 +2,20 @@ using AQMod.Assets;
 using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Buffs.Temperature;
 using AQMod.Common;
-using AQMod.Common.Configuration;
 using AQMod.Common.CrossMod;
-using AQMod.Common.DeveloperTools;
 using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.ID;
+using AQMod.Common.Utilities;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Entities;
 using AQMod.Content.NameTags;
-using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
-using AQMod.Content.World.Events.GlimmerEvent;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.Particles;
@@ -29,8 +26,8 @@ using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
-using AQMod.NPCs.Friendly;
 using AQMod.Sounds;
+using AQMod.UserInterface;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -86,11 +83,19 @@ namespace AQMod
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
         public static ModifiableMusic GaleStreamsMusic { get; private set; }
 
-        public static bool CalamityModEnabled { get; private set; }
-        public static bool ThoriumModEnabled { get; private set; }
-        public static bool FargowiltasEnabled { get; private set; }
-        public static bool PolaritiesEnabled { get; private set; }
-        public static bool SplitEnabled { get; private set; }
+        internal static CrossModData calamityMod;
+        internal static CrossModData catalyst;
+        internal static CrossModData elementsAwoken;
+        internal static CrossModData thoriumMod;
+        internal static CrossModData fargowiltas;
+        internal static CrossModData polarities;
+        internal static CrossModData split;
+        internal static CrossModData sOTS;
+        internal static CrossModData shadowsofAbaddon;
+        internal static CrossModData spiritMod;
+        internal static CrossModData shaderLib;
+        internal static CrossModData discordRP;
+        internal static CrossModData bossChecklist;
 
         public static class Keybinds
         {
@@ -582,74 +587,41 @@ namespace AQMod
                 OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
                 DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
                 GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
-                SkyManager.Instance[GlimmerEventSky.Name] = new GlimmerEventSky();
+                SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
                 PrimitivesRenderer.Setup();
                 ScreenShakeManager.Load();
                 StarbyteColorCache.Init();
                 WorldEffects = new List<WorldVisualEffect>();
             }
 
-            CalamityModEnabled = false;
-            ThoriumModEnabled = false;
-            FargowiltasEnabled = false;
-
-            try
-            {
-                CalamityModEnabled = ModLoader.GetMod("CalamityMod") != null;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Mod failed to be checked active: CalamityMod", ex);
-            }
-
-            try
-            {
-                ThoriumModEnabled = ModLoader.GetMod("ThoriumMod") != null;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Mod failed to be checked active: ThoriumMod", ex);
-            }
-
-            try
-            {
-                FargowiltasEnabled = ModLoader.GetMod("Fargowiltas") != null;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Mod failed to be checked active: Fargowiltas", ex);
-            }
-
-            try
-            {
-                PolaritiesEnabled = ModLoader.GetMod("Polarities") != null;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Mod failed to be checked active: Polarities", ex);
-            }
-
-            try
-            {
-                SplitEnabled = ModLoader.GetMod("Split") != null;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("Mod failed to be checked active: Split", ex);
-            }
+            calamityMod = new CrossModData("CalamityMod");
+            catalyst = new CrossModData("Catalyst");
+            elementsAwoken = new CrossModData("ElementsAwoken");
+            thoriumMod = new CrossModData("ThoriumMod");
+            fargowiltas = new CrossModData("Fargowiltas");
+            polarities = new CrossModData("Polarities");
+            split = new CrossModData("Split");
+            sOTS = new CrossModData("SOTS");
+            shadowsofAbaddon = new CrossModData("SacredTools");
+            spiritMod = new CrossModData("SpiritMod");
+            shaderLib = new CrossModData("ShaderLib");
+            discordRP = new CrossModData("DiscordRP");
+            bossChecklist = new CrossModData("BossChecklist");
 
             Autoloading.Autoload(Code);
         }
 
         public override void PostSetupContent()
         {
-            AQBuff.Sets.Setup();
-            AQItem.Sets.Setup();
-            AQNPC.Sets.InternalInitalize(this);
+            AQBuff.Sets.InternalInitalize();
+            AQItem.Sets.InternalInitalize();
+            AQNPC.Sets.InternalInitalize();
+            AQTile.Sets.InternalInitalize();
+            BossChecklistSupport.AddSupport(this);
             CensusSupport.AddSupport(this);
             if (!Main.dedServ)
             {
-                DiscordRichPresenceSupport.AddSupport(this);
+                DiscordRichPresenceSupport.AddSupport();
                 DyeBinder.LoadDyes();
             }
             Autoloading.SetupContent(Code);
@@ -709,7 +681,7 @@ namespace AQMod
                 ScreenShakeManager.Unload();
                 ArmorOverlays = null;
                 EffectCache.Unload();
-                GlimmerEventSky.BGStarite._texture = null;
+                SkyGlimmerEvent.BGStarite._texture = null;
                 GaleStreamsMusic = null;
                 DemonSiegeMusic = null;
                 OmegaStariteMusic = null;
@@ -751,15 +723,13 @@ namespace AQMod
             }
             AQGraphics.TimerBasedOnTimeOfDay /= 60f;
 
-            if (GlimmerEvent.stariteDiscoParty)
+            if (EventGlimmer.stariteDiscoParty)
             {
-                GlimmerEvent.stariteProjectileColoring = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
+                EventGlimmer.stariteProjectileColoring = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
             }
             else
             {
-                GlimmerEvent.stariteProjectileColoring = Main.netMode != NetmodeID.Server
-                    ? ModContent.GetInstance<StariteConfig>().StariteProjectileColoring
-                    : GlimmerEvent.StariteProjectileColorOrig;
+                EventGlimmer.stariteProjectileColoring = EventGlimmer.StariteProjectileColorOrig;
             }
         }
 
@@ -767,19 +737,18 @@ namespace AQMod
         {
             DemonSiege.UpdateEvent();
 
-            if (OmegaStariteScenes.OmegaStariteIndexCache > -1 && !Main.npc[OmegaStariteScenes.OmegaStariteIndexCache].active)
+            if (EventGlimmer.OmegaStarite > -1 && !Main.npc[EventGlimmer.OmegaStarite].active)
             {
-                OmegaStariteScenes.OmegaStariteIndexCache = -1;
+                EventGlimmer.OmegaStarite = -1;
             }
             if (Main.netMode != NetmodeID.MultiplayerClient && spawnStarite)
             {
-                int n = OmegaStariteScenes.OmegaStariteIndexCache =
-                    (short)NPC.NewNPC(GlimmerEvent.tileX * 16 + 8, GlimmerEvent.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(),
-                    0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Player.FindClosest(new Vector2(GlimmerEvent.tileX * 16f, GlimmerEvent.tileY * 16f), 16, 16));
+                int n = EventGlimmer.OmegaStarite =
+                    (short)NPC.NewNPC(EventGlimmer.tileX * 16 + 8, EventGlimmer.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(),
+                    0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Player.FindClosest(new Vector2(EventGlimmer.tileX * 16f, EventGlimmer.tileY * 16f), 16, 16));
                 if (n != -1)
                 {
                     Main.npc[n].netUpdate = true;
-                    OmegaStariteScenes.SceneType = 1;
                     BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", CommonColors.BossMessage);
                 }
                 spawnStarite = false;
@@ -805,10 +774,10 @@ namespace AQMod
                 music = DemonSiegeMusic.GetMusicID();
                 priority = MusicPriority.Event;
             }
-            else if (GlimmerEvent.IsGlimmerEventCurrentlyActive() && player.position.Y < Main.worldSurface * 16.0)
+            else if (EventGlimmer.IsGlimmerEventCurrentlyActive() && player.position.Y < Main.worldSurface * 16.0)
             {
-                int tileDistance = (int)(player.Center.X / 16 - GlimmerEvent.tileX).Abs();
-                if (tileDistance < GlimmerEvent.MaxDistance)
+                int tileDistance = (int)(player.Center.X / 16 - EventGlimmer.tileX).Abs();
+                if (tileDistance < EventGlimmer.MaxDistance)
                 {
                     music = GlimmerEventMusic.GetMusicID();
                     priority = MusicPriority.Event;
@@ -831,7 +800,7 @@ namespace AQMod
 
         public override void UpdateUI(GameTime gameTime)
         {
-            UIUtilities.GameInterfaceLayersAreBeingDrawn = false;
+            UserInterfaceUtilities.GameInterfaceLayersAreBeingDrawn = false;
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -839,7 +808,7 @@ namespace AQMod
             CursorDyeManager.Update();
             layers.Insert(0, new LegacyGameInterfaceLayer("AQMod: UpdateUtilities", () =>
             {
-                UIUtilities.GameInterfaceLayersAreBeingDrawn = true;
+                UserInterfaceUtilities.GameInterfaceLayersAreBeingDrawn = true;
                 return true;
             }, InterfaceScaleType.None));
             var index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
@@ -848,7 +817,7 @@ namespace AQMod
                 layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Rename Item Interface",
                     () =>
                     {
-                        RenameItemInterface.Draw();
+                        UserInterfaceRenameItem.Draw();
                         return true;
                     },
                     InterfaceScaleType.UI)
@@ -946,9 +915,9 @@ namespace AQMod
 
         public static Texture2D LoggableTexture(string path)
         {
-            if (aqdebug.LogTextureLoading)
+            if (DebugUtilities.LogTextureLoading)
             {
-                aqdebug.GetDebugLogger().Log("Loading Texture: " + path);
+                DebugUtilities.GetDebugLogger().Log("Loading Texture: " + path);
             }
             return ModContent.GetTexture(path);
         }

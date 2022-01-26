@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
-using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Content.World;
 using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Tools;
@@ -224,15 +224,15 @@ namespace AQMod.NPCs.Friendly
                     }
                 }
             }
-            if (GlimmerEvent.AreStariteSpawnsCurrentlyActive(player))
+            if (EventGlimmer.AreStariteSpawnsCurrentlyActive(player))
             {
                 potentialText.Add("Physicist.Chat.GlimmerEvent.0");
                 potentialText.Add("Physicist.Chat.GlimmerEvent.1");
                 potentialText.Add("Physicist.Chat.GlimmerEvent.2");
                 potentialText.Add("Physicist.Chat.GlimmerEvent.3");
-                if (GlimmerEvent.GetTileDistanceUsingPlayer(player) > 1000)
+                if (EventGlimmer.GetTileDistanceUsingPlayer(player) > 1000)
                 {
-                    if (GlimmerEvent.tileX < (int)(player.position.X + player.width / 2f) / 16f)
+                    if (EventGlimmer.tileX < (int)(player.position.X + player.width / 2f) / 16f)
                         potentialText.Add("Physicist.Chat.GlimmerEvent.Source.West");
                     else
                     {

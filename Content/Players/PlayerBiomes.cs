@@ -1,9 +1,10 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Configuration;
 using AQMod.Content.Seasonal.Christmas;
-using AQMod.Content.World.Events.GlimmerEvent;
+using AQMod.Content.World;
+using AQMod.Effects;
 using AQMod.Walls;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
@@ -13,27 +14,29 @@ namespace AQMod.Content.Players
     public sealed class PlayerBiomes : ModPlayer
     {
         public bool zoneAtmosphericCurrentsEvent;
-        public bool zoneCrabSeason;
         public bool zoneCrabCrevice;
+        public bool zoneCrabSeason;
+        public bool zoneGlimmerEvent;
+        public byte zoneGlimmerEventLayer;
 
         public override void UpdateBiomes()
         {
             int x = (int)(player.position.X + player.width / 2) / 16;
             int y = (int)(player.position.Y + player.height / 2) / 16;
             zoneAtmosphericCurrentsEvent = player.ZoneSkyHeight && Main.windSpeed > 30f;
-            zoneCrabCrevice = Main.tile[x, y].wall == ModContent.WallType<OceanRavineWall>() || 
+            zoneCrabCrevice = Main.tile[x, y].wall == ModContent.WallType<OceanRavineWall>() ||
                 Main.tile[x, y].wall == ModContent.WallType<PetrifiedWoodWall>();
         }
 
         public override void UpdateBiomeVisuals()
         {
-            bool glimmerEvent = (GlimmerEvent.IsGlimmerEventCurrentlyActive() || OmegaStariteScenes.OmegaStariteIndexCache != -1) && Main.screenPosition.Y < Main.worldSurface * 16f + Main.screenHeight;
-            AQUtils.UpdateSky(glimmerEvent, GlimmerEventSky.Name);
+            bool glimmerEvent = (EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.OmegaStarite != -1) && Main.screenPosition.Y < Main.worldSurface * 16f + Main.screenHeight;
+            AQUtils.UpdateSky(glimmerEvent, SkyGlimmerEvent.Name);
 
-            if (glimmerEvent && OmegaStariteScenes.OmegaStariteIndexCache == -1 && ModContent.GetInstance<StariteConfig>().UltimateSwordVignette)
+            if (glimmerEvent && EventGlimmer.OmegaStarite == -1)
             {
                 float intensity = 0f;
-                float distance = (Main.player[Main.myPlayer].position.X - (GlimmerEvent.tileX * 16f + 8f)).Abs();
+                float distance = (Main.player[Main.myPlayer].position.X - (EventGlimmer.tileX * 16f + 8f)).Abs();
                 if (distance < 6400f)
                 {
                     intensity += 1f - distance / 6400f;
@@ -54,6 +57,42 @@ namespace AQMod.Content.Players
             }
         }
 
+        public override bool CustomBiomesMatch(Player other)
+        {
+            var otherBiomes = other.Biomes();
+            return zoneAtmosphericCurrentsEvent == otherBiomes.zoneAtmosphericCurrentsEvent &&
+                 zoneCrabCrevice == otherBiomes.zoneCrabCrevice &&
+                 zoneCrabSeason == otherBiomes.zoneCrabSeason &&
+                 zoneGlimmerEvent == otherBiomes.zoneGlimmerEvent;
+        }
+
+        public override void CopyCustomBiomesTo(Player other)
+        {
+            var otherBiomes = other.Biomes();
+            otherBiomes.zoneAtmosphericCurrentsEvent = zoneAtmosphericCurrentsEvent;
+            otherBiomes.zoneCrabCrevice = zoneCrabCrevice;
+            otherBiomes.zoneCrabSeason = zoneCrabSeason;
+            otherBiomes.zoneGlimmerEvent = zoneGlimmerEvent;
+        }
+
+        public override void SendCustomBiomes(BinaryWriter writer)
+        {
+            writer.Write(zoneAtmosphericCurrentsEvent);
+            writer.Write(zoneCrabCrevice);
+            writer.Write(zoneCrabSeason);
+            writer.Write(zoneGlimmerEvent);
+            writer.Write(zoneGlimmerEventLayer);
+        }
+
+        public override void ReceiveCustomBiomes(BinaryReader reader)
+        {
+            zoneAtmosphericCurrentsEvent = reader.ReadBoolean();
+            zoneCrabCrevice = reader.ReadBoolean();
+            zoneCrabSeason = reader.ReadBoolean();
+            zoneGlimmerEvent = reader.ReadBoolean();
+            zoneGlimmerEventLayer = reader.ReadByte();
+        }
+
         public override Texture2D GetMapBackgroundImage()
         {
             if (XmasSeeds.XmasWorld && WorldGen.gen)
@@ -64,9 +103,9 @@ namespace AQMod.Content.Players
             {
                 if (player.position.Y < Main.worldSurface * 16f)
                 {
-                    if (!player.ZoneDesert && GlimmerEvent.IsGlimmerEventCurrentlyActive())
+                    if (!player.ZoneDesert && EventGlimmer.IsGlimmerEventCurrentlyActive())
                     {
-                        if (GlimmerEvent.GetTileDistanceUsingPlayer(player) < GlimmerEvent.UltraStariteDistance)
+                        if (EventGlimmer.GetTileDistanceUsingPlayer(player) < EventGlimmer.UltraStariteDistance)
                         {
                             return ModContent.GetTexture(TexturePaths.MapBackgrounds + "ultimatesword");
                         }

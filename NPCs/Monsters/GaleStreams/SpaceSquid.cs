@@ -666,7 +666,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 var bossChecklist = ModLoader.GetMod("BossChecklist");
                 if (bossChecklist == null)
                     return;
-                new MinibossEntry(
+                new BossChecklistMinibossEntryData(
                     () => WorldDefeats.DownedSpaceSquid,
                     6.68f,
                     ModContent.NPCType<SpaceSquid>(),

@@ -77,7 +77,7 @@ namespace AQMod.NPCs.Friendly
             {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
-                RenameItemInterface.IsActive = true;
+                UserInterfaceRenameItem.IsActive = true;
             }
         }
 
