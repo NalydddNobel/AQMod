@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Common.CrossMod.BossChecklist;
 using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Dusts.GaleStreams;
@@ -10,12 +9,10 @@ using AQMod.Items.Dyes;
 using AQMod.Items.Foods;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Placeable.Furniture;
-using AQMod.Localization;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,7 +20,7 @@ using Terraria.ModLoader;
 namespace AQMod.NPCs.Monsters.GaleStreams
 {
     [AutoloadBossHead()]
-    public class SpaceSquid : ModNPC, ISetupContentType
+    public class SpaceSquid : ModNPC
     {
         private bool _setupFrame;
         public int frameIndex;
@@ -657,49 +654,6 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, npc.frame, drawColor, npc.rotation, origin, scale, effects, 0f);
             Main.spriteBatch.Draw(this.GetTextureobj("_Glow"), drawPosition - Main.screenPosition, npc.frame, Color.White, npc.rotation, origin, scale, effects, 0f);
             return false;
-        }
-
-        void ISetupContentType.SetupContent()
-        {
-            try
-            {
-                var bossChecklist = ModLoader.GetMod("BossChecklist");
-                if (bossChecklist == null)
-                    return;
-                new BossChecklistMinibossEntryData(
-                    () => WorldDefeats.DownedSpaceSquid,
-                    6.68f,
-                    ModContent.NPCType<SpaceSquid>(),
-                    AQText.chooselocalizationtext(
-                        en_US: "Space Squid",
-                        zh_Hans: null),
-                    0,
-                    new List<int>()
-                    {
-                        ModContent.ItemType<Items.Tools.Map.RetroGoggles>(),
-                        ItemID.SoulofFlight,
-                        ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(),
-                        ModContent.ItemType<Items.Materials.SiphonTentacle>(),
-                        ModContent.ItemType<PeeledCarrot>(),
-                    },
-                    new List<int>()
-                    {
-                        ModContent.ItemType<SpaceSquidTrophy>(),
-                        ModContent.ItemType<SpaceSquidMask>(),
-                        ModContent.ItemType<FrostbiteDye>(),
-                    },
-                    AQText.chooselocalizationtext(
-                        en_US: "Occasionally appears during the Gale Streams!",
-                        zh_Hans: "偶尔出现在紊流风暴中!",
-                        ru_RU: "Иногда появляется во время Штормовых Потоков!"),
-                    "AQMod/Assets/BossChecklist/SpaceSquid").AddEntry(bossChecklist);
-            }
-            catch (Exception e)
-            {
-                mod.Logger.Error("An error occured when setting up boss checklist entries.");
-                mod.Logger.Error(e.Message);
-                mod.Logger.Error(e.StackTrace);
-            }
         }
     }
 }

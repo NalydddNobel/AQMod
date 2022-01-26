@@ -1,4 +1,5 @@
 ﻿using AQMod.Content.Fishing;
+using AQMod.Content.World;
 using Terraria;
 using Terraria.ID;
 
@@ -18,7 +19,7 @@ namespace AQMod.Items.Fish
         public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
         {
             return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
-                && !Main.dayTime && AQMod.Content.World.EventGlimmer.GetTileDistanceUsingPlayer(player) < AQMod.Content.World.EventGlimmer.MaxDistance;
+                && !Main.dayTime && player.Biomes().zoneGlimmerEvent;
         }
     }
 }

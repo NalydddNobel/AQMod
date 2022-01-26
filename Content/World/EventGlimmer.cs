@@ -48,40 +48,6 @@ namespace AQMod.Content.World
         public static bool stariteDiscoParty;
         public static bool renderUltimateSword;
 
-        internal override BossChecklistEventEntryData? BossChecklistEntry => new BossChecklistEventEntryData(
-            () => WorldDefeats.DownedGlimmer,
-            2.1f,
-            new List<int>() {
-                ModContent.NPCType<Starite>(),
-                ModContent.NPCType<SuperStarite>(),
-                ModContent.NPCType<HyperStarite>(),
-            },
-            AQText.chooselocalizationtext(
-                en_US: "Glimmer Event",
-                zh_Hans: "微光事件",
-                ru_RU: "Мерцающее Событие"),
-            ModContent.ItemType<MythicStarfruit>(),
-            new List<int>()
-            {
-                ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>(),
-                ItemID.Nazar,
-                ModContent.ItemType<Items.Weapons.Summon.StariteStaff>(),
-                ModContent.ItemType<Items.Accessories.MoonShoes>(),
-                ModContent.ItemType<Items.Accessories.Ultranium>(),
-            },
-            new List<int>()
-            {
-                ModContent.ItemType<CelesitalEightBall>(),
-                ModContent.ItemType<HypnoDye>(),
-                ModContent.ItemType<OutlineDye>(),
-                ModContent.ItemType<ScrollDye>(),
-            },
-            AQText.chooselocalizationtext(
-                en_US: "Happens naturally at night. Can alternatively summoned with a [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Ends when the sun rises",
-                zh_Hans: "在夜晚自然开始. 也可以使用 [i:" + ModContent.ItemType<MythicStarfruit>() + "] 召唤. 在太阳升起时结束.",
-                ru_RU: "Натурально появляется ночью. Также можно призвать с помощью [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Кончается когда всходит солнце."),
-            "AQMod/Assets/BossChecklist/GlimmerEvent",
-            TexturePaths.EventIcons + "glimmerevent");
         internal override EventProgressBar ProgressBar => new GlimmerEventCustomProgressBar();
 
         protected override void Setup(AQMod mod)

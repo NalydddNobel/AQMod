@@ -18,6 +18,7 @@ namespace AQMod.Content.Players
         public bool zoneCrabSeason;
         public bool zoneGlimmerEvent;
         public byte zoneGlimmerEventLayer;
+        public bool zoneDemonSiege;
 
         public override void UpdateBiomes()
         {
@@ -26,6 +27,8 @@ namespace AQMod.Content.Players
             zoneAtmosphericCurrentsEvent = player.ZoneSkyHeight && Main.windSpeed > 30f;
             zoneCrabCrevice = Main.tile[x, y].wall == ModContent.WallType<OceanRavineWall>() ||
                 Main.tile[x, y].wall == ModContent.WallType<PetrifiedWoodWall>();
+            zoneCrabSeason = zoneCrabCrevice && player.position.Y < Main.worldSurface * 16f;
+            zoneGlimmerEvent = EventGlimmer.GetTileDistanceUsingPlayer(player) < EventGlimmer.MaxDistance;
         }
 
         public override void UpdateBiomeVisuals()
@@ -63,7 +66,8 @@ namespace AQMod.Content.Players
             return zoneAtmosphericCurrentsEvent == otherBiomes.zoneAtmosphericCurrentsEvent &&
                  zoneCrabCrevice == otherBiomes.zoneCrabCrevice &&
                  zoneCrabSeason == otherBiomes.zoneCrabSeason &&
-                 zoneGlimmerEvent == otherBiomes.zoneGlimmerEvent;
+                 zoneGlimmerEvent == otherBiomes.zoneGlimmerEvent &&
+                zoneDemonSiege == otherBiomes.zoneDemonSiege;
         }
 
         public override void CopyCustomBiomesTo(Player other)
@@ -73,6 +77,7 @@ namespace AQMod.Content.Players
             otherBiomes.zoneCrabCrevice = zoneCrabCrevice;
             otherBiomes.zoneCrabSeason = zoneCrabSeason;
             otherBiomes.zoneGlimmerEvent = zoneGlimmerEvent;
+            otherBiomes.zoneDemonSiege = zoneDemonSiege;
         }
 
         public override void SendCustomBiomes(BinaryWriter writer)
@@ -82,6 +87,7 @@ namespace AQMod.Content.Players
             writer.Write(zoneCrabSeason);
             writer.Write(zoneGlimmerEvent);
             writer.Write(zoneGlimmerEventLayer);
+            writer.Write(zoneDemonSiege);
         }
 
         public override void ReceiveCustomBiomes(BinaryReader reader)
@@ -91,6 +97,7 @@ namespace AQMod.Content.Players
             zoneCrabSeason = reader.ReadBoolean();
             zoneGlimmerEvent = reader.ReadBoolean();
             zoneGlimmerEventLayer = reader.ReadByte();
+            zoneDemonSiege = reader.ReadBoolean();
         }
 
         public override Texture2D GetMapBackgroundImage()
