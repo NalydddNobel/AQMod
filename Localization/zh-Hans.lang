@@ -114,7 +114,7 @@ ItemName.Narrizuul=耀宇遗光
 ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n'闻起来像玫瑰'
 
 ItemName.StudiesoftheInkblot=墨迹研究学
-ItemTooltip.StudiesoftheInkblot='弹幕中的罗夏'
+ItemTooltip.StudiesoftheInkblot='弹幕的墨迹测验'
 ProjectileName.StudiesoftheInkblotBullet=墨迹研究学
 
 ItemName.CursedKey=诅咒钥匙
