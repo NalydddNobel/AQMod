@@ -72,14 +72,19 @@ namespace AQMod.Effects
 
                     //if (EventGlimmer.OmegaStarite == -1 && EventGlimmer.deactivationDelay <= 0)
 
-                    AQGraphics.SetCullPadding(padding: 360);
-
-                    bool renderUltimateSword = EventGlimmer.deactivationDelay == 0;
+                    bool renderUltimateSword = EventGlimmer.deactivationDelay == -1;
                     if (renderUltimateSword && EventGlimmer.OmegaStarite != -1)
                     {
                         renderUltimateSword = (int)Main.npc[EventGlimmer.OmegaStarite].ai[0] == OmegaStarite.PHASE_NOVA;
                     }
-                    if (renderUltimateSword && AQGraphics.Cull(new Vector2(EventGlimmer.tileX * 16f, EventGlimmer.tileY * 16f) - Main.screenPosition))
+
+                    if (renderUltimateSword)
+                    {
+                        AQGraphics.SetCullPadding(padding: 360);
+                        renderUltimateSword = AQGraphics.Cull(new Vector2(EventGlimmer.tileX * 16f, EventGlimmer.tileY * 16f) - Main.screenPosition);
+                    }
+
+                    if (renderUltimateSword)
                     {
                         float x = EventGlimmer.tileX * 16f;
                         if (Framing.GetTileSafely(EventGlimmer.tileX, EventGlimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
@@ -193,7 +198,7 @@ namespace AQMod.Effects
 
         public static void DoUpdate()
         {
-            if (!EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.OmegaStarite != -1 || EventGlimmer.deactivationDelay > 0 || AQGraphics.Cull(Utils.CenteredRectangle(new Vector2(EventGlimmer.tileX, EventGlimmer.tileY) - Main.screenPosition, new Vector2(80f, 160f))))
+            if (!EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.OmegaStarite != -1 || EventGlimmer.deactivationDelay == -1 || AQGraphics.Cull(Utils.CenteredRectangle(new Vector2(EventGlimmer.tileX, EventGlimmer.tileY) - Main.screenPosition, new Vector2(80f, 160f))))
                 return;
             float x = EventGlimmer.tileX * 16f;
             if (Framing.GetTileSafely(EventGlimmer.tileX, EventGlimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
