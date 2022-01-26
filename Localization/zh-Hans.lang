@@ -62,10 +62,11 @@ ItemName.CrustaciumBar=硬壳锭
 ItemName.CrustaciumBlob=硬壳血肉
 ItemName.CrustaciumOre=硬壳矿
 
+ItemName.LightMatter=光明物质
+ItemTooltip.LightMatter=散发着光芒和星际能量
+
 ItemName.NuclearFeather=核子之羽
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
-ItemName.Qi=气
-ItemTooltip.Qi={$Mods.AQMod.Tooltips.Unobtainable}\n一种由终极哲学力量创造出的神秘能量
 
 # Weapons
 
@@ -316,6 +317,30 @@ Memorialist.Chat.Exporter=那个龙虾的东西...他叫什么名字? {0}? 他�
 Memorialist.Chat.Physicist={0} 是个失败者. 甚至不认为我是真实存在的! 她简直是个疯子.
 
 Memorialist.Chat.Mod.Split.Sheep=你有没有看见雪地里有一只毛茸茸的羊? 它看起来非常适合用于献祭.
+
+# Hermit Crab
+NPCName.HermitCrab=寄居蟹
+
+HermitCrab.Storage=存储
+HermitCrab.StorageFull=你的存储空间满了!
+
+HermitCrab.Chat.0=你有很多我想买的东西. 我相信我们能达成交易.
+HermitCrab.Chat.1=和你讨价还价可真... 令人愉悦. 我们做个交易吧.
+HermitCrab.Chat.2=当我离开我的壳时我的皮肤感到很痒... 快点.
+HermitCrab.Chat.3=你见过任意一只龙虾吗? 我一直在尝试远离他们, 出于某些原因, 他们极度渴望蟹类的血.
+HermitCrab.BloodMoon=我记得在某个相同的夜晚, 我的朋友转变成了一只野兽并袭击了我! 我甚至不能相信我的同类.
+
+HermitCrab.StoredAt=储存在 {0}
+HermitCrab.SecondAgo=已在 {0} 秒前储存此物品
+HermitCrab.SecondsAgo=已在 {0} 秒前储存此物品
+HermitCrab.MinuteAgo=已在 {0} 分钟前储存此物品
+HermitCrab.MinutesAgo=已在 {0} 分钟前储存此物品
+HermitCrab.HourAgo=已在 {0} 小时前储存此物品
+HermitCrab.HoursAgo=已在 {0} 小时前储存此物品
+HermitCrab.DayAgo=已在 {0} 天前储存此物品
+HermitCrab.DaysAgo=已在 {0} 天前储存此物品
+HermitCrab.MonthAgo=已在 {0} 月前储存此物品
+HermitCrab.MonthsAgo=已在 {0} 月前储存此物品
 
 # Balloon Merchant
 NPCName.BalloonMerchant=空中猎手
@@ -847,7 +872,7 @@ ItemName.SpoilsPotion=战利品药水
 # Equipables #
 ##############
 # Armor
-ItemName.HermitShell=寄生蟹壳
+ItemName.HermitShell=寄居蟹壳
 ItemName.StriderPalms=长足护胫
 ItemName.ArachnotronRevvers=机械蜘蛛护胫
 ItemName.ArachnotronRibcage=机械蜘蛛胸甲
@@ -1318,7 +1343,6 @@ NPCName.JerryCrabson=巨蟹蛤
 NPCName.JerryClaw=蟹蛤之爪
 NPCName.ArrowCrab=箭蟹
 NPCName.SoliderCrabs=兵蟹
-NPCName.HermitCrab=寄居蟹
 NPCName.StriderCrab=长足蟹
 
 NPCName.Magmalbubble=熔火喷吐者
