@@ -644,19 +644,13 @@ namespace AQMod
         public static int BreadsoulTarget = 0;
 
         public bool shimmering;
-        /// <summary>
-        /// Blue Fire
-        /// </summary>
-        public bool notFrostburn;
+        public bool blueFire;
         /// <summary>
         /// When this flag is raised, no wind events should be applied to this NPC
         /// </summary>
         public bool windStruck;
         public bool windStruckOld;
-        /// <summary>
-        /// A flag for Aphrodite's and Venus' custom lovestruck effects
-        /// </summary>
-        public bool lovestruckAQ;
+        public bool lovestruckStatChanges;
         public bool corruptHellfire;
         public bool crimsonHellfire;
 
@@ -665,10 +659,10 @@ namespace AQMod
         public override void ResetEffects(NPC npc)
         {
             shimmering = false;
-            notFrostburn = false;
+            blueFire = false;
             windStruckOld = windStruck;
             windStruck = false;
-            lovestruckAQ = false;
+            lovestruckStatChanges = false;
             corruptHellfire = false;
             crimsonHellfire = false;
         }
@@ -818,7 +812,7 @@ namespace AQMod
                 if (damage < 3)
                     damage = 3;
             }
-            if (notFrostburn)
+            if (blueFire)
             {
                 if (npc.lifeRegen > 0)
                     npc.lifeRegen = 0;
@@ -874,7 +868,7 @@ namespace AQMod
                 }
                 Lighting.AddLight(npc.Center, 0.25f, 0.25f, 0.25f);
             }
-            if (notFrostburn)
+            if (blueFire)
             {
                 if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
                 {
@@ -989,13 +983,13 @@ namespace AQMod
 
         private void ApplyDamageEffects(ref int damage)
         {
-            if (lovestruckAQ)
+            if (lovestruckStatChanges)
                 damage += (int)(damage * 0.1f);
         }
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
         {
-            if (lovestruckAQ)
+            if (lovestruckStatChanges)
                 damage -= (int)(damage * 0.1f);
         }
 

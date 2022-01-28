@@ -21,7 +21,7 @@ namespace AQMod.Items.Potions
             item.rare = ItemRarityID.LightRed;
             item.value = Item.buyPrice(platinum: 1);
             item.buffTime = 7200;
-            item.buffType = ModContent.BuffType<Spoiled>();
+            item.buffType = ModContent.BuffType<SpoilsPotionBuff>();
         }
     }
 }

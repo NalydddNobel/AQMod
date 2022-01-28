@@ -119,6 +119,6 @@ namespace AQMod.Items.Accessories
         }
 
         Color IDedicatedItem.DedicatedItemColor => new Color(200, 125, 255, 255);
-        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
+        IDedicationType IDedicatedItem.DedicationType => new Dedication();
     }
 }

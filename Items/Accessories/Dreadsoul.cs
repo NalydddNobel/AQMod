@@ -26,7 +26,7 @@ namespace AQMod.Items.Accessories
             player.GetModPlayer<AQPlayer>().dreadsoul = true;
         }
 
-        Color IDedicatedItem.DedicatedItemColor => BasicDedication.YoutuberColor;
-        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
+        Color IDedicatedItem.DedicatedItemColor => Dedication.YoutuberColor;
+        IDedicationType IDedicatedItem.DedicationType => new Dedication();
     }
 }

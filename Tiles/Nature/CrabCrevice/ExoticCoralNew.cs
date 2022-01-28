@@ -36,14 +36,14 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.newTile.WaterPlacement = LiquidPlacement.OnlyInLiquid;
-            TileObjectData.newTile.AnchorValidTiles = new int[] 
-            { 
-                TileID.Dirt, 
-                TileID.Stone, 
+            TileObjectData.newTile.AnchorValidTiles = new int[]
+            {
+                TileID.Dirt,
+                TileID.Stone,
                 TileID.Obsidian,
                 TileID.Sand,
-                TileID.HardenedSand, 
-                ModContent.TileType<SedimentSand>(), 
+                TileID.HardenedSand,
+                ModContent.TileType<SedimentSand>(),
             };
             TileObjectData.addTile(Type);
             AddMapEntry(new Color(255, 0, 148), CreateMapEntryName("ExoticCoral"));

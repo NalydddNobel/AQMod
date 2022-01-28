@@ -129,7 +129,7 @@ namespace AQMod.NPCs.Friendly
             {
                 WorldDefeats.PhysicistIntroduction = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                    NetHelper.Sync(NetHelper.PacketType.Flag_PhysicistIntroduction);
+                    NetHelper.UpdateFlag(NetHelper.PacketType.Flag_PhysicistIntroduction);
                 return Language.GetTextValue("Mods.AQMod.Physicist.Chat.Introduction", npc.GivenName);
             }
             var potentialText = new List<string>();

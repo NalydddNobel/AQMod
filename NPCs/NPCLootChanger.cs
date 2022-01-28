@@ -1,8 +1,8 @@
 ﻿using AQMod.Common.NoHitting;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
-using AQMod.Items.Foods;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Potions;
 using AQMod.Items.Tools.Utility;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
@@ -187,11 +187,6 @@ namespace AQMod.NPCs
                 case NPCID.DiabolistWhite:
                     if (Main.rand.NextBool(30))
                         Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
-                    break;
-
-                case NPCID.GingerbreadMan:
-                    if (Main.rand.NextBool(1000))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Baguette>());
                     break;
 
                 case NPCID.Mothron:

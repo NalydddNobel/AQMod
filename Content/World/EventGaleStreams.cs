@@ -1,21 +1,11 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
-using AQMod.Common.CrossMod;
+﻿using AQMod.Common;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events;
-using AQMod.Items.Dyes;
-using AQMod.Items.Foods;
-using AQMod.Items.Placeable.Furniture;
-using AQMod.Items.Weapons.Melee.Boomerang;
-using AQMod.Localization;
-using AQMod.NPCs.Monsters.GaleStreams;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace AQMod.Content.World

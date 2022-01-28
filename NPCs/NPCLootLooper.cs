@@ -21,7 +21,7 @@ namespace AQMod.NPCs
                 byte p = Player.FindClosest(npc.position, npc.width, npc.height);
                 var plr = Main.player[p];
                 var aQPlayer = plr.GetModPlayer<AQPlayer>();
-                if (aQPlayer.spoiled > 0)
+                if (aQPlayer.lootIterations > 0)
                 {
                     if ((int)npc.extraValue > 0)
                     {
@@ -29,7 +29,7 @@ namespace AQMod.NPCs
                         npc.extraValue = 0;
                     }
                     isNPCLootLooping = true;
-                    for (CurrentNPCLootLoop = 0; CurrentNPCLootLoop < aQPlayer.spoiled; CurrentNPCLootLoop++)
+                    for (CurrentNPCLootLoop = 0; CurrentNPCLootLoop < aQPlayer.lootIterations; CurrentNPCLootLoop++)
                     {
                         npc.NPCLoot();
                     }

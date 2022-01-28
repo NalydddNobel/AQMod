@@ -18,7 +18,6 @@ namespace AQMod.Common.CrossMod
                     census.Call("TownNPCCondition", ModContent.NPCType<Robster>(), "Defeat Jerry Crabson!");
                     census.Call("TownNPCCondition", ModContent.NPCType<Physicist>(), "Defeat Omega Starite!");
                     census.Call("TownNPCCondition", ModContent.NPCType<Memorialist>(), "Upgrade an item at the Gore Nest!");
-                    census.Call("TownNPCCondition", ModContent.NPCType<BalloonMerchant>(), "Can be found scouring the skies during windy days!");
                 }
             }
             catch (Exception ex)

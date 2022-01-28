@@ -1,8 +1,8 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.WorldGeneration;
-using AQMod.Items.Foods;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Potions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

@@ -1,5 +1,4 @@
 ﻿using AQMod.Content.World;
-using AQMod.Items.Materials;
 using AQMod.Localization;
 using AQMod.Tiles;
 using AQMod.Tiles.Furniture;
@@ -293,7 +292,7 @@ namespace AQMod.Common.WorldGeneration
                 if (ExoticCoralNew.TryPlaceExoticBlotch(x, y, style, size))
                     i += 500;
             }
-            for (int i = 50; i < Main.maxTilesX - 50;  i++)
+            for (int i = 50; i < Main.maxTilesX - 50; i++)
             {
                 for (int j = 50; j < Main.maxTilesY - 50; j++)
                 {

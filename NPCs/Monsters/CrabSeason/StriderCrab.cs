@@ -2,9 +2,9 @@
 using AQMod.Common.Graphics;
 using AQMod.Items.Accessories.Vanity;
 using AQMod.Items.Armor;
-using AQMod.Items.Foods;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Potions;
 using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;

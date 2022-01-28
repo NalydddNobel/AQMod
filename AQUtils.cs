@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Configuration;
 using AQMod.Content.Players;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;

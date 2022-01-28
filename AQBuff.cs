@@ -1,4 +1,6 @@
-﻿using Terraria.ID;
+﻿using AQMod.Buffs;
+using AQMod.Buffs.Debuffs;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod
@@ -15,15 +17,15 @@ namespace AQMod
             {
                 IsFoodBuff = new bool[BuffLoader.BuffCount];
                 IsFoodBuff[BuffID.WellFed] = true;
-                IsFoodBuff[ModContent.BuffType<Buffs.Foods.GrapePhanta>()] = true;
-                IsFoodBuff[ModContent.BuffType<Buffs.Foods.SpicyEel>()] = true;
-                IsFoodBuff[ModContent.BuffType<Buffs.Foods.NeutronYogurt>()] = true;
-                IsFoodBuff[ModContent.BuffType<Buffs.Foods.PeeledCarrot>()] = true;
-                IsFoodBuff[ModContent.BuffType<Buffs.Foods.RedLicorice>()] = true;
+                IsFoodBuff[ModContent.BuffType<GrapePhantaBuff>()] = true;
+                IsFoodBuff[ModContent.BuffType<SpicyEelBuff>()] = true;
+                IsFoodBuff[ModContent.BuffType<NeutronYogurtBuff>()] = true;
+                IsFoodBuff[ModContent.BuffType<DragonCarrotBuff>()] = true;
+                IsFoodBuff[ModContent.BuffType<RedLicoriceBuff>()] = true;
 
                 CanBeTurnedIntoMolite = new bool[BuffLoader.BuffCount];
                 IsFoodBuff.CopyTo(CanBeTurnedIntoMolite, 0);
-                CanBeTurnedIntoMolite[ModContent.BuffType<Buffs.Timers.UmystickDelay>()] = false;
+                CanBeTurnedIntoMolite[ModContent.BuffType<UmystickDelay>()] = false;
                 CanBeTurnedIntoMolite[ModContent.BuffType<Buffs.Vampire.Vampirism>()] = false;
 
                 CanBeRemovedByWhiteBloodCell = new bool[BuffLoader.BuffCount];
@@ -46,8 +48,8 @@ namespace AQMod
                 CanBeRemovedByWhiteBloodCell[BuffID.Electrified] = true;
                 CanBeRemovedByWhiteBloodCell[BuffID.Rabies] = true;
                 CanBeRemovedByWhiteBloodCell[ModContent.BuffType<Buffs.Vampire.Vampirism>()] = true;
-                CanBeRemovedByWhiteBloodCell[ModContent.BuffType<Buffs.Debuffs.BlueFire>()] = true;
-                CanBeRemovedByWhiteBloodCell[ModContent.BuffType<Buffs.Debuffs.PickBreak>()] = true;
+                CanBeRemovedByWhiteBloodCell[ModContent.BuffType<BlueFire>()] = true;
+                CanBeRemovedByWhiteBloodCell[ModContent.BuffType<PickBreak>()] = true;
                 CanBeRemovedByWhiteBloodCell[BuffID.OgreSpit] = true;
                 CanBeRemovedByWhiteBloodCell[BuffID.VortexDebuff] = true;
             }

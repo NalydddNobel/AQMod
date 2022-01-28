@@ -76,7 +76,7 @@ namespace AQMod.Items.Materials
                 Main.spriteBatch.Draw(Main.itemTexture[item.type], drawPosition + new Vector2(2f * scale, 0f).RotatedBy(AQGraphics.TimerBasedOnTimeOfDay * 0.9f + f * MathHelper.TwoPi), itemFrame, new Color(20, 20, 50, 0), 0f, itemOrigin, scale * 0.8f, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(Main.itemTexture[item.type], drawPosition, itemFrame, new Color(255, 255, 255, 255), rotation, itemOrigin, scale, SpriteEffects.None, 0f);
-            
+
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(255, 255, 255, 200), rotation, drawOrigin, fourthScale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(b, b, b2, b / 2), rotation, drawOrigin, halfScale, SpriteEffects.None, 0f);
 

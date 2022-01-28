@@ -71,11 +71,11 @@ namespace AQMod.Projectiles.Melee
             projectile.velocity.Y += 0.04f;
             projectile.velocity.X *= 0.9999f;
             Vector2 center = projectile.Center;
-            int d = Dust.NewDust(center + new Vector2((float)Math.Sin(projectile.ai[0]) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, 
+            int d = Dust.NewDust(center + new Vector2((float)Math.Sin(projectile.ai[0]) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0,
                 HorizonSkies.BlueDustColoring);
             Main.dust[d].velocity *= 0.01f;
             Main.dust[d].noGravity = true;
-            d = Dust.NewDust(center + new Vector2((float)Math.Sin(projectile.ai[0] + MathHelper.Pi) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0, 
+            d = Dust.NewDust(center + new Vector2((float)Math.Sin(projectile.ai[0] + MathHelper.Pi) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(), 0f, 0f, 0,
                 HorizonSkies.OrangeDustColoring);
             Main.dust[d].velocity *= 0.01f;
             Main.dust[d].noGravity = true;

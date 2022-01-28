@@ -35,6 +35,8 @@ namespace AQMod.Common
         public static bool TownNPCLavaImmunity { get; set; }
         public static bool TownNPCMoveAtNight { get; set; }
 
+        public static bool AirMerchantHasBeenFound { get; set; }
+
         /// <summary>
         /// If WoF or Omega Starite have been defeated
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using AQMod.Common.ID;
+﻿using AQMod.Buffs.Debuffs;
+using AQMod.Common.ID;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -62,7 +63,7 @@ namespace AQMod.Items.Weapons.Magic
             if (player.gravDir == 1)
             {
                 var aQPlayer = player.GetModPlayer<AQPlayer>();
-                if (!aQPlayer.mysticUmbrellaDelay)
+                if (!aQPlayer.cantUseMenaceUmbrellaJump)
                 {
                     if (Main.myPlayer == player.whoAmI && maxSpeed && !player.mouseInterface)
                     {
@@ -70,7 +71,7 @@ namespace AQMod.Items.Weapons.Magic
                         item.mana *= 5;
                         if (Main.mouseRight && Main.mouseRightRelease && player.CheckMana(item, pay: true))
                         {
-                            player.AddBuff(ModContent.BuffType<Buffs.Timers.UmystickDelay>(), 180);
+                            player.AddBuff(ModContent.BuffType<UmystickDelay>(), 180);
                             AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.MysticUmbrellaJump, 0.6f);
                             player.velocity.Y = -12f;
                         }
@@ -81,7 +82,7 @@ namespace AQMod.Items.Weapons.Magic
                 {
                     if (player.velocity.Y < 0f)
                     {
-                        int buffID = player.FindBuffIndex(ModContent.BuffType<Buffs.Timers.UmystickDelay>());
+                        int buffID = player.FindBuffIndex(ModContent.BuffType<UmystickDelay>());
                         if (buffID != -1 && player.buffTime[buffID] > 120)
                         {
                             if (Main.myPlayer == player.whoAmI && Main.mouseRight)

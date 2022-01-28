@@ -75,7 +75,7 @@ namespace AQMod
         public int omoriDeathTimer;
         public int spelunkerEquipTimer;
         public bool omegaStarite;
-        public byte spoiled;
+        public byte lootIterations;
         public bool wyvernAmulet;
         public bool voodooAmulet;
         public bool ghostAmulet;
@@ -111,7 +111,7 @@ namespace AQMod
         public sbyte redSpriteWind;
         public byte extraHP;
         public bool fidgetSpinner;
-        public bool mysticUmbrellaDelay;
+        public bool cantUseMenaceUmbrellaJump;
         public bool ignoreMoons;
         public bool cosmicanon;
         public bool antiGravityItems;
@@ -158,7 +158,7 @@ namespace AQMod
         {
             omoriDeathTimer = 1;
             arachnotron = false;
-            spoiled = 0;
+            lootIterations = 0;
             sparkling = false;
             headMinionCarryX = 0;
             headMinionCarryY = 0;
@@ -172,7 +172,7 @@ namespace AQMod
             temperature = 0;
             pickBreak = false;
             fidgetSpinner = false;
-            mysticUmbrellaDelay = false;
+            cantUseMenaceUmbrellaJump = false;
         }
 
         public override void OnEnterWorld(Player player)
@@ -254,7 +254,7 @@ namespace AQMod
         public override void ResetEffects()
         {
             setBonusLightbulb = false;
-               blueSpheres = false;
+            blueSpheres = false;
             discountPercentage = 0.8f;
             hyperCrystal = false;
             monoxiderBird = false;
@@ -271,7 +271,7 @@ namespace AQMod
             primeTime = false;
             omori = false;
             omegaStarite = false;
-            spoiled = 0;
+            lootIterations = 0;
             wyvernAmulet = false;
             voodooAmulet = false;
             ghostAmulet = false;
@@ -306,7 +306,7 @@ namespace AQMod
             pickBreak = false;
             crabAx = false;
             fidgetSpinner = false;
-            mysticUmbrellaDelay = false;
+            cantUseMenaceUmbrellaJump = false;
             cosmicanon = false;
             ignoreMoons = false;
             antiGravityItems = false;

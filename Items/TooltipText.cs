@@ -1,7 +1,6 @@
 ﻿using AQMod.Content.Players;
 using AQMod.Items.Accessories.FidgetSpinner;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
@@ -102,7 +101,7 @@ namespace AQMod.Items
                     }
                     else if (minutes > 0)
                     {
-                        text =Language.GetTextValue("Mods.AQMod.HermitCrab.Minute" + (minutes == 1 ? "" : "s") + "Ago", minutes);
+                        text = Language.GetTextValue("Mods.AQMod.HermitCrab.Minute" + (minutes == 1 ? "" : "s") + "Ago", minutes);
                     }
                     else
                     {

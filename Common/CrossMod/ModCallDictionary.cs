@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.Utilities;
 using AQMod.Content.World;
-using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.FallingStars;
 using System;

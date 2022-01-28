@@ -1,14 +1,8 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
-using AQMod.Common.CrossMod;
+﻿using AQMod.Common;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.FallingStars;
 using AQMod.Effects;
-using AQMod.Items;
-using AQMod.Items.Dyes;
-using AQMod.Items.Tools;
-using AQMod.Localization;
 using AQMod.NPCs.Monsters.GlimmerEvent;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;

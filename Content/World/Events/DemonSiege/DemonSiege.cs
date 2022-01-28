@@ -1,10 +1,6 @@
-﻿using AQMod.Assets;
-using AQMod.Common;
-using AQMod.Common.CrossMod;
+﻿using AQMod.Common;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items.Dyes;
-using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Yoyo;

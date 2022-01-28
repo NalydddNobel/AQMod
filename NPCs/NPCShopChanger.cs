@@ -4,8 +4,6 @@ using AQMod.Content.World;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Accessories.Vanity;
 using AQMod.Items.Dyes;
-using AQMod.Items.Foods;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

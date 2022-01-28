@@ -1,7 +1,7 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Items.Dyes;
-using AQMod.Items.Foods;
 using AQMod.Items.Placeable.Banners;
+using AQMod.Items.Potions;
 using AQMod.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

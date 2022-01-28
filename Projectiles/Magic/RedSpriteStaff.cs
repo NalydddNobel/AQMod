@@ -1,4 +1,4 @@
-﻿using AQMod.Dusts.GaleStreams;
+﻿using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

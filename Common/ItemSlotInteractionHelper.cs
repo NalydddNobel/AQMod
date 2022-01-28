@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 
 namespace AQMod.Content.UserInterface.ItemSlots

@@ -25,10 +25,10 @@ namespace AQMod.Projectiles.Melee
         public override void AI()
         {
             var center = projectile.Center;
-            int d = Dust.NewDust(center + new Vector2((float)Math.Sin(projectile.ai[0]) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(), 
+            int d = Dust.NewDust(center + new Vector2((float)Math.Sin(projectile.ai[0]) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(),
                 0f, 0f, 0, HorizonSkies.BlueDustColoring);
             Main.dust[d].noGravity = true;
-            d = Dust.NewDust(center + new Vector2((float)Math.Cos(projectile.ai[0]) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(), 
+            d = Dust.NewDust(center + new Vector2((float)Math.Cos(projectile.ai[0]) * 25f, 0f).RotatedBy(projectile.rotation + MathHelper.PiOver2), 1, 1, ModContent.DustType<MonoDust>(),
                 0f, 0f, 0, HorizonSkies.OrangeDustColoring);
             Main.dust[d].noGravity = true;
         }

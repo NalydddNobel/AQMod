@@ -1,15 +1,14 @@
-﻿using AQMod.Assets;
-using AQMod.Content.World.Events.DemonSiege;
+﻿using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
 using AQMod.Items.Dyes.Cursor;
-using AQMod.Items.Foods;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Pets;
 using AQMod.Items.Placeable.Furniture;
+using AQMod.Items.Potions;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.Axe;
 using AQMod.Items.Tools.Fishing;

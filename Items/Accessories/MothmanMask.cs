@@ -58,7 +58,7 @@ namespace AQMod.Items.Accessories
             }
         }
 
-        Color IDedicatedItem.DedicatedItemColor => BasicDedication.YoutuberColor;
-        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
+        Color IDedicatedItem.DedicatedItemColor => Dedication.YoutuberColor;
+        IDedicationType IDedicatedItem.DedicationType => new Dedication();
     }
 }

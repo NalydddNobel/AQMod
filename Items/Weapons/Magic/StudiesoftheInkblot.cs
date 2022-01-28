@@ -31,7 +31,7 @@ namespace AQMod.Items.Weapons.Magic
         }
 
         Color IDedicatedItem.DedicatedItemColor => new Color(110, 110, 128, 255);
-        IDedicationType IDedicatedItem.DedicationType => new BasicDedication();
+        IDedicationType IDedicatedItem.DedicationType => new Dedication();
 
         public override void HoldItem(Player player)
         {

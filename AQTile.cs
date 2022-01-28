@@ -10,8 +10,8 @@ namespace AQMod
 {
     public class AQTile : GlobalTile
     {
-        public static class Sets 
-        { 
+        public static class Sets
+        {
             public static bool[] CanFixWaterOnType { get; private set; }
 
             internal static void InternalInitalize()

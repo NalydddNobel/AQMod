@@ -99,7 +99,7 @@ namespace AQMod.Content
             {
                 if (_planteraBulbsPositionCache == null)
                 {
-                    _planteraBulbsPositionCache = new List<Point>(); 
+                    _planteraBulbsPositionCache = new List<Point>();
                     _mapRefresh = 0;
                 }
                 if (_mapRefresh < 16)

@@ -18,7 +18,7 @@ using Terraria.Utilities;
 
 namespace AQMod.NPCs.Friendly
 {
-    [AutoloadHead()]
+    [AutoloadBossHead()]
     public class BalloonMerchant : ModNPC
     {
         private int _oldSpriteDirection;
@@ -28,6 +28,12 @@ namespace AQMod.NPCs.Friendly
         private bool _init;
 
         public int currentAction;
+
+        public override bool Autoload(ref string name)
+        {
+            mod.AddBossHeadTexture(this.GetPath("_Head_Boss_Invisible"), -1);
+            return base.Autoload(ref name);
+        }
 
         public override void SetStaticDefaults()
         {
@@ -43,7 +49,6 @@ namespace AQMod.NPCs.Friendly
 
         public override void SetDefaults()
         {
-            npc.townNPC = true;
             npc.friendly = true;
             npc.width = 18;
             npc.height = 40;
@@ -56,6 +61,19 @@ namespace AQMod.NPCs.Friendly
             npc.knockBackResist = 0.5f;
             animationType = NPCID.Guide;
             currentAction = 7;
+        }
+
+        public override void BossHeadSlot(ref int index)
+        {
+            if (!WorldDefeats.AirMerchantHasBeenFound)
+            {
+                index = ModContent.GetModBossHeadSlot(this.GetPath("_Head_Boss_Invisible"));
+            }
+        }
+
+        public override void BossHeadSpriteEffects(ref SpriteEffects spriteEffects)
+        {
+            spriteEffects = npc.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
@@ -887,6 +905,11 @@ namespace AQMod.NPCs.Friendly
             }
         }
 
+        public override bool CheckActive() => false;
+
+        public override bool CanChat() => true;
+
+
         public override string GetChat()
         {
             if (!EventGaleStreams.IsActive)
@@ -895,7 +918,7 @@ namespace AQMod.NPCs.Friendly
             {
                 WorldDefeats.HunterIntroduction = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                    NetHelper.Sync(NetHelper.PacketType.Flag_AirHunterIntroduction);
+                    NetHelper.UpdateFlag(NetHelper.PacketType.Flag_AirHunterIntroduction);
                 return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Introduction", npc.GivenName);
             }
             var potentialText = new List<string>();
@@ -935,12 +958,12 @@ namespace AQMod.NPCs.Friendly
             return text;
         }
 
-        private bool Offscreen()
+        private bool IsOffscreen()
         {
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 Player player = Main.player[i];
-                if (player.active && (player.Center - npc.Center).Length() < 1000f)
+                if (player.active && (player.Center - npc.Center).Length() < 1250f)
                     return false;
             }
             return true;
@@ -951,14 +974,15 @@ namespace AQMod.NPCs.Friendly
             npc.homeless = true;
             if (currentAction != 7)
             {
-                return !base.PreAI();
+                return false;
             }
-            return base.PreAI();
+            npc.townNPC = true;
+            return true;
         }
 
         public override void PostAI()
         {
-            bool offscreen = Offscreen();
+            bool offscreen = IsOffscreen();
             if (npc.life < 80 && !npc.dontTakeDamage)
             {
                 if (currentAction == 7)
@@ -982,7 +1006,16 @@ namespace AQMod.NPCs.Friendly
                     npc.spriteDirection = npc.direction;
                 }
                 if (Main.netMode != NetmodeID.Server)
-                    AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
+                    AQSound.Play(SoundType.Item, "slidewhistle", npc.Center, 0.5f);
+            }
+            else if (!offscreen)
+            {
+                WorldDefeats.AirMerchantHasBeenFound = true;
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetHelper.UpdateFlag(NetHelper.PacketType.Flag_AirMerchantHasBeenFound);
+                }
+                npc.netUpdate = true;
             }
             if (currentAction == -4)
             {
@@ -1164,6 +1197,11 @@ namespace AQMod.NPCs.Friendly
             }
         }
 
+        public override void FindFrame(int frameHeight)
+        {
+            npc.townNPC = false;
+        }
+
         private void SetToBalloon()
         {
             currentAction = -2;
@@ -1305,6 +1343,16 @@ namespace AQMod.NPCs.Friendly
             return true;
         }
 
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(currentAction);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            currentAction = reader.ReadInt32();
+        }
+
         public override bool CanGoToStatue(bool toKingStatue)
         {
             return toKingStatue;
@@ -1324,7 +1372,7 @@ namespace AQMod.NPCs.Friendly
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = ItemID.PoisonedKnife;
+            projType = ProjectileID.PoisonedKnife;
             attackDelay = 10;
         }
 
@@ -1376,16 +1424,6 @@ namespace AQMod.NPCs.Friendly
             }
             npc.dontTakeDamage = true;
             return false;
-        }
-
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            writer.Write(currentAction);
-        }
-
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            currentAction = reader.ReadInt32();
         }
 
         public static BalloonMerchant FindInstance()

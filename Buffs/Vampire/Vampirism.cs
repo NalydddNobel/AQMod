@@ -1,4 +1,4 @@
-﻿using AQMod.Buffs.Timers;
+﻿using AQMod.Buffs.Debuffs;
 using AQMod.Content.Players;
 using Terraria;
 

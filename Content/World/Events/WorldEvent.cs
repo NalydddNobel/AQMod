@@ -1,6 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Common.CrossMod;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 

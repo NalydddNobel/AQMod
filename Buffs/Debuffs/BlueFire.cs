@@ -18,7 +18,7 @@ namespace AQMod.Buffs.Debuffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<AQNPC>().notFrostburn = true;
+            npc.GetGlobalNPC<AQNPC>().blueFire = true;
         }
     }
 }

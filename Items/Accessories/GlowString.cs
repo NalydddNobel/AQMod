@@ -125,7 +125,7 @@ namespace AQMod.Items.Accessories
 
         private static int DyeColorToYoyoStringItemID(byte clr)
         {
-            switch (clr) 
+            switch (clr)
             {
                 case PaintID.Red:
                     return ItemID.RedString;

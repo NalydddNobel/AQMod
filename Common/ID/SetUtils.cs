@@ -18,7 +18,7 @@ namespace AQMod.Common.ID
             public SetID(int value)
             {
                 _value = value;
-                _moddedType = null; 
+                _moddedType = null;
                 _keyValue = null;
             }
 

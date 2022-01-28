@@ -30,6 +30,7 @@ namespace AQMod
             public const ushort Flag_ExporterIntroduction = 10000;
             public const ushort Flag_PhysicistIntroduction = 10001;
             public const ushort Flag_AirHunterIntroduction = 10002;
+            public const ushort Flag_AirMerchantHasBeenFound = 10003;
 
             public const ushort Player_SyncEncoreData = 20000;
         }
@@ -214,7 +215,7 @@ namespace AQMod
         }
         #endregion
 
-        public static void Sync(ushort type)
+        public static void UpdateFlag(ushort type)
         {
             var p = AQMod.GetInstance().GetPacket();
             p.Write(type);
@@ -388,6 +389,12 @@ namespace AQMod
                 case PacketType.Flag_AirHunterIntroduction:
                     {
                         WorldDefeats.HunterIntroduction = true;
+                    }
+                    break;
+
+                case PacketType.Flag_AirMerchantHasBeenFound:
+                    {
+                        WorldDefeats.AirMerchantHasBeenFound = true;
                     }
                     break;
             }

@@ -11,11 +11,6 @@
     <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -define &quot;$(DefineConstants)&quot; -unsafe $(AllowUnsafeBlocks)" />
   </Target>
   <ItemGroup>
-    <Compile Remove="Items\Foods\Dungeon\**" />
-    <EmbeddedResource Remove="Items\Foods\Dungeon\**" />
-    <None Remove="Items\Foods\Dungeon\**" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +23,7 @@
     <None Include="Assets\.projects\icon_Orig.png" />
     <None Include="Assets\.projects\p_mushroomstuff.ase" />
     <None Include="Assets\.projects\p_trophy.ase" />
+    <None Include="Assets\.projects\qualitystars.png" />
     <None Include="Assets\.projects\_.png" />
     <None Include="Effects\.comp\fxcompiler.exe" />
     <None Include="Effects\.comp\GlimmerEventBackground.fx" />
@@ -36,7 +32,6 @@
     <None Include="Effects\.comp\wcfxcompiler.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Items\BossItems\Crabson\" />
     <Folder Include="Sounds\Item\SpaceSquid\" />
   </ItemGroup>
 </Project>

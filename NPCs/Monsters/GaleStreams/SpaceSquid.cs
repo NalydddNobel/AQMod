@@ -1,14 +1,13 @@
 ﻿using AQMod.Common;
 using AQMod.Content.World;
 using AQMod.Dusts;
-using AQMod.Dusts.GaleStreams;
 using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
-using AQMod.Items.Foods;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Placeable.Furniture;
+using AQMod.Items.Potions;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
