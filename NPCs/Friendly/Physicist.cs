@@ -64,15 +64,7 @@ namespace AQMod.NPCs.Friendly
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
                 nextSlot++;
             }
-            if (WorldDefeats.TownNPCLavaImmunity) // in case someone activates the immunity, then looses the toggle :)
-            {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<IWillBeBack>());
-                nextSlot++;
-            }
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<MythicStarfruit>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>());
-            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
             nextSlot++;
         }
 

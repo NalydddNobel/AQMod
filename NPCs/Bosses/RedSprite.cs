@@ -17,7 +17,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.GaleStreams
+namespace AQMod.NPCs.Bosses
 {
     [AutoloadBossHead()]
     public class RedSprite : ModNPC
@@ -456,7 +456,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 case PHASE_SUMMON_NIMBUS:
                     {
                         npc.direction = 0;
-                        npc.rotation = Utils.AngleLerp(npc.rotation, 0f, 0.1f);
+                        npc.rotation = npc.rotation.AngleLerp(0f, 0.1f);
                         Vector2 gotoPosition = new Vector2(Main.player[npc.target].position.X + Main.player[npc.target].width / 2f, Main.player[npc.target].position.Y - 300f);
                         gotoPosition += new Vector2(40f, 0f).RotatedBy(npc.ai[2]);
                         npc.ai[2] += 0.02f;
@@ -522,7 +522,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 case PHASE_THUNDERCLAP:
                     {
                         npc.direction = 0;
-                        npc.rotation = Utils.AngleLerp(npc.rotation, 0f, 0.1f);
+                        npc.rotation = npc.rotation.AngleLerp(0f, 0.1f);
                         Vector2 gotoPosition = new Vector2(Main.player[npc.target].position.X + Main.player[npc.target].width / 2f, Main.player[npc.target].position.Y - 300f);
                         var v = new Vector2(90f, 0f).RotatedBy(npc.ai[2]);
                         v.X *= 2.5f;
@@ -535,7 +535,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                         }
                         else
                         {
-                            if (npc.ai[1] > 30 * 4 + 90f || (!Main.expertMode && npc.ai[1] >= 30 * 2 + 90f))
+                            if (npc.ai[1] > 30 * 4 + 90f || !Main.expertMode && npc.ai[1] >= 30 * 2 + 90f)
                             {
                                 npc.ai[2] = -1f;
                                 npc.localAI[2] = 0f;
@@ -928,7 +928,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             if (npc.target != -1)
                 EventGaleStreams.ProgressEvent(Main.player[npc.target], 40);
             WorldDefeats.DownedRedSprite = true;
-            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(), Main.rand.Next(2) + 2);
+            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
             Item.NewItem(npc.getRect(), ItemID.SoulofFlight, Main.rand.Next(5) + 2);
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Fluorescence>(), Main.rand.Next(10) + 10 + (Main.expertMode ? Main.rand.Next(5) : 0));
 

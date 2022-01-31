@@ -23,7 +23,7 @@ namespace AQMod.Items.Materials.Energies
 
         public override void SetDefaults()
         {
-            AQItem.Reps.Energy_SetDefaults(item, ItemRarityID.Lime, Item.sellPrice(gold: 1));
+            AQItem.Commons.Energy_SetDefaults(item, ItemRarityID.Lime, Item.sellPrice(gold: 1));
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -43,7 +43,7 @@ namespace AQMod.Items.Materials.Energies
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            AQItem.Reps.Energy_DoUpdate(item, new Color(210 + Main.DiscoR, 210 + Main.DiscoG, 210 + Main.DiscoB, 0), new Vector3(0.7f, 0.7f, 0.7f));
+            AQItem.Commons.Energy_DoUpdate(item, new Color(210 + Main.DiscoR, 210 + Main.DiscoG, 210 + Main.DiscoB, 0), new Vector3(0.7f, 0.7f, 0.7f));
         }
 
         public override void AddRecipes()

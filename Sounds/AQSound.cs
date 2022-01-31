@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
@@ -51,30 +52,79 @@ namespace AQMod.Sounds
             return "Sounds/" + type.ToString() + "/" + path;
         }
 
+        private static string GetLegacySoundStyleErrorText(LegacySoundStyle legacySound)
+        {
+            if (legacySound == null)
+                return "null";
+            return "{soundID:" + legacySound.SoundId + ", type:" + legacySound.Type + "}";
+        }
+
         internal static void Play(this LegacySoundStyle sound)
         {
-            Main.PlaySound(sound);
+            try
+            {
+                Main.PlaySound(sound);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when playing sound: " + GetLegacySoundStyleErrorText(sound), ex);
+            }
         }
         internal static void Play(this LegacySoundStyle sound, Vector2 position)
         {
-            Main.PlaySound(sound, position);
+            try
+            {
+                Main.PlaySound(sound, position);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when playing sound: [Position:" + position + ", SoundData:" + GetLegacySoundStyleErrorText(sound) + "]", ex);
+            }
         }
         internal static void Play(this LegacySoundStyle sound, Vector2 position, float volume)
         {
-            Main.PlaySound(sound.WithVolume(volume), position);
+            try
+            {
+                Main.PlaySound(sound.WithVolume(volume), position);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when playing sound: [Position:" + position + ", Volume:" + volume + ", SoundData:" + GetLegacySoundStyleErrorText(sound) + "]", ex);
+            }
         }
         internal static void Play(this LegacySoundStyle sound, Vector2 position, float volume, float pitch)
         {
-            Main.PlaySound(sound.SoundId, (int)position.X, (int)position.Y, sound.Style, volume, pitch);
+            try
+            {
+                Main.PlaySound(sound.SoundId, (int)position.X, (int)position.Y, sound.Style, volume, pitch);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when playing sound: [Position:" + position + ", Volume:" + volume + ", Pitch:" + pitch + ", SoundData:" + GetLegacySoundStyleErrorText(sound) + "]", ex);
+            }
         }
 
         internal static void Play(Terraria.ModLoader.SoundType type, string name)
         {
-            Main.PlaySound((int)type, -1, -1, AQMod.GetInstance().GetSoundSlot(type, qpath(type, name)));
+            try
+            {
+                Main.PlaySound((int)type, -1, -1, SoundLoader.GetSoundSlot(type, "AQMod/" + qpath(type, name)));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when playing sound: [Type:" + type.ToString() + ", Name:" + name + "]", ex);
+            }
         }
         internal static void Play(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume)
         {
-            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.GetInstance().GetSoundSlot(type, qpath(type, name)), volume);
+            try
+            {
+                Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.GetInstance().GetSoundSlot(type, qpath(type, name)), volume);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when playing sound: [Type:" + type.ToString() + ", Name:" + name + "Position:" + position + "volume:" + volume + "]", ex);
+            }
         }
         internal static void Play(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume, float pitch)
         {

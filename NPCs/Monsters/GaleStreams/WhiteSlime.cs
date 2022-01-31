@@ -316,7 +316,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
 
             Item.NewItem(npc.getRect(), ItemID.Gel, Main.rand.Next(9) + 10);
 
-            if (Main.rand.NextBool())
+            if (Main.rand.NextBool(20) && Main.hardMode)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
 
             if (WorldDefeats.SudoHardmode && Main.rand.NextBool(4))

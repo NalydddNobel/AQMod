@@ -35,13 +35,13 @@ namespace AQMod.Items.Tools.Utility
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Safe);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>(), 3);
+            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
             r.AddTile(TileID.DemonAltar);
             r.SetResult(this);
             r.AddRecipe();
             r = new ModRecipe(mod);
             r.AddIngredient(ItemID.PiggyBank);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>(), 3);
+            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
             r.AddTile(TileID.DemonAltar);
             r.SetResult(ItemID.MoneyTrough);
             r.AddRecipe();

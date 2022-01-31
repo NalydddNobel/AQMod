@@ -41,7 +41,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ModContent.ItemType<CrystalDagger>());
-            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>(), 5);
+            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>());
             r.AddIngredient(ModContent.ItemType<Materials.Energies.OrganicEnergy>(), 2);
             r.AddIngredient(ItemID.SoulofFlight, 12);
             r.AddIngredient(ItemID.SoulofLight, 8);

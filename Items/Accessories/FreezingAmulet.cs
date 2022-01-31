@@ -31,7 +31,7 @@ namespace AQMod.Items.Accessories
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.FrostCore);
             r.AddIngredient(ItemID.Shackle);
-            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>(), 5);
+            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>());
             r.AddIngredient(ModContent.ItemType<Materials.SiphonTentacle>(), 20);
             r.AddIngredient(ItemID.SoulofFlight, 20);
             r.AddTile(TileID.MythrilAnvil);

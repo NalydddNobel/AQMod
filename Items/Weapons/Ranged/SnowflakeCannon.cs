@@ -57,7 +57,7 @@ namespace AQMod.Items.Weapons.Ranged
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.SnowballCannon);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>(), 10);
+            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
             r.AddIngredient(ModContent.ItemType<Materials.SiphonTentacle>(), 12);
             r.AddIngredient(ItemID.SoulofFlight, 20);
             r.AddTile(TileID.MythrilAnvil);

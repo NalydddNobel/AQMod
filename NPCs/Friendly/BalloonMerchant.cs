@@ -746,10 +746,6 @@ namespace AQMod.NPCs.Friendly
                 nextSlot++;
             }
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
-            shop.item[nextSlot].value = AQItem.Prices.EnergyBuyValue;
-            nextSlot++;
-
             if (WorldDefeats.DownedCrabson)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.PeaceCandle);
@@ -1411,7 +1407,7 @@ namespace AQMod.NPCs.Friendly
             npc.noGravity = true;
             npc.life = npc.lifeMax;
             if (Main.netMode != NetmodeID.Server)
-                AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SlideWhistle", npc.Center, 0.5f);
+                AQSound.Play(SoundType.Item, "slidewhistle", npc.Center, 0.5f);
             if (npc.velocity.X <= 0)
             {
                 npc.direction = -1;

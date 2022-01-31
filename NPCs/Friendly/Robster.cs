@@ -275,9 +275,6 @@ namespace AQMod.NPCs.Friendly
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<CrabClock>());
             nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Materials.Energies.AquaticEnergy>());
-            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
-            nextSlot++;
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

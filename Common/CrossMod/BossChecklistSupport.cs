@@ -44,7 +44,7 @@ namespace AQMod.Common.CrossMod
             ModContent.NPCType<JerryCrabson>(),
             aQMod,
             AQText.chooselocalizationtext(
-                en_US: "Jerry Crabson",
+                en_US: "Crabson",
                 zh_Hans: "巨蟹蛤"),
             (Func<bool>)(() => WorldDefeats.DownedCrabson),
             ModContent.ItemType<MushroomClam>(),

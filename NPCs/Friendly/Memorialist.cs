@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.Utility;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Summon;
@@ -52,12 +51,14 @@ namespace AQMod.NPCs.Friendly
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<CursedKey>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistWeaponBuyValue;
             nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<DemonicEnergy>());
-            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.EnergyBuyValue;
-            nextSlot++;
             if (!Main.dayTime && Main.bloodMoon)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.WhoopieCushion);
+                nextSlot++;
+            }
+            if (WorldDefeats.TownNPCLavaImmunity) // in case someone activates the immunity, then looses the toggle :)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<IWillBeBack>());
                 nextSlot++;
             }
         }

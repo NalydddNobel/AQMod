@@ -4,7 +4,7 @@ Items
 ##############
 
 ItemName.MushroomClam=Exotic Clam
-ItemTooltip.MushroomClam=Summons Jerry Crabson at the beach
+ItemTooltip.MushroomClam=Summons Crabson at the beach
 
 # Accessories
 
@@ -52,6 +52,8 @@ ItemName.Extractor=Extractor
 ItemTooltip.Extractor=10% increased mining speed\nFalling blocks deal less damage\nExtracting at the Extractinator will show your extractination count 
 
 # Armor
+
+ItemName.CrabsonMask=Crabson Mask
 
 ItemName.SteelPlatedChestplate=Steel Plated Chestplate
 ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% less damage
@@ -175,6 +177,8 @@ ItemName.OutlineDye=Outline Dye
 ItemName.RainbowOutlineDye=Rainbow Outline Dye
 
 # Tiles
+ItemName.CrabsonTrophy=Crabson Trophy
+
 ItemName.HellTombstone=Hell Tombstone
 MapObject.HellTombstone=Hell Tombstone
 
@@ -308,19 +312,9 @@ Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down wi
 Tooltips.InventoryPiggyBankFunction=Works in your inventory or piggy bank
 Tooltips.ToggleKeyBind=You can toggle this function by pressing {0}
 
-NPCName.Memorialist=Memorialist
-
-Memorialist.Chat.0=What? Do you think I'm a freak? You must have not looked in the mirror recently.
-Memorialist.Chat.1=Who's Issac? Sounds like the name of a crybaby kid.
-Memorialist.Chat.2=You need a service from me? You must not be a good hero.
-Memorialist.Chat.3=I wonder where my friend Meru has gone.
-Memorialist.Chat.4=What do you mean I look like a Zoologist? I hate animals!
-Memorialist.Chat.5=I used to be pals with an anthropomorphic bat. They really liked talking about touchy subjects about you humans, it was so awesome. One day they wanted to see if I wanted to be a bat, I couldn't say no.
-
-Memorialist.Chat.Exporter=That lobster thing... what's his name? {0}? He's almost as addicted to crime as me!
-Memorialist.Chat.Physicist={0} is such a loser. Doesn't even think I am real! She's absolutely insane.
-
-Memorialist.Chat.Mod.Split.Sheep=Have you seen one of those fluffy sheep around the snow? They look awfully good for a sacrifice.
+NPCName.SoldierCrabs=Soldier Crab
+ItemName.SoliderCrabsBanner=Soldier Crab Banner
+ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoldierCrab}
 
 # Hermit Crab
 NPCName.HermitCrab=Hermit Crab
@@ -345,6 +339,22 @@ HermitCrab.DayAgo=Stored this item {0} day ago
 HermitCrab.DaysAgo=Stored this item {0} days ago
 HermitCrab.MonthAgo=Stored this item {0} month ago
 HermitCrab.MonthsAgo=Stored this item {0} months ago
+
+# Memorialist
+
+NPCName.Memorialist=Memorialist
+
+Memorialist.Chat.0=What? Do you think I'm a freak? You must have not looked in the mirror recently.
+Memorialist.Chat.1=Who's Issac? Sounds like the name of a crybaby kid.
+Memorialist.Chat.2=You need a service from me? You must not be a good hero.
+Memorialist.Chat.3=I wonder where my friend Meru has gone.
+Memorialist.Chat.4=What do you mean I look like a Zoologist? I hate animals!
+Memorialist.Chat.5=I used to be pals with an anthropomorphic bat. They really liked talking about touchy subjects about you humans, it was so awesome. One day they wanted to see if I wanted to be a bat, I couldn't say no.
+
+Memorialist.Chat.Exporter=That lobster thing... what's his name? {0}? He's almost as addicted to crime as me!
+Memorialist.Chat.Physicist={0} is such a loser. Doesn't even think I am real! She's absolutely insane.
+
+Memorialist.Chat.Mod.Split.Sheep=Have you seen one of those fluffy sheep around the snow? They look awfully good for a sacrifice.
 
 # Balloon Merchant
 NPCName.BalloonMerchant=Air Hunter
@@ -444,7 +454,9 @@ EventName.CrabSeason=Crab Season
 BossChecklistDesc.CrabSeason=Begins naturally and ends naturally at random times. You can check the time when the event begins and ends as well as speed up its cycle using a [i:{0}].
 EventWarning.CrabSeason=The warmth of the oceans increases...
 EventEnding.CrabSeason=The oceans become neutral again...
+
 BossChecklistDesc.JerryCrabson=Summoned by using a [i:{0}] at the beach.
+Common.AwakenedCrabson=Crabson has awoken!
 
 EventName.DemonSiege=Demon Siege
 BossChecklistDesc.DemonSiege=Can be summoned using: {0} at a Gore Nest.
@@ -780,7 +792,6 @@ Common.UnassignedKey0=Unassigned Key
 Common.UnassignedKey1=an unassigned key
 Common.UnassignedKey2=unassigned key
 Common.AwakenedOmegaStarite=Omega Starite has awoken!
-Common.AwakenedCrabson=Jerry Crabson has awoken!
 ##################################################################################
 # Item Names																	 #
 ##################################################################################
@@ -832,8 +843,6 @@ ItemTooltip.Quasicrystal=True melee crits on enemies channel the damage to the c
 ##############
 ItemName.Crabsol=Crabsol
 ItemName.CrabsonBag=Treasure Bag
-ItemName.CrabsonTrophy=Jerry Crabson Trophy
-ItemName.CrabsonMask=Jerry Crabson Mask
 ItemName.MythicStarfruit=Mythic Starfruit
 ItemName.NovaFruit=Nova Fruit
 ItemName.OmegaStariteMask=Omega Starite Mask
@@ -1339,11 +1348,8 @@ NPCName.OmegaStarite=Omega Starite
 NPCName.MultiStarite=Multi Starite
 
 NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
-NPCName.JerryCrabson=Jerry Crabson
+NPCName.JerryCrabson=Crabson
 NPCName.JerryClaw=Jerry Claw
-NPCName.ArrowCrab=Arrow Crab
-NPCName.SoliderCrabs=Soldier Crabs
-NPCName.StriderCrab=Strider Crab
 
 NPCName.Magmalbubble=Magmabubble
 NPCName.TrapImp=Trapper Imp
@@ -1367,15 +1373,6 @@ ItemName.SuperStariteBanner=Super Starite Banner
 ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
 ItemName.HyperStariteBanner=Hyper Starite Banner
 ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
-
-ItemName.ArrowCrabBanner=Arrow Crab Banner
-ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
-ItemName.HermitCrabBanner=Hermit Crab Banner
-ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
-ItemName.SoliderCrabsBanner=Soldier Crabs Banner
-ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
-ItemName.StriderCrabBanner=Strider Crab Banner
-ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
 
 ItemName.CinderaBanner=Cindera Banner
 ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}

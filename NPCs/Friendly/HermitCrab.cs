@@ -1,6 +1,7 @@
 ﻿using AQMod.Content.Players;
 using AQMod.Items.Armor;
 using AQMod.Items.Materials;
+using AQMod.Items.Tools.GrapplingHooks;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -112,9 +113,15 @@ namespace AQMod.NPCs.Friendly
             }
             else
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<CrabShell>());
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<StriderCarapace>());
+                nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<StriderPalms>());
+                nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<StriderHook>());
                 nextSlot++;
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<HermitShell>());
+                nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<CrabShell>());
                 nextSlot++;
             }
         }

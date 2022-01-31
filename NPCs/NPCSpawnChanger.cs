@@ -2,6 +2,7 @@
 using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Events.DemonSiege;
+using AQMod.NPCs.Bosses;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters.GaleStreams;
 using Microsoft.Xna.Framework;

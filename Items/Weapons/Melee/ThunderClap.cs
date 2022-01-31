@@ -87,7 +87,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.SlapHand);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>(), 10);
+            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
             r.AddIngredient(ModContent.ItemType<Materials.Fluorescence>(), 12);
             r.AddIngredient(ItemID.SoulofFlight, 20);
             r.AddTile(TileID.MythrilAnvil);

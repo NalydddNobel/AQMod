@@ -24,7 +24,7 @@ namespace AQMod.Projectiles
 
         public override bool? CanHitNPC(NPC target)
         {
-            return target.whoAmI != (int)projectile.ai[1];
+            return !target.friendly && target.whoAmI != (int)projectile.ai[1];
         }
     }
 }

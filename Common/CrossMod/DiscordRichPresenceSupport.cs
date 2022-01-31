@@ -2,7 +2,6 @@
 using AQMod.Content.World;
 using AQMod.Content.World.Events.DemonSiege;
 using AQMod.NPCs.Bosses;
-using AQMod.NPCs.Monsters.GaleStreams;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -23,7 +22,7 @@ namespace AQMod.Common.CrossMod
                     if (drp != null)
                     {
                         drp.Call("AddClient", "930160636749574155", "mod_aequus");
-                        drp.Call("AddBoss", new List<int> { ModContent.NPCType<JerryCrabson>() }, "Jerry Crabson", "boss_crabson", 2f, "mod_aequus");
+                        drp.Call("AddBoss", new List<int> { ModContent.NPCType<JerryCrabson>() }, "Crabson", "boss_crabson", 2f, "mod_aequus");
                         drp.Call("AddBoss", new List<int> { ModContent.NPCType<OmegaStarite>() }, "Omega Starite", "boss_omegastarite", 10f, "mod_aequus");
 
                         if (config.miniBossRichPresence)

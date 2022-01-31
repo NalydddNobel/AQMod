@@ -78,6 +78,8 @@ namespace AQMod.Projectiles.Melee
                     }
                 }
 
+                projectile.tileCollide = true;
+
                 projectile.localAI[1] += 0.005f;
                 projectile.rotation += 0.3f + projectile.localAI[1];
             }

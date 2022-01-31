@@ -44,7 +44,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.NimbusRod);
-            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>(), 10);
+            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>());
             r.AddIngredient(ModContent.ItemType<Materials.Fluorescence>(), 12);
             r.AddIngredient(ItemID.SoulofFlight, 20);
             r.AddTile(TileID.MythrilAnvil);

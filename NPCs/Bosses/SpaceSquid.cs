@@ -3,6 +3,7 @@ using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
+using AQMod.Gores;
 using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
 using AQMod.Items.Placeable.Banners;
@@ -16,7 +17,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.GaleStreams
+namespace AQMod.NPCs.Bosses
 {
     [AutoloadBossHead()]
     public class SpaceSquid : ModNPC
@@ -94,11 +95,14 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 }
                 for (int i = 0; i < 3; i++)
                 {
-                    Gore.NewGore(new Vector2(npc.position.X + npc.width / 2f + 10 * (i - 1), npc.position.Y + npc.height - 30f), new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(1f, 4f)), ModGore.GetGoreSlot("AQMod/Gores/GaleStreams/SpaceSquid_2"));
+                    AQGore.NewGore(new Vector2(npc.position.X + npc.width / 2f + 10 * (i - 1), npc.position.Y + npc.height - 30f), new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(1f, 4f)), 
+                        "GaleStreams/spacesquid_2");
                 }
 
-                Gore.NewGore(new Vector2(npc.position.X + (npc.direction == 1 ? npc.width : 0), npc.position.Y + 40f), new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f)), ModGore.GetGoreSlot("AQMod/Gores/GaleStreams/SpaceSquid_0"));
-                Gore.NewGore(new Vector2(npc.position.X + npc.width / 2f, npc.position.Y + 20f), new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f)), ModGore.GetGoreSlot("AQMod/Gores/GaleStreams/SpaceSquid_1"));
+                AQGore.NewGore(new Vector2(npc.position.X + (npc.direction == 1 ? npc.width : 0), npc.position.Y + 40f), new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f)),
+                    "GaleStreams/spacesquid_0");
+                AQGore.NewGore(new Vector2(npc.position.X + npc.width / 2f, npc.position.Y + 20f), new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f)),
+                    "GaleStreams/spacesquid_1");
             }
             else
             {
@@ -388,7 +392,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                             npc.ai[1]++;
                             npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(gotoPosition - npc.Center) * 20f, 0.01f);
                         }
-                        npc.rotation = Utils.AngleLerp(npc.rotation, 0f, 0.1f);
+                        npc.rotation = npc.rotation.AngleLerp(0f, 0.1f);
                     }
                     break;
             }
@@ -597,7 +601,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             if (npc.target != -1)
                 EventGaleStreams.ProgressEvent(Main.player[npc.target], 40);
             WorldDefeats.DownedSpaceSquid = true;
-            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>(), Main.rand.Next(2) + 2);
+            Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
             Item.NewItem(npc.getRect(), ItemID.SoulofFlight, Main.rand.Next(5) + 2);
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.SiphonTentacle>(), Main.rand.Next(10) + 10 + (Main.expertMode ? Main.rand.Next(5) : 0));
 

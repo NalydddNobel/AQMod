@@ -403,7 +403,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
             bool anyOthers = NPC.AnyNPCs(npc.type);
             if (!anyOthers)
             {
-                if (Main.rand.NextBool(3))
+                if (Main.hardMode && Main.rand.NextBool(30))
                 {
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
                 }

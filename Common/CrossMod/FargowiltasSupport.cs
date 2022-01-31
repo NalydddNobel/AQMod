@@ -61,11 +61,6 @@ namespace AQMod.Common.CrossMod
 
         private void createRecipes()
         {
-            createFargoRecipe<StriderCrabBanner, Items.Armor.StriderCarapace>();
-            createFargoRecipe<StriderCrabBanner, Items.Armor.StriderPalms>();
-            createFargoRecipe<StriderCrabBanner, Items.Tools.GrapplingHooks.StriderHook>();
-            createFargoRecipe<StriderCrabBanner, FishyFins>();
-
             createFargoRecipe<StariteBanner, CelesitalEightBall>();
             createFargoRecipe<StariteBanner, HypnoDye>();
             createFargoRecipe<SuperStariteBanner>(ItemID.Nazar);

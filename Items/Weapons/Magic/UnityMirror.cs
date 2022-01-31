@@ -30,14 +30,14 @@ namespace AQMod.Items.Weapons.Magic
 
         public override bool CanUseItem(Player player)
         {
-            return (!Main.dayTime || (Main.dayTime && Main.eclipse)) && AQItem.Reps.Mirror_CanUseItem(player);
+            return (!Main.dayTime || (Main.dayTime && Main.eclipse)) && AQItem.Commons.Mirror_CanUseItem(player);
         }
 
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.MeteoriteBar, 20);
-            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>(), 5);
+            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>());
             r.AddIngredient(ModContent.ItemType<Materials.SiphonTentacle>(), 12);
             r.AddIngredient(ItemID.SoulofFlight, 12);
             r.AddTile(TileID.MythrilAnvil);

@@ -56,7 +56,7 @@ namespace AQMod.Items.Weapons.Ranged
         {
             var recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<StarPhish>());
-            recipe.AddIngredient(ModContent.ItemType<AtmosphericEnergy>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
             recipe.AddIngredient(ModContent.ItemType<AquaticEnergy>(), 2);
             recipe.AddIngredient(ItemID.SoulofFlight, 12);
             recipe.AddIngredient(ItemID.SoulofNight, 8);

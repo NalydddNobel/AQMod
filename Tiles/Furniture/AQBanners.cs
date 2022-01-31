@@ -1,4 +1,5 @@
 ﻿using AQMod.Items.Placeable.Banners;
+using AQMod.NPCs.Bosses;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters.CrabSeason;
 using AQMod.NPCs.Monsters.DemonSiege;
@@ -19,10 +20,10 @@ namespace AQMod.Tiles.Furniture
         public const int Starite = 0;
         public const int SuperStarite = 1;
         public const int HyperStarite = 2;
-        public const int ArrowCrab = 3;
-        public const int HermitCrab = 4;
+        public const int Removed_ArrowCrab = 3;
+        public const int Removed_HermitCrab = 4;
         public const int SoliderCrabs = 5;
-        public const int StriderCrab = 6;
+        public const int Removed_StriderCrab = 6;
         public const int Cindera = 7;
         public const int Magmabubble = 8;
         public const int TrapperImp = 9;
@@ -61,13 +62,7 @@ namespace AQMod.Tiles.Furniture
                 case 2:
                     Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<HyperStariteBanner>());
                     break;
-                case ArrowCrab:
-                    Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<ArrowCrabBanner>());
-                    break;
                 case SoliderCrabs:
-                    Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<SoliderCrabsBanner>());
-                    break;
-                case StriderCrab:
                     Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<SoliderCrabsBanner>());
                     break;
                 case Cindera:
@@ -110,18 +105,11 @@ namespace AQMod.Tiles.Furniture
                     case HyperStarite:
                         player.NPCBannerBuff[ModContent.NPCType<HyperStarite>()] = true;
                         break;
-                    case ArrowCrab:
-                        player.NPCBannerBuff[ModContent.NPCType<ArrowCrab>()] = true;
-                        break;
-                    case HermitCrab:
-                        player.NPCBannerBuff[ModContent.NPCType<HermitCrab>()] = true;
-                        break;
+
                     case SoliderCrabs:
-                        player.NPCBannerBuff[ModContent.NPCType<SoliderCrabs>()] = true;
+                        player.NPCBannerBuff[ModContent.NPCType<SoldierCrab>()] = true;
                         break;
-                    case StriderCrab:
-                        player.NPCBannerBuff[ModContent.NPCType<StriderCrab>()] = true;
-                        break;
+
                     case Cindera:
                         player.NPCBannerBuff[ModContent.NPCType<Cindera>()] = true;
                         break;

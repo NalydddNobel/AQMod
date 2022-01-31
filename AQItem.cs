@@ -82,7 +82,6 @@ namespace AQMod
         {
             public static int PotionValue => Item.sellPrice(silver: 2);
             public static int EnergySellValue => Item.sellPrice(silver: 10);
-            public static int EnergyBuyValue => Item.buyPrice(gold: 3);
             public static int CrabCreviceValue => Item.sellPrice(silver: 25);
             public static int CorruptionWeaponValue => Item.sellPrice(silver: 50);
             public static int CrimsonWeaponValue => Item.sellPrice(silver: 55);
@@ -266,7 +265,7 @@ namespace AQMod
             }
         }
 
-        internal static class Reps
+        internal static class Commons
         {
             public static Vector2 GetItemDrawPos_NoAnimation(Item item)
             {

@@ -7,6 +7,7 @@ using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Dyes.Cursor;
 using AQMod.NPCs;
+using AQMod.NPCs.Bosses;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.DemonSiege;
@@ -490,7 +491,6 @@ namespace AQMod
                 UnaffectedByWind[NPCID.GoblinSummoner] = true;
                 UnaffectedByWind[NPCID.SolarSpearman] = true;
                 UnaffectedByWind[NPCID.MartianWalker] = true;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.StriderCrab>()] = true;
                 UnaffectedByWind[ModContent.NPCType<HermitCrab>()] = true;
 
                 UnaffectedByWind[NPCID.KingSlime] = false;
@@ -523,9 +523,7 @@ namespace AQMod
                 UnaffectedByWind[ModContent.NPCType<TrapImp>()] = false;
                 UnaffectedByWind[ModContent.NPCType<Cindera>()] = false;
                 UnaffectedByWind[ModContent.NPCType<Meteor>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.ArrowCrab>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.StriderCrab>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.SoliderCrabs>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.SoldierCrab>()] = false;
                 UnaffectedByWind[ModContent.NPCType<BalloonMerchant>()] = false;
             }
 

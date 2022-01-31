@@ -23,7 +23,7 @@ namespace AQMod.Items.Materials.Energies
 
         public override void SetDefaults()
         {
-            AQItem.Reps.Energy_SetDefaults(item, ItemRarityID.Green, AQItem.Prices.EnergySellValue);
+            AQItem.Commons.Energy_SetDefaults(item, ItemRarityID.Green, AQItem.Prices.EnergySellValue);
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -33,7 +33,7 @@ namespace AQMod.Items.Materials.Energies
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            AQItem.Reps.Energy_DoUpdate(item,
+            AQItem.Commons.Energy_DoUpdate(item,
                 Color.Lerp(new Color(120, 255, 60, 0), new Color(160, 250, 70, 0), ((float)Math.Sin(Main.GlobalTime * 2f) + 1f) / 2f), new Vector3(0.5f, 1f, 0.3f));
         }
     }

@@ -11,7 +11,7 @@ namespace AQMod.Items.Armor
         {
             item.width = 20;
             item.height = 20;
-            item.defense = 5;
+            item.defense = 3;
             item.rare = ItemRarityID.Blue;
             item.value = Item.sellPrice(silver: 80);
         }

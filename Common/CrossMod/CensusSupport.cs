@@ -15,7 +15,7 @@ namespace AQMod.Common.CrossMod
                 var census = GetMod();
                 if (census != null)
                 {
-                    census.Call("TownNPCCondition", ModContent.NPCType<Robster>(), "Defeat Jerry Crabson!");
+                    census.Call("TownNPCCondition", ModContent.NPCType<Robster>(), "Defeat Crabson!");
                     census.Call("TownNPCCondition", ModContent.NPCType<Physicist>(), "Defeat Omega Starite!");
                     census.Call("TownNPCCondition", ModContent.NPCType<Memorialist>(), "Upgrade an item at the Gore Nest!");
                 }

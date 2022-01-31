@@ -1124,7 +1124,7 @@ namespace AQMod
 
         private void HitNPCEffects(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
         {
-            if (mothmanMask && mothmanExplosionDelay == 0 && player.statLife >= player.statLifeMax2 && crit && !target.buffImmune[ModContent.BuffType<BlueFire>()] && target.type != NPCID.TargetDummy)
+            if (mothmanMask && mothmanExplosionDelay == 0 && player.statLife >= player.statLifeMax2 && crit && target.type != NPCID.TargetDummy)
             {
                 target.AddBuff(ModContent.BuffType<BlueFire>(), 480);
                 if (Main.myPlayer == player.whoAmI)
