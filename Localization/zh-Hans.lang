@@ -53,6 +53,8 @@ ItemTooltip.Extractor=增加10%挖掘速度\n下落的方块对你造成的伤�
 
 # Armor
 
+ItemName.CrabsonMask=巨蟹蛤面具
+
 ItemName.SteelPlatedChestplate=钢板胸甲
 ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱造成的伤害降低30%
 ArmorSetBonus.SkyrimArmor=增加5%伤害减免\n降低10%移动速度\n'你身上背的东西太多了, 你跑不动了'
@@ -175,6 +177,8 @@ ItemName.OutlineDye=轮廓描边染料
 ItemName.RainbowOutlineDye=彩虹轮廓描边染料
 
 # Tiles
+ItemName.CrabsonTrophy=巨蟹蛤纪念章
+
 ItemName.HellTombstone=地狱墓碑
 MapObject.HellTombstone=地狱墓碑
 
@@ -308,19 +312,9 @@ Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'�
 Tooltips.InventoryPiggyBankFunction=放置于物品栏或猪猪存钱罐中即可生效
 Tooltips.ToggleKeyBind=按下{0}以开关效果
 
-NPCName.Memorialist=请愿者
-
-Memorialist.Chat.0=啥? 你认为我是个怪胎? 那你最近肯定没有照过镜子.
-Memorialist.Chat.1=以撒是谁? 听起来像是个爱哭的孩子的名字.
-Memorialist.Chat.2=你需要我帮忙吗? 你肯定不是一个好英雄.
-Memorialist.Chat.3=我在想我的朋友Meru去哪了.
-Memorialist.Chat.4=你说我看起来像动物学家是什么意思? 我讨厌动物!
-Memorialist.Chat.5=我曾有个人型的蝙蝠朋友. 他们真的很喜欢谈论关于你们人类的敏感话题, 那简直太棒了. 有一天, 他们想知道我是否想成为一只蝙蝠, 我没法拒绝.
-
-Memorialist.Chat.Exporter=那个龙虾的东西...他叫什么名字? {0}? 他几乎和我一样对犯罪上瘾!
-Memorialist.Chat.Physicist={0} 是个失败者. 甚至不认为我是真实存在的! 她简直是个疯子.
-
-Memorialist.Chat.Mod.Split.Sheep=你有没有看见雪地里有一只毛茸茸的羊? 它看起来非常适合用于献祭.
+NPCName.SoldierCrabs=兵蟹
+ItemName.SoliderCrabsBanner=兵蟹旗
+ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoldierCrab}
 
 # Hermit Crab
 NPCName.HermitCrab=寄居蟹
@@ -345,6 +339,22 @@ HermitCrab.DayAgo=已在 {0} 天前储存此物品
 HermitCrab.DaysAgo=已在 {0} 天前储存此物品
 HermitCrab.MonthAgo=已在 {0} 月前储存此物品
 HermitCrab.MonthsAgo=已在 {0} 月前储存此物品
+
+# Memorialist
+
+NPCName.Memorialist=请愿者
+
+Memorialist.Chat.0=啥? 你认为我是个怪胎? 那你最近肯定没有照过镜子.
+Memorialist.Chat.1=以撒是谁? 听起来像是个爱哭的孩子的名字.
+Memorialist.Chat.2=你需要我帮忙吗? 你肯定不是一个好英雄.
+Memorialist.Chat.3=我在想我的朋友Meru去哪了.
+Memorialist.Chat.4=你说我看起来像动物学家是什么意思? 我讨厌动物!
+Memorialist.Chat.5=我曾有个人型的蝙蝠朋友. 他们真的很喜欢谈论关于你们人类的敏感话题, 那简直太棒了. 有一天, 他们想知道我是否想成为一只蝙蝠, 我没法拒绝.
+
+Memorialist.Chat.Exporter=那个龙虾的东西...他叫什么名字? {0}? 他几乎和我一样对犯罪上瘾!
+Memorialist.Chat.Physicist={0} 是个失败者. 甚至不认为我是真实存在的! 她简直是个疯子.
+
+Memorialist.Chat.Mod.Split.Sheep=你有没有看见雪地里有一只毛茸茸的羊? 它看起来非常适合用于献祭.
 
 # Balloon Merchant
 NPCName.BalloonMerchant=空中猎手
@@ -444,7 +454,9 @@ EventName.CrabSeason=蟹季
 BossChecklistDesc.CrabSeason=在随机的时间自然开始和结束. 你可以使用 [i:{0}] 来加速时间的循环并查看事件的开始和结束时间.
 EventWarning.CrabSeason=海洋的温度正在逐渐升高...
 EventEnding.CrabSeason=海洋再度变得冰冷...
+
 BossChecklistDesc.JerryCrabson=在海滩使用 [i:{0}] 召唤.
+Common.AwakenedCrabson=巨蟹蛤已苏醒!
 
 EventName.DemonSiege=恶魔围攻
 BossChecklistDesc.DemonSiege=在血巢处使用 {0} 召唤.
@@ -780,7 +792,6 @@ Common.UnassignedKey0=Unassigned Key
 Common.UnassignedKey1=an unassigned key
 Common.UnassignedKey2=unassigned key
 Common.AwakenedOmegaStarite=终末之星已苏醒!
-Common.AwakenedCrabson=巨蟹蛤已苏醒!
 ##################################################################################
 # Item Names																	 #
 ##################################################################################
@@ -832,8 +843,6 @@ ItemTooltip.Quasicrystal=真近战攻击造成暴击时会将伤害弹射至离�
 ##############
 ItemName.Crabsol=蟹壳剑
 ItemName.CrabsonBag=宝藏袋
-ItemName.CrabsonTrophy=巨蟹蛤纪念章
-ItemName.CrabsonMask=巨蟹蛤面具
 ItemName.MythicStarfruit=秘星果
 ItemName.NovaFruit=新星果
 ItemName.OmegaStariteMask=终末之星面具
@@ -1341,9 +1350,6 @@ NPCName.MultiStarite=集群源星
 NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
 NPCName.JerryCrabson=巨蟹蛤
 NPCName.JerryClaw=蟹蛤之爪
-NPCName.ArrowCrab=箭蟹
-NPCName.SoliderCrabs=兵蟹
-NPCName.StriderCrab=长足蟹
 
 NPCName.Magmalbubble=熔火喷吐者
 NPCName.TrapImp=捕魂小鬼
@@ -1367,15 +1373,6 @@ ItemName.SuperStariteBanner=极耀源星旗
 ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
 ItemName.HyperStariteBanner=巨耀源星旗
 ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
-
-ItemName.ArrowCrabBanner=箭蟹旗
-ItemTooltip.ArrowCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}
-ItemName.HermitCrabBanner=寄居蟹旗
-ItemTooltip.HermitCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}
-ItemName.SoliderCrabsBanner=兵蟹旗
-ItemTooltip.SoliderCrabsBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}
-ItemName.StriderCrabBanner=长足蟹旗
-ItemTooltip.StriderCrabBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}
 
 ItemName.CinderaBanner=幻形蝠旗
 ItemTooltip.CinderaBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}
