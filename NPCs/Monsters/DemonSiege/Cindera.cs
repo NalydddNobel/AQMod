@@ -71,6 +71,17 @@ namespace AQMod.NPCs.Monsters.DemonSiege
         protected override float SpeedYMax => 2f;
         protected override float SpeedY => 0.125f;
 
+        protected override bool PreCheckCollisions()
+        {
+            npc.TargetClosest_UpdateToFaceTowardsUndetectableTargetsToo();
+            return true;
+        }
+
+        protected override void InWater()
+        {
+            npc.TargetClosest_UpdateToFaceTowardsUndetectableTargetsToo();
+        }
+
         public override void AI()
         {
             bool canHitPlayer = false;

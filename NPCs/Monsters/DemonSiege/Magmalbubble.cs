@@ -136,7 +136,7 @@ namespace AQMod.NPCs.Monsters.DemonSiege
                     }
                     npc.position = new Vector2(cX * 16f + 8f - npc.width / 2f, cY * 16f - npc.height + 12f);
                     npc.velocity *= 0.1f;
-                    npc.TargetClosest();
+                    npc.TargetClosest_UpdateToFaceTowardsUndetectableTargetsToo();
                     npc.velocity.X += 3f * npc.direction;
                     npc.velocity.Y -= 4f;
                     npc.netUpdate = true;

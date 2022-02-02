@@ -75,18 +75,13 @@ namespace AQMod.NPCs
             }
         }
 
-        public static void Aggro(this ModNPC ModNPC)
+        public static void TargetClosest_UpdateToFaceTowardsUndetectableTargetsToo(this NPC npc)
         {
-            Aggro(ModNPC, aggro: true);
-        }
-        public static void Aggro(this ModNPC ModNPC, bool aggro)
-        {
-            ModNPC.npc.GetGlobalNPC<NPCAggro>().isAggro = aggro;
-        }
-
-        public static void ManuallyChecksAggro(this ModNPC ModNPC, bool manuallyChecksAggro)
-        {
-            ModNPC.npc.GetGlobalNPC<NPCAggro>().manuallyChecksAggro = manuallyChecksAggro;
+            npc.TargetClosest(faceTarget: true);
+            if (npc.target != -1 && Main.player[npc.target].active && Main.player[npc.target].dead && Main.player[npc.target].GetModPlayer<AQPlayer>().undetectable)
+            {
+                npc.direction = Main.player[npc.target].position.X + Main.player[npc.target].width / 2f < npc.position.X + npc.width / 2f ? -1 : 1;
+            }
         }
 
         public static bool IsntFriendly(this NPC npc)

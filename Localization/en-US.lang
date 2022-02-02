@@ -271,9 +271,9 @@ BuffName.DebuffSpread=Debuff Spread
 BuffDescription.DebuffSpread=Enemies will spread their current debuffs to nearby enemies when attacked
 
 ItemName.ShadePotion=Shade Potion
-ItemTooltip.ShadePotion=Enemies which have not targetted you take 50% extra damage\nEnemies are less likely to target you
+ItemTooltip.ShadePotion=Standing still will make enemies unable to target you
 BuffName.Shade=Shade
-BuffDescription.Shade=Enemies which have not targetted you take 50% extra damage\nEnemies are less likely to target you
+BuffDescription.Shade=Standing still will make enemies unable to target you
 
 ItemName.MysteryGrail=Mysterious Grail
 ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\nGives you a random buff

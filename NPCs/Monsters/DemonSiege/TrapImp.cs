@@ -65,7 +65,7 @@ namespace AQMod.NPCs.Monsters.DemonSiege
                 }
             }
             npc.TargetClosest(faceTarget: false);
-            if (npc.HasValidTarget)
+            if (npc.HasValidTarget || Main.player[npc.target].GetModPlayer<AQPlayer>().undetectable)
             {
                 float speed = 7f;
                 if (npc.ai[1] > 240f)

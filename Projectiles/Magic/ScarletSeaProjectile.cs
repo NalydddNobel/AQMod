@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Magic
 {
-    public class ScarletSea : ModProjectile
+    public class ScarletSeaProjectile : ModProjectile
     {
         private const int StopFollowingMouseDistance = 200;
 

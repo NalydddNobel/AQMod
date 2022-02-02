@@ -31,7 +31,6 @@ namespace AQMod.NPCs.Monsters
             npc.value = Item.buyPrice(silver: 50);
             npc.knockBackResist = 0.4f;
             npc.rarity = 2;
-            this.ManuallyChecksAggro(manuallyChecksAggro: true);
             banner = Item.NPCtoBanner(NPCID.Mimic);
             bannerItem = ItemID.MimicBanner;
         }
@@ -85,12 +84,6 @@ namespace AQMod.NPCs.Monsters
                 npc.velocity.X = 0f;
             }
             return true;
-        }
-
-        public override void AI()
-        {
-            base.AI();
-            this.Aggro((int)npc.ai[0] <= 0);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

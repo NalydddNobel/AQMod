@@ -37,7 +37,6 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
             npc.value = Item.buyPrice(silver: 40);
             npc.npcSlots = 2f;
             Starite.BuffImmunities(npc);
-            this.ManuallyChecksAggro(manuallyChecksAggro: true);
             banner = npc.type;
             bannerItem = ModContent.ItemType<SuperStariteBanner>();
         }
@@ -150,7 +149,6 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                     {
                         npc.ai[0] = 1f;
                         npc.ai[1] = 0f;
-                        this.Aggro(aggro: true);
                     }
                     else
                     {
@@ -161,7 +159,6 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                             npc.ai[0] = -1f;
                         }
                         npc.velocity *= 0.96f;
-                        this.Aggro(aggro: false);
                         return;
                     }
                 }

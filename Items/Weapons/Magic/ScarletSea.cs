@@ -1,4 +1,5 @@
 ﻿using AQMod.Dusts;
+using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -27,7 +28,7 @@ namespace AQMod.Items.Weapons.Magic
             item.useAnimation = 12;
             item.reuseDelay = 9;
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType<Projectiles.Magic.ScarletSea>();
+            item.shoot = ModContent.ProjectileType<ScarletSeaProjectile>();
             item.shootSpeed = 8.45f;
             item.noMelee = true;
             item.UseSound = SoundID.Item8;
@@ -73,7 +74,7 @@ namespace AQMod.Items.Weapons.Magic
                         if (count >= 10)
                         {
                             Main.projectile[i].ai[0] = -1f;
-                            ((Projectiles.Magic.ScarletSea)Main.projectile[i].modProjectile).StopFollowingMouse(Main.projectile[i].Center + Vector2.Normalize(Main.projectile[i].velocity) * 195f);
+                            ((Projectiles.Magic.ScarletSeaProjectile)Main.projectile[i].modProjectile).StopFollowingMouse(Main.projectile[i].Center + Vector2.Normalize(Main.projectile[i].velocity) * 195f);
                         }
                     }
                 }
@@ -87,13 +88,11 @@ namespace AQMod.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.CrimtaneBar, 8);
-            recipe.AddIngredient(ItemID.Ruby, 2);
-            recipe.AddIngredient(ItemID.Sapphire, 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.CrimtaneBar, 8);
+            r.AddTile(TileID.Anvils);
+            r.SetResult(this);
+            r.AddRecipe();
         }
     }
 }

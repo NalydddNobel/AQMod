@@ -126,8 +126,9 @@ namespace AQMod
         public bool lightAmulet;
         public bool bloodthirst;
         public byte bloodthirstDelay;
-        public bool shade;
         public bool spreadDebuffs;
+        public bool shade;
+        public bool undetectable;
 
         public float evilEnemyDR;
         public float holyEnemyDR;
@@ -923,14 +924,6 @@ namespace AQMod
                 }
             }
             OnHitNPCEffects(target, targetCenter, damage, knockback, crit);
-        }
-
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            if (shade && !AQNPC.IsActivelyPursuingPlayer(player, target))
-            {
-                damage = (int)(damage * 1.5f);
-            }
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)

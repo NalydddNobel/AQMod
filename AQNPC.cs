@@ -567,6 +567,11 @@ namespace AQMod
             }
         }
 
+        public static class Hooks
+        {
+
+        }
+
         internal static class AIStyles // personal ai style list
         {
             public const int BoundNPCAI = 0;
@@ -1442,13 +1447,6 @@ namespace AQMod
             {
                 NPC.buffImmune[i] = true;
             }
-        }
-
-        public static bool IsActivelyPursuingPlayer(Player player, NPC npc)
-        {
-            if (npc.GetGlobalNPC<NPCAggro>().isAggro)
-                return true;
-            return npc.target == player.whoAmI;
         }
     }
 }

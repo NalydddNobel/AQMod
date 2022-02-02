@@ -1,5 +1,5 @@
 ﻿using AQMod.Dusts;
-using AQMod.Items.Materials;
+using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -26,7 +26,7 @@ namespace AQMod.Items.Weapons.Magic
             item.useTime = 40;
             item.useAnimation = 40;
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType<Projectiles.Magic.SeltzerRain>();
+            item.shoot = ModContent.ProjectileType<SeltzerRainProjectile>();
             item.shootSpeed = 16.88f;
             item.noMelee = true;
             item.UseSound = SoundID.Item8;
@@ -71,12 +71,11 @@ namespace AQMod.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.DemoniteBar, 8);
-            recipe.AddIngredient(ModContent.ItemType<Fizzler>(), 4);
-            recipe.AddTile(TileID.Anvils);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.DemoniteBar, 8);
+            r.AddTile(TileID.Anvils);
+            r.SetResult(this);
+            r.AddRecipe();
         }
     }
 }

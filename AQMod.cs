@@ -735,8 +735,40 @@ namespace AQMod
             }
         }
 
+        public override void MidUpdatePlayerNPC()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && !Main.player[i].dead)
+                {
+                    var aQPlayer = Main.player[i].GetModPlayer<AQPlayer>();
+                    if (aQPlayer.shade && (Main.player[i].velocity == Vector2.Zero || Main.player[i].velocity.Length() < 0.2f))
+                    {
+                        aQPlayer.undetectable = true;
+                    }
+                    if (aQPlayer.undetectable)
+                    {
+                        Main.player[i].dead = true;
+                    }
+                }
+            }
+        }
+
         public override void MidUpdateNPCGore()
         {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && Main.player[i].dead)
+                {
+                    var aQPlayer = Main.player[i].GetModPlayer<AQPlayer>();
+                    if (aQPlayer.undetectable)
+                    {
+                        Main.player[i].dead = false;
+                        aQPlayer.undetectable = false;
+                    }
+                }
+            }
+
             DemonSiege.UpdateEvent();
 
             if (EventGlimmer.OmegaStarite > -1 && !Main.npc[EventGlimmer.OmegaStarite].active)
