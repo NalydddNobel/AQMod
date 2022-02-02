@@ -17,7 +17,7 @@ namespace AQMod.NPCs
         {
             if (isAggro || manuallyChecksAggro)
                 return;
-            if (npc.life < npc.lifeMax)
+            if (npc.life < npc.lifeMax || npc.boss)
             {
                 isAggro = true;
                 return;
