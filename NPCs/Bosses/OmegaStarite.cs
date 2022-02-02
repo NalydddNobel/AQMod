@@ -14,6 +14,7 @@ using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Pets;
 using AQMod.Items.Placeable.Furniture;
+using AQMod.Items.Potions;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Ranged;
@@ -1465,7 +1466,7 @@ namespace AQMod.NPCs.Bosses
                 if (NoHitManager.HasBeenNoHit(npc, i))
                 {
                     anyoneNoHit = true;
-                    AQItem.DropInstancedItem(i, npc.getRect(), ModContent.ItemType<Items.Placeable.Furniture.AStrangeIdea>());
+                    AQItem.DropInstancedItem(i, npc.getRect(), ModContent.ItemType<AStrangeIdea>());
                 }
             }
             if (anyoneNoHit || Main.rand.NextBool(10))
@@ -1503,8 +1504,9 @@ namespace AQMod.NPCs.Bosses
                     ModContent.ItemType<Raygun>(),
                 };
                 Item.NewItem(rect, choices[Main.rand.Next(choices.Length)]);
-                Item.NewItem(rect, ModContent.ItemType<CosmicEnergy>(), Main.rand.NextVRand(6, 10));
                 Item.NewItem(rect, ItemID.FallenStar, Main.rand.NextVRand(15, 20));
+                Item.NewItem(rect, ModContent.ItemType<SaintsFlow>(), Main.rand.NextVRand(1, 3));
+                Item.NewItem(rect, ModContent.ItemType<CosmicEnergy>(), Main.rand.NextVRand(6, 10));
                 Item.NewItem(rect, ModContent.ItemType<LightMatter>(), Main.rand.NextVRand(10, 18));
             }
             WorldDefeats.DownedStarite = true;

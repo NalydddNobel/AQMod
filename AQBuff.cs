@@ -1,5 +1,6 @@
 ﻿using AQMod.Buffs;
 using AQMod.Buffs.Debuffs;
+using AQMod.Common.ID;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,23 +11,30 @@ namespace AQMod
         public static class Sets
         {
             public static bool[] CanBeRemovedByWhiteBloodCell { get; private set; }
-            public static bool[] CanBeTurnedIntoMolite { get; private set; }
+            public static bool[] CantBeTurnedIntoMolite { get; private set; }
             public static bool[] IsFoodBuff { get; private set; }
+            public static bool[] CantBeSpreadToOtherNPCs { get; private set; }
 
             internal static void InternalInitalize()
             {
+                SetUtils.Length = BuffLoader.BuffCount;
+                SetUtils.GetIDFromType = (m, n) => m.BuffType(n);
+
+                CantBeSpreadToOtherNPCs = SetUtils.CreateFlagSet(BuffID.StardustMinionBleed, BuffID.DryadsWardDebuff, BuffID.Lovestruck, 
+                    typeof(LovestruckAQ), BuffID.Stinky);
+
                 IsFoodBuff = new bool[BuffLoader.BuffCount];
                 IsFoodBuff[BuffID.WellFed] = true;
                 IsFoodBuff[ModContent.BuffType<GrapePhantaBuff>()] = true;
-                IsFoodBuff[ModContent.BuffType<SpicyEelBuff>()] = true;
+                IsFoodBuff[ModContent.BuffType<SpeedBoostFood>()] = true;
                 IsFoodBuff[ModContent.BuffType<NeutronYogurtBuff>()] = true;
                 IsFoodBuff[ModContent.BuffType<DragonCarrotBuff>()] = true;
                 IsFoodBuff[ModContent.BuffType<RedLicoriceBuff>()] = true;
 
-                CanBeTurnedIntoMolite = new bool[BuffLoader.BuffCount];
-                IsFoodBuff.CopyTo(CanBeTurnedIntoMolite, 0);
-                CanBeTurnedIntoMolite[ModContent.BuffType<UmystickDelay>()] = false;
-                CanBeTurnedIntoMolite[ModContent.BuffType<Buffs.Vampire.Vampirism>()] = false;
+                CantBeTurnedIntoMolite = new bool[BuffLoader.BuffCount];
+                IsFoodBuff.CopyTo(CantBeTurnedIntoMolite, 0);
+                CantBeTurnedIntoMolite[ModContent.BuffType<UmystickDelay>()] = true;
+                CantBeTurnedIntoMolite[ModContent.BuffType<Buffs.Vampire.Vampirism>()] = true;
 
                 CanBeRemovedByWhiteBloodCell = new bool[BuffLoader.BuffCount];
                 CanBeRemovedByWhiteBloodCell[BuffID.OnFire] = true;

@@ -73,6 +73,48 @@ namespace AQMod.Tiles
             }
         }
 
+        public static void GemFrame(int i, int j)
+        {
+            Tile tile = Framing.GetTileSafely(i, j);
+            Tile top = Main.tile[i, j - 1];
+            Tile bottom = Framing.GetTileSafely(i, j + 1);
+            Tile left = Main.tile[i - 1, j];
+            Tile right = Main.tile[i + 1, j];
+            if (top != null && top.active() && !top.bottomSlope() && top.type >= 0 && Main.tileSolid[top.type] && !Main.tileSolidTop[top.type])
+            {
+                if (tile.frameY < 54 || tile.frameY > 90)
+                {
+                    tile.frameY = (short)(54 + WorldGen.genRand.Next(3) * 18);
+                }
+                return;
+            }
+            if (bottom != null && bottom.active() && !bottom.halfBrick() && !bottom.topSlope() && bottom.type >= 0 && (Main.tileSolid[bottom.type] || Main.tileSolidTop[bottom.type]))
+            {
+                if (tile.frameY < 0 || tile.frameY > 36)
+                {
+                    tile.frameY = (short)(WorldGen.genRand.Next(3) * 18);
+                }
+                return;
+            }
+            if (left != null && left.active() && left.type >= 0 && Main.tileSolid[left.type] && !Main.tileSolidTop[left.type])
+            {
+                if (tile.frameY < 108 || tile.frameY > 54)
+                {
+                    tile.frameY = (short)(108 + WorldGen.genRand.Next(3) * 18);
+                }
+                return;
+            }
+            if (right != null && right.active() && right.type >= 0 && Main.tileSolid[right.type] && !Main.tileSolidTop[right.type])
+            {
+                if (tile.frameY < 162 || tile.frameY > 198)
+                {
+                    tile.frameY = (short)(162 + WorldGen.genRand.Next(3) * 18);
+                }
+                return;
+            }
+            WorldGen.KillTile(i, j);
+        }
+
         public static int FrameForPlatformSloping(byte slope)
         {
             if (slope == 1)

@@ -1,5 +1,5 @@
 ﻿using AQMod.Assets;
-using AQMod.Content;
+using AQMod.Common.ID;
 using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,24 +16,24 @@ namespace AQMod.Items.Potions
 {
     public class MoliteTag : ModItem
     {
-        public struct StarbytePotionTag
+        public struct StarbyteTagData
         {
             public readonly ushort potionItemID;
             public ushort BuffID { get; private set; }
             public uint BuffTime { get; private set; }
 
-            public static StarbytePotionTag Default => new StarbytePotionTag(ItemID.ObsidianSkinPotion, Terraria.ID.BuffID.ObsidianSkin, 6000);
+            public static StarbyteTagData Default => new StarbyteTagData(ItemID.ObsidianSkinPotion, Terraria.ID.BuffID.ObsidianSkin, 6000);
 
-            public static StarbytePotionTag Error => new StarbytePotionTag(ItemID.ObsidianSkinPotion, ushort.MaxValue, 6000);
+            public static StarbyteTagData Error => new StarbyteTagData(ItemID.ObsidianSkinPotion, ushort.MaxValue, 6000);
 
-            internal StarbytePotionTag(int item, int buffID, uint buffTime)
+            internal StarbyteTagData(int item, int buffID, uint buffTime)
             {
                 potionItemID = (ushort)item;
                 BuffID = (ushort)buffID;
                 BuffTime = buffTime;
             }
 
-            public StarbytePotionTag(int item)
+            public StarbyteTagData(int item)
             {
                 potionItemID = (ushort)item;
                 BuffID = 0;
@@ -41,7 +41,7 @@ namespace AQMod.Items.Potions
                 SetupTag();
             }
 
-            public static StarbytePotionTag FromKey(string key)
+            public static StarbyteTagData FromKey(string key)
             {
                 try
                 {
@@ -59,7 +59,7 @@ namespace AQMod.Items.Potions
                         }
                         else
                         {
-                            return new StarbytePotionTag(itemType);
+                            return new StarbyteTagData(itemType);
                         }
                     }
                     else
@@ -84,7 +84,7 @@ namespace AQMod.Items.Potions
                         }
                         else
                         {
-                            return new StarbytePotionTag(itemType);
+                            return new StarbyteTagData(itemType);
                         }
                     }
                 }
@@ -122,7 +122,7 @@ namespace AQMod.Items.Potions
 
         public override bool CloneNewInstances => true;
 
-        public StarbytePotionTag potion = StarbytePotionTag.Default;
+        public StarbyteTagData potion = StarbyteTagData.Default;
 
         public void SetupPotionStats()
         {
@@ -149,14 +149,16 @@ namespace AQMod.Items.Potions
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                var color = StarbyteColorCache.GetColor(potion.potionItemID);
+                var color = BuffColorCache.GetColorFromItemID(potion.potionItemID);
+                color.A = 0;
                 var color2 = color * 4;
                 var rectangle = new Rectangle((int)player.position.X - 2, (int)player.position.Y - 2, player.width + 4, player.height + 4);
                 var center = new Vector2(rectangle.X + rectangle.Width / 2f, rectangle.Y + rectangle.Height / 2f);
                 int type = ModContent.DustType<MonoDust>();
                 for (int i = 0; i < 10; i++)
                 {
-                    int d = Dust.NewDust(new Vector2(rectangle.X, rectangle.Y), rectangle.Width, rectangle.Height, type, 0f, 0f, 0, color2, Main.rand.NextFloat(0.7f, 1.2f));
+                    int d = Dust.NewDust(new Vector2(rectangle.X, rectangle.Y), rectangle.Width, rectangle.Height, ModContent.DustType<MonoSparkleDust>(), 
+                        0f, 0f, 0, color2, Main.rand.NextFloat(0.7f, 1.2f));
                     var velocity = Vector2.Normalize(center - Main.dust[d].position + new Vector2(0f, -4f)) * 8f;
                     Main.dust[d].velocity = velocity;
                 }
@@ -181,7 +183,7 @@ namespace AQMod.Items.Potions
         {
             try
             {
-                var color = StarbyteColorCache.GetColor(potion.potionItemID);
+                var color = BuffColorCache.GetColorFromItemID(potion.potionItemID);
                 var texture = TextureGrabber.GetItem(item.type);
                 Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, scale, SpriteEffects.None, 0f);
 
@@ -213,7 +215,7 @@ namespace AQMod.Items.Potions
         {
             try
             {
-                var color = StarbyteColorCache.GetColor(potion.potionItemID);
+                var color = BuffColorCache.GetColorFromItemID(potion.potionItemID);
                 var texture = TextureGrabber.GetItem(item.type);
                 var drawCoordinates = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
                 var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
@@ -240,12 +242,12 @@ namespace AQMod.Items.Potions
             if (tag.ContainsKey("potion"))
             {
                 int legacyTag = tag.GetInt("potion");
-                potion = StarbytePotionTag.FromKey("0:" + legacyTag);
+                potion = StarbyteTagData.FromKey("0:" + legacyTag);
             }
             else
             {
                 string key = tag.GetString("starbyteTag");
-                potion = StarbytePotionTag.FromKey(key);
+                potion = StarbyteTagData.FromKey(key);
             }
             SetupPotionStats();
         }
@@ -262,13 +264,13 @@ namespace AQMod.Items.Potions
             ushort type = reader.ReadUInt16();
             ushort buffID = reader.ReadUInt16();
             uint buffTime = reader.ReadUInt32();
-            potion = new StarbytePotionTag(type, buffID, buffTime);
+            potion = new StarbyteTagData(type, buffID, buffTime);
             SetupPotionStats();
         }
 
         private Color GetTextColor(float time)
         {
-            var color = StarbyteColorCache.GetColor(potion.potionItemID);
+            var color = BuffColorCache.GetColorFromItemID(potion.potionItemID);
             color = Color.Lerp(color, new Color(255, 255, 255, 255), Main.mouseTextColor / 510f);
             return color;
         }
@@ -304,7 +306,7 @@ namespace AQMod.Items.Potions
 
         public static bool CanBuffBeTurnedIntoMolitePotion(int buff)
         {
-            return buff != BuffID.WellFed && buff != BuffID.Tipsy && !AQBuff.Sets.IsFoodBuff[buff];
+            return buff != BuffID.WellFed && buff != BuffID.Tipsy && !AQBuff.Sets.CantBeTurnedIntoMolite[buff];
         }
 
         public override void AddRecipes()

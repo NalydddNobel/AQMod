@@ -96,11 +96,11 @@ namespace AQMod
 
         public class r_MolitePotionRecipe : ModRecipe
         {
-            private readonly MoliteTag.StarbytePotionTag _potion;
+            private readonly MoliteTag.StarbyteTagData _potion;
 
             public r_MolitePotionRecipe(Mod mod, ushort potionType) : base(mod)
             {
-                _potion = new MoliteTag.StarbytePotionTag(potionType);
+                _potion = new MoliteTag.StarbyteTagData(potionType);
             }
 
             public override void OnCraft(Item item)

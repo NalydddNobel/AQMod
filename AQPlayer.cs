@@ -1,6 +1,7 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Temperature;
 using AQMod.Common.Graphics;
+using AQMod.Common.ID;
 using AQMod.Content;
 using AQMod.Content.Fishing;
 using AQMod.Content.World;
@@ -123,9 +124,14 @@ namespace AQMod
         public bool pearlAmulet;
         public bool darkAmulet;
         public bool lightAmulet;
+        public bool bloodthirst;
+        public byte bloodthirstDelay;
+        public bool shade;
+        public bool spreadDebuffs;
 
         public float evilEnemyDR;
         public float holyEnemyDR;
+        public int healEffectValueForSyncingTheThingOnTheServer;
 
         public bool setBonusLightbulb;
 
@@ -173,6 +179,8 @@ namespace AQMod
             pickBreak = false;
             fidgetSpinner = false;
             cantUseMenaceUmbrellaJump = false;
+            bloodthirstDelay = 0;
+            healEffectValueForSyncingTheThingOnTheServer = 0;
         }
 
         public override void OnEnterWorld(Player player)
@@ -202,7 +210,7 @@ namespace AQMod
                 ScreenShakeManager.Update();
         }
 
-        private void UpdateTemperatureRegen()
+        private void UpdateTemperature()
         {
             if (temperature != 0)
             {
@@ -248,6 +256,33 @@ namespace AQMod
             else
             {
                 temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
+            }
+            if (EventGaleStreams.EventActive(player))
+            {
+                if (temperature < -60)
+                {
+                    player.AddBuff(ModContent.BuffType<Cold60>(), 4);
+                }
+                else if (temperature < -40)
+                {
+                    player.AddBuff(ModContent.BuffType<Cold40>(), 4);
+                }
+                else if (temperature < -20)
+                {
+                    player.AddBuff(ModContent.BuffType<Cold20>(), 4);
+                }
+                else if (temperature > 60)
+                {
+                    player.AddBuff(ModContent.BuffType<Hot60>(), 4);
+                }
+                else if (temperature > 40)
+                {
+                    player.AddBuff(ModContent.BuffType<Hot40>(), 4);
+                }
+                else if (temperature > 20)
+                {
+                    player.AddBuff(ModContent.BuffType<Hot20>(), 4);
+                }
             }
         }
 
@@ -316,6 +351,9 @@ namespace AQMod
             pearlAmulet = false;
             lightAmulet = false;
             darkAmulet = false;
+            bloodthirst = false;
+            shade = false;
+            spreadDebuffs = false;
 
             if (extraHP > 60) // to cap life max buffs at 60
             {
@@ -323,41 +361,13 @@ namespace AQMod
             }
             player.statLifeMax2 += extraHP;
             extraHP = 0;
-            UpdateTemperatureRegen();
+            UpdateTemperature();
             hotAmulet = false;
             coldAmulet = false;
-            if (EventGaleStreams.EventActive(player))
-            {
-                if (temperature < -60)
-                {
-                    player.AddBuff(ModContent.BuffType<Cold60>(), 4);
-                }
-                else if (temperature < -40)
-                {
-                    player.AddBuff(ModContent.BuffType<Cold40>(), 4);
-                }
-                else if (temperature < -20)
-                {
-                    player.AddBuff(ModContent.BuffType<Cold20>(), 4);
-                }
-                else if (temperature > 60)
-                {
-                    player.AddBuff(ModContent.BuffType<Hot60>(), 4);
-                }
-                else if (temperature > 40)
-                {
-                    player.AddBuff(ModContent.BuffType<Hot40>(), 4);
-                }
-                else if (temperature > 20)
-                {
-                    player.AddBuff(ModContent.BuffType<Hot20>(), 4);
-                }
-            }
             if (mothmanExplosionDelay > 0)
                 mothmanExplosionDelay--;
-            if (bossrushOld != bossrush)
-            {
-            }
+            if (bloodthirstDelay > 0)
+                bloodthirstDelay--;
             bossrushOld = bossrush;
             bossrush = false;
             if (!dartHead)
@@ -381,6 +391,11 @@ namespace AQMod
                         break;
                     }
                 }
+            }
+            if (healEffectValueForSyncingTheThingOnTheServer != 0 && Main.myPlayer == player.whoAmI)
+            {
+                player.HealEffect(healEffectValueForSyncingTheThingOnTheServer, broadcast: true);
+                healEffectValueForSyncingTheThingOnTheServer = 0;
             }
         }
 
@@ -413,6 +428,8 @@ namespace AQMod
             clone.arachnotron = arachnotron;
             clone.blueSpheres = blueSpheres;
         }
+
+
 
         public override bool PreItemCheck()
         {
@@ -694,6 +711,10 @@ namespace AQMod
             temperature = 0;
             temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
             notFrostburn = false;
+            mothmanExplosionDelay = 0;
+            dartHeadDelay = 0;
+            bloodthirstDelay = 0;
+            healEffectValueForSyncingTheThingOnTheServer = 0;
         }
 
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -901,7 +922,15 @@ namespace AQMod
                     }
                 }
             }
-            HitNPCEffects(target, targetCenter, damage, knockback, crit);
+            OnHitNPCEffects(target, targetCenter, damage, knockback, crit);
+        }
+
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if (shade && !AQNPC.IsActivelyPursuingPlayer(player, target))
+            {
+                damage = (int)(damage * 1.5f);
+            }
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
@@ -925,7 +954,7 @@ namespace AQMod
                     }
                 }
             }
-            HitNPCEffects(target, targetCenter, damage, knockback, crit);
+            OnHitNPCEffects(target, targetCenter, damage, knockback, crit);
         }
 
         public override void UpdateBadLifeRegen()
@@ -973,44 +1002,6 @@ namespace AQMod
 
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
-            //if (liquidType == Tile.Liquid_Water)
-            //{
-            //    //if (GlimmerEvent.IsActive)
-            //    //{
-            //    //    if (player.position.Y < Main.worldSurface * 16f)
-            //    //    {
-            //    //        if (player.ZoneCorrupt && Main.rand.NextBool(5))
-            //    //        {
-            //    //            caughtType = ModContent.ItemType<Fizzler>();
-            //    //        }
-            //    //        else if (((int)(player.position.X / 16f + player.width / 2) - GlimmerEvent.tileX).Abs() < GlimmerEvent.UltraStariteDistance && Main.rand.NextBool(7))
-            //    //        {
-            //    //            caughtType = ModContent.ItemType<UltraEel>();
-            //    //        }
-            //    //        else if (Main.rand.NextBool(6))
-            //    //        {
-            //    //            caughtType = ModContent.ItemType<Nessie>();
-            //    //        }
-            //    //        else if (Main.rand.NextBool(8))
-            //    //        {
-            //    //            caughtType = ModContent.ItemType<Blobfish>();
-            //    //        }
-            //    //        else if (Main.rand.NextBool(6))
-            //    //        {
-            //    //            caughtType = ModContent.ItemType<GlimmeringStatue>();
-            //    //        }
-            //    //        else if (Main.rand.NextBool(6))
-            //    //        {
-            //    //            caughtType = ModContent.ItemType<MoonlightWall>();
-            //    //        }
-            //    //        else
-            //    //        {
-            //    //            if (caughtType == ItemID.Bass || caughtType == ItemID.NeonTetra || caughtType == ItemID.Salmon)
-            //    //                caughtType = ModContent.ItemType<Molite>();
-            //    //        }
-            //    //    }
-            //    //}
-            //}
             if (questFish > Main.maxItems && ItemLoader.GetItem(questFish) is AnglerQuestItem anglerQuestItem)
             {
                 if (anglerQuestItem.FishingLocation.CatchFish(player, fishingRod, bait, power, liquidType, poolSize, worldLayer))
@@ -1027,17 +1018,6 @@ namespace AQMod
                 junk = false;
                 return;
             }
-            //if (liquidType == Tile.Liquid_Honey && NPC.downedQueenBee)
-            //{
-            //    if (Main.rand.NextBool(3))
-            //    {
-            //        caughtType = ModContent.ItemType<Combfish>();
-            //    }
-            //    else if (Main.rand.NextBool(5))
-            //    {
-            //        caughtType = ModContent.ItemType<LarvaEel>();
-            //    }
-            //}
         }
 
         public override void ModifyScreenPosition()
@@ -1122,7 +1102,7 @@ namespace AQMod
             }
         }
 
-        private void HitNPCEffects(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
+        private void OnHitNPCEffects(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
         {
             if (mothmanMask && mothmanExplosionDelay == 0 && player.statLife >= player.statLifeMax2 && crit && target.type != NPCID.TargetDummy)
             {
@@ -1185,6 +1165,62 @@ namespace AQMod
                                 { rotation = MathHelper.PiOver4 });
                         }
                     }
+                }
+            }
+            if (spreadDebuffs)
+            {
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && target.Distance(Main.npc[i].Center) < 200f)
+                    {
+                        SpreadDebuffs(target, Main.npc[i]);
+                    }
+                }
+            }
+        }
+
+        private static void SpreadDebuffs(NPC spreader, NPC npc)
+        {
+            List<Color> poofColors = new List<Color>();
+            for (int i = 0; i < spreader.buffType.Length; i++)
+            {
+                if (spreader.buffType[i] > 0 && !AQBuff.Sets.CantBeSpreadToOtherNPCs[spreader.buffType[i]] && !npc.buffImmune[spreader.buffType[i]])
+                {
+                    int b = npc.FindBuffIndex(spreader.buffType[i]);
+                    if (b == -1)
+                    {
+                        npc.AddBuff(spreader.buffType[i], spreader.buffTime[i] * (Main.rand.NextBool() ? 1 : 2));
+                        var color = BuffColorCache.GetColorFromBuffID(spreader.buffType[i]);
+                        if (color != Color.Transparent)
+                        {
+                            poofColors.Add(color);
+                        }
+                    }
+                    else
+                    {
+                        if (npc.buffTime[b] < spreader.buffTime[i])
+                        {
+                            npc.buffTime[b] = spreader.buffTime[i] * (Main.rand.NextBool() ? 1 : 2);
+                        }
+                    }
+                }
+            }
+            if (poofColors.Count > 0)
+            {
+                for (int i = 0; i < 16; i++)
+                {
+                    DustSpawnPatterns.SpawnDustAnMakeVelocityGoAwayFromOrigin(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), 
+                        Main.rand.NextFloat(0.1f, 0.25f), poofColors[Main.rand.Next(poofColors.Count)], Main.rand.NextFloat(0.9f, 1.1f));
+                }
+                for (int i = 0; i < 12; i++)
+                {
+                    DustSpawnPatterns.SpawnDustAnMakeVelocityGoAwayFromOrigin(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), 
+                        Main.rand.NextFloat(npc.width / 16f, npc.width / 12f), poofColors[Main.rand.Next(poofColors.Count)], Main.rand.NextFloat(0.9f, 1.1f));
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    DustSpawnPatterns.SpawnDustAnMakeVelocityGoAwayFromOrigin(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), 
+                        Main.rand.NextFloat(npc.width / 12f, npc.width / 8f), poofColors[Main.rand.Next(poofColors.Count)], Main.rand.NextFloat(0.9f, 1.1f));
                 }
             }
         }

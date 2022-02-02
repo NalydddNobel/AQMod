@@ -75,6 +75,20 @@ namespace AQMod.NPCs
             }
         }
 
+        public static void Aggro(this ModNPC ModNPC)
+        {
+            Aggro(ModNPC, aggro: true);
+        }
+        public static void Aggro(this ModNPC ModNPC, bool aggro)
+        {
+            ModNPC.npc.GetGlobalNPC<NPCAggro>().isAggro = aggro;
+        }
+
+        public static void ManuallyChecksAggro(this ModNPC ModNPC, bool manuallyChecksAggro)
+        {
+            ModNPC.npc.GetGlobalNPC<NPCAggro>().manuallyChecksAggro = manuallyChecksAggro;
+        }
+
         public static bool IsntFriendly(this NPC npc)
         {
             return npc.active && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC;

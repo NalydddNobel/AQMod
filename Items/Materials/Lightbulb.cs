@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using AQMod.Tiles.Furniture;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,6 +14,12 @@ namespace AQMod.Items.Materials
             item.maxStack = 999;
             item.rare = ItemRarityID.Blue;
             item.value = Item.sellPrice(silver: 5);
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.useTime = 10;
+            item.useAnimation = 15;
+            item.createTile = ModContent.TileType<LightbulbTile>();
+            item.autoReuse = true;
+            item.useTurn = true;
         }
 
         public override void AddRecipes()

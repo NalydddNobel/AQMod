@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items
+namespace AQMod.Items.Materials
 {
     public class Depthscale : FishingItem
     {

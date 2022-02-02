@@ -1,6 +1,5 @@
 ﻿using AQMod.Common;
 using AQMod.Content.Fishing;
-using AQMod.Items;
 using AQMod.Items.Materials;
 using AQMod.Items.Potions;
 using System;

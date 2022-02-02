@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs
 {
-    public class SpicyEelBuff : ModBuff
+    public class SpeedBoostFood : ModBuff
     {
         public override void Update(Player player, ref int buffIndex)
         {

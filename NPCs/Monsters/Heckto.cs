@@ -32,6 +32,7 @@ namespace AQMod.NPCs.Monsters
             npc.value = 510f;
             npc.noTileCollide = true;
             npc.noGravity = true;
+            this.ManuallyChecksAggro(manuallyChecksAggro: true);
             for (int b = 0; b < npc.buffImmune.Length; b++)
             {
                 npc.buffImmune[b] = true;
@@ -41,6 +42,7 @@ namespace AQMod.NPCs.Monsters
         public override void AI()
         {
             npc.TargetClosest();
+            this.Aggro(aggro: true);
             Vector2 center = npc.Center;
             var target = Main.player[npc.target];
             Vector2 trueDifference = target.Center - center;

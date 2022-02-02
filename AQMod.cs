@@ -590,7 +590,7 @@ namespace AQMod
                 SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
                 PrimitivesRenderer.Setup();
                 ScreenShakeManager.Load();
-                StarbyteColorCache.Init();
+                BuffColorCache.Init();
                 WorldEffects = new List<WorldVisualEffect>();
             }
 
@@ -679,7 +679,7 @@ namespace AQMod
             {
                 AQSound.rand = null;
                 WorldEffects = null;
-                StarbyteColorCache.Unload();
+                BuffColorCache.Unload();
                 ScreenShakeManager.Unload();
                 ArmorOverlays = null;
                 EffectCache.Unload();

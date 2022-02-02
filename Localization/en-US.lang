@@ -56,10 +56,20 @@ ItemTooltip.Extractor=10% increased mining speed\nFalling blocks deal less damag
 ItemName.CrabsonMask=Crabson Mask
 
 ItemName.SteelPlatedChestplate=Steel Plated Chestplate
-ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% less damage
 ArmorSetBonus.SkyrimArmor=5% increased damage reduction\n10% decreased movement speed\n'You are carrying too much to be able to run'
 
+ItemName.LightbulbHelmet=Lightbulb Helmet
+ItemTooltip.LightbulbHelmet=Slightly increases mana regeneration\nYou faintly emit light
+ItemName.LightbulbBreastplate=Lightbulb Breastplate
+ItemName.LightbulbGreaves=Lightbulb Greaves
+ItemTooltip.LightbulbGreaves=Increases your max number of minions
+
+ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% less damage
+
 # Materials
+ItemName.Lightbulb=Lightbulb
+ItemTooltip.Lightbulb=Emits light using the power of stars
+
 ItemName.Fluorescence=Fluorescence
 ItemName.SiphonTentacle=Siphon Tentacle
 
@@ -247,8 +257,55 @@ ItemTooltip.Beeswax=Shows the location of any visible Plantera bulbs
 MapLayerToggle.Beeswax='Beeswax'\nShows the location of any visible Plantera bulbs
 
 # Potions
+ItemName.BloodthirstPotion=Bloodthirst Potion
+ItemTooltip.BloodthirstPotion=You drain some life when you kill an enemy
+BuffName.Bloodthirst=Bloodthirst
+BuffDescription.Bloodthirst=You drain some life when you kill an enemy
+
+ItemName.BloodshedPotion=Resurrection Potion
+ItemTooltip.BloodshedPotion=Teleports you to the location of your most recent death
+
+ItemName.SpreadPotion=Spread Potion
+ItemTooltip.SpreadPotion=Enemies will spread their current debuffs to nearby enemies when attacked
+BuffName.DebuffSpread=Debuff Spread
+BuffDescription.DebuffSpread=Enemies will spread their current debuffs to nearby enemies when attacked
+
+ItemName.ShadePotion=Shade Potion
+ItemTooltip.ShadePotion=Enemies which have not targetted you take 50% extra damage\nEnemies are less likely to target you
+BuffName.Shade=Shade
+BuffDescription.Shade=Enemies which have not targetted you take 50% extra damage\nEnemies are less likely to target you
+
 ItemName.MysteryGrail=Mysterious Grail
 ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\nGives you a random buff
+
+ItemName.SaintsFlow=Saint's Flow
+ItemTooltip.SaintsFlow=Greatly increases speed
+
+ItemName.SpicyEel=Spicy Eel
+ItemTooltip.SpicyEel=Greatly increases speed
+
+BuffName.SpeedBoostFood=Speed Increase
+BuffDescription.SpeedBoostFood=Your speed is greatly increased
+
+ItemName.NeutronJuice=Neutron Yogurt
+ItemTooltip.NeutronJuice=Minor improvements to all stats and you have slightly lower gravity\n'Weighs millions of tons... still lighter than putting a safe in a safe'
+BuffName.NeutronYogurtBuff=Lower Gravity
+BuffDescription.NeutronYogurtBuff=Minor improvements to all stats and you have slightly lower gravity
+
+ItemName.RedLicorice=Red Licorice
+ItemTooltip.RedLicorice=Medium improvements to all stats and increases your life by 20
+BuffName.RedLicoriceBuff=Extra Life
+BuffDescription.RedLicoriceBuff=Medium improvements to all stats and increases your life by 20
+
+ItemName.GrapePhanta=Grape Phanta
+ItemTooltip.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
+BuffName.GrapePhantaBuff=Extra Mana
+BuffDescription.GrapePhantaBuff=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
+
+ItemName.PeeledCarrot=Dragon Carrot
+ItemTooltip.PeeledCarrot=Medium improvements to all stats and grants you night vision
+BuffName.PeeledCarrotBuff=Eyesight
+BuffDescription.PeeledCarrotBuff=Medium improvements to all stats and grants you night vision
 
 # Fish
 ItemName.CrabPot=Crab Pot
@@ -288,12 +345,6 @@ ItemTooltip.LarvaEel=Gives you 3 minutes of honey but inflicts potion sickness
 # Quest Fish
 ItemName.WaterFisg=Water Fish
 ItemName.Crabdaughter=Crabdaughter
-
-# Foods
-ItemName.PeeledCarrot=Dragon Carrot
-ItemTooltip.PeeledCarrot=Medium improvements to all stats and grants you night vision
-BuffName.PeeledCarrot=Dragon Carrot
-BuffDescription.PeeledCarrot=Medium improvements to all stats and grants you night vision
 
 # Tiles
 ItemName.SedimentSandBlock=Sedimentary Sand Block
@@ -855,27 +906,7 @@ ItemName.UltimateStarfruit=Ultimate Starfruit
 ##############
 ItemName.Baguette=Baguette
 
-ItemName.NeutronJuice=Neutron Yogurt
-ItemTooltip.NeutronJuice=Minor improvements to all stats and you have slightly lower gravity\n'Weighs millions of tons... still lighter than putting a safe in a safe'
-BuffName.NeutronYogurt=Neutron Yogurt
-BuffDescription.NeutronYogurt=Minor improvements to all stats and you have slightly lower gravity
-
-ItemName.RedLicorice=Red Licorice
-ItemTooltip.RedLicorice=Medium improvements to all stats and increases your life by 20
-BuffName.RedLicorice=Red Licorice
-BuffDescription.RedLicorice=Medium improvements to all stats and increases your life by 20
-
-ItemName.GrapePhanta=Grape Phanta
-ItemTooltip.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
-BuffName.GrapePhanta=Grape Phanta
-BuffDescription.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
-
 ItemName.SuspiciousLookingSteak=Suspicious Looking Steak
-
-ItemName.SpicyEel=Spicy Eel
-ItemTooltip.SpicyEel=Greatly increases speed
-BuffName.SpicyEel=Spicy Eel
-BuffDescription.SpicyEel=Your speed is greatly increased
 
 # Other Buffs Items
 ItemName.OpposingPotion=Opposing Potion
@@ -891,9 +922,6 @@ ItemName.ArachnotronRevvers=Arachnotron Revvers
 ItemName.ArachnotronRibcage=Arachnotron Ribcage
 ItemName.ArachnotronVisor=Arachnotron Visor
 ItemName.DartTrapHat=Dart Trap Hat
-ItemName.LightbulbBreastplate=Lightbulb Breastplate
-ItemName.LightbulbGreaves=Lightbulb Greaves
-ItemName.LightbulbHelmet=Lightbulb Helmet
 ItemName.SuperDartTrapHat=Super Dart Trap Hat
 ########
 # Misc #
@@ -921,9 +949,7 @@ ItemName.JeweledChair=Jeweled Chair
 ItemName.JeweledTable=Jeweled Table
 # Other Misc
 ItemName.DwarfStariteItem=Dwarf Starite
-ItemName.BloodshedPotion=Bloodshed Potion
 ItemName.CrabShell=Crab Shell
-ItemName.Lightbulb=Lightbulb
 ItemName.Molite=Starbyte
 ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
 ItemName.PotionofContainers=Containers Potion
@@ -1128,8 +1154,6 @@ ItemTooltip.ArachnotronRevvers=Allows you to run super fast and grants immunity 
 ItemTooltip.ArachnotronRibcage=Gives you damaging spider arms\nIncreases melee speed by 10% and damage reduction by 5%\nIncreases your max number of minions
 ItemTooltip.ArachnotronVisor=Increases melee crit chance by 5% and summon damage by 10%\nGives you night vision
 ItemTooltip.DartTrapHat=Shoots poisioned darts while you are on the ground\nIncreases summon damage by 5%
-ItemTooltip.LightbulbGreaves=Increases your max number of minions
-ItemTooltip.LightbulbHelmet=Slightly increases mana regeneration\nYou faintly emit light
 ItemTooltip.SuperDartTrapHat=Shoots poisioned darts while you are on the ground\nIncreases summon damage by 10%\nIncreases your max number of minions
 ########
 # Misc #
@@ -1147,7 +1171,6 @@ ItemTooltip.JeweledChandelier={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
-ItemTooltip.BloodshedPotion=Teleports you to the location of your most recent death
 ItemTooltip.CrabShell=It's oddly misshapen
 ItemTooltip.Molite=Doubles the length of potions
 ItemTooltip.PotionofContainers=Teleports you to a random chest in the world
@@ -1429,3 +1452,4 @@ MapObject.Crustacium=Crustacium
 MapObject.WallClocks=Wall Clock
 MapObject.AQChairs=Chair
 MapObject.AQTables=Table
+MapObject.LightbulbTile=Lightbulb

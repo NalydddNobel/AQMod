@@ -570,9 +570,9 @@ namespace AQMod
         internal static class AIStyles // personal ai style list
         {
             public const int BoundNPCAI = 0;
-            public const int SlimeAI = 1;
+            public const int Slimes = 1;
             public const int DemonEyeAI = 2;
-            public const int FighterAI = 3;
+            public const int Fighters = 3;
             public const int EoCAI = 4;
             public const int FlyingAI = 5;
             public const int WormAI = 6;
@@ -594,7 +594,7 @@ namespace AQMod
             public const int HoveringAI = 22;
             public const int EnchantedSwordAI = 23;
             public const int BirdCritterAI = 24;
-            public const int MimicAI = 25;
+            public const int Mimics = 25;
             public const int UnicornAI = 26;
             public const int WoFAI = 27;
             public const int TheHungryAI = 28;
@@ -1325,6 +1325,19 @@ namespace AQMod
             {
                 ManageDreadsoul(npc);
                 EncoreKill(npc);
+                byte p = Player.FindClosest(npc.position, npc.width, npc.height);
+                if (Main.player[p].active && !Main.player[p].dead && npc.Distance(Main.player[p].Center) < 2500f)
+                {
+                    var aequus = Main.player[p].GetModPlayer<AQPlayer>();
+                    if (aequus.bloodthirstDelay == 0 && aequus.bloodthirst)
+                    {
+                        aequus.bloodthirstDelay = 255;
+                        int healAmount = npc.lifeMax / 1000 + 5;
+                        aequus.healEffectValueForSyncingTheThingOnTheServer = healAmount;
+                        Main.player[p].statLife += healAmount;
+                        Main.player[p].statLife = Math.Min(Main.player[p].statLife, Main.player[p].statLifeMax2);
+                    }
+                }
             }
         }
 
@@ -1429,6 +1442,13 @@ namespace AQMod
             {
                 NPC.buffImmune[i] = true;
             }
+        }
+
+        public static bool IsActivelyPursuingPlayer(Player player, NPC npc)
+        {
+            if (npc.GetGlobalNPC<NPCAggro>().isAggro)
+                return true;
+            return npc.target == player.whoAmI;
         }
     }
 }

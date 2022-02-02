@@ -51,6 +51,7 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
             npc.noGravity = true;
             npc.knockBackResist = 1.1f;
             npc.value = Item.buyPrice(silver: 2);
+            this.ManuallyChecksAggro(manuallyChecksAggro: true);
             BuffImmunities(npc);
             banner = npc.type;
             bannerItem = ModContent.ItemType<StariteBanner>();
@@ -85,11 +86,13 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                 if (npc.HasValidTarget && !Main.player[npc.target].dead && Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
                 {
                     npc.ai[0] = 1f;
+                    this.Aggro(aggro: true);
                     npc.velocity = new Vector2(Main.rand.NextFloat(4f, 6f), 0f).RotatedBy((Main.player[npc.target].Center - center).ToRotation());
                 }
                 else
                 {
                     npc.velocity *= 0.985f;
+                    this.Aggro(aggro: false);
                     return;
                 }
             }
