@@ -56,10 +56,20 @@ ItemTooltip.Extractor=增加10%挖掘速度\n下落的方块对你造成的伤�
 ItemName.CrabsonMask=巨蟹蛤面具
 
 ItemName.SteelPlatedChestplate=钢板胸甲
-ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱造成的伤害降低30%
 ArmorSetBonus.SkyrimArmor=增加5%伤害减免\n降低10%移动速度\n'你身上背的东西太多了, 你跑不动了'
 
+ItemName.LightbulbHelmet=灯泡头盔
+ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n你现在会散发微光
+ItemName.LightbulbBreastplate=灯泡胸甲
+ItemName.LightbulbGreaves=灯泡护胫
+ItemTooltip.LightbulbGreaves=+1额外召唤栏
+
+ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱造成的伤害降低30%
+
 # Materials
+ItemName.Lightbulb=灯泡
+ItemTooltip.Lightbulb=利用恒星的能量散发着光
+
 ItemName.Fluorescence=荧光
 ItemName.SiphonTentacle=虹吸触手
 
@@ -247,8 +257,55 @@ ItemTooltip.Beeswax=显示所有可见的世纪之花花苞的位置
 MapLayerToggle.Beeswax='蜂蜡'\n显示所有可见的世纪之花花苞的位置
 
 # Potions
+ItemName.BloodthirstPotion=嗜血药水
+ItemTooltip.BloodthirstPotion=当你击杀一名敌人时你会回复些许生命值
+BuffName.Bloodthirst=嗜血
+BuffDescription.Bloodthirst=当你击杀一名敌人时你会回复些许生命值
+
+ItemName.BloodshedPotion=复活药水
+ItemTooltip.BloodshedPotion=将你传送至上次死亡时的位置
+
+ItemName.SpreadPotion=扩散药水
+ItemTooltip.SpreadPotion=攻击敌人时会将其身上带有的减益扩散至附近敌人身上
+BuffName.DebuffSpread=减益扩散
+BuffDescription.DebuffSpread=攻击敌人时会将其身上带有的减益扩散至附近敌人身上
+
+ItemName.ShadePotion=暗影药水
+ItemTooltip.ShadePotion=未以你为攻击目标的敌人受到50%额外伤害\n敌人不会优先以你为攻击目标
+BuffName.Shade=暗影
+BuffDescription.Shade=未以你为攻击目标的敌人受到50%额外伤害\n敌人不会优先以你为攻击目标
+
 ItemName.MysteryGrail=神秘圣杯
 ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\n使你获得随机的增益或减益
+
+ItemName.SaintsFlow=圣贤之流
+ItemTooltip.SaintsFlow=大幅度增加速度
+
+ItemName.SpicyEel=香辣鳗鱼
+ItemTooltip.SpicyEel=大幅度增加速度
+
+BuffName.SpeedBoostFood=速度强化
+BuffDescription.SpeedBoostFood=速度大幅度提升
+
+ItemName.NeutronJuice=中子酸奶
+ItemTooltip.NeutronJuice=小幅度提升所有属性并且降低重力效果\n'重达数百万吨...但仍比放在保险箱里的保险箱还轻'
+BuffName.NeutronYogurtBuff=低重力
+BuffDescription.NeutronYogurtBuff=小幅度提升所有属性并且降低重力效果
+
+ItemName.RedLicorice=红甘草
+ItemTooltip.RedLicorice=中幅度提升所有属性并且增加20点生命值
+BuffName.RedLicoriceBuff=额外生命
+BuffDescription.RedLicoriceBuff=中幅度提升所有属性并且生命值增加20点
+
+ItemName.GrapePhanta=幻影葡萄
+ItemTooltip.GrapePhanta=中幅度提升大多数属性\n大幅度提升魔法属性\n增加20点法力值
+BuffName.GrapePhantaBuff=额外法力
+BuffDescription.GrapePhantaBuff=中幅度提升大多数属性\n大幅度提升魔法属性\n法力值增加20点
+
+ItemName.PeeledCarrot=胡龙卜
+ItemTooltip.PeeledCarrot=中幅度提升所有属性并且使你获得夜视效果
+BuffName.PeeledCarrotBuff=目力
+BuffDescription.PeeledCarrotBuff=中幅度提升所有属性并且使你获得夜视效果
 
 # Fish
 ItemName.CrabPot=蟹笼
@@ -288,12 +345,6 @@ ItemTooltip.LarvaEel=使你获得3分钟蜂蜜增益和耐药性减益
 # Quest Fish
 ItemName.WaterFisg=水鱼
 ItemName.Crabdaughter=蟹蛤之子
-
-# Foods
-ItemName.PeeledCarrot=胡龙卜
-ItemTooltip.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视能力
-BuffName.PeeledCarrot=胡龙卜
-BuffDescription.PeeledCarrot=中幅度提升大多数属性并且强化你的夜视能力
 
 # Tiles
 ItemName.SedimentSandBlock=沉积沙块
@@ -855,27 +906,7 @@ ItemName.UltimateStarfruit=终极星果
 ##############
 ItemName.Baguette=法棍
 
-ItemName.NeutronJuice=中子酸奶
-ItemTooltip.NeutronJuice=小幅度提升大多数属性并且降低重力效果\n'重达数百万吨...比把保险箱放进保险箱还轻'
-BuffName.NeutronYogurt=中子酸奶
-BuffDescription.NeutronYogurt=小幅度提升大多数属性并且降低重力效果
-
-ItemName.RedLicorice=红甘草
-ItemTooltip.RedLicorice=中幅度提升大多数属性并且增加20点生命值
-BuffName.RedLicorice=红甘草
-BuffDescription.RedLicorice=中幅度提升大多数属性并且增加20点生命值
-
-ItemName.GrapePhanta=幻影葡萄
-ItemTooltip.GrapePhanta=中幅度提升大多数属性\n大幅度提升魔法属性\n增加20点法力值
-BuffName.GrapePhanta=幻影葡萄
-BuffDescription.GrapePhanta=中幅度提升大多数属性\n大幅度提升魔法属性\n增加20点法力值
-
 ItemName.SuspiciousLookingSteak=可疑牛排
-
-ItemName.SpicyEel=香辣鳗鱼
-ItemTooltip.SpicyEel=大幅度增加移动速度
-BuffName.SpicyEel=香辣鳗鱼
-BuffDescription.SpicyEel=大幅度增加移动速度
 
 # Other Buffs Items
 ItemName.OpposingPotion=对立药水
@@ -891,9 +922,6 @@ ItemName.ArachnotronRevvers=机械蜘蛛护胫
 ItemName.ArachnotronRibcage=机械蜘蛛胸甲
 ItemName.ArachnotronVisor=机械蜘蛛面具
 ItemName.DartTrapHat=飞镖帽
-ItemName.LightbulbBreastplate=灯泡胸甲
-ItemName.LightbulbGreaves=灯泡护胫
-ItemName.LightbulbHelmet=灯泡头盔
 ItemName.SuperDartTrapHat=超级飞镖帽
 ########
 # Misc #
@@ -921,9 +949,7 @@ ItemName.JeweledChair=宝石椅
 ItemName.JeweledTable=宝石桌
 # Other Misc
 ItemName.DwarfStariteItem=侏儒源星
-ItemName.BloodshedPotion=喋血药水
 ItemName.CrabShell=蟹壳
-ItemName.Lightbulb=灯泡
 ItemName.Molite=元星鱼
 ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
 ItemName.PotionofContainers=传箱药水
@@ -1128,8 +1154,6 @@ ItemTooltip.ArachnotronRevvers=允许你飞速奔跑并对火块免疫\n+1额外
 ItemTooltip.ArachnotronRibcage=给你能够对敌人造成伤害的蜘蛛臂\n增加10%近战攻击速度和5%伤害减免\n+1额外召唤栏
 ItemTooltip.ArachnotronVisor=增加5%近战暴击率和10%召唤伤害\n提供夜视效果
 ItemTooltip.DartTrapHat=当你站在地面上时发射毒镖\n增加5%召唤伤害
-ItemTooltip.LightbulbGreaves=+1额外召唤栏
-ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n使你轻微发光
 ItemTooltip.SuperDartTrapHat=当你站在地面上时发射毒镖\n增加10%召唤伤害\n+2额外召唤栏
 ########
 # Misc #
@@ -1147,7 +1171,6 @@ ItemTooltip.JeweledChandelier={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
-ItemTooltip.BloodshedPotion=将你传送至上次死亡时的位置
 ItemTooltip.CrabShell=畸形, 真是诡异
 ItemTooltip.Molite=与药水结合使用时可翻倍药水的持续时间
 ItemTooltip.PotionofContainers=将你传送至随机一个箱子
@@ -1429,3 +1452,4 @@ MapObject.Crustacium=硬壳
 MapObject.WallClocks=挂钟
 MapObject.AQChairs=椅子
 MapObject.AQTables=桌子
+MapObject.LightbulbTile=灯泡
