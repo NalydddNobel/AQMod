@@ -271,9 +271,9 @@ BuffName.DebuffSpread=减益扩散
 BuffDescription.DebuffSpread=攻击敌人时会将其身上带有的减益扩散至附近敌人身上
 
 ItemName.ShadePotion=暗影药水
-ItemTooltip.ShadePotion=未以你为攻击目标的敌人受到50%额外伤害\n敌人不会优先以你为攻击目标
+ItemTooltip.ShadePotion=站定不动时会使敌人无法以你为攻击目标
 BuffName.Shade=暗影
-BuffDescription.Shade=未以你为攻击目标的敌人受到50%额外伤害\n敌人不会优先以你为攻击目标
+BuffDescription.Shade=站定不动时会使敌人无法以你为攻击目标
 
 ItemName.MysteryGrail=神秘圣杯
 ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\n使你获得随机的增益或减益
