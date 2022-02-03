@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Materials.Energies;
+﻿using AQMod.Buffs.Debuffs;
+using AQMod.Items.Materials.Energies;
 using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -24,14 +25,20 @@ namespace AQMod.Items.Weapons.Magic
             item.autoReuse = true;
             item.noMelee = true;
             item.value = AQItem.Prices.GaleStreamsWeaponValue;
-            item.mana = 300;
+            item.mana = 200;
             item.shoot = ModContent.ProjectileType<SnowgraveProjectileSpawner>();
+        }
+
+        public override bool UseItem(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<ManaDrain>(), 480);
+            return true;
         }
 
         public override void ModifyManaCost(Player player, ref float reduce, ref float mult)
         {
-            reduce = MathHelper.Lerp(reduce, 1f, 0.75f); // mana cost is 75% less effective on this item!
-            mult = MathHelper.Lerp(reduce, 1f, 0.75f);
+            reduce = MathHelper.Lerp(reduce, 1f, 0.8f); // mana cost is 80% less effective on this item!
+            mult = MathHelper.Lerp(reduce, 1f, 0.8f);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

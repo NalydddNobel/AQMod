@@ -6,6 +6,9 @@ Items
 ItemName.MushroomClam=Exotic Clam
 ItemTooltip.MushroomClam=Summons Crabson at the beach
 
+BuffName.ManaDrain=Magical Drain
+BuffDescription.ManaDrain=Decreases magic damage by 90%
+
 # Accessories
 
 ItemName.GlowString=Glow String

@@ -38,6 +38,11 @@ namespace AQMod.Projectiles.Magic
             return projectile.ai[0] <= 0f;
         }
 
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(255, 255, 255, 100);
+        }
+
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             if (target.position.X + target.width / 2f < Main.player[projectile.owner].position.X + Main.player[projectile.owner].width / 2f)
@@ -88,11 +93,12 @@ namespace AQMod.Projectiles.Magic
             var texture = Main.projectileTexture[projectile.type];
             var frame = new Rectangle(0, 0, texture.Width, texture.Height);
             var origin = frame.Size() / 2f;
-            spriteBatch.Draw(texture, center, frame, Color.White, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
+            var color = projectile.GetAlpha(lightColor);
+            spriteBatch.Draw(texture, center, frame, color, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             for (int i = 0; i < 3; i++)
             {
-                spriteBatch.Draw(texture, new Vector2(center.X + projectile.localAI[0] * i, center.Y), frame, Color.White, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
-                spriteBatch.Draw(texture, new Vector2(center.X - projectile.localAI[0] * i, center.Y), frame, Color.White, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, new Vector2(center.X + projectile.localAI[0] * i, center.Y), frame, color, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, new Vector2(center.X - projectile.localAI[0] * i, center.Y), frame, color, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             }
             return false;
         }

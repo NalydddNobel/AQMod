@@ -3,6 +3,7 @@ using AQMod.Dusts;
 using AQMod.Items.Accessories;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools.Fishing;
+using AQMod.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
