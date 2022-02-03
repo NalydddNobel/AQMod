@@ -1331,7 +1331,7 @@ namespace AQMod
                 ManageDreadsoul(npc);
                 EncoreKill(npc);
                 byte p = Player.FindClosest(npc.position, npc.width, npc.height);
-                if (Main.player[p].active && !Main.player[p].dead && npc.Distance(Main.player[p].Center) < 2500f)
+                if (Main.player[p].active && !Main.player[p].dead && !Main.player[p].moonLeech && npc.Distance(Main.player[p].Center) < 2500f)
                 {
                     var aequus = Main.player[p].GetModPlayer<AQPlayer>();
                     if (aequus.bloodthirstDelay == 0 && aequus.bloodthirst)

@@ -29,12 +29,6 @@ namespace AQMod.Items.Weapons.Magic
             item.shoot = ModContent.ProjectileType<SnowgraveProjectileSpawner>();
         }
 
-        public override bool UseItem(Player player)
-        {
-            player.AddBuff(ModContent.BuffType<ManaDrain>(), 480);
-            return true;
-        }
-
         public override void ModifyManaCost(Player player, ref float reduce, ref float mult)
         {
             reduce = MathHelper.Lerp(reduce, 1f, 0.8f); // mana cost is 80% less effective on this item!
@@ -43,6 +37,7 @@ namespace AQMod.Items.Weapons.Magic
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
+            player.AddBuff(ModContent.BuffType<ManaDrain>(), 480);
             position.X = Main.MouseWorld.X;
             position.Y += 600f;
             speedX = 0f;

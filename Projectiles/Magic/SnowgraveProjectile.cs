@@ -1,6 +1,7 @@
 ﻿using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,7 +17,7 @@ namespace AQMod.Projectiles.Magic
             projectile.friendly = true;
             projectile.magic = true;
             projectile.coldDamage = true;
-            projectile.timeLeft = 300;
+            projectile.timeLeft = 80;
             projectile.tileCollide = false;
             projectile.penetrate = -1;
             projectile.usesIDStaticNPCImmunity = true;
@@ -33,11 +34,6 @@ namespace AQMod.Projectiles.Magic
                 projectile.ai[0]--;
         }
 
-        public override bool CanDamage()
-        {
-            return projectile.ai[0] <= 0f;
-        }
-
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 100);
@@ -45,6 +41,8 @@ namespace AQMod.Projectiles.Magic
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
+            damage -= (int)projectile.ai[0];
+            damage = Math.Max(damage, 1);
             if (target.position.X + target.width / 2f < Main.player[projectile.owner].position.X + Main.player[projectile.owner].width / 2f)
             {
                 hitDirection = -1;
@@ -64,7 +62,7 @@ namespace AQMod.Projectiles.Magic
                 case NPCID.TheDestroyerBody:
                 case NPCID.TheDestroyerTail:
                     {
-                        projectile.ai[0] = 50f;
+                        projectile.ai[0] += 50f;
                     }
                     break;
             }
