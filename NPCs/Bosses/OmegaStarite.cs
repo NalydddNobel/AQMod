@@ -1273,7 +1273,7 @@ namespace AQMod.NPCs.Bosses
             }
             else
             {
-                spotlightColor = new Color(13, 166, 231, 180);
+                spotlightColor = new Color(100, 100, 255, 180);
             }
             var drawOmegite = new List<AQGraphics.DrawMethod>();
             if (ModContent.GetInstance<AQConfigClient>().EffectQuality >= 1f)
@@ -1558,14 +1558,6 @@ namespace AQMod.NPCs.Bosses
 
             rings[0].SendNetPackage(writer);
             rings[1].SendNetPackage(writer);
-            //writer.Write(orbs.Count);
-            //for (int i = 0; i < orbs.Count; i++)
-            //{
-            //    writer.Write(orbs[i].radius);
-            //    writer.Write(orbs[i].scale);
-            //    writer.Write(orbs[i].defRotation);
-            //    writer.Write(orbs[i].maxRotation);
-            //}
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)

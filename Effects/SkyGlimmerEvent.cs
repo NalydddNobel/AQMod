@@ -225,8 +225,8 @@ namespace AQMod.Effects
                                 float shimmer = timeExisting % 10 / 10f;
                                 Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(255, 255, 255, 255) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer, shimmer * 0.3f), SpriteEffects.None, 0f);
                                 Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(255, 255, 255, 255) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer * 0.3f, shimmer), SpriteEffects.None, 0f);
-                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(30, 70, 120) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer, shimmer * 0.3f) * 1.5f, SpriteEffects.None, 0f);
-                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(30, 70, 120) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer * 0.3f, shimmer) * 1.5f, SpriteEffects.None, 0f);
+                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(30, 70, 120, 255) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer, shimmer * 0.3f) * 1.5f, SpriteEffects.None, 0f);
+                                Main.spriteBatch.Draw(spotlightTexture, drawPosition, null, new Color(30, 70, 120, 255) * _scale * glowIn, parent.rotation, spotlightOrigin, new Vector2(shimmer * 0.3f, shimmer) * 1.5f, SpriteEffects.None, 0f);
                             }
 
                             for (int i = 0; i < oldPos.Length; i++)
@@ -426,17 +426,24 @@ namespace AQMod.Effects
                 }
 
                 int y = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
-                var clr = Color.White * (1f - Opacity) * (1f - (EventGlimmer.tileX - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs() / EventGlimmer.MaxDistance);
-                clr.A = (byte)(int)(255 * (1f - Opacity));
+                Color clr;
+                if (EventGlimmer.OmegaStarite == -1)
+                {
+                    clr = Color.White * (1f - Opacity) * (1f - (EventGlimmer.tileX - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs() / EventGlimmer.MaxDistance);
+                }
+                else
+                {
+                    clr = Color.White;
+                }
+
+                clr.A = 0;
                 var destinationRectangle = new Rectangle(0, 0, Main.screenWidth, Main.screenHeight);
                 destinationRectangle.Height -= y;
-                destinationRectangle.Height += (int)(Math.Sin(Main.GlobalTime) * 10);
                 spriteBatch.Draw(ModContent.GetTexture("AQMod/Effects/SkyGlimmerEvent"), destinationRectangle, clr);
 
                 if (FallingStars.stars != null && FallingStars.stars.Count != 0)
                 {
                     AQUtils.RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
-                    //Main.NewText(AQUtils.BGTop, Main.DiscoColor);
                     foreach (var s in FallingStars.stars)
                     {
                         s.Render();

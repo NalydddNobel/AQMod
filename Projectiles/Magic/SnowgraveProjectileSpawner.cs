@@ -1,6 +1,8 @@
 ﻿using AQMod.Assets;
+using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Magic
@@ -8,6 +10,8 @@ namespace AQMod.Projectiles.Magic
     public sealed class SnowgraveProjectileSpawner : ModProjectile
     {
         public override string Texture => TexturePaths.Empty;
+
+        private bool _playedSound;
 
         public override void SetDefaults()
         {
@@ -28,14 +32,20 @@ namespace AQMod.Projectiles.Magic
 
         public override void AI()
         {
-            projectile.ai[0]++;
-            if (projectile.ai[0] >= 2f)
+            if (Main.netMode != NetmodeID.Server)
             {
-                projectile.ai[0] = 0f;
+                if (!_playedSound)
+                {
+                    _playedSound = true;
+                    AQSound.Play(SoundType.Item, "snowgrave", Main.player[projectile.owner].Center, 0.75f, 0f);
+                }
             }
-            int p = Projectile.NewProjectile(projectile.Center, new Vector2(0f, -28f), ModContent.ProjectileType<SnowgraveProjectile>(), projectile.damage / 30, projectile.knockBack, projectile.owner);
-            Main.projectile[p].localAI[0] = Main.projectile[p].width / 6;
-            Main.projectile[p].localAI[0] -= AQUtils.Wave(projectile.timeLeft * 0.2f, 0f, 18f);
+            if (Main.myPlayer == projectile.owner)
+            {
+                int p = Projectile.NewProjectile(projectile.Center, new Vector2(0f, -28f), ModContent.ProjectileType<SnowgraveProjectile>(), projectile.damage / 30, projectile.knockBack, projectile.owner);
+                Main.projectile[p].localAI[0] = Main.projectile[p].width / 6;
+                Main.projectile[p].localAI[0] -= AQUtils.Wave(projectile.timeLeft * 0.2f, 0f, 18f);
+            }
         }
     }
 }

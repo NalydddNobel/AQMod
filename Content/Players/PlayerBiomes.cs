@@ -33,7 +33,7 @@ namespace AQMod.Content.Players
 
         public override void UpdateBiomeVisuals()
         {
-            bool glimmerEvent = (EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.OmegaStarite != -1) && Main.screenPosition.Y < Main.worldSurface * 16f + Main.screenHeight;
+            bool glimmerEvent = (EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.OmegaStarite != -1) && Main.screenPosition.Y < (Main.worldSurface * 16f - Main.screenHeight);
             AQUtils.UpdateSky(glimmerEvent, SkyGlimmerEvent.Name);
 
             if (glimmerEvent && EventGlimmer.OmegaStarite == -1)
@@ -49,9 +49,7 @@ namespace AQMod.Content.Players
                 var shader = EffectCache.f_Vignette.GetShader();
                 shader.UseIntensity(intensity * 1.25f);
                 if (!EffectCache.f_Vignette.IsActive())
-                {
                     Filters.Scene.Activate(EffectCache.fn_Vignette);
-                }
             }
             else
             {

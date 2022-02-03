@@ -155,6 +155,9 @@ ProjectileName.Skrawler=Skrawler
 ItemName.SnowflakeCannon=Snowflake Cannon
 ItemTooltip.SnowflakeCannon=Launches many snowballs at once\n66% chance to not consume ammo
 
+ItemName.Snowgrave=Snowgrave
+ItemTooltip.Snowgrave=Summons a snowblast from below\n'Watch what happens when I cast a spell I don't know!'
+
 ItemName.UltimateSword=Ultimate Sword
 ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
 ProjectileName.UltimateSword=Ultimate Sword
