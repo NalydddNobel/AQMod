@@ -18,5 +18,18 @@ namespace AQMod.Items.Placeable.Wall
             item.autoReuse = true;
             item.useTurn = true;
         }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<PetrifiedWood>());
+            r.AddTile(TileID.WorkBenches);
+            r.SetResult(this, 4);
+            r.AddRecipe();
+            r = new ModRecipe(mod);
+            r.AddIngredient(this, 4);
+            r.SetResult(ModContent.ItemType<PetrifiedWood>());
+            r.AddRecipe();
+        }
     }
 }

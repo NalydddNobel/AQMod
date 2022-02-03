@@ -24,8 +24,14 @@ namespace AQMod.Items.Weapons.Magic
             item.autoReuse = true;
             item.noMelee = true;
             item.value = AQItem.Prices.GaleStreamsWeaponValue;
-            item.mana = 80;
+            item.mana = 300;
             item.shoot = ModContent.ProjectileType<SnowgraveProjectileSpawner>();
+        }
+
+        public override void ModifyManaCost(Player player, ref float reduce, ref float mult)
+        {
+            reduce = MathHelper.Lerp(reduce, 1f, 0.75f); // mana cost is 75% less effective on this item!
+            mult = MathHelper.Lerp(reduce, 1f, 0.75f);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

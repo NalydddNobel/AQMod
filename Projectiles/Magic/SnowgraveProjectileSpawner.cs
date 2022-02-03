@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Sounds;
+using AQMod.Sounds.Item;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -37,7 +38,7 @@ namespace AQMod.Projectiles.Magic
                 if (!_playedSound)
                 {
                     _playedSound = true;
-                    AQSound.Play(SoundType.Item, "snowgrave", Main.player[projectile.owner].Center, 0.75f, 0f);
+                    AQSound.Play<Snowgrave>(SoundType.Item, Main.player[projectile.owner].Center);
                 }
             }
             if (Main.myPlayer == projectile.owner)

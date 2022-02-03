@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Dusts;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -37,8 +38,21 @@ namespace AQMod.Projectiles.Magic
             return projectile.ai[0] <= 0f;
         }
 
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if (target.position.X + target.width / 2f < Main.player[projectile.owner].position.X + Main.player[projectile.owner].width / 2f)
+            {
+                hitDirection = -1;
+            }
+            else
+            {
+                hitDirection = 1;
+            }
+        }
+
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
             switch (target.type) 
             {
                 case NPCID.TheDestroyer:
@@ -48,6 +62,23 @@ namespace AQMod.Projectiles.Magic
                         projectile.ai[0] = 50f;
                     }
                     break;
+            }
+            var center = target.Center;
+            float l = target.Size.Length() / 4f;
+            float r = Main.rand.NextFloat(-(MathHelper.TwoPi / 12f), MathHelper.TwoPi / 12f);
+            for (int i = 0; i < 12; i++)
+            {
+                var normal = Vector2.UnitX.RotatedBy(i * (MathHelper.TwoPi / 12f) + r);
+                Dust.NewDustPerfect(center + normal * l, ModContent.DustType<MonoDust>(), normal * Main.rand.NextFloat(2.5f, 7.5f), 0, new Color(80, 120, 255, 128), Main.rand.NextFloat(0.9f, 1.3f));
+            }
+            if (crit)
+            {
+                r = Main.rand.NextFloat(-(MathHelper.TwoPi / 4f), MathHelper.TwoPi / 4f);
+                for (int i = 0; i < 4; i++)
+                {
+                    var normal = Vector2.UnitX.RotatedBy(i * (MathHelper.TwoPi / 4f) + r);
+                    Dust.NewDustPerfect(center + normal * l, ModContent.DustType<MonoSparkleDust>(), normal * Main.rand.NextFloat(7f, 10f), 0, new Color(120, 160, 255, 128), Main.rand.NextFloat(1.2f, 1.5f));
+                }
             }
         }
 
