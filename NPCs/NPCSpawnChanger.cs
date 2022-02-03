@@ -95,6 +95,10 @@ namespace AQMod.NPCs
                         pool[keyValue[i]] *= mult;
                     }
                 }
+                if (spawnInfo.player.Biomes().zoneCrabCrevice)
+                {
+                    pool[0] *= 0.05f;
+                }
                 if (EventGlimmer.AreStariteSpawnsCurrentlyActive(spawnInfo.player))
                 {
                     int tileDistance = EventGlimmer.GetTileDistanceUsingPlayer(spawnInfo.player);

@@ -22,7 +22,7 @@ namespace AQMod.Items.Weapons.Magic
             item.mana = 30;
             item.autoReuse = true;
             item.UseSound = SoundID.Item101;
-            item.value = AQItem.Prices.GaleStreamsValue;
+            item.value = AQItem.Prices.GaleStreamsWeaponValue;
             item.knockBack = 6f;
             item.channel = true;
             item.noUseGraphic = true;

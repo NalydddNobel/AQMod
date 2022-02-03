@@ -27,7 +27,7 @@ namespace AQMod.Items.Weapons.Magic
             item.useTime = 19;
             item.UseSound = SoundID.Item66;
             item.rare = AQItem.Rarities.GaleStreamsRare;
-            item.value = AQItem.Prices.GaleStreamsValue;
+            item.value = AQItem.Prices.GaleStreamsWeaponValue;
             item.shootSpeed = 30f;
             item.shoot = ModContent.ProjectileType<Projectiles.Magic.RedSpriteStaff>();
         }

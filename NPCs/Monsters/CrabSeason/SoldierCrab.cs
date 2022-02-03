@@ -1,6 +1,7 @@
 ﻿using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Potions;
+using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.NPCs.Monsters.CrabSeason
 {
-    public class SoldierCrab : ModNPC
+    public class SoldierCrab : ModNPC, IDecideFallThroughPlatforms
     {
         public const int FramesX = 2;
         public const int Phase_ShieldBash = 0;
@@ -28,7 +29,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
         {
             npc.width = 40;
             npc.height = 30;
-            npc.lifeMax = 28;
+            npc.lifeMax = 48;
             npc.damage = 50;
             npc.knockBackResist = 0.75f;
             npc.noGravity = true;
@@ -36,7 +37,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             npc.value = Item.buyPrice(silver: 3);
             npc.HitSound = SoundID.NPCHit2;
             npc.DeathSound = SoundID.NPCDeath8;
-            npc.behindTiles = true;
+            npc.SetLiquidSpeed(water: 0.9f);
 
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Placeable.Banners.SoliderCrabsBanner>();
@@ -77,7 +78,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                 if ((int)npc.ai[0] == Phase_ShieldBash)
                 {
                     npc.ai[1]++;
-                    if (Main.netMode != NetmodeID.Server && (int)npc.ai[1] == 20f)
+                    if (Main.netMode != NetmodeID.Server && (int)npc.ai[1] == 20)
                     {
                         Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, Style: 1);
                         int amount = 2;
@@ -93,8 +94,8 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                             int rotationMultiplier = i;
                             float rotationAdd = -MathHelper.PiOver4;
                             var normal = (rotationAdd + f * -rotationMultiplier).ToRotationVector2().RotatedBy(Main.rand.NextFloat(-0.01f, 0.01f)); ;
-                            int p = Projectile.NewProjectile(center + normal * 20f, normal * (Main.expertMode ? Main.rand.NextFloat(4f, 8f) : Main.rand.NextFloat(0.5f, 3f)),
-                                ProjectileID.WoodenArrowHostile, damage, 1f);
+                            int p = Projectile.NewProjectile(center + normal * 20f, normal * (Main.expertMode ? Main.rand.NextFloat(4f, 8f) : Main.rand.NextFloat(2f, 5f)),
+                                ModContent.ProjectileType<SoldierCrabSandBall>(), damage, 1f);
                         }
                         for (int i = 0; i < amount / 2; i++)
                         {
@@ -102,13 +103,30 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                             float rotationAdd = -MathHelper.PiOver4;
                             var normal = (rotationAdd + f * -rotationMultiplier).ToRotationVector2().RotatedBy(Main.rand.NextFloat(-0.01f, 0.01f));
                             normal.X = -normal.X;
-                            int p = Projectile.NewProjectile(center + normal * 20f, normal * (Main.expertMode ? Main.rand.NextFloat(4f, 8f) : Main.rand.NextFloat(0.5f, 3f)),
-                                ProjectileID.WoodenArrowHostile, damage, 1f);
+                            int p = Projectile.NewProjectile(center + normal * 20f, normal * (Main.expertMode ? Main.rand.NextFloat(4f, 8f) : Main.rand.NextFloat(2f, 5f)),
+                                ModContent.ProjectileType<SoldierCrabSandBall>(), damage, 1f);
                         }
                     }
                     if (npc.ai[1] > 42f)
                     {
-                        npc.ai[2] = (int)npc.ai[0];
+                        npc.ai[2] = Phase_ClawSnip;
+                        npc.ai[1] = 0f;
+                        npc.ai[0] = Phase_Jump;
+                    }
+                }
+                else if ((int)npc.ai[0] == Phase_ClawSnip)
+                {
+                    npc.ai[1]++;
+                    if (Main.netMode != NetmodeID.Server && (int)npc.ai[1] == 20)
+                    {
+                        int damage = 20;
+                        Main.PlaySound(SoundID.Item71, npc.position);
+                        int p = Projectile.NewProjectile(npc.Center, Vector2.Normalize(Main.player[npc.target].Center - npc.Center) * (Main.expertMode ? Main.rand.NextFloat(10f, 14f) : Main.rand.NextFloat(8f, 10f)),
+                            ModContent.ProjectileType<SoldierCrabSnip>(), damage, 1f);
+                    }
+                    if (npc.ai[1] > 30f)
+                    {
+                        npc.ai[2] = Phase_ShieldBash;
                         npc.ai[1] = 0f;
                         npc.ai[0] = Phase_Jump;
                     }
@@ -121,15 +139,21 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                         npc.TargetClosest(faceTarget: true);
                         if (npc.HasValidTarget)
                         {
-                            if (npc.position.Y - Main.player[npc.target].position.Y > 220f && Main.rand.NextBool())
+                            if (npc.position.Y - Main.player[npc.target].position.Y > 132f && Main.rand.NextBool())
                             {
-                                npc.velocity.Y = -16.5f;
-                                npc.velocity.X = 2f * npc.direction;
+                                if (npc.position.Y - Main.player[npc.target].position.Y > 220f)
+                                    npc.velocity.Y = -16.5f;
+                                else
+                                    npc.velocity.Y = -11.5f;
+                                if (Main.rand.NextBool())
+                                    npc.velocity.X = 2f * npc.direction;
+                                else
+                                    npc.velocity.X = 4f * npc.direction;
                             }
-                            else if ((npc.position - Main.player[npc.target].position).Length().Abs() < 200f && Main.rand.NextBool())
+                            else if (Main.rand.NextBool())
                             {
                                 npc.velocity.Y = -5.5f;
-                                npc.velocity.X = 6.5f * npc.direction;
+                                npc.velocity.X = 8.5f * npc.direction;
                             }
                             else
                             {
@@ -201,6 +225,17 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                         frameIndex = (int)npc.ai[1] / 4;
                     }
                 }
+                else if ((int)npc.ai[0] == Phase_ClawSnip)
+                {
+                    if ((int)npc.ai[1] >= 20)
+                    {
+                        frameIndex = 9;
+                    }
+                    else
+                    {
+                        frameIndex = 6 + (int)npc.ai[1] / 8;
+                    }
+                }
                 else
                 {
                     frameIndex = 0;
@@ -249,6 +284,11 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             spriteBatch.Draw(Main.npcTexture[npc.type], npc.Center + new Vector2(0f, npc.gfxOffY) - Main.screenPosition, 
                 npc.frame, drawColor, npc.rotation, npc.frame.Size() / 2f, npc.scale, npc.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
             return false;
+        }
+
+        bool IDecideFallThroughPlatforms.Decide()
+        {
+            return npc.HasValidTarget && Main.player[npc.target].position.Y > npc.position.Y + npc.height;
         }
     }
 }

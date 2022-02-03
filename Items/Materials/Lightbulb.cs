@@ -20,6 +20,7 @@ namespace AQMod.Items.Materials
             item.createTile = ModContent.TileType<LightbulbTile>();
             item.autoReuse = true;
             item.useTurn = true;
+            item.consumable = true;
         }
 
         public override void AddRecipes()

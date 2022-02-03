@@ -11,9 +11,9 @@ namespace AQMod.Effects.Wind
 {
     public sealed class WindLayer : IAutoloadType
     {
-        private static GraphicsDevice _graphics;
         private static Effect _windShader;
-        private static List<IDrawType> windDraws;
+        private static GraphicsDevice _graphics;
+        public static List<IDrawType> windDraws;
         private static RenderTarget2D _windTarget;
         private static RenderTarget2D _finalTarget;
 

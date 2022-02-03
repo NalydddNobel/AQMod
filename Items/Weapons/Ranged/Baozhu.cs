@@ -19,7 +19,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.shoot = ModContent.ProjectileType<Projectiles.Ranged.Firecracker>();
             item.shootSpeed = 13.5f;
             item.UseSound = SoundID.Item1;
-            item.value = AQItem.Prices.GaleStreamsValue;
+            item.value = AQItem.Prices.GaleStreamsWeaponValue;
             item.noMelee = true;
             item.knockBack = 7f;
             item.noUseGraphic = true;

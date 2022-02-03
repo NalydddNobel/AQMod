@@ -21,7 +21,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.shoot = ProjectileID.SnowBallFriendly;
             item.shootSpeed = 18f;
-            item.value = AQItem.Prices.GaleStreamsValue;
+            item.value = AQItem.Prices.GaleStreamsWeaponValue;
             item.useAmmo = AmmoID.Snowball;
             item.knockBack = 5.6f;
             item.UseSound = SoundID.Item11;

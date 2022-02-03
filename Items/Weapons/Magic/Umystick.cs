@@ -18,7 +18,7 @@ namespace AQMod.Items.Weapons.Magic
             item.useTime = 24;
             item.useAnimation = 24;
             item.rare = AQItem.Rarities.GaleStreamsRare + 1;
-            item.value = AQItem.Prices.GaleStreamsValue;
+            item.value = AQItem.Prices.GaleStreamsWeaponValue;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item1;
             item.magic = true;

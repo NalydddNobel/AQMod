@@ -30,7 +30,7 @@ namespace AQMod.Items.Weapons.Melee
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
             item.rare = AQItem.Rarities.GaleStreamsRare;
-            item.value = AQItem.Prices.GaleStreamsValue;
+            item.value = AQItem.Prices.GaleStreamsWeaponValue;
             item.melee = true;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.ThunderClap>();
             item.knockBack = 32f;

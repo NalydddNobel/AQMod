@@ -14,7 +14,7 @@ namespace AQMod.Items.Accessories
             item.accessory = true;
             item.defense = 2;
             item.rare = AQItem.Rarities.GaleStreamsRare + 1;
-            item.value = (int)(AQItem.Prices.GaleStreamsValue * 1.5f);
+            item.value = (int)(AQItem.Prices.GaleStreamsWeaponValue * 1.5f);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

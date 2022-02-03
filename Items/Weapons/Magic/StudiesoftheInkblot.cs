@@ -61,9 +61,6 @@ namespace AQMod.Items.Weapons.Magic
                 }
             }
 
-            int p2 = Projectile.NewProjectile(position, Vector2.Normalize(Main.MouseWorld - position) * 0.01f, ModContent.ProjectileType<StudiesoftheInkblotBullet>(), damage, knockBack, player.whoAmI, 0f, speed);
-            Main.projectile[p2].localAI[0] = 1.5f;
-
             if (((int)Main.GameUpdateCount % 3) == 0)
                 AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/TouhouShoot", 0.5f, -0.01f);
             return false;
