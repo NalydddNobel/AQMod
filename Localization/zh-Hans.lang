@@ -6,6 +6,9 @@ Items
 ItemName.MushroomClam=异界蛤蜊
 ItemTooltip.MushroomClam=在海滩处使用以召唤巨蟹蛤
 
+ItemName.BloodyThing=血腥之物
+ItemTooltip.BloodyThing=在夜晚时开始血月\n'一颗奇异的红宝石, 在移植到1.4时可能会被撕裂'
+
 BuffName.ManaDrain=法力枯竭
 BuffDescription.ManaDrain=魔法伤害降低90%
 
@@ -325,10 +328,8 @@ ItemTooltip.BloodPlasma=当你受到致死攻击时会自动饮用一瓶治疗�
 
 ItemName.VampireSquid=吸血乌贼
 ItemTooltip.VampireSquid=使你获得血咒
-
 BuffName.Vampirism=血咒
 BuffDescription.Vampirism=在这之后你可能会变成吸血鬼...
-
 BuffName.VampirismDay=日光
 BuffDescription.VampirismDay=你的各项属性大幅度降低, 且你无法再通过食物获得增益
 
@@ -564,21 +565,6 @@ DiscordRichPresenceConfig.miniBossRichPresenceTooltip=会为 Aequus 中经过考
 DiscordRichPresenceConfig.eventRichPresence=事件 Presence
 DiscordRichPresenceConfig.eventRichPresenceTooltip=会为所有 Aequus 事件添加一个 rich presence
 
-#
-
-StariteConfig.Name=微光事件视觉效果
-
-StariteConfig.Name=微光事件视觉效果
-
-StariteConfig.BackgroundStars=背景落星
-StariteConfig.BackgroundStarsTooltip=决定微光事件期间的背景是否会出现类似1.4版本中的落星
-
-StariteConfig.BackgroundAurora=背景极光
-StariteConfig.BackgroundAuroraTooltip=决定微光事件期间的背景是否会出现极光效果
-
-StariteConfig.UltimateSwordVignette=最终之剑晕映
-StariteConfig.UltimateSwordVignetteTooltip=决定当你靠近最终之剑时是否会出现晕映效果
-
 # Client Config
 
 ClientConfig.Name=客户端设置
@@ -637,6 +623,9 @@ ServerConfig.HarderOmegaStariteTooltip=与微光事件中的强化版终末之�
 
 ServerConfig.JellyfishNecklace=蓝色水母不再掉落水母项链 ([i:1303])
 ServerConfig.JellyfishNecklaceTooltip=若禁用此项, 则蓝色水母能够有几率同时掉落水母项链和冲击项圈.
+
+ServerConfig.BloodyThingDrop=敌人掉落血腥之物
+ServerConfig.BloodyThingDropTooltip=决定血月期间的敌人是否会掉落'血腥之物'
 
 ServerConfig.DebugCommand=调试模式 (/ncall)
 ServerConfig.DebugCommandTooltip=启用 /ncall 调试命令.\n{$Mods.AQMod.Config.RequiresReload}
