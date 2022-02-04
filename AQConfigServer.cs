@@ -31,10 +31,16 @@ namespace AQMod
         [Header("$Mods.AQMod.ServerConfig.Header.World")]
 
         [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ServerConfig.EvilProgressionLock")]
-        [Tooltip("$Mods.AQMod.ServerConfig.EvilProgressionLockTooltip")]
+        [Label("$Mods.AQMod.ServerConfig.JellyfishNecklace")]
+        [Tooltip("$Mods.AQMod.ServerConfig.JellyfishNecklaceTooltip")]
         [DefaultValue(true)]
-        public bool evilProgressionLock;
+        public bool removeJellyfishNecklace;
+
+        [BackgroundColor(13, 166, 231, 180)]
+        [Label("$Mods.AQMod.ServerConfig.BloodyThingDrop")]
+        [Tooltip("$Mods.AQMod.ServerConfig.BloodyThingDropTooltip")]
+        [DefaultValue(true)]
+        private bool bloodyThingDrop;
 
         [BackgroundColor(13, 166, 231, 180)]
         [Label("$Mods.AQMod.ServerConfig.HarderOmegaStarite")]
@@ -44,10 +50,10 @@ namespace AQMod
         public bool harderOmegaStarite;
 
         [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ServerConfig.JellyfishNecklace")]
-        [Tooltip("$Mods.AQMod.ServerConfig.JellyfishNecklaceTooltip")]
+        [Label("$Mods.AQMod.ServerConfig.EvilProgressionLock")]
+        [Tooltip("$Mods.AQMod.ServerConfig.EvilProgressionLockTooltip")]
         [DefaultValue(true)]
-        public bool removeJellyfishNecklace;
+        public bool evilProgressionLock;
 
         [Header("$Mods.AQMod.ServerConfig.Header.Debug")]
 

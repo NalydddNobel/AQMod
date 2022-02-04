@@ -49,6 +49,14 @@ namespace AQMod
         public bool TonsofScreenShakes { get; set; }
         public static bool c_TonsofScreenShakes { get; private set; }
 
+        [Header("$Mods.AQMod.ClientConfig.Header.UI")]
+
+        [BackgroundColor(12, 12, 190, 180)]
+        [Label("$Mods.AQMod.ClientConfig.MapBlipColor")]
+        [Tooltip("$Mods.AQMod.ClientConfig.MapBlipColorTooltip")]
+        [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorNoAlpha]
+        public Color MapBlipColor { get; set; }
+
         [Header("$Mods.AQMod.ClientConfig.Header.Xmas")]
 
         [BackgroundColor(75, 80, 100, 180)]
@@ -64,14 +72,6 @@ namespace AQMod
         [DefaultValue(true)]
         [ReloadRequired()]
         public bool XmasProgressMeterOverride { get; set; }
-
-        [Header("$Mods.AQMod.ClientConfig.Header.UI")]
-
-        [BackgroundColor(12, 12, 190, 180)]
-        [Label("$Mods.AQMod.ClientConfig.MapBlipColor")]
-        [Tooltip("$Mods.AQMod.ClientConfig.MapBlipColorTooltip")]
-        [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorNoAlpha]
-        public Color MapBlipColor { get; set; }
 
         [Header(AQText.ConfigHeaderKey + "Misc")]
 

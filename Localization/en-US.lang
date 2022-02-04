@@ -6,6 +6,9 @@ Items
 ItemName.MushroomClam=Exotic Clam
 ItemTooltip.MushroomClam=Summons Crabson at the beach
 
+ItemName.BloodyThing=Bloody Thing
+ItemTooltip.BloodyThing=Starts a blood moon during night\n'An exotic ruby which might start tearing up when ported to 1.4'
+
 BuffName.ManaDrain=Magical Drain
 BuffDescription.ManaDrain=Decreases magic damage by 90%
 
@@ -325,10 +328,8 @@ ItemTooltip.BloodPlasma=You will drink a healing potion when you get fatally hit
 
 ItemName.VampireSquid=Vampire Squid
 ItemTooltip.VampireSquid=Gives you vampirism
-
 BuffName.Vampirism=Vampirism
 BuffDescription.Vampirism=You may become a vampire after this...
-
 BuffName.VampirismDay=Sunlight
 BuffDescription.VampirismDay=Greatly decreased stats, you no longer get buffs from food
 
@@ -564,21 +565,6 @@ DiscordRichPresenceConfig.miniBossRichPresenceTooltip=Will add a rich presence f
 DiscordRichPresenceConfig.eventRichPresence=Presence for Events
 DiscordRichPresenceConfig.eventRichPresenceTooltip=Will add a rich presence for all Aequus events
 
-#
-
-StariteConfig.Name=Glimmer Event Visuals
-
-StariteConfig.Name=Glimmer Event Visuals
-
-StariteConfig.BackgroundStars=Background Falling Stars
-StariteConfig.BackgroundStarsTooltip=Whether or not to have background falling stars like in 1.4 during the Glimmer Event
-
-StariteConfig.BackgroundAurora=Background Aurora
-StariteConfig.BackgroundAuroraTooltip=Whether or not to have a background aurora effect during the Glimmer Event
-
-StariteConfig.UltimateSwordVignette=Ultimate Sword Vignette
-StariteConfig.UltimateSwordVignetteTooltip=Whether or not to have a vignette effect when you get near the Ultimate Sword
-
 # Client Config
 
 ClientConfig.Name=Client Config
@@ -637,6 +623,9 @@ ServerConfig.HarderOmegaStariteTooltip=Makes Omega Starite always use its Glimme
 
 ServerConfig.JellyfishNecklace=Remove Jellyfish Necklace drop from Blue Jellyfish ([i:1303])
 ServerConfig.JellyfishNecklaceTooltip=If you disable this, the Blue Jellyfish would be able to drop both the Jellyfish Necklace and Shock Collar.
+
+ServerConfig.BloodyThingDrop=Bloody Thing Enemy Drop
+ServerConfig.BloodyThingDropTooltip=Whether or not enemies during the blood moon will drop the 'Bloody Thing'
 
 ServerConfig.DebugCommand=Debug Mode (/ncall)
 ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod.Config.RequiresReload}
