@@ -1,11 +1,10 @@
-﻿using AQMod.Content.DedicatedItemTags;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories
+namespace AQMod.Items.Accessories.Wings
 {
     public class Thunderbird : ModItem, IDedicatedItem
     {
@@ -15,22 +14,22 @@ namespace AQMod.Items.Accessories
             item.height = 24;
             item.accessory = true;
             item.rare = AQItem.Rarities.DedicatedItem;
-            item.value = Item.sellPrice(gold: 5);
+            item.value = Item.sellPrice(gold: 20);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var aQPlr = player.GetModPlayer<AQPlayer>();
-            var plrCenter = player.Center;
-            if (aQPlr.thunderbirdJumpTimer == 1)
+            var aQPlayer = player.GetModPlayer<AQPlayer>();
+            var center = player.Center;
+            if (aQPlayer.thunderbirdJumpTimer == 1)
             {
                 for (int i = 0; i < 15; i++)
                 {
                     int d = Dust.NewDust(player.position, player.height, player.height, DustID.Electric, 0f, 0f, 0, default(Color), 0.5f); // using height for both width and height to make it square
-                    Main.dust[d].velocity = Vector2.Normalize(Main.dust[d].position - plrCenter) * 8f;
+                    Main.dust[d].velocity = Vector2.Normalize(Main.dust[d].position - center) * 8f;
                 }
             }
-            if (aQPlr.thunderbirdJumpTimer <= 0 && !player.mount.Active && player.wingTime <= 0 && player.velocity.Y != 0f && !player.HasDoubleJumpLeft())
+            if (aQPlayer.thunderbirdJumpTimer <= 0 && !player.mount.Active && player.wingTime <= 0 && player.velocity.Y != 0f && !player.HasDoubleJumpLeft())
             {
                 player.canCarpet = false;
                 bool canThunderbirdJump = player.direction == -1 ? player.velocity.X <= -1f : player.velocity.X >= 1f;
@@ -43,8 +42,8 @@ namespace AQMod.Items.Accessories
                         player.velocity.X = player.direction * player.velocity.X.Abs() * 1.85f;
                         player.velocity.Y = -14f;
                         player.fallStart = (int)(player.position.Y / 16f);
-                        aQPlr.thunderbirdJumpTimer = 120;
-                        aQPlr.thunderbirdLightningTimer = 240;
+                        aQPlayer.thunderbirdJumpTimer = 120;
+                        aQPlayer.thunderbirdLightningTimer = 240;
                         int dustWidth = player.width * 3;
                         int dustHeight = player.height / 2 + 2;
                         var dustPos = new Vector2(player.Center.X - dustWidth / 2, player.position.Y + player.height - 10f);
@@ -56,7 +55,7 @@ namespace AQMod.Items.Accessories
                     }
                 }
             }
-            if (aQPlr.thunderbirdLightningTimer <= 0)
+            if (aQPlayer.thunderbirdLightningTimer <= 0)
             {
                 var validNPCs = new List<int>();
                 float healthPercentage = player.statLife / (float)player.statLifeMax2;
@@ -112,13 +111,12 @@ namespace AQMod.Items.Accessories
                         }
                         Main.PlaySound(SoundID.Item122, spawnPosition);
                         player.ApplyDamageToNPC(npc, Main.DamageVar(75f), 0f, 0, false);
-                        aQPlr.thunderbirdLightningTimer = (int)MathHelper.Lerp(60, 120, healthPercentage);
+                        aQPlayer.thunderbirdLightningTimer = (int)MathHelper.Lerp(60, 120, healthPercentage);
                     }
                 }
             }
         }
 
-        Color IDedicatedItem.DedicatedItemColor => new Color(200, 125, 255, 255);
-        IDedicationType IDedicatedItem.DedicationType => new Dedication();
+        Color IDedicatedItem.Color => new Color(200, 125, 255, 255);
     }
 }

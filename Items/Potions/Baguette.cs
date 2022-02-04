@@ -1,5 +1,4 @@
-﻿using AQMod.Content.DedicatedItemTags;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,7 +28,6 @@ namespace AQMod.Items.Potions
             return true;
         }
 
-        Color IDedicatedItem.DedicatedItemColor => new Color(187, 142, 42, 255);
-        IDedicationType IDedicatedItem.DedicationType => new Dedication();
+        Color IDedicatedItem.Color => new Color(187, 142, 42, 255);
     }
 }

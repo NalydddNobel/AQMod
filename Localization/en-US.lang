@@ -364,6 +364,7 @@ ItemTooltip.CrabClock='What time is it? Crabby time.'
 ItemName.OceanRavineWall=Crab Crevice Wall
 
 # Tooltips
+Tooltips.DedicatedItem=Dedicated Item
 Tooltips.Unobtainable=A relic birthed in an alternate universe
 Tooltips.ManaPerSecond=Uses {0} mana per second
 Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed\nYou will not take any fall damage
@@ -911,7 +912,7 @@ ItemName.SpoilsPotion=Spoils Potion
 # Equipables #
 ##############
 # Armor
-ItemName.HermitShell=Hermit Shell
+ItemName.HermitShell=Clamshell Helmet
 ItemName.StriderPalms=Strider Palms
 ItemName.ArachnotronRevvers=Arachnotron Revvers
 ItemName.ArachnotronRibcage=Arachnotron Ribcage
@@ -949,9 +950,6 @@ ItemName.Molite=Starbyte
 ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
 ItemName.PotionofContainers=Containers Potion
 ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
-
-CommonTooltip.DedicatedItem=Dedicated Item
-CommonTooltip.ContentCreatorItem=Content Creator Item
 
 ItemName.MothmanMask=Mothman Mask
 ItemTooltip.MothmanMask=All effects only occur if you are at max health\n15% increased damage and critical strike chance\nIncreases the knockback of your minions\nCrits inflicts blue fire to nearby enemies

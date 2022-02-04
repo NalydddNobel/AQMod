@@ -1,5 +1,4 @@
-﻿using AQMod.Content.DedicatedItemTags;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -26,7 +25,6 @@ namespace AQMod.Items.Accessories
             player.GetModPlayer<AQPlayer>().dreadsoul = true;
         }
 
-        Color IDedicatedItem.DedicatedItemColor => Dedication.YoutuberColor;
-        IDedicationType IDedicatedItem.DedicationType => new Dedication();
+        Color IDedicatedItem.Color => new Color(250, 80, 80, 255);
     }
 }

@@ -1,5 +1,4 @@
-﻿using AQMod.Content.DedicatedItemTags;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,7 +21,6 @@ namespace AQMod.Items.Accessories
             player.GetModPlayer<AQPlayer>().omori = true;
         }
 
-        Color IDedicatedItem.DedicatedItemColor => new Color(30, 255, 60, 255);
-        IDedicationType IDedicatedItem.DedicationType => new Dedication();
+        Color IDedicatedItem.Color => new Color(30, 255, 60, 255);
     }
 }

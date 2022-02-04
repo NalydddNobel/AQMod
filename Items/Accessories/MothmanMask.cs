@@ -1,5 +1,4 @@
-﻿using AQMod.Content.DedicatedItemTags;
-using AQMod.Content.Players;
+﻿using AQMod.Content.Players;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -10,6 +9,8 @@ namespace AQMod.Items.Accessories
 {
     public class MothmanMask : ModItem, IDedicatedItem, IUpdateEquipVisuals
     {
+        Color IDedicatedItem.Color => new Color(50, 75, 250, 255);
+
         public override void SetDefaults()
         {
             item.width = 20;
@@ -57,8 +58,5 @@ namespace AQMod.Items.Accessories
                 drawEffects.MothmanMaskEyeColor = new Color(140 - (int)(Math.Sin(Main.GlobalTime * 10f) * 30), 90 + (int)(Math.Cos(Main.GlobalTime * 10f) * 30), 10, 0);
             }
         }
-
-        Color IDedicatedItem.DedicatedItemColor => Dedication.YoutuberColor;
-        IDedicationType IDedicatedItem.DedicationType => new Dedication();
     }
 }

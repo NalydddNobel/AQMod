@@ -1,5 +1,4 @@
-﻿using AQMod.Items.Dedicated;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -38,7 +37,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             if (line.mod == "Terraria" && line.Name == "ItemName")
             {
-                DedicatedItemTooltips.DrawNarrizuulText(line);
+                TooltipText.DrawNarrizuulText(line);
                 return false;
             }
             return true;

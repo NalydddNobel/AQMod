@@ -208,12 +208,6 @@ namespace AQMod.Tiles.Nature.CrabCrevice
                 default:
                     Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Placeable.Nature.ExoticCoral>());
                     break;
-
-                case 8:
-                case 9:
-                case 10:
-                    Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Placeable.Nature.ExoticStarfish>());
-                    break;
             }
             return true;
         }

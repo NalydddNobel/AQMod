@@ -1,5 +1,4 @@
-﻿using AQMod.Content.DedicatedItemTags;
-using AQMod.Projectiles.Magic;
+﻿using AQMod.Projectiles.Magic;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using System;
@@ -11,6 +10,8 @@ namespace AQMod.Items.Weapons.Magic
 {
     public class StudiesoftheInkblot : ModItem, IDedicatedItem
     {
+        Color IDedicatedItem.Color => new Color(110, 110, 128, 255);
+
         public override void SetDefaults()
         {
             item.width = 80;
@@ -29,9 +30,6 @@ namespace AQMod.Items.Weapons.Magic
             item.mana = 2;
             item.shoot = ModContent.ProjectileType<StudiesoftheInkblotOrbiter>();
         }
-
-        Color IDedicatedItem.DedicatedItemColor => new Color(110, 110, 128, 255);
-        IDedicationType IDedicatedItem.DedicationType => new Dedication();
 
         public override void HoldItem(Player player)
         {
