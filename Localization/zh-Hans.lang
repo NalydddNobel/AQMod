@@ -6,6 +6,9 @@ Items
 ItemName.MushroomClam=异界蛤蜊
 ItemTooltip.MushroomClam=在海滩处使用以召唤巨蟹蛤
 
+BuffName.ManaDrain=法力枯竭
+BuffDescription.ManaDrain=魔法伤害降低90%
+
 # Accessories
 
 ItemName.GlowString=发光细绳
@@ -154,6 +157,9 @@ ProjectileName.Skrawler=皮肤焚烧者
 
 ItemName.SnowflakeCannon=雪花大炮
 ItemTooltip.SnowflakeCannon=发射许多雪球\n66%几率不消耗弹药
+
+ItemName.Snowgrave=雪墓
+ItemTooltip.Snowgrave=在下方召唤雪爆\n'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
 
 ItemName.UltimateSword=最终之剑
 ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
