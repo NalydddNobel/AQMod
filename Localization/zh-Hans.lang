@@ -364,6 +364,7 @@ ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
 ItemName.OceanRavineWall=蟹状裂隙墙
 
 # Tooltips
+Tooltips.DedicatedItem=专属物品
 Tooltips.Unobtainable=自另一宇宙形成的遗物
 Tooltips.ManaPerSecond=每秒消耗{0}点法力值
 Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果\n你不会受到任何摔落伤害
@@ -911,7 +912,7 @@ ItemName.SpoilsPotion=战利品药水
 # Equipables #
 ##############
 # Armor
-ItemName.HermitShell=寄居蟹壳
+ItemName.HermitShell=蟹壳头盔
 ItemName.StriderPalms=长足护胫
 ItemName.ArachnotronRevvers=机械蜘蛛护胫
 ItemName.ArachnotronRibcage=机械蜘蛛胸甲
@@ -949,9 +950,6 @@ ItemName.Molite=元星鱼
 ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
 ItemName.PotionofContainers=传箱药水
 ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
-
-CommonTooltip.DedicatedItem=专属物品
-CommonTooltip.ContentCreatorItem=内容创建者物品
 
 ItemName.MothmanMask=天蛾人面具
 ItemTooltip.MothmanMask=所有效果仅在你的生命值为满时生效\n增加15%暴击伤害和暴击率\n增加召唤物击退\n攻击造成暴击时对敌人造成碧蓝之火减益
