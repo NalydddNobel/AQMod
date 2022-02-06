@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Utility
+namespace AQMod.Items.Tools
 {
     public class ATM : ModItem, IUpdatePlayerSafe
     {
@@ -15,13 +15,13 @@ namespace AQMod.Items.Tools.Utility
             item.CloneDefaults(ItemID.MoneyTrough);
             item.UseSound = SoundID.Item97;
             item.rare = ItemRarityID.LightRed;
-            item.shoot = ModContent.ProjectileType<Projectiles.Pets.ATM>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Pets.PetSafe>();
         }
 
         void IUpdatePlayerSafe.UpdatePlayerSafe(Player player, int i)
         {
             var aQPlr = player.GetModPlayer<AQPlayer>();
-            var type = ModContent.ProjectileType<Projectiles.Pets.ATM>();
+            var type = ModContent.ProjectileType<Projectiles.Pets.PetSafe>();
             if (player.ownedProjectileCounts[type] < 1)
                 Projectile.NewProjectile(player.Center, new Vector2(0f, 0f), type, 0, 0f, player.whoAmI);
             for (int j = 0; j < Main.maxProjectiles; j++)

@@ -22,7 +22,6 @@ using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
@@ -135,7 +134,6 @@ namespace AQMod
                 On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
                 On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
                 On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
-                On.Terraria.Player.FishingLevel += GetFishingLevel;
                 On.Terraria.Player.AddBuff += Player_AddBuff;
                 On.Terraria.Player.QuickBuff += Player_QuickBuff;
                 On.Terraria.Player.PickTile += Player_PickTile;
@@ -474,44 +472,6 @@ namespace AQMod
                     }
                 }
                 orig(self, type, time1, quiet);
-            }
-
-            private static int GetFishingLevel(On.Terraria.Player.orig_FishingLevel orig, Player player)
-            {
-                int regularLevel = orig(player);
-                if (regularLevel <= 0)
-                    return regularLevel;
-                var aQPlayer = player.GetModPlayer<AQPlayer>();
-                Item baitItem = null;
-                for (int j = 0; j < 58; j++)
-                {
-                    if (player.inventory[j].stack > 0 && player.inventory[j].bait > 0)
-                    {
-                        baitItem = player.inventory[j];
-                        break;
-                    }
-                }
-                if (baitItem.modItem is PopperBaitItem popper)
-                {
-                    int popperPower = popper.GetExtraFishingPower(player, aQPlayer);
-                    if (popperPower > 0)
-                    {
-                        aQPlayer.popperType = baitItem.type;
-                        aQPlayer.popperBaitPower = popperPower;
-                    }
-                    else
-                    {
-                        aQPlayer.popperType = 0;
-                        aQPlayer.popperBaitPower = 0;
-                    }
-                }
-                else
-                {
-                    aQPlayer.popperType = 0;
-                    aQPlayer.popperBaitPower = 0;
-                }
-                aQPlayer.fishingPowerCache = regularLevel + aQPlayer.popperBaitPower;
-                return aQPlayer.fishingPowerCache;
             }
 
             private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)

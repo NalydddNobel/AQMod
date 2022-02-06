@@ -31,7 +31,7 @@ namespace AQMod.Items.Armor.Lightbulb
 
         public override void UpdateArmorSet(Player player)
         {
-            player.GetModPlayer<AQPlayer>().setBonusLightbulb = true;
+            player.GetModPlayer<AQPlayer>().setLightbulb = true;
             player.setBonus = Language.GetTextValue("Mods.AQMod.ArmorSetBonus.Lightbulb");
             player.dangerSense = true;
             player.detectCreature = true;

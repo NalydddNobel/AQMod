@@ -32,7 +32,7 @@ namespace AQMod.Common.ID
             }
             else
             {
-                itemToColor.Add(item, color);   
+                itemToColor.Add(item, color);
             }
             if (itemToBuff.ContainsKey(item))
             {
@@ -40,7 +40,7 @@ namespace AQMod.Common.ID
             }
             else
             {
-                itemToBuff.Add(item, buff);   
+                itemToBuff.Add(item, buff);
             }
         }
 

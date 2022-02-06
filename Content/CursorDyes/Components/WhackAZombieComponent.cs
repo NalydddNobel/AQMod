@@ -9,7 +9,7 @@ namespace AQMod.Content.CursorDyes.Components
 {
     internal class WhackAZombieComponent : CursorDyeTextureChangeComponent
     {
-        public WhackAZombieComponent() : base("AQMod/Assets/UI/cursor_whack")
+        public WhackAZombieComponent() : base("AQMod/Items/Weapons/Melee/VineSwordCursor")
         {
         }
 

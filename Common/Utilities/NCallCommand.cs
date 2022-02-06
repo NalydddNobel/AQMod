@@ -536,15 +536,6 @@ namespace AQMod.Common.Utilities
                     DemonSiege.Deactivate();
                     break;
 
-                case "fish":
-                    {
-                        var aQPlayer = caller.Player.GetModPlayer<AQPlayer>();
-                        caller.Reply("fishing power cache: " + aQPlayer.fishingPowerCache.ToString());
-                        caller.Reply("popper power: " + aQPlayer.popperBaitPower.ToString());
-                        caller.Reply("popper type: " + aQPlayer.popperType.ToString() + "( [i:" + aQPlayer.popperType.ToString() + "] )");
-                    }
-                    break;
-
                 case "alllang":
                     {
                         int i = 0;

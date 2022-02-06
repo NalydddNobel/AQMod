@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Dusts;
 using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,9 +11,8 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Melee
 {
-    public class UltimateSword : ModItem, IOverlayDrawWorld, IOverlayDrawPlayerUse, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
+    public class UltimateSword : ModItem, IOverlayDrawPlayerUse, IItemOverlaysPlayerDraw
     {
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => this;
         IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => this;
 
         public override void SetDefaults()
@@ -40,6 +40,12 @@ namespace AQMod.Items.Weapons.Melee
                 player.immuneTime = 5;
                 player.immuneNoBlink = true;
             }
+            var center = target.Center;
+            for (int i = 0; i < 26; i++)
+            {
+                int d = Dust.NewDust(target.position, target.width, target.height, ModContent.DustType<UltimateEnergyDust>());
+                Main.dust[d].velocity = (Main.dust[d].position - center) / 8f;
+            }
             target.AddBuff(ModContent.BuffType<Buffs.Debuffs.Sparkling>(), 1200);
             if (crit)
             {
@@ -47,12 +53,19 @@ namespace AQMod.Items.Weapons.Melee
             }
         }
 
-        bool IOverlayDrawWorld.PreDrawWorld(Item item, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        public override void UseItemHitbox(Player player, ref Rectangle hitbox, ref bool noHitbox)
         {
-            return false;
+            if (Main.rand.NextBool(3))
+            {
+                int d = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, ModContent.DustType<UltimateEnergyDust>());
+                Main.dust[d].velocity *= 0.1f;
+                Main.dust[d].scale = Main.rand.NextFloat(1.1f, 1.3f);
+                Main.dust[d].fadeIn = 0.2f;
+                Main.dust[d].noGravity = true;
+            }
         }
 
-        void IOverlayDrawWorld.PostDrawWorld(Item item, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             var drawColor = new Color(128, 128, 128, 0);
             var texture = AQUtils.GetTextureobj<UltimateSword>("_Glow");

@@ -157,7 +157,7 @@ namespace AQMod.Items.Potions
                 int type = ModContent.DustType<MonoDust>();
                 for (int i = 0; i < 10; i++)
                 {
-                    int d = Dust.NewDust(new Vector2(rectangle.X, rectangle.Y), rectangle.Width, rectangle.Height, ModContent.DustType<MonoSparkleDust>(), 
+                    int d = Dust.NewDust(new Vector2(rectangle.X, rectangle.Y), rectangle.Width, rectangle.Height, ModContent.DustType<MonoSparkleDust>(),
                         0f, 0f, 0, color2, Main.rand.NextFloat(0.7f, 1.2f));
                     var velocity = Vector2.Normalize(center - Main.dust[d].position + new Vector2(0f, -4f)) * 8f;
                     Main.dust[d].velocity = velocity;

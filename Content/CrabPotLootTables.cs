@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.Fishing;
+using AQMod.Content.Players;
 using AQMod.Items.Materials;
 using AQMod.Items.Potions;
 using System;
@@ -121,7 +121,7 @@ namespace AQMod.Content
                 new CrabPotLoot(ItemID.PrincessFish),
                 new CrabPotLoot(ItemID.Prismite),
                 new CrabPotLoot(ItemID.ChaosFish,
-                validWorldLayers: new byte[] { FishLoader.WorldLayers.UndergroundLayer, FishLoader.WorldLayers.CavernLayer })
+                validWorldLayers: new byte[] { PlayerFishing.WorldLayers.UndergroundLayer, PlayerFishing.WorldLayers.CavernLayer })
             };
 
             SnowLoot = new List<CrabPotLoot>
@@ -184,7 +184,7 @@ namespace AQMod.Content
                 return 0;
             }
 
-            WorldLayer = (byte)((!(y < Main.worldSurface * 0.5)) ? ((y < Main.worldSurface) ? FishLoader.WorldLayers.Overworld : ((y < Main.rockLayer) ? FishLoader.WorldLayers.UndergroundLayer : ((y >= Main.maxTilesY - 300) ? FishLoader.WorldLayers.HellLayer : FishLoader.WorldLayers.CavernLayer))) : FishLoader.WorldLayers.Space);
+            WorldLayer = (byte)((!(y < Main.worldSurface * 0.5)) ? ((y < Main.worldSurface) ? PlayerFishing.WorldLayers.Overworld : ((y < Main.rockLayer) ? PlayerFishing.WorldLayers.UndergroundLayer : ((y >= Main.maxTilesY - 300) ? PlayerFishing.WorldLayers.HellLayer : PlayerFishing.WorldLayers.CavernLayer))) : PlayerFishing.WorldLayers.Space);
 
             //Main.NewText(WorldLayer, Microsoft.Xna.Framework.Color.Aqua);
 
@@ -192,7 +192,7 @@ namespace AQMod.Content
             {
                 return Main.rand.NextBool() ? ItemID.FlarefinKoi : ItemID.Obsidifish;
             }
-            else if (WorldLayer == FishLoader.WorldLayers.HellLayer)
+            else if (WorldLayer == PlayerFishing.WorldLayers.HellLayer)
             {
                 return 0;
             }
@@ -269,7 +269,7 @@ namespace AQMod.Content
 
             List<int> choices = new List<int>();
 
-            if (WorldLayer <= FishLoader.WorldLayers.Overworld)
+            if (WorldLayer <= PlayerFishing.WorldLayers.Overworld)
             {
                 if (BloodMoon)
                 {
@@ -292,7 +292,7 @@ namespace AQMod.Content
             {
                 AddToList(choices, HallowLoot);
             }
-            if (Ocean && WorldLayer == FishLoader.WorldLayers.Overworld)
+            if (Ocean && WorldLayer == PlayerFishing.WorldLayers.Overworld)
             {
                 AddToList(choices, OceanLoot);
             }
@@ -303,15 +303,15 @@ namespace AQMod.Content
 
             if (CanCatchNormalFish)
             {
-                if (WorldLayer == FishLoader.WorldLayers.Space)
+                if (WorldLayer == PlayerFishing.WorldLayers.Space)
                 {
                     AddToList(choices, SpaceLoot);
                 }
-                else if (WorldLayer == FishLoader.WorldLayers.UndergroundLayer || WorldLayer == FishLoader.WorldLayers.CavernLayer)
+                else if (WorldLayer == PlayerFishing.WorldLayers.UndergroundLayer || WorldLayer == PlayerFishing.WorldLayers.CavernLayer)
                 {
                     AddToList(choices, UndergroundCavernLoot);
                 }
-                if (WorldLayer <= FishLoader.WorldLayers.Overworld)
+                if (WorldLayer <= PlayerFishing.WorldLayers.Overworld)
                 {
                     AddToList(choices, NormalLoot);
                 }

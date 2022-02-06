@@ -37,7 +37,7 @@ namespace AQMod.Projectiles
         public override void PostAI()
         {
             if (Main.rand.NextBool())
-                Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<UltimaDust>());
+                Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<UltimateEnergyDust>());
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -72,7 +72,7 @@ namespace AQMod.Projectiles
         {
             Main.PlaySound(SoundID.Dig, projectile.position);
             AQItem.DropInstancedItem(projectile.owner, projectile.getRect(), ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
-            var dust = ModContent.DustType<UltimaDust>();
+            var dust = ModContent.DustType<UltimateEnergyDust>();
             for (int i = 0; i < 50; i++)
             {
                 Dust.NewDust(projectile.position, projectile.width, projectile.height, dust);

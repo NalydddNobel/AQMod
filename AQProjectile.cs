@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Graphics;
+using AQMod.Content.Players;
 using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.NPCs;
 using Microsoft.Xna.Framework;
@@ -189,6 +190,68 @@ namespace AQMod
             windStruck = true;
         }
 
+        private void FishingPopperCheck(Projectile projectile)
+        {
+            var fishing = Main.player[projectile.owner].GetModPlayer<PlayerFishing>();
+            if (projectile.ai[1] > 0f && projectile.localAI[1] >= 0f && fishing.popperType > 0)
+            {
+                ((PopperBaitItem)ItemLoader.GetItem(fishing.popperType)).OnCatchEffect(Main.player[projectile.owner], fishing, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
+            }
+            else if (projectile.ai[0] <= 0f && projectile.wet && projectile.rotation != 0f && fishing.popperType > 0)
+            {
+                ((PopperBaitItem)ItemLoader.GetItem(fishing.popperType)).OnEnterWater(Main.player[projectile.owner], fishing, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
+            }
+        }
+        private void YoyoStringGlow(Projectile projectile)
+        {
+            AQGraphics.SetCullPadding(padding: 200);
+            if (AQGraphics.Cull_WorldPosition(projectile.getRect()))
+            {
+                var center = projectile.Center;
+                var playerCenter = Main.player[projectile.owner].MountedCenter;
+                playerCenter.Y += Main.player[projectile.owner].gfxOffY;
+                float differenceX = center.X - playerCenter.X;
+                float differenceY = center.Y - playerCenter.Y;
+
+                float length = (float)Math.Sqrt(differenceX * differenceX + differenceY * differenceY);
+                float add = Math.Min(length / 32f, 4f);
+                var toYoyo = Vector2.Normalize(center - playerCenter);
+                for (float l = 0f; l < length; l += add)
+                {
+                    int stringColor = Main.player[projectile.owner].stringColor;
+                    Color lightColor = WorldGen.paintColor(stringColor);
+                    if (lightColor.R < 75)
+                    {
+                        lightColor.R = 75;
+                    }
+                    if (lightColor.G < 75)
+                    {
+                        lightColor.G = 75;
+                    }
+                    if (lightColor.B < 75)
+                    {
+                        lightColor.B = 75;
+                    }
+                    switch (stringColor)
+                    {
+                        case 13:
+                            lightColor = new Color(20, 20, 20);
+                            break;
+                        case 0:
+                        case 14:
+                            lightColor = new Color(200, 200, 200);
+                            break;
+                        case 28:
+                            lightColor = new Color(163, 116, 91);
+                            break;
+                        case 27:
+                            lightColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                            break;
+                    }
+                    Lighting.AddLight(playerCenter + toYoyo * l, lightColor.ToVector3() * 0.6f);
+                }
+            }
+        }
         public override bool PreAI(Projectile projectile)
         {
             windStruckOld = windStruck;
@@ -210,150 +273,85 @@ namespace AQMod
 
             if (projectile.aiStyle == 61)
             {
-                if (projectile.ai[1] > 0f && projectile.localAI[1] >= 0f) // on catch effects
-                {
-                    var aQPlayer = Main.player[projectile.owner].GetModPlayer<AQPlayer>();
-                    if (aQPlayer.popperType > 0)
-                    {
-                        var item = new Item();
-                        item.SetDefaults(aQPlayer.popperType);
-                        ((PopperBaitItem)item.modItem).OnCatchEffect(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
-                    }
-                }
-                else if (projectile.ai[0] <= 0f && projectile.wet && projectile.rotation != 0f) // When it enters the water
-                {
-                    var aQPlayer = Main.player[projectile.owner].GetModPlayer<AQPlayer>();
-                    if (aQPlayer.popperType > 0)
-                    {
-                        var item = new Item();
-                        item.SetDefaults(aQPlayer.popperType);
-                        ((PopperBaitItem)item.modItem).PopperEffects(Main.player[projectile.owner], aQPlayer, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
-                    }
-                }
+                FishingPopperCheck(projectile);
             }
             if (projectile.aiStyle == 99 && Main.netMode != NetmodeID.Server &&
                 Main.player[projectile.owner].GetModPlayer<AQPlayer>().glowString)
             {
-                AQGraphics.SetCullPadding(padding: 200);
-                if (AQGraphics.Cull_WorldPosition(projectile.getRect()))
-                {
-                    var center = projectile.Center;
-                    var playerCenter = Main.player[projectile.owner].MountedCenter;
-                    playerCenter.Y += Main.player[projectile.owner].gfxOffY;
-                    float differenceX = center.X - playerCenter.X;
-                    float differenceY = center.Y - playerCenter.Y;
-
-                    float length = (float)Math.Sqrt(differenceX * differenceX + differenceY * differenceY);
-                    float add = Math.Min(length / 32f, 4f);
-                    var toYoyo = Vector2.Normalize(center - playerCenter);
-                    for (float l = 0f; l < length; l += add)
-                    {
-                        int stringColor = Main.player[projectile.owner].stringColor;
-                        Color lightColor = WorldGen.paintColor(stringColor);
-                        if (lightColor.R < 75)
-                        {
-                            lightColor.R = 75;
-                        }
-                        if (lightColor.G < 75)
-                        {
-                            lightColor.G = 75;
-                        }
-                        if (lightColor.B < 75)
-                        {
-                            lightColor.B = 75;
-                        }
-                        switch (stringColor)
-                        {
-                            case 13:
-                                lightColor = new Color(20, 20, 20);
-                                break;
-                            case 0:
-                            case 14:
-                                lightColor = new Color(200, 200, 200);
-                                break;
-                            case 28:
-                                lightColor = new Color(163, 116, 91);
-                                break;
-                            case 27:
-                                lightColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
-                                break;
-                        }
-                        Lighting.AddLight(playerCenter + toYoyo * l, lightColor.ToVector3() * 0.6f);
-                    }
-                }
+                YoyoStringGlow(projectile);
             }
             return true;
         }
 
+        private void OnCaptureFish(Projectile projectile)
+        {
+            var plr = Main.player[projectile.owner];
+            var aQPlr = plr.GetModPlayer<AQPlayer>();
+            var item = new Item();
+            item.SetDefaults((int)projectile.ai[1]);
+            if (aQPlr.goldSeal && item.value > Item.sellPrice(gold: 1))
+            {
+                int sonarPotionIndex = plr.FindBuffIndex(BuffID.Sonar);
+                if (sonarPotionIndex != -1)
+                {
+                    plr.buffTime[sonarPotionIndex] += 6000;
+                }
+                else
+                {
+                    plr.AddBuff(BuffID.Sonar, 6000);
+                }
+            }
+            if (aQPlr.silverSeal)
+            {
+                int fishingPotionIndex = plr.FindBuffIndex(BuffID.Fishing);
+                if (fishingPotionIndex != -1)
+                {
+                    plr.buffTime[fishingPotionIndex] += 600;
+                }
+                else
+                {
+                    plr.AddBuff(BuffID.Fishing, 600);
+                }
+            }
+            switch ((int)projectile.ai[1])
+            {
+                case ItemID.CorruptFishingCrate:
+                case ItemID.CrimsonFishingCrate:
+                case ItemID.DungeonFishingCrate:
+                case ItemID.FloatingIslandFishingCrate:
+                case ItemID.HallowedFishingCrate:
+                case ItemID.JungleFishingCrate:
+                case ItemID.GoldenCrate:
+                case ItemID.IronCrate:
+                case ItemID.WoodenCrate:
+                    if (aQPlr.copperSeal)
+                    {
+                        int cratePotionIndex = plr.FindBuffIndex(BuffID.Crate);
+                        if (cratePotionIndex != -1)
+                        {
+                            plr.buffTime[cratePotionIndex] += 1800;
+                        }
+                        else
+                        {
+                            plr.AddBuff(BuffID.Crate, 1800);
+                        }
+                    }
+                    break;
+
+                default:
+                    if ((int)projectile.ai[1] > Main.maxItemTypes)
+                    {
+                        if (ItemLoader.GetItem((int)projectile.ai[1]).CanRightClick())
+                            goto case ItemID.WoodenCrate;
+                    }
+                    break;
+            }
+        }
         public override void Kill(Projectile projectile, int timeLeft)
         {
-            if (projectile.aiStyle == 61)
+            if (projectile.aiStyle == 61 && projectile.ai[0] >= 1f && projectile.ai[1] > 0f && Main.myPlayer == projectile.owner)
             {
-                if (projectile.ai[0] >= 1f && projectile.ai[1] > 0f && Main.myPlayer == projectile.owner)
-                {
-                    var plr = Main.player[projectile.owner];
-                    var aQPlr = plr.GetModPlayer<AQPlayer>();
-                    var item = new Item();
-                    item.SetDefaults((int)projectile.ai[1]);
-                    if (aQPlr.goldSeal && item.value > Item.sellPrice(gold: 1))
-                    {
-                        int sonarPotionIndex = plr.FindBuffIndex(BuffID.Sonar);
-                        if (sonarPotionIndex != -1)
-                        {
-                            plr.buffTime[sonarPotionIndex] += 6000;
-                        }
-                        else
-                        {
-                            plr.AddBuff(BuffID.Sonar, 6000);
-                        }
-                    }
-                    if (aQPlr.silverSeal)
-                    {
-                        int fishingPotionIndex = plr.FindBuffIndex(BuffID.Fishing);
-                        if (fishingPotionIndex != -1)
-                        {
-                            plr.buffTime[fishingPotionIndex] += 600;
-                        }
-                        else
-                        {
-                            plr.AddBuff(BuffID.Fishing, 600);
-                        }
-                    }
-                    switch (projectile.ai[1])
-                    {
-                        case ItemID.CorruptFishingCrate:
-                        case ItemID.CrimsonFishingCrate:
-                        case ItemID.DungeonFishingCrate:
-                        case ItemID.FloatingIslandFishingCrate:
-                        case ItemID.HallowedFishingCrate:
-                        case ItemID.JungleFishingCrate:
-                        case ItemID.GoldenCrate:
-                        case ItemID.IronCrate:
-                        case ItemID.WoodenCrate:
-                            if (aQPlr.copperSeal)
-                            {
-                                int cratePotionIndex = plr.FindBuffIndex(BuffID.Crate);
-                                if (cratePotionIndex != -1)
-                                {
-                                    plr.buffTime[cratePotionIndex] += 1800;
-                                }
-                                else
-                                {
-                                    plr.AddBuff(BuffID.Crate, 1800);
-                                }
-                            }
-                            break;
-
-                        default:
-                            if (projectile.ai[1] > Main.maxItemTypes)
-                            {
-                                var modItem = ItemLoader.GetItem((int)projectile.ai[1]);
-                                if (modItem.CanRightClick())
-                                    goto case ItemID.WoodenCrate;
-                            }
-                            break;
-                    }
-                }
+                OnCaptureFish(projectile);
             }
         }
 

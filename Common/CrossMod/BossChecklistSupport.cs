@@ -10,7 +10,6 @@ using AQMod.Items.Pets;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools;
-using AQMod.Items.Tools.Axe;
 using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Magic;

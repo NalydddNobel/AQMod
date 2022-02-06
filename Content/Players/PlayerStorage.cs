@@ -91,7 +91,7 @@ namespace AQMod.Content.Players
                 _moneyTroughHackProjectileIndex = -1;
             if (_moneyTroughHackProjectileIndex > -1)
             {
-                if (player.flyingPigChest >= 0 || player.chest != -3 || !Main.projectile[_moneyTroughHackProjectileIndex].active || Main.projectile[_moneyTroughHackProjectileIndex].type != ModContent.ProjectileType<ATM>())
+                if (player.flyingPigChest >= 0 || player.chest != -3 || !Main.projectile[_moneyTroughHackProjectileIndex].active || Main.projectile[_moneyTroughHackProjectileIndex].type != ModContent.ProjectileType<PetSafe>())
                 {
                     _moneyTroughHackProjectileIndex = -1;
                     _moneyTroughHack = null;

@@ -411,7 +411,7 @@ namespace AQMod.Effects
         {
             if (BGStarite._texture == null)
             {
-                BGStarite._texture = ModContent.GetTexture("AQMod/Assets/Backgrounds/Entities/Starite");
+                BGStarite._texture = ModContent.GetTexture("AQMod/Effects/SkyStarite");
             }
             if (maxDepth == float.MaxValue && minDepth != float.MaxValue)
             {

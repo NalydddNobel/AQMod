@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Utility
+namespace AQMod.Items.Tools
 {
     public class GhostlyGrave : ModItem
     {

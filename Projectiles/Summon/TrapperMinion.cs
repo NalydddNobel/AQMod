@@ -164,7 +164,7 @@ namespace AQMod.Projectiles.Summon
 
             float wave = AQUtils.Wave(Main.GlobalTime * 10f, 0.9f, 1.1f);
             const int fade = 5;
-            bool shouldFadeFromMouse = AQPlayer.ShouldDoFadingBecauseOfToolsOrSomething(Main.player[projectile.owner]);
+            bool shouldFadeFromMouse = AQPlayer.TileImportantItem(Main.player[projectile.owner]);
             for (int j = 1; j < reps; j++)
             {
                 var position = chainEnd - chainVelocity * j;

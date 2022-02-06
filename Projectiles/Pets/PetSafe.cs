@@ -1,4 +1,5 @@
 ﻿using AQMod.Content.Players;
+using AQMod.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -8,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Pets
 {
-    public class ATM : ModProjectile, PlayerStorage.ISuperClunkyMoneyTroughTypeThing
+    public class PetSafe : ModProjectile, PlayerStorage.ISuperClunkyMoneyTroughTypeThing
     {
         public override string Texture => "Terraria/Item_" + ItemID.Safe;
 
@@ -49,7 +50,7 @@ namespace AQMod.Projectiles.Pets
                 var outlineTexture = ModContent.GetTexture(this.GetPath("_Highlight"));
                 plr.noThrow = 2;
                 plr.showItemIcon = true;
-                plr.showItemIcon2 = ModContent.ItemType<Items.Tools.Utility.ATM>();
+                plr.showItemIcon2 = ModContent.ItemType<ATM>();
                 if (PlayerInput.UsingGamepad)
                     plr.GamepadEnableGrappleCooldown();
                 spriteBatch.Draw(outlineTexture, drawPos, null, Color.Lerp(lightColor, Main.OurFavoriteColor, 0.5f), projectile.rotation, outlineTexture.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
@@ -72,7 +73,7 @@ namespace AQMod.Projectiles.Pets
         }
 
         int PlayerStorage.ISuperClunkyMoneyTroughTypeThing.ChestType => -3;
-        int PlayerStorage.ISuperClunkyMoneyTroughTypeThing.ProjectileType => ModContent.ProjectileType<ATM>();
+        int PlayerStorage.ISuperClunkyMoneyTroughTypeThing.ProjectileType => ModContent.ProjectileType<PetSafe>();
         void PlayerStorage.ISuperClunkyMoneyTroughTypeThing.OnOpen()
         {
             Main.PlaySound(SoundID.Item97);

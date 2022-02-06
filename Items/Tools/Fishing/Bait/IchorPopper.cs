@@ -1,4 +1,5 @@
-﻿using AQMod.Effects.WorldEffects;
+﻿using AQMod.Content.Players;
+using AQMod.Effects.WorldEffects;
 using AQMod.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -20,14 +21,14 @@ namespace AQMod.Items.Tools.Fishing.Bait
             item.rare = ItemRarityID.Green;
         }
 
-        public override int GetExtraFishingPower(Player player, AQPlayer aQPlayer)
+        public override int GetExtraFishingPower(Player player, PlayerFishing fishing)
         {
             if (player.ZoneCrimson)
                 return 35;
             return 0;
         }
 
-        public override void PopperEffects(Player player, AQPlayer aQPlayer, Projectile bobber, Tile tile)
+        public override void OnEnterWater(Player player, PlayerFishing fishing, Projectile bobber, Tile tile)
         {
             AQMod.WorldEffects.Add(new FishingPopperEffect((int)bobber.position.X, (int)bobber.position.Y, tile.liquid, 170, default(Color)));
         }

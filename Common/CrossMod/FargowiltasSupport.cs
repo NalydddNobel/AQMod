@@ -1,5 +1,4 @@
-﻿using AQMod.Items.Accessories.Vanity;
-using AQMod.Items.Dyes;
+﻿using AQMod.Items.Dyes;
 using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Placeable.Furniture;
@@ -86,7 +85,7 @@ namespace AQMod.Common.CrossMod
             r.AddIngredient(ItemID.MimicBanner);
             r.AddIngredient(ItemID.Bone, 5);
             r.AddTile(TileID.Solidifier);
-            r.SetResult(ModContent.ItemType<Items.Tools.Utility.ATM>());
+            r.SetResult(ModContent.ItemType<Items.Tools.ATM>());
             r.AddRecipe();
 
             createFargoRecipeBannerInput<Items.Accessories.Breadsoul>(ItemID.DungeonSpiritBanner);

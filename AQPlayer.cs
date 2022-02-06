@@ -3,7 +3,6 @@ using AQMod.Buffs.Temperature;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Content;
-using AQMod.Content.Fishing;
 using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Effects;
@@ -13,8 +12,7 @@ using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.Quest.Angler;
-using AQMod.Items.Tools.Axe;
+using AQMod.Items.Tools;
 using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Summon;
@@ -52,7 +50,7 @@ namespace AQMod
         public float discountPercentage;
         public bool blueSpheres;
         public bool hyperCrystal;
-        public bool sparkling;
+        public bool shimmering;
         public bool chloroTransfer;
         public bool altEvilDrops;
         public bool breadsoul;
@@ -61,7 +59,7 @@ namespace AQMod
         public bool copperSeal;
         public bool silverSeal;
         public bool goldSeal;
-        public bool canDash;
+        public bool dashAvailable;
         public bool dartHead;
         public int dartHeadType;
         public int dartHeadDelay;
@@ -70,8 +68,8 @@ namespace AQMod
         public int thunderbirdJumpTimer;
         public int thunderbirdLightningTimer;
         public bool dreadsoul;
-        public bool arachnotron;
-        public bool primeTime;
+        public bool arachnotronArms;
+        public bool setArachnotron;
         public bool omori;
         public int omoriDeathTimer;
         public int spelunkerEquipTimer;
@@ -98,7 +96,7 @@ namespace AQMod
         public bool ghostAmuletHeld;
         public bool degenerationRing;
         public ushort shieldLife;
-        public bool notFrostburn;
+        public bool blueFire;
         public bool bossrush;
         public bool bossrushOld;
         public float grabReachMult; // until 1.4 comes
@@ -114,7 +112,7 @@ namespace AQMod
         public bool fidgetSpinner;
         public bool cantUseMenaceUmbrellaJump;
         public bool ignoreMoons;
-        public bool cosmicanon;
+        public bool canToggleCosmicanon;
         public bool antiGravityItems;
         public bool hotAmulet;
         public bool coldAmulet;
@@ -134,7 +132,7 @@ namespace AQMod
         public float holyEnemyDR;
         public int healEffectValueForSyncingTheThingOnTheServer;
 
-        public bool setBonusLightbulb;
+        public bool setLightbulb;
 
         public bool heartMoth;
         public bool anglerFish;
@@ -153,10 +151,6 @@ namespace AQMod
         public int headMinionCarryYOld;
         public byte monoxiderCarry;
 
-        public int popperType;
-        public int popperBaitPower;
-        public int fishingPowerCache;
-
         public int ExtractinatorCount;
 
         public bool IgnoreIgnoreMoons;
@@ -164,15 +158,15 @@ namespace AQMod
         public override void Initialize()
         {
             omoriDeathTimer = 1;
-            arachnotron = false;
+            arachnotronArms = false;
             lootIterations = 0;
-            sparkling = false;
+            shimmering = false;
             headMinionCarryX = 0;
             headMinionCarryY = 0;
             headMinionCarryXOld = 0;
             headMinionCarryYOld = 0;
             monoxiderCarry = 0;
-            notFrostburn = false;
+            blueFire = false;
             bossrush = false;
             bossrushOld = false;
             grabReachMult = 1f;
@@ -211,7 +205,21 @@ namespace AQMod
                 ScreenShakeManager.Update();
         }
 
-        private void UpdateTemperature()
+        public override void UpdateDead()
+        {
+            ResetEffects_Debuffs();
+            omori = false;
+            blueSpheres = false;
+            monoxiderCarry = 0;
+            temperature = 0;
+            temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
+            mothmanExplosionDelay = 0;
+            dartHeadDelay = 0;
+            bloodthirstDelay = 0;
+            healEffectValueForSyncingTheThingOnTheServer = 0;
+        }
+
+        private void ResetEffects_Temperature()
         {
             if (temperature != 0)
             {
@@ -286,40 +294,72 @@ namespace AQMod
                 }
             }
         }
-
+        private void ResetEffects_DashAvailable()
+        {
+            dashAvailable = !(player.setSolar || player.mount.Active);
+            if (dashAvailable)
+            {
+                for (int i = 3; i < AccessorySlots(player); i++)
+                {
+                    if (AQItem.Sets.DashAccessory[player.armor[i].type])
+                    {
+                        dashAvailable = false;
+                        break;
+                    }
+                }
+            }
+        }
+        private void ResetEffects_Healing()
+        {
+            if (extraHP > 60) // to cap life max buffs at 60
+            {
+                extraHP = 60;
+            }
+            player.statLifeMax2 += extraHP;
+            extraHP = 0;
+            if (healEffectValueForSyncingTheThingOnTheServer != 0 && Main.myPlayer == player.whoAmI)
+            {
+                player.HealEffect(healEffectValueForSyncingTheThingOnTheServer, broadcast: true);
+                healEffectValueForSyncingTheThingOnTheServer = 0;
+            }
+        }
+        private void ResetEffects_Debuffs()
+        {
+            blueFire = false;
+            shimmering = false;
+            pickBreak = false;
+        }
         public override void ResetEffects()
         {
-            setBonusLightbulb = false;
+            setLightbulb = false;
             blueSpheres = false;
             discountPercentage = 0.8f;
             hyperCrystal = false;
             monoxiderBird = false;
-            sparkling = false;
             moonShoes = false;
-            canDash = !(player.setSolar || player.mount.Active);
             copperSeal = false;
             silverSeal = false;
             goldSeal = false;
             extraFlightTime = 0;
             dreadsoul = false;
             breadsoul = false;
-            arachnotron = false;
-            primeTime = false;
+            arachnotronArms = false;
+            setArachnotron = false;
             omori = false;
             omegaStarite = false;
             lootIterations = 0;
             wyvernAmulet = false;
             voodooAmulet = false;
             ghostAmulet = false;
+            ghostAmuletHeld = InVanitySlot(player, ModContent.ItemType<GhostAmulet>());
+            voodooAmuletHeld = InVanitySlot(player, ModContent.ItemType<VoodooAmulet>());
+            wyvernAmuletHeld = InVanitySlot(player, ModContent.ItemType<WyvernAmulet>());
             extractinatorVisible = false;
             altEvilDrops = false;
             starite = false;
             spicyEel = false;
             striderPalmsOld = striderPalms;
             striderPalms = false;
-            ghostAmuletHeld = InVanitySlot(player, ModContent.ItemType<GhostAmulet>());
-            voodooAmuletHeld = InVanitySlot(player, ModContent.ItemType<VoodooAmulet>());
-            wyvernAmuletHeld = InVanitySlot(player, ModContent.ItemType<WyvernAmulet>());
             shieldLife = 0;
 
             crimsonHands = false;
@@ -336,14 +376,12 @@ namespace AQMod
             heartMoth = false;
             anglerFish = false;
 
-            notFrostburn = false;
             grabReachMult = 1f;
             mothmanMask = false;
-            pickBreak = false;
             crabAx = false;
             fidgetSpinner = false;
             cantUseMenaceUmbrellaJump = false;
-            cosmicanon = false;
+            canToggleCosmicanon = false;
             ignoreMoons = false;
             antiGravityItems = false;
             shockCollar = false;
@@ -355,14 +393,9 @@ namespace AQMod
             bloodthirst = false;
             shade = false;
             spreadDebuffs = false;
-
-            if (extraHP > 60) // to cap life max buffs at 60
-            {
-                extraHP = 60;
-            }
-            player.statLifeMax2 += extraHP;
-            extraHP = 0;
-            UpdateTemperature();
+            ResetEffects_Healing();
+            ResetEffects_Debuffs();
+            ResetEffects_Temperature();
             hotAmulet = false;
             coldAmulet = false;
             if (mothmanExplosionDelay > 0)
@@ -376,43 +409,31 @@ namespace AQMod
             dartHead = false;
             if (thunderbirdJumpTimer > 0)
             {
-                canDash = false;
+                dashAvailable = false;
                 thunderbirdJumpTimer--;
             }
             if (thunderbirdLightningTimer > 0)
                 thunderbirdLightningTimer--;
-            if (canDash)
-            {
-                for (int i = 3; i < 8 + player.extraAccessorySlots; i++)
-                {
-                    Item item = player.armor[i];
-                    if (item.type == ItemID.EoCShield || item.type == ItemID.MasterNinjaGear || item.type == ItemID.Tabi)
-                    {
-                        canDash = false;
-                        break;
-                    }
-                }
-            }
-            if (healEffectValueForSyncingTheThingOnTheServer != 0 && Main.myPlayer == player.whoAmI)
-            {
-                player.HealEffect(healEffectValueForSyncingTheThingOnTheServer, broadcast: true);
-                healEffectValueForSyncingTheThingOnTheServer = 0;
-            }
+            ResetEffects_DashAvailable();
         }
 
+        private void ToggleCosmicanon()
+        {
+            IgnoreIgnoreMoons = !IgnoreIgnoreMoons;
+            if (IgnoreIgnoreMoons)
+            {
+                Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.False"), new Color(230, 230, 255, 255));
+            }
+            else
+            {
+                Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
+            }
+        }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (cosmicanon && AQMod.Keybinds.CosmicanonToggle.JustPressed)
+            if (canToggleCosmicanon && AQMod.Keybinds.CosmicanonToggle.JustPressed)
             {
-                IgnoreIgnoreMoons = !IgnoreIgnoreMoons;
-                if (IgnoreIgnoreMoons)
-                {
-                    Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.False"), new Color(230, 230, 255, 255));
-                }
-                else
-                {
-                    Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
-                }
+                ToggleCosmicanon();
             }
         }
 
@@ -426,241 +447,247 @@ namespace AQMod
             clone.dreadsoul = dreadsoul;
             clone.dartHead = dartHead;
             clone.dartHeadType = dartHeadType;
-            clone.arachnotron = arachnotron;
+            clone.arachnotronArms = arachnotronArms;
             clone.blueSpheres = blueSpheres;
         }
 
-
-
-        public override bool PreItemCheck()
+        private void ItemCheck_FidgetSpinner(Item item)
         {
-            if (Main.myPlayer == player.whoAmI)
+            Fidget_Spinner_Force_Autoswing = false;
+            if (fidgetSpinner && player.selectedItem < Main.maxInventory && (Main.mouseItem == null || Main.mouseItem.type <= ItemID.None))
             {
-                var item = player.inventory[player.selectedItem];
-                Fidget_Spinner_Force_Autoswing = false;
-                if (fidgetSpinner && player.selectedItem < Main.maxInventory && (Main.mouseItem == null || Main.mouseItem.type <= ItemID.None))
+                if (CanForceAutoswing(player, item, ignoreChanneled: false))
                 {
-                    if (CanForceAutoswing(player, item, ignoreChanneled: false))
-                    {
-                        Fidget_Spinner_Force_Autoswing = true;
-                        item.autoReuse = true;
-                    }
+                    Fidget_Spinner_Force_Autoswing = true;
+                    item.autoReuse = true;
                 }
-                bool canMine = CanReach(player, item);
-                if (player.noBuilding)
-                    canMine = false;
-                if (Main.mouseRight || !canMine)
-                    crabAx = false;
-                else if (!crabAx)
-                    crabAx = item.type == ModContent.ItemType<Crabax>();
-                if (crabAx && (item.axe > 0))
+            }
+        }
+        private void ItemCheck_CrabAx(Item item)
+        {
+            bool canMine = CanReach(player, item);
+            if (player.noBuilding)
+                canMine = false;
+            if (Main.mouseRight || !canMine)
+                crabAx = false;
+            else if (!crabAx)
+                crabAx = item.type == ModContent.ItemType<Crabax>();
+            if (crabAx && (item.axe > 0))
+            {
+                if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && player.toolTime <= 1 && player.itemAnimation > 0 && player.controlUseItem)
                 {
-                    if (Main.tile[Player.tileTargetX, Player.tileTargetY].active() && player.toolTime <= 1 && player.itemAnimation > 0 && player.controlUseItem)
+                    var rectangle = new Rectangle((int)(player.position.X + player.width / 2) / 16, (int)(player.position.Y + player.height / 2) / 16, 30, 30);
+                    rectangle.X -= rectangle.Width / 2;
+                    rectangle.Y -= rectangle.Height / 2;
+                    int hitCount = 0;
+                    const int HitCountMax = 8;
+                    if (rectangle.X > 10 && rectangle.X < Main.maxTilesX - 10 && rectangle.Y > 10 && rectangle.Y < Main.maxTilesY - 10)
                     {
-                        var rectangle = new Rectangle((int)(player.position.X + player.width / 2) / 16, (int)(player.position.Y + player.height / 2) / 16, 30, 30);
-                        rectangle.X -= rectangle.Width / 2;
-                        rectangle.Y -= rectangle.Height / 2;
-                        int hitCount = 0;
-                        const int HitCountMax = 8;
-                        if (rectangle.X > 10 && rectangle.X < Main.maxTilesX - 10 && rectangle.Y > 10 && rectangle.Y < Main.maxTilesY - 10)
+                        for (int i = rectangle.X; i < rectangle.X + rectangle.Width; i++)
                         {
-                            for (int i = rectangle.X; i < rectangle.X + rectangle.Width; i++)
+                            for (int j = rectangle.Y; j < rectangle.Y + rectangle.Height; j++)
                             {
-                                for (int j = rectangle.Y; j < rectangle.Y + rectangle.Height; j++)
+                                if (Main.tile[i, j] == null)
                                 {
-                                    if (Main.tile[i, j] == null)
+                                    Main.tile[i, j] = new Tile();
+                                    continue;
+                                }
+                                if (Main.tile[i, j].active() && Main.tileAxe[Main.tile[i, j].type])
+                                {
+                                    int tileID = player.hitTile.HitObject(i, j, 1);
+                                    int tileDamage = 0;
+                                    if (Main.tile[i, j].type == 80)
                                     {
-                                        Main.tile[i, j] = new Tile();
+                                        tileDamage += item.axe * 3;
+                                    }
+                                    else
+                                    {
+                                        TileLoader.MineDamage(item.axe, ref tileDamage);
+                                    }
+                                    if (Main.tile[i, j].type == TileID.Trees)
+                                    {
+                                        int treeStumpX = i;
+                                        int treeStumpY = j;
+
+                                        if (Main.tile[treeStumpX, treeStumpY].frameY >= 198 && Main.tile[treeStumpX, treeStumpY].frameX == 44)
+                                        {
+                                            treeStumpX++;
+                                        }
+                                        if (Main.tile[treeStumpX, treeStumpY].frameX == 66 && Main.tile[treeStumpX, treeStumpY].frameY <= 44)
+                                        {
+                                            treeStumpX++;
+                                        }
+                                        if (Main.tile[treeStumpX, treeStumpY].frameX == 44 && Main.tile[treeStumpX, treeStumpY].frameY >= 132 && Main.tile[treeStumpX, treeStumpY].frameY <= 176)
+                                        {
+                                            treeStumpX++;
+                                        }
+                                        if (Main.tile[treeStumpX, treeStumpY].frameY >= 198 && Main.tile[treeStumpX, treeStumpY].frameX == 66)
+                                        {
+                                            treeStumpX--;
+                                        }
+                                        if (Main.tile[treeStumpX, treeStumpY].frameX == 88 && Main.tile[treeStumpX, treeStumpY].frameY >= 66 && Main.tile[treeStumpX, treeStumpY].frameY <= 110)
+                                        {
+                                            treeStumpX--;
+                                        }
+                                        if (Main.tile[treeStumpX, treeStumpY].frameX == 22 && Main.tile[treeStumpX, treeStumpY].frameY >= 132 && Main.tile[treeStumpX, treeStumpY].frameY <= 176)
+                                        {
+                                            treeStumpX--;
+                                        }
+
+                                        i = treeStumpX + 2; // skips the current index and the next one, since this entire tree has been completed
+                                        j = rectangle.Y;
+
+                                        for (; Main.tile[treeStumpX, treeStumpY].active() && Main.tile[treeStumpX, treeStumpY].type == TileID.Trees && Main.tile[treeStumpX, treeStumpY + 1].type == TileID.Trees; treeStumpY++)
+                                        {
+                                        }
+
+                                        if (Player.tileTargetX == treeStumpX && Player.tileTargetY == treeStumpY)
+                                        {
+                                            break;
+                                        }
+
+                                        AchievementsHelper.CurrentlyMining = true;
+                                        if (!WorldGen.CanKillTile(treeStumpX, treeStumpY))
+                                        {
+                                            tileDamage = 0;
+                                        }
+                                        tileID = player.hitTile.HitObject(treeStumpX, treeStumpY, 1);
+                                        if (player.hitTile.AddDamage(tileID, tileDamage) >= 100)
+                                        {
+                                            player.hitTile.Clear(tileID);
+                                            WorldGen.KillTile(treeStumpX, treeStumpY);
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                                            {
+                                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            WorldGen.KillTile(i, j, fail: true);
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                                            {
+                                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY, 1f);
+                                            }
+                                        }
+                                        if (tileDamage != 0)
+                                        {
+                                            player.hitTile.Prune();
+                                            hitCount++;
+                                            if (hitCount > HitCountMax)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        AchievementsHelper.CurrentlyMining = false;
                                         continue;
                                     }
-                                    if (Main.tile[i, j].active() && Main.tileAxe[Main.tile[i, j].type])
+                                    else if (Main.tile[i, j].type == TileID.PalmTree)
                                     {
-                                        int tileID = player.hitTile.HitObject(i, j, 1);
-                                        int tileDamage = 0;
-                                        if (Main.tile[i, j].type == 80)
+                                        int treeStumpX = i;
+                                        int treeStumpY = j;
+
+                                        for (; Main.tile[treeStumpX, treeStumpY].active() && Main.tile[treeStumpX, treeStumpY].type == TileID.PalmTree && Main.tile[treeStumpX, treeStumpY + 1].type == TileID.PalmTree; treeStumpY++)
                                         {
-                                            tileDamage += item.axe * 3;
+                                        }
+
+                                        i = treeStumpX + 2; // skips the current index and the next one, since this entire tree has been completed
+                                        j = rectangle.Y;
+
+                                        if (Player.tileTargetX == treeStumpX && Player.tileTargetY == treeStumpY)
+                                        {
+                                            break;
+                                        }
+
+                                        AchievementsHelper.CurrentlyMining = true;
+                                        if (!WorldGen.CanKillTile(treeStumpX, treeStumpY))
+                                        {
+                                            tileDamage = 0;
+                                        }
+                                        tileID = player.hitTile.HitObject(treeStumpX, treeStumpY, 1);
+                                        if (player.hitTile.AddDamage(tileID, tileDamage) >= 100)
+                                        {
+                                            player.hitTile.Clear(tileID);
+                                            WorldGen.KillTile(treeStumpX, treeStumpY);
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                                            {
+                                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY);
+                                            }
                                         }
                                         else
                                         {
-                                            TileLoader.MineDamage(item.axe, ref tileDamage);
+                                            WorldGen.KillTile(i, j, fail: true);
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
+                                            {
+                                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY, 1f);
+                                            }
                                         }
-                                        if (Main.tile[i, j].type == TileID.Trees)
+                                        if (tileDamage != 0)
                                         {
-                                            int treeStumpX = i;
-                                            int treeStumpY = j;
-
-                                            if (Main.tile[treeStumpX, treeStumpY].frameY >= 198 && Main.tile[treeStumpX, treeStumpY].frameX == 44)
-                                            {
-                                                treeStumpX++;
-                                            }
-                                            if (Main.tile[treeStumpX, treeStumpY].frameX == 66 && Main.tile[treeStumpX, treeStumpY].frameY <= 44)
-                                            {
-                                                treeStumpX++;
-                                            }
-                                            if (Main.tile[treeStumpX, treeStumpY].frameX == 44 && Main.tile[treeStumpX, treeStumpY].frameY >= 132 && Main.tile[treeStumpX, treeStumpY].frameY <= 176)
-                                            {
-                                                treeStumpX++;
-                                            }
-                                            if (Main.tile[treeStumpX, treeStumpY].frameY >= 198 && Main.tile[treeStumpX, treeStumpY].frameX == 66)
-                                            {
-                                                treeStumpX--;
-                                            }
-                                            if (Main.tile[treeStumpX, treeStumpY].frameX == 88 && Main.tile[treeStumpX, treeStumpY].frameY >= 66 && Main.tile[treeStumpX, treeStumpY].frameY <= 110)
-                                            {
-                                                treeStumpX--;
-                                            }
-                                            if (Main.tile[treeStumpX, treeStumpY].frameX == 22 && Main.tile[treeStumpX, treeStumpY].frameY >= 132 && Main.tile[treeStumpX, treeStumpY].frameY <= 176)
-                                            {
-                                                treeStumpX--;
-                                            }
-
-                                            i = treeStumpX + 2; // skips the current index and the next one, since this entire tree has been completed
-                                            j = rectangle.Y;
-
-                                            for (; Main.tile[treeStumpX, treeStumpY].active() && Main.tile[treeStumpX, treeStumpY].type == TileID.Trees && Main.tile[treeStumpX, treeStumpY + 1].type == TileID.Trees; treeStumpY++)
-                                            {
-                                            }
-
-                                            if (Player.tileTargetX == treeStumpX && Player.tileTargetY == treeStumpY)
+                                            player.hitTile.Prune();
+                                            hitCount++;
+                                            if (hitCount > HitCountMax)
                                             {
                                                 break;
                                             }
-
-                                            AchievementsHelper.CurrentlyMining = true;
-                                            if (!WorldGen.CanKillTile(treeStumpX, treeStumpY))
-                                            {
-                                                tileDamage = 0;
-                                            }
-                                            tileID = player.hitTile.HitObject(treeStumpX, treeStumpY, 1);
-                                            if (player.hitTile.AddDamage(tileID, tileDamage) >= 100)
-                                            {
-                                                player.hitTile.Clear(tileID);
-                                                WorldGen.KillTile(treeStumpX, treeStumpY);
-                                                if (Main.netMode == NetmodeID.MultiplayerClient)
-                                                {
-                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY);
-                                                }
-                                            }
-                                            else
-                                            {
-                                                WorldGen.KillTile(i, j, fail: true);
-                                                if (Main.netMode == NetmodeID.MultiplayerClient)
-                                                {
-                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY, 1f);
-                                                }
-                                            }
-                                            if (tileDamage != 0)
-                                            {
-                                                player.hitTile.Prune();
-                                                hitCount++;
-                                                if (hitCount > HitCountMax)
-                                                {
-                                                    break;
-                                                }
-                                            }
-                                            AchievementsHelper.CurrentlyMining = false;
-                                            continue;
                                         }
-                                        else if (Main.tile[i, j].type == TileID.PalmTree)
+                                        AchievementsHelper.CurrentlyMining = false;
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        AchievementsHelper.CurrentlyMining = true;
+                                        if (!WorldGen.CanKillTile(i, j))
                                         {
-                                            int treeStumpX = i;
-                                            int treeStumpY = j;
-
-                                            for (; Main.tile[treeStumpX, treeStumpY].active() && Main.tile[treeStumpX, treeStumpY].type == TileID.PalmTree && Main.tile[treeStumpX, treeStumpY + 1].type == TileID.PalmTree; treeStumpY++)
+                                            tileDamage = 0;
+                                        }
+                                        if (player.hitTile.AddDamage(tileID, tileDamage) >= 100)
+                                        {
+                                            player.hitTile.Clear(tileID);
+                                            WorldGen.KillTile(i, j);
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
+                                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
                                             }
-
-                                            i = treeStumpX + 2; // skips the current index and the next one, since this entire tree has been completed
-                                            j = rectangle.Y;
-
-                                            if (Player.tileTargetX == treeStumpX && Player.tileTargetY == treeStumpY)
-                                            {
-                                                break;
-                                            }
-
-                                            AchievementsHelper.CurrentlyMining = true;
-                                            if (!WorldGen.CanKillTile(treeStumpX, treeStumpY))
-                                            {
-                                                tileDamage = 0;
-                                            }
-                                            tileID = player.hitTile.HitObject(treeStumpX, treeStumpY, 1);
-                                            if (player.hitTile.AddDamage(tileID, tileDamage) >= 100)
-                                            {
-                                                player.hitTile.Clear(tileID);
-                                                WorldGen.KillTile(treeStumpX, treeStumpY);
-                                                if (Main.netMode == NetmodeID.MultiplayerClient)
-                                                {
-                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY);
-                                                }
-                                            }
-                                            else
-                                            {
-                                                WorldGen.KillTile(i, j, fail: true);
-                                                if (Main.netMode == NetmodeID.MultiplayerClient)
-                                                {
-                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, treeStumpX, treeStumpY, 1f);
-                                                }
-                                            }
-                                            if (tileDamage != 0)
-                                            {
-                                                player.hitTile.Prune();
-                                                hitCount++;
-                                                if (hitCount > HitCountMax)
-                                                {
-                                                    break;
-                                                }
-                                            }
-                                            AchievementsHelper.CurrentlyMining = false;
-                                            continue;
                                         }
                                         else
                                         {
-                                            AchievementsHelper.CurrentlyMining = true;
-                                            if (!WorldGen.CanKillTile(i, j))
+                                            WorldGen.KillTile(i, j, fail: true);
+                                            if (Main.netMode == NetmodeID.MultiplayerClient)
                                             {
-                                                tileDamage = 0;
+                                                NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j, 1f);
                                             }
-                                            if (player.hitTile.AddDamage(tileID, tileDamage) >= 100)
-                                            {
-                                                player.hitTile.Clear(tileID);
-                                                WorldGen.KillTile(i, j);
-                                                if (Main.netMode == NetmodeID.MultiplayerClient)
-                                                {
-                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j);
-                                                }
-                                            }
-                                            else
-                                            {
-                                                WorldGen.KillTile(i, j, fail: true);
-                                                if (Main.netMode == NetmodeID.MultiplayerClient)
-                                                {
-                                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j, 1f);
-                                                }
-                                            }
-                                            if (tileDamage != 0)
-                                            {
-                                                player.hitTile.Prune();
-                                                hitCount++;
-                                                if (hitCount > HitCountMax)
-                                                {
-                                                    break;
-                                                }
-                                            }
-                                            AchievementsHelper.CurrentlyMining = false;
                                         }
+                                        if (tileDamage != 0)
+                                        {
+                                            player.hitTile.Prune();
+                                            hitCount++;
+                                            if (hitCount > HitCountMax)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        AchievementsHelper.CurrentlyMining = false;
                                     }
                                 }
-                                if (hitCount > HitCountMax)
-                                {
-                                    break;
-                                }
+                            }
+                            if (hitCount > HitCountMax)
+                            {
+                                break;
                             }
                         }
                     }
                 }
             }
-            return base.PreItemCheck();
+        }
+        public override bool PreItemCheck()
+        {
+            if (Main.myPlayer == player.whoAmI)
+            {
+                var item = player.inventory[player.selectedItem];
+                ItemCheck_FidgetSpinner(item);
+                ItemCheck_CrabAx(item);
+            }
+            return true;
         }
 
         public override void PostItemCheck()
@@ -688,34 +715,7 @@ namespace AQMod
                     return 0.6f;
                 }
             }
-            return base.UseTimeMultiplier(item);
-        }
-
-        public override void SendClientChanges(ModPlayer clientPlayer)
-        {
-            var clone = (AQPlayer)clientPlayer;
-            if (clone.bossrush)
-            {
-                SyncPlayer(-1, player.whoAmI, true);
-            }
-            else
-            {
-            }
-        }
-
-        public override void UpdateDead()
-        {
-            omori = false;
-            blueSpheres = false;
-            sparkling = false;
-            monoxiderCarry = 0;
-            temperature = 0;
-            temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
-            notFrostburn = false;
-            mothmanExplosionDelay = 0;
-            dartHeadDelay = 0;
-            bloodthirstDelay = 0;
-            healEffectValueForSyncingTheThingOnTheServer = 0;
+            return 1f;
         }
 
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -725,7 +725,7 @@ namespace AQMod
             return true;
         }
 
-        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        private bool PreventDeath_BloodPlasma()
         {
             if (healBeforeDeath && player.potionDelay <= 0)
             {
@@ -734,21 +734,26 @@ namespace AQMod
                     player.statLife = 1;
                 }
                 player.QuickHeal();
-                return false;
+                return true;
             }
-            if (omori)
+            return false;
+        }
+        private bool PreventDeath_Omori()
+        {
+            if (omori && omoriDeathTimer <= 0)
             {
-                if (omoriDeathTimer <= 0)
-                {
-                    Main.PlaySound(SoundID.Item60, player.position);
-                    player.statLife = 1;
-                    player.immune = true;
-                    player.immuneTime = 120;
-                    omoriDeathTimer = 18000;
-                    return false;
-                }
+                Main.PlaySound(SoundID.Item60, player.position);
+                player.statLife = 1;
+                player.immune = true;
+                player.immuneTime = 120;
+                omoriDeathTimer = 18000;
+                return true;
             }
-            return true;
+            return false;
+        }
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            return !PreventDeath_BloodPlasma() && !PreventDeath_Omori();
         }
 
         public override void PostUpdateBuffs()
@@ -763,74 +768,155 @@ namespace AQMod
             }
         }
 
-        public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
+        private void UpdateBanks()
         {
-            if (Main.myPlayer == player.whoAmI)
+            for (int i = 0; i < Chest.maxItems; i++)
             {
-                for (int i = 0; i < Chest.maxItems; i++)
+                if (player.bank.item[i].type > Main.maxItemTypes && player.bank.item[i].modItem is IUpdatePiggybank update)
+                    update.UpdatePiggyBank(player, i);
+                if (player.bank2.item[i].type > Main.maxItemTypes && player.bank2.item[i].modItem is IUpdatePlayerSafe update2)
+                    update2.UpdatePlayerSafe(player, i);
+            }
+        }
+        public void UpdateCelesteTorus()
+        {
+            if (blueSpheres)
+            {
+                float playerPercent = player.statLife / (float)player.statLifeMax2;
+                celesteTorusMaxRadius = GetCelesteTorusMaxRadius(playerPercent);
+                celesteTorusRadius = MathHelper.Lerp(celesteTorusRadius, celesteTorusMaxRadius, 0.1f);
+                celesteTorusDamage = GetCelesteTorusDamage();
+                celesteTorusKnockback = GetCelesteTorusKnockback();
+
+                celesteTorusScale = 1f + celesteTorusRadius * 0.006f + celesteTorusDamage * 0.009f + celesteTorusKnockback * 0.0015f;
+
+                var type = ModContent.ProjectileType<CelesteTorusCollider>();
+                if (Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[type] <= 0)
                 {
-                    if (player.bank.item[i].type > Main.maxItemTypes && player.bank.item[i].modItem is IUpdatePiggybank update)
-                        update.UpdatePiggyBank(player, i);
-                    if (player.bank2.item[i].type > Main.maxItemTypes && player.bank2.item[i].modItem is IUpdatePlayerSafe update2)
-                        update2.UpdatePlayerSafe(player, i);
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
+                }
+                else
+                {
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == ModContent.ProjectileType<CelesteTorusCollider>())
+                        {
+                            Main.projectile[i].damage = celesteTorusDamage;
+                            Main.projectile[i].knockBack = celesteTorusKnockback;
+                            break;
+                        }
+                    }
+                }
+                var center = player.Center;
+                bool danger = false;
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].IsntFriendly() && Vector2.Distance(Main.npc[i].Center, center) < 2000f)
+                    {
+                        danger = true;
+                        break;
+                    }
+                }
+
+                if (danger)
+                {
+                    celesteTorusSpeed = 0.04f + (1f - playerPercent) * 0.0314f;
+                    celesteTorusX = celesteTorusX.AngleLerp(0f, 0.01f);
+                    celesteTorusY = celesteTorusY.AngleLerp(0f, 0.0075f);
+                    celesteTorusZ += celesteTorusSpeed;
+                }
+                else
+                {
+                    celesteTorusSpeed = 0.0314f;
+                    celesteTorusX += 0.0157f;
+                    celesteTorusY += 0.01f;
+                    celesteTorusZ += celesteTorusSpeed;
                 }
             }
+            else
+            {
+                celesteTorusDamage = 0;
+                celesteTorusKnockback = 0f;
+                celesteTorusMaxRadius = 0;
+                celesteTorusRadius = 0f;
+                celesteTorusScale = 1f;
+                celesteTorusSpeed = 0f;
+                celesteTorusX = 0f;
+                celesteTorusY = 0f;
+                celesteTorusZ = 0f;
+            }
+        }
+        public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
+        {
+            UpdateBanks();
             UpdateCelesteTorus();
             if (player.wingsLogic > 0)
                 player.wingTimeMax += extraFlightTime;
         }
 
+        private void UpdateDartTrapHat()
+        {
+            if (player.velocity.Y == 0f)
+                dartTrapHatTimer--;
+            if (dartTrapHatTimer <= 0)
+            {
+                dartTrapHatTimer = dartHeadDelay;
+                int damage = player.GetWeaponDamage(player.armor[0]);
+                var spawnPosition = player.gravDir == -1
+                    ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height)
+                    : player.position + new Vector2(player.width / 2f + 8f * player.direction, 0f);
+                int p = Projectile.NewProjectile(spawnPosition, new Vector2(10f, 0f) * player.direction, dartHeadType, damage, player.armor[0].knockBack * player.minionKB, player.whoAmI);
+                Main.projectile[p].hostile = false;
+                Main.projectile[p].friendly = true;
+            }
+        }
+        private void UpdateArachnotronPets()
+        {
+            if (Main.myPlayer == player.whoAmI)
+            {
+                int type = ModContent.ProjectileType<ArachnotronLegs>();
+                if (player.ownedProjectileCounts[type] <= 0)
+                {
+                    int p = Projectile.NewProjectile(player.Center, Vector2.Zero, type, 33, 1f, player.whoAmI);
+                    Main.projectile[p].netUpdate = true;
+                }
+            }
+        }
+        private void UpdateOmoriPets()
+        {
+            if (omoriDeathTimer > 0)
+            {
+                omoriDeathTimer--;
+                if (omoriDeathTimer == 0 && Main.myPlayer == player.whoAmI)
+                    Main.PlaySound(SoundID.MaxMana, (int)player.position.X, (int)player.position.Y, 1, 0.85f, -6f);
+            }
+            int type = ModContent.ProjectileType<Friend>();
+            if (player.ownedProjectileCounts[type] < 3)
+            {
+                for (int i = 0; i < Main.maxProjectiles; i++)
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].type == type && Main.projectile[i].owner == player.whoAmI)
+                        Main.projectile[i].Kill();
+                }
+                for (int i = 0; i < 3; i++)
+                {
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, type, 66, 4f, player.whoAmI, 1f + i);
+                }
+            }
+        }
         public override void PostUpdateEquips()
         {
             if (dartHead)
             {
-                if (player.velocity.Y == 0f)
-                    dartTrapHatTimer--;
-                if (dartTrapHatTimer <= 0)
-                {
-                    dartTrapHatTimer = dartHeadDelay;
-                    int damage = player.GetWeaponDamage(player.armor[0]);
-                    var spawnPosition = player.gravDir == -1
-                        ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height)
-                        : player.position + new Vector2(player.width / 2f + 8f * player.direction, 0f);
-                    int p = Projectile.NewProjectile(spawnPosition, new Vector2(10f, 0f) * player.direction, dartHeadType, damage, player.armor[0].knockBack * player.minionKB, player.whoAmI);
-                    Main.projectile[p].hostile = false;
-                    Main.projectile[p].friendly = true;
-                }
+                UpdateDartTrapHat();
             }
-            if (arachnotron)
+            if (arachnotronArms)
             {
-                if (Main.myPlayer == player.whoAmI)
-                {
-                    int type = ModContent.ProjectileType<ArachnotronLegs>();
-                    if (player.ownedProjectileCounts[type] <= 0)
-                    {
-                        int p = Projectile.NewProjectile(player.Center, Vector2.Zero, type, 33, 1f, player.whoAmI);
-                        Main.projectile[p].netUpdate = true;
-                    }
-                }
+                UpdateArachnotronPets();
             }
             if (omori)
             {
-                if (omoriDeathTimer > 0)
-                {
-                    omoriDeathTimer--;
-                    if (omoriDeathTimer == 0 && Main.myPlayer == player.whoAmI)
-                        Main.PlaySound(SoundID.MaxMana, (int)player.position.X, (int)player.position.Y, 1, 0.85f, -6f);
-                }
-                int type = ModContent.ProjectileType<Friend>();
-                if (player.ownedProjectileCounts[type] < 3)
-                {
-                    for (int i = 0; i < Main.maxProjectiles; i++)
-                    {
-                        if (Main.projectile[i].active && Main.projectile[i].type == type && Main.projectile[i].owner == player.whoAmI)
-                            Main.projectile[i].Kill();
-                    }
-                    for (int i = 0; i < 3; i++)
-                    {
-                        Projectile.NewProjectile(player.Center, Vector2.Zero, type, 66, 4f, player.whoAmI, 1f + i);
-                    }
-                }
+                UpdateOmoriPets();
             }
             else
             {
@@ -848,15 +934,29 @@ namespace AQMod
             }
         }
 
-        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+        private void DamageReduction_Lightbulb(Projectile projectile, ref int damage)
         {
-            if (proj.trap && setBonusLightbulb)
+            if (projectile.trap)
             {
                 damage = (int)(damage * 0.7f);
             }
-            if (extractinator && AQProjectile.Sets.DamageReductionExtractor[proj.type])
+        }
+        private void DamageReduction_Extractor(Projectile projectile, ref int damage)
+        {
+            if (AQProjectile.Sets.DamageReductionExtractor[projectile.type])
             {
                 damage /= 4;
+            }
+        }
+        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+        {
+            if (setLightbulb)
+            {
+                DamageReduction_Lightbulb(proj, ref damage);
+            }
+            if (extractinator)
+            {
+                DamageReduction_Extractor(proj, ref damage);
             }
             var aQProjectile = proj.GetGlobalProjectile<AQProjectile>();
             if (aQProjectile.temperature != 0)
@@ -865,237 +965,132 @@ namespace AQMod
             }
         }
 
+        private void DamageReduction_MothmanMask(int npcType, ref int damage)
+        {
+            if (AQNPC.Sets.DealsLessDamageToCata[npcType])
+            {
+                damage /= 2;
+            }
+        }
+        private void DamageReduction_LightAmulet(int npcType, ref int damage)
+        {
+            if (AQNPC.Sets.Holy[npcType])
+            {
+                damage = (int)(damage * 0.9f);
+            }
+        }
+        private void DamageReduction_DarkAmulet(int npcType, ref int damage)
+        {
+            if (AQNPC.Sets.Unholy[npcType])
+            {
+                damage = (int)(damage * 0.9f);
+            }
+        }
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            switch (npc.type)
+            if (mothmanMask)
             {
-                case NPCID.Mothron:
-                case NPCID.MothronSpawn:
-                case NPCID.MothronEgg:
-                case NPCID.CultistBoss:
-                case NPCID.CultistBossClone:
-                case NPCID.CultistDragonBody1:
-                case NPCID.CultistDragonBody2:
-                case NPCID.CultistDragonBody3:
-                case NPCID.CultistDragonBody4:
-                case NPCID.CultistDragonHead:
-                case NPCID.CultistDragonTail:
-                case NPCID.AncientCultistSquidhead:
-                    {
-                        if (mothmanMask)
-                            damage /= 2;
-                    }
-                    break;
+                DamageReduction_MothmanMask(npc.type, ref damage);
             }
-            if (lightAmulet && AQNPC.Sets.Holy[npc.type])
+            if (lightAmulet)
             {
-                damage = (int)(damage * 0.9f);
+                DamageReduction_LightAmulet(npc.type, ref damage);
             }
-            if (darkAmulet && AQNPC.Sets.Unholy[npc.type])
+            if (darkAmulet)
             {
-                damage = (int)(damage * 0.9f);
+                DamageReduction_DarkAmulet(npc.type, ref damage);
             }
-            var npcTemperature = npc.GetGlobalNPC<NPCTemperatureManager>();
-            if (npcTemperature.temperature != 0)
+            var temperature = npc.GetGlobalNPC<NPCTemperatureManager>();
+            if (temperature.temperature != 0)
             {
-                InflictTemperature(npcTemperature.temperature);
+                InflictTemperature(temperature.temperature);
             }
         }
 
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        private bool IsTrueMeleeProjectile(Projectile projectile)
         {
-            var center = player.Center;
-            var targetCenter = target.Center;
-            if (item.melee)
-            {
-                if (hyperCrystal)
-                {
-                    target.AddBuff(ModContent.BuffType<Sparkling>(), 120);
-                    if (crit)
-                        DoHyperCrystalChannel(target, damage, knockback, center, targetCenter);
-                }
-                if (primeTime)
-                {
-                    if (player.potionDelay <= 0)
-                    {
-                        player.AddBuff(ModContent.BuffType<Buffs.PrimeTime>(), 600);
-                        player.AddBuff(BuffID.PotionSickness, player.potionDelayTime);
-                    }
-                }
-            }
-            OnHitNPCEffects(target, targetCenter, damage, knockback, crit);
+            return projectile.melee && projectile.whoAmI == player.heldProj && projectile.aiStyle != 99;
         }
-
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        private void TrueMeleeHit_Arachnotron()
         {
-            var center = player.Center;
-            var targetCenter = target.Center;
-            if (proj.melee && proj.whoAmI == player.heldProj && proj.aiStyle != 99)
+            if (player.potionDelay <= 0)
             {
-                if (hyperCrystal)
-                {
-                    target.AddBuff(ModContent.BuffType<Sparkling>(), 120);
-                    if (crit)
-                        DoHyperCrystalChannel(target, damage, knockback, center, targetCenter);
-                }
-                if (primeTime)
-                {
-                    if (player.potionDelay <= 0)
-                    {
-                        player.AddBuff(ModContent.BuffType<Buffs.PrimeTime>(), 600);
-                        player.AddBuff(BuffID.PotionSickness, player.potionDelayTime);
-                    }
-                }
-            }
-            OnHitNPCEffects(target, targetCenter, damage, knockback, crit);
-        }
-
-        public override void UpdateBadLifeRegen()
-        {
-            if (sparkling)
-            {
-                if (player.lifeRegen > 0)
-                    player.lifeRegen = 0;
-                player.lifeRegenTime = 0;
-                player.lifeRegen -= 40;
-            }
-            if (notFrostburn)
-            {
-                if (player.lifeRegen > 0)
-                    player.lifeRegen = 0;
-                player.lifeRegenTime = 0;
-                player.lifeRegen -= 10;
+                player.AddBuff(ModContent.BuffType<Buffs.PrimeTime>(), 600);
+                player.AddBuff(BuffID.PotionSickness, player.potionDelayTime);
             }
         }
-
-        public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
+        private void TrueMeleeHit_HyperCrystal(NPC target, int damage, float knockback, Vector2 playerCenter, Vector2 targetCenter, bool criticalHit)
         {
-            if (Main.myPlayer == player.whoAmI && AQConfigClient.Instance.ShowCompletedQuestsCount)
-                CombatText.NewText(player.getRect(), Color.Aqua, player.anglerQuestsFinished);
-            var item = new Item();
-            if (player.anglerQuestsFinished == 2)
+            target.AddBuff(ModContent.BuffType<Sparkling>(), 120);
+            if (criticalHit)
             {
-                item.SetDefaults(ModContent.ItemType<CopperSeal>());
-                rewardItems.Add(item.Clone());
-                item = new Item();
-            }
-            else if (player.anglerQuestsFinished == 10)
-            {
-                item.SetDefaults(ModContent.ItemType<SilverSeal>());
-                rewardItems.Add(item.Clone());
-                item = new Item();
-            }
-            else if (player.anglerQuestsFinished == 20)
-            {
-                item.SetDefaults(ModContent.ItemType<GoldSeal>());
-                rewardItems.Add(item.Clone());
-                item = new Item();
-            }
-        }
-
-        public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
-        {
-            if (questFish > Main.maxItems && ItemLoader.GetItem(questFish) is AnglerQuestItem anglerQuestItem)
-            {
-                if (anglerQuestItem.FishingLocation.CatchFish(player, fishingRod, bait, power, liquidType, poolSize, worldLayer))
-                {
-                    caughtType = questFish;
-                    junk = false;
+                if (target.SpawnedFromStatue || target.type == NPCID.TargetDummy || CanBossChannel(target))
                     return;
-                }
-            }
-            int fish = FishLoader.PoolFish(player, this, fishingRod, bait, power, liquidType, poolSize, worldLayer, questFish, caughtType);
-            if (fish != 0)
-            {
-                caughtType = fish;
-                junk = false;
-                return;
-            }
-        }
-
-        public override void ModifyScreenPosition()
-        {
-            ScreenShakeManager.ModifyScreenPosition();
-        }
-
-        public static bool CanBossChannel(NPC npc)
-        {
-            if (npc.chaseable || npc.dontTakeDamage)
-            {
-                return false;
-            }
-            return npc.boss || AQNPC.Sets.BossRelatedEnemy[npc.type];
-        }
-
-        public void DoHyperCrystalChannel(NPC target, int damage, float knockback, Vector2 center, Vector2 targCenter)
-        {
-            if (target.SpawnedFromStatue || target.type == NPCID.TargetDummy || CanBossChannel(target))
-                return;
-            int boss = -1;
-            float closestDist = 1200f;
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                NPC npc = Main.npc[i];
-                if (npc.active && CanBossChannel(npc))
+                int boss = -1;
+                float closestDist = 1200f;
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    float dist = (npc.Center - center).Length();
-                    if (dist < closestDist)
+                    NPC npc = Main.npc[i];
+                    if (npc.active && CanBossChannel(npc))
                     {
-                        boss = i;
-                        closestDist = dist;
+                        float dist = (npc.Center - playerCenter).Length();
+                        if (dist < closestDist)
+                        {
+                            boss = i;
+                            closestDist = dist;
+                        }
                     }
                 }
-            }
-            if (boss != -1)
-            {
-                int dmg = damage > target.lifeMax ? target.lifeMax : damage;
-                var normal = Vector2.Normalize(Main.npc[boss].Center - targCenter);
-                int size = 4;
-                var type = ModContent.DustType<MonoDust>();
-                Vector2 position = target.Center - new Vector2(size / 2);
-                int length = (int)(Main.npc[boss].Center - targCenter).Length();
-                if (Main.myPlayer == player.whoAmI && AQConfigClient.c_TonsofScreenShakes)
+                if (boss != -1)
                 {
-                    if (length < 800)
-                        ScreenShakeManager.AddShake(new BasicScreenShake(12, AQGraphics.MultIntensity((800 - length) / 128)));
-                }
-                int dustLength = length / size;
-                const float offset = MathHelper.TwoPi / 3f;
-                for (int i = 0; i < dustLength; i++)
-                {
-                    Vector2 pos = position + normal * (i * size);
-                    for (int j = 0; j < 6; j++)
+                    int dmg = damage > target.lifeMax ? target.lifeMax : damage;
+                    var normal = Vector2.Normalize(Main.npc[boss].Center - targetCenter);
+                    int size = 4;
+                    var type = ModContent.DustType<MonoDust>();
+                    Vector2 position = target.Center - new Vector2(size / 2);
+                    int length = (int)(Main.npc[boss].Center - targetCenter).Length();
+                    if (Main.myPlayer == player.whoAmI && AQConfigClient.c_TonsofScreenShakes)
                     {
-                        int d = Dust.NewDust(pos, size, size, type);
-                        float positionLength = Main.dust[d].position.Length() / 32f;
-                        Main.dust[d].color = new Color(
-                            (float)Math.Sin(positionLength) + 1f,
-                            (float)Math.Sin(positionLength + offset) + 1f,
-                            (float)Math.Sin(positionLength + offset * 2f) + 1f,
-                            0.5f);
+                        if (length < 800)
+                            ScreenShakeManager.AddShake(new BasicScreenShake(12, AQGraphics.MultIntensity((800 - length) / 128)));
                     }
-                }
-                for (int i = 0; i < 8; i++)
-                {
-                    Vector2 normal2 = new Vector2(1f, 0f).RotatedBy(MathHelper.PiOver4 * i);
-                    for (int j = 0; j < 4; j++)
+                    int dustLength = length / size;
+                    const float offset = MathHelper.TwoPi / 3f;
+                    for (int i = 0; i < dustLength; i++)
                     {
+                        Vector2 pos = position + normal * (i * size);
+                        for (int j = 0; j < 6; j++)
+                        {
+                            int d = Dust.NewDust(pos, size, size, type);
+                            float positionLength = Main.dust[d].position.Length() / 32f;
+                            Main.dust[d].color = new Color(
+                                (float)Math.Sin(positionLength) + 1f,
+                                (float)Math.Sin(positionLength + offset) + 1f,
+                                (float)Math.Sin(positionLength + offset * 2f) + 1f,
+                                0.5f);
+                        }
+                    }
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Vector2 normal2 = new Vector2(1f, 0f).RotatedBy(MathHelper.PiOver4 * i);
+                        for (int j = 0; j < 4; j++)
+                        {
 
-                        float positionLength1 = (targCenter + normal2 * (j * 8f)).Length() / 32f;
-                        var color = new Color(
-                            (float)Math.Sin(positionLength1) + 1f,
-                            (float)Math.Sin(positionLength1 + offset) + 1f,
-                            (float)Math.Sin(positionLength1 + offset * 2f) + 1f,
-                            0.5f);
-                        int d = Dust.NewDust(targCenter, 1, 1, type, default, default, default, color);
-                        Main.dust[d].velocity = normal2 * (j * 3.5f);
+                            float positionLength1 = (targetCenter + normal2 * (j * 8f)).Length() / 32f;
+                            var color = new Color(
+                                (float)Math.Sin(positionLength1) + 1f,
+                                (float)Math.Sin(positionLength1 + offset) + 1f,
+                                (float)Math.Sin(positionLength1 + offset * 2f) + 1f,
+                                0.5f);
+                            int d = Dust.NewDust(targetCenter, 1, 1, type, default, default, default, color);
+                            Main.dust[d].velocity = normal2 * (j * 3.5f);
+                        }
                     }
+                    Projectile.NewProjectile(Main.npc[boss].Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalExplosion>(), dmg * 2, knockback * 2, player.whoAmI);
                 }
-                Projectile.NewProjectile(Main.npc[boss].Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalExplosion>(), dmg * 2, knockback * 2, player.whoAmI);
             }
         }
-
-        private void OnHitNPCEffects(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
+        private void OnHitNPCWithAnything(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
         {
             if (mothmanMask && mothmanExplosionDelay == 0 && player.statLife >= player.statLifeMax2 && crit && target.type != NPCID.TargetDummy)
             {
@@ -1171,6 +1166,108 @@ namespace AQMod
                 }
             }
         }
+        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        {
+            var center = player.Center;
+            var targetCenter = target.Center;
+            if (item.melee)
+            {
+                if (setArachnotron)
+                {
+                    TrueMeleeHit_Arachnotron();
+                }
+                if (hyperCrystal)
+                {
+                    TrueMeleeHit_HyperCrystal(target, damage, knockback, center, targetCenter, crit);
+                }
+            }
+            OnHitNPCWithAnything(target, targetCenter, damage, knockback, crit);
+        }
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        {
+            var center = player.Center;
+            var targetCenter = target.Center;
+            if (IsTrueMeleeProjectile(proj))
+            {
+                if (setArachnotron)
+                {
+                    TrueMeleeHit_Arachnotron();
+                }
+                if (hyperCrystal)
+                {
+                    TrueMeleeHit_HyperCrystal(target, damage, knockback, center, targetCenter, crit);
+                }
+            }
+            OnHitNPCWithAnything(target, targetCenter, damage, knockback, crit);
+        }
+
+        private void DamageOverTime_ClearNaturalRegeneration()
+        {
+            if (player.lifeRegen > 0)
+                player.lifeRegen = 0;
+            player.lifeRegenTime = 0;
+        }
+        private void DamageOverTime_Shimmering()
+        {
+            DamageOverTime_ClearNaturalRegeneration();
+            player.lifeRegen -= 40;
+        }
+        private void DamageOverTime_BlueFire()
+        {
+            DamageOverTime_ClearNaturalRegeneration();
+            player.lifeRegen -= 10;
+        }
+        public override void UpdateBadLifeRegen()
+        {
+            if (shimmering)
+            {
+                DamageOverTime_Shimmering();
+            }
+            if (blueFire)
+            {
+                DamageOverTime_BlueFire();
+            }
+        }
+
+        private void AnglerReward_ShowNumFinished()
+        {
+            if (Main.myPlayer == player.whoAmI && AQConfigClient.Instance.ShowCompletedQuestsCount)
+                CombatText.NewText(player.getRect(), Color.Aqua, player.anglerQuestsFinished);
+        }
+        private void AnglerReward_GiveFishingSeal(List<Item> rewardItems)
+        {
+            if (player.anglerQuestsFinished == 2)
+            {
+                rewardItems.Add(AQItem.GetDefault(ModContent.ItemType<CopperSeal>()));
+            }
+            else if (player.anglerQuestsFinished == 10)
+            {
+                rewardItems.Add(AQItem.GetDefault(ModContent.ItemType<SilverSeal>()));
+            }
+            else if (player.anglerQuestsFinished == 20)
+            {
+                rewardItems.Add(AQItem.GetDefault(ModContent.ItemType<GoldSeal>()));
+            }
+        }
+        public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
+        {
+            AnglerReward_ShowNumFinished();
+            AnglerReward_GiveFishingSeal(rewardItems);
+        }
+
+        public override void ModifyScreenPosition()
+        {
+            ScreenShakeManager.ModifyScreenPosition();
+        }
+
+        public static bool CanBossChannel(NPC npc)
+        {
+            if (npc.chaseable || npc.dontTakeDamage)
+            {
+                return false;
+            }
+            return npc.boss || AQNPC.Sets.BossRelatedEnemy[npc.type];
+        }
 
         private static void SpreadDebuffs(NPC spreader, NPC npc)
         {
@@ -1202,17 +1299,17 @@ namespace AQMod
             {
                 for (int i = 0; i < 16; i++)
                 {
-                    DustSpawnPatterns.SpawnDustAnMakeVelocityGoAwayFromOrigin(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), 
+                    DustSpawnPatterns.SpawnDustAnMakeVelocityGoAwayFromOrigin(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(),
                         Main.rand.NextFloat(0.1f, 0.25f), poofColors[Main.rand.Next(poofColors.Count)], Main.rand.NextFloat(0.9f, 1.1f));
                 }
                 for (int i = 0; i < 12; i++)
                 {
-                    DustSpawnPatterns.SpawnDustAnMakeVelocityGoAwayFromOrigin(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), 
+                    DustSpawnPatterns.SpawnDustAnMakeVelocityGoAwayFromOrigin(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(),
                         Main.rand.NextFloat(npc.width / 16f, npc.width / 12f), poofColors[Main.rand.Next(poofColors.Count)], Main.rand.NextFloat(0.9f, 1.1f));
                 }
                 for (int i = 0; i < 3; i++)
                 {
-                    DustSpawnPatterns.SpawnDustAnMakeVelocityGoAwayFromOrigin(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), 
+                    DustSpawnPatterns.SpawnDustAnMakeVelocityGoAwayFromOrigin(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(),
                         Main.rand.NextFloat(npc.width / 12f, npc.width / 8f), poofColors[Main.rand.Next(poofColors.Count)], Main.rand.NextFloat(0.9f, 1.1f));
                 }
             }
@@ -1284,75 +1381,6 @@ namespace AQMod
         public Vector3 GetCelesteTorusPositionOffset(int i)
         {
             return Vector3.Transform(new Vector3(celesteTorusRadius, 0f, 0f), Matrix.CreateFromYawPitchRoll(celesteTorusX, celesteTorusY, celesteTorusZ + MathHelper.TwoPi / 5 * i));
-        }
-
-        public void UpdateCelesteTorus()
-        {
-            if (blueSpheres)
-            {
-                float playerPercent = player.statLife / (float)player.statLifeMax2;
-                celesteTorusMaxRadius = GetCelesteTorusMaxRadius(playerPercent);
-                celesteTorusRadius = MathHelper.Lerp(celesteTorusRadius, celesteTorusMaxRadius, 0.1f);
-                celesteTorusDamage = GetCelesteTorusDamage();
-                celesteTorusKnockback = GetCelesteTorusKnockback();
-
-                celesteTorusScale = 1f + celesteTorusRadius * 0.006f + celesteTorusDamage * 0.009f + celesteTorusKnockback * 0.0015f;
-
-                var type = ModContent.ProjectileType<CelesteTorusCollider>();
-                if (Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[type] <= 0)
-                {
-                    Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
-                }
-                else
-                {
-                    for (int i = 0; i < Main.maxProjectiles; i++)
-                    {
-                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == ModContent.ProjectileType<CelesteTorusCollider>())
-                        {
-                            Main.projectile[i].damage = celesteTorusDamage;
-                            Main.projectile[i].knockBack = celesteTorusKnockback;
-                            break;
-                        }
-                    }
-                }
-                var center = player.Center;
-                bool danger = false;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].IsntFriendly() && Vector2.Distance(Main.npc[i].Center, center) < 2000f)
-                    {
-                        danger = true;
-                        break;
-                    }
-                }
-
-                if (danger)
-                {
-                    celesteTorusSpeed = 0.04f + (1f - playerPercent) * 0.0314f;
-                    celesteTorusX = celesteTorusX.AngleLerp(0f, 0.01f);
-                    celesteTorusY = celesteTorusY.AngleLerp(0f, 0.0075f);
-                    celesteTorusZ += celesteTorusSpeed;
-                }
-                else
-                {
-                    celesteTorusSpeed = 0.0314f;
-                    celesteTorusX += 0.0157f;
-                    celesteTorusY += 0.01f;
-                    celesteTorusZ += celesteTorusSpeed;
-                }
-            }
-            else
-            {
-                celesteTorusDamage = 0;
-                celesteTorusKnockback = 0f;
-                celesteTorusMaxRadius = 0;
-                celesteTorusRadius = 0f;
-                celesteTorusScale = 1f;
-                celesteTorusSpeed = 0f;
-                celesteTorusX = 0f;
-                celesteTorusY = 0f;
-                celesteTorusZ = 0f;
-            }
         }
 
         public int GetCelesteTorusMaxRadius(float playerPercent)
@@ -1534,7 +1562,7 @@ namespace AQMod
             return false;
         }
 
-        public static bool ShouldDoFadingBecauseOfToolsOrSomething(Player player)
+        public static bool TileImportantItem(Player player)
         {
             if (player.HeldItem == null || player.HeldItem.type <= ItemID.None)
             {
@@ -1542,6 +1570,11 @@ namespace AQMod
             }
             var item = player.HeldItem;
             return item.pick > 0 || item.axe > 0 || item.hammer > 0 || item.createTile > TileID.Dirt || item.createWall > 0 || item.tileWand > 0;
+        }
+
+        public static int AccessorySlots(Player player)
+        {
+            return 8 + player.extraAccessorySlots;
         }
     }
 }

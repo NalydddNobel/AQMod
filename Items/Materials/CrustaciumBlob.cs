@@ -1,4 +1,5 @@
 ﻿using AQMod.Tiles;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -19,6 +20,11 @@ namespace AQMod.Items.Materials
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;
+        }
+
+        public override void CaughtFishStack(ref int stack)
+        {
+            stack = Main.rand.Next(16) + 1;
         }
     }
 }

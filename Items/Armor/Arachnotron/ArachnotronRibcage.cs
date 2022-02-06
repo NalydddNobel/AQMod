@@ -32,7 +32,7 @@ namespace AQMod.Items.Armor.Arachnotron
 
         public override void UpdateEquip(Player player)
         {
-            player.GetModPlayer<AQPlayer>().arachnotron = true;
+            player.GetModPlayer<AQPlayer>().arachnotronArms = true;
             player.maxMinions += 1;
             player.meleeSpeed += 0.1f;
             player.endurance += 0.05f;

@@ -1,11 +1,10 @@
-﻿using AQMod.Content.Fishing;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Materials
 {
-    public class Fleshscale : FishingItem
+    public class Fleshscale : ModItem
     {
         public override void SetDefaults()
         {
@@ -14,11 +13,6 @@ namespace AQMod.Items.Materials
             item.value = Item.sellPrice(silver: 20);
             item.rare = ItemRarityID.Blue;
             item.maxStack = 999;
-        }
-
-        public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
-        {
-            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.HellLayer && player.ZoneCrimson && NPC.downedBoss2;
         }
 
         public override void AddRecipes()

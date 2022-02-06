@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Dusts
 {
-    public class UltimaDust : ModDust
+    public class UltimateEnergyDust : ModDust
     {
         public override void OnSpawn(Dust dust)
         {

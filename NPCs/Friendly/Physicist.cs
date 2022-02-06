@@ -4,7 +4,6 @@ using AQMod.Content.World;
 using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Tools;
-using AQMod.Items.Tools.Utility;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

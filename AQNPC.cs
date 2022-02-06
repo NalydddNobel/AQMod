@@ -3,6 +3,7 @@ using AQMod.Common.ID;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.World;
+using AQMod.Dusts;
 using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Dyes.Cursor;
@@ -41,6 +42,7 @@ namespace AQMod
             public static bool[] IsWormBody { get; private set; }
             public static bool[] Unholy { get; private set; }
             public static bool[] Holy { get; private set; }
+            public static bool[] DealsLessDamageToCata { get; private set; }
 
             public static bool IsWormHead(int type)
             {
@@ -51,6 +53,8 @@ namespace AQMod
             {
                 SetUtils.Length = NPCLoader.NPCCount;
                 SetUtils.GetIDFromType = (m, n) => m.NPCType(n);
+
+                DealsLessDamageToCata = SetUtils.CreateFlagSet(NPCID.Mothron, NPCID.MothronSpawn, NPCID.MothronEgg, NPCID.CultistBoss, NPCID.CultistBossClone, NPCID.AncientCultistSquidhead, NPCID.CultistDragonHead, NPCID.CultistDragonBody1, NPCID.CultistDragonBody2, NPCID.CultistDragonBody3, NPCID.CultistDragonBody4, NPCID.CultistDragonTail, NPCID.AncientDoom, NPCID.AncientLight);
 
                 Unholy = SetUtils.CreateFlagSet(NPCID.EaterofSouls, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.DevourerHead, NPCID.DevourerBody, NPCID.DevourerTail, NPCID.SeekerHead, NPCID.SeekerBody, NPCID.SeekerTail,
                     NPCID.Corruptor, NPCID.CorruptBunny, NPCID.CorruptGoldfish, NPCID.CorruptPenguin, NPCID.CorruptSlime, NPCID.Slimer, NPCID.BigMimicCorruption, NPCID.BigMimicCorruption, NPCID.DesertGhoulCorruption, NPCID.DesertGhoulCorruption, NPCID.PigronCorruption, NPCID.SandsharkCorrupt,
@@ -567,11 +571,6 @@ namespace AQMod
             }
         }
 
-        public static class Hooks
-        {
-
-        }
-
         internal static class AIStyles // personal ai style list
         {
             public const int BoundNPCAI = 0;
@@ -846,14 +845,14 @@ namespace AQMod
                     var velocity = normal * Main.rand.NextFloat(size / 12f, size / 6f);
                     velocity += -npc.velocity * 0.3f;
                     velocity *= 0.05f;
+
                     float npcVelocityLength = npc.velocity.Length();
                     Particle.PostDrawPlayers.AddParticle(
                         new MonoParticle(dustPos, velocity,
                         new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f), Main.rand.NextFloat(0.3f, 1f)));
 
-                    Particle.PostDrawPlayers.AddParticle(
-                        new MonoParticle(dustPos, velocity,
-                        new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f) * 0.2f, 0.5f));
+                    int d = Dust.NewDust(npc.position, npc.width, npc.height, ModContent.DustType<UltimateEnergyDust>());
+                    Main.dust[d].velocity = (Main.dust[d].position - center) / 32f + npc.velocity * 0.1f;
 
                     if (Main.rand.NextBool(30))
                     {

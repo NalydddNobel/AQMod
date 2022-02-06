@@ -10,6 +10,11 @@ namespace AQMod
 {
     public class AQTile : GlobalTile
     {
+        internal const byte Slope_BottomLeft = 1;
+        internal const byte Slope_BottomRight = 2;
+        internal const byte Slope_TopLeft = 3;
+        internal const byte Slope_TopRight = 4;
+
         public static class Sets
         {
             public static bool[] CanFixWaterOnType { get; private set; }

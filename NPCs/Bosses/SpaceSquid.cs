@@ -95,7 +95,7 @@ namespace AQMod.NPCs.Bosses
                 }
                 for (int i = 0; i < 3; i++)
                 {
-                    AQGore.NewGore(new Vector2(npc.position.X + npc.width / 2f + 10 * (i - 1), npc.position.Y + npc.height - 30f), new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(1f, 4f)), 
+                    AQGore.NewGore(new Vector2(npc.position.X + npc.width / 2f + 10 * (i - 1), npc.position.Y + npc.height - 30f), new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(1f, 4f)),
                         "GaleStreams/spacesquid_2");
                 }
 

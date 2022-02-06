@@ -1,11 +1,11 @@
-﻿using AQMod.Content.Fishing;
-using AQMod.Content.Players;
+﻿using AQMod.Content.Players;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AQMod.Items.Potions
 {
-    public class PalePufferfish : FishingItem
+    public class PalePufferfish : ModItem
     {
         public override void SetDefaults()
         {
@@ -19,17 +19,6 @@ namespace AQMod.Items.Potions
             item.useTime = 17;
             item.useAnimation = 17;
             item.maxStack = 999;
-        }
-
-        public override bool RandomCatchFail()
-        {
-            return Main.rand.NextBool(35);
-        }
-
-        public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
-        {
-            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
-                && !Main.dayTime && Main.bloodMoon;
         }
 
         public override bool UseItem(Player player)

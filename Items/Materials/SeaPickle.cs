@@ -1,9 +1,11 @@
-﻿using AQMod.Content.Fishing;
+﻿using AQMod.Tiles.Nature.CrabCrevice;
 using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AQMod.Items.Materials
 {
-    public class SeaPickle : FishingItem
+    public class SeaPickle : ModItem
     {
         public override void SetDefaults()
         {
@@ -11,11 +13,13 @@ namespace AQMod.Items.Materials
             item.height = 20;
             item.value = Item.sellPrice(silver: 10);
             item.maxStack = 999;
-        }
-
-        public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
-        {
-            return liquidType == Tile.Liquid_Water && worldLayer < FishLoader.WorldLayers.HellLayer && player.Biomes().zoneCrabCrevice;
+            item.useStyle = ItemUseStyleID.SwingThrow;
+            item.useTime = 10;
+            item.useAnimation = 15;
+            item.createTile = ModContent.TileType<SeaPicklesTile>();
+            item.autoReuse = true;
+            item.useTurn = true;
+            item.consumable = true;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AQMod.Buffs.Vampire;
-using AQMod.Content.Fishing;
 using AQMod.Content.Players;
 using Terraria;
 using Terraria.ID;
@@ -7,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Potions
 {
-    public class VampireSquid : FishingItem
+    public class VampireSquid : ModItem
     {
         public override void SetDefaults()
         {
@@ -34,17 +33,6 @@ namespace AQMod.Items.Potions
         {
             player.GetModPlayer<VampirismPlayer>().GiveVampirism(item.buffTime);
             return base.UseItem(player);
-        }
-
-        public override bool RandomCatchFail()
-        {
-            return Main.rand.NextBool(65);
-        }
-
-        public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
-        {
-            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
-                && !Main.dayTime && Main.bloodMoon && Main.hardMode;
         }
     }
 }

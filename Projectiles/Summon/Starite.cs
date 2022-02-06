@@ -36,6 +36,7 @@ namespace AQMod.Projectiles.Summon
         }
 
         public override bool MinionContactDamage() => true;
+        public override bool? CanCutTiles() => false;
 
         public override void AI()
         {

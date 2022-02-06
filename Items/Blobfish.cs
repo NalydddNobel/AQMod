@@ -1,11 +1,10 @@
-﻿using AQMod.Content.Fishing;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items
 {
-    public class Blobfish : FishingItem
+    public class Blobfish : ModItem
     {
         public override void SetDefaults()
         {
@@ -14,12 +13,6 @@ namespace AQMod.Items
             item.value = Item.sellPrice(gold: 1);
             item.rare = ItemRarityID.Green;
             item.maxStack = 999;
-        }
-
-        public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
-        {
-            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
-                && !Main.dayTime && player.Biomes().zoneGlimmerEvent;
         }
 
         public override void AddRecipes()

@@ -31,8 +31,8 @@ namespace AQMod.Content.Players
         public const int Draw_ArachnotronArmorOldPositionLength = 8;
         public const float Draw_CelesteZMultiplier = 0.0157f;
 
-        public const string Path_Masks = "AQMod/Assets/Equips/Masks/Mask_";
-        public const string Path_HeadAccs = "AQMod/Assets/Equips/HeadAccs/HeadAcc_";
+        public const string Path_Masks = "AQMod/Content/Players/Masks/Masks_";
+        public const string Path_HeadAccs = "AQMod/Content/Players/HeadAccs/HeadAcc_";
 
         public static int ClientOldPositionsLengthCache;
         public static Vector2[] ClientOldPositionsCache;
@@ -529,11 +529,11 @@ namespace AQMod.Content.Players
             var drawEffects = drawInfo.drawPlayer.GetModPlayer<PlayerDrawEffects>();
             if (drawInfo.shadow == 0f)
             {
-                if (aQPlayer.sparkling)
+                if (aQPlayer.shimmering)
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        int d = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width + 4, player.height + 4, ModContent.DustType<UltimaDust>(), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), Main.rand.NextFloat(0.45f, 1f));
+                        int d = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width + 4, player.height + 4, ModContent.DustType<UltimateEnergyDust>(), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), Main.rand.NextFloat(0.45f, 1f));
                         Main.dust[d].velocity *= 2.65f;
                         Main.dust[d].velocity.Y -= 2f;
                         Main.playerDrawDust.Add(d);
@@ -541,7 +541,7 @@ namespace AQMod.Content.Players
                     Lighting.AddLight(player.Center, 1f, 1f, 1f);
                     fullBright = true;
                 }
-                if (aQPlayer.notFrostburn)
+                if (aQPlayer.blueFire)
                 {
                     if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
                     {

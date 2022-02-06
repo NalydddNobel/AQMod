@@ -1,7 +1,6 @@
 ﻿using AQMod.Content.Players;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories.Vanity

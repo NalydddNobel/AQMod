@@ -56,7 +56,7 @@ namespace AQMod.Projectiles.Magic
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
-            switch (target.type) 
+            switch (target.type)
             {
                 case NPCID.TheDestroyer:
                 case NPCID.TheDestroyerBody:

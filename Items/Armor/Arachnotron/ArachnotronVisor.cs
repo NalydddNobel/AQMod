@@ -46,7 +46,7 @@ namespace AQMod.Items.Armor.Arachnotron
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = AQText.ArmorSetBonus("Arachnotron").Value;
-            player.GetModPlayer<AQPlayer>().primeTime = true;
+            player.GetModPlayer<AQPlayer>().setArachnotron = true;
         }
 
         public override void AddRecipes()

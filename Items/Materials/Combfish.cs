@@ -1,11 +1,10 @@
-﻿using AQMod.Content.Fishing;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Materials
 {
-    public class Combfish : FishingItem
+    public class Combfish : ModItem
     {
         public override void SetDefaults()
         {
@@ -14,11 +13,6 @@ namespace AQMod.Items.Materials
             item.value = Item.sellPrice(silver: 10);
             item.rare = ItemRarityID.Green;
             item.maxStack = 999;
-        }
-
-        public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
-        {
-            return liquidType == Tile.Liquid_Honey && worldLayer < FishLoader.WorldLayers.HellLayer;
         }
 
         public override void AddRecipes()

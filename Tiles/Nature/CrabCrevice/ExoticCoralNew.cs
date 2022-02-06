@@ -163,6 +163,25 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             return false;
         }
 
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            var drawFrame = new Rectangle(Main.tile[i, j].frameX, 0, 20, 28);
+            var drawOrigin = new Vector2(10f, 18f);
+            var drawPosition = new Vector2(i * 16f + drawOrigin.X, j * 16f + drawOrigin.Y - 10f);
+            float rotation = 0f;
+            if (j < (int)Main.worldSurface && Main.tile[i, j].wall == 0)
+            {
+                float windPower = ((float)Math.Cos(Main.GlobalTime * MathHelper.Pi + i * 0.1f) + 1f) / 2f * Main.windSpeed;
+                drawPosition.X += windPower;
+                drawPosition.Y += Math.Abs(windPower);
+                rotation = windPower * 0.1f;
+            }
+
+            Main.spriteBatch.Draw(Main.tileTexture[Type], drawPosition - Main.screenPosition + AQGraphics.TileZero, drawFrame,
+                Lighting.GetColor(i, j), rotation, drawOrigin, 1f, SpriteEffects.None, 0f);
+            return false;
+        }
+
         public static bool TryPlaceExoticBlotch(int x, int y, int style, int size)
         {
             var halfSize = size / 2;
@@ -209,25 +228,6 @@ namespace AQMod.Tiles.Nature.CrabCrevice
         {
             style = style * 4 + WorldGen.genRand.Next(4);
             return style;
-        }
-
-        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
-        {
-            var drawFrame = new Rectangle(Main.tile[i, j].frameX, 0, 20, 28);
-            var drawOrigin = new Vector2(10f, 18f);
-            var drawPosition = new Vector2(i * 16f + drawOrigin.X, j * 16f + drawOrigin.Y - 10f);
-            float rotation = 0f;
-            if (j < (int)Main.worldSurface && Main.tile[i, j].wall == 0)
-            {
-                float windPower = ((float)Math.Cos(Main.GlobalTime * MathHelper.Pi + i * 0.1f) + 1f) / 2f * Main.windSpeed;
-                drawPosition.X += windPower;
-                drawPosition.Y += Math.Abs(windPower);
-                rotation = windPower * 0.1f;
-            }
-
-            Main.spriteBatch.Draw(Main.tileTexture[Type], drawPosition - Main.screenPosition + AQGraphics.TileZero, drawFrame,
-                Lighting.GetColor(i, j), rotation, drawOrigin, 1f, SpriteEffects.None, 0f);
-            return false;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AQMod.Tiles.Furniture;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -29,6 +30,11 @@ namespace AQMod.Items.Materials
             r.AddTile(TileID.Furnaces);
             r.SetResult(this);
             r.AddRecipe();
+        }
+
+        public override void CaughtFishStack(ref int stack)
+        {
+            stack = Main.rand.Next(2) + 1;
         }
     }
 }

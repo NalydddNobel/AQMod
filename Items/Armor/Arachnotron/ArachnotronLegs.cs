@@ -72,8 +72,8 @@ namespace AQMod.Items.Armor.Arachnotron
         {
             var plr = Main.player[projectile.owner];
             if (plr.dead)
-                plr.GetModPlayer<AQPlayer>().arachnotron = false;
-            if (plr.GetModPlayer<AQPlayer>().arachnotron)
+                plr.GetModPlayer<AQPlayer>().arachnotronArms = false;
+            if (plr.GetModPlayer<AQPlayer>().arachnotronArms)
                 projectile.timeLeft = 2;
             var gotoPosition = plr.position;
             if (Main.player[projectile.owner].gravDir == -1)

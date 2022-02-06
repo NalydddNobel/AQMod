@@ -89,7 +89,13 @@ ItemTooltip.LightMatter=Radiates light and interstellar power
 ItemName.NuclearFeather=Nuclear Feather
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
 
+ItemName.SeaPickle=Sea Pickle
+ItemTooltip.SeaPickle='You hear a voice telling you to flip it over'
+
 # Weapons
+ItemName.MagicalBoomerang=Magical Boomerang
+ItemTooltip.MagicalBoomerang=Can carry items towards you
+ProjectileName.MagicalBoomerang=Magical Boomerang
 
 ItemName.StariteBlade=Starite Blade
 ItemTooltip.StariteBlade=Inflicts blue fire on hit\n'The sacred blade that evil can never touch'
@@ -214,6 +220,9 @@ ItemTooltip.XenonMushroom=Emits blue light\n'Gets brighter when you touch it'
 MapObject.NobleMushrooms=Noble Mushroom
 
 # Tools
+ItemName.BlackBookofUntoldLegends='Untold Legends'
+ItemTooltip.BlackBookofUntoldLegends=Summons the Hermit Crab merchant
+
 ItemName.Cosmicanon=Cosmicanon
 ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer Event from naturally spawning\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 ItemTooltipExtra.Cosmicanon=You can toggle this function by pressing {0}
@@ -266,6 +275,11 @@ ItemTooltip.Beeswax=Shows the location of any visible Plantera bulbs
 MapLayerToggle.Beeswax='Beeswax'\nShows the location of any visible Plantera bulbs
 
 # Potions
+ItemName.SpoilsPotion=Spoils Potion
+ItemTooltip.SpoilsPotion=Enemies drop twice as much loot
+BuffName.SpoilsPotionBuff=Spoiled
+BuffDescription.SpoilsPotionBuff=Enemies drop twice as much loot\n'You are such a spoiled brat!'
+
 ItemName.BloodthirstPotion=Bloodthirst Potion
 ItemTooltip.BloodthirstPotion=You drain some life when you kill an enemy
 BuffName.Bloodthirst=Bloodthirst
@@ -351,7 +365,12 @@ ItemTooltip.LarvaEel=Gives you 3 minutes of honey but inflicts potion sickness
 
 # Quest Fish
 ItemName.WaterFisg=Water Fish
+QuestFish.WaterFisg=It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.
 ItemName.Crabdaughter=Crabdaughter
+QuestFish.Crabdaughter=Seems like some new fish have entered the ocean recently, one of these fish seems to be related this massive crab with clam as claws. The only thing that makes me think it's related is that it's a clam with crab claws. It's an amazing sight so catch one for me.
+
+FishingLocation.AnywhereFishing=Caught anywhere
+FishingLocation.BeachFishing=Caught in Ocean
 
 # Tiles
 ItemName.SedimentSandBlock=Sedimentary Sand Block
@@ -658,6 +677,9 @@ WorldGen.CrabCrevice.Ores=Aequus: Generating Crab Crevice... Ores
 WorldGen.Fix1TileHighWater=Aequus: Fixing Baby Pools
 WorldGen.BuriedDirtChests=Aequus: Generating Buried Dirt Chests
 
+WorldGen.ExoticBlotches=Aequus: Exotic Blotches
+WorldGen.MiscFoliageCrabCrevice=Aequus: Misc Foliage... Crab Crevice
+
 # Christmas
 
 XmasGift.Tooltip=Will you be naughty or nice..?
@@ -907,7 +929,6 @@ ItemName.SuspiciousLookingSteak=Suspicious Looking Steak
 # Other Buffs Items
 ItemName.OpposingPotion=Opposing Potion
 ItemName.PotionofBossrushium=Encore Potion
-ItemName.SpoilsPotion=Spoils Potion
 ##############
 # Equipables #
 ##############
@@ -1136,7 +1157,6 @@ ItemTooltip.SuspiciousLookingSteak=Gives multiple buffs\n'A curse has been lifte
 # Other Buffs Items
 ItemTooltip.OpposingPotion=Makes some enemies drop opposing loot
 ItemTooltip.PotionofBossrushium=Bosses respawn when defeated
-ItemTooltip.SpoilsPotion=Non-Boss Enemies drop 2 times more loot
 ##############
 # Equipables #
 ##############
@@ -1232,8 +1252,6 @@ ItemTooltip.Floatstick=Works when wet\n'I think you can guess what this does fro
 # Buffs
 BuffName.BlueFire=Blue Fire
 BuffDescription.BlueFire=The immense heat burns off your skin
-BuffName.Spoiled=Spoiled
-BuffDescription.Spoiled=Enemies drop twice as much loot\n'You are such a spoiled brat!'
 BuffName.MicroStarite=Micro Starite
 BuffDescription.MicroStarite=The smallest solar system imaginable
 BuffName.HeartMoth=Heart Moth
@@ -1428,11 +1446,6 @@ ItemTooltip.SpaceSquidBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCNam
 
 ProjectileName.SpaceSquidLaser=Space Squid
 ProjectileName.SpaceSquidDeathray=Space Squid
-
-QuestFish.Crabdaughter=Seems like some new fish have entered the ocean recently, one of these fish seems to be related this massive crab with clam as claws. The only thing that makes me think it's related is that it's a clam with crab claws. It's an amazing sight so catch one for me.
-QuestFish.WaterFisg=It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.
-FishingLocation.AnywhereFishing=Caught anywhere
-FishingLocation.BeachFishing=Caught in Ocean
 
 MapObject.Painting=Painting
 MapObject.Trophies=Trophy

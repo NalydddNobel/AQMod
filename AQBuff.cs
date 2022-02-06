@@ -20,7 +20,7 @@ namespace AQMod
                 SetUtils.Length = BuffLoader.BuffCount;
                 SetUtils.GetIDFromType = (m, n) => m.BuffType(n);
 
-                CantBeSpreadToOtherNPCs = SetUtils.CreateFlagSet(BuffID.StardustMinionBleed, BuffID.DryadsWardDebuff, BuffID.Lovestruck, 
+                CantBeSpreadToOtherNPCs = SetUtils.CreateFlagSet(BuffID.StardustMinionBleed, BuffID.DryadsWardDebuff, BuffID.Lovestruck,
                     typeof(LovestruckAQ), BuffID.Stinky);
 
                 IsFoodBuff = new bool[BuffLoader.BuffCount];

@@ -1,9 +1,9 @@
-﻿using AQMod.Common.WorldGeneration;
+﻿using AQMod.Common.ID;
+using AQMod.Common.WorldGeneration;
 using AQMod.Dusts;
 using AQMod.Items.Accessories;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools.Fishing;
-using AQMod.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ namespace AQMod
         {
             public static bool[] CantBeRenamed { get; private set; }
             public static bool[] CantForceAutoswing { get; private set; }
+            public static bool[] DashAccessory { get; private set; }
 
             public static bool IsCrate(int type)
             {
@@ -67,6 +68,11 @@ namespace AQMod
 
             internal static void InternalInitalize()
             {
+                SetUtils.Length = ItemLoader.ItemCount;
+                SetUtils.GetIDFromType = (m, n) => m.ItemType(n);
+
+                DashAccessory = SetUtils.CreateFlagSet(ItemID.EoCShield, ItemID.Tabi, ItemID.MasterNinjaGear);
+
                 CantBeRenamed = new bool[ItemLoader.ItemCount];
                 CantBeRenamed[ModContent.ItemType<Items.GiftItem>()] = true;
 
@@ -99,6 +105,7 @@ namespace AQMod
         {
             public const int CrabCreviceRare = ItemRarityID.Blue;
             public const int StariteWeaponRare = ItemRarityID.Green;
+            public const int DungeonRare = ItemRarityID.Green;
             public const int PetRare = ItemRarityID.Orange;
             public const int GoreNestRare = ItemRarityID.Orange;
             public const int OmegaStariteRare = ItemRarityID.LightRed;
@@ -512,6 +519,19 @@ namespace AQMod
             }
             ItemLoader.GrabRange(item, player, ref grabRange);
             return grabRange;
+        }
+
+        public static Item GetDefault(int type)
+        {
+            var item = new Item();
+            item.SetDefaults(type);
+            return item;
+        }
+        public static Item GetDefault(Item item)
+        {
+            var item2 = new Item();
+            item2.SetDefaults(item.type);
+            return item2;
         }
     }
 }

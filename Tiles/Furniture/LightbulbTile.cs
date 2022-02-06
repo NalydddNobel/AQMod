@@ -8,12 +8,6 @@ namespace AQMod.Tiles.Furniture
 {
     public class LightbulbTile : ModTile
     {
-        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
-        {
-            TileUtils.GemFrame(i, j);
-            return false;
-        }
-
         public override void SetDefaults()
         {
             Main.tileObsidianKill[Type] = true;
@@ -72,6 +66,12 @@ namespace AQMod.Tiles.Furniture
         {
             if (Main.tile[i, j].frameX == 0)
                 drawColor = new Color(255, 255, 255, 255);
+        }
+
+        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        {
+            TileUtils.GemFrame(i, j);
+            return false;
         }
 
         public override void HitWire(int i, int j)

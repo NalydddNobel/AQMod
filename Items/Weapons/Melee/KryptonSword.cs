@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee.Boomerang
+namespace AQMod.Items.Weapons.Melee
 {
     public class KryptonSword : ModItem
     {

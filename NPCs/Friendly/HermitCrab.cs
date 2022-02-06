@@ -1,6 +1,7 @@
 ﻿using AQMod.Content.Players;
 using AQMod.Items.Armor;
 using AQMod.Items.Materials;
+using AQMod.Items.Tools;
 using AQMod.Items.Tools.GrapplingHooks;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -54,6 +55,18 @@ namespace AQMod.NPCs.Friendly
         }
 
         public override bool CanChat() => true;
+
+        public override void AI()
+        {
+            if (npc.alpha > 0)
+            {
+                npc.alpha -= 10;
+                if (npc.alpha < 0)
+                {
+                    npc.alpha = 0;
+                }
+            }
+        }
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
@@ -120,6 +133,8 @@ namespace AQMod.NPCs.Friendly
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<StriderHook>());
                 nextSlot++;
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<HermitShell>());
+                nextSlot++;
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<BlackBookofUntoldLegends>());
                 nextSlot++;
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<CrabShell>());
                 nextSlot++;

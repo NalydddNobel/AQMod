@@ -57,7 +57,19 @@ namespace AQMod
         [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorNoAlpha]
         public Color MapBlipColor { get; set; }
 
-        [Header("$Mods.AQMod.ClientConfig.Header.Xmas")]
+
+        [Header(AQText.ConfigHeaderKey + "Misc")]
+
+        [BackgroundColor(150, 12, 166, 180)]
+        [Label(AQText.ConfigValueKey + "CosmicEnergyAlt")]
+        [DefaultValue(false)]
+        public bool CosmicEnergyAlt { get; set; }
+        public static bool c_CosmicEnergyAlt { get; private set; }
+
+        [Label(AQText.ConfigValueKey + "ShowCompletedAnglerQuestsCount")]
+        [BackgroundColor(12, 12, 190, 180)]
+        [DefaultValue(true)]
+        public bool ShowCompletedQuestsCount { get; set; }
 
         [BackgroundColor(75, 80, 100, 180)]
         [Label("$Mods.AQMod.ClientConfig.XmasBackground")]
@@ -72,19 +84,6 @@ namespace AQMod
         [DefaultValue(true)]
         [ReloadRequired()]
         public bool XmasProgressMeterOverride { get; set; }
-
-        [Header(AQText.ConfigHeaderKey + "Misc")]
-
-        [BackgroundColor(150, 12, 166, 180)]
-        [Label(AQText.ConfigValueKey + "CosmicEnergyAlt")]
-        [DefaultValue(false)]
-        public bool CosmicEnergyAlt { get; set; }
-        public static bool c_CosmicEnergyAlt { get; private set; }
-
-        [Label(AQText.ConfigValueKey + "ShowCompletedAnglerQuestsCount")]
-        [BackgroundColor(12, 12, 190, 180)]
-        [DefaultValue(true)]
-        public bool ShowCompletedQuestsCount { get; set; }
 
         public override void OnChanged()
         {

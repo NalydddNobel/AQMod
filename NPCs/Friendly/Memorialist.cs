@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Items.Tools.Utility;
+using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Summon;
 using System.Collections.Generic;

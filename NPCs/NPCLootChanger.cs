@@ -3,7 +3,7 @@ using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Potions;
-using AQMod.Items.Tools.Utility;
+using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;

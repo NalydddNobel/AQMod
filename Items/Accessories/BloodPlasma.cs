@@ -1,10 +1,10 @@
-﻿using AQMod.Content.Fishing;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories
 {
-    public class BloodPlasma : FishingItem
+    public class BloodPlasma : ModItem
     {
         public override void SetDefaults()
         {
@@ -18,17 +18,6 @@ namespace AQMod.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<AQPlayer>().healBeforeDeath = true;
-        }
-
-        public override bool RandomCatchFail()
-        {
-            return Main.rand.NextBool(25);
-        }
-
-        public override bool ValidCatchingLocation(Player player, AQPlayer aQPlayer, Item fishingRod, Item bait, int power, int liquidType, int worldLayer, int questFish)
-        {
-            return liquidType == Tile.Liquid_Water && worldLayer <= FishLoader.WorldLayers.Overworld
-                && !Main.dayTime && Main.bloodMoon;
         }
     }
 }

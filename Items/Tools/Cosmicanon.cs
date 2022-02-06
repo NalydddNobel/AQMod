@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Utility
+namespace AQMod.Items.Tools
 {
     public class Cosmicanon : ModItem, IUpdatePiggybank
     {
@@ -21,7 +21,7 @@ namespace AQMod.Items.Tools.Utility
         private void Update(Player player)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.cosmicanon = true;
+            aQPlayer.canToggleCosmicanon = true;
             if (!aQPlayer.IgnoreIgnoreMoons)
                 aQPlayer.ignoreMoons = true;
         }

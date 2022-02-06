@@ -175,15 +175,6 @@ namespace AQMod.Content.World.Generation
             Chest c = Main.chest[i];
             switch (ChestStyles.GetChestStyle(c))
             {
-                case ChestStyles.Wood:
-                    {
-                        if (WorldGen.genRand.NextBool(4))
-                        {
-                            MainLoot(c, ModContent.ItemType<Items.Weapons.Melee.VineSword>());
-                        }
-                    }
-                    break;
-
                 case ChestStyles.Ice:
                     {
                         if (WorldGen.genRand.NextBool(4))
@@ -195,9 +186,12 @@ namespace AQMod.Content.World.Generation
 
                 case ChestStyles.LockedGold:
                     {
-                        if (Main.wallDungeon[Main.tile[c.x, c.y].type] && WorldGen.genRand.NextBool(3))
+                        if (Main.tile[c.x, c.y].wall > WallID.None && Main.wallDungeon[Main.tile[c.x, c.y].wall])
                         {
-                            InsertLoot(c, ModContent.ItemType<DungeonMap>(), 1, CountAllActiveItemIndices(c));
+                            if (WorldGen.genRand.NextBool(3))
+                                MainLoot(c, ModContent.ItemType<MagicalBoomerang>());
+                            if (WorldGen.genRand.NextBool(3))
+                                InsertLoot(c, ModContent.ItemType<DungeonMap>(), 1, CountAllActiveItemIndices(c));
                         }
                     }
                     break;
