@@ -89,12 +89,27 @@ ItemTooltip.LightMatter=散发着光芒和星际能量
 ItemName.NuclearFeather=核子之羽
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
 
-# Weapons
+ItemName.SeaPickle=海泡菜
+ItemTooltip.SeaPickle='你听到一个声音告诉你把它翻过来'
 
-ItemName.StariteBlade=星源剑
+# Weapons
+ItemName.ScarletSea=罪孽红海
+ItemTooltip.ScarletSea=召唤两颗血珠
+
+ItemName.SeltzerRain=污浊腐雨
+ItemTooltip.SeltzerRain=发射许多腐蚀球体
+
+ItemName.FizzlingFire=超级火焰喷射器
+ItemTooltip.FizzlingFire=发射强力的蓝色火焰\n在你拥有耐魔性减益时无法使用
+
+ItemName.MagicalBoomerang=魔法回旋镖
+ItemTooltip.MagicalBoomerang=可以拾取物品
+ProjectileName.MagicalBoomerang=魔法回旋镖
+
+ItemName.StariteBlade=星剑
 ItemTooltip.StariteBlade=击中敌人时会对其造成碧蓝之火减益\n'邪恶永远无法触及的神圣之刃'
 
-ItemName.StariteSpinner=星源轮转
+ItemName.StariteSpinner=脉冲星
 ItemTooltip.StariteSpinner=击中敌人时偶尔会对其造成碧蓝之火减益\n'它在旋转吗? 还是我们在绕着它旋转?'
 ProjectileName.StariteSpinnerProjectile=星源轮转
 
@@ -120,10 +135,11 @@ ItemTooltip.AirBlade=召唤魔法风刃
 ProjectileName.AirBlade=风之刃
 ProjectileName.AirBladeGhost=风之刃
 
-ItemName.RedSpriteStaff=红色精灵法杖
-ItemTooltip.RedSpriteStaff=召唤一朵红色精灵在你的敌人头顶降下雷鸣\n一次至多可降下4个雷鸣
-ProjectileName.RedSpriteStaff=红色精灵法杖
-ProjectileName.RedSpriteStaffLightning=红色精灵法杖
+ItemName.RedSpriteStaff=电涌杖
+ItemTooltip.RedSpriteStaff=召唤涌动雷云向你的敌人倾斜雷霆\n同时至多铸造4次
+ProjectileName.RedSpriteStaff=电涌杖
+ProjectileName.RedSpriteStaffLightning=电涌杖
+
 ItemName.ThunderClap=雷霆一击
 ItemTooltip.ThunderClap=召唤雷霆从天而降
 ProjectileName.ThunderClap=雷霆一击
@@ -214,6 +230,9 @@ ItemTooltip.XenonMushroom=散发着蓝光\n'当你触摸它时, 它变得更亮�
 MapObject.NobleMushrooms=华贵蘑菇
 
 # Tools
+ItemName.BlackBookofUntoldLegends='无名传说'
+ItemTooltip.BlackBookofUntoldLegends=召唤寄居蟹商人
+
 ItemName.Cosmicanon=星宇律则
 ItemTooltip.Cosmicanon=阻止血月、日食和微光事件的自然生成\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 ItemTooltipExtra.Cosmicanon=按下{0}以开关效果
@@ -266,6 +285,11 @@ ItemTooltip.Beeswax=显示所有可见的世纪之花花苞的位置
 MapLayerToggle.Beeswax='蜂蜡'\n显示所有可见的世纪之花花苞的位置
 
 # Potions
+ItemName.SpoilsPotion=战利品药水
+ItemTooltip.SpoilsPotion=敌人死亡时掉落的战利品的数量翻倍
+BuffName.SpoilsPotionBuff=溺爱
+BuffDescription.SpoilsPotionBuff=敌人死亡时掉落的战利品的数量翻倍\n'你只是个被惯坏了的坏孩子!'
+
 ItemName.BloodthirstPotion=嗜血药水
 ItemTooltip.BloodthirstPotion=当你击杀一名敌人时你会回复些许生命值
 BuffName.Bloodthirst=嗜血
@@ -351,7 +375,12 @@ ItemTooltip.LarvaEel=使你获得3分钟蜂蜜增益和耐药性减益
 
 # Quest Fish
 ItemName.WaterFisg=水鱼
+QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我曾见过一条内部充满清水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
 ItemName.Crabdaughter=蟹蛤之子
+QuestFish.Crabdaughter=看起来海洋中最近涌入了某些新的鱼, 其中一条鱼似乎与爪子为蛤蜊的巨大螃蟹有关联. 尽管我所能想到的唯一关联是它的爪子为螃蟹爪子. 真是个奇观, 所以快给我抓一条!
+
+FishingLocation.AnywhereFishing=抓捕位置: 任意位置
+FishingLocation.BeachFishing=抓捕位置: 海洋
 
 # Tiles
 ItemName.SedimentSandBlock=沉积沙块
@@ -364,6 +393,7 @@ ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
 ItemName.OceanRavineWall=蟹状裂隙墙
 
 # Tooltips
+Tooltips.DemonSiegeUpgrade=可在地狱祭坛处升级
 Tooltips.DedicatedItem=专属物品
 Tooltips.Unobtainable=自另一宇宙形成的遗物
 Tooltips.ManaPerSecond=每秒消耗{0}点法力值
@@ -574,26 +604,14 @@ ClientConfig.Header.Starite=星源视觉效果
 ClientConfig.Header.Xmas=圣诞节
 ClientConfig.Header.UI=用户界面
 
-ClientConfig.Effect3D=3D效果
-ClientConfig.Effect3DTooltip=数值越高3D效果越明显, 数值越低3D效果越扁平
-
-ClientConfig.BackgroundStarites=星源背景
-ClientConfig.BackgroundStaritesTooltip=决定当微光事件期间的背景是否会出现小星星
-
-ClientConfig.StariteProjColor=星源弹幕颜色
-ClientConfig.StariteProjColorTooltip=某些星源弹幕的颜色
-
-ClientConfig.StariteAuraColor=星源氛围颜色
-ClientConfig.StariteAuraColorTooltip=终末之星和微光事件背景氛围的颜色
-
-ClientConfig.StariteBackgroundLight=星源背景强度
-ClientConfig.StariteBackgroundLightTooltip=数值越低星源背景越透明\n若你看不清终末之星或其弹幕, 可以尝试更改数值
-
 ClientConfig.XmasBackground=圣诞节背景
 ClientConfig.XmasBackgroundTooltip=决定是否在特殊的圣诞节世界中使用圣诞节背景\n{$Mods.AQMod.Config.RequiresReload}
 
 ClientConfig.XmasProgressMeterOverride=圣诞进度条覆盖
 ClientConfig.XmasProgressMeterOverrideTooltip=决定是否让种子 "Aequus Xmas" 覆盖世界生成进度条. 该项在某些时候会与世界生成预览冲突\n{$Mods.AQMod.Config.RequiresReload}
+
+ClientConfig.DemonSiegeUpgradeTooltip=恶魔围攻升级描述
+ClientConfig.DemonSiegeUpgradeTooltipTooltip=决定可在血巢处升级的物品的物品描述中是否出现'可在地狱祭坛处升级'
 
 ClientConfig.MapBlipColor=地图光点颜色
 ClientConfig.MapBlipColorTooltip=折磨之魂显示的地图光点的颜色
@@ -657,6 +675,9 @@ WorldGen.CrabCrevice.Ores=Aequus: 正在生成蟹状裂隙... 矿石
 
 WorldGen.Fix1TileHighWater=Aequus: 正在修复小水坑
 WorldGen.BuriedDirtChests=Aequus: 正在生成被掩埋的土箱
+
+WorldGen.ExoticBlotches=Aequus: 正在生成奇异斑点
+WorldGen.MiscFoliageCrabCrevice=Aequus: 正在生成其他植被... 蟹状裂隙
 
 # Christmas
 
@@ -907,7 +928,6 @@ ItemName.SuspiciousLookingSteak=可疑牛排
 # Other Buffs Items
 ItemName.OpposingPotion=对立药水
 ItemName.PotionofBossrushium=安可药水
-ItemName.SpoilsPotion=战利品药水
 ##############
 # Equipables #
 ##############
@@ -1008,11 +1028,6 @@ ItemName.Bubbler=泡泡法杖
 ItemName.GebulbaStaff=弹球法杖
 ItemName.MagicWand=魔杖
 ItemName.MagmalbulbiaStaff=邪弹法杖
-ItemName.ScarletSea=罪孽红海
-ItemTooltip.ScarletSea=召唤会跟随你光标移动的血珠
-ItemName.SeltzerRain=苏打雨
-ItemName.FizzlingFire=碧蓝之火
-# Tomes
 ItemName.PentalScythe=回旋魔镰
 # Melee
 ItemName.JerryClawFlail=蟹蛤之爪
@@ -1136,7 +1151,6 @@ ItemTooltip.SuspiciousLookingSteak=使你获得许多增益\n'诅咒已除'
 # Other Buffs Items
 ItemTooltip.OpposingPotion=使某些敌人掉落与其主题相反的物品\n(例如肉后血地怪会掉光明之魂)
 ItemTooltip.PotionofBossrushium=Boss被击败时会再次生成
-ItemTooltip.SpoilsPotion=非Boss敌人在死亡时掉落的战利品的数量翻倍
 ##############
 # Equipables #
 ##############
@@ -1189,8 +1203,6 @@ ItemTooltip.Bubbler=不断地发射泡泡\n'沙泡蟹会是你最喜欢的动物
 ItemTooltip.GebulbaStaff=发射弹跳粘球\n'Boing!'
 ItemTooltip.MagicWand=向你的光标位置发射一束魔法矢, 魔法矢会爆炸成向两边水平移动的冲击波
 ItemTooltip.MagmalbulbiaStaff=发射击中物块时会爆炸的弹跳火焰弹\n'艺术就是爆炸!'
-ItemTooltip.SeltzerRain=发射5个会跟随你光标移动一段时间的闪光球\n闪光球在移动一段时间后会远离你的光标
-ItemTooltip.FizzlingFire=发射强大的蓝色火焰\n在你拥有耐魔性减益时无法使用
 # Tomes
 ItemTooltip.PentalScythe=发射追踪敌人的烈焰魔镰
 # Melee
@@ -1232,8 +1244,6 @@ ItemTooltip.Floatstick=仅在潮湿情况下生效\n'我想你应该可以从名
 # Buffs
 BuffName.BlueFire=碧蓝之火
 BuffDescription.BlueFire=碧蓝之火灼烧着你的皮肤
-BuffName.Spoiled=溺爱
-BuffDescription.Spoiled=敌人死亡时掉落的战利品的数量翻倍\n'你只是个被惯坏了的坏孩子!'
 BuffName.MicroStarite=微型星之源
 BuffDescription.MicroStarite=你所能想象的最小的类太阳系
 BuffName.HeartMoth=心蛾
@@ -1428,11 +1438,6 @@ ItemTooltip.SpaceSquidBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCNam
 
 ProjectileName.SpaceSquidLaser=太空乌贼
 ProjectileName.SpaceSquidDeathray=太空乌贼
-
-QuestFish.Crabdaughter=看起来海洋中最近涌入了某些新的鱼, 其中一条鱼似乎与爪子为蛤蜊的巨大螃蟹有关联. 尽管我所能想到的唯一关联是它的爪子为螃蟹爪子. 真是个奇观, 所以快给我抓一条!
-QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我曾见过一条内部充满清水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
-FishingLocation.AnywhereFishing=抓捕位置: 任意位置
-FishingLocation.BeachFishing=抓捕位置: 海洋
 
 MapObject.Painting=画作
 MapObject.Trophies=纪念章
