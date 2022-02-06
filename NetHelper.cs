@@ -371,7 +371,7 @@ namespace AQMod
                             l.Value.Log("item Prefix: " + itemPrefix);
                         }
 
-                        DemonSiege.Activate(x, y, player, item, fromServer: true);
+                        DemonSiegeEvent.Activate(x, y, player, item, fromServer: true);
                     }
                     break;
 

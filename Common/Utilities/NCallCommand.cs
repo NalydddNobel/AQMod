@@ -238,11 +238,11 @@ namespace AQMod.Common.Utilities
                     break;
 
                 case "demonsiegei":
-                    caller.Reply("x: " + DemonSiege.X);
-                    caller.Reply("y: " + DemonSiege.Y);
-                    caller.Reply("plr: " + DemonSiege.PlayerActivator + " (" + Main.player[DemonSiege.PlayerActivator] + ")");
-                    if (DemonSiege.BaseItem != null)
-                        caller.Reply("item: " + DemonSiege.BaseItem.type + " (" + Lang.GetItemName(DemonSiege.BaseItem.type) + ")");
+                    caller.Reply("x: " + DemonSiegeEvent.X);
+                    caller.Reply("y: " + DemonSiegeEvent.Y);
+                    caller.Reply("plr: " + DemonSiegeEvent.PlayerActivator + " (" + Main.player[DemonSiegeEvent.PlayerActivator] + ")");
+                    if (DemonSiegeEvent.BaseItem != null)
+                        caller.Reply("item: " + DemonSiegeEvent.BaseItem.type + " (" + Lang.GetItemName(DemonSiegeEvent.BaseItem.type) + ")");
                     break;
 
                 case "glimmerxy":
@@ -527,13 +527,13 @@ namespace AQMod.Common.Utilities
                     break;
 
                 case "demonsiegequick":
-                    DemonSiege.UpgradeItem();
-                    DemonSiege.Deactivate();
+                    DemonSiegeEvent.UpgradeItem();
+                    DemonSiegeEvent.Deactivate();
                     WorldDefeats.DownedDemonSiege = true;
                     break;
 
                 case "demonsiegeend":
-                    DemonSiege.Deactivate();
+                    DemonSiegeEvent.Deactivate();
                     break;
 
                 case "alllang":

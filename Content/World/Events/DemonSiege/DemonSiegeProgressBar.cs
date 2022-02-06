@@ -13,9 +13,9 @@ namespace AQMod.Content.World.Events.DemonSiege
         public override Texture2D IconTexture => ModContent.GetTexture(TexturePaths.EventIcons + "demonsiege");
         public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.DemonSiege");
         public override Color NameBGColor => new Color(120, 90 + (int)(Math.Sin(Main.GlobalTime * 5f) * 10), 20, 128);
-        public override float EventProgress => 1f - DemonSiege.UpgradeTime / (float)DemonSiege.Upgrade.upgradeTime;
+        public override float EventProgress => 1f - DemonSiegeEvent.UpgradeTime / (float)DemonSiegeEvent.Upgrade.upgradeTime;
 
-        public override bool IsActive() => DemonSiege.CloseEnoughToDemonSiege(Main.LocalPlayer);
-        public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.Common.TimeLeft", AQUtils.TimeText3(DemonSiege.UpgradeTime));
+        public override bool IsActive() => DemonSiegeEvent.CloseEnoughToDemonSiege(Main.LocalPlayer);
+        public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.Common.TimeLeft", AQUtils.TimeText3(DemonSiegeEvent.UpgradeTime));
     }
 }

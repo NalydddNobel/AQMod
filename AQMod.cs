@@ -573,7 +573,7 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
-            DemonSiege.InternalSetup();
+            DemonSiegeEvent.InternalSetup();
 
             AQBuff.Sets.InternalInitalize();
             AQItem.Sets.InternalInitalize();
@@ -629,7 +629,7 @@ namespace AQMod
             ItemOverlays = null;
 
             DyeBinder.Unload();
-            DemonSiege.Unload();
+            DemonSiegeEvent.Unload();
             AQProjectile.Sets.UnloadSets();
             AQNPC.Sets.UnloadSets();
             AQItem.Sets.Unload();
@@ -729,7 +729,7 @@ namespace AQMod
                 }
             }
 
-            DemonSiege.UpdateEvent();
+            DemonSiegeEvent.UpdateEvent();
 
             if (EventGlimmer.OmegaStarite > -1 && !Main.npc[EventGlimmer.OmegaStarite].active)
             {
@@ -763,7 +763,7 @@ namespace AQMod
             }
 
             var player = Main.LocalPlayer;
-            if (DemonSiege.CloseEnoughToDemonSiege(player))
+            if (DemonSiegeEvent.CloseEnoughToDemonSiege(player))
             {
                 music = DemonSiegeMusic.GetMusicID();
                 priority = MusicPriority.Event;

@@ -52,6 +52,12 @@ namespace AQMod
         [Header("$Mods.AQMod.ClientConfig.Header.UI")]
 
         [BackgroundColor(12, 12, 190, 180)]
+        [Label("$Mods.AQMod.ClientConfig.DemonSiegeUpgradeTooltip")]
+        [Tooltip("$Mods.AQMod.ClientConfig.DemonSiegeUpgradeTooltipTooltip")]
+        [DefaultValue(true)]
+        public bool DemonSiegeUpgradeTooltip { get; set; }
+
+        [BackgroundColor(12, 12, 190, 180)]
         [Label("$Mods.AQMod.ClientConfig.MapBlipColor")]
         [Tooltip("$Mods.AQMod.ClientConfig.MapBlipColorTooltip")]
         [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorNoAlpha]

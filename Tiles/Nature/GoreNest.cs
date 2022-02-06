@@ -99,7 +99,7 @@ namespace AQMod.Tiles.Nature
         {
             for (int i = 0; i < Main.maxInventory; i++)
             {
-                var upgrade = DemonSiege.GetUpgrade(player.inventory[i]);
+                var upgrade = DemonSiegeEvent.GetUpgrade(player.inventory[i]);
                 if (upgrade != null)
                 {
                     return (upgrade, player.inventory[i]);
@@ -110,7 +110,7 @@ namespace AQMod.Tiles.Nature
 
         public override bool HasSmartInteract()
         {
-            if (DemonSiege.IsActive)
+            if (DemonSiegeEvent.IsActive)
             {
                 return false;
             }
@@ -119,7 +119,7 @@ namespace AQMod.Tiles.Nature
 
         public override void MouseOver(int i, int j)
         {
-            if (DemonSiege.IsActive)
+            if (DemonSiegeEvent.IsActive)
             {
                 return;
             }
@@ -135,12 +135,12 @@ namespace AQMod.Tiles.Nature
 
         public override bool AutoSelect(int i, int j, Item item)
         {
-            return DemonSiege.GetUpgrade(item) != null;
+            return DemonSiegeEvent.GetUpgrade(item) != null;
         }
 
         public override bool NewRightClick(int i, int j)
         {
-            if (DemonSiege.IsActive)
+            if (DemonSiegeEvent.IsActive)
             {
                 return false;
             }
@@ -148,7 +148,7 @@ namespace AQMod.Tiles.Nature
             var upgradeableItem = getUpgradeableItem(player);
             if (upgradeableItem.item != null && upgradeableItem.item.type > ItemID.None)
             {
-                DemonSiege.Activate(i, j, player.whoAmI, upgradeableItem.item);
+                DemonSiegeEvent.Activate(i, j, player.whoAmI, upgradeableItem.item);
                 Main.PlaySound(SoundID.DD2_EtherianPortalOpen, new Vector2(i * 16f, j * 16f));
             }
             return false;
@@ -156,7 +156,7 @@ namespace AQMod.Tiles.Nature
 
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
         {
-            return Main.hardMode && (!DemonSiege.IsActive || !DemonSiege.altarRectangle().Contains(i, j));
+            return Main.hardMode && (!DemonSiegeEvent.IsActive || !DemonSiegeEvent.altarRectangle().Contains(i, j));
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

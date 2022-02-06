@@ -365,14 +365,14 @@ namespace AQMod.NPCs.Monsters.DemonSiege
             {
                 if (Main.rand.NextBool())
                 {
-                    Item.NewItem(npc.getRect(), Content.World.Events.DemonSiege.DemonSiege.GetHellBannerDrop(Main.rand));
+                    Item.NewItem(npc.getRect(), Content.World.Events.DemonSiege.DemonSiegeEvent.GetHellBannerDrop(Main.rand));
                 }
                 else
                 {
                     Item.NewItem(npc.getRect(), ItemID.LavaLamp);
                 }
             }
-            if (Main.rand.NextBool(Main.expertMode ? 12 : 16) && Content.World.Events.DemonSiege.DemonSiege.IsActive)
+            if (Main.rand.NextBool(Main.expertMode ? 12 : 16) && Content.World.Events.DemonSiege.DemonSiegeEvent.IsActive)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.DegenerationRing>());
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());

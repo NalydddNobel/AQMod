@@ -20,7 +20,7 @@ using Terraria.Utilities;
 
 namespace AQMod.Content.World.Events.DemonSiege
 {
-    public sealed class DemonSiege : WorldEvent
+    public sealed class DemonSiegeEvent : WorldEvent
     {
         private static bool _active;
         public static bool IsActive => _active && X > 0 && Y > 0;

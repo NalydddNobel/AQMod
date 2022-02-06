@@ -223,7 +223,7 @@ namespace AQMod
 
             if (ModContent.GetInstance<AQConfigServer>().demonSiegeDowngrades)
             {
-                foreach (var u in DemonSiege._upgrades)
+                foreach (var u in DemonSiegeEvent._upgrades)
                 {
                     r = new ModRecipe(aQMod);
                     r.AddIngredient(u.rewardItem);

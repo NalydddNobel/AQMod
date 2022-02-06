@@ -93,14 +93,23 @@ ItemName.SeaPickle=Sea Pickle
 ItemTooltip.SeaPickle='You hear a voice telling you to flip it over'
 
 # Weapons
+ItemName.ScarletSea=Scarlet Sea
+ItemTooltip.ScarletSea=Summons two blood orbs
+
+ItemName.SeltzerRain=Tainted Rain
+ItemTooltip.SeltzerRain=Shoots many corrupted orbs
+
+ItemName.FizzlingFire=Super Scorcher
+ItemTooltip.FizzlingFire=Shoots powerful blue flames\nCannot be used if you have mana sickness
+
 ItemName.MagicalBoomerang=Magical Boomerang
 ItemTooltip.MagicalBoomerang=Can carry items towards you
 ProjectileName.MagicalBoomerang=Magical Boomerang
 
-ItemName.StariteBlade=Starite Blade
+ItemName.StariteBlade=Star Blade
 ItemTooltip.StariteBlade=Inflicts blue fire on hit\n'The sacred blade that evil can never touch'
 
-ItemName.StariteSpinner=Starite Spinner
+ItemName.StariteSpinner=Pulsar
 ItemTooltip.StariteSpinner=Occasionally inflicts blue fire on hit\n'Is it rotating? Or are we just orbiting around it?'
 ProjectileName.StariteSpinnerProjectile=Starite Spinner
 
@@ -126,10 +135,11 @@ ItemTooltip.AirBlade=Summons magical air blades
 ProjectileName.AirBlade=Air Blade
 ProjectileName.AirBladeGhost=Air Blade
 
-ItemName.RedSpriteStaff=Red Sprite Staff
-ItemTooltip.RedSpriteStaff=Summons a Red Sprite to rain thunder down upon your foes\nUp to four can be casted at one time
-ProjectileName.RedSpriteStaff=Red Sprite Staff
-ProjectileName.RedSpriteStaffLightning=Red Sprite Staff
+ItemName.RedSpriteStaff=Surge Rod
+ItemTooltip.RedSpriteStaff=Summons a surging thundercloud to rain thunder down upon your foes\nUp to four can be casted at one time
+ProjectileName.RedSpriteStaff=Surge Rod
+ProjectileName.RedSpriteStaffLightning=Surge Rod
+
 ItemName.ThunderClap=Thunder Clap
 ItemTooltip.ThunderClap=Summons a thunderbolt from the sky
 ProjectileName.ThunderClap=Thunder Clap
@@ -383,6 +393,7 @@ ItemTooltip.CrabClock='What time is it? Crabby time.'
 ItemName.OceanRavineWall=Crab Crevice Wall
 
 # Tooltips
+Tooltips.DemonSiegeUpgrade=Can be upgraded at a Hell Altar
 Tooltips.DedicatedItem=Dedicated Item
 Tooltips.Unobtainable=A relic birthed in an alternate universe
 Tooltips.ManaPerSecond=Uses {0} mana per second
@@ -593,26 +604,14 @@ ClientConfig.Header.Starite=Starite Visuals
 ClientConfig.Header.Xmas=Xmas
 ClientConfig.Header.UI=User Interface
 
-ClientConfig.Effect3D=3D Effectiveness
-ClientConfig.Effect3DTooltip=Higher values make 3D effects more pronounced, and lower values make 3D effects look more flat.
-
-ClientConfig.BackgroundStarites=Background Starites
-ClientConfig.BackgroundStaritesTooltip=Whether or not to have small Starites in the background while the Glimmer Event is active
-
-ClientConfig.StariteProjColor=Starite Projectile Color
-ClientConfig.StariteProjColorTooltip=The color of some Starite projectiles
-
-ClientConfig.StariteAuraColor=Starite Aura Color
-ClientConfig.StariteAuraColorTooltip=The color of the background aura, and the aura around Omega Starite
-
-ClientConfig.StariteBackgroundLight=Starite Background Intensity
-ClientConfig.StariteBackgroundLightTooltip=Lower values make the Starite background more transparent\nCan be useful if you have trouble seeing Omega Starite or its projectiles
-
 ClientConfig.XmasBackground=Xmas Background
 ClientConfig.XmasBackgroundTooltip=Whether or not to use a Xmas background in special Xmas worlds\n{$Mods.AQMod.Config.RequiresReload}
 
 ClientConfig.XmasProgressMeterOverride=Xmas Progress Meter Override
 ClientConfig.XmasProgressMeterOverrideTooltip=Whether or not to have the "AQ Xmas" seed override your worldgen progress bar. This sometimes has conflicts with Worldgen Previewer\n{$Mods.AQMod.Config.RequiresReload}
+
+ClientConfig.DemonSiegeUpgradeTooltip=Demon Siege Upgrade Tooltip 
+ClientConfig.DemonSiegeUpgradeTooltipTooltip=Whether or not 'Can be upgraded at a Hell Altar' appears on an item's tooltip if it is upgradeable at the Gore Nest
 
 ClientConfig.MapBlipColor=Map Blip Color
 ClientConfig.MapBlipColorTooltip=The color of the little blips shown by the Blighted Soul
@@ -1029,11 +1028,6 @@ ItemName.Bubbler=Bubbler
 ItemName.GebulbaStaff=Gebulba Staff
 ItemName.MagicWand=Magic Wand
 ItemName.MagmalbulbiaStaff=Magmalbulbia Staff
-ItemName.ScarletSea=Scarlet Sea
-ItemTooltip.ScarletSea=Summons homing blood orbs which follow your cursor
-ItemName.SeltzerRain=Seltzer Rain
-ItemName.FizzlingFire=Fizzling Fire
-# Tomes
 ItemName.PentalScythe=Pental Scythe
 # Melee
 ItemName.JerryClawFlail=Jerry Claw
@@ -1209,8 +1203,6 @@ ItemTooltip.Bubbler=Shoots a constant stream of bubbles\n'The Sand Bubbler Crab 
 ItemTooltip.GebulbaStaff=Shoots bouncy slimeballs\n'Boing!'
 ItemTooltip.MagicWand=Shoots a bolt towards your cursor which explodes into horizontal waves
 ItemTooltip.MagmalbulbiaStaff=Shoots firey magmaballs that explode off tiles\n'EXPLOSION! EXPLOSION! EXPLOSION!'
-ItemTooltip.SeltzerRain=Shoots 5 fizzy orbs which follow your cursor for a short while\nThe fizzy orbs soon start fleeing from your cursor
-ItemTooltip.FizzlingFire=Shoots powerful blue flames\nCannot be used if you have mana sickness
 # Tomes
 ItemTooltip.PentalScythe=Shoots firey demon scythes that target your enemies
 # Melee

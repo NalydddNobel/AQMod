@@ -45,7 +45,7 @@ namespace AQMod.NPCs
                     spawnRate *= 10;
                     maxSpawns = (int)(maxSpawns * 0.1);
                 }
-                if (DemonSiege.CloseEnoughToDemonSiege(player))
+                if (DemonSiegeEvent.CloseEnoughToDemonSiege(player))
                 {
                     spawnRate *= 10;
                     maxSpawns = (int)(maxSpawns * 0.1);

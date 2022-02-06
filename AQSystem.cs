@@ -19,7 +19,7 @@ namespace AQMod
 
         public override void Initialize()
         {
-            DemonSiege.Reset();
+            DemonSiegeEvent.Reset();
             if (Main.netMode != NetmodeID.Server)
                 AQMod.WorldEffects.Clear();
             if (!Main.dayTime)

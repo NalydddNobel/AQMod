@@ -23,6 +23,31 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             drop = ModContent.ItemType<SeaPickle>();
         }
 
+        public override bool CanPlace(int i, int j)
+        {
+            Tile top = Framing.GetTileSafely(i, j - 1);
+            if (top.active() && !top.bottomSlope() && top.type >= 0 && Main.tileSolid[top.type] && !Main.tileSolidTop[top.type])
+            {
+                return true;
+            }
+            Tile bottom = Framing.GetTileSafely(i, j + 1);
+            if (bottom.active() && !bottom.halfBrick() && !bottom.topSlope() && bottom.type >= 0 && (Main.tileSolid[bottom.type] || Main.tileSolidTop[bottom.type]))
+            {
+                return true;
+            }
+            Tile left = Framing.GetTileSafely(i - 1, j);
+            if (left.active() && left.type >= 0 && Main.tileSolid[left.type] && !Main.tileSolidTop[left.type])
+            {
+                return true;
+            }
+            Tile right = Framing.GetTileSafely(i + 1, j);
+            if (right.active() && right.type >= 0 && Main.tileSolid[right.type] && !Main.tileSolidTop[right.type])
+            {
+                return true;
+            }
+            return false;
+        }
+
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             if (Main.tile[i, j].liquid < 100)
