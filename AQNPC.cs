@@ -757,7 +757,10 @@ namespace AQMod
 
         public static bool AreTheSameNPC(int type, int otherType)
         {
-            if (type == otherType || Item.NPCtoBanner(type) == Item.NPCtoBanner(otherType)) // same banner or same npc type
+            if (type == otherType)
+                return true;
+            int banner = Item.NPCtoBanner(type);
+            if (banner != 0 && banner == Item.NPCtoBanner(otherType))
                 return true;
             switch (type)
             {
@@ -796,6 +799,24 @@ namespace AQMod
                         {
                             case NPCID.TheHungry:
                             case NPCID.TheHungryII:
+                                return true;
+                        }
+                    }
+                    break;
+
+                case NPCID.Golem:
+                case NPCID.GolemHead:
+                case NPCID.GolemHeadFree:
+                case NPCID.GolemFistLeft:
+                case NPCID.GolemFistRight:
+                    {
+                        switch (otherType)
+                        {
+                            case NPCID.Golem:
+                            case NPCID.GolemHead:
+                            case NPCID.GolemHeadFree:
+                            case NPCID.GolemFistLeft:
+                            case NPCID.GolemFistRight:
                                 return true;
                         }
                     }
@@ -1030,30 +1051,6 @@ namespace AQMod
                 case NPCID.Ghost:
                     {
                         if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().ghostAmulet)
-                        {
-                            npc.life = -1;
-                            npc.HitEffect();
-                            npc.active = false;
-                            return false;
-                        }
-                    }
-                    break;
-
-                case NPCID.VoodooDemon:
-                    {
-                        if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().voodooAmulet)
-                        {
-                            npc.life = -1;
-                            npc.HitEffect();
-                            npc.active = false;
-                            return false;
-                        }
-                    }
-                    break;
-
-                case NPCID.WyvernHead:
-                    {
-                        if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().wyvernAmulet)
                         {
                             npc.life = -1;
                             npc.HitEffect();
@@ -1321,6 +1318,32 @@ namespace AQMod
             return true;
         }
 
+        private void FeatherFlightAmuletCheck(byte p, NPC npc)
+        {
+            if (Main.player[p].GetModPlayer<AQPlayer>().featherflightAmulet)
+            {
+                Main.player[p].wingTime += npc.lifeMax / (Main.expertMode ? 6 : 2);
+                if (Main.player[p].wingTime > Main.player[p].wingTimeMax)
+                {
+                    Main.player[p].wingTime = Main.player[p].wingTimeMax;
+                }
+            }
+        }
+        private void BloodthirstPotionCheck(byte p, NPC npc)
+        {
+            if (!Main.player[p].moonLeech && npc.Distance(Main.player[p].Center) < 2500f)
+            {
+                var aequus = Main.player[p].GetModPlayer<AQPlayer>();
+                if (aequus.bloodthirstDelay == 0 && aequus.bloodthirst)
+                {
+                    aequus.bloodthirstDelay = 255;
+                    int healAmount = npc.lifeMax / 1000 + 5;
+                    aequus.healEffectValueForSyncingTheThingOnTheServer = healAmount;
+                    Main.player[p].statLife += healAmount;
+                    Main.player[p].statLife = Math.Min(Main.player[p].statLife, Main.player[p].statLifeMax2);
+                }
+            }
+        }
         public override void NPCLoot(NPC npc)
         {
             if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type])
@@ -1330,17 +1353,10 @@ namespace AQMod
                 ManageDreadsoul(npc);
                 EncoreKill(npc);
                 byte p = Player.FindClosest(npc.position, npc.width, npc.height);
-                if (Main.player[p].active && !Main.player[p].dead && !Main.player[p].moonLeech && npc.Distance(Main.player[p].Center) < 2500f)
+                if (Main.player[p].active && !Main.player[p].dead)
                 {
-                    var aequus = Main.player[p].GetModPlayer<AQPlayer>();
-                    if (aequus.bloodthirstDelay == 0 && aequus.bloodthirst)
-                    {
-                        aequus.bloodthirstDelay = 255;
-                        int healAmount = npc.lifeMax / 1000 + 5;
-                        aequus.healEffectValueForSyncingTheThingOnTheServer = healAmount;
-                        Main.player[p].statLife += healAmount;
-                        Main.player[p].statLife = Math.Min(Main.player[p].statLife, Main.player[p].statLifeMax2);
-                    }
+                    FeatherFlightAmuletCheck(p, npc);
+                    BloodthirstPotionCheck(p, npc);
                 }
             }
         }

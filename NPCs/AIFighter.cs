@@ -211,8 +211,7 @@ namespace AQMod.NPCs
                 }
                 else
                 {
-                    int num91 = npc.spriteDirection;
-                    if (npc.velocity.X < 0f && num91 == -1 || npc.velocity.X > 0f && num91 == 1)
+                    if ((npc.velocity.X < 0f && npc.direction == -1) || (npc.velocity.X > 0f && npc.direction == 1))
                     {
                         if (!JumpCheck(tileX, tileY))
                         {

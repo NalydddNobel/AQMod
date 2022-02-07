@@ -37,6 +37,10 @@ namespace AQMod.Content.CursorDyes.Components
                 {
                     texturePath += CursorDyeManager.InternalGetOverrideName(Main.cursorOverride);
                 }
+                else if (smart)
+                {
+                    texturePath += "_smart";
+                }
             }
             else if (smart)
             {

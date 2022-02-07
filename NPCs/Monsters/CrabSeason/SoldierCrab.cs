@@ -271,12 +271,12 @@ namespace AQMod.NPCs.Monsters.CrabSeason
 
         public override void NPCLoot()
         {
-            if (Main.rand.NextBool(10))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<CheesePuff>());
-            if (Main.rand.NextBool(3))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
             if (Main.rand.NextBool())
+                Item.NewItem(npc.getRect(), ModContent.ItemType<CrabShell>());
+            if (Main.rand.NextBool(10))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<AquaticEnergy>());
+            if (Main.rand.NextBool(25))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<CheesePuff>());
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)

@@ -5,33 +5,33 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories
 {
-    public class DarkAmulet : ModItem
+    public class WyvernAmulet : ModItem
     {
         public override void SetDefaults()
         {
-            item.width = 28;
-            item.height = 28;
+            item.width = 20;
+            item.height = 20;
             item.accessory = true;
-            item.defense = 2;
             item.rare = ItemRarityID.LightRed;
-            item.value = Item.sellPrice(gold: 3, silver: 50);
+            item.value = Item.sellPrice(gold: 2);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AQPlayer>().darkAmulet = true;
-            player.statLifeMax2 += 20;
-            player.panic = true;
+            player.noFallDmg = true;
+            var aQPlayer = player.GetModPlayer<AQPlayer>();
+            aQPlayer.featherflightAmulet = true;
+            aQPlayer.extraFlightTime += 60;
         }
 
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.EvilAccessories);
+            r.AddIngredient(ItemID.LuckyHorseshoe);
             r.AddIngredient(ItemID.Shackle);
-            r.AddIngredient(ModContent.ItemType<OrganicEnergy>());
-            r.AddIngredient(ItemID.DarkShard);
-            r.AddIngredient(ItemID.SoulofNight, 15);
+            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
+            r.AddIngredient(ItemID.Feather, 10);
+            r.AddIngredient(ItemID.SoulofFlight, 20);
             r.AddTile(TileID.MythrilAnvil);
             r.SetResult(this);
             r.AddRecipe();

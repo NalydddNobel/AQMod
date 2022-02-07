@@ -24,7 +24,7 @@ namespace AQMod
             public const string ShadowScaleOrTissueSample = "AQMod:ShadowScaleOrTissueSample";
             public const string CascadeOrHelfire = "AQMod:CascadeOrHelfire";
             public const string AnyEel = "AQMod:AnyEel";
-            public const string EvilBarb = "AQMod:EvilBarb";
+            public const string EvilAccessories = "AQMod:EvilAccessories";
 
             internal static void Setup()
             {
@@ -61,10 +61,10 @@ namespace AQMod
                     new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.AnyEel"),
                     ModContent.ItemType<UltraEel>(),
                     ModContent.ItemType<LarvaEel>()));
-                RecipeGroup.RegisterGroup(EvilBarb,
-                    new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.EvilBarb"),
-                    ModContent.ItemType<DemoniteBarb>(),
-                    ModContent.ItemType<CrimtaneBarb>()));
+                RecipeGroup.RegisterGroup(EvilAccessories,
+                    new RecipeGroup(() => Language.GetTextValue("Mods.AQMod.RecipeGroup.EvilAccessories"),
+                    ItemID.BandofStarpower,
+                    ItemID.PanicNecklace));
             }
         }
 

@@ -75,7 +75,7 @@ namespace AQMod
         public int spelunkerEquipTimer;
         public bool omegaStarite;
         public byte lootIterations;
-        public bool wyvernAmulet;
+        public bool featherflightAmulet;
         public bool voodooAmulet;
         public bool ghostAmulet;
         public bool extractinatorVisible;
@@ -91,8 +91,6 @@ namespace AQMod
         public bool spicyEel;
         public bool striderPalms;
         public bool striderPalmsOld;
-        public bool wyvernAmuletHeld;
-        public bool voodooAmuletHeld;
         public bool ghostAmuletHeld;
         public bool degenerationRing;
         public ushort shieldLife;
@@ -348,12 +346,10 @@ namespace AQMod
             omori = false;
             omegaStarite = false;
             lootIterations = 0;
-            wyvernAmulet = false;
+            featherflightAmulet = false;
             voodooAmulet = false;
             ghostAmulet = false;
             ghostAmuletHeld = InVanitySlot(player, ModContent.ItemType<GhostAmulet>());
-            voodooAmuletHeld = InVanitySlot(player, ModContent.ItemType<VoodooAmulet>());
-            wyvernAmuletHeld = InVanitySlot(player, ModContent.ItemType<WyvernAmulet>());
             extractinatorVisible = false;
             altEvilDrops = false;
             starite = false;
@@ -1090,6 +1086,30 @@ namespace AQMod
                 }
             }
         }
+        private void OnHitNPC_SpreadDebuffs(NPC target, Vector2 targetCenter)
+        {
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].Distance(targetCenter) < 200f)
+                {
+                    SpreadDebuffs(target, Main.npc[i]);
+                }
+            }
+        }
+        private void OnHitNPC_VoodooAmulet(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
+        {
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (i != target.whoAmI && Main.npc[i].active)
+                {
+                    float distance = Main.npc[i].Distance(targetCenter);
+                    if (distance < 300f && AQNPC.AreTheSameNPC(target.type, Main.npc[i].type))
+                    {
+                        player.ApplyDamageToNPC(Main.npc[i], (int)(damage * (1f - distance / 300f)), knockback, Main.npc[i].position.X + Main.npc[i].width / 2f < player.position.X + player.width / 2f ? -1 : 1, crit);
+                    }
+                }
+            }
+        }
         private void OnHitNPCWithAnything(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
         {
             if (mothmanMask && mothmanExplosionDelay == 0 && player.statLife >= player.statLifeMax2 && crit && target.type != NPCID.TargetDummy)
@@ -1157,13 +1177,11 @@ namespace AQMod
             }
             if (spreadDebuffs)
             {
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].active && target.Distance(Main.npc[i].Center) < 200f)
-                    {
-                        SpreadDebuffs(target, Main.npc[i]);
-                    }
-                }
+                OnHitNPC_SpreadDebuffs(target, targetCenter);
+            }
+            if (voodooAmulet)
+            {
+                OnHitNPC_VoodooAmulet(target, targetCenter, damage, knockback, crit);
             }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)

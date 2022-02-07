@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Materials
+namespace AQMod.Items.Placeable.Nature
 {
     public class SeaPickle : ModItem
     {

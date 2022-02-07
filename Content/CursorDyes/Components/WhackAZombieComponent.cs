@@ -31,7 +31,7 @@ namespace AQMod.Content.CursorDyes.Components
             if (AQProjectile.CountProjectiles(Main.LocalPlayer.HeldItem.shoot) > 0)
             {
                 outline = false;
-                texturePath += "press";
+                texturePath += "_press";
             }
             if (ModContent.TextureExists(texturePath))
             {

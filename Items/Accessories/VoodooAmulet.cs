@@ -5,33 +5,31 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories
 {
-    public class LightAmulet : ModItem
+    public class VoodooAmulet : ModItem
     {
         public override void SetDefaults()
         {
-            item.width = 28;
-            item.height = 28;
+            item.width = 20;
+            item.height = 20;
             item.accessory = true;
-            item.defense = 2;
             item.rare = ItemRarityID.LightRed;
-            item.value = Item.sellPrice(gold: 3, silver: 50);
+            item.value = Item.sellPrice(gold: 1);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AQPlayer>().lightAmulet = true;
-            player.armorPenetration += 5;
+            player.lavaRose = true;
+            player.GetModPlayer<AQPlayer>().voodooAmulet = true;
         }
 
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.SharkToothNecklace);
+            r.AddIngredient(ItemID.ObsidianRose);
             r.AddIngredient(ItemID.Shackle);
-            r.AddIngredient(ModContent.ItemType<OrganicEnergy>());
-            r.AddIngredient(ItemID.LightShard);
-            r.AddIngredient(ItemID.SoulofLight, 15);
-            r.AddTile(TileID.MythrilAnvil);
+            r.AddIngredient(ModContent.ItemType<DemonicEnergy>());
+            r.AddIngredient(ItemID.HellstoneBar, 10);
+            r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();
         }

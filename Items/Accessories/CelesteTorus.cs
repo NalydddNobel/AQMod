@@ -37,7 +37,6 @@ namespace AQMod.Items.Accessories
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
             aQPlayer.blueSpheres = true;
-            aQPlayer.extraFlightTime += 120;
         }
 
         void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)

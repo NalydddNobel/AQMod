@@ -14,6 +14,25 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 
 # Accessories
 
+ItemName.CelesteTorus=Interstellar Ring
+ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe radius, speed, damage, and knockback are all determined by various stats
+ProjectileName.CelesteTorusCollider=Interstellar Orb
+
+ItemName.VoodooAmulet=Voodoo Amulet
+ItemTooltip.VoodooAmulet=Hitting an enemy will make nearby enemies of the same type get hit aswell\nReduces damage from touching lava
+
+ItemName.WyvernAmulet=Featherflight Amulet
+ItemTooltip.WyvernAmulet=Increases flight time by a second\nEnemies give you extra flight time when killed\nNegates fall damage
+
+ItemName.DarkAmulet=Dark Amulet
+ItemTooltip.DarkAmulet=You take 10% less damage from unholy enemies\nIncreases movement speed after being struck\nIncreases maximum mana by 20
+
+ItemName.LightAmulet=Light Amulet
+ItemTooltip.LightAmulet=You take 10% less damage from holy enemies\nIncreases armor penetration by 5
+
+ItemName.NeutralityAmulet=Neutrality Amulet
+ItemTooltip.NeutralityAmulet=You take 10% less damage from holy and unholy enemies\nIncreases armor penetration by 5\nYour grappling hooks inflict damage
+
 ItemName.GlowString=Glow String
 ItemTooltip.GlowString=Makes your yoyo string glow in the dark\nIncreases yoyo range
 
@@ -25,10 +44,13 @@ ItemTooltip.FidgetSpinner=Non-autoswing items are slower, but gain autoswing
 
 ItemName.DegenerationRing=Degeneration Ring
 ItemTooltip.DegenerationRing=Prevents most types of burning
+
 ItemName.HeatedAmulet=Heated Amulet
-ItemTooltip.HeatedAmulet=Prevents most types of burning\nLowers the intensity of hot sources from Gale Streams enemies
+ItemTooltip.HeatedAmulet=Prevents most types of burning\nLowers the intensity of heat from Gale Streams enemies
+
 ItemName.FreezingAmulet=Freezing Amulet
-ItemTooltip.FreezingAmulet=Prevents most types of freezing\nLowers the intensity of cold sources from Gale Streams enemies
+ItemTooltip.FreezingAmulet=Prevents most types of freezing\nLowers the intensity of cold from Gale Streams enemies
+
 ItemName.NormalizerAmulet=Normalized Amulet
 ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers the intensity of temperature sources from Gale Streams enemies
 
@@ -44,15 +66,6 @@ ItemTooltip.CrabBarb=Your grappling hooks inflict poison and damage
 
 ItemName.MinersFlashlight=Miner's Flashlight
 ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shone on by the light\nHide the accessory to disable the flashlight
-
-ItemName.DarkAmulet=Dark Amulet
-ItemTooltip.DarkAmulet=You take 10% less damage from unholy enemies\nYour grappling hooks inflict damage
-
-ItemName.LightAmulet=Light Amulet
-ItemTooltip.LightAmulet=You take 10% less damage from holy enemies\nIncreases armor penetration by 5
-
-ItemName.NeutralityAmulet=Neutrality Amulet
-ItemTooltip.NeutralityAmulet=You take 10% less damage from holy and unholy enemies\nIncreases armor penetration by 5\nYour grappling hooks inflict damage
 
 ItemName.Extractor=Extractor
 ItemTooltip.Extractor=10% increased mining speed\nFalling blocks deal less damage\nExtracting at the Extractinator will show your extractination count 
@@ -572,7 +585,7 @@ RecipeGroup.DemoniteBarOrCrimtaneBar=Demonite Bar or Crimtane Bar
 RecipeGroup.ShadowScaleOrTissueSample=Shadow Scale or Tissue Sample
 RecipeGroup.CascadeOrHelfire=Cascade or Helfire
 RecipeGroup.AnyEel=Any Eel
-RecipeGroup.EvilBarb=Either Evil Barbs
+RecipeGroup.EvilAccessories=Either Evil Accessories
 
 # Config
 
@@ -867,9 +880,6 @@ Common.AwakenedOmegaStarite=Omega Starite has awoken!
 ###############
 # Amulets
 ItemName.GhostAmulet=Ghost Amulet
-ItemName.SpiritAmulet=Spirit Amulet
-ItemName.WyvernAmulet=Wyvern Amulet
-ItemName.VoodooAmulet=Voodoo Amulet
 # Fishing Seals
 ItemName.CopperSeal=Copper Seal
 ItemName.SilverSeal=Silver Seal
@@ -895,7 +905,6 @@ ItemName.Dreadsoul=Dreadsoul
 ItemTooltip.Dreadsoul=Upon death enemies will release 6 dreaded souls which will target enemies of the same type\nDungeon Spirit enemies are now friendly
 ProjectileName.DreadsoulAttack=Dreadsoul
 
-ItemName.CelesteTorus=Celeste Torus
 ItemName.RustyKnife=Rusty Knife
 ItemName.Terraroot=Terraroot
 ItemName.Thunderbird=Thunderbird
@@ -1108,9 +1117,6 @@ ItemTooltip.TheFan=Can push things in any direction\nChanges the speed of the wi
 # Accessories
 # Amulets
 ItemTooltip.GhostAmulet=Prevents Ghost spawns in singleplayer
-ItemTooltip.SpiritAmulet=Prevents Dungeon Spirit spawns in singleplayer
-ItemTooltip.WyvernAmulet=Prevents Wyvern spawns in singleplayer
-ItemTooltip.VoodooAmulet=Prevents Voodoo Demon spawns in singleplayer
 # Fishing Seals
 ItemTooltip.CopperSeal=Fishing a crate will bless you with 30 seconds of the crate potion buff
 ItemTooltip.SilverSeal=Fishing anything will bless you with 10 seconds of the fishing potion buff
@@ -1126,7 +1132,6 @@ ItemTooltip.BusinessCard=Shops have even lower prices\n{$Mods.AQMod.Common.Works
 # Wings
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 # Other Accessories 
-ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe radius, speed, damage, and knockback are all determined by various stats\nIncreases flight time by 2 seconds
 ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP when you die with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
 ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
 ItemTooltip.Thunderbird=Gives you a thunderous extra jump that refreshes every 2 seconds\nYou must be moving in a direction to use the jump\nEnemies below you have a chance to get struck by lightning\nThe lightning becomes more powerful the lower your life
@@ -1330,7 +1335,6 @@ ProjectileName.CrimsonHand=Crimson Hand
 ProjectileName.Monoxider=Monoxider
 
 # Misc
-ProjectileName.CelesteTorusCollider=Celeste Torus
 ProjectileName.FertilePowder=Fertile Powder
 ProjectileName.Friend=Friend
 ProjectileName.FriendlyWind=Friendly Wind

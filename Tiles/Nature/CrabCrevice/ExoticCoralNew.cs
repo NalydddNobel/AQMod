@@ -30,7 +30,7 @@ namespace AQMod.Tiles.Nature.CrabCrevice
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.CoordinateHeights = new[] { 28, };
             TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.newTile.RandomStyleRange = 4;
+            TileObjectData.newTile.RandomStyleRange = 12;
             TileObjectData.newTile.StyleMultiplier = 4;
             TileObjectData.newTile.WaterDeath = false;
             TileObjectData.newTile.LavaDeath = true;

@@ -61,24 +61,6 @@ namespace AQMod.NPCs
                     if (!aQPlayer.ghostAmuletHeld && Main.rand.NextBool(15))
                         Item.NewItem(npc.getRect(), ModContent.ItemType<GhostAmulet>());
                 }
-                else if (npc.type == NPCID.VoodooDemon)
-                {
-                    if (!aQPlayer.voodooAmuletHeld && (Main.LocalPlayer.killGuide || Main.LocalPlayer.HasItem(ItemID.GuideVoodooDoll)) && Main.rand.NextBool(3))
-                    {
-                        int itemType = ModContent.ItemType<VoodooAmulet>();
-                        if (!AQItem.ItemOnGroundAlready(itemType))
-                            Item.NewItem(npc.getRect(), itemType);
-                    }
-                }
-                else if (npc.type == NPCID.WyvernHead)
-                {
-                    if (!aQPlayer.wyvernAmuletHeld && plr.wingsLogic > 0 && Main.rand.NextBool(3))
-                    {
-                        int itemType = ModContent.ItemType<WyvernAmulet>();
-                        if (!AQItem.ItemOnGroundAlready(itemType))
-                            Item.NewItem(npc.getRect(), itemType);
-                    }
-                }
             }
             if (!AQNPC.Sets.NoGlobalDrops[npc.type] && !npc.boss && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC)
             {
