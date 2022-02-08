@@ -102,9 +102,6 @@ ItemTooltip.LightMatter=散发着光芒和星际能量
 ItemName.NuclearFeather=核子之羽
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
 
-ItemName.SeaPickle=海泡菜
-ItemTooltip.SeaPickle='你听到一个声音告诉你把它翻过来'
-
 # Weapons
 ItemName.ScarletSea=罪孽红海
 ItemTooltip.ScarletSea=召唤两颗血珠
@@ -225,6 +222,10 @@ ItemName.OutlineDye=轮廓描边染料
 ItemName.RainbowOutlineDye=彩虹轮廓描边染料
 
 # Tiles
+ItemName.SeaPickle=海泡菜
+ItemTooltip.SeaPickle='你听到一个声音告诉你把它翻过来'
+MapObject.SeaPickle=海泡菜
+
 ItemName.CrabsonTrophy=巨蟹蛤纪念章
 
 ItemName.HellTombstone=地狱墓碑
