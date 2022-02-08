@@ -31,9 +31,9 @@ namespace AQMod.Items.Accessories
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<LightAmulet>());
+            var r = new ModRecipe(mod); 
             r.AddIngredient(ModContent.ItemType<DarkAmulet>());
+            r.AddIngredient(ModContent.ItemType<LightAmulet>());
             r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
             r.AddTile(TileID.MythrilAnvil);
             r.SetResult(this);

@@ -39,8 +39,8 @@ namespace AQMod.NPCs.Monsters.CrabSeason
             npc.DeathSound = SoundID.NPCDeath8;
             npc.SetLiquidSpeed(water: 0.9f);
 
-            banner = npc.type;
-            bannerItem = ModContent.ItemType<Items.Placeable.Banners.SoliderCrabsBanner>();
+            //banner = npc.type;
+            //bannerItem = ModContent.ItemType<Items.Placeable.Banners.SoliderCrabsBanner>();
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -80,6 +80,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                     npc.ai[1]++;
                     if (Main.netMode != NetmodeID.Server && (int)npc.ai[1] == 20)
                     {
+                        if (Collision.CanHitLine(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
                         Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, Style: 1);
                         int amount = 2;
                         if (Main.expertMode)
@@ -172,7 +173,10 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                         npc.ai[1]++;
                         if (npc.ai[1] >= 46f)
                         {
-                            npc.ai[0] = (int)npc.ai[2];
+                            npc.TargetClosest(faceTarget: true);
+                            if (npc.HasValidTarget && 
+                                Collision.CanHitLine(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
+                                npc.ai[0] = (int)npc.ai[2];
                             npc.ai[1] = 0f;
                             npc.ai[2] = 0f;
                         }

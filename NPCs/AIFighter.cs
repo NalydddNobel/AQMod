@@ -9,6 +9,7 @@ namespace AQMod.NPCs
     {
         public virtual bool WiderNPC => false;
         public virtual float SpeedCap => 2f;
+        public virtual float Speed => 0.07f;
         public virtual bool KnocksOnDoors => false;
         public virtual bool OpenDoor()
         {
@@ -69,18 +70,18 @@ namespace AQMod.NPCs
             }
             else if (npc.velocity.X < SpeedCap && npc.direction == 1)
             {
-                npc.velocity.X += 0.07f;
+                npc.velocity.X += Speed;
                 if (npc.velocity.X > SpeedCap)
                     npc.velocity.X = SpeedCap;
             }
             else if (npc.velocity.X > -SpeedCap && npc.direction == -1)
             {
-                npc.velocity.X -= 0.07f;
+                npc.velocity.X -= Speed;
                 if (npc.velocity.X < -SpeedCap)
                     npc.velocity.X = -SpeedCap;
             }
 
-            bool jumpCheckIThink = false;
+            bool tileChecks = false;
             if (npc.velocity.Y == 0f)
             {
                 int num77 = (int)(npc.position.Y + npc.height + 7f) / 16;
@@ -92,7 +93,7 @@ namespace AQMod.NPCs
                         return;
                     if (Main.tile[num80, num77].nactive() && Main.tileSolid[Main.tile[num80, num77].type])
                     {
-                        jumpCheckIThink = true;
+                        tileChecks = true;
                         break;
                     }
                 }
@@ -149,7 +150,7 @@ namespace AQMod.NPCs
                     }
                 }
             }
-            if (jumpCheckIThink)
+            if (tileChecks)
             {
                 int tileX = (int)((npc.position.X + npc.width / 2 + 15 * npc.direction) / 16f);
                 int tileY = (int)((npc.position.Y + npc.height - 15f) / 16f);

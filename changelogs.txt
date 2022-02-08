@@ -1,3 +1,205 @@
+####### 1.4 #######
+
+Additions:
+Added support for the Census mod!
+Added support for the Discord Rich Presence mod!
+Omega Starite now appears as hidden unless you interact with the Ultimate Sword, beat Omega Starite, or beat the Wall of Flesh
+
+Added the new Crab Crevice biome!
+
+Added the Stardrop, an item sold by the Physicist which allows town NPCs to move in at night!
+Added the Snowflake Cannon, an upgrade to the Snowball Cannon using materials from the Space Squid!
+Added Snowgrave, an upgrade to the Water Bolt using materials from the Space Squid!
+Added the Beeswax (reference to a console edition pet, might be confused for Bee Wax), it lets you see visible Plantera Bulbs on the map, 1/80 drop from the Plantera boss
+Added the Dark Amulet and the Light Amulet
+Added the Neutrality Amulet
+Added the Red Sprite Mask
+Added the Space Squid Mask
+Added Light Matter, this replaces the Souls of Flight dropped by Omega Starite, also changed some recipes to use this material instead of Souls of Flight
+Added Saint's Flow, a food item dropped by Omega Starite
+Added the Shade Potion, Bloodthirst Potion, and Spread Potion
+Added Sea Pickles
+Added the "Black Book of Untold Legends"
+Added the Magical Boomerang
+Added Coconut Crab
+Added the Mud Crab
+Added Sedimentary Sand
+Added Crustacium Ore
+Added Crustacium Blob
+Added Crustacium Bar
+Added the Yucky Orb
+Added Petrified Wood
+Added Petrified Wood Walls
+Added Petrified Wood Platforms
+Added Petrified Wood Table
+Added Petrified Wood Chair
+
+Added an extra Map Background for the Glimmer Event, for when you are near the Ultimate Sword
+
+The Memorialist now sells a Whoopie Cushion during the Blood Moon
+The Physicist now sells The Fan during the day, it is still obtainable through Meteors if you don't want to pay 
+
+Added Weeping Vines (not minecraft)
+
+Replaced the Turnblock Hammer with the Mallet!
+
+The Lightbulb Armor's set bonus now makes traps (like dart traps) deal 30% less damage
+Added an armor set bonus for the Steel Plated Chestplace and the Viking Helmet
+
+Removals:
+Removed a rare chest which occasionally spawns at the beach containing Crab Shells
+Removed the Hermit Crab Banner (Hermit Crab is a friendly NPC now!)
+Removed the Arrow Crab, and Strider Crab, plus their respective banners
+Removed Exotic Starfish
+Removed Qi
+
+Changes:
+Jerry Crabson is now just called "Crabson"
+
+Gold Powder (not Gold Dust) is now sold by the Exporter town NPC instead of the Merchant 
+Minorly shifted around the Exporter's shop to fit the sorting of other town NPC shops
+The Dryad no longer sells Baguettes
+Increased the buy price of The Fan
+* 1 gold -> 50 gold
+The Steel Plated Chestplate is now always sold after the Eater of Worlds or Brain of Cthulhu has been defeated, otherwise it keeps its current spawn-chance in the Air Merchant's inventory
+The Travelling Merchant no longer randomly sells Aequus food items
+The Dye Trader now sells Gale Streams dyes if you have finished the event, and the Dye Trader is located in space
+The Dye Trader now sells all Glimmer Event Dyes during the night if you have defeated Super Starite, Hyper Starite, or Omega Starite
+The Dye Trader now sells Hell Beams Dye if you have finished the Demon Siege event, and the Dye Trader is located underground
+The Dye Trader now sells Breakdown Dye and Simplified Dye if you have defeated Jerry Crabson, and the Dye Trader is located at the Beach
+The Dye Trader now sells all Omega Starite dyes during the night, instead of during the Glimmer Event
+The Air Hunter no longer has a visible head on the map, until you find him naturally, then he'll have his map head back 
+The Air Hunter no longer saves when you exit the world
+All town NPCs which sold energies no longer sell energies
+
+Modified the recipe for the Scarlet Sea and Seltzer Rain
+
+The Starite minion can no longer destroy tiles 
+
+You can now color the Glow String using dyes or an already colored yoyo string
+
+The Hermit Crab is no longer hostile
+The Hermit Crab now has a shop, and sells the items from the Strider Crab, the Clamshell Helmet, Crab Shells, and the recently added black book
+Reworked Soldier Crab
+
+The Mothman's critical hit effect now always does the explosion, even if the enemy is immune to its debuff
+The Mothman's critical hit effect can no longer damage town npcs 
+
+The Globebulb is now obtainable post-Evils instead of early-Hardmode
+Lowered the mana cost of the Globebulb to 20, but also decreased the time between mana consumption checks
+* 100 mana per second -> 60 mana per second
+
+Lightbulbs can now be placed, and be toggled with wiring
+
+Greatly lowered the amount of Exotic Coral created during worldgen
+Internally overhauled the Noble Mushroom's tile code, and reversed the changes done to the Noble Mushroom items 
+You can no longer place Exotic Coral outside of the water, and can now only be placed on Dirt, Stone (except the mosses), Obsidian, Sand, and Hardened Sand
+
+Modified how Gale Stream's enemy spawn chances are determined
+
+Increased the brightness of the Lightbulb Helmet's light
+
+The Extractor now decreases the damage for Falling Sand which is not fired from the Sandgun
+
+You can no longer craft the Starphish, and Jerry Crabson no longer drops the Crab Barb
+
+Jerry Crabson no longer drops the Crab Rod, it is now obtained through a different method 
+Vanilla Crabs no longer drop Crab Shells, or the Crab Clock
+Jerry Crabson no longer drops the Crab Clock
+Jerry Crabson can now drop Simplified Dye, making it obtainable
+Increased the amount of Light Matter dropped from Omega Starite in normal mode, so you can actually craft items with it after a single boss defeat
+Made Cosmic Energy drop less commonly, but made all items crafted with Cosmic Energy use less
+Starites (the singular NPC) can no longer drop Cosmic Energy
+Atmospheric Energy is now only obtainable in Hardmode, and modified its droprates to be overall rarer, modified all recipes which include Atmospheric Energy to compensate
+Vraine :: 1/3 -> 1/30
+White Slime :: 1/2 -> 1/20
+Space Squid / Red Sprite :: 100%, drops 1 energy instead of 3
+
+Lowered the amount of Fallen Stars needed to craft the Starite Blade, Starite Spinner, and Space Shot
+* 8 -> 5 
+
+The Extractor accessory no longer lets you veinmine silt, slush, and desert fossils, but instead increases your general mining speed by 10% 
+
+Modified the visual effects of the Floatstick, and made it emit more light
+
+Modified the Glimmer Event's background, again
+
+Vrang should now be more usable when near the ground, since it no longer collides with tiles before it speeds up
+
+The Crab Clock no longer "Increases the natural fluctuations of the ocean" and is now a furniture item sold by the Exporter, and renamed it to "Crab Wall Clock" 
+
+The Equivalence Machine now uses your item grab range to determine whether or not an item should be hovering
+The Equivalence Machine is now a full on accessory, it no longer works in your inventory / piggybank, and there is no longer a key bind to toggle it on / off
+Greatly slowed the item speed of the Crabax
+
+Reworked "map markers", they are now permanent consumable upgrades, Globes which have map markers used on them will drop them when you break the tile
+All discovered globes no longer appear on the map when you stand next to a Globe tile
+The Cosmic Marker has been renamed to Cosmic Telescope, and got resprited
+The Cosmic Marker (Cosmic Telescope) now has a lower chance to be dropped from Omega Starite
+* 100% -> 33%
+The Bone Marker has been renamed to Vial of Blood, and got resprited
+The Bone Marker (Vial of Blood) is now found in Locked Golden Chests in the Dungeon, and can be obtained from Dungeon Lock Boxes
+The Lihzahrd Marker has been renamed to Cabbage, and got resprited
+The Lihzahrd Marker (Cabbage) is now found in Lihzahrd Chests, and can be obtained in Jungle Crates and Crab Pots after Golem has been defeated
+The Retro Marker has been renamed to Blighted Soul, and got resprited
+The Retro Marker (Blighted Soul) is no longer dropped from Hyper Starites, and is instead obtained from the Red Sprite or Space Squid with a 20% chance from either of them 
+
+Overhauled the Wyvern Amulet, gave it a recipe, and the Wyvern no longer drops it 
+Overhauled the Voodoo Amulet, gave it a recipe, and the Voodoo Demon no longer drops it
+
+Fixed a localization error with the Spoils Potion buff
+
+The Glimmer Event now states how many tiles away you are from the center, instead of "Cleared ---%"
+
+Moved Omega Starite back to the Pre-Hardmode section of Boss Checklist...
+
+Modified many minor fishing related things
+
+The Celeste Torus no longer gives you 2 extra seconds of flight time
+
+Weapons upgradeable at the Gore Nest now have the tooltip "Can be upgraded at a Hell Altar" 
+* You can disable this through a config 
+
+Renamed the Peeled Carrot to Dragon Carrot since it sounds cooler (and is a real vegetable)
+Renamed the Mushroom Clam to "Exotic Clam"
+Renamed the Red Sprite Dye to "Scorching Dye"
+Renamed the Bloodshed Potion to "Resurrection Potion"
+Renamed Fizzling Fire to "Super Scorcher"
+Renamed the Starite Blade to "Star Blade"
+Renamed Starite Spinner to "Pulsar"
+Renamed the Red Sprite Staff to "Surge Rod"
+Renamed the Celeste Torus to "Interstellar Ring"
+
+Resprited the Crabax
+Resprited the Crab Barb
+Resprited the Gale Streams event icon to somewhat match the 1.4 windy day icon
+Resprited the Pow Punch item
+Resprited the Peeled Carrot (Dragon Carrot)
+Resprited Disco Dye, Enchanted Dye, Outline Dye, Rainbow Outline Dye, Scroll Dye, Hypno Dye, Hell Beams Dye, Frostbite Dye, Red Sprite Dye, Censor Dye, Breakdown Dye, and Simplified Dye
+Remade the "Ember" particle texture
+Resprited the Lightbulb (item)
+Resprited the Seltzer Rain and Scarlet Sea, and renamed Seltzer Rain to "Tainted Rain"
+Resprited the Hermit Shell, and renamed it to Clamshell Helmet
+Resprited the Voodoo and Wyvern Amulets, and renamed the Wyvern Amulet to "Featherflight Amulet"
+Resprited the Metal Barb
+
+Fixes:
+Hopefully fixed an error where the Ultimate Sword would not respawn if you die to Omega Starite
+Fixed the Glimmer Event deactivating if you leave the world
+Fixed multiple food items not working if you hold them on your mouse, however some mods will not consider them food items anymore
+Crab Pots can now catch regular fish in the desert, since their loot table has 0 fish in the desert, which makes them create an error when catching a fish
+Fixed boss checklist descriptions not using the proper localized text
+The Exporter Town NPC can no longer drown in water
+Hopefully fixed some bugs related to the ATM not letting you reopen it 
+Ocean Ravine Walls no longer drop Moonlight Walls
+The Gale Streams event progress no longer appears in pre-hardmode
+Fixed modded NPCs loaded after Aequus not being checked for wind, making all of them completely immune
+Fixed a lot of log spamming
+Fixed Glow String not emitting light
+The Vampire Squid, and many food-related buffs can no longer be turned into a Molite Potion upgrade
+Fixed Water Fisg only be catchable at the beach
+Fixed a bug where NPCs without banners were all grouped as a single npc according to Dreadsoul (the accessory)
+
 ####### 1.3.3 #######
 
 Additions:

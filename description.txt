@@ -7,12 +7,11 @@ A discord link to the mod is in the homepage, if you like typing discord invite 
 [c/aaaaff:> https://discord.gg/pEKfVCnqe4]
 
 [c/ffff64:Includes:]
-[c/ff3377:>] 240+ Items
-[c/ff3377:>] A single boss
-[c/ff3377:>] 4 special minibosses
-[c/ff3377:>] 15+ Enemies
+[c/ff3377:>] 250+ Items
+[c/ff3377:>] Many special minibosses
+[c/ff3377:>] Many Enemies
 [c/ff3377:>] 4 Unique Events
-[c/ff3377:>] 4 Friendly NPCs
+[c/ff3377:>] 5 Friendly NPCs
 [c/ff3377:>] Full support for English language and Chinese language, with quite a few Russian translations!
 [c/ff3377:>] Support for Boss Checklist, Census, and the Discord Rich Presence mod!
 [c/ffff64:And importantly, many bugs!]

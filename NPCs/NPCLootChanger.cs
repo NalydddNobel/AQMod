@@ -4,6 +4,7 @@ using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools;
+using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -94,6 +95,13 @@ namespace AQMod.NPCs
                 return;
             switch (npc.type)
             {
+                case NPCID.MossHornet:
+                    {
+                        if (Main.rand.NextBool(80))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<Beeswax>());
+                    }
+                    break;
+
                 case NPCID.BlueJellyfish:
                 case NPCID.GreenJellyfish:
                     {

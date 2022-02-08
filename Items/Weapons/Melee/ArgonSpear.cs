@@ -38,7 +38,7 @@ namespace AQMod.Items.Weapons.Melee
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Spear);
             r.AddIngredient(ModContent.ItemType<ArgonMushroom>(), 2);
-            r.AddIngredient(ModContent.ItemType<AquaticEnergy>(), 3);
+            r.AddIngredient(ModContent.ItemType<AquaticEnergy>());
             r.AddTile(TileID.WorkBenches);
             r.SetResult(this);
             r.AddRecipe();

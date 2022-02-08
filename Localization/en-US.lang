@@ -102,9 +102,6 @@ ItemTooltip.LightMatter=Radiates light and interstellar power
 ItemName.NuclearFeather=Nuclear Feather
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
 
-ItemName.SeaPickle=Sea Pickle
-ItemTooltip.SeaPickle='You hear a voice telling you to flip it over'
-
 # Weapons
 ItemName.ScarletSea=Scarlet Sea
 ItemTooltip.ScarletSea=Summons two blood orbs
@@ -225,6 +222,10 @@ ItemName.OutlineDye=Outline Dye
 ItemName.RainbowOutlineDye=Rainbow Outline Dye
 
 # Tiles
+ItemName.SeaPickle=Sea Pickle
+ItemTooltip.SeaPickle='You hear a voice telling you to flip it over'
+MapObject.SeaPickle=Sea Pickle
+
 ItemName.CrabsonTrophy=Crabson Trophy
 
 ItemName.HellTombstone=Hell Tombstone
