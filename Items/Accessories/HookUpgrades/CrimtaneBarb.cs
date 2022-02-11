@@ -19,7 +19,7 @@ namespace AQMod.Items.Accessories.HookUpgrades
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AQPlayer>().hookDamage += item.damage;
+            player.GetModPlayer<AQPlayer>().hookDamage += player.GetWeaponDamage(item);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

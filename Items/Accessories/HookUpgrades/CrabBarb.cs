@@ -22,7 +22,7 @@ namespace AQMod.Items.Accessories.HookUpgrades
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.hookDamage += item.damage;
+            aQPlayer.hookDamage += player.GetWeaponDamage(item);
             aQPlayer.hookDebuffs.Add(new BuffData(BuffID.Poisoned, 120));
         }
 
