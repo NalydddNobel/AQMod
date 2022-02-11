@@ -1,10 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Common.Graphics.PlayerEquips;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.Graphics.PlayerEquips
+namespace AQMod.Content.Players
 {
     public class EquipHeadOverlay : EquipOverlay
     {

@@ -1,4 +1,4 @@
-﻿using AQMod.Common.Graphics.PlayerEquips;
+﻿using AQMod.Content.Players;
 using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Terraria;

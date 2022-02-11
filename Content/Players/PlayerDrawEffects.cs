@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics;
-using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Common.ID;
 using AQMod.Dusts;
 using AQMod.Effects.Particles;
@@ -175,7 +174,6 @@ namespace AQMod.Content.Players
                 }
             }
         });
-
         private static void DrawChomperChain(Player player, Projectile chomper, Vector2 drawPosition, Color drawColor)
         {
             var chomperHead = (Chomper)chomper.modProjectile;
@@ -266,6 +264,7 @@ namespace AQMod.Content.Players
             }
         }
 
+        
         internal static readonly PlayerLayer PostDraw = new PlayerLayer("AQMod", "PostDraw", (info) =>
         {
             int whoAmI = info.drawPlayer.whoAmI;
@@ -359,7 +358,7 @@ namespace AQMod.Content.Players
             }
         });
 
-        internal static readonly PlayerLayer PostDrawHeldItem = new PlayerLayer("AQMod", "PostDrawHeldItem", (info) =>
+        internal static readonly PlayerLayer PostDrawHeldItem = new PlayerLayer("AQMod", "PostDrawHeldItem", PlayerLayer.HeldItem, (info) =>
         {
             var player = info.drawPlayer;
             Item item = player.inventory[player.selectedItem];
@@ -378,7 +377,7 @@ namespace AQMod.Content.Players
             AQMod.ItemOverlays.GetOverlay(item.type)?.DrawHeld(player, player.GetModPlayer<AQPlayer>(), item, info);
         });
 
-        internal static readonly PlayerLayer PostDrawHead = new PlayerLayer("AQMod", "PostDrawHead", (info) =>
+        internal static readonly PlayerLayer PostDrawHead = new PlayerLayer("AQMod", "PostDrawHead", PlayerLayer.Head, (info) =>
         {
             var player = info.drawPlayer;
             var aQPlayer = info.drawPlayer.GetModPlayer<AQPlayer>();
@@ -477,9 +476,21 @@ namespace AQMod.Content.Players
             }
         });
 
-        internal static readonly PlayerLayer PostDrawBody = new PlayerLayer("AQMod", "PostDrawBody", (info) =>
+        internal static readonly PlayerLayer PostDrawBody = new PlayerLayer("AQMod", "PostDrawBody", PlayerLayer.Body, (info) =>
         {
             AQMod.ArmorOverlays.InvokeArmorOverlay(EquipLayering.Body, info);
+        });
+        
+        internal static readonly PlayerLayer PostDrawWings = new PlayerLayer("AQMod", "PostDrawWings", PlayerLayer.Wings, (info) =>
+        {
+            if (info.shadow == 0f)
+            {
+                Player player = info.drawPlayer;
+                if (!player.dead)
+                {
+                    AQMod.ArmorOverlays.InvokeArmorOverlay(EquipLayering.Wings, info);
+                }
+            }
         });
 
         public override void Initialize()
@@ -624,6 +635,12 @@ namespace AQMod.Content.Players
             {
                 PostDrawBody.visible = true;
                 layers.Insert(i + 1, PostDrawBody);
+            }
+            i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("Wings"));
+            if (i != -1)
+            {
+                PostDrawWings.visible = true;
+                layers.Insert(i + 1, PostDrawWings);
             }
             i = layers.FindIndex((p) => p.mod.Equals("Terraria") && p.Name.Equals("HeldItem"));
             if (i != -1)

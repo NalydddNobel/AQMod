@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using AQMod.Common.Graphics.PlayerEquips;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.Graphics.PlayerEquips
+namespace AQMod.Content.Players
 {
     public class EquipOverlayLoader
     {
@@ -37,6 +38,11 @@ namespace AQMod.Common.Graphics.PlayerEquips
             _overlays[(byte)EquipLayering.Body].Add(typeof(T).Name, overlay);
         }
 
+        public void AddWingsOverlay<T>(EquipWingsOverlay overlay) where T : ModItem
+        {
+            _overlays[(byte)EquipLayering.Wings].Add(typeof(T).Name, overlay);
+        }
+
         /// <summary>
         /// Turns the overlay type into an equip type, returns an invalid equip type of -1 if there is not a match
         /// </summary>
@@ -52,6 +58,8 @@ namespace AQMod.Common.Graphics.PlayerEquips
                     return EquipType.Body;
                 case EquipLayering.Legs:
                     return EquipType.Legs;
+                case EquipLayering.Wings:
+                    return EquipType.Wings;
             }
             return (EquipType)(-1);
         }
@@ -76,11 +84,15 @@ namespace AQMod.Common.Graphics.PlayerEquips
                     if (slot < Main.numArmorLegs)
                         return;
                     break;
+                case EquipLayering.Wings:
+                    slot = info.drawPlayer.wings;
+                    if (slot < Main.maxWings)
+                        return;
+                    break;
                 default:
                     return;
             }
-            var equipType = ArmorOverlayToEquipType(type);
-            var texture = EquipLoader.GetEquipTexture(equipType, slot);
+            var texture = EquipLoader.GetEquipTexture(ArmorOverlayToEquipType(type), slot);
             if (texture.mod.Name == "AQMod")
             {
                 //if (Main.GameUpdateCount % 30 == 0)

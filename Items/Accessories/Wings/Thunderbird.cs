@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Content.Players;
+using AQMod.Items.Weapons.Magic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -9,6 +12,14 @@ namespace AQMod.Items.Accessories.Wings
     [AutoloadEquip(EquipType.Wings)]
     public class Thunderbird : ModItem, IDedicatedItem
     {
+        public override void SetStaticDefaults()
+        {
+            if (!Main.dedServ)
+            {
+                AQMod.ArmorOverlays.AddWingsOverlay<Thunderbird>(new EquipThunderbirdWingsOverlay());
+            }
+        }
+
         public override void SetDefaults()
         {
             item.width = 24;
@@ -16,6 +27,37 @@ namespace AQMod.Items.Accessories.Wings
             item.accessory = true;
             item.rare = AQItem.Rarities.DedicatedItem;
             item.value = Item.sellPrice(gold: 20);
+        }
+
+        public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            var clr = Narrizuul.TextColor() * 0.2f;
+            var texture = Main.itemTexture[item.type];
+            var wave = AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f);
+            var n = new Vector2(wave, 0f).RotatedBy(Main.GlobalTime * 2.9f);
+            clr.A = 0;
+            for (int i = 1; i <= 4; i++)
+            {
+                spriteBatch.Draw(texture, position + n * i, frame, clr, 0f, origin, scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, position - n * i, frame, clr, 0f, origin, scale, SpriteEffects.None, 0);
+            }
+        }
+
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            var clr = Narrizuul.TextColor() * 0.2f;
+            var texture = Main.itemTexture[item.type];
+            var frame = texture.Frame();
+            var origin = frame.Size() / 2f;
+            var position = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
+            var wave = AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f);
+            var n = new Vector2(wave, 0f).RotatedBy(Main.GlobalTime * 2.9f);
+            clr.A = 0;
+            for (int i = 1; i <= 4; i++)
+            {
+                spriteBatch.Draw(texture, position + n * i, frame, clr, rotation, origin, scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, position - n * i, frame, clr, rotation, origin, scale, SpriteEffects.None, 0);
+            }
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

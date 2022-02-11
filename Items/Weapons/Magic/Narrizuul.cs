@@ -40,7 +40,7 @@ namespace AQMod.Items.Weapons.Magic
             {
                 if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                 {
-                    tooltips[i].overrideColor = Color.Lerp(Color.Violet, Color.MediumPurple, AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f));
+                    tooltips[i].overrideColor = TextColor();
                     return;
                 }
             }
@@ -61,6 +61,11 @@ namespace AQMod.Items.Weapons.Magic
             Projectile.NewProjectile(position, new Vector2(speedX, speedY).RotatedBy(MathHelper.PiOver4 * 0.5f), type, damage, knockBack, player.whoAmI); // kinda lazy so why not?
             Projectile.NewProjectile(position, new Vector2(speedX, speedY).RotatedBy(-MathHelper.PiOver4 * 0.5f), type, damage, knockBack, player.whoAmI);
             return true;
+        }
+
+        public static Color TextColor()
+        {
+            return Color.Lerp(Color.Violet, Color.MediumPurple, AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f));
         }
     }
 }
