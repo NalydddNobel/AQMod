@@ -33,7 +33,7 @@ namespace AQMod.Common.CrossMod
     {
         public static void AddSupport(AQMod aQMod)
         {
-            if (!AQMod.bossChecklist.active)
+            if (!AQMod.bossChecklist.IsActive)
             {
                 return;
             }

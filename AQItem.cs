@@ -94,7 +94,7 @@ namespace AQMod
             public static int CrimsonWeaponValue => Item.sellPrice(silver: 55);
             public static int GlimmerWeaponValue => Item.sellPrice(silver: 75);
             public static int DemonSiegeWeaponValue => Item.sellPrice(silver: 80);
-            public static int MemorialistWeaponBuyValue => Item.buyPrice(gold: 20);
+            public static int MemorialistItemBuyValue => Item.buyPrice(gold: 20);
             public static int OmegaStariteWeaponValue => Item.sellPrice(gold: 4, silver: 50);
             public static int GaleStreamsWeaponValue => Item.sellPrice(gold: 4);
             public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);

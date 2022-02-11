@@ -28,15 +28,12 @@ namespace AQMod.NPCs
                     }
                     break;
             }
-            return base.PreNPCLoot(npc);
+            return true;
         }
 
-        public override void NPCLoot(NPC npc)
+        private void TerminatorCheck(NPC npc)
         {
-            byte p = Player.FindClosest(npc.position, npc.width, npc.height);
-            var plr = Main.player[p];
-            var aQPlayer = plr.GetModPlayer<AQPlayer>();
-            if (npc.townNPC && npc.position.Y > (Main.maxTilesY - 200) * 16f) // does this for any town NPC because why not?
+            if (npc.townNPC && AQMod.UnderworldCheck() && npc.position.Y > (Main.maxTilesY - 200) * 16f) // does this for any town NPC because why not?
             {
                 var check = new Rectangle((int)npc.position.X / 16, (int)npc.position.Y / 16, 2, 3);
                 bool spawnedItem = false;
@@ -55,41 +52,78 @@ namespace AQMod.NPCs
                         break;
                 }
             }
-            if (Main.netMode == NetmodeID.SinglePlayer)
+        }
+        private void GhostAmuletCheck(NPC npc, AQPlayer aQPlayer)
+        {
+            if (!aQPlayer.ghostAmuletHeld && Main.rand.NextBool(15))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<GhostAmulet>());
+        }
+        private void AltEvilDrops(NPC npc, Player player)
+        {
+            if (Main.hardMode && npc.position.Y > Main.rockLayer * 16.0 && npc.value > 0f)
             {
-                if (npc.type == NPCID.Ghost)
+                if (Main.rand.NextBool(5))
                 {
-                    if (!aQPlayer.ghostAmuletHeld && Main.rand.NextBool(15))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<GhostAmulet>());
-                }
-            }
-            if (!AQNPC.Sets.NoGlobalDrops[npc.type] && !npc.boss && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC)
-            {
-                if (Main.hardMode && npc.position.Y > Main.rockLayer * 16.0 && npc.value > 0f)
-                {
-                    if (aQPlayer.altEvilDrops && Main.rand.NextBool(5))
+                    if ((!player.ZoneCorrupt && !player.ZoneCrimson) || !player.ZoneHoly)
                     {
-                        if (plr.ZoneCorrupt || plr.ZoneCrimson)
+                        if (player.ZoneCorrupt || player.ZoneCrimson)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofLight);
-                        if (plr.ZoneHoly)
+                        if (player.ZoneHoly)
                             Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight);
                     }
                 }
-                var tile = Framing.GetTileSafely(Main.player[p].Center.ToTileCoordinates());
-                if (!Main.wallHouse[tile.wall])
+            }
+        }
+        private void OrganicEnergyDrops(NPC npc, Tile tile, Player player)
+        {
+            if (!Main.wallHouse[tile.wall])
+            {
+                if (player.ZoneJungle && tile.wall != TileID.LihzahrdBrick)
                 {
-                    if (Main.player[p].ZoneJungle && tile.wall != TileID.LihzahrdBrick)
+                    if (npc.lifeMax > (Main.expertMode ? Main.hardMode ? 150 : 80 : 30))
                     {
-                        if (npc.lifeMax > (Main.expertMode ? Main.hardMode ? 150 : 80 : 30))
-                        {
-                            int chance = 14;
-                            if (npc.lifeMax + npc.defDefense > 350 && npc.type != NPCID.MossHornet) // defDefense is the defense of the NPC when it spawns
-                                chance /= 2;
-                            if (Main.rand.NextBool(chance))
-                                Item.NewItem(npc.getRect(), ModContent.ItemType<OrganicEnergy>());
-                        }
+                        int chance = 14;
+                        if (npc.lifeMax + npc.defDefense > 350 && npc.type != NPCID.MossHornet) // defDefense is the defense of the NPC when it spawns
+                            chance /= 2;
+                        if (Main.rand.NextBool(chance))
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<OrganicEnergy>());
                     }
                 }
+            }
+        }
+        private void ShockCollarDrop(NPC npc)
+        {
+            if (Main.rand.NextBool(15))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<ShockCollar>());
+        }
+        private void SpicyEelDrop(NPC npc)
+        {
+            if (Main.rand.NextBool(10))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<SpicyEel>());
+        }
+        private void GrapePhantaDrops(NPC npc, int chance = 10)
+        {
+            if (Main.rand.NextBool(chance))
+                Item.NewItem(npc.getRect(), ModContent.ItemType<GrapePhanta>());
+        }
+        public override void NPCLoot(NPC npc)
+        {
+            byte p = Player.FindClosest(npc.position, npc.width, npc.height);
+            var plr = Main.player[p];
+            var aQPlayer = Main.player[p].GetModPlayer<AQPlayer>();
+            TerminatorCheck(npc);
+            if (Main.netMode == NetmodeID.SinglePlayer && npc.type == NPCID.Ghost)
+            {
+                GhostAmuletCheck(npc, aQPlayer);
+            }
+            if (!AQNPC.Sets.NoGlobalDrops[npc.type] && !npc.boss && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC)
+            {
+                if (aQPlayer.altEvilDrops)
+                {
+                    AltEvilDrops(npc, Main.player[p]);
+                }
+                var tile = Framing.GetTileSafely(Main.player[p].Center.ToTileCoordinates());
+                OrganicEnergyDrops(npc, tile, Main.player[p]);
             }
             if (npc.type >= Main.maxNPCTypes)
                 return;
@@ -105,30 +139,26 @@ namespace AQMod.NPCs
                 case NPCID.BlueJellyfish:
                 case NPCID.GreenJellyfish:
                     {
-                        if (Main.rand.NextBool(15))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<ShockCollar>());
+                        ShockCollarDrop(npc);
                     }
                     break;
 
                 case NPCID.SeekerHead:
                     {
-                        if (Main.rand.NextBool(10))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<SpicyEel>());
+                        SpicyEelDrop(npc);
                     }
                     break;
 
                 case NPCID.DiggerHead:
                     {
-                        if (Main.rand.NextBool(10))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<SpicyEel>());
+                        SpicyEelDrop(npc);
                     }
                     break;
 
                 case NPCID.RaggedCaster:
                 case NPCID.RaggedCasterOpenCoat:
                     {
-                        if (Main.rand.NextBool(10))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<GrapePhanta>());
+                        GrapePhantaDrops(npc, 10);
                     }
                     break;
 
@@ -137,8 +167,7 @@ namespace AQMod.NPCs
                 case NPCID.RustyArmoredBonesSword:
                 case NPCID.RustyArmoredBonesSwordNoArmor:
                     {
-                        if (Main.rand.NextBool(40))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<GrapePhanta>());
+                        GrapePhantaDrops(npc, 40);
                     }
                     break;
 
@@ -180,7 +209,7 @@ namespace AQMod.NPCs
                     break;
 
                 case NPCID.Mothron:
-                    if (NPC.downedAncientCultist && ((npc.playerInteraction[p] && npc.GetGlobalNPC<NoHitManager>().hitPlayer[p]) || Main.rand.NextBool(10)))
+                    if (NPC.downedAncientCultist && npc.playerInteraction[p] && npc.GetGlobalNPC<NoHitManager>().hitPlayer[p])
                         Item.NewItem(npc.getRect(), ModContent.ItemType<MothmanMask>());
                     break;
 

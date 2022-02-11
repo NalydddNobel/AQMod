@@ -1,4 +1,5 @@
-﻿using AQMod.Buffs.Debuffs;
+﻿using AQMod.Buffs;
+using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Temperature;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
@@ -126,6 +127,13 @@ namespace AQMod
         public bool shade;
         public bool undetectable;
 
+        public bool meathook;
+        public bool hasMeathookNPCOld;
+        public bool hasMeathookNPC;
+        public int meathookNPC;
+        public int hookDamage;
+        public List<BuffData> hookDebuffs;
+
         public float evilEnemyDR;
         public float holyEnemyDR;
         public int healEffectValueForSyncingTheThingOnTheServer;
@@ -174,6 +182,7 @@ namespace AQMod
             cantUseMenaceUmbrellaJump = false;
             bloodthirstDelay = 0;
             healEffectValueForSyncingTheThingOnTheServer = 0;
+            hookDebuffs = new List<BuffData>();
         }
 
         public override void OnEnterWorld(Player player)
@@ -215,8 +224,25 @@ namespace AQMod
             dartHeadDelay = 0;
             bloodthirstDelay = 0;
             healEffectValueForSyncingTheThingOnTheServer = 0;
+            hookDebuffs = new List<BuffData>();
+            hookDamage = 0;
         }
 
+        private void ResetEffects_HookBarbs()
+        {
+            meathook = false;
+            if (!hasMeathookNPC)
+            {
+                meathookNPC = -1;
+            }
+            hasMeathookNPCOld = hasMeathookNPC;
+            hasMeathookNPC = false;
+            hookDamage = 0;
+            if (hookDebuffs == null)
+                hookDebuffs = new List<BuffData>();
+            else
+                hookDebuffs.Clear();
+        }
         private void ResetEffects_Temperature()
         {
             if (temperature != 0)
@@ -410,6 +436,7 @@ namespace AQMod
             }
             if (thunderbirdLightningTimer > 0)
                 thunderbirdLightningTimer--;
+            ResetEffects_HookBarbs();
             ResetEffects_DashAvailable();
         }
 

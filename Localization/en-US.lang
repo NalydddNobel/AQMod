@@ -14,6 +14,21 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 
 # Accessories
 
+ItemName.CrimtaneBarb=Blood Articulation
+ItemTooltip.CrimtaneBarb={$Mods.AQMod.Tooltips.HookBarb}
+
+ItemName.DemoniteBarb=Dark Tether
+ItemTooltip.DemoniteBarb={$Mods.AQMod.Tooltips.HookBarb}
+
+ItemName.MetalBarb=Metal Barb
+ItemTooltip.MetalBarb={$Mods.AQMod.Tooltips.HookBarb}
+
+ItemName.CrabBarb=Crab Barb
+ItemTooltip.CrabBarb=Your grappling hooks inflict poison and damage
+
+ItemName.Meathook=Meathook
+ItemTooltip.Meathook=Allows you to attach to enemies using your grappling hook
+
 ItemName.CelesteTorus=Interstellar Ring
 ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe radius, speed, damage, and knockback are all determined by various stats
 ProjectileName.CelesteTorusCollider=Interstellar Orb
@@ -31,7 +46,7 @@ ItemName.LightAmulet=Light Amulet
 ItemTooltip.LightAmulet=You take 10% less damage from holy enemies\nIncreases armor penetration by 5
 
 ItemName.NeutralityAmulet=Neutrality Amulet
-ItemTooltip.NeutralityAmulet=You take 10% less damage from holy and unholy enemies\nIncreases armor penetration by 5\nYour grappling hooks inflict damage
+ItemTooltip.NeutralityAmulet=You take 10% less damage from holy and unholy enemies\nIncreases armor penetration by 5\nIncreases movement speed after being struck\nIncreases maximum mana by 20
 
 ItemName.GlowString=Glow String
 ItemTooltip.GlowString=Makes your yoyo string glow in the dark\nIncreases yoyo range
@@ -53,16 +68,6 @@ ItemTooltip.FreezingAmulet=Prevents most types of freezing\nLowers the intensity
 
 ItemName.NormalizerAmulet=Normalized Amulet
 ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers the intensity of temperature sources from Gale Streams enemies
-
-ItemName.CrimtaneBarb=Crimtane Barb
-ItemTooltip.CrimtaneBarb=Your grappling hooks inflict damage
-ItemName.DemoniteBarb=Demonite Barb
-ItemTooltip.DemoniteBarb=Your grappling hooks inflict damage
-ItemName.MetalBarb=Metal Barb
-ItemTooltip.MetalBarb=Your grappling hooks inflict damage
-
-ItemName.CrabBarb=Crab Barb
-ItemTooltip.CrabBarb=Your grappling hooks inflict poison and damage
 
 ItemName.MinersFlashlight=Miner's Flashlight
 ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shone on by the light\nHide the accessory to disable the flashlight
@@ -414,6 +419,7 @@ Tooltips.ManaPerSecond=Uses {0} mana per second
 Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed\nYou will not take any fall damage
 Tooltips.InventoryPiggyBankFunction=Works in your inventory or piggy bank
 Tooltips.ToggleKeyBind=You can toggle this function by pressing {0}
+Tooltips.HookBarb=Your grappling hooks inflict damage
 
 NPCName.SoldierCrabs=Soldier Crab
 ItemName.SoliderCrabsBanner=Soldier Crab Banner

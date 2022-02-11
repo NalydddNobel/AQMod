@@ -841,12 +841,17 @@ namespace AQMod
 
         public override object Call(params object[] args)
         {
-            if (ModCallDictionary.VerifyCall(args))
-            {
-                return ModCallDictionary.InvokeCall(args);
-            }
             return null;
         }
+
+        //public override object Call(params object[] args)
+        //{
+        //    if (ModCallDictionary.VerifyCall(args))
+        //    {
+        //        return ModCallDictionary.InvokeCall(args);
+        //    }
+        //    return null;
+        //}
 
         internal static void BroadcastMessage(string key, Color color)
         {
@@ -914,6 +919,11 @@ namespace AQMod
                 DebugUtilities.GetDebugLogger().Log("Loading Texture: " + path);
             }
             return ModContent.GetTexture(path);
+        }
+
+        public static bool UnderworldCheck()
+        {
+            return !PolaritiesModSupport.InFractalDimension();
         }
     }
 }

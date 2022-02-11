@@ -8,7 +8,7 @@ namespace AQMod.Common.CrossMod
     {
         public readonly string name;
         public readonly string codeName;
-        public readonly bool active;
+        public readonly bool IsActive;
         public readonly Mod mod;
 
         public static CrossModData Unloaded => new CrossModData();
@@ -26,7 +26,7 @@ namespace AQMod.Common.CrossMod
             {
                 AQMod.GetInstance().Logger.Error("Mod failed to be checked active: " + name, ex);
             }
-            active = mod != null;
+            IsActive = mod != null;
         }
 
         public int ItemType(string name)

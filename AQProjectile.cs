@@ -154,6 +154,12 @@ namespace AQMod
         private byte temperatureUpdate;
         public bool canHeat;
         public bool canFreeze;
+        public bool IsBarb { get; private set; }
+
+        public bool BarbCheck(Projectile Projectile)
+        {
+            return IsBarb = Projectile.aiStyle == 7 && Projectile.friendly && !Projectile.hostile;
+        }
 
         public bool ShouldApplyWindMechanics(Projectile projectile)
         {
@@ -192,6 +198,7 @@ namespace AQMod
 
         private void FishingPopperCheck(Projectile projectile)
         {
+            NPCLoader.blockLoot.Add(ItemID.Cascade);
             var fishing = Main.player[projectile.owner].GetModPlayer<PlayerFishing>();
             if (projectile.ai[1] > 0f && projectile.localAI[1] >= 0f && fishing.popperType > 0)
             {
@@ -252,6 +259,75 @@ namespace AQMod
                 }
             }
         }
+        private void BarbDamageCheck(Projectile projectile, AQPlayer aQPlayer)
+        {
+            var rect = projectile.getRect();
+            var player = Main.player[projectile.owner];
+            bool appliedMeathook = false;
+            for (int k = 0; k < Main.maxNPCs; k++)
+            {
+                if (Main.npc[k].active && !Main.npc[k].townNPC && rect.Intersects(Main.npc[k].getRect()) && AQUtils.CanNPCBeHitByProjectile(Main.npc[k], projectile))
+                {
+                    if (aQPlayer.meathook && !appliedMeathook)
+                    {
+                        aQPlayer.hasMeathookNPC = true;
+                        projectile.Center = Main.npc[k].Center;
+                        if (aQPlayer.meathookNPC == -1)
+                        {
+                            aQPlayer.meathookNPC = k;
+                        }
+                    }
+                    if (!aQPlayer.hasMeathookNPCOld && Main.npc[k].immune[projectile.owner] <= 0)
+                    {
+                        if (aQPlayer.hookDamage > 0)
+                        {
+                            Main.npc[k].immune[projectile.owner] = 12;
+                            int damage = Main.DamageVar(aQPlayer.hookDamage);
+                            float knockback = 0f;
+                            bool crit = false;
+                            int direction = projectile.velocity.X < 0f ? -1 : 1;
+                            player.ApplyDamageToNPC(Main.npc[k], damage, knockback, direction, crit);
+                        }
+                        if (aQPlayer.hookDebuffs.Count > 0)
+                        {
+                            for (int l = 0; l < aQPlayer.hookDebuffs.Count; l++)
+                            {
+                                aQPlayer.hookDebuffs[l].ApplyDebuff(Main.npc[k]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void UpdateMeathookHook(Projectile projectile, AQPlayer aQPlayer)
+        {
+            for (int i = projectile.whoAmI + 1; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].aiStyle == AIStyles.GrapplingHookAI)
+                {
+                    projectile.Kill();
+                }
+            }
+            float distance = projectile.Distance(Main.player[projectile.owner].Center);
+            if (distance < Main.npc[aQPlayer.meathookNPC].Size.Length() * 2f)
+            {
+                Main.player[projectile.owner].immune = true;
+                Main.player[projectile.owner].immuneTime = 12;
+            }
+            if (distance < Main.npc[aQPlayer.meathookNPC].Size.Length() * 1.5f)
+            {
+                projectile.Kill();
+                return;
+            }
+            projectile.Center = Main.npc[aQPlayer.meathookNPC].Center;
+            if (Main.player[projectile.owner].grapCount < 10)
+            {
+                Main.player[projectile.owner].grappling[Main.player[projectile.owner].grapCount] = projectile.whoAmI;
+                Player player2 = Main.player[projectile.owner];
+                Player player15 = player2;
+                player15.grapCount++;
+            }
+        }
         public override bool PreAI(Projectile projectile)
         {
             windStruckOld = windStruck;
@@ -271,6 +347,24 @@ namespace AQMod
                 }
             }
 
+            if (projectile.aiStyle == AIStyles.GrapplingHookAI)
+            {
+                if (BarbCheck(projectile))
+                {
+                    var aQPlayer = Main.player[projectile.owner].GetModPlayer<AQPlayer>();
+                    if (aQPlayer.hasMeathookNPCOld && aQPlayer.meathookNPC != -1 && Main.npc[aQPlayer.meathookNPC].active)
+                    {
+                        aQPlayer.hasMeathookNPC = true;
+                        projectile.velocity = Vector2.Zero;
+                        projectile.ai[0] = 1f;
+                        UpdateMeathookHook(projectile, aQPlayer);
+                    }
+                    else if ((aQPlayer.hookDamage > 0 || aQPlayer.hookDebuffs.Count > 0 || aQPlayer.meathook) && (int)projectile.ai[0] != 2)
+                    {
+                        BarbDamageCheck(projectile, aQPlayer);
+                    }
+                }
+            }
             if (projectile.aiStyle == 61)
             {
                 FishingPopperCheck(projectile);

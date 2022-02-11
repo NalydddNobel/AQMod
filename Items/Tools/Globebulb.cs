@@ -49,7 +49,7 @@ namespace AQMod.Items.Tools
             r.AddIngredient(ModContent.ItemType<Lightbulb>(), 9);
             r.AddRecipeGroup(AQRecipes.RecipeGroups.DemoniteBarOrCrimtaneBar, 5);
             r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
-            r.AddTile(TileID.MythrilAnvil);
+            r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();
         }

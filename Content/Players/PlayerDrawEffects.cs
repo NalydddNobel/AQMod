@@ -66,7 +66,7 @@ namespace AQMod.Content.Players
 
             if (drawingPlayer.headAcc > 0)
             {
-                var drawData = new DrawData(ModContent.GetTexture(Path_Masks + drawingPlayer.headAcc), new Vector2((int)(info.drawPlayer.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.drawPlayer.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height)) + info.drawPlayer.headPosition + info.drawOrigin, info.drawPlayer.bodyFrame, info.armorColor, info.drawPlayer.headRotation, info.drawOrigin, info.scale, info.spriteEffects, 0);
+                var drawData = new DrawData(ModContent.GetTexture(Path_HeadAccs + drawingPlayer.headAcc), new Vector2((int)(info.drawPlayer.position.X - Main.screenPosition.X - info.drawPlayer.bodyFrame.Width / 2 + info.drawPlayer.width / 2), (int)(info.drawPlayer.position.Y - Main.screenPosition.Y + info.drawPlayer.height - info.drawPlayer.bodyFrame.Height)) + info.drawPlayer.headPosition + info.drawOrigin, info.drawPlayer.bodyFrame, info.armorColor, info.drawPlayer.headRotation, info.drawOrigin, info.scale, info.spriteEffects, 0);
                 if (drawingPlayer.headAcc == PlayerHeadAccID.FishyFins)
                     drawData.color = player.skinColor;
                 drawData.position = new Vector2((int)drawData.position.X, (int)drawData.position.Y);

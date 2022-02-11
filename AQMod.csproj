@@ -32,6 +32,7 @@
     <None Include="Effects\.comp\wcfxcompiler.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\HookBarbs\" />
     <Folder Include="Sounds\Item\SpaceSquid\" />
   </ItemGroup>
 </Project>

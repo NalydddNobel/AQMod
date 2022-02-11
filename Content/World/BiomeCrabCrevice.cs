@@ -1,6 +1,7 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Items.Accessories;
+using AQMod.Items.Accessories.HookUpgrades;
 using AQMod.Items.Pets;
 using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Weapons.Melee;
@@ -1105,11 +1106,11 @@ namespace AQMod.Content.World
             int crabCreviceLocationX = 0;
             int crabCreviceLocationY = 0;
             int reccomendedDir = 0;
-            if (AQMod.calamityMod.active)
+            if (AQMod.calamityMod.IsActive)
             {
                 reccomendedDir = Main.dungeonX * 2 < Main.maxTilesX ? 1 : -1;
             }
-            else if (AQMod.thoriumMod.active)
+            else if (AQMod.thoriumMod.IsActive)
             {
                 reccomendedDir = Main.dungeonX * 2 < Main.maxTilesX ? -1 : 1;
             }

@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Items.Accessories.HookUpgrades;
 using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Summon;
@@ -46,10 +47,13 @@ namespace AQMod.NPCs.Friendly
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<GhostlyGrave>());
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<PowPunch>());
-            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistWeaponBuyValue;
+            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistItemBuyValue;
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<CursedKey>());
-            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistWeaponBuyValue;
+            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistItemBuyValue;
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Meathook>());
+            shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistItemBuyValue;
             nextSlot++;
             if (!Main.dayTime && Main.bloodMoon)
             {

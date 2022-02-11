@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.CrossMod;
 using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
@@ -59,6 +60,12 @@ namespace AQMod.Common.Utilities
             {
                 default:
                     caller.Reply("Command doesn't exist.");
+                    break;
+
+                case "polaritiesinfractaldimension":
+                    {
+                        caller.Reply(PolaritiesModSupport.InFractalDimension().ToString());
+                    }
                     break;
 
                 case "mana":
