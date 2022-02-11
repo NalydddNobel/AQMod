@@ -279,7 +279,7 @@ namespace AQMod.Content
                 var scale = Main.UIScale * 4f;
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    if (Main.npc[i].active && !AQNPC.Sets.NoMapBlip[Main.npc[i].type] && Main.npc[i].GetBossHeadTextureIndex() == -1 && !Main.npc[i].townNPC)
+                    if (Main.npc[i].active && !AQNPC.Sets.NoMapBlip.Contains(Main.npc[i].type) && Main.npc[i].GetBossHeadTextureIndex() == -1 && !Main.npc[i].townNPC)
                     {
                         var drawPos = MapDrawPosition(Main.npc[i].Center / 16f);
                         byte r = color.R;

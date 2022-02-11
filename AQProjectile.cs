@@ -4,6 +4,7 @@ using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.NPCs;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -20,9 +21,16 @@ namespace AQMod
             public static bool[] UnaffectedByWind { get; private set; }
             public static bool[] IsGravestone { get; private set; }
             public static bool[] DamageReductionExtractor { get; private set; }
+            public static List<int> HookBarbBlacklist { get; private set; }
 
             internal static void LoadSets()
             {
+                HookBarbBlacklist = new List<int>() 
+                {
+                    ProjectileID.AntiGravityHook,
+                    ProjectileID.StaticHook,
+                };
+
                 DamageReductionExtractor = new bool[ProjectileLoader.ProjectileCount];
                 DamageReductionExtractor[ProjectileID.SiltBall] = true;
                 DamageReductionExtractor[ProjectileID.SlushBall] = true;
@@ -156,9 +164,9 @@ namespace AQMod
         public bool canFreeze;
         public bool IsBarb { get; private set; }
 
-        public bool BarbCheck(Projectile Projectile)
+        public bool BarbCheck(Projectile projectile)
         {
-            return IsBarb = Projectile.aiStyle == 7 && Projectile.friendly && !Projectile.hostile;
+            return IsBarb = projectile.aiStyle == 7 && projectile.friendly && !projectile.hostile && !Sets.HookBarbBlacklist.Contains(projectile.type);
         }
 
         public bool ShouldApplyWindMechanics(Projectile projectile)
@@ -268,13 +276,14 @@ namespace AQMod
             {
                 if (Main.npc[k].active && !Main.npc[k].townNPC && rect.Intersects(Main.npc[k].getRect()) && AQUtils.CanNPCBeHitByProjectile(Main.npc[k], projectile))
                 {
-                    if (aQPlayer.meathook && !appliedMeathook)
+                    if (aQPlayer.meathook && !appliedMeathook && !AQNPC.Sets.CannotBeMeathooked.Contains(Main.npc[k].type))
                     {
                         aQPlayer.hasMeathookNPC = true;
                         projectile.Center = Main.npc[k].Center;
                         if (aQPlayer.meathookNPC == -1)
                         {
                             aQPlayer.meathookNPC = k;
+                            projectile.damage = 0;
                         }
                     }
                     if (!aQPlayer.hasMeathookNPCOld && Main.npc[k].immune[projectile.owner] <= 0)
@@ -307,6 +316,11 @@ namespace AQMod
                 {
                     projectile.Kill();
                 }
+            }
+            if (Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
+            {
+                projectile.Kill();
+                return;
             }
             float distance = projectile.Distance(Main.player[projectile.owner].Center);
             if (distance < Main.npc[aQPlayer.meathookNPC].Size.Length() * 2f)

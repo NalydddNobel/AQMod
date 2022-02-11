@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Terraria.ModLoader;
 
 namespace AQMod.Common.ID
@@ -41,7 +42,13 @@ namespace AQMod.Common.ID
                 if (_value == -1)
                 {
                     if (_moddedType != null)
+                    {
                         _value = GetIDFromType(AQMod.GetInstance(), _moddedType.Name);
+                        if (_value == 0)
+                        {
+                            _value = -1;
+                        }
+                    }
                     else
                     {
                         try
@@ -94,6 +101,18 @@ namespace AQMod.Common.ID
                 int value = id.GetID();
                 if (value != -1)
                     arr[id.GetID()] = true;
+            }
+            return arr;
+        }
+
+        public static List<int> CreateBlacklist(params SetID[] ids)
+        {
+            var arr = new List<int>();
+            foreach (var id in ids)
+            {
+                int value = id.GetID();
+                if (value != -1)
+                    arr.Add(value);
             }
             return arr;
         }

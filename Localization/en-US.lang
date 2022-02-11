@@ -412,6 +412,8 @@ ItemTooltip.CrabClock='What time is it? Crabby time.'
 ItemName.OceanRavineWall=Crab Crevice Wall
 
 # Tooltips
+Tooltips.HookBarbBlacklist=Does not get effected by hook barb upgrades
+Tooltips.HookBarb=Your grappling hooks inflict damage
 Tooltips.DemonSiegeUpgrade=Can be upgraded at a Hell Altar
 Tooltips.DedicatedItem=Dedicated Item
 Tooltips.Unobtainable=A relic birthed in an alternate universe
@@ -419,7 +421,6 @@ Tooltips.ManaPerSecond=Uses {0} mana per second
 Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed\nYou will not take any fall damage
 Tooltips.InventoryPiggyBankFunction=Works in your inventory or piggy bank
 Tooltips.ToggleKeyBind=You can toggle this function by pressing {0}
-Tooltips.HookBarb=Your grappling hooks inflict damage
 
 NPCName.SoldierCrabs=Soldier Crab
 ItemName.SoliderCrabsBanner=Soldier Crab Banner
@@ -632,6 +633,9 @@ ClientConfig.XmasProgressMeterOverrideTooltip=Whether or not to have the "AQ Xma
 
 ClientConfig.DemonSiegeUpgradeTooltip=Demon Siege Upgrade Tooltip 
 ClientConfig.DemonSiegeUpgradeTooltipTooltip=Whether or not 'Can be upgraded at a Hell Altar' appears on an item's tooltip if it is upgradeable at the Gore Nest
+
+ClientConfig.HookBarbBlacklistTooltip=Hook Barb Blacklist Tooltip 
+ClientConfig.HookBarbBlacklistTooltipTooltip=Whether or not 'Does not get effected by hook barb upgrades' appears on an item's tooltip if it cannot have hook barb upgrades
 
 ClientConfig.MapBlipColor=Map Blip Color
 ClientConfig.MapBlipColorTooltip=The color of the little blips shown by the Blighted Soul

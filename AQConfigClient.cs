@@ -58,6 +58,12 @@ namespace AQMod
         public bool DemonSiegeUpgradeTooltip { get; set; }
 
         [BackgroundColor(12, 12, 190, 180)]
+        [Label("$Mods.AQMod.ClientConfig.HookBarbBlacklistTooltip")]
+        [Tooltip("$Mods.AQMod.ClientConfig.HookBarbBlacklistTooltipTooltip")]
+        [DefaultValue(true)]
+        public bool HookBarbBlacklistTooltip { get; set; }
+
+        [BackgroundColor(12, 12, 190, 180)]
         [Label("$Mods.AQMod.ClientConfig.MapBlipColor")]
         [Tooltip("$Mods.AQMod.ClientConfig.MapBlipColorTooltip")]
         [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorNoAlpha]

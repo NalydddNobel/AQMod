@@ -64,6 +64,23 @@ namespace AQMod
             }
         }
 
+        public static void RemoveRepeatingIndices(List<int> list)
+        {
+            var indexList = new List<int>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (indexList.Contains(list[i]))
+                {
+                    list.RemoveAt(i);
+                    i--;
+                }
+                else
+                {
+                    indexList.Add(list[i]);
+                }
+            }
+        }
+
         public static PlayerBiomes Biomes(this Player player)
         {
             return player.GetModPlayer<PlayerBiomes>();

@@ -17,6 +17,7 @@ using AQMod.Projectiles;
 using AQMod.Projectiles.Monster.Starite;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,8 +29,6 @@ namespace AQMod
         public static class Sets
         {
             public static bool[] NoSpoilLoot { get; private set; }
-            public static bool[] NoMapBlip { get; private set; }
-            public static bool[] NoGlobalDrops { get; private set; }
             public static bool[] HecktoplasmDungeonEnemy { get; private set; }
             public static bool[] EnemyDungeonSprit { get; private set; }
             public static bool[] DemonSiegeEnemy { get; private set; }
@@ -43,16 +42,98 @@ namespace AQMod
             public static bool[] Unholy { get; private set; }
             public static bool[] Holy { get; private set; }
             public static bool[] DealsLessDamageToCata { get; private set; }
+            public static List<int> CannotBeMeathooked { get; private set; }
+            public static List<int> NoGlobalDrops { get; private set; }
+            public static List<int> NoMapBlip { get; private set; }
+
 
             public static bool IsWormHead(int type)
             {
                 return IsWormSegment[type] && !IsWormBody[type];
             }
 
+            private static void AutoSets_MeaninglessNPC(NPC npc)
+            {
+                if (npc.friendly || npc.lifeMax <= 5)
+                {
+                    NoGlobalDrops.Add(npc.type);
+                    CannotBeMeathooked.Add(npc.type);
+                }
+            }
+            private static void AutoSets_WindCheck(NPC npc)
+            {
+                if (npc.aiStyle != AIStyles.DemonEyeAI && npc.aiStyle != AIStyles.FlyingAI && npc.aiStyle != AIStyles.SpellAI && npc.aiStyle != AIStyles.EnchantedSwordAI && npc.aiStyle != AIStyles.SpiderAI &&
+                    (npc.noGravity || npc.boss))
+                {
+                    UnaffectedByWind[npc.type] = true;
+                }
+            }
+            private static void AutoSets()
+            {
+                for (int i = 0; i < NPCLoader.NPCCount; i++)
+                {
+                    if (NPCID.Sets.BelongsToInvasionOldOnesArmy[i])
+                    {
+                        UnaffectedByWind[i] = true;
+                        continue;
+                    }
+                    try
+                    {
+                        NPC npc;
+                        if (i > Main.maxNPCTypes)
+                        {
+                            npc = NPCLoader.GetNPC(i).npc;
+                        }
+                        else
+                        {
+                            npc = new NPC();
+                            npc.SetDefaults(i);
+                        }
+                        AutoSets_MeaninglessNPC(npc);
+                        AutoSets_WindCheck(npc);
+                    }
+                    catch (Exception e)
+                    {
+                        UnaffectedByWind[i] = true;
+                        var l = AQMod.GetInstance().Logger;
+                        string npcname;
+                        if (i > Main.maxNPCTypes)
+                        {
+                            string tryName = Lang.GetNPCName(i).Value;
+                            if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
+                            {
+                                npcname = NPCLoader.GetNPC(i).Name;
+                            }
+                            else
+                            {
+                                npcname = tryName + "/" + NPCLoader.GetNPC(i).Name;
+                            }
+                        }
+                        else
+                        {
+                            npcname = Lang.GetNPCName(i).Value;
+                        }
+                        l.Error("An error occured when doing algorithmic checks for sets for {" + npcname + ", ID: " + i + "}");
+                        l.Error(e.Message);
+                        l.Error(e.StackTrace);
+                    }
+                }
+            }
+            private static void RemoveRepeatingIndicesFromSets()
+            {
+                AQUtils.RemoveRepeatingIndices(NoGlobalDrops);
+                AQUtils.RemoveRepeatingIndices(CannotBeMeathooked);
+            }
             internal static void InternalInitalize()
             {
                 SetUtils.Length = NPCLoader.NPCCount;
                 SetUtils.GetIDFromType = (m, n) => m.NPCType(n);
+
+                CannotBeMeathooked = new List<int>()
+                {
+                    NPCID.WallofFlesh,
+                    NPCID.WallofFleshEye
+                };
 
                 DealsLessDamageToCata = SetUtils.CreateFlagSet(NPCID.Mothron, NPCID.MothronSpawn, NPCID.MothronEgg, NPCID.CultistBoss, NPCID.CultistBossClone, NPCID.AncientCultistSquidhead, NPCID.CultistDragonHead, NPCID.CultistDragonBody1, NPCID.CultistDragonBody2, NPCID.CultistDragonBody3, NPCID.CultistDragonBody4, NPCID.CultistDragonTail, NPCID.AncientDoom, NPCID.AncientLight);
 
@@ -222,237 +303,189 @@ namespace AQMod
                 NoSpoilLoot[NPCID.SantaNK1] = true;
                 NoSpoilLoot[NPCID.IceQueen] = true;
 
-                NoMapBlip = new bool[NPCLoader.NPCCount];
-                NoMapBlip[NPCID.MartianSaucer] = true;
-                NoMapBlip[NPCID.MartianSaucerCannon] = true;
-                NoMapBlip[NPCID.MartianSaucerTurret] = true;
-                NoMapBlip[NPCID.SpikeBall] = true;
-                NoMapBlip[NPCID.BlazingWheel] = true;
-                NoMapBlip[NPCID.ChaosBall] = true;
-                NoMapBlip[NPCID.BurningSphere] = true;
-                NoMapBlip[NPCID.WaterSphere] = true;
-                NoMapBlip[NPCID.Spore] = true;
-                NoMapBlip[NPCID.DetonatingBubble] = true;
-                NoMapBlip[NPCID.ForceBubble] = true;
-                NoMapBlip[NPCID.FungiSpore] = true;
-                NoMapBlip[NPCID.TargetDummy] = true;
+                NoMapBlip = new List<int>()
+                {
+                    NPCID.MartianSaucer,
+                    NPCID.MartianSaucerCannon,
+                    NPCID.MartianSaucerTurret,
+                    NPCID.SpikeBall,
+                    NPCID.BlazingWheel,
+                    NPCID.ChaosBall,
+                    NPCID.BurningSphere,
+                    NPCID.ChaosBall,
+                    NPCID.BurningSphere,
+                    NPCID.WaterSphere,
+                    NPCID.Spore,
+                    NPCID.DetonatingBubble,
+                    NPCID.ForceBubble,
+                    NPCID.TargetDummy,
+                };
 
-                NoGlobalDrops = new bool[NPCLoader.NPCCount];
-                NoGlobalDrops[NPCID.MeteorHead] = true;
-                NoGlobalDrops[NPCID.ServantofCthulhu] = true;
-                NoGlobalDrops[NPCID.ChaosBall] = true;
-                NoGlobalDrops[NPCID.BurningSphere] = true;
-                NoGlobalDrops[NPCID.SpikeBall] = true;
-                NoGlobalDrops[NPCID.BlazingWheel] = true;
-                NoGlobalDrops[NPCID.ShadowFlameApparition] = true;
-                NoGlobalDrops[NPCID.Probe] = true;
-                NoGlobalDrops[NPCID.VileSpit] = true;
-                NoGlobalDrops[NPCID.BlueSlime] = true;
-                NoGlobalDrops[NPCID.SlimeSpiked] = true;
-                NoGlobalDrops[NPCID.TheHungry] = true;
-                NoGlobalDrops[NPCID.TheHungryII] = true;
-                NoGlobalDrops[NPCID.LeechHead] = true;
-                NoGlobalDrops[NPCID.MoonLordLeechBlob] = true;
-                NoGlobalDrops[NPCID.PlanterasHook] = true;
-                NoGlobalDrops[NPCID.PlanterasTentacle] = true;
-                NoGlobalDrops[NPCID.GolemFistLeft] = true;
-                NoGlobalDrops[NPCID.GolemFistRight] = true;
-                NoGlobalDrops[NPCID.GolemHead] = true;
-                NoGlobalDrops[NPCID.GolemHeadFree] = true;
-                NoGlobalDrops[NPCID.VortexSoldier] = true;
-                NoGlobalDrops[NPCID.LunarTowerVortex] = true;
-                NoGlobalDrops[NPCID.LunarTowerNebula] = true;
-                NoGlobalDrops[NPCID.LunarTowerSolar] = true;
-                NoGlobalDrops[NPCID.LunarTowerStardust] = true;
-                NoGlobalDrops[NPCID.VortexHornet] = true;
-                NoGlobalDrops[NPCID.VortexHornetQueen] = true;
-                NoGlobalDrops[NPCID.VortexLarva] = true;
-                NoGlobalDrops[NPCID.VortexRifleman] = true;
-                NoGlobalDrops[NPCID.StardustCellBig] = true;
-                NoGlobalDrops[NPCID.StardustCellSmall] = true;
-                NoGlobalDrops[NPCID.StardustJellyfishBig] = true;
-                NoGlobalDrops[NPCID.StardustJellyfishSmall] = true;
-                NoGlobalDrops[NPCID.StardustSoldier] = true;
-                NoGlobalDrops[NPCID.StardustSpiderBig] = true;
-                NoGlobalDrops[NPCID.StardustSpiderSmall] = true;
-                NoGlobalDrops[NPCID.StardustWormHead] = true;
-                NoGlobalDrops[NPCID.SolarCorite] = true;
-                NoGlobalDrops[NPCID.SolarCrawltipedeHead] = true;
-                NoGlobalDrops[NPCID.SolarDrakomire] = true;
-                NoGlobalDrops[NPCID.SolarDrakomireRider] = true;
-                NoGlobalDrops[NPCID.SolarFlare] = true;
-                NoGlobalDrops[NPCID.SolarGoop] = true;
-                NoGlobalDrops[NPCID.SolarSolenian] = true;
-                NoGlobalDrops[NPCID.SolarSpearman] = true;
-                NoGlobalDrops[NPCID.SolarSroller] = true;
-                NoGlobalDrops[NPCID.NebulaBeast] = true;
-                NoGlobalDrops[NPCID.NebulaBrain] = true;
-                NoGlobalDrops[NPCID.NebulaHeadcrab] = true;
-                NoGlobalDrops[NPCID.NebulaSoldier] = true;
-                NoGlobalDrops[NPCID.MartianDrone] = true;
-                NoGlobalDrops[NPCID.MartianEngineer] = true;
-                NoGlobalDrops[NPCID.MartianOfficer] = true;
-                NoGlobalDrops[NPCID.MartianProbe] = true;
-                NoGlobalDrops[NPCID.MartianSaucer] = true;
-                NoGlobalDrops[NPCID.MartianSaucerCore] = true;
-                NoGlobalDrops[NPCID.MartianSaucerTurret] = true;
-                NoGlobalDrops[NPCID.MartianTurret] = true;
-                NoGlobalDrops[NPCID.MartianWalker] = true;
-                NoGlobalDrops[NPCID.ForceBubble] = true;
-                NoGlobalDrops[NPCID.CultistDragonHead] = true;
-                NoGlobalDrops[NPCID.AncientCultistSquidhead] = true;
-                NoGlobalDrops[NPCID.AncientDoom] = true;
-                NoGlobalDrops[NPCID.AncientLight] = true;
-                NoGlobalDrops[NPCID.Creeper] = true;
-                NoGlobalDrops[NPCID.Sharkron] = true;
-                NoGlobalDrops[NPCID.Sharkron2] = true;
-                NoGlobalDrops[NPCID.DetonatingBubble] = true;
-                NoGlobalDrops[NPCID.DemonTaxCollector] = true;
-                NoGlobalDrops[NPCID.DungeonSpirit] = true;
-                NoGlobalDrops[NPCID.DungeonGuardian] = true;
-                NoGlobalDrops[NPCID.Slimer] = true;
-                NoGlobalDrops[NPCID.Bee] = true;
-                NoGlobalDrops[NPCID.BeeSmall] = true;
-                NoGlobalDrops[NPCID.CrimsonBunny] = true;
-                NoGlobalDrops[NPCID.CrimsonPenguin] = true;
-                NoGlobalDrops[NPCID.CrimsonGoldfish] = true;
-                NoGlobalDrops[NPCID.CorruptBunny] = true;
-                NoGlobalDrops[NPCID.CorruptPenguin] = true;
-                NoGlobalDrops[NPCID.CorruptGoldfish] = true;
-                NoGlobalDrops[NPCID.GoblinArcher] = true;
-                NoGlobalDrops[NPCID.GoblinPeon] = true;
-                NoGlobalDrops[NPCID.GoblinScout] = true;
-                NoGlobalDrops[NPCID.GoblinSorcerer] = true;
-                NoGlobalDrops[NPCID.GoblinSummoner] = true;
-                NoGlobalDrops[NPCID.GoblinThief] = true;
-                NoGlobalDrops[NPCID.GoblinWarrior] = true;
-                NoGlobalDrops[NPCID.BoundGoblin] = true;
-                NoGlobalDrops[NPCID.PirateShip] = true;
-                NoGlobalDrops[NPCID.PirateShipCannon] = true;
-                NoGlobalDrops[NPCID.PirateCaptain] = true;
-                NoGlobalDrops[NPCID.PirateCorsair] = true;
-                NoGlobalDrops[NPCID.PirateCrossbower] = true;
-                NoGlobalDrops[NPCID.PirateDeadeye] = true;
-                NoGlobalDrops[NPCID.PirateDeckhand] = true;
-                NoGlobalDrops[NPCID.SnowmanGangsta] = true;
-                NoGlobalDrops[NPCID.SnowBalla] = true;
-                NoGlobalDrops[NPCID.MisterStabby] = true;
-                NoGlobalDrops[NPCID.MothronEgg] = true;
-                NoGlobalDrops[NPCID.MothronSpawn] = true;
-                NoGlobalDrops[NPCID.RayGunner] = true;
-                NoGlobalDrops[NPCID.Scutlix] = true;
-                NoGlobalDrops[NPCID.ScutlixRider] = true;
-                NoGlobalDrops[NPCID.GrayGrunt] = true;
-                NoGlobalDrops[NPCID.Scarecrow1] = true;
-                NoGlobalDrops[NPCID.Scarecrow2] = true;
-                NoGlobalDrops[NPCID.Scarecrow3] = true;
-                NoGlobalDrops[NPCID.Scarecrow4] = true;
-                NoGlobalDrops[NPCID.Scarecrow5] = true;
-                NoGlobalDrops[NPCID.Scarecrow6] = true;
-                NoGlobalDrops[NPCID.Scarecrow7] = true;
-                NoGlobalDrops[NPCID.Scarecrow8] = true;
-                NoGlobalDrops[NPCID.Scarecrow9] = true;
-                NoGlobalDrops[NPCID.Scarecrow10] = true;
-                NoGlobalDrops[NPCID.Splinterling] = true;
-                NoGlobalDrops[NPCID.Hellhound] = true;
-                NoGlobalDrops[NPCID.Poltergeist] = true;
-                NoGlobalDrops[NPCID.MourningWood] = true;
-                NoGlobalDrops[NPCID.Pumpking] = true;
-                NoGlobalDrops[NPCID.PumpkingBlade] = true;
-                NoGlobalDrops[NPCID.ElfArcher] = true;
-                NoGlobalDrops[NPCID.ElfCopter] = true;
-                NoGlobalDrops[NPCID.ZombieElf] = true;
-                NoGlobalDrops[NPCID.ZombieElfBeard] = true;
-                NoGlobalDrops[NPCID.ZombieElfGirl] = true;
-                NoGlobalDrops[NPCID.GingerbreadMan] = true;
-                NoGlobalDrops[NPCID.Flocko] = true;
-                NoGlobalDrops[NPCID.HeadlessHorseman] = true;
-                NoGlobalDrops[NPCID.Nutcracker] = true;
-                NoGlobalDrops[NPCID.NutcrackerSpinning] = true;
-                NoGlobalDrops[NPCID.Yeti] = true;
-                NoGlobalDrops[NPCID.Krampus] = true;
-                NoGlobalDrops[NPCID.PresentMimic] = true;
-                NoGlobalDrops[NPCID.Everscream] = true;
-                NoGlobalDrops[NPCID.SantaNK1] = true;
-                NoGlobalDrops[NPCID.IceQueen] = true;
-                NoGlobalDrops[NPCID.PrimeCannon] = true;
-                NoGlobalDrops[NPCID.PrimeLaser] = true;
-                NoGlobalDrops[NPCID.PrimeSaw] = true;
-                NoGlobalDrops[NPCID.PrimeVice] = true;
-                NoGlobalDrops[NPCID.SkeletronHand] = true;
-                NoGlobalDrops[NPCID.DD2EterniaCrystal] = true;
-                NoGlobalDrops[NPCID.FungiSpore] = true;
-                NoGlobalDrops[NPCID.Spore] = true;
-                NoGlobalDrops[NPCID.CultistDevote] = true;
-                NoGlobalDrops[NPCID.CultistArcherBlue] = true;
-                NoGlobalDrops[NPCID.BigMimicHallow] = true;
-                NoGlobalDrops[NPCID.BigMimicCorruption] = true;
-                NoGlobalDrops[NPCID.BigMimicCrimson] = true;
-                NoGlobalDrops[NPCID.TargetDummy] = true;
-                NoGlobalDrops[NPCID.DD2LanePortal] = true;
-                NoGlobalDrops[NPCID.BartenderUnconscious] = true;
-                NoGlobalDrops[NPCID.BoundMechanic] = true;
-                NoGlobalDrops[NPCID.BoundWizard] = true;
-                NoGlobalDrops[NPCID.EaterofWorldsHead] = true;
-                NoGlobalDrops[NPCID.EaterofWorldsBody] = true;
-                NoGlobalDrops[NPCID.EaterofWorldsTail] = true;
-                NoGlobalDrops[NPCID.DungeonSpirit] = true;
-                NoGlobalDrops[ModContent.NPCType<Heckto>()] = true;
-                NoGlobalDrops[ModContent.NPCType<Meteor>()] = true;
+                NoGlobalDrops = new List<int>()
+                {
+                    NPCID.MeteorHead,
+                    NPCID.ServantofCthulhu,
+                    NPCID.ChaosBall,
+                    NPCID.BurningSphere,
+                    NPCID.SpikeBall,
+                    NPCID.BlazingWheel,
+                    NPCID.ShadowFlameApparition,
+                    NPCID.VileSpit,
+                    NPCID.BlueSlime,
+                    NPCID.SlimeSpiked,
+                    NPCID.TheHungry,
+                    NPCID.TheHungryII,
+                    NPCID.MoonLordLeechBlob,
+                    NPCID.LeechHead,
+                    NPCID.PlanterasTentacle,
+                    NPCID.GolemFistLeft,
+                    NPCID.GolemFistRight,
+                    NPCID.GolemHead,
+                    NPCID.VortexHornet,
+                    NPCID.VortexHornetQueen,
+                    NPCID.VortexLarva,
+                    NPCID.VortexRifleman,
+                    NPCID.VortexSoldier,
+                    NPCID.StardustCellBig,
+                    NPCID.StardustCellSmall,
+                    NPCID.StardustJellyfishBig,
+                    NPCID.StardustSoldier,
+                    NPCID.StardustSpiderBig,
+                    NPCID.StardustSpiderSmall,
+                    NPCID.StardustWormHead,
+                    NPCID.SolarCorite,
+                    NPCID.SolarCrawltipedeHead,
+                    NPCID.SolarCrawltipedeTail,
+                    NPCID.SolarDrakomire,
+                    NPCID.SolarDrakomireRider,
+                    NPCID.SolarFlare,
+                    NPCID.SolarGoop,
+                    NPCID.SolarSolenian,
+                    NPCID.SolarSroller,
+                    NPCID.NebulaBeast,
+                    NPCID.NebulaBrain,
+                    NPCID.NebulaHeadcrab,
+                    NPCID.NebulaSoldier,
+                    NPCID.LunarTowerNebula,
+                    NPCID.LunarTowerSolar,
+                    NPCID.LunarTowerStardust,
+                    NPCID.LunarTowerVortex,
+                    NPCID.MartianDrone,
+                    NPCID.MartianEngineer,
+                    NPCID.MartianOfficer,
+                    NPCID.MartianProbe,
+                    NPCID.MartianSaucer,
+                    NPCID.MartianSaucerCannon,
+                    NPCID.MartianSaucerCore,
+                    NPCID.MartianSaucerTurret,
+                    NPCID.MartianTurret,
+                    NPCID.MartianWalker,
+                    NPCID.ForceBubble,
+                    NPCID.AncientCultistSquidhead,
+                    NPCID.AncientDoom,
+                    NPCID.AncientLight,
+                    NPCID.Creeper,
+                    NPCID.Sharkron,
+                    NPCID.Sharkron2,
+                    NPCID.DetonatingBubble,
+                    NPCID.DemonTaxCollector,
+                    NPCID.DungeonSpirit,
+                    ModContent.NPCType<Heckto>(),
+                    NPCID.DungeonGuardian,
+                    NPCID.Slimer,
+                    NPCID.Bee,
+                    NPCID.BeeSmall,
+                    NPCID.CrimsonBunny,
+                    NPCID.CrimsonGoldfish,
+                    NPCID.CrimsonPenguin,
+                    NPCID.BigMimicCorruption,
+                    NPCID.BigMimicCrimson,
+                    NPCID.BigMimicHallow,
+                    NPCID.BigMimicJungle,
+                    NPCID.CorruptBunny,
+                    NPCID.CorruptGoldfish,
+                    NPCID.CorruptPenguin,
+                    NPCID.GoblinArcher,
+                    NPCID.GoblinPeon,
+                    NPCID.GoblinScout,
+                    NPCID.GoblinSorcerer,
+                    NPCID.GoblinSummoner,
+                    NPCID.GoblinThief,
+                    NPCID.GoblinWarrior,
+                    NPCID.BoundGoblin,
+                    NPCID.BoundMechanic,
+                    NPCID.BoundWizard,
+                    NPCID.PirateShip,
+                    NPCID.PirateShipCannon,
+                    NPCID.PirateCaptain,
+                    NPCID.PirateCorsair,
+                    NPCID.PirateCrossbower,
+                    NPCID.PirateDeadeye,
+                    NPCID.PirateDeckhand,
+                    NPCID.Parrot,
+                    NPCID.SnowmanGangsta,
+                    NPCID.SnowBalla,
+                    NPCID.MisterStabby,
+                    NPCID.Mothron,
+                    NPCID.MothronEgg,
+                    NPCID.MothronSpawn,
+                    NPCID.RayGunner,
+                    NPCID.Scutlix,
+                    NPCID.ScutlixRider,
+                    NPCID.GrayGrunt,
+                    NPCID.Scarecrow1,
+                    NPCID.Scarecrow2,
+                    NPCID.Scarecrow3,
+                    NPCID.Scarecrow4,
+                    NPCID.Scarecrow5,
+                    NPCID.Scarecrow6,
+                    NPCID.Scarecrow7,
+                    NPCID.Scarecrow8,
+                    NPCID.Scarecrow9,
+                    NPCID.Scarecrow10,
+                    NPCID.Splinterling,
+                    NPCID.Hellhound,
+                    NPCID.Poltergeist,
+                    NPCID.MourningWood,
+                    NPCID.Pumpking,
+                    NPCID.ElfArcher,
+                    NPCID.ElfCopter,
+                    NPCID.ZombieElf,
+                    NPCID.ZombieElfBeard,
+                    NPCID.ZombieElfGirl,
+                    NPCID.GingerbreadMan,
+                    NPCID.Flocko,
+                    NPCID.HeadlessHorseman,
+                    NPCID.Nutcracker,
+                    NPCID.NutcrackerSpinning,
+                    NPCID.Yeti,
+                    NPCID.Krampus,
+                    NPCID.PresentMimic,
+                    NPCID.Everscream,
+                    NPCID.SantaNK1,
+                    NPCID.IceQueen,
+                    NPCID.PrimeCannon,
+                    NPCID.PrimeLaser,
+                    NPCID.PrimeSaw,
+                    NPCID.PrimeVice,
+                    NPCID.SkeletronHand,
+                    NPCID.DD2EterniaCrystal,
+                    NPCID.FungiSpore,
+                    NPCID.Spore,
+                    NPCID.CultistDevote,
+                    NPCID.CultistArcherBlue,
+                    NPCID.BartenderUnconscious,
+                    NPCID.EaterofWorldsHead,
+                    NPCID.EaterofWorldsBody,
+                    NPCID.EaterofWorldsTail,
+                    ModContent.NPCType<Meteor>(),
+                    ModContent.NPCType<RedSprite>(),
+                    ModContent.NPCType<SpaceSquid>(),
+                };
 
                 UnaffectedByWind = new bool[NPCLoader.NPCCount];
 
-                for (int i = 0; i < NPCLoader.NPCCount; i++)
-                {
-                    if (NPCID.Sets.BelongsToInvasionOldOnesArmy[i])
-                    {
-                        UnaffectedByWind[i] = true;
-                        continue;
-                    }
-                    try
-                    {
-                        NPC npc;
-                        if (i > Main.maxNPCTypes)
-                        {
-                            npc = NPCLoader.GetNPC(i).npc;
-                        }
-                        else
-                        {
-                            npc = new NPC();
-                            npc.SetDefaults(i);
-                        }
-                        if (npc.aiStyle != AIStyles.DemonEyeAI && npc.aiStyle != AIStyles.FlyingAI && npc.aiStyle != AIStyles.SpellAI && npc.aiStyle != AIStyles.EnchantedSwordAI && npc.aiStyle != AIStyles.SpiderAI &&
-                            (npc.noGravity || npc.boss))
-                        {
-                            UnaffectedByWind[i] = true;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        UnaffectedByWind[i] = true;
-                        var l = AQMod.GetInstance().Logger;
-                        string npcname;
-                        if (i > Main.maxNPCTypes)
-                        {
-                            string tryName = Lang.GetNPCName(i).Value;
-                            if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
-                            {
-                                npcname = NPCLoader.GetNPC(i).Name;
-                            }
-                            else
-                            {
-                                npcname = tryName + "/" + NPCLoader.GetNPC(i).Name;
-                            }
-                        }
-                        else
-                        {
-                            npcname = Lang.GetNPCName(i).Value;
-                        }
-                        l.Error("An error occured when doing algorithmic checks for sets for {" + npcname + ", ID: " + i + "}");
-                        l.Error(e.Message);
-                        l.Error(e.StackTrace);
-                    }
-                }
+                AutoSets();
 
                 UnaffectedByWind[NPCID.BigMimicCorruption] = true;
                 UnaffectedByWind[NPCID.BigMimicCrimson] = true;
@@ -529,6 +562,8 @@ namespace AQMod
                 UnaffectedByWind[ModContent.NPCType<Meteor>()] = false;
                 UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.SoldierCrab>()] = false;
                 UnaffectedByWind[ModContent.NPCType<BalloonMerchant>()] = false;
+
+                RemoveRepeatingIndicesFromSets();
             }
 
             internal static void UnloadSets()
@@ -540,6 +575,8 @@ namespace AQMod
                 NoMapBlip = null;
                 NoGlobalDrops = null;
                 UnaffectedByWind = null;
+                DealsLessDamageToCata = null;
+                CannotBeMeathooked = null;
             }
 
             public static int CountNPCs(bool[] ruleset)

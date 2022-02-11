@@ -88,6 +88,11 @@ namespace AQMod.Items
                     int index = FindVanillaTooltipLineIndex(tooltips, "Material");
                     tooltips.Insert(index, new TooltipLine(mod, "DemonSiegeUpgrade", Language.GetTextValue("Mods.AQMod.Tooltips.DemonSiegeUpgrade")) { overrideColor = new Color(255, 222, 222), });
                 }
+                if (ModContent.GetInstance<AQConfigClient>().HookBarbBlacklistTooltip && item.shoot > ProjectileID.None && AQProjectile.Sets.HookBarbBlacklist.Contains(item.shoot))
+                {
+                    int index = FindVanillaTooltipLineIndex(tooltips, "Material");
+                    tooltips.Insert(index, new TooltipLine(mod, "HookBarbBlacklist", Language.GetTextValue("Mods.AQMod.Tooltips.HookBarbBlacklist")) { overrideColor = new Color(255, 255, 255), });
+                }
                 if (!PlayerStorage.hoverStorage.IsAir)
                 {
                     var span = PlayerStorage.hoverStorage.TimeSinceStored;

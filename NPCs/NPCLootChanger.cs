@@ -116,7 +116,7 @@ namespace AQMod.NPCs
             {
                 GhostAmuletCheck(npc, aQPlayer);
             }
-            if (!AQNPC.Sets.NoGlobalDrops[npc.type] && !npc.boss && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC)
+            if (!npc.boss && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC && !AQNPC.Sets.NoGlobalDrops.Contains(npc.type))
             {
                 if (aQPlayer.altEvilDrops)
                 {
