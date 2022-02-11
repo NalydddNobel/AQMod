@@ -14,6 +14,9 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 
 # Accessories
 
+ItemName.Thunderbird=Thunderbird
+ItemTooltip.Thunderbird=Enemies below you have a chance to get struck by lightning\nThe lightning becomes more powerful the lower your life
+
 ItemName.CrimtaneBarb=Blood Articulation
 ItemTooltip.CrimtaneBarb={$Mods.AQMod.Tooltips.HookBarb}
 
@@ -412,7 +415,7 @@ ItemTooltip.CrabClock='What time is it? Crabby time.'
 ItemName.OceanRavineWall=Crab Crevice Wall
 
 # Tooltips
-Tooltips.HookBarbBlacklist=Does not get effected by hook barb upgrades
+Tooltips.HookBarbBlacklist=Does not get affected by hook barb upgrades
 Tooltips.HookBarb=Your grappling hooks inflict damage
 Tooltips.DemonSiegeUpgrade=Can be upgraded at a Hell Altar
 Tooltips.DedicatedItem=Dedicated Item
@@ -635,7 +638,7 @@ ClientConfig.DemonSiegeUpgradeTooltip=Demon Siege Upgrade Tooltip
 ClientConfig.DemonSiegeUpgradeTooltipTooltip=Whether or not 'Can be upgraded at a Hell Altar' appears on an item's tooltip if it is upgradeable at the Gore Nest
 
 ClientConfig.HookBarbBlacklistTooltip=Hook Barb Blacklist Tooltip 
-ClientConfig.HookBarbBlacklistTooltipTooltip=Whether or not 'Does not get effected by hook barb upgrades' appears on an item's tooltip if it cannot have hook barb upgrades
+ClientConfig.HookBarbBlacklistTooltipTooltip=Whether or not 'Does not get affected by hook barb upgrades' appears on an item's tooltip if it cannot have hook barb upgrades
 
 ClientConfig.MapBlipColor=Map Blip Color
 ClientConfig.MapBlipColorTooltip=The color of the little blips shown by the Blighted Soul
@@ -918,7 +921,6 @@ ProjectileName.DreadsoulAttack=Dreadsoul
 
 ItemName.RustyKnife=Rusty Knife
 ItemName.Terraroot=Terraroot
-ItemName.Thunderbird=Thunderbird
 
 ItemName.Ultranium=Hyper Crystal
 ItemTooltip.Ultranium=True melee crits on enemies channel the damage to the closest boss\nYour attacks inflict shimmering\n5% increased melee critical strike chance
@@ -1145,7 +1147,6 @@ ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 # Other Accessories 
 ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP when you die with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
 ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
-ItemTooltip.Thunderbird=Gives you a thunderous extra jump that refreshes every 2 seconds\nYou must be moving in a direction to use the jump\nEnemies below you have a chance to get struck by lightning\nThe lightning becomes more powerful the lower your life
 ##############
 # Boss Items #
 ##############

@@ -12,6 +12,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
+using Terraria.Utilities;
 
 namespace AQMod.Items
 {
@@ -166,41 +167,99 @@ namespace AQMod.Items
 
         public static void DrawNarrizuulText(DrawableTooltipLine line)
         {
-            DrawNarrizuulText(line.text, line.X, line.Y, line.rotation, line.origin, line.baseScale);
+            DrawNarrizuulText(line.text, line.X, line.Y, line.rotation, line.origin, line.baseScale, line.overrideColor.GetValueOrDefault(line.color));
         }
 
-        public static void DrawNarrizuulText(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale)
+        public static void DrawNarrizuulText(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
         {
-            var font = Main.fontMouseText;
-            Vector2 center = font.MeasureString(text) / 2f;
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, new Vector2(x, y), Color.Black, rotation, origin, baseScale);
-            var offset = new Vector2(2f, 0);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + offset.RotatedBy(Main.GlobalTime), new Color(255, 0, 0, 0),
-                rotation, origin, baseScale);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + offset.RotatedBy(Main.GlobalTime + MathHelper.TwoPi / 6), new Color(255, 255, 0, 0),
-                rotation, origin, baseScale);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y) + offset.RotatedBy(Main.GlobalTime + MathHelper.TwoPi / 6 * 2), new Color(0, 0, 255, 0),
-                rotation, origin, baseScale);
-
-            if (AQConfigClient.c_EffectQuality < 1f)
+            if (string.IsNullOrWhiteSpace(text)) // since you can rename items.
+            {
                 return;
-
+            }
+            var font = Main.fontMouseText;
+            var size = font.MeasureString(text);
+            var center = size / 2f;
+            var transparentColor = color * 0.4f;
+            transparentColor.A = 0;
             var texture = AQTextures.Lights[LightTex.Spotlight12x66];
-            var spotlightOrigin = new Vector2(6f, 33f);
+            var spotlightOrigin = texture.Size() / 2f;
             float spotlightRotation = rotation + MathHelper.PiOver2;
-            var spotlightEffect = SpriteEffects.None;
-            Main.spriteBatch.Draw(texture, new Vector2(x, y) + center +
-                new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f), -4f +
-                (float)Math.Sin(Main.GlobalTime * 2.3134f)), null, new Color(0, 70, 0, 0), spotlightRotation,
-               spotlightOrigin, new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime * 4f) * 0.145f, center.Y * 0.15f), spotlightEffect, 0f);
-            Main.spriteBatch.Draw(texture, new Vector2(x, y) + center +
-                new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f + 5245f) * 4f, -4f +
-                (float)Math.Sin(Main.GlobalTime * 2.3134f + 12f) * 2f), null, new Color(70, 70, 0, 0), spotlightRotation,
-                spotlightOrigin, new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime + 655f) * 0.2f, center.Y * 0.1435f), spotlightEffect, 0f);
-            Main.spriteBatch.Draw(texture, new Vector2(x, y) + center +
-                new Vector2((float)Math.Sin(Main.GlobalTime * 2.1111f + 12f) * -4f, -4f +
-                (float)Math.Sin(Main.GlobalTime * 2.313f + 5245f) * -1.25f), null, new Color(0, 0, 70, 0), spotlightRotation,
-                spotlightOrigin, new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime * 2f + 777f) * 0.2f, center.Y * 0.25f), spotlightEffect, 0f);
+            var spotlightScale = new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime * 4f) * 0.145f, center.Y * 0.15f);
+
+            // black BG
+            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, Color.Black * 0.3f, rotation,
+            spotlightOrigin, new Vector2(size.X / texture.Width * 2f, center.Y / texture.Height * 2.5f), SpriteEffects.None, 0f);
+            ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, font, text, new Vector2(x, y), Color.Black,
+                rotation, origin, baseScale);
+
+            // particles
+            var rand = new UnifiedRandom(Main.LocalPlayer.name.GetHashCode() + text.GetHashCode());
+            var particleTexture = AQTextures.Lights[LightTex.Spotlight15x15];
+            var particleOrigin = particleTexture.Size() / 2f;
+            int amt = rand.Next((int)size.X / 3, (int)size.X);
+            for (int i = 0; i < amt; i++)
+            {
+                float lifeTime = rand.NextFloat(20f);
+                int baseParticleX = rand.Next(4, (int)size.X - 4);
+                int particleX = baseParticleX + (int)AQUtils.Wave(lifeTime + Main.GlobalTime * rand.NextFloat(2f, 5f), -rand.NextFloat(3f, 10f), rand.NextFloat(3f, 10f));
+                lifeTime += Main.GlobalTime * 2f;
+                lifeTime %= 20f;
+                int particleY = rand.Next(10);
+                float scale = rand.NextFloat(0.2f, 0.4f);
+                if (baseParticleX > 14 && baseParticleX < size.X - 14 && rand.NextBool(6))
+                {
+                    scale *= 2f;
+                }
+                if (lifeTime < 5f)
+                {
+                    var clr = color;
+                    if (lifeTime < 0.3f)
+                    {
+                        clr *= lifeTime / 0.3f;
+                    }
+                    if (lifeTime > MathHelper.PiOver2)
+                    {
+                        float timeMult = (lifeTime - MathHelper.PiOver2) / MathHelper.PiOver2;
+                        scale -= timeMult * 0.4f;
+                        if (scale < 0f)
+                        {
+                            continue;
+                        }
+                        int colorMinusAmount = (int)(timeMult * 255f);
+                        clr.R = (byte)Math.Max(clr.R - colorMinusAmount, 0);
+                        clr.G = (byte)Math.Max(clr.G - colorMinusAmount, 0);
+                        clr.B = (byte)Math.Max(clr.B - colorMinusAmount, 0);
+                        clr.A = (byte)Math.Max(clr.A - colorMinusAmount, 0);
+                        if (clr.R == 0 && clr.G == 0 && clr.B == 0 && clr.A == 0)
+                        {
+                            continue;
+                        }
+                    }
+                    Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr, 0f, particleOrigin, scale, SpriteEffects.None, 0f);
+                }
+            }
+
+            // light effect
+            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, transparentColor * 0.3f, spotlightRotation,
+               spotlightOrigin, spotlightScale * 1.1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, transparentColor * 0.3f, spotlightRotation,
+               spotlightOrigin, spotlightScale * 1.1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, transparentColor * 0.35f, spotlightRotation,
+               spotlightOrigin, spotlightScale * 2f, SpriteEffects.None, 0f);
+
+            // colored text
+            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y), color,
+                rotation, origin, baseScale);
+
+            // glowy effect on text
+            float wave = AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f);
+            for (int i = 1; i <= 2; i++)
+            {
+                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x + wave * 1f * i, y), transparentColor,
+                    rotation, origin, baseScale);
+                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x - wave * 1f * i, y), transparentColor,
+                    rotation, origin, baseScale);
+            }
         }
 
         internal static string UseTimeAnimationTooltip(float useAnimation)

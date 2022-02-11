@@ -66,7 +66,6 @@ namespace AQMod
         public int dartHeadDelay;
         public int dartTrapHatTimer;
         public int extraFlightTime;
-        public int thunderbirdJumpTimer;
         public int thunderbirdLightningTimer;
         public bool dreadsoul;
         public bool arachnotronArms;
@@ -429,11 +428,6 @@ namespace AQMod
             if (!dartHead)
                 dartTrapHatTimer = 240;
             dartHead = false;
-            if (thunderbirdJumpTimer > 0)
-            {
-                dashAvailable = false;
-                thunderbirdJumpTimer--;
-            }
             if (thunderbirdLightningTimer > 0)
                 thunderbirdLightningTimer--;
             ResetEffects_HookBarbs();

@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories.Wings
 {
+    [AutoloadEquip(EquipType.Wings)]
     public class Thunderbird : ModItem, IDedicatedItem
     {
         public override void SetDefaults()
@@ -17,44 +18,32 @@ namespace AQMod.Items.Accessories.Wings
             item.value = Item.sellPrice(gold: 20);
         }
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
+                {
+                    tooltips[i].overrideColor = Color.Lerp(new Color(255, 120, 200), new Color(170, 80, 200), AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f));
+                    return;
+                }
+            }
+        }
+
+        public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
+        {
+            if (line.mod == "Terraria" && line.Name == "ItemName")
+            {
+                TooltipText.DrawNarrizuulText(line);
+                return false;
+            }
+            return true;
+        }
+
+        private void UpdateLightning(Player player)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
             var center = player.Center;
-            if (aQPlayer.thunderbirdJumpTimer == 1)
-            {
-                for (int i = 0; i < 15; i++)
-                {
-                    int d = Dust.NewDust(player.position, player.height, player.height, DustID.Electric, 0f, 0f, 0, default(Color), 0.5f); // using height for both width and height to make it square
-                    Main.dust[d].velocity = Vector2.Normalize(Main.dust[d].position - center) * 8f;
-                }
-            }
-            if (aQPlayer.thunderbirdJumpTimer <= 0 && !player.mount.Active && player.wingTime <= 0 && player.velocity.Y != 0f && !player.HasDoubleJumpLeft())
-            {
-                player.canCarpet = false;
-                bool canThunderbirdJump = player.direction == -1 ? player.velocity.X <= -1f : player.velocity.X >= 1f;
-                if (canThunderbirdJump)
-                {
-                    if (Main.rand.NextBool(8))
-                        Dust.NewDust(new Vector2(player.position.X, player.position.Y + player.height), player.width, 10, DustID.Electric, 0f, 0f, 0, default(Color), 0.3f);
-                    if (player.controlJump && player.releaseJump)
-                    {
-                        player.velocity.X = player.direction * player.velocity.X.Abs() * 1.85f;
-                        player.velocity.Y = -14f;
-                        player.fallStart = (int)(player.position.Y / 16f);
-                        aQPlayer.thunderbirdJumpTimer = 120;
-                        aQPlayer.thunderbirdLightningTimer = 240;
-                        int dustWidth = player.width * 3;
-                        int dustHeight = player.height / 2 + 2;
-                        var dustPos = new Vector2(player.Center.X - dustWidth / 2, player.position.Y + player.height - 10f);
-                        Main.PlaySound(SoundID.DoubleJump, player.position);
-                        for (int i = 0; i < 50; i++)
-                        {
-                            Dust.NewDust(dustPos, dustWidth, dustHeight, DustID.Electric);
-                        }
-                    }
-                }
-            }
             if (aQPlayer.thunderbirdLightningTimer <= 0)
             {
                 var validNPCs = new List<int>();
@@ -116,6 +105,27 @@ namespace AQMod.Items.Accessories.Wings
                 }
             }
         }
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.wingTimeMax = 200;
+            UpdateLightning(player);
+        }
+
+        public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
+        {
+            ascentWhenFalling = 1.5f;
+            ascentWhenRising = 0.3f;
+            maxCanAscendMultiplier = 1.5f;
+            maxAscentMultiplier = 4f;
+            constantAscend = 0.3f;
+        }
+
+        public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
+        {
+            speed = 16f;
+            acceleration *= 4f;
+        }
+
 
         Color IDedicatedItem.Color => new Color(200, 125, 255, 255);
     }

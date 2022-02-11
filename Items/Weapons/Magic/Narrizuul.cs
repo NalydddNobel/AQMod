@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,6 +32,18 @@ namespace AQMod.Items.Weapons.Magic
             item.value = Item.sellPrice(gold: 50);
             item.mana = 7;
             item.shoot = ModContent.ProjectileType<Projectiles.Magic.Narrizuul>();
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
+                {
+                    tooltips[i].overrideColor = Color.Lerp(Color.Violet, Color.MediumPurple, AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f));
+                    return;
+                }
+            }
         }
 
         public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
