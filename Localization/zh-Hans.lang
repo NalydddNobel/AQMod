@@ -14,6 +14,24 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 
 # Accessories
 
+ItemName.Thunderbird=雷鸟
+ItemTooltip.Thunderbird=位于你下方的敌人有几率受到闪电劈击\n你的生命值越低, 闪电的威力就越强大
+
+ItemName.CrimtaneBarb=血音之结
+ItemTooltip.CrimtaneBarb={$Mods.AQMod.Tooltips.HookBarb}
+
+ItemName.DemoniteBarb=暗影之缚
+ItemTooltip.DemoniteBarb={$Mods.AQMod.Tooltips.HookBarb}
+
+ItemName.MetalBarb=金属刺钩
+ItemTooltip.MetalBarb={$Mods.AQMod.Tooltips.HookBarb}
+
+ItemName.CrabBarb=螃蟹刺钩
+ItemTooltip.CrabBarb=你的钩爪会造成中毒和伤害
+
+ItemName.Meathook=血肉刺钩
+ItemTooltip.Meathook=你的钩爪会抓住敌人
+
 ItemName.CelesteTorus=星际圆环
 ItemTooltip.CelesteTorus=在你的周围召唤一圈环绕着你的球体\n球体的半径、速度、伤害和击退都根据你不同的属性决定
 ProjectileName.CelesteTorusCollider=星际法球
@@ -31,7 +49,7 @@ ItemName.LightAmulet=光明护符
 ItemTooltip.LightAmulet=降低10%光明敌人对你造成的伤害\n增加5点护甲穿透
 
 ItemName.NeutralityAmulet=中性护符
-ItemTooltip.NeutralityAmulet=降低10%光明和不洁敌人对你造成的伤害\n增加5点护甲穿透\n你的钩爪会造成伤害
+ItemTooltip.NeutralityAmulet=降低10%光明和不洁敌人对你造成的伤害\n增加5点护甲穿透\n受到伤害后增加移动速度\n增加20点最大法力值
 
 ItemName.GlowString=发光细绳
 ItemTooltip.GlowString=你的悠悠球线在黑暗中会发出光亮\n增加悠悠球距离
@@ -53,16 +71,6 @@ ItemTooltip.FreezingAmulet=阻止大多数种类的冻结\n降低来自紊流风
 
 ItemName.NormalizerAmulet=化一护符
 ItemTooltip.NormalizerAmulet=阻止大多数种类的冻结\n降低来自紊流风暴敌人的温度源强度
-
-ItemName.CrimtaneBarb=猩红刺钩
-ItemTooltip.CrimtaneBarb=你的钩爪会造成伤害
-ItemName.DemoniteBarb=恶魔刺钩
-ItemTooltip.DemoniteBarb=你的钩爪会造成伤害
-ItemName.MetalBarb=金属刺钩
-ItemTooltip.MetalBarb=你的钩爪会造成伤害
-
-ItemName.CrabBarb=螃蟹刺钩
-ItemTooltip.CrabBarb=你的钩爪会造成中毒和伤害
 
 ItemName.MinersFlashlight=矿工的手电筒
 ItemTooltip.MinersFlashlight=你会向你的光标位置发射一束光\n被光照到的宝藏会发光\n关闭饰品可见性来禁用手电筒效果
@@ -407,6 +415,8 @@ ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
 ItemName.OceanRavineWall=蟹状裂隙墙
 
 # Tooltips
+Tooltips.HookBarbBlacklist=不受刺钩升级效果影响
+Tooltips.HookBarb=你的钩爪会造成伤害
 Tooltips.DemonSiegeUpgrade=可在地狱祭坛处升级
 Tooltips.DedicatedItem=专属物品
 Tooltips.Unobtainable=自另一宇宙形成的遗物
@@ -626,6 +636,9 @@ ClientConfig.XmasProgressMeterOverrideTooltip=决定是否让种子 "Aequus Xmas
 
 ClientConfig.DemonSiegeUpgradeTooltip=恶魔围攻升级描述
 ClientConfig.DemonSiegeUpgradeTooltipTooltip=决定可在血巢处升级的物品的物品描述中是否出现'可在地狱祭坛处升级'
+
+ClientConfig.HookBarbBlacklistTooltip=刺钩黑名单描述
+ClientConfig.HookBarbBlacklistTooltipTooltip=决定无法升级的刺钩的物品描述中是否出现'不受钩刺升级效果影响'
 
 ClientConfig.MapBlipColor=地图光点颜色
 ClientConfig.MapBlipColorTooltip=折磨之魂显示的地图光点的颜色
@@ -908,7 +921,6 @@ ProjectileName.DreadsoulAttack=惊惧之魂
 
 ItemName.RustyKnife=生锈的刀
 ItemName.Terraroot=地之根茎
-ItemName.Thunderbird=雷鸟塑像
 
 ItemName.Ultranium=超载晶体
 ItemTooltip.Ultranium=真近战攻击造成暴击时会将伤害弹射至离你最近的Boss\n击中敌人会对其造成闪光减益\n增加5%近战暴击率
@@ -1135,7 +1147,6 @@ ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 # Other Accessories 
 ItemTooltip.RustyKnife=召唤你的朋友为你而战\n当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间\n'为什么你要拿着锋利的刀锋而不是刀把?'
 ItemTooltip.Terraroot=有几率将火枪子弹转化为叶绿弹
-ItemTooltip.Thunderbird=使你获得雷鸣之跃能力, 每2秒刷新一次\n你必须朝着某个方向移动才能使用跳跃\n在你下边的敌人会遭受雷击\n你的生命值越低, 雷击的频率越高
 ##############
 # Boss Items #
 ##############
