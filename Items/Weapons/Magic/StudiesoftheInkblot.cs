@@ -63,5 +63,18 @@ namespace AQMod.Items.Weapons.Magic
                 AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/TouhouShoot", 0.5f, -0.01f);
             return false;
         }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.LunarFlareBook); 
+            r.AddIngredient(ItemID.SpellTome);
+            r.AddIngredient(ItemID.Shrimp);
+            r.AddIngredient(ItemID.SuspiciousLookingEye);
+            r.AddIngredient(ItemID.BlackInk, 5);
+            r.SetResult(this);
+            r.AddTile(TileID.LunarCraftingStation);
+            r.AddRecipe();
+        }
     }
 }

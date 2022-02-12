@@ -29,6 +29,11 @@ namespace AQMod.Items.Accessories.Wings
             item.value = Item.sellPrice(gold: 20);
         }
 
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return (lightColor * 0.2f).UseA(255);
+        }
+
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             var clr = Narrizuul.TextColor() * 0.2f;
@@ -38,8 +43,8 @@ namespace AQMod.Items.Accessories.Wings
             clr.A = 0;
             for (int i = 1; i <= 4; i++)
             {
-                spriteBatch.Draw(texture, position + n * i, frame, clr, 0f, origin, scale, SpriteEffects.None, 0);
-                spriteBatch.Draw(texture, position - n * i, frame, clr, 0f, origin, scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, position + n * i * scale, frame, clr, 0f, origin, scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, position - n * i * scale, frame, clr, 0f, origin, scale, SpriteEffects.None, 0);
             }
         }
 
@@ -55,8 +60,8 @@ namespace AQMod.Items.Accessories.Wings
             clr.A = 0;
             for (int i = 1; i <= 4; i++)
             {
-                spriteBatch.Draw(texture, position + n * i, frame, clr, rotation, origin, scale, SpriteEffects.None, 0);
-                spriteBatch.Draw(texture, position - n * i, frame, clr, rotation, origin, scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, position + n * i * scale, frame, clr, rotation, origin, scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, position - n * i * scale, frame, clr, rotation, origin, scale, SpriteEffects.None, 0);
             }
         }
 
@@ -155,17 +160,17 @@ namespace AQMod.Items.Accessories.Wings
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            ascentWhenFalling = 1.5f;
-            ascentWhenRising = 0.3f;
-            maxCanAscendMultiplier = 1.5f;
-            maxAscentMultiplier = 4f;
-            constantAscend = 0.3f;
+            ascentWhenFalling = 0.5f;
+            ascentWhenRising = 0.15f;
+            maxCanAscendMultiplier = 1f;
+            maxAscentMultiplier = 2.5f;
+            constantAscend = 0.125f;
         }
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
         {
-            speed = 16f;
-            acceleration *= 4f;
+            speed = 12f;
+            acceleration *= 3f;
         }
 
 
