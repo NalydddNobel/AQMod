@@ -18,6 +18,11 @@ namespace AQMod.Items.Armor.Lightbulb
             item.value = Item.sellPrice(silver: 30);
         }
 
+        public override bool DrawHead()
+        {
+            return false;
+        }
+
         public override void UpdateEquip(Player player)
         {
             player.manaRegenBonus++;

@@ -21,6 +21,12 @@ namespace AQMod.Items.Armor.Lightbulb
             return true;
         }
 
+        public override void DrawHands(ref bool drawHands, ref bool drawArms)
+        {
+            drawHands = true;
+            drawArms = false;
+        }
+
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
