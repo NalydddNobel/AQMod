@@ -17,7 +17,7 @@ namespace AQMod.Projectiles
 
         public override void AI()
         {
-            projectile.velocity.Y += 0.2f;
+            projectile.velocity.Y += 0.02f;
             projectile.rotation += projectile.velocity.X * 0.0628f;
         }
 

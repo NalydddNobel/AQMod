@@ -9,16 +9,22 @@ using Terraria.ModLoader;
 namespace AQMod.Items.Armor.Arachnotron
 {
     [AutoloadEquip(EquipType.Head)]
-    public class ArachnotronVisor : ModItem, IItemOverlaysWorldDraw
+    public class AArachnotronVisor : ModItem, IItemOverlaysWorldDraw
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<ArachnotronVisor>("_Glow"));
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath2<AArachnotronVisor>("_Glow"));
         IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+
+        public override bool Autoload(ref string name)
+        {
+            name = "ArachnotronVisor";
+            return base.Autoload(ref name);
+        }
 
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
             {
-                AQMod.ArmorOverlays.AddHeadOverlay<ArachnotronVisor>(new ArachnotronVisorOverlay());
+                AQMod.ArmorOverlays.AddHeadOverlay<AArachnotronVisor>(new ArachnotronVisorOverlay());
             }
         }
 
@@ -33,7 +39,7 @@ namespace AQMod.Items.Armor.Arachnotron
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == ModContent.ItemType<ArachnotronRibcage>() && legs.type == ModContent.ItemType<ArachnotronRevvers>();
+            return body.type == ModContent.ItemType<ABArachnotronRibcage>() && legs.type == ModContent.ItemType<ArachnotronRevvers>();
         }
 
         public override void UpdateEquip(Player player)

@@ -14,6 +14,13 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 
 # Accessories
 
+ItemName.RustyKnife=Rusty Knife
+ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP on fatal hits with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
+ProjectileName.FriendMinion=Friend
+ProjectileName.KelBall=Kel's Ball
+BuffName.Omori=Friends
+BuffDescription.Omori=Revives you with 1 HP on fatal hits with a 5 minute cooldown
+
 ItemName.CrimtaneBarb=Blood Articulation
 ItemTooltip.CrimtaneBarb={$Mods.AQMod.Tooltips.HookBarb}
 
@@ -113,6 +120,12 @@ ItemName.NuclearFeather=Nuclear Feather
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
 
 # Weapons
+ItemName.MonoxiderStaff=Monoxider Staff
+ItemTooltip.MonoxiderStaff=Summons a monoxide finch to fight for you
+ProjectileName.MonoxiderMinion=Monoxider
+BuffName.MonoxiderBuff=Monoxider
+BuffDescription.MonoxiderBuff=The monoxider will fight for you
+
 ItemName.ScarletSea=Scarlet Sea
 ItemTooltip.ScarletSea=Summons two blood orbs
 
@@ -929,7 +942,6 @@ ItemName.Dreadsoul=Dreadsoul
 ItemTooltip.Dreadsoul=Upon death enemies will release 6 dreaded souls which will target enemies of the same type\nDungeon Spirit enemies are now friendly
 ProjectileName.DreadsoulAttack=Dreadsoul
 
-ItemName.RustyKnife=Rusty Knife
 ItemName.Terraroot=Terraroot
 
 ItemName.Ultranium=Hyper Crystal
@@ -1073,9 +1085,9 @@ ItemName.ArgonSpear=Argon Spear
 ItemName.HorizonSkies=Horizon Skies
 # Yoyos
 ItemName.Aphrodite=Aphrodite
-ItemTooltip.Aphrodite=Give enemies lovestruck which decreases their damage inflicted by 10% and increases their damage taken by 10%
+ItemTooltip.Aphrodite=Inflicts strong love which decreases enemy stats
 ItemName.Venus=Venus
-ItemTooltip.Venus=Give enemies lovestruck which decreases their damage inflicted by 10% and increases their damage taken by 10%\nHas a chance to poison enemies if they are very close to you
+ItemTooltip.Venus=Inflicts strong love which decreases enemy stats\nHas a chance to poison enemies if they are very close to you
 
 ItemName.Dysesthesia=Dysesthesia
 ItemTooltip.Dysesthesia=Summons demon scythes\nInflicts enemies with corrupt hellfire if they are very close
@@ -1109,10 +1121,6 @@ ItemName.SpaceShot=Space Shot
 # Sentry
 ItemName.LotusStaff=Lotus Staff
 # Other Summon
-ItemName.MonoxiderStaff=Monoxider Staff
-ItemTooltip.MonoxiderStaff=Summons a monoxide finch to fight for you
-BuffName.Monoxider=Monoxider
-BuffDescription.Monoxider=The monoxider will fight for you
 ItemName.CrimsonHandStaff=Crimson Hand Staff
 BuffName.CrimsonHand=Crimson Hand
 BuffDescription.CrimsonHand=The crimson hand will fight for you
@@ -1151,7 +1159,6 @@ ItemTooltip.MoonShoes=Allows slow fall\nHold down to revert to regular gravity a
 ItemTooltip.BlurryDiscountCard=Shops have slightly lower prices\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'It's hard to read but they will give you a discount anyways'
 ItemTooltip.BusinessCard=Shops have even lower prices\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'Consider everything a business expense'
 # Other Accessories 
-ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP when you die with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
 ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
 ##############
 # Boss Items #
@@ -1348,15 +1355,12 @@ ProjectileName.LotusShot=Lotus
 ProjectileName.Starite=Starite
 ProjectileName.StariteLeader=Starite
 ProjectileName.CrimsonHand=Crimson Hand
-ProjectileName.Monoxider=Monoxider
 
 # Misc
 ProjectileName.FertilePowder=Fertile Powder
-ProjectileName.Friend=Friend
 ProjectileName.FriendlyWind=Friendly Wind
 ProjectileName.GoldPowder=Gold Powder
 ProjectileName.HyperCrystalExplosion=Hyper Crystal
-ProjectileName.KelBall=Kel's Ball
 
 # Pets
 ProjectileName.ATM=ATM

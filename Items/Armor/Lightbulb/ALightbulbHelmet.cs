@@ -7,8 +7,14 @@ using Terraria.ModLoader;
 namespace AQMod.Items.Armor.Lightbulb
 {
     [AutoloadEquip(EquipType.Head)]
-    public class LightbulbHelmet : ModItem
+    public class ALightbulbHelmet : ModItem
     {
+        public override bool Autoload(ref string name)
+        {
+            name = "LightbulbHelmet";
+            return base.Autoload(ref name);
+        }
+
         public override void SetDefaults()
         {
             item.width = 20;

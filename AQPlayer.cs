@@ -1,5 +1,6 @@
 ﻿using AQMod.Buffs;
 using AQMod.Buffs.Debuffs;
+using AQMod.Buffs.Summon;
 using AQMod.Buffs.Temperature;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
@@ -12,6 +13,7 @@ using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
+using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.Tools;
 using AQMod.NPCs;
@@ -71,6 +73,7 @@ namespace AQMod
         public bool arachnotronArms;
         public bool setArachnotron;
         public bool omori;
+        public bool omoriEffect;
         public int omoriDeathTimer;
         public int spelunkerEquipTimer;
         public bool omegaStarite;
@@ -215,6 +218,7 @@ namespace AQMod
         {
             ResetEffects_Debuffs();
             omori = false;
+            omoriEffect = false;
             blueSpheres = false;
             monoxiderCarry = 0;
             temperature = 0;
@@ -369,6 +373,7 @@ namespace AQMod
             arachnotronArms = false;
             setArachnotron = false;
             omori = false;
+            omoriEffect = false;
             omegaStarite = false;
             lootIterations = 0;
             featherflightAmulet = false;
@@ -776,7 +781,7 @@ namespace AQMod
         public override void PostUpdateBuffs()
         {
             monoxiderCarry = 0;
-            var monoxider = ModContent.ProjectileType<Monoxider>();
+            var monoxider = ModContent.ProjectileType<MonoxiderMinion>();
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile p = Main.projectile[i];
@@ -907,7 +912,7 @@ namespace AQMod
                 if (omoriDeathTimer == 0 && Main.myPlayer == player.whoAmI)
                     Main.PlaySound(SoundID.MaxMana, (int)player.position.X, (int)player.position.Y, 1, 0.85f, -6f);
             }
-            int type = ModContent.ProjectileType<Friend>();
+            int type = ModContent.ProjectileType<FriendMinion>();
             if (player.ownedProjectileCounts[type] < 3)
             {
                 for (int i = 0; i < Main.maxProjectiles; i++)
@@ -915,6 +920,7 @@ namespace AQMod
                     if (Main.projectile[i].active && Main.projectile[i].type == type && Main.projectile[i].owner == player.whoAmI)
                         Main.projectile[i].Kill();
                 }
+                int damage = GetDamage(player, 66, ModContent.ItemType<RustyKnife>(), summon: true);
                 for (int i = 0; i < 3; i++)
                 {
                     Projectile.NewProjectile(player.Center, Vector2.Zero, type, 66, 4f, player.whoAmI, 1f + i);
@@ -933,12 +939,15 @@ namespace AQMod
             }
             if (omori)
             {
+                player.AddBuff(ModContent.BuffType<Omori>(), omoriDeathTimer);
                 UpdateOmoriPets();
             }
             else
             {
                 if (omoriDeathTimer <= 0)
                     omoriDeathTimer = 1;
+                else 
+                    player.AddBuff(ModContent.BuffType<Omori>(), omoriDeathTimer);
             }
             if (antiGravityItems)
             {
@@ -1424,7 +1433,7 @@ namespace AQMod
 
         public int GetCelesteTorusMaxRadius(float playerPercent)
         {
-            return (int)((float)Math.Sqrt(player.width * player.height) + 20f + player.wingTimeMax * 0.15f + player.wingTime * 0.15f + (1f - playerPercent) * 90f + player.statDefense);
+            return Math.Min((int)((float)Math.Sqrt(player.width * player.height) + 20f + player.wingTimeMax * 0.15f + player.wingTime * 0.15f + (1f - playerPercent) * 90f + player.statDefense), 600);
         }
 
         public int GetCelesteTorusDamage()
@@ -1614,6 +1623,91 @@ namespace AQMod
         public static int AccessorySlots(Player player)
         {
             return 8 + player.extraAccessorySlots;
+        }
+
+        public static int GetDamage(Player player, int damage, int itemType = -1, bool melee = false, bool ranged = false, bool magic = false, bool summon = false, bool throwing = false, bool forceIgnoreDamageModifiers = false)
+        {
+            float add = player.allDamage;
+            float mult = player.allDamageMult;
+            Item item = null;
+            if (itemType != -1)
+            {
+                item = new Item();
+                item.SetDefaults(itemType);
+            }
+            
+            if (melee)
+            {
+                add += player.meleeDamage - 1f;
+                mult *= player.meleeDamageMult;
+            }
+
+            if (ranged)
+            {
+                add += player.rangedDamage - 1f;
+                mult *= player.rangedDamageMult;
+                if (itemType != -1)
+                {
+                    if (item.useAmmo == AmmoID.Arrow || item.useAmmo == AmmoID.Stake)
+                    {
+                        mult *= player.arrowDamage;
+                    }
+
+                    if (item.useAmmo == AmmoID.Arrow && player.archery)
+                    {
+                        mult *= 1.2f;
+                    }
+
+                    if (item.useAmmo == AmmoID.Bullet || item.useAmmo == AmmoID.CandyCorn)
+                    {
+                        mult *= player.bulletDamage;
+                    }
+
+                    if (item.useAmmo == AmmoID.Rocket || item.useAmmo == AmmoID.StyngerBolt || item.useAmmo == AmmoID.JackOLantern || item.useAmmo == AmmoID.NailFriendly)
+                    {
+                        mult *= player.rocketDamage;
+                    }
+                }
+            }
+
+            if (magic)
+            {
+                add += player.magicDamage - 1f;
+                mult *= player.magicDamageMult;
+            }
+
+            if (summon)
+            {
+                add += player.minionDamage - 1f;
+                mult *= player.minionDamageMult;
+            }
+
+            if (throwing)
+            {
+                add += player.thrownDamage - 1f;
+                mult *= player.thrownDamageMult;
+            }
+
+            if (itemType == -1 || forceIgnoreDamageModifiers)
+            {
+                return GetDamage(damage, add, mult, 0f);
+            }
+
+            if (item.modItem?.IgnoreDamageModifiers ?? false)
+            {
+                return damage;
+            }
+
+            float flat = 0f;
+            CombinedHooks.ModifyWeaponDamage(player, item, ref add, ref mult, ref flat);
+            damage = GetDamage(damage, add, mult, flat);
+            CombinedHooks.GetWeaponDamage(player, item, ref damage);
+            return Math.Max(0, damage);
+        }
+        
+        public static int GetDamage(int damage, float add, float mult, float flat)
+        {
+            return (int)(damage * add * mult + 5E-06f + flat);
         }
     }
 }

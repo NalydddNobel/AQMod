@@ -1,5 +1,5 @@
 ﻿[c/ffff64:Overview]
-Aequus is a Terraria content mod which adds new items, enemies, and loot.
+Aequus is a Terraria content mod which focuses on adding experimental content, like new items, enemies, and loot!
 
 The mod's assets are extractable
 

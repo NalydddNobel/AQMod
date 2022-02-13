@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Summon
 {
-    public class Monoxider : ModBuff
+    public class MonoxiderBuff : ModBuff
     {
         public override void SetDefaults()
         {
@@ -14,7 +14,7 @@ namespace AQMod.Buffs.Summon
         public override void Update(Player player, ref int buffIndex)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.Monoxider>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.MonoxiderMinion>()] > 0)
             {
                 aQPlayer.monoxiderBird = true;
             }

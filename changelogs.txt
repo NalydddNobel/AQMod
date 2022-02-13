@@ -1,3 +1,38 @@
+####### 1.4.1 #######
+
+Additions:
+Added the Meathook, an item sold by the Memorialist
+Added Summit Dye, a rare drop from Hardmode Aequus Boss' Treasure Bags (So just Omega Starite)
+
+Added a new rarity which is given to Narrizuul, Thunderbird, and the Baguette
+
+Changes:
+Renamed the Demonite Barb to "Dark Tether"
+Renamed the Crimtane Barb to "Blood Articulation"
+The Demonite and Crimtane Barbs now use the Metal Barb in their recipes, and no longer require obsidian 
+The Metal Barb's recipe is now the exact same as the Grappling Hook's recipe
+
+The Thunderbird is now a pair of wings
+Resprited Thunderbird
+
+Gave the Studies of the Inkblot a recipe
+
+Resprited the Lightbulb armor set
+
+The Rusty Knife's Kel minion's attack greatly disobeys gravity now
+The Rusty Knife now lists its damage, and also scales with summoner stats 
+The Rusty Knife now modifies how you look visually
+* (if marked as visible or put in vanity slot)
+
+Fixes:
+Arachnotron Ribcage's arachnotron arm minion no longer breaks tiles (like vines and pots)
+The Interstellar Ring's radius now has a cap 
+* (only visible if you have overpowered accessories equipped) 
+Fixed some minor issues with the Monoxider and other minions
+The Monoxide Hat should no longer be forced upon your head if you are using a chomper and monoxider at the same time
+The Fishy Fins now properly get become transparent in your after-images
+Fixed a crash regarding the Mothman Mask
+
 ####### 1.4 #######
 
 Additions:

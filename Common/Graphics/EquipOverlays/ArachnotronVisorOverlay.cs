@@ -9,7 +9,7 @@ namespace AQMod.Common.Graphics.PlayerEquips
 {
     public class ArachnotronVisorOverlay : EquipHeadOverlay
     {
-        public ArachnotronVisorOverlay() : base(ModContent.GetTexture(AQUtils.GetPath<ArachnotronVisor>("_HeadGlow")))
+        public ArachnotronVisorOverlay() : base(ModContent.GetTexture(AQUtils.GetPath2<AArachnotronVisor>("_HeadGlow")))
         {
         }
 

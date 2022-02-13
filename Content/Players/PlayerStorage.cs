@@ -201,7 +201,6 @@ namespace AQMod.Content.Players
             var tagList = tag.GetList<TagCompound>("HermitCrab");
             if (tagList != null && tagList.Count != 0)
             {
-                AQMod.GetInstance().Logger.Info("Loading hermit crab data!");
                 HermitCrab = new HermitCrabStorage[MaxHermitCrabStorageItems];
                 for (int i = 0; i < tagList.Count; i++)
                 {
@@ -216,7 +215,6 @@ namespace AQMod.Content.Players
                     }
                 }
             }
-            AQMod.GetInstance().Logger.Info("Leaving load method..");
         }
 
         public static void ManageMiscThingsToPreventBugsHopefully()

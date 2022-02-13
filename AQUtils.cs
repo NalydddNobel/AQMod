@@ -548,6 +548,43 @@ namespace AQMod
             return ms.ToArray();
         }
 
+        public static string GetPath2<T>(string extra) where T : class
+        {
+            return GetPath2<T>() + extra;
+        }
+
+
+        /// <summary>
+        /// Similar to GetPath, except it tries to get an instance of the class T and check if it has a "Name" property, if so, use that as the end of the path instead of the type name
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static string GetPath2<T>() where T : class
+        {
+            return typeof(T).Namespace.Replace('.', '/') + "/" + GetName2<T>();
+        }
+
+        public static string GetName2<T>() where T : class
+        {
+            try
+            {
+                var instance = ModContent.GetInstance<T>();
+                if (instance != null)
+                {
+                    var nameField = typeof(T).GetProperty("Name", BindingFlags.Public | BindingFlags.Instance);
+                    if (nameField != null)
+                    {
+                        return (string)nameField.GetGetMethod(nonPublic: false).Invoke(instance, null);
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return typeof(T).Name;
+        }
+
         public static string GetPath<T>()
         {
             return GetPath(typeof(T));

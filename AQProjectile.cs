@@ -41,7 +41,7 @@ namespace AQMod
                 DamageReductionExtractor[ProjectileID.CrimsandBallFalling] = true;
 
                 MinionHeadType = new bool[ProjectileLoader.ProjectileCount];
-                MinionHeadType[ModContent.ProjectileType<Projectiles.Summon.Monoxider>()] = true;
+                MinionHeadType[ModContent.ProjectileType<Projectiles.Summon.MonoxiderMinion>()] = true;
 
                 MinionChomperType = new bool[ProjectileLoader.ProjectileCount];
                 MinionChomperType[ModContent.ProjectileType<Projectiles.Summon.Chomper>()] = true;

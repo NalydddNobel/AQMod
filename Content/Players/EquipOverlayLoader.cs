@@ -25,22 +25,22 @@ namespace AQMod.Content.Players
 
         public void AddOverlay<T>(EquipOverlay overlay, EquipLayering type) where T : ModItem
         {
-            _overlays[(byte)type].Add(typeof(T).Name, overlay);
+            _overlays[(byte)type].Add(AQUtils.GetName2<T>(), overlay);
         }
 
         public void AddHeadOverlay<T>(EquipHeadOverlay overlay) where T : ModItem
         {
-            _overlays[(byte)EquipLayering.Head].Add(typeof(T).Name, overlay);
+            _overlays[(byte)EquipLayering.Head].Add(AQUtils.GetName2<T>(), overlay);
         }
 
         public void AddBodyOverlay<T>(EquipBodyOverlay overlay) where T : ModItem
         {
-            _overlays[(byte)EquipLayering.Body].Add(typeof(T).Name, overlay);
+            _overlays[(byte)EquipLayering.Body].Add(AQUtils.GetName2<T>(), overlay);
         }
 
         public void AddWingsOverlay<T>(EquipWingsOverlay overlay) where T : ModItem
         {
-            _overlays[(byte)EquipLayering.Wings].Add(typeof(T).Name, overlay);
+            _overlays[(byte)EquipLayering.Wings].Add(AQUtils.GetName2<T>(), overlay);
         }
 
         /// <summary>

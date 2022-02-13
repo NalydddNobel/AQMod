@@ -8,16 +8,22 @@ using Terraria.ModLoader;
 namespace AQMod.Items.Armor.Arachnotron
 {
     [AutoloadEquip(EquipType.Body)]
-    public class ArachnotronRibcage : ModItem, IItemOverlaysWorldDraw
+    public class ABArachnotronRibcage : ModItem, IItemOverlaysWorldDraw
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<ArachnotronRibcage>("_Glow"));
+        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath2<ABArachnotronRibcage>("_Glow"));
         IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+
+        public override bool Autoload(ref string name)
+        {
+            name = "ArachnotronRibcage";
+            return base.Autoload(ref name);
+        }
 
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
             {
-                AQMod.ArmorOverlays.AddBodyOverlay<ArachnotronRibcage>(new ArachnotronRibcageOverlay());
+                AQMod.ArmorOverlays.AddBodyOverlay<ABArachnotronRibcage>(new ArachnotronRibcageOverlay());
             }
         }
 

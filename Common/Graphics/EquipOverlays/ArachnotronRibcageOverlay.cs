@@ -9,7 +9,7 @@ namespace AQMod.Common.Graphics.PlayerEquips
 {
     public class ArachnotronRibcageOverlay : EquipBodyOverlay
     {
-        public ArachnotronRibcageOverlay() : base(ModContent.GetTexture(AQUtils.GetPath<ArachnotronRibcage>("_BodyGlow")))
+        public ArachnotronRibcageOverlay() : base(ModContent.GetTexture(AQUtils.GetPath2<ABArachnotronRibcage>("_BodyGlow")))
         {
         }
 

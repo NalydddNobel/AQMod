@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets.LegacyItemOverlays;
+using AQMod.Buffs.Summon;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -31,8 +32,8 @@ namespace AQMod.Items.Weapons.Summon
             item.value = AQItem.Prices.PillarWeaponValue;
             item.rare = ItemRarityID.Red;
             item.UseSound = SoundID.Item44;
-            item.shoot = ModContent.ProjectileType<Projectiles.Summon.Monoxider>();
-            item.buffType = ModContent.BuffType<Buffs.Summon.Monoxider>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Summon.MonoxiderMinion>();
+            item.buffType = ModContent.BuffType<MonoxiderBuff>();
             item.autoReuse = true;
         }
 
