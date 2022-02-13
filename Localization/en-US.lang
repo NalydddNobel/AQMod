@@ -14,9 +14,6 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 
 # Accessories
 
-ItemName.Thunderbird=Thunderbird
-ItemTooltip.Thunderbird=Enemies below you have a chance to get struck by lightning\nThe lightning becomes more powerful the lower your life
-
 ItemName.CrimtaneBarb=Blood Articulation
 ItemTooltip.CrimtaneBarb={$Mods.AQMod.Tooltips.HookBarb}
 
@@ -78,8 +75,13 @@ ItemTooltip.MinersFlashlight=You emit a stream of light which points towards you
 ItemName.Extractor=Extractor
 ItemTooltip.Extractor=10% increased mining speed\nFalling blocks deal less damage\nExtracting at the Extractinator will show your extractination count 
 
-# Armor
+ItemName.SparrowWings=Sparrow Wings
+ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 
+ItemName.Thunderbird=Thunderbird
+ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\nHas immense horizontal speed!\nHitting enemies strikes them with lightning
+
+# Armor
 ItemName.CrabsonMask=Crabson Mask
 
 ItemName.SteelPlatedChestplate=Steel Plated Chestplate
@@ -168,7 +170,8 @@ BuffName.UmystickDelay=Umystick Delay
 BuffDescription.UmystickDelay=Decreases your mana regen, and you can no longer use the Umystick to double jump
 
 ItemName.Narrizuul=Narrizuul
-ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n'Smells like roses'
+ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n{$Mods.AQMod.Tooltips.Nalyddd}
+ProjectileName.Narrizuul=Narrizuul
 
 ItemName.StudiesoftheInkblot=Studies of the Inkblot
 ItemTooltip.StudiesoftheInkblot='Rorschach in Danmaku'
@@ -216,6 +219,9 @@ ItemName.HealthCursorDye=Health Cursor Dye
 ItemName.ManaCursorDye=Mana Cursor Dye
 ItemName.SwordCursorDye=Sword Cursor Dye
 ItemName.DemonicCursorDye=Demonic Cursor Dye
+
+ItemName.NalydDye=Summit Dye
+ItemTooltip.NalydDye={$Mods.AQMod.Tooltips.Nalyddd}
 
 ItemName.RedSpriteDye=Scorching Dye
 ItemName.FrostbiteDye=Frostbite Dye
@@ -307,6 +313,11 @@ ItemTooltip.Beeswax=Shows the location of any visible Plantera bulbs
 MapLayerToggle.Beeswax='Beeswax'\nShows the location of any visible Plantera bulbs
 
 # Potions
+ItemName.Baguette=Baguette
+ItemTooltip.Baguette=Supreme improvements to all stats\nGreatly improves life regeneration\nThe buff does not go away when you die\n'Cake is just spongy bread'
+BuffName.BaguetteBuff=Baguette
+BuffDescription.BaguetteBuff=Supreme improvements to all stats and greatly improved life regeneration
+
 ItemName.SpoilsPotion=Spoils Potion
 ItemTooltip.SpoilsPotion=Enemies drop twice as much loot
 BuffName.SpoilsPotionBuff=Spoiled
@@ -415,6 +426,7 @@ ItemTooltip.CrabClock='What time is it? Crabby time.'
 ItemName.OceanRavineWall=Crab Crevice Wall
 
 # Tooltips
+Tooltips.Nalyddd='Smells like roses'
 Tooltips.HookBarbBlacklist=Does not get affected by hook barb upgrades
 Tooltips.HookBarb=Your grappling hooks inflict damage
 Tooltips.DemonSiegeUpgrade=Can be upgraded at a Hell Altar
@@ -906,8 +918,6 @@ ItemName.MoonShoes=Moonwalker
 # Shop Cards
 ItemName.BlurryDiscountCard=Blurry Discount Card
 ItemName.BusinessCard=Business Card
-# Wings
-ItemName.SparrowWings=Sparrow Wings
 #
 # Other Accessories
 #
@@ -943,8 +953,6 @@ ItemName.UltimateStarfruit=Ultimate Starfruit
 ##############
 # Buff Items #
 ##############
-ItemName.Baguette=Baguette
-
 ItemName.SuspiciousLookingSteak=Suspicious Looking Steak
 
 # Other Buffs Items
@@ -1142,8 +1150,6 @@ ItemTooltip.MoonShoes=Allows slow fall\nHold down to revert to regular gravity a
 # Shop Cards
 ItemTooltip.BlurryDiscountCard=Shops have slightly lower prices\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'It's hard to read but they will give you a discount anyways'
 ItemTooltip.BusinessCard=Shops have even lower prices\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'Consider everything a business expense'
-# Wings
-ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 # Other Accessories 
 ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP when you die with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
 ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
@@ -1163,7 +1169,6 @@ ItemTooltip.UltimateStarfruit=Left click summons {$Mods.AQMod.NPCName.OmegaStari
 # Buff Items #
 ##############
 # Foods
-ItemTooltip.Baguette='Cake is just spongy bread'
 ItemTooltip.SuspiciousLookingSteak=Gives multiple buffs\n'A curse has been lifted'
 # Other Buffs Items
 ItemTooltip.OpposingPotion=Makes some enemies drop opposing loot
@@ -1331,7 +1336,6 @@ ProjectileName.MagicWand=Magic Wand
 ProjectileName.MagmalbulbiaStaff=Magmalbulbia Staff
 ProjectileName.MagmalbulbiaStaffExplosion=Magmalbulbia Staff
 ProjectileName.MoonMoonMirror=Moonluna Mirror
-ProjectileName.Narrizuul=Narrizuul
 ProjectileName.PentalScythe=Pental Scythe
 ProjectileName.ScarletSea=Scarlet Sea
 ProjectileName.SeltzerRain=Seltzer Rain

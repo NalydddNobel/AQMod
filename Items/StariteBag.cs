@@ -19,6 +19,7 @@ namespace AQMod.Items
 
         public override void OpenBossBag(Player player)
         {
+            AQMod.AequusDeveloperItems(player, hardmode: true);
             if (Main.rand.NextBool(7))
                 player.QuickSpawnItem(ModContent.ItemType<OmegaStariteMask>());
             player.QuickSpawnItem(ModContent.ItemType<CelesteTorus>());

@@ -22,6 +22,9 @@ using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Effects.WorldEffects;
+using AQMod.Items.Accessories.Wings;
+using AQMod.Items.Dyes;
+using AQMod.Items.Potions;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
@@ -924,6 +927,34 @@ namespace AQMod
         public static bool UnderworldCheck()
         {
             return !PolaritiesModSupport.InFractalDimension();
+        }
+
+        public static void AequusDeveloperItems(Player player, bool hardmode)
+        {
+            if (Main.rand.Next(7) > 0)
+            {
+                return;
+            }
+            List<int> items = new List<int>()
+            {
+                ModContent.ItemType<Baguette>(),
+            };
+            if (hardmode)
+            {
+                items.Add(ModContent.ItemType<NalydDye>());
+                if (NPC.downedMechBoss1 || NPC.downedMechBoss2 || NPC.downedMechBoss3)
+                {
+                    items.Add(ModContent.ItemType<Thunderbird>());
+                }
+            }
+            if (items.Count == 0)
+            {
+                player.QuickSpawnItem(items[0]);
+            }
+            else
+            {
+                player.QuickSpawnItem(items[Main.rand.Next(items.Count)]);
+            }
         }
     }
 }

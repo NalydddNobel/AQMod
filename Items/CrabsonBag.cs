@@ -18,6 +18,7 @@ namespace AQMod.Items
 
         public override void OpenBossBag(Player player)
         {
+            AQMod.AequusDeveloperItems(player, hardmode: false);
             player.QuickSpawnItem(ModContent.ItemType<Crabax>());
             player.QuickSpawnItem(ModContent.ItemType<AquaticEnergy>(), Main.rand.NextVRand(5, 8));
             var choices = new List<int>()

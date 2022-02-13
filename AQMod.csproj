@@ -29,6 +29,7 @@
     <None Include="Effects\.comp\GlimmerEventBackground.fx" />
     <None Include="Effects\.comp\Microsoft.Xna.Framework.Content.Pipeline.dll" />
     <None Include="Effects\.comp\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll" />
+    <None Include="Effects\.comp\ParentDyeShader.fx" />
     <None Include="Effects\.comp\wcfxcompiler.dll" />
   </ItemGroup>
   <ItemGroup>

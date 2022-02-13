@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Buffs;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -20,7 +21,7 @@ namespace AQMod.Items.Potions
             item.consumable = true;
             item.rare = AQItem.Rarities.DedicatedItem;
             item.value = Item.buyPrice(silver: 80);
-            item.buffType = BuffID.WellFed;
+            item.buffType = ModContent.BuffType<BaguetteBuff>();
             item.buffTime = 216000;
         }
 

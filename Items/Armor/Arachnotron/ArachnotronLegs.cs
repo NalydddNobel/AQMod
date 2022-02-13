@@ -58,6 +58,11 @@ namespace AQMod.Items.Armor.Arachnotron
             directions[3] = 1;
         }
 
+        public override bool? CanCutTiles()
+        {
+            return false;
+        }
+
         private void rest(int i)
         {
             if (arms[i] != armRest[i])

@@ -62,6 +62,30 @@ namespace AQMod.Common.Utilities
                     caller.Reply("Command doesn't exist.");
                     break;
 
+                case "clr":
+                    {
+                        bool assignedColor = true;
+                        Color color = new Color();
+                        switch (args[1]) 
+                        {
+                            case "Violet":
+                                color = Color.Violet;
+                                break;
+
+                            case "MediumPurple":
+                                color = Color.MediumPurple;
+                                break;
+
+                            default:
+                                assignedColor = false;
+                                break;
+                        }
+                        if (!assignedColor)
+                            color = (Color)(typeof(Color).GetProperty(args[1], BindingFlags.Public | BindingFlags.Static).GetGetMethod(nonPublic: false).Invoke(null, null));
+                        caller.Reply(color.ToString());
+                    }
+                    break;
+
                 case "polaritiesinfractaldimension":
                     {
                         caller.Reply(PolaritiesModSupport.InFractalDimension().ToString());

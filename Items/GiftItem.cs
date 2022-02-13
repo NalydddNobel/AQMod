@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Items.Weapons.Magic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
@@ -70,7 +71,7 @@ namespace AQMod.Items
                                 int text = CombatText.NewText(player.getRect(), new Color(230, 230, 255, 255), 0, true);
                                 Main.combatText[text].text = Language.GetTextValue("Mods.AQMod.XmasGift.Nice");
                             }
-                            player.QuickSpawnItem(ModContent.ItemType<Weapons.Magic.Narrizuul>());
+                            player.QuickSpawnItem(ModContent.ItemType<Narrizuul>());
                         }
                         else
                         {

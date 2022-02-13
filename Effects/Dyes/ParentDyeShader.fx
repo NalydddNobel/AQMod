@@ -20,6 +20,30 @@ float FrameYFix(float2 coords)
     return y * 1 / frameSizeY;
 }
 
+float4 Unchained(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
+{
+    float intensity = (cos(uTime * 10) + 1) / 2;
+    float2 wave = float2(sin(uTime * 2.9f) / uImageSize0.x * intensity, cos(uTime * 2.9f) / uImageSize0.y * intensity);
+    float4 color = tex2D(uImage0, coords) * sampleColor;
+    float4 colorAdditive = 0;
+    float A = color.a;
+    color *= 0.2f;
+    color.a = A;
+    colorAdditive += tex2D(uImage0, coords + wave);
+    colorAdditive += tex2D(uImage0, coords - wave);
+    colorAdditive += tex2D(uImage0, coords + wave * 2);
+    colorAdditive += tex2D(uImage0, coords - wave * 2);
+    colorAdditive += tex2D(uImage0, coords + wave * 3);
+    colorAdditive += tex2D(uImage0, coords - wave * 3);
+    colorAdditive.a = 0;
+    colorAdditive *= sampleColor.a;
+    //float3 coloring = lerp(float3(0.9333f, 0.5098f, 0.9333f), float3(0.5764f, 0.4392f, 0.8588f), intensity);
+    colorAdditive.r *= uColor.r;
+    colorAdditive.g *= uColor.g;
+    colorAdditive.b *= uColor.b;
+    return color + colorAdditive;
+}
+
 float4 HoriztonalWave(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float4 color = tex2D(uImage0, coords);
@@ -439,6 +463,10 @@ float4 SpikeFade(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
 
 technique Technique1
 {
+    pass UnchainedPass
+    {
+        PixelShader = compile ps_2_0 Unchained();
+    }   
     pass HoriztonalWavePass
     {
         PixelShader = compile ps_2_0 HoriztonalWave();
