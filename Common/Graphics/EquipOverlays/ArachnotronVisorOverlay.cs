@@ -19,9 +19,9 @@ namespace AQMod.Common.Graphics.PlayerEquips
             {
                 if (Main.myPlayer == info.drawPlayer.whoAmI)
                 {
-                    if (PlayerDrawEffects.ClientOldPositionsLengthCache < PlayerDrawEffects.Draw_ArachnotronArmorOldPositionLength)
-                        PlayerDrawEffects.ClientOldPositionsLengthCache = PlayerDrawEffects.Draw_ArachnotronArmorOldPositionLength;
-                    PlayerDrawEffects.ArachnotronHeadTrail = true;
+                    if (PlayerDrawEffects.MyOldPositionsLengthCache < PlayerDrawEffects.Draw_ArachnotronArmorOldPositionLength)
+                        PlayerDrawEffects.MyOldPositionsLengthCache = PlayerDrawEffects.Draw_ArachnotronArmorOldPositionLength;
+                    PlayerDrawEffects.MyArachnotronHeadTrail = true;
                 }
                 GetBasicPlayerDrawInfo(info, out Vector2 headPosition, out float opacity);
                 var clr = new Color(250, 250, 250, 0);
