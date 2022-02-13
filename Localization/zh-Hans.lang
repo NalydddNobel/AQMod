@@ -14,6 +14,13 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 
 # Accessories
 
+ItemName.RustyKnife=生锈的刀
+ItemTooltip.RustyKnife=召唤你的朋友为你而战\n当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间\n'为什么你要拿着锋利的刀锋而不是刀把?'
+ProjectileName.FriendMinion=朋友
+ProjectileName.KelBall=Kel的球球
+BuffName.Omori=朋友
+BuffDescription.Omori=当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间
+
 ItemName.CrimtaneBarb=血音之结
 ItemTooltip.CrimtaneBarb={$Mods.AQMod.Tooltips.HookBarb}
 
@@ -113,6 +120,12 @@ ItemName.NuclearFeather=核子之羽
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
 
 # Weapons
+ItemName.MonoxiderStaff=一氧化物法杖
+ItemTooltip.MonoxiderStaff=召唤一氧化物雀为你而战
+ProjectileName.MonoxiderMinion=一氧化物
+BuffName.MonoxiderBuff=一氧化物
+BuffDescription.MonoxiderBuff=一氧化物雀会为你而战
+
 ItemName.ScarletSea=罪孽红海
 ItemTooltip.ScarletSea=召唤两颗血珠
 
@@ -929,7 +942,6 @@ ItemName.Dreadsoul=惊惧之魂
 ItemTooltip.Dreadsoul=击杀敌人时使其释放六个追踪同种敌人的灵魂\n使地牢幽魂变得友善
 ProjectileName.DreadsoulAttack=惊惧之魂
 
-ItemName.RustyKnife=生锈的刀
 ItemName.Terraroot=地之根茎
 
 ItemName.Ultranium=超载晶体
@@ -1073,9 +1085,9 @@ ItemName.ArgonSpear=氩制长枪
 ItemName.HorizonSkies=空之视界
 # Yoyos
 ItemName.Aphrodite=阿芙罗狄忒
-ItemTooltip.Aphrodite=击中敌人时对其造成热恋减益, 使其造成的伤害降低10%并受到10%额外伤害
+ItemTooltip.Aphrodite=击中敌人时会对其施加强烈的爱, 并降低其属性
 ItemName.Venus=维纳斯
-ItemTooltip.Venus=击中敌人时对其造成热恋减益, 使其造成的伤害降低10%并受到10%额外伤害\n如果敌人离你很近则有几率使其中毒
+ItemTooltip.Venus=击中敌人时会对其施加强烈的爱, 并降低其属性\n如果敌人离你很近则有几率使其中毒
 
 ItemName.Dysesthesia=苦痛之触
 ItemTooltip.Dysesthesia=召唤恶魔之镰\n如果敌人离其很近则释放腐狱之火攻击敌人
@@ -1109,10 +1121,6 @@ ItemName.SpaceShot=太空手枪
 # Sentry
 ItemName.LotusStaff=莲花杖
 # Other Summon
-ItemName.MonoxiderStaff=日驭金乌杖
-ItemTooltip.MonoxiderStaff=召唤一只金乌为你而战
-BuffName.Monoxider=金乌
-BuffDescription.Monoxider=金乌会为你而战
 ItemName.CrimsonHandStaff=猩红血手法杖
 BuffName.CrimsonHand=猩红血手
 BuffDescription.CrimsonHand=猩红血手会为你而战
@@ -1151,7 +1159,6 @@ ItemTooltip.MoonShoes=使你获得缓降效果\n长按'下'键可恢复正常的
 ItemTooltip.BlurryDiscountCard=小幅度降低商店价格\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'它很难被读懂, 但无论如何商人们都会给你打折.'
 ItemTooltip.BusinessCard=降低商店价格\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'把你花费的钱都当做是业务支出就好了'
 # Other Accessories 
-ItemTooltip.RustyKnife=召唤你的朋友为你而战\n当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间\n'为什么你要拿着锋利的刀锋而不是刀把?'
 ItemTooltip.Terraroot=有几率将火枪子弹转化为叶绿弹
 ##############
 # Boss Items #
@@ -1348,15 +1355,12 @@ ProjectileName.LotusShot=莲花
 ProjectileName.Starite=星之源
 ProjectileName.StariteLeader=星之源
 ProjectileName.CrimsonHand=猩红血手
-ProjectileName.Monoxider=金乌
 
 # Misc
 ProjectileName.FertilePowder=丰饶之尘
-ProjectileName.Friend=朋友
 ProjectileName.FriendlyWind=友善的风
 ProjectileName.GoldPowder=黄金之尘
 ProjectileName.HyperCrystalExplosion=超载爆破
-ProjectileName.KelBall=Kel的球球
 
 # Pets
 ProjectileName.ATM=ATM
