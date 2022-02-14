@@ -946,8 +946,10 @@ namespace AQMod
             {
                 if (omoriDeathTimer <= 0)
                     omoriDeathTimer = 1;
-                else 
-                    player.AddBuff(ModContent.BuffType<Omori>(), omoriDeathTimer);
+                if (omoriDeathTimer > 10)
+                {
+                    player.ClearBuff(ModContent.BuffType<Omori>());
+                }
             }
             if (antiGravityItems)
             {
