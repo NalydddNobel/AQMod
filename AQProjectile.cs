@@ -310,9 +310,9 @@ namespace AQMod
         }
         private void UpdateMeathookHook(Projectile projectile, AQPlayer aQPlayer)
         {
-            for (int i = projectile.whoAmI + 1; i < Main.maxProjectiles; i++)
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].aiStyle == AIStyles.GrapplingHookAI)
+                if (i != projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].aiStyle == AIStyles.GrapplingHookAI && Main.projectile[i].owner == projectile.owner)
                 {
                     projectile.Kill();
                 }

@@ -535,18 +535,18 @@ namespace AQMod.Content.Players
             MothmanMaskEyeColor = MothmanMaskEyeColorDefault;
         }
 
-        public override void UpdateVanityAccessories()
-        {
-            var aQPlayer = player.GetModPlayer<AQPlayer>();
-            for (int i = 0; i < AQPlayer.MaxArmor; i++)
-            {
-                if (player.armor[i].type <= Main.maxItemTypes)
-                    continue;
-                bool hidden = i < 10 && player.hideVisual[i];
-                if (player.armor[i].modItem is IUpdateEquipVisuals update && !hidden)
-                    update.UpdateEquipVisuals(player, aQPlayer, this, i);
-            }
-        }
+        //public override void UpdateVanityAccessories()
+        //{
+        //    var aQPlayer = player.GetModPlayer<AQPlayer>();
+        //    for (int i = 0; i < AQPlayer.MaxArmor; i++)
+        //    {
+        //        if (player.armor[i].type <= Main.maxItemTypes)
+        //            continue;
+        //        bool hidden = i < 10 && player.hideVisual[i];
+        //        if (player.armor[i].modItem is IUpdateEquipVisuals update && !hidden)
+        //            update.UpdateEquipVisuals(player, aQPlayer, this, i);
+        //    }
+        //}
 
         private static void ModifyDrawInfo_Omori(ref PlayerDrawInfo drawInfo)
         {

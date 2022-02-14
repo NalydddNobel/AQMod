@@ -13,7 +13,7 @@ namespace AQMod.Content.CursorDyes
             CursorDyeThickCursor = new Vector2(2f);
             _components = components;
         }
-        public CursorDyeData(Vector2 thickCursorBonus, params ICursorDyeComponent[] components)
+        public CursorDyeData(Vector2? thickCursorBonus, ICursorDyeComponent[] components)
         {
             CursorDyeThickCursor = thickCursorBonus;
             _components = components;
