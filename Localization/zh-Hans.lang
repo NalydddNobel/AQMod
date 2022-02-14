@@ -62,7 +62,7 @@ ItemName.ShockCollar=冲击项圈
 ItemTooltip.ShockCollar=增加5%上海\n在水中时增加10%暴击率
 
 ItemName.FidgetSpinner=永续仪
-ItemTooltip.FidgetSpinner=无法自动挥舞的物品速度变慢, 但可以自动挥舞
+ItemTooltip.FidgetSpinner=无法自动挥舞的物品的速度变慢, 但可以自动挥舞
 
 ItemName.DegenerationRing=堕落魔戒
 ItemTooltip.DegenerationRing=阻止大多数种类的燃烧
@@ -85,7 +85,7 @@ ItemTooltip.Extractor=增加10%挖掘速度\n下落的方块对你造成的伤�
 ItemName.SparrowWings=雀翼
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 
-ItemName.Thunderbird=雷鸟
+ItemName.Thunderbird=雷鸟之翼
 ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\n有着强大的水平速度!\n击中敌人时会招引闪电对其进行轰击
 
 # Armor
@@ -212,7 +212,7 @@ ItemName.SnowflakeCannon=雪花大炮
 ItemTooltip.SnowflakeCannon=发射许多雪球\n66%几率不消耗弹药
 
 ItemName.Snowgrave=雪墓
-ItemTooltip.Snowgrave=在下方召唤雪爆\n'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
+ItemTooltip.Snowgrave=在下方召唤向上喷涌的冰雪风暴\n'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
 
 ItemName.UltimateSword=最终之剑
 ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
@@ -393,7 +393,7 @@ ItemTooltip.CrabPot=使用鱼饵来捕捉水里的东西
 ItemName.PalePufferfish=苍白河豚
 ItemTooltip.PalePufferfish=能治愈你身上的许多种减益\n能治愈血咒
 
-ItemName.BloodPlasma=血浆
+ItemName.BloodPlasma=离子血浆
 ItemTooltip.BloodPlasma=当你受到致死攻击时会自动饮用一瓶治疗药水
 
 ItemName.VampireSquid=吸血乌贼
