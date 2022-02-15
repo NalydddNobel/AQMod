@@ -945,7 +945,6 @@ ItemTooltip.Crabsol=Only the strongest of people can wield this weapon in honor
 ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.MushroomClam=Summons Jerry Crabson at the beach
 # Omega Starite
-ItemTooltip.DragonBall=Summons a micro starite
 ItemTooltip.MythicStarfruit=Begins the Glimmer Event
 ItemTooltip.NovaFruit=Summons {$Mods.AQMod.NPCName.OmegaStarite} at night\n{$Mods.AQMod.Common.NotConsumable}
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}

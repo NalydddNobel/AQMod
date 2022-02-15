@@ -665,5 +665,14 @@ namespace AQMod
         {
             return wantedRadius;
         }
+
+        public static bool UpdateProjActive(Projectile projectile, ref bool active)
+        {
+            if (Main.player[projectile.owner].dead)
+                active = false;
+            if (active)
+                projectile.timeLeft = 2;
+            return active;
+        }
     }
 }

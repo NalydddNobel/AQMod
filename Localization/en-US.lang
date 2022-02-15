@@ -219,6 +219,19 @@ ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInf
 ProjectileName.UltimateSword=Ultimate Sword
 
 # Pets
+
+ItemName.StariteinaBottle=Starite in a Bottle
+ItemTooltip.StariteinaBottle=Summons a dwarf starite to provide light\n'Don't'
+BuffName.DwarfStaritePetBuff=Dwarf Starite
+BuffDescription.DwarfStaritePetBuff='The more you know'
+ProjectileName.DwarfStaritePet=Dwarf Starite
+
+ItemName.DragonBall=Dragon Ball
+ItemTooltip.DragonBall=Summons an omega starite mini
+BuffName.OmegaStaritePetBuff=Omega Starite Mini
+BuffDescription.OmegaStaritePetBuff=The smallest solar system imaginable
+ProjectileName.OmegaStaritePet=Omega Starite
+
 ItemName.YuckyOrb=Yucky Orb
 ItemTooltip.YuckyOrb=Summons a pet angler fish to provide light
 BuffName.AnglerFish=Angler Fish
@@ -1055,7 +1068,6 @@ ItemName.PlaceableCrimsonHeart=Crimson Heart (Placeable)
 ItemName.MonoxideHat=Monoxide Hat
 ItemName.FishyFins=Fishy Fins
 ItemName.CelesitalEightBall=Celestial 8-Ball
-ItemName.DragonBall=Dragon Ball
 ItemName.HeartLamp=Heart Lamp
 ###########
 # Weapons #
@@ -1167,7 +1179,6 @@ ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
 ItemTooltip.Crabsol=Only the strongest of people can wield this weapon in honor
 ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
 # Omega Starite
-ItemTooltip.DragonBall=Summons a micro Starite
 ItemTooltip.MythicStarfruit=Begins the Glimmer Event
 ItemTooltip.NovaFruit=Summons {$Mods.AQMod.NPCName.OmegaStarite} at night\n{$Mods.AQMod.Common.NotConsumable}
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
@@ -1219,7 +1230,6 @@ ItemTooltip.GlimmeringStatue=Has a very high chance to attract the Ultimate Swor
 # Other Placeables
 ItemTooltip.FishingCraftingStation=Used to craft special fishing items
 ItemTooltip.GlobeItem='Explore the world'
-ItemTooltip.DragonBall=Summons a micro Starite
 ItemTooltip.HeartLamp=Summons a heart moth which increases life regen
 ItemTooltip.MonoxideHat='Became a vanity item due to popular demand'
 ItemTooltip.CelesitalEightBall=Right click to use as a normal 8-Ball\nHas special text depending on the world state
@@ -1273,8 +1283,6 @@ ItemTooltip.Floatstick=Works when wet\n'I think you can guess what this does fro
 # Buffs
 BuffName.BlueFire=Blue Fire
 BuffDescription.BlueFire=The immense heat burns off your skin
-BuffName.MicroStarite=Micro Starite
-BuffDescription.MicroStarite=The smallest solar system imaginable
 BuffName.HeartMoth=Heart Moth
 BuffDescription.HeartMoth=Gives you increased life regen and emits light
 BuffName.Bossrush=Encore
@@ -1365,7 +1373,6 @@ ProjectileName.HyperCrystalExplosion=Hyper Crystal
 # Pets
 ProjectileName.ATM=ATM
 ProjectileName.HeartMoth=Heart Moth
-ProjectileName.MicroStarite=Micro Starite
 
 # Fishing Bobbers
 ProjectileName.BeeRod=Bee Bobber

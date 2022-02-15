@@ -209,11 +209,6 @@ namespace AQMod.NPCs
                         Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
                     break;
 
-                case NPCID.Mothron:
-                    if (NPC.downedAncientCultist && npc.playerInteraction[p] && npc.GetGlobalNPC<NoHitManager>().hitPlayer[p])
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<MothmanMask>());
-                    break;
-
                 case NPCID.Golem:
                     {
                         if (Main.moonPhase == 0)

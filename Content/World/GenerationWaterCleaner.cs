@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Configuration;
+using System;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -17,11 +18,20 @@ namespace AQMod.Content.World
             if (progress != null)
                 progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.Fix1TileHighWater");
 
+            var logger = AQMod.GetInstance().Logger;
             for (int i = 250; i < Main.maxTilesX - 250; i++) // should ignore beaches and the far side of the world
             {
                 for (int j = 50; j < (int)Main.worldSurface; j++)
                 {
-                    ApplyFix(i, j);
+                    try
+                    {
+                        ApplyFix(i, j);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Error("An error occured when generating at: {x:" + i + ", y:" + j + "}");
+                        logger.Error(ex);
+                    }
                 }
             }
         }

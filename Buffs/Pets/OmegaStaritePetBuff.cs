@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Pets
 {
-    public class MicroStarite : ModBuff
+    public class OmegaStaritePetBuff : ModBuff
     {
         public override void SetDefaults()
         {
@@ -15,9 +15,9 @@ namespace AQMod.Buffs.Pets
         {
             player.buffTime[buffIndex] = 18000;
             player.GetModPlayer<AQPlayer>().omegaStarite = true;
-            bool petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Pets.MicroStarite>()] <= 0;
+            bool petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Pets.OmegaStaritePet>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
-                Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, 0f, 0f, ModContent.ProjectileType<Projectiles.Pets.MicroStarite>(), 0, 0f, player.whoAmI, 0f, 0f);
+                Projectile.NewProjectile(player.position.X + player.width / 2, player.position.Y + player.height / 2, 0f, 0f, ModContent.ProjectileType<Projectiles.Pets.OmegaStaritePet>(), 0, 0f, player.whoAmI, 0f, 0f);
         }
     }
 }

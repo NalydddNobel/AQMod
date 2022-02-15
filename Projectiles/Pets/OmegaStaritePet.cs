@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Pets
 {
-    public class MicroStarite : ModProjectile
+    public class OmegaStaritePet : ModProjectile
     {
         public override void SetStaticDefaults()
         {

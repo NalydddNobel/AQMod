@@ -476,20 +476,16 @@ namespace AQMod.Content.Players
                     case PlayerHeadAccID.FishyFins:
                         {
                             var drawData = new DrawData(ModContent.GetTexture(Path_HeadAccs + drawing.headAcc), position, info.drawPlayer.bodyFrame, Lighting.GetColor((int)info.position.X / 16, (int)info.position.Y / 16, info.drawPlayer.skinColor) * opacity, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, };
-                            if (drawing.headAcc == PlayerHeadAccID.FishyFins)
+                            if (aQPlayer.omoriEffect)
                             {
-                                if (aQPlayer.omoriEffect)
+                                if (drawing.headAcc == PlayerHeadAccID.FishyFins)
                                 {
                                     drawData.color = Color.White * opacity;
                                 }
                                 else
                                 {
-                                    drawData.color = player.skinColor * opacity;
+                                    drawData.color = Color.Black * opacity;
                                 }
-                            }
-                            else if (aQPlayer.omoriEffect)
-                            {
-                                drawData.color = Color.Black * opacity;
                             }
                             Main.playerDrawData.Add(drawData);
                         }

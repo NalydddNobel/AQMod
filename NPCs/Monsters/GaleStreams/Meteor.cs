@@ -127,7 +127,6 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 barOreDrop(ItemID.GoldOre, ItemID.PlatinumOre, ItemID.GoldBar, ItemID.PlatinumBar, WorldGen.GoldTierOre, TileID.Platinum, 4);
             if ((NPC.downedBoss2 || Main.hardMode) && Main.rand.NextBool(32))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Tools.TheFan>());
-
         }
 
         private void barOreDrop(int ore1, int ore2, int bar1, int bar2, int worldOreTier, int altOreTier, int oreDropMax)

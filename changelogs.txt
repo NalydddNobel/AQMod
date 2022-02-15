@@ -484,7 +484,7 @@ Fixes:
 * Strider Carapace - 80 silver
 * Strider Palms - 80 silver
 * Hermit Shell - 50 silver
-* Micro Starite - 10 silver
+* Dwarf Starite - 10 silver
 * Snobster - 5 Silver
 
 ####### 1.2.4.10 #######

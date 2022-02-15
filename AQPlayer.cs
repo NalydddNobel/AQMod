@@ -144,6 +144,7 @@ namespace AQMod
 
         public bool heartMoth;
         public bool anglerFish;
+        public bool dwarfStarite;
 
         public bool crimsonHands;
         public bool chomper;
@@ -401,6 +402,7 @@ namespace AQMod
 
             heartMoth = false;
             anglerFish = false;
+            dwarfStarite = false;
 
             grabReachMult = 1f;
             mothmanMask = false;
