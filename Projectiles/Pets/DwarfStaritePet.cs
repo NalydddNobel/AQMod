@@ -215,10 +215,10 @@ namespace AQMod.Projectiles.Pets
                         amount = Math.Max(amount, 0.25f);
                         maxVelo /= 4f;
                     }
-                    amount = Math.Min(amount, 0.6f);
-                    Main.NewText(distance);
-                    Main.NewText(amount);
-                    Main.NewText(maxVelo);
+                    amount = Math.Min(amount, 0.75f);
+                    //Main.NewText(distance);
+                    //Main.NewText(amount);
+                    //Main.NewText(maxVelo);
                     projectile.velocity = Vector2.Normalize(Vector2.Lerp(projectile.velocity, gotoVeloc, amount)) * projectile.velocity.Length();
                 }
                 maxVelo = MathHelper.Max(maxVelo, 4f);
