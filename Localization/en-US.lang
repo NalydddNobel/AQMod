@@ -103,6 +103,21 @@ ItemTooltip.LightbulbGreaves=Increases your max number of minions
 ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% less damage
 
 # Materials
+ItemName.Baozhu=Baozhu
+ItemTooltip.Baozhu=A large explosion that puts enemies on fire\nLights the area on fire for a while
+
+ItemName.JerryClawFlail=Jerry Claw
+ItemTooltip.JerryClawFlail=Throws two claws\n'Feels oily'
+ProjectileName.JerryClawFlail=Jerry Claw
+
+ItemName.MagicWand=Magic Wand
+ItemTooltip.MagicWand=Shoots a bolt which explodes into horizontal waves
+ProjectileName.MagicWand=Magic Wand
+
+ItemName.Deltoid=Deltoid
+ItemTooltip.Deltoid=Shoots a hellish arrow which summons more arrows
+ProjectileName.DeltoidArrow=Deltoid Arrow
+
 ItemName.Lightbulb=Lightbulb
 ItemTooltip.Lightbulb=Emits light using the power of stars
 
@@ -150,7 +165,7 @@ ItemName.Resonance=Resonance
 ItemTooltip.Resonance=Has very high speed and barely gets knocked back when hitting enemies\nOccasionally burns enemies on hit\n'Don't you think we should recalculate those resonance dampening factors again?'
 
 ItemName.StariteStaff=Starite Staff
-ItemTooltip.StariteStaff=Summons a speedy Starite to fight for you
+ItemTooltip.StariteStaff=Summons a speedy starite to fight for you
 BuffName.Starite=Starite
 BuffDescription.Starite=The Starite will fight for you
 
@@ -158,7 +173,7 @@ ItemName.VineSword=Mallet
 ItemTooltip.VineSword=Whack nearby enemies using your mouse
 # \nMakes pots have special drops
 ItemName.KryptonSword=Krypton Boomerang
-ItemTooltip.KryptonSword=Cuts through enemies and can be swung around\nInflicts multiple debuffs
+ItemTooltip.KryptonSword=Cuts through enemies\nInflicts multiple debuffs
 
 ItemName.Vrang=Vrang
 ItemTooltip.Vrang=Throws 3 Vraines which move very quickly
@@ -219,9 +234,8 @@ ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInf
 ProjectileName.UltimateSword=Ultimate Sword
 
 # Pets
-
 ItemName.StariteinaBottle=Starite in a Bottle
-ItemTooltip.StariteinaBottle=Summons a dwarf starite to provide light\n'Don't'
+ItemTooltip.StariteinaBottle=Summons a dwarf starite to provide light\n{$Mods.AQMod.Tooltips.SuspiciousLooking}
 BuffName.DwarfStaritePetBuff=Dwarf Starite
 BuffDescription.DwarfStaritePetBuff='The more you know'
 ProjectileName.DwarfStaritePet=Dwarf Starite
@@ -284,6 +298,9 @@ ItemTooltip.XenonMushroom=Emits blue light\n'Gets brighter when you touch it'
 MapObject.NobleMushrooms=Noble Mushroom
 
 # Tools
+ItemName.VampireHook=Vampire Hook
+ItemTooltip.VampireHook=Automatically aims towards nearby enemies\nWhen attached to an enemy, it drains its life
+
 ItemName.BlackBookofUntoldLegends='Untold Legends'
 ItemTooltip.BlackBookofUntoldLegends=Summons the Hermit Crab merchant
 
@@ -452,6 +469,7 @@ ItemTooltip.CrabClock='What time is it? Crabby time.'
 ItemName.OceanRavineWall=Crab Crevice Wall
 
 # Tooltips
+Tooltips.SuspiciousLooking='I know what you're thinking...'
 Tooltips.Nalyddd='Smells like roses'
 Tooltips.HookBarbBlacklist=Does not get affected by hook barb upgrades
 Tooltips.HookBarb=Your grappling hooks inflict damage
@@ -1080,11 +1098,9 @@ ItemName.UnityMirror=Moonluna Mirror
 ItemTooltip.UnityMirror=Reflects powerful moonlight off of its surface\nCan only be used during nighttime, above ground
 ItemName.Bubbler=Bubbler
 ItemName.GebulbaStaff=Gebulba Staff
-ItemName.MagicWand=Magic Wand
 ItemName.MagmalbulbiaStaff=Magmalbulbia Staff
 ItemName.PentalScythe=Pental Scythe
 # Melee
-ItemName.JerryClawFlail=Jerry Claw
 ItemName.PowPunch=Pow Punch
 ItemTooltip.PowPunch=Throws two fists which repeatedly bash enemies
 ProjectileName.PowPunch=Pow Punch
@@ -1240,13 +1256,10 @@ ItemTooltip.CelesitalEightBall=Right click to use as a normal 8-Ball\nHas specia
 # Staffs
 ItemTooltip.Bubbler=Shoots a constant stream of bubbles\n'The Sand Bubbler Crab will be your favorite animal because it makes balls of sand'
 ItemTooltip.GebulbaStaff=Shoots bouncy slimeballs\n'Boing!'
-ItemTooltip.MagicWand=Shoots a bolt towards your cursor which explodes into horizontal waves
 ItemTooltip.MagmalbulbiaStaff=Shoots firey magmaballs that explode off tiles\n'EXPLOSION! EXPLOSION! EXPLOSION!'
 # Tomes
 ItemTooltip.PentalScythe=Shoots firey demon scythes that target your enemies
 # Melee
-# Flails
-ItemTooltip.JerryClawFlail='Feels oily'
 # Spears
 ItemTooltip.ArgonSpear=Redirects itself to your cursor
 ItemTooltip.HorizonSkies=Shoots lines of energy\n'Are you readyayayayayyayayayaya'
@@ -1325,7 +1338,6 @@ ProjectileName.HellsBoon=Hell's Boon
 ProjectileName.HorizonSkies=Horizon Skies
 ProjectileName.HorizonSkiesBolt=Horizon Skies
 ProjectileName.HorizonSkiesExplosion=Horizon Skies
-ProjectileName.JerryClawFlail=Jerry Claw
 ProjectileName.PowPunch=Pow Punch
 ProjectileName.PowPunchExplosion=Pow Punch
 ProjectileName.UltimaFlare=Ultima Flare
@@ -1339,7 +1351,6 @@ ProjectileName.RayCursedBullet=Ray Bullet
 ProjectileName.RayIchorBullet=Ray Bullet
 ProjectileName.RayMeteorBullet=Ray Bullet
 ProjectileName.RayVenomBullet=Ray Bullet
-ProjectileName.DeltoidArrow=Deltoid Arrow
 ProjectileName.HamaYumiArrow=Hama Yumi Arrow
 ProjectileName.SpaceShot=SpaceShot
 
@@ -1347,7 +1358,6 @@ ProjectileName.SpaceShot=SpaceShot
 ProjectileName.Bubbler=Bubbler
 ProjectileName.FizzlingFire=Fizzling Fire
 ProjectileName.GebulbaStaff=Gebulba Staff
-ProjectileName.MagicWand=Magic Wand
 ProjectileName.MagmalbulbiaStaff=Magmalbulbia Staff
 ProjectileName.MagmalbulbiaStaffExplosion=Magmalbulbia Staff
 ProjectileName.MoonMoonMirror=Moonluna Mirror

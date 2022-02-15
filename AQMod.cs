@@ -734,13 +734,13 @@ namespace AQMod
 
             DemonSiegeEvent.UpdateEvent();
 
-            if (EventGlimmer.OmegaStarite > -1 && !Main.npc[EventGlimmer.OmegaStarite].active)
+            if (EventGlimmer.omegaStarite > -1 && !Main.npc[EventGlimmer.omegaStarite].active)
             {
-                EventGlimmer.OmegaStarite = -1;
+                EventGlimmer.omegaStarite = -1;
             }
             if (Main.netMode != NetmodeID.MultiplayerClient && spawnStarite)
             {
-                int n = EventGlimmer.OmegaStarite =
+                int n = EventGlimmer.omegaStarite =
                     (short)NPC.NewNPC(EventGlimmer.tileX * 16 + 8, EventGlimmer.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(),
                     0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Player.FindClosest(new Vector2(EventGlimmer.tileX * 16f, EventGlimmer.tileY * 16f), 16, 16));
                 if (n != -1)

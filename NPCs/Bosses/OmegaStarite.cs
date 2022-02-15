@@ -258,13 +258,13 @@ namespace AQMod.NPCs.Bosses
             if (Main.dayTime)
             {
                 npc.life = -1;
-                EventGlimmer.OmegaStarite = -1;
+                EventGlimmer.omegaStarite = -1;
                 npc.HitEffect();
                 Main.PlaySound(SoundID.Dig, npc.Center);
                 npc.active = false;
                 return;
             }
-            EventGlimmer.OmegaStarite = (short)npc.whoAmI;
+            EventGlimmer.omegaStarite = (short)npc.whoAmI;
             //Main.NewText(npc.ai[0]);
             //AQMod.Instance.Logger.Debug(npc.ai[0]);
             if (skipDeathTimer > 0)

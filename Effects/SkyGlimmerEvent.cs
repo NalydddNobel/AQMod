@@ -17,6 +17,7 @@ namespace AQMod.Effects
     {
         public const string Name = "AQMod:GlimmerEventSky";
 
+        public static float Intensity;
         public static float _glimmerLight;
         private float _cloudAlpha;
         private static bool _active;
@@ -298,6 +299,25 @@ namespace AQMod.Effects
 
         public override void Update(GameTime gameTime)
         {
+            if (_active)
+            {
+                if (Intensity < 1f)
+                {
+                    Intensity += 0.01f;
+                    if (Intensity > 1f)
+                    {
+                        Intensity = 1f;
+                    }
+                }
+            }
+            else
+            {
+                Intensity -= 0.01f;
+                if (Intensity < 0f)
+                {
+                    Intensity = 0f;
+                }
+            }
             int tileDistance = EventGlimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
             if (!Main.dayTime)
             {
@@ -427,7 +447,7 @@ namespace AQMod.Effects
 
                 int y = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
                 Color clr;
-                if (EventGlimmer.OmegaStarite == -1)
+                if (EventGlimmer.omegaStarite == -1)
                 {
                     clr = Color.White * (1f - Opacity) * (1f - (EventGlimmer.tileX - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs() / EventGlimmer.MaxDistance);
                 }
@@ -436,6 +456,7 @@ namespace AQMod.Effects
                     clr = Color.White;
                 }
 
+                clr *= Intensity;
                 clr.A = 0;
                 var destinationRectangle = new Rectangle(0, 0, Main.screenWidth, Main.screenHeight);
                 destinationRectangle.Height -= y;
@@ -502,12 +523,12 @@ namespace AQMod.Effects
 
         public override bool IsActive()
         {
-            return (_active || _starites != null || FallingStars.stars != null) && !AQMod.Loading;
+            return (_active || _starites != null || FallingStars.stars != null || Intensity > 0f) && !AQMod.Loading;
         }
 
         public override float GetCloudAlpha()
         {
-            if (EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.OmegaStarite != -1)
+            if (EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.omegaStarite != -1)
             {
                 _cloudAlpha = MathHelper.Lerp(_cloudAlpha, 0.25f, 0.01f);
             }

@@ -31,8 +31,17 @@ namespace AQMod.Projectiles.Magic
                 projectile.ai[0] = 1f;
                 projectile.velocity /= (projectile.extraUpdates + 1);
             }
+            if (projectile.timeLeft < 60 && projectile.alpha < 240)
+            {
+                projectile.alpha += 2;
+            }
+            if (projectile.alpha > 255)
+            {
+                return;
+            }
+            float alpha = 1f - projectile.alpha / 255f;
             int type = ModContent.DustType<MonoDust>();
-            var clr = new Color(255, 150, 150, 0);
+            var clr = new Color(200, 100, 255, 0) * alpha;
             if (AQConfigClient.c_EffectQuality >= 1f)
             {
                 float x = projectile.position.X;
@@ -47,19 +56,13 @@ namespace AQMod.Projectiles.Magic
                     {
                         Particle.PostDrawPlayers.AddParticle(
                            new EmberParticle(new Vector2(x, projectile.position.Y + Main.rand.NextFloat(projectile.height)), new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
-                           new Color(255, 150, 150, 0), Main.rand.NextFloat(0.6f, 1.1f)));
+                           new Color(200, 100, 255, 0) * alpha, Main.rand.NextFloat(0.6f, 1.1f)));
                     }
                     var position = new Vector2(x, projectile.position.Y + Main.rand.NextFloat(projectile.height));
                     float scale = Main.rand.NextFloat(0.6f, 1.1f);
                     Particle.PostDrawPlayers.AddParticle(
-                        new EmberParticle(position, new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
-                        new Color(255, 222, 222, 0), scale));
-                    Particle.PostDrawPlayers.AddParticle(
-                        new EmberParticle(position, new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
-                        new Color(100, 60, 60, 0), scale * 1.65f));
-                    Particle.PostDrawPlayers.AddParticle(
-                        new EmberParticle(new Vector2(x, projectile.position.Y + Main.rand.NextFloat(projectile.height)), new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
-                        new Color(255, 180, 180, 0), Main.rand.NextFloat(1f, 2.6f)));
+                        new SparkleParticle(position, new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
+                        new Color(222, 150, 255, 0) * alpha, scale));
                 }
                 for (int i = 0; i < 3; i++)
                 {

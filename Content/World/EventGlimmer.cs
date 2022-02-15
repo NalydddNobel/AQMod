@@ -33,7 +33,7 @@ namespace AQMod.Content.World
         /// <summary>
         /// A cache of the most recently spawned Omega Starite npc. Use this only for visual effects please. Defaults to -1.
         /// </summary>
-        public static short OmegaStarite = -1;
+        public static short omegaStarite = -1;
 
         public static ushort tileX;
         public static ushort tileY;
@@ -205,7 +205,7 @@ namespace AQMod.Content.World
 
         public static bool IsAbleToShowInvasionProgressBar()
         {
-            if (AreStariteSpawnsCurrentlyActive(Main.LocalPlayer) && EventGlimmer.OmegaStarite == -1)
+            if (AreStariteSpawnsCurrentlyActive(Main.LocalPlayer) && EventGlimmer.omegaStarite == -1)
             {
                 if (GetTileDistanceUsingPlayer(Main.LocalPlayer) < MaxDistance)
                     return true;

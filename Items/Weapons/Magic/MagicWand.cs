@@ -30,7 +30,7 @@ namespace AQMod.Items.Weapons.Magic
             item.rare = ItemRarityID.LightRed;
             item.value = AQItem.Prices.OmegaStariteWeaponValue;
             item.shootSpeed = 24f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Magic.MagicWand>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Magic.MagicWandProj>();
             item.autoReuse = true;
         }
     }

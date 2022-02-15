@@ -16,6 +16,7 @@ namespace AQMod.Projectiles.Pets
         {
             Main.projFrames[projectile.type] = 6;
             Main.projPet[projectile.type] = true;
+            ProjectileID.Sets.LightPet[projectile.type] = true;
             ProjectileID.Sets.TrailingMode[projectile.type] = 2;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 4;
         }

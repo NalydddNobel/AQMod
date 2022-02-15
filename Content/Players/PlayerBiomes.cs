@@ -2,6 +2,7 @@
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World;
 using AQMod.Effects;
+using AQMod.NPCs.Bosses;
 using AQMod.Walls;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -31,12 +32,14 @@ namespace AQMod.Content.Players
             zoneGlimmerEvent = EventGlimmer.GetTileDistanceUsingPlayer(player) < EventGlimmer.MaxDistance;
         }
 
-        public override void UpdateBiomeVisuals()
+        private void UpdateBiomeVisuals_Starite()
         {
-            bool glimmerEvent = (EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.OmegaStarite != -1) && Main.screenPosition.Y < (Main.worldSurface * 16f - Main.screenHeight);
+            if (EventGlimmer.omegaStarite == -1)
+                EventGlimmer.omegaStarite = (short)NPC.FindFirstNPC(ModContent.NPCType<OmegaStarite>());
+            bool glimmerEvent = (EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.omegaStarite != -1) && Main.screenPosition.Y < (Main.worldSurface * 16f - Main.screenHeight);
             AQUtils.UpdateSky(glimmerEvent, SkyGlimmerEvent.Name);
 
-            if (glimmerEvent && EventGlimmer.OmegaStarite == -1)
+            if (glimmerEvent && EventGlimmer.omegaStarite == -1)
             {
                 float intensity = 0f;
                 float distance = (Main.player[Main.myPlayer].position.X - (EventGlimmer.tileX * 16f + 8f)).Abs();
@@ -56,6 +59,10 @@ namespace AQMod.Content.Players
                 if (EffectCache.f_Vignette.IsActive())
                     Filters.Scene.Deactivate(EffectCache.fn_Vignette);
             }
+        }
+        public override void UpdateBiomeVisuals()
+        {
+            UpdateBiomeVisuals_Starite();
         }
 
         public override bool CustomBiomesMatch(Player other)

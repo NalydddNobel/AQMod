@@ -90,7 +90,7 @@ namespace AQMod.Items.Tools
                         setText(key);
                     return true;
                 }
-                if (EventGlimmer.OmegaStarite != -1 && Main.rand.NextBool())
+                if (EventGlimmer.omegaStarite != -1 && Main.rand.NextBool())
                 {
                     if (TextKey == AQText.Key + "Common.EightballMisc3")
                     {

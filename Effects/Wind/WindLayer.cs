@@ -131,15 +131,18 @@ namespace AQMod.Effects.Wind
 
         void IAutoloadType.OnLoad()
         {
-            try
+            if (!Main.dedServ)
             {
-                _windShader = AQMod.GetInstance().GetEffect("Effects/Wind/WindShader");
+                try
+                {
+                    _windShader = AQMod.GetInstance().GetEffect("Effects/Wind/WindShader");
+                }
+                catch
+                {
+                    throw new Exception("There was an error while loading the Wind current shader. Try loading shaders in a higher/lower quality or smth?");
+                }
+                windDraws = new List<IDrawType>();
             }
-            catch
-            {
-                throw new Exception("There was an error while loading the Wind current shader. Try loading shaders in a higher/lower quality or smth?");
-            }
-            windDraws = new List<IDrawType>();
         }
 
         void IAutoloadType.Unload()

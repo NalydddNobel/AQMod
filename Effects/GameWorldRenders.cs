@@ -73,9 +73,9 @@ namespace AQMod.Effects
                     //if (EventGlimmer.OmegaStarite == -1 && EventGlimmer.deactivationDelay <= 0)
 
                     bool renderUltimateSword = EventGlimmer.deactivationDelay == -1;
-                    if (renderUltimateSword && EventGlimmer.OmegaStarite != -1)
+                    if (renderUltimateSword && EventGlimmer.omegaStarite != -1)
                     {
-                        renderUltimateSword = (int)Main.npc[EventGlimmer.OmegaStarite].ai[0] == OmegaStarite.PHASE_NOVA;
+                        renderUltimateSword = (int)Main.npc[EventGlimmer.omegaStarite].ai[0] == OmegaStarite.PHASE_NOVA;
                     }
 
                     if (renderUltimateSword)
@@ -111,7 +111,7 @@ namespace AQMod.Effects
                         Vector2 trueMouseworld = AQUtils.TrueMouseworld;
                         if (hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y) && EventGlimmer.IsGlimmerEventCurrentlyActive())
                         {
-                            if (EventGlimmer.OmegaStarite == -1 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16))
+                            if (EventGlimmer.omegaStarite == -1 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16))
                             {
                                 var plr = Main.LocalPlayer;
                                 plr.mouseInterface = true;
@@ -198,7 +198,7 @@ namespace AQMod.Effects
 
         public static void DoUpdate()
         {
-            if (!EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.OmegaStarite != -1 || EventGlimmer.deactivationDelay == -1 || AQGraphics.Cull(Utils.CenteredRectangle(new Vector2(EventGlimmer.tileX, EventGlimmer.tileY) - Main.screenPosition, new Vector2(80f, 160f))))
+            if (!EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.omegaStarite != -1 || EventGlimmer.deactivationDelay == -1 || AQGraphics.Cull(Utils.CenteredRectangle(new Vector2(EventGlimmer.tileX, EventGlimmer.tileY) - Main.screenPosition, new Vector2(80f, 160f))))
                 return;
             float x = EventGlimmer.tileX * 16f;
             if (Framing.GetTileSafely(EventGlimmer.tileX, EventGlimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
