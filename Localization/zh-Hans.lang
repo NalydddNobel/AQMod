@@ -219,6 +219,19 @@ ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段
 ProjectileName.UltimateSword=最终之剑
 
 # Pets
+
+ItemName.StariteinaBottle=瓶中星源
+ItemTooltip.StariteinaBottle=召唤一颗侏儒源星提供光照\n'别'
+BuffName.DwarfStaritePetBuff=侏儒源星
+BuffDescription.DwarfStaritePetBuff='你知道的越多'
+ProjectileName.DwarfStaritePet=侏儒源星
+
+ItemName.DragonBall=龙珠
+ItemTooltip.DragonBall=召唤一颗迷你终末之星
+BuffName.OmegaStaritePetBuff=迷你终末之星
+BuffDescription.OmegaStaritePetBuff=你所能想象的最小的类太阳系
+ProjectileName.OmegaStaritePet=终末之星
+
 ItemName.YuckyOrb=恶心的球
 ItemTooltip.YuckyOrb=召唤一只会提供光亮的宠物鮟鱇鱼
 BuffName.AnglerFish=鮟鱇鱼
@@ -1055,7 +1068,6 @@ ItemName.PlaceableCrimsonHeart=猩红之心 (可放置)
 ItemName.MonoxideHat=金乌之巢
 ItemName.FishyFins=可疑的鱼鳍
 ItemName.CelesitalEightBall=星界八号球
-ItemName.DragonBall=龙珠
 ItemName.HeartLamp=心灯
 ###########
 # Weapons #
@@ -1167,7 +1179,6 @@ ItemTooltip.Terraroot=有几率将火枪子弹转化为叶绿弹
 ItemTooltip.Crabsol=只有最强壮的人才能举起这把剑
 ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
 # Omega Starite
-ItemTooltip.DragonBall=召唤一个微型星之源
 ItemTooltip.MythicStarfruit=使用以召唤微光事件
 ItemTooltip.NovaFruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n{$Mods.AQMod.Common.NotConsumable}
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
@@ -1219,7 +1230,6 @@ ItemTooltip.GlimmeringStatue=在微光事件持续期间有很高几率吸引最
 # Other Placeables
 ItemTooltip.FishingCraftingStation=用于制作特殊的钓鱼物品
 ItemTooltip.GlobeItem='探索世界'
-ItemTooltip.DragonBall=召唤一个微型星之源
 ItemTooltip.HeartLamp=召唤一只会增加你生命恢复速度的心蛾
 ItemTooltip.MonoxideHat='因人们需求而变成一件装饰物品'
 ItemTooltip.CelesitalEightBall=右键使用以当做普通的8号球使用\n特殊文本取决于世界当前状态
@@ -1273,8 +1283,6 @@ ItemTooltip.Floatstick=仅在潮湿情况下生效\n'我想你应该可以从名
 # Buffs
 BuffName.BlueFire=碧蓝之火
 BuffDescription.BlueFire=碧蓝之火灼烧着你的皮肤
-BuffName.MicroStarite=微型星之源
-BuffDescription.MicroStarite=你所能想象的最小的类太阳系
 BuffName.HeartMoth=心蛾
 BuffDescription.HeartMoth=增加你的生命恢复速度并提供光照
 BuffName.Bossrush=安可
@@ -1365,7 +1373,6 @@ ProjectileName.HyperCrystalExplosion=超载爆破
 # Pets
 ProjectileName.ATM=ATM
 ProjectileName.HeartMoth=心蛾
-ProjectileName.MicroStarite=微型星之源
 
 # Fishing Bobbers
 ProjectileName.BeeRod=蜜蜂浮标
