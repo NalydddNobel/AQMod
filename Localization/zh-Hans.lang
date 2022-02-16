@@ -103,6 +103,21 @@ ItemTooltip.LightbulbGreaves=+1额外召唤栏
 ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱造成的伤害降低30%
 
 # Materials
+ItemName.Baozhu=爆竹
+ItemTooltip.Baozhu=会产生巨大的爆炸并引燃敌人\n爆炸区域会被点燃一段时间
+
+ItemName.JerryClawFlail=蟹蛤之爪
+ItemTooltip.JerryClawFlail=扔出两只爪子\n'摸起来非常的油腻'
+ProjectileName.JerryClawFlail=蟹蛤之爪
+
+ItemName.MagicWand=魔杖
+ItemTooltip.MagicWand=向你的光标位置发射一束魔法矢, 魔法矢会爆炸成向两边水平移动的冲击波
+ProjectileName.MagicWand=魔杖
+
+ItemName.Deltoid=增量
+ItemTooltip.Deltoid=发射地狱箭矢, 其会召唤更多的箭矢
+ProjectileName.DeltoidArrow=增量矢
+
 ItemName.Lightbulb=灯泡
 ItemTooltip.Lightbulb=利用恒星的能量散发着光
 
@@ -158,7 +173,7 @@ ItemName.VineSword=棒槌
 ItemTooltip.VineSword=打击你光标附近的敌人
 # \n使罐子拥有特殊掉落
 ItemName.KryptonSword=氪制回旋镖
-ItemTooltip.KryptonSword=能够穿透敌人并回旋移动\n击中敌人时会对其造成多种减益
+ItemTooltip.KryptonSword=能够穿透敌人\n击中敌人时会对其造成多种减益
 
 ItemName.Vrang=镰刃
 ItemTooltip.Vrang=扔出三个快速移动的镰刃
@@ -219,9 +234,8 @@ ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段
 ProjectileName.UltimateSword=最终之剑
 
 # Pets
-
 ItemName.StariteinaBottle=瓶中星源
-ItemTooltip.StariteinaBottle=召唤一颗侏儒源星提供光照\n'别'
+ItemTooltip.StariteinaBottle=召唤一颗侏儒源星提供光照\n{$Mods.AQMod.Tooltips.SuspiciousLooking}
 BuffName.DwarfStaritePetBuff=侏儒源星
 BuffDescription.DwarfStaritePetBuff='你知道的越多'
 ProjectileName.DwarfStaritePet=侏儒源星
@@ -284,6 +298,9 @@ ItemTooltip.XenonMushroom=散发着蓝光\n'当你触摸它时, 它变得更亮�
 MapObject.NobleMushrooms=华贵蘑菇
 
 # Tools
+ItemName.VampireHook=吸血鬼钩
+ItemTooltip.VampireHook=自动瞄准附近的敌人\n钩中敌人时会汲取其生命
+
 ItemName.BlackBookofUntoldLegends='无名传说'
 ItemTooltip.BlackBookofUntoldLegends=召唤寄居蟹商人
 
@@ -452,6 +469,7 @@ ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
 ItemName.OceanRavineWall=蟹状裂隙墙
 
 # Tooltips
+Tooltips.SuspiciousLooking='我知道你在想什么...'
 Tooltips.Nalyddd='闻起来像玫瑰'
 Tooltips.HookBarbBlacklist=不受刺钩升级效果影响
 Tooltips.HookBarb=你的钩爪会造成伤害
@@ -1080,11 +1098,9 @@ ItemName.UnityMirror=月光魔镜
 ItemTooltip.UnityMirror=镜子的表面反射着强烈的月光\n只能在夜晚的地表使用
 ItemName.Bubbler=泡泡法杖
 ItemName.GebulbaStaff=弹球法杖
-ItemName.MagicWand=魔杖
 ItemName.MagmalbulbiaStaff=邪弹法杖
 ItemName.PentalScythe=回旋魔镰
 # Melee
-ItemName.JerryClawFlail=蟹蛤之爪
 ItemName.PowPunch=链拳
 ItemTooltip.PowPunch=投出反复击打敌人的双拳
 ProjectileName.PowPunch=链拳
@@ -1240,13 +1256,10 @@ ItemTooltip.CelesitalEightBall=右键使用以当做普通的8号球使用\n特�
 # Staffs
 ItemTooltip.Bubbler=不断地发射泡泡\n'沙泡蟹会是你最喜欢的动物, 因为它会制造沙球'
 ItemTooltip.GebulbaStaff=发射弹跳粘球\n'Boing!'
-ItemTooltip.MagicWand=向你的光标位置发射一束魔法矢, 魔法矢会爆炸成向两边水平移动的冲击波
 ItemTooltip.MagmalbulbiaStaff=发射击中物块时会爆炸的弹跳火焰弹\n'艺术就是爆炸!'
 # Tomes
 ItemTooltip.PentalScythe=发射追踪敌人的烈焰魔镰
 # Melee
-# Flails
-ItemTooltip.JerryClawFlail='摸起来非常的油腻'
 # Spears
 ItemTooltip.ArgonSpear=会不断的瞄准你的光标位置
 ItemTooltip.HorizonSkies=发射能量射线\n'你准备好了吗吗吗吗吗吗'
@@ -1325,7 +1338,6 @@ ProjectileName.HellsBoon=地狱之刺
 ProjectileName.HorizonSkies=空之视界
 ProjectileName.HorizonSkiesBolt=空之视界
 ProjectileName.HorizonSkiesExplosion=空之视界
-ProjectileName.JerryClawFlail=蟹蛤之爪
 ProjectileName.PowPunch=链拳
 ProjectileName.PowPunchExplosion=链拳
 ProjectileName.UltimaFlare=绚彩圣焰
@@ -1339,7 +1351,6 @@ ProjectileName.RayCursedBullet=射线
 ProjectileName.RayIchorBullet=射线
 ProjectileName.RayMeteorBullet=射线
 ProjectileName.RayVenomBullet=射线
-ProjectileName.DeltoidArrow=增量矢
 ProjectileName.HamaYumiArrow=爆影破魔矢
 ProjectileName.SpaceShot=星星
 
@@ -1347,7 +1358,6 @@ ProjectileName.SpaceShot=星星
 ProjectileName.Bubbler=泡泡
 ProjectileName.FizzlingFire=碧蓝之火
 ProjectileName.GebulbaStaff=弹跳粘球
-ProjectileName.MagicWand=魔法矢
 ProjectileName.MagmalbulbiaStaff=弹跳火焰弹
 ProjectileName.MagmalbulbiaStaffExplosion=弹跳火焰弹
 ProjectileName.MoonMoonMirror=月光射线
