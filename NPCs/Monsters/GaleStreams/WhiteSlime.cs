@@ -55,6 +55,12 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 npc.lifeMax *= 2;
                 npc.knockBackResist = 0f;
             }
+            if (AQMod.calamityMod.IsActive)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 2.5f);
+                npc.damage = (int)(npc.damage * 1.5f);
+                npc.defense *= 2;
+            }
         }
 
         public override void AI()

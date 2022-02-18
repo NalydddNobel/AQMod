@@ -20,7 +20,6 @@ namespace AQMod.Items
             item.width = 20;
             item.height = 20;
             item.rare = ItemRarityID.Blue;
-            item.consumable = true;
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = ItemUseStyleID.HoldingUp;
@@ -29,7 +28,7 @@ namespace AQMod.Items
 
         public override bool CanUseItem(Player player)
         {
-            return player.ZoneBeach && !NPC.AnyNPCs(ModContent.NPCType<JerryCrabson>());
+            return (player.ZoneBeach || player.Biomes().zoneCrabCrevice) && !NPC.AnyNPCs(ModContent.NPCType<JerryCrabson>());
         }
 
         public override bool UseItem(Player player)

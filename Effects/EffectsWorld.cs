@@ -7,12 +7,13 @@ using Terraria.ModLoader;
 
 namespace AQMod.Effects
 {
-    internal sealed class EffectWorld : ModWorld
+    internal sealed class EffectsWorld : ModWorld
     {
         public override void Initialize()
         {
             if (Main.netMode != NetmodeID.Server)
             {
+                GeneralEffectsManager.InternalInitalize();
                 WindLayer.windDraws = new List<IDrawType>();
                 Particle.PreDrawProjectiles.Initialize();
                 Particle.PostDrawPlayers.Initialize();

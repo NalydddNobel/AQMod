@@ -4,7 +4,10 @@ Items
 ##############
 
 ItemName.MushroomClam=Exotic Clam
-ItemTooltip.MushroomClam=Summons Crabson at the beach
+ItemTooltip.MushroomClam=Summons Crabson at the beach or crab crevice\n{$Mods.AQMod.Common.NotConsumable}
+
+ItemName.NovaFruit=Nova Fruit
+ItemTooltip.NovaFruit=Summons Omega Starite at night\n{$Mods.AQMod.Common.NotConsumable}
 
 ItemName.BloodyThing=Bloody Thing
 ItemTooltip.BloodyThing=Starts a blood moon during night\n'An exotic ruby which might start tearing up when ported to 1.4'
@@ -987,7 +990,6 @@ ItemTooltip.Quasicrystal=True melee crits on enemies channel the damage to the c
 ItemName.Crabsol=Crabsol
 ItemName.CrabsonBag=Treasure Bag
 ItemName.MythicStarfruit=Mythic Starfruit
-ItemName.NovaFruit=Nova Fruit
 ItemName.OmegaStariteMask=Omega Starite Mask
 ItemName.OmegaStariteTrophy=Omega Starite Trophy
 ItemName.StariteBag=Treasure Bag
@@ -1196,7 +1198,6 @@ ItemTooltip.Crabsol=Only the strongest of people can wield this weapon in honor
 ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
 # Omega Starite
 ItemTooltip.MythicStarfruit=Begins the Glimmer Event
-ItemTooltip.NovaFruit=Summons {$Mods.AQMod.NPCName.OmegaStarite} at night\n{$Mods.AQMod.Common.NotConsumable}
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.UltimateStarfruit=Left click summons {$Mods.AQMod.NPCName.OmegaStarite} at night\nRight click toggles the Glimmer Event\n{$Mods.AQMod.Common.NotConsumable}
 ##############

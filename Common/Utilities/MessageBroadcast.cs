@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 
-namespace AQMod.Common
+namespace AQMod.Common.Utilities
 {
     public static class MessageBroadcast
     {

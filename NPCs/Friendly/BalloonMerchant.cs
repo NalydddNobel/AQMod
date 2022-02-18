@@ -1,10 +1,10 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
-using AQMod.Content.NameTags;
 using AQMod.Content.World;
 using AQMod.Items.Materials;
 using AQMod.Items.Placeable.Nature;
 using AQMod.Sounds;
+using AQMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -95,7 +95,7 @@ namespace AQMod.NPCs.Friendly
             {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
-                UserInterfaceRenameItem.IsActive = true;
+                RenameItemUI.IsActive = true;
             }
         }
 

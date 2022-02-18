@@ -93,52 +93,5 @@ namespace AQMod.Content.UserInterface.ItemSlots
 
             }
         }
-
-        public static bool CanSwapItem_NameTag(Item slotItem, Item mouseItem)
-        {
-            if (mouseItem != null && !mouseItem.IsAir && mouseItem.maxStack == 1 && !AQItem.Sets.CantBeRenamed[mouseItem.type])
-                return true;
-            if (slotItem != null && !slotItem.IsAir && (mouseItem == null || mouseItem.IsAir))
-                return true;
-            return false;
-        }
-
-        public static void SwapItem_NameTag(ref Item slotItem, ref Item mouseItem)
-        {
-            if (mouseItem.stack <= 1)
-            {
-                Item slotClone = slotItem.Clone();
-                slotItem = mouseItem;
-                mouseItem = slotClone;
-            }
-            Main.PlaySound(SoundID.Grab);
-        }
-
-        public static void HandleItemSlotMouseInteractions_NameTag(ref Item slotItem)
-        {
-            if (slotItem == null)
-                slotItem = new Item();
-            if (Main.mouseItem == null)
-            {
-                Main.mouseItem = new Item();
-            }
-            else
-            {
-                if (Main.mouseItem.stack <= 0)
-                    Main.mouseItem = new Item();
-            }
-            if (Main.mouseLeft && Main.mouseLeftRelease)
-            {
-                if (Main.mouseItem.type != ItemID.None || slotItem.type != ItemID.None)
-                {
-                    if (CanSwapItem_NameTag(slotItem, Main.mouseItem))
-                        SwapItem_NameTag(ref slotItem, ref Main.mouseItem);
-                }
-            }
-            else if (Main.mouseRight && Main.mouseRightRelease)
-            {
-
-            }
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AQMod.Content.CursorDyes;
+﻿using AQMod.Common.Utilities;
+using AQMod.Content.CursorDyes;
 using AQMod.Content.Players;
 using AQMod.Effects;
 using System.Reflection;

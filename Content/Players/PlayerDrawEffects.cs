@@ -1,6 +1,8 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
+using AQMod.Common.Utilities;
+using AQMod.Common.Utilities.Colors;
 using AQMod.Dusts;
 using AQMod.Effects.Particles;
 using AQMod.Items;
@@ -50,6 +52,12 @@ namespace AQMod.Content.Players
         public int cMask;
         public int cCelesteTorus;
 
+        private bool initUpdate;
+        public IColorGradient NalydGradient { get; private set; }
+        public IColorGradient ThunderbirdGradient { get; private set; }
+        public IColorGradient BaguetteGradient { get; private set; }
+
+        #region Player Layers
         internal static readonly PlayerHeadLayer PostDrawHead_Head = new PlayerHeadLayer("AQMod", "PostDraw", (info) =>
         {
             var player = info.drawPlayer;
@@ -510,14 +518,28 @@ namespace AQMod.Content.Players
                 }
             }
         });
+        #endregion
 
+        private void InitUpdate(string name = null)
+        {
+            NalydGradient = new ColorWaveGradient(10f, Color.Violet, Color.MediumPurple);
+            ThunderbirdGradient = new ColorWaveGradient(10f, new Color(255, 120, 200), new Color(170, 80, 200));
+            BaguetteGradient = new ColorWaveGradient(10f, new Color(255, 222, 150), new Color(170, 130, 80));
+        }
         public override void Initialize()
         {
+            InitUpdate(player.name);
+            initUpdate = true;
             ResetDrawingInfo();
         }
 
         public override void ResetEffects()
         {
+            if (initUpdate)
+            {
+                InitUpdate(player.name);
+                initUpdate = false;
+            }
             ResetDrawingInfo();
         }
 

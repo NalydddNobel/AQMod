@@ -2,6 +2,7 @@
 using AQMod.Common.ID;
 using AQMod.Content.Players;
 using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Effects;
 using AQMod.Items.Accessories.FidgetSpinner;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -192,31 +193,29 @@ namespace AQMod.Items
             ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, font, text, new Vector2(x, y), Color.Black,
                 rotation, origin, baseScale);
 
+            GeneralEffectsManager.SetRand(Main.LocalPlayer.name.GetHashCode());
             // particles
-            var rand = new UnifiedRandom(Main.LocalPlayer.name.GetHashCode() + text.GetHashCode());
             var particleTexture = AQTextures.Lights[LightTex.Spotlight15x15];
             var particleOrigin = particleTexture.Size() / 2f;
-            int amt = rand.Next((int)size.X / 3, (int)size.X);
+            int amt = (int)GeneralEffectsManager.Rand((int)size.X / 3, (int)size.X);
             for (int i = 0; i < amt; i++)
             {
-                float lifeTime = rand.NextFloat(20f);
-                int baseParticleX = rand.Next(4, (int)size.X - 4);
-                int particleX = baseParticleX + (int)AQUtils.Wave(lifeTime + Main.GlobalTime * rand.NextFloat(2f, 5f), -rand.NextFloat(3f, 10f), rand.NextFloat(3f, 10f));
-                lifeTime += Main.GlobalTime * 2f;
-                lifeTime %= 20f;
-                int particleY = rand.Next(10);
-                float scale = rand.NextFloat(0.2f, 0.4f);
-                if (baseParticleX > 14 && baseParticleX < size.X - 14 && rand.NextBool(6))
+                float lifeTime = (GeneralEffectsManager.Rand(20f) + Main.GlobalTime * 2f) % 20f;
+                int baseParticleX = (int)GeneralEffectsManager.Rand(4, (int)size.X - 4);
+                int particleX = baseParticleX + (int)AQUtils.Wave(lifeTime + Main.GlobalTime * GeneralEffectsManager.Rand(2f, 5f), -GeneralEffectsManager.Rand(3f, 10f), GeneralEffectsManager.Rand(3f, 10f));
+                int particleY = (int)GeneralEffectsManager.Rand(10);
+                float scale = GeneralEffectsManager.Rand(0.2f, 0.4f);
+                if (baseParticleX > 14 && baseParticleX < size.X - 14 && GeneralEffectsManager.RandChance(6))
                 {
                     scale *= 2f;
                 }
+                var clr = color;
+                if (lifeTime < 0.3f)
+                {
+                    clr *= lifeTime / 0.3f;
+                }
                 if (lifeTime < 5f)
                 {
-                    var clr = color;
-                    if (lifeTime < 0.3f)
-                    {
-                        clr *= lifeTime / 0.3f;
-                    }
                     if (lifeTime > MathHelper.PiOver2)
                     {
                         float timeMult = (lifeTime - MathHelper.PiOver2) / MathHelper.PiOver2;
@@ -234,6 +233,10 @@ namespace AQMod.Items
                         {
                             continue;
                         }
+                    }
+                    if (scale > 0.4f)
+                    {
+                        Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr * 2f, 0f, particleOrigin, scale * 0.5f, SpriteEffects.None, 0f);
                     }
                     Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr, 0f, particleOrigin, scale, SpriteEffects.None, 0f);
                 }

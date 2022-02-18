@@ -31,7 +31,7 @@ namespace AQMod.Items.Potions
             {
                 if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                 {
-                    tooltips[i].overrideColor = Color.Lerp(new Color(255, 222, 150), new Color(170, 130, 80), AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f));
+                    tooltips[i].overrideColor = Main.LocalPlayer.FX().BaguetteGradient.GetColor(Main.GlobalTime);
                     return;
                 }
             }

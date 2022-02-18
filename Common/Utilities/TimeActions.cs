@@ -3,7 +3,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.ID;
 
-namespace AQMod.Common
+namespace AQMod.Common.Utilities
 {
     public static class TimeActions
     {

@@ -1,4 +1,4 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.Utilities.IO;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System;

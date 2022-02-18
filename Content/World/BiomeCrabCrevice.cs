@@ -9,7 +9,7 @@ using AQMod.Items.Weapons.Ranged;
 using AQMod.Tiles;
 using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature.CrabCrevice;
-using AQMod.Walls;
+using AQMod.Tiles.Walls;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

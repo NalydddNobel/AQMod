@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.Utilities
+namespace AQMod.Common.Utilities.Debugging
 {
     internal sealed class ImageFunctionAlphaFixer
     {

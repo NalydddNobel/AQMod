@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.CrossMod;
 using AQMod.Common.Graphics;
+using AQMod.Common.Utilities.IO;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
@@ -28,7 +29,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.Utilities
+namespace AQMod.Common.Utilities.Debugging
 {
     internal class NCallCommand : ModCommand
     {
@@ -66,7 +67,7 @@ namespace AQMod.Common.Utilities
                     {
                         bool assignedColor = true;
                         Color color = new Color();
-                        switch (args[1]) 
+                        switch (args[1])
                         {
                             case "Violet":
                                 color = Color.Violet;
@@ -81,7 +82,7 @@ namespace AQMod.Common.Utilities
                                 break;
                         }
                         if (!assignedColor)
-                            color = (Color)(typeof(Color).GetProperty(args[1], BindingFlags.Public | BindingFlags.Static).GetGetMethod(nonPublic: false).Invoke(null, null));
+                            color = (Color)typeof(Color).GetProperty(args[1], BindingFlags.Public | BindingFlags.Static).GetGetMethod(nonPublic: false).Invoke(null, null);
                         caller.Reply(color.ToString());
                     }
                     break;
@@ -889,8 +890,8 @@ namespace AQMod.Common.Utilities
                 case "modencode":
                     {
                         var text = AQStringCodes.EncodeModName(args[1]);
-                        caller.Reply("encoded: " + text, Colors.RarityGreen);
-                        caller.Reply("read code: " + AQStringCodes.DecodeModName(text).ToString(), Colors.RarityAmber);
+                        caller.Reply("encoded: " + text, Color.Aqua);
+                        caller.Reply("read code: " + AQStringCodes.DecodeModName(text).ToString(), Color.Yellow);
                     }
                     break;
 

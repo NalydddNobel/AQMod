@@ -1,4 +1,4 @@
-﻿using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities.Debugging;
 using AQMod.Effects.GoreNest;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

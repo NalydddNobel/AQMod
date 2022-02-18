@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Walls
+namespace AQMod.Tiles.Walls
 {
     public class MoonlightWallWall : ModWall
     {

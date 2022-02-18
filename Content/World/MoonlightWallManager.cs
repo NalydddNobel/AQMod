@@ -1,4 +1,4 @@
-﻿using AQMod.Walls;
+﻿using AQMod.Tiles.Walls;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;

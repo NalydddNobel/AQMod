@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
+using AQMod.Common.Utilities.Colors;
 using AQMod.Dusts;
 using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
@@ -48,21 +49,18 @@ namespace AQMod.Projectiles.Monster.Starite
             }
         }
 
-        private static readonly Color[] pattern = new Color[]
-        {
+        private static readonly ColorGradient gradient = new ColorGradient(3f, 
             new Color(255, 0, 0, 128),
             new Color(255, 128, 0, 128),
             new Color(255, 255, 0, 128),
             new Color(0, 255, 10, 128),
             new Color(0, 128, 128, 128),
             new Color(0, 10, 255, 128),
-            new Color(128, 0, 128, 128),
-        };
+            new Color(128, 0, 128, 128));
 
         private static Color getColor(float time)
         {
-            var config = ModContent.GetInstance<AQConfigClient>();
-            return AQUtils.colorLerps(pattern, time * 3f * config.EffectIntensity) * config.EffectIntensity;
+            return gradient.GetColor(time) * AQConfigClient.c_EffectIntensity;
         }
 
 

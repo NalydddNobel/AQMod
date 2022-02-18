@@ -42,6 +42,12 @@ namespace AQMod.NPCs.Monsters.DemonSiege
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.65f);
+            if (AQMod.calamityMod.IsActive)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 2.5f);
+                npc.damage = (int)(npc.damage * 1.5f);
+                npc.defense *= 2;
+            }
         }
 
         public override void AI()

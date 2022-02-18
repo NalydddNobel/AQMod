@@ -192,9 +192,11 @@ namespace AQMod.Projectiles.Pets
                 projectile.rotation *= 0.99f;
                 projectile.ai[0] *= 0.9f;
                 projectile.localAI[0] *= 0.9f;
-                if (distance > 2000f)
+                if (distance > 1850f)
                 {
                     projectile.Center = Main.player[projectile.owner].Center;
+                    projectile.velocity = Vector2.Zero;
+                    return;
                 }
                 var gotoVeloc = Vector2.Normalize(Main.player[projectile.owner].Center - projectile.Center) * (distance / 1600f);
                 float maxVelo = 20f;
@@ -217,9 +219,6 @@ namespace AQMod.Projectiles.Pets
                         maxVelo /= 4f;
                     }
                     amount = Math.Min(amount, 0.75f);
-                    //Main.NewText(distance);
-                    //Main.NewText(amount);
-                    //Main.NewText(maxVelo);
                     projectile.velocity = Vector2.Normalize(Vector2.Lerp(projectile.velocity, gotoVeloc, amount)) * projectile.velocity.Length();
                 }
                 maxVelo = MathHelper.Max(maxVelo, 4f);

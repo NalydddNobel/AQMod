@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.ID;
-using AQMod.Common.Utilities;
+using AQMod.Common.Utilities.Debugging;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 

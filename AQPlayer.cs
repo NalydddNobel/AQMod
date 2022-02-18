@@ -16,6 +16,7 @@ using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.Tools;
+using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Summon;
@@ -129,6 +130,7 @@ namespace AQMod
         public bool shade;
         public bool undetectable;
 
+        public bool meathookUI;
         public bool meathook;
         public bool hasMeathookNPCOld;
         public bool hasMeathookNPC;
@@ -186,6 +188,7 @@ namespace AQMod
             bloodthirstDelay = 0;
             healEffectValueForSyncingTheThingOnTheServer = 0;
             hookDebuffs = new List<BuffData>();
+            meathookUI = false;
         }
 
         public override void OnEnterWorld(Player player)
@@ -230,6 +233,7 @@ namespace AQMod
             healEffectValueForSyncingTheThingOnTheServer = 0;
             hookDebuffs = new List<BuffData>();
             hookDamage = 0;
+            meathookUI = false;
         }
 
         private void ResetEffects_HookBarbs()
@@ -238,6 +242,7 @@ namespace AQMod
             if (!hasMeathookNPC)
             {
                 meathookNPC = -1;
+                meathookUI = !player.miscEquips[4].IsAir && player.miscEquips[4].type == ModContent.ItemType<VampireHook>();
             }
             hasMeathookNPCOld = hasMeathookNPC;
             hasMeathookNPC = false;

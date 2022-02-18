@@ -15,7 +15,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Content
 {
-    public static class MapInterface
+    public static class InterfaceMap
     {
         public const byte Icon_DungeonPink = 0;
         public const byte Icon_DungeonBlue = 1;

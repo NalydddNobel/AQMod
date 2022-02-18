@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Common.Utilities;
+using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
 using AQMod.Content.Players;
 using AQMod.Content.World;

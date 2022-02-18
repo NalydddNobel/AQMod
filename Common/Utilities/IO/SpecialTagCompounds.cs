@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Common
+namespace AQMod.Common.Utilities.IO
 {
     internal static class SpecialTagCompounds
     {

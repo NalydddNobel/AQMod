@@ -1,6 +1,7 @@
 ﻿using AQMod.Effects.Dyes;
 using AQMod.Items.Weapons.Magic;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
@@ -11,7 +12,7 @@ namespace AQMod.Items.Dyes
         public override string Pass => "UnchainedPass";
         public override ArmorShaderData CreateShaderData()
         {
-            return new ArmorShaderDataDynamicColor(Effect, Pass, () => Narrizuul.TextColor());
+            return new ArmorShaderDataDynamicColor(Effect, Pass, () => Main.LocalPlayer.FX().NalydGradient.GetColor(Main.GlobalTime));
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -20,7 +21,7 @@ namespace AQMod.Items.Dyes
             {
                 if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                 {
-                    tooltips[i].overrideColor = Narrizuul.TextColor();
+                    tooltips[i].overrideColor = Main.LocalPlayer.FX().NalydGradient.GetColor(Main.GlobalTime);
                     return;
                 }
             }

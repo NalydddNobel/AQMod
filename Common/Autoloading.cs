@@ -1,4 +1,4 @@
-﻿using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities.Debugging;
 using System;
 using System.Collections.Generic;
 using System.Linq;

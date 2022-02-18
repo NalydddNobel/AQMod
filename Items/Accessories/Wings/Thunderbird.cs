@@ -36,7 +36,7 @@ namespace AQMod.Items.Accessories.Wings
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            var clr = Narrizuul.TextColor() * 0.2f;
+            var clr = Main.LocalPlayer.FX().NalydGradient.GetColor(Main.GlobalTime) * 0.2f;
             var texture = Main.itemTexture[item.type];
             var wave = AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f);
             var n = new Vector2(wave, 0f).RotatedBy(Main.GlobalTime * 2.9f);
@@ -50,7 +50,7 @@ namespace AQMod.Items.Accessories.Wings
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            var clr = Narrizuul.TextColor() * 0.2f;
+            var clr = Main.LocalPlayer.FX().NalydGradient.GetColor(Main.GlobalTime) * 0.2f;
             var texture = Main.itemTexture[item.type];
             var frame = texture.Frame();
             var origin = frame.Size() / 2f;
@@ -71,7 +71,7 @@ namespace AQMod.Items.Accessories.Wings
             {
                 if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                 {
-                    tooltips[i].overrideColor = Color.Lerp(new Color(255, 120, 200), new Color(170, 80, 200), AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f));
+                    tooltips[i].overrideColor = Main.LocalPlayer.FX().ThunderbirdGradient.GetColor(Main.GlobalTime);
                     return;
                 }
             }

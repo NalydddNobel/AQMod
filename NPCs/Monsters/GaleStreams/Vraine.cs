@@ -57,6 +57,11 @@ namespace AQMod.NPCs.Monsters.GaleStreams
                 npc.lifeMax = (int)(npc.lifeMax * 0.8f);
                 npc.damage = (int)(npc.damage * 0.8f);
             }
+            if (AQMod.calamityMod.IsActive)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 1.5f);
+                npc.defense *= 2;
+            }
         }
 
         public override void HitEffect(int hitDirection, double damage)

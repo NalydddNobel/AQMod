@@ -2,6 +2,7 @@
 using AQMod.Content.Players;
 using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.NPCs;
+using AQMod.Projectiles.GrapplingHooks;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace AQMod
                 {
                     ProjectileID.AntiGravityHook,
                     ProjectileID.StaticHook,
+                    ModContent.ProjectileType<VampireHookProj>(),
                 };
 
                 DamageReductionExtractor = new bool[ProjectileLoader.ProjectileCount];
@@ -276,7 +278,7 @@ namespace AQMod
             {
                 if (Main.npc[k].active && !Main.npc[k].townNPC && rect.Intersects(Main.npc[k].getRect()) && AQUtils.CanNPCBeHitByProjectile(Main.npc[k], projectile))
                 {
-                    if (aQPlayer.meathook && !appliedMeathook && !AQNPC.Sets.CannotBeMeathooked.Contains(Main.npc[k].type))
+                    if (aQPlayer.meathook && !appliedMeathook && AQNPC.CanBeMeathooked(Main.npc[k]))
                     {
                         aQPlayer.hasMeathookNPC = true;
                         projectile.Center = Main.npc[k].Center;

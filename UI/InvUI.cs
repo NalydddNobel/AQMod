@@ -6,12 +6,10 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace AQMod.UserInterface
+namespace AQMod.UI
 {
-    internal static class UserInterfaceUtilities
+    internal static class InvUI
     {
-        public static bool GameInterfaceLayersAreBeingDrawn;
-
         public struct InventoryItemDrawResults
         {
             public Item item;
@@ -30,7 +28,7 @@ namespace AQMod.UserInterface
             return position + inventoryBackTexture.Size() / 2f * Main.inventoryScale;
         }
 
-        public static InventoryItemDrawResults DrawItemInv(Vector2 position, Item item, Color? color = null, int maxSize = 32)
+        public static InventoryItemDrawResults DrawItem(Vector2 position, Item item, Color? color = null, int maxSize = 32)
         {
             var drawResults = new InventoryItemDrawResults
             {

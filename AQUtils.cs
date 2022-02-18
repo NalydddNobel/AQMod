@@ -64,6 +64,15 @@ namespace AQMod
             }
         }
 
+        public static float FromByte(byte value, float maximum)
+        {
+            return value * maximum / 255f;
+        }
+        public static float FromByte(byte value, float minimum, float maximum)
+        {
+            return minimum + value * (maximum - minimum) / 255f;
+        }
+
         public static T GetValueOrDefault<T>(object value, T defaultValue)
         {
             return value != null && (value is T wantedValue) ? wantedValue : default;
@@ -84,6 +93,11 @@ namespace AQMod
                     indexList.Add(list[i]);
                 }
             }
+        }
+
+        public static PlayerDrawEffects FX(this Player player)
+        {
+            return player.GetModPlayer<PlayerDrawEffects>();
         }
 
         public static PlayerBiomes Biomes(this Player player)

@@ -6,10 +6,10 @@ using AQMod.Common.CrossMod;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Common.Utilities;
+using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.Entities;
-using AQMod.Content.NameTags;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.Seasonal.Christmas;
@@ -25,11 +25,12 @@ using AQMod.Effects.WorldEffects;
 using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Dyes;
 using AQMod.Items.Potions;
+using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
 using AQMod.Sounds;
-using AQMod.UserInterface;
+using AQMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -539,6 +540,7 @@ namespace AQMod
             var server = ModContent.GetInstance<AQConfigServer>();
             if (!Main.dedServ)
             {
+                GeneralEffectsManager.InternalSetup();
                 var client = AQConfigClient.Instance;
                 AQSound.rand = new UnifiedRandom();
                 ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
@@ -791,30 +793,82 @@ namespace AQMod
         {
             if (WorldGen.gen)
                 return;
-            MapInterface.RenderOnMap(ref mouseText);
-            MapInterface.RenderOverlayingUI(ref mouseText);
+            InterfaceMap.RenderOnMap(ref mouseText);
+            InterfaceMap.RenderOverlayingUI(ref mouseText);
         }
 
         public override void UpdateUI(GameTime gameTime)
         {
-            UserInterfaceUtilities.GameInterfaceLayersAreBeingDrawn = false;
+            UIUtils.GameInterfaceLayersAreBeingDrawn = false;
+            if (Main.myPlayer == -1 || Main.player[Main.myPlayer] == null || !Main.player[Main.myPlayer].active)
+            {
+                return;
+            }
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             CursorDyeManager.Update();
+
             layers.Insert(0, new LegacyGameInterfaceLayer("AQMod: UpdateUtilities", () =>
             {
-                UserInterfaceUtilities.GameInterfaceLayersAreBeingDrawn = true;
+                UIUtils.GameInterfaceLayersAreBeingDrawn = true;
                 return true;
             }, InterfaceScaleType.None));
-            var index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
+
+            var index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Gamepad Lock On"));
+            if (index != -1)
+            {
+                layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: NPC Lock Ons", () =>
+                {
+                    if (Main.gamePaused || !Main.instance.IsActive)
+                    {
+                        return true;
+                    }
+                    var player = Main.LocalPlayer;
+                    var aQPlayer = player.GetModPlayer<AQPlayer>();
+                    if (!aQPlayer.meathookUI)
+                    {
+                        return true;
+                    }
+
+                    float grappleDistance = (ProjectileLoader.GetProjectile(player.miscEquips[4].type)?.GrappleRange()).GetValueOrDefault(480f);
+
+                    int meathookChoice = -1;
+                    float meathookDistance = 320f;
+
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        if (Main.npc[i].active && AQNPC.CanBeMeathooked(Main.npc[i]))
+                        {
+                            float distanceFromPlayer = Main.npc[i].Distance(player.Center);
+                            if (distanceFromPlayer < grappleDistance - Main.npc[i].Size.Length())
+                            {
+                                float distanceFromCursor = Main.npc[i].Distance(Main.MouseWorld);
+                                if (distanceFromCursor < meathookDistance)
+                                {
+                                    meathookChoice = i;
+                                    meathookDistance = distanceFromCursor;
+                                }
+                            }
+                        }
+                    }
+
+                    if (meathookChoice == -1)
+                    {
+                        return true;
+                    }
+                    InterfaceHookableNPC.RenderUI(meathookChoice);
+                    return true;
+                }, InterfaceScaleType.Game));
+            }
+            index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
             if (index != -1)
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Rename Item Interface",
                     () =>
                     {
-                        UserInterfaceRenameItem.Draw();
+                        RenameItemUI.Draw();
                         return true;
                     },
                     InterfaceScaleType.UI)
@@ -955,6 +1009,11 @@ namespace AQMod
             {
                 player.QuickSpawnItem(items[Main.rand.Next(items.Count)]);
             }
+        }
+
+        internal static Texture2D getTexture(string path)
+        {
+            return GetInstance().GetTexture(path);
         }
     }
 }

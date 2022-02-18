@@ -3,7 +3,7 @@ using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World;
 using AQMod.Effects;
 using AQMod.NPCs.Bosses;
-using AQMod.Walls;
+using AQMod.Tiles.Walls;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using Terraria;

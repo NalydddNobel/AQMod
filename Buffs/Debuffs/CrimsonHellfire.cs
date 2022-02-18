@@ -7,7 +7,7 @@ namespace AQMod.Buffs.Debuffs
 {
     public class CrimsonHellfire : ModBuff
     {
-        public static Color FireColor => new Color(170, 40, 10, 10);
+        public static Color FireColor => new Color(175, 65, 20, 10);
 
         public static void Inflict(NPC npc, int time)
         {

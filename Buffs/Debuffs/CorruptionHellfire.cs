@@ -7,7 +7,7 @@ namespace AQMod.Buffs.Debuffs
 {
     public class CorruptionHellfire : ModBuff
     {
-        public static Color FireColor => new Color(120, 10, 100, 10);
+        public static Color FireColor => new Color(75, 20, 120, 10);
 
         public static void Inflict(NPC npc, int time)
         {

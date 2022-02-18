@@ -189,6 +189,12 @@ namespace AQMod.NPCs.Bosses
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.8f) + 4000 * numPlayers;
+            if (AQMod.calamityMod.IsActive)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 2.5f);
+                npc.damage *= 2;
+                npc.defense *= 2;
+            }
         }
 
         public bool IsOmegaLaserActive()

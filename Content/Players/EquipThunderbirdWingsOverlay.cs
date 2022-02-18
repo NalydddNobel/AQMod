@@ -16,7 +16,7 @@ namespace AQMod.Content.Players
         public override void Draw(PlayerDrawInfo info)
         {
             GetBasicPlayerDrawInfo(info, out Vector2 wingPosition, out var frame, out var effects, out float opacity, 4);
-            var clr = Narrizuul.TextColor() * opacity * 0.2f;
+            var clr = info.drawPlayer.FX().NalydGradient.GetColor(Main.GlobalTime) * opacity * 0.2f;
             var texture = Asset.Value;
             var wave = AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f);
             wingPosition.X -= info.drawPlayer.direction * 9.5f;

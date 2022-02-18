@@ -38,6 +38,15 @@ namespace AQMod.NPCs.Monsters
             }
         }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            if (AQMod.calamityMod.IsActive)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 1.5f);
+                npc.defense *= 2;
+            }
+        }
+
         public override void AI()
         {
             npc.TargetClosest();

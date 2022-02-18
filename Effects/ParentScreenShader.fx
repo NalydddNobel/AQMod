@@ -42,8 +42,38 @@ float4 Vignette(float2 coords : TEXCOORD0) : COLOR0
     return color * (1 - mult);
 }
 
+float4 FlashCoordinate(float2 coords : TEXCOORD0) : COLOR0
+{
+    float2 target = uTargetPosition;
+    float2 dir = normalize((uScreenPosition + coords * uScreenResolution) - target);
+    float2 pixelScale = float2(1 / uScreenResolution.x, 1 / uScreenResolution.y) * 2;
+    float4 color = tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 12);
+    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 12);
+    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 10);
+    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 10);
+    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 8);
+    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 8);
+    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 6);
+    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 6);
+    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 5);
+    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 5);
+    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 4);
+    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 4);
+    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 3);
+    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 3);
+    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 2);
+    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 2);
+    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress);
+    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress);
+    return (color + tex2D(uImage0, coords)) * uIntensity;
+}
+
 technique Technique1
 {
+    pass FlashCoordinatePass
+    {
+        PixelShader = compile ps_2_0 FlashCoordinate();
+    }
     pass SpotlightCoordinatePass
     {
         PixelShader = compile ps_2_0 SpotlightCoordinate();

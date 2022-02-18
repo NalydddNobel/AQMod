@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace AQMod.UserInterface
+namespace AQMod.UI
 {
-    public sealed class UserInterfaceTextboxInstance : UIState
+    public sealed class Textbox : UIState
     {
         public int x;
         public int y;
@@ -19,7 +19,7 @@ namespace AQMod.UserInterface
         public string text;
         public bool focused;
 
-        public UserInterfaceTextboxInstance(int x, int y, int width, int height, Color color = default(Color), int maxText = -1, int textOffsetY = 5)
+        public Textbox(int x, int y, int width, int height, Color color = default(Color), int maxText = -1, int textOffsetY = 5)
         {
             this.x = x;
             this.y = y;

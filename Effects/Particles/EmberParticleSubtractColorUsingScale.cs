@@ -18,6 +18,10 @@ namespace AQMod.Effects.Particles
         {
             var c = base.GetColor();
             int subtract = (int)((1f - scale) * 255f);
+            if (subtract > 0)
+            {
+                return c;
+            }
             return new Color(c.R - subtract, c.G - subtract, c.B - subtract, c.A - subtract);
         }
 

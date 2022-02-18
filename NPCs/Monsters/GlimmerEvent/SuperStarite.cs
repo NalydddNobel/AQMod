@@ -41,6 +41,16 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
             bannerItem = ModContent.ItemType<SuperStariteBanner>();
         }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            if (AQMod.calamityMod.IsActive)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 2.5f);
+                npc.damage = (int)(npc.damage * 1.5f);
+                npc.defense *= 2;
+            }
+        }
+
         public override void HitEffect(int hitDirection, double damage)
         {
             float x = npc.velocity.X.Abs() * hitDirection;

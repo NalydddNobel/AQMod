@@ -1,4 +1,4 @@
-﻿using AQMod.Common.Utilities;
+﻿using AQMod.Common.Utilities.Debugging;
 using AQMod.Items.Dyes;
 using AQMod.Items.Dyes.Hair;
 using System.Collections.Generic;

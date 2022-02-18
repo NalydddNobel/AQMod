@@ -54,6 +54,12 @@ namespace AQMod.NPCs.Monsters.GlimmerEvent
                 npc.lifeMax = (int)(npc.lifeMax * 1.5f);
                 npc.damage = (int)(npc.damage * 1.2f);
             }
+            if (AQMod.calamityMod.IsActive)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 2.5f);
+                npc.damage = (int)(npc.damage * 1.5f);
+                npc.defense *= 2;
+            }
         }
 
         public override void HitEffect(int hitDirection, double damage)

@@ -48,6 +48,12 @@ namespace AQMod.NPCs.Bosses
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * 0.5f * 1.5f);
+            if (AQMod.calamityMod.IsActive)
+            {
+                npc.lifeMax *= 3;
+                npc.damage *= 2;
+                npc.defense += 6;
+            }
         }
 
         public override void HitEffect(int hitDirection, double damage)

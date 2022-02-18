@@ -14,7 +14,7 @@ namespace AQMod.Items.Placeable.Wall
             item.useTime = 7;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createWall = ModContent.WallType<Walls.OceanRavineWall>();
+            item.createWall = ModContent.WallType<Tiles.Walls.OceanRavineWall>();
             item.consumable = true;
             item.autoReuse = true;
             item.useTurn = true;

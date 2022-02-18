@@ -46,20 +46,11 @@ namespace AQMod
             public static List<int> NoGlobalDrops { get; private set; }
             public static List<int> NoMapBlip { get; private set; }
 
-
             public static bool IsWormHead(int type)
             {
                 return IsWormSegment[type] && !IsWormBody[type];
             }
 
-            private static void AutoSets_MeaninglessNPC(NPC npc)
-            {
-                if (npc.friendly || npc.lifeMax <= 5)
-                {
-                    NoGlobalDrops.Add(npc.type);
-                    CannotBeMeathooked.Add(npc.type);
-                }
-            }
             private static void AutoSets_WindCheck(NPC npc)
             {
                 if (npc.aiStyle != AIStyles.DemonEyeAI && npc.aiStyle != AIStyles.FlyingAI && npc.aiStyle != AIStyles.SpellAI && npc.aiStyle != AIStyles.EnchantedSwordAI && npc.aiStyle != AIStyles.SpiderAI &&
@@ -89,7 +80,6 @@ namespace AQMod
                             npc = new NPC();
                             npc.SetDefaults(i);
                         }
-                        AutoSets_MeaninglessNPC(npc);
                         AutoSets_WindCheck(npc);
                     }
                     catch (Exception e)
@@ -941,7 +931,7 @@ namespace AQMod
                         var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
                         var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                         Particle.PostDrawPlayers.AddParticle(
-                            new EmberParticle(dustPos, new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
+                            new EmberParticleSubtractColorUsingScale(dustPos, new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
                     }
                 }
@@ -957,21 +947,21 @@ namespace AQMod
                 else if (crimsonHellfire)
                 {
                     fireColor = Buffs.Debuffs.CrimsonHellfire.FireColor;
+                    fireColor.G = Math.Min((byte)(fireColor.G + Main.rand.Next(40)), (byte)255);
                 }
                 if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
                 {
                     var pos = npc.position - new Vector2(2f, 2f);
                     var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
-                    for (int i = 0; i < 4; i++)
+                    int amt = (int)(npc.Size.Length() / 16);
+                    amt += 4;
+                    for (int i = 0; i < amt; i++)
                     {
                         var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                        var velocity = new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f);
+                        var velocity = new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-1f, 4f)) * 0.425f).Abs() - 3f);
                         Particle.PostDrawPlayers.AddParticle(
-                            new EmberParticle(dustPos, velocity,
-                            fireColor, Main.rand.NextFloat(0.8f, 1.1f)));
-                        Particle.PostDrawPlayers.AddParticle(
-                            new EmberParticle(dustPos, velocity,
-                            fireColor * 0.2f, 1.5f));
+                            new EmberParticleSubtractColorUsingScale(dustPos, velocity,
+                            fireColor, Main.rand.NextFloat(0.7f, 0.95f)));
                     }
                 }
                 Lighting.AddLight(npc.Center, fireColor.ToVector3());
@@ -1499,6 +1489,16 @@ namespace AQMod
             {
                 NPC.buffImmune[i] = true;
             }
+        }
+        
+        public static bool UselessNPC(NPC npc)
+        {
+            return npc.friendly || npc.lifeMax < 5;
+        }
+
+        public static bool CanBeMeathooked(NPC npc)
+        {
+            return !UselessNPC(npc) && !npc.dontTakeDamage && !npc.immortal && !Sets.CannotBeMeathooked.Contains(npc.type);
         }
     }
 }

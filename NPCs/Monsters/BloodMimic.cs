@@ -35,6 +35,16 @@ namespace AQMod.NPCs.Monsters
             bannerItem = ItemID.MimicBanner;
         }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            if (AQMod.calamityMod.IsActive)
+            {
+                npc.lifeMax = (int)(npc.lifeMax * 1.5f);
+                npc.damage = (int)(npc.damage * 1.25f);
+                npc.defense *= 2;
+            }
+        }
+
         protected override int GetJumpTimer() => npc.ai[1] == 0f ? 5 : 10;
 
         public override void HitEffect(int hitDirection, double damage)

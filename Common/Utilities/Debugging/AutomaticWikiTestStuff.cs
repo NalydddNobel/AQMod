@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.Utilities
+namespace AQMod.Common.Utilities.Debugging
 {
     internal static class AutomaticWikiTestStuff
     {
