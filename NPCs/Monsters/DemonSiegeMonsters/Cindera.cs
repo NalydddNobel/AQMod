@@ -4,6 +4,7 @@ using AQMod.Content.World.Events;
 using AQMod.Items.Accessories;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
+using AQMod.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

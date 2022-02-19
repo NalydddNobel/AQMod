@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs
+namespace AQMod.NPCs.AIs
 {
     public abstract class AIBat : ModNPC
     {

@@ -15,7 +15,7 @@ namespace AQMod.Content.World.Events
 {
     public sealed class GaleStreams : WorldEvent
     {
-        public class CustomProgressBar : EventProgressBar
+        public sealed class CustomProgressBar : EventProgressBar
         {
             public override Texture2D IconTexture => ModContent.GetTexture(TexturePaths.EventIcons + "galestreams");
             public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.GaleStreams");

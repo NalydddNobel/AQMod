@@ -20,7 +20,7 @@ namespace AQMod.Content.World.Events
 {
     public sealed class Glimmer : WorldEvent
     {
-        public class CustomProgressBar : EventProgressBar
+        public sealed class CustomProgressBar : EventProgressBar
         {
             public override Texture2D IconTexture => ModContent.GetTexture(TexturePaths.EventIcons + "glimmerevent");
             public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.GlimmerEvent");

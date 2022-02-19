@@ -17,7 +17,7 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 
 # Accessories
 
-ItemName.RustyKnife=Rusty Knife
+ItemName.RustyKnife=KNIFE
 ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP on fatal hits with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
 ProjectileName.FriendMinion=Friend
 ProjectileName.KelBall=Kel's Ball
@@ -138,6 +138,15 @@ ItemName.NuclearFeather=Nuclear Feather
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
 
 # Weapons
+ItemName.CrimsonHellSword=First Degree
+ItemTooltip.CrimsonHellSword=Shoots a wave of explosive demonic energy\nSword hits inflict crimson hellfire\n'That's gotta burn'
+ProjectileName.Burnterizer=First Degree Burns
+ProjectileName.BurnterizerExplosion=First Degree Burns
+
+ItemName.HellsBoon=Hell's Boon
+ItemTooltip.HellsBoon=Creates ash spikes around your cursor which protrude out of nearby tiles\nSword hits inflict corruption hellfire
+ProjectileName.HellsBoonSpike=Hell's Boon
+
 ItemName.MonoxiderStaff=Monoxider Staff
 ItemTooltip.MonoxiderStaff=Summons a monoxide finch to fight for you
 ProjectileName.MonoxiderMinion=Monoxider
@@ -1125,9 +1134,6 @@ ProjectileName.Dysesthesia=Dysesthesia
 ProjectileName.MiniDemonScythe=Dysesthesia
 
 # Other Melee
-ItemName.CrimsonHellSword=Burnterizer
-ItemTooltip.CrimsonHellSword=Shoots a wave of demonic energy
-ItemName.HellsBoon=Hell's Boon
 ItemName.Galactium=Galactium
 ItemTooltip.Galactium=Rains stars from the sky\nInflicts blue fire on true melee hits
 
@@ -1265,7 +1271,6 @@ ItemTooltip.PentalScythe=Shoots firey demon scythes that target your enemies
 ItemTooltip.ArgonSpear=Redirects itself to your cursor
 ItemTooltip.HorizonSkies=Shoots lines of energy\n'Are you readyayayayayyayayayaya'
 # Other Melee
-ItemTooltip.HellsBoon=Creates ash spikes around your cursor which protrude out of nearby tiles
 ItemTooltip.XenonBasher=Hitting enemies will create xenon spores
 # Ranged
 # Bows
@@ -1331,11 +1336,8 @@ BuffDescription.Hot80=You are above 80 degrees Fahrenheit
 # Melee Weapon Projectiles
 ProjectileName.Aphrodite=Aphrodite
 ProjectileName.ArgonSpear=Argon Spear
-ProjectileName.Burnterizer=Burnterizer
-ProjectileName.BurnterizerExplosion=Burnterizer
 ProjectileName.CrystalDagger=Crystal Dagger
 ProjectileName.Galactium=Galactium
-ProjectileName.HellsBoon=Hell's Boon
 ProjectileName.HorizonSkies=Horizon Skies
 ProjectileName.HorizonSkiesBolt=Horizon Skies
 ProjectileName.HorizonSkiesExplosion=Horizon Skies

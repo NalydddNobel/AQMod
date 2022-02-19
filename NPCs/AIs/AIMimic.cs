@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs
+namespace AQMod.NPCs.AIs
 {
     public abstract class AIMimic : ModNPC
     {

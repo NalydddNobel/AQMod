@@ -1,6 +1,7 @@
 ﻿using AQMod.Items.Accessories;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools;
+using AQMod.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

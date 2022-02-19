@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs
+namespace AQMod.NPCs.AIs
 {
     public abstract class AIFighter : ModNPC
     {
@@ -212,7 +212,7 @@ namespace AQMod.NPCs
                 }
                 else
                 {
-                    if ((npc.velocity.X < 0f && npc.direction == -1) || (npc.velocity.X > 0f && npc.direction == 1))
+                    if (npc.velocity.X < 0f && npc.direction == -1 || npc.velocity.X > 0f && npc.direction == 1)
                     {
                         if (!JumpCheck(tileX, tileY))
                         {

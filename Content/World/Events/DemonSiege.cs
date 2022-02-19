@@ -70,7 +70,7 @@ namespace AQMod.Content.World.Events
                 upgradeTime = time;
             }
         }
-        public class CustomProgressBar : EventProgressBar
+        public sealed class CustomProgressBar : EventProgressBar
         {
             public override Texture2D IconTexture => ModContent.GetTexture(TexturePaths.EventIcons + "demonsiege");
             public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.DemonSiege");

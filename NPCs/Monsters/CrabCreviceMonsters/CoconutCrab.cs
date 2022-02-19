@@ -1,6 +1,7 @@
 ﻿using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Potions;
+using AQMod.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
