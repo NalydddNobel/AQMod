@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.NPCs.AIs;
+using AQMod.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,6 +32,12 @@ namespace AQMod.NPCs.Friendly
 
         public override void AI()
         {
+            if (npc.ai[1] < 60f)
+            {
+                npc.ai[1]++;
+                npc.noGravity = false;
+                return;
+            }
             for (int i = 0; i < 4; i++) // run AI a lot lol
             {
                 if (i != 0)
@@ -50,10 +57,24 @@ namespace AQMod.NPCs.Friendly
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = SpawnCondition.Sky.Chance * 0.01f * (SpawnCondition.TownCritter.Chance * 5f + 1f);
-            if (WorldDefeats.DownedStarite || NPC.downedMechBossAny)
-                chance *= 5f;
-            return chance;
+            if (spawnInfo.spawnTileY < 250)
+            {
+                float chance = (WorldDefeats.DownedStarite || NPC.downedMechBossAny ? 2f : 1f) * (spawnInfo.playerInTown ? 2f : 1f);
+                return chance;
+            }
+            return 0f;
+        }
+
+        public override int SpawnNPC(int tileX, int tileY)
+        {
+            for (int j = tileY; j < tileY + 100; j++)
+            {
+                if (Main.tile[tileX, j].active() && (Main.tile[tileX, j].Solid() || Main.tile[tileX, j].SolidTop()))
+                {
+                    return NPC.NewNPC(tileX * 16 + 8, j * 16 - 8, npc.type);
+                }
+            }
+            return base.SpawnNPC(tileX, tileY);
         }
     }
 }
