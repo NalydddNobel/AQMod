@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.CrabSeason
+namespace AQMod.NPCs.Monsters.CrabCreviceMonsters
 {
     public class SoldierCrab : ModNPC, IDecideFallThroughPlatforms
     {
@@ -91,7 +91,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                     if (Main.netMode != NetmodeID.Server && (int)npc.ai[1] == 20)
                     {
                         if (Collision.CanHitLine(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
-                        Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, Style: 1);
+                            Main.PlaySound(SoundID.Tink, (int)npc.position.X, (int)npc.position.Y, Style: 1);
                         int amount = 2;
                         if (Main.expertMode)
                         {
@@ -184,7 +184,7 @@ namespace AQMod.NPCs.Monsters.CrabSeason
                         if (npc.ai[1] >= 46f)
                         {
                             npc.TargetClosest(faceTarget: true);
-                            if (npc.HasValidTarget && 
+                            if (npc.HasValidTarget &&
                                 Collision.CanHitLine(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
                                 npc.ai[0] = (int)npc.ai[2];
                             npc.ai[1] = 0f;

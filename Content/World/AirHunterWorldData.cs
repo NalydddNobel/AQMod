@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Utilities.IO;
+using AQMod.Content.World.Events;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System;
@@ -26,7 +27,7 @@ namespace AQMod.Content.World
 
         public override void PreUpdate()
         {
-            if (!EventGaleStreams.IsActive)
+            if (!GaleStreams.IsActive)
             {
                 if (MerchantSetup)
                     ResetMerchant();

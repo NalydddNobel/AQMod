@@ -32,7 +32,7 @@ namespace AQMod.Content.Seasonal.Christmas
                 {
                     if (npc.type == NPCID.SlimeSpiked ||
                         npc.type == NPCID.SpikedJungleSlime ||
-                        npc.type == ModContent.NPCType<NPCs.Monsters.GaleStreams.WhiteSlime>())
+                        npc.type == ModContent.NPCType<NPCs.Monsters.GaleStreamsMonsters.WhiteSlime>())
                     {
                         npc.SetDefaults(NPCID.SpikedIceSlime);
                     }

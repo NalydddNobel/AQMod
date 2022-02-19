@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects.Particles;
 using AQMod.Effects.ScreenEffects;
@@ -151,7 +151,7 @@ namespace AQMod.NPCs.Bosses
         public override void AI()
         {
             bool leave = (int)npc.ai[0] == -1;
-            if (!leave && Main.player[npc.target].position.Y > EventGaleStreams.MinimumGaleStreamsSpawnOverride)
+            if (!leave && Main.player[npc.target].position.Y > GaleStreams.MinimumGaleStreamsSpawnOverride)
             {
                 leave = true;
             }
@@ -605,7 +605,7 @@ namespace AQMod.NPCs.Bosses
         public override void NPCLoot()
         {
             if (npc.target != -1)
-                EventGaleStreams.ProgressEvent(Main.player[npc.target], 40);
+                GaleStreams.ProgressEvent(Main.player[npc.target], 40);
             WorldDefeats.DownedSpaceSquid = true;
             Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
             Item.NewItem(npc.getRect(), ItemID.SoulofFlight, Main.rand.Next(5) + 2);

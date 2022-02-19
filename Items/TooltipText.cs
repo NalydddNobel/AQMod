@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
 using AQMod.Content.Players;
-using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Items.Accessories.FidgetSpinner;
 using Microsoft.Xna.Framework;
@@ -13,7 +13,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
-using Terraria.Utilities;
 
 namespace AQMod.Items
 {
@@ -85,7 +84,7 @@ namespace AQMod.Items
                         }
                     }
                 }
-                if (ModContent.GetInstance<AQConfigClient>().DemonSiegeUpgradeTooltip && EventDemonSiege.GetUpgrade(item) != null)
+                if (ModContent.GetInstance<AQConfigClient>().DemonSiegeUpgradeTooltip && DemonSiege.GetUpgrade(item) != null)
                 {
                     int index = FindVanillaTooltipLineIndex(tooltips, "Material");
                     tooltips.Insert(index, new TooltipLine(mod, "DemonSiegeUpgrade", Language.GetTextValue("Mods.AQMod.Tooltips.DemonSiegeUpgrade")) { overrideColor = new Color(255, 222, 222), });

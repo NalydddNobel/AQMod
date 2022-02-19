@@ -1,8 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common.Graphics;
-using AQMod.Projectiles.GrapplingHooks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using AQMod.Projectiles.GrapplingHooks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

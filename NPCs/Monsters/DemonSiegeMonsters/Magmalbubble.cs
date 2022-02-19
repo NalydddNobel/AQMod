@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
-using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Content.World.Events;
 using AQMod.Items.Materials.Energies;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -10,7 +10,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.DemonSiege
+namespace AQMod.NPCs.Monsters.DemonSiegeMonsters
 {
     public class Magmalbubble : ModNPC, IDecideFallThroughPlatforms
     {
@@ -366,20 +366,24 @@ namespace AQMod.NPCs.Monsters.DemonSiege
 
         public override void NPCLoot()
         {
+            if (!DemonSiege.IsActive)
+            {
+                return;
+            }
             if (Main.rand.NextBool(12))
                 Item.NewItem(npc.getRect(), ItemID.LavaCharm);
             if (Main.rand.NextBool(3))
             {
                 if (Main.rand.NextBool())
                 {
-                    Item.NewItem(npc.getRect(), EventDemonSiege.HellBanners[Main.rand.Next(EventDemonSiege.HellBanners.Count)]);
+                    Item.NewItem(npc.getRect(), DemonSiege.HellBanners[Main.rand.Next(DemonSiege.HellBanners.Count)]);
                 }
                 else
                 {
                     Item.NewItem(npc.getRect(), ItemID.LavaLamp);
                 }
             }
-            if (Main.rand.NextBool(Main.expertMode ? 12 : 16) && EventDemonSiege.IsActive)
+            if (Main.rand.NextBool(Main.expertMode ? 12 : 16))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.DegenerationRing>());
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());

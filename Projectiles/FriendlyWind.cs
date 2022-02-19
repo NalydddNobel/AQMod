@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Effects.Particles;
 using AQMod.Effects.Wind;
 using Microsoft.Xna.Framework;
@@ -121,7 +121,7 @@ namespace AQMod.Projectiles
                 var trueOldPos = projectile.oldPos.AsAddAll(new Vector2(projectile.width / 2f, projectile.height / 2f));
                 for (int i = 0; i < trueOldPos.Length; i++)
                 {
-                    Particle.PostDrawPlayers.AddParticle(new WindLayerParticle(trueOldPos[i], -projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.4f, 0.4f)) * 0.5f, EventGaleStreams.NeutralCurrentColor, 0.75f));
+                    Particle.PostDrawPlayers.AddParticle(new WindLayerParticle(trueOldPos[i], -projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.4f, 0.4f)) * 0.5f, GaleStreams.NeutralCurrentColor, 0.75f));
                 }
                 var rect = new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height);
                 for (int i = 0; i < 5; i++)
@@ -137,7 +137,7 @@ namespace AQMod.Projectiles
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            var color = EventGaleStreams.NeutralCurrentColor;
+            var color = GaleStreams.NeutralCurrentColor;
             color.A = 255;
             WindLayer.AddToCurrentList(
                 new Common.Graphics.DrawTypes.FriendlyWind(color, projectile.oldPos.AsAddAll(-Main.screenPosition + new Vector2(projectile.width / 2f, projectile.height / 2f)), projectile.velocity.ToRotation()));

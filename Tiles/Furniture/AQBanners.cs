@@ -1,9 +1,9 @@
 ﻿using AQMod.Items.Placeable.Banners;
 using AQMod.NPCs.Bosses;
-using AQMod.NPCs.Monsters.CrabSeason;
-using AQMod.NPCs.Monsters.DemonSiege;
-using AQMod.NPCs.Monsters.GaleStreams;
-using AQMod.NPCs.Monsters.GlimmerEvent;
+using AQMod.NPCs.Monsters.CrabCreviceMonsters;
+using AQMod.NPCs.Monsters.DemonSiegeMonsters;
+using AQMod.NPCs.Monsters.GaleStreamsMonsters;
+using AQMod.NPCs.Monsters.GlimmerMonsters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

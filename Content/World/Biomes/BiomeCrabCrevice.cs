@@ -1,5 +1,9 @@
 ﻿using AQMod.Common.Configuration;
 using AQMod.Common.ID;
+using AQMod.Content.Players;
+using AQMod.Dusts.Splashes;
+using AQMod.Gores;
+using AQMod.Gores.Droplets;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.HookUpgrades;
 using AQMod.Items.Pets;
@@ -21,10 +25,70 @@ using Terraria.ModLoader;
 using Terraria.Utilities;
 using Terraria.World.Generation;
 
-namespace AQMod.Content.World
+namespace AQMod.Content.World.Biomes
 {
     public sealed class BiomeCrabCrevice : ModWorld
     {
+        public sealed class CrabCreviceSurfaceWater : ModWaterStyle
+        {
+            public override bool ChooseWaterStyle()
+            {
+                var biomes = Main.player[Main.myPlayer].Biomes();
+                return biomes.zoneCrabSeason || (biomes.zoneCrabCrevice && Main.player[Main.myPlayer].position.Y < Main.worldSurface * 16f);
+            }
+
+            public override int ChooseWaterfallStyle()
+                => ModContent.GetInstance<CrabCreviceSurfaceWaterfall>().Type;
+
+            public override int GetSplashDust()
+                => ModContent.DustType<CrabSeasonSplash>();
+
+            public override int GetDropletGore()
+                => AQGore.GetID<CrabSeasonDroplet>();
+
+            public override void LightColorMultiplier(ref float r, ref float g, ref float b)
+            {
+                r = 1f;
+                g = 1f;
+                b = 1f;
+            }
+
+            public override Color BiomeHairColor()
+                => Color.SandyBrown;
+        }
+        public sealed class CrabCreviceSurfaceWaterfall : ModWaterfallStyle
+        {
+        }
+        public sealed class CrabCreviceUndergroundWater : ModWaterStyle
+        {
+            public override bool ChooseWaterStyle()
+            {
+                return Main.player[Main.myPlayer].GetModPlayer<PlayerBiomes>().zoneCrabCrevice && Main.player[Main.myPlayer].position.Y >= Main.worldSurface * 16f;
+            }
+
+            public override int ChooseWaterfallStyle()
+                => ModContent.GetInstance<CrabCreviceUndergroundWaterfall>().Type;
+
+            public override int GetSplashDust()
+                => ModContent.DustType<CrabCreviceSplash>();
+
+            public override int GetDropletGore()
+                => AQGore.GetID<CrabCreviceDroplet>();
+
+            public override void LightColorMultiplier(ref float r, ref float g, ref float b)
+            {
+                r = 1f;
+                g = 1f;
+                b = 1f;
+            }
+
+            public override Color BiomeHairColor()
+                => Color.SandyBrown;
+        }
+        public sealed class CrabCreviceUndergroundWaterfall : ModWaterfallStyle
+        {
+        }
+
         private const int Size = 160;
         internal static List<Vector3> platformGenList;
         private static int PirateChestCount = 0;

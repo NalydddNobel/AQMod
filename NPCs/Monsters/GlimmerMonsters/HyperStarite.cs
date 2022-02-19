@@ -14,7 +14,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.GlimmerEvent
+namespace AQMod.NPCs.Monsters.GlimmerMonsters
 {
     public class HyperStarite : ModNPC
     {

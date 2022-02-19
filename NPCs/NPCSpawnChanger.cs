@@ -1,10 +1,8 @@
 ﻿using AQMod.Common;
-using AQMod.Content.World;
 using AQMod.Content.World.Events;
-using AQMod.Content.World.Events.DemonSiege;
 using AQMod.NPCs.Bosses;
 using AQMod.NPCs.Friendly;
-using AQMod.NPCs.Monsters.GaleStreams;
+using AQMod.NPCs.Monsters.GaleStreamsMonsters;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -52,11 +50,11 @@ namespace AQMod.NPCs
                 }
                 else
                 {
-                    if (player.position.Y < EventGaleStreams.MinimumGaleStreamsSpawnOverride) // 160 tiles from the very top of the world
+                    if (player.position.Y < GaleStreams.MinimumGaleStreamsSpawnOverride) // 160 tiles from the very top of the world
                     {
-                        if (EventGaleStreams.IsActive)
+                        if (GaleStreams.IsActive)
                             spawnRate /= 2;
-                        if (EventGaleStreams.MeteorTime())
+                        if (GaleStreams.MeteorTime())
                         {
                             spawnRate /= 2;
                             maxSpawns *= 2;
@@ -99,18 +97,18 @@ namespace AQMod.NPCs
                 {
                     pool[0] *= 0.05f;
                 }
-                if (EventGlimmer.AreStariteSpawnsCurrentlyActive(spawnInfo.player))
+                if (Glimmer.AreStariteSpawnsCurrentlyActive(spawnInfo.player))
                 {
-                    int tileDistance = EventGlimmer.GetTileDistanceUsingPlayer(spawnInfo.player);
+                    int tileDistance = Glimmer.GetTileDistanceUsingPlayer(spawnInfo.player);
                     if (tileDistance < 30)
                     {
                         pool.Clear();
                         return;
                     }
-                    else if (tileDistance < EventGlimmer.MaxDistance)
+                    else if (tileDistance < Glimmer.MaxDistance)
                     {
-                        if (tileDistance > EventGlimmer.HyperStariteDistance) // shouldn't divide by 0...
-                            DecreaseSpawns(1f - 1f / (tileDistance - EventGlimmer.HyperStariteDistance));
+                        if (tileDistance > Glimmer.HyperStariteDistance) // shouldn't divide by 0...
+                            DecreaseSpawns(1f - 1f / (tileDistance - Glimmer.HyperStariteDistance));
                         else
                         {
                             DecreaseSpawns(0f);
@@ -120,26 +118,26 @@ namespace AQMod.NPCs
                         {
                             for (int i = layerIndex - 1; i >= 0; i--)
                             {
-                                pool.Add(EventGlimmer.Layers[i].NPCType, EventGlimmer.Layers[i].SpawnChance);
+                                pool.Add(Glimmer.Layers[i].NPCType, Glimmer.Layers[i].SpawnChance);
                             }
-                            if (layerIndex == EventGlimmer.Layers.Count - 1)
-                                pool.Add(EventGlimmer.Layers[layerIndex].NPCType, AQUtils.GetParabola(0, EventGlimmer.Layers[layerIndex].Distance, tileDistance) * EventGlimmer.Layers[layerIndex].SpawnChance);
+                            if (layerIndex == Glimmer.Layers.Count - 1)
+                                pool.Add(Glimmer.Layers[layerIndex].NPCType, AQUtils.GetParabola(0, Glimmer.Layers[layerIndex].Distance, tileDistance) * Glimmer.Layers[layerIndex].SpawnChance);
                             else
                             {
-                                pool.Add(EventGlimmer.Layers[layerIndex].NPCType, 1f - AQUtils.GetParabola(EventGlimmer.Layers[layerIndex + 1].Distance, EventGlimmer.Layers[layerIndex].Distance, tileDistance) * EventGlimmer.Layers[layerIndex].SpawnChance);
+                                pool.Add(Glimmer.Layers[layerIndex].NPCType, 1f - AQUtils.GetParabola(Glimmer.Layers[layerIndex + 1].Distance, Glimmer.Layers[layerIndex].Distance, tileDistance) * Glimmer.Layers[layerIndex].SpawnChance);
                             }
                         }
                     }
                 }
                 if (spawnInfo.spawnTileY < 160)
                 {
-                    if (EventGaleStreams.MeteorTime())
+                    if (GaleStreams.MeteorTime())
                     {
                         DecreaseSpawns(0.9f);
                         pool.Add(ModContent.NPCType<Meteor>(), 2f);
                     }
                 }
-                if (EventGaleStreams.EventActive(spawnInfo.player) && !spawnInfo.playerSafe)
+                if (GaleStreams.EventActive(spawnInfo.player) && !spawnInfo.playerSafe)
                 {
                     EventProgressBarLoader.ShouldShowGaleStreamsProgressBar = true;
                     bool decSpawns = true;

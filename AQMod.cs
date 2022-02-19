@@ -13,9 +13,7 @@ using AQMod.Content.Entities;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.Seasonal.Christmas;
-using AQMod.Content.World;
 using AQMod.Content.World.Events;
-using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.Particles;
@@ -25,7 +23,6 @@ using AQMod.Effects.WorldEffects;
 using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Dyes;
 using AQMod.Items.Potions;
-using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
@@ -313,22 +310,22 @@ namespace AQMod
 
             private static void Main_UpdateWeather(On.Terraria.Main.orig_UpdateWeather orig, Main self, GameTime gameTime)
             {
-                if (EventGaleStreams.EndEvent)
+                if (GaleStreams.EndEvent)
                 {
                     Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
                     if (Main.windSpeedSet.Abs() < 0.1f)
                     {
-                        EventGaleStreams.EndEvent = false;
+                        GaleStreams.EndEvent = false;
                     }
                     Main.windSpeedTemp = Main.windSpeedSet;
                     return;
                 }
                 if (Main.netMode != NetmodeID.MultiplayerClient && (Main.netMode == NetmodeID.Server || !Main.gameMenu)
-                    && EventGaleStreams.IsActive)
+                    && GaleStreams.IsActive)
                 {
                     for (int i = 0; i < Main.maxPlayers; i++)
                     {
-                        if (Main.player[i].active && !Main.player[i].dead && EventGaleStreams.EventActive(Main.player[i]))
+                        if (Main.player[i].active && !Main.player[i].dead && GaleStreams.EventActive(Main.player[i]))
                         {
                             Main.cloudLimit = 200; // prevents the wind speed from naturally changing during the Gale Streams event
                             if (Main.windSpeed < Main.windSpeedSet)
@@ -580,7 +577,7 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
-            EventDemonSiege.InternalSetup();
+            DemonSiege.InternalSetup();
 
             AQBuff.Sets.InternalInitalize();
             AQItem.Sets.InternalInitalize();
@@ -636,7 +633,7 @@ namespace AQMod
             ItemOverlays = null;
 
             DyeBinder.Unload();
-            EventDemonSiege.InternalUnload();
+            DemonSiege.InternalUnload();
             AQProjectile.Sets.UnloadSets();
             AQNPC.Sets.UnloadSets();
             AQItem.Sets.Unload();
@@ -692,13 +689,13 @@ namespace AQMod
             }
             AQGraphics.TimerBasedOnTimeOfDay /= 60f;
 
-            if (EventGlimmer.stariteDiscoParty)
+            if (Glimmer.stariteDiscoParty)
             {
-                EventGlimmer.stariteProjectileColoring = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
+                Glimmer.stariteProjectileColoring = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
             }
             else
             {
-                EventGlimmer.stariteProjectileColoring = EventGlimmer.StariteProjectileColorOrig;
+                Glimmer.stariteProjectileColoring = Glimmer.StariteProjectileColorOrig;
             }
         }
 
@@ -736,17 +733,17 @@ namespace AQMod
                 }
             }
 
-            EventDemonSiege.UpdateEvent();
+            DemonSiege.UpdateEvent();
 
-            if (EventGlimmer.omegaStarite > -1 && !Main.npc[EventGlimmer.omegaStarite].active)
+            if (Glimmer.omegaStarite > -1 && !Main.npc[Glimmer.omegaStarite].active)
             {
-                EventGlimmer.omegaStarite = -1;
+                Glimmer.omegaStarite = -1;
             }
             if (Main.netMode != NetmodeID.MultiplayerClient && spawnStarite)
             {
-                int n = EventGlimmer.omegaStarite =
-                    (short)NPC.NewNPC(EventGlimmer.tileX * 16 + 8, EventGlimmer.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(),
-                    0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Player.FindClosest(new Vector2(EventGlimmer.tileX * 16f, EventGlimmer.tileY * 16f), 16, 16));
+                int n = Glimmer.omegaStarite =
+                    (short)NPC.NewNPC(Glimmer.tileX * 16 + 8, Glimmer.tileY * 16 - 1600, ModContent.NPCType<OmegaStarite>(),
+                    0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, Player.FindClosest(new Vector2(Glimmer.tileX * 16f, Glimmer.tileY * 16f), 16, 16));
                 if (n != -1)
                 {
                     Main.npc[n].netUpdate = true;
@@ -775,16 +772,16 @@ namespace AQMod
                 music = DemonSiegeMusic.GetMusicID();
                 priority = MusicPriority.Event;
             }
-            else if (EventGlimmer.IsGlimmerEventCurrentlyActive() && player.position.Y < Main.worldSurface * 16.0)
+            else if (Glimmer.IsGlimmerEventCurrentlyActive() && player.position.Y < Main.worldSurface * 16.0)
             {
-                int tileDistance = (int)(player.Center.X / 16 - EventGlimmer.tileX).Abs();
-                if (tileDistance < EventGlimmer.MaxDistance)
+                int tileDistance = (int)(player.Center.X / 16 - Glimmer.tileX).Abs();
+                if (tileDistance < Glimmer.MaxDistance)
                 {
                     music = GlimmerEventMusic.GetMusicID();
                     priority = MusicPriority.Event;
                 }
             }
-            else if (EventGaleStreams.EventActive(Main.LocalPlayer))
+            else if (GaleStreams.EventActive(Main.LocalPlayer))
             {
                 music = GaleStreamsMusic.GetMusicID();
                 priority = MusicPriority.Event;

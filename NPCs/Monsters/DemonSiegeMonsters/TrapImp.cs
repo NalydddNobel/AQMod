@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World.Events.DemonSiege;
+﻿using AQMod.Content.World.Events;
 using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.DemonSiege
+namespace AQMod.NPCs.Monsters.DemonSiegeMonsters
 {
     public class TrapImp : ModNPC, IDecideFallThroughPlatforms
     {
@@ -171,6 +171,10 @@ namespace AQMod.NPCs.Monsters.DemonSiege
 
         public override void NPCLoot()
         {
+            if (!DemonSiege.IsActive)
+            {
+                return;
+            }
             if (Main.rand.NextBool(5))
             {
                 Item.NewItem(npc.getRect(), ItemID.ObsidianRose);
@@ -178,7 +182,7 @@ namespace AQMod.NPCs.Monsters.DemonSiege
             if (Main.rand.NextBool(24))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicCursorDye>());
             if (Main.rand.NextBool(3))
-                Item.NewItem(npc.getRect(), EventDemonSiege.HellBanners[Main.rand.Next(EventDemonSiege.HellBanners.Count)]);
+                Item.NewItem(npc.getRect(), DemonSiege.HellBanners[Main.rand.Next(DemonSiege.HellBanners.Count)]);
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());
         }

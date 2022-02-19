@@ -1,5 +1,4 @@
 ﻿using AQMod.Effects.Dyes;
-using AQMod.Items.Weapons.Magic;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Graphics.Shaders;

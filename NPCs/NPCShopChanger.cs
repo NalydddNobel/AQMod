@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Items.Accessories.FishingSeals;
 using AQMod.Items.Accessories.Vanity;
 using AQMod.Items.Dyes;
@@ -41,7 +41,7 @@ namespace AQMod.NPCs
 
                 case NPCID.Painter:
                     {
-                        if (EventGlimmer.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite && Main.moonPhase != MoonPhases.FullMoon)
+                        if (Glimmer.IsGlimmerEventCurrentlyActive() && WorldDefeats.DownedStarite && Main.moonPhase != MoonPhases.FullMoon)
                         {
                             for (int i = 19; i < Chest.maxItems; i++) // skips most of the starting stuff, since that's all paint and blah
                             {
@@ -98,7 +98,7 @@ namespace AQMod.NPCs
                                 }
                             }
                         }
-                        if (WorldDefeats.DownedGaleStreams && Main.player[Main.myPlayer].position.Y < EventGaleStreams.MinimumGaleStreamsSpawnOverride)
+                        if (WorldDefeats.DownedGaleStreams && Main.player[Main.myPlayer].position.Y < GaleStreams.MinimumGaleStreamsSpawnOverride)
                         {
                             if (Main.moonPhase < 3)
                             {

@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.ID;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Items.DrawOverlays;
 using AQMod.Items.Dyes;
@@ -37,7 +37,7 @@ namespace AQMod.Items
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime && !EventGlimmer.IsGlimmerEventCurrentlyActive() && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !Glimmer.IsGlimmerEventCurrentlyActive() && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool UseItem(Player player)

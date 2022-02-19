@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -87,7 +88,7 @@ namespace AQMod.Tiles.Nature
             int x = i - tile.frameX % 36 / 18;
             int y = j - tile.frameY / 18;
             int index = ModContent.GetInstance<TEGlimmeringStatue>().Find(x, y);
-            if (index != -1 && !EventGlimmer.IsGlimmerEventCurrentlyActive() && (PassingDays.daysPassedSinceLastGlimmerEvent <= 1 || Main.rand.NextBool(PassingDays.daysPassedSinceLastGlimmerEvent)))
+            if (index != -1 && !Glimmer.IsGlimmerEventCurrentlyActive() && (PassingDays.daysPassedSinceLastGlimmerEvent <= 1 || Main.rand.NextBool(PassingDays.daysPassedSinceLastGlimmerEvent)))
             {
                 int d = Dust.NewDust(new Vector2(x * 16f, y * 16f), 32, 16, dustType);
                 Main.dust[d].noGravity = true;
@@ -110,7 +111,7 @@ namespace AQMod.Tiles.Nature
             int x = i - tile.frameX / 18 % 2;
             int y = j - tile.frameY / 18 % 3;
             int index = ModContent.GetInstance<TEGlimmeringStatue>().Find(x, y);
-            if (index != -1 && !EventGlimmer.IsGlimmerEventCurrentlyActive() && PassingDays.daysPassedSinceLastGlimmerEvent > 0)
+            if (index != -1 && !Glimmer.IsGlimmerEventCurrentlyActive() && PassingDays.daysPassedSinceLastGlimmerEvent > 0)
             {
                 int d = Dust.NewDust(new Vector2(x * 16f, y * 16f), 32, 16, dustType);
                 Main.dust[d].noGravity = true;

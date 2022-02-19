@@ -10,7 +10,7 @@ namespace AQMod.Common
     internal static class Autoloading
     {
         private static List<IAutoloadType> _autoloadCache;
-        
+
         private static void TryAutoload(Type t, DebugUtilities.Logger? logger)
         {
             if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(IAutoloadType)))

@@ -1,20 +1,34 @@
-﻿using AQMod.Common;
+﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Common.ID;
-using AQMod.Content.World.Events;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Content.World
+namespace AQMod.Content.World.Events
 {
-    public sealed class EventGaleStreams : WorldEvent
+    public sealed class GaleStreams : WorldEvent
     {
+        public class CustomProgressBar : EventProgressBar
+        {
+            public override Texture2D IconTexture => ModContent.GetTexture(TexturePaths.EventIcons + "galestreams");
+            public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.GaleStreams");
+            public override Color NameBGColor => new Color(20, 90 + (int)(Math.Sin(Main.GlobalTime * 5f) * 10), 90 + (int)(Math.Sin(Main.GlobalTime * 5f) * 10 + MathHelper.Pi), 128);
+            public override float EventProgress => (int)(Main.windSpeed * 100).Abs() / 300f;
+
+            public override bool IsActive() => EventProgressBarLoader.ShouldShowGaleStreamsProgressBar && GaleStreams.EventActive(Main.LocalPlayer) && Main.hardMode;
+            public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.EventProgress.GaleStreams", (int)(Main.windSpeed * 100).Abs(), 300);
+        }
+
         public const int MinimumMeteorSpawningTileY = 160;
         public const float MinimumGaleStreamsSpawnOverride = 2560f;
-        internal override EventProgressBar ProgressBar => new ProgressBarGaleStreams();
+        internal override EventProgressBar ProgressBar => new CustomProgressBar();
 
         public static Color HotCurrentColor => new Color(43, 148, 240, 255);
         public static Color ColdCurrentColor => new Color(255, 94, 31, 255);

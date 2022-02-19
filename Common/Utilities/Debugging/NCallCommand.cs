@@ -5,9 +5,8 @@ using AQMod.Common.Utilities.IO;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
-using AQMod.Content.World;
+using AQMod.Content.World.Biomes;
 using AQMod.Content.World.Events;
-using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Content.World.Generation;
 using AQMod.Items;
 using AQMod.Localization;
@@ -153,7 +152,7 @@ namespace AQMod.Common.Utilities.Debugging
                                 CustomChestLoot.GenerateDirtChests(null);
                                 break;
                             case "waterfixer":
-                                GenerationWaterCleaner.PassFix1TileHighWater(null);
+                                BabyPoolKiller.PassFix1TileHighWater(null);
                                 break;
                         }
                     }
@@ -161,7 +160,7 @@ namespace AQMod.Common.Utilities.Debugging
 
                 case "waterfix":
                     {
-                        GenerationWaterCleaner.ApplyFix(mX, mY);
+                        BabyPoolKiller.ApplyFix(mX, mY);
                     }
                     break;
 
@@ -270,16 +269,16 @@ namespace AQMod.Common.Utilities.Debugging
                     break;
 
                 case "demonsiegei":
-                    caller.Reply("x: " + EventDemonSiege.X);
-                    caller.Reply("y: " + EventDemonSiege.Y);
-                    caller.Reply("plr: " + EventDemonSiege.PlayerActivator + " (" + Main.player[EventDemonSiege.PlayerActivator] + ")");
-                    if (EventDemonSiege.BaseItem != null)
-                        caller.Reply("item: " + EventDemonSiege.BaseItem.type + " (" + Lang.GetItemName(EventDemonSiege.BaseItem.type) + ")");
+                    caller.Reply("x: " + DemonSiege.X);
+                    caller.Reply("y: " + DemonSiege.Y);
+                    caller.Reply("plr: " + DemonSiege.PlayerActivator + " (" + Main.player[DemonSiege.PlayerActivator] + ")");
+                    if (DemonSiege.BaseItem != null)
+                        caller.Reply("item: " + DemonSiege.BaseItem.type + " (" + Lang.GetItemName(DemonSiege.BaseItem.type) + ")");
                     break;
 
                 case "glimmerxy":
                     {
-                        caller.Reply("x: " + EventGlimmer.tileX + ", y: " + EventGlimmer.tileY);
+                        caller.Reply("x: " + Glimmer.tileX + ", y: " + Glimmer.tileY);
                     }
                     break;
 
@@ -391,19 +390,19 @@ namespace AQMod.Common.Utilities.Debugging
                         var b = Main.MouseWorld.ToTileCoordinates();
                         if (args.Length > 7)
                         {
-                            EventGaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]), ushort.Parse(args[7]));
+                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]), ushort.Parse(args[7]));
                         }
                         else if (args.Length > 6)
                         {
-                            EventGaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]));
+                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]), bool.Parse(args[6]));
                         }
                         else if (args.Length > 2)
                         {
-                            EventGaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]));
+                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]), int.Parse(args[2]), int.Parse(args[3]), int.Parse(args[4]), int.Parse(args[5]));
                         }
                         else
                         {
-                            EventGaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]));
+                            GaleStreams.CrashMeteor(b.X, b.Y, int.Parse(args[1]));
                         }
                     }
                     break;
@@ -498,7 +497,7 @@ namespace AQMod.Common.Utilities.Debugging
 
                 case "glimmerlayer":
                     {
-                        caller.Reply("glimmer layer: " + EventGlimmer.GetLayerIndexThroughTileDistance(EventGlimmer.GetTileDistanceUsingPlayer(caller.Player)));
+                        caller.Reply("glimmer layer: " + Glimmer.GetLayerIndexThroughTileDistance(Glimmer.GetTileDistanceUsingPlayer(caller.Player)));
                     }
                     break;
 
@@ -559,13 +558,13 @@ namespace AQMod.Common.Utilities.Debugging
                     break;
 
                 case "demonsiegequick":
-                    EventDemonSiege.UpgradeItem();
-                    EventDemonSiege.Deactivate();
+                    DemonSiege.UpgradeItem();
+                    DemonSiege.Deactivate();
                     WorldDefeats.DownedDemonSiege = true;
                     break;
 
                 case "demonsiegeend":
-                    EventDemonSiege.Deactivate();
+                    DemonSiege.Deactivate();
                     break;
 
                 case "alllang":
@@ -970,11 +969,11 @@ namespace AQMod.Common.Utilities.Debugging
                 {
                     case 1:
                         {
-                            bool meteorTime = EventGaleStreams.MeteorTime();
+                            bool meteorTime = GaleStreams.MeteorTime();
                             tooltips.Add(new TooltipLine(mod, "0", "meteor time: " + meteorTime));
                             tooltips.Add(new TooltipLine(mod, "1", "can meteors spawn: " + (meteorTime && Main.LocalPlayer.position.Y < 2560f).ToString()));
                             tooltips.Add(new TooltipLine(mod, "2", "windy day: " + ImitatedWindyDay.IsItAHappyWindyDay));
-                            tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + EventGaleStreams.IsActive));
+                            tooltips.Add(new TooltipLine(mod, "3", "amtospheric currents event: " + GaleStreams.IsActive));
                         }
                         break;
                 }

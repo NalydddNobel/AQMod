@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Content.UserInterface.ItemSlots;
 using AQMod.Items;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;

@@ -1,6 +1,4 @@
-﻿using AQMod.Common.Utilities;
-using AQMod.Content.Players;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

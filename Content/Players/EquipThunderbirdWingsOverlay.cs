@@ -1,5 +1,4 @@
 ﻿using AQMod.Items.Accessories.Wings;
-using AQMod.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

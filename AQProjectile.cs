@@ -26,7 +26,7 @@ namespace AQMod
 
             internal static void LoadSets()
             {
-                HookBarbBlacklist = new List<int>() 
+                HookBarbBlacklist = new List<int>()
                 {
                     ProjectileID.AntiGravityHook,
                     ProjectileID.StaticHook,

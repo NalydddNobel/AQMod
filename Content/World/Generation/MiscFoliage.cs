@@ -7,7 +7,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.World.Generation;
 
-namespace AQMod.Content.World
+namespace AQMod.Content.World.Generation
 {
     public sealed class MiscFoliage : ModWorld
     {

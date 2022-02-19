@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World.Events.DemonSiege;
+﻿using AQMod.Content.World.Events;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FidgetSpinner;
 using AQMod.Items.Materials;
@@ -223,7 +223,7 @@ namespace AQMod
 
             if (ModContent.GetInstance<AQConfigServer>().demonSiegeDowngrades)
             {
-                foreach (var u in EventDemonSiege.Upgrades)
+                foreach (var u in DemonSiege.Upgrades)
                 {
                     r = new ModRecipe(aQMod);
                     r.AddIngredient(u.rewardItem);

@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World;
+﻿using AQMod.Content.World.Generation;
 using AQMod.Localization;
 using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
@@ -293,7 +293,7 @@ namespace AQMod.Common.WorldGeneration
             if (i != -1)
             {
                 i++;
-                tasks.Insert(i, getPass("AQMod: Fix Baby Pools", GenerationWaterCleaner.PassFix1TileHighWater));
+                tasks.Insert(i, getPass("AQMod: Fix Baby Pools", BabyPoolKiller.PassFix1TileHighWater));
             }
             i = tasks.FindIndex((t) => t.Name.Equals("Micro Biomes"));
             if (i != -1)

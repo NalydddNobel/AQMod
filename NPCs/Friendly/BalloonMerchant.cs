@@ -1,6 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
 using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Items.Materials;
 using AQMod.Items.Placeable.Nature;
 using AQMod.Sounds;
@@ -78,7 +79,7 @@ namespace AQMod.NPCs.Friendly
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            if (EventGaleStreams.IsActive)
+            if (GaleStreams.IsActive)
             {
                 button = Language.GetTextValue("LegacyInterface.28");
                 button2 = Language.GetTextValue("Mods.AQMod.BalloonMerchant.RenameItem.ChatButton");
@@ -908,7 +909,7 @@ namespace AQMod.NPCs.Friendly
 
         public override string GetChat()
         {
-            if (!EventGaleStreams.IsActive)
+            if (!GaleStreams.IsActive)
                 return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Leaving." + Main.rand.Next(3));
             if (!WorldDefeats.HunterIntroduction)
             {
@@ -944,7 +945,7 @@ namespace AQMod.NPCs.Friendly
                 potentialText.Add("BalloonMerchant.Chat.SpaceSquid");
             }
 
-            if (EventGaleStreams.MeteorTime())
+            if (GaleStreams.MeteorTime())
                 potentialText.Add("BalloonMerchant.Chat.MeteorTime");
 
             string chosenText = potentialText[Main.rand.Next(potentialText.Count)];
@@ -1048,7 +1049,7 @@ namespace AQMod.NPCs.Friendly
             if (!_init)
             {
                 _init = true;
-                if (EventGaleStreams.IsActive)
+                if (GaleStreams.IsActive)
                 {
                     bool notInTown = true;
                     for (int i = 0; i < Main.maxNPCs; i++)
@@ -1064,7 +1065,7 @@ namespace AQMod.NPCs.Friendly
                         SetToBalloon();
                 }
             }
-            if (!EventGaleStreams.IsActive && offscreen)
+            if (!GaleStreams.IsActive && offscreen)
             {
                 npc.active = false;
                 npc.netSkip = -1;
@@ -1112,7 +1113,7 @@ namespace AQMod.NPCs.Friendly
                         npc.velocity.Y += Main.rand.NextFloat(-0.005f, 0.005f) + npc.velocity.Y * 0.0025f;
                     }
                     bool foundStoppingSpot = false;
-                    if (EventGaleStreams.IsActive)
+                    if (GaleStreams.IsActive)
                     {
                         if (!npc.noTileCollide)
                         {

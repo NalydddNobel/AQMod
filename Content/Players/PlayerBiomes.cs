@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Content.Seasonal.Christmas;
-using AQMod.Content.World;
-using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.NPCs.Bosses;
 using AQMod.Tiles.Walls;
@@ -25,11 +24,11 @@ namespace AQMod.Content.Players
 
         private void UpdateBiomes_GlimmerEvent()
         {
-            if (EventGlimmer.IsGlimmerEventCurrentlyActive())
+            if (Glimmer.IsGlimmerEventCurrentlyActive())
             {
-                int glimmerTileDistance = EventGlimmer.GetTileDistanceUsingPlayer(player);
-                zoneGlimmerEvent = glimmerTileDistance < EventGlimmer.MaxDistance;
-                zoneGlimmerEventLayer = (byte)EventGlimmer.GetLayerIndexThroughTileDistance(glimmerTileDistance);
+                int glimmerTileDistance = Glimmer.GetTileDistanceUsingPlayer(player);
+                zoneGlimmerEvent = glimmerTileDistance < Glimmer.MaxDistance;
+                zoneGlimmerEventLayer = (byte)Glimmer.GetLayerIndexThroughTileDistance(glimmerTileDistance);
             }
             else
             {
@@ -48,20 +47,20 @@ namespace AQMod.Content.Players
 
             UpdateBiomes_GlimmerEvent();
 
-            zoneDemonSiege = EventDemonSiege.IsActive ? player.Distance(new Vector2(EventDemonSiege.X * 16f, EventDemonSiege.Y * 16f)) < 2000f : false;
+            zoneDemonSiege = DemonSiege.IsActive ? player.Distance(new Vector2(DemonSiege.X * 16f, DemonSiege.Y * 16f)) < 2000f : false;
         }
 
         private void UpdateBiomeVisuals_Starite()
         {
-            if (EventGlimmer.omegaStarite == -1)
-                EventGlimmer.omegaStarite = (short)NPC.FindFirstNPC(ModContent.NPCType<OmegaStarite>());
-            bool glimmerEvent = (EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.omegaStarite != -1) && Main.screenPosition.Y < (Main.worldSurface * 16f - Main.screenHeight);
+            if (Glimmer.omegaStarite == -1)
+                Glimmer.omegaStarite = (short)NPC.FindFirstNPC(ModContent.NPCType<OmegaStarite>());
+            bool glimmerEvent = (Glimmer.IsGlimmerEventCurrentlyActive() || Glimmer.omegaStarite != -1) && Main.screenPosition.Y < (Main.worldSurface * 16f - Main.screenHeight);
             AQUtils.UpdateSky(glimmerEvent, SkyGlimmerEvent.Name);
 
-            if (glimmerEvent && EventGlimmer.omegaStarite == -1)
+            if (glimmerEvent && Glimmer.omegaStarite == -1)
             {
                 float intensity = 0f;
-                float distance = (Main.player[Main.myPlayer].position.X - (EventGlimmer.tileX * 16f + 8f)).Abs();
+                float distance = (Main.player[Main.myPlayer].position.X - (Glimmer.tileX * 16f + 8f)).Abs();
                 if (distance < 6400f)
                 {
                     intensity += 1f - distance / 6400f;
@@ -136,9 +135,9 @@ namespace AQMod.Content.Players
             {
                 if (player.position.Y < Main.worldSurface * 16f)
                 {
-                    if (!player.ZoneDesert && EventGlimmer.IsGlimmerEventCurrentlyActive())
+                    if (!player.ZoneDesert && Glimmer.IsGlimmerEventCurrentlyActive())
                     {
-                        if (EventGlimmer.GetTileDistanceUsingPlayer(player) < EventGlimmer.UltraStariteDistance)
+                        if (Glimmer.GetTileDistanceUsingPlayer(player) < Glimmer.UltraStariteDistance)
                         {
                             return ModContent.GetTexture(TexturePaths.MapBackgrounds + "ultimatesword");
                         }

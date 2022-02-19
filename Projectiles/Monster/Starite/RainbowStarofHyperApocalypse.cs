@@ -49,7 +49,7 @@ namespace AQMod.Projectiles.Monster.Starite
             }
         }
 
-        private static readonly ColorGradient gradient = new ColorGradient(3f, 
+        private static readonly ColorGradient gradient = new ColorGradient(3f,
             new Color(255, 0, 0, 128),
             new Color(255, 128, 0, 128),
             new Color(255, 255, 0, 128),

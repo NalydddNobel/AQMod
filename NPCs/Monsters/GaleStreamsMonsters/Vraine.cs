@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Gores;
 using AQMod.Items.Dyes;
 using AQMod.Items.Placeable.Banners;
@@ -12,7 +12,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.GaleStreams
+namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
 {
     public class Vraine : ModNPC, IDecideFallThroughPlatforms
     {
@@ -404,7 +404,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void NPCLoot()
         {
             if (npc.target != -1)
-                EventGaleStreams.ProgressEvent(Main.player[npc.target], 2);
+                GaleStreams.ProgressEvent(Main.player[npc.target], 2);
             bool anyOthers = NPC.AnyNPCs(npc.type);
             if (!anyOthers)
             {

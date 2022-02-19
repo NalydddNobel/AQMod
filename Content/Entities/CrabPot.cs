@@ -1,6 +1,8 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Graphics;
 using AQMod.Content.Players;
+using AQMod.Items.Materials;
+using AQMod.Items.Potions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,20 +19,364 @@ namespace AQMod.Content.Entities
 {
     public sealed class CrabPot : Entity, TagSerializable, IAutoloadType // TODO: Tons of netcode!
     {
+        [Flags()]
+        public enum DataFlags : byte
+        {
+            LavaProof = 1,
+        }
+        public sealed class LootTables : IAutoloadType
+        {
+            public struct Loot
+            {
+                public readonly int CatchItem;
+                /// <summary>
+                /// true is day, false is night
+                /// </summary>
+                public readonly bool? Time;
+                public readonly bool AfterBoss2;
+                public readonly bool HardmodeOnly;
+                public readonly byte[] validWorldLayers;
+                private Func<bool> _customCaptureCheck;
+
+                public Loot(int item, byte[] validWorldLayers = null, bool? time = null, bool afterBoss2 = false, bool hardmodeOnly = false, Func<bool> customCaptureCheck = null)
+                {
+                    CatchItem = item;
+                    this.validWorldLayers = validWorldLayers;
+                    Time = time;
+                    AfterBoss2 = afterBoss2;
+                    HardmodeOnly = hardmodeOnly;
+                    _customCaptureCheck = customCaptureCheck;
+                }
+
+                public bool CanCatch(byte worldLayer)
+                {
+                    if (validWorldLayers != null)
+                    {
+                        for (int i = 0; i < validWorldLayers.Length; i++)
+                        {
+                            if (worldLayer != validWorldLayers[i])
+                                return false;
+                        }
+                    }
+                    return Time != null && Main.dayTime != Time.Value
+                        ? false
+                        : AfterBoss2 && !NPC.downedBoss2
+                        ? false
+                        : HardmodeOnly && !Main.hardMode ? false : _customCaptureCheck != null ? _customCaptureCheck() : true;
+                }
+            }
+
+            public static bool CanCatchNormalFish { get; private set; }
+            private static void FishCheck_NormalFish()
+            {
+                CanCatchNormalFish = !Crimson && !Corruption && !Desert && !Ocean && !Jungle && !Snow;
+            }
+
+            public static bool Ocean;
+            public static bool BloodMoon;
+            public static bool Hallow;
+            public static bool Crimson;
+            public static bool Corruption;
+            public static bool Jungle;
+            public static bool Desert;
+            public static bool Snow;
+            public static byte WorldLayer;
+
+            public static List<Loot> NormalLoot { get; private set; }
+            public static List<Loot> BloodMoonLoot { get; private set; }
+            public static List<Loot> CrimsonLoot { get; private set; }
+            public static List<Loot> CorruptionLoot { get; private set; }
+            public static List<Loot> JungleLoot { get; private set; }
+            public static List<Loot> HallowLoot { get; private set; }
+            public static List<Loot> SnowLoot { get; private set; }
+            public static List<Loot> OceanLoot { get; private set; }
+            public static List<Loot> SpaceLoot { get; private set; }
+            public static List<Loot> UndergroundCavernLoot { get; private set; }
+
+            public static Action<int, int> FishingCheck_OnCheckTile;
+            public static Action FishingCheck_AfterCheckTiles;
+            public static Action<List<int>> FishingCheck_FinalLootAdditions;
+
+            internal static void InternalInitialize()
+            {
+                NormalLoot = new List<Loot>
+            {
+                new Loot(ItemID.Bass)
+            };
+
+                BloodMoonLoot = new List<Loot>
+            {
+                new Loot(ModContent.ItemType<PalePufferfish>()),
+                new Loot(ModContent.ItemType<VampireSquid>(), hardmodeOnly: true)
+            };
+
+                CrimsonLoot = new List<Loot>
+            {
+                new Loot(ItemID.Hemopiranha),
+                new Loot(ItemID.CrimsonTigerfish),
+                new Loot(ModContent.ItemType<Fleshscale>(), afterBoss2: true)
+            };
+
+                CorruptionLoot = new List<Loot>
+            {
+                new Loot(ItemID.Ebonkoi),
+                new Loot(ModContent.ItemType<Fizzler>(), time: false),
+                new Loot(ModContent.ItemType<Depthscale>(), afterBoss2: true)
+            };
+
+                JungleLoot = new List<Loot>
+            {
+                new Loot(ItemID.DoubleCod),
+                new Loot(ItemID.VariegatedLardfish)
+            };
+
+                HallowLoot = new List<Loot>
+            {
+                new Loot(ItemID.PrincessFish),
+                new Loot(ItemID.Prismite),
+                new Loot(ItemID.ChaosFish,
+                validWorldLayers: new byte[] { PlayerFishing.WorldLayers.UndergroundLayer, PlayerFishing.WorldLayers.CavernLayer })
+            };
+
+                SnowLoot = new List<Loot>
+            {
+                new Loot(ItemID.AtlanticCod),
+                new Loot(ItemID.FrostMinnow)
+            };
+
+                OceanLoot = new List<Loot>
+            {
+                new Loot(ItemID.Shrimp),
+                new Loot(ItemID.BlueJellyfish),
+                new Loot(ItemID.GreenJellyfish),
+                new Loot(ItemID.PinkJellyfish)
+            };
+
+                SpaceLoot = new List<Loot>
+            {
+                new Loot(ItemID.Damselfish)
+            };
+
+                UndergroundCavernLoot = new List<Loot>
+            {
+                new Loot(ItemID.Stinkfish),
+                new Loot(ItemID.SpecularFish),
+                new Loot(ItemID.ArmoredCavefish)
+            };
+            }
+
+            public static void ResetFishingParameters()
+            {
+                CanCatchNormalFish = true;
+                BloodMoon = false;
+                Ocean = false;
+                Hallow = false;
+                Crimson = false;
+                Corruption = false;
+                Jungle = false;
+                Desert = false;
+                Snow = false;
+            }
+
+            private static void AddToList(List<int> choices, List<Loot> lootTable)
+            {
+                if (lootTable != null)
+                {
+                    foreach (var loot in lootTable)
+                    {
+                        if (loot.CanCatch(WorldLayer))
+                            choices.Add(loot.CatchItem);
+                    }
+                }
+            }
+
+            public static int CaptureFish(int x, int y, byte waterType)
+            {
+                ResetFishingParameters();
+                if (waterType == Tile.Liquid_Honey)
+                {
+                    return 0;
+                }
+
+                WorldLayer = (byte)((!(y < Main.worldSurface * 0.5)) ? ((y < Main.worldSurface) ? PlayerFishing.WorldLayers.Overworld : ((y < Main.rockLayer) ? PlayerFishing.WorldLayers.UndergroundLayer : ((y >= Main.maxTilesY - 300) ? PlayerFishing.WorldLayers.HellLayer : PlayerFishing.WorldLayers.CavernLayer))) : PlayerFishing.WorldLayers.Space);
+
+                //Main.NewText(WorldLayer, Microsoft.Xna.Framework.Color.Aqua);
+
+                if (waterType == Tile.Liquid_Lava)
+                {
+                    return Main.rand.NextBool() ? ItemID.FlarefinKoi : ItemID.Obsidifish;
+                }
+                else if (WorldLayer == PlayerFishing.WorldLayers.HellLayer)
+                {
+                    return 0;
+                }
+                for (int j = 0; j < 30; j++)
+                {
+                    if (y + j > Main.maxTilesY - 10)
+                    {
+                        continue;
+                    }
+                    var tile = Main.tile[x, y + j];
+                    if (tile == null)
+                    {
+                        continue;
+                    }
+                    if (!Ocean)
+                    {
+                        switch (tile.type)
+                        {
+                            case TileID.Sand:
+                            case TileID.Ebonsand:
+                            case TileID.Crimsand:
+                            case TileID.Pearlsand:
+                            case TileID.HardenedSand:
+                            case TileID.CorruptHardenedSand:
+                            case TileID.CrimsonHardenedSand:
+                            case TileID.HallowHardenedSand:
+                            case TileID.Sandstone:
+                            case TileID.CorruptSandstone:
+                            case TileID.CrimsonSandstone:
+                            case TileID.HallowSandstone:
+                                {
+                                    Desert = true;
+                                }
+                                break;
+                        }
+                    }
+                    if (tile.wall == WallID.Sandstone)
+                    {
+                        Desert = true;
+                    }
+                    if (TileID.Sets.Snow[tile.type] || TileID.Sets.Conversion.Ice[tile.type])
+                    {
+                        Snow = true;
+                    }
+                    if (TileID.Sets.Hallow[tile.type])
+                    {
+                        Hallow = true;
+                    }
+                    if (TileID.Sets.Corrupt[tile.type])
+                    {
+                        Corruption = true;
+                        Hallow = false;
+                        break;
+                    }
+                    if (TileID.Sets.Crimson[tile.type])
+                    {
+                        Crimson = true;
+                        Hallow = false;
+                        break;
+                    }
+                    if (tile.type == TileID.JungleGrass || tile.type == TileID.LihzahrdBrick)
+                    {
+                        Jungle = true;
+                        break;
+                    }
+                    if (FishingCheck_OnCheckTile != null)
+                        FishingCheck_OnCheckTile.Invoke(x, y + j);
+                }
+                Ocean = x < 200 || x > Main.maxTilesX * 16f - 3200f;
+                BloodMoon = Main.bloodMoon;
+                FishCheck_NormalFish();
+                if (FishingCheck_AfterCheckTiles != null)
+                    FishingCheck_AfterCheckTiles.Invoke();
+
+                List<int> choices = new List<int>();
+
+                if (WorldLayer <= PlayerFishing.WorldLayers.Overworld)
+                {
+                    if (BloodMoon)
+                    {
+                        AddToList(choices, BloodMoonLoot);
+                    }
+                }
+                if (Crimson)
+                {
+                    AddToList(choices, CrimsonLoot);
+                }
+                else if (Corruption)
+                {
+                    AddToList(choices, CorruptionLoot);
+                }
+                else if (Jungle)
+                {
+                    AddToList(choices, JungleLoot);
+                }
+                else if (Hallow)
+                {
+                    AddToList(choices, HallowLoot);
+                }
+                if (Ocean && WorldLayer == PlayerFishing.WorldLayers.Overworld)
+                {
+                    AddToList(choices, OceanLoot);
+                }
+                else if (Snow)
+                {
+                    AddToList(choices, SnowLoot);
+                }
+
+                if (CanCatchNormalFish)
+                {
+                    if (WorldLayer == PlayerFishing.WorldLayers.Space)
+                    {
+                        AddToList(choices, SpaceLoot);
+                    }
+                    else if (WorldLayer == PlayerFishing.WorldLayers.UndergroundLayer || WorldLayer == PlayerFishing.WorldLayers.CavernLayer)
+                    {
+                        AddToList(choices, UndergroundCavernLoot);
+                    }
+                    if (WorldLayer <= PlayerFishing.WorldLayers.Overworld)
+                    {
+                        AddToList(choices, NormalLoot);
+                    }
+                }
+
+                if (FishingCheck_FinalLootAdditions != null)
+                    FishingCheck_FinalLootAdditions.Invoke(choices);
+
+                if (choices.Count == 0)
+                    return 0;
+                if (choices.Count == 1)
+                    return choices[0];
+                if (choices.Count > 1)
+                    return choices[Main.rand.Next(choices.Count)];
+                return 0;
+            }
+
+            void IAutoloadType.OnLoad()
+            {
+                InternalInitialize();
+            }
+
+            void IAutoloadType.Unload()
+            {
+                NormalLoot = null;
+                BloodMoonLoot = null;
+                CrimsonLoot = null;
+                CorruptionLoot = null;
+                JungleLoot = null;
+                HallowLoot = null;
+                SnowLoot = null;
+                OceanLoot = null;
+                SpaceLoot = null;
+                UndergroundCavernLoot = null;
+            }
+        }
+
         public const int maxCrabPots = 150;
         public const int frameCount = 2;
         public static Texture2D Texture { get; private set; }
         public static Texture2D HighlightTexture { get; private set; }
         public static CrabPot[] crabPots { get; private set; }
 
-        public CrabPotDataFlags data;
+        public DataFlags data;
         public byte invalidLocationKillDelay;
         public bool hasBait;
         public int item;
         public byte killTap;
         private byte killTapDelay;
 
-        public bool LavaProof => data.HasFlag(CrabPotDataFlags.LavaProof);
+        public bool LavaProof => data.HasFlag(DataFlags.LavaProof);
 
         public Rectangle getRect()
         {
@@ -54,7 +400,7 @@ namespace AQMod.Content.Entities
         private float _gravity;
         private float _terminalVelocity;
 
-        public void Setup(CrabPotDataFlags data)
+        public void Setup(DataFlags data)
         {
             active = true;
             width = 12;
@@ -269,7 +615,7 @@ namespace AQMod.Content.Entities
 
         private int FishingCheckGetItem()
         {
-            return CrabPotLootTables.CaptureFish(((int)position.X + width / 2) / 16, ((int)position.Y + height / 2) / 16, (byte)(lavaWet ? Tile.Liquid_Lava : honeyWet ? Tile.Liquid_Honey : Tile.Liquid_Water));
+            return LootTables.CaptureFish(((int)position.X + width / 2) / 16, ((int)position.Y + height / 2) / 16, (byte)(lavaWet ? Tile.Liquid_Lava : honeyWet ? Tile.Liquid_Honey : Tile.Liquid_Water));
         }
 
         private void FloatOnWater(int x, int y)
@@ -516,7 +862,7 @@ namespace AQMod.Content.Entities
         /// <param name="position">The position of the crab pot in the world.</param>
         /// <param name="velocity">The velocity of the crab pot</param>
         /// <returns></returns>
-        public static int NewCrabPot(Vector2 position, Vector2 velocity, CrabPotDataFlags data)
+        public static int NewCrabPot(Vector2 position, Vector2 velocity, DataFlags data)
         {
             for (int i = 0; i < maxCrabPots; i++)
             {
@@ -541,7 +887,7 @@ namespace AQMod.Content.Entities
             }
         }
 
-        public static int DataToCrabPotItemID(CrabPotDataFlags data)
+        public static int DataToCrabPotItemID(DataFlags data)
         {
             return ModContent.ItemType<Items.Tools.Fishing.CrabPots.CrabPot>();
         }
@@ -572,7 +918,7 @@ namespace AQMod.Content.Entities
             {
                 default:
                     active = true;
-                    Setup((CrabPotDataFlags)tag.GetByte("data"));
+                    Setup((DataFlags)tag.GetByte("data"));
                     hasBait = tag.GetBool("hasBait");
                     item = tag.GetInt("item");
                     position.X = tag.GetFloat("X");

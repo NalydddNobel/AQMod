@@ -67,7 +67,7 @@ namespace AQMod.Items.Weapons.Magic
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.LunarFlareBook); 
+            r.AddIngredient(ItemID.LunarFlareBook);
             r.AddIngredient(ItemID.SpellTome);
             r.AddIngredient(ItemID.Shrimp);
             r.AddIngredient(ItemID.SuspiciousLookingEye);

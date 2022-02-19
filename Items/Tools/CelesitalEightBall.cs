@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -90,7 +90,7 @@ namespace AQMod.Items.Tools
                         setText(key);
                     return true;
                 }
-                if (EventGlimmer.omegaStarite != -1 && Main.rand.NextBool())
+                if (Glimmer.omegaStarite != -1 && Main.rand.NextBool())
                 {
                     if (TextKey == AQText.Key + "Common.EightballMisc3")
                     {
@@ -108,9 +108,9 @@ namespace AQMod.Items.Tools
                     }
                     return true;
                 }
-                if (EventGlimmer.IsGlimmerEventCurrentlyActive() && Main.rand.NextBool())
+                if (Glimmer.IsGlimmerEventCurrentlyActive() && Main.rand.NextBool())
                 {
-                    if ((int)(player.Center.X / 16) == EventGlimmer.tileX)
+                    if ((int)(player.Center.X / 16) == Glimmer.tileX)
                     {
                         key = AQText.Key + "Common.EightballMisc2";
                         spawnText(player, key);

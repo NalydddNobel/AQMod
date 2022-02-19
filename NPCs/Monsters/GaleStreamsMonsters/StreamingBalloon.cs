@@ -10,7 +10,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.GaleStreams
+namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
 {
     public class StreamingBalloon : ModNPC
     {

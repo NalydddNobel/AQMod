@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
+using AQMod.Content.World.Events;
 using AQMod.Items.Accessories;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
@@ -10,7 +11,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.DemonSiege
+namespace AQMod.NPCs.Monsters.DemonSiegeMonsters
 {
     public sealed class Cindera : AIBat, IDecideFallThroughPlatforms
     {
@@ -367,11 +368,15 @@ namespace AQMod.NPCs.Monsters.DemonSiege
 
         public override void NPCLoot()
         {
+            if (!DemonSiege.IsActive)
+            {
+                return;
+            }
             if (Main.rand.NextBool(24))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<HellBeamDye>());
             if (Main.rand.NextBool(12))
                 Item.NewItem(npc.getRect(), ItemID.MagmaStone);
-            if (Main.rand.NextBool(Main.expertMode ? 12 : 16) && Content.World.Events.DemonSiege.EventDemonSiege.IsActive)
+            if (Main.rand.NextBool(Main.expertMode ? 12 : 16))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DegenerationRing>());
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());

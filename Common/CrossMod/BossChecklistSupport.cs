@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World.Events.DemonSiege;
+﻿using AQMod.Content.World.Events;
 using AQMod.Items;
 using AQMod.Items.Accessories;
 using AQMod.Items.Armor;
@@ -18,9 +18,9 @@ using AQMod.Items.Weapons.Ranged;
 using AQMod.Items.Weapons.Summon;
 using AQMod.Localization;
 using AQMod.NPCs.Bosses;
-using AQMod.NPCs.Monsters.DemonSiege;
-using AQMod.NPCs.Monsters.GaleStreams;
-using AQMod.NPCs.Monsters.GlimmerEvent;
+using AQMod.NPCs.Monsters.DemonSiegeMonsters;
+using AQMod.NPCs.Monsters.GaleStreamsMonsters;
+using AQMod.NPCs.Monsters.GlimmerMonsters;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -282,7 +282,7 @@ namespace AQMod.Common.CrossMod
                     ItemID.ObsidianRose,
                 };
             string summonItems = "";
-            foreach (var upgrade in EventDemonSiege.Upgrades)
+            foreach (var upgrade in DemonSiege.Upgrades)
             {
                 if (summonItems != "")
                     summonItems += ", ";

@@ -1,7 +1,7 @@
 ﻿using AQMod.Common.Utilities;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content.World;
-using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Content.World.Events;
 using AQMod.Content.World.FallingStars;
 using System;
 using System.Collections.Generic;
@@ -102,50 +102,50 @@ namespace AQMod.Common.CrossMod
                     }
                 },
 
-                { "glimmerevent.staritedisco", (o) => EventGlimmer.stariteDiscoParty },
+                { "glimmerevent.staritedisco", (o) => Glimmer.stariteDiscoParty },
 
-                { "glimmerevent.staritedisco_set", (o) => EventGlimmer.stariteDiscoParty = (bool)o[1] },
+                { "glimmerevent.staritedisco_set", (o) => Glimmer.stariteDiscoParty = (bool)o[1] },
 
-                { "glimmerevent_isactive", (o) => EventGlimmer.IsGlimmerEventCurrentlyActive() },
-                { "glimmerevent_stariteprojectilecolor", (o) => EventGlimmer.stariteProjectileColoring },
+                { "glimmerevent_isactive", (o) => Glimmer.IsGlimmerEventCurrentlyActive() },
+                { "glimmerevent_stariteprojectilecolor", (o) => Glimmer.stariteProjectileColoring },
                 { "glimmerevent_activate", (o) =>
                     {
-                        bool value = EventGlimmer.Activate();
+                        bool value = Glimmer.Activate();
                         NetMessage.SendData(MessageID.WorldData);
                         return value;
                     }
                 },
-                { "glimmerevent_spawnsactive", (o) => EventGlimmer.AreStariteSpawnsCurrentlyActive((Player)o[1]) },
-                { "glimmerevent_canshowinvasionprogress", (o) => EventGlimmer.IsAbleToShowInvasionProgressBar() },
+                { "glimmerevent_spawnsactive", (o) => Glimmer.AreStariteSpawnsCurrentlyActive((Player)o[1]) },
+                { "glimmerevent_canshowinvasionprogress", (o) => Glimmer.IsAbleToShowInvasionProgressBar() },
                 { "glimmerevent_deactivate", (o) =>
                     {
-                        EventGlimmer.Deactivate();
+                        Glimmer.Deactivate();
                         return null;
                     }
                 },
-                { "glimmerevent_gettiledistance", (o) => EventGlimmer.GetTileDistanceUsingPlayer((Player)o[1]) },
+                { "glimmerevent_gettiledistance", (o) => Glimmer.GetTileDistanceUsingPlayer((Player)o[1]) },
 
-                { "demonsiege.x", (o) => EventDemonSiege.X },
-                { "demonsiege.y", (o) => EventDemonSiege.Y },
+                { "demonsiege.x", (o) => DemonSiege.X },
+                { "demonsiege.y", (o) => DemonSiege.Y },
 
-                { "demonsiege.x_set", (o) => EventDemonSiege.X = (ushort)o[1] },
-                { "demonsiege.y_set", (o) => EventDemonSiege.Y = (ushort)o[1] },
+                { "demonsiege.x_set", (o) => DemonSiege.X = (ushort)o[1] },
+                { "demonsiege.y_set", (o) => DemonSiege.Y = (ushort)o[1] },
 
-                { "demonsiege_activate", (o) => EventDemonSiege.Activate((int)o[1], (int)o[2], (int)o[3], (Item)o[4]) },
+                { "demonsiege_activate", (o) => DemonSiege.Activate((int)o[1], (int)o[2], (int)o[3], (Item)o[4]) },
                 {
                     "demonsiege_adddemonseigeenemy", (o) =>
                     {
                          if (o.Length > 5)
                          {
-                             EventDemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2], (int)o[3], (int)o[4]));
+                             DemonSiege.AddDemonSeigeEnemy(new DemonSiege.SiegeEnemy((int)o[1], (DemonSiege.UpgradeProgression)o[2], (int)o[3], (int)o[4]));
                          }
                          else if (o.Length > 4)
                          {
-                             EventDemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2], (int)o[3]));
+                             DemonSiege.AddDemonSeigeEnemy(new DemonSiege.SiegeEnemy((int)o[1], (DemonSiege.UpgradeProgression)o[2], (int)o[3]));
                          }
                          else
                          {
-                             EventDemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2]));
+                             DemonSiege.AddDemonSeigeEnemy(new DemonSiege.SiegeEnemy((int)o[1], (DemonSiege.UpgradeProgression)o[2]));
                          }
                         return null;
                     }
@@ -154,11 +154,11 @@ namespace AQMod.Common.CrossMod
                 {
                     if (o.Length > 5)
                     {
-                        EventDemonSiege.AddDemonSeigeUpgrade(new DemonSiegeUpgrade((int)o[1], (int)o[2], (DemonSiegeUpgradeProgression)o[3], (ushort)o[4]));
+                        DemonSiege.AddDemonSeigeUpgrade(new DemonSiege.SiegeUpgrade((int)o[1], (int)o[2], (DemonSiege.UpgradeProgression)o[3], (ushort)o[4]));
                     }
                     else
                     {
-                        EventDemonSiege.AddDemonSeigeUpgrade(new DemonSiegeUpgrade((int)o[1], (int)o[2], (DemonSiegeUpgradeProgression)o[3]));
+                        DemonSiege.AddDemonSeigeUpgrade(new DemonSiege.SiegeUpgrade((int)o[1], (int)o[2], (DemonSiege.UpgradeProgression)o[3]));
                     }
                     return null;
                 }
@@ -167,7 +167,7 @@ namespace AQMod.Common.CrossMod
                 {
                     "demonsiege_deactivate", (o) =>
                     {
-                    EventDemonSiege.Deactivate();
+                    DemonSiege.Deactivate();
                     return null;
                     }
                 },
@@ -200,8 +200,8 @@ namespace AQMod.Common.CrossMod
                 { "worlddefeats.obtainedcatalystpainting_set", (o) => WorldDefeats.ObtainedCatalystPainting = (bool)o[1]},
             };
 
-            Auto.CreateCallsForType(ModContent.GetInstance<EventGlimmer>());
-            Auto.CreateCallsForType(ModContent.GetInstance<EventGaleStreams>());
+            Auto.CreateCallsForType(ModContent.GetInstance<Glimmer>());
+            Auto.CreateCallsForType(ModContent.GetInstance<GaleStreams>());
             Auto.CreateCallsForType(ModContent.GetInstance<PassingDays>());
             Auto.CreateCallsForType(ModContent.GetInstance<ImitatedFallingStars>());
 

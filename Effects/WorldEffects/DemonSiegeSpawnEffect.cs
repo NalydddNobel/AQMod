@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World.Events.DemonSiege;
+﻿using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using System;
@@ -10,12 +10,12 @@ namespace AQMod.Effects.WorldEffects
 {
     public class DemonSiegeSpawnEffect : WorldVisualEffect
     {
-        private readonly DemonSiegeEnemy _enemy;
+        private readonly DemonSiege.SiegeEnemy _enemy;
         private int _timer;
 
-        public DemonSiegeSpawnEffect(int x, int y, DemonSiegeEnemy enemy) : base(x, y)
+        public DemonSiegeSpawnEffect(int x, int y, DemonSiege.SiegeEnemy enemy) : base(x, y)
         {
-            _timer = EventDemonSiege.SPAWN_ENEMY_DELAY;
+            _timer = DemonSiege.SPAWN_ENEMY_DELAY;
             _enemy = enemy;
         }
 

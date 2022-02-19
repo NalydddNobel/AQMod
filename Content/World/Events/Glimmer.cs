@@ -1,23 +1,65 @@
-﻿using AQMod.Common;
+﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Common.ID;
-using AQMod.Content.World.Events;
 using AQMod.Content.World.FallingStars;
 using AQMod.Effects;
-using AQMod.NPCs.Monsters.GlimmerEvent;
+using AQMod.NPCs.Monsters.GlimmerMonsters;
 using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace AQMod.Content.World
+namespace AQMod.Content.World.Events
 {
-    public sealed class EventGlimmer : WorldEvent
+    public sealed class Glimmer : WorldEvent
     {
+        public class CustomProgressBar : EventProgressBar
+        {
+            public override Texture2D IconTexture => ModContent.GetTexture(TexturePaths.EventIcons + "glimmerevent");
+            public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.GlimmerEvent");
+            public override Color NameBGColor => new Color(120, 20, 110, 128);
+            public override float EventProgress => 1f - (float)GetTileDistanceUsingPlayer(Main.LocalPlayer) / Glimmer.MaxDistance;
+
+            public override bool IsActive() => IsAbleToShowInvasionProgressBar();
+            public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.EventProgress.GlimmerEvent", Glimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer));
+        }
+        public struct EnemyLayer
+        {
+            /// <summary>
+            /// Distance away from the center in tiles
+            /// </summary>
+            public readonly ushort Distance;
+            /// <summary>
+            /// Anything below 1 means rarer spawns.
+            /// </summary>
+            public readonly float SpawnChance;
+            /// <summary>
+            /// The NPC that spawns in this layer.
+            /// </summary>
+            public readonly int NPCType;
+
+            public EnemyLayer(int npc, ushort distance, float spawnChance)
+            {
+                NPCType = npc;
+                Distance = distance;
+                SpawnChance = spawnChance;
+            }
+
+            public EnemyLayer(int npc, ushort distance, float spawnChance, string texturePath)
+            {
+                NPCType = npc;
+                Distance = distance;
+                SpawnChance = spawnChance;
+            }
+        }
+
         public const ushort MaxDistance = 1650;
         public const ushort SuperStariteDistance = 1200;
         public const ushort HyperStariteDistance = 800;
@@ -29,7 +71,7 @@ namespace AQMod.Content.World
 
         internal static Color StariteProjectileColorOrig => new Color(200, 10, 255, 0);
         public static Color TextColor => new Color(238, 17, 68, 255);
-        public static List<GlimmerEventEnemyLayerData> Layers { get; private set; }
+        public static List<EnemyLayer> Layers { get; private set; }
         /// <summary>
         /// A cache of the most recently spawned Omega Starite npc. Use this only for visual effects please. Defaults to -1.
         /// </summary>
@@ -42,15 +84,15 @@ namespace AQMod.Content.World
         public static bool stariteDiscoParty;
         public static bool renderUltimateSword;
 
-        internal override EventProgressBar ProgressBar => new GlimmerEventCustomProgressBar();
+        internal override EventProgressBar ProgressBar => new CustomProgressBar();
 
         protected override void Setup(AQMod mod)
         {
-            Layers = new List<GlimmerEventEnemyLayerData>
+            Layers = new List<EnemyLayer>
             {
-                new GlimmerEventEnemyLayerData(ModContent.NPCType<Starite>(), MaxDistance, StariteSpawnChance),
-                new GlimmerEventEnemyLayerData(ModContent.NPCType<SuperStarite>(), SuperStariteDistance, SuperStariteSpawnChance),
-                new GlimmerEventEnemyLayerData(ModContent.NPCType<HyperStarite>(), HyperStariteDistance, HyperStariteSpawnChance),
+                new EnemyLayer(ModContent.NPCType<Starite>(), MaxDistance, StariteSpawnChance),
+                new EnemyLayer(ModContent.NPCType<SuperStarite>(), SuperStariteDistance, SuperStariteSpawnChance),
+                new EnemyLayer(ModContent.NPCType<HyperStarite>(), HyperStariteDistance, HyperStariteSpawnChance),
             };
         }
 
@@ -205,7 +247,7 @@ namespace AQMod.Content.World
 
         public static bool IsAbleToShowInvasionProgressBar()
         {
-            if (AreStariteSpawnsCurrentlyActive(Main.LocalPlayer) && EventGlimmer.omegaStarite == -1)
+            if (AreStariteSpawnsCurrentlyActive(Main.LocalPlayer) && omegaStarite == -1)
             {
                 if (GetTileDistanceUsingPlayer(Main.LocalPlayer) < MaxDistance)
                     return true;

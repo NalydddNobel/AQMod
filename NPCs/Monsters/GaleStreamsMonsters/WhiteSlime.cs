@@ -1,5 +1,5 @@
 ﻿using AQMod.Common;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Items.Potions;
 using AQMod.Sounds;
@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.Monsters.GaleStreams
+namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
 {
     public class WhiteSlime : ModNPC
     {
@@ -318,7 +318,7 @@ namespace AQMod.NPCs.Monsters.GaleStreams
         public override void NPCLoot()
         {
             if (npc.target != -1)
-                EventGaleStreams.ProgressEvent(Main.player[npc.target], 10);
+                GaleStreams.ProgressEvent(Main.player[npc.target], 10);
 
             Item.NewItem(npc.getRect(), ItemID.Gel, Main.rand.Next(9) + 10);
 

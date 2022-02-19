@@ -11,8 +11,8 @@ using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters;
-using AQMod.NPCs.Monsters.DemonSiege;
-using AQMod.NPCs.Monsters.GaleStreams;
+using AQMod.NPCs.Monsters.DemonSiegeMonsters;
+using AQMod.NPCs.Monsters.GaleStreamsMonsters;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Monster.Starite;
 using Microsoft.Xna.Framework;
@@ -546,11 +546,11 @@ namespace AQMod
                 UnaffectedByWind[NPCID.DetonatingBubble] = false;
                 UnaffectedByWind[NPCID.DungeonSpirit] = false;
                 UnaffectedByWind[ModContent.NPCType<Heckto>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.GlimmerEvent.Starite>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.GlimmerMonsters.Starite>()] = false;
                 UnaffectedByWind[ModContent.NPCType<TrapImp>()] = false;
                 UnaffectedByWind[ModContent.NPCType<Cindera>()] = false;
                 UnaffectedByWind[ModContent.NPCType<Meteor>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabSeason.SoldierCrab>()] = false;
+                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabCreviceMonsters.SoldierCrab>()] = false;
                 UnaffectedByWind[ModContent.NPCType<BalloonMerchant>()] = false;
 
                 RemoveRepeatingIndicesFromSets();
@@ -1490,7 +1490,7 @@ namespace AQMod
                 NPC.buffImmune[i] = true;
             }
         }
-        
+
         public static bool UselessNPC(NPC npc)
         {
             return npc.friendly || npc.lifeMax < 5;

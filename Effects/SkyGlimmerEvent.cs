@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -248,14 +248,14 @@ namespace AQMod.Effects
 
         public static bool ShouldSpawnBGStarites()
         {
-            return _starites == null && EventGlimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer) < EventGlimmer.MaxDistance;
+            return _starites == null && Glimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer) < Glimmer.MaxDistance;
         }
 
         public static void InitNight()
         {
             var sky = (SkyGlimmerEvent)SkyManager.Instance[key: Name];
             var random = sky.rand;
-            if (!EventGlimmer.IsGlimmerEventCurrentlyActive())
+            if (!Glimmer.IsGlimmerEventCurrentlyActive())
             {
             }
             else
@@ -318,7 +318,7 @@ namespace AQMod.Effects
                     Intensity = 0f;
                 }
             }
-            int tileDistance = EventGlimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
+            int tileDistance = Glimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
             if (!Main.dayTime)
             {
                 if (FallingStars.stars == null)
@@ -327,7 +327,7 @@ namespace AQMod.Effects
                 }
 
                 int starFallChance = 10;
-                if (tileDistance > EventGlimmer.SuperStariteDistance)
+                if (tileDistance > Glimmer.SuperStariteDistance)
                 {
                     starFallChance = 128;
                 }
@@ -365,7 +365,7 @@ namespace AQMod.Effects
             {
                 float midX = Main.screenWidth / 2f + (float)Math.Sin(Main.GlobalTime) * 125f;
                 float midY = Main.screenHeight / 2f + (float)Math.Cos(Main.GlobalTime) * 125f;
-                if (!_active || Main.gameMenu || tileDistance > EventGlimmer.MaxDistance)
+                if (!_active || Main.gameMenu || tileDistance > Glimmer.MaxDistance)
                 {
                     for (int i = 0; i < 120; i++)
                     {
@@ -435,7 +435,7 @@ namespace AQMod.Effects
             }
             if (maxDepth == float.MaxValue && minDepth != float.MaxValue)
             {
-                if (EventGlimmer.IsGlimmerEventCurrentlyActive())
+                if (Glimmer.IsGlimmerEventCurrentlyActive())
                 {
                     if (ShouldSpawnBGStarites())
                         SpawnBGStarites(rand);
@@ -447,9 +447,9 @@ namespace AQMod.Effects
 
                 int y = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
                 Color clr;
-                if (EventGlimmer.omegaStarite == -1)
+                if (Glimmer.omegaStarite == -1)
                 {
-                    clr = Color.White * (1f - Opacity) * (1f - (EventGlimmer.tileX - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs() / EventGlimmer.MaxDistance);
+                    clr = Color.White * (1f - Opacity) * (1f - (Glimmer.tileX - (Main.screenPosition.X + Main.screenWidth) / 16f).Abs() / Glimmer.MaxDistance);
                 }
                 else
                 {
@@ -528,7 +528,7 @@ namespace AQMod.Effects
 
         public override float GetCloudAlpha()
         {
-            if (EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.omegaStarite != -1)
+            if (Glimmer.IsGlimmerEventCurrentlyActive() || Glimmer.omegaStarite != -1)
             {
                 _cloudAlpha = MathHelper.Lerp(_cloudAlpha, 0.25f, 0.01f);
             }

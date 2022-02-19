@@ -1,4 +1,4 @@
-﻿using AQMod.Content.World;
+﻿using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
@@ -20,7 +20,7 @@ namespace AQMod.Effects.WorldEffects
         private Color _dustColor;
         private readonly UnifiedRandom _rand;
 
-        public UltimateSwordEffect(UnifiedRandom rand) : base(EventGlimmer.tileX * 16, EventGlimmer.tileY * 16)
+        public UltimateSwordEffect(UnifiedRandom rand) : base(Glimmer.tileX * 16, Glimmer.tileY * 16)
         {
             _rand = rand;
             _time = rand.NextFloat(0f, MathHelper.PiOver2 * 3f);
@@ -88,7 +88,7 @@ namespace AQMod.Effects.WorldEffects
             }
         }
 
-        public UltimateSwordEffect(float timeOffset, float maxWidth, float maxHeight, int lifespan, int reps, Color dustColor, int seed = -1) : base(EventGlimmer.tileX * 16, EventGlimmer.tileY * 16)
+        public UltimateSwordEffect(float timeOffset, float maxWidth, float maxHeight, int lifespan, int reps, Color dustColor, int seed = -1) : base(Glimmer.tileX * 16, Glimmer.tileY * 16)
         {
             if (seed == -1)
                 _rand = new UnifiedRandom();
@@ -119,9 +119,9 @@ namespace AQMod.Effects.WorldEffects
                 }
                 int x = (int)(Math.Sin(_time) * _maxWidth);
                 int y = (int)((1f - progress) * _maxHeight);
-                y += (int)(EventGlimmer.tileY * 16f - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f);
-                x += EventGlimmer.tileX * 16;
-                if (Framing.GetTileSafely(EventGlimmer.tileX, EventGlimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
+                y += (int)(Glimmer.tileY * 16f - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f);
+                x += Glimmer.tileX * 16;
+                if (Framing.GetTileSafely(Glimmer.tileX, Glimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
                 {
                     x += 16;
                 }

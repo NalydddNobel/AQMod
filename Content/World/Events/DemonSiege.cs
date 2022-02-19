@@ -1,4 +1,5 @@
-﻿using AQMod.Common;
+﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Dusts;
 using AQMod.Effects.WorldEffects;
@@ -7,9 +8,10 @@ using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Yoyo;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Items.Weapons.Summon;
-using AQMod.NPCs.Monsters.DemonSiege;
+using AQMod.NPCs.Monsters.DemonSiegeMonsters;
 using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,15 +20,72 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.World.Events.DemonSiege
+namespace AQMod.Content.World.Events
 {
-    public sealed class EventDemonSiege : WorldEvent
+    public sealed class DemonSiege : WorldEvent
     {
-        internal override EventProgressBar ProgressBar => new DemonSiegeProgressBar();
+        public enum UpgradeProgression : byte
+        {
+            PreHardmode = 0,
+            Hardmode = 1,
+            PostPlantera = 2,
+        }
+        public struct SiegeEnemy
+        {
+            public readonly int type;
+            public readonly int spawnWidth;
+            public readonly int spawnTime;
+            public readonly UpgradeProgression progression;
+
+            public const int SPAWNTIME_CINDERA = 120;
+            public const int SPAWNTIME_PRE_HARDMODE_REGULAR = 150;
+
+            public static SiegeEnemy FromT<T>(UpgradeProgression progression, int time = SPAWNTIME_PRE_HARDMODE_REGULAR, int width = 20) where T : ModNPC
+            {
+                return new SiegeEnemy(ModContent.NPCType<T>(), progression, time, width);
+            }
+
+            public SiegeEnemy(int type, UpgradeProgression progression, int time = SPAWNTIME_PRE_HARDMODE_REGULAR, int width = 32)
+            {
+                this.type = type;
+                this.progression = progression;
+                spawnTime = time;
+                spawnWidth = width;
+            }
+        }
+        public struct SiegeUpgrade
+        {
+            public readonly int baseItem;
+            public readonly int rewardItem;
+            public readonly UpgradeProgression progression;
+            public readonly ushort upgradeTime;
+
+            public const ushort UpgradeTime_PreHardmode = 5400;
+
+            public SiegeUpgrade(int baseItem, int rewardItem, UpgradeProgression progression, ushort time = UpgradeTime_PreHardmode)
+            {
+                this.baseItem = baseItem;
+                this.rewardItem = rewardItem;
+                this.progression = progression;
+                upgradeTime = time;
+            }
+        }
+        public class CustomProgressBar : EventProgressBar
+        {
+            public override Texture2D IconTexture => ModContent.GetTexture(TexturePaths.EventIcons + "demonsiege");
+            public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.DemonSiege");
+            public override Color NameBGColor => new Color(120, 90 + (int)(Math.Sin(Main.GlobalTime * 5f) * 10), 20, 128);
+            public override float EventProgress => 1f - DemonSiege.UpgradeTime / (float)DemonSiege.Upgrade.upgradeTime;
+
+            public override bool IsActive() => Main.LocalPlayer.Biomes().zoneDemonSiege;
+            public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.Common.TimeLeft", AQUtils.TimeText3(DemonSiege.UpgradeTime));
+        }
+
+        internal override EventProgressBar ProgressBar => new CustomProgressBar();
 
         public static Color TextColor => new Color(250, 95, 10, 255);
-        internal static List<DemonSiegeUpgrade> Upgrades { get; private set; }
-        internal static List<DemonSiegeEnemy> Enemies { get; private set; }
+        internal static List<SiegeUpgrade> Upgrades { get; private set; }
+        internal static List<SiegeEnemy> Enemies { get; private set; }
         public static List<int> HellBanners { get; private set; }
 
         public static bool active;
@@ -37,9 +96,9 @@ namespace AQMod.Content.World.Events.DemonSiege
         public static ushort UpgradeTime;
         public static byte PlayerActivator { get; private set; }
         public static Item BaseItem { get; private set; }
-        public static DemonSiegeUpgrade Upgrade { get; private set; }
+        public static SiegeUpgrade Upgrade { get; private set; }
 
-        public static DemonSiegeEnemy spawnEnemy;
+        public static SiegeEnemy spawnEnemy;
         public static int spawnEnemyX = -1;
         public static int spawnEnemyY = -1;
         public static int spawnEnemyTimer;
@@ -50,23 +109,23 @@ namespace AQMod.Content.World.Events.DemonSiege
         {
             Reset();
 
-            Upgrades = new List<DemonSiegeUpgrade>
+            Upgrades = new List<SiegeUpgrade>
             {
-                new DemonSiegeUpgrade(ItemID.LightsBane, ModContent.ItemType<HellsBoon>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode),
-                new DemonSiegeUpgrade(ItemID.BloodButcherer, ModContent.ItemType<CrimsonHellSword>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode),
-                new DemonSiegeUpgrade(ItemID.CorruptYoyo, ModContent.ItemType<Dysesthesia>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode),
-                new DemonSiegeUpgrade(ItemID.DemonBow, ModContent.ItemType<HamaYumi>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode),
-                new DemonSiegeUpgrade(ItemID.TendonBow, ModContent.ItemType<Deltoid>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode),
-                new DemonSiegeUpgrade(ModContent.ItemType<SeltzerRain>(), ModContent.ItemType<FizzlingFire>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode),
-                new DemonSiegeUpgrade(ModContent.ItemType<ScarletSea>(), ModContent.ItemType<Skrawler>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode),
-                new DemonSiegeUpgrade(ModContent.ItemType<CorruptPot>(), ModContent.ItemType<PiranhaPot>(), DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeUpgrade.UpgradeTime_PreHardmode),
+                new SiegeUpgrade(ItemID.LightsBane, ModContent.ItemType<HellsBoon>(), UpgradeProgression.PreHardmode, SiegeUpgrade.UpgradeTime_PreHardmode),
+                new SiegeUpgrade(ItemID.BloodButcherer, ModContent.ItemType<CrimsonHellSword>(), UpgradeProgression.PreHardmode, SiegeUpgrade.UpgradeTime_PreHardmode),
+                new SiegeUpgrade(ItemID.CorruptYoyo, ModContent.ItemType<Dysesthesia>(), UpgradeProgression.PreHardmode, SiegeUpgrade.UpgradeTime_PreHardmode),
+                new SiegeUpgrade(ItemID.DemonBow, ModContent.ItemType<HamaYumi>(), UpgradeProgression.PreHardmode, SiegeUpgrade.UpgradeTime_PreHardmode),
+                new SiegeUpgrade(ItemID.TendonBow, ModContent.ItemType<Deltoid>(), UpgradeProgression.PreHardmode, SiegeUpgrade.UpgradeTime_PreHardmode),
+                new SiegeUpgrade(ModContent.ItemType<SeltzerRain>(), ModContent.ItemType<FizzlingFire>(), UpgradeProgression.PreHardmode, SiegeUpgrade.UpgradeTime_PreHardmode),
+                new SiegeUpgrade(ModContent.ItemType<ScarletSea>(), ModContent.ItemType<Skrawler>(), UpgradeProgression.PreHardmode, SiegeUpgrade.UpgradeTime_PreHardmode),
+                new SiegeUpgrade(ModContent.ItemType<CorruptPot>(), ModContent.ItemType<PiranhaPot>(), UpgradeProgression.PreHardmode, SiegeUpgrade.UpgradeTime_PreHardmode),
             };
 
-            Enemies = new List<DemonSiegeEnemy>
+            Enemies = new List<SiegeEnemy>
             {
-                DemonSiegeEnemy.FromT<Cindera>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_CINDERA, 20),
-                DemonSiegeEnemy.FromT<TrapImp>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32),
-                DemonSiegeEnemy.FromT<Magmalbubble>(DemonSiegeUpgradeProgression.PreHardmode, DemonSiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32),
+                SiegeEnemy.FromT<Cindera>(UpgradeProgression.PreHardmode, SiegeEnemy.SPAWNTIME_CINDERA, 20),
+                SiegeEnemy.FromT<TrapImp>(UpgradeProgression.PreHardmode, SiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32),
+                SiegeEnemy.FromT<Magmalbubble>(UpgradeProgression.PreHardmode, SiegeEnemy.SPAWNTIME_PRE_HARDMODE_REGULAR, 32),
             };
 
             HellBanners = new List<int>()
@@ -93,13 +152,13 @@ namespace AQMod.Content.World.Events.DemonSiege
             Reset();
         }
 
-        public static void AddDemonSeigeUpgrade(DemonSiegeUpgrade upgrade)
+        public static void AddDemonSeigeUpgrade(SiegeUpgrade upgrade)
         {
             if (AQMod.Loading)
                 Upgrades.Add(upgrade);
         }
 
-        public static void AddDemonSeigeEnemy(DemonSiegeEnemy enemy)
+        public static void AddDemonSeigeEnemy(SiegeEnemy enemy)
         {
             if (AQMod.Loading)
                 Enemies.Add(enemy);
@@ -129,7 +188,7 @@ namespace AQMod.Content.World.Events.DemonSiege
                     NetHelper.RequestDemonSiege(x, y, plr, item);
                 }
                 BaseItem = item.Clone();
-                Upgrade = GetUpgrade(BaseItem).GetValueOrDefault(default(DemonSiegeUpgrade));
+                Upgrade = GetUpgrade(BaseItem).GetValueOrDefault(default(SiegeUpgrade));
                 if (!fromServer)
                 {
                     item.TurnToAir();
@@ -143,7 +202,7 @@ namespace AQMod.Content.World.Events.DemonSiege
                 }
                 else
                 {
-                    UpgradeTime = DemonSiegeUpgrade.UpgradeTime_PreHardmode;
+                    UpgradeTime = SiegeUpgrade.UpgradeTime_PreHardmode;
                 }
                 X = (ushort)x;
                 Y = (ushort)y;
@@ -298,11 +357,11 @@ namespace AQMod.Content.World.Events.DemonSiege
                     return;
                 var player = Main.player[PlayerActivator];
                 var progression = Upgrade.progression;
-                var enemies = new List<DemonSiegeEnemy>();
-                for (int i = 0; i < EventDemonSiege.Enemies.Count; i++)
+                var enemies = new List<SiegeEnemy>();
+                for (int i = 0; i < Enemies.Count; i++)
                 {
-                    if (EventDemonSiege.Enemies[i].progression <= progression)
-                        enemies.Add(EventDemonSiege.Enemies[i]);
+                    if (Enemies[i].progression <= progression)
+                        enemies.Add(Enemies[i]);
                 }
                 var spawn = enemies[Main.rand.Next(enemies.Count)];
                 if (spawn.type == ModContent.NPCType<TrapImp>())
@@ -368,7 +427,7 @@ namespace AQMod.Content.World.Events.DemonSiege
         }
         public static void UpdateEvent()
         {
-            if (!IsActive || PlayerActivator == byte.MaxValue || (PlayerActivator == Main.myPlayer && !UpdateEvent_CheckPlayer()))
+            if (!IsActive || PlayerActivator == byte.MaxValue || PlayerActivator == Main.myPlayer && !UpdateEvent_CheckPlayer())
                 return;
             if (Main.tile[X, Y] == null)
             {
@@ -463,7 +522,7 @@ namespace AQMod.Content.World.Events.DemonSiege
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static DemonSiegeUpgrade? GetUpgrade(Item item)
+        public static SiegeUpgrade? GetUpgrade(Item item)
         {
             foreach (var d in Upgrades)
             {

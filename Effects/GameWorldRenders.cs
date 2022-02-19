@@ -1,14 +1,14 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Graphics;
 using AQMod.Content.Players;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects.GoreNest;
 using AQMod.Effects.Wind;
 using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Melee;
 using AQMod.NPCs.Bosses;
-using AQMod.NPCs.Monsters.DemonSiege;
+using AQMod.NPCs.Monsters.DemonSiegeMonsters;
 using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -72,22 +72,22 @@ namespace AQMod.Effects
 
                     //if (EventGlimmer.OmegaStarite == -1 && EventGlimmer.deactivationDelay <= 0)
 
-                    bool renderUltimateSword = EventGlimmer.deactivationDelay == -1;
-                    if (renderUltimateSword && EventGlimmer.omegaStarite != -1)
+                    bool renderUltimateSword = Glimmer.deactivationDelay == -1;
+                    if (renderUltimateSword && Glimmer.omegaStarite != -1)
                     {
-                        renderUltimateSword = (int)Main.npc[EventGlimmer.omegaStarite].ai[0] == OmegaStarite.PHASE_NOVA;
+                        renderUltimateSword = (int)Main.npc[Glimmer.omegaStarite].ai[0] == OmegaStarite.PHASE_NOVA;
                     }
 
                     if (renderUltimateSword)
                     {
                         AQGraphics.SetCullPadding(padding: 360);
-                        renderUltimateSword = AQGraphics.Cull(new Vector2(EventGlimmer.tileX * 16f, EventGlimmer.tileY * 16f) - Main.screenPosition);
+                        renderUltimateSword = AQGraphics.Cull(new Vector2(Glimmer.tileX * 16f, Glimmer.tileY * 16f) - Main.screenPosition);
                     }
 
                     if (renderUltimateSword)
                     {
-                        float x = EventGlimmer.tileX * 16f;
-                        if (Framing.GetTileSafely(EventGlimmer.tileX, EventGlimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
+                        float x = Glimmer.tileX * 16f;
+                        if (Framing.GetTileSafely(Glimmer.tileX, Glimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
                         {
                             x += 16f;
                         }
@@ -95,7 +95,7 @@ namespace AQMod.Effects
                         {
                             x += 8f;
                         }
-                        float y = EventGlimmer.tileY * 16 - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f;
+                        float y = Glimmer.tileY * 16 - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f;
                         var drawPos = new Vector2(x, y);
                         var texture = Main.itemTexture[ModContent.ItemType<UltimateSword>()];
                         var frame = new Rectangle(0, 0, texture.Width, texture.Height);
@@ -109,9 +109,9 @@ namespace AQMod.Effects
 
                         var hitbox = new Rectangle((int)drawPos.X - 10, (int)drawPos.Y - 60, 20, 60);
                         Vector2 trueMouseworld = AQUtils.TrueMouseworld;
-                        if (hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y) && EventGlimmer.IsGlimmerEventCurrentlyActive())
+                        if (hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y) && Glimmer.IsGlimmerEventCurrentlyActive())
                         {
-                            if (EventGlimmer.omegaStarite == -1 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16))
+                            if (Glimmer.omegaStarite == -1 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16))
                             {
                                 var plr = Main.LocalPlayer;
                                 plr.mouseInterface = true;
@@ -198,10 +198,10 @@ namespace AQMod.Effects
 
         public static void DoUpdate()
         {
-            if (!EventGlimmer.IsGlimmerEventCurrentlyActive() || EventGlimmer.omegaStarite != -1 || EventGlimmer.deactivationDelay == -1 || AQGraphics.Cull(Utils.CenteredRectangle(new Vector2(EventGlimmer.tileX, EventGlimmer.tileY) - Main.screenPosition, new Vector2(80f, 160f))))
+            if (!Glimmer.IsGlimmerEventCurrentlyActive() || Glimmer.omegaStarite != -1 || Glimmer.deactivationDelay == -1 || AQGraphics.Cull(Utils.CenteredRectangle(new Vector2(Glimmer.tileX, Glimmer.tileY) - Main.screenPosition, new Vector2(80f, 160f))))
                 return;
-            float x = EventGlimmer.tileX * 16f;
-            if (Framing.GetTileSafely(EventGlimmer.tileX, EventGlimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
+            float x = Glimmer.tileX * 16f;
+            if (Framing.GetTileSafely(Glimmer.tileX, Glimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
             {
                 x += 16f;
             }
@@ -209,7 +209,7 @@ namespace AQMod.Effects
             {
                 x += 8f;
             }
-            float y = EventGlimmer.tileY * 16 - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f;
+            float y = Glimmer.tileY * 16 - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f;
             Lighting.AddLight(new Vector2(x, y), new Vector3(1f, 1f, 1f));
             if (EffectRand.NextBool(10))
             {

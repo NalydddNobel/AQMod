@@ -2,8 +2,7 @@
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
 using AQMod.Content.Players;
-using AQMod.Content.World;
-using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Content.World.Events;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
@@ -80,8 +79,8 @@ namespace AQMod
         {
             var p = AQMod.GetInstance().GetPacket();
             p.Write(PacketType.ActivateGlimmerEvent);
-            p.Write(EventGlimmer.tileX);
-            p.Write(EventGlimmer.tileY);
+            p.Write(Glimmer.tileX);
+            p.Write(Glimmer.tileY);
             p.Send();
         }
         #endregion
@@ -384,9 +383,9 @@ namespace AQMod
 
                 case PacketType.ActivateGlimmerEvent:
                     {
-                        EventGlimmer.tileX = reader.ReadUInt16();
-                        EventGlimmer.tileY = reader.ReadUInt16();
-                        l?.Log("Activated Glimmer Event at: {x:" + EventGlimmer.tileX + ", y:" + EventGlimmer.tileY + "}!");
+                        Glimmer.tileX = reader.ReadUInt16();
+                        Glimmer.tileY = reader.ReadUInt16();
+                        l?.Log("Activated Glimmer Event at: {x:" + Glimmer.tileX + ", y:" + Glimmer.tileY + "}!");
                     }
                     break;
 
@@ -420,7 +419,7 @@ namespace AQMod
                             l.Value.Log("item Prefix: " + itemPrefix);
                         }
 
-                        EventDemonSiege.Activate(x, y, player, item, fromServer: true);
+                        DemonSiege.Activate(x, y, player, item, fromServer: true);
                     }
                     break;
 

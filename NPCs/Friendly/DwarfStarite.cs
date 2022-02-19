@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Items.Critters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -235,7 +235,7 @@ namespace AQMod.NPCs.Friendly
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (EventGlimmer.IsGlimmerEventCurrentlyActive() && spawnInfo.player.position.Y < Main.worldSurface * 16f)
+            if (Glimmer.IsGlimmerEventCurrentlyActive() && spawnInfo.player.position.Y < Main.worldSurface * 16f)
                 return 1f;
             return 0f;
         }

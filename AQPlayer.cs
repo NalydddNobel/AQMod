@@ -5,7 +5,7 @@ using AQMod.Buffs.Temperature;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Content;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.Particles;
@@ -299,7 +299,7 @@ namespace AQMod
             {
                 temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
             }
-            if (EventGaleStreams.EventActive(player))
+            if (GaleStreams.EventActive(player))
             {
                 if (temperature < -60)
                 {
@@ -1644,7 +1644,7 @@ namespace AQMod
                 item = new Item();
                 item.SetDefaults(itemType);
             }
-            
+
             if (melee)
             {
                 add += player.meleeDamage - 1f;
@@ -1713,7 +1713,7 @@ namespace AQMod
             CombinedHooks.GetWeaponDamage(player, item, ref damage);
             return Math.Max(0, damage);
         }
-        
+
         public static int GetDamage(int damage, float add, float mult, float flat)
         {
             return (int)(damage * add * mult + 5E-06f + flat);

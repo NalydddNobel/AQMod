@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.ID;
-using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Localization;
 using AQMod.NPCs.Bosses;
 using Terraria;
@@ -30,18 +30,18 @@ namespace AQMod.Items
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime && !EventGlimmer.IsGlimmerEventCurrentlyActive() && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !Glimmer.IsGlimmerEventCurrentlyActive() && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool UseItem(Player player)
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                EventGlimmer.Activate();
+                Glimmer.Activate();
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     NetHelper.ActivateGlimmerEvent();
             }
-            AQMod.BroadcastMessage(AQText.Key + "Common.GlimmerEventWarning", EventGlimmer.TextColor);
+            AQMod.BroadcastMessage(AQText.Key + "Common.GlimmerEventWarning", Glimmer.TextColor);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }
