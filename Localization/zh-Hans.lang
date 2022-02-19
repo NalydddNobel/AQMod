@@ -3,8 +3,11 @@
 Items
 ##############
 
-ItemName.MushroomClam=异界蛤蜊
-ItemTooltip.MushroomClam=在海滩处使用以召唤巨蟹蛤
+ItemName.MushroomClam=奇异蛤蜊
+ItemTooltip.MushroomClam=在海滩或蟹状裂隙处使用以召唤巨蟹蛤\n{$Mods.AQMod.Common.NotConsumable}
+
+ItemName.NovaFruit=新星果
+ItemTooltip.NovaFruit=在夜晚使用以召唤终末之星\n{$Mods.AQMod.Common.NotConsumable}
 
 ItemName.BloodyThing=血腥之物
 ItemTooltip.BloodyThing=在夜晚时开始血月\n'一颗奇异的红宝石, 在移植到1.4时可能会被撕裂'
@@ -987,7 +990,6 @@ ItemTooltip.Quasicrystal=真近战攻击造成暴击时会将伤害弹射至离�
 ItemName.Crabsol=蟹壳剑
 ItemName.CrabsonBag=宝藏袋
 ItemName.MythicStarfruit=秘星果
-ItemName.NovaFruit=新星果
 ItemName.OmegaStariteMask=终末之星面具
 ItemName.OmegaStariteTrophy=终末之星纪念章
 ItemName.StariteBag=宝藏袋
@@ -1196,7 +1198,6 @@ ItemTooltip.Crabsol=只有最强壮的人才能举起这把剑
 ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
 # Omega Starite
 ItemTooltip.MythicStarfruit=使用以召唤微光事件
-ItemTooltip.NovaFruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n{$Mods.AQMod.Common.NotConsumable}
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.UltimateStarfruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n右键开始或结束微光事件\n{$Mods.AQMod.Common.NotConsumable}
 ##############
