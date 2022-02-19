@@ -319,29 +319,46 @@ namespace AQMod
                     projectile.Kill();
                 }
             }
-            if (Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
-            {
-                projectile.Kill();
-                return;
-            }
-            float distance = projectile.Distance(Main.player[projectile.owner].Center);
-            if (distance < Main.npc[aQPlayer.meathookNPC].Size.Length() * 2f)
-            {
-                Main.player[projectile.owner].immune = true;
-                Main.player[projectile.owner].immuneTime = 12;
-            }
-            if (distance < Main.npc[aQPlayer.meathookNPC].Size.Length() * 1.5f)
+            if (!aQPlayer.leechHook && Collision.SolidCollision(projectile.position, projectile.width, projectile.height))
             {
                 projectile.Kill();
                 return;
             }
             projectile.Center = Main.npc[aQPlayer.meathookNPC].Center;
-            if (Main.player[projectile.owner].grapCount < 10)
+            float distance = projectile.Distance(Main.player[projectile.owner].Center);
+            if (!aQPlayer.leechHook)
             {
-                Main.player[projectile.owner].grappling[Main.player[projectile.owner].grapCount] = projectile.whoAmI;
-                Player player2 = Main.player[projectile.owner];
-                Player player15 = player2;
-                player15.grapCount++;
+                if (Main.player[projectile.owner].grapCount < 10)
+                {
+                    if (distance < Main.npc[aQPlayer.meathookNPC].Size.Length() * 2f)
+                    {
+                        Main.player[projectile.owner].immune = true;
+                        Main.player[projectile.owner].immuneTime = 12;
+                    }
+                    if (distance < Main.npc[aQPlayer.meathookNPC].Size.Length() * 1.5f)
+                    {
+                        projectile.Kill();
+                        return;
+                    }
+                    Main.player[projectile.owner].grappling[Main.player[projectile.owner].grapCount] = projectile.whoAmI;
+                    Main.player[projectile.owner].grapCount++;
+                }
+            }
+            else
+            {
+                bool outOfRange = false;
+                if (projectile.type >= Main.maxProjectileTypes)
+                {
+                    outOfRange = ProjectileLoader.GrappleOutOfRange(distance, projectile);
+                }
+                else
+                {
+                    outOfRange = distance > 400f;
+                }
+                if (outOfRange)
+                {
+                    projectile.Kill();
+                }
             }
         }
         public override bool PreAI(Projectile projectile)
@@ -365,9 +382,9 @@ namespace AQMod
 
             if (projectile.aiStyle == AIStyles.GrapplingHookAI)
             {
-                if (BarbCheck(projectile))
+                var aQPlayer = Main.player[projectile.owner].GetModPlayer<AQPlayer>();
+                if (BarbCheck(projectile) || aQPlayer.leechHook)
                 {
-                    var aQPlayer = Main.player[projectile.owner].GetModPlayer<AQPlayer>();
                     if (aQPlayer.hasMeathookNPCOld && aQPlayer.meathookNPC != -1 && Main.npc[aQPlayer.meathookNPC].active)
                     {
                         aQPlayer.hasMeathookNPC = true;

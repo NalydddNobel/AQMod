@@ -54,7 +54,6 @@ namespace AQMod.Common.CrossMod
             },
             new List<int>() {
                 ModContent.ItemType<Crabax>(),
-                ModContent.ItemType<Crabsol>(),
                 ModContent.ItemType<JerryClawFlail>(),
                 ModContent.ItemType<CinnabarBow>(),
                 ModContent.ItemType<Bubbler>(),
@@ -276,7 +275,6 @@ namespace AQMod.Common.CrossMod
                 {
                     ModContent.ItemType<DemonicEnergy>(),
                     ModContent.ItemType<DegenerationRing>(),
-                    ModContent.ItemType<PowPunch>(),
                     ItemID.MagmaStone,
                     ItemID.LavaCharm,
                     ItemID.ObsidianRose,

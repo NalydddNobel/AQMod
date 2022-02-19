@@ -1,6 +1,7 @@
 ﻿using AQMod.Items.Accessories;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools;
+using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -196,6 +197,8 @@ namespace AQMod.NPCs.Monsters
                 }
                 if (NPC.downedBoss3)
                     choices.Add(ModContent.ItemType<ATM>());
+                if (NPC.downedPlantBoss)
+                    choices.Add(ModContent.ItemType<VampireHook>());
                 if (Main.rand.NextBool(8))
                     Item.NewItem(npc.getRect(), ItemID.AdhesiveBandage);
                 if (Main.rand.NextBool(3))

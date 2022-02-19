@@ -7,6 +7,22 @@ namespace AQMod.NPCs.AIs
 {
     public abstract class AIBird : ModNPC
     {
+        protected void BirdSounds()
+        {
+            if (!Main.dayTime || !(Main.time < 18000.0) || Main.rand.Next(400) != 0)
+            {
+                return;
+            }
+            if (Main.rand.Next(3) != 0)
+            {
+                Main.PlaySound(SoundID.Bird, (int)npc.position.X, (int)npc.position.Y, 14);
+            }
+            else
+            {
+                Main.PlaySound(SoundID.Bird, (int)npc.position.X, (int)npc.position.Y, 18);
+            }
+        }
+
         public override void AI()
         {
             npc.noGravity = true;
@@ -149,6 +165,30 @@ namespace AQMod.NPCs.AIs
                     npc.velocity.Y = -4f;
                 }
                 npc.TargetClosest();
+            }
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            npc.spriteDirection = npc.direction;
+            npc.rotation = npc.velocity.X * 0.1f;
+            if (npc.velocity.X == 0f && npc.velocity.Y == 0f)
+            {
+                npc.frame.Y = frameHeight * 4;
+                npc.frameCounter = 0.0;
+            }
+            else
+            {
+                npc.frameCounter += 1.0;
+                if (npc.frameCounter >= 4.0)
+                {
+                    npc.frame.Y += frameHeight;
+                    npc.frameCounter = 0.0;
+                }
+                if (npc.frame.Y >= frameHeight * (Main.npcFrameCount[npc.type] - 1))
+                {
+                    npc.frame.Y = 0;
+                }
             }
         }
     }

@@ -130,7 +130,9 @@ namespace AQMod
         public bool shade;
         public bool undetectable;
 
+        public bool leechHook;
         public bool meathookUI;
+        public int meathookTarget;
         public bool meathook;
         public bool hasMeathookNPCOld;
         public bool hasMeathookNPC;
@@ -241,6 +243,7 @@ namespace AQMod
             meathook = false;
             if (!hasMeathookNPC)
             {
+                leechHook = false;
                 meathookNPC = -1;
                 meathookUI = !player.miscEquips[4].IsAir && player.miscEquips[4].type == ModContent.ItemType<VampireHook>();
             }
@@ -353,8 +356,8 @@ namespace AQMod
             if (healEffectValueForSyncingTheThingOnTheServer != 0 && Main.myPlayer == player.whoAmI)
             {
                 player.HealEffect(healEffectValueForSyncingTheThingOnTheServer, broadcast: true);
-                healEffectValueForSyncingTheThingOnTheServer = 0;
             }
+            healEffectValueForSyncingTheThingOnTheServer = 0;
         }
         private void ResetEffects_Debuffs()
         {
@@ -458,12 +461,40 @@ namespace AQMod
                 Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
             }
         }
+        private void ProcessTriggers_MeathookSnapTarget()
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].aiStyle == 7 && Main.projectile[i].owner == player.whoAmI)
+                {
+                    Main.projectile[i].active = false;
+                    Main.projectile[i].netUpdate = true;
+                }
+            }
+            if (player.miscEquips[4].modItem is VampireHook)
+            {
+                leechHook = true;
+            }
+            if (Main.netMode != NetmodeID.Server)
+            {
+                Main.PlaySound(SoundID.Tink, Main.npc[meathookTarget].Center, 1);
+            }
+            Projectile.NewProjectile(Main.npc[meathookTarget].Center, Vector2.Zero, player.miscEquips[4].shoot, player.miscEquips[4].damage, player.miscEquips[4].knockBack, player.whoAmI);
+            meathookNPC = meathookTarget;
+            hasMeathookNPC = true;
+            meathookUI = false;
+        }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
             if (canToggleCosmicanon && AQMod.Keybinds.CosmicanonToggle.JustPressed)
             {
                 ToggleCosmicanon();
             }
+            if (!hasMeathookNPC && meathookTarget != -1 && Main.npc[meathookTarget].active && triggersSet.Grapple)
+            {
+                ProcessTriggers_MeathookSnapTarget();
+            }
+            meathookTarget = -1;
         }
 
         public override void clientClone(ModPlayer clientClone)
@@ -807,7 +838,7 @@ namespace AQMod
                     update2.UpdatePlayerSafe(player, i);
             }
         }
-        public void UpdateCelesteTorus()
+        private void UpdateCelesteTorus()
         {
             if (blueSpheres)
             {
@@ -936,6 +967,18 @@ namespace AQMod
         }
         public override void PostUpdateEquips()
         {
+            if (leechHook && Main.myPlayer == player.whoAmI)
+            {
+                if (Main.GameUpdateCount % 50 == 0)
+                {
+                    healEffectValueForSyncingTheThingOnTheServer += 2;
+                    player.statLife += 2;
+                    if (player.statLife > player.statLifeMax2)
+                    {
+                        player.statLife = player.statLifeMax2;
+                    }
+                }
+            }
             if (dartHead)
             {
                 UpdateDartTrapHat();
@@ -944,7 +987,7 @@ namespace AQMod
             {
                 UpdateArachnotronPets();
             }
-            if (omori)
+            if (omori && Main.myPlayer == player.whoAmI)
             {
                 player.AddBuff(ModContent.BuffType<Omori>(), omoriDeathTimer);
                 UpdateOmoriPets();

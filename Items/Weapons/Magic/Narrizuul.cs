@@ -40,7 +40,7 @@ namespace AQMod.Items.Weapons.Magic
             {
                 if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                 {
-                    tooltips[i].overrideColor = Main.LocalPlayer.FX().NalydGradient.GetColor(Main.GlobalTime);
+                    tooltips[i].overrideColor = Main.LocalPlayer.FX().NalydGradientPersonal.GetColor(Main.GlobalTime);
                     return;
                 }
             }

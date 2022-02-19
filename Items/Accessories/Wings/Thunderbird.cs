@@ -1,4 +1,5 @@
 ﻿using AQMod.Content.Players;
+using AQMod.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace AQMod.Items.Accessories.Wings
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            var clr = Main.LocalPlayer.FX().NalydGradient.GetColor(Main.GlobalTime) * 0.2f;
+            var clr = Main.LocalPlayer.FX().NalydGradientPersonal.GetColor(Main.GlobalTime) * 0.2f;
             var texture = Main.itemTexture[item.type];
             var wave = AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f);
             var n = new Vector2(wave, 0f).RotatedBy(Main.GlobalTime * 2.9f);
@@ -49,7 +50,7 @@ namespace AQMod.Items.Accessories.Wings
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            var clr = Main.LocalPlayer.FX().NalydGradient.GetColor(Main.GlobalTime) * 0.2f;
+            var clr = Main.LocalPlayer.FX().NalydGradientPersonal.GetColor(Main.GlobalTime) * 0.2f;
             var texture = Main.itemTexture[item.type];
             var frame = texture.Frame();
             var origin = frame.Size() / 2f;
@@ -172,6 +173,23 @@ namespace AQMod.Items.Accessories.Wings
             acceleration *= 3f;
         }
 
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.AngelWings);
+            r.AddIngredient(ModContent.ItemType<ThunderousPlume>());
+            r.AddIngredient(ItemID.SoulofSight, 15);
+            r.AddTile(TileID.MythrilAnvil);
+            r.SetResult(this);
+            r.AddRecipe();
+            r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.DemonWings);
+            r.AddIngredient(ModContent.ItemType<ThunderousPlume>());
+            r.AddIngredient(ItemID.SoulofSight, 15);
+            r.AddTile(TileID.MythrilAnvil);
+            r.SetResult(this);
+            r.AddRecipe();
+        }
 
         Color IDedicatedItem.Color => new Color(200, 125, 255, 255);
     }

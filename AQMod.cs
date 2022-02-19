@@ -995,10 +995,6 @@ namespace AQMod
             if (hardmode)
             {
                 items.Add(ModContent.ItemType<NalydDye>());
-                if (NPC.downedMechBoss1 || NPC.downedMechBoss2 || NPC.downedMechBoss3)
-                {
-                    items.Add(ModContent.ItemType<Thunderbird>());
-                }
             }
             if (items.Count == 0)
             {

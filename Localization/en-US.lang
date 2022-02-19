@@ -90,6 +90,7 @@ ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 
 ItemName.Thunderbird=Thunderbird
 ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\nHas immense horizontal speed!\nHitting enemies strikes them with lightning
+NPCName.Thunderbird=Thunderbird
 
 # Armor
 ItemName.CrabsonMask=Crabson Mask
@@ -310,7 +311,7 @@ ItemTooltip.XenonMushroom=Emits blue light\n'Gets brighter when you touch it'
 MapObject.NobleMushrooms=Noble Mushroom
 
 # Tools
-ItemName.VampireHook=Vampire Hook
+ItemName.VampireHook=Bloodline
 ItemTooltip.VampireHook=Automatically aims towards nearby enemies\nWhen attached to an enemy, it drains its life
 
 ItemName.BlackBookofUntoldLegends='Untold Legends'
