@@ -91,7 +91,7 @@ namespace AQMod.Common.CrossMod
                             }),
                                 "the Ultimate Sword...",
                                 "biome_glimmerevent", 50f, "mod_aequus");
-                            drp.Call("AddBiome", (Func<bool>)(() => DemonSiegeEvent.CloseEnoughToDemonSiege(Main.LocalPlayer)),
+                            drp.Call("AddBiome", (Func<bool>)(() => Main.LocalPlayer.Biomes().zoneDemonSiege),
                                 "Demon Siege",
                                 "biome_demonsiege", 50f, "mod_aequus");
                             drp.Call("AddBiome", (Func<bool>)(() => EventGaleStreams.EventActive(Main.LocalPlayer)),

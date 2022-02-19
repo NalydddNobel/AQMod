@@ -26,6 +26,8 @@ namespace AQMod
             public const ushort RequestOmegaStarite = 1000;
             public const ushort RequestDemonSiege = 2000;
             public const ushort RequestDemonSiegeEnemy = 2001;
+            public const ushort RequestDungeonCoordinates = 2002;
+            public const ushort RecieveDungeonCoordinates = 2003;
 
             public const ushort Flag_ExporterIntroduction = 10000;
             public const ushort Flag_PhysicistIntroduction = 10001;
@@ -100,6 +102,15 @@ namespace AQMod
         #endregion
 
         #region Misc
+        public static void RequestDungeonCoordinatesUpdate(bool setMapCoords = true)
+        {
+            var p = AQMod.GetInstance().GetPacket();
+            p.Write(PacketType.RequestDungeonCoordinates);
+            p.Write(setMapCoords);
+            p.Write(Main.myPlayer);
+            p.Send();
+        }
+
         public static void NetCombatText(Rectangle rect, Color color, int amount, bool dramatic = false, bool dot = false)
         {
             var p = AQMod.GetInstance().GetPacket();
@@ -235,6 +246,44 @@ namespace AQMod
 
             switch (messageID)
             {
+                case PacketType.RecieveDungeonCoordinates:
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        bool setMapCoords = reader.ReadBoolean();
+
+                        if (setMapCoords)
+                        {
+                            l?.Log("Old Dungeon Map Coords: {x:" + MapUI.dungeonX + ", y:" + MapUI.dungeonY + "}");
+
+                            MapUI.dungeonX = reader.ReadInt32();
+                            MapUI.dungeonY = reader.ReadInt32();
+
+                            l?.Log("New Dungeon Coords: {x:" + MapUI.dungeonX + ", y:" + MapUI.dungeonY + "}");
+                        }
+                        else
+                        {
+                            l?.Log("Old Dungeon Coords: {x:" + Main.dungeonX + ", y:" + Main.dungeonY + "}");
+
+                            Main.dungeonX = reader.ReadInt32();
+                            Main.dungeonY = reader.ReadInt32();
+
+                            l?.Log("New Dungeon Coords: {x:" + Main.dungeonX + ", y:" + Main.dungeonY + "}");
+                        }
+                    }
+                    break;
+
+                case PacketType.RequestDungeonCoordinates:
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        var p = AQMod.GetInstance().GetPacket();
+                        p.Write(PacketType.RecieveDungeonCoordinates);
+                        p.Write(reader.ReadBoolean());
+                        p.Write(Main.dungeonX);
+                        p.Write(Main.dungeonY);
+                        p.Send(toClient: reader.ReadInt32());
+                    }
+                    break;
+
                 case PacketType.CombatText:
                 case PacketType.CombatNumber:
                     {
@@ -371,7 +420,7 @@ namespace AQMod
                             l.Value.Log("item Prefix: " + itemPrefix);
                         }
 
-                        DemonSiegeEvent.Activate(x, y, player, item, fromServer: true);
+                        EventDemonSiege.Activate(x, y, player, item, fromServer: true);
                     }
                     break;
 

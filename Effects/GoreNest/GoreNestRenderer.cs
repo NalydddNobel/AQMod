@@ -58,20 +58,20 @@ namespace AQMod.Effects.GoreNest
                 SamplerDraw.DrawSampler(EffectCache.s_GoreNestPortal, portalPosition - Main.screenPosition, 0f, new Vector2(80f, 80f), new Color(255, 255, 255, 255));
                 Main.spriteBatch.End();
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
-                if (DemonSiegeEvent.IsActive && DemonSiegeEvent.BaseItem != null && DemonSiegeEvent.BaseItem.type > ItemID.None && DemonSiegeEvent.altarTopLeft() == new Point(tileX[k], tileY[k]))
+                if (EventDemonSiege.IsActive && EventDemonSiege.BaseItem != null && EventDemonSiege.BaseItem.type > ItemID.None && EventDemonSiege.AltarCorner() == new Point(tileX[k], tileY[k]))
                 {
-                    var texture = TextureGrabber.GetItem(DemonSiegeEvent.BaseItem.type);
+                    var texture = TextureGrabber.GetItem(EventDemonSiege.BaseItem.type);
                     var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                     var origin = frame.Size() / 2f;
-                    float scale = DemonSiegeEvent.BaseItem.scale;
+                    float scale = EventDemonSiege.BaseItem.scale;
                     float rotation = (float)Math.Sin(Main.GlobalTime) * 0.05f;
                     var drawPosition = new Vector2(portalPosition.X, portalPosition.Y);
                     float y2 = texture.Height / 2f;
                     if (y2 > 24f)
                         drawPosition.Y += 24f - y2;
-                    if (ItemLoader.PreDrawInWorld(DemonSiegeEvent.BaseItem, Main.spriteBatch, Color.White, Color.White, ref rotation, ref scale, 666))
+                    if (ItemLoader.PreDrawInWorld(EventDemonSiege.BaseItem, Main.spriteBatch, Color.White, Color.White, ref rotation, ref scale, 666))
                         Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);
-                    ItemLoader.PostDrawInWorld(DemonSiegeEvent.BaseItem, Main.spriteBatch, Color.White, Color.White, rotation, scale, 666);
+                    ItemLoader.PostDrawInWorld(EventDemonSiege.BaseItem, Main.spriteBatch, Color.White, Color.White, rotation, scale, 666);
                 }
             }
             reset = true;

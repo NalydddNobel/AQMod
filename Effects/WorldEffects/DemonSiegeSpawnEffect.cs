@@ -15,7 +15,7 @@ namespace AQMod.Effects.WorldEffects
 
         public DemonSiegeSpawnEffect(int x, int y, DemonSiegeEnemy enemy) : base(x, y)
         {
-            _timer = DemonSiegeEvent.SPAWN_ENEMY_DELAY;
+            _timer = EventDemonSiege.SPAWN_ENEMY_DELAY;
             _enemy = enemy;
         }
 

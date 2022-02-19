@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets.LegacyItemOverlays;
+using AQMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -18,7 +19,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             item.width = 40;
             item.height = 40;
-            item.damage = 22;
+            item.damage = 48;
             item.useTime = 38;
             item.useAnimation = 19;
             item.autoReuse = true;
@@ -29,8 +30,8 @@ namespace AQMod.Items.Weapons.Melee
             item.melee = true;
             item.knockBack = 3f;
             item.shootSpeed = 35f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.HellsBoon>();
-            item.scale = 1.25f;
+            item.shoot = ModContent.ProjectileType<HellsBoonSpike>();
+            item.scale = 1.2f;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
@@ -45,7 +46,8 @@ namespace AQMod.Items.Weapons.Melee
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectiles.Melee.HellsBoon.SpawnCluster(Main.MouseWorld, (int)(item.shootSpeed / player.meleeSpeed), damage, knockBack, player);
+            damage = (int)(damage * 0.5f);
+            HellsBoonSpike.SpawnCluster(Main.MouseWorld, (int)(item.shootSpeed / player.meleeSpeed), damage, knockBack, player);
             return false;
         }
     }

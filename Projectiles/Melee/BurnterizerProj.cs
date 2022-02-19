@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Melee
 {
-    public class Burnterizer : ModProjectile
+    public class BurnterizerProj : ModProjectile
     {
         public override void SetDefaults()
         {
@@ -91,18 +91,25 @@ namespace AQMod.Projectiles.Melee
             var color = projectile.GetAlpha(lightColor);
             var origin = new Vector2(texture.Width / 2f, 10f);
             var drawData = new DrawData(texture, drawPosition, null, color, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0);
-            Main.spriteBatch.End();
-            BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
-            float intensity = (float)Math.Sin(Main.GlobalTime * 10f) + 1.5f;
-            var effect = EffectCache.s_OutlineColor;
-            effect.UseColor(new Vector3(1f, 0.5f * intensity, 0.1f * intensity));
-            effect.Apply(drawData);
-            drawData.Draw(Main.spriteBatch);
-            Main.spriteBatch.End();
-            BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
-            drawData.scale *= 1.25f;
-            drawData.color *= 0.25f;
-            drawData.Draw(Main.spriteBatch);
+            if (!AQMod.LowQ)
+            {
+                Main.spriteBatch.End();
+                BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
+                float intensity = (float)Math.Sin(Main.GlobalTime * 10f) + 1.5f;
+                var effect = EffectCache.s_OutlineColor;
+                effect.UseColor(new Vector3(1f, 0.5f * intensity, 0.1f * intensity));
+                effect.Apply(drawData);
+                drawData.Draw(Main.spriteBatch);
+                Main.spriteBatch.End();
+                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+                drawData.scale *= 1.25f;
+                drawData.color *= 0.25f;
+                drawData.Draw(Main.spriteBatch);
+            }
+            else
+            {
+                drawData.Draw(Main.spriteBatch);
+            }
             return false;
         }
     }

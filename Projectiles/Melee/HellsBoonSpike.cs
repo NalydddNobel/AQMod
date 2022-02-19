@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Melee
 {
-    public class HellsBoon : ModProjectile
+    public class HellsBoonSpike : ModProjectile
     {
         private float _portaloffset = 0f;
 
@@ -98,24 +98,38 @@ namespace AQMod.Projectiles.Melee
             {
                 frameHeight = texture.Height;
             }
-            var frame = new Rectangle(frameWidth * projectile.frame, 0, frameWidth - 2, frameHeight);
-            var orig = new Vector2(frameWidth / 2f, 16f);
-            var effects = projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            var drawData = new DrawData(texture, projectile.Center - Main.screenPosition, frame, lightColor, projectile.rotation + MathHelper.PiOver2, orig, projectile.scale, SpriteEffects.None, 0)
+            var drawData = new DrawData(texture, projectile.Center - Main.screenPosition, new Rectangle(frameWidth * projectile.frame, 0, frameWidth - 2, frameHeight), lightColor, projectile.rotation + MathHelper.PiOver2, new Vector2(frameWidth / 2f, 16f), projectile.scale, SpriteEffects.None, 0);
+            if (!AQMod.LowQ)
             {
-                sourceRect = new Rectangle(frame.X, frame.Y, frame.Width, texture.Height)
-            };
-            Main.spriteBatch.End();
-            BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
-            var effect = EffectCache.s_SpikeFade;
-            effect.UseOpacity(1f / texture.Height * frameHeight + _portaloffset);
-            effect.UseColor(new Vector3(0.65f, 0.3f, 1f));
-            effect.Apply(drawData);
-            drawData.Draw(Main.spriteBatch);
-            drawData.Draw(Main.spriteBatch);
-            drawData.Draw(Main.spriteBatch);
-            Main.spriteBatch.End();
-            BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+                Main.spriteBatch.End();
+                BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
+                var effect = EffectCache.s_SpikeFade;
+                effect.UseOpacity(1f / texture.Height * frameHeight + _portaloffset);
+                effect.UseColor(new Vector3(0.65f, 0.3f, 1f));
+                effect.Apply(drawData);
+                drawData.Draw(Main.spriteBatch);
+                drawData.Draw(Main.spriteBatch);
+                drawData.Draw(Main.spriteBatch);
+                Main.spriteBatch.End();
+                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+            }
+            else
+            {
+                float alpha = 0f;
+                if (projectile.ai[1] > 15f)
+                {
+                    if (projectile.ai[1] < 15f + goOutTime)
+                    {
+                        alpha = (projectile.ai[1] - 15f) / goOutTime;
+                    }
+                    else
+                    {
+                        alpha = 1f;
+                    }
+                }
+                drawData.color *= alpha;
+                drawData.Draw(Main.spriteBatch);
+            }
             return false;
         }
 
@@ -154,7 +168,7 @@ namespace AQMod.Projectiles.Melee
             {
                 projectileCount = validSpots.Count;
             }
-            int type = ModContent.ProjectileType<HellsBoon>();
+            int type = ModContent.ProjectileType<HellsBoonSpike>();
             for (int i = 0; i < projectileCount - 1; i++)
             {
                 int random = Main.rand.Next(validSpots.Count);

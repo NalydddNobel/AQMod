@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets.LegacyItemOverlays;
+using AQMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -18,9 +19,9 @@ namespace AQMod.Items.Weapons.Melee
         {
             item.width = 40;
             item.height = 40;
-            item.damage = 26;
+            item.damage = 55;
             item.useTime = 48;
-            item.useAnimation = 24;
+            item.useAnimation = 18;
             item.autoReuse = true;
             item.rare = AQItem.Rarities.GoreNestRare;
             item.useStyle = ItemUseStyleID.SwingThrow;
@@ -28,9 +29,9 @@ namespace AQMod.Items.Weapons.Melee
             item.value = Item.sellPrice(gold: 1);
             item.melee = true;
             item.knockBack = 3f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.Burnterizer>();
+            item.shoot = ModContent.ProjectileType<BurnterizerProj>();
             item.shootSpeed = 12f;
-            item.scale = 1.35f;
+            item.scale = 1.4f;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
@@ -59,6 +60,7 @@ namespace AQMod.Items.Weapons.Melee
                 Main.dust[d].noGravity = true;
             }
             Main.PlaySound(SoundID.DD2_BetsyFireballShot, position);
+            damage = (int)(damage * 0.75f);
             return true;
         }
     }

@@ -125,27 +125,27 @@ namespace AQMod.Common.CrossMod
                 },
                 { "glimmerevent_gettiledistance", (o) => EventGlimmer.GetTileDistanceUsingPlayer((Player)o[1]) },
 
-                { "demonsiege.x", (o) => DemonSiegeEvent.X },
-                { "demonsiege.y", (o) => DemonSiegeEvent.Y },
+                { "demonsiege.x", (o) => EventDemonSiege.X },
+                { "demonsiege.y", (o) => EventDemonSiege.Y },
 
-                { "demonsiege.x_set", (o) => DemonSiegeEvent.X = (ushort)o[1] },
-                { "demonsiege.y_set", (o) => DemonSiegeEvent.Y = (ushort)o[1] },
+                { "demonsiege.x_set", (o) => EventDemonSiege.X = (ushort)o[1] },
+                { "demonsiege.y_set", (o) => EventDemonSiege.Y = (ushort)o[1] },
 
-                { "demonsiege_activate", (o) => DemonSiegeEvent.Activate((int)o[1], (int)o[2], (int)o[3], (Item)o[4]) },
+                { "demonsiege_activate", (o) => EventDemonSiege.Activate((int)o[1], (int)o[2], (int)o[3], (Item)o[4]) },
                 {
                     "demonsiege_adddemonseigeenemy", (o) =>
                     {
                          if (o.Length > 5)
                          {
-                             DemonSiegeEvent.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2], (int)o[3], (int)o[4]));
+                             EventDemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2], (int)o[3], (int)o[4]));
                          }
                          else if (o.Length > 4)
                          {
-                             DemonSiegeEvent.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2], (int)o[3]));
+                             EventDemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2], (int)o[3]));
                          }
                          else
                          {
-                             DemonSiegeEvent.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2]));
+                             EventDemonSiege.AddDemonSeigeEnemy(new DemonSiegeEnemy((int)o[1], (DemonSiegeUpgradeProgression)o[2]));
                          }
                         return null;
                     }
@@ -154,23 +154,24 @@ namespace AQMod.Common.CrossMod
                 {
                     if (o.Length > 5)
                     {
-                        DemonSiegeEvent.AddDemonSeigeUpgrade(new DemonSiegeUpgrade((int)o[1], (int)o[2], (DemonSiegeUpgradeProgression)o[3], (ushort)o[4]));
+                        EventDemonSiege.AddDemonSeigeUpgrade(new DemonSiegeUpgrade((int)o[1], (int)o[2], (DemonSiegeUpgradeProgression)o[3], (ushort)o[4]));
                     }
                     else
                     {
-                        DemonSiegeEvent.AddDemonSeigeUpgrade(new DemonSiegeUpgrade((int)o[1], (int)o[2], (DemonSiegeUpgradeProgression)o[3]));
+                        EventDemonSiege.AddDemonSeigeUpgrade(new DemonSiegeUpgrade((int)o[1], (int)o[2], (DemonSiegeUpgradeProgression)o[3]));
                     }
                     return null;
                 }
                 },
-                { "demonsiege_closeenoughtodemonsiege", (o) => DemonSiegeEvent.CloseEnoughToDemonSiege((Player)o[1]) },
+                { "demonsiege_closeenoughtodemonsiege", (o) => ((Player)o[1]).Biomes().zoneDemonSiege },
                 {
                     "demonsiege_deactivate", (o) =>
                     {
-                    DemonSiegeEvent.Deactivate();
+                    EventDemonSiege.Deactivate();
                     return null;
                     }
                 },
+                { "biomes.zonedemonsiege", (o) => ((Player)o[1]).Biomes().zoneDemonSiege },
 
                 { "worlddefeats.downedcrabson", (o) => WorldDefeats.DownedCrabson },
                 { "worlddefeats.downedcrabson_set", (o) => WorldDefeats.DownedCrabson = (bool)o[1]},

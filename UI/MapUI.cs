@@ -15,8 +15,13 @@ using Terraria.ModLoader;
 
 namespace AQMod.Content
 {
-    public static class InterfaceMap
+    public static class MapUI
     {
+        public static int dungeonX;
+        public static int dungeonY;
+        public static int lihzahrdX;
+        public static int lihzahrdY;
+
         public const byte Icon_DungeonPink = 0;
         public const byte Icon_DungeonBlue = 1;
         public const byte Icon_DungeonGreen = 2;
@@ -145,11 +150,6 @@ namespace AQMod.Content
                     DrawMapIcon(out bool hovering, Icon_PlanteraBulb, p.X + 1f, p.Y, interactable: Main.hardMode);
                     if (hovering)
                     {
-                        if (Main.mouseLeft && Main.mouseLeftRelease)
-                        {
-                            //TeleportPlayer(new Vector2(p.X * 16f + 16f, p.Y * 16f - 16f));
-                            //return;
-                        }
                         mouseText = Language.GetTextValue("MapObject.PlanterasBulb");
                     }
                 }
@@ -159,55 +159,84 @@ namespace AQMod.Content
                 _planteraBulbsPositionCache = null;
             }
 
-            if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.VialOfBlood) && (Main.Map[Main.dungeonX, Main.dungeonY].Light > 40 || NPC.downedBoss3 || Main.hardMode))
+            if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.VialOfBlood))
             {
-                byte icon = Icon_DungeonColorless;
-                for (int l = 0; l < 4; l++)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    if (Main.tile[Main.dungeonX, Main.dungeonY + l].active())
+                    dungeonX = Main.dungeonX;
+                    dungeonY = Main.dungeonY;
+                }
+                if (dungeonX < 20 && dungeonY < 20 && _mapRefresh == 2)
+                {
+                    if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        if (Main.tile[Main.dungeonX, Main.dungeonY + l].type == TileID.PinkDungeonBrick)
-                        {
-                            icon = Icon_DungeonPink;
-                            break;
-                        }
-                        if (Main.tile[Main.dungeonX, Main.dungeonY + l].type == TileID.BlueDungeonBrick)
-                        {
-                            icon = Icon_DungeonBlue;
-                            break;
-                        }
-                        if (Main.tile[Main.dungeonX, Main.dungeonY + l].type == TileID.GreenDungeonBrick)
-                        {
-                            icon = Icon_DungeonGreen;
-                            break;
-                        }
+                        NetHelper.RequestDungeonCoordinatesUpdate(setMapCoords: true);
                     }
                 }
-                DrawMapIcon(out bool hovering, icon, Main.dungeonX + 0.5f, Main.dungeonY - 2.5f, interactable: true, ((Main.dungeonX > Main.maxTilesX / 2) ? SpriteEffects.FlipHorizontally : SpriteEffects.None));
-                if (hovering)
+                else if (Main.Map[dungeonX, dungeonY].Light > 40 || NPC.downedBoss3 || Main.hardMode)
                 {
-                    if (Main.mouseLeft && Main.mouseLeftRelease)
+                    byte icon = Icon_DungeonColorless;
+                    for (int l = 0; l < 4; l++)
                     {
-                        TeleportPlayer(new Vector2(Main.dungeonX * 16f + 8f, Main.dungeonY * 16f - 48f));
-                        return;
+                        if (Main.tile[dungeonX, dungeonY + l] != null && Main.tile[dungeonX, dungeonY + l].active())
+                        {
+                            if (Main.tile[dungeonX, dungeonY + l].type == TileID.PinkDungeonBrick)
+                            {
+                                icon = Icon_DungeonPink;
+                                break;
+                            }
+                            if (Main.tile[dungeonX, dungeonY + l].type == TileID.BlueDungeonBrick)
+                            {
+                                icon = Icon_DungeonBlue;
+                                break;
+                            }
+                            if (Main.tile[dungeonX, dungeonY + l].type == TileID.GreenDungeonBrick)
+                            {
+                                icon = Icon_DungeonGreen;
+                                break;
+                            }
+                        }
                     }
-                    mouseText = Language.GetTextValue("Mods.AQMod.MapObject.Dungeon");
+                    DrawMapIcon(out bool hovering, icon, dungeonX + 0.5f, dungeonY - 2.5f, interactable: true, (dungeonX > Main.maxTilesX / 2) ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
+                    if (hovering)
+                    {
+                        if (Main.mouseLeft && Main.mouseLeftRelease)
+                        {
+                            TeleportPlayer(new Vector2(dungeonX * 16f + 8f, dungeonY * 16f - 48f));
+                            return;
+                        }
+                        mouseText = Language.GetTextValue("Mods.AQMod.MapObject.Dungeon");
+                    }
                 }
             }
 
             if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.Cabbage))
             {
-                if (CommonStructureSearchMethods.LihzahrdAltar(out var altarLocation) && (NPC.downedPlantBoss || Main.Map[altarLocation.X, altarLocation.Y].Light > 40))
+                if ((lihzahrdX < 10 && lihzahrdY < 10 && _mapRefresh < 8) || _mapRefresh == 1)
                 {
-                    DrawMapIcon(out bool hovering, Icon_LihzahrdAltar, altarLocation.X + 1.5f, altarLocation.Y + 0.5f, interactable: NPC.downedPlantBoss);
-                    if (hovering && NPC.downedPlantBoss)
+                    bool useMap = false;
+                    if (Main.netMode == NetmodeID.Server)
                     {
-                        if (Main.mouseLeft && Main.mouseLeftRelease)
+                        useMap = true;
+                    }
+                    CommonStructureSearchMethods.LihzahrdAltar(out var altarLocation, useMap);
+                    lihzahrdX = altarLocation.X;
+                    lihzahrdY = altarLocation.Y;
+                }
+                else
+                {
+                    if (NPC.downedPlantBoss || Main.Map[lihzahrdX, lihzahrdY].Light > 40)
+                    {
+                        DrawMapIcon(out bool hovering, Icon_LihzahrdAltar, lihzahrdX + 1.5f, lihzahrdY + 0.5f, interactable: NPC.downedPlantBoss);
+                        if (hovering && NPC.downedPlantBoss)
                         {
-                            TeleportPlayer(altarLocation.ToWorldCoordinates(new Vector2(24f, -8f)));
-                            return;
+                            if (Main.mouseLeft && Main.mouseLeftRelease)
+                            {
+                                TeleportPlayer(new Vector2(lihzahrdX * 16f + 24f, lihzahrdY * 16f - 8f));
+                                return;
+                            }
+                            mouseText = Language.GetTextValue("ItemName.LihzahrdAltar");
                         }
-                        mouseText = Language.GetTextValue("ItemName.LihzahrdAltar");
                     }
                 }
             }
@@ -297,8 +326,16 @@ namespace AQMod.Content
             }
 
             _mapRefresh++;
-            if (_mapRefresh > 60)
-                _mapRefresh = 0;
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                if (_mapRefresh > 60)
+                    _mapRefresh = 0;
+            }
+            else
+            {
+                if (_mapRefresh > byte.MaxValue)
+                    _mapRefresh = 0;
+            }
         }
 
         private static void DrawMapIcon(byte frame, float x, float y, bool teleportable = false)

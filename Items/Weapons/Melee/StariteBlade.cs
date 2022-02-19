@@ -25,7 +25,7 @@ namespace AQMod.Items.Weapons.Melee
             item.autoReuse = true;
             item.melee = true;
             item.knockBack = 4.5f;
-            item.scale = 1.25f;
+            item.scale = 1.3f;
         }
 
         public override Color? GetAlpha(Color lightColor)

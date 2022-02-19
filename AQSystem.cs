@@ -1,5 +1,4 @@
 ﻿using AQMod.Content.World.Events;
-using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Effects;
 using AQMod.Tiles.Nature.CrabCrevice;
 using Terraria;
@@ -19,7 +18,6 @@ namespace AQMod
 
         public override void Initialize()
         {
-            DemonSiegeEvent.Reset();
             if (Main.netMode != NetmodeID.Server)
                 AQMod.WorldEffects.Clear();
             if (!Main.dayTime)

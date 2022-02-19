@@ -1,9 +1,11 @@
 ﻿using AQMod.Assets;
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World;
+using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Effects;
 using AQMod.NPCs.Bosses;
 using AQMod.Tiles.Walls;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using Terraria;
@@ -21,6 +23,20 @@ namespace AQMod.Content.Players
         public byte zoneGlimmerEventLayer;
         public bool zoneDemonSiege;
 
+        private void UpdateBiomes_GlimmerEvent()
+        {
+            if (EventGlimmer.IsGlimmerEventCurrentlyActive())
+            {
+                int glimmerTileDistance = EventGlimmer.GetTileDistanceUsingPlayer(player);
+                zoneGlimmerEvent = glimmerTileDistance < EventGlimmer.MaxDistance;
+                zoneGlimmerEventLayer = (byte)EventGlimmer.GetLayerIndexThroughTileDistance(glimmerTileDistance);
+            }
+            else
+            {
+                zoneGlimmerEvent = false;
+                zoneGlimmerEventLayer = 255;
+            }
+        }
         public override void UpdateBiomes()
         {
             int x = (int)(player.position.X + player.width / 2) / 16;
@@ -29,7 +45,10 @@ namespace AQMod.Content.Players
             zoneCrabCrevice = Main.tile[x, y].wall == ModContent.WallType<OceanRavineWall>() ||
                 Main.tile[x, y].wall == ModContent.WallType<PetrifiedWoodWall>();
             zoneCrabSeason = zoneCrabCrevice && player.position.Y < Main.worldSurface * 16f;
-            zoneGlimmerEvent = EventGlimmer.GetTileDistanceUsingPlayer(player) < EventGlimmer.MaxDistance;
+
+            UpdateBiomes_GlimmerEvent();
+
+            zoneDemonSiege = EventDemonSiege.IsActive ? player.Distance(new Vector2(EventDemonSiege.X * 16f, EventDemonSiege.Y * 16f)) < 2000f : false;
         }
 
         private void UpdateBiomeVisuals_Starite()
@@ -72,7 +91,8 @@ namespace AQMod.Content.Players
                  zoneCrabCrevice == otherBiomes.zoneCrabCrevice &&
                  zoneCrabSeason == otherBiomes.zoneCrabSeason &&
                  zoneGlimmerEvent == otherBiomes.zoneGlimmerEvent &&
-                zoneDemonSiege == otherBiomes.zoneDemonSiege;
+                 zoneGlimmerEventLayer == otherBiomes.zoneGlimmerEventLayer &&
+                 zoneDemonSiege == otherBiomes.zoneDemonSiege;
         }
 
         public override void CopyCustomBiomesTo(Player other)
@@ -82,6 +102,7 @@ namespace AQMod.Content.Players
             otherBiomes.zoneCrabCrevice = zoneCrabCrevice;
             otherBiomes.zoneCrabSeason = zoneCrabSeason;
             otherBiomes.zoneGlimmerEvent = zoneGlimmerEvent;
+            otherBiomes.zoneGlimmerEventLayer = zoneGlimmerEventLayer;
             otherBiomes.zoneDemonSiege = zoneDemonSiege;
         }
 

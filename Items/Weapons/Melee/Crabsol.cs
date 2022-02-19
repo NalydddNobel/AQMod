@@ -11,9 +11,9 @@ namespace AQMod.Items.Weapons.Melee
             item.width = 50;
             item.height = 50;
             item.melee = true;
-            item.damage = 29;
-            item.useTime = 16;
-            item.useAnimation = 16;
+            item.damage = 40;
+            item.useTime = 24;
+            item.useAnimation = 24;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 6f;
             item.autoReuse = true;
@@ -21,6 +21,7 @@ namespace AQMod.Items.Weapons.Melee
             item.UseSound = SoundID.Item1;
             item.rare = AQItem.Rarities.CrabCreviceRare + 1;
             item.autoReuse = true;
+            item.scale = 1.1f;
         }
     }
 }

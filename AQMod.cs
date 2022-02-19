@@ -54,6 +54,8 @@ namespace AQMod
             return ModContent.GetInstance<AQMod>();
         }
 
+        public static bool LowQ => !Lighting.NotRetro || ModContent.GetInstance<AQConfigClient>().EffectQuality <= 0.5f;
+
         public static bool spawnStarite;
         public static int dayrateIncrease;
 
@@ -578,7 +580,7 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
-            DemonSiegeEvent.InternalSetup();
+            EventDemonSiege.InternalSetup();
 
             AQBuff.Sets.InternalInitalize();
             AQItem.Sets.InternalInitalize();
@@ -634,7 +636,7 @@ namespace AQMod
             ItemOverlays = null;
 
             DyeBinder.Unload();
-            DemonSiegeEvent.Unload();
+            EventDemonSiege.InternalUnload();
             AQProjectile.Sets.UnloadSets();
             AQNPC.Sets.UnloadSets();
             AQItem.Sets.Unload();
@@ -734,7 +736,7 @@ namespace AQMod
                 }
             }
 
-            DemonSiegeEvent.UpdateEvent();
+            EventDemonSiege.UpdateEvent();
 
             if (EventGlimmer.omegaStarite > -1 && !Main.npc[EventGlimmer.omegaStarite].active)
             {
@@ -768,7 +770,7 @@ namespace AQMod
             }
 
             var player = Main.LocalPlayer;
-            if (DemonSiegeEvent.CloseEnoughToDemonSiege(player))
+            if (player.Biomes().zoneDemonSiege)
             {
                 music = DemonSiegeMusic.GetMusicID();
                 priority = MusicPriority.Event;
@@ -793,8 +795,8 @@ namespace AQMod
         {
             if (WorldGen.gen)
                 return;
-            InterfaceMap.RenderOnMap(ref mouseText);
-            InterfaceMap.RenderOverlayingUI(ref mouseText);
+            MapUI.RenderOnMap(ref mouseText);
+            MapUI.RenderOverlayingUI(ref mouseText);
         }
 
         public override void UpdateUI(GameTime gameTime)

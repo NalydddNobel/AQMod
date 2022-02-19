@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
+using AQMod.Content.World.Events.DemonSiege;
 using AQMod.Items.Materials.Energies;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -371,14 +372,14 @@ namespace AQMod.NPCs.Monsters.DemonSiege
             {
                 if (Main.rand.NextBool())
                 {
-                    Item.NewItem(npc.getRect(), Content.World.Events.DemonSiege.DemonSiegeEvent.GetHellBannerDrop(Main.rand));
+                    Item.NewItem(npc.getRect(), EventDemonSiege.HellBanners[Main.rand.Next(EventDemonSiege.HellBanners.Count)]);
                 }
                 else
                 {
                     Item.NewItem(npc.getRect(), ItemID.LavaLamp);
                 }
             }
-            if (Main.rand.NextBool(Main.expertMode ? 12 : 16) && Content.World.Events.DemonSiege.DemonSiegeEvent.IsActive)
+            if (Main.rand.NextBool(Main.expertMode ? 12 : 16) && EventDemonSiege.IsActive)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.DegenerationRing>());
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());

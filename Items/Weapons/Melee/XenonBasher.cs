@@ -13,7 +13,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             item.width = 40;
             item.height = 40;
-            item.damage = 32;
+            item.damage = 40;
             item.useTime = 32;
             item.useAnimation = 32;
             item.rare = AQItem.Rarities.CrabCreviceRare;

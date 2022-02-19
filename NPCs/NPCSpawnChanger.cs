@@ -45,7 +45,7 @@ namespace AQMod.NPCs
                     spawnRate *= 10;
                     maxSpawns = (int)(maxSpawns * 0.1);
                 }
-                if (DemonSiegeEvent.CloseEnoughToDemonSiege(player))
+                if (player.Biomes().zoneDemonSiege)
                 {
                     spawnRate *= 10;
                     maxSpawns = (int)(maxSpawns * 0.1);
@@ -115,8 +115,8 @@ namespace AQMod.NPCs
                         {
                             DecreaseSpawns(0f);
                         }
-                        int layerIndex = EventGlimmer.GetLayerIndexThroughTileDistance(tileDistance);
-                        if (layerIndex != -1)
+                        int layerIndex = spawnInfo.player.Biomes().zoneGlimmerEventLayer;
+                        if (layerIndex != 255)
                         {
                             for (int i = layerIndex - 1; i >= 0; i--)
                             {

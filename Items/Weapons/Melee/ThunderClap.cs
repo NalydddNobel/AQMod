@@ -22,7 +22,7 @@ namespace AQMod.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            item.damage = 44;
+            item.damage = 88;
             item.width = 30;
             item.height = 30;
             item.useTime = 100;
@@ -34,7 +34,7 @@ namespace AQMod.Items.Weapons.Melee
             item.melee = true;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.ThunderClap>();
             item.knockBack = 32f;
-            item.scale = 1.25f;
+            item.scale = 1.35f;
             item.autoReuse = true;
         }
 
@@ -71,7 +71,7 @@ namespace AQMod.Items.Weapons.Melee
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            int p = Projectile.NewProjectile(new Vector2(Main.MouseWorld.X + Main.rand.NextFloat(-20f, 20f), position.Y - 666f), new Vector2(0f, 0f), type, damage * 4, 0f, player.whoAmI);
+            int p = Projectile.NewProjectile(new Vector2(Main.MouseWorld.X + Main.rand.NextFloat(-20f, 20f), position.Y - 666f), new Vector2(0f, 0f), type, damage * 2, 0f, player.whoAmI);
             if (Main.netMode != NetmodeID.Server)
             {
                 AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.ThunderClap, position, 0.55f);

@@ -213,10 +213,10 @@ namespace AQMod.Content.World
             return false;
         }
 
-        public static int GetLayerIndexThroughTileDistance(int tileDistance)
+        public static byte GetLayerIndexThroughTileDistance(int tileDistance)
         {
-            int layerIndex = -1;
-            for (int i = Layers.Count - 1; i >= 0; i--)
+            byte layerIndex = 255;
+            for (byte i = (byte)(Layers.Count - 1); i >= 0; i--)
             {
                 if (tileDistance < Layers[i].Distance)
                 {

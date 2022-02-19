@@ -15,13 +15,13 @@ namespace AQMod.Items.Weapons.Melee
     {
         public override void SetDefaults()
         {
-            item.damage = 42;
+            item.damage = 82;
             item.melee = true;
             item.knockBack = 6f;
             item.width = 32;
             item.height = 32;
             item.useTime = 38;
-            item.useAnimation = 19;
+            item.useAnimation = 10;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
             item.rare = AQItem.Rarities.OmegaStariteRare;
@@ -29,7 +29,7 @@ namespace AQMod.Items.Weapons.Melee
             item.shootSpeed = 25f;
             item.value = AQItem.Prices.OmegaStariteWeaponValue;
             item.autoReuse = true;
-            item.scale = 1.1f;
+            item.scale = 1.35f;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -103,7 +103,7 @@ namespace AQMod.Items.Weapons.Melee
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            damage = (int)(damage * 1.5);
+            damage = (int)(damage * 0.75);
             position = new Vector2(player.position.X, player.position.Y - 800f);
             var newVelocity = Vector2.Normalize(Main.MouseWorld - position) * (float)Math.Sqrt(speedX * speedX + speedY * speedY);
             speedX = newVelocity.X;

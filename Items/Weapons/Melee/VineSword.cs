@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.ID;
 using AQMod.Content.Players;
+using AQMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -13,7 +14,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             item.width = 30;
             item.height = 30;
-            item.damage = 10;
+            item.damage = 20;
             item.useTime = 4;
             item.useAnimation = 4;
             item.useStyle = ItemUseStyleID.HoldingOut;
@@ -24,7 +25,7 @@ namespace AQMod.Items.Weapons.Melee
             item.melee = true;
             item.knockBack = 1.25f;
             item.noMelee = true;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.WhackAZombie>();
+            item.shoot = ModContent.ProjectileType<WhackAZombie>();
         }
 
         public override void HoldItem(Player player)

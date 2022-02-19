@@ -1008,5 +1008,31 @@ namespace AQMod
             }
             return down;
         }
+
+        public static void NetWriteItem(BinaryWriter writer, Item item)
+        {
+            writer.Write(item.type);
+            writer.Write(item.stack);
+            writer.Write(item.prefix);
+
+            if (item.type >= Main.maxItemTypes)
+            {
+                item.modItem.NetSend(writer);
+            }
+        }
+
+        public static Item NetRecieveItem(BinaryReader reader)
+        {
+            var item = new Item();
+            item.SetDefaults(reader.ReadInt32());
+            item.stack = reader.ReadInt32();
+            item.Prefix(reader.ReadByte());
+
+            if (item.type >= Main.maxItemTypes)
+            {
+                item.modItem.NetRecieve(reader);
+            }
+            return item;
+        }
     }
 }

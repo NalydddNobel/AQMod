@@ -13,7 +13,7 @@ namespace AQMod.Items.Weapons.Melee
             item.width = 30;
             item.height = 30;
             item.melee = true;
-            item.damage = 15;
+            item.damage = 24;
             item.knockBack = 1f;
             item.useAnimation = 32;
             item.useTime = 48;

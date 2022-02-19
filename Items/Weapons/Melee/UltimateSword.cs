@@ -20,17 +20,17 @@ namespace AQMod.Items.Weapons.Melee
             item.width = 50;
             item.height = 50;
             item.rare = AQItem.Rarities.OmegaStariteRare + 1;
-            item.useTime = 18;
-            item.useAnimation = 18;
+            item.useTime = 16;
+            item.useAnimation = 16;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
             item.value = AQItem.Prices.OmegaStariteWeaponValue * 2;
-            item.damage = 65;
+            item.damage = 75;
             item.melee = true;
             item.knockBack = 4f;
             item.autoReuse = true;
             item.useTurn = true;
-            item.scale = 1.3f;
+            item.scale = 1.5f;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)

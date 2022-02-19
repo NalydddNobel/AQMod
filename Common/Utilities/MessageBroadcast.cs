@@ -52,12 +52,16 @@ namespace AQMod.Common.Utilities
         {
             if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.BroadcastChatMessage(NetworkText.FromKey(key), new Color(r, g, b, 255));
+                Broadcast(key, r, g, b);
             }
             else if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText(Language.GetTextValue(key), r, g, b);
             }
+        }
+        internal static void Broadcast(string key, byte r, byte g, byte b)
+        {
+            NetMessage.BroadcastChatMessage(NetworkText.FromKey(key), new Color(r, g, b, 255));
         }
     }
 }

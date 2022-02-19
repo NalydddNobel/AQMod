@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Dyes.Cursor;
+﻿using AQMod.Content.World.Events.DemonSiege;
+using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -177,7 +178,7 @@ namespace AQMod.NPCs.Monsters.DemonSiege
             if (Main.rand.NextBool(24))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicCursorDye>());
             if (Main.rand.NextBool(3))
-                Item.NewItem(npc.getRect(), Content.World.Events.DemonSiege.DemonSiegeEvent.GetHellBannerDrop(Main.rand));
+                Item.NewItem(npc.getRect(), EventDemonSiege.HellBanners[Main.rand.Next(EventDemonSiege.HellBanners.Count)]);
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());
         }

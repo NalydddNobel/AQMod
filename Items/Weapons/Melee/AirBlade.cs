@@ -12,10 +12,10 @@ namespace AQMod.Items.Weapons.Melee
             item.width = 32;
             item.height = 32;
             item.melee = true;
-            item.damage = 36;
+            item.damage = 90;
             item.knockBack = 3f;
-            item.useAnimation = 14;
-            item.useTime = 14;
+            item.useAnimation = 12;
+            item.useTime = 12;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item1;
             item.rare = AQItem.Rarities.GaleStreamsRare;
@@ -35,6 +35,12 @@ namespace AQMod.Items.Weapons.Melee
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[item.shoot] < 1;
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            damage = (int)(damage * 0.5f);
+            return true;
         }
 
         public override void AddRecipes()
