@@ -139,7 +139,7 @@ ItemName.NuclearFeather=核子之羽
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
 
 # Weapons
-ItemName.CrimsonHellSword=第一灾级
+ItemName.CrimsonHellSword=灼烧者
 ItemTooltip.CrimsonHellSword=发射会爆炸的恶魔能量冲击波\n剑身击中敌人时会对其造成猩红狱火减益\n'那一定会燃起来的'
 ProjectileName.Burnterizer=第一灾级燃烧
 ProjectileName.BurnterizerExplosion=第一灾级燃烧
@@ -696,6 +696,8 @@ ClientConfig.Name=客户端设置
 ClientConfig.Header.Starite=星源视觉效果
 ClientConfig.Header.Xmas=圣诞节
 ClientConfig.Header.UI=用户界面
+
+ClientConfig.FlashIntensity=闪光强度
 
 ClientConfig.XmasBackground=圣诞节背景
 ClientConfig.XmasBackgroundTooltip=决定是否在特殊的圣诞节世界中使用圣诞节背景\n{$Mods.AQMod.Config.RequiresReload}
