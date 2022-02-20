@@ -26,6 +26,8 @@ namespace AQMod.Assets
 
         public static Filter f_Vignette { get => Filters.Scene[fn_Vignette]; set => Filters.Scene[fn_Vignette] = value; }
         public const string fn_Vignette = "AQMod:Vignette";
+        public static Filter f_Flash { get => Filters.Scene[fn_Flash]; set => Filters.Scene[fn_Flash] = value; }
+        public const string fn_Flash = "AQMod:Flash";
 
         internal static void Load(AQMod aQMod)
         {
@@ -49,6 +51,7 @@ namespace AQMod.Assets
             s_Enchant = new MiscShaderData(new Ref<Effect>(ParentPixelShader), "ImageScrollPass");
 
             f_Vignette = new Filter(new ScreenShaderData(new Ref<Effect>(ParentScreenShader), "VignettePass"), EffectPriority.High);
+            f_Flash = new Filter(new ScreenShaderData(new Ref<Effect>(ParentScreenShader), "FlashCoordinatePass"), EffectPriority.High);
         }
 
         private static Effect logGetEffect(string name, AQMod aQMod, DebugUtilities.Logger? logger)

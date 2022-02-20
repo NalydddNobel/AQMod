@@ -2,6 +2,7 @@
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events;
 using AQMod.Effects;
+using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
 using AQMod.Tiles.Walls;
 using Microsoft.Xna.Framework;
@@ -21,12 +22,19 @@ namespace AQMod.Content.Players
         public bool zoneGlimmerEvent;
         public byte zoneGlimmerEventLayer;
         public bool zoneDemonSiege;
+        public bool zoneBoss;
 
+        private void UpdateBiomes_Crabs(int x, int y)
+        {
+            zoneCrabCrevice = Main.tile[x, y].wall == ModContent.WallType<OceanRavineWall>() ||
+                Main.tile[x, y].wall == ModContent.WallType<PetrifiedWoodWall>();
+            zoneCrabSeason = zoneCrabCrevice && player.position.Y < Main.worldSurface * 16f;
+        }
         private void UpdateBiomes_GlimmerEvent()
         {
-            if (Glimmer.IsGlimmerEventCurrentlyActive())
+            if ((player.ZoneOverworldHeight || player.ZoneSkyHeight) && Glimmer.IsGlimmerEventCurrentlyActive())
             {
-                int glimmerTileDistance = Glimmer.GetTileDistanceUsingPlayer(player);
+                int glimmerTileDistance = Glimmer.Distance(player);
                 zoneGlimmerEvent = glimmerTileDistance < Glimmer.MaxDistance;
                 zoneGlimmerEventLayer = (byte)Glimmer.GetLayerIndexThroughTileDistance(glimmerTileDistance);
             }
@@ -38,16 +46,22 @@ namespace AQMod.Content.Players
         }
         public override void UpdateBiomes()
         {
-            int x = (int)(player.position.X + player.width / 2) / 16;
-            int y = (int)(player.position.Y + player.height / 2) / 16;
-            zoneAtmosphericCurrentsEvent = player.ZoneSkyHeight && Main.windSpeed > 30f;
-            zoneCrabCrevice = Main.tile[x, y].wall == ModContent.WallType<OceanRavineWall>() ||
-                Main.tile[x, y].wall == ModContent.WallType<PetrifiedWoodWall>();
-            zoneCrabSeason = zoneCrabCrevice && player.position.Y < Main.worldSurface * 16f;
+            try
+            {
+                int x = (int)(player.position.X + player.width / 2) / 16;
+                int y = (int)(player.position.Y + player.height / 2) / 16;
+                zoneAtmosphericCurrentsEvent = Main.hardMode && player.ZoneSkyHeight && Main.windSpeed > 30f;
 
-            UpdateBiomes_GlimmerEvent();
+                UpdateBiomes_Crabs(x, y);
+                UpdateBiomes_GlimmerEvent();
 
-            zoneDemonSiege = DemonSiege.IsActive ? player.Distance(new Vector2(DemonSiege.X * 16f, DemonSiege.Y * 16f)) < 2000f : false;
+                zoneDemonSiege = DemonSiege.IsActive ? player.Distance(new Vector2(DemonSiege.X * 16f, DemonSiege.Y * 16f)) < 2000f : false;
+                zoneBoss = NPCSpawnChanger.SpawnRate_CheckBosses();
+            }
+            catch
+            {
+
+            }
         }
 
         private void UpdateBiomeVisuals_Starite()
@@ -91,7 +105,8 @@ namespace AQMod.Content.Players
                  zoneCrabSeason == otherBiomes.zoneCrabSeason &&
                  zoneGlimmerEvent == otherBiomes.zoneGlimmerEvent &&
                  zoneGlimmerEventLayer == otherBiomes.zoneGlimmerEventLayer &&
-                 zoneDemonSiege == otherBiomes.zoneDemonSiege;
+                 zoneDemonSiege == otherBiomes.zoneDemonSiege &&
+                 zoneBoss == otherBiomes.zoneBoss;
         }
 
         public override void CopyCustomBiomesTo(Player other)
@@ -103,6 +118,7 @@ namespace AQMod.Content.Players
             otherBiomes.zoneGlimmerEvent = zoneGlimmerEvent;
             otherBiomes.zoneGlimmerEventLayer = zoneGlimmerEventLayer;
             otherBiomes.zoneDemonSiege = zoneDemonSiege;
+            otherBiomes.zoneBoss = zoneBoss;
         }
 
         public override void SendCustomBiomes(BinaryWriter writer)
@@ -113,6 +129,7 @@ namespace AQMod.Content.Players
             writer.Write(zoneGlimmerEvent);
             writer.Write(zoneGlimmerEventLayer);
             writer.Write(zoneDemonSiege);
+            writer.Write(zoneBoss);
         }
 
         public override void ReceiveCustomBiomes(BinaryReader reader)
@@ -123,6 +140,7 @@ namespace AQMod.Content.Players
             zoneGlimmerEvent = reader.ReadBoolean();
             zoneGlimmerEventLayer = reader.ReadByte();
             zoneDemonSiege = reader.ReadBoolean();
+            zoneBoss = reader.ReadBoolean();
         }
 
         public override Texture2D GetMapBackgroundImage()
@@ -137,7 +155,7 @@ namespace AQMod.Content.Players
                 {
                     if (!player.ZoneDesert && Glimmer.IsGlimmerEventCurrentlyActive())
                     {
-                        if (Glimmer.GetTileDistanceUsingPlayer(player) < Glimmer.UltraStariteDistance)
+                        if (Glimmer.Distance(player) < Glimmer.UltraStariteDistance)
                         {
                             return ModContent.GetTexture(TexturePaths.MapBackgrounds + "ultimatesword");
                         }

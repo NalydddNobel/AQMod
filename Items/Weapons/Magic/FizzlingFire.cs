@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Dusts;
-using AQMod.Effects.ScreenEffects;
+using AQMod.Effects;
 using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -47,9 +47,9 @@ namespace AQMod.Items.Weapons.Magic
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (AQConfigClient.c_TonsofScreenShakes && Main.myPlayer == player.whoAmI)
+            if (AQConfigClient.c_TonsofScreenShakes)
             {
-                ScreenShakeManager.AddShake(new BasicScreenShake(item.useTime, (int)(2 * AQConfigClient.c_EffectIntensity)));
+                FX.SetShake(2 * AQConfigClient.c_EffectIntensity);
             }
             int randcount = 3 + Main.rand.Next(4);
             var velo = new Vector2(speedX, speedY);

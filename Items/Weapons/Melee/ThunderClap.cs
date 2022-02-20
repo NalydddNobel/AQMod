@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets.LegacyItemOverlays;
+using AQMod.Common.Graphics;
 using AQMod.Dusts;
-using AQMod.Effects.ScreenEffects;
+using AQMod.Effects;
 using AQMod.Items.Materials.Energies;
 using AQMod.NPCs;
 using AQMod.Sounds;
@@ -78,7 +79,7 @@ namespace AQMod.Items.Weapons.Melee
             }
             if (AQConfigClient.c_TonsofScreenShakes)
             {
-                ScreenShakeManager.AddShake(new BasicScreenShake(16, 10));
+                FX.AddShake(AQGraphics.MultIntensity(10), 30f, 16f);
             }
             return false;
         }

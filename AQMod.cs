@@ -17,10 +17,8 @@ using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.Particles;
-using AQMod.Effects.ScreenEffects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Effects.WorldEffects;
-using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Dyes;
 using AQMod.Items.Potions;
 using AQMod.Localization;
@@ -46,6 +44,8 @@ namespace AQMod
 {
     public class AQMod : Mod
     {
+        public const string TextureNone = "AQMod/Assets/None";
+
         public static AQMod GetInstance()
         {
             return ModContent.GetInstance<AQMod>();
@@ -539,7 +539,8 @@ namespace AQMod
             var server = ModContent.GetInstance<AQConfigServer>();
             if (!Main.dedServ)
             {
-                GeneralEffectsManager.InternalSetup();
+                Tex.InternalSetup(this);
+                FX.InternalSetup();
                 var client = AQConfigClient.Instance;
                 AQSound.rand = new UnifiedRandom();
                 ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
@@ -553,7 +554,6 @@ namespace AQMod
                 GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
                 SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
                 PrimitivesRenderer.Setup();
-                ScreenShakeManager.Load();
                 BuffColorCache.Init();
                 WorldEffects = new List<WorldVisualEffect>();
             }
@@ -619,6 +619,10 @@ namespace AQMod
             AQItem.Sets.Clones.Setup();
         }
 
+        private void Unload_Assets()
+        {
+            Tex.Unload();
+        }
         public override void Unload()
         {
             // outside of AQMod
@@ -633,9 +637,9 @@ namespace AQMod
             ItemOverlays = null;
 
             DyeBinder.Unload();
-            DemonSiege.InternalUnload();
-            AQProjectile.Sets.UnloadSets();
-            AQNPC.Sets.UnloadSets();
+            DemonSiege.Unload();
+            AQProjectile.Sets.Unload();
+            AQNPC.Sets.Unload();
             AQItem.Sets.Unload();
             AQBuff.Sets.Unload();
 
@@ -644,7 +648,6 @@ namespace AQMod
                 AQSound.rand = null;
                 WorldEffects = null;
                 BuffColorCache.Unload();
-                ScreenShakeManager.Unload();
                 ArmorOverlays = null;
                 EffectCache.Unload();
                 SkyGlimmerEvent.BGStarite._texture = null;
@@ -654,6 +657,8 @@ namespace AQMod
                 GlimmerEventMusic = null;
                 CrabsonMusic = null;
                 AQTextures.Unload();
+                FX.Unload();
+                Unload_Assets();
             }
 
             ModCallDictionary.Unload();
@@ -1004,11 +1009,6 @@ namespace AQMod
             {
                 player.QuickSpawnItem(items[Main.rand.Next(items.Count)]);
             }
-        }
-
-        internal static Texture2D getTexture(string path)
-        {
-            return GetInstance().GetTexture(path);
         }
     }
 }

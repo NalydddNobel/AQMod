@@ -139,7 +139,7 @@ namespace AQMod.Content.World.Events
             };
         }
 
-        internal static void InternalUnload()
+        internal static void Unload()
         {
             Upgrades = null;
             Enemies = null;

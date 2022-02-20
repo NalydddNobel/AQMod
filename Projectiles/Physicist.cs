@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
 using AQMod.Dusts;
-using AQMod.Effects.ScreenEffects;
+using AQMod.Effects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
@@ -75,7 +75,7 @@ namespace AQMod.Projectiles
                 {
                     if (projectile.oldPos[i] == new Vector2(0f, 0f))
                         break;
-                    trueOldPos.Add(ScreenShakeManager.UpsideDownScreenSupport(projectile.oldPos[i] + offset - Main.screenPosition));
+                    trueOldPos.Add(FX.FlippedScreenCheck(projectile.oldPos[i] + offset - Main.screenPosition));
                 }
                 if (trueOldPos.Count > 1)
                 {

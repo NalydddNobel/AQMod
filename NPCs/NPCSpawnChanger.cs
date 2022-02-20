@@ -13,12 +13,25 @@ namespace AQMod.NPCs
 {
     public class NPCSpawnChanger : GlobalNPC
     {
+        internal static bool SpawnRate_CheckBosses()
+        {
+            return NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) || NPC.AnyNPCs(ModContent.NPCType<JerryCrabson>());
+        }
+        internal static bool SpawnRate_CheckEvents()
+        {
+            return Glimmer.deactivationDelay > 0;
+        }
+        internal static bool ShouldRemoveSpawns(Player player)
+        {
+            return SpawnRate_CheckEvents() || (ModContent.GetInstance<AQConfigServer>().reduceSpawns && player.Biomes().zoneBoss);
+        }
+
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
             EventProgressBarLoader.PlayerSafe = false;
             try
             {
-                if (AQConfigServer.ShouldRemoveSpawns())
+                if (ShouldRemoveSpawns(player))
                 {
                     spawnRate += 10000;
                     maxSpawns = 0;
@@ -72,34 +85,45 @@ namespace AQMod.NPCs
             }
         }
 
+        private void DecSpawns(IDictionary<int, float> pool, float mult)
+        {
+            int[] keys = new int[pool.Count];
+            int i = 0;
+            foreach (var pair in pool)
+            {
+                keys[i] = pair.Key;
+                i++;
+            }
+            for (int k = 0; k < pool.Count; k++)
+            {
+                pool[keys[k]] *= mult;
+            }
+
+        }
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             try
             {
                 EventProgressBarLoader.ShouldShowGaleStreamsProgressBar = false;
-                void DecreaseSpawns(float mult)
-                {
-                    IEnumerator<int> keys = pool.Keys.GetEnumerator();
-                    int[] keyValue = new int[pool.Count];
-                    for (int i = 0; i < pool.Count; i++)
-                    {
-                        keyValue[i] = keys.Current;
-                        if (!keys.MoveNext())
-                            break;
-                    }
-                    keys.Dispose();
-                    for (int i = 0; i < pool.Count; i++)
-                    {
-                        pool[keyValue[i]] *= mult;
-                    }
-                }
                 if (spawnInfo.player.Biomes().zoneCrabCrevice)
                 {
-                    pool[0] *= 0.05f;
+                    DecSpawns(pool, 0.05f);
                 }
-                if (Glimmer.AreStariteSpawnsCurrentlyActive(spawnInfo.player))
+                if (spawnInfo.spawnTileY < 160)
                 {
-                    int tileDistance = Glimmer.GetTileDistanceUsingPlayer(spawnInfo.player);
+                    if (GaleStreams.MeteorTime())
+                    {
+                        DecSpawns(pool, 0.9f);
+                        pool.Add(ModContent.NPCType<Meteor>(), 2f);
+                    }
+                }
+                if (spawnInfo.spawnTileY < 250)
+                {
+                    pool.Add(ModContent.NPCType<Thunderbird>(), (WorldDefeats.DownedStarite || NPC.downedMechBossAny ? 2f : 1f) * (spawnInfo.playerInTown ? 2f : 1f));
+                }
+                if (Glimmer.SpawnsCheck(spawnInfo.player))
+                {
+                    int tileDistance = Glimmer.Distance(spawnInfo.player);
                     if (tileDistance < 30)
                     {
                         pool.Clear();
@@ -108,11 +132,9 @@ namespace AQMod.NPCs
                     else if (tileDistance < Glimmer.MaxDistance)
                     {
                         if (tileDistance > Glimmer.HyperStariteDistance) // shouldn't divide by 0...
-                            DecreaseSpawns(1f - 1f / (tileDistance - Glimmer.HyperStariteDistance));
+                            DecSpawns(pool, 1f - 1f / (tileDistance - Glimmer.HyperStariteDistance));
                         else
-                        {
-                            DecreaseSpawns(0f);
-                        }
+                            DecSpawns(pool, 0f);
                         int layerIndex = spawnInfo.player.Biomes().zoneGlimmerEventLayer;
                         if (layerIndex != 255)
                         {
@@ -129,14 +151,6 @@ namespace AQMod.NPCs
                         }
                     }
                 }
-                if (spawnInfo.spawnTileY < 160)
-                {
-                    if (GaleStreams.MeteorTime())
-                    {
-                        DecreaseSpawns(0.9f);
-                        pool.Add(ModContent.NPCType<Meteor>(), 2f);
-                    }
-                }
                 if (GaleStreams.EventActive(spawnInfo.player) && !spawnInfo.playerSafe)
                 {
                     EventProgressBarLoader.ShouldShowGaleStreamsProgressBar = true;
@@ -148,7 +162,7 @@ namespace AQMod.NPCs
                             bool minibossActive = NPC.AnyNPCs(ModContent.NPCType<RedSprite>()) || NPC.AnyNPCs(ModContent.NPCType<SpaceSquid>());
                             if (!minibossActive)
                             {
-                                DecreaseSpawns(MathHelper.Lerp(1f, 0.1f, SpawnCondition.Sky.Chance));
+                                DecSpawns(pool, MathHelper.Lerp(1f, 0.1f, SpawnCondition.Sky.Chance));
                                 decSpawns = false;
                                 pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
                                 pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
@@ -156,7 +170,7 @@ namespace AQMod.NPCs
                         }
                     }
                     if (decSpawns)
-                        DecreaseSpawns(MathHelper.Lerp(1f, 0.9f, SpawnCondition.Sky.Chance));
+                        DecSpawns(pool, MathHelper.Lerp(1f, 0.9f, SpawnCondition.Sky.Chance));
                     if (NPC.CountNPCS(ModContent.NPCType<Vraine>()) < 2)
                         pool.Add(ModContent.NPCType<Vraine>(), 1f * SpawnCondition.Sky.Chance);
                     if (WorldGen.SolidTile(spawnInfo.spawnTileX, spawnInfo.spawnTileY))

@@ -9,7 +9,6 @@ using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.Particles;
-using AQMod.Effects.ScreenEffects;
 using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.FishingSeals;
@@ -214,11 +213,10 @@ namespace AQMod
             ExtractinatorCount = tag.GetInt("extractinatorCount");
         }
 
-        public override void UpdateBiomeVisuals()
-        {
-            if (!Main.gamePaused && Main.instance.IsActive)
-                ScreenShakeManager.Update();
-        }
+        //public override void UpdateBiomeVisuals()
+        //{
+        //        ScreenShakeManager.Update();
+        //}
 
         public override void UpdateDead()
         {
@@ -1130,7 +1128,9 @@ namespace AQMod
                     if (Main.myPlayer == player.whoAmI && AQConfigClient.c_TonsofScreenShakes)
                     {
                         if (length < 800)
-                            ScreenShakeManager.AddShake(new BasicScreenShake(12, AQGraphics.MultIntensity((800 - length) / 128)));
+                        {
+                            FX.AddShake(AQGraphics.MultIntensity((800 - length) / 128), 24f, 12f);
+                        }
                     }
                     int dustLength = length / size;
                     const float offset = MathHelper.TwoPi / 3f;
@@ -1225,7 +1225,7 @@ namespace AQMod
                     }
                     if (AQConfigClient.c_Screenshakes)
                     {
-                        ScreenShakeManager.AddShake(new BasicScreenShake(16, 8));
+                        FX.AddShake(AQGraphics.MultIntensity(8), 24f, 16f);
                     }
                     mothmanExplosionDelay = 60;
                     int p = Projectile.NewProjectile(targetCenter, Vector2.Normalize(targetCenter - player.Center), ModContent.ProjectileType<MothmanCritExplosion>(), damage * 2, knockback * 1.5f, player.whoAmI, 0f, target.whoAmI);
@@ -1353,11 +1353,6 @@ namespace AQMod
         {
             AnglerReward_ShowNumFinished();
             AnglerReward_GiveFishingSeal(rewardItems);
-        }
-
-        public override void ModifyScreenPosition()
-        {
-            ScreenShakeManager.ModifyScreenPosition();
         }
 
         public static bool CanBossChannel(NPC npc)

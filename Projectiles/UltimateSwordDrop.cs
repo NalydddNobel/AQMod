@@ -1,4 +1,6 @@
-﻿using AQMod.Dusts;
+﻿using AQMod.Assets;
+using AQMod.Dusts;
+using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -7,8 +9,10 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles
 {
-    public class UltimateSword : ModProjectile
+    public class UltimateSwordDrop : ModProjectile
     {
+        public override string Texture => AQMod.TextureNone;
+
         public override void SetDefaults()
         {
             projectile.width = 0;
@@ -19,12 +23,10 @@ namespace AQMod.Projectiles
 
         public override void AI()
         {
-            if (projectile.ai[0] == 0)
-                projectile.Kill();
             if (projectile.width == 0 && projectile.height == 0)
             {
                 var item = new Item();
-                item.SetDefaults((int)projectile.ai[0]);
+                item.SetDefaults(ModContent.ItemType<UltimateSword>());
                 projectile.width = item.width;
                 projectile.height = item.height;
                 projectile.position = new Vector2(projectile.position.X - projectile.width / 2f, projectile.position.Y - projectile.height / 2f);
@@ -42,10 +44,10 @@ namespace AQMod.Projectiles
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            var texture = Main.itemTexture[(int)projectile.ai[0]];
+            var texture = Main.itemTexture[ModContent.ItemType<UltimateSword>()];
             var frame = new Rectangle(0, 0, texture.Width, texture.Height);
             spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, frame, lightColor, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(AQUtils.GetTextureobj<Items.Weapons.Melee.UltimateSword>("_Glow"), projectile.Center - Main.screenPosition, frame, new Color(250, 250, 250, 0), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(AQUtils.GetTextureobj<UltimateSword>("_Glow"), projectile.Center - Main.screenPosition, frame, new Color(250, 250, 250, 0), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
 

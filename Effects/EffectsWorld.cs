@@ -13,7 +13,7 @@ namespace AQMod.Effects
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                GeneralEffectsManager.InternalInitalize();
+                FX.InternalInitalize();
                 WindLayer.windDraws = new List<IDrawType>();
                 Particle.PreDrawProjectiles.Initialize();
                 Particle.PostDrawPlayers.Initialize();

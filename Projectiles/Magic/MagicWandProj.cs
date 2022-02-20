@@ -1,9 +1,7 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Dusts;
 using AQMod.Effects.Particles;
-using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -152,12 +150,6 @@ namespace AQMod.Projectiles.Magic
             int projectileX = (int)projectile.position.X + projectile.width / 2;
             int projectileY = (int)projectile.position.Y + projectile.height / 2;
             Main.PlaySound(SoundID.DD2_BetsyFireballShot.SoundId, projectileX, projectileY, SoundID.DD2_BetsyFireballShot.Style, 0.85f, -0.25f);
-            if (Main.myPlayer == projectile.owner && AQConfigClient.c_TonsofScreenShakes)
-            {
-                float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
-                if (distance < 800)
-                    ScreenShakeManager.AddShake(new BasicScreenShake(12, AQGraphics.MultIntensity((int)(1600f - distance) / 300)));
-            }
 
             int height = 12 * 16;
             var rect = new Rectangle(projectileX, projectileY - height / 2, 16, height);

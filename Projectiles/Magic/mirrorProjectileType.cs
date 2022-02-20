@@ -1,7 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
 using AQMod.Dusts;
-using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -36,10 +35,6 @@ namespace AQMod.Projectiles.Magic
             {
                 projectile.ai[0] = -1f;
             }
-        }
-        protected virtual void DoScreenShake(Player player, float laserScale)
-        {
-            ScreenShakeManager.ChannelEffect("Mirror", new BasicScreenShake(16, (int)(3f * laserScale)));
         }
 
         protected float getLaserScaleFromRot(float rot)

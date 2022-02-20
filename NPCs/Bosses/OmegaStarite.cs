@@ -6,7 +6,7 @@ using AQMod.Common.ID;
 using AQMod.Common.NoHitting;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
-using AQMod.Effects.ScreenEffects;
+using AQMod.Effects;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Items;
 using AQMod.Items.Dyes;
@@ -17,7 +17,9 @@ using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Magic;
+using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
+using AQMod.Projectiles;
 using AQMod.Projectiles.Monster.Starite;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
@@ -191,7 +193,7 @@ namespace AQMod.NPCs.Bosses
             npc.lifeMax = (int)(npc.lifeMax * 0.8f) + 4000 * numPlayers;
             if (AQMod.calamityMod.IsActive)
             {
-                npc.lifeMax = (int)(npc.lifeMax * 2.5f);
+                npc.lifeMax = (int)(npc.lifeMax * 2f);
                 npc.damage *= 2;
                 npc.defense *= 2;
             }
@@ -411,7 +413,9 @@ namespace AQMod.NPCs.Bosses
                                         npc.localAI[1] = 1f;
                                         Main.PlaySound(SoundID.Trackable, npc.Center, 188);
                                         if (Main.netMode != NetmodeID.Server)
-                                            ScreenShakeManager.AddShake(new BasicScreenShake(24, AQGraphics.MultIntensity(4)));
+                                        {
+                                            FX.AddShake(AQGraphics.MultIntensity(4), 24f, 12f);
+                                        }
                                         int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaRay>(), 100, 1f, Main.myPlayer, npc.whoAmI);
                                         Main.projectile[p].scale = 0.75f;
                                     }
@@ -1247,13 +1251,20 @@ namespace AQMod.NPCs.Bosses
             if ((int)npc.ai[0] == -1)
             {
                 intensity += npc.ai[1] / 20;
+                if (FX.cameraFocusNPC != npc.whoAmI)
+                {
+                    FX.cameraFocusLerp = 0.001f;
+                }
+                FX.cameraFocusNPC = npc.whoAmI;
+                FX.cameraFocusResetDelay = 60;
+                FX.SetFlash(npc.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f * AQConfigClient.Instance.FlashIntensity, 4f), 12f);
+                FX.SetShake(intensity * 2f, 24f);
                 int range = (int)intensity + 4;
                 drawPos += new Vector2(Main.rand.Next(-range, range), Main.rand.Next(-range, range));
                 for (int i = 0; i < positions.Count; i++)
                 {
                     positions[i] += new Vector4(Main.rand.Next(-range, range), Main.rand.Next(-range, range), Main.rand.Next(-range, range), 0f);
                 }
-                ScreenShakeManager.ChannelEffect("OmegaStariteDeathScreenShake", new OmegaStariteScreenShake((int)(range * 0.8f), 0.01f, Math.Max(6 - (int)(range * 0.8), 1)));
             }
             else if (_hitShake > 0)
             {
@@ -1540,12 +1551,32 @@ namespace AQMod.NPCs.Bosses
                         break;
                 }
 
-                for (int i = 0; i < Main.maxPlayers; i++)
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    WorldDefeats.ObtainedUltimateSword = true;
-                    var plr = Main.player[i];
-                    if (plr.active && npc.playerInteraction[i])
-                        Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(2f, 6f) * (Main.rand.NextBool() ? -1f : 1f), -18f), ModContent.ProjectileType<Projectiles.UltimateSword>(), 0, 0f, i, ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
+                    for (int i = 0; i < Main.maxPlayers; i++)
+                    {
+                        var plr = Main.player[i];
+                        if (plr.active && npc.playerInteraction[i])
+                        {
+                            WorldDefeats.ObtainedUltimateSword = true;
+                            int p = Projectile.NewProjectile(npc.Center, new Vector2(Main.rand.NextFloat(2f, 6f) * (Main.rand.NextBool() ? -1f : 1f), -18f), ModContent.ProjectileType<UltimateSwordDrop>(), 0, 0f, i, ModContent.ItemType<UltimateSword>());
+                            Main.projectile[p].netUpdate = true;
+                        }
+                    }
+                }
+                else
+                {
+                    int item = Item.NewItem(npc.getRect(), ModContent.ItemType<UltimateSword>(), 1, noBroadcast: true);
+                    Main.itemLockoutTime[item] = 54000;
+                    for (int i = 0; i < 255; i++)
+                    {
+                        var plr = Main.player[i];
+                        if (plr.active && npc.playerInteraction[i])
+                        {
+                            NetMessage.SendData(MessageID.InstancedItem, i, -1, null, item);
+                        }
+                    }
+                    Main.item[item].active = false;
                 }
             }
         }
@@ -1564,6 +1595,7 @@ namespace AQMod.NPCs.Bosses
 
             rings[0].SendNetPackage(writer);
             rings[1].SendNetPackage(writer);
+            NoHitManager.SendNoHitNet(npc.NoHit(), writer);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
@@ -1580,6 +1612,8 @@ namespace AQMod.NPCs.Bosses
 
             rings[0].RecieveNetPackage(reader);
             rings[1].RecieveNetPackage(reader);
+
+            NoHitManager.RecieveNoHitNet(npc.NoHit(), reader);
         }
 
         public ModifiableMusic GetMusic() => AQMod.OmegaStariteMusic;

@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
-using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -44,10 +43,6 @@ namespace AQMod.Projectiles
                     Main.dust[d].alpha = 20;
                     Main.dust[d].noGravity = true;
                 }
-            }
-            if (AQConfigClient.c_TonsofScreenShakes)
-            {
-                ScreenShakeManager.AddShake(new BasicScreenShake(16, 8));
             }
         }
 

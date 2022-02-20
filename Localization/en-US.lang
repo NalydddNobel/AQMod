@@ -139,7 +139,7 @@ ItemName.NuclearFeather=Nuclear Feather
 ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
 
 # Weapons
-ItemName.CrimsonHellSword=First Degree
+ItemName.CrimsonHellSword=Cauterizer
 ItemTooltip.CrimsonHellSword=Shoots a wave of explosive demonic energy\nSword hits inflict crimson hellfire\n'That's gotta burn'
 ProjectileName.Burnterizer=First Degree Burns
 ProjectileName.BurnterizerExplosion=First Degree Burns
@@ -696,6 +696,8 @@ ClientConfig.Name=Client Config
 ClientConfig.Header.Starite=Starite Visuals
 ClientConfig.Header.Xmas=Xmas
 ClientConfig.Header.UI=User Interface
+
+ClientConfig.FlashIntensity=Flash Intensity
 
 ClientConfig.XmasBackground=Xmas Background
 ClientConfig.XmasBackgroundTooltip=Whether or not to use a Xmas background in special Xmas worlds\n{$Mods.AQMod.Config.RequiresReload}

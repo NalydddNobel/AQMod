@@ -115,7 +115,7 @@ namespace AQMod.Common.CrossMod
                         return value;
                     }
                 },
-                { "glimmerevent_spawnsactive", (o) => Glimmer.AreStariteSpawnsCurrentlyActive((Player)o[1]) },
+                { "glimmerevent_spawnsactive", (o) => Glimmer.SpawnsCheck((Player)o[1]) },
                 { "glimmerevent_canshowinvasionprogress", (o) => Glimmer.IsAbleToShowInvasionProgressBar() },
                 { "glimmerevent_deactivate", (o) =>
                     {
@@ -123,7 +123,7 @@ namespace AQMod.Common.CrossMod
                         return null;
                     }
                 },
-                { "glimmerevent_gettiledistance", (o) => Glimmer.GetTileDistanceUsingPlayer((Player)o[1]) },
+                { "glimmerevent_gettiledistance", (o) => Glimmer.Distance((Player)o[1]) },
 
                 { "demonsiege.x", (o) => DemonSiege.X },
                 { "demonsiege.y", (o) => DemonSiege.Y },

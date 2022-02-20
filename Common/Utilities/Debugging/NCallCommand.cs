@@ -497,7 +497,7 @@ namespace AQMod.Common.Utilities.Debugging
 
                 case "glimmerlayer":
                     {
-                        caller.Reply("glimmer layer: " + Glimmer.GetLayerIndexThroughTileDistance(Glimmer.GetTileDistanceUsingPlayer(caller.Player)));
+                        caller.Reply("glimmer layer: " + Glimmer.GetLayerIndexThroughTileDistance(Glimmer.Distance(caller.Player)));
                     }
                     break;
 

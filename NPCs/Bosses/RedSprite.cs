@@ -2,7 +2,7 @@
 using AQMod.Common.Graphics;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
-using AQMod.Effects.ScreenEffects;
+using AQMod.Effects;
 using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
 using AQMod.Items.Placeable.Banners;
@@ -541,7 +541,7 @@ namespace AQMod.NPCs.Bosses
                         }
                         else
                         {
-                            if (npc.ai[1] > 30 * 4 + 90f || !Main.expertMode && npc.ai[1] >= 30 * 2 + 90f)
+                            if (npc.ai[1] > 30 * 4 + 90f || (!Main.expertMode && npc.ai[1] >= 30 * 2 + 90f))
                             {
                                 npc.ai[2] = -1f;
                                 npc.localAI[2] = 0f;
@@ -550,15 +550,24 @@ namespace AQMod.NPCs.Bosses
                             }
                             else
                             {
+                                if (timer < 3 
+                                    && Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes && 
+                                    (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
+                                {
+                                    FX.SetFlash(npc.Center, 0.75f * AQConfigClient.Instance.FlashIntensity, 10f);
+                                }
                                 if (timer == 0)
                                 {
-                                    if (Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes && (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
+                                    if (Main.netMode != NetmodeID.Server && (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                     {
+                                        if (AQConfigClient.c_Screenshakes)
+                                        {
+                                            FX.SetShake(12f * AQConfigClient.Instance.EffectIntensity, 10f);
+                                        }
                                         if (Main.netMode != NetmodeID.Server)
                                         {
                                             AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.ThunderClap, npc.Center, 0.6f);
                                         }
-                                        ScreenShakeManager.AddShake(new BasicScreenShake(8, AQGraphics.MultIntensity(12)));
                                         if (AQConfigClient.c_EffectQuality > 0.2f)
                                         {
                                             int dustAmount = 50;

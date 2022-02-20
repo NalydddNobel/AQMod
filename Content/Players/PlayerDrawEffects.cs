@@ -3,6 +3,7 @@ using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Common.Utilities.Colors;
 using AQMod.Dusts;
+using AQMod.Effects;
 using AQMod.Effects.Particles;
 using AQMod.Items;
 using AQMod.Items.Accessories.Vanity;
@@ -16,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -526,6 +528,10 @@ namespace AQMod.Content.Players
             NalydGradientPersonal = NalydGradient;
             ThunderbirdGradient = new ColorWaveGradient(10f, new Color(255, 120, 200), new Color(170, 80, 200));
             BaguetteGradient = new ColorWaveGradient(10f, new Color(255, 222, 150), new Color(170, 130, 80));
+            if (Main.myPlayer == player.whoAmI)
+            {
+                FX.cameraFocusNPC = -1;
+            }
         }
         public override void Initialize()
         {
@@ -554,18 +560,114 @@ namespace AQMod.Content.Players
             MothmanMaskEyeColor = MothmanMaskEyeColorDefault;
         }
 
-        //public override void UpdateVanityAccessories()
-        //{
-        //    var aQPlayer = player.GetModPlayer<AQPlayer>();
-        //    for (int i = 0; i < AQPlayer.MaxArmor; i++)
-        //    {
-        //        if (player.armor[i].type <= Main.maxItemTypes)
-        //            continue;
-        //        bool hidden = i < 10 && player.hideVisual[i];
-        //        if (player.armor[i].modItem is IUpdateEquipVisuals update && !hidden)
-        //            update.UpdateEquipVisuals(player, aQPlayer, this, i);
-        //    }
-        //}
+        private void UpdateVisuals_Flashes()
+        {
+            if (FX.flashLocation != Vector2.Zero)
+            {
+                EffectCache.f_Flash.GetShader()
+                .UseIntensity(Math.Max(FX.flashBrightness * AQConfigClient.c_EffectIntensity, 1f / 18f));
+                if (!EffectCache.f_Flash.IsActive())
+                {
+                    Filters.Scene.Activate(EffectCache.fn_Flash, FX.flashLocation, null).GetShader()
+                    .UseOpacity(1f)
+                    .UseTargetPosition(FX.flashLocation);
+                }
+                FX.flashBrightness -= FX.flashBrightnessDecrement;
+                if (FX.flashBrightness <= 0f)
+                {
+                    FX.flashLocation = Vector2.Zero;
+                    FX.flashBrightness = 0f;
+                    FX.flashBrightnessDecrement = 0.05f;
+                }
+            }
+            else
+            {
+                if (EffectCache.f_Flash.IsActive())
+                {
+                    EffectCache.f_Flash.GetShader()
+                        .UseIntensity(0f)
+                        .UseProgress(0f)
+                        .UseOpacity(0f);
+                    Filters.Scene.Deactivate(EffectCache.fn_Flash, null);
+                }
+            }
+        }
+        public override void UpdateBiomeVisuals()
+        {
+            UpdateVisuals_Flashes();
+            FX.Update();
+        }
+
+        private void UpdateCameraFocus()
+        {
+            FX.cameraFocus = false;
+            if (FX.cameraFocusNPC != -1)
+            {
+                if (Main.npc[FX.cameraFocusNPC].active)
+                {
+                    FX.cameraFocus = true;
+                    FX.CameraFocus = Main.npc[FX.cameraFocusNPC].Center;
+                }
+                else
+                {
+                    FX.cameraFocusNPC = -1;
+                }
+            }
+            if (FX.CameraFocus != Vector2.Zero)
+            {
+                if (FX.cameraFocusLerp <= 0.001f)
+                {
+                    FX.cameraFocusLerp = 0.001f;
+                }
+                if (!FX.cameraFocus && FX.cameraFocusResetDelay > 0)
+                {
+                    FX.cameraFocusResetDelay--;
+                    FX.cameraFocus = true;
+                }
+                if (FX.cameraFocus)
+                {
+                    Main.screenPosition = Vector2.Lerp(Main.screenPosition, FX.CameraFocus - new Vector2(Main.screenWidth/2f,Main.screenHeight/2f), FX.cameraFocusLerp);
+                    if (FX.cameraFocusLerp < 1f)
+                    {
+                        FX.cameraFocusLerp *= 1.5f;
+                        if (FX.cameraFocusLerp > 1f)
+                        {
+                            FX.cameraFocusLerp = 1f;
+                        }
+                    }
+                }
+                else
+                {
+                    Main.screenPosition = Vector2.Lerp(Main.screenPosition, FX.CameraFocus - new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f), FX.cameraFocusLerp);
+                    FX.cameraFocusLerp *= 0.86f;
+                    if (FX.cameraFocusLerp < 0.001f)
+                    {
+                        FX.cameraFocusLerp = 0f;
+                        FX.CameraFocus = Vector2.Zero;
+                    }
+                }
+            }
+        }
+        private void UpdateScreenShakes()
+        {
+            var offset = Vector2.Zero;
+            foreach (var s in FX.ScreenShakes)
+            {
+                if (s.Value.Active)
+                {
+                    offset += s.Value.GetOffset();
+                }
+            }
+            Main.screenPosition += new Vector2((int)offset.X, (int)offset.Y);
+        }
+        public override void ModifyScreenPosition()
+        {
+            if (!Main.gamePaused && Main.instance.IsActive)
+            {
+                UpdateCameraFocus();
+                UpdateScreenShakes();
+            }
+        }
 
         private static void ModifyDrawInfo_Omori(ref PlayerDrawInfo drawInfo)
         {

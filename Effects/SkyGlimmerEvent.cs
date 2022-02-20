@@ -248,7 +248,7 @@ namespace AQMod.Effects
 
         public static bool ShouldSpawnBGStarites()
         {
-            return _starites == null && Glimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer) < Glimmer.MaxDistance;
+            return _starites == null && Glimmer.Distance(Main.LocalPlayer) < Glimmer.MaxDistance;
         }
 
         public static void InitNight()
@@ -318,7 +318,7 @@ namespace AQMod.Effects
                     Intensity = 0f;
                 }
             }
-            int tileDistance = Glimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
+            int tileDistance = Glimmer.Distance(Main.LocalPlayer);
             if (!Main.dayTime)
             {
                 if (FallingStars.stars == null)

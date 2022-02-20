@@ -1,7 +1,6 @@
 ﻿using AQMod.Common.ID;
 using AQMod.Common.Utilities.Debugging;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.ModLoader;
 
 namespace AQMod.Assets
 {
@@ -14,11 +13,8 @@ namespace AQMod.Assets
         public static Texture2D[] Lights { get; private set; }
         public static Texture2D[] Trails { get; private set; }
 
-        public static Texture2D Pixel { get; private set; }
-
         internal static void Load()
         {
-            Pixel = ModContent.GetTexture("AQMod/Assets/pixel");
             if (DebugUtilities.LogTextureLoading)
                 DebugUtilities.SupressLogAccessMessage();
             Particles = FillArray<ParticleTex>("Particles/Particle");
@@ -41,7 +37,6 @@ namespace AQMod.Assets
 
         internal static void Unload()
         {
-            Pixel = null;
             Particles = null;
             Lights = null;
             Trails = null;

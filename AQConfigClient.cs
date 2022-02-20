@@ -38,6 +38,12 @@ namespace AQMod
         public static float c_EffectIntensity { get; private set; }
 
         [BackgroundColor(140, 29, 47, 180)]
+        [Label("$Mods.AQMod.ClientConfig.FlashIntensity")]
+        [DefaultValue(1f)]
+        [Range(0.1f, 1f)]
+        public float FlashIntensity { get; set; }
+
+        [BackgroundColor(140, 29, 47, 180)]
         [Label("$" + AQText.Key + "ClientConfig.Screenshakes")]
         [DefaultValue(true)]
         public bool Screenshakes { get; set; }

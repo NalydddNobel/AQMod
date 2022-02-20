@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.NPCs.AIs;
+﻿using AQMod.NPCs.AIs;
 using AQMod.Tiles;
 using Terraria;
 using Terraria.ID;
@@ -53,16 +52,6 @@ namespace AQMod.NPCs.Friendly
             {
                 Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood, npc.velocity.X, npc.velocity.Y, 0, AQNPC.GreenSlimeColor);
             }
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            if (spawnInfo.spawnTileY < 250)
-            {
-                float chance = (WorldDefeats.DownedStarite || NPC.downedMechBossAny ? 2f : 1f) * (spawnInfo.playerInTown ? 2f : 1f);
-                return chance;
-            }
-            return 0f;
         }
 
         public override int SpawnNPC(int tileX, int tileY)

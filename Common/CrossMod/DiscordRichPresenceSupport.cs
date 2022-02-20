@@ -41,7 +41,7 @@ namespace AQMod.Common.CrossMod
                                 {
                                     return false;
                                 }
-                                int tileDistance = Glimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
+                                int tileDistance = Glimmer.Distance(Main.LocalPlayer);
                                 if (tileDistance > Glimmer.SuperStariteDistance)
                                 {
                                     return false;
@@ -56,7 +56,7 @@ namespace AQMod.Common.CrossMod
                                 {
                                     return false;
                                 }
-                                int tileDistance = Glimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
+                                int tileDistance = Glimmer.Distance(Main.LocalPlayer);
                                 if (tileDistance > Glimmer.HyperStariteDistance)
                                 {
                                     return false;
@@ -71,7 +71,7 @@ namespace AQMod.Common.CrossMod
                                 {
                                     return false;
                                 }
-                                int tileDistance = Glimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer);
+                                int tileDistance = Glimmer.Distance(Main.LocalPlayer);
                                 if (tileDistance > Glimmer.UltraStariteDistance)
                                 {
                                     return false;
@@ -86,7 +86,7 @@ namespace AQMod.Common.CrossMod
                                 {
                                     return false;
                                 }
-                                return Glimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer) <= Glimmer.UltraStariteDistance;
+                                return Glimmer.Distance(Main.LocalPlayer) <= Glimmer.UltraStariteDistance;
                             }),
                                 "the Ultimate Sword...",
                                 "biome_glimmerevent", 50f, "mod_aequus");

@@ -1,6 +1,8 @@
-﻿using AQMod.Items.Accessories;
+﻿using AQMod.Common.Utilities.Debugging;
+using AQMod.Items.Accessories;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,10 +30,14 @@ namespace AQMod.Common.NoHitting
 
         public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
         {
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                NetHelper.HitPlayer((byte)target.whoAmI);
+            }
             CollapseNoHit(target.whoAmI);
         }
 
-        private void CollapseNoHit(int player)
+        internal static void CollapseNoHit(int player)
         {
             for (int i = 0; i < Main.maxNPCs; i++)
             {
@@ -156,6 +162,57 @@ namespace AQMod.Common.NoHitting
                         }
                     }
                     break;
+            }
+        }
+
+        public static void SendNoHitNet(NoHitManager noHit, BinaryWriter writer)
+        {
+            var l = DebugUtilities.GetDebugLogger(get: DebugUtilities.LogNetcode);
+
+            l?.Log("Writing No Hit data!");
+
+            writer.Write(noHit.dontHitPlayers);
+            writer.Write(noHit.rewardOption);
+            l?.Log("{dontHitPlayers:" + noHit.dontHitPlayers + ", rewardOption:" + noHit.rewardOption + "}");
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active)
+                {
+                    l?.Log("Hit Data for: {Name:" + Main.player[i].name + ", hitPlayer:" + noHit.hitPlayer[i] + "}");
+                    writer.Write(noHit.hitPlayer[i]);
+                }
+            }
+        }
+
+        public static void RecieveNoHitNet(NoHitManager noHit, BinaryReader reader)
+        {
+            var l = DebugUtilities.GetDebugLogger(get: DebugUtilities.LogNetcode);
+
+            l?.Log("Recieving No Hit data!");
+
+            l?.Log("Old {dontHitPlayers:" + noHit.dontHitPlayers + ", rewardOption:" + noHit.rewardOption + "}");
+
+            noHit.dontHitPlayers = reader.ReadBoolean();
+            noHit.rewardOption = reader.ReadByte();
+
+            l?.Log("New {dontHitPlayers:" + noHit.dontHitPlayers + ", rewardOption:" + noHit.rewardOption + "}");
+
+
+            for (int i = 0; i < Main.maxPlayers; i++) // praying that all of the players are still here when this gets recieved!
+            {
+                if (Main.player[i].active)
+                {
+                    l?.Log("Getting hit Data for: {Name:" + Main.player[i].name + "}");
+                    l?.Log("Old hit Data: {Name:" + Main.player[i].name + ", hitPlayer:" + noHit.hitPlayer[i] + "}");
+
+                    bool newValue = reader.ReadBoolean();
+                    if (!noHit.hitPlayer[i])
+                    {
+                        noHit.hitPlayer[i] = newValue;
+                    }
+
+                    l?.Log("New hit flag: {hitPlayer:" + noHit.hitPlayer[i] + "}");
+                }
             }
         }
     }

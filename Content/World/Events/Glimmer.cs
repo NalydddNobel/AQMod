@@ -25,10 +25,10 @@ namespace AQMod.Content.World.Events
             public override Texture2D IconTexture => ModContent.GetTexture(TexturePaths.EventIcons + "glimmerevent");
             public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.GlimmerEvent");
             public override Color NameBGColor => new Color(120, 20, 110, 128);
-            public override float EventProgress => 1f - (float)GetTileDistanceUsingPlayer(Main.LocalPlayer) / Glimmer.MaxDistance;
+            public override float EventProgress => 1f - (float)Distance(Main.LocalPlayer) / Glimmer.MaxDistance;
 
             public override bool IsActive() => IsAbleToShowInvasionProgressBar();
-            public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.EventProgress.GlimmerEvent", Glimmer.GetTileDistanceUsingPlayer(Main.LocalPlayer));
+            public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.EventProgress.GlimmerEvent", Glimmer.Distance(Main.LocalPlayer));
         }
         public struct EnemyLayer
         {
@@ -240,16 +240,16 @@ namespace AQMod.Content.World.Events
             return tileX != 0;
         }
 
-        public static bool AreStariteSpawnsCurrentlyActive(Player player)
+        public static bool SpawnsCheck(Player player)
         {
             return IsGlimmerEventCurrentlyActive() && deactivationDelay <= 0 && player.position.Y < (Main.worldSurface + 50) * 16;
         }
 
         public static bool IsAbleToShowInvasionProgressBar()
         {
-            if (AreStariteSpawnsCurrentlyActive(Main.LocalPlayer) && omegaStarite == -1)
+            if (SpawnsCheck(Main.LocalPlayer) && omegaStarite == -1)
             {
-                if (GetTileDistanceUsingPlayer(Main.LocalPlayer) < MaxDistance)
+                if (Distance(Main.LocalPlayer) < MaxDistance)
                     return true;
             }
             return false;
@@ -282,7 +282,7 @@ namespace AQMod.Content.World.Events
             tileY = (ushort)Main.worldSurface;
         }
 
-        public static int GetTileDistanceUsingPlayer(Player player)
+        public static int Distance(Player player)
         {
             return (int)((player.position.X + player.width) / 16 - tileX).Abs();
         }

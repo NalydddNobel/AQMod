@@ -108,7 +108,7 @@ namespace AQMod
                 }
             }
 
-            internal static void UnloadSets()
+            internal static void Unload()
             {
                 MinionHeadType = null;
                 MinionRotationalType = null;

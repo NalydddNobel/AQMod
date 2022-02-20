@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics;
-using AQMod.Effects.ScreenEffects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -53,14 +52,6 @@ namespace AQMod.Projectiles.Melee
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(SoundID.Item14, projectile.position);
-            if (Main.myPlayer == projectile.owner && AQConfigClient.c_TonsofScreenShakes)
-            {
-                float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
-                if (distance < 700)
-                {
-                    ScreenShakeManager.AddShake(new BasicScreenShake(8, AQGraphics.MultIntensity((int)(700f - distance) / 32)));
-                }
-            }
             int p = Projectile.NewProjectile(projectile.Center, Vector2.Zero, ModContent.ProjectileType<BurnterizerExplosion>(), 30, projectile.knockBack, projectile.owner);
             Vector2 position = projectile.Center - new Vector2(Main.projectile[p].width / 2f, Main.projectile[p].height / 2f);
             Main.projectile[p].position = position;

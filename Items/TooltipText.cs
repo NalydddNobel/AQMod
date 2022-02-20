@@ -192,53 +192,58 @@ namespace AQMod.Items
             ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, font, text, new Vector2(x, y), Color.Black,
                 rotation, origin, baseScale);
 
-            GeneralEffectsManager.SetRand(Main.LocalPlayer.name.GetHashCode());
-            // particles
-            var particleTexture = AQTextures.Lights[LightTex.Spotlight15x15];
-            var particleOrigin = particleTexture.Size() / 2f;
-            int amt = (int)GeneralEffectsManager.Rand((int)size.X / 3, (int)size.X);
-            for (int i = 0; i < amt; i++)
+            if (ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
             {
-                float lifeTime = (GeneralEffectsManager.Rand(20f) + Main.GlobalTime * 2f) % 20f;
-                int baseParticleX = (int)GeneralEffectsManager.Rand(4, (int)size.X - 4);
-                int particleX = baseParticleX + (int)AQUtils.Wave(lifeTime + Main.GlobalTime * GeneralEffectsManager.Rand(2f, 5f), -GeneralEffectsManager.Rand(3f, 10f), GeneralEffectsManager.Rand(3f, 10f));
-                int particleY = (int)GeneralEffectsManager.Rand(10);
-                float scale = GeneralEffectsManager.Rand(0.2f, 0.4f);
-                if (baseParticleX > 14 && baseParticleX < size.X - 14 && GeneralEffectsManager.RandChance(6))
+                FX.TempSetRand(Main.LocalPlayer.name.GetHashCode(), out int reset);
+                // particles
+                var particleTexture = AQTextures.Lights[LightTex.Spotlight15x15];
+                var particleOrigin = particleTexture.Size() / 2f;
+                int amt = (int)FX.Rand((int)size.X / 3, (int)size.X);
+                for (int i = 0; i < amt; i++)
                 {
-                    scale *= 2f;
-                }
-                var clr = color;
-                if (lifeTime < 0.3f)
-                {
-                    clr *= lifeTime / 0.3f;
-                }
-                if (lifeTime < 5f)
-                {
-                    if (lifeTime > MathHelper.PiOver2)
+                    float lifeTime = (FX.Rand(20f) + Main.GlobalTime * 2f) % 20f;
+                    int baseParticleX = (int)FX.Rand(4, (int)size.X - 4);
+                    int particleX = baseParticleX + (int)AQUtils.Wave(lifeTime + Main.GlobalTime * FX.Rand(2f, 5f), -FX.Rand(3f, 10f), FX.Rand(3f, 10f));
+                    int particleY = (int)FX.Rand(10);
+                    float scale = FX.Rand(0.2f, 0.4f);
+                    if (baseParticleX > 14 && baseParticleX < size.X - 14 && FX.RandChance(6))
                     {
-                        float timeMult = (lifeTime - MathHelper.PiOver2) / MathHelper.PiOver2;
-                        scale -= timeMult * 0.4f;
-                        if (scale < 0f)
-                        {
-                            continue;
-                        }
-                        int colorMinusAmount = (int)(timeMult * 255f);
-                        clr.R = (byte)Math.Max(clr.R - colorMinusAmount, 0);
-                        clr.G = (byte)Math.Max(clr.G - colorMinusAmount, 0);
-                        clr.B = (byte)Math.Max(clr.B - colorMinusAmount, 0);
-                        clr.A = (byte)Math.Max(clr.A - colorMinusAmount, 0);
-                        if (clr.R == 0 && clr.G == 0 && clr.B == 0 && clr.A == 0)
-                        {
-                            continue;
-                        }
+                        scale *= 2f;
                     }
-                    if (scale > 0.4f)
+                    var clr = color;
+                    if (lifeTime < 0.3f)
                     {
-                        Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr * 2f, 0f, particleOrigin, scale * 0.5f, SpriteEffects.None, 0f);
+                        clr *= lifeTime / 0.3f;
                     }
-                    Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr, 0f, particleOrigin, scale, SpriteEffects.None, 0f);
+                    if (lifeTime < 5f)
+                    {
+                        if (lifeTime > MathHelper.PiOver2)
+                        {
+                            float timeMult = (lifeTime - MathHelper.PiOver2) / MathHelper.PiOver2;
+                            scale -= timeMult * 0.4f;
+                            if (scale < 0f)
+                            {
+                                continue;
+                            }
+                            int colorMinusAmount = (int)(timeMult * 255f);
+                            clr.R = (byte)Math.Max(clr.R - colorMinusAmount, 0);
+                            clr.G = (byte)Math.Max(clr.G - colorMinusAmount, 0);
+                            clr.B = (byte)Math.Max(clr.B - colorMinusAmount, 0);
+                            clr.A = (byte)Math.Max(clr.A - colorMinusAmount, 0);
+                            if (clr.R == 0 && clr.G == 0 && clr.B == 0 && clr.A == 0)
+                            {
+                                continue;
+                            }
+                        }
+                        if (scale > 0.4f)
+                        {
+                            Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr * 2f, 0f, particleOrigin, scale * 0.5f, SpriteEffects.None, 0f);
+                        }
+                        Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr, 0f, particleOrigin, scale, SpriteEffects.None, 0f);
+                    }
                 }
+
+                FX.SetRand(reset);
             }
 
             // light effect

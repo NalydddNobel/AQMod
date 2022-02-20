@@ -47,25 +47,26 @@ float4 FlashCoordinate(float2 coords : TEXCOORD0) : COLOR0
     float2 target = uTargetPosition;
     float2 dir = normalize((uScreenPosition + coords * uScreenResolution) - target);
     float2 pixelScale = float2(1 / uScreenResolution.x, 1 / uScreenResolution.y) * 2;
-    float4 color = tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 12);
-    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 12);
-    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 10);
-    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 10);
-    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 8);
-    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 8);
-    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 6);
-    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 6);
-    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 5);
-    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 5);
-    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 4);
-    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 4);
-    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 3);
-    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 3);
-    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress * 2);
-    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress * 2);
-    color += tex2D(uImage0, coords + dir * pixelScale * uOpacity * uProgress);
-    color += tex2D(uImage0, coords - dir * pixelScale * uOpacity * uProgress);
-    return (color + tex2D(uImage0, coords)) * uIntensity;
+    float4 color = tex2D(uImage0, coords + dir * pixelScale * uIntensity * 12);
+    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 12);
+    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 10);
+    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 10);
+    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 8);
+    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 8);
+    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 6);
+    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 6);
+    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 5);
+    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 5);
+    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 4);
+    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 4);
+    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 3);
+    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 3);
+    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 2);
+    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 2);
+    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity);
+    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity);
+    float intensity = max(uIntensity / 4.0f, 1 / 18.0f);
+    return (color + tex2D(uImage0, coords)) * intensity;
 }
 
 technique Technique1

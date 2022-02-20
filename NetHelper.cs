@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.NoHitting;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
 using AQMod.Content.Players;
@@ -20,6 +21,7 @@ namespace AQMod
             public const ushort UpdateWindSpeeds = 3;
             public const ushort CombatText = 4;
             public const ushort CombatNumber = 5;
+            public const ushort HitPlayer = 6;
 
             public const ushort ActivateGlimmerEvent = 500;
             public const ushort RequestOmegaStarite = 1000;
@@ -101,6 +103,14 @@ namespace AQMod
         #endregion
 
         #region Misc
+        public static void HitPlayer(byte player)
+        {
+            var p = AQMod.GetInstance().GetPacket();
+            p.Write(PacketType.HitPlayer);
+            p.Write(player);
+            p.Send();
+        }
+
         public static void RequestDungeonCoordinatesUpdate(bool setMapCoords = true)
         {
             var p = AQMod.GetInstance().GetPacket();
@@ -245,6 +255,17 @@ namespace AQMod
 
             switch (messageID)
             {
+                case PacketType.HitPlayer:
+                    {
+                        var l2 = DebugUtilities.GetDebugLogger(get: DebugUtilities.LogNetcode);
+
+                        byte plr = reader.ReadByte();
+
+                        l2?.Log("{" + Main.player[plr].name + "} has been hit!");
+                        NoHitManager.CollapseNoHit(plr);
+                    }
+                    break;
+
                 case PacketType.RecieveDungeonCoordinates:
                     if (Main.netMode != NetmodeID.Server)
                     {

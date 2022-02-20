@@ -1,4 +1,5 @@
-﻿using AQMod.NPCs.Bosses;
+﻿using AQMod.NPCs;
+using AQMod.NPCs.Bosses;
 using System.ComponentModel;
 using Terraria;
 using Terraria.ModLoader;
@@ -79,18 +80,8 @@ namespace AQMod
             if (p.harderOmegaStarite != harderOmegaStarite)
                 return NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
             if (p.reduceSpawns != reduceSpawns)
-                return reduceSpawnrates();
+                return NPCSpawnChanger.SpawnRate_CheckBosses();
             return false;
-        }
-
-        internal static bool reduceSpawnrates()
-        {
-            return NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) || NPC.AnyNPCs(ModContent.NPCType<JerryCrabson>());
-        }
-
-        public static bool ShouldRemoveSpawns()
-        {
-            return ModContent.GetInstance<AQConfigServer>().reduceSpawns && reduceSpawnrates();
         }
     }
 }

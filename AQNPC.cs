@@ -4,8 +4,8 @@ using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
 using AQMod.Content.World;
 using AQMod.Dusts;
+using AQMod.Effects;
 using AQMod.Effects.Particles;
-using AQMod.Effects.ScreenEffects;
 using AQMod.Items.Dyes.Cursor;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
@@ -556,7 +556,7 @@ namespace AQMod
                 RemoveRepeatingIndicesFromSets();
             }
 
-            internal static void UnloadSets()
+            internal static void Unload()
             {
                 DemonSiegeEnemy = null;
                 EnemyDungeonSprit = null;
@@ -978,7 +978,9 @@ namespace AQMod
                     if (AQConfigClient.c_EffectQuality < 1f)
                         amount = (int)(amount * AQConfigClient.c_EffectQuality);
                     if (AQConfigClient.c_Screenshakes)
-                        ScreenShakeManager.AddShake(new BasicScreenShake(12, 6));
+                    {
+                        FX.AddShake(AQGraphics.MultIntensity(12), 24f, 6f);
+                    }
                     var npcCenter = npc.Center;
                     int p = Projectile.NewProjectile(npcCenter, Vector2.Normalize(npcCenter - Main.player[npc.target].Center), ModContent.ProjectileType<SparklingExplosion>(), 50, 5f, npc.target);
                     var size = Main.projectile[p].Size;

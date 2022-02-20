@@ -8,7 +8,7 @@ namespace AQMod.Common.Utilities.Debugging
     {
         private static bool oldLogAccess;
 
-        public static bool LogAccess = true;
+        public static bool LogAccess = false;
 
         public static bool LogAutoload = false;
         public static bool LogDyeBinding = false;
@@ -70,6 +70,17 @@ namespace AQMod.Common.Utilities.Debugging
 
         public static Logger GetDebugLogger()
         {
+            var logger = AQMod.GetInstance().Logger;
+            InternalLogAccess(logger);
+            return new Logger(logger);
+        }
+
+        public static Logger? GetDebugLogger(bool get)
+        {
+            if (!get)
+            {
+                return null;
+            }
             var logger = AQMod.GetInstance().Logger;
             InternalLogAccess(logger);
             return new Logger(logger);

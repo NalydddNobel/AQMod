@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Graphics;
-using AQMod.Effects.ScreenEffects;
+using AQMod.Effects;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -277,11 +277,13 @@ namespace AQMod.NPCs.Bosses
                         npc.netUpdate = true;
                         npc.localAI[2] = 1f;
                         var spawnPos = new Vector2(npc.position.X, npc.position.Y + npc.height - 2);
-                        if (Main.netMode != NetmodeID.Server && AQConfigClient.c_TonsofScreenShakes)
+                        if (Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes)
                         {
                             float distance = Vector2.Distance(npc.Center, Main.LocalPlayer.Center);
                             if (distance < 600)
-                                ScreenShakeManager.AddShake(new BasicScreenShake(16, AQGraphics.MultIntensity((int)(600f - distance) / 64)));
+                            {
+                                FX.AddShake(AQGraphics.MultIntensity((int)(600f - distance) / 64), 30f, 16f);
+                            }
                         }
                         Main.PlaySound(SoundID.Item14, npc.position);
                         for (int i = 0; i < 40; i++)

@@ -1,8 +1,9 @@
 ﻿using AQMod.Common;
+using AQMod.Common.Graphics;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
+using AQMod.Effects;
 using AQMod.Effects.Particles;
-using AQMod.Effects.ScreenEffects;
 using AQMod.Gores;
 using AQMod.Items.Armor;
 using AQMod.Items.Dyes;
@@ -215,17 +216,23 @@ namespace AQMod.NPCs.Bosses
                                     AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SpaceSquid/ShootDeathray");
                                 }
                             }
+                            bool canDoEffects = Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes &&
+                                (Main.player[Main.myPlayer].Center - center).Length() < 2000f;
+                            if (npc.ai[1] >= 242f && (int)npc.ai[2] < 1 && canDoEffects)
+                            {
+                                FX.SetFlash(npc.Center, 0.8f * AQConfigClient.Instance.FlashIntensity, 12f);
+                            }
                             if ((int)npc.ai[1] >= 245)
                             {
                                 runOtherAis = false;
                                 if ((int)npc.ai[2] < 1)
                                 {
+                                    if (canDoEffects)
+                                    {
+                                        FX.SetShake(8f * AQConfigClient.Instance.EffectIntensity, 12f);
+                                    }
                                     npc.ai[2]++;
                                     npc.velocity.X = -npc.direction * 12.5f;
-                                    if (Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
-                                    {
-                                        ScreenShakeManager.AddShake(new BasicScreenShake(4, 8));
-                                    }
                                     if (Main.netMode != NetmodeID.MultiplayerClient)
                                     {
                                         int p = Projectile.NewProjectile(GetEyePosition(npc), new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.Monster.GaleStreams.SpaceSquidDeathray>(), 70, 1f, Main.myPlayer);
