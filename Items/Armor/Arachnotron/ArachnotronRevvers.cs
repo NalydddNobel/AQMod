@@ -20,10 +20,12 @@ namespace AQMod.Items.Armor.Arachnotron
 
         public override void UpdateEquip(Player player)
         {
-            player.accRunSpeed = 7.5f;
+            player.meleeDamage += 0.1f;
+            player.minionDamage += 0.1f;
             player.maxMinions += 1;
-            player.fireWalk = true;
+            player.accRunSpeed = 7.5f;
             player.moveSpeed += 0.14f;
+            player.fireWalk = true;
         }
 
         public override void AddRecipes()

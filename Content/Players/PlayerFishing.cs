@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Items;
-using AQMod.Items.Accessories;
+using AQMod.Items.Accessories.Healing;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Nature;

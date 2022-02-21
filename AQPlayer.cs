@@ -70,8 +70,6 @@ namespace AQMod
         public int extraFlightTime;
         public int thunderbirdLightningTimer;
         public bool dreadsoul;
-        public bool arachnotronArms;
-        public bool setArachnotron;
         public bool omori;
         public bool omoriEffect;
         public int omoriDeathTimer;
@@ -128,6 +126,10 @@ namespace AQMod
         public bool spreadDebuffs;
         public bool shade;
         public bool undetectable;
+
+        public bool arachnotronArms;
+        public bool setArachnotron;
+        public bool setArachnotronCooldown;
 
         public bool leechHook;
         public bool meathookUI;
@@ -447,7 +449,7 @@ namespace AQMod
             ResetEffects_DashAvailable();
         }
 
-        private void ToggleCosmicanon()
+        private void ProcessTriggers_ToggleCosmicanon()
         {
             IgnoreIgnoreMoons = !IgnoreIgnoreMoons;
             if (IgnoreIgnoreMoons)
@@ -457,6 +459,14 @@ namespace AQMod
             else
             {
                 Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
+            }
+        }
+        private void ProcessTriggers_ArmorSetBonus()
+        {
+            if (setArachnotron && !setArachnotronCooldown)
+            {
+                player.AddBuff(ModContent.BuffType<PrimeTime>(), 600);
+                Main.PlaySound(SoundID.Item22, player.Center);
             }
         }
         private void ProcessTriggers_MeathookSnapTarget()
@@ -486,7 +496,11 @@ namespace AQMod
         {
             if (canToggleCosmicanon && AQMod.Keybinds.CosmicanonToggle.JustPressed)
             {
-                ToggleCosmicanon();
+                ProcessTriggers_ToggleCosmicanon();
+            }
+            if (AQMod.Keybinds.ArmorSetBonus.JustPressed)
+            {
+                ProcessTriggers_ArmorSetBonus();
             }
             if (!hasMeathookNPC && meathookTarget != -1 && Main.npc[meathookTarget].active && triggersSet.Grapple)
             {
@@ -507,6 +521,16 @@ namespace AQMod
             clone.dartHeadType = dartHeadType;
             clone.arachnotronArms = arachnotronArms;
             clone.blueSpheres = blueSpheres;
+        }
+
+        public override void PreUpdateBuffs()
+        {
+            int b = player.FindBuffIndex(ModContent.BuffType<PrimeTime>());
+            if (b != -1 && player.buffTime[b] < 2)
+            {
+                player.AddBuff(ModContent.BuffType<ArachnotronCooldown>(), 7200);
+                setArachnotronCooldown = true;
+            }
         }
 
         private void ItemCheck_FidgetSpinner(Item item)
@@ -1001,7 +1025,7 @@ namespace AQMod
             }
             if (antiGravityItems)
             {
-                EquivalenceMachineItemManager.AntiGravityNearbyItems(player.Center, 2f * grabReachMult, 20, player);
+                EquivalenceMachineItemManager.AntiGravityNearbyItems(player.Center, 2f * grabReachMult, 120, player);
             }
             if (spicyEel)
             {
@@ -1086,14 +1110,6 @@ namespace AQMod
         private bool IsTrueMeleeProjectile(Projectile projectile)
         {
             return projectile.melee && projectile.whoAmI == player.heldProj && projectile.aiStyle != 99;
-        }
-        private void TrueMeleeHit_Arachnotron()
-        {
-            if (player.potionDelay <= 0)
-            {
-                player.AddBuff(ModContent.BuffType<Buffs.PrimeTime>(), 600);
-                player.AddBuff(BuffID.PotionSickness, player.potionDelayTime);
-            }
         }
         private void TrueMeleeHit_HyperCrystal(NPC target, int damage, float knockback, Vector2 playerCenter, Vector2 targetCenter, bool criticalHit)
         {
@@ -1272,10 +1288,6 @@ namespace AQMod
             var targetCenter = target.Center;
             if (item.melee)
             {
-                if (setArachnotron)
-                {
-                    TrueMeleeHit_Arachnotron();
-                }
                 if (hyperCrystal)
                 {
                     TrueMeleeHit_HyperCrystal(target, damage, knockback, center, targetCenter, crit);
@@ -1289,10 +1301,6 @@ namespace AQMod
             var targetCenter = target.Center;
             if (IsTrueMeleeProjectile(proj))
             {
-                if (setArachnotron)
-                {
-                    TrueMeleeHit_Arachnotron();
-                }
                 if (hyperCrystal)
                 {
                     TrueMeleeHit_HyperCrystal(target, damage, knockback, center, targetCenter, crit);

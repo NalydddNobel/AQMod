@@ -1,5 +1,5 @@
-﻿using AQMod.Items.Accessories;
-using AQMod.Items.Accessories.Amulets;
+﻿using AQMod.Items.Accessories.Amulets;
+using AQMod.Items.Accessories.Jewelry;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Potions;

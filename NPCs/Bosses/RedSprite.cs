@@ -3,7 +3,7 @@ using AQMod.Common.Graphics;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;
-using AQMod.Items.Armor;
+using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Dyes;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Placeable.Furniture;

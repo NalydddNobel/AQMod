@@ -1,14 +1,18 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Buffs
+namespace AQMod.Buffs.Debuffs
 {
-    public class PrimeTime : ModBuff
+    public sealed class ArachnotronCooldown : ModBuff
     {
+        public override void SetDefaults()
+        {
+            Main.debuff[Type] = true;
+            longerExpertDebuff = false;
+        }
+
         public override void Update(Player player, ref int buffIndex)
         {
-            player.statDefense += 50;
-            player.endurance += 0.5f;
             player.GetModPlayer<AQPlayer>().setArachnotronCooldown = true;
         }
     }

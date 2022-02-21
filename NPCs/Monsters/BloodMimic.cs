@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Accessories;
+﻿using AQMod.Items.Accessories.Shields;
 using AQMod.Items.Potions;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.GrapplingHooks;

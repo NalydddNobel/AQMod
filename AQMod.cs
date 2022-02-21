@@ -101,19 +101,19 @@ namespace AQMod
 
         public static class Keybinds
         {
+            public static ModHotKey ArmorSetBonus { get; private set; }
             public static ModHotKey CosmicanonToggle { get; private set; }
-            public static ModHotKey EquivalenceMachineToggle { get; private set; }
 
             internal static void Load(AQMod mod)
             {
+                ArmorSetBonus = mod.RegisterHotKey("Armor Set Bonus", "V");
                 CosmicanonToggle = mod.RegisterHotKey("Cosmicanon Toggle", "P");
-                EquivalenceMachineToggle = mod.RegisterHotKey("Equivalence Machine Toggle", "O");
             }
 
             internal static void Unload()
             {
-                EquivalenceMachineToggle = null;
                 CosmicanonToggle = null;
+                ArmorSetBonus = null;
             }
         }
 

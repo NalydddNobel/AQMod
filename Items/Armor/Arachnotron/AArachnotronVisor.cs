@@ -4,6 +4,7 @@ using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Armor.Arachnotron
@@ -44,14 +45,15 @@ namespace AQMod.Items.Armor.Arachnotron
 
         public override void UpdateEquip(Player player)
         {
-            player.meleeCrit += 5;
+            player.meleeCrit += 10;
+            player.meleeDamage += 0.1f;
             player.minionDamage += 0.1f;
             player.nightVision = true;
         }
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = AQText.ArmorSetBonus("Arachnotron").Value;
+            player.setBonus = Language.GetTextValue("Mods.AQMod.ArmorSetBonus.Arachnotron", AQText.KeybindText(AQMod.Keybinds.ArmorSetBonus));
             player.GetModPlayer<AQPlayer>().setArachnotron = true;
         }
 

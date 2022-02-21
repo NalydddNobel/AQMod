@@ -1,5 +1,6 @@
 ﻿using AQMod.Content.Players;
 using AQMod.Items.Armor;
+using AQMod.Items.Armor.Crabson;
 using AQMod.Items.Materials;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.GrapplingHooks;

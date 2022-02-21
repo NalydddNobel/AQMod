@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Dyes;
+﻿using AQMod.Items.Accessories.Jewelry;
+using AQMod.Items.Dyes;
 using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Placeable.Furniture;
@@ -67,10 +68,10 @@ namespace AQMod.Common.CrossMod
             createFargoRecipe<HyperStariteBanner>(ItemID.Nazar);
             createFargoRecipe<HyperStariteBanner, ScrollDye>();
 
-            createFargoRecipe<CinderaBanner, Items.Accessories.DegenerationRing>();
+            createFargoRecipe<CinderaBanner, DegenerationRing>();
             createFargoRecipe<CinderaBanner>(ItemID.MagmaStone);
             createFargoRecipe<CinderaBanner, HellBeamDye>();
-            createFargoRecipe<MagmabubbleBanner, Items.Accessories.DegenerationRing>();
+            createFargoRecipe<MagmabubbleBanner, DegenerationRing>();
             createFargoRecipe<MagmabubbleBanner>(ItemID.LavaCharm);
             createFargoRecipe<TrapperImpBanner>(ItemID.ObsidianRose);
             createFargoRecipe<TrapperImpBanner, PowPunch>();
@@ -85,11 +86,8 @@ namespace AQMod.Common.CrossMod
             r.AddIngredient(ItemID.MimicBanner);
             r.AddIngredient(ItemID.Bone, 5);
             r.AddTile(TileID.Solidifier);
-            r.SetResult(ModContent.ItemType<Items.Tools.ATM>());
+            r.SetResult(ModContent.ItemType<ATM>());
             r.AddRecipe();
-
-            createFargoRecipeBannerInput<Items.Accessories.Breadsoul>(ItemID.DungeonSpiritBanner);
-            createFargoRecipeBannerInput<Items.Accessories.Dreadsoul>(ItemID.DungeonSpiritBanner);
 
             createFargoRecipe<CrabsonTrophy, JerryClawFlail>();
             createFargoRecipe<CrabsonTrophy, Items.Weapons.Ranged.CinnabarBow>();

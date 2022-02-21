@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events;
+using AQMod.Items.Accessories.Jewelry;
 using AQMod.Items.Materials.Energies;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -384,7 +385,7 @@ namespace AQMod.NPCs.Monsters.DemonSiegeMonsters
                 }
             }
             if (Main.rand.NextBool(Main.expertMode ? 12 : 16))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.DegenerationRing>());
+                Item.NewItem(npc.getRect(), ModContent.ItemType<DegenerationRing>());
             if (Main.rand.NextBool())
                 Item.NewItem(npc.getRect(), ModContent.ItemType<DemonicEnergy>());
         }

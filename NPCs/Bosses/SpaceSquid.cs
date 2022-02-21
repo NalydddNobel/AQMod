@@ -5,7 +5,7 @@ using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.Particles;
 using AQMod.Gores;
-using AQMod.Items.Armor;
+using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Dyes;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Placeable.Furniture;

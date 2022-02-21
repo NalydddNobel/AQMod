@@ -17,6 +17,14 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 
 # Accessories
 
+ItemName.Dreadsoul=Burning Heart
+ItemTooltip.Dreadsoul=Summon attacks summon phantom minions to temporarily fight for you
+ProjectileName.DreadsoulAttack=Minion Soul
+
+ItemName.Breadsoul=Soul Eater
+ItemTooltip.Breadsoul=Enemies commonly drop souls which give massive life regeneration instead of hearts\n25% increased grab range
+ProjectileName.BreadsoulHealing=Enemy Soul
+
 ItemName.RustyKnife=KNIFE
 ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP on fatal hits with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
 ProjectileName.FriendMinion=Friend
@@ -67,7 +75,7 @@ ItemTooltip.ShockCollar=Increases damage by 5%\nIncreases crit chance by 10% whi
 ItemName.FidgetSpinner=Perpetuator
 ItemTooltip.FidgetSpinner=Non-autoswing items are slower, but gain autoswing
 
-ItemName.DegenerationRing=Degeneration Ring
+ItemName.DegenerationRing=Flame Resistance Ring
 ItemTooltip.DegenerationRing=Prevents most types of burning
 
 ItemName.HeatedAmulet=Heated Amulet
@@ -93,6 +101,19 @@ ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\nHas immense hori
 NPCName.Thunderbird=Thunderbird
 
 # Armor
+
+ItemName.ArachnotronVisor=Arachnotron Visor
+ItemTooltip.ArachnotronVisor=Increases melee damage, crit, and summon damage by 10%\nGives you night vision
+ItemName.ArachnotronRibcage=Arachnotron Ribcage
+ItemTooltip.ArachnotronRibcage=Increases melee speed and summon damage by 10%\nReduces damage taken by 5%\nIncreases your max number of minions\nGives you damaging spider arms
+ItemName.ArachnotronRevvers=Arachnotron Revvers
+ItemTooltip.ArachnotronRevvers=Increases melee and summon damage by 10%\nIncreases your max number of minions\nAllows you to run super fast and grants immunity to fire blocks
+ArmorSetBonus.Arachnotron=12% increased melee and summon damage\nIncreases your maximum number of minions\nPress the {0} key to gain heavily increased defensive stats for a short while with a cooldown
+BuffName.PrimeTime=Arachnotron Power
+BuffDescription.PrimeTime=Your defense is greatly increased!
+BuffName.ArachnotronCooldown=Arachnotron Cooldown
+BuffDescription.ArachnotronCooldown=You cannot use the Arachnotron Armor's effect anymore
+
 ItemName.CrabsonMask=Crabson Mask
 
 ItemName.SteelPlatedChestplate=Steel Plated Chestplate
@@ -818,7 +839,6 @@ Common.KeyUnbound='Unbound Key'
 Common.KeyBound='{0}' Key
 
 # Armor Set Bonuses
-Common.ArmorSetBonus_Arachnotron=On a true melee critical hit you gain greatly increased stats for a short while\nWhen the effect activates you gain the potion sickness debuff\nThis effect can only trigger if you don't have the potion sickness debuff
 #
 # Config Names
 Common.ConfigName_AQConfigClient=Client Config
@@ -980,14 +1000,6 @@ ItemName.BusinessCard=Business Card
 #
 # Other Accessories
 #
-
-ItemName.Breadsoul=Breadsoul
-ItemTooltip.Breadsoul=Increases your grab reach by 25%\nDungeon Spirit enemies are now friendly\nNearby enemies no longer drop hearts, and instead drop souls\nSpectre souls drop more commonly and give you massive life regeneration
-ProjectileName.BreadsoulHealing=Breadsoul
-ItemName.Dreadsoul=Dreadsoul
-ItemTooltip.Dreadsoul=Upon death enemies will release 6 dreaded souls which will target enemies of the same type\nDungeon Spirit enemies are now friendly
-ProjectileName.DreadsoulAttack=Dreadsoul
-
 ItemName.Terraroot=Terraroot
 
 ItemName.Ultranium=Hyper Crystal
@@ -1021,9 +1033,6 @@ ItemName.PotionofBossrushium=Encore Potion
 # Armor
 ItemName.HermitShell=Clamshell Helmet
 ItemName.StriderPalms=Strider Palms
-ItemName.ArachnotronRevvers=Arachnotron Revvers
-ItemName.ArachnotronRibcage=Arachnotron Ribcage
-ItemName.ArachnotronVisor=Arachnotron Visor
 ItemName.DartTrapHat=Dart Trap Hat
 ItemName.SuperDartTrapHat=Super Dart Trap Hat
 ########
@@ -1223,9 +1232,6 @@ ItemTooltip.PotionofBossrushium=Bosses respawn when defeated
 # Armor
 ItemTooltip.HermitShell=Increases your defense the lower your speed
 ItemTooltip.StriderPalms=Increases minion damage by 10%\nIncreases the stats of the Strider Hook
-ItemTooltip.ArachnotronRevvers=Allows you to run super fast and grants immunity to fire blocks\nIncreases your max number of minions
-ItemTooltip.ArachnotronRibcage=Gives you damaging spider arms\nIncreases melee speed by 10% and damage reduction by 5%\nIncreases your max number of minions
-ItemTooltip.ArachnotronVisor=Increases melee crit chance by 5% and summon damage by 10%\nGives you night vision
 ItemTooltip.DartTrapHat=Shoots poisioned darts while you are on the ground\nIncreases summon damage by 5%
 ItemTooltip.SuperDartTrapHat=Shoots poisioned darts while you are on the ground\nIncreases summon damage by 10%\nIncreases your max number of minions
 ########
@@ -1313,8 +1319,6 @@ BuffName.Ultima=Ultima
 BuffDescription.Ultima=The blade of Ultima blesses you
 BuffName.SpectreHealing=Spectre Healing
 BuffDescription.SpectreHealing=You are healing at rapid speeds
-BuffName.PrimeTime=Prime Time
-BuffDescription.PrimeTime=Your endurance is greatly increased and crits are twice as likely to occur
 BuffName.Opposing=Opposing
 BuffDescription.Opposing=Enemies have a chance to drop opposing loot
 

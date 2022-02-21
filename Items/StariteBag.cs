@@ -1,5 +1,5 @@
-﻿using AQMod.Items.Accessories;
-using AQMod.Items.Armor;
+﻿using AQMod.Items.Accessories.Expert;
+using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.Map;

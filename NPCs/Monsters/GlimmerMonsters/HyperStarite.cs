@@ -3,6 +3,7 @@ using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.ID;
 using AQMod.Items.Accessories;
+using AQMod.Items.Accessories.Shoes;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
