@@ -65,6 +65,21 @@ namespace AQMod
             }
         }
 
+        public static byte MultClamp(byte b, float mult)
+        {
+            return MultClamp(b, mult, byte.MinValue, byte.MaxValue);
+        }
+
+        public static byte MultClamp(byte b, float mult, byte max)
+        {
+            return MultClamp(b, mult, byte.MinValue, max);
+        }
+
+        public static byte MultClamp(byte b, float mult, byte min, byte max)
+        {
+            return (byte)MathHelper.Clamp(b * mult, min, max);
+        }
+
         public static TextureAsset GetTextureAsset(this Mod mod, string path)
         {
             return new TextureAsset(mod, path);

@@ -22,8 +22,8 @@ namespace AQMod.Items.Armor.PassiveSummon
         public override void UpdateEquip(Player player)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.dartHead = true;
-            aQPlayer.dartHeadDelay = 180;
+            aQPlayer.helmetDartTrap = true;
+            aQPlayer.passiveSummonDelay = 180;
             aQPlayer.dartHeadType = ProjectileID.PoisonDart;
             player.minionDamage += 0.05f;
         }

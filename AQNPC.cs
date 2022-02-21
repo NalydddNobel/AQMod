@@ -15,6 +15,7 @@ using AQMod.NPCs.Monsters.DemonSiegeMonsters;
 using AQMod.NPCs.Monsters.GaleStreamsMonsters;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Monster.Starite;
+using AQMod.Projectiles.Summon.Accessory;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -683,6 +684,8 @@ namespace AQMod
         public bool corruptHellfire;
         public bool crimsonHellfire;
 
+        public bool minionHaunted;
+
         public override bool InstancePerEntity => true;
 
         public override void ResetEffects(NPC npc)
@@ -694,6 +697,7 @@ namespace AQMod
             lovestruckStatChanges = false;
             corruptHellfire = false;
             crimsonHellfire = false;
+            minionHaunted = false;
         }
 
         public override void SetDefaults(NPC npc)
@@ -880,91 +884,134 @@ namespace AQMod
             }
         }
 
-        public override void DrawEffects(NPC npc, ref Color drawColor)
+        private void DrawEffects_MinionHaunted(NPC npc, ref Color c)
         {
-            if (shimmering)
+            c.R = AQUtils.MultClamp(c.R, 2f, 60, 120);
+            c.G = AQUtils.MultClamp(c.G, 0.2f);
+            c.B = AQUtils.MultClamp(c.B, 0.2f);
+            byte redMin = (byte)(c.R / 2);
+            if (c.G > redMin)
             {
-                if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
+                c.G = redMin;
+            }
+            if (c.B > redMin)
+            {
+                c.B = redMin;
+            }
+            if (Main.rand.NextBool(30))
+            {
+                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(60, 2, 10, 175));
+                d.noGravity = true;
+                d.noLight = true;
+                d.velocity = new Vector2(npc.velocity.X * 0.4f, Math.Min(npc.velocity.Y, 1f + Main.rand.NextFloat(0.1f, 1f)));
+            }
+        }
+        private void DrawEffects_Shimmering(NPC npc) 
+        {
+            if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
+            {
+                var center = npc.Center;
+                var dustPos = npc.position + new Vector2(Main.rand.Next(npc.width + 4) - 2f, Main.rand.Next(npc.height + 4) - 2f);
+                var normal = Vector2.Normalize(dustPos - center);
+                float size = npc.Size.Length() / 2f;
+                var velocity = normal * Main.rand.NextFloat(size / 12f, size / 6f);
+                velocity += -npc.velocity * 0.3f;
+                velocity *= 0.05f;
+
+                float npcVelocityLength = npc.velocity.Length();
+                Particle.PostDrawPlayers.AddParticle(
+                    new MonoParticle(dustPos, velocity,
+                    new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f), Main.rand.NextFloat(0.3f, 1f)));
+
+                int d = Dust.NewDust(npc.position, npc.width, npc.height, ModContent.DustType<UltimateEnergyDust>());
+                Main.dust[d].velocity = (Main.dust[d].position - center) / 32f + npc.velocity * 0.1f;
+
+                if (Main.rand.NextBool(30))
                 {
-                    var center = npc.Center;
-                    var dustPos = npc.position + new Vector2(Main.rand.Next(npc.width + 4) - 2f, Main.rand.Next(npc.height + 4) - 2f);
-                    var normal = Vector2.Normalize(dustPos - center);
-                    float size = npc.Size.Length() / 2f;
-                    var velocity = normal * Main.rand.NextFloat(size / 12f, size / 6f);
+                    dustPos = npc.position + new Vector2(Main.rand.Next(npc.width + 4) - 2f, Main.rand.Next(npc.height + 4) - 2f);
+                    normal = Vector2.Normalize(dustPos - center);
+                    velocity = normal * Main.rand.NextFloat(size / 12f, size / 6f);
                     velocity += -npc.velocity * 0.3f;
-                    velocity *= 0.05f;
+                    velocity *= 0.01f;
 
-                    float npcVelocityLength = npc.velocity.Length();
+                    var sparkleClr = new Color(0.5f, Main.rand.NextFloat(0.1f, 0.5f), Main.rand.NextFloat(0.1f, 0.55f), 0f);
                     Particle.PostDrawPlayers.AddParticle(
-                        new MonoParticle(dustPos, velocity,
-                        new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f), Main.rand.NextFloat(0.3f, 1f)));
-
-                    int d = Dust.NewDust(npc.position, npc.width, npc.height, ModContent.DustType<UltimateEnergyDust>());
-                    Main.dust[d].velocity = (Main.dust[d].position - center) / 32f + npc.velocity * 0.1f;
-
-                    if (Main.rand.NextBool(30))
-                    {
-                        dustPos = npc.position + new Vector2(Main.rand.Next(npc.width + 4) - 2f, Main.rand.Next(npc.height + 4) - 2f);
-                        normal = Vector2.Normalize(dustPos - center);
-                        velocity = normal * Main.rand.NextFloat(size / 12f, size / 6f);
-                        velocity += -npc.velocity * 0.3f;
-                        velocity *= 0.01f;
-
-                        var sparkleClr = new Color(0.5f, Main.rand.NextFloat(0.1f, 0.5f), Main.rand.NextFloat(0.1f, 0.55f), 0f);
-                        Particle.PostDrawPlayers.AddParticle(
-                            new BrightSparkle(dustPos, velocity,
-                            sparkleClr, 1f));
-                    }
+                        new BrightSparkle(dustPos, velocity,
+                        sparkleClr, 1f));
                 }
-                Lighting.AddLight(npc.Center, 0.25f, 0.25f, 0.25f);
             }
-            if (blueFire)
+            Lighting.AddLight(npc.Center, 0.25f, 0.25f, 0.25f);
+        }
+        private void DrawEffects_BlueFire(NPC npc)
+        {
+            if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
             {
-                if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
-                {
-                    int amount = (npc.width + npc.height) / 30;
-                    if (amount < 3)
-                        amount = 3;
-                    for (int i = 0; i < amount; i++)
-                    {
-                        var pos = npc.position - new Vector2(2f, 2f);
-                        var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
-                        var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                        Particle.PostDrawPlayers.AddParticle(
-                            new EmberParticleSubtractColorUsingScale(dustPos, new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
-                            new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
-                    }
-                }
-                Lighting.AddLight(npc.Center, 0.4f, 0.4f, 1f);
-            }
-            if (corruptHellfire || crimsonHellfire)
-            {
-                Color fireColor = Buffs.Debuffs.CorruptionHellfire.FireColor;
-                if (corruptHellfire && crimsonHellfire)
-                {
-                    fireColor = Color.Lerp(fireColor, Buffs.Debuffs.CrimsonHellfire.FireColor, 0.5f);
-                }
-                else if (crimsonHellfire)
-                {
-                    fireColor = Buffs.Debuffs.CrimsonHellfire.FireColor;
-                    fireColor.G = Math.Min((byte)(fireColor.G + Main.rand.Next(40)), (byte)255);
-                }
-                if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
+                int amount = (npc.width + npc.height) / 30;
+                if (amount < 3)
+                    amount = 3;
+                for (int i = 0; i < amount; i++)
                 {
                     var pos = npc.position - new Vector2(2f, 2f);
                     var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
-                    int amt = (int)(npc.Size.Length() / 16);
-                    amt += 4;
-                    for (int i = 0; i < amt; i++)
-                    {
-                        var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                        var velocity = new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-1f, 4f)) * 0.425f).Abs() - 3f);
-                        Particle.PostDrawPlayers.AddParticle(
-                            new EmberParticleSubtractColorUsingScale(dustPos, velocity,
-                            fireColor, Main.rand.NextFloat(0.7f, 0.95f)));
-                    }
+                    var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                    Particle.PostDrawPlayers.AddParticle(
+                        new EmberParticleSubtractColorUsingScale(dustPos, new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
+                        new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
                 }
-                Lighting.AddLight(npc.Center, fireColor.ToVector3());
+            }
+            Lighting.AddLight(npc.Center, 0.4f, 0.4f, 1f);
+        }
+        private Color DrawEffects_EvilFire_DetermineColor()
+        {
+            Color fireColor = Buffs.Debuffs.CorruptionHellfire.FireColor;
+            if (corruptHellfire && crimsonHellfire)
+            {
+                fireColor = Color.Lerp(fireColor, Buffs.Debuffs.CrimsonHellfire.FireColor, 0.5f);
+            }
+            else if (crimsonHellfire)
+            {
+                fireColor = Buffs.Debuffs.CrimsonHellfire.FireColor;
+                fireColor.G = Math.Min((byte)(fireColor.G + Main.rand.Next(40)), (byte)255);
+            }
+            return fireColor;
+        }
+        private void DrawEffects_EvilFire(NPC npc)
+        {
+            var fireColor = DrawEffects_EvilFire_DetermineColor();
+            if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
+            {
+                var pos = npc.position - new Vector2(2f, 2f);
+                var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
+                int amt = (int)(npc.Size.Length() / 16);
+                amt += 4;
+                for (int i = 0; i < amt; i++)
+                {
+                    var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
+                    var velocity = new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-1f, 4f)) * 0.425f).Abs() - 3f);
+                    Particle.PostDrawPlayers.AddParticle(
+                        new EmberParticleSubtractColorUsingScale(dustPos, velocity,
+                        fireColor, Main.rand.NextFloat(0.7f, 0.95f)));
+                }
+            }
+            Lighting.AddLight(npc.Center, fireColor.ToVector3());
+        }
+        public override void DrawEffects(NPC npc, ref Color drawColor)
+        {
+            if (minionHaunted)
+            {
+                DrawEffects_MinionHaunted(npc, ref drawColor);
+            }
+            if (shimmering)
+            {
+                DrawEffects_Shimmering(npc);
+            }
+            if (blueFire)
+            {
+                DrawEffects_BlueFire(npc);
+            }
+            if (corruptHellfire || crimsonHellfire)
+            {
+                DrawEffects_EvilFire(npc);
             }
         }
 
@@ -1020,15 +1067,15 @@ namespace AQMod
 
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if ((projectile.type == ProjectileID.MolotovFire || projectile.type == ProjectileID.MolotovFire2 || projectile.type == ProjectileID.MolotovFire3) &&
-                npc.type == NPCID.TheDestroyerBody)
-            {
-
-            }
             if (npc.townNPC)
             {
                 if (projectile.type == ModContent.ProjectileType<OmegaRay>())
                     damage = (int)(damage * 0.1f);
+            }
+            var aQNPC = npc.GetGlobalNPC<AQNPC>();
+            if (aQNPC.minionHaunted && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type] || AQProjectile.Sets.IsAMinionProj.Contains(projectile.type)))
+            {
+                damage = (int)(damage * 1.2f);
             }
             ApplyDamageEffects(ref damage);
         }
@@ -1297,35 +1344,6 @@ namespace AQMod
             }
         }
 
-        private void ManageDreadsoul(NPC npc)
-        {
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                var plr = Main.player[i];
-                if (plr.active && !plr.dead)
-                {
-                    var aQPlr = plr.GetModPlayer<AQPlayer>();
-                    float distance = Vector2.Distance(plr.Center, npc.Center);
-                    int dreadsoulAttack = ModContent.ProjectileType<DreadsoulAttack>();
-                    if (aQPlr.dreadsoul && distance < 2000f && plr.ownedProjectileCounts[dreadsoulAttack] < 36)
-                    {
-                        var center = npc.Center;
-                        float rot = MathHelper.TwoPi / 6f;
-                        int damage = (int)(plr.GetWeaponDamage(plr.HeldItem) * 0.65f);
-                        float kb = plr.GetWeaponKnockback(plr.HeldItem, 1f) / 6f;
-                        float size = (float)Math.Sqrt(npc.width * npc.height);
-                        for (int j = 0; j < 6; j++)
-                        {
-                            var dir = new Vector2(0f, -1f).RotatedBy(rot * j);
-                            Projectile.NewProjectile(center + dir * (size + 2f), dir * 2f, dreadsoulAttack, damage, kb, i, 0f, npc.type);
-                        }
-                        plr.ownedProjectileCounts[dreadsoulAttack] += 6;
-                        break;
-                    }
-                }
-            }
-        }
-
         public override bool PreNPCLoot(NPC npc)
         {
             if (NPCLootLooper.CurrentNPCLootLoop != 0)
@@ -1347,7 +1365,7 @@ namespace AQMod
             return true;
         }
 
-        private void FeatherFlightAmuletCheck(byte p, NPC npc)
+        private void NPCLoot_FeatherFlightAmuletCheck(byte p, NPC npc)
         {
             if (Main.player[p].GetModPlayer<AQPlayer>().featherflightAmulet)
             {
@@ -1358,7 +1376,7 @@ namespace AQMod
                 }
             }
         }
-        private void BloodthirstPotionCheck(byte p, NPC npc)
+        private void NPCLoot_BloodthirstPotionCheck(byte p, NPC npc)
         {
             if (!Main.player[p].moonLeech && npc.Distance(Main.player[p].Center) < 2500f)
             {
@@ -1373,19 +1391,46 @@ namespace AQMod
                 }
             }
         }
+        private void NPCLoot_DreadsoulCheck(Player player, AQPlayer aQPlayer, NPC npc)
+        {
+            if (!aQPlayer.dreadsoul)
+            {
+                return;
+            }
+            for (int i = 0; i < 40; i++)
+            {
+                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 20, 50, 100));
+                d.velocity = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi).ToRotationVector2() * Main.rand.NextFloat(3f, 7f);
+            }
+            var center = npc.Center;
+            for (int i = 0; i < 4; i++)
+            {
+                float rot = MathHelper.PiOver2 * i;
+                rot += Main.rand.NextFloat(-0.2f, 0.2f);
+                var n = rot.ToRotationVector2();
+                int p = Projectile.NewProjectile(center + n * 10f, n * 7f, ModContent.ProjectileType<DreadsoulAttack>(), 10, 0f, player.whoAmI);
+                Main.projectile[p].rotation = rot;
+                for (int j = 0; j < 4; j++)
+                {
+                    var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), 0f, 0f, 0, new Color(200, 20, 50, 100));
+                    d.velocity = n.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(4f, 7.5f);
+                }
+            }
+        }
         public override void NPCLoot(NPC npc)
         {
-            if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type])
+            if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] || npc.lifeMax < 5 || npc.friendly)
                 return;
-            if (NPCLootLooper.CurrentNPCLootLoop == 0)
+            if (NPCLootLooper.CurrentNPCLootLoop == 0 && (Main.netMode == NetmodeID.Server || !Main.gameMenu))
             {
-                ManageDreadsoul(npc);
                 EncoreKill(npc);
-                byte p = Player.FindClosest(npc.position, npc.width, npc.height);
-                if (Main.player[p].active && !Main.player[p].dead)
+                byte plr = Player.FindClosest(npc.position, npc.width, npc.height);
+                if (Main.player[plr].active && !Main.player[plr].dead)
                 {
-                    FeatherFlightAmuletCheck(p, npc);
-                    BloodthirstPotionCheck(p, npc);
+                    var aQPlayer = Main.player[plr].GetModPlayer<AQPlayer>();
+                    NPCLoot_DreadsoulCheck(Main.player[plr], aQPlayer, npc);
+                    NPCLoot_FeatherFlightAmuletCheck(plr, npc);
+                    NPCLoot_BloodthirstPotionCheck(plr, npc);
                 }
             }
         }

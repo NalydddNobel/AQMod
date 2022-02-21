@@ -18,12 +18,12 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 # Accessories
 
 ItemName.Dreadsoul=Burning Heart
-ItemTooltip.Dreadsoul=Summon attacks summon phantom minions to temporarily fight for you
-ProjectileName.DreadsoulAttack=Minion Soul
+ItemTooltip.Dreadsoul=Defeated enemies summon hellish spirits which haunt nearby enemies\nHaunted enemies take extra damage from minions
+ProjectileName.DreadsoulAttack=Hellish Spirit
 
 ItemName.Breadsoul=Soul Eater
-ItemTooltip.Breadsoul=Enemies commonly drop souls which give massive life regeneration instead of hearts\n25% increased grab range
-ProjectileName.BreadsoulHealing=Enemy Soul
+ItemTooltip.Breadsoul=Defeated enemies summon dream spirits which boost your minion's damage
+ProjectileName.BreadsoulHealing=Dream Spirit
 
 ItemName.RustyKnife=KNIFE
 ItemTooltip.RustyKnife=Summons your friends to fight for you\nRevives you with 1 HP on fatal hits with a 5 minute cooldown\n'Why would you hold a knife from the sharp part?'
@@ -101,6 +101,10 @@ ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\nHas immense hori
 NPCName.Thunderbird=Thunderbird
 
 # Armor
+
+ItemName.FlowerCrown=Flower Crown
+ItemTooltip.FlowerCrown=Ocassionally summons damaging petals which blow in the wind
+ProjectileName.FlowerCrownProj=Flower Crown
 
 ItemName.ArachnotronVisor=Arachnotron Visor
 ItemTooltip.ArachnotronVisor=Increases melee damage, crit, and summon damage by 10%\nGives you night vision

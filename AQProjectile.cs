@@ -23,9 +23,12 @@ namespace AQMod
             public static bool[] IsGravestone { get; private set; }
             public static bool[] DamageReductionExtractor { get; private set; }
             public static List<int> HookBarbBlacklist { get; private set; }
+            public static List<int> IsAMinionProj { get; private set; }
 
             internal static void LoadSets()
             {
+                IsAMinionProj = new List<int>();
+
                 HookBarbBlacklist = new List<int>()
                 {
                     ProjectileID.AntiGravityHook,

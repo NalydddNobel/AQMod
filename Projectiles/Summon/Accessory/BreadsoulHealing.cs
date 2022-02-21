@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles
+namespace AQMod.Projectiles.Summon.Accessory
 {
     public class BreadsoulHealing : ModProjectile
     {

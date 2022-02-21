@@ -19,6 +19,7 @@ using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Summon;
+using AQMod.Projectiles.Summon.PassiveHelmets;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -63,10 +64,6 @@ namespace AQMod
         public bool silverSeal;
         public bool goldSeal;
         public bool dashAvailable;
-        public bool dartHead;
-        public int dartHeadType;
-        public int dartHeadDelay;
-        public int dartTrapHatTimer;
         public int extraFlightTime;
         public int thunderbirdLightningTimer;
         public bool dreadsoul;
@@ -127,6 +124,13 @@ namespace AQMod
         public bool shade;
         public bool undetectable;
 
+        public bool helmetFlowerCrown;
+        public bool helmetDartTrap; 
+        public int dartHeadType;
+        public int passiveSummonDelay;
+        public int passiveSummonTimer;
+
+        public bool setLightbulb;
         public bool arachnotronArms;
         public bool setArachnotron;
         public bool setArachnotronCooldown;
@@ -145,7 +149,6 @@ namespace AQMod
         public float holyEnemyDR;
         public int healEffectValueForSyncingTheThingOnTheServer;
 
-        public bool setLightbulb;
 
         public bool heartMoth;
         public bool anglerFish;
@@ -230,7 +233,7 @@ namespace AQMod
             temperature = 0;
             temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
             mothmanExplosionDelay = 0;
-            dartHeadDelay = 0;
+            passiveSummonDelay = 0;
             bloodthirstDelay = 0;
             healEffectValueForSyncingTheThingOnTheServer = 0;
             hookDebuffs = new List<BuffData>();
@@ -367,7 +370,12 @@ namespace AQMod
         }
         public override void ResetEffects()
         {
+            helmetFlowerCrown = false;
             setLightbulb = false;
+            arachnotronArms = false;
+            setArachnotron = false;
+            setArachnotronCooldown = false;
+
             blueSpheres = false;
             discountPercentage = 0.8f;
             hyperCrystal = false;
@@ -379,8 +387,6 @@ namespace AQMod
             extraFlightTime = 0;
             dreadsoul = false;
             breadsoul = false;
-            arachnotronArms = false;
-            setArachnotron = false;
             omori = false;
             omoriEffect = false;
             omegaStarite = false;
@@ -440,9 +446,7 @@ namespace AQMod
                 bloodthirstDelay--;
             bossrushOld = bossrush;
             bossrush = false;
-            if (!dartHead)
-                dartTrapHatTimer = 240;
-            dartHead = false;
+            helmetDartTrap = false;
             if (thunderbirdLightningTimer > 0)
                 thunderbirdLightningTimer--;
             ResetEffects_HookBarbs();
@@ -517,7 +521,7 @@ namespace AQMod
             clone.celesteTorusZ = celesteTorusZ;
             clone.breadsoul = breadsoul;
             clone.dreadsoul = dreadsoul;
-            clone.dartHead = dartHead;
+            clone.helmetDartTrap = helmetDartTrap;
             clone.dartHeadType = dartHeadType;
             clone.arachnotronArms = arachnotronArms;
             clone.blueSpheres = blueSpheres;
@@ -936,20 +940,67 @@ namespace AQMod
                 player.wingTimeMax += extraFlightTime;
         }
 
-        private void UpdateDartTrapHat()
+        private void UpdatePassiveSummonHat_CheckTimer()
         {
-            if (player.velocity.Y == 0f)
-                dartTrapHatTimer--;
-            if (dartTrapHatTimer <= 0)
+            if (passiveSummonTimer == -1)
             {
-                dartTrapHatTimer = dartHeadDelay;
-                int damage = player.GetWeaponDamage(player.armor[0]);
-                var spawnPosition = player.gravDir == -1
-                    ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height)
-                    : player.position + new Vector2(player.width / 2f + 8f * player.direction, 0f);
-                int p = Projectile.NewProjectile(spawnPosition, new Vector2(10f, 0f) * player.direction, dartHeadType, damage, player.armor[0].knockBack * player.minionKB, player.whoAmI);
-                Main.projectile[p].hostile = false;
-                Main.projectile[p].friendly = true;
+                passiveSummonTimer = passiveSummonDelay;
+            }
+        }
+        private void UpdatePassiveSummonHat()
+        {
+            if (helmetDartTrap)
+            {
+                UpdatePassiveSummonHat_CheckTimer();
+                if (player.velocity.Y == 0f)
+                    passiveSummonTimer--;
+                if (passiveSummonTimer <= 0)
+                {
+                    passiveSummonTimer = passiveSummonDelay;
+                    int damage = player.GetWeaponDamage(player.armor[0]);
+                    var spawnPosition = player.gravDir == -1
+                        ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height)
+                        : player.position + new Vector2(player.width / 2f + 8f * player.direction, 0f);
+                    int p = Projectile.NewProjectile(spawnPosition, new Vector2(10f, 0f) * player.direction, dartHeadType, damage, player.armor[0].knockBack * player.minionKB, player.whoAmI);
+                    Main.projectile[p].hostile = false;
+                    Main.projectile[p].friendly = true;
+                    Main.projectile[p].trap = false;
+                }
+            }
+            else if (helmetFlowerCrown)
+            {
+                UpdatePassiveSummonHat_CheckTimer();
+                passiveSummonTimer--;
+                bool spawn;
+                if (passiveSummonTimer < 0)
+                {
+                    passiveSummonTimer = passiveSummonDelay;
+                    spawn = true;
+                }
+                else
+                {
+                    int chance = Math.Max(passiveSummonDelay - (int)(player.velocity.Length() * 4f), 10);
+                    spawn = Main.rand.NextBool(chance);
+                }
+                if (spawn)
+                {
+                    int damage = player.GetWeaponDamage(player.armor[0]);
+                    var spawnPosition = player.gravDir == -1
+                           ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height - 10)
+                           : player.position + new Vector2(player.width / 2f + 8f * player.direction, 10f);
+                    int w = Math.Max(player.width / 2 - 8, 4);
+                    spawnPosition.X += Main.rand.Next(-w, w);
+                    int p = Projectile.NewProjectile(spawnPosition, new Vector2(Main.windSpeed * 2f + player.velocity.X, Main.rand.NextFloat(-0.75f, 0.25f) + player.velocity.Y), ModContent.ProjectileType<FlowerCrownProj>(), damage, player.armor[0].knockBack * player.minionKB, player.whoAmI);
+                    Main.projectile[p].ai[1] += Main.rand.Next(-120, 10);
+                    Main.projectile[p].timeLeft += Main.rand.Next(-60, 60);
+                    Main.projectile[p].scale += Main.rand.NextFloat(-0.1f, 0.05f);
+                    Main.projectile[p].frame = Main.rand.Next(3);
+                    Main.projectile[p].rotation = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
+                }
+            }
+            else
+            {
+                passiveSummonTimer = -1;
             }
         }
         private void UpdateArachnotronPets()
@@ -1001,10 +1052,7 @@ namespace AQMod
                     }
                 }
             }
-            if (dartHead)
-            {
-                UpdateDartTrapHat();
-            }
+            UpdatePassiveSummonHat();
             if (arachnotronArms)
             {
                 UpdateArachnotronPets();
