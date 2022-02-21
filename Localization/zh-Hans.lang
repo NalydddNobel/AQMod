@@ -17,6 +17,14 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 
 # Accessories
 
+ItemName.Dreadsoul=燃烧的心
+ItemTooltip.Dreadsoul=还没想好
+ProjectileName.DreadsoulAttack=仆从之魂
+
+ItemName.Breadsoul=噬魂者
+ItemTooltip.Breadsoul=敌人通常会掉落给予大量生命回复的灵魂而非红心\n增加25%钩爪距离
+ProjectileName.BreadsoulHealing=敌人的灵魂
+
 ItemName.RustyKnife=刀刃
 ItemTooltip.RustyKnife=召唤你的朋友为你而战\n当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间\n'为什么你要拿着锋利的刀锋而不是刀把?'
 ProjectileName.FriendMinion=朋友
@@ -67,7 +75,7 @@ ItemTooltip.ShockCollar=增加5%上海\n在水中时增加10%暴击率
 ItemName.FidgetSpinner=永续仪
 ItemTooltip.FidgetSpinner=无法自动挥舞的物品的速度变慢, 但可以自动挥舞
 
-ItemName.DegenerationRing=堕落魔戒
+ItemName.DegenerationRing=阻燃戒指
 ItemTooltip.DegenerationRing=阻止大多数种类的燃烧
 
 ItemName.HeatedAmulet=灼炎护符
@@ -93,6 +101,19 @@ ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\n有着强大的�
 ItemName.Thunderbird=雷鸟
 
 # Armor
+
+ItemName.ArachnotronVisor=机械蜘蛛面具
+ItemTooltip.ArachnotronVisor=增加10%近战伤害、暴击率和召唤伤害\n使你获得夜视效果
+ItemName.ArachnotronRibcage=机械蜘蛛胸甲
+ItemTooltip.ArachnotronRibcage=增加10%近战攻速和召唤伤害\n降低5%所受伤害\n+1额外召唤栏\n使你获得致命的蜘蛛臂
+ItemName.ArachnotronRevvers=机械蜘蛛护胫
+ItemTooltip.ArachnotronRevvers=增加10%近战和召唤伤害\n+1额外召唤栏\n允许你飞速奔跑并对火块免疫
+ArmorSetBonus.Arachnotron=增加12%近战和召唤伤害\n+1额外召唤栏\n按下{0}键后会大幅度增加你的防御并获得一段冷却时间
+BuffName.PrimeTime=机械蜘蛛强化
+BuffDescription.PrimeTime=防御大幅度提升!
+BuffName.ArachnotronCooldown=机械蜘蛛冷却
+BuffDescription.ArachnotronCooldown=你现在无法使用机械蜘蛛套装的效果
+
 ItemName.CrabsonMask=巨蟹蛤面具
 
 ItemName.SteelPlatedChestplate=钢板胸甲
@@ -818,7 +839,6 @@ Common.KeyUnbound='按键未绑定'
 Common.KeyBound='{0}'键
 
 # Armor Set Bonuses
-Common.ArmorSetBonus_Arachnotron=真近战攻击造成暴击后使你的各项属性大幅度提升一小段时间\n当触发此效果时使你获得耐药性减益\n此效果仅在你没有耐药性减益时触发
 #
 # Config Names
 Common.ConfigName_AQConfigClient=客户端设置
@@ -980,14 +1000,6 @@ ItemName.BusinessCard=商务卡
 #
 # Other Accessories
 #
-
-ItemName.Breadsoul=幽冥之魂
-ItemTooltip.Breadsoul=增加25%钩爪距离\n使地牢幽魂变得友善\n敌人不再掉落红心, 而是掉落灵魂\n增加灵魂的掉落几率, 灵魂会为你回复大量生命值
-ProjectileName.BreadsoulHealing=幽冥之魂
-ItemName.Dreadsoul=惊惧之魂
-ItemTooltip.Dreadsoul=击杀敌人时使其释放六个追踪同种敌人的灵魂\n使地牢幽魂变得友善
-ProjectileName.DreadsoulAttack=惊惧之魂
-
 ItemName.Terraroot=地之根茎
 
 ItemName.Ultranium=超载晶体
@@ -1021,9 +1033,6 @@ ItemName.PotionofBossrushium=安可药水
 # Armor
 ItemName.HermitShell=蟹壳头盔
 ItemName.StriderPalms=长足护胫
-ItemName.ArachnotronRevvers=机械蜘蛛护胫
-ItemName.ArachnotronRibcage=机械蜘蛛胸甲
-ItemName.ArachnotronVisor=机械蜘蛛面具
 ItemName.DartTrapHat=飞镖帽
 ItemName.SuperDartTrapHat=超级飞镖帽
 ########
@@ -1223,9 +1232,6 @@ ItemTooltip.PotionofBossrushium=Boss被击败时会再次生成
 # Armor
 ItemTooltip.HermitShell=你的移动速度越低, 你的防御就越高
 ItemTooltip.StriderPalms=增加10%召唤伤害\n强化长足蟹钩的各项属性
-ItemTooltip.ArachnotronRevvers=允许你飞速奔跑并对火块免疫\n+1额外召唤栏
-ItemTooltip.ArachnotronRibcage=给你能够对敌人造成伤害的蜘蛛臂\n增加10%近战攻击速度和5%伤害减免\n+1额外召唤栏
-ItemTooltip.ArachnotronVisor=增加5%近战暴击率和10%召唤伤害\n提供夜视效果
 ItemTooltip.DartTrapHat=当你站在地面上时发射毒镖\n增加5%召唤伤害
 ItemTooltip.SuperDartTrapHat=当你站在地面上时发射毒镖\n增加10%召唤伤害\n+2额外召唤栏
 ########
@@ -1313,8 +1319,6 @@ BuffName.Ultima=最终之力
 BuffDescription.Ultima=最终之剑祝福着你
 BuffName.SpectreHealing=幽魂之愈
 BuffDescription.SpectreHealing=你正快速的恢复生命
-BuffName.PrimeTime=黄金时间
-BuffDescription.PrimeTime=大幅度增加伤害减免且暴击率翻倍
 BuffName.Opposing=对立
 BuffDescription.Opposing=使某些敌人有几率掉落与其主题相反的物品
 
