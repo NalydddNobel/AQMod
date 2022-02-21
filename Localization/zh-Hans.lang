@@ -18,12 +18,12 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 # Accessories
 
 ItemName.Dreadsoul=燃烧的心
-ItemTooltip.Dreadsoul=还没想好
-ProjectileName.DreadsoulAttack=仆从之魂
+ItemTooltip.Dreadsoul=击杀敌人时会召唤地狱之灵缠扰附近的敌人\n仆从会对被地狱之灵缠扰的敌人造成额外伤害
+ProjectileName.DreadsoulAttack=地狱之灵
 
 ItemName.Breadsoul=噬魂者
-ItemTooltip.Breadsoul=敌人通常会掉落给予大量生命回复的灵魂而非红心\n增加25%钩爪距离
-ProjectileName.BreadsoulHealing=敌人的灵魂
+ItemTooltip.Breadsoul=击杀敌人时会召唤增加你召唤伤害的梦境之灵
+ProjectileName.BreadsoulHealing=梦境之灵
 
 ItemName.RustyKnife=刀刃
 ItemTooltip.RustyKnife=召唤你的朋友为你而战\n当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间\n'为什么你要拿着锋利的刀锋而不是刀把?'
@@ -101,6 +101,10 @@ ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\n有着强大的�
 ItemName.Thunderbird=雷鸟
 
 # Armor
+
+ItemName.FlowerCrown=花冠
+ItemTooltip.FlowerCrown=偶尔召唤在风中飘动的伤害性花瓣
+ProjectileName.FlowerCrownProj=花冠
 
 ItemName.ArachnotronVisor=机械蜘蛛面具
 ItemTooltip.ArachnotronVisor=增加10%近战伤害、暴击率和召唤伤害\n使你获得夜视效果
@@ -268,19 +272,24 @@ ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段
 ProjectileName.UltimateSword=最终之剑
 
 # Pets
+ItemName.HeartLamp=心灯
+ItemTooltip.HeartLamp=召唤一只会增加你生命恢复速度并提供光照的心蛾
+BuffName.HeartMothBuff=心蛾
+BuffDescription.HeartMothBuff=增加你的生命恢复速度并提供光照
+
 ItemName.StariteinaBottle=瓶中星源
 ItemTooltip.StariteinaBottle=召唤一颗侏儒源星提供光照\n{$Mods.AQMod.Tooltips.SuspiciousLooking}
-BuffName.DwarfStaritePetBuff=侏儒源星
-BuffDescription.DwarfStaritePetBuff='你知道的越多'
+BuffName.DwarfStariteBuff=侏儒源星
+BuffDescription.DwarfStariteBuff='你知道的越多'
 ProjectileName.DwarfStaritePet=侏儒源星
 
 ItemName.DragonBall=龙珠
 ItemTooltip.DragonBall=召唤一颗迷你终末之星
-BuffName.OmegaStaritePetBuff=迷你终末之星
-BuffDescription.OmegaStaritePetBuff=你所能想象的最小的类太阳系
+BuffName.OmegaStariteBuff=迷你终末之星
+BuffDescription.OmegaStariteBuff=你所能想象的最小的类太阳系
 ProjectileName.OmegaStaritePet=终末之星
 
-ItemName.YuckyOrb=恶心的球
+ItemName.YuckyOrb=迷人诱饵
 ItemTooltip.YuckyOrb=召唤一只会提供光亮的宠物鮟鱇鱼
 BuffName.AnglerFish=鮟鱇鱼
 BuffDescription.AnglerFish=它被自己所发出的光明暗中吸引
@@ -1109,7 +1118,6 @@ ItemName.PlaceableCrimsonHeart=猩红之心 (可放置)
 ItemName.MonoxideHat=金乌之巢
 ItemName.FishyFins=可疑的鱼鳍
 ItemName.CelesitalEightBall=星界八号球
-ItemName.HeartLamp=心灯
 ###########
 # Weapons #
 ###########
@@ -1262,7 +1270,6 @@ ItemTooltip.GlimmeringStatue=在微光事件持续期间有很高几率吸引最
 # Other Placeables
 ItemTooltip.FishingCraftingStation=用于制作特殊的钓鱼物品
 ItemTooltip.GlobeItem='探索世界'
-ItemTooltip.HeartLamp=召唤一只会增加你生命恢复速度的心蛾
 ItemTooltip.MonoxideHat='因人们需求而变成一件装饰物品'
 ItemTooltip.CelesitalEightBall=右键使用以当做普通的8号球使用\n特殊文本取决于世界当前状态
 ###########
@@ -1311,8 +1318,6 @@ ItemTooltip.Floatstick=仅在潮湿情况下生效\n'我想你应该可以从名
 # Buffs
 BuffName.BlueFire=碧蓝之火
 BuffDescription.BlueFire=碧蓝之火灼烧着你的皮肤
-BuffName.HeartMoth=心蛾
-BuffDescription.HeartMoth=增加你的生命恢复速度并提供光照
 BuffName.Bossrush=安可
 BuffDescription.Bossrush=Boss被击败时会再次生成
 BuffName.Ultima=最终之力
@@ -1392,7 +1397,6 @@ ProjectileName.HyperCrystalExplosion=超载爆破
 
 # Pets
 ProjectileName.ATM=ATM
-ProjectileName.HeartMoth=心蛾
 
 # Fishing Bobbers
 ProjectileName.BeeRod=蜜蜂浮标
