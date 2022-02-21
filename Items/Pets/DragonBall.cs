@@ -19,7 +19,7 @@ namespace AQMod.Items.Pets
             item.rare = ItemRarityID.Pink;
             item.expert = true;
             item.shoot = ModContent.ProjectileType<Projectiles.Pets.OmegaStaritePet>();
-            item.buffType = ModContent.BuffType<Buffs.Pets.OmegaStaritePetBuff>();
+            item.buffType = ModContent.BuffType<Buffs.Pets.OmegaStariteBuff>();
         }
 
         public override Color? GetAlpha(Color lightColor) => new Color(250, 250, 250, 150);

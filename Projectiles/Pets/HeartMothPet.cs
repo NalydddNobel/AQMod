@@ -11,13 +11,15 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Pets
 {
-    public class HeartMoth : ModProjectile
+    public class HeartMothPet : ModProjectile
     {
         public override void SetStaticDefaults()
         {
             Main.projFrames[projectile.type] = 7;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.LightPet[projectile.type] = true;
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 7;
+            ProjectileID.Sets.TrailingMode[projectile.type] = 2;
         }
 
         public override void SetDefaults()
@@ -48,26 +50,18 @@ namespace AQMod.Projectiles.Pets
             float distance = (center - gotoPos).Length();
             if (distance < projectile.width * 2)
             {
-                if (projectile.rotation.Abs() < 0.1f)
-                {
-                    projectile.rotation = 0f;
-                }
-                else
-                {
-                    projectile.rotation = Utils.AngleLerp(projectile.rotation, 0f, 0.01f);
-                }
                 projectile.velocity *= 0.99f;
             }
             else if (distance < 2000f)
             {
-                projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(gotoPos - center) * 20f, 0.03f);
-                projectile.rotation = projectile.velocity.X * 0.1f;
+                projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(gotoPos - center) * Math.Max(Main.player[projectile.owner].velocity.Length() + 4f, 10f), 0.015f);
             }
             else
             {
                 projectile.Center = player.Center;
-                projectile.velocity *= 0.5f;
+                projectile.velocity *= 0.1f;
             }
+            projectile.rotation = projectile.velocity.X * 0.075f;
             projectile.frameCounter++;
             if (projectile.frame > 1 && projectile.frame < 4)
             {
@@ -95,30 +89,33 @@ namespace AQMod.Projectiles.Pets
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
+            lightColor = Color.White;
             var texture = Main.projectileTexture[projectile.type];
-            int frameHeight = texture.Height / Main.projFrames[projectile.type];
-            var frame = new Rectangle(0, frameHeight * projectile.frame, texture.Width, frameHeight - 2);
-            Vector2 center = projectile.Center;
+            var frame = texture.Frame(verticalFrames: Main.projFrames[projectile.type], frameY: projectile.frame);
+            var origin = frame.Size() / 2f;
+            var offset = new Vector2(projectile.width / 2f, projectile.height / 2f + projectile.gfxOffY) - Main.screenPosition;
             var effects = projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            if (AQConfigClient.c_EffectQuality >= 1f)
+            int trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
+            for (int i = 0; i < trailLength; i++)
             {
-                var spotlightTexture = AQTextures.Lights[LightTex.Spotlight20x20];
-                var spotlightOrig = spotlightTexture.Size() / 2f;
-                float scale = projectile.scale * 2f + (float)Math.Sin(Main.GlobalTime * 4f) * 0.1f;
-                var spotlightColor = LightColor() * (0.3f * scale);
-                spotlightColor.A = 0;
-                Main.spriteBatch.Draw(spotlightTexture, center - Main.screenPosition, null, spotlightColor * 0.1f, 0f, spotlightOrig, scale * 2f, SpriteEffects.None, 0f);
+                float progress = 1f / trailLength * i;
+                spriteBatch.Draw(texture, projectile.oldPos[i] + offset, frame, new Color(255, 255, 255, 0) * (1f - progress), projectile.rotation, origin, projectile.scale * (1f - progress), effects, 0f);
             }
-            Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, projectile.scale, effects, 0f);
-            if (AQConfigClient.c_EffectQuality >= 1f)
+            if (!AQMod.LowQ)
             {
-                var spotlightTexture = AQTextures.Lights[LightTex.Spotlight20x20];
-                var spotlightOrig = spotlightTexture.Size() / 2f;
-                float scale = projectile.scale * 2f + (float)Math.Sin(Main.GlobalTime * 4f) * 0.1f;
-                var spotlightColor = LightColor() * (0.3f * scale);
-                spotlightColor.A = 0;
-                Main.spriteBatch.Draw(spotlightTexture, center - Main.screenPosition, null, spotlightColor, 0f, spotlightOrig, scale, SpriteEffects.None, 0f);
+                var effectTexture = AQTextures.Lights[LightTex.Spotlight66x66];
+                var effectFrame = effectTexture.Frame();
+                var effectOrigin = effectFrame.Size() / 2f;
+                var spotlightColor = LightColor();
+                spriteBatch.Draw(effectTexture, projectile.position + offset, effectFrame, spotlightColor * AQUtils.Wave(Main.GlobalTime * 10f, 0.4f, 0.6f), 0f, effectOrigin, projectile.scale * 0.75f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(effectTexture, projectile.position + offset, effectFrame, spotlightColor * AQUtils.Wave(Main.GlobalTime * 10f, 0.02f, 0.06f), 0f, effectOrigin, projectile.scale * AQUtils.Wave(Main.GlobalTime, 1f, 1.1f), SpriteEffects.None, 0f);
+
+                Main.spriteBatch.Draw(texture, projectile.position + offset + new Vector2(2f, 0f), frame, new Color(100, 100, 100, 0), projectile.rotation, origin, projectile.scale, effects, 0f);
+                Main.spriteBatch.Draw(texture, projectile.position + offset + new Vector2(-2f, 0f), frame, new Color(100, 100, 100, 0), projectile.rotation, origin, projectile.scale, effects, 0f);
+                Main.spriteBatch.Draw(texture, projectile.position + offset + new Vector2(0, 2f), frame, new Color(100, 100, 100, 0), projectile.rotation, origin, projectile.scale, effects, 0f);
+                Main.spriteBatch.Draw(texture, projectile.position + offset + new Vector2(0f, -2f), frame, new Color(100, 100, 100, 0), projectile.rotation, origin, projectile.scale, effects, 0f);
             }
+            Main.spriteBatch.Draw(texture, projectile.position + offset, frame, lightColor, projectile.rotation, origin, projectile.scale, effects, 0f);
             return false;
         }
     }

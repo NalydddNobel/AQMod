@@ -202,12 +202,6 @@ namespace AQMod.NPCs
                         Item.NewItem(npc.getRect(), ModContent.ItemType<Breadsoul>());
                     break;
 
-                case NPCID.DiabolistRed:
-                case NPCID.DiabolistWhite:
-                    if (Main.rand.NextBool(30))
-                        Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
-                    break;
-
                 case NPCID.Golem:
                     {
                         if (Main.moonPhase == 0)

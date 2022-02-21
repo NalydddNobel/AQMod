@@ -19,7 +19,7 @@ namespace AQMod.Items.Pets
             item.value = Item.sellPrice(gold: 2);
             item.rare = AQItem.Rarities.OmegaStariteRare;
             item.shoot = ModContent.ProjectileType<Projectiles.Pets.DwarfStaritePet>();
-            item.buffType = ModContent.BuffType<Buffs.Pets.DwarfStaritePetBuff>();
+            item.buffType = ModContent.BuffType<Buffs.Pets.DwarfStariteBuff>();
         }
 
         public override Color? GetAlpha(Color lightColor) => new Color(250, 250, 250, 255);

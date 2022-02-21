@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Pets
 {
-    public class OmegaStaritePetBuff : ModBuff
+    public class OmegaStariteBuff : ModBuff
     {
         public override void SetDefaults()
         {

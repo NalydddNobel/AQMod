@@ -129,7 +129,7 @@ namespace AQMod.NPCs.Monsters
             Item.NewItem(npc.getRect(), ItemID.Ectoplasm, Main.rand.Next(3) + 1);
             if (Main.rand.NextBool(10))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<RedLicorice>());
-            if (Main.rand.NextBool(45))
+            if (Main.rand.NextBool(15))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Dreadsoul>());
         }
 

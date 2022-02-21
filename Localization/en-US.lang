@@ -272,19 +272,24 @@ ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInf
 ProjectileName.UltimateSword=Ultimate Sword
 
 # Pets
+ItemName.HeartLamp=Heart Lamp
+ItemTooltip.HeartLamp=Summons a heart moth which increases life regen and provides light
+BuffName.HeartMothBuff=Heart Moth
+BuffDescription.HeartMothBuff=Gives you increased life regen and emits light
+
 ItemName.StariteinaBottle=Starite in a Bottle
 ItemTooltip.StariteinaBottle=Summons a dwarf starite to provide light\n{$Mods.AQMod.Tooltips.SuspiciousLooking}
-BuffName.DwarfStaritePetBuff=Dwarf Starite
-BuffDescription.DwarfStaritePetBuff='The more you know'
+BuffName.DwarfStariteBuff=Dwarf Starite
+BuffDescription.DwarfStariteBuff='The more you know'
 ProjectileName.DwarfStaritePet=Dwarf Starite
 
 ItemName.DragonBall=Dragon Ball
 ItemTooltip.DragonBall=Summons an omega starite mini
-BuffName.OmegaStaritePetBuff=Omega Starite Mini
-BuffDescription.OmegaStaritePetBuff=The smallest solar system imaginable
+BuffName.OmegaStariteBuff=Omega Starite Mini
+BuffDescription.OmegaStariteBuff=The smallest solar system imaginable
 ProjectileName.OmegaStaritePet=Omega Starite
 
-ItemName.YuckyOrb=Yucky Orb
+ItemName.YuckyOrb=Charming Lure
 ItemTooltip.YuckyOrb=Summons a pet angler fish to provide light
 BuffName.AnglerFish=Angler Fish
 BuffDescription.AnglerFish=Is secretly attracted to its own light
@@ -1113,7 +1118,6 @@ ItemName.PlaceableCrimsonHeart=Crimson Heart (Placeable)
 ItemName.MonoxideHat=Monoxide Hat
 ItemName.FishyFins=Fishy Fins
 ItemName.CelesitalEightBall=Celestial 8-Ball
-ItemName.HeartLamp=Heart Lamp
 ###########
 # Weapons #
 ###########
@@ -1266,7 +1270,6 @@ ItemTooltip.GlimmeringStatue=Has a very high chance to attract the Ultimate Swor
 # Other Placeables
 ItemTooltip.FishingCraftingStation=Used to craft special fishing items
 ItemTooltip.GlobeItem='Explore the world'
-ItemTooltip.HeartLamp=Summons a heart moth which increases life regen
 ItemTooltip.MonoxideHat='Became a vanity item due to popular demand'
 ItemTooltip.CelesitalEightBall=Right click to use as a normal 8-Ball\nHas special text depending on the world state
 ###########
@@ -1315,8 +1318,6 @@ ItemTooltip.Floatstick=Works when wet\n'I think you can guess what this does fro
 # Buffs
 BuffName.BlueFire=Blue Fire
 BuffDescription.BlueFire=The immense heat burns off your skin
-BuffName.HeartMoth=Heart Moth
-BuffDescription.HeartMoth=Gives you increased life regen and emits light
 BuffName.Bossrush=Encore
 BuffDescription.Bossrush=Bosses respawn when defeated
 BuffName.Ultima=Ultima
@@ -1396,7 +1397,6 @@ ProjectileName.HyperCrystalExplosion=Hyper Crystal
 
 # Pets
 ProjectileName.ATM=ATM
-ProjectileName.HeartMoth=Heart Moth
 
 # Fishing Bobbers
 ProjectileName.BeeRod=Bee Bobber
