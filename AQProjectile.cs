@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Content.Players;
+using AQMod.Dusts;
 using AQMod.Items.Tools.Fishing.Bait;
 using AQMod.NPCs;
 using AQMod.Projectiles.GrapplingHooks;
@@ -150,6 +151,12 @@ namespace AQMod
             public const int PetAI = 26;
         }
 
+        public static class DamageBuffEffects
+        {
+            public const byte None = 0;
+            public const byte MinionBuff = 1;
+        }
+
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
 
@@ -169,6 +176,32 @@ namespace AQMod
         public bool canFreeze;
         public bool IsBarb { get; private set; }
 
+        public byte dmgBuffFX;
+        public float dmgBuff;
+        public int dmgBuffTime = 0;
+        public int oldDamage;
+
+        public static void ApplyDMGBuff(Projectile projectile, float dmgBuff, int dmgBuffTime, byte type = 0, bool alwaysOverride = false)
+        {
+            var aQProjectile = projectile.GetGlobalProjectile<AQProjectile>();
+            if (!alwaysOverride && dmgBuffTime < aQProjectile.dmgBuffTime)
+            {
+                return;
+            }
+            if (aQProjectile.dmgBuffTime > 0)
+            {
+                projectile.damage = aQProjectile.oldDamage;
+            }
+            else
+            {
+                aQProjectile.oldDamage = projectile.damage;
+            }
+            projectile.damage = (int)(projectile.damage * (1f + aQProjectile.dmgBuff));
+            aQProjectile.dmgBuff = dmgBuff;
+            aQProjectile.dmgBuffTime = dmgBuffTime;
+            aQProjectile.dmgBuffFX = type;
+        }
+
         public bool BarbCheck(Projectile projectile)
         {
             return IsBarb = projectile.aiStyle == 7 && projectile.friendly && !projectile.hostile && !Sets.HookBarbBlacklist.Contains(projectile.type);
@@ -187,6 +220,7 @@ namespace AQMod
                 temperatureRate = 8;
             }
             temperatureUpdate = 0;
+            oldDamage = projectile.damage;
         }
 
         public void SetupTemperatureStats(sbyte temperature, byte temperatureRate = 8)
@@ -209,70 +243,28 @@ namespace AQMod
             windStruck = true;
         }
 
-        private void FishingPopperCheck(Projectile projectile)
+        private void Update_ResetEffects()
         {
-            NPCLoader.blockLoot.Add(ItemID.Cascade);
-            var fishing = Main.player[projectile.owner].GetModPlayer<PlayerFishing>();
-            if (projectile.ai[1] > 0f && projectile.localAI[1] >= 0f && fishing.popperType > 0)
-            {
-                ((PopperBaitItem)ItemLoader.GetItem(fishing.popperType)).OnCatchEffect(Main.player[projectile.owner], fishing, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
-            }
-            else if (projectile.ai[0] <= 0f && projectile.wet && projectile.rotation != 0f && fishing.popperType > 0)
-            {
-                ((PopperBaitItem)ItemLoader.GetItem(fishing.popperType)).OnEnterWater(Main.player[projectile.owner], fishing, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
-            }
+            windStruckOld = windStruck;
+            windStruck = false;
         }
-        private void YoyoStringGlow(Projectile projectile)
+        private void Update_Temperature()
         {
-            AQGraphics.SetCullPadding(padding: 200);
-            if (AQGraphics.Cull_WorldPosition(projectile.getRect()))
+            temperatureUpdate--;
+            if (temperatureUpdate == 0)
             {
-                var center = projectile.Center;
-                var playerCenter = Main.player[projectile.owner].MountedCenter;
-                playerCenter.Y += Main.player[projectile.owner].gfxOffY;
-                float differenceX = center.X - playerCenter.X;
-                float differenceY = center.Y - playerCenter.Y;
-
-                float length = (float)Math.Sqrt(differenceX * differenceX + differenceY * differenceY);
-                float add = Math.Min(length / 32f, 4f);
-                var toYoyo = Vector2.Normalize(center - playerCenter);
-                for (float l = 0f; l < length; l += add)
+                temperatureUpdate = temperatureRate;
+                if (canHeat && temperature < 0)
                 {
-                    int stringColor = Main.player[projectile.owner].stringColor;
-                    Color lightColor = WorldGen.paintColor(stringColor);
-                    if (lightColor.R < 75)
-                    {
-                        lightColor.R = 75;
-                    }
-                    if (lightColor.G < 75)
-                    {
-                        lightColor.G = 75;
-                    }
-                    if (lightColor.B < 75)
-                    {
-                        lightColor.B = 75;
-                    }
-                    switch (stringColor)
-                    {
-                        case 13:
-                            lightColor = new Color(20, 20, 20);
-                            break;
-                        case 0:
-                        case 14:
-                            lightColor = new Color(200, 200, 200);
-                            break;
-                        case 28:
-                            lightColor = new Color(163, 116, 91);
-                            break;
-                        case 27:
-                            lightColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
-                            break;
-                    }
-                    Lighting.AddLight(playerCenter + toYoyo * l, lightColor.ToVector3() * 0.6f);
+                    temperature++;
+                }
+                else if (canFreeze && temperature > 0)
+                {
+                    temperature--;
                 }
             }
         }
-        private void BarbDamageCheck(Projectile projectile, AQPlayer aQPlayer)
+        private void Update_GrapplingHookChecks_BarbDamageCheck(Projectile projectile, AQPlayer aQPlayer)
         {
             var rect = projectile.getRect();
             var player = Main.player[projectile.owner];
@@ -313,7 +305,7 @@ namespace AQMod
                 }
             }
         }
-        private void UpdateMeathookHook(Projectile projectile, AQPlayer aQPlayer)
+        private void Update_GrapplingHookChecks_MeathookHook(Projectile projectile, AQPlayer aQPlayer)
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
@@ -364,25 +356,8 @@ namespace AQMod
                 }
             }
         }
-        public override bool PreAI(Projectile projectile)
+        private void Update_GrapplingHookChecks(Projectile projectile)
         {
-            windStruckOld = windStruck;
-            windStruck = false;
-
-            temperatureUpdate--;
-            if (temperatureUpdate == 0)
-            {
-                temperatureUpdate = temperatureRate;
-                if (canHeat && temperature < 0)
-                {
-                    temperature++;
-                }
-                else if (canFreeze && temperature > 0)
-                {
-                    temperature--;
-                }
-            }
-
             if (projectile.aiStyle == AIStyles.GrapplingHookAI)
             {
                 var aQPlayer = Main.player[projectile.owner].GetModPlayer<AQPlayer>();
@@ -393,23 +368,129 @@ namespace AQMod
                         aQPlayer.hasMeathookNPC = true;
                         projectile.velocity = Vector2.Zero;
                         projectile.ai[0] = 1f;
-                        UpdateMeathookHook(projectile, aQPlayer);
+                        Update_GrapplingHookChecks_MeathookHook(projectile, aQPlayer);
                     }
                     else if ((aQPlayer.hookDamage > 0 || aQPlayer.hookDebuffs.Count > 0 || aQPlayer.meathook) && (int)projectile.ai[0] != 2)
                     {
-                        BarbDamageCheck(projectile, aQPlayer);
+                        Update_GrapplingHookChecks_BarbDamageCheck(projectile, aQPlayer);
                     }
                 }
             }
+        }
+        private void Update_FishingPopperCheck(Projectile projectile)
+        {
             if (projectile.aiStyle == 61)
             {
-                FishingPopperCheck(projectile);
+                var fishing = Main.player[projectile.owner].GetModPlayer<PlayerFishing>();
+                if (projectile.ai[1] > 0f && projectile.localAI[1] >= 0f && fishing.popperType > 0)
+                {
+                    ((PopperBaitItem)ItemLoader.GetItem(fishing.popperType)).OnCatchEffect(Main.player[projectile.owner], fishing, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
+                }
+                else if (projectile.ai[0] <= 0f && projectile.wet && projectile.rotation != 0f && fishing.popperType > 0)
+                {
+                    ((PopperBaitItem)ItemLoader.GetItem(fishing.popperType)).OnEnterWater(Main.player[projectile.owner], fishing, projectile, Framing.GetTileSafely(projectile.Center.ToTileCoordinates()));
+                }
             }
-            if (projectile.aiStyle == 99 && Main.netMode != NetmodeID.Server &&
-                Main.player[projectile.owner].GetModPlayer<AQPlayer>().glowString)
+        }
+        private void Update_GlowStringCheck(Projectile projectile)
+        {
+            if (projectile.aiStyle != 99 || Main.netMode == NetmodeID.Server ||
+                !Main.player[projectile.owner].GetModPlayer<AQPlayer>().glowString)
             {
-                YoyoStringGlow(projectile);
+                return;
             }
+            AQGraphics.SetCullPadding(padding: 200);
+            if (AQGraphics.Cull_WorldPosition(projectile.getRect()))
+            {
+                var center = projectile.Center;
+                var playerCenter = Main.player[projectile.owner].MountedCenter;
+                playerCenter.Y += Main.player[projectile.owner].gfxOffY;
+                float differenceX = center.X - playerCenter.X;
+                float differenceY = center.Y - playerCenter.Y;
+
+                float length = (float)Math.Sqrt(differenceX * differenceX + differenceY * differenceY);
+                float add = Math.Min(length / 32f, 4f);
+                var toYoyo = Vector2.Normalize(center - playerCenter);
+                for (float l = 0f; l < length; l += add)
+                {
+                    int stringColor = Main.player[projectile.owner].stringColor;
+                    Color lightColor = WorldGen.paintColor(stringColor);
+                    if (lightColor.R < 75)
+                    {
+                        lightColor.R = 75;
+                    }
+                    if (lightColor.G < 75)
+                    {
+                        lightColor.G = 75;
+                    }
+                    if (lightColor.B < 75)
+                    {
+                        lightColor.B = 75;
+                    }
+                    switch (stringColor)
+                    {
+                        case 13:
+                            lightColor = new Color(20, 20, 20);
+                            break;
+                        case 0:
+                        case 14:
+                            lightColor = new Color(200, 200, 200);
+                            break;
+                        case 28:
+                            lightColor = new Color(163, 116, 91);
+                            break;
+                        case 27:
+                            lightColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB);
+                            break;
+                    }
+                    Lighting.AddLight(playerCenter + toYoyo * l, lightColor.ToVector3() * 0.6f);
+                }
+            }
+        }
+        private void Update_DamageBuffsCheck(Projectile projectile)
+        {
+            if (dmgBuffTime > 0)
+            {
+                dmgBuffTime--;
+                if (dmgBuffTime <= 0)
+                {
+                    projectile.damage = oldDamage;
+                    dmgBuff = 0f;
+                    dmgBuffTime = 0;
+                    dmgBuffFX = DamageBuffEffects.None;
+                }
+                switch (dmgBuffFX)
+                {
+                    case DamageBuffEffects.MinionBuff:
+                        {
+                            if (Main.GameUpdateCount % 12 == 0 || Main.rand.NextBool(12))
+                            {
+                                Vector2 center = projectile.Center + new Vector2(0f, projectile.height * -0.1f);
+                                var direction = Main.rand.NextVector2CircularEdge(projectile.width * 0.6f, projectile.height * 0.6f);
+                                float distance = 0.3f + Main.rand.NextFloat() * 0.5f;
+                                var velocity = new Vector2(0f, -Main.rand.NextFloat() * 0.3f - 1.5f);
+
+                                var d = Dust.NewDustPerfect(projectile.Center + direction * distance, ModContent.DustType<SilverFlameClone>(), velocity, 0, new Color(125, 125, 255, 100));
+                                d.scale = 0.5f;
+                                d.fadeIn = 1.1f;
+                                d.noGravity = true;
+                                d.noLight = true;
+                                d.alpha = 0;
+                            }
+                            Lighting.AddLight(projectile.Center, new Vector3(0.4f, 0.4f, 0.75f));
+                        }
+                        break;
+                }
+            }
+        }
+        public override bool PreAI(Projectile projectile)
+        {
+            Update_ResetEffects();
+            Update_Temperature();
+            Update_GrapplingHookChecks(projectile);
+            Update_FishingPopperCheck(projectile);
+            Update_GlowStringCheck(projectile);
+            Update_DamageBuffsCheck(projectile);
             return true;
         }
 

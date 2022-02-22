@@ -17,6 +17,9 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 
 # Accessories
 
+ItemName.SpiritualRelic=Spiritual Relic
+ItemTooltip.SpiritualRelic={$Mods.AQMod.Tooltips.IncreasedMinions}\nDefeated enemies create minion damage boosting spirits\nEnemies haunted by spirits take extra damage from minions
+
 ItemName.Dreadsoul=Burning Heart
 ItemTooltip.Dreadsoul=Defeated enemies summon hellish spirits which haunt nearby enemies\nHaunted enemies take extra damage from minions
 ProjectileName.DreadsoulAttack=Hellish Spirit
@@ -512,6 +515,7 @@ ItemTooltip.CrabClock='What time is it? Crabby time.'
 ItemName.OceanRavineWall=Crab Crevice Wall
 
 # Tooltips
+Tooltips.IncreasedMinions=Increases your max number of minions
 Tooltips.SuspiciousLooking='I know what you're thinking...'
 Tooltips.Nalyddd='Smells like roses'
 Tooltips.HookBarbBlacklist=Does not get affected by hook barb upgrades
@@ -792,6 +796,8 @@ WorldGenOptions.generateOceanRavinesTooltip=Whether or not to generate the crab 
 
 WorldGenOptions.fixBabyPools=Fix Baby Pools
 WorldGenOptions.fixBabyPoolsTooltip=Removes those 1 block tall pools of water which generate on the surface.\nMay cause minor issues with structures that generate on the surface with water.
+
+WorldGen.FinalSteps=Generating things after Everything Else...
 
 WorldGen.CrabCrevice=Aequus: Generating Crab Crevice
 WorldGen.CrabCrevice.Sand=Aequus: Generating Crab Crevice... Sand Circle

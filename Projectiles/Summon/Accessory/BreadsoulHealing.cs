@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
+using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,133 +12,169 @@ namespace AQMod.Projectiles.Summon.Accessory
 {
     public class BreadsoulHealing : ModProjectile
     {
-        public static void SpawnCluster(Player owner, Vector2 position, float size, int amount, int hpHeal = 30)
+        public override void SetStaticDefaults()
         {
-            int buffTime = hpHeal * 5 / amount;
-            var normal = Vector2.Normalize(position - owner.Center);
-            int type = ModContent.ProjectileType<BreadsoulHealing>();
-            float minSpeed = size * 0.05f;
-            float maxSpeed = size * 0.1f;
-            float off = size * 0.75f;
-            int dustAmount = (int)(12 * AQConfigClient.c_EffectQuality);
-            float dRot = MathHelper.TwoPi / dustAmount;
-            for (int j = 0; j < dustAmount * 3; j++)
-            {
-                int d = Dust.NewDust(position, 2, 2, 180);
-                Main.dust[d].velocity = new Vector2(10f, 0f).RotatedBy(MathHelper.TwoPi / (dustAmount * 3) * j);
-                Main.dust[d].scale = 1.65f;
-                Main.dust[d].alpha = 180;
-                Main.dust[d].noGravity = true;
-            }
-            for (int i = 0; i < amount; i++)
-            {
-                var normal2 = normal.RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver2, MathHelper.PiOver2));
-                var heartPos = position + normal2 * off;
-                int p = Projectile.NewProjectile(heartPos, normal2 * Main.rand.NextFloat(minSpeed, maxSpeed), type, -1, 0f, owner.whoAmI, 0f, buffTime);
-                Main.projectile[p].timeLeft += Main.rand.Next(-40, 40);
-                for (int j = 0; j < dustAmount; j++)
-                {
-                    int d = Dust.NewDust(heartPos, 2, 2, 180);
-                    Main.dust[d].velocity = new Vector2(10f, 0f).RotatedBy(dRot * j);
-                    Main.dust[d].scale = 1.25f;
-                    Main.dust[d].alpha = 20;
-                    Main.dust[d].noGravity = true;
-                }
-            }
+            ProjectileID.Sets.TrailCacheLength[projectile.type] = 14;
+            ProjectileID.Sets.TrailingMode[projectile.type] = 2;
         }
 
         public override void SetDefaults()
         {
-            projectile.width = 16;
-            projectile.height = 16;
+            projectile.width = 14;
+            projectile.height = 14;
             projectile.friendly = true;
-            projectile.netImportant = true;
-            projectile.timeLeft = 300;
-            projectile.scale = 1f;
+            projectile.aiStyle = -1;
+            projectile.penetrate = 2;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 100;
+            projectile.timeLeft = 360;
+            projectile.extraUpdates = 1;
         }
 
-        public override Color? GetAlpha(Color lightColor)
+        public override bool? CanCutTiles()
         {
-            return new Color(200, 200, 200, 0);
+            return false;
         }
 
-        // ai[1] is buff time
         public override void AI()
         {
-            int nearestPlayer = Player.FindClosest(projectile.position, projectile.width, projectile.height);
-            var player = Main.player[nearestPlayer];
-            if (Main.player[nearestPlayer].dead || !Main.player[nearestPlayer].active)
+            if ((int)projectile.ai[0] >= 100)
             {
-                if (projectile.timeLeft > 30)
-                    projectile.timeLeft = 30;
                 return;
             }
-            var aQPlayer = player.GetModPlayer<AQPlayer>();
-            var difference = player.Center - projectile.Center;
-            float distance = difference.Length();
-            if (distance < player.width * aQPlayer.grabReachMult)
+            int target = -1;
+            float closestDist = 1200f;
+            var center = projectile.Center;
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                HealPlayer(p: nearestPlayer);
+                if (Main.projectile[i].minion && Main.projectile[i].minionSlots > 0f)
+                {
+                    var distance = Vector2.Distance(center, Main.projectile[i].Center);
+                    if (Main.projectile[i].owner != projectile.owner) // Minions which are not the owner of this proj need to be x2 closer compared to the owner's minions in order to get a buff!
+                    {
+                        distance *= 2f;
+                    }
+                    if (distance < closestDist)
+                    {
+                        target = i;
+                        closestDist = distance;
+                    }
+                }
             }
-            else if (distance < 180f * aQPlayer.grabReachMult)
+            if (target > -1)
             {
-                if (projectile.timeLeft < 30)
-                    projectile.timeLeft = 30;
-                projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(difference) * 24f, 0.125f);
-                int d2 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 180);
-                Main.dust[d2].velocity *= 0.1f;
-                Main.dust[d2].velocity += -projectile.velocity * 0.35f;
-                Main.dust[d2].scale = Main.rand.NextFloat(1.45f, 1.75f);
-                Main.dust[d2].alpha = Main.rand.Next(10);
-                Main.dust[d2].noGravity = true;
-                d2 = Dust.NewDust(projectile.position + projectile.Size / 4f, projectile.width / 2, projectile.height / 2, 180);
-                Main.dust[d2].velocity *= 0.1f;
-                Main.dust[d2].velocity += -projectile.velocity * 0.1f;
-                Main.dust[d2].scale = Main.rand.NextFloat(0.9f, 1.1f);
-                Main.dust[d2].alpha = Main.rand.Next(50, 125);
-                Main.dust[d2].noGravity = true;
+                projectile.ai[1]++;
+                var difference = Main.projectile[target].Center - center;
+                if (difference.Length() < 200f)
+                {
+                    projectile.tileCollide = false;
+                }
+                if (difference.Length() < 20f)
+                {
+                    OnHitAnything(projectile.velocity);
+                    AQProjectile.ApplyDMGBuff(Main.projectile[target], 0.25f, 180, AQProjectile.DamageBuffEffects.MinionBuff, alwaysOverride: false);
+                    return;
+                }
+                float amount = 0.002f;
+                if (projectile.ai[1] > 15f)
+                {
+                    amount = 0.15f;
+                }
+                projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(difference) * 15f, amount);
             }
             else
             {
-                projectile.velocity *= 0.96f;
+                projectile.tileCollide = true;
+                if (projectile.ai[1] > MathHelper.TwoPi)
+                {
+                    projectile.ai[1] += 0.12f;
+                    if (projectile.ai[1] > MathHelper.TwoPi * 2f)
+                    {
+                        projectile.ai[1] = MathHelper.TwoPi;
+                    }
+                }
+                else
+                {
+                    projectile.ai[1] += 0.3f;
+                }
+                projectile.velocity = projectile.velocity.RotatedBy(Math.Sin(projectile.ai[1]) * 0.01f);
             }
-            if (Main.rand.NextBool(7))
+            projectile.rotation = projectile.velocity.ToRotation();
+            if (Main.rand.NextBool(5))
             {
-                int d = Dust.NewDust(projectile.position, projectile.width, projectile.height, 180);
-                Main.dust[d].velocity *= 0.1f;
-                Main.dust[d].velocity += -projectile.velocity * 0.1f;
-                Main.dust[d].scale = Main.rand.NextFloat(0.9f, 1.1f);
-                Main.dust[d].alpha = Main.rand.Next(50, 125);
-                Main.dust[d].noGravity = true;
+                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 200, 255, 10));
+                d.velocity = projectile.velocity * 0.2f;
             }
         }
 
-        private void HealPlayer(int p)
+        private void OnHitAnything(Vector2 velocity)
         {
-            var player = Main.player[p];
-            Main.PlaySound(SoundID.DD2_DarkMageCastHeal, player.Center);
-            player.AddBuff(ModContent.BuffType<Buffs.SpectreHealing>(), (int)projectile.ai[1]);
-            projectile.Kill();
+            velocity = Vector2.Normalize(velocity);
+            for (int i = 0; i < 18; i++)
+            {
+                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 200, 255, 10));
+                d.velocity = -velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(2f, 5f);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoSparkleDust>(), 0f, 0f, 0, new Color(200, 200, 255, 10));
+                d.velocity = -velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(3f, 6f);
+            }
+            projectile.damage = 0;
+            projectile.tileCollide = false;
+            projectile.ai[0] = 100f;
+            projectile.velocity = Vector2.Zero;
+            if (projectile.timeLeft > 15)
+            {
+                projectile.timeLeft = 15;
+            }
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            OnHitAnything(projectile.velocity);
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            OnHitAnything(oldVelocity);
+            return false;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            if (AQConfigClient.c_EffectQuality <= 1f)
-                return true;
+            lightColor = Color.White;
             var texture = Main.projectileTexture[projectile.type];
-            var origin = texture.Size() / 2f;
-            var clr = projectile.GetAlpha(lightColor);
-            var pos = projectile.Center;
-            Main.spriteBatch.Draw(texture, pos - Main.screenPosition, null, clr, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
-            var spotlight = AQTextures.Lights[LightTex.Spotlight30x30];
-            float lightScaleMult = 1f - projectile.velocity.Length() / 8f;
-            if (lightScaleMult < 0.05f)
+            var frame = texture.Frame(verticalFrames: Main.projFrames[projectile.type], frameY: projectile.frame);
+            var origin = frame.Size() / 2f;
+            var offset = new Vector2(projectile.width / 2f, projectile.height / 2f + projectile.gfxOffY) - Main.screenPosition;
+
+            int start = 0;
+            if (projectile.timeLeft < 15)
             {
-                return false;
+                start = 15 - projectile.timeLeft;
             }
-            lightScaleMult += (float)Math.Sin(projectile.timeLeft) * 0.04f;
-            Main.spriteBatch.Draw(texture, pos - Main.screenPosition, null, clr, projectile.rotation, origin, new Vector2(projectile.scale * 0.3f, projectile.scale) * lightScaleMult, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, pos - Main.screenPosition, null, clr, projectile.rotation, origin, new Vector2(projectile.scale, projectile.scale * 0.3f) * lightScaleMult, SpriteEffects.None, 0f);
+            int trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
+            if (!AQMod.LowQ)
+            {
+                var effectTexture = AQTextures.Lights[LightTex.Spotlight66x66];
+                var effectFrame = effectTexture.Frame();
+                var effectOrigin = effectFrame.Size() / 2f;
+                for (int i = start; i < trailLength; i++)
+                {
+                    float progress = 1f / trailLength * i;
+                    spriteBatch.Draw(effectTexture, projectile.oldPos[i] + offset, effectFrame, new Color(30, 35, 60, 255) * (1f - progress) * 0.65f, 0f, effectOrigin, projectile.scale * (1f - progress) * 0.6f, SpriteEffects.None, 0f);
+                }
+                if (projectile.timeLeft >= 15)
+                    spriteBatch.Draw(effectTexture, projectile.position + offset, effectFrame, new Color(50, 60, 100, 255), 0f, effectOrigin, projectile.scale, SpriteEffects.None, 0f);
+            }
+            for (int i = start; i < trailLength; i++)
+            {
+                float progress = 1f / trailLength * i;
+                spriteBatch.Draw(texture, projectile.oldPos[i] + offset, frame, new Color(255, 255, 255, 0) * (1f - progress), projectile.rotation, origin, projectile.scale * (1f - progress), SpriteEffects.None, 0f);
+            }
+            if (projectile.timeLeft >= 15)
+                spriteBatch.Draw(texture, projectile.position + offset, frame, lightColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
     }

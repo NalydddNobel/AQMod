@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.FishingSeals
+namespace AQMod.Items.Accessories.Fishing
 {
     public class SilverSeal : ModItem
     {

@@ -112,6 +112,7 @@ namespace AQMod.Common.WorldGeneration
                     i += 450;
                 }
             }
+            progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.FinalSteps");
         }
 
         public static bool TryPlaceNobleGroup(int x, int y, int style, int size)

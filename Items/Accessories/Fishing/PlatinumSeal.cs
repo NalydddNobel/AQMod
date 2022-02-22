@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.FishingSeals
+namespace AQMod.Items.Accessories.Fishing
 {
     public class PlatinumSeal : ModItem
     {
@@ -30,7 +30,7 @@ namespace AQMod.Items.Accessories.FishingSeals
             r.AddIngredient(ModContent.ItemType<CopperSeal>());
             r.AddIngredient(ModContent.ItemType<SilverSeal>());
             r.AddIngredient(ModContent.ItemType<GoldSeal>());
-            r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
+            r.AddIngredient(ModContent.ItemType<AquaticEnergy>());
             r.AddTile(TileID.TinkerersWorkbench);
             r.SetResult(this);
             r.AddRecipe();

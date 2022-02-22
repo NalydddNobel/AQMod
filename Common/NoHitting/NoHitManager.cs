@@ -28,25 +28,16 @@ namespace AQMod.Common.NoHitting
             return new NoHitManager();
         }
 
-        public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
-        {
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
-                NetHelper.HitPlayer((byte)target.whoAmI);
-            }
-            CollapseNoHit(target.whoAmI);
-        }
-
         internal static void CollapseNoHit(int player)
         {
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active)
                 {
-                    var manager = Main.npc[i].GetGlobalNPC<NoHitManager>();
-                    if (!manager.dontHitPlayers)
+                    var noHit = Main.npc[i].GetGlobalNPC<NoHitManager>();
+                    if (!noHit.dontHitPlayers)
                     {
-                        manager.hitPlayer[player] = true;
+                        noHit.hitPlayer[player] = true;
                     }
                 }
             }

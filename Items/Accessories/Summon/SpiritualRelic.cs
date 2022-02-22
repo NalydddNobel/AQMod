@@ -6,14 +6,14 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories.Summon
 {
-    public class Breadsoul : ModItem
+    public class SpiritualRelic : ModItem
     {
         public override void SetDefaults()
         {
             item.width = 24;
             item.height = 24;
             item.accessory = true;
-            item.rare = ItemRarityID.Yellow;
+            item.rare = ItemRarityID.Cyan;
             item.value = Item.sellPrice(gold: 10);
         }
 
@@ -24,19 +24,20 @@ namespace AQMod.Items.Accessories.Summon
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.npcTypeNoAggro[NPCID.DungeonSpirit] = true;
-            player.npcTypeNoAggro[ModContent.NPCType<NPCs.Monsters.Heckto>()] = true;
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.grabReachMult += 0.25f;
+            aQPlayer.dreadsoul = true;
             aQPlayer.breadsoul = true;
+            player.maxMinions++;
         }
 
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.Ectoplasm, 15);
-            r.AddIngredient(ModContent.ItemType<AquaticEnergy>(), 5);
-            r.AddTile(TileID.MythrilAnvil);
+            r.AddIngredient(ItemID.PygmyNecklace);
+            r.AddIngredient(ModContent.ItemType<Breadsoul>());
+            r.AddIngredient(ModContent.ItemType<Dreadsoul>());
+            r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
+            r.AddTile(TileID.TinkerersWorkbench);
             r.SetResult(this);
             r.AddRecipe();
         }

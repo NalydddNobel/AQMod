@@ -671,7 +671,8 @@ namespace AQMod
         public static bool BossRush { get; private set; }
         public static byte BossRushPlayer { get; private set; }
 
-        public static int BreadsoulTarget = 0;
+        public static int BreadsoulPlr = 0;
+        public static int DreadsoulPlr = 0;
 
         public bool shimmering;
         public bool blueFire;
@@ -1075,7 +1076,12 @@ namespace AQMod
             var aQNPC = npc.GetGlobalNPC<AQNPC>();
             if (aQNPC.minionHaunted && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type] || AQProjectile.Sets.IsAMinionProj.Contains(projectile.type)))
             {
-                damage = (int)(damage * 1.2f);
+                float multiplier = 2f;
+                if (npc.boss)
+                {
+                    multiplier = 1.2f;
+                }
+                damage = (int)(damage * multiplier);
             }
             ApplyDamageEffects(ref damage);
         }
@@ -1292,58 +1298,6 @@ namespace AQMod
             }
         }
 
-        private void UpdateBreadsoul(NPC npc)
-        {
-            BreadsoulTarget = -1;
-            float breadsoulDistance = 2000f;
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                var plr = Main.player[i];
-                if (plr.active && !plr.dead)
-                {
-                    var aQPlr = plr.GetModPlayer<AQPlayer>();
-                    float distance = Vector2.Distance(plr.Center, npc.Center);
-                    if (aQPlr.breadsoul && distance < breadsoulDistance)
-                    {
-                        BreadsoulTarget = i;
-                        breadsoulDistance = distance;
-                    }
-                }
-            }
-            if (BreadsoulTarget == -1)
-                return;
-            NPCLoader.blockLoot.Add(ItemID.Heart);
-            if (npc.boss)
-            {
-                BreadsoulHealing.SpawnCluster(Main.player[BreadsoulTarget], npc.Center, npc.Size.Length() / 2f, Main.rand.Next(10, 18), Main.rand.Next(120, 180));
-            }
-            else
-            {
-                var breadsoulCollector = Main.player[BreadsoulTarget].Center;
-                int lowestPercentPlayer = BreadsoulTarget;
-                float lifePercent = Main.player[BreadsoulTarget].statLife / (float)Main.player[BreadsoulTarget].statLifeMax2;
-                for (int i = 0; i < Main.maxPlayers; i++)
-                {
-                    if (i == BreadsoulTarget || Main.player[i].dead || !Main.player[i].active)
-                        continue;
-                    if (Vector2.Distance(breadsoulCollector, Main.player[i].Center) < 2000f)
-                    {
-                        float otherLifePercent = Main.player[i].statLife / (float)Main.player[i].statLifeMax2;
-                        if (otherLifePercent < lifePercent)
-                        {
-                            lowestPercentPlayer = i;
-                            lifePercent = otherLifePercent;
-                        }
-                    }
-                }
-                if (lifePercent > 0.9f)
-                    return;
-                int chance = (int)(lifePercent * 40) + Main.player[lowestPercentPlayer].statDefense / 3;
-                if (chance <= 1 || Main.rand.NextBool(chance))
-                    BreadsoulHealing.SpawnCluster(Main.player[BreadsoulTarget], npc.Center, Main.rand.Next(3, 6), Main.rand.Next(25, 35));
-            }
-        }
-
         public override bool PreNPCLoot(NPC npc)
         {
             if (NPCLootLooper.CurrentNPCLootLoop != 0)
@@ -1352,7 +1306,6 @@ namespace AQMod
             }
             else
             {
-                UpdateBreadsoul(npc);
                 if (npc.whoAmI == HuntSystem.TargetNPC)
                 {
                     if (HuntSystem.Hunt != null)
@@ -1365,7 +1318,7 @@ namespace AQMod
             return true;
         }
 
-        private void NPCLoot_FeatherFlightAmuletCheck(byte p, NPC npc)
+        private void OnKill_FeatherFlightAmuletCheck(byte p, NPC npc)
         {
             if (Main.player[p].GetModPlayer<AQPlayer>().featherflightAmulet)
             {
@@ -1376,7 +1329,7 @@ namespace AQMod
                 }
             }
         }
-        private void NPCLoot_BloodthirstPotionCheck(byte p, NPC npc)
+        private void OnKill_BloodthirstPotionCheck(byte p, NPC npc)
         {
             if (!Main.player[p].moonLeech && npc.Distance(Main.player[p].Center) < 2500f)
             {
@@ -1391,12 +1344,26 @@ namespace AQMod
                 }
             }
         }
-        private void NPCLoot_DreadsoulCheck(Player player, AQPlayer aQPlayer, NPC npc)
+        private void OnKill_DreadsoulCheck(NPC npc)
         {
-            if (!aQPlayer.dreadsoul)
+            DreadsoulPlr = -1;
+            float checkDistance = 2000f;
+            for (int i = 0; i < Main.maxPlayers; i++)
             {
-                return;
+                var plr = Main.player[i];
+                if (plr.active && !plr.dead)
+                {
+                    var aQPlr = plr.GetModPlayer<AQPlayer>();
+                    float distance = Vector2.Distance(plr.Center, npc.Center);
+                    if (aQPlr.dreadsoul && distance < checkDistance)
+                    {
+                        DreadsoulPlr = i;
+                        checkDistance = distance;
+                    }
+                }
             }
+            if (DreadsoulPlr == -1)
+                return;
             for (int i = 0; i < 40; i++)
             {
                 var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 20, 50, 100));
@@ -1408,13 +1375,49 @@ namespace AQMod
                 float rot = MathHelper.PiOver2 * i;
                 rot += Main.rand.NextFloat(-0.2f, 0.2f);
                 var n = rot.ToRotationVector2();
-                int p = Projectile.NewProjectile(center + n * 10f, n * 7f, ModContent.ProjectileType<DreadsoulAttack>(), 10, 0f, player.whoAmI);
+                int p = Projectile.NewProjectile(center + n * 10f, n * 7f, ModContent.ProjectileType<DreadsoulAttack>(), 10, 0f, DreadsoulPlr);
                 Main.projectile[p].rotation = rot;
                 for (int j = 0; j < 4; j++)
                 {
                     var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), 0f, 0f, 0, new Color(200, 20, 50, 100));
                     d.velocity = n.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(4f, 7.5f);
                 }
+            }
+        }
+        private void OnKill_BreadsoulCheck(NPC npc)
+        {
+            BreadsoulPlr = -1;
+            float checkDistance = 2000f;
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                var plr = Main.player[i];
+                if (plr.active && !plr.dead)
+                {
+                    var aQPlr = plr.GetModPlayer<AQPlayer>();
+                    float distance = Vector2.Distance(plr.Center, npc.Center);
+                    if (aQPlr.breadsoul && distance < checkDistance)
+                    {
+                        BreadsoulPlr = i;
+                        checkDistance = distance;
+                    }
+                }
+            }
+            if (BreadsoulPlr == -1)
+                return;
+            for (int i = 0; i < 40; i++)
+            {
+                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 200, 255, 100));
+                d.velocity = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi).ToRotationVector2() * Main.rand.NextFloat(3f, 7f);
+            }
+            var center = npc.Center;
+            float rot = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
+            var n = rot.ToRotationVector2();
+            int p = Projectile.NewProjectile(npc.Center + n * 10f, n * 4.5f, ModContent.ProjectileType<BreadsoulHealing>(), 0, 0f, BreadsoulPlr);
+            Main.projectile[p].rotation = rot;
+            for (int j = 0; j < 4; j++)
+            {
+                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), 0f, 0f, 0, new Color(200, 200, 255, 100));
+                d.velocity = n.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(4f, 7.5f);
             }
         }
         public override void NPCLoot(NPC npc)
@@ -1424,13 +1427,14 @@ namespace AQMod
             if (NPCLootLooper.CurrentNPCLootLoop == 0 && (Main.netMode == NetmodeID.Server || !Main.gameMenu))
             {
                 EncoreKill(npc);
+                OnKill_BreadsoulCheck(npc);
+                OnKill_DreadsoulCheck(npc);
                 byte plr = Player.FindClosest(npc.position, npc.width, npc.height);
                 if (Main.player[plr].active && !Main.player[plr].dead)
                 {
                     var aQPlayer = Main.player[plr].GetModPlayer<AQPlayer>();
-                    NPCLoot_DreadsoulCheck(Main.player[plr], aQPlayer, npc);
-                    NPCLoot_FeatherFlightAmuletCheck(plr, npc);
-                    NPCLoot_BloodthirstPotionCheck(plr, npc);
+                    OnKill_FeatherFlightAmuletCheck(plr, npc);
+                    OnKill_BloodthirstPotionCheck(plr, npc);
                 }
             }
         }

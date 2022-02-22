@@ -560,44 +560,6 @@ namespace AQMod.Content.Players
             MothmanMaskEyeColor = MothmanMaskEyeColorDefault;
         }
 
-        private void UpdateVisuals_Flashes()
-        {
-            if (FX.flashLocation != Vector2.Zero)
-            {
-                EffectCache.f_Flash.GetShader()
-                .UseIntensity(Math.Max(FX.flashBrightness * AQConfigClient.c_EffectIntensity, 1f / 18f));
-                if (!EffectCache.f_Flash.IsActive())
-                {
-                    Filters.Scene.Activate(EffectCache.fn_Flash, FX.flashLocation, null).GetShader()
-                    .UseOpacity(1f)
-                    .UseTargetPosition(FX.flashLocation);
-                }
-                FX.flashBrightness -= FX.flashBrightnessDecrement;
-                if (FX.flashBrightness <= 0f)
-                {
-                    FX.flashLocation = Vector2.Zero;
-                    FX.flashBrightness = 0f;
-                    FX.flashBrightnessDecrement = 0.05f;
-                }
-            }
-            else
-            {
-                if (EffectCache.f_Flash.IsActive())
-                {
-                    EffectCache.f_Flash.GetShader()
-                        .UseIntensity(0f)
-                        .UseProgress(0f)
-                        .UseOpacity(0f);
-                    Filters.Scene.Deactivate(EffectCache.fn_Flash, null);
-                }
-            }
-        }
-        public override void UpdateBiomeVisuals()
-        {
-            UpdateVisuals_Flashes();
-            FX.Update();
-        }
-
         private void UpdateCameraFocus()
         {
             FX.cameraFocus = false;

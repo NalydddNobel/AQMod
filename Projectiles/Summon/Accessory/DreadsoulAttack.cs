@@ -76,7 +76,7 @@ namespace AQMod.Projectiles.Summon.Accessory
                 projectile.velocity = projectile.velocity.RotatedBy(Math.Sin(projectile.ai[1]) * 0.01f);
             }
             projectile.rotation = projectile.velocity.ToRotation();
-            if (Main.rand.NextBool(20))
+            if (Main.rand.NextBool(5))
             {
                 var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(120, 2, 10, 170));
                 d.velocity = projectile.velocity * 0.2f;

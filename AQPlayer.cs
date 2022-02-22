@@ -1,9 +1,11 @@
-﻿using AQMod.Buffs;
+﻿using AQMod.Assets;
+using AQMod.Buffs;
 using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Summon;
 using AQMod.Buffs.Temperature;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
+using AQMod.Common.NoHitting;
 using AQMod.Content;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
@@ -11,7 +13,7 @@ using AQMod.Effects;
 using AQMod.Effects.Particles;
 using AQMod.Items;
 using AQMod.Items.Accessories.Amulets;
-using AQMod.Items.Accessories.FishingSeals;
+using AQMod.Items.Accessories.Fishing;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.Tools;
@@ -27,6 +29,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Achievements;
 using Terraria.GameInput;
+using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -149,7 +152,6 @@ namespace AQMod
         public float holyEnemyDR;
         public int healEffectValueForSyncingTheThingOnTheServer;
 
-
         public bool heartMoth;
         public bool anglerFish;
         public bool dwarfStarite;
@@ -218,11 +220,6 @@ namespace AQMod
             ExtractinatorCount = tag.GetInt("extractinatorCount");
         }
 
-        //public override void UpdateBiomeVisuals()
-        //{
-        //        ScreenShakeManager.Update();
-        //}
-
         public override void UpdateDead()
         {
             ResetEffects_Debuffs();
@@ -239,6 +236,44 @@ namespace AQMod
             hookDebuffs = new List<BuffData>();
             hookDamage = 0;
             meathookUI = false;
+        }
+
+        private void UpdateVisuals_Flashes()
+        {
+            if (FX.flashLocation != Vector2.Zero)
+            {
+                EffectCache.f_Flash.GetShader()
+                .UseIntensity(Math.Max(FX.flashBrightness * AQConfigClient.c_EffectIntensity, 1f / 18f));
+                if (!EffectCache.f_Flash.IsActive())
+                {
+                    Filters.Scene.Activate(EffectCache.fn_Flash, FX.flashLocation, null).GetShader()
+                    .UseOpacity(1f)
+                    .UseTargetPosition(FX.flashLocation);
+                }
+                FX.flashBrightness -= FX.flashBrightnessDecrement;
+                if (FX.flashBrightness <= 0f)
+                {
+                    FX.flashLocation = Vector2.Zero;
+                    FX.flashBrightness = 0f;
+                    FX.flashBrightnessDecrement = 0.05f;
+                }
+            }
+            else
+            {
+                if (EffectCache.f_Flash.IsActive())
+                {
+                    EffectCache.f_Flash.GetShader()
+                        .UseIntensity(0f)
+                        .UseProgress(0f)
+                        .UseOpacity(0f);
+                    Filters.Scene.Deactivate(EffectCache.fn_Flash, null);
+                }
+            }
+        }
+        public override void UpdateBiomeVisuals()
+        {
+            UpdateVisuals_Flashes();
+            FX.Update();
         }
 
         private void ResetEffects_HookBarbs()
@@ -840,6 +875,33 @@ namespace AQMod
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             return !PreventDeath_BloodPlasma() && !PreventDeath_Omori();
+        }
+
+        public override void OnHitPvp(Item item, Player target, int damage, bool crit)
+        {
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                NetHelper.HitPlayer((byte)player.whoAmI);
+            }
+            NoHitManager.CollapseNoHit(player.whoAmI);
+        }
+
+        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+        {
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                NetHelper.HitPlayer((byte)player.whoAmI);
+            }
+            NoHitManager.CollapseNoHit(player.whoAmI);
+        }
+
+        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        {
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                NetHelper.HitPlayer((byte)player.whoAmI);
+            }
+            NoHitManager.CollapseNoHit(player.whoAmI);
         }
 
         public override void PostUpdateBuffs()
