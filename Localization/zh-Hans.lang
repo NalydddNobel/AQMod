@@ -17,12 +17,15 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 
 # Accessories
 
+ItemName.SpiritualRelic=心灵圣物
+ItemTooltip.SpiritualRelic={$Mods.AQMod.Tooltips.IncreasedMinions}\n击杀敌人时会召唤强化召唤物伤害的灵魂\n召唤物会对被地狱之灵缠扰的敌人造成额外伤害
+
 ItemName.Dreadsoul=燃烧的心
-ItemTooltip.Dreadsoul=击杀敌人时会召唤地狱之灵缠扰附近的敌人\n仆从会对被地狱之灵缠扰的敌人造成额外伤害
+ItemTooltip.Dreadsoul=击杀敌人时会召唤地狱之灵缠扰附近的敌人\n召唤物会对被地狱之灵缠扰的敌人造成额外伤害
 ProjectileName.DreadsoulAttack=地狱之灵
 
 ItemName.Breadsoul=噬魂者
-ItemTooltip.Breadsoul=击杀敌人时会召唤增加你召唤伤害的梦境之灵
+ItemTooltip.Breadsoul=击杀敌人时会召唤强化召唤物伤害的梦境之灵
 ProjectileName.BreadsoulHealing=梦境之灵
 
 ItemName.RustyKnife=刀刃
@@ -109,10 +112,10 @@ ProjectileName.FlowerCrownProj=花冠
 ItemName.ArachnotronVisor=机械蜘蛛面具
 ItemTooltip.ArachnotronVisor=增加10%近战伤害、暴击率和召唤伤害\n使你获得夜视效果
 ItemName.ArachnotronRibcage=机械蜘蛛胸甲
-ItemTooltip.ArachnotronRibcage=增加10%近战攻速和召唤伤害\n降低5%所受伤害\n+1额外召唤栏\n使你获得致命的蜘蛛臂
+ItemTooltip.ArachnotronRibcage=增加10%近战攻速和召唤伤害\n降低5%所受伤害\n增加最大召唤栏位\n使你获得致命的蜘蛛臂
 ItemName.ArachnotronRevvers=机械蜘蛛护胫
-ItemTooltip.ArachnotronRevvers=增加10%近战和召唤伤害\n+1额外召唤栏\n允许你飞速奔跑并对火块免疫
-ArmorSetBonus.Arachnotron=增加12%近战和召唤伤害\n+1额外召唤栏\n按下{0}键后会大幅度增加你的防御并获得一段冷却时间
+ItemTooltip.ArachnotronRevvers=增加10%近战和召唤伤害\n增加最大召唤栏位\n允许你飞速奔跑并对火块免疫
+ArmorSetBonus.Arachnotron=增加12%近战和召唤伤害\n增加最大召唤栏位\n按下{0}键后会大幅度增加你的防御并获得一段冷却时间
 BuffName.PrimeTime=机械蜘蛛强化
 BuffDescription.PrimeTime=防御大幅度提升!
 BuffName.ArachnotronCooldown=机械蜘蛛冷却
@@ -127,9 +130,9 @@ ItemName.LightbulbHelmet=灯泡头盔
 ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n你现在会散发微光
 ItemName.LightbulbBreastplate=灯泡胸甲
 ItemName.LightbulbGreaves=灯泡护胫
-ItemTooltip.LightbulbGreaves=+1额外召唤栏
+ItemTooltip.LightbulbGreaves=增加最大召唤栏位
 
-ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱造成的伤害降低30%
+ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱对你造成的伤害降低30%
 
 # Materials
 ItemName.Baozhu=爆竹
@@ -512,6 +515,7 @@ ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
 ItemName.OceanRavineWall=蟹状裂隙墙
 
 # Tooltips
+Tooltips.IncreasedMinions=增加最大召唤栏位
 Tooltips.SuspiciousLooking='我知道你在想什么...'
 Tooltips.Nalyddd='闻起来像玫瑰'
 Tooltips.HookBarbBlacklist=不受刺钩升级效果影响
@@ -792,6 +796,8 @@ WorldGenOptions.generateOceanRavinesTooltip=决定是否生成蟹状裂隙.
 
 WorldGenOptions.fixBabyPools=修复小水坑
 WorldGenOptions.fixBabyPoolsTooltip=移除地表上生成的1格物块高的水坑.\n可能会导致在地表生成的与水有关的构造出现小问题.
+
+WorldGen.FinalSteps=正在创造在其它事物之后的东西...
 
 WorldGen.CrabCrevice=Aequus: 正在生成蟹状裂隙
 WorldGen.CrabCrevice.Sand=Aequus: 正在生成蟹状裂隙... 沙圈
@@ -1241,7 +1247,7 @@ ItemTooltip.PotionofBossrushium=Boss被击败时会再次生成
 ItemTooltip.HermitShell=你的移动速度越低, 你的防御就越高
 ItemTooltip.StriderPalms=增加10%召唤伤害\n强化长足蟹钩的各项属性
 ItemTooltip.DartTrapHat=当你站在地面上时发射毒镖\n增加5%召唤伤害
-ItemTooltip.SuperDartTrapHat=当你站在地面上时发射毒镖\n增加10%召唤伤害\n+2额外召唤栏
+ItemTooltip.SuperDartTrapHat=当你站在地面上时发射毒镖\n增加10%召唤伤害\n增加2个最大召唤栏位
 ########
 # Misc #
 ########
