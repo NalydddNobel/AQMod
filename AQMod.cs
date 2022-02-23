@@ -557,7 +557,6 @@ namespace AQMod
                 Load_Assets_Textures();
                 Load_Assets_Effects();
                 AQSound.rand = new UnifiedRandom();
-                ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
                 ArmorOverlays = new EquipOverlayLoader();
                 Load_Assets_Music();
                 Load_Assets_UI();
@@ -613,10 +612,6 @@ namespace AQMod
 
             IsLoading = false; // Sets Loading to false, so that some things no longer accept new content.
             RobsterHuntLoader.Instance.SetupHunts();
-            if (!Main.dedServ)
-            {
-                ItemOverlays.Finish();
-            }
 
             AQRecipes.AddRecipes(this);
 
@@ -635,8 +630,6 @@ namespace AQMod
             cachedLoadTasks = null;
             Autoloading.Unload();
             Common.Edits.UnloadHooks();
-
-            ItemOverlays = null;
 
             DyeBinder.Unload();
             DemonSiege.Unload();

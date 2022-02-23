@@ -1,8 +1,6 @@
 ﻿using AQMod.Common.Utilities.Colors;
-using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,18 +9,7 @@ namespace AQMod.Items.Materials.Energies
 {
     public class CosmicEnergy : ModItem
     {
-        public override string Texture
-        {
-            get
-            {
-                string path = AQUtils.GetPath<CosmicEnergy>();
-                if (ModContent.GetInstance<AQConfigClient>().CosmicEnergyAlt)
-                    return path + "_Alt";
-                return path;
-            }
-        }
-
-        public static IColorGradient Grad = new ColorWaveGradient(4f, new Color(60, 10, 200, 255), new Color(170, 80, 255, 255));
+        public static IColorGradient Grad = new ColorWaveGradient(4f, new Color(90, 30, 200, 255), new Color(190, 120, 255, 255));
 
         public override void SetStaticDefaults()
         {

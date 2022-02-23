@@ -9,7 +9,7 @@ namespace AQMod.Items.Materials.Energies
 {
     public class AquaticEnergy : ModItem
     {
-        public static IColorGradient Grad = new ColorWaveGradient(4f, new Color(144, 144, 255, 255), new Color(111, 111, 190, 255));
+        public static IColorGradient Grad = new ColorWaveGradient(4f, new Color(111, 111, 190, 255), new Color(144, 144, 255, 255));
 
         public override void SetStaticDefaults()
         {

@@ -978,23 +978,6 @@ namespace AQMod.Common.Utilities.Debugging
                         break;
                 }
             }
-
-            public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-            {
-                if (debug > 0 && AQMod.ItemOverlays.GetOverlay(item.type) == null)
-                {
-                    var drawData = new DrawData(item.GetTexture(), position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
-                    Main.spriteBatch.End();
-                    BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Shader);
-                    var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<Items.Dyes.EnchantedDye>());
-                    effect.Apply(null, drawData);
-                    drawData.Draw(Main.spriteBatch);
-                    Main.spriteBatch.End();
-                    BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Regular);
-                    return false;
-                }
-                return true;
-            }
         }
     }
 }

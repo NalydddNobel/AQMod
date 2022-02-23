@@ -385,7 +385,6 @@ namespace AQMod.Content.Players
             {
                 itemOverlay.PlayerDraw.DrawUse(player, player.GetModPlayer<AQPlayer>(), item, info);
             }
-            AQMod.ItemOverlays.GetOverlay(item.type)?.DrawHeld(player, player.GetModPlayer<AQPlayer>(), item, info);
             item.GetGlobalItem<AQItem>().Glowmask.DrawHeld(player, player.GetModPlayer<AQPlayer>(), item, info);
         });
 

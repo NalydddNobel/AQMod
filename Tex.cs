@@ -25,8 +25,11 @@ namespace AQMod
             foreach (var p in typeof(Tex).GetProperties(BindingFlags.Public | BindingFlags.Static))
             {
                 var tA = (TextureAsset)p.GetValue(null);
-                tA.Dispose();
-                p.SetValue(null, null);
+                if (tA != null)
+                {
+                    tA.Dispose();
+                    p.SetValue(null, null);
+                }
             }
         }
     }

@@ -78,12 +78,6 @@ namespace AQMod
 
         [Header(AQText.ConfigHeaderKey + "Misc")]
 
-        [BackgroundColor(150, 12, 166, 180)]
-        [Label(AQText.ConfigValueKey + "CosmicEnergyAlt")]
-        [DefaultValue(false)]
-        public bool CosmicEnergyAlt { get; set; }
-        public static bool c_CosmicEnergyAlt { get; private set; }
-
         [Label(AQText.ConfigValueKey + "ShowCompletedAnglerQuestsCount")]
         [BackgroundColor(12, 12, 190, 180)]
         [DefaultValue(true)]
@@ -109,12 +103,6 @@ namespace AQMod
             c_EffectIntensity = EffectIntensity;
             c_Screenshakes = Screenshakes;
             c_TonsofScreenShakes = TonsofScreenShakes;
-            if (CosmicEnergyAlt != c_CosmicEnergyAlt)
-            {
-                c_CosmicEnergyAlt = CosmicEnergyAlt;
-                Main.itemTexture[ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>()] =
-                    ModContent.GetTexture(ItemLoader.GetItem(ModContent.ItemType<Items.Materials.Energies.CosmicEnergy>()).Texture);
-            }
         }
     }
 }

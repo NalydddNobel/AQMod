@@ -535,37 +535,17 @@ namespace AQMod
             }
         }
 
-        public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
-            if (item.type < Main.maxItemTypes)
-                return true;
-            if (!AQMod.ItemOverlays.GetOverlay(item.type)?.PreDrawWorld(item, lightColor, alphaColor, ref rotation, ref scale, whoAmI) == false)
-                return false;
-            return true;
-        }
-
         public override void PostDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             if (item.type < Main.maxItemTypes)
                 return;
-            AQMod.ItemOverlays.GetOverlay(item.type)?.PostDrawWorld(item, lightColor, alphaColor, rotation, scale, whoAmI);
             Glowmask.DrawWorld(item, spriteBatch, lightColor, alphaColor, rotation, scale, whoAmI);
-        }
-
-        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-        {
-            if (item.type < Main.maxItemTypes)
-                return true;
-            if (!AQMod.ItemOverlays.GetOverlay(item.type)?.PreDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale) == false)
-                return false;
-            return true;
         }
 
         public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             if (item.type < Main.maxItemTypes)
                 return;
-            AQMod.ItemOverlays.GetOverlay(item.type)?.PostDrawInventory(Main.LocalPlayer, Main.LocalPlayer.GetModPlayer<AQPlayer>(), item, position, frame, drawColor, itemColor, origin, scale);
             Glowmask.DrawInv(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
         }
 
