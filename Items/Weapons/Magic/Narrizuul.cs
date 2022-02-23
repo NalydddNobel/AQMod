@@ -50,7 +50,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             if (line.mod == "Terraria" && line.Name == "ItemName")
             {
-                TooltipText.DrawNarrizuulText(line);
+                AQItem.DrawString_Developer(line);
                 return false;
             }
             return true;

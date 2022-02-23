@@ -544,11 +544,11 @@ namespace AQMod.Common.Utilities.Debugging
                     break;
 
                 case "gorenest2":
-                    caller.Reply(GoreNest.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, true, true).ToString());
+                    caller.Reply(GoreNest.TryGrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, true, true).ToString());
                     break;
 
                 case "gorenest":
-                    caller.Reply(GoreNest.GrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, false, false).ToString());
+                    caller.Reply(GoreNest.TryGrowGoreNest((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16, false, false).ToString());
                     break;
 
                 case "downeddemonsiege":

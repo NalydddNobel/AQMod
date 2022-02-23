@@ -337,7 +337,7 @@ namespace AQMod.NPCs.Monsters.DemonSiegeMonsters
                     progress = timer / 40f;
                 }
                 progress = 1f - progress;
-                var spotlight = AQTextures.Lights[LightTex.Spotlight10x50];
+                var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight10x50];
                 var color = Color.Lerp(Color.Red, Color.Yellow, ((float)Math.Sin(Main.GlobalTime * 25f) + 1f) / 2f);
                 color *= progress;
                 var spotlightOrigin = spotlight.Size() / 2f;

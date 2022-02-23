@@ -18,14 +18,12 @@ using AQMod.Effects;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.Particles;
 using AQMod.Effects.Trails.Rendering;
-using AQMod.Effects.WorldEffects;
 using AQMod.Items.Dyes;
 using AQMod.Items.Potions;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
 using AQMod.Sounds;
-using AQMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -54,18 +52,11 @@ namespace AQMod
         public static bool LowQ => !Lighting.NotRetro || ModContent.GetInstance<AQConfigClient>().EffectQuality <= 0.5f;
 
         public static bool spawnStarite;
-        public static int dayrateIncrease;
 
-        /// <summary>
-        /// This is normally used to prevent adding new content to arrays after the mod has loaded and blah blah. It's also used to prevent some drawing which might happen on the title screen before assets fully load.
-        /// </summary>
-        internal static bool Loading { get; private set; }
-        /// <summary>
-        /// This is normally used to prevent threaded assets from loading
-        /// </summary>
-        internal static bool Unloading { get; private set; }
+        internal static bool IsLoading { get; private set; }
+        internal static bool IsUnloading { get; private set; }
 
-        internal static List<CachedTask> cachedLoadTasks;
+        internal List<CachedTask> cachedLoadTasks;
         [Obsolete("Replaced with interfaces")]
         /// <summary>
         /// The active instance of Item Overlays, this is not initialized on the server
@@ -75,10 +66,6 @@ namespace AQMod
         /// The active instance of Armor Overlays, this is not initialized on the server
         /// </summary>
         public static EquipOverlayLoader ArmorOverlays { get; private set; }
-        /// <summary>
-        /// The active list of World Effects, this is not initialized on the server
-        /// </summary>
-        public static List<WorldVisualEffect> WorldEffects { get; private set; }
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
@@ -99,6 +86,8 @@ namespace AQMod
         internal static CrossModData discordRP;
         internal static CrossModData bossChecklist;
 
+        public UserInterface NPCTalkState { get; private set; }
+
         public static class Keybinds
         {
             public static ModHotKey ArmorSetBonus { get; private set; }
@@ -116,7 +105,6 @@ namespace AQMod
                 ArmorSetBonus = null;
             }
         }
-
         public static class Edits
         {
             internal static void Load()
@@ -187,7 +175,7 @@ namespace AQMod
                 bool christmasBackground = XmasSeeds.XmasWorld && WorldGen.gen; // originally this also ran on the title screen,
                                                                                 // but for some reason there were conflicts with Modder's Toolkit
                 bool snowflakes = XmasSeeds.XmasWorld; // I like the snowflakes on the title screen :)
-                if (Loading || Unloading)
+                if (IsLoading || IsUnloading)
                 {
                     christmasBackground = false;
                     snowflakes = false;
@@ -519,15 +507,41 @@ namespace AQMod
                 AutoloadSounds = true
             };
             cachedLoadTasks = new List<CachedTask>();
-            Loading = true;
+            IsLoading = true;
         }
 
+        private void Load_Assets_Textures()
+        {
+            LegacyTextureCache.Load();
+            Tex.Load(this);
+            CrabPot.frame = new Rectangle(0, 0, Tex.CrabPot.Texture.Value.Width, Tex.CrabPot.Texture.Value.Height / CrabPot.FrameCount - 2);
+            CrabPot.origin = CrabPot.frame.Size() / 2f;
+        }
+        private void Load_Assets_Effects()
+        {
+            LegacyEffectCache.Load(this);
+            FX.InternalSetup();
+            PrimitivesRenderer.Setup();
+            BuffColorCache.Init();
+
+            SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
+        }
+        private void Load_Assets_Music()
+        {
+            CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
+            GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
+            OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
+            DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
+            GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
+        }
+        private void Load_Assets_UI()
+        {
+            NPCTalkState = new UserInterface();
+        }
         public override void Load()
         {
-            Loading = true;
-            Unloading = false;
-            GameWorldRenders.Hooks.LastScreenWidth = 0;
-            GameWorldRenders.Hooks.LastScreenHeight = 0;
+            IsLoading = true;
+            IsUnloading = false;
             Keybinds.Load(this);
             Common.Edits.LoadHooks();
             Edits.Load();
@@ -539,23 +553,14 @@ namespace AQMod
             var server = ModContent.GetInstance<AQConfigServer>();
             if (!Main.dedServ)
             {
-                Tex.InternalSetup(this);
-                FX.InternalSetup();
-                var client = AQConfigClient.Instance;
+                GameWorldRenders.Load();
+                Load_Assets_Textures();
+                Load_Assets_Effects();
                 AQSound.rand = new UnifiedRandom();
                 ItemOverlays = new DrawOverlayLoader<ItemOverlayData>(Main.maxItems, () => ItemLoader.ItemCount);
                 ArmorOverlays = new EquipOverlayLoader();
-                AQTextures.Load();
-                EffectCache.Load(this);
-                CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
-                GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
-                OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
-                DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
-                GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
-                SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
-                PrimitivesRenderer.Setup();
-                BuffColorCache.Init();
-                WorldEffects = new List<WorldVisualEffect>();
+                Load_Assets_Music();
+                Load_Assets_UI();
             }
 
             calamityMod = new CrossModData("CalamityMod");
@@ -580,7 +585,7 @@ namespace AQMod
             DemonSiege.InternalSetup();
 
             AQBuff.Sets.InternalInitalize();
-            AQItem.Sets.InternalInitalize();
+            AQItem.Sets.Load();
             AQNPC.Sets.InternalInitalize();
             AQTile.Sets.InternalInitalize();
             BossChecklistSupport.AddSupport(this);
@@ -606,7 +611,7 @@ namespace AQMod
             invokeTasks();
             cachedLoadTasks = null;
 
-            Loading = false; // Sets Loading to false, so that some things no longer accept new content.
+            IsLoading = false; // Sets Loading to false, so that some things no longer accept new content.
             RobsterHuntLoader.Instance.SetupHunts();
             if (!Main.dedServ)
             {
@@ -616,7 +621,6 @@ namespace AQMod
             AQRecipes.AddRecipes(this);
 
             FargowiltasSupport.Setup(this);
-            AQItem.Sets.Clones.Setup();
         }
 
         private void Unload_Assets()
@@ -626,14 +630,12 @@ namespace AQMod
         public override void Unload()
         {
             // outside of AQMod
-            Loading = true;
-            Unloading = true;
+            IsLoading = true;
+            IsUnloading = true;
             cachedLoadTasks = null;
             Autoloading.Unload();
             Common.Edits.UnloadHooks();
-            CustomRenderBehindTiles.DrawProjsCache = null;
 
-            AQItem.Sets.Clones.Unload();
             ItemOverlays = null;
 
             DyeBinder.Unload();
@@ -645,18 +647,18 @@ namespace AQMod
 
             if (!Main.dedServ)
             {
+                GameWorldRenders.Unload();
                 AQSound.rand = null;
-                WorldEffects = null;
                 BuffColorCache.Unload();
                 ArmorOverlays = null;
-                EffectCache.Unload();
+                LegacyEffectCache.Unload();
                 SkyGlimmerEvent.BGStarite._texture = null;
                 GaleStreamsMusic = null;
                 DemonSiegeMusic = null;
                 OmegaStariteMusic = null;
                 GlimmerEventMusic = null;
                 CrabsonMusic = null;
-                AQTextures.Unload();
+                LegacyTextureCache.Unload();
                 FX.Unload();
                 Unload_Assets();
             }
@@ -673,18 +675,6 @@ namespace AQMod
                 Particle.PostDrawPlayers.UpdateParticles();
 
                 Trail.PreDrawProjectiles.UpdateTrails();
-            }
-            if (!Main.dedServ)
-            {
-                for (int i = 0; i < WorldEffects.Count; i++)
-                {
-                    var v = WorldEffects[i];
-                    if (!v.Update())
-                    {
-                        WorldEffects.RemoveAt(i);
-                        i--;
-                    }
-                }
             }
 
             AQGraphics.TimerBasedOnTimeOfDay = (float)Main.time;
@@ -766,7 +756,7 @@ namespace AQMod
         {
             AQText.UpdateCallback();
 
-            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || Loading)
+            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || IsLoading)
             {
                 return;
             }
@@ -803,22 +793,18 @@ namespace AQMod
 
         public override void UpdateUI(GameTime gameTime)
         {
-            UIUtils.GameInterfaceLayersAreBeingDrawn = false;
-            if (Main.myPlayer == -1 || Main.player[Main.myPlayer] == null || !Main.player[Main.myPlayer].active)
-            {
-                return;
-            }
+            NPCTalkState.Update(gameTime);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            CursorDyeManager.Update();
-
-            layers.Insert(0, new LegacyGameInterfaceLayer("AQMod: UpdateUtilities", () =>
-            {
-                UIUtils.GameInterfaceLayersAreBeingDrawn = true;
-                return true;
-            }, InterfaceScaleType.None));
+            layers.Insert(0, new LegacyGameInterfaceLayer("AQMod: UpdateUtilities",
+                () =>
+                {
+                    CursorDyeManager.Update();
+                    return true;
+                },
+                InterfaceScaleType.None));
 
             var index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Gamepad Lock On"));
             if (index != -1)
@@ -866,18 +852,20 @@ namespace AQMod
                     return true;
                 }, InterfaceScaleType.Game));
             }
+
             index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Inventory"));
             if (index != -1)
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Rename Item Interface",
                     () =>
                     {
-                        RenameItemUI.Draw();
+                        NPCTalkState.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                         return true;
                     },
                     InterfaceScaleType.UI)
                 );
             }
+
             index = layers.FindIndex((l) => l.Name.Equals("Vanilla: Invasion Progress Bars"));
             if (index != -1)
             {
@@ -902,17 +890,12 @@ namespace AQMod
 
         public override object Call(params object[] args)
         {
+            if (ModCallDictionary.VerifyCall(args))
+            {
+                return ModCallDictionary.InvokeCall(args);
+            }
             return null;
         }
-
-        //public override object Call(params object[] args)
-        //{
-        //    if (ModCallDictionary.VerifyCall(args))
-        //    {
-        //        return ModCallDictionary.InvokeCall(args);
-        //    }
-        //    return null;
-        //}
 
         internal static void BroadcastMessage(string key, Color color)
         {
@@ -931,11 +914,7 @@ namespace AQMod
             return 61 + random.Next(3);
         }
 
-        internal static void addLoadTask(CachedTask task)
-        {
-        }
-
-        private static void invokeTasks()
+        private void invokeTasks()
         {
             if (cachedLoadTasks == null)
                 return;
@@ -957,7 +936,7 @@ namespace AQMod
 
         public static void SetupNewMusic()
         {
-            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || Loading)
+            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || IsLoading)
             {
                 return;
             }

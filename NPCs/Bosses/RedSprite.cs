@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Common.Graphics;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;
@@ -550,8 +549,8 @@ namespace AQMod.NPCs.Bosses
                             }
                             else
                             {
-                                if (timer < 3 
-                                    && Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes && 
+                                if (timer < 3
+                                    && Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes &&
                                     (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 {
                                     FX.SetFlash(npc.Center, 0.75f * AQConfigClient.Instance.FlashIntensity, 10f);

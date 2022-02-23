@@ -56,7 +56,7 @@ namespace AQMod.Content.Seasonal.Christmas
 
         public override void Draw()
         {
-            var texture = AQTextures.Particles[ParticleTex.SpaceSquidSnowflake];
+            var texture = LegacyTextureCache.Particles[ParticleTex.SpaceSquidSnowflake];
             Main.spriteBatch.Draw(texture, position, frame, new Color(255, 255, 255, 255), rotation, origin, scale * 0.3f, SpriteEffects.None, 0f);
         }
     }

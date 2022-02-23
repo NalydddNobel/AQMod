@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.NoHitting;
 using AQMod.Content.Players;
+using AQMod.Items;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -63,6 +64,196 @@ namespace AQMod
                 return new Vector2(position.X * (Main.screenWidth / 800f),
                     position.Y * (Main.screenHeight / 600f) + RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop);
             }
+        }
+
+        internal struct ItemGlowmask : GlowmaskData.IWorld, GlowmaskData.IInventory, GlowmaskData.IPlayerHeld
+        {
+            private Func<Color> getColor;
+
+            public ItemGlowmask(Func<Color> getColor)
+            {
+                this.getColor = getColor;
+            }
+
+            void GlowmaskData.IWorld.Draw(GlowmaskData glowmask, Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+            {
+                var drawCoordinates = new Vector2(item.position.X - Main.screenPosition.X + glowmask.Tex.Width / 2 + item.width / 2 - glowmask.Tex.Width / 2, item.position.Y - Main.screenPosition.Y + glowmask.Tex.Height / 2 + item.height - glowmask.Tex.Height + 2f);
+                var drawFrame = new Rectangle(0, 0, glowmask.Tex.Width, glowmask.Tex.Height);
+                var drawRotation = rotation;
+                var origin = Main.itemTexture[item.type].Size() / 2;
+                var drawData = new DrawData(glowmask.Tex, drawCoordinates, drawFrame, getColor(), drawRotation, origin, scale, SpriteEffects.None, 0);
+                drawData.Draw(Main.spriteBatch);
+            }
+
+            void GlowmaskData.IInventory.Draw(GlowmaskData glowmask, Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+            {
+                Main.spriteBatch.Draw(glowmask.Tex, position, frame, getColor(), 0f, origin, scale, SpriteEffects.None, 0f);
+            }
+
+            void GlowmaskData.IPlayerHeld.Draw(GlowmaskData glowmask, Player player, AQPlayer aQPlayer, Item item, PlayerDrawInfo info)
+            {
+                var texture = glowmask.Tex;
+                if (item.useStyle == ItemUseStyleID.HoldingOut)
+                {
+                    if (Item.staff[item.type])
+                    {
+                        float drawRotation3 = info.drawPlayer.itemRotation + 0.785f * info.drawPlayer.direction;
+                        int offsetX1 = 0;
+                        int offsetY = 0;
+                        var origin3 = new Vector2(0f, Main.itemTexture[info.drawPlayer.inventory[info.drawPlayer.selectedItem].type].Height);
+                        if (info.drawPlayer.gravDir == -1f)
+                        {
+                            if (info.drawPlayer.direction == -1)
+                            {
+                                drawRotation3 += 1.57f;
+                                origin3 = new Vector2(Main.itemTexture[info.drawPlayer.inventory[info.drawPlayer.selectedItem].type].Width, 0f);
+                                offsetX1 -= Main.itemTexture[info.drawPlayer.inventory[info.drawPlayer.selectedItem].type].Width;
+                            }
+                            else
+                            {
+                                drawRotation3 -= 1.57f;
+                                origin3 = Vector2.Zero;
+                            }
+                        }
+                        else if (info.drawPlayer.direction == -1)
+                        {
+                            origin3 = new Vector2(Main.itemTexture[info.drawPlayer.inventory[info.drawPlayer.selectedItem].type].Width, Main.itemTexture[info.drawPlayer.inventory[info.drawPlayer.selectedItem].type].Height);
+                            offsetX1 -= Main.itemTexture[info.drawPlayer.inventory[info.drawPlayer.selectedItem].type].Width;
+                        }
+                        Vector2 holdoutOrigin = Vector2.Zero;
+                        ItemLoader.HoldoutOrigin(info.drawPlayer, ref holdoutOrigin);
+                        var drawCoordinates3 = new Vector2((int)(info.itemLocation.X - Main.screenPosition.X + origin3.X + offsetX1), (int)(info.itemLocation.Y - Main.screenPosition.Y + offsetY));
+                        var drawFrame3 = new Rectangle(0, 0, texture.Width, texture.Height);
+                        origin3 += holdoutOrigin;
+                            Main.playerDrawData.Add(new DrawData(texture, drawCoordinates3, drawFrame3, getColor(), drawRotation3, origin3, item.scale, info.spriteEffects, 0));
+                        return;
+                    }
+                    var spriteEffects = (SpriteEffects)(player.gravDir != 1f ? player.direction != 1 ? 3 : 2 : player.direction != 1 ? 1 : 0);
+                    var offset = new Vector2(texture.Width / 2, texture.Height / 2);
+                    Vector2 holdoutOffset = item.modItem.HoldoutOffset().GetValueOrDefault(new Vector2(10f, 0f)) * player.gravDir;
+                    int offsetX = (int)holdoutOffset.X;
+                    offset.Y += holdoutOffset.Y;
+                    var origin2 = player.direction == -1 ? new Vector2(texture.Width + offsetX, texture.Height / 2) : new Vector2(-offsetX, texture.Height / 2);
+                    var drawCoordinates2 = new Vector2((int)(player.itemLocation.X - Main.screenPosition.X + offset.X), (int)(player.itemLocation.Y - Main.screenPosition.Y + offset.Y));
+                    var drawFrame2 = new Rectangle(0, 0, texture.Width, texture.Height);
+                    var drawRotation2 = player.itemRotation;
+                        Main.playerDrawData.Add(new DrawData(texture, drawCoordinates2, drawFrame2, getColor(), drawRotation2, origin2, item.scale, spriteEffects, 0));
+                    return;
+                }
+                if (player.gravDir == -1f)
+                {
+                    var drawCoordinates2 = new Vector2((int)(info.itemLocation.X - Main.screenPosition.X), (int)(info.itemLocation.Y - Main.screenPosition.Y));
+                    var drawFrame2 = new Rectangle(0, 0, texture.Width, texture.Height);
+                    var drawRotation2 = player.itemRotation;
+                    var origin2 = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, 0f);
+                        Main.playerDrawData.Add(new DrawData(texture, drawCoordinates2, drawFrame2, getColor(), drawRotation2, origin2, item.scale, info.spriteEffects, 0));
+                    return;
+                }
+                var drawCoordinates = new Vector2((int)(info.itemLocation.X - Main.screenPosition.X), (int)(info.itemLocation.Y - Main.screenPosition.Y));
+                var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
+                var drawRotation = player.itemRotation;
+                var origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, texture.Height);
+                    Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, getColor(), drawRotation, origin, item.scale, info.spriteEffects, 0));
+            }
+        }
+
+        public static void Glowmask(this ModItem item)
+        {
+            if (!Main.dedServ)
+            {
+                Glowmask(item, new Color(250, 250, 250, 0));
+            }
+        }
+
+        public static void Glowmask(this ModItem item, Color brightness)
+        {
+            if (!Main.dedServ)
+            {
+                var glowmask = new ItemGlowmask(() => brightness);
+                CustomGlowmask(item, glowmask, null, glowmask);
+            }
+        }
+
+        public static void Glowmask(this ModItem item, Func<Color> brightness)
+        {
+            if (!Main.dedServ)
+            {
+                var glowmask = new ItemGlowmask(brightness);
+                CustomGlowmask(item, glowmask, null, glowmask);
+            }
+        }
+
+        public static void Glowmask(this ModItem item, Texture2D texture)
+        {
+            if (!Main.dedServ)
+            {
+                Glowmask(item, texture, new Color(250, 250, 250, 0));
+            }
+        }
+
+        public static void Glowmask(this ModItem item, Texture2D texture, Color brightness)
+        {
+            if (!Main.dedServ)
+            {
+                var glowmask = new ItemGlowmask(() => brightness);
+                CustomGlowmask(item, texture, glowmask, null, glowmask);
+            }
+        }
+
+        public static void Glowmask(this ModItem item, Texture2D texture, Func<Color> brightness)
+        {
+            if (!Main.dedServ)
+            {
+                var glowmask = new ItemGlowmask(brightness);
+                CustomGlowmask(item, texture, glowmask, null, glowmask);
+            }
+        }
+
+        public static void CustomGlowmask(this ModItem item, GlowmaskData.IWorld world = null, GlowmaskData.IInventory inv = null, GlowmaskData.IPlayerHeld held = null)
+        {
+            if (!Main.dedServ)
+            {
+                CustomGlowmask(item, ModContent.GetTexture(item.GetPath("_Glow")), world, inv, held);
+            }
+        }
+
+        public static void CustomGlowmask(this ModItem item, Texture2D texture, GlowmaskData.IWorld world = null, GlowmaskData.IInventory inv = null, GlowmaskData.IPlayerHeld held = null)
+        {
+            if (!Main.dedServ)
+            {
+                if (GlowmaskData.ItemToGlowmask == null)
+                {
+                    GlowmaskData.ItemToGlowmask = new Dictionary<int, GlowmaskData>();
+                }
+                GlowmaskData.ItemToGlowmask.Add(item.item.type, new GlowmaskData(texture, world, inv, held));
+            }
+        }
+
+        public static Item Instance<T>(bool newInstance = true) where T : ModItem
+        {
+            return Instance(ModContent.ItemType<T>(), newInstance: newInstance);
+        }
+
+        public static Item Instance(int type, bool newInstance = true)
+        {
+            if (!newInstance && type >= Main.maxItemTypes)
+            {
+                return ItemLoader.GetItem(type).item;
+            }
+            var item = new Item();
+            item.SetDefaults(type);
+            return item;
+        }
+
+        public static int AmtAccSlots(this Player player)
+        {
+            return 8 + player.extraAccessorySlots;
+        }
+
+        public const int GrapplingHookIndex = 4;
+        public static Item GrapplingHook(this Player player)
+        {
+            return player.miscEquips[GrapplingHookIndex];
         }
 
         public static byte MultClamp(byte b, float mult)

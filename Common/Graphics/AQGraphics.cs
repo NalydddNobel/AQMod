@@ -8,7 +8,7 @@ namespace AQMod.Common.Graphics
 {
     internal static class AQGraphics
     {
-        public static bool CanUseAssets => !AQMod.Loading && Main.netMode != NetmodeID.Server;
+        public static bool CanUseAssets => !AQMod.IsLoading && Main.netMode != NetmodeID.Server;
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
         public static float TimerBasedOnTimeOfDay;
 

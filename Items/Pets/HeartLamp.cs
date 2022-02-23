@@ -20,7 +20,7 @@ namespace AQMod.Items.Pets
             item.useStyle = ItemUseStyleID.HoldingUp;
             item.UseSound = SoundID.Item2;
             item.value = Item.sellPrice(gold: 5);
-            item.rare = ItemRarityID.Green;
+            item.rare = ItemRarityID.Pink;
             item.shoot = ModContent.ProjectileType<HeartMothPet>();
             item.buffType = ModContent.BuffType<HeartMothBuff>();
         }

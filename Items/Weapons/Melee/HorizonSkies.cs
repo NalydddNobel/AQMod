@@ -6,10 +6,12 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Melee
 {
-    public class HorizonSkies : ModItem, IItemOverlaysWorldDraw
+    public class HorizonSkies : ModItem
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<HorizonSkies>("_Glow"));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        public override void SetStaticDefaults()
+        {
+            this.Glowmask();
+        }
 
         public override void SetDefaults()
         {

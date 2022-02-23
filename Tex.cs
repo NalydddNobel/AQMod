@@ -9,11 +9,15 @@ namespace AQMod
 
         public static TextureAsset Pixel { get; private set; }
         public static TextureAsset MeathookNPC { get; private set; }
+        public static TextureAsset CrabPot { get; private set; }
+        public static TextureAsset CrabPotHighlight { get; private set; }
 
-        internal static void InternalSetup(AQMod mod)
+        internal static void Load(AQMod mod)
         {
             Pixel = mod.GetTextureAsset("Assets/Pixel");
             MeathookNPC = mod.GetTextureAsset("Assets/UI/MeathookNPC");
+            CrabPot = mod.GetTextureAsset("Assets/CrabPot");
+            CrabPotHighlight = mod.GetTextureAsset("Assets/CrabPot_Highlight");
         }
 
         internal static void Unload()

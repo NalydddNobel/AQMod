@@ -97,7 +97,7 @@ namespace AQMod.Common.CrossMod
             {
                 { "addloadtask", (o) =>
                     {
-                        AQMod.cachedLoadTasks.Add(new CachedTask(o[1], (Func<object, object>)o[2]));
+                        AQMod.GetInstance().cachedLoadTasks.Add(new CachedTask(o[1], (Func<object, object>)o[2]));
                         return null;
                     }
                 },

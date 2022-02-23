@@ -9,7 +9,7 @@ namespace AQMod.Effects.Particles
 {
     public class SparklePulseParticle : MonoParticle
     {
-        public override Texture2D Texture => AQTextures.Particles[ParticleTex.Sparkle];
+        public override Texture2D Texture => LegacyTextureCache.Particles[ParticleTex.Sparkle];
         private readonly float _scale;
         public int timeLeft;
         private readonly int _timeLeftMax;

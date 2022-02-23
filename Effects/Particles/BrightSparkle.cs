@@ -44,7 +44,7 @@ namespace AQMod.Effects.Particles
 
         public override void Draw()
         {
-            var texture = AQTextures.Particles[ParticleTex.BrightSparkle];
+            var texture = LegacyTextureCache.Particles[ParticleTex.BrightSparkle];
             Main.spriteBatch.Draw(texture, position - Main.screenPosition, frame, color * 0.8f, rotation, origin, scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, position - Main.screenPosition, frame, color * 0.3f, rotation + MathHelper.PiOver4, origin, scale * 0.8f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, position - Main.screenPosition, frame, new Color(255, 255, 255, 255), rotation, origin, scale * 0.75f, SpriteEffects.None, 0f);

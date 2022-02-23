@@ -1,5 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -13,8 +12,7 @@ namespace AQMod.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             Item.staff[item.type] = true;
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(AQUtils.GetPath<MagmalbulbiaStaff>() + "_Glow", getGlowmaskColor), item.type);
+            this.Glowmask();
         }
 
         private static Color getGlowmaskColor() => Color.Lerp(new Color(188, 175, 135, 0), new Color(144, 130, 111, 0), ((float)Math.Sin(Main.GlobalTime * 1.1f) + 1f) / 2f);

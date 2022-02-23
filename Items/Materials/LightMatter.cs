@@ -34,7 +34,7 @@ namespace AQMod.Items.Materials
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             var drawPosition = position - origin + frame.Size() / 2f * scale;
-            var texture = AQTextures.Lights[LightTex.Spotlight80x80];
+            var texture = LegacyTextureCache.Lights[LightTex.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             float time = Main.GlobalTime * 2f;
@@ -56,7 +56,7 @@ namespace AQMod.Items.Materials
         {
             var texture = Main.itemTexture[item.type];
             var drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
-            texture = AQTextures.Lights[LightTex.Spotlight80x80];
+            texture = LegacyTextureCache.Lights[LightTex.Spotlight80x80];
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             float time = Main.GlobalTime * 2f;

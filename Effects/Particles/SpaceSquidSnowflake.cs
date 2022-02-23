@@ -59,7 +59,7 @@ namespace AQMod.Effects.Particles
 
         public override void Draw()
         {
-            var texture = AQTextures.Particles[ParticleTex.SpaceSquidSnowflake];
+            var texture = LegacyTextureCache.Particles[ParticleTex.SpaceSquidSnowflake];
             Main.spriteBatch.Draw(texture, position - Main.screenPosition, frame, new Color(255, 255, 255, 255), rotation, origin, scale, SpriteEffects.None, 0f);
         }
     }

@@ -8,7 +8,7 @@ namespace AQMod.Effects.Particles
 {
     public class EmberParticleSubtractColorUsingScale : MonoParticle
     {
-        public override Texture2D Texture => AQTextures.Particles[ParticleTex.MonoEmber];
+        public override Texture2D Texture => LegacyTextureCache.Particles[ParticleTex.MonoEmber];
 
         public EmberParticleSubtractColorUsingScale(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1f) : base(position, velocity, color, scale)
         {

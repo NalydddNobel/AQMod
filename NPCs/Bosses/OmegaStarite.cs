@@ -8,7 +8,7 @@ using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.Trails.Rendering;
-using AQMod.Items;
+using AQMod.Items.Boss.Expert;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
@@ -1280,7 +1280,7 @@ namespace AQMod.NPCs.Bosses
             float deathSpotlightScale = 0f;
             if (intensity > 3f)
                 deathSpotlightScale = npc.scale * (intensity - 2.1f) * ((float)Math.Sin(npc.ai[1] * 0.1f) + 1f) / 2f;
-            var spotlight = AQTextures.Lights[LightTex.Spotlight66x66];
+            var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
             var spotlightOrig = spotlight.Size() / 2f;
             Color spotlightColor;
             if (Glimmer.stariteDiscoParty)
@@ -1377,7 +1377,7 @@ namespace AQMod.NPCs.Bosses
                         if (arr.Length > 1)
                         {
                             var trailClr = Glimmer.stariteDiscoParty ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                            var trail = new PrimitivesRenderer(AQTextures.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail);
+                            var trail = new PrimitivesRenderer(LegacyTextureCache.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail);
                             trail.PrepareVertices(arr, (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
                             trail.Draw();
                         }

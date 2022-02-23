@@ -69,7 +69,7 @@ namespace AQMod.Projectiles.Magic
             float colorMultiplierSquared = colorMultiplier * colorMultiplier;
             var texture = Main.projectileTexture[projectile.type];
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            var spotlight = AQTextures.Lights[LightTex.Spotlight66x66];
+            var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
             spriteBatch.Draw(spotlight, projectile.position + offset - Main.screenPosition, null, projectile.GetAlpha(lightColor) * colorMultiplierSquared, projectile.rotation, spotlight.Size() / 2f, projectile.scale * 0.6f, SpriteEffects.None, 0f);
             var frame = texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
             spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition, frame, new Color(255, 255, 255, 255) * colorMultiplierSquared, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);

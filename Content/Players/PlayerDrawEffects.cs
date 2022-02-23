@@ -17,7 +17,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -387,6 +386,7 @@ namespace AQMod.Content.Players
                 itemOverlay.PlayerDraw.DrawUse(player, player.GetModPlayer<AQPlayer>(), item, info);
             }
             AQMod.ItemOverlays.GetOverlay(item.type)?.DrawHeld(player, player.GetModPlayer<AQPlayer>(), item, info);
+            item.GetGlobalItem<AQItem>().Glowmask.DrawHeld(player, player.GetModPlayer<AQPlayer>(), item, info);
         });
 
         internal static readonly PlayerLayer PostDrawHead = new PlayerLayer("AQMod", "PostDrawHead", PlayerLayer.Head, (info) =>
@@ -421,7 +421,7 @@ namespace AQMod.Content.Players
                             Main.playerDrawData.Add(new DrawData(ModContent.GetTexture(Path_Masks + drawing.mask), position, info.drawPlayer.bodyFrame, color, info.drawPlayer.headRotation, info.headOrigin, 1f, info.spriteEffects, 0) { shader = shader, });
                             if (player.statLife == player.statLifeMax2 && info.drawPlayer.headRotation == 0)
                             {
-                                var texture = AQTextures.Lights[LightTex.Spotlight240x66];
+                                var texture = LegacyTextureCache.Lights[LightTex.Spotlight240x66];
                                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                                 var orig = frame.Size() / 2f;
                                 var scale = new Vector2((float)(Math.Sin(Main.GlobalTime * 10f) + 1f) * 0.04f + 0.2f, 0.1f);
@@ -588,7 +588,7 @@ namespace AQMod.Content.Players
                 }
                 if (FX.cameraFocus)
                 {
-                    Main.screenPosition = Vector2.Lerp(Main.screenPosition, FX.CameraFocus - new Vector2(Main.screenWidth/2f,Main.screenHeight/2f), FX.cameraFocusLerp);
+                    Main.screenPosition = Vector2.Lerp(Main.screenPosition, FX.CameraFocus - new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f), FX.cameraFocusLerp);
                     if (FX.cameraFocusLerp < 1f)
                     {
                         FX.cameraFocusLerp *= 1.5f;

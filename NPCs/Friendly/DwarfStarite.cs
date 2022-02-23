@@ -2,7 +2,7 @@
 using AQMod.Common.ID;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.World.Events;
-using AQMod.Items.Critters;
+using AQMod.Items.Misc.Critters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -256,7 +256,7 @@ namespace AQMod.NPCs.Friendly
             Main.spriteBatch.Draw(texture, drawPos, npc.frame, new Color(20, 20, 20, 0), npc.rotation, origin, npc.scale + 0.1f, SpriteEffects.None, 0f);
             if ((int)npc.ai[1] == -1)
             {
-                var spotlightTexture = AQTextures.Lights[LightTex.Spotlight20x20];
+                var spotlightTexture = LegacyTextureCache.Lights[LightTex.Spotlight20x20];
                 var spotlightOrigin = spotlightTexture.Size() / 2f;
                 float scale = npc.scale * (-npc.ai[3] / 44f);
                 scale *= scale;

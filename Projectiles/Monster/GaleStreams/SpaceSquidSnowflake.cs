@@ -52,9 +52,9 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             var frame = texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
             Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 128), projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            var spotlight = AQTextures.Lights[LightTex.Spotlight15x15];
+            var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight15x15];
             Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(128, 128, 128, 128), projectile.rotation, spotlight.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
-            spotlight = AQTextures.Lights[LightTex.Spotlight36x36];
+            spotlight = LegacyTextureCache.Lights[LightTex.Spotlight36x36];
             Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(30, 30, 30, 0), projectile.rotation, spotlight.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             return false;
         }

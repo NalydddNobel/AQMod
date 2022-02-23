@@ -79,7 +79,7 @@ namespace AQMod.Projectiles
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new PrimitivesRenderer(AQTextures.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail);
+                    var trail = new PrimitivesRenderer(LegacyTextureCache.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(14f - p * 14f) * projectile.scale, (p) => _glowClr * (1f - p));
                     trail.Draw();
                 }
@@ -97,7 +97,7 @@ namespace AQMod.Projectiles
             }
             if (AQConfigClient.c_EffectQuality >= 1f)
             {
-                var glow = AQTextures.Lights[LightTex.Spotlight66x66];
+                var glow = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
                 Main.spriteBatch.Draw(glow, center - Main.screenPosition, null, _glowClr, projectile.rotation, glow.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 250, 250, 160), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);

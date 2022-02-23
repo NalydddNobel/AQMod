@@ -155,7 +155,7 @@ namespace AQMod.Effects.Trails.Rendering
 
         public void Draw()
         {
-            var vertexShader = EffectCache.Trailshader;
+            var vertexShader = LegacyEffectCache.Trailshader;
             vertexShader.Parameters["WVP"].SetValue(AQGraphics.WorldViewPoint);
             vertexShader.Parameters["imageTexture"].SetValue(_texture);
             vertexShader.Parameters["strength"].SetValue(1f);

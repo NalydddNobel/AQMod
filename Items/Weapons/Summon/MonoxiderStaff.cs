@@ -13,8 +13,7 @@ namespace AQMod.Items.Weapons.Summon
         public override void SetStaticDefaults()
         {
             ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow")), item.type);
+            this.Glowmask();
         }
 
         public override void SetDefaults()

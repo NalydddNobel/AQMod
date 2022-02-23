@@ -80,16 +80,16 @@ namespace AQMod.Content.Players
                     intensity += 1f - distance / 6400f;
                 }
 
-                var filter = EffectCache.f_Vignette;
-                var shader = EffectCache.f_Vignette.GetShader();
+                var filter = LegacyEffectCache.f_Vignette;
+                var shader = LegacyEffectCache.f_Vignette.GetShader();
                 shader.UseIntensity(intensity * 1.25f);
-                if (!EffectCache.f_Vignette.IsActive())
-                    Filters.Scene.Activate(EffectCache.fn_Vignette);
+                if (!LegacyEffectCache.f_Vignette.IsActive())
+                    Filters.Scene.Activate(LegacyEffectCache.fn_Vignette);
             }
             else
             {
-                if (EffectCache.f_Vignette.IsActive())
-                    Filters.Scene.Deactivate(EffectCache.fn_Vignette);
+                if (LegacyEffectCache.f_Vignette.IsActive())
+                    Filters.Scene.Deactivate(LegacyEffectCache.fn_Vignette);
             }
         }
         public override void UpdateBiomeVisuals()

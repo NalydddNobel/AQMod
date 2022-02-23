@@ -404,7 +404,7 @@ namespace AQMod.NPCs.Monsters.DemonSiegeMonsters
                 var c = drawColor * 0.08f * value;
                 if (AQConfigClient.Instance.EffectQuality >= 1f)
                 {
-                    var spotlight = AQTextures.Lights[LightTex.Spotlight66x66];
+                    var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
                     var spotlightOrigin = spotlight.Size() / 2f;
                     Main.spriteBatch.Draw(spotlight, npc.position + offset - screenPos, null, new Color(255, 150, 10, 0) * value, npc.rotation, spotlightOrigin, npc.scale * value * 0.15f, effects, 0f);
                     Main.spriteBatch.Draw(spotlight, npc.position + offset - screenPos, null, new Color(255, 150, 10, 0) * value * 0.1f, npc.rotation, spotlightOrigin, npc.scale * value * 0.3f, effects, 0f);

@@ -217,7 +217,7 @@ namespace AQMod.Effects
                             {
                                 glowIn = (timeExisting - 10) / 10f;
                             }
-                            var spotlightTexture = AQTextures.Lights[LightTex.Spotlight15x15];
+                            var spotlightTexture = LegacyTextureCache.Lights[LightTex.Spotlight15x15];
                             var spotlightOrigin = spotlightTexture.Size() / 2f;
                             float spotlightScale = 0.6f * _scale * velocity.Length() / 20f;
 
@@ -523,7 +523,7 @@ namespace AQMod.Effects
 
         public override bool IsActive()
         {
-            return (_active || _starites != null || FallingStars.stars != null || Intensity > 0f) && !AQMod.Loading;
+            return (_active || _starites != null || FallingStars.stars != null || Intensity > 0f) && !AQMod.IsLoading;
         }
 
         public override float GetCloudAlpha()

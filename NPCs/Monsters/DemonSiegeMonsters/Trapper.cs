@@ -111,7 +111,7 @@ namespace AQMod.NPCs.Monsters.DemonSiegeMonsters
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             float projectileSpeed = 10f;
-                            int projectileType = ModContent.ProjectileType<Projectiles.Monster.Trapper>();
+                            int projectileType = ModContent.ProjectileType<Projectiles.Monster.TrapperProj>();
                             int damage = 20;
                             if (Main.expertMode)
                                 damage = 15;

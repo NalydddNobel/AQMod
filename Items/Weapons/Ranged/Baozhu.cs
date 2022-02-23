@@ -5,6 +5,11 @@ namespace AQMod.Items.Weapons.Ranged
 {
     public class Baozhu : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.Glowmask();
+        }
+
         public override void SetDefaults()
         {
             item.damage = 43;

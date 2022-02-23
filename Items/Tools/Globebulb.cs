@@ -39,7 +39,13 @@ namespace AQMod.Items.Tools
         public override bool UseItem(Player player)
         {
             if (Main.myPlayer == player.whoAmI || Main.netMode == NetmodeID.Server)
+            {
+                if (Main.netMode == NetmodeID.Server && player.itemAnimation == 1)
+                {
+                    NetMessage.SendData(MessageID.WorldData);
+                }
                 AQSystem.DayrateIncrease += 24;
+            }
             return false;
         }
 

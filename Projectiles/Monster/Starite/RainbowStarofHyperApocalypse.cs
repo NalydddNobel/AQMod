@@ -90,7 +90,7 @@ namespace AQMod.Projectiles.Monster.Starite
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        var trail = new PrimitivesRenderer(AQTextures.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail);
+                        var trail = new PrimitivesRenderer(LegacyTextureCache.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail);
                         trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTime + p) * 0.5f * (1f - p));
                         trail.Draw();
                     }
@@ -111,13 +111,13 @@ namespace AQMod.Projectiles.Monster.Starite
             }
             if (intensity > 0f)
             {
-                var spotlight = AQTextures.Lights[LightTex.Spotlight66x66];
+                var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.8f * intensity, projectile.rotation, spotlightOrig, projectile.scale * intensity, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.5f * intensity, projectile.rotation, spotlightOrig, projectile.scale * 2.5f * intensity, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.3f * intensity, projectile.rotation, spotlightOrig, projectile.scale * 6f * intensity, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.1f * intensity, projectile.rotation, spotlightOrig, projectile.scale * 10f * intensity, SpriteEffects.None, 0f);
-                spotlight = AQTextures.Lights[LightTex.Spotlight240x66];
+                spotlight = LegacyTextureCache.Lights[LightTex.Spotlight240x66];
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.08f * intensity, (5f + (float)Math.Sin(Main.GlobalTime * 20f) * 0.5f) * intensity);
                 var spotlightDrawColor = drawColor * intensity;

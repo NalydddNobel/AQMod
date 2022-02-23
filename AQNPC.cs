@@ -7,6 +7,7 @@ using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.Particles;
 using AQMod.Items.Dyes.Cursor;
+using AQMod.Items.Potions;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
 using AQMod.NPCs.Friendly;
@@ -907,7 +908,7 @@ namespace AQMod
                 d.velocity = new Vector2(npc.velocity.X * 0.4f, Math.Min(npc.velocity.Y, 1f + Main.rand.NextFloat(0.1f, 1f)));
             }
         }
-        private void DrawEffects_Shimmering(NPC npc) 
+        private void DrawEffects_Shimmering(NPC npc)
         {
             if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive)
             {
@@ -1338,9 +1339,8 @@ namespace AQMod
                 {
                     aequus.bloodthirstDelay = 255;
                     int healAmount = npc.lifeMax / 1000 + 5;
-                    aequus.healEffectValueForSyncingTheThingOnTheServer = healAmount;
-                    Main.player[p].statLife += healAmount;
-                    Main.player[p].statLife = Math.Min(Main.player[p].statLife, Main.player[p].statLifeMax2);
+                    AQPlayer.HealPlayer(Main.player[p], healAmount, broadcast: true, merge: true, AQUtils.Instance(ModContent.ItemType<BloodthirstPotion>()),
+                        healingItemQuickHeal: false);
                 }
             }
         }

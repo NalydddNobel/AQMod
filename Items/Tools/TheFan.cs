@@ -32,9 +32,9 @@ namespace AQMod.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int index = AQItem.Tooltips.FindVanillaTooltipLineIndex(tooltips, "Tooltip");
-            tooltips.Insert(index, new TooltipLine(mod, "Knockback", TooltipText.KnockbackItemTooltip(item.knockBack)));
-            tooltips.Insert(index, new TooltipLine(mod, "Speed", TooltipText.UseTimeAnimationTooltip(item.shootSpeed)));
+            int index = AQItem.FindTTLineSpot(tooltips, "Tooltip");
+            tooltips.Insert(index, new TooltipLine(mod, "Knockback", AQItem.KBTooltip(item.knockBack)));
+            tooltips.Insert(index, new TooltipLine(mod, "Speed", AQItem.UseAnimTooltip(item.useTime)));
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

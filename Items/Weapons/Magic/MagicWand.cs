@@ -1,6 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,8 +9,7 @@ namespace AQMod.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             Item.staff[item.type] = true;
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow"), new Color(128, 128, 128, 0)), item.type);
+            this.Glowmask();
         }
 
         public override void SetDefaults()

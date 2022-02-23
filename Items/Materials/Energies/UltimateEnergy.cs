@@ -1,4 +1,4 @@
-﻿using AQMod.Items.DrawOverlays;
+﻿using AQMod.Common.Utilities.Colors;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -7,14 +7,9 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Materials.Energies
 {
-    public class UltimateEnergy : ModItem, IItemOverlaysWorldDraw, IItemOverlaysDrawInventory
+    public class UltimateEnergy : ModItem
     {
-        private static readonly EnergyOverlay _overlay = new EnergyOverlay(
-             () => new Color(210 + Main.DiscoR, 210 + Main.DiscoG, 210 + Main.DiscoB, 180),
-             () => new Color(230 + Main.DiscoB / 2, 230 + Main.DiscoR / 2, 230 + Main.DiscoG / 2, 180), new Vector2(0f, -2f));
-
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
-        IOverlayDrawInventory IItemOverlaysDrawInventory.InventoryDraw => _overlay;
+        public static IColorGradient Grad = new ColorWaveGradient(8f, new Color(150, 255, 255, 255), new Color(255, 150, 255, 255));
 
         public override void SetStaticDefaults()
         {
@@ -23,7 +18,11 @@ namespace AQMod.Items.Materials.Energies
 
         public override void SetDefaults()
         {
-            AQItem.Commons.Energy_SetDefaults(item, ItemRarityID.Lime, Item.sellPrice(gold: 1));
+            item.width = 24;
+            item.height = 24;
+            item.rare = ItemRarityID.Pink;
+            item.value = AQItem.Prices.EnergySellValue;
+            item.maxStack = 999;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -33,17 +32,19 @@ namespace AQMod.Items.Materials.Energies
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            return true;
+            AQItem.DrawEnergyItemInv(spriteBatch, Grad, item, position, origin, scale);
+            return false;
         }
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
+            AQItem.DrawEnergyItemWorld(spriteBatch, Grad, item, rotation, scale);
             return false;
         }
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            AQItem.Commons.Energy_DoUpdate(item, new Color(210 + Main.DiscoR, 210 + Main.DiscoG, 210 + Main.DiscoB, 0), new Vector3(0.7f, 0.7f, 0.7f));
+            AQItem.UpdateEnergyItem(item, Grad.GetColor(Main.GlobalTime), new Vector3(0.3f, 0.3f, 0.8f));
         }
 
         public override void AddRecipes()

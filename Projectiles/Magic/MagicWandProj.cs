@@ -116,7 +116,7 @@ namespace AQMod.Projectiles.Magic
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             var drawCoordinates = projectile.position + offset - Main.screenPosition;
             float scaling = AQUtils.Wave(Main.GlobalTime * 25f, 0.9f, 1.1f);
-            var bloom = AQTextures.Lights[LightTex.Spotlight66x66];
+            var bloom = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
             var bloomOrigin = bloom.Size() / 2f;
             int trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
             for (int i = 0; i < trailLength; i++)

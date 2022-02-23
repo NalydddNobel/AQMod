@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Critters;
+﻿using AQMod.Items.Misc.Critters;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -16,8 +16,8 @@ namespace AQMod.Items.Pets
             item.useAnimation = 17;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item2;
-            item.value = Item.sellPrice(gold: 2);
-            item.rare = AQItem.Rarities.OmegaStariteRare;
+            item.value = Item.sellPrice(silver: 2);
+            item.rare = ItemRarityID.Blue;
             item.shoot = ModContent.ProjectileType<Projectiles.Pets.DwarfStaritePet>();
             item.buffType = ModContent.BuffType<Buffs.Pets.DwarfStariteBuff>();
         }

@@ -96,7 +96,7 @@ namespace AQMod.Projectiles.Melee
                 spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition + new Vector2(0f, 4f).RotatedBy((f + time) * (MathHelper.Pi * 2f)) * globalTimeWrappedHourly2, null, new Color(100, 70, 70, 100), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             }
 
-            var spotlight = AQTextures.Lights[LightTex.Spotlight30x30];
+            var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight30x30];
             var spotlightOrigin = spotlight.Size() / 2f;
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
             {
@@ -106,7 +106,7 @@ namespace AQMod.Projectiles.Melee
             }
 
             Main.spriteBatch.Draw(spotlight, projectile.position + offset - Main.screenPosition, null, new Color(125, 80, 60, 0), 0f, spotlightOrigin, projectile.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(AQTextures.Lights[LightTex.Spotlight66x66], projectile.position + offset - Main.screenPosition, null, new Color(55, 25, 10, 0), 0f, AQTextures.Lights[LightTex.Spotlight66x66].Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(LegacyTextureCache.Lights[LightTex.Spotlight66x66], projectile.position + offset - Main.screenPosition, null, new Color(55, 25, 10, 0), 0f, LegacyTextureCache.Lights[LightTex.Spotlight66x66].Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
 
             Main.spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition, null, new Color(255, 255, 255, 255), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, projectile.position + offset - Main.screenPosition, null, new Color(255, 255, 255, 0) * AQUtils.Wave(Main.GlobalTime * 6f, 0f, 0.5f), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);

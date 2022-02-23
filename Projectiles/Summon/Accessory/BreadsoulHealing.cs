@@ -157,7 +157,7 @@ namespace AQMod.Projectiles.Summon.Accessory
             int trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
             if (!AQMod.LowQ)
             {
-                var effectTexture = AQTextures.Lights[LightTex.Spotlight66x66];
+                var effectTexture = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
                 var effectFrame = effectTexture.Frame();
                 var effectOrigin = effectFrame.Size() / 2f;
                 for (int i = start; i < trailLength; i++)

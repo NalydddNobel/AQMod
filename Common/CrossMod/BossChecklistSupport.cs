@@ -1,10 +1,10 @@
 ﻿using AQMod.Content.World.Events;
-using AQMod.Items;
 using AQMod.Items.Accessories;
-using AQMod.Items.Accessories.Expert;
 using AQMod.Items.Accessories.Jewelry;
 using AQMod.Items.Accessories.Shoes;
 using AQMod.Items.Armor.Vanity.BossMasks;
+using AQMod.Items.Boss.Expert;
+using AQMod.Items.Boss.Summons;
 using AQMod.Items.Dyes;
 using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Materials;

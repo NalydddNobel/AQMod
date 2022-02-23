@@ -32,20 +32,17 @@ namespace AQMod.Content.World.Events
 
         public override void PostUpdate()
         {
+            float windSpeed = Main.windSpeedSet.Abs();
+            if (windSpeed < MinWind)
+                IsItAHappyWindyDay_WindyEnough = false;
+            if (windSpeed >= MaxWind)
+                IsItAHappyWindyDay_WindyEnough = true;
             if (Main.cloudAlpha == 0f)
             {
-                float windSpeed = Main.windSpeedSet.Abs();
-                if (windSpeed < MinWind)
-                    IsItAHappyWindyDay_WindyEnough = false;
-                if (windSpeed >= MaxWind)
-                    IsItAHappyWindyDay_WindyEnough = true;
                 if (Main.time < 10800.0d || Main.time > 43200.0d || !Main.dayTime)
                     IsItAHappyWindyDay = false;
-                else
-                {
-                    if (IsItAHappyWindyDay_WindyEnough)
-                        IsItAHappyWindyDay = true;
-                }
+                else if (IsItAHappyWindyDay_WindyEnough)
+                    IsItAHappyWindyDay = true;
             }
             else
             {

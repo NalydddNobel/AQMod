@@ -1,7 +1,8 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
-using AQMod.Items;
+using AQMod.Effects;
+using AQMod.Items.Boss.Expert;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Furniture;
@@ -349,6 +350,22 @@ namespace AQMod.NPCs.Bosses
         public bool ShouldDropCrabsol()
         {
             return (int)npc.ai[1] == 1;
+        }
+
+        public override bool PreDraw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Color drawColor)
+        {
+            if (GameWorldRenders.NPCsBehindAllNPCs.drawingNow)
+            {
+                var drawCoordinates = npc.Center;
+                var chain = ModContent.GetTexture(AQUtils.GetPath<JerryClaw>("_Chain"));
+                AQGraphics.Rendering.JerryChain(chain, new Vector2(drawCoordinates.X - 24f, drawCoordinates.Y), Main.npc[(int)npc.localAI[0]].Center);
+                AQGraphics.Rendering.JerryChain(chain, new Vector2(drawCoordinates.X + 24f, drawCoordinates.Y), Main.npc[(int)npc.localAI[1]].Center);
+            }
+            else
+            {
+                GameWorldRenders.NPCsBehindAllNPCs.Add(npc.whoAmI);
+            }
+            return true;
         }
 
         public override bool PreNPCLoot()

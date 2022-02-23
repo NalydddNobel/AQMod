@@ -8,7 +8,7 @@ namespace AQMod.Projectiles.Magic
 {
     internal class MagmalbulbiaStaffExplosion : ModProjectile
     {
-        public override string Texture => "AQMod/" + AQTextures.None;
+        public override string Texture => "AQMod/" + LegacyTextureCache.None;
 
         public override void SetDefaults()
         {

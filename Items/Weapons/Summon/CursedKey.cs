@@ -11,6 +11,7 @@ namespace AQMod.Items.Weapons.Summon
         {
             ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
+            this.Glowmask(() => new Color(200, 200, 200, 0) * AQUtils.Wave(Main.GlobalTime * 6f, 0.9f, 1f));
         }
 
         public override void SetDefaults()

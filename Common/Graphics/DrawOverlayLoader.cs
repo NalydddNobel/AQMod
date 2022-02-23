@@ -39,7 +39,7 @@ namespace AQMod.Common.Graphics
         /// <param name="id"></param>
         public void Register(Overlay overlay, int id)
         {
-            if (AQMod.Loading && !Main.dedServ)
+            if (AQMod.IsLoading && !Main.dedServ)
             {
                 id = GetID(id);
                 if (_overlays == null)

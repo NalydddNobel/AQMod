@@ -103,7 +103,7 @@ namespace AQMod.Projectiles.Pets
             }
             if (!AQMod.LowQ)
             {
-                var effectTexture = AQTextures.Lights[LightTex.Spotlight66x66];
+                var effectTexture = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
                 var effectFrame = effectTexture.Frame();
                 var effectOrigin = effectFrame.Size() / 2f;
                 var spotlightColor = LightColor();

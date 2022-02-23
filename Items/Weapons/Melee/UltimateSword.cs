@@ -1,6 +1,5 @@
 ﻿using AQMod.Assets;
 using AQMod.Dusts;
-using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,9 +10,12 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Melee
 {
-    public class UltimateSword : ModItem, IOverlayDrawPlayerUse, IItemOverlaysPlayerDraw
+    public class UltimateSword : ModItem, GlowmaskData.IPlayerHeld
     {
-        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => this;
+        public override void SetStaticDefaults()
+        {
+            this.CustomGlowmask(new AQUtils.ItemGlowmask(), null, this);
+        }
 
         public override void SetDefaults()
         {
@@ -79,9 +81,9 @@ namespace AQMod.Items.Weapons.Melee
             Main.spriteBatch.Draw(texture, drawPosition + new Vector2(-x, 0f), null, drawColor, rotation, origin, scale, SpriteEffects.None, 0f);
         }
 
-        void IOverlayDrawPlayerUse.DrawUse(Player player, AQPlayer aQPlayer, Item item, PlayerDrawInfo info)
+        void GlowmaskData.IPlayerHeld.Draw(GlowmaskData glowmask, Player player, AQPlayer aQPlayer, Item item, PlayerDrawInfo info)
         {
-            var texture = AQUtils.GetTextureobj<UltimateSword>("_Glow");
+            var texture = glowmask.Tex;
             var drawColor = new Color(128, 128, 128, 0);
 
             if (player.gravDir == -1f)

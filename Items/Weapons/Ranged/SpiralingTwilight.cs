@@ -1,5 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,8 +9,7 @@ namespace AQMod.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow")), item.type);
+            this.Glowmask();
         }
 
         public override void SetDefaults()

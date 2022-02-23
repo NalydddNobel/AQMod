@@ -56,7 +56,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    PrimitivesRenderer.FullDraw(AQTextures.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
+                    PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }
@@ -72,7 +72,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                 }
             }
             Main.spriteBatch.Draw(texture, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), projectile.rotation, orig, projectile.scale, SpriteEffects.None, 0f);
-            var spotlight = AQTextures.Lights[LightTex.Spotlight15x15];
+            var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight15x15];
             Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), projectile.rotation, spotlight.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             return false;
         }

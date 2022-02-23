@@ -29,6 +29,11 @@ namespace AQMod.Items.Weapons.Ranged
             item.useAmmo = AmmoID.Bullet;
         }
 
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
+        }
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             type = RayBullet.BulletProjectileIDToRayProjectileID(type);

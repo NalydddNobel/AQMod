@@ -1,5 +1,4 @@
-﻿using AQMod.Items.Accessories.Jewelry.Neutrality;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

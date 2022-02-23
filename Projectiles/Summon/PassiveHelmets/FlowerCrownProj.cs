@@ -50,7 +50,7 @@ namespace AQMod.Projectiles.Summon.PassiveHelmets
             }
             else
             {
-                if (projectile.position.Y < Main.worldSurface * 16f && Main.tile[((int)projectile.position.X + projectile.width / 2) /16, ((int)projectile.position.Y + projectile.height / 2) / 16].wall == WallID.None)
+                if (projectile.position.Y < Main.worldSurface * 16f && Main.tile[((int)projectile.position.X + projectile.width / 2) / 16, ((int)projectile.position.Y + projectile.height / 2) / 16].wall == WallID.None)
                 {
                     projectile.ai[1]++;
 

@@ -103,7 +103,7 @@ namespace AQMod.Projectiles.Melee
             {
                 Main.spriteBatch.End();
                 BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
-                var effect = EffectCache.s_SpikeFade;
+                var effect = LegacyEffectCache.s_SpikeFade;
                 effect.UseOpacity(1f / texture.Height * frameHeight + _portaloffset);
                 effect.UseColor(new Vector3(0.65f, 0.3f, 1f));
                 effect.Apply(drawData);

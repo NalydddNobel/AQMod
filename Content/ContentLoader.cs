@@ -35,7 +35,7 @@ namespace AQMod.Content
 
         public virtual int InitializeContent(T item)
         {
-            if (AQMod.Loading)
+            if (AQMod.IsLoading)
             {
                 if (GetContent(item.Mod, item.Name) == null)
                 {

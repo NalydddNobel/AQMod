@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Items.Materials.Energies;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using AQMod.Items.Materials.Energies;
+using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories.Summon
 {

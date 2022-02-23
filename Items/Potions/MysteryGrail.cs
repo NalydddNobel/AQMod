@@ -1,5 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +10,10 @@ namespace AQMod.Items.Potions
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow"), () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 128), drawInventory: true), item.type);
+            {
+                var g = new AQUtils.ItemGlowmask(() => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 128));
+                this.CustomGlowmask(g, g, g);
+            }
         }
 
         public override void SetDefaults()

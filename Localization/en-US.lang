@@ -1198,8 +1198,8 @@ ItemName.GoldPowder=Gold Powder
 ItemTooltip.GoldPowder=Converts critters into their golden counterparts
 ItemName.FertilePowder=Fertile Powder
 ItemTooltip.FertilePowder=Forces tiles to grow
-ItemName.TheFan=The Fan
-ItemTooltip.TheFan=Can push things in any direction\nChanges the speed of the wind\n'Handheld inspiration! It doesn't suck... It blows! It is... THE FAN'
+ItemName.TheFan=Pumpinator
+ItemTooltip.TheFan=Can push things in any direction\nChanges the speed of the wind\n'Handheld inspiration!'
 #
 #
 ##################################################################################

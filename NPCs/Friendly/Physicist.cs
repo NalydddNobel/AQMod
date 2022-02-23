@@ -1,8 +1,8 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events;
-using AQMod.Items;
 using AQMod.Items.Accessories;
+using AQMod.Items.Boss.Summons;
 using AQMod.Items.Tools;
 using System.Collections.Generic;
 using Terraria;

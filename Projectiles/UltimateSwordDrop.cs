@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Dusts;
+﻿using AQMod.Dusts;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

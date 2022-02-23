@@ -1,6 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Tiles.Walls;
-using Microsoft.Xna.Framework;
+﻿using AQMod.Tiles.Walls;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,11 +9,8 @@ namespace AQMod.Items.Placeable.Wall
     {
         public override void SetStaticDefaults()
         {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(AQUtils.GetPath<MoonlightWall>() + "_Glow", getColor), item.type);
+            this.Glowmask(() => MoonlightWallWall.GetColor(0f));
         }
-
-        private static Color getColor() => MoonlightWallWall.GetColor(0f);
 
         public override void SetDefaults()
         {

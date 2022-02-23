@@ -1,19 +1,16 @@
-﻿using AQMod.Items.DrawOverlays;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Magic
 {
-    public sealed class Skrawler : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
+    public sealed class Skrawler : ModItem
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<Skrawler>("_Glow"));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
-        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
-
         public override void SetStaticDefaults()
         {
             Item.staff[item.type] = true;
+            this.Glowmask(() => new Color(200, 200, 200, 0) * AQUtils.Wave(Main.GlobalTime * 6f, 0.9f, 1f));
         }
 
         public override void SetDefaults()

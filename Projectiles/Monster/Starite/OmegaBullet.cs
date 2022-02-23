@@ -68,7 +68,7 @@ namespace AQMod.Projectiles.Monster.Starite
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    PrimitivesRenderer.FullDraw(AQTextures.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail,
+                    PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail,
                         trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
             }
@@ -90,10 +90,10 @@ namespace AQMod.Projectiles.Monster.Starite
             intensity *= ModContent.GetInstance<AQConfigClient>().EffectIntensity;
             if (intensity > 0f)
             {
-                var spotlight = AQTextures.Lights[LightTex.Spotlight66x66];
+                var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.25f, projectile.rotation, spotlightOrig, projectile.scale * intensity, SpriteEffects.None, 0f);
-                spotlight = AQTextures.Lights[LightTex.Spotlight240x66];
+                spotlight = LegacyTextureCache.Lights[LightTex.Spotlight240x66];
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.04f * intensity, (3f + (float)Math.Sin(Main.GlobalTime * 16f) * 0.2f) * intensity);
                 var spotlightDrawColor = drawColor * 0.2f;

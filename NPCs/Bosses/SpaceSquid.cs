@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Common.Graphics;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;

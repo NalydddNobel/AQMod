@@ -65,7 +65,7 @@ namespace AQMod.Projectiles
                 }
                 if (trueOldPos.Count > 1)
                 {
-                    var trail = new PrimitivesRenderer(AQTextures.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail);
+                    var trail = new PrimitivesRenderer(LegacyTextureCache.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail);
                     trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(14f - p * 14f) * projectile.scale,
                         (p) => Color.Lerp(new Color(255, 255, 50, 20), new Color(255, 10, 10, 0), p) * (1f - p));
                     trail.Draw();
@@ -74,7 +74,7 @@ namespace AQMod.Projectiles
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 200 + (int)AQUtils.Wave(Main.GlobalTime * 10f, -15, 15), 200, 160), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             if (AQConfigClient.c_EffectQuality >= 1f)
             {
-                var glow = AQTextures.Lights[LightTex.Spotlight66x66];
+                var glow = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
                 var spotlightOrigin = glow.Size() / 2f;
                 for (int i = 0; i < trailLength; i++)
                 {

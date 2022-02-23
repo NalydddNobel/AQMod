@@ -87,7 +87,7 @@ namespace AQMod.Projectiles.Melee
                 Main.spriteBatch.End();
                 BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
                 float intensity = (float)Math.Sin(Main.GlobalTime * 10f) + 1.5f;
-                var effect = EffectCache.s_OutlineColor;
+                var effect = LegacyEffectCache.s_OutlineColor;
                 effect.UseColor(new Vector3(1f, 0.5f * intensity, 0.1f * intensity));
                 effect.Apply(drawData);
                 drawData.Draw(Main.spriteBatch);

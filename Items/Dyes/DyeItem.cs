@@ -9,7 +9,7 @@ namespace AQMod.Items.Dyes
 {
     public abstract class DyeItem : ModItem
     {
-        public virtual Ref<Effect> Effect => new Ref<Effect>(EffectCache.ParentPixelShader);
+        public virtual Ref<Effect> Effect => new Ref<Effect>(LegacyEffectCache.ParentPixelShader);
         public abstract string Pass { get; }
         public virtual int Rarity => ItemRarityID.Blue;
         public virtual int Value => Item.sellPrice(gold: 1, silver: 50);

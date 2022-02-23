@@ -87,7 +87,7 @@ namespace AQMod.Common.WorldGeneration
             {
                 int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
                 int y = WorldGen.genRand.Next(Main.maxTilesY - 300, Main.maxTilesY - 80);
-                if (GoreNest.GrowGoreNest(x, y, true, true))
+                if (GoreNest.TryGrowGoreNest(x, y, true, true))
                 {
                     goreNestCount++;
                     if (goreNestCount > 4)

@@ -58,7 +58,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             lightColor = GetColor();
-            var spotlight = AQTextures.Lights[LightTex.Spotlight24x24];
+            var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight24x24];
             var center = projectile.Center;
             var orig = spotlight.Size() / 2f;
             var texture = TextureGrabber.GetProjectile(projectile.type);
@@ -69,7 +69,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
                 var renderingPositions = PrimitivesRenderer.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f - Main.screenPosition.X, projectile.height / 2f - Main.screenPosition.Y));
                 if (renderingPositions.Count > 1)
                 {
-                    PrimitivesRenderer.FullDraw(AQTextures.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
+                    PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
                         renderingPositions.ToArray(), GetSizeMethod(), GetColorMethod(lightColor));
                 }
             }
@@ -119,7 +119,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
                 if (renderingPositions.Count > 3)
                 {
                     renderingPositions.RemoveAt(renderingPositions.Count - 1);
-                    Trail.PreDrawProjectiles.NewTrail(new DeathTrail(AQTextures.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
+                    Trail.PreDrawProjectiles.NewTrail(new DeathTrail(LegacyTextureCache.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
                     renderingPositions, GetSizeMethod(), GetColorMethod(GetColor()), default, default, projectile.extraUpdates));
                 }
             }

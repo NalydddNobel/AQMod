@@ -15,7 +15,7 @@ namespace AQMod.Items.Tools.Fishing
             item.fishingPole = 36;
             item.shootSpeed = 16f;
             item.rare = ItemRarityID.Orange;
-            item.shoot = ModContent.ProjectileType<Projectiles.Bobbers.BeeRod>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Fishing.BeeRod>();
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -24,10 +24,10 @@ namespace AQMod.Items.Tools.Fishing
             {
                 var offset = new Vector2(20f, 10f);
                 int p = Projectile.NewProjectile(position + offset, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
-                ((Projectiles.Bobbers.BeeRod)Main.projectile[p].modProjectile).gotoPosition = Main.MouseWorld + offset;
+                ((Projectiles.Fishing.BeeRod)Main.projectile[p].modProjectile).gotoPosition = Main.MouseWorld + offset;
                 offset.X = -offset.X;
                 p = Projectile.NewProjectile(position + offset, new Vector2(speedX, speedY), type, damage, knockBack, player.whoAmI);
-                ((Projectiles.Bobbers.BeeRod)Main.projectile[p].modProjectile).gotoPosition = Main.MouseWorld + offset;
+                ((Projectiles.Fishing.BeeRod)Main.projectile[p].modProjectile).gotoPosition = Main.MouseWorld + offset;
             }
             return true;
         }

@@ -364,10 +364,10 @@ namespace AQMod.Content.Entities
         }
 
         public const int maxCrabPots = 150;
-        public const int frameCount = 2;
-        public static Texture2D Texture { get; private set; }
-        public static Texture2D HighlightTexture { get; private set; }
+        public const int FrameCount = 2;
         public static CrabPot[] crabPots { get; private set; }
+        internal static Rectangle frame;
+        internal static Vector2 origin;
 
         public DataFlags data;
         public byte invalidLocationKillDelay;
@@ -394,8 +394,6 @@ namespace AQMod.Content.Entities
             return itemInstance;
         }
 
-        private Rectangle _frame;
-        private Vector2 _origin;
         private float _rotation;
         private float _gravity;
         private float _terminalVelocity;
@@ -408,14 +406,6 @@ namespace AQMod.Content.Entities
             this.data = data;
             invalidLocationKillDelay = 120;
             item = 0;
-            if (Main.netMode != NetmodeID.Server)
-                SetupFrame();
-        }
-
-        private void SetupFrame()
-        {
-            _frame = new Rectangle(0, 0, Texture.Width, Texture.Height / frameCount - 2);
-            _origin = _frame.Size() / 2f;
         }
 
         public void Kill()
@@ -723,7 +713,7 @@ namespace AQMod.Content.Entities
             var plr = Main.LocalPlayer;
             if (getRect().Contains(Main.MouseWorld.ToPoint()) && plr.IsInTileInteractionRange((int)position.X / 16, (int)position.Y / 16))
             {
-                var outlineTexture = HighlightTexture;
+                var outlineTexture = Tex.CrabPotHighlight.Texture.Value;
                 plr.noThrow = 2;
                 plr.showItemIcon = true;
                 Item bait = null;
@@ -748,7 +738,7 @@ namespace AQMod.Content.Entities
                 }
                 if (PlayerInput.UsingGamepad)
                     plr.GamepadEnableGrappleCooldown();
-                Main.spriteBatch.Draw(outlineTexture, drawCoordinates, _frame, Color.Lerp(lightColor, Main.OurFavoriteColor, 0.5f), _rotation, _frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(outlineTexture, drawCoordinates, frame, Color.Lerp(lightColor, Main.OurFavoriteColor, 0.5f), _rotation, origin, 1f, SpriteEffects.None, 0f);
                 if (Main.mouseLeft && Main.mouseLeftRelease)
                 {
                     if (plr.HeldItem.pick > 0)
@@ -837,7 +827,7 @@ namespace AQMod.Content.Entities
             }
             HandleInteractions(drawCoordinates, lightColor);
 
-            Main.spriteBatch.Draw(Texture, drawCoordinates, _frame, lightColor, _rotation, _origin, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(Tex.CrabPot, drawCoordinates, frame, lightColor, _rotation, origin, 1f, SpriteEffects.None, 0f);
         }
 
         public static void Initialize()
@@ -847,12 +837,6 @@ namespace AQMod.Content.Entities
             {
                 crabPots[i] = new CrabPot();
                 crabPots[i].whoAmI = i;
-            }
-
-            if (!Main.dedServ)
-            {
-                Texture = ModContent.GetTexture("AQMod/Assets/crabpot");
-                HighlightTexture = ModContent.GetTexture("AQMod/Assets/crabpot_highlight");
             }
         }
 

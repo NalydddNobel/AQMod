@@ -11,8 +11,7 @@ namespace AQMod.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(AQUtils.GetPath(this) + "_Glow", new Color(200, 200, 200, 0)), item.type);
+            this.Glowmask(() => new Color(200, 200, 200, 0) * AQUtils.Wave(Main.GlobalTime * 6f, 0.9f, 1f));
         }
 
         public override void SetDefaults()
@@ -34,14 +33,14 @@ namespace AQMod.Items.Weapons.Melee
             item.scale = 1.2f;
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
-        {
-            Buffs.Debuffs.CorruptionHellfire.Inflict(target, 240);
-        }
-
         public override Color? GetAlpha(Color lightColor)
         {
             return AQItem.Commons.DemonSiegeItem_GetAlpha(lightColor);
+        }
+
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            Buffs.Debuffs.CorruptionHellfire.Inflict(target, 240);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

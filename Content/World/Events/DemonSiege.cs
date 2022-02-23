@@ -2,13 +2,13 @@
 using AQMod.Common;
 using AQMod.Common.Utilities;
 using AQMod.Dusts;
-using AQMod.Effects.WorldEffects;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Melee.Yoyo;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Items.Weapons.Summon;
 using AQMod.NPCs.Monsters.DemonSiegeMonsters;
+using AQMod.Projectiles.Monster;
 using AQMod.Tiles.Nature;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -154,13 +154,13 @@ namespace AQMod.Content.World.Events
 
         public static void AddDemonSeigeUpgrade(SiegeUpgrade upgrade)
         {
-            if (AQMod.Loading)
+            if (AQMod.IsLoading)
                 Upgrades.Add(upgrade);
         }
 
         public static void AddDemonSeigeEnemy(SiegeEnemy enemy)
         {
-            if (AQMod.Loading)
+            if (AQMod.IsLoading)
                 Enemies.Add(enemy);
         }
 
@@ -329,8 +329,11 @@ namespace AQMod.Content.World.Events
         {
             if (spawnEnemyX != -1 && spawnEnemyY != -1)
             {
-                if (Main.netMode != NetmodeID.Server && spawnEnemyTimer == SPAWN_ENEMY_DELAY)
-                    AQMod.WorldEffects.Add(new DemonSiegeSpawnEffect(spawnEnemyX * 16 + 8, spawnEnemyY * 16 + 16, spawnEnemy));
+                if (spawnEnemyTimer == spawnEnemy.spawnTime)
+                {
+                    Projectile.NewProjectile(new Vector2(spawnEnemyX * 16f + 8f, spawnEnemyY * 16f + 16f), Vector2.Zero,
+                        ModContent.ProjectileType<DemonSiegeSpawnEffect>(), 0, 0, Main.myPlayer, spawnEnemy.spawnTime, spawnEnemy.spawnWidth);
+                }
                 spawnEnemyTimer--;
                 if (spawnEnemyTimer <= 0)
                 {
@@ -542,6 +545,19 @@ namespace AQMod.Content.World.Events
         {
             var corner = AltarCorner();
             return new Rectangle(corner.X, corner.Y, 3, 3);
+        }
+
+        public static (SiegeUpgrade? upgrade, Item item) FindUpgradeableItem(Player player)
+        {
+            for (int i = 0; i < Main.maxInventory; i++)
+            {
+                var upgrade = GetUpgrade(player.inventory[i]);
+                if (upgrade != null)
+                {
+                    return (upgrade, player.inventory[i]);
+                }
+            }
+            return (null, null);
         }
     }
 }

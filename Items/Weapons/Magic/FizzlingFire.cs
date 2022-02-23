@@ -9,15 +9,12 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Magic
 {
-    public sealed class FizzlingFire : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
+    public sealed class FizzlingFire : ModItem
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<FizzlingFire>("_Glow"), new Color(128, 128, 128, 0));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
-        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
-
         public override void SetStaticDefaults()
         {
             Item.staff[item.type] = true;
+            this.Glowmask(() => new Color(200, 200, 200, 0) * AQUtils.Wave(Main.GlobalTime * 6f, 0.9f, 1f));
         }
 
         public override void SetDefaults()

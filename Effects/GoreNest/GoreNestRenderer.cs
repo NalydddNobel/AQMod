@@ -48,14 +48,14 @@ namespace AQMod.Effects.GoreNest
             }
         }
 
-        internal static void RenderGoreNests()
+        internal static void Render()
         {
             for (int k = 0; k < index; k++)
             {
                 var portalPosition = new Vector2(tileX[k] * 16f + 24f, tileY[k] * 16f - 24f + (float)Math.Sin(Main.GlobalTime) * 4f);
                 Main.spriteBatch.End();
                 BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
-                SamplerDraw.DrawSampler(EffectCache.s_GoreNestPortal, portalPosition - Main.screenPosition, 0f, new Vector2(80f, 80f), new Color(255, 255, 255, 255));
+                SamplerRenderer.DrawSampler(LegacyEffectCache.s_GoreNestPortal, portalPosition - Main.screenPosition, 0f, new Vector2(80f, 80f), new Color(255, 255, 255, 255));
                 Main.spriteBatch.End();
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
                 if (DemonSiege.IsActive && DemonSiege.BaseItem != null && DemonSiege.BaseItem.type > ItemID.None && DemonSiege.AltarCorner() == new Point(tileX[k], tileY[k]))

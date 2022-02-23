@@ -16,7 +16,7 @@ using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.Fishing;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.Tools;
+using AQMod.Items.Boss.Expert;
 using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.NPCs;
 using AQMod.Projectiles;
@@ -66,7 +66,7 @@ namespace AQMod
         public bool copperSeal;
         public bool silverSeal;
         public bool goldSeal;
-        public bool dashAvailable;
+        public bool dashEquipped;
         public int extraFlightTime;
         public int thunderbirdLightningTimer;
         public bool dreadsoul;
@@ -128,7 +128,7 @@ namespace AQMod
         public bool undetectable;
 
         public bool helmetFlowerCrown;
-        public bool helmetDartTrap; 
+        public bool helmetDartTrap;
         public int dartHeadType;
         public int passiveSummonDelay;
         public int passiveSummonTimer;
@@ -171,8 +171,9 @@ namespace AQMod
         public byte monoxiderCarry;
 
         public int ExtractinatorCount;
-
         public bool IgnoreIgnoreMoons;
+
+        public uint ImportantInteractionDelay;
 
         public override void Initialize()
         {
@@ -195,8 +196,10 @@ namespace AQMod
             cantUseMenaceUmbrellaJump = false;
             bloodthirstDelay = 0;
             healEffectValueForSyncingTheThingOnTheServer = 0;
+            hookDebuffs?.Clear();
             hookDebuffs = new List<BuffData>();
             meathookUI = false;
+            ImportantInteractionDelay = 0;
         }
 
         public override void OnEnterWorld(Player player)
@@ -242,11 +245,11 @@ namespace AQMod
         {
             if (FX.flashLocation != Vector2.Zero)
             {
-                EffectCache.f_Flash.GetShader()
+                LegacyEffectCache.f_Flash.GetShader()
                 .UseIntensity(Math.Max(FX.flashBrightness * AQConfigClient.c_EffectIntensity, 1f / 18f));
-                if (!EffectCache.f_Flash.IsActive())
+                if (!LegacyEffectCache.f_Flash.IsActive())
                 {
-                    Filters.Scene.Activate(EffectCache.fn_Flash, FX.flashLocation, null).GetShader()
+                    Filters.Scene.Activate(LegacyEffectCache.fn_Flash, FX.flashLocation, null).GetShader()
                     .UseOpacity(1f)
                     .UseTargetPosition(FX.flashLocation);
                 }
@@ -260,13 +263,13 @@ namespace AQMod
             }
             else
             {
-                if (EffectCache.f_Flash.IsActive())
+                if (LegacyEffectCache.f_Flash.IsActive())
                 {
-                    EffectCache.f_Flash.GetShader()
+                    LegacyEffectCache.f_Flash.GetShader()
                         .UseIntensity(0f)
                         .UseProgress(0f)
                         .UseOpacity(0f);
-                    Filters.Scene.Deactivate(EffectCache.fn_Flash, null);
+                    Filters.Scene.Deactivate(LegacyEffectCache.fn_Flash, null);
                 }
             }
         }
@@ -370,14 +373,15 @@ namespace AQMod
         }
         private void ResetEffects_DashAvailable()
         {
-            dashAvailable = !(player.setSolar || player.mount.Active);
-            if (dashAvailable)
+            dashEquipped = !(player.setSolar || player.mount.Active);
+            if (dashEquipped)
             {
-                for (int i = 3; i < AccessorySlots(player); i++)
+                int slots = player.AmtAccSlots();
+                for (int i = 3; i < slots; i++)
                 {
-                    if (AQItem.Sets.DashAccessory[player.armor[i].type])
+                    if (AQItem.Sets.DashEquip.Contains(player.armor[i].type))
                     {
-                        dashAvailable = false;
+                        dashEquipped = false;
                         break;
                     }
                 }
@@ -391,7 +395,7 @@ namespace AQMod
             }
             player.statLifeMax2 += extraHP;
             extraHP = 0;
-            if (healEffectValueForSyncingTheThingOnTheServer != 0 && Main.myPlayer == player.whoAmI)
+            if (healEffectValueForSyncingTheThingOnTheServer != 0)
             {
                 player.HealEffect(healEffectValueForSyncingTheThingOnTheServer, broadcast: true);
             }
@@ -405,6 +409,11 @@ namespace AQMod
         }
         public override void ResetEffects()
         {
+            if (ImportantInteractionDelay > 0)
+            {
+                ImportantInteractionDelay--;
+            }
+
             helmetFlowerCrown = false;
             setLightbulb = false;
             arachnotronArms = false;
@@ -577,7 +586,7 @@ namespace AQMod
             Fidget_Spinner_Force_Autoswing = false;
             if (fidgetSpinner && player.selectedItem < Main.maxInventory && (Main.mouseItem == null || Main.mouseItem.type <= ItemID.None))
             {
-                if (CanForceAutoswing(player, item, ignoreChanneled: false))
+                if (AQItem.CheckFidgetSpinner(player, item, ignoreChanneled: false))
                 {
                     Fidget_Spinner_Force_Autoswing = true;
                     item.autoReuse = true;
@@ -1102,17 +1111,9 @@ namespace AQMod
         }
         public override void PostUpdateEquips()
         {
-            if (leechHook && Main.myPlayer == player.whoAmI)
+            if (leechHook && Main.myPlayer == player.whoAmI && Main.GameUpdateCount % 50 == 0)
             {
-                if (Main.GameUpdateCount % 50 == 0)
-                {
-                    healEffectValueForSyncingTheThingOnTheServer += 2;
-                    player.statLife += 2;
-                    if (player.statLife > player.statLifeMax2)
-                    {
-                        player.statLife = player.statLifeMax2;
-                    }
-                }
+                HealPlayer(player, 2, broadcast: true, merge: true, player.GrapplingHook(), healingItemQuickHeal: false);
             }
             UpdatePassiveSummonHat();
             if (arachnotronArms)
@@ -1746,23 +1747,6 @@ namespace AQMod
             return player.ConsumeItem(type);
         }
 
-        public static bool CanForceAutoswing(Player player, Item item, bool ignoreChanneled = false)
-        {
-            if (AQItem.Sets.CantForceAutoswing[item.type])
-            {
-                return false;
-            }
-            if (!item.autoReuse && item.useTime != 0 && item.useTime == item.useAnimation)
-            {
-                if (!ignoreChanneled && (item.channel || item.noUseGraphic))
-                {
-                    return player.ownedProjectileCounts[item.shoot] < item.stack;
-                }
-                return player.altFunctionUse != 2;
-            }
-            return false;
-        }
-
         public static bool IgnoreMoons()
         {
             for (int i = 0; i < Main.maxPlayers; i++)
@@ -1783,11 +1767,6 @@ namespace AQMod
             }
             var item = player.HeldItem;
             return item.pick > 0 || item.axe > 0 || item.hammer > 0 || item.createTile > TileID.Dirt || item.createWall > 0 || item.tileWand > 0;
-        }
-
-        public static int AccessorySlots(Player player)
-        {
-            return 8 + player.extraAccessorySlots;
         }
 
         public static int GetDamage(Player player, int damage, int itemType = -1, bool melee = false, bool ranged = false, bool magic = false, bool summon = false, bool throwing = false, bool forceIgnoreDamageModifiers = false)
@@ -1873,6 +1852,47 @@ namespace AQMod
         public static int GetDamage(int damage, float add, float mult, float flat)
         {
             return (int)(damage * add * mult + 5E-06f + flat);
+        }
+
+        public static void HealPlayer(Player player, int amt, bool broadcast = true, bool merge = true, Item healingItem = null, bool healingItemQuickHeal = false)
+        {
+            if (healingItem != null)
+            {
+                ItemLoader.GetHealLife(healingItem, player, quickHeal: healingItemQuickHeal, ref amt);
+            }
+            player.statLife = Math.Min(player.statLife + amt, player.statLifeMax2);
+            if (!merge)
+            {
+                player.HealEffect(healAmount: amt, broadcast: broadcast);
+            }
+            else
+            {
+                if (!broadcast)
+                {
+                    if (Main.myPlayer == player.whoAmI)
+                    {
+                        player.HealEffect(healAmount: amt, broadcast: false);
+                    }
+                }
+                else
+                {
+                    if (Main.myPlayer == player.whoAmI || Main.netMode == NetmodeID.Server)
+                    {
+                        player.GetModPlayer<AQPlayer>().healEffectValueForSyncingTheThingOnTheServer += amt;
+                    }
+                }
+            }
+        }
+
+        public static bool ImportantInteraction(uint? apply = null)
+        {
+            var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
+            if (aQPlayer.ImportantInteractionDelay > 0)
+            {
+                return false;
+            }
+            aQPlayer.ImportantInteractionDelay = apply.GetValueOrDefault(0);
+            return true;
         }
     }
 }

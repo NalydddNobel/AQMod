@@ -57,7 +57,7 @@ namespace AQMod.Content.CursorDyes.Components
                     {
                         Main.spriteBatch.End();
                         BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Shader);
-                        var effect = EffectCache.s_OutlineColor;
+                        var effect = LegacyEffectCache.s_OutlineColor;
                         effect.UseColor(Main.MouseBorderColor);
                         effect.UseImageSize(texture.Size());
                         effect.Apply(null);

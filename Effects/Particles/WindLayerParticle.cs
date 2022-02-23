@@ -10,7 +10,7 @@ namespace AQMod.Effects.Particles
 {
     public sealed class WindLayerParticle : MonoParticle
     {
-        public override Texture2D Texture => AQTextures.Particles[ParticleTex.WindParticle];
+        public override Texture2D Texture => LegacyTextureCache.Particles[ParticleTex.WindParticle];
 
         public WindLayerParticle(Vector2 position, Vector2 velocity = default(Vector2), Color color = default(Color), float scale = 1) : base(position, velocity, color, scale)
         {

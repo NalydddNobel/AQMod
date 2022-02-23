@@ -1,5 +1,5 @@
 ﻿using AQMod.Content.Players;
-using AQMod.Effects.WorldEffects;
+using AQMod.Projectiles.Fishing.PopperEffects;
 using AQMod.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -30,7 +30,7 @@ namespace AQMod.Items.Tools.Fishing.Bait
 
         public override void OnEnterWater(Player player, PlayerFishing fishing, Projectile bobber, Tile tile)
         {
-            AQMod.WorldEffects.Add(new FishingPopperEffect((int)bobber.position.X, (int)bobber.position.Y, tile.liquid, 170, default(Color)));
+            Projectile.NewProjectile(bobber.Center + new Vector2(0f, (byte.MaxValue - tile.liquid) / 16), Vector2.Zero, ModContent.ProjectileType<IchorPopperEffect>(), 0, 0f, player.whoAmI);
         }
 
         public override void AddRecipes()

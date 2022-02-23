@@ -12,14 +12,11 @@ namespace AQMod.Items.Potions
     {
         public override void SetStaticDefaults()
         {
-            if (!Main.dedServ)
-                AQMod.ItemOverlays.Register(new LegacyGlowmaskOverlay(this.GetPath("_Glow"), getOutlineColor, drawInventory: true), item.type);
-        }
-
-        private Color getOutlineColor()
-        {
-            float colorOffset = ((float)Math.Sin(Main.GlobalTime) + 1f) * 60f;
-            return new Color((int)(20 + colorOffset * 2), 10, (int)(255 - colorOffset / 2), 180);
+            this.Glowmask(() => 
+            {
+                float colorOffset = ((float)Math.Sin(Main.GlobalTime) + 1f) * 60f;
+                return new Color((int)(20 + colorOffset * 2), 10, (int)(255 - colorOffset / 2), 180);
+            });
         }
 
         public override void SetDefaults()
