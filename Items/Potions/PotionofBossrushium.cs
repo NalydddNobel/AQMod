@@ -1,5 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -12,7 +11,7 @@ namespace AQMod.Items.Potions
     {
         public override void SetStaticDefaults()
         {
-            this.Glowmask(() => 
+            this.Glowmask(() =>
             {
                 float colorOffset = ((float)Math.Sin(Main.GlobalTime) + 1f) * 60f;
                 return new Color((int)(20 + colorOffset * 2), 10, (int)(255 - colorOffset / 2), 180);

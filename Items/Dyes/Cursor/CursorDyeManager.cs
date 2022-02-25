@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Common.ID;
+﻿using AQMod.Common.ID;
 using AQMod.Content.CursorDyes;
 using AQMod.Content.CursorDyes.Components;
 using AQMod.Content.Players;

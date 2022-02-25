@@ -1,5 +1,4 @@
-﻿using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
 using AQMod.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;

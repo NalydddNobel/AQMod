@@ -945,7 +945,7 @@ namespace AQMod
             drawPosition = new Vector2((int)drawPosition.X, drawPosition.Y);
 
             spriteBatch.Draw(ModContent.GetTexture(item.modItem.GetPath("_Glow")), drawPosition, frame, grad.GetColor(Main.GlobalTime).UseA(0), rotation, origin, scale, SpriteEffects.None, 0f);
-            
+
             Main.spriteBatch.End();
             BatcherMethods.GeneralEntities.BeginShader(Main.spriteBatch);
             SamplerRenderer.Light(drawPosition + spotlightOffset, (scale + (float)Math.Sin(Main.GlobalTime * 4f) * 0.1f + 0.65f) * 36f, grad.GetColor(Main.GlobalTime).UseA(0));

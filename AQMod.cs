@@ -1,5 +1,4 @@
 using AQMod.Assets;
-using AQMod.Assets.LegacyItemOverlays;
 using AQMod.Common;
 using AQMod.Common.CrossMod;
 using AQMod.Common.Graphics;
@@ -55,12 +54,6 @@ namespace AQMod
         internal static bool IsLoading { get; private set; }
         internal static bool IsUnloading { get; private set; }
 
-        internal List<CachedTask> cachedLoadTasks;
-        [Obsolete("Replaced with interfaces")]
-        /// <summary>
-        /// The active instance of Item Overlays, this is not initialized on the server
-        /// </summary>
-        public static DrawOverlayLoader<ItemOverlayData> ItemOverlays { get; private set; }
         /// <summary>
         /// The active instance of Armor Overlays, this is not initialized on the server
         /// </summary>
@@ -70,17 +63,15 @@ namespace AQMod
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
         public static ModifiableMusic GaleStreamsMusic { get; private set; }
+        internal List<CachedTask> cachedLoadTasks;
 
         internal static CrossModData calamityMod;
         internal static CrossModData catalyst;
-        internal static CrossModData elementsAwoken;
         internal static CrossModData thoriumMod;
         internal static CrossModData fargowiltas;
         internal static CrossModData polarities;
         internal static CrossModData split;
         internal static CrossModData sOTS;
-        internal static CrossModData shadowsofAbaddon;
-        internal static CrossModData spiritMod;
         internal static CrossModData shaderLib;
         internal static CrossModData discordRP;
         internal static CrossModData bossChecklist;
@@ -224,14 +215,11 @@ namespace AQMod
             {
                 calamityMod.Dispose();
                 catalyst.Dispose();
-                elementsAwoken.Dispose();
                 thoriumMod.Dispose();
                 fargowiltas.Dispose();
                 polarities.Dispose();
                 split.Dispose();
                 sOTS.Dispose();
-                shadowsofAbaddon.Dispose();
-                spiritMod.Dispose();
                 shaderLib.Dispose();
                 discordRP.Dispose();
                 bossChecklist.Dispose();
@@ -241,14 +229,11 @@ namespace AQMod
             {
                 calamityMod = new CrossModData("CalamityMod");
                 catalyst = new CrossModData("Catalyst");
-                elementsAwoken = new CrossModData("ElementsAwoken");
                 thoriumMod = new CrossModData("ThoriumMod");
                 fargowiltas = new CrossModData("Fargowiltas");
                 polarities = new CrossModData("Polarities");
                 split = new CrossModData("Split");
                 sOTS = new CrossModData("SOTS");
-                shadowsofAbaddon = new CrossModData("SacredTools");
-                spiritMod = new CrossModData("SpiritMod");
                 shaderLib = new CrossModData("ShaderLib");
                 discordRP = new CrossModData("DiscordRP");
                 bossChecklist = new CrossModData("BossChecklist");

@@ -15,7 +15,7 @@ namespace AQMod.Content.Seasonal.Christmas
 {
     public class XmasSeeds : ModWorld
     {
-        public static class Hooks 
+        public static class Hooks
         {
             internal static void UIWorldLoad_ctor_Xmas(On.Terraria.GameContent.UI.States.UIWorldLoad.orig_ctor orig, Terraria.GameContent.UI.States.UIWorldLoad self, Terraria.World.Generation.GenerationProgress progress)
             {
@@ -36,7 +36,7 @@ namespace AQMod.Content.Seasonal.Christmas
             internal static void Main_DrawBG_XMasBG(On.Terraria.Main.orig_DrawBG orig, Main self)
             {
                 bool christmasBackground = XmasWorld && WorldGen.gen; // originally this also ran on the title screen,
-                                                                                // but for some reason there were conflicts with Modder's Toolkit
+                                                                      // but for some reason there were conflicts with Modder's Toolkit
                 bool snowflakes = XmasWorld; // I like the snowflakes on the title screen :)
                 if (AQMod.IsLoading || AQMod.IsUnloading)
                 {

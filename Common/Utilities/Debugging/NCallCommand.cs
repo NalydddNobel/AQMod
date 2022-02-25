@@ -1,6 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common.CrossMod;
-using AQMod.Common.Graphics;
+﻿using AQMod.Common.CrossMod;
 using AQMod.Common.Utilities.IO;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
@@ -22,8 +20,6 @@ using System.IO;
 using System.Reflection;
 using Terraria;
 using Terraria.Cinematics;
-using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;

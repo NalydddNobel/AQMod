@@ -1,7 +1,6 @@
 ﻿using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.ComponentModel;
-using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 

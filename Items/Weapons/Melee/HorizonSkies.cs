@@ -1,5 +1,4 @@
-﻿using AQMod.Items.DrawOverlays;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
