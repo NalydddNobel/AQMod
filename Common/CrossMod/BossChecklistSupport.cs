@@ -81,8 +81,8 @@ namespace AQMod.Common.CrossMod
                 new int[] { ModContent.ItemType<CrabsonTrophy>(), ModContent.ItemType<CrabsonMask>() },
                 () => WorldDefeats.DownedCrabson, 
                 summonItem: ModContent.ItemType<MushroomClam>(),
-                howToSummon: "Summoned by using a [i:" + ModContent.ItemType<MushroomClam>() + "] at the beach.",
-                (GameCulture.Chinese, "在海滩处使用 [i:" + ModContent.ItemType<NovaFruit>() + "] 召唤."),
+                howToSummon: AQUtils.GetTextValue((GameCulture.English, "Summoned by using a [i:" + ModContent.ItemType<MushroomClam>() + "] at the beach."),
+                (GameCulture.Chinese, "在海滩处使用 [i:" + ModContent.ItemType<MushroomClam>() + "] 召唤.")),
                 bossPortraitTexture: "AQMod/Assets/BossChecklist/JerryCrabson");
 
 
