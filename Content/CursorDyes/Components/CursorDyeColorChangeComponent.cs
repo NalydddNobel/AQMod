@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Items.Dyes.Cursor;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace AQMod.Content.CursorDyes.Components

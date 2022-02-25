@@ -28,152 +28,107 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AQMod.Common.CrossMod
 {
-    internal static class BossChecklistSupport
+    public sealed class BossChecklistSupport
     {
-        public static void AddSupport(AQMod aQMod)
+        public static class ProgressionReference 
+        {
+            public static float JerryCrabson = 2f;
+
+            public static float OmegaStarite = 6f;
+            internal static float WallofFlesh = 6f;
+
+            public static float RedSprite = 6.67f;
+            public static float SpaceSquid = 6.68f;
+        }
+
+        private static void AddBoss(float progression, AQUtils.IntArray boss, string bossName, AQUtils.IntArray loot, AQUtils.IntArray collectibles, Func<bool> isDowned, int summonItem = 0, string howToSummon = null,
+            string bossHeadTexture = null, string bossPortraitTexture = null, Func<bool> isAvailable = null, string despawnMessage = null, bool miniBoss = false)
+        {
+            AQMod.bossChecklist.Call(
+                miniBoss ? "AddMiniBoss" : "AddBoss",
+                progression, 
+                (int[])boss,
+                AQMod.GetInstance(),
+                bossName,
+                isDowned,
+                summonItem,
+                new List<int>((int[])collectibles),
+                new List<int>((int[])loot),
+                howToSummon,
+                bossHeadTexture,
+                bossPortraitTexture,
+                despawnMessage,
+                isAvailable);
+        }
+        internal static void SetupContent(AQMod aQMod)
         {
             if (!AQMod.bossChecklist.IsActive)
             {
                 return;
             }
-            AQMod.bossChecklist.mod.Call(
-            "AddBoss",
-            2f,
-            ModContent.NPCType<JerryCrabson>(),
-            aQMod,
-            AQText.chooselocalizationtext(
-                en_US: "Crabson",
-                zh_Hans: "巨蟹蛤"),
-            (Func<bool>)(() => WorldDefeats.DownedCrabson),
-            ModContent.ItemType<MushroomClam>(),
-            new List<int>()
-            {
-                ModContent.ItemType<CrabsonTrophy>(),
-                ModContent.ItemType<CrabsonMask>(),
-            },
-            new List<int>() {
-                ModContent.ItemType<Crabax>(),
-                ModContent.ItemType<JerryClawFlail>(),
-                ModContent.ItemType<CinnabarBow>(),
-                ModContent.ItemType<Bubbler>(),
-                ModContent.ItemType<AquaticEnergy>(),
-            },
-            AQText.chooselocalizationtext(
-                en_US: "Summoned by using a [i:" + ModContent.ItemType<MushroomClam>() + "] at the beach.",
-                zh_Hans: null),
-            null,
-            "AQMod/Assets/BossChecklist/JerryCrabson",
-            null,
-            null);
-            AQMod.bossChecklist.mod.Call(
-            "AddBoss",
-            6f,
-            ModContent.NPCType<OmegaStarite>(),
-            aQMod,
-            AQText.chooselocalizationtext(
-                en_US: "Omega Starite",
-                zh_Hans: "终末之星",
-                ru_RU: "Омега Жизнезвезда"),
-            (Func<bool>)(() => WorldDefeats.DownedStarite),
-            ModContent.ItemType<NovaFruit>(),
-            new List<int>() {
-                ModContent.ItemType<OmegaStariteTrophy>(),
-                ModContent.ItemType<OmegaStariteMask>(),
-                ModContent.ItemType<DragonBall>(),
-                ModContent.ItemType<EnchantedDye>(),
-                ModContent.ItemType<RainbowOutlineDye>(),
-                ModContent.ItemType<DiscoDye>(),
-            },
-            new List<int>() {
-                ModContent.ItemType<CelesteTorus>(),
-                ModContent.ItemType<UltimateSword>(),
-                ModContent.ItemType<CosmicTelescope>(),
-                ModContent.ItemType<Raygun>(),
-                ModContent.ItemType<MagicWand>(),
-                ModContent.ItemType<CosmicEnergy>(),
-                ModContent.ItemType<LightMatter>(),
-                ItemID.FallenStar,
-            },
-            AQText.chooselocalizationtext(
-                en_US: "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event.",
-                zh_Hans: "在夜晚使用 [i:" + ModContent.ItemType<NovaFruit>() + "] 召唤. 也可以与微光事件中心的剑交互来召唤.",
-                ru_RU: "Можно призвать используя [i:" + ModContent.ItemType<NovaFruit>() + "] ночью. Также можно призвать взаимодействуя с мечом который расположен в центре Мерцающего События."),
-            null,
-            "AQMod/Assets/BossChecklist/OmegaStarite",
-            null,
-            (Func<bool>)(() => WorldDefeats.OmegaStariteIntroduction || WorldDefeats.OmegaStariteIntroduction || Main.hardMode));
+            
 
-            AQMod.bossChecklist.mod.Call(
-            "AddMiniBoss",
-            6.67f,
-            ModContent.NPCType<RedSprite>(),
-            aQMod,
-            AQText.chooselocalizationtext(
-                en_US: "Red Sprite",
-                zh_Hans: "红色精灵"),
-            (Func<bool>)(() => WorldDefeats.DownedRedSprite),
-            0,
-            new List<int>()
-            {
-                ModContent.ItemType<RedSpriteTrophy>(),
-                ModContent.ItemType<RedSpriteMask>(),
-                ModContent.ItemType<RedSpriteDye>(),
-            },
-            new List<int>()
-            {
-                ItemID.NimbusRod,
-                ModContent.ItemType<Nimrod>(),
-                ModContent.ItemType<RetroGoggles>(),
-                ItemID.SoulofFlight,
-                ModContent.ItemType<AtmosphericEnergy>(),
-                ModContent.ItemType<Fluorescence>(),
-                ModContent.ItemType<PeeledCarrot>(),
-            },
-            AQText.chooselocalizationtext(
-                en_US: "Occasionally appears during the Gale Streams!",
-                zh_Hans: "偶尔出现在紊流风暴中!",
-                ru_RU: "Иногда появляется во время Штормовых Потоков!"),
-            null,
-            "AQMod/Assets/BossChecklist/RedSprite",
-            null,
-            null);
+            // Jerry Crabson
 
-            AQMod.bossChecklist.mod.Call(
-            "AddMiniBoss",
-            6.68f,
-            ModContent.NPCType<SpaceSquid>(),
-            aQMod,
-            AQText.chooselocalizationtext(
-                en_US: "Space Squid",
-                zh_Hans: null),
-            (Func<bool>)(() => WorldDefeats.DownedSpaceSquid),
-            0,
-            new List<int>()
-            {
-                ModContent.ItemType<SpaceSquidTrophy>(),
-                ModContent.ItemType<SpaceSquidMask>(),
-                ModContent.ItemType<FrostbiteDye>(),
-            },
-            new List<int>()
-            {
-                ModContent.ItemType<RetroGoggles>(),
-                ItemID.SoulofFlight,
-                ModContent.ItemType<AtmosphericEnergy>(),
-                ModContent.ItemType<SiphonTentacle>(),
-                ModContent.ItemType<PeeledCarrot>(),
-            },
-            AQText.chooselocalizationtext(
-                        en_US: "Occasionally appears during the Gale Streams!",
-                        zh_Hans: "偶尔出现在紊流风暴中!",
-                        ru_RU: "Иногда появляется во время Штормовых Потоков!"),
-            null,
-            "AQMod/Assets/BossChecklist/SpaceSquid",
-            null,
-            null);
+            AddBoss(ProgressionReference.JerryCrabson, ModContent.NPCType<JerryCrabson>(),
+                AQUtils.GetTextValue((GameCulture.English, "Jerry Crabson"), (GameCulture.Chinese, "巨蟹蛤")),
+                new int[] { ModContent.ItemType<Crabax>(), ModContent.ItemType<AquaticEnergy>(), ModContent.ItemType<JerryClawFlail>(), ModContent.ItemType<CinnabarBow>(), ModContent.ItemType<Bubbler>(), },
+                new int[] { ModContent.ItemType<CrabsonTrophy>(), ModContent.ItemType<CrabsonMask>() },
+                () => WorldDefeats.DownedCrabson, 
+                summonItem: ModContent.ItemType<MushroomClam>(),
+                howToSummon: "Summoned by using a [i:" + ModContent.ItemType<MushroomClam>() + "] at the beach.",
+                bossPortraitTexture: "AQMod/Assets/BossChecklist/JerryCrabson");
+
+
+            // Omega Starite
+
+            AddBoss(ProgressionReference.OmegaStarite, ModContent.NPCType<OmegaStarite>(),
+                AQUtils.GetTextValue((GameCulture.English, "Omega Starite"), (GameCulture.Chinese, "终末之星"), (GameCulture.Russian, "Омега Жизнезвезда")),
+                new int[] { ModContent.ItemType<CelesteTorus>(), ModContent.ItemType<UltimateSword>(), ModContent.ItemType<CosmicTelescope>(), ModContent.ItemType<Raygun>(), ModContent.ItemType<MagicWand>(), ModContent.ItemType<CosmicEnergy>(), ModContent.ItemType<LightMatter>(), ItemID.FallenStar, },
+                new int[] { ModContent.ItemType<OmegaStariteTrophy>(), ModContent.ItemType<OmegaStariteMask>(), ModContent.ItemType<DragonBall>(), ModContent.ItemType<EnchantedDye>(), ModContent.ItemType<RainbowOutlineDye>(), ModContent.ItemType<DiscoDye>(), },
+                () => WorldDefeats.DownedStarite,
+                summonItem: ModContent.ItemType<NovaFruit>(),
+                howToSummon: AQUtils.GetTextValue((GameCulture.English, "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event."), 
+                (GameCulture.Chinese, "在夜晚使用 [i:" + ModContent.ItemType<NovaFruit>() + "] 召唤. 也可以与微光事件中心的剑交互来召唤."),
+                (GameCulture.Russian, "Можно призвать используя [i:" + ModContent.ItemType<NovaFruit>() + "] ночью. Также можно призвать взаимодействуя с мечом который расположен в центре Мерцающего События.")),
+                bossPortraitTexture: "AQMod/Assets/BossChecklist/OmegaStarite",
+                isAvailable: () => WorldDefeats.OmegaStariteIntroduction || WorldDefeats.OmegaStariteIntroduction || Main.hardMode);
+
+
+            string english = "Occasionally appears during the Gale Streams!";
+            string chinese = "偶尔出现在紊流风暴中!";
+            string russian = "Иногда появляется во время Штормовых Потоков!";
+
+            // Red Sprite
+
+            AddBoss(ProgressionReference.RedSprite, ModContent.NPCType<RedSprite>(),
+                AQUtils.GetTextValue((GameCulture.English, "Red Sprite"), (GameCulture.Chinese, "红色精灵")),
+                new int[] { ItemID.NimbusRod, ModContent.ItemType<Nimrod>(), ModContent.ItemType<RetroGoggles>(), ItemID.SoulofFlight, ModContent.ItemType<AtmosphericEnergy>(), ModContent.ItemType<Fluorescence>(), ModContent.ItemType<PeeledCarrot>(), },
+                new int[] { ModContent.ItemType<RedSpriteTrophy>(), ModContent.ItemType<RedSpriteMask>(), ModContent.ItemType<RedSpriteDye>(), },
+                () => WorldDefeats.DownedRedSprite, 
+                howToSummon: AQUtils.GetTextValue((GameCulture.English, english), 
+                (GameCulture.Chinese, chinese),
+                (GameCulture.Russian, russian)),
+                bossPortraitTexture: "AQMod/Assets/BossChecklist/RedSprite",
+                miniBoss: true);
+
+            // Space Squid
+
+            AddBoss(ProgressionReference.SpaceSquid, ModContent.NPCType<SpaceSquid>(),
+                AQUtils.GetTextValue((GameCulture.English, "Red Sprite"), (GameCulture.Chinese, "红色精灵")),
+                new int[] { ModContent.ItemType<RetroGoggles>(), ItemID.SoulofFlight, ModContent.ItemType<AtmosphericEnergy>(), ModContent.ItemType<SiphonTentacle>(), ModContent.ItemType<PeeledCarrot>(), },
+                new int[] { ModContent.ItemType<SpaceSquidTrophy>(), ModContent.ItemType<SpaceSquidMask>(), ModContent.ItemType<FrostbiteDye>(), },
+                () => WorldDefeats.DownedSpaceSquid, 
+                howToSummon: AQUtils.GetTextValue((GameCulture.English, english), 
+                (GameCulture.Chinese, chinese),
+                (GameCulture.Russian, russian)),
+                bossPortraitTexture: "AQMod/Assets/BossChecklist/SpaceSquid",
+                miniBoss: true);
 
             //bossChecklist.Call("AddEvent",
             //progression,

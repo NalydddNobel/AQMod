@@ -4,21 +4,23 @@ using Terraria.ModLoader;
 
 namespace AQMod.Common.CrossMod
 {
-    public static class CensusSupport
+    public sealed class CensusSupport
     {
-        public static Mod GetMod() => ModLoader.GetMod("Census");
-
-        public static void AddSupport(AQMod aQMod)
+        private static void AddNPC<T>(string canSpawn) where T : ModNPC
         {
+            AQMod.census.Call("TownNPCCondition", ModContent.NPCType<T>(), canSpawn);
+        }
+        internal static void SetupContent(AQMod aQMod)
+        {
+            if (!AQMod.census.IsActive)
+            {
+                return;
+            }
             try
             {
-                var census = GetMod();
-                if (census != null)
-                {
-                    census.Call("TownNPCCondition", ModContent.NPCType<Robster>(), "Defeat Crabson!");
-                    census.Call("TownNPCCondition", ModContent.NPCType<Physicist>(), "Defeat Omega Starite!");
-                    census.Call("TownNPCCondition", ModContent.NPCType<Memorialist>(), "Upgrade an item at the Gore Nest!");
-                }
+                AddNPC<Robster>("Defeat Crabson!");
+                AddNPC<Physicist>("Defeat Omega Starite!");
+                AddNPC<Memorialist>("Upgrade an item at the Gore Nest!");
             }
             catch (Exception ex)
             {

@@ -53,7 +53,7 @@ namespace AQMod.Items.Armor.Arachnotron
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = Language.GetTextValue("Mods.AQMod.ArmorSetBonus.Arachnotron", AQText.KeybindText(AQMod.Keybinds.ArmorSetBonus));
+            player.setBonus = Language.GetTextValue("Mods.AQMod.ArmorSetBonus.Arachnotron", AQText.KeybindText(Keybinds.ArmorSetBonus));
             player.GetModPlayer<AQPlayer>().setArachnotron = true;
         }
 

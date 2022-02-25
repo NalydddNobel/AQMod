@@ -17,7 +17,7 @@ namespace AQMod.Items.Potions
         }
 
         public override void SetDefaults()
-        {
+        {   
             item.width = 16;
             item.height = 20;
             item.useStyle = ItemUseStyleID.EatingUsing;

@@ -30,7 +30,7 @@ namespace AQMod.Tiles.Nature
 
         public override bool HasSmartInteract()
         {
-            if (DemonSiege.IsActive)
+            if (DemonSiege.IsActive || !AQPlayer._ImportantInteractionDelay())
             {
                 return false;
             }
@@ -66,10 +66,9 @@ namespace AQMod.Tiles.Nature
             }
             var player = Main.player[Main.myPlayer];
             var upgradeableItem = DemonSiege.FindUpgradeableItem(player);
-            if (upgradeableItem.item != null && upgradeableItem.item.type > ItemID.None)
+            if (upgradeableItem.item != null && upgradeableItem.item.type > ItemID.None && AQPlayer._ImportantInteractionDelay(apply: 1800))
             {
                 DemonSiege.Activate(i, j, player.whoAmI, upgradeableItem.item);
-                AQPlayer.ImportantInteraction(apply: 1800);
                 Main.PlaySound(SoundID.DD2_EtherianPortalOpen, new Vector2(i * 16f, j * 16f));
             }
             return false;

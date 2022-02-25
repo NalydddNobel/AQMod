@@ -20,7 +20,7 @@ namespace AQMod.Common.Utilities
                     if (Main.time + Main.dayRate > Main.dayLength)
                     {
                         AQSystem.CosmicanonActive = AQPlayer.IgnoreMoons();
-                        AprilFoolsJoke.UpdateActive();
+                        AprilFoolsJoke.Check();
                         if (Main.netMode != NetmodeID.Server)
                         {
                             SkyGlimmerEvent.InitNight();

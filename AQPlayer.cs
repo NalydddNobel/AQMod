@@ -51,8 +51,135 @@ namespace AQMod
         public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
         public const byte TEMPERATURE_REGEN_ON_HIT = 120;
 
+        public static class Hooks
+        {
+            internal static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
+            {
+                var plr = Main.LocalPlayer;
+                bool discount = plr.discount;
+                plr.discount = false;
+
+                orig(self, type);
+
+                plr.discount = discount;
+                if (discount)
+                {
+                    float discountPercentage = plr.GetModPlayer<AQPlayer>().discountPercentage;
+                    for (int i = 0; i < Chest.maxItems; i++)
+                    {
+                        if (self.item[i] != null && self.item[i].type != ItemID.None)
+                            self.item[i].value = (int)(self.item[i].value * discountPercentage);
+                    }
+                }
+            }
+
+            internal static void Player_HorizontalMovement(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
+            {
+                orig(self);
+                var aQPlayer = self.GetModPlayer<AQPlayer>();
+                if (aQPlayer.redSpriteWind != 0 && !(self.mount.Active && self.velocity.Y == 0f && (self.controlLeft || self.controlRight)))
+                {
+                    float windDirection = Math.Sign(aQPlayer.redSpriteWind) * 0.07f;
+                    if (Math.Abs(Main.windSpeed) > 0.5f)
+                    {
+                        windDirection *= 1.37f;
+                    }
+                    if (self.velocity.Y != 0f)
+                    {
+                        windDirection *= 1.5f;
+                    }
+                    if (self.controlLeft || self.controlRight)
+                    {
+                        windDirection *= 0.8f;
+                    }
+                    if (Math.Sign(self.direction) != Math.Sign(windDirection))
+                    {
+                        self.accRunSpeed -= Math.Abs(windDirection) * 20f;
+                        self.maxRunSpeed -= Math.Abs(windDirection) * 20f;
+                    }
+                    if (windDirection < 0f && self.velocity.X > windDirection)
+                    {
+                        self.velocity.X += windDirection;
+                        if (self.velocity.X < windDirection)
+                        {
+                            self.velocity.X = windDirection;
+                        }
+                    }
+                    if (windDirection > 0f && self.velocity.X < windDirection)
+                    {
+                        self.velocity.X += windDirection;
+                        if (self.velocity.X > windDirection)
+                        {
+                            self.velocity.X = windDirection;
+                        }
+                    }
+
+                    if (!self.controlLeft && !self.controlRight)
+                    {
+                        self.legFrameCounter = -1.0;
+                        self.legFrame.Y = 0;
+                    }
+                }
+                aQPlayer.redSpriteWind = 0;
+            }
+
+            internal static void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
+            {
+                if (self.GetModPlayer<AQPlayer>().pickBreak)
+                {
+                    pickPower /= 2;
+                }
+                orig(self, x, y, pickPower);
+            }
+
+            internal static void Player_AddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)
+            {
+                if (type >= Main.maxBuffTypes)
+                {
+                    var modBuff = ModContent.GetModBuff(type);
+                    if (modBuff is temperatureDebuff)
+                    {
+                        for (int i = 0; i < Player.MaxBuffs; i++)
+                        {
+                            if (self.buffTime[i] > 0)
+                            {
+                                if (self.buffType[i] == type)
+                                {
+                                    orig(self, type, time1, quiet);
+                                    return;
+                                }
+                                if (self.buffType[i] > Main.maxBuffTypes)
+                                {
+                                    var otherModBuff = ModContent.GetModBuff(self.buffType[i]);
+                                    if (otherModBuff is temperatureDebuff)
+                                    {
+                                        self.DelBuff(i);
+                                        orig(self, type, time1, quiet);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                        orig(self, type, time1, quiet);
+                        return;
+                    }
+                }
+                if (AQBuff.Sets.IsFoodBuff[type])
+                {
+                    for (int i = 0; i < Player.MaxBuffs; i++)
+                    {
+                        if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.IsFoodBuff[self.buffType[i]])
+                        {
+                            self.DelBuff(i);
+                            i--;
+                        }
+                    }
+                }
+                orig(self, type, time1, quiet);
+            }
+        }
+
         public static bool Fidget_Spinner_Force_Autoswing { get; internal set; }
-        public static bool IsQuickBuffing { get; internal set; }
 
         public float discountPercentage;
         public bool blueSpheres;
@@ -542,11 +669,11 @@ namespace AQMod
         }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (canToggleCosmicanon && AQMod.Keybinds.CosmicanonToggle.JustPressed)
+            if (canToggleCosmicanon && Keybinds.CosmicanonToggle.JustPressed)
             {
                 ProcessTriggers_ToggleCosmicanon();
             }
-            if (AQMod.Keybinds.ArmorSetBonus.JustPressed)
+            if (Keybinds.ArmorSetBonus.JustPressed)
             {
                 ProcessTriggers_ArmorSetBonus();
             }
@@ -1884,7 +2011,7 @@ namespace AQMod
             }
         }
 
-        public static bool ImportantInteraction(uint? apply = null)
+        public static bool _ImportantInteractionDelay(uint? apply = null)
         {
             var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
             if (aQPlayer.ImportantInteractionDelay > 0)

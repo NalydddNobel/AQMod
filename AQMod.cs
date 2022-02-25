@@ -1,6 +1,5 @@
 using AQMod.Assets;
 using AQMod.Assets.LegacyItemOverlays;
-using AQMod.Buffs.Temperature;
 using AQMod.Common;
 using AQMod.Common.CrossMod;
 using AQMod.Common.Graphics;
@@ -8,7 +7,6 @@ using AQMod.Common.ID;
 using AQMod.Common.Utilities;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
-using AQMod.Content.CursorDyes;
 using AQMod.Content.Entities;
 using AQMod.Content.Players;
 using AQMod.Content.Quest.Lobster;
@@ -16,19 +14,21 @@ using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
-using AQMod.Effects.Particles;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Items.Dyes;
+using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Potions;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
 using AQMod.Sounds;
+using AQMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
@@ -36,7 +36,6 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.Utilities;
-using Terraria.World.Generation;
 
 namespace AQMod
 {
@@ -85,417 +84,9 @@ namespace AQMod
         internal static CrossModData shaderLib;
         internal static CrossModData discordRP;
         internal static CrossModData bossChecklist;
+        internal static CrossModData census;
 
         public UserInterface NPCTalkState { get; private set; }
-
-        public static class Keybinds
-        {
-            public static ModHotKey ArmorSetBonus { get; private set; }
-            public static ModHotKey CosmicanonToggle { get; private set; }
-
-            internal static void Load(AQMod mod)
-            {
-                ArmorSetBonus = mod.RegisterHotKey("Armor Set Bonus", "V");
-                CosmicanonToggle = mod.RegisterHotKey("Cosmicanon Toggle", "P");
-            }
-
-            internal static void Unload()
-            {
-                CosmicanonToggle = null;
-                ArmorSetBonus = null;
-            }
-        }
-        public static class Edits
-        {
-            internal static void Load()
-            {
-                if (ModContent.GetInstance<AQConfigClient>().XmasProgressMeterOverride)
-                {
-                    On.Terraria.GameContent.UI.States.UIWorldLoad.ctor += UIWorldLoad_ctor_Xmas;
-                }
-                On.Terraria.UI.ItemSlot.OverrideHover += ItemSlot_OverrideHover;
-                On.Terraria.GameContent.Achievements.AchievementsHelper.NotifyProgressionEvent += AchievementsHelper_NotifyProgressionEvent;
-                On.Terraria.Chest.SetupShop += Chest_SetupShop;
-                On.Terraria.NPC.Collision_DecideFallThroughPlatforms += NPC_Collision_DecideFallThroughPlatforms;
-                if (ModContent.GetInstance<AQConfigClient>().XmasBackground)
-                {
-                    On.Terraria.Main.DrawBG += Main_DrawBG_XMasBG;
-                }
-                On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
-                On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
-                On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
-                On.Terraria.Main.DrawPlayers += Main_DrawPlayers;
-                On.Terraria.Player.AddBuff += Player_AddBuff;
-                On.Terraria.Player.QuickBuff += Player_QuickBuff;
-                On.Terraria.Player.PickTile += Player_PickTile;
-                On.Terraria.Player.HorizontalMovement += Player_HorizontalMovement;
-            }
-
-            private static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
-            {
-                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
-                Particle.PreDrawProjectiles.Render();
-                Trail.PreDrawProjectiles.Render();
-                Main.spriteBatch.End();
-                orig(self);
-            }
-
-            private static void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
-            {
-                orig(self);
-                AQGraphics.SetCullPadding();
-                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
-                for (int i = 0; i < CrabPot.maxCrabPots; i++)
-                {
-                    CrabPot.crabPots[i].Render();
-                }
-                Particle.PostDrawPlayers.Render();
-                Main.spriteBatch.End();
-            }
-
-
-            private static void UIWorldLoad_ctor_Xmas(On.Terraria.GameContent.UI.States.UIWorldLoad.orig_ctor orig, Terraria.GameContent.UI.States.UIWorldLoad self, Terraria.World.Generation.GenerationProgress progress)
-            {
-                if (XmasSeeds.XmasWorld)
-                {
-                    XmasSeeds.realGenerationProgress = progress;
-                    XmasSeeds.generationProgress = new GenerationProgress
-                    {
-                        Value = progress.Value,
-                        TotalWeight = progress.TotalWeight,
-                        CurrentPassWeight = 1f,
-                    };
-                    progress = XmasSeeds.generationProgress;
-                }
-                orig(self, progress);
-            }
-
-            private static void Main_DrawBG_XMasBG(On.Terraria.Main.orig_DrawBG orig, Main self)
-            {
-                bool christmasBackground = XmasSeeds.XmasWorld && WorldGen.gen; // originally this also ran on the title screen,
-                                                                                // but for some reason there were conflicts with Modder's Toolkit
-                bool snowflakes = XmasSeeds.XmasWorld; // I like the snowflakes on the title screen :)
-                if (IsLoading || IsUnloading)
-                {
-                    christmasBackground = false;
-                    snowflakes = false;
-                }
-                if (christmasBackground)
-                {
-                    if (XmasSeeds.generationProgress != null)
-                    {
-                        XmasSeeds.generationProgress.Value = Main.rand.NextFloat(0f, 1f);
-                        if (!XmasSeeds.generatingSnowBiomeText)
-                            XmasSeeds.generationProgress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.ChristmasSpirit") + ", " + Language.GetTextValue("Mods.AQMod.WorldGen.ChristmasSpiritProgress" + XmasSeeds.snowflakeRandom.Next(16));
-                    }
-                }
-                if (Main.mapFullscreen)
-                {
-                    orig(self);
-                    return;
-                }
-                bool oldGameMenu = Main.gameMenu;
-                if (christmasBackground)
-                {
-                    Main.snowTiles = 10000;
-                    if (Main.myPlayer > -1 || Main.player[Main.myPlayer] != null)
-                    {
-                        var plr = Main.LocalPlayer;
-                        plr.ZoneGlowshroom = false;
-                        plr.ZoneDesert = false;
-                        plr.ZoneBeach = false;
-                        plr.ZoneJungle = false;
-                        plr.ZoneHoly = false;
-                        plr.ZoneCrimson = false;
-                        plr.ZoneCorrupt = false;
-                        plr.ZoneSnow = true;
-                        plr.position.X = Main.maxTilesX * 8f;
-                    }
-                    Main.screenPosition.X = Main.maxTilesX * 8f + (float)Math.Sin(Main.GlobalTime * 0.2f) * 1250f;
-                    Main.screenPosition.Y = 2200f + (float)Math.Sin(Main.GlobalTime) * 80f;
-                    Main.gameMenu = false;
-                }
-                if (snowflakes)
-                {
-                    if (XmasSeeds.farSnowflakes == null)
-                    {
-                        XmasSeeds.farSnowflakes = new ParticleLayer<FarBGSnowflake>();
-                    }
-
-                    if (XmasSeeds.snowflakeRandom == null)
-                    {
-                        XmasSeeds.snowflakeRandom = new UnifiedRandom();
-                    }
-
-                    XmasSeeds.farSnowflakes.AddParticle(new FarBGSnowflake(new Vector2(XmasSeeds.snowflakeRandom.Next(-200, Main.screenWidth + 200), -XmasSeeds.snowflakeRandom.Next(100, 250))));
-                    XmasSeeds.farSnowflakes.UpdateParticles();
-                    XmasSeeds.farSnowflakes.Render();
-                }
-                else
-                {
-                    XmasSeeds.farSnowflakes = null;
-                }
-                orig(self);
-                if (snowflakes)
-                {
-                    if (XmasSeeds.closeSnowflakes == null)
-                    {
-                        XmasSeeds.closeSnowflakes = new ParticleLayer<CloseBGSnowflake>();
-                    }
-                    if (XmasSeeds.snowflakeRandom.NextBool(10))
-                    {
-                        XmasSeeds.closeSnowflakes.AddParticle(new CloseBGSnowflake(new Vector2(Main.screenPosition.X + XmasSeeds.snowflakeRandom.Next(-200, Main.screenWidth + 200), Main.screenPosition.Y - XmasSeeds.snowflakeRandom.Next(100, 250))));
-                    }
-                    XmasSeeds.farSnowflakes.UpdateParticles();
-                    XmasSeeds.farSnowflakes.Render();
-                }
-                else
-                {
-                    XmasSeeds.generatingSnowBiomeText = false;
-                    XmasSeeds.realGenerationProgress = null;
-                    XmasSeeds.generationProgress = null;
-                    XmasSeeds.snowflakeRandom = null;
-                    XmasSeeds.closeSnowflakes = null;
-                }
-                Main.gameMenu = oldGameMenu;
-            }
-
-            private static void ItemSlot_OverrideHover(On.Terraria.UI.ItemSlot.orig_OverrideHover orig, Item[] inv, int context, int slot)
-            {
-                if (inv[slot].type > Main.maxItemTypes && inv[slot].stack > 0 && inv[slot].modItem is Items.IInventoryHover hover)
-                {
-                    if (hover.CursorHover(inv, context, slot))
-                    {
-                        return;
-                    }
-                }
-                orig(inv, context, slot);
-            }
-
-            private static void AchievementsHelper_NotifyProgressionEvent(On.Terraria.GameContent.Achievements.AchievementsHelper.orig_NotifyProgressionEvent orig, int eventID)
-            {
-                if (AQSystem.UpdatingTime && AQSystem.CosmicanonActive && Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    if (eventID == AchievementHelperID.Events.BloodMoonStart)
-                    {
-                        Main.bloodMoon = false;
-                        CosmicanonWorldData.BloodMoonsPrevented++;
-                        if (Main.netMode == NetmodeID.Server)
-                            NetHelper.PreventedBloodMoon();
-                        MessageBroadcast.PreventChatOnce = true;
-                    }
-                    if (eventID == AchievementHelperID.Events.EclipseStart)
-                    {
-                        Main.eclipse = false;
-                        CosmicanonWorldData.EclipsesPrevented++;
-                        if (Main.netMode == NetmodeID.Server)
-                            NetHelper.PreventedEclipse();
-                        MessageBroadcast.PreventChatOnce = true;
-                    }
-                }
-                orig(eventID);
-            }
-
-            private static void Main_UpdateWeather(On.Terraria.Main.orig_UpdateWeather orig, Main self, GameTime gameTime)
-            {
-                if (GaleStreams.EndEvent)
-                {
-                    Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
-                    if (Main.windSpeedSet.Abs() < 0.1f)
-                    {
-                        GaleStreams.EndEvent = false;
-                    }
-                    Main.windSpeedTemp = Main.windSpeedSet;
-                    return;
-                }
-                if (Main.netMode != NetmodeID.MultiplayerClient && (Main.netMode == NetmodeID.Server || !Main.gameMenu)
-                    && GaleStreams.IsActive)
-                {
-                    for (int i = 0; i < Main.maxPlayers; i++)
-                    {
-                        if (Main.player[i].active && !Main.player[i].dead && GaleStreams.EventActive(Main.player[i]))
-                        {
-                            Main.cloudLimit = 200; // prevents the wind speed from naturally changing during the Gale Streams event
-                            if (Main.windSpeed < Main.windSpeedSet)
-                            {
-                                Main.windSpeed += 0.001f * Main.dayRate;
-                                if (Main.windSpeed > Main.windSpeedSet)
-                                {
-                                    Main.windSpeed = Main.windSpeedSet;
-                                }
-                            }
-                            else if (Main.windSpeed > Main.windSpeedSet)
-                            {
-                                Main.windSpeed -= 0.001f * Main.dayRate;
-                                if (Main.windSpeed < Main.windSpeedSet)
-                                {
-                                    Main.windSpeed = Main.windSpeedSet;
-                                }
-                            }
-                            Main.weatherCounter -= Main.dayRate;
-                            if (Main.weatherCounter <= 0)
-                            {
-                                Main.weatherCounter = Main.rand.Next(3600, 18000);
-                                if (Main.netMode == NetmodeID.Server)
-                                {
-                                    NetMessage.SendData(MessageID.WorldData);
-                                }
-                            }
-                            return;
-                        }
-                    }
-                }
-                if (Main.windSpeedSet.Abs() > 1f)
-                {
-                    Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
-                    Main.windSpeedTemp = Main.windSpeedSet;
-                }
-                orig(self, gameTime);
-            }
-
-            private static void Player_HorizontalMovement(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
-            {
-                orig(self);
-                var aQPlayer = self.GetModPlayer<AQPlayer>();
-                if (aQPlayer.redSpriteWind != 0 && !(self.mount.Active && self.velocity.Y == 0f && (self.controlLeft || self.controlRight)))
-                {
-                    float windDirection = Math.Sign(aQPlayer.redSpriteWind) * 0.07f;
-                    if (Math.Abs(Main.windSpeed) > 0.5f)
-                    {
-                        windDirection *= 1.37f;
-                    }
-                    if (self.velocity.Y != 0f)
-                    {
-                        windDirection *= 1.5f;
-                    }
-                    if (self.controlLeft || self.controlRight)
-                    {
-                        windDirection *= 0.8f;
-                    }
-                    if (Math.Sign(self.direction) != Math.Sign(windDirection))
-                    {
-                        self.accRunSpeed -= Math.Abs(windDirection) * 20f;
-                        self.maxRunSpeed -= Math.Abs(windDirection) * 20f;
-                    }
-                    if (windDirection < 0f && self.velocity.X > windDirection)
-                    {
-                        self.velocity.X += windDirection;
-                        if (self.velocity.X < windDirection)
-                        {
-                            self.velocity.X = windDirection;
-                        }
-                    }
-                    if (windDirection > 0f && self.velocity.X < windDirection)
-                    {
-                        self.velocity.X += windDirection;
-                        if (self.velocity.X > windDirection)
-                        {
-                            self.velocity.X = windDirection;
-                        }
-                    }
-
-                    if (!self.controlLeft && !self.controlRight)
-                    {
-                        self.legFrameCounter = -1.0;
-                        self.legFrame.Y = 0;
-                    }
-                }
-                aQPlayer.redSpriteWind = 0;
-            }
-
-            private static void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
-            {
-                if (self.GetModPlayer<AQPlayer>().pickBreak)
-                {
-                    pickPower /= 2;
-                }
-                orig(self, x, y, pickPower);
-            }
-
-            private static void Player_QuickBuff(On.Terraria.Player.orig_QuickBuff orig, Player self)
-            {
-                AQPlayer.IsQuickBuffing = true;
-                orig(self);
-                AQPlayer.IsQuickBuffing = false;
-            }
-
-            private static void Player_AddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)
-            {
-                if (type >= Main.maxBuffTypes)
-                {
-                    var modBuff = ModContent.GetModBuff(type);
-                    if (modBuff is temperatureDebuff)
-                    {
-                        for (int i = 0; i < Player.MaxBuffs; i++)
-                        {
-                            if (self.buffTime[i] > 0)
-                            {
-                                if (self.buffType[i] == type)
-                                {
-                                    orig(self, type, time1, quiet);
-                                    return;
-                                }
-                                if (self.buffType[i] > Main.maxBuffTypes)
-                                {
-                                    var otherModBuff = ModContent.GetModBuff(self.buffType[i]);
-                                    if (otherModBuff is temperatureDebuff)
-                                    {
-                                        self.DelBuff(i);
-                                        orig(self, type, time1, quiet);
-                                        return;
-                                    }
-                                }
-                            }
-                        }
-                        orig(self, type, time1, quiet);
-                        return;
-                    }
-                }
-                if (AQBuff.Sets.IsFoodBuff[type])
-                {
-                    for (int i = 0; i < Player.MaxBuffs; i++)
-                    {
-                        if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.IsFoodBuff[self.buffType[i]])
-                        {
-                            self.DelBuff(i);
-                            i--;
-                        }
-                    }
-                }
-                orig(self, type, time1, quiet);
-            }
-
-            private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)
-            {
-                orig();
-                Main.dayRate += AQSystem.DayrateIncrease;
-            }
-
-            private static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
-            {
-                var plr = Main.LocalPlayer;
-                bool discount = plr.discount;
-                plr.discount = false;
-
-                orig(self, type);
-
-                plr.discount = discount;
-                if (discount)
-                {
-                    float discountPercentage = plr.GetModPlayer<AQPlayer>().discountPercentage;
-                    for (int i = 0; i < Chest.maxItems; i++)
-                    {
-                        if (self.item[i] != null && self.item[i].type != ItemID.None)
-                            self.item[i].value = (int)(self.item[i].value * discountPercentage);
-                    }
-                }
-            }
-
-            private static bool NPC_Collision_DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
-                self.type > Main.maxNPCTypes &&
-                self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ?
-                decideToFallThroughPlatforms.Decide() : orig(self);
-        }
 
         public AQMod()
         {
@@ -510,71 +101,185 @@ namespace AQMod
             IsLoading = true;
         }
 
-        private void Load_Assets_Textures()
+        private void Load_Hooks(bool unload = false)
         {
-            LegacyTextureCache.Load();
-            Tex.Load(this);
-            CrabPot.frame = new Rectangle(0, 0, Tex.CrabPot.Texture.Value.Width, Tex.CrabPot.Texture.Value.Height / CrabPot.FrameCount - 2);
-            CrabPot.origin = CrabPot.frame.Size() / 2f;
-        }
-        private void Load_Assets_Effects()
-        {
-            LegacyEffectCache.Load(this);
-            FX.InternalSetup();
-            PrimitivesRenderer.Setup();
-            BuffColorCache.Init();
+            if (unload)
+            {
+            }
+            else
+            {
+                if (ModContent.GetInstance<AQConfigClient>().XmasProgressMeterOverride)
+                {
+                    On.Terraria.GameContent.UI.States.UIWorldLoad.ctor += XmasSeeds.Hooks.UIWorldLoad_ctor_Xmas;
+                }
+                if (ModContent.GetInstance<AQConfigClient>().XmasBackground)
+                {
+                    On.Terraria.Main.DrawBG += XmasSeeds.Hooks.Main_DrawBG_XMasBG;
+                }
 
-            SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
+                TimeActions.Hooks.Main_UpdateTime_SpawnTownNPCs = typeof(Main).GetMethod("UpdateTime_SpawnTownNPCs", BindingFlags.NonPublic | BindingFlags.Static);
+                On.Terraria.Main.UpdateTime += TimeActions.Hooks.Main_UpdateTime;
+                On.Terraria.Main.DrawProjectiles += GameWorldRenders.Hooks.Main_DrawProjectiles;
+                On.Terraria.Main.DrawPlayers += GameWorldRenders.Hooks.Main_DrawPlayers;
+
+                On.Terraria.Main.UpdateSundial += AQSystem.Hooks.Main_UpdateSundial;
+                On.Terraria.Main.UpdateWeather += AQSystem.Hooks.Main_UpdateWeather;
+
+                On.Terraria.GameContent.Achievements.AchievementsHelper.NotifyProgressionEvent += CosmicanonWorldData.Hooks.AchievementsHelper_NotifyProgressionEvent;
+
+                On.Terraria.UI.ItemSlot.OverrideHover += InvSlotData.Hooks.ItemSlot_OverrideHover;
+
+                On.Terraria.Main.DrawNPCs += GameWorldRenders.Hooks.Main_DrawNPCs;
+                On.Terraria.Main.DrawTiles += GameWorldRenders.Hooks.Main_DrawTiles;
+                On.Terraria.Main.UpdateDisplaySettings += GameWorldRenders.Hooks.Main_UpdateDisplaySettings;
+
+                On.Terraria.Main.CursorColor += CursorDyeManager.Hooks.Main_CursorColor;
+                On.Terraria.Main.DrawCursor += CursorDyeManager.Hooks.Main_DrawCursor;
+                On.Terraria.Main.DrawThickCursor += CursorDyeManager.Hooks.Main_DrawThickCursor;
+                On.Terraria.Main.DrawInterface_36_Cursor += CursorDyeManager.Hooks.Main_DrawInterface_36_Cursor;
+
+                On.Terraria.Player.DropTombstone += TombstonesPlayer.Hooks.Player_DropTombstone;
+                On.Terraria.Player.AddBuff += AQPlayer.Hooks.Player_AddBuff;
+                On.Terraria.Player.PickTile += AQPlayer.Hooks.Player_PickTile;
+                On.Terraria.Player.HorizontalMovement += AQPlayer.Hooks.Player_HorizontalMovement;
+                On.Terraria.Chest.SetupShop += AQPlayer.Hooks.Chest_SetupShop;
+
+                On.Terraria.NetMessage.BroadcastChatMessage += MessageBroadcast.Hooks.NetMessage_BroadcastChatMessage;
+                On.Terraria.Main.NewText_string_byte_byte_byte_bool += MessageBroadcast.Hooks.Main_NewText_string_byte_byte_byte_bool;
+
+                On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += AQProjectile.Hooks.Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
+
+                On.Terraria.UI.ItemSlot.MouseHover_ItemArray_int_int += PlayerStorage.Hooks.ItemSlot_MouseHover_ItemArray_int_int;
+
+                On.Terraria.NPC.Collision_DecideFallThroughPlatforms += AQNPC.Hooks.NPC_Collision_DecideFallThroughPlatforms;
+            }
         }
-        private void Load_Assets_Music()
+        private void Load_Assets_Textures(bool unload = false)
         {
-            CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
-            GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
-            OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
-            DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
-            GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
+            if (unload)
+            {
+                Tex.Unload();
+                LegacyTextureCache.Unload();
+            }
+            else
+            {
+                LegacyTextureCache.Load();
+                Tex.Load(this);
+                CrabPot.frame = new Rectangle(0, 0, Tex.CrabPot.Texture.Value.Width, Tex.CrabPot.Texture.Value.Height / CrabPot.FrameCount - 2);
+                CrabPot.origin = CrabPot.frame.Size() / 2f;
+            }
         }
-        private void Load_Assets_UI()
+        private void Load_Assets_Effects(bool unload = false)
         {
-            NPCTalkState = new UserInterface();
+            if (unload)
+            {
+                BuffColorCache.Unload();
+                PrimitivesRenderer.Unload();
+                FX.Unload();
+                LegacyEffectCache.Unload();
+            }
+            else
+            {
+                LegacyEffectCache.Load(this);
+                FX.InternalSetup();
+                PrimitivesRenderer.Setup();
+                BuffColorCache.Init();
+
+                SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
+            }
+        }
+        private void Load_Assets_Music(bool unload = false)
+        {
+            if (unload)
+            {
+                CrabsonMusic = null;
+                GlimmerEventMusic = null;
+                OmegaStariteMusic = null;
+                DemonSiegeMusic = null;
+                GaleStreamsMusic = null;
+            }
+            else
+            {
+                CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
+                GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
+                OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
+                DemonSiegeMusic = new ModifiableMusic(MusicID.PumpkinMoon);
+                GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
+            }
+        }
+        private void Load_Assets_UI(bool unload = false)
+        {
+            if (unload)
+            {
+                NPCTalkState = null;
+            }
+            else
+            {
+                NPCTalkState = new UserInterface();
+            }
+        }
+        private void Load_CrossMod(bool unload = false)
+        {
+            if (unload)
+            {
+                calamityMod.Dispose();
+                catalyst.Dispose();
+                elementsAwoken.Dispose();
+                thoriumMod.Dispose();
+                fargowiltas.Dispose();
+                polarities.Dispose();
+                split.Dispose();
+                sOTS.Dispose();
+                shadowsofAbaddon.Dispose();
+                spiritMod.Dispose();
+                shaderLib.Dispose();
+                discordRP.Dispose();
+                bossChecklist.Dispose();
+                census.Dispose();
+            }
+            else
+            {
+                calamityMod = new CrossModData("CalamityMod");
+                catalyst = new CrossModData("Catalyst");
+                elementsAwoken = new CrossModData("ElementsAwoken");
+                thoriumMod = new CrossModData("ThoriumMod");
+                fargowiltas = new CrossModData("Fargowiltas");
+                polarities = new CrossModData("Polarities");
+                split = new CrossModData("Split");
+                sOTS = new CrossModData("SOTS");
+                shadowsofAbaddon = new CrossModData("SacredTools");
+                spiritMod = new CrossModData("SpiritMod");
+                shaderLib = new CrossModData("ShaderLib");
+                discordRP = new CrossModData("DiscordRP");
+                bossChecklist = new CrossModData("BossChecklist");
+                census = new CrossModData("Census");
+            }
         }
         public override void Load()
         {
             IsLoading = true;
             IsUnloading = false;
-            Keybinds.Load(this);
-            Common.Edits.LoadHooks();
-            Edits.Load();
+            Keybinds.Load();
+            Load_Hooks(unload: false);
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
 
             ModCallDictionary.Load();
-            AprilFoolsJoke.UpdateActive();
+            CursorDyeManager.Load();
+            AprilFoolsJoke.Check();
             var server = ModContent.GetInstance<AQConfigServer>();
             if (!Main.dedServ)
             {
                 GameWorldRenders.Load();
-                Load_Assets_Textures();
-                Load_Assets_Effects();
+                Load_Assets_Textures(unload: false);
+                Load_Assets_Effects(unload: false);
                 AQSound.rand = new UnifiedRandom();
                 ArmorOverlays = new EquipOverlayLoader();
-                Load_Assets_Music();
-                Load_Assets_UI();
+                Load_Assets_Music(unload: false);
+                Load_Assets_UI(unload: false);
             }
 
-            calamityMod = new CrossModData("CalamityMod");
-            catalyst = new CrossModData("Catalyst");
-            elementsAwoken = new CrossModData("ElementsAwoken");
-            thoriumMod = new CrossModData("ThoriumMod");
-            fargowiltas = new CrossModData("Fargowiltas");
-            polarities = new CrossModData("Polarities");
-            split = new CrossModData("Split");
-            sOTS = new CrossModData("SOTS");
-            shadowsofAbaddon = new CrossModData("SacredTools");
-            spiritMod = new CrossModData("SpiritMod");
-            shaderLib = new CrossModData("ShaderLib");
-            discordRP = new CrossModData("DiscordRP");
-            bossChecklist = new CrossModData("BossChecklist");
+            Load_CrossMod(unload: false);
 
             Autoloading.Autoload(Code);
         }
@@ -587,8 +292,8 @@ namespace AQMod
             AQItem.Sets.Load();
             AQNPC.Sets.InternalInitalize();
             AQTile.Sets.InternalInitalize();
-            BossChecklistSupport.AddSupport(this);
-            CensusSupport.AddSupport(this);
+            BossChecklistSupport.SetupContent(this);
+            CensusSupport.SetupContent(this);
             if (!Main.dedServ)
             {
                 DiscordRichPresenceSupport.AddSupport();
@@ -618,18 +323,14 @@ namespace AQMod
             FargowiltasSupport.Setup(this);
         }
 
-        private void Unload_Assets()
-        {
-            Tex.Unload();
-        }
         public override void Unload()
         {
             // outside of AQMod
             IsLoading = true;
             IsUnloading = true;
             cachedLoadTasks = null;
+            Load_Hooks(unload: true);
             Autoloading.Unload();
-            Common.Edits.UnloadHooks();
 
             DyeBinder.Unload();
             DemonSiege.Unload();
@@ -638,24 +339,23 @@ namespace AQMod
             AQItem.Sets.Unload();
             AQBuff.Sets.Unload();
 
+            Load_CrossMod(unload: true);
+
             if (!Main.dedServ)
             {
-                GameWorldRenders.Unload();
                 AQSound.rand = null;
                 BuffColorCache.Unload();
                 ArmorOverlays = null;
                 LegacyEffectCache.Unload();
                 SkyGlimmerEvent.BGStarite._texture = null;
-                GaleStreamsMusic = null;
-                DemonSiegeMusic = null;
-                OmegaStariteMusic = null;
-                GlimmerEventMusic = null;
-                CrabsonMusic = null;
-                LegacyTextureCache.Unload();
-                FX.Unload();
-                Unload_Assets();
+                Load_Assets_UI(unload: true);
+                Load_Assets_Music(unload: true);
+                Load_Assets_Effects(unload: true);
+                Load_Assets_Textures(unload: true);
+                GameWorldRenders.Unload();
             }
 
+            CursorDyeManager.Unload();
             ModCallDictionary.Unload();
             AQText.Unload();
         }

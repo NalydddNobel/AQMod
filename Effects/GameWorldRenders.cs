@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Graphics;
+using AQMod.Content.Entities;
 using AQMod.Effects.GoreNest;
 using AQMod.Effects.Wind;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace AQMod.Effects
                 }
             }
 
-            public static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
+            internal static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
             {
                 try
                 {
@@ -76,13 +77,35 @@ namespace AQMod.Effects
                 }
             }
 
-            public static void Main_DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Main self, bool solidOnly, int waterStyleOverride)
+            internal static void Main_DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Main self, bool solidOnly, int waterStyleOverride)
             {
                 if (!solidOnly)
                 {
                     GoreNestRenderer.RefreshCoordinates();
                 }
                 orig(self, solidOnly, waterStyleOverride);
+            }
+
+            internal static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
+            {
+                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+                Particle.PreDrawProjectiles.Render();
+                Trail.PreDrawProjectiles.Render();
+                Main.spriteBatch.End();
+                orig(self);
+            }
+
+            internal static void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
+            {
+                orig(self);
+                AQGraphics.SetCullPadding();
+                BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
+                for (int i = 0; i < CrabPot.maxCrabPots; i++)
+                {
+                    CrabPot.crabPots[i].Render();
+                }
+                Particle.PostDrawPlayers.Render();
+                Main.spriteBatch.End();
             }
         }
 

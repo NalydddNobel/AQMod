@@ -1,13 +1,82 @@
 ﻿using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Tiles.Nature.CrabCrevice;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod
 {
     public class AQSystem : ModWorld
     {
+        public static class Hooks
+        {
+            internal static void Main_UpdateWeather(On.Terraria.Main.orig_UpdateWeather orig, Main self, GameTime gameTime)
+            {
+                if (GaleStreams.EndEvent)
+                {
+                    Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
+                    if (Main.windSpeedSet.Abs() < 0.1f)
+                    {
+                        GaleStreams.EndEvent = false;
+                    }
+                    Main.windSpeedTemp = Main.windSpeedSet;
+                    return;
+                }
+                if (Main.netMode != NetmodeID.MultiplayerClient && (Main.netMode == NetmodeID.Server || !Main.gameMenu)
+                    && GaleStreams.IsActive)
+                {
+                    for (int i = 0; i < Main.maxPlayers; i++)
+                    {
+                        if (Main.player[i].active && !Main.player[i].dead && GaleStreams.EventActive(Main.player[i]))
+                        {
+                            Main.cloudLimit = 200; // prevents the wind speed from naturally changing during the Gale Streams event
+                            if (Main.windSpeed < Main.windSpeedSet)
+                            {
+                                Main.windSpeed += 0.001f * Main.dayRate;
+                                if (Main.windSpeed > Main.windSpeedSet)
+                                {
+                                    Main.windSpeed = Main.windSpeedSet;
+                                }
+                            }
+                            else if (Main.windSpeed > Main.windSpeedSet)
+                            {
+                                Main.windSpeed -= 0.001f * Main.dayRate;
+                                if (Main.windSpeed < Main.windSpeedSet)
+                                {
+                                    Main.windSpeed = Main.windSpeedSet;
+                                }
+                            }
+                            Main.weatherCounter -= Main.dayRate;
+                            if (Main.weatherCounter <= 0)
+                            {
+                                Main.weatherCounter = Main.rand.Next(3600, 18000);
+                                if (Main.netMode == NetmodeID.Server)
+                                {
+                                    NetMessage.SendData(MessageID.WorldData);
+                                }
+                            }
+                            return;
+                        }
+                    }
+                }
+                if (Main.windSpeedSet.Abs() > 1f)
+                {
+                    Main.windSpeedSet += -Math.Sign(Main.windSpeedSet) / 100f;
+                    Main.windSpeedTemp = Main.windSpeedSet;
+                }
+                orig(self, gameTime);
+            }
+
+            internal static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)
+            {
+                orig();
+                Main.dayRate += DayrateIncrease;
+            }
+        }
+
         public static int NobleMushroomsCount { get; private set; }
 
         public static int DayrateIncrease { get; set; }

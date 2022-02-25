@@ -18,7 +18,7 @@ namespace AQMod.Effects
 {
     public static class UltimateSwordRenderer
     {
-        public class UltimateSwordEffect
+        public class DustEffect
         {
             private float _time;
             private readonly float _maxWidth;
@@ -28,7 +28,7 @@ namespace AQMod.Effects
             private readonly byte _reps;
             private Color _dustColor;
 
-            public UltimateSwordEffect()
+            public DustEffect()
             {
                 _time = FX.Rand(0f, MathHelper.PiOver2 * 3f);
                 _maxWidth = FX.Rand(10f, 35f);
@@ -150,14 +150,14 @@ namespace AQMod.Effects
         }
 
         internal static byte UltimateSwordEffectDelay;
-        private static List<UltimateSwordEffect> _fx;
+        private static List<DustEffect> _fx;
 
         internal static void Initalize()
         {
             UltimateSwordEffectDelay = 0;
             if (_fx == null)
             {
-                _fx = new List<UltimateSwordEffect>();
+                _fx = new List<DustEffect>();
             }
             else
             {
@@ -167,7 +167,7 @@ namespace AQMod.Effects
 
         internal static void Render()
         {
-            bool renderUltimateSword = Glimmer.deactivationDelay == -1;
+            bool renderUltimateSword = Glimmer.IsGlimmerEventCurrentlyActive() && Glimmer.deactivationDelay == -1;
             if (renderUltimateSword && Glimmer.omegaStarite != -1)
             {
                 renderUltimateSword = (int)Main.npc[Glimmer.omegaStarite].ai[0] == OmegaStarite.PHASE_NOVA;
@@ -204,9 +204,9 @@ namespace AQMod.Effects
 
                 var hitbox = new Rectangle((int)drawPos.X - 10, (int)drawPos.Y - 60, 20, 60);
                 Vector2 trueMouseworld = AQUtils.TrueMouseworld;
-                if (hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y) && Glimmer.IsGlimmerEventCurrentlyActive())
+                if (AQPlayer._ImportantInteractionDelay() && hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y))
                 {
-                    if (Glimmer.omegaStarite == -1 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16) && AQPlayer.ImportantInteraction(apply: 1800))
+                    if (Glimmer.omegaStarite == -1 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16))
                     {
                         var plr = Main.LocalPlayer;
                         plr.mouseInterface = true;
@@ -217,6 +217,7 @@ namespace AQMod.Effects
                         Main.spriteBatch.Draw(highlightTexture, drawPos - Main.screenPosition, frame, new Color(255, 255, 255, 255), MathHelper.PiOver4 * 3f, origin, 1f, SpriteEffects.None, 0f);
                         if (Main.mouseRight && Main.mouseRightRelease)
                         {
+                            AQPlayer._ImportantInteractionDelay(apply: 1800);
                             plr.tileInteractAttempted = true;
                             plr.tileInteractionHappened = true;
                             plr.releaseUseTile = false;
@@ -270,7 +271,7 @@ namespace AQMod.Effects
             }
             else if (FX.RandChance(10 + (int)(20 * (1f - AQConfigClient.c_EffectIntensity))))
             {
-                _fx.Add(new UltimateSwordEffect());
+                _fx.Add(new DustEffect());
                 UltimateSwordEffectDelay = (byte)(int)(8 * (1f - AQConfigClient.c_EffectIntensity));
             }
         }

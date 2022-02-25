@@ -4,12 +4,12 @@ using Terraria.ModLoader;
 
 namespace AQMod.Common.CrossMod
 {
-    internal struct CrossModData
+    internal struct CrossModData : IDisposable
     {
-        public readonly string name;
-        public readonly string codeName;
-        public readonly bool IsActive;
-        public readonly Mod mod;
+        public string name { get; private set; }
+        public string codeName { get; private set; }
+        public bool IsActive { get; private set; }
+        public Mod mod { get; private set; }
 
         public static CrossModData Unloaded => new CrossModData();
 
@@ -93,6 +93,21 @@ namespace AQMod.Common.CrossMod
             }
             texture = null;
             return false;
+        }
+
+        public object Call(params object[] args)
+        {
+            return mod.Call(args);
+        }
+
+        public bool IsDisposed => mod == null && name == null && codeName == null && !IsActive;
+
+        public void Dispose()
+        {
+            mod = null;
+            name = null;
+            codeName = null;
+            IsActive = false;
         }
     }
 }

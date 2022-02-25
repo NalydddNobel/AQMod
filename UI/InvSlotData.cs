@@ -6,6 +6,21 @@ namespace AQMod.UI
 {
     public class InvSlotData
     {
+        public static class Hooks
+        {
+            internal static void ItemSlot_OverrideHover(On.Terraria.UI.ItemSlot.orig_OverrideHover orig, Item[] inv, int context, int slot)
+            {
+                if (inv[slot].type > Main.maxItemTypes && inv[slot].stack > 0 && inv[slot].modItem is Items.IInventoryHover hover)
+                {
+                    if (hover.CursorHover(inv, context, slot))
+                    {
+                        return;
+                    }
+                }
+                orig(inv, context, slot);
+            }
+        }
+
         public readonly Func<Item, Item, bool> CanSwap;
 
         public int X;

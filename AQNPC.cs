@@ -600,6 +600,14 @@ namespace AQMod
             }
         }
 
+        public static class Hooks
+        {
+            internal static bool NPC_Collision_DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
+                self.type > Main.maxNPCTypes &&
+                self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ?
+                decideToFallThroughPlatforms.Decide() : orig(self);
+        }
+
         internal static class AIStyles // personal ai style list
         {
             public const int BoundNPCAI = 0;

@@ -8,7 +8,7 @@ namespace AQMod
     {
         public static bool Active { get; internal set; }
 
-        public static void UpdateActive()
+        public static void Check()
         {
             Active = false;
             if (Main.netMode != NetmodeID.SinglePlayer)

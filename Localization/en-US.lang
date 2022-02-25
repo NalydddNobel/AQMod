@@ -272,6 +272,7 @@ ItemTooltip.Snowgrave=Summons a snowblast from below\n'Watch what happens when I
 
 ItemName.UltimateSword=Ultimate Sword
 ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
+ItemTooltipExtra0.UltimateSword=Only obtainable from Omega Starite while there is a Glimmer in the sky
 ProjectileName.UltimateSword=Ultimate Sword
 
 # Pets

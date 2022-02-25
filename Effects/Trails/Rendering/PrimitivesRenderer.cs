@@ -23,6 +23,11 @@ namespace AQMod.Effects.Trails.Rendering
             VertexDrawingContext_Projectile.setup();
         }
 
+        internal static void Unload()
+        {
+
+        }
+
         public interface IVertexDrawingContext
         {
             bool ShouldDraw();

@@ -1,8 +1,11 @@
 ﻿using AQMod.Effects.Particles;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
@@ -12,6 +15,115 @@ namespace AQMod.Content.Seasonal.Christmas
 {
     public class XmasSeeds : ModWorld
     {
+        public static class Hooks 
+        {
+            internal static void UIWorldLoad_ctor_Xmas(On.Terraria.GameContent.UI.States.UIWorldLoad.orig_ctor orig, Terraria.GameContent.UI.States.UIWorldLoad self, Terraria.World.Generation.GenerationProgress progress)
+            {
+                if (XmasWorld)
+                {
+                    realGenerationProgress = progress;
+                    generationProgress = new GenerationProgress
+                    {
+                        Value = progress.Value,
+                        TotalWeight = progress.TotalWeight,
+                        CurrentPassWeight = 1f,
+                    };
+                    progress = generationProgress;
+                }
+                orig(self, progress);
+            }
+
+            internal static void Main_DrawBG_XMasBG(On.Terraria.Main.orig_DrawBG orig, Main self)
+            {
+                bool christmasBackground = XmasWorld && WorldGen.gen; // originally this also ran on the title screen,
+                                                                                // but for some reason there were conflicts with Modder's Toolkit
+                bool snowflakes = XmasWorld; // I like the snowflakes on the title screen :)
+                if (AQMod.IsLoading || AQMod.IsUnloading)
+                {
+                    christmasBackground = false;
+                    snowflakes = false;
+                }
+                if (christmasBackground)
+                {
+                    if (generationProgress != null)
+                    {
+                        generationProgress.Value = Main.rand.NextFloat(0f, 1f);
+                        if (!generatingSnowBiomeText)
+                            generationProgress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.ChristmasSpirit") + ", " + Language.GetTextValue("Mods.AQMod.WorldGen.ChristmasSpiritProgress" + snowflakeRandom.Next(16));
+                    }
+                }
+                if (Main.mapFullscreen)
+                {
+                    orig(self);
+                    return;
+                }
+                bool oldGameMenu = Main.gameMenu;
+                if (christmasBackground)
+                {
+                    Main.snowTiles = 10000;
+                    if (Main.myPlayer > -1 || Main.player[Main.myPlayer] != null)
+                    {
+                        var plr = Main.LocalPlayer;
+                        plr.ZoneGlowshroom = false;
+                        plr.ZoneDesert = false;
+                        plr.ZoneBeach = false;
+                        plr.ZoneJungle = false;
+                        plr.ZoneHoly = false;
+                        plr.ZoneCrimson = false;
+                        plr.ZoneCorrupt = false;
+                        plr.ZoneSnow = true;
+                        plr.position.X = Main.maxTilesX * 8f;
+                    }
+                    Main.screenPosition.X = Main.maxTilesX * 8f + (float)Math.Sin(Main.GlobalTime * 0.2f) * 1250f;
+                    Main.screenPosition.Y = 2200f + (float)Math.Sin(Main.GlobalTime) * 80f;
+                    Main.gameMenu = false;
+                }
+                if (snowflakes)
+                {
+                    if (farSnowflakes == null)
+                    {
+                        farSnowflakes = new ParticleLayer<FarBGSnowflake>();
+                    }
+
+                    if (snowflakeRandom == null)
+                    {
+                        snowflakeRandom = new UnifiedRandom();
+                    }
+
+                    farSnowflakes.AddParticle(new FarBGSnowflake(new Vector2(snowflakeRandom.Next(-200, Main.screenWidth + 200), -snowflakeRandom.Next(100, 250))));
+                    farSnowflakes.UpdateParticles();
+                    farSnowflakes.Render();
+                }
+                else
+                {
+                    farSnowflakes = null;
+                }
+                orig(self);
+                if (snowflakes)
+                {
+                    if (closeSnowflakes == null)
+                    {
+                        closeSnowflakes = new ParticleLayer<CloseBGSnowflake>();
+                    }
+                    if (snowflakeRandom.NextBool(10))
+                    {
+                        closeSnowflakes.AddParticle(new CloseBGSnowflake(new Vector2(Main.screenPosition.X + snowflakeRandom.Next(-200, Main.screenWidth + 200), Main.screenPosition.Y - snowflakeRandom.Next(100, 250))));
+                    }
+                    farSnowflakes.UpdateParticles();
+                    farSnowflakes.Render();
+                }
+                else
+                {
+                    generatingSnowBiomeText = false;
+                    realGenerationProgress = null;
+                    generationProgress = null;
+                    snowflakeRandom = null;
+                    closeSnowflakes = null;
+                }
+                Main.gameMenu = oldGameMenu;
+            }
+        }
+
         public static float snowflakeWind;
         public static UnifiedRandom snowflakeRandom;
         public static ParticleLayer<FarBGSnowflake> farSnowflakes;

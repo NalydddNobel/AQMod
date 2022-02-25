@@ -66,6 +66,41 @@ namespace AQMod
             }
         }
 
+        public struct IntArray
+        {
+            public int[] Arr;
+
+            public IntArray(int value)
+            {
+                Arr = new int[] { value };
+            }
+
+            public IntArray(int[] value)
+            {
+                Arr = value;
+            }
+
+            public static implicit operator IntArray(int value)
+            {
+                return new IntArray(value);
+            }
+
+            public static implicit operator IntArray(int[] value)
+            {
+                return new IntArray(value);
+            }
+
+            public static implicit operator int(IntArray value)
+            {
+                return value.Arr[0];
+            }
+
+            public static implicit operator int[](IntArray value)
+            {
+                return value.Arr;
+            }
+        }
+
         internal struct ItemGlowmask : GlowmaskData.IWorld, GlowmaskData.IInventory, GlowmaskData.IPlayerHeld
         {
             private Func<Color> getColor;
@@ -155,6 +190,29 @@ namespace AQMod
                 var origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, texture.Height);
                     Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, getColor(), drawRotation, origin, item.scale, info.spriteEffects, 0));
             }
+        }
+
+        public static string GetTextValue(params ValueTuple<GameCulture, string>[] values)
+        {
+            string english = "";
+            foreach (var t in values)
+            {
+                if (t.Item1.LegacyId == Language.ActiveCulture.LegacyId)
+                {
+                    return t.Item2;
+                }
+                if (t.Item1.LegacyId == GameCulture.English.LegacyId)
+                {
+                    english = t.Item2;
+                }
+            }
+            return english;
+        }
+
+        public static ModTranslation Add(this ModTranslation text, string value, GameCulture culture)
+        {
+            text.AddTranslation(culture, value);
+            return text;
         }
 
         public static void Glowmask(this ModItem item)

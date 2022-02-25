@@ -1,14 +1,15 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
+using AQMod.Content.CursorDyes;
 using AQMod.Content.CursorDyes.Components;
 using AQMod.Content.Players;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;
 
-namespace AQMod.Content.CursorDyes
+namespace AQMod.Items.Dyes.Cursor
 {
-    public sealed class CursorDyeManager : IAutoloadType
+    public sealed class CursorDyeManager
     {
         public static class Hooks
         {
@@ -109,6 +110,21 @@ namespace AQMod.Content.CursorDyes
         }
         public static bool OverridingColor { get; set; }
 
+        internal static void Load()
+        {
+            _data = new CursorDyeData[CursorDyeID.NormalCount];
+            _data[CursorDyeID.Health - 1] = new CursorDyeData(null, new ICursorDyeComponent[] { new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(20, 1, 1, 255), new Color(255, 40, 40, 255), Main.player[Main.myPlayer].statLife / (float)Main.player[Main.myPlayer].statLifeMax2)) });
+            _data[CursorDyeID.Mana - 1] = new CursorDyeData(null, new ICursorDyeComponent[] { new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(255, 255, 255, 255), new Color(40, 40, 255, 255), Main.player[Main.myPlayer].statMana / (float)Main.player[Main.myPlayer].statManaMax2)) });
+            _data[CursorDyeID.Sword - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Items/Dyes/Cursor/SwordCursor"));
+            _data[CursorDyeID.Demon - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Items/Dyes/Cursor/DemonCursor", () => Main.cursorOverride != 6));
+            _data[CursorDyeID.WhackAZombie - 1] = new CursorDyeData(new WhackAZombieComponent());
+        }
+
+        internal static void Unload()
+        {
+            _data = null;
+        }
+
         public static void Update()
         {
             OverridingColor = false;
@@ -143,21 +159,6 @@ namespace AQMod.Content.CursorDyes
                     return "_sell";
             }
             return "_";
-        }
-
-        void IAutoloadType.OnLoad()
-        {
-            _data = new CursorDyeData[CursorDyeID.NormalCount];
-            _data[CursorDyeID.Health - 1] = new CursorDyeData(null, new ICursorDyeComponent[] { new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(20, 1, 1, 255), new Color(255, 40, 40, 255), Main.player[Main.myPlayer].statLife / (float)Main.player[Main.myPlayer].statLifeMax2)) });
-            _data[CursorDyeID.Mana - 1] = new CursorDyeData(null, new ICursorDyeComponent[] { new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(255, 255, 255, 255), new Color(40, 40, 255, 255), Main.player[Main.myPlayer].statMana / (float)Main.player[Main.myPlayer].statManaMax2)) });
-            _data[CursorDyeID.Sword - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Items/Dyes/Cursor/SwordCursor"));
-            _data[CursorDyeID.Demon - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Items/Dyes/Cursor/DemonCursor", () => Main.cursorOverride != 6));
-            _data[CursorDyeID.WhackAZombie - 1] = new CursorDyeData(new WhackAZombieComponent());
-        }
-
-        void IAutoloadType.Unload()
-        {
-            _data = null;
         }
     }
 }
