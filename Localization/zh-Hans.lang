@@ -671,7 +671,7 @@ BossChecklistDesc.CrabSeason=在随机的时间自然开始和结束. 你可以�
 EventWarning.CrabSeason=海洋的温度正在逐渐升高...
 EventEnding.CrabSeason=海洋再度变得冰冷...
 
-BossChecklistDesc.JerryCrabson=在海滩使用 [i:{0}] 召唤.
+BossChecklistDesc.JerryCrabson=在海滩处使用 [i:{0}] 召唤.
 Common.AwakenedCrabson=巨蟹蛤已苏醒!
 
 EventName.DemonSiege=恶魔围攻
@@ -1232,6 +1232,7 @@ ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.MythicStarfruit=使用以召唤微光事件
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.UltimateStarfruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n右键开始或结束微光事件\n{$Mods.AQMod.Common.NotConsumable}
+ItemTooltipExtra0.UltimateSword=仅能在天空中闪烁微光时才能在终末之星处获得
 ##############
 # Buff Items #
 ##############

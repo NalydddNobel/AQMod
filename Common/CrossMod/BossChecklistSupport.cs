@@ -82,6 +82,7 @@ namespace AQMod.Common.CrossMod
                 () => WorldDefeats.DownedCrabson, 
                 summonItem: ModContent.ItemType<MushroomClam>(),
                 howToSummon: "Summoned by using a [i:" + ModContent.ItemType<MushroomClam>() + "] at the beach.",
+                (GameCulture.Chinese, "在海滩处使用 [i:" + ModContent.ItemType<NovaFruit>() + "] 召唤."),
                 bossPortraitTexture: "AQMod/Assets/BossChecklist/JerryCrabson");
 
 
@@ -120,7 +121,7 @@ namespace AQMod.Common.CrossMod
             // Space Squid
 
             AddBoss(ProgressionReference.SpaceSquid, ModContent.NPCType<SpaceSquid>(),
-                AQUtils.GetTextValue((GameCulture.English, "Red Sprite"), (GameCulture.Chinese, "红色精灵")),
+                AQUtils.GetTextValue((GameCulture.English, "Space Squid"), (GameCulture.Chinese, "太空乌贼")),
                 new int[] { ModContent.ItemType<RetroGoggles>(), ItemID.SoulofFlight, ModContent.ItemType<AtmosphericEnergy>(), ModContent.ItemType<SiphonTentacle>(), ModContent.ItemType<PeeledCarrot>(), },
                 new int[] { ModContent.ItemType<SpaceSquidTrophy>(), ModContent.ItemType<SpaceSquidMask>(), ModContent.ItemType<FrostbiteDye>(), },
                 () => WorldDefeats.DownedSpaceSquid, 
@@ -222,7 +223,7 @@ namespace AQMod.Common.CrossMod
             },
             AQText.chooselocalizationtext(
                 en_US: "Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]",
-                zh_Hans: "风速大于40 mph时开始, 风速小于34 mph时结束. 你可以使用 [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "] 更改风速",
+                zh_Hans: "风速大于 40 mph时开始, 风速小于 34 mph时结束. 你可以使用 [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "] 更改风速",
                 ru_RU: "Начинается когда скорость ветра превышает 40 миль в час, и заканчивается когда скорость ветра ниже 34 миль в час. Также закончится если скорость ветра превисит 300 миль в час. Вы можете изменять скорость ветра используя [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]"),
             null,
             "AQMod/Content/World/BossChecklistGaleStreams",
