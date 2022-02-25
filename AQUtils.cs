@@ -66,38 +66,28 @@ namespace AQMod
             }
         }
 
-        public struct IntArray
+        public struct ArrayInterpreter<T>
         {
-            public int[] Arr;
+            public T[] Arr;
 
-            public IntArray(int value)
+            public ArrayInterpreter(T value)
             {
-                Arr = new int[] { value };
+                Arr = new T[1] { value };
             }
 
-            public IntArray(int[] value)
+            public ArrayInterpreter(T[] value)
             {
                 Arr = value;
             }
 
-            public static implicit operator IntArray(int value)
+            public static implicit operator ArrayInterpreter<T>(T value)
             {
-                return new IntArray(value);
+                return new ArrayInterpreter<T>(value);
             }
 
-            public static implicit operator IntArray(int[] value)
+            public static implicit operator ArrayInterpreter<T>(T[] value)
             {
-                return new IntArray(value);
-            }
-
-            public static implicit operator int(IntArray value)
-            {
-                return value.Arr[0];
-            }
-
-            public static implicit operator int[](IntArray value)
-            {
-                return value.Arr;
+                return new ArrayInterpreter<T>(value);
             }
         }
 
@@ -192,9 +182,21 @@ namespace AQMod
             }
         }
 
+        public static List<T> ToList<T>(this T[] arr)
+        {
+            var list = new List<T>();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                //AQMod.GetInstance().Logger.Debug("{i:" + i + ", " + arr[i] + "}");
+                list.Add(arr[i]);
+            }
+
+            return list;
+        }
+
         public static string GetTextValue(params ValueTuple<GameCulture, string>[] values)
         {
-            string english = "";
+            string english = "Invalid Name";
             foreach (var t in values)
             {
                 if (t.Item1.LegacyId == Language.ActiveCulture.LegacyId)

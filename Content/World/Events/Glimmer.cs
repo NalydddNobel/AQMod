@@ -247,18 +247,13 @@ namespace AQMod.Content.World.Events
 
         public static bool IsAbleToShowInvasionProgressBar()
         {
-            if (SpawnsCheck(Main.LocalPlayer) && omegaStarite == -1)
-            {
-                if (Distance(Main.LocalPlayer) < MaxDistance)
-                    return true;
-            }
-            return false;
+            return SpawnsCheck(Main.LocalPlayer) && omegaStarite == -1 && Distance(Main.LocalPlayer) < MaxDistance;
         }
 
-        public static byte GetLayerIndexThroughTileDistance(int tileDistance)
+        public static byte FindLayer(int tileDistance)
         {
             byte layerIndex = 255;
-            for (byte i = (byte)(Layers.Count - 1); i >= 0; i--)
+            for (byte i = (byte)(Layers.Count - 1); i != 255; i--)
             {
                 if (tileDistance < Layers[i].Distance)
                 {

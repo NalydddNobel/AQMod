@@ -39,30 +39,30 @@ namespace AQMod.Common.CrossMod
         {
             public static float JerryCrabson = 2f;
 
-            public static float OmegaStarite = 6f;
+            public static float OmegaStarite = 5.99f;
             internal static float WallofFlesh = 6f;
 
             public static float RedSprite = 6.67f;
             public static float SpaceSquid = 6.68f;
         }
 
-        private static void AddBoss(float progression, AQUtils.IntArray boss, string bossName, AQUtils.IntArray loot, AQUtils.IntArray collectibles, Func<bool> isDowned, int summonItem = 0, string howToSummon = null,
+        private static void AddBoss(float progression, AQUtils.ArrayInterpreter<int> boss, string bossName, AQUtils.ArrayInterpreter<int> loot, AQUtils.ArrayInterpreter<int> collectibles, Func<bool> isDowned, int summonItem = 0, string howToSummon = null,
             string bossHeadTexture = null, string bossPortraitTexture = null, Func<bool> isAvailable = null, string despawnMessage = null, bool miniBoss = false)
         {
             AQMod.bossChecklist.Call(
                 miniBoss ? "AddMiniBoss" : "AddBoss",
                 progression, 
-                (int[])boss,
+                boss.Arr.ToList(),
                 AQMod.GetInstance(),
                 bossName,
                 isDowned,
                 summonItem,
-                new List<int>((int[])collectibles),
-                new List<int>((int[])loot),
+                collectibles.Arr.ToList(),
+                loot.Arr.ToList(),
                 howToSummon,
-                bossHeadTexture,
-                bossPortraitTexture,
                 despawnMessage,
+                bossPortraitTexture,
+                bossHeadTexture,
                 isAvailable);
         }
         internal static void SetupContent(AQMod aQMod)
@@ -76,7 +76,8 @@ namespace AQMod.Common.CrossMod
             // Jerry Crabson
 
             AddBoss(ProgressionReference.JerryCrabson, ModContent.NPCType<JerryCrabson>(),
-                AQUtils.GetTextValue((GameCulture.English, "Jerry Crabson"), (GameCulture.Chinese, "巨蟹蛤")),
+                AQUtils.GetTextValue((GameCulture.English, "Jerry Crabson"), 
+                (GameCulture.Chinese, "巨蟹蛤")),
                 new int[] { ModContent.ItemType<Crabax>(), ModContent.ItemType<AquaticEnergy>(), ModContent.ItemType<JerryClawFlail>(), ModContent.ItemType<CinnabarBow>(), ModContent.ItemType<Bubbler>(), },
                 new int[] { ModContent.ItemType<CrabsonTrophy>(), ModContent.ItemType<CrabsonMask>() },
                 () => WorldDefeats.DownedCrabson, 

@@ -36,7 +36,7 @@ namespace AQMod.Content.Players
             {
                 int glimmerTileDistance = Glimmer.Distance(player);
                 zoneGlimmerEvent = glimmerTileDistance < Glimmer.MaxDistance;
-                zoneGlimmerEventLayer = (byte)Glimmer.GetLayerIndexThroughTileDistance(glimmerTileDistance);
+                zoneGlimmerEventLayer = (byte)(zoneGlimmerEvent ? Glimmer.FindLayer(glimmerTileDistance) : 255);
             }
             else
             {
