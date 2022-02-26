@@ -1,10 +1,12 @@
 ﻿using AQMod.Common.NoHitting;
 using AQMod.Content.World.Events;
 using AQMod.Effects;
+using AQMod.NPCs.Friendly;
 using AQMod.Tiles.Nature.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -90,6 +92,7 @@ namespace AQMod
         {
             if (!Main.dayTime)
                 SkyGlimmerEvent.InitNight();
+            Robster.Initalize();
             EventProgressBarLoader.ActiveBar = 255;
             NoHitManager.CurrentlyDamaged = new List<byte>();
         }
@@ -97,6 +100,40 @@ namespace AQMod
         public override void TileCountsAvailable(int[] tileCounts)
         {
             NobleMushroomsCount = tileCounts[ModContent.TileType<NobleMushrooms>()] + tileCounts[ModContent.TileType<NobleMushroomsNew>()];
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(Robster.QuestsCompleted);
+            if (Robster.ActiveQuest != null)
+            {
+                writer.Write(true);
+                writer.Write(Robster.TargetNPC);
+                writer.Write(Robster.ActiveQuest.Key);
+                writer.Write(Robster.ActiveQuest.type);
+                writer.Write(Robster.ActiveQuest.location.X);
+                writer.Write(Robster.ActiveQuest.location.Y);
+                Robster.ActiveQuest.NetSend(writer);
+            }
+            else
+            {
+                writer.Write(false);
+            }
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            Robster.QuestsCompleted = reader.ReadInt32();
+            if (reader.ReadBoolean())
+            {
+                Robster.TargetNPC = reader.ReadInt32();
+                string key = reader.ReadString();
+                Robster.ActiveQuest = Robster.RegisteredQuests.Find((h) => h.Key == key);
+                Robster.ActiveQuest.type = reader.ReadByte();
+                Robster.ActiveQuest.location.X = reader.ReadInt32();
+                Robster.ActiveQuest.location.Y = reader.ReadInt32();
+                Robster.ActiveQuest.NetRecieve(reader);
+            }
         }
     }
 }

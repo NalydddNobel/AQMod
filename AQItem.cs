@@ -34,7 +34,7 @@ namespace AQMod
             public static HashSet<int> NoAutoswing { get; private set; }
             public static HashSet<int> DashEquip { get; private set; }
 
-            internal static void Load()
+            internal static void Setup()
             {
                 Crate = new HashSet<int>()
                 {

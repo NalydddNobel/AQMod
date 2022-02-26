@@ -7,33 +7,6 @@ namespace AQMod.Content.World.Generation
 {
     public sealed class BabyPoolKiller
     {
-        public static void PassFix1TileHighWater(GenerationProgress progress)
-        {
-            if (!AQConfigServer.Instance.fixBabyPools)
-            {
-                return;
-            }
-            if (progress != null)
-                progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.Fix1TileHighWater");
-
-            var logger = AQMod.GetInstance().Logger;
-            for (int i = 250; i < Main.maxTilesX - 250; i++) // should ignore beaches and the far side of the world
-            {
-                for (int j = 50; j < (int)Main.worldSurface; j++)
-                {
-                    try
-                    {
-                        ApplyFix(i, j);
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.Error("An error occured when generating at: {x:" + i + ", y:" + j + "}");
-                        logger.Error(ex);
-                    }
-                }
-            }
-        }
-
         public static void ApplyFix(int x, int y)
         {
             if (Main.tile[x, y - 1] == null)
@@ -53,7 +26,7 @@ namespace AQMod.Content.World.Generation
             }
             if (Main.tile[x, y - 1].liquid == 0 && (!Main.tile[x, y - 1].active() || Main.tileCut[Main.tile[x, y - 1].type])
                 && Main.tile[x, y].liquid > 0 && (!Main.tile[x, y].active() || Main.tileCut[Main.tile[x, y].type]) && Main.tile[x, y + 1].active()
-                && Main.tileSolid[Main.tile[x, y + 1].type] && !Main.tileSolidTop[Main.tile[x, y + 1].type] && AQTile.Sets.CanFixWaterOnType[Main.tile[x, y + 1].type])
+                && Main.tileSolid[Main.tile[x, y + 1].type] && !Main.tileSolidTop[Main.tile[x, y + 1].type] && AQTile.Sets.CanFixWaterOnType.Contains(Main.tile[x, y + 1].type))
             {
                 Main.tile[x, y].active(active: true);
                 Main.tile[x, y].type = Main.tile[x, y + 1].type;
@@ -98,6 +71,32 @@ namespace AQMod.Content.World.Generation
                 }
 
                 WorldGen.SquareTileFrame(x, y);
+            }
+        }
+        public static void PassFix1TileHighWater(GenerationProgress progress)
+        {
+            if (!AQConfigServer.Instance.fixBabyPools)
+            {
+                return;
+            }
+            if (progress != null)
+                progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.Fix1TileHighWater");
+
+            var logger = AQMod.GetInstance().Logger;
+            for (int i = 250; i < Main.maxTilesX - 250; i++) // should ignore beaches and the far side of the world
+            {
+                for (int j = 50; j < (int)Main.worldSurface; j++)
+                {
+                    try
+                    {
+                        ApplyFix(i, j);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Error("An error occured when generating at: {x:" + i + ", y:" + j + "}");
+                        logger.Error(ex);
+                    }
+                }
             }
         }
     }

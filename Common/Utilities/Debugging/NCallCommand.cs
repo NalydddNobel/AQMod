@@ -1,14 +1,11 @@
 ﻿using AQMod.Common.CrossMod;
-using AQMod.Common.Utilities.IO;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
-using AQMod.Content.Quest.Lobster;
 using AQMod.Content.World.Biomes;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Generation;
 using AQMod.Items;
 using AQMod.Localization;
-using AQMod.NPCs;
 using AQMod.NPCs.Monsters;
 using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
@@ -501,38 +498,6 @@ namespace AQMod.Common.Utilities.Debugging
                 case "placeglobe":
                     {
                         caller.Reply("placed correctly: " + Globe.GenGlobeTemple((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
-                    }
-                    break;
-
-                case "robstersave2":
-                    {
-                        caller.Reply("Hunt Key: " + HuntSystem.Hunt.GetKey());
-                        if (HuntSystem.TargetNPC != -1)
-                        {
-                            var tag = SpecialTagCompounds.NPC.SaveNPCID(HuntSystem._targetNPCType);
-                            var dict = tag.test_RipOutTagData();
-                            foreach (var pair in dict)
-                            {
-                                caller.Reply(pair.Key + ": " + pair.Value.ToString());
-                            }
-                            int npcType = SpecialTagCompounds.NPC.GetNPCID(tag);
-                            HuntSystem.SetNPCTarget(npcType);
-                            caller.Reply("Attempt reload NPC type: " + npcType + " (" + Lang.GetNPCNameValue(npcType) + "), ((" + Main.npc[HuntSystem.TargetNPC].FullName + "))");
-                        }
-                    }
-                    break;
-
-                case "robstersave":
-                    {
-                        caller.Reply("Hunt Key: " + HuntSystem.Hunt.GetKey());
-                        if (HuntSystem.TargetNPC != -1)
-                        {
-                            string key = NPCUtilities.IO.GetSerializationKey(HuntSystem._targetNPCType);
-                            caller.Reply("Target NPC: " + key);
-                            int npcType = NPCUtilities.IO.DeserializeKey(key);
-                            HuntSystem.SetNPCTarget(npcType);
-                            caller.Reply("Attempt reload NPC type: " + npcType + " (" + Lang.GetNPCNameValue(npcType) + "), ((" + Main.npc[HuntSystem.TargetNPC].FullName + "))");
-                        }
                     }
                     break;
 

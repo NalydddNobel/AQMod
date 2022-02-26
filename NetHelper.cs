@@ -4,6 +4,7 @@ using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
 using AQMod.Content.Players;
 using AQMod.Content.World.Events;
+using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
@@ -28,6 +29,7 @@ namespace AQMod
             public const ushort RequestDemonSiegeEnemy = 2001;
             public const ushort RequestDungeonCoordinates = 2002;
             public const ushort RecieveDungeonCoordinates = 2003;
+            public const ushort RequestExporterQuestRandomize = 2004;
 
             public const ushort Flag_ExporterIntroduction = 10000;
             public const ushort Flag_PhysicistIntroduction = 10001;
@@ -226,7 +228,7 @@ namespace AQMod
         }
         #endregion
 
-        public static void UpdateFlag(ushort type)
+        public static void Request(ushort type)
         {
             var p = AQMod.GetInstance().GetPacket();
             p.Write(type);
@@ -246,6 +248,14 @@ namespace AQMod
 
             switch (messageID)
             {
+                case PacketType.RequestExporterQuestRandomize:
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        Robster.StartRandomHunt();
+                        NetMessage.SendData(MessageID.WorldData);
+                    }
+                    break;
+
                 case PacketType.RecieveDungeonCoordinates:
                     if (Main.netMode != NetmodeID.Server)
                     {

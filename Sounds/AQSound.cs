@@ -115,6 +115,17 @@ namespace AQMod.Sounds
                 throw new Exception("An error occured when playing sound: [Type:" + type.ToString() + ", Name:" + name + "]", ex);
             }
         }
+        internal static void Play(Terraria.ModLoader.SoundType type, string name, float volume)
+        {
+            try
+            {
+                Main.PlaySound((int)type, -1, -1, SoundLoader.GetSoundSlot(type, "AQMod/" + qpath(type, name)), volume);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occured when playing sound: [Type:" + type.ToString() + ", Name:" + name + "]", ex);
+            }
+        }
         internal static void Play(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume)
         {
             try

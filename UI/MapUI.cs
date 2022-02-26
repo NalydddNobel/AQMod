@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Configuration;
-using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
+using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
@@ -219,7 +219,7 @@ namespace AQMod.Content
                     {
                         useMap = true;
                     }
-                    CommonStructureSearchMethods.LihzahrdAltar(out var altarLocation, useMap);
+                    StructureSearcher.LihzahrdAltar(out var altarLocation, useMap);
                     lihzahrdX = altarLocation.X;
                     lihzahrdY = altarLocation.Y;
                 }

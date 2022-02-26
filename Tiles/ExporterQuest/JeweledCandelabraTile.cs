@@ -1,6 +1,4 @@
-﻿using AQMod.Content.Quest.Lobster;
-using AQMod.Items.Misc.ExporterQuest;
-using AQMod.Localization;
+﻿using AQMod.Items.Misc.ExporterQuest;
 using AQMod.NPCs.Friendly;
 using Terraria;
 using Terraria.ID;
@@ -21,7 +19,7 @@ namespace AQMod.Tiles.ExporterQuest
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.addTile(Type);
-            AddMapEntry(Robster.JeweledTileMapColor, AQText.ModText("ItemName.JeweledCandelabra"));
+            AddMapEntry(Robster.JeweledTileMapColor, Lang.GetItemName(ModContent.ItemType<JeweledCandelabra>()));
             soundStyle = SoundID.Dig;
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Chandeliers };
@@ -34,8 +32,10 @@ namespace AQMod.Tiles.ExporterQuest
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            if (HuntSystem.SpecialHuntTileDestroyed(i, j) == false)
+            if (Robster.CheckTileBreakSights(i, j, alsoResetQuest: true) == false)
+            {
                 Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<JeweledCandelabra>());
+            }
         }
     }
 }

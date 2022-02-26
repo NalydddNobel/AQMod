@@ -22,7 +22,7 @@ namespace AQMod
             public static HashSet<ushort> CanFixWaterOnType { get; private set; }
             public static HashSet<ushort> ExporterQuestFurniture { get; private set; }
 
-            internal static void Load()
+            internal static void Setup()
             {
                 CanFixWaterOnType = new HashSet<ushort>()
                 {

@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
-using AQMod.Content.Quest.Lobster;
 using AQMod.Content.World.Events;
+using AQMod.Items.Misc.ExporterQuest;
 using AQMod.Items.Placeable.CraftingStations;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
@@ -9,25 +9,233 @@ using AQMod.Items.Tools;
 using AQMod.Items.Tools.MagicPowders;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Localization;
+using AQMod.Sounds;
+using AQMod.Tiles.ExporterQuest;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.GameContent.Events;
+using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AQMod.NPCs.Friendly
 {
     [AutoloadHead()]
     public class Robster : ModNPC
     {
-        private static byte resetQuestButton;
+        public abstract class ThieveryQuest
+        {
+            public readonly string Key;
+
+            public byte type;
+            public Point location;
+
+            protected ThieveryQuest(string key)
+            {
+                Key = key;
+            }
+
+            public virtual void OnActivate()
+            {
+
+            }
+            public abstract int GetQuestItem();
+            public abstract string QuestChat();
+
+            public virtual bool IsHuntComplete(Player player)
+            {
+                return player.HasItem(GetQuestItem());
+            }
+
+            public virtual bool CanStart()
+            {
+                return true;
+            }
+
+            public virtual void Update()
+            {
+
+            }
+
+            public virtual void NetSend(BinaryWriter writer)
+            {
+
+            }
+
+            public virtual void NetRecieve(BinaryReader reader)
+            {
+
+            }
+
+            protected void RemoveQuestTiles()
+            {
+                for (int i = 5; i < Main.maxTilesX - 5; i++)
+                {
+                    for (int j = 5; j < Main.maxTilesY - 5; j++)
+                    {
+                        if (Main.tile[i, j] != null && AQTile.Sets.ExporterQuestFurniture.Contains(Main.tile[i, j].type))
+                            Main.tile[i, j].active(active: false);
+                    }
+                }
+            }
+            public virtual void EndHunt()
+            {
+                RemoveQuestTiles();
+            }
+
+            protected void RegularQuestRewards(Player player)
+            {
+                player.QuickSpawnItem(ItemID.WoodenCrate);
+                if (Main.rand.NextBool(3))
+                    player.QuickSpawnItem(ItemID.IronCrate);
+                if (Main.rand.NextBool(10))
+                    player.QuickSpawnItem(ItemID.GoldenCrate);
+            }
+            public virtual void CompleteHunt(Player player)
+            {
+                RegularQuestRewards(player);
+            }
+
+            public virtual TagCompound Save()
+            {
+                return null;
+            }
+
+            public virtual void Load(TagCompound tag)
+            {
+            }
+        }
+        public sealed class StealTileQuest : ThieveryQuest
+        {
+            public const byte Chalice = 0;
+            public const byte Candelabra = 1;
+            public const byte MaxTypes = 2;
+
+            public StealTileQuest(string key) : base(key)
+            {
+            }
+
+            public override int GetQuestItem()
+            {
+                switch (type)
+                {
+                    default:
+                        return ModContent.ItemType<JeweledChalice>();
+                    case Candelabra:
+                        return ModContent.ItemType<JeweledCandelabra>();
+                }
+            }
+            public override string QuestChat()
+            {
+                switch (type)
+                {
+                    default:
+                        return "Mods.AQMod.Exporter.Quest.JeweledChalice";
+                    case Candelabra:
+                        return "Mods.AQMod.Exporter.Quest.JeweledCandelabra";
+                }
+            }
+
+            private bool PlaceTile(int x, int y)
+            {
+                if (type == Candelabra)
+                {
+                    if (!Framing.GetTileSafely(x, y).active() && !Framing.GetTileSafely(x, y + 1).active() && !Framing.GetTileSafely(x + 1, y).active() && !Framing.GetTileSafely(x + 1, y + 1).active() && Framing.GetTileSafely(x, y + 2).active() && Main.tileSolidTop[Main.tile[x, y + 2].type] && Framing.GetTileSafely(x + 1, y + 2).active() && Main.tileSolidTop[Main.tile[x + 1, y + 2].type])
+                    {
+                        WorldGen.PlaceTile(x, y, ModContent.TileType<JeweledCandelabraTile>(), true, false, -1, 0);
+                        if (Framing.GetTileSafely(x, y).type == ModContent.TileType<JeweledCandelabraTile>())
+                        {
+                            NetMessage.SendTileSquare(-1, x - 2, y - 2, 4);
+                            return true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (!Framing.GetTileSafely(x, y).active() && Framing.GetTileSafely(x, y + 1).active() && Main.tileSolidTop[Main.tile[x, y + 1].type])
+                    {
+                        WorldGen.PlaceTile(x, y, ModContent.TileType<JeweledChaliceTile>(), true, false, -1, 0);
+                        if (Framing.GetTileSafely(x, y).type == ModContent.TileType<JeweledChaliceTile>())
+                        {
+                            NetMessage.SendTileSquare(-1, x - 1, y - 1, 3);
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            private bool TryPlaceQuestTile()
+            {
+                List<int> townNPCs = new List<int>();
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && Main.npc[i].townNPC && !Main.npc[i].homeless && Main.npc[i].type != ModContent.NPCType<Robster>())
+                    {
+                        townNPCs.Add(i);
+                    }
+                }
+                if (townNPCs.Count <= 0)
+                {
+                    return false;
+                }
+                for (int i = 0; i < 1000; i++)
+                {
+                    byte npc = (byte)townNPCs[Main.rand.Next(townNPCs.Count)];
+                    int x = Main.npc[npc].homeTileX;
+                    int y = Main.npc[npc].homeTileY;
+                    var checkRectangle = new Rectangle(x - 8, y - 8, 16, 16);
+                    for (int k = checkRectangle.X; k < checkRectangle.X + checkRectangle.Width; k++)
+                    {
+                        for (int l = checkRectangle.Y; l < checkRectangle.Y + checkRectangle.Height; l++)
+                        {
+                            int randomX = checkRectangle.X + Main.rand.Next(checkRectangle.Width);
+                            int randomY = checkRectangle.Y + Main.rand.Next(checkRectangle.Height);
+                            if (PlaceTile(randomX, randomY))
+                            {
+                                TargetNPC = npc;
+                                location = new Point(x, y);
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+            public override void OnActivate()
+            {
+                type = (byte)Main.rand.Next(MaxTypes);
+                location = new Point(-1, -1);
+                if (!TryPlaceQuestTile())
+                {
+                    ActiveQuest = null;
+                }
+            }
+
+            public override void CompleteHunt(Player player)
+            {
+                player.ConsumeItem(GetQuestItem());
+                base.CompleteHunt(player);
+            }
+        }
+
+        public static List<ThieveryQuest> RegisteredQuests { get; private set; }
+        public static int QuestsCompleted { get; internal set; }
+        public static ThieveryQuest ActiveQuest { get; internal set; }
+        public static int TargetNPC { get; internal set; }
+
+        public static bool huntComplete;
+        public static byte resetQuestButton;
 
         public static Color JeweledTileMapColor => new Color(255, 185, 25, 255);
         public static Color RobsterBroadcastMessageColor => new Color(255, 215, 105, 255);
-       
+
+        public byte NetTick;
+
         internal static void Initialize()
         {
             resetQuestButton = 0;
@@ -75,6 +283,30 @@ namespace AQMod.NPCs.Friendly
         public override void AI()
         {
             npc.breath = 200;
+            if (ActiveQuest == null)
+            {
+                StartRandomHunt();
+            }
+            ActiveQuest?.Update();
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                NetTick++;
+                if (NetTick > 240)
+                {
+                    NetTick = 0;
+                    if (ActiveQuest == null)
+                    {
+                        StartRandomHunt();
+                    }
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+
+                    }
+                    else
+                    {
+                    }
+                }
+            }
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
@@ -131,6 +363,11 @@ namespace AQMod.NPCs.Friendly
             }
 
             resetQuestButton = 0;
+            huntComplete = false;
+            if (ActiveQuest != null)
+            {
+                huntComplete = ActiveQuest.IsHuntComplete(Main.LocalPlayer);
+            }
             var potentialText = new List<string>();
             int angler = NPC.FindFirstNPC(NPCID.Angler);
 
@@ -179,64 +416,65 @@ namespace AQMod.NPCs.Friendly
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            if (resetQuestButton != 0)
-                button2 = AQText.ModText("Common.RobsterQuitHunt").Value;
+            if (resetQuestButton != 0 && resetQuestButton != 255)
+            {
+                button2 = Language.GetTextValue("Mods.AQMod.Exporter.Quests.UIButtonQuit");
+            }
             else
             {
-                if (HuntSystem.Hunt != null && HuntSystem.Hunt.IsHuntComplete(Main.LocalPlayer))
-                    button2 = AQText.ModText("Common.CompleteRobsterHunt").Value;
-                else
-                {
-                    button2 = AQText.ModText("Common.RobsterHunt").Value;
-                }
+                button2 = huntComplete ? Language.GetTextValue("Mods.AQMod.Exporter.Quests.UIButtonComplete") : Language.GetTextValue("Mods.AQMod.Exporter.Quests.UIButtonQuest");
             }
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
         {
             if (firstButton)
+            {
                 shop = true;
+            }
             else
             {
+                if (ActiveQuest == null)
+                {
+                    AQSound.Play(SoundType.Custom, "Error", 0.6f);
+                    return;
+                }
                 if (resetQuestButton == 2)
                 {
-                    Main.PlaySound(SoundID.Grab);
-                    if (HuntSystem.Hunt != null)
-                        HuntSystem.Hunt.OnQuit(Main.player[Main.myPlayer]);
-                    HuntSystem.QuitHunt(Main.LocalPlayer);
                     resetQuestButton = 0;
+                    ActiveQuest?.EndHunt();
+                    StartRandomHunt();
+                    Main.PlaySound(SoundID.Grab);
+                    OnChatButtonClicked(firstButton, ref shop);
+                    return;
                 }
                 if (resetQuestButton == 1)
-                    Main.npcChatText = AQText.ModText("Common.RobsterQuitHuntQuestion").Value;
+                {
+                    Main.npcChatText = Language.GetTextValue("Mods.AQMod.Exporter.Quests.QuitHuntQuestion");
+                }
                 else
                 {
-                    if (HuntSystem.Hunt == null)
-                    {
-                        if (!HuntSystem.RandomizeHunt(Main.LocalPlayer))
-                        {
-                            Main.npcChatText = AQText.ModText("Common.RobsterCantDoRandomHunt").Value;
-                            Main.npcChatCornerItem = 0;
-                            return;
-                        }
-                    }
-                    if (HuntSystem.Hunt.IsHuntComplete(Main.LocalPlayer))
+                    var plr = Main.LocalPlayer;
+                    if (ActiveQuest?.IsHuntComplete(plr) == true)
                     {
                         Main.PlaySound(SoundID.Grab);
-                        Main.LocalPlayer.ConsumeItem(HuntSystem.Hunt.GetQuestItem());
-
-                        HuntSystem.Hunt.OnComplete(Main.LocalPlayer);
-                        HuntSystem.Hunt.RemoveHunt();
-                        HuntSystem.RandomizeHunt(Main.LocalPlayer);
+                        ActiveQuest.CompleteHunt(Main.LocalPlayer);
+                        Main.npcChatText = Language.GetTextValue("Mods.AQMod.Exporter.Quests.Complete." + Main.rand.Next(5));
+                        huntComplete = false;
+                        StartRandomHunt();
+                        resetQuestButton = 255;
+                        return;
                     }
                     else
                     {
-                        string text = HuntSystem.Hunt.QuestChat();
-                        Main.npcChatText = Language.GetTextValue(text, Lang.GetItemName(HuntSystem.Hunt.GetQuestItem()));
-                        Main.npcChatCornerItem = HuntSystem.Hunt.GetQuestItem();
-                        if (HuntSystem.TargetNPC != -1)
+                        string text = ActiveQuest.QuestChat();
+                        int questItem = ActiveQuest.GetQuestItem();
+                        Main.npcChatText = Language.GetTextValue(text, Lang.GetItemName(questItem));
+                        Main.npcChatCornerItem = questItem;
+                        if (TargetNPC != -1)
                         {
-                            text = " " + AQText.ModText("Common.RobsterSawInSomeonesHouse");
-                            Main.npcChatText += string.Format(text, Main.npc[HuntSystem.TargetNPC].GivenName);
+                            text = " " + Language.GetTextValue("Mods.AQMod.Exporter.Quests.AtTownNPCHouse");
+                            Main.npcChatText += string.Format(text, Main.npc[TargetNPC].GivenName);
                         }
                     }
                 }
@@ -277,6 +515,11 @@ namespace AQMod.NPCs.Friendly
             nextSlot++;
         }
 
+        public override bool PreNPCLoot()
+        {
+            return true;
+        }
+
         public override bool CanGoToStatue(bool toKingStatue)
         {
             return toKingStatue;
@@ -306,6 +549,158 @@ namespace AQMod.NPCs.Friendly
         {
             itemWidth = 30;
             itemHeight = 30;
+        }
+
+        internal static void Load()
+        {
+            RegisteredQuests = new List<ThieveryQuest>()
+            {
+                new StealTileQuest("TileStealHunt"),
+            };
+            Initalize();
+        }
+
+        internal static void Unload()
+        {
+            RegisteredQuests?.Clear();
+            RegisteredQuests = null;
+        }
+
+        internal static void Initalize()
+        {
+            ActiveQuest = null;
+            QuestsCompleted = 0;
+            TargetNPC = -1;
+        }
+
+        internal static void Save(TagCompound tag)
+        {
+            tag["Exporter_QuestsCompleted"] = QuestsCompleted;
+            if (ActiveQuest == null)
+            {
+                return;
+            }
+            tag["Exporter_ActiveHunt"] = ActiveQuest.Key;
+            tag["Exporter_ActiveHunt_Type"] = ActiveQuest.type;
+            tag["Exporter_ActiveHunt_Location_X"] = ActiveQuest.location.X;
+            tag["Exporter_ActiveHunt_Location_Y"] = ActiveQuest.location.Y;
+            if (TargetNPC >= 0)
+            {
+                tag["Exporter_TargetNPCType"] = Main.npc[TargetNPC].type;
+            }
+            var huntData = ActiveQuest.Save();
+            if (huntData != null)
+            {
+                tag["Exporter_ActiveHunt_Save"] = huntData;
+            }
+        }
+
+        internal static void Load(TagCompound tag)
+        {
+            QuestsCompleted = tag.GetInt("Exporter_QuestsCompleted");
+            if (!tag.ContainsKey("Exporter_ActiveHunt"))
+            {
+                return;
+            }
+            string key = tag.GetString("Exporter_ActiveHunt");
+            ActiveQuest = RegisteredQuests.Find((h) => h.Key == key);
+            if (ActiveQuest == default(ThieveryQuest))
+            {
+                return;
+            }
+            ActiveQuest.type = tag.GetByte("Exporter_ActiveHunt_Type");
+            ActiveQuest.location.X = tag.GetInt("Exporter_ActiveHunt_Location_X");
+            ActiveQuest.location.Y = tag.GetInt("Exporter_ActiveHunt_Location_Y");
+            if (tag.ContainsKey("Exporter_TargetNPCType"))
+            {
+                int type = tag.GetInt("Exporter_TargetNPCType");
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && Main.npc[i].type == type)
+                    {
+                        TargetNPC = i;
+                        break;
+                    }
+                }
+            }
+            if (tag.ContainsKey("Exporter_ActiveHunt_Save"))
+            {
+                ActiveQuest.Load(tag.GetCompound("Exporter_ActiveHunt_Save"));
+            }
+        }
+
+        internal static void StartRandomHunt()
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                NetHelper.Request(NetHelper.PacketType.RequestExporterQuestRandomize);
+                return;
+            }
+            ActiveQuest?.EndHunt();
+            List<ThieveryQuest> valid = new List<ThieveryQuest>();
+            for (int i = 0; i < RegisteredQuests.Count; i++)
+            {
+                if (RegisteredQuests[i].CanStart())
+                {
+                    valid.Add(RegisteredQuests[i]);
+                }
+            }
+            if (valid.Count <= 0)
+            {
+                return;
+            }
+            ActiveQuest = valid[valid.Count == 1 ? 0 : Main.rand.Next(valid.Count)];
+            ActiveQuest.OnActivate();
+        }
+
+        public static bool? CheckTileBreakSights(int tileX, int tileY, bool alsoResetQuest = true)
+        {
+            var worldPosition = new Vector2(tileX * 16f + 8f, tileY * 16f + 8f);
+            var closestPlayer = Main.player[Player.FindClosest(new Vector2(tileX * 16f, tileY * 16f), 16, 16)];
+            float seeingDistance = 1000f;
+            if (closestPlayer.dead || Vector2.Distance(closestPlayer.Center, worldPosition) > seeingDistance)
+            {
+                if (alsoResetQuest)
+                {
+                    AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterFailAccident", RobsterBroadcastMessageColor);
+                    ActiveQuest?.EndHunt();
+                    ActiveQuest = null;
+                }
+                return false;
+            }
+            if (closestPlayer.invis)
+                seeingDistance /= 5f;
+            bool foundOut = false;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                float npcSeeingDistance = seeingDistance;
+                int directionToTile = worldPosition.X < Main.npc[i].position.X + Main.npc[i].width / 2f ? -1 : 1;
+                if (-Main.npc[i].direction != directionToTile)
+                    npcSeeingDistance /= 2;
+                if (Main.npc[i].active && Main.npc[i].townNPC && Main.npc[i].type != ModContent.NPCType<Robster>() && Vector2.Distance(Main.npc[i].Center, worldPosition) < npcSeeingDistance && Collision.CanHitLine(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, new Vector2(tileX * 16f, tileY * 16f), 16, 16))
+                {
+                    foundOut = true;
+                    Main.npc[i].ai[0] = 0f;
+                    Main.npc[i].ai[1] = 1500f;
+                    Main.npc[i].direction = directionToTile;
+                    Main.npc[i].spriteDirection = directionToTile;
+                    Main.npc[i].netUpdate = true;
+
+
+                    int[] emoteChoices = new int[] { EmoteID.WeatherLightning, EmoteID.ItemSword, EmoteID.MiscFire };
+
+
+                    int choice = Main.rand.Next(emoteChoices.Length);
+                    EmoteBubble.NewBubble(emoteChoices[choice], new WorldUIAnchor(Main.npc[i]), 480);
+                }
+            }
+            if (foundOut && alsoResetQuest)
+            {
+                AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterFail", Robster.RobsterBroadcastMessageColor);
+                ActiveQuest?.EndHunt();
+                ActiveQuest = null;
+            }
+            return foundOut;
         }
     }
 }

@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ID;
 
-namespace AQMod.Common.WorldGeneration
+namespace AQMod.Content.World
 {
-    internal static class CommonStructureSearchMethods
+    internal static class StructureSearcher
     {
         public static bool LihzahrdAltar(out Point altarLocation, bool useMapData = false)
         {

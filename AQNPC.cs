@@ -1,7 +1,6 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Content.Players;
-using AQMod.Content.Quest.Lobster;
 using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Effects;
@@ -116,7 +115,7 @@ namespace AQMod
                 AQUtils.RemoveRepeatingIndices(NoGlobalDrops);
                 AQUtils.RemoveRepeatingIndices(CannotBeMeathooked);
             }
-            internal static void InternalInitalize()
+            internal static void Setup()
             {
                 SetUtils.Length = NPCLoader.NPCCount;
                 SetUtils.GetIDFromType = (m, n) => m.NPCType(n);
@@ -1315,13 +1314,12 @@ namespace AQMod
             }
             else
             {
-                if (npc.whoAmI == HuntSystem.TargetNPC)
+                if (npc.whoAmI == Robster.TargetNPC && Robster.ActiveQuest != null)
                 {
-                    if (HuntSystem.Hunt != null)
-                        HuntSystem.Hunt.RemoveHunt();
-                    HuntSystem.RandomizeHunt(null);
+                    Robster.ActiveQuest?.EndHunt();
                     AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterNPCDeath", Robster.RobsterBroadcastMessageColor);
                     AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterNPCDeath2", Robster.RobsterBroadcastMessageColor);
+                    Robster.StartRandomHunt();
                 }
             }
             return true;

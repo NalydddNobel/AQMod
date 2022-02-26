@@ -654,6 +654,22 @@ Physicist.Chat.Mod.Fargowiltas.Mutant=You just buy boss summons from a weird loo
 Physicist.Chat.Mod.Fargowiltas.Abominationn=You just buy event summons from a creepy looking reaper? Weirdo.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=You just buy rare enemy summons from a dumb looking child? Weirdo.
 
+# Exporter
+
+Exporter.Quests.Complete.0=You got it, very nice... I bet they didn't suspect a thing.
+Exporter.Quests.Complete.1=Ooohoohoohoohoo yes yes yes yeesssss you got it. I can't wait to sell this out on the seas.
+Exporter.Quests.Complete.2=Dumb cricket, I don't even think they remember buying that. Ah, whatever, I'm just going to take this trinket and use it for... something better.
+Exporter.Quests.Complete.3=Looks like the gems got a bit scuffed... whatever. Here's your pay.
+Exporter.Quests.Complete.4=They say steal from the rich and give to the poor, but I think we should do the opposite. OH! And here's your payment.
+
+Exporter.Quest.JeweledChalice=I saw someone with a very special Jeweled Chalice. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
+Exporter.Quest.JeweledCandelabra=I saw someone with a very special Jeweled Candelabra. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
+Exporter.Quests.AtTownNPCHouse=I think I saw it in {0}'s house.
+Exporter.Quests.QuitHuntQuestion=Do you really want to quit this mission?
+Exporter.Quests.UIButtonQuit=Quit Hunt
+Exporter.Quests.UIButtonComplete=Complete Hunt
+Exporter.Quests.UIButtonQuest=Thievery
+
 # Paintings
 
 PaintingSignature.NalydT='N.T.'
@@ -834,21 +850,6 @@ Common.RobsterNPCDeath=The town NPC that Robster wants you to steal from isn't h
 Common.RobsterNPCDeath2=Ask Robster to begin a different hunt.
 Common.RobsterFail=You didn't obtain the special item sneakily enough...
 Common.RobsterFailAccident=The special item was accidentally destroyed...
-Common.HuntJeweledChalice=I saw someone with a very special Jeweled Chalice. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
-Common.HuntJeweledCandelabra=I saw someone with a very special Jeweled Candelabra. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
-Common.RobsterRandomHunt0=I saw someone with a very special {0}. I want you to steal it from them.
-Common.RobsterCantDoRandomHunt=I don't have anything for you to do.
-Common.RobsterSawInSomeonesHouse=I think I saw it in {0}'s house.
-Common.RobsterRandomHuntComplete0=You got it, very nice... I bet they didn't suspect a thing.
-Common.RobsterRandomHuntComplete1=Ooohoohoohoohoo yes yes yes yeesssss you got it. I can't wait to sell this out on the seas.
-Common.RobsterRandomHuntComplete2=Dumb cricket, I don't even think they remember buying that. Ah, whatever, I'm just going to take this trinket and use it for... something better.
-Common.RobsterRandomHuntComplete3=Looks like the gems got a bit scuffed... whatever. Here's your pay.
-Common.RobsterRandomHuntComplete4=They say steal from the rich and give to the poor, but I think we should do the opposite. OH! And here's your payment.
-Common.RobsterHunt=Hunt
-Common.CompleteRobsterHunt=Complete Hunt
-Common.RobsterQuitHunt=Quit Hunt
-Common.PressHuntToContinue=(Press 'Hunt' again to continue)
-Common.RobsterQuitHuntQuestion=Do you really want to quit this hunt?
 #
 # Other Commons
 Common.SpawnAfterPoint=({0}) can spawn after this point

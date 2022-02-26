@@ -915,7 +915,7 @@ namespace AQMod.NPCs.Friendly
             {
                 WorldDefeats.HunterIntroduction = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                    NetHelper.UpdateFlag(NetHelper.PacketType.Flag_AirHunterIntroduction);
+                    NetHelper.Request(NetHelper.PacketType.Flag_AirHunterIntroduction);
                 return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Introduction", npc.GivenName);
             }
             var potentialText = new List<string>();
@@ -1010,7 +1010,7 @@ namespace AQMod.NPCs.Friendly
                 WorldDefeats.AirMerchantHasBeenFound = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    NetHelper.UpdateFlag(NetHelper.PacketType.Flag_AirMerchantHasBeenFound);
+                    NetHelper.Request(NetHelper.PacketType.Flag_AirMerchantHasBeenFound);
                 }
                 npc.netUpdate = true;
             }

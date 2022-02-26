@@ -8,7 +8,6 @@ using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
 using AQMod.Content.Entities;
 using AQMod.Content.Players;
-using AQMod.Content.Quest.Lobster;
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events;
 using AQMod.Effects;
@@ -20,6 +19,7 @@ using AQMod.Items.Potions.Foods;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
+using AQMod.NPCs.Friendly;
 using AQMod.Sounds;
 using AQMod.UI;
 using Microsoft.Xna.Framework;
@@ -247,12 +247,12 @@ namespace AQMod
             Keybinds.Load();
             Load_Hooks(unload: false);
             AQText.Load();
-            AQTile.Sets.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
-
+            Robster.Load();
             ModCallDictionary.Load();
             CursorDyeManager.Load();
             AprilFoolsJoke.Check();
+
             var server = ModContent.GetInstance<AQConfigServer>();
             if (!Main.dedServ)
             {
@@ -274,9 +274,10 @@ namespace AQMod
         {
             DemonSiege.InternalSetup();
 
-            AQBuff.Sets.InternalInitalize();
-            AQItem.Sets.Load();
-            AQNPC.Sets.InternalInitalize();
+            AQBuff.Sets.Setup();
+            AQItem.Sets.Setup();
+            AQNPC.Sets.Setup();
+            AQTile.Sets.Setup();
             BossChecklistSupport.SetupContent(this);
             CensusSupport.SetupContent(this);
             if (!Main.dedServ)
@@ -301,7 +302,6 @@ namespace AQMod
             cachedLoadTasks = null;
 
             IsLoading = false; // Sets Loading to false, so that some things no longer accept new content.
-            RobsterHuntLoader.Instance.SetupHunts();
 
             AQRecipes.AddRecipes(this);
 
@@ -317,6 +317,8 @@ namespace AQMod
             Load_Hooks(unload: true);
             Autoloading.Unload();
 
+            NoHitManager.CurrentlyDamaged?.Clear();
+            NoHitManager.CurrentlyDamaged = null;
             DyeBinder.Unload();
             DemonSiege.Unload();
             AQProjectile.Sets.Unload();
@@ -342,6 +344,7 @@ namespace AQMod
 
             CursorDyeManager.Unload();
             ModCallDictionary.Unload();
+            Robster.Unload();
             AQText.Unload();
         }
 

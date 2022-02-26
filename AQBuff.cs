@@ -15,7 +15,7 @@ namespace AQMod
             public static bool[] IsFoodBuff { get; private set; }
             public static bool[] CantBeSpreadToOtherNPCs { get; private set; }
 
-            internal static void InternalInitalize()
+            internal static void Setup()
             {
                 SetUtils.Length = BuffLoader.BuffCount;
                 SetUtils.GetIDFromType = (m, n) => m.BuffType(n);
