@@ -407,9 +407,9 @@ MapLayerToggle.Beeswax='蜂蜡'\n显示所有可见的世纪之花花苞的位�
 
 # Potions
 ItemName.Baguette=法棍
-ItemTooltip.Baguette=增加1%伤害
+ItemTooltip.Baguette=大幅度提升所有属性\n大幅度增加生命恢复速度\n增益效果在你死亡时不会消失\n'蛋糕只是松软的面包'
 BuffName.BaguetteBuff=法棍
-BuffDescription.BaguetteBuff=增加1%伤害
+BuffDescription.BaguetteBuff=大幅度提升所有属性和生命恢复速度
 
 ItemName.SpoilsPotion=战利品药水
 ItemTooltip.SpoilsPotion=敌人死亡时掉落的战利品的数量翻倍
@@ -654,6 +654,22 @@ Physicist.Chat.Mod.Fargowiltas.Mutant=你刚刚从一个看起来很诡异的怪
 Physicist.Chat.Mod.Fargowiltas.Abominationn=你刚刚从一个看起来很惊悚的收割者那买了Boss召唤物? 真是个怪人.
 Physicist.Chat.Mod.Fargowiltas.Deviantt=你刚刚从一个看起来很愚蠢的小孩那买了Boss召唤物? 真是个怪人.
 
+# Exporter
+
+Exporter.Quests.Complete.0=很好, 你做到了. 我打赌他们不会起疑的.
+Exporter.Quests.Complete.1=哦哦哦哦哦哦, 你搞到它了. 我迫不及待的想在海上把它给卖出去了.
+Exporter.Quests.Complete.2=真是个笨蟋蟀, 我觉得他们都不记得买过在东西. 啊管他呢, 我要用这些小饰品来装饰...某些特别的东西.
+Exporter.Quests.Complete.3=上面的宝石看起来磨损了...管他呢. 这是给你的奖励.
+Exporter.Quests.Complete.4=他们常说劫富济贫, 但我认为我们应该做与其相反的事情. 嘿, 这是给你的奖励.
+
+Exporter.Quest.JeweledChalice=我看见某人拿着一件特别的宝石杯. 它上面还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
+Exporter.Quest.JeweledCandelabra=我看见某人拿着一件特别的宝石烛台.  它上还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
+Exporter.Quests.AtTownNPCHouse=我想我是在{0}的房子里看到的这个.
+Exporter.Quests.QuitHuntQuestion=你想停止狩猎吗?
+Exporter.Quests.UIButtonQuit=停止狩猎
+Exporter.Quests.UIButtonComplete=完成狩猎
+Exporter.Quests.UIButtonQuest=盗窃
+
 # Paintings
 
 PaintingSignature.NalydT='N.T.'
@@ -834,21 +850,6 @@ Common.RobsterNPCDeath=龙虾掠夺者想要你偷窃的东西已经不在原位
 Common.RobsterNPCDeath2=询问龙虾掠夺者以开始另一场不同的狩猎.
 Common.RobsterFail=你并没有足够小心翼翼的偷到东西...
 Common.RobsterFailAccident=这件特别的东西被你不小心弄坏了...
-Common.HuntJeweledChalice=我看见某人拿着一件特别的宝石杯. 它上面还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
-Common.HuntJeweledCandelabra=我看见某人拿着一件特别的宝石烛台.  它上还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
-Common.RobsterRandomHunt0=我看到某人有个非常特别的东西{0}. 我想让你把它偷来给我.
-Common.RobsterCantDoRandomHunt=我没有需要你帮忙做的事.
-Common.RobsterSawInSomeonesHouse=我想我是在{0}的房子里看到的这个.
-Common.RobsterRandomHuntComplete0=很好, 你做到了. 我打赌他们不会起疑的.
-Common.RobsterRandomHuntComplete1=哦哦哦哦哦哦, 你搞到它了. 我迫不及待的想在海上把它给卖出去了.
-Common.RobsterRandomHuntComplete2=真是个笨蟋蟀, 我觉得他们都不记得买过在东西. 啊管他呢, 我要用这些小饰品来装饰...某些特别的东西
-Common.RobsterRandomHuntComplete3=上面的宝石看起来磨损了...管他呢. 这是给你的奖励.
-Common.RobsterRandomHuntComplete4=他们常说劫富济贫, 但我认为我们应该做与其相反的事情. 嘿, 这是给你的奖励.
-Common.RobsterHunt=狩猎
-Common.CompleteRobsterHunt=完成狩猎
-Common.RobsterQuitHunt=停止狩猎
-Common.PressHuntToContinue=(再次按下'狩猎'以继续)
-Common.RobsterQuitHuntQuestion=你想停止狩猎吗?
 #
 # Other Commons
 Common.SpawnAfterPoint=({0})会在此位置生成
