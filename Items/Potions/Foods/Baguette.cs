@@ -22,7 +22,7 @@ namespace AQMod.Items.Potions.Foods
             item.rare = AQItem.Rarities.DedicatedItem;
             item.value = Item.buyPrice(silver: 80);
             item.buffType = ModContent.BuffType<BaguetteBuff>();
-            item.buffTime = 3600;
+            item.buffTime = 216000;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
