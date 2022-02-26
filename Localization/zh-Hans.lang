@@ -17,6 +17,9 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 
 # Accessories
 
+ItemName.TargeoftheBlodded=尖刺盾牌
+ItemTooltip.TargeoftheBlodded=增加2点护甲穿透\n可沿墙滑下\n结合{$ItemName.ClimbingClaws}或{$ItemName.ShoeSpikes}使用时可提升能力
+
 ItemName.SpiritualRelic=心灵圣物
 ItemTooltip.SpiritualRelic={$Mods.AQMod.Tooltips.IncreasedMinions}\n击杀敌人时会召唤强化召唤物伤害的灵魂\n召唤物会对被地狱之灵缠扰的敌人造成额外伤害
 
@@ -272,6 +275,7 @@ ItemTooltip.Snowgrave=在下方召唤向上喷涌的冰雪风暴\n'当我释放�
 
 ItemName.UltimateSword=最终之剑
 ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
+ItemTooltipExtra0.UltimateSword=仅能在天空中闪烁微光时才能在终末之星处获得
 ProjectileName.UltimateSword=最终之剑
 
 # Pets
@@ -403,9 +407,9 @@ MapLayerToggle.Beeswax='蜂蜡'\n显示所有可见的世纪之花花苞的位�
 
 # Potions
 ItemName.Baguette=法棍
-ItemTooltip.Baguette=大幅度提升所有属性\n大幅度增加生命恢复速度\n增益效果在你死亡时不会消失\n'蛋糕只是松软的面包'
+ItemTooltip.Baguette=增加1%伤害
 BuffName.BaguetteBuff=法棍
-BuffDescription.BaguetteBuff=大幅度提升所有属性和生命恢复速度
+BuffDescription.BaguetteBuff=增加1%伤害
 
 ItemName.SpoilsPotion=战利品药水
 ItemTooltip.SpoilsPotion=敌人死亡时掉落的战利品的数量翻倍
@@ -701,102 +705,6 @@ RecipeGroup.CascadeOrHelfire=喷流球或狱火球
 RecipeGroup.EvilAccessories=邪恶饰品之一
 RecipeGroup.EvilBarb=邪恶钩刺之一
 
-# Config
-
-Config.RequiresReload=需要重新加载.
-
-UIConfiguration.Name=UI选项
-UIConfiguration.Header.UI=用户界面
-
-UIConfiguration.MapUITogglesPosition=地图UI: 图标切换位置
-UIConfiguration.MapUITogglesPositionTooltip=移动在地图上的图标切换UI, 如果它的位置发生变化则会立即投射至地图上的对应位置
-
-DiscordRichPresenceConfig.Name=Discord Rich Presence
-DiscordRichPresenceConfig.Header.DRP=[c/eeffee:选项]
-
-DiscordRichPresenceConfig.enableDiscordRichPresence=启用 Discord Rich Presence
-DiscordRichPresenceConfig.enableDiscordRichPresenceTooltip=决定是否加载 Aequus 支持的 Discord Rich Presence
-
-DiscordRichPresenceConfig.miniBossRichPresence=小Boss Presence
-DiscordRichPresenceConfig.miniBossRichPresenceTooltip=会为 Aequus 中经过考虑的'小Boss'添加一个 rich presence
-
-DiscordRichPresenceConfig.eventRichPresence=事件 Presence
-DiscordRichPresenceConfig.eventRichPresenceTooltip=会为所有 Aequus 事件添加一个 rich presence
-
-# Client Config
-
-ClientConfig.Name=客户端设置
-
-ClientConfig.Header.Starite=星源视觉效果
-ClientConfig.Header.Xmas=圣诞节
-ClientConfig.Header.UI=用户界面
-
-ClientConfig.FlashIntensity=闪光强度
-
-ClientConfig.XmasBackground=圣诞节背景
-ClientConfig.XmasBackgroundTooltip=决定是否在特殊的圣诞节世界中使用圣诞节背景\n{$Mods.AQMod.Config.RequiresReload}
-
-ClientConfig.XmasProgressMeterOverride=圣诞进度条覆盖
-ClientConfig.XmasProgressMeterOverrideTooltip=决定是否让种子 "Aequus Xmas" 覆盖世界生成进度条. 该项在某些时候会与世界生成预览冲突\n{$Mods.AQMod.Config.RequiresReload}
-
-ClientConfig.DemonSiegeUpgradeTooltip=恶魔围攻升级描述
-ClientConfig.DemonSiegeUpgradeTooltipTooltip=决定可在血巢处升级的物品的物品描述中是否出现'可在地狱祭坛处升级'
-
-ClientConfig.HookBarbBlacklistTooltip=刺钩黑名单描述
-ClientConfig.HookBarbBlacklistTooltipTooltip=决定无法升级的刺钩的物品描述中是否出现'不受钩刺升级效果影响'
-
-ClientConfig.MapBlipColor=地图光点颜色
-ClientConfig.MapBlipColorTooltip=折磨之魂显示的地图光点的颜色
-
-ClientConfig.Header.Worldgen=世界生成
-ClientConfig.Screenshakes=屏幕震动
-ClientConfig.TonsofScreenShakes=额外的不必要的屏幕震动
-
-# Server Config
-
-ServerConfig.Name=服务器设置
-
-ServerConfig.Header.QualityOfLife=[c/ffdddd:生活品质]
-ServerConfig.Header.World=[c/ddeeff:世界]
-ServerConfig.Header.Debug=[c/ffeedd:调试]
-
-ServerConfig.DemonSiegeDowngrades=恶魔围攻降级
-ServerConfig.DemonSiegeDowngradesTooltip=增加恶魔围攻事件升级武器的降低合成表.\n{$Mods.AQMod.Config.RequiresReload}
-
-ServerConfig.ReduceSpawns=Boss战期间减少刷怪率
-ServerConfig.ReduceSpawnsTooltip=实际上是在Aequus Mod的Boss战期间禁用刷怪率.\n如果世界中有什么东西正降低刷怪率, 则需要重新加载.
-
-ServerConfig.EvilProgressionLock=World-锁定邪恶地形时期
-ServerConfig.EvilProgressionLockTooltip=黑檀石、猩红石、暗影珠和猩红之心无法再被爆炸物摧毁, 直至你击败任意一个Boss.
-
-ServerConfig.HarderOmegaStarite=总是困难版本的终末之星AI
-ServerConfig.HarderOmegaStariteTooltip=与微光事件中的强化版终末之星战斗, 即使此时并不处于微光事件\n但终末之星并不会在微光事件外掉落最终之剑\n终末之星存活时无法更改此项设置.
-
-ServerConfig.JellyfishNecklace=蓝色水母不再掉落水母项链 ([i:1303])
-ServerConfig.JellyfishNecklaceTooltip=若禁用此项, 则蓝色水母能够有几率同时掉落水母项链和冲击项圈.
-
-ServerConfig.BloodyThingDrop=敌人掉落血腥之物
-ServerConfig.BloodyThingDropTooltip=决定血月期间的敌人是否会掉落'血腥之物'
-
-ServerConfig.DebugCommand=调试模式 (/ncall)
-ServerConfig.DebugCommandTooltip=启用 /ncall 调试命令.\n{$Mods.AQMod.Config.RequiresReload}
-
-# Worldgen
-
-WorldGenOptions.Name=世界生成选项
-
-WorldGenOptions.Header.OnWorldCreation=创造世界时:
-WorldGenOptions.Header.ChestLoot=宝箱战利品:
-
-WorldGenOptions.overrideVanillaChestLoot=覆盖原版宝箱战利品
-WorldGenOptions.overrideVanillaChestLootTooltip=决定Aequus Mod中的特殊物品是否会覆盖箱子中的普通战利品\n若禁用, 则Aequus Mod中的特殊物品会和原版中的普通战利品一起生成.
-
-WorldGenOptions.generateOceanRavines=蟹状裂隙
-WorldGenOptions.generateOceanRavinesTooltip=决定是否生成蟹状裂隙.
-
-WorldGenOptions.fixBabyPools=修复小水坑
-WorldGenOptions.fixBabyPoolsTooltip=移除地表上生成的1格物块高的水坑.\n可能会导致在地表生成的与水有关的构造出现小问题.
-
 WorldGen.FinalSteps=正在创造在其它事物之后的东西...
 
 WorldGen.CrabCrevice=Aequus: 正在生成蟹状裂隙
@@ -859,21 +767,10 @@ Common.KeyBound='{0}'键
 Common.ConfigName_AQConfigClient=客户端设置
 #
 # Config Headers
-Common.ConfigHeader_Visuals=视觉效果
+Common.ConfigHeader_Visuals=视觉
 Common.ConfigHeader_Misc=杂项
 Common.ConfigHeader_World=世界
 Common.ConfigHeader_Debug=调试模式
-#
-
-
-Common.Config_DrawSpotlights=绘制灯光效果
-Common.Config_EffectQuality=效果质量
-Common.Config_EffectIntensity=效果强度
-Common.Config_LoadItemOverlays=加载物品覆盖层
-#
-Common.Config_ShowCompletedAnglerQuestsCount=显示已完成的渔夫的任务次数
-Common.Config_ShowCompletedRobsterQuestsCount=显示已完成的龙虾掠夺者的任务次数
-Common.Config_CosmicEnergyAlt=星宇能量 (备用贴图)
 # Eightball
 Common.EightballAnswer0=是的
 Common.EightballAnswer1=我的消息来源说不
@@ -1005,8 +902,6 @@ ItemName.CopperSeal=铜制容器
 ItemName.SilverSeal=银制容器
 ItemName.GoldSeal=金制容器
 ItemName.PlatinumSeal=钛金制容器
-# Shields
-ItemName.TargeoftheBlodded=尖刺盾牌
 # Shoes
 ItemName.MoonShoes=月之行者
 # Shop Cards
@@ -1213,8 +1108,6 @@ ItemTooltip.CopperSeal=使用鱼竿钓到宝匣时使你获得30秒的宝匣增�
 ItemTooltip.SilverSeal=使用鱼竿钓到物品时使你获得10秒的钓鱼增益
 ItemTooltip.GoldSeal=使用鱼竿钓到任何售价为1金币的物品时使你获得1分钟的声呐增益
 ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
-# Shields
-ItemTooltip.TargeoftheBlodded=增加2点护甲穿透\n可沿墙滑下\n结合{$ItemName.ClimbingClaws}或{$ItemName.ShoeSpikes}使用时可提升能力
 # Shoes
 ItemTooltip.MoonShoes=使你获得缓降效果\n长按'下'键可恢复正常的重力效果, 长按'上'键可进一步强化低重力效果\n'HE-HE'
 # Shop Cards
@@ -1232,7 +1125,6 @@ ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.MythicStarfruit=使用以召唤微光事件
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
 ItemTooltip.UltimateStarfruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n右键开始或结束微光事件\n{$Mods.AQMod.Common.NotConsumable}
-ItemTooltipExtra0.UltimateSword=仅能在天空中闪烁微光时才能在终末之星处获得
 ##############
 # Buff Items #
 ##############
@@ -1513,3 +1405,101 @@ MapObject.WallClocks=挂钟
 MapObject.AQChairs=椅子
 MapObject.AQTables=桌子
 MapObject.LightbulbTile=灯泡
+
+#==================================================#
+# Configuration
+#==================================================#
+
+Config.RequiresReload=需要重新加载.
+
+UIConfiguration.MapUITogglesPosition=地图UI: 图标切换位置
+UIConfiguration.MapUITogglesPositionTooltip=移动在地图上的图标切换UI, 如果它的位置发生变化则会立即投射至地图上的对应位置
+
+DiscordRichPresenceConfig.Name=Discord Rich Presence
+DiscordRichPresenceConfig.Header.DRP=[c/eeffee:选项]
+
+DiscordRichPresenceConfig.enableDiscordRichPresence=启用 Discord Rich Presence
+DiscordRichPresenceConfig.enableDiscordRichPresenceTooltip=决定是否加载 Aequus 支持的 Discord Rich Presence
+
+DiscordRichPresenceConfig.miniBossRichPresence=小Boss Presence
+DiscordRichPresenceConfig.miniBossRichPresenceTooltip=会为 Aequus 中经过考虑的'小Boss'添加一个 rich presence
+
+DiscordRichPresenceConfig.eventRichPresence=事件 Presence
+DiscordRichPresenceConfig.eventRichPresenceTooltip=会为所有 Aequus 事件添加一个 rich presence
+
+#===============#
+# Client Config
+#===============#
+
+ClientConfig.Name=客户端设置
+
+ClientConfig.Header.Visuals=视觉
+ClientConfig.Header.Xmas=圣诞节
+ClientConfig.Header.UI=用户界面
+
+ClientConfig.EffectIntensity=效果强度
+
+ClientConfig.FlashIntensity=闪光强度
+
+ClientConfig.EffectQuality=效果质量
+
+ClientConfig.ShowCompletedAnglerQuestsCount=显示已完成的渔夫的任务次数
+
+ClientConfig.XmasBackground=圣诞节背景
+ClientConfig.XmasBackgroundTooltip=决定是否在特殊的圣诞节世界中使用圣诞节背景\n{$Mods.AQMod.Config.RequiresReload}
+
+ClientConfig.XmasProgressMeterOverride=圣诞进度条覆盖
+ClientConfig.XmasProgressMeterOverrideTooltip=决定是否让种子 "Aequus Xmas" 覆盖世界生成进度条. 该项在某些时候会与世界生成预览冲突\n{$Mods.AQMod.Config.RequiresReload}
+
+ClientConfig.DemonSiegeUpgradeTooltip=恶魔围攻升级描述
+ClientConfig.DemonSiegeUpgradeTooltipTooltip=决定可在血巢处升级的物品的物品描述中是否出现'可在地狱祭坛处升级'
+
+ClientConfig.HookBarbBlacklistTooltip=刺钩黑名单描述
+ClientConfig.HookBarbBlacklistTooltipTooltip=决定无法升级的刺钩的物品描述中是否出现'不受钩刺升级效果影响'
+
+ClientConfig.MapBlipColor=地图光点颜色
+ClientConfig.MapBlipColorTooltip=折磨之魂显示的地图光点的颜色
+
+ClientConfig.Header.Worldgen=世界生成
+ClientConfig.Screenshakes=屏幕震动
+ClientConfig.TonsofScreenShakes=额外的不必要的屏幕震动
+
+#===============#
+# Server Config
+#===============#
+
+ServerConfig.Name=服务器设置
+
+ServerConfig.Header.QualityOfLife=[c/ffdddd:生活品质]
+ServerConfig.Header.World=[c/ddeeff:世界]
+ServerConfig.Header.Debug=[c/ffeedd:调试]
+
+ServerConfig.DemonSiegeDowngrades=恶魔围攻降级
+ServerConfig.DemonSiegeDowngradesTooltip=增加恶魔围攻事件升级武器的降低合成表.\n{$Mods.AQMod.Config.RequiresReload}
+
+ServerConfig.ReduceSpawns=Boss战期间减少刷怪率
+ServerConfig.ReduceSpawnsTooltip=实际上是在Aequus Mod的Boss战期间禁用刷怪.\n如果世界中有什么东西正降低刷怪率, 则需要重新加载.
+
+ServerConfig.EvilProgressionLock=锁定邪恶地形时期
+ServerConfig.EvilProgressionLockTooltip=黑檀石、猩红石、暗影珠和猩红之心无法再被爆炸物摧毁, 直至你击败任意一个Boss.
+
+ServerConfig.HarderOmegaStarite=总是困难版本的终末之星AI
+ServerConfig.HarderOmegaStariteTooltip=与微光事件中的强化版终末之星战斗, 即使此时并不处于微光事件\n但终末之星并不会在微光事件外掉落最终之剑\n终末之星存活时无法更改此项设置.
+
+ServerConfig.JellyfishNecklace=蓝色水母不再掉落水母项链 ([i:1303])
+ServerConfig.JellyfishNecklaceTooltip=若禁用此项, 则蓝色水母能够有几率同时掉落水母项链和冲击项圈.
+
+ServerConfig.OverrideVanillaChestLoot=覆盖原版宝箱战利品
+ServerConfig.OverrideVanillaChestLootTooltip=决定Aequus Mod中的特殊物品是否会覆盖箱子中的普通战利品\n若禁用, 则Aequus Mod中的特殊物品会和原版中的普通战利品一起生成.
+
+ServerConfig.GenerateOceanRavines=蟹状裂隙
+ServerConfig.GenerateOceanRavinesTooltip=决定是否生成蟹状裂隙.
+
+ServerConfig.FixBabyPools=修复小水坑
+ServerConfig.FixBabyPoolsTooltip=移除地表上生成的1格物块高的水坑.\n可能会导致在地表生成的与水有关的构造出现小问题.
+
+ServerConfig.BloodyThingDrop=敌人掉落血腥之物
+ServerConfig.BloodyThingDropTooltip=决定血月期间的敌人是否会掉落'血腥之物'
+
+ServerConfig.DebugCommand=调试模式 (/ncall)
+ServerConfig.DebugCommandTooltip=启用 /ncall 调试命令.\n{$Mods.AQMod.Config.RequiresReload}
