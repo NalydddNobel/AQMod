@@ -215,7 +215,7 @@ namespace AQMod.NPCs.Bosses
                                     AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SpaceSquid/ShootDeathray");
                                 }
                             }
-                            bool canDoEffects = Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes &&
+                            bool canDoEffects = Main.netMode != NetmodeID.Server && AQConfigClient.Instance.Screenshakes &&
                                 (Main.player[Main.myPlayer].Center - center).Length() < 2000f;
                             if (npc.ai[1] >= 242f && (int)npc.ai[2] < 1 && canDoEffects)
                             {

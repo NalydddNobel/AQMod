@@ -22,17 +22,5 @@ namespace AQMod.Items.Accessories.Shields
             player.armorPenetration += 2;
             player.spikedBoots += 1;
         }
-
-        //public override void AddRecipes()
-        //{
-        //    var r = new ModRecipe(mod);
-        //    r.AddRecipeGroup("Wood", 10);
-        //    r.AddIngredient(ItemID.SharkToothNecklace);
-        //    r.AddIngredient(ItemID.Shackle);
-        //    r.AddIngredient(ItemID.ClimbingClaws);
-        //    r.AddTile(TileID.TinkerersWorkbench);
-        //    r.SetResult(this);
-        //    r.AddRecipe();
-        //}
     }
 }

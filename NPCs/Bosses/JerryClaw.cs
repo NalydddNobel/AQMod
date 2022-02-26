@@ -277,7 +277,7 @@ namespace AQMod.NPCs.Bosses
                         npc.netUpdate = true;
                         npc.localAI[2] = 1f;
                         var spawnPos = new Vector2(npc.position.X, npc.position.Y + npc.height - 2);
-                        if (Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes)
+                        if (Main.netMode != NetmodeID.Server && AQConfigClient.Instance.Screenshakes)
                         {
                             float distance = Vector2.Distance(npc.Center, Main.LocalPlayer.Center);
                             if (distance < 600)

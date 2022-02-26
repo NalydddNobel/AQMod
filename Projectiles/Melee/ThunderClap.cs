@@ -100,7 +100,7 @@ namespace AQMod.Projectiles.Melee
 
             Main.spriteBatch.Draw(glow, drawPosition + new Vector2(0f, projectile.ai[0] / 2f) - Main.screenPosition, new Rectangle(0, 0, glow.Width / 2, glow.Height), new Color(100, 100, 25, 0), projectile.rotation + MathHelper.PiOver2, thunderGlowOrig, new Vector2(glowScale.X, glowScale.Y * 1.5f), SpriteEffects.None, 0f);
 
-            if (AQConfigClient.c_EffectQuality >= 1f)
+            if (AQConfigClient.Instance.EffectQuality >= 1f)
             {
                 float electric = 2f + ((float)Math.Sin(Main.GlobalTime * 5f) + 1f) * 2f;
                 var clr = new Color(255, 100, 0, 20);

@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.NoHitting;
+using AQMod.Common.Utilities.Colors;
 using AQMod.Content.Players;
 using AQMod.Items;
 using AQMod.Localization;
@@ -26,16 +27,6 @@ namespace AQMod
     {
         public static Vector2 TrueMouseworld => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix)) + Main.screenPosition;
 
-        public static class RedAndYourFunnyPrivateVariablesWhichAreKindaImportant
-        {
-            private static readonly FieldInfo _bgtopfield = typeof(Main).GetField("bgTop", BindingFlags.NonPublic | BindingFlags.Instance);
-            public static int Main_bgTop { get; set; }
-
-            public static int GetMain_bgTop()
-            {
-                return Main_bgTop = (int)_bgtopfield.GetValue(Main.instance);
-            }
-        }
 
         public static class OmegaStarite3DHelper
         {
@@ -50,19 +41,6 @@ namespace AQMod
             public static float GetParralaxScale(float originalScale, float z)
             {
                 return originalScale * (-Z_VIEW / (z - Z_VIEW));
-            }
-        }
-
-        public static class BackgroundStars
-        {
-            public static Vector2 GetRenderPosition(Star star)
-            {
-                return GetRenderPosition(new Vector2(star.position.X + Main.starTexture[star.type].Width * 0.5f, star.position.Y + Main.starTexture[star.type].Height * 0.5f));
-            }
-            public static Vector2 GetRenderPosition(Vector2 position)
-            {
-                return new Vector2(position.X * (Main.screenWidth / 800f),
-                    position.Y * (Main.screenHeight / 600f) + RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop);
             }
         }
 
@@ -100,19 +78,26 @@ namespace AQMod
                 this.getColor = getColor;
             }
 
+            private Color GetColor()
+            {
+                if (getColor != null)
+                    return getColor();
+                return new Color(250, 250, 250, 0);
+            }
+
             void GlowmaskData.IWorld.Draw(GlowmaskData glowmask, Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
             {
                 var drawCoordinates = new Vector2(item.position.X - Main.screenPosition.X + glowmask.Tex.Width / 2 + item.width / 2 - glowmask.Tex.Width / 2, item.position.Y - Main.screenPosition.Y + glowmask.Tex.Height / 2 + item.height - glowmask.Tex.Height + 2f);
                 var drawFrame = new Rectangle(0, 0, glowmask.Tex.Width, glowmask.Tex.Height);
                 var drawRotation = rotation;
                 var origin = Main.itemTexture[item.type].Size() / 2;
-                var drawData = new DrawData(glowmask.Tex, drawCoordinates, drawFrame, getColor(), drawRotation, origin, scale, SpriteEffects.None, 0);
+                var drawData = new DrawData(glowmask.Tex, drawCoordinates, drawFrame, GetColor(), drawRotation, origin, scale, SpriteEffects.None, 0);
                 drawData.Draw(Main.spriteBatch);
             }
 
             void GlowmaskData.IInventory.Draw(GlowmaskData glowmask, Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
             {
-                Main.spriteBatch.Draw(glowmask.Tex, position, frame, getColor(), 0f, origin, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(glowmask.Tex, position, frame, GetColor(), 0f, origin, scale, SpriteEffects.None, 0f);
             }
 
             void GlowmaskData.IPlayerHeld.Draw(GlowmaskData glowmask, Player player, AQPlayer aQPlayer, Item item, PlayerDrawInfo info)
@@ -150,7 +135,7 @@ namespace AQMod
                         var drawCoordinates3 = new Vector2((int)(info.itemLocation.X - Main.screenPosition.X + origin3.X + offsetX1), (int)(info.itemLocation.Y - Main.screenPosition.Y + offsetY));
                         var drawFrame3 = new Rectangle(0, 0, texture.Width, texture.Height);
                         origin3 += holdoutOrigin;
-                        Main.playerDrawData.Add(new DrawData(texture, drawCoordinates3, drawFrame3, getColor(), drawRotation3, origin3, item.scale, info.spriteEffects, 0));
+                        Main.playerDrawData.Add(new DrawData(texture, drawCoordinates3, drawFrame3, GetColor(), drawRotation3, origin3, item.scale, info.spriteEffects, 0));
                         return;
                     }
                     var spriteEffects = (SpriteEffects)(player.gravDir != 1f ? player.direction != 1 ? 3 : 2 : player.direction != 1 ? 1 : 0);
@@ -162,7 +147,7 @@ namespace AQMod
                     var drawCoordinates2 = new Vector2((int)(player.itemLocation.X - Main.screenPosition.X + offset.X), (int)(player.itemLocation.Y - Main.screenPosition.Y + offset.Y));
                     var drawFrame2 = new Rectangle(0, 0, texture.Width, texture.Height);
                     var drawRotation2 = player.itemRotation;
-                    Main.playerDrawData.Add(new DrawData(texture, drawCoordinates2, drawFrame2, getColor(), drawRotation2, origin2, item.scale, spriteEffects, 0));
+                    Main.playerDrawData.Add(new DrawData(texture, drawCoordinates2, drawFrame2, GetColor(), drawRotation2, origin2, item.scale, spriteEffects, 0));
                     return;
                 }
                 if (player.gravDir == -1f)
@@ -171,14 +156,14 @@ namespace AQMod
                     var drawFrame2 = new Rectangle(0, 0, texture.Width, texture.Height);
                     var drawRotation2 = player.itemRotation;
                     var origin2 = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, 0f);
-                    Main.playerDrawData.Add(new DrawData(texture, drawCoordinates2, drawFrame2, getColor(), drawRotation2, origin2, item.scale, info.spriteEffects, 0));
+                    Main.playerDrawData.Add(new DrawData(texture, drawCoordinates2, drawFrame2, GetColor(), drawRotation2, origin2, item.scale, info.spriteEffects, 0));
                     return;
                 }
                 var drawCoordinates = new Vector2((int)(info.itemLocation.X - Main.screenPosition.X), (int)(info.itemLocation.Y - Main.screenPosition.Y));
                 var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var drawRotation = player.itemRotation;
                 var origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, texture.Height);
-                Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, getColor(), drawRotation, origin, item.scale, info.spriteEffects, 0));
+                Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetColor(), drawRotation, origin, item.scale, info.spriteEffects, 0));
             }
         }
 

@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Fishing.Bait
+namespace AQMod.Items.Misc.Bait
 {
     public abstract class PopperBaitItem : ModItem
     {

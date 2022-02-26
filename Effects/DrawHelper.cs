@@ -2,6 +2,7 @@
 using AQMod.Content.Entities;
 using AQMod.Effects.GoreNest;
 using AQMod.Effects.Wind;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -9,8 +10,10 @@ using Terraria.ModLoader;
 
 namespace AQMod.Effects
 {
-    public class GameWorldRenders : ModWorld
+    public sealed class DrawHelper : ModWorld
     {
+        public static int Main_bgTop;
+
         public static class Hooks
         {
             internal static int LastScreenWidth;
@@ -106,6 +109,18 @@ namespace AQMod.Effects
                 }
                 Particle.PostDrawPlayers.Render();
                 Main.spriteBatch.End();
+            }
+        }
+        public static class BGStars
+        {
+            public static Vector2 GetRenderPosition(Star star)
+            {
+                return GetRenderPosition(new Vector2(star.position.X + Main.starTexture[star.type].Width * 0.5f, star.position.Y + Main.starTexture[star.type].Height * 0.5f));
+            }
+            public static Vector2 GetRenderPosition(Vector2 position)
+            {
+                return new Vector2(position.X * (Main.screenWidth / 800f),
+                    position.Y * (Main.screenHeight / 600f) + Main_bgTop);
             }
         }
 

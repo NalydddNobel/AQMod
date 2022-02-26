@@ -17,6 +17,9 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 
 # Accessories
 
+ItemName.TargeoftheBlodded=Spike Shield
+ItemTooltip.TargeoftheBlodded=Increases armor penetration by 2\nAllows the player to slide down walls\nImproved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
+
 ItemName.SpiritualRelic=Spiritual Relic
 ItemTooltip.SpiritualRelic={$Mods.AQMod.Tooltips.IncreasedMinions}\nDefeated enemies create minion damage boosting spirits\nEnemies haunted by spirits take extra damage from minions
 
@@ -404,9 +407,9 @@ MapLayerToggle.Beeswax='Beeswax'\nShows the location of any visible Plantera bul
 
 # Potions
 ItemName.Baguette=Baguette
-ItemTooltip.Baguette=Supreme improvements to all stats\nGreatly improves life regeneration\nThe buff does not go away when you die\n'Cake is just spongy bread'
+ItemTooltip.Baguette=1% increased damage
 BuffName.BaguetteBuff=Baguette
-BuffDescription.BaguetteBuff=Supreme improvements to all stats and greatly improved life regeneration
+BuffDescription.BaguetteBuff=1% increased damage
 
 ItemName.SpoilsPotion=Spoils Potion
 ItemTooltip.SpoilsPotion=Enemies drop twice as much loot
@@ -702,102 +705,6 @@ RecipeGroup.CascadeOrHelfire=Cascade or Helfire
 RecipeGroup.AnyEel=Any Eel
 RecipeGroup.EvilAccessories=Either Evil Accessories
 
-# Config
-
-Config.RequiresReload=Requires a reload.
-
-UIConfiguration.Name=UI Options
-UIConfiguration.Header.UI=User Interface
-
-UIConfiguration.MapUITogglesPosition=Map UI: Icon Toggle Pos
-UIConfiguration.MapUITogglesPositionTooltip=Moves the Icon Toggle UI on the map, instantly snaps onto screen if its position goes off
-
-DiscordRichPresenceConfig.Name=Discord Rich Presence
-DiscordRichPresenceConfig.Header.DRP=[c/eeffee:Options]
-
-DiscordRichPresenceConfig.enableDiscordRichPresence=Enable Discord Rich Presence
-DiscordRichPresenceConfig.enableDiscordRichPresenceTooltip=Whether or not Aequus' Discord Rich Presence support should be loaded
-
-DiscordRichPresenceConfig.miniBossRichPresence=Presence for Minibosses
-DiscordRichPresenceConfig.miniBossRichPresenceTooltip=Will add a rich presence for any Aequus enemy considered a 'miniboss'
-
-DiscordRichPresenceConfig.eventRichPresence=Presence for Events
-DiscordRichPresenceConfig.eventRichPresenceTooltip=Will add a rich presence for all Aequus events
-
-# Client Config
-
-ClientConfig.Name=Client Config
-
-ClientConfig.Header.Starite=Starite Visuals
-ClientConfig.Header.Xmas=Xmas
-ClientConfig.Header.UI=User Interface
-
-ClientConfig.FlashIntensity=Flash Intensity
-
-ClientConfig.XmasBackground=Xmas Background
-ClientConfig.XmasBackgroundTooltip=Whether or not to use a Xmas background in special Xmas worlds\n{$Mods.AQMod.Config.RequiresReload}
-
-ClientConfig.XmasProgressMeterOverride=Xmas Progress Meter Override
-ClientConfig.XmasProgressMeterOverrideTooltip=Whether or not to have the "AQ Xmas" seed override your worldgen progress bar. This sometimes has conflicts with Worldgen Previewer\n{$Mods.AQMod.Config.RequiresReload}
-
-ClientConfig.DemonSiegeUpgradeTooltip=Demon Siege Upgrade Tooltip 
-ClientConfig.DemonSiegeUpgradeTooltipTooltip=Whether or not 'Can be upgraded at a Hell Altar' appears on an item's tooltip if it is upgradeable at the Gore Nest
-
-ClientConfig.HookBarbBlacklistTooltip=Hook Barb Blacklist Tooltip 
-ClientConfig.HookBarbBlacklistTooltipTooltip=Whether or not 'Does not get affected by hook barb upgrades' appears on an item's tooltip if it cannot have hook barb upgrades
-
-ClientConfig.MapBlipColor=Map Blip Color
-ClientConfig.MapBlipColorTooltip=The color of the little blips shown by the Blighted Soul
-
-ClientConfig.Header.Worldgen=World Gen
-ClientConfig.Screenshakes=Screenshakes
-ClientConfig.TonsofScreenShakes=Extra Unnecessary Screenshakes
-
-# Server Config
-
-ServerConfig.Name=Server Config
-
-ServerConfig.Header.QualityOfLife=[c/ffdddd:Quality of Life]
-ServerConfig.Header.World=[c/ddeeff:World]
-ServerConfig.Header.Debug=[c/ffeedd:Debug]
-
-ServerConfig.DemonSiegeDowngrades=Demon Siege Downgrades
-ServerConfig.DemonSiegeDowngradesTooltip=Adds recipes for downgrading weapons upgraded at the Demon Siege.\n{$Mods.AQMod.Config.RequiresReload}
-
-ServerConfig.ReduceSpawns=Reduce Spawns during Bossfights
-ServerConfig.ReduceSpawnsTooltip=Practically disables spawns for Aequus bossfights.\nWould require a reload if anything in the world is currently reducing spawns.
-
-ServerConfig.EvilProgressionLock=World-Evil Progression Lock
-ServerConfig.EvilProgressionLockTooltip=Ebonstone, Crimstone, Shadow Orbs and Crimson Hearts can no longer be destroyed by explosives until a boss has been defeated.
-
-ServerConfig.HarderOmegaStarite=Omega Starite always uses Harder AI
-ServerConfig.HarderOmegaStariteTooltip=Makes Omega Starite always use its Glimmer Event version even when the Glimmer Event is not active\nThis will not mean it will drop the Ultimate Sword outside of the Glimmer Event\nCannot be changed if Omega Starite is alive.
-
-ServerConfig.JellyfishNecklace=Remove Jellyfish Necklace drop from Blue Jellyfish ([i:1303])
-ServerConfig.JellyfishNecklaceTooltip=If you disable this, the Blue Jellyfish would be able to drop both the Jellyfish Necklace and Shock Collar.
-
-ServerConfig.BloodyThingDrop=Bloody Thing Enemy Drop
-ServerConfig.BloodyThingDropTooltip=Whether or not enemies during the blood moon will drop the 'Bloody Thing'
-
-ServerConfig.DebugCommand=Debug Mode (/ncall)
-ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod.Config.RequiresReload}
-
-# Worldgen
-
-WorldGenOptions.Name=World Gen Options
-
-WorldGenOptions.Header.OnWorldCreation=On World Creation:
-WorldGenOptions.Header.ChestLoot=Chest Loot:
-
-WorldGenOptions.overrideVanillaChestLoot=Overwrite Vanilla Chest Loot
-WorldGenOptions.overrideVanillaChestLootTooltip=Whether or not special Aequus items will overwrite vanilla items in chests.\nIf this is disabled, Aequus loot will generate with all previous loot intact.
-
-WorldGenOptions.generateOceanRavines=Crab Crevice
-WorldGenOptions.generateOceanRavinesTooltip=Whether or not to generate the crab crevice.
-
-WorldGenOptions.fixBabyPools=Fix Baby Pools
-WorldGenOptions.fixBabyPoolsTooltip=Removes those 1 block tall pools of water which generate on the surface.\nMay cause minor issues with structures that generate on the surface with water.
-
 WorldGen.FinalSteps=Generating things after Everything Else...
 
 WorldGen.CrabCrevice=Aequus: Generating Crab Crevice
@@ -864,17 +771,6 @@ Common.ConfigHeader_Visuals=Visuals
 Common.ConfigHeader_Misc=Misc
 Common.ConfigHeader_World=World
 Common.ConfigHeader_Debug=Debug
-#
-
-
-Common.Config_DrawSpotlights=Draw Spotlights
-Common.Config_EffectQuality=Effect Quality
-Common.Config_EffectIntensity=Effect Intensity
-Common.Config_LoadItemOverlays=Load Item Overlays
-#
-Common.Config_ShowCompletedAnglerQuestsCount=Show Completed Angler Quests Count
-Common.Config_ShowCompletedRobsterQuestsCount=Show Completed Robster Hunts Count
-Common.Config_CosmicEnergyAlt=Cosmic Energy (Alt Texture)
 # Eightball
 Common.EightballAnswer0=Yes
 Common.EightballAnswer1=My sources say no
@@ -1006,8 +902,6 @@ ItemName.CopperSeal=Copper Seal
 ItemName.SilverSeal=Silver Seal
 ItemName.GoldSeal=Gold Seal
 ItemName.PlatinumSeal=Platinum Seal
-# Shields
-ItemName.TargeoftheBlodded=Shield of the Blooded
 # Shoes
 ItemName.MoonShoes=Moonwalker
 # Shop Cards
@@ -1214,8 +1108,6 @@ ItemTooltip.CopperSeal=Fishing a crate will bless you with 30 seconds of the cra
 ItemTooltip.SilverSeal=Fishing anything will bless you with 10 seconds of the fishing potion buff
 ItemTooltip.GoldSeal=Fishing anything that can be sold for 1 gold blesses you with 1 minute of the sonar potion buff
 ItemTooltip.PlatinumSeal={$Mods.AQMod.ItemTooltip.CopperSeal}\n{$Mods.AQMod.ItemTooltip.SilverSeal}\n{$Mods.AQMod.ItemTooltip.GoldSeal}
-# Shields
-ItemTooltip.TargeoftheBlodded=Increases armor penetration by 2\nAllows the player to slide down walls\nImproved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
 # Shoes
 ItemTooltip.MoonShoes=Allows slow fall\nHold down to revert to regular gravity and hold up to lower gravity even more\n'HE-HE'
 # Shop Cards
@@ -1513,3 +1405,101 @@ MapObject.WallClocks=Wall Clock
 MapObject.AQChairs=Chair
 MapObject.AQTables=Table
 MapObject.LightbulbTile=Lightbulb
+
+#==================================================#
+# Configuration
+#==================================================#
+
+Config.RequiresReload=Requires a reload.
+
+UIConfiguration.MapUITogglesPosition=Map UI: Icon Toggle Pos
+UIConfiguration.MapUITogglesPositionTooltip=Moves the Icon Toggle UI on the map, instantly snaps onto screen if its position goes off
+
+DiscordRichPresenceConfig.Name=Discord Rich Presence
+DiscordRichPresenceConfig.Header.DRP=[c/eeffee:Options]
+
+DiscordRichPresenceConfig.enableDiscordRichPresence=Enable Discord Rich Presence
+DiscordRichPresenceConfig.enableDiscordRichPresenceTooltip=Whether or not Aequus' Discord Rich Presence support should be loaded
+
+DiscordRichPresenceConfig.miniBossRichPresence=Presence for Minibosses
+DiscordRichPresenceConfig.miniBossRichPresenceTooltip=Will add a rich presence for any Aequus enemy considered a 'miniboss'
+
+DiscordRichPresenceConfig.eventRichPresence=Presence for Events
+DiscordRichPresenceConfig.eventRichPresenceTooltip=Will add a rich presence for all Aequus events
+
+#===============#
+# Client Config
+#===============#
+
+ClientConfig.Name=Client Config
+
+ClientConfig.Header.Visuals=Visuals
+ClientConfig.Header.Xmas=Xmas
+ClientConfig.Header.UI=User Interface
+
+ClientConfig.EffectIntensity=Effect Intensity
+
+ClientConfig.FlashIntensity=Flash Intensity
+
+ClientConfig.EffectQuality=Effect Quality
+
+ClientConfig.ShowCompletedAnglerQuestsCount=Show Completed Angler Quests Count
+
+ClientConfig.XmasBackground=Xmas Background
+ClientConfig.XmasBackgroundTooltip=Whether or not to use a Xmas background in special Xmas worlds\n{$Mods.AQMod.Config.RequiresReload}
+
+ClientConfig.XmasProgressMeterOverride=Xmas Progress Meter Override
+ClientConfig.XmasProgressMeterOverrideTooltip=Whether or not to have the "AQ Xmas" seed override your worldgen progress bar. This sometimes has conflicts with Worldgen Previewer\n{$Mods.AQMod.Config.RequiresReload}
+
+ClientConfig.DemonSiegeUpgradeTooltip=Demon Siege Upgrade Tooltip 
+ClientConfig.DemonSiegeUpgradeTooltipTooltip=Whether or not 'Can be upgraded at a Hell Altar' appears on an item's tooltip if it is upgradeable at the Gore Nest
+
+ClientConfig.HookBarbBlacklistTooltip=Hook Barb Blacklist Tooltip 
+ClientConfig.HookBarbBlacklistTooltipTooltip=Whether or not 'Does not get affected by hook barb upgrades' appears on an item's tooltip if it cannot have hook barb upgrades
+
+ClientConfig.MapBlipColor=Map Blip Color
+ClientConfig.MapBlipColorTooltip=The color of the little blips shown by the Blighted Soul
+
+ClientConfig.Header.Worldgen=World Gen
+ClientConfig.Screenshakes=Screenshakes
+ClientConfig.TonsofScreenShakes=Extra Unnecessary Screenshakes
+
+#===============#
+# Server Config
+#===============#
+
+ServerConfig.Name=Server Config
+
+ServerConfig.Header.QualityOfLife=[c/ffdddd:Quality of Life]
+ServerConfig.Header.World=[c/ddeeff:World]
+ServerConfig.Header.Debug=[c/ffeedd:Debug]
+
+ServerConfig.DemonSiegeDowngrades=Demon Siege Downgrades
+ServerConfig.DemonSiegeDowngradesTooltip=Adds recipes for downgrading weapons upgraded at the Demon Siege.\n{$Mods.AQMod.Config.RequiresReload}
+
+ServerConfig.ReduceSpawns=Reduce Spawns during Bossfights
+ServerConfig.ReduceSpawnsTooltip=Practically disables spawns for Aequus bossfights.\nWould require a reload if anything in the world is currently reducing spawns.
+
+ServerConfig.EvilProgressionLock=World-Evil Progression Lock
+ServerConfig.EvilProgressionLockTooltip=Ebonstone, Crimstone, Shadow Orbs and Crimson Hearts can no longer be destroyed by explosives until a boss has been defeated.
+
+ServerConfig.HarderOmegaStarite=Omega Starite always uses Harder AI
+ServerConfig.HarderOmegaStariteTooltip=Makes Omega Starite always use its Glimmer Event version even when the Glimmer Event is not active\nThis will not mean it will drop the Ultimate Sword outside of the Glimmer Event\nCannot be changed if Omega Starite is alive.
+
+ServerConfig.JellyfishNecklace=Remove Jellyfish Necklace drop from Blue Jellyfish ([i:1303])
+ServerConfig.JellyfishNecklaceTooltip=If you disable this, the Blue Jellyfish would be able to drop both the Jellyfish Necklace and Shock Collar.
+
+ServerConfig.OverrideVanillaChestLoot=Overwrite Vanilla Chest Loot
+ServerConfig.OverrideVanillaChestLootTooltip=Whether or not special Aequus items will overwrite vanilla items in chests.\nIf this is disabled, Aequus loot will generate with all previous loot intact.
+
+ServerConfig.GenerateOceanRavines=Crab Crevice
+ServerConfig.GenerateOceanRavinesTooltip=Whether or not to generate the crab crevice.
+
+ServerConfig.FixBabyPools=Fix Baby Pools
+ServerConfig.FixBabyPoolsTooltip=Removes those 1 block tall pools of water which generate on the surface.\nMay cause minor issues with structures that generate on the surface with water.
+
+ServerConfig.BloodyThingDrop=Bloody Thing Enemy Drop
+ServerConfig.BloodyThingDropTooltip=Whether or not enemies during the blood moon will drop the 'Bloody Thing'
+
+ServerConfig.DebugCommand=Debug Mode (/ncall)
+ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod.Config.RequiresReload}

@@ -209,7 +209,7 @@ namespace AQMod.Content.World.Generation
 
         public static void MainLoot(Chest chest, int item)
         {
-            if (ModContent.GetInstance<WorldGenOptions>().overrideVanillaChestLoot)
+            if (AQConfigServer.Instance.overrideVanillaChestLoot)
             {
                 chest.item[0].SetDefaults(item);
             }

@@ -1,7 +1,6 @@
 ﻿using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.ComponentModel;
-using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
 namespace AQMod
@@ -10,31 +9,22 @@ namespace AQMod
     [BackgroundColor(10, 10, 40, 220)]
     public class AQConfigClient : ModConfig
     {
-        public static AQConfigClient Instance => ModContent.GetInstance<AQConfigClient>();
+        public static AQConfigClient Instance;
 
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
-        [Header(AQText.ConfigHeaderKey + "Visuals")]
+        [Header("$Mods.AQMod.ClientConfig.Header.Visuals")]
 
         [BackgroundColor(140, 29, 47, 180)]
-        [Label(AQText.ConfigValueKey + "EffectQuality")]
-        [DefaultValue(1f)]
-        [Range(0.1f, 2f)]
-        public float EffectQuality { get; set; }
-        /// <summary>
-        /// Use this value to check if you should actually run unnecessary drawcode operations. Default value is 1.
-        /// </summary>
-        public static float c_EffectQuality { get; private set; }
+        [Label("$Mods.AQMod.ClientConfig.Screenshakes")]
+        [DefaultValue(true)]
+        public bool Screenshakes { get; set; }
 
         [BackgroundColor(140, 29, 47, 180)]
-        [Label(AQText.ConfigValueKey + "EffectIntensity")]
+        [Label("$Mods.AQMod.ClientConfig.EffectIntensity")]
         [DefaultValue(1f)]
         [Range(0.1f, 1f)]
         public float EffectIntensity { get; set; }
-        /// <summary>
-        /// Use this value to tune down bright, flashy things. Default value is 1.
-        /// </summary>
-        public static float c_EffectIntensity { get; private set; }
 
         [BackgroundColor(140, 29, 47, 180)]
         [Label("$Mods.AQMod.ClientConfig.FlashIntensity")]
@@ -43,44 +33,38 @@ namespace AQMod
         public float FlashIntensity { get; set; }
 
         [BackgroundColor(140, 29, 47, 180)]
-        [Label("$" + AQText.Key + "ClientConfig.Screenshakes")]
-        [DefaultValue(true)]
-        public bool Screenshakes { get; set; }
-        public static bool c_Screenshakes { get; private set; }
-
-        [BackgroundColor(140, 29, 47, 180)]
-        [Label("$" + AQText.Key + "ClientConfig.TonsofScreenShakes")]
-        [DefaultValue(false)]
-        public bool TonsofScreenShakes { get; set; }
-        public static bool c_TonsofScreenShakes { get; private set; }
+        [Label("$Mods.AQMod.ClientConfig.EffectQuality")]
+        [DefaultValue(1f)]
+        [Range(0.1f, 2f)]
+        public float EffectQuality { get; set; }
 
         [Header("$Mods.AQMod.ClientConfig.Header.UI")]
 
-        [BackgroundColor(12, 12, 190, 180)]
+        [BackgroundColor(12, 44, 190, 180)]
         [Label("$Mods.AQMod.ClientConfig.DemonSiegeUpgradeTooltip")]
         [Tooltip("$Mods.AQMod.ClientConfig.DemonSiegeUpgradeTooltipTooltip")]
         [DefaultValue(true)]
         public bool DemonSiegeUpgradeTooltip { get; set; }
 
-        [BackgroundColor(12, 12, 190, 180)]
+        [BackgroundColor(12, 44, 190, 180)]
         [Label("$Mods.AQMod.ClientConfig.HookBarbBlacklistTooltip")]
         [Tooltip("$Mods.AQMod.ClientConfig.HookBarbBlacklistTooltipTooltip")]
         [DefaultValue(true)]
         public bool HookBarbBlacklistTooltip { get; set; }
 
-        [BackgroundColor(12, 12, 190, 180)]
-        [Label("$Mods.AQMod.ClientConfig.MapBlipColor")]
-        [Tooltip("$Mods.AQMod.ClientConfig.MapBlipColorTooltip")]
-        [DefaultValue(typeof(Color), "200, 60, 145, 255"), ColorNoAlpha]
-        public Color MapBlipColor { get; set; }
-
-
-        [Header(AQText.ConfigHeaderKey + "Misc")]
-
-        [Label(AQText.ConfigValueKey + "ShowCompletedAnglerQuestsCount")]
-        [BackgroundColor(12, 12, 190, 180)]
+        [Label("$Mods.AQMod.ClientConfig.ShowCompletedAnglerQuestsCount")]
+        [BackgroundColor(12, 44, 190, 180)]
         [DefaultValue(true)]
         public bool ShowCompletedQuestsCount { get; set; }
+
+        [BackgroundColor(12, 44, 190, 180)]
+        [Label("$Mods.AQMod.UIConfiguration.MapUITogglesPosition")]
+        [Tooltip("$Mods.AQMod.UIConfiguration.MapUITogglesPositionTooltip")]
+        [Range(60f, 1920f)]
+        [DefaultValue(typeof(Vector2), "60, 60")]
+        public Vector2 MapUITogglesPosition { get; set; }
+
+        [Header(AQText.ConfigHeaderKey + "Misc")]
 
         [BackgroundColor(75, 80, 100, 180)]
         [Label("$Mods.AQMod.ClientConfig.XmasBackground")]
@@ -95,13 +79,5 @@ namespace AQMod
         [DefaultValue(true)]
         [ReloadRequired()]
         public bool XmasProgressMeterOverride { get; set; }
-
-        public override void OnChanged()
-        {
-            c_EffectQuality = EffectQuality;
-            c_EffectIntensity = EffectIntensity;
-            c_Screenshakes = Screenshakes;
-            c_TonsofScreenShakes = TonsofScreenShakes;
-        }
     }
 }

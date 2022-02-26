@@ -23,10 +23,15 @@ namespace AQMod.NPCs.Friendly
     [AutoloadHead()]
     public class Robster : ModNPC
     {
-        private static byte _resetQuest;
+        private static byte resetQuestButton;
 
         public static Color JeweledTileMapColor => new Color(255, 185, 25, 255);
         public static Color RobsterBroadcastMessageColor => new Color(255, 215, 105, 255);
+       
+        internal static void Initialize()
+        {
+            resetQuestButton = 0;
+        }
 
         public override void SetStaticDefaults()
         {
@@ -40,11 +45,6 @@ namespace AQMod.NPCs.Friendly
             NPCID.Sets.HatOffsetY[npc.type] = 8;
 
             Initialize();
-        }
-
-        internal static void Initialize()
-        {
-            _resetQuest = 0;
         }
 
         public override void SetDefaults()
@@ -130,7 +130,7 @@ namespace AQMod.NPCs.Friendly
             {
             }
 
-            _resetQuest = 0;
+            resetQuestButton = 0;
             var potentialText = new List<string>();
             int angler = NPC.FindFirstNPC(NPCID.Angler);
 
@@ -179,7 +179,7 @@ namespace AQMod.NPCs.Friendly
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            if (_resetQuest != 0)
+            if (resetQuestButton != 0)
                 button2 = AQText.ModText("Common.RobsterQuitHunt").Value;
             else
             {
@@ -198,15 +198,15 @@ namespace AQMod.NPCs.Friendly
                 shop = true;
             else
             {
-                if (_resetQuest == 2)
+                if (resetQuestButton == 2)
                 {
                     Main.PlaySound(SoundID.Grab);
                     if (HuntSystem.Hunt != null)
                         HuntSystem.Hunt.OnQuit(Main.player[Main.myPlayer]);
                     HuntSystem.QuitHunt(Main.LocalPlayer);
-                    _resetQuest = 0;
+                    resetQuestButton = 0;
                 }
-                if (_resetQuest == 1)
+                if (resetQuestButton == 1)
                     Main.npcChatText = AQText.ModText("Common.RobsterQuitHuntQuestion").Value;
                 else
                 {
@@ -240,7 +240,7 @@ namespace AQMod.NPCs.Friendly
                         }
                     }
                 }
-                _resetQuest++;
+                resetQuestButton++;
             }
         }
 

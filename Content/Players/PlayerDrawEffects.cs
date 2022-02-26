@@ -140,7 +140,7 @@ namespace AQMod.Content.Players
                             //    var piranhaPlant = (PiranhaPlant)Main.projectile[i].modProjectile;
                             //    if (piranhaPlant.eatingDelay != 0 && piranhaPlant.eatingDelay < 35)
                             //    {
-                            //        float intensity = (10 - piranhaPlant.eatingDelay) / 2.5f * AQConfigClient.c_EffectIntensity;
+                            //        float intensity = (10 - piranhaPlant.eatingDelay) / 2.5f * AQConfigClient.Instance.EffectIntensity;
                             //        drawPosition.X += Main.rand.NextFloat(-intensity, intensity);
                             //        drawPosition.Y += Main.rand.NextFloat(-intensity, intensity);
                             //    }
@@ -150,7 +150,7 @@ namespace AQMod.Content.Players
                                 var chomperHead = (Chomper)Main.projectile[i].modProjectile;
                                 if (chomperHead.eatingDelay != 0 && chomperHead.eatingDelay < 35)
                                 {
-                                    float intensity = (10 - chomperHead.eatingDelay) / 2.5f * AQConfigClient.c_EffectIntensity;
+                                    float intensity = (10 - chomperHead.eatingDelay) / 2.5f * AQConfigClient.Instance.EffectIntensity;
                                     drawPosition.X += Main.rand.NextFloat(-intensity, intensity);
                                     drawPosition.Y += Main.rand.NextFloat(-intensity, intensity);
                                 }
@@ -202,7 +202,7 @@ namespace AQMod.Content.Players
             var velo = Vector2.Normalize(Vector2.Lerp(chainStart + new Vector2(0f, height * 4f) - playerCenter, player.velocity, 0.5f)) * height;
             var position = playerCenter;
             var rand = new UnifiedRandom(chomper.whoAmI + player.name.GetHashCode());
-            if (AQConfigClient.c_EffectQuality >= 1f)
+            if (AQConfigClient.Instance.EffectQuality >= 1f)
             {
                 for (int i = 0; i < 50; i++)
                 {
@@ -212,7 +212,7 @@ namespace AQMod.Content.Players
                     velo = Vector2.Normalize(Vector2.Lerp(velo, chainStart - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 100f, 0f, 0.99f))) * height;
                     if (Vector2.Distance(position, chainStart) <= height)
                         break;
-                    velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f * AQConfigClient.c_EffectIntensity);
+                    velo = velo.RotatedBy(Math.Sin(Main.GlobalTime * 6f + i * 0.5f + chomper.whoAmI + rand.NextFloat(-0.02f, 0.02f)) * 0.1f * AQConfigClient.Instance.EffectIntensity);
                     position += velo;
                     float gravity = MathHelper.Clamp(1f - Vector2.Distance(chainStart, position) / 60f, 0f, 1f);
                     velo.Y += gravity * 3f;
@@ -222,7 +222,7 @@ namespace AQMod.Content.Players
             }
             else
             {
-                if (AQConfigClient.c_EffectQuality < 0.2f)
+                if (AQConfigClient.Instance.EffectQuality < 0.2f)
                 {
                     for (int i = 0; i < 50; i++)
                     {

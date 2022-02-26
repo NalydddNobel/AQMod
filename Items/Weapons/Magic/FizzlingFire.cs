@@ -43,10 +43,6 @@ namespace AQMod.Items.Weapons.Magic
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (AQConfigClient.c_TonsofScreenShakes)
-            {
-                FX.SetShake(2 * AQConfigClient.c_EffectIntensity);
-            }
             int randcount = 3 + Main.rand.Next(4);
             var velo = new Vector2(speedX, speedY);
             position += Vector2.Normalize(velo) * (item.width * 1.5f);

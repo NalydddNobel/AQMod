@@ -432,7 +432,7 @@ namespace AQMod.Projectiles.Summon
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            if (GameWorldRenders.ProjsBehindTiles.drawingNow)
+            if (DrawHelper.ProjsBehindTiles.drawingNow)
             {
                 Texture2D texture = Main.projectileTexture[projectile.type];
                 int frameHeight = texture.Height / Main.projFrames[projectile.type];
@@ -445,7 +445,7 @@ namespace AQMod.Projectiles.Summon
             }
             else
             {
-                GameWorldRenders.ProjsBehindTiles.Add(projectile.whoAmI);
+                DrawHelper.ProjsBehindTiles.Add(projectile.whoAmI);
             }
             return false;
         }

@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Potions
+namespace AQMod.Items.Potions.Foods
 {
     public class Baguette : ModItem, IDedicatedItem
     {
@@ -22,7 +22,7 @@ namespace AQMod.Items.Potions
             item.rare = AQItem.Rarities.DedicatedItem;
             item.value = Item.buyPrice(silver: 80);
             item.buffType = ModContent.BuffType<BaguetteBuff>();
-            item.buffTime = 216000;
+            item.buffTime = 3600;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

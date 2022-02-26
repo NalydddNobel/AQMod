@@ -42,7 +42,7 @@ namespace AQMod.Projectiles.Magic
             float alpha = 1f - projectile.alpha / 255f;
             int type = ModContent.DustType<MonoDust>();
             var clr = new Color(200, 100, 255, 0) * alpha;
-            if (AQConfigClient.c_EffectQuality >= 1f)
+            if (AQConfigClient.Instance.EffectQuality >= 1f)
             {
                 float x = projectile.position.X;
                 if (projectile.direction == 1)
@@ -50,9 +50,9 @@ namespace AQMod.Projectiles.Magic
                 int d = Dust.NewDust(new Vector2(x, projectile.position.Y), 2, projectile.height, type, 0, 0, 0, clr, Main.rand.NextFloat(0.8f, 1.2f));
                 Main.dust[d].velocity.X = -projectile.velocity.X * 0.1f;
                 Main.dust[d].velocity.Y *= 0.1f;
-                if (Main.netMode != NetmodeID.Server && AQConfigClient.c_EffectQuality >= 1f)
+                if (Main.netMode != NetmodeID.Server && AQConfigClient.Instance.EffectQuality >= 1f)
                 {
-                    for (int i = 0; i < 7 * AQConfigClient.c_EffectQuality; i++)
+                    for (int i = 0; i < 7 * AQConfigClient.Instance.EffectQuality; i++)
                     {
                         Particle.PostDrawPlayers.AddParticle(
                            new EmberParticle(new Vector2(x, projectile.position.Y + Main.rand.NextFloat(projectile.height)), new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),

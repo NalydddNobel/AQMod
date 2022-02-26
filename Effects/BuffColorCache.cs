@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.ID;
 
-namespace AQMod.Common.ID
+namespace AQMod.Effects
 {
     public static class BuffColorCache
     {

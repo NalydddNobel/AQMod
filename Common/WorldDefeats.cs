@@ -5,9 +5,6 @@ using Terraria.ModLoader.IO;
 
 namespace AQMod.Common
 {
-    /// <summary>
-    /// Carries all of the downed flags for Bosses and Events.
-    /// </summary>
     public class WorldDefeats : ModWorld
     {
         public static bool DownedStarite;
@@ -40,7 +37,7 @@ namespace AQMod.Common
         /// <summary>
         /// If WoF or Omega Starite have been defeated
         /// </summary>
-        public static bool SudoHardmode => Main.hardMode || WorldDefeats.DownedStarite;
+        public static bool SudoHardmode => Main.hardMode || DownedStarite;
 
         public override void Initialize()
         {

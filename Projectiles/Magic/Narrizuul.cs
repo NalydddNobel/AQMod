@@ -132,7 +132,7 @@ namespace AQMod.Projectiles.Magic
 
         public override void Kill(int timeLeft)
         {
-            if (Main.myPlayer == projectile.owner && AQConfigClient.c_TonsofScreenShakes)
+            if (Main.myPlayer == projectile.owner && AQConfigClient.Instance.Screenshakes)
             {
                 float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
                 if (distance < 800)

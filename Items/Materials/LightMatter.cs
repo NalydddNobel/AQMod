@@ -40,7 +40,7 @@ namespace AQMod.Items.Materials
             float time = Main.GlobalTime * 2f;
             float waveFunction = (float)Math.Sin(time);
             scale += waveFunction * 0.1f - 0.1f;
-            int b = (int)(110 * scale * AQConfigClient.c_EffectIntensity);
+            int b = (int)(110 * scale * AQConfigClient.Instance.EffectIntensity);
             var itemFrame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
             var itemOrigin = itemFrame.Size() / 2f;
             for (float f = 0f; f < 1f; f += 0.125f)
@@ -67,8 +67,8 @@ namespace AQMod.Items.Materials
             float fourthScale = scale / 4f;
             float eighthScale = scale / 8f;
             float sixteenthScale = scale / 16f;
-            int b = (int)(60 * scale * AQConfigClient.c_EffectIntensity);
-            int b2 = (int)(110 * scale * AQConfigClient.c_EffectIntensity);
+            int b = (int)(60 * scale * AQConfigClient.Instance.EffectIntensity);
+            int b2 = (int)(110 * scale * AQConfigClient.Instance.EffectIntensity);
             var itemFrame = new Rectangle(0, 0, Main.itemTexture[item.type].Width, Main.itemTexture[item.type].Height);
             var itemOrigin = itemFrame.Size() / 2f;
             for (float f = 0f; f < 1f; f += 0.125f)

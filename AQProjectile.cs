@@ -1,7 +1,7 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Content.Players;
 using AQMod.Dusts;
-using AQMod.Items.Tools.Fishing.Bait;
+using AQMod.Items.Misc.Bait;
 using AQMod.NPCs;
 using AQMod.Projectiles.GrapplingHooks;
 using Microsoft.Xna.Framework;

@@ -129,7 +129,7 @@ namespace AQMod.Projectiles.Ranged
             var textureOrig = new Vector2(texture.Width / 2f, 10f);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             float rotation = projectile.rotation + MathHelper.PiOver2;
-            float intensity = AQConfigClient.c_EffectIntensity;
+            float intensity = AQConfigClient.Instance.EffectIntensity;
             if (projectile.timeLeft < 30)
                 intensity *= 30 - projectile.timeLeft;
             Main.spriteBatch.Draw(ModContent.GetTexture(AQUtils.GetPath(this) + "_Aura"), projectile.position + offset - Main.screenPosition, null, new Color(60, 2, 100, 0) * intensity, rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
@@ -141,7 +141,7 @@ namespace AQMod.Projectiles.Ranged
                 var spotlightTextureOrigin = spotlightTexture.Size() / 2f;
                 Main.spriteBatch.Draw(ModContent.GetTexture(AQUtils.GetPath(this) + "_Aura"), projectile.position + offset - Main.screenPosition, null, new Color(20, 8, 50, 0) * intensity, rotation, textureOrig, projectile.scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlightTexture, projectile.position + offset - Main.screenPosition, null, new Color(60, 10, 100, 0) * intensity, rotation, spotlightTextureOrigin, projectile.scale * intensity / 8f, SpriteEffects.None, 0f);
-                if (AQConfigClient.c_EffectQuality >= 1f)
+                if (AQConfigClient.Instance.EffectQuality >= 1f)
                     Main.spriteBatch.Draw(spotlightTexture, projectile.position + offset - Main.screenPosition, null, new Color(10, 2, 40, 0) * (intensity / 5f), rotation, spotlightTextureOrigin, projectile.scale * intensity / 3, SpriteEffects.None, 0f);
             }
             return false;

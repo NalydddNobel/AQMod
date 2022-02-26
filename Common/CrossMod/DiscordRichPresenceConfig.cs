@@ -4,11 +4,11 @@ using Terraria.ModLoader.Config;
 
 namespace AQMod.Common.Configuration
 {
+    /// <summary>
+    /// NOTICE: does not load if the Discord Rich Presence mod is not enabled!
+    /// </summary>
     [Label("$Mods.AQMod.DiscordRichPresenceConfig.Name")]
     [BackgroundColor(10, 40, 10, 220)]
-    /// <summary>
-    /// WARNING: does not load if the Discord Rich Presence mod is not enabled!
-    /// </summary>
     public sealed class DiscordRichPresenceConfig : AQConfig
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;

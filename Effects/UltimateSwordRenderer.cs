@@ -124,7 +124,7 @@ namespace AQMod.Effects
                     int d = Dust.NewDust(new Vector2(x, y), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, _dustColor);
                     Main.dust[d].noGravity = true;
                     Main.dust[d].velocity *= 0.1f;
-                    if (AQConfigClient.c_EffectQuality >= 1f)
+                    if (AQConfigClient.Instance.EffectQuality >= 1f)
                     {
                         float p = 1f - progress * 0.5f;
                         Main.dust[d].scale *= p * p;
@@ -269,10 +269,10 @@ namespace AQMod.Effects
             {
                 UltimateSwordEffectDelay--;
             }
-            else if (FX.RandChance(10 + (int)(20 * (1f - AQConfigClient.c_EffectIntensity))))
+            else if (FX.RandChance(10 + (int)(20 * (1f - AQConfigClient.Instance.EffectIntensity))))
             {
                 _fx.Add(new DustEffect());
-                UltimateSwordEffectDelay = (byte)(int)(8 * (1f - AQConfigClient.c_EffectIntensity));
+                UltimateSwordEffectDelay = (byte)(int)(8 * (1f - AQConfigClient.Instance.EffectIntensity));
             }
         }
     }

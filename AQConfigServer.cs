@@ -13,6 +13,8 @@ namespace AQMod
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
+        public static AQConfigServer Instance;
+
         [Header("$Mods.AQMod.ServerConfig.Header.QualityOfLife")]
 
         [BackgroundColor(140, 29, 47, 180)]
@@ -38,12 +40,6 @@ namespace AQMod
         public bool removeJellyfishNecklace;
 
         [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ServerConfig.BloodyThingDrop")]
-        [Tooltip("$Mods.AQMod.ServerConfig.BloodyThingDropTooltip")]
-        [DefaultValue(true)]
-        private bool bloodyThingDrop;
-
-        [BackgroundColor(13, 166, 231, 180)]
         [Label("$Mods.AQMod.ServerConfig.HarderOmegaStarite")]
         [Tooltip("$Mods.AQMod.ServerConfig.HarderOmegaStariteTooltip")]
         [DefaultValue(false)]
@@ -55,6 +51,26 @@ namespace AQMod
         [Tooltip("$Mods.AQMod.ServerConfig.EvilProgressionLockTooltip")]
         [DefaultValue(true)]
         public bool evilProgressionLock;
+
+        [Header("$Mods.AQMod.ServerConfig.Header.WorldGen")]
+
+        [BackgroundColor(195, 155, 50, 180)]
+        [Label("$Mods.AQMod.ServerConfig.OverrideVanillaChestLoot")]
+        [Tooltip("$Mods.AQMod.ServerConfig.OverrideVanillaChestLootTooltip")]
+        [DefaultValue(true)]
+        public bool overrideVanillaChestLoot;
+
+        [BackgroundColor(195, 155, 50, 180)]
+        [Label("$Mods.AQMod.ServerConfig.GenerateOceanRavines")]
+        [Tooltip("$Mods.AQMod.ServerConfig.GenerateOceanRavinesTooltip")]
+        [DefaultValue(true)]
+        public bool generateOceanRavines;
+
+        [BackgroundColor(195, 155, 50, 180)]
+        [Label("$Mods.AQMod.ServerConfig.FixBabyPools")]
+        [Tooltip("$Mods.AQMod.ServerConfig.FixBabyPoolsTooltip")]
+        [DefaultValue(true)]
+        public bool fixBabyPools;
 
         [Header("$Mods.AQMod.ServerConfig.Header.Debug")]
 

@@ -1,8 +1,6 @@
-﻿using AQMod.Common.Configuration;
-using System;
+﻿using System;
 using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.World.Generation;
 
 namespace AQMod.Content.World.Generation
@@ -11,7 +9,7 @@ namespace AQMod.Content.World.Generation
     {
         public static void PassFix1TileHighWater(GenerationProgress progress)
         {
-            if (!ModContent.GetInstance<WorldGenOptions>().fixBabyPools)
+            if (!AQConfigServer.Instance.fixBabyPools)
             {
                 return;
             }

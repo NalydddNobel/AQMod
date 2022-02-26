@@ -75,9 +75,9 @@ namespace AQMod.Items.Weapons.Melee
             {
                 AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.ThunderClap, position, 0.55f);
             }
-            if (AQConfigClient.c_TonsofScreenShakes)
+            if (AQConfigClient.Instance.Screenshakes)
             {
-                FX.AddShake(AQGraphics.MultIntensity(10), 30f, 16f);
+                FX.AddShake(AQGraphics.MultIntensity(10), 30f, 10f);
             }
             return false;
         }

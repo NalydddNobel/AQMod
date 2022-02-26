@@ -322,11 +322,11 @@ namespace AQMod
             try
             {
                 var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
-                if (ModContent.GetInstance<AQConfigClient>().DemonSiegeUpgradeTooltip)
+                if (AQConfigClient.Instance.DemonSiegeUpgradeTooltip)
                 {
                     Tooltips_DemonSiegeUpgradeCheck(item, tooltips);
                 }
-                if (ModContent.GetInstance<AQConfigClient>().HookBarbBlacklistTooltip)
+                if (AQConfigClient.Instance.HookBarbBlacklistTooltip)
                 {
                     Tooltips_HookBarbBlacklistCheck(item, tooltips);
                 }

@@ -1,7 +1,9 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
+using AQMod.Tiles.ExporterQuest;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,14 +19,34 @@ namespace AQMod
 
         public static class Sets
         {
-            public static bool[] CanFixWaterOnType { get; private set; }
+            public static HashSet<ushort> CanFixWaterOnType { get; private set; }
+            public static HashSet<ushort> ExporterQuestFurniture { get; private set; }
 
-            internal static void InternalInitalize()
+            internal static void Load()
             {
-                SetUtils.Length = NPCLoader.NPCCount;
-                SetUtils.GetIDFromType = (m, t) => m.TileType(t);
+                CanFixWaterOnType = new HashSet<ushort>()
+                {
+                    TileID.Grass, 
+                    TileID.CorruptGrass, 
+                    TileID.FleshGrass, 
+                    TileID.SnowBlock, 
+                    TileID.IceBlock, 
+                    TileID.Sand,
+                };
 
-                CanFixWaterOnType = SetUtils.CreateFlagSet(TileID.Grass, TileID.CorruptGrass, TileID.FleshGrass, TileID.SnowBlock, TileID.IceBlock, TileID.Sand);
+                ExporterQuestFurniture = new HashSet<ushort>()
+                {
+                    (ushort)ModContent.TileType<JeweledCandelabraTile>(),
+                    (ushort)ModContent.TileType<JeweledChaliceTile>(),
+                };
+            }
+
+            internal static void Unload()
+            {
+                CanFixWaterOnType?.Clear();
+                CanFixWaterOnType = null;
+                ExporterQuestFurniture?.Clear();
+                ExporterQuestFurniture = null;
             }
         }
 

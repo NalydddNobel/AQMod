@@ -42,30 +42,29 @@ float4 Vignette(float2 coords : TEXCOORD0) : COLOR0
     return color * (1 - mult);
 }
 
+float4 GetOffsetClr(float2 coords, float2 offset)
+{
+    return tex2D(uImage0, coords + offset) + tex2D(uImage0, coords - offset);
+}
+
 float4 FlashCoordinate(float2 coords : TEXCOORD0) : COLOR0
 {
     float2 target = uTargetPosition;
     float2 dir = normalize((uScreenPosition + coords * uScreenResolution) - target);
     float2 pixelScale = float2(1 / uScreenResolution.x, 1 / uScreenResolution.y) * 2;
-    float4 color = tex2D(uImage0, coords + dir * pixelScale * uIntensity * 12);
-    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 12);
-    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 10);
-    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 10);
-    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 8);
-    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 8);
-    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 6);
-    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 6);
-    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 5);
-    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 5);
-    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 4);
-    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 4);
-    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 3);
-    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 3);
-    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity * 2);
-    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity * 2);
-    color += tex2D(uImage0, coords + dir * pixelScale * uIntensity);
-    color += tex2D(uImage0, coords - dir * pixelScale * uIntensity);
-    float intensity = max(uIntensity / 4.0f, 1 / 18.0f);
+    float2 offsetNormal = dir * pixelScale * uIntensity;
+    float4 color = GetOffsetClr(coords, offsetNormal * 11);
+    color += GetOffsetClr(coords, offsetNormal * 10);
+    color += GetOffsetClr(coords, offsetNormal * 9);
+    color += GetOffsetClr(coords, offsetNormal * 8);
+    color += GetOffsetClr(coords, offsetNormal * 7);
+    color += GetOffsetClr(coords, offsetNormal * 6);
+    color += GetOffsetClr(coords, offsetNormal * 5);
+    color += GetOffsetClr(coords, offsetNormal * 4);
+    color += GetOffsetClr(coords, offsetNormal * 3);
+    color += GetOffsetClr(coords, offsetNormal * 2);
+    color += GetOffsetClr(coords, offsetNormal);
+    float intensity = max(uIntensity / 4.0f, 1 / 22.0f);
     return (color + tex2D(uImage0, coords)) * intensity;
 }
 

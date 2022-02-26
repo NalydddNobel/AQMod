@@ -299,7 +299,7 @@ namespace AQMod.Content
 
             if (PlayerMapUpgrades.MapUpgradeVisible(upgrades.BlightedSoul))
             {
-                var color = ModContent.GetInstance<AQConfigClient>().MapBlipColor;
+                var color = new Color(200, 60, 145, 255);
                 var texture = ModContent.GetTexture(TexturePaths.MapUI + "enemyblip");
                 int frameHeight = texture.Height / 2;
                 int frameNumber = (int)(Main.GameUpdateCount % 24 / 12);
@@ -414,7 +414,7 @@ namespace AQMod.Content
                 int buffIconSeparation = 26 * 2;
                 int slotsUntilWrap = 4;
                 int width = 12 + Math.Min(mapLayerToggles.Count, slotsUntilWrap) * buffIconSeparation;
-                var uiConfig = ModContent.GetInstance<UIConfiguration>();
+                var uiConfig = AQConfigClient.Instance;
                 int x = (int)uiConfig.MapUITogglesPosition.X;
                 //x = Main.mouseX; For testing
                 if (x + width > Main.screenWidth - 60)

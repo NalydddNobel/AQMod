@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Quest.Lobster
+namespace AQMod.Items.Misc.ExporterQuest
 {
     public class JeweledCandelabra : ModItem
     {

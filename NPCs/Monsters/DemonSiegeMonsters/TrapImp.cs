@@ -144,7 +144,7 @@ namespace AQMod.NPCs.Monsters.DemonSiegeMonsters
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            if (GameWorldRenders.NPCsBehindAllNPCs.drawingNow)
+            if (DrawHelper.NPCsBehindAllNPCs.drawingNow)
             {
                 var chainTexture = ModContent.GetTexture(AQUtils.GetPath<Trapper>("_Chain"));
                 int npcOwner = (int)npc.ai[1] - 1;
@@ -168,7 +168,7 @@ namespace AQMod.NPCs.Monsters.DemonSiegeMonsters
             }
             else
             {
-                GameWorldRenders.NPCsBehindAllNPCs.Add(npc.whoAmI);
+                DrawHelper.NPCsBehindAllNPCs.Add(npc.whoAmI);
             }
 
             var drawPosition = new Vector2(npc.position.X + npc.width / 2f, npc.position.Y + npc.height / 2f);

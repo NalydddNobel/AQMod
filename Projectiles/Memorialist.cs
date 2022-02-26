@@ -72,7 +72,7 @@ namespace AQMod.Projectiles
                 }
             }
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 200 + (int)AQUtils.Wave(Main.GlobalTime * 10f, -15, 15), 200, 160), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
-            if (AQConfigClient.c_EffectQuality >= 1f)
+            if (AQConfigClient.Instance.EffectQuality >= 1f)
             {
                 var glow = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
                 var spotlightOrigin = glow.Size() / 2f;

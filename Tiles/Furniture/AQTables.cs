@@ -1,5 +1,4 @@
-﻿using AQMod.Common.ID;
-using AQMod.Items.Placeable.Furniture;
+﻿using AQMod.Items.Placeable.Furniture;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

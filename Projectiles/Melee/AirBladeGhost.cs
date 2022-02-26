@@ -107,12 +107,12 @@ namespace AQMod.Projectiles.Melee
             {
                 texture = LegacyTextureCache.Lights[LightTex.Spotlight30x30];
                 frame = texture.Frame();
-                lightColor = new Color(130, 100, 12, 1) * AQConfigClient.c_EffectIntensity;
+                lightColor = new Color(130, 100, 12, 1) * AQConfigClient.Instance.EffectIntensity;
                 origin = texture.Size() / 2f;
                 Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, lightColor * progress * 0.3f, 0f, origin, projectile.scale, effect, 0f);
                 Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, lightColor * progress, 0f, origin, new Vector2(projectile.scale * 2f, projectile.scale * 0.2f * progress), effect, 0f);
                 Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, lightColor * progress, 0f, origin, new Vector2(projectile.scale * 0.2f * progress, projectile.scale * 2f), effect, 0f);
-                if (AQConfigClient.c_EffectQuality >= 1f)
+                if (AQConfigClient.Instance.EffectQuality >= 1f)
                 {
                     lightColor *= 0.25f;
                     Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, lightColor * progress * 0.5f, 0f, origin, projectile.scale, effect, 0f);

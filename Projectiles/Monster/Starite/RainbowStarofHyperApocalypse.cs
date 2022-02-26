@@ -60,7 +60,7 @@ namespace AQMod.Projectiles.Monster.Starite
 
         private static Color getColor(float time)
         {
-            return gradient.GetColor(time) * AQConfigClient.c_EffectIntensity;
+            return gradient.GetColor(time) * AQConfigClient.Instance.EffectIntensity;
         }
 
 

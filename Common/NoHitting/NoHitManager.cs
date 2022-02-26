@@ -1,8 +1,7 @@
-﻿using AQMod.Common.Utilities.Debugging;
-using AQMod.Items.Accessories;
+﻿using AQMod.Items.Accessories;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
-using System.IO;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,13 +13,14 @@ namespace AQMod.Common.NoHitting
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
 
-        public bool[] hitPlayer;
-        public bool dontHitPlayers;
+        public static List<byte> CurrentlyDamaged;
+        public bool[] damagedPlayers;
+        public bool preventNoHitCheck;
         public byte rewardOption;
 
         public NoHitManager()
         {
-            hitPlayer = new bool[Main.maxPlayers];
+            damagedPlayers = new bool[Main.maxPlayers];
         }
 
         public override GlobalNPC NewInstance(NPC npc)
@@ -28,27 +28,23 @@ namespace AQMod.Common.NoHitting
             return new NoHitManager();
         }
 
-        internal static void CollapseNoHit(int player)
-        {
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                if (Main.npc[i].active)
-                {
-                    var noHit = Main.npc[i].GetGlobalNPC<NoHitManager>();
-                    if (!noHit.dontHitPlayers)
-                    {
-                        noHit.hitPlayer[player] = true;
-                    }
-                }
-            }
-        }
-
         private void ResetNoHit(int player)
         {
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active)
-                    Main.npc[i].GetGlobalNPC<NoHitManager>().hitPlayer[player] = false;
+                    Main.npc[i].GetGlobalNPC<NoHitManager>().damagedPlayers[player] = false;
+            }
+        }
+
+        public override void ResetEffects(NPC npc)
+        {
+            if (!preventNoHitCheck)
+            {
+                for (int i = 0; i < CurrentlyDamaged.Count; i++)
+                {
+                    damagedPlayers[CurrentlyDamaged[i]] = true;
+                }
             }
         }
 
@@ -79,7 +75,7 @@ namespace AQMod.Common.NoHitting
 
         public static bool HasBeenNoHit(NPC npc, NoHitManager noHitManager, int player)
         {
-            return npc.playerInteraction[player] && !noHitManager.hitPlayer[player];
+            return npc.playerInteraction[player] && !noHitManager.damagedPlayers[player];
         }
 
         public static void PlayNoHitJingle(Vector2 position)
@@ -153,57 +149,6 @@ namespace AQMod.Common.NoHitting
                         }
                     }
                     break;
-            }
-        }
-
-        public static void SendNoHitNet(NoHitManager noHit, BinaryWriter writer)
-        {
-            var l = DebugUtilities.GetDebugLogger(get: DebugUtilities.LogNetcode);
-
-            l?.Log("Writing No Hit data!");
-
-            writer.Write(noHit.dontHitPlayers);
-            writer.Write(noHit.rewardOption);
-            l?.Log("{dontHitPlayers:" + noHit.dontHitPlayers + ", rewardOption:" + noHit.rewardOption + "}");
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                if (Main.player[i].active)
-                {
-                    l?.Log("Hit Data for: {Name:" + Main.player[i].name + ", hitPlayer:" + noHit.hitPlayer[i] + "}");
-                    writer.Write(noHit.hitPlayer[i]);
-                }
-            }
-        }
-
-        public static void RecieveNoHitNet(NoHitManager noHit, BinaryReader reader)
-        {
-            var l = DebugUtilities.GetDebugLogger(get: DebugUtilities.LogNetcode);
-
-            l?.Log("Recieving No Hit data!");
-
-            l?.Log("Old {dontHitPlayers:" + noHit.dontHitPlayers + ", rewardOption:" + noHit.rewardOption + "}");
-
-            noHit.dontHitPlayers = reader.ReadBoolean();
-            noHit.rewardOption = reader.ReadByte();
-
-            l?.Log("New {dontHitPlayers:" + noHit.dontHitPlayers + ", rewardOption:" + noHit.rewardOption + "}");
-
-
-            for (int i = 0; i < Main.maxPlayers; i++) // praying that all of the players are still here when this gets recieved!
-            {
-                if (Main.player[i].active)
-                {
-                    l?.Log("Getting hit Data for: {Name:" + Main.player[i].name + "}");
-                    l?.Log("Old hit Data: {Name:" + Main.player[i].name + ", hitPlayer:" + noHit.hitPlayer[i] + "}");
-
-                    bool newValue = reader.ReadBoolean();
-                    if (!noHit.hitPlayer[i])
-                    {
-                        noHit.hitPlayer[i] = newValue;
-                    }
-
-                    l?.Log("New hit flag: {hitPlayer:" + noHit.hitPlayer[i] + "}");
-                }
             }
         }
     }

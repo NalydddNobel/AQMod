@@ -1,5 +1,4 @@
-﻿using AQMod.Common.ID;
-using AQMod.Items.Materials;
+﻿using AQMod.Items.Materials;
 using AQMod.Localization;
 using AQMod.NPCs.Bosses;
 using Terraria;

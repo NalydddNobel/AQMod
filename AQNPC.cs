@@ -1031,10 +1031,10 @@ namespace AQMod
             {
                 if (shimmering)
                 {
-                    int amount = (int)(100 * AQConfigClient.c_EffectIntensity);
-                    if (AQConfigClient.c_EffectQuality < 1f)
-                        amount = (int)(amount * AQConfigClient.c_EffectQuality);
-                    if (AQConfigClient.c_Screenshakes)
+                    int amount = (int)(100 * AQConfigClient.Instance.EffectIntensity);
+                    if (AQConfigClient.Instance.EffectQuality < 1f)
+                        amount = (int)(amount * AQConfigClient.Instance.EffectQuality);
+                    if (AQConfigClient.Instance.Screenshakes)
                     {
                         FX.AddShake(AQGraphics.MultIntensity(12), 24f, 6f);
                     }

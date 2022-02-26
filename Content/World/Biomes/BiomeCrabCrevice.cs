@@ -1160,7 +1160,7 @@ namespace AQMod.Content.World.Biomes
         public static void GenerateCrabCrevice(GenerationProgress progress)
         {
             PirateChestCount = 0;
-            if (!ModContent.GetInstance<WorldGenOptions>().generateOceanRavines)
+            if (!AQConfigServer.Instance.generateOceanRavines)
             {
                 return;
             }
@@ -1344,7 +1344,7 @@ namespace AQMod.Content.World.Biomes
 
         public static void GenerateLegacyRavines(GenerationProgress progress)
         {
-            if (!ModContent.GetInstance<WorldGenOptions>().generateOceanRavines)
+            if (!AQConfigServer.Instance.generateOceanRavines)
             {
                 return;
             }

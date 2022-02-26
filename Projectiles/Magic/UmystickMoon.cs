@@ -91,7 +91,7 @@ namespace AQMod.Projectiles.Magic
                     Main.spriteBatch.Draw(texture, projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(100, 100, 100, 0) * progress, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
                 }
             }
-            if (AQConfigClient.c_EffectQuality >= 1f)
+            if (AQConfigClient.Instance.EffectQuality >= 1f)
             {
                 var glow = LegacyTextureCache.Lights[LightTex.Spotlight66x66];
                 Main.spriteBatch.Draw(glow, center - Main.screenPosition, null, _glowClr, projectile.rotation, glow.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);

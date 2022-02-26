@@ -199,13 +199,13 @@ namespace AQMod.Effects
                     {
                         if (oldPos[i] != Vector2.Zero)
                         {
-                            var drawPosition2 = AQUtils.BackgroundStars.GetRenderPosition(oldPos[i]);
+                            var drawPosition2 = DrawHelper.BGStars.GetRenderPosition(oldPos[i]);
                             float progress = 1f / oldPos.Length * i;
                             Main.spriteBatch.Draw(texture, drawPosition2, null,
                                 Color.Lerp(new Color(128, 128, 128, 0) * _scale, new Color(30, 70, 120) * 0.8f, 1f - progress) * (1f - progress), parent.rotation, _origin, _scale * 0.8f * (1f - progress), SpriteEffects.None, 0f);
                         }
                     }
-                    var drawPosition = AQUtils.BackgroundStars.GetRenderPosition(position);
+                    var drawPosition = DrawHelper.BGStars.GetRenderPosition(position);
                     Main.spriteBatch.Draw(texture, drawPosition, null, new Color(255, 255, 255, 255) * _scale, parent.rotation, _origin, _scale, SpriteEffects.None, 0f);
 
                     if (ModContent.GetInstance<AQConfigClient>().EffectQuality >= 1f)
@@ -234,7 +234,7 @@ namespace AQMod.Effects
                             {
                                 if (oldPos[i] != Vector2.Zero)
                                 {
-                                    var drawPosition2 = AQUtils.BackgroundStars.GetRenderPosition(oldPos[i]);
+                                    var drawPosition2 = DrawHelper.BGStars.GetRenderPosition(oldPos[i]);
                                     float progress = 1f / oldPos.Length * i;
                                     Main.spriteBatch.Draw(spotlightTexture, drawPosition2, null,
                                         Color.Lerp(new Color(255, 255, 255, 0) * _scale, new Color(30, 70, 120) * 1.25f, 1f - progress) * (1f - progress) * glowIn, parent.rotation, spotlightOrigin, spotlightScale * (1f - progress), SpriteEffects.None, 0f);
@@ -464,7 +464,7 @@ namespace AQMod.Effects
 
                 if (FallingStars.stars != null && FallingStars.stars.Count != 0)
                 {
-                    AQUtils.RedAndYourFunnyPrivateVariablesWhichAreKindaImportant.Main_bgTop = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
+                    DrawHelper.Main_bgTop = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
                     foreach (var s in FallingStars.stars)
                     {
                         s.Render();

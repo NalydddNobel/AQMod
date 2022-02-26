@@ -2,7 +2,7 @@ using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.CrossMod;
 using AQMod.Common.Graphics;
-using AQMod.Common.ID;
+using AQMod.Common.NoHitting;
 using AQMod.Common.Utilities;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
@@ -16,7 +16,7 @@ using AQMod.Effects.Dyes;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Items.Dyes;
 using AQMod.Items.Dyes.Cursor;
-using AQMod.Items.Potions;
+using AQMod.Items.Potions.Foods;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
@@ -110,8 +110,8 @@ namespace AQMod
 
                 TimeActions.Hooks.Main_UpdateTime_SpawnTownNPCs = typeof(Main).GetMethod("UpdateTime_SpawnTownNPCs", BindingFlags.NonPublic | BindingFlags.Static);
                 On.Terraria.Main.UpdateTime += TimeActions.Hooks.Main_UpdateTime;
-                On.Terraria.Main.DrawProjectiles += GameWorldRenders.Hooks.Main_DrawProjectiles;
-                On.Terraria.Main.DrawPlayers += GameWorldRenders.Hooks.Main_DrawPlayers;
+                On.Terraria.Main.DrawProjectiles += DrawHelper.Hooks.Main_DrawProjectiles;
+                On.Terraria.Main.DrawPlayers += DrawHelper.Hooks.Main_DrawPlayers;
 
                 On.Terraria.Main.UpdateSundial += AQSystem.Hooks.Main_UpdateSundial;
                 On.Terraria.Main.UpdateWeather += AQSystem.Hooks.Main_UpdateWeather;
@@ -120,9 +120,9 @@ namespace AQMod
 
                 On.Terraria.UI.ItemSlot.OverrideHover += InvSlotData.Hooks.ItemSlot_OverrideHover;
 
-                On.Terraria.Main.DrawNPCs += GameWorldRenders.Hooks.Main_DrawNPCs;
-                On.Terraria.Main.DrawTiles += GameWorldRenders.Hooks.Main_DrawTiles;
-                On.Terraria.Main.UpdateDisplaySettings += GameWorldRenders.Hooks.Main_UpdateDisplaySettings;
+                On.Terraria.Main.DrawNPCs += DrawHelper.Hooks.Main_DrawNPCs;
+                On.Terraria.Main.DrawTiles += DrawHelper.Hooks.Main_DrawTiles;
+                On.Terraria.Main.UpdateDisplaySettings += DrawHelper.Hooks.Main_UpdateDisplaySettings;
 
                 On.Terraria.Main.CursorColor += CursorDyeManager.Hooks.Main_CursorColor;
                 On.Terraria.Main.DrawCursor += CursorDyeManager.Hooks.Main_DrawCursor;
@@ -247,6 +247,7 @@ namespace AQMod
             Keybinds.Load();
             Load_Hooks(unload: false);
             AQText.Load();
+            AQTile.Sets.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
 
             ModCallDictionary.Load();
@@ -255,7 +256,7 @@ namespace AQMod
             var server = ModContent.GetInstance<AQConfigServer>();
             if (!Main.dedServ)
             {
-                GameWorldRenders.Load();
+                DrawHelper.Load();
                 Load_Assets_Textures(unload: false);
                 Load_Assets_Effects(unload: false);
                 AQSound.rand = new UnifiedRandom();
@@ -276,7 +277,6 @@ namespace AQMod
             AQBuff.Sets.InternalInitalize();
             AQItem.Sets.Load();
             AQNPC.Sets.InternalInitalize();
-            AQTile.Sets.InternalInitalize();
             BossChecklistSupport.SetupContent(this);
             CensusSupport.SetupContent(this);
             if (!Main.dedServ)
@@ -337,7 +337,7 @@ namespace AQMod
                 Load_Assets_Music(unload: true);
                 Load_Assets_Effects(unload: true);
                 Load_Assets_Textures(unload: true);
-                GameWorldRenders.Unload();
+                DrawHelper.Unload();
             }
 
             CursorDyeManager.Unload();
@@ -372,8 +372,28 @@ namespace AQMod
             }
         }
 
+        private void UpdateNoHitStatus()
+        {
+            try
+            {
+                NoHitManager.CurrentlyDamaged.Clear();
+                for (byte i = 0; i < Main.maxPlayers; i++)
+                {
+                    if (Main.player[i].active && Main.player[i].statLife < Main.player[i].statLifeMax2)
+                    {
+                        NoHitManager.CurrentlyDamaged.Add(i);
+                    }
+                }
+            }
+            catch
+            {
+                NoHitManager.CurrentlyDamaged?.Clear();
+                NoHitManager.CurrentlyDamaged = new List<byte>();
+            }
+        }
         public override void MidUpdatePlayerNPC()
         {
+            UpdateNoHitStatus();
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (Main.player[i].active && !Main.player[i].dead)
@@ -426,7 +446,7 @@ namespace AQMod
             }
             if (Main.netMode != NetmodeID.Server)
             {
-                GameWorldRenders.DoUpdate();
+                DrawHelper.DoUpdate();
             }
         }
 

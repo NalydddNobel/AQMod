@@ -1,8 +1,10 @@
-﻿using AQMod.Content.World.Events;
+﻿using AQMod.Common.NoHitting;
+using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Tiles.Nature.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -89,6 +91,7 @@ namespace AQMod
             if (!Main.dayTime)
                 SkyGlimmerEvent.InitNight();
             EventProgressBarLoader.ActiveBar = 255;
+            NoHitManager.CurrentlyDamaged = new List<byte>();
         }
 
         public override void TileCountsAvailable(int[] tileCounts)

@@ -125,9 +125,9 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                     projectile.Center + new Vector2(Main.screenWidth * 2f * projectile.direction, 0f) - Main.screenPosition, };
             PrimitivesRenderer.ReversedGravity(arr);
             var smokeLineColor = drawColor * ((float)Math.Sin(Main.GlobalTime * 12f) + 2f);
-            if (AQConfigClient.c_EffectQuality > 0.2f)
+            if (AQConfigClient.Instance.EffectQuality > 0.2f)
             {
-                int amount = (int)(30 * AQConfigClient.c_EffectQuality);
+                int amount = (int)(30 * AQConfigClient.Instance.EffectQuality);
                 var initialArr = new Vector2[amount];
                 var center = projectile.Center;
                 initialArr[0] = center - Main.screenPosition;

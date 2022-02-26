@@ -91,7 +91,7 @@ namespace AQMod.Projectiles.Magic
             var origin = frame.Size() / 2f; int a = projectile.alpha;
             var color = new Color(90 - a, 90 - a, 110 - a, 0);
             var rand = new UnifiedRandom(Main.player[projectile.owner].name.GetHashCode() + projectile.whoAmI);
-            float intensity = AQConfigClient.c_EffectIntensity;
+            float intensity = AQConfigClient.Instance.EffectIntensity;
             intensity *= 2f;
             color *= intensity;
             for (int i = 0; i < 4; i++)
@@ -123,7 +123,7 @@ namespace AQMod.Projectiles.Magic
                 Main.spriteBatch.Draw(texture, projectile.position + offset + off2, frame, color, projectile.rotation, origin, scale, SpriteEffects.None, 0f);
             }
 
-            if (AQConfigClient.c_EffectQuality < 1f)
+            if (AQConfigClient.Instance.EffectQuality < 1f)
             {
                 return false;
             }

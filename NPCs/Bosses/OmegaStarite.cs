@@ -1045,7 +1045,7 @@ namespace AQMod.NPCs.Bosses
                 npc.lifeMax = -33333;
                 return true;
             }
-            npc.GetGlobalNPC<NoHitManager>().dontHitPlayers = true;
+            npc.GetGlobalNPC<NoHitManager>().preventNoHitCheck = true;
             npc.ai[0] = -1f;
             npc.ai[1] = 0f;
             npc.ai[2] = 0f;
@@ -1246,7 +1246,7 @@ namespace AQMod.NPCs.Bosses
                     positions.Add(new Vector4((int)rings[i].CachedPositions[j].X, (int)rings[i].CachedPositions[j].Y, (int)rings[i].CachedPositions[j].Z, rings[i].scale));
                 }
             }
-            float intensity = AQConfigClient.c_EffectIntensity;
+            float intensity = AQConfigClient.Instance.EffectIntensity;
 
             if ((int)npc.ai[0] == -1)
             {
@@ -1498,7 +1498,7 @@ namespace AQMod.NPCs.Bosses
                     for (int i = 0; i < 255; i++)
                     {
                         var plr = Main.player[i];
-                        if (plr.active && npc.playerInteraction[i] && (!noHitManager.hitPlayer[i] || Main.rand.NextBool(4)))
+                        if (plr.active && npc.playerInteraction[i] && (!noHitManager.damagedPlayers[i] || Main.rand.NextBool(4)))
                         {
                             NetMessage.SendData(MessageID.InstancedItem, i, -1, null, item);
                         }
@@ -1595,7 +1595,6 @@ namespace AQMod.NPCs.Bosses
 
             rings[0].SendNetPackage(writer);
             rings[1].SendNetPackage(writer);
-            NoHitManager.SendNoHitNet(npc.NoHit(), writer);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
@@ -1612,8 +1611,6 @@ namespace AQMod.NPCs.Bosses
 
             rings[0].RecieveNetPackage(reader);
             rings[1].RecieveNetPackage(reader);
-
-            NoHitManager.RecieveNoHitNet(npc.NoHit(), reader);
         }
 
         public ModifiableMusic GetMusic() => AQMod.OmegaStariteMusic;

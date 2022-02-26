@@ -4,7 +4,6 @@ using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Summon;
 using AQMod.Buffs.Temperature;
 using AQMod.Common.Graphics;
-using AQMod.Common.ID;
 using AQMod.Common.NoHitting;
 using AQMod.Content;
 using AQMod.Content.World.Events;
@@ -373,7 +372,7 @@ namespace AQMod
             if (FX.flashLocation != Vector2.Zero)
             {
                 LegacyEffectCache.f_Flash.GetShader()
-                .UseIntensity(Math.Max(FX.flashBrightness * AQConfigClient.c_EffectIntensity, 1f / 18f));
+                .UseIntensity(Math.Max(FX.flashBrightness * AQConfigClient.Instance.EffectIntensity, 1f / 18f));
                 if (!LegacyEffectCache.f_Flash.IsActive())
                 {
                     Filters.Scene.Activate(LegacyEffectCache.fn_Flash, FX.flashLocation, null).GetShader()
@@ -1013,33 +1012,6 @@ namespace AQMod
             return !PreventDeath_BloodPlasma() && !PreventDeath_Omori();
         }
 
-        public override void OnHitPvp(Item item, Player target, int damage, bool crit)
-        {
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
-                NetHelper.HitPlayer((byte)player.whoAmI);
-            }
-            NoHitManager.CollapseNoHit(player.whoAmI);
-        }
-
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
-        {
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
-                NetHelper.HitPlayer((byte)player.whoAmI);
-            }
-            NoHitManager.CollapseNoHit(player.whoAmI);
-        }
-
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
-        {
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
-                NetHelper.HitPlayer((byte)player.whoAmI);
-            }
-            NoHitManager.CollapseNoHit(player.whoAmI);
-        }
-
         public override void PostUpdateBuffs()
         {
             monoxiderCarry = 0;
@@ -1379,13 +1351,6 @@ namespace AQMod
                     var type = ModContent.DustType<MonoDust>();
                     Vector2 position = target.Center - new Vector2(size / 2);
                     int length = (int)(Main.npc[boss].Center - targetCenter).Length();
-                    if (Main.myPlayer == player.whoAmI && AQConfigClient.c_TonsofScreenShakes)
-                    {
-                        if (length < 800)
-                        {
-                            FX.AddShake(AQGraphics.MultIntensity((800 - length) / 128), 24f, 12f);
-                        }
-                    }
                     int dustLength = length / size;
                     const float offset = MathHelper.TwoPi / 3f;
                     for (int i = 0; i < dustLength; i++)
@@ -1454,10 +1419,10 @@ namespace AQMod
                 if (Main.myPlayer == player.whoAmI)
                 {
                     Main.PlaySound(SoundID.Item74, targetCenter);
-                    int amount = (int)(25 * AQConfigClient.c_EffectIntensity);
-                    if (AQConfigClient.c_EffectQuality < 1f)
+                    int amount = (int)(25 * AQConfigClient.Instance.EffectIntensity);
+                    if (AQConfigClient.Instance.EffectQuality < 1f)
                     {
-                        amount = (int)(amount * AQConfigClient.c_EffectQuality);
+                        amount = (int)(amount * AQConfigClient.Instance.EffectQuality);
                     }
                     var pos = target.position - new Vector2(2f, 2f);
                     var rect = new Rectangle((int)pos.X, (int)pos.Y, target.width + 4, target.height + 4);
@@ -1472,12 +1437,12 @@ namespace AQMod
                             new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
                     }
-                    amount = (int)(120 * AQConfigClient.c_EffectIntensity);
-                    if (AQConfigClient.c_EffectQuality < 1f)
+                    amount = (int)(120 * AQConfigClient.Instance.EffectIntensity);
+                    if (AQConfigClient.Instance.EffectQuality < 1f)
                     {
-                        amount = (int)(amount * AQConfigClient.c_EffectQuality);
+                        amount = (int)(amount * AQConfigClient.Instance.EffectQuality);
                     }
-                    if (AQConfigClient.c_Screenshakes)
+                    if (AQConfigClient.Instance.Screenshakes)
                     {
                         FX.AddShake(AQGraphics.MultIntensity(8), 24f, 16f);
                     }

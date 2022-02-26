@@ -3,10 +3,10 @@ using AQMod.Items.Accessories.Healing;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Misc;
+using AQMod.Items.Misc.Bait;
 using AQMod.Items.Misc.QuestFish;
 using AQMod.Items.Placeable.Nature;
 using AQMod.Items.Potions;
-using AQMod.Items.Tools.Fishing.Bait;
 using Terraria;
 using Terraria.ModLoader;
 

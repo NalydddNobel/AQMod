@@ -550,7 +550,7 @@ namespace AQMod.NPCs.Bosses
                             else
                             {
                                 if (timer < 3
-                                    && Main.netMode != NetmodeID.Server && AQConfigClient.c_Screenshakes &&
+                                    && Main.netMode != NetmodeID.Server && AQConfigClient.Instance.Screenshakes &&
                                     (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 {
                                     FX.SetFlash(npc.Center, 0.75f * AQConfigClient.Instance.FlashIntensity, 10f);
@@ -559,7 +559,7 @@ namespace AQMod.NPCs.Bosses
                                 {
                                     if (Main.netMode != NetmodeID.Server && (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                     {
-                                        if (AQConfigClient.c_Screenshakes)
+                                        if (AQConfigClient.Instance.Screenshakes)
                                         {
                                             FX.SetShake(12f * AQConfigClient.Instance.EffectIntensity, 10f);
                                         }
@@ -567,12 +567,12 @@ namespace AQMod.NPCs.Bosses
                                         {
                                             AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.ThunderClap, npc.Center, 0.6f);
                                         }
-                                        if (AQConfigClient.c_EffectQuality > 0.2f)
+                                        if (AQConfigClient.Instance.EffectQuality > 0.2f)
                                         {
                                             int dustAmount = 50;
-                                            if (AQConfigClient.c_EffectQuality < 1f)
+                                            if (AQConfigClient.Instance.EffectQuality < 1f)
                                             {
-                                                dustAmount = (int)(dustAmount * AQConfigClient.c_EffectQuality);
+                                                dustAmount = (int)(dustAmount * AQConfigClient.Instance.EffectQuality);
                                             }
                                             float rot = MathHelper.TwoPi / dustAmount;
                                             for (int i = 0; i < dustAmount; i++)

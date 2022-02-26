@@ -159,7 +159,7 @@ namespace AQMod.Projectiles.Magic
                 Main.dust[d1].rotation = 0f;
                 Main.dust[d1].velocity *= 0.5f;
             }
-            if (Main.netMode != NetmodeID.Server && AQConfigClient.c_EffectQuality >= 1f)
+            if (Main.netMode != NetmodeID.Server && AQConfigClient.Instance.EffectQuality >= 1f)
             {
                 for (int k = 0; k < height; k++)
                 {
@@ -180,8 +180,8 @@ namespace AQMod.Projectiles.Magic
             Main.projectile[p].width = Main.projectile[p].height = (int)(height * 2.5f);
             Main.projectile[p].position.X -= Main.projectile[p].width / 2f;
             Main.projectile[p].position.Y -= Main.projectile[p].width / 2f;
-            if (AQConfigClient.c_EffectQuality >= 1f)
-                dustFlower(6, height, height * 1.25f, (int)(125 * AQConfigClient.c_EffectQuality));
+            if (AQConfigClient.Instance.EffectQuality >= 1f)
+                dustFlower(6, height, height * 1.25f, (int)(125 * AQConfigClient.Instance.EffectQuality));
         }
 
         private void dustFlower(int petals, float minSize, float maxSize, int amount = 40)

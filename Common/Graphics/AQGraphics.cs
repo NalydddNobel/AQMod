@@ -58,7 +58,7 @@ namespace AQMod.Common.Graphics
 
         public static int MultIntensity(int input)
         {
-            return (int)(input * AQConfigClient.c_EffectIntensity);
+            return (int)(input * AQConfigClient.Instance.EffectIntensity);
         }
 
         public static class Rendering

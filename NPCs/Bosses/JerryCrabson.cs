@@ -354,7 +354,7 @@ namespace AQMod.NPCs.Bosses
 
         public override bool PreDraw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Color drawColor)
         {
-            if (GameWorldRenders.NPCsBehindAllNPCs.drawingNow)
+            if (DrawHelper.NPCsBehindAllNPCs.drawingNow)
             {
                 var drawCoordinates = npc.Center;
                 var chain = ModContent.GetTexture(AQUtils.GetPath<JerryClaw>("_Chain"));
@@ -363,7 +363,7 @@ namespace AQMod.NPCs.Bosses
             }
             else
             {
-                GameWorldRenders.NPCsBehindAllNPCs.Add(npc.whoAmI);
+                DrawHelper.NPCsBehindAllNPCs.Add(npc.whoAmI);
             }
             return true;
         }

@@ -6,15 +6,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Fishing.Bait
+namespace AQMod.Items.Misc.Bait
 {
-    public class CursedPopper : PopperBaitItem
+    public class IchorPopper : PopperBaitItem
     {
         public override void SetDefaults()
         {
             item.width = 6;
             item.height = 6;
-            item.bait = 30;
+            item.bait = 31;
             item.maxStack = 999;
             item.consumable = true;
             item.value = Item.sellPrice(silver: 1);
@@ -23,21 +23,21 @@ namespace AQMod.Items.Tools.Fishing.Bait
 
         public override int GetExtraFishingPower(Player player, PlayerFishing fishing)
         {
-            if (player.ZoneCorrupt)
-                return 30;
+            if (player.ZoneCrimson)
+                return 35;
             return 0;
         }
 
         public override void OnEnterWater(Player player, PlayerFishing fishing, Projectile bobber, Tile tile)
         {
-            Projectile.NewProjectile(bobber.Center + new Vector2(0f, (byte.MaxValue - tile.liquid) / 16), Vector2.Zero, ModContent.ProjectileType<CursedPopperEffect>(), 0, 0f, player.whoAmI);
+            Projectile.NewProjectile(bobber.Center + new Vector2(0f, (byte.MaxValue - tile.liquid) / 16), Vector2.Zero, ModContent.ProjectileType<IchorPopperEffect>(), 0, 0f, player.whoAmI);
         }
 
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.CursedFlame, 10);
-            r.AddIngredient(ItemID.UnholyWater);
+            r.AddIngredient(ItemID.Ichor, 10);
+            r.AddIngredient(ItemID.BloodWater);
             r.AddTile(ModContent.TileType<FishingCraftingStation>());
             r.SetResult(this, 10);
             r.AddRecipe();

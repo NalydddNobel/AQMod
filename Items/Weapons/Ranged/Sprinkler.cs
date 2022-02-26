@@ -30,9 +30,9 @@ namespace AQMod.Items.Weapons.Ranged
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (Main.myPlayer != player.whoAmI || AQConfigClient.c_EffectQuality < 0.3f)
+            if (Main.myPlayer != player.whoAmI || AQConfigClient.Instance.EffectQuality < 0.3f)
                 return true;
-            int dustAmount = (int)(Main.rand.Next(5, 10) * AQConfigClient.c_EffectQuality);
+            int dustAmount = (int)(Main.rand.Next(5, 10) * AQConfigClient.Instance.EffectQuality);
             var normalizedVelocity = Vector2.Normalize(new Vector2(speedX, speedY));
             Vector2 spawnPosition = position + normalizedVelocity * 46f + new Vector2(0, -4f);
             for (int i = 0; i < dustAmount; i++)

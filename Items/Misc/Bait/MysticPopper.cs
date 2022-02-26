@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools.Fishing.Bait
+namespace AQMod.Items.Misc.Bait
 {
     public class MysticPopper : PopperBaitItem
     {
