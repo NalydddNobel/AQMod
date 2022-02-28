@@ -204,7 +204,6 @@ namespace AQMod.Content.Players
                 HermitCrab = new HermitCrabStorage[MaxHermitCrabStorageItems];
                 for (int i = 0; i < tagList.Count; i++)
                 {
-                    AQMod.GetInstance().Logger.Info("i: " + i);
                     try
                     {
                         HermitCrab[i] = new HermitCrabStorage(tagList[i]);

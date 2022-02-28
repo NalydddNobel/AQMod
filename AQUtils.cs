@@ -1,9 +1,8 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.NoHitting;
-using AQMod.Common.Utilities.Colors;
 using AQMod.Content.Players;
 using AQMod.Items;
 using AQMod.Localization;
+using AQMod.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -321,9 +320,9 @@ namespace AQMod
             return new TextureAsset(mod, path);
         }
 
-        public static NoHitManager NoHit(this NPC npc)
+        public static NPCNoHit NoHit(this NPC npc)
         {
-            return npc.GetGlobalNPC<NoHitManager>();
+            return npc.GetGlobalNPC<NPCNoHit>();
         }
 
         public static float FromByte(byte value, float maximum)

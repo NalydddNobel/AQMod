@@ -1,7 +1,7 @@
 ﻿using AQMod.Content.World.Events;
 using AQMod.Effects;
-using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Misc.Cursor.Demonic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

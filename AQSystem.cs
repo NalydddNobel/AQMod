@@ -1,6 +1,6 @@
-﻿using AQMod.Common.NoHitting;
-using AQMod.Content.World.Events;
+﻿using AQMod.Content.World.Events;
 using AQMod.Effects;
+using AQMod.NPCs;
 using AQMod.NPCs.Friendly;
 using AQMod.Tiles.Nature.CrabCrevice;
 using Microsoft.Xna.Framework;
@@ -94,7 +94,7 @@ namespace AQMod
                 SkyGlimmerEvent.InitNight();
             Robster.Initalize();
             EventProgressBarLoader.ActiveBar = 255;
-            NoHitManager.CurrentlyDamaged = new List<byte>();
+            NPCNoHit.CurrentlyDamaged = new List<byte>();
         }
 
         public override void TileCountsAvailable(int[] tileCounts)

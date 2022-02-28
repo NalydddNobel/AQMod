@@ -1,6 +1,6 @@
 ﻿using AQMod.Items.Accessories.Jewelry;
 using AQMod.Items.Dyes;
-using AQMod.Items.Dyes.Cursor;
+using AQMod.Items.Misc.Cursor.Demonic;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Tools;

@@ -1,6 +1,6 @@
 ﻿using AQMod.Common.Utilities.Debugging;
 using AQMod.Items.Dyes;
-using AQMod.Items.Dyes.Hair;
+using AQMod.Items.Misc.Hair;
 using System.Collections.Generic;
 using Terraria.Graphics.Shaders;
 

@@ -4,7 +4,6 @@ using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Summon;
 using AQMod.Buffs.Temperature;
 using AQMod.Common.Graphics;
-using AQMod.Common.NoHitting;
 using AQMod.Content;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;

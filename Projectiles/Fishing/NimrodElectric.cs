@@ -24,7 +24,7 @@ namespace AQMod.Projectiles.Fishing
                 bool shouldKill = true;
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && Main.projectile[i].type == ModContent.ProjectileType<Nimrod>())
+                    if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && Main.projectile[i].type == ModContent.ProjectileType<NimrodCloud>())
                     {
                         shouldKill = false;
                     }
@@ -57,7 +57,7 @@ namespace AQMod.Projectiles.Fishing
                 return false;
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].bobber && Main.projectile[i].owner == projectile.owner && Main.projectile[i].type == ModContent.ProjectileType<Nimrod>())
+                if (Main.projectile[i].active && Main.projectile[i].bobber && Main.projectile[i].owner == projectile.owner && Main.projectile[i].type == ModContent.ProjectileType<NimrodCloud>())
                 {
                     AQGraphics.Rendering.FishingLine_NoLighting_UseCustomOrigin(new Color(0, 172, 255, 200), player, projectile.position, projectile.width / 2, projectile.height, projectile.velocity, projectile.localAI[0], Main.projectile[i].Center + new Vector2(Main.projectile[i].width / -2f, 0f));
                     break;

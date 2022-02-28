@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dyes.Cursor
+namespace AQMod.Items.Misc.Cursor
 {
     public class HealthCursorDye : ModItem
     {

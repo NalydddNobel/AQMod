@@ -2,7 +2,6 @@ using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.CrossMod;
 using AQMod.Common.Graphics;
-using AQMod.Common.NoHitting;
 using AQMod.Common.Utilities;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
@@ -13,8 +12,8 @@ using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.Trails.Rendering;
+using AQMod.Items;
 using AQMod.Items.Dyes;
-using AQMod.Items.Dyes.Cursor;
 using AQMod.Items.Potions.Foods;
 using AQMod.Localization;
 using AQMod.NPCs;
@@ -317,8 +316,8 @@ namespace AQMod
             Load_Hooks(unload: true);
             Autoloading.Unload();
 
-            NoHitManager.CurrentlyDamaged?.Clear();
-            NoHitManager.CurrentlyDamaged = null;
+            NPCNoHit.CurrentlyDamaged?.Clear();
+            NPCNoHit.CurrentlyDamaged = null;
             DyeBinder.Unload();
             DemonSiege.Unload();
             AQProjectile.Sets.Unload();
@@ -379,19 +378,19 @@ namespace AQMod
         {
             try
             {
-                NoHitManager.CurrentlyDamaged.Clear();
+                NPCNoHit.CurrentlyDamaged.Clear();
                 for (byte i = 0; i < Main.maxPlayers; i++)
                 {
                     if (Main.player[i].active && Main.player[i].statLife < Main.player[i].statLifeMax2)
                     {
-                        NoHitManager.CurrentlyDamaged.Add(i);
+                        NPCNoHit.CurrentlyDamaged.Add(i);
                     }
                 }
             }
             catch
             {
-                NoHitManager.CurrentlyDamaged?.Clear();
-                NoHitManager.CurrentlyDamaged = new List<byte>();
+                NPCNoHit.CurrentlyDamaged?.Clear();
+                NPCNoHit.CurrentlyDamaged = new List<byte>();
             }
         }
         public override void MidUpdatePlayerNPC()

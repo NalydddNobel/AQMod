@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Common.NoHitting;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
 using AQMod.Content.Players;

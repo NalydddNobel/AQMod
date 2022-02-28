@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;
 
-namespace AQMod.Items.Dyes.Cursor
+namespace AQMod.Items
 {
     public sealed class CursorDyeManager
     {

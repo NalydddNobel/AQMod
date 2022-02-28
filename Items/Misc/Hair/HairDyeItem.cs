@@ -6,7 +6,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dyes.Hair
+namespace AQMod.Items.Misc.Hair
 {
     public abstract class HairDyeItem : ModItem
     {

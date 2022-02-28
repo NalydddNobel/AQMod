@@ -5,7 +5,7 @@ using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.Particles;
-using AQMod.Items.Dyes.Cursor;
+using AQMod.Items.Misc.Cursor;
 using AQMod.Items.Potions;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;

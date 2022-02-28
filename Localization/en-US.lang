@@ -65,10 +65,8 @@ ItemTooltip.WyvernAmulet=Increases flight time by a second\nEnemies give you ext
 
 ItemName.DarkAmulet=Dark Amulet
 ItemTooltip.DarkAmulet=You take 10% less damage from unholy enemies\nIncreases movement speed after being struck\nIncreases maximum mana by 20
-
 ItemName.LightAmulet=Light Amulet
 ItemTooltip.LightAmulet=You take 10% less damage from holy enemies\nIncreases armor penetration by 5
-
 ItemName.NeutralityAmulet=Neutrality Amulet
 ItemTooltip.NeutralityAmulet=You take 10% less damage from holy and unholy enemies\nIncreases armor penetration by 5\nIncreases movement speed after being struck\nIncreases maximum mana by 20
 
@@ -86,12 +84,10 @@ ItemTooltip.DegenerationRing=Prevents most types of burning
 
 ItemName.HeatedAmulet=Heated Amulet
 ItemTooltip.HeatedAmulet=Prevents most types of burning\nLowers the intensity of heat from Gale Streams enemies
-
 ItemName.FreezingAmulet=Freezing Amulet
 ItemTooltip.FreezingAmulet=Prevents most types of freezing\nLowers the intensity of cold from Gale Streams enemies
-
 ItemName.NormalizerAmulet=Normalized Amulet
-ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers the intensity of temperature sources from Gale Streams enemies
+ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers the intensity of temperature sources from gale streams enemies
 
 ItemName.MinersFlashlight=Miner's Flashlight
 ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shone on by the light\nHide the accessory to disable the flashlight
@@ -130,11 +126,10 @@ ItemName.SteelPlatedChestplate=Steel Plated Chestplate
 ArmorSetBonus.SkyrimArmor=5% increased damage reduction\n10% decreased movement speed\n'You are carrying too much to be able to run'
 
 ItemName.LightbulbHelmet=Lightbulb Helmet
-ItemTooltip.LightbulbHelmet=Slightly increases mana regeneration\nYou faintly emit light
+ItemTooltip.LightbulbHelmet=Slightly increases mana regeneration\nYou faintly emit light\n'And so he left, with everything but his humanity...'
 ItemName.LightbulbBreastplate=Lightbulb Breastplate
 ItemName.LightbulbGreaves=Lightbulb Greaves
 ItemTooltip.LightbulbGreaves=Increases your max number of minions
-
 ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% less damage
 
 # Materials
@@ -378,7 +373,7 @@ Stardrop.False=Town NPCs can no longer move in during the night
 Stardrop.True=Town NPCs can now move in during the night
 
 ItemName.IWillBeBack='I'll Be Back'
-ItemTooltip.IWillBeBack=Summons the Wall of Flesh without murdering the Guide\nRight click to make all town NPCs immune to lava
+ItemTooltip.IWillBeBack=Summons the Wall of Flesh without murdering the Guide\nRight click to make villagers immune to lava
 IWillBeBackToggle.True=Town NPCs will now resist lava
 IWillBeBackToggle.False=Town NPCs will no longer resist lava
 
@@ -387,23 +382,23 @@ ItemTooltip.Nimrod=Summons a fishing cloud which spawns 3 lightning bobbers to c
 
 ItemName.CosmicTelescope=Cosmic Telescope
 ItemTooltip.CosmicTelescope=Shows the location of the Glimmer Event and some other related info on the map
-MapLayerToggle.CosmicTelescope='Cosmic Telescope'\nShows the location of the Glimmer Event and some other related info on the map
+MapLayerToggle.CosmicTelescope=Shows the location of the Glimmer Event and some other related info on the map
 
 ItemName.DungeonMap=Vial of Blood
 ItemTooltip.DungeonMap=Shows the location of the Dungeon\nPressing the map icon of the Dungeon allows you to teleport to it
-MapLayerToggle.VialOfBlood='Vial of Blood'\nShows the location of the Dungeon\nPressing the map icon of the Dungeon allows you to teleport to it
+MapLayerToggle.VialOfBlood=Shows the location of the Dungeon\nPressing the map icon of the Dungeon allows you to teleport to it
 
 ItemName.LihzahrdMap=Cabbage
 ItemTooltip.LihzahrdMap=Shows the location of the Lihzahrd Altar\nPressing on the map icon of the Lihzahrd Altar allows you to teleport to it
-MapLayerToggle.Cabbage='Cabbage'\nShows the location of the Lihzahrd Altar\nPressing on the map icon of the Lihzahrd Altar allows you to teleport to it
+MapLayerToggle.Cabbage=Shows the location of the Lihzahrd Altar\nPressing on the map icon of the Lihzahrd Altar allows you to teleport to it
 
 ItemName.RetroGoggles=Blighted Soul
 ItemTooltip.RetroGoggles=Enemies appear as a blip on the fullscreen map
-MapLayerToggle.BlightedSoul='Blighted Soul'\nEnemies appear as a blip on the fullscreen map
+MapLayerToggle.BlightedSoul=Enemies appear as a blip on the fullscreen map
 
 ItemName.Beeswax=Beeswax
 ItemTooltip.Beeswax=Shows the location of any visible Plantera bulbs
-MapLayerToggle.Beeswax='Beeswax'\nShows the location of any visible Plantera bulbs
+MapLayerToggle.Beeswax=Shows the location of any visible Plantera bulbs
 
 # Potions
 ItemName.Baguette=Baguette

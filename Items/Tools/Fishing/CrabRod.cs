@@ -11,7 +11,7 @@ namespace AQMod.Items.Tools.Fishing
             item.fishingPole = 18;
             item.shootSpeed = 10f;
             item.rare = ItemRarityID.Blue;
-            item.shoot = ModContent.ProjectileType<Projectiles.Fishing.CrabRod>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Fishing.CrabBobber>();
         }
     }
 }

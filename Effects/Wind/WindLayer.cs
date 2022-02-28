@@ -137,9 +137,9 @@ namespace AQMod.Effects.Wind
                 {
                     _windShader = AQMod.GetInstance().GetEffect("Effects/Wind/WindShader");
                 }
-                catch
+                catch (Exception ex)
                 {
-                    throw new Exception("There was an error while loading the Wind current shader. Try loading shaders in a higher/lower quality or smth?");
+                    throw new Exception("There was an error while loading the Wind current shader. Try loading shaders in a higher/lower quality or smth?", ex);
                 }
                 windDraws = new List<IDrawType>();
             }

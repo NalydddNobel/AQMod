@@ -1,12 +1,13 @@
 ﻿using AQMod.Common.ID;
 using AQMod.Content.Players;
+using AQMod.Items.Materials.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dyes.Cursor
+namespace AQMod.Items.Misc.Cursor
 {
-    public class SwordCursorDye : ModItem
+    public class ManaCursorDye : ModItem
     {
         public override void SetDefaults()
         {
@@ -25,12 +26,12 @@ namespace AQMod.Items.Dyes.Cursor
 
         public override bool CanUseItem(Player player)
         {
-            return player.GetModPlayer<PlayerCursorDyes>().cursorDye != CursorDyeID.Sword;
+            return player.GetModPlayer<PlayerCursorDyes>().cursorDye != CursorDyeID.Mana;
         }
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<PlayerCursorDyes>().cursorDye = CursorDyeID.Sword;
+            player.GetModPlayer<PlayerCursorDyes>().cursorDye = CursorDyeID.Mana;
             return true;
         }
 
@@ -38,8 +39,8 @@ namespace AQMod.Items.Dyes.Cursor
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Bottle);
-            r.AddIngredient(ItemID.Diamond, 2);
-            r.AddIngredient(ItemID.Wood);
+            r.AddIngredient(ItemID.ManaCrystal);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddTile(TileID.DyeVat);
             r.SetResult(this);
             r.AddRecipe();

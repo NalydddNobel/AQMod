@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Dyes.Cursor
+namespace AQMod.Items.Misc.Cursor.Demonic
 {
     public class DemonicCursorDye : ModItem
     {

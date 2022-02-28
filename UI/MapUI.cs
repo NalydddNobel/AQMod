@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Configuration;
 using AQMod.Content.Players;
 using AQMod.Content.World;
 using AQMod.Content.World.Events;
@@ -17,11 +16,6 @@ namespace AQMod.Content
 {
     public static class MapUI
     {
-        public static int dungeonX;
-        public static int dungeonY;
-        public static int lihzahrdX;
-        public static int lihzahrdY;
-
         public const byte Icon_DungeonPink = 0;
         public const byte Icon_DungeonBlue = 1;
         public const byte Icon_DungeonGreen = 2;
@@ -33,6 +27,11 @@ namespace AQMod.Content
         public const int SpriteHeight = 34;
         public const int SpritePadding = 2;
         public static readonly Vector2 SpriteOrigin = new Vector2(SpriteWidth / 2f, SpriteHeight / 2f);
+
+        public static int dungeonX;
+        public static int dungeonY;
+        public static int lihzahrdX;
+        public static int lihzahrdY;
 
         private static Vector2 _map;
         private static float _mapScale;

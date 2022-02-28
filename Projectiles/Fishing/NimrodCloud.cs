@@ -10,11 +10,13 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Fishing
 {
-    public class Nimrod : ModProjectile
+    public class NimrodCloud : ModProjectile
     {
+        public override string Texture => "Terraria/Projectile_" + ProjectileID.RainCloudRaining;
+
         public override void SetStaticDefaults()
         {
-            Main.projFrames[projectile.type] = 2;
+            Main.projFrames[projectile.type] = Main.projFrames[ProjectileID.RainCloudRaining];
         }
 
         public override void SetDefaults()
@@ -28,7 +30,7 @@ namespace AQMod.Projectiles.Fishing
         public override bool PreAI()
         {
             if (Main.player[projectile.owner].inventory[Main.player[projectile.owner].selectedItem].fishingPole == 0 || Main.player[projectile.owner].CCed || Main.player[projectile.owner].noItems
-               || Main.player[projectile.owner].pulley || Main.player[projectile.owner].dead)
+               || Main.player[projectile.owner].pulley || Main.player[projectile.owner].dead || projectile.wet)
             {
                 projectile.Kill();
             }
@@ -42,6 +44,7 @@ namespace AQMod.Projectiles.Fishing
                 {
                     projectile.Kill();
                 }
+                projectile.rotation += 0.1f;
                 return false;
             }
 
@@ -93,6 +96,7 @@ namespace AQMod.Projectiles.Fishing
                         projectile.netUpdate = true;
                     }
                 }
+                projectile.rotation = 0f;
                 return false;
             }
             projectile.timeLeft = 10;
@@ -107,18 +111,9 @@ namespace AQMod.Projectiles.Fishing
             else
             {
                 projectile.velocity = Vector2.Normalize(gotoPosition - projectile.Center) * Main.player[projectile.owner].HeldItem.shootSpeed;
-                projectile.rotation = projectile.velocity.ToRotation() - MathHelper.PiOver2;
+                projectile.rotation += 0.1f;
             }
             return false;
-        }
-
-        public override void PostAI()
-        {
-            projectile.rotation = 0f;
-            if (projectile.wet)
-            {
-                projectile.Kill();
-            }
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -148,9 +143,20 @@ namespace AQMod.Projectiles.Fishing
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            var texture = this.GetTexture();
-            var frame = texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
-            Main.spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, frame, lightColor, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            var drawCoordinates = projectile.Center - Main.screenPosition;
+            if (projectile.frame == 0)
+            {
+                Main.instance.LoadProjectile(ProjectileID.RainCloudMoving);
+                var texture = Main.projectileTexture[ProjectileID.RainCloudMoving];
+                var frame = texture.Frame(1, 4, 0, (int)Main.GameUpdateCount / 8 % 4);
+                Main.spriteBatch.Draw(texture, drawCoordinates, frame, lightColor, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            }
+            else
+            {
+                var texture = Main.projectileTexture[projectile.type];
+                var frame = texture.Frame(1, Main.projFrames[projectile.type], 0, (int)Main.GameUpdateCount / 8 % Main.projFrames[projectile.type]);
+                Main.spriteBatch.Draw(texture, drawCoordinates, frame, lightColor, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+            }
             return false;
         }
     }

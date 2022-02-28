@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Fishing
 {
-    public class CrabRod : ModProjectile
+    public class CrabBobber : ModProjectile
     {
         public override void SetDefaults()
         {

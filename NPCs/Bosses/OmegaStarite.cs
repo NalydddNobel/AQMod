@@ -3,7 +3,6 @@ using AQMod.Buffs.Debuffs;
 using AQMod.Common;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
-using AQMod.Common.NoHitting;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;
@@ -1045,7 +1044,7 @@ namespace AQMod.NPCs.Bosses
                 npc.lifeMax = -33333;
                 return true;
             }
-            npc.GetGlobalNPC<NoHitManager>().preventNoHitCheck = true;
+            npc.GetGlobalNPC<NPCNoHit>().preventNoHitCheck = true;
             npc.ai[0] = -1f;
             npc.ai[1] = 0f;
             npc.ai[2] = 0f;
@@ -1064,9 +1063,9 @@ namespace AQMod.NPCs.Bosses
             }
             if (npc.life == -33333)
             {
-                if (NoHitManager.HasBeenNoHit(npc, Main.myPlayer))
+                if (NPCNoHit.HasBeenNoHit(npc, Main.myPlayer))
                 {
-                    NoHitManager.PlayNoHitJingle(npc.Center);
+                    NPCNoHit.PlayNoHitJingle(npc.Center);
                 }
                 var center = npc.Center;
                 for (int k = 0; k < 60; k++)
@@ -1120,9 +1119,9 @@ namespace AQMod.NPCs.Bosses
                 AQSound.Play(SoundType.NPCHit, "OmegaStarite/hit" + Main.rand.Next(3), npc.Center, 0.6f);
                 if (skipDeathTimer > 0)
                 {
-                    if (NoHitManager.HasBeenNoHit(npc, Main.myPlayer))
+                    if (NPCNoHit.HasBeenNoHit(npc, Main.myPlayer))
                     {
-                        NoHitManager.PlayNoHitJingle(npc.Center);
+                        NPCNoHit.PlayNoHitJingle(npc.Center);
                     }
                     AQGraphics.SetCullPadding();
                     for (int i = 0; i < rings.Length; i++)
@@ -1476,11 +1475,11 @@ namespace AQMod.NPCs.Bosses
         public override void NPCLoot()
         {
             Glimmer.deactivationDelay = 275;
-            var noHitManager = npc.GetGlobalNPC<NoHitManager>();
+            var noHitManager = npc.GetGlobalNPC<NPCNoHit>();
             bool anyoneNoHit = false;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
-                if (NoHitManager.HasBeenNoHit(npc, i))
+                if (NPCNoHit.HasBeenNoHit(npc, i))
                 {
                     anyoneNoHit = true;
                     AQItem.DropInstancedItem(i, npc.getRect(), ModContent.ItemType<AStrangeIdea>());

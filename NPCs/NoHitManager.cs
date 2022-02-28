@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Accessories;
+﻿using AQMod.Common;
+using AQMod.Items.Accessories;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Common.NoHitting
+namespace AQMod.NPCs
 {
-    public class NoHitManager : GlobalNPC
+    public class NPCNoHit : GlobalNPC
     {
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
@@ -18,14 +19,14 @@ namespace AQMod.Common.NoHitting
         public bool preventNoHitCheck;
         public byte rewardOption;
 
-        public NoHitManager()
+        public NPCNoHit()
         {
             damagedPlayers = new bool[Main.maxPlayers];
         }
 
         public override GlobalNPC NewInstance(NPC npc)
         {
-            return new NoHitManager();
+            return new NPCNoHit();
         }
 
         private void ResetNoHit(int player)
@@ -33,7 +34,7 @@ namespace AQMod.Common.NoHitting
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active)
-                    Main.npc[i].GetGlobalNPC<NoHitManager>().damagedPlayers[player] = false;
+                    Main.npc[i].GetGlobalNPC<NPCNoHit>().damagedPlayers[player] = false;
             }
         }
 
@@ -70,10 +71,10 @@ namespace AQMod.Common.NoHitting
 
         public static bool HasBeenNoHit(NPC npc, int player)
         {
-            return HasBeenNoHit(npc, npc.GetGlobalNPC<NoHitManager>(), player);
+            return HasBeenNoHit(npc, npc.GetGlobalNPC<NPCNoHit>(), player);
         }
 
-        public static bool HasBeenNoHit(NPC npc, NoHitManager noHitManager, int player)
+        public static bool HasBeenNoHit(NPC npc, NPCNoHit noHitManager, int player)
         {
             return npc.playerInteraction[player] && !noHitManager.damagedPlayers[player];
         }
