@@ -1,11 +1,14 @@
 ﻿using AQMod.Assets;
+using AQMod.Common;
 using AQMod.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Melee
@@ -64,6 +67,22 @@ namespace AQMod.Items.Weapons.Melee
                 Main.dust[d].scale = Main.rand.NextFloat(1.1f, 1.3f);
                 Main.dust[d].fadeIn = 0.2f;
                 Main.dust[d].noGravity = true;
+            }
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            if (WorldDefeats.ObtainedUltimateSword)
+            {
+                return;
+            }
+            try
+            {
+                int index = AQItem.FindTTLineSpot(tooltips, "Tooltip#");
+                tooltips.Insert(index + 1, new TooltipLine(mod, "ObtainedFrom", Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.UltimateSword.0")) { overrideColor = AQMod.MysteriousGuideTooltip, });
+            }
+            catch
+            {
             }
         }
 

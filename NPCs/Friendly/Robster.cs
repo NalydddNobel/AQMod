@@ -2,6 +2,7 @@
 using AQMod.Common;
 using AQMod.Content.World.Events;
 using AQMod.Items.Misc.ExporterQuest;
+using AQMod.Items.Misc.ExporterQuest.Rewards;
 using AQMod.Items.Placeable.CraftingStations;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
@@ -90,9 +91,9 @@ namespace AQMod.NPCs.Friendly
 
             protected void RegularQuestRewards(Player player)
             {
-                player.QuickSpawnItem(ItemID.WoodenCrate);
-                if (Main.rand.NextBool(3))
-                    player.QuickSpawnItem(ItemID.IronCrate);
+                player.QuickSpawnItem(ModContent.ItemType<OverworldPalette>());
+                if (Main.rand.NextBool())
+                    player.QuickSpawnItem(ModContent.ItemType<CavernPalette>());
                 if (Main.rand.NextBool(10))
                     player.QuickSpawnItem(ItemID.GoldenCrate);
             }

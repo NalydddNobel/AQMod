@@ -40,6 +40,7 @@ namespace AQMod
     public class AQMod : Mod
     {
         public const string TextureNone = "AQMod/Assets/None";
+        public static Color MysteriousGuideTooltip => Color.CornflowerBlue;
 
         public static AQMod GetInstance()
         {

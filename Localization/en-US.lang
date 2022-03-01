@@ -12,6 +12,9 @@ ItemTooltip.NovaFruit=Summons Omega Starite at night\n{$Mods.AQMod.Common.NotCon
 ItemName.BloodyThing=Bloody Thing
 ItemTooltip.BloodyThing=Starts a blood moon during night\n'An exotic ruby which might start tearing up when ported to 1.4'
 
+ItemName.MythicStarfruit=Mythic Starfruit
+ItemTooltip.MythicStarfruit=Summons a strange glimmer
+
 BuffName.ManaDrain=Magical Drain
 BuffDescription.ManaDrain=Decreases magic damage by 90%
 
@@ -171,14 +174,14 @@ ProjectileName.Burnterizer=First Degree Burns
 ProjectileName.BurnterizerExplosion=First Degree Burns
 
 ItemName.HellsBoon=Hell's Boon
-ItemTooltip.HellsBoon=Creates ash spikes around your cursor which protrude out of nearby tiles\nSword hits inflict corruption hellfire
+ItemTooltip.HellsBoon=Ash spikes appear around your cursor\nSword hits inflict corruption hellfire
 ProjectileName.HellsBoonSpike=Hell's Boon
 
 ItemName.MonoxiderStaff=Monoxider Staff
 ItemTooltip.MonoxiderStaff=Summons a monoxide finch to fight for you
-ProjectileName.MonoxiderMinion=Monoxider
 BuffName.MonoxiderBuff=Monoxider
 BuffDescription.MonoxiderBuff=The monoxider will fight for you
+ProjectileName.MonoxiderMinion=Monoxider
 
 ItemName.ScarletSea=Scarlet Sea
 ItemTooltip.ScarletSea=Summons two blood orbs
@@ -187,10 +190,10 @@ ItemName.SeltzerRain=Tainted Rain
 ItemTooltip.SeltzerRain=Shoots many corrupted orbs
 
 ItemName.FizzlingFire=Super Scorcher
-ItemTooltip.FizzlingFire=Shoots powerful blue flames\nCannot be used if you have mana sickness
+ItemTooltip.FizzlingFire=Cannot be used if you have mana sickness
 
 ItemName.MagicalBoomerang=Magical Boomerang
-ItemTooltip.MagicalBoomerang=Can carry items towards you
+ItemTooltip.MagicalBoomerang=Can pick up items
 ProjectileName.MagicalBoomerang=Magical Boomerang
 
 ItemName.StariteBlade=Star Blade
@@ -201,21 +204,21 @@ ItemTooltip.StariteSpinner=Occasionally inflicts blue fire on hit\n'Is it rotati
 ProjectileName.StariteSpinnerProjectile=Starite Spinner
 
 ItemName.Resonance=Resonance
-ItemTooltip.Resonance=Has very high speed and barely gets knocked back when hitting enemies\nOccasionally burns enemies on hit\n'Don't you think we should recalculate those resonance dampening factors again?'
+ItemTooltip.Resonance=Occasionally burns enemies on hit\n'Don't you think we should recalculate those resonance dampening factors again?'
 
 ItemName.StariteStaff=Starite Staff
 ItemTooltip.StariteStaff=Summons a speedy starite to fight for you
 BuffName.Starite=Starite
-BuffDescription.Starite=The Starite will fight for you
+BuffDescription.Starite=The starite will fight for you
 
 ItemName.VineSword=Mallet
-ItemTooltip.VineSword=Whack nearby enemies using your mouse
-# \nMakes pots have special drops
+ItemTooltip.VineSword=Whack nearby enemies using your mouse\n'It's just like huntin' squirbos'
+
 ItemName.KryptonSword=Krypton Boomerang
 ItemTooltip.KryptonSword=Cuts through enemies\nInflicts multiple debuffs
 
 ItemName.Vrang=Vrang
-ItemTooltip.Vrang=Throws 3 Vraines which move very quickly
+ItemTooltip.Vrang=Throws boomerangs in a v-shape
 
 ItemName.AirBlade=Air Blade
 ItemTooltip.AirBlade=Summons magical air blades
@@ -223,7 +226,7 @@ ProjectileName.AirBlade=Air Blade
 ProjectileName.AirBladeGhost=Air Blade
 
 ItemName.RedSpriteStaff=Surge Rod
-ItemTooltip.RedSpriteStaff=Summons a surging thundercloud to rain thunder down upon your foes\nUp to four can be casted at one time
+ItemTooltip.RedSpriteStaff=Summons a thundercloud to strike your foes\nFour can be casted at once
 ProjectileName.RedSpriteStaff=Surge Rod
 ProjectileName.RedSpriteStaffLightning=Surge Rod
 
@@ -234,7 +237,7 @@ ProjectileName.ThunderClap=Thunder Clap
 ItemName.Umystick=Umystick
 ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nRight click while held to do an extra jump which costs a great amount of mana\n'Looks quite menacing'
 BuffName.UmystickDelay=Umystick Delay
-BuffDescription.UmystickDelay=Decreases your mana regen, and you can no longer use the Umystick to double jump
+BuffDescription.UmystickDelay=Decreases your mana regeneration and you can no longer use the Umystick to double jump
 
 ItemName.Narrizuul=Narrizuul
 ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n{$Mods.AQMod.Tooltips.Nalyddd}
@@ -245,18 +248,18 @@ ItemTooltip.StudiesoftheInkblot='Rorschach in Danmaku'
 ProjectileName.StudiesoftheInkblotBullet=Studies of the Inkblot
 
 ItemName.CursedKey=Cursed Key
-ItemTooltip.CursedKey=Summons a trapper to fight for you
+ItemTooltip.CursedKey=Summons a demonic trapper to fight for you
 ProjectileName.TrapperMinion=Trapper
 ProjectileName.TrapperMinionBlast=Trapper
 ProjectileName.TrapperMinionExplosion=Trapper
 BuffName.Trapper=Trapper
-BuffDescription.Trapper=The trapper will fight for you
+BuffDescription.Trapper=The demonic trapper will fight for you
 
 ItemName.PiranhaPot=Piranha Pot
-ItemTooltip.PiranhaPot=Summons a vicious piranha plant to fight for you
-ProjectileName.PiranhaPlant=Piranha Plant
-BuffName.PiranhaPlant=Piranha Plant
-BuffDescription.PiranhaPlant=The piranha plant will fight for you
+ItemTooltip.PiranhaPot=Summons a vicious plant to fight for you
+ProjectileName.PiranhaPlant=Plant
+BuffName.PiranhaPlant=Plant
+BuffDescription.PiranhaPlant=The plant will fight for you
 
 ItemName.Skrawler=Skrawler
 ItemTooltip.Skrawler=Shoots a deadly flame bolt
@@ -266,11 +269,11 @@ ItemName.SnowflakeCannon=Snowflake Cannon
 ItemTooltip.SnowflakeCannon=Launches many snowballs at once\n66% chance to not consume ammo
 
 ItemName.Snowgrave=Snowgrave
-ItemTooltip.Snowgrave=Summons a snowblast from below\n'Watch what happens when I cast a spell I don't know!'
+ItemTooltip.Snowgrave=Summons a snowblast from below\nCasting will drain your magic power for a short time\n'Watch what happens when I cast a spell I don't know!'
 
 ItemName.UltimateSword=Ultimate Sword
 ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
-ItemTooltipExtra0.UltimateSword=Only obtainable from Omega Starite while there is a Glimmer in the sky
+ItemTooltipExtra.UltimateSword.0=Only obtainable from Omega Starite while there is a glimmer in the sky
 ProjectileName.UltimateSword=Ultimate Sword
 
 # Pets
@@ -342,7 +345,14 @@ ItemName.XenonMushroom=Xenon Mushroom
 ItemTooltip.XenonMushroom=Emits blue light\n'Gets brighter when you touch it'
 MapObject.NobleMushrooms=Noble Mushroom
 
+#===========================#
 # Tools
+#===========================#
+
+ItemName.TheFan=Pumpinator
+ItemTooltip.TheFan=Can push things in any direction\nChanges the speed of the wind\n'Handheld inspiration!'
+ItemTooltipExtra.TheFan.0=Strong space winds may cause new creatures to appear
+
 ItemName.VampireHook=Bloodline
 ItemTooltip.VampireHook=Automatically aims towards nearby enemies\nWhen attached to an enemy, it drains its life
 
@@ -350,10 +360,10 @@ ItemName.BlackBookofUntoldLegends='Untold Legends'
 ItemTooltip.BlackBookofUntoldLegends=Summons the Hermit Crab merchant
 
 ItemName.Cosmicanon=Cosmicanon
-ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer Event from naturally spawning\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
+ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer from naturally spawning\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 ItemTooltipExtra.Cosmicanon=You can toggle this function by pressing {0}
 ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=Blood Moons Prevented: {0}
-ItemTooltipExtra.Cosmicanon.GlimmersPrevented=Glimmer Events Prevented: {0}
+ItemTooltipExtra.Cosmicanon.GlimmersPrevented=Glimmers Prevented: {0}
 ItemTooltipExtra.Cosmicanon.EclipsesPrevented=Eclipses Prevented: {0}
 
 ToggleCosmicanon.False=Moon events can occur again
@@ -381,8 +391,8 @@ ItemName.Nimrod=Nimrod
 ItemTooltip.Nimrod=Summons a fishing cloud which spawns 3 lightning bobbers to catch fish\nCatches fish faster during the rain
 
 ItemName.CosmicTelescope=Cosmic Telescope
-ItemTooltip.CosmicTelescope=Shows the location of the Glimmer Event and some other related info on the map
-MapLayerToggle.CosmicTelescope=Shows the location of the Glimmer Event and some other related info on the map
+ItemTooltip.CosmicTelescope=Shows the source of the Glimmer and some other related info on the map
+MapLayerToggle.CosmicTelescope=Shows the source of the Glimmer and some other related info on the map
 
 ItemName.DungeonMap=Vial of Blood
 ItemTooltip.DungeonMap=Shows the location of the Dungeon\nPressing the map icon of the Dungeon allows you to teleport to it
@@ -513,7 +523,15 @@ ItemTooltip.CrabClock='What time is it? Crabby time.'
 # Walls
 ItemName.OceanRavineWall=Crab Crevice Wall
 
+# Exporter Crates
+ItemName.OverworldPalette=Overworld Palette
+ItemTooltip.OverworldPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
+ItemName.CavernPalette=Cavern Palette
+ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
+
 # Tooltips
+Tooltips.PaletteDrop=The item below is guaranteed to drop
+Tooltips.EffectActive=Is Active:
 Tooltips.IncreasedMinions=Increases your max number of minions
 Tooltips.SuspiciousLooking='I know what you're thinking...'
 Tooltips.Nalyddd='Smells like roses'
@@ -697,7 +715,7 @@ EventProgress.GlimmerEvent={0} tiles away from the center
 BossChecklistDesc.GlimmerEvent=Happens naturally at night. Can alternatively be summoned with a [i:{0}]. Ends when the sun rises.
 EventWarning.GlimmerEvent=A glimmer appears in the sky...
 EventEnding.GlimmerEvent=The glimmer begins to fade away...
-BossChecklistDesc.OmegaStarite=Summoned by using an {0} at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event.
+BossChecklistDesc.OmegaStarite=Summoned by using an {0} at night. Can also be summoned by interacting with the sword located at the source of the Glimmer.
 
 EventName.GaleStreams=Gale Streams
 BossChecklistDesc.GaleStreams=Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:{0}]
@@ -919,7 +937,6 @@ ItemTooltip.Quasicrystal=True melee crits on enemies channel the damage to the c
 ##############
 ItemName.Crabsol=Crabsol
 ItemName.CrabsonBag=Treasure Bag
-ItemName.MythicStarfruit=Mythic Starfruit
 ItemName.OmegaStariteMask=Omega Starite Mask
 ItemName.OmegaStariteTrophy=Omega Starite Trophy
 ItemName.StariteBag=Treasure Bag
@@ -1089,9 +1106,6 @@ ItemName.GoldPowder=Gold Powder
 ItemTooltip.GoldPowder=Converts critters into their golden counterparts
 ItemName.FertilePowder=Fertile Powder
 ItemTooltip.FertilePowder=Forces tiles to grow
-ItemName.TheFan=Pumpinator
-ItemTooltip.TheFan=Can push things in any direction\nChanges the speed of the wind\n'Handheld inspiration!'
-#
 #
 ##################################################################################
 # Item Tooltips																	 #
@@ -1118,9 +1132,7 @@ ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
 ItemTooltip.Crabsol=Only the strongest of people can wield this weapon in honor
 ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
 # Omega Starite
-ItemTooltip.MythicStarfruit=Begins the Glimmer Event
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
-ItemTooltip.UltimateStarfruit=Left click summons {$Mods.AQMod.NPCName.OmegaStarite} at night\nRight click toggles the Glimmer Event\n{$Mods.AQMod.Common.NotConsumable}
 ##############
 # Buff Items #
 ##############
@@ -1161,7 +1173,7 @@ ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 # Placeable #
 #############
 # World Interactors
-ItemTooltip.GlimmeringStatue=Has a very high chance to attract the Ultimate Sword during the Glimmer Event
+ItemTooltip.GlimmeringStatue=Has a very high chance to attract the source of the glimmer
 # Other Placeables
 ItemTooltip.FishingCraftingStation=Used to craft special fishing items
 ItemTooltip.GlobeItem='Explore the world'
@@ -1480,7 +1492,7 @@ ServerConfig.EvilProgressionLock=World-Evil Progression Lock
 ServerConfig.EvilProgressionLockTooltip=Ebonstone, Crimstone, Shadow Orbs and Crimson Hearts can no longer be destroyed by explosives until a boss has been defeated.
 
 ServerConfig.HarderOmegaStarite=Omega Starite always uses Harder AI
-ServerConfig.HarderOmegaStariteTooltip=Makes Omega Starite always use its Glimmer Event version even when the Glimmer Event is not active\nThis will not mean it will drop the Ultimate Sword outside of the Glimmer Event\nCannot be changed if Omega Starite is alive.
+ServerConfig.HarderOmegaStariteTooltip=Makes Omega Starite always use its glimmer event version even when the glimmer event is not active\nThis will not mean it will drop the Ultimate Sword outside of the glimmer event\nCannot be changed if Omega Starite is alive.
 
 ServerConfig.JellyfishNecklace=Remove Jellyfish Necklace drop from Blue Jellyfish ([i:1303])
 ServerConfig.JellyfishNecklaceTooltip=If you disable this, the Blue Jellyfish would be able to drop both the Jellyfish Necklace and Shock Collar.

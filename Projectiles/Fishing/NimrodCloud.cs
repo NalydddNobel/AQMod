@@ -1,5 +1,4 @@
-﻿using AQMod.Assets;
-using AQMod.Common.Graphics;
+﻿using AQMod.Common.Graphics;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -101,7 +100,10 @@ namespace AQMod.Projectiles.Fishing
             }
             projectile.timeLeft = 10;
             if (Main.myPlayer == projectile.owner && gotoPosition == new Vector2(0f, 0f))
+            {
                 gotoPosition = Main.MouseWorld + new Vector2(0f, -20f);
+                projectile.netUpdate = true;
+            }
             if ((projectile.Center - gotoPosition).Length() < 10f)
             {
                 gotoPosition = new Vector2(-1f, -1f);
@@ -119,11 +121,13 @@ namespace AQMod.Projectiles.Fishing
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(gotoPosition.X);
+            writer.Write(gotoPosition.Y);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             gotoPosition.X = reader.ReadSingle();
+            gotoPosition.Y = reader.ReadSingle();
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

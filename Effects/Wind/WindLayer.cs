@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Common.Graphics;
 using AQMod.Common.Graphics.DrawTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

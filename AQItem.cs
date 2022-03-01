@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Common.Utilities.Colors;
 using AQMod.Common.WorldGeneration;

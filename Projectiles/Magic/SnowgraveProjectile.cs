@@ -31,7 +31,13 @@ namespace AQMod.Projectiles.Magic
                 projectile.localAI[0] = projectile.width / 6;
             }
             if (projectile.ai[0] > 0f)
+            {
                 projectile.ai[0]--;
+                if (projectile.ai[0] < 0f)
+                {
+                    projectile.ai[0] = 0f;
+                }
+            }
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -56,15 +62,13 @@ namespace AQMod.Projectiles.Magic
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
-            switch (target.type)
+            if (target.type == NPCID.TheDestroyer || target.type == NPCID.TheDestroyerBody || target.type == NPCID.TheDestroyerTail)
             {
-                case NPCID.TheDestroyer:
-                case NPCID.TheDestroyerBody:
-                case NPCID.TheDestroyerTail:
-                    {
-                        projectile.ai[0] += 50f;
-                    }
-                    break;
+                projectile.ai[0] += 12.5f;
+            }
+            else
+            {
+                projectile.ai[0] += 4f;
             }
             var center = target.Center;
             float l = target.Size.Length() / 4f;

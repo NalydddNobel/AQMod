@@ -1,9 +1,11 @@
-﻿using AQMod.Content.World.Events;
+﻿using AQMod.Common;
+using AQMod.Content.World.Events;
 using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Tools
@@ -32,9 +34,20 @@ namespace AQMod.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int index = AQItem.FindTTLineSpot(tooltips, "Tooltip");
-            tooltips.Insert(index, new TooltipLine(mod, "Knockback", AQItem.KBTooltip(item.knockBack)));
-            tooltips.Insert(index, new TooltipLine(mod, "Speed", AQItem.UseAnimTooltip(item.useTime)));
+            int index = AQItem.FindTTLineSpot(tooltips, "Tooltip#");
+            tooltips.Insert(index - 1, new TooltipLine(mod, "Knockback", AQItem.KBTooltip(item.knockBack)));
+            tooltips.Insert(index - 1, new TooltipLine(mod, "Speed", AQItem.UseAnimTooltip(item.useTime)));
+            if (!Main.hardMode || WorldDefeats.DownedGaleStreams)
+            {
+                return;
+            }
+            try
+            {
+                tooltips.Insert(index + 2, new TooltipLine(mod, "StartsGaleStreams", Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.TheFan.0")) { overrideColor = AQMod.MysteriousGuideTooltip, });
+            }
+            catch
+            {
+            }
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
