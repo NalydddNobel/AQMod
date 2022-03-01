@@ -402,7 +402,7 @@ MapLayerToggle.Beeswax=Shows the location of any visible Plantera bulbs
 
 # Potions
 ItemName.Baguette=Baguette
-ItemTooltip.ItemTooltip.Baguette=Supreme improvements to all stats\nGreatly improves life regeneration\n'Cake is just spongy bread'
+ItemTooltip.Baguette=Supreme improvements to all stats\nGreatly improves life regeneration\n'Cake is just spongy bread'
 BuffName.BaguetteBuff=Baguette
 BuffDescription.BaguetteBuff=Supreme improvements to all stats and greatly improved life regeneration
 
