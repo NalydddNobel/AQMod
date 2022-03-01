@@ -6,7 +6,16 @@ using Terraria.ModLoader.IO;
 namespace AQMod.Common
 {
     public class WorldDefeats : ModWorld
-    {
+    {        
+        /// <summary>
+        /// If WoF or Omega Starite have been defeated
+        /// </summary>
+        public static bool SudoHardmode => Main.hardMode || DownedStarite;
+        internal static bool AnyBossDefeated => AnyVanillaBossDefeated || AnyAequusBossDefeated;
+        public static bool AnyAequusBossDefeated => DownedCrabson || DownedStarite;
+        internal static bool AnyVanillaBossDefeated => NPC.downedSlimeKing || NPC.downedBoss1 || NPC.downedBoss2 ||
+                NPC.downedBoss3 || NPC.downedQueenBee || Main.hardMode;
+
         public static bool DownedStarite;
         public static bool DownedCrabson;
         public static bool DownedCurrents;
@@ -34,13 +43,12 @@ namespace AQMod.Common
 
         public static bool AirMerchantHasBeenFound { get; set; }
 
-        /// <summary>
-        /// If WoF or Omega Starite have been defeated
-        /// </summary>
-        public static bool SudoHardmode => Main.hardMode || DownedStarite;
+        public static bool terminatorArm;
 
         public override void Initialize()
         {
+            terminatorArm = false;
+
             DownedGlimmer = false;
             DownedStarite = false;
             DownedCrabson = false;
@@ -69,6 +77,8 @@ namespace AQMod.Common
         {
             return new TagCompound()
             {
+                ["terminatorArm"] = terminatorArm,
+
                 ["DownedGlimmer"] = DownedGlimmer,
                 ["DownedStarite"] = DownedStarite,
                 ["DownedCrabson"] = DownedCrabson,
@@ -96,6 +106,8 @@ namespace AQMod.Common
 
         public override void Load(TagCompound tag)
         {
+            terminatorArm = tag.GetBool("terminatorArm");
+
             DownedGlimmer = tag.GetBool("DownedGlimmer");
             DownedStarite = tag.GetBool("DownedStarite");
             DownedCrabson = tag.GetBool("DownedCrabson");
@@ -122,6 +134,8 @@ namespace AQMod.Common
 
         public override void NetSend(BinaryWriter writer)
         {
+            writer.Write(terminatorArm);
+
             writer.Write(DownedGlimmer);
             writer.Write(DownedStarite);
             writer.Write(DownedCrabson);
@@ -142,6 +156,8 @@ namespace AQMod.Common
 
         public override void NetReceive(BinaryReader reader)
         {
+            terminatorArm = reader.ReadBoolean();
+
             DownedGlimmer = reader.ReadBoolean();
             DownedStarite = reader.ReadBoolean();
             DownedCrabson = reader.ReadBoolean();
@@ -162,26 +178,6 @@ namespace AQMod.Common
             TownNPCLavaImmunity = reader.ReadBoolean();
             TownNPCMoveAtNight = reader.ReadBoolean();
             OmegaStariteIntroduction = reader.ReadBoolean();
-        }
-
-        internal static bool AnyBossDefeated()
-        {
-            return AnyVanillaBossDefeated() || AnyAequusBossDefeated();
-        }
-
-        public static bool AnyAequusBossDefeated()
-        {
-            return DownedCrabson || DownedStarite;
-        }
-
-        internal static bool AnyVanillaBossDefeated()
-        {
-            return NPC.downedSlimeKing ||
-                NPC.downedBoss1 ||
-                NPC.downedBoss2 ||
-                NPC.downedBoss3 ||
-                NPC.downedQueenBee ||
-                Main.hardMode;
         }
     }
 }

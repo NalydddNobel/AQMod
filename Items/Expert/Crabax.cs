@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Boss.Expert
+namespace AQMod.Items.Expert
 {
     public sealed class Crabax : ModItem
     {
@@ -12,13 +12,13 @@ namespace AQMod.Items.Boss.Expert
             item.height = 60;
             item.melee = true;
             item.damage = 20;
-            item.useTime = 60;
-            item.useAnimation = 60;
+            item.useTime = 40;
+            item.useAnimation = 40;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.knockBack = 10f;
-            item.axe = 45; // has the highest axe power
+            item.axe = 25; // has the highest axe power
             item.tileBoost = 5;
-            item.value = Item.sellPrice(gold: 1);
+            item.value = Item.sellPrice(gold: 2);
             item.UseSound = SoundID.Item1;
             item.rare = ItemRarityID.Blue;
             item.autoReuse = true;

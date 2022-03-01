@@ -99,7 +99,7 @@ namespace AQMod
             switch (type)
             {
                 case TileID.ShadowOrbs:
-                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated() || Main.LocalPlayer.HeldItem.hammer >= 60;
+                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated|| Main.LocalPlayer.HeldItem.hammer >= 60;
             }
             if (j > 1)
             {
@@ -115,10 +115,10 @@ namespace AQMod
             {
                 case TileID.Ebonstone:
                 case TileID.Crimstone:
-                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated() || j < 400;
+                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated|| j < 400;
 
                 case TileID.ShadowOrbs:
-                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated();
+                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated;
             }
             if (j > 1)
             {

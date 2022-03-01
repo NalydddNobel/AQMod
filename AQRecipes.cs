@@ -94,11 +94,11 @@ namespace AQMod
             }
         }
 
-        public class r_MolitePotionRecipe : ModRecipe
+        public class RecipeStarbyte : ModRecipe
         {
             private readonly MoliteTag.StarbyteTagData _potion;
 
-            public r_MolitePotionRecipe(Mod mod, ushort potionType) : base(mod)
+            public RecipeStarbyte(Mod mod, ushort potionType) : base(mod)
             {
                 _potion = new MoliteTag.StarbyteTagData(potionType);
             }
@@ -110,9 +110,9 @@ namespace AQMod
 
             internal static void ConstructRecipe(int potionItem, ModItem item)
             {
-                var recipe = new r_MolitePotionRecipe(item.mod, (ushort)potionItem);
-                recipe.AddIngredient(ModContent.ItemType<Molite>());
+                var recipe = new RecipeStarbyte(item.mod, (ushort)potionItem);
                 recipe.AddIngredient(potionItem);
+                recipe.AddIngredient(ModContent.ItemType<Molite>());
                 recipe.AddTile(TileID.DemonAltar);
                 recipe.SetResult(item);
                 var molite = (MoliteTag)recipe.createItem.modItem;

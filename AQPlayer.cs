@@ -14,7 +14,7 @@ using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.Fishing;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.Boss.Expert;
+using AQMod.Items.Expert;
 using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.NPCs;
 using AQMod.Projectiles;
@@ -162,11 +162,11 @@ namespace AQMod
                         return;
                     }
                 }
-                if (AQBuff.Sets.IsFoodBuff[type])
+                if (AQBuff.Sets.FoodBuff.Contains(type))
                 {
                     for (int i = 0; i < Player.MaxBuffs; i++)
                     {
-                        if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.IsFoodBuff[self.buffType[i]])
+                        if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.FoodBuff.Contains(self.buffType[i]))
                         {
                             self.DelBuff(i);
                             i--;
@@ -1579,7 +1579,7 @@ namespace AQMod
             List<Color> poofColors = new List<Color>();
             for (int i = 0; i < spreader.buffType.Length; i++)
             {
-                if (spreader.buffType[i] > 0 && !AQBuff.Sets.CantBeSpreadToOtherNPCs[spreader.buffType[i]] && !npc.buffImmune[spreader.buffType[i]])
+                if (spreader.buffType[i] > 0 && !AQBuff.Sets.NoSpread.Contains(spreader.buffType[i]) && !npc.buffImmune[spreader.buffType[i]])
                 {
                     int b = npc.FindBuffIndex(spreader.buffType[i]);
                     if (b == -1)
@@ -1778,7 +1778,7 @@ namespace AQMod
         {
             for (int i = 0; i < Player.MaxBuffs; i++)
             {
-                if (Main.player[player].buffTime[i] > 0 && AQBuff.Sets.IsFoodBuff[Main.player[player].buffType[i]])
+                if (Main.player[player].buffTime[i] > 0 && AQBuff.Sets.FoodBuff.Contains(Main.player[player].buffType[i]))
                 {
                     return true;
                 }

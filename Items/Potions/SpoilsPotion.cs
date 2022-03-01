@@ -16,12 +16,12 @@ namespace AQMod.Items.Potions
             item.useTime = 15;
             item.useTurn = true;
             item.UseSound = SoundID.Item3;
-            item.maxStack = 999;
+            item.maxStack = 30;
             item.consumable = true;
             item.rare = ItemRarityID.LightRed;
             item.value = Item.buyPrice(platinum: 1);
             item.buffTime = 7200;
-            item.buffType = ModContent.BuffType<SpoilsPotionBuff>();
+            item.buffType = ModContent.BuffType<Spoiled>();
         }
     }
 }

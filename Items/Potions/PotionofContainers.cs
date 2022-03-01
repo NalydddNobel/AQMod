@@ -19,7 +19,7 @@ namespace AQMod.Items.Potions
             item.consumable = true;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(silver: 50);
-            item.maxStack = 999;
+            item.maxStack = 30;
         }
 
         private static int GetChestIndex()

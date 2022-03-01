@@ -13,7 +13,7 @@ namespace AQMod.Items.Potions
             item.height = 20;
             item.value = Item.sellPrice(silver: 15);
             item.rare = AQItem.Rarities.GaleStreamsRare - 1;
-            item.maxStack = 999;
+            item.maxStack = 30;
             item.consumable = true;
             item.UseSound = SoundID.Item2;
             item.useStyle = ItemUseStyleID.EatingUsing;

@@ -1,7 +1,36 @@
 ﻿
-##############
-Items
-##############
+##=========================##
+## Items
+##=========================##
+
+#===========================#
+# Tooltips
+#===========================#
+
+Tooltips.Concocted=Used in potion concoctions
+Tooltips.PaletteDrop=The item below is guaranteed to drop
+Tooltips.EffectActive=Disabled
+Tooltips.EffectActive=Active
+Tooltips.IncreasedMinions=Increases your max number of minions
+Tooltips.SuspiciousLooking='I know what you're thinking...'
+Tooltips.Nalyddd='Smells like roses'
+Tooltips.HookBarbBlacklist=Does not get affected by hook barb upgrades
+Tooltips.HookBarb=Your grappling hooks inflict damage
+Tooltips.DemonSiegeUpgrade=Can be upgraded at a Hell Altar
+Tooltips.DedicatedItem=Dedicated Item
+Tooltips.Unobtainable=A relic birthed in an alternate universe
+Tooltips.ManaPerSecond=Uses {0} mana per second
+Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed\nYou will not take any fall damage
+Tooltips.InventoryPiggyBankFunction=Works in your inventory or piggy bank
+Tooltips.ToggleKeyBind=You can toggle this function by pressing {0}
+
+
+
+
+ItemName.Molite=Starbyte
+ItemTooltip.Molite={$Mods.AQMod.Tooltips.Concocted}\nDoubles the length of potions
+ItemName.MoliteTag=Starbyte Potion
+ItemTooltip.MoliteTag=Has double the length
 
 ItemName.MushroomClam=Exotic Clam
 ItemTooltip.MushroomClam=Summons Crabson at the beach or crab crevice\n{$Mods.AQMod.Common.NotConsumable}
@@ -18,7 +47,16 @@ ItemTooltip.MythicStarfruit=Summons a strange glimmer
 BuffName.ManaDrain=Magical Drain
 BuffDescription.ManaDrain=Decreases magic damage by 90%
 
+
+
+
+
+#===========================#
 # Accessories
+#===========================#
+
+ItemName.BloodPlasma=Blood Plasma
+ItemTooltip.BloodPlasma=You will drink a healing potion when you get fatally hit
 
 ItemName.TargeoftheBlodded=Spike Shield
 ItemTooltip.TargeoftheBlodded=Increases armor penetration by 2\nAllows the player to slide down walls\nImproved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
@@ -105,7 +143,13 @@ ItemName.Thunderbird=Thunderbird
 ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\nHas immense horizontal speed!\nHitting enemies strikes them with lightning
 NPCName.Thunderbird=Thunderbird
 
+
+
+
+
+#===========================#
 # Armor
+#===========================#
 
 ItemName.FlowerCrown=Flower Crown
 ItemTooltip.FlowerCrown=Ocassionally summons damaging petals which blow in the wind
@@ -135,7 +179,13 @@ ItemName.LightbulbGreaves=Lightbulb Greaves
 ItemTooltip.LightbulbGreaves=Increases your max number of minions
 ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% less damage
 
-# Materials
+
+
+
+#===========================#
+# Weapons
+#===========================#
+
 ItemName.Baozhu=Baozhu
 ItemTooltip.Baozhu=A large explosion that puts enemies on fire\nLights the area on fire for a while
 
@@ -154,20 +204,7 @@ ProjectileName.DeltoidArrow=Deltoid Arrow
 ItemName.Lightbulb=Lightbulb
 ItemTooltip.Lightbulb=Emits light using the power of stars
 
-ItemName.Fluorescence=Fluorescence
-ItemName.SiphonTentacle=Siphon Tentacle
 
-ItemName.CrustaciumBar=Crustacium Bar
-ItemName.CrustaciumBlob=Crustacium Blob
-ItemName.CrustaciumOre=Crustacium Ore
-
-ItemName.LightMatter=Light Matter
-ItemTooltip.LightMatter=Radiates light and interstellar power
-
-ItemName.NuclearFeather=Nuclear Feather
-ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
-
-# Weapons
 ItemName.CrimsonHellSword=Cauterizer
 ItemTooltip.CrimsonHellSword=Shoots a wave of explosive demonic energy\nSword hits inflict crimson hellfire\n'That's gotta burn'
 ProjectileName.Burnterizer=First Degree Burns
@@ -276,74 +313,54 @@ ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInf
 ItemTooltipExtra.UltimateSword.0=Only obtainable from Omega Starite while there is a glimmer in the sky
 ProjectileName.UltimateSword=Ultimate Sword
 
-# Pets
-ItemName.HeartLamp=Heart Lamp
-ItemTooltip.HeartLamp=Summons a heart moth which increases life regen and provides light
-BuffName.HeartMothBuff=Heart Moth
-BuffDescription.HeartMothBuff=Gives you increased life regen and emits light
 
-ItemName.StariteinaBottle=Starite in a Bottle
-ItemTooltip.StariteinaBottle=Summons a dwarf starite to provide light\n{$Mods.AQMod.Tooltips.SuspiciousLooking}
-BuffName.DwarfStariteBuff=Dwarf Starite
-BuffDescription.DwarfStariteBuff='The more you know'
-ProjectileName.DwarfStaritePet=Dwarf Starite
 
-ItemName.DragonBall=Dragon Ball
-ItemTooltip.DragonBall=Summons an omega starite mini
-BuffName.OmegaStariteBuff=Omega Starite Mini
-BuffDescription.OmegaStariteBuff=The smallest solar system imaginable
-ProjectileName.OmegaStaritePet=Omega Starite
 
-ItemName.YuckyOrb=Charming Lure
-ItemTooltip.YuckyOrb=Summons a pet angler fish to provide light
-BuffName.AnglerFish=Angler Fish
-BuffDescription.AnglerFish=Is secretly attracted to its own light
+#===========================#
+# Materials
+#===========================#
 
-# Dyes
-ItemName.CursorDyeRemover=Cursor Dye Remover
-ItemTooltip.CursorDyeRemover=Removes any applied cursor dye
+ItemName.Fluorescence=Fluorescence
+ItemName.SiphonTentacle=Siphon Tentacle
 
-ItemName.HealthCursorDye=Health Cursor Dye
-ItemName.ManaCursorDye=Mana Cursor Dye
-ItemName.SwordCursorDye=Sword Cursor Dye
-ItemName.DemonicCursorDye=Demonic Cursor Dye
+ItemName.CrustaciumBar=Crustacium Bar
+ItemName.CrustaciumBlob=Crustacium Blob
+ItemName.CrustaciumOre=Crustacium Ore
 
-ItemName.NalydDye=Summit Dye
-ItemTooltip.NalydDye={$Mods.AQMod.Tooltips.Nalyddd}
+ItemName.LightMatter=Light Matter
+ItemTooltip.LightMatter=Radiates light and interstellar power
 
-ItemName.RedSpriteDye=Scorching Dye
-ItemName.FrostbiteDye=Frostbite Dye
-ItemName.EnchantedDye=Enchanted Dye
-ItemName.ScrollDye=Scroll Dye
-ItemName.HellBeamDye=Hell Beam Dye
-ItemName.BreakdownDye=Breakdown Dye
-ItemName.DiscoDye=Disco Dye
-ItemName.HypnoDye=Hypno Dye
-ItemName.SimplifiedDye=Simplified Dye
-ItemName.OutlineDye=Outline Dye
-ItemName.RainbowOutlineDye=Rainbow Outline Dye
+ItemName.NuclearFeather=Nuclear Feather
+ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'They say it's from the flawless wings of Yatagaratsu'
 
-# Tiles
-ItemName.SeaPickle=Sea Pickle
-ItemTooltip.SeaPickle='You hear a voice telling you to flip it over'
-MapObject.SeaPickle=Sea Pickle
+ItemName.CrabPot=Crab Pot
+ItemTooltip.CrabPot=Uses bait to catch things in the water
 
-ItemName.CrabsonTrophy=Crabson Trophy
+ItemName.PalePufferfish=Pale Pufferfish
+ItemTooltip.PalePufferfish=Can cure you of many debuffs\nCan cure vampirism
 
-ItemName.HellTombstone=Hell Tombstone
-MapObject.HellTombstone=Hell Tombstone
+ItemName.VampireSquid=Vampire Squid
+ItemTooltip.VampireSquid=Gives you vampirism
+BuffName.Vampirism=Vampirism
+BuffDescription.Vampirism=You may become a vampire after this...
+BuffName.VampirismDay=Sunlight
+BuffDescription.VampirismDay=Greatly decreased stats, you no longer get buffs from food
 
-ItemName.GoreNestItem=Gore Nest
-ItemTooltip.GoreNestItem=Use an item crafted with demonite or crimtane at this altar
-MapObject.GoreNest=Gore Nest
+ItemName.Blobfish=Blobfish
+ItemTooltip.Blobfish='Looking at it without puking requires you to not have gag reflexes'
 
-ItemName.ArgonMushroom=Argon Mushroom
-ItemTooltip.ArgonMushroom=Emits red light\n'Dormant and inanimate'
-ItemName.KryptonMushroom=Krypton Mushroom
-ItemTooltip.KryptonMushroom=Emits green light\n'Can show vital weaknesses in super beings'
-ItemName.XenonMushroom=Xenon Mushroom
-ItemTooltip.XenonMushroom=Emits blue light\n'Gets brighter when you touch it'
-MapObject.NobleMushrooms=Noble Mushroom
+ItemName.Fizzler=Fizzler
+
+ItemName.Nessie=Nessie
+
+ItemName.UltraEel=Ultra Eel
+ItemTooltip.UltraEel=The offspring of an ancient Starite species
+
+ItemName.Combfish=Combfish
+ItemTooltip.Combfish=Has regenerative properties
+
+ItemName.LarvaEel=Larva Eel
+ItemTooltip.LarvaEel=Provides life regeneration
 
 #===========================#
 # Tools
@@ -410,16 +427,67 @@ ItemName.Beeswax=Beeswax
 ItemTooltip.Beeswax=Shows the location of any visible Plantera bulbs
 MapLayerToggle.Beeswax=Shows the location of any visible Plantera bulbs
 
+
+
+
+
+#===========================#
+# Tiles
+#===========================#
+
+ItemName.SedimentSandBlock=Sedimentary Sand Block
+ItemTooltip.SedimentSandBlock=Does not fall
+
+ItemName.SeaPickle=Sea Pickle
+ItemTooltip.SeaPickle='You hear a voice telling you to flip it over'
+MapObject.SeaPickle=Sea Pickle
+
+ItemName.CrabsonTrophy=Crabson Trophy
+
+ItemName.HellTombstone=Hell Tombstone
+MapObject.HellTombstone=Hell Tombstone
+
+ItemName.GoreNestItem=Gore Nest
+ItemTooltip.GoreNestItem=Use an item crafted with demonite or crimtane at this altar\nCounts as a demon/crimson altar
+MapObject.GoreNest=Gore Nest
+
+ItemName.ArgonMushroom=Argon Mushroom
+ItemTooltip.ArgonMushroom=Emits red light\n'Dormant and inanimate'
+ItemName.KryptonMushroom=Krypton Mushroom
+ItemTooltip.KryptonMushroom=Emits green light\n'Can show vital weaknesses in super beings'
+ItemName.XenonMushroom=Xenon Mushroom
+ItemTooltip.XenonMushroom=Emits blue light\n'Gets brighter when you touch it'
+MapObject.NobleMushrooms=Noble Mushroom
+
+# Furniture
+ItemName.CrabClock=Crab Wall Clock
+ItemTooltip.CrabClock='What time is it? Crabby time.'
+
+# Walls
+ItemName.OceanRavineWall=Crab Crevice Wall
+
+# Exporter Crates
+ItemName.OverworldPalette=Overworld Palette
+ItemTooltip.OverworldPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
+ItemName.CavernPalette=Cavern Palette
+ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
+
+
+
+
+#===========================#
 # Potions
+#===========================#
+
 ItemName.Baguette=Baguette
 ItemTooltip.Baguette=Supreme improvements to all stats\nGreatly improves life regeneration\n'Cake is just spongy bread'
 BuffName.BaguetteBuff=Baguette
 BuffDescription.BaguetteBuff=Supreme improvements to all stats and greatly improved life regeneration
 
-ItemName.SpoilsPotion=Spoils Potion
-ItemTooltip.SpoilsPotion=Enemies drop twice as much loot
-BuffName.SpoilsPotionBuff=Spoiled
-BuffDescription.SpoilsPotionBuff=Enemies drop twice as much loot\n'You are such a spoiled brat!'
+ItemName.SpoilsPotion=Plethora Potion
+ItemTooltip.SpoilsPotion=Enemies drop twice as much loot\n'You are such a spoiled brat!'
+BuffName.Spoiled=Plethora
+BuffDescription.Spoiled=Enemies drop twice as much loot
 
 ItemName.BloodthirstPotion=Bloodthirst Potion
 ItemTooltip.BloodthirstPotion=You drain some life when you kill an enemy
@@ -471,79 +539,81 @@ ItemTooltip.PeeledCarrot=Medium improvements to all stats and grants you night v
 BuffName.PeeledCarrotBuff=Eyesight
 BuffDescription.PeeledCarrotBuff=Medium improvements to all stats and grants you night vision
 
-# Fish
-ItemName.CrabPot=Crab Pot
-ItemTooltip.CrabPot=Uses bait to catch things in the water
 
-ItemName.PalePufferfish=Pale Pufferfish
-ItemTooltip.PalePufferfish=Can cure you of many debuffs\nCan cure vampirism
 
-ItemName.BloodPlasma=Blood Plasma
-ItemTooltip.BloodPlasma=You will drink a healing potion when you get fatally hit
 
-ItemName.VampireSquid=Vampire Squid
-ItemTooltip.VampireSquid=Gives you vampirism
-BuffName.Vampirism=Vampirism
-BuffDescription.Vampirism=You may become a vampire after this...
-BuffName.VampirismDay=Sunlight
-BuffDescription.VampirismDay=Greatly decreased stats, you no longer get buffs from food
 
-ItemName.Blobfish=Blobfish
-ItemTooltip.Blobfish='Looking at it without puking requires you to not have gag reflexes'
+#===========================#
+# Dyes
+#===========================#
 
-ItemName.Fizzler=Fizzler
+ItemName.CursorDyeRemover=Cursor Dye Remover
+ItemTooltip.CursorDyeRemover=Removes any applied cursor dye
 
-ItemName.Nessie=Nessie
+ItemName.HealthCursorDye=Health Cursor Dye
+ItemName.ManaCursorDye=Mana Cursor Dye
+ItemName.SwordCursorDye=Sword Cursor Dye
+ItemName.DemonicCursorDye=Demonic Cursor Dye
 
-ItemName.UltraEel=Ultra Eel
-ItemTooltip.UltraEel=The offspring of an ancient Starite species
+ItemName.NalydDye=Summit Dye
+ItemTooltip.NalydDye={$Mods.AQMod.Tooltips.Nalyddd}
 
-ItemName.Combfish=Combfish
-ItemTooltip.Combfish=Has regenerative properties
+ItemName.RedSpriteDye=Scorching Dye
+ItemName.FrostbiteDye=Frostbite Dye
+ItemName.EnchantedDye=Enchanted Dye
+ItemName.ScrollDye=Scroll Dye
+ItemName.HellBeamDye=Hell Beam Dye
+ItemName.BreakdownDye=Breakdown Dye
+ItemName.DiscoDye=Disco Dye
+ItemName.HypnoDye=Hypno Dye
+ItemName.SimplifiedDye=Simplified Dye
+ItemName.OutlineDye=Outline Dye
+ItemName.RainbowOutlineDye=Rainbow Outline Dye
 
-ItemName.LarvaEel=Larva Eel
-ItemTooltip.LarvaEel=Gives you 3 minutes of honey but inflicts potion sickness
+#===========================#
+# Pets
+#===========================#
 
+ItemName.HeartLamp=Heart Lamp
+ItemTooltip.HeartLamp=Summons a heart moth which increases life regen and provides light
+BuffName.HeartMothBuff=Heart Moth
+BuffDescription.HeartMothBuff=Gives you increased life regen and emits light
+
+ItemName.StariteinaBottle=Starite in a Bottle
+ItemTooltip.StariteinaBottle=Summons a dwarf starite to provide light\n{$Mods.AQMod.Tooltips.SuspiciousLooking}
+BuffName.DwarfStariteBuff=Dwarf Starite
+BuffDescription.DwarfStariteBuff='The more you know'
+ProjectileName.DwarfStaritePet=Dwarf Starite
+
+ItemName.DragonBall=Dragon Ball
+ItemTooltip.DragonBall=Summons an omega starite mini
+BuffName.OmegaStariteBuff=Omega Starite Mini
+BuffDescription.OmegaStariteBuff=The smallest solar system imaginable
+ProjectileName.OmegaStaritePet=Omega Starite
+
+ItemName.YuckyOrb=Charming Lure
+ItemTooltip.YuckyOrb=Summons a pet angler fish to provide light
+BuffName.AnglerFish=Angler Fish
+BuffDescription.AnglerFish=Is secretly attracted to its own light
+
+
+
+
+#===========================#
 # Quest Fish
+#===========================#
+
 ItemName.WaterFisg=Water Fish
 QuestFish.WaterFisg=It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.
+
 ItemName.Crabdaughter=Crabdaughter
 QuestFish.Crabdaughter=Seems like some new fish have entered the ocean recently, one of these fish seems to be related this massive crab with clam as claws. The only thing that makes me think it's related is that it's a clam with crab claws. It's an amazing sight so catch one for me.
 
 FishingLocation.AnywhereFishing=Caught anywhere
 FishingLocation.BeachFishing=Caught in Ocean
 
-# Tiles
-ItemName.SedimentSandBlock=Sedimentary Sand Block
 
-# Furniture
-ItemName.CrabClock=Crab Wall Clock
-ItemTooltip.CrabClock='What time is it? Crabby time.'
 
-# Walls
-ItemName.OceanRavineWall=Crab Crevice Wall
-
-# Exporter Crates
-ItemName.OverworldPalette=Overworld Palette
-ItemTooltip.OverworldPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
-ItemName.CavernPalette=Cavern Palette
-ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
-
-# Tooltips
-Tooltips.PaletteDrop=The item below is guaranteed to drop
-Tooltips.EffectActive=Is Active:
-Tooltips.IncreasedMinions=Increases your max number of minions
-Tooltips.SuspiciousLooking='I know what you're thinking...'
-Tooltips.Nalyddd='Smells like roses'
-Tooltips.HookBarbBlacklist=Does not get affected by hook barb upgrades
-Tooltips.HookBarb=Your grappling hooks inflict damage
-Tooltips.DemonSiegeUpgrade=Can be upgraded at a Hell Altar
-Tooltips.DedicatedItem=Dedicated Item
-Tooltips.Unobtainable=A relic birthed in an alternate universe
-Tooltips.ManaPerSecond=Uses {0} mana per second
-Tooltips.UmbrellaWeapon=You will fall slower while holding this, holding down will let you fall at regular speed\nYou will not take any fall damage
-Tooltips.InventoryPiggyBankFunction=Works in your inventory or piggy bank
-Tooltips.ToggleKeyBind=You can toggle this function by pressing {0}
 
 NPCName.SoldierCrabs=Soldier Crab
 ItemName.SoliderCrabsBanner=Soldier Crab Banner
@@ -985,8 +1055,6 @@ ItemName.JeweledTable=Jeweled Table
 # Other Misc
 ItemName.DwarfStariteItem=Dwarf Starite
 ItemName.CrabShell=Crab Shell
-ItemName.Molite=Starbyte
-ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
 ItemName.PotionofContainers=Containers Potion
 ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
 
@@ -1166,7 +1234,6 @@ ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
 ItemTooltip.CrabShell=It's oddly misshapen
-ItemTooltip.Molite=Doubles the length of potions
 ItemTooltip.PotionofContainers=Teleports you to a random chest in the world
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 #############

@@ -2,8 +2,8 @@
 using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
 using AQMod.Effects;
-using AQMod.Items.Boss.Expert;
 using AQMod.Items.Dyes;
+using AQMod.Items.Expert;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Weapons.Magic;

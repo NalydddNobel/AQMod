@@ -1,7 +1,7 @@
 ﻿using AQMod.Common;
 using AQMod.Content.Seasonal.Christmas;
 using AQMod.Items.Misc.Hair;
-using AQMod.Items.Potions;
+using AQMod.Items.Potions.Foods;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

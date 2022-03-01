@@ -44,6 +44,11 @@ namespace AQMod.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            if (Main.hardMode)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<IWillBeBack>());
+                nextSlot++;
+            }
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<GhostlyGrave>());
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<PowPunch>());

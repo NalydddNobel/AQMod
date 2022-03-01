@@ -15,7 +15,7 @@ namespace AQMod.Items.Potions
             item.useTime = 20;
             item.useTurn = true;
             item.UseSound = SoundID.Item2;
-            item.maxStack = 999;
+            item.maxStack = 30;
             item.consumable = true;
             item.rare = ItemRarityID.LightRed;
             item.value = Item.buyPrice(gold: 2);

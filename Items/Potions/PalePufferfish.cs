@@ -25,7 +25,7 @@ namespace AQMod.Items.Potions
         {
             for (int i = 0; i < Player.MaxBuffs; i++)
             {
-                if (player.buffTime[i] > 0 && AQBuff.Sets.CanBeRemovedByWhiteBloodCell[player.buffType[i]])
+                if (player.buffTime[i] > 0 && AQBuff.Sets.CanBeRemovedByWhiteBloodCell.Contains(player.buffType[i]))
                 {
                     player.DelBuff(i);
                     i--;

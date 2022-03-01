@@ -1,6 +1,6 @@
-﻿using AQMod.Assets;
-using AQMod.Dusts;
+﻿using AQMod.Dusts;
 using AQMod.Effects;
+using AQMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,6 +11,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.UI;
 
 namespace AQMod.Items.Potions
 {
@@ -120,9 +121,9 @@ namespace AQMod.Items.Potions
             }
         }
 
-        public override bool CloneNewInstances => true;
-
         public StarbyteTagData potion = StarbyteTagData.Default;
+
+        public override bool CloneNewInstances => true;
 
         public void SetupPotionStats()
         {
@@ -179,54 +180,111 @@ namespace AQMod.Items.Potions
             return true;
         }
 
-        public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            try
-            {
-                var color = BuffColorCache.GetColorFromItemID(potion.potionItemID);
-                var texture = TextureGrabber.GetItem(item.type);
-                Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, scale, SpriteEffects.None, 0f);
+            var item2 = AQItem.GetDefault(potion.potionItemID);
 
-                if (potion.BuffID < 0)
-                    return;
-                Texture2D potionTexture;
-                try
-                {
-                    potionTexture = TextureGrabber.GetBuff(potion.BuffID);
-                }
-                catch
-                {
-                    potionTexture = TextureGrabber.GetBuff(BuffID.ObsidianSkin);
-                }
-                float iconScale = 0.6f * scale;
-                Vector2 drawPos = position + frame.Size() / 2f * scale + new Vector2((40f - potionTexture.Width) * iconScale * Main.inventoryScale + 4f, (40f - potionTexture.Height) * iconScale * Main.inventoryScale + 4f);
-                Main.spriteBatch.Draw(potionTexture, drawPos, null, new Color(250, 250, 250, 250), 0f, potionTexture.Size() / 2f, iconScale, SpriteEffects.None, 0f);
-            }
-            catch
+            position -= Main.inventoryBackTexture.Size() * Main.inventoryScale / 2f;
+
+            var drawData = InvUI.GetDrawData(position, item2);
+
+            position += frame.Size() * drawData.scale / 2f;
+
+            drawData = InvUI.GetDrawData(position, item2);
+
+            position = drawData.drawPos;
+            frame = drawData.frame;
+
+            drawColor = drawData.drawColor;
+            origin = drawData.origin;
+            scale = drawData.scale * drawData.scale2;
+
+            var auraClr = BuffColorCache.GetColorFromItemID(potion.potionItemID);
+            auraClr *= 0.5f + AQUtils.Wave(Main.GlobalTime * 4f, -0.1f, 0.1f);
+            auraClr.A = 0;
+
+            spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position + new Vector2(2f, 0f), frame, auraClr, 0f, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position + new Vector2(-2f, 0f), frame, auraClr, 0f, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position + new Vector2(0f, 2f), frame, auraClr, 0f, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position + new Vector2(0f, -2f), frame, auraClr, 0f, origin, scale, SpriteEffects.None, 0f);
+
+            if (ItemLoader.PreDrawInInventory(AQItem.GetDefault(potion.potionItemID), spriteBatch, position, frame, drawColor, itemColor, origin, scale))
             {
-                var texture = Main.cdTexture;
-                Vector2 drawPos = position + frame.Size() / 2f * scale;
-                float intensity = 0.8f + ((float)Math.Sin(Main.GlobalTime * 3f + position.X + position.Y / 90f) + 1f) / 2f * 0.2f;
-                Main.spriteBatch.Draw(texture, drawPos, null, new Color(250, 250, 250, 250), 0f, texture.Size() / 2f, intensity, SpriteEffects.None, 0f);
+                spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position, frame, new Color(255, 255, 255, 0) * AQUtils.Wave(Main.GlobalTime * 4f, 0f, 0.4f), 0f, origin, scale, SpriteEffects.None, 0f);
             }
+            ItemLoader.PostDrawInInventory(AQItem.GetDefault(potion.potionItemID), spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+
+            return false;
         }
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
+            var item2 = AQItem.GetDefault(potion.potionItemID);
+            item2.position = item.position;
+            var auraClr = BuffColorCache.GetColorFromItemID(potion.potionItemID);
+            auraClr *= 0.75f;
+            auraClr.A = 0;
+            var position = AQItem.Commons.GetItemDrawPos_NoAnimation(item2);
+            var frame = new Rectangle(0, 0, Main.itemTexture[potion.potionItemID].Width, Main.itemTexture[potion.potionItemID].Height);
+            var origin = frame.Size() / 2f;
+
+            spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position + new Vector2(2f, 0f), frame, auraClr, rotation, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position + new Vector2(-2f, 0f), frame, auraClr, rotation, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position + new Vector2(0f, 2f), frame, auraClr, rotation, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position + new Vector2(0f, -2f), frame, auraClr, rotation, origin, scale, SpriteEffects.None, 0f);
+
+            if (ItemLoader.PreDrawInWorld(item2, spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI))
+            {
+                spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position, frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(Main.itemTexture[potion.potionItemID], position, frame, new Color(255, 255, 255, 0) * AQUtils.Wave(Main.GlobalTime * 4f, 0f, 0.4f), rotation, origin, scale, SpriteEffects.None, 0f);
+            }
+            return false;
+        }
+
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+        {
+            ItemLoader.PostDrawInWorld(AQItem.GetDefault(potion.potionItemID), spriteBatch, lightColor, alphaColor, rotation, scale, whoAmI);
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
             try
             {
-                var color = BuffColorCache.GetColorFromItemID(potion.potionItemID);
-                var texture = TextureGrabber.GetItem(item.type);
-                var drawCoordinates = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
-                var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
-                var drawRotation = rotation;
-                var origin = Main.itemTexture[item.type].Size() / 2;
-                Main.spriteBatch.Draw(texture, drawCoordinates, drawFrame, item.GetAlpha(color), drawRotation, origin, scale, SpriteEffects.None, 0);
+                foreach (var t in tooltips)
+                {
+                    if (t.mod == "Terraria" && t.Name == "ItemName")
+                    {
+                        t.text = Lang.GetItemName(potion.potionItemID).Value;
+                        break;
+                    }
+                }
+                string key;
+                string text;
+                if (potion.potionItemID < Main.maxItemTypes)
+                {
+                    key = "ItemTooltip." + ItemID.Search.GetName(potion.potionItemID);
+                    text = Language.GetTextValue(key);
+                }
+                else
+                {
+                    var potionItem = new Item();
+                    potionItem.netDefaults(potion.potionItemID);
+                    key = "Mods." + potionItem.modItem.mod.Name + ".ItemTooltip." + potionItem.modItem.Name;
+                    text = Language.GetTextValue(key);
+                }
+                if (text != key)
+                {
+                    int tooltipIndex = AQItem.FindTTLineSpot(tooltips, "Tooltip#");
+                    tooltips.Insert(tooltipIndex, new TooltipLine(mod, "OriginalPotionTooltip", text));
+                }
             }
-            catch
+            catch (Exception e)
             {
+                var aQMod = AQMod.GetInstance();
+                aQMod.Logger.Error(e.Message);
+                aQMod.Logger.Error(e.StackTrace);
             }
-            return base.PreDrawInWorld(spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
         }
 
         public override TagCompound Save()
@@ -268,45 +326,19 @@ namespace AQMod.Items.Potions
             SetupPotionStats();
         }
 
-        private Color GetTextColor(float time)
+        private bool CustomDataCheck(Item item)
         {
-            var color = BuffColorCache.GetColorFromItemID(potion.potionItemID);
-            color = Color.Lerp(color, new Color(255, 255, 255, 255), Main.mouseTextColor / 510f);
-            return color;
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            try
+            if (item.type < Main.maxItemTypes)
             {
-                string key;
-                string text;
-                if (potion.potionItemID < Main.maxItemTypes)
-                {
-                    key = "ItemTooltip." + ItemID.Search.GetName(potion.potionItemID);
-                    text = Language.GetTextValue(key);
-                }
-                else
-                {
-                    var potionItem = new Item();
-                    potionItem.netDefaults(potion.potionItemID);
-                    key = "Mods." + potionItem.modItem.mod.Name + ".ItemTooltip." + potionItem.modItem.Name;
-                    text = Language.GetTextValue(key);
-                }
-                if (text != key)
-                    tooltips.Add(new TooltipLine(mod, "OriginalPotionTooltip", text) { overrideColor = GetTextColor(Main.GlobalTime * 6f) });
+                return true;
             }
-            catch (Exception e)
-            {
-                var aQMod = AQMod.GetInstance();
-                aQMod.Logger.Error(e.Message);
-                aQMod.Logger.Error(e.StackTrace);
-            }
+            return !item.modItem.CloneNewInstances;
         }
-
-        public static bool CanBuffBeTurnedIntoMolitePotion(int buff)
+        private bool BuffCheck(Item item)
         {
-            return buff != BuffID.WellFed && buff != BuffID.Tipsy && !AQBuff.Sets.CantBeTurnedIntoMolite[buff];
+            return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.useStyle == ItemUseStyleID.EatingUsing
+                && item.healLife <= 0 && item.healMana <= 0 && item.damage < 0 && !Main.meleeBuff[item.buffType] &&
+                !AQBuff.Sets.NoStarbyteUpgrade.Contains(item.buffType) && CustomDataCheck(item);
         }
 
         public override void AddRecipes()
@@ -315,13 +347,10 @@ namespace AQMod.Items.Potions
             {
                 try
                 {
-                    var item = new Item();
-                    item.SetDefaults(i);
-                    if (item.buffType > 0 && item.buffTime > 0 && item.consumable &&
-                        item.useStyle == ItemUseStyleID.EatingUsing && CanBuffBeTurnedIntoMolitePotion(item.buffType) &&
-                        item.healLife <= 0 && item.healMana <= 0 && !item.summon && item.type != this.item.type)
+                    var item = AQItem.GetDefault(i);
+                    if (BuffCheck(item))
                     {
-                        AQRecipes.r_MolitePotionRecipe.ConstructRecipe(i, this);
+                        AQRecipes.RecipeStarbyte.ConstructRecipe(i, this);
                     }
                 }
                 catch

@@ -1,6 +1,7 @@
 ﻿using AQMod.Buffs;
 using AQMod.Buffs.Debuffs;
-using AQMod.Common.ID;
+using AQMod.Buffs.Vampire;
+using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,60 +11,76 @@ namespace AQMod
     {
         public static class Sets
         {
-            public static bool[] CanBeRemovedByWhiteBloodCell { get; private set; }
-            public static bool[] CantBeTurnedIntoMolite { get; private set; }
-            public static bool[] IsFoodBuff { get; private set; }
-            public static bool[] CantBeSpreadToOtherNPCs { get; private set; }
+            public static HashSet<int> CanBeRemovedByWhiteBloodCell { get; private set; }
+            public static HashSet<int> NoStarbyteUpgrade { get; private set; }
+            public static HashSet<int> FoodBuff { get; private set; }
+            public static HashSet<int> NoSpread { get; private set; }
 
             internal static void Setup()
             {
-                SetUtils.Length = BuffLoader.BuffCount;
-                SetUtils.GetIDFromType = (m, n) => m.BuffType(n);
+                NoSpread = new HashSet<int>()
+                {
+                    BuffID.StardustMinionBleed,
+                    BuffID.DryadsWardDebuff,
+                    BuffID.Lovestruck,
+                    BuffID.Stinky,
+                    ModContent.BuffType<LovestruckAQ>(),
+                };
 
-                CantBeSpreadToOtherNPCs = SetUtils.CreateFlagSet(BuffID.StardustMinionBleed, BuffID.DryadsWardDebuff, BuffID.Lovestruck,
-                    typeof(LovestruckAQ), BuffID.Stinky);
+                FoodBuff = new HashSet<int>()
+                {
+                    BuffID.WellFed,
+                    ModContent.BuffType<GrapePhantaBuff>(),
+                    ModContent.BuffType<SpeedBoostFood>(),
+                    ModContent.BuffType<NeutronYogurtBuff>(),
+                    ModContent.BuffType<DragonCarrotBuff>(),
+                    ModContent.BuffType<RedLicoriceBuff>(),
+                    ModContent.BuffType<BaguetteBuff>(),
+                };
 
-                IsFoodBuff = new bool[BuffLoader.BuffCount];
-                IsFoodBuff[BuffID.WellFed] = true;
-                IsFoodBuff[ModContent.BuffType<GrapePhantaBuff>()] = true;
-                IsFoodBuff[ModContent.BuffType<SpeedBoostFood>()] = true;
-                IsFoodBuff[ModContent.BuffType<NeutronYogurtBuff>()] = true;
-                IsFoodBuff[ModContent.BuffType<DragonCarrotBuff>()] = true;
-                IsFoodBuff[ModContent.BuffType<RedLicoriceBuff>()] = true;
+                NoStarbyteUpgrade = new HashSet<int>(FoodBuff)
+                {
+                    BuffID.Tipsy,
+                    BuffID.Honey,
+                    BuffID.Lifeforce,
+                    ModContent.BuffType<Bossrush>(),
+                    ModContent.BuffType<Spoiled>(),
+                    ModContent.BuffType<UmystickDelay>(),
+                    ModContent.BuffType<Vampirism>(),
+                };
 
-                CantBeTurnedIntoMolite = new bool[BuffLoader.BuffCount];
-                IsFoodBuff.CopyTo(CantBeTurnedIntoMolite, 0);
-                CantBeTurnedIntoMolite[ModContent.BuffType<UmystickDelay>()] = true;
-                CantBeTurnedIntoMolite[ModContent.BuffType<Buffs.Vampire.Vampirism>()] = true;
-
-                CanBeRemovedByWhiteBloodCell = new bool[BuffLoader.BuffCount];
-                CanBeRemovedByWhiteBloodCell[BuffID.OnFire] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Ichor] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.CursedInferno] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Frostburn] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Chilled] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Bleeding] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Confused] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Poisoned] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Venom] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Darkness] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Blackout] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Silenced] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Cursed] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Slow] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Weak] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.WitheredArmor] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Electrified] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.Rabies] = true;
-                CanBeRemovedByWhiteBloodCell[ModContent.BuffType<Buffs.Vampire.Vampirism>()] = true;
-                CanBeRemovedByWhiteBloodCell[ModContent.BuffType<BlueFire>()] = true;
-                CanBeRemovedByWhiteBloodCell[ModContent.BuffType<PickBreak>()] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.OgreSpit] = true;
-                CanBeRemovedByWhiteBloodCell[BuffID.VortexDebuff] = true;
+                CanBeRemovedByWhiteBloodCell = new HashSet<int>()
+                {
+                    BuffID.OnFire,
+                    BuffID.Ichor,
+                    BuffID.CursedInferno,
+                    BuffID.Frostburn,
+                    BuffID.Chilled,
+                    BuffID.Bleeding,
+                    BuffID.Confused,
+                    BuffID.Poisoned,
+                    BuffID.Venom,
+                    BuffID.Darkness,
+                    BuffID.Blackout,
+                    BuffID.Silenced,
+                    BuffID.Cursed,
+                    BuffID.Slow,
+                    BuffID.Weak,
+                    BuffID.WitheredArmor,
+                    BuffID.Electrified,
+                    BuffID.Rabies,
+                    BuffID.OgreSpit,
+                    BuffID.VortexDebuff,
+                    ModContent.BuffType<Vampirism>(),
+                    ModContent.BuffType<BlueFire>(),
+                    ModContent.BuffType<PickBreak>(),
+                };
             }
 
             internal static void Unload()
             {
+                NoSpread?.Clear();
+                NoSpread = null;
             }
         }
     }

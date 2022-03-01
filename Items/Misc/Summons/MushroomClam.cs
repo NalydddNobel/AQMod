@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Boss.Summons
+namespace AQMod.Items.Misc.Summons
 {
     public class MushroomClam : ModItem
     {

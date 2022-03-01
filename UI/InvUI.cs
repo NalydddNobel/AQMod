@@ -10,7 +10,7 @@ namespace AQMod.UI
 {
     internal static class InvUI
     {
-        public struct InventoryItemDrawResults
+        public struct DrawResults
         {
             public Item item;
             public Texture2D texture;
@@ -28,9 +28,9 @@ namespace AQMod.UI
             return position + inventoryBackTexture.Size() / 2f * Main.inventoryScale;
         }
 
-        public static InventoryItemDrawResults DrawItem(Vector2 position, Item item, Color? color = null, int maxSize = 32)
+        public static DrawResults DrawItem(Vector2 position, Item item, Color? color = null, int maxSize = 32)
         {
-            var drawResults = new InventoryItemDrawResults
+            var drawResults = new DrawResults
             {
                 item = item,
                 texture = Main.itemTexture[item.type]
@@ -66,9 +66,9 @@ namespace AQMod.UI
             return drawResults;
         }
 
-        public static InventoryItemDrawResults GetDrawResults(Vector2 position, Item item)
+        public static DrawResults GetDrawData(Vector2 position, Item item)
         {
-            var drawResults = new InventoryItemDrawResults
+            var drawResults = new DrawResults
             {
                 item = item,
                 texture = Main.itemTexture[item.type],
@@ -104,25 +104,25 @@ namespace AQMod.UI
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontItemStack, item.stack.ToString(), position + new Vector2(10f, 26f) * Main.inventoryScale, Main.inventoryBack, 0f, Vector2.Zero, new Vector2(Main.inventoryScale), -1f, Main.inventoryScale);
         }
 
-        public static void DrawItemInvAmmo(InventoryItemDrawResults results, int amount)
+        public static void DrawItemInvAmmo(DrawResults results, int amount)
         {
             if (amount != -1)
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontItemStack, amount.ToString(), results.drawPos + new Vector2(8f, 30f) * Main.inventoryScale, results.color, 0f, Vector2.Zero, new Vector2(Main.inventoryScale * 0.8f), -1f, Main.inventoryScale);
         }
 
-        public static void DrawSlotNumber(InventoryItemDrawResults results, int slot)
+        public static void DrawSlotNumber(DrawResults results, int slot)
         {
             string text = string.Concat(slot + 1);
             ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontItemStack, text, results.drawPos + new Vector2(8f, 4f) * Main.inventoryScale, results.color, 0f, Vector2.Zero, new Vector2(Main.inventoryScale), -1f, Main.inventoryScale);
         }
 
-        public static void DrawItemCrossOut(InventoryItemDrawResults results)
+        public static void DrawItemCrossOut(DrawResults results)
         {
             Vector2 drawPos = results.drawPos + results.texture.Size() * Main.inventoryScale / 2f - Main.cdTexture.Size() * Main.inventoryScale / 2f;
             Main.spriteBatch.Draw(Main.cdTexture, drawPos, null, Color.White, 0f, default(Vector2), results.scale, SpriteEffects.None, 0f);
         }
 
-        public static void DrawItemCrossOut(InventoryItemDrawResults results, float fade = 1f)
+        public static void DrawItemCrossOut(DrawResults results, float fade = 1f)
         {
             Vector2 drawPos = results.drawPos + results.texture.Size() * Main.inventoryScale / 2f - Main.cdTexture.Size() * Main.inventoryScale / 2f;
             Color color = results.item.GetAlpha(results.color) * fade;

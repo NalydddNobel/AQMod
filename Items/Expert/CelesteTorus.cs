@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Boss.Expert
+namespace AQMod.Items.Expert
 {
     public class CelesteTorus : ModItem, IUpdateEquipVisuals
     {

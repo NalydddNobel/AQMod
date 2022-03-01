@@ -28,7 +28,7 @@ namespace AQMod.Items.Potions
             item.consumable = true;
             item.rare = ItemRarityID.Red;
             item.value = AQItem.Prices.PotionValue;
-            item.maxStack = 999;
+            item.maxStack = 30;
         }
 
         public override bool UseItem(Player player)

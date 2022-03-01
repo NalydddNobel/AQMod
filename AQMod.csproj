@@ -34,7 +34,6 @@
     <None Include="Effects\.comp\wcfxcompiler.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Items\Misc\ExporterQuest\Rewards\" />
     <Folder Include="Items\Quest\Lobster\" />
     <Folder Include="Sounds\Item\SpaceSquid\" />
   </ItemGroup>

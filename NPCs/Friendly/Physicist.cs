@@ -2,7 +2,7 @@
 using AQMod.Common.ID;
 using AQMod.Content.World.Events;
 using AQMod.Items.Accessories;
-using AQMod.Items.Boss.Summons;
+using AQMod.Items.Misc.Summons;
 using AQMod.Items.Tools;
 using System.Collections.Generic;
 using Terraria;

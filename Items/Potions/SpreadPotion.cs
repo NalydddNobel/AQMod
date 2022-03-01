@@ -19,7 +19,7 @@ namespace AQMod.Items.Potions
             item.consumable = true;
             item.rare = ItemRarityID.Green;
             item.value = AQItem.Prices.PotionValue;
-            item.maxStack = 999;
+            item.maxStack = 30;
             item.buffTime = 28800;
             item.buffType = ModContent.BuffType<DebuffSpread>();
         }
@@ -28,9 +28,9 @@ namespace AQMod.Items.Potions
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.BottledWater);
+            r.AddIngredient(ModContent.ItemType<Fizzler>());
             r.AddIngredient(ItemID.Deathweed);
             r.AddIngredient(ItemID.Moonglow);
-            r.AddIngredient(ModContent.ItemType<Fizzler>());
             r.AddTile(TileID.Bottles);
             r.SetResult(this);
             r.AddRecipe();

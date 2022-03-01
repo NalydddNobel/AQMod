@@ -14,7 +14,7 @@ namespace AQMod.Items.Potions
             item.height = 20;
             item.value = Item.buyPrice(silver: 20);
             item.rare = ItemRarityID.Yellow;
-            item.maxStack = 999;
+            item.maxStack = 30;
             item.consumable = true;
             item.UseSound = SoundID.Item2;
             item.useStyle = ItemUseStyleID.EatingUsing;

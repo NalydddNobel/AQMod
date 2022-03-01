@@ -21,7 +21,7 @@ namespace AQMod.Items.Potions
             item.useAnimation = 17;
             item.buffTime = 10800;
             item.buffType = ModContent.BuffType<Vampirism>();
-            item.maxStack = 999;
+            item.maxStack = 30;
         }
 
         public override bool CanUseItem(Player player)
