@@ -12,6 +12,9 @@ ItemTooltip.NovaFruit=在夜晚使用以召唤终末之星\n{$Mods.AQMod.Common.
 ItemName.BloodyThing=血腥之物
 ItemTooltip.BloodyThing=在夜晚时开始血月\n'一颗奇异的红宝石, 在移植到1.4时可能会被撕裂'
 
+ItemName.MythicStarfruit=秘星果
+ItemTooltip.MythicStarfruit=召唤一道奇异微光
+
 BuffName.ManaDrain=法力枯竭
 BuffDescription.ManaDrain=魔法伤害降低90%
 
@@ -65,10 +68,8 @@ ItemTooltip.WyvernAmulet=延长1秒飞行时间\n击杀敌人时会使你获得�
 
 ItemName.DarkAmulet=黑暗护符
 ItemTooltip.DarkAmulet=降低10%不洁敌人对你造成的伤害\n受到伤害后增加移动速度\n增加20点最大法力值
-
 ItemName.LightAmulet=光明护符
 ItemTooltip.LightAmulet=降低10%光明敌人对你造成的伤害\n增加5点护甲穿透
-
 ItemName.NeutralityAmulet=中性护符
 ItemTooltip.NeutralityAmulet=降低10%光明和不洁敌人对你造成的伤害\n增加5点护甲穿透\n受到伤害后增加移动速度\n增加20点最大法力值
 
@@ -86,10 +87,8 @@ ItemTooltip.DegenerationRing=阻止大多数种类的燃烧
 
 ItemName.HeatedAmulet=灼炎护符
 ItemTooltip.HeatedAmulet=阻止大多数种类的燃烧\n降低来自紊流风暴敌人的热源强度
-
 ItemName.FreezingAmulet=霜结护符
 ItemTooltip.FreezingAmulet=阻止大多数种类的冻结\n降低来自紊流风暴敌人的冷源强度
-
 ItemName.NormalizerAmulet=化一护符
 ItemTooltip.NormalizerAmulet=阻止大多数种类的冻结\n降低来自紊流风暴敌人的温度源强度
 
@@ -130,11 +129,10 @@ ItemName.SteelPlatedChestplate=钢板胸甲
 ArmorSetBonus.SkyrimArmor=增加5%伤害减免\n降低10%移动速度\n'你身上背的东西太多了, 你跑不动了'
 
 ItemName.LightbulbHelmet=灯泡头盔
-ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n你现在会散发微光
+ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n你现在会散发微光\n'于是他便带着一切离去了, 除了他的人性...'
 ItemName.LightbulbBreastplate=灯泡胸甲
 ItemName.LightbulbGreaves=灯泡护胫
 ItemTooltip.LightbulbGreaves=增加最大召唤栏位
-
 ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱对你造成的伤害降低30%
 
 # Materials
@@ -176,14 +174,14 @@ ProjectileName.Burnterizer=第一灾级燃烧
 ProjectileName.BurnterizerExplosion=第一灾级燃烧
 
 ItemName.HellsBoon=地狱之赐
-ItemTooltip.HellsBoon=在光标附近的物块上不断生成灰烬尖刺\n剑身击中敌人时会对其造成腐化狱火减益
+ItemTooltip.HellsBoon=灰烬尖刺会生成在光标附近\n剑身击中敌人时会对其造成腐化狱火减益
 ProjectileName.HellsBoonSpike=地狱之赐
 
 ItemName.MonoxiderStaff=一氧化物法杖
 ItemTooltip.MonoxiderStaff=召唤一氧化物雀为你而战
-ProjectileName.MonoxiderMinion=一氧化物
 BuffName.MonoxiderBuff=一氧化物
 BuffDescription.MonoxiderBuff=一氧化物雀会为你而战
+ProjectileName.MonoxiderMinion=一氧化物
 
 ItemName.ScarletSea=罪孽红海
 ItemTooltip.ScarletSea=召唤两颗血珠
@@ -192,7 +190,7 @@ ItemName.SeltzerRain=污浊腐雨
 ItemTooltip.SeltzerRain=发射许多腐蚀球体
 
 ItemName.FizzlingFire=超级火焰喷射器
-ItemTooltip.FizzlingFire=发射强力的蓝色火焰\n在你拥有耐魔性减益时无法使用
+ItemTooltip.FizzlingFire=在你拥有耐魔性减益时无法使用
 
 ItemName.MagicalBoomerang=魔法回旋镖
 ItemTooltip.MagicalBoomerang=可以拾取物品
@@ -206,7 +204,7 @@ ItemTooltip.StariteSpinner=击中敌人时偶尔会对其造成碧蓝之火减�
 ProjectileName.StariteSpinnerProjectile=星源轮转
 
 ItemName.Resonance=共振
-ItemTooltip.Resonance=速度极快并且在击中敌人时几乎不会回弹\n击中敌人时偶尔会使其被灼烧\n'你不觉得我们该重新计算那些共振阻尼因子吗?'
+ItemTooltip.Resonance=击中敌人时偶尔会使其被灼烧\n'你不觉得我们该重新计算那些共振阻尼因子吗?'
 
 ItemName.StariteStaff=星源法杖
 ItemTooltip.StariteStaff=召唤一颗迅捷星之源为你而战
@@ -214,13 +212,13 @@ BuffName.Starite=星之源
 BuffDescription.Starite=星之源会为你而战
 
 ItemName.VineSword=棒槌
-ItemTooltip.VineSword=打击你光标附近的敌人
-# \n使罐子拥有特殊掉落
+ItemTooltip.VineSword=打击你光标附近的敌人\n'这就像打松鼠一样'
+
 ItemName.KryptonSword=氪制回旋镖
 ItemTooltip.KryptonSword=能够穿透敌人\n击中敌人时会对其造成多种减益
 
 ItemName.Vrang=镰刃
-ItemTooltip.Vrang=扔出三个快速移动的镰刃
+ItemTooltip.Vrang=扔出V型移动回旋镖
 
 ItemName.AirBlade=风之刃
 ItemTooltip.AirBlade=召唤魔法风刃
@@ -228,7 +226,7 @@ ProjectileName.AirBlade=风之刃
 ProjectileName.AirBladeGhost=风之刃
 
 ItemName.RedSpriteStaff=电涌杖
-ItemTooltip.RedSpriteStaff=召唤涌动雷云向你的敌人倾斜雷霆\n同时至多铸造4次
+ItemTooltip.RedSpriteStaff=召唤雷云打击你的敌人\n至多同时存在4朵雷云
 ProjectileName.RedSpriteStaff=电涌杖
 ProjectileName.RedSpriteStaffLightning=电涌杖
 
@@ -250,18 +248,18 @@ ItemTooltip.StudiesoftheInkblot='弹幕的墨迹测验'
 ProjectileName.StudiesoftheInkblotBullet=墨迹研究学
 
 ItemName.CursedKey=诅咒钥匙
-ItemTooltip.CursedKey=召唤一个捕魂钩为你而战
-ProjectileName.TrapperMinion=捕魂钩
-ProjectileName.TrapperMinionBlast=捕魂钩
-ProjectileName.TrapperMinionExplosion=捕魂钩
-BuffName.Trapper=捕魂钩
-BuffDescription.Trapper=捕魂钩会为你而战
+ItemTooltip.CursedKey=召唤一个恶魔捕手为你而战
+ProjectileName.TrapperMinion=捕手
+ProjectileName.TrapperMinionBlast=捕手
+ProjectileName.TrapperMinionExplosion=捕手
+BuffName.Trapper=捕手
+BuffDescription.Trapper=恶魔捕手会为你而战
 
 ItemName.PiranhaPot=食人罐
-ItemTooltip.PiranhaPot=召唤一株邪恶的食人植物为你而战
-ProjectileName.PiranhaPlant=食人植物
-BuffName.PiranhaPlant=食人植物
-BuffDescription.PiranhaPlant=食人植物会为你而战
+ItemTooltip.PiranhaPot=召唤一株邪恶的植物为你而战
+ProjectileName.PiranhaPlant=植物
+BuffName.PiranhaPlant=植物
+BuffDescription.PiranhaPlant=植物会为你而战
 
 ItemName.Skrawler=皮肤焚烧者
 ItemTooltip.Skrawler=发射致命的火焰弹幕
@@ -271,11 +269,11 @@ ItemName.SnowflakeCannon=雪花大炮
 ItemTooltip.SnowflakeCannon=发射许多雪球\n66%几率不消耗弹药
 
 ItemName.Snowgrave=雪墓
-ItemTooltip.Snowgrave=在下方召唤向上喷涌的冰雪风暴\n'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
+ItemTooltip.Snowgrave=在下方召唤向上喷涌的冰雪风暴\n释放法术时会耗尽你的法力值一小段时间\n'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
 
 ItemName.UltimateSword=最终之剑
 ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
-ItemTooltipExtra0.UltimateSword=仅能在天空中闪烁微光时才能在终末之星处获得
+ItemTooltipExtra..UltimateSword.0=仅能在天空中闪烁微光时才能在终末之星处获得
 ProjectileName.UltimateSword=最终之剑
 
 # Pets
@@ -347,7 +345,14 @@ ItemName.XenonMushroom=氙蘑菇
 ItemTooltip.XenonMushroom=散发着蓝光\n'当你触摸它时, 它变得更亮了'
 MapObject.NobleMushrooms=华贵蘑菇
 
+#===========================#
 # Tools
+#===========================#
+
+ItemName.TheFan=吹风机
+ItemTooltip.TheFan=用风吹退你面前的东西\n可更改风的速度\n'手持灵感'
+ItemTooltipExtra.TheFan.0=强烈的太空风可能会导致新的生物出现
+
 ItemName.VampireHook=血族
 ItemTooltip.VampireHook=自动瞄准附近的敌人\n钩中敌人时会汲取其生命
 
@@ -355,10 +360,10 @@ ItemName.BlackBookofUntoldLegends='无名传说'
 ItemTooltip.BlackBookofUntoldLegends=召唤寄居蟹商人
 
 ItemName.Cosmicanon=星宇律则
-ItemTooltip.Cosmicanon=阻止血月、日食和微光事件的自然生成\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
+ItemTooltip.Cosmicanon=阻止血月、日食和微光的自然生成\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
 ItemTooltipExtra.Cosmicanon=按下{0}以开关效果
 ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=阻止血月: {0}
-ItemTooltipExtra.Cosmicanon.GlimmersPrevented=阻止微光事件: {0}
+ItemTooltipExtra.Cosmicanon.GlimmersPrevented=阻止微光: {0}
 ItemTooltipExtra.Cosmicanon.EclipsesPrevented=阻止日食: {0}
 
 ToggleCosmicanon.False=事件可自然发生
@@ -386,24 +391,24 @@ ItemName.Nimrod=猎手
 ItemTooltip.Nimrod=召唤一朵捕鱼云朵, 其会生成三个闪电浮标来捕鱼\n在下雨时, 捕鱼速度更快
 
 temName.CosmicTelescope=宇宙望远镜
-ItemTooltip.CosmicTelescope=显示微光事件的位置以及地图上的一些其他相关信息
-MapLayerToggle.CosmicTelescope='宇宙望远镜'\n显示微光事件的位置以及地图上的一些其他相关信息
+ItemTooltip.CosmicTelescope=显示微光之源以及地图上的一些其他相关信息
+MapLayerToggle.CosmicTelescope=显示微光之源以及地图上的一些其他相关信息
 
 ItemName.DungeonMap=血瓶
 ItemTooltip.DungeonMap=显示地牢的位置\n点击地牢的地图图标可以传送至地牢
-MapLayerToggle.VialOfBlood='血瓶'\n显示地牢的位置\n点击地牢的地图图标可以传送至地牢
+MapLayerToggle.VialOfBlood=显示地牢的位置\n点击地牢的地图图标可以传送至地牢
 
 ItemName.LihzahrdMap=卷心菜
 ItemTooltip.LihzahrdMap=显示神庙祭坛的位置\n点击神庙祭坛的地图图标可以传送至神庙祭坛
-MapLayerToggle.Cabbage='卷心菜'\n显示神庙祭坛的位置\n点击神庙祭坛的地图图标可以传送至神庙祭坛
+MapLayerToggle.Cabbage=显示神庙祭坛的位置\n点击神庙祭坛的地图图标可以传送至神庙祭坛
 
 ItemName.RetroGoggles=折磨之魂
 ItemTooltip.RetroGoggles=在大地图上以粉色光点显示敌人的位置
-MapLayerToggle.BlightedSoul='折磨之魂'\n在大地图上以粉色光点显示敌人的位置
+MapLayerToggle.BlightedSoul=在大地图上以粉色光点显示敌人的位置
 
 ItemName.Beeswax=蜂蜡
 ItemTooltip.Beeswax=显示所有可见的世纪之花花苞的位置
-MapLayerToggle.Beeswax='蜂蜡'\n显示所有可见的世纪之花花苞的位置
+MapLayerToggle.Beeswax=显示所有可见的世纪之花花苞的位置
 
 # Potions
 ItemName.Baguette=法棍
@@ -518,7 +523,15 @@ ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
 # Walls
 ItemName.OceanRavineWall=蟹状裂隙墙
 
+# Exporter Crates
+ItemName.OverworldPalette=上界调色板
+ItemTooltip.OverworldPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
+ItemName.CavernPalette=洞穴调色板
+ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
+
 # Tooltips
+Tooltips.PaletteDrop=下列物品必定掉落
+Tooltips.EffectActive=激活:
 Tooltips.IncreasedMinions=增加最大召唤栏位
 Tooltips.SuspiciousLooking='我知道你在想什么...'
 Tooltips.Nalyddd='闻起来像玫瑰'
@@ -702,7 +715,7 @@ EventProgress.GlimmerEvent=离中心 {0} 格远
 BossChecklistDesc.GlimmerEvent=在夜晚自然开始. 也可以使用 [i:{0}] 召唤. 在太阳升起时结束.
 EventWarning.GlimmerEvent=天空中闪烁着微光...
 EventEnding.GlimmerEvent=微光渐渐消失...
-BossChecklistDesc.OmegaStarite=在夜晚使用 {0} 召唤. 也可以与微光事件中心的剑交互来召唤.
+BossChecklistDesc.OmegaStarite=在夜晚使用 {0} 召唤. 也可以通过与微光之源处的剑交互来召唤.
 
 EventName.GaleStreams=紊流风暴
 BossChecklistDesc.GaleStreams=风速大于 40 mph 时开始, 风速小于 34 mph 时结束. 风速大于 300 mph 时同样会结束. 你可以使用 [i:{0}] 更改风速.
@@ -924,7 +937,6 @@ ItemTooltip.Quasicrystal=真近战攻击造成暴击时会将伤害弹射至离�
 ##############
 ItemName.Crabsol=蟹壳剑
 ItemName.CrabsonBag=宝藏袋
-ItemName.MythicStarfruit=秘星果
 ItemName.OmegaStariteMask=终末之星面具
 ItemName.OmegaStariteTrophy=终末之星纪念章
 ItemName.StariteBag=宝藏袋
@@ -1094,9 +1106,6 @@ ItemName.GoldPowder=黄金之尘
 ItemTooltip.GoldPowder=将小动物转化为金小动物
 ItemName.FertilePowder=丰饶之尘
 ItemTooltip.FertilePowder=强制物块进行生长
-ItemName.TheFan=吹风机
-ItemTooltip.TheFan=用风吹退你面前的东西\n可更改风的速度\n'手持灵感'
-#
 #
 ##################################################################################
 # Item Tooltips																	 #
@@ -1123,9 +1132,7 @@ ItemTooltip.Terraroot=有几率将火枪子弹转化为叶绿弹
 ItemTooltip.Crabsol=只有最强壮的人才能举起这把剑
 ItemTooltip.CrabsonBag={$CommonItemTooltip.RightClickToOpen}
 # Omega Starite
-ItemTooltip.MythicStarfruit=使用以召唤微光事件
 ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
-ItemTooltip.UltimateStarfruit=在夜晚使用以召唤{$Mods.AQMod.NPCName.OmegaStarite}\n右键开始或结束微光事件\n{$Mods.AQMod.Common.NotConsumable}
 ##############
 # Buff Items #
 ##############
@@ -1166,7 +1173,7 @@ ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 # Placeable #
 #############
 # World Interactors
-ItemTooltip.GlimmeringStatue=在微光事件持续期间有很高几率吸引最终之剑至此
+ItemTooltip.GlimmeringStatue=有极高的几率吸引微光之源
 # Other Placeables
 ItemTooltip.FishingCraftingStation=用于制作特殊的钓鱼物品
 ItemTooltip.GlobeItem='探索世界'

@@ -95,8 +95,8 @@ namespace AQMod.Common.CrossMod
                 new int[] { ModContent.ItemType<OmegaStariteTrophy>(), ModContent.ItemType<OmegaStariteMask>(), ModContent.ItemType<DragonBall>(), ModContent.ItemType<EnchantedDye>(), ModContent.ItemType<RainbowOutlineDye>(), ModContent.ItemType<DiscoDye>(), },
                 () => WorldDefeats.DownedStarite,
                 summonItem: ModContent.ItemType<NovaFruit>(),
-                howToSummon: AQUtils.GetTextValue((GameCulture.English, "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event."), 
-                (GameCulture.Chinese, "在夜晚使用 [i:" + ModContent.ItemType<NovaFruit>() + "] 召唤. 也可以与微光事件中心的剑交互来召唤."),
+                howToSummon: AQUtils.GetTextValue((GameCulture.English, "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the source of the Glimmer."), 
+                (GameCulture.Chinese, "在夜晚使用 [i:" + ModContent.ItemType<NovaFruit>() + "] 召唤. 也可以通过与微光之源处的剑交互来召唤."),
                 (GameCulture.Russian, "Можно призвать используя [i:" + ModContent.ItemType<NovaFruit>() + "] ночью. Также можно призвать взаимодействуя с мечом который расположен в центре Мерцающего События.")),
                 bossPortraitTexture: "AQMod/Assets/BossChecklist/OmegaStarite",
                 isAvailable: () => WorldDefeats.OmegaStariteIntroduction || WorldDefeats.OmegaStariteIntroduction || Main.hardMode);
