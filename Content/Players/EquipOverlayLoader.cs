@@ -1,46 +1,47 @@
 ﻿using AQMod.Common.Graphics.PlayerEquips;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace AQMod.Content.Players
 {
-    public class EquipOverlayLoader
+    public class EquipOverlayLoader : IDisposable
     {
-        private readonly Dictionary<string, EquipOverlay>[] _overlays;
+        private Dictionary<string, EquipOverlay>[] equipNameToOverlay;
 
         public EquipOverlayLoader()
         {
-            _overlays = new Dictionary<string, EquipOverlay>[(byte)EquipLayering.Count];
-            for (int i = 0; i < _overlays.Length; i++)
+            equipNameToOverlay = new Dictionary<string, EquipOverlay>[(byte)EquipLayering.Count];
+            for (int i = 0; i < equipNameToOverlay.Length; i++)
             {
-                _overlays[i] = new Dictionary<string, EquipOverlay>();
+                equipNameToOverlay[i] = new Dictionary<string, EquipOverlay>();
             }
         }
 
         public void AddOverlay(EquipOverlay overlay, EquipLayering type, string name)
         {
-            _overlays[(byte)type].Add(name, overlay);
+            equipNameToOverlay[(byte)type].Add(name, overlay);
         }
 
         public void AddOverlay<T>(EquipOverlay overlay, EquipLayering type) where T : ModItem
         {
-            _overlays[(byte)type].Add(AQUtils.GetName2<T>(), overlay);
+            equipNameToOverlay[(byte)type].Add(AQUtils.GetName2<T>(), overlay);
         }
 
         public void AddHeadOverlay<T>(EquipHeadOverlay overlay) where T : ModItem
         {
-            _overlays[(byte)EquipLayering.Head].Add(AQUtils.GetName2<T>(), overlay);
+            equipNameToOverlay[(byte)EquipLayering.Head].Add(AQUtils.GetName2<T>(), overlay);
         }
 
         public void AddBodyOverlay<T>(EquipBodyOverlay overlay) where T : ModItem
         {
-            _overlays[(byte)EquipLayering.Body].Add(AQUtils.GetName2<T>(), overlay);
+            equipNameToOverlay[(byte)EquipLayering.Body].Add(AQUtils.GetName2<T>(), overlay);
         }
 
         public void AddWingsOverlay<T>(EquipWingsOverlay overlay) where T : ModItem
         {
-            _overlays[(byte)EquipLayering.Wings].Add(AQUtils.GetName2<T>(), overlay);
+            equipNameToOverlay[(byte)EquipLayering.Wings].Add(AQUtils.GetName2<T>(), overlay);
         }
 
         /// <summary>
@@ -111,10 +112,20 @@ namespace AQMod.Content.Players
         /// <returns></returns>
         public EquipOverlay GetOverlay(EquipLayering type, string name)
         {
-            var d = _overlays[(byte)type];
+            var d = equipNameToOverlay[(byte)type];
             if (d.ContainsKey(name))
                 return d[name];
             return null;
+        }
+
+        public void Dispose()
+        {
+            for (int i = 0; i < equipNameToOverlay.Length; i++)
+            {
+                equipNameToOverlay[i]?.Clear();
+                equipNameToOverlay[i] = null;
+            }
+            equipNameToOverlay = null;
         }
     }
 }

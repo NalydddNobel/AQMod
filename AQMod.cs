@@ -304,12 +304,12 @@ namespace AQMod
             {
                 AQSound.rand = null;
                 BuffColorCache.Unload();
+                ArmorOverlays?.Dispose();
                 ArmorOverlays = null;
                 LegacyEffectCache.Unload();
                 SkyGlimmerEvent.BGStarite._texture = null;
                 NPCTalkState = null;
                 LoadMusic(unload: true);
-                BuffColorCache.Unload();
                 PrimitivesRenderer.Unload();
                 FX.Unload();
                 LegacyEffectCache.Unload();

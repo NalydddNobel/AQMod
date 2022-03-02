@@ -64,10 +64,15 @@ namespace AQMod.Assets
 
         internal static void Unload()
         {
+            ParentPixelShader?.Dispose();
             ParentPixelShader = null;
+            ParentScreenShader?.Dispose();
             ParentScreenShader = null;
+            Trailshader?.Dispose();
             Trailshader = null;
+            GoreNestPortal?.Dispose();
             GoreNestPortal = null;
+            GlimmerEventBackground?.Dispose();
             GlimmerEventBackground = null;
         }
     }

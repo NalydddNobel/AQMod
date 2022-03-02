@@ -90,6 +90,7 @@ namespace AQMod.Effects
 
         internal static void Unload()
         {
+            itemToColor?.Clear();
             itemToColor = null;
         }
 

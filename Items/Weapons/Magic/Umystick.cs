@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Magic
 {
-    public class Umystick : ModItem
+    public class Umystick : ModItem, ICooldown
     {
         public override void SetDefaults()
         {
@@ -63,15 +63,16 @@ namespace AQMod.Items.Weapons.Magic
             if (player.gravDir == 1)
             {
                 var aQPlayer = player.GetModPlayer<AQPlayer>();
-                if (!aQPlayer.cantUseMenaceUmbrellaJump)
+                if (aQPlayer.itemCooldown == 0)
                 {
                     if (Main.myPlayer == player.whoAmI && maxSpeed && !player.mouseInterface)
                     {
                         int oldMana = item.mana;
                         item.mana *= 5;
-                        if (Main.mouseRight && Main.mouseRightRelease && player.CheckMana(item, pay: true))
+                        if (Main.mouseRight && Main.mouseRightRelease && player.CheckMana(item, pay: true) && aQPlayer.ItemCooldownCheck(180))
                         {
-                            player.AddBuff(ModContent.BuffType<UmystickDelay>(), 180);
+                            aQPlayer.ItemCombo(60, comboBoostsDecrease: false, doVisuals: false);
+                            //player.AddBuff(ModContent.BuffType<UmystickDelay>(), 180);
                             AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.MysticUmbrellaJump, 0.6f);
                             player.velocity.Y = -12f;
                         }
@@ -82,8 +83,7 @@ namespace AQMod.Items.Weapons.Magic
                 {
                     if (player.velocity.Y < 0f)
                     {
-                        int buffID = player.FindBuffIndex(ModContent.BuffType<UmystickDelay>());
-                        if (buffID != -1 && player.buffTime[buffID] > 120)
+                        if (aQPlayer.itemCombo > 0)
                         {
                             if (Main.myPlayer == player.whoAmI && Main.mouseRight)
                             {
@@ -120,6 +120,11 @@ namespace AQMod.Items.Weapons.Magic
                 return true;
             }
             return false;
+        }
+
+        ushort ICooldown.Cooldown(Player player, AQPlayer aQPlayer)
+        {
+            return 0;
         }
     }
 }

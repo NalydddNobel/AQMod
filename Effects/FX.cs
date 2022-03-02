@@ -109,6 +109,7 @@ namespace AQMod.Effects
             _random = null;
             _randBytes = null;
             _randBytesIndex = 0;
+            ScreenShakes?.Clear();
             ScreenShakes = null;
         }
 

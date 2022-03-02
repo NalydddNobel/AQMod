@@ -45,7 +45,6 @@ namespace AQMod
                     BuffID.Lifeforce,
                     ModContent.BuffType<Bossrush>(),
                     ModContent.BuffType<Spoiled>(),
-                    ModContent.BuffType<UmystickDelay>(),
                     ModContent.BuffType<Vampirism>(),
                 };
 

@@ -222,6 +222,7 @@ namespace AQMod.Common.CrossMod
 
         public static void Unload()
         {
+            _calls?.Clear();
             _calls = null;
         }
 

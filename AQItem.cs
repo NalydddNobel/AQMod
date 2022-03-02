@@ -470,6 +470,24 @@ namespace AQMod
             return true;
         }
 
+        private bool CooldownCheck(Item item, Player player)
+        {
+            if (item.modItem is ICooldown cool)
+            {
+                var aQPlayer = player.GetModPlayer<AQPlayer>();
+                ushort cooldown = cool.Cooldown(player, aQPlayer);
+                if (cooldown > 0)
+                {
+                    return aQPlayer.ItemCooldownCheck(cooldown);
+                }
+            }
+            return true;
+        }
+        public override bool CanUseItem(Item item, Player player)
+        {
+            return CooldownCheck(item, player);
+        }
+
         public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
         {
             if (player.GetModPlayer<AQPlayer>().spicyEel)
@@ -539,6 +557,36 @@ namespace AQMod
             if (item.type < Main.maxItemTypes)
                 return;
             Glowmask.DrawWorld(item, spriteBatch, lightColor, alphaColor, rotation, scale, whoAmI);
+        }
+
+        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            if (!Main.playerInventory)
+            {
+                try
+                {
+                    if (item.modItem is ICooldown)
+                    {
+                        var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
+                        if (aQPlayer.itemCooldown > 0 && aQPlayer.itemCooldownMax > 0)
+                        {
+                            float progress = aQPlayer.itemCooldown / (float)aQPlayer.itemCooldownMax;
+                            var texture = mod.GetTexture("Items/InventoryBack");
+                            int frameY = (int)(texture.Height * progress);
+                            var uiFrame = new Rectangle(0, texture.Height - frameY, texture.Width, frameY);
+                            position.Y += uiFrame.Y * Main.inventoryScale;
+                            var center = position + frame.Size() / 2f * scale;
+
+                            spriteBatch.Draw(texture, center, uiFrame, new Color(255, 255, 225, 250) * (0.75f + progress * 0.25f), 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return true;
         }
 
         public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

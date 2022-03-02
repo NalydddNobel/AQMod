@@ -234,7 +234,6 @@ namespace AQMod
         public sbyte redSpriteWind;
         public byte extraHP;
         public bool fidgetSpinner;
-        public bool cantUseMenaceUmbrellaJump;
         public bool ignoreMoons;
         public bool canToggleCosmicanon;
         public bool antiGravityItems;
@@ -298,6 +297,11 @@ namespace AQMod
         public int ExtractinatorCount;
         public bool IgnoreIgnoreMoons;
 
+        public ushort itemCooldownMax;
+        public ushort itemCooldown;
+        public ushort itemCombo;
+        public int lastSelectedItem = -1;
+
         public uint ImportantInteractionDelay;
 
         public override void Initialize()
@@ -318,7 +322,6 @@ namespace AQMod
             temperature = 0;
             pickBreak = false;
             fidgetSpinner = false;
-            cantUseMenaceUmbrellaJump = false;
             bloodthirstDelay = 0;
             healEffectValueForSyncingTheThingOnTheServer = 0;
             hookDebuffs?.Clear();
@@ -351,6 +354,14 @@ namespace AQMod
         public override void UpdateDead()
         {
             ResetEffects_Debuffs();
+            itemCooldown = 0;
+            itemCooldownMax = 0;
+            itemCombo = 0;
+            if (lastSelectedItem != -1)
+            {
+                player.selectedItem = lastSelectedItem;
+                lastSelectedItem = -1;
+            }
             omori = false;
             omoriEffect = false;
             blueSpheres = false;
@@ -404,6 +415,40 @@ namespace AQMod
             FX.Update();
         }
 
+        private void ResetEffects_Cooldowns()
+        {
+            if (player.selectedItem != lastSelectedItem)
+            {
+                itemCombo = 0;
+            }
+            if (itemCombo > 0)
+            {
+                itemCombo--;
+            }
+            if (itemCooldown > 0)
+            {
+                if (itemCooldownMax == 0)
+                {
+                    itemCooldown = 0;
+                    itemCooldownMax = 0;
+                }
+                else
+                {
+                    itemCooldown--;
+                    if (itemCooldown == 0)
+                    {
+                        itemCooldownMax = 0;
+                    }
+                }
+                player.manaRegen = 0;
+                player.manaCost += 1f;
+                player.manaRegenDelay = (int)player.maxRegenDelay;
+            }
+            if (ImportantInteractionDelay > 0)
+            {
+                ImportantInteractionDelay--;
+            }
+        }
         private void ResetEffects_HookBarbs()
         {
             meathook = false;
@@ -534,10 +579,7 @@ namespace AQMod
         }
         public override void ResetEffects()
         {
-            if (ImportantInteractionDelay > 0)
-            {
-                ImportantInteractionDelay--;
-            }
+            ResetEffects_Cooldowns();
 
             helmetFlowerCrown = false;
             setLightbulb = false;
@@ -591,7 +633,6 @@ namespace AQMod
             mothmanMask = false;
             crabAx = false;
             fidgetSpinner = false;
-            cantUseMenaceUmbrellaJump = false;
             canToggleCosmicanon = false;
             ignoreMoons = false;
             antiGravityItems = false;
@@ -620,6 +661,8 @@ namespace AQMod
                 thunderbirdLightningTimer--;
             ResetEffects_HookBarbs();
             ResetEffects_DashAvailable();
+
+            lastSelectedItem = player.selectedItem;
         }
 
         private void ProcessTriggers_ToggleCosmicanon()
@@ -1763,6 +1806,22 @@ namespace AQMod
             {
                 action(player.armor[i], player.hideVisual[i], i);
             }
+        }
+
+        public bool ItemCooldownCheck(ushort cooldown)
+        {
+            if (itemCooldown > 0)
+            {
+                return false;
+            }
+            itemCooldown = cooldown;
+            itemCooldownMax = cooldown;
+            return true;
+        }
+
+        public void ItemCombo(ushort combo, bool comboBoostsDecrease = false, bool doVisuals = true)
+        {
+            itemCombo += combo;
         }
 
         public static void HeadMinionSummonCheck(int player, int type)
