@@ -45,13 +45,8 @@ namespace AQMod.Items.Potions
         public override void AddRecipes()
         {
             var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BottledWater);
-            recipe.AddIngredient(ItemID.Lens, 2);
-            recipe.AddIngredient(ItemID.RottenChunk, 6);
-            recipe.AddIngredient(ItemID.Bone, 15);
+            recipe.AddIngredient(ModContent.ItemType<SpoilsPotion>());
             recipe.AddIngredient(ModContent.ItemType<UltimateEnergy>());
-            recipe.AddIngredient(ItemID.SoulofLight, 8);
-            recipe.AddIngredient(ItemID.SoulofNight, 8);
             recipe.AddIngredient(ItemID.Ectoplasm, 5);
             recipe.AddIngredient(ItemID.LunarTabletFragment, 8);
             recipe.AddTile(TileID.WorkBenches);

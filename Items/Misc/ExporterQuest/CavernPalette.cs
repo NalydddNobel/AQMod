@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
-namespace AQMod.Items.Misc.ExporterQuest.Rewards
+namespace AQMod.Items.Misc.ExporterQuest
 {
     public class CavernPalette : SchrodingerCrate
     {

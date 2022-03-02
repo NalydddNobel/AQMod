@@ -1,8 +1,9 @@
-﻿using Terraria.ModLoader;
+﻿using System;
+using Terraria.ModLoader;
 
 namespace AQMod.Common
 {
-    public sealed class ModifiableMusic
+    public sealed class ModifiableMusic : IDisposable
     {
         private readonly int _vanillaMusicID;
         private string _moddedMusicName;
@@ -63,6 +64,12 @@ namespace AQMod.Common
             }
             output += ", vanilla music id: " + _vanillaMusicID;
             return output;
+        }
+
+        public void Dispose()
+        {
+            _mod = null;
+            _moddedMusicName = null;
         }
     }
 }

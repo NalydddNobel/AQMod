@@ -1,5 +1,4 @@
-﻿using AQMod.Items.DrawOverlays;
-using AQMod.Items.Materials;
+﻿using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,13 +8,12 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Tools
 {
-    public class Globebulb : ModItem, IItemOverlaysWorldDraw, IItemOverlaysDrawInventory, IItemOverlaysPlayerDraw
+    public class Globebulb : ModItem
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<Globebulb>("_Glow"),
-            () => Color.Lerp(new Color(95, 80, 20, 0), new Color(0, 0, 0, 0), ((float)Math.Sin(Main.GlobalTime * 15f) + 1f) * 0.25f + 0.25f));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
-        IOverlayDrawInventory IItemOverlaysDrawInventory.InventoryDraw => _overlay;
-        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
+        public override void SetStaticDefaults()
+        {
+            this.Glowmask(() => Color.Lerp(new Color(95, 80, 20, 0), new Color(0, 0, 0, 0), ((float)Math.Sin(Main.GlobalTime * 15f) + 1f) * 0.25f + 0.25f));
+        }
 
         public override void SetDefaults()
         {

@@ -10,6 +10,7 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace AQMod
 {
@@ -100,6 +101,18 @@ namespace AQMod
         public override void TileCountsAvailable(int[] tileCounts)
         {
             NobleMushroomsCount = tileCounts[ModContent.TileType<NobleMushrooms>()] + tileCounts[ModContent.TileType<NobleMushroomsNew>()];
+        }
+
+        public override TagCompound Save()
+        {
+            var tag = new TagCompound();
+            Robster.Save(tag);
+            return tag;
+        }
+
+        public override void Load(TagCompound tag)
+        {
+            Robster.Load(tag);
         }
 
         public override void NetSend(BinaryWriter writer)

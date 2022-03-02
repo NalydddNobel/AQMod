@@ -36,7 +36,7 @@ namespace AQMod.Common.CrossMod
 {
     public sealed class BossChecklistSupport
     {
-        public static class ProgressionReference 
+        public static class ProgressionReference
         {
             public static float JerryCrabson = 2f;
 
@@ -52,7 +52,7 @@ namespace AQMod.Common.CrossMod
         {
             AQMod.bossChecklist.Call(
                 miniBoss ? "AddMiniBoss" : "AddBoss",
-                progression, 
+                progression,
                 boss.Arr.ToList(),
                 AQMod.GetInstance(),
                 bossName,
@@ -72,16 +72,16 @@ namespace AQMod.Common.CrossMod
             {
                 return;
             }
-            
+
 
             // Jerry Crabson
 
             AddBoss(ProgressionReference.JerryCrabson, ModContent.NPCType<JerryCrabson>(),
-                AQUtils.GetTextValue((GameCulture.English, "Jerry Crabson"), 
+                AQUtils.GetTextValue((GameCulture.English, "Jerry Crabson"),
                 (GameCulture.Chinese, "巨蟹蛤")),
                 new int[] { ModContent.ItemType<Crabax>(), ModContent.ItemType<AquaticEnergy>(), ModContent.ItemType<JerryClawFlail>(), ModContent.ItemType<CinnabarBow>(), ModContent.ItemType<Bubbler>(), },
                 new int[] { ModContent.ItemType<CrabsonTrophy>(), ModContent.ItemType<CrabsonMask>() },
-                () => WorldDefeats.DownedCrabson, 
+                () => WorldDefeats.DownedCrabson,
                 summonItem: ModContent.ItemType<MushroomClam>(),
                 howToSummon: AQUtils.GetTextValue((GameCulture.English, "Summoned by using a [i:" + ModContent.ItemType<MushroomClam>() + "] at the beach."),
                 (GameCulture.Chinese, "在海滩处使用 [i:" + ModContent.ItemType<MushroomClam>() + "] 召唤.")),
@@ -96,7 +96,7 @@ namespace AQMod.Common.CrossMod
                 new int[] { ModContent.ItemType<OmegaStariteTrophy>(), ModContent.ItemType<OmegaStariteMask>(), ModContent.ItemType<DragonBall>(), ModContent.ItemType<EnchantedDye>(), ModContent.ItemType<RainbowOutlineDye>(), ModContent.ItemType<DiscoDye>(), },
                 () => WorldDefeats.DownedStarite,
                 summonItem: ModContent.ItemType<NovaFruit>(),
-                howToSummon: AQUtils.GetTextValue((GameCulture.English, "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the source of the Glimmer."), 
+                howToSummon: AQUtils.GetTextValue((GameCulture.English, "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the source of the Glimmer."),
                 (GameCulture.Chinese, "在夜晚使用 [i:" + ModContent.ItemType<NovaFruit>() + "] 召唤. 也可以通过与微光之源处的剑交互来召唤."),
                 (GameCulture.Russian, "Можно призвать используя [i:" + ModContent.ItemType<NovaFruit>() + "] ночью. Также можно призвать взаимодействуя с мечом который расположен в центре Мерцающего События.")),
                 bossPortraitTexture: "AQMod/Assets/BossChecklist/OmegaStarite",
@@ -113,8 +113,8 @@ namespace AQMod.Common.CrossMod
                 AQUtils.GetTextValue((GameCulture.English, "Red Sprite"), (GameCulture.Chinese, "红色精灵")),
                 new int[] { ItemID.NimbusRod, ModContent.ItemType<Nimrod>(), ModContent.ItemType<RetroGoggles>(), ItemID.SoulofFlight, ModContent.ItemType<AtmosphericEnergy>(), ModContent.ItemType<Fluorescence>(), ModContent.ItemType<PeeledCarrot>(), },
                 new int[] { ModContent.ItemType<RedSpriteTrophy>(), ModContent.ItemType<RedSpriteMask>(), ModContent.ItemType<RedSpriteDye>(), },
-                () => WorldDefeats.DownedRedSprite, 
-                howToSummon: AQUtils.GetTextValue((GameCulture.English, english), 
+                () => WorldDefeats.DownedRedSprite,
+                howToSummon: AQUtils.GetTextValue((GameCulture.English, english),
                 (GameCulture.Chinese, chinese),
                 (GameCulture.Russian, russian)),
                 bossPortraitTexture: "AQMod/Assets/BossChecklist/RedSprite",
@@ -126,8 +126,8 @@ namespace AQMod.Common.CrossMod
                 AQUtils.GetTextValue((GameCulture.English, "Space Squid"), (GameCulture.Chinese, "太空乌贼")),
                 new int[] { ModContent.ItemType<RetroGoggles>(), ItemID.SoulofFlight, ModContent.ItemType<AtmosphericEnergy>(), ModContent.ItemType<SiphonTentacle>(), ModContent.ItemType<PeeledCarrot>(), },
                 new int[] { ModContent.ItemType<SpaceSquidTrophy>(), ModContent.ItemType<SpaceSquidMask>(), ModContent.ItemType<FrostbiteDye>(), },
-                () => WorldDefeats.DownedSpaceSquid, 
-                howToSummon: AQUtils.GetTextValue((GameCulture.English, english), 
+                () => WorldDefeats.DownedSpaceSquid,
+                howToSummon: AQUtils.GetTextValue((GameCulture.English, english),
                 (GameCulture.Chinese, chinese),
                 (GameCulture.Russian, russian)),
                 bossPortraitTexture: "AQMod/Assets/BossChecklist/SpaceSquid",

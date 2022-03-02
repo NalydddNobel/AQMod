@@ -6,7 +6,7 @@ using Terraria.ModLoader.IO;
 namespace AQMod.Common
 {
     public class WorldDefeats : ModWorld
-    {        
+    {
         /// <summary>
         /// If WoF or Omega Starite have been defeated
         /// </summary>

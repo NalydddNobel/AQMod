@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Misc.ExporterQuest
+namespace AQMod.Items.Misc
 {
     public class JeweledChalice : ModItem
     {

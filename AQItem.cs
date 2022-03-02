@@ -33,7 +33,7 @@ namespace AQMod
             public static HashSet<int> NoAutoswing { get; private set; }
             public static HashSet<int> DashEquip { get; private set; }
 
-            internal static void Setup()
+            internal static void Load()
             {
                 Crate = new HashSet<int>()
                 {
@@ -264,7 +264,7 @@ namespace AQMod
             if (DemonSiege.GetUpgrade(item) != null)
             {
                 int index = FindTTLineSpot(tooltips, "Material");
-                tooltips.Insert(index, new TooltipLine(mod, "DemonSiegeUpgrade", Language.GetTextValue("Mods.AQMod.Tooltips.DemonSiegeUpgrade")) { overrideColor = new Color(255, 222, 222), });
+                tooltips.Insert(index, new TooltipLine(mod, "DemonSiegeUpgrade", Language.GetTextValue("Mods.AQMod.Tooltips.DemonSiegeUpgrade")) { overrideColor = AQMod.DemonSiegeTooltip, });
             }
         }
         private void Tooltips_HookBarbBlacklistCheck(Item item, List<TooltipLine> tooltips)

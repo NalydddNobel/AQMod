@@ -1252,7 +1252,7 @@ namespace AQMod
         }
         private void DamageReduction_Extractor(Projectile projectile, ref int damage)
         {
-            if (AQProjectile.Sets.DamageReductionExtractor[projectile.type])
+            if (AQProjectile.Sets.DamageReductionExtractor.Contains(projectile.type))
             {
                 damage /= 4;
             }
@@ -1769,7 +1769,7 @@ namespace AQMod
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.MinionHeadType[Main.projectile[i].type] && Main.projectile[i].owner == player)
+                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.MinionHeadType.Contains(Main.projectile[i].type) && Main.projectile[i].owner == player)
                     Main.projectile[i].Kill();
             }
         }

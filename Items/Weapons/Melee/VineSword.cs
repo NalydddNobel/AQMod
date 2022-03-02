@@ -30,8 +30,10 @@ namespace AQMod.Items.Weapons.Melee
 
         public override void HoldItem(Player player)
         {
-            if (Main.cursorOverride <= 0 && !player.mouseInterface)
+            if (Main.cursorOverride <= 0 && !player.mouseInterface && Vector2.Distance(Main.MouseWorld, player.Center) < 200f)
+            {
                 player.GetModPlayer<PlayerCursorDyes>().VisibleCursorDye = CursorDyeID.WhackAZombie;
+            }
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

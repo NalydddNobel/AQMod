@@ -8,7 +8,6 @@ using AQMod.Effects.Particles;
 using AQMod.Items;
 using AQMod.Items.Accessories.Vanity;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.DrawOverlays;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Summon;
 using Microsoft.Xna.Framework;
@@ -381,10 +380,6 @@ namespace AQMod.Content.Players
                 return;
             }
 
-            if (item.modItem is IItemOverlaysPlayerDraw itemOverlay)
-            {
-                itemOverlay.PlayerDraw.DrawUse(player, player.GetModPlayer<AQPlayer>(), item, info);
-            }
             item.GetGlobalItem<AQItem>().Glowmask.DrawHeld(player, player.GetModPlayer<AQPlayer>(), item, info);
         });
 

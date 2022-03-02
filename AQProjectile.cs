@@ -4,6 +4,7 @@ using AQMod.Dusts;
 using AQMod.Items.Misc.Bait;
 using AQMod.NPCs;
 using AQMod.Projectiles.GrapplingHooks;
+using AQMod.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -15,60 +16,80 @@ namespace AQMod
 {
     public class AQProjectile : GlobalProjectile
     {
+        public static class Hooks
+        {
+            internal static int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
+            {
+                int originalValue = orig(X, Y, SpeedX, SpeedY, Type, Damage, KnockBack, Owner, ai0, ai1);
+                var projectile = Main.projectile[originalValue];
+                if (projectile.coldDamage || (projectile.friendly && projectile.owner != 255 && Main.player[projectile.owner].frostArmor && (projectile.melee || projectile.ranged)))
+                {
+                    var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
+                    aQProj.canHeat = false;
+                    aQProj.temperature = -15;
+                }
+                return originalValue;
+            }
+        }
+
         public static class Sets
         {
-            public static bool[] MinionHeadType { get; private set; }
-            public static bool[] MinionChomperType { get; private set; }
-            public static bool[] MinionRotationalType { get; private set; }
-            public static bool[] UnaffectedByWind { get; private set; }
-            public static bool[] IsGravestone { get; private set; }
-            public static bool[] DamageReductionExtractor { get; private set; }
-            public static List<int> HookBarbBlacklist { get; private set; }
-            public static List<int> IsAMinionProj { get; private set; }
+            public static HashSet<int> MinionHeadType { get; private set; }
+            public static HashSet<int> MinionRotationalType { get; private set; }
+            public static HashSet<int> EffectedByWind { get; private set; }
+            public static HashSet<int> IsGravestone { get; private set; }
+            public static HashSet<int> DamageReductionExtractor { get; private set; }
+            public static HashSet<int> HookBarbBlacklist { get; private set; }
+            public static HashSet<int> IsAMinionProj { get; private set; }
 
-            internal static void LoadSets()
+            internal static void Load()
             {
-                IsAMinionProj = new List<int>();
+                IsAMinionProj = new HashSet<int>();
 
-                HookBarbBlacklist = new List<int>()
+                HookBarbBlacklist = new HashSet<int>()
                 {
                     ProjectileID.AntiGravityHook,
                     ProjectileID.StaticHook,
                     ModContent.ProjectileType<VampireHookProj>(),
                 };
 
-                DamageReductionExtractor = new bool[ProjectileLoader.ProjectileCount];
-                DamageReductionExtractor[ProjectileID.SiltBall] = true;
-                DamageReductionExtractor[ProjectileID.SlushBall] = true;
-                DamageReductionExtractor[ProjectileID.AshBallFalling] = true;
-                DamageReductionExtractor[ProjectileID.SandBallFalling] = true;
-                DamageReductionExtractor[ProjectileID.PearlSandBallFalling] = true;
-                DamageReductionExtractor[ProjectileID.EbonsandBallFalling] = true;
-                DamageReductionExtractor[ProjectileID.CrimsandBallFalling] = true;
+                DamageReductionExtractor = new HashSet<int>()
+                {
+                    ProjectileID.SiltBall,
+                    ProjectileID.SlushBall,
+                    ProjectileID.AshBallFalling,
+                    ProjectileID.SandBallFalling,
+                    ProjectileID.PearlSandBallFalling,
+                    ProjectileID.EbonsandBallFalling,
+                    ProjectileID.CrimsandBallFalling,
+                };
 
-                MinionHeadType = new bool[ProjectileLoader.ProjectileCount];
-                MinionHeadType[ModContent.ProjectileType<Projectiles.Summon.MonoxiderMinion>()] = true;
+                MinionHeadType = new HashSet<int>()
+                {
+                    ModContent.ProjectileType<MonoxiderMinion>(),
+                };
 
-                MinionChomperType = new bool[ProjectileLoader.ProjectileCount];
-                MinionChomperType[ModContent.ProjectileType<Projectiles.Summon.Chomper>()] = true;
+                MinionRotationalType = new HashSet<int>()
+                {
+                    ModContent.ProjectileType<TrapperMinion>(),
+                };
 
-                MinionRotationalType = new bool[ProjectileLoader.ProjectileCount];
-                MinionRotationalType[ModContent.ProjectileType<Projectiles.Summon.TrapperMinion>()] = true;
+                IsGravestone = new HashSet<int>()
+                {
+                    ProjectileID.Tombstone,
+                    ProjectileID.GraveMarker,
+                    ProjectileID.CrossGraveMarker,
+                    ProjectileID.Headstone,
+                    ProjectileID.Gravestone,
+                    ProjectileID.Obelisk,
+                    ProjectileID.RichGravestone1,
+                    ProjectileID.RichGravestone2,
+                    ProjectileID.RichGravestone3,
+                    ProjectileID.RichGravestone4,
+                    ProjectileID.RichGravestone5,
+                };
 
-                IsGravestone = new bool[ProjectileLoader.ProjectileCount];
-                IsGravestone[ProjectileID.Tombstone] = true;
-                IsGravestone[ProjectileID.GraveMarker] = true;
-                IsGravestone[ProjectileID.CrossGraveMarker] = true;
-                IsGravestone[ProjectileID.Headstone] = true;
-                IsGravestone[ProjectileID.Gravestone] = true;
-                IsGravestone[ProjectileID.Obelisk] = true;
-                IsGravestone[ProjectileID.RichGravestone1] = true;
-                IsGravestone[ProjectileID.RichGravestone2] = true;
-                IsGravestone[ProjectileID.RichGravestone3] = true;
-                IsGravestone[ProjectileID.RichGravestone4] = true;
-                IsGravestone[ProjectileID.RichGravestone5] = true;
-
-                UnaffectedByWind = new bool[ProjectileLoader.ProjectileCount];
+                EffectedByWind = new HashSet<int>();
 
                 for (int i = 0; i < ProjectileLoader.ProjectileCount; i++)
                 {
@@ -76,17 +97,18 @@ namespace AQMod
                     {
                         var projectile = new Projectile();
                         projectile.SetDefaults(i);
-                        if (projectile.aiStyle != AIStyles.BulletAI && projectile.aiStyle != AIStyles.ArrowAI && projectile.aiStyle != AIStyles.ThrownAI &&
-                            projectile.aiStyle != AIStyles.GrapplingHookAI && projectile.aiStyle != AIStyles.DemonSickleAI && projectile.aiStyle != AIStyles.BoulderAI &&
-                            projectile.aiStyle != AIStyles.BoomerangAI && projectile.aiStyle != AIStyles.ExplosiveAI && projectile.aiStyle != AIStyles.HarpNotesAI &&
-                            projectile.aiStyle != AIStyles.BounceAI && projectile.aiStyle != AIStyles.CrystalStormAI)
+                        if (projectile.aiStyle == AIStyles.BulletAI || projectile.aiStyle == AIStyles.ArrowAI || projectile.aiStyle == AIStyles.ThrownAI ||
+                            projectile.aiStyle == AIStyles.GrapplingHookAI || projectile.aiStyle == AIStyles.DemonSickleAI || projectile.aiStyle == AIStyles.BoulderAI ||
+                            projectile.aiStyle == AIStyles.BoomerangAI || projectile.aiStyle == AIStyles.ExplosiveAI || projectile.aiStyle == AIStyles.HarpNotesAI ||
+                            projectile.aiStyle == AIStyles.BounceAI || projectile.aiStyle == AIStyles.CrystalStormAI)
                         {
-                            UnaffectedByWind[i] = true;
+                            continue;
                         }
+                        EffectedByWind.Add(i);
                     }
                     catch (Exception e)
                     {
-                        UnaffectedByWind[i] = true;
+                        EffectedByWind.Add(i);
                         var l = AQMod.GetInstance().Logger;
                         string projectileName;
                         if (i > Main.maxProjectileTypes)
@@ -114,9 +136,20 @@ namespace AQMod
 
             internal static void Unload()
             {
+                MinionHeadType?.Clear();
                 MinionHeadType = null;
+                MinionRotationalType?.Clear();
                 MinionRotationalType = null;
-                UnaffectedByWind = null;
+                EffectedByWind?.Clear();
+                EffectedByWind = null;
+                IsGravestone?.Clear();
+                IsGravestone = null;
+                DamageReductionExtractor?.Clear();
+                DamageReductionExtractor = null;
+                HookBarbBlacklist?.Clear();
+                HookBarbBlacklist = null;
+                IsAMinionProj?.Clear();
+                IsAMinionProj = null;
             }
         }
 
@@ -155,22 +188,6 @@ namespace AQMod
         {
             public const byte None = 0;
             public const byte MinionBuff = 1;
-        }
-
-        public static class Hooks
-        {
-            internal static int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
-            {
-                int originalValue = orig(X, Y, SpeedX, SpeedY, Type, Damage, KnockBack, Owner, ai0, ai1);
-                var projectile = Main.projectile[originalValue];
-                if (projectile.coldDamage || (projectile.friendly && projectile.owner != 255 && Main.player[projectile.owner].frostArmor && (projectile.melee || projectile.ranged)))
-                {
-                    var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
-                    aQProj.canHeat = false;
-                    aQProj.temperature = -15;
-                }
-                return originalValue;
-            }
         }
 
         public override bool InstancePerEntity => true;
@@ -225,7 +242,7 @@ namespace AQMod
 
         public bool ShouldApplyWindMechanics(Projectile projectile)
         {
-            return !windStruck && !Sets.UnaffectedByWind[projectile.type];
+            return !windStruck && Sets.EffectedByWind.Contains(projectile.type);
         }
 
         public override void SetDefaults(Projectile projectile)
@@ -738,7 +755,7 @@ namespace AQMod
 
         internal static void GetProjectileGroupStats_RotationalType(out int count, out int whoAmI, Projectile projectile)
         {
-            GetProjectileGroupStats((p) => p.owner == projectile.owner && Sets.MinionRotationalType[p.type], out count, out whoAmI, projectile.whoAmI);
+            GetProjectileGroupStats((p) => p.owner == projectile.owner && Sets.MinionRotationalType.Contains(p.type), out count, out whoAmI, projectile.whoAmI);
         }
 
         /// <summary>

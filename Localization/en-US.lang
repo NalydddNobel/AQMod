@@ -7,6 +7,7 @@
 # Tooltips
 #===========================#
 
+Tooltips.ExporterQuest=Return this to the exporter
 Tooltips.Concocted=Used in potion concoctions
 Tooltips.PaletteDrop=The item below is guaranteed to drop
 Tooltips.EffectActive=Disabled
@@ -173,10 +174,11 @@ ItemName.SteelPlatedChestplate=Steel Plated Chestplate
 ArmorSetBonus.SkyrimArmor=5% increased damage reduction\n10% decreased movement speed\n'You are carrying too much to be able to run'
 
 ItemName.LightbulbHelmet=Lightbulb Helmet
-ItemTooltip.LightbulbHelmet=Slightly increases mana regeneration\nYou faintly emit light\n'And so he left, with everything but his humanity...'
+ItemTooltip.LightbulbHelmet=Slightly increases mana regeneration\nYou faintly emit light\n'..and so he left'
 ItemName.LightbulbBreastplate=Lightbulb Breastplate
+ItemTooltip.LightbulbBreastplate='..and so he vanished'
 ItemName.LightbulbGreaves=Lightbulb Greaves
-ItemTooltip.LightbulbGreaves=Increases your max number of minions
+ItemTooltip.LightbulbGreaves=Increases your max number of minions\n'..and so it comes'
 ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% less damage
 
 
@@ -745,12 +747,23 @@ Exporter.Quests.Complete.2=Dumb cricket, I don't even think they remember buying
 Exporter.Quests.Complete.3=Looks like the gems got a bit scuffed... whatever. Here's your pay.
 Exporter.Quests.Complete.4=They say steal from the rich and give to the poor, but I think we should do the opposite. OH! And here's your payment.
 
+ItemName.Snobster=Snobster
+
+ItemName.JeweledChalice=Jeweled Chalice
+ItemTooltip.JeweledChalice={$Mods.AQMod.Tooltips.ExporterQuest}
 Exporter.Quest.JeweledChalice=I saw someone with a very special Jeweled Chalice. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
+
+ItemName.JeweledCandelabra=Jeweled Candelabra
+ItemTooltip.JeweledCandelabra={$Mods.AQMod.Tooltips.ExporterQuest}
 Exporter.Quest.JeweledCandelabra=I saw someone with a very special Jeweled Candelabra. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
+
+ItemName.JeweledChandelier=Jeweled Chandelier
+ItemTooltip.JeweledChandelier={$Mods.AQMod.Tooltips.ExporterQuest}
+
 Exporter.Quests.AtTownNPCHouse=I think I saw it in {0}'s house.
 Exporter.Quests.QuitHuntQuestion=Do you really want to quit this mission?
-Exporter.Quests.UIButtonQuit=Quit Hunt
-Exporter.Quests.UIButtonComplete=Complete Hunt
+Exporter.Quests.UIButtonQuit=Quit
+Exporter.Quests.UIButtonComplete=Complete
 Exporter.Quests.UIButtonQuest=Thievery
 
 # Paintings
@@ -966,7 +979,6 @@ Common.FavoriteOnly=Only works when favorited
 Common.DoesntMinionTarget=Does not obey minion targetting
 Common.NotConsumable=Does not get consumed
 Common.TorchCanBePlacedInLiquids=Can be placed in liquids
-Common.ReturnToLobster=Return this to the Lobster
 Common.IchorDartShotgunTag=Ichor Darts spawn pre-split
 Common.EnableThing=Enable {0}?
 Common.DisableThing=Disable {0}?
@@ -1045,13 +1057,6 @@ ItemName.MysticPopper=Mystic Popper
 # Rods
 ItemName.CrabRod=Crab Rod
 ItemName.BeeRod=Buzzrod
-# Quest Robster
-ItemName.Snobster=Snobster
-ItemName.JeweledChalice=Jeweled Chalice
-ItemName.JeweledCandelabra=Jeweled Candelabra
-ItemName.JeweledChandelier=Jeweled Chandelier
-ItemName.JeweledChair=Jeweled Chair
-ItemName.JeweledTable=Jeweled Table
 # Other Misc
 ItemName.DwarfStariteItem=Dwarf Starite
 ItemName.CrabShell=Crab Shell
@@ -1226,12 +1231,6 @@ ItemTooltip.IchorPopper=Increases bait power by 35% when in the crimson
 ItemTooltip.MysticPopper=Increases bait power by 25% when in the hallow
 # Rods
 ItemTooltip.BeeRod=Throws flying bee bobbers\nThrows 3 lines when using the Hive Pack
-# Quest Robster
-ItemTooltip.JeweledChalice={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledCandelabra={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledChandelier={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
 ItemTooltip.CrabShell=It's oddly misshapen
 ItemTooltip.PotionofContainers=Teleports you to a random chest in the world

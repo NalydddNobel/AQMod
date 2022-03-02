@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Misc.ExporterQuest.Rewards
+namespace AQMod.Items.Misc.ExporterQuest
 {
     public abstract class SchrodingerCrate : ModItem
     {
@@ -81,7 +81,15 @@ namespace AQMod.Items.Misc.ExporterQuest.Rewards
             }
 
             float x = lines[0].X + longest / 2f;
-            float y = lines[lines.Count - 4].Y + 20f;
+            float y = 20f;
+
+            foreach (var l in lines)
+            {
+                if (l.mod == "AQMod" && l.Name == "None0")
+                {
+                    y += l.Y;
+                }
+            }
 
             //BatcherMethods.UI.Begin(Main.spriteBatch, BatcherMethods.Regular);
 

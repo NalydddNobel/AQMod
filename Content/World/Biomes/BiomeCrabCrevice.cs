@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Configuration;
-using AQMod.Common.ID;
+﻿using AQMod.Common.ID;
 using AQMod.Content.Players;
 using AQMod.Dusts.Splashes;
 using AQMod.Gores;

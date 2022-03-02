@@ -1,5 +1,4 @@
 ﻿using AQMod.Content.Players;
-using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -8,15 +7,13 @@ using Terraria.ModLoader;
 namespace AQMod.Items.Armor.Vanity.BossMasks
 {
     [AutoloadEquip(EquipType.Head)]
-    public class OmegaStariteMask : ModItem, IItemOverlaysWorldDraw
+    public class OmegaStariteMask : ModItem
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<OmegaStariteMask>("_Glow"));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
-
         public override void SetStaticDefaults()
         {
             if (!Main.dedServ)
             {
+                this.Glowmask();
                 AQMod.ArmorOverlays.AddHeadOverlay<OmegaStariteMask>(new EquipHeadOverlay(this.GetPath() + "_HeadGlow", new Color(200, 200, 200, 0)));
             }
         }

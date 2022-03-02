@@ -6,7 +6,7 @@ using Terraria.Graphics.Shaders;
 
 namespace AQMod.Effects.Dyes
 {
-    internal static class DyeBinder
+    internal static class AutoDyeBinder
     {
         private static List<DyeItem> _loadDyes;
         private static List<HairDyeItem> _loadHairDyes;
@@ -25,7 +25,7 @@ namespace AQMod.Effects.Dyes
             _loadHairDyes.Add(item);
         }
 
-        public static void LoadDyes()
+        public static void SetupDyes()
         {
             DebugUtilities.Logger? logger = null;
             if (_loadDyes != null)

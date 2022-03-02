@@ -1,6 +1,7 @@
 ﻿using AQMod.Common.Graphics.PlayerEquips;
-using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,11 +9,8 @@ using Terraria.ModLoader;
 namespace AQMod.Items.Armor.Arachnotron
 {
     [AutoloadEquip(EquipType.Body)]
-    public class ABArachnotronRibcage : ModItem, IItemOverlaysWorldDraw
+    public class ABArachnotronRibcage : ModItem
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath2<ABArachnotronRibcage>("_Glow"));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
-
         public override bool Autoload(ref string name)
         {
             name = "ArachnotronRibcage";
@@ -23,6 +21,12 @@ namespace AQMod.Items.Armor.Arachnotron
         {
             if (!Main.dedServ)
             {
+                if (GlowmaskData.ItemToGlowmask == null)
+                {
+                    GlowmaskData.ItemToGlowmask = new Dictionary<int, GlowmaskData>();
+                }
+                var glow = new AQUtils.ItemGlowmask(() => new Color(250, 250, 250, 0));
+                GlowmaskData.ItemToGlowmask.Add(item.type, new GlowmaskData(mod.GetTexture("Items/Armor/Arachnotron/ArachnotronRibcage_Glow"), glow));
                 AQMod.ArmorOverlays.AddBodyOverlay<ABArachnotronRibcage>(new ArachnotronRibcageOverlay());
             }
         }

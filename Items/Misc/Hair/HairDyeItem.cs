@@ -25,7 +25,7 @@ namespace AQMod.Items.Misc.Hair
         {
             if (!Main.dedServ)
             {
-                DyeBinder.AddDye(this);
+                AutoDyeBinder.AddDye(this);
             }
         }
 

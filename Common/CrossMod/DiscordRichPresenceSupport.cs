@@ -10,7 +10,7 @@ namespace AQMod.Common.CrossMod
 {
     internal static class DiscordRichPresenceSupport
     {
-        public static void AddSupport()
+        public static void SetupContent()
         {
             try
             {

@@ -13,7 +13,7 @@ namespace AQMod.Projectiles.Melee
             projectile.height = 30;
             projectile.timeLeft = 4;
             projectile.friendly = true;
-            projectile.magic = true;
+            projectile.melee = true;
             projectile.aiStyle = -1;
             projectile.ignoreWater = true;
             projectile.penetrate = -1;

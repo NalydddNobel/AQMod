@@ -16,7 +16,7 @@ namespace AQMod
             public static HashSet<int> FoodBuff { get; private set; }
             public static HashSet<int> NoSpread { get; private set; }
 
-            internal static void Setup()
+            internal static void Load()
             {
                 NoSpread = new HashSet<int>()
                 {

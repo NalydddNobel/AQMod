@@ -1,7 +1,8 @@
 ﻿using AQMod.Common.Graphics.PlayerEquips;
-using AQMod.Items.DrawOverlays;
 using AQMod.Items.Materials.Energies;
 using AQMod.Localization;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -10,11 +11,8 @@ using Terraria.ModLoader;
 namespace AQMod.Items.Armor.Arachnotron
 {
     [AutoloadEquip(EquipType.Head)]
-    public class AArachnotronVisor : ModItem, IItemOverlaysWorldDraw
+    public class AArachnotronVisor : ModItem
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath2<AArachnotronVisor>("_Glow"));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
-
         public override bool Autoload(ref string name)
         {
             name = "ArachnotronVisor";
@@ -25,6 +23,12 @@ namespace AQMod.Items.Armor.Arachnotron
         {
             if (!Main.dedServ)
             {
+                if (GlowmaskData.ItemToGlowmask == null)
+                {
+                    GlowmaskData.ItemToGlowmask = new Dictionary<int, GlowmaskData>();
+                }
+                var glow = new AQUtils.ItemGlowmask(() => new Color(250, 250, 250, 0));
+                GlowmaskData.ItemToGlowmask.Add(item.type, new GlowmaskData(mod.GetTexture("Items/Armor/Arachnotron/ArachnotronVisor_Glow"), glow));
                 AQMod.ArmorOverlays.AddHeadOverlay<AArachnotronVisor>(new ArachnotronVisorOverlay());
             }
         }

@@ -1,16 +1,16 @@
 ﻿using AQMod.Buffs;
-using AQMod.Items.DrawOverlays;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Potions
 {
-    public class NeutronJuice : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
+    public class NeutronJuice : ModItem
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<NeutronJuice>("_Glow"));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
-        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
+        public override void SetStaticDefaults()
+        {
+            this.Glowmask();
+        }
 
         public override void SetDefaults()
         {

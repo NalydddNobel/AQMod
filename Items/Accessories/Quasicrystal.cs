@@ -1,16 +1,15 @@
-﻿using AQMod.Items.DrawOverlays;
-using Microsoft.Xna.Framework;
-using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories
 {
-    public class Quasicrystal : ModItem, IItemOverlaysWorldDraw
+    public class Quasicrystal : ModItem
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<Quasicrystal>("_Glow"), () => new Color(50, 50, 50, 0) * ((float)Math.Sin(Main.GlobalTime * 3f) + 1f));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        public override void SetStaticDefaults()
+        {
+            this.Glowmask();
+        }
 
         public override void SetDefaults()
         {

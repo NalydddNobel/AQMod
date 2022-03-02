@@ -17,6 +17,8 @@ namespace AQMod.Projectiles
             projectile.netImportant = true;
             projectile.ignoreWater = true;
             projectile.manualDirectionChange = true;
+            projectile.usesIDStaticNPCImmunity = true;
+            projectile.idStaticNPCHitCooldown = 6;
         }
 
         public override bool? CanCutTiles() => false;

@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Common.ID;
 using AQMod.Tiles.ExporterQuest;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
@@ -22,15 +21,15 @@ namespace AQMod
             public static HashSet<ushort> CanFixWaterOnType { get; private set; }
             public static HashSet<ushort> ExporterQuestFurniture { get; private set; }
 
-            internal static void Setup()
+            internal static void Load()
             {
                 CanFixWaterOnType = new HashSet<ushort>()
                 {
-                    TileID.Grass, 
-                    TileID.CorruptGrass, 
-                    TileID.FleshGrass, 
-                    TileID.SnowBlock, 
-                    TileID.IceBlock, 
+                    TileID.Grass,
+                    TileID.CorruptGrass,
+                    TileID.FleshGrass,
+                    TileID.SnowBlock,
+                    TileID.IceBlock,
                     TileID.Sand,
                 };
 
@@ -99,7 +98,7 @@ namespace AQMod
             switch (type)
             {
                 case TileID.ShadowOrbs:
-                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated|| Main.LocalPlayer.HeldItem.hammer >= 60;
+                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated || Main.LocalPlayer.HeldItem.hammer >= 60;
             }
             if (j > 1)
             {
@@ -115,7 +114,7 @@ namespace AQMod
             {
                 case TileID.Ebonstone:
                 case TileID.Crimstone:
-                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated|| j < 400;
+                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated || j < 400;
 
                 case TileID.ShadowOrbs:
                     return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated;

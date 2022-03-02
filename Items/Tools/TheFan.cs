@@ -1,6 +1,5 @@
 ﻿using AQMod.Common;
 using AQMod.Content.World.Events;
-using AQMod.Items.DrawOverlays;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -10,11 +9,12 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Tools
 {
-    public class TheFan : ModItem, IItemOverlaysWorldDraw, IItemOverlaysPlayerDraw
+    public class TheFan : ModItem
     {
-        private static readonly GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<TheFan>("_Glow"));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
-        IOverlayDrawPlayerUse IItemOverlaysPlayerDraw.PlayerDraw => _overlay;
+        public override void SetStaticDefaults()
+        {
+            this.Glowmask();
+        }
 
         public override void SetDefaults()
         {

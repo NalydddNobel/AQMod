@@ -1,14 +1,15 @@
-﻿using AQMod.Items.DrawOverlays;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories
 {
-    public class Ultranium : ModItem, IItemOverlaysWorldDraw
+    public class Ultranium : ModItem
     {
-        private static GlowmaskOverlay _overlay = new GlowmaskOverlay(AQUtils.GetPath<Ultranium>("_Glow"));
-        IOverlayDrawWorld IItemOverlaysWorldDraw.WorldDraw => _overlay;
+        public override void SetStaticDefaults()
+        {
+            this.Glowmask();
+        }
 
         public override void SetDefaults()
         {

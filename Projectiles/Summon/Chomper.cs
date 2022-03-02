@@ -141,7 +141,7 @@ namespace AQMod.Projectiles.Summon
                         count++;
                         index = count;
                     }
-                    else if (Main.projectile[i].active && AQProjectile.Sets.MinionChomperType[Main.projectile[i].type]
+                    else if (Main.projectile[i].active && Main.projectile[i].type == projectile.type
                         && Main.projectile[i].owner == projectile.owner)
                     {
                         if (Main.projectile[i].type == projectile.type && Main.projectile[i].ai[1] < 120)
@@ -321,7 +321,7 @@ namespace AQMod.Projectiles.Summon
                             count++;
                             index = count;
                         }
-                        else if (Main.projectile[i].active && AQProjectile.Sets.MinionChomperType[Main.projectile[i].type]
+                        else if (Main.projectile[i].active && Main.projectile[i].type == projectile.type
                             && Main.projectile[i].owner == projectile.owner)
                         {
                             if (Main.projectile[i].type == projectile.type && Main.projectile[i].ai[1] < 120)

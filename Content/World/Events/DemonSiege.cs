@@ -105,7 +105,7 @@ namespace AQMod.Content.World.Events
 
         public const int SPAWN_ENEMY_DELAY = 150;
 
-        public static void InternalSetup()
+        internal static void Load()
         {
             Reset();
 
@@ -141,8 +141,11 @@ namespace AQMod.Content.World.Events
 
         internal static void Unload()
         {
+            Upgrades?.Clear();
             Upgrades = null;
+            Enemies?.Clear();
             Enemies = null;
+            HellBanners?.Clear();
             HellBanners = null;
             BaseItem = null;
         }

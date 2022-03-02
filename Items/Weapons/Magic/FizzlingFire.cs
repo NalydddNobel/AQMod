@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Dusts;
-using AQMod.Effects;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

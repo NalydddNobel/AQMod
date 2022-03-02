@@ -4,16 +4,16 @@ using Terraria.ModLoader;
 
 namespace AQMod.Common.CrossMod
 {
-    internal struct CrossModData : IDisposable
+    internal struct ModData : IDisposable
     {
         public string name { get; private set; }
         public string codeName { get; private set; }
         public bool IsActive { get; private set; }
         public Mod mod { get; private set; }
 
-        public static CrossModData Unloaded => new CrossModData();
+        public static ModData Unloaded => new ModData();
 
-        public CrossModData(string name)
+        public ModData(string name)
         {
             this.name = name;
             codeName = AQStringCodes.EncodeModName(name);

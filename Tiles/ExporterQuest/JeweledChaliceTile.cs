@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Misc.ExporterQuest;
+﻿using AQMod.Items.Misc;
 using AQMod.NPCs.Friendly;
 using Terraria;
 using Terraria.ID;

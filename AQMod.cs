@@ -40,7 +40,8 @@ namespace AQMod
     public class AQMod : Mod
     {
         public const string TextureNone = "AQMod/Assets/None";
-        public static Color MysteriousGuideTooltip => Color.CornflowerBlue;
+        public static Color MysteriousGuideTooltip => Color.CornflowerBlue * 10f;
+        public static Color DemonSiegeTooltip => Color.OrangeRed * 10f;
 
         public static AQMod GetInstance()
         {
@@ -54,9 +55,6 @@ namespace AQMod
         internal static bool IsLoading { get; private set; }
         internal static bool IsUnloading { get; private set; }
 
-        /// <summary>
-        /// The active instance of Armor Overlays, this is not initialized on the server
-        /// </summary>
         public static EquipOverlayLoader ArmorOverlays { get; private set; }
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
@@ -65,17 +63,17 @@ namespace AQMod
         public static ModifiableMusic GaleStreamsMusic { get; private set; }
         internal List<CachedTask> cachedLoadTasks;
 
-        internal static CrossModData calamityMod;
-        internal static CrossModData catalyst;
-        internal static CrossModData thoriumMod;
-        internal static CrossModData fargowiltas;
-        internal static CrossModData polarities;
-        internal static CrossModData split;
-        internal static CrossModData sOTS;
-        internal static CrossModData shaderLib;
-        internal static CrossModData discordRP;
-        internal static CrossModData bossChecklist;
-        internal static CrossModData census;
+        internal static ModData calamityMod;
+        internal static ModData catalyst;
+        internal static ModData thoriumMod;
+        internal static ModData fargowiltas;
+        internal static ModData polarities;
+        internal static ModData split;
+        internal static ModData sOTS;
+        internal static ModData shaderLib;
+        internal static ModData discordRP;
+        internal static ModData bossChecklist;
+        internal static ModData census;
 
         public UserInterface NPCTalkState { get; private set; }
 
@@ -92,10 +90,11 @@ namespace AQMod
             IsLoading = true;
         }
 
-        private void Load_Hooks(bool unload = false)
+        private void LoadHooks(bool unload = false)
         {
             if (unload)
             {
+                TimeActions.Hooks.Main_UpdateTime_SpawnTownNPCs = null;
             }
             else
             {
@@ -144,49 +143,21 @@ namespace AQMod
 
                 On.Terraria.NPC.Collision_DecideFallThroughPlatforms += AQNPC.Hooks.NPC_Collision_DecideFallThroughPlatforms;
             }
-        }
-        private void Load_Assets_Textures(bool unload = false)
-        {
-            if (unload)
-            {
-                Tex.Unload();
-                LegacyTextureCache.Unload();
-            }
-            else
-            {
-                LegacyTextureCache.Load();
-                Tex.Load(this);
-                CrabPot.frame = new Rectangle(0, 0, Tex.CrabPot.Texture.Value.Width, Tex.CrabPot.Texture.Value.Height / CrabPot.FrameCount - 2);
-                CrabPot.origin = CrabPot.frame.Size() / 2f;
-            }
-        }
-        private void Load_Assets_Effects(bool unload = false)
-        {
-            if (unload)
-            {
-                BuffColorCache.Unload();
-                PrimitivesRenderer.Unload();
-                FX.Unload();
-                LegacyEffectCache.Unload();
-            }
-            else
-            {
-                LegacyEffectCache.Load(this);
-                FX.InternalSetup();
-                PrimitivesRenderer.Setup();
-                BuffColorCache.Init();
 
-                SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
-            }
         }
-        private void Load_Assets_Music(bool unload = false)
+        private void LoadMusic(bool unload = false)
         {
             if (unload)
             {
+                CrabsonMusic?.Dispose();
                 CrabsonMusic = null;
+                GlimmerEventMusic?.Dispose();
                 GlimmerEventMusic = null;
+                OmegaStariteMusic?.Dispose();
                 OmegaStariteMusic = null;
+                DemonSiegeMusic?.Dispose();
                 DemonSiegeMusic = null;
+                GaleStreamsMusic?.Dispose();
                 GaleStreamsMusic = null;
             }
             else
@@ -198,18 +169,7 @@ namespace AQMod
                 GaleStreamsMusic = new ModifiableMusic(MusicID.Sandstorm);
             }
         }
-        private void Load_Assets_UI(bool unload = false)
-        {
-            if (unload)
-            {
-                NPCTalkState = null;
-            }
-            else
-            {
-                NPCTalkState = new UserInterface();
-            }
-        }
-        private void Load_CrossMod(bool unload = false)
+        private void LoadCrossMod(bool unload = false)
         {
             if (unload)
             {
@@ -227,17 +187,17 @@ namespace AQMod
             }
             else
             {
-                calamityMod = new CrossModData("CalamityMod");
-                catalyst = new CrossModData("Catalyst");
-                thoriumMod = new CrossModData("ThoriumMod");
-                fargowiltas = new CrossModData("Fargowiltas");
-                polarities = new CrossModData("Polarities");
-                split = new CrossModData("Split");
-                sOTS = new CrossModData("SOTS");
-                shaderLib = new CrossModData("ShaderLib");
-                discordRP = new CrossModData("DiscordRP");
-                bossChecklist = new CrossModData("BossChecklist");
-                census = new CrossModData("Census");
+                calamityMod = new ModData("CalamityMod");
+                catalyst = new ModData("Catalyst");
+                thoriumMod = new ModData("ThoriumMod");
+                fargowiltas = new ModData("Fargowiltas");
+                polarities = new ModData("Polarities");
+                split = new ModData("Split");
+                sOTS = new ModData("SOTS");
+                shaderLib = new ModData("ShaderLib");
+                discordRP = new ModData("DiscordRP");
+                bossChecklist = new ModData("BossChecklist");
+                census = new ModData("Census");
             }
         }
         public override void Load()
@@ -245,10 +205,11 @@ namespace AQMod
             IsLoading = true;
             IsUnloading = false;
             Keybinds.Load();
-            Load_Hooks(unload: false);
+            LoadHooks(unload: false);
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
             Robster.Load();
+            DemonSiege.Load();
             ModCallDictionary.Load();
             CursorDyeManager.Load();
             AprilFoolsJoke.Check();
@@ -257,33 +218,44 @@ namespace AQMod
             if (!Main.dedServ)
             {
                 DrawHelper.Load();
-                Load_Assets_Textures(unload: false);
-                Load_Assets_Effects(unload: false);
+
+                LegacyTextureCache.Load();
+                Tex.Load(this);
+                CrabPot.frame = new Rectangle(0, 0, Tex.CrabPot.Texture.Value.Width, Tex.CrabPot.Texture.Value.Height / CrabPot.FrameCount - 2);
+                CrabPot.origin = CrabPot.frame.Size() / 2f;
+
+                LegacyEffectCache.Load(this);
+                FX.InternalSetup();
+                PrimitivesRenderer.Setup();
+                BuffColorCache.Init();
+
+                SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
+
                 AQSound.rand = new UnifiedRandom();
                 ArmorOverlays = new EquipOverlayLoader();
-                Load_Assets_Music(unload: false);
-                Load_Assets_UI(unload: false);
+                LoadMusic(unload: false);
+                NPCTalkState = new UserInterface();
             }
 
-            Load_CrossMod(unload: false);
+            LoadCrossMod(unload: false);
+
+            AQBuff.Sets.Load();
+            AQItem.Sets.Load();
+            AQTile.Sets.Load();
+            AQProjectile.Sets.Load();
 
             Autoloading.Autoload(Code);
         }
 
         public override void PostSetupContent()
         {
-            DemonSiege.InternalSetup();
-
-            AQBuff.Sets.Setup();
-            AQItem.Sets.Setup();
             AQNPC.Sets.Setup();
-            AQTile.Sets.Setup();
             BossChecklistSupport.SetupContent(this);
             CensusSupport.SetupContent(this);
             if (!Main.dedServ)
             {
-                DiscordRichPresenceSupport.AddSupport();
-                DyeBinder.LoadDyes();
+                DiscordRichPresenceSupport.SetupContent();
+                AutoDyeBinder.SetupDyes();
             }
             Autoloading.SetupContent(Code);
             invokeTasks();
@@ -292,7 +264,6 @@ namespace AQMod
 
         public override void AddRecipeGroups()
         {
-            AQProjectile.Sets.LoadSets();
             AQRecipes.RecipeGroups.Setup();
         }
 
@@ -313,20 +284,21 @@ namespace AQMod
             // outside of AQMod
             IsLoading = true;
             IsUnloading = true;
+            cachedLoadTasks?.Clear();
             cachedLoadTasks = null;
-            Load_Hooks(unload: true);
+            LoadHooks(unload: true);
             Autoloading.Unload();
 
             NPCNoHit.CurrentlyDamaged?.Clear();
             NPCNoHit.CurrentlyDamaged = null;
-            DyeBinder.Unload();
+            AutoDyeBinder.Unload();
             DemonSiege.Unload();
             AQProjectile.Sets.Unload();
             AQNPC.Sets.Unload();
             AQItem.Sets.Unload();
             AQBuff.Sets.Unload();
 
-            Load_CrossMod(unload: true);
+            LoadCrossMod(unload: true);
 
             if (!Main.dedServ)
             {
@@ -335,10 +307,14 @@ namespace AQMod
                 ArmorOverlays = null;
                 LegacyEffectCache.Unload();
                 SkyGlimmerEvent.BGStarite._texture = null;
-                Load_Assets_UI(unload: true);
-                Load_Assets_Music(unload: true);
-                Load_Assets_Effects(unload: true);
-                Load_Assets_Textures(unload: true);
+                NPCTalkState = null;
+                LoadMusic(unload: true);
+                BuffColorCache.Unload();
+                PrimitivesRenderer.Unload();
+                FX.Unload();
+                LegacyEffectCache.Unload();
+                Tex.Unload();
+                LegacyTextureCache.Unload();
                 DrawHelper.Unload();
             }
 
