@@ -1,7 +1,36 @@
 
-##############
-Items
-##############
+##=========================##
+## Items
+##=========================##
+
+#===========================#
+# Tooltips
+#===========================#
+
+Tooltips.Concocted=用于药水调配
+Tooltips.PaletteDrop=下列物品必定掉落
+Tooltips.EffectActive=禁用
+Tooltips.EffectActive=启用
+Tooltips.IncreasedMinions=增加最大召唤栏位
+Tooltips.SuspiciousLooking='我知道你在想什么...'
+Tooltips.Nalyddd='闻起来像玫瑰'
+Tooltips.HookBarbBlacklist=不受钩刺升级效果影响
+Tooltips.HookBarb=你的钩爪会造成伤害
+Tooltips.DemonSiegeUpgrade=可在地狱祭坛处升级
+Tooltips.DedicatedItem=专属物品
+Tooltips.Unobtainable=自另一宇宙形成的遗物
+Tooltips.ManaPerSecond=每秒消耗 {0} 点法力值
+Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果\n你不会受到任何摔落伤害
+Tooltips.InventoryPiggyBankFunction=放置于物品栏或猪猪存钱罐中即可生效
+Tooltips.ToggleKeyBind=按下{0}以开关效果
+
+
+
+
+ItemName.Molite=元星鱼
+ItemTooltip.Molite={$Mods.AQMod.Tooltips.Concocted}\n翻倍药水的效力
+ItemName.MoliteTag=元星药水
+ItemTooltip.MoliteTag=具有双倍的效力
 
 ItemName.MushroomClam=奇异蛤蜊
 ItemTooltip.MushroomClam=在海滩或蟹状裂隙处使用以召唤巨蟹蛤\n{$Mods.AQMod.Common.NotConsumable}
@@ -18,7 +47,16 @@ ItemTooltip.MythicStarfruit=召唤一道奇异微光
 BuffName.ManaDrain=法力枯竭
 BuffDescription.ManaDrain=魔法伤害降低90%
 
+
+
+
+
+#===========================#
 # Accessories
+#===========================#
+
+ItemName.BloodPlasma=离子血浆
+ItemTooltip.BloodPlasma=当你受到致死伤害时会自动饮用一瓶治疗药水
 
 ItemName.TargeoftheBlodded=尖刺盾牌
 ItemTooltip.TargeoftheBlodded=增加2点护甲穿透\n可沿墙滑下\n结合{$ItemName.ClimbingClaws}或{$ItemName.ShoeSpikes}使用时可提升能力
@@ -103,9 +141,15 @@ ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 
 ItemName.Thunderbird=雷鸟之翼
 ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\n有着强大的水平速度!\n击中敌人时会招引闪电对其进行轰击
-ItemName.Thunderbird=雷鸟
+NPCName.Thunderbird=雷鸟
 
+
+
+
+
+#===========================#
 # Armor
+#===========================#
 
 ItemName.FlowerCrown=花冠
 ItemTooltip.FlowerCrown=偶尔召唤在风中飘动的伤害性花瓣
@@ -135,7 +179,13 @@ ItemName.LightbulbGreaves=灯泡护胫
 ItemTooltip.LightbulbGreaves=增加最大召唤栏位
 ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱对你造成的伤害降低30%
 
-# Materials
+
+
+
+#===========================#
+# Weapons
+#===========================#
+
 ItemName.Baozhu=爆竹
 ItemTooltip.Baozhu=会产生巨大的爆炸并引燃敌人\n爆炸区域会被点燃一段时间
 
@@ -154,20 +204,7 @@ ProjectileName.DeltoidArrow=增量矢
 ItemName.Lightbulb=灯泡
 ItemTooltip.Lightbulb=利用恒星的能量散发着光
 
-ItemName.Fluorescence=荧光
-ItemName.SiphonTentacle=虹吸触手
 
-ItemName.CrustaciumBar=硬壳锭
-ItemName.CrustaciumBlob=硬壳血肉
-ItemName.CrustaciumOre=硬壳矿
-
-ItemName.LightMatter=光明物质
-ItemTooltip.LightMatter=散发着光芒和星际能量
-
-ItemName.NuclearFeather=核子之羽
-ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
-
-# Weapons
 ItemName.CrimsonHellSword=灼烧者
 ItemTooltip.CrimsonHellSword=发射会爆炸的恶魔能量冲击波\n剑身击中敌人时会对其造成猩红狱火减益\n'那一定会燃起来的'
 ProjectileName.Burnterizer=第一灾级燃烧
@@ -276,74 +313,54 @@ ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段
 ItemTooltipExtra..UltimateSword.0=仅能在天空中闪烁微光时才能在终末之星处获得
 ProjectileName.UltimateSword=最终之剑
 
-# Pets
-ItemName.HeartLamp=心灯
-ItemTooltip.HeartLamp=召唤一只会增加你生命恢复速度并提供光照的心蛾
-BuffName.HeartMothBuff=心蛾
-BuffDescription.HeartMothBuff=增加你的生命恢复速度并提供光照
 
-ItemName.StariteinaBottle=瓶中星源
-ItemTooltip.StariteinaBottle=召唤一颗侏儒源星提供光照\n{$Mods.AQMod.Tooltips.SuspiciousLooking}
-BuffName.DwarfStariteBuff=侏儒源星
-BuffDescription.DwarfStariteBuff='你知道的越多'
-ProjectileName.DwarfStaritePet=侏儒源星
 
-ItemName.DragonBall=龙珠
-ItemTooltip.DragonBall=召唤一颗迷你终末之星
-BuffName.OmegaStariteBuff=迷你终末之星
-BuffDescription.OmegaStariteBuff=你所能想象的最小的类太阳系
-ProjectileName.OmegaStaritePet=终末之星
 
-ItemName.YuckyOrb=迷人诱饵
-ItemTooltip.YuckyOrb=召唤一只会提供光亮的宠物鮟鱇鱼
-BuffName.AnglerFish=鮟鱇鱼
-BuffDescription.AnglerFish=它被自己所发出的光明暗中吸引
+#===========================#
+# Materials
+#===========================#
 
-# Dyes
-ItemName.CursorDyeRemover=光标染料移除剂
-ItemTooltip.CursorDyeRemover=移除光标染料的效果
+ItemName.Fluorescence=荧光
+ItemName.SiphonTentacle=虹吸触手
 
-ItemName.HealthCursorDye=生命光标染料
-ItemName.ManaCursorDye=法力光标染料
-ItemName.SwordCursorDye=剑刃光标染料
-ItemName.DemonicCursorDye=恶魔光标染料
+ItemName.CrustaciumBar=硬壳锭
+ItemName.CrustaciumBlob=硬壳肉
+ItemName.CrustaciumOre=硬壳矿
 
-ItemName.NalydDye=极顶染料
-ItemTooltip.NalydDye={$Mods.AQMod.Tooltips.Nalyddd}
+ItemName.LightMatter=光明物质
+ItemTooltip.LightMatter=散发着光芒和星际能量
 
-ItemName.RedSpriteDye=灼炎染料
-ItemName.FrostbiteDye=霜寒染料
-ItemName.EnchantedDye=附魔染料
-ItemName.ScrollDye=眩惑染料
-ItemName.HellBeamDye=狱光染料
-ItemName.BreakdownDye=故障染料
-ItemName.DiscoDye=迪斯科染料
-ItemName.HypnoDye=色彩分离染料
-ItemName.SimplifiedDye=简化染料
-ItemName.OutlineDye=轮廓描边染料
-ItemName.RainbowOutlineDye=彩虹轮廓描边染料
+ItemName.NuclearFeather=核子之羽
+ItemTooltip.NuclearFeather={$Mods.AQMod.Tooltips.Unobtainable}\n'他们说此羽来自于八咫乌那完美无瑕的翅膀'
 
-# Tiles
-ItemName.SeaPickle=海泡菜
-ItemTooltip.SeaPickle='你听到一个声音告诉你把它翻过来'
-MapObject.SeaPickle=海泡菜
+ItemName.CrabPot=蟹笼
+ItemTooltip.CrabPot=使用鱼饵来捕捉水里的东西
 
-ItemName.CrabsonTrophy=巨蟹蛤纪念章
+ItemName.PalePufferfish=苍白河豚
+ItemTooltip.PalePufferfish=能治愈你身上的许多种减益\n能治愈血咒
 
-ItemName.HellTombstone=地狱墓碑
-MapObject.HellTombstone=地狱墓碑
+ItemName.VampireSquid=吸血乌贼
+ItemTooltip.VampireSquid=使你获得血咒
+BuffName.Vampirism=血咒
+BuffDescription.Vampirism=在这之后你可能会变成吸血鬼...
+BuffName.VampirismDay=日光
+BuffDescription.VampirismDay=你的各项属性大幅度降低, 你无法再通过食物获得增益
 
-ItemName.GoreNestItem=血巢
-ItemTooltip.GoreNestItem=在祭坛处使用由魔矿锭或猩红矿锭制成的物品
-MapObject.GoreNest=血巢
+ItemName.Blobfish=水滴鱼
+ItemTooltip.Blobfish='要想看着它而不吐出来需要你没有呕吐反射'
 
-ItemName.ArgonMushroom=氩蘑菇
-ItemTooltip.ArgonMushroom=散发着红光\n'休眠中并且无生命迹象'
-ItemName.KryptonMushroom=氪蘑菇
-ItemTooltip.KryptonMushroom=散发着绿光\n'可以显示超级生物的致命弱点'
-ItemName.XenonMushroom=氙蘑菇
-ItemTooltip.XenonMushroom=散发着蓝光\n'当你触摸它时, 它变得更亮了'
-MapObject.NobleMushrooms=华贵蘑菇
+ItemName.Fizzler=星灼鱼
+
+ItemName.Nessie=尼斯湖水怪
+
+ItemName.UltraEel=超级进化鳗
+ItemTooltip.UltraEel=一种非常古老的星源物种的后代
+
+ItemName.Combfish=纵带盔鱼
+ItemTooltip.Combfish=具有再生特性
+
+ItemName.LarvaEel=寄生鳗幼虫
+ItemTooltip.LarvaEel=提供生命再生
 
 #===========================#
 # Tools
@@ -410,16 +427,67 @@ ItemName.Beeswax=蜂蜡
 ItemTooltip.Beeswax=显示所有可见的世纪之花花苞的位置
 MapLayerToggle.Beeswax=显示所有可见的世纪之花花苞的位置
 
+
+
+
+
+#===========================#
+# Tiles
+#===========================#
+
+ItemName.SedimentSandBlock=沉积沙块
+ItemTooltip.SedimentSandBlock=不会坠落
+
+ItemName.SeaPickle=海泡菜
+ItemTooltip.SeaPickle='你听到一个声音告诉你把它翻过来'
+MapObject.SeaPickle=海泡菜
+
+ItemName.CrabsonTrophy=巨蟹蛤纪念章
+
+ItemName.HellTombstone=地狱墓碑
+MapObject.HellTombstone=地狱墓碑
+
+ItemName.GoreNestItem=血巢
+ItemTooltip.GoreNestItem=在此祭坛处使用由魔矿锭或猩红矿锭制成的物品\n视作恶魔/猩红祭坛
+MapObject.GoreNest=血巢
+
+ItemName.ArgonMushroom=氩蘑菇
+ItemTooltip.ArgonMushroom=散发着红光\n'休眠中并且无生命迹象'
+ItemName.KryptonMushroom=氪蘑菇
+ItemTooltip.KryptonMushroom=散发着绿光\n'可以显示超级生物的致命弱点'
+ItemName.XenonMushroom=氙蘑菇
+ItemTooltip.XenonMushroom=散发着蓝光\n'当你触摸它时, 它变得更亮了'
+MapObject.NobleMushrooms=华贵蘑菇
+
+# Furniture
+ItemName.CrabClock=螃蟹挂钟
+ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
+
+# Walls
+ItemName.OceanRavineWall=蟹状裂隙墙
+
+# Exporter Crates
+ItemName.OverworldPalette=上界调色板
+ItemTooltip.OverworldPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
+ItemName.CavernPalette=洞穴调色板
+ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
+
+
+
+
+#===========================#
 # Potions
+#===========================#
+
 ItemName.Baguette=法棍
 ItemTooltip.Baguette=大幅度提升所有属性\n大幅度增加生命恢复速度\n增益效果在你死亡时不会消失\n'蛋糕只是松软的面包'
 BuffName.BaguetteBuff=法棍
 BuffDescription.BaguetteBuff=大幅度提升所有属性和生命恢复速度
 
-ItemName.SpoilsPotion=战利品药水
-ItemTooltip.SpoilsPotion=敌人死亡时掉落的战利品的数量翻倍
-BuffName.SpoilsPotionBuff=溺爱
-BuffDescription.SpoilsPotionBuff=敌人死亡时掉落的战利品的数量翻倍\n'你只是个被惯坏了的坏孩子!'
+ItemName.SpoilsPotion=超量药水
+ItemTooltip.SpoilsPotion=敌人死亡时掉落的战利品的数量翻倍\n'你只是个被惯坏了的坏孩子!'
+BuffName.Spoiled=超量
+BuffDescription.Spoiled=敌人死亡时掉落的战利品的数量翻倍
 
 ItemName.BloodthirstPotion=嗜血药水
 ItemTooltip.BloodthirstPotion=当你击杀一名敌人时你会回复些许生命值
@@ -471,79 +539,81 @@ ItemTooltip.PeeledCarrot=中幅度提升所有属性并且使你获得夜视效�
 BuffName.PeeledCarrotBuff=目力
 BuffDescription.PeeledCarrotBuff=中幅度提升所有属性并且使你获得夜视效果
 
-# Fish
-ItemName.CrabPot=蟹笼
-ItemTooltip.CrabPot=使用鱼饵来捕捉水里的东西
 
-ItemName.PalePufferfish=苍白河豚
-ItemTooltip.PalePufferfish=能治愈你身上的许多种减益\n能治愈血咒
 
-ItemName.BloodPlasma=离子血浆
-ItemTooltip.BloodPlasma=当你受到致死攻击时会自动饮用一瓶治疗药水
 
-ItemName.VampireSquid=吸血乌贼
-ItemTooltip.VampireSquid=使你获得血咒
-BuffName.Vampirism=血咒
-BuffDescription.Vampirism=在这之后你可能会变成吸血鬼...
-BuffName.VampirismDay=日光
-BuffDescription.VampirismDay=你的各项属性大幅度降低, 且你无法再通过食物获得增益
 
-ItemName.Blobfish=水滴鱼
-ItemTooltip.Blobfish='要想看着它而不吐出来需要你没有呕吐反射'
+#===========================#
+# Dyes
+#===========================#
 
-ItemName.Fizzler=星灼鱼
+ItemName.CursorDyeRemover=光标染料移除剂
+ItemTooltip.CursorDyeRemover=移除光标染料的效果
 
-ItemName.Nessie=尼斯湖水怪
+ItemName.HealthCursorDye=生命光标染料
+ItemName.ManaCursorDye=法力光标染料
+ItemName.SwordCursorDye=剑刃光标染料
+ItemName.DemonicCursorDye=恶魔光标染料
 
-ItemName.UltraEel=超级进化鳗
-ItemTooltip.UltraEel=一种非常古老的星源物种的后代
+ItemName.NalydDye=极顶染料
+ItemTooltip.NalydDye={$Mods.AQMod.Tooltips.Nalyddd}
 
-ItemName.Combfish=纵带盔鱼
-ItemTooltip.Combfish=具有再生特性
+ItemName.RedSpriteDye=灼炎染料
+ItemName.FrostbiteDye=霜寒染料
+ItemName.EnchantedDye=附魔染料
+ItemName.ScrollDye=眩惑染料
+ItemName.HellBeamDye=狱光染料
+ItemName.BreakdownDye=故障染料
+ItemName.DiscoDye=迪斯科染料
+ItemName.HypnoDye=色彩分离染料
+ItemName.SimplifiedDye=简化染料
+ItemName.OutlineDye=轮廓描边染料
+ItemName.RainbowOutlineDye=彩虹轮廓描边染料
 
-ItemName.LarvaEel=寄生鳗幼虫
-ItemTooltip.LarvaEel=使你获得3分钟蜂蜜增益和耐药性减益
+#===========================#
+# Pets
+#===========================#
 
+ItemName.HeartLamp=心灯
+ItemTooltip.HeartLamp=召唤一只会增加你生命恢复速度并提供光照的心蛾
+BuffName.HeartMothBuff=心蛾
+BuffDescription.HeartMothBuff=增加你的生命恢复速度并提供光照
+
+ItemName.StariteinaBottle=瓶中星源
+ItemTooltip.StariteinaBottle=召唤一颗侏儒源星提供光照\n{$Mods.AQMod.Tooltips.SuspiciousLooking}
+BuffName.DwarfStariteBuff=侏儒源星
+BuffDescription.DwarfStariteBuff='你知道的越多'
+ProjectileName.DwarfStaritePet=侏儒源星
+
+ItemName.DragonBall=龙珠
+ItemTooltip.DragonBall=召唤一颗迷你终末之星
+BuffName.OmegaStariteBuff=迷你终末之星
+BuffDescription.OmegaStariteBuff=你所能想象的最小的类太阳系
+ProjectileName.OmegaStaritePet=迷你终末之星
+
+ItemName.YuckyOrb=迷人诱饵
+ItemTooltip.YuckyOrb=召唤一只会提供光亮的宠物鮟鱇鱼
+BuffName.AnglerFish=鮟鱇鱼
+BuffDescription.AnglerFish=它被自己所发出的光明暗中吸引
+
+
+
+
+#===========================#
 # Quest Fish
+#===========================#
+
 ItemName.WaterFisg=水鱼
 QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我曾见过一条内部充满清水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
+
 ItemName.Crabdaughter=蟹蛤之子
 QuestFish.Crabdaughter=看起来海洋中最近涌入了某些新的鱼, 其中一条鱼似乎与爪子为蛤蜊的巨大螃蟹有关联. 尽管我所能想到的唯一关联是它的爪子为螃蟹爪子. 真是个奇观, 所以快给我抓一条!
 
 FishingLocation.AnywhereFishing=抓捕位置: 任意位置
 FishingLocation.BeachFishing=抓捕位置: 海洋
 
-# Tiles
-ItemName.SedimentSandBlock=沉积沙块
 
-# Furniture
-ItemName.CrabClock=螃蟹挂钟
-ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
 
-# Walls
-ItemName.OceanRavineWall=蟹状裂隙墙
-
-# Exporter Crates
-ItemName.OverworldPalette=上界调色板
-ItemTooltip.OverworldPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
-ItemName.CavernPalette=洞穴调色板
-ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
-
-# Tooltips
-Tooltips.PaletteDrop=下列物品必定掉落
-Tooltips.EffectActive=激活:
-Tooltips.IncreasedMinions=增加最大召唤栏位
-Tooltips.SuspiciousLooking='我知道你在想什么...'
-Tooltips.Nalyddd='闻起来像玫瑰'
-Tooltips.HookBarbBlacklist=不受刺钩升级效果影响
-Tooltips.HookBarb=你的钩爪会造成伤害
-Tooltips.DemonSiegeUpgrade=可在地狱祭坛处升级
-Tooltips.DedicatedItem=专属物品
-Tooltips.Unobtainable=自另一宇宙形成的遗物
-Tooltips.ManaPerSecond=每秒消耗{0}点法力值
-Tooltips.UmbrellaWeapon=手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果\n你不会受到任何摔落伤害
-Tooltips.InventoryPiggyBankFunction=放置于物品栏或猪猪存钱罐中即可生效
-Tooltips.ToggleKeyBind=按下{0}以开关效果
 
 NPCName.SoldierCrabs=兵蟹
 ItemName.SoliderCrabsBanner=兵蟹旗
@@ -985,8 +1055,6 @@ ItemName.JeweledTable=宝石桌
 # Other Misc
 ItemName.DwarfStariteItem=侏儒源星
 ItemName.CrabShell=蟹壳
-ItemName.Molite=元星鱼
-ItemName.MoliteTag={$Mods.AQMod.ItemName.Molite}
 ItemName.PotionofContainers=传箱药水
 ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
 
@@ -1166,7 +1234,6 @@ ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
 ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
 ItemTooltip.CrabShell=畸形, 真是诡异
-ItemTooltip.Molite=与药水结合使用时可翻倍药水的持续时间
 ItemTooltip.PotionofContainers=将你传送至随机一个箱子
 ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 #############
