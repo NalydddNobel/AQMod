@@ -7,6 +7,7 @@
 # Tooltips
 #===========================#
 
+Tooltips.ExporterQuest=将此物交付于发货人
 Tooltips.Concocted=用于药水调配
 Tooltips.PaletteDrop=下列物品必定掉落
 Tooltips.EffectActive=禁用
@@ -173,10 +174,11 @@ ItemName.SteelPlatedChestplate=钢板胸甲
 ArmorSetBonus.SkyrimArmor=增加5%伤害减免\n降低10%移动速度\n'你身上背的东西太多了, 你跑不动了'
 
 ItemName.LightbulbHelmet=灯泡头盔
-ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n你现在会散发微光\n'于是他便带着一切离去了, 除了他的人性...'
+ItemTooltip.LightbulbHelmet=小幅度增加法力恢复速度\n你现在会散发微光\n'..于是他离开了'
 ItemName.LightbulbBreastplate=灯泡胸甲
+ItemTooltip.LightbulbBreastplate='..于是他消失了'
 ItemName.LightbulbGreaves=灯泡护胫
-ItemTooltip.LightbulbGreaves=增加最大召唤栏位
+ItemTooltip.LightbulbGreaves=增加最大召唤栏位\n'..于是它来了'
 ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱对你造成的伤害降低30%
 
 
@@ -273,8 +275,6 @@ ProjectileName.ThunderClap=雷霆一击
 
 ItemName.Umystick=神秘的伞
 ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n手持此物品时右键消耗大量法力值来进行一次额外的跳跃\n'看起来贼危险'
-BuffName.UmystickDelay=秘伞延迟
-BuffDescription.UmystickDelay=你的法力恢复速度降低, 且无法使用神秘的伞进行额外的跳跃
 
 ItemName.Narrizuul=耀宇遗光
 ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n{$Mods.AQMod.Tooltips.Nalyddd}
@@ -745,12 +745,23 @@ Exporter.Quests.Complete.2=真是个笨蟋蟀, 我觉得他们都不记得买过
 Exporter.Quests.Complete.3=上面的宝石看起来磨损了...管他呢. 这是给你的奖励.
 Exporter.Quests.Complete.4=他们常说劫富济贫, 但我认为我们应该做与其相反的事情. 嘿, 这是给你的奖励.
 
+ItemName.Snobster=势利鬼虾
+
+ItemName.JeweledChalice=宝石杯
+ItemTooltip.JeweledChalice={$Mods.AQMod.Tooltips.ExporterQuest}
 Exporter.Quest.JeweledChalice=我看见某人拿着一件特别的宝石杯. 它上面还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
+
+ItemName.JeweledCandelabra=宝石烛台
+ItemTooltip.JeweledCandelabra={$Mods.AQMod.Tooltips.ExporterQuest}
 Exporter.Quest.JeweledCandelabra=我看见某人拿着一件特别的宝石烛台.  它上还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
+
+ItemName.JeweledChandelier=宝石大吊灯
+ItemTooltip.JeweledChandelier={$Mods.AQMod.Tooltips.ExporterQuest}
+
 Exporter.Quests.AtTownNPCHouse=我想我是在{0}的房子里看到的这个.
 Exporter.Quests.QuitHuntQuestion=你想停止狩猎吗?
-Exporter.Quests.UIButtonQuit=停止狩猎
-Exporter.Quests.UIButtonComplete=完成狩猎
+Exporter.Quests.UIButtonQuit=停止
+Exporter.Quests.UIButtonComplete=完成
 Exporter.Quests.UIButtonQuest=盗窃
 
 # Paintings
@@ -966,7 +977,6 @@ Common.FavoriteOnly=仅将其标记为收藏时才会生效
 Common.DoesntMinionTarget=不会优先攻击具有召唤标记的目标
 Common.NotConsumable=不消耗
 Common.TorchCanBePlacedInLiquids=可放置在液体中
-Common.ReturnToLobster=请将此物交付于龙虾掠夺者
 Common.IchorDartShotgunTag=使用灵液镖作为弹药时直接发射分裂灵液镖
 Common.EnableThing=启用{0}?
 Common.DisableThing=禁用{0}?
@@ -1045,13 +1055,6 @@ ItemName.MysticPopper=秘圣响饵
 # Rods
 ItemName.CrabRod=螃蟹钓竿
 ItemName.BeeRod=蜜蜂钓竿
-# Quest Robster
-ItemName.Snobster=势利鬼虾
-ItemName.JeweledChalice=宝石杯
-ItemName.JeweledCandelabra=宝石烛台
-ItemName.JeweledChandelier=宝石大吊灯
-ItemName.JeweledChair=宝石椅
-ItemName.JeweledTable=宝石桌
 # Other Misc
 ItemName.DwarfStariteItem=侏儒源星
 ItemName.CrabShell=蟹壳
@@ -1226,12 +1229,6 @@ ItemTooltip.IchorPopper=在猩红之地钓鱼时增加35%鱼饵力
 ItemTooltip.MysticPopper=在神圣之地钓鱼时增加25%鱼饵力
 # Rods
 ItemTooltip.BeeRod=扔出飞行的蜜蜂浮标\n在佩戴蜂巢背包时会扔出3枚浮标
-# Quest Robster
-ItemTooltip.JeweledChalice={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledCandelabra={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledChandelier={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
 ItemTooltip.CrabShell=畸形, 真是诡异
 ItemTooltip.PotionofContainers=将你传送至随机一个箱子
