@@ -1,4 +1,6 @@
-﻿namespace AQMod.Items.Reforges
+﻿using Terraria.Localization;
+
+namespace AQMod.Items.Reforges
 {
     public sealed class TimedPrefix : CooldownPrefix
     {
@@ -7,7 +9,7 @@
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Timed");
-            // DisplayName.AddTranslation(GameCulture.Chinese, "");
+            DisplayName.AddTranslation(GameCulture.Chinese, "时限");
             // DisplayName.AddTranslation(GameCulture.Russian, "");
         }
     }

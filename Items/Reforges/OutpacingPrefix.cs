@@ -1,4 +1,6 @@
-﻿namespace AQMod.Items.Reforges
+﻿using Terraria.Localization;
+
+namespace AQMod.Items.Reforges
 {
     public sealed class OutpacingPrefix : CooldownPrefix
     {
@@ -8,7 +10,7 @@
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Outpacing");
-            // DisplayName.AddTranslation(GameCulture.Chinese, "");
+            DisplayName.AddTranslation(GameCulture.Chinese, "超越");
             // DisplayName.AddTranslation(GameCulture.Russian, "");
         }
     }

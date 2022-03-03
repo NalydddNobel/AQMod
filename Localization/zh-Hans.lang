@@ -274,7 +274,7 @@ ItemTooltip.ThunderClap=召唤雷霆从天而降
 ProjectileName.ThunderClap=雷霆一击
 
 ItemName.Umystick=神秘的伞
-ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n手持此物品时右键消耗大量法力值来进行一次额外的跳跃\n'看起来贼危险'
+ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n手持此物品时按下右键进行一次跳跃\n'看起来贼危险'
 
 ItemName.Narrizuul=耀宇遗光
 ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n{$Mods.AQMod.Tooltips.Nalyddd}
@@ -612,6 +612,20 @@ QuestFish.Crabdaughter=看起来海洋中最近涌入了某些新的鱼, 其中�
 FishingLocation.AnywhereFishing=抓捕位置: 任意位置
 FishingLocation.BeachFishing=抓捕位置: 海洋
 
+
+
+
+#===========================#
+# Prefixes
+#===========================#
+
+# +10% 冷却时间
+PrefixTooltip.Cooldown={0}% 冷却时间
+PrefixTooltip.Combo={0}% 组合倍率
+PrefixName.Speedrunning=极速
+PrefixName.Outpacing=超越
+PrefixName.Timed=时限
+PrefixName.Scheduled=定序
 
 
 
@@ -1557,6 +1571,9 @@ ServerConfig.EvilProgressionLockTooltip=黑檀石、猩红石、暗影珠和猩�
 
 ServerConfig.HarderOmegaStarite=总是困难版本的终末之星AI
 ServerConfig.HarderOmegaStariteTooltip=与微光事件中的强化版终末之星战斗, 即使此时并不处于微光事件\n但终末之星并不会在微光事件外掉落最终之剑\n终末之星存活时无法更改此项设置.
+
+ServerConfig.CooldownReforges=冷却重铸
+ServerConfig.CooldownReforgesTooltip=决定是否加载冷却时间前缀\n若加载此Mod和其他Mod时出现前缀错误, 你可以禁用此项来删除一些前缀.
 
 ServerConfig.JellyfishNecklace=蓝色水母不再掉落水母项链 ([i:1303])
 ServerConfig.JellyfishNecklaceTooltip=若禁用此项, 则蓝色水母能够有几率同时掉落水母项链和冲击项圈.

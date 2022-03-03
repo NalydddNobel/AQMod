@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Localization;
 
 namespace AQMod.Items.Reforges
 {
@@ -10,7 +11,7 @@ namespace AQMod.Items.Reforges
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Speedrunning");
-            // DisplayName.AddTranslation(GameCulture.Chinese, "");
+            DisplayName.AddTranslation(GameCulture.Chinese, "极速");
             // DisplayName.AddTranslation(GameCulture.Russian, "");
         }
 

@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Localization;
 
 namespace AQMod.Items.Reforges
 {
@@ -9,7 +10,7 @@ namespace AQMod.Items.Reforges
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Scheduled");
-            // DisplayName.AddTranslation(GameCulture.Chinese, "");
+            DisplayName.AddTranslation(GameCulture.Chinese, "定序");
             // DisplayName.AddTranslation(GameCulture.Russian, "");
         }
 
