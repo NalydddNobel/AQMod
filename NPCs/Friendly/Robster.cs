@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
+using AQMod.Common.Utilities.Debugging;
 using AQMod.Content.World.Events;
 using AQMod.Items.Misc;
 using AQMod.Items.Misc.ExporterQuest;
@@ -224,6 +225,9 @@ namespace AQMod.NPCs.Friendly
             }
         }
 
+        public static Color JeweledTileMapColor => new Color(255, 185, 25, 255);
+        public static Color RobsterBroadcastMessageColor => new Color(255, 215, 105, 255);
+
         public static List<ThieveryQuest> RegisteredQuests { get; private set; }
         public static int QuestsCompleted { get; internal set; }
         public static ThieveryQuest ActiveQuest { get; internal set; }
@@ -231,16 +235,9 @@ namespace AQMod.NPCs.Friendly
 
         public static bool huntComplete;
         public static byte resetQuestButton;
-
-        public static Color JeweledTileMapColor => new Color(255, 185, 25, 255);
-        public static Color RobsterBroadcastMessageColor => new Color(255, 215, 105, 255);
+        public static byte netQuestDelay;
 
         public byte NetTick;
-
-        internal static void Initialize()
-        {
-            resetQuestButton = 0;
-        }
 
         public override void SetStaticDefaults()
         {
@@ -283,7 +280,13 @@ namespace AQMod.NPCs.Friendly
 
         public override void AI()
         {
+            if (netQuestDelay > 0)
+                netQuestDelay--;
             npc.breath = 200;
+            if (Main.netMode == NetmodeID.MultiplayerClient && ActiveQuest != null)
+            {
+                //Dust.NewDust(ActiveQuest.location.ToWorldCoordinates(), 16, 16, DustID.Fire);
+            }
             if (ActiveQuest == null)
             {
                 StartRandomHunt();
@@ -294,14 +297,33 @@ namespace AQMod.NPCs.Friendly
                 NetTick++;
                 if (NetTick > 240)
                 {
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        var l = DebugUtilities.GetDebugLogger(DebugUtilities.LogNetcode);
+                    }
                     NetTick = 0;
+                    bool justStartedNewQuest = false;
                     if (ActiveQuest == null)
                     {
+                        justStartedNewQuest = true;
                         StartRandomHunt();
                     }
                     if (Main.netMode == NetmodeID.Server)
                     {
-
+                        if (!justStartedNewQuest && ActiveQuest != null)
+                        {
+                            var search = new Rectangle(ActiveQuest.location.X - 7, ActiveQuest.location.Y - 7, 14, 14).KeepInWorld(15);
+                            for (int i = search.X; i < search.X + search.Width; i++)
+                            {
+                                for (int j = search.Y; j < search.Y + search.Height; j++)
+                                {
+                                    if (Main.tile[i, j] != null && Main.tile[i, j].active() && AQTile.Sets.ExporterQuestFurniture.Contains(Main.tile[i, j].type))
+                                    {
+                                        NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, i, j, 0f, 0, 0, 0);
+                                    }
+                                }
+                            }
+                        }
                     }
                     else
                     {
@@ -417,6 +439,10 @@ namespace AQMod.NPCs.Friendly
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
+            if (netQuestDelay > 0)
+            {
+                return;
+            }
             if (resetQuestButton != 0 && resetQuestButton != 255)
             {
                 button2 = Language.GetTextValue("Mods.AQMod.Exporter.Quests.UIButtonQuit");
@@ -446,7 +472,15 @@ namespace AQMod.NPCs.Friendly
                     ActiveQuest?.EndHunt();
                     StartRandomHunt();
                     Main.PlaySound(SoundID.Grab);
-                    OnChatButtonClicked(firstButton, ref shop);
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        OnChatButtonClicked(firstButton, ref shop);
+                    }
+                    else
+                    {
+                        Main.npcChatText = GetChat();
+                        Main.npcChatCornerItem = 0;
+                    }
                     return;
                 }
                 if (resetQuestButton == 1)
@@ -558,7 +592,7 @@ namespace AQMod.NPCs.Friendly
             {
                 new StealTileQuest("TileStealHunt"),
             };
-            Initalize();
+            Initialize();
         }
 
         internal static void Unload()
@@ -567,11 +601,14 @@ namespace AQMod.NPCs.Friendly
             RegisteredQuests = null;
         }
 
-        internal static void Initalize()
+        internal static void Initialize()
         {
+            huntComplete = false;
+            resetQuestButton = 0;
+            netQuestDelay = 0;
             ActiveQuest = null;
-            QuestsCompleted = 0;
             TargetNPC = -1;
+            ActiveQuest = null;
         }
 
         internal static void Save(TagCompound tag)
@@ -632,6 +669,10 @@ namespace AQMod.NPCs.Friendly
 
         internal static void StartRandomHunt()
         {
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                netQuestDelay = 240;
+            }
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 NetHelper.Request(NetHelper.PacketType.RequestExporterQuestRandomize);
@@ -661,7 +702,7 @@ namespace AQMod.NPCs.Friendly
             float seeingDistance = 1000f;
             if (closestPlayer.dead || Vector2.Distance(closestPlayer.Center, worldPosition) > seeingDistance)
             {
-                if (alsoResetQuest)
+                if (alsoResetQuest && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterFailAccident", RobsterBroadcastMessageColor);
                     ActiveQuest?.EndHunt();

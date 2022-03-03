@@ -24,10 +24,22 @@ namespace AQMod.Effects.Wind
         public static void ResetTargets(GraphicsDevice graphics)
         {
             _graphics = graphics;
-            if (_graphics == null)
+            if (graphics == null || graphics.IsDisposed)
                 return;
-            _windTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
-            _finalTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
+            try
+            {
+                _windTarget?.Dispose();
+                _windTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
+                _finalTarget?.Dispose();
+                _finalTarget = new RenderTarget2D(graphics, Main.screenWidth, Main.screenHeight);
+            }
+            catch
+            {
+                _windTarget?.Dispose();
+                _windTarget = null;
+                _finalTarget?.Dispose();
+                _finalTarget = null;
+            }
         }
 
         internal static void DrawTargets()

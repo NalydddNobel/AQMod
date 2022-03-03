@@ -22,7 +22,7 @@ namespace AQMod.Effects
             internal static void Main_UpdateDisplaySettings(On.Terraria.Main.orig_UpdateDisplaySettings orig, Main self)
             {
                 orig(self);
-                if (!Main.gameMenu && Main.graphics.GraphicsDevice != null && !Main.graphics.GraphicsDevice.IsDisposed && Main.spriteBatch != null)
+                if (!Main.gameMenu && !AQMod.IsLoading && Main.graphics.GraphicsDevice != null && !Main.graphics.GraphicsDevice.IsDisposed && Main.spriteBatch != null)
                 {
                     if (LastScreenWidth != Main.screenWidth || LastScreenHeight != Main.screenHeight)
                     {

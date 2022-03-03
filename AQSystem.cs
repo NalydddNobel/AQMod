@@ -93,7 +93,7 @@ namespace AQMod
         {
             if (!Main.dayTime)
                 SkyGlimmerEvent.InitNight();
-            Robster.Initalize();
+            Robster.Initialize();
             EventProgressBarLoader.ActiveBar = 255;
             NPCNoHit.CurrentlyDamaged = new List<byte>();
         }

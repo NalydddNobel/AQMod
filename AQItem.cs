@@ -11,6 +11,7 @@ using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.FidgetSpinner;
 using AQMod.Items.Misc;
 using AQMod.Items.Potions;
+using AQMod.Items.Reforges;
 using AQMod.Items.Tools.Fishing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -170,10 +171,19 @@ namespace AQMod
             }
         }
 
-        internal GlowmaskData Glowmask { get; private set; }
-
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
+
+        internal GlowmaskData Glowmask { get; private set; }
+        public float cooldownMultiplier;
+        public float comboMultiplier;
+
+        public AQItem()
+        {
+            Glowmask = default(GlowmaskData);
+            cooldownMultiplier = 1f;
+            comboMultiplier = 1f;
+        }
 
         private void GlowmaskDataCheck(Item item)
         {
@@ -318,6 +328,10 @@ namespace AQMod
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if (item.social)
+            {
+                return;
+            }
             try
             {
                 var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
@@ -337,6 +351,10 @@ namespace AQMod
                 Tooltips_PickBreakCheck(item, aQPlayer, tooltips);
                 Tooltips_FidgetSpinnerCheck(item, aQPlayer, tooltips);
                 Tooltips_HermitStorageCheck(tooltips);
+                if (item.prefix >= PrefixID.Count && ModPrefix.GetPrefix(item.prefix) is AQPrefix aQPrefix)
+                {
+                    aQPrefix.ModifyTooltips(item, this, aQPlayer, tooltips);
+                }
             }
             catch
             {
@@ -478,7 +496,7 @@ namespace AQMod
                 ushort cooldown = cool.Cooldown(player, aQPlayer);
                 if (cooldown > 0)
                 {
-                    return aQPlayer.ItemCooldownCheck(cooldown);
+                    return aQPlayer.ItemCooldownCheck(cooldown, item: item);
                 }
             }
             return true;

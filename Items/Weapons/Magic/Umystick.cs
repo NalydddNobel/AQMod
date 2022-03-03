@@ -1,5 +1,4 @@
-﻿using AQMod.Buffs.Debuffs;
-using AQMod.Common.ID;
+﻿using AQMod.Common.ID;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -8,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Magic
 {
-    public class Umystick : ModItem, ICooldown
+    public class Umystick : ModItem, ICooldown, ICombo
     {
         public override void SetDefaults()
         {
@@ -44,35 +43,44 @@ namespace AQMod.Items.Weapons.Magic
             item.holdStyle = 2;
             bool maxSpeed = false;
             player.fallStart = (int)(player.position.Y / 16f);
+            var aQPlayer = player.GetModPlayer<AQPlayer>();
             if (!player.controlDown)
             {
+                float cap = aQPlayer.itemCooldown > 0 ? 3f : 2f;
                 if (player.gravDir == -1f)
                 {
-                    if (player.velocity.Y < -2f)
+                    if (player.velocity.Y < -cap)
                     {
                         maxSpeed = true;
-                        player.velocity.Y = -2f;
+                        player.velocity.Y = -cap;
                     }
                 }
-                else if (player.velocity.Y > 2f)
+                else if (player.velocity.Y > cap)
                 {
                     maxSpeed = true;
-                    player.velocity.Y = 2f;
+                    player.velocity.Y = cap;
                 }
             }
             if (player.gravDir == 1)
             {
-                var aQPlayer = player.GetModPlayer<AQPlayer>();
                 if (aQPlayer.itemCooldown == 0)
                 {
                     if (Main.myPlayer == player.whoAmI && maxSpeed && !player.mouseInterface)
                     {
                         int oldMana = item.mana;
                         item.mana *= 5;
-                        if (Main.mouseRight && Main.mouseRightRelease && player.CheckMana(item, pay: true) && aQPlayer.ItemCooldownCheck(180))
+                        if (Main.mouseRight && Main.mouseRightRelease && player.CheckMana(item, pay: true) && aQPlayer.ItemCooldownCheck(180, effectedByCooldownStats: true, item: item))
                         {
-                            aQPlayer.ItemCombo(60, comboBoostsDecrease: false, doVisuals: false);
-                            //player.AddBuff(ModContent.BuffType<UmystickDelay>(), 180);
+                            if (aQPlayer.itemSwitch > 0)
+                            {
+                                aQPlayer.itemCooldown *= 3;
+                                aQPlayer.itemCooldownMax *= 3;
+                            }
+                            else
+                            {
+                                aQPlayer.itemSwitch += (ushort)(aQPlayer.itemCooldown * 2);
+                            }
+                            aQPlayer.ItemCombo(60, effectedByComboStats: true, doVisuals: false, item: item);
                             AQSound.LegacyPlay(SoundType.Item, AQSound.Paths.MysticUmbrellaJump, 0.6f);
                             player.velocity.Y = -12f;
                         }

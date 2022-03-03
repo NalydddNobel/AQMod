@@ -300,6 +300,7 @@ namespace AQMod
         public ushort itemCooldownMax;
         public ushort itemCooldown;
         public ushort itemCombo;
+        public ushort itemSwitch;
         public int lastSelectedItem = -1;
 
         public uint ImportantInteractionDelay;
@@ -357,11 +358,7 @@ namespace AQMod
             itemCooldown = 0;
             itemCooldownMax = 0;
             itemCombo = 0;
-            if (lastSelectedItem != -1)
-            {
-                player.selectedItem = lastSelectedItem;
-                lastSelectedItem = -1;
-            }
+            itemSwitch = 0;
             omori = false;
             omoriEffect = false;
             blueSpheres = false;
@@ -417,13 +414,13 @@ namespace AQMod
 
         private void ResetEffects_Cooldowns()
         {
-            if (player.selectedItem != lastSelectedItem)
-            {
-                itemCombo = 0;
-            }
             if (itemCombo > 0)
             {
                 itemCombo--;
+            }
+            if (itemSwitch > 0)
+            {
+                itemSwitch--;
             }
             if (itemCooldown > 0)
             {
@@ -662,6 +659,12 @@ namespace AQMod
             ResetEffects_HookBarbs();
             ResetEffects_DashAvailable();
 
+            if (player.selectedItem != lastSelectedItem)
+            {
+                itemCombo = 0;
+                if (itemSwitch < 60)
+                    itemSwitch = 60;
+            }
             lastSelectedItem = player.selectedItem;
         }
 
@@ -1808,19 +1811,53 @@ namespace AQMod
             }
         }
 
-        public bool ItemCooldownCheck(ushort cooldown)
+        public float ItemCooldownMultiplier(Item item)
+        {
+            float cooldownMult = 1f;
+            if (item != null)
+            {
+                cooldownMult *= item.GetGlobalItem<AQItem>().cooldownMultiplier;
+            }
+            return cooldownMult;
+        }
+        public bool ItemCooldownCheck(ushort cooldown, bool effectedByCooldownStats = true, Item item = null)
         {
             if (itemCooldown > 0)
             {
                 return false;
+            }
+            if (effectedByCooldownStats)
+            {
+                float cooldownMult = ItemCooldownMultiplier(item);
+                if (cooldownMult != 1f)
+                {
+                    cooldown = (ushort)(int)(cooldown * (1f - (cooldownMult - 1f)));
+                }
             }
             itemCooldown = cooldown;
             itemCooldownMax = cooldown;
             return true;
         }
 
-        public void ItemCombo(ushort combo, bool comboBoostsDecrease = false, bool doVisuals = true)
+        public float ItemComboMultiplier(Item item = null)
         {
+            float comboMult = 1f;
+            if (item != null)
+            {
+                comboMult *= item.GetGlobalItem<AQItem>().comboMultiplier;
+            }
+            return comboMult;
+        }
+        public void ItemCombo(ushort combo, bool effectedByComboStats = true, bool doVisuals = true, Item item = null)
+        {
+            if (effectedByComboStats)
+            {
+                float comboMult = ItemComboMultiplier(item);
+                if (comboMult != 1f)
+                {
+                    combo = (ushort)(int)(combo * comboMult);
+                }
+            }
             itemCombo += combo;
         }
 

@@ -274,7 +274,7 @@ ItemTooltip.ThunderClap=Summons a thunderbolt from the sky
 ProjectileName.ThunderClap=Thunder Clap
 
 ItemName.Umystick=Umystick
-ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nRight click while held to do an extra jump which costs a great amount of mana\n'Looks quite menacing'
+ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\nRight click to perform a double jump\n'Looks quite menacing'
 
 ItemName.Narrizuul=Narrizuul
 ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n{$Mods.AQMod.Tooltips.Nalyddd}
@@ -612,6 +612,20 @@ QuestFish.Crabdaughter=Seems like some new fish have entered the ocean recently,
 FishingLocation.AnywhereFishing=Caught anywhere
 FishingLocation.BeachFishing=Caught in Ocean
 
+
+
+
+#===========================#
+# Prefixes
+#===========================#
+
+# +10% cooldown
+PrefixTooltip.Cooldown={0}% cooldown
+PrefixTooltip.Combo={0}% combo rate
+PrefixName.Speedrunning=Speedrunning
+PrefixName.Outpacing=Outpacing
+PrefixName.Timed=Timed
+PrefixName.Scheduled=Scheduled
 
 
 
@@ -1557,6 +1571,9 @@ ServerConfig.EvilProgressionLockTooltip=Ebonstone, Crimstone, Shadow Orbs and Cr
 
 ServerConfig.HarderOmegaStarite=Omega Starite always uses Harder AI
 ServerConfig.HarderOmegaStariteTooltip=Makes Omega Starite always use its glimmer event version even when the glimmer event is not active\nThis will not mean it will drop the Ultimate Sword outside of the glimmer event\nCannot be changed if Omega Starite is alive.
+
+ServerConfig.CooldownReforges=Cooldown Refoges
+ServerConfig.CooldownReforgesTooltip=Whether or not to load cooldown reforges\nIf you get a prefix error when loading this mod with others, you can disable this to remove some prefixes
 
 ServerConfig.JellyfishNecklace=Remove Jellyfish Necklace drop from Blue Jellyfish ([i:1303])
 ServerConfig.JellyfishNecklaceTooltip=If you disable this, the Blue Jellyfish would be able to drop both the Jellyfish Necklace and Shock Collar.

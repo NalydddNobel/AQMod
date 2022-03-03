@@ -251,6 +251,21 @@ namespace AQMod
                     if (Main.netMode == NetmodeID.Server)
                     {
                         Robster.StartRandomHunt();
+
+                        if (Robster.ActiveQuest == null)
+                        {
+                            l?.Log("no quest was activated");
+                        }
+                        else
+                        {
+                            l?.Log("Quest Activated: {" + Robster.ActiveQuest.Key + "}");
+                            l?.Log("Type: " + Robster.ActiveQuest.type);
+                            l?.Log("Location: " + Robster.ActiveQuest.location);
+                            l?.Log("NPC Index: " + Robster.TargetNPC);
+                            if (Robster.TargetNPC > -1)
+                                l?.Log("NPC Name: " + Main.npc[Robster.TargetNPC].FullName);
+                        }
+
                         NetMessage.SendData(MessageID.WorldData);
                     }
                     break;

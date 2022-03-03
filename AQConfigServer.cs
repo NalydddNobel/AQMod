@@ -34,6 +34,13 @@ namespace AQMod
         [Header("$Mods.AQMod.ServerConfig.Header.World")]
 
         [BackgroundColor(13, 166, 231, 180)]
+        [Label("$Mods.AQMod.ServerConfig.CooldownReforges")]
+        [Tooltip("$Mods.AQMod.ServerConfig.CooldownReforgesTooltip")]
+        [DefaultValue(true)]
+        [ReloadRequired()]
+        public bool cooldownReforges;
+
+        [BackgroundColor(13, 166, 231, 180)]
         [Label("$Mods.AQMod.ServerConfig.JellyfishNecklace")]
         [Tooltip("$Mods.AQMod.ServerConfig.JellyfishNecklaceTooltip")]
         [DefaultValue(true)]
