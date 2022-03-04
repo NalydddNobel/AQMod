@@ -480,7 +480,7 @@ ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.To
 #===========================#
 
 ItemName.Baguette=法棍
-ItemTooltip.Baguette=大幅度提升所有属性\n大幅度增加生命恢复速度\n增益效果在你死亡时不会消失\n'蛋糕只是松软的面包'
+ItemTooltip.Baguette=大幅度提升所有属性\n大幅度增加生命恢复速度\n'蛋糕只是松软的面包'
 BuffName.BaguetteBuff=法棍
 BuffDescription.BaguetteBuff=大幅度提升所有属性和生命恢复速度
 
