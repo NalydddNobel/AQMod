@@ -13,6 +13,7 @@ using AQMod.Effects;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.Trails.Rendering;
 using AQMod.Items;
+using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Dyes;
 using AQMod.Items.Potions.Foods;
 using AQMod.Localization;
@@ -28,7 +29,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.Localization;
@@ -41,8 +41,8 @@ namespace AQMod
     public class AQMod : Mod
     {
         public const string TextureNone = "AQMod/Assets/None";
-        public static Color MysteriousGuideTooltip => Color.CornflowerBlue * 10f;
-        public static Color DemonSiegeTooltip => Color.OrangeRed * 10f;
+        public static Color MysteriousGuideTooltip => Color.CornflowerBlue * 4f;
+        public static Color DemonSiegeTooltip => new Color(255, 220, 10, 255) * 4f;
 
         public static AQMod GetInstance()
         {
@@ -657,6 +657,7 @@ namespace AQMod
             if (hardmode)
             {
                 items.Add(ModContent.ItemType<NalydDye>());
+                items.Add(ModContent.ItemType<Thunderbird>());
             }
             if (items.Count == 0)
             {

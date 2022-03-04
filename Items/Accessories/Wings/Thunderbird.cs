@@ -173,24 +173,6 @@ namespace AQMod.Items.Accessories.Wings
             acceleration *= 3f;
         }
 
-        public override void AddRecipes()
-        {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.AngelWings);
-            r.AddIngredient(ModContent.ItemType<ThunderousPlume>());
-            r.AddIngredient(ItemID.SoulofSight, 15);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
-            r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.DemonWings);
-            r.AddIngredient(ModContent.ItemType<ThunderousPlume>());
-            r.AddIngredient(ItemID.SoulofSight, 15);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
-        }
-
         Color IDedicatedItem.Color => new Color(200, 125, 255, 255);
     }
 }

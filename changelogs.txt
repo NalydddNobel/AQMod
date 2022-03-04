@@ -1,3 +1,137 @@
+####### 1.4.2 #######
+
+# Additions:
+
+Items: 
+Flower Crown, an early-game passive-helmet minion, crafted using Dayblooms
+Bloodline, a grappling hook dropped by Blood Moon Mimics after Plantera has been defeated which allows you to steal life from enemies using your grappling hook
+Spiritual Relic, a combination of "Dreadsoul" and "Breadsoul"
+Palettes, these are special crates obtained by the Exporter NPC which let you roll for loot with less rng involved
+
+Added 4 new reforges, these will be obtainable on "Cooldown" / "Combo" weapons, currently the only weapon which is like that is the Umystick
+Timed - Increases cooldowns by 10%
+Scheduled - Increases cooldowns by 25%, and also decreases various item stats
+Outpacing - Decreases cooldowns by 15%, and also increases "Combo Rate" by 15%
+Combo Rate is a variable which will let you perform combos with less inputs, for the Umystick, it just increases how long you get the double jump boost
+Speedrunning - Decreases cooldowns by 30%, increases combo rate by 15%, and also increases various item stats, mostly speed related ones
+
+- Added flash effects to Omega Starite's death, Space Squid's deathray, and Red Sprite's Thunderclap
+- Added a config option for "Flash Intensity"
+- Some visual effects which can cause lag are now greatly toned down if you are using Trippy or Retro lighting, or the "Effect Quality" slider is below 0.5 
+
+- Gave Umystick an item cooldown background instead of a cooldown debuff
+
+# Changes:
+- The Gale Streams event can now occur while it is raining
+
+- Overhauled "Dreadsoul", renamed it to "Burning Heart", removed its dedicated item tag, added a recipe for it, Diabolists no longer drop it, and increased the chance for Hecktos to drop it
+* 1/45 -> 1/20 
+
+- Overhauled "Breadsoul", renamed it to "Soul Eater", added a recipe for it, Necromancers no longer drop it, and increased the chance for Dungeon Spirits to drop it
+* 1/45 -> 1/20 
+
+- The Baguette's Buff no longer stays after death
+
+- Slightly modified the Nimrod visually
+
+- The Exotic Clam is no longer consumable
+- The Exotic Clam is now useable in both the Ocean biome and the Crab Crevice biome
+
+- The Gore Nest now explicitly says "Can be used as a demon/crimson altar" in its tooltip
+
+- Added "Casting will drain your magic power for a short time" to Snowgrave's tooltip to warn about the Magic Drain debuff
+- Reduced the amount of anti-Destroyer-butcher on Snowgrave
+
+- The tooltips of Burnterizer and Hell's Boon now explcitly say "Sword hits inflict corruption/crimson hellfire"
+- Renamed the Burnterizer to the "Cauterizer" 
+
+- Modified the Energy's colors to be more appealing
+
+- Resprited the Heart Lamp (item) and slighty modified the pet to be cooler looking 
+- Resprited the Yucky Orb and renamed it to the "Charming Lure"
+- Resprited the Copper, Silver, Gold, and Platinum Seals
+- The Platinum Seal now only requires a single Aquatic Energy instead of Ultimate Energy
+- Resprited the Mallet
+- Resprited the "Shield of the Blooded" and renamed it to "Spike Shield"
+- Resprited the Cursed, Ichor, and Mystic Popper
+- Resprited Starbytes, and upgraded potions now use the potion sprite with special fx instead of the Starbyte sprite but recolored 
+- Resprited the Bloodthirst, Shade, Spoils (Plethora), and Opposing Potion
+- Resprited the Spicy Eel
+
+- Ultimate Sword now says 
+> Only obtainable from Omega Starite while there is a glimmer in the sky
+* if you have not defeated Omega Starite during the Glimmer Event yet
+
+- The Fan now says
+> Strong space winds may cause new creatures to appear
+* in Hardmode, if you have not completed the Gale Streams event
+
+- Most things that mention the "Glimmer Event" now just call it the "glimmer", and any mentions of the "location of the glimmer" is now changed to "source of the glimmer"
+
+- The Memorialist now sells the Pale Pufferfish in Hardmode 
+
+- All of Aequus' potions now stack to 30 instead of 999
+
+- You can no longer transform the Lifeforce or Spoils Potion into Starbyte upgrades
+- Renamed the Spoils Potion to "Plethora Potion" 
+
+Balancing:
+- Increased Arachnotron Armor's stats to be a direct upgrade of Spider Armor instead of a sidegrade with melee stats
+
+- Nerfed Umystick's infinite flight capabilities, if you use the double jump twice within 6 seconds of the previous jump, the cooldown will be extended 
+and while the Umystick is on cooldown, you fall slightly faster than you would regularly when holding the Umystick 
+
+- Modified the stats of many melee weapons to favor true melee hits a bit more, or they were just weak when you got them:
+
+Hell's Boon - Damage increased from 22 to 48
+Spikes spawned deal half damage (24)
+
+Burnterizer - Damage increased from 22 to 55
+Item swing time decreased from 24 to 18 (This means it's faster, amt of projectiles shot are uneffected, this only impacts the swinging animation)
+Projectiles deal 75% damage (41)
+Slightly lowered the scale of Burnterizer since it's massive (20% scale -> 10% scale)
+
+Galactium - Damage increased from 42 to 82
+Item swing time decreased from 19 to 10 (amt of projectiles shot are uneffected)
+Projectiles shot deal 75% damage instead of 150% damage (61)
+Scale increased (10% scale -> 35% scale)
+
+Argon Spear - Damage increased from 15 to 24
+
+Xenon Basher Damage increased from 32 to 40
+
+Mallet Damage increased from 10 to 20
+
+Ultimate Sword
+Damage increased from 65 to 70
+Item swing time decreased from 18 to 16
+Scale increased (30% scale -> 50% scale)
+
+Thunder Clap Damage increased from 44 to 88
+Projectiles shot deal 200% damage instead of 400% damage (176)
+Scale increased (20% scale -> 35% scale)
+
+Star Blade Scale increased (20% scale -> 30% scale)
+
+Crabsol - Damage increased from 29 to 40
+Item swing time increased from 16 to 24 (slower)
+Scale increased (0% scale -> 10% scale)
+
+Air Blade - Damage increased from 36 to 90
+Projectiles shot deal 50% damage instead of 100% damage (45)
+
+# Fixes:
+- Fixed the Lihzahrd Altar map upgrade being very laggy if it cannot find a Lihzahrd Altar 
+- Hopefully fixed the Dwarf Starite Pet despawning if you go too far away from it
+- Hopefully fixed the Demon Siege being funky in Multiplayer
+- Fixed the Dungeon map upgrade not working at all in MP, and locking you in the top left corner if used
+- Hopefully fixed "No Hit" items always dropping from bosses in multiplayer
+- Omega Starite should properly drop the Ultimate Sword in multiplayer
+- Fixed a bug related to the Glimmer Event giving an error when determining starite spawns
+- Completely rewritten the Exporter's "Hunt" system in order for it to work in Multiplayer
+- The Exporter's "Hunt" text option has been replaced with "Thievery" so it can fit with later quest designs
+- The Mallet's projectile is now properly flagged as "melee" instead of "magic"
+
 ####### 1.4.1 #######
 
 Additions:

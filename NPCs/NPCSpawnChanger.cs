@@ -117,10 +117,6 @@ namespace AQMod.NPCs
                         pool.Add(ModContent.NPCType<Meteor>(), 2f);
                     }
                 }
-                if (spawnInfo.spawnTileY < 250)
-                {
-                    pool.Add(ModContent.NPCType<Thunderbird>(), (WorldDefeats.DownedStarite || NPC.downedMechBossAny ? 2f : 1f) * (spawnInfo.playerInTown ? 2f : 1f));
-                }
                 if (Glimmer.SpawnsCheck(spawnInfo.player))
                 {
                     int tileDistance = Glimmer.Distance(spawnInfo.player);
