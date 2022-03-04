@@ -621,7 +621,7 @@ FishingLocation.BeachFishing=抓捕位置: 海洋
 
 # +10% 冷却时间
 PrefixTooltip.Cooldown={0}% 冷却时间
-PrefixTooltip.Combo={0}% 组合倍率
+PrefixTooltip.Combo={0}% 连击效率
 PrefixName.Speedrunning=极速
 PrefixName.Outpacing=超越
 PrefixName.Timed=时限
