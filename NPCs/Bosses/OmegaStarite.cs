@@ -7,6 +7,7 @@ using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.Trails.Rendering;
+using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Dyes;
 using AQMod.Items.Expert;
 using AQMod.Items.Materials;
@@ -1514,6 +1515,8 @@ namespace AQMod.NPCs.Bosses
                 var rect = npc.getRect();
                 if (Main.rand.NextBool(3))
                     Item.NewItem(rect, ModContent.ItemType<CosmicTelescope>());
+                if (Main.rand.NextBool(7))
+                    Item.NewItem(rect, ModContent.ItemType<OmegaStariteMask>());
                 int[] choices = new int[]
                 {
                     ModContent.ItemType<MagicWand>(),

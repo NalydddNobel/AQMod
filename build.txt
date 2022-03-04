@@ -1,6 +1,6 @@
 displayName = Aequus 
 author = Nalyd T.
-version = 1.4.2
+version = 1.4.2.1
 homepage = https://forums.terraria.org/index.php?threads/aequus.105402/
 hideResources = false
 hideCode = false

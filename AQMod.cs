@@ -297,6 +297,7 @@ namespace AQMod
             AQProjectile.Sets.Unload();
             AQNPC.Sets.Unload();
             AQItem.Sets.Unload();
+            GlowmaskData.ItemToGlowmask?.Clear();
             AQBuff.Sets.Unload();
 
             LoadCrossMod(unload: true);

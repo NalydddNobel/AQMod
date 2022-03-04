@@ -2,6 +2,7 @@
 using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
 using AQMod.Effects;
+using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Dyes;
 using AQMod.Items.Expert;
 using AQMod.Items.Materials.Energies;
@@ -347,11 +348,6 @@ namespace AQMod.NPCs.Bosses
             }
         }
 
-        public bool ShouldDropCrabsol()
-        {
-            return (int)npc.ai[1] == 1;
-        }
-
         public override bool PreDraw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Color drawColor)
         {
             if (DrawHelper.NPCsBehindAllNPCs.drawingNow)
@@ -374,6 +370,11 @@ namespace AQMod.NPCs.Bosses
             return true;
         }
 
+        public bool ShouldDropCrabsol()
+        {
+            return (int)npc.ai[1] == 1;
+        }
+
         public override void NPCLoot()
         {
             Rectangle rect = npc.getRect();
@@ -390,6 +391,8 @@ namespace AQMod.NPCs.Bosses
                 npc.DropBossBags();
                 return;
             }
+            if (Main.rand.NextBool(7))
+                Item.NewItem(rect, ModContent.ItemType<CrabsonMask>());
             Item.NewItem(rect, ModContent.ItemType<AquaticEnergy>(), Main.rand.NextVRand(3, 5));
             switch (Main.rand.Next(3))
             {
