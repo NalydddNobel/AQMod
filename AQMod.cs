@@ -298,6 +298,7 @@ namespace AQMod
             AQNPC.Sets.Unload();
             AQItem.Sets.Unload();
             GlowmaskData.ItemToGlowmask?.Clear();
+            GlowmaskData.ItemToGlowmask = null;
             AQBuff.Sets.Unload();
 
             LoadCrossMod(unload: true);

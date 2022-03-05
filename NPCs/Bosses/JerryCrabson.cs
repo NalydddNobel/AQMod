@@ -5,6 +5,7 @@ using AQMod.Effects;
 using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Dyes;
 using AQMod.Items.Expert;
+using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Weapons.Magic;
@@ -394,6 +395,7 @@ namespace AQMod.NPCs.Bosses
             if (Main.rand.NextBool(7))
                 Item.NewItem(rect, ModContent.ItemType<CrabsonMask>());
             Item.NewItem(rect, ModContent.ItemType<AquaticEnergy>(), Main.rand.NextVRand(3, 5));
+            Item.NewItem(rect, ModContent.ItemType<CrustaciumBlob>(), Main.rand.NextVRand(50, 120));
             switch (Main.rand.Next(3))
             {
                 default:

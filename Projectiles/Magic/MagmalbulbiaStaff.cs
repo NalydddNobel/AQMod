@@ -36,10 +36,6 @@ namespace AQMod.Projectiles.Magic
                     projectile.velocity = new Vector2(projectile.velocity.Length(), 0f).RotatedBy((Main.npc[(int)projectile.ai[0]].Center - center).ToRotation());
                 }
             }
-        }
-
-        public override void PostAI()
-        {
             Lighting.AddLight(projectile.Center, new Vector3(0.5f, 0.3f, 0.05f));
         }
 

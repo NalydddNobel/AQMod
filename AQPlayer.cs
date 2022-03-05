@@ -38,17 +38,6 @@ namespace AQMod
 {
     public sealed class AQPlayer : ModPlayer
     {
-        public const int MaxCelesteTorusOrbs = 5;
-        public const int MaxArmor = 20;
-        public const int MaxDye = MaxArmor / 2;
-        public const int FRAME_HEIGHT = 56;
-        public const int FRAME_COUNT = 20;
-        public const float CELESTE_Z_MULT = 0.0157f;
-        public const int ARACHNOTRON_OLD_POS_LENGTH = 8;
-        public const byte TEMPERATURE_REGEN_NORMAL = 32;
-        public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
-        public const byte TEMPERATURE_REGEN_ON_HIT = 120;
-
         public static class Hooks
         {
             internal static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
@@ -177,6 +166,17 @@ namespace AQMod
             }
         }
 
+        public const int MaxCelesteTorusOrbs = 5;
+        public const int MaxArmor = 20;
+        public const int MaxDye = MaxArmor / 2;
+        public const int FRAME_HEIGHT = 56;
+        public const int FRAME_COUNT = 20;
+        public const float CELESTE_Z_MULT = 0.0157f;
+        public const int ARACHNOTRON_OLD_POS_LENGTH = 8;
+        public const byte TEMPERATURE_REGEN_NORMAL = 32;
+        public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
+        public const byte TEMPERATURE_REGEN_ON_HIT = 120;
+
         public static bool Fidget_Spinner_Force_Autoswing { get; internal set; }
 
         public float discountPercentage;
@@ -286,6 +286,8 @@ namespace AQMod
         public bool trapperImp;
         public bool starite;
         public bool monoxiderBird;
+        public bool snowsaw;
+        public int snowsawLeader = -1;
 
         public bool hasMinionCarry;
         public int headMinionCarryX;
@@ -307,6 +309,7 @@ namespace AQMod
 
         public override void Initialize()
         {
+            snowsawLeader = -1;
             omoriDeathTimer = 1;
             arachnotronArms = false;
             lootIterations = 0;
@@ -372,6 +375,7 @@ namespace AQMod
             hookDebuffs = new List<BuffData>();
             hookDamage = 0;
             meathookUI = false;
+            snowsawLeader = -1;
         }
 
         private void UpdateVisuals_Flashes()
@@ -625,6 +629,9 @@ namespace AQMod
             heartMoth = false;
             anglerFish = false;
             dwarfStarite = false;
+
+            snowsaw = false;
+            snowsawLeader = -1;
 
             grabReachMult = 1f;
             mothmanMask = false;

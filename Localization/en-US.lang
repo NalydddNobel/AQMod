@@ -188,6 +188,16 @@ ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% 
 # Weapons
 #===========================#
 
+ItemName.DoubleShot=Double Shot
+ItemTooltip.DoubleShot=Spawns a secondary bullet\nHas high critical strike chance\n50% chance to not be consumed upon firing
+ProjectileName.DoubleShotProj=Bullet
+
+ItemName.KochfrostStaff=Kochfrost Staff
+ItemTooltip.KochfrostStaff=Summons a snowsaw to fight for you\nUses half a minion slot
+BuffName.SnowsawBuff=Snowsaw
+BuffDescription.SnowsawBuff=The snowsaw will fight for you
+ProjectileName.SnowsawMinion=Snowsaw
+
 ItemName.Baozhu=Baozhu
 ItemTooltip.Baozhu=A large explosion that puts enemies on fire\nLights the area on fire for a while
 

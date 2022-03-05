@@ -128,6 +128,16 @@ namespace AQMod.Items.Potions
         {
             item.buffType = potion.BuffID;
             item.buffTime = (int)potion.BuffTime;
+            try
+            {
+                var cloneItem = AQItem.GetDefault(potion.potionItemID);
+                item.rare = cloneItem.rare + 1;
+                
+                item.potion = cloneItem.potion;
+            }
+            catch
+            {
+            }
         }
 
         public override void SetDefaults()
@@ -143,6 +153,11 @@ namespace AQMod.Items.Potions
             item.useStyle = ItemUseStyleID.EatingUsing;
             item.noUseGraphic = true;
             SetupPotionStats();
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            return ItemLoader.CanUseItem(AQItem.GetDefault(potion.potionItemID), player);
         }
 
         public override bool UseItem(Player player)
@@ -176,7 +191,7 @@ namespace AQMod.Items.Potions
                     Main.dust[d].velocity = velocity;
                 }
             }
-            return true;
+            return ItemLoader.UseItem(AQItem.GetDefault(potion.potionItemID), player);
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
