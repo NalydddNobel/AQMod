@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.Jewelry
+namespace AQMod.Items.Accessories
 {
-    public class DarkAmulet : ModItem
+    public class LightAmulet : ModItem
     {
         public override void SetDefaults()
         {
@@ -18,15 +18,15 @@ namespace AQMod.Items.Accessories.Jewelry
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AQPlayer>().holyDamage += 0.1f;
+            player.GetModPlayer<AQPlayer>().unholyDamage += 0.1f;
         }
 
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ModContent.ItemType<Amulet>());
-            r.AddIngredient(ItemID.DarkShard);
-            r.AddIngredient(ItemID.SoulofNight, 15);
+            r.AddIngredient(ItemID.LightShard);
+            r.AddIngredient(ItemID.SoulofLight, 15);
             r.AddTile(TileID.MythrilAnvil);
             r.SetResult(this);
             r.AddRecipe();

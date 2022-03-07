@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events;
-using AQMod.Items.Accessories.Jewelry;
+using AQMod.Items.Accessories;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
 using AQMod.NPCs.AIs;

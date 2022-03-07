@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Accessories.Jewelry;
+﻿using AQMod.Items.Accessories;
 using AQMod.Items.Dyes;
 using AQMod.Items.Misc.Cursor.Demonic;
 using AQMod.Items.Placeable.Banners;

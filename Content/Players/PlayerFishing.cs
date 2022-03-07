@@ -188,6 +188,7 @@ namespace AQMod.Content.Players
             {
                 return;
             }
+
             var biomes = player.Biomes();
             if (liquidType == Tile.Liquid_Water)
             {
@@ -195,13 +196,13 @@ namespace AQMod.Content.Players
                 {
                     if (!Main.dayTime)
                     {
-                        if (biomes.zoneGlimmerEvent)
+                        if (biomes.zoneGlimmerEvent && Main.rand.NextBool())
                         {
                             caughtType = Pool_GlimmerEvent();
                             junk = false;
                             return;
                         }
-                        if (Main.bloodMoon && TryPool_BloodMoon(ref caughtType))
+                        if (Main.bloodMoon && Main.rand.NextBool(4) && TryPool_BloodMoon(ref caughtType))
                         {
                             return;
                         }
@@ -218,17 +219,17 @@ namespace AQMod.Content.Players
                 }
                 if (worldLayer < WorldLayers.HellLayer)
                 {
-                    if (player.ZoneCorrupt && TryPool_Corruption(ref caughtType))
+                    if (player.ZoneCorrupt && Main.rand.NextBool(4) && TryPool_Corruption(ref caughtType))
                     {
                         return;
                     }
-                    if (player.ZoneCrimson && TryPool_Crimson(ref caughtType))
+                    if (player.ZoneCrimson && Main.rand.NextBool(4) && TryPool_Crimson(ref caughtType))
                     {
                         return;
                     }
                 }
             }
-            else if (liquidType == Tile.Liquid_Honey)
+            else if (liquidType == Tile.Liquid_Honey && Main.rand.NextBool())
             {
                 TryPool_Honey(ref caughtType);
             }

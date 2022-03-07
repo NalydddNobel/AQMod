@@ -204,7 +204,7 @@ namespace AQMod.Effects
 
                 var hitbox = new Rectangle((int)drawPos.X - 10, (int)drawPos.Y - 60, 20, 60);
                 Vector2 trueMouseworld = AQUtils.TrueMouseworld;
-                if (AQPlayer._ImportantInteractionDelay() && hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y))
+                if (AQPlayer.InteractionDelay() && hitbox.Contains((int)trueMouseworld.X, (int)trueMouseworld.Y))
                 {
                     if (Glimmer.omegaStarite == -1 && !Main.gameMenu && !Main.gamePaused && Main.LocalPlayer.IsInTileInteractionRange((int)trueMouseworld.X / 16, (int)trueMouseworld.Y / 16))
                     {
@@ -217,7 +217,7 @@ namespace AQMod.Effects
                         Main.spriteBatch.Draw(highlightTexture, drawPos - Main.screenPosition, frame, new Color(255, 255, 255, 255), MathHelper.PiOver4 * 3f, origin, 1f, SpriteEffects.None, 0f);
                         if (Main.mouseRight && Main.mouseRightRelease)
                         {
-                            AQPlayer._ImportantInteractionDelay(apply: 1800);
+                            AQPlayer.InteractionDelay(apply: 1800);
                             plr.tileInteractAttempted = true;
                             plr.tileInteractionHappened = true;
                             plr.releaseUseTile = false;

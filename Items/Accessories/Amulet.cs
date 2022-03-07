@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.Jewelry
+namespace AQMod.Items.Accessories
 {
     public class Amulet : ModItem
     {

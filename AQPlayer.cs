@@ -41,10 +41,10 @@ namespace AQMod
         {
             internal static void Apply()
             {
-                On.Terraria.Player.AddBuff += AQPlayer.Hooks.OnAddBuff;
-                On.Terraria.Player.PickTile += AQPlayer.Hooks.HitTile;
-                On.Terraria.Player.HorizontalMovement += AQPlayer.Hooks.ApplyRedSpriteWind;
-                On.Terraria.Chest.SetupShop += AQPlayer.Hooks.ApplyCustomDiscount;
+                On.Terraria.Player.AddBuff += OnAddBuff;
+                On.Terraria.Player.PickTile += HitTile;
+                On.Terraria.Player.HorizontalMovement += MovementEffects;
+                On.Terraria.Chest.SetupShop += ApplyCustomDiscount;
             }
 
             internal static void ApplyCustomDiscount(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
@@ -68,7 +68,7 @@ namespace AQMod
                 }
             }
 
-            internal static void ApplyRedSpriteWind(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
+            internal static void MovementEffects(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
             {
                 orig(self);
                 var aQPlayer = self.GetModPlayer<AQPlayer>();
@@ -311,8 +311,8 @@ namespace AQMod
         public ushort itemCombo;
         public ushort itemSwitch;
         public int lastSelectedItem = -1;
-
-        public uint ImportantInteractionDelay;
+        public int critIncrease;
+        public uint interactionDelay;
 
         public override void Initialize()
         {
@@ -338,7 +338,7 @@ namespace AQMod
             hookDebuffs?.Clear();
             hookDebuffs = new List<BuffData>();
             meathookUI = false;
-            ImportantInteractionDelay = 0;
+            interactionDelay = 0;
         }
 
         public override void OnEnterWorld(Player player)
@@ -452,9 +452,9 @@ namespace AQMod
                 player.manaCost += 1f;
                 player.manaRegenDelay = (int)player.maxRegenDelay;
             }
-            if (ImportantInteractionDelay > 0)
+            if (interactionDelay > 0)
             {
-                ImportantInteractionDelay--;
+                interactionDelay--;
             }
         }
         private void ResetEffects_HookBarbs()
@@ -2074,14 +2074,14 @@ namespace AQMod
             }
         }
 
-        public static bool _ImportantInteractionDelay(uint? apply = null)
+        public static bool InteractionDelay(uint? apply = null)
         {
             var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
-            if (aQPlayer.ImportantInteractionDelay > 0)
+            if (aQPlayer.interactionDelay > 0)
             {
                 return false;
             }
-            aQPlayer.ImportantInteractionDelay = apply.GetValueOrDefault(0);
+            aQPlayer.interactionDelay = apply.GetValueOrDefault(0);
             return true;
         }
     }

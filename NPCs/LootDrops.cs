@@ -1,6 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Common.ID;
-using AQMod.Items.Accessories.Jewelry;
+using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Potions;
