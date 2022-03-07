@@ -1,5 +1,6 @@
 ﻿using AQMod.Common;
 using AQMod.Items.Accessories.HookUpgrades;
+using AQMod.Items.Placeable.Nature;
 using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Summon;
@@ -60,12 +61,18 @@ namespace AQMod.NPCs.Friendly
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Meathook>());
             shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistItemBuyValue;
             nextSlot++;
+            if (Main.hardMode)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<GoreNestItem>());
+                shop.item[nextSlot].shopCustomPrice = AQItem.Prices.MemorialistItemBuyValue;
+                nextSlot++;
+            }
             if (!Main.dayTime && Main.bloodMoon)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.WhoopieCushion);
                 nextSlot++;
             }
-            if (WorldDefeats.TownNPCLavaImmunity) // in case someone activates the immunity, then looses the toggle :)
+            if (WorldDefeats.TownNPCLavaImmunity || WorldDefeats.terminatorArm) // in case someone activates the immunity, then looses the toggle :)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<IWillBeBack>());
                 nextSlot++;

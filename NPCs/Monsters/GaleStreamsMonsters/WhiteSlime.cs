@@ -44,7 +44,8 @@ namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
             banner = npc.type;
             bannerItem = ModContent.ItemType<Items.Placeable.Banners.WhiteSlimeBanner>();
 
-            npc.GetGlobalNPC<NPCTemperatureManager>().temperature = 40;
+            var aQNPC = npc.GetGlobalNPC<AQNPC>();
+            aQNPC.temperature = 40;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

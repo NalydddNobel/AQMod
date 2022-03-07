@@ -1,4 +1,5 @@
-﻿using AQMod.Tiles.Furniture;
+﻿using AQMod.Items.Recipes;
+using AQMod.Tiles.Furniture;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,7 +29,7 @@ namespace AQMod.Items.Materials
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Glass);
             r.AddIngredient(ItemID.FallenStar);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.CopperOrTin, 1);
+            r.AddRecipeGroup(AQRecipeGroups.CopperOrTin, 1);
             r.AddTile(TileID.Anvils);
             r.SetResult(this, 2);
             r.AddRecipe();

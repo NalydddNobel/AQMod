@@ -103,7 +103,7 @@ namespace AQMod
             if (p.harderOmegaStarite != harderOmegaStarite)
                 return NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
             if (p.reduceSpawns != reduceSpawns)
-                return NPCSpawnChanger.SpawnRate_CheckBosses();
+                return NPCSpawns.SpawnRate_CheckBosses();
             return false;
         }
     }

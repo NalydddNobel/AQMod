@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories
 {
-    public class MothmanMask : ModItem, IDedicatedItem, IUpdateEquipVisuals
+    public class MothmanMask : ModItem, IDedicatedItem, IUpdateVanity
     {
         Color IDedicatedItem.Color => new Color(50, 75, 250, 255);
 
@@ -35,7 +35,7 @@ namespace AQMod.Items.Accessories
             }
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
+        void IUpdateVanity.UpdateVanitySlot(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
         {
             drawEffects.mask = PlayerMaskID.CataMask;
             drawEffects.cMask = player.dye[i % AQPlayer.MaxDye].dye;

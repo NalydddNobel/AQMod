@@ -8,7 +8,6 @@ using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Items;
 using AQMod.Items.Accessories;
-using AQMod.Items.Accessories.FidgetSpinner;
 using AQMod.Items.Misc;
 using AQMod.Items.Potions;
 using AQMod.Items.Reforges;
@@ -27,6 +26,26 @@ namespace AQMod
 {
     public class AQItem : GlobalItem
     {
+        public static class Hooks
+        {
+            internal static void ApplyHooks()
+            {
+                On.Terraria.Item.SetDefaults += PostSetDefaults;
+            }
+
+            private static void PostSetDefaults(On.Terraria.Item.orig_SetDefaults orig, Item self, int Type, bool noMatCheck)
+            {
+                orig(self, Type, noMatCheck);
+                try
+                {
+                    self.GetGlobalItem<AQItem>().PostSetDefaults(self, Type, noMatCheck);
+                }
+                catch
+                {
+                }
+            }
+        }
+
         public static class Sets
         {
             public static HashSet<int> Crate { get; private set; }
@@ -177,6 +196,7 @@ namespace AQMod
         internal GlowmaskData Glowmask { get; private set; }
         public float cooldownMultiplier;
         public float comboMultiplier;
+        public int basePrice;
 
         public AQItem()
         {
@@ -196,7 +216,15 @@ namespace AQMod
 
         public override void SetDefaults(Item item)
         {
-            GlowmaskDataCheck(item);
+        }
+
+        public void PostSetDefaults(Item item, int type, bool noMaterialCheck)
+        {
+            basePrice = item.value;
+            if (!noMaterialCheck)
+            {
+                GlowmaskDataCheck(item);
+            }
         }
 
         private void Tooltips_DedicatedItemCheck(Item item, List<TooltipLine> tooltips)

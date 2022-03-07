@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Expert
 {
-    public class CelesteTorus : ModItem, IUpdateEquipVisuals
+    public class CelesteTorus : ModItem, IUpdateVanity
     {
         public override void SetDefaults()
         {
@@ -39,7 +39,7 @@ namespace AQMod.Items.Expert
             aQPlayer.blueSpheres = true;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
+        void IUpdateVanity.UpdateVanitySlot(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
         {
             drawEffects.cCelesteTorus = player.dye[i % AQPlayer.MaxDye].dye;
         }

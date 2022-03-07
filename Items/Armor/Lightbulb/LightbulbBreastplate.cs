@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using AQMod.Items.Recipes;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -30,7 +31,7 @@ namespace AQMod.Items.Armor.Lightbulb
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.CopperOrTin, 12);
+            r.AddRecipeGroup(AQRecipeGroups.CopperOrTin, 12);
             r.AddRecipeGroup("IronBar", 5);
             r.AddIngredient(ModContent.ItemType<Materials.Lightbulb>(), 3);
             r.AddTile(TileID.Anvils);

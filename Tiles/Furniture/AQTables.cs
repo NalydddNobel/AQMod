@@ -23,7 +23,7 @@ namespace AQMod.Tiles.Furniture
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
             disableSmartCursor = true;
-            AddMapEntry(CommonColors.Furniture, CreateMapEntryName(GetType().Name));
+            AddMapEntry(Coloring.Furniture, CreateMapEntryName(GetType().Name));
             adjTiles = new int[] { TileID.Tables };
         }
 

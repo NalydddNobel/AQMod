@@ -56,7 +56,7 @@ namespace AQMod.Content.Players
                 UpdateBiomes_GlimmerEvent();
 
                 zoneDemonSiege = DemonSiege.IsActive ? player.Distance(new Vector2(DemonSiege.X * 16f, DemonSiege.Y * 16f)) < 2000f : false;
-                zoneBoss = NPCSpawnChanger.SpawnRate_CheckBosses();
+                zoneBoss = NPCSpawns.SpawnRate_CheckBosses();
             }
             catch
             {

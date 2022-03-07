@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories.Vanity
 {
-    public class FishyFins : ModItem, IUpdateEquipVisuals
+    public class FishyFins : ModItem, IUpdateVanity
     {
         public override void SetDefaults()
         {
@@ -23,7 +23,7 @@ namespace AQMod.Items.Accessories.Vanity
             return null;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
+        void IUpdateVanity.UpdateVanitySlot(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
         {
             drawEffects.headAcc = PlayerHeadAccID.FishyFins;
             drawEffects.cHeadAcc = player.dye[i % AQPlayer.MaxDye].dye;

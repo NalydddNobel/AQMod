@@ -95,7 +95,7 @@ namespace AQMod
                 SkyGlimmerEvent.InitNight();
             Robster.Initialize();
             EventProgressBarLoader.ActiveBar = 255;
-            NPCNoHit.CurrentlyDamaged = new List<byte>();
+            NoHitting.CurrentlyDamaged = new List<byte>();
         }
 
         public override void TileCountsAvailable(int[] tileCounts)

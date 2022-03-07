@@ -29,19 +29,19 @@ namespace AQMod.Items.Materials.Energies
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            AQItem.DrawEnergyItemInv(spriteBatch, CommonColors.CosmicGrad, item, position, origin, scale);
+            AQItem.DrawEnergyItemInv(spriteBatch, Coloring.CosmicGrad, item, position, origin, scale);
             return false;
         }
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
-            AQItem.DrawEnergyItemWorld(spriteBatch, CommonColors.CosmicGrad, item, rotation, scale);
+            AQItem.DrawEnergyItemWorld(spriteBatch, Coloring.CosmicGrad, item, rotation, scale);
             return false;
         }
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            AQItem.UpdateEnergyItem(item, CommonColors.CosmicGrad.GetColor(Main.GlobalTime), new Vector3(0.3f, 0.3f, 0.8f));
+            AQItem.UpdateEnergyItem(item, Coloring.CosmicGrad.GetColor(Main.GlobalTime), new Vector3(0.3f, 0.3f, 0.8f));
         }
     }
 }

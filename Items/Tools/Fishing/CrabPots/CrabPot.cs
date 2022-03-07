@@ -1,5 +1,6 @@
 ﻿using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Recipes;
 using AQMod.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -38,7 +39,7 @@ namespace AQMod.Items.Tools.Fishing.CrabPots
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.CopperOrTin, 8);
+            r.AddRecipeGroup(AQRecipeGroups.CopperOrTin, 8);
             r.AddIngredient(ModContent.ItemType<AquaticEnergy>());
             r.AddIngredient(ModContent.ItemType<CrabShell>());
             r.AddTile(ModContent.TileType<FishingCraftingStation>());

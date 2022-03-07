@@ -10,7 +10,6 @@ using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.Particles;
 using AQMod.Items;
-using AQMod.Items.Accessories.Amulets;
 using AQMod.Items.Accessories.Fishing;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Armor.Arachnotron;
@@ -40,27 +39,36 @@ namespace AQMod
     {
         public static class Hooks
         {
-            internal static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
+            internal static void Apply()
             {
-                var plr = Main.LocalPlayer;
-                bool discount = plr.discount;
-                plr.discount = false;
+                On.Terraria.Player.AddBuff += AQPlayer.Hooks.OnAddBuff;
+                On.Terraria.Player.PickTile += AQPlayer.Hooks.HitTile;
+                On.Terraria.Player.HorizontalMovement += AQPlayer.Hooks.ApplyRedSpriteWind;
+                On.Terraria.Chest.SetupShop += AQPlayer.Hooks.ApplyCustomDiscount;
+            }
 
+            internal static void ApplyCustomDiscount(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
+            {
                 orig(self, type);
-
-                plr.discount = discount;
-                if (discount)
+                var player = Main.LocalPlayer;
+                if (player.discount)
                 {
-                    float discountPercentage = plr.GetModPlayer<AQPlayer>().discountPercentage;
+                    float discountPercentage = player.GetModPlayer<AQPlayer>().discountPercentage;
+                    if (discountPercentage == 1f)
+                    {
+                        discountPercentage = 0.8f;
+                    }
                     for (int i = 0; i < Chest.maxItems; i++)
                     {
                         if (self.item[i] != null && self.item[i].type != ItemID.None)
-                            self.item[i].value = (int)(self.item[i].value * discountPercentage);
+                        {
+                            self.item[i].value = (int)(self.item[i].GetGlobalItem<AQItem>().basePrice * discountPercentage);
+                        }
                     }
                 }
             }
 
-            internal static void Player_HorizontalMovement(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
+            internal static void ApplyRedSpriteWind(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
             {
                 orig(self);
                 var aQPlayer = self.GetModPlayer<AQPlayer>();
@@ -110,7 +118,7 @@ namespace AQMod
                 aQPlayer.redSpriteWind = 0;
             }
 
-            internal static void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
+            internal static void HitTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
             {
                 if (self.GetModPlayer<AQPlayer>().pickBreak)
                 {
@@ -119,7 +127,7 @@ namespace AQMod
                 orig(self, x, y, pickPower);
             }
 
-            internal static void Player_AddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)
+            internal static void OnAddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)
             {
                 if (type >= Main.maxBuffTypes)
                 {
@@ -179,7 +187,7 @@ namespace AQMod
 
         public static bool Fidget_Spinner_Force_Autoswing { get; internal set; }
 
-        public float discountPercentage;
+        public float discountPercentage = 1f;
         public bool blueSpheres;
         public bool hyperCrystal;
         public bool shimmering;
@@ -203,7 +211,6 @@ namespace AQMod
         public byte lootIterations;
         public bool featherflightAmulet;
         public bool voodooAmulet;
-        public bool ghostAmulet;
         public bool extractinatorVisible;
         public float celesteTorusX;
         public float celesteTorusY;
@@ -217,7 +224,6 @@ namespace AQMod
         public bool spicyEel;
         public bool striderPalms;
         public bool striderPalmsOld;
-        public bool ghostAmuletHeld;
         public bool degenerationRing;
         public ushort shieldLife;
         public bool blueFire;
@@ -243,8 +249,6 @@ namespace AQMod
         public bool healBeforeDeath;
         public bool glowString;
         public bool pearlAmulet;
-        public bool darkAmulet;
-        public bool lightAmulet;
         public bool bloodthirst;
         public byte bloodthirstDelay;
         public bool spreadDebuffs;
@@ -298,6 +302,9 @@ namespace AQMod
 
         public int ExtractinatorCount;
         public bool IgnoreIgnoreMoons;
+
+        public float unholyDamage;
+        public float holyDamage;
 
         public ushort itemCooldownMax;
         public ushort itemCooldown;
@@ -589,7 +596,7 @@ namespace AQMod
             setArachnotronCooldown = false;
 
             blueSpheres = false;
-            discountPercentage = 0.8f;
+            discountPercentage = 1f;
             hyperCrystal = false;
             monoxiderBird = false;
             moonShoes = false;
@@ -605,8 +612,6 @@ namespace AQMod
             lootIterations = 0;
             featherflightAmulet = false;
             voodooAmulet = false;
-            ghostAmulet = false;
-            ghostAmuletHeld = InVanitySlot(player, ModContent.ItemType<GhostAmulet>());
             extractinatorVisible = false;
             altEvilDrops = false;
             starite = false;
@@ -644,8 +649,8 @@ namespace AQMod
             healBeforeDeath = false;
             glowString = false;
             pearlAmulet = false;
-            lightAmulet = false;
-            darkAmulet = false;
+            holyDamage = 1f;
+            unholyDamage = 1f;
             bloodthirst = false;
             shade = false;
             spreadDebuffs = false;
@@ -1327,46 +1332,32 @@ namespace AQMod
             }
         }
 
-        private void DamageReduction_MothmanMask(int npcType, ref int damage)
+        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if (AQNPC.Sets.DealsLessDamageToCata[npcType])
+            if (mothmanMask && AQNPC.Sets.DealsLessDamageToCata[npc.type])
             {
                 damage /= 2;
             }
         }
-        private void DamageReduction_LightAmulet(int npcType, ref int damage)
+
+        private void HitDamage(NPC target, ref int damage)
         {
-            if (AQNPC.Sets.Holy[npcType])
+            if (holyDamage != 1f && AQNPC.Sets.Hallowed.Contains(target.type))
             {
-                damage = (int)(damage * 0.9f);
+                damage = (int)(damage * 1.1f);
+            }
+            if (unholyDamage != 1f && AQNPC.Sets.Unholy.Contains(target.type))
+            {
+                damage = (int)(damage * unholyDamage);
             }
         }
-        private void DamageReduction_DarkAmulet(int npcType, ref int damage)
+        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
-            if (AQNPC.Sets.Unholy[npcType])
-            {
-                damage = (int)(damage * 0.9f);
-            }
+            HitDamage(target, ref damage);
         }
-        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (mothmanMask)
-            {
-                DamageReduction_MothmanMask(npc.type, ref damage);
-            }
-            if (lightAmulet)
-            {
-                DamageReduction_LightAmulet(npc.type, ref damage);
-            }
-            if (darkAmulet)
-            {
-                DamageReduction_DarkAmulet(npc.type, ref damage);
-            }
-            var temperature = npc.GetGlobalNPC<NPCTemperatureManager>();
-            if (temperature.temperature != 0)
-            {
-                InflictTemperature(temperature.temperature);
-            }
+            HitDamage(target, ref damage);
         }
 
         private bool IsTrueMeleeProjectile(Projectile projectile)
@@ -1535,6 +1526,11 @@ namespace AQMod
             if (voodooAmulet)
             {
                 OnHitNPC_VoodooAmulet(target, targetCenter, damage, knockback, crit);
+            }
+            var aQNPC = target.GetGlobalNPC<AQNPC>();
+            if (aQNPC.temperature != 0)
+            {
+                InflictTemperature(aQNPC.temperature);
             }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)

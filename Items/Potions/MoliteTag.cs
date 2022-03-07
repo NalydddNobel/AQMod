@@ -1,5 +1,6 @@
 ﻿using AQMod.Dusts;
 using AQMod.Effects;
+using AQMod.Items.Recipes;
 using AQMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -364,7 +365,7 @@ namespace AQMod.Items.Potions
                     var item = AQItem.GetDefault(i);
                     if (BuffCheck(item))
                     {
-                        AQRecipes.RecipeStarbyte.ConstructRecipe(i, this);
+                        StarbyteRecipe.ConstructRecipe(i, this);
                     }
                 }
                 catch

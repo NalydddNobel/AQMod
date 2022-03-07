@@ -103,7 +103,7 @@ namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
                     npc.netUpdate = true;
                 }
                 npc.velocity.Y -= 0.25f;
-                npc.GetGlobalNPC<NPCTemperatureManager>().temperature = 0;
+                npc.GetGlobalNPC<AQNPC>().temperature = 0;
                 return;
             }
             if ((int)npc.ai[1] == 0)
@@ -157,12 +157,12 @@ namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
                 if (npc.ai[3] <= 0)
                 {
                     npc.ai[3] = 0f;
-                    npc.GetGlobalNPC<NPCTemperatureManager>().temperature = (sbyte)(Temperature * (hot ? 1 : -1));
+                    npc.GetGlobalNPC<AQNPC>().temperature = (sbyte)(Temperature * (hot ? 1 : -1));
                     npc.netUpdate = true;
                 }
                 else if (transitionMax != 0)
                 {
-                    npc.GetGlobalNPC<NPCTemperatureManager>().temperature = (sbyte)(int)MathHelper.Lerp(npc.GetGlobalNPC<NPCTemperatureManager>().temperature, Temperature * (hot ? 1 : -1), 1f - npc.ai[3] / transitionMax);
+                    npc.GetGlobalNPC<AQNPC>().temperature = (sbyte)(int)MathHelper.Lerp(npc.GetGlobalNPC<AQNPC>().temperature, Temperature * (hot ? 1 : -1), 1f - npc.ai[3] / transitionMax);
                 }
             }
             if ((int)npc.ai[2] == -1) // leader

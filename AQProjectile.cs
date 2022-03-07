@@ -42,7 +42,51 @@ namespace AQMod
             public static HashSet<int> HookBarbBlacklist { get; private set; }
             public static HashSet<int> IsAMinionProj { get; private set; }
 
-            internal static void Load()
+            private static void AutoSets()
+            {
+                for (int i = 0; i < ProjectileLoader.ProjectileCount; i++)
+                {
+                    try
+                    {
+                        var projectile = new Projectile();
+                        projectile.SetDefaults(i);
+                        if (projectile.aiStyle == AIStyles.BulletAI || projectile.aiStyle == AIStyles.ArrowAI || projectile.aiStyle == AIStyles.ThrownAI ||
+                            projectile.aiStyle == AIStyles.GrapplingHookAI || projectile.aiStyle == AIStyles.DemonSickleAI || projectile.aiStyle == AIStyles.BoulderAI ||
+                            projectile.aiStyle == AIStyles.BoomerangAI || projectile.aiStyle == AIStyles.ExplosiveAI || projectile.aiStyle == AIStyles.HarpNotesAI ||
+                            projectile.aiStyle == AIStyles.BounceAI || projectile.aiStyle == AIStyles.CrystalStormAI)
+                        {
+                            continue;
+                        }
+                        EffectedByWind.Add(i);
+                    }
+                    catch (Exception e)
+                    {
+                        EffectedByWind.Add(i);
+                        var l = AQMod.GetInstance().Logger;
+                        string projectileName;
+                        if (i > Main.maxProjectileTypes)
+                        {
+                            string tryName = Lang.GetNPCName(i).Value;
+                            if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
+                            {
+                                projectileName = ProjectileLoader.GetProjectile(i).Name;
+                            }
+                            else
+                            {
+                                projectileName = tryName + "/" + ProjectileLoader.GetProjectile(i).Name;
+                            }
+                        }
+                        else
+                        {
+                            projectileName = Lang.GetNPCName(i).Value;
+                        }
+                        l.Error("An error occured when doing algorithmic checks for sets for {" + projectileName + ", ID: " + i + "}");
+                        l.Error(e.Message);
+                        l.Error(e.StackTrace);
+                    }
+                }
+            }
+            internal static void Setup()
             {
                 IsAMinionProj = new HashSet<int>();
 
@@ -91,47 +135,7 @@ namespace AQMod
 
                 EffectedByWind = new HashSet<int>();
 
-                for (int i = 0; i < ProjectileLoader.ProjectileCount; i++)
-                {
-                    try
-                    {
-                        var projectile = new Projectile();
-                        projectile.SetDefaults(i);
-                        if (projectile.aiStyle == AIStyles.BulletAI || projectile.aiStyle == AIStyles.ArrowAI || projectile.aiStyle == AIStyles.ThrownAI ||
-                            projectile.aiStyle == AIStyles.GrapplingHookAI || projectile.aiStyle == AIStyles.DemonSickleAI || projectile.aiStyle == AIStyles.BoulderAI ||
-                            projectile.aiStyle == AIStyles.BoomerangAI || projectile.aiStyle == AIStyles.ExplosiveAI || projectile.aiStyle == AIStyles.HarpNotesAI ||
-                            projectile.aiStyle == AIStyles.BounceAI || projectile.aiStyle == AIStyles.CrystalStormAI)
-                        {
-                            continue;
-                        }
-                        EffectedByWind.Add(i);
-                    }
-                    catch (Exception e)
-                    {
-                        EffectedByWind.Add(i);
-                        var l = AQMod.GetInstance().Logger;
-                        string projectileName;
-                        if (i > Main.maxProjectileTypes)
-                        {
-                            string tryName = Lang.GetNPCName(i).Value;
-                            if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
-                            {
-                                projectileName = ProjectileLoader.GetProjectile(i).Name;
-                            }
-                            else
-                            {
-                                projectileName = tryName + "/" + ProjectileLoader.GetProjectile(i).Name;
-                            }
-                        }
-                        else
-                        {
-                            projectileName = Lang.GetNPCName(i).Value;
-                        }
-                        l.Error("An error occured when doing algorithmic checks for sets for {" + projectileName + ", ID: " + i + "}");
-                        l.Error(e.Message);
-                        l.Error(e.StackTrace);
-                    }
-                }
+                AutoSets();
             }
 
             internal static void Unload()
@@ -603,8 +607,7 @@ namespace AQMod
         {
             if (temperature != 0)
             {
-                var npcTemperature = target.GetGlobalNPC<NPCTemperatureManager>();
-                npcTemperature.ChangeTemperature(target, temperature);
+                target.GetGlobalNPC<AQNPC>().ChangeTemperature(target, temperature);
             }
         }
 

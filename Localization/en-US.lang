@@ -39,9 +39,6 @@ ItemTooltip.MushroomClam=Summons Crabson at the beach or crab crevice\n{$Mods.AQ
 ItemName.NovaFruit=Nova Fruit
 ItemTooltip.NovaFruit=Summons Omega Starite at night\n{$Mods.AQMod.Common.NotConsumable}
 
-ItemName.BloodyThing=Bloody Thing
-ItemTooltip.BloodyThing=Starts a blood moon during night\n'An exotic ruby which might start tearing up when ported to 1.4'
-
 ItemName.MythicStarfruit=Mythic Starfruit
 ItemTooltip.MythicStarfruit=Summons a strange glimmer
 
@@ -55,6 +52,12 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 #===========================#
 # Accessories
 #===========================#
+
+ItemName.GlowBand=Glow Band
+ItemTooltip.GlowBand=Emits colored light
+
+ItemName.Amulet=Amulet
+ItemTooltip.Amulet=May be enchanted
 
 ItemName.BloodPlasma=Blood Plasma
 ItemTooltip.BloodPlasma=You will drink a healing potion when you get fatally hit
@@ -106,11 +109,11 @@ ItemName.WyvernAmulet=Featherflight Amulet
 ItemTooltip.WyvernAmulet=Increases flight time by a second\nEnemies give you extra flight time when killed\nNegates fall damage
 
 ItemName.DarkAmulet=Dark Amulet
-ItemTooltip.DarkAmulet=You take 10% less damage from unholy enemies\nIncreases movement speed after being struck\nIncreases maximum mana by 20
+ItemTooltip.DarkAmulet=You deal 15% more damage to holy creatures
 ItemName.LightAmulet=Light Amulet
-ItemTooltip.LightAmulet=You take 10% less damage from holy enemies\nIncreases armor penetration by 5
+ItemTooltip.LightAmulet=You deal 15% more damage to unholy creatures
 ItemName.NeutralityAmulet=Neutrality Amulet
-ItemTooltip.NeutralityAmulet=You take 10% less damage from holy and unholy enemies\nIncreases armor penetration by 5\nIncreases movement speed after being struck\nIncreases maximum mana by 20
+ItemTooltip.NeutralityAmulet=You deal 15% more damage to holy and unholy creatures
 
 ItemName.GlowString=Glow String
 ItemTooltip.GlowString=Makes your yoyo string glow in the dark\nIncreases yoyo range

@@ -101,11 +101,11 @@ namespace AQMod.Content.Players
                     for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)
                     {
                         var position = aQPlayer.GetCelesteTorusPositionOffset(i);
-                        float layerValue = AQUtils.OmegaStarite3DHelper.GetParralaxScale(1f, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * Draw_CelesteZMultiplier);
+                        float layerValue = AQUtils.Perspective.GetParralaxScale(1f, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * Draw_CelesteZMultiplier);
                         if (layerValue < 1f)
                         {
                             var center = info.position + new Vector2(player.width / 2 + (int)position.X, player.height / 2 + (int)position.Y);
-                            Main.playerDrawData.Add(new DrawData(texture, AQUtils.OmegaStarite3DHelper.GetParralaxPosition(center, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.OmegaStarite3DHelper.GetParralaxScale(aQPlayer.celesteTorusScale, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawEffects.cCelesteTorus, ignorePlayerRotation = true });
+                            Main.playerDrawData.Add(new DrawData(texture, AQUtils.Perspective.GetParralaxPosition(center, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.Perspective.GetParralaxScale(aQPlayer.celesteTorusScale, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawEffects.cCelesteTorus, ignorePlayerRotation = true });
                         }
                     }
                 }
@@ -358,11 +358,11 @@ namespace AQMod.Content.Players
                 for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)
                 {
                     var position = aQPlayer.GetCelesteTorusPositionOffset(i);
-                    float layerValue = AQUtils.OmegaStarite3DHelper.GetParralaxScale(1f, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * Draw_CelesteZMultiplier);
+                    float layerValue = AQUtils.Perspective.GetParralaxScale(1f, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * Draw_CelesteZMultiplier);
                     if (layerValue >= 1f)
                     {
                         var center = info.position + new Vector2(player.width / 2 + (int)position.X, player.height / 2 + (int)position.Y);
-                        Main.playerDrawData.Add(new DrawData(texture, AQUtils.OmegaStarite3DHelper.GetParralaxPosition(center, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * Draw_CelesteZMultiplier) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.OmegaStarite3DHelper.GetParralaxScale(aQPlayer.celesteTorusScale, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawEffects.cCelesteTorus, ignorePlayerRotation = true });
+                        Main.playerDrawData.Add(new DrawData(texture, AQUtils.Perspective.GetParralaxPosition(center, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * Draw_CelesteZMultiplier) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.Perspective.GetParralaxScale(aQPlayer.celesteTorusScale, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawEffects.cCelesteTorus, ignorePlayerRotation = true });
                     }
                 }
             }
@@ -728,13 +728,13 @@ namespace AQMod.Content.Players
         {
             for (int i = 0; i < AQPlayer.MaxDye; i++)
             {
-                if (player.armor[i].type > Main.maxItemTypes && !player.hideVisual[i] && player.armor[i].modItem is IUpdateEquipVisuals updateVanity)
-                    updateVanity.UpdateEquipVisuals(player, aQPlayer, effects, i);
+                if (player.armor[i].type > Main.maxItemTypes && !player.hideVisual[i] && player.armor[i].modItem is IUpdateVanity updateVanity)
+                    updateVanity.UpdateVanitySlot(player, aQPlayer, effects, i);
             }
             for (int i = AQPlayer.MaxDye; i < AQPlayer.MaxArmor; i++)
             {
-                if (player.armor[i].type > Main.maxItemTypes && player.armor[i].modItem is IUpdateEquipVisuals updateVanity)
-                    updateVanity.UpdateEquipVisuals(player, aQPlayer, effects, i);
+                if (player.armor[i].type > Main.maxItemTypes && player.armor[i].modItem is IUpdateVanity updateVanity)
+                    updateVanity.UpdateVanitySlot(player, aQPlayer, effects, i);
             }
         }
         public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)

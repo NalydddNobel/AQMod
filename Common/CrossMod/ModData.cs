@@ -109,5 +109,10 @@ namespace AQMod.Common.CrossMod
             codeName = null;
             IsActive = false;
         }
+
+        public static implicit operator Mod(ModData data)
+        {
+            return data.mod;
+        }
     }
 }

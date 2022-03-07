@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.ID;
 using AQMod.Content.World.Events;
+using AQMod.Items.Recipes;
 using AQMod.Localization;
 using AQMod.NPCs.Bosses;
 using Terraria;
@@ -49,7 +50,7 @@ namespace AQMod.Items.Misc.Summons
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.DemoniteBarOrCrimtaneBar, 5);
+            r.AddRecipeGroup(AQRecipeGroups.DemoniteBarOrCrimtaneBar, 5);
             r.AddIngredient(ItemID.FallenStar);
             r.AddTile(TileID.DemonAltar);
             r.SetResult(this);

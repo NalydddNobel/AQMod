@@ -27,7 +27,7 @@ namespace AQMod.Tiles.Furniture
             TileObjectData.addAlternate(1);
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-            AddMapEntry(CommonColors.Furniture, CreateMapEntryName(GetType().Name));
+            AddMapEntry(Coloring.Furniture, CreateMapEntryName(GetType().Name));
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Chairs };
         }

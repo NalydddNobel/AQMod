@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories.Summon
 {
-    public class RustyKnife : ModItem, IDedicatedItem, IUpdateEquipVisuals
+    public class RustyKnife : ModItem, IDedicatedItem, IUpdateVanity
     {
         public override void SetDefaults()
         {
@@ -42,7 +42,7 @@ namespace AQMod.Items.Accessories.Summon
                 aQPlayer.omoriEffect = true;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
+        void IUpdateVanity.UpdateVanitySlot(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
         {
             if (i > AQPlayer.MaxDye)
                 aQPlayer.omoriEffect = true;

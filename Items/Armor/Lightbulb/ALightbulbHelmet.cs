@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Items.Recipes;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -51,7 +52,7 @@ namespace AQMod.Items.Armor.Lightbulb
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.CopperOrTin, 8);
+            r.AddRecipeGroup(AQRecipeGroups.CopperOrTin, 8);
             r.AddRecipeGroup("IronBar", 3);
             r.AddIngredient(ModContent.ItemType<Materials.Lightbulb>(), 2);
             r.AddTile(TileID.Anvils);

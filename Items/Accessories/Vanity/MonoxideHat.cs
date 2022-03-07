@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories.Vanity
 {
-    public class MonoxideHat : ModItem, IUpdateEquipVisuals
+    public class MonoxideHat : ModItem, IUpdateVanity
     {
         public override void SetStaticDefaults()
         {
@@ -22,7 +22,7 @@ namespace AQMod.Items.Accessories.Vanity
             item.vanity = true;
         }
 
-        void IUpdateEquipVisuals.UpdateEquipVisuals(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
+        void IUpdateVanity.UpdateVanitySlot(Player player, AQPlayer aQPlayer, PlayerDrawEffects drawEffects, int i)
         {
             drawEffects.headAcc = PlayerHeadAccID.MonoxideHat;
             drawEffects.cHeadAcc = player.dye[i % AQPlayer.MaxDye].dye;

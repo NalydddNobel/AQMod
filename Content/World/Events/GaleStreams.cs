@@ -286,7 +286,7 @@ namespace AQMod.Content.World.Events
                 }
             }
 
-            AQMod.BroadcastMessage(Lang.gen[59].Key, CommonColors.EventMessage);
+            AQMod.BroadcastMessage(Lang.gen[59].Key, Coloring.EventMessage);
             if (Main.netMode != NetmodeID.MultiplayerClient)
                 NetMessage.SendTileSquare(-1, minX, minY, size);
         }

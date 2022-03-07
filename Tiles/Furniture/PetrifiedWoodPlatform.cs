@@ -28,7 +28,7 @@ namespace AQMod.Tiles.Furniture
             TileObjectData.newTile.UsesCustomCanPlace = false;
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
-            AddMapEntry(CommonColors.Furniture);
+            AddMapEntry(Coloring.Furniture);
             dustType = DustID.Dirt;
             drop = ModContent.ItemType<Items.Placeable.PetrifiedWoodPlatform>();
             disableSmartCursor = true;

@@ -15,7 +15,7 @@ namespace AQMod.Buffs.Debuffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<AQNPC>().lovestruckStatChanges = true;
+            npc.GetGlobalNPC<AQNPC>().lovestruck = true;
         }
 
         public static void Apply(NPC npc, int time, bool quiet = false)

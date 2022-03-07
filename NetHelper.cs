@@ -38,6 +38,14 @@ namespace AQMod
             public const ushort Player_SyncEncoreData = 20000;
         }
 
+        public static void WorldStatus()
+        {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.SendData(MessageID.WorldData);
+            }
+        }
+
         #region Demon Siege
         public static void RequestDemonSiege(int x, int y, int plr, Item item)
         {

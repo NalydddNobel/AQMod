@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.ID;
 using AQMod.Content.Players;
+using AQMod.Items.Recipes;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -38,7 +39,7 @@ namespace AQMod.Items.Misc.Cursor
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Bottle);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyEnergy);
+            r.AddRecipeGroup(AQRecipeGroups.AnyEnergy);
             r.AddTile(TileID.DyeVat);
             r.SetResult(this);
             r.AddRecipe();

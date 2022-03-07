@@ -1,4 +1,5 @@
 ﻿using AQMod.Items.Materials;
+using AQMod.Items.Recipes;
 using AQMod.Localization;
 using AQMod.NPCs.Bosses;
 using Terraria;
@@ -33,7 +34,7 @@ namespace AQMod.Items.Misc.Summons
         public override bool UseItem(Player player)
         {
             NPC.NewNPC((int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<JerryCrabson>(), 0, 0f, 0f, 0f, 0f, player.whoAmI);
-            Main.NewText(AQText.ModText("Common.AwakenedCrabson"), CommonColors.BossMessage);
+            Main.NewText(AQText.ModText("Common.AwakenedCrabson"), Coloring.BossMessage);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }
@@ -42,7 +43,7 @@ namespace AQMod.Items.Misc.Summons
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ModContent.ItemType<CrabShell>(), 4);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyNobleMushroom);
+            r.AddRecipeGroup(AQRecipeGroups.AnyNobleMushroom);
             r.AddTile(TileID.DemonAltar);
             r.SetResult(this);
             r.AddRecipe();

@@ -40,26 +40,21 @@ namespace AQMod
             public static bool[] IsAZombie { get; private set; }
             public static bool[] IsWormSegment { get; private set; }
             public static bool[] IsWormBody { get; private set; }
-            public static bool[] Unholy { get; private set; }
-            public static bool[] Holy { get; private set; }
             public static bool[] DealsLessDamageToCata { get; private set; }
             public static List<int> CannotBeMeathooked { get; private set; }
             public static List<int> NoGlobalDrops { get; private set; }
             public static List<int> NoMapBlip { get; private set; }
+            public static HashSet<int> HotDamage { get; private set; }
+            public static HashSet<int> Corruption { get; private set; }
+            public static HashSet<int> Crimson { get; private set; }
+            public static HashSet<int> Unholy { get; private set; }
+            public static HashSet<int> Hallowed { get; private set; }
 
             public static bool IsWormHead(int type)
             {
                 return IsWormSegment[type] && !IsWormBody[type];
             }
 
-            private static void AutoSets_WindCheck(NPC npc)
-            {
-                if (npc.aiStyle != AIStyles.DemonEyeAI && npc.aiStyle != AIStyles.FlyingAI && npc.aiStyle != AIStyles.SpellAI && npc.aiStyle != AIStyles.EnchantedSwordAI && npc.aiStyle != AIStyles.SpiderAI &&
-                    (npc.noGravity || npc.boss))
-                {
-                    UnaffectedByWind[npc.type] = true;
-                }
-            }
             private static void AutoSets()
             {
                 for (int i = 0; i < NPCLoader.NPCCount; i++)
@@ -81,7 +76,11 @@ namespace AQMod
                             npc = new NPC();
                             npc.SetDefaults(i);
                         }
-                        AutoSets_WindCheck(npc);
+                        if (npc.aiStyle != AIStyles.DemonEyeAI && npc.aiStyle != AIStyles.FlyingAI && npc.aiStyle != AIStyles.SpellAI && npc.aiStyle != AIStyles.EnchantedSwordAI && npc.aiStyle != AIStyles.SpiderAI &&
+                            (npc.noGravity || npc.boss))
+                        {
+                            UnaffectedByWind[npc.type] = true;
+                        }
                     }
                     catch (Exception e)
                     {
@@ -115,43 +114,169 @@ namespace AQMod
                 AQUtils.RemoveRepeatingIndices(NoGlobalDrops);
                 AQUtils.RemoveRepeatingIndices(CannotBeMeathooked);
             }
+            private static void CrossModPolarities()
+            {
+                TryAddTo(AQMod.polarities, "Esophage", Corruption, Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "EsophageHitbox", Corruption, Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "EsophageLeg", Corruption, Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "LightEater", Corruption, Unholy);
+                TryAddTo(AQMod.polarities, "LivingSpineHead", Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "LivingSpineBody", Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "LivingSpineTail", Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "RavenousCursedHead", Corruption, Unholy);
+                TryAddTo(AQMod.polarities, "RavenousCursedBody", Corruption, Unholy);
+                TryAddTo(AQMod.polarities, "RavenousCursedTail", Corruption, Unholy);
+                TryAddTo(AQMod.polarities, "ScytheFlier", Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "Uraraneid", Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "TendrilAmalgam", Corruption, Unholy);
+
+                TryAddTo(AQMod.polarities, "SunPixie", Hallowed);
+                TryAddTo(AQMod.polarities, "Aequorean", Hallowed);
+                TryAddTo(AQMod.polarities, "IlluminantScourer", Hallowed);
+                TryAddTo(AQMod.polarities, "Painbow", Hallowed);
+                TryAddTo(AQMod.polarities, "SunKnight", Hallowed);
+                TryAddTo(AQMod.polarities, "SunServitor", Hallowed);
+                TryAddTo(AQMod.polarities, "Trailblazer", Hallowed);
+            }
+            private static void CrossModSplit()
+            {
+                TryAddTo(AQMod.split, "Decaying", Corruption, Unholy);
+                TryAddTo(AQMod.split, "Stalker", Crimson, Unholy);
+                TryAddTo(AQMod.split, "Spotter", Corruption, Crimson, Unholy);
+
+                TryAddTo(AQMod.split, "Echo", Hallowed);
+                TryAddTo(AQMod.split, "Fairyfly", Hallowed);
+                TryAddTo(AQMod.split, "ShinyPixie", Hallowed);
+                TryAddTo(AQMod.split, "SkeletonJester", Hallowed);
+            }
             internal static void Setup()
             {
                 SetUtils.Length = NPCLoader.NPCCount;
                 SetUtils.GetIDFromType = (m, n) => m.NPCType(n);
 
+                Corruption = new HashSet<int>()
+                {
+                    NPCID.DarkMummy,
+                    NPCID.DesertDjinn,
+                    NPCID.DesertLamiaDark,
+
+                    NPCID.VileSpit,
+                    NPCID.CursedHammer,
+                    NPCID.SeekerHead,
+                    NPCID.SeekerBody,
+                    NPCID.SeekerTail,
+                    NPCID.EaterofSouls,
+                    NPCID.BigEater,
+                    NPCID.LittleEater,
+                    NPCID.EaterofWorldsHead,
+                    NPCID.EaterofWorldsBody,
+                    NPCID.EaterofWorldsTail,
+                    NPCID.DevourerHead,
+                    NPCID.DevourerBody,
+                    NPCID.DevourerTail,
+                    NPCID.Clinger,
+                    NPCID.CorruptBunny,
+                    NPCID.CorruptGoldfish,
+                    NPCID.Corruptor,
+                    NPCID.CorruptPenguin,
+                    NPCID.CorruptSlime,
+                    NPCID.Slimeling,
+                    NPCID.Slimer,
+                    NPCID.Slimer2,
+                    NPCID.BigMimicCorruption,
+                    NPCID.DesertGhoulCorruption,
+                    NPCID.PigronCorruption,
+                    NPCID.SandsharkCorrupt,
+                };
+
+                Crimson = new HashSet<int>()
+                {
+                    NPCID.DarkMummy,
+                    NPCID.DesertDjinn,
+                    NPCID.DesertLamiaDark,
+
+                    NPCID.Crimera,
+                    NPCID.FaceMonster,
+                    NPCID.BloodCrawler,
+                    NPCID.BloodCrawlerWall,
+                    NPCID.Crimslime,
+                    NPCID.Herpling,
+                    NPCID.CrimsonGoldfish,
+                    NPCID.BrainofCthulhu,
+                    NPCID.Creeper,
+                    NPCID.BloodJelly,
+                    NPCID.BloodFeeder,
+                    NPCID.CrimsonAxe,
+                    NPCID.IchorSticker,
+                    NPCID.FloatyGross,
+                    NPCID.DesertGhoulCrimson,
+                    NPCID.PigronCrimson,
+                    NPCID.BigMimicCrimson,
+                    NPCID.CrimsonBunny,
+                    NPCID.CrimsonPenguin,
+                };
+
+                HotDamage = new HashSet<int>()
+                {
+                    NPCID.Hellbat,
+                    NPCID.Lavabat,
+                    NPCID.LavaSlime,
+                    NPCID.BlazingWheel,
+                    NPCID.FireImp,
+                    NPCID.BurningSphere,
+                    NPCID.MeteorHead,
+                    NPCID.HellArmoredBones,
+                    NPCID.HellArmoredBonesMace,
+                    NPCID.HellArmoredBonesSpikeShield,
+                    NPCID.HellArmoredBonesSword,
+                    ModContent.NPCType<RedSprite>(),
+                    ModContent.NPCType<WhiteSlime>(),
+                };
+
                 CannotBeMeathooked = new List<int>()
                 {
                     NPCID.WallofFlesh,
-                    NPCID.WallofFleshEye
+                    NPCID.WallofFleshEye,
+                    NPCID.PlanterasHook,
+                    NPCID.ForceBubble,
                 };
 
                 DealsLessDamageToCata = SetUtils.CreateFlagSet(NPCID.Mothron, NPCID.MothronSpawn, NPCID.MothronEgg, NPCID.CultistBoss, NPCID.CultistBossClone, NPCID.AncientCultistSquidhead, NPCID.CultistDragonHead, NPCID.CultistDragonBody1, NPCID.CultistDragonBody2, NPCID.CultistDragonBody3, NPCID.CultistDragonBody4, NPCID.CultistDragonTail, NPCID.AncientDoom, NPCID.AncientLight);
 
-                Unholy = SetUtils.CreateFlagSet(NPCID.EaterofSouls, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.DevourerHead, NPCID.DevourerBody, NPCID.DevourerTail, NPCID.SeekerHead, NPCID.SeekerBody, NPCID.SeekerTail,
-                    NPCID.Corruptor, NPCID.CorruptBunny, NPCID.CorruptGoldfish, NPCID.CorruptPenguin, NPCID.CorruptSlime, NPCID.Slimer, NPCID.BigMimicCorruption, NPCID.DesertGhoulCorruption, NPCID.DesertGhoulCorruption, NPCID.PigronCorruption, NPCID.SandsharkCorrupt,
-                    NPCID.DarkMummy, NPCID.DesertLamiaDark, NPCID.Crimera, NPCID.Crimslime, NPCID.CursedHammer, NPCID.CrimsonAxe, NPCID.CrimsonBunny, NPCID.CrimsonGoldfish, NPCID.CrimsonPenguin, NPCID.BigMimicCrimson, NPCID.DesertGhoulCrimson, NPCID.PigronCrimson, NPCID.SandsharkCrimson, NPCID.BrainofCthulhu, NPCID.Creeper,
-                    NPCID.Wraith, NPCID.Herpling, NPCID.Hellhound, NPCID.Scarecrow1, NPCID.Scarecrow2, NPCID.Scarecrow3, NPCID.Scarecrow4, NPCID.Scarecrow5, NPCID.Scarecrow6, NPCID.Scarecrow7, NPCID.Scarecrow8, NPCID.Scarecrow9, NPCID.Scarecrow10, NPCID.Splinterling, NPCID.MourningWood, NPCID.VileSpit, NPCID.Pumpking,
-                    NPCID.PumpkingBlade, NPCID.BloodCrawler, NPCID.BloodCrawlerWall, NPCID.BloodFeeder, NPCID.BloodJelly, NPCID.FaceMonster, NPCID.DesertDjinn,
-                    // Polarities
-                    "%:Esophage", "%:EsophageHitbox", "%:EsophageLeg", "%:LightEater", "%:LivingSpineHead", "%:LivingSpineBody", "%:LivingSpineTail", "%:RavenousCursedHead", "%:RavenousCursedBody", "%:RavenousCursedTail",
-                    "%:ScytheFlier", "%:Uraraneid", "%:TendrilAmalgam",
-                    // Split
-                    "$:Decaying", "$:Spotter", "$:Stalker",
-                    // Calamity Mod
-                    "!:Aries", "!:AstralachneaGround", "!:AstralachneaWall", "!:AstralProbe", "!:AstralSeekerSpit", "!:AstralSlime", "!:Atlas", "!:BigSightseer", "!:FusionFeeder",
-                    "!:Hadarian", "!:Hive", "!:Hiveling", "!:Mantis", "!:Nova", "!:SmallSightseer", "!:StellarCulex", "!:Twinkler", "!:AstrumAureus", "!:AstrumDeusHeadSpectral", "!:AstrumDeusBodySpectral", "!:AstrumDeusTailSpectral",
-                    "!:DankCreeper", "!:DarkHeart", "!:HiveBlob", "!:HiveBlob2", "!:HiveCyst", "!:HiveMind", "!:PerforatorCyst", "!:PerforatorHive", "!:PerforatorHeadSmall", "!:PerforatorHeadMedium", "!:PerforatorHeadLarge", "!:PerforatorBodySmall", "!:PerforatorBodyMedium", "!:PerforatorBodyLarge", "!:PerforatorTailSmall", "!:PerforatorTailMedium", "!:PerforatorTailLarge",
-                    "!:SlimeGod", "!:SlimeGodCore", "!:SlimeGodRun", "!:SlimeGodRunSplit", "!:SlimeGodSplit", "!:SlimeSpawnCorrupt", "!:SlimeSpawnCorrupt2", "!:SlimeSpawnCrimson", "!:SlimeSpawnCrimson2", "!:CrimulanBlightSlime", "!:EbonianBlightSlime"
-                    );
+                //Unholy = SetUtils.CreateFlagSet(NPCID.EaterofSouls, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.DevourerHead, NPCID.DevourerBody, NPCID.DevourerTail, NPCID.SeekerHead, NPCID.SeekerBody, NPCID.SeekerTail,
+                //    // Calamity Mod
+                //    "!:Aries", "!:AstralachneaGround", "!:AstralachneaWall", "!:AstralProbe", "!:AstralSeekerSpit", "!:AstralSlime", "!:Atlas", "!:BigSightseer", "!:FusionFeeder",
+                //    "!:Hadarian", "!:Hive", "!:Hiveling", "!:Mantis", "!:Nova", "!:SmallSightseer", "!:StellarCulex", "!:Twinkler", "!:AstrumAureus", "!:AstrumDeusHeadSpectral", "!:AstrumDeusBodySpectral", "!:AstrumDeusTailSpectral",
+                //    "!:DankCreeper", "!:DarkHeart", "!:HiveBlob", "!:HiveBlob2", "!:HiveCyst", "!:HiveMind", "!:PerforatorCyst", "!:PerforatorHive", "!:PerforatorHeadSmall", "!:PerforatorHeadMedium", "!:PerforatorHeadLarge", "!:PerforatorBodySmall", "!:PerforatorBodyMedium", "!:PerforatorBodyLarge", "!:PerforatorTailSmall", "!:PerforatorTailMedium", "!:PerforatorTailLarge",
+                //    "!:SlimeGod", "!:SlimeGodCore", "!:SlimeGodRun", "!:SlimeGodRunSplit", "!:SlimeGodSplit", "!:SlimeSpawnCorrupt", "!:SlimeSpawnCorrupt2", "!:SlimeSpawnCrimson", "!:SlimeSpawnCrimson2", "!:CrimulanBlightSlime", "!:EbonianBlightSlime"
+                //    );
+                Unholy = new HashSet<int>() 
+                { 
+                    NPCID.Wraith,
+                    NPCID.Hellhound,
+                    NPCID.Scarecrow1, NPCID.Scarecrow2, NPCID.Scarecrow3, NPCID.Scarecrow4, NPCID.Scarecrow5, NPCID.Scarecrow6, NPCID.Scarecrow7, NPCID.Scarecrow8, NPCID.Scarecrow9, NPCID.Scarecrow10, 
+                    NPCID.Splinterling,
+                    NPCID.MourningWood, 
+                    NPCID.VileSpit, 
+                    NPCID.Pumpking, NPCID.PumpkingBlade,
+                };
 
-                Holy = SetUtils.CreateFlagSet(NPCID.Pixie, NPCID.ZombiePixie, NPCID.Unicorn, NPCID.EnchantedSword, NPCID.RainbowSlime, NPCID.Gastropod, NPCID.LightMummy, NPCID.BigMimicHallow, NPCID.DesertGhoulHallow, NPCID.PigronHallow, NPCID.SandsharkHallow,
+                Unholy = AQUtils.Combine(Unholy, Corruption, Crimson);
+
+                Hallowed = new HashSet<int>() 
+                {
+                    NPCID.Pixie, 
+                    NPCID.Unicorn, 
+                    NPCID.EnchantedSword, 
+                    NPCID.RainbowSlime, 
+                    NPCID.Gastropod, 
+                    NPCID.LightMummy, 
+                    NPCID.BigMimicHallow, 
+                    NPCID.DesertGhoulHallow, 
+                    NPCID.PigronHallow, 
+                    NPCID.SandsharkHallow,
                     NPCID.ChaosElemental,
-                    // Polarities
-                    "%:SunPixie", "%:Aequorean", "%:IlluminantScourer", "%:Painbow", "%:SunKnight", "%:SunServitor", "%:Trailblazer",
-                    // Split 
-                    "$:Echo", "$:Fairyfly", "$:ShinyPixie", "$:SkeletonJester"
-                    );
+                };
 
                 IsWormBody = SetUtils.CreateFlagSet(NPCID.EaterofWorldsBody, NPCID.BoneSerpentBody, NPCID.CultistDragonBody1, NPCID.CultistDragonBody2, NPCID.CultistDragonBody3, NPCID.CultistDragonBody4, NPCID.DevourerBody,
                     NPCID.DuneSplicerBody, NPCID.EaterofWorldsBody, NPCID.GiantWormBody, NPCID.LeechBody, NPCID.SeekerBody, NPCID.SolarCrawltipedeBody, NPCID.StardustWormBody, NPCID.TheDestroyerBody, NPCID.TombCrawlerBody, NPCID.WyvernBody, NPCID.WyvernBody2, NPCID.WyvernBody3,
@@ -555,10 +680,22 @@ namespace AQMod
                 UnaffectedByWind[ModContent.NPCType<BalloonMerchant>()] = false;
 
                 RemoveRepeatingIndicesFromSets();
+
+                if (AQMod.polarities.IsActive)
+                {
+                    CrossModPolarities();
+                }
+                if (AQMod.split.IsActive)
+                {
+                    CrossModSplit();
+                }
             }
 
             internal static void Unload()
             {
+                HotDamage?.Clear();
+                HotDamage = null;
+
                 DemonSiegeEnemy = null;
                 EnemyDungeonSprit = null;
                 HecktoplasmDungeonEnemy = null;
@@ -568,6 +705,30 @@ namespace AQMod
                 UnaffectedByWind = null;
                 DealsLessDamageToCata = null;
                 CannotBeMeathooked = null;
+            }
+
+            public static bool TryAddTo(Mod mod, string name, HashSet<int> set)
+            {
+                int type = mod.NPCType(name);
+                if (type != 0)
+                {
+                    return set.Add(type);
+                }
+                return false;
+            }
+
+            public static bool TryAddTo(Mod mod, string name, params HashSet<int>[] sets)
+            {
+                int type = mod.NPCType(name);
+                if (type != 0)
+                {
+                    foreach (var set in sets)
+                    {
+                        set.Add(type);
+                    }
+                    return true;
+                }
+                return false;
             }
 
             public static int CountNPCs(bool[] ruleset)
@@ -679,38 +840,73 @@ namespace AQMod
         public static bool BossRush { get; private set; }
         public static byte BossRushPlayer { get; private set; }
 
-        public static int BreadsoulPlr = 0;
-        public static int DreadsoulPlr = 0;
+        public static int breadsoul = 0;
+        public static int dreadsoul = 0;
+
+        public override bool InstancePerEntity => true;
+        public override bool CloneNewInstances => true;
 
         public bool shimmering;
         public bool blueFire;
+        public bool lovestruck;
+        public bool corruptHellfire;
+        public bool crimsonHellfire;
+        public bool minionHaunted;
+
+        public bool hotDamage;
+
         /// <summary>
         /// When this flag is raised, no wind events should be applied to this NPC
         /// </summary>
         public bool windStruck;
         public bool windStruckOld;
-        public bool lovestruckStatChanges;
-        public bool corruptHellfire;
-        public bool crimsonHellfire;
 
-        public bool minionHaunted;
+        public sbyte temperature;
 
-        public override bool InstancePerEntity => true;
-
+        private void UpdateTemperature(NPC npc)
+        {
+            if (hotDamage)
+            {
+                if (temperature < 100)
+                    temperature++;
+            }
+            else if (npc.coldDamage)
+            {
+                if (temperature > -100)
+                    temperature--;
+            }
+            else
+            {
+                if (temperature < -100)
+                {
+                    temperature = -100;
+                }
+                else if (temperature > 100)
+                {
+                    temperature = 100;
+                }
+            }
+        }
         public override void ResetEffects(NPC npc)
         {
+            UpdateTemperature(npc);
             shimmering = false;
             blueFire = false;
             windStruckOld = windStruck;
             windStruck = false;
-            lovestruckStatChanges = false;
+            lovestruck = false;
             corruptHellfire = false;
             crimsonHellfire = false;
             minionHaunted = false;
         }
 
-        public override void SetDefaults(NPC npc)
+        private void CheckBuffImmunes(NPC npc)
         {
+            if (Sets.Corruption.Contains(npc.netID))
+                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
+            if (Sets.Crimson.Contains(npc.netID))
+                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CrimsonHellfire>()] = true;
+
             npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.LovestruckAQ>()] = npc.buffImmune[BuffID.Lovestruck];
 
             if (npc.buffImmune[BuffID.CursedInferno] || npc.buffImmune[BuffID.ShadowFlame])
@@ -720,153 +916,20 @@ namespace AQMod
                 npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
                 npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
             }
-
-            if (npc.type == NPCID.DarkMummy || npc.type == NPCID.DesertDjinn || npc.type == NPCID.DesertLamiaDark)
-            {
-                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
-                npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
-            }
-            else
-            {
-                switch (npc.type)
-                {
-                    case NPCID.EaterofSouls:
-                    case NPCID.BigEater:
-                    case NPCID.LittleEater:
-                    case NPCID.EaterofWorldsHead:
-                    case NPCID.EaterofWorldsBody:
-                    case NPCID.EaterofWorldsTail:
-                    case NPCID.DevourerHead:
-                    case NPCID.DevourerBody:
-                    case NPCID.DevourerTail:
-                    case NPCID.Clinger:
-                    case NPCID.CorruptBunny:
-                    case NPCID.CorruptGoldfish:
-                    case NPCID.Corruptor:
-                    case NPCID.CorruptPenguin:
-                    case NPCID.CorruptSlime:
-                    case NPCID.Slimeling:
-                    case NPCID.Slimer:
-                    case NPCID.Slimer2:
-                    case NPCID.BigMimicCorruption:
-                    case NPCID.DesertGhoulCorruption:
-                    case NPCID.PigronCorruption:
-                    case NPCID.SandsharkCorrupt:
-                        {
-                            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
-                        }
-                        break;
-
-                    case NPCID.Crimera:
-                    case NPCID.FaceMonster:
-                    case NPCID.BloodCrawler:
-                    case NPCID.BloodCrawlerWall:
-                    case NPCID.Crimslime:
-                    case NPCID.Herpling:
-                    case NPCID.CrimsonGoldfish:
-                    case NPCID.BrainofCthulhu:
-                    case NPCID.Creeper:
-                    case NPCID.BloodJelly:
-                    case NPCID.BloodFeeder:
-                    case NPCID.CrimsonAxe:
-                    case NPCID.IchorSticker:
-                    case NPCID.FloatyGross:
-                    case NPCID.DesertGhoulCrimson:
-                    case NPCID.PigronCrimson:
-                    case NPCID.BigMimicCrimson:
-                    case NPCID.CrimsonBunny:
-                    case NPCID.CrimsonPenguin:
-                        {
-                            npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CrimsonHellfire>()] = true;
-                        }
-                        break;
-                }
-            }
         }
-
-        public bool ShouldApplyWindMechanics(NPC npc)
+        public override void SetDefaults(NPC npc)
         {
-            return !windStruck && !Sets.UnaffectedByWind[npc.type];
-        }
-
-        public void ApplyWindMechanics(NPC npc, Vector2 wind)
-        {
-            npc.velocity += wind;
-            windStruck = true;
-        }
-
-        public static bool AreTheSameNPC(int type, int otherType)
-        {
-            if (type == otherType)
-                return true;
-            int banner = Item.NPCtoBanner(type);
-            if (banner != 0 && banner == Item.NPCtoBanner(otherType))
-                return true;
-            switch (type)
+            if (!AQMod.IsLoading)
             {
-                case NPCID.EaterofWorldsHead:
-                case NPCID.EaterofWorldsBody:
-                case NPCID.EaterofWorldsTail:
-                    {
-                        switch (otherType)
-                        {
-                            case NPCID.EaterofWorldsHead:
-                            case NPCID.EaterofWorldsBody:
-                            case NPCID.EaterofWorldsTail:
-                                return true;
-                        }
-                    }
-                    break;
-
-                case NPCID.TheDestroyer:
-                case NPCID.TheDestroyerBody:
-                case NPCID.TheDestroyerTail:
-                    {
-                        switch (otherType)
-                        {
-                            case NPCID.TheDestroyer:
-                            case NPCID.TheDestroyerBody:
-                            case NPCID.TheDestroyerTail:
-                                return true;
-                        }
-                    }
-                    break;
-
-                case NPCID.TheHungry:
-                case NPCID.TheHungryII:
-                    {
-                        switch (otherType)
-                        {
-                            case NPCID.TheHungry:
-                            case NPCID.TheHungryII:
-                                return true;
-                        }
-                    }
-                    break;
-
-                case NPCID.Golem:
-                case NPCID.GolemHead:
-                case NPCID.GolemHeadFree:
-                case NPCID.GolemFistLeft:
-                case NPCID.GolemFistRight:
-                    {
-                        switch (otherType)
-                        {
-                            case NPCID.Golem:
-                            case NPCID.GolemHead:
-                            case NPCID.GolemHeadFree:
-                            case NPCID.GolemFistLeft:
-                            case NPCID.GolemFistRight:
-                                return true;
-                        }
-                    }
-                    break;
+                if (Sets.HotDamage.Contains(npc.netID))
+                    hotDamage = true;
+                CheckBuffImmunes(npc);
             }
-            return false;
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            
             if (shimmering)
             {
                 if (npc.lifeRegen > 0)
@@ -1096,13 +1159,13 @@ namespace AQMod
 
         private void ApplyDamageEffects(ref int damage)
         {
-            if (lovestruckStatChanges)
+            if (lovestruck)
                 damage += (int)(damage * 0.1f);
         }
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
         {
-            if (lovestruckStatChanges)
+            if (lovestruck)
                 damage -= (int)(damage * 0.1f);
         }
 
@@ -1135,20 +1198,6 @@ namespace AQMod
                     }
                 }
                 npc.netUpdate = true;
-            }
-            switch (npc.type)
-            {
-                case NPCID.Ghost:
-                    {
-                        if (Main.netMode == NetmodeID.SinglePlayer && Main.LocalPlayer.GetModPlayer<AQPlayer>().ghostAmulet)
-                        {
-                            npc.life = -1;
-                            npc.HitEffect();
-                            npc.active = false;
-                            return false;
-                        }
-                    }
-                    break;
             }
             return true;
         }
@@ -1308,7 +1357,7 @@ namespace AQMod
 
         public override bool PreNPCLoot(NPC npc)
         {
-            if (NPCLootLooper.CurrentNPCLootLoop != 0)
+            if (LootLoopingHelper.Current != 0)
             {
                 NPCLoader.blockLoot.Add(ItemID.Heart);
             }
@@ -1352,7 +1401,7 @@ namespace AQMod
         }
         private void OnKill_DreadsoulCheck(NPC npc)
         {
-            DreadsoulPlr = -1;
+            dreadsoul = -1;
             float checkDistance = 2000f;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
@@ -1363,12 +1412,12 @@ namespace AQMod
                     float distance = Vector2.Distance(plr.Center, npc.Center);
                     if (aQPlr.dreadsoul && distance < checkDistance)
                     {
-                        DreadsoulPlr = i;
+                        dreadsoul = i;
                         checkDistance = distance;
                     }
                 }
             }
-            if (DreadsoulPlr == -1)
+            if (dreadsoul == -1)
                 return;
             for (int i = 0; i < 40; i++)
             {
@@ -1381,7 +1430,7 @@ namespace AQMod
                 float rot = MathHelper.PiOver2 * i;
                 rot += Main.rand.NextFloat(-0.2f, 0.2f);
                 var n = rot.ToRotationVector2();
-                int p = Projectile.NewProjectile(center + n * 10f, n * 7f, ModContent.ProjectileType<DreadsoulAttack>(), 10, 0f, DreadsoulPlr);
+                int p = Projectile.NewProjectile(center + n * 10f, n * 7f, ModContent.ProjectileType<DreadsoulAttack>(), 10, 0f, dreadsoul);
                 Main.projectile[p].rotation = rot;
                 for (int j = 0; j < 4; j++)
                 {
@@ -1392,7 +1441,7 @@ namespace AQMod
         }
         private void OnKill_BreadsoulCheck(NPC npc)
         {
-            BreadsoulPlr = -1;
+            breadsoul = -1;
             float checkDistance = 2000f;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
@@ -1403,12 +1452,12 @@ namespace AQMod
                     float distance = Vector2.Distance(plr.Center, npc.Center);
                     if (aQPlr.breadsoul && distance < checkDistance)
                     {
-                        BreadsoulPlr = i;
+                        breadsoul = i;
                         checkDistance = distance;
                     }
                 }
             }
-            if (BreadsoulPlr == -1)
+            if (breadsoul == -1)
                 return;
             for (int i = 0; i < 40; i++)
             {
@@ -1418,7 +1467,7 @@ namespace AQMod
             var center = npc.Center;
             float rot = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
             var n = rot.ToRotationVector2();
-            int p = Projectile.NewProjectile(npc.Center + n * 10f, n * 4.5f, ModContent.ProjectileType<BreadsoulHealing>(), 0, 0f, BreadsoulPlr);
+            int p = Projectile.NewProjectile(npc.Center + n * 10f, n * 4.5f, ModContent.ProjectileType<BreadsoulHealing>(), 0, 0f, breadsoul);
             Main.projectile[p].rotation = rot;
             for (int j = 0; j < 4; j++)
             {
@@ -1430,7 +1479,7 @@ namespace AQMod
         {
             if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] || npc.lifeMax < 5 || npc.friendly)
                 return;
-            if (NPCLootLooper.CurrentNPCLootLoop == 0 && (Main.netMode == NetmodeID.Server || !Main.gameMenu))
+            if (LootLoopingHelper.Current == 0 && (Main.netMode == NetmodeID.Server || !Main.gameMenu))
             {
                 EncoreKill(npc);
                 OnKill_BreadsoulCheck(npc);
@@ -1443,6 +1492,87 @@ namespace AQMod
                     OnKill_BloodthirstPotionCheck(plr, npc);
                 }
             }
+        }
+
+        public bool ShouldApplyWindMechanics(NPC npc)
+        {
+            return !windStruck && !Sets.UnaffectedByWind[npc.type];
+        }
+
+        public void ApplyWindMechanics(NPC npc, Vector2 wind)
+        {
+            npc.velocity += wind;
+            windStruck = true;
+        }
+
+        public static bool AreTheSameNPC(int type, int otherType)
+        {
+            if (type == otherType)
+                return true;
+            int banner = Item.NPCtoBanner(type);
+            if (banner != 0 && banner == Item.NPCtoBanner(otherType))
+                return true;
+            switch (type)
+            {
+                case NPCID.EaterofWorldsHead:
+                case NPCID.EaterofWorldsBody:
+                case NPCID.EaterofWorldsTail:
+                    {
+                        switch (otherType)
+                        {
+                            case NPCID.EaterofWorldsHead:
+                            case NPCID.EaterofWorldsBody:
+                            case NPCID.EaterofWorldsTail:
+                                return true;
+                        }
+                    }
+                    break;
+
+                case NPCID.TheDestroyer:
+                case NPCID.TheDestroyerBody:
+                case NPCID.TheDestroyerTail:
+                    {
+                        switch (otherType)
+                        {
+                            case NPCID.TheDestroyer:
+                            case NPCID.TheDestroyerBody:
+                            case NPCID.TheDestroyerTail:
+                                return true;
+                        }
+                    }
+                    break;
+
+                case NPCID.TheHungry:
+                case NPCID.TheHungryII:
+                    {
+                        switch (otherType)
+                        {
+                            case NPCID.TheHungry:
+                            case NPCID.TheHungryII:
+                                return true;
+                        }
+                    }
+                    break;
+
+                case NPCID.Golem:
+                case NPCID.GolemHead:
+                case NPCID.GolemHeadFree:
+                case NPCID.GolemFistLeft:
+                case NPCID.GolemFistRight:
+                    {
+                        switch (otherType)
+                        {
+                            case NPCID.Golem:
+                            case NPCID.GolemHead:
+                            case NPCID.GolemHeadFree:
+                            case NPCID.GolemFistLeft:
+                            case NPCID.GolemFistRight:
+                                return true;
+                        }
+                    }
+                    break;
+            }
+            return false;
         }
 
         internal static int FindTarget(Vector2 position, float distance = 2000f)
@@ -1556,6 +1686,54 @@ namespace AQMod
         public static bool CanBeMeathooked(NPC npc)
         {
             return !UselessNPC(npc) && !npc.dontTakeDamage && !npc.immortal && !Sets.CannotBeMeathooked.Contains(npc.type);
+        }
+
+        public void ChangeTemperature(NPC npc, sbyte newTemperature)
+        {
+            if (hotDamage && newTemperature > 0)
+            {
+                newTemperature /= 2;
+            }
+            else if (npc.coldDamage && newTemperature < 0)
+            {
+                newTemperature /= 2;
+            }
+            if (temperature < 0)
+            {
+                if (newTemperature < 0)
+                {
+                    if (temperature > newTemperature)
+                        temperature = newTemperature;
+                }
+                else
+                {
+                    temperature = 0;
+                }
+            }
+            else if (temperature > 0)
+            {
+                if (newTemperature > 0)
+                {
+                    if (temperature < newTemperature)
+                        temperature = newTemperature;
+                }
+                else
+                {
+                    temperature = 0;
+                }
+            }
+            else
+            {
+                temperature = newTemperature;
+            }
+            if (newTemperature < 0)
+            {
+                temperature--;
+            }
+            else
+            {
+                temperature++;
+            }
         }
     }
 }

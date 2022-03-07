@@ -1045,7 +1045,7 @@ namespace AQMod.NPCs.Bosses
                 npc.lifeMax = -33333;
                 return true;
             }
-            npc.GetGlobalNPC<NPCNoHit>().preventNoHitCheck = true;
+            npc.GetGlobalNPC<NoHitting>().preventNoHitCheck = true;
             npc.ai[0] = -1f;
             npc.ai[1] = 0f;
             npc.ai[2] = 0f;
@@ -1064,9 +1064,9 @@ namespace AQMod.NPCs.Bosses
             }
             if (npc.life == -33333)
             {
-                if (NPCNoHit.HasBeenNoHit(npc, Main.myPlayer))
+                if (NoHitting.HasBeenNoHit(npc, Main.myPlayer))
                 {
-                    NPCNoHit.PlayNoHitJingle(npc.Center);
+                    NoHitting.PlayNoHitJingle(npc.Center);
                 }
                 var center = npc.Center;
                 for (int k = 0; k < 60; k++)
@@ -1120,9 +1120,9 @@ namespace AQMod.NPCs.Bosses
                 AQSound.Play(SoundType.NPCHit, "OmegaStarite/hit" + Main.rand.Next(3), npc.Center, 0.6f);
                 if (skipDeathTimer > 0)
                 {
-                    if (NPCNoHit.HasBeenNoHit(npc, Main.myPlayer))
+                    if (NoHitting.HasBeenNoHit(npc, Main.myPlayer))
                     {
-                        NPCNoHit.PlayNoHitJingle(npc.Center);
+                        NoHitting.PlayNoHitJingle(npc.Center);
                     }
                     AQGraphics.SetCullPadding();
                     for (int i = 0; i < rings.Length; i++)
@@ -1328,8 +1328,8 @@ namespace AQMod.NPCs.Bosses
             {
                 if (positions[i].Z > 0f)
                 {
-                    var drawPosition = AQUtils.OmegaStarite3DHelper.GetParralaxPosition(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f) - Main.screenPosition;
-                    var drawScale = AQUtils.OmegaStarite3DHelper.GetParralaxScale(positions[i].W, positions[i].Z * 0.0314f);
+                    var drawPosition = AQUtils.Perspective.GetParralaxPosition(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f) - Main.screenPosition;
+                    var drawScale = AQUtils.Perspective.GetParralaxScale(positions[i].W, positions[i].Z * 0.0314f);
                     foreach (var draw in drawOmegite)
                     {
                         draw.Invoke(
@@ -1409,8 +1409,8 @@ namespace AQMod.NPCs.Bosses
             }
             for (int i = 0; i < positions.Count; i++)
             {
-                var drawPosition = AQUtils.OmegaStarite3DHelper.GetParralaxPosition(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f) - Main.screenPosition;
-                var drawScale = AQUtils.OmegaStarite3DHelper.GetParralaxScale(positions[i].W, positions[i].Z * 0.0314f);
+                var drawPosition = AQUtils.Perspective.GetParralaxPosition(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f) - Main.screenPosition;
+                var drawScale = AQUtils.Perspective.GetParralaxScale(positions[i].W, positions[i].Z * 0.0314f);
                 foreach (var draw in drawOmegite)
                 {
                     draw.Invoke(
@@ -1476,11 +1476,11 @@ namespace AQMod.NPCs.Bosses
         public override void NPCLoot()
         {
             Glimmer.deactivationDelay = 275;
-            var noHitManager = npc.GetGlobalNPC<NPCNoHit>();
+            var noHitManager = npc.GetGlobalNPC<NoHitting>();
             bool anyoneNoHit = false;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
-                if (NPCNoHit.HasBeenNoHit(npc, i))
+                if (NoHitting.HasBeenNoHit(npc, i))
                 {
                     anyoneNoHit = true;
                     AQItem.DropInstancedItem(i, npc.getRect(), ModContent.ItemType<AStrangeIdea>());

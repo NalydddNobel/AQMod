@@ -18,7 +18,7 @@ namespace AQMod.Items.Tools
         private void Update(Player player)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            if (!player.discount)
+            if (aQPlayer.discountPercentage > 0.9f)
                 aQPlayer.discountPercentage = 0.9f;
             player.discount = true;
         }

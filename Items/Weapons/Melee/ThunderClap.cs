@@ -3,6 +3,7 @@ using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Items.Materials.Energies;
 using AQMod.NPCs;
+using AQMod.Projectiles.Melee;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using System;
@@ -31,7 +32,7 @@ namespace AQMod.Items.Weapons.Melee
             item.rare = AQItem.Rarities.GaleStreamsRare;
             item.value = AQItem.Prices.GaleStreamsWeaponValue;
             item.melee = true;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.ThunderClap>();
+            item.shoot = ModContent.ProjectileType<ThunderClapProj>();
             item.knockBack = 32f;
             item.scale = 1.35f;
             item.autoReuse = true;
@@ -65,7 +66,7 @@ namespace AQMod.Items.Weapons.Melee
                 target.velocity = Vector2.Normalize(target.Center - player.Center) * player.GetWeaponKnockback(item, item.knockBack) * 2f * Math.Max(target.knockBackResist, 0.2f);
             }
             target.AddBuff(BuffID.OnFire, 800);
-            target.GetGlobalNPC<NPCTemperatureManager>().ChangeTemperature(target, 60);
+            target.GetGlobalNPC<AQNPC>().ChangeTemperature(target, 60);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

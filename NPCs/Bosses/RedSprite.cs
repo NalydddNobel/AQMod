@@ -52,8 +52,7 @@ namespace AQMod.NPCs.Bosses
             bannerItem = ModContent.ItemType<RedSpriteBanner>();
             npc.noTileCollide = true;
 
-            npc.GetGlobalNPC<NPCTemperatureManager>().hotDamage = true;
-            npc.GetGlobalNPC<NPCTemperatureManager>().temperature = 40;
+            npc.GetGlobalNPC<AQNPC>().temperature = 40;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

@@ -1,5 +1,6 @@
 ﻿using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Recipes;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -51,7 +52,7 @@ namespace AQMod.Items.Tools
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ModContent.ItemType<Lightbulb>(), 9);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.DemoniteBarOrCrimtaneBar, 5);
+            r.AddRecipeGroup(AQRecipeGroups.DemoniteBarOrCrimtaneBar, 5);
             r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
             r.AddTile(TileID.Anvils);
             r.SetResult(this);

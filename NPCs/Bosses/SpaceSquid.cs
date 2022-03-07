@@ -63,7 +63,7 @@ namespace AQMod.NPCs.Bosses
             bannerItem = ModContent.ItemType<SpaceSquidBanner>();
             npc.noTileCollide = true;
 
-            npc.GetGlobalNPC<NPCTemperatureManager>().temperature = -40;
+            npc.GetGlobalNPC<AQNPC>().temperature = -40;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

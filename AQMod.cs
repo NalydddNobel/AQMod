@@ -16,6 +16,7 @@ using AQMod.Items;
 using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Dyes;
 using AQMod.Items.Potions.Foods;
+using AQMod.Items.Recipes;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
@@ -130,10 +131,7 @@ namespace AQMod
                 On.Terraria.Main.DrawInterface_36_Cursor += CursorDyeManager.Hooks.Main_DrawInterface_36_Cursor;
 
                 On.Terraria.Player.DropTombstone += TombstonesPlayer.Hooks.Player_DropTombstone;
-                On.Terraria.Player.AddBuff += AQPlayer.Hooks.Player_AddBuff;
-                On.Terraria.Player.PickTile += AQPlayer.Hooks.Player_PickTile;
-                On.Terraria.Player.HorizontalMovement += AQPlayer.Hooks.Player_HorizontalMovement;
-                On.Terraria.Chest.SetupShop += AQPlayer.Hooks.Chest_SetupShop;
+                AQPlayer.Hooks.Apply();
 
                 On.Terraria.NetMessage.BroadcastChatMessage += MessageBroadcast.Hooks.NetMessage_BroadcastChatMessage;
                 On.Terraria.Main.NewText_string_byte_byte_byte_bool += MessageBroadcast.Hooks.Main_NewText_string_byte_byte_byte_bool;
@@ -214,6 +212,7 @@ namespace AQMod
             ModCallDictionary.Load();
             CursorDyeManager.Load();
             AprilFoolsJoke.Check();
+            Coloring.Load();
 
             var server = ModContent.GetInstance<AQConfigServer>();
             if (!Main.dedServ)
@@ -243,7 +242,6 @@ namespace AQMod
             AQBuff.Sets.Load();
             AQItem.Sets.Load();
             AQTile.Sets.Load();
-            AQProjectile.Sets.Load();
 
             Autoloading.Autoload(Code);
         }
@@ -251,6 +249,7 @@ namespace AQMod
         public override void PostSetupContent()
         {
             AQNPC.Sets.Setup();
+            AQProjectile.Sets.Setup();
             BossChecklistSupport.SetupContent(this);
             CensusSupport.SetupContent(this);
             if (!Main.dedServ)
@@ -265,7 +264,7 @@ namespace AQMod
 
         public override void AddRecipeGroups()
         {
-            AQRecipes.RecipeGroups.Setup();
+            AQRecipeGroups.Setup();
         }
 
         public override void AddRecipes()
@@ -275,7 +274,7 @@ namespace AQMod
 
             IsLoading = false; // Sets Loading to false, so that some things no longer accept new content.
 
-            AQRecipes.AddRecipes(this);
+            AQRecipes.VanillaRecipeAddons(this);
 
             FargowiltasSupport.Setup(this);
         }
@@ -290,8 +289,8 @@ namespace AQMod
             LoadHooks(unload: true);
             Autoloading.Unload();
 
-            NPCNoHit.CurrentlyDamaged?.Clear();
-            NPCNoHit.CurrentlyDamaged = null;
+            NoHitting.CurrentlyDamaged?.Clear();
+            NoHitting.CurrentlyDamaged = null;
             AutoDyeBinder.Unload();
             DemonSiege.Unload();
             AQProjectile.Sets.Unload();
@@ -321,6 +320,7 @@ namespace AQMod
                 DrawHelper.Unload();
             }
 
+            Coloring.Unload();
             CursorDyeManager.Unload();
             ModCallDictionary.Unload();
             Robster.Unload();
@@ -358,19 +358,19 @@ namespace AQMod
         {
             try
             {
-                NPCNoHit.CurrentlyDamaged.Clear();
+                NoHitting.CurrentlyDamaged.Clear();
                 for (byte i = 0; i < Main.maxPlayers; i++)
                 {
                     if (Main.player[i].active && Main.player[i].statLife < Main.player[i].statLifeMax2)
                     {
-                        NPCNoHit.CurrentlyDamaged.Add(i);
+                        NoHitting.CurrentlyDamaged.Add(i);
                     }
                 }
             }
             catch
             {
-                NPCNoHit.CurrentlyDamaged?.Clear();
-                NPCNoHit.CurrentlyDamaged = new List<byte>();
+                NoHitting.CurrentlyDamaged?.Clear();
+                NoHitting.CurrentlyDamaged = new List<byte>();
             }
         }
         public override void MidUpdatePlayerNPC()
@@ -422,7 +422,7 @@ namespace AQMod
                 if (n != -1)
                 {
                     Main.npc[n].netUpdate = true;
-                    BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", CommonColors.BossMessage);
+                    BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", Coloring.BossMessage);
                 }
                 spawnStarite = false;
             }

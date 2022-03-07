@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using AQMod.Items.Recipes;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -38,7 +39,7 @@ namespace AQMod.Items.Armor.PassiveSummon
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.DartTrap);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.CopperOrTin, 8);
+            r.AddRecipeGroup(AQRecipeGroups.CopperOrTin, 8);
             r.AddRecipeGroup("PresurePlate");
             r.AddTile(TileID.Anvils);
             r.SetResult(this);

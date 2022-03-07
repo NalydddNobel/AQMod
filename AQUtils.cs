@@ -26,8 +26,7 @@ namespace AQMod
     {
         public static Vector2 TrueMouseworld => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix)) + Main.screenPosition;
 
-
-        public static class OmegaStarite3DHelper
+        public static class Perspective
         {
             public const float Z_VIEW = -20f;
 
@@ -164,6 +163,33 @@ namespace AQMod
                 var origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, texture.Height);
                 Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetColor(), drawRotation, origin, item.scale, info.spriteEffects, 0));
             }
+        }
+
+        public static Color MultColorsThenDiv(Color color1, Color color2)
+        {
+            return new Color(color1.R / 255f * (color2.R / 255f), color1.G / 255f * (color2.G / 255f), color1.B / 255f * (color2.B / 255f), color1.A / 255f * (color2.A / 255f));
+        }
+
+        public static float Brightness(this Color color)
+        {
+            return (color.R + color.G + color.B) / (255f * 3f);
+        }
+
+        public static HashSet<T> Combine<T>(params HashSet<T>[] sets)
+        {
+            var value = new HashSet<T>();
+            foreach (var set in sets)
+            {
+                foreach (var item in set)
+                {
+                    if (!value.Contains(item))
+                    {
+                        value.Add(item);
+                        //AQMod.GetInstance().Logger.Debug(item);
+                    }
+                }
+            }
+            return value;
         }
 
         public static List<T> ToList<T>(this T[] arr)
@@ -320,9 +346,9 @@ namespace AQMod
             return new TextureAsset(mod, path);
         }
 
-        public static NPCNoHit NoHit(this NPC npc)
+        public static NoHitting NoHit(this NPC npc)
         {
-            return npc.GetGlobalNPC<NPCNoHit>();
+            return npc.GetGlobalNPC<NoHitting>();
         }
 
         public static float FromByte(byte value, float maximum)

@@ -51,7 +51,7 @@ namespace AQMod.NPCs.Friendly
             nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());
             nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.FidgetSpinner.FidgetSpinner>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<FidgetSpinner>());
             nextSlot++;
             if (Main.dayTime)
             {

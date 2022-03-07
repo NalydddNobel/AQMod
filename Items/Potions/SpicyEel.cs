@@ -1,4 +1,5 @@
 ﻿using AQMod.Buffs;
+using AQMod.Items.Recipes;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,8 +28,8 @@ namespace AQMod.Items.Potions
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyEel);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.AnyNobleMushroom);
+            r.AddRecipeGroup(AQRecipeGroups.AnyEel);
+            r.AddRecipeGroup(AQRecipeGroups.AnyNobleMushroom);
             r.SetResult(this);
             r.AddRecipe();
         }

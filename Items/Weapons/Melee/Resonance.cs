@@ -1,6 +1,7 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Recipes;
 using AQMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -72,7 +73,7 @@ namespace AQMod.Items.Weapons.Melee
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ModContent.ItemType<StariteSpinner>(), 1);
-            r.AddRecipeGroup(AQRecipes.RecipeGroups.CascadeOrHelfire, 1);
+            r.AddRecipeGroup(AQRecipeGroups.CascadeOrHelfire, 1);
             r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 5);
             r.AddIngredient(ModContent.ItemType<LightMatter>(), 8);
             r.AddTile(TileID.Anvils);

@@ -1,4 +1,5 @@
 ﻿using AQMod.Items.Potions;
+using AQMod.Items.Recipes;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -302,7 +303,7 @@ namespace AQMod.Items.Tools
                 var item = new Item();
                 item.SetDefaults(i);
                 if (item.createTile >= TileID.Containers && Main.tileContainer[item.createTile] && !Main.tileSolidTop[item.createTile])
-                    AQRecipes.r_ContainerPotionRecipe.ConstructRecipe(i, this);
+                    ContainersPotionRecipe.ConstructRecipe(i, this);
             }
         }
     }
