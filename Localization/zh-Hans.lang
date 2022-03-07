@@ -39,9 +39,6 @@ ItemTooltip.MushroomClam=在海滩或蟹状裂隙处使用以召唤巨蟹蛤\n{$
 ItemName.NovaFruit=新星果
 ItemTooltip.NovaFruit=在夜晚使用以召唤终末之星\n{$Mods.AQMod.Common.NotConsumable}
 
-ItemName.BloodyThing=血腥之物
-ItemTooltip.BloodyThing=在夜晚时开始血月\n'一颗奇异的红宝石, 在移植到1.4时可能会被撕裂'
-
 ItemName.MythicStarfruit=秘星果
 ItemTooltip.MythicStarfruit=召唤一道奇异微光
 
@@ -55,6 +52,12 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 #===========================#
 # Accessories
 #===========================#
+
+ItemName.GlowBand=发光手环
+ItemTooltip.GlowBand=散发着彩色的光芒
+
+ItemName.Amulet=护符
+ItemTooltip.Amulet=可附魔
 
 ItemName.BloodPlasma=离子血浆
 ItemTooltip.BloodPlasma=当你受到致死伤害时会自动饮用一瓶治疗药水
@@ -106,11 +109,11 @@ ItemName.WyvernAmulet=飞羽护符
 ItemTooltip.WyvernAmulet=延长1秒飞行时间\n击杀敌人时会使你获得额外的飞行时间\n你不再受到摔落伤害
 
 ItemName.DarkAmulet=黑暗护符
-ItemTooltip.DarkAmulet=降低10%不洁敌人对你造成的伤害\n受到伤害后增加移动速度\n增加20点最大法力值
+ItemTooltip.DarkAmulet=你对不洁敌人额外造成10%伤害\n受到伤害后增加移动速度\n增加20点最大法力值
 ItemName.LightAmulet=光明护符
-ItemTooltip.LightAmulet=降低10%光明敌人对你造成的伤害\n增加5点护甲穿透
+ItemTooltip.LightAmulet=你对光明敌人额外造成10%伤害\n增加5点护甲穿透
 ItemName.NeutralityAmulet=中性护符
-ItemTooltip.NeutralityAmulet=降低10%光明和不洁敌人对你造成的伤害\n增加5点护甲穿透\n受到伤害后增加移动速度\n增加20点最大法力值
+ItemTooltip.NeutralityAmulet=你对光明敌人和不洁敌人额外造成10%伤害\n增加5点护甲穿透\n受到伤害后增加移动速度\n增加20点最大法力值
 
 ItemName.GlowString=发光细绳
 ItemTooltip.GlowString=你的悠悠球线在黑暗中会发出光亮\n增加悠悠球距离
