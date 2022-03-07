@@ -188,6 +188,16 @@ ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱对你造
 # Weapons
 #===========================#
 
+ItemName.DoubleShot=双重设计
+ItemTooltip.DoubleShot=灰尘神第二颗子弹\n具有很高的暴击率\n50%几率不会被消耗
+ProjectileName.DoubleShotProj=子弹
+
+ItemName.KochfrostStaff=科赫霜法杖
+ItemTooltip.KochfrostStaff=召唤雪锯为你而战\n占据半格召唤栏
+BuffName.SnowsawBuff=雪锯
+BuffDescription.SnowsawBuff=雪锯会为你而战
+ProjectileName.SnowsawMinion=雪锯
+
 ItemName.Baozhu=爆竹
 ItemTooltip.Baozhu=会产生巨大的爆炸并引燃敌人\n爆炸区域会被点燃一段时间
 
