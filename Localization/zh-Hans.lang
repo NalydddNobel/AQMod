@@ -53,6 +53,18 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 # Accessories
 #===========================#
 
+ItemName.Quasicrystal=准晶体护符
+ItemTooltip.Quasicrystal=受伤时召唤星星从天而降\n=攻击敌人会造成闪光和火焰伤害\n增加5%近战暴击率
+
+ItemName.Ultranium=超载晶体
+ItemTooltip.Ultranium=攻击敌人会对其造成闪光减益\n增加5%近战暴击率
+
+ItemName.ExtractorHelmet=顶板
+ItemTooltip.ExtractorHelmet=坠落的方块对你造成的伤害降低
+
+ItemName.ExtractorAirMask=空气过滤器
+ItemTooltip.ExtractorAirMask=使你免疫窒息
+
 ItemName.GlowBand=发光手环
 ItemTooltip.GlowBand=散发着彩色的光芒
 
@@ -65,7 +77,7 @@ ItemTooltip.BloodPlasma=当你受到致死伤害时会自动饮用一瓶治疗�
 ItemName.TargeoftheBlodded=尖刺盾牌
 ItemTooltip.TargeoftheBlodded=增加2点护甲穿透\n可沿墙滑下\n结合{$ItemName.ClimbingClaws}或{$ItemName.ShoeSpikes}使用时可提升能力
 
-ItemName.SpiritualRelic=心灵圣物
+ItemName.SpiritualRelic=心灵护符
 ItemTooltip.SpiritualRelic={$Mods.AQMod.Tooltips.IncreasedMinions}\n击杀敌人时会召唤强化召唤物伤害的灵魂\n召唤物会对被地狱之灵缠扰的敌人造成额外伤害
 
 ItemName.Dreadsoul=燃烧的心
@@ -137,8 +149,8 @@ ItemTooltip.NormalizerAmulet=阻止大多数种类的冻结\n降低来自紊流�
 ItemName.MinersFlashlight=矿工的手电筒
 ItemTooltip.MinersFlashlight=你会向你的光标位置发射一束光\n被光照到的宝藏会发光\n关闭饰品可见性来禁用手电筒效果
 
-ItemName.Extractor=提炼器
-ItemTooltip.Extractor=增加10%挖掘速度\n下落的方块对你造成的伤害降低\n在提炼机处提炼某些东西时会显示提炼的次数
+ItemName.Extractor=提炼装备
+ItemTooltip.Extractor=使你免疫窒息\n坠落的方块对你造成的伤害降低\n增加25%挖掘速度\n开启饰品可见性后提炼某些东西时会显示提炼的次数
 
 ItemName.SparrowWings=雀翼
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
@@ -191,8 +203,12 @@ ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱对你造
 # Weapons
 #===========================#
 
-ItemName.DoubleShot=双重设计
-ItemTooltip.DoubleShot=灰尘神第二颗子弹\n具有很高的暴击率\n50%几率不会被消耗
+ItemName.CrusadersCrossbow=十字军弩
+ItemTooltip.CrusadersCrossbow=发射可以治疗或伤害敌人的治愈箭矢
+ProjectileName.HealingBolt=治愈箭矢
+
+ItemName.DoubleShot=双重射击
+ItemTooltip.DoubleShot=会产生第二颗子弹\n50%几率不会被消耗
 ProjectileName.DoubleShotProj=子弹
 
 ItemName.KochfrostStaff=科赫霜法杖
@@ -294,7 +310,7 @@ ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n{$Mods.AQMod.Tooltips
 ProjectileName.Narrizuul=耀宇遗光
 
 ItemName.StudiesoftheInkblot=墨迹研究学
-ItemTooltip.StudiesoftheInkblot='弹幕的墨迹测验'
+ItemTooltip.StudiesoftheInkblot='弹幕的墨迹测验'\n'地底蔷薇'
 ProjectileName.StudiesoftheInkblotBullet=墨迹研究学
 
 ItemName.CursedKey=诅咒钥匙
@@ -524,13 +540,13 @@ ItemName.MysteryGrail=神秘圣杯
 ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\n使你获得随机的增益或减益
 
 ItemName.SaintsFlow=圣贤之流
-ItemTooltip.SaintsFlow=大幅度增加速度
+ItemTooltip.SaintsFlow=小幅度提升所有属性\n大幅度增加速度
 
 ItemName.SpicyEel=香辣鳗鱼
-ItemTooltip.SpicyEel=大幅度增加速度
+ItemTooltip.SpicyEel=小幅度提升所有属性\n大幅度增加速度
 
-BuffName.SpeedBoostFood=速度强化
-BuffDescription.SpeedBoostFood=速度大幅度提升
+BuffName.SpeedBoostFood=强化
+BuffDescription.SpeedBoostFood=小幅度提升所有属性并且大幅度增加速度
 
 ItemName.NeutronJuice=中子酸奶
 ItemTooltip.NeutronJuice=小幅度提升所有属性并且降低重力效果\n'重达数百万吨...但仍比放在保险箱里的保险箱还轻'
@@ -622,8 +638,8 @@ QuestFish.WaterFisg=虽然说这些话有些不真实, 但我快渴死了. 我�
 ItemName.Crabdaughter=蟹蛤之子
 QuestFish.Crabdaughter=看起来海洋中最近涌入了某些新的鱼, 其中一条鱼似乎与爪子为蛤蜊的巨大螃蟹有关联. 尽管我所能想到的唯一关联是它的爪子为螃蟹爪子. 真是个奇观, 所以快给我抓一条!
 
-FishingLocation.AnywhereFishing=抓捕位置: 任意位置
-FishingLocation.BeachFishing=抓捕位置: 海洋
+FishingLocation.Anywhere=抓捕位置: 任意位置
+FishingLocation.Beach=抓捕位置: 海洋
 
 
 
@@ -821,7 +837,7 @@ BossChecklistDesc.DemonSiege=在血巢处使用 {0} 召唤.
 EventName.GlimmerEvent=微光事件
 EventProgress.GlimmerEvent=离中心 {0} 格远
 BossChecklistDesc.GlimmerEvent=在夜晚自然开始. 也可以使用 [i:{0}] 召唤. 在太阳升起时结束.
-EventWarning.GlimmerEvent=天空中闪烁着微光...
+EventWarning.GlimmerEvent=远处闪烁着微光...
 EventEnding.GlimmerEvent=微光渐渐消失...
 BossChecklistDesc.OmegaStarite=在夜晚使用 {0} 召唤. 也可以通过与微光之源处的剑交互来召唤.
 
@@ -1032,12 +1048,6 @@ ItemName.BusinessCard=商务卡
 # Other Accessories
 #
 ItemName.Terraroot=地之根茎
-
-ItemName.Ultranium=超载晶体
-ItemTooltip.Ultranium=真近战攻击造成暴击时会将伤害弹射至离你最近的Boss\n击中敌人会对其造成闪光减益\n增加5%近战暴击率
-
-ItemName.Quasicrystal=准晶体
-ItemTooltip.Quasicrystal=真近战攻击造成暴击时会将伤害弹射至离你最近的Boss\n受伤时召唤星星从天而降\n击中敌人会造成闪光和火焰伤害\n增加5%近战暴击率
 
 ##############
 # Boss Items #
