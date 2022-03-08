@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.Jewelry
+namespace AQMod.Items.Accessories
 {
     [AutoloadEquip(EquipType.Neck)]
     public class PearlAmulet : ModItem

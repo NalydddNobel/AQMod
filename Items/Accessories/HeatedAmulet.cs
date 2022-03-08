@@ -2,10 +2,10 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.Jewelry.Normalizer
+namespace AQMod.Items.Accessories
 {
     [AutoloadEquip(EquipType.Neck)]
-    public class NormalizerAmulet : ModItem
+    public class HeatedAmulet : ModItem
     {
         public override void SetDefaults()
         {
@@ -13,20 +13,13 @@ namespace AQMod.Items.Accessories.Jewelry.Normalizer
             item.height = 28;
             item.accessory = true;
             item.defense = 2;
-            item.rare = AQItem.RarityGaleStreams + 1;
-            item.value = (int)(AQItem.Prices.GaleStreamsWeaponValue * 1.5f);
+            item.rare = AQItem.RarityGaleStreams;
+            item.value = AQItem.Prices.GaleStreamsWeaponValue;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.coldAmulet = true;
-            player.resistCold = true;
-            player.buffImmune[BuffID.Chilled] = true;
-            player.buffImmune[BuffID.Frozen] = true;
-            player.buffImmune[BuffID.Frostburn] = true;
-
-            aQPlayer.hotAmulet = true;
+            player.GetModPlayer<AQPlayer>().hotAmulet = true;
             player.fireWalk = true;
             player.buffImmune[BuffID.OnFire] = true;
             player.buffImmune[BuffID.Burning] = true;
@@ -41,9 +34,11 @@ namespace AQMod.Items.Accessories.Jewelry.Normalizer
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<HeatedAmulet>());
-            r.AddIngredient(ModContent.ItemType<FreezingAmulet>());
-            r.AddIngredient(ModContent.ItemType<Materials.Energies.UltimateEnergy>());
+            r.AddIngredient(ModContent.ItemType<DegenerationRing>());
+            r.AddIngredient(ItemID.Shackle);
+            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>());
+            r.AddIngredient(ModContent.ItemType<Materials.Fluorescence>(), 20);
+            r.AddIngredient(ItemID.SoulofFlight, 20);
             r.AddTile(TileID.MythrilAnvil);
             r.SetResult(this);
             r.AddRecipe();

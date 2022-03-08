@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Accessories.Shoes
+namespace AQMod.Items.Accessories
 {
     [AutoloadEquip(EquipType.Shoes)]
     public class MoonShoes : ModItem

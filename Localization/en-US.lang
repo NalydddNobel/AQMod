@@ -545,8 +545,8 @@ ItemTooltip.SaintsFlow=Minor improvements to all stats\nGreatly increases speed
 ItemName.SpicyEel=Spicy Eel
 ItemTooltip.SpicyEel=Minor improvements to all stats\nGreatly increases speed
 
-BuffName.SpeedBoostFood=Speed Increase
-BuffDescription.SpeedBoostFood=Your speed is greatly increased
+BuffName.SpeedBoostFood=Speed Food
+BuffDescription.SpeedBoostFood=Minor improvements to all stats and your speed is greatly increased
 
 ItemName.NeutronJuice=Neutron Yogurt
 ItemTooltip.NeutronJuice=Minor improvements to all stats and you have slightly lower gravity\n'Weighs millions of tons... still lighter than putting a safe in a safe'

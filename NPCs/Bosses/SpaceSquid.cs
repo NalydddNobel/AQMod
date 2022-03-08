@@ -297,7 +297,7 @@ namespace AQMod.NPCs.Bosses
                                         frameIndex = 8;
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SpaceSquid/ShootLaser");
+                                            AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/SpaceSquid/ShootLaser", npc.Center);
                                         }
                                         var spawnPosition = new Vector2(npc.position.X + (npc.direction == 1 ? npc.width + 20f : -20), npc.position.Y + npc.height / 2f);
                                         var velocity = new Vector2(20f * npc.direction, 0f);
