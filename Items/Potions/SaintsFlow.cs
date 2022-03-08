@@ -19,7 +19,7 @@ namespace AQMod.Items.Potions
             item.UseSound = SoundID.Item3;
             item.maxStack = 30;
             item.consumable = true;
-            item.rare = AQItem.Rarities.OmegaStariteRare - 1;
+            item.rare = AQItem.RarityOmegaStarite - 1;
             item.value = Item.buyPrice(silver: 20);
             item.buffType = ModContent.BuffType<SpeedBoostFood>();
             item.buffTime = 28800;

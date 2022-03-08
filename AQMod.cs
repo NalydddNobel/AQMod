@@ -54,7 +54,7 @@ namespace AQMod
 
         public static bool spawnStarite;
 
-        internal static bool IsLoading { get; private set; }
+        internal static bool Loading { get; private set; }
         internal static bool IsUnloading { get; private set; }
 
         public static EquipOverlayLoader ArmorOverlays { get; private set; }
@@ -89,7 +89,7 @@ namespace AQMod
                 AutoloadSounds = true
             };
             cachedLoadTasks = new List<CachedTask>();
-            IsLoading = true;
+            Loading = true;
         }
 
         private void LoadHooks(bool unload = false)
@@ -201,7 +201,7 @@ namespace AQMod
         }
         public override void Load()
         {
-            IsLoading = true;
+            Loading = true;
             IsUnloading = false;
             Keybinds.Load();
             LoadHooks(unload: false);
@@ -272,7 +272,7 @@ namespace AQMod
             invokeTasks();
             cachedLoadTasks = null;
 
-            IsLoading = false; // Sets Loading to false, so that some things no longer accept new content.
+            Loading = false; // Sets Loading to false, so that some things no longer accept new content.
 
             AQRecipes.VanillaRecipeAddons(this);
 
@@ -282,7 +282,7 @@ namespace AQMod
         public override void Unload()
         {
             // outside of AQMod
-            IsLoading = true;
+            Loading = true;
             IsUnloading = true;
             cachedLoadTasks?.Clear();
             cachedLoadTasks = null;
@@ -436,7 +436,7 @@ namespace AQMod
         {
             AQText.UpdateCallback();
 
-            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || IsLoading)
+            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || Loading)
             {
                 return;
             }
@@ -616,7 +616,7 @@ namespace AQMod
 
         public static void SetupNewMusic()
         {
-            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || IsLoading)
+            if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || Loading)
             {
                 return;
             }

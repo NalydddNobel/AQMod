@@ -23,7 +23,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.height = 30;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = AQItem.Rarities.GoreNestRare;
+            item.rare = AQItem.RarityDemonSiege;
             item.shoot = ProjectileID.WoodenArrowFriendly;
             item.shootSpeed = 4f;
             item.useAmmo = AmmoID.Arrow;
@@ -36,7 +36,7 @@ namespace AQMod.Items.Weapons.Ranged
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return AQItem.Commons.DemonSiegeItem_GetAlpha(lightColor);
+            return AQItem.DemonSiegeItemAlpha(lightColor);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

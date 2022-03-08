@@ -53,6 +53,18 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 # Accessories
 #===========================#
 
+ItemName.Quasicrystal=Quasicrystal Amulet
+ItemTooltip.Quasicrystal=Causes stars to fall when injured\nInflicts shimmering and fire damage on attack\n5% increased melee critical strike chance
+
+ItemName.Ultranium=Hyper Crystal
+ItemTooltip.Ultranium=Your attacks inflict shimmering\n5% increased melee critical strike chance
+
+ItemName.ExtractorHelmet=Head Plate
+ItemTooltip.ExtractorHelmet=Falling blocks deal less damage
+
+ItemName.ExtractorAirMask=Air Filter
+ItemTooltip.ExtractorAirMask=Immunity to Suffocation
+
 ItemName.GlowBand=Glow Band
 ItemTooltip.GlowBand=Emits colored light
 
@@ -65,7 +77,7 @@ ItemTooltip.BloodPlasma=You will drink a healing potion when you get fatally hit
 ItemName.TargeoftheBlodded=Spike Shield
 ItemTooltip.TargeoftheBlodded=Increases armor penetration by 2\nAllows the player to slide down walls\nImproved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
 
-ItemName.SpiritualRelic=Spiritual Relic
+ItemName.SpiritualRelic=Spiritual Amulet
 ItemTooltip.SpiritualRelic={$Mods.AQMod.Tooltips.IncreasedMinions}\nDefeated enemies create minion damage boosting spirits\nEnemies haunted by spirits take extra damage from minions
 
 ItemName.Dreadsoul=Burning Heart
@@ -137,8 +149,8 @@ ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers
 ItemName.MinersFlashlight=Miner's Flashlight
 ItemTooltip.MinersFlashlight=You emit a stream of light which points towards your cursor\nTreasure shimmers when shone on by the light\nHide the accessory to disable the flashlight
 
-ItemName.Extractor=Extractor
-ItemTooltip.Extractor=10% increased mining speed\nFalling blocks deal less damage\nExtracting at the Extractinator will show your extractination count 
+ItemName.Extractor=Extractor Cog
+ItemTooltip.Extractor=Immunity to Suffocation\nFalling blocks deal less damage\nIncreases mining speed by 25%\nWhen visible, extracting will show how many things you've extracted
 
 ItemName.SparrowWings=Sparrow Wings
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
@@ -191,8 +203,12 @@ ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% 
 # Weapons
 #===========================#
 
+ItemName.CrusadersCrossbow=Crusader's Crossbow
+ItemTooltip.CrusadersCrossbow=Shoots a healing bolt which will damage enemies or opposing teams
+ProjectileName.HealingBolt=Healing Bolt
+
 ItemName.DoubleShot=Double Shot
-ItemTooltip.DoubleShot=Spawns a secondary bullet\nHas high critical strike chance\n50% chance to not be consumed upon firing
+ItemTooltip.DoubleShot=Spawns a secondary bullet\n50% chance to not be consumed upon firing
 ProjectileName.DoubleShotProj=Bullet
 
 ItemName.KochfrostStaff=Kochfrost Staff
@@ -294,7 +310,7 @@ ItemTooltip.Narrizuul={$Mods.AQMod.Tooltips.Unobtainable}\n{$Mods.AQMod.Tooltips
 ProjectileName.Narrizuul=Narrizuul
 
 ItemName.StudiesoftheInkblot=Studies of the Inkblot
-ItemTooltip.StudiesoftheInkblot='Rorschach in Danmaku'
+ItemTooltip.StudiesoftheInkblot='Rorschach in Danmaku'\n'Subterranean Rose'
 ProjectileName.StudiesoftheInkblotBullet=Studies of the Inkblot
 
 ItemName.CursedKey=Cursed Key
@@ -524,10 +540,10 @@ ItemName.MysteryGrail=Mysterious Grail
 ItemTooltip.MysteryGrail={$Mods.AQMod.Tooltips.Unobtainable}\nGives you a random buff
 
 ItemName.SaintsFlow=Saint's Flow
-ItemTooltip.SaintsFlow=Greatly increases speed
+ItemTooltip.SaintsFlow=Minor improvements to all stats\nGreatly increases speed
 
 ItemName.SpicyEel=Spicy Eel
-ItemTooltip.SpicyEel=Greatly increases speed
+ItemTooltip.SpicyEel=Minor improvements to all stats\nGreatly increases speed
 
 BuffName.SpeedBoostFood=Speed Increase
 BuffDescription.SpeedBoostFood=Your speed is greatly increased
@@ -622,8 +638,8 @@ QuestFish.WaterFisg=It's strange to say this, but I'm awfully thirsty. I saw thi
 ItemName.Crabdaughter=Crabdaughter
 QuestFish.Crabdaughter=Seems like some new fish have entered the ocean recently, one of these fish seems to be related this massive crab with clam as claws. The only thing that makes me think it's related is that it's a clam with crab claws. It's an amazing sight so catch one for me.
 
-FishingLocation.AnywhereFishing=Caught anywhere
-FishingLocation.BeachFishing=Caught in Ocean
+FishingLocation.Anywhere=Caught anywhere
+FishingLocation.Beach=Caught in Ocean
 
 
 
@@ -821,7 +837,7 @@ BossChecklistDesc.DemonSiege=Can be summoned using: {0} at a Gore Nest.
 EventName.GlimmerEvent=Glimmer Event
 EventProgress.GlimmerEvent={0} tiles away from the center
 BossChecklistDesc.GlimmerEvent=Happens naturally at night. Can alternatively be summoned with a [i:{0}]. Ends when the sun rises.
-EventWarning.GlimmerEvent=A glimmer appears in the sky...
+EventWarning.GlimmerEvent=A glimmer appears in the distance...
 EventEnding.GlimmerEvent=The glimmer begins to fade away...
 BossChecklistDesc.OmegaStarite=Summoned by using an {0} at night. Can also be summoned by interacting with the sword located at the source of the Glimmer.
 
@@ -1032,12 +1048,6 @@ ItemName.BusinessCard=Business Card
 # Other Accessories
 #
 ItemName.Terraroot=Terraroot
-
-ItemName.Ultranium=Hyper Crystal
-ItemTooltip.Ultranium=True melee crits on enemies channel the damage to the closest boss\nYour attacks inflict shimmering\n5% increased melee critical strike chance
-
-ItemName.Quasicrystal=Quasicrystal
-ItemTooltip.Quasicrystal=True melee crits on enemies channel the damage to the closest boss\nCauses stars to fall when injured\nCauses shimmering and fire damage on attack\n5% increased melee critical strike chance
 
 ##############
 # Boss Items #

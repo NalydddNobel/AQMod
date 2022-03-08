@@ -240,7 +240,7 @@ namespace AQMod.Items.Potions
             var auraClr = BuffColorCache.GetColorFromItemID(potion.potionItemID);
             auraClr *= 0.75f;
             auraClr.A = 0;
-            var position = AQItem.Commons.GetItemDrawPos_NoAnimation(item2);
+            var position = AQItem.WorldDrawPos(item2);
             var frame = new Rectangle(0, 0, Main.itemTexture[potion.potionItemID].Width, Main.itemTexture[potion.potionItemID].Height);
             var origin = frame.Size() / 2f;
 

@@ -13,7 +13,7 @@ namespace AQMod.Items.Weapons.Melee
             item.damage = 40;
             item.useTime = 20;
             item.useAnimation = 20;
-            item.rare = AQItem.Rarities.DungeonRare;
+            item.rare = AQItem.RarityDungeon;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(silver: 80);

@@ -16,7 +16,7 @@ namespace AQMod.Items.Weapons.Magic
             item.damage = 47;
             item.useTime = 24;
             item.useAnimation = 24;
-            item.rare = AQItem.Rarities.GaleStreamsRare + 1;
+            item.rare = AQItem.RarityGaleStreams + 1;
             item.value = AQItem.Prices.GaleStreamsWeaponValue;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.UseSound = SoundID.Item1;

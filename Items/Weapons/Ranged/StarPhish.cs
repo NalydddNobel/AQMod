@@ -24,7 +24,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.shootSpeed = 25f;
             item.UseSound = SoundID.Item65;
             item.noMelee = true;
-            item.rare = AQItem.Rarities.CrabCreviceRare;
+            item.rare = AQItem.RarityCrabCrevice;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

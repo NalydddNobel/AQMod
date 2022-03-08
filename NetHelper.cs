@@ -5,6 +5,7 @@ using AQMod.Content.Players;
 using AQMod.Content.World.Events;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -21,6 +22,7 @@ namespace AQMod
             public const ushort UpdateWindSpeeds = 3;
             public const ushort CombatText = 4;
             public const ushort CombatNumber = 5;
+            public const ushort HealPlayer = 6;
 
             public const ushort ActivateGlimmerEvent = 500;
             public const ushort RequestOmegaStarite = 1000;
@@ -255,6 +257,15 @@ namespace AQMod
 
             switch (messageID)
             {
+                case PacketType.HealPlayer:
+                    {
+                        byte plr = reader.ReadByte();
+                        ushort healingAmt = reader.ReadUInt16();
+                        Main.player[plr].statLife += healingAmt;
+                        Main.player[plr].statLife = Math.Min(Main.player[plr].statLife, Main.player[plr].statLifeMax2);
+                    }
+                    break;
+
                 case PacketType.RequestExporterQuestRandomize:
                     if (Main.netMode == NetmodeID.Server)
                     {

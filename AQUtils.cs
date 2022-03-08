@@ -165,6 +165,31 @@ namespace AQMod
             }
         }
 
+        public static string TypeName<T>()
+        {
+            return TypeName(typeof(T));
+        }
+
+        public static string TypeName(this Type type)
+        {
+            if (type.DeclaringType == null)
+                return type.Name;
+
+            return TypeName(type.DeclaringType) + "." + type.Name;
+        }
+
+        public static int CheckForPlayers(Rectangle rectangle)
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && !Main.player[i].dead && rectangle.Intersects(Main.player[i].getRect()))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         public static Color MultColorsThenDiv(Color color1, Color color2)
         {
             return new Color(color1.R / 255f * (color2.R / 255f), color1.G / 255f * (color2.G / 255f), color1.B / 255f * (color2.B / 255f), color1.A / 255f * (color2.A / 255f));

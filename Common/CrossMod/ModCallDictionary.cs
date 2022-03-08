@@ -48,6 +48,7 @@ namespace AQMod.Common.CrossMod
             private static void InternalCreateCalls<T>(T Instance, CallSpecialAttribute attr) where T : class
             {
                 attr.type = Instance.GetType();
+
                 if (attr.AddCallsForFields)
                     InternalCreateCalls(attr.Name, Instance, attr.Fields, null);
                 attr.CustomCreateCalls(Instance, _calls);
@@ -56,9 +57,11 @@ namespace AQMod.Common.CrossMod
 
             private static void InternalCreateCalls<T>(T Instance) where T : class
             {
-                string typeName = typeof(T).Name.ToLower();
+                string typeName = typeof(T).TypeName();
+                
                 var fields = typeof(T).GetFields();
-                InternalCreateCalls(typeName, Instance, fields, null);
+                var properties = typeof(T).GetProperties();
+                InternalCreateCalls(typeName, Instance, fields, properties);
             }
 
             private static void InternalCreateCalls<T>(string typeName, T Instance, FieldInfo[] fields, PropertyInfo[] properties)
@@ -74,11 +77,11 @@ namespace AQMod.Common.CrossMod
                         {
                             continue;
                         }
-                        l?.Log(typeName + "." + f.Name.ToLower());
-                        _calls.Add(typeName + "." + f.Name.ToLower(), (o) => f.GetValue(Instance));
+                        l?.Log(typeName + "." + f.Name);
+                        _calls.Add(typeName + "." + f.Name, (o) => f.GetValue(Instance));
                         if (!f.IsInitOnly)
                         {
-                            _calls.Add(typeName + "." + f.Name.ToLower() + "_set", (o) =>
+                            _calls.Add(typeName + "." + f.Name + "_set", (o) =>
                             {
                                 f.SetValue(Instance, o[1]);
                                 return o[1];
@@ -86,7 +89,67 @@ namespace AQMod.Common.CrossMod
                         }
                     }
                 }
+                if (properties != null)
+                {
+                    foreach (var p in properties)
+                    {
+                        if (p.GetCustomAttribute<ModCallLeaveOutAttribute>() != null)
+                        {
+                            continue;
+                        }
+                        l?.Log(typeName + "." + p.Name);
+                        _calls.Add(typeName + "." + p.Name, (o) => p.GetValue(Instance));
+                        if (InternalAddList<T, int>(p, typeName, Instance))
+                        {
+                            continue;
+                        }
+                        if (InternalAddList<T, ushort>(p, typeName, Instance))
+                        {
+                            continue;
+                        }
+                        if (InternalAddList<T, short>(p, typeName, Instance))
+                        {
+                            continue;
+                        }
+                        if (InternalAddHashSet<T, int>(p, typeName, Instance))
+                        {
+                            continue;
+                        }
+                        if (InternalAddHashSet<T, ushort>(p, typeName, Instance))
+                        {
+                            continue;
+                        }
+                        if (InternalAddHashSet<T, short>(p, typeName, Instance))
+                        {
+                            continue;
+                        }
+                    }
+                }
             }
+        }
+
+        private static bool InternalAddList<T, T2>(PropertyInfo p, string typeName, T Instance)
+        {
+            if (p.PropertyType == typeof(List<T2>))
+            {
+                _calls.Add(typeName + "." + p.Name + ".add", (o) =>
+                {
+                    ((List<T2>)p.GetValue(Instance)).Add((T2)o[1]);
+                    return null;
+                });
+                return true;
+            }
+            return false;
+        }
+
+        private static bool InternalAddHashSet<T, T2>(PropertyInfo p, string typeName, T Instance)
+        {
+            if (p.PropertyType == typeof(HashSet<T2>))
+            {
+                _calls.Add(typeName + "." + p.Name + ".add", (o) => ((HashSet<T2>)p.GetValue(Instance)).Add((T2)o[1]));
+                return true;
+            }
+            return false;
         }
 
         private static Dictionary<string, Func<object[], object>> _calls;
@@ -102,12 +165,7 @@ namespace AQMod.Common.CrossMod
                     }
                 },
 
-                { "glimmerevent.staritedisco", (o) => Glimmer.stariteDiscoParty },
-
-                { "glimmerevent.staritedisco_set", (o) => Glimmer.stariteDiscoParty = (bool)o[1] },
-
                 { "glimmerevent_isactive", (o) => Glimmer.IsGlimmerEventCurrentlyActive() },
-                { "glimmerevent_stariteprojectilecolor", (o) => Glimmer.stariteProjectileColoring },
                 { "glimmerevent_activate", (o) =>
                     {
                         bool value = Glimmer.Activate();
@@ -204,19 +262,30 @@ namespace AQMod.Common.CrossMod
             Auto.CreateCallsForType(ModContent.GetInstance<GaleStreams>());
             Auto.CreateCallsForType(ModContent.GetInstance<PassingDays>());
             Auto.CreateCallsForType(ModContent.GetInstance<ImitatedFallingStars>());
+            Auto.CreateCallsForType<AQItem.Sets>();
+            Auto.CreateCallsForType<AQBuff.Sets>();
+            Auto.CreateCallsForType<AQProjectile.Sets>();
+            Auto.CreateCallsForType<AQTile.Sets>();
 
-            //checkifnalydisstupid();
+            Lowercase();
         }
 
-        private static void checkifnalydisstupid()
+        private static void Lowercase()
         {
+            var renames = new List<KeyValuePair<string, Func<object[], object>>>();
             foreach (var keyValuePair in _calls)
             {
+                //AQMod.GetInstance().Logger.Debug(keyValuePair.Key);
                 string lower = keyValuePair.Key.ToLower();
                 if (lower != keyValuePair.Key)
                 {
-                    throw new Exception(keyValuePair.Key + " is not lowercase, it is actually: " + lower);
+                    renames.Add(keyValuePair);
                 }
+            }
+            foreach (var keyValuePair in renames)
+            {
+                _calls.Remove(keyValuePair.Key);
+                _calls.Add(keyValuePair.Key.ToLower(), keyValuePair.Value);
             }
         }
 

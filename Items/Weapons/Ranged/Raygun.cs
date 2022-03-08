@@ -19,7 +19,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.height = 24;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = AQItem.Rarities.OmegaStariteRare;
+            item.rare = AQItem.RarityOmegaStarite;
             item.shoot = ModContent.ProjectileType<RayBullet>();
             item.shootSpeed = 7.5f;
             item.autoReuse = true;

@@ -3,7 +3,7 @@ using Terraria;
 
 namespace AQMod.Projectiles.Magic
 {
-    public class MoonMoonMirror : mirrorProjectileType
+    public class MoonMoonMirror : MirrorProj
     {
         protected override float LaserLength => 1000f;
         protected override Color LaserColor => new Color(128, 143, 231, 0);

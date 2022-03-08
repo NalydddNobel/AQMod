@@ -19,7 +19,7 @@ namespace AQMod.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AQPlayer>().chloroTransfer = true;
+            player.GetModPlayer<AQPlayer>().ammoRenewal = true;
         }
 
         public override void AddRecipes()

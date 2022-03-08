@@ -16,7 +16,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.useAnimation = 16;
             item.autoReuse = true;
             item.damage = 13;
-            item.rare = AQItem.Rarities.GaleStreamsRare;
+            item.rare = AQItem.RarityGaleStreams;
             item.ranged = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.shoot = ProjectileID.SnowBallFriendly;

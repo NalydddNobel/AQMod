@@ -18,7 +18,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.useAnimation = 36;
             item.autoReuse = true;
             item.damage = 13;
-            item.rare = AQItem.Rarities.StariteWeaponRare;
+            item.rare = AQItem.RarityGlimmer;
             item.ranged = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.shoot = ProjectileID.Bullet;

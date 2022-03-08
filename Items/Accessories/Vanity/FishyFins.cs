@@ -12,7 +12,7 @@ namespace AQMod.Items.Accessories.Vanity
             item.width = 20;
             item.height = 10;
             item.accessory = true;
-            item.rare = AQItem.Rarities.DedicatedItem;
+            item.rare = AQItem.RarityDedicatedItem;
             item.value = Item.sellPrice(silver: 20);
             item.vanity = true;
         }

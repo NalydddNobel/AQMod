@@ -51,11 +51,6 @@ namespace AQMod.NPCs
                         return;
                     }
                 }
-                if (player.GetModPlayer<AQPlayer>().bossrush)
-                {
-                    spawnRate *= 10;
-                    maxSpawns = (int)(maxSpawns * 0.1);
-                }
                 if (player.Biomes().zoneDemonSiege)
                 {
                     spawnRate *= 10;

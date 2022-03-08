@@ -29,7 +29,7 @@ namespace AQMod.Items.Weapons.Summon
             item.noMelee = true;
             item.knockBack = 3f;
             item.value = AQItem.Prices.GaleStreamsWeaponValue;
-            item.rare = AQItem.Rarities.GaleStreamsRare;
+            item.rare = AQItem.RarityGaleStreams;
             item.UseSound = SoundID.Item46;
             item.shoot = ModContent.ProjectileType<SnowsawMinion>();
             item.buffType = ModContent.BuffType<SnowsawBuff>();

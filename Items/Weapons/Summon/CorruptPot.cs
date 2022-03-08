@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Items.Materials.Energies;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -45,6 +46,7 @@ namespace AQMod.Items.Weapons.Summon
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.DemoniteBar, 15);
             r.AddIngredient(ItemID.ShadowScale, 8);
+            r.AddIngredient(ModContent.ItemType<OrganicEnergy>());
             r.SetResult(this);
             r.AddRecipe();
         }

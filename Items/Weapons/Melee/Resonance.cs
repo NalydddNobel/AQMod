@@ -32,7 +32,7 @@ namespace AQMod.Items.Weapons.Melee
             item.knockBack = 4.11f;
             item.value = AQItem.Prices.OmegaStariteWeaponValue;
             item.UseSound = SoundID.Item1;
-            item.rare = AQItem.Rarities.OmegaStariteRare;
+            item.rare = AQItem.RarityOmegaStarite;
             item.channel = true;
             item.noMelee = true;
             item.noUseGraphic = true;

@@ -16,7 +16,7 @@ namespace AQMod
         internal const byte Slope_TopLeft = 3;
         internal const byte Slope_TopRight = 4;
 
-        public static class Sets
+        public sealed class Sets
         {
             public static HashSet<ushort> CanFixWaterOnType { get; private set; }
             public static HashSet<ushort> ExporterQuestFurniture { get; private set; }

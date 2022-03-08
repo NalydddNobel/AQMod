@@ -13,7 +13,7 @@ namespace AQMod.Projectiles.Magic
     /// <summary>
     /// Handles multiple properties of mirror weapons automatically.
     /// </summary>
-    public abstract class mirrorProjectileType : ModProjectile
+    public abstract class MirrorProj : ModProjectile
     {
         protected abstract float LaserLength { get; }
         protected abstract Color LaserColor { get; }
@@ -25,7 +25,7 @@ namespace AQMod.Projectiles.Magic
         {
             projectile.ai[0] = 0f;
             var item = player.ItemInHand();
-            if (AQItem.Commons.Mirror_CanUseItem(player) && player.CheckMana(item, item.mana, pay: true, blockQuickMana: false))
+            if (AQItem.MirrorCheck(player) && player.CheckMana(item, item.mana, pay: true, blockQuickMana: false))
             {
                 var sound = SoundID.DD2_EtherianPortalSpawnEnemy;
                 var pos = projectile.Center;

@@ -20,7 +20,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.height = 16;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.rare = AQItem.Rarities.GaleStreamsRare;
+            item.rare = AQItem.RarityGaleStreams;
             item.shoot = ModContent.ProjectileType<Projectiles.Ranged.Firecracker>();
             item.shootSpeed = 13.5f;
             item.UseSound = SoundID.Item1;

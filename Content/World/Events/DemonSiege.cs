@@ -157,13 +157,13 @@ namespace AQMod.Content.World.Events
 
         public static void AddDemonSeigeUpgrade(SiegeUpgrade upgrade)
         {
-            if (AQMod.IsLoading)
+            if (AQMod.Loading)
                 Upgrades.Add(upgrade);
         }
 
         public static void AddDemonSeigeEnemy(SiegeEnemy enemy)
         {
-            if (AQMod.IsLoading)
+            if (AQMod.Loading)
                 Enemies.Add(enemy);
         }
 

@@ -9,14 +9,14 @@ namespace AQMod.Items.Accessories
 {
     public class MothmanMask : ModItem, IDedicatedItem, IUpdateVanity
     {
-        Color IDedicatedItem.Color => new Color(50, 75, 250, 255);
+        Color IDedicatedItem.DedicatedColoring => new Color(50, 75, 250, 255);
 
         public override void SetDefaults()
         {
             item.width = 20;
             item.height = 20;
             item.accessory = true;
-            item.rare = AQItem.Rarities.DedicatedItem;
+            item.rare = AQItem.RarityDedicatedItem;
             item.value = Item.sellPrice(gold: 15);
         }
 

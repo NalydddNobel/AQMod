@@ -15,7 +15,7 @@ namespace AQMod.Items.Weapons.Ranged
             item.height = 30;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = AQItem.Rarities.CrabCreviceRare;
+            item.rare = AQItem.RarityCrabCrevice;
             item.shoot = ProjectileID.WoodenArrowFriendly;
             item.shootSpeed = 8.5f;
             item.useAmmo = AmmoID.Arrow;

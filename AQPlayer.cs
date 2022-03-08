@@ -185,17 +185,18 @@ namespace AQMod
         public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
         public const byte TEMPERATURE_REGEN_ON_HIT = 120;
 
-        public static bool Fidget_Spinner_Force_Autoswing { get; internal set; }
+        public static bool forceAutoswing;
+        public static byte extractinatorBlipDelay;
 
         public float discountPercentage = 1f;
         public bool blueSpheres;
         public bool hyperCrystal;
         public bool shimmering;
-        public bool chloroTransfer;
+        public bool ammoRenewal;
         public bool altEvilDrops;
         public bool breadsoul;
         public bool moonShoes;
-        public bool extractinator;
+        public bool reducedSiltDamage;
         public bool copperSeal;
         public bool silverSeal;
         public bool goldSeal;
@@ -211,7 +212,7 @@ namespace AQMod
         public byte lootIterations;
         public bool featherflightAmulet;
         public bool voodooAmulet;
-        public bool extractinatorVisible;
+        public bool extractinatorCounter;
         public float celesteTorusX;
         public float celesteTorusY;
         public float celesteTorusZ;
@@ -221,16 +222,12 @@ namespace AQMod
         public int celesteTorusMaxRadius;
         public float celesteTorusSpeed;
         public float celesteTorusScale;
-        public bool spicyEel;
         public bool striderPalms;
         public bool striderPalmsOld;
         public bool degenerationRing;
         public ushort shieldLife;
         public bool blueFire;
-        public bool bossrush;
-        public bool bossrushOld;
-        public float grabReachMult; // until 1.4 comes
-        public bool neutronYogurt;
+        public float grabReach; // until 1.4 comes
         public bool mothmanMask;
         public byte mothmanExplosionDelay;
         public sbyte temperature;
@@ -254,6 +251,7 @@ namespace AQMod
         public bool spreadDebuffs;
         public bool shade;
         public bool undetectable;
+        public bool doubleExtractorLoot;
 
         public bool helmetFlowerCrown;
         public bool helmetDartTrap;
@@ -300,11 +298,11 @@ namespace AQMod
         public int headMinionCarryYOld;
         public byte monoxiderCarry;
 
-        public int ExtractinatorCount;
-        public bool IgnoreIgnoreMoons;
-
         public float unholyDamage;
         public float holyDamage;
+
+        public float runSpeedBoost = 1f;
+        public float wingSpeedBoost = 1f;
 
         public ushort itemCooldownMax;
         public ushort itemCooldown;
@@ -314,8 +312,15 @@ namespace AQMod
         public int critIncrease;
         public uint interactionDelay;
 
+        public int extractorHelmet;
+        public int extractorAirMask;
+        public int ExtractinatorCount;
+        public bool IgnoreIgnoreMoons;
+
         public override void Initialize()
         {
+            extractinatorBlipDelay = 0;
+
             snowsawLeader = -1;
             omoriDeathTimer = 1;
             arachnotronArms = false;
@@ -327,9 +332,7 @@ namespace AQMod
             headMinionCarryYOld = 0;
             monoxiderCarry = 0;
             blueFire = false;
-            bossrush = false;
-            bossrushOld = false;
-            grabReachMult = 1f;
+            grabReach = 1f;
             temperature = 0;
             pickBreak = false;
             fidgetSpinner = false;
@@ -383,6 +386,8 @@ namespace AQMod
             hookDamage = 0;
             meathookUI = false;
             snowsawLeader = -1;
+            runSpeedBoost = 1f;
+            wingSpeedBoost = 1f;
         }
 
         private void UpdateVisuals_Flashes()
@@ -421,6 +426,9 @@ namespace AQMod
         {
             UpdateVisuals_Flashes();
             FX.Update();
+
+            if (extractinatorBlipDelay > 0)
+                extractinatorBlipDelay--;
         }
 
         private void ResetEffects_Cooldowns()
@@ -612,10 +620,9 @@ namespace AQMod
             lootIterations = 0;
             featherflightAmulet = false;
             voodooAmulet = false;
-            extractinatorVisible = false;
+            extractinatorCounter = false;
             altEvilDrops = false;
             starite = false;
-            spicyEel = false;
             striderPalmsOld = striderPalms;
             striderPalms = false;
             shieldLife = 0;
@@ -638,7 +645,7 @@ namespace AQMod
             snowsaw = false;
             snowsawLeader = -1;
 
-            grabReachMult = 1f;
+            grabReach = 1f;
             mothmanMask = false;
             crabAx = false;
             fidgetSpinner = false;
@@ -663,8 +670,6 @@ namespace AQMod
                 mothmanExplosionDelay--;
             if (bloodthirstDelay > 0)
                 bloodthirstDelay--;
-            bossrushOld = bossrush;
-            bossrush = false;
             helmetDartTrap = false;
             if (thunderbirdLightningTimer > 0)
                 thunderbirdLightningTimer--;
@@ -678,6 +683,9 @@ namespace AQMod
                     itemSwitch = 60;
             }
             lastSelectedItem = player.selectedItem;
+
+            runSpeedBoost = 1f;
+            wingSpeedBoost = 1f;
         }
 
         private void ProcessTriggers_ToggleCosmicanon()
@@ -736,6 +744,7 @@ namespace AQMod
             if (!hasMeathookNPC && meathookTarget != -1 && Main.npc[meathookTarget].active && triggersSet.Grapple)
             {
                 ProcessTriggers_MeathookSnapTarget();
+                triggersSet.Grapple = false;
             }
             meathookTarget = -1;
         }
@@ -766,12 +775,12 @@ namespace AQMod
 
         private void ItemCheck_FidgetSpinner(Item item)
         {
-            Fidget_Spinner_Force_Autoswing = false;
+            forceAutoswing = false;
             if (fidgetSpinner && player.selectedItem < Main.maxInventory && (Main.mouseItem == null || Main.mouseItem.type <= ItemID.None))
             {
-                if (AQItem.CheckFidgetSpinner(player, item, ignoreChanneled: false))
+                if (AQItem.CheckAutoswingable(player, item, ignoreChanneled: false))
                 {
-                    Fidget_Spinner_Force_Autoswing = true;
+                    forceAutoswing = true;
                     item.autoReuse = true;
                 }
             }
@@ -1007,17 +1016,17 @@ namespace AQMod
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                if (Fidget_Spinner_Force_Autoswing)
+                if (forceAutoswing)
                 {
                     player.inventory[player.selectedItem].autoReuse = false;
-                    Fidget_Spinner_Force_Autoswing = false;
+                    forceAutoswing = false;
                 }
             }
         }
 
         public override float UseTimeMultiplier(Item item)
         {
-            if (Fidget_Spinner_Force_Autoswing && item.damage > 0 && !item.channel)
+            if (forceAutoswing && item.damage > 0 && !item.channel)
             {
                 if (item.useTime <= 10)
                 {
@@ -1033,7 +1042,7 @@ namespace AQMod
 
         public override bool Shoot(Item item, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if (chloroTransfer && type == ProjectileID.Bullet && Main.rand.NextBool(8))
+            if (ammoRenewal && type == ProjectileID.Bullet && Main.rand.NextBool(8))
                 type = ProjectileID.ChlorophyteBullet;
             return true;
         }
@@ -1292,13 +1301,10 @@ namespace AQMod
             }
             if (antiGravityItems)
             {
-                EquivalenceMachineItemManager.AntiGravityNearbyItems(player.Center, 2f * grabReachMult, 120, player);
+                EquivalenceMachineItemManager.AntiGravityNearbyItems(player.Center, 2f * grabReach, 120, player);
             }
-            if (spicyEel)
-            {
-                player.accRunSpeed *= 1.1f;
-                player.moveSpeed *= 1.1f;
-            }
+            player.accRunSpeed *= runSpeedBoost;
+            player.moveSpeed *= runSpeedBoost;
         }
 
         private void DamageReduction_Lightbulb(Projectile projectile, ref int damage)
@@ -1321,7 +1327,7 @@ namespace AQMod
             {
                 DamageReduction_Lightbulb(proj, ref damage);
             }
-            if (extractinator)
+            if (reducedSiltDamage)
             {
                 DamageReduction_Extractor(proj, ref damage);
             }

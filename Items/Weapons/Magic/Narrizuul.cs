@@ -24,7 +24,7 @@ namespace AQMod.Items.Weapons.Magic
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.useTime = 7;
             item.useAnimation = 14;
-            item.rare = AQItem.Rarities.DedicatedItem;
+            item.rare = AQItem.RarityDedicatedItem;
             item.shootSpeed = 27.77f;
             item.autoReuse = true;
             item.noMelee = true;

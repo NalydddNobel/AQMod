@@ -919,7 +919,7 @@ namespace AQMod
         }
         public override void SetDefaults(NPC npc)
         {
-            if (!AQMod.IsLoading)
+            if (!AQMod.Loading)
             {
                 if (Sets.HotDamage.Contains(npc.netID))
                     hotDamage = true;
@@ -1251,110 +1251,6 @@ namespace AQMod
             return MathHelper.Clamp(averageScale((int)(lifeMax * 3.5), true) * 0.6f, 1.05f, 1.25f);
         }
 
-        private void EncoreKill(NPC npc)
-        {
-            if (!npc.boss || npc.type == NPCID.MartianSaucerCore || npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail)
-                return;
-            for (int k = 0; k < Main.maxPlayers; k++)
-            {
-                var player = Main.player[k];
-                if (!player.active || player.dead)
-                {
-                    continue;
-                }
-                var aQPlayer = player.GetModPlayer<AQPlayer>();
-                var bossRushPlayer = player.GetModPlayer<BossEncorePlayer>();
-                if (!aQPlayer.bossrush)
-                {
-                    bossRushPlayer.CurrentEncoreKillCount[npc.type] = 0;
-                    return;
-                }
-                bossRushPlayer.CurrentEncoreKillCount[npc.type]++;
-                if (bossRushPlayer.CurrentEncoreKillCount[npc.type] > bossRushPlayer.EncoreBossKillCountRecord[npc.type])
-                    bossRushPlayer.EncoreBossKillCountRecord[npc.type] = bossRushPlayer.CurrentEncoreKillCount[npc.type];
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    NetHelper.NetCombatText(player.getRect(), Main.mouseColor, bossRushPlayer.CurrentEncoreKillCount[npc.type]);
-                }
-                else
-                {
-                    CombatText.NewText(player.getRect(), Main.mouseColor, bossRushPlayer.CurrentEncoreKillCount[npc.type], true);
-                }
-                float x = player.position.X + player.width / 2f;
-                if (npc.type == NPCID.TheDestroyer && npc.lifeMax <= 0)
-                {
-                    for (int i = 0; i < Main.maxNPCs; i++)
-                    {
-                        if (Main.npc[i].type == NPCID.TheDestroyerBody || Main.npc[i].type == NPCID.TheDestroyerTail)
-                        {
-                            Main.npc[i].lifeMax = -1;
-                            Main.npc[i].HitEffect();
-                            Main.npc[i].active = false;
-                        }
-                    }
-                }
-                int n = NPC.NewNPC((int)x, (int)player.position.Y - 600, npc.type);
-                NPC boss = Main.npc[n];
-                boss.netUpdate = true;
-                float yOff = boss.height * 2f;
-                float healthScale = bossRushScale(npc.lifeMax);
-                float damageScale = MathHelper.Clamp(healthScale, 1.01f, 1.15f);
-                boss.lifeMax = (int)(npc.lifeMax * healthScale);
-                boss.life = boss.lifeMax;
-                boss.defDamage = (int)(npc.defDamage * damageScale);
-                boss.damage = boss.defDamage;
-                var spawnPosition = new Vector2(x, player.position.Y - yOff);
-                boss.Center = spawnPosition;
-                boss.target = BossRushPlayer;
-                if (npc.type == NPCID.SkeletronHead)
-                {
-                    boss.ai[0] = 1f;
-                    boss.velocity.X = Main.rand.NextFloat(-15f, 15f);
-                    int x1 = (int)spawnPosition.X;
-                    int y1 = (int)spawnPosition.Y;
-                    for (int i = 0; i < 4; i++)
-                    {
-                        NPC arm = Main.npc[NPC.NewNPC(x1, y1, NPCID.SkeletronHand, boss.whoAmI)];
-                        arm.lifeMax = (int)(arm.lifeMax * healthScale);
-                        arm.life = arm.lifeMax;
-                        arm.Center = spawnPosition;
-                        arm.ai[0] = i % 2 == 0 ? -1f : 1f;
-                        arm.ai[1] = n;
-                        arm.target = BossRushPlayer;
-                        arm.netUpdate = true;
-                        arm.defDamage = (int)(arm.defDamage * healthScale);
-                        arm.damage = arm.defDamage;
-                    }
-                }
-                else if (npc.type == NPCID.SkeletronPrime)
-                {
-                    boss.ai[0] = 1f;
-                    boss.velocity.X = Main.rand.NextFloat(-15f, 15f);
-                    int x1 = (int)spawnPosition.X;
-                    int y1 = (int)spawnPosition.Y;
-                    for (int i = 0; i < 4; i++)
-                    {
-                        NPC arm = Main.npc[NPC.NewNPC(x1, y1, NPCID.PrimeCannon + i, boss.whoAmI)];
-                        arm.lifeMax = (int)(arm.lifeMax * healthScale);
-                        arm.life = arm.lifeMax;
-                        arm.Center = spawnPosition;
-                        arm.ai[0] = i % 2 == 0 ? -1f : 1f;
-                        arm.ai[1] = n;
-                        arm.target = BossRushPlayer;
-                        arm.netUpdate = true;
-                        arm.defDamage = (int)(arm.defDamage * healthScale);
-                        arm.damage = arm.defDamage;
-                        if (i > 1)
-                            arm.ai[3] = 150f;
-                    }
-                }
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    NetHelper.SyncEncoreData(bossRushPlayer);
-                }
-            }
-        }
-
         public override bool PreNPCLoot(NPC npc)
         {
             if (LootLoopingHelper.Current != 0)
@@ -1481,7 +1377,6 @@ namespace AQMod
                 return;
             if (LootLoopingHelper.Current == 0 && (Main.netMode == NetmodeID.Server || !Main.gameMenu))
             {
-                EncoreKill(npc);
                 OnKill_BreadsoulCheck(npc);
                 OnKill_DreadsoulCheck(npc);
                 byte plr = Player.FindClosest(npc.position, npc.width, npc.height);

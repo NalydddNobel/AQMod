@@ -24,7 +24,7 @@ namespace AQMod.Items.Weapons.Melee.Yoyo
             item.knockBack = 8f;
             item.value = AQItem.Prices.DemonSiegeWeaponValue;
             item.UseSound = SoundID.Item1;
-            item.rare = AQItem.Rarities.GoreNestRare;
+            item.rare = AQItem.RarityDemonSiege;
             item.channel = true;
             item.noMelee = true;
             item.noUseGraphic = true;

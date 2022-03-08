@@ -21,7 +21,7 @@ namespace AQMod.Items.Weapons.Melee
             item.useTime = 38;
             item.useAnimation = 19;
             item.autoReuse = true;
-            item.rare = AQItem.Rarities.GoreNestRare;
+            item.rare = AQItem.RarityDemonSiege;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(gold: 1);
@@ -34,7 +34,7 @@ namespace AQMod.Items.Weapons.Melee
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return AQItem.Commons.DemonSiegeItem_GetAlpha(lightColor);
+            return AQItem.DemonSiegeItemAlpha(lightColor);
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)

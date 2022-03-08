@@ -46,15 +46,36 @@ namespace AQMod
             }
         }
 
-        public static class Sets
+        public sealed class Sets
         {
             public static HashSet<int> Crate { get; private set; }
             public static HashSet<int> NoRename { get; private set; }
             public static HashSet<int> NoAutoswing { get; private set; }
             public static HashSet<int> DashEquip { get; private set; }
+            public static HashSet<int> ItemIDRenewalBlacklist { get; private set; }
+            public static HashSet<int> AmmoIDRenewalBlacklist { get; private set; }
 
             internal static void Load()
             {
+                ItemIDRenewalBlacklist = new HashSet<int>() 
+                { 
+                    ItemID.RocketII,
+                    ItemID.RocketIV,
+                    ItemID.Ale,
+                    ItemID.Bone,
+                    ItemID.Seed,
+                    ItemID.Wire,
+                };
+                AmmoIDRenewalBlacklist = new HashSet<int>() 
+                { 
+                    AmmoID.FallenStar,
+                    AmmoID.Gel,
+                    AmmoID.Sand,
+                    AmmoID.Snowball,
+                    AmmoID.Flare,
+                    AmmoID.Solution,
+                };
+
                 Crate = new HashSet<int>()
                 {
                     ItemID.WoodenCrate,
@@ -115,80 +136,31 @@ namespace AQMod
             public static int PillarWeaponValue => Item.sellPrice(gold: 10);
         }
 
-        public static class Rarities
-        {
-            public const int CrabCreviceRare = ItemRarityID.Blue;
-            public const int StariteWeaponRare = ItemRarityID.Green;
-            public const int DungeonRare = ItemRarityID.Green;
-            public const int PetRare = ItemRarityID.Orange;
-            public const int GoreNestRare = ItemRarityID.Orange;
-            public const int OmegaStariteRare = ItemRarityID.LightRed;
-            public const int GaleStreamsRare = ItemRarityID.LightRed;
-            public const int PillarWeaponRare = ItemRarityID.Red;
-            public const int DedicatedItem = ItemRarityID.Cyan;
-        }
+        public const int RarityCrabCrevice = ItemRarityID.Blue;
+        public const int RarityGlimmer = ItemRarityID.Green;
+        public const int RarityDemonSiege = ItemRarityID.Orange;
+        public const int RarityOmegaStarite = ItemRarityID.LightRed;
+        public const int RarityGaleStreams = ItemRarityID.LightRed;
+        public const int RarityDedicatedItem = ItemRarityID.Cyan;
 
-        internal static class Commons
-        {
-            public static Vector2 GetItemDrawPos_NoAnimation(Item item)
-            {
-                return new Vector2(item.position.X - Main.screenPosition.X + Main.itemTexture[item.type].Width / 2 + item.width / 2 - Main.itemTexture[item.type].Width / 2, item.position.Y - Main.screenPosition.Y + Main.itemTexture[item.type].Height / 2 + item.height - Main.itemTexture[item.type].Height + 2f);
-            }
-
-            public static Color DemonSiegeItem_GetAlpha(Color lightColor)
-            {
-                return new Color(lightColor.R * lightColor.R, lightColor.G * lightColor.G, lightColor.B * lightColor.B, lightColor.A);
-            }
-
-            public static bool Mirror_CanUseItem(Player player)
-            {
-                if (player.position.Y - 500f > Main.worldSurface * 16f)
-                    return false;
-                int tileX = (int)(player.position.X + player.width / 2f) / 16;
-                int tileY = (int)(player.position.Y + player.height / 2f) / 16;
-                if (Main.tile[tileX, tileY] == null)
-                    Main.tile[tileX, tileY] = new Tile();
-                if (AQWorldGen.TileObstructedFromLight(tileX, tileY))
-                    return false;
-                for (int i = 0; i < 15; i++)
-                {
-                    if (tileY - 1 - i <= 0)
-                        break;
-                    if (Main.tile[tileX, tileY - 1 - i] == null)
-                        Main.tile[tileX, tileY - 1 - i] = new Tile();
-                    if (AQWorldGen.TileObstructedFromLight(tileX, tileY - 1 - i))
-                        return false;
-                }
-                return true;
-            }
-
-            public static void Energy_SetDefaults(Item item, int rarity, int price)
-            {
-                item.width = 24;
-                item.height = 24;
-                item.rare = rarity;
-                item.value = price;
-                item.maxStack = 999;
-            }
-
-            public static void UpdateEnergyItem(Item Item, Color clr, Vector3 lightClr)
-            {
-                int chance = 15;
-                if (Item.velocity.Length() > 1f)
-                    chance = 5;
-                if (Main.rand.NextBool(chance))
-                {
-                    clr.A = 0;
-                    int d = Dust.NewDust(Item.position, Item.width, Item.height - 4, ModContent.DustType<EnergyPulse>(), 0f, 0f, 0, clr);
-                    Main.dust[d].alpha = Main.rand.Next(0, 35);
-                    Main.dust[d].scale = Main.rand.NextFloat(0.95f, 1.15f);
-                    if (Main.dust[d].scale > 1f)
-                        Main.dust[d].noGravity = true;
-                    Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(-0.15f, 0.15f), Main.rand.NextFloat(-3.5f, -1.75f));
-                }
-                Lighting.AddLight(Item.position, lightClr);
-            }
-        }
+        internal const int RarityBanner = ItemRarityID.Blue;
+        internal const int RarityDemoniteCrimtane = ItemRarityID.Blue;
+        internal const int RarityDungeon = ItemRarityID.Green;
+        internal const int RarityQueenBee = ItemRarityID.Green;
+        internal const int RarityJungle = ItemRarityID.Orange;
+        internal const int RarityMolten = ItemRarityID.Orange;
+        internal const int RarityPet = ItemRarityID.Orange;
+        internal const int RarityWallofFlesh = ItemRarityID.LightRed;
+        internal const int RarityPreMechs = ItemRarityID.LightRed;
+        internal const int RarityCobaltMythrilAdamantite = ItemRarityID.LightRed;
+        internal const int RarityMechs = ItemRarityID.Pink;
+        internal const int RarityPlantera = ItemRarityID.Lime;
+        internal const int RarityHardmodeDungeon = ItemRarityID.Yellow;
+        internal const int RarityMartians = ItemRarityID.Yellow;
+        internal const int RarityDukeFishron = ItemRarityID.Yellow;
+        internal const int RarityLunaticCultist = ItemRarityID.Cyan;
+        internal const int RarityPillars = ItemRarityID.Red;
+        internal const int RarityMoonLord = ItemRarityID.Red;
 
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
@@ -207,7 +179,7 @@ namespace AQMod
 
         private void GlowmaskDataCheck(Item item)
         {
-            if (!AQMod.IsLoading && Main.netMode != NetmodeID.Server &&
+            if (!AQMod.Loading && Main.netMode != NetmodeID.Server &&
                 GlowmaskData.ItemToGlowmask != null && GlowmaskData.ItemToGlowmask.TryGetValue(item.type, out GlowmaskData glowmask))
             {
                 this.Glowmask = glowmask;
@@ -231,7 +203,7 @@ namespace AQMod
         {
             if (item.modItem is IDedicatedItem dedicatedItem)
             {
-                tooltips.Add(new TooltipLine(mod, "DedicatedItem", Language.GetTextValue("Mods.AQMod.Tooltips.DedicatedItem")) { overrideColor = dedicatedItem.Color });
+                tooltips.Add(new TooltipLine(mod, "DedicatedItem", Language.GetTextValue("Mods.AQMod.Tooltips.DedicatedItem")) { overrideColor = dedicatedItem.DedicatedColoring });
             }
         }
         private void Tooltips_ManaPerSecondCheck(Item item, List<TooltipLine> tooltips)
@@ -278,15 +250,15 @@ namespace AQMod
         }
         private void Tooltips_FidgetSpinnerCheck(Item item, AQPlayer aQPlayer, List<TooltipLine> tooltips)
         {
-            if (aQPlayer.fidgetSpinner && !item.channel && CheckFidgetSpinner(Main.LocalPlayer, item, ignoreChanneled: true))
+            if (aQPlayer.fidgetSpinner && !item.channel && CheckAutoswingable(Main.LocalPlayer, item, ignoreChanneled: true))
             {
                 foreach (var t in tooltips)
                 {
                     if (t.mod == "Terraria" && t.Name == "Speed")
                     {
-                        AQPlayer.Fidget_Spinner_Force_Autoswing = true;
+                        AQPlayer.forceAutoswing = true;
                         string text = UseAnimTooltip(PlayerHooks.TotalUseTime(item.useTime, Main.LocalPlayer, item));
-                        AQPlayer.Fidget_Spinner_Force_Autoswing = false;
+                        AQPlayer.forceAutoswing = false;
                         if (t.text != text)
                         {
                             t.text = text +
@@ -536,38 +508,50 @@ namespace AQMod
 
         public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
         {
-            if (player.GetModPlayer<AQPlayer>().spicyEel)
-            {
-                speed *= 1.1f;
-                acceleration *= 1.1f;
-            }
+            var aQPlayer = player.GetModPlayer<AQPlayer>();
+            speed *= aQPlayer.wingSpeedBoost;
+            acceleration *= aQPlayer.wingSpeedBoost;
         }
 
         public override void VerticalWingSpeeds(Item item, Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            if (player.GetModPlayer<AQPlayer>().spicyEel)
-            {
-                ascentWhenFalling *= 1.1f;
-                ascentWhenRising *= 1.1f;
-                maxCanAscendMultiplier *= 1.1f;
-                maxAscentMultiplier *= 1.1f;
-                constantAscend *= 1.1f;
-            }
+            var aQPlayer = player.GetModPlayer<AQPlayer>();
+            ascentWhenFalling *= aQPlayer.wingSpeedBoost;
+            ascentWhenRising *= aQPlayer.wingSpeedBoost;
+            maxCanAscendMultiplier *= aQPlayer.wingSpeedBoost;
+            maxAscentMultiplier *= aQPlayer.wingSpeedBoost;
+            constantAscend *= aQPlayer.wingSpeedBoost;
         }
 
         public override void ExtractinatorUse(int extractType, ref int resultType, ref int resultStack)
         {
+            if (Main.gameMenu || AQMod.Loading || Main.myPlayer == -1 || Main.LocalPlayer == null)
+            {
+                return;
+            }
+
             var player = Main.LocalPlayer;
             var aQPlayer = player.GetModPlayer<AQPlayer>();
+
             aQPlayer.ExtractinatorCount++;
-            if (aQPlayer.extractinatorVisible)
-                CombatText.NewText(new Rectangle(Player.tileTargetX * 16, Player.tileTargetY * 16, 16, 16), Color.Gray, aQPlayer.ExtractinatorCount);
-            if (aQPlayer.ExtractinatorCount % 500 == 0)
-                Item.NewItem(new Rectangle(Player.tileTargetX * 16, Player.tileTargetY * 16, 16, 16), ModContent.ItemType<Extractor>());
-            if (aQPlayer.extractinator)
+            aQPlayer.extractorAirMask++;
+            aQPlayer.extractorHelmet++;
+
+            if (aQPlayer.extractinatorCounter && AQPlayer.extractinatorBlipDelay == 0)
             {
-                if (Main.rand.NextBool())
-                    resultStack *= 2;
+                CombatText.NewText(new Rectangle(Player.tileTargetX * 16, Player.tileTargetY * 16, 16, 16), Color.Gray, aQPlayer.ExtractinatorCount);
+                AQPlayer.extractinatorBlipDelay = 8;
+            }
+
+            if (aQPlayer.extractorAirMask >= 500 + Main.rand.Next(-100, 100))
+            {
+                aQPlayer.extractorAirMask = 0;
+                Item.NewItem(new Rectangle(Player.tileTargetX * 16, Player.tileTargetY * 16, 16, 16), ModContent.ItemType<ExtractorAirMask>());
+            }
+            else if (aQPlayer.extractorHelmet >= 500 + Main.rand.Next(-100, 100))
+            {
+                aQPlayer.extractorHelmet = 0;
+                Item.NewItem(new Rectangle(Player.tileTargetX * 16, Player.tileTargetY * 16, 16, 16), ModContent.ItemType<ExtractorHelmet>());
             }
         }
 
@@ -644,7 +628,7 @@ namespace AQMod
 
         public override void GrabRange(Item item, Player player, ref int grabRange)
         {
-            grabRange = (int)(grabRange * player.GetModPlayer<AQPlayer>().grabReachMult);
+            grabRange = (int)(grabRange * player.GetModPlayer<AQPlayer>().grabReach);
         }
 
         public static bool ItemOnGroundAlready(int type)
@@ -1002,17 +986,13 @@ namespace AQMod
             return 1;
         }
 
-        public static bool CheckFidgetSpinner(Player player, Item item, bool ignoreChanneled = false)
+        public static bool CheckAutoswingable(Player player, Item item, bool ignoreChanneled = false)
         {
-            if (Sets.NoAutoswing.Contains(item.type))
-            {
-                return false;
-            }
             if (!item.autoReuse && item.useTime != 0 && item.useTime == item.useAnimation)
             {
                 if (!ignoreChanneled && (item.channel || item.noUseGraphic))
                 {
-                    return player.ownedProjectileCounts[item.shoot] < item.stack;
+                    return player.ownedProjectileCounts[item.shoot] < item.stack && !Sets.NoAutoswing.Contains(item.type);
                 }
                 return player.altFunctionUse != 2;
             }
@@ -1062,6 +1042,38 @@ namespace AQMod
                 Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(-0.15f, 0.15f), Main.rand.NextFloat(-3.5f, -1.75f));
             }
             Lighting.AddLight(Item.position, lightClr);
+        }
+
+        public static Vector2 WorldDrawPos(Item item)
+        {
+            return new Vector2(item.position.X - Main.screenPosition.X + Main.itemTexture[item.type].Width / 2 + item.width / 2 - Main.itemTexture[item.type].Width / 2, item.position.Y - Main.screenPosition.Y + Main.itemTexture[item.type].Height / 2 + item.height - Main.itemTexture[item.type].Height + 2f);
+        }
+
+        public static bool MirrorCheck(Player player)
+        {
+            if (player.position.Y - 500f > Main.worldSurface * 16f)
+                return false;
+            int tileX = (int)(player.position.X + player.width / 2f) / 16;
+            int tileY = (int)(player.position.Y + player.height / 2f) / 16;
+            if (Main.tile[tileX, tileY] == null)
+                Main.tile[tileX, tileY] = new Tile();
+            if (AQWorldGen.TileObstructedFromLight(tileX, tileY))
+                return false;
+            for (int i = 0; i < 15; i++)
+            {
+                if (tileY - 1 - i <= 0)
+                    break;
+                if (Main.tile[tileX, tileY - 1 - i] == null)
+                    Main.tile[tileX, tileY - 1 - i] = new Tile();
+                if (AQWorldGen.TileObstructedFromLight(tileX, tileY - 1 - i))
+                    return false;
+            }
+            return true;
+        }
+
+        public static Color DemonSiegeItemAlpha(Color lightColor)
+        {
+            return new Color(lightColor.R * lightColor.R, lightColor.G * lightColor.G, lightColor.B * lightColor.B, lightColor.A);
         }
     }
 }

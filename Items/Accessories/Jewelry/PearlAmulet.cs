@@ -11,7 +11,7 @@ namespace AQMod.Items.Accessories.Jewelry
             item.width = 28;
             item.height = 28;
             item.accessory = true;
-            item.rare = AQItem.Rarities.CrabCreviceRare;
+            item.rare = AQItem.RarityCrabCrevice;
             item.value = AQItem.Prices.CrabCreviceValue;
         }
 

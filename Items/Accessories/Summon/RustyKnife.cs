@@ -14,7 +14,7 @@ namespace AQMod.Items.Accessories.Summon
             item.summon = true;
             item.width = 20;
             item.height = 20;
-            item.rare = AQItem.Rarities.DedicatedItem;
+            item.rare = AQItem.RarityDedicatedItem;
             item.accessory = true;
             item.value = Item.sellPrice(gold: 6);
         }
@@ -48,6 +48,6 @@ namespace AQMod.Items.Accessories.Summon
                 aQPlayer.omoriEffect = true;
         }
 
-        Color IDedicatedItem.Color => new Color(30, 255, 60, 255);
+        Color IDedicatedItem.DedicatedColoring => new Color(30, 255, 60, 255);
     }
 }

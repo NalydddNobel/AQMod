@@ -33,9 +33,9 @@ namespace AQMod.Items.Accessories.Summon
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.PygmyNecklace);
             r.AddIngredient(ModContent.ItemType<Breadsoul>());
             r.AddIngredient(ModContent.ItemType<Dreadsoul>());
+            r.AddIngredient(ItemID.PygmyNecklace);
             r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
             r.AddTile(TileID.TinkerersWorkbench);
             r.SetResult(this);

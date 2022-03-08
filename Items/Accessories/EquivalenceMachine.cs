@@ -10,7 +10,7 @@ namespace AQMod.Items.Accessories
             item.width = 16;
             item.height = 16;
             item.accessory = true;
-            item.rare = AQItem.Rarities.OmegaStariteRare;
+            item.rare = AQItem.RarityOmegaStarite;
             item.value = Item.buyPrice(gold: 80);
         }
 

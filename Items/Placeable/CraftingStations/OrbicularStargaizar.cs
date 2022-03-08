@@ -21,7 +21,7 @@ namespace AQMod.Items.Placeable.CraftingStations
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;
-            item.rare = AQItem.Rarities.OmegaStariteRare;
+            item.rare = ItemRarityID.Pink;
         }
 
         public override void AddRecipes()

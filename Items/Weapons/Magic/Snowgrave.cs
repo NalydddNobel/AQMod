@@ -20,7 +20,7 @@ namespace AQMod.Items.Weapons.Magic
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.useTime = 160;
             item.useAnimation = 160;
-            item.rare = AQItem.Rarities.GaleStreamsRare;
+            item.rare = AQItem.RarityGaleStreams;
             item.shootSpeed = 32f;
             item.autoReuse = true;
             item.noMelee = true;

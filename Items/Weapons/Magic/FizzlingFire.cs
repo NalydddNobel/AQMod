@@ -25,7 +25,7 @@ namespace AQMod.Items.Weapons.Magic
             item.height = 40;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = AQItem.Rarities.GoreNestRare;
+            item.rare = AQItem.RarityDemonSiege;
             item.shoot = ModContent.ProjectileType<Projectiles.Magic.FizzlingFire>();
             item.shootSpeed = 11.5f;
             item.mana = 30;

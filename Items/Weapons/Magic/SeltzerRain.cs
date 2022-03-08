@@ -1,4 +1,5 @@
 ﻿using AQMod.Dusts;
+using AQMod.Items.Materials.Energies;
 using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -73,6 +74,7 @@ namespace AQMod.Items.Weapons.Magic
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.DemoniteBar, 8);
+            r.AddIngredient(ModContent.ItemType<AquaticEnergy>());
             r.AddTile(TileID.Anvils);
             r.SetResult(this);
             r.AddRecipe();

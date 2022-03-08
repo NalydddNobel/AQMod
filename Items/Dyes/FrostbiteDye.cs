@@ -7,7 +7,7 @@ namespace AQMod.Items.Dyes
     public class FrostbiteDye : DyeItem
     {
         public override string Pass => "HoriztonalWavePass";
-        public override int Rarity => AQItem.Rarities.GaleStreamsRare - 1;
+        public override int Rarity => AQItem.RarityGaleStreams - 1;
 
         public override ArmorShaderData CreateShaderData()
         {

@@ -699,7 +699,7 @@ namespace AQMod.NPCs.Friendly
                 if (Main.time * 4.0 < Main.dayLength)
                 {
                     shop.item[nextSlot].SetDefaults(ItemID.Feather);
-                    shop.item[nextSlot].value = Item.buyPrice(silver: 50);
+                    shop.item[nextSlot].shopCustomPrice = Item.buyPrice(silver: 50);
                     nextSlot++;
                 }
             }

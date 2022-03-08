@@ -523,7 +523,7 @@ namespace AQMod.Effects
 
         public override bool IsActive()
         {
-            return (_active || _starites != null || FallingStars.stars != null || Intensity > 0f) && !AQMod.IsLoading;
+            return (_active || _starites != null || FallingStars.stars != null || Intensity > 0f) && !AQMod.Loading;
         }
 
         public override float GetCloudAlpha()

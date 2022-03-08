@@ -14,7 +14,7 @@ namespace AQMod.Items.Tools
         {
             item.width = 20;
             item.height = 28;
-            item.rare = AQItem.Rarities.OmegaStariteRare + 1;
+            item.rare = AQItem.RarityOmegaStarite + 1;
             item.value = Item.buyPrice(platinum: 1);
             item.useTime = 30;
             item.useAnimation = 30;

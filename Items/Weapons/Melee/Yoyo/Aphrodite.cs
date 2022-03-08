@@ -25,7 +25,7 @@ namespace AQMod.Items.Weapons.Melee.Yoyo
             item.knockBack = 4.11f;
             item.value = Item.sellPrice(silver: 10);
             item.UseSound = SoundID.Item1;
-            item.rare = AQItem.Rarities.CrabCreviceRare;
+            item.rare = AQItem.RarityCrabCrevice;
             item.channel = true;
             item.noMelee = true;
             item.noUseGraphic = true;

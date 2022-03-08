@@ -17,7 +17,7 @@ namespace AQMod.Items.Weapons.Melee
             item.height = 30;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = AQItem.Rarities.CrabCreviceRare;
+            item.rare = AQItem.RarityCrabCrevice;
             item.shoot = ModContent.ProjectileType<Projectiles.Melee.JerryClawFlail>();
             item.shootSpeed = 22f;
             item.UseSound = SoundID.Item1;

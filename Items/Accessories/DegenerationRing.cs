@@ -11,7 +11,7 @@ namespace AQMod.Items.Accessories
         {
             item.width = 28;
             item.height = 28;
-            item.rare = AQItem.Rarities.GoreNestRare;
+            item.rare = AQItem.RarityDemonSiege;
             item.value = Item.sellPrice(silver: 80);
             item.accessory = true;
         }

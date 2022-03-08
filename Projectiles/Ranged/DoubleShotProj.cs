@@ -42,14 +42,6 @@ namespace AQMod.Projectiles.Ranged
             Lighting.AddLight(projectile.position, new Vector3(0.2f, 0.1f, 0f));
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            if (!crit)
-            {
-                crit = Main.rand.NextBool();
-            }
-        }
-
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Main.PlaySound(SoundID.Dig, (int)projectile.position.X, (int)projectile.position.Y);

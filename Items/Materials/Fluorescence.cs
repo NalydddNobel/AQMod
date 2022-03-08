@@ -10,7 +10,7 @@ namespace AQMod.Items.Materials
             item.width = 12;
             item.height = 12;
             item.maxStack = 999;
-            item.rare = AQItem.Rarities.GaleStreamsRare;
+            item.rare = AQItem.RarityGaleStreams;
             item.value = Item.sellPrice(silver: 15);
         }
     }

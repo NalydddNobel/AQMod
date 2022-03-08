@@ -27,7 +27,7 @@ namespace AQMod.Items.Weapons.Summon
             item.noMelee = true;
             item.knockBack = 8f;
             item.value = AQItem.Prices.DemonSiegeWeaponValue;
-            item.rare = AQItem.Rarities.GoreNestRare + 2;
+            item.rare = AQItem.RarityDemonSiege;
             item.UseSound = SoundID.Item78;
             item.shoot = ModContent.ProjectileType<Projectiles.Summon.TrapperMinion>();
             item.buffType = ModContent.BuffType<Buffs.Summon.Trapper>();

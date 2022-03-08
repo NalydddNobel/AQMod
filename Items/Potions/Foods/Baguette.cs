@@ -19,7 +19,7 @@ namespace AQMod.Items.Potions.Foods
             item.UseSound = SoundID.Item2;
             item.maxStack = 999;
             item.consumable = true;
-            item.rare = AQItem.Rarities.DedicatedItem;
+            item.rare = AQItem.RarityDedicatedItem;
             item.value = Item.buyPrice(silver: 80);
             item.buffType = ModContent.BuffType<BaguetteBuff>();
             item.buffTime = 216000;
@@ -52,6 +52,6 @@ namespace AQMod.Items.Potions.Foods
             return true;
         }
 
-        Color IDedicatedItem.Color => new Color(187, 142, 42, 255);
+        Color IDedicatedItem.DedicatedColoring => new Color(187, 142, 42, 255);
     }
 }

@@ -25,7 +25,7 @@ namespace AQMod.Items.Accessories.Wings
             item.width = 24;
             item.height = 24;
             item.accessory = true;
-            item.rare = AQItem.Rarities.DedicatedItem;
+            item.rare = AQItem.RarityDedicatedItem;
             item.value = Item.sellPrice(gold: 20);
         }
 
@@ -173,6 +173,6 @@ namespace AQMod.Items.Accessories.Wings
             acceleration *= 3f;
         }
 
-        Color IDedicatedItem.Color => new Color(200, 125, 255, 255);
+        Color IDedicatedItem.DedicatedColoring => new Color(200, 125, 255, 255);
     }
 }

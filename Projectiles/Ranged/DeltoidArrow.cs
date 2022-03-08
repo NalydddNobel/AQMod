@@ -118,7 +118,7 @@ namespace AQMod.Projectiles.Ranged
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return AQItem.Commons.DemonSiegeItem_GetAlpha(lightColor);
+            return AQItem.DemonSiegeItemAlpha(lightColor);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

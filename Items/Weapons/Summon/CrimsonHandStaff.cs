@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Items.Materials.Energies;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -47,11 +48,12 @@ namespace AQMod.Items.Weapons.Summon
 
         public override void AddRecipes()
         {
-            var recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.CrimtaneBar, 15);
-            recipe.AddIngredient(ItemID.TissueSample, 8);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.CrimtaneBar, 15);
+            r.AddIngredient(ItemID.TissueSample, 8);
+            r.AddIngredient(ModContent.ItemType<OrganicEnergy>());
+            r.SetResult(this);
+            r.AddRecipe();
         }
     }
 }

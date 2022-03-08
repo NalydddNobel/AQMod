@@ -10,7 +10,7 @@ namespace AQMod.Items.Accessories
         {
             item.width = 20;
             item.height = 20;
-            item.rare = ItemRarityID.Blue;
+            item.rare = ItemRarityID.Green;
             item.value = Item.sellPrice(gold: 1);
             item.accessory = true;
         }
@@ -18,13 +18,22 @@ namespace AQMod.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.buffImmune[BuffID.Suffocation] = true;
+            player.pickSpeed *= 0.75f;
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.extractinator = true;
-            player.pickSpeed -= 0.1f;
-            if (!hideVisual)
-            {
-                aQPlayer.extractinatorVisible = true;
-            }
+            aQPlayer.extractorHelmet = 0;
+            aQPlayer.extractorAirMask = 0;
+            aQPlayer.reducedSiltDamage = true;
+            aQPlayer.extractinatorCounter = !hideVisual;
+        }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<ExtractorAirMask>());
+            r.AddIngredient(ModContent.ItemType<ExtractorHelmet>());
+            r.AddTile(TileID.TinkerersWorkbench);
+            r.SetResult(this);
+            r.AddRecipe();
         }
     }
 }

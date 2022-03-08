@@ -13,7 +13,7 @@ namespace AQMod.Items.Accessories.Summon
             item.width = 24;
             item.height = 24;
             item.accessory = true;
-            item.rare = ItemRarityID.Yellow;
+            item.rare = AQItem.RarityHardmodeDungeon;
             item.value = Item.sellPrice(gold: 10);
         }
 

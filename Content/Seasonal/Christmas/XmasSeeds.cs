@@ -38,7 +38,7 @@ namespace AQMod.Content.Seasonal.Christmas
                 bool christmasBackground = XmasWorld && WorldGen.gen; // originally this also ran on the title screen,
                                                                       // but for some reason there were conflicts with Modder's Toolkit
                 bool snowflakes = XmasWorld; // I like the snowflakes on the title screen :)
-                if (AQMod.IsLoading || AQMod.IsUnloading)
+                if (AQMod.Loading || AQMod.IsUnloading)
                 {
                     christmasBackground = false;
                     snowflakes = false;

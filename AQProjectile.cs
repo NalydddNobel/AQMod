@@ -32,7 +32,7 @@ namespace AQMod
             }
         }
 
-        public static class Sets
+        public sealed class Sets
         {
             public static HashSet<int> MinionHeadType { get; private set; }
             public static HashSet<int> MinionRotationalType { get; private set; }

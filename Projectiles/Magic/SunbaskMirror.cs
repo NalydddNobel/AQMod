@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace AQMod.Projectiles.Magic
 {
-    public class SunbaskMirror : mirrorProjectileType
+    public class SunbaskMirror : MirrorProj
     {
         protected override float LaserLength => 1000f;
         protected override Color LaserColor => new Color(255, 206, 115, 0);

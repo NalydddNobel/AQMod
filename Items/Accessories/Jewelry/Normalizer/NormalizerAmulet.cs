@@ -13,7 +13,7 @@ namespace AQMod.Items.Accessories.Jewelry.Normalizer
             item.height = 28;
             item.accessory = true;
             item.defense = 2;
-            item.rare = AQItem.Rarities.GaleStreamsRare + 1;
+            item.rare = AQItem.RarityGaleStreams + 1;
             item.value = (int)(AQItem.Prices.GaleStreamsWeaponValue * 1.5f);
         }
 

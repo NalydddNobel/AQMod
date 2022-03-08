@@ -23,7 +23,7 @@ namespace AQMod.Items.Weapons.Magic
             item.height = 32;
             item.noMelee = true;
             item.useStyle = ItemUseStyleID.HoldingOut;
-            item.rare = AQItem.Rarities.GoreNestRare;
+            item.rare = AQItem.RarityDemonSiege;
             item.shoot = ModContent.ProjectileType<Projectiles.Magic.Skrawler>();
             item.shootSpeed = 10f;
             item.mana = 12;

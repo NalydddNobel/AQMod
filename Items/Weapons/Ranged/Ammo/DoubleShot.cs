@@ -12,11 +12,10 @@ namespace AQMod.Items.Weapons.Ranged.Ammo
             item.damage = 4;
             item.consumable = true;
             item.maxStack = 999;
-            item.crit = 46;
             item.ranged = true;
             item.width = 4;
             item.height = 4;
-            item.rare = AQItem.Rarities.CrabCreviceRare;
+            item.rare = AQItem.RarityCrabCrevice;
             item.shoot = ModContent.ProjectileType<DoubleShotProj>();
             item.shootSpeed = 1.5f;
             item.UseSound = SoundID.Item1;
