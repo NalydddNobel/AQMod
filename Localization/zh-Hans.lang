@@ -7,6 +7,7 @@
 # Tooltips
 #===========================#
 
+Tooltips.UsesGel=使用凝胶作为弹药
 Tooltips.ExporterQuest=将此物交付于发货人
 Tooltips.Concocted=用于药水调配
 Tooltips.PaletteDrop=下列物品必定掉落
@@ -202,6 +203,11 @@ ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱对你造
 #===========================#
 # Weapons
 #===========================#
+
+ItemName.Flameblaster=火焰爆破器
+ItemTooltip.Flameblaster=右键发射气爆\n在神圣地形时格外有效\n{$Mods.AQMod.Tooltips.UsesGel}\n50%几率不消耗弹药\n'[c/ee2222:最热的]家用燃烧装置'
+ProjectileName.FlameblasterFire=火焰爆破器
+ProjectileName.FlameblasterWind=火焰爆破器烈风
 
 ItemName.CrusadersCrossbow=十字军弩
 ItemTooltip.CrusadersCrossbow=发射可以治疗或伤害敌人的治愈箭矢
@@ -583,6 +589,8 @@ ItemName.HealthCursorDye=生命光标染料
 ItemName.ManaCursorDye=法力光标染料
 ItemName.SwordCursorDye=剑刃光标染料
 ItemName.DemonicCursorDye=恶魔光标染料
+
+ItemName.TemperatureHairDye=气温染发剂
 
 ItemName.NalydDye=极顶染料
 ItemTooltip.NalydDye={$Mods.AQMod.Tooltips.Nalyddd}
@@ -1423,8 +1431,6 @@ ProjectileName.RainbowStarofHyperApocalypse=终末天启之七彩耀星
 ProjectileName.StriderCrab=长足蟹
 ProjectileName.StriderCrabLaser=长足蟹
 ProjectileName.SuperStarite=极耀源星
-ProjectileName.TemperatureBombCold=寒霜爆弹
-ProjectileName.TemperatureBombHot=灼炎爆弹
 ProjectileName.Trapper=捕魂钩
 
 # NPCs
