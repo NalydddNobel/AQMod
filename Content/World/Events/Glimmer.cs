@@ -4,7 +4,6 @@ using AQMod.Common.ID;
 using AQMod.Content.World.FallingStars;
 using AQMod.Effects;
 using AQMod.NPCs.Monsters.GlimmerMonsters;
-using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -284,25 +283,6 @@ namespace AQMod.Content.World.Events
 
         public static bool Activate()
         {
-            var statuePlacements = new List<TEGlimmeringStatue>();
-            foreach (var t in TileEntity.ByID)
-            {
-                if (t.Value is TEGlimmeringStatue statue && statue.Position.Y < Main.worldSurface)
-                    statuePlacements.Add(statue);
-            }
-            if (statuePlacements.Count > 0 && Main.rand.Next(100) + 1 < 95)
-            {
-                if (statuePlacements.Count == 1)
-                {
-                    ActivateAtCoordinates(statuePlacements[0].Position.X, statuePlacements[0].Position.Y);
-                }
-                else
-                {
-                    int randIndex = Main.rand.Next(statuePlacements.Count);
-                    ActivateAtCoordinates(statuePlacements[randIndex].Position.X, statuePlacements[randIndex].Position.Y);
-                }
-                return true;
-            }
             for (int i = 0; i < 100; i++)
             {
                 int x = Main.rand.Next(200, Main.maxTilesX - 200);

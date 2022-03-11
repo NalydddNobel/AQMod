@@ -7,6 +7,7 @@
 # Tooltips
 #===========================#
 
+Tooltips.UsesGel=Uses gel for ammo
 Tooltips.ExporterQuest=Return this to the exporter
 Tooltips.Concocted=Used in potion concoctions
 Tooltips.PaletteDrop=The item below is guaranteed to drop
@@ -203,8 +204,13 @@ ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% 
 # Weapons
 #===========================#
 
+ItemName.Flameblaster=Flameblaster
+ItemTooltip.Flameblaster=Right click to shoot an airblast\nExtra effective in the hallow\n{$Mods.AQMod.Tooltips.UsesGel}\n50% chance to not consume ammo\n'The [c/ee2222:HOTTEST] in Home Incendiary Devices'
+ProjectileName.FlameblasterFire=Flameblaster
+ProjectileName.FlameblasterWind=Flameblaster Wind
+
 ItemName.CrusadersCrossbow=Crusader's Crossbow
-ItemTooltip.CrusadersCrossbow=Shoots a healing bolt which will damage enemies or opposing teams
+ItemTooltip.CrusadersCrossbow=Shoots a healing bolt which can damage enemies or opposing teams
 ProjectileName.HealingBolt=Healing Bolt
 
 ItemName.DoubleShot=Double Shot
@@ -583,6 +589,8 @@ ItemName.HealthCursorDye=Health Cursor Dye
 ItemName.ManaCursorDye=Mana Cursor Dye
 ItemName.SwordCursorDye=Sword Cursor Dye
 ItemName.DemonicCursorDye=Demonic Cursor Dye
+
+ItemName.TemperatureHairDye=Temperature Hair Dye
 
 ItemName.NalydDye=Summit Dye
 ItemTooltip.NalydDye={$Mods.AQMod.Tooltips.Nalyddd}
@@ -1423,8 +1431,6 @@ ProjectileName.RainbowStarofHyperApocalypse=Rainbow Star of Hyper Apocalypse
 ProjectileName.StriderCrab=Strider Crab
 ProjectileName.StriderCrabLaser=Strider Crab
 ProjectileName.SuperStarite=Super Starite
-ProjectileName.TemperatureBombCold=Temperature Bomb
-ProjectileName.TemperatureBombHot=Temperature Bomb
 ProjectileName.Trapper=Trapper
 
 # NPCs

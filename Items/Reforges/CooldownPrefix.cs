@@ -15,8 +15,8 @@ namespace AQMod.Items.Reforges
             return base.Autoload(ref name) && ModContent.GetInstance<AQConfigServer>().cooldownReforges;
         }
 
-        public override bool CanRoll(Item item) => item.modItem is ICooldown || item.modItem is ICombo;
-        public override float RollChance(Item item) => 1f;
+        public override bool CanRoll(Item item) => !item.accessory && (item.modItem is ICooldown || item.modItem is ICombo);
+        public override float RollChance(Item item) => 12.5f;
 
         public override PrefixCategory Category => PrefixCategory.AnyWeapon;
 

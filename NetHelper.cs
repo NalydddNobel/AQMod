@@ -97,21 +97,6 @@ namespace AQMod
         }
         #endregion
 
-        #region Player
-
-        public static void SyncEncoreData(BossEncorePlayer bossEncore)
-        {
-            var p = AQMod.GetInstance().GetPacket();
-            p.Write(PacketType.Player_SyncEncoreData);
-            p.Write(bossEncore.player.whoAmI);
-            var buffer = bossEncore.SerializeEncoreRecords();
-            p.Write(buffer.Length);
-            p.Write(buffer);
-            p.Send();
-        }
-
-        #endregion
-
         #region Misc
         public static void RequestDungeonCoordinatesUpdate(bool setMapCoords = true)
         {
@@ -359,18 +344,6 @@ namespace AQMod
                                 Main.combatText[c].text = text; // TODO: make it properly center the text with the string measurement.
                             }
                         }
-                    }
-                    break;
-
-                case PacketType.Player_SyncEncoreData:
-                    {
-                        int p = reader.ReadInt32();
-                        l?.Log("Syncing encore data from: " + Main.player[p].name);
-                        int bufferLength = reader.ReadInt32();
-                        l?.Log("buffer length: " + bufferLength);
-                        var buffer = reader.ReadBytes(bufferLength);
-                        l?.Log("Spilling bytes: " + buffer.SpillArray());
-                        Main.player[p].GetModPlayer<BossEncorePlayer>().DeserialzeEncoreRecords(buffer);
                     }
                     break;
 

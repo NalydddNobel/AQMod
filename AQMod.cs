@@ -44,6 +44,9 @@ namespace AQMod
         public const string TextureNone = "AQMod/Assets/None";
         public static Color MysteriousGuideTooltip => Color.CornflowerBlue * 4f;
         public static Color DemonSiegeTooltip => new Color(255, 220, 10, 255) * 4f;
+        public static Vector2 Zero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
+        public static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+        public static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
 
         public static AQMod GetInstance()
         {
@@ -669,6 +672,20 @@ namespace AQMod
             {
                 player.QuickSpawnItem(items[Main.rand.Next(items.Count)]);
             }
+        }
+
+        public static Matrix GetWorldViewPoint()
+        {
+            GraphicsDevice graphics = Main.graphics.GraphicsDevice;
+            Vector2 screenZoom = Main.GameViewMatrix.Zoom;
+            int width = graphics.Viewport.Width;
+            int height = graphics.Viewport.Height;
+
+            var zoom = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
+                Matrix.CreateTranslation(width / 2f, height / -2f, 0) *
+                Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(screenZoom.X, screenZoom.Y, 1f);
+            var projection = Matrix.CreateOrthographic(width, height, 0, 1000);
+            return zoom * projection;
         }
     }
 }

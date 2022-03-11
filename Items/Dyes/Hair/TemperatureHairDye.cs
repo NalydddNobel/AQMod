@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace AQMod.Items.Misc.Hair
+namespace AQMod.Items.Dyes.Hair
 {
     public class TemperatureHairDye : HairDyeItem
     {

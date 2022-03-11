@@ -1,10 +1,7 @@
 ﻿using AQMod.Common.WorldGeneration;
 using AQMod.Items.Placeable.Furniture;
-using AQMod.Items.Tools.Map;
-using AQMod.Tiles.TileEntities;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -74,7 +71,6 @@ namespace AQMod.Tiles.Furniture
             Main.tileFrameImportant[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.AnchorInvalidTiles = new[] { (int)TileID.MagicalIceBlock, };
-            TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(ModContent.GetInstance<TEGlobe>().Hook_AfterPlacement, -1, 0, true);
             TileObjectData.addTile(Type);
             dustType = DustID.Stone;
             disableSmartCursor = true;
@@ -84,31 +80,6 @@ namespace AQMod.Tiles.Furniture
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<GlobeItem>());
-            int index = ModContent.GetInstance<TEGlobe>().Find(i, j);
-            if (index == -1)
-            {
-                var g = (TEGlobe)TileEntity.ByID[index];
-                foreach (var text in g.LegacyMarkers)
-                {
-                    switch (text)
-                    {
-                        case "CosmicMarker":
-                            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<CosmicTelescope>());
-                            break;
-                        case "DungeonMarker":
-                            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<DungeonMap>());
-                            break;
-                        case "LihzahrdMarker":
-                            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<LihzahrdMap>());
-                            break;
-                        case "RetroMarker":
-                            Item.NewItem(i * 16, j * 16, 32, 32, ModContent.ItemType<RetroGoggles>());
-                            break;
-                    }
-                }
-                return;
-            }
-            ModContent.GetInstance<TEGlobe>().Kill(i, j);
         }
     }
 }

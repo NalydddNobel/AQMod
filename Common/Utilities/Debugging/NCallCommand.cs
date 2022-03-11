@@ -7,6 +7,7 @@ using AQMod.Content.World.Generation;
 using AQMod.Items;
 using AQMod.Localization;
 using AQMod.NPCs.Monsters;
+using AQMod.Tiles;
 using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
@@ -412,20 +413,6 @@ namespace AQMod.Common.Utilities.Debugging
                     }
                     break;
 
-                case "writeencore":
-                    {
-                        var bossEncore = caller.Player.GetModPlayer<BossEncorePlayer>();
-                        string path = DebugFolderPath;
-                        Directory.CreateDirectory(path);
-                        var buffer = bossEncore.SerializeEncoreRecords();
-                        var stream = File.Create(path + Path.DirectorySeparatorChar + "encorekills.txt", buffer.Length);
-                        stream.Write(buffer, 0, buffer.Length);
-                        Utils.OpenFolder(path);
-                        bossEncore.DeserialzeEncoreRecords(buffer);
-                        stream.Dispose();
-                    }
-                    break;
-
                 case "npcssetname":
                     {
                         string name = args[1];
@@ -465,7 +452,7 @@ namespace AQMod.Common.Utilities.Debugging
 
                 case "placeglimmer":
                     {
-                        caller.Reply("placed correctly: " + GlimmeringStatue.TryGenGlimmeringStatue((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
+                        caller.Reply("placed correctly: " + GlimmeringStatueTile.TryGen((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
                     }
                     break;
 

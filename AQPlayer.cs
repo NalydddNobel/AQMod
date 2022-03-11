@@ -317,6 +317,8 @@ namespace AQMod
         public int ExtractinatorCount;
         public bool IgnoreIgnoreMoons;
 
+        public (int, int)[] AmmoUsageData;
+
         public override void Initialize()
         {
             extractinatorBlipDelay = 0;
@@ -342,6 +344,7 @@ namespace AQMod
             hookDebuffs = new List<BuffData>();
             meathookUI = false;
             interactionDelay = 0;
+            AmmoUsageData = new (int, int)[4];
         }
 
         public override void OnEnterWorld(Player player)

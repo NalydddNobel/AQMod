@@ -34,7 +34,7 @@ namespace AQMod.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int index = AQItem.FindTTLineSpot(tooltips, "Tooltip#");
+            int index = AQItem.GetLineIndex(tooltips, "Material");
             tooltips.Insert(index - 1, new TooltipLine(mod, "Knockback", AQItem.KBTooltip(item.knockBack)));
             tooltips.Insert(index - 1, new TooltipLine(mod, "Speed", AQItem.UseAnimTooltip(item.useTime)));
             if (!Main.hardMode || WorldDefeats.DownedGaleStreams)
@@ -69,7 +69,7 @@ namespace AQMod.Items.Tools
             Main.windSpeedTemp = Main.windSpeedSet;
             if (Main.netMode != NetmodeID.SinglePlayer)
                 NetHelper.UpdateWindSpeeds();
-            Projectiles.FriendlyWind.NewWind(player, position, new Vector2(speedX, speedY), item.knockBack / 10f, 60, 80);
+            AQProjectile.NewWind(player, position, new Vector2(speedX, speedY), item.knockBack / 10f, 60, 80);
             return false;
         }
     }

@@ -3,6 +3,7 @@ using AQMod.Content.Players;
 using AQMod.Dusts;
 using AQMod.Items.Misc.Bait;
 using AQMod.NPCs;
+using AQMod.Projectiles;
 using AQMod.Projectiles.GrapplingHooks;
 using AQMod.Projectiles.Summon;
 using Microsoft.Xna.Framework;
@@ -55,13 +56,11 @@ namespace AQMod
                             projectile.aiStyle == AIStyles.BoomerangAI || projectile.aiStyle == AIStyles.ExplosiveAI || projectile.aiStyle == AIStyles.HarpNotesAI ||
                             projectile.aiStyle == AIStyles.BounceAI || projectile.aiStyle == AIStyles.CrystalStormAI)
                         {
-                            continue;
+                            EffectedByWind.Add(i);
                         }
-                        EffectedByWind.Add(i);
                     }
                     catch (Exception e)
                     {
-                        EffectedByWind.Add(i);
                         var l = AQMod.GetInstance().Logger;
                         string projectileName;
                         if (i > Main.maxProjectileTypes)
@@ -244,7 +243,7 @@ namespace AQMod
             return IsBarb = projectile.aiStyle == 7 && projectile.friendly && !projectile.hostile && !Sets.HookBarbBlacklist.Contains(projectile.type);
         }
 
-        public bool ShouldApplyWindMechanics(Projectile projectile)
+        public bool CanApplyWind(Projectile projectile)
         {
             return !windStruck && Sets.EffectedByWind.Contains(projectile.type);
         }
@@ -812,6 +811,31 @@ namespace AQMod
             if (active)
                 projectile.timeLeft = 2;
             return active;
+        }
+
+        public static int NewWind(Player player, Vector2 position, Vector2 velocity, float windSpeed, int lifeSpan = 300, int size = 40, int extraUpdates = 0, bool hide = false)
+        {
+            return NewWind<FriendlyWind>(player, position, velocity, windSpeed, lifeSpan, size, extraUpdates);
+        }
+        public static int NewWind<T>(Player player, Vector2 position, Vector2 velocity, float windSpeed, int lifeSpan = 300, int size = 40, int extraUpdates = 0, bool hide = false) where T : FriendlyWind
+        {
+            int p = Projectile.NewProjectile(position, velocity, ModContent.ProjectileType<T>(), -1, windSpeed, player.whoAmI);
+            Main.projectile[p].width = size;
+            Main.projectile[p].height = size;
+            Main.projectile[p].Center = position;
+            Main.projectile[p].timeLeft = lifeSpan;
+            Main.projectile[p].extraUpdates = extraUpdates;
+            Main.projectile[p].hide = hide;
+            return p;
+        }
+
+        public static void Scale(Projectile projectile, int amt)
+        {
+            projectile.position.X -= amt / 2f;
+            projectile.position.Y -= amt / 2f;
+            projectile.width += amt;
+            projectile.height += amt;
+            projectile.netUpdate = true;
         }
     }
 }

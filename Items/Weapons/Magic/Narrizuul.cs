@@ -31,7 +31,7 @@ namespace AQMod.Items.Weapons.Magic
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(gold: 50);
             item.mana = 7;
-            item.shoot = ModContent.ProjectileType<Projectiles.Magic.Narrizuul>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Magic.NarrizuulProj>();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

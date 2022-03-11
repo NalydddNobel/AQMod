@@ -1,5 +1,6 @@
 ﻿using AQMod.Content.World.Generation;
 using AQMod.Localization;
+using AQMod.Tiles;
 using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
@@ -50,7 +51,7 @@ namespace AQMod.Common.WorldGeneration
                 }
                 int x = WorldGen.genRand.Next(rect.X, rect.X + rect.Width);
                 int y = WorldGen.genRand.Next(rect.Y, rect.Y + rect.Height);
-                if (GlimmeringStatue.TryGenGlimmeringStatue(x, y))
+                if (GlimmeringStatueTile.TryGen(x, y))
                 {
                     glimmerCount++;
                     if (glimmerCount >= glimmerMax)

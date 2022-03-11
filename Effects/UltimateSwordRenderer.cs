@@ -5,7 +5,7 @@ using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Items.Weapons.Melee;
 using AQMod.NPCs.Bosses;
-using AQMod.Tiles.Nature;
+using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -113,7 +113,7 @@ namespace AQMod.Effects
                     int y = (int)((1f - progress) * _maxHeight);
                     y += (int)(Glimmer.tileY * 16f - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f);
                     x += Glimmer.tileX * 16;
-                    if (Framing.GetTileSafely(Glimmer.tileX, Glimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
+                    if (Framing.GetTileSafely(Glimmer.tileX, Glimmer.tileY).type == ModContent.TileType<GlimmeringStatueTile>())
                     {
                         x += 16;
                     }
@@ -182,7 +182,7 @@ namespace AQMod.Effects
             if (renderUltimateSword)
             {
                 float x = Glimmer.tileX * 16f;
-                if (Framing.GetTileSafely(Glimmer.tileX, Glimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
+                if (Framing.GetTileSafely(Glimmer.tileX, Glimmer.tileY).type == ModContent.TileType<GlimmeringStatueTile>())
                 {
                     x += 16f;
                 }
@@ -249,7 +249,7 @@ namespace AQMod.Effects
                 return;
             }
             float x = Glimmer.tileX * 16f;
-            if (Framing.GetTileSafely(Glimmer.tileX, Glimmer.tileY).type == ModContent.TileType<GlimmeringStatue>())
+            if (Framing.GetTileSafely(Glimmer.tileX, Glimmer.tileY).type == ModContent.TileType<GlimmeringStatueTile>())
             {
                 x += 16f;
             }

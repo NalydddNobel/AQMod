@@ -39,7 +39,7 @@ namespace AQMod.Projectiles.Ranged.Healing
                     if (Main.player[plr].team == Main.player[projectile.owner].team)
                     {
                         int healing = Main.DamageVar(projectile.damage / 2f);
-                        Main.player[plr].HealEffect(healing, broadcast: false);
+                        //Main.player[plr].HealEffect(healing, broadcast: false);
                         Main.player[plr].statLife += healing;
                         if (Main.player[plr].statLife > Main.player[plr].statLifeMax2)
                         {

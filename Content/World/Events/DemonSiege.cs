@@ -448,9 +448,9 @@ namespace AQMod.Content.World.Events
             }
             if (UpgradeTime == 0)
             {
+                WorldDefeats.DownedDemonSiege = true;
                 UpgradeItem(doEffects: true);
                 Deactivate();
-                WorldDefeats.DownedDemonSiege = true;
                 if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(MessageID.WorldData);

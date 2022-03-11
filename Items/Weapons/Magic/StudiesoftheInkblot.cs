@@ -47,7 +47,7 @@ namespace AQMod.Items.Weapons.Magic
                 item.damage = 600;
                 item.useTime = 62;
                 item.useAnimation = 62;
-                item.mana = 20;
+                item.mana = 80;
             }
             else
             {
@@ -97,6 +97,7 @@ namespace AQMod.Items.Weapons.Magic
                 {
                     aQPlayer.itemCombo = (ushort)(item.useTime * 2);
                 }
+                DefaultUse();
             }
             else
             {
@@ -118,9 +119,9 @@ namespace AQMod.Items.Weapons.Magic
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.LunarFlareBook);
             r.AddIngredient(ItemID.SpellTome);
-            r.AddIngredient(ItemID.Shrimp);
+            r.AddIngredient(ItemID.Shrimp, 5);
             r.AddIngredient(ItemID.SuspiciousLookingEye);
-            r.AddIngredient(ItemID.BlackInk, 5);
+            r.AddIngredient(ItemID.BlackInk);
             r.SetResult(this);
             r.AddTile(TileID.LunarCraftingStation);
             r.AddRecipe();

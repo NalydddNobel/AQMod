@@ -6,24 +6,15 @@ using AQMod.Effects.Wind;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Projectiles
 {
-    public sealed class FriendlyWind : ModProjectile
+    public class FriendlyWind : ModProjectile
     {
-        public static int NewWind(Player player, Vector2 position, Vector2 velocity, float windSpeed, int lifeSpan = 300, int size = 40)
-        {
-            int p = Projectile.NewProjectile(position, velocity, ModContent.ProjectileType<FriendlyWind>(), -1, windSpeed, player.whoAmI);
-            Main.projectile[p].width = size;
-            Main.projectile[p].height = size;
-            Main.projectile[p].Center = position;
-            Main.projectile[p].timeLeft = lifeSpan;
-            return p;
-        }
-
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailingMode[projectile.type] = 2;
@@ -90,11 +81,14 @@ namespace AQMod.Projectiles
                 var target = Main.projectile[i];
                 if (i != projectile.whoAmI && target.active)
                 {
-                    var aQProjectile = target.GetGlobalProjectile<AQProjectile>();
-                    if (aQProjectile.ShouldApplyWindMechanics(target) && projectile.Colliding(projectile.getRect(), target.getRect()))
+                    if (projectile.Colliding(projectile.getRect(), target.getRect()))
                     {
-                        aQProjectile.ApplyWindMechanics(target, Vector2.Normalize(projectile.velocity) * projectile.knockBack);
-                        target.netUpdate = true;
+                        var aQProjectile = target.GetGlobalProjectile<AQProjectile>();
+                        if (aQProjectile.CanApplyWind(target))
+                        {
+                            aQProjectile.ApplyWindMechanics(target, Vector2.Normalize(projectile.velocity) * projectile.knockBack);
+                            target.netUpdate = true;
+                        }
                     }
                 }
             }
@@ -113,8 +107,28 @@ namespace AQMod.Projectiles
             }
         }
 
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(projectile.width);
+            writer.Write(projectile.height);
+            writer.Write(projectile.extraUpdates);
+            writer.Write(projectile.hide);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            projectile.width = reader.ReadInt32();
+            projectile.height = reader.ReadInt32();
+            projectile.extraUpdates = reader.ReadInt32();
+            projectile.hide = reader.ReadBoolean();
+        }
+
         public override void Kill(int timeLeft)
         {
+            if (projectile.hide)
+            {
+                return;
+            }
             AQGraphics.SetCullPadding(padding: 50);
             if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive && AQGraphics.Cull_WorldPosition(projectile.getRect()))
             {

@@ -2,6 +2,7 @@
 using AQMod.Items.Potions;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.GrapplingHooks;
+using AQMod.Items.Weapons.Ranged.Healing;
 using AQMod.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -190,7 +191,7 @@ namespace AQMod.NPCs.Monsters
             Rectangle rect = npc.getRect();
             if (NPC.CountNPCS(npc.type) <= 1)
             {
-                var choices = new List<int> { ModContent.ItemType<TargeoftheBlodded>(), };
+                var choices = new List<int> { ModContent.ItemType<TargeoftheBlodded>(), ModContent.ItemType<CrusadersCrossbow>(), };
                 for (int i = 0; i < 3; i++)
                 {
                     randDrops();

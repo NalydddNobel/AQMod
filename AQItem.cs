@@ -57,8 +57,8 @@ namespace AQMod
 
             internal static void Load()
             {
-                ItemIDRenewalBlacklist = new HashSet<int>() 
-                { 
+                ItemIDRenewalBlacklist = new HashSet<int>()
+                {
                     ItemID.RocketII,
                     ItemID.RocketIV,
                     ItemID.Ale,
@@ -66,8 +66,8 @@ namespace AQMod
                     ItemID.Seed,
                     ItemID.Wire,
                 };
-                AmmoIDRenewalBlacklist = new HashSet<int>() 
-                { 
+                AmmoIDRenewalBlacklist = new HashSet<int>()
+                {
                     AmmoID.FallenStar,
                     AmmoID.Gel,
                     AmmoID.Sand,
@@ -161,6 +161,60 @@ namespace AQMod
         internal const int RarityLunaticCultist = ItemRarityID.Cyan;
         internal const int RarityPillars = ItemRarityID.Red;
         internal const int RarityMoonLord = ItemRarityID.Red;
+
+        private static readonly string[] TooltipNames = new string[]
+        {
+            "ItemName",
+            "Favorite",
+            "FavoriteDesc",
+            "Social",
+            "SocialDesc",
+            "Damage",
+            "CritChance",
+            "Speed",
+            "Knockback",
+            "FishingPower",
+            "NeedsBait",
+            "BaitPower",
+            "Equipable",
+            "WandConsumes",
+            "Quest",
+            "Vanity",
+            "Defense",
+            "PickPower",
+            "AxePower",
+            "HammerPower",
+            "TileBoost",
+            "HealLife",
+            "HealMana",
+            "UseMana",
+            "Placeable",
+            "Ammo",
+            "Consumable",
+            "Material",
+            "Tooltip#",
+            "EtherianManaWarning",
+            "WellFedExpert",
+            "BuffTime",
+            "OneDropLogo",
+            "PrefixDamage",
+            "PrefixSpeed",
+            "PrefixCritChance",
+            "PrefixUseMana",
+            "PrefixSize",
+            "PrefixShootSpeed",
+            "PrefixKnockback",
+            "PrefixAccDefense",
+            "PrefixAccMaxMana",
+            "PrefixAccCritChance",
+            "PrefixAccDamage",
+            "PrefixAccMoveSpeed",
+            "PrefixAccMeleeSpeed",
+            "SetBonus",
+            "Expert",
+            "SpecialPrice",
+            "Price",
+        };
 
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
@@ -496,7 +550,7 @@ namespace AQMod
                 ushort cooldown = cool.Cooldown(player, aQPlayer);
                 if (cooldown > 0)
                 {
-                    return aQPlayer.ItemCooldownCheck(cooldown, item: item);
+                    return aQPlayer.ItemCooldownCheck(0, item: item);
                 }
             }
             return true;
@@ -504,6 +558,19 @@ namespace AQMod
         public override bool CanUseItem(Item item, Player player)
         {
             return CooldownCheck(item, player);
+        }
+        public override bool UseItem(Item item, Player player)
+        {
+            if (item.modItem is ICooldown cool)
+            {
+                var aQPlayer = player.GetModPlayer<AQPlayer>();
+                ushort cooldown = cool.Cooldown(player, aQPlayer);
+                if (cooldown > 0)
+                {
+                    aQPlayer.ItemCooldownCheck(0, item: item);
+                }
+            }
+            return false;
         }
 
         public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
@@ -1074,6 +1141,31 @@ namespace AQMod
         public static Color DemonSiegeItemAlpha(Color lightColor)
         {
             return new Color(lightColor.R * lightColor.R, lightColor.G * lightColor.G, lightColor.B * lightColor.B, lightColor.A);
+        }
+
+        public static int GetLineIndex(List<TooltipLine> tooltips, string lineName)
+        {
+            int myIndex = InternalLineIndexFinder(lineName);
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (tooltips[i].mod == "Terraria" && InternalLineIndexFinder(tooltips[i].Name) >= myIndex)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+
+        private static int InternalLineIndexFinder(string name)
+        {
+            for (int i = 0; i < TooltipNames.Length; i++)
+            {
+                if (name == TooltipNames[i])
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }

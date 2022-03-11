@@ -1,3 +1,43 @@
+####### 1.4.3 #######
+
+# Additions:
+Added the Kochfrost Staff, a summon weapon crafted using materials from the Space Squid!
+Added the Amulet, a base item for all 'Amulet' accessories instead of the Shackle
+Added the Glow Band, an accessory which lets you emit light and provides small defense
+Added the Double Shot, a bullet which shoots double
+Added the Crusader's Crossbow, a bow weapon dropped from Blood Moon Mimics 
+Added the Flameblaster, an upgrade to the Flamethrower which has increased range, damage, and a special right click function
+
+Added the Air Filter and Head Plate, two mining/extractinator related accessories
+Added a recipe for the "Extractor", renamed it to the "Extractor Cog", and resprited it
+
+Added a right click function to the Studies of the Inkblot
+
+The Memorialist now sells the Gore Nest in Hardmode
+Crabson now drops Crustacium Blobs so Crustacium is now renewable
+
+# Changes:
+Resprited the Copper, Silver, Gold, and Platinum Seals
+Renamed the Spiritual Relic to "Spiritual Amulet", and resprited it
+Renamed the Quasicrystal to "Quasicrystal Amulet" and resprited it
+Resprited the Light, Dark, and Neutrality Amulets
+The Light, Dark, and Neutrality Amulets now make you deal 10% more damage to their enemy types instead of take 10% less damage
+
+The Scarlet Sea and Seltzer Rain now use Aquatic Energy in their recipes
+The Corrupt Pot and Crimson Hand Staff now use Organic Energy in their recipes
+
+# Fixes:
+Saint's Flow and Spicy Eel now properly say "Minor improvements to all stats"
+Fixed Cursor Dyes being broken, again
+Aequus fish should no longer accidentally completely override vanilla/other mod's fish 
+The Mod should now properly reload if you disable cooldown reforges
+The Gore Nest should no longer get destroyed by lava
+The Gore Nest should now be flagged as completed in boss checklist when you complete the Demon Siege 
+
+Removals:
+Removed the Encore Potion, as it was very buggy and useless
+Removed Spiraling Twilight, as it was a very random and old addition which I don't approve of anymore
+
 ####### 1.4.2 #######
 
 # Additions:

@@ -96,7 +96,8 @@ namespace AQMod
             }
             var p = (AQConfigServer)pendingConfig;
             if (p.debugCommand != debugCommand ||
-                p.demonSiegeDowngrades != demonSiegeDowngrades)
+                p.demonSiegeDowngrades != demonSiegeDowngrades || 
+                p.cooldownReforges != cooldownReforges)
             {
                 return true;
             }

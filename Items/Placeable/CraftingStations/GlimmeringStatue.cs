@@ -1,7 +1,8 @@
-﻿using Terraria.ID;
+﻿using AQMod.Tiles;
+using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable.Nature
+namespace AQMod.Items.Placeable.CraftingStations
 {
     public class GlimmeringStatue : ModItem
     {
@@ -14,7 +15,7 @@ namespace AQMod.Items.Placeable.Nature
             item.useTime = 10;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<Tiles.Nature.GlimmeringStatue>();
+            item.createTile = ModContent.TileType<GlimmeringStatueTile>();
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;

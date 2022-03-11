@@ -261,7 +261,7 @@ namespace AQMod.Common.CrossMod
                    en_US: "Demon Siege",
                    zh_Hans: "恶魔围攻",
                    ru_RU: "Осада Демонов"),
-            (Func<bool>)(() => WorldDefeats.DownedGaleStreams),
+            (Func<bool>)(() => WorldDefeats.DownedDemonSiege),
             0,
             new List<int>()
             {
