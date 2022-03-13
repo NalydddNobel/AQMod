@@ -34,13 +34,13 @@ ItemTooltip.Molite={$Mods.AQMod.Tooltips.Concocted}\n翻倍药水的效力
 ItemName.MoliteTag=元星药水
 ItemTooltip.MoliteTag=具有双倍的效力
 
-ItemName.MushroomClam=奇异蛤蜊
-ItemTooltip.MushroomClam=在海滩或蟹状裂隙处使用以召唤巨蟹蛤\n{$Mods.AQMod.Common.NotConsumable}
+ItemName.MushroomClam=催眠珍珠
+ItemTooltip.MushroomClam=在螃蟹洞中使用以召唤巨蟹蛤\n{$Mods.AQMod.Common.NotConsumable}
 
 ItemName.NovaFruit=新星果
 ItemTooltip.NovaFruit=在夜晚使用以召唤终末之星\n{$Mods.AQMod.Common.NotConsumable}
 
-ItemName.MythicStarfruit=秘星果
+ItemName.MythicStarfruit=星系星果
 ItemTooltip.MythicStarfruit=召唤一道奇异微光
 
 BuffName.ManaDrain=法力枯竭
@@ -397,6 +397,9 @@ ItemTooltip.Combfish=具有再生特性
 ItemName.LarvaEel=寄生鳗幼虫
 ItemTooltip.LarvaEel=提供生命再生
 
+
+
+
 #===========================#
 # Tools
 #===========================#
@@ -469,6 +472,9 @@ MapLayerToggle.Beeswax=显示所有可见的世纪之花花苞的位置
 #===========================#
 # Tiles
 #===========================#
+ItemName.GlimmeringStatue=终极晶体
+ItemTooltip.GlimmeringStatue=用于制作由能量构成的强大物品
+MapObject.GlimmeringStatueTile=终极晶体
 
 ItemName.SedimentSandBlock=沉积沙块
 ItemTooltip.SedimentSandBlock=不会坠落
@@ -1134,7 +1140,6 @@ ItemTooltip.SparklingTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 ItemName.MoonlightWall=月光墙
 ItemTooltip.MoonlightWall=墙壁前的NPC会认为现在处于晚上
 ItemName.OceanRavineWall=海沟墙
-ItemName.GlimmeringStatue=烁光雕像
 # Other Placeables
 ItemName.ExoticCoral=奇异珊瑚
 ItemName.ExoticStarfish=奇异海星
@@ -1281,8 +1286,6 @@ ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 #############
 # Placeable #
 #############
-# World Interactors
-ItemTooltip.GlimmeringStatue=有极高的几率吸引微光之源
 # Other Placeables
 ItemTooltip.FishingCraftingStation=用于制作特殊的钓鱼物品
 ItemTooltip.GlobeItem='探索世界'
