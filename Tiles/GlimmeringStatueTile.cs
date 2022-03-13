@@ -24,6 +24,8 @@ namespace AQMod.Tiles
             TileObjectData.addTile(Type);
             AddMapEntry(new Color(75, 139, 166), CreateMapEntryName());
             dustType = 15;
+            soundType = SoundID.Shatter;
+            soundStyle = 1;
             disableSmartCursor = true;
         }
 
@@ -67,7 +69,7 @@ namespace AQMod.Tiles
         {
             var texture = ModContent.GetTexture(this.GetPath("_Glow"));
             var frame = new Rectangle(Main.tile[i, j].frameX, Main.tile[i, j].frameY, 16, Main.tile[i, j].frameY == 36 ? 18 : 16);
-            spriteBatch.Draw(texture, new Vector2(i * 16f, j * 16f) - Main.screenPosition + AQMod.Zero, frame, new Color(255, 255, 255, 255), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, new Vector2(i * 16f, j * 16f) - Main.screenPosition + AQMod.Zero, frame, new Color(255, 255, 255, 255) * AQUtils.Wave(Main.GlobalTime * 5f, 0.2f, 0.3f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
         internal static bool TryGen(int x, int y)

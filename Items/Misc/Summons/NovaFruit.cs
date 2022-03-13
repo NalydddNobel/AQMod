@@ -4,8 +4,10 @@ using AQMod.Effects;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Placeable.CraftingStations;
 using AQMod.Localization;
 using AQMod.NPCs.Bosses;
+using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -154,17 +156,9 @@ namespace AQMod.Items.Misc.Summons
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 5);
             r.AddIngredient(ItemID.HellstoneBar, 15);
-            r.AddIngredient(ItemID.CrystalShard, 8);
-            r.AddTile(TileID.DemonAltar);
-            r.SetResult(this);
-            r.AddRecipe();
-            r = new ModRecipe(mod);
-            r.AddIngredient(ModContent.ItemType<UltimateEnergy>());
-            r.AddIngredient(ItemID.HellstoneBar, 15);
-            r.AddIngredient(ModContent.ItemType<LightMatter>(), 8);
-            r.AddTile(TileID.DemonAltar);
+            r.AddTile(ModContent.TileType<GlimmeringStatueTile>());
             r.SetResult(this);
             r.AddRecipe();
         }

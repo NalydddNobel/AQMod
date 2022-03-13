@@ -34,15 +34,15 @@ namespace AQMod.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int index = AQItem.GetLineIndex(tooltips, "Material");
-            tooltips.Insert(index - 1, new TooltipLine(mod, "Knockback", AQItem.KBTooltip(item.knockBack)));
-            tooltips.Insert(index - 1, new TooltipLine(mod, "Speed", AQItem.UseAnimTooltip(item.useTime)));
-            if (!Main.hardMode || WorldDefeats.DownedGaleStreams)
-            {
-                return;
-            }
             try
             {
+                int index = AQItem.GetLineIndex(tooltips, "Material");
+                tooltips.Insert(index, new TooltipLine(mod, "Knockback", AQItem.KBTooltip(item.knockBack)));
+                tooltips.Insert(index, new TooltipLine(mod, "Speed", AQItem.UseAnimTooltip(item.useTime)));
+                if (!Main.hardMode || WorldDefeats.DownedGaleStreams)
+                {
+                    return;
+                }
                 tooltips.Insert(index + 2, new TooltipLine(mod, "StartsGaleStreams", Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.TheFan.0")) { overrideColor = AQMod.MysteriousGuideTooltip, });
             }
             catch

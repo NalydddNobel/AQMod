@@ -34,13 +34,13 @@ ItemTooltip.Molite={$Mods.AQMod.Tooltips.Concocted}\nDoubles the length of potio
 ItemName.MoliteTag=Starbyte Potion
 ItemTooltip.MoliteTag=Has double the length
 
-ItemName.MushroomClam=Exotic Clam
-ItemTooltip.MushroomClam=Summons Crabson at the beach or crab crevice\n{$Mods.AQMod.Common.NotConsumable}
+ItemName.MushroomClam=Hypnotic Pearl
+ItemTooltip.MushroomClam=Summons Crabson at the crab caves\n{$Mods.AQMod.Common.NotConsumable}
 
 ItemName.NovaFruit=Nova Fruit
 ItemTooltip.NovaFruit=Summons Omega Starite at night\n{$Mods.AQMod.Common.NotConsumable}
 
-ItemName.MythicStarfruit=Mythic Starfruit
+ItemName.MythicStarfruit=Galactic Starfruit
 ItemTooltip.MythicStarfruit=Summons a strange glimmer
 
 BuffName.ManaDrain=Magical Drain
@@ -397,6 +397,9 @@ ItemTooltip.Combfish=Has regenerative properties
 ItemName.LarvaEel=Larva Eel
 ItemTooltip.LarvaEel=Provides life regeneration
 
+
+
+
 #===========================#
 # Tools
 #===========================#
@@ -469,6 +472,9 @@ MapLayerToggle.Beeswax=Shows the location of any visible Plantera bulbs
 #===========================#
 # Tiles
 #===========================#
+ItemName.GlimmeringStatue=Ultimate Crystal
+ItemTooltip.GlimmeringStatue=Used to craft powerful items made of energy
+MapObject.GlimmeringStatueTile=Ultimate Crystal
 
 ItemName.SedimentSandBlock=Sedimentary Sand Block
 ItemTooltip.SedimentSandBlock=Does not fall
@@ -1134,7 +1140,6 @@ ItemTooltip.SparklingTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 ItemName.MoonlightWall=Moonlight Wall
 ItemTooltip.MoonlightWall=NPCs in front of the wall will think it's night
 ItemName.OceanRavineWall=Ocean Ravine Wall
-ItemName.GlimmeringStatue=Glimmering Statue
 # Other Placeables
 ItemName.ExoticCoral=Exotic Coral
 ItemName.ExoticStarfish=Exotic Starfish
@@ -1281,8 +1286,6 @@ ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 #############
 # Placeable #
 #############
-# World Interactors
-ItemTooltip.GlimmeringStatue=Has a very high chance to attract the source of the glimmer
 # Other Placeables
 ItemTooltip.FishingCraftingStation=Used to craft special fishing items
 ItemTooltip.GlobeItem='Explore the world'

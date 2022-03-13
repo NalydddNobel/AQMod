@@ -15,7 +15,7 @@ namespace AQMod.Items.Expert
     public class CrabsonBag : TreasureBagItem
     {
         protected override int InternalRarity => ItemRarityID.Blue;
-        public override int BossBagNPC => ModContent.NPCType<JerryCrabson>();
+        public override int BossBagNPC => ModContent.NPCType<Crabson>();
 
         public override void OpenBossBag(Player player)
         {

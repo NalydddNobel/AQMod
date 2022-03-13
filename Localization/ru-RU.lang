@@ -1,28 +1,8 @@
+#=================================
+# Items
+#=================================
 
-##############
-
-# Mod Description #
-
-Aequus was created from me messing around with coding and stuff, so don't try to take the mod super serious pls :)
-
-Important Info
-
-This mod does not function properly in multiplayer, play it at your own volition
-The mod's assets are extractable
-The wiki is somewhat a mess, don't use it
-A discord link to the mod is in the homepage, if you like typing discord invite links yourself, here you go:
-
-> 216 Items
-> 16 Enemies
-> 3 Events
-> 2 Bosses
-> 2 Town NPCs
-
-Have fun
-Happy Holidays! Create a world with the seed "Aequus Xmas" for a special world!
-
-##############
-# Accessories
+## Accessories ##
 
 ItemName.ShockCollar=Ударный Воротник
 ItemTooltip.ShockCollar=Увеличивает урон на 5%\nУвеличивает шанс критического удара на 10% в воде
@@ -45,15 +25,15 @@ ItemName.CrabBarb=Крабовая Колючка
 ItemTooltip.CrabBarb=Ваши крюки наносят отравление и урон
 
 ItemName.CrimtaneBarb=Кримтановая Колючка
-ItemTooltip.CrimtaneBarb=Ваши крбки наносят урон
+ItemTooltip.CrimtaneBarb=Ваши крюки наносят урон
 
 ItemName.DemoniteBarb=Демонитовая Колючка
-ItemTooltip.DemoniteBarb=Ваши крюкки наносят урон
+ItemTooltip.DemoniteBarb=Ваши крюки наносят урон
 
 ItemName.MetalBarb=Металлическая Колючка
 ItemTooltip.MetalBarb=Ваши крюки наносят урон
 
-# Armor
+## Armor ##
 
 ItemName.SteelPlatedChestplate=Покрытый Сталью Нагрудник
 
@@ -80,7 +60,7 @@ ProjectileName.AirBlade=Воздушный Меч
 ProjectileName.AirBladeGhost=Воздушный Меч
 
 ItemName.RedSpriteStaff=Посох Красного Дождевого Облака
-ItemTooltip.RedSpriteStaff=Призывает красное облако дождя на ваших врагов
+ItemTooltip.RedSpriteStaff=Призывает красное дождевое облако на ваших врагов
 ProjectileName.RedSpriteStaff=Посох Красного Дождевого Облака
 ProjectileName.RedSpriteStaffLightning=Посох Красного Дождевого Облака
 
@@ -120,7 +100,7 @@ EquivalenceMachineToggle.False=Предметы сново падают
 EquivalenceMachineToggle.True=Предметы леветируют
 
 ItemName.IWillBeBack='Я вернусь'
-ItemTooltip.IWillBeBack=Призывает Стену Плоти без убийства Гида\nНажмите првыую кнопку мыши чтобы у всех городских НИПов появился иммунитет к лаве
+ItemTooltip.IWillBeBack=Призывает Стену Плоти без убийства Гида\nНажмите правую кнопку мыши чтобы у всех городских НИПов появился иммунитет к лаве
 IWillBeBackToggle.True=У городских НИПов появилось сопротивление к лаве
 IWillBeBackToggle.False=У городских НИПов больше нет сопротивления к лаве
 
@@ -128,7 +108,7 @@ ItemName.Nimrod=Удочка Дождевого Облака
 ItemTooltip.Nimrod=Призывает рыболовное облако, которое призывает 3 молни-поплавка чтобы ловить рыбу\nБыстрее ловит рыбу во время дождя
 
 ItemName.MinersFlashlight=Фонарик Шахтёра
-ItemTooltip.MinersFlashlight=Вы испускаете поток света, который светит в направлении вашего курсора\nСокровища подсвечиваются когда оно освещается светом\nСкройте этот акссесуар что-бы выключить фонарик
+ItemTooltip.MinersFlashlight=Вы испускаете поток света, который светит в направлении вашего курсора\nСокровища подсвечиваются когда оно освещается светом\nСкройте этот акссесуар чтобы выключить фонарик
 
 # Tooltips
 
@@ -206,7 +186,7 @@ Physicist.Chat.Corruption=Вытащи меня из этого вонючего
 Physicist.Chat.Crimson=Вытащи меня из этого вонючего, кровавого места.
 # TODO: add these cross mod quotes into the dialogue
 Physicist.Chat.Mod.Split.LowTechRemote=Ты когда-нибудь брал в рукиодин из этих низкотехнологичных пультов дистанционного управления? Я попытался улудшить один из них, чтобы он мог связаться с сильной инопланетной силой, но всё равно получаю "Соединение... Пожалуйста, оставайтесь на линии."
-Physicist.Chat.Mod.Split.Spirit=Однажды я путешествовал в джунглях  и нашёл забавную леди, мы вместе съели вкусную приготовлынную рыбу.
+Physicist.Chat.Mod.Split.Spirit=Однажды я путешествовала в джунглях  и нашёл забавную леди, мы вместе съели вкусную приготовлынную рыбу.
 Physicist.Chat.Mod.Split.Menace=Я и эта леди Астролог хорошо ладим, даже если у неё какие-то странные убеждения.
 Physicist.Chat.Mod.Split.Vulcan=В одном из моих путешествуй в аду, Я нашёл одну интересную личность по имени Вулкан, он был грустным...
 Physicist.Chat.Mod.Polarities.FractalDimension=Я заметил что где-то в небе появилась математическая структура... я бы хотел когда-нибудь это проверить
@@ -253,8 +233,8 @@ BossChecklistDesc.RedSprite=Иногда появляется во время Ш
 
 # Recipe Groups
 
-RecipeGroup.AnyEnergy=Любая Энергия
-RecipeGroup.AnyNobleMushroom=Любой Величественный Гриб
+RecipeGroup.AnyEnergy=Энергия
+RecipeGroup.AnyNobleMushroom=Величественный Гриб
 
 Config.RequiresReload=Требуется перезагрузка.
 
@@ -266,7 +246,7 @@ ClientConfig.Header.Starite=Визуалые Эффекты Жизнезвезд
 ClientConfig.Header.Xmas=Рождество
 ClientConfig.Header.UI=Интерфейс Пользователя
 
-ClientConfig.Effect3D=3Д Эффективность
+ClientConfig.Effect3D=3Д Эффектs
 ClientConfig.Effect3DTooltip=Более высокие значения делают 3Д эффекты более выраженными, и более низкие значения делают 3Д эффекты более плоскими.
 
 ClientConfig.BackgroundStarites=Фон Жизнезвёзд
@@ -291,7 +271,7 @@ ClientConfig.MapBlipColor=Цвет Метки на Карте
 ClientConfig.MapBlipColorTooltip=Цвет маленьких меток будет виден Ретро Маркером
 
 ClientConfig.Header.Worldgen=Генерация Мира
-ClientConfig.Screenshakes=Држание Экрана
+ClientConfig.Screenshakes=Дрожание Экрана
 ClientConfig.TonsofScreenShakes=Ненужные Дрожания Экрана
 ClientConfig.OverrideVanillaChestLoot=Overwrite Vanilla Chest Loot
 ClientConfig.OverrideVanillaChestLootTooltip=Будут ли особенные предметы Аэквууса перезаписывать ванильные предметы в сундуках\nЕсли это отключено, лут Аэквууса будет генерироваться вместе с ванильным лутом
@@ -307,7 +287,7 @@ ServerConfig.Header.Debug=[c/ffeedd:Debug]
 ServerConfig.DemonSiegeDowngrades=Осада Демонов Понижает Рейтинг
 ServerConfig.DemonSiegeDowngradesTooltip=Добовляет рецепты для понижения качестваа оружия улудшаемые в Осаде Демонов.\n{$Mods.AQMod.Config.RequiresReload}
 
-ServerConfig.ReduceSpawns=Уменьшает скоростть возрождения во время битв с боссами
+ServerConfig.ReduceSpawns=Уменьшает скоростть возрождения врагов во время битв с боссами
 ServerConfig.ReduceSpawnsTooltip=Practically disables spawns for Aequus bossfights.\nWould require a reload if anything in the world is currently reducing spawns.
 
 ServerConfig.EvilProgressionLock=World-Evil Progression Lock
@@ -356,7 +336,7 @@ NPCName.StreamingBalloon=Streaming Balloon
 # Common
 
 Common.KeyUnbound='Unbound Key'
-Common.KeyBound='{0}' Key
+Common.KeyBound='{0}' Ключ
 
 # Armor Set Bonuses
 Common.ArmorSetBonus_Arachnotron=On a true melee critical hit you gain greatly increased stats for a short while\nWhen the effect activates you gain the potion sickness debuff\nThis effect can only trigger if you don't have the potion sickness debuff
@@ -368,13 +348,13 @@ Common.ConfigName_AQConfigClient=Client Config
 # Config Headers
 Common.ConfigHeader_Visuals=Visuals
 Common.ConfigHeader_Misc=Misc
-Common.ConfigHeader_World=World
+Common.ConfigHeader_World=Мир
 Common.ConfigHeader_Debug=Debug
 #
 
 
 Common.Config_DrawSpotlights=Draw Spotlights
-Common.Config_EffectQuality=Effect Quality
+Common.Config_EffectQuality=Качество Эффектов
 Common.Config_EffectIntensity=Effect Intensity
 Common.Config_LoadItemOverlays=Load Item Overlays
 #
@@ -413,20 +393,20 @@ Common.EightballMisc5=Jimbo sometimes you make me feel internal pain
 Common.EightballMisc6=What doth life
 #
 # World Gen text
-Common.RandomStructures=Generating Random Structures...
-Common.RandomStructures_TikiChest=Generating Random Structures... Tiki Chest
-Common.RandomStructures_NobleMushrooms=Generating Random Structures... Noble Mushrooms
-Common.RandomStructures_CandelabraTraps=Generating Random Structures... Candelabra Traps
-Common.RandomStructures_ExoticCoralBlotches=Generating Random Structures... Exotic Coral Blotches
-Common.OceanRavines=Ocean Ravines
-Common.RareStructures=Generating Rare Structures...
-Common.WorldGen_GoreNests=Generating Gore Nests...
-Common.WorldGen_Globes=Generating Globes...
-Common.WorldGen_GlimmeringStatues=Generating Glimmering Statues...
+Common.RandomStructures=Генерация Случайных Структур...
+Common.RandomStructures_TikiChest=Генерация Случайных структур... Сундук Тики
+Common.RandomStructures_NobleMushrooms=Генерация Случайных Структур... Величественные Грибы
+Common.RandomStructures_CandelabraTraps=Генерация Случайных Структур... Канделябры-Ловушки
+Common.RandomStructures_ExoticCoralBlotches=Генерация Случайных Структур... Экзотические Коралловые Пятна
+Common.OceanRavines=Океанические Овраги
+Common.RareStructures=Генерация Редких Структур...
+Common.WorldGen_GoreNests=Генерация Кровавого Гнезда...
+Common.WorldGen_Globes=Генерация Глобуосв...
+Common.WorldGen_GlimmeringStatues=Генерация Мерчающих Статуй...
 #
 # Recipe Groups
-Common.RecipeGroup_AnyNobleMushroom=Any Noble Mushroom
-Common.RecipeGroup_AnyEnergy=Any Energy
+Common.RecipeGroup_AnyNobleMushroom=Величественный Гриб
+Common.RecipeGroup_AnyEnergy=Энергия
 #
 # Robster
 Common.RobsterChat0=There is a reason I don't like other lobsters... it's because my own brother betrayed me.
@@ -472,7 +452,7 @@ Common.EnergiesDisabled=Energy drops are disabled
 Common.TimeLeft={0} Left
 Common.ContainerPotionImproperLoad=This potion has unloaded improperly...\nWill only teleport to {$ItemName.GoldChest} :(
 Common.ContainerPotionLink=Will only teleport to {0} ( [i:{1}] )
-Common.DemonSiege=Demon Siege
+Common.DemonSiege=Осада Демонов
 Common.DemonSiegeDeath=The Gore Nest regurgitates your item...
 Common.DemonSiegeTooFarAway=You are too far away from the Demon Siege in order to upgrade your weapon
 Common.NoColorDistort=Color Distort Shader is not enabled
@@ -480,13 +460,13 @@ Common.NoScrollShader=Scroll Shader is not enabled
 Common.NoHypnoShader=Hypno Shader is not enabled
 Common.NoOutlineShader=Outline Shader is not enabled
 
-Common.CrabSeason=Crab Season
-Common.CrabSeasonWarning=The warmth of the oceans increases...
-Common.CrabSeasonEnding=The oceans become neutral again...
+Common.CrabSeason=Сезон Крабов
+Common.CrabSeasonWarning=Тепло океанов усилелось...
+Common.CrabSeasonEnding=Океаны опять становятся стандартными...
 
-Common.GlimmerEvent=Glimmer Event
-Common.GlimmerEventWarning=A glimmer appears in the sky...
-Common.GlimmerEventEnding=The glimmer begins to fade away...
+Common.GlimmerEvent=Мерцающее событие
+Common.GlimmerEventWarning=Мерцание появляется в небе...
+Common.GlimmerEventEnding=Мерцание начинает исчезать...
 
 Common.EnergyDoDrop=The energies of the world become stable...
 Common.EnergyDontDrop=The energies of the world return to chaos...
@@ -504,37 +484,37 @@ Common.DisableThing=Disable {0}?
 Common.UnassignedKey0=Unassigned Key
 Common.UnassignedKey1=an unassigned key
 Common.UnassignedKey2=unassigned key
-Common.AwakenedOmegaStarite=Omega Starite has awoken!
-Common.AwakenedCrabson=Jerry Crabson has awoken!
+Common.AwakenedOmegaStarite=Омега Жизнезвезда Пробудилась!
+Common.AwakenedCrabson=Джерри Крабсон пробудился!
 ##################################################################################
 # Item Names																	 #
 ##################################################################################
 # Accessories #
 ###############
 # Amulets
-ItemName.GhostAmulet=Ghost Amulet
-ItemName.SpiritAmulet=Spirit Amulet
-ItemName.WyvernAmulet=Wyvern Amulet
-ItemName.VoodooAmulet=Voodoo Amulet
+ItemName.GhostAmulet=Амулет Призрака
+ItemName.SpiritAmulet=Амулет Духа
+ItemName.WyvernAmulet=Амулет Виверны
+ItemName.VoodooAmulet=Амулет Вуду
 # Fishing Seals
-ItemName.CopperSeal=Copper Seal
-ItemName.SilverSeal=Silver Seal
-ItemName.GoldSeal=Gold Seal
-ItemName.PlatinumSeal=Platinum Seal
+ItemName.CopperSeal=Медные Снасти
+ItemName.SilverSeal=Серебряные Снасти
+ItemName.GoldSeal=Золотые Снасти
+ItemName.PlatinumSeal=Платиновые Снасти
 # Shields
-ItemName.TargeoftheBlodded=Shield of the Blooded
+ItemName.TargeoftheBlodded=Щит Кровавого
 # Shoes
-ItemName.MoonShoes=Moonwalker
+ItemName.MoonShoes=Лунный Бегун
 # Shop Cards
 ItemName.BlurryDiscountCard=Blurry Discount Card
 ItemName.BusinessCard=Business Card
 # Wings
-ItemName.SparrowWings=Sparrow Wings
+ItemName.SparrowWings=Крылья Воробья
 #
 # Other Accessories
 #
 
-ItemName.Breadsoul=Breadsoul
+ItemName.Breadsoul=Душа Хлеба
 ItemTooltip.Breadsoul=Increases your grab reach by 25%\nDungeon Spirit enemies are now friendly\nNearby enemies no longer drop hearts, and instead drop souls\nSpectre souls drop more commonly and give you massive life regeneration
 ProjectileName.BreadsoulHealing=Breadsoul
 ItemName.Dreadsoul=Dreadsoul
@@ -546,7 +526,7 @@ ItemName.RustyKnife=Rusty Knife
 ItemName.Terraroot=Terraroot
 ItemName.Thunderbird=Thunderbird
 
-ItemName.Ultranium=Hyper Crystal
+ItemName.Ultranium=Гипер Кристалл
 ItemTooltip.Ultranium=True melee crits on enemies channels the damage to the closest boss\nYour attacks inflict sparkling\n5% increased melee critical strike chance
 
 ItemName.Quasicrystal=Quasicrystal
@@ -555,14 +535,19 @@ ItemTooltip.Quasicrystal=True melee crits on enemies channels the damage to the 
 ##############
 # Boss Items #
 ##############
-ItemName.Crabsol=Crabsol
-ItemName.CrabsonBag=Treasure Bag
-ItemName.MushroomClam=Mushroom Clam
-ItemName.CrabsonTrophy=Jerry Crabson Trophy
-ItemName.CrabsonMask=Jerry Crabson Mask
-ItemName.MythicStarfruit=Mythic Starfruit
-
-ProjectileName.UltimateSword=Ultimate Sword
+ItemName.Crabsol=Крабсол
+ItemName.CrabsonBag=Мещок с Сокровищами
+ItemName.MushroomClam=Грибной Моллюск
+ItemName.CrabsonTrophy=Трофей Джерри Крабсона
+ItemName.CrabsonMask=Маска Джерри Крабсона
+ItemName.MythicStarfruit=Мистический звездафрукт
+ItemName.NovaFruit=Фрукт Новы
+ItemName.OmegaStariteMask=Маска Омега жизнезвезды
+ItemName.OmegaStariteTrophy=Трофей Омега Жизнезвезды
+ItemName.StariteBag=Мешок с Сокровищами
+ItemName.UltimateStarfruit=Ультимативный Звездафрукт
+ItemName.UltimateSword=Ультимативный Меч
+ProjectileName.UltimateSword=Ультимативный Меч
 ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts sparkling on hit
 
 ##############
@@ -570,27 +555,27 @@ ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInf
 ##############
 ItemName.Baguette=Baguette
 
-ItemName.NeutronJuice=Neutron Yogurt
-ItemTooltip.NeutronJuice=Minor improvements to all stats and you have slightly lower gravity\n'Weighs millions of tons... still lighter than putting a safe in a safe'
-BuffName.NeutronYogurt=Neutron Yogurt
-BuffDescription.NeutronYogurt=Minor improvements to all stats and you have slightly lower gravity
+ItemName.NeutronJuice=Нейтроновый Йогурт
+ItemTooltip.NeutronJuice=Слабо увеличивает все характеристики и вы меньше подвластны гравитации\n'Весит миллионы тон... ещё легче чем положить сейф в сейф'
+BuffName.NeutronYogurt=Нейтроновый Йогурт
+BuffDescription.NeutronYogurt=Слабо увеличивает все характеристики и вы меньше подвластны гравитации
 
-ItemName.RedLicorice=Red Licorice
-ItemTooltip.RedLicorice=Medium improvements to all stats and increases your life by 20
-BuffName.RedLicorice=Red Licorice
-BuffDescription.RedLicorice=Medium improvements to all stats and increases your life by 20
+ItemName.RedLicorice=Красная Лакрица
+ItemTooltip.RedLicorice=Средне увеличивает ваши характеристики и увеличивает ваше зоровье на 20
+BuffName.RedLicorice=Красная Лакрица
+BuffDescription.RedLicorice=Средне увеличивает ваши характеристики и увеличивает ваше зоровье на 20
 
-ItemName.PeeledCarrot=Peeled Carrot
-ItemTooltip.PeeledCarrot=Medium improvements to all stats and grants you night vision
-BuffName.PeeledCarrot=Peeled Carrot
-BuffDescription.PeeledCarrot=Medium improvements to all stats and grants you night vision
+ItemName.PeeledCarrot=Очищенная Морковь
+ItemTooltip.PeeledCarrot=Средне увеличивает ваши характеристики и даёт вам ночное зрение
+BuffName.PeeledCarrot=Очищенная Морковь
+BuffDescription.PeeledCarrot=Средне увеличивает ваши характеристики и даёт вам ночное зрение
 
-ItemName.GrapePhanta=Grape Phanta
-ItemTooltip.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
-BuffName.GrapePhanta=Grape Phanta
-BuffDescription.GrapePhanta=Medium improvements to most stats\nMajor improvements to magic stats\nIncreases mana by 20
+ItemName.GrapePhanta=Виноградная Фанта
+ItemTooltip.GrapePhanta=Средне увеличивает ваши характеристики\nСильно увеличивает магические характеристики\nУвеличивает ману на 20
+BuffName.GrapePhanta=Виноградная Фанта
+BuffDescription.GrapePhanta=Средне увеличивает ваши характеристики\nСильно увеличевает магические характеристики\nУвеличивает ману на 20
 
-ItemName.SuspiciousLookingSteak=Suspicious Looking Steak
+ItemName.SuspiciousLookingSteak=Подозрительно Выглядящий Стейк
 
 ItemName.SpicyEel=Spicy Eel
 ItemTooltip.SpicyEel=Greatly increases speed
@@ -617,29 +602,29 @@ ItemName.LightbulbGreaves=Lightbulb Greaves
 ItemName.LightbulbHelmet=Lightbulb Helmet
 ItemName.SuperDartTrapHat=Super Dart Trap Hat
 # Map
-ItemName.CosmicTelescope=Cosmic Marker
-ItemName.DungeonMap=Bone Marker
-ItemName.LihzahrdMap=Lihzahrd Marker
-ItemName.RetroGoggles=Retro Marker
+ItemName.CosmicTelescope=Космический Маркер
+ItemName.DungeonMap=Костяной Маркер
+ItemName.LihzahrdMap=Маркер Ящеров
+ItemName.RetroGoggles=Ретро Маркер
 # Spelunker
-ItemName.Extractor=Extractor
+ItemName.Extractor=Обогатитель
 ########
 # Misc #
 ########
 # Energies
-ItemName.OrganicEnergy=Organic Energy
-ItemName.DemonicEnergy=Demonic Energy
-
-ItemName.AtmosphericEnergy=Atmospheric Energy
-ItemName.AquaticEnergy=Aquatic Energy
-ItemName.UltimateEnergy=Ultimate Energy
+ItemName.OrganicEnergy=Органическая Энергия
+ItemName.DemonicEnergy=Демоническая Энергия
+ItemName.CosmicEnergy=Космичекая Энергия
+ItemName.AtmosphericEnergy=Атмосферная Энергия
+ItemName.AquaticEnergy=Акватическая Энергия
+ItemName.UltimateEnergy=Ультимативная Энергия
 # Bait
 ItemName.CursedPopper=Cursed Popper
 ItemName.IchorPopper=Ichor Popper
 ItemName.MysticPopper=Mystic Popper
 # Rods
-ItemName.CrabRod=Crab Rod
-ItemName.BeeRod=Buzzrod
+ItemName.CrabRod=Крабовый Жезл
+ItemName.BeeRod=Жужжащий Жезл
 # Fish
 ItemName.Blobfish=Blobfish
 ItemName.Fizzler=Fizzler
@@ -648,7 +633,7 @@ ItemName.UltraEel=Ultra Eel
 ItemName.Combfish=Combfish
 ItemName.LarvaEel=Larva Eel
 # Quest Fish
-ItemName.WaterFisg=Water Fish
+ItemName.WaterFisg=Водная Рыба
 ItemName.Crabdaughter=Crabdaughter
 # Quest Robster
 ItemName.Snobster=Snobster
@@ -675,9 +660,9 @@ CommonTooltip.ContentCreatorItem=Content Creator Item
 ItemName.Narrizuul=Narrizuul
 ItemTooltip.Narrizuul=A relic birthed in an alternate universe\n'Smells like roses'
 
-ItemName.MothmanMask=Mothman Mask
+ItemName.MothmanMask=Каска Человека-Мотылька
 ItemTooltip.MothmanMask=All effects only occur if you are at max health\n15% increased damage and critical strike chance\nIncreases the knockback of your minions\nCrits inflicts blue fire to nearby enemies
-ProjectileName.MothmanCritExplosion=Mothman Mask
+ProjectileName.MothmanCritExplosion=Маска Человека-Мотылька
 
 ItemName.Qi=Qi
 #############
@@ -692,16 +677,16 @@ ItemName.ExoticRedTorch=Exotic Red Torch
 ItemName.ExoticGreenTorch=Exotic Green Torch
 ItemName.ExoticBlueTorch=Exotic Blue Torch
 
-ItemName.UltrabrightRedTorch=Ultrabright Red Torch
+ItemName.UltrabrightRedTorch=Ультраяркий Красный Факел
 ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
-ItemName.UltrabrightGreenTorch=Ultrabright Green Torch
+ItemName.UltrabrightGreenTorch=Ультраяркий Зелёный Факел
 ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
-ItemName.UltrabrightBlueTorch=Ultrabright Blue Torch
+ItemName.UltrabrightBlueTorch=Ультраяркий Синий Факел
 ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
-ItemName.SparklingTorch=Sparkling Torch
+ItemName.SparklingTorch=Искрящий Факел
 ItemTooltip.SparklingTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
 # Walls
@@ -714,9 +699,9 @@ ItemName.ExoticCoral=Exotic Coral
 ItemName.ExoticStarfish=Exotic Starfish
 ItemName.FishingCraftingStation=Fishing Utility Crafting Station
 ItemName.GlobeItem=Unity Globe
-ItemName.GoreNestItem=Gore Nest
-ItemName.PlaceableShadowOrb=Shadow Orb (Placeable)
-ItemName.PlaceableCrimsonHeart=Crimson Heart (Placeable)
+ItemName.GoreNestItem=Кровавое Гнездо
+ItemName.PlaceableShadowOrb=Теневая Сфера (Placeable)
+ItemName.PlaceableCrimsonHeart=Багряная Сфера (Placeable)
 ############
 # Vanities #
 ############
@@ -732,12 +717,12 @@ ItemName.ManaCursorDye=Mana Cursor Dye
 ItemName.SwordCursorDye=Sword Cursor Dye
 ItemName.DemonicCursorDye=Demonic Cursor Dye
 # Dyes
-ItemName.EnchantedDye=Enchanted Dye
+ItemName.EnchantedDye=Зачарованный Краситель
 ItemName.ScrollDye=Scroll Dye
 ItemName.HellBeamDye=Hell Beam Dye
 ItemName.BreakdownDye=Breakdown Dye
-ItemName.DiscoDye=Disco Dye
-ItemName.HypnoDye=Hypno Dye
+ItemName.DiscoDye=Диско Краситель
+ItemName.HypnoDye=Гипно Краситель
 ItemName.SimplifiedDye=Simplified Dye
 ItemName.OutlineDye=Outline Dye
 ItemName.RainbowOutlineDye=Rainbow Outline Dye
@@ -766,8 +751,9 @@ ItemName.PowPunch=Pow Punch
 ItemTooltip.PowPunch=Throws two fists which repeatedly bash enemies
 ProjectileName.PowPunch=Pow Punch
 ProjectileName.PowPunchExplosion=Pow Punch
+ItemName.CrystalDagger=Кристальный Клинок
 ItemTooltip.CrystalDagger=Quickly jabs enemies
-ProjectileName.CrystalDagger=Crystal Dagger
+ProjectileName.CrystalDagger=Кристальный Клинок
 # Spears
 ItemName.ArgonSpear=Argon Spear
 ItemName.HorizonSkies=Horizon Skies
@@ -776,6 +762,8 @@ ItemName.Aphrodite=Aphrodite
 ItemTooltip.Aphrodite=Give enemies lovestruck which decreases their damage inflicted by 10%, and increases their damage taken by 10%
 ItemName.Venus=Venus
 ItemTooltip.Venus=Give enemies lovestruck which decreases their damage inflicted by 10%, and increases their damage taken by 10%\nHas a chance to poison enemies if they are very close to you
+
+ItemName.StariteSpinner=Вращатель Жизнезвезды
 
 ItemName.Dysesthesia=Dysesthesia
 ItemTooltip.Dysesthesia=Summons demon scythes\nInflicts enemies with corrupt hellfire if they are very close
@@ -786,12 +774,14 @@ ProjectileName.MiniDemonScythe=Dysesthesia
 ItemName.CrimsonHellSword=Burnterizer
 ItemTooltip.CrimsonHellSword=Shoots a wave of demonic energy
 ItemName.HellsBoon=Hell's Boon
+ItemName.Galactium=Галактий
 ItemTooltip.Galactium=Rains stars from the sky\nInflicts blue fire on true melee hits
 
 ItemName.OrbicularStargaizar=Orbicular Stargaizar
 BuffName.Harmony=Harmony
 BuffDescription.Harmony=Grealy increases your magical powers
 
+ItemName.StariteBlade=Starite Blade
 ItemTooltip.StariteBlade=Inflicts blue fire on hit
 ItemName.XenonBasher=Xenon Basher
 # Ranged
@@ -804,6 +794,7 @@ ItemName.Sprinkler=Sprinkler
 ItemName.StarPhish=Star Phish
 # Pistols
 ItemName.Raygun=Raygun
+ItemName.SpaceShot=Space Shot
 # Summon
 # Sentry
 ItemName.LotusStaff=Lotus Staff
@@ -918,6 +909,7 @@ ItemTooltip.MysticPopper=Increases bait power by 25% when in the hallow
 # Rods
 ItemTooltip.BeeRod=Throws flying bee bobbers\nThrows 3 lines when using the Hive Pack
 # Fish
+ItemTooltip.Fizzler=It's corrupted and glimmering
 ItemTooltip.UltraEel=The offspring of an ancient starite species
 ItemTooltip.Combfish='The scales of this fish are not edible'
 ItemTooltip.LarvaEel=Gives you 3 minutes of honey and 60 seconds of potion sickness
@@ -986,10 +978,10 @@ ItemTooltip.Raygun=Converts most bullets into a ray
 ItemTooltip.SpaceShot=Shoots a star which then shoots bullets
 # Summon
 # Sentry
-ItemTooltip.LotusStaff=Summons a magma lotus to fight for you\n{$Mods.AQMod.Common.DoesntMinionTarget}
+ItemTooltip.LotusStaff=Призывает магматический лотус сражаться за вас\n{$Mods.AQMod.Common.DoesntMinionTarget}
 # Other Summon
-ItemTooltip.StariteStaff=Summons 3 starites to fight for you
-ItemTooltip.CrimsonHandStaff=Summons a crimson hand to fight for you
+ItemTooltip.StariteStaff=Призывает 3 жизнезвезды сражаться за вас
+ItemTooltip.CrimsonHandStaff=Призывает багряную руку сражаться за вас
 ItemTooltip.CorruptPot=Summons a corrupted plant to fight for you
 # Other Item Tooltips
 ItemTooltip.ATM=Summons a flying safe to store your items\nPlace in your Safe in order to have it always summoned
@@ -1003,7 +995,7 @@ ItemName.Floatstick=Floatstick
 ItemTooltip.Floatstick=Works when wet\n'I think you can guess what this does from the name'
 
 # Buffs
-BuffName.BlueFire=Blue Fire
+BuffName.BlueFire=Синий Огонь
 BuffDescription.BlueFire=The immense heat burns off your skin
 BuffName.Spoiled=Spoiled
 BuffDescription.Spoiled=Enemies drop twice as much loot\n'You are such a spoiled brat!'
@@ -1011,13 +1003,13 @@ BuffName.MicroStarite=Micro Starite
 BuffDescription.MicroStarite=The smallest solar system imaginable
 BuffName.HeartMoth=Heart Moth
 BuffDescription.HeartMoth=Gives you increased life regen and emits light
-BuffName.CosmicMarker=Cosmic Marker
+BuffName.CosmicMarker=Космический Маркер
 BuffDescription.CosmicMarker=The glimmer event's center is shown on the map
-BuffName.RetroMarker=Retro Marker
+BuffName.RetroMarker=Ретро Маркер
 BuffDescription.RetroMarker=Enemies appear as pink blobs on the map
-BuffName.DungeonMarker=Dungeon Marker
+BuffName.DungeonMarker=Маркер Темницы
 BuffDescription.DungeonMarker=The Dungeon is shown on the map
-BuffName.LihzahrdMarker=Lihzahrd Marker
+BuffName.LihzahrdMarker=Маркер Ящеров
 BuffDescription.LihzahrdMarker=The Lihzahrd Altar is shown on the map
 BuffName.Bossrush=Encore
 BuffDescription.Bossrush=Bosses respawn when defeated
@@ -1025,7 +1017,7 @@ BuffName.Ultima=Ultima
 BuffDescription.Ultima=The blade of ultima blesses you
 BuffName.SpectreHealing=Spectre Healing
 BuffDescription.SpectreHealing=You are healing at rapid speeds
-BuffName.PrimeTime=Prime Time
+BuffName.PrimeTime=Время Прайма
 BuffDescription.PrimeTime=Your endurance is greatly increased and crits are twice as likely to occur
 BuffName.Opposing=Opposing
 BuffDescription.Opposing=Enemies have a chance to drop opposing loot
@@ -1054,7 +1046,7 @@ ProjectileName.ArgonSpear=Argon Spear
 ProjectileName.Burnterizer=Burnterizer
 ProjectileName.BurnterizerExplosion=Burnterizer
 ProjectileName.CrystalDagger=Crystal Dagger
-ProjectileName.Galactium=Galactium
+ProjectileName.Galactium=Галактий
 ProjectileName.HellsBoon=Hell's Boon
 ProjectileName.HorizonSkies=Horizon Skies
 ProjectileName.HorizonSkiesBolt=Horizon Skies
@@ -1112,41 +1104,42 @@ ProjectileName.KelBall=Kel's Ball
 ProjectileName.SparklingExplosion=Sparkling Explosion
 
 # Pets
-ProjectileName.ATM=ATM
-ProjectileName.HeartMoth=Heart Moth
-ProjectileName.MicroStarite=Micro Starite
+ProjectileName.ATM=Банк
+ProjectileName.HeartMoth=Сердечный Мотылёк
+ProjectileName.MicroStarite=Микро Жизнезвезда
 
 # Fishing Bobbers
 ProjectileName.BeeRod=Bee Bobber
 ProjectileName.CrabRod=Crab Bobber
 
 # Enemy Projectiles
-ProjectileName.HyperStarite=Hyper Starite
+ProjectileName.HyperStarite=Гипер Жизнезвезда
 ProjectileName.JerryBubble=Jerry Bubble
 ProjectileName.JerryBubbleBig=Jerry Bubble
 ProjectileName.JerryPearl=Jerry Pearl
 ProjectileName.Magmabub=Magmabub
-ProjectileName.OmegaBullet=Omega Bullet
-ProjectileName.OmegaRay=Omega Ray
-ProjectileName.OmegaStarite=Omega Starite
+ProjectileName.OmegaBullet=Омега Пуля
+ProjectileName.OmegaRay=Омега Луч
+ProjectileName.OmegaStarite=Омега Жизнезвезда
 ProjectileName.RainbowStarofHyperApocalypse=Rainbow Star of Hyper Apocalypse
 ProjectileName.StriderCrab=Strider Crab
 ProjectileName.StriderCrabLaser=Strider Crab
 ProjectileName.SuperStarite=Super Starite
-ProjectileName.TemperatureBombCold=Temperature Bomb
-ProjectileName.TemperatureBombHot=Temperature Bomb
-ProjectileName.Trapper=Trapper
+ProjectileName.TemperatureBombCold=Температурная Бомба
+ProjectileName.TemperatureBombHot=Температурная Бомба
+ProjectileName.Trapper=Ловец
 
 # NPCs
-NPCName.DwarfStarite=Dwarf Starite
-NPCName.Starite=Starite
-NPCName.SuperStarite=Super Starite
-NPCName.HyperStarite=Hyper Starite
-NPCName.UltraStarite=Ultra Starite
-NPCName.MultiStarite=Multi Starite
+NPCName.DwarfStarite=Карликовая Жизнезвезда
+NPCName.Starite=Жизнезвезда
+NPCName.SuperStarite=Супер Жизнезвезда
+NPCName.HyperStarite=Гипер Жизнезвезда
+NPCName.UltraStarite=Ультра Жизнезвезда
+NPCName.OmegaStarite=Омега Жизнезвезда
+NPCName.MultiStarite=Мульти Жизнезвезда
 
 NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
-NPCName.JerryCrabson=Jerry Crabson
+NPCName.JerryCrabson=Джерри Крабсон
 NPCName.JerryClaw=Jerry Claw
 NPCName.ArrowCrab=Arrow Crab
 NPCName.SoliderCrabs=Solider Crabs
@@ -1154,14 +1147,14 @@ NPCName.HermitCrab=Hermit Crab
 NPCName.StriderCrab=Strider Crab
 
 NPCName.Magmalbubble=Magmabubble
-NPCName.TrapImp=Trapper Imp
-NPCName.Trapper=Trapper
+NPCName.TrapImp=Бес Ловец
+NPCName.Trapper=Ловец
 NPCName.Cindera=Cindera
 
-NPCName.Meteor=Meteor
+NPCName.Meteor=Метеорит
 NPCName.TemperatureBalloon=Temperature Balloon
-NPCName.Vraine=Vraine
-NPCName.Atmodrone=Atmodrone
+NPCName.Vraine=Врейн
+NPCName.Atmodrone=Атмодрон
 NPCName.HotCurrent=Hot Current
 NPCName.ColdCurrent=Cold Current
 
@@ -1169,9 +1162,9 @@ NPCName.BloodMimic={$NPCName.Mimic}
 NPCName.Heckto=Heckto
 
 # Banners
-ItemName.StariteBanner=Starite Banner
+ItemName.StariteBanner=Знамя Жизнезвезды
 ItemTooltip.StariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}
-ItemName.SuperStariteBanner=Super Starite Banner
+ItemName.SuperStariteBanner=Знамя Супер Жизнезвезды
 ItemTooltip.SuperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}
 ItemName.HyperStariteBanner=Hyper Starite Banner
 ItemTooltip.HyperStariteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}
@@ -1198,31 +1191,30 @@ ItemTooltip.VraineBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Vr
 BuffName.PickBreak=Pick Break
 BuffDescription.PickBreak=Your mining power is halved
 
-NPCName.RedSprite=Red Sprite
+NPCName.RedSprite=Красное Дождевое Облако
+ProjectileName.RedSpriteCloud=Красное Дождевое Облако
+ProjectileName.RedSpriteCloudLightning=Красное Дождевое Облако
+ProjectileName.RedSpriteThunderClap=Красное Дождевое Облако
 
-ProjectileName.RedSpriteCloud=Red Sprite
-ProjectileName.RedSpriteCloudLightning=Red Sprite
-ProjectileName.RedSpriteThunderClap=Red Sprite
-
-BuffName.RedSpriteWind=Red Wind
+BuffName.RedSpriteWind=Красные Крылья
 BuffDescription.RedSpriteWind=The wind moves you around!\nYou are increasing in temperature
 
-ItemName.RedSpriteBanner=Red Sprite Banner
+ItemName.RedSpriteBanner=Знамя Красного Дождевого Облака
 ItemTooltip.RedSpriteBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.RedSprite}
 
-NPCName.WhiteSlime=White Slime
+NPCName.WhiteSlime=Белый Слизень
 
-ItemName.WhiteSlimeBanner=White Slime Banner
+ItemName.WhiteSlimeBanner=Знамя Белого Слизня
 ItemTooltip.WhiteSlimeBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.WhiteSlime}
 
-NPCName.SpaceSquid=Space Squid
+NPCName.SpaceSquid=Космический Кальмар
 
-ItemName.SpaceSquidTrophy=Space Squid Trophy
-ItemName.SpaceSquidBanner=Space Squid Banner
+ItemName.SpaceSquidTrophy=Трофей Космического Кальмара
+ItemName.SpaceSquidBanner=Знамя Космичего Кальмара
 ItemTooltip.SpaceSquidBanner={$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SpaceSquid}
 
-ProjectileName.SpaceSquidLaser=Space Squid
-ProjectileName.SpaceSquidDeathray=Space Squid
+ProjectileName.SpaceSquidLaser=Космичекий Кальмар
+ProjectileName.SpaceSquidDeathray=Космический Кальмар
 
 QuestFish.Crabdaughter=Seems like some new fish have entered the ocean recently, one of these fish seems to be related this massive crab with clam as claws. The only thing that makes me think it's related is that it's a clam with crab claws. It's an amazing sight so catch one for me.
 QuestFish.WaterFisg=It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.
@@ -1231,30 +1223,11 @@ FishingLocation.BeachFishing=Caught in Ocean
 
 CrabClock.Ends={0} until crab season ends
 CrabClock.Starts={0} until crab season starts
-CrabClock.Favorite=Favorite this item to see the time
+CrabClock.Favorite=Поместите этот предмет в избранное, чтобы увидеть время
 
 MapObject.Painting=Painting
-MapObject.Trophies=Trophy
-MapObject.Banners=Banner
-MapObject.ExoticCoral=Exotic Coral
+MapObject.Trophies=Трофей
+MapObject.Banners=Знамя
+MapObject.ExoticCoral=Экзотический Коралл
 MapObject.FishingCraftingStation=Fishing Utility Crafting Station
-MapObject.NobleMushrooms=Noble Mushroom
-
-ItemName.CrystalDagger=Кристальный Кинжал
-
-ItemName.UltimateSword=Ультимативный Меч
-ItemName.Galactium=Галактиум
-ItemName.StariteBlade=Лезвие Жизнезвезды
-ItemName.StariteSpinner=Вращатель Жизнезвезды
-ItemName.SpaceShot=Космический Выстрел
-
-ItemName.CosmicEnergy=Космическая Энергия
-
-ItemName.EnchantedDye=Зачарованный Краситель
-
-ItemName.NovaFruit=Нова фрукт
-ItemName.StariteBag=Мешок с сокровещами
-ItemName.OmegaStariteTrophy=Трофей Омега Жизнезвезды
-ItemName.OmegaStariteMask=Маска Омега Жизнезвезды
-
-NPCName.OmegaStarite=Омега Жизнезвезда
+MapObject.NobleMushrooms=Величественный Гриб

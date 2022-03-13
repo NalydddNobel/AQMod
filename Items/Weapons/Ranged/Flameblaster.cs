@@ -69,6 +69,8 @@ namespace AQMod.Items.Weapons.Ranged
             if (player.altFunctionUse == 2)
             {
                 DefaultUse();
+                var aQPlayer = player.GetModPlayer<AQPlayer>();
+                aQPlayer.ItemCooldownCheck(Cooldown(player, aQPlayer), item: item);
                 AQProjectile.NewWind<FlameblasterWind>(player, position + Vector2.Normalize(new Vector2(speedX, speedY)) * item.width * 2f, new Vector2(speedX, speedY) / 3f, item.knockBack * 3f, 90, 120, 8, hide: true);
                 return false;
             }

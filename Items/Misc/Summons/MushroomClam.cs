@@ -23,17 +23,16 @@ namespace AQMod.Items.Misc.Summons
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = ItemUseStyleID.HoldingUp;
-            item.maxStack = 999;
         }
 
         public override bool CanUseItem(Player player)
         {
-            return (player.ZoneBeach || player.Biomes().zoneCrabCrevice) && !NPC.AnyNPCs(ModContent.NPCType<JerryCrabson>());
+            return (player.ZoneBeach || player.Biomes().zoneCrabCrevice) && !NPC.AnyNPCs(ModContent.NPCType<Crabson>());
         }
 
         public override bool UseItem(Player player)
         {
-            NPC.NewNPC((int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<JerryCrabson>(), 0, 0f, 0f, 0f, 0f, player.whoAmI);
+            NPC.NewNPC((int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<Crabson>(), 0, 0f, 0f, 0f, 0f, player.whoAmI);
             Main.NewText(AQText.ModText("Common.AwakenedCrabson"), Coloring.BossMessage);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;

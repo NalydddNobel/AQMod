@@ -49,23 +49,39 @@ namespace AQMod
 
             internal static void ApplyCustomDiscount(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
             {
+                var plr = Main.LocalPlayer;
+                bool discount = plr.discount;
+                plr.discount = false;
+
                 orig(self, type);
-                var player = Main.LocalPlayer;
-                if (player.discount)
+
+                plr.discount = discount;
+                if (discount)
                 {
-                    float discountPercentage = player.GetModPlayer<AQPlayer>().discountPercentage;
-                    if (discountPercentage == 1f)
-                    {
-                        discountPercentage = 0.8f;
-                    }
+                    float discountPercentage = plr.GetModPlayer<AQPlayer>().discountPercentage;
                     for (int i = 0; i < Chest.maxItems; i++)
                     {
                         if (self.item[i] != null && self.item[i].type != ItemID.None)
-                        {
-                            self.item[i].value = (int)(self.item[i].GetGlobalItem<AQItem>().basePrice * discountPercentage);
-                        }
+                            self.item[i].value = (int)(self.item[i].value * discountPercentage);
                     }
                 }
+                //orig(self, type);
+                //var player = Main.LocalPlayer;
+                //if (player.discount)
+                //{
+                //    float discountPercentage = player.GetModPlayer<AQPlayer>().discountPercentage;
+                //    if (discountPercentage == 1f)
+                //    {
+                //        discountPercentage = 0.8f;
+                //    }
+                //    for (int i = 0; i < Chest.maxItems; i++)
+                //    {
+                //        if (self.item[i] != null && self.item[i].type != ItemID.None)
+                //        {
+                //            self.item[i].value = (int)(self.item[i].GetGlobalItem<AQItem>().basePrice * discountPercentage);
+                //        }
+                //    }
+                //}
             }
 
             internal static void MovementEffects(On.Terraria.Player.orig_HorizontalMovement orig, Player self)

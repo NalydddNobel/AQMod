@@ -74,7 +74,7 @@ namespace AQMod.Common.CrossMod
 
             // Jerry Crabson
 
-            AddBoss(ProgressionReference.JerryCrabson, ModContent.NPCType<JerryCrabson>(),
+            AddBoss(ProgressionReference.JerryCrabson, ModContent.NPCType<Crabson>(),
                 AQUtils.GetTextValue((GameCulture.English, "Jerry Crabson"),
                 (GameCulture.Chinese, "巨蟹蛤")),
                 new int[] { ModContent.ItemType<Crabax>(), ModContent.ItemType<AquaticEnergy>(), ModContent.ItemType<JerryClawFlail>(), ModContent.ItemType<CinnabarBow>(), ModContent.ItemType<Bubbler>(), },

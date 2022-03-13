@@ -575,9 +575,9 @@ namespace AQMod.Content.Players
                 {
                     FX.cameraFocusLerp = 0.001f;
                 }
-                if (!FX.cameraFocus && FX.cameraFocusResetDelay > 0)
+                if (!FX.cameraFocus && FX.cameraFocusReset > 0)
                 {
-                    FX.cameraFocusResetDelay--;
+                    FX.cameraFocusReset--;
                     FX.cameraFocus = true;
                 }
                 if (FX.cameraFocus)

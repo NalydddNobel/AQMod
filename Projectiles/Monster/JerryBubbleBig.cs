@@ -94,7 +94,7 @@ namespace AQMod.Projectiles.Monster
         {
             var center = projectile.Center;
             float maxSpawnOffsetRadius = projectile.width / 2f;
-            int projectileType = ModContent.ProjectileType<JerryBubble>();
+            int projectileType = ModContent.ProjectileType<CrabsonBubble>();
             float speed = projectile.velocity.Length();
             bool wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
             int hostileBubbleCount = 4;

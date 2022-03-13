@@ -408,13 +408,16 @@ namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
             bool anyOthers = NPC.AnyNPCs(npc.type);
             if (!anyOthers)
             {
-                if (Main.hardMode && Main.rand.NextBool(30))
+                if (WorldDefeats.SudoHardmode)
                 {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
-                }
-                if (Main.hardMode && Main.rand.NextBool(5))
-                {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Vrang>(), Main.rand.NextVRand(1, 2));
+                    if (Main.rand.NextBool(30))
+                    {
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
+                    }
+                    if (Main.rand.NextBool(5))
+                    {
+                        Item.NewItem(npc.getRect(), ModContent.ItemType<Vrang>(), Main.rand.NextVRand(1, 2));
+                    }
                 }
                 if (Main.rand.NextBool(10))
                 {

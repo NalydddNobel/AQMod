@@ -15,7 +15,7 @@ namespace AQMod.NPCs
     {
         internal static bool SpawnRate_CheckBosses()
         {
-            return NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) || NPC.AnyNPCs(ModContent.NPCType<JerryCrabson>());
+            return NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) || NPC.AnyNPCs(ModContent.NPCType<Crabson>());
         }
         internal static bool SpawnRate_CheckEvents()
         {

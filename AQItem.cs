@@ -1146,6 +1146,7 @@ namespace AQMod
         public static int GetLineIndex(List<TooltipLine> tooltips, string lineName)
         {
             int myIndex = InternalLineIndexFinder(lineName);
+            //Main.NewText(myIndex);
             for (int i = 0; i < tooltips.Count; i++)
             {
                 if (tooltips[i].mod == "Terraria" && InternalLineIndexFinder(tooltips[i].Name) >= myIndex)
@@ -1153,7 +1154,7 @@ namespace AQMod
                     return i;
                 }
             }
-            return 0;
+            return 1;
         }
 
         private static int InternalLineIndexFinder(string name)

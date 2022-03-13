@@ -82,7 +82,7 @@ namespace AQMod.Effects
         public static Vector2 CameraFocus = Vector2.Zero;
         public static bool cameraFocus = false;
         public static int cameraFocusNPC = -1;
-        public static int cameraFocusResetDelay = -1;
+        public static int cameraFocusReset = -1;
         public static float cameraFocusLerp = 0f;
 
         public static Vector2 flashLocation = Vector2.Zero;

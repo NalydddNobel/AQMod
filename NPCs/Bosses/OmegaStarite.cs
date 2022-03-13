@@ -1256,7 +1256,7 @@ namespace AQMod.NPCs.Bosses
                     FX.cameraFocusLerp = 0.001f;
                 }
                 FX.cameraFocusNPC = npc.whoAmI;
-                FX.cameraFocusResetDelay = 60;
+                FX.cameraFocusReset = 60;
                 FX.SetFlash(npc.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f * AQConfigClient.Instance.FlashIntensity, 4f), 12f);
                 FX.SetShake(intensity * 2f, 24f);
                 int range = (int)intensity + 4;
@@ -1615,6 +1615,6 @@ namespace AQMod.NPCs.Bosses
             rings[1].RecieveNetPackage(reader);
         }
 
-        public ModifiableMusic GetMusic() => AQMod.OmegaStariteMusic;
+        public override ModifiableMusic GetMusic() => AQMod.OmegaStariteMusic;
     }
 }
