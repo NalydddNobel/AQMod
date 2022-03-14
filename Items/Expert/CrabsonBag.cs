@@ -1,4 +1,5 @@
 ﻿using AQMod.Items.Armor.Vanity.BossMasks;
+using AQMod.Items.Dyes;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Weapons.Magic;
@@ -24,12 +25,14 @@ namespace AQMod.Items.Expert
             player.QuickSpawnItem(ModContent.ItemType<AquaticEnergy>(), Main.rand.NextVRand(5, 8));
             if (Main.rand.NextBool(7))
                 player.QuickSpawnItem(ModContent.ItemType<CrabsonMask>());
+            player.QuickSpawnItem(ModContent.ItemType<BreakdownDye>());
             player.QuickSpawnItem(ModContent.ItemType<CrustaciumBlob>(), Main.rand.NextVRand(120, 200));
             var choices = new List<int>()
             {
                 ModContent.ItemType<Bubbler>(),
                 ModContent.ItemType<CinnabarBow>(),
                 ModContent.ItemType<JerryClawFlail>(),
+                ModContent.ItemType<Crabsol>(),
             };
             int choice = Main.rand.Next(choices.Count);
             player.QuickSpawnItem(choices[choice]);
