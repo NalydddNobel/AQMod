@@ -7,7 +7,7 @@ using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.HookUpgrades;
 using AQMod.Items.Pets;
 using AQMod.Items.Tools.Fishing;
-using AQMod.Items.Weapons.Melee;
+using AQMod.Items.Weapons.Melee.Clicker;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Tiles;
 using AQMod.Tiles.Furniture;

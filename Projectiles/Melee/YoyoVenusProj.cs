@@ -5,13 +5,13 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Melee
 {
-    public class Aphrodite : ModProjectile
+    public class YoyoVenusProj : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type] = 4f;
-            ProjectileID.Sets.YoyosMaximumRange[projectile.type] = 280f;
-            ProjectileID.Sets.YoyosTopSpeed[projectile.type] = 11.5f;
+            ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type] = 3f;
+            ProjectileID.Sets.YoyosMaximumRange[projectile.type] = 320f;
+            ProjectileID.Sets.YoyosTopSpeed[projectile.type] = 15f;
         }
 
         public override void SetDefaults()
@@ -28,7 +28,9 @@ namespace AQMod.Projectiles.Melee
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            LovestruckAQ.Apply(target, 160);
+            if (Main.rand.NextBool(4) && target.Distance(Main.player[projectile.owner].Center) < 120f)
+                target.AddBuff(BuffID.Poisoned, 240);
+            LovestruckAQ.Apply(target, 120);
         }
     }
 }

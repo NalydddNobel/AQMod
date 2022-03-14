@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Weapons.Melee
+namespace AQMod.Items.Weapons.Melee.Clicker
 {
     public class VineSword : ModItem
     {
@@ -14,9 +14,9 @@ namespace AQMod.Items.Weapons.Melee
         {
             item.width = 30;
             item.height = 30;
-            item.damage = 20;
-            item.useTime = 4;
-            item.useAnimation = 4;
+            item.damage = 17;
+            item.useTime = 8;
+            item.useAnimation = 8;
             item.useStyle = ItemUseStyleID.HoldingOut;
             item.noUseGraphic = true;
             item.UseSound = SoundID.Item1;

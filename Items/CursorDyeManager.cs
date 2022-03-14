@@ -2,9 +2,11 @@
 using AQMod.Content.CursorDyes;
 using AQMod.Content.CursorDyes.Components;
 using AQMod.Content.Players;
+using AQMod.Items.Weapons.Melee.Clicker;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;
+using Terraria.ModLoader;
 
 namespace AQMod.Items
 {
@@ -116,7 +118,8 @@ namespace AQMod.Items
             _data[CursorDyeID.Mana - 1] = new CursorDyeData(null, new ICursorDyeComponent[] { new CursorDyeColorChangeComponent(() => Color.Lerp(new Color(255, 255, 255, 255), new Color(40, 40, 255, 255), Main.player[Main.myPlayer].statMana / (float)Main.player[Main.myPlayer].statManaMax2)) });
             _data[CursorDyeID.Sword - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Items/Misc/Cursor/Sword/SwordCursor"));
             _data[CursorDyeID.Demon - 1] = new CursorDyeData(new CursorDyeTextureChangeComponent("AQMod/Items/Misc/Cursor/Demonic/DemonCursor", () => Main.cursorOverride != 6));
-            _data[CursorDyeID.WhackAZombie - 1] = new CursorDyeData(new WhackAZombieComponent());
+            _data[CursorDyeID.WhackAZombie - 1] = new CursorDyeData(new WhackAZombieComponent(ModContent.ItemType<VineSword>()));
+            _data[CursorDyeID.WhackAZombie2 - 1] = new CursorDyeData(new WhackAZombieComponent(ModContent.ItemType<XenonBasher>()));
         }
 
         internal static void Unload()

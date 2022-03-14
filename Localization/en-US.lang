@@ -204,6 +204,9 @@ ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% 
 # Weapons
 #===========================#
 
+ItemName.XenonBasher=Xenon Basher
+ItemTooltip.XenonBasher=Whack nearby enemies using your mouse\nHitting enemies will create xenon spores
+
 ItemName.Flameblaster=Flameblaster
 ItemTooltip.Flameblaster=Right click to shoot an airblast\nExtra effective in the hallow\n{$Mods.AQMod.Tooltips.UsesGel}\n50% chance to not consume ammo\n'The [c/ee2222:HOTTEST] in Home Incendiary Devices'
 ProjectileName.FlameblasterFire=Flameblaster
@@ -1196,7 +1199,6 @@ ItemName.OrbicularStargaizar=Orbicular Stargaizar
 BuffName.Harmony=Harmony
 BuffDescription.Harmony=Grealy increases your magical powers
 
-ItemName.XenonBasher=Xenon Basher
 # Ranged
 # Bows
 ItemName.CinnabarBow=Cinnabar Bow
@@ -1305,9 +1307,6 @@ ItemTooltip.PentalScythe=Shoots firey demon scythes that target your enemies
 # Spears
 ItemTooltip.ArgonSpear=Redirects itself to your cursor
 ItemTooltip.HorizonSkies=Shoots lines of energy\n'Are you readyayayayayyayayayaya'
-# Other Melee
-ItemTooltip.XenonBasher=Hitting enemies will create xenon spores
-# Ranged
 # Bows
 ItemTooltip.HamaYumi=Converts arrows into exploding shade arrows
 # Dart
@@ -1375,7 +1374,6 @@ ProjectileName.HorizonSkiesExplosion=Horizon Skies
 ProjectileName.PowPunch=Pow Punch
 ProjectileName.PowPunchExplosion=Pow Punch
 ProjectileName.UltimaFlare=Ultima Flare
-ProjectileName.XenonBasher=Xenon Basher
 ProjectileName.Venus=Venus
 
 # Ranged Weapon Projectiles

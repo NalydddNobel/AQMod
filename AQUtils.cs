@@ -22,7 +22,7 @@ using Terraria.Utilities;
 
 namespace AQMod
 {
-    internal static class AQUtils
+    public static class AQUtils
     {
         public static Vector2 TrueMouseworld => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix)) + Main.screenPosition;
 
@@ -304,7 +304,7 @@ namespace AQMod
             }
         }
 
-        public static void CustomGlowmask(this ModItem item, GlowmaskData.IWorld world = null, GlowmaskData.IInventory inv = null, GlowmaskData.IPlayerHeld held = null)
+        internal static void CustomGlowmask(this ModItem item, GlowmaskData.IWorld world = null, GlowmaskData.IInventory inv = null, GlowmaskData.IPlayerHeld held = null)
         {
             if (!Main.dedServ)
             {
@@ -312,7 +312,7 @@ namespace AQMod
             }
         }
 
-        public static void CustomGlowmask(this ModItem item, Texture2D texture, GlowmaskData.IWorld world = null, GlowmaskData.IInventory inv = null, GlowmaskData.IPlayerHeld held = null)
+        internal static void CustomGlowmask(this ModItem item, Texture2D texture, GlowmaskData.IWorld world = null, GlowmaskData.IInventory inv = null, GlowmaskData.IPlayerHeld held = null)
         {
             if (!Main.dedServ)
             {

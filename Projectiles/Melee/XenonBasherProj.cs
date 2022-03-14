@@ -5,32 +5,22 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Melee
 {
-    public class XenonBasherHammer : HammerProjectile
+    public class XenonBasherProj : ModProjectile
     {
-        protected override int Size => 48;
-        protected override float LengthFromPlayer => 55f;
-        protected override float UseTime => 15f;
-        protected override Vector2 ModifyPlayerOffset(Vector2 offset)
-        {
-            return new Vector2(offset.X, offset.Y - 32f);
-        }
+        public override string Texture => Tex.None;
 
-        public override Color? GetAlpha(Color lightColor)
+        public override void SetDefaults()
         {
-            return new Color(250, 250, 250, 250);
-        }
-
-        protected override void OnImpactGround()
-        {
-            base.OnImpactGround();
-            for (int i = 0; i < 10; i++)
-            {
-                Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + projectile.height - 2f), projectile.width, 2, ModContent.DustType<XenonDust>());
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + projectile.height - 2f), projectile.width, 2, ModContent.DustType<XenonMist>());
-            }
+            projectile.width = 30;
+            projectile.height = 30;
+            projectile.timeLeft = 8;
+            projectile.friendly = true;
+            projectile.melee = true;
+            projectile.aiStyle = -1;
+            projectile.ignoreWater = true;
+            projectile.penetrate = -1;
+            projectile.tileCollide = false;
+            projectile.ownerHitCheck = true;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -44,7 +34,7 @@ namespace AQMod.Projectiles.Melee
                 amount = (int)(amount * 2.5f);
             for (int i = 0; i < amount; i++)
             {
-                Projectile.NewProjectile(spawnPosition, new Vector2(speed, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi)), type, damage, mushroomSpeed, projectile.owner);
+                Projectile.NewProjectile(spawnPosition, new Vector2(speed, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi)), type, damage / 3, mushroomSpeed, projectile.owner);
             }
             spawnPosition += new Vector2(-6f, -6f);
             type = ModContent.DustType<XenonDust>();

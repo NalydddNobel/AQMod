@@ -143,5 +143,43 @@ namespace AQMod.NPCs
                     Item.NewItem(npc.getRect(), ModContent.ItemType<GrapePhanta>());
             }
         }
+
+        public static int DropItemChance(NPC npc, AQUtils.ArrayInterpreter<int> item, int chance)
+        {
+            if (Main.rand.NextBool(chance))
+            {
+                return -1;
+            }
+            return DropItem(npc, item);
+        }
+        public static int DropItemChance(NPC npc, AQUtils.ArrayInterpreter<int> item, int minStack, int maxStack, int chance)
+        {
+            if (Main.rand.NextBool(chance))
+            {
+                return -1;
+            }
+            return DropItem(npc, item, minStack, maxStack);
+        }
+        public static int DropItemChance(NPC npc, AQUtils.ArrayInterpreter<int> item, int stack, int chance)
+        {
+            if (Main.rand.NextBool(chance))
+            {
+                return -1;
+            }
+            return DropItem(npc, item, stack);
+        }
+
+        public static int DropItem(NPC npc, AQUtils.ArrayInterpreter<int> item)
+        {
+            return DropItem(npc, item, 1);
+        }
+        public static int DropItem(NPC npc, AQUtils.ArrayInterpreter<int> item, int minStack, int maxStack)
+        {
+            return DropItem(npc, item, Main.rand.Next(maxStack - minStack + 1) + minStack);
+        }
+        public static int DropItem(NPC npc, AQUtils.ArrayInterpreter<int> item, int stack)
+        {
+            return Item.NewItem(npc.getRect(), item.Arr[item.Arr.Length == 1 ? 0 : Main.rand.Next(item.Arr.Length)], stack);
+        }
     }
 }

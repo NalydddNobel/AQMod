@@ -8,6 +8,7 @@
         public const byte Sword = 3;
         public const byte Demon = 4;
         public const byte WhackAZombie = 5;
-        public const byte NormalCount = 5;
+        public const byte WhackAZombie2 = 6;
+        public const byte NormalCount = 6;
     }
 }

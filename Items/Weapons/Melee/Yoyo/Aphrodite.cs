@@ -30,7 +30,7 @@ namespace AQMod.Items.Weapons.Melee.Yoyo
             item.noMelee = true;
             item.noUseGraphic = true;
             item.shootSpeed = 10f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Melee.Aphrodite>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.YoyoAphroditeProj>();
         }
 
         public override void AddRecipes()

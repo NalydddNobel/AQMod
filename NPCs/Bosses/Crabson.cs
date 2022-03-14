@@ -1,7 +1,15 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Graphics;
 using AQMod.Effects;
+using AQMod.Items.Armor.Vanity.BossMasks;
+using AQMod.Items.Dyes;
 using AQMod.Items.Expert;
+using AQMod.Items.Materials;
+using AQMod.Items.Materials.Energies;
+using AQMod.Items.Placeable.Furniture;
+using AQMod.Items.Weapons.Magic;
+using AQMod.Items.Weapons.Melee;
+using AQMod.Items.Weapons.Ranged;
 using AQMod.Projectiles.Monster;
 using AQMod.Sounds;
 using AQMod.Tiles;
@@ -24,6 +32,9 @@ namespace AQMod.NPCs.Bosses
         public const int Phase_Intro = 1;
         public const int Phase_ClawShots = 2;
         public const int Phase_GroundBubbles = 3;
+        public const int Phase_ClawSlams = 4;
+        public const int Phase_HomingBubbles = 5;
+        public const int Phase_ClawShotsShrapnal = 6;
 
         public int leftClaw;
         public int rightClaw;
@@ -50,7 +61,7 @@ namespace AQMod.NPCs.Bosses
             npc.width = 90;
             npc.height = 60;
             npc.lifeMax = 2500;
-            npc.damage = 32;
+            npc.damage = 30;
             npc.defense = 8;
             npc.aiStyle = -1;
             npc.noTileCollide = true;
@@ -224,11 +235,24 @@ namespace AQMod.NPCs.Bosses
         }
         private void RandomizePhase(int current)
         {
-            List<int> actions = new List<int>() { Phase_ClawShots, Phase_GroundBubbles, };
+            List<int> actions = new List<int>() { Phase_ClawShots, Phase_GroundBubbles, Phase_ClawSlams };
             npc.ai[0] = actions[Main.rand.Next(actions.Count)];
+            npc.localAI[0] = 0f;
+            Right.localAI[0] = 0f;
+            Left.localAI[0] = 0f;
+            npc.damage = npc.defDamage;
+            Right.damage = Right.defDamage;
+            Left.damage = Left.defDamage;
+            npc.defense = npc.defDefense;
+            Right.defense = Right.defDefense;
+            Left.defense = Left.defDefense;
             if ((int)npc.ai[0] == Phase_ClawShots)
             {
                 npc.ai[1] = Main.expertMode ? 240f : 320f;
+                if (PhaseTwo && (Main.expertMode || Main.rand.NextFloat() < 0.75f))
+                {
+                    npc.ai[0] = Phase_ClawShotsShrapnal;
+                }
                 Left.ai[1] = 0f;
                 Right.ai[1] = 0f;
                 Left.ai[2] = 0f;
@@ -236,38 +260,60 @@ namespace AQMod.NPCs.Bosses
             }
             else if ((int)npc.ai[0] == Phase_GroundBubbles)
             {
-                if (current == Phase_GroundBubbles)
+                if (current == Phase_GroundBubbles || current == Phase_HomingBubbles)
                 {
                     RandomizePhase(current);
                     return;
                 }
-                npc.ai[1] = Main.expertMode ? 480f : 320f;
+                if (PhaseTwo && (Main.expertMode || Main.rand.NextFloat() < 0.75f))
+                {
+                    npc.ai[0] = Phase_HomingBubbles;
+                }
+                npc.ai[1] = Main.expertMode ? 240f : 180f;
                 npc.ai[2] = 0f;
                 npc.defense *= 4;
                 Right.defense *= 4;
                 Left.defense *= 4;
             }
-            npc.defense = npc.defDefense;
-            Right.defense = Right.defDefense;
-            Left.defense = Left.defDefense;
+            else if ((int)npc.ai[0] == Phase_ClawSlams)
+            {
+                float firstSmash = Main.expertMode ? -8f : -60f;
+                float secondSmash = Main.expertMode ? -68f : -128f;
+                if (PhaseTwo)
+                {
+                    secondSmash += 28f * (npc.life * 2f / npc.lifeMax);
+                }
+                npc.ai[1] = Main.expertMode ? 200f : 400f;
+                if (Main.rand.NextBool())
+                {
+                    Left.ai[1] = firstSmash;
+                    Right.ai[1] = secondSmash;
+                }
+                else
+                {
+                    Right.ai[1] = firstSmash;
+                    Left.ai[1] = secondSmash;
+                }
+            }
             npc.netUpdate = true;
         }
         private Vector2 ClawIdlePosition()
         {
             return CrabsonNPC.Center + new Vector2(120f * npc.direction, -48f);
         }
-        public int ShootProj<T>(Vector2 position, Vector2 velo, int damage, float ai0 = 0f, int extraUpdates = 0) where T : ModProjectile
+        public int ShootProj<T>(Vector2 position, Vector2 velo, int damage, float ai0 = 0f, float ai1 = 0f, int extraUpdates = 0, int alpha = 0) where T : ModProjectile
         {
-            return ShootProj(position, velo, ModContent.ProjectileType<T>(), damage, ai0, extraUpdates);
+            return ShootProj(position, velo, ModContent.ProjectileType<T>(), damage, ai0, ai1, extraUpdates, alpha);
         }
-        public int ShootProj(Vector2 position, Vector2 velo, int type, int damage, float ai0 = 0f, int extraUpdates = 0)
+        public int ShootProj(Vector2 position, Vector2 velo, int type, int damage, float ai0 = 0f, float ai1 = 0f, int extraUpdates = 0, int alpha = 0)
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                int p = Projectile.NewProjectile(position, velo, type, Main.expertMode ? damage / 3 : damage, 1f, Main.myPlayer, ai0, PhaseTwo ? 1f : 0f);
+                int p = Projectile.NewProjectile(position, velo, type, Main.expertMode ? damage / 3 : damage, 1f, Main.myPlayer, ai0, ai1);
                 if (p == -1)
                     return -1;
                 Main.projectile[p].extraUpdates += extraUpdates;
+                Main.projectile[p].alpha += alpha;
                 return p;
             }
             return -1;
@@ -280,13 +326,14 @@ namespace AQMod.NPCs.Bosses
                 {
                     npc.timeLeft = 20;
                 }
-                npc.ai[1]--;
-                if (npc.ai[1] < 6f)
+                npc.velocity.X *= 0.9f;
+                if (npc.velocity.Y < 0f)
                 {
-                    npc.velocity.Y += 25f;
-                    Left.velocity.Y += 25f;
-                    Right.velocity.Y += 25f;
+                    npc.velocity.Y *= 0.8f;
                 }
+                Right.rotation *= 0.8f;
+                Left.rotation *= 0.8f;
+                npc.velocity.Y += 0.1f;
                 return;
             }
             Vector2 center = npc.Center;
@@ -325,7 +372,7 @@ namespace AQMod.NPCs.Bosses
                             Right.ai[2] = 0f;
                         }
                     }
-                    else if ((int)npc.ai[0] == Phase_ClawShots)
+                    else if ((int)npc.ai[0] == Phase_ClawShots || (int)npc.ai[0] == Phase_ClawSlams || (int)npc.ai[0] == Phase_ClawShotsShrapnal)
                     {
                         npc.ai[1]--;
                         Movement1();
@@ -334,7 +381,7 @@ namespace AQMod.NPCs.Bosses
                             RandomizePhase((int)npc.ai[0]);
                         }
                     }
-                    else if ((int)npc.ai[0] == Phase_GroundBubbles)
+                    else if ((int)npc.ai[0] == Phase_GroundBubbles || (int)npc.ai[0] == Phase_HomingBubbles)
                     {
                         npc.ai[1]--;
                         var tileCoordinates = Main.player[npc.target].Center.ToTileCoordinates();
@@ -375,22 +422,31 @@ namespace AQMod.NPCs.Bosses
                         }
                         npc.ai[2]++;
                         float time = Main.expertMode ? 40f : 80f;
-                        if (PhaseTwo)
+                        if ((int)npc.ai[0] == Phase_HomingBubbles)
                         {
-                            time -= 32f * (1f - npc.life / npc.lifeMax);
+                            time -= 36f * (1f - npc.life / npc.lifeMax);
                         }
                         if (npc.ai[2] > time)
                         {
                             npc.ai[2] = 0f;
-                            if (bubbleTile != 40)
+                            float shootTime = Main.expertMode ? 30f - (PhaseTwo ? 8f : 0f) : 40f;
+                            if ((int)npc.ai[0] == Phase_HomingBubbles && Main.rand.NextBool())
                             {
-                                ShootProj<CrabsonBubble>(new Vector2(tileCoordinates.X * 16f + 8f, (tileCoordinates.Y + bubbleTile) * 16f - 4f), new Vector2(0f, -6f), npc.damage, Main.expertMode ? 30f : 40f);
+                                var spawnPos = new Vector2((tileCoordinates.X + Main.rand.Next(-3, 3)) * 16f + 8f, (tileCoordinates.Y - Main.rand.Next(12, 20)) * 16f - 4f);
+                                ShootProj<CrabsonBubble>(spawnPos, Vector2.Normalize(Main.player[npc.target].Center - spawnPos) * 0.01f, npc.damage, ai0: shootTime / 2f, alpha: 1);
                             }
                             else
                             {
-                                if (Main.netMode != NetmodeID.Server)
-                                    SoundID.Item85.Play(npc.Center, 0.7f);
-                                ShootProj<CrabsonBubble>(new Vector2(npc.position.X + npc.width / 2f, npc.position.Y - 4f), new Vector2(0f, -6f), npc.damage, default);
+                                if (bubbleTile != 40)
+                                {
+                                    ShootProj<CrabsonBubble>(new Vector2(tileCoordinates.X * 16f + 8f, (tileCoordinates.Y + bubbleTile) * 16f - 4f), new Vector2(0f, -0.01f), npc.damage, ai0: shootTime);
+                                }
+                                else
+                                {
+                                    if (Main.netMode != NetmodeID.Server)
+                                        SoundID.Item85.Play(npc.Center, 0.7f);
+                                    ShootProj<CrabsonBubble>(new Vector2(npc.position.X + npc.width / 2f, npc.position.Y - 4f), new Vector2(0f, -0.01f), npc.damage, ai0: 1f);
+                                }
                             }
                         }
                     }
@@ -398,7 +454,9 @@ namespace AQMod.NPCs.Bosses
                 else
                 {
                     npc.behindTiles = false;
-                    if (CrabsonNPC.ai[0] == Phase_ClawShots)
+                    npc.noGravity = true;
+                    npc.noTileCollide = true;
+                    if (CrabsonNPC.ai[0] == Phase_ClawShots || CrabsonNPC.ai[0] == Phase_ClawShotsShrapnal)
                     {
                         var gotoPosition = Main.player[npc.target].Center + new Vector2(400f * npc.direction, 0f);
 
@@ -426,7 +484,7 @@ namespace AQMod.NPCs.Bosses
                                 npc.position.X += 40f * npc.direction;
                                 npc.velocity = new Vector2(16f * npc.direction, 0f);
                                 Main.PlaySound(SoundID.Item61, npc.Center);
-                                ShootProj<CrabsonPearl>(npc.Center, new Vector2(20f * -npc.direction, 0f), npc.damage);
+                                ShootProj<CrabsonPearl>(npc.Center, new Vector2(20f * -npc.direction, 0f), npc.damage, ai1: (int)CrabsonNPC.ai[0] == Phase_ClawShotsShrapnal ? 1f : 0f);
                             }
                         }
                         if (CrabsonNPC.ai[1] < 30f)
@@ -454,6 +512,50 @@ namespace AQMod.NPCs.Bosses
                                 }
                             }
                             npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(difference) * difference.Length() / 20f, Math.Max(0.7f - npc.ai[2], 0.01f));
+                        }
+                    }
+                    else if ((int)CrabsonNPC.ai[0] == Phase_ClawSlams)
+                    {
+                        npc.ai[1]++;
+                        if (npc.ai[1] + 10 < 0f)
+                        {
+                            npc.noGravity = false;
+                            npc.noTileCollide = false;
+                        }
+                        else
+                        {
+                            int smashTime = Main.expertMode ? 45 : 75;
+                            if (npc.ai[1] > smashTime)
+                            {
+                                npc.damage = npc.defDamage * 2;
+                                npc.velocity.X = 0f;
+                                npc.velocity.Y = 40f;
+                                if (npc.ai[1] > smashTime + 10)
+                                {
+                                    npc.noGravity = false;
+                                    npc.noTileCollide = false;
+                                    if (Main.netMode != NetmodeID.Server && (int)npc.localAI[0] == 0)
+                                    {
+                                        SoundID.Item14.Play(npc.Center);
+                                        FX.AddShake(2f, 2f);
+                                    }
+                                    npc.localAI[0] = 1f;
+                                }
+                            }
+                            else
+                            {
+                                npc.damage = 0;
+                                var gotoPos = Main.player[npc.target].Center;
+                                if (npc.position.Y < Main.player[npc.target].position.Y - 80)
+                                {
+                                    gotoPos += new Vector2(0f, -320f - npc.height);
+                                }
+                                else
+                                {
+                                    gotoPos += new Vector2(200f * npc.direction, -120f - npc.height);
+                                }
+                                npc.Center = Vector2.Lerp(npc.Center, gotoPos, 0.05f + 0.4f * (npc.ai[0] / smashTime));
+                            }
                         }
                     }
                     else
@@ -608,6 +710,23 @@ namespace AQMod.NPCs.Bosses
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             return IsClaw ? false : (bool?)null;
+        }
+
+        public override void NPCLoot()
+        {
+            Rectangle rect = npc.getRect();
+            WorldDefeats.DownedCrabson = true;
+            LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonTrophy>(), 10);
+            if (Main.expertMode)
+            {
+                npc.DropBossBags();
+                return;
+            }
+            LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonMask>(), 7);
+            LootDrops.DropItemChance(npc, ModContent.ItemType<BreakdownDye>(), 2);
+            LootDrops.DropItem(npc, ModContent.ItemType<AquaticEnergy>(), 3, 5);
+            LootDrops.DropItem(npc, ModContent.ItemType<CrustaciumBlob>(), 50, 120);
+            LootDrops.DropItem(npc, new int[] { ModContent.ItemType<Bubbler>(), ModContent.ItemType<CinnabarBow>(), ModContent.ItemType<JerryClawFlail>(), ModContent.ItemType<Crabsol>() });
         }
     }
 }

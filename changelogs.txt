@@ -1,3 +1,32 @@
+####### 1.4.4 #######
+
+# Changes:
+- Re-worked Crabson's boss fight
+
+- Resprited the Glimmering Statue (tile and item)
+- Renamed the Glimmering Statue to Ultimate Crystal
+
+- Resprited the Mythic Starfruit, and renamed it to "Galactic Starfruit"
+
+- Resprited the Xenon Basher and re-made it to work exactly the same as the Mallet
+
+- The Nova Fruit is now craftable in pre-Hardmode
+
+- Lowered the volume on the Studies of the Inkblot
+
+- Nerfed the Mallet
+Damage: 20 -> 17
+- Nerfed the Xenon Basher:
+Damage 40 -> 20
+
+# Fixes:
+- Fixed the ATM being unusable
+- Fixed the Blurry Discount Card and Business Card setting all prices to 0
+- Fixed a small issue regarding the Pumpinator's tooltip
+- The Vraine now drops Atmospheric Energy after Omega Starite 
+- Killing the slime on a Streaming Balloon will now only drop Atmospheric Energy after Omega Starite is defeated or you are in Hardmode
+- The Gale Streams progression bar will now be able to appear if Omega Starite is defeated
+
 ####### 1.4.3 #######
 
 # Additions:

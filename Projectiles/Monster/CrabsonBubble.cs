@@ -48,11 +48,10 @@ namespace AQMod.Projectiles.Monster
                     _start = projectile.ai[0];
                 }
                 projectile.ai[0]--;
-                projectile.velocity = Vector2.Zero;
                 if ((int)projectile.ai[0] == 0)
                 {
                     projectile.position.Y -= projectile.height / 2f;
-                    projectile.velocity.Y = -6f;
+                    projectile.velocity = Vector2.Normalize(projectile.velocity) * (Main.expertMode ? 10f : 6f);
                     if (Main.netMode != NetmodeID.Server)
                     {
                         SoundID.Item85.Play(projectile.Center, 0.7f);
@@ -78,13 +77,14 @@ namespace AQMod.Projectiles.Monster
                 {
                     projectile.tileCollide = true;
                 }
-                projectile.velocity.X += Main.rand.NextFloat(-0.025f, 0.025f);
-                projectile.velocity.Y = MathHelper.Lerp(projectile.velocity.Y, -8f, 0f);
+                float amt = Main.expertMode ? 0.05f : 0.025f;
+                projectile.velocity.X += Main.rand.NextFloat(-amt, amt);
             }
-            if (Main.player[target].active && !Main.player[target].dead && projectile.position.Y > Main.player[target].position.Y)
+            if (Main.player[target].active && !Main.player[target].dead && (projectile.velocity.Y > 0f ? projectile.position.Y < Main.player[target].position.Y : projectile.position.Y > Main.player[target].position.Y))
             {
                 projectile.tileCollide = false;
             }
+            projectile.rotation = projectile.velocity.ToRotation();
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
@@ -105,7 +105,7 @@ namespace AQMod.Projectiles.Monster
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            if (projectile.ai[0] <= 0f || DrawHelper.ProjsBehindTiles.drawingNow)
+            if (projectile.ai[0] <= 0f || projectile.alpha > 0 || DrawHelper.ProjsBehindTiles.drawingNow)
             {
                 var texture = Main.projectileTexture[projectile.type];
                 var drawColor = projectile.GetAlpha(lightColor);
@@ -118,7 +118,7 @@ namespace AQMod.Projectiles.Monster
                 for (int i = 0; i < trailLength + trailRemove; i++)
                 {
                     float progress = 1f - 1f / trailLength * (i - trailRemove);
-                    spriteBatch.Draw(texture, projectile.oldPos[i] + offset, frame, trailColor * progress, projectile.rotation, origin, projectile.scale * progress, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(texture, projectile.oldPos[i] + offset, frame, trailColor * progress, 0f, origin, projectile.scale * progress, SpriteEffects.None, 0f);
                 }
                 var drawPos = projectile.position + offset;
                 drawPos = new Vector2((int)drawPos.X, (int)drawPos.Y);
@@ -134,12 +134,12 @@ namespace AQMod.Projectiles.Monster
                         alpha = (projectile.ai[0] - (_start - 24f)) / 24f;
                     }
                     bloomColor *= alpha;
-                    spriteBatch.Draw(bloom, drawPos, bloomFrame, bloomColor, projectile.rotation, bloomOrigin, new Vector2(0.15f, 4f * alpha), SpriteEffects.None, 0f);
-                    spriteBatch.Draw(bloom, drawPos, bloomFrame, bloomColor * 0.6f, projectile.rotation, bloomOrigin, new Vector2(0.2f, 6f * alpha), SpriteEffects.None, 0f);
+                    spriteBatch.Draw(bloom, drawPos, bloomFrame, bloomColor, projectile.rotation + MathHelper.PiOver2, bloomOrigin, new Vector2(0.15f, 4f * alpha), SpriteEffects.None, 0f);
+                    spriteBatch.Draw(bloom, drawPos, bloomFrame, bloomColor * 0.6f, projectile.rotation + MathHelper.PiOver2, bloomOrigin, new Vector2(0.2f, 6f * alpha), SpriteEffects.None, 0f);
                 }
                 if (trailRemove == 0)
                 {
-                    spriteBatch.Draw(texture, drawPos, frame, drawColor, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(texture, drawPos, frame, drawColor, 0f, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
                 }
             }
             else

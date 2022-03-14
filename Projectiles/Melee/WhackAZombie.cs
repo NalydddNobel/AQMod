@@ -11,7 +11,7 @@ namespace AQMod.Projectiles.Melee
         {
             projectile.width = 30;
             projectile.height = 30;
-            projectile.timeLeft = 4;
+            projectile.timeLeft = 8;
             projectile.friendly = true;
             projectile.melee = true;
             projectile.aiStyle = -1;

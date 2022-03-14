@@ -14,7 +14,7 @@ namespace AQMod.Projectiles.Melee
             projectile.height = 20;
             projectile.friendly = true;
             projectile.melee = true;
-            projectile.extraUpdates = 3;
+            projectile.extraUpdates = 4;
             projectile.manualDirectionChange = true;
             projectile.penetrate = -1;
             projectile.timeLeft = 1200;
