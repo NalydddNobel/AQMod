@@ -29,10 +29,9 @@ Aequus是一个添加了很多新物品、敌人和战利品的Terraria内容模
 
 [c/ffff64:包括:]
 [c/ff3377:>] 超过240个物品
-[c/ff3377:>] 1个Boss
-[c/ff3377:>] 4个特殊的小Boss
+[c/ff3377:>] 2个Boss
 [c/ff3377:>] 超过15个敌人
-[c/ff3377:>] 4个独特事件
+[c/ff3377:>] 4个事件
 [c/ff3377:>] 4个友善的NPC
 [c/ff3377:>] 完全支持英语和以后可能会重新翻译的汉语, 以及相当多的俄语翻译!
 [c/ff3377:>] 支持 Boss Checklist、Census 和 Discord Rich Presence mod!

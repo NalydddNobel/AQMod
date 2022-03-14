@@ -204,6 +204,9 @@ ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱对你造
 # Weapons
 #===========================#
 
+ItemName.XenonBasher=氙制粉碎者
+ItemTooltip.XenonBasher=打击你光标附近的敌人\n击中敌人时会生成氙孢子
+
 ItemName.Flameblaster=火焰爆破器
 ItemTooltip.Flameblaster=右键发射气爆\n在神圣地形时格外有效\n{$Mods.AQMod.Tooltips.UsesGel}\n50%几率不消耗弹药\n'[c/ee2222:最热的]家用燃烧装置'
 ProjectileName.FlameblasterFire=火焰爆破器
@@ -1196,7 +1199,6 @@ ItemName.OrbicularStargaizar=观星法球
 BuffName.Harmony=和谐
 BuffDescription.Harmony=大幅度强化你的魔法能力
 
-ItemName.XenonBasher=氙制轻剑
 # Ranged
 # Bows
 ItemName.CinnabarBow=朱砂弓
@@ -1305,9 +1307,6 @@ ItemTooltip.PentalScythe=发射追踪敌人的烈焰魔镰
 # Spears
 ItemTooltip.ArgonSpear=会不断的瞄准你的光标位置
 ItemTooltip.HorizonSkies=发射能量射线\n'你准备好了吗吗吗吗吗吗'
-# Other Melee
-ItemTooltip.XenonBasher=击中敌人时生成氙气孢子
-# Ranged
 # Bows
 ItemTooltip.HamaYumi=将箭矢转化为爆影破魔矢
 # Dart
@@ -1375,7 +1374,6 @@ ProjectileName.HorizonSkiesExplosion=空之视界
 ProjectileName.PowPunch=链拳
 ProjectileName.PowPunchExplosion=链拳
 ProjectileName.UltimaFlare=绚彩圣焰
-ProjectileName.XenonBasher=氙制轻剑
 ProjectileName.Venus=维纳斯
 
 # Ranged Weapon Projectiles
