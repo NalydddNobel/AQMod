@@ -57,6 +57,12 @@ namespace AQMod.Common.Utilities.Debugging
                     caller.Reply("Command doesn't exist.");
                     break;
 
+                case "robsternet":
+                    {
+                        ((Robster)Main.npc[NPC.FindFirstNPC(ModContent.NPCType<Robster>())].modNPC).NPCCheck = 241;
+                    }
+                    break;
+
                 case "questtile":
                     {
                         caller.Reply(Robster.TryPlaceQuestTile(mX, mY).ToString());
