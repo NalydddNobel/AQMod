@@ -808,15 +808,8 @@ Exporter.Quests.Complete.4=他们常说劫富济贫, 但我认为我们应该做
 ItemName.Snobster=势利鬼虾
 
 ItemName.JeweledChalice=宝石杯
-ItemTooltip.JeweledChalice={$Mods.AQMod.Tooltips.ExporterQuest}
-Exporter.Quest.JeweledChalice=我看见某人拿着一件特别的宝石杯. 它上面还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
-
 ItemName.JeweledCandelabra=宝石烛台
-ItemTooltip.JeweledCandelabra={$Mods.AQMod.Tooltips.ExporterQuest}
-Exporter.Quest.JeweledCandelabra=我看见某人拿着一件特别的宝石烛台.  它上还镶着红宝石和绿宝石, 它看起来非常的值钱. 所以快把它给我偷来!
-
 ItemName.JeweledChandelier=宝石大吊灯
-ItemTooltip.JeweledChandelier={$Mods.AQMod.Tooltips.ExporterQuest}
 
 Exporter.Quests.AtTownNPCHouse=我想我是在{0}的房子里看到的这个.
 Exporter.Quests.QuitHuntQuestion=你想停止狩猎吗?
@@ -1528,9 +1521,6 @@ MapObject.LightbulbTile=灯泡
 
 Config.RequiresReload=需要重新加载.
 
-UIConfiguration.MapUITogglesPosition=地图UI: 图标切换位置
-UIConfiguration.MapUITogglesPositionTooltip=移动在地图上的图标切换UI, 如果它的位置发生变化则会立即投射至地图上的对应位置
-
 DiscordRichPresenceConfig.Name=Discord Rich Presence
 DiscordRichPresenceConfig.Header.DRP=[c/eeffee:选项]
 
@@ -1573,8 +1563,8 @@ ClientConfig.DemonSiegeUpgradeTooltipTooltip=决定可在血巢处升级的物�
 ClientConfig.HookBarbBlacklistTooltip=刺钩黑名单描述
 ClientConfig.HookBarbBlacklistTooltipTooltip=决定无法升级的刺钩的物品描述中是否出现'不受钩刺升级效果影响'
 
-ClientConfig.MapBlipColor=地图光点颜色
-ClientConfig.MapBlipColorTooltip=折磨之魂显示的地图光点的颜色
+ClientConfig.MapUITogglesPosition=地图UI: 图标切换位置
+ClientConfig.MapUITogglesPositionTooltip=移动在地图上的图标切换UI, 如果它的位置发生变化则会立即投射至地图上的对应位置
 
 ClientConfig.Header.Worldgen=世界生成
 ClientConfig.Screenshakes=屏幕震动
@@ -1588,6 +1578,7 @@ ServerConfig.Name=服务器设置
 
 ServerConfig.Header.QualityOfLife=[c/ffdddd:生活品质]
 ServerConfig.Header.World=[c/ddeeff:世界]
+ServerConfig.Header.WorldGen=[c/eeffdd:世界生成]
 ServerConfig.Header.Debug=[c/ffeedd:调试]
 
 ServerConfig.DemonSiegeDowngrades=恶魔围攻降级
@@ -1595,9 +1586,6 @@ ServerConfig.DemonSiegeDowngradesTooltip=增加恶魔围攻事件升级武器的
 
 ServerConfig.ReduceSpawns=Boss战期间减少刷怪率
 ServerConfig.ReduceSpawnsTooltip=实际上是在Aequus Mod的Boss战期间禁用刷怪.\n如果世界中有什么东西正降低刷怪率, 则需要重新加载.
-
-ServerConfig.EvilProgressionLock=锁定邪恶地形时期
-ServerConfig.EvilProgressionLockTooltip=黑檀石、猩红石、暗影珠和猩红之心无法再被爆炸物摧毁, 直至你击败任意一个Boss.
 
 ServerConfig.HarderOmegaStarite=总是困难版本的终末之星AI
 ServerConfig.HarderOmegaStariteTooltip=与微光事件中的强化版终末之星战斗, 即使此时并不处于微光事件\n但终末之星并不会在微光事件外掉落最终之剑\n终末之星存活时无法更改此项设置.
@@ -1622,3 +1610,5 @@ ServerConfig.BloodyThingDropTooltip=决定血月期间的敌人是否会掉落'�
 
 ServerConfig.DebugCommand=调试模式 (/ncall)
 ServerConfig.DebugCommandTooltip=启用 /ncall 调试命令.\n{$Mods.AQMod.Config.RequiresReload}
+
+Complete=完成
