@@ -41,7 +41,7 @@ namespace AQMod.Items.Misc.ExporterQuest
             item.CloneDefaults(ItemID.WoodenCrate);
             item.createTile = -1;
             item.placeStyle = 0;
-            item.maxStack = 1;
+            item.maxStack = 99;
             lootTable = LootTable;
         }
 

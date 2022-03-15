@@ -10,6 +10,7 @@ using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
+using AQMod.NPCs.Friendly;
 using AQMod.Projectiles.Monster;
 using AQMod.Sounds;
 using AQMod.Tiles;
@@ -715,6 +716,11 @@ namespace AQMod.NPCs.Bosses
         public override void NPCLoot()
         {
             Rectangle rect = npc.getRect();
+            if (!WorldDefeats.DownedCrabson && !NPC.AnyNPCs(ModContent.NPCType<Robster>()))
+            {
+                var claw = Main.rand.NextBool() ? Right : Left;
+                NPC.NewNPC((int)claw.position.X + claw.width / 2, (int)claw.position.Y + claw.height / 2, ModContent.NPCType<Robster>());
+            }
             WorldDefeats.DownedCrabson = true;
             LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonTrophy>(), 10);
             if (Main.expertMode)

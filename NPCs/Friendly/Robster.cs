@@ -331,11 +331,6 @@ namespace AQMod.NPCs.Friendly
                             completeButton = true;
                             break;
                         }
-                        player.inventory[i].stack--;
-                        if (player.inventory[i].stack <= 0)
-                        {
-                            player.inventory[i].TurnToAir();
-                        }
                         Main.PlaySound(SoundID.Grab);
                         player.QuickSpawnItem(ModContent.ItemType<OverworldPalette>());
                         if (Main.rand.NextBool())
@@ -343,6 +338,16 @@ namespace AQMod.NPCs.Friendly
                         if (Main.rand.NextBool(10))
                             player.QuickSpawnItem(ItemID.GoldenCrate);
                         Main.npcChatText = Language.GetTextValue("Mods.AQMod.Exporter.Quests.Complete." + Main.rand.Next(5));
+                        player.inventory[i].stack--;
+                        if (player.inventory[i].stack <= 0)
+                        {
+                            player.inventory[i].TurnToAir();
+                        }
+                        else
+                        {
+                            completeButton = true;
+                            break;
+                        }
                         consumed = true;
                     }
                 }
