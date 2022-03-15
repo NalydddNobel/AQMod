@@ -106,7 +106,9 @@ namespace AQMod.NPCs.Friendly
                         t.color(color: 0);
                     }
                 }
-                NetMessage.SendTileSquare(-1, x - 1, y - 1, 3);
+                if (Main.netMode == NetmodeID.Server)
+                    NetMessage.SendTileSquare(-1, x - 1, y - 1, 3);
+                return true;
             }
             else if (choice == 1)
             {
@@ -115,7 +117,8 @@ namespace AQMod.NPCs.Friendly
                     WorldGen.PlaceTile(x, y, ModContent.TileType<JeweledCandelabraTile>(), true, false, -1, 0);
                     if (Framing.GetTileSafely(x, y).type == ModContent.TileType<JeweledCandelabraTile>())
                     {
-                        NetMessage.SendTileSquare(-1, x - 2, y - 2, 4);
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendTileSquare(-1, x - 2, y - 2, 4);
                         return true;
                     }
                 }
@@ -127,7 +130,8 @@ namespace AQMod.NPCs.Friendly
                     WorldGen.PlaceTile(x, y, ModContent.TileType<JeweledChaliceTile>(), true, false, -1, 0);
                     if (Framing.GetTileSafely(x, y).type == ModContent.TileType<JeweledChaliceTile>())
                     {
-                        NetMessage.SendTileSquare(-1, x - 1, y - 1, 3);
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendTileSquare(-1, x - 1, y - 1, 3);
                         return true;
                     }
                 }
@@ -142,7 +146,7 @@ namespace AQMod.NPCs.Friendly
                 NPCCheck++;
                 if (NPCCheck >= 240)
                 {
-                    if (NPCCheck >= 241 || Main.rand.NextBool(100))
+                    if (NPCCheck >= 241 || Main.rand.NextBool(20))
                     {
                         List<int> townNPCs = new List<int>();
                         for (int i = 0; i < Main.maxNPCs; i++)
@@ -317,10 +321,16 @@ namespace AQMod.NPCs.Friendly
             {
                 completeButton = false;
                 var player = Main.LocalPlayer;
+                bool consumed = false;
                 for (int i = 0; i < Main.maxInventory; i++)
                 {
                     if (player.inventory[i] != null && !player.inventory[i].IsAir && AQItem.Sets.ExporterQuest.Contains(player.inventory[i].type))
                     {
+                        if (consumed)
+                        {
+                            completeButton = true;
+                            break;
+                        }
                         player.inventory[i].stack--;
                         if (player.inventory[i].stack <= 0)
                         {
@@ -333,7 +343,7 @@ namespace AQMod.NPCs.Friendly
                         if (Main.rand.NextBool(10))
                             player.QuickSpawnItem(ItemID.GoldenCrate);
                         Main.npcChatText = Language.GetTextValue("Mods.AQMod.Exporter.Quests.Complete." + Main.rand.Next(5));
-                        break;
+                        consumed = true;
                     }
                 }
             }

@@ -18,6 +18,7 @@ namespace AQMod.Items.Placeable.Furniture
             item.useAnimation = 15;
             item.createTile = ModContent.TileType<JeweledChandlierTile>();
             item.autoReuse = true;
+            item.maxStack = 99;
         }
     }
 }
