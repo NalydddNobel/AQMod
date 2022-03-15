@@ -42,7 +42,7 @@ namespace AQMod.Items.Tools.Fishing.CrabPots
             r.AddRecipeGroup(AQRecipeGroups.CopperOrTin, 8);
             r.AddIngredient(ModContent.ItemType<AquaticEnergy>());
             r.AddIngredient(ModContent.ItemType<CrabShell>());
-            r.AddTile(ModContent.TileType<FishingCraftingStation>());
+            r.AddTile(ModContent.TileType<FishingCraftingStationTile>());
             r.SetResult(this);
             r.AddRecipe();
         }

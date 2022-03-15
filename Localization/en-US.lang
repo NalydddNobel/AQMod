@@ -1528,9 +1528,6 @@ MapObject.LightbulbTile=Lightbulb
 
 Config.RequiresReload=Requires a reload.
 
-UIConfiguration.MapUITogglesPosition=Map UI: Icon Toggle Pos
-UIConfiguration.MapUITogglesPositionTooltip=Moves the Icon Toggle UI on the map, instantly snaps onto screen if its position goes off
-
 DiscordRichPresenceConfig.Name=Discord Rich Presence
 DiscordRichPresenceConfig.Header.DRP=[c/eeffee:Options]
 
@@ -1573,8 +1570,8 @@ ClientConfig.DemonSiegeUpgradeTooltipTooltip=Whether or not 'Can be upgraded at 
 ClientConfig.HookBarbBlacklistTooltip=Hook Barb Blacklist Tooltip 
 ClientConfig.HookBarbBlacklistTooltipTooltip=Whether or not 'Does not get affected by hook barb upgrades' appears on an item's tooltip if it cannot have hook barb upgrades
 
-ClientConfig.MapBlipColor=Map Blip Color
-ClientConfig.MapBlipColorTooltip=The color of the little blips shown by the Blighted Soul
+ClientConfig.MapUITogglesPosition=Map UI: Icon Toggle Pos
+ClientConfig.MapUITogglesPositionTooltip=Moves the Icon Toggle UI on the map, instantly snaps onto screen if its position goes off
 
 ClientConfig.Header.Worldgen=World Gen
 ClientConfig.Screenshakes=Screenshakes
@@ -1588,16 +1585,14 @@ ServerConfig.Name=Server Config
 
 ServerConfig.Header.QualityOfLife=[c/ffdddd:Quality of Life]
 ServerConfig.Header.World=[c/ddeeff:World]
-ServerConfig.Header.Debug=[c/ffeedd:Debug]
+ServerConfig.Header.WorldGen=[c/eeffdd:WorldGen]
+ServerConfig.Header.Debug=Debug
 
 ServerConfig.DemonSiegeDowngrades=Demon Siege Downgrades
 ServerConfig.DemonSiegeDowngradesTooltip=Adds recipes for downgrading weapons upgraded at the Demon Siege.\n{$Mods.AQMod.Config.RequiresReload}
 
 ServerConfig.ReduceSpawns=Reduce Spawns during Bossfights
 ServerConfig.ReduceSpawnsTooltip=Practically disables spawns for Aequus bossfights.\nWould require a reload if anything in the world is currently reducing spawns.
-
-ServerConfig.EvilProgressionLock=World-Evil Progression Lock
-ServerConfig.EvilProgressionLockTooltip=Ebonstone, Crimstone, Shadow Orbs and Crimson Hearts can no longer be destroyed by explosives until a boss has been defeated.
 
 ServerConfig.HarderOmegaStarite=Omega Starite always uses Harder AI
 ServerConfig.HarderOmegaStariteTooltip=Makes Omega Starite always use its glimmer event version even when the glimmer event is not active\nThis will not mean it will drop the Ultimate Sword outside of the glimmer event\nCannot be changed if Omega Starite is alive.
@@ -1622,3 +1617,5 @@ ServerConfig.BloodyThingDropTooltip=Whether or not enemies during the blood moon
 
 ServerConfig.DebugCommand=Debug Mode (/ncall)
 ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod.Config.RequiresReload}
+
+Complete=Complete

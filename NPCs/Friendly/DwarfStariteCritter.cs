@@ -2,7 +2,7 @@
 using AQMod.Common.ID;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.World.Events;
-using AQMod.Items.Misc.Critters;
+using AQMod.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.NPCs.Friendly
 {
-    public class DwarfStarite : ModNPC
+    public class DwarfStariteCritter : ModNPC
     {
         public override void SetStaticDefaults()
         {

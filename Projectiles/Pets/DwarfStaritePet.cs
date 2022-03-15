@@ -10,7 +10,7 @@ namespace AQMod.Projectiles.Pets
 {
     public sealed class DwarfStaritePet : ModProjectile
     {
-        public override string Texture => AQUtils.GetPath<DwarfStarite>();
+        public override string Texture => AQUtils.GetPath<DwarfStariteCritter>();
 
         public override void SetStaticDefaults()
         {

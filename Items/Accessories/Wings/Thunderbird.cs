@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace AQMod.Items.Accessories.Wings
 {
     [AutoloadEquip(EquipType.Wings)]
-    public class Thunderbird : ModItem, IDedicatedItem
+    public class Thunderbird : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -81,7 +81,7 @@ namespace AQMod.Items.Accessories.Wings
         {
             if (line.mod == "Terraria" && line.Name == "ItemName")
             {
-                AQItem.DrawString_Developer(line);
+                AQItem.DrawDeveloperTooltip(line);
                 return false;
             }
             return true;
@@ -172,7 +172,5 @@ namespace AQMod.Items.Accessories.Wings
             speed = 12f;
             acceleration *= 3f;
         }
-
-        Color IDedicatedItem.DedicatedColoring => new Color(200, 125, 255, 255);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AQMod.Buffs;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -7,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Potions.Foods
 {
-    public class Baguette : ModItem, IDedicatedItem
+    public class Baguette : ModItem
     {
         public override void SetDefaults()
         {
@@ -41,7 +40,7 @@ namespace AQMod.Items.Potions.Foods
         {
             if (line.mod == "Terraria" && line.Name == "ItemName")
             {
-                AQItem.DrawString_Developer(line);
+                AQItem.DrawDeveloperTooltip(line);
                 return false;
             }
             return true;
@@ -51,7 +50,5 @@ namespace AQMod.Items.Potions.Foods
         {
             return true;
         }
-
-        Color IDedicatedItem.DedicatedColoring => new Color(187, 142, 42, 255);
     }
 }

@@ -22,7 +22,7 @@ namespace AQMod.Items.Expert
         {
             try
             {
-                int line = AQItem.FindTTLineSpot(tooltips, "Damage");
+                int line = AQItem.LegacyGetLineIndex(tooltips, "Damage");
                 var player = Main.LocalPlayer;
                 var aQPlayer = player.GetModPlayer<AQPlayer>();
                 tooltips.Insert(line, new TooltipLine(mod, "Knockback", AQItem.KBTooltip(6.5f)));

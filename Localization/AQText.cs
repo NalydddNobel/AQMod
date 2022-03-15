@@ -1,4 +1,7 @@
-﻿using Terraria.Localization;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AQMod.Localization
@@ -16,7 +19,8 @@ namespace AQMod.Localization
         public const int LangIDInterMinecart = 93;
         public const int LangIDInterLightPet = 94;
 
-        private static TextCallback callback;
+        internal static FieldInfo translationsField;
+        internal static Dictionary<string, ModTranslation> modTranslations;
 
         public static string KeybindText(ModHotKey key)
         {
@@ -25,11 +29,6 @@ namespace AQMod.Localization
                 return Language.GetTextValue("Mods.AQMod.Common.KeyBound", k);
             }
             return Language.GetTextValue("Mods.AQMod.Common.KeyUnbound");
-        }
-
-        internal static void UpdateCallback()
-        {
-            callback?.UpdateCallback();
         }
 
         public static string chooselocalizationtext(string en_US, string zh_Hans = null, string ru_RU = null)
@@ -48,49 +47,14 @@ namespace AQMod.Localization
             }
         }
 
-        public static string DisableThing(object arg)
-        {
-            return string.Format(ModText("Common.DisableThing").Value, arg);
-        }
-
-        public static string EnableThing(object arg)
-        {
-            return string.Format(ModText("Common.EnableThing").Value, arg);
-        }
-
         public static LocalizedText RobsterChat(int type)
         {
             return ModText("Common.RobsterChat" + type);
         }
 
-        public static LocalizedText EightballMisc(int type)
-        {
-            return ModText("Common.EightballMisc" + type);
-        }
-
-        public static LocalizedText CrabSeason()
-        {
-            return ModText("Common.CrabSeason");
-        }
-
-        public static LocalizedText GlimmerEvent()
-        {
-            return ModText("Common.GlimmerEvent");
-        }
-
-        public static LocalizedText GlimmerEventEnding()
-        {
-            return ModText("Common.GlimmerEventEnding");
-        }
-
         public static LocalizedText ModText(string key)
         {
-            var text = Language.GetText(Key + key);
-            if (text.Value == key)
-            {
-                return callback == null ? text : callback.OnMissingText(key, text);
-            }
-            return text;
+            return Language.GetText(Key + key);
         }
 
         public static LocalizedText ArmorSetBonus(string setBonus)
@@ -151,12 +115,50 @@ namespace AQMod.Localization
 
         internal static void Load()
         {
-            callback = new TextCallback();
+            translationsField = typeof(ModTranslation).GetField("translations", BindingFlags.NonPublic | BindingFlags.Instance);
+            modTranslations = (Dictionary<string, ModTranslation>)typeof(AQMod).GetField("translations", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(AQMod.GetInstance());
         }
 
         internal static void Unload()
         {
-            callback = null;
+            translationsField = null;
+            modTranslations = null;
+        }
+
+        internal static void AdjustTranslation(string key, string newKey, Func<string, string> modifyText)
+        {
+            AdjustTranslation(key, newKey, modifyText, AQMod.GetInstance());
+        }
+        internal static void AdjustTranslation(string key, string newKey, Func<string, string> modifyText, AQMod aQMod)
+        {
+            try
+            {
+                List<(int, string)> replacements = new List<(int, string)>();
+                var dict = modTranslations["Mods.AQMod." + key].GetTranslationsDict();
+                foreach (var value in dict)
+                {
+                    replacements.Add((value.Key, modifyText(value.Value)));
+                }
+                var text = aQMod.CreateTranslation(newKey);
+                foreach (var value in replacements)
+                {
+                    text.AddTranslation(value.Item1, value.Item2);
+                }
+                aQMod.AddTranslation(text);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("failed on adjusting the {" + key + "} key.", ex);
+            }
+        }
+        internal static Dictionary<int, string> GetTranslationsDict(this ModTranslation text)
+        {
+            return (Dictionary<int, string>)translationsField.GetValue(text);
+        }
+
+        public static string Item(int item)
+        {
+            return "[i:" + item + "]";
         }
     }
 }

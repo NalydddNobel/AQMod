@@ -1256,16 +1256,7 @@ namespace AQMod
             if (LootLoopingHelper.Current != 0)
             {
                 NPCLoader.blockLoot.Add(ItemID.Heart);
-            }
-            else
-            {
-                if (npc.whoAmI == Robster.TargetNPC && Robster.ActiveQuest != null)
-                {
-                    Robster.ActiveQuest?.EndHunt();
-                    AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterNPCDeath", Robster.RobsterBroadcastMessageColor);
-                    AQMod.BroadcastMessage("Mods.AQMod.Common.RobsterNPCDeath2", Robster.RobsterBroadcastMessageColor);
-                    Robster.StartRandomHunt();
-                }
+                NPCLoader.blockLoot.Add(ItemID.Star);
             }
             return true;
         }

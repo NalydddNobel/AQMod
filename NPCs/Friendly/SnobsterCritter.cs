@@ -1,11 +1,12 @@
 ﻿using AQMod.Common;
+using AQMod.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.NPCs.Friendly
 {
-    public class Snobster : ModNPC
+    public class SnobsterCritter : ModNPC
     {
         public override void SetStaticDefaults()
         {
@@ -24,7 +25,7 @@ namespace AQMod.NPCs.Friendly
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.npcSlots = 0.5f;
-            npc.catchItem = (short)ModContent.ItemType<Items.Misc.Critters.Snobster>();
+            npc.catchItem = (short)ModContent.ItemType<Snobster>();
         }
 
         public override void HitEffect(int hitDirection, double damage)

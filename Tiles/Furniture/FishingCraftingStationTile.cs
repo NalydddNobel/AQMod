@@ -6,8 +6,14 @@ using Terraria.ObjectData;
 
 namespace AQMod.Tiles.Furniture
 {
-    public class FishingCraftingStation : ModTile
+    public class FishingCraftingStationTile : ModTile
     {
+        public override bool Autoload(ref string name, ref string texture)
+        {
+            name = "FishingCraftingStation";
+            return base.Autoload(ref name, ref texture);
+        }
+
         public override void SetDefaults()
         {
             Main.tileFrameImportant[Type] = true;

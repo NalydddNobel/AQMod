@@ -61,8 +61,8 @@ namespace AQMod.NPCs.Bosses
             npc.width = 90;
             npc.height = 60;
             npc.lifeMax = 2500;
-            npc.damage = 30;
-            npc.defense = 8;
+            npc.damage = 24;
+            npc.defense = 6;
             npc.aiStyle = -1;
             npc.noTileCollide = true;
             npc.noGravity = true;

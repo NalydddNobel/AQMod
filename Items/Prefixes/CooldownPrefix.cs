@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Reforges
+namespace AQMod.Items.Prefixes
 {
     public abstract class CooldownPrefix : AQPrefix
     {

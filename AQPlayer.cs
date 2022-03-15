@@ -1326,30 +1326,20 @@ namespace AQMod
             player.moveSpeed *= runSpeedBoost;
         }
 
-        private void DamageReduction_Lightbulb(Projectile projectile, ref int damage)
+        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-            if (projectile.trap)
+            if (setLightbulb && proj.trap)
             {
                 damage = (int)(damage * 0.7f);
             }
-        }
-        private void DamageReduction_Extractor(Projectile projectile, ref int damage)
-        {
-            if (AQProjectile.Sets.DamageReductionExtractor.Contains(projectile.type))
+            if (reducedSiltDamage && AQProjectile.Sets.DamageReductionExtractor.Contains(proj.type))
             {
                 damage /= 4;
             }
         }
-        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+
+        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
         {
-            if (setLightbulb)
-            {
-                DamageReduction_Lightbulb(proj, ref damage);
-            }
-            if (reducedSiltDamage)
-            {
-                DamageReduction_Extractor(proj, ref damage);
-            }
             var aQProjectile = proj.GetGlobalProjectile<AQProjectile>();
             if (aQProjectile.temperature != 0)
             {
@@ -1362,6 +1352,15 @@ namespace AQMod
             if (mothmanMask && AQNPC.Sets.DealsLessDamageToCata[npc.type])
             {
                 damage /= 2;
+            }
+        }
+
+        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        {
+            var aQNPC = npc.GetGlobalNPC<AQNPC>();
+            if (aQNPC.temperature != 0)
+            {
+                InflictTemperature(aQNPC.temperature);
             }
         }
 
@@ -1551,11 +1550,6 @@ namespace AQMod
             if (voodooAmulet)
             {
                 OnHitNPC_VoodooAmulet(target, targetCenter, damage, knockback, crit);
-            }
-            var aQNPC = target.GetGlobalNPC<AQNPC>();
-            if (aQNPC.temperature != 0)
-            {
-                InflictTemperature(aQNPC.temperature);
             }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)

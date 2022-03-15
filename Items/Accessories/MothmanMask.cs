@@ -7,10 +7,8 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories
 {
-    public class MothmanMask : ModItem, IDedicatedItem, IUpdateVanity
+    public class MothmanMask : ModItem, IUpdateVanity
     {
-        Color IDedicatedItem.DedicatedColoring => new Color(50, 75, 250, 255);
-
         public override void SetDefaults()
         {
             item.width = 20;

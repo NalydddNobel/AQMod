@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace AQMod.Items.Reforges
+namespace AQMod.Items.Prefixes
 {
     public sealed class OutpacingPrefix : CooldownPrefix
     {

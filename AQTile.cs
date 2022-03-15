@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Tiles.ExporterQuest;
+﻿using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
 using System.Collections.Generic;
@@ -35,6 +34,7 @@ namespace AQMod
 
                 ExporterQuestFurniture = new HashSet<ushort>()
                 {
+                    (ushort)ModContent.TileType<JeweledChandlierTile>(),
                     (ushort)ModContent.TileType<JeweledCandelabraTile>(),
                     (ushort)ModContent.TileType<JeweledChaliceTile>(),
                 };
@@ -95,11 +95,6 @@ namespace AQMod
 
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
         {
-            switch (type)
-            {
-                case TileID.ShadowOrbs:
-                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated || Main.LocalPlayer.HeldItem.hammer >= 60;
-            }
             if (j > 1)
             {
                 if (ProtectedTile(i, j - 1))
@@ -110,15 +105,6 @@ namespace AQMod
 
         public override bool CanExplode(int i, int j, int type)
         {
-            switch (type)
-            {
-                case TileID.Ebonstone:
-                case TileID.Crimstone:
-                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated || j < 400;
-
-                case TileID.ShadowOrbs:
-                    return !ModContent.GetInstance<AQConfigServer>().evilProgressionLock || WorldDefeats.AnyBossDefeated;
-            }
             if (j > 1)
             {
                 if (ProtectedTile(i, j - 1))

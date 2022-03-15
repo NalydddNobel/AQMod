@@ -7,10 +7,8 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Magic
 {
-    public class StudiesoftheInkblot : ModItem, IDedicatedItem
+    public class StudiesoftheInkblot : ModItem
     {
-        Color IDedicatedItem.DedicatedColoring => new Color(110, 110, 128, 255);
-
         private void DefaultUse()
         {
             item.damage = 200;

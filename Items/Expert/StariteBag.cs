@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Expert
 {
-    public class StariteBag : TreasureBagItem
+    public class StariteBag : TreasureBag
     {
         protected override int InternalRarity => ItemRarityID.LightRed;
         public override int BossBagNPC => ModContent.NPCType<OmegaStarite>();

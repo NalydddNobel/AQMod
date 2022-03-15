@@ -1,11 +1,17 @@
-﻿using Terraria;
+﻿using AQMod.NPCs.Friendly;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Misc.Critters
+namespace AQMod.Items.Misc
 {
-    public class Snobster : ModItem
+    public class DwarfStariteItem : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.Glowmask();
+        }
+
         public override void SetDefaults()
         {
             item.width = 16;
@@ -15,8 +21,8 @@ namespace AQMod.Items.Misc.Critters
             item.useTime = 10;
             item.useAnimation = 15;
             item.maxStack = 999;
-            item.makeNPC = (short)ModContent.NPCType<NPCs.Friendly.Snobster>();
-            item.value = Item.sellPrice(silver: 5);
+            item.makeNPC = (short)ModContent.NPCType<DwarfStariteCritter>();
+            item.value = Item.sellPrice(silver: 2);
         }
     }
 }

@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Items
+namespace AQMod.Items.Expert
 {
-    public abstract class TreasureBagItem : ModItem
+    public abstract class TreasureBag : ModItem
     {
         protected abstract int InternalRarity { get; }
 

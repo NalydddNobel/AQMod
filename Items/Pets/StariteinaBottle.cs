@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Misc.Critters;
+﻿using AQMod.Items.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

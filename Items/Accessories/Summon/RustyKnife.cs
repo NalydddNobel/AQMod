@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories.Summon
 {
-    public class RustyKnife : ModItem, IDedicatedItem, IUpdateVanity
+    public class RustyKnife : ModItem, IUpdateVanity
     {
         public override void SetDefaults()
         {
@@ -47,7 +47,5 @@ namespace AQMod.Items.Accessories.Summon
             if (i > AQPlayer.MaxDye)
                 aQPlayer.omoriEffect = true;
         }
-
-        Color IDedicatedItem.DedicatedColoring => new Color(30, 255, 60, 255);
     }
 }

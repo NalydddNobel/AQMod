@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Expert
 {
-    public class CrabsonBag : TreasureBagItem
+    public class CrabsonBag : TreasureBag
     {
         protected override int InternalRarity => ItemRarityID.Blue;
         public override int BossBagNPC => ModContent.NPCType<Crabson>();

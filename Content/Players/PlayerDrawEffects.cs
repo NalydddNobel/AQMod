@@ -380,7 +380,7 @@ namespace AQMod.Content.Players
                 return;
             }
 
-            item.GetGlobalItem<AQItem>().Glowmask.DrawHeld(player, player.GetModPlayer<AQPlayer>(), item, info);
+            item.GetGlobalItem<AQItem>().glowmask.DrawHeld(player, player.GetModPlayer<AQPlayer>(), item, info);
         });
 
         internal static readonly PlayerLayer PostDrawHead = new PlayerLayer("AQMod", "PostDrawHead", PlayerLayer.Head, (info) =>

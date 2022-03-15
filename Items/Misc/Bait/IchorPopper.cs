@@ -38,7 +38,7 @@ namespace AQMod.Items.Misc.Bait
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.Ichor, 10);
             r.AddIngredient(ItemID.BloodWater);
-            r.AddTile(ModContent.TileType<FishingCraftingStation>());
+            r.AddTile(ModContent.TileType<FishingCraftingStationTile>());
             r.SetResult(this, 10);
             r.AddRecipe();
         }

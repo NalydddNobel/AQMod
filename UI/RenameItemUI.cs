@@ -92,7 +92,7 @@ namespace AQMod.UI
                     textBox.text = slot.Item.Name;
                     initItemSlot = true;
                 }
-                int price = NameTagItem.RenamePrice(slot.Item);
+                int price = slot.Item.GetGlobalItem<AQItem>().RenamePrice(slot.Item);
                 if (hover2)
                 {
                     if (Main.mouseLeft && Main.mouseLeftRelease && price != -1)
@@ -103,15 +103,15 @@ namespace AQMod.UI
                             {
                                 player.BuyItem(price, -1);
                                 AQSound.LegacyPlay(SoundType.Item, "Sounds/Item/Select", 0.5f);
-                                var nameTagItem = slot.Item.GetGlobalItem<NameTagItem>();
+                                var aQItem = slot.Item.GetGlobalItem<AQItem>();
                                 string itemName = textBox.text;
                                 if (string.IsNullOrWhiteSpace(itemName))
                                 {
                                     itemName = "";
                                 }
-                                nameTagItem.nameTag = itemName;
-                                nameTagItem.timesRenamed++;
-                                nameTagItem.UpdateName(slot.Item);
+                                aQItem.NameTag = itemName;
+                                aQItem.RenameCount++;
+                                aQItem.UpdateNameTag(slot.Item);
                                 textBox.text = "";
                             }
                         }

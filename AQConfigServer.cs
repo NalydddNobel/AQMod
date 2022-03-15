@@ -1,7 +1,14 @@
-﻿using AQMod.NPCs;
+﻿using AQMod.Items.Accessories;
+using AQMod.Items.Armor.Vanity.BossMasks;
+using AQMod.Items.Placeable.Nature;
+using AQMod.Items.Weapons.Magic;
+using AQMod.Items.Weapons.Melee;
+using AQMod.Localization;
+using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
 using System.ComponentModel;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
@@ -18,14 +25,14 @@ namespace AQMod
         [Header("$Mods.AQMod.ServerConfig.Header.QualityOfLife")]
 
         [BackgroundColor(140, 29, 47, 180)]
-        [Label("$Mods.AQMod.ServerConfig.DemonSiegeDowngrades")]
+        [Label("$Mods.AQMod.ServerConfig.DemonSiegeDowngradesLabel")]
         [Tooltip("$Mods.AQMod.ServerConfig.DemonSiegeDowngradesTooltip")]
         [DefaultValue(false)]
         [ReloadRequired()]
         public bool demonSiegeDowngrades;
 
         [BackgroundColor(140, 29, 47, 180)]
-        [Label("$Mods.AQMod.ServerConfig.ReduceSpawns")]
+        [Label("$Mods.AQMod.ServerConfig.ReduceSpawnsLabel")]
         [Tooltip("$Mods.AQMod.ServerConfig.ReduceSpawnsTooltip")]
         [DefaultValue(false)]
         [ReloadRequired()]
@@ -34,55 +41,49 @@ namespace AQMod
         [Header("$Mods.AQMod.ServerConfig.Header.World")]
 
         [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ServerConfig.CooldownReforges")]
+        [Label("$Mods.AQMod.ServerConfig.CooldownReforgesLabel")]
         [Tooltip("$Mods.AQMod.ServerConfig.CooldownReforgesTooltip")]
         [DefaultValue(true)]
         [ReloadRequired()]
         public bool cooldownReforges;
 
         [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ServerConfig.JellyfishNecklace")]
+        [Label("$Mods.AQMod.ServerConfig.JellyfishNecklaceLabel")]
         [Tooltip("$Mods.AQMod.ServerConfig.JellyfishNecklaceTooltip")]
         [DefaultValue(true)]
         public bool removeJellyfishNecklace;
 
         [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ServerConfig.HarderOmegaStarite")]
+        [Label("$Mods.AQMod.ServerConfig.HarderOmegaStariteLabel")]
         [Tooltip("$Mods.AQMod.ServerConfig.HarderOmegaStariteTooltip")]
         [DefaultValue(false)]
         [ReloadRequired()]
         public bool harderOmegaStarite;
 
-        [BackgroundColor(13, 166, 231, 180)]
-        [Label("$Mods.AQMod.ServerConfig.EvilProgressionLock")]
-        [Tooltip("$Mods.AQMod.ServerConfig.EvilProgressionLockTooltip")]
-        [DefaultValue(true)]
-        public bool evilProgressionLock;
-
         [Header("$Mods.AQMod.ServerConfig.Header.WorldGen")]
 
         [BackgroundColor(195, 155, 50, 180)]
-        [Label("$Mods.AQMod.ServerConfig.OverrideVanillaChestLoot")]
+        [Label("$Mods.AQMod.ServerConfig.OverrideVanillaChestLootLabel")]
         [Tooltip("$Mods.AQMod.ServerConfig.OverrideVanillaChestLootTooltip")]
         [DefaultValue(true)]
         public bool overrideVanillaChestLoot;
 
         [BackgroundColor(195, 155, 50, 180)]
-        [Label("$Mods.AQMod.ServerConfig.GenerateOceanRavines")]
+        [Label("$Mods.AQMod.ServerConfig.GenerateOceanRavinesLabel")]
         [Tooltip("$Mods.AQMod.ServerConfig.GenerateOceanRavinesTooltip")]
         [DefaultValue(true)]
         public bool generateOceanRavines;
 
         [BackgroundColor(195, 155, 50, 180)]
-        [Label("$Mods.AQMod.ServerConfig.FixBabyPools")]
+        [Label("$Mods.AQMod.ServerConfig.FixBabyPoolsLabel")]
         [Tooltip("$Mods.AQMod.ServerConfig.FixBabyPoolsTooltip")]
         [DefaultValue(true)]
         public bool fixBabyPools;
 
         [Header("$Mods.AQMod.ServerConfig.Header.Debug")]
 
-        [BackgroundColor(255, 193, 3, 180)]
-        [Label("$Mods.AQMod.ServerConfig.DebugCommand")]
+        [BackgroundColor(193, 193, 193, 180)]
+        [Label("$Mods.AQMod.ServerConfig.DebugCommandLabel")]
         [Tooltip("$Mods.AQMod.ServerConfig.DebugCommandTooltip")]
         [DefaultValue(false)]
         [ReloadRequired()]
@@ -106,6 +107,20 @@ namespace AQMod
             if (p.reduceSpawns != reduceSpawns)
                 return NPCSpawns.SpawnRate_CheckBosses();
             return false;
+        }
+
+        public static void LoadTranslations()
+        {
+            AQText.AdjustTranslation("ServerConfig.DemonSiegeDowngrades", "ServerConfig.DemonSiegeDowngradesLabel", (s) => AQText.Item(ModContent.ItemType<HellsBoon>()) + " " + s);
+            AQText.AdjustTranslation("ServerConfig.ReduceSpawns", "ServerConfig.ReduceSpawnsLabel", (s) => AQText.Item(ItemID.PeaceCandle) + " " + s);
+            AQText.AdjustTranslation("ServerConfig.CooldownReforges", "ServerConfig.CooldownReforgesLabel", (s) => AQText.Item(ModContent.ItemType<Umystick>()) + " " + s);
+            AQText.AdjustTranslation("ServerConfig.JellyfishNecklace", "ServerConfig.JellyfishNecklaceLabel", (s) => AQText.Item(ModContent.ItemType<ShockCollar>()) + " " + s);
+            AQText.AdjustTranslation("ServerConfig.HarderOmegaStarite", "ServerConfig.HarderOmegaStariteLabel", (s) => AQText.Item(ModContent.ItemType<OmegaStariteMask>()) + " " + s);
+            AQText.AdjustTranslation("ServerConfig.EvilProgressionLock", "ServerConfig.EvilProgressionLockLabel", (s) => AQText.Item(ItemID.ShadowOrb) + " " + s);
+            AQText.AdjustTranslation("ServerConfig.OverrideVanillaChestLoot", "ServerConfig.OverrideVanillaChestLootLabel", (s) => AQText.Item(ItemID.GoldChest) + " " + s);
+            AQText.AdjustTranslation("ServerConfig.GenerateOceanRavines", "ServerConfig.GenerateOceanRavinesLabel", (s) => AQText.Item(ModContent.ItemType<ExoticCoral>()) + " " + s);
+            AQText.AdjustTranslation("ServerConfig.FixBabyPools", "ServerConfig.FixBabyPoolsLabel", (s) => AQText.Item(ItemID.WaterBucket) + " " + s);
+            AQText.AdjustTranslation("ServerConfig.DebugCommand", "ServerConfig.DebugCommandLabel", (s) => AQText.Item(ItemID.ActuationRod) + " " + s);
         }
     }
 }

@@ -78,7 +78,7 @@ namespace AQMod.Items.Weapons.Melee
             }
             try
             {
-                int index = AQItem.FindTTLineSpot(tooltips, "Tooltip#");
+                int index = AQItem.LegacyGetLineIndex(tooltips, "Tooltip#");
                 tooltips.Insert(index + 1, new TooltipLine(mod, "ObtainedFrom", Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.UltimateSword.0")) { overrideColor = AQMod.MysteriousGuideTooltip, });
             }
             catch

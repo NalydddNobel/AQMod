@@ -6,6 +6,7 @@ using AQMod.Content.World.Events;
 using AQMod.Content.World.Generation;
 using AQMod.Items;
 using AQMod.Localization;
+using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters;
 using AQMod.Tiles;
 using AQMod.Tiles.Furniture;
@@ -54,6 +55,12 @@ namespace AQMod.Common.Utilities.Debugging
             {
                 default:
                     caller.Reply("Command doesn't exist.");
+                    break;
+
+                case "questtile":
+                    {
+                        caller.Reply(Robster.TryPlaceQuestTile(mX, mY).ToString());
+                    }
                     break;
 
                 case "clr":
@@ -258,7 +265,7 @@ namespace AQMod.Common.Utilities.Debugging
                                 name += " ";
                             name += args[i];
                         }
-                        caller.Player.HeldItem.GetGlobalItem<NameTagItem>().nameTag = name;
+                        caller.Player.HeldItem.GetGlobalItem<AQItem>().NameTag = name;
                     }
                     break;
 

@@ -1,11 +1,11 @@
-﻿using AQMod.Items.Misc;
+﻿using AQMod.Items.Placeable.Furniture;
 using AQMod.NPCs.Friendly;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace AQMod.Tiles.ExporterQuest
+namespace AQMod.Tiles.Furniture
 {
     public class JeweledChaliceTile : ModTile
     {
@@ -16,7 +16,7 @@ namespace AQMod.Tiles.ExporterQuest
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.addTile(Type);
-            AddMapEntry(Robster.JeweledTileMapColor, Lang.GetItemName(ModContent.ItemType<JeweledChalice>()));
+            AddMapEntry(Robster.JeweledTileMapColor, AQMod.GetTranslation("ItemName.JeweledChalice"));
             soundStyle = SoundID.Dig;
             disableSmartCursor = true;
         }
@@ -28,10 +28,7 @@ namespace AQMod.Tiles.ExporterQuest
 
         public override bool Drop(int i, int j)
         {
-            if (Robster.CheckTileBreakSights(i, j, alsoResetQuest: true) == false)
-            {
-                Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<JeweledChalice>());
-            }
+            Item.NewItem(i * 16, j * 16, 16, 16, ModContent.ItemType<JeweledChalice>());
             return true;
         }
     }

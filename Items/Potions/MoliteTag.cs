@@ -290,7 +290,7 @@ namespace AQMod.Items.Potions
                 }
                 if (text != key)
                 {
-                    int tooltipIndex = AQItem.FindTTLineSpot(tooltips, "Tooltip#");
+                    int tooltipIndex = AQItem.LegacyGetLineIndex(tooltips, "Tooltip#");
                     tooltips.Insert(tooltipIndex, new TooltipLine(mod, "OriginalPotionTooltip", text));
                 }
             }

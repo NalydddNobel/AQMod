@@ -8,18 +8,25 @@ using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Items;
 using AQMod.Items.Accessories;
+using AQMod.Items.Accessories.Summon;
+using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Misc;
+using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
-using AQMod.Items.Reforges;
+using AQMod.Items.Potions.Foods;
+using AQMod.Items.Prefixes;
 using AQMod.Items.Tools.Fishing;
+using AQMod.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.UI.Chat;
 
 namespace AQMod
@@ -48,6 +55,7 @@ namespace AQMod
 
         public sealed class Sets
         {
+            public static HashSet<int> ExporterQuest { get; private set; }
             public static HashSet<int> Crate { get; private set; }
             public static HashSet<int> NoRename { get; private set; }
             public static HashSet<int> NoAutoswing { get; private set; }
@@ -55,8 +63,36 @@ namespace AQMod
             public static HashSet<int> ItemIDRenewalBlacklist { get; private set; }
             public static HashSet<int> AmmoIDRenewalBlacklist { get; private set; }
 
+            public struct ItemDedication
+            {
+                public readonly Color color;
+
+                public ItemDedication(Color color)
+                {
+                    this.color = color;
+                }
+            }
+
+            public static Dictionary<int, ItemDedication> DedicatedItem { get; private set; }
+
             internal static void Load()
             {
+                ExporterQuest = new HashSet<int>()
+                {
+                    ModContent.ItemType<JeweledChandelier>(),
+                    ModContent.ItemType<JeweledCandelabra>(),
+                    ModContent.ItemType<JeweledChalice>(),
+                };
+
+                DedicatedItem = new Dictionary<int, ItemDedication>()
+                {
+                    [ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),
+                    [ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
+                    [ModContent.ItemType<Thunderbird>()] = new ItemDedication(new Color(200, 125, 255, 255)),
+                    [ModContent.ItemType<Baguette>()] = new ItemDedication(new Color(187, 142, 42, 255)),
+                    [ModContent.ItemType<StudiesoftheInkblot>()] = new ItemDedication(new Color(110, 110, 128, 255)),
+                };
+
                 ItemIDRenewalBlacklist = new HashSet<int>()
                 {
                     ItemID.RocketII,
@@ -89,7 +125,6 @@ namespace AQMod
                     ItemID.DungeonFishingCrate,
                 };
 
-
                 NoAutoswing = new HashSet<int>()
                 {
                 };
@@ -109,6 +144,12 @@ namespace AQMod
 
             internal static void Unload()
             {
+                DedicatedItem?.Clear();
+                DedicatedItem = null;
+                ItemIDRenewalBlacklist?.Clear();
+                ItemIDRenewalBlacklist = null;
+                AmmoIDRenewalBlacklist?.Clear();
+                AmmoIDRenewalBlacklist = null;
                 Crate?.Clear();
                 Crate = null;
                 NoAutoswing?.Clear();
@@ -219,14 +260,21 @@ namespace AQMod
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
 
-        internal GlowmaskData Glowmask { get; private set; }
+        public string NameTag { get; set; } = null;
+        public int RenameCount { get; set; } = 0;
+
         public float cooldownMultiplier;
         public float comboMultiplier;
         public int basePrice;
 
+        internal GlowmaskData glowmask;
+
         public AQItem()
         {
-            Glowmask = default(GlowmaskData);
+            NameTag = null;
+            RenameCount = 0;
+
+            glowmask = default(GlowmaskData);
             cooldownMultiplier = 1f;
             comboMultiplier = 1f;
         }
@@ -236,12 +284,8 @@ namespace AQMod
             if (!AQMod.Loading && Main.netMode != NetmodeID.Server &&
                 GlowmaskData.ItemToGlowmask != null && GlowmaskData.ItemToGlowmask.TryGetValue(item.type, out GlowmaskData glowmask))
             {
-                this.Glowmask = glowmask;
+                this.glowmask = glowmask;
             }
-        }
-
-        public override void SetDefaults(Item item)
-        {
         }
 
         public void PostSetDefaults(Item item, int type, bool noMaterialCheck)
@@ -253,93 +297,56 @@ namespace AQMod
             }
         }
 
-        private void Tooltips_DedicatedItemCheck(Item item, List<TooltipLine> tooltips)
+        public override void UpdateInventory(Item item, Player player)
         {
-            if (item.modItem is IDedicatedItem dedicatedItem)
-            {
-                tooltips.Add(new TooltipLine(mod, "DedicatedItem", Language.GetTextValue("Mods.AQMod.Tooltips.DedicatedItem")) { overrideColor = dedicatedItem.DedicatedColoring });
-            }
+            UpdateNameTag(item);
         }
-        private void Tooltips_ManaPerSecondCheck(Item item, List<TooltipLine> tooltips)
+
+        public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
         {
-            if (item.modItem is IManaPerSecond m)
+            UpdateNameTag(item);
+        }
+
+        private void NameTagTooltip(Item item, List<TooltipLine> tooltips)
+        {
+            if (HasNameTag())
             {
-                int? value = m.ManaPerSecond;
-                int manaCost;
-                if (value != null)
+                if (NameTag == "")
                 {
-                    manaCost = value.Value;
+                    for (int i = 0; i < tooltips.Count; i++)
+                    {
+                        if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
+                        {
+                            if (i < tooltips.Count - 1)
+                            {
+                                if (tooltips[i + 1].overrideColor == null)
+                                {
+                                    tooltips[i + 1].overrideColor = new Color(255, 255, 255, 255);
+                                }
+                            }
+                            tooltips.RemoveAt(i);
+                            break;
+                        }
+                    }
                 }
                 else
                 {
-                    manaCost = Main.player[Main.myPlayer].GetManaCost(item);
-                    int usesPerSecond = 60 / PlayerHooks.TotalUseTime(item.useTime, Main.player[Main.myPlayer], item);
-                    if (usesPerSecond != 0)
+                    for (int i = 0; i < tooltips.Count; i++)
                     {
-                        manaCost *= usesPerSecond;
-                    }
-                }
-                foreach (var t in tooltips)
-                {
-                    if (t.mod == "Terraria" && t.Name == "UseMana")
-                    {
-                        t.text = string.Format(Language.GetTextValue("Mods.AQMod.Tooltips.ManaPerSecond"), manaCost);
-                    }
-                }
-            }
-        }
-        private void Tooltips_PickBreakCheck(Item item, AQPlayer aQPlayer, List<TooltipLine> tooltips)
-        {
-            if (item.pick > 0 && aQPlayer.pickBreak)
-            {
-                foreach (var t in tooltips)
-                {
-                    if (t.mod == "Terraria" && t.Name == "PickPower")
-                    {
-                        t.text = item.pick / 2 + Language.GetTextValue("LegacyTooltip.26");
-                        t.overrideColor = new Color(128, 128, 128, 255);
-                    }
-                }
-            }
-        }
-        private void Tooltips_FidgetSpinnerCheck(Item item, AQPlayer aQPlayer, List<TooltipLine> tooltips)
-        {
-            if (aQPlayer.fidgetSpinner && !item.channel && CheckAutoswingable(Main.LocalPlayer, item, ignoreChanneled: true))
-            {
-                foreach (var t in tooltips)
-                {
-                    if (t.mod == "Terraria" && t.Name == "Speed")
-                    {
-                        AQPlayer.forceAutoswing = true;
-                        string text = UseAnimTooltip(PlayerHooks.TotalUseTime(item.useTime, Main.LocalPlayer, item));
-                        AQPlayer.forceAutoswing = false;
-                        if (t.text != text)
+                        if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
                         {
-                            t.text = text +
-                            " (" + Lang.GetItemName(ModContent.ItemType<FidgetSpinner>()).Value + ")";
-                            t.overrideColor = new Color(200, 200, 200, 255);
+                            tooltips[i].text = NameTag;
+                            if (NameTag == "_jeb")
+                            {
+                                tooltips[i].overrideColor = Main.DiscoColor;
+                            }
+                            break;
                         }
                     }
                 }
             }
         }
-        private void Tooltips_DemonSiegeUpgradeCheck(Item item, List<TooltipLine> tooltips)
-        {
-            if (DemonSiege.GetUpgrade(item) != null)
-            {
-                int index = FindTTLineSpot(tooltips, "Material");
-                tooltips.Insert(index, new TooltipLine(mod, "DemonSiegeUpgrade", Language.GetTextValue("Mods.AQMod.Tooltips.DemonSiegeUpgrade")) { overrideColor = AQMod.DemonSiegeTooltip, });
-            }
-        }
-        private void Tooltips_HookBarbBlacklistCheck(Item item, List<TooltipLine> tooltips)
-        {
-            if (item.shoot > ProjectileID.None && AQProjectile.Sets.HookBarbBlacklist.Contains(item.shoot))
-            {
-                int index = FindTTLineSpot(tooltips, "Material");
-                tooltips.Insert(index, new TooltipLine(mod, "HookBarbBlacklist", Language.GetTextValue("Mods.AQMod.Tooltips.HookBarbBlacklist")) { overrideColor = new Color(255, 255, 255), });
-            }
-        }
-        private void Tooltips_HermitStorageCheck(List<TooltipLine> tooltips)
+        private void HermitStorageTooltip(List<TooltipLine> tooltips)
         {
             if (!PlayerStorage.hoverStorage.IsAir)
             {
@@ -382,167 +389,65 @@ namespace AQMod
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            NameTagTooltip(item, tooltips);
             if (item.social)
             {
                 return;
             }
-            try
+            var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
+            if (AQConfigClient.Instance.DemonSiegeUpgradeTooltip && DemonSiege.GetUpgrade(item) != null)
             {
-                var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
-                if (AQConfigClient.Instance.DemonSiegeUpgradeTooltip)
-                {
-                    Tooltips_DemonSiegeUpgradeCheck(item, tooltips);
-                }
-                if (AQConfigClient.Instance.HookBarbBlacklistTooltip)
-                {
-                    Tooltips_HookBarbBlacklistCheck(item, tooltips);
-                }
-                if (item.type > Main.maxItemTypes)
-                {
-                    Tooltips_ManaPerSecondCheck(item, tooltips);
-                    Tooltips_DedicatedItemCheck(item, tooltips);
-                }
-                Tooltips_PickBreakCheck(item, aQPlayer, tooltips);
-                Tooltips_FidgetSpinnerCheck(item, aQPlayer, tooltips);
-                Tooltips_HermitStorageCheck(tooltips);
-                if (item.prefix >= PrefixID.Count && ModPrefix.GetPrefix(item.prefix) is AQPrefix aQPrefix)
-                {
-                    aQPrefix.ModifyTooltips(item, this, aQPlayer, tooltips);
-                }
+                tooltips.Insert(GetLineIndex(tooltips, "Material"), new TooltipLine(mod, "DemonSiegeUpgrade", Language.GetTextValue("Mods.AQMod.Tooltips.DemonSiegeUpgrade")) { overrideColor = AQMod.DemonSiegeTooltip, });
             }
-            catch
+            if (AQConfigClient.Instance.HookBarbBlacklistTooltip && item.shoot > ProjectileID.None && AQProjectile.Sets.HookBarbBlacklist.Contains(item.shoot))
             {
+                tooltips.Insert(GetLineIndex(tooltips, "Material"), new TooltipLine(mod, "HookBarbBlacklist", Language.GetTextValue("Mods.AQMod.Tooltips.HookBarbBlacklist")) { overrideColor = new Color(255, 255, 255), });
             }
-        }
-
-        public static void DrawString_Dedicated(DrawableTooltipLine line)
-        {
-            DrawString_Dedicated(line.text, line.X, line.Y, line.rotation, line.origin, line.baseScale, line.overrideColor.GetValueOrDefault(line.color));
-        }
-        public static void DrawString_Dedicated(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
-        {
-            color = Colors.AlphaDarken(color);
-            color.A = 0;
-            float xOff = (float)Math.Sin(Main.GlobalTime * 15f) + 1f;
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, text, new Vector2(x, y), new Color(0, 0, 0, 255), rotation, origin, baseScale);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, new Vector2(x, y), color, rotation, origin, baseScale);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, new Vector2(x, y), color, rotation, origin, baseScale);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, new Vector2(x, y), color * 0.8f, rotation, origin, baseScale);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, new Vector2(x, y), color * 0.8f, rotation, origin, baseScale);
-        }
-        public static void DrawString_Developer(DrawableTooltipLine line)
-        {
-            DrawString_Developer(line.text, line.X, line.Y, line.rotation, line.origin, line.baseScale, line.overrideColor.GetValueOrDefault(line.color));
-        }
-        public static void DrawString_Developer(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
-        {
-            if (string.IsNullOrWhiteSpace(text)) // since you can rename items.
+            if (Sets.DedicatedItem.TryGetValue(item.type, out var dedication))
             {
-                return;
+                tooltips.Add(new TooltipLine(mod, "DedicatedItem", Language.GetTextValue("Mods.AQMod.Tooltips.DedicatedItem")) { overrideColor = dedication.color });
             }
-            var font = Main.fontMouseText;
-            var size = font.MeasureString(text);
-            var center = size / 2f;
-            var transparentColor = color * 0.4f;
-            transparentColor.A = 0;
-            var texture = LegacyTextureCache.Lights[LightTex.Spotlight12x66];
-            var spotlightOrigin = texture.Size() / 2f;
-            float spotlightRotation = rotation + MathHelper.PiOver2;
-            var spotlightScale = new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime * 4f) * 0.145f, center.Y * 0.15f);
-
-            // black BG
-            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, Color.Black * 0.3f, rotation,
-            spotlightOrigin, new Vector2(size.X / texture.Width * 2f, center.Y / texture.Height * 2.5f), SpriteEffects.None, 0f);
-            ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, font, text, new Vector2(x, y), Color.Black,
-                rotation, origin, baseScale);
-
-            if (ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
+            if (item.pick > 0 && aQPlayer.pickBreak)
             {
-                FX.TempSetRand(Main.LocalPlayer.name.GetHashCode(), out int reset);
-                // particles
-                var particleTexture = LegacyTextureCache.Lights[LightTex.Spotlight15x15];
-                var particleOrigin = particleTexture.Size() / 2f;
-                int amt = (int)FX.Rand((int)size.X / 3, (int)size.X);
-                for (int i = 0; i < amt; i++)
+                ChangeVanillaLine(tooltips, "PickPower", (t) =>
                 {
-                    float lifeTime = (FX.Rand(20f) + Main.GlobalTime * 2f) % 20f;
-                    int baseParticleX = (int)FX.Rand(4, (int)size.X - 4);
-                    int particleX = baseParticleX + (int)AQUtils.Wave(lifeTime + Main.GlobalTime * FX.Rand(2f, 5f), -FX.Rand(3f, 10f), FX.Rand(3f, 10f));
-                    int particleY = (int)FX.Rand(10);
-                    float scale = FX.Rand(0.2f, 0.4f);
-                    if (baseParticleX > 14 && baseParticleX < size.X - 14 && FX.RandChance(6))
+                    t.text = item.pick / 2 + Language.GetTextValue("LegacyTooltip.26");
+                    t.overrideColor = new Color(128, 128, 128, 255);
+                });
+            }
+            if (aQPlayer.fidgetSpinner && !item.channel && CheckAutoswingable(Main.LocalPlayer, item, ignoreChanneled: true))
+            {
+                ChangeVanillaLine(tooltips, "Speed", (t) =>
+                {
+                    AQPlayer.forceAutoswing = true;
+                    string text = UseAnimTooltip(PlayerHooks.TotalUseTime(item.useTime, Main.LocalPlayer, item));
+                    AQPlayer.forceAutoswing = false;
+                    if (t.text != text)
                     {
-                        scale *= 2f;
+                        t.text = text +
+                        " (" + Lang.GetItemName(ModContent.ItemType<FidgetSpinner>()).Value + ")";
+                        t.overrideColor = new Color(200, 200, 200, 255);
                     }
-                    var clr = color;
-                    if (lifeTime < 0.3f)
-                    {
-                        clr *= lifeTime / 0.3f;
-                    }
-                    if (lifeTime < 5f)
-                    {
-                        if (lifeTime > MathHelper.PiOver2)
-                        {
-                            float timeMult = (lifeTime - MathHelper.PiOver2) / MathHelper.PiOver2;
-                            scale -= timeMult * 0.4f;
-                            if (scale < 0f)
-                            {
-                                continue;
-                            }
-                            int colorMinusAmount = (int)(timeMult * 255f);
-                            clr.R = (byte)Math.Max(clr.R - colorMinusAmount, 0);
-                            clr.G = (byte)Math.Max(clr.G - colorMinusAmount, 0);
-                            clr.B = (byte)Math.Max(clr.B - colorMinusAmount, 0);
-                            clr.A = (byte)Math.Max(clr.A - colorMinusAmount, 0);
-                            if (clr.R == 0 && clr.G == 0 && clr.B == 0 && clr.A == 0)
-                            {
-                                continue;
-                            }
-                        }
-                        if (scale > 0.4f)
-                        {
-                            Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr * 2f, 0f, particleOrigin, scale * 0.5f, SpriteEffects.None, 0f);
-                        }
-                        Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr, 0f, particleOrigin, scale, SpriteEffects.None, 0f);
-                    }
-                }
-
-                FX.SetRand(reset);
+                });
             }
-
-            // light effect
-            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, transparentColor * 0.3f, spotlightRotation,
-               spotlightOrigin, spotlightScale * 1.1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, transparentColor * 0.3f, spotlightRotation,
-               spotlightOrigin, spotlightScale * 1.1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, transparentColor * 0.35f, spotlightRotation,
-               spotlightOrigin, spotlightScale * 2f, SpriteEffects.None, 0f);
-
-            // colored text
-            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y), color,
-                rotation, origin, baseScale);
-
-            // glowy effect on text
-            float wave = AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f);
-            for (int i = 1; i <= 2; i++)
+            HermitStorageTooltip(tooltips);
+            if (item.prefix >= PrefixID.Count && ModPrefix.GetPrefix(item.prefix) is AQPrefix aQPrefix)
             {
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x + wave * 1f * i, y), transparentColor,
-                    rotation, origin, baseScale);
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x - wave * 1f * i, y), transparentColor,
-                    rotation, origin, baseScale);
+                aQPrefix.ModifyTooltips(item, this, aQPlayer, tooltips);
             }
         }
+
         public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
         {
             if (line.mod == "AQMod" && line.Name == "DedicatedItem")
             {
-                DrawString_Dedicated(line);
+                DrawDedicatedTooltip(line);
                 return false;
             }
             return true;
         }
 
-        private bool CooldownCheck(Item item, Player player)
+        public override bool CanUseItem(Item item, Player player)
         {
             if (item.modItem is ICooldown cool)
             {
@@ -555,10 +460,7 @@ namespace AQMod
             }
             return true;
         }
-        public override bool CanUseItem(Item item, Player player)
-        {
-            return CooldownCheck(item, player);
-        }
+
         public override bool UseItem(Item item, Player player)
         {
             if (item.modItem is ICooldown cool)
@@ -653,7 +555,7 @@ namespace AQMod
         {
             if (item.type < Main.maxItemTypes)
                 return;
-            Glowmask.DrawWorld(item, spriteBatch, lightColor, alphaColor, rotation, scale, whoAmI);
+            glowmask.DrawWorld(item, spriteBatch, lightColor, alphaColor, rotation, scale, whoAmI);
         }
 
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
@@ -690,12 +592,95 @@ namespace AQMod
         {
             if (item.type < Main.maxItemTypes)
                 return;
-            Glowmask.DrawInv(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+            glowmask.DrawInv(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
         }
 
         public override void GrabRange(Item item, Player player, ref int grabRange)
         {
             grabRange = (int)(grabRange * player.GetModPlayer<AQPlayer>().grabReach);
+        }
+
+        public override bool NeedsSaving(Item item)
+        {
+            return HasNameTag();
+        }
+        public override TagCompound Save(Item item)
+        {
+            return new TagCompound()
+            {
+                ["NameTag"] = NameTag,
+                ["RenameCount"] = RenameCount,
+            };
+        }
+
+        public override void Load(Item item, TagCompound tag)
+        {
+            NameTag = tag.GetString("NameTag");
+            RenameCount = tag.GetInt("RenameCount");
+            UpdateNameTag(item);
+        }
+
+        public override void NetSend(Item item, BinaryWriter writer)
+        {
+            if (HasNameTag())
+            {
+                writer.Write(true);
+                writer.Write(NameTag);
+            }
+            else
+            {
+                writer.Write(false);
+            }
+            writer.Write(cooldownMultiplier);
+            writer.Write(comboMultiplier);
+            writer.Write(basePrice);
+            UpdateNameTag(item);
+        }
+
+        public override void NetReceive(Item item, BinaryReader reader)
+        {
+            if (reader.ReadBoolean())
+            {
+                NameTag = reader.ReadString();
+            }
+            cooldownMultiplier = reader.ReadSingle();
+            comboMultiplier = reader.ReadSingle();
+            basePrice = reader.ReadInt32();
+            UpdateNameTag(item);
+        }
+
+        public bool HasNameTag()
+        {
+            return NameTag != null;
+        }
+
+        public void UpdateNameTag(Item item)
+        {
+            if (HasNameTag())
+            {
+                if (NameTag == "")
+                {
+                    item.ClearNameOverride();
+                }
+                else
+                {
+                    item.SetNameOverride(NameTag);
+                }
+            }
+            else
+            {
+                item.ClearNameOverride();
+            }
+        }
+
+        public int RenamePrice(Item item)
+        {
+            int basePrice = Item.buyPrice(gold: 1);
+            if (HasNameTag())
+            {
+                return basePrice * RenameCount;
+            }
+            return basePrice;
         }
 
         public static bool ItemOnGroundAlready(int type)
@@ -740,12 +725,10 @@ namespace AQMod
         {
             DropInstancedItem(player, rect.X, rect.Y, rect.Width, rect.Height, item, stack);
         }
-
         public static void DropInstancedItem(int player, Vector2 Position, int width, int height, int item, int stack = 1)
         {
             DropInstancedItem(player, (int)Position.X, (int)Position.Y, width, height, item, stack);
         }
-
         public static void DropInstancedItem(int player, int x, int y, int width, int height, int item, int stack = 1)
         {
             if (Main.netMode == NetmodeID.Server)
@@ -859,7 +842,7 @@ namespace AQMod
             return Language.GetTextValue("LegacyTooltip.22");
         }
 
-        internal static int FindTTLineSpot(List<TooltipLine> tooltips, string tooltipName)
+        internal static int LegacyGetLineIndex(List<TooltipLine> tooltips, string tooltipName)
         {
             switch (tooltipName)
             {
@@ -1145,11 +1128,10 @@ namespace AQMod
 
         public static int GetLineIndex(List<TooltipLine> tooltips, string lineName)
         {
-            int myIndex = InternalLineIndexFinder(lineName);
-            //Main.NewText(myIndex);
+            int myIndex = FindLineIndex(lineName);
             for (int i = 0; i < tooltips.Count; i++)
             {
-                if (tooltips[i].mod == "Terraria" && InternalLineIndexFinder(tooltips[i].Name) >= myIndex)
+                if (tooltips[i].mod == "Terraria" && FindLineIndex(tooltips[i].Name) >= myIndex)
                 {
                     return i;
                 }
@@ -1157,7 +1139,7 @@ namespace AQMod
             return 1;
         }
 
-        private static int InternalLineIndexFinder(string name)
+        private static int FindLineIndex(string name)
         {
             for (int i = 0; i < TooltipNames.Length; i++)
             {
@@ -1167,6 +1149,136 @@ namespace AQMod
                 }
             }
             return -1;
+        }
+
+        public static void ChangeVanillaLine(List<TooltipLine> tooltips, string name, Action<TooltipLine> modify)
+        {
+            foreach (var t in tooltips)
+            {
+                if (t.Name == name)
+                {
+                    modify(t);
+                    return;
+                }
+            }
+        }
+
+        public static void DrawDedicatedTooltip(DrawableTooltipLine line)
+        {
+            DrawDedicatedTooltip(line.text, line.X, line.Y, line.rotation, line.origin, line.baseScale, line.overrideColor.GetValueOrDefault(line.color));
+        }
+        public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
+        {
+            color = Colors.AlphaDarken(color);
+            color.A = 0;
+            float xOff = (float)Math.Sin(Main.GlobalTime * 15f) + 1f;
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, text, new Vector2(x, y), new Color(0, 0, 0, 255), rotation, origin, baseScale);
+            ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, new Vector2(x, y), color, rotation, origin, baseScale);
+            ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, new Vector2(x, y), color, rotation, origin, baseScale);
+            ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, new Vector2(x, y), color * 0.8f, rotation, origin, baseScale);
+            ChatManager.DrawColorCodedString(Main.spriteBatch, Main.fontMouseText, text, new Vector2(x, y), color * 0.8f, rotation, origin, baseScale);
+        }
+        public static void DrawDeveloperTooltip(DrawableTooltipLine line)
+        {
+            DrawDeveloperTooltip(line.text, line.X, line.Y, line.rotation, line.origin, line.baseScale, line.overrideColor.GetValueOrDefault(line.color));
+        }
+        public static void DrawDeveloperTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
+        {
+            if (string.IsNullOrWhiteSpace(text)) // since you can rename items.
+            {
+                return;
+            }
+            var font = Main.fontMouseText;
+            var size = font.MeasureString(text);
+            var center = size / 2f;
+            var transparentColor = color * 0.4f;
+            transparentColor.A = 0;
+            var texture = LegacyTextureCache.Lights[LightTex.Spotlight12x66];
+            var spotlightOrigin = texture.Size() / 2f;
+            float spotlightRotation = rotation + MathHelper.PiOver2;
+            var spotlightScale = new Vector2(1.2f + (float)Math.Sin(Main.GlobalTime * 4f) * 0.145f, center.Y * 0.15f);
+
+            // black BG
+            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, Color.Black * 0.3f, rotation,
+            spotlightOrigin, new Vector2(size.X / texture.Width * 2f, center.Y / texture.Height * 2.5f), SpriteEffects.None, 0f);
+            ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, font, text, new Vector2(x, y), Color.Black,
+                rotation, origin, baseScale);
+
+            if (ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
+            {
+                FX.TempSetRand(Main.LocalPlayer.name.GetHashCode(), out int reset);
+                // particles
+                var particleTexture = LegacyTextureCache.Lights[LightTex.Spotlight15x15];
+                var particleOrigin = particleTexture.Size() / 2f;
+                int amt = (int)FX.Rand((int)size.X / 3, (int)size.X);
+                for (int i = 0; i < amt; i++)
+                {
+                    float lifeTime = (FX.Rand(20f) + Main.GlobalTime * 2f) % 20f;
+                    int baseParticleX = (int)FX.Rand(4, (int)size.X - 4);
+                    int particleX = baseParticleX + (int)AQUtils.Wave(lifeTime + Main.GlobalTime * FX.Rand(2f, 5f), -FX.Rand(3f, 10f), FX.Rand(3f, 10f));
+                    int particleY = (int)FX.Rand(10);
+                    float scale = FX.Rand(0.2f, 0.4f);
+                    if (baseParticleX > 14 && baseParticleX < size.X - 14 && FX.RandChance(6))
+                    {
+                        scale *= 2f;
+                    }
+                    var clr = color;
+                    if (lifeTime < 0.3f)
+                    {
+                        clr *= lifeTime / 0.3f;
+                    }
+                    if (lifeTime < 5f)
+                    {
+                        if (lifeTime > MathHelper.PiOver2)
+                        {
+                            float timeMult = (lifeTime - MathHelper.PiOver2) / MathHelper.PiOver2;
+                            scale -= timeMult * 0.4f;
+                            if (scale < 0f)
+                            {
+                                continue;
+                            }
+                            int colorMinusAmount = (int)(timeMult * 255f);
+                            clr.R = (byte)Math.Max(clr.R - colorMinusAmount, 0);
+                            clr.G = (byte)Math.Max(clr.G - colorMinusAmount, 0);
+                            clr.B = (byte)Math.Max(clr.B - colorMinusAmount, 0);
+                            clr.A = (byte)Math.Max(clr.A - colorMinusAmount, 0);
+                            if (clr.R == 0 && clr.G == 0 && clr.B == 0 && clr.A == 0)
+                            {
+                                continue;
+                            }
+                        }
+                        if (scale > 0.4f)
+                        {
+                            Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr * 2f, 0f, particleOrigin, scale * 0.5f, SpriteEffects.None, 0f);
+                        }
+                        Main.spriteBatch.Draw(particleTexture, new Vector2(x + particleX, y + particleY - lifeTime * 15f + 10), null, clr, 0f, particleOrigin, scale, SpriteEffects.None, 0f);
+                    }
+                }
+
+                FX.SetRand(reset);
+            }
+
+            // light effect
+            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, transparentColor * 0.3f, spotlightRotation,
+               spotlightOrigin, spotlightScale * 1.1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, transparentColor * 0.3f, spotlightRotation,
+               spotlightOrigin, spotlightScale * 1.1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, new Vector2(x, y - 6f) + center, null, transparentColor * 0.35f, spotlightRotation,
+               spotlightOrigin, spotlightScale * 2f, SpriteEffects.None, 0f);
+
+            // colored text
+            ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x, y), color,
+                rotation, origin, baseScale);
+
+            // glowy effect on text
+            float wave = AQUtils.Wave(Main.GlobalTime * 10f, 0f, 1f);
+            for (int i = 1; i <= 2; i++)
+            {
+                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x + wave * 1f * i, y), transparentColor,
+                    rotation, origin, baseScale);
+                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x - wave * 1f * i, y), transparentColor,
+                    rotation, origin, baseScale);
+            }
         }
     }
 }

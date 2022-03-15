@@ -85,7 +85,13 @@ namespace AQMod.Content.World.Events
 
         public static bool InSpace(float y)
         {
-            return y < 3000f; // 187.5 tiles
+            // the magic number "2.66666666..." comes from divding by 6, 
+            // 1200 / 6 = 200 -- small world size
+            // then converting that into world coordinates, by multiplying by 16
+            // 1200 / 6 * 16 = 3200
+            // you can then find a number to multiply by in order to get the same result as dividing by 6 and multiplying by 16
+            // 3200 / 1200 = 2.6666-....
+            return y < Main.maxTilesY * 2.66666666f; // 200 tiles in small, 300 in medium, 400 in large
         }
 
         public override TagCompound Save()

@@ -1,9 +1,9 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Misc
+namespace AQMod.Items.Placeable.Furniture
 {
-    public class JeweledChalice : ModItem
+    public class JeweledCandelabra : ModItem
     {
         public override void SetDefaults()
         {

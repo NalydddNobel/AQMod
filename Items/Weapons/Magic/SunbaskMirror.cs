@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Magic
 {
-    public class SunbaskMirror : ModItem, IManaPerSecond
+    public class SunbaskMirror : ModItem
     {
         public override void SetDefaults()
         {
@@ -44,7 +44,5 @@ namespace AQMod.Items.Weapons.Magic
             r.SetResult(this);
             r.AddRecipe();
         }
-
-        int? IManaPerSecond.ManaPerSecond => Main.LocalPlayer.GetManaCost(item);
     }
 }

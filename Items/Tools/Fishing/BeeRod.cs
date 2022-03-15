@@ -39,7 +39,7 @@ namespace AQMod.Items.Tools.Fishing
             r.AddIngredient(ModContent.ItemType<AquaticEnergy>());
             r.AddIngredient(ItemID.Hive, 20);
             r.AddIngredient(ItemID.BottledHoney);
-            r.AddTile(ModContent.TileType<FishingCraftingStation>());
+            r.AddTile(ModContent.TileType<FishingCraftingStationTile>());
             r.SetResult(this);
             r.AddRecipe();
         }

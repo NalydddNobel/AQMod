@@ -43,7 +43,7 @@ namespace AQMod
     {
         public const string TextureNone = "AQMod/Assets/None";
         public static Color MysteriousGuideTooltip => Color.CornflowerBlue * 4f;
-        public static Color DemonSiegeTooltip => new Color(255, 220, 10, 255) * 4f;
+        public static Color DemonSiegeTooltip => new Color(255, 100, 40, 255);
         public static Vector2 Zero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
         public static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
@@ -210,7 +210,6 @@ namespace AQMod
             LoadHooks(unload: false);
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
-            Robster.Load();
             DemonSiege.Load();
             ModCallDictionary.Load();
             CursorDyeManager.Load();
@@ -245,6 +244,8 @@ namespace AQMod
             AQBuff.Sets.Load();
             AQItem.Sets.Load();
             AQTile.Sets.Load();
+            AQConfigClient.LoadTranslations();
+            AQConfigServer.LoadTranslations();
 
             Autoloading.Autoload(Code);
         }
@@ -326,7 +327,6 @@ namespace AQMod
             Coloring.Unload();
             CursorDyeManager.Unload();
             ModCallDictionary.Unload();
-            Robster.Unload();
             AQText.Unload();
         }
 
@@ -437,8 +437,6 @@ namespace AQMod
 
         public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
-            AQText.UpdateCallback();
-
             if (Main.myPlayer == -1 || Main.gameMenu || !Main.LocalPlayer.active || Loading)
             {
                 return;
@@ -686,6 +684,15 @@ namespace AQMod
                 Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(screenZoom.X, screenZoom.Y, 1f);
             var projection = Matrix.CreateOrthographic(width, height, 0, 1000);
             return zoom * projection;
+        }
+
+        public static string GetText(string key)
+        {
+            return AQText.modTranslations["Mods.AQMod." + key].GetTranslation(Language.ActiveCulture);
+        }
+        public static ModTranslation GetTranslation(string key)
+        {
+            return AQText.modTranslations["Mods.AQMod." + key];
         }
     }
 }

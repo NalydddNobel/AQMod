@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Reforges
+namespace AQMod.Items.Prefixes
 {
     public abstract class AQPrefix : ModPrefix
     {

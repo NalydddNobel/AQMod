@@ -39,7 +39,7 @@ namespace AQMod.Items.Misc.Bait
             r.AddIngredient(ItemID.PixieDust, 10);
             r.AddIngredient(ItemID.UnicornHorn);
             r.AddIngredient(ItemID.HolyWater);
-            r.AddTile(ModContent.TileType<FishingCraftingStation>());
+            r.AddTile(ModContent.TileType<FishingCraftingStationTile>());
             r.SetResult(this, 10);
             r.AddRecipe();
         }
