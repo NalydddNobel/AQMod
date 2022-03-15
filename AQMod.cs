@@ -42,7 +42,7 @@ namespace AQMod
     {
         public const string TextureNone = "AQMod/Assets/None";
         public static Color MysteriousGuideTooltip => Color.CornflowerBlue * 4f;
-        public static Color DemonSiegeTooltip => new Color(255, 185, 70, 255);
+        public static Color DemonSiegeTooltip => new Color(255, 170, 150, 255);
         public static Vector2 Zero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
         public static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
