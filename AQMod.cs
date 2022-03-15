@@ -20,7 +20,6 @@ using AQMod.Items.Recipes;
 using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
-using AQMod.NPCs.Friendly;
 using AQMod.Sounds;
 using AQMod.UI;
 using Microsoft.Xna.Framework;
@@ -43,7 +42,7 @@ namespace AQMod
     {
         public const string TextureNone = "AQMod/Assets/None";
         public static Color MysteriousGuideTooltip => Color.CornflowerBlue * 4f;
-        public static Color DemonSiegeTooltip => new Color(255, 100, 40, 255);
+        public static Color DemonSiegeTooltip => new Color(255, 185, 70, 255);
         public static Vector2 Zero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
         public static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
@@ -61,6 +60,7 @@ namespace AQMod
         internal static bool IsUnloading { get; private set; }
 
         public static EquipOverlayLoader ArmorOverlays { get; private set; }
+        public static ModifiableMusic CrabCavesMusic { get; private set; }
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
@@ -151,6 +151,8 @@ namespace AQMod
         {
             if (unload)
             {
+                CrabCavesMusic?.Dispose();
+                CrabCavesMusic = null;
                 CrabsonMusic?.Dispose();
                 CrabsonMusic = null;
                 GlimmerEventMusic?.Dispose();
@@ -164,6 +166,7 @@ namespace AQMod
             }
             else
             {
+                CrabCavesMusic = new ModifiableMusic(MusicID.Ocean);
                 CrabsonMusic = new ModifiableMusic(MusicID.Boss1);
                 GlimmerEventMusic = new ModifiableMusic(MusicID.MartianMadness);
                 OmegaStariteMusic = new ModifiableMusic(MusicID.Boss4);
@@ -242,7 +245,7 @@ namespace AQMod
             LoadCrossMod(unload: false);
 
             AQBuff.Sets.Load();
-            AQItem.Sets.Load();
+            AQItem.Load();
             AQTile.Sets.Load();
             AQConfigClient.LoadTranslations();
             AQConfigServer.LoadTranslations();
@@ -264,6 +267,8 @@ namespace AQMod
             Autoloading.SetupContent(Code);
             invokeTasks();
             cachedLoadTasks.Clear();
+
+            AQItem.SetupContent();
         }
 
         public override void AddRecipeGroups()
@@ -299,7 +304,7 @@ namespace AQMod
             DemonSiege.Unload();
             AQProjectile.Sets.Unload();
             AQNPC.Sets.Unload();
-            AQItem.Sets.Unload();
+            AQItem.Unload();
             GlowmaskData.ItemToGlowmask?.Clear();
             GlowmaskData.ItemToGlowmask = null;
             AQBuff.Sets.Unload();
@@ -461,6 +466,11 @@ namespace AQMod
             {
                 music = GaleStreamsMusic.GetMusicID();
                 priority = MusicPriority.Event;
+            }
+            else if (player.Biomes().zoneCrabCrevice)
+            {
+                music = CrabCavesMusic.GetMusicID();
+                priority = MusicPriority.BiomeMedium;
             }
         }
 

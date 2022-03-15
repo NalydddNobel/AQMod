@@ -2,23 +2,11 @@
 using Terraria;
 using Terraria.ID;
 
-namespace AQMod.Items.Misc.ExporterQuest
+namespace AQMod.Items.Misc.ExporterRewards
 {
     public class OverworldPalette : SchrodingerCrate
     {
-        public override string Texture => "Terraria/Item_" + ItemID.WoodenCrate;
-
-        protected override List<int> LootTable => new List<int>()
-        {
-            ItemID.Spear,
-            ItemID.Blowpipe,
-            ItemID.WoodenBoomerang,
-            ItemID.Aglet,
-            ItemID.ClimbingClaws,
-            ItemID.Umbrella,
-            ItemID.WandofSparking,
-            ItemID.Radar,
-        };
+        protected override List<int> LootTable => AQItem.Sets.OverworldPaletteList;
 
         public override void RightClick(Player player)
         {

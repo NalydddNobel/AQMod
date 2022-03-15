@@ -1,10 +1,11 @@
-﻿using Terraria.ID;
+﻿using AQMod.Common;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Misc.QuestFish
+namespace AQMod.Items.Misc
 {
-    public class WaterFisg : ModItem
+    public class Crabdaughter : ModItem
     {
         public override void SetDefaults()
         {
@@ -21,12 +22,12 @@ namespace AQMod.Items.Misc.QuestFish
             return true;
         }
 
-        public override bool IsAnglerQuestAvailable() => true;
+        public override bool IsAnglerQuestAvailable() => WorldDefeats.DownedCrabson;
 
         public override void AnglerQuestChat(ref string description, ref string catchLocation)
         {
-            description = Language.GetTextValue("Mods.AQMod.QuestFish.WaterFisg");
-            catchLocation = Language.GetTextValue("Mods.AQMod.FishingLocation.Anywhere");
+            description = Language.GetTextValue("Mods.AQMod.QuestFish.Crabdaughter");
+            catchLocation = Language.GetTextValue("Mods.AQMod.FishingLocation.Beach");
         }
     }
 }

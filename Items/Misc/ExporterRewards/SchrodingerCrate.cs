@@ -3,17 +3,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Misc.ExporterQuest
+namespace AQMod.Items.Misc.ExporterRewards
 {
     public abstract class SchrodingerCrate : ModItem
     {
         protected abstract List<int> LootTable { get; }
-        public List<int> lootTable;
 
         public override bool CloneNewInstances => true;
 
@@ -24,16 +22,24 @@ namespace AQMod.Items.Misc.ExporterQuest
 
         public int GetItem()
         {
-            return lootTable[PickTableIndex(lootTable.Count)];
+            return LootTable[PickTableIndex(LootTable.Count)];
         }
 
         // Addon mod support in a global item:
-        // public override void SetDefaults(Item item)
+        // public class MyMod : Mod
         // {
-        //     if (item.modItem is WoodenShrodingerCrate wooden)
-        //     {
-        //         wooden.lootTable.Add(ItemID.Meowmere);
-        //     }
+        //      public override void PostSetupContent()
+        //      {
+        //          // Mod Call,
+        //          Mod aequus = ModLoader.GetMod("AQMod");
+        //          if (aequus != null)
+        //          {
+        //              aequus.Call("AQItem.Sets.OverworldPaletteList.Add", ItemID.RodOfDiscord);
+        //          }
+        //
+        //          // Direct reference
+        //          // AQItem.Sets.OverworldPaletteList.Add(ItemID.RodOfDiscord);
+        //      }
         // }
 
         public override void SetDefaults()
@@ -42,7 +48,6 @@ namespace AQMod.Items.Misc.ExporterQuest
             item.createTile = -1;
             item.placeStyle = 0;
             item.maxStack = 99;
-            lootTable = LootTable;
         }
 
         public override bool CanRightClick()
@@ -65,11 +70,6 @@ namespace AQMod.Items.Misc.ExporterQuest
 
         public override void PostDrawTooltip(ReadOnlyCollection<DrawableTooltipLine> lines)
         {
-            if (lootTable == null)
-            {
-                SetDefaults();
-                return;
-            }
             float longest = 30f;
             foreach (var l in lines)
             {
@@ -103,27 +103,6 @@ namespace AQMod.Items.Misc.ExporterQuest
             Main.inventoryScale = oldScale;
 
             //Main.spriteBatch.End();
-        }
-
-        public override void NetSend(BinaryWriter writer)
-        {
-            writer.Write((byte)lootTable.Count);
-            foreach (int loot in lootTable)
-            {
-                writer.Write(loot);
-            }
-        }
-
-        public override void NetRecieve(BinaryReader reader)
-        {
-            lootTable?.Clear();
-            lootTable = new List<int>();
-
-            byte amt = reader.ReadByte();
-            for (int i = 0; i < amt; i++)
-            {
-                lootTable.Add(reader.ReadInt32());
-            }
         }
     }
 }

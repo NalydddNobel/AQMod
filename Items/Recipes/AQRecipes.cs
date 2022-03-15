@@ -1,6 +1,7 @@
 ﻿using AQMod.Content.World.Events;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
+using AQMod.Tiles;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -52,7 +53,7 @@ namespace AQMod.Items.Recipes
                     r = new ModRecipe(aQMod);
                     r.AddIngredient(u.rewardItem);
                     r.AddIngredient(ModContent.ItemType<DemonicEnergy>());
-                    r.AddTile(TileID.DemonAltar);
+                    r.AddTile(ModContent.TileType<GlimmeringStatueTile>());
                     r.SetResult(u.baseItem);
                     r.AddRecipe();
                 }

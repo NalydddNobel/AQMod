@@ -63,6 +63,10 @@ namespace AQMod
             public static HashSet<int> ItemIDRenewalBlacklist { get; private set; }
             public static HashSet<int> AmmoIDRenewalBlacklist { get; private set; }
 
+            public static List<int> OverworldPaletteList { get; private set; }
+            public static List<int> CavernPaletteList { get; private set; }
+            public static List<int> CavePotions { get; private set; }
+
             public struct ItemDedication
             {
                 public readonly Color color;
@@ -77,6 +81,41 @@ namespace AQMod
 
             internal static void Load()
             {
+                OverworldPaletteList = new List<int>()
+                {
+                    ItemID.Spear,
+                    ItemID.Blowpipe,
+                    ItemID.WoodenBoomerang,
+                    ItemID.Aglet,
+                    ItemID.ClimbingClaws,
+                    ItemID.Umbrella,
+                    ItemID.WandofSparking,
+                    ItemID.Radar,
+                };
+                CavernPaletteList = new List<int>()
+                {
+                    ItemID.BandofRegeneration,
+                    ItemID.MagicMirror,
+                    ItemID.CloudinaBottle,
+                    ItemID.HermesBoots,
+                    ItemID.EnchantedBoomerang, // Removed in 1.4
+                    ItemID.ShoeSpikes,
+                    ItemID.FlareGun,
+                    //ItemID.Mace, Add in 1.4
+                };
+                CavePotions = new List<int>()
+                {
+                    ItemID.ShinePotion,
+                    ItemID.NightOwlPotion,
+                    ItemID.SwiftnessPotion,
+                    ItemID.ArcheryPotion,
+                    ItemID.GillsPotion,
+                    ItemID.HunterPotion,
+                    ItemID.MiningPotion,
+                    ItemID.TrapsightPotion,
+                    ItemID.RegenerationPotion,
+                };
+
                 ExporterQuest = new HashSet<int>()
                 {
                     ModContent.ItemType<JeweledChandelier>(),
@@ -142,10 +181,31 @@ namespace AQMod
                 };
             }
 
+            internal static void SetupContent()
+            {
+                if (AQMod.split.IsActive)
+                {
+                    CavernPaletteList.Add(AQMod.split.ItemType("BrightstoneChunk"));
+                    CavernPaletteList.Add(AQMod.split.ItemType("EnchantedRacquet"));
+                    CavePotions.Add(AQMod.split.ItemType("AnxiousnessPotion"));
+                    CavePotions.Add(AQMod.split.ItemType("PurifyingPotion"));
+                    CavePotions.Add(AQMod.split.ItemType("DiligencePotion"));
+                    CavePotions.Add(AQMod.split.ItemType("AttractionPotion"));
+                }
+            }
+
             internal static void Unload()
             {
+                CavePotions?.Clear();
+                CavePotions = null;
+                OverworldPaletteList?.Clear();
+                OverworldPaletteList = null;
+                CavernPaletteList?.Clear();
+                CavernPaletteList = null;
+
                 DedicatedItem?.Clear();
                 DedicatedItem = null;
+
                 ItemIDRenewalBlacklist?.Clear();
                 ItemIDRenewalBlacklist = null;
                 AmmoIDRenewalBlacklist?.Clear();
@@ -279,6 +339,21 @@ namespace AQMod
             comboMultiplier = 1f;
         }
 
+        internal static void Load()
+        {
+            Sets.Load();
+        }
+        
+        internal static void SetupContent()
+        {
+            Sets.SetupContent();
+        }
+
+        internal static void Unload()
+        {
+            Sets.Unload();
+        }
+
         private void GlowmaskDataCheck(Item item)
         {
             if (!AQMod.Loading && Main.netMode != NetmodeID.Server &&
@@ -402,6 +477,10 @@ namespace AQMod
             if (AQConfigClient.Instance.HookBarbBlacklistTooltip && item.shoot > ProjectileID.None && AQProjectile.Sets.HookBarbBlacklist.Contains(item.shoot))
             {
                 tooltips.Insert(GetLineIndex(tooltips, "Material"), new TooltipLine(mod, "HookBarbBlacklist", Language.GetTextValue("Mods.AQMod.Tooltips.HookBarbBlacklist")) { overrideColor = new Color(255, 255, 255), });
+            }
+            if (Sets.ExporterQuest.Contains(item.type))
+            {
+                tooltips.Insert(GetLineIndex(tooltips, "Material"), new TooltipLine(mod, "RobsterQuest", Language.GetTextValue("Mods.AQMod.Tooltips.ExporterQuest")) { overrideColor = new Color(255, 244, 175, 255), });
             }
             if (Sets.DedicatedItem.TryGetValue(item.type, out var dedication))
             {

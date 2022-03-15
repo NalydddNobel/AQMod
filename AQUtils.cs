@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.CrossMod;
 using AQMod.Content.Players;
 using AQMod.Items;
 using AQMod.Localization;
@@ -163,6 +164,16 @@ namespace AQMod
                 var origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, texture.Height);
                 Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetColor(), drawRotation, origin, item.scale, info.spriteEffects, 0));
             }
+        }
+
+        public static bool AddUnless<T>(this List<T> list, T thingToAdd, T unless = default(T))
+        {
+            if (thingToAdd.Equals(unless))
+            {
+                return false;
+            }
+            list.Add(thingToAdd);
+            return true;
         }
 
         public static string TypeName<T>()

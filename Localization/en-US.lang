@@ -808,15 +808,8 @@ Exporter.Quests.Complete.4=They say steal from the rich and give to the poor, bu
 ItemName.Snobster=Snobster
 
 ItemName.JeweledChalice=Jeweled Chalice
-ItemTooltip.JeweledChalice={$Mods.AQMod.Tooltips.ExporterQuest}
-Exporter.Quest.JeweledChalice=I saw someone with a very special Jeweled Chalice. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
-
 ItemName.JeweledCandelabra=Jeweled Candelabra
-ItemTooltip.JeweledCandelabra={$Mods.AQMod.Tooltips.ExporterQuest}
-Exporter.Quest.JeweledCandelabra=I saw someone with a very special Jeweled Candelabra. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
-
 ItemName.JeweledChandelier=Jeweled Chandelier
-ItemTooltip.JeweledChandelier={$Mods.AQMod.Tooltips.ExporterQuest}
 
 Exporter.Quests.AtTownNPCHouse=I think I saw it in {0}'s house.
 Exporter.Quests.QuitHuntQuestion=Do you really want to quit this mission?

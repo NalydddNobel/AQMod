@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Content.World.Events;
-using AQMod.Items.Misc.ExporterQuest;
+using AQMod.Items.Misc.ExporterRewards;
 using AQMod.Items.Placeable.CraftingStations;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
