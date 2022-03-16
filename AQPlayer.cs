@@ -198,7 +198,7 @@ namespace AQMod
         public const float CELESTE_Z_MULT = 0.0157f;
         public const int ARACHNOTRON_OLD_POS_LENGTH = 8;
         public const byte TEMPERATURE_REGEN_NORMAL = 32;
-        public const byte TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP = 20;
+        public const byte TemperatureRegenWhenResistant = 8;
         public const byte TEMPERATURE_REGEN_ON_HIT = 120;
 
         public static bool forceAutoswing;
@@ -511,7 +511,7 @@ namespace AQMod
                 {
                     minTemp = -60;
                 }
-                if (hotAmulet)
+                if (hotAmulet || player.wet)
                 {
                     maxTemp = 60;
                 }
@@ -526,9 +526,11 @@ namespace AQMod
                 if (temperatureRegen == 0)
                 {
                     temperatureRegen = TEMPERATURE_REGEN_NORMAL;
-                    if (player.resistCold && temperature < 0)
+                    bool resistCold = player.resistCold || coldAmulet;
+                    bool resistHeat = (player.wet && !player.lavaWet) || hotAmulet;
+                    if ((resistCold && temperature < 0) || (resistHeat && temperature > 0))
                     {
-                        temperatureRegen = TEMPERATURE_REGEN_FROST_ARMOR_COLD_TEMP;
+                        temperatureRegen = 8;
                     }
                     if (temperature < 0)
                     {
@@ -536,7 +538,15 @@ namespace AQMod
                     }
                     else
                     {
+                        if (resistHeat)
+                        {
+                            temperature--;
+                        }
                         temperature--;
+                        if (temperature < 0)
+                        {
+                            temperature = 0;
+                        }
                     }
                 }
                 else
