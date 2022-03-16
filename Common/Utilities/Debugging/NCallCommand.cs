@@ -312,7 +312,7 @@ namespace AQMod.Common.Utilities.Debugging
 
                             Main.time = Main.nightLength;
                             Main.fastForwardTime = false;
-                            AQSystem.DayrateIncrease = 0;
+                            AQWorld.DayrateIncrease = 0;
                             method.Invoke(null, null);
                         }
                     }
@@ -343,7 +343,7 @@ namespace AQMod.Common.Utilities.Debugging
 
                             Main.time = Main.dayLength;
                             Main.fastForwardTime = false;
-                            AQSystem.DayrateIncrease = 0;
+                            AQWorld.DayrateIncrease = 0;
                             method.Invoke(null, null);
                         }
                     }

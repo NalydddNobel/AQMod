@@ -8,16 +8,16 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Misc.Toggles
 {
-    public class Cosmicanon : ModItem
+    public class Transistor : ModItem
     {
-        public static Color TextColor => new Color(255, 100, 125, 255);
+        public static Color TextColor => new Color(160, 240, 255, 255);
 
         public override void SetDefaults()
         {
             item.width = 16;
             item.height = 16;
             item.accessory = true;
-            item.rare = ItemRarityID.Blue;
+            item.rare = ItemRarityID.LightRed;
             item.value = Item.buyPrice(gold: 60);
             item.useAnimation = 45;
             item.useTime = 45;
@@ -26,7 +26,7 @@ namespace AQMod.Items.Misc.Toggles
 
         public override Color? GetAlpha(Color lightColor)
         {
-            if (MiscWorldInfo.bloodMoonDisabled && Main.myPlayer != -1)
+            if (MiscWorldInfo.glimmerDisabled && Main.myPlayer != -1)
             {
                 var plr = Main.LocalPlayer;
                 if (plr != null && plr.talkNPC != -1 && Main.npc[plr.talkNPC].type == ModContent.NPCType<Physicist>())
@@ -40,20 +40,20 @@ namespace AQMod.Items.Misc.Toggles
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(mod, "BloodMoonsPrevented", AQMod.GetText("BloodMoonsPrevented", MiscWorldInfo.bloodMoonsPrevented)));
-            tooltips.Add(new TooltipLine(mod, "Activity", "(" + AQMod.GetText(MiscWorldInfo.bloodMoonDisabled ? "Active" : "Inactive") + ")") { overrideColor = TextColor });
+            tooltips.Add(new TooltipLine(mod, "GlimmersPrevented", AQMod.GetText("GlimmersPrevented", MiscWorldInfo.glimmersPrevented)));
+            tooltips.Add(new TooltipLine(mod, "Activity", "(" + AQMod.GetText(MiscWorldInfo.glimmerDisabled ? "Active" : "Inactive") + ")") { overrideColor = TextColor });
         }
 
         public override bool UseItem(Player player)
         {
-            MiscWorldInfo.bloodMoonDisabled = !MiscWorldInfo.bloodMoonDisabled;
-            if (MiscWorldInfo.bloodMoonDisabled)
+            MiscWorldInfo.glimmerDisabled = !MiscWorldInfo.glimmerDisabled;
+            if (MiscWorldInfo.glimmerDisabled)
             {
-                AQMod.BroadcastMessage("Mods.AQMod.Cosmicanon.True", TextColor);
+                AQMod.BroadcastMessage("Mods.AQMod.Transistor.True", TextColor);
             }
             else
             {
-                AQMod.BroadcastMessage("Mods.AQMod.Cosmicanon.False", TextColor);
+                AQMod.BroadcastMessage("Mods.AQMod.Transistor.False", TextColor);
             }
             return true;
         }

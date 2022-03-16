@@ -43,7 +43,7 @@ namespace AQMod.Items.Tools
                 {
                     NetMessage.SendData(MessageID.WorldData);
                 }
-                AQSystem.DayrateIncrease += 24;
+                AQWorld.DayrateIncrease += 24;
             }
             return false;
         }

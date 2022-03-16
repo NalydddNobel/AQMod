@@ -16,9 +16,6 @@ namespace AQMod
     {
         public static class PacketType
         {
-            public const ushort PreventedBloodMoon = 0;
-            public const ushort PreventedGlimmer = 1;
-            public const ushort PreventedEclipse = 2;
             public const ushort UpdateWindSpeeds = 3;
             public const ushort CombatText = 4;
             public const ushort CombatNumber = 5;
@@ -190,36 +187,6 @@ namespace AQMod
             p.Write(Main.windSpeedTemp);
             p.Send();
         }
-
-        public static void PreventedBloodMoon()
-        {
-            if (Main.netMode == NetmodeID.SinglePlayer)
-                return;
-            var p = AQMod.GetInstance().GetPacket();
-            p.Write(PacketType.PreventedBloodMoon);
-            p.Write(CosmicanonWorldData.BloodMoonsPrevented);
-            p.Send();
-        }
-
-        public static void PreventedGlimmer()
-        {
-            if (Main.netMode == NetmodeID.SinglePlayer)
-                return;
-            var p = AQMod.GetInstance().GetPacket();
-            p.Write(PacketType.PreventedGlimmer);
-            p.Write(CosmicanonWorldData.GlimmersPrevented);
-            p.Send();
-        }
-
-        public static void PreventedEclipse()
-        {
-            if (Main.netMode == NetmodeID.SinglePlayer)
-                return;
-            var p = AQMod.GetInstance().GetPacket();
-            p.Write(PacketType.PreventedEclipse);
-            p.Write(CosmicanonWorldData.EclipsesPrevented);
-            p.Send();
-        }
         #endregion
 
         public static void Request(ushort type)
@@ -321,34 +288,6 @@ namespace AQMod
                                 Main.combatText[c].text = text; // TODO: make it properly center the text with the string measurement.
                             }
                         }
-                    }
-                    break;
-
-                case PacketType.PreventedBloodMoon:
-                    {
-                        l?.Log("Old Blood Moons Prevented: " + CosmicanonWorldData.EclipsesPrevented);
-                        CosmicanonWorldData.BloodMoonsPrevented = reader.ReadUInt16();
-                        l?.Log("Updated Blood Moons Prevented: " + CosmicanonWorldData.EclipsesPrevented);
-                    }
-                    break;
-
-                case PacketType.PreventedGlimmer:
-                    {
-                        l?.Log("Old Glimmers Prevented: " + CosmicanonWorldData.EclipsesPrevented);
-
-                        CosmicanonWorldData.GlimmersPrevented = reader.ReadUInt16();
-
-                        l?.Log("Updated Glimmers Prevented: " + CosmicanonWorldData.EclipsesPrevented);
-                    }
-                    break;
-
-                case PacketType.PreventedEclipse:
-                    {
-                        l?.Log("Old Eclipses Prevented: " + CosmicanonWorldData.EclipsesPrevented);
-
-                        CosmicanonWorldData.EclipsesPrevented = reader.ReadUInt16();
-
-                        l?.Log("Updated Eclipses Prevented: " + CosmicanonWorldData.EclipsesPrevented);
                     }
                     break;
 

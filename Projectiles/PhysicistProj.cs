@@ -3,6 +3,7 @@ using AQMod.Common.ID;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.Trails.Rendering;
+using AQMod.Projectiles.Magic;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,8 +14,10 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles
 {
-    public class Physicist : ModProjectile
+    public class PhysicistProj : ModProjectile
     {
+        public override string Texture => AQUtils.GetPath<UmystickMoon>();
+
         private Color _glowClr;
 
         public override void SetStaticDefaults()

@@ -42,7 +42,7 @@ namespace AQMod
     public class AQMod : Mod
     {
         public const string TextureNone = "AQMod/Assets/None";
-        public static Color MysteriousGuideTooltip => Color.CornflowerBlue * 4f;
+        public static Color MysteriousGuideTooltip => new Color(225, 100, 255, 255);
         public static Color DemonSiegeTooltip => new Color(255, 170, 150, 255);
         public static Vector2 Zero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
@@ -100,6 +100,8 @@ namespace AQMod
         {
             if (unload)
             {
+                AQWorld.Hooks.Unload();
+
                 TimeActions.Hooks.Main_UpdateTime_SpawnTownNPCs = null;
             }
             else
@@ -117,11 +119,6 @@ namespace AQMod
                 On.Terraria.Main.UpdateTime += TimeActions.Hooks.Main_UpdateTime;
                 On.Terraria.Main.DrawProjectiles += DrawHelper.Hooks.Main_DrawProjectiles;
                 On.Terraria.Main.DrawPlayers += DrawHelper.Hooks.Main_DrawPlayers;
-
-                On.Terraria.Main.UpdateSundial += AQSystem.Hooks.Main_UpdateSundial;
-                On.Terraria.Main.UpdateWeather += AQSystem.Hooks.Main_UpdateWeather;
-
-                On.Terraria.GameContent.Achievements.AchievementsHelper.NotifyProgressionEvent += CosmicanonWorldData.Hooks.AchievementsHelper_NotifyProgressionEvent;
 
                 On.Terraria.UI.ItemSlot.OverrideHover += InvSlotData.Hooks.ItemSlot_OverrideHover;
 
@@ -145,6 +142,7 @@ namespace AQMod
                 On.Terraria.UI.ItemSlot.MouseHover_ItemArray_int_int += PlayerStorage.Hooks.ItemSlot_MouseHover_ItemArray_int_int;
 
                 AQNPC.Hooks.Apply();
+                AQWorld.Hooks.Apply();
             }
         }
         private void LoadMusic(bool unload = false)

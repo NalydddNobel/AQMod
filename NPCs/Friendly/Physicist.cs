@@ -46,26 +46,36 @@ namespace AQMod.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Stardrop>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<EquivalenceMachine>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());
-            nextSlot++;
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<FidgetSpinner>());
-            nextSlot++;
-            if (Main.dayTime)
-            {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<TheFan>());
-                nextSlot++;
-            }
-            else if (WorldDefeats.ObtainedUltimateSword)
+            if (WorldDefeats.ObtainedUltimateSword)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.UltimateSword>());
                 nextSlot++;
             }
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<TheFan>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<EquivalenceMachine>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<FidgetSpinner>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Transistor>());
+            nextSlot++;
+            if (Main.hardMode && NPC.downedMechBossAny)
+            {
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<EclipseGlasses>());
+                nextSlot++;
+            }
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Stardrop>());
+            nextSlot++;
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<MythicStarfruit>());
             nextSlot++;
+            if (Main.hardMode && NPC.downedPlantBoss)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.SolarTablet);
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 10);
+                nextSlot++;
+            }
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -269,7 +279,7 @@ namespace AQMod.NPCs.Friendly
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = ModContent.ProjectileType<Projectiles.Physicist>();
+            projType = ModContent.ProjectileType<Projectiles.PhysicistProj>();
             attackDelay = 1;
         }
 

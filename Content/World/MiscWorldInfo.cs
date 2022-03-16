@@ -17,11 +17,26 @@ namespace AQMod.Content.World
         public static bool glimmerDisabled;
         public static bool eclipseDisabled;
 
+        public static ushort bloodMoonsPrevented;
+        public static ushort glimmersPrevented;
+        public static ushort eclipsesPrevented;
+
         public override void Initialize()
         {
             eightBallText = "";
             eightBallExtraText?.Clear();
             eightBallExtraText = new List<string>();
+
+            villagerMoveInAtNight = false;
+            villagerLavaImmunity = false;
+            terminatorObtained = false;
+            bloodMoonDisabled = false;
+            glimmerDisabled = false;
+            eclipseDisabled = false;
+
+            bloodMoonsPrevented = 0;
+            glimmersPrevented = 0;
+            eclipsesPrevented = 0;
         }
 
         public override TagCompound Save()
@@ -30,9 +45,17 @@ namespace AQMod.Content.World
             {
                 ["EightBallText"] = eightBallText ?? "",
                 ["EightBallExtraText"] = eightBallExtraText,
+
                 ["Stardrop"] = villagerMoveInAtNight,
                 ["Terminator"] = villagerLavaImmunity,
                 ["Terminator2"] = terminatorObtained,
+                ["BloodMoon"] = bloodMoonDisabled,
+                ["Glimmer"] = glimmerDisabled,
+                ["Eclipse"] = eclipseDisabled,
+
+                ["BloodMoonsPrevented"] = bloodMoonsPrevented,
+                ["GlimmersPrevented"] = glimmersPrevented,
+                ["EclipsesPrevented"] = eclipsesPrevented,
             };
         }
 
@@ -40,9 +63,18 @@ namespace AQMod.Content.World
         {
             eightBallText = tag.GetString("EightBallText");
             eightBallExtraText = (List<string>)tag.GetList<string>("EightBallExtraText");
+
             villagerMoveInAtNight = tag.GetBool("Stardrop");
             villagerLavaImmunity = tag.GetBool("Terminator");
             terminatorObtained = tag.GetBool("Terminator2");
+
+            bloodMoonDisabled = tag.GetBool("BloodMoon");
+            glimmerDisabled = tag.GetBool("Glimmer");
+            eclipseDisabled = tag.GetBool("Eclipse");
+
+            bloodMoonsPrevented = tag.Get<ushort>("BloodMoonsPrevented");
+            glimmersPrevented = tag.Get<ushort>("GlimmersPrevented");
+            eclipsesPrevented = tag.Get<ushort>("EclipsesPrevented");
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -60,6 +92,14 @@ namespace AQMod.Content.World
                     writer.Write(eightBallExtraText[i]);
                 }
                 writer.Write(villagerMoveInAtNight);
+                writer.Write(villagerLavaImmunity);
+                writer.Write(terminatorObtained);
+                writer.Write(bloodMoonDisabled);
+                writer.Write(bloodMoonsPrevented);
+                writer.Write(glimmerDisabled);
+                writer.Write(glimmersPrevented);
+                writer.Write(eclipseDisabled);
+                writer.Write(eclipsesPrevented);
             }
         }
 
@@ -75,6 +115,14 @@ namespace AQMod.Content.World
                     eightBallExtraText.Add(reader.ReadString());
                 }
                 villagerMoveInAtNight = reader.ReadBoolean();
+                villagerLavaImmunity = reader.ReadBoolean();
+                terminatorObtained = reader.ReadBoolean();
+                bloodMoonDisabled = reader.ReadBoolean();
+                bloodMoonsPrevented = reader.ReadUInt16();
+                glimmerDisabled = reader.ReadBoolean();
+                glimmersPrevented = reader.ReadUInt16();
+                eclipseDisabled = reader.ReadBoolean();
+                eclipsesPrevented = reader.ReadUInt16();
             }
         }
     }

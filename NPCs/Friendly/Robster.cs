@@ -149,7 +149,7 @@ namespace AQMod.NPCs.Friendly
                     NPCCheck++;
                     if (NPCCheck >= 240)
                     {
-                        if (NPCCheck >= 241 || Main.rand.NextBool(20))
+                        if (NPCCheck >= 241 || Main.rand.NextBool(50))
                         {
                             List<int> townNPCs = new List<int>();
                             for (int i = 0; i < Main.maxNPCs; i++)

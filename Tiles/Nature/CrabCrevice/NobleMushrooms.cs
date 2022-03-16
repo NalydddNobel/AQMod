@@ -143,7 +143,7 @@ namespace AQMod.Tiles.Nature.CrabCrevice
                 return;
             if (Main.tile[i, j].frameY < 18)
             {
-                int chance = 60 - AQSystem.NobleMushroomsCount * 2;
+                int chance = 60 - AQWorld.NobleMushroomsCount * 2;
                 if (chance < 0)
                     chance = 0;
                 if (Main.rand.NextBool(chance + 8))

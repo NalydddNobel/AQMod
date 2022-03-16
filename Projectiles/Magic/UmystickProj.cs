@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles.Magic
 {
-    public class Umystick : ModProjectile
+    public class UmystickProj : ModProjectile
     {
         private float _gfxOffY;
 

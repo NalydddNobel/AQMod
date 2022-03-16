@@ -26,7 +26,7 @@ namespace AQMod.Items.Weapons.Magic
             item.holdStyle = HoldStyleID.Umbrella;
             item.channel = true;
             item.noMelee = true;
-            item.shoot = ModContent.ProjectileType<Projectiles.Magic.Umystick>();
+            item.shoot = ModContent.ProjectileType<Projectiles.Magic.UmystickProj>();
             item.shootSpeed = 1f;
         }
 

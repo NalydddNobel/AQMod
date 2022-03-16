@@ -1,24 +1,90 @@
-﻿using AQMod.Content.World.Events;
+﻿using AQMod.Content.World;
+using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.NPCs;
 using AQMod.NPCs.Friendly;
 using AQMod.Tiles.Nature.CrabCrevice;
 using Microsoft.Xna.Framework;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace AQMod
 {
-    public class AQSystem : ModWorld
+    public class AQWorld : ModWorld
     {
         public static class Hooks
         {
-            internal static void Main_UpdateWeather(On.Terraria.Main.orig_UpdateWeather orig, Main self, GameTime gameTime)
+            internal static void Apply()
+            {
+                IL.Terraria.Main.UpdateTime += DisableSomeNaturalEvents;
+                On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
+                On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
+            }
+
+            internal static void Unload()
+            {
+                IL.Terraria.Main.UpdateTime -= DisableSomeNaturalEvents;
+            }
+
+            private static void DisableSomeNaturalEvents(ILContext il)
+            {
+                var cursor = new ILCursor(il);
+
+                // Prevent Eclipses
+                cursor.GotoNext(i => i.MatchCall(typeof(Main), nameof(Main.checkXMas)));
+
+                cursor.GotoNext(i => i.MatchLdsfld(typeof(NPC), nameof(NPC.downedMechBossAny)));
+
+                cursor.GotoNext(i => i.MatchStsfld(typeof(Main), nameof(Main.eclipse)));
+                cursor.GotoNext(i => i.MatchLdsfld(typeof(Main), nameof(Main.eclipse)));
+
+                cursor.EmitDelegate<Action>(() =>
+                {
+                    if (MiscWorldInfo.eclipseDisabled && Main.eclipse)
+                    {
+                        Main.eclipse = false;
+                        MiscWorldInfo.eclipsesPrevented++;
+                    }
+                });
+
+                // Prevent Blood Moons
+                cursor.GotoNext(i => i.MatchCall(typeof(NPC), nameof(NPC.setFireFlyChance)));
+
+                cursor.GotoNext(i => i.MatchLdsfld(typeof(Main), nameof(Main.fastForwardTime)));
+
+                for (int k = 0; k < 2; k++)
+                    cursor.GotoNext(i => i.MatchLdsfld(typeof(WorldGen), nameof(WorldGen.spawnEye)));
+
+                cursor.GotoNext(i => i.MatchStsfld(typeof(Main), nameof(Main.bloodMoon)));
+                cursor.GotoNext(i => i.MatchLdsfld(typeof(Main), nameof(Main.bloodMoon)));
+
+                var labels = cursor.IncomingLabels;
+                cursor.Remove();
+                int index = cursor.Index;
+                cursor.EmitDelegate<Action>(() =>
+                {
+                    if (MiscWorldInfo.bloodMoonDisabled && Main.bloodMoon)
+                    {
+                        Main.bloodMoon = false;
+                        MiscWorldInfo.bloodMoonsPrevented++;
+                    }
+                });
+                cursor.Emit(OpCodes.Ldsfld, typeof(Main).GetField("bloodMoon", BindingFlags.Public | BindingFlags.Static));
+                cursor.Index = index;
+                foreach (var l in labels)
+                {
+                    cursor.MarkLabel(l);
+                }
+            }
+
+            private static void Main_UpdateWeather(On.Terraria.Main.orig_UpdateWeather orig, Main self, GameTime gameTime)
             {
                 if (GaleStreams.EndEvent)
                 {
@@ -75,7 +141,7 @@ namespace AQMod
                 orig(self, gameTime);
             }
 
-            internal static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)
+            private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)
             {
                 orig();
                 Main.dayRate += DayrateIncrease;
@@ -87,7 +153,6 @@ namespace AQMod
         public static int DayrateIncrease { get; set; }
 
         public static bool UpdatingTime { get; internal set; }
-        public static bool CosmicanonActive { get; internal set; }
 
         public override void Initialize()
         {

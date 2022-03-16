@@ -254,7 +254,6 @@ namespace AQMod
         public sbyte redSpriteWind;
         public byte extraHP;
         public bool fidgetSpinner;
-        public bool ignoreMoons;
         public bool canToggleCosmicanon;
         public bool antiGravityItems;
         public bool hotAmulet;
@@ -697,7 +696,6 @@ namespace AQMod
             crabAx = false;
             fidgetSpinner = false;
             canToggleCosmicanon = false;
-            ignoreMoons = false;
             antiGravityItems = false;
             shockCollar = false;
             healBeforeDeath = false;
@@ -1966,18 +1964,6 @@ namespace AQMod
                 }
             }
             return player.ConsumeItem(type);
-        }
-
-        public static bool IgnoreMoons()
-        {
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                if (Main.player[i].active && Main.player[i].GetModPlayer<AQPlayer>().ignoreMoons) // dead players also allow moons to be disabled
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         public static bool TileImportantItem(Player player)

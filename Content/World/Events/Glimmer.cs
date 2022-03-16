@@ -141,11 +141,9 @@ namespace AQMod.Content.World.Events
                         if (activateGlimmerEvent && Activate())
                         {
                             PassingDays.daysPassedSinceLastGlimmerEvent = 0;
-                            if (AQPlayer.IgnoreMoons())
+                            if (MiscWorldInfo.glimmerDisabled)
                             {
-                                CosmicanonWorldData.GlimmersPrevented++;
-                                if (Main.netMode == NetmodeID.Server)
-                                    NetHelper.PreventedGlimmer();
+                                MiscWorldInfo.glimmersPrevented++;
                             }
                             else
                             {

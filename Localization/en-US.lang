@@ -426,11 +426,6 @@ ItemTooltip.VampireHook=Automatically aims towards nearby enemies\nWhen attached
 ItemName.BlackBookofUntoldLegends='Untold Legends'
 ItemTooltip.BlackBookofUntoldLegends=Summons the Hermit Crab merchant
 
-ItemName.Cosmicanon=Cosmicanon
-ItemTooltip.Cosmicanon=Prevents the Blood Moon from naturally spawning
-Cosmicanon.False=Blood Moons occur again
-Cosmicanon.True=Blood Moons no longer occur
-
 ItemName.EquivalenceMachine=Equivalence Machine
 ItemTooltip.EquivalenceMachine=Nearby items float instead of falling
 
@@ -663,6 +658,26 @@ FishingLocation.Anywhere=Caught anywhere
 FishingLocation.Beach=Caught in Ocean
 
 
+
+
+#===========================#
+# Misc
+#===========================#
+
+ItemName.Transistor=Transistor
+ItemTooltip.Transistor=Prevents the Glimmer from naturally spawning
+Transistor.False=Glimmers occur again
+Transistor.True=Glimmers no longer occur
+
+ItemName.EclipseGlasses=Eclipse Glasses
+ItemTooltip.EclipseGlasses=Prevents the Eclipse from naturally spawning
+EclipseGlasses.False=Eclipses occur again
+EclipseGlasses.True=Eclipses no longer occur
+
+ItemName.Cosmicanon=Cosmicanon
+ItemTooltip.Cosmicanon=Prevents the Blood Moon from naturally spawning
+Cosmicanon.False=Blood Moons occur again
+Cosmicanon.True=Blood Moons no longer occur
 
 
 #===========================#

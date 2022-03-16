@@ -1,5 +1,6 @@
 ﻿using AQMod.Common.Utilities;
 using AQMod.Content.World;
+using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -27,19 +28,16 @@ namespace AQMod.Items.Misc.Toggles
 
         public override Color? GetAlpha(Color lightColor)
         {
-            if (lightColor.R < 60)
+            if (MiscWorldInfo.villagerMoveInAtNight && Main.myPlayer != -1)
             {
-                lightColor.R = 60;
+                var plr = Main.LocalPlayer;
+                if (plr != null && plr.talkNPC != -1 && Main.npc[plr.talkNPC].type == ModContent.NPCType<Physicist>())
+                {
+                    var c = lightColor * 0.5f;
+                    return new Color(c.R, c.G, c.B, lightColor.A);
+                }
             }
-            if (lightColor.G < 60)
-            {
-                lightColor.G = 60;
-            }
-            if (lightColor.B < 60)
-            {
-                lightColor.B = 60;
-            }
-            return lightColor;
+            return null;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

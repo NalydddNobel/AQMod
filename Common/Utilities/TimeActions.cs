@@ -14,13 +14,12 @@ namespace AQMod.Common.Utilities
 
             internal static void Main_UpdateTime(On.Terraria.Main.orig_UpdateTime orig)
             {
-                AQSystem.UpdatingTime = true;
-                Main.dayRate += AQSystem.DayrateIncrease;
+                AQWorld.UpdatingTime = true;
+                Main.dayRate += AQWorld.DayrateIncrease;
                 if (Main.dayTime)
                 {
                     if (Main.time + Main.dayRate > Main.dayLength)
                     {
-                        AQSystem.CosmicanonActive = AQPlayer.IgnoreMoons();
                         AprilFoolsJoke.Check();
                         if (Main.netMode != NetmodeID.Server)
                         {
@@ -28,25 +27,22 @@ namespace AQMod.Common.Utilities
                         }
                     }
                     orig();
-                    AQSystem.CosmicanonActive = false;
                 }
                 else
                 {
                     if (Main.time + Main.dayRate > Main.nightLength)
                     {
-                        AQSystem.CosmicanonActive = AQPlayer.IgnoreMoons();
                     }
                     orig();
                     if (MiscWorldInfo.villagerMoveInAtNight && !Main.dayTime)
                     {
                         Main_UpdateTime_SpawnTownNPCs.Invoke(null, null);
                     }
-                    AQSystem.CosmicanonActive = false;
                 }
-                AQSystem.DayrateIncrease = 0;
+                AQWorld.DayrateIncrease = 0;
                 MessageBroadcast.PreventChat = false;
                 MessageBroadcast.PreventChatOnce = false;
-                AQSystem.UpdatingTime = false;
+                AQWorld.UpdatingTime = false;
             }
         }
 
