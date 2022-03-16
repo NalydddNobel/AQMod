@@ -990,12 +990,6 @@ ItemTooltip.IchorPopper=Increases bait power by 35% when in the crimson
 ItemTooltip.MysticPopper=Increases bait power by 25% when in the hallow
 # Rods
 ItemTooltip.BeeRod=Throws flying bee bobbers\nThrows 3 lines when using the Hive Pack
-# Quest Robster
-ItemTooltip.JeweledChalice={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledCandelabra={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledChandelier={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
 ItemTooltip.BloodshedPotion=Teleports you to the location of your most recent death
 ItemTooltip.CrabShell=It's oddly mishapen

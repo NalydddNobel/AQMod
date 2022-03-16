@@ -640,8 +640,6 @@ ItemName.Snobster=Snobster
 ItemName.JeweledChalice=Jeweled Chalice
 ItemName.JeweledCandelabra=Jeweled Candelabra
 ItemName.JeweledChandelier=Jeweled Chandelier
-ItemName.JeweledChair=Jeweled Chair
-ItemName.JeweledTable=Jeweled Table
 # Other Misc
 ItemName.DwarfStariteItem=Dwarf Starite
 ItemName.BloodshedPotion=Bloodshed Potion
@@ -913,12 +911,6 @@ ItemTooltip.Fizzler=It's corrupted and glimmering
 ItemTooltip.UltraEel=The offspring of an ancient starite species
 ItemTooltip.Combfish='The scales of this fish are not edible'
 ItemTooltip.LarvaEel=Gives you 3 minutes of honey and 60 seconds of potion sickness
-# Quest Robster
-ItemTooltip.JeweledChalice={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledCandelabra={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledChandelier={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledChair={$Mods.AQMod.Common.ReturnToLobster}
-ItemTooltip.JeweledTable={$Mods.AQMod.Common.ReturnToLobster}
 # Other Misc
 ItemTooltip.BloodshedPotion=Teleports you to the location of your most recent death
 ItemTooltip.CrabShell=It's oddly mishapen
