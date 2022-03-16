@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Graphics;
+using AQMod.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -72,6 +73,17 @@ namespace AQMod.Items.Weapons.Summon
             player.AddBuff(item.buffType, 2);
             position = Main.MouseWorld;
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(ItemID.Wood, 10);
+            r.AddIngredient(ItemID.FallenStar, 5);
+            r.AddIngredient(ModContent.ItemType<CosmicEnergy>());
+            r.AddTile(TileID.Anvils);
+            r.SetResult(this);
+            r.AddRecipe();
         }
     }
 }

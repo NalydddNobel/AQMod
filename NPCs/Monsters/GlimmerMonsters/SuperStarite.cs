@@ -340,10 +340,6 @@ namespace AQMod.NPCs.Monsters.GlimmerMonsters
                     NetMessage.SendData(MessageID.WorldData);
                 }
             }
-            if (Main.rand.NextBool(4))
-            {
-                Item.NewItem(npc.getRect(), ModContent.ItemType<StariteStaff>());
-            }
             if (Main.rand.NextBool(8))
                 Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
 

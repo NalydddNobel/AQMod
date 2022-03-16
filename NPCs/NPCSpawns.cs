@@ -58,7 +58,7 @@ namespace AQMod.NPCs
                 }
                 else
                 {
-                    if (player.position.Y < GaleStreams.MinimumGaleStreamsSpawnOverride) // 160 tiles from the very top of the world
+                    if (GaleStreams.InSpace(player))
                     {
                         if (GaleStreams.IsActive)
                             spawnRate /= 2;

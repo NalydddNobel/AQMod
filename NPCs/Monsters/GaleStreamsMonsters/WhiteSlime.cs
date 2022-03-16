@@ -326,7 +326,7 @@ namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
             if (Main.rand.NextBool(20) && Main.hardMode)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Materials.Energies.AtmosphericEnergy>());
 
-            if (WorldDefeats.SudoHardmode && Main.rand.NextBool(4))
+            if (WorldDefeats.SudoHardmode && Main.rand.NextBool(15))
             {
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Weapons.Magic.Umystick>());
             }

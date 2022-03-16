@@ -98,7 +98,7 @@ namespace AQMod.NPCs
                                 }
                             }
                         }
-                        if (WorldDefeats.DownedGaleStreams && Main.player[Main.myPlayer].position.Y < GaleStreams.MinimumGaleStreamsSpawnOverride)
+                        if (WorldDefeats.DownedGaleStreams && GaleStreams.InSpace(Main.LocalPlayer))
                         {
                             if (Main.moonPhase < 3)
                             {
