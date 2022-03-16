@@ -54,6 +54,15 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 # Accessories
 #===========================#
 
+ItemName.MagikaAmulet=神奇护符
+ItemTooltip.MagikaAmulet=增加20点最大法力值\n减少8%法力消耗\n扩大魔力星的拾取范围\n受到伤害时回复法力值\n法力值不足时会自动饮用法力药水\n附近的物品会漂浮而非掉落
+
+ItemName.JellyAmulet=水母护符
+ItemTooltip.JellyAmulet=在水中时提供更亮的光照\n增加5%远处伤害\n在水中时增加10%远处暴击率\n敌人会掉落你所消耗的弹药
+
+ItemName.Terraroot=弹药恢复包
+ItemTooltip.Terraroot=敌人会掉落你所消耗的弹药
+
 ItemName.Quasicrystal=准晶体护符
 ItemTooltip.Quasicrystal=受伤时召唤星星从天而降\n=攻击敌人会造成闪光和火焰伤害\n增加5%近战暴击率
 
@@ -418,14 +427,9 @@ ItemName.BlackBookofUntoldLegends='无名传说'
 ItemTooltip.BlackBookofUntoldLegends=召唤寄居蟹商人
 
 ItemName.Cosmicanon=星宇律则
-ItemTooltip.Cosmicanon=阻止血月、日食和微光的自然生成\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
-ItemTooltipExtra.Cosmicanon=按下{0}以开关效果
-ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=阻止血月: {0}
-ItemTooltipExtra.Cosmicanon.GlimmersPrevented=阻止微光: {0}
-ItemTooltipExtra.Cosmicanon.EclipsesPrevented=阻止日食: {0}
-
-ToggleCosmicanon.False=事件可自然发生
-ToggleCosmicanon.True=事件不再自然发生
+ItemTooltip.Cosmicanon=阻止血月的自然生成
+Cosmicanon.False=血月可自然发生
+Cosmicanon.True=血月不再自然发生
 
 ItemName.EquivalenceMachine=等均仪
 ItemTooltip.EquivalenceMachine=附近的物品会现在漂浮而非下落
@@ -436,12 +440,12 @@ GhostlyGrave.False=你现在会掉落墓碑
 GhostlyGrave.True=你现在不会掉落墓碑
 
 ItemName.Stardrop=星之果实
-ItemTooltip.Stardrop=可允许城镇NPC在夜间入住
+ItemTooltip.Stardrop=切换以决定是否允许城镇NPC在夜间入住
 Stardrop.False=城镇NPC现在无法在夜间入住
 Stardrop.True=城镇NPC现在可在夜间入住
 
 ItemName.IWillBeBack='我将归来'
-ItemTooltip.IWillBeBack=可在不击杀向导的情况下召唤血肉墙\n右键使所有城镇NPC免疫岩浆
+ItemTooltip.IWillBeBack=可在不击杀向导的情况下召唤血肉墙\n右键切换以决定是否使所有城镇NPC免疫岩浆
 IWillBeBackToggle.True=城镇NPC现在会免疫岩浆
 IWillBeBackToggle.False=城镇NPC现在不再会免疫岩浆
 
@@ -1054,11 +1058,6 @@ ItemName.MoonShoes=月之行者
 # Shop Cards
 ItemName.BlurryDiscountCard=字迹模糊的优惠卡
 ItemName.BusinessCard=商务卡
-#
-# Other Accessories
-#
-ItemName.Terraroot=地之根茎
-
 ##############
 # Boss Items #
 ##############
@@ -1239,8 +1238,6 @@ ItemTooltip.MoonShoes=使你获得缓降效果\n长按'下'键可恢复正常的
 # Shop Cards
 ItemTooltip.BlurryDiscountCard=小幅度降低商店价格\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'它很难被读懂, 但无论如何商人们都会给你打折.'
 ItemTooltip.BusinessCard=降低商店价格\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'把你花费的钱都当做是业务支出就好了'
-# Other Accessories 
-ItemTooltip.Terraroot=有几率将火枪子弹转化为叶绿弹
 ##############
 # Boss Items #
 ##############
@@ -1612,3 +1609,8 @@ ServerConfig.DebugCommand=调试模式 (/ncall)
 ServerConfig.DebugCommandTooltip=启用 /ncall 调试命令.\n{$Mods.AQMod.Config.RequiresReload}
 
 Complete=完成
+Active=激活
+Inactive=失效
+BloodMoonsPrevented=阻止血月: {0}
+GlimmersPrevented=阻止微光: {0}
+EclipsesPrevented=阻止日蚀: {0}
