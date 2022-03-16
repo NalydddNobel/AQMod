@@ -34,8 +34,8 @@ namespace AQMod.Items.Accessories
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<Amulet>());
             r.AddIngredient(ModContent.ItemType<DegenerationRing>());
-            r.AddIngredient(ItemID.Shackle);
             r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>());
             r.AddIngredient(ModContent.ItemType<Materials.Fluorescence>(), 20);
             r.AddIngredient(ItemID.SoulofFlight, 20);

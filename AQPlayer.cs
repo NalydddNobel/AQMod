@@ -13,8 +13,9 @@ using AQMod.Items;
 using AQMod.Items.Accessories.Fishing;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Items.Expert;
+using AQMod.Items.Tools;
 using AQMod.Items.Tools.GrapplingHooks;
+using AQMod.Localization;
 using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Summon;
@@ -210,7 +211,7 @@ namespace AQMod
         public bool shimmering;
         public bool ammoRenewal;
         public bool altEvilDrops;
-        public bool breadsoul;
+        public bool breadSoul;
         public bool moonShoes;
         public bool reducedSiltDamage;
         public bool copperSeal;
@@ -219,7 +220,7 @@ namespace AQMod
         public bool dashEquipped;
         public int extraFlightTime;
         public int thunderbirdLightningTimer;
-        public bool dreadsoul;
+        public bool dreadSoul;
         public bool omori;
         public bool omoriEffect;
         public int omoriDeathTimer;
@@ -331,9 +332,8 @@ namespace AQMod
         public int extractorHelmet;
         public int extractorAirMask;
         public int ExtractinatorCount;
-        public bool IgnoreIgnoreMoons;
 
-        public (int, int)[] AmmoUsageData;
+        public Dictionary<int, int> AmmoUsage;
 
         public override void Initialize()
         {
@@ -360,7 +360,7 @@ namespace AQMod
             hookDebuffs = new List<BuffData>();
             meathookUI = false;
             interactionDelay = 0;
-            AmmoUsageData = new (int, int)[4];
+            AmmoUsage = new Dictionary<int, int>();
         }
 
         public override void OnEnterWorld(Player player)
@@ -374,13 +374,11 @@ namespace AQMod
             return new TagCompound()
             {
                 ["extractinatorCount"] = ExtractinatorCount,
-                ["IgnoreIgnoreMoons"] = IgnoreIgnoreMoons,
             };
         }
 
         public override void Load(TagCompound tag)
         {
-            IgnoreIgnoreMoons = tag.GetBool("IgnoreIgnoreMoons");
             ExtractinatorCount = tag.GetInt("extractinatorCount");
         }
 
@@ -407,6 +405,26 @@ namespace AQMod
             snowsawLeader = -1;
             runSpeedBoost = 1f;
             wingSpeedBoost = 1f;
+            AmmoUsage = new Dictionary<int, int>();
+        }
+
+        public override void OnConsumeAmmo(Item weapon, Item ammo)
+        {
+            if (ammoRenewal && ammo.ranged && !AQItem.Sets.ItemIDRenewalBlacklist.Contains(ammo.type) && !AQItem.Sets.AmmoIDRenewalBlacklist.Contains(ammo.ammo))
+            {
+                if (AmmoUsage.ContainsKey(ammo.type))
+                {
+                    AmmoUsage[ammo.type] += 1;
+                }
+                else
+                {
+                    AmmoUsage.Add(ammo.type, 1);
+                }
+            }
+            else
+            {
+                AmmoUsage.Clear();
+            }
         }
 
         private void UpdateVisuals_Flashes()
@@ -641,8 +659,8 @@ namespace AQMod
             silverSeal = false;
             goldSeal = false;
             extraFlightTime = 0;
-            dreadsoul = false;
-            breadsoul = false;
+            dreadSoul = false;
+            breadSoul = false;
             omori = false;
             omoriEffect = false;
             omegaStarite = false;
@@ -717,18 +735,6 @@ namespace AQMod
             wingSpeedBoost = 1f;
         }
 
-        private void ProcessTriggers_ToggleCosmicanon()
-        {
-            IgnoreIgnoreMoons = !IgnoreIgnoreMoons;
-            if (IgnoreIgnoreMoons)
-            {
-                Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.False"), new Color(230, 230, 255, 255));
-            }
-            else
-            {
-                Main.NewText(Language.GetTextValue("Mods.AQMod.ToggleCosmicanon.True"), new Color(230, 230, 255, 255));
-            }
-        }
         private void ProcessTriggers_ArmorSetBonus()
         {
             if (setArachnotron && !setArachnotronCooldown)
@@ -762,10 +768,6 @@ namespace AQMod
         }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (canToggleCosmicanon && Keybinds.CosmicanonToggle.JustPressed)
-            {
-                ProcessTriggers_ToggleCosmicanon();
-            }
             if (Keybinds.ArmorSetBonus.JustPressed)
             {
                 ProcessTriggers_ArmorSetBonus();
@@ -784,8 +786,8 @@ namespace AQMod
             clone.celesteTorusX = celesteTorusX;
             clone.celesteTorusY = celesteTorusY;
             clone.celesteTorusZ = celesteTorusZ;
-            clone.breadsoul = breadsoul;
-            clone.dreadsoul = dreadsoul;
+            clone.breadSoul = breadSoul;
+            clone.dreadSoul = dreadSoul;
             clone.helmetDartTrap = helmetDartTrap;
             clone.dartHeadType = dartHeadType;
             clone.arachnotronArms = arachnotronArms;

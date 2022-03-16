@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Expert
+namespace AQMod.Items.Tools
 {
     public sealed class Crabax : ModItem
     {

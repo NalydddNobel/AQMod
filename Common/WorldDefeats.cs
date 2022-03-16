@@ -39,7 +39,6 @@ namespace AQMod.Common
         public static bool OmegaStariteIntroduction { get; set; }
 
         public static bool TownNPCLavaImmunity { get; set; }
-        public static bool TownNPCMoveAtNight { get; set; }
 
         public static bool AirMerchantHasBeenFound { get; set; }
 
@@ -70,7 +69,6 @@ namespace AQMod.Common
             OmegaStariteIntroduction = false;
 
             TownNPCLavaImmunity = false;
-            TownNPCMoveAtNight = false;
         }
 
         public override TagCompound Save()
@@ -100,7 +98,6 @@ namespace AQMod.Common
                 ["OmegaStariteIntroduction"] = OmegaStariteIntroduction,
 
                 ["IWillBeBackLavaImmunity"] = TownNPCLavaImmunity,
-                ["TownNPCMoveAtNight"] = TownNPCMoveAtNight,
             };
         }
 
@@ -129,7 +126,6 @@ namespace AQMod.Common
             OmegaStariteIntroduction = tag.GetBool("OmegaStariteIntroduction");
 
             TownNPCLavaImmunity = tag.GetBool("IWillBeBackLavaImmunity");
-            TownNPCMoveAtNight = tag.GetBool("TownNPCMoveAtNight");
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -150,7 +146,6 @@ namespace AQMod.Common
             writer.Write(ObtainedMothmanMask);
             writer.Write(DownedSpaceSquid);
             writer.Write(TownNPCLavaImmunity);
-            writer.Write(TownNPCMoveAtNight);
             writer.Write(OmegaStariteIntroduction);
         }
 
@@ -176,7 +171,6 @@ namespace AQMod.Common
             DownedSpaceSquid = reader.ReadBoolean();
 
             TownNPCLavaImmunity = reader.ReadBoolean();
-            TownNPCMoveAtNight = reader.ReadBoolean();
             OmegaStariteIntroduction = reader.ReadBoolean();
         }
     }

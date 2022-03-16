@@ -28,7 +28,7 @@ namespace AQMod.Items.Accessories.Summon
             player.npcTypeNoAggro[ModContent.NPCType<NPCs.Monsters.Heckto>()] = true;
             var aQPlayer = player.GetModPlayer<AQPlayer>();
             aQPlayer.grabReach += 0.25f;
-            aQPlayer.breadsoul = true;
+            aQPlayer.breadSoul = true;
         }
 
         public override void AddRecipes()

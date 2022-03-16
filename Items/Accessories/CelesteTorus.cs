@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Expert
+namespace AQMod.Items.Accessories
 {
     public class CelesteTorus : ModItem, IUpdateVanity
     {

@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Armor.Vanity.BossMasks;
+﻿using AQMod.Items.Accessories;
+using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Tools.Map;
@@ -9,7 +10,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Expert
+namespace AQMod.Items.Misc
 {
     public class StariteBag : TreasureBag
     {

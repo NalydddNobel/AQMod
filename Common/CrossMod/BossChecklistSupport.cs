@@ -2,7 +2,6 @@
 using AQMod.Items.Accessories;
 using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Dyes;
-using AQMod.Items.Expert;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Misc;

@@ -1,7 +1,8 @@
 ﻿using AQMod.Common;
+using AQMod.Content.World;
 using AQMod.Items.Accessories.HookUpgrades;
+using AQMod.Items.Misc.Toggles;
 using AQMod.Items.Placeable.Nature;
-using AQMod.Items.Tools;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Summon;
 using System.Collections.Generic;
@@ -72,7 +73,7 @@ namespace AQMod.NPCs.Friendly
                 shop.item[nextSlot].SetDefaults(ItemID.WhoopieCushion);
                 nextSlot++;
             }
-            if (WorldDefeats.TownNPCLavaImmunity || WorldDefeats.terminatorArm) // in case someone activates the immunity, then looses the toggle :)
+            if (MiscWorldInfo.terminatorObtained)
             {
                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<IWillBeBack>());
                 nextSlot++;

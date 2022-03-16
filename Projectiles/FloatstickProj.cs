@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Projectiles
 {
-    public class Floatstick : ModProjectile
+    public class FloatstickProj : ModProjectile
     {
         public override void SetDefaults()
         {

@@ -3,8 +3,8 @@ using AQMod.Common.ID;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Misc.Toggles;
 using AQMod.Items.Potions;
-using AQMod.Items.Tools;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
@@ -18,7 +18,7 @@ namespace AQMod.NPCs
     {
         public override bool PreNPCLoot(NPC npc)
         {
-            if (npc.type == NPCID.BlueJellyfish && ModContent.GetInstance<AQConfigServer>().removeJellyfishNecklace)
+            if ((npc.type == NPCID.BlueJellyfish || npc.type == NPCID.GreenJellyfish) && ModContent.GetInstance<AQConfigServer>().removeJellyfishNecklace)
             {
                 NPCLoader.blockLoot.Add(ItemID.JellyfishNecklace);
             }
@@ -97,7 +97,12 @@ namespace AQMod.NPCs
                 if (Main.rand.NextBool(80))
                     Item.NewItem(npc.getRect(), ModContent.ItemType<Beeswax>());
             }
-            else if (npc.type == NPCID.BlueJellyfish || npc.type == NPCID.GreenJellyfish)
+            else if (npc.type == NPCID.GreenJellyfish)
+            {
+                if (Main.hardMode && Main.rand.NextBool(15))
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<Terraroot>());
+            }
+            else if (npc.type == NPCID.BlueJellyfish)
             {
                 if (Main.rand.NextBool(15))
                     Item.NewItem(npc.getRect(), ModContent.ItemType<ShockCollar>());

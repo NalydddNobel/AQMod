@@ -1,4 +1,5 @@
-﻿using AQMod.Tiles.Furniture;
+﻿using AQMod.Common;
+using AQMod.Tiles.Furniture;
 using AQMod.Tiles.Nature;
 using AQMod.Tiles.Nature.CrabCrevice;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace AQMod
         {
             if (Main.tile[i, j] == null)
                 Main.tile[i, j] = new Tile();
-            if (WorldGen.genRand.NextBool(10000) && GoreNest.TryGrowGoreNest(i, j, true, true))
+            if (!WorldDefeats.DownedDemonSiege && WorldGen.genRand.NextBool(10000) && GoreNest.TryGrowGoreNest(i, j, true, true))
                 return;
             switch (type)
             {

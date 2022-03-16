@@ -15,6 +15,7 @@ namespace AQMod.Items.Accessories
         {
             item.width = 24;
             item.height = 24;
+            item.defense = 2;
             item.accessory = true;
             item.rare = ItemRarityID.LightPurple;
             item.value = Item.buyPrice(gold: 10);
@@ -31,6 +32,7 @@ namespace AQMod.Items.Accessories
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<Amulet>());
             r.AddIngredient(ModContent.ItemType<Ultranium>());
             r.AddIngredient(ItemID.MagmaStone);
             r.AddIngredient(ItemID.StarCloak);

@@ -24,7 +24,7 @@ namespace AQMod.Items.Accessories.Summon
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AQPlayer>().dreadsoul = true;
+            player.GetModPlayer<AQPlayer>().dreadSoul = true;
         }
 
         public override void AddRecipes()

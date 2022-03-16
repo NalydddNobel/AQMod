@@ -1,14 +1,17 @@
-﻿using AQMod.Common;
-using AQMod.Common.ID;
+﻿using AQMod.Common.ID;
+using AQMod.Content.World;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools
+namespace AQMod.Items.Misc.Toggles
 {
     public class IWillBeBack : ModItem
     {
+        public static Color TextColor => new Color(255, 200, 50, 255);
+
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[item.type] = ItemSortingID.BossSummon_Abeemination;
@@ -50,6 +53,11 @@ namespace AQMod.Items.Tools
             }
         }
 
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.Add(new TooltipLine(mod, "Activity", "(" + AQMod.GetText(MiscWorldInfo.villagerLavaImmunity ? "Active" : "Inactive") + ")") { overrideColor = TextColor });
+        }
+
         public override void GrabRange(Player player, ref int grabRange)
         {
             if (item.lavaWet)
@@ -72,14 +80,14 @@ namespace AQMod.Items.Tools
         {
             if (player.altFunctionUse == 2)
             {
-                WorldDefeats.TownNPCLavaImmunity = !WorldDefeats.TownNPCLavaImmunity;
-                if (WorldDefeats.TownNPCLavaImmunity)
+                MiscWorldInfo.villagerLavaImmunity = !MiscWorldInfo.villagerLavaImmunity;
+                if (MiscWorldInfo.villagerLavaImmunity)
                 {
-                    AQMod.BroadcastMessage("Mods.AQMod.IWillBeBackToggle.True", new Color(255, 200, 50, 255));
+                    AQMod.BroadcastMessage("Mods.AQMod.IWillBeBackToggle.True", TextColor);
                 }
                 else
                 {
-                    AQMod.BroadcastMessage("Mods.AQMod.IWillBeBackToggle.False", new Color(255, 200, 50, 255));
+                    AQMod.BroadcastMessage("Mods.AQMod.IWillBeBackToggle.False", TextColor);
                 }
             }
             else

@@ -22,12 +22,15 @@ namespace AQMod
             internal static int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
             {
                 int originalValue = orig(X, Y, SpeedX, SpeedY, Type, Damage, KnockBack, Owner, ai0, ai1);
-                var projectile = Main.projectile[originalValue];
-                if (projectile.coldDamage || (projectile.friendly && projectile.owner != 255 && Main.player[projectile.owner].frostArmor && (projectile.melee || projectile.ranged)))
+                if (originalValue != -1)
                 {
-                    var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
-                    aQProj.canHeat = false;
-                    aQProj.temperature = -15;
+                    var projectile = Main.projectile[originalValue];
+                    if (projectile.coldDamage || (projectile.friendly && projectile.owner != 255 && Main.player[projectile.owner].frostArmor && (projectile.melee || projectile.ranged)))
+                    {
+                        var aQProj = projectile.GetGlobalProjectile<AQProjectile>();
+                        aQProj.canHeat = false;
+                        aQProj.temperature = -15;
+                    }
                 }
                 return originalValue;
             }

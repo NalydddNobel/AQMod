@@ -762,7 +762,28 @@ namespace AQMod
 
         public static class Hooks
         {
-            internal static bool NPC_Collision_DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
+            internal static void Apply()
+            {
+                On.Terraria.NPC.SetDefaults += NPC_SetDefaults;
+                On.Terraria.NPC.Collision_DecideFallThroughPlatforms += DecideFallThroughPlatforms;
+            }
+
+            private static void NPC_SetDefaults(On.Terraria.NPC.orig_SetDefaults orig, NPC self, int Type, float scaleOverride)
+            {
+                orig(self, Type, scaleOverride);
+                try
+                {
+                    if (!AQMod.Loading)
+                    {
+                        self.GetGlobalNPC<AQNPC>().PostSetDefaults(self, Type, scaleOverride);
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            private static bool DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
                 self.type > Main.maxNPCTypes &&
                 self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ?
                 decideToFallThroughPlatforms.Decide() : orig(self);
@@ -840,9 +861,6 @@ namespace AQMod
         public static bool BossRush { get; private set; }
         public static byte BossRushPlayer { get; private set; }
 
-        public static int breadsoul = 0;
-        public static int dreadsoul = 0;
-
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
 
@@ -854,6 +872,8 @@ namespace AQMod
         public bool minionHaunted;
 
         public bool hotDamage;
+
+        public bool setLavaImmune;
 
         /// <summary>
         /// When this flag is raised, no wind events should be applied to this NPC
@@ -926,6 +946,10 @@ namespace AQMod
                 CheckBuffImmunes(npc);
             }
         }
+        public void PostSetDefaults(NPC npc, int Type, float scaleOverride)
+        {
+            setLavaImmune = npc.lavaImmune;
+        }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
@@ -953,6 +977,21 @@ namespace AQMod
                 npc.lifeRegen -= 15 * 8;
                 if (damage < 15)
                     damage = 15;
+            }
+        }
+
+        public override void AI(NPC npc)
+        {
+            if (!setLavaImmune && (npc.townNPC || npc.type == NPCID.SkeletonMerchant))
+            {
+                if (MiscWorldInfo.villagerLavaImmunity)
+                {
+                    npc.lavaImmune = true;
+                }
+                else
+                {
+                    npc.lavaImmune = false;
+                }
             }
         }
 
@@ -1261,47 +1300,74 @@ namespace AQMod
             return true;
         }
 
-        private void OnKill_FeatherFlightAmuletCheck(byte p, NPC npc)
+        private void FeatherFlightAmuletCheck(NPC npc, List<(Player, AQPlayer)> nearbyPlayers)
         {
-            if (Main.player[p].GetModPlayer<AQPlayer>().featherflightAmulet)
+            int wingTime = npc.lifeMax / (Main.expertMode ? 6 : 2);
+            foreach (var p in nearbyPlayers)
             {
-                Main.player[p].wingTime += npc.lifeMax / (Main.expertMode ? 6 : 2);
-                if (Main.player[p].wingTime > Main.player[p].wingTimeMax)
+                if (p.Item2.featherflightAmulet)
                 {
-                    Main.player[p].wingTime = Main.player[p].wingTimeMax;
+                    p.Item1.wingTime += wingTime;
+                    if (p.Item1.wingTime > p.Item1.wingTimeMax)
+                    {
+                        p.Item1.wingTime = p.Item1.wingTimeMax;
+                    }
                 }
             }
         }
-        private void OnKill_BloodthirstPotionCheck(byte p, NPC npc)
+        private void BloodthirstPotionCheck(NPC npc, List<(Player, AQPlayer)> nearbyPlayers)
         {
-            if (!Main.player[p].moonLeech && npc.Distance(Main.player[p].Center) < 2500f)
+            int healAmount = npc.lifeMax / 1000 + 5;
+            foreach (var p in nearbyPlayers)
             {
-                var aequus = Main.player[p].GetModPlayer<AQPlayer>();
-                if (aequus.bloodthirstDelay == 0 && aequus.bloodthirst)
+                if (!p.Item1.moonLeech && p.Item2.bloodthirstDelay == 0 && p.Item2.bloodthirst)
                 {
-                    aequus.bloodthirstDelay = 255;
-                    int healAmount = npc.lifeMax / 1000 + 5;
-                    AQPlayer.HealPlayer(Main.player[p], healAmount, broadcast: true, merge: true, AQUtils.Instance(ModContent.ItemType<BloodthirstPotion>()),
+                    p.Item2.bloodthirstDelay = 255;
+                    AQPlayer.HealPlayer(p.Item1, healAmount, broadcast: true, merge: true, AQUtils.Instance(ModContent.ItemType<BloodthirstPotion>()),
                         healingItemQuickHeal: false);
                 }
             }
         }
-        private void OnKill_DreadsoulCheck(NPC npc)
+        private void BreadsoulCheck(NPC npc, List<(Player, AQPlayer)> nearbyPlayers)
         {
-            dreadsoul = -1;
-            float checkDistance = 2000f;
-            for (int i = 0; i < Main.maxPlayers; i++)
+            int breadsoul = -1;
+            for (int i = 0; i < nearbyPlayers.Count; i++)
             {
-                var plr = Main.player[i];
-                if (plr.active && !plr.dead)
+                var plr = nearbyPlayers[i];
+                if (plr.Item2.breadSoul)
                 {
-                    var aQPlr = plr.GetModPlayer<AQPlayer>();
-                    float distance = Vector2.Distance(plr.Center, npc.Center);
-                    if (aQPlr.dreadsoul && distance < checkDistance)
-                    {
-                        dreadsoul = i;
-                        checkDistance = distance;
-                    }
+                    breadsoul = i;
+                    break;
+                }
+            }
+            if (breadsoul == -1)
+                return;
+            for (int i = 0; i < 40; i++)
+            {
+                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 200, 255, 100));
+                d.velocity = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi).ToRotationVector2() * Main.rand.NextFloat(3f, 7f);
+            }
+            var center = npc.Center;
+            float rot = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
+            var n = rot.ToRotationVector2();
+            int p = Projectile.NewProjectile(npc.Center + n * 10f, n * 4.5f, ModContent.ProjectileType<BreadsoulHealing>(), 0, 0f, breadsoul);
+            Main.projectile[p].rotation = rot;
+            for (int j = 0; j < 4; j++)
+            {
+                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), 0f, 0f, 0, new Color(200, 200, 255, 100));
+                d.velocity = n.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(4f, 7.5f);
+            }
+        }
+        private void DreadsoulCheck(NPC npc, List<(Player, AQPlayer)> nearbyPlayers)
+        {
+            int dreadsoul = -1;
+            for (int i = 0; i < nearbyPlayers.Count; i++)
+            {
+                var plr = nearbyPlayers[i];
+                if (plr.Item2.dreadSoul)
+                {
+                    dreadsoul = i;
+                    break;
                 }
             }
             if (dreadsoul == -1)
@@ -1326,57 +1392,58 @@ namespace AQMod
                 }
             }
         }
-        private void OnKill_BreadsoulCheck(NPC npc)
+        private void RefillAmmoStocks(NPC npc, List<(Player, AQPlayer)> nearbyPlayers)
         {
-            breadsoul = -1;
-            float checkDistance = 2000f;
-            for (int i = 0; i < Main.maxPlayers; i++)
+            foreach (var p in nearbyPlayers)
             {
-                var plr = Main.player[i];
-                if (plr.active && !plr.dead)
+                if (p.Item2.ammoRenewal)
                 {
-                    var aQPlr = plr.GetModPlayer<AQPlayer>();
-                    float distance = Vector2.Distance(plr.Center, npc.Center);
-                    if (aQPlr.breadsoul && distance < checkDistance)
+                    Dictionary<int, int> returns = new Dictionary<int, int>();
+                    foreach (var ammo in p.Item2.AmmoUsage)
                     {
-                        breadsoul = i;
-                        checkDistance = distance;
+                        int amtToReturn = ammo.Value;
+                        amtToReturn = Main.rand.Next(amtToReturn) + 1;
+                        returns.Add(ammo.Key, amtToReturn);
+                        AQItem.DropInstancedItem(p.Item1.whoAmI, npc.getRect(), ammo.Key, amtToReturn);
+                    }
+                    foreach (var ammo in returns)
+                    {
+                        p.Item2.AmmoUsage[ammo.Key] -= ammo.Value;
+                        if (p.Item2.AmmoUsage[ammo.Key] <= 0)
+                        {
+                            p.Item2.AmmoUsage.Remove(ammo.Key);
+                        }
                     }
                 }
-            }
-            if (breadsoul == -1)
-                return;
-            for (int i = 0; i < 40; i++)
-            {
-                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 200, 255, 100));
-                d.velocity = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi).ToRotationVector2() * Main.rand.NextFloat(3f, 7f);
-            }
-            var center = npc.Center;
-            float rot = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
-            var n = rot.ToRotationVector2();
-            int p = Projectile.NewProjectile(npc.Center + n * 10f, n * 4.5f, ModContent.ProjectileType<BreadsoulHealing>(), 0, 0f, breadsoul);
-            Main.projectile[p].rotation = rot;
-            for (int j = 0; j < 4; j++)
-            {
-                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), 0f, 0f, 0, new Color(200, 200, 255, 100));
-                d.velocity = n.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(4f, 7.5f);
             }
         }
         public override void NPCLoot(NPC npc)
         {
             if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] || npc.lifeMax < 5 || npc.friendly)
                 return;
-            if (LootLoopingHelper.Current == 0 && (Main.netMode == NetmodeID.Server || !Main.gameMenu))
+            if (LootLoopingHelper.Current == 0 && (Main.netMode == NetmodeID.Server || !Main.gameMenu) && !Sets.NoGlobalDrops.Contains(npc.netID))
             {
-                OnKill_BreadsoulCheck(npc);
-                OnKill_DreadsoulCheck(npc);
-                byte plr = Player.FindClosest(npc.position, npc.width, npc.height);
-                if (Main.player[plr].active && !Main.player[plr].dead)
+                List<(Player, AQPlayer)> nearbyPlayers = new List<(Player, AQPlayer)>();
+                if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    var aQPlayer = Main.player[plr].GetModPlayer<AQPlayer>();
-                    OnKill_FeatherFlightAmuletCheck(plr, npc);
-                    OnKill_BloodthirstPotionCheck(plr, npc);
+                    var player = Main.LocalPlayer;
+                    nearbyPlayers.Add((player, player.GetModPlayer<AQPlayer>()));
                 }
+                else
+                {
+                    for (int i = 0; i < Main.maxPlayers; i++)
+                    {
+                        if (Main.player[i].active && !Main.player[i].dead && Main.player[i].DistanceSQ(npc.Center) < 2000f)
+                        {
+                            nearbyPlayers.Add((Main.player[i], Main.player[i].GetModPlayer<AQPlayer>()));
+                        }
+                    }
+                }
+                RefillAmmoStocks(npc, nearbyPlayers);
+                BreadsoulCheck(npc, nearbyPlayers);
+                DreadsoulCheck(npc, nearbyPlayers);
+                FeatherFlightAmuletCheck(npc, nearbyPlayers);
+                BloodthirstPotionCheck(npc, nearbyPlayers);
             }
         }
 

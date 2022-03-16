@@ -12,7 +12,7 @@ namespace AQMod.Items.Accessories
             item.width = 28;
             item.height = 28;
             item.accessory = true;
-            item.defense = 2;
+            item.defense = 3;
             item.rare = AQItem.RarityGaleStreams + 1;
             item.value = (int)(AQItem.Prices.GaleStreamsWeaponValue * 1.5f);
         }

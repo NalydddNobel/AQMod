@@ -45,7 +45,10 @@ namespace AQMod
                 orig(self, Type, noMatCheck);
                 try
                 {
-                    self.GetGlobalItem<AQItem>().PostSetDefaults(self, Type, noMatCheck);
+                    if (!AQMod.Loading)
+                    {
+                        self.GetGlobalItem<AQItem>().PostSetDefaults(self, Type, noMatCheck);
+                    }
                 }
                 catch
                 {

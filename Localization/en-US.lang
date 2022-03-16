@@ -54,6 +54,15 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 # Accessories
 #===========================#
 
+ItemName.MagikaAmulet=Magika Amulet
+ItemTooltip.MagikaAmulet=Increases maximum mana by 20\n8% reduced mana useage\nIncreases pickup range for mana stars\nRestores mana when damaged\nAutomatically uses mana potions when needed\nNearby items float instead of falling
+
+ItemName.JellyAmulet=Jelly Amulet
+ItemTooltip.JellyAmulet=Provides light which gets brighter while underwater\n5% increased ranged damage\n10% increased ranged critical strike chance while underwater\nEnemies drop ammo you have consumed
+
+ItemName.Terraroot=Ammo Renewal Pack
+ItemTooltip.Terraroot=Enemies drop ammo you have consumed
+
 ItemName.Quasicrystal=Quasicrystal Amulet
 ItemTooltip.Quasicrystal=Causes stars to fall when injured\nInflicts shimmering and fire damage on attack\n5% increased melee critical strike chance
 
@@ -418,14 +427,9 @@ ItemName.BlackBookofUntoldLegends='Untold Legends'
 ItemTooltip.BlackBookofUntoldLegends=Summons the Hermit Crab merchant
 
 ItemName.Cosmicanon=Cosmicanon
-ItemTooltip.Cosmicanon=Prevents the Blood Moon, Eclipse and Glimmer from naturally spawning\n{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
-ItemTooltipExtra.Cosmicanon=You can toggle this function by pressing {0}
-ItemTooltipExtra.Cosmicanon.BloodMoonsPrevented=Blood Moons Prevented: {0}
-ItemTooltipExtra.Cosmicanon.GlimmersPrevented=Glimmers Prevented: {0}
-ItemTooltipExtra.Cosmicanon.EclipsesPrevented=Eclipses Prevented: {0}
-
-ToggleCosmicanon.False=Moon events can occur again
-ToggleCosmicanon.True=Moon events can no longer occur
+ItemTooltip.Cosmicanon=Prevents the Blood Moon from naturally spawning
+Cosmicanon.False=Blood Moons occur again
+Cosmicanon.True=Blood Moons no longer occur
 
 ItemName.EquivalenceMachine=Equivalence Machine
 ItemTooltip.EquivalenceMachine=Nearby items float instead of falling
@@ -436,12 +440,12 @@ GhostlyGrave.False=You will now drop graves again
 GhostlyGrave.True=You will no longer drop graves
 
 ItemName.Stardrop=Stardrop
-ItemTooltip.Stardrop=Can allow town NPCs to move in during the night
+ItemTooltip.Stardrop=Toggles whether town NPCs can move in during night
 Stardrop.False=Town NPCs can no longer move in during the night
 Stardrop.True=Town NPCs can now move in during the night
 
 ItemName.IWillBeBack='I'll Be Back'
-ItemTooltip.IWillBeBack=Summons the Wall of Flesh without murdering the Guide\nRight click to make villagers immune to lava
+ItemTooltip.IWillBeBack=Summons the Wall of Flesh without murdering the Guide\nRight click to toggle whether villagers are immune to lava
 IWillBeBackToggle.True=Town NPCs will now resist lava
 IWillBeBackToggle.False=Town NPCs will no longer resist lava
 
@@ -1054,11 +1058,6 @@ ItemName.MoonShoes=Moonwalker
 # Shop Cards
 ItemName.BlurryDiscountCard=Blurry Discount Card
 ItemName.BusinessCard=Business Card
-#
-# Other Accessories
-#
-ItemName.Terraroot=Terraroot
-
 ##############
 # Boss Items #
 ##############
@@ -1239,8 +1238,6 @@ ItemTooltip.MoonShoes=Allows slow fall\nHold down to revert to regular gravity a
 # Shop Cards
 ItemTooltip.BlurryDiscountCard=Shops have slightly lower prices\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'It's hard to read but they will give you a discount anyways'
 ItemTooltip.BusinessCard=Shops have even lower prices\n{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}\n'Consider everything a business expense'
-# Other Accessories 
-ItemTooltip.Terraroot=Randomly converts musket balls into chlorophyte bullets
 ##############
 # Boss Items #
 ##############
@@ -1612,3 +1609,8 @@ ServerConfig.DebugCommand=Debug Mode (/ncall)
 ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod.Config.RequiresReload}
 
 Complete=Complete
+Active=Active
+Inactive=Inactive
+BloodMoonsPrevented=Blood Moons Prevented: {0}
+GlimmersPrevented=Glimmers Prevented: {0}
+EclipsesPrevented=Eclipses Prevented: {0}

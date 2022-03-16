@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools
+namespace AQMod.Items.Misc
 {
     public class Floatstick : ModItem
     {
@@ -13,7 +13,7 @@ namespace AQMod.Items.Tools
         {
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.shootSpeed = 6f;
-            item.shoot = ModContent.ProjectileType<Projectiles.Floatstick>();
+            item.shoot = ModContent.ProjectileType<Projectiles.FloatstickProj>();
             item.width = 12;
             item.height = 12;
             item.maxStack = 999;

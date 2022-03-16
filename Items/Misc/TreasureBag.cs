@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Expert
+namespace AQMod.Items.Misc
 {
     public abstract class TreasureBag : ModItem
     {

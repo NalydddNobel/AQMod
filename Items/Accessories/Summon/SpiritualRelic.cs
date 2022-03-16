@@ -25,14 +25,15 @@ namespace AQMod.Items.Accessories.Summon
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            aQPlayer.dreadsoul = true;
-            aQPlayer.breadsoul = true;
+            aQPlayer.dreadSoul = true;
+            aQPlayer.breadSoul = true;
             player.maxMinions++;
         }
 
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
+            r.AddIngredient(ModContent.ItemType<Amulet>());
             r.AddIngredient(ModContent.ItemType<Breadsoul>());
             r.AddIngredient(ModContent.ItemType<Dreadsoul>());
             r.AddIngredient(ItemID.PygmyNecklace);

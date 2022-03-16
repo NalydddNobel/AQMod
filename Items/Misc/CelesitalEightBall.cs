@@ -8,9 +8,9 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools
+namespace AQMod.Items.Misc
 {
-    public class CelesitalEightBall : ModItem, IAutoloadType
+    public class CelesitalEightBall : ModItem
     {
         public static string TextKey { get; private set; }
         public static object[] Arguments { get; private set; }
@@ -38,7 +38,7 @@ namespace AQMod.Items.Tools
 
         public override bool AltFunctionUse(Player player) => true;
 
-        public static void ResetStatics()
+        public static void Initalize()
         {
             TextKey = null;
             Arguments = null;
@@ -195,16 +195,6 @@ namespace AQMod.Items.Tools
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Add(new TooltipLine(mod, "EightBall", GetTextValue()));
-        }
-
-        void IAutoloadType.OnLoad()
-        {
-            ResetStatics();
-        }
-
-        void IAutoloadType.Unload()
-        {
-            ResetStatics();
         }
     }
 }

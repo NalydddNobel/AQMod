@@ -1,20 +1,24 @@
-﻿using AQMod.Content.Players;
+﻿using AQMod.Common.Utilities;
+using AQMod.Content.World;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Tools
+namespace AQMod.Items.Misc.Toggles
 {
-    public class GhostlyGrave : ModItem
+    public class Stardrop : ModItem
     {
+        public static Color TextColor => Color.HotPink * 1.25f;
+
         public override void SetDefaults()
         {
             item.width = 20;
             item.height = 28;
-            item.rare = ItemRarityID.Orange;
-            item.value = Item.buyPrice(gold: 45);
+            item.rare = AQItem.RarityOmegaStarite + 1;
+            item.value = Item.buyPrice(platinum: 1);
             item.useTime = 30;
             item.useAnimation = 30;
             item.useStyle = ItemUseStyleID.HoldingUp;
@@ -35,23 +39,26 @@ namespace AQMod.Items.Tools
             {
                 lightColor.B = 60;
             }
-            lightColor.A = 200;
             return lightColor;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.Add(new TooltipLine(mod, "Activity", "(" + AQMod.GetText(MiscWorldInfo.villagerMoveInAtNight ? "Active" : "Inactive") + ")") { overrideColor = TextColor });
         }
 
         public override bool UseItem(Player player)
         {
-            var tombstonesPlayer = player.GetModPlayer<TombstonesPlayer>();
-            tombstonesPlayer.disableTombstones = !tombstonesPlayer.disableTombstones;
+            MiscWorldInfo.villagerMoveInAtNight = !MiscWorldInfo.villagerMoveInAtNight;
             if (Main.myPlayer == player.whoAmI)
             {
-                if (tombstonesPlayer.disableTombstones)
+                if (MiscWorldInfo.villagerMoveInAtNight)
                 {
-                    Main.NewText(Language.GetTextValue("Mods.AQMod.GhostlyGrave.True"), new Color(211, 200, 200, 255));
+                    MessageBroadcast.NewMessage(Language.GetTextValue("Mods.AQMod.Stardrop.True"), TextColor);
                 }
                 else
                 {
-                    Main.NewText(Language.GetTextValue("Mods.AQMod.GhostlyGrave.False"), new Color(211, 200, 200, 255));
+                    MessageBroadcast.NewMessage(Language.GetTextValue("Mods.AQMod.Stardrop.False"), TextColor);
                 }
             }
             return true;

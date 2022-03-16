@@ -20,7 +20,6 @@ namespace AQMod.Items.Accessories
             item.height = 20;
             item.rare = ItemRarityID.Green;
             item.value = Item.buyPrice(gold: 25);
-            item.mana = 15;
             item.accessory = true;
         }
 

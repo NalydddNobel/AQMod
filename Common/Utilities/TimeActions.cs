@@ -1,4 +1,5 @@
-﻿using AQMod.Effects;
+﻿using AQMod.Content.World;
+using AQMod.Effects;
 using System.Reflection;
 using Terraria;
 using Terraria.ID;
@@ -36,7 +37,7 @@ namespace AQMod.Common.Utilities
                         AQSystem.CosmicanonActive = AQPlayer.IgnoreMoons();
                     }
                     orig();
-                    if (WorldDefeats.TownNPCMoveAtNight && !Main.dayTime)
+                    if (MiscWorldInfo.villagerMoveInAtNight && !Main.dayTime)
                     {
                         Main_UpdateTime_SpawnTownNPCs.Invoke(null, null);
                     }

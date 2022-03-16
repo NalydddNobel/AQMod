@@ -15,6 +15,7 @@ using AQMod.Effects.Trails.Rendering;
 using AQMod.Items;
 using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Dyes;
+using AQMod.Items.Misc;
 using AQMod.Items.Potions.Foods;
 using AQMod.Items.Recipes;
 using AQMod.Localization;
@@ -143,9 +144,8 @@ namespace AQMod
 
                 On.Terraria.UI.ItemSlot.MouseHover_ItemArray_int_int += PlayerStorage.Hooks.ItemSlot_MouseHover_ItemArray_int_int;
 
-                On.Terraria.NPC.Collision_DecideFallThroughPlatforms += AQNPC.Hooks.NPC_Collision_DecideFallThroughPlatforms;
+                AQNPC.Hooks.Apply();
             }
-
         }
         private void LoadMusic(bool unload = false)
         {
@@ -243,6 +243,8 @@ namespace AQMod
             }
 
             LoadCrossMod(unload: false);
+
+            CelesitalEightBall.Initalize();
 
             AQBuff.Sets.Load();
             AQItem.Load();
@@ -699,6 +701,10 @@ namespace AQMod
         public static string GetText(string key)
         {
             return AQText.modTranslations["Mods.AQMod." + key].GetTranslation(Language.ActiveCulture);
+        }
+        public static string GetText(string key, object arg)
+        {
+            return string.Format(GetText(key), arg);
         }
         public static ModTranslation GetTranslation(string key)
         {
