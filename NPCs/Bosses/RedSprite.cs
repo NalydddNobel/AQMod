@@ -125,7 +125,7 @@ namespace AQMod.NPCs.Bosses
         public override void AI()
         {
             bool leave = (int)npc.ai[0] == -1;
-            if (!leave && Main.player[npc.target].position.Y > GaleStreams.MinimumGaleStreamsSpawnOverride)
+            if (!leave && GaleStreams.InSpace(Main.player[npc.target].position.Y))
             {
                 leave = true;
             }

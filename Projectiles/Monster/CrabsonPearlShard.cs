@@ -19,7 +19,7 @@ namespace AQMod.Projectiles.Monster
             projectile.timeLeft = 80;
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
-            projectile.scale = 1.2f;
+            projectile.scale = 1.5f;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -80,6 +80,7 @@ namespace AQMod.Projectiles.Monster
             var origin = texture.Size() / 2f;
             var drawColor = projectile.GetAlpha(lightColor);
             spriteBatch.Draw(texture, projectile.position + offset, null, drawColor, projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, projectile.position + offset, null, drawColor * 0.3f, projectile.rotation, origin, projectile.scale * 2f, SpriteEffects.None, 0f);
             return false;
         }
     }

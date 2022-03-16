@@ -25,8 +25,6 @@ namespace AQMod.Content.World.Events
             public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.EventProgress.GaleStreams", (int)(Main.windSpeed * 100).Abs(), 300);
         }
 
-        public const int MinimumMeteorSpawningTileY = 160;
-        public const float MinimumGaleStreamsSpawnOverride = 2560f;
         internal override EventProgressBar ProgressBar => new CustomProgressBar();
 
         public static Color HotCurrentColor => new Color(43, 148, 240, 255);
@@ -71,11 +69,6 @@ namespace AQMod.Content.World.Events
             if (Main.dayTime)
                 return Main.time > Main.dayLength - 3600;
             return Main.time > Main.nightLength - 3600;
-        }
-
-        public static bool InMeteorSpawnZone(float y)
-        {
-            return y < 2000f;
         }
 
         public static bool InSpace(Player player)

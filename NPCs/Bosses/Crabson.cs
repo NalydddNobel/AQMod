@@ -40,6 +40,7 @@ namespace AQMod.NPCs.Bosses
         public int leftClaw;
         public int rightClaw;
         public int crabson;
+        public bool contactDamage;
 
         public NPC Left => Main.npc[leftClaw];
         public NPC Right => Main.npc[rightClaw];
@@ -62,7 +63,7 @@ namespace AQMod.NPCs.Bosses
             npc.width = 90;
             npc.height = 60;
             npc.lifeMax = 2500;
-            npc.damage = 24;
+            npc.damage = 20;
             npc.defense = 6;
             npc.aiStyle = -1;
             npc.noTileCollide = true;
@@ -111,6 +112,11 @@ namespace AQMod.NPCs.Bosses
                 for (int i = 0; i < Math.Min(damage / 20 + 1, 1); i++)
                     Dust.NewDust(npc.position, npc.width, npc.height, DustID.Blood);
             }
+        }
+
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
+        {
+            return contactDamage;
         }
 
         private void SpawnClaws(Vector2 center)
@@ -238,6 +244,7 @@ namespace AQMod.NPCs.Bosses
         {
             List<int> actions = new List<int>() { Phase_ClawShots, Phase_GroundBubbles, Phase_ClawSlams };
             npc.ai[0] = actions[Main.rand.Next(actions.Count)];
+            contactDamage = true;
             npc.localAI[0] = 0f;
             Right.localAI[0] = 0f;
             Left.localAI[0] = 0f;
@@ -270,7 +277,7 @@ namespace AQMod.NPCs.Bosses
                 {
                     npc.ai[0] = Phase_HomingBubbles;
                 }
-                npc.ai[1] = Main.expertMode ? 240f : 180f;
+                npc.ai[1] = Main.expertMode ? 180f : 120f;
                 npc.ai[2] = 0f;
                 npc.defense *= 4;
                 Right.defense *= 4;
@@ -349,6 +356,7 @@ namespace AQMod.NPCs.Bosses
             {
                 if (!IsClaw)
                 {
+                    contactDamage = false;
                     npc.behindTiles = true;
                     if (!npc.HasValidTarget || (npc.Distance(Main.npc[npc.target].Center) > 4000f))
                     {
@@ -454,6 +462,7 @@ namespace AQMod.NPCs.Bosses
                 }
                 else
                 {
+                    contactDamage = false;
                     npc.behindTiles = false;
                     npc.noGravity = true;
                     npc.noTileCollide = true;
@@ -517,8 +526,10 @@ namespace AQMod.NPCs.Bosses
                     }
                     else if ((int)CrabsonNPC.ai[0] == Phase_ClawSlams)
                     {
+                        contactDamage = true;
                         npc.ai[1]++;
-                        if (npc.ai[1] + 10 < 0f)
+                        int time = 10;
+                        if (npc.ai[1] + time < 0f)
                         {
                             npc.noGravity = false;
                             npc.noTileCollide = false;
@@ -530,8 +541,9 @@ namespace AQMod.NPCs.Bosses
                             {
                                 npc.damage = npc.defDamage * 2;
                                 npc.velocity.X = 0f;
-                                npc.velocity.Y = 40f;
-                                if (npc.ai[1] > smashTime + 10)
+                                npc.velocity.Y = Main.expertMode ? 32f : 16f;
+                                int fallingTime = Main.expertMode ? 10 : 20;
+                                if (npc.ai[1] > smashTime + fallingTime)
                                 {
                                     npc.noGravity = false;
                                     npc.noTileCollide = false;

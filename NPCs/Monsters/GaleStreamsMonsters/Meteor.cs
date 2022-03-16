@@ -75,7 +75,7 @@ namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
                     }
                 }
             }
-            else if (!GaleStreams.InMeteorSpawnZone(npc.position.Y))
+            else if (!GaleStreams.InSpace(npc.position.Y))
             {
                 npc.velocity.Y -= 0.01f;
             }
