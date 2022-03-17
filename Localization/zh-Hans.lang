@@ -426,11 +426,6 @@ ItemTooltip.VampireHook=自动瞄准附近的敌人\n钩中敌人时会汲取其
 ItemName.BlackBookofUntoldLegends='无名传说'
 ItemTooltip.BlackBookofUntoldLegends=召唤寄居蟹商人
 
-ItemName.Cosmicanon=星宇律则
-ItemTooltip.Cosmicanon=阻止血月的自然生成
-Cosmicanon.False=血月可自然发生
-Cosmicanon.True=血月不再自然发生
-
 ItemName.EquivalenceMachine=等均仪
 ItemTooltip.EquivalenceMachine=附近的物品会现在漂浮而非下落
 
@@ -663,6 +658,26 @@ FishingLocation.Anywhere=抓捕位置: 任意位置
 FishingLocation.Beach=抓捕位置: 海洋
 
 
+
+
+#===========================#
+# Misc
+#===========================#
+
+ItemName.Transistor=晶体管
+ItemTooltip.Transistor=阻止微光的自然生成
+Transistor.False=微光可自然发生
+Transistor.True=微光不再自然发生
+
+ItemName.EclipseGlasses=日蚀眼镜
+ItemTooltip.EclipseGlasses=阻止日食的自然生成
+EclipseGlasses.False=日食可自然发生
+EclipseGlasses.True=日食不再自然发生
+
+ItemName.Cosmicanon=星宇律则
+ItemTooltip.Cosmicanon=阻止血月的自然生成
+Cosmicanon.False=血月可自然发生
+Cosmicanon.True=血月不再自然发生
 
 
 #===========================#
