@@ -47,7 +47,12 @@ namespace AQMod.Items.Weapons.Summon
         public override void AddRecipes()
         {
             var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.HornetStaff);
+            int item = 0;
+            if (AQMod.split.IsActive)
+            {
+                item = AQMod.split.ItemType("RazorfrostStaff");
+            }
+            r.AddIngredient(item == 0 ? ItemID.HornetStaff : item);
             r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
             r.AddIngredient(ModContent.ItemType<Materials.SiphonTentacle>(), 12);
             r.AddIngredient(ItemID.SoulofFlight, 20);

@@ -307,6 +307,9 @@ namespace AQMod
         public bool snowsaw;
         public int snowsawLeader = -1;
 
+        public bool autoSentry;
+        public int autoSentryCooldown;
+
         public bool hasMinionCarry;
         public int headMinionCarryX;
         public int headMinionCarryY;
@@ -405,6 +408,8 @@ namespace AQMod
             runSpeedBoost = 1f;
             wingSpeedBoost = 1f;
             AmmoUsage = new Dictionary<int, int>();
+            autoSentry = false;
+            autoSentryCooldown = 120;
         }
 
         public override void OnConsumeAmmo(Item weapon, Item ammo)
@@ -499,6 +504,10 @@ namespace AQMod
             if (interactionDelay > 0)
             {
                 interactionDelay--;
+            }
+            if (autoSentryCooldown > 0)
+            {
+                autoSentryCooldown--;
             }
         }
         private void ResetEffects_HookBarbs()
@@ -642,6 +651,7 @@ namespace AQMod
         public override void ResetEffects()
         {
             ResetEffects_Cooldowns();
+            autoSentry = false;
 
             helmetFlowerCrown = false;
             setLightbulb = false;
@@ -1268,18 +1278,6 @@ namespace AQMod
                 passiveSummonTimer = -1;
             }
         }
-        private void UpdateArachnotronPets()
-        {
-            if (Main.myPlayer == player.whoAmI)
-            {
-                int type = ModContent.ProjectileType<ArachnotronLegs>();
-                if (player.ownedProjectileCounts[type] <= 0)
-                {
-                    int p = Projectile.NewProjectile(player.Center, Vector2.Zero, type, 33, 1f, player.whoAmI);
-                    Main.projectile[p].netUpdate = true;
-                }
-            }
-        }
         private void UpdateOmoriPets()
         {
             if (omoriDeathTimer > 0)
@@ -1305,14 +1303,80 @@ namespace AQMod
         }
         public override void PostUpdateEquips()
         {
+            if (autoSentry && autoSentryCooldown <= 0)
+            {
+                autoSentryCooldown = 60;
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    var center = player.Center;
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].lifeMax > 5 && !Main.npc[i].dontTakeDamage && Main.npc[i].Distance(center) < 2000f && Main.npc[i].CanBeChasedBy(player))
+                        {
+                            for (int j = 0; j < Main.maxInventory; j++)
+                            {
+                                if (!player.inventory[j].IsAir && player.inventory[j].damage > 0 && player.inventory[j].sentry && !player.inventory[j].consumable)
+                                {
+                                    if (ItemLoader.CanUseItem(player.inventory[j], player))
+                                    {
+                                        if (!AQItem.Sets.SentryUsage.TryGetValue(player.inventory[j].type, out var sentryUsage))
+                                        {
+                                            sentryUsage = AQItem.Sets.SentryStaffUsage.Default;
+                                        }
+                                        if (sentryUsage.TrySummoningThisSentry(player, player.inventory[j], Main.npc[i]))
+                                        {
+                                            player.UpdateMaxTurrets();
+                                            if (player.maxTurrets > 1)
+                                            {
+                                                autoSentryCooldown = 300;
+                                            }
+                                            else
+                                            {
+                                                autoSentryCooldown = 1000;
+                                            }
+                                            if (Main.netMode != NetmodeID.Server && player.inventory[j].UseSound != null)
+                                            {
+                                                Main.PlaySound(player.inventory[j].UseSound, Main.npc[i].Center);
+                                            }
+                                            goto EndLoop;
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                        continue;
+                    EndLoop:
+                        break;
+                    }
+                }
+            }
             if (leechHook && Main.myPlayer == player.whoAmI && Main.GameUpdateCount % 50 == 0)
             {
                 HealPlayer(player, 2, broadcast: true, merge: true, player.GrapplingHook(), healingItemQuickHeal: false);
             }
+            if (hyperCrystal)
+            {
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && !Main.npc[i].friendly && player.Distance(Main.npc[i].Center) < 112f) // 7 tiles
+                    {
+                        Main.npc[i].GetGlobalNPC<AQNPC>().damageMultiplier *= 1.1f;
+                    }
+                }
+            }
             UpdatePassiveSummonHat();
             if (arachnotronArms)
             {
-                UpdateArachnotronPets();
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    int type = ModContent.ProjectileType<ArachnotronLegs>();
+                    if (player.ownedProjectileCounts[type] <= 0)
+                    {
+                        int p = Projectile.NewProjectile(player.Center, Vector2.Zero, type, 33, 1f, player.whoAmI);
+                        Main.projectile[p].netUpdate = true;
+                    }
+                }
             }
             if (omori && Main.myPlayer == player.whoAmI)
             {
@@ -1566,26 +1630,15 @@ namespace AQMod
         {
             var center = player.Center;
             var targetCenter = target.Center;
-            if (item.melee)
-            {
-                if (hyperCrystal)
-                {
-                    TrueMeleeHit_HyperCrystal(target, damage, knockback, center, targetCenter, crit);
-                }
-            }
             OnHitNPCWithAnything(target, targetCenter, damage, knockback, crit);
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
             var center = player.Center;
             var targetCenter = target.Center;
-            if (IsTrueMeleeProjectile(proj))
-            {
-                if (hyperCrystal)
-                {
-                    TrueMeleeHit_HyperCrystal(target, damage, knockback, center, targetCenter, crit);
-                }
-            }
+            //if (IsTrueMeleeProjectile(proj))
+            //{
+            //}
             OnHitNPCWithAnything(target, targetCenter, damage, knockback, crit);
         }
 

@@ -2,6 +2,7 @@
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
 using AQMod.Content.Players;
+using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
@@ -16,6 +17,7 @@ namespace AQMod
     {
         public static class PacketType
         {
+            public const ushort UpdateExporterQuestsCompleted = 2;
             public const ushort UpdateWindSpeeds = 3;
             public const ushort CombatText = 4;
             public const ushort CombatNumber = 5;
@@ -35,6 +37,19 @@ namespace AQMod
             public const ushort Flag_AirMerchantHasBeenFound = 10003;
 
             public const ushort Player_SyncEncoreData = 20000;
+        }
+
+        public static void UpdateExporterQuestsCompleted(ushort exporterQuests)
+        {
+            MiscWorldInfo.exporterQuests = exporterQuests;
+            UpdateExporterQuestsCompleted();
+        }
+        public static void UpdateExporterQuestsCompleted()
+        {
+            var p = AQMod.GetInstance().GetPacket();
+            p.Write(PacketType.UpdateExporterQuestsCompleted);
+            p.Write(MiscWorldInfo.exporterQuests);
+            p.Send();
         }
 
         public static void WorldStatus()
@@ -209,6 +224,13 @@ namespace AQMod
 
             switch (messageID)
             {
+                case PacketType.UpdateExporterQuestsCompleted:
+                    {
+                        ushort exporterQuests = reader.ReadUInt16();
+                        MiscWorldInfo.exporterQuests = exporterQuests;
+                    }
+                    break;
+
                 case PacketType.HealPlayer:
                     {
                         byte plr = reader.ReadByte();

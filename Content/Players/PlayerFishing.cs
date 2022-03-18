@@ -1,10 +1,11 @@
 ﻿using AQMod.Common;
 using AQMod.Items.Accessories.Healing;
+using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Misc;
 using AQMod.Items.Misc.Bait;
-using AQMod.Items.Placeable.Nature;
+using AQMod.Items.Placeable.CrabCrevice;
 using AQMod.Items.Potions;
 using Terraria;
 using Terraria.ModLoader;
@@ -57,23 +58,23 @@ namespace AQMod.Content.Players
 
         private int Pool_GlimmerEvent()
         {
-            if (Main.rand.NextBool(8))
+            if (Main.rand.NextBool(3))
             {
                 return ModContent.ItemType<Blobfish>();
             }
-            else if (Main.rand.NextBool(8))
+            else if (Main.rand.NextBool(3))
             {
                 return ModContent.ItemType<Nessie>();
             }
-            else if (Main.rand.NextBool(9))
+            else if (Main.rand.NextBool(3))
             {
                 return ModContent.ItemType<UltraEel>();
             }
-            else if (WorldDefeats.DownedStarite && Main.rand.NextBool(8))
+            else if (WorldDefeats.DownedStarite && Main.rand.NextBool(4))
             {
                 return ModContent.ItemType<LightMatter>();
             }
-            else if (WorldDefeats.DownedStarite && Main.rand.NextBool(8))
+            else if (WorldDefeats.DownedStarite && Main.rand.NextBool(4))
             {
                 return ModContent.ItemType<CosmicEnergy>();
             }
@@ -106,62 +107,6 @@ namespace AQMod.Content.Players
                 return ModContent.ItemType<ExoticCoral>();
             }
             return ModContent.ItemType<SeaPickle>();
-        }
-        private bool TryPool_BloodMoon(ref int newFish)
-        {
-            if (Main.rand.NextBool(25))
-            {
-                newFish = ModContent.ItemType<BloodPlasma>();
-                return true;
-            }
-            if (Main.rand.NextBool(30))
-            {
-                newFish = ModContent.ItemType<PalePufferfish>();
-                return true;
-            }
-            if (Main.rand.NextBool(30))
-            {
-                newFish = ModContent.ItemType<VampireSquid>();
-                return true;
-            }
-            return false;
-        }
-        private bool TryPool_Corruption(ref int newFish)
-        {
-            if (!Main.dayTime && Main.rand.NextBool(4))
-            {
-                newFish = ModContent.ItemType<Fizzler>();
-                return true;
-            }
-            if (NPC.downedBoss2 && Main.rand.NextBool(4))
-            {
-                newFish = ModContent.ItemType<Depthscale>();
-                return true;
-            }
-            return false;
-        }
-        private bool TryPool_Crimson(ref int newFish)
-        {
-            if (NPC.downedBoss2 && Main.rand.NextBool(4))
-            {
-                newFish = ModContent.ItemType<Fleshscale>();
-                return true;
-            }
-            return false;
-        }
-        private bool TryPool_Honey(ref int newFish)
-        {
-            if (Main.rand.NextBool(4))
-            {
-                newFish = ModContent.ItemType<Combfish>();
-                return true;
-            }
-            if (Main.rand.NextBool(6))
-            {
-                newFish = ModContent.ItemType<LarvaEel>();
-                return true;
-            }
-            return false;
         }
         private bool TryCatchQuestFish(int questFish, ref int newFish)
         {
@@ -201,8 +146,30 @@ namespace AQMod.Content.Players
                             junk = false;
                             return;
                         }
-                        if (Main.bloodMoon && Main.rand.NextBool(4) && TryPool_BloodMoon(ref caughtType))
+                        if (Main.bloodMoon)
                         {
+                            if (Main.rand.NextBool(25))
+                            {
+                                caughtType = ModContent.ItemType<BloodPlasma>();
+                                return;
+                            }
+                            if (Main.rand.NextBool(30))
+                            {
+                                caughtType = ModContent.ItemType<PalePufferfish>();
+                                return;
+                            }
+                            if (Main.rand.NextBool(30))
+                            {
+                                caughtType = ModContent.ItemType<VampireSquid>();
+                                return;
+                            }
+                        }
+                    }
+                    if (player.ZoneBeach)
+                    {
+                        if (Main.rand.NextBool(15))
+                        {
+                            caughtType = ModContent.ItemType<Squyp>();
                             return;
                         }
                     }
@@ -218,19 +185,39 @@ namespace AQMod.Content.Players
                 }
                 if (worldLayer < WorldLayers.HellLayer)
                 {
-                    if (player.ZoneCorrupt && Main.rand.NextBool(4) && TryPool_Corruption(ref caughtType))
+                    if (player.ZoneCorrupt && Main.rand.NextBool(4))
                     {
-                        return;
+                        if (!Main.dayTime && Main.rand.NextBool())
+                        {
+                            caughtType = ModContent.ItemType<Fizzler>();
+                            return;
+                        }
+                        if (NPC.downedBoss2 && Main.rand.NextBool())
+                        {
+                            caughtType = ModContent.ItemType<Depthscale>();
+                            return;
+                        }
                     }
-                    if (player.ZoneCrimson && Main.rand.NextBool(4) && TryPool_Crimson(ref caughtType))
+                    if (player.ZoneCrimson && Main.rand.NextBool(4))
                     {
-                        return;
+                        if (NPC.downedBoss2 && Main.rand.NextBool())
+                        {
+                            caughtType = ModContent.ItemType<Fleshscale>();
+                            return;
+                        }
                     }
                 }
             }
-            else if (liquidType == Tile.Liquid_Honey && Main.rand.NextBool())
+            else if (liquidType == Tile.Liquid_Honey)
             {
-                TryPool_Honey(ref caughtType);
+                if (Main.rand.NextBool(4))
+                {
+                    caughtType = ModContent.ItemType<Combfish>();
+                }
+                else if (Main.rand.NextBool(6))
+                {
+                    caughtType = ModContent.ItemType<LarvaEel>();
+                }
             }
         }
     }

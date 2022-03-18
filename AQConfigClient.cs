@@ -3,7 +3,7 @@ using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Placeable.Nature;
+using AQMod.Items.Placeable;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;

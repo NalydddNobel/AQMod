@@ -4,6 +4,7 @@ using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
+using AQMod.Tiles.PetrifiedFurn;
 using AQMod.Tiles.Walls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -8,6 +8,7 @@ using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Items;
 using AQMod.Items.Accessories;
+using AQMod.Items.Accessories.HookUpgrades;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Misc;
@@ -17,6 +18,8 @@ using AQMod.Items.Potions.Foods;
 using AQMod.Items.Prefixes;
 using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Weapons.Magic;
+using AQMod.Items.Weapons.Summon;
+using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -66,9 +69,111 @@ namespace AQMod
             public static HashSet<int> ItemIDRenewalBlacklist { get; private set; }
             public static HashSet<int> AmmoIDRenewalBlacklist { get; private set; }
 
-            public static List<int> OverworldPaletteList { get; private set; }
-            public static List<int> CavernPaletteList { get; private set; }
+            public static List<int> OverworldChestLoot { get; private set; }
+            public static List<int> CavernChestLoot { get; private set; }
+            public static List<int> SkyChestLoot { get; private set; }
             public static List<int> CavePotions { get; private set; }
+
+            public struct SentryStaffUsage
+            {
+                public static SentryStaffUsage Default => new SentryStaffUsage(isGrounded: false, range: 2000);
+
+                public readonly bool IsGrounded;
+                public readonly float Range;
+                /// <summary>
+                /// Player is the player who is summoning the sentry
+                /// <para>Item is the item used to summon the sentry</para>
+                /// <para>NPC is the target</para>
+                /// <para>.</para>
+                /// <para>returns:</para> 
+                ///     Whether it was successful at placing a sentry
+                /// </summary>
+                public Func<Player, Item, NPC, bool> customAction;
+
+                public SentryStaffUsage(bool isGrounded = false, float range = 2000f) : this(null, isGrounded, range)
+                {
+                }
+
+                public SentryStaffUsage(Func<Player, Item, NPC, bool> customAction, bool isGrounded = false, float range = 2000f)
+                {
+                    IsGrounded = isGrounded;
+                    Range = range;
+                    this.customAction = customAction;
+                }
+
+                private Vector2? FindGroundedSpot(int x, int y)
+                {
+                    for (int j = 0; j < 25; j++)
+                    {
+                        if (Main.tile[x, y + j]  == null)
+                        {
+                            Main.tile[x, y + j] = new Tile();
+                            return null;
+                        }
+                        if (Main.tile[x, y + j].active() && Main.tile[x, y + j].Solid())
+                        {
+                            return new Vector2(x * 16f + 8f, (y + j) * 16f - 32f);
+                        }
+                    }
+                    return null;
+                }
+                public bool TrySummoningThisSentry(Player player, Item item, NPC target)
+                {
+                    if (customAction?.Invoke(player, item, target) == true)
+                    {
+                        return true;
+                    }
+                    if (IsGrounded)
+                    {
+                        List<Vector2> validLocations = new List<Vector2>();
+                        int x = ((int)target.position.X + target.width / 2) / 16;
+                        int y = (int)target.position.Y / 16;
+                        for (int i = -5; i <= 5; i++)
+                        {
+                            var v = FindGroundedSpot(x, y);
+                            if (v.HasValue)
+                            {
+                                validLocations.Add(v.Value);
+                            }
+                        }
+                        if (validLocations.Count == 0)
+                        {
+                            return false;
+                        }
+                        float closest = Range;
+                        var resultPosition = Vector2.Zero;
+                        foreach (var v in validLocations)
+                        {
+                            float d = target.Distance(v);
+                            if (d < Range)
+                            {
+                                d = Math.Min(d + Main.rand.Next(-150, 100), Range);
+                            }
+                            if (d < closest)
+                            {
+                                resultPosition = v;
+                                closest = d;
+                            }
+                        }
+                        if (resultPosition == Vector2.Zero)
+                        {
+                            return false;
+                        }
+                        int shoot = AQUtils.ShootProj(player, item, resultPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), resultPosition);
+                        return shoot != -1;
+                    }
+                    else
+                    {
+                        var shootPosition = target.position;
+                        shootPosition.X += target.width / 2f;
+                        shootPosition.Y -= 200f;
+                        int shoot = AQUtils.ShootProj(player, item, shootPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), shootPosition);
+                        return shoot != -1;
+                    }
+                }
+            }
+
+            public static Dictionary<int, SentryStaffUsage> SentryUsage { get; private set; }
 
             public struct ItemDedication
             {
@@ -84,7 +189,27 @@ namespace AQMod
 
             internal static void Load()
             {
-                OverworldPaletteList = new List<int>()
+                SentryUsage = new Dictionary<int, SentryStaffUsage>()
+                {
+                    [ItemID.DD2BallistraTowerT1Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
+                    [ItemID.DD2BallistraTowerT2Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
+                    [ItemID.DD2BallistraTowerT3Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
+                    [ItemID.DD2ExplosiveTrapT1Popper] = new SentryStaffUsage(isGrounded: true, range: 40f),
+                    [ItemID.DD2ExplosiveTrapT2Popper] = new SentryStaffUsage(isGrounded: true, range: 75f),
+                    [ItemID.DD2ExplosiveTrapT3Popper] = new SentryStaffUsage(isGrounded: true, range: 100f),
+                    [ItemID.DD2FlameburstTowerT1Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
+                    [ItemID.DD2FlameburstTowerT2Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
+                    [ItemID.DD2FlameburstTowerT3Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
+                    [ItemID.DD2LightningAuraT1Popper] = new SentryStaffUsage(isGrounded: true, range: 100f),
+                    [ItemID.DD2LightningAuraT2Popper] = new SentryStaffUsage(isGrounded: true, range: 100f),
+                    [ItemID.DD2LightningAuraT3Popper] = new SentryStaffUsage(isGrounded: true, range: 100f),
+                    [ItemID.QueenSpiderStaff] = new SentryStaffUsage(isGrounded: true, range: 300f),
+                    [ItemID.StaffoftheFrostHydra] = new SentryStaffUsage(isGrounded: true, range: 1000f),
+                    [ItemID.RainbowCrystalStaff] = new SentryStaffUsage(isGrounded: false, range: 500f),
+                    [ItemID.MoonlordTurretStaff] = new SentryStaffUsage(isGrounded: false, range: 1250f),
+                    [ModContent.ItemType<LotusStaff>()] = new SentryStaffUsage(isGrounded: true, range: 200f),
+                };
+                OverworldChestLoot = new List<int>()
                 {
                     ItemID.Spear,
                     ItemID.Blowpipe,
@@ -95,7 +220,7 @@ namespace AQMod
                     ItemID.WandofSparking,
                     ItemID.Radar,
                 };
-                CavernPaletteList = new List<int>()
+                CavernChestLoot = new List<int>()
                 {
                     ItemID.BandofRegeneration,
                     ItemID.MagicMirror,
@@ -105,6 +230,13 @@ namespace AQMod
                     ItemID.ShoeSpikes,
                     ItemID.FlareGun,
                     //ItemID.Mace, Add in 1.4
+                };
+                SkyChestLoot = new List<int>()
+                {
+                    ItemID.ShinyRedBalloon,
+                    ItemID.LuckyHorseshoe,
+                    ItemID.Starfury,
+                    ModContent.ItemType<DreamCatcher>(),
                 };
                 CavePotions = new List<int>()
                 {
@@ -188,8 +320,8 @@ namespace AQMod
             {
                 if (AQMod.split.IsActive)
                 {
-                    CavernPaletteList.Add(AQMod.split.ItemType("BrightstoneChunk"));
-                    CavernPaletteList.Add(AQMod.split.ItemType("EnchantedRacquet"));
+                    CavernChestLoot.Add(AQMod.split.ItemType("BrightstoneChunk"));
+                    CavernChestLoot.Add(AQMod.split.ItemType("EnchantedRacquet"));
                     CavePotions.Add(AQMod.split.ItemType("AnxiousnessPotion"));
                     CavePotions.Add(AQMod.split.ItemType("PurifyingPotion"));
                     CavePotions.Add(AQMod.split.ItemType("DiligencePotion"));
@@ -201,10 +333,10 @@ namespace AQMod
             {
                 CavePotions?.Clear();
                 CavePotions = null;
-                OverworldPaletteList?.Clear();
-                OverworldPaletteList = null;
-                CavernPaletteList?.Clear();
-                CavernPaletteList = null;
+                OverworldChestLoot?.Clear();
+                OverworldChestLoot = null;
+                CavernChestLoot?.Clear();
+                CavernChestLoot = null;
 
                 DedicatedItem?.Clear();
                 DedicatedItem = null;
@@ -473,6 +605,10 @@ namespace AQMod
                 return;
             }
             var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
+            //if (Sets.SentryUsage.TryGetValue(item.type, out var sentryUsage))
+            //{
+            //    tooltips.Add(new TooltipLine(mod, "SentryUsage", "{IsGrounded: " + sentryUsage.IsGrounded + ", Range:" + sentryUsage.Range + "}"));
+            //}
             if (AQConfigClient.Instance.DemonSiegeUpgradeTooltip && DemonSiege.GetUpgrade(item) != null)
             {
                 tooltips.Insert(GetLineIndex(tooltips, "Material"), new TooltipLine(mod, "DemonSiegeUpgrade", Language.GetTextValue("Mods.AQMod.Tooltips.DemonSiegeUpgrade")) { overrideColor = AQMod.DemonSiegeTooltip, });
@@ -1360,6 +1496,19 @@ namespace AQMod
                     rotation, origin, baseScale);
                 ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x - wave * 1f * i, y), transparentColor,
                     rotation, origin, baseScale);
+            }
+        }
+
+        public static int PoolPotion(int current)
+        {
+            var choices = Sets.CavePotions;
+            while (true)
+            {
+                int choice = Main.rand.Next(choices.Count);
+                if (current == -1 || current != choices[choice])
+                {
+                    return choices[choice];
+                }
             }
         }
     }

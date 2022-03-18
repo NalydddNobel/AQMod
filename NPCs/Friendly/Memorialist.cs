@@ -2,7 +2,7 @@
 using AQMod.Content.World;
 using AQMod.Items.Accessories.HookUpgrades;
 using AQMod.Items.Misc.Toggles;
-using AQMod.Items.Placeable.Nature;
+using AQMod.Items.Placeable;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Summon;
 using System.Collections.Generic;

@@ -6,20 +6,8 @@ namespace AQMod.Items.Misc.ExporterRewards
 {
     public class CavernPalette : SchrodingerCrate
     {
-        protected override List<int> LootTable => AQItem.Sets.CavernPaletteList;
+        protected override List<int> LootTable => AQItem.Sets.CavernChestLoot;
 
-        private int PoolPotion(int current)
-        {
-            var choices = AQItem.Sets.CavePotions;
-            while (true)
-            {
-                int choice = Main.rand.Next(choices.Count);
-                if (current == -1 || current != choices[choice])
-                {
-                    return choices[choice];
-                }
-            }
-        }
         public override void RightClick(Player player)
         {
             player.QuickSpawnItem(ItemID.SilverCoin, Main.rand.Next(50, 80));
@@ -35,11 +23,11 @@ namespace AQMod.Items.Misc.ExporterRewards
 
             if (Main.rand.NextBool())
             {
-                int p = PoolPotion(-1);
+                int p = AQItem.PoolPotion(-1);
                 player.QuickSpawnItem(p, Main.rand.Next(2) + 1);
                 if (Main.rand.NextBool())
                 {
-                    player.QuickSpawnItem(PoolPotion(p), Main.rand.Next(2) + 1);
+                    player.QuickSpawnItem(AQItem.PoolPotion(p), Main.rand.Next(2) + 1);
                 }
             }
 

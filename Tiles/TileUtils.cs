@@ -143,6 +143,11 @@ namespace AQMod.Tiles
             return (int)position.Y / 16;
         }
 
+        public static bool Cuttable(this Tile tile)
+        {
+            return Main.tileCut[tile.type];
+        }
+
         public static bool SolidTop(this Tile tile)
         {
             return Main.tileSolidTop[tile.type];

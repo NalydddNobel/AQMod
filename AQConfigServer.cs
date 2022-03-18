@@ -1,6 +1,6 @@
 ﻿using AQMod.Items.Accessories;
 using AQMod.Items.Armor.Vanity.BossMasks;
-using AQMod.Items.Placeable.Nature;
+using AQMod.Items.Placeable.CrabCrevice;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Localization;

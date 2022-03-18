@@ -134,9 +134,6 @@ namespace AQMod
                 On.Terraria.Player.DropTombstone += TombstonesPlayer.Hooks.Player_DropTombstone;
                 AQPlayer.Hooks.Apply();
 
-                On.Terraria.NetMessage.BroadcastChatMessage += MessageBroadcast.Hooks.NetMessage_BroadcastChatMessage;
-                On.Terraria.Main.NewText_string_byte_byte_byte_bool += MessageBroadcast.Hooks.Main_NewText_string_byte_byte_byte_bool;
-
                 On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += AQProjectile.Hooks.Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
 
                 On.Terraria.UI.ItemSlot.MouseHover_ItemArray_int_int += PlayerStorage.Hooks.ItemSlot_MouseHover_ItemArray_int_int;
@@ -703,6 +700,10 @@ namespace AQMod
         public static string GetText(string key, object arg)
         {
             return string.Format(GetText(key), arg);
+        }
+        public static string GetText(string key, params object[] args)
+        {
+            return string.Format(GetText(key), args);
         }
         public static ModTranslation GetTranslation(string key)
         {

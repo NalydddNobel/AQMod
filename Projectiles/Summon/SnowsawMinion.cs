@@ -64,82 +64,48 @@ namespace AQMod.Projectiles.Summon
                 projectile.rotation += 0.01125f;
 
                 int target = FindTarget(1500f, useForceTarget: true, tileLineCheckDistanceMultiplier: 2f);
-                var idlePos = IdlePosition(player, aQPlayer);
                 if (target != -1)
                 {
-                    if (projectile.ai[0] > 60f)
-                    {
-                        if ((int)projectile.ai[0] < 62)
-                        {
-                            projectile.velocity = (Main.npc[target].Center - projectile.Center) / 16f;
-                            if (projectile.velocity.Length() < 18f)
-                            {
-                                projectile.velocity.Normalize();
-                                projectile.velocity *= 18f;
-                            }
-                        }
-                        if (projectile.ai[0] >= 100)
-                        {
-                            if (projectile.ai[0] >= 150f)
-                            {
-                                float distance = (projectile.Center - idlePos).Length();
-                                SnapTo(idlePos, 0.12f);
-                                if (distance < 24f || projectile.ai[0] > 200f)
-                                {
-                                    projectile.ai[0] = 1f;
-                                }
-                            }
-                            else
-                            {
-                                projectile.rotation += 0.6f - (projectile.ai[0] - 100f) * 0.012f;
-                                projectile.localNPCHitCooldown = 6 + (int)((projectile.ai[0] - 100f) * 0.24f);
-                                SnapTo(idlePos, 0.001f);
-                            }
-                        }
-                        else
-                        {
-                            projectile.rotation += 0.6f;
-                        }
-                    }
-                    else
-                    {
-                        projectile.rotation += projectile.ai[0] * 0.01f;
-                        SnapTo(idlePos, 0.08f - projectile.ai[0] * 0.0012f);
-                    }
-                    projectile.ai[0]++;
-                }
-                else
-                {
+                    var targetCenter = Main.npc[target].Center;
+                    float distance = (projectile.Center - targetCenter).Length();
+                    float amount = MathHelper.Clamp(distance / 1000f, 0.005f, 0.75f);
                     if (projectile.ai[0] > 0f)
                     {
-                        if (projectile.ai[0] >= 150f)
-                        {
-                            float distance = (projectile.Center - idlePos).Length();
-                            SnapTo(idlePos, 0.12f);
-                            if (distance < 24f)
-                            {
-                                projectile.ai[0] = 0f;
-                            }
-                        }
-                        else if (projectile.ai[0] >= 100f)
-                        {
-                            projectile.rotation += 0.6f - (projectile.ai[0] - 100f) * 0.012f;
-                            SnapTo(idlePos, 0.001f);
-                            projectile.ai[0]++;
-                        }
-                        else
+                        projectile.ai[0]--;
+                        if (projectile.ai[0] < 0f)
                         {
                             projectile.ai[0] = 0f;
                         }
+                        amount = MathHelper.Lerp(amount, 0.0001f, Math.Min(projectile.ai[0] / 40f, 1f));
+                    }
+                    if (distance < 320f)
+                    {
+                        projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(targetCenter - projectile.Center) * ((320f - distance) / 10f + 8f), amount);
                     }
                     else
                     {
-                        SnapTo(idlePos, 0.08f);
+                        projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(targetCenter - projectile.Center) * 8f, amount);
                     }
                 }
+                else
+                {
+                    var idlePos = IdlePosition(player, aQPlayer);
+                    float distance = (projectile.Center - idlePos).Length();
+                    if (distance > 2000f)
+                    {
+                        projectile.Center = idlePos;
+                        projectile.velocity *= 0.1f;
+                    }
+                    else if (distance > 20f)
+                    {
+                        projectile.velocity = Vector2.Lerp(projectile.velocity, (idlePos - projectile.Center) / 32f, 0.01f);
+                    }
+                }
+                projectile.rotation += projectile.velocity.Length() * 0.0157f;
             }
             else
             {
+                projectile.velocity = Vector2.Zero;
                 projectile.ai[0] = 0f;
                 int index = (int)Main.projectile[aQPlayer.snowsawLeader].ai[1];
                 int outwards = (4 + index) / 8 + 1;
@@ -162,16 +128,17 @@ namespace AQMod.Projectiles.Summon
         {
             var player = Main.player[projectile.owner];
             var aQPlayer = player.GetModPlayer<AQPlayer>();
+            float set = 60f;
             if (aQPlayer.snowsawLeader != -1 && Main.projectile[aQPlayer.snowsawLeader].type == projectile.type)
             {
-                if (Main.projectile[aQPlayer.snowsawLeader].ai[0] < 99f)
+                if (Main.projectile[aQPlayer.snowsawLeader].ai[0] < set)
                 {
-                    Main.projectile[aQPlayer.snowsawLeader].ai[0] = 99f;
+                    Main.projectile[aQPlayer.snowsawLeader].ai[0] = set;
                     Main.projectile[aQPlayer.snowsawLeader].netUpdate = true;
                 }
             }
-            if (projectile.ai[0] < 99f)
-                projectile.ai[0] = 99f;
+            if (projectile.ai[0] < set)
+                projectile.ai[0] = set;
             target.AddBuff(BuffID.Frostburn, 120);
         }
 

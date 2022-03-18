@@ -21,6 +21,8 @@ namespace AQMod.Content.World
         public static ushort glimmersPrevented;
         public static ushort eclipsesPrevented;
 
+        public static ushort exporterQuests;
+
         public override void Initialize()
         {
             eightBallText = "";
@@ -56,6 +58,8 @@ namespace AQMod.Content.World
                 ["BloodMoonsPrevented"] = bloodMoonsPrevented,
                 ["GlimmersPrevented"] = glimmersPrevented,
                 ["EclipsesPrevented"] = eclipsesPrevented,
+
+                ["QuestsCompleted"] = exporterQuests,
             };
         }
 
@@ -75,6 +79,8 @@ namespace AQMod.Content.World
             bloodMoonsPrevented = tag.Get<ushort>("BloodMoonsPrevented");
             glimmersPrevented = tag.Get<ushort>("GlimmersPrevented");
             eclipsesPrevented = tag.Get<ushort>("EclipsesPrevented");
+
+            exporterQuests = tag.Get<ushort>("QuestsCompleted");
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -94,12 +100,15 @@ namespace AQMod.Content.World
                 writer.Write(villagerMoveInAtNight);
                 writer.Write(villagerLavaImmunity);
                 writer.Write(terminatorObtained);
+
                 writer.Write(bloodMoonDisabled);
                 writer.Write(bloodMoonsPrevented);
                 writer.Write(glimmerDisabled);
                 writer.Write(glimmersPrevented);
                 writer.Write(eclipseDisabled);
                 writer.Write(eclipsesPrevented);
+
+                writer.Write(exporterQuests);
             }
         }
 
@@ -117,12 +126,15 @@ namespace AQMod.Content.World
                 villagerMoveInAtNight = reader.ReadBoolean();
                 villagerLavaImmunity = reader.ReadBoolean();
                 terminatorObtained = reader.ReadBoolean();
+
                 bloodMoonDisabled = reader.ReadBoolean();
                 bloodMoonsPrevented = reader.ReadUInt16();
                 glimmerDisabled = reader.ReadBoolean();
                 glimmersPrevented = reader.ReadUInt16();
                 eclipseDisabled = reader.ReadBoolean();
                 eclipsesPrevented = reader.ReadUInt16();
+
+                exporterQuests = reader.ReadUInt16();
             }
         }
     }

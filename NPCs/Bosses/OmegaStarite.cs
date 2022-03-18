@@ -19,7 +19,7 @@ using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Ranged;
 using AQMod.Projectiles;
-using AQMod.Projectiles.Monster.Starite;
+using AQMod.Projectiles.Monster;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -256,7 +256,7 @@ namespace AQMod.NPCs.Bosses
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 Projectile.NewProjectile(npc.Center, Vector2.Zero,
-                    ModContent.ProjectileType<Projectiles.Monster.Starite.OmegaStarite>(), damage, 1f, Main.myPlayer, npc.whoAmI);
+                    ModContent.ProjectileType<OmegaStariteProj>(), damage, 1f, Main.myPlayer, npc.whoAmI);
             }
         }
 
@@ -415,7 +415,7 @@ namespace AQMod.NPCs.Bosses
                                         {
                                             FX.AddShake(AQGraphics.MultIntensity(4), 24f, 12f);
                                         }
-                                        int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaRay>(), 100, 1f, Main.myPlayer, npc.whoAmI);
+                                        int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, npc.whoAmI);
                                         Main.projectile[p].scale = 0.75f;
                                     }
                                     else
@@ -490,7 +490,7 @@ namespace AQMod.NPCs.Bosses
                             {
                                 AQSound.Play(SoundType.Item, "OmegaStarite/starbullets", npc.Center, 0.3f, 0.5f);
                                 //Main.PlaySound(SoundID.Item125);
-                                int type = ModContent.ProjectileType<OmegaBullet>();
+                                int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;
                                 int damage = 30;
                                 if (Main.expertMode)
@@ -587,7 +587,7 @@ namespace AQMod.NPCs.Bosses
                                             if ((Main.expertMode && lifePercent < 0.75f) || lifePercent < 0.6f)
                                             {
                                                 Main.PlaySound(SoundID.Trackable, npc.Center, 55 + Main.rand.Next(3));
-                                                int type = ModContent.ProjectileType<OmegaBullet>();
+                                                int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;
                                                 int damage = 30;
                                                 if (Main.expertMode)
@@ -937,7 +937,7 @@ namespace AQMod.NPCs.Bosses
                     {
                         var diff = new Vector2(rings[1].CachedPositions[0].X, rings[1].CachedPositions[0].Y) - npc.Center;
                         var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * speed;
-                        int type = ModContent.ProjectileType<OmegaBullet>();
+                        int type = ModContent.ProjectileType<OmegaStariteBullet>();
                         int damage = 25;
                         if (Main.expertMode)
                             damage = 18;

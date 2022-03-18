@@ -1,7 +1,7 @@
 ﻿using AQMod.Common;
-using AQMod.Tiles.Furniture;
-using AQMod.Tiles.Nature;
-using AQMod.Tiles.Nature.CrabCrevice;
+using AQMod.Tiles;
+using AQMod.Tiles.CrabCrevice;
+using AQMod.Tiles.ExporterQuest;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

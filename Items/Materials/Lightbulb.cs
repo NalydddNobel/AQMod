@@ -1,5 +1,5 @@
 ﻿using AQMod.Items.Recipes;
-using AQMod.Tiles.Furniture;
+using AQMod.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

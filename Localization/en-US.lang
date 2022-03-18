@@ -54,6 +54,12 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 # Accessories
 #===========================#
 
+ItemName.Squyp=Squyp
+ItemTooltip.Squyp=Automatically places a sentry when you are in combat\nRequires a sentry staff in your inventory to work\n'It's only mildy disturbing'
+
+ItemName.DreamCatcher=Dream Catcher
+ItemTooltip.DreamCatcher={$Mods.AQMod.Tooltips.HookBarb}\nDeals extra damage while in the sky biome
+
 ItemName.MagikaAmulet=Magika Amulet
 ItemTooltip.MagikaAmulet=Increases maximum mana by 20\n8% reduced mana useage\nIncreases pickup range for mana stars\nRestores mana when damaged\nAutomatically uses mana potions when needed\nNearby items float instead of falling
 
@@ -64,10 +70,11 @@ ItemName.Terraroot=Ammo Renewal Pack
 ItemTooltip.Terraroot=Enemies drop ammo you have consumed
 
 ItemName.Quasicrystal=Quasicrystal Amulet
-ItemTooltip.Quasicrystal=Causes stars to fall when injured\nInflicts shimmering and fire damage on attack\n5% increased melee critical strike chance
+ItemTooltip.Quasicrystal=Nearby enemies take 10% extra damage\nInflicts shimmering and fire damage on attack\nCauses stars to fall when injured
 
-ItemName.Ultranium=Hyper Crystal
-ItemTooltip.Ultranium=Your attacks inflict shimmering\n5% increased melee critical strike chance
+ItemName.Ultranium=Hyper Focus Crystal
+ItemTooltip.Ultranium=Nearby enemies take 10% extra damage\nYour attacks inflict shimmering
+ProjectileName.HyperCrystalExplosion=Hyper Focus Crystal
 
 ItemName.ExtractorHelmet=Head Plate
 ItemTooltip.ExtractorHelmet=Falling blocks deal less damage
@@ -230,10 +237,10 @@ ItemTooltip.DoubleShot=Spawns a secondary bullet\n50% chance to not be consumed 
 ProjectileName.DoubleShotProj=Bullet
 
 ItemName.KochfrostStaff=Kochfrost Staff
-ItemTooltip.KochfrostStaff=Summons a snowsaw to fight for you\nUses half a minion slot
-BuffName.SnowsawBuff=Snowsaw
-BuffDescription.SnowsawBuff=The snowsaw will fight for you
-ProjectileName.SnowsawMinion=Snowsaw
+ItemTooltip.KochfrostStaff=Summons a snowflake to fight for you\nUses half a minion slot
+BuffName.SnowsawBuff=Snowflake
+BuffDescription.SnowsawBuff=The snowflake will fight for you
+ProjectileName.SnowsawMinion=Snowflake
 
 ItemName.Baozhu=Baozhu
 ItemTooltip.Baozhu=A large explosion that puts enemies on fire\nLights the area on fire for a while
@@ -474,6 +481,13 @@ MapLayerToggle.Beeswax=Shows the location of any visible Plantera bulbs
 #===========================#
 # Tiles
 #===========================#
+ItemName.GlobeItem=Sky Globe
+ItemTooltip.GlobeItem=Shows your tile coordinates when right clicked\n'Explore the world'
+
+ItemName.OrbicularStargaizar=Cosmic Ball
+BuffName.Harmony=Harmony
+BuffDescription.Harmony=Grealy increases your magical powers
+
 ItemName.GlimmeringStatue=Ultimate Crystal
 ItemTooltip.GlimmeringStatue=Used to craft powerful items made of energy
 MapObject.GlimmeringStatueTile=Ultimate Crystal
@@ -579,8 +593,8 @@ BuffDescription.GrapePhantaBuff=Medium improvements to most stats\nMajor improve
 
 ItemName.PeeledCarrot=Dragon Carrot
 ItemTooltip.PeeledCarrot=Medium improvements to all stats and grants you night vision
-BuffName.PeeledCarrotBuff=Eyesight
-BuffDescription.PeeledCarrotBuff=Medium improvements to all stats and grants you night vision
+BuffName.DragonCarrotBuff=Eyesight
+BuffDescription.DragonCarrotBuff=Medium improvements to all stats and grants you night vision
 
 
 
@@ -887,6 +901,12 @@ RecipeGroup.CascadeOrHelfire=Cascade or Helfire
 RecipeGroup.AnyEel=Any Eel
 RecipeGroup.EvilAccessories=Either Evil Accessories
 
+
+
+#===========================#
+# World Generation
+#===========================#
+Gen.SkyGlobes=Aequus: Sky Globes
 WorldGen.FinalSteps=Generating things after Everything Else...
 
 WorldGen.CrabCrevice=Aequus: Generating Crab Crevice
@@ -930,7 +950,24 @@ WorldGen.ChristmasSpiritProgress13=Current Progress: (80%)
 WorldGen.ChristmasSpiritProgress14=Current Progress: (50%)
 WorldGen.ChristmasSpiritProgress15=Current Progress: (0%)
 
+
+
+
+#===========================#
 # NPCs
+#===========================#
+
+NPCName.SuperStarite=Super Starite
+ProjectileName.SuperStariteBullet=Super Starite Bullet
+
+NPCName.HyperStarite=Hyper Starite
+ProjectileName.HyperStariteProj=Hyper Starite
+
+NPCName.OmegaStarite=Omega Starite
+ProjectileName.OmegaStariteProj=Omega Starite
+ProjectileName.OmegaStariteBullet=Omega Bullet
+ProjectileName.OmegaStariteDeathray=Omega Ray
+ProjectileName.RainbowStarofHyperApocalypse=Rainbow Star of Hyper Apocalypse
 
 NPCName.StreamingBalloon=Streaming Balloon
 
@@ -1019,7 +1056,6 @@ Common.RobsterFailAccident=The special item was accidentally destroyed...
 #
 # Other Commons
 Common.SpawnAfterPoint=({0}) can spawn after this point
-Common.FoundGlobe=A globe was discovered!
 Common.EnergiesEnabled=Energy drops are enabled
 Common.EnergiesDisabled=Energy drops are disabled
 Common.TimeLeft={0} Left
@@ -1154,7 +1190,6 @@ ItemName.OceanRavineWall=Ocean Ravine Wall
 ItemName.ExoticCoral=Exotic Coral
 ItemName.ExoticStarfish=Exotic Starfish
 ItemName.FishingCraftingStation=Fishing Utility Crafting Station
-ItemName.GlobeItem=Unity Globe
 ItemName.PlaceableShadowOrb=Shadow Orb (Placeable)
 ItemName.PlaceableCrimsonHeart=Crimson Heart (Placeable)
 ############
@@ -1201,10 +1236,6 @@ ProjectileName.MiniDemonScythe=Dysesthesia
 # Other Melee
 ItemName.Galactium=Galactium
 ItemTooltip.Galactium=Rains stars from the sky\nInflicts blue fire on true melee hits
-
-ItemName.OrbicularStargaizar=Orbicular Stargaizar
-BuffName.Harmony=Harmony
-BuffDescription.Harmony=Grealy increases your magical powers
 
 # Ranged
 # Bows
@@ -1295,7 +1326,6 @@ ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 #############
 # Other Placeables
 ItemTooltip.FishingCraftingStation=Used to craft special fishing items
-ItemTooltip.GlobeItem='Explore the world'
 ItemTooltip.MonoxideHat='Became a vanity item due to popular demand'
 ItemTooltip.CelesitalEightBall=Right click to use as a normal 8-Ball\nHas special text depending on the world state
 ###########
@@ -1415,7 +1445,6 @@ ProjectileName.CrimsonHand=Crimson Hand
 ProjectileName.FertilePowder=Fertile Powder
 ProjectileName.FriendlyWind=Friendly Wind
 ProjectileName.GoldPowder=Gold Powder
-ProjectileName.HyperCrystalExplosion=Hyper Crystal
 
 # Pets
 ProjectileName.ATM=ATM
@@ -1425,28 +1454,18 @@ ProjectileName.BeeRod=Bee Bobber
 ProjectileName.CrabRod=Crab Bobber
 
 # Enemy Projectiles
-ProjectileName.HyperStarite=Hyper Starite
 ProjectileName.JerryBubble=Jerry Bubble
 ProjectileName.JerryBubbleBig=Jerry Bubble
 ProjectileName.JerryPearl=Jerry Pearl
 ProjectileName.Magmabub=Magmabub
-ProjectileName.OmegaBullet=Omega Bullet
-ProjectileName.OmegaRay=Omega Ray
-ProjectileName.OmegaStarite=Omega Starite
-ProjectileName.RainbowStarofHyperApocalypse=Rainbow Star of Hyper Apocalypse
 ProjectileName.StriderCrab=Strider Crab
 ProjectileName.StriderCrabLaser=Strider Crab
-ProjectileName.SuperStarite=Super Starite
 ProjectileName.Trapper=Trapper
 
 # NPCs
 NPCName.DwarfStarite=Dwarf Starite
 NPCName.Starite=Starite
-NPCName.SuperStarite=Super Starite
-NPCName.HyperStarite=Hyper Starite
 NPCName.UltraStarite=Ultra Starite
-NPCName.OmegaStarite=Omega Starite
-NPCName.MultiStarite=Multi Starite
 
 NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
 NPCName.JerryCrabson=Crabson
@@ -1629,3 +1648,4 @@ Inactive=Inactive
 BloodMoonsPrevented=Blood Moons Prevented: {0}
 GlimmersPrevented=Glimmers Prevented: {0}
 EclipsesPrevented=Eclipses Prevented: {0}
+YourCoordinates=Your corrdinates are (X: {0}, Y: {1})

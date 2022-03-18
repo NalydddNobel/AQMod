@@ -9,7 +9,7 @@ using AQMod.Items.Weapons.Ranged;
 using AQMod.Items.Weapons.Summon;
 using AQMod.NPCs.Monsters.DemonSiegeMonsters;
 using AQMod.Projectiles.Monster;
-using AQMod.Tiles.Nature;
+using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

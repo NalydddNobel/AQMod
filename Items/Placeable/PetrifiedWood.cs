@@ -13,7 +13,7 @@ namespace AQMod.Items.Placeable
             item.useTime = 10;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createTile = ModContent.TileType<Tiles.PetrifiedWood>();
+            item.createTile = ModContent.TileType<Tiles.PetrifiedFurn.PetrifiedWood>();
             item.consumable = true;
             item.useTurn = true;
             item.autoReuse = true;

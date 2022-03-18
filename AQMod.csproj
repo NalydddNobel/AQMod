@@ -35,5 +35,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sounds\Item\SpaceSquid\" />
+    <Folder Include="Tiles\Furniture\Containers\" />
   </ItemGroup>
 </Project>

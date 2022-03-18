@@ -14,8 +14,8 @@ namespace AQMod.Common.Utilities
 
             internal static void Main_UpdateTime(On.Terraria.Main.orig_UpdateTime orig)
             {
-                AQWorld.UpdatingTime = true;
-                Main.dayRate += AQWorld.DayrateIncrease;
+                IsUpdatingTime = true;
+                Main.dayRate += AQWorld.dayrate;
                 if (Main.dayTime)
                 {
                     if (Main.time + Main.dayRate > Main.dayLength)
@@ -39,16 +39,16 @@ namespace AQMod.Common.Utilities
                         Main_UpdateTime_SpawnTownNPCs.Invoke(null, null);
                     }
                 }
-                AQWorld.DayrateIncrease = 0;
-                MessageBroadcast.PreventChat = false;
-                MessageBroadcast.PreventChatOnce = false;
-                AQWorld.UpdatingTime = false;
+                AQWorld.dayrate = 0;
+                IsUpdatingTime = false;
             }
         }
 
         public const double MaxTime = Main.dayLength + Main.nightLength;
         public const double HourMultiplier = 60d * 60d;
         public const double FourHoursThirtyMinutes = HourMultiplier * 4.5d;
+
+        public static bool IsUpdatingTime { get; private set; }
 
         public static double GetInGameTime()
         {

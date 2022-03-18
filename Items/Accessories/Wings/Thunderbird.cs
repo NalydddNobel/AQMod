@@ -1,10 +1,8 @@
 ﻿using AQMod.Content.Players;
-using AQMod.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Accessories.Wings
@@ -87,75 +85,9 @@ namespace AQMod.Items.Accessories.Wings
             return true;
         }
 
-        private void UpdateLightning(Player player)
-        {
-            var aQPlayer = player.GetModPlayer<AQPlayer>();
-            var center = player.Center;
-            if (aQPlayer.thunderbirdLightningTimer <= 0)
-            {
-                var validNPCs = new List<int>();
-                float healthPercentage = player.statLife / (float)player.statLifeMax2;
-                float yOff = player.height * MathHelper.Lerp(-4f, 4f, healthPercentage);
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    var n = Main.npc[i];
-                    if (n.active && n.position.Y - yOff > player.position.Y && Vector2.Distance(n.Center, player.Center) < 750f && n.CanBeChasedBy())
-                        validNPCs.Add(i);
-                }
-                if (validNPCs.Count > 0)
-                {
-                    var npc = Main.npc[validNPCs[Main.rand.Next(validNPCs.Count)]];
-                    var npcCenter = npc.Center;
-                    var spawnPosition = new Vector2(Main.rand.Next((int)npc.position.X - 20, (int)npc.position.X + npc.width + 20), (int)player.position.Y - 600);
-                    if (Collision.CanHitLine(npc.position, npc.width, npc.height, spawnPosition, 2, 2))
-                    {
-                        float length = (npc.position - spawnPosition).Length();
-                        int segments = (int)length / 20;
-                        Vector2 add = new Vector2(1f, 0f).RotatedBy((npcCenter - spawnPosition).ToRotation()) * (int)length / segments;
-                        Vector2 line = spawnPosition;
-                        Vector2 lastPos = line;
-                        for (int j = 0; j < segments; j++)
-                        {
-                            Vector2 pos = line + add.RotatedBy(Main.rand.NextBool() ? -MathHelper.PiOver2 : MathHelper.PiOver2) * Main.rand.NextFloat(1f);
-                            var toPos = Vector2.Normalize(lastPos - pos);
-                            float distance = Vector2.Distance(pos, lastPos);
-                            int count = 0;
-                            while (distance > 0)
-                            {
-                                int d = Dust.NewDust(pos + toPos * 8 * count, 2, 2, DustID.Electric);
-                                Main.dust[d].velocity *= 0.1f;
-                                Main.dust[d].noGravity = true;
-                                count++;
-                                distance -= 8f;
-                            }
-                            lastPos = pos;
-                            line += add;
-                        }
-                        {
-                            Vector2 pos = npcCenter;
-                            var toPos = Vector2.Normalize(lastPos - pos);
-                            float distance = Vector2.Distance(pos, lastPos);
-                            int count = 0;
-                            while (distance > 0)
-                            {
-                                int d = Dust.NewDust(pos + toPos * 8 * count, 2, 2, DustID.Electric);
-                                Main.dust[d].velocity *= 0.1f;
-                                Main.dust[d].noGravity = true;
-                                count++;
-                                distance -= 8f;
-                            }
-                        }
-                        Main.PlaySound(SoundID.Item122, spawnPosition);
-                        player.ApplyDamageToNPC(npc, Main.DamageVar(75f), 0f, 0, false);
-                        aQPlayer.thunderbirdLightningTimer = (int)MathHelper.Lerp(60, 120, healthPercentage);
-                    }
-                }
-            }
-        }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.wingTimeMax = 200;
-            UpdateLightning(player);
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)

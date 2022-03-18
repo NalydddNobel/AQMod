@@ -3,7 +3,7 @@ using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.NPCs;
 using AQMod.NPCs.Friendly;
-using AQMod.Tiles.Nature.CrabCrevice;
+using AQMod.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
@@ -21,8 +21,13 @@ namespace AQMod
     {
         public static class Hooks
         {
+            public static bool EclipsePreventionFailed;
+            public static bool BloodMoonPreventionFailed;
+
             internal static void Apply()
             {
+                EclipsePreventionFailed = false;
+                BloodMoonPreventionFailed = false;
                 IL.Terraria.Main.UpdateTime += DisableSomeNaturalEvents;
                 On.Terraria.Main.UpdateSundial += Main_UpdateSundial;
                 On.Terraria.Main.UpdateWeather += Main_UpdateWeather;
@@ -38,12 +43,28 @@ namespace AQMod
                 var cursor = new ILCursor(il);
 
                 // Prevent Eclipses
-                cursor.GotoNext(i => i.MatchCall(typeof(Main), nameof(Main.checkXMas)));
+                if (!cursor.TryGotoNext(i => i.MatchCall(typeof(Main), nameof(Main.checkXMas))))
+                {
+                    EclipsePreventionFailed = true;
+                    return;
+                }
 
-                cursor.GotoNext(i => i.MatchLdsfld(typeof(NPC), nameof(NPC.downedMechBossAny)));
+                if (!cursor.TryGotoNext(i => i.MatchLdsfld(typeof(NPC), nameof(NPC.downedMechBossAny))))
+                {
+                    EclipsePreventionFailed = true;
+                    return;
+                }
 
-                cursor.GotoNext(i => i.MatchStsfld(typeof(Main), nameof(Main.eclipse)));
-                cursor.GotoNext(i => i.MatchLdsfld(typeof(Main), nameof(Main.eclipse)));
+                if (!cursor.TryGotoNext(i => i.MatchStsfld(typeof(Main), nameof(Main.eclipse))))
+                {
+                    EclipsePreventionFailed = true;
+                    return;
+                }
+                if (!cursor.TryGotoNext(i => i.MatchLdsfld(typeof(Main), nameof(Main.eclipse))))
+                {
+                    EclipsePreventionFailed = true;
+                    return;
+                }
 
                 cursor.EmitDelegate<Action>(() =>
                 {
@@ -55,15 +76,37 @@ namespace AQMod
                 });
 
                 // Prevent Blood Moons
-                cursor.GotoNext(i => i.MatchCall(typeof(NPC), nameof(NPC.setFireFlyChance)));
+                if (!cursor.TryGotoNext(i => i.MatchCall(typeof(NPC), nameof(NPC.setFireFlyChance))))
+                {
+                    BloodMoonPreventionFailed = true;
+                    return;
+                }
 
-                cursor.GotoNext(i => i.MatchLdsfld(typeof(Main), nameof(Main.fastForwardTime)));
+                if (!cursor.TryGotoNext(i => i.MatchLdsfld(typeof(Main), nameof(Main.fastForwardTime))))
+                {
+                    BloodMoonPreventionFailed = true;
+                    return;
+                }
 
                 for (int k = 0; k < 2; k++)
-                    cursor.GotoNext(i => i.MatchLdsfld(typeof(WorldGen), nameof(WorldGen.spawnEye)));
+                {
+                    if (!cursor.TryGotoNext(i => i.MatchLdsfld(typeof(WorldGen), nameof(WorldGen.spawnEye))))
+                    {
+                        BloodMoonPreventionFailed = true;
+                        return;
+                    }
+                }
 
-                cursor.GotoNext(i => i.MatchStsfld(typeof(Main), nameof(Main.bloodMoon)));
-                cursor.GotoNext(i => i.MatchLdsfld(typeof(Main), nameof(Main.bloodMoon)));
+                if (!cursor.TryGotoNext(i => i.MatchStsfld(typeof(Main), nameof(Main.bloodMoon))))
+                {
+                    BloodMoonPreventionFailed = true;
+                    return;
+                }
+                if (!cursor.TryGotoNext(i => i.MatchLdsfld(typeof(Main), nameof(Main.bloodMoon))))
+                {
+                    BloodMoonPreventionFailed = true;
+                    return;
+                }
 
                 var labels = cursor.IncomingLabels;
                 cursor.Remove();
@@ -144,15 +187,12 @@ namespace AQMod
             private static void Main_UpdateSundial(On.Terraria.Main.orig_UpdateSundial orig)
             {
                 orig();
-                Main.dayRate += DayrateIncrease;
+                Main.dayRate += dayrate;
             }
         }
 
-        public static int NobleMushroomsCount { get; private set; }
-
-        public static int DayrateIncrease { get; set; }
-
-        public static bool UpdatingTime { get; internal set; }
+        public static int nobleMushroomsNearby;
+        public static int dayrate;
 
         public override void Initialize()
         {
@@ -164,17 +204,7 @@ namespace AQMod
 
         public override void TileCountsAvailable(int[] tileCounts)
         {
-            NobleMushroomsCount = tileCounts[ModContent.TileType<NobleMushrooms>()] + tileCounts[ModContent.TileType<NobleMushroomsNew>()];
-        }
-
-        public override void NetSend(BinaryWriter writer)
-        {
-            writer.Write(Robster.QuestsCompleted);
-        }
-
-        public override void NetReceive(BinaryReader reader)
-        {
-            Robster.QuestsCompleted = reader.ReadInt32();
+            nobleMushroomsNearby = tileCounts[ModContent.TileType<NobleMushroomsNew>()];
         }
     }
 }

@@ -166,6 +166,34 @@ namespace AQMod
             }
         }
 
+        public static int ShootProj(Player player, Item item, Vector2 location, Vector2 velocity, int projType, int projDamage, float projKB, Vector2? setMousePos)
+        {
+            var mouseScreen = Main.MouseScreen;
+
+            if (setMousePos != null)
+            {
+                var mousePos = setMousePos.Value - Main.screenPosition;
+                Main.mouseX = (int)mousePos.X;
+                Main.mouseX = (int)mousePos.Y;
+            }
+
+            int result = -1;
+
+            if (PlayerHooks.Shoot(player, item, ref location, ref velocity.X, ref velocity.Y, ref projType, ref projDamage, ref projKB) &&
+                ItemLoader.Shoot(item, player, ref location, ref velocity.X, ref velocity.Y, ref projType, ref projDamage, ref projKB))
+            {
+                result = Projectile.NewProjectile(location, velocity, projType, projDamage, projKB, player.whoAmI);
+            }
+            else
+            {
+                result = -2;
+            }
+
+            Main.mouseX = (int)mouseScreen.X;
+            Main.mouseY = (int)mouseScreen.Y;
+            return result;
+        }
+
         public static bool AddUnless<T>(this List<T> list, T thingToAdd, T unless = default(T))
         {
             if (thingToAdd.Equals(unless))

@@ -1,5 +1,4 @@
-﻿using AQMod.Tiles;
-using AQMod.Tiles.Nature.CrabCrevice;
+﻿using AQMod.Tiles.CrabCrevice;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Generation;

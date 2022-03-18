@@ -1,4 +1,4 @@
-﻿using AQMod.Tiles.Furniture;
+﻿using AQMod.Tiles.ExporterQuest;
 using Terraria.ID;
 using Terraria.ModLoader;
 

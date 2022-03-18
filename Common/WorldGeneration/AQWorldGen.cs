@@ -1,9 +1,7 @@
 ﻿using AQMod.Content.World.Generation;
 using AQMod.Localization;
 using AQMod.Tiles;
-using AQMod.Tiles.Furniture;
-using AQMod.Tiles.Nature;
-using AQMod.Tiles.Nature.CrabCrevice;
+using AQMod.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -55,25 +53,6 @@ namespace AQMod.Common.WorldGeneration
                 {
                     glimmerCount++;
                     if (glimmerCount >= glimmerMax)
-                        break;
-                }
-            }
-        }
-
-        internal static void GenerateGlobeTemples(GenerationProgress progress)
-        {
-            if (progress != null)
-                progress.Message = Language.GetTextValue(AQText.Key + "Common.WorldGen_Globes");
-            int templeCount = 0;
-            int templeMax = Main.maxTilesX / 400;
-            for (int i = 0; i < 10000; i++)
-            {
-                int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
-                int y = WorldGen.genRand.Next((int)Main.worldSurface + 50, Main.maxTilesY - 300);
-                if (Globe.GenGlobeTemple(x, y))
-                {
-                    templeCount++;
-                    if (templeCount >= templeMax)
                         break;
                 }
             }
@@ -288,7 +267,6 @@ namespace AQMod.Common.WorldGeneration
             {
                 i++;
                 tasks.Insert(i, getPass("AQMod: Gore Nests", GenerateGoreNests));
-                tasks.Insert(i, getPass("AQMod: Globe Temples", GenerateGlobeTemples));
                 tasks.Insert(i, getPass("AQMod: Glimmering Statues", GenerateGlimmeringStatues));
             }
             i = tasks.FindIndex((t) => t.Name.Equals("Settle Liquids"));

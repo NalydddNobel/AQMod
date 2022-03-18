@@ -1,5 +1,6 @@
 ﻿using AQMod.Assets;
 using AQMod.Common;
+using AQMod.Content.World;
 using AQMod.Content.World.Events;
 using AQMod.Items.Misc.ExporterRewards;
 using AQMod.Items.Placeable.CraftingStations;
@@ -10,7 +11,7 @@ using AQMod.Items.Tools.MagicPowders;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Localization;
 using AQMod.Tiles;
-using AQMod.Tiles.Furniture;
+using AQMod.Tiles.ExporterQuest;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -28,8 +29,6 @@ namespace AQMod.NPCs.Friendly
     {
         public static Color JeweledTileMapColor => new Color(255, 185, 25, 255);
         public static Color RobsterBroadcastMessageColor => new Color(255, 215, 105, 255);
-
-        public static int QuestsCompleted { get; internal set; }
 
         public static bool completeButton;
 
@@ -340,11 +339,24 @@ namespace AQMod.NPCs.Friendly
                             break;
                         }
                         Main.PlaySound(SoundID.Grab);
+
                         player.QuickSpawnItem(ModContent.ItemType<OverworldPalette>());
                         if (Main.rand.NextBool())
                             player.QuickSpawnItem(ModContent.ItemType<CavernPalette>());
+                        if (MiscWorldInfo.exporterQuests > 5 && Main.rand.NextBool())
+                            player.QuickSpawnItem(ModContent.ItemType<SkyPalette>());
                         if (Main.rand.NextBool(10))
                             player.QuickSpawnItem(ItemID.GoldenCrate);
+
+                        if (Main.netMode == NetmodeID.SinglePlayer)
+                        {
+                            MiscWorldInfo.exporterQuests++;
+                        }
+                        else
+                        {
+                            NetHelper.UpdateExporterQuestsCompleted((ushort)(MiscWorldInfo.exporterQuests + 1));
+                        }
+
                         Main.npcChatText = Language.GetTextValue("Mods.AQMod.Exporter.Quests.Complete." + Main.rand.Next(5));
                         player.inventory[i].stack--;
                         if (player.inventory[i].stack <= 0)

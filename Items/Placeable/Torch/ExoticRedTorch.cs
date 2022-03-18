@@ -1,5 +1,5 @@
 ﻿using AQMod.Dusts.NobleMushrooms;
-using AQMod.Items.Placeable.Nature;
+using AQMod.Items.Placeable.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

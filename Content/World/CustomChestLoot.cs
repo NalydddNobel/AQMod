@@ -1,7 +1,8 @@
 ﻿using AQMod.Common.ID;
+using AQMod.Items.Accessories.HookUpgrades;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Melee;
-using AQMod.Tiles.Furniture.Containers;
+using AQMod.Tiles;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Generation;
@@ -174,6 +175,18 @@ namespace AQMod.Content.World.Generation
             Chest c = Main.chest[i];
             switch (ChestStyles.GetChestStyle(c))
             {
+                case ChestStyles.LockedGold:
+                    {
+                        if (Main.tile[c.x, c.y].wall > WallID.None && Main.wallDungeon[Main.tile[c.x, c.y].wall])
+                        {
+                            if (WorldGen.genRand.NextBool(3))
+                                MainLoot(c, ModContent.ItemType<MagicalBoomerang>());
+                            if (WorldGen.genRand.NextBool(3))
+                                InsertLoot(c, ModContent.ItemType<DungeonMap>(), 1, CountAllActiveItemIndices(c));
+                        }
+                    }
+                    break;
+
                 case ChestStyles.Ice:
                     {
                         if (WorldGen.genRand.NextBool(4))
@@ -183,14 +196,11 @@ namespace AQMod.Content.World.Generation
                     }
                     break;
 
-                case ChestStyles.LockedGold:
+                case ChestStyles.Skyware:
                     {
-                        if (Main.tile[c.x, c.y].wall > WallID.None && Main.wallDungeon[Main.tile[c.x, c.y].wall])
+                        if (WorldGen.genRand.NextBool())
                         {
-                            if (WorldGen.genRand.NextBool(3))
-                                MainLoot(c, ModContent.ItemType<MagicalBoomerang>());
-                            if (WorldGen.genRand.NextBool(3))
-                                InsertLoot(c, ModContent.ItemType<DungeonMap>(), 1, CountAllActiveItemIndices(c));
+                            InsertLoot(c, ModContent.ItemType<DreamCatcher>(), 1, CountAllActiveItemIndices(c));
                         }
                     }
                     break;

@@ -9,9 +9,7 @@ using AQMod.Localization;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters;
 using AQMod.Tiles;
-using AQMod.Tiles.Furniture;
-using AQMod.Tiles.Nature;
-using AQMod.Tiles.Nature.CrabCrevice;
+using AQMod.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -55,6 +53,12 @@ namespace AQMod.Common.Utilities.Debugging
             {
                 default:
                     caller.Reply("Command doesn't exist.");
+                    break;
+
+                case "genglobes":
+                    {
+                        GlobeGenerator.GenerateGlobes(null);
+                    }
                     break;
 
                 case "robsternet":
@@ -312,7 +316,7 @@ namespace AQMod.Common.Utilities.Debugging
 
                             Main.time = Main.nightLength;
                             Main.fastForwardTime = false;
-                            AQWorld.DayrateIncrease = 0;
+                            AQWorld.dayrate = 0;
                             method.Invoke(null, null);
                         }
                     }
@@ -343,7 +347,7 @@ namespace AQMod.Common.Utilities.Debugging
 
                             Main.time = Main.dayLength;
                             Main.fastForwardTime = false;
-                            AQWorld.DayrateIncrease = 0;
+                            AQWorld.dayrate = 0;
                             method.Invoke(null, null);
                         }
                     }
@@ -457,12 +461,6 @@ namespace AQMod.Common.Utilities.Debugging
                     }
                     break;
 
-                case "generateglobes":
-                    {
-                        AQWorldGen.GenerateGlobeTemples(null);
-                    }
-                    break;
-
                 case "placeglimmer":
                     {
                         caller.Reply("placed correctly: " + GlimmeringStatueTile.TryGen((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
@@ -492,12 +490,6 @@ namespace AQMod.Common.Utilities.Debugging
                     {
                         Main.NewText(Glimmer.Layers.Count);
                         caller.Reply("glimmer layer: " + Glimmer.FindLayer(Glimmer.Distance(caller.Player)));
-                    }
-                    break;
-
-                case "placeglobe":
-                    {
-                        caller.Reply("placed correctly: " + Globe.GenGlobeTemple((int)Main.MouseWorld.X / 16, (int)Main.MouseWorld.Y / 16));
                     }
                     break;
 

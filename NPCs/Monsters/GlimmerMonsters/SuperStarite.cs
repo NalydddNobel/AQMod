@@ -5,6 +5,7 @@ using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Potions;
 using AQMod.Items.Weapons.Summon;
+using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -273,7 +274,7 @@ namespace AQMod.NPCs.Monsters.GlimmerMonsters
                     {
                         const float twoPiOver5 = MathHelper.TwoPi / 5f;
                         int damage = Main.hardMode && Main.expertMode ? 45 : 20;
-                        int type = ModContent.ProjectileType<Projectiles.Monster.Starite.SuperStarite>();
+                        int type = ModContent.ProjectileType<SuperStariteBullet>();
                         float length = (float)Math.Sqrt(npc.width * npc.width + npc.height * npc.height) / 2f;
                         for (int i = 0; i < 5; i++)
                         {

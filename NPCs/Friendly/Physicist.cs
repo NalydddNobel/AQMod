@@ -94,7 +94,7 @@ namespace AQMod.NPCs.Friendly
 
         public override string TownNPCName()
         {
-            switch (WorldGen.genRand.Next(12))
+            switch (WorldGen.genRand.Next(11))
             {
                 default:
                     return "Rose";
@@ -107,9 +107,7 @@ namespace AQMod.NPCs.Friendly
                 case 3:
                     return "Lumian";
                 case 4:
-                    return "Astrajanelon";
-                case 5:
-                    return "Astrablaghn";
+                    return "Astra Canelon";
                 case 6:
                     return "Stoffien";
                 case 7:

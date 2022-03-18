@@ -13,7 +13,7 @@ namespace AQMod.Items.Placeable.Wall
             item.useTime = 7;
             item.useAnimation = 15;
             item.useStyle = ItemUseStyleID.SwingThrow;
-            item.createWall = ModContent.WallType<Tiles.Walls.PetrifiedWoodWall>();
+            item.createWall = ModContent.WallType<Tiles.PetrifiedFurn.PetrifiedWoodWall>();
             item.consumable = true;
             item.autoReuse = true;
             item.useTurn = true;

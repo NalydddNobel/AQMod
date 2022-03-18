@@ -881,6 +881,8 @@ namespace AQMod
         public bool windStruck;
         public bool windStruckOld;
 
+        public float damageMultiplier;
+
         public sbyte temperature;
 
         private void UpdateTemperature(NPC npc)
@@ -910,6 +912,7 @@ namespace AQMod
         public override void ResetEffects(NPC npc)
         {
             UpdateTemperature(npc);
+            damageMultiplier = 1f;
             shimmering = false;
             blueFire = false;
             windStruckOld = windStruck;
@@ -945,6 +948,7 @@ namespace AQMod
                     hotDamage = true;
                 CheckBuffImmunes(npc);
             }
+            damageMultiplier = 1f;
         }
         public void PostSetDefaults(NPC npc, int Type, float scaleOverride)
         {
@@ -1178,11 +1182,6 @@ namespace AQMod
 
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (npc.townNPC)
-            {
-                if (projectile.type == ModContent.ProjectileType<OmegaRay>())
-                    damage = (int)(damage * 0.1f);
-            }
             var aQNPC = npc.GetGlobalNPC<AQNPC>();
             if (aQNPC.minionHaunted && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type] || AQProjectile.Sets.IsAMinionProj.Contains(projectile.type)))
             {
@@ -1200,6 +1199,11 @@ namespace AQMod
         {
             if (lovestruck)
                 damage += (int)(damage * 0.1f);
+            if (damageMultiplier != 1f)
+            {
+                Main.NewText(damageMultiplier);
+                damage = (int)(damage * damageMultiplier);
+            }
         }
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)

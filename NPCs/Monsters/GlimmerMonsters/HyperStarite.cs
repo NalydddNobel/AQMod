@@ -7,6 +7,7 @@ using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Potions;
+using AQMod.Projectiles.Monster.Starite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -165,7 +166,7 @@ namespace AQMod.NPCs.Monsters.GlimmerMonsters
                                 for (int i = 0; i < 5; i++)
                                 {
                                     int damage = Main.expertMode ? 45 : 75;
-                                    Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<Projectiles.Monster.Starite.HyperStarite>(), damage, 1f, Main.myPlayer, npc.whoAmI, i);
+                                    Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<HyperStariteProj>(), damage, 1f, Main.myPlayer, npc.whoAmI, i);
                                 }
                                 npc.netUpdate = true;
                             }
