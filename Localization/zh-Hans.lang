@@ -481,6 +481,19 @@ MapLayerToggle.Beeswax=显示所有可见的世纪之花花苞的位置
 #===========================#
 # Tiles
 #===========================#
+ItemName.ExoticRedTorch=超亮红火把
+ItemName.ExoticGreenTorch=超亮绿火把
+ItemName.ExoticBlueTorch=超亮蓝火把
+
+ItemName.UltrabrightRedTorch=红墙菇
+ItemTooltip.UltrabrightRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+ItemName.UltrabrightGreenTorch=绿墙菇
+ItemTooltip.UltrabrightGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+ItemName.UltrabrightBlueTorch=蓝墙菇
+ItemTooltip.UltrabrightBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+
+ItemName.SparklingTorch=闪墙石
+
 ItemName.GlobeItem=天球仪
 ItemTooltip.GlobeItem=右键点击以显示你的物块坐标\n'探索世界'
 
@@ -1165,23 +1178,6 @@ ProjectileName.MothmanCritExplosion=天蛾人面具
 #############
 # Placeable #
 #############
-# Torches
-ItemName.ExoticRedTorch=奇异的红色火把
-ItemName.ExoticGreenTorch=奇异的绿色火把
-ItemName.ExoticBlueTorch=奇异的蓝色火把
-
-ItemName.UltrabrightRedTorch=超亮红火把
-ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-
-ItemName.UltrabrightGreenTorch=超亮绿火把
-ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-
-ItemName.UltrabrightBlueTorch=超亮蓝火把
-ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-
-ItemName.SparklingTorch=闪光火把
-ItemTooltip.SparklingTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-
 # Walls
 ItemName.MoonlightWall=月光墙
 ItemTooltip.MoonlightWall=墙壁前的NPC会认为现在处于晚上
