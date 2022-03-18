@@ -1308,62 +1308,46 @@ namespace AQMod
                 autoSentryCooldown = 60;
                 if (Main.myPlayer == player.whoAmI)
                 {
-                    var center = player.Center;
-                    for (int i = 0; i < Main.maxNPCs; i++)
+                    var target = AQNPC.FindTarget(player.Center, 2000f);
+                    if (target != -1)
                     {
-                        if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].lifeMax > 5 && !Main.npc[i].dontTakeDamage && Main.npc[i].Distance(center) < 2000f && Main.npc[i].CanBeChasedBy(player))
+                        for (int j = 0; j < Main.maxInventory; j++)
                         {
-                            for (int j = 0; j < Main.maxInventory; j++)
+                            if (!player.inventory[j].IsAir && player.inventory[j].damage > 0 && player.inventory[j].sentry && !player.inventory[j].consumable)
                             {
-                                if (!player.inventory[j].IsAir && player.inventory[j].damage > 0 && player.inventory[j].sentry && !player.inventory[j].consumable)
+                                if (ItemLoader.CanUseItem(player.inventory[j], player))
                                 {
-                                    if (ItemLoader.CanUseItem(player.inventory[j], player))
+                                    if (!AQItem.Sets.SentryUsage.TryGetValue(player.inventory[j].type, out var sentryUsage))
                                     {
-                                        if (!AQItem.Sets.SentryUsage.TryGetValue(player.inventory[j].type, out var sentryUsage))
+                                        sentryUsage = AQItem.Sets.SentryStaffUsage.Default;
+                                    }
+                                    if (sentryUsage.TrySummoningThisSentry(player, player.inventory[j], Main.npc[target]))
+                                    {
+                                        player.UpdateMaxTurrets();
+                                        if (player.maxTurrets > 1)
                                         {
-                                            sentryUsage = AQItem.Sets.SentryStaffUsage.Default;
+                                            autoSentryCooldown = 300;
                                         }
-                                        if (sentryUsage.TrySummoningThisSentry(player, player.inventory[j], Main.npc[i]))
+                                        else
                                         {
-                                            player.UpdateMaxTurrets();
-                                            if (player.maxTurrets > 1)
-                                            {
-                                                autoSentryCooldown = 300;
-                                            }
-                                            else
-                                            {
-                                                autoSentryCooldown = 1000;
-                                            }
-                                            if (Main.netMode != NetmodeID.Server && player.inventory[j].UseSound != null)
-                                            {
-                                                Main.PlaySound(player.inventory[j].UseSound, Main.npc[i].Center);
-                                            }
-                                            goto EndLoop;
+                                            autoSentryCooldown = 1000;
                                         }
+                                        if (Main.netMode != NetmodeID.Server && player.inventory[j].UseSound != null)
+                                        {
+                                            Main.PlaySound(player.inventory[j].UseSound, Main.npc[target].Center);
+                                        }
+                                        goto AutoSentryEnd;
                                     }
                                 }
                             }
-                            break;
                         }
-                        continue;
-                    EndLoop:
-                        break;
                     }
                 }
             }
+        AutoSentryEnd:
             if (leechHook && Main.myPlayer == player.whoAmI && Main.GameUpdateCount % 50 == 0)
             {
                 HealPlayer(player, 2, broadcast: true, merge: true, player.GrapplingHook(), healingItemQuickHeal: false);
-            }
-            if (hyperCrystal)
-            {
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].active && !Main.npc[i].friendly && player.Distance(Main.npc[i].Center) < 112f) // 7 tiles
-                    {
-                        Main.npc[i].GetGlobalNPC<AQNPC>().damageMultiplier *= 1.1f;
-                    }
-                }
             }
             UpdatePassiveSummonHat();
             if (arachnotronArms)
@@ -1447,6 +1431,10 @@ namespace AQMod
             if (unholyDamage != 1f && AQNPC.Sets.Unholy.Contains(target.type))
             {
                 damage = (int)(damage * unholyDamage);
+            }
+            if (hyperCrystal && player.Distance(target.Center) < 160f)
+            {
+                damage = (int)(damage * 1.1f);
             }
         }
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)

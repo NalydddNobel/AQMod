@@ -142,9 +142,14 @@ namespace AQMod
                         }
                         float closest = Range;
                         var resultPosition = Vector2.Zero;
+                        var targetCenter = target.Center;
                         foreach (var v in validLocations)
                         {
                             float d = target.Distance(v);
+                            if (!Collision.CanHitLine(v, 2, 2, target.position, target.width, target.height))
+                            {
+                                d *= 2f;
+                            }
                             if (d < Range)
                             {
                                 d = Math.Min(d + Main.rand.Next(-150, 100), Range);

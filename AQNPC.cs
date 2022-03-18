@@ -881,8 +881,6 @@ namespace AQMod
         public bool windStruck;
         public bool windStruckOld;
 
-        public float damageMultiplier;
-
         public sbyte temperature;
 
         private void UpdateTemperature(NPC npc)
@@ -912,7 +910,6 @@ namespace AQMod
         public override void ResetEffects(NPC npc)
         {
             UpdateTemperature(npc);
-            damageMultiplier = 1f;
             shimmering = false;
             blueFire = false;
             windStruckOld = windStruck;
@@ -948,7 +945,6 @@ namespace AQMod
                     hotDamage = true;
                 CheckBuffImmunes(npc);
             }
-            damageMultiplier = 1f;
         }
         public void PostSetDefaults(NPC npc, int Type, float scaleOverride)
         {
@@ -1199,11 +1195,6 @@ namespace AQMod
         {
             if (lovestruck)
                 damage += (int)(damage * 0.1f);
-            if (damageMultiplier != 1f)
-            {
-                Main.NewText(damageMultiplier);
-                damage = (int)(damage * damageMultiplier);
-            }
         }
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
