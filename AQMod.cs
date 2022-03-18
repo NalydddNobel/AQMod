@@ -47,7 +47,9 @@ namespace AQMod
         public static Vector2 Zero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
         public static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
-
+        public static bool UseAssets => !AQMod.Loading && Main.netMode != NetmodeID.Server;
+        public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
+        
         public static AQMod GetInstance()
         {
             return ModContent.GetInstance<AQMod>();
@@ -56,6 +58,8 @@ namespace AQMod
         public static bool LowQ => !Lighting.NotRetro || ModContent.GetInstance<AQConfigClient>().EffectQuality <= 0.5f;
 
         public static bool spawnStarite;
+
+        public static byte NearGlobe;
 
         internal static bool Loading { get; private set; }
         internal static bool IsUnloading { get; private set; }
@@ -341,13 +345,6 @@ namespace AQMod
 
                 Trail.PreDrawProjectiles.UpdateTrails();
             }
-
-            AQGraphics.TimerBasedOnTimeOfDay = (float)Main.time;
-            if (!Main.dayTime)
-            {
-                AQGraphics.TimerBasedOnTimeOfDay += (float)Main.dayLength;
-            }
-            AQGraphics.TimerBasedOnTimeOfDay /= 60f;
 
             if (Glimmer.stariteDiscoParty)
             {

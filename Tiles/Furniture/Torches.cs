@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Dusts.NobleMushrooms;
-using AQMod.Items.Placeable;
 using AQMod.Items.Placeable.Torch;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -57,29 +56,15 @@ namespace AQMod.Tiles.Furniture
             TileObjectData.newSubTile.LavaDeath = false;
             TileObjectData.newSubTile.WaterPlacement = LiquidPlacement.Allowed;
             TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.addSubTile(3);
 
-            TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
-            TileObjectData.newSubTile.LinkedAlternates = true;
-            TileObjectData.newSubTile.WaterDeath = false;
-            TileObjectData.newSubTile.LavaDeath = false;
-            TileObjectData.newSubTile.WaterPlacement = LiquidPlacement.Allowed;
-            TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.addSubTile(4);
+            var waterTorch = TileObjectData.newSubTile;
+            TileObjectData.addSubTile(UltrabrightRedTorch);
+            TileObjectData.newSubTile.CopyFrom(waterTorch);
+            TileObjectData.addSubTile(UltrabrightGreenTorch);
+            TileObjectData.newSubTile.CopyFrom(waterTorch);
+            TileObjectData.addSubTile(UltrabrightBlueTorch);
 
-            TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
-            TileObjectData.newSubTile.LinkedAlternates = true;
-            TileObjectData.newSubTile.WaterDeath = false;
-            TileObjectData.newSubTile.LavaDeath = false;
-            TileObjectData.newSubTile.WaterPlacement = LiquidPlacement.Allowed;
-            TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.addSubTile(5);
-
-            TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
-            TileObjectData.newSubTile.LinkedAlternates = true;
-            TileObjectData.newSubTile.WaterDeath = false;
-            TileObjectData.newSubTile.LavaDeath = false;
-            TileObjectData.newSubTile.WaterPlacement = LiquidPlacement.Allowed;
+            TileObjectData.newSubTile.CopyFrom(waterTorch);
             TileObjectData.newSubTile.LavaPlacement = LiquidPlacement.Allowed;
             TileObjectData.addSubTile(SparklingTorch);
 
@@ -107,7 +92,7 @@ namespace AQMod.Tiles.Furniture
             {
                 switch (tile.frameY / 22)
                 {
-                    case 0:
+                    case ExoticRedTorch:
                         {
                             r = 1f;
                             g = 0f;
@@ -115,7 +100,7 @@ namespace AQMod.Tiles.Furniture
                         }
                         break;
 
-                    case 1:
+                    case ExoticGreenTorch:
                         {
                             r = 0f;
                             g = 1f;
@@ -123,7 +108,7 @@ namespace AQMod.Tiles.Furniture
                         }
                         break;
 
-                    case 2:
+                    case ExoticBlueTorch:
                         {
                             r = 0f;
                             g = 0f;
@@ -131,11 +116,11 @@ namespace AQMod.Tiles.Furniture
                         }
                         break;
 
-                    case 3:
+                    case UltrabrightRedTorch:
                         {
-                            r = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 4f;
-                            g = ((float)Math.Cos(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 16f;
-                            b = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay * 0.85f) + 1f) / 16f;
+                            r = ((float)Math.Sin(Main.GlobalTime) + 1f) / 4f;
+                            g = ((float)Math.Cos(Main.GlobalTime) + 1f) / 16f;
+                            b = ((float)Math.Sin(Main.GlobalTime * 0.85f) + 1f) / 16f;
 
                             if (Main.tile[i, j].liquid > 0)
                             {
@@ -153,11 +138,11 @@ namespace AQMod.Tiles.Furniture
                         }
                         break;
 
-                    case 4:
+                    case UltrabrightGreenTorch:
                         {
-                            r = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 16f;
-                            g = ((float)Math.Cos(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 4f;
-                            b = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay * 0.85f) + 1f) / 16f;
+                            r = ((float)Math.Sin(Main.GlobalTime) + 1f) / 16f;
+                            g = ((float)Math.Cos(Main.GlobalTime) + 1f) / 4f;
+                            b = ((float)Math.Sin(Main.GlobalTime * 0.85f) + 1f) / 16f;
 
                             if (Main.tile[i, j].liquid > 0)
                             {
@@ -175,11 +160,11 @@ namespace AQMod.Tiles.Furniture
                         }
                         break;
 
-                    case 5:
+                    case UltrabrightBlueTorch:
                         {
-                            r = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 16f;
-                            g = ((float)Math.Cos(AQGraphics.TimerBasedOnTimeOfDay) + 1f) / 16f;
-                            b = ((float)Math.Sin(AQGraphics.TimerBasedOnTimeOfDay * 0.85f) + 1f) / 4f;
+                            r = ((float)Math.Sin(Main.GlobalTime) + 1f) / 16f;
+                            g = ((float)Math.Cos(Main.GlobalTime) + 1f) / 16f;
+                            b = ((float)Math.Sin(Main.GlobalTime * 0.85f) + 1f) / 4f;
 
                             if (Main.tile[i, j].liquid > 0)
                             {
@@ -279,19 +264,8 @@ namespace AQMod.Tiles.Furniture
                 case ExoticGreenTorch:
                 case ExoticBlueTorch:
                     {
-                        float intensityMult = 1f;
-                        if (Main.tile[i, j].liquid > 0)
-                        {
-                            intensityMult = 0.025f;
-                            var screenPosition = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
-                            var distance = (AQGraphics.ScreenCenter - screenPosition).Length();
-                            if (distance < TorchIntensityDistance)
-                            {
-                                intensityMult += (1f - distance / TorchIntensityDistance) * 1.25f;
-                            }
-                        }
                         ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (uint)i);
-                        Color color = new Color(100, 100, 100, 0) * intensityMult;
+                        Color color = new Color(100, 100, 100, 0);
                         int frameX = Main.tile[i, j].frameX;
                         int frameY = Main.tile[i, j].frameY;
                         int width = 20;
@@ -312,8 +286,8 @@ namespace AQMod.Tiles.Furniture
                         }
                         for (int k = 0; k < 7; k++)
                         {
-                            float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f * intensityMult;
-                            float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f * intensityMult;
+                            float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
+                            float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
                             Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Flames")), new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
                         }
                     }

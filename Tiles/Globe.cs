@@ -35,8 +35,7 @@ namespace AQMod.Tiles
         {
             if (closer)
             {
-                Main.LocalPlayer.accCompass++;
-                Main.LocalPlayer.accDepthMeter++;
+                AQMod.NearGlobe = 16;
             }
         }
 

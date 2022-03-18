@@ -45,7 +45,7 @@ namespace AQMod.Items.Materials
             var itemOrigin = itemFrame.Size() / 2f;
             for (float f = 0f; f < 1f; f += 0.125f)
             {
-                Main.spriteBatch.Draw(Main.itemTexture[item.type], drawPosition + new Vector2(2f * scale, 0f).RotatedBy(AQGraphics.TimerBasedOnTimeOfDay * 0.9f + f * MathHelper.TwoPi), itemFrame, new Color(20, 20, 50, 0), 0f, itemOrigin, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(Main.itemTexture[item.type], drawPosition + new Vector2(2f * scale, 0f).RotatedBy(Main.GlobalTime * 0.9f + f * MathHelper.TwoPi), itemFrame, new Color(20, 20, 50, 0), 0f, itemOrigin, scale, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(Main.itemTexture[item.type], drawPosition, itemFrame, new Color(255, 255, 255, 255), 0f, itemOrigin, scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(230, 230, 255, 200), 0f, drawOrigin, scale / 4f, SpriteEffects.None, 0f);
@@ -73,7 +73,7 @@ namespace AQMod.Items.Materials
             var itemOrigin = itemFrame.Size() / 2f;
             for (float f = 0f; f < 1f; f += 0.125f)
             {
-                Main.spriteBatch.Draw(Main.itemTexture[item.type], drawPosition + new Vector2(2f * scale, 0f).RotatedBy(AQGraphics.TimerBasedOnTimeOfDay * 0.9f + f * MathHelper.TwoPi), itemFrame, new Color(20, 20, 50, 0), 0f, itemOrigin, scale * 0.8f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(Main.itemTexture[item.type], drawPosition + new Vector2(2f * scale, 0f).RotatedBy(Main.GlobalTime * 0.9f + f * MathHelper.TwoPi), itemFrame, new Color(20, 20, 50, 0), 0f, itemOrigin, scale * 0.8f, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(Main.itemTexture[item.type], drawPosition, itemFrame, new Color(255, 255, 255, 255), rotation, itemOrigin, scale, SpriteEffects.None, 0f);
 

@@ -70,7 +70,7 @@ namespace AQMod.Projectiles
             var drawPosition = projectile.Center - Main.screenPosition;
             for (float f = 0f; f < 1f; f += 0.125f)
             {
-                Main.spriteBatch.Draw(texture, drawPosition + new Vector2(2f * projectile.scale, 0f).RotatedBy(AQGraphics.TimerBasedOnTimeOfDay + f * MathHelper.TwoPi), frame, projectile.GetAlpha(lightColor) * 0.1f, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawPosition + new Vector2(2f * projectile.scale, 0f).RotatedBy(Main.GlobalTime + f * MathHelper.TwoPi), frame, projectile.GetAlpha(lightColor) * 0.1f, projectile.rotation, frame.Size() / 2f, projectile.scale, SpriteEffects.None, 0f);
             }
 
             Main.spriteBatch.Draw(ModContent.GetTexture("AQMod/Assets/Lights/Spotlight"), drawPosition, null, projectile.GetAlpha(lightColor) * 0.4f, projectile.rotation, new Vector2(33f, 33f), projectile.scale * AQUtils.Wave(Main.GlobalTime * 2f, 0.4f, 0.5f), SpriteEffects.None, 0f);

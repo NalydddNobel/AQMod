@@ -38,7 +38,7 @@ namespace AQMod.Items.Accessories
                 var coloring = AQUtils.MultColorsThenDiv(DyeColor(), item.GetAlpha(drawColor));
                 for (float f = 0f; f < 1f; f += 0.125f)
                 {
-                    Main.spriteBatch.Draw(texture, position + new Vector2(2f * scale, 0f).RotatedBy(AQGraphics.TimerBasedOnTimeOfDay * MathHelper.PiOver4 + f * MathHelper.TwoPi), frame, coloring.UseA(0) * 0.7f, 0f, origin, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(texture, position + new Vector2(2f * scale, 0f).RotatedBy(Main.GlobalTime * MathHelper.PiOver4 + f * MathHelper.TwoPi), frame, coloring.UseA(0) * 0.7f, 0f, origin, scale, SpriteEffects.None, 0f);
                 }
                 spriteBatch.Draw(texture, position, frame, coloring, 0f, origin, scale, SpriteEffects.None, 0f);
             }
@@ -61,7 +61,7 @@ namespace AQMod.Items.Accessories
                 var coloring = AQUtils.MultColorsThenDiv(DyeColor(), item.GetAlpha(lightColor));
                 for (float f = 0f; f < 1f; f += 0.125f)
                 {
-                    Main.spriteBatch.Draw(texture, drawCoordinates + new Vector2(2f * scale, 0f).RotatedBy(AQGraphics.TimerBasedOnTimeOfDay * MathHelper.PiOver4 + f * MathHelper.TwoPi), frame, coloring.UseA(0) * 0.3f, rotation, origin, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(texture, drawCoordinates + new Vector2(2f * scale, 0f).RotatedBy(Main.GlobalTime * MathHelper.PiOver4 + f * MathHelper.TwoPi), frame, coloring.UseA(0) * 0.3f, rotation, origin, scale, SpriteEffects.None, 0f);
                 }
 
                 var spotlight = ModContent.GetTexture("AQMod/Assets/Lights/Spotlight");

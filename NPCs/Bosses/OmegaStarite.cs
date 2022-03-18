@@ -171,7 +171,7 @@ namespace AQMod.NPCs.Bosses
 
             if (!Glimmer.IsGlimmerEventCurrentlyActive())
                 skipDeathTimer = 600;
-            if (AQGraphics.CanUseAssets)
+            if (AQMod.UseAssets)
             {
                 music = GetMusic().GetMusicID();
                 musicPriority = MusicPriority.BossMedium;

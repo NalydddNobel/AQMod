@@ -75,7 +75,7 @@ namespace AQMod.NPCs.Bosses
             npc.behindTiles = true;
             bossBag = ModContent.ItemType<CrabsonBag>();
             npc.buffImmune[BuffID.Suffocation] = true;
-            if (AQGraphics.CanUseAssets)
+            if (AQMod.UseAssets)
             {
                 music = GetMusic().GetMusicID();
                 musicPriority = MusicPriority.BossLow;

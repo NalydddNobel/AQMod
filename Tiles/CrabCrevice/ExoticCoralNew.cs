@@ -67,7 +67,7 @@ namespace AQMod.Tiles.CrabCrevice
             var distance = (screenCenter - screenPosition).Length();
             if (distance < MinimumDistanceForExoticCoralToGlow)
                 intensityMult += 1f - distance / MinimumDistanceForExoticCoralToGlow;
-            float time = AQGraphics.TimerBasedOnTimeOfDay * 2f + (i + j) * 0.125f;
+            float time = Main.GlobalTime * 2f + (i + j) * 0.125f;
             switch (Main.tile[i, j].frameX / 22)
             {
                 case 0:

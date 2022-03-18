@@ -1303,6 +1303,12 @@ namespace AQMod
         }
         public override void PostUpdateEquips()
         {
+            if (AQMod.NearGlobe > 0 && Main.myPlayer == player.whoAmI)
+            {
+                Main.LocalPlayer.accCompass++;
+                Main.LocalPlayer.accDepthMeter++;
+                AQMod.NearGlobe--;
+            }
             if (autoSentry && autoSentryCooldown <= 0)
             {
                 autoSentryCooldown = 60;

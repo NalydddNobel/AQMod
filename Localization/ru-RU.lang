@@ -676,16 +676,12 @@ ItemName.ExoticGreenTorch=Exotic Green Torch
 ItemName.ExoticBlueTorch=Exotic Blue Torch
 
 ItemName.UltrabrightRedTorch=Ультраяркий Красный Факел
-ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
 ItemName.UltrabrightGreenTorch=Ультраяркий Зелёный Факел
-ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
 ItemName.UltrabrightBlueTorch=Ультраяркий Синий Факел
-ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
 ItemName.SparklingTorch=Искрящий Факел
-ItemTooltip.SparklingTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
 
 # Walls
 ItemName.MoonlightWall=Moonlight Wall

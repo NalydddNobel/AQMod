@@ -481,6 +481,19 @@ MapLayerToggle.Beeswax=Shows the location of any visible Plantera bulbs
 #===========================#
 # Tiles
 #===========================#
+ItemName.ExoticRedTorch=Ultrabright Red Torch
+ItemName.ExoticGreenTorch=Ultrabright Green Torch
+ItemName.ExoticBlueTorch=Ultrabright Blue Torch
+
+ItemName.UltrabrightRedTorch=Red Wallshroom
+ItemTooltip.UltrabrightRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+ItemName.UltrabrightGreenTorch=Green Wallshroom
+ItemTooltip.UltrabrightGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+ItemName.UltrabrightBlueTorch=Blue Wallshroom
+ItemTooltip.UltrabrightBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
+
+ItemName.SparklingTorch=Wall Sparkler
+
 ItemName.GlobeItem=Sky Globe
 ItemTooltip.GlobeItem=Shows your tile coordinates when right clicked\n'Explore the world'
 
@@ -1165,23 +1178,6 @@ ProjectileName.MothmanCritExplosion=Mothman Mask
 #############
 # Placeable #
 #############
-# Torches
-ItemName.ExoticRedTorch=Exotic Red Torch
-ItemName.ExoticGreenTorch=Exotic Green Torch
-ItemName.ExoticBlueTorch=Exotic Blue Torch
-
-ItemName.UltrabrightRedTorch=Ultrabright Red Torch
-ItemTooltip.ExoticRedTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-
-ItemName.UltrabrightGreenTorch=Ultrabright Green Torch
-ItemTooltip.ExoticGreenTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-
-ItemName.UltrabrightBlueTorch=Ultrabright Blue Torch
-ItemTooltip.ExoticBlueTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-
-ItemName.SparklingTorch=Shimmering Torch
-ItemTooltip.SparklingTorch={$Mods.AQMod.Common.TorchCanBePlacedInLiquids}
-
 # Walls
 ItemName.MoonlightWall=Moonlight Wall
 ItemTooltip.MoonlightWall=NPCs in front of the wall will think it's night

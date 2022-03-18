@@ -47,7 +47,7 @@ namespace AQMod.Items.Weapons.Magic
             position += Vector2.Normalize(velo) * (item.width * 1.5f);
             for (int i = 0; i < randcount; i++)
             {
-                var velo2 = velo.RotatedBy(Main.rand.NextFloat(-0.05f, 0.05f) + AQUtils.Wave(AQGraphics.TimerBasedOnTimeOfDay * 12f, -0.1f, 0.1f));
+                var velo2 = velo.RotatedBy(Main.rand.NextFloat(-0.05f, 0.05f) + AQUtils.Wave(Main.GlobalTime * 12f, -0.1f, 0.1f));
                 int p = Projectile.NewProjectile(position + velo2 * Main.rand.NextFloat(0.5f, 3f), velo2, type, damage, knockBack, player.whoAmI);
                 Main.projectile[p].scale = Main.rand.NextFloat(0.5f, 1.65f);
                 Main.projectile[p].timeLeft = Main.rand.Next(30, 45);

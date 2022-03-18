@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Placeable
+namespace AQMod.Items.Placeable.Torch
 {
     public class SparklingTorch : ModItem
     {

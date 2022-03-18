@@ -8,9 +8,7 @@ namespace AQMod.Common.Graphics
 {
     internal static class AQGraphics
     {
-        public static bool CanUseAssets => !AQMod.Loading && Main.netMode != NetmodeID.Server;
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
-        public static float TimerBasedOnTimeOfDay;
 
         public static Vector2 TileZero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);

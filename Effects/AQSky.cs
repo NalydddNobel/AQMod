@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.Utilities;
 
-namespace AQMod.Common.Graphics
+namespace AQMod.Effects
 {
     /// <summary>
     /// An abstract custom sky which contains many useful methods.
