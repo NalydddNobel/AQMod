@@ -80,6 +80,7 @@ namespace AQMod
 
                 public readonly bool IsGrounded;
                 public readonly float Range;
+                public readonly bool DoNotUse;
                 /// <summary>
                 /// Player is the player who is summoning the sentry
                 /// <para>Item is the item used to summon the sentry</para>
@@ -99,6 +100,15 @@ namespace AQMod
                     IsGrounded = isGrounded;
                     Range = range;
                     this.customAction = customAction;
+                    DoNotUse = false;
+                }
+
+                public SentryStaffUsage(bool doNotUse)
+                {
+                    IsGrounded = false;
+                    Range = -1f;
+                    customAction = null;
+                    DoNotUse = true;
                 }
 
                 private Vector2? FindGroundedSpot(int x, int y)
@@ -119,6 +129,10 @@ namespace AQMod
                 }
                 public bool TrySummoningThisSentry(Player player, Item item, NPC target)
                 {
+                    if (DoNotUse)
+                    {
+                        return false;
+                    }
                     if (customAction?.Invoke(player, item, target) == true)
                     {
                         return true;
@@ -325,12 +339,44 @@ namespace AQMod
             {
                 if (AQMod.split.IsActive)
                 {
+                    SentryUsage.Add(AQMod.split.ItemType("VinemongerStaff"), new SentryStaffUsage(isGrounded: true, range: 150f));
+                    SentryUsage.Add(AQMod.split.ItemType("TurretStaff"), new SentryStaffUsage(isGrounded: true, range: 500f));
+                    SentryUsage.Add(AQMod.split.ItemType("AdvancedTurretStaff"), new SentryStaffUsage(isGrounded: true, range: 1000f));
+                    SentryUsage.Add(AQMod.split.ItemType("AlbedoRod"), new SentryStaffUsage(isGrounded: false, range: 500f));
+                    SentryUsage.Add(AQMod.split.ItemType("SprinklerRod"), new SentryStaffUsage(isGrounded: false, range: 500f));
+
                     CavernChestLoot.Add(AQMod.split.ItemType("BrightstoneChunk"));
                     CavernChestLoot.Add(AQMod.split.ItemType("EnchantedRacquet"));
                     CavePotions.Add(AQMod.split.ItemType("AnxiousnessPotion"));
                     CavePotions.Add(AQMod.split.ItemType("PurifyingPotion"));
                     CavePotions.Add(AQMod.split.ItemType("DiligencePotion"));
                     CavePotions.Add(AQMod.split.ItemType("AttractionPotion"));
+                }
+
+                if (AQMod.polarities.IsActive)
+                {
+                    SentryUsage.Add(AQMod.polarities.ItemType("BroodStaff"), new SentryStaffUsage(isGrounded: true, range: 48f));
+                    SentryUsage.Add(AQMod.polarities.ItemType("MusselStaff"), new SentryStaffUsage(isGrounded: true, range: 250f));
+                    SentryUsage.Add(AQMod.polarities.ItemType("ScouringStaff"), new SentryStaffUsage(isGrounded: false, range: 500f));
+                    SentryUsage.Add(AQMod.polarities.ItemType("PincerStaff"), new SentryStaffUsage(isGrounded: true, range: 500f));
+                }
+
+                if (AQMod.calamityMod.IsActive)
+                {
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("CadaverousCarrion"), new SentryStaffUsage(isGrounded: true, range: 1000f));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("CausticCroakerStaff"), new SentryStaffUsage(isGrounded: true, range: 32f));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("CryogenicStaff"), new SentryStaffUsage(isGrounded: false, range: 1000f));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("DreadmineStaff"), new SentryStaffUsage(isGrounded: false, range: 500f));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("DreadmineStaff"), new SentryStaffUsage(isGrounded: false, range: 500f));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("EnergyStaff"), new SentryStaffUsage(isGrounded: false, range: 500f));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("LanternoftheSoul"), new SentryStaffUsage(isGrounded: false, range: 500f));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("HivePod"), new SentryStaffUsage(isGrounded: true, range: 500f));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("OrthoceraShell"), new SentryStaffUsage(isGrounded: false, range: 500f));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("PolypLauncher"), new SentryStaffUsage(isGrounded: true, range: 250f));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("SpikecragStaff"), new SentryStaffUsage(isGrounded: true, range: 750f));
+
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("PulseTurretRemote"), new SentryStaffUsage(doNotUse: true));
+                    SentryUsage.Add(AQMod.calamityMod.ItemType("Perdition"), new SentryStaffUsage(doNotUse: true));
                 }
             }
 

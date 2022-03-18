@@ -48,10 +48,10 @@ namespace AQMod.Items.Weapons.Summon
         {
             var r = new ModRecipe(mod);
             int item = 0;
-            if (AQMod.split.IsActive)
-            {
-                item = AQMod.split.ItemType("RazorfrostStaff");
-            }
+            //if (AQMod.split.IsActive)
+            //{
+            //    item = AQMod.split.ItemType("RazorfrostStaff");
+            //}
             r.AddIngredient(item == 0 ? ItemID.HornetStaff : item);
             r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
             r.AddIngredient(ModContent.ItemType<Materials.SiphonTentacle>(), 12);
