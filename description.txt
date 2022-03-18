@@ -28,7 +28,7 @@ Aequus是一个添加了很多新物品、敌人和战利品的Terraria内容模
 [c/aaaaff:> https://discord.gg/pEKfVCnqe4]
 
 [c/ffff64:包括:]
-[c/ff3377:>] 超过240个物品
+[c/ff3377:>] 超过280个物品
 [c/ff3377:>] 2个Boss
 [c/ff3377:>] 超过15个敌人
 [c/ff3377:>] 4个事件

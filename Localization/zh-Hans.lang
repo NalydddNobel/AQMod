@@ -54,6 +54,12 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 # Accessories
 #===========================#
 
+ItemName.Squyp=特异珊瑚
+ItemTooltip.Squyp=当你处于战斗中时会自动召唤哨兵\n仅在背包中拥有哨兵武器时才会生效\n'仅是轻微的干扰'
+
+ItemName.DreamCatcher=捕梦者
+ItemTooltip.DreamCatcher={$Mods.AQMod.Tooltips.HookBarb}\n处于天空群落中时会造成额外伤害
+
 ItemName.MagikaAmulet=神奇护符
 ItemTooltip.MagikaAmulet=增加20点最大法力值\n减少8%法力消耗\n扩大魔力星的拾取范围\n受到伤害时回复法力值\n法力值不足时会自动饮用法力药水\n附近的物品会漂浮而非掉落
 
@@ -64,11 +70,12 @@ ItemName.Terraroot=弹药恢复包
 ItemTooltip.Terraroot=敌人会掉落你所消耗的弹药
 
 ItemName.Quasicrystal=准晶体护符
-ItemTooltip.Quasicrystal=受伤时召唤星星从天而降\n=攻击敌人会造成闪光和火焰伤害\n增加5%近战暴击率
+ItemTooltip.Quasicrystal=附近的敌人会受到10%额外伤害\n攻击敌人时会造成闪光和火焰伤害\n增加5%近战暴击率\n受伤时会召唤星星从天而降
 
-ItemName.Ultranium=超载晶体
-ItemTooltip.Ultranium=攻击敌人会对其造成闪光减益\n增加5%近战暴击率
+ItemName.Ultranium=超聚焦晶体
+ItemTooltip.Ultranium=附近的敌人会受到10%额外伤害\n攻击敌人时会造成闪光
 
+ProjectileName.HyperCrystalExplosion=超聚焦晶体
 ItemName.ExtractorHelmet=顶板
 ItemTooltip.ExtractorHelmet=坠落的方块对你造成的伤害降低
 
@@ -230,10 +237,10 @@ ItemTooltip.DoubleShot=会产生第二颗子弹\n50%几率不会被消耗
 ProjectileName.DoubleShotProj=子弹
 
 ItemName.KochfrostStaff=科赫霜法杖
-ItemTooltip.KochfrostStaff=召唤雪锯为你而战\n占据半格召唤栏
-BuffName.SnowsawBuff=雪锯
-BuffDescription.SnowsawBuff=雪锯会为你而战
-ProjectileName.SnowsawMinion=雪锯
+ItemTooltip.KochfrostStaff=召唤雪花为你而战\n占据半格召唤栏
+BuffName.SnowsawBuff=雪花
+BuffDescription.SnowsawBuff=雪花会为你而战
+ProjectileName.SnowsawMinion=雪花
 
 ItemName.Baozhu=爆竹
 ItemTooltip.Baozhu=会产生巨大的爆炸并引燃敌人\n爆炸区域会被点燃一段时间
@@ -474,6 +481,13 @@ MapLayerToggle.Beeswax=显示所有可见的世纪之花花苞的位置
 #===========================#
 # Tiles
 #===========================#
+ItemName.GlobeItem=天球仪
+ItemTooltip.GlobeItem=右键点击以显示你的物块坐标\n'探索世界'
+
+ItemName.OrbicularStargaizar=宇宙球
+BuffName.Harmony=和谐
+BuffDescription.Harmony=你的魔法能力大幅度增加
+
 ItemName.GlimmeringStatue=终极晶体
 ItemTooltip.GlimmeringStatue=用于制作由能量构成的强大物品
 MapObject.GlimmeringStatueTile=终极晶体
@@ -579,8 +593,8 @@ BuffDescription.GrapePhantaBuff=中幅度提升大多数属性\n大幅度提升�
 
 ItemName.PeeledCarrot=胡龙卜
 ItemTooltip.PeeledCarrot=中幅度提升所有属性并且使你获得夜视效果
-BuffName.PeeledCarrotBuff=目力
-BuffDescription.PeeledCarrotBuff=中幅度提升所有属性并且使你获得夜视效果
+BuffName.DragonCarrotBuff=目力
+BuffDescription.DragonCarrotBuff=中幅度提升所有属性并且使你获得夜视效果
 
 
 
@@ -887,6 +901,12 @@ RecipeGroup.CascadeOrHelfire=喷流球或狱火球
 RecipeGroup.EvilAccessories=邪恶饰品之一
 RecipeGroup.EvilBarb=邪恶钩刺之一
 
+
+
+#===========================#
+# World Generation
+#===========================#
+Gen.SkyGlobes=Aequus: 正在藏匿天球仪
 WorldGen.FinalSteps=正在创造在其它事物之后的东西...
 
 WorldGen.CrabCrevice=Aequus: 正在生成蟹状裂隙
@@ -930,7 +950,24 @@ WorldGen.ChristmasSpiritProgress13=当前进度: (80%)
 WorldGen.ChristmasSpiritProgress14=当前进度: (50%)
 WorldGen.ChristmasSpiritProgress15=当前进度: (0%)
 
+
+
+
+#===========================#
 # NPCs
+#===========================#
+
+NPCName.SuperStarite=极耀源星
+ProjectileName.SuperStariteBullet=极耀源星弹幕
+
+NPCName.HyperStarite=巨耀源星
+ProjectileName.HyperStariteProj=巨耀源星
+
+NPCName.OmegaStarite=终末之星
+ProjectileName.OmegaStariteProj=终末之星
+ProjectileName.OmegaStariteBullet=终末之星弹幕
+ProjectileName.OmegaStariteDeathray=终末射线
+ProjectileName.RainbowStarofHyperApocalypse=终末天启之七彩耀星
 
 NPCName.StreamingBalloon=紊流气球
 
@@ -1019,7 +1056,6 @@ Common.RobsterFailAccident=这件特别的东西被你不小心弄坏了...
 #
 # Other Commons
 Common.SpawnAfterPoint=({0})会在此位置生成
-Common.FoundGlobe=已发现一个地球仪!
 Common.EnergiesEnabled=能量掉落已启用
 Common.EnergiesDisabled=能量掉落已禁用
 Common.TimeLeft={0}已离去
@@ -1154,7 +1190,6 @@ ItemName.OceanRavineWall=海沟墙
 ItemName.ExoticCoral=奇异珊瑚
 ItemName.ExoticStarfish=奇异海星
 ItemName.FishingCraftingStation=渔具加工站
-ItemName.GlobeItem=节点地球仪
 ItemName.PlaceableShadowOrb=暗影珠 (可放置)
 ItemName.PlaceableCrimsonHeart=猩红之心 (可放置)
 ############
@@ -1201,10 +1236,6 @@ ProjectileName.MiniDemonScythe=苦痛之触
 # Other Melee
 ItemName.Galactium=辰星坠
 ItemTooltip.Galactium=挥舞时召唤从天而降的微光星辰\n真近战攻击击中敌人时对其造成碧蓝之火减益
-
-ItemName.OrbicularStargaizar=观星法球
-BuffName.Harmony=和谐
-BuffDescription.Harmony=大幅度强化你的魔法能力
 
 # Ranged
 # Bows
@@ -1295,7 +1326,6 @@ ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 #############
 # Other Placeables
 ItemTooltip.FishingCraftingStation=用于制作特殊的钓鱼物品
-ItemTooltip.GlobeItem='探索世界'
 ItemTooltip.MonoxideHat='因人们需求而变成一件装饰物品'
 ItemTooltip.CelesitalEightBall=右键使用以当做普通的8号球使用\n特殊文本取决于世界当前状态
 ###########
@@ -1415,7 +1445,6 @@ ProjectileName.CrimsonHand=猩红血手
 ProjectileName.FertilePowder=丰饶之尘
 ProjectileName.FriendlyWind=友善的风
 ProjectileName.GoldPowder=黄金之尘
-ProjectileName.HyperCrystalExplosion=超载爆破
 
 # Pets
 ProjectileName.ATM=ATM
@@ -1425,28 +1454,18 @@ ProjectileName.BeeRod=蜜蜂浮标
 ProjectileName.CrabRod=螃蟹浮标
 
 # Enemy Projectiles
-ProjectileName.HyperStarite=巨耀源星
 ProjectileName.JerryBubble=蟹蛤泡泡
 ProjectileName.JerryBubbleBig=蟹蛤泡泡
 ProjectileName.JerryPearl=蟹蛤珍珠
 ProjectileName.Magmabub=熔火喷吐者
-ProjectileName.OmegaBullet=终末弹
-ProjectileName.OmegaRay=终末射线
-ProjectileName.OmegaStarite=终末之星
-ProjectileName.RainbowStarofHyperApocalypse=终末天启之七彩耀星
 ProjectileName.StriderCrab=长足蟹
 ProjectileName.StriderCrabLaser=长足蟹
-ProjectileName.SuperStarite=极耀源星
 ProjectileName.Trapper=捕魂钩
 
 # NPCs
 NPCName.DwarfStarite=侏儒源星
 NPCName.Starite=星之源
-NPCName.SuperStarite=极耀源星
-NPCName.HyperStarite=巨耀源星
 NPCName.UltraStarite=终耀源星
-NPCName.OmegaStarite=终末之星
-NPCName.MultiStarite=集群源星
 
 NPCName.Snobster={$Mods.AQMod.ItemName.Snobster}
 NPCName.JerryCrabson=巨蟹蛤
@@ -1629,3 +1648,4 @@ Inactive=失效
 BloodMoonsPrevented=阻止血月: {0}
 GlimmersPrevented=阻止微光: {0}
 EclipsesPrevented=阻止日蚀: {0}
+YourCoordinates=你的坐标为 (X: {0}, Y: {1})
