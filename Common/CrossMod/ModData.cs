@@ -31,7 +31,12 @@ namespace AQMod.Common.CrossMod
 
         public int ItemType(string name)
         {
-            return mod.ItemType(name);
+            int type = mod.ItemType(name);
+            //if (type == 0)
+            //{
+            //    throw new Exception("Invalid item ID obtained from {Mod:" + mod.Name + ", Name:" + name + "}");
+            //}
+            return type;
         }
 
         public int NPCType(string name)

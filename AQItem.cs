@@ -367,7 +367,6 @@ namespace AQMod
                     SentryUsage.Add(AQMod.calamityMod.ItemType("CausticCroakerStaff"), new SentryStaffUsage(isGrounded: true, range: 32f));
                     SentryUsage.Add(AQMod.calamityMod.ItemType("CryogenicStaff"), new SentryStaffUsage(isGrounded: false, range: 1000f));
                     SentryUsage.Add(AQMod.calamityMod.ItemType("DreadmineStaff"), new SentryStaffUsage(isGrounded: false, range: 500f));
-                    SentryUsage.Add(AQMod.calamityMod.ItemType("DreadmineStaff"), new SentryStaffUsage(isGrounded: false, range: 500f));
                     SentryUsage.Add(AQMod.calamityMod.ItemType("EnergyStaff"), new SentryStaffUsage(isGrounded: false, range: 500f));
                     SentryUsage.Add(AQMod.calamityMod.ItemType("LanternoftheSoul"), new SentryStaffUsage(isGrounded: false, range: 500f));
                     SentryUsage.Add(AQMod.calamityMod.ItemType("HivePod"), new SentryStaffUsage(isGrounded: true, range: 500f));
