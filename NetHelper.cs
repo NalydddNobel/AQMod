@@ -1,10 +1,8 @@
 ﻿using AQMod.Common;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
-using AQMod.Content.Players;
 using AQMod.Content.World;
 using AQMod.Content.World.Events;
-using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;

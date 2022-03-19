@@ -1,5 +1,4 @@
-﻿using AQMod.Items;
-using AQMod.NPCs.Friendly;
+﻿using AQMod.NPCs.Friendly;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

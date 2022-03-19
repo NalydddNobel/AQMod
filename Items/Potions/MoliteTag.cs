@@ -133,7 +133,7 @@ namespace AQMod.Items.Potions
             {
                 var cloneItem = AQItem.GetDefault(potion.potionItemID);
                 item.rare = cloneItem.rare + 1;
-                
+
                 item.potion = cloneItem.potion;
             }
             catch

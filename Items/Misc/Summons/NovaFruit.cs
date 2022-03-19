@@ -2,9 +2,7 @@
 using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Items.Dyes;
-using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
-using AQMod.Items.Placeable.CraftingStations;
 using AQMod.Localization;
 using AQMod.NPCs.Bosses;
 using AQMod.Tiles;

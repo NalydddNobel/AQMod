@@ -1,7 +1,6 @@
 using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.CrossMod;
-using AQMod.Common.Graphics;
 using AQMod.Common.Utilities;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
@@ -49,7 +48,7 @@ namespace AQMod
         public static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
         public static bool UseAssets => !AQMod.Loading && Main.netMode != NetmodeID.Server;
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
-        
+
         public static AQMod GetInstance()
         {
             return ModContent.GetInstance<AQMod>();

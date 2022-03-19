@@ -2,7 +2,6 @@
 using AQMod.Content.Players;
 using AQMod.Dusts;
 using AQMod.Items.Misc.Bait;
-using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.GrapplingHooks;
 using AQMod.Projectiles.Summon;

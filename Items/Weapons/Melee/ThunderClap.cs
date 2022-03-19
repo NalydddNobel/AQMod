@@ -2,7 +2,6 @@
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Items.Materials.Energies;
-using AQMod.NPCs;
 using AQMod.Projectiles.Melee;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;

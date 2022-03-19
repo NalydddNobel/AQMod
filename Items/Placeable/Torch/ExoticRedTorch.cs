@@ -1,5 +1,4 @@
 ﻿using AQMod.Dusts.NobleMushrooms;
-using AQMod.Items.Placeable.CrabCrevice;
 using AQMod.Items.Placeable.Nature;
 using AQMod.Tiles;
 using Microsoft.Xna.Framework;

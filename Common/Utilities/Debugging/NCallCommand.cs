@@ -4,7 +4,6 @@ using AQMod.Content.Players;
 using AQMod.Content.World.Biomes;
 using AQMod.Content.World.Events;
 using AQMod.Content.World.Generation;
-using AQMod.Items;
 using AQMod.Localization;
 using AQMod.NPCs.Friendly;
 using AQMod.NPCs.Monsters;

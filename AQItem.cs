@@ -115,7 +115,7 @@ namespace AQMod
                 {
                     for (int j = 0; j < 25; j++)
                     {
-                        if (Main.tile[x, y + j]  == null)
+                        if (Main.tile[x, y + j] == null)
                         {
                             Main.tile[x, y + j] = new Tile();
                             return null;
@@ -528,7 +528,7 @@ namespace AQMod
         {
             Sets.Load();
         }
-        
+
         internal static void SetupContent()
         {
             Sets.SetupContent();

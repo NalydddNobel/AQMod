@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Graphics;
-using AQMod.Content.Players;
+﻿using AQMod.Content.Players;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Recipes;
 using Microsoft.Xna.Framework;

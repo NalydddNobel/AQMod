@@ -58,7 +58,7 @@ namespace AQMod.Common.CrossMod
             private static void InternalCreateCalls<T>(T Instance) where T : class
             {
                 string typeName = typeof(T).TypeName();
-                
+
                 var fields = typeof(T).GetFields();
                 var properties = typeof(T).GetProperties();
                 InternalCreateCalls(typeName, Instance, fields, properties);

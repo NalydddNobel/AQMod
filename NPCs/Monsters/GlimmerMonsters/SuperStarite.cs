@@ -4,7 +4,6 @@ using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
 using AQMod.Items.Potions;
-using AQMod.Items.Weapons.Summon;
 using AQMod.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

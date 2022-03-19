@@ -1,5 +1,4 @@
-﻿using AQMod.Common.Graphics;
-using AQMod.Items.Recipes;
+﻿using AQMod.Items.Recipes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

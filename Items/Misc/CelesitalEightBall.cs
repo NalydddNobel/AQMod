@@ -1,5 +1,4 @@
-﻿using AQMod.Common;
-using AQMod.Content.World.Events;
+﻿using AQMod.Content.World.Events;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

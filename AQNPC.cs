@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Common.ID;
-using AQMod.Content.Players;
 using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Effects;
@@ -14,7 +13,6 @@ using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.DemonSiegeMonsters;
 using AQMod.NPCs.Monsters.GaleStreamsMonsters;
 using AQMod.Projectiles;
-using AQMod.Projectiles.Monster.Starite;
 using AQMod.Projectiles.Summon.Accessory;
 using Microsoft.Xna.Framework;
 using System;
@@ -250,30 +248,30 @@ namespace AQMod
                 //    "!:DankCreeper", "!:DarkHeart", "!:HiveBlob", "!:HiveBlob2", "!:HiveCyst", "!:HiveMind", "!:PerforatorCyst", "!:PerforatorHive", "!:PerforatorHeadSmall", "!:PerforatorHeadMedium", "!:PerforatorHeadLarge", "!:PerforatorBodySmall", "!:PerforatorBodyMedium", "!:PerforatorBodyLarge", "!:PerforatorTailSmall", "!:PerforatorTailMedium", "!:PerforatorTailLarge",
                 //    "!:SlimeGod", "!:SlimeGodCore", "!:SlimeGodRun", "!:SlimeGodRunSplit", "!:SlimeGodSplit", "!:SlimeSpawnCorrupt", "!:SlimeSpawnCorrupt2", "!:SlimeSpawnCrimson", "!:SlimeSpawnCrimson2", "!:CrimulanBlightSlime", "!:EbonianBlightSlime"
                 //    );
-                Unholy = new HashSet<int>() 
-                { 
+                Unholy = new HashSet<int>()
+                {
                     NPCID.Wraith,
                     NPCID.Hellhound,
-                    NPCID.Scarecrow1, NPCID.Scarecrow2, NPCID.Scarecrow3, NPCID.Scarecrow4, NPCID.Scarecrow5, NPCID.Scarecrow6, NPCID.Scarecrow7, NPCID.Scarecrow8, NPCID.Scarecrow9, NPCID.Scarecrow10, 
+                    NPCID.Scarecrow1, NPCID.Scarecrow2, NPCID.Scarecrow3, NPCID.Scarecrow4, NPCID.Scarecrow5, NPCID.Scarecrow6, NPCID.Scarecrow7, NPCID.Scarecrow8, NPCID.Scarecrow9, NPCID.Scarecrow10,
                     NPCID.Splinterling,
-                    NPCID.MourningWood, 
-                    NPCID.VileSpit, 
+                    NPCID.MourningWood,
+                    NPCID.VileSpit,
                     NPCID.Pumpking, NPCID.PumpkingBlade,
                 };
 
                 Unholy = AQUtils.Combine(Unholy, Corruption, Crimson);
 
-                Hallowed = new HashSet<int>() 
+                Hallowed = new HashSet<int>()
                 {
-                    NPCID.Pixie, 
-                    NPCID.Unicorn, 
-                    NPCID.EnchantedSword, 
-                    NPCID.RainbowSlime, 
-                    NPCID.Gastropod, 
-                    NPCID.LightMummy, 
-                    NPCID.BigMimicHallow, 
-                    NPCID.DesertGhoulHallow, 
-                    NPCID.PigronHallow, 
+                    NPCID.Pixie,
+                    NPCID.Unicorn,
+                    NPCID.EnchantedSword,
+                    NPCID.RainbowSlime,
+                    NPCID.Gastropod,
+                    NPCID.LightMummy,
+                    NPCID.BigMimicHallow,
+                    NPCID.DesertGhoulHallow,
+                    NPCID.PigronHallow,
                     NPCID.SandsharkHallow,
                     NPCID.ChaosElemental,
                 };

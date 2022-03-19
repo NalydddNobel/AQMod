@@ -2,14 +2,12 @@
 using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.NPCs;
-using AQMod.NPCs.Friendly;
 using AQMod.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 using Terraria;
 using Terraria.ID;
