@@ -73,10 +73,10 @@ ItemName.Terraroot=弹药恢复包
 ItemTooltip.Terraroot=敌人会掉落你所消耗的弹药
 
 ItemName.Quasicrystal=准晶体护符
-ItemTooltip.Quasicrystal=附近的敌人会受到10%额外伤害\n攻击敌人时会造成闪光和火焰伤害\n增加5%近战暴击率\n受伤时会召唤星星从天而降
+ItemTooltip.Quasicrystal=附近的敌人会受到10%额外伤害\n击中敌人时会对其造成宇宙辐射减益和火焰伤害\n增加5%近战暴击率\n受伤时会召唤星星从天而降
 
 ItemName.Ultranium=超聚焦晶体
-ItemTooltip.Ultranium=附近的敌人会受到10%额外伤害\n攻击敌人时会造成闪光
+ItemTooltip.Ultranium=附近的敌人会受到10%额外伤害\n击中敌人时会对其造成宇宙辐射减益
 
 ProjectileName.HyperCrystalExplosion=超聚焦晶体
 ItemName.ExtractorHelmet=顶板
@@ -130,9 +130,9 @@ ItemTooltip.CrabBarb=你的钩爪会造成中毒和伤害
 ItemName.Meathook=血肉刺钩
 ItemTooltip.Meathook=你的钩爪会抓住敌人
 
-ItemName.CelesteTorus=星际圆环
-ItemTooltip.CelesteTorus=在你的周围召唤一圈环绕着你的球体\n球体的半径、速度、伤害和击退都根据你不同的属性决定
-ProjectileName.CelesteTorusCollider=星际法球
+ItemName.CelesteTorus=星际轨道仪
+ItemTooltip.CelesteTorus=在你的周围召唤一圈环绕着你的球体\n球体的半径、速度和伤害都根据你不同的属性决定
+ProjectileName.OmegaStariteAccessory=星际法球
 
 ItemName.VoodooAmulet=巫毒护符
 ItemTooltip.VoodooAmulet=攻击一名敌人时会使附近所有同种类的敌人同样受到攻击\n降低熔岩的伤害
@@ -366,7 +366,7 @@ ItemName.Snowgrave=雪墓
 ItemTooltip.Snowgrave=在下方召唤向上喷涌的冰雪风暴\n释放法术时会耗尽你的法力值一小段时间\n'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
 
 ItemName.UltimateSword=最终之剑
-ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成闪光减益
+ItemTooltip.UltimateSword=攻击造成暴击时强化你的各项属性一小段时间\n击中敌人时会对其造成宇宙辐射减益
 ItemTooltipExtra..UltimateSword.0=仅能在天空中闪烁微光时才能在终末之星处获得
 ProjectileName.UltimateSword=最终之剑
 
@@ -987,9 +987,9 @@ ProjectileName.RainbowStarofHyperApocalypse=终末天启之七彩耀星
 
 NPCName.StreamingBalloon=紊流气球
 
-BuffName.Sparkling=闪光
-BuffDescription.Sparkling=你在闪闪发光
-ProjectileName.SparklingExplosion=闪光爆炸
+BuffName.Sparkling=宇宙辐射
+BuffDescription.Sparkling=宇宙辐射令你闪闪发光
+ProjectileName.SparklingExplosion=宇宙辐射涌流
 
 # Common
 
