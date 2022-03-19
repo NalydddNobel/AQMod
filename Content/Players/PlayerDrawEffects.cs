@@ -8,8 +8,8 @@ using AQMod.Effects.Particles;
 using AQMod.Items;
 using AQMod.Items.Accessories.Vanity;
 using AQMod.Items.Armor.Arachnotron;
-using AQMod.Projectiles;
 using AQMod.Projectiles.Summon;
+using AQMod.Projectiles.Summon.Equips;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -39,7 +39,8 @@ namespace AQMod.Content.Players
         public static bool MyArachnotronHeadTrail;
         public static bool MyArachnotronBodyTrail;
 
-        public Vector3[] InterstellarOrbOffsetsForDrawing;
+        public Vector3[] accOmegaStaritePos;
+        public float accOmegaStariteScale;
         internal static Color MothmanMaskEyeColorDefault = new Color(50, 155, 255, 0);
         internal static Color MothmanMaskEyeColorShadowScale => new Color(90 + (int)(Math.Cos(Main.GlobalTime * 10f) * 30), 25, 140 - (int)(Math.Sin(Main.GlobalTime * 10f) * 30), 0);
         internal static Color MothmanMaskEyeColorMolten = new Color(50, 155, 255, 0);
@@ -90,22 +91,22 @@ namespace AQMod.Content.Players
             int whoAmI = info.drawPlayer.whoAmI;
             var player = info.drawPlayer;
             var aQPlayer = player.GetModPlayer<AQPlayer>();
-            var drawEffects = player.GetModPlayer<PlayerDrawEffects>();
+            var draw = player.GetModPlayer<PlayerDrawEffects>();
             if (info.shadow == 0f)
             {
-                if (aQPlayer.blueSpheres && drawEffects.InterstellarOrbOffsetsForDrawing != null)
+                if (aQPlayer.accOmegaStarite != null && draw.accOmegaStaritePos != null)
                 {
-                    var texture = TextureGrabber.GetProjectile(ModContent.ProjectileType<CelesteTorusCollider>());
+                    var texture = TextureGrabber.GetProjectile(ModContent.ProjectileType<OmegaStariteAccessory>());
                     var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                     var orig = frame.Size() / 2f;
                     for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)
                     {
-                        var position = aQPlayer.GetCelesteTorusPositionOffset(i);
-                        float layerValue = AQUtils.Perspective.GetParralaxScale(1f, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * Draw_CelesteZMultiplier);
+                        var position = draw.accOmegaStaritePos[i];
+                        float layerValue = AQUtils.Perspective.GetParralaxScale(1f, draw.accOmegaStaritePos[i].Z * Draw_CelesteZMultiplier);
                         if (layerValue < 1f)
                         {
                             var center = info.position + new Vector2(player.width / 2 + (int)position.X, player.height / 2 + (int)position.Y);
-                            Main.playerDrawData.Add(new DrawData(texture, AQUtils.Perspective.GetParralaxPosition(center, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.Perspective.GetParralaxScale(aQPlayer.celesteTorusScale, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawEffects.cCelesteTorus, ignorePlayerRotation = true });
+                            Main.playerDrawData.Add(new DrawData(texture, AQUtils.Perspective.GetParralaxPosition(center, draw.accOmegaStaritePos[i].Z * AQPlayer.CELESTE_Z_MULT) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.Perspective.GetParralaxScale(draw.accOmegaStariteScale, draw.accOmegaStaritePos[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = draw.cCelesteTorus, ignorePlayerRotation = true });
                         }
                     }
                 }
@@ -350,19 +351,19 @@ namespace AQMod.Content.Players
                 }
             }
 
-            if (info.shadow == 0f && aQPlayer.blueSpheres && drawEffects.InterstellarOrbOffsetsForDrawing != null)
+            if (info.shadow == 0f && aQPlayer.accOmegaStarite != null && drawEffects.accOmegaStaritePos != null)
             {
-                var texture = TextureGrabber.GetProjectile(ModContent.ProjectileType<CelesteTorusCollider>());
+                var texture = TextureGrabber.GetProjectile(ModContent.ProjectileType<OmegaStariteAccessory>());
                 var frame = new Rectangle(0, 0, texture.Width, texture.Height);
                 var orig = frame.Size() / 2f;
                 for (int i = 0; i < AQPlayer.MaxCelesteTorusOrbs; i++)
                 {
-                    var position = aQPlayer.GetCelesteTorusPositionOffset(i);
-                    float layerValue = AQUtils.Perspective.GetParralaxScale(1f, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * Draw_CelesteZMultiplier);
+                    var position = drawEffects.accOmegaStaritePos[i];
+                    float layerValue = AQUtils.Perspective.GetParralaxScale(1f, drawEffects.accOmegaStaritePos[i].Z * Draw_CelesteZMultiplier);
                     if (layerValue >= 1f)
                     {
                         var center = info.position + new Vector2(player.width / 2 + (int)position.X, player.height / 2 + (int)position.Y);
-                        Main.playerDrawData.Add(new DrawData(texture, AQUtils.Perspective.GetParralaxPosition(center, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * Draw_CelesteZMultiplier) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.Perspective.GetParralaxScale(aQPlayer.celesteTorusScale, drawEffects.InterstellarOrbOffsetsForDrawing[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawEffects.cCelesteTorus, ignorePlayerRotation = true });
+                        Main.playerDrawData.Add(new DrawData(texture, AQUtils.Perspective.GetParralaxPosition(center, drawEffects.accOmegaStaritePos[i].Z * Draw_CelesteZMultiplier) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig, AQUtils.Perspective.GetParralaxScale(drawEffects.accOmegaStariteScale, drawEffects.accOmegaStaritePos[i].Z * AQPlayer.CELESTE_Z_MULT), SpriteEffects.None, 0) { shader = drawEffects.cCelesteTorus, ignorePlayerRotation = true });
                     }
                 }
             }
@@ -607,7 +608,7 @@ namespace AQMod.Content.Players
         private void UpdateScreenShakes()
         {
             var offset = Vector2.Zero;
-            foreach (var s in FX.ScreenShakes)
+            foreach (var s in FX.ScreenShakeDict)
             {
                 if (s.Value.Active)
                 {
@@ -712,11 +713,6 @@ namespace AQMod.Content.Players
         }
         private static void DrawEffects_BlueSpheres(AQPlayer aQPlayer, PlayerDrawEffects effects)
         {
-            effects.InterstellarOrbOffsetsForDrawing = new Vector3[5];
-            for (int i = 0; i < 5; i++)
-            {
-                effects.InterstellarOrbOffsetsForDrawing[i] = aQPlayer.GetCelesteTorusPositionOffset(i);
-            }
         }
         private static void DrawEffects_ResetMyPlayersSpecialDrawingData()
         {
@@ -767,9 +763,26 @@ namespace AQMod.Content.Players
                 {
                     DrawEffects_CataMaskDust(drawInfo, effects, gravityOffset, headFrame);
                 }
-                if (aQPlayer.blueSpheres)
+                if (aQPlayer.accOmegaStarite != null)
                 {
-                    DrawEffects_BlueSpheres(aQPlayer, effects);
+                    effects.accOmegaStaritePos = new Vector3[5];
+
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].modProjectile is OmegaStariteAccessory acc)
+                        {
+                            effects.accOmegaStariteScale = Main.projectile[i].scale;
+                            for (int k = 0; k < 5; k++)
+                            {
+                                effects.accOmegaStaritePos[k] = acc.GetRot(k);
+                            }
+                            break;
+                        }
+                    }
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                    }
                 }
             }
         }

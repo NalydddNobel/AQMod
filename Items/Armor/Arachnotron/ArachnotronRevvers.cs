@@ -32,7 +32,6 @@ namespace AQMod.Items.Armor.Arachnotron
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.SpiderGreaves);
-            r.AddIngredient(ItemID.HermesBoots);
             r.AddIngredient(ItemID.HallowedBar, 12);
             r.AddIngredient(ItemID.SoulofFright, 3);
             r.AddIngredient(ModContent.ItemType<UltimateEnergy>());

@@ -1,5 +1,6 @@
 ﻿using AQMod.Content.World.Events;
 using AQMod.Items.Accessories;
+using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials;

@@ -11,6 +11,11 @@
     <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -define &quot;$(DefineConstants)&quot; -unsafe $(AllowUnsafeBlocks)" />
   </Target>
   <ItemGroup>
+    <Compile Remove="Items\Accessories\Healing\**" />
+    <EmbeddedResource Remove="Items\Accessories\Healing\**" />
+    <None Remove="Items\Accessories\Healing\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
@@ -34,7 +39,6 @@
     <None Include="Effects\.comp\wcfxcompiler.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Items\Accessories\Healing\" />
     <Folder Include="Sounds\Item\SpaceSquid\" />
     <Folder Include="Tiles\Furniture\Containers\" />
   </ItemGroup>

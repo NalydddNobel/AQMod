@@ -13,7 +13,7 @@ using AQMod.NPCs.Monsters;
 using AQMod.NPCs.Monsters.DemonSiegeMonsters;
 using AQMod.NPCs.Monsters.GaleStreamsMonsters;
 using AQMod.Projectiles;
-using AQMod.Projectiles.Summon.Accessory;
+using AQMod.Projectiles.Summon.Equips;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -1322,9 +1322,9 @@ namespace AQMod
             int healAmount = npc.lifeMax / 1000 + 5;
             foreach (var p in nearbyPlayers)
             {
-                if (!p.Item1.moonLeech && p.Item2.bloodthirstDelay == 0 && p.Item2.bloodthirst)
+                if (!p.Item1.moonLeech && p.Item2.bloodthirstCooldown == 0 && p.Item2.bloodthirst)
                 {
-                    p.Item2.bloodthirstDelay = 255;
+                    p.Item2.bloodthirstCooldown = 255;
                     AQPlayer.HealPlayer(p.Item1, healAmount, broadcast: true, mergeHealEffect: true, AQUtils.Instance(ModContent.ItemType<BloodthirstPotion>()),
                         healingItemQuickHeal: false);
                 }

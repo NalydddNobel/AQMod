@@ -53,7 +53,6 @@ namespace AQMod.Items.Armor.Arachnotron
         {
             var r = new ModRecipe(mod);
             r.AddIngredient(ItemID.SpiderBreastplate);
-            r.AddIngredient(ItemID.BandofRegeneration);
             r.AddIngredient(ItemID.HallowedBar, 18);
             r.AddIngredient(ItemID.SoulofFright, 6);
             r.AddIngredient(ModContent.ItemType<UltimateEnergy>());

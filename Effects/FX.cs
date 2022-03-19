@@ -77,7 +77,7 @@ namespace AQMod.Effects
         private static UnifiedRandom _random;
         private static readonly int RandomSeed = "Split".GetHashCode();
 
-        public static Dictionary<string, ScreenShake> ScreenShakes { get; private set; }
+        public static Dictionary<string, ScreenShake> ScreenShakeDict { get; private set; }
 
         public static Vector2 CameraFocus = Vector2.Zero;
         public static bool cameraFocus = false;
@@ -99,7 +99,7 @@ namespace AQMod.Effects
             _randBytes = new byte[byte.MaxValue + 1];
             _random.NextBytes(_randBytes);
 
-            ScreenShakes = new Dictionary<string, ScreenShake>()
+            ScreenShakeDict = new Dictionary<string, ScreenShake>()
             {
                 ["ScreenShake"] = new ScreenShake((s) => new Vector2(Rand(-s.intensity, s.intensity), Rand(-s.intensity, s.intensity))),
             };
@@ -109,8 +109,8 @@ namespace AQMod.Effects
             _random = null;
             _randBytes = null;
             _randBytesIndex = 0;
-            ScreenShakes?.Clear();
-            ScreenShakes = null;
+            ScreenShakeDict?.Clear();
+            ScreenShakeDict = null;
         }
 
         internal static void InternalInitalize()
@@ -158,7 +158,7 @@ namespace AQMod.Effects
 
         public static void SetShake(float intensity)
         {
-            var s = ScreenShakes["ScreenShake"];
+            var s = ScreenShakeDict["ScreenShake"];
             if (s.intensity < intensity)
             {
                 s.intensity = intensity;
@@ -171,7 +171,7 @@ namespace AQMod.Effects
 
         public static void SetShake(float intensity, float time)
         {
-            var s = ScreenShakes["ScreenShake"];
+            var s = ScreenShakeDict["ScreenShake"];
             if (s.intensity < intensity)
             {
                 s.intensity = intensity;
@@ -185,7 +185,7 @@ namespace AQMod.Effects
 
         public static void AddShake(float intensity, float max)
         {
-            var s = ScreenShakes["ScreenShake"];
+            var s = ScreenShakeDict["ScreenShake"];
             if (s.intensity < intensity)
             {
                 if (s.intensityCap < max)
@@ -202,7 +202,7 @@ namespace AQMod.Effects
 
         public static void AddShake(float intensity, float max, float time)
         {
-            var s = ScreenShakes["ScreenShake"];
+            var s = ScreenShakeDict["ScreenShake"];
             if (s.intensity < intensity)
             {
                 if (s.intensityCap < max)
@@ -234,7 +234,7 @@ namespace AQMod.Effects
 
         internal static void Update()
         {
-            foreach (var s in ScreenShakes)
+            foreach (var s in ScreenShakeDict)
             {
                 s.Value.Update();
             }

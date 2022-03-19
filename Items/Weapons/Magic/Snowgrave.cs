@@ -1,5 +1,7 @@
 ﻿using AQMod.Buffs.Debuffs;
+using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Recipes;
 using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -47,14 +49,7 @@ namespace AQMod.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.WaterBolt);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
-            r.AddIngredient(ModContent.ItemType<Materials.SiphonTentacle>(), 12);
-            r.AddIngredient(ItemID.SoulofFlight, 20);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
+            AQRecipes.GaleStreamsMinibossWeapon(mod, ItemID.WaterBolt, ModContent.ItemType<SiphonTentacle>(), this);
         }
     }
 }

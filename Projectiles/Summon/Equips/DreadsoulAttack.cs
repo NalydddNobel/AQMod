@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Buffs.Debuffs;
 using AQMod.Common.ID;
 using AQMod.Dusts;
 using Microsoft.Xna.Framework;
@@ -8,9 +9,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Summon.Accessory
+namespace AQMod.Projectiles.Summon.Equips
 {
-    public class BreadsoulHealing : ModProjectile
+    public class DreadsoulAttack : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -43,48 +44,23 @@ namespace AQMod.Projectiles.Summon.Accessory
                 return;
             }
             int target = -1;
-            float closestDist = 1200f;
+            float closestDist = 550f;
             var center = projectile.Center;
-            for (int i = 0; i < Main.maxProjectiles; i++)
+            for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.projectile[i].minion && Main.projectile[i].minionSlots > 0f)
+                var distance = Vector2.Distance(center, Main.npc[i].Center);
+                if (Main.npc[i].CanBeChasedBy() && distance < closestDist)
                 {
-                    var distance = Vector2.Distance(center, Main.projectile[i].Center);
-                    if (Main.projectile[i].owner != projectile.owner) // Minions which are not the owner of this proj need to be x2 closer compared to the owner's minions in order to get a buff!
-                    {
-                        distance *= 2f;
-                    }
-                    if (distance < closestDist)
-                    {
-                        target = i;
-                        closestDist = distance;
-                    }
+                    target = i;
+                    closestDist = distance;
                 }
             }
             if (target > -1)
             {
-                projectile.ai[1]++;
-                var difference = Main.projectile[target].Center - center;
-                if (difference.Length() < 200f)
-                {
-                    projectile.tileCollide = false;
-                }
-                if (difference.Length() < 20f)
-                {
-                    OnHitAnything(projectile.velocity);
-                    AQProjectile.ApplyDMGBuff(Main.projectile[target], 0.25f, 180, AQProjectile.DamageBuffEffects.MinionBuff, alwaysOverride: false);
-                    return;
-                }
-                float amount = 0.002f;
-                if (projectile.ai[1] > 15f)
-                {
-                    amount = 0.15f;
-                }
-                projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(difference) * 15f, amount);
+                projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(Main.npc[target].Center - center) * 15f, 0.05f);
             }
             else
             {
-                projectile.tileCollide = true;
                 if (projectile.ai[1] > MathHelper.TwoPi)
                 {
                     projectile.ai[1] += 0.12f;
@@ -102,7 +78,7 @@ namespace AQMod.Projectiles.Summon.Accessory
             projectile.rotation = projectile.velocity.ToRotation();
             if (Main.rand.NextBool(5))
             {
-                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 200, 255, 10));
+                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(120, 2, 10, 170));
                 d.velocity = projectile.velocity * 0.2f;
             }
         }
@@ -112,12 +88,12 @@ namespace AQMod.Projectiles.Summon.Accessory
             velocity = Vector2.Normalize(velocity);
             for (int i = 0; i < 18; i++)
             {
-                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 200, 255, 10));
+                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(200, 20, 50, 100));
                 d.velocity = -velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(2f, 5f);
             }
             for (int i = 0; i < 4; i++)
             {
-                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoSparkleDust>(), 0f, 0f, 0, new Color(200, 200, 255, 10));
+                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoSparkleDust>(), 0f, 0f, 0, new Color(200, 20, 50, 100));
                 d.velocity = -velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(3f, 6f);
             }
             projectile.damage = 0;
@@ -133,6 +109,7 @@ namespace AQMod.Projectiles.Summon.Accessory
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             OnHitAnything(projectile.velocity);
+            target.AddBuff(ModContent.BuffType<MinionHaunted>(), 600);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
@@ -163,10 +140,10 @@ namespace AQMod.Projectiles.Summon.Accessory
                 for (int i = start; i < trailLength; i++)
                 {
                     float progress = 1f / trailLength * i;
-                    spriteBatch.Draw(effectTexture, projectile.oldPos[i] + offset, effectFrame, new Color(30, 35, 60, 255) * (1f - progress) * 0.65f, 0f, effectOrigin, projectile.scale * (1f - progress) * 0.6f, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(effectTexture, projectile.oldPos[i] + offset, effectFrame, new Color(60, 0, 10, 255) * (1f - progress) * 0.65f, 0f, effectOrigin, projectile.scale * (1f - progress) * 0.6f, SpriteEffects.None, 0f);
                 }
                 if (projectile.timeLeft >= 15)
-                    spriteBatch.Draw(effectTexture, projectile.position + offset, effectFrame, new Color(50, 60, 100, 255), 0f, effectOrigin, projectile.scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(effectTexture, projectile.position + offset, effectFrame, new Color(100, 0, 20, 255), 0f, effectOrigin, projectile.scale, SpriteEffects.None, 0f);
             }
             for (int i = start; i < trailLength; i++)
             {

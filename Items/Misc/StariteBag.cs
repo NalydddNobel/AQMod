@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Accessories;
+﻿using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;

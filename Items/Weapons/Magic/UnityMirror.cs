@@ -39,7 +39,7 @@ namespace AQMod.Items.Weapons.Magic
             r.AddIngredient(ItemID.MeteoriteBar, 20);
             r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>());
             r.AddIngredient(ModContent.ItemType<Materials.SiphonTentacle>(), 12);
-            r.AddIngredient(ItemID.SoulofFlight, 12);
+            r.AddIngredient(ItemID.SoulofFlight, 8);
             r.AddTile(TileID.MythrilAnvil);
             r.SetResult(this);
             r.AddRecipe();

@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Items.Materials;
+using AQMod.Items.Recipes;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -40,14 +42,7 @@ namespace AQMod.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.NimbusRod);
-            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>());
-            r.AddIngredient(ModContent.ItemType<Materials.Fluorescence>(), 12);
-            r.AddIngredient(ItemID.SoulofFlight, 20);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
+            AQRecipes.GaleStreamsMinibossWeapon(mod, ItemID.NimbusRod, ModContent.ItemType<Fluorescence>(), this);
         }
     }
 }

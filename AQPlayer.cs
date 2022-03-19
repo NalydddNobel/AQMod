@@ -12,13 +12,12 @@ using AQMod.Effects.Particles;
 using AQMod.Items;
 using AQMod.Items.Accessories.Fishing;
 using AQMod.Items.Accessories.Summon;
-using AQMod.Items.Armor.Arachnotron;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Summon;
-using AQMod.Projectiles.Summon.PassiveHelmets;
+using AQMod.Projectiles.Summon.Equips;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -201,12 +200,11 @@ namespace AQMod
         public const byte TEMPERATURE_REGEN_ON_HIT = 120;
 
         public static bool forceAutoswing;
-        public static byte extractinatorBlipDelay;
+        public static byte extractinatorBlipCooldown;
 
         public byte manaDrainCooldown;
         public bool manaDrain;
         public float discountPercentage = 1f;
-        public bool blueSpheres;
         public bool focusCrystal;
         public bool shimmering;
         public bool ammoRenewal;
@@ -217,9 +215,9 @@ namespace AQMod
         public bool copperSeal;
         public bool silverSeal;
         public bool goldSeal;
-        public bool dashEquipped;
+        public bool dashAvailable;
         public int extraFlightTime;
-        public int thunderbirdLightningTimer;
+        public int thunderbirdLightningCooldown;
         public bool dreadSoul;
         public bool omori;
         public bool omoriEffect;
@@ -230,15 +228,6 @@ namespace AQMod
         public bool featherflightAmulet;
         public bool voodooAmulet;
         public bool extractinatorCounter;
-        public float celesteTorusX;
-        public float celesteTorusY;
-        public float celesteTorusZ;
-        public float celesteTorusRadius;
-        public int celesteTorusDamage;
-        public float celesteTorusKnockback;
-        public int celesteTorusMaxRadius;
-        public float celesteTorusSpeed;
-        public float celesteTorusScale;
         public bool striderPalms;
         public bool striderPalmsOld;
         public bool degenerationRing;
@@ -246,7 +235,7 @@ namespace AQMod
         public bool blueFire;
         public float grabReach; // until 1.4 comes
         public bool mothmanMask;
-        public byte mothmanExplosionDelay;
+        public byte mothmanExplosionCooldown;
         public sbyte temperature;
         public byte temperatureRegen;
         public bool pickBreak;
@@ -263,7 +252,7 @@ namespace AQMod
         public bool glowString;
         public bool pearlAmulet;
         public bool bloodthirst;
-        public byte bloodthirstDelay;
+        public byte bloodthirstCooldown;
         public bool spreadDebuffs;
         public bool shade;
         public bool undetectable;
@@ -334,8 +323,10 @@ namespace AQMod
         public int extractorAirMask;
         public int ExtractinatorCount;
 
-        public int healEquipDelay;
-        public Item healEquip;
+        public Item accOmegaStarite;
+
+        public int accHealConsumableDelay;
+        public Item accHealConsumable;
 
         public Dictionary<int, int> AmmoUsage;
 
@@ -343,7 +334,7 @@ namespace AQMod
 
         public override void Initialize()
         {
-            extractinatorBlipDelay = 0;
+            extractinatorBlipCooldown = 0;
 
             snowsawLeader = -1;
             omoriDeathTimer = 1;
@@ -360,15 +351,15 @@ namespace AQMod
             temperature = 0;
             pickBreak = false;
             fidgetSpinner = false;
-            bloodthirstDelay = 0;
+            bloodthirstCooldown = 0;
             healEffect = 0;
             hookDebuffs?.Clear();
             hookDebuffs = new List<BuffData>();
             meathookUI = false;
             interactionDelay = 0;
             AmmoUsage = new Dictionary<int, int>();
-            healEquip = null;
-            healEquipDelay = 0;
+            accHealConsumable = null;
+            accHealConsumableDelay = 0;
         }
 
         public override void OnEnterWorld(Player player)
@@ -392,7 +383,7 @@ namespace AQMod
 
         public override void UpdateDead()
         {
-            ResetEffects_Debuffs();
+            ClearCustomDebuffs();
             manaDrain = false;
             itemCooldown = 0;
             itemCooldownMax = 0;
@@ -400,15 +391,14 @@ namespace AQMod
             itemSwitch = 0;
             omori = false;
             omoriEffect = false;
-            blueSpheres = false;
             monoxiderCarry = 0;
             temperature = 0;
             temperatureRegen = TEMPERATURE_REGEN_ON_HIT;
-            mothmanExplosionDelay = 0;
+            mothmanExplosionCooldown = 0;
             passiveSummonDelay = 0;
-            bloodthirstDelay = 0;
+            bloodthirstCooldown = 0;
             healEffect = 0;
-            hookDebuffs = new List<BuffData>();
+            hookDebuffs?.Clear();
             hookDamage = 0;
             meathookUI = false;
             snowsawLeader = -1;
@@ -417,28 +407,10 @@ namespace AQMod
             AmmoUsage = new Dictionary<int, int>();
             autoSentry = false;
             autoSentryCooldown = 120;
+            accOmegaStarite = null;
         }
 
-        public override void OnConsumeAmmo(Item weapon, Item ammo)
-        {
-            if (ammoRenewal && ammo.ranged && !AQItem.Sets.ItemIDRenewalBlacklist.Contains(ammo.type) && !AQItem.Sets.AmmoIDRenewalBlacklist.Contains(ammo.ammo))
-            {
-                if (AmmoUsage.ContainsKey(ammo.type))
-                {
-                    AmmoUsage[ammo.type] += 1;
-                }
-                else
-                {
-                    AmmoUsage.Add(ammo.type, 1);
-                }
-            }
-            else
-            {
-                AmmoUsage.Clear();
-            }
-        }
-
-        private void UpdateVisuals_Flashes()
+        public override void UpdateBiomeVisuals()
         {
             if (FX.flashLocation != Vector2.Zero)
             {
@@ -469,18 +441,39 @@ namespace AQMod
                     Filters.Scene.Deactivate(LegacyEffectCache.fn_Flash, null);
                 }
             }
-        }
-        public override void UpdateBiomeVisuals()
-        {
-            UpdateVisuals_Flashes();
+
             FX.Update();
 
-            if (extractinatorBlipDelay > 0)
-                extractinatorBlipDelay--;
+            if (extractinatorBlipCooldown > 0)
+                extractinatorBlipCooldown--;
         }
 
-        private void ResetEffects_Cooldowns()
+        private bool CheckDashAvailable()
         {
+            if (player.setSolar || player.mount.Active)
+            {
+                return false;
+            }
+            int slots = player.AmtAccSlots();
+            for (int i = 3; i < slots; i++)
+            {
+                if (AQItem.Sets.DashEquip.Contains(player.armor[i].type))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private void ClearCustomDebuffs()
+        {
+            blueFire = false;
+            shimmering = false;
+            pickBreak = false;
+        }
+        public override void ResetEffects()
+        {
+            accOmegaStarite = null;
+
             if (itemCombo > 0)
             {
                 itemCombo--;
@@ -516,9 +509,102 @@ namespace AQMod
             {
                 autoSentryCooldown--;
             }
-        }
-        private void ResetEffects_HookBarbs()
-        {
+
+            if (manaDrainCooldown > 0)
+            {
+                manaDrainCooldown--;
+            }
+            manaDrain = false;
+            autoSentry = false;
+
+            helmetFlowerCrown = false;
+            setLightbulb = false;
+            arachnotronArms = false;
+            setArachnotron = false;
+            setArachnotronCooldown = false;
+
+            discountPercentage = 1f;
+            focusCrystal = false;
+            monoxiderBird = false;
+            moonShoes = false;
+            copperSeal = false;
+            silverSeal = false;
+            goldSeal = false;
+            extraFlightTime = 0;
+            dreadSoul = false;
+            breadSoul = false;
+            omori = false;
+            omoriEffect = false;
+            omegaStarite = false;
+            lootIterations = 0;
+            featherflightAmulet = false;
+            voodooAmulet = false;
+            extractinatorCounter = false;
+            altEvilDrops = false;
+            starite = false;
+            striderPalmsOld = striderPalms;
+            striderPalms = false;
+            shieldLife = 0;
+
+            crimsonHands = false;
+            chomper = false;
+            piranhaPlant = false;
+            trapperImp = false;
+
+            headMinionCarryXOld = headMinionCarryX;
+            headMinionCarryYOld = headMinionCarryY;
+            headMinionCarryX = 0;
+            headMinionCarryY = 0;
+            monoxiderCarry = 0;
+
+            heartMoth = false;
+            anglerFish = false;
+            dwarfStarite = false;
+
+            snowsaw = false;
+            snowsawLeader = -1;
+
+            grabReach = 1f;
+            mothmanMask = false;
+            crabAx = false;
+            fidgetSpinner = false;
+            canToggleCosmicanon = false;
+            antiGravityItems = false;
+            shockCollar = false;
+            healBeforeDeath = false;
+            glowString = false;
+            pearlAmulet = false;
+            holyDamage = 1f;
+            unholyDamage = 1f;
+            bloodthirst = false;
+            shade = false;
+            spreadDebuffs = false;
+
+            if (accHealConsumableDelay > 0)
+            {
+                accHealConsumableDelay--;
+            }
+            accHealConsumable = null;
+            if (extraHP > 60) // to cap life max buffs at 60
+            {
+                extraHP = 60;
+            }
+            player.statLifeMax2 += extraHP;
+            extraHP = 0;
+            if (healEffect != 0)
+            {
+                player.HealEffect(healEffect, broadcast: true);
+            }
+            healEffect = 0;
+
+            if (mothmanExplosionCooldown > 0)
+                mothmanExplosionCooldown--;
+            if (bloodthirstCooldown > 0)
+                bloodthirstCooldown--;
+            helmetDartTrap = false;
+            if (thunderbirdLightningCooldown > 0)
+                thunderbirdLightningCooldown--;
+
             meathook = false;
             if (!hasMeathookNPC)
             {
@@ -529,13 +615,21 @@ namespace AQMod
             hasMeathookNPCOld = hasMeathookNPC;
             hasMeathookNPC = false;
             hookDamage = 0;
-            if (hookDebuffs == null)
-                hookDebuffs = new List<BuffData>();
-            else
-                hookDebuffs.Clear();
-        }
-        private void ResetEffects_Temperature()
-        {
+            hookDebuffs.Clear();
+
+            dashAvailable = CheckDashAvailable();
+
+            if (player.selectedItem != lastSelectedItem)
+            {
+                itemCombo = 0;
+                if (itemSwitch < 60)
+                    itemSwitch = 60;
+            }
+            lastSelectedItem = player.selectedItem;
+
+            runSpeedBoost = 1f;
+            wingSpeedBoost = 1f;
+
             if (temperature != 0)
             {
                 sbyte minTemp = -100;
@@ -618,189 +712,44 @@ namespace AQMod
                     player.AddBuff(ModContent.BuffType<Hot20>(), 4);
                 }
             }
-        }
-        private void ResetEffects_DashAvailable()
-        {
-            dashEquipped = !(player.setSolar || player.mount.Active);
-            if (dashEquipped)
-            {
-                int slots = player.AmtAccSlots();
-                for (int i = 3; i < slots; i++)
-                {
-                    if (AQItem.Sets.DashEquip.Contains(player.armor[i].type))
-                    {
-                        dashEquipped = false;
-                        break;
-                    }
-                }
-            }
-        }
-        private void ResetEffects_Healing()
-        {
-            if (healEquipDelay > 0)
-            {
-                healEquipDelay--;
-            }
-            healEquip = null;
-            if (extraHP > 60) // to cap life max buffs at 60
-            {
-                extraHP = 60;
-            }
-            player.statLifeMax2 += extraHP;
-            extraHP = 0;
-            if (healEffect != 0)
-            {
-                player.HealEffect(healEffect, broadcast: true);
-            }
-            healEffect = 0;
-        }
-        private void ResetEffects_Debuffs()
-        {
-            blueFire = false;
-            shimmering = false;
-            pickBreak = false;
-        }
-        public override void ResetEffects()
-        {
-            ResetEffects_Cooldowns();
-            if (manaDrainCooldown > 0)
-            {
-                manaDrainCooldown--;
-            }
-            manaDrain = false;
-            autoSentry = false;
 
-            helmetFlowerCrown = false;
-            setLightbulb = false;
-            arachnotronArms = false;
-            setArachnotron = false;
-            setArachnotronCooldown = false;
-
-            blueSpheres = false;
-            discountPercentage = 1f;
-            focusCrystal = false;
-            monoxiderBird = false;
-            moonShoes = false;
-            copperSeal = false;
-            silverSeal = false;
-            goldSeal = false;
-            extraFlightTime = 0;
-            dreadSoul = false;
-            breadSoul = false;
-            omori = false;
-            omoriEffect = false;
-            omegaStarite = false;
-            lootIterations = 0;
-            featherflightAmulet = false;
-            voodooAmulet = false;
-            extractinatorCounter = false;
-            altEvilDrops = false;
-            starite = false;
-            striderPalmsOld = striderPalms;
-            striderPalms = false;
-            shieldLife = 0;
-
-            crimsonHands = false;
-            chomper = false;
-            piranhaPlant = false;
-            trapperImp = false;
-
-            headMinionCarryXOld = headMinionCarryX;
-            headMinionCarryYOld = headMinionCarryY;
-            headMinionCarryX = 0;
-            headMinionCarryY = 0;
-            monoxiderCarry = 0;
-
-            heartMoth = false;
-            anglerFish = false;
-            dwarfStarite = false;
-
-            snowsaw = false;
-            snowsawLeader = -1;
-
-            grabReach = 1f;
-            mothmanMask = false;
-            crabAx = false;
-            fidgetSpinner = false;
-            canToggleCosmicanon = false;
-            antiGravityItems = false;
-            shockCollar = false;
-            healBeforeDeath = false;
-            glowString = false;
-            pearlAmulet = false;
-            holyDamage = 1f;
-            unholyDamage = 1f;
-            bloodthirst = false;
-            shade = false;
-            spreadDebuffs = false;
-            ResetEffects_Healing();
-            ResetEffects_Debuffs();
-            ResetEffects_Temperature();
             hotAmulet = false;
             coldAmulet = false;
-            if (mothmanExplosionDelay > 0)
-                mothmanExplosionDelay--;
-            if (bloodthirstDelay > 0)
-                bloodthirstDelay--;
-            helmetDartTrap = false;
-            if (thunderbirdLightningTimer > 0)
-                thunderbirdLightningTimer--;
-            ResetEffects_HookBarbs();
-            ResetEffects_DashAvailable();
-
-            if (player.selectedItem != lastSelectedItem)
-            {
-                itemCombo = 0;
-                if (itemSwitch < 60)
-                    itemSwitch = 60;
-            }
-            lastSelectedItem = player.selectedItem;
-
-            runSpeedBoost = 1f;
-            wingSpeedBoost = 1f;
+            ClearCustomDebuffs();
         }
 
-        private void ProcessTriggers_ArmorSetBonus()
-        {
-            if (setArachnotron && !setArachnotronCooldown)
-            {
-                player.AddBuff(ModContent.BuffType<PrimeTime>(), 600);
-                Main.PlaySound(SoundID.Item22, player.Center);
-            }
-        }
-        private void ProcessTriggers_MeathookSnapTarget()
-        {
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                if (Main.projectile[i].active && Main.projectile[i].aiStyle == 7 && Main.projectile[i].owner == player.whoAmI)
-                {
-                    Main.projectile[i].active = false;
-                    Main.projectile[i].netUpdate = true;
-                }
-            }
-            if (player.miscEquips[4].modItem is VampireHook)
-            {
-                leechHook = true;
-            }
-            if (Main.netMode != NetmodeID.Server)
-            {
-                Main.PlaySound(SoundID.Tink, Main.npc[meathookTarget].Center, 1);
-            }
-            Projectile.NewProjectile(Main.npc[meathookTarget].Center, Vector2.Zero, player.miscEquips[4].shoot, player.miscEquips[4].damage, player.miscEquips[4].knockBack, player.whoAmI);
-            meathookNPC = meathookTarget;
-            hasMeathookNPC = true;
-            meathookUI = false;
-        }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
             if (Keybinds.ArmorSetBonus.JustPressed)
             {
-                ProcessTriggers_ArmorSetBonus();
+                if (setArachnotron && !setArachnotronCooldown)
+                {
+                    player.AddBuff(ModContent.BuffType<PrimeTime>(), 600);
+                    Main.PlaySound(SoundID.Item22, player.Center);
+                }
             }
             if (!hasMeathookNPC && meathookTarget != -1 && Main.npc[meathookTarget].active && triggersSet.Grapple)
             {
-                ProcessTriggers_MeathookSnapTarget();
-                triggersSet.Grapple = false;
+                for (int i = 0; i < Main.maxProjectiles; i++)
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].aiStyle == 7 && Main.projectile[i].owner == player.whoAmI)
+                    {
+                        Main.projectile[i].active = false;
+                        Main.projectile[i].netUpdate = true;
+                    }
+                }
+                if (player.miscEquips[4].modItem is VampireHook)
+                {
+                    leechHook = true;
+                }
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    Main.PlaySound(SoundID.Tink, Main.npc[meathookTarget].Center, 1);
+                }
+                Projectile.NewProjectile(Main.npc[meathookTarget].Center, Vector2.Zero, player.miscEquips[4].shoot, player.miscEquips[4].damage, player.miscEquips[4].knockBack, player.whoAmI);
+                meathookNPC = meathookTarget;
+                hasMeathookNPC = true;
+                meathookUI = false;
             }
             meathookTarget = -1;
         }
@@ -808,15 +757,11 @@ namespace AQMod
         public override void clientClone(ModPlayer clientClone)
         {
             var clone = (AQPlayer)clientClone;
-            clone.celesteTorusX = celesteTorusX;
-            clone.celesteTorusY = celesteTorusY;
-            clone.celesteTorusZ = celesteTorusZ;
             clone.breadSoul = breadSoul;
             clone.dreadSoul = dreadSoul;
             clone.helmetDartTrap = helmetDartTrap;
             clone.dartHeadType = dartHeadType;
             clone.arachnotronArms = arachnotronArms;
-            clone.blueSpheres = blueSpheres;
         }
 
         public override void PreUpdateBuffs()
@@ -1067,7 +1012,6 @@ namespace AQMod
             }
             return true;
         }
-
         public override void PostItemCheck()
         {
             if (Main.myPlayer == player.whoAmI)
@@ -1103,9 +1047,9 @@ namespace AQMod
             return true;
         }
 
-        private bool PreventDeath_ConsumeItem()
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if (healEquip != null)
+            if (accHealConsumable != null && accHealConsumableDelay <= 0)
             {
                 int oldHP = player.statLife;
                 if (player.statLife < 0)
@@ -1113,33 +1057,30 @@ namespace AQMod
                     player.statLife = 1;
                 }
 
-                HealPlayer(player, healingItem: healEquip, healingItemQuickHeal: true);
+                HealPlayer(player, healingItem: accHealConsumable, healingItemQuickHeal: true);
 
                 var center = player.Center;
-                if (Main.netMode != NetmodeID.Server && healEquip.UseSound != null)
+                if (Main.netMode != NetmodeID.Server && accHealConsumable.UseSound != null)
                 {
-                    Main.PlaySound(healEquip.UseSound, center);
+                    Main.PlaySound(accHealConsumable.UseSound, center);
                 }
-                healEquip.TurnToAir();
+                accHealConsumable.TurnToAir();
 
                 if (player.statLife <= 1)
                 {
                     player.statLife = oldHP;
-                    return false;
+                    return true;
                 }
-                healEquipDelay = 3600;
+                accHealConsumableDelay = 3600;
                 int dustAmt = 12;
                 for (int i = 0; i < dustAmt; i++)
                 {
                     float r = MathHelper.TwoPi / dustAmt * i + Main.rand.NextFloat(-0.01f, 0.01f);
                     var d = Dust.NewDustPerfect(center, ModContent.DustType<MonoDust>(), r.ToRotationVector2() * Main.rand.NextFloat(3f, 4.5f), 0, new Color(100, 10, 25, 10), 0.8f);
                 }
-                return true;
+                return false;
             }
-            return false;
-        }
-        private bool PreventDeath_Unused()
-        {
+
             if (healBeforeDeath && player.potionDelay <= 0)
             {
                 int oldHP = player.statLife;
@@ -1151,14 +1092,11 @@ namespace AQMod
                 if (player.statLife <= 1)
                 {
                     player.statLife = oldHP;
-                    return false;
+                    return true;
                 }
-                return true;
+                return false;
             }
-            return false;
-        }
-        private bool PreventDeath_Omori()
-        {
+
             if (omori && omoriDeathTimer <= 0)
             {
                 Main.PlaySound(SoundID.Item60, player.position);
@@ -1166,16 +1104,9 @@ namespace AQMod
                 player.immune = true;
                 player.immuneTime = 120;
                 omoriDeathTimer = 18000;
-                return true;
+                return false;
             }
-            return false;
-        }
-        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
-        {
-            bool returnValue = !PreventDeath_ConsumeItem();
-            returnValue &= !PreventDeath_Unused();
-            returnValue &= !PreventDeath_Omori();
-            return returnValue;
+            return true;
         }
 
         public override void PostUpdateBuffs()
@@ -1190,7 +1121,7 @@ namespace AQMod
             }
         }
 
-        private void UpdateBanks()
+        public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
         {
             for (int i = 0; i < Chest.maxItems; i++)
             {
@@ -1199,79 +1130,15 @@ namespace AQMod
                 if (player.bank2.item[i].type > Main.maxItemTypes && player.bank2.item[i].modItem is IUpdatePlayerSafe update2)
                     update2.UpdatePlayerSafe(player, i);
             }
-        }
-        private void UpdateCelesteTorus()
-        {
-            if (blueSpheres)
+
+            if (accOmegaStarite != null)
             {
-                float playerPercent = player.statLife / (float)player.statLifeMax2;
-                celesteTorusMaxRadius = GetCelesteTorusMaxRadius(playerPercent);
-                celesteTorusRadius = MathHelper.Lerp(celesteTorusRadius, celesteTorusMaxRadius, 0.1f);
-                celesteTorusDamage = GetCelesteTorusDamage();
-                celesteTorusKnockback = GetCelesteTorusKnockback();
-
-                celesteTorusScale = 1f + celesteTorusRadius * 0.006f + celesteTorusDamage * 0.009f + celesteTorusKnockback * 0.0015f;
-
-                var type = ModContent.ProjectileType<CelesteTorusCollider>();
-                if (Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[type] <= 0)
+                if (Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[ModContent.ProjectileType<OmegaStariteAccessory>()] <= 0)
                 {
-                    Projectile.NewProjectile(player.Center, Vector2.Zero, type, celesteTorusDamage, celesteTorusKnockback, player.whoAmI);
-                }
-                else
-                {
-                    for (int i = 0; i < Main.maxProjectiles; i++)
-                    {
-                        if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == ModContent.ProjectileType<CelesteTorusCollider>())
-                        {
-                            Main.projectile[i].damage = celesteTorusDamage;
-                            Main.projectile[i].knockBack = celesteTorusKnockback;
-                            break;
-                        }
-                    }
-                }
-                var center = player.Center;
-                bool danger = false;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].IsntFriendly() && Vector2.Distance(Main.npc[i].Center, center) < 2000f)
-                    {
-                        danger = true;
-                        break;
-                    }
-                }
-
-                if (danger)
-                {
-                    celesteTorusSpeed = 0.04f + (1f - playerPercent) * 0.0314f;
-                    celesteTorusX = celesteTorusX.AngleLerp(0f, 0.01f);
-                    celesteTorusY = celesteTorusY.AngleLerp(0f, 0.0075f);
-                    celesteTorusZ += celesteTorusSpeed;
-                }
-                else
-                {
-                    celesteTorusSpeed = 0.0314f;
-                    celesteTorusX += 0.0157f;
-                    celesteTorusY += 0.01f;
-                    celesteTorusZ += celesteTorusSpeed;
+                    Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<OmegaStariteAccessory>(), player.GetWeaponDamage(accOmegaStarite), player.GetWeaponKnockback(accOmegaStarite, accOmegaStarite.knockBack), player.whoAmI);
                 }
             }
-            else
-            {
-                celesteTorusDamage = 0;
-                celesteTorusKnockback = 0f;
-                celesteTorusMaxRadius = 0;
-                celesteTorusRadius = 0f;
-                celesteTorusScale = 1f;
-                celesteTorusSpeed = 0f;
-                celesteTorusX = 0f;
-                celesteTorusY = 0f;
-                celesteTorusZ = 0f;
-            }
-        }
-        public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
-        {
-            UpdateBanks();
-            UpdateCelesteTorus();
+
             if (player.wingsLogic > 0)
                 player.wingTimeMax += extraFlightTime;
         }
@@ -1451,6 +1318,25 @@ namespace AQMod
             player.moveSpeed *= runSpeedBoost;
         }
 
+        public override void OnConsumeAmmo(Item weapon, Item ammo)
+        {
+            if (ammoRenewal && ammo.ranged && !AQItem.Sets.ItemIDRenewalBlacklist.Contains(ammo.type) && !AQItem.Sets.AmmoIDRenewalBlacklist.Contains(ammo.ammo))
+            {
+                if (AmmoUsage.ContainsKey(ammo.type))
+                {
+                    AmmoUsage[ammo.type] += 1;
+                }
+                else
+                {
+                    AmmoUsage.Add(ammo.type, 1);
+                }
+            }
+            else
+            {
+                AmmoUsage.Clear();
+            }
+        }
+
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
             if (setLightbulb && proj.trap)
@@ -1625,7 +1511,7 @@ namespace AQMod
                     }
                 }
             }
-            if (mothmanMask && mothmanExplosionDelay == 0 && player.statLife >= player.statLifeMax2 && crit && target.type != NPCID.TargetDummy)
+            if (mothmanMask && mothmanExplosionCooldown == 0 && player.statLife >= player.statLifeMax2 && crit && target.type != NPCID.TargetDummy)
             {
                 target.AddBuff(ModContent.BuffType<BlueFire>(), 480);
                 if (Main.myPlayer == player.whoAmI)
@@ -1658,7 +1544,7 @@ namespace AQMod
                     {
                         FX.AddShake(AQGraphics.MultIntensity(8), 24f, 16f);
                     }
-                    mothmanExplosionDelay = 60;
+                    mothmanExplosionCooldown = 60;
                     int p = Projectile.NewProjectile(targetCenter, Vector2.Normalize(targetCenter - player.Center), ModContent.ProjectileType<MothmanCritExplosion>(), damage * 2, knockback * 1.5f, player.whoAmI, 0f, target.whoAmI);
                     var size = Main.projectile[p].Size;
                     float radius = size.Length() / 5f;
@@ -1883,26 +1769,6 @@ namespace AQMod
                     temperature += 1;
                 }
             }
-        }
-
-        public Vector3 GetCelesteTorusPositionOffset(int i)
-        {
-            return Vector3.Transform(new Vector3(celesteTorusRadius, 0f, 0f), Matrix.CreateFromYawPitchRoll(celesteTorusX, celesteTorusY, celesteTorusZ + MathHelper.TwoPi / 5 * i));
-        }
-
-        public int GetCelesteTorusMaxRadius(float playerPercent)
-        {
-            return Math.Min((int)((float)Math.Sqrt(player.width * player.height) + 20f + player.wingTimeMax * 0.15f + player.wingTime * 0.15f + (1f - playerPercent) * 90f + player.statDefense), 600);
-        }
-
-        public int GetCelesteTorusDamage()
-        {
-            return 25 + (int)(player.statDefense / 1.5f + player.endurance * 80f);
-        }
-
-        public float GetCelesteTorusKnockback()
-        {
-            return 6.5f + player.velocity.Length() * 0.8f;
         }
 
         public void SetMinionCarryPos(int x, int y)

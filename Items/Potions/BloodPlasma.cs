@@ -30,7 +30,7 @@ namespace AQMod.Items.Potions
                 player.QuickSpawnClonedItem(item, item.stack - 1);
                 item.stack = 1;
             }
-            player.GetModPlayer<AQPlayer>().healEquip = item;
+            player.GetModPlayer<AQPlayer>().accHealConsumable = item;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AQMod.Buffs.Summon;
-using AQMod.Items.Materials.Energies;
+using AQMod.Items.Materials;
+using AQMod.Items.Recipes;
 using AQMod.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -46,19 +47,12 @@ namespace AQMod.Items.Weapons.Summon
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
             int item = 0;
             //if (AQMod.split.IsActive)
             //{
             //    item = AQMod.split.ItemType("RazorfrostStaff");
             //}
-            r.AddIngredient(item == 0 ? ItemID.HornetStaff : item);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
-            r.AddIngredient(ModContent.ItemType<Materials.SiphonTentacle>(), 12);
-            r.AddIngredient(ItemID.SoulofFlight, 20);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
+            AQRecipes.GaleStreamsMinibossWeapon(mod, item == 0 ? ItemID.HornetStaff : item, ModContent.ItemType<SiphonTentacle>(), this);
         }
     }
 }

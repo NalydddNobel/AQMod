@@ -1,7 +1,9 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Dusts;
 using AQMod.Effects;
+using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
+using AQMod.Items.Recipes;
 using AQMod.Projectiles.Melee;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
@@ -84,14 +86,7 @@ namespace AQMod.Items.Weapons.Melee
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.SlapHand);
-            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
-            r.AddIngredient(ModContent.ItemType<Materials.Fluorescence>(), 12);
-            r.AddIngredient(ItemID.SoulofFlight, 20);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
+            AQRecipes.GaleStreamsMinibossWeapon(mod, ItemID.SlapHand, ModContent.ItemType<Fluorescence>(), this);
         }
     }
 }

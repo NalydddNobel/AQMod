@@ -1,4 +1,6 @@
-﻿using Terraria.ID;
+﻿using AQMod.Items.Materials;
+using AQMod.Items.Recipes;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Weapons.Ranged
@@ -33,14 +35,7 @@ namespace AQMod.Items.Weapons.Ranged
 
         public override void AddRecipes()
         {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(ItemID.MolotovCocktail, 50);
-            r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>());
-            r.AddIngredient(ModContent.ItemType<Materials.Fluorescence>(), 12);
-            r.AddIngredient(ItemID.SoulofFlight, 20);
-            r.AddTile(TileID.MythrilAnvil);
-            r.SetResult(this);
-            r.AddRecipe();
+            AQRecipes.GaleStreamsMinibossWeapon(mod, ItemID.MolotovCocktail, 50, ModContent.ItemType<Fluorescence>(), this);
         }
     }
 }

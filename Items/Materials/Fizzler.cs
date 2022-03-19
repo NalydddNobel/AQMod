@@ -11,7 +11,7 @@ namespace AQMod.Items.Materials
             item.width = 20;
             item.height = 20;
             item.value = Item.sellPrice(silver: 10);
-            item.rare = ItemRarityID.Green;
+            item.rare = ItemRarityID.Blue;
             item.maxStack = 999;
         }
     }

@@ -59,5 +59,21 @@ namespace AQMod.Items.Recipes
                 }
             }
         }
+
+        public static void GaleStreamsMinibossWeapon(Mod mod, int baseItem, int material, ModItem result)
+        {
+            GaleStreamsMinibossWeapon(mod, baseItem, 1, material, result);
+        }
+        public static void GaleStreamsMinibossWeapon(Mod mod, int baseItem, int baseItemStack, int material, ModItem result)
+        {
+            var r = new ModRecipe(mod);
+            r.AddIngredient(baseItem);
+            r.AddIngredient(ModContent.ItemType<AtmosphericEnergy>());
+            r.AddIngredient(material);
+            r.AddIngredient(ItemID.SoulofFlight, 8);
+            r.AddTile(TileID.Anvils);
+            r.SetResult(result);
+            r.AddRecipe();
+        }
     }
 }

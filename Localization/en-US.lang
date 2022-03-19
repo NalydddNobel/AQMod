@@ -73,10 +73,10 @@ ItemName.Terraroot=Ammo Renewal Pack
 ItemTooltip.Terraroot=Enemies drop ammo you have consumed
 
 ItemName.Quasicrystal=Quasicrystal Amulet
-ItemTooltip.Quasicrystal=Nearby enemies take 10% extra damage\nInflicts shimmering and fire damage on attack\nCauses stars to fall when injured
+ItemTooltip.Quasicrystal=Nearby enemies take 10% extra damage\nInflicts cosmic radiation and fire damage on attack\nCauses stars to fall when injured
 
 ItemName.Ultranium=Hyper Focus Crystal
-ItemTooltip.Ultranium=Nearby enemies take 10% extra damage\nYour attacks inflict shimmering
+ItemTooltip.Ultranium=Nearby enemies take 10% extra damage\nYour attacks inflict cosmic radiation
 ProjectileName.HyperCrystalExplosion=Hyper Focus Crystal
 
 ItemName.ExtractorHelmet=Head Plate
@@ -130,9 +130,9 @@ ItemTooltip.CrabBarb=Your grappling hooks inflict poison and damage
 ItemName.Meathook=Meathook
 ItemTooltip.Meathook=Allows you to attach to enemies using your grappling hook
 
-ItemName.CelesteTorus=Interstellar Ring
-ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe radius, speed, damage, and knockback are all determined by various stats
-ProjectileName.CelesteTorusCollider=Interstellar Orb
+ItemName.CelesteTorus=Interstellar Orbiter
+ItemTooltip.CelesteTorus=You obtain rotating orbs which deal contact damage\nThe radius, speed, and damage, are all determined by various stats
+ProjectileName.OmegaStariteAccessory=Interstellar Orb
 
 ItemName.VoodooAmulet=Voodoo Amulet
 ItemTooltip.VoodooAmulet=Hitting an enemy will make nearby enemies of the same type get hit aswell\nReduces damage from touching lava
@@ -366,7 +366,7 @@ ItemName.Snowgrave=Snowgrave
 ItemTooltip.Snowgrave=Summons a snowblast from below\nCasting will drain your magic power for a short time\n'Watch what happens when I cast a spell I don't know!'
 
 ItemName.UltimateSword=Ultimate Sword
-ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts shimmering on hit
+ItemTooltip.UltimateSword=Temporarily increases your stats on critical hits\nInflicts cosmic radiation on hit
 ItemTooltipExtra.UltimateSword.0=Only obtainable from Omega Starite while there is a glimmer in the sky
 ProjectileName.UltimateSword=Ultimate Sword
 
@@ -987,9 +987,9 @@ ProjectileName.RainbowStarofHyperApocalypse=Rainbow Star of Hyper Apocalypse
 
 NPCName.StreamingBalloon=Streaming Balloon
 
-BuffName.Sparkling=Shimmering
-BuffDescription.Sparkling=You are shimmering
-ProjectileName.SparklingExplosion=Shimmering Explosion
+BuffName.Sparkling=Cosmic Radiation
+BuffDescription.Sparkling=You are shimmering from cosmic radiation
+ProjectileName.SparklingExplosion=Cosmic Rad-splosion
 
 # Common
 

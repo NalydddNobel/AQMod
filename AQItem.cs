@@ -774,10 +774,10 @@ namespace AQMod
             aQPlayer.extractorAirMask++;
             aQPlayer.extractorHelmet++;
 
-            if (aQPlayer.extractinatorCounter && AQPlayer.extractinatorBlipDelay == 0)
+            if (aQPlayer.extractinatorCounter && AQPlayer.extractinatorBlipCooldown == 0)
             {
                 CombatText.NewText(new Rectangle(Player.tileTargetX * 16, Player.tileTargetY * 16, 16, 16), Color.Gray, aQPlayer.ExtractinatorCount);
-                AQPlayer.extractinatorBlipDelay = 8;
+                AQPlayer.extractinatorBlipCooldown = 8;
             }
 
             if (aQPlayer.extractorAirMask >= 500 + Main.rand.Next(-100, 100))

@@ -18,7 +18,7 @@ namespace AQMod.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AQPlayer>().holyDamage += 0.1f;
+            player.GetModPlayer<AQPlayer>().holyDamage += 0.15f;
         }
 
         public override void AddRecipes()

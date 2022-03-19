@@ -5,7 +5,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Armor.Arachnotron
+namespace AQMod.Projectiles.Summon.Equips
 {
     public class ArachnotronLegs : ModProjectile
     {

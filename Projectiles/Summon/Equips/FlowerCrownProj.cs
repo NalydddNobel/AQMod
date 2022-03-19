@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Projectiles.Summon.PassiveHelmets
+namespace AQMod.Projectiles.Summon.Equips
 {
     public sealed class FlowerCrownProj : ModProjectile
     {
