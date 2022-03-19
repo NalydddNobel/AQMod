@@ -1,5 +1,6 @@
-﻿using AQMod.Effects.Particles;
+﻿using AQMod.Dusts;
 using AQMod.Items.Materials.Energies;
+using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -21,35 +22,20 @@ namespace AQMod.Items.Placeable.Torch
             item.useTime = 10;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.Furniture.Torches>();
-            item.flame = true;
+            item.createTile = ModContent.TileType<Torches>();
             item.value = 50;
+            item.flame = true;
             item.rare = ItemRarityID.Blue;
-            item.placeStyle = Tiles.Furniture.Torches.SparklingTorch;
+            item.placeStyle = Torches.SparklingTorch;
         }
 
         public override void HoldItem(Player player)
         {
-            if (Main.myPlayer == player.whoAmI && Main.rand.Next(player.itemAnimation > 0 ? 30 : 44) == 0)
+            Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + 10f * player.direction, player.itemLocation.Y - 10f), true);
+            if (Main.myPlayer == player.whoAmI)
             {
-                float scale = Main.rand.NextFloat(0.88f, 1f);
-                var particlePos = new Vector2(player.itemLocation.X + (12f + Main.rand.NextFloat(-2f, 2f)) * player.direction, player.itemLocation.Y - (20f + Main.rand.NextFloat(-2f, 2f)) * player.gravDir);
-                var particleVelocity = new Vector2(player.velocity.X * 0.1f, player.velocity.Y * 0.1f - 3f + Main.rand.NextFloat(-3f, 1f));
-                Particle.PostDrawPlayers.AddParticle(new EmberParticle(particlePos,
-                    particleVelocity,
-                    new Color(240, 240, 255, 0) * scale,
-                    scale));
-                Particle.PostDrawPlayers.AddParticle(new SparkleParticle(particlePos,
-                    particleVelocity,
-                    new Color(240, 240, 255, 0) * scale,
-                    scale * 0.33f));
-                Particle.PostDrawPlayers.AddParticle(new SparkleParticle(particlePos,
-                    particleVelocity,
-                    new Color(200, 200, 240, 0) * scale,
-                    scale * 0.1f)
-                { rotation = MathHelper.PiOver4 });
+                Dust.NewDustPerfect(position, ModContent.DustType<SparklerDust>(), new Vector2(2f * player.direction, -2f).RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(0.75f, 1f) + player.velocity * 0.3f, 0, new Color(255, 255, 255, 255), Main.rand.NextFloat(0.5f, 0.9f));
             }
-            Vector2 position = player.RotatedRelativePoint(new Vector2(player.itemLocation.X + 12f * player.direction + player.velocity.X, player.itemLocation.Y - 14f + player.velocity.Y), true);
             Lighting.AddLight(position, 0.9f, 0.9f, 1f);
         }
 

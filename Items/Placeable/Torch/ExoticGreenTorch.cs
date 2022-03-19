@@ -1,6 +1,7 @@
 ﻿using AQMod.Dusts.NobleMushrooms;
 using AQMod.Items.Placeable.CrabCrevice;
 using AQMod.Items.Placeable.Nature;
+using AQMod.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -23,11 +24,11 @@ namespace AQMod.Items.Placeable.Torch
             item.useTime = 10;
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.consumable = true;
-            item.createTile = ModContent.TileType<Tiles.Furniture.Torches>();
+            item.createTile = ModContent.TileType<Torches>();
             item.flame = true;
             item.noWet = true;
             item.value = 50;
-            item.placeStyle = Tiles.Furniture.Torches.ExoticGreenTorch;
+            item.placeStyle = Torches.ExoticGreenTorch;
         }
 
         public override void HoldItem(Player player)

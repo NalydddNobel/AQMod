@@ -54,6 +54,9 @@ BuffDescription.ManaDrain=Decreases magic damage by 90%
 # Accessories
 #===========================#
 
+ItemName.MoonLeech=Moon Leech
+ItemTooltip.MoonLeech=Attacks drain mana from enemies
+
 ItemName.Squyp=Squyp
 ItemTooltip.Squyp=Automatically places a sentry when you are in combat\nRequires a sentry staff in your inventory to work\n'It's only mildy disturbing'
 
@@ -61,7 +64,7 @@ ItemName.DreamCatcher=Dream Catcher
 ItemTooltip.DreamCatcher={$Mods.AQMod.Tooltips.HookBarb}\nDeals extra damage while in the sky biome
 
 ItemName.MagikaAmulet=Magika Amulet
-ItemTooltip.MagikaAmulet=Increases maximum mana by 20\n8% reduced mana useage\nIncreases pickup range for mana stars\nRestores mana when damaged\nAutomatically uses mana potions when needed\nNearby items float instead of falling
+ItemTooltip.MagikaAmulet=8% reduced mana useage\nAttacks drain mana from enemies\nIncreases length of invincibility after taking damage\nAutomatically uses mana potions when needed
 
 ItemName.JellyAmulet=Jelly Amulet
 ItemTooltip.JellyAmulet=Provides light which gets brighter while underwater\n5% increased ranged damage\n10% increased ranged critical strike chance while underwater\nEnemies drop ammo you have consumed
@@ -89,7 +92,7 @@ ItemName.Amulet=Amulet
 ItemTooltip.Amulet=May be enchanted
 
 ItemName.BloodPlasma=Blood Plasma
-ItemTooltip.BloodPlasma=You will drink a healing potion when you get fatally hit
+ItemTooltip.BloodPlasma=When equipped, you will eat this instead of dying\nOnly 1 can be in your accessory slot
 
 ItemName.TargeoftheBlodded=Spike Shield
 ItemTooltip.TargeoftheBlodded=Increases armor penetration by 2\nAllows the player to slide down walls\nImproved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 

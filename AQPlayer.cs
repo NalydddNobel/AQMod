@@ -205,9 +205,11 @@ namespace AQMod
         public static bool forceAutoswing;
         public static byte extractinatorBlipDelay;
 
+        public byte manaDrainCooldown;
+        public bool manaDrain;
         public float discountPercentage = 1f;
         public bool blueSpheres;
-        public bool hyperCrystal;
+        public bool focusCrystal;
         public bool shimmering;
         public bool ammoRenewal;
         public bool altEvilDrops;
@@ -292,7 +294,6 @@ namespace AQMod
 
         public float evilEnemyDR;
         public float holyEnemyDR;
-        public int healEffectValueForSyncingTheThingOnTheServer;
 
         public bool heartMoth;
         public bool anglerFish;
@@ -335,7 +336,12 @@ namespace AQMod
         public int extractorAirMask;
         public int ExtractinatorCount;
 
+        public int healEquipDelay;
+        public Item healEquip;
+
         public Dictionary<int, int> AmmoUsage;
+
+        internal int healEffect;
 
         public override void Initialize()
         {
@@ -357,12 +363,14 @@ namespace AQMod
             pickBreak = false;
             fidgetSpinner = false;
             bloodthirstDelay = 0;
-            healEffectValueForSyncingTheThingOnTheServer = 0;
+            healEffect = 0;
             hookDebuffs?.Clear();
             hookDebuffs = new List<BuffData>();
             meathookUI = false;
             interactionDelay = 0;
             AmmoUsage = new Dictionary<int, int>();
+            healEquip = null;
+            healEquipDelay = 0;
         }
 
         public override void OnEnterWorld(Player player)
@@ -387,6 +395,7 @@ namespace AQMod
         public override void UpdateDead()
         {
             ResetEffects_Debuffs();
+            manaDrain = false;
             itemCooldown = 0;
             itemCooldownMax = 0;
             itemCombo = 0;
@@ -400,7 +409,7 @@ namespace AQMod
             mothmanExplosionDelay = 0;
             passiveSummonDelay = 0;
             bloodthirstDelay = 0;
-            healEffectValueForSyncingTheThingOnTheServer = 0;
+            healEffect = 0;
             hookDebuffs = new List<BuffData>();
             hookDamage = 0;
             meathookUI = false;
@@ -630,17 +639,22 @@ namespace AQMod
         }
         private void ResetEffects_Healing()
         {
+            if (healEquipDelay > 0)
+            {
+                healEquipDelay--;
+            }
+            healEquip = null;
             if (extraHP > 60) // to cap life max buffs at 60
             {
                 extraHP = 60;
             }
             player.statLifeMax2 += extraHP;
             extraHP = 0;
-            if (healEffectValueForSyncingTheThingOnTheServer != 0)
+            if (healEffect != 0)
             {
-                player.HealEffect(healEffectValueForSyncingTheThingOnTheServer, broadcast: true);
+                player.HealEffect(healEffect, broadcast: true);
             }
-            healEffectValueForSyncingTheThingOnTheServer = 0;
+            healEffect = 0;
         }
         private void ResetEffects_Debuffs()
         {
@@ -651,6 +665,11 @@ namespace AQMod
         public override void ResetEffects()
         {
             ResetEffects_Cooldowns();
+            if (manaDrainCooldown > 0)
+            {
+                manaDrainCooldown--;
+            }
+            manaDrain = false;
             autoSentry = false;
 
             helmetFlowerCrown = false;
@@ -661,7 +680,7 @@ namespace AQMod
 
             blueSpheres = false;
             discountPercentage = 1f;
-            hyperCrystal = false;
+            focusCrystal = false;
             monoxiderBird = false;
             moonShoes = false;
             copperSeal = false;
@@ -1086,15 +1105,56 @@ namespace AQMod
             return true;
         }
 
-        private bool PreventDeath_BloodPlasma()
+        private bool PreventDeath_ConsumeItem()
+        {
+            if (healEquip != null)
+            {
+                int oldHP = player.statLife;
+                if (player.statLife < 0)
+                {
+                    player.statLife = 1;
+                }
+
+                HealPlayer(player, healingItem: healEquip, healingItemQuickHeal: true);
+
+                var center = player.Center;
+                if (Main.netMode != NetmodeID.Server && healEquip.UseSound != null)
+                {
+                    Main.PlaySound(healEquip.UseSound, center);
+                }
+                healEquip.TurnToAir();
+
+                if (player.statLife <= 1)
+                {
+                    player.statLife = oldHP;
+                    return false;
+                }
+                healEquipDelay = 3600;
+                int dustAmt = 12;
+                for (int i = 0; i < dustAmt; i++)
+                {
+                    float r = MathHelper.TwoPi / dustAmt * i + Main.rand.NextFloat(-0.01f, 0.01f);
+                    var d = Dust.NewDustPerfect(center, ModContent.DustType<MonoDust>(), r.ToRotationVector2() * Main.rand.NextFloat(3f, 4.5f), 0, new Color(100, 10, 25, 10), 0.8f);
+                }
+                return true;
+            }
+            return false;
+        }
+        private bool PreventDeath_Unused()
         {
             if (healBeforeDeath && player.potionDelay <= 0)
             {
+                int oldHP = player.statLife;
                 if (player.statLife < 0)
                 {
                     player.statLife = 1;
                 }
                 player.QuickHeal();
+                if (player.statLife <= 1)
+                {
+                    player.statLife = oldHP;
+                    return false;
+                }
                 return true;
             }
             return false;
@@ -1114,7 +1174,10 @@ namespace AQMod
         }
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            return !PreventDeath_BloodPlasma() && !PreventDeath_Omori();
+            bool returnValue = !PreventDeath_ConsumeItem();
+            returnValue &= !PreventDeath_Unused();
+            returnValue &= !PreventDeath_Omori();
+            return returnValue;
         }
 
         public override void PostUpdateBuffs()
@@ -1353,7 +1416,7 @@ namespace AQMod
         AutoSentryEnd:
             if (leechHook && Main.myPlayer == player.whoAmI && Main.GameUpdateCount % 50 == 0)
             {
-                HealPlayer(player, 2, broadcast: true, merge: true, player.GrapplingHook(), healingItemQuickHeal: false);
+                HealPlayer(player, 2, broadcast: true, mergeHealEffect: true, player.GrapplingHook(), healingItemQuickHeal: false);
             }
             UpdatePassiveSummonHat();
             if (arachnotronArms)
@@ -1438,7 +1501,7 @@ namespace AQMod
             {
                 damage = (int)(damage * unholyDamage);
             }
-            if (hyperCrystal && player.Distance(target.Center) < 160f)
+            if (focusCrystal && player.Distance(target.Center) < 160f)
             {
                 damage = (int)(damage * 1.1f);
             }
@@ -1548,6 +1611,22 @@ namespace AQMod
         }
         private void OnHitNPCWithAnything(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
         {
+            if (manaDrain && manaDrainCooldown <= 0)
+            {
+                var aQNPC = target.GetGlobalNPC<AQNPC>();
+                int drainMana = Math.Min(player.statManaMax2 - player.statMana, Math.Min(aQNPC.drainableMana, damage / 5));
+                if (drainMana > 0)
+                {
+                    aQNPC.drainableMana -= drainMana;
+                    manaDrainCooldown = 60;
+                    var velocity = Vector2.Normalize(targetCenter - player.Center) * 1.5f;
+                    Projectile.NewProjectile(targetCenter, velocity, ModContent.ProjectileType<MagicDrainage>(), 0, 1f, player.whoAmI, ai1: drainMana);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        Projectile.NewProjectile(targetCenter, velocity.RotatedBy(Main.rand.NextFloat(-0.4f, 0.4f)), ModContent.ProjectileType<MagicDrainage>(), 0, 1f, player.whoAmI);
+                    }
+                }
+            }
             if (mothmanMask && mothmanExplosionDelay == 0 && player.statLife >= player.statLifeMax2 && crit && target.type != NPCID.TargetDummy)
             {
                 target.AddBuff(ModContent.BuffType<BlueFire>(), 480);
@@ -2108,14 +2187,16 @@ namespace AQMod
             return (int)(damage * add * mult + 5E-06f + flat);
         }
 
-        public static void HealPlayer(Player player, int amt, bool broadcast = true, bool merge = true, Item healingItem = null, bool healingItemQuickHeal = false)
+        public static void HealPlayer(Player player, int amt = -1, bool broadcast = true, bool mergeHealEffect = true, Item healingItem = null, bool healingItemQuickHeal = false)
         {
             if (healingItem != null)
             {
-                ItemLoader.GetHealLife(healingItem, player, quickHeal: healingItemQuickHeal, ref amt);
+                if (amt != -1)
+                    healingItem.healLife = amt;
+                amt = player.GetHealLife(healingItem, quickHeal: healingItemQuickHeal);
             }
             player.statLife = Math.Min(player.statLife + amt, player.statLifeMax2);
-            if (!merge)
+            if (!mergeHealEffect)
             {
                 player.HealEffect(healAmount: amt, broadcast: broadcast);
             }
@@ -2132,7 +2213,7 @@ namespace AQMod
                 {
                     if (Main.myPlayer == player.whoAmI || Main.netMode == NetmodeID.Server)
                     {
-                        player.GetModPlayer<AQPlayer>().healEffectValueForSyncingTheThingOnTheServer += amt;
+                        player.GetModPlayer<AQPlayer>().healEffect += amt;
                     }
                 }
             }

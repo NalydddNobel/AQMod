@@ -1,5 +1,4 @@
 ﻿using AQMod.Common;
-using AQMod.Items.Accessories.Healing;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;

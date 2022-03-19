@@ -503,7 +503,7 @@ namespace AQMod.Content.World.Events
                 writer.Write(X);
                 writer.Write(Y);
 
-                AQUtils.NetWriteItem(writer, BaseItem);
+                AQUtils.WriteItem(writer, BaseItem);
             }
         }
 
@@ -519,7 +519,7 @@ namespace AQMod.Content.World.Events
                 X = reader.ReadUInt16();
                 Y = reader.ReadUInt16();
 
-                BaseItem = AQUtils.NetRecieveItem(reader);
+                BaseItem = AQUtils.ReadItem(reader);
             }
         }
 

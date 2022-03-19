@@ -1,5 +1,4 @@
 ﻿using AQMod.Assets;
-using AQMod.Common.CrossMod;
 using AQMod.Content.Players;
 using AQMod.Items;
 using AQMod.Localization;
@@ -177,8 +176,7 @@ namespace AQMod
                 Main.mouseX = (int)mousePos.Y;
             }
 
-            int result = -1;
-
+            int result;
             if (PlayerHooks.Shoot(player, item, ref location, ref velocity.X, ref velocity.Y, ref projType, ref projDamage, ref projKB) &&
                 ItemLoader.Shoot(item, player, ref location, ref velocity.X, ref velocity.Y, ref projType, ref projDamage, ref projKB))
             {
@@ -1293,13 +1291,13 @@ namespace AQMod
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="colors"></param>
-        /// <param name="time">The index of the color chosen depends on this value, a time of 0 means index 0 is choses, 0.5 is a mixture of index 0 and 1, 1 is index 1, 1.5 is a mixture of 1 and 2, ect...<para>Automatically wraps the time based on the array's length</para></param>
+        /// <param name="colors">The colors</param>
+        /// <param name="amount">Automatically wraps based on the array's length</param>
         /// <returns></returns>
-        public static Color LerpColors(Color[] colors, float time)
+        public static Color LerpBetween(Color[] colors, float amount)
         {
-            int index = (int)(time % colors.Length);
-            return Color.Lerp(colors[index], colors[(index + 1) % (colors.Length - 1)], time % 1f);
+            int index = (int)(amount % colors.Length);
+            return Color.Lerp(colors[index], colors[(index + 1) % (colors.Length - 1)], amount % 1f);
         }
 
         public static Vector2[] GetCircle(Vector2 center, float radius, int amount = 20)
@@ -1381,7 +1379,7 @@ namespace AQMod
             return down;
         }
 
-        public static void NetWriteItem(BinaryWriter writer, Item item)
+        public static void WriteItem(this BinaryWriter writer, Item item)
         {
             writer.Write(item.type);
             writer.Write(item.stack);
@@ -1393,7 +1391,7 @@ namespace AQMod
             }
         }
 
-        public static Item NetRecieveItem(BinaryReader reader)
+        public static Item ReadItem(this BinaryReader reader)
         {
             var item = new Item();
             item.SetDefaults(reader.ReadInt32());

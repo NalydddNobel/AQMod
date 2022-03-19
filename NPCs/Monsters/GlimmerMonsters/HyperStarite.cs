@@ -377,25 +377,14 @@ namespace AQMod.NPCs.Monsters.GlimmerMonsters
                     NetMessage.SendData(MessageID.WorldData);
                 }
             }
-            if (Main.rand.NextBool())
-                Item.NewItem(npc.getRect(), ModContent.ItemType<CosmicEnergy>());
-            for (int i = 0; i < 2; i++)
-                Item.NewItem(npc.getRect(), ModContent.ItemType<NeutronJuice>());
+            LootDrops.DropItemChance(npc, ModContent.ItemType<CosmicEnergy>(), 2);
+            LootDrops.DropItem(npc, ModContent.ItemType<NeutronJuice>(), 2);
             if (Main.rand.NextBool(4))
             {
-                var drops = new List<int>()
-                {
-                    ModContent.ItemType<MoonShoes>(),
-                    ModContent.ItemType<MoonShoes>(),
-                };
-                if (NPC.downedBoss2)
-                    drops.Add(ModContent.ItemType<Ultranium>());
-                Item.NewItem(npc.getRect(), drops[Main.rand.Next(drops.Count)]);
+                LootDrops.DropItem(npc, new int[] { ModContent.ItemType<MoonShoes>(), ModContent.ItemType<Ultranium>(), ModContent.ItemType<MoonLeech>(), });
             }
-            if (Main.rand.NextBool(30))
-                Item.NewItem(npc.getRect(), ItemID.Nazar);
-            if (Main.rand.NextBool(50))
-                Item.NewItem(npc.getRect(), ModContent.ItemType<ScrollDye>());
+            LootDrops.DropItemChance(npc, ItemID.Nazar, 30);
+            LootDrops.DropItemChance(npc, ModContent.ItemType<ScrollDye>(), 50);
         }
 
         public override int SpawnNPC(int tileX, int tileY)

@@ -26,7 +26,7 @@ namespace AQMod.Items.Accessories
             player.meleeCrit += 5;
             player.magmaStone = true;
             player.starCloak = true;
-            player.GetModPlayer<AQPlayer>().hyperCrystal = true;
+            player.GetModPlayer<AQPlayer>().focusCrystal = true;
         }
 
         public override void AddRecipes()

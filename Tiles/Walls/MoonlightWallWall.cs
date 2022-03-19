@@ -11,7 +11,7 @@ namespace AQMod.Tiles.Walls
     {
         public static Color GetColor(float value = 0f)
         {
-            return AQUtils.LerpColors(new Color[] { new Color(53, 163, 255, 0), new Color(0, 16, 102, 0), new Color(8, 165, 137, 0) }, value * 0.157f + Main.GlobalTime);
+            return AQUtils.LerpBetween(new Color[] { new Color(53, 163, 255, 0), new Color(0, 16, 102, 0), new Color(8, 165, 137, 0) }, value * 0.157f + Main.GlobalTime);
         }
 
         public override void SetDefaults()

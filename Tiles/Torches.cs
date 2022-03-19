@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Graphics;
+using AQMod.Dusts;
 using AQMod.Dusts.NobleMushrooms;
 using AQMod.Items.Placeable.Torch;
 using Microsoft.Xna.Framework;
@@ -11,7 +12,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace AQMod.Tiles.Furniture
+namespace AQMod.Tiles
 {
     public class Torches : ModTile
     {
@@ -320,6 +321,22 @@ namespace AQMod.Tiles.Furniture
                             float x = Utils.RandomInt(ref randSeed, -10, 11) * 0.15f;
                             float y = Utils.RandomInt(ref randSeed, -10, 1) * 0.35f;
                             Main.spriteBatch.Draw(ModContent.GetTexture(this.GetPath("_Flames")), new Vector2(i * 16 - (int)Main.screenPosition.X - (width - 16f) / 2f + x, j * 16 - (int)Main.screenPosition.Y + offsetY + y) + zero, new Rectangle(frameX, frameY, width, height), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+                        }
+                        if (AQMod.GameWorldActive)
+                        {
+                            if (Main.tile[i, j].frameX == 0 || Main.tile[i, j].frameX == 22 || Main.tile[i, j].frameX == 44)
+                            {
+                                int dir = 1;
+                                if (Main.tile[i, j].frameX == 0)
+                                {
+                                    dir = 0;
+                                }
+                                else if (Main.tile[i, j].frameX == 44)
+                                {
+                                    dir = -1;
+                                }
+                                Dust.NewDustPerfect(new Vector2(i * 16f + 4 * dir + 8f, j * 16f + 8f), ModContent.DustType<SparklerDust>(), new Vector2(2f * dir, -2f).RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(0.75f, 1f), 0, new Color(255, 255, 255, 255), Main.rand.NextFloat(0.5f, 0.9f));
+                            }
                         }
                     }
                     break;

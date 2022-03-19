@@ -864,6 +864,9 @@ namespace AQMod
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
 
+        public int drainableManaMax;
+        public int drainableMana;
+
         public bool shimmering;
         public bool blueFire;
         public bool lovestruck;
@@ -882,6 +885,8 @@ namespace AQMod
         public bool windStruckOld;
 
         public sbyte temperature;
+
+        public int updateTick;
 
         private void UpdateTemperature(NPC npc)
         {
@@ -918,6 +923,11 @@ namespace AQMod
             corruptHellfire = false;
             crimsonHellfire = false;
             minionHaunted = false;
+            if (drainableMana < drainableManaMax && (updateTick % 4 == 0))
+            {
+                drainableMana++;
+            }
+            updateTick++;
         }
 
         private void CheckBuffImmunes(NPC npc)
@@ -945,15 +955,16 @@ namespace AQMod
                     hotDamage = true;
                 CheckBuffImmunes(npc);
             }
+            drainableMana = Math.Min(npc.lifeMax / 20, 100);
         }
         public void PostSetDefaults(NPC npc, int Type, float scaleOverride)
         {
+            drainableManaMax = drainableMana;
             setLavaImmune = npc.lavaImmune;
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-            
             if (shimmering)
             {
                 if (npc.lifeRegen > 0)
@@ -1171,11 +1182,15 @@ namespace AQMod
             }
         }
 
+        private void ApplyDamageEffects(ref int damage)
+        {
+            if (lovestruck)
+                damage += (int)(damage * 0.1f);
+        }
         public override void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit)
         {
             ApplyDamageEffects(ref damage);
         }
-
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             var aQNPC = npc.GetGlobalNPC<AQNPC>();
@@ -1189,12 +1204,6 @@ namespace AQMod
                 damage = (int)(damage * multiplier);
             }
             ApplyDamageEffects(ref damage);
-        }
-
-        private void ApplyDamageEffects(ref int damage)
-        {
-            if (lovestruck)
-                damage += (int)(damage * 0.1f);
         }
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
@@ -1318,7 +1327,7 @@ namespace AQMod
                 if (!p.Item1.moonLeech && p.Item2.bloodthirstDelay == 0 && p.Item2.bloodthirst)
                 {
                     p.Item2.bloodthirstDelay = 255;
-                    AQPlayer.HealPlayer(p.Item1, healAmount, broadcast: true, merge: true, AQUtils.Instance(ModContent.ItemType<BloodthirstPotion>()),
+                    AQPlayer.HealPlayer(p.Item1, healAmount, broadcast: true, mergeHealEffect: true, AQUtils.Instance(ModContent.ItemType<BloodthirstPotion>()),
                         healingItemQuickHeal: false);
                 }
             }

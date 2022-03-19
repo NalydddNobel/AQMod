@@ -124,7 +124,7 @@ namespace AQMod.Projectiles.Monster
                 drawPos = new Vector2((int)drawPos.X, (int)drawPos.Y);
                 if (projectile.ai[0] > 0f)
                 {
-                    var bloom = Tex.Lights.Spotlight100x100;
+                    var bloom = Tex.Bloom;
                     var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height / 2);
                     var bloomOrigin = new Vector2(bloomFrame.Width / 2f, bloomFrame.Height);
                     var bloomColor = new Color(25, 25, 255, 0);

@@ -160,6 +160,6 @@ namespace AQMod.Projectiles.Magic
                 Main.PlaySound(SoundID.Item14, projectile.Center);
         }
 
-        public static Color NarrizuulRainbow(float position) => AQUtils.LerpColors(new Color[] { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Magenta, }, position);
+        public static Color NarrizuulRainbow(float position) => AQUtils.LerpBetween(new Color[] { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Magenta, }, position);
     }
 }

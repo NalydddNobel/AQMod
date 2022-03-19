@@ -706,5 +706,9 @@ namespace AQMod
         {
             return AQText.modTranslations["Mods.AQMod." + key];
         }
+        public static Texture2D GetTex(string key)
+        {
+            return ModContent.GetInstance<AQMod>().GetTexture(key);
+        }
     }
 }

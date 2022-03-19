@@ -55,12 +55,6 @@ namespace AQMod.Common.Utilities.Debugging
                     caller.Reply("Command doesn't exist.");
                     break;
 
-                case "mushroomtest":
-                    {
-                        MushroomBGWallGenerator.GenerateSpire(mX, mY, int.Parse(args[1]));
-                    }
-                    break;
-
                 case "genglobes":
                     {
                         GlobeGenerator.GenerateGlobes(null);

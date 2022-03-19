@@ -42,6 +42,9 @@ namespace AQMod.Assets
             Texture = new Ref<Texture2D>(mod.GetTexture(path));
         }
 
+        public int Width => Texture.Value.Width;
+        public int Height => Texture.Value.Width;
+
         public static implicit operator string(TextureAsset asset)
         {
             return asset.Path;

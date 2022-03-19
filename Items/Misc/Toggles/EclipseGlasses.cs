@@ -16,7 +16,6 @@ namespace AQMod.Items.Misc.Toggles
         {
             item.width = 16;
             item.height = 16;
-            item.accessory = true;
             item.rare = ItemRarityID.Yellow;
             item.value = Item.buyPrice(gold: 60);
             item.useAnimation = 45;
