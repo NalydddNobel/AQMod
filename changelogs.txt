@@ -1,3 +1,79 @@
+####### 1.4.5 #######
+
+# Additions:
+Added the Jeweled Chandelier, a quest item for the Exporter town NPC
+Added the Ammo Renewal Pack, dropped by Green Jellyfish, makes enemies drop ammo when killed
+Added the Jelly Amulet, crafted with the Jellyfish Necklace, Shock Collar, and Ammo Renewal Pack
+Added the Eclipse Glasses, sold by the Physicist after a single mech is defeated, prevents the Eclipse from naturally spawning
+Added the Transistor, sold by the Physicist, prevents Glimmers from naturally spawning
+Added the Dream Catcher, a hook barb found in Skyware Chests in floating islands
+Added the Magika Amulet, crafted using the Moon Leech, Mana Flower, and Cross Necklace
+Added the Squyp, obtained by fishing at the ocean, summons sentries near your enemies in battle
+Added the Sky Palette, randomly rewarded by the Exporter after completing 5 quests
+Added the Moon Leech, an item dropped from Hyper Starite
+
+- Sky Islands can now generate with a globe on the table
+- Globes now write your tile coordinates into chat when you right click on them
+
+- The Physicist now sells the Solar Tablet after Plantera has been defeated
+
+- Added item icons next to Aequus' config options
+
+- The Exporter now spawns from one of Crabson's claws when defeated for the first time
+- The Jeweled Candelabra and Jeweled Chalice are now placeable
+
+- Cavern Palettes can now drop the Enchanted Racquet, Brightstone Chunk, and Armor Polishing Kits from the Split mod if enabled
+
+- The Crab Caves now plays ocean music while you are underground instead of cave music
+
+- The Starite Staff is now crafted instead of dropped by Super Starites
+
+- Being in water now makes you resist hotter temperatures
+- Hot and Cold Amulets now make their respective temperatures decrease twice as fast
+
+# Removals:
+- Removed the "World-Evil Progression Lock"
+- Removed the Terraroot, was replaced with the Ammo Renewal Pack 
+- Removed the tooltip on the Fizzler
+- Removed the naturally generating globe shrines
+
+# Changes:
+- Gale Streams should now happen lower down in larger worlds, due to space being much higher in those worlds
+- The first temperature effect from cold is now chilled instead of frostburn
+- The Overworld and Cavern Palettes can now stack to 99
+
+- Modified the Kochfrost Staff's minions movement, and changed every instance of "Snowsaw" to be instead be "Snowflake" when talking about the minion
+
+- Gore Nests can no longer grow after the Demon Siege has been completed, due to the Memorialist selling it making that redundant 
+
+- Cosmicanon is now a world toggle, and has its functions split across the Eclipse Glasses and Transistor
+
+- Renamed the Hyper Crystal to "Hyper Focus Crystal", and changed how it works
+- Renamed the Orbicular Stargaizar to "Cosmic Crystal Ball"
+
+- Increased the defense of the Neutrality Amulet
+* 2 -> 3
+- Quasicrystal, Spiritual, Heated and Freezing, Amulets now gives 2 defense
+- Modified all "Amulet" recipes to use an Amulet
+
+- Decreased the droprate of the Umystick from White Slimes
+* 1/4 -> 1/15
+
+- Overall lowered Crabson's damage
+* 24 (48 in expert) -> 20 (40 in expert)
+- Increased the scale of Crabson's pearl shard projectiles and gave them a glowing aura for visibility
+- Crabson, and his claws no longer deal contact damage unless doing the slam attack
+- Lowered the speed of Crabson's Slam attack slightly
+- Crabson's bubble attack now ends 1 second faster
+
+- Omega Starite's deathray no longer damages town NPCs and critters at all
+- Omega Starite's orbs now deal 90% less damage to town NPCs
+- Hyper Starite's arms now deal 90% less damage to town NPCs
+
+# Fixes:
+- Fixed temperature effects from the Gale Streams applying at weird times
+- The Red Sprite and Space Squid now only leave when you leave the Gale Streams event instead of leaving when you're too 185 blocks from the top of the world 
+
 ####### 1.4.4 #######
 
 # Changes:
