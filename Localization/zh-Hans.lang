@@ -54,6 +54,9 @@ BuffDescription.ManaDrain=魔法伤害降低90%
 # Accessories
 #===========================#
 
+ItemName.MoonLeech=月噬
+ItemTooltip.MoonLeech=攻击会汲取敌人的法力
+
 ItemName.Squyp=特异珊瑚
 ItemTooltip.Squyp=当你处于战斗中时会自动召唤哨兵\n仅在背包中拥有哨兵武器时才会生效\n'仅是轻微的干扰'
 
@@ -61,7 +64,7 @@ ItemName.DreamCatcher=捕梦者
 ItemTooltip.DreamCatcher={$Mods.AQMod.Tooltips.HookBarb}\n处于天空群落中时会造成额外伤害
 
 ItemName.MagikaAmulet=神奇护符
-ItemTooltip.MagikaAmulet=增加20点最大法力值\n减少8%法力消耗\n扩大魔力星的拾取范围\n受到伤害时回复法力值\n法力值不足时会自动饮用法力药水\n附近的物品会漂浮而非掉落
+ItemTooltip.MagikaAmulet=减少8%法力消耗\n攻击会汲取敌人的法力\n延长受伤后的无敌时间\n法力值不足时会自动饮用法力药水
 
 ItemName.JellyAmulet=水母护符
 ItemTooltip.JellyAmulet=在水中时提供更亮的光照\n增加5%远处伤害\n在水中时增加10%远处暴击率\n敌人会掉落你所消耗的弹药
@@ -89,7 +92,7 @@ ItemName.Amulet=护符
 ItemTooltip.Amulet=可附魔
 
 ItemName.BloodPlasma=离子血浆
-ItemTooltip.BloodPlasma=当你受到致死伤害时会自动饮用一瓶治疗药水
+ItemTooltip.BloodPlasma=当你受到致死伤害时会自动吞下此物\n饰品栏中仅能存在该饰品
 
 ItemName.TargeoftheBlodded=尖刺盾牌
 ItemTooltip.TargeoftheBlodded=增加2点护甲穿透\n可沿墙滑下\n结合{$ItemName.ClimbingClaws}或{$ItemName.ShoeSpikes}使用时可提升能力
