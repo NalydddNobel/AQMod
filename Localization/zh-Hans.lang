@@ -552,6 +552,16 @@ ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.To
 # Potions
 #===========================#
 
+ItemName.NoonPotion=正午药水
+ItemTooltip.NoonPotion=使你散发范围较大的光芒并强化夜视效果\n会使仅在白天生效的效果生效\n阻止仅在夜晚生效的效果生效
+BuffName.NoonBuff=正午
+BuffDescription.NoonBuff=使你散发范围较大的光芒并强化夜视效果\n会使仅在白天生效的效果生效\n阻止仅在夜晚生效的效果生效
+
+ItemName.OpposingPotion=对立药水
+ItemTooltip.OpposingPotion=逆转许多事物的效果
+BuffName.Opposing=对立
+BuffDescription.Opposing=逆转许多事物的效果
+
 ItemName.Baguette=法棍
 ItemTooltip.Baguette=大幅度提升所有属性\n大幅度增加生命恢复速度\n'蛋糕只是松软的面包'
 BuffName.BaguetteBuff=法棍
@@ -648,6 +658,11 @@ ItemName.RainbowOutlineDye=彩虹轮廓描边染料
 #===========================#
 # Pets
 #===========================#
+
+ItemName.FamiliarPickaxe=令人熟悉的镐子
+ItemTooltip.FamiliarPickaxe=召唤一个迷你版的你自己
+BuffName.FamiliarBuff=令人熟悉
+BuffDescription.FamiliarBuff尽管如此, 它仍是你
 
 ItemName.HeartLamp=心灯
 ItemTooltip.HeartLamp=召唤一只会增加你生命恢复速度并提供光照的心蛾
@@ -755,6 +770,10 @@ HermitCrab.MonthsAgo=已在 {0} 月前储存此物品
 # Memorialist
 
 NPCName.Memorialist=请愿者
+
+Memorialist.Concoction=混合
+Memorialist.Concoct=混合
+Memorialist.StopConcocting=停止混合
 
 Memorialist.Chat.0=啥? 你认为我是个怪胎? 那你最近肯定没有照过镜子.
 Memorialist.Chat.1=以撒是谁? 听起来像是个爱哭的孩子的名字.
@@ -1139,10 +1158,6 @@ ItemName.UltimateStarfruit=终极星果
 # Buff Items #
 ##############
 ItemName.SuspiciousLookingSteak=可疑牛排
-
-# Other Buffs Items
-ItemName.OpposingPotion=对立药水
-ItemName.PotionofBossrushium=安可药水
 ##############
 # Equipables #
 ##############
@@ -1296,9 +1311,6 @@ ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
 ##############
 # Foods
 ItemTooltip.SuspiciousLookingSteak=使你获得许多增益\n'诅咒已除'
-# Other Buffs Items
-ItemTooltip.OpposingPotion=使某些敌人掉落与其主题相反的物品\n(例如肉后血地怪会掉光明之魂)
-ItemTooltip.PotionofBossrushium=Boss被击败时会再次生成
 ##############
 # Equipables #
 ##############
@@ -1376,8 +1388,6 @@ BuffName.Ultima=最终之力
 BuffDescription.Ultima=最终之剑祝福着你
 BuffName.SpectreHealing=幽魂之愈
 BuffDescription.SpectreHealing=你正快速的恢复生命
-BuffName.Opposing=对立
-BuffDescription.Opposing=使某些敌人有几率掉落与其主题相反的物品
 
 BuffName.Cold20=冷
 BuffDescription.Cold20=你的体温低于20华氏度
