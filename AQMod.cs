@@ -205,7 +205,6 @@ namespace AQMod
             IsUnloading = false;
             Instance = this;
             Keybinds.Load();
-            LoadHooks(unload: false);
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
             DemonSiege.Load();
@@ -240,6 +239,10 @@ namespace AQMod
             }
 
             LoadCrossMod(unload: false);
+
+            MonoModHooks.RequestNativeAccess();
+
+            LoadHooks(unload: false);
 
             CelesitalEightBall.Initalize();
 
@@ -305,9 +308,9 @@ namespace AQMod
             NoHitting.CurrentlyDamaged = null;
             AutoDyeBinder.Unload();
             DemonSiege.Unload();
-            AQProjectile.Sets.Instance.Unload();
+            AQProjectile.Sets.Instance = null;
             AQNPC.Sets.Instance = null;
-            AQItem.Unload();
+            AQItem.Sets.Instance = null;
             GlowmaskData.ItemToGlowmask?.Clear();
             GlowmaskData.ItemToGlowmask = null;
             AQBuff.Sets.Instance = null;

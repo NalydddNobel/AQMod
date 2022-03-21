@@ -143,24 +143,6 @@ namespace AQMod
             {
                 AutoSets();
             }
-
-            internal void Unload()
-            {
-                MinionHeadType?.Clear();
-                MinionHeadType = null;
-                MinionRotationalType?.Clear();
-                MinionRotationalType = null;
-                WindUpdates?.Clear();
-                WindUpdates = null;
-                IsGravestone?.Clear();
-                IsGravestone = null;
-                DamageReductionExtractor?.Clear();
-                DamageReductionExtractor = null;
-                HookBarbBlacklist?.Clear();
-                HookBarbBlacklist = null;
-                IsAMinionProj?.Clear();
-                IsAMinionProj = null;
-            }
         }
 
         public static class AIStyles

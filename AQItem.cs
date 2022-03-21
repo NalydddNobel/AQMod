@@ -27,6 +27,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -44,6 +45,75 @@ namespace AQMod
             internal static void Apply()
             {
                 On.Terraria.Item.SetDefaults += PostSetDefaults;
+
+                if (AQMod.split.IsActive)
+                {
+                    var split = AQMod.split.mod;
+                    AQUtils.AddHook(AQMod.split, "Split.Items.Misc.AlchemicalPot", "AddPotion", BindingFlags.NonPublic | BindingFlags.Instance, 
+                        GetMethod(nameof(Split_AlchemistPot_AddPotion)));
+                    AQUtils.AddHook(AQMod.split, "Split.Items.Misc.AlchemicalPot", "UpdateGradient", BindingFlags.NonPublic | BindingFlags.Instance, 
+                        GetMethod(nameof(Split_AlchemistPot_UpdateGradient)));
+                }
+            }
+
+            private static MethodInfo GetMethod(string name)
+            {
+                return typeof(Hooks).GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static);
+            }
+
+            private static void Split_AlchemistPot_UpdateGradient(Action<ModItem> orig, ModItem self)
+            {
+                orig(self);
+                if (!Main.dedServ)
+                {
+                    var list = (List<Item>)self.GetType().GetField("potions", BindingFlags.Public | BindingFlags.Instance).GetValue(self);
+                    var colors = new Color[list.Count];
+                    var drawHelper = AQMod.split.mod.GetType().GetField("DrawHelper").GetValue(AQMod.split.mod);
+                    var getItemColor = drawHelper.GetType().GetMethod("GetPotionColor", BindingFlags.Public | BindingFlags.Instance);
+                    for (int i = 0; i < colors.Length; i++)
+                    {
+                        if (list[i]?.modItem is ConcoctionResult concoction)
+                        {
+                            colors[i] = (Color)getItemColor.Invoke(drawHelper, new object[] { concoction.original.type });
+                        }
+                    }
+
+                    //AQMod.Instance.Logger.Debug("1");
+                    var f = self.GetType().GetField("potionGradient", BindingFlags.Public | BindingFlags.Instance);
+                    //AQMod.Instance.Logger.Debug("2, f is {" + (f == null ? "null" : f.Name) + "}");
+                    var type = AQMod.split.mod.Code.GetType("Split.Helpers.Gradient");
+                    //AQMod.Instance.Logger.Debug("3, type is {" + (type == null ? "null" : type.Name) + "}");
+                    var method = type.GetMethod("Linear");
+                    //AQMod.Instance.Logger.Debug("4, type is {" + (method == null ? "null" : method.Name) + "}");
+                    f.SetValue(self, method.Invoke(null, new object[] { true, colors, }));
+                }
+            }
+            private static void Split_AlchemistPot_AddPotion(Action<ModItem, Item> orig, ModItem self, Item item)
+            {
+                if (item?.modItem is ConcoctionResult)
+                {
+                    var f = self.GetType().GetField("potions", BindingFlags.Public | BindingFlags.Instance);
+                    var list = (List<Item>)f.GetValue(self);
+                    foreach (var i in list)
+                    {
+                        if (i.type == item.type && i.buffType == item.buffType)
+                        {
+                            i.stack++;
+                            item.stack--;
+                            if (item.stack < 0)
+                            {
+                                item.TurnToAir();
+                            }
+                            return;
+                        }
+                    }
+                    list.Add(item.Clone());
+                    f.SetValue(self, list);
+                    item.stack = 0;
+                    item.TurnToAir();
+                    return;
+                }
+                orig(self, item);
             }
 
             private static void PostSetDefaults(On.Terraria.Item.orig_SetDefaults orig, Item self, int Type, bool noMatCheck)
@@ -414,15 +484,6 @@ namespace AQMod
             glowmask = default(GlowmaskData);
             cooldownMultiplier = 1f;
             comboMultiplier = 1f;
-        }
-
-        internal static void SetupContent()
-        {
-        }
-
-        internal static void Unload()
-        {
-            Sets.Instance.Unload();
         }
 
         private void GlowmaskDataCheck(Item item)

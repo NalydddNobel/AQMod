@@ -59,11 +59,6 @@ namespace AQMod
                         setDaytime = false;
                         Main.dayTime = true;
                     }
-                    if (aQPlayer.fakeDaytime == 2 && Main.dayTime)
-                    {
-                        setDaytime = true;
-                        Main.dayTime = false;
-                    }
                 }
                 try
                 {
@@ -75,6 +70,7 @@ namespace AQMod
                 if (setDaytime != null)
                 {
                     Main.dayTime = setDaytime.Value;
+                    setDaytime = null;
                 }
             }
 

@@ -52,7 +52,9 @@ namespace AQMod.Effects.Dyes
 
         public static void Unload() // incase of cancelled loading mid-load
         {
+            _loadDyes?.Clear();
             _loadDyes = null;
+            _loadHairDyes?.Clear();
             _loadHairDyes = null;
         }
 
