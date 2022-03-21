@@ -9,7 +9,6 @@ using AQMod.Items.Misc;
 using AQMod.Items.Misc.Cursor.Demonic;
 using AQMod.Items.Misc.Summons;
 using AQMod.Items.Placeable.Furniture;
-using AQMod.Items.Potions;
 using AQMod.Items.Potions.Foods;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.Fishing;

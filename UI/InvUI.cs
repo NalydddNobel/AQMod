@@ -8,8 +8,25 @@ using Terraria.UI.Chat;
 
 namespace AQMod.UI
 {
-    internal static class InvUI
+    public static class InvUI
     {
+        public static class Hooks
+        {
+            public static int CurrentSlotContext;
+
+            internal static void Apply()
+            {
+                On.Terraria.UI.ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += UpdateContext;
+            }
+
+            private static void UpdateContext(On.Terraria.UI.ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
+            {
+                CurrentSlotContext = context;
+                orig(spriteBatch, inv, context, slot, position, lightColor);
+                CurrentSlotContext = -1;
+            }
+        }
+
         public struct DrawResults
         {
             public Item item;

@@ -3,7 +3,7 @@ using AQMod.Content.World.Events;
 using AQMod.Gores;
 using AQMod.Items.Dyes;
 using AQMod.Items.Placeable.Banners;
-using AQMod.Items.Potions;
+using AQMod.Items.Potions.Foods;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

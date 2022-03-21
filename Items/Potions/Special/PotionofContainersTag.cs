@@ -1,5 +1,4 @@
-﻿using AQMod.Items.Potions;
-using AQMod.Items.Recipes;
+﻿using AQMod.Items.Recipes;
 using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,7 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
 
-namespace AQMod.Items.Tools
+namespace AQMod.Items.Potions.Special
 {
     public class PotionofContainersTag : ModItem
     {
@@ -275,8 +274,7 @@ namespace AQMod.Items.Tools
 
         private static Color GetTextColor(float time)
         {
-            int value = (int)(Math.Sin(time) * 10.0);
-            return new Color(255 - value, 225 + value * 3, 180, 255);
+            return new Color(245 - (int)(Math.Sin(time) * 10.0), 180, 150, 255);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

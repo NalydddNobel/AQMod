@@ -13,7 +13,7 @@ using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Misc;
 using AQMod.Items.Placeable.Furniture;
-using AQMod.Items.Potions;
+using AQMod.Items.Potions.Foods;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Melee;

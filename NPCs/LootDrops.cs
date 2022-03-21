@@ -4,7 +4,7 @@ using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Misc.Toggles;
-using AQMod.Items.Potions;
+using AQMod.Items.Potions.Foods;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;

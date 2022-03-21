@@ -1,5 +1,4 @@
-﻿using AQMod.Items.Potions;
-using AQMod.Items.Tools;
+﻿using AQMod.Items.Potions.Special;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -138,7 +138,7 @@ namespace AQMod
                 AQItem.Hooks.Apply();
                 AQNPC.Hooks.Apply();
                 AQWorld.Hooks.Apply();
-
+                InvUI.Hooks.Apply();
                 DrawHelper.Hooks.Apply();
             }
         }
@@ -246,6 +246,7 @@ namespace AQMod
             AQTile.Sets.Load();
             AQConfigClient.LoadTranslations();
             AQConfigServer.LoadTranslations();
+            AQUtils.BatchData.Load();
 
             Autoloading.Autoload(Code);
         }
@@ -287,13 +288,13 @@ namespace AQMod
 
         public override void Unload()
         {
-            // outside of AQMod
             Loading = true;
             IsUnloading = true;
             cachedLoadTasks?.Clear();
             cachedLoadTasks = null;
             LoadHooks(unload: true);
             Autoloading.Unload();
+            AQUtils.BatchData.Unload();
 
             NoHitting.CurrentlyDamaged?.Clear();
             NoHitting.CurrentlyDamaged = null;

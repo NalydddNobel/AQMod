@@ -48,7 +48,8 @@ namespace AQMod.Dusts
                 dust.velocity *= 0.95f;
                 dust.scale -= 0.01f;
             }
-            if (WorldGen.SolidTile(Framing.GetTileSafely(dust.position)) && dust.fadeIn == 0f && !dust.noGravity)
+            var tileCoords = dust.position.ToTileCoordinates();
+            if (WorldGen.InWorld(tileCoords.X, tileCoords.Y, 10) && WorldGen.SolidTile(Framing.GetTileSafely(tileCoords.X, tileCoords.Y)) && dust.fadeIn == 0f && !dust.noGravity)
             {
                 dust.scale *= 0.9f;
                 dust.velocity *= 0.25f;

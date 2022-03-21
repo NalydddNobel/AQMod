@@ -552,6 +552,11 @@ ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.To
 # Potions
 #===========================#
 
+ItemName.NoonPotion=Noon Potion
+ItemTooltip.NoonPotion=Emits a large aura of light and increases night vision
+BuffName.NoonBuff=Noon
+BuffDescription.NoonBuff=Emits a large aura of light and increases night vision
+
 ItemName.OpposingPotion=Opposing Potion
 ItemTooltip.OpposingPotion=Reverses the effects of many things
 BuffName.Opposing=Opposing
@@ -765,6 +770,10 @@ HermitCrab.MonthsAgo=Stored this item {0} months ago
 # Memorialist
 
 NPCName.Memorialist=Memorialist
+
+Memorialist.Concoction=Concoctions
+Memorialist.Concoct=Concoct
+Memorialist.StopConcocting=Stop Concocting
 
 Memorialist.Chat.0=What? Do you think I'm a freak? You must have not looked in the mirror recently.
 Memorialist.Chat.1=Who's Issac? Sounds like the name of a crybaby kid.

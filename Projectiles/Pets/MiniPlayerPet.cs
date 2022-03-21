@@ -89,13 +89,14 @@ namespace AQMod.Projectiles.Pets
             {
                 return false;
             }
+            var batchData = new AQUtils.BatchData(spriteBatch);
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.Transform);
             DrawHelper.Hooks.PlayerDrawScale = projectile.scale;
             AQUtils.DrawPlayerFull(dummyPlayer);
             DrawHelper.Hooks.PlayerDrawScale = null;
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.Transform);
+            batchData.Begin(spriteBatch);
             return false;
         }
     }

@@ -5,6 +5,7 @@ using AQMod.Items.Misc.Toggles;
 using AQMod.Items.Placeable;
 using AQMod.Items.Weapons.Melee;
 using AQMod.Items.Weapons.Summon;
+using AQMod.UI;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -149,12 +150,21 @@ namespace AQMod.NPCs.Friendly
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
+            button2 = AQMod.GetText("Memorialist.Concoction");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
         {
             if (firstButton)
+            {
                 shop = true;
+            }
+            else
+            {
+                Main.playerInventory = true;
+                Main.npcChatText = "";
+                AQMod.GetInstance().NPCTalkState.SetState(new ConcoctionUI());
+            }
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

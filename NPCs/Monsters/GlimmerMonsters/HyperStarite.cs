@@ -6,7 +6,7 @@ using AQMod.Items.Accessories;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;
-using AQMod.Items.Potions;
+using AQMod.Items.Potions.Foods;
 using AQMod.Projectiles.Monster.Starite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Potions
+namespace AQMod.Items.Potions.Foods
 {
     public class SpicyEel : ModItem
     {

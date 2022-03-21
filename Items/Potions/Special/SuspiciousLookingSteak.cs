@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Potions
+namespace AQMod.Items.Potions.Special
 {
     public class SuspiciousLookingSteak : ModItem
     {

@@ -2,7 +2,7 @@
 using AQMod.Common.Graphics;
 using AQMod.Content.Players;
 using AQMod.Items.Materials;
-using AQMod.Items.Potions;
+using AQMod.Items.Potions.Special;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

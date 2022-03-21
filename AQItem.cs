@@ -15,11 +15,14 @@ using AQMod.Items.Misc;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
 using AQMod.Items.Potions.Foods;
+using AQMod.Items.Potions.Special;
 using AQMod.Items.Prefixes;
 using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Summon;
+using AQMod.NPCs.Friendly;
 using AQMod.Tiles;
+using AQMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -30,6 +33,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.UI;
 using Terraria.UI.Chat;
 
 namespace AQMod
@@ -69,145 +73,24 @@ namespace AQMod
             public static HashSet<int> ItemIDRenewalBlacklist { get; private set; }
             public static HashSet<int> AmmoIDRenewalBlacklist { get; private set; }
 
+            public static Dictionary<int, int> ConcoctionItemConversions { get; private set; }
+
             public static List<int> OverworldChestLoot { get; private set; }
             public static List<int> CavernChestLoot { get; private set; }
             public static List<int> SkyChestLoot { get; private set; }
             public static List<int> CavePotions { get; private set; }
 
-            public struct SentryStaffUsage
-            {
-                public static SentryStaffUsage Default => new SentryStaffUsage(isGrounded: false, range: 2000);
-
-                public readonly bool IsGrounded;
-                public readonly float Range;
-                public readonly bool DoNotUse;
-                /// <summary>
-                /// Player is the player who is summoning the sentry
-                /// <para>Item is the item used to summon the sentry</para>
-                /// <para>NPC is the target</para>
-                /// <para>.</para>
-                /// <para>returns:</para> 
-                ///     Whether it was successful at placing a sentry
-                /// </summary>
-                public Func<Player, Item, NPC, bool> customAction;
-
-                public SentryStaffUsage(bool isGrounded = false, float range = 2000f) : this(null, isGrounded, range)
-                {
-                }
-
-                public SentryStaffUsage(Func<Player, Item, NPC, bool> customAction, bool isGrounded = false, float range = 2000f)
-                {
-                    IsGrounded = isGrounded;
-                    Range = range;
-                    this.customAction = customAction;
-                    DoNotUse = false;
-                }
-
-                public SentryStaffUsage(bool doNotUse)
-                {
-                    IsGrounded = false;
-                    Range = -1f;
-                    customAction = null;
-                    DoNotUse = true;
-                }
-
-                private Vector2? FindGroundedSpot(int x, int y)
-                {
-                    for (int j = 0; j < 25; j++)
-                    {
-                        if (Main.tile[x, y + j] == null)
-                        {
-                            Main.tile[x, y + j] = new Tile();
-                            return null;
-                        }
-                        if (Main.tile[x, y + j].active() && Main.tile[x, y + j].Solid())
-                        {
-                            return new Vector2(x * 16f + 8f, (y + j) * 16f - 32f);
-                        }
-                    }
-                    return null;
-                }
-                public bool TrySummoningThisSentry(Player player, Item item, NPC target)
-                {
-                    if (DoNotUse)
-                    {
-                        return false;
-                    }
-                    if (customAction?.Invoke(player, item, target) == true)
-                    {
-                        return true;
-                    }
-                    if (IsGrounded)
-                    {
-                        List<Vector2> validLocations = new List<Vector2>();
-                        int x = ((int)target.position.X + target.width / 2) / 16;
-                        int y = (int)target.position.Y / 16;
-                        for (int i = -5; i <= 5; i++)
-                        {
-                            var v = FindGroundedSpot(x, y);
-                            if (v.HasValue)
-                            {
-                                validLocations.Add(v.Value);
-                            }
-                        }
-                        if (validLocations.Count == 0)
-                        {
-                            return false;
-                        }
-                        float closest = Range;
-                        var resultPosition = Vector2.Zero;
-                        var targetCenter = target.Center;
-                        foreach (var v in validLocations)
-                        {
-                            float d = target.Distance(v);
-                            if (!Collision.CanHitLine(v, 2, 2, target.position, target.width, target.height))
-                            {
-                                d *= 2f;
-                            }
-                            if (d < Range)
-                            {
-                                d = Math.Min(d + Main.rand.Next(-150, 100), Range);
-                            }
-                            if (d < closest)
-                            {
-                                resultPosition = v;
-                                closest = d;
-                            }
-                        }
-                        if (resultPosition == Vector2.Zero)
-                        {
-                            return false;
-                        }
-                        int shoot = AQUtils.ShootProj(player, item, resultPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), resultPosition);
-                        return shoot != -1;
-                    }
-                    else
-                    {
-                        var shootPosition = target.position;
-                        shootPosition.X += target.width / 2f;
-                        shootPosition.Y -= 200f;
-                        int shoot = AQUtils.ShootProj(player, item, shootPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), shootPosition);
-                        return shoot != -1;
-                    }
-                }
-            }
-
             public static Dictionary<int, SentryStaffUsage> SentryUsage { get; private set; }
-
-            public struct ItemDedication
-            {
-                public readonly Color color;
-
-                public ItemDedication(Color color)
-                {
-                    this.color = color;
-                }
-            }
 
             public static Dictionary<int, ItemDedication> DedicatedItem { get; private set; }
 
             internal static void Load()
             {
+                ConcoctionItemConversions = new Dictionary<int, int>()
+                {
+                    [ModContent.ItemType<Molite>()] = ModContent.ItemType<MoliteTag>(),
+                };
+
                 SentryUsage = new Dictionary<int, SentryStaffUsage>()
                 {
                     [ItemID.DD2BallistraTowerT1Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
@@ -279,6 +162,7 @@ namespace AQMod
 
                 DedicatedItem = new Dictionary<int, ItemDedication>()
                 {
+                    [ModContent.ItemType<NoonPotion>()] = new ItemDedication(new Color(200, 140, 50, 255)),
                     [ModContent.ItemType<FamiliarPickaxe>()] = new ItemDedication(new Color(200, 65, 70, 255)),
                     [ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),
                     [ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
@@ -847,6 +731,27 @@ namespace AQMod
 
                             spriteBatch.Draw(texture, center, uiFrame, new Color(255, 255, 225, 250) * (0.75f + progress * 0.25f), 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
                         }
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            else
+            {
+                try
+                {
+                    if (ConcoctionUI.Active && InvUI.Hooks.CurrentSlotContext == ItemSlot.Context.InventoryItem 
+                        && Main.LocalPlayer.IsTalkingTo<Memorialist>() && ConcoctionResult.IsValidPotion(item))
+                    {
+                        var texture = mod.GetTexture("Items/ConcoctionBack");
+                        int frameY = texture.Height;
+                        var uiFrame = new Rectangle(0, texture.Height - frameY, texture.Width, frameY);
+                        position.Y += uiFrame.Y * Main.inventoryScale;
+                        var center = position + frame.Size() / 2f * scale;
+
+                        spriteBatch.Draw(texture, center, uiFrame, ConcoctionUI.PotionBGColor, 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
                     }
                 }
                 catch

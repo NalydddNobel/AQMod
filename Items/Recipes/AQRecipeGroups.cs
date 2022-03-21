@@ -1,7 +1,7 @@
 ﻿using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Nature;
-using AQMod.Items.Potions;
+using AQMod.Items.Potions.Healing;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

@@ -45,6 +45,77 @@ namespace AQMod
             }
         }
 
+        public sealed class BatchData 
+        {
+            private static FieldInfo spriteSortModeField;
+            private static FieldInfo blendStateField;
+            private static FieldInfo depthStencilStateField;
+            private static FieldInfo rasterizerStateField;
+            private static FieldInfo samplerStateField;
+            private static FieldInfo customEffectField;
+            private static FieldInfo transformMatrixField;
+
+            public SpriteSortMode spriteSortMode;
+            public BlendState blendState;
+            public DepthStencilState depthStencilState;
+            public RasterizerState rasterizerState;
+            public SamplerState samplerState;
+            public Effect customEffect;
+            public Matrix transformMatrix;
+
+            public BatchData(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, 
+                RasterizerState rasterizerState, Effect effect, Matrix transformMatrix)
+            {
+                spriteSortMode = sortMode;
+                this.blendState = blendState;
+                this.samplerState = samplerState;
+                this.depthStencilState = depthStencilState;
+                this.rasterizerState = rasterizerState;
+                customEffect = effect;
+                this.transformMatrix = transformMatrix;
+            }
+
+            public BatchData(SpriteBatch spriteBatch) : 
+                this(spriteSortModeField.GetValue<SpriteSortMode>(spriteBatch),
+                    blendStateField.GetValue<BlendState>(spriteBatch),
+                    samplerStateField.GetValue<SamplerState>(spriteBatch),
+                    depthStencilStateField.GetValue<DepthStencilState>(spriteBatch),
+                    rasterizerStateField.GetValue<RasterizerState>(spriteBatch),
+                    customEffectField.GetValue<Effect>(spriteBatch),
+                    transformMatrixField.GetValue<Matrix>(spriteBatch))
+            {
+            }
+
+            public void Begin(SpriteBatch spriteBatch)
+            {
+                spriteBatch.Begin(spriteSortMode, blendState, samplerState, depthStencilState, rasterizerState, customEffect, transformMatrix);
+            }
+
+            internal static void Load()
+            {
+                var t = typeof(SpriteBatch);
+                var flags = BindingFlags.NonPublic | BindingFlags.Instance;
+                spriteSortModeField = t.GetField(nameof(spriteSortMode), flags);
+                blendStateField = t.GetField(nameof(blendState), flags);
+                samplerStateField = t.GetField(nameof(samplerState), flags);
+                depthStencilStateField = t.GetField(nameof(depthStencilState), flags);
+                rasterizerStateField = t.GetField(nameof(rasterizerState), flags);
+                customEffectField = t.GetField(nameof(customEffect), flags);
+                transformMatrixField = t.GetField(nameof(transformMatrix), flags);
+            }
+
+            internal static void Unload()
+            {
+                spriteSortModeField = null;
+                blendStateField = null;
+                samplerStateField = null;
+                depthStencilStateField = null;
+                rasterizerStateField = null;
+                customEffectField = null;
+                transformMatrixField = null;
+            }
+        }
+
         public struct ArrayInterpreter<T>
         {
             public T[] Arr;
@@ -166,6 +237,20 @@ namespace AQMod
                 var origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, texture.Height);
                 Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetColor(), drawRotation, origin, item.scale, info.spriteEffects, 0));
             }
+        }
+
+        public static bool IsTalkingTo<T>(this Player player) where T : ModNPC
+        {
+            return IsTalkingTo(player, ModContent.NPCType<T>());
+        }
+        public static bool IsTalkingTo(this Player player, int npcType)
+        {
+            return player.talkNPC != -1 && Main.npc[player.talkNPC].type == npcType;
+        }
+
+        public static T GetValue<T>(this FieldInfo field, object obj)
+        {
+            return (T)field.GetValue(obj);
         }
 
         public static bool IsReferenceType(Type type)

@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Potions
+namespace AQMod.Items.Potions.Healing
 {
     public class BloodPlasma : ModItem
     {

@@ -119,65 +119,6 @@ namespace AQMod.NPCs
                         }
                     }
                     break;
-
-                case NPCID.Pirate:
-                    {
-                        if (Main.player[Main.myPlayer].anglerQuestsFinished >= 20)
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.AnglerPants);
-                            nextSlot++;
-                            shop.item[nextSlot].SetDefaults(ItemID.AnglerVest);
-                            nextSlot++;
-                            shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
-                            nextSlot++;
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
-                            nextSlot++;
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
-                            nextSlot++;
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<GoldSeal>());
-                            nextSlot++;
-                        }
-                        else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 15)
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.AnglerVest);
-                            nextSlot++;
-                            shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
-                            nextSlot++;
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
-                            nextSlot++;
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
-                            nextSlot++;
-                        }
-                        else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 10)
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
-                            nextSlot++;
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
-                            nextSlot++;
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
-                            nextSlot++;
-                        }
-                        else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 2)
-                        {
-                            shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
-                            nextSlot++;
-                        }
-                    }
-                    break;
-
-                case NPCID.SkeletonMerchant:
-                    {
-                        var plr = Main.LocalPlayer;
-                        if (!Main.dayTime)
-                        {
-                            if (Main.bloodMoon && !Main.hardMode && WorldDefeats.SudoHardmode)
-                            {
-                                shop.item[nextSlot].SetDefaults(ItemID.SlapHand);
-                                nextSlot++;
-                            }
-                        }
-                    }
-                    break;
             }
             if (type == NPCID.Clothier)
             {
@@ -196,6 +137,60 @@ namespace AQMod.NPCs
                         Insert(shop, ModContent.ItemType<FamiliarPickaxe>(), insertLocation, nextSlot);
                     }
                     nextSlot++;
+                }
+            }
+            else if (type == NPCID.Pirate)
+            {
+                if (Main.player[Main.myPlayer].anglerQuestsFinished >= 20)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.AnglerPants);
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ItemID.AnglerVest);
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<GoldSeal>());
+                    nextSlot++;
+                }
+                else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 15)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.AnglerVest);
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
+                    nextSlot++;
+                }
+                else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 10)
+                {
+                    shop.item[nextSlot].SetDefaults(ItemID.AnglerHat);
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<SilverSeal>());
+                    nextSlot++;
+                }
+                else if (Main.player[Main.myPlayer].anglerQuestsFinished >= 2)
+                {
+                    shop.item[nextSlot].SetDefaults(ModContent.ItemType<CopperSeal>());
+                    nextSlot++;
+                }
+            }
+            else if (type == NPCID.SkeletonMerchant)
+            {
+                if (!Main.dayTime)
+                {
+                    if (Main.bloodMoon && !Main.hardMode && WorldDefeats.SudoHardmode)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.SlapHand);
+                        nextSlot++;
+                    }
                 }
             }
         }

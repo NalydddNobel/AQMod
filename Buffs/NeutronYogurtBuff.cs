@@ -7,6 +7,7 @@ namespace AQMod.Buffs
     {
         public override void Update(Player player, ref int buffIndex)
         {
+            player.gravity *= 0.9f;
             AQBuff.WellFedMinor(player);
         }
     }

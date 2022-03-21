@@ -1,5 +1,5 @@
 ﻿using AQMod.Items.Accessories.Shields;
-using AQMod.Items.Potions;
+using AQMod.Items.Potions.Special;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.GrapplingHooks;
 using AQMod.Items.Weapons.Ranged.Healing;

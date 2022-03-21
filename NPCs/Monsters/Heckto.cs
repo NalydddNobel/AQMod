@@ -1,6 +1,6 @@
 ﻿using AQMod.Dusts;
 using AQMod.Items.Accessories.Summon;
-using AQMod.Items.Potions;
+using AQMod.Items.Potions.Foods;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
