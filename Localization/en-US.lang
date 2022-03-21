@@ -553,9 +553,9 @@ ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.To
 #===========================#
 
 ItemName.NoonPotion=Noon Potion
-ItemTooltip.NoonPotion=Emits a large aura of light and increases night vision
+ItemTooltip.NoonPotion=Emits a large aura of light and increases night vision\nYou always have daytime-only effects active\nPrevents nighttime-only effects from working
 BuffName.NoonBuff=Noon
-BuffDescription.NoonBuff=Emits a large aura of light and increases night vision
+BuffDescription.NoonBuff=Emits a large aura of light and increases night vision\nYou always have daytime-only effects active\nPrevents nighttime-only effects from working
 
 ItemName.OpposingPotion=Opposing Potion
 ItemTooltip.OpposingPotion=Reverses the effects of many things

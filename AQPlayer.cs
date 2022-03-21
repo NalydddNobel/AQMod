@@ -38,12 +38,44 @@ namespace AQMod
     {
         public static class Hooks
         {
+            public static bool? setDaytime;
+
             internal static void Apply()
             {
                 On.Terraria.Player.AddBuff += OnAddBuff;
                 On.Terraria.Player.PickTile += HitTile;
                 On.Terraria.Player.HorizontalMovement += MovementEffects;
                 On.Terraria.Chest.SetupShop += ApplyCustomDiscount;
+                On.Terraria.Player.Update += Player_Update;
+            }
+
+            private static void Player_Update(On.Terraria.Player.orig_Update orig, Player self, int i)
+            {
+                if (self.whoAmI == i)
+                {
+                    var aQPlayer = self.GetModPlayer<AQPlayer>();
+                    if (aQPlayer.fakeDaytime == 1 && !Main.dayTime)
+                    {
+                        setDaytime = false;
+                        Main.dayTime = true;
+                    }
+                    if (aQPlayer.fakeDaytime == 2 && Main.dayTime)
+                    {
+                        setDaytime = true;
+                        Main.dayTime = false;
+                    }
+                }
+                try
+                {
+                    orig(self, i);
+                }
+                catch
+                {
+                }
+                if (setDaytime != null)
+                {
+                    Main.dayTime = setDaytime.Value;
+                }
             }
 
             internal static void ApplyCustomDiscount(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
@@ -325,6 +357,8 @@ namespace AQMod
         public int extractorAirMask;
         public int ExtractinatorCount;
 
+        public byte fakeDaytime; // 1 = force day, 2 = force night
+
         public Item accOmegaStarite;
 
         public int accHealConsumableDelay;
@@ -386,6 +420,7 @@ namespace AQMod
         public override void UpdateDead()
         {
             ClearCustomDebuffs();
+            fakeDaytime = 0;
             manaDrain = false;
             itemCooldown = 0;
             itemCooldownMax = 0;
@@ -474,6 +509,8 @@ namespace AQMod
         }
         public override void ResetEffects()
         {
+            fakeDaytime = 0;
+
             accOmegaStarite = null;
 
             if (itemCombo > 0)
@@ -1007,6 +1044,10 @@ namespace AQMod
         }
         public override bool PreItemCheck()
         {
+            if (Hooks.setDaytime != null)
+            {
+                Main.dayTime = Hooks.setDaytime.Value;
+            }
             if (Main.myPlayer == player.whoAmI)
             {
                 var item = player.inventory[player.selectedItem];
@@ -1024,6 +1065,10 @@ namespace AQMod
                     player.inventory[player.selectedItem].autoReuse = false;
                     forceAutoswing = false;
                 }
+            }
+            if (Hooks.setDaytime != null)
+            {
+                Main.dayTime = !Hooks.setDaytime.Value;
             }
         }
 
