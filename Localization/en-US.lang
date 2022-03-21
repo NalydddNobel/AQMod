@@ -552,6 +552,11 @@ ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.To
 # Potions
 #===========================#
 
+ItemName.OpposingPotion=Opposing Potion
+ItemTooltip.OpposingPotion=Reverses the effects of many things
+BuffName.Opposing=Opposing
+BuffDescription.Opposing=Reverses the effects of many things
+
 ItemName.Baguette=Baguette
 ItemTooltip.Baguette=Supreme improvements to all stats\nGreatly improves life regeneration\n'Cake is just spongy bread'
 BuffName.BaguetteBuff=Baguette
@@ -648,6 +653,11 @@ ItemName.RainbowOutlineDye=Rainbow Outline Dye
 #===========================#
 # Pets
 #===========================#
+
+ItemName.FamiliarPickaxe=Familiar Pickaxe
+ItemTooltip.FamiliarPickaxe=Summons a mini version of yourself
+BuffName.FamiliarBuff=Familiar
+BuffDescription.FamiliarBuff=Despite everything, it's still you
 
 ItemName.HeartLamp=Heart Lamp
 ItemTooltip.HeartLamp=Summons a heart moth which increases life regen and provides light
@@ -1139,10 +1149,6 @@ ItemName.UltimateStarfruit=Ultimate Starfruit
 # Buff Items #
 ##############
 ItemName.SuspiciousLookingSteak=Suspicious Looking Steak
-
-# Other Buffs Items
-ItemName.OpposingPotion=Opposing Potion
-ItemName.PotionofBossrushium=Encore Potion
 ##############
 # Equipables #
 ##############
@@ -1296,9 +1302,6 @@ ItemTooltip.StariteBag={$CommonItemTooltip.RightClickToOpen}
 ##############
 # Foods
 ItemTooltip.SuspiciousLookingSteak=Gives multiple buffs\n'A curse has been lifted'
-# Other Buffs Items
-ItemTooltip.OpposingPotion=Makes some enemies drop opposing loot
-ItemTooltip.PotionofBossrushium=Bosses respawn when defeated
 ##############
 # Equipables #
 ##############
@@ -1376,8 +1379,6 @@ BuffName.Ultima=Ultima
 BuffDescription.Ultima=The blade of Ultima blesses you
 BuffName.SpectreHealing=Spectre Healing
 BuffDescription.SpectreHealing=You are healing at rapid speeds
-BuffName.Opposing=Opposing
-BuffDescription.Opposing=Enemies have a chance to drop opposing loot
 
 BuffName.Cold20=Cold
 BuffDescription.Cold20=You are below 20 degrees Fahrenheit

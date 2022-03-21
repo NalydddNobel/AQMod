@@ -6,8 +6,11 @@ using AQMod.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using Terraria;
@@ -162,6 +165,328 @@ namespace AQMod
                 var drawRotation = player.itemRotation;
                 var origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, texture.Height);
                 Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetColor(), drawRotation, origin, item.scale, info.spriteEffects, 0));
+            }
+        }
+
+        public static bool IsReferenceType(Type type)
+        {
+            return !type.IsValueType && !type.IsEnum && type != typeof(string);
+        }
+
+        public static T DeepCopy<T>(this T obj)
+        {
+            return DeepCopyTo(obj, (T)Activator.CreateInstance(typeof(T)), BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+        public static T DeepCopy<T>(this T obj, BindingFlags flags)
+        {
+            return DeepCopyTo(obj, (T)Activator.CreateInstance(typeof(T)), flags);
+        }
+        public static T DeepCopyTo<T>(this T obj, T myObj)
+        {
+            return DeepCopyTo(obj, myObj, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+        public static T DeepCopyTo<T>(this T obj, T myObj, BindingFlags flags)
+        {
+            Type t = obj.GetType();
+            var l = AQMod.GetInstance().Logger;
+            var fields = t.GetFields(flags);
+            //l.Debug("writing fields");
+            foreach (var f in fields)
+            {
+                //l.Debug(f.FieldType.Name + " " + f.Name);
+                if (!IsReferenceType(f.FieldType))
+                {
+                    f.SetValue(myObj, f.GetValue(obj));
+                }
+                else
+                {
+                    object value = f.GetValue(obj);
+                    if (value == null)
+                    {
+                        f.SetValue(myObj, null);
+                    }
+                    else if (value.GetType() == typeof(Array))
+                    {
+                        f.SetValue(myObj, DeepCopyArray((Array)value));
+                    }
+                    else
+                    {
+                        try
+                        {
+                            var newValue = Activator.CreateInstance(value.GetType());
+                            f.SetValue(myObj, value.DeepCopyTo(newValue));
+                        }
+                        catch (Exception ex)
+                        {
+                            l.Error("Error when cloning field {" + f.FieldType.Name + " " + f.Name + "}", ex);
+                            f.SetValue(myObj, null);
+                        }
+                    }
+                }
+            }
+            var properties = t.GetProperties(flags);
+            //l.Debug("writing properties");
+            foreach (var p in properties)
+            {
+                //l.Debug(p.PropertyType.Name + " " + p.Name);
+                if (p.CanWrite)
+                {
+                    if (!IsReferenceType(p.PropertyType))
+                    {
+                        p.SetValue(myObj, p.GetValue(obj, null), null);
+                    }
+                    else
+                    {
+                        object value = p.GetValue(obj, null);
+                        if (value == null)
+                        {
+                            p.SetValue(myObj, null, null);
+                        }
+                        else
+                        {
+                            try
+                            {
+                                var newValue = Activator.CreateInstance(value.GetType());
+                                p.SetValue(myObj, value.DeepCopyTo(newValue), null);
+                            }
+                            catch (Exception ex)
+                            {
+                                l.Error("Error when cloning property {" + p.PropertyType.Name + " " + p.Name + "}", ex);
+                                p.SetValue(myObj, null, null);
+                            }
+                        }
+                    }
+                }
+            }
+            return myObj;
+        }
+        public static object DeepCopyArray(Array array)
+        {
+            return null;
+        }
+
+        public static void DrawPlayerFull(Player player)
+        {
+            if (Main.gamePaused)
+            {
+                player.PlayerFrame();
+            }
+            if (player.ghost)
+            {
+                return;
+            }
+            Vector2 position = default(Vector2);
+            if (player.inventory[player.selectedItem].flame || player.head == 137 || player.wings == 22)
+            {
+                player.itemFlameCount--;
+                if (player.itemFlameCount <= 0)
+                {
+                    player.itemFlameCount = 5;
+                    for (int k = 0; k < 7; k++)
+                    {
+                        player.itemFlamePos[k].X = (float)Main.rand.Next(-10, 11) * 0.15f;
+                        player.itemFlamePos[k].Y = (float)Main.rand.Next(-10, 1) * 0.35f;
+                    }
+                }
+            }
+            if (player.armorEffectDrawShadowEOCShield)
+            {
+                int num = player.eocDash / 4;
+                if (num > 3)
+                {
+                    num = 3;
+                }
+                for (int l = 0; l < num; l++)
+                {
+                    Main.instance.DrawPlayer(player, player.shadowPos[l], player.shadowRotation[l], player.shadowOrigin[l], 0.5f + 0.2f * (float)l);
+                }
+            }
+            if (player.invis)
+            {
+                player.armorEffectDrawOutlines = false;
+                player.armorEffectDrawShadow = false;
+                player.armorEffectDrawShadowSubtle = false;
+                position = player.position;
+                if (player.aggro <= -750)
+                {
+                    Main.instance.DrawPlayer(player, position, player.fullRotation, player.fullRotationOrigin, 1f);
+                }
+                else
+                {
+                    player.invis = false;
+                    Main.instance.DrawPlayer(player, position, player.fullRotation, player.fullRotationOrigin);
+                    player.invis = true;
+                }
+            }
+            if (player.armorEffectDrawOutlines)
+            {
+                _ = player.position;
+                if (!Main.gamePaused)
+                {
+                    player.ghostFade += player.ghostDir * 0.075f;
+                }
+                if ((double)player.ghostFade < 0.1)
+                {
+                    player.ghostDir = 1f;
+                    player.ghostFade = 0.1f;
+                }
+                else if ((double)player.ghostFade > 0.9)
+                {
+                    player.ghostDir = -1f;
+                    player.ghostFade = 0.9f;
+                }
+                float num5 = player.ghostFade * 5f;
+                for (int m = 0; m < 4; m++)
+                {
+                    float num6;
+                    float num7;
+                    switch (m)
+                    {
+                        default:
+                            num6 = num5;
+                            num7 = 0f;
+                            break;
+                        case 1:
+                            num6 = 0f - num5;
+                            num7 = 0f;
+                            break;
+                        case 2:
+                            num6 = 0f;
+                            num7 = num5;
+                            break;
+                        case 3:
+                            num6 = 0f;
+                            num7 = 0f - num5;
+                            break;
+                    }
+                    position = new Vector2(player.position.X + num6, player.position.Y + player.gfxOffY + num7);
+                    Main.instance.DrawPlayer(player, position, player.fullRotation, player.fullRotationOrigin, player.ghostFade);
+                }
+            }
+            if (player.armorEffectDrawOutlinesForbidden)
+            {
+                _ = player.position;
+                if (!Main.gamePaused)
+                {
+                    player.ghostFade += player.ghostDir * 0.025f;
+                }
+                if ((double)player.ghostFade < 0.1)
+                {
+                    player.ghostDir = 1f;
+                    player.ghostFade = 0.1f;
+                }
+                else if ((double)player.ghostFade > 0.9)
+                {
+                    player.ghostDir = -1f;
+                    player.ghostFade = 0.9f;
+                }
+                float num8 = player.ghostFade * 5f;
+                for (int n = 0; n < 4; n++)
+                {
+                    float num9;
+                    float num10;
+                    switch (n)
+                    {
+                        default:
+                            num9 = num8;
+                            num10 = 0f;
+                            break;
+                        case 1:
+                            num9 = 0f - num8;
+                            num10 = 0f;
+                            break;
+                        case 2:
+                            num9 = 0f;
+                            num10 = num8;
+                            break;
+                        case 3:
+                            num9 = 0f;
+                            num10 = 0f - num8;
+                            break;
+                    }
+                    position = new Vector2(player.position.X + num9, player.position.Y + player.gfxOffY + num10);
+                    Main.instance.DrawPlayer(player, position, player.fullRotation, player.fullRotationOrigin, player.ghostFade);
+                }
+            }
+            if (player.armorEffectDrawShadowBasilisk)
+            {
+                int num11 = (int)(player.basiliskCharge * 3f);
+                for (int num12 = 0; num12 < num11; num12++)
+                {
+                    Main.instance.DrawPlayer(player, player.shadowPos[num12], player.shadowRotation[num12], player.shadowOrigin[num12], 0.5f + 0.2f * (float)num12);
+                }
+            }
+            else if (player.armorEffectDrawShadow)
+            {
+                for (int num2 = 0; num2 < 3; num2++)
+                {
+                    Main.instance.DrawPlayer(player, player.shadowPos[num2], player.shadowRotation[num2], player.shadowOrigin[num2], 0.5f + 0.2f * (float)num2);
+                }
+            }
+            if (player.armorEffectDrawShadowLokis)
+            {
+                for (int num3 = 0; num3 < 3; num3++)
+                {
+                    Main.instance.DrawPlayer(player, Vector2.Lerp(player.shadowPos[num3], player.position + new Vector2(0f, player.gfxOffY), 0.5f), player.shadowRotation[num3], player.shadowOrigin[num3], MathHelper.Lerp(1f, 0.5f + 0.2f * (float)num3, 0.5f));
+                }
+            }
+            if (player.armorEffectDrawShadowSubtle)
+            {
+                for (int num4 = 0; num4 < 4; num4++)
+                {
+                    position.X = player.position.X + (float)Main.rand.Next(-20, 21) * 0.1f;
+                    position.Y = player.position.Y + (float)Main.rand.Next(-20, 21) * 0.1f + player.gfxOffY;
+                    Main.instance.DrawPlayer(player, position, player.fullRotation, player.fullRotationOrigin, 0.9f);
+                }
+            }
+            if (player.shadowDodge)
+            {
+                player.shadowDodgeCount += 1f;
+                if (player.shadowDodgeCount > 30f)
+                {
+                    player.shadowDodgeCount = 30f;
+                }
+            }
+            else
+            {
+                player.shadowDodgeCount -= 1f;
+                if (player.shadowDodgeCount < 0f)
+                {
+                    player.shadowDodgeCount = 0f;
+                }
+            }
+            if (player.shadowDodgeCount > 0f)
+            {
+                _ = player.position;
+                position.X = player.position.X + player.shadowDodgeCount;
+                position.Y = player.position.Y + player.gfxOffY;
+                Main.instance.DrawPlayer(player, position, player.fullRotation, player.fullRotationOrigin, 0.5f + (float)Main.rand.Next(-10, 11) * 0.005f);
+                position.X = player.position.X - player.shadowDodgeCount;
+                Main.instance.DrawPlayer(player, position, player.fullRotation, player.fullRotationOrigin, 0.5f + (float)Main.rand.Next(-10, 11) * 0.005f);
+            }
+            position = player.position;
+            position.Y += player.gfxOffY;
+            //if (player.stoned)
+            //{
+            //    Main.instance.DrawPlayerStoned(player, position);
+            //}
+            // else if (!player.invis)
+            if (!player.invis)
+            {
+                Main.instance.DrawPlayer(player, position, player.fullRotation, player.fullRotationOrigin);
+            }
+        }
+
+        public static void FillOther<T>(this T[] arr, T[] arr2, int start = 0)
+        {
+            int length = arr.Length > arr2.Length ? arr.Length : arr2.Length;
+            if (length + start > arr.Length)
+            {
+                length = arr.Length - length;
+            }
+            for (int i = start; i < length; i++)
+            {
+                arr2[i] = arr[i];
             }
         }
 

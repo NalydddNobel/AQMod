@@ -5,6 +5,7 @@ using AQMod.Effects.Wind;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,10 +17,39 @@ namespace AQMod.Effects
 
         public static class Hooks
         {
+            public static float? PlayerDrawScale = null;
+
             internal static int LastScreenWidth;
             internal static int LastScreenHeight;
 
-            internal static void Main_UpdateDisplaySettings(On.Terraria.Main.orig_UpdateDisplaySettings orig, Main self)
+            internal static void Apply()
+            {
+                On.Terraria.Main.DrawProjectiles += DrawProjectiles;
+                On.Terraria.Main.DrawPlayers += DrawPlayers;
+                On.Terraria.Main.DrawPlayer_DrawAllLayers += DrawPlayer_DrawAllLayers;
+                On.Terraria.Main.DrawNPCs += DrawNPCs;
+                On.Terraria.Main.DrawTiles += DrawTiles;
+                On.Terraria.Main.UpdateDisplaySettings += UpdateDisplaySettings;
+            }
+
+            private static void DrawPlayer_DrawAllLayers(On.Terraria.Main.orig_DrawPlayer_DrawAllLayers orig, Main self, Player drawPlayer, int projectileDrawPosition, int cHead)
+            {
+                if (PlayerDrawScale != null)
+                {
+                    var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
+                    to -= Main.screenPosition;
+                    for (int i = 0; i < Main.playerDrawData.Count; i++)
+                    {
+                        DrawData data = Main.playerDrawData[i];
+                        data.position -= (data.position - to) * (1f - PlayerDrawScale.Value);
+                        data.scale *= PlayerDrawScale.Value;
+                        Main.playerDrawData[i] = data;
+                    }
+                }
+                orig(self, drawPlayer, projectileDrawPosition, cHead);
+            }
+
+            internal static void UpdateDisplaySettings(On.Terraria.Main.orig_UpdateDisplaySettings orig, Main self)
             {
                 orig(self);
                 if (!Main.gameMenu && !AQMod.Loading && Main.graphics.GraphicsDevice != null && !Main.graphics.GraphicsDevice.IsDisposed && Main.spriteBatch != null)
@@ -35,7 +65,7 @@ namespace AQMod.Effects
                 }
             }
 
-            internal static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
+            internal static void DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
             {
                 try
                 {
@@ -80,7 +110,7 @@ namespace AQMod.Effects
                 }
             }
 
-            internal static void Main_DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Main self, bool solidOnly, int waterStyleOverride)
+            internal static void DrawTiles(On.Terraria.Main.orig_DrawTiles orig, Main self, bool solidOnly, int waterStyleOverride)
             {
                 if (!solidOnly)
                 {
@@ -89,7 +119,7 @@ namespace AQMod.Effects
                 orig(self, solidOnly, waterStyleOverride);
             }
 
-            internal static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
+            internal static void DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
             {
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
                 Particle.PreDrawProjectiles.Render();
@@ -98,7 +128,7 @@ namespace AQMod.Effects
                 orig(self);
             }
 
-            internal static void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
+            internal static void DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
             {
                 orig(self);
                 AQGraphics.SetCullPadding();

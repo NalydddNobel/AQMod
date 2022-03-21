@@ -5,7 +5,7 @@ using AQMod.Gores;
 using AQMod.Gores.Droplets;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.HookUpgrades;
-using AQMod.Items.Pets;
+using AQMod.Items.Misc;
 using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Weapons.Melee.Clicker;
 using AQMod.Items.Weapons.Ranged;

@@ -1,10 +1,12 @@
-﻿using Terraria;
+﻿using AQMod.Buffs.Pets;
+using AQMod.Projectiles.Pets;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Pets
+namespace AQMod.Items.Misc
 {
-    public class YuckyOrb : ModItem
+    public class FamiliarPickaxe : ModItem
     {
         public override void SetDefaults()
         {
@@ -14,10 +16,10 @@ namespace AQMod.Items.Pets
             item.useAnimation = 17;
             item.useStyle = ItemUseStyleID.HoldingUp;
             item.UseSound = SoundID.Item2;
-            item.value = Item.sellPrice(gold: 1);
-            item.rare = ItemRarityID.Blue;
-            item.shoot = ModContent.ProjectileType<Projectiles.Pets.AnglerFish>();
-            item.buffType = ModContent.BuffType<Buffs.Pets.AnglerFish>();
+            item.value = Item.buyPrice(gold: 20);
+            item.rare = AQItem.RarityPet;
+            item.shoot = ModContent.ProjectileType<MiniPlayerPet>();
+            item.buffType = ModContent.BuffType<FamiliarBuff>();
         }
 
         public override void UseStyle(Player player)

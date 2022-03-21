@@ -4,6 +4,7 @@ using AQMod.Content.World.Events;
 using AQMod.Items.Accessories.Fishing;
 using AQMod.Items.Accessories.Vanity;
 using AQMod.Items.Dyes;
+using AQMod.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -47,7 +48,7 @@ namespace AQMod.NPCs
                             {
                                 if (shop.item[i].type == ItemID.None || (shop.item[i].createTile == -1 && shop.item[i].paint == 0)) // at the very end of the paintings, and will intercept the slot for any walls or blank slots
                                 {
-                                    InterceptShop(shop, ModContent.ItemType<Items.Placeable.Furniture.OmegaStaritePainting>(), i, nextSlot);
+                                    Insert(shop, ModContent.ItemType<Items.Placeable.Furniture.OmegaStaritePainting>(), i, nextSlot);
                                     break;
                                 }
                             }
@@ -178,9 +179,28 @@ namespace AQMod.NPCs
                     }
                     break;
             }
+            if (type == NPCID.Clothier)
+            {
+                if (WorldDefeats.SudoHardmode)
+                {
+                    int insertLocation = -1;
+                    for (int i = 0; i < Chest.maxItems - 1; i++) // skips most of the starting stuff, since that's all paint and blah
+                    {
+                        if (shop.item[i].type == ItemID.FamiliarWig || shop.item[i].type == ItemID.FamiliarShirt || shop.item[i].type == ItemID.FamiliarPants) // at the very end of the paintings, and will intercept the slot for any walls or blank slots
+                        {
+                            insertLocation = i + 1;
+                        }
+                    }
+                    if (insertLocation != -1 && insertLocation != Chest.maxItems - 1)
+                    {
+                        Insert(shop, ModContent.ItemType<FamiliarPickaxe>(), insertLocation, nextSlot);
+                    }
+                    nextSlot++;
+                }
+            }
         }
 
-        private static void InterceptShop(Chest shop, int itemID, int i, int currSlot)
+        private static void Insert(Chest shop, int itemID, int i, int currSlot)
         {
             if (currSlot >= Chest.maxItems)
                 currSlot = Chest.maxItems - 1;

@@ -282,6 +282,7 @@ namespace AQMod
         public float evilEnemyDR;
         public float holyEnemyDR;
 
+        public bool familiar;
         public bool heartMoth;
         public bool anglerFish;
         public bool dwarfStarite;
@@ -557,6 +558,7 @@ namespace AQMod
             headMinionCarryY = 0;
             monoxiderCarry = 0;
 
+            familiar = false;
             heartMoth = false;
             anglerFish = false;
             dwarfStarite = false;

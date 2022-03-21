@@ -38,7 +38,7 @@ namespace AQMod
     {
         public static class Hooks
         {
-            internal static void ApplyHooks()
+            internal static void Apply()
             {
                 On.Terraria.Item.SetDefaults += PostSetDefaults;
             }
@@ -279,6 +279,7 @@ namespace AQMod
 
                 DedicatedItem = new Dictionary<int, ItemDedication>()
                 {
+                    [ModContent.ItemType<FamiliarPickaxe>()] = new ItemDedication(new Color(200, 65, 70, 255)),
                     [ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),
                     [ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
                     [ModContent.ItemType<Thunderbird>()] = new ItemDedication(new Color(200, 125, 255, 255)),

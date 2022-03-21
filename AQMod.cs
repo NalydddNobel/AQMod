@@ -120,14 +120,8 @@ namespace AQMod
 
                 TimeActions.Hooks.Main_UpdateTime_SpawnTownNPCs = typeof(Main).GetMethod("UpdateTime_SpawnTownNPCs", BindingFlags.NonPublic | BindingFlags.Static);
                 On.Terraria.Main.UpdateTime += TimeActions.Hooks.Main_UpdateTime;
-                On.Terraria.Main.DrawProjectiles += DrawHelper.Hooks.Main_DrawProjectiles;
-                On.Terraria.Main.DrawPlayers += DrawHelper.Hooks.Main_DrawPlayers;
 
                 On.Terraria.UI.ItemSlot.OverrideHover += InvSlotData.Hooks.ItemSlot_OverrideHover;
-
-                On.Terraria.Main.DrawNPCs += DrawHelper.Hooks.Main_DrawNPCs;
-                On.Terraria.Main.DrawTiles += DrawHelper.Hooks.Main_DrawTiles;
-                On.Terraria.Main.UpdateDisplaySettings += DrawHelper.Hooks.Main_UpdateDisplaySettings;
 
                 On.Terraria.Main.CursorColor += CursorDyeManager.Hooks.Main_CursorColor;
                 On.Terraria.Main.DrawCursor += CursorDyeManager.Hooks.Main_DrawCursor;
@@ -141,8 +135,11 @@ namespace AQMod
 
                 On.Terraria.UI.ItemSlot.MouseHover_ItemArray_int_int += PlayerStorage.Hooks.ItemSlot_MouseHover_ItemArray_int_int;
 
+                AQItem.Hooks.Apply();
                 AQNPC.Hooks.Apply();
                 AQWorld.Hooks.Apply();
+
+                DrawHelper.Hooks.Apply();
             }
         }
         private void LoadMusic(bool unload = false)
