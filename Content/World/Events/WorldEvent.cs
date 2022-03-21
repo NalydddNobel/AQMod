@@ -10,7 +10,7 @@ namespace AQMod.Content.World.Events
 
         void ISetupContentType.SetupContent()
         {
-            var mod = AQMod.GetInstance();
+            var mod = AQMod.Instance;
             Setup(mod);
             if (!Main.dedServ)
             {

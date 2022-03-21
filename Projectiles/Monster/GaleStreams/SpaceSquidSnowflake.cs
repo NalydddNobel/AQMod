@@ -41,7 +41,7 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(8))
             {
                 var spawnPosition = new Vector2(projectile.position.X + Main.rand.NextFloat(projectile.width), projectile.position.Y + Main.rand.NextFloat(projectile.height));
-                Particle.PostDrawPlayers.AddParticle(new BrightSparkle(spawnPosition, projectile.velocity * 0.1f, new Color(100, 100, 255, 200), Main.rand.NextFloat(0.9f, 1.5f)));
+                AQMod.Particles.PostDrawPlayers.AddParticle(new BrightSparkle(spawnPosition, projectile.velocity * 0.1f, new Color(100, 100, 255, 200), Main.rand.NextFloat(0.9f, 1.5f)));
             }
         }
 

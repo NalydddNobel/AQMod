@@ -130,7 +130,7 @@ namespace AQMod.Sounds
         {
             try
             {
-                Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.GetInstance().GetSoundSlot(type, qpath(type, name)), volume);
+                Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, qpath(type, name)), volume);
             }
             catch (Exception ex)
             {
@@ -139,32 +139,32 @@ namespace AQMod.Sounds
         }
         internal static void Play(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume, float pitch)
         {
-            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.GetInstance().GetSoundSlot(type, qpath(type, name)), volume, pitch);
+            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, qpath(type, name)), volume, pitch);
         }
 
         internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name)
         {
-            Main.PlaySound((int)type, -1, -1, AQMod.GetInstance().GetSoundSlot(type, name));
+            Main.PlaySound((int)type, -1, -1, AQMod.Instance.GetSoundSlot(type, name));
         }
         internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name, Vector2 position)
         {
-            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.GetInstance().GetSoundSlot(type, name));
+            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, name));
         }
         internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume)
         {
-            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.GetInstance().GetSoundSlot(type, name), volume);
+            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, name), volume);
         }
         internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name, Vector2 position, float volume, float pitch)
         {
-            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.GetInstance().GetSoundSlot(type, name), volume, pitch);
+            Main.PlaySound((int)type, (int)position.X, (int)position.Y, AQMod.Instance.GetSoundSlot(type, name), volume, pitch);
         }
         internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name, float volume)
         {
-            Main.PlaySound((int)type, -1, -1, AQMod.GetInstance().GetSoundSlot(type, name), volume);
+            Main.PlaySound((int)type, -1, -1, AQMod.Instance.GetSoundSlot(type, name), volume);
         }
         internal static void LegacyPlay(Terraria.ModLoader.SoundType type, string name, float volume, float pitch)
         {
-            Main.PlaySound((int)type, -1, -1, AQMod.GetInstance().GetSoundSlot(type, name), volume, pitch);
+            Main.PlaySound((int)type, -1, -1, AQMod.Instance.GetSoundSlot(type, name), volume, pitch);
         }
         internal static void Play<T>(Terraria.ModLoader.SoundType type) where T : ModSound
         {

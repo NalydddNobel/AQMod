@@ -6,7 +6,7 @@ namespace AQMod.Items.Misc.ExporterRewards
 {
     public class CavernPalette : SchrodingerCrate
     {
-        protected override List<int> LootTable => AQItem.Sets.CavernChestLoot;
+        protected override List<int> LootTable => AQItem.Sets.Instance.CavernChestLoot;
 
         public override void RightClick(Player player)
         {

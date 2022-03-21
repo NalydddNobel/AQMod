@@ -2,7 +2,6 @@
 using AQMod.Common.ID;
 using AQMod.Dusts;
 using AQMod.Effects;
-using AQMod.Effects.Trails.Rendering;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

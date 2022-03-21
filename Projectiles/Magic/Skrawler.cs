@@ -1,6 +1,6 @@
 ﻿using AQMod.Dusts;
+using AQMod.Effects;
 using AQMod.Effects.Trails;
-using AQMod.Effects.Trails.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -80,7 +80,7 @@ namespace AQMod.Projectiles.Magic
                 if (renderingPositions.Count > 3)
                 {
                     renderingPositions.RemoveAt(renderingPositions.Count - 1);
-                    Trail.PreDrawProjectiles.NewTrail(new DeathTrail(Main.projectileTexture[projectile.type], PrimitivesRenderer.TextureTrail,
+                    AQMod.Trails.PreDrawProjectiles.NewTrail(new DyingTrail(Main.projectileTexture[projectile.type], PrimitivesRenderer.TextureTrail,
                     renderingPositions, GetSizeMethod(), GetColorMethod(), default, default, projectile.extraUpdates));
                 }
             }

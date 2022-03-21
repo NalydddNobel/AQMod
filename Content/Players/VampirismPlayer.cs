@@ -110,7 +110,7 @@ namespace AQMod.Content.Players
                 {
                     for (int i = 0; i < Player.MaxBuffs; i++)
                     {
-                        if (player.buffTime[i] > 0 && AQBuff.Sets.FoodBuff.Contains(player.buffType[i]))
+                        if (player.buffTime[i] > 0 && AQBuff.Sets.Instance.FoodBuff.Contains(player.buffType[i]))
                         {
                             player.DelBuff(i);
                             break;

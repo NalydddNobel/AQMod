@@ -43,7 +43,7 @@ namespace AQMod.Common.ID
                 {
                     if (_moddedType != null)
                     {
-                        _value = GetIDFromType(AQMod.GetInstance(), _moddedType.Name);
+                        _value = GetIDFromType(AQMod.Instance, _moddedType.Name);
                         if (_value == 0)
                         {
                             _value = -1;
@@ -65,7 +65,7 @@ namespace AQMod.Common.ID
                             _value = GetIDFromType(mod, name);
                             if (_value == 0)
                             {
-                                AQMod.GetInstance().Logger.Warn(modName + "-" + name + " does not have an ID.");
+                                AQMod.Instance.Logger.Warn(modName + "-" + name + " does not have an ID.");
                                 return -1;
                             }
                         }

@@ -116,7 +116,7 @@ namespace AQMod.Localization
         internal static void Load()
         {
             translationsField = typeof(ModTranslation).GetField("translations", BindingFlags.NonPublic | BindingFlags.Instance);
-            modTranslations = (Dictionary<string, ModTranslation>)typeof(AQMod).GetField("translations", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(AQMod.GetInstance());
+            modTranslations = (Dictionary<string, ModTranslation>)typeof(AQMod).GetField("translations", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(AQMod.Instance);
         }
 
         internal static void Unload()
@@ -127,7 +127,7 @@ namespace AQMod.Localization
 
         internal static void AdjustTranslation(string key, string newKey, Func<string, string> modifyText)
         {
-            AdjustTranslation(key, newKey, modifyText, AQMod.GetInstance());
+            AdjustTranslation(key, newKey, modifyText, AQMod.Instance);
         }
         internal static void AdjustTranslation(string key, string newKey, Func<string, string> modifyText, AQMod aQMod)
         {

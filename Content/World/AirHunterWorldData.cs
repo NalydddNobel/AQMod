@@ -91,7 +91,7 @@ namespace AQMod.Content.World
             }
             catch (Exception e)
             {
-                AQMod.GetInstance().Logger.Warn(e);
+                AQMod.Instance.Logger.Warn(e);
             }
         }
 

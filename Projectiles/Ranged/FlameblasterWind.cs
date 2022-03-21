@@ -2,7 +2,7 @@
 {
     public sealed class FlameblasterWind : FriendlyWind
     {
-        public override string Texture => Tex.None;
+        public override string Texture => AQMod.TextureNone;
 
         public override void SetDefaults()
         {

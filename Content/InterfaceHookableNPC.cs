@@ -8,7 +8,7 @@ namespace AQMod.Content
     {
         public static void RenderUI(int closestNPC)
         {
-            var texture = Tex.MeathookNPC.Texture.Value;
+            var texture = AQMod.Texture("Assets/UI/MeathookNPC");
             var frame = texture.Frame();
             var origin = new Vector2(frame.Width / 2f, 0f);
             var drawPosition = Main.npc[closestNPC].Bottom + new Vector2(0f, 12f);

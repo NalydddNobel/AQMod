@@ -34,11 +34,11 @@ namespace AQMod.Items.Misc.ExporterRewards
         //          Mod aequus = ModLoader.GetMod("AQMod");
         //          if (aequus != null)
         //          {
-        //              aequus.Call("AQItem.Sets.OverworldPaletteList.Add", ItemID.RodOfDiscord);
+        //              aequus.Call("AQItem.Sets.Instance.OverworldPaletteList.Add", ItemID.RodOfDiscord);
         //          }
         //
         //          // Direct reference
-        //          // AQItem.Sets.OverworldPaletteList.Add(ItemID.RodOfDiscord);
+        //          // AQItem.Sets.Instance.OverworldPaletteList.Add(ItemID.RodOfDiscord);
         //      }
         // }
 

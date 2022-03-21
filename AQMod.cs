@@ -10,7 +10,8 @@ using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
-using AQMod.Effects.Trails.Rendering;
+using AQMod.Effects.Particles;
+using AQMod.Effects.Trails;
 using AQMod.Items;
 using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Dyes;
@@ -46,13 +47,8 @@ namespace AQMod
         public static Vector2 Zero => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public static Vector2 ScreenCenter => new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
         public static Vector2 WorldScreenCenter => new Vector2(Main.screenPosition.X + (Main.screenWidth / 2f), Main.screenPosition.Y + Main.screenHeight / 2f);
-        public static bool UseAssets => !AQMod.Loading && Main.netMode != NetmodeID.Server;
+        public static bool UseAssets => !Loading && Main.netMode != NetmodeID.Server;
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused;
-
-        public static AQMod GetInstance()
-        {
-            return ModContent.GetInstance<AQMod>();
-        }
 
         public static bool LowQ => !Lighting.NotRetro || ModContent.GetInstance<AQConfigClient>().EffectQuality <= 0.5f;
 
@@ -63,7 +59,10 @@ namespace AQMod
         internal static bool Loading { get; private set; }
         internal static bool IsUnloading { get; private set; }
 
-        public static EquipOverlayLoader ArmorOverlays { get; private set; }
+        public static AQMod Instance { get; private set; }
+        public static ParticleSystem Particles { get; private set; }
+        public static TrailSystem Trails { get; private set; }
+        public static EquipOverlaysManager ArmorOverlays { get; private set; }
         public static ModifiableMusic CrabCavesMusic { get; private set; }
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
@@ -204,6 +203,7 @@ namespace AQMod
         {
             Loading = true;
             IsUnloading = false;
+            Instance = this;
             Keybinds.Load();
             LoadHooks(unload: false);
             AQText.Load();
@@ -220,8 +220,8 @@ namespace AQMod
                 DrawHelper.Load();
 
                 LegacyTextureCache.Load();
-                Tex.Load(this);
-                CrabPot.frame = new Rectangle(0, 0, Tex.CrabPot.Texture.Value.Width, Tex.CrabPot.Texture.Value.Height / CrabPot.FrameCount - 2);
+                
+                CrabPot.frame = new Rectangle(0, 0, GetTexture("Assets/CrabPot").Width, GetTexture("Assets/CrabPot").Height / CrabPot.FrameCount - 2);
                 CrabPot.origin = CrabPot.frame.Size() / 2f;
 
                 LegacyEffectCache.Load(this);
@@ -232,18 +232,22 @@ namespace AQMod
                 SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
 
                 AQSound.rand = new UnifiedRandom();
-                ArmorOverlays = new EquipOverlayLoader();
+                ArmorOverlays = new EquipOverlaysManager();
                 LoadMusic(unload: false);
                 NPCTalkState = new UserInterface();
+                Particles = new ParticleSystem();
+                Trails = new TrailSystem();
             }
 
             LoadCrossMod(unload: false);
 
             CelesitalEightBall.Initalize();
 
-            AQBuff.Sets.Load();
-            AQItem.Load();
-            AQTile.Sets.Load();
+            AQBuff.Sets.Instance = new AQBuff.Sets();
+            AQItem.Sets.Instance = new AQItem.Sets();
+            AQProjectile.Sets.Instance = new AQProjectile.Sets();
+            AQNPC.Sets.Instance = new AQNPC.Sets();
+            AQTile.Sets.Instance = new AQTile.Sets();
             AQConfigClient.LoadTranslations();
             AQConfigServer.LoadTranslations();
             AQUtils.BatchData.Load();
@@ -253,8 +257,9 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
-            AQNPC.Sets.Setup();
-            AQProjectile.Sets.Setup();
+            AQItem.Sets.Instance.SetupContent();
+            AQProjectile.Sets.Instance.SetupContent();
+            AQNPC.Sets.Instance.SetupContent();
             BossChecklistSupport.SetupContent(this);
             CensusSupport.SetupContent(this);
             if (!Main.dedServ)
@@ -266,7 +271,6 @@ namespace AQMod
             invokeTasks();
             cachedLoadTasks.Clear();
 
-            AQItem.SetupContent();
         }
 
         public override void AddRecipeGroups()
@@ -290,6 +294,7 @@ namespace AQMod
         {
             Loading = true;
             IsUnloading = true;
+            Instance = null;
             cachedLoadTasks?.Clear();
             cachedLoadTasks = null;
             LoadHooks(unload: true);
@@ -300,12 +305,12 @@ namespace AQMod
             NoHitting.CurrentlyDamaged = null;
             AutoDyeBinder.Unload();
             DemonSiege.Unload();
-            AQProjectile.Sets.Unload();
-            AQNPC.Sets.Unload();
+            AQProjectile.Sets.Instance.Unload();
+            AQNPC.Sets.Instance = null;
             AQItem.Unload();
             GlowmaskData.ItemToGlowmask?.Clear();
             GlowmaskData.ItemToGlowmask = null;
-            AQBuff.Sets.Unload();
+            AQBuff.Sets.Instance = null;
 
             LoadCrossMod(unload: true);
 
@@ -322,7 +327,6 @@ namespace AQMod
                 PrimitivesRenderer.Unload();
                 FX.Unload();
                 LegacyEffectCache.Unload();
-                Tex.Unload();
                 LegacyTextureCache.Unload();
                 DrawHelper.Unload();
             }
@@ -337,10 +341,10 @@ namespace AQMod
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                Particle.PreDrawProjectiles.UpdateParticles();
-                Particle.PostDrawPlayers.UpdateParticles();
+                AQMod.Particles.PreDrawProjectiles.UpdateParticles();
+                AQMod.Particles.PostDrawPlayers.UpdateParticles();
 
-                Trail.PreDrawProjectiles.UpdateTrails();
+                AQMod.Trails.PreDrawProjectiles.UpdateTrails();
             }
 
             if (Glimmer.stariteDiscoParty)
@@ -608,7 +612,7 @@ namespace AQMod
                 }
                 catch (Exception e)
                 {
-                    var aQMod = GetInstance();
+                    var aQMod = Instance;
                     aQMod.Logger.Error("An error occured when invoking cached load tasks.");
                     aQMod.Logger.Error(e.Message);
                     aQMod.Logger.Error(e.StackTrace);
@@ -703,7 +707,7 @@ namespace AQMod
         {
             return AQText.modTranslations["Mods.AQMod." + key];
         }
-        public static Texture2D GetTex(string key)
+        public static Texture2D Texture(string key)
         {
             return ModContent.GetInstance<AQMod>().GetTexture(key);
         }

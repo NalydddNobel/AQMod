@@ -112,7 +112,7 @@ namespace AQMod.Projectiles.Magic
             var color = projectile.GetAlpha(default(Color)) * projectile.scale;
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Particle.PreDrawProjectiles.AddParticle(new BrightSparkle(projectile.RandomPosition(8), projectile.velocity * -0.1f, color, Main.rand.NextFloat(0.7f, 0.9f)));
+                AQMod.Particles.PreDrawProjectiles.AddParticle(new BrightSparkle(projectile.RandomPosition(8), projectile.velocity * -0.1f, color, Main.rand.NextFloat(0.7f, 0.9f)));
             }
             Lighting.AddLight(projectile.Center, color.ToVector3());
         }

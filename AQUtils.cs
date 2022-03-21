@@ -273,7 +273,7 @@ namespace AQMod
         public static T DeepCopyTo<T>(this T obj, T myObj, BindingFlags flags)
         {
             Type t = obj.GetType();
-            var l = AQMod.GetInstance().Logger;
+            var l = AQMod.Instance.Logger;
             var fields = t.GetFields(flags);
             //l.Debug("writing fields");
             foreach (var f in fields)
@@ -1298,7 +1298,7 @@ namespace AQMod
         public static void DrawLine(Vector2 start, Vector2 end, int width, Color color)
         {
             var difference = end - start;
-            Main.spriteBatch.Draw(Tex.Pixel, start, null, color, difference.ToRotation() - MathHelper.PiOver2, new Vector2(0.5f, 0f), new Vector2(width, difference.Length()), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AQMod.Texture("Assets/Pixel"), start, null, color, difference.ToRotation() - MathHelper.PiOver2, new Vector2(0.5f, 0f), new Vector2(width, difference.Length()), SpriteEffects.None, 0f);
         }
 
         public static T[][] CreateSameLengthArrayArray<T>(int length1, int length2)
@@ -1551,12 +1551,12 @@ namespace AQMod
 
         public static DrawData DrawRectangle_Data(Rectangle rectangle, Color color, Vector2 adjustment)
         {
-            return new DrawData(Tex.Pixel, new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0);
+            return new DrawData(AQMod.Texture("Assets/Pixel"), new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0);
         }
 
         public static void DrawRectangle(Rectangle rectangle, Color color, Vector2 adjustment)
         {
-            Main.spriteBatch.Draw(Tex.Pixel, new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AQMod.Texture("Assets/Pixel"), new Vector2(rectangle.X, rectangle.Y) + adjustment, null, color, 0f, new Vector2(0f, 0f), new Vector2(rectangle.Width, rectangle.Height), SpriteEffects.None, 0f);
         }
 
         public static void UpdateFilter(bool active, string name, Vector2 position = default(Vector2), params object[] args)

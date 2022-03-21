@@ -41,7 +41,7 @@ namespace AQMod.Effects
 
         public static void DrawSampler(MiscShaderData effect, Vector2 position, float rotation, Vector2 scale, Color color)
         {
-            var sampler = Tex.Pixel.Texture.Value;
+            var sampler = AQMod.Texture("Assets/Pixel");
             var drawData = new DrawData(sampler, position, null, color, rotation, new Vector2(0.5f, 0.5f), scale, SpriteEffects.None, 0);
             effect.UseColor(color);
             effect.Apply(drawData);

@@ -6,7 +6,7 @@ namespace AQMod.Projectiles.Fishing.PopperEffects
 {
     public sealed class CursedPopperEffect : ModProjectile
     {
-        public override string Texture => Tex.None;
+        public override string Texture => AQMod.TextureNone;
 
         public override void SetDefaults()
         {

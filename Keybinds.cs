@@ -8,7 +8,7 @@ namespace AQMod
 
         internal static void Load()
         {
-            var mod = AQMod.GetInstance();
+            var mod = AQMod.Instance;
             ArmorSetBonus = mod.RegisterHotKey("Armor Set Bonus", "V");
         }
 

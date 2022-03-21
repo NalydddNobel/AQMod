@@ -16,7 +16,7 @@ namespace AQMod
 {
     public class AQProjectile : GlobalProjectile
     {
-        public static class Hooks
+        public sealed class Hooks
         {
             internal static int Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float(On.Terraria.Projectile.orig_NewProjectile_float_float_float_float_int_int_float_int_float_float orig, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1)
             {
@@ -37,57 +37,17 @@ namespace AQMod
 
         public sealed class Sets
         {
-            public static HashSet<int> MinionHeadType { get; private set; }
-            public static HashSet<int> MinionRotationalType { get; private set; }
-            public static HashSet<int> EffectedByWind { get; private set; }
-            public static HashSet<int> IsGravestone { get; private set; }
-            public static HashSet<int> DamageReductionExtractor { get; private set; }
-            public static HashSet<int> HookBarbBlacklist { get; private set; }
-            public static HashSet<int> IsAMinionProj { get; private set; }
+            public static Sets Instance;
 
-            private static void AutoSets()
-            {
-                for (int i = 0; i < ProjectileLoader.ProjectileCount; i++)
-                {
-                    try
-                    {
-                        var projectile = new Projectile();
-                        projectile.SetDefaults(i);
-                        if (projectile.aiStyle == AIStyles.BulletAI || projectile.aiStyle == AIStyles.ArrowAI || projectile.aiStyle == AIStyles.ThrownAI ||
-                            projectile.aiStyle == AIStyles.GrapplingHookAI || projectile.aiStyle == AIStyles.DemonSickleAI || projectile.aiStyle == AIStyles.BoulderAI ||
-                            projectile.aiStyle == AIStyles.BoomerangAI || projectile.aiStyle == AIStyles.ExplosiveAI || projectile.aiStyle == AIStyles.HarpNotesAI ||
-                            projectile.aiStyle == AIStyles.BounceAI || projectile.aiStyle == AIStyles.CrystalStormAI)
-                        {
-                            EffectedByWind.Add(i);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        var l = AQMod.GetInstance().Logger;
-                        string projectileName;
-                        if (i > Main.maxProjectileTypes)
-                        {
-                            string tryName = Lang.GetNPCName(i).Value;
-                            if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
-                            {
-                                projectileName = ProjectileLoader.GetProjectile(i).Name;
-                            }
-                            else
-                            {
-                                projectileName = tryName + "/" + ProjectileLoader.GetProjectile(i).Name;
-                            }
-                        }
-                        else
-                        {
-                            projectileName = Lang.GetNPCName(i).Value;
-                        }
-                        l.Error("An error occured when doing algorithmic checks for sets for {" + projectileName + ", ID: " + i + "}");
-                        l.Error(e.Message);
-                        l.Error(e.StackTrace);
-                    }
-                }
-            }
-            internal static void Setup()
+            public HashSet<int> MinionHeadType { get; private set; }
+            public HashSet<int> MinionRotationalType { get; private set; }
+            public HashSet<int> WindUpdates { get; private set; }
+            public HashSet<int> IsGravestone { get; private set; }
+            public HashSet<int> DamageReductionExtractor { get; private set; }
+            public HashSet<int> HookBarbBlacklist { get; private set; }
+            public HashSet<int> IsAMinionProj { get; private set; }
+
+            public Sets()
             {
                 IsAMinionProj = new HashSet<int>();
 
@@ -134,19 +94,64 @@ namespace AQMod
                     ProjectileID.RichGravestone5,
                 };
 
-                EffectedByWind = new HashSet<int>();
+                WindUpdates = new HashSet<int>();
+            }
 
+            private void AutoSets()
+            {
+                for (int i = 0; i < ProjectileLoader.ProjectileCount; i++)
+                {
+                    try
+                    {
+                        var projectile = new Projectile();
+                        projectile.SetDefaults(i);
+                        if (projectile.aiStyle == AIStyles.BulletAI || projectile.aiStyle == AIStyles.ArrowAI || projectile.aiStyle == AIStyles.ThrownAI ||
+                            projectile.aiStyle == AIStyles.GrapplingHookAI || projectile.aiStyle == AIStyles.DemonSickleAI || projectile.aiStyle == AIStyles.BoulderAI ||
+                            projectile.aiStyle == AIStyles.BoomerangAI || projectile.aiStyle == AIStyles.ExplosiveAI || projectile.aiStyle == AIStyles.HarpNotesAI ||
+                            projectile.aiStyle == AIStyles.BounceAI || projectile.aiStyle == AIStyles.CrystalStormAI)
+                        {
+                            WindUpdates.Add(i);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        var l = AQMod.Instance.Logger;
+                        string projectileName;
+                        if (i > Main.maxProjectileTypes)
+                        {
+                            string tryName = Lang.GetNPCName(i).Value;
+                            if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
+                            {
+                                projectileName = ProjectileLoader.GetProjectile(i).Name;
+                            }
+                            else
+                            {
+                                projectileName = tryName + "/" + ProjectileLoader.GetProjectile(i).Name;
+                            }
+                        }
+                        else
+                        {
+                            projectileName = Lang.GetNPCName(i).Value;
+                        }
+                        l.Error("An error occured when doing algorithmic checks for sets for {" + projectileName + ", ID: " + i + "}");
+                        l.Error(e.Message);
+                        l.Error(e.StackTrace);
+                    }
+                }
+            }
+            public void SetupContent()
+            {
                 AutoSets();
             }
 
-            internal static void Unload()
+            internal void Unload()
             {
                 MinionHeadType?.Clear();
                 MinionHeadType = null;
                 MinionRotationalType?.Clear();
                 MinionRotationalType = null;
-                EffectedByWind?.Clear();
-                EffectedByWind = null;
+                WindUpdates?.Clear();
+                WindUpdates = null;
                 IsGravestone?.Clear();
                 IsGravestone = null;
                 DamageReductionExtractor?.Clear();
@@ -242,12 +247,12 @@ namespace AQMod
 
         public bool BarbCheck(Projectile projectile)
         {
-            return IsBarb = projectile.aiStyle == 7 && projectile.friendly && !projectile.hostile && !Sets.HookBarbBlacklist.Contains(projectile.type);
+            return IsBarb = projectile.aiStyle == 7 && projectile.friendly && !projectile.hostile && !Sets.Instance.HookBarbBlacklist.Contains(projectile.type);
         }
 
         public bool CanApplyWind(Projectile projectile)
         {
-            return !windStruck && Sets.EffectedByWind.Contains(projectile.type);
+            return !windStruck && Sets.Instance.WindUpdates.Contains(projectile.type);
         }
 
         public override void SetDefaults(Projectile projectile)
@@ -759,7 +764,7 @@ namespace AQMod
 
         internal static void GetProjectileGroupStats_RotationalType(out int count, out int whoAmI, Projectile projectile)
         {
-            GetProjectileGroupStats((p) => p.owner == projectile.owner && Sets.MinionRotationalType.Contains(p.type), out count, out whoAmI, projectile.whoAmI);
+            GetProjectileGroupStats((p) => p.owner == projectile.owner && Sets.Instance.MinionRotationalType.Contains(p.type), out count, out whoAmI, projectile.whoAmI);
         }
 
         /// <summary>

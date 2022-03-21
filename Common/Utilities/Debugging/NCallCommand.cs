@@ -188,7 +188,7 @@ namespace AQMod.Common.Utilities.Debugging
                         {
                             argList[i - 1] = args[i];
                         }
-                        caller.Reply(AQMod.GetInstance().Call(argList).ToString());
+                        caller.Reply(AQMod.Instance.Call(argList).ToString());
                     }
                     break;
 
@@ -255,7 +255,7 @@ namespace AQMod.Common.Utilities.Debugging
 
                 case "wikiitem":
                     {
-                        AutomaticWikiTestStuff.basicwikipage(AQMod.GetInstance().GetItem(args[1]));
+                        AutomaticWikiTestStuff.basicwikipage(AQMod.Instance.GetItem(args[1]));
                     }
                     break;
 

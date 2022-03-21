@@ -78,7 +78,7 @@ namespace AQMod.NPCs
             var plr = Main.player[p];
             var aQPlayer = Main.player[p].GetModPlayer<AQPlayer>();
             DropTerminator(npc);
-            if (!npc.boss && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC && !AQNPC.Sets.NoGlobalDrops.Contains(npc.type))
+            if (!npc.boss && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC && !AQNPC.Sets.Instance.NoGlobalDrops.Contains(npc.type))
             {
                 DropBiomeLoot(npc, plr, aQPlayer);
             }

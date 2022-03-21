@@ -33,7 +33,7 @@ namespace AQMod.Projectiles.Melee
         {
             if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(3))
             {
-                Particle.PreDrawProjectiles.AddParticle(new EmberParticleSubtractColorUsingScale(projectile.getRect().RandomPosition(), new Vector2(0f, 0f), new Color(250, 150, 50, 25), Main.rand.NextFloat(0.8f, 1f)));
+                AQMod.Particles.PreDrawProjectiles.AddParticle(new EmberParticleSubtractColorUsingScale(projectile.getRect().RandomPosition(), new Vector2(0f, 0f), new Color(250, 150, 50, 25), Main.rand.NextFloat(0.8f, 1f)));
             }
             Lighting.AddLight(projectile.Center, new Vector3(1f, 0.7f, 0.1f));
         }

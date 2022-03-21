@@ -51,7 +51,7 @@ namespace AQMod.Common.CrossMod
                 miniBoss ? "AddMiniBoss" : "AddBoss",
                 progression,
                 boss.Arr.ToList(),
-                AQMod.GetInstance(),
+                AQMod.Instance,
                 bossName,
                 isDowned,
                 summonItem,

@@ -10,7 +10,7 @@ namespace AQMod.Projectiles.Ranged
 {
     public sealed class FlameblasterFire : ModProjectile
     {
-        public override string Texture => Tex.None;
+        public override string Texture => AQMod.TextureNone;
 
         public override void SetDefaults()
         {

@@ -16,11 +16,11 @@ namespace AQMod.Content.Seasonal.Christmas
             if (XmasSeeds.XmasWorld)
             {
                 xmasEnemySwapCheck = true;
-                if (AQNPC.Sets.IsACaveSkeleton[npc.type] && npc.type != NPCID.GreekSkeleton)
+                if (AQNPC.Sets.Instance.IsACaveSkeleton.Contains(npc.type) && npc.type != NPCID.GreekSkeleton)
                 {
                     npc.SetDefaults(NPCID.UndeadViking);
                 }
-                if ((npc.type != NPCID.ZombieEskimo || npc.type != NPCID.ArmedZombieEskimo) && AQNPC.Sets.IsAZombie[npc.type])
+                if ((npc.type != NPCID.ZombieEskimo || npc.type != NPCID.ArmedZombieEskimo) && AQNPC.Sets.Instance.IsAZombie.Contains(npc.type))
                 {
                     npc.SetDefaults(NPCID.SnowFlinx);
                 }

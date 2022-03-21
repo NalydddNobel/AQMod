@@ -24,7 +24,7 @@ namespace AQMod.Common.CrossMod
             }
             catch (Exception ex)
             {
-                AQMod.GetInstance().Logger.Error("Mod failed to be checked active: " + name, ex);
+                AQMod.Instance.Logger.Error("Mod failed to be checked active: " + name, ex);
             }
             IsActive = mod != null;
         }

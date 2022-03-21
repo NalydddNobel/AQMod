@@ -47,7 +47,7 @@ namespace AQMod.Items.Potions.Special
         {
             return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.useStyle == ItemUseStyleID.EatingUsing
                 && item.healLife <= 0 && item.healMana <= 0 && item.damage < 0 && !Main.meleeBuff[item.buffType] &&
-                !AQBuff.Sets.NoStarbyteUpgrade.Contains(item.buffType) && CustomDataPotionCheck(item);
+                !AQBuff.Sets.Instance.NoStarbyteUpgrade.Contains(item.buffType) && CustomDataPotionCheck(item);
         }
     }
 }

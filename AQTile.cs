@@ -18,10 +18,12 @@ namespace AQMod
 
         public sealed class Sets
         {
-            public static HashSet<ushort> CanFixWaterOnType { get; private set; }
-            public static HashSet<ushort> ExporterQuestFurniture { get; private set; }
+            public static Sets Instance;
 
-            internal static void Load()
+            public HashSet<ushort> CanFixWaterOnType { get; private set; }
+            public HashSet<ushort> ExporterQuestFurniture { get; private set; }
+
+            public Sets()
             {
                 CanFixWaterOnType = new HashSet<ushort>()
                 {
@@ -39,14 +41,6 @@ namespace AQMod
                     (ushort)ModContent.TileType<JeweledCandelabraTile>(),
                     (ushort)ModContent.TileType<JeweledChaliceTile>(),
                 };
-            }
-
-            internal static void Unload()
-            {
-                CanFixWaterOnType?.Clear();
-                CanFixWaterOnType = null;
-                ExporterQuestFurniture?.Clear();
-                ExporterQuestFurniture = null;
             }
         }
 

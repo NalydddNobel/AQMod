@@ -1,9 +1,7 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Content.Entities;
 using AQMod.Effects.GoreNest;
-using AQMod.Effects.Wind;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -54,11 +52,6 @@ namespace AQMod.Effects
                 orig(self);
                 if (!Main.gameMenu && !AQMod.Loading && Main.graphics.GraphicsDevice != null && !Main.graphics.GraphicsDevice.IsDisposed && Main.spriteBatch != null)
                 {
-                    if (LastScreenWidth != Main.screenWidth || LastScreenHeight != Main.screenHeight)
-                    {
-                        WindLayer.ResetTargets(Main.graphics.GraphicsDevice);
-                    }
-                    WindLayer.DrawTargets();
                     AQGraphics.SetCullPadding();
                     LastScreenWidth = Main.screenWidth;
                     LastScreenHeight = Main.screenHeight;
@@ -79,13 +72,12 @@ namespace AQMod.Effects
                 catch
                 {
                     NPCsBehindAllNPCs?.Clear();
-                    NPCsBehindAllNPCs = new DrawCache();
+                    NPCsBehindAllNPCs = new DrawIndexCache();
                 }
                 if (!behindTiles)
                 {
                     GoreNestRenderer.Render();
                     UltimateSwordRenderer.Render();
-                    WindLayer.DrawFinal();
                 }
                 orig(self, behindTiles);
                 if (behindTiles)
@@ -105,7 +97,7 @@ namespace AQMod.Effects
                     catch
                     {
                         ProjsBehindTiles?.Clear();
-                        ProjsBehindTiles = new DrawCache();
+                        ProjsBehindTiles = new DrawIndexCache();
                     }
                 }
             }
@@ -122,8 +114,8 @@ namespace AQMod.Effects
             internal static void DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
             {
                 BatcherMethods.GeneralEntities.Begin(Main.spriteBatch);
-                Particle.PreDrawProjectiles.Render();
-                Trail.PreDrawProjectiles.Render();
+                AQMod.Particles.PreDrawProjectiles.Render();
+                AQMod.Trails.PreDrawProjectiles.Render();
                 Main.spriteBatch.End();
                 orig(self);
             }
@@ -137,7 +129,7 @@ namespace AQMod.Effects
                 {
                     CrabPot.crabPots[i].Render();
                 }
-                Particle.PostDrawPlayers.Render();
+                global::AQMod.AQMod.Particles.PostDrawPlayers.Render();
                 Main.spriteBatch.End();
             }
         }
@@ -154,32 +146,8 @@ namespace AQMod.Effects
             }
         }
 
-        public class DrawCache
-        {
-            public readonly List<int> Indices;
-            public int Count => Indices.Count;
-
-            public bool drawingNow;
-
-            public DrawCache()
-            {
-                Indices = new List<int>();
-            }
-
-            public void Clear()
-            {
-                Indices.Clear();
-                drawingNow = false;
-            }
-
-            public void Add(int item)
-            {
-                Indices.Add(item);
-            }
-        }
-
-        public static DrawCache NPCsBehindAllNPCs { get; private set; }
-        public static DrawCache ProjsBehindTiles { get; private set; }
+        public static DrawIndexCache NPCsBehindAllNPCs { get; private set; }
+        public static DrawIndexCache ProjsBehindTiles { get; private set; }
 
         public override void Initialize()
         {
@@ -193,8 +161,8 @@ namespace AQMod.Effects
         {
             Hooks.LastScreenWidth = 0;
             Hooks.LastScreenHeight = 0;
-            NPCsBehindAllNPCs = new DrawCache();
-            ProjsBehindTiles = new DrawCache();
+            NPCsBehindAllNPCs = new DrawIndexCache();
+            ProjsBehindTiles = new DrawIndexCache();
         }
 
         internal static void Unload()

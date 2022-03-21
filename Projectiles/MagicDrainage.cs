@@ -8,7 +8,7 @@ namespace AQMod.Projectiles
 {
     public sealed class MagicDrainage : ModProjectile
     {
-        public override string Texture => Tex.None;
+        public override string Texture => AQMod.TextureNone;
 
         public override void SetDefaults()
         {

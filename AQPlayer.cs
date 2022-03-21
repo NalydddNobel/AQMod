@@ -174,11 +174,11 @@ namespace AQMod
                         return;
                     }
                 }
-                if (AQBuff.Sets.FoodBuff.Contains(type))
+                if (AQBuff.Sets.Instance.FoodBuff.Contains(type))
                 {
                     for (int i = 0; i < Player.MaxBuffs; i++)
                     {
-                        if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.FoodBuff.Contains(self.buffType[i]))
+                        if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.Instance.FoodBuff.Contains(self.buffType[i]))
                         {
                             self.DelBuff(i);
                             i--;
@@ -459,7 +459,7 @@ namespace AQMod
             int slots = player.AmtAccSlots();
             for (int i = 3; i < slots; i++)
             {
-                if (AQItem.Sets.DashEquip.Contains(player.armor[i].type))
+                if (AQItem.Sets.Instance.DashEquip.Contains(player.armor[i].type))
                 {
                     return false;
                 }
@@ -1254,7 +1254,7 @@ namespace AQMod
                             {
                                 if (ItemLoader.CanUseItem(player.inventory[j], player))
                                 {
-                                    if (!AQItem.Sets.SentryUsage.TryGetValue(player.inventory[j].type, out var sentryUsage))
+                                    if (!AQItem.Sets.Instance.SentryUsage.TryGetValue(player.inventory[j].type, out var sentryUsage))
                                     {
                                         sentryUsage = SentryStaffUsage.Default;
                                     }
@@ -1323,7 +1323,7 @@ namespace AQMod
 
         public override void OnConsumeAmmo(Item weapon, Item ammo)
         {
-            if (ammoRenewal && ammo.ranged && !AQItem.Sets.ItemIDRenewalBlacklist.Contains(ammo.type) && !AQItem.Sets.AmmoIDRenewalBlacklist.Contains(ammo.ammo))
+            if (ammoRenewal && ammo.ranged && !AQItem.Sets.Instance.ItemIDRenewalBlacklist.Contains(ammo.type) && !AQItem.Sets.Instance.AmmoIDRenewalBlacklist.Contains(ammo.ammo))
             {
                 if (AmmoUsage.ContainsKey(ammo.type))
                 {
@@ -1346,7 +1346,7 @@ namespace AQMod
             {
                 damage = (int)(damage * 0.7f);
             }
-            if (reducedSiltDamage && AQProjectile.Sets.DamageReductionExtractor.Contains(proj.type))
+            if (reducedSiltDamage && AQProjectile.Sets.Instance.DamageReductionExtractor.Contains(proj.type))
             {
                 damage /= 4;
             }
@@ -1363,7 +1363,7 @@ namespace AQMod
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if (mothmanMask && AQNPC.Sets.DealsLessDamageToCata[npc.type])
+            if (mothmanMask && AQNPC.Sets.Instance.DealsLessDamageToCata.Contains(npc.type))
             {
                 damage /= 2;
             }
@@ -1380,11 +1380,11 @@ namespace AQMod
 
         private void HitDamage(NPC target, ref int damage)
         {
-            if (holyDamage != 1f && AQNPC.Sets.Hallowed.Contains(target.type))
+            if (holyDamage != 1f && AQNPC.Sets.Instance.Hallowed.Contains(target.type))
             {
                 damage = (int)(damage * 1.1f);
             }
-            if (unholyDamage != 1f && AQNPC.Sets.Unholy.Contains(target.type))
+            if (unholyDamage != 1f && AQNPC.Sets.Instance.Unholy.Contains(target.type))
             {
                 damage = (int)(damage * unholyDamage);
             }
@@ -1405,72 +1405,6 @@ namespace AQMod
         private bool IsTrueMeleeProjectile(Projectile projectile)
         {
             return projectile.melee && projectile.whoAmI == player.heldProj && projectile.aiStyle != 99;
-        }
-        private void TrueMeleeHit_HyperCrystal(NPC target, int damage, float knockback, Vector2 playerCenter, Vector2 targetCenter, bool criticalHit)
-        {
-            target.AddBuff(ModContent.BuffType<Sparkling>(), 120);
-            if (criticalHit)
-            {
-                if (target.SpawnedFromStatue || target.type == NPCID.TargetDummy || CanBossChannel(target))
-                    return;
-                int boss = -1;
-                float closestDist = 1200f;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    NPC npc = Main.npc[i];
-                    if (npc.active && CanBossChannel(npc))
-                    {
-                        float dist = (npc.Center - playerCenter).Length();
-                        if (dist < closestDist)
-                        {
-                            boss = i;
-                            closestDist = dist;
-                        }
-                    }
-                }
-                if (boss != -1)
-                {
-                    int dmg = damage > target.lifeMax ? target.lifeMax : damage;
-                    var normal = Vector2.Normalize(Main.npc[boss].Center - targetCenter);
-                    int size = 4;
-                    var type = ModContent.DustType<MonoDust>();
-                    Vector2 position = target.Center - new Vector2(size / 2);
-                    int length = (int)(Main.npc[boss].Center - targetCenter).Length();
-                    int dustLength = length / size;
-                    const float offset = MathHelper.TwoPi / 3f;
-                    for (int i = 0; i < dustLength; i++)
-                    {
-                        Vector2 pos = position + normal * (i * size);
-                        for (int j = 0; j < 6; j++)
-                        {
-                            int d = Dust.NewDust(pos, size, size, type);
-                            float positionLength = Main.dust[d].position.Length() / 32f;
-                            Main.dust[d].color = new Color(
-                                (float)Math.Sin(positionLength) + 1f,
-                                (float)Math.Sin(positionLength + offset) + 1f,
-                                (float)Math.Sin(positionLength + offset * 2f) + 1f,
-                                0.5f);
-                        }
-                    }
-                    for (int i = 0; i < 8; i++)
-                    {
-                        Vector2 normal2 = new Vector2(1f, 0f).RotatedBy(MathHelper.PiOver4 * i);
-                        for (int j = 0; j < 4; j++)
-                        {
-
-                            float positionLength1 = (targetCenter + normal2 * (j * 8f)).Length() / 32f;
-                            var color = new Color(
-                                (float)Math.Sin(positionLength1) + 1f,
-                                (float)Math.Sin(positionLength1 + offset) + 1f,
-                                (float)Math.Sin(positionLength1 + offset * 2f) + 1f,
-                                0.5f);
-                            int d = Dust.NewDust(targetCenter, 1, 1, type, default, default, default, color);
-                            Main.dust[d].velocity = normal2 * (j * 3.5f);
-                        }
-                    }
-                    Projectile.NewProjectile(Main.npc[boss].Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalExplosion>(), dmg * 2, knockback * 2, player.whoAmI);
-                }
-            }
         }
         private void OnHitNPC_SpreadDebuffs(NPC target, Vector2 targetCenter)
         {
@@ -1531,10 +1465,10 @@ namespace AQMod
                     {
                         var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                         var velocity = new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-10f, 2f).Abs());
-                        Particle.PostDrawPlayers.AddParticle(
+                        AQMod.Particles.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
-                        Particle.PostDrawPlayers.AddParticle(
+                        AQMod.Particles.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
                     }
@@ -1557,19 +1491,19 @@ namespace AQMod
                         var normal = Vector2.Normalize(offset);
                         var dustPos = targetCenter + offset;
                         var velocity = normal * Main.rand.NextFloat(6f, 12f);
-                        Particle.PostDrawPlayers.AddParticle(
+                        AQMod.Particles.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
-                        Particle.PostDrawPlayers.AddParticle(
+                        AQMod.Particles.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, velocity,
                             new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f) * 0.2f, 1.5f));
                         if (Main.rand.NextBool(14))
                         {
                             var sparkleClr = new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f);
-                            Particle.PostDrawPlayers.AddParticle(
+                            AQMod.Particles.PostDrawPlayers.AddParticle(
                                 new SparkleParticle(dustPos, velocity,
                                 sparkleClr, 1.5f));
-                            Particle.PostDrawPlayers.AddParticle(
+                            AQMod.Particles.PostDrawPlayers.AddParticle(
                                 new SparkleParticle(dustPos, velocity,
                                 sparkleClr * 0.5f, 1f)
                                 { rotation = MathHelper.PiOver4 });
@@ -1656,21 +1590,12 @@ namespace AQMod
             AnglerReward_GiveFishingSeal(rewardItems);
         }
 
-        public static bool CanBossChannel(NPC npc)
-        {
-            if (npc.chaseable || npc.dontTakeDamage)
-            {
-                return false;
-            }
-            return npc.boss || AQNPC.Sets.BossRelatedEnemy[npc.type];
-        }
-
         private static void SpreadDebuffs(NPC spreader, NPC npc)
         {
             List<Color> poofColors = new List<Color>();
             for (int i = 0; i < spreader.buffType.Length; i++)
             {
-                if (spreader.buffType[i] > 0 && !AQBuff.Sets.NoSpread.Contains(spreader.buffType[i]) && !npc.buffImmune[spreader.buffType[i]])
+                if (spreader.buffType[i] > 0 && !AQBuff.Sets.Instance.NoSpread.Contains(spreader.buffType[i]) && !npc.buffImmune[spreader.buffType[i]])
                 {
                     int b = npc.FindBuffIndex(spreader.buffType[i]);
                     if (b == -1)
@@ -1890,7 +1815,7 @@ namespace AQMod
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.MinionHeadType.Contains(Main.projectile[i].type) && Main.projectile[i].owner == player)
+                if (Main.projectile[i].active && Main.projectile[i].type != type && AQProjectile.Sets.Instance.MinionHeadType.Contains(Main.projectile[i].type) && Main.projectile[i].owner == player)
                     Main.projectile[i].Kill();
             }
         }
@@ -1899,7 +1824,7 @@ namespace AQMod
         {
             for (int i = 0; i < Player.MaxBuffs; i++)
             {
-                if (Main.player[player].buffTime[i] > 0 && AQBuff.Sets.FoodBuff.Contains(Main.player[player].buffType[i]))
+                if (Main.player[player].buffTime[i] > 0 && AQBuff.Sets.Instance.FoodBuff.Contains(Main.player[player].buffType[i]))
                 {
                     return true;
                 }

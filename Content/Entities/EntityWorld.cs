@@ -23,7 +23,7 @@ namespace AQMod.Content.Entities
         {
             var tag = new TagCompound()
             {
-                ["Version"] = AQMod.GetInstance().Version.ToString(),
+                ["Version"] = AQMod.Instance.Version.ToString(),
             };
             CrabPot.SignSaveData(tag);
             return tag;

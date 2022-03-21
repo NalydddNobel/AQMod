@@ -24,12 +24,12 @@ namespace AQMod.Effects.Particles
 
         public void UpdateParticles()
         {
-            Particle.UpdateParticles(_particles);
+            AQMod.Particles.UpdateParticles(_particles);
         }
 
         public void Render()
         {
-            Particle.DrawParticles(_particles);
+            AQMod.Particles.DrawParticles(_particles);
         }
     }
 }

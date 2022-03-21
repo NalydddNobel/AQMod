@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace AQMod.Effects.Trails.Rendering
+namespace AQMod.Effects.Trails
 {
-    public sealed class TrailLayer<TTrail> where TTrail : TrailType // possibly create a class called "EffectLayerType" which does all of this automatically?
+    public sealed class TrailLayer<TTrail> where TTrail : Trail // possibly create a class called "EffectLayerType" which does all of this automatically?
     {
         internal List<TTrail> _trails;
 
@@ -24,12 +24,12 @@ namespace AQMod.Effects.Trails.Rendering
 
         public void UpdateTrails()
         {
-            Trail.UpdateTrails(_trails);
+            AQMod.Trails.UpdateTrails(_trails);
         }
 
         public void Render()
         {
-            Trail.RenderTrails(_trails);
+            AQMod.Trails.RenderTrails(_trails);
         }
     }
 }

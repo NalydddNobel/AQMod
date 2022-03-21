@@ -70,7 +70,7 @@ namespace AQMod.Common.Utilities.Debugging
 
         public static Logger GetDebugLogger()
         {
-            var logger = AQMod.GetInstance().Logger;
+            var logger = AQMod.Instance.Logger;
             InternalLogAccess(logger);
             return new Logger(logger);
         }
@@ -81,7 +81,7 @@ namespace AQMod.Common.Utilities.Debugging
             {
                 return null;
             }
-            var logger = AQMod.GetInstance().Logger;
+            var logger = AQMod.Instance.Logger;
             InternalLogAccess(logger);
             return new Logger(logger);
         }

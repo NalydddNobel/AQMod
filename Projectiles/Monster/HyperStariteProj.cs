@@ -6,7 +6,7 @@ namespace AQMod.Projectiles.Monster.Starite
 {
     public class HyperStariteProj : ModProjectile
     {
-        public override string Texture => Tex.None;
+        public override string Texture => AQMod.TextureNone;
 
         public override void SetDefaults()
         {

@@ -7,7 +7,7 @@ namespace AQMod.Projectiles.Melee
 {
     public class XenonBasherProj : ModProjectile
     {
-        public override string Texture => Tex.None;
+        public override string Texture => AQMod.TextureNone;
 
         public override void SetDefaults()
         {

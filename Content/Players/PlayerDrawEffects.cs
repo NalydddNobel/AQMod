@@ -279,7 +279,7 @@ namespace AQMod.Content.Players
         internal static readonly PlayerLayer PostDraw = new PlayerLayer("AQMod", "PostDraw", (info) =>
         {
             int whoAmI = info.drawPlayer.whoAmI;
-            var aQMod = AQMod.GetInstance();
+            var aQMod = AQMod.Instance;
             var player = info.drawPlayer;
             var aQPlayer = player.GetModPlayer<AQPlayer>();
             var drawEffects = player.GetModPlayer<PlayerDrawEffects>();
@@ -682,7 +682,7 @@ namespace AQMod.Content.Players
                     var pos = drawInfo.position - new Vector2(2f, 2f);
                     var rect = new Rectangle((int)pos.X, (int)pos.Y, drawInfo.drawPlayer.width + 4, drawInfo.drawPlayer.height + 4);
                     var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                    Particle.PostDrawPlayers.AddParticle(
+                    AQMod.Particles.PostDrawPlayers.AddParticle(
                         new EmberParticle(dustPos, new Vector2((drawInfo.drawPlayer.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((drawInfo.drawPlayer.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
                         new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
                 }

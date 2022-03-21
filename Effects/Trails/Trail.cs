@@ -1,6 +1,6 @@
 ﻿namespace AQMod.Effects.Trails
 {
-    public abstract class TrailType
+    public abstract class Trail
     {
         public virtual void OnAdd()
         {

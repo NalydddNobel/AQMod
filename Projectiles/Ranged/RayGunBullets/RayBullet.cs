@@ -1,8 +1,8 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
 using AQMod.Dusts;
+using AQMod.Effects;
 using AQMod.Effects.Trails;
-using AQMod.Effects.Trails.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -158,7 +158,7 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
                 if (renderingPositions.Count > 3)
                 {
                     renderingPositions.RemoveAt(renderingPositions.Count - 1);
-                    Trail.PreDrawProjectiles.NewTrail(new DeathTrail(LegacyTextureCache.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
+                    AQMod.Trails.PreDrawProjectiles.NewTrail(new DyingTrail(LegacyTextureCache.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
                     renderingPositions, GetSizeMethod(), GetColorMethod(GetColor()), default, default, projectile.extraUpdates));
                 }
             }

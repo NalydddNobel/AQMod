@@ -21,7 +21,6 @@ using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Weapons.Magic;
 using AQMod.Items.Weapons.Summon;
 using AQMod.NPCs.Friendly;
-using AQMod.Tiles;
 using AQMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,7 +39,7 @@ namespace AQMod
 {
     public class AQItem : GlobalItem
     {
-        public static class Hooks
+        public class Hooks
         {
             internal static void Apply()
             {
@@ -65,26 +64,26 @@ namespace AQMod
 
         public sealed class Sets
         {
-            public static HashSet<int> ExporterQuest { get; private set; }
-            public static HashSet<int> Crate { get; private set; }
-            public static HashSet<int> NoRename { get; private set; }
-            public static HashSet<int> NoAutoswing { get; private set; }
-            public static HashSet<int> DashEquip { get; private set; }
-            public static HashSet<int> ItemIDRenewalBlacklist { get; private set; }
-            public static HashSet<int> AmmoIDRenewalBlacklist { get; private set; }
+            public static Sets Instance;
 
-            public static Dictionary<int, int> ConcoctionItemConversions { get; private set; }
+            public HashSet<int> ExporterQuest { get; private set; }
+            public HashSet<int> Crate { get; private set; }
+            public HashSet<int> NoRename { get; private set; }
+            public HashSet<int> NoAutoswing { get; private set; }
+            public HashSet<int> DashEquip { get; private set; }
+            public HashSet<int> ItemIDRenewalBlacklist { get; private set; }
+            public HashSet<int> AmmoIDRenewalBlacklist { get; private set; }
 
-            public static List<int> OverworldChestLoot { get; private set; }
-            public static List<int> CavernChestLoot { get; private set; }
-            public static List<int> SkyChestLoot { get; private set; }
-            public static List<int> CavePotions { get; private set; }
+            public List<int> OverworldChestLoot { get; private set; }
+            public List<int> CavernChestLoot { get; private set; }
+            public List<int> SkyChestLoot { get; private set; }
+            public List<int> CavePotions { get; private set; }
 
-            public static Dictionary<int, SentryStaffUsage> SentryUsage { get; private set; }
+            public Dictionary<int, SentryStaffUsage> SentryUsage { get; private set; }
+            public Dictionary<int, ItemDedication> DedicatedItem { get; private set; }
+            public Dictionary<int, int> ConcoctionItemConversions { get; private set; }
 
-            public static Dictionary<int, ItemDedication> DedicatedItem { get; private set; }
-
-            internal static void Load()
+            public Sets()
             {
                 ConcoctionItemConversions = new Dictionary<int, int>()
                 {
@@ -162,7 +161,7 @@ namespace AQMod
 
                 DedicatedItem = new Dictionary<int, ItemDedication>()
                 {
-                    [ModContent.ItemType<NoonPotion>()] = new ItemDedication(new Color(200, 140, 50, 255)),
+                    [ModContent.ItemType<NoonPotion>()] = new ItemDedication(new Color(200, 80, 50, 255)),
                     [ModContent.ItemType<FamiliarPickaxe>()] = new ItemDedication(new Color(200, 65, 70, 255)),
                     [ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),
                     [ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
@@ -220,7 +219,7 @@ namespace AQMod
                 };
             }
 
-            internal static void SetupContent()
+            internal void SetupContent()
             {
                 if (AQMod.split.IsActive)
                 {
@@ -236,6 +235,14 @@ namespace AQMod
                     CavePotions.Add(AQMod.split.ItemType("PurifyingPotion"));
                     CavePotions.Add(AQMod.split.ItemType("DiligencePotion"));
                     CavePotions.Add(AQMod.split.ItemType("AttractionPotion"));
+
+                    //public Dictionary<int, Color> CustomItemColors = new Dictionary<int, Color>();
+                    try
+                    {
+                    }
+                    catch
+                    {
+                    }
                 }
 
                 if (AQMod.polarities.IsActive)
@@ -264,7 +271,7 @@ namespace AQMod
                 }
             }
 
-            internal static void Unload()
+            internal void Unload()
             {
                 CavePotions?.Clear();
                 CavePotions = null;
@@ -409,19 +416,13 @@ namespace AQMod
             comboMultiplier = 1f;
         }
 
-        internal static void Load()
-        {
-            Sets.Load();
-        }
-
         internal static void SetupContent()
         {
-            Sets.SetupContent();
         }
 
         internal static void Unload()
         {
-            Sets.Unload();
+            Sets.Instance.Unload();
         }
 
         private void GlowmaskDataCheck(Item item)
@@ -540,7 +541,7 @@ namespace AQMod
                 return;
             }
             var aQPlayer = Main.LocalPlayer.GetModPlayer<AQPlayer>();
-            //if (Sets.SentryUsage.TryGetValue(item.type, out var sentryUsage))
+            //if (Sets.Instance.SentryUsage.TryGetValue(item.type, out var sentryUsage))
             //{
             //    tooltips.Add(new TooltipLine(mod, "SentryUsage", "{IsGrounded: " + sentryUsage.IsGrounded + ", Range:" + sentryUsage.Range + "}"));
             //}
@@ -548,15 +549,15 @@ namespace AQMod
             {
                 tooltips.Insert(GetLineIndex(tooltips, "Material"), new TooltipLine(mod, "DemonSiegeUpgrade", Language.GetTextValue("Mods.AQMod.Tooltips.DemonSiegeUpgrade")) { overrideColor = AQMod.DemonSiegeTooltip, });
             }
-            if (AQConfigClient.Instance.HookBarbBlacklistTooltip && item.shoot > ProjectileID.None && AQProjectile.Sets.HookBarbBlacklist.Contains(item.shoot))
+            if (AQConfigClient.Instance.HookBarbBlacklistTooltip && item.shoot > ProjectileID.None && AQProjectile.Sets.Instance.HookBarbBlacklist.Contains(item.shoot))
             {
                 tooltips.Insert(GetLineIndex(tooltips, "Material"), new TooltipLine(mod, "HookBarbBlacklist", Language.GetTextValue("Mods.AQMod.Tooltips.HookBarbBlacklist")) { overrideColor = new Color(255, 255, 255), });
             }
-            if (Sets.ExporterQuest.Contains(item.type))
+            if (Sets.Instance.ExporterQuest.Contains(item.type))
             {
                 tooltips.Insert(GetLineIndex(tooltips, "Material"), new TooltipLine(mod, "RobsterQuest", Language.GetTextValue("Mods.AQMod.Tooltips.ExporterQuest")) { overrideColor = new Color(255, 244, 175, 255), });
             }
-            if (Sets.DedicatedItem.TryGetValue(item.type, out var dedication))
+            if (Sets.Instance.DedicatedItem.TryGetValue(item.type, out var dedication))
             {
                 tooltips.Add(new TooltipLine(mod, "DedicatedItem", Language.GetTextValue("Mods.AQMod.Tooltips.DedicatedItem")) { overrideColor = dedication.color });
             }
@@ -742,7 +743,7 @@ namespace AQMod
             {
                 try
                 {
-                    if (ConcoctionUI.Active && InvUI.Hooks.CurrentSlotContext == ItemSlot.Context.InventoryItem 
+                    if (ConcoctionUI.Active && InvUI.Hooks.CurrentSlotContext == ItemSlot.Context.InventoryItem
                         && Main.LocalPlayer.IsTalkingTo<Memorialist>() && ConcoctionResult.IsValidPotion(item))
                     {
                         var texture = mod.GetTexture("Items/ConcoctionBack");
@@ -1216,7 +1217,7 @@ namespace AQMod
             {
                 if (!ignoreChanneled && (item.channel || item.noUseGraphic))
                 {
-                    return player.ownedProjectileCounts[item.shoot] < item.stack && !Sets.NoAutoswing.Contains(item.type);
+                    return player.ownedProjectileCounts[item.shoot] < item.stack && !Sets.Instance.NoAutoswing.Contains(item.type);
                 }
                 return player.altFunctionUse != 2;
             }
@@ -1457,7 +1458,7 @@ namespace AQMod
 
         public static int PoolPotion(int current)
         {
-            var choices = Sets.CavePotions;
+            var choices = Sets.Instance.CavePotions;
             while (true)
             {
                 int choice = Main.rand.Next(choices.Count);

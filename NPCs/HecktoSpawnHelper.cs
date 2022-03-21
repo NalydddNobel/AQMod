@@ -8,7 +8,7 @@ namespace AQMod.NPCs
     {
         public override bool SpecialNPCLoot(NPC npc)
         {
-            if (AQNPC.Sets.HecktoplasmDungeonEnemy[npc.type] && npc.lifeMax > 100)
+            if (AQNPC.Sets.Instance.HecktoplasmSpawn.Contains(npc.type) && npc.lifeMax > 100)
             {
                 if (npc.HasPlayerTarget && Main.hardMode && NPC.downedPlantBoss && Main.player[npc.target].ZoneDungeon)
                 {

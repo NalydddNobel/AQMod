@@ -2,9 +2,7 @@
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.World.Events;
 using AQMod.Effects.Particles;
-using AQMod.Effects.Wind;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
@@ -30,6 +28,7 @@ namespace AQMod.Projectiles
             projectile.tileCollide = false;
             projectile.timeLeft = 240;
             projectile.alpha = 255;
+            projectile.hide = true;
         }
 
         public override bool? CanCutTiles()
@@ -97,7 +96,7 @@ namespace AQMod.Projectiles
                 var rect = new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height);
                 var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                 var velocity = new Vector2(-projectile.velocity.X + Main.rand.NextFloat(-1f, 1f) + Main.windSpeed, -projectile.velocity.Y + Main.rand.NextFloat(-1f, 1f));
-                Particle.PostDrawPlayers.AddParticle(
+                AQMod.Particles.PostDrawPlayers.AddParticle(
                     new MonoParticle(dustPos, velocity * 0.5f,
                     new Color(0.5f, 0.5f, 0.5f, 0f), Main.rand.NextFloat(0.6f, 1.2f)));
             }
@@ -133,29 +132,16 @@ namespace AQMod.Projectiles
             if (Main.netMode != NetmodeID.Server && AQGraphics.GameWorldActive && AQGraphics.Cull_WorldPosition(projectile.getRect()))
             {
                 var trueOldPos = projectile.oldPos.AsAddAll(new Vector2(projectile.width / 2f, projectile.height / 2f));
-                for (int i = 0; i < trueOldPos.Length; i++)
-                {
-                    Particle.PostDrawPlayers.AddParticle(new WindLayerParticle(trueOldPos[i], -projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.4f, 0.4f)) * 0.5f, GaleStreams.NeutralCurrentColor, 0.75f));
-                }
                 var rect = new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height);
                 for (int i = 0; i < 5; i++)
                 {
                     var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                     var velocity = new Vector2(-projectile.velocity.X + Main.rand.NextFloat(-1f, 1f) + Main.windSpeed, -projectile.velocity.Y + Main.rand.NextFloat(-1f, 1f));
-                    Particle.PostDrawPlayers.AddParticle(
+                    AQMod.Particles.PostDrawPlayers.AddParticle(
                         new MonoParticle(dustPos, velocity * 0.5f,
                         new Color(0.5f, 0.5f, 0.5f, 0f), Main.rand.NextFloat(0.8f, 1.45f)));
                 }
             }
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            var color = GaleStreams.NeutralCurrentColor;
-            color.A = 255;
-            WindLayer.AddToCurrentList(
-                new Common.Graphics.DrawTypes.FriendlyWind(color, projectile.oldPos.AsAddAll(-Main.screenPosition + new Vector2(projectile.width / 2f, projectile.height / 2f)), projectile.velocity.ToRotation()));
-            return false;
         }
     }
 }

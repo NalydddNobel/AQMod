@@ -16,7 +16,7 @@ namespace AQMod.NPCs
         {
             if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type])
                 return;
-            if (!isNPCLootLooping && !npc.boss && !npc.friendly && !AQNPC.Sets.NoSpoilLoot[npc.type])
+            if (!isNPCLootLooping && !npc.boss && !npc.friendly && !AQNPC.Sets.Instance.NoSpoilLoot.Contains(npc.type))
             {
                 byte p = Player.FindClosest(npc.position, npc.width, npc.height);
                 var plr = Main.player[p];

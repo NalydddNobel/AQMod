@@ -54,13 +54,13 @@ namespace AQMod.Projectiles.Magic
                 {
                     for (int i = 0; i < 7 * AQConfigClient.Instance.EffectQuality; i++)
                     {
-                        Particle.PostDrawPlayers.AddParticle(
+                        AQMod.Particles.PostDrawPlayers.AddParticle(
                            new EmberParticle(new Vector2(x, projectile.position.Y + Main.rand.NextFloat(projectile.height)), new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
                            new Color(200, 100, 255, 0) * alpha, Main.rand.NextFloat(0.6f, 1.1f)));
                     }
                     var position = new Vector2(x, projectile.position.Y + Main.rand.NextFloat(projectile.height));
                     float scale = Main.rand.NextFloat(0.6f, 1.1f);
-                    Particle.PostDrawPlayers.AddParticle(
+                    AQMod.Particles.PostDrawPlayers.AddParticle(
                         new SparkleParticle(position, new Vector2(-projectile.velocity.X * 0.25f, Main.rand.NextFloat(-0.1f, 0.1f)),
                         new Color(222, 150, 255, 0) * alpha, scale));
                 }

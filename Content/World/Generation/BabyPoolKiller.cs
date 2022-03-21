@@ -26,7 +26,7 @@ namespace AQMod.Content.World.Generation
             }
             if (Main.tile[x, y - 1].liquid == 0 && (!Main.tile[x, y - 1].active() || Main.tileCut[Main.tile[x, y - 1].type])
                 && Main.tile[x, y].liquid > 0 && (!Main.tile[x, y].active() || Main.tileCut[Main.tile[x, y].type]) && Main.tile[x, y + 1].active()
-                && Main.tileSolid[Main.tile[x, y + 1].type] && !Main.tileSolidTop[Main.tile[x, y + 1].type] && AQTile.Sets.CanFixWaterOnType.Contains(Main.tile[x, y + 1].type))
+                && Main.tileSolid[Main.tile[x, y + 1].type] && !Main.tileSolidTop[Main.tile[x, y + 1].type] && AQTile.Sets.Instance.CanFixWaterOnType.Contains(Main.tile[x, y + 1].type))
             {
                 Main.tile[x, y].active(active: true);
                 Main.tile[x, y].type = Main.tile[x, y + 1].type;
@@ -82,7 +82,7 @@ namespace AQMod.Content.World.Generation
             if (progress != null)
                 progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.Fix1TileHighWater");
 
-            var logger = AQMod.GetInstance().Logger;
+            var logger = AQMod.Instance.Logger;
             for (int i = 250; i < Main.maxTilesX - 250; i++) // should ignore beaches and the far side of the world
             {
                 for (int j = 50; j < (int)Main.worldSurface; j++)

@@ -159,7 +159,7 @@ namespace AQMod.Effects
             }
             catch (Exception e)
             {
-                var log = AQMod.GetInstance().Logger;
+                var log = AQMod.Instance.Logger;
                 log.Error("Error when trying to get a color from {ItemID:" + item + "}");
                 log.Error(e);
 

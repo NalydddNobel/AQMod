@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Effects.Trails.Rendering
+namespace AQMod.Effects
 {
     public struct PrimitivesRenderer
     {

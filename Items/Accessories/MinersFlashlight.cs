@@ -76,7 +76,7 @@ namespace AQMod.Items.Accessories
                             }
                             if (shineRarity <= 1 || Main.rand.NextBool((int)(shineRarity * 0.075f)))
                             {
-                                Particle.PostDrawPlayers.AddParticle(
+                                AQMod.Particles.PostDrawPlayers.AddParticle(
                                     new BrightSparkle(new Vector2(x2 * 16f + Main.rand.NextFloat(16f), y2 * 16f + Main.rand.NextFloat(16f)),
                                     new Vector2(Main.rand.NextFloat(0.1f, 0.2f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi)),
                                     new Color(255, 240, 120, 2), Main.rand.NextFloat(0.6f, 0.75f)));

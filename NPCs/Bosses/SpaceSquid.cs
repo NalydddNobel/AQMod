@@ -97,7 +97,7 @@ namespace AQMod.NPCs.Bosses
                 for (int i = 0; i < 10; i++)
                 {
                     var spawnPos = npc.position + new Vector2(Main.rand.Next(npc.width), Main.rand.Next(20));
-                    Particle.PostDrawPlayers.AddParticle(new SpaceSquidSnowflake(spawnPos, new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f)), default(Color), Main.rand.NextFloat(0.6f, 1.2f)));
+                    AQMod.Particles.PostDrawPlayers.AddParticle(new SpaceSquidSnowflake(spawnPos, new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f)), default(Color), Main.rand.NextFloat(0.6f, 1.2f)));
                 }
                 for (int i = 0; i < 3; i++)
                 {
@@ -121,7 +121,7 @@ namespace AQMod.NPCs.Bosses
                 if (Main.rand.NextBool(20))
                 {
                     var spawnPos = npc.position + new Vector2(Main.rand.Next(-10, 10) + npc.width, Main.rand.Next(20));
-                    Particle.PostDrawPlayers.AddParticle(new SpaceSquidSnowflake(spawnPos, new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f))));
+                    AQMod.Particles.PostDrawPlayers.AddParticle(new SpaceSquidSnowflake(spawnPos, new Vector2(Main.rand.NextFloat(-4f, 4f), -Main.rand.NextFloat(1f, 4f))));
                 }
             }
         }

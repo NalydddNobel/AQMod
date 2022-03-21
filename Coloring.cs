@@ -5,7 +5,7 @@ using Terraria.ID;
 
 namespace AQMod
 {
-    public static class Coloring
+    public class Coloring
     {
         public static byte[] Paints { get; private set; }
         public static Dictionary<short, byte> DyeToPaint { get; private set; }

@@ -45,7 +45,7 @@ namespace AQMod.Common
                     }
                     else
                     {
-                        AQMod.GetInstance().Logger.Error(ex);
+                        AQMod.Instance.Logger.Error(ex);
                     }
                 }
             }

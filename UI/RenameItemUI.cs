@@ -44,7 +44,7 @@ namespace AQMod.UI
             base.Update(gameTime);
             if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != ModContent.NPCType<BalloonMerchant>())
             {
-                AQMod.GetInstance().NPCTalkState.SetState(null);
+                AQMod.Instance.NPCTalkState.SetState(null);
             }
             else
             {
@@ -162,7 +162,7 @@ namespace AQMod.UI
 
         private static bool CanSwapItem(Item slotItem, Item mouseItem)
         {
-            if (mouseItem != null && !mouseItem.IsAir && mouseItem.maxStack == 1 && !AQItem.Sets.NoRename.Contains(mouseItem.type))
+            if (mouseItem != null && !mouseItem.IsAir && mouseItem.maxStack == 1 && !AQItem.Sets.Instance.NoRename.Contains(mouseItem.type))
                 return true;
             if (slotItem != null && !slotItem.IsAir && (mouseItem == null || mouseItem.IsAir))
                 return true;

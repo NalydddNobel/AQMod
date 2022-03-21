@@ -60,7 +60,7 @@ namespace AQMod.UI
             Main.PlaySound(SoundID.Item86);
 
             Item item = new Item();
-            item.SetDefaults(AQItem.Sets.ConcoctionItemConversions[concoctionSlot.Item.type]);
+            item.SetDefaults(AQItem.Sets.Instance.ConcoctionItemConversions[concoctionSlot.Item.type]);
             if (item.modItem is ConcoctionResult concoctionResult)
             {
                 concoctionResult.original = potionSlot.Item.Clone();
@@ -108,7 +108,7 @@ namespace AQMod.UI
             Active = true;
             if (concocting == 0 && !Main.LocalPlayer.IsTalkingTo<Memorialist>())
             {
-                AQMod.GetInstance().NPCTalkState.SetState(null);
+                AQMod.Instance.NPCTalkState.SetState(null);
             }
             else
             {
@@ -288,7 +288,7 @@ namespace AQMod.UI
         }
         private static bool ConcoctionSwap(Item slotItem, Item mouseItem)
         {
-            if (mouseItem != null && !mouseItem.IsAir && AQItem.Sets.ConcoctionItemConversions.ContainsKey(mouseItem.type))
+            if (mouseItem != null && !mouseItem.IsAir && AQItem.Sets.Instance.ConcoctionItemConversions.ContainsKey(mouseItem.type))
                 return true;
             if (slotItem != null && !slotItem.IsAir && (mouseItem == null || mouseItem.IsAir))
                 return true;

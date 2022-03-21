@@ -44,7 +44,7 @@ namespace AQMod
         }
         public static void UpdateExporterQuestsCompleted()
         {
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.UpdateExporterQuestsCompleted);
             p.Write(MiscWorldInfo.exporterQuests);
             p.Send();
@@ -63,7 +63,7 @@ namespace AQMod
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
                 return;
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.RequestDemonSiege);
             p.Write(x);
             p.Write(y);
@@ -81,7 +81,7 @@ namespace AQMod
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
                 return;
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.RequestDemonSiege);
             p.Write(x);
             p.Write(y);
@@ -92,14 +92,14 @@ namespace AQMod
         #region Glimmer Event 
         public static void RequestOmegaStarite()
         {
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.RequestOmegaStarite);
             p.Send();
         }
 
         public static void ActivateGlimmerEvent()
         {
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.ActivateGlimmerEvent);
             p.Write(Glimmer.tileX);
             p.Write(Glimmer.tileY);
@@ -110,7 +110,7 @@ namespace AQMod
         #region Misc
         public static void RequestDungeonCoordinatesUpdate(bool setMapCoords = true)
         {
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.RequestDungeonCoordinates);
             p.Write(setMapCoords);
             p.Write(Main.myPlayer);
@@ -119,7 +119,7 @@ namespace AQMod
 
         public static void NetCombatText(Rectangle rect, Color color, int amount, bool dramatic = false, bool dot = false)
         {
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.CombatNumber);
             p.Write(true);
             p.Write(rect.X);
@@ -138,7 +138,7 @@ namespace AQMod
         }
         public static void NetCombatText(Vector2 position, Color color, int amount)
         {
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.CombatNumber);
             p.Write(false);
             p.Write(position.X);
@@ -156,7 +156,7 @@ namespace AQMod
 
         public static void NetCombatText(Rectangle rect, Color color, string text)
         {
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.CombatText);
             p.Write(true);
             p.Write(rect.X);
@@ -175,7 +175,7 @@ namespace AQMod
         }
         public static void NetCombatText(Vector2 position, Color color, string text)
         {
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.CombatText);
             p.Write(false);
             p.Write(position.X);
@@ -193,7 +193,7 @@ namespace AQMod
 
         public static void UpdateWindSpeeds()
         {
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(PacketType.UpdateWindSpeeds);
             p.Write(Main.windSpeedSet);
             p.Write(Main.windSpeedSpeed);
@@ -204,7 +204,7 @@ namespace AQMod
 
         public static void Request(ushort type)
         {
-            var p = AQMod.GetInstance().GetPacket();
+            var p = AQMod.Instance.GetPacket();
             p.Write(type);
             p.Send();
         }
@@ -267,7 +267,7 @@ namespace AQMod
                 case PacketType.RequestDungeonCoordinates:
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        var p = AQMod.GetInstance().GetPacket();
+                        var p = AQMod.Instance.GetPacket();
                         p.Write(PacketType.RecieveDungeonCoordinates);
                         p.Write(reader.ReadBoolean());
                         p.Write(Main.dungeonX);

@@ -713,7 +713,7 @@ namespace AQMod.Content.Entities
             var plr = Main.LocalPlayer;
             if (getRect().Contains(Main.MouseWorld.ToPoint()) && plr.IsInTileInteractionRange((int)position.X / 16, (int)position.Y / 16))
             {
-                var outlineTexture = Tex.CrabPotHighlight.Texture.Value;
+                var outlineTexture = AQMod.Texture("Assets/CrabPot_Highlight");
                 plr.noThrow = 2;
                 plr.showItemIcon = true;
                 Item bait = null;
@@ -827,7 +827,7 @@ namespace AQMod.Content.Entities
             }
             HandleInteractions(drawCoordinates, lightColor);
 
-            Main.spriteBatch.Draw(Tex.CrabPot, drawCoordinates, frame, lightColor, _rotation, origin, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AQMod.Texture("Assets/CrabPot"), drawCoordinates, frame, lightColor, _rotation, origin, 1f, SpriteEffects.None, 0f);
         }
 
         public static void Initialize()

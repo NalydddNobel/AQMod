@@ -6,11 +6,11 @@ using Terraria.ModLoader;
 
 namespace AQMod.Content.Players
 {
-    public class EquipOverlayLoader : IDisposable
+    public class EquipOverlaysManager : IDisposable
     {
         private Dictionary<string, EquipOverlay>[] equipNameToOverlay;
 
-        public EquipOverlayLoader()
+        public EquipOverlaysManager()
         {
             equipNameToOverlay = new Dictionary<string, EquipOverlay>[(byte)EquipLayering.Count];
             for (int i = 0; i < equipNameToOverlay.Length; i++)

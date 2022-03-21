@@ -195,7 +195,7 @@ namespace AQMod.Items.Potions.Special
             }
             catch (Exception e)
             {
-                var aQMod = AQMod.GetInstance();
+                var aQMod = AQMod.Instance;
                 aQMod.Logger.Error(e.Message);
                 aQMod.Logger.Error(e.StackTrace);
             }

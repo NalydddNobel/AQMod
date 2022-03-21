@@ -25,7 +25,7 @@ namespace AQMod.Content.World.FallingStars
         {
             return new TagCompound()
             {
-                ["Version"] = AQMod.GetInstance().Version.ToString(),
+                ["Version"] = AQMod.Instance.Version.ToString(),
                 ["SpawnManaCrystal"] = SpawnManaCrystal,
                 ["SpawnLifeCrystal"] = SpawnLifeCrystal,
             };

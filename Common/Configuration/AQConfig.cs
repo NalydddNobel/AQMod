@@ -21,7 +21,7 @@ namespace AQMod.Common.Configuration
             }
             public StaticBoundPropertyAttribute(string typeName, string propertyName)
             {
-                _setProperty = AQMod.GetInstance().Code.GetType(typeName).GetProperty(propertyName);
+                _setProperty = AQMod.Instance.Code.GetType(typeName).GetProperty(propertyName);
             }
 
             internal static void OnChangedConfig(AQConfig config)

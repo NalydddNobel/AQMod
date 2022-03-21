@@ -179,7 +179,7 @@ namespace AQMod.NPCs.Friendly
                                                 Main.tile[k, l] = new Tile();
                                                 continue;
                                             }
-                                            if (Main.tile[k, l].active() && AQTile.Sets.ExporterQuestFurniture.Contains(Main.tile[k, l].type))
+                                            if (Main.tile[k, l].active() && AQTile.Sets.Instance.ExporterQuestFurniture.Contains(Main.tile[k, l].type))
                                             {
                                                 return;
                                             }
@@ -211,7 +211,7 @@ namespace AQMod.NPCs.Friendly
             }
             catch (Exception ex)
             {
-                AQMod.GetInstance().Logger.Error(ex);
+                AQMod.Instance.Logger.Error(ex);
             }
         }
 
@@ -258,7 +258,7 @@ namespace AQMod.NPCs.Friendly
             var player = Main.LocalPlayer;
             for (int i = 0; i < Main.maxInventory; i++)
             {
-                if (player.inventory[i] != null && !player.inventory[i].IsAir && AQItem.Sets.ExporterQuest.Contains(player.inventory[i].type))
+                if (player.inventory[i] != null && !player.inventory[i].IsAir && AQItem.Sets.Instance.ExporterQuest.Contains(player.inventory[i].type))
                 {
                     completeButton = true;
                     break;
@@ -331,7 +331,7 @@ namespace AQMod.NPCs.Friendly
                 bool consumed = false;
                 for (int i = 0; i < Main.maxInventory; i++)
                 {
-                    if (player.inventory[i] != null && !player.inventory[i].IsAir && AQItem.Sets.ExporterQuest.Contains(player.inventory[i].type))
+                    if (player.inventory[i] != null && !player.inventory[i].IsAir && AQItem.Sets.Instance.ExporterQuest.Contains(player.inventory[i].type))
                     {
                         if (consumed)
                         {

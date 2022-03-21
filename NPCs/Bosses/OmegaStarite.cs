@@ -6,7 +6,6 @@ using AQMod.Common.ID;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;
-using AQMod.Effects.Trails.Rendering;
 using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials;

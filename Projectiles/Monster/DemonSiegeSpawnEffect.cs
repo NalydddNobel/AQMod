@@ -9,7 +9,7 @@ namespace AQMod.Projectiles.Monster
 {
     public sealed class DemonSiegeSpawnEffect : ModProjectile
     {
-        public override string Texture => Tex.None;
+        public override string Texture => AQMod.TextureNone;
 
         public override void SetDefaults()
         {

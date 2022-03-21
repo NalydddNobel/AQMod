@@ -76,7 +76,7 @@ namespace AQMod.Projectiles.Magic
                     if (Main.rand.NextBool(5))
                     {
                         var dustPos2 = projectile.Center + Vector2.Normalize(projectile.velocity) * (projectile.width / 2f - 6f);
-                        Particle.PostDrawPlayers.AddParticle(
+                        AQMod.Particles.PostDrawPlayers.AddParticle(
                             new SparkleParticle(dustPos2, -projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.7f, 0.7f)) * Main.rand.NextFloat(0.07f, 0.4f),
                             new Color(220, 220, 220, 0) * alpha, Main.rand.NextFloat(0.25f, 0.75f)));
                     }
@@ -84,7 +84,7 @@ namespace AQMod.Projectiles.Magic
                     {
                         float scale = Main.rand.NextFloat(1f, 1.45f);
                         var dustPos1 = projectile.Center + Vector2.Normalize(projectile.velocity) * (projectile.width / 2f - 6f);
-                        Particle.PostDrawPlayers.AddParticle(
+                        AQMod.Particles.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos1, (projectile.velocity * 0.015f).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)),
                             new Color(175, 60, 220, 0) * alpha, scale));
                     }
@@ -165,7 +165,7 @@ namespace AQMod.Projectiles.Magic
                 {
                     var velo = projectile.velocity * 0.015f;
                     var particlePos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                    Particle.PostDrawPlayers.AddParticle(
+                    AQMod.Particles.PostDrawPlayers.AddParticle(
                         new EmberParticle(particlePos, new Vector2(Main.rand.NextFloat(-2.5f, 2.5f), Main.rand.NextFloat(-0.1f, 0.1f)),
                         new Color(180, 100, 255, 0), 1.35f));
                 }

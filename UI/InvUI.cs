@@ -8,9 +8,9 @@ using Terraria.UI.Chat;
 
 namespace AQMod.UI
 {
-    public static class InvUI
+    public class InvUI
     {
-        public static class Hooks
+        public class Hooks
         {
             public static int CurrentSlotContext;
 

@@ -8,7 +8,7 @@ namespace AQMod.Items.Misc.ExporterRewards
     {
         public override string Texture => "Terraria/Item_" + ItemID.FloatingIslandFishingCrate;
 
-        protected override List<int> LootTable => AQItem.Sets.SkyChestLoot;
+        protected override List<int> LootTable => AQItem.Sets.Instance.SkyChestLoot;
 
         public override void RightClick(Player player)
         {

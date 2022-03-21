@@ -9,7 +9,7 @@ namespace AQMod.Projectiles.Pets
 {
     public sealed class MiniPlayerPet : ModProjectile
     {
-        public override string Texture => Tex.None;
+        public override string Texture => AQMod.TextureNone;
 
         private Player dummyPlayer;
 

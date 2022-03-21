@@ -6,7 +6,7 @@ namespace AQMod.Items.Misc.ExporterRewards
 {
     public class OverworldPalette : SchrodingerCrate
     {
-        protected override List<int> LootTable => AQItem.Sets.OverworldChestLoot;
+        protected override List<int> LootTable => AQItem.Sets.Instance.OverworldChestLoot;
 
         public override void RightClick(Player player)
         {

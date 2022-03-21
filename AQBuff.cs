@@ -12,12 +12,14 @@ namespace AQMod
     {
         public sealed class Sets
         {
-            public static HashSet<int> CanBeRemovedByWhiteBloodCell { get; private set; }
-            public static HashSet<int> NoStarbyteUpgrade { get; private set; }
-            public static HashSet<int> FoodBuff { get; private set; }
-            public static HashSet<int> NoSpread { get; private set; }
+            public static Sets Instance;
 
-            internal static void Load()
+            public HashSet<int> CanBeRemovedByWhiteBloodCell { get; private set; }
+            public HashSet<int> NoStarbyteUpgrade { get; private set; }
+            public HashSet<int> FoodBuff { get; private set; }
+            public HashSet<int> NoSpread { get; private set; }
+
+            public Sets()
             {
                 NoSpread = new HashSet<int>()
                 {
@@ -74,12 +76,6 @@ namespace AQMod
                     ModContent.BuffType<BlueFire>(),
                     ModContent.BuffType<PickBreak>(),
                 };
-            }
-
-            internal static void Unload()
-            {
-                NoSpread?.Clear();
-                NoSpread = null;
             }
         }
 

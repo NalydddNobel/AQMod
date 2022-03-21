@@ -25,132 +25,163 @@ namespace AQMod
 {
     public class AQNPC : GlobalNPC
     {
-        public static class Sets
+        public sealed class Hooks
         {
-            public static bool[] NoSpoilLoot { get; private set; }
-            public static bool[] HecktoplasmDungeonEnemy { get; private set; }
-            public static bool[] EnemyDungeonSprit { get; private set; }
-            public static bool[] DemonSiegeEnemy { get; private set; }
-            public static bool[] UnaffectedByWind { get; private set; }
-            public static bool[] BossRelatedEnemy { get; private set; }
-            public static bool[] HardmodeEnemy { get; private set; }
-            public static bool[] IsACaveSkeleton { get; private set; }
-            public static bool[] IsAZombie { get; private set; }
-            public static bool[] IsWormSegment { get; private set; }
-            public static bool[] IsWormBody { get; private set; }
-            public static bool[] DealsLessDamageToCata { get; private set; }
-            public static List<int> CannotBeMeathooked { get; private set; }
-            public static List<int> NoGlobalDrops { get; private set; }
-            public static List<int> NoMapBlip { get; private set; }
-            public static HashSet<int> HotDamage { get; private set; }
-            public static HashSet<int> Corruption { get; private set; }
-            public static HashSet<int> Crimson { get; private set; }
-            public static HashSet<int> Unholy { get; private set; }
-            public static HashSet<int> Hallowed { get; private set; }
-
-            public static bool IsWormHead(int type)
+            internal static void Apply()
             {
-                return IsWormSegment[type] && !IsWormBody[type];
+                On.Terraria.NPC.SetDefaults += NPC_SetDefaults;
+                On.Terraria.NPC.Collision_DecideFallThroughPlatforms += DecideFallThroughPlatforms;
             }
 
-            private static void AutoSets()
+            private static void NPC_SetDefaults(On.Terraria.NPC.orig_SetDefaults orig, NPC self, int Type, float scaleOverride)
             {
-                for (int i = 0; i < NPCLoader.NPCCount; i++)
+                orig(self, Type, scaleOverride);
+                try
                 {
-                    if (NPCID.Sets.BelongsToInvasionOldOnesArmy[i])
+                    if (!AQMod.Loading)
                     {
-                        UnaffectedByWind[i] = true;
-                        continue;
-                    }
-                    try
-                    {
-                        NPC npc;
-                        if (i > Main.maxNPCTypes)
-                        {
-                            npc = NPCLoader.GetNPC(i).npc;
-                        }
-                        else
-                        {
-                            npc = new NPC();
-                            npc.SetDefaults(i);
-                        }
-                        if (npc.aiStyle != AIStyles.DemonEyeAI && npc.aiStyle != AIStyles.FlyingAI && npc.aiStyle != AIStyles.SpellAI && npc.aiStyle != AIStyles.EnchantedSwordAI && npc.aiStyle != AIStyles.SpiderAI &&
-                            (npc.noGravity || npc.boss))
-                        {
-                            UnaffectedByWind[npc.type] = true;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        UnaffectedByWind[i] = true;
-                        var l = AQMod.GetInstance().Logger;
-                        string npcname;
-                        if (i > Main.maxNPCTypes)
-                        {
-                            string tryName = Lang.GetNPCName(i).Value;
-                            if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
-                            {
-                                npcname = NPCLoader.GetNPC(i).Name;
-                            }
-                            else
-                            {
-                                npcname = tryName + "/" + NPCLoader.GetNPC(i).Name;
-                            }
-                        }
-                        else
-                        {
-                            npcname = Lang.GetNPCName(i).Value;
-                        }
-                        l.Error("An error occured when doing algorithmic checks for sets for {" + npcname + ", ID: " + i + "}");
-                        l.Error(e.Message);
-                        l.Error(e.StackTrace);
+                        self.GetGlobalNPC<AQNPC>().PostSetDefaults(self, Type, scaleOverride);
                     }
                 }
+                catch
+                {
+                }
             }
-            private static void RemoveRepeatingIndicesFromSets()
-            {
-                AQUtils.RemoveRepeatingIndices(NoGlobalDrops);
-                AQUtils.RemoveRepeatingIndices(CannotBeMeathooked);
-            }
-            private static void CrossModPolarities()
-            {
-                TryAddTo(AQMod.polarities, "Esophage", Corruption, Crimson, Unholy);
-                TryAddTo(AQMod.polarities, "EsophageHitbox", Corruption, Crimson, Unholy);
-                TryAddTo(AQMod.polarities, "EsophageLeg", Corruption, Crimson, Unholy);
-                TryAddTo(AQMod.polarities, "LightEater", Corruption, Unholy);
-                TryAddTo(AQMod.polarities, "LivingSpineHead", Crimson, Unholy);
-                TryAddTo(AQMod.polarities, "LivingSpineBody", Crimson, Unholy);
-                TryAddTo(AQMod.polarities, "LivingSpineTail", Crimson, Unholy);
-                TryAddTo(AQMod.polarities, "RavenousCursedHead", Corruption, Unholy);
-                TryAddTo(AQMod.polarities, "RavenousCursedBody", Corruption, Unholy);
-                TryAddTo(AQMod.polarities, "RavenousCursedTail", Corruption, Unholy);
-                TryAddTo(AQMod.polarities, "ScytheFlier", Crimson, Unholy);
-                TryAddTo(AQMod.polarities, "Uraraneid", Crimson, Unholy);
-                TryAddTo(AQMod.polarities, "TendrilAmalgam", Corruption, Unholy);
 
-                TryAddTo(AQMod.polarities, "SunPixie", Hallowed);
-                TryAddTo(AQMod.polarities, "Aequorean", Hallowed);
-                TryAddTo(AQMod.polarities, "IlluminantScourer", Hallowed);
-                TryAddTo(AQMod.polarities, "Painbow", Hallowed);
-                TryAddTo(AQMod.polarities, "SunKnight", Hallowed);
-                TryAddTo(AQMod.polarities, "SunServitor", Hallowed);
-                TryAddTo(AQMod.polarities, "Trailblazer", Hallowed);
-            }
-            private static void CrossModSplit()
-            {
-                TryAddTo(AQMod.split, "Decaying", Corruption, Unholy);
-                TryAddTo(AQMod.split, "Stalker", Crimson, Unholy);
-                TryAddTo(AQMod.split, "Spotter", Corruption, Crimson, Unholy);
+            private static bool DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
+                self.type > Main.maxNPCTypes &&
+                self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ?
+                decideToFallThroughPlatforms.Decide() : orig(self);
+        }
 
-                TryAddTo(AQMod.split, "Echo", Hallowed);
-                TryAddTo(AQMod.split, "Fairyfly", Hallowed);
-                TryAddTo(AQMod.split, "ShinyPixie", Hallowed);
-                TryAddTo(AQMod.split, "SkeletonJester", Hallowed);
+        public sealed class Sets
+        {
+            public static Sets Instance;
+
+            public HashSet<int> NoSpoilLoot { get; private set; }
+            public HashSet<int> HecktoplasmSpawn { get; private set; }
+            public HashSet<int> WindUpdates { get; private set; }
+            public HashSet<int> BossRelatedEnemy { get; private set; }
+            public HashSet<int> IsACaveSkeleton { get; private set; }
+            public HashSet<int> IsAZombie { get; private set; }
+            public HashSet<int> DealsLessDamageToCata { get; private set; }
+            public HashSet<int> CannotBeMeathooked { get; private set; }
+            public HashSet<int> NoGlobalDrops { get; private set; }
+            public HashSet<int> NoMapBlip { get; private set; }
+            public HashSet<int> HotDamage { get; private set; }
+            public HashSet<int> Corruption { get; private set; }
+            public HashSet<int> Crimson { get; private set; }
+            public HashSet<int> Unholy { get; private set; }
+            public HashSet<int> Hallowed { get; private set; }
+
+            public static bool TryAddTo(Mod mod, string name, HashSet<int> set)
+            {
+                int type = mod.NPCType(name);
+                if (type != 0)
+                {
+                    return set.Add(type);
+                }
+                return false;
             }
-            internal static void Setup()
+
+            public static bool TryAddTo(Mod mod, string name, params HashSet<int>[] sets)
+            {
+                int type = mod.NPCType(name);
+                if (type != 0)
+                {
+                    foreach (var set in sets)
+                    {
+                        set.Add(type);
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            public Sets()
             {
                 SetUtils.Length = NPCLoader.NPCCount;
                 SetUtils.GetIDFromType = (m, n) => m.NPCType(n);
+
+                BossRelatedEnemy = new HashSet<int>()
+                {
+                    NPCID.ServantofCthulhu,
+                    NPCID.PirateShipCannon,
+                    NPCID.MartianSaucerTurret,
+                    NPCID.MartianSaucerCore,
+                    NPCID.MartianSaucerCannon,
+                    NPCID.EaterofWorldsHead,
+                    NPCID.EaterofWorldsBody,
+                    NPCID.EaterofWorldsTail,
+                    NPCID.TheDestroyerBody,
+                    NPCID.TheDestroyerTail,
+                    NPCID.GolemFistLeft,
+                    NPCID.GolemFistRight,
+                    NPCID.GolemHead,
+                    NPCID.PrimeVice,
+                    NPCID.PrimeLaser,
+                    NPCID.PrimeSaw,
+                    NPCID.PrimeCannon,
+                    NPCID.MourningWood,
+                    NPCID.Pumpking,
+                    NPCID.PumpkingBlade,
+                    NPCID.Everscream,
+                    NPCID.SantaNK1,
+                    NPCID.IceQueen,
+                    NPCID.DD2DarkMageT1,
+                    NPCID.DD2DarkMageT3,
+                    NPCID.DD2OgreT2,
+                    NPCID.DD2OgreT3,
+                    NPCID.DD2Betsy,
+                    NPCID.Creeper,
+                    NPCID.BeeSmall,
+                    NPCID.Bee,
+                };
+
+                IsACaveSkeleton = new HashSet<int>()
+                {
+                    NPCID.GreekSkeleton,
+                    NPCID.Skeleton,
+                    NPCID.SkeletonAlien,
+                    NPCID.SkeletonAstonaut,
+                    NPCID.SkeletonTopHat,
+                    NPCID.HeadacheSkeleton,
+                    NPCID.MisassembledSkeleton,
+                    NPCID.PantlessSkeleton,
+                    NPCID.BoneThrowingSkeleton,
+                    NPCID.BoneThrowingSkeleton2,
+                    NPCID.BoneThrowingSkeleton3,
+                    NPCID.BoneThrowingSkeleton4,
+                    NPCID.ArmoredSkeleton,
+                    NPCID.SkeletonArcher,
+                };
+
+                IsAZombie = new HashSet<int>()
+                {
+                    NPCID.Zombie,
+                    NPCID.BaldZombie,
+                    NPCID.PincushionZombie,
+                    NPCID.SlimedZombie,
+                    NPCID.SwampZombie,
+                    NPCID.TwiggyZombie,
+                    NPCID.FemaleZombie,
+                    NPCID.ZombieRaincoat,
+                    NPCID.ZombieRaincoat,
+                    NPCID.ZombieXmas,
+                    NPCID.ZombieSweater,
+                    NPCID.BloodZombie,
+                    NPCID.ZombieDoctor,
+                    NPCID.ZombieEskimo,
+                    NPCID.ZombiePixie,
+                    NPCID.ZombieSuperman,
+                    NPCID.ArmedZombie,
+                    NPCID.ArmedZombieCenx,
+                    NPCID.ArmedZombieEskimo,
+                    NPCID.ArmedZombiePincussion,
+                    NPCID.ArmedZombieSlimed,
+                    NPCID.ArmedZombieSwamp,
+                    NPCID.ArmedZombieTwiggy
+                };
 
                 Corruption = new HashSet<int>()
                 {
@@ -231,7 +262,7 @@ namespace AQMod
                     ModContent.NPCType<WhiteSlime>(),
                 };
 
-                CannotBeMeathooked = new List<int>()
+                CannotBeMeathooked = new HashSet<int>()
                 {
                     NPCID.WallofFlesh,
                     NPCID.WallofFleshEye,
@@ -239,15 +270,24 @@ namespace AQMod
                     NPCID.ForceBubble,
                 };
 
-                DealsLessDamageToCata = SetUtils.CreateFlagSet(NPCID.Mothron, NPCID.MothronSpawn, NPCID.MothronEgg, NPCID.CultistBoss, NPCID.CultistBossClone, NPCID.AncientCultistSquidhead, NPCID.CultistDragonHead, NPCID.CultistDragonBody1, NPCID.CultistDragonBody2, NPCID.CultistDragonBody3, NPCID.CultistDragonBody4, NPCID.CultistDragonTail, NPCID.AncientDoom, NPCID.AncientLight);
+                DealsLessDamageToCata = new HashSet<int>()
+                {
+                    NPCID.Mothron,
+                    NPCID.MothronSpawn,
+                    NPCID.MothronEgg,
+                    NPCID.CultistBoss,
+                    NPCID.CultistBossClone,
+                    NPCID.AncientCultistSquidhead,
+                    NPCID.CultistDragonHead,
+                    NPCID.CultistDragonBody1,
+                    NPCID.CultistDragonBody2,
+                    NPCID.CultistDragonBody3,
+                    NPCID.CultistDragonBody4,
+                    NPCID.CultistDragonTail,
+                    NPCID.AncientDoom,
+                    NPCID.AncientLight
+                };
 
-                //Unholy = SetUtils.CreateFlagSet(NPCID.EaterofSouls, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail, NPCID.DevourerHead, NPCID.DevourerBody, NPCID.DevourerTail, NPCID.SeekerHead, NPCID.SeekerBody, NPCID.SeekerTail,
-                //    // Calamity Mod
-                //    "!:Aries", "!:AstralachneaGround", "!:AstralachneaWall", "!:AstralProbe", "!:AstralSeekerSpit", "!:AstralSlime", "!:Atlas", "!:BigSightseer", "!:FusionFeeder",
-                //    "!:Hadarian", "!:Hive", "!:Hiveling", "!:Mantis", "!:Nova", "!:SmallSightseer", "!:StellarCulex", "!:Twinkler", "!:AstrumAureus", "!:AstrumDeusHeadSpectral", "!:AstrumDeusBodySpectral", "!:AstrumDeusTailSpectral",
-                //    "!:DankCreeper", "!:DarkHeart", "!:HiveBlob", "!:HiveBlob2", "!:HiveCyst", "!:HiveMind", "!:PerforatorCyst", "!:PerforatorHive", "!:PerforatorHeadSmall", "!:PerforatorHeadMedium", "!:PerforatorHeadLarge", "!:PerforatorBodySmall", "!:PerforatorBodyMedium", "!:PerforatorBodyLarge", "!:PerforatorTailSmall", "!:PerforatorTailMedium", "!:PerforatorTailLarge",
-                //    "!:SlimeGod", "!:SlimeGodCore", "!:SlimeGodRun", "!:SlimeGodRunSplit", "!:SlimeGodSplit", "!:SlimeSpawnCorrupt", "!:SlimeSpawnCorrupt2", "!:SlimeSpawnCrimson", "!:SlimeSpawnCrimson2", "!:CrimulanBlightSlime", "!:EbonianBlightSlime"
-                //    );
                 Unholy = new HashSet<int>()
                 {
                     NPCID.Wraith,
@@ -276,148 +316,41 @@ namespace AQMod
                     NPCID.ChaosElemental,
                 };
 
-                IsWormBody = SetUtils.CreateFlagSet(NPCID.EaterofWorldsBody, NPCID.BoneSerpentBody, NPCID.CultistDragonBody1, NPCID.CultistDragonBody2, NPCID.CultistDragonBody3, NPCID.CultistDragonBody4, NPCID.DevourerBody,
-                    NPCID.DuneSplicerBody, NPCID.EaterofWorldsBody, NPCID.GiantWormBody, NPCID.LeechBody, NPCID.SeekerBody, NPCID.SolarCrawltipedeBody, NPCID.StardustWormBody, NPCID.TheDestroyerBody, NPCID.TombCrawlerBody, NPCID.WyvernBody, NPCID.WyvernBody2, NPCID.WyvernBody3,
-                    NPCID.BoneSerpentTail, NPCID.CultistDragonTail, NPCID.DevourerTail, NPCID.DiggerTail, NPCID.DuneSplicerTail, NPCID.EaterofWorldsTail, NPCID.GiantWormTail, NPCID.LeechTail, NPCID.SeekerTail, NPCID.SolarCrawltipedeTail, NPCID.StardustWormTail, NPCID.TheDestroyerTail,
-                    NPCID.TombCrawlerTail, NPCID.WyvernTail,
-                    // Polarities
-                    "%:BisectorBody1", "%:BisectorBody2", "%:BisectorTail", "%:SeaSerpentBody", "%:SeaSerpentTail", "%:ConvectiveWandererBody", "%:ConvectiveWandererTail", "%:RavenousCursedBody", "%:RavenousCursedTail", "%:LivingSpineBody", "%:LivingSpineTail",
-                    // Calamity Mod
-                    "!:ArmoredDiggerBody", "!:ArmoredDiggerTail", "!:GulperEelBody", "!:GulperEelBodyAlt", "!:GulperEelTail", "!:DesertScourgeBody", "!:DesertNuisanceTail", "!:PerforatorBodySmall", "!:PerforatorBodyMedium", "!:PerforatorBodyLarge",
-                    "!:PerforatorTailSmall", "!:PerforatorTailMedium", "!:PerforatorTailLarge", "!:AquaticScourgeBody", "!:AquaticScourgeTail", "!:AquaticSeekerBody", "!:AquaticSeekerTail", "!:AstrumDeusBodySpectral", "!:AstrumDeusTailSpectral", "!:StormWeaverBody", "!:StormWeaverTail",
-                    "!:DevourerofGodsBody", "!:DevourerofGodsTail", "!:DevourerofGodsBody2", "!:DevourerofGodsTail2", "!:SCalWormHead", "!:SCalWormBody", "!:SCalWormBodyWeak", "!:SCalWormArm", "!:SCalWormTail", "!:ThanatosBody1", "!:ThanatosBody2", "!:ThanatosTail", "!:EidolonWyrmHeadHuge",
-                    "!:EidolonWyrmBody", "!:EidolonWyrmBodyAlt", "!:EidolonWyrmBodyAltHuge", "!:EidolonWyrmBodyHuge", "!:EidolonWyrmTail", "!:EidolonWyrmTailHuge"
-                    );
-
-                IsWormSegment = SetUtils.CreateFlagSet(NPCID.BoneSerpentHead, NPCID.CultistDragonHead, NPCID.DevourerHead, NPCID.DiggerHead, NPCID.DuneSplicerHead, NPCID.EaterofWorldsHead, NPCID.GiantWormHead, NPCID.LeechHead, NPCID.SeekerHead,
-                    NPCID.SolarCrawltipedeHead, NPCID.StardustWormHead, NPCID.TombCrawlerHead, NPCID.WyvernHead, NPCID.TheDestroyer,
-                    // Calamity Mod
-                    "!:ArmoredDiggerHead", "!:GulperEelHead", "!:DesertScourgeHead", "!:DesertNuisanceHead", "!:PerforatorHeadSmall", "!:PerforatorHeadMedium", "!:PerforatorHeadLarge", "!:ArmoredDiggerBody", "!:AquaticScourgeHead", "!:AquaticSeekerHead",
-                    "!:AstrumDeusHeadSpectral", "!:StormWeaverHead", "!:DevourerofGodsHead", "!:DevourerofGodsHead2", "!:ThanatosHead", "!:EidolonWyrmHead",
-                    // Polarities
-                    "%:BisectorHead", "%:BisectorHeadHitbox", "%:SeaSerpentHead", "%:ConvectiveWandererHead", "%:RavenousCursedHead", "%:LivingSpineHead"
-                    );
-                for (int i = 0; i < NPCLoader.NPCCount; i++)
+                HecktoplasmSpawn = new HashSet<int>() 
                 {
-                    IsWormSegment[i] = IsWormBody[i];
-                }
+                    NPCID.DiabolistRed,
+                    NPCID.DiabolistWhite,
+                    NPCID.HellArmoredBones,
+                    NPCID.HellArmoredBonesMace,
+                    NPCID.HellArmoredBonesSpikeShield,
+                    NPCID.HellArmoredBonesSword,
+                };
 
-                IsAZombie = SetUtils.CreateFlagSet(NPCID.Zombie, NPCID.BaldZombie, NPCID.PincushionZombie, NPCID.SlimedZombie, NPCID.SwampZombie,
-                    NPCID.TwiggyZombie, NPCID.FemaleZombie, NPCID.ZombieRaincoat, NPCID.ZombieRaincoat, NPCID.ZombieXmas, NPCID.ZombieSweater, NPCID.BloodZombie,
-                    NPCID.ZombieDoctor, NPCID.ZombieEskimo, NPCID.ZombiePixie, NPCID.ZombieSuperman, NPCID.ArmedZombie, NPCID.ArmedZombieCenx, NPCID.ArmedZombieEskimo,
-                    NPCID.ArmedZombiePincussion, NPCID.ArmedZombieSlimed, NPCID.ArmedZombieSwamp, NPCID.ArmedZombieTwiggy);
+                NoSpoilLoot = new HashSet<int>()
+                {
+                    NPCID.EaterofWorldsHead,
+                    NPCID.EaterofWorldsBody,
+                    NPCID.EaterofWorldsTail,
+                    NPCID.Creeper,
+                    NPCID.Mimic,
+                    NPCID.BigMimicHallow,
+                    NPCID.BigMimicCorruption,
+                    NPCID.BigMimicCrimson,
+                    NPCID.BigMimicJungle,
+                    NPCID.DungeonGuardian,
+                    NPCID.PresentMimic,
+                    NPCID.LunarTowerNebula,
+                    NPCID.LunarTowerSolar,
+                    NPCID.LunarTowerStardust,
+                    NPCID.LunarTowerVortex,
+                    NPCID.MourningWood,
+                    NPCID.Pumpking,
+                    NPCID.Everscream,
+                    NPCID.SantaNK1,
+                    NPCID.IceQueen,
+                };
 
-                // I'll complete this list someday... atleast the vanilla part SCREW the modded part ever being complete!
-                HardmodeEnemy = SetUtils.CreateFlagSet(NPCID.ArmoredSkeleton, NPCID.SkeletonArcher, NPCID.PossessedArmor, NPCID.Wraith, NPCID.Clown, NPCID.AnglerFish, NPCID.Mimic,
-                    NPCID.IlluminantBat, NPCID.IlluminantSlime, NPCID.Corruptor, NPCID.CorruptSlime, NPCID.Clinger, NPCID.CursedHammer, NPCID.BigMimicCorruption, NPCID.Herpling, NPCID.Crimslime,
-                    NPCID.IchorSticker, NPCID.FloatyGross, NPCID.CrimsonAxe, NPCID.BigMimicCrimson, NPCID.BigMimicHallow, NPCID.BigMimicJungle, NPCID.MossHornet, NPCID.AngryTrapper, NPCID.GiantTortoise,
-                    NPCID.Derpling, NPCID.GiantFlyingFox, NPCID.Moth, NPCID.ToxicSludge, NPCID.Unicorn, NPCID.Werewolf, NPCID.Wolf, NPCID.WanderingEye, NPCID.SeekerHead, NPCID.SeekerBody, NPCID.SeekerTail,
-                    NPCID.Slimer, NPCID.HoppinJack, NPCID.Gastropod, NPCID.Arapaima, NPCID.ArmoredViking, NPCID.IceElemental, NPCID.IceGolem, NPCID.EnchantedSword, NPCID.DiggerHead, NPCID.DiggerBody, NPCID.DiggerTail,
-                    NPCID.DungeonSpirit, NPCID.BlueArmoredBones, NPCID.BlueArmoredBonesMace, NPCID.BlueArmoredBonesNoPants, NPCID.BlueArmoredBonesSword, NPCID.HellArmoredBones, NPCID.HellArmoredBonesMace, NPCID.HellArmoredBonesSpikeShield, NPCID.HellArmoredBonesSword,
-                    NPCID.CultistArcherBlue, NPCID.CultistArcherWhite, NPCID.CultistDevote, NPCID.SkeletonCommando, NPCID.ChaosElemental, NPCID.RuneWizard, NPCID.IcyMerman, NPCID.JungleCreeper, NPCID.JungleCreeperWall, NPCID.Necromancer, NPCID.NecromancerArmored,
-                    NPCID.DiabolistRed, NPCID.DiabolistWhite, NPCID.RaggedCaster, NPCID.RaggedCasterOpenCoat, NPCID.SkeletonSniper, NPCID.TacticalSkeleton, NPCID.WyvernHead, NPCID.WyvernBody, NPCID.WyvernBody2, NPCID.WyvernBody3, NPCID.WyvernLegs, NPCID.WyvernTail,
-                    // Aequus
-                    typeof(Heckto), typeof(RedSprite), typeof(SpaceSquid),
-                    // Polarities
-                    "%:Aequorean", "%:Amphisbaena", "%:ChaosCrawler", "%:BisectorHead", "%:BisectorHeadHitbox", "%:BisectorBody1", "%:BisectorBody2", "%:BisectorTail",
-                    "%:BrineDweller", "%:GreatStarSlime", "%:HydraHead", "%:HydraBody",
-                    "%:Limeshell", "%:Alkalabomination", "%:Spitter", "%:ConeShell", "%:SeaSerpentHead", "%:SeaSerpentBody", "%:SeaSerpentTail",
-                    "%:Kraken", "%:KrakenTentacle", "%:KrakenHitbox", "%:SparkCrawler",
-                    "%:FractalFern", "%:Euryopter", "%:FractalSlimeLarge", "%:FractalSlimeMedium", "%:FractalSlimeSmall",
-                    "%:DustSprite", "%:SeaAnomaly", "%:SeaAnomalyHitbox", "%:TurbulenceSpark", "%:Shockflake", "%:MoltenSpirit",
-                    "%:ConvectiveWandererHead", "%:ConvectiveWandererBody", "%:ConvectiveWandererTail", "%:MegaMenger", "%:FractalSpirit",
-                    "%:Orthoconic", "%:OrthoconicHitbox", "%:Painbow", "%:Trailblazer", "%:IlluminantScourer", "%:SunKnight", "%:SunServitor", "%:Pegasus",
-                    "%:RavenousCursedHead", "%:RavenousCursedBody", "%:RavenousCursedTail", "%:LivingSpineHead", "%:LivingSpineBody", "%:LivingSpineTail",
-                    "%:Uraraneid", "%:LightEater", "%:ScytheFlier", "%:SunPixie", "%:Esophage", "%:EsophageHitbox", "%:EsophageLeg", "%:EclipsePixie", "%:SunMoth",
-                    "%:MoonButterfly", "%:Hemorrphage", "%:HemorrphageLeg", "%:HemorrphageTentacle",
-                    "%:Electris", "%:Magneton", "%:PlanetPixie", "%:TendrilAmalgam",
-                    // Split
-                    "$:Breathtaker", "$:Idler", "$:Latopus", "$:Savage", "$:Toiler", "$:Unfairy", "$:Darknut", "$:GreatToxicSludge", "$:HauntedAnchor",
-                    "$:Moonwalker", "$:Muskeleton", "$:ShinyPixie", "$:SkeletonJester", "$:TectonicMimic", "$:Thriller", "$:Echo", "$:Threater", "$:MindFlayer", "$:Fairyfly",
-                    "$:Paraffin", "$:Mirage", "$:Insurgent", "$:Seth");
-
-                IsACaveSkeleton = SetUtils.CreateFlagSet(NPCID.GreekSkeleton, NPCID.Skeleton, NPCID.SkeletonAlien, NPCID.SkeletonAstonaut, NPCID.SkeletonTopHat, NPCID.HeadacheSkeleton, NPCID.MisassembledSkeleton, NPCID.PantlessSkeleton,
-                    NPCID.BoneThrowingSkeleton, NPCID.BoneThrowingSkeleton2, NPCID.BoneThrowingSkeleton3, NPCID.BoneThrowingSkeleton4, NPCID.ArmoredSkeleton, NPCID.SkeletonArcher);
-
-                DemonSiegeEnemy = SetUtils.CreateFlagSet(typeof(Magmalbubble), typeof(TrapImp), typeof(Trapper), typeof(Cindera));
-
-                EnemyDungeonSprit = new bool[NPCLoader.NPCCount];
-                EnemyDungeonSprit[NPCID.DungeonSpirit] = true;
-                EnemyDungeonSprit[ModContent.NPCType<Heckto>()] = true;
-                BossRelatedEnemy = new bool[NPCLoader.NPCCount];
-                BossRelatedEnemy[NPCID.ServantofCthulhu] = true;
-                BossRelatedEnemy[NPCID.PirateShipCannon] = true;
-                BossRelatedEnemy[NPCID.MartianSaucerCannon] = true;
-                BossRelatedEnemy[NPCID.EaterofWorldsHead] = true;
-                BossRelatedEnemy[NPCID.EaterofWorldsBody] = true;
-                BossRelatedEnemy[NPCID.EaterofWorldsTail] = true;
-                BossRelatedEnemy[NPCID.TheDestroyerBody] = true;
-                BossRelatedEnemy[NPCID.TheDestroyerTail] = true;
-                BossRelatedEnemy[NPCID.MoonLordHand] = true;
-                BossRelatedEnemy[NPCID.MoonLordHead] = true;
-                BossRelatedEnemy[NPCID.GolemFistLeft] = true;
-                BossRelatedEnemy[NPCID.GolemFistRight] = true;
-                BossRelatedEnemy[NPCID.GolemHead] = true;
-                BossRelatedEnemy[NPCID.PrimeVice] = true;
-                BossRelatedEnemy[NPCID.MourningWood] = true;
-                BossRelatedEnemy[NPCID.Pumpking] = true;
-                BossRelatedEnemy[NPCID.Everscream] = true;
-                BossRelatedEnemy[NPCID.SantaNK1] = true;
-                BossRelatedEnemy[NPCID.IceQueen] = true;
-                BossRelatedEnemy[NPCID.Paladin] = true;
-                BossRelatedEnemy[NPCID.WyvernHead] = true;
-                BossRelatedEnemy[NPCID.WyvernBody] = true;
-                BossRelatedEnemy[NPCID.WyvernBody2] = true;
-                BossRelatedEnemy[NPCID.WyvernBody3] = true;
-                BossRelatedEnemy[NPCID.WyvernTail] = true;
-                BossRelatedEnemy[NPCID.DD2DarkMageT1] = true;
-                BossRelatedEnemy[NPCID.DD2DarkMageT3] = true;
-                BossRelatedEnemy[NPCID.DD2OgreT2] = true;
-                BossRelatedEnemy[NPCID.DD2OgreT3] = true;
-                BossRelatedEnemy[NPCID.DD2Betsy] = true;
-                BossRelatedEnemy[NPCID.Creeper] = true;
-                BossRelatedEnemy[NPCID.BeeSmall] = true;
-                BossRelatedEnemy[NPCID.Bee] = true;
-
-                HecktoplasmDungeonEnemy = new bool[NPCLoader.NPCCount];
-                HecktoplasmDungeonEnemy[NPCID.DiabolistRed] = true;
-                HecktoplasmDungeonEnemy[NPCID.DiabolistWhite] = true;
-                HecktoplasmDungeonEnemy[NPCID.HellArmoredBones] = true;
-                HecktoplasmDungeonEnemy[NPCID.HellArmoredBonesMace] = true;
-                HecktoplasmDungeonEnemy[NPCID.HellArmoredBonesSpikeShield] = true;
-                HecktoplasmDungeonEnemy[NPCID.HellArmoredBonesSword] = true;
-
-                NoSpoilLoot = new bool[NPCLoader.NPCCount];
-                NoSpoilLoot[NPCID.EaterofWorldsHead] = true;
-                NoSpoilLoot[NPCID.EaterofWorldsBody] = true;
-                NoSpoilLoot[NPCID.EaterofWorldsTail] = true;
-                NoSpoilLoot[NPCID.Creeper] = true;
-                NoSpoilLoot[NPCID.Mimic] = true;
-                NoSpoilLoot[NPCID.BigMimicHallow] = true;
-                NoSpoilLoot[NPCID.BigMimicCorruption] = true;
-                NoSpoilLoot[NPCID.BigMimicCrimson] = true;
-                NoSpoilLoot[NPCID.BigMimicJungle] = true;
-                NoSpoilLoot[NPCID.DungeonGuardian] = true;
-                NoSpoilLoot[NPCID.PresentMimic] = true;
-                NoSpoilLoot[NPCID.Nailhead] = true;
-                NoSpoilLoot[NPCID.TheGroom] = true;
-                NoSpoilLoot[NPCID.TheBride] = true;
-                NoSpoilLoot[NPCID.IceGolem] = true;
-                NoSpoilLoot[NPCID.SandElemental] = true;
-                NoSpoilLoot[NPCID.LunarTowerNebula] = true;
-                NoSpoilLoot[NPCID.LunarTowerSolar] = true;
-                NoSpoilLoot[NPCID.LunarTowerStardust] = true;
-                NoSpoilLoot[NPCID.LunarTowerVortex] = true;
-                NoSpoilLoot[NPCID.GoblinSummoner] = true;
-                NoSpoilLoot[NPCID.PirateShip] = true;
-                NoSpoilLoot[NPCID.Mothron] = true;
-                NoSpoilLoot[NPCID.MourningWood] = true;
-                NoSpoilLoot[NPCID.Pumpking] = true;
-                NoSpoilLoot[NPCID.Everscream] = true;
-                NoSpoilLoot[NPCID.SantaNK1] = true;
-                NoSpoilLoot[NPCID.IceQueen] = true;
-
-                NoMapBlip = new List<int>()
+                NoMapBlip = new HashSet<int>()
                 {
                     NPCID.MartianSaucer,
                     NPCID.MartianSaucerCannon,
@@ -435,7 +368,7 @@ namespace AQMod
                     NPCID.TargetDummy,
                 };
 
-                NoGlobalDrops = new List<int>()
+                NoGlobalDrops = new HashSet<int>()
                 {
                     NPCID.MeteorHead,
                     NPCID.ServantofCthulhu,
@@ -597,87 +530,175 @@ namespace AQMod
                     ModContent.NPCType<SpaceSquid>(),
                 };
 
-                UnaffectedByWind = new bool[NPCLoader.NPCCount];
+                WindUpdates = new HashSet<int>()
+                {
+                    NPCID.KingSlime,
+                    NPCID.EyeofCthulhu,
+                    NPCID.BrainofCthulhu,
+                    NPCID.EaterofWorldsHead,
+                    NPCID.SkeletronHand,
+                    NPCID.DevourerHead,
+                    NPCID.GiantWormHead,
+                    NPCID.Hornet,
+                    NPCID.HornetFatty,
+                    NPCID.HornetHoney,
+                    NPCID.HornetLeafy,
+                    NPCID.HornetSpikey,
+                    NPCID.HornetStingy,
+                    NPCID.ManEater,
+                    NPCID.Snatcher,
+                    NPCID.EaterofSouls,
+                    NPCID.Corruptor,
+                    NPCID.Crimera,
+                    NPCID.IceElemental,
+                    NPCID.AnomuraFungus,
+                    NPCID.MushiLadybug,
+                    NPCID.Duck2,
+                    NPCID.DuckWhite2,
+                    NPCID.DetonatingBubble,
+                    NPCID.DungeonSpirit,
+                    ModContent.NPCType<Heckto>(),
+                    ModContent.NPCType<NPCs.Monsters.GlimmerMonsters.Starite>(),
+                    ModContent.NPCType<TrapImp>(),
+                    ModContent.NPCType<Cindera>(),
+                    ModContent.NPCType<Meteor>(),
+                    ModContent.NPCType<NPCs.Monsters.CrabCreviceMonsters.SoldierCrab>(),
+                    ModContent.NPCType<BalloonMerchant>(),
+                };
+            }
 
+            private void AutoSets()
+            {
+                for (int i = 0; i < NPCLoader.NPCCount; i++)
+                {
+                    if (NPCID.Sets.BelongsToInvasionOldOnesArmy[i])
+                    {
+                        continue;
+                    }
+                    try
+                    {
+                        NPC npc;
+                        if (i > Main.maxNPCTypes)
+                        {
+                            npc = NPCLoader.GetNPC(i).npc;
+                        }
+                        else
+                        {
+                            npc = new NPC();
+                            npc.SetDefaults(i);
+                        }
+                        if (npc.aiStyle == AIStyles.DemonEyeAI || npc.aiStyle == AIStyles.FlyingAI || npc.aiStyle == AIStyles.SpellAI || npc.aiStyle == AIStyles.EnchantedSwordAI || npc.aiStyle == AIStyles.SpiderAI ||
+                            (!npc.noGravity && !npc.boss))
+                        {
+                            WindUpdates.Add(npc.type);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        var l = AQMod.Instance.Logger;
+                        string npcname;
+                        if (i > Main.maxNPCTypes)
+                        {
+                            string tryName = Lang.GetNPCName(i).Value;
+                            if (string.IsNullOrWhiteSpace(tryName) || tryName.StartsWith("Mods"))
+                            {
+                                npcname = NPCLoader.GetNPC(i).Name;
+                            }
+                            else
+                            {
+                                npcname = tryName + "/" + NPCLoader.GetNPC(i).Name;
+                            }
+                        }
+                        else
+                        {
+                            npcname = Lang.GetNPCName(i).Value;
+                        }
+                        l.Error("An error occured when doing algorithmic checks for sets for {" + npcname + ", ID: " + i + "}");
+                        l.Error(e.Message);
+                        l.Error(e.StackTrace);
+                    }
+                }
+            }
+            private void CrossModPolarities()
+            {
+                TryAddTo(AQMod.polarities, "Esophage", Corruption, Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "EsophageHitbox", Corruption, Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "EsophageLeg", Corruption, Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "LightEater", Corruption, Unholy);
+                TryAddTo(AQMod.polarities, "LivingSpineHead", Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "LivingSpineBody", Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "LivingSpineTail", Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "RavenousCursedHead", Corruption, Unholy);
+                TryAddTo(AQMod.polarities, "RavenousCursedBody", Corruption, Unholy);
+                TryAddTo(AQMod.polarities, "RavenousCursedTail", Corruption, Unholy);
+                TryAddTo(AQMod.polarities, "ScytheFlier", Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "Uraraneid", Crimson, Unholy);
+                TryAddTo(AQMod.polarities, "TendrilAmalgam", Corruption, Unholy);
+
+                TryAddTo(AQMod.polarities, "SunPixie", Hallowed);
+                TryAddTo(AQMod.polarities, "Aequorean", Hallowed);
+                TryAddTo(AQMod.polarities, "IlluminantScourer", Hallowed);
+                TryAddTo(AQMod.polarities, "Painbow", Hallowed);
+                TryAddTo(AQMod.polarities, "SunKnight", Hallowed);
+                TryAddTo(AQMod.polarities, "SunServitor", Hallowed);
+                TryAddTo(AQMod.polarities, "Trailblazer", Hallowed);
+            }
+            private void CrossModSplit()
+            {
+                TryAddTo(AQMod.split, "Decaying", Corruption, Unholy);
+                TryAddTo(AQMod.split, "Stalker", Crimson, Unholy);
+                TryAddTo(AQMod.split, "Spotter", Corruption, Crimson, Unholy);
+
+                TryAddTo(AQMod.split, "Echo", Hallowed);
+                TryAddTo(AQMod.split, "Fairyfly", Hallowed);
+                TryAddTo(AQMod.split, "ShinyPixie", Hallowed);
+                TryAddTo(AQMod.split, "SkeletonJester", Hallowed);
+            }
+            public void SetupContent()
+            {
                 AutoSets();
 
-                UnaffectedByWind[NPCID.BigMimicCorruption] = true;
-                UnaffectedByWind[NPCID.BigMimicCrimson] = true;
-                UnaffectedByWind[NPCID.BigMimicHallow] = true;
-                UnaffectedByWind[NPCID.BigMimicJungle] = true;
-                UnaffectedByWind[NPCID.MourningWood] = true;
-                UnaffectedByWind[NPCID.Everscream] = true;
-                UnaffectedByWind[NPCID.SantaNK1] = true;
-                UnaffectedByWind[NPCID.CultistArcherBlue] = true;
-                UnaffectedByWind[NPCID.CultistDevote] = true;
-                UnaffectedByWind[NPCID.TargetDummy] = true;
-                UnaffectedByWind[NPCID.Antlion] = true;
-                UnaffectedByWind[NPCID.Paladin] = true;
-                UnaffectedByWind[NPCID.Yeti] = true;
-                UnaffectedByWind[NPCID.Krampus] = true;
-                UnaffectedByWind[NPCID.BrainScrambler] = true;
-                UnaffectedByWind[NPCID.RayGunner] = true;
-                UnaffectedByWind[NPCID.MartianOfficer] = true;
-                UnaffectedByWind[NPCID.GrayGrunt] = true;
-                UnaffectedByWind[NPCID.MartianEngineer] = true;
-                UnaffectedByWind[NPCID.GigaZapper] = true;
-                UnaffectedByWind[NPCID.Scutlix] = true;
-                UnaffectedByWind[NPCID.ScutlixRider] = true;
-                UnaffectedByWind[NPCID.StardustSoldier] = true;
-                UnaffectedByWind[NPCID.StardustSpiderBig] = true;
-                UnaffectedByWind[NPCID.StardustSpiderSmall] = true;
-                UnaffectedByWind[NPCID.SolarDrakomire] = true;
-                UnaffectedByWind[NPCID.SolarDrakomireRider] = true;
-                UnaffectedByWind[NPCID.SolarSroller] = true;
-                UnaffectedByWind[NPCID.SolarSolenian] = true;
-                UnaffectedByWind[NPCID.NebulaBeast] = true;
-                UnaffectedByWind[NPCID.NebulaSoldier] = true;
-                UnaffectedByWind[NPCID.VortexRifleman] = true;
-                UnaffectedByWind[NPCID.VortexSoldier] = true;
-                UnaffectedByWind[NPCID.VortexLarva] = true;
-                UnaffectedByWind[NPCID.VortexHornet] = true;
-                UnaffectedByWind[NPCID.VortexHornetQueen] = true;
-                UnaffectedByWind[NPCID.Nailhead] = true;
-                UnaffectedByWind[NPCID.Eyezor] = true;
-                UnaffectedByWind[NPCID.GoblinSummoner] = true;
-                UnaffectedByWind[NPCID.SolarSpearman] = true;
-                UnaffectedByWind[NPCID.MartianWalker] = true;
-                UnaffectedByWind[ModContent.NPCType<HermitCrab>()] = true;
-
-                UnaffectedByWind[NPCID.KingSlime] = false;
-                UnaffectedByWind[NPCID.EyeofCthulhu] = false;
-                UnaffectedByWind[NPCID.BrainofCthulhu] = false;
-                UnaffectedByWind[NPCID.EaterofWorldsHead] = false;
-                UnaffectedByWind[NPCID.SkeletronHand] = false;
-                UnaffectedByWind[NPCID.DevourerHead] = false;
-                UnaffectedByWind[NPCID.GiantWormHead] = false;
-                UnaffectedByWind[NPCID.Hornet] = false;
-                UnaffectedByWind[NPCID.HornetFatty] = false;
-                UnaffectedByWind[NPCID.HornetHoney] = false;
-                UnaffectedByWind[NPCID.HornetLeafy] = false;
-                UnaffectedByWind[NPCID.HornetSpikey] = false;
-                UnaffectedByWind[NPCID.HornetStingy] = false;
-                UnaffectedByWind[NPCID.ManEater] = false;
-                UnaffectedByWind[NPCID.Snatcher] = false;
-                UnaffectedByWind[NPCID.EaterofSouls] = false;
-                UnaffectedByWind[NPCID.Corruptor] = false;
-                UnaffectedByWind[NPCID.Crimera] = false;
-                UnaffectedByWind[NPCID.IceElemental] = false;
-                UnaffectedByWind[NPCID.AnomuraFungus] = false;
-                UnaffectedByWind[NPCID.MushiLadybug] = false;
-                UnaffectedByWind[NPCID.Duck2] = false;
-                UnaffectedByWind[NPCID.DuckWhite2] = false;
-                UnaffectedByWind[NPCID.DetonatingBubble] = false;
-                UnaffectedByWind[NPCID.DungeonSpirit] = false;
-                UnaffectedByWind[ModContent.NPCType<Heckto>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.GlimmerMonsters.Starite>()] = false;
-                UnaffectedByWind[ModContent.NPCType<TrapImp>()] = false;
-                UnaffectedByWind[ModContent.NPCType<Cindera>()] = false;
-                UnaffectedByWind[ModContent.NPCType<Meteor>()] = false;
-                UnaffectedByWind[ModContent.NPCType<NPCs.Monsters.CrabCreviceMonsters.SoldierCrab>()] = false;
-                UnaffectedByWind[ModContent.NPCType<BalloonMerchant>()] = false;
-
-                RemoveRepeatingIndicesFromSets();
+                WindUpdates.Remove(NPCID.TargetDummy);
+                WindUpdates.Remove(NPCID.BigMimicCorruption);
+                WindUpdates.Remove(NPCID.BigMimicHallow);
+                WindUpdates.Remove(NPCID.BigMimicJungle);
+                WindUpdates.Remove(NPCID.MourningWood);
+                WindUpdates.Remove(NPCID.Everscream);
+                WindUpdates.Remove(NPCID.SantaNK1);
+                WindUpdates.Remove(NPCID.CultistArcherBlue);
+                WindUpdates.Remove(NPCID.CultistDevote);
+                WindUpdates.Remove(NPCID.Antlion);
+                WindUpdates.Remove(NPCID.Paladin);
+                WindUpdates.Remove(NPCID.Yeti);
+                WindUpdates.Remove(NPCID.Krampus);
+                WindUpdates.Remove(NPCID.BrainScrambler);
+                WindUpdates.Remove(NPCID.RayGunner);
+                WindUpdates.Remove(NPCID.MartianOfficer);
+                WindUpdates.Remove(NPCID.GrayGrunt);
+                WindUpdates.Remove(NPCID.MartianEngineer);
+                WindUpdates.Remove(NPCID.GigaZapper);
+                WindUpdates.Remove(NPCID.Scutlix);
+                WindUpdates.Remove(NPCID.ScutlixRider);
+                WindUpdates.Remove(NPCID.StardustSoldier);
+                WindUpdates.Remove(NPCID.StardustSpiderBig);
+                WindUpdates.Remove(NPCID.StardustSpiderSmall);
+                WindUpdates.Remove(NPCID.SolarDrakomire);
+                WindUpdates.Remove(NPCID.SolarDrakomireRider);
+                WindUpdates.Remove(NPCID.SolarSroller);
+                WindUpdates.Remove(NPCID.SolarSolenian);
+                WindUpdates.Remove(NPCID.NebulaBeast);
+                WindUpdates.Remove(NPCID.NebulaSoldier);
+                WindUpdates.Remove(NPCID.VortexRifleman);
+                WindUpdates.Remove(NPCID.VortexSoldier);
+                WindUpdates.Remove(NPCID.VortexLarva);
+                WindUpdates.Remove(NPCID.VortexHornet);
+                WindUpdates.Remove(NPCID.VortexHornetQueen);
+                WindUpdates.Remove(NPCID.Nailhead);
+                WindUpdates.Remove(NPCID.Eyezor);
+                WindUpdates.Remove(NPCID.GoblinSummoner);
+                WindUpdates.Remove(NPCID.SolarSpearman);
+                WindUpdates.Remove(NPCID.MartianWalker);
+                WindUpdates.Remove(ModContent.NPCType<HermitCrab>());
 
                 if (AQMod.polarities.IsActive)
                 {
@@ -688,103 +709,6 @@ namespace AQMod
                     CrossModSplit();
                 }
             }
-
-            internal static void Unload()
-            {
-                HotDamage?.Clear();
-                HotDamage = null;
-
-                DemonSiegeEnemy = null;
-                EnemyDungeonSprit = null;
-                HecktoplasmDungeonEnemy = null;
-                NoSpoilLoot = null;
-                NoMapBlip = null;
-                NoGlobalDrops = null;
-                UnaffectedByWind = null;
-                DealsLessDamageToCata = null;
-                CannotBeMeathooked = null;
-            }
-
-            public static bool TryAddTo(Mod mod, string name, HashSet<int> set)
-            {
-                int type = mod.NPCType(name);
-                if (type != 0)
-                {
-                    return set.Add(type);
-                }
-                return false;
-            }
-
-            public static bool TryAddTo(Mod mod, string name, params HashSet<int>[] sets)
-            {
-                int type = mod.NPCType(name);
-                if (type != 0)
-                {
-                    foreach (var set in sets)
-                    {
-                        set.Add(type);
-                    }
-                    return true;
-                }
-                return false;
-            }
-
-            public static int CountNPCs(bool[] ruleset)
-            {
-                int count = 0;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].active && ruleset[Main.npc[i].type])
-                        count++;
-                }
-                return count;
-            }
-
-            public static int CountNPCs(params bool[][] ruleset)
-            {
-                int count = 0;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    foreach (bool[] b in ruleset)
-                    {
-                        if (Main.npc[i].active && b[Main.npc[i].type])
-                        {
-                            count++;
-                            break;
-                        }
-                    }
-                }
-                return count;
-            }
-        }
-
-        public static class Hooks
-        {
-            internal static void Apply()
-            {
-                On.Terraria.NPC.SetDefaults += NPC_SetDefaults;
-                On.Terraria.NPC.Collision_DecideFallThroughPlatforms += DecideFallThroughPlatforms;
-            }
-
-            private static void NPC_SetDefaults(On.Terraria.NPC.orig_SetDefaults orig, NPC self, int Type, float scaleOverride)
-            {
-                orig(self, Type, scaleOverride);
-                try
-                {
-                    if (!AQMod.Loading)
-                    {
-                        self.GetGlobalNPC<AQNPC>().PostSetDefaults(self, Type, scaleOverride);
-                    }
-                }
-                catch
-                {
-                }
-            }
-
-            private static bool DecideFallThroughPlatforms(On.Terraria.NPC.orig_Collision_DecideFallThroughPlatforms orig, NPC self) =>
-                self.type > Main.maxNPCTypes &&
-                self.modNPC is IDecideFallThroughPlatforms decideToFallThroughPlatforms ?
-                decideToFallThroughPlatforms.Decide() : orig(self);
         }
 
         internal static class AIStyles // personal ai style list
@@ -930,9 +854,9 @@ namespace AQMod
 
         private void CheckBuffImmunes(NPC npc)
         {
-            if (Sets.Corruption.Contains(npc.netID))
+            if (Sets.Instance.Corruption.Contains(npc.netID))
                 npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CorruptionHellfire>()] = true;
-            if (Sets.Crimson.Contains(npc.netID))
+            if (Sets.Instance.Crimson.Contains(npc.netID))
                 npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.CrimsonHellfire>()] = true;
 
             npc.buffImmune[ModContent.BuffType<Buffs.Debuffs.LovestruckAQ>()] = npc.buffImmune[BuffID.Lovestruck];
@@ -949,7 +873,7 @@ namespace AQMod
         {
             if (!AQMod.Loading)
             {
-                if (Sets.HotDamage.Contains(npc.netID))
+                if (Sets.Instance.HotDamage.Contains(npc.netID))
                     hotDamage = true;
                 CheckBuffImmunes(npc);
             }
@@ -1039,7 +963,7 @@ namespace AQMod
                 velocity *= 0.05f;
 
                 float npcVelocityLength = npc.velocity.Length();
-                Particle.PostDrawPlayers.AddParticle(
+                AQMod.Particles.PostDrawPlayers.AddParticle(
                     new MonoParticle(dustPos, velocity,
                     new Color(0.9f, Main.rand.NextFloat(0.6f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f), Main.rand.NextFloat(0.3f, 1f)));
 
@@ -1055,7 +979,7 @@ namespace AQMod
                     velocity *= 0.01f;
 
                     var sparkleClr = new Color(0.5f, Main.rand.NextFloat(0.1f, 0.5f), Main.rand.NextFloat(0.1f, 0.55f), 0f);
-                    Particle.PostDrawPlayers.AddParticle(
+                    AQMod.Particles.PostDrawPlayers.AddParticle(
                         new BrightSparkle(dustPos, velocity,
                         sparkleClr, 1f));
                 }
@@ -1074,7 +998,7 @@ namespace AQMod
                     var pos = npc.position - new Vector2(2f, 2f);
                     var rect = new Rectangle((int)pos.X, (int)pos.Y, npc.width + 4, npc.height + 4);
                     var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
-                    Particle.PostDrawPlayers.AddParticle(
+                    AQMod.Particles.PostDrawPlayers.AddParticle(
                         new EmberParticleSubtractColorUsingScale(dustPos, new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-3f, 3f)) * 0.4f).Abs() - 2f),
                         new Color(0.5f, Main.rand.NextFloat(0.2f, 0.6f), Main.rand.NextFloat(0.8f, 1f), 0f), Main.rand.NextFloat(0.2f, 1.2f)));
                 }
@@ -1108,7 +1032,7 @@ namespace AQMod
                 {
                     var dustPos = new Vector2(Main.rand.Next(rect.X, rect.X + rect.Width), Main.rand.Next(rect.Y, rect.Y + rect.Height));
                     var velocity = new Vector2((npc.velocity.X + Main.rand.NextFloat(-3f, 3f)) * 0.3f, ((npc.velocity.Y + Main.rand.NextFloat(-1f, 4f)) * 0.425f).Abs() - 3f);
-                    Particle.PostDrawPlayers.AddParticle(
+                    AQMod.Particles.PostDrawPlayers.AddParticle(
                         new EmberParticleSubtractColorUsingScale(dustPos, velocity,
                         fireColor, Main.rand.NextFloat(0.7f, 0.95f)));
                 }
@@ -1158,19 +1082,19 @@ namespace AQMod
                         var normal = Vector2.Normalize(offset);
                         var dustPos = npcCenter + offset;
                         var velocity = normal * Main.rand.NextFloat(6f, 12f);
-                        Particle.PostDrawPlayers.AddParticle(
+                        AQMod.Particles.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, velocity,
                             new Color(0.9f, Main.rand.NextFloat(0.7f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f), Main.rand.NextFloat(0.8f, 1.1f)));
-                        Particle.PostDrawPlayers.AddParticle(
+                        AQMod.Particles.PostDrawPlayers.AddParticle(
                             new EmberParticle(dustPos, velocity,
                             new Color(0.9f, Main.rand.NextFloat(0.7f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f) * 0.2f, 1.5f));
                         if (Main.rand.NextBool(14))
                         {
                             var sparkleClr = new Color(0.9f, Main.rand.NextFloat(0.8f, 0.9f), Main.rand.NextFloat(0.4f, 1f), 0f);
-                            Particle.PostDrawPlayers.AddParticle(
+                            AQMod.Particles.PostDrawPlayers.AddParticle(
                                 new SparkleParticle(dustPos, velocity,
                                 sparkleClr, 1.5f));
-                            Particle.PostDrawPlayers.AddParticle(
+                            AQMod.Particles.PostDrawPlayers.AddParticle(
                                 new SparkleParticle(dustPos, velocity,
                                 sparkleClr * 0.5f, 1f)
                                 { rotation = MathHelper.PiOver4 });
@@ -1192,7 +1116,7 @@ namespace AQMod
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             var aQNPC = npc.GetGlobalNPC<AQNPC>();
-            if (aQNPC.minionHaunted && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type] || AQProjectile.Sets.IsAMinionProj.Contains(projectile.type)))
+            if (aQNPC.minionHaunted && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type] || AQProjectile.Sets.Instance.IsAMinionProj.Contains(projectile.type)))
             {
                 float multiplier = 2f;
                 if (npc.boss)
@@ -1423,7 +1347,7 @@ namespace AQMod
         {
             if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] || npc.lifeMax < 5 || npc.friendly)
                 return;
-            if (LootLoopingHelper.Current == 0 && (Main.netMode == NetmodeID.Server || !Main.gameMenu) && !Sets.NoGlobalDrops.Contains(npc.netID))
+            if (LootLoopingHelper.Current == 0 && (Main.netMode == NetmodeID.Server || !Main.gameMenu) && !Sets.Instance.NoGlobalDrops.Contains(npc.netID))
             {
                 List<(Player, AQPlayer)> nearbyPlayers = new List<(Player, AQPlayer)>();
                 if (Main.netMode == NetmodeID.SinglePlayer)
@@ -1451,7 +1375,7 @@ namespace AQMod
 
         public bool ShouldApplyWindMechanics(NPC npc)
         {
-            return !windStruck && !Sets.UnaffectedByWind[npc.type];
+            return !windStruck && Sets.Instance.WindUpdates.Contains(npc.type);
         }
 
         public void ApplyWindMechanics(NPC npc, Vector2 wind)
@@ -1640,7 +1564,7 @@ namespace AQMod
 
         public static bool CanBeMeathooked(NPC npc)
         {
-            return !UselessNPC(npc) && !npc.dontTakeDamage && !npc.immortal && !Sets.CannotBeMeathooked.Contains(npc.type);
+            return !UselessNPC(npc) && !npc.dontTakeDamage && !npc.immortal && !Sets.Instance.CannotBeMeathooked.Contains(npc.type);
         }
 
         public void ChangeTemperature(NPC npc, sbyte newTemperature)
@@ -1689,6 +1613,34 @@ namespace AQMod
             {
                 temperature++;
             }
+        }
+
+        public static int CountNPCs(bool[] ruleset)
+        {
+            int count = 0;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && ruleset[Main.npc[i].type])
+                    count++;
+            }
+            return count;
+        }
+
+        public static int CountNPCs(params bool[][] ruleset)
+        {
+            int count = 0;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                foreach (bool[] b in ruleset)
+                {
+                    if (Main.npc[i].active && b[Main.npc[i].type])
+                    {
+                        count++;
+                        break;
+                    }
+                }
+            }
+            return count;
         }
     }
 }

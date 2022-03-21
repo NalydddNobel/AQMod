@@ -102,7 +102,7 @@ namespace AQMod.Common.CrossMod
             }
             catch (Exception ex)
             {
-                AQMod.GetInstance().Logger.Warn("There was an error when loading Discord Rich Presence support!", ex);
+                AQMod.Instance.Logger.Warn("There was an error when loading Discord Rich Presence support!", ex);
             }
         }
     }

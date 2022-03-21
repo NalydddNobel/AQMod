@@ -30,7 +30,7 @@ namespace AQMod.Content
 
         public Mod GetMod()
         {
-            return Mod == "AQMod" ? AQMod.GetInstance() : ModLoader.GetMod(Mod);
+            return Mod == "AQMod" ? AQMod.Instance : ModLoader.GetMod(Mod);
         }
 
         public string GetKey()
