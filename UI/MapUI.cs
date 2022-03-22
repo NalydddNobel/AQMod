@@ -249,7 +249,7 @@ namespace AQMod.Content
                 var scale = Main.UIScale;
                 if (hitbox.Contains(Main.mouseX, Main.mouseY))
                 {
-                    mouseText = Language.GetTextValue("Mods.AQMod.EventName.GlimmerEvent");
+                    mouseText = Language.GetTextValue("Mods.AQMod.GlimmerEvent");
                     scale += 0.5f;
                 }
                 Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 255), 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);

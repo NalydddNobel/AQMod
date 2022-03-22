@@ -21,7 +21,7 @@ namespace AQMod.Content.World.Events
         public sealed class CustomProgressBar : EventProgressBar
         {
             public override Texture2D IconTexture => ModContent.GetTexture(TexturePaths.EventIcons + "glimmerevent");
-            public override string EventName => Language.GetTextValue("Mods.AQMod.EventName.GlimmerEvent");
+            public override string EventName => Language.GetTextValue("Mods.AQMod.GlimmerEvent");
             public override Color NameBGColor => new Color(120, 20, 110, 128);
             public override float EventProgress => 1f - (float)Distance(Main.LocalPlayer) / Glimmer.MaxDistance;
 

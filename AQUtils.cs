@@ -5,7 +5,6 @@ using AQMod.Localization;
 using AQMod.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoMod.RuntimeDetour;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -282,38 +281,6 @@ namespace AQMod
                 num += arr[i];
             }
             return num / arr.Length;
-        }
-
-        public static bool AddHook(Mod otherMod, string otherModType, string method, MethodInfo newMethod)
-        {
-            return AddHook(otherMod, otherModType, method, BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance, newMethod);
-        }
-        public static bool AddHook(Mod otherMod, string typeName, string method, BindingFlags flags, MethodInfo newMethod)
-        {
-            var t = otherMod.Code.GetType(typeName);
-            if (t == null)
-            {
-                AQMod.Instance.Logger.Error("The type {" + typeName + "} was not found in {" + otherMod.Name + "}");
-                return false;
-            }
-            var baseMethod = t.GetMethod(method, flags);
-            return AddHook(baseMethod, newMethod);
-        }
-        public static bool AddHook(MethodInfo baseMethod, MethodInfo newMethod)
-        {
-            if (baseMethod == null)
-            {
-                AQMod.Instance.Logger.Error("The base method was null");
-                return false;
-            }
-            if (newMethod == null)
-            {
-                AQMod.Instance.Logger.Error("The new method was null");
-                return false;
-            }
-            new Hook(baseMethod, newMethod).Apply();
-            //AQMod.Instance.Logger.Error("Hook {" + newMethod.Name + "} was applied successfully onto {" + baseMethod.Name + "}");
-            return true;
         }
 
         public static bool IsTalkingTo<T>(this Player player) where T : ModNPC

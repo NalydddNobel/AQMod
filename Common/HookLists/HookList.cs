@@ -1,5 +1,5 @@
 ﻿using MonoMod.Cil;
-using System.Collections.Generic;
+using MonoMod.RuntimeDetour;
 using System.Reflection;
 
 namespace AQMod.Common.HookLists
@@ -36,7 +36,7 @@ namespace AQMod.Common.HookLists
                         attr.LoadtimeChecks();
                         if (attr.BaseMethodForON != null)
                         {
-                            AQUtils.AddHook(attr.BaseMethodForON, method);
+                            AddHook(attr.BaseMethodForON, method);
                         }
                     }
                 }
@@ -56,6 +56,23 @@ namespace AQMod.Common.HookLists
         protected virtual void OnUnload()
         {
 
+        }
+
+        public static bool AddHook(MethodInfo baseMethod, MethodInfo newMethod)
+        {
+            if (baseMethod == null)
+            {
+                AQMod.Instance.Logger.Error("The base method was null");
+                return false;
+            }
+            if (newMethod == null)
+            {
+                AQMod.Instance.Logger.Error("The new method was null");
+                return false;
+            }
+            new Hook(baseMethod, newMethod).Apply();
+            //AQMod.Instance.Logger.Error("Hook {" + newMethod.Name + "} was applied successfully onto {" + baseMethod.Name + "}");
+            return true;
         }
     }
 }

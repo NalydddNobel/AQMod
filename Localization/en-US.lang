@@ -901,29 +901,26 @@ ItemTooltip.AStrangeIdea='The birthplace of Aequus'\n{$Mods.AQMod.PaintingSignat
 
 # Event and Boss Checklist stuff
 
-EventName.CrabSeason=Crab Season
-BossChecklistDesc.CrabSeason=Begins naturally and ends naturally at random times. You can check the time when the event begins and ends as well as speed up its cycle using a [i:{0}].
-EventWarning.CrabSeason=The warmth of the oceans increases...
-EventEnding.CrabSeason=The oceans become neutral again...
+CrabSeason=Crab Season
 
-BossChecklistDesc.JerryCrabson=Summoned by using a [i:{0}] at the beach.
+BC.Spawn.Crabson=Summoned by using a {0} at the crab caves
 Common.AwakenedCrabson=Crabson has awoken!
 
-EventName.DemonSiege=Demon Siege
-BossChecklistDesc.DemonSiege=Can be summoned using: {0} at a Gore Nest.
+DemonSiege=Demon Siege
+BC.Spawn.DemonSiege=Can be summoned using: {0} at a Gore Nest.
 
-EventName.GlimmerEvent=Glimmer Event
+GlimmerEvent=Glimmer
 EventProgress.GlimmerEvent={0} tiles away from the center
-BossChecklistDesc.GlimmerEvent=Happens naturally at night. Can alternatively be summoned with a [i:{0}]. Ends when the sun rises.
 EventWarning.GlimmerEvent=A glimmer appears in the distance...
 EventEnding.GlimmerEvent=The glimmer begins to fade away...
-BossChecklistDesc.OmegaStarite=Summoned by using an {0} at night. Can also be summoned by interacting with the sword located at the source of the Glimmer.
+BC.Spawn.GlimmerEvent=Happens naturally at night. Can alternatively be summoned with a {0}. Ends when the sun rises.
+BC.Spawn.OmegaStarite=Summoned by using {0} at night. Can also be summoned by going to the source of a glimmer
 
-EventName.GaleStreams=Gale Streams
-BossChecklistDesc.GaleStreams=Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:{0}]
+GaleStreams=Gale Streams
 EventProgress.GaleStreams={0}mph/{1}mph
-BossChecklistDesc.RedSprite=Occasionally appears during the Gale Streams!
-BossChecklistDesc.SpaceSquid=Occasionally appears during the Gale Streams!
+BC.Spawn.GaleStreams=Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using {0}
+BC.Spawn.GaleStreamsMiniboss=Occasionally appears during the Gale Streams!
+
 
 # Recipe Groups
 

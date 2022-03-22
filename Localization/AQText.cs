@@ -156,6 +156,11 @@ namespace AQMod.Localization
             return (Dictionary<int, string>)translationsField.GetValue(text);
         }
 
+        public static string Item<T>() where T : ModItem
+        {
+            return Item(ModContent.ItemType<T>());
+        }
+
         public static string Item(int item)
         {
             return "[i:" + item + "]";

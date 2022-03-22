@@ -70,63 +70,55 @@ namespace AQMod.Common.CrossMod
                 return;
             }
 
+            AQText.AdjustTranslation("BC.Spawn.Crabson", "BC.Spawn.Crabson.1", (s) => string.Format(s, AQText.Item<MushroomClam>()));
+            AQText.AdjustTranslation("BC.Spawn.OmegaStarite", "BC.Spawn.OmegaStarite.1", (s) => string.Format(s, AQText.Item<NovaFruit>()));
+            AQText.AdjustTranslation("BC.Spawn.GlimmerEvent", "BC.Spawn.GlimmerEvent.1", (s) => string.Format(s, AQText.Item<MythicStarfruit>()));
+            AQText.AdjustTranslation("BC.Spawn.GaleStreams", "BC.Spawn.GaleStreams.1", (s) => string.Format(s, AQText.Item<TheFan>()));
 
             // Jerry Crabson
 
             AddBoss(ProgressionReference.JerryCrabson, ModContent.NPCType<Crabson>(),
-                AQUtils.GetTextValue((GameCulture.English, "Jerry Crabson"),
-                (GameCulture.Chinese, "巨蟹蛤")),
+                "$Mods.AQMod.NPCName.Crabson",
                 new int[] { ModContent.ItemType<Crabax>(), ModContent.ItemType<AquaticEnergy>(), ModContent.ItemType<JerryClawFlail>(), ModContent.ItemType<CinnabarBow>(), ModContent.ItemType<Bubbler>(), },
                 new int[] { ModContent.ItemType<CrabsonTrophy>(), ModContent.ItemType<CrabsonMask>() },
                 () => WorldDefeats.DownedCrabson,
                 summonItem: ModContent.ItemType<MushroomClam>(),
-                howToSummon: AQUtils.GetTextValue((GameCulture.English, "Summoned by using a [i:" + ModContent.ItemType<MushroomClam>() + "] at the beach."),
-                (GameCulture.Chinese, "在海滩处使用 [i:" + ModContent.ItemType<MushroomClam>() + "] 召唤.")),
+                howToSummon: "$Mods.AQMod.BC.Spawn.Crabson.1",
                 bossPortraitTexture: "AQMod/Assets/BossChecklist/JerryCrabson");
 
 
             // Omega Starite
 
             AddBoss(ProgressionReference.OmegaStarite, ModContent.NPCType<OmegaStarite>(),
-                AQUtils.GetTextValue((GameCulture.English, "Omega Starite"), (GameCulture.Chinese, "终末之星"), (GameCulture.Russian, "Омега Жизнезвезда")),
+                "$Mods.AQMod.NPCName.OmegaStarite",
                 new int[] { ModContent.ItemType<CelesteTorus>(), ModContent.ItemType<UltimateSword>(), ModContent.ItemType<CosmicTelescope>(), ModContent.ItemType<Raygun>(), ModContent.ItemType<MagicWand>(), ModContent.ItemType<CosmicEnergy>(), ModContent.ItemType<LightMatter>(), ItemID.FallenStar, },
                 new int[] { ModContent.ItemType<OmegaStariteTrophy>(), ModContent.ItemType<OmegaStariteMask>(), ModContent.ItemType<DragonBall>(), ModContent.ItemType<EnchantedDye>(), ModContent.ItemType<RainbowOutlineDye>(), ModContent.ItemType<DiscoDye>(), },
                 () => WorldDefeats.DownedStarite,
                 summonItem: ModContent.ItemType<NovaFruit>(),
-                howToSummon: AQUtils.GetTextValue((GameCulture.English, "Summoned by using an [i:" + ModContent.ItemType<NovaFruit>() + "] at night. Can also be summoned by interacting with the sword located at the source of the Glimmer."),
-                (GameCulture.Chinese, "在夜晚使用 [i:" + ModContent.ItemType<NovaFruit>() + "] 召唤. 也可以通过与微光之源处的剑交互来召唤."),
-                (GameCulture.Russian, "Можно призвать используя [i:" + ModContent.ItemType<NovaFruit>() + "] ночью. Также можно призвать взаимодействуя с мечом который расположен в центре Мерцающего События.")),
+                howToSummon: "$Mods.AQMod.BC.Spawn.OmegaStarite.1",
                 bossPortraitTexture: "AQMod/Assets/BossChecklist/OmegaStarite",
                 isAvailable: () => WorldDefeats.OmegaStariteIntroduction || WorldDefeats.OmegaStariteIntroduction || Main.hardMode);
 
 
-            string english = "Occasionally appears during the Gale Streams!";
-            string chinese = "偶尔出现在紊流风暴中!";
-            string russian = "Иногда появляется во время Штормовых Потоков!";
-
             // Red Sprite
 
             AddBoss(ProgressionReference.RedSprite, ModContent.NPCType<RedSprite>(),
-                AQUtils.GetTextValue((GameCulture.English, "Red Sprite"), (GameCulture.Chinese, "红色精灵")),
+                "$Mods.AQMod.NPCName.RedSprite",
                 new int[] { ItemID.NimbusRod, ModContent.ItemType<Nimrod>(), ModContent.ItemType<RetroGoggles>(), ItemID.SoulofFlight, ModContent.ItemType<AtmosphericEnergy>(), ModContent.ItemType<Fluorescence>(), ModContent.ItemType<PeeledCarrot>(), },
                 new int[] { ModContent.ItemType<RedSpriteTrophy>(), ModContent.ItemType<RedSpriteMask>(), ModContent.ItemType<RedSpriteDye>(), },
                 () => WorldDefeats.DownedRedSprite,
-                howToSummon: AQUtils.GetTextValue((GameCulture.English, english),
-                (GameCulture.Chinese, chinese),
-                (GameCulture.Russian, russian)),
+                howToSummon: "$Mods.AQMod.BC.Spawn.GaleStreamsMiniboss",
                 bossPortraitTexture: "AQMod/Assets/BossChecklist/RedSprite",
                 miniBoss: true);
 
             // Space Squid
 
             AddBoss(ProgressionReference.SpaceSquid, ModContent.NPCType<SpaceSquid>(),
-                AQUtils.GetTextValue((GameCulture.English, "Space Squid"), (GameCulture.Chinese, "太空乌贼")),
+                "$Mods.AQMod.NPCName.SpaceSquid",
                 new int[] { ModContent.ItemType<RetroGoggles>(), ItemID.SoulofFlight, ModContent.ItemType<AtmosphericEnergy>(), ModContent.ItemType<SiphonTentacle>(), ModContent.ItemType<PeeledCarrot>(), },
                 new int[] { ModContent.ItemType<SpaceSquidTrophy>(), ModContent.ItemType<SpaceSquidMask>(), ModContent.ItemType<FrostbiteDye>(), },
                 () => WorldDefeats.DownedSpaceSquid,
-                howToSummon: AQUtils.GetTextValue((GameCulture.English, english),
-                (GameCulture.Chinese, chinese),
-                (GameCulture.Russian, russian)),
+                howToSummon: "$Mods.AQMod.BC.Spawn.GaleStreamsMiniboss",
                 bossPortraitTexture: "AQMod/Assets/BossChecklist/SpaceSquid",
                 miniBoss: true);
 
@@ -153,10 +145,7 @@ namespace AQMod.Common.CrossMod
                 ModContent.NPCType<HyperStarite>(),
             },
             aQMod,
-            AQText.chooselocalizationtext(
-                en_US: "Glimmer Event",
-                zh_Hans: "微光事件",
-                ru_RU: "Мерцающее Событие"),
+            "$Mods.AQMod.GlimmerEvent",
             (Func<bool>)(() => WorldDefeats.DownedGlimmer),
             ModContent.ItemType<MythicStarfruit>(),
             new List<int>()
@@ -174,10 +163,7 @@ namespace AQMod.Common.CrossMod
                 ModContent.ItemType<MoonShoes>(),
                 ModContent.ItemType<Ultranium>(),
             },
-            AQText.chooselocalizationtext(
-                en_US: "Happens naturally at night. Can alternatively summoned with a [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Ends when the sun rises",
-                zh_Hans: "在夜晚自然开始. 也可以使用 [i:" + ModContent.ItemType<MythicStarfruit>() + "] 召唤. 在太阳升起时结束.",
-                ru_RU: "Натурально появляется ночью. Также можно призвать с помощью [i:" + ModContent.ItemType<MythicStarfruit>() + "]. Кончается когда всходит солнце."),
+            "$Mods.AQMod.BC.Spawn.GlimmerEvent.1",
             null,
             "AQMod/Content/World/BossChecklistGlimmerEvent",
             "AQMod/Content/World/GlimmerEvent",
@@ -193,10 +179,7 @@ namespace AQMod.Common.CrossMod
                 ModContent.NPCType<SpaceSquid>(),
             },
             aQMod,
-            AQText.chooselocalizationtext(
-                en_US: "Gale Streams",
-                zh_Hans: "紊流风暴",
-                ru_RU: "Штормовые Потоки"),
+            "$Mods.AQMod.GaleStreams",
             (Func<bool>)(() => WorldDefeats.DownedGaleStreams),
             0,
             new List<int>()
@@ -220,10 +203,7 @@ namespace AQMod.Common.CrossMod
                 ModContent.ItemType<PeeledCarrot>(),
                 ModContent.ItemType<CinnamonRoll>(),
             },
-            AQText.chooselocalizationtext(
-                en_US: "Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]",
-                zh_Hans: "风速大于 40 mph时开始, 风速小于 34 mph时结束. 你可以使用 [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "] 更改风速",
-                ru_RU: "Начинается когда скорость ветра превышает 40 миль в час, и заканчивается когда скорость ветра ниже 34 миль в час. Также закончится если скорость ветра превисит 300 миль в час. Вы можете изменять скорость ветра используя [i:" + ModContent.ItemType<Items.Tools.TheFan>() + "]"),
+            "$Mods.AQMod.BC.Spawn.GaleStreams.1",
             null,
             "AQMod/Content/World/BossChecklistGaleStreams",
             "AQMod/Content/World/GaleStreams",
@@ -246,6 +226,8 @@ namespace AQMod.Common.CrossMod
                 items.Add(upgrade.rewardItem);
             }
 
+            AQText.AdjustTranslation("BC.Spawn.DemonSiege", "BC.Spawn.DemonSiege.1", (s) => string.Format(s, summonItems));
+
             AQMod.bossChecklist.mod.Call("AddEvent",
             4.1f,
             new List<int>()
@@ -256,10 +238,7 @@ namespace AQMod.Common.CrossMod
                 ModContent.NPCType<Trapper>(),
             },
             aQMod,
-            AQText.chooselocalizationtext(
-                   en_US: "Demon Siege",
-                   zh_Hans: "恶魔围攻",
-                   ru_RU: "Осада Демонов"),
+            "$Mods.AQMod.DemonSiege",
             (Func<bool>)(() => WorldDefeats.DownedDemonSiege),
             0,
             new List<int>()
@@ -268,10 +247,7 @@ namespace AQMod.Common.CrossMod
                 ModContent.ItemType<HellBeamDye>(),
             },
             items,
-            AQText.chooselocalizationtext(
-                   en_US: "Can be summoned using: " + summonItems + " at a Gore Nest.",
-                   zh_Hans: "在血巢处使用 " + summonItems + " 召唤.",
-                   ru_RU: "Можно призвать используя: " + summonItems + " в кровавом гнезде."),
+            "$Mods.AQMod.BC.Spawn.DemonSiege.1",
             null,
             "AQMod/Content/World/BossChecklistDemonSiege",
             "AQMod/Content/World/DemonSiege",

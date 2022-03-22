@@ -71,7 +71,7 @@ namespace AQMod.Common.HookLists
             }
         }
 
-        [LoadHook(typeof(Chest), "HorizontalMovement", BindingFlags.Public | BindingFlags.Instance)]
+        [LoadHook(typeof(Player), "HorizontalMovement", BindingFlags.Public | BindingFlags.Instance)]
         internal static void MovementEffects(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
         {
             orig(self);
@@ -122,7 +122,7 @@ namespace AQMod.Common.HookLists
             aQPlayer.redSpriteWind = 0;
         }
 
-        [LoadHook(typeof(Chest), "HitTile", BindingFlags.Public | BindingFlags.Instance)]
+        [LoadHook(typeof(Player), "HitTile", BindingFlags.Public | BindingFlags.Instance)]
         internal static void ModifyPickaxePower(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
         {
             if (self.GetModPlayer<AQPlayer>().pickBreak)
@@ -132,7 +132,7 @@ namespace AQMod.Common.HookLists
             orig(self, x, y, pickPower);
         }
 
-        [LoadHook(typeof(Chest), "AddBuff", BindingFlags.Public | BindingFlags.Instance)]
+        [LoadHook(typeof(Player), "AddBuff", BindingFlags.Public | BindingFlags.Instance)]
         internal static void OnAddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)
         {
             if (type >= Main.maxBuffTypes)
