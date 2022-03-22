@@ -137,6 +137,7 @@ namespace AQMod.UI
         {
             if (concocting > 0)
             {
+                Main.instance.LoadTiles(TileID.CookingPots);
                 var texture = Main.tileTexture[TileID.CookingPots];
                 var frame = new Rectangle(texture.Width / 2, (int)(Main.GameUpdateCount % 24 / 6) * 36, 16, 16);
                 position.X -= 16f * 0.8f;

@@ -185,7 +185,7 @@ namespace AQMod.NPCs.Friendly
                                             }
                                         }
                                     }
-                                    checkRectangle = new Rectangle(x - 8, y - 8, 16, 16);
+                                    checkRectangle = new Rectangle(x - 8, y - 8, 16, 16).KeepInWorld();
                                     for (int k = checkRectangle.X; k < checkRectangle.X + checkRectangle.Width; k++)
                                     {
                                         for (int l = checkRectangle.Y; l < checkRectangle.Y + checkRectangle.Height; l++)

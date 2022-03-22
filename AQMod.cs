@@ -1,6 +1,7 @@
 using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.CrossMod;
+using AQMod.Common.HookLists;
 using AQMod.Common.Utilities;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
@@ -60,6 +61,7 @@ namespace AQMod
         internal static bool IsUnloading { get; private set; }
 
         public static AQMod Instance { get; private set; }
+        public static AQSets Sets { get; private set; }
         public static ParticleSystem Particles { get; private set; }
         public static TrailSystem Trails { get; private set; }
         public static EquipOverlaysManager ArmorOverlays { get; private set; }
@@ -108,15 +110,6 @@ namespace AQMod
             }
             else
             {
-                if (ModContent.GetInstance<AQConfigClient>().XmasProgressMeterOverride)
-                {
-                    On.Terraria.GameContent.UI.States.UIWorldLoad.ctor += XmasSeeds.Hooks.UIWorldLoad_ctor_Xmas;
-                }
-                if (ModContent.GetInstance<AQConfigClient>().XmasBackground)
-                {
-                    On.Terraria.Main.DrawBG += XmasSeeds.Hooks.Main_DrawBG_XMasBG;
-                }
-
                 TimeActions.Hooks.Main_UpdateTime_SpawnTownNPCs = typeof(Main).GetMethod("UpdateTime_SpawnTownNPCs", BindingFlags.NonPublic | BindingFlags.Static);
                 On.Terraria.Main.UpdateTime += TimeActions.Hooks.Main_UpdateTime;
 
@@ -127,15 +120,11 @@ namespace AQMod
                 On.Terraria.Main.DrawThickCursor += CursorDyeManager.Hooks.Main_DrawThickCursor;
                 On.Terraria.Main.DrawInterface_36_Cursor += CursorDyeManager.Hooks.Main_DrawInterface_36_Cursor;
 
-                On.Terraria.Player.DropTombstone += TombstonesPlayer.Hooks.Player_DropTombstone;
-                AQPlayer.Hooks.Apply();
-
                 On.Terraria.Projectile.NewProjectile_float_float_float_float_int_int_float_int_float_float += AQProjectile.Hooks.Projectile_NewProjectile_float_float_float_float_int_int_float_int_float_float;
 
                 On.Terraria.UI.ItemSlot.MouseHover_ItemArray_int_int += PlayerStorage.Hooks.ItemSlot_MouseHover_ItemArray_int_int;
 
                 AQItem.Hooks.Apply();
-                AQNPC.Hooks.Apply();
                 AQWorld.Hooks.Apply();
                 InvUI.Hooks.Apply();
                 DrawHelper.Hooks.Apply();
@@ -204,6 +193,7 @@ namespace AQMod
             Loading = true;
             IsUnloading = false;
             Instance = this;
+            Sets = new AQSets();
             Keybinds.Load();
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
@@ -226,7 +216,6 @@ namespace AQMod
                 LegacyEffectCache.Load(this);
                 FX.InternalSetup();
                 PrimitivesRenderer.Setup();
-                BuffColorCache.Init();
 
                 SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
 
@@ -260,6 +249,7 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
+            LootDrops.SetupContent();
             AQItem.Sets.Instance.SetupContent();
             AQProjectile.Sets.Instance.SetupContent();
             AQNPC.Sets.Instance.SetupContent();
@@ -302,6 +292,8 @@ namespace AQMod
             cachedLoadTasks = null;
             LoadHooks(unload: true);
             Autoloading.Unload();
+            Sets = null;
+            LootDrops.Unload();
             AQUtils.BatchData.Unload();
 
             NoHitting.CurrentlyDamaged?.Clear();
@@ -320,7 +312,6 @@ namespace AQMod
             if (!Main.dedServ)
             {
                 AQSound.rand = null;
-                BuffColorCache.Unload();
                 ArmorOverlays?.Dispose();
                 ArmorOverlays = null;
                 LegacyEffectCache.Unload();

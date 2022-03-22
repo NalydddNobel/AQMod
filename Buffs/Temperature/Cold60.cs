@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace AQMod.Buffs.Temperature
 {
-    public class Cold60 : temperatureDebuff
+    public class Cold60 : TemperatureDebuff
     {
         public override void Update(Player player, ref int buffIndex)
         {

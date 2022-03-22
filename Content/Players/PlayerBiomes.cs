@@ -146,7 +146,7 @@ namespace AQMod.Content.Players
 
         public override Texture2D GetMapBackgroundImage()
         {
-            if (XmasSeeds.XmasWorld && WorldGen.gen)
+            if (XmasSeed.XmasWorld && WorldGen.gen)
             {
                 return ModContent.GetTexture("Terraria/MapBG12");
             }

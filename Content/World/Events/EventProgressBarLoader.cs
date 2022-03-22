@@ -127,7 +127,7 @@ namespace AQMod.Content.World.Events
             }
         }
 
-        void IAutoloadType.OnLoad()
+        void IAutoloadType.Load()
         {
             if (_progressBars == null)
                 _progressBars = new EventProgressBar[0];

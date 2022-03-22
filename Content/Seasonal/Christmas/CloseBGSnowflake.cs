@@ -36,7 +36,7 @@ namespace AQMod.Content.Seasonal.Christmas
 
         public override bool Update()
         {
-            velocity.X = MathHelper.Lerp(velocity.X, XmasSeeds.snowflakeWind, 0.01f) + (float)Math.Sin(Main.GlobalTime + position.Y / 32f) * 0.02f;
+            velocity.X = MathHelper.Lerp(velocity.X, XmasSeed.snowflakeWind, 0.01f) + (float)Math.Sin(Main.GlobalTime + position.Y / 32f) * 0.02f;
             if (velocity.Y < 4f)
                 velocity.Y += 0.05f;
             float velo = velocity.Length();

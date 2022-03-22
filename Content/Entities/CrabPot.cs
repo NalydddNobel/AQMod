@@ -343,7 +343,7 @@ namespace AQMod.Content.Entities
                 return 0;
             }
 
-            void IAutoloadType.OnLoad()
+            void IAutoloadType.Load()
             {
                 InternalInitialize();
             }
@@ -876,7 +876,7 @@ namespace AQMod.Content.Entities
             return ModContent.ItemType<Items.Tools.Fishing.CrabPots.CrabPot>();
         }
 
-        void IAutoloadType.OnLoad()
+        void IAutoloadType.Load()
         {
         }
         void IAutoloadType.Unload()

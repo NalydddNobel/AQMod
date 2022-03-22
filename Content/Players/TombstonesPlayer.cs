@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -10,22 +9,6 @@ namespace AQMod.Content.Players
 {
     public sealed class TombstonesPlayer : ModPlayer
     {
-        public static class Hooks
-        {
-            internal static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, Terraria.Localization.NetworkText deathText, int hitDirection)
-            {
-                var tombstonesPlayer = self.GetModPlayer<TombstonesPlayer>();
-                if (tombstonesPlayer.disableTombstones)
-                {
-                    return;
-                }
-                if (Main.netMode != NetmodeID.MultiplayerClient && tombstonesPlayer.CreateTombstone(coinsOwned, deathText, hitDirection))
-                {
-                    orig(self, coinsOwned, deathText, hitDirection);
-                }
-            }
-        }
-
         public bool disableTombstones;
         public bool hellTombstones;
 

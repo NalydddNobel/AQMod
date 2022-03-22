@@ -7,11 +7,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using Terraria;
@@ -46,7 +43,7 @@ namespace AQMod
             }
         }
 
-        public sealed class BatchData 
+        public sealed class BatchData
         {
             private static FieldInfo spriteSortModeField;
             private static FieldInfo blendStateField;
@@ -64,7 +61,7 @@ namespace AQMod
             public Effect customEffect;
             public Matrix transformMatrix;
 
-            public BatchData(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, 
+            public BatchData(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState,
                 RasterizerState rasterizerState, Effect effect, Matrix transformMatrix)
             {
                 spriteSortMode = sortMode;
@@ -76,7 +73,7 @@ namespace AQMod
                 this.transformMatrix = transformMatrix;
             }
 
-            public BatchData(SpriteBatch spriteBatch) : 
+            public BatchData(SpriteBatch spriteBatch) :
                 this(spriteSortModeField.GetValue<SpriteSortMode>(spriteBatch),
                     blendStateField.GetValue<BlendState>(spriteBatch),
                     samplerStateField.GetValue<SamplerState>(spriteBatch),
@@ -238,6 +235,53 @@ namespace AQMod
                 var origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, texture.Height);
                 Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetColor(), drawRotation, origin, item.scale, info.spriteEffects, 0));
             }
+        }
+
+        public static T2[] GetSpecific<T, T2>(this List<T> arr, Func<T, T2> get)
+        {
+            var arr2 = new T2[arr.Count];
+            for (int i = 0; i < arr.Count; i++)
+            {
+                arr2[i] = get(arr[i]);
+            }
+            return arr2;
+        }
+        public static T2[] GetSpecific<T, T2>(this T[] arr, Func<T, T2> get)
+        {
+            var arr2 = new T2[arr.Length];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr2[i] = get(arr[i]);
+            }
+            return arr2;
+        }
+
+        public static int Mean(this List<int> arr)
+        {
+            int num = 0;
+            for (int i = 0; i < arr.Count; i++)
+            {
+                num += arr[i];
+            }
+            return num / arr.Count;
+        }
+        public static int Mean(this byte[] arr)
+        {
+            int num = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                num += arr[i];
+            }
+            return num / arr.Length;
+        }
+        public static int Mean(this int[] arr)
+        {
+            int num = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                num += arr[i];
+            }
+            return num / arr.Length;
         }
 
         public static bool AddHook(Mod otherMod, string otherModType, string method, MethodInfo newMethod)
@@ -702,7 +746,6 @@ namespace AQMod
             var list = new List<T>();
             for (int i = 0; i < arr.Length; i++)
             {
-                //AQMod.GetInstance().Logger.Debug("{i:" + i + ", " + arr[i] + "}");
                 list.Add(arr[i]);
             }
 

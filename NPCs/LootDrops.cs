@@ -8,6 +8,7 @@ using AQMod.Items.Potions.Foods;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,6 +17,146 @@ namespace AQMod.NPCs
 {
     public sealed class LootDrops : GlobalNPC
     {
+        public struct DropConditions
+        {
+            public int? moonPhase;
+            public bool? opposingPotion;
+
+            public DropConditions(bool setup = false) : this()
+            {
+                if (setup)
+                {
+                    SetupStatics();
+                }
+            }
+            public DropConditions(Player player) : this(setup: true)
+            {
+                FillOutPlayer(player);
+            }
+
+            public void SetupStatics()
+            {
+                moonPhase = Main.moonPhase;
+            }
+
+            public void FillOutPlayer(Player player)
+            {
+                var aQPlayer = player.GetModPlayer<AQPlayer>();
+                opposingPotion = aQPlayer.altEvilDrops;
+            }
+
+            private bool CompareFlags(bool? mine, bool? theirs)
+            {
+                return mine == null || theirs == mine;
+            }
+            public override bool Equals(object obj)
+            {
+                if (obj is DropConditions conditions)
+                {
+                    return CompareFlags(opposingPotion, conditions.opposingPotion);
+                }
+                return false;
+            }
+
+            public override int GetHashCode()
+            {
+                return base.GetHashCode();
+            }
+        }
+
+        public struct Loot
+        {
+            public DropConditions? myConditions;
+            public bool perPlayer;
+
+            public int chance;
+            public List<int> item;
+            public int stackMin;
+            public int stackMax;
+
+            public Loot(AQUtils.ArrayInterpreter<int> item, int stack = 1, DropConditions? conditions = null, bool perPlayer = false) : this(item, stack, -1, conditions, perPlayer)
+            {
+            }
+
+            public Loot(AQUtils.ArrayInterpreter<int> item, int minStack, int maxStack, DropConditions? conditions = null, bool perPlayer = false) : this(item, minStack, maxStack, 1, conditions, perPlayer)
+            {
+            }
+
+            public Loot(AQUtils.ArrayInterpreter<int> item, int minStack, int maxStack, int chance, DropConditions? conditions = null, bool perPlayer = false)
+            {
+                this.item = item.Arr.ToList();
+                stackMin = minStack;
+                stackMax = maxStack;
+                this.chance = chance;
+                this.perPlayer = perPlayer;
+                myConditions = conditions;
+            }
+
+            public int DropItemConditions(NPC npc, List<Player> nearbyPlayers, DropConditions allValidConditions)
+            {
+                if (myConditions == null || allValidConditions.Equals(myConditions))
+                {
+                    if (perPlayer)
+                    {
+                        for (int i = 0; i < Main.maxPlayers; i++)
+                        {
+                            if (Main.player[i].active && !Main.player[i].dead && (myConditions == null || new DropConditions(Main.player[i]).Equals(myConditions)))
+                            {
+                                AQItem.DropInstancedItem(i, npc.getRect(), RollItem(), RollStack());
+                            }
+                        }
+                        return -2;
+                    }
+                    return DropItem(npc);
+                }
+                return -1;
+            }
+
+            public int DropItem(NPC npc)
+            {
+                if (RollChance())
+                {
+                    return Item.NewItem(npc.getRect(), RollItem(), RollStack());
+                }
+                return -1;
+            }
+
+            public int RollItem()
+            {
+                return item.Count == 1 ? item[0] : item[Main.rand.Next(item.Count)];
+            }
+
+            public bool RollChance()
+            {
+                return chance <= 1 || Main.rand.NextBool(chance);
+            }
+
+            public int RollStack()
+            {
+                if (stackMax == -1)
+                {
+                    return stackMin;
+                }
+                return Main.rand.Next(stackMin, stackMax);
+            }
+        }
+
+        public static Dictionary<int, AQUtils.ArrayInterpreter<Loot>> CustomLoot { get; private set; }
+
+        internal static void SetupContent()
+        {
+            CustomLoot = new Dictionary<int, AQUtils.ArrayInterpreter<Loot>>() 
+            { 
+                [NPCID.Golem] = new Loot(ModContent.ItemType<RustyKnife>(), 1, new DropConditions() { moonPhase = MoonPhases.FullMoon }) { }
+            };
+        }
+
+        internal static void Unload()
+        {
+            CustomLoot?.Clear();
+            CustomLoot = null;
+        }
+
         public override bool PreNPCLoot(NPC npc)
         {
             if ((npc.type == NPCID.BlueJellyfish || npc.type == NPCID.GreenJellyfish) && ModContent.GetInstance<AQConfigServer>().removeJellyfishNecklace)
@@ -82,15 +223,18 @@ namespace AQMod.NPCs
             {
                 DropBiomeLoot(npc, plr, aQPlayer);
             }
+
+            //if (CustomLoot.TryGetValue(npc.type, out var value))
+            //{
+            //    foreach (var item in value.Arr)
+            //    {
+            //        item.DropItemConditions(npc, );
+            //    }
+            //}
+
             if (npc.type >= Main.maxNPCTypes)
                 return;
-            if (Main.moonPhase == MoonPhases.FullMoon)
-            {
-                if (npc.type == NPCID.Golem)
-                {
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<RustyKnife>());
-                }
-            }
+
             int banner = Item.NPCtoBanner(npc.type);
             if (npc.type == NPCID.MossHornet)
             {

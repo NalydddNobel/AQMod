@@ -11,7 +11,7 @@ namespace AQMod.Content
 
         public int Count => _contentCount;
 
-        void IAutoloadType.OnLoad()
+        void IAutoloadType.Load()
         {
             ContentInstance.Register(this);
             _content = new List<T>();

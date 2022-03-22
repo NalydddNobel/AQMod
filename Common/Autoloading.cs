@@ -11,16 +11,6 @@ namespace AQMod.Common
     {
         private static List<IAutoloadType> _autoloadCache;
 
-        private static void TryAutoload(Type t, DebugUtilities.Logger? logger)
-        {
-            if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(IAutoloadType)))
-            {
-                var instance = (IAutoloadType)Activator.CreateInstance(t);
-                instance.OnLoad();
-                logger?.Log("Created autoload instance of: {0}", t.FullName);
-                _autoloadCache.Add(instance);
-            }
-        }
         public static void Autoload(Assembly code)
         {
             _autoloadCache = new List<IAutoloadType>();
@@ -32,22 +22,17 @@ namespace AQMod.Common
 
             foreach (var t in code.GetTypes())
             {
-                try
-                {
-                    TryAutoload(t, logger);
-                }
-                catch (Exception ex)
-                {
-                    // throws error if not loading in Multiplayer
-                    if (!Main.dedServ)
-                    {
-                        throw ex;
-                    }
-                    else
-                    {
-                        AQMod.Instance.Logger.Error(ex);
-                    }
-                }
+                InternalAutoload(t, logger);
+            }
+        }
+        private static void InternalAutoload(Type t, DebugUtilities.Logger? logger)
+        {
+            if (!t.IsAbstract && t.GetInterfaces().Contains(typeof(IAutoloadType)))
+            {
+                var instance = (IAutoloadType)Activator.CreateInstance(t);
+                instance.Load();
+                logger?.Log("Created autoload instance of: {0}", t.FullName);
+                _autoloadCache.Add(instance);
             }
         }
 

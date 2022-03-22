@@ -13,7 +13,7 @@ namespace AQMod.Content.Seasonal.Christmas
 
         public override void AI(NPC npc)
         {
-            if (XmasSeeds.XmasWorld)
+            if (XmasSeed.XmasWorld)
             {
                 xmasEnemySwapCheck = true;
                 if (AQNPC.Sets.Instance.IsACaveSkeleton.Contains(npc.type) && npc.type != NPCID.GreekSkeleton)
@@ -62,7 +62,7 @@ namespace AQMod.Content.Seasonal.Christmas
 
         public override void NPCLoot(NPC npc)
         {
-            if (XmasSeeds.XmasWorld)
+            if (XmasSeed.XmasWorld)
             {
                 if (npc.type == NPCID.Retinazer ||
                     npc.type == NPCID.Spazmatism ||

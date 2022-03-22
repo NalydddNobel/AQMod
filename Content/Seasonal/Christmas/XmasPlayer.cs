@@ -33,7 +33,7 @@ namespace AQMod.Content.Seasonal.Christmas
 
         public override void UpdateBiomes()
         {
-            if (XmasSeeds.XmasWorld)
+            if (XmasSeed.XmasWorld)
             {
                 player.ZoneSnow = true;
             }
@@ -46,7 +46,7 @@ namespace AQMod.Content.Seasonal.Christmas
                 var now = DateTime.Now;
                 if (now.Month == 12 && now.Day == 25)
                 {
-                    if (!givenXmasGift && XmasSeeds.XmasWorld)
+                    if (!givenXmasGift && XmasSeed.XmasWorld)
                     {
                         givenXmasGift = true;
                         player.QuickSpawnClonedItem(GiftItem.CreateGiftItem(1));

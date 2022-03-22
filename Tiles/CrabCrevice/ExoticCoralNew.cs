@@ -1,4 +1,5 @@
 ﻿using AQMod.Common.Graphics;
+using AQMod.Content.Seasonal.Christmas;
 using AQMod.Dusts.NobleMushrooms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,8 +16,6 @@ namespace AQMod.Tiles.CrabCrevice
     public class ExoticCoralNew : ModTile
     {
         private const int MinimumDistanceForExoticCoralToGlow = 600;
-
-        public static int[] AnchorValidTiles => TileObjectData.GetTileData(ModContent.TileType<ExoticCoralNew>(), 0, 0).AnchorValidTiles;
 
         public override void SetDefaults()
         {
@@ -40,6 +39,8 @@ namespace AQMod.Tiles.CrabCrevice
             {
                 TileID.Dirt,
                 TileID.Stone,
+                TileID.SnowBlock,
+                TileID.IceBlock,
                 TileID.Obsidian,
                 TileID.Sand,
                 TileID.HardenedSand,
@@ -67,7 +68,7 @@ namespace AQMod.Tiles.CrabCrevice
             var distance = (screenCenter - screenPosition).Length();
             if (distance < MinimumDistanceForExoticCoralToGlow)
                 intensityMult += 1f - distance / MinimumDistanceForExoticCoralToGlow;
-            float time = Main.GlobalTime * 2f + (i + j) * 0.125f;
+            float time = Main.GlobalTime * (XmasSeed.XmasWorld ? 1f : 2f) + (i + j) * 0.125f;
             switch (Main.tile[i, j].frameX / 22)
             {
                 case 0:
@@ -151,16 +152,6 @@ namespace AQMod.Tiles.CrabCrevice
                     break;
             }
             return true;
-        }
-
-        public static bool CanBePlacedOnType(int type)
-        {
-            foreach (int t in AnchorValidTiles)
-            {
-                if (t == type)
-                    return true;
-            }
-            return false;
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Buffs.Temperature
 {
-    public abstract class temperatureDebuff : ModBuff
+    public abstract class TemperatureDebuff : ModBuff
     {
         public override void SetDefaults()
         {

@@ -15,7 +15,7 @@ namespace AQMod.Effects.Dyes
             public static byte _passNameError;
         }
 
-        void IAutoloadType.OnLoad()
+        void IAutoloadType.Load()
         {
             _armorShaderDataColorField = typeof(ArmorShaderData).GetField("_uColor", BindingFlags.NonPublic | BindingFlags.Instance);
             _shaderDataPassField = typeof(ShaderData).GetField("_passName", BindingFlags.NonPublic | BindingFlags.Instance);

@@ -77,7 +77,7 @@ namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
                         {
                             npc.ai[2] = NPCID.LavaSlime;
                         }
-                        else if (XmasSeeds.XmasWorld)
+                        else if (XmasSeed.XmasWorld)
                         {
                             npc.ai[2] = Main.rand.NextBool() ? NPCID.IceSlime : NPCID.SpikedIceSlime;
                         }

@@ -36,187 +36,6 @@ namespace AQMod
 {
     public sealed class AQPlayer : ModPlayer
     {
-        public static class Hooks
-        {
-            public static bool? setDaytime;
-
-            internal static void Apply()
-            {
-                On.Terraria.Player.AddBuff += OnAddBuff;
-                On.Terraria.Player.PickTile += HitTile;
-                On.Terraria.Player.HorizontalMovement += MovementEffects;
-                On.Terraria.Chest.SetupShop += ApplyCustomDiscount;
-                On.Terraria.Player.Update += Player_Update;
-            }
-
-            private static void Player_Update(On.Terraria.Player.orig_Update orig, Player self, int i)
-            {
-                if (self.whoAmI == i)
-                {
-                    var aQPlayer = self.GetModPlayer<AQPlayer>();
-                    if (aQPlayer.fakeDaytime == 1 && !Main.dayTime)
-                    {
-                        setDaytime = false;
-                        Main.dayTime = true;
-                    }
-                }
-                try
-                {
-                    orig(self, i);
-                }
-                catch
-                {
-                }
-                if (setDaytime != null)
-                {
-                    Main.dayTime = setDaytime.Value;
-                    setDaytime = null;
-                }
-            }
-
-            internal static void ApplyCustomDiscount(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type)
-            {
-                var plr = Main.LocalPlayer;
-                bool discount = plr.discount;
-                plr.discount = false;
-
-                orig(self, type);
-
-                plr.discount = discount;
-                if (discount)
-                {
-                    float discountPercentage = plr.GetModPlayer<AQPlayer>().discountPercentage;
-                    for (int i = 0; i < Chest.maxItems; i++)
-                    {
-                        if (self.item[i] != null && self.item[i].type != ItemID.None)
-                            self.item[i].value = (int)(self.item[i].value * discountPercentage);
-                    }
-                }
-                //orig(self, type);
-                //var player = Main.LocalPlayer;
-                //if (player.discount)
-                //{
-                //    float discountPercentage = player.GetModPlayer<AQPlayer>().discountPercentage;
-                //    if (discountPercentage == 1f)
-                //    {
-                //        discountPercentage = 0.8f;
-                //    }
-                //    for (int i = 0; i < Chest.maxItems; i++)
-                //    {
-                //        if (self.item[i] != null && self.item[i].type != ItemID.None)
-                //        {
-                //            self.item[i].value = (int)(self.item[i].GetGlobalItem<AQItem>().basePrice * discountPercentage);
-                //        }
-                //    }
-                //}
-            }
-
-            internal static void MovementEffects(On.Terraria.Player.orig_HorizontalMovement orig, Player self)
-            {
-                orig(self);
-                var aQPlayer = self.GetModPlayer<AQPlayer>();
-                if (aQPlayer.redSpriteWind != 0 && !(self.mount.Active && self.velocity.Y == 0f && (self.controlLeft || self.controlRight)))
-                {
-                    float windDirection = Math.Sign(aQPlayer.redSpriteWind) * 0.07f;
-                    if (Math.Abs(Main.windSpeed) > 0.5f)
-                    {
-                        windDirection *= 1.37f;
-                    }
-                    if (self.velocity.Y != 0f)
-                    {
-                        windDirection *= 1.5f;
-                    }
-                    if (self.controlLeft || self.controlRight)
-                    {
-                        windDirection *= 0.8f;
-                    }
-                    if (Math.Sign(self.direction) != Math.Sign(windDirection))
-                    {
-                        self.accRunSpeed -= Math.Abs(windDirection) * 20f;
-                        self.maxRunSpeed -= Math.Abs(windDirection) * 20f;
-                    }
-                    if (windDirection < 0f && self.velocity.X > windDirection)
-                    {
-                        self.velocity.X += windDirection;
-                        if (self.velocity.X < windDirection)
-                        {
-                            self.velocity.X = windDirection;
-                        }
-                    }
-                    if (windDirection > 0f && self.velocity.X < windDirection)
-                    {
-                        self.velocity.X += windDirection;
-                        if (self.velocity.X > windDirection)
-                        {
-                            self.velocity.X = windDirection;
-                        }
-                    }
-
-                    if (!self.controlLeft && !self.controlRight)
-                    {
-                        self.legFrameCounter = -1.0;
-                        self.legFrame.Y = 0;
-                    }
-                }
-                aQPlayer.redSpriteWind = 0;
-            }
-
-            internal static void HitTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
-            {
-                if (self.GetModPlayer<AQPlayer>().pickBreak)
-                {
-                    pickPower /= 2;
-                }
-                orig(self, x, y, pickPower);
-            }
-
-            internal static void OnAddBuff(On.Terraria.Player.orig_AddBuff orig, Player self, int type, int time1, bool quiet)
-            {
-                if (type >= Main.maxBuffTypes)
-                {
-                    var modBuff = ModContent.GetModBuff(type);
-                    if (modBuff is temperatureDebuff)
-                    {
-                        for (int i = 0; i < Player.MaxBuffs; i++)
-                        {
-                            if (self.buffTime[i] > 0)
-                            {
-                                if (self.buffType[i] == type)
-                                {
-                                    orig(self, type, time1, quiet);
-                                    return;
-                                }
-                                if (self.buffType[i] > Main.maxBuffTypes)
-                                {
-                                    var otherModBuff = ModContent.GetModBuff(self.buffType[i]);
-                                    if (otherModBuff is temperatureDebuff)
-                                    {
-                                        self.DelBuff(i);
-                                        orig(self, type, time1, quiet);
-                                        return;
-                                    }
-                                }
-                            }
-                        }
-                        orig(self, type, time1, quiet);
-                        return;
-                    }
-                }
-                if (AQBuff.Sets.Instance.FoodBuff.Contains(type))
-                {
-                    for (int i = 0; i < Player.MaxBuffs; i++)
-                    {
-                        if (self.buffTime[i] > 16 && self.buffType[i] != type && AQBuff.Sets.Instance.FoodBuff.Contains(self.buffType[i]))
-                        {
-                            self.DelBuff(i);
-                            i--;
-                        }
-                    }
-                }
-                orig(self, type, time1, quiet);
-            }
-        }
-
         public const int MaxCelesteTorusOrbs = 5;
         public const int MaxArmor = 20;
         public const int MaxDye = MaxArmor / 2;
@@ -228,6 +47,7 @@ namespace AQMod
         public const byte TemperatureRegenWhenResistant = 8;
         public const byte TEMPERATURE_REGEN_ON_HIT = 120;
 
+        public static bool? setDaytime;
         public static bool forceAutoswing;
         public static byte extractinatorBlipCooldown;
 
@@ -1040,9 +860,9 @@ namespace AQMod
         }
         public override bool PreItemCheck()
         {
-            if (Hooks.setDaytime != null)
+            if (setDaytime != null)
             {
-                Main.dayTime = Hooks.setDaytime.Value;
+                Main.dayTime = setDaytime.Value;
             }
             if (Main.myPlayer == player.whoAmI)
             {
@@ -1062,9 +882,9 @@ namespace AQMod
                     forceAutoswing = false;
                 }
             }
-            if (Hooks.setDaytime != null)
+            if (setDaytime != null)
             {
-                Main.dayTime = !Hooks.setDaytime.Value;
+                Main.dayTime = !setDaytime.Value;
             }
         }
 
@@ -1642,7 +1462,7 @@ namespace AQMod
                     if (b == -1)
                     {
                         npc.AddBuff(spreader.buffType[i], spreader.buffTime[i] * (Main.rand.NextBool() ? 1 : 2));
-                        var color = BuffColorCache.GetColorFromBuffID(spreader.buffType[i]);
+                        var color = BuffColorGenerator.GetColorFromBuffID(spreader.buffType[i]);
                         if (color != Color.Transparent)
                         {
                             poofColors.Add(color);

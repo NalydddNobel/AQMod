@@ -53,7 +53,7 @@ namespace AQMod.NPCs.Friendly
             npc.friendly = true;
             npc.width = 18;
             npc.height = 40;
-            npc.aiStyle = AQNPC.AIStyles.PassiveAI;
+            npc.aiStyle = NPCAIStyles.PassiveAI;
             npc.damage = 10;
             npc.defense = 15;
             npc.lifeMax = 250;

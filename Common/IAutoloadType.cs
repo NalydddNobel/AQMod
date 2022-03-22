@@ -2,7 +2,7 @@
 {
     public interface IAutoloadType
     {
-        void OnLoad();
+        void Load();
         void Unload();
     }
 }

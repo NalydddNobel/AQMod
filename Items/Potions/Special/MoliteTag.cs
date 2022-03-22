@@ -50,7 +50,7 @@ namespace AQMod.Items.Potions.Special
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                var color = BuffColorCache.GetColorFromItemID(original.type);
+                var color = BuffColorGenerator.GetColorFromItemID(original.type);
                 color.A = 0;
                 var color2 = color * 4;
                 var rectangle = new Rectangle((int)player.position.X - 2, (int)player.position.Y - 2, player.width + 4, player.height + 4);
@@ -103,7 +103,7 @@ namespace AQMod.Items.Potions.Special
             origin = drawData.origin;
             scale = drawData.scale * drawData.scale2;
 
-            var auraClr = BuffColorCache.GetColorFromItemID(original.type);
+            var auraClr = BuffColorGenerator.GetColorFromItemID(original.type);
             auraClr *= 0.5f + AQUtils.Wave(Main.GlobalTime * 4f, -0.1f, 0.1f);
             auraClr.A = 0;
 
@@ -134,7 +134,7 @@ namespace AQMod.Items.Potions.Special
 
             var item2 = original;
             item2.position = item.position;
-            var auraClr = BuffColorCache.GetColorFromItemID(original.type);
+            var auraClr = BuffColorGenerator.GetColorFromItemID(original.type);
             auraClr *= 0.75f;
             auraClr.A = 0;
             var position = AQItem.WorldDrawPos(item2);
