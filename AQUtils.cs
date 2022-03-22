@@ -312,7 +312,7 @@ namespace AQMod
                 return false;
             }
             new Hook(baseMethod, newMethod).Apply();
-            AQMod.Instance.Logger.Error("Hook {" + newMethod.Name + "} was applied successfully onto {" + baseMethod.Name + "}");
+            //AQMod.Instance.Logger.Error("Hook {" + newMethod.Name + "} was applied successfully onto {" + baseMethod.Name + "}");
             return true;
         }
 
