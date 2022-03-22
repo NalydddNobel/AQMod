@@ -901,29 +901,26 @@ ItemTooltip.AStrangeIdea='Aequus之起源'\n{$Mods.AQMod.PaintingSignature.Nalyd
 
 # Event and Boss Checklist stuff
 
-EventName.CrabSeason=蟹季
-BossChecklistDesc.CrabSeason=在随机的时间自然开始和结束. 你可以使用 [i:{0}] 来加速时间的循环并查看事件的开始和结束时间.
-EventWarning.CrabSeason=海洋的温度正在逐渐升高...
-EventEnding.CrabSeason=海洋再度变得冰冷...
+CrabSeason=蟹季
 
-BossChecklistDesc.JerryCrabson=在海滩处使用 [i:{0}] 召唤.
+BC.Spawn.Crabson=在蟹状裂隙处使用 {0} 召唤.
 Common.AwakenedCrabson=巨蟹蛤已苏醒!
 
-EventName.DemonSiege=恶魔围攻
-BossChecklistDesc.DemonSiege=在血巢处使用 {0} 召唤.
+DemonSiege=恶魔围攻
+BC.Spawn.DemonSiege=在血巢处使用 {0} 召唤.
 
-EventName.GlimmerEvent=微光事件
-EventProgress.GlimmerEvent=离中心 {0} 格远
-BossChecklistDesc.GlimmerEvent=在夜晚自然开始. 也可以使用 [i:{0}] 召唤. 在太阳升起时结束.
-EventWarning.GlimmerEvent=远处闪烁着微光...
+GlimmerEvent=微光
+EventProgress.GlimmerEvent=离中心 {0} 格远.
+EventWarning.GlimmerEvent=远处出现了一缕微光...
 EventEnding.GlimmerEvent=微光渐渐消失...
-BossChecklistDesc.OmegaStarite=在夜晚使用 {0} 召唤. 也可以通过与微光之源处的剑交互来召唤.
+BC.Spawn.GlimmerEvent=在夜晚自然开始. 也可以使用 {0} 召唤. 在太阳升起时结束.
+BC.Spawn.OmegaStarite=在夜晚使用 {0} 召唤. 也可以前往微光之源来召唤.
 
-EventName.GaleStreams=紊流风暴
-BossChecklistDesc.GaleStreams=风速大于 40 mph 时开始, 风速小于 34 mph 时结束. 风速大于 300 mph 时同样会结束. 你可以使用 [i:{0}] 更改风速.
-EventProgress.GaleStreams={0} mph/{1} mph
-BossChecklistDesc.RedSprite=偶尔出现在紊流风暴中!
-BossChecklistDesc.SpaceSquid=偶尔出现在紊流风暴中!
+GaleStreams=紊流风暴
+EventProgress.GaleStreams={0}mph/{1}mph
+BC.Spawn.GaleStreams=风速大于 40 mph 时开始, 风速小于 34 mph 时结束. 风速大于 300 mph 时同样会结束. 你可以使用 {0} 更改风速.
+BC.Spawn.GaleStreamsMiniboss=偶尔出现在紊流风暴中!
+
 
 # Recipe Groups
 
