@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Common.HookLists
 {
-    public sealed class PlayerHooklist
+    public sealed class PlayerHooklist : HookList
     {
         [LoadHook(typeof(Player), "DropTombstone", BindingFlags.Public | BindingFlags.Instance)]
         internal static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, Terraria.Localization.NetworkText deathText, int hitDirection)
