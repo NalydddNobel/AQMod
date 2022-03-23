@@ -176,7 +176,7 @@ ItemName.SparrowWings=雀翼
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 
 ItemName.Thunderbird=雷鸟之翼
-ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\n有着强大的水平速度!\n击中敌人时会招引闪电对其进行轰击
+ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\n有着强大的水平速度!
 NPCName.Thunderbird=雷鸟
 
 
@@ -425,6 +425,11 @@ ItemTooltip.LarvaEel=提供生命再生
 #===========================#
 # Tools
 #===========================#
+
+ItemName.CentennialLight=百年灯
+ItemTooltip.CentennialLight=大幅度加速时间的流失
+ItemName.Globebulb=球形灯泡
+ItemTooltip.Globebulb=加速时间的流失
 
 ItemName.TheFan=吹风机
 ItemTooltip.TheFan=用风吹退你面前的东西\n可更改风的速度\n'手持灵感'
@@ -1271,7 +1276,6 @@ BuffName.Chomper=食人花
 BuffDescription.Chomper=食人花会为你而战
 # Other Item Names
 ItemName.ATM=ATM
-ItemName.Globebulb=天体灯泡
 ItemName.SpectralLens=幽冥透镜
 ItemName.SpectreSoul=幽冥之魂
 ItemName.GoldPowder=黄金之尘
@@ -1368,7 +1372,6 @@ ItemTooltip.CorruptPot=召唤一株腐化植物为你而战
 # Other Item Tooltips
 ItemTooltip.ATM=召唤一个用于存放物品的飞行保险箱\n将其放在你的保险箱里以便随时召唤它
 ItemTooltip.SpectralLens=切换敌人的掉落
-ItemTooltip.Globebulb=加快时间的流逝速度一小段时间
 
 ItemName.Crabax=蟹斧
 ItemTooltip.Crabax=能够同时砍伐多颗树木\n砍伐时长按右键以禁用此能力
