@@ -65,12 +65,15 @@ namespace AQMod
         public static ParticleSystem Particles { get; private set; }
         public static TrailSystem Trails { get; private set; }
         public static EquipOverlaysManager ArmorOverlays { get; private set; }
+        public UserInterface NPCTalkState { get; private set; }
+
         public static ModifiableMusic CrabCavesMusic { get; private set; }
         public static ModifiableMusic CrabsonMusic { get; private set; }
         public static ModifiableMusic GlimmerEventMusic { get; private set; }
         public static ModifiableMusic OmegaStariteMusic { get; private set; }
         public static ModifiableMusic DemonSiegeMusic { get; private set; }
         public static ModifiableMusic GaleStreamsMusic { get; private set; }
+
         internal List<CachedTask> cachedLoadTasks;
 
         internal static ModData calamityMod;
@@ -84,8 +87,6 @@ namespace AQMod
         internal static ModData discordRP;
         internal static ModData bossChecklist;
         internal static ModData census;
-
-        public UserInterface NPCTalkState { get; private set; }
 
         public AQMod()
         {
@@ -249,7 +250,7 @@ namespace AQMod
 
         public override void PostSetupContent()
         {
-            LootDrops.SetupContent();
+            LootDrops.LootTables();
             AQItem.Sets.Instance.SetupContent();
             AQProjectile.Sets.Instance.SetupContent();
             AQNPC.Sets.Instance.SetupContent();

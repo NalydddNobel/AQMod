@@ -1,11 +1,15 @@
-﻿using AQMod.Common.Graphics;
+﻿using AQMod.Common;
+using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Content.World;
 using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.Effects.Particles;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Misc.Cursor;
+using AQMod.Items.Misc.Toggles;
 using AQMod.Items.Potions;
+using AQMod.Items.Potions.Foods;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;
 using AQMod.NPCs.Friendly;
@@ -1248,33 +1252,118 @@ namespace AQMod
                 }
             }
         }
+
+        private void DropTerminator(NPC npc)
+        {
+            if (npc.townNPC && npc.position.Y > (Main.maxTilesY - 200) * 16f && AQMod.UnderworldCheck()) // does this for any town NPC because why not?
+            {
+                var check = new Rectangle((int)npc.position.X / 16, (int)npc.position.Y / 16, 2, 3).KeepInWorld(fluff: 10);
+                for (int i = check.X; i <= check.X + check.Width; i++)
+                {
+                    for (int j = check.Y; j <= check.Y + check.Height; j++)
+                    {
+                        if (Framing.GetTileSafely(i, j).liquid > 0 && Main.tile[i, j].lava())
+                        {
+                            Item.NewItem(npc.getRect(), ModContent.ItemType<IWillBeBack>());
+                            WorldDefeats.terminatorArm = true;
+                            NetHelper.WorldStatus();
+                            return;
+                        }
+                    }
+                }
+            }
+        }
         public override void NPCLoot(NPC npc)
         {
-            if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] || npc.lifeMax < 5 || npc.friendly)
+            if (npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type])
                 return;
-            if (LootLoopingHelper.Current == 0 && (Main.netMode == NetmodeID.Server || !Main.gameMenu) && !Sets.Instance.NoGlobalDrops.Contains(npc.netID))
+
+            DropTerminator(npc);
+            
+            if (npc.lifeMax < 5 || npc.friendly)
+                return;
+
+            int banner = Item.NPCtoBanner(npc.type);
+            if (banner == BannerID.RaggedCaster)
             {
+                if (Main.rand.NextBool(10))
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<GrapePhanta>());
+            }
+            else if (banner == BannerID.RustyArmoredBones)
+            {
+                if (Main.rand.NextBool(50))
+                    Item.NewItem(npc.getRect(), ModContent.ItemType<GrapePhanta>());
+            }
+
+            if ((Main.netMode == NetmodeID.Server || !Main.gameMenu) && !Sets.Instance.NoGlobalDrops.Contains(npc.netID))
+            {
+                var allDropCondition = new LootDrops.DropConditions();
                 List<(Player, AQPlayer)> nearbyPlayers = new List<(Player, AQPlayer)>();
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
                     var player = Main.LocalPlayer;
-                    nearbyPlayers.Add((player, player.GetModPlayer<AQPlayer>()));
+                    var aQPlayer = player.GetModPlayer<AQPlayer>();
+                    nearbyPlayers.Add((player, aQPlayer));
+                    allDropCondition.FillOutPlayer(player, aQPlayer);
                 }
                 else
                 {
                     for (int i = 0; i < Main.maxPlayers; i++)
                     {
-                        if (Main.player[i].active && !Main.player[i].dead && Main.player[i].DistanceSQ(npc.Center) < 2000f)
+                        if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(npc.Center) < 2000f)
                         {
-                            nearbyPlayers.Add((Main.player[i], Main.player[i].GetModPlayer<AQPlayer>()));
+                            var aQPlayer = Main.player[i].GetModPlayer<AQPlayer>();
+                            nearbyPlayers.Add((Main.player[i], aQPlayer));
+                            allDropCondition.FillOutPlayer(Main.player[i], aQPlayer);
                         }
                     }
                 }
-                RefillAmmoStocks(npc, nearbyPlayers);
-                BreadsoulCheck(npc, nearbyPlayers);
-                DreadsoulCheck(npc, nearbyPlayers);
-                FeatherFlightAmuletCheck(npc, nearbyPlayers);
-                BloodthirstPotionCheck(npc, nearbyPlayers);
+                if (LootDrops.CustomLoot.TryGetValue(npc.type, out var loot))
+                {
+                    foreach (var l in loot.Arr)
+                    {
+                        l.DropItemConditions(npc, nearbyPlayers, allDropCondition);
+                    }
+                }
+                if (!npc.boss && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC && !Sets.Instance.NoGlobalDrops.Contains(npc.type))
+                {
+                    if (allDropCondition.opposingPotion == true && Main.hardMode && npc.position.Y > Main.rockLayer * 16.0 && npc.value > 0f &&
+                        ((!allDropCondition.corruption == true && !allDropCondition.crimson == true) || !allDropCondition.hallow == true) && Main.rand.NextBool(5))
+                    {
+                        if (allDropCondition.corruption == true || allDropCondition.crimson == true)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofLight);
+                        if (allDropCondition.hallow == true)
+                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight);
+                    }
+
+                    var tileCoords = npc.Center.ToTileCoordinates();
+                    if (WorldGen.InWorld(tileCoords.X, tileCoords.Y, 10))
+                    {
+                        if (Main.tile[tileCoords.X, tileCoords.Y] == null)
+                        {
+                            Main.tile[tileCoords.X, tileCoords.Y] = new Tile();
+                        }
+                        else if (allDropCondition.jungle == true && Main.tile[tileCoords.X, tileCoords.Y].wall != TileID.LihzahrdBrick)
+                        {
+                            if (npc.lifeMax > (Main.expertMode ? Main.hardMode ? 150 : 80 : 30))
+                            {
+                                int chance = 14;
+                                if (npc.lifeMax + npc.defDefense > 350 && npc.type != NPCID.MossHornet) // defDefense is the defense of the NPC when it spawns
+                                    chance /= 2;
+                                if (Main.rand.NextBool(chance))
+                                    Item.NewItem(npc.getRect(), ModContent.ItemType<OrganicEnergy>());
+                            }
+                        }
+                    }
+                }
+                if (LootLoopingHelper.Current == 0)
+                {
+                    RefillAmmoStocks(npc, nearbyPlayers);
+                    BreadsoulCheck(npc, nearbyPlayers);
+                    DreadsoulCheck(npc, nearbyPlayers);
+                    FeatherFlightAmuletCheck(npc, nearbyPlayers);
+                    BloodthirstPotionCheck(npc, nearbyPlayers);
+                }
             }
         }
 

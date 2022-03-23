@@ -21,6 +21,11 @@ namespace AQMod.NPCs
         {
             public int? moonPhase;
             public bool? opposingPotion;
+            public bool? corruption;
+            public bool? crimson;
+            public bool? hallow;
+            public bool? jungle;
+            public bool hardmodeOnly;
 
             public DropConditions(bool setup = false) : this()
             {
@@ -31,29 +36,53 @@ namespace AQMod.NPCs
             }
             public DropConditions(Player player) : this(setup: true)
             {
-                FillOutPlayer(player);
+                FillOutPlayer(player, player.GetModPlayer<AQPlayer>());
             }
 
             public void SetupStatics()
             {
                 moonPhase = Main.moonPhase;
+                hardmodeOnly = Main.hardMode;
             }
 
-            public void FillOutPlayer(Player player)
+            private void GiveValue(ref bool? me, bool value)
             {
-                var aQPlayer = player.GetModPlayer<AQPlayer>();
-                opposingPotion = aQPlayer.altEvilDrops;
+                if (value)
+                {
+                    me = true;
+                }
+                else if (opposingPotion == null)
+                {
+                    me = false;
+                }
+            }
+            public void FillOutPlayer(Player player, AQPlayer aQPlayer)
+            {
+                GiveValue(ref opposingPotion, aQPlayer.altEvilDrops);
+                GiveValue(ref corruption, player.ZoneCorrupt);
+                GiveValue(ref crimson, player.ZoneCrimson);
+                GiveValue(ref hallow, player.ZoneHoly);
+                GiveValue(ref jungle, player.ZoneJungle);
             }
 
-            private bool CompareFlags(bool? mine, bool? theirs)
+            private bool CompareEqual(bool? mine, bool? theirs)
             {
                 return mine == null || theirs == mine;
+            }
+            private bool OnlyFlag(bool mine, bool theirs)
+            {
+                return mine ? theirs : true;
             }
             public override bool Equals(object obj)
             {
                 if (obj is DropConditions conditions)
                 {
-                    return CompareFlags(opposingPotion, conditions.opposingPotion);
+                    return CompareEqual(opposingPotion, conditions.opposingPotion) ||
+                        CompareEqual(corruption, conditions.corruption) ||
+                        CompareEqual(crimson, conditions.crimson) ||
+                        CompareEqual(hallow, conditions.hallow) ||
+                        CompareEqual(jungle, conditions.jungle) ||
+                        OnlyFlag(conditions.hardmodeOnly, hardmodeOnly);
                 }
                 return false;
             }
@@ -92,7 +121,7 @@ namespace AQMod.NPCs
                 myConditions = conditions;
             }
 
-            public int DropItemConditions(NPC npc, List<Player> nearbyPlayers, DropConditions allValidConditions)
+            public int DropItemConditions(NPC npc, List<(Player, AQPlayer)> nearbyPlayers, DropConditions allValidConditions)
             {
                 if (myConditions == null || allValidConditions.Equals(myConditions))
                 {
@@ -143,11 +172,24 @@ namespace AQMod.NPCs
 
         public static Dictionary<int, AQUtils.ArrayInterpreter<Loot>> CustomLoot { get; private set; }
 
-        internal static void SetupContent()
+        internal static void LootTables()
         {
             CustomLoot = new Dictionary<int, AQUtils.ArrayInterpreter<Loot>>() 
-            { 
-                [NPCID.Golem] = new Loot(ModContent.ItemType<RustyKnife>(), 1, new DropConditions() { moonPhase = MoonPhases.FullMoon }) { }
+            {
+                [NPCID.DevourerHead] = new Loot(ModContent.ItemType<SpicyEel>()) { chance = 50, },
+                [NPCID.GiantWormHead] = new Loot(ModContent.ItemType<SpicyEel>()) { chance = 50, },
+                [NPCID.BoneSerpentHead] = new Loot(ModContent.ItemType<SpicyEel>()) { chance = 50, },
+                [NPCID.BlueJellyfish] = new Loot(ModContent.ItemType<ShockCollar>()) { chance = 15, },
+                [NPCID.GreenJellyfish] = new Loot(ModContent.ItemType<Terraroot>(), 1, new DropConditions() { hardmodeOnly = true, }) { chance = 15, },
+                [NPCID.DarkMummy] = new Loot(ItemID.LightShard, 1, new DropConditions() { opposingPotion = true, }) { chance = 10, },
+                [NPCID.LightMummy] = new Loot(ItemID.DarkShard, 1, new DropConditions() { opposingPotion = true, }) { chance = 10, },
+                [NPCID.DiggerHead] = new Loot(ModContent.ItemType<SpicyEel>()) { chance = 15, },
+                [NPCID.SeekerHead] = new Loot(ModContent.ItemType<SpicyEel>()) { chance = 15, },
+                [NPCID.UndeadViking] = new Loot(ModContent.ItemType<CrystalDagger>()) { chance = 10, },
+                [NPCID.MossHornet] = new Loot(ModContent.ItemType<Beeswax>()) { chance = 80, },
+                [NPCID.Golem] = new Loot(ModContent.ItemType<RustyKnife>(), 1, new DropConditions() { moonPhase = MoonPhases.FullMoon }),
+                [NPCID.DungeonSpirit] = new Loot(ModContent.ItemType<Breadsoul>()) { chance = 45, },
+                [NPCID.DuneSplicerHead] = new Loot(ModContent.ItemType<SpicyEel>()) { chance = 15, },
             };
         }
 
@@ -164,133 +206,6 @@ namespace AQMod.NPCs
                 NPCLoader.blockLoot.Add(ItemID.JellyfishNecklace);
             }
             return true;
-        }
-
-        private void DropTerminator(NPC npc)
-        {
-            if (npc.townNPC && npc.position.Y > (Main.maxTilesY - 200) * 16f && AQMod.UnderworldCheck()) // does this for any town NPC because why not?
-            {
-                var check = new Rectangle((int)npc.position.X / 16, (int)npc.position.Y / 16, 2, 3).KeepInWorld(fluff: 10);
-                for (int i = check.X; i <= check.X + check.Width; i++)
-                {
-                    for (int j = check.Y; j <= check.Y + check.Height; j++)
-                    {
-                        if (Framing.GetTileSafely(i, j).liquid > 0 && Main.tile[i, j].lava())
-                        {
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<IWillBeBack>());
-                            WorldDefeats.terminatorArm = true;
-                            NetHelper.WorldStatus();
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-        private void DropBiomeLoot(NPC npc, Player plr, AQPlayer aQPlayer)
-        {
-            if (aQPlayer.altEvilDrops && Main.hardMode && npc.position.Y > Main.rockLayer * 16.0 && npc.value > 0f &&
-                ((!plr.ZoneCorrupt && !plr.ZoneCrimson) || !plr.ZoneHoly) && Main.rand.NextBool(5))
-            {
-                if (plr.ZoneCorrupt || plr.ZoneCrimson)
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofLight);
-                if (plr.ZoneHoly)
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight);
-            }
-            var tile = Framing.GetTileSafely(plr.Center.ToTileCoordinates());
-            if (!Main.wallHouse[tile.wall])
-            {
-                if (plr.ZoneJungle && tile.wall != TileID.LihzahrdBrick)
-                {
-                    if (npc.lifeMax > (Main.expertMode ? Main.hardMode ? 150 : 80 : 30))
-                    {
-                        int chance = 14;
-                        if (npc.lifeMax + npc.defDefense > 350 && npc.type != NPCID.MossHornet) // defDefense is the defense of the NPC when it spawns
-                            chance /= 2;
-                        if (Main.rand.NextBool(chance))
-                            Item.NewItem(npc.getRect(), ModContent.ItemType<OrganicEnergy>());
-                    }
-                }
-            }
-
-        }
-        public override void NPCLoot(NPC npc)
-        {
-            byte p = Player.FindClosest(npc.position, npc.width, npc.height);
-            var plr = Main.player[p];
-            var aQPlayer = Main.player[p].GetModPlayer<AQPlayer>();
-            DropTerminator(npc);
-            if (!npc.boss && npc.lifeMax > 5 && !npc.friendly && !npc.townNPC && !AQNPC.Sets.Instance.NoGlobalDrops.Contains(npc.type))
-            {
-                DropBiomeLoot(npc, plr, aQPlayer);
-            }
-
-            //if (CustomLoot.TryGetValue(npc.type, out var value))
-            //{
-            //    foreach (var item in value.Arr)
-            //    {
-            //        item.DropItemConditions(npc, );
-            //    }
-            //}
-
-            if (npc.type >= Main.maxNPCTypes)
-                return;
-
-            int banner = Item.NPCtoBanner(npc.type);
-            if (npc.type == NPCID.MossHornet)
-            {
-                if (Main.rand.NextBool(80))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Beeswax>());
-            }
-            else if (npc.type == NPCID.GreenJellyfish)
-            {
-                if (Main.hardMode && Main.rand.NextBool(15))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Terraroot>());
-            }
-            else if (npc.type == NPCID.BlueJellyfish)
-            {
-                if (Main.rand.NextBool(15))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<ShockCollar>());
-            }
-            else if (npc.type == NPCID.SeekerHead || npc.type == NPCID.DiggerHead || npc.type == NPCID.DuneSplicerHead)
-            {
-                if (Main.rand.NextBool(15))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<SpicyEel>());
-            }
-            else if (npc.type == NPCID.GiantWormHead || npc.type == NPCID.BoneSerpentHead || npc.type == NPCID.DevourerHead)
-            {
-                if (Main.rand.NextBool(50))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<SpicyEel>());
-            }
-            else if (npc.type == NPCID.UndeadViking || npc.type == NPCID.ArmoredViking)
-            {
-                if (Main.rand.NextBool(10))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<CrystalDagger>());
-            }
-            else if (npc.type == NPCID.DarkMummy)
-            {
-                if (aQPlayer.altEvilDrops && Main.rand.NextBool(10))
-                    Item.NewItem(npc.getRect(), ItemID.LightShard);
-            }
-            else if (npc.type == NPCID.LightMummy)
-            {
-                if (aQPlayer.altEvilDrops && Main.rand.NextBool(10))
-                    Item.NewItem(npc.getRect(), ItemID.DarkShard);
-            }
-            else if (npc.type == NPCID.DungeonSpirit)
-            {
-                if (Main.rand.NextBool(45))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<Breadsoul>());
-            }
-            else if (banner == BannerID.RaggedCaster)
-            {
-                if (Main.rand.NextBool(10))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<GrapePhanta>());
-            }
-            else if (banner == BannerID.RustyArmoredBones)
-            {
-                if (Main.rand.NextBool(50))
-                    Item.NewItem(npc.getRect(), ModContent.ItemType<GrapePhanta>());
-            }
         }
 
         public static int DropItemChance(NPC npc, AQUtils.ArrayInterpreter<int> item, int chance)

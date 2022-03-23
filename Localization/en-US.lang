@@ -176,7 +176,7 @@ ItemName.SparrowWings=Sparrow Wings
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 
 ItemName.Thunderbird=Thunderbird
-ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\nHas immense horizontal speed!\nHitting enemies strikes them with lightning
+ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\nHas immense horizontal speed!
 NPCName.Thunderbird=Thunderbird
 
 
@@ -425,6 +425,11 @@ ItemTooltip.LarvaEel=Provides life regeneration
 #===========================#
 # Tools
 #===========================#
+
+ItemName.CentennialLight=Centennial Light
+ItemTooltip.CentennialLight=Greatly speeds up time
+ItemName.Globebulb=Globebulb
+ItemTooltip.Globebulb=Speeds up time
 
 ItemName.TheFan=Pumpinator
 ItemTooltip.TheFan=Can push things in any direction\nChanges the speed of the wind\n'Handheld inspiration!'
@@ -1271,7 +1276,6 @@ BuffName.Chomper=Chomper
 BuffDescription.Chomper=The chomper will fight for you
 # Other Item Names
 ItemName.ATM=ATM
-ItemName.Globebulb=Globebulb
 ItemName.SpectralLens=Spectral Lens
 ItemName.SpectreSoul=Spectre Soul
 ItemName.GoldPowder=Gold Powder
@@ -1368,7 +1372,6 @@ ItemTooltip.CorruptPot=Summons a corrupted plant to fight for you
 # Other Item Tooltips
 ItemTooltip.ATM=Summons a flying safe to store your items\nPlace in your Safe in order to have it always summoned
 ItemTooltip.SpectralLens=Toggles energy drops
-ItemTooltip.Globebulb=Speeds up time for a moment
 
 ItemName.Crabax=Crabax
 ItemTooltip.Crabax=Can chop multiple trees at once\nHold right click to disable this ability
