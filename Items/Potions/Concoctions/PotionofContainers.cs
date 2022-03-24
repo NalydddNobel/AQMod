@@ -1,9 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.NPCs.Friendly;
+using AQMod.UI;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI;
 
-namespace AQMod.Items.Potions.Special
+namespace AQMod.Items.Potions.Concoctions
 {
     public class PotionofContainers : ModItem
     {
@@ -73,11 +77,21 @@ namespace AQMod.Items.Potions.Special
             }
         }
 
+        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            if (ConcoctionUI.Active && InvUI.Hooks.CurrentSlotContext == ItemSlot.Context.InventoryItem
+                && Main.LocalPlayer.IsTalkingTo<Memorialist>())
+            {
+                AQUtils.DrawUIBack(spriteBatch, mod.GetTexture("Items/ConcoctionBack"), position, frame, scale, ConcoctionUI.ChestBGColor);
+            }
+            return true;
+        }
+
         public override void AddRecipes()
         {
             var recipe = new ModRecipe(mod);
             recipe.alchemy = true;
-            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient(ItemID.TeleportationPotion);
             recipe.AddIngredient(ItemID.Moonglow);
             recipe.AddIngredient(ItemID.Fireblossom);
             recipe.AddIngredient(ItemID.Deathweed);

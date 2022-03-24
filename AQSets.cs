@@ -12,6 +12,8 @@ namespace AQMod
         public Dictionary<int, Color> BuffToColor { get; private set; }
         public Dictionary<int, Color> ItemToColor { get; private set; }
 
+        public Dictionary<int, int> ConcoctionItemConversions { get; private set; }
+
         public AQSets()
         {
             ItemColorBlacklist = new List<Color>()

@@ -3,6 +3,7 @@ using AQMod.Content.Players;
 using AQMod.Items;
 using AQMod.Localization;
 using AQMod.NPCs;
+using AQMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -234,6 +235,20 @@ namespace AQMod
                 var origin = new Vector2(texture.Width * 0.5f - texture.Width * 0.5f * player.direction, texture.Height);
                 Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, GetColor(), drawRotation, origin, item.scale, info.spriteEffects, 0));
             }
+        }
+
+        public static bool ChestItem(Item item)
+        {
+            return item.createTile < TileID.Dirt ? false : Main.tileContainer[item.createTile] && !Main.tileSolidTop[item.createTile];
+        }
+
+        public static void DrawUIBack(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle itemFrame, float itemScale, Color color, float progress = 1f)
+        {
+            int frameY = (int)(texture.Height * progress);
+            var uiFrame = new Rectangle(0, texture.Height - frameY, texture.Width, frameY);
+            position.Y += uiFrame.Y * Main.inventoryScale;
+            var center = position + itemFrame.Size() / 2f * itemScale;
+            spriteBatch.Draw(texture, center, uiFrame, color, 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
         }
 
         public static T2[] GetSpecific<T, T2>(this List<T> arr, Func<T, T2> get)

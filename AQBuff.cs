@@ -41,15 +41,6 @@ namespace AQMod
                     ModContent.BuffType<BaguetteBuff>(),
                 };
 
-                NoStarbyteUpgrade = new HashSet<int>(FoodBuff)
-                {
-                    BuffID.Tipsy,
-                    BuffID.Honey,
-                    BuffID.Lifeforce,
-                    ModContent.BuffType<Spoiled>(),
-                    ModContent.BuffType<Vampirism>(),
-                };
-
                 CanBeRemovedByWhiteBloodCell = new HashSet<int>()
                 {
                     BuffID.OnFire,

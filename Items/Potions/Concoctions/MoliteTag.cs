@@ -1,4 +1,5 @@
-﻿using AQMod.Dusts;
+﻿using AQMod.Content.Concoctions;
+using AQMod.Dusts;
 using AQMod.Effects;
 using AQMod.UI;
 using Microsoft.Xna.Framework;
@@ -11,9 +12,9 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Potions.Special
+namespace AQMod.Items.Potions.Concoctions
 {
-    public class MoliteTag : ConcoctionResult
+    public class MoliteTag : ConcoctionItem
     {
         public override void SetPotion()
         {

@@ -81,9 +81,10 @@ namespace AQMod.Content.World.Events
             public override string ModifyProgressText(string text) => Language.GetTextValue("Mods.AQMod.Common.TimeLeft", AQUtils.TimeText3(DemonSiege.UpgradeTime));
         }
 
+        public static Color TextColor => new Color(250, 95, 10, 255);
+
         internal override EventProgressBar ProgressBar => new CustomProgressBar();
 
-        public static Color TextColor => new Color(250, 95, 10, 255);
         internal static List<SiegeUpgrade> Upgrades { get; private set; }
         internal static List<SiegeEnemy> Enemies { get; private set; }
         public static List<int> HellBanners { get; private set; }

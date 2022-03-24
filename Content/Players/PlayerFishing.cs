@@ -5,6 +5,7 @@ using AQMod.Items.Materials.Energies;
 using AQMod.Items.Misc;
 using AQMod.Items.Misc.Bait;
 using AQMod.Items.Placeable.CrabCrevice;
+using AQMod.Items.Potions.Concoctions;
 using AQMod.Items.Potions.Healing;
 using AQMod.Items.Potions.Special;
 using Terraria;

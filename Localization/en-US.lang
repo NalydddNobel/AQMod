@@ -557,6 +557,13 @@ ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.To
 # Potions
 #===========================#
 
+ItemName.PotionofContainers=Containers Potion
+ItemTooltip.PotionofContainers=Teleports you to random chests in the world\nCan be concocted with a chest to target specific chest types
+ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
+ItemTooltip.PotionofContainersTag=Teleports you to random chests in the world
+ContainerPotionError=This potion was improperly loaded
+ContainerPotionLink=Will teleport to {0} ([i:{1}])
+
 ItemName.NoonPotion=Noon Potion
 ItemTooltip.NoonPotion=Emits a large aura of light and increases night vision\nYou always have daytime-only effects active\nPrevents nighttime-only effects from working
 BuffName.NoonBuff=Noon
@@ -1096,8 +1103,6 @@ Common.SpawnAfterPoint=({0}) can spawn after this point
 Common.EnergiesEnabled=Energy drops are enabled
 Common.EnergiesDisabled=Energy drops are disabled
 Common.TimeLeft={0} Left
-Common.ContainerPotionImproperLoad=This potion has unloaded improperly...\nWill only teleport to {$ItemName.GoldChest} :(
-Common.ContainerPotionLink=Will only teleport to {0} ( [i:{1}] )
 Common.DemonSiege=Demon Siege
 Common.DemonSiegeDeath=The Gore Nest regurgitates your item...
 Common.DemonSiegeTooFarAway=You are too far away from the Demon Siege in order to upgrade your weapon
@@ -1188,8 +1193,6 @@ ItemName.BeeRod=Buzzrod
 # Other Misc
 ItemName.DwarfStariteItem=Dwarf Starite
 ItemName.CrabShell=Crab Shell
-ItemName.PotionofContainers=Containers Potion
-ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
 
 ItemName.MothmanMask=Mothman Mask
 ItemTooltip.MothmanMask=All effects only occur if you are at max health\n15% increased damage and critical strike chance\nIncreases the knockback of your minions\nCrits inflicts blue fire to nearby enemies
@@ -1331,8 +1334,6 @@ ItemTooltip.MysticPopper=Increases bait power by 25% when in the hallow
 ItemTooltip.BeeRod=Throws flying bee bobbers\nThrows 3 lines when using the Hive Pack
 # Other Misc
 ItemTooltip.CrabShell=It's oddly misshapen
-ItemTooltip.PotionofContainers=Teleports you to a random chest in the world
-ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 #############
 # Placeable #
 #############

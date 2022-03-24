@@ -5,6 +5,7 @@ using AQMod.Common.HookLists;
 using AQMod.Common.Utilities;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
+using AQMod.Content.Concoctions;
 using AQMod.Content.Entities;
 using AQMod.Content.Players;
 using AQMod.Content.Seasonal.Christmas;
@@ -61,6 +62,7 @@ namespace AQMod
         internal static bool IsUnloading { get; private set; }
 
         public static AQMod Instance { get; private set; }
+        public static ConcoctionsSystem Concoctions { get; private set; }
         public static AQSets Sets { get; private set; }
         public static ParticleSystem Particles { get; private set; }
         public static TrailSystem Trails { get; private set; }
@@ -125,7 +127,6 @@ namespace AQMod
 
                 On.Terraria.UI.ItemSlot.MouseHover_ItemArray_int_int += PlayerStorage.Hooks.ItemSlot_MouseHover_ItemArray_int_int;
 
-                AQItem.Hooks.Apply();
                 AQWorld.Hooks.Apply();
                 InvUI.Hooks.Apply();
                 DrawHelper.Hooks.Apply();
@@ -245,6 +246,7 @@ namespace AQMod
             AQConfigServer.LoadTranslations();
             AQUtils.BatchData.Load();
 
+            Concoctions = new ConcoctionsSystem();
             Autoloading.Autoload(Code);
         }
 
@@ -293,6 +295,7 @@ namespace AQMod
             cachedLoadTasks = null;
             LoadHooks(unload: true);
             Autoloading.Unload();
+            Concoctions = null;
             Sets = null;
             LootDrops.Unload();
             AQUtils.BatchData.Unload();

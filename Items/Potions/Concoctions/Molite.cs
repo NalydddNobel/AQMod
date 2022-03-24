@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace AQMod.Items.Potions.Special
+namespace AQMod.Items.Potions.Concoctions
 {
     public class Molite : ModItem
     {
@@ -24,13 +24,7 @@ namespace AQMod.Items.Potions.Special
         {
             if (ConcoctionUI.Active && InvUI.Hooks.CurrentSlotContext == ItemSlot.Context.InventoryItem && Main.LocalPlayer.IsTalkingTo<Memorialist>())
             {
-                var texture = mod.GetTexture("Items/ConcoctionBack");
-                int frameY = texture.Height;
-                var uiFrame = new Rectangle(0, texture.Height - frameY, texture.Width, frameY);
-                position.Y += uiFrame.Y * Main.inventoryScale;
-                var center = position + frame.Size() / 2f * scale;
-
-                spriteBatch.Draw(texture, center, uiFrame, ConcoctionUI.CococtionItemBGColor, 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+                AQUtils.DrawUIBack(spriteBatch, mod.GetTexture("Items/ConcoctionBack"), position, frame, scale, ConcoctionUI.CococtionItemBGColor);
             }
             return true;
         }

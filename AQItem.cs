@@ -2,6 +2,7 @@
 using AQMod.Common.ID;
 using AQMod.Common.Utilities.Colors;
 using AQMod.Common.WorldGeneration;
+using AQMod.Content.Concoctions;
 using AQMod.Content.Players;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
@@ -14,8 +15,8 @@ using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Misc;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
+using AQMod.Items.Potions.Concoctions;
 using AQMod.Items.Potions.Foods;
-using AQMod.Items.Potions.Special;
 using AQMod.Items.Prefixes;
 using AQMod.Items.Tools.Fishing;
 using AQMod.Items.Weapons.Magic;
@@ -40,28 +41,6 @@ namespace AQMod
 {
     public class AQItem : GlobalItem
     {
-        public class Hooks
-        {
-            internal static void Apply()
-            {
-                //On.Terraria.Item.SetDefaults += PostSetDefaults;
-
-                //if (AQMod.split.IsActive)
-                //{
-                //    var split = AQMod.split.mod;
-                //    AQUtils.AddHook(AQMod.split, "Split.Items.Misc.AlchemicalPot", "AddPotion", BindingFlags.NonPublic | BindingFlags.Instance, 
-                //        GetMethod(nameof(Split_AlchemistPot_AddPotion)));
-                //    AQUtils.AddHook(AQMod.split, "Split.Items.Misc.AlchemicalPot", "UpdateGradient", BindingFlags.NonPublic | BindingFlags.Instance, 
-                //        GetMethod(nameof(Split_AlchemistPot_UpdateGradient)));
-                //}
-            }
-
-            private static MethodInfo GetMethod(string name)
-            {
-                return typeof(Hooks).GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static);
-            }
-        }
-
         public sealed class Sets
         {
             public static Sets Instance;
@@ -81,15 +60,9 @@ namespace AQMod
 
             public Dictionary<int, SentryStaffUsage> SentryUsage { get; private set; }
             public Dictionary<int, ItemDedication> DedicatedItem { get; private set; }
-            public Dictionary<int, int> ConcoctionItemConversions { get; private set; }
 
             public Sets()
             {
-                ConcoctionItemConversions = new Dictionary<int, int>()
-                {
-                    [ModContent.ItemType<Molite>()] = ModContent.ItemType<MoliteTag>(),
-                };
-
                 SentryUsage = new Dictionary<int, SentryStaffUsage>()
                 {
                     [ItemID.DD2BallistraTowerT1Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
@@ -715,13 +688,7 @@ namespace AQMod
                         if (aQPlayer.itemCooldown > 0 && aQPlayer.itemCooldownMax > 0)
                         {
                             float progress = aQPlayer.itemCooldown / (float)aQPlayer.itemCooldownMax;
-                            var texture = mod.GetTexture("Items/InventoryBack");
-                            int frameY = (int)(texture.Height * progress);
-                            var uiFrame = new Rectangle(0, texture.Height - frameY, texture.Width, frameY);
-                            position.Y += uiFrame.Y * Main.inventoryScale;
-                            var center = position + frame.Size() / 2f * scale;
-
-                            spriteBatch.Draw(texture, center, uiFrame, new Color(255, 255, 225, 250) * (0.75f + progress * 0.25f), 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+                            AQUtils.DrawUIBack(spriteBatch, mod.GetTexture("Items/InventoryBack"), position, frame, scale, new Color(255, 255, 225, 250) * (0.75f + progress * 0.25f), progress);
                         }
                     }
                 }
@@ -735,15 +702,16 @@ namespace AQMod
                 try
                 {
                     if (ConcoctionUI.Active && InvUI.Hooks.CurrentSlotContext == ItemSlot.Context.InventoryItem
-                        && Main.LocalPlayer.IsTalkingTo<Memorialist>() && ConcoctionResult.IsValidPotion(item))
+                        && Main.LocalPlayer.IsTalkingTo<Memorialist>())
                     {
-                        var texture = mod.GetTexture("Items/ConcoctionBack");
-                        int frameY = texture.Height;
-                        var uiFrame = new Rectangle(0, texture.Height - frameY, texture.Width, frameY);
-                        position.Y += uiFrame.Y * Main.inventoryScale;
-                        var center = position + frame.Size() / 2f * scale;
-
-                        spriteBatch.Draw(texture, center, uiFrame, ConcoctionUI.PotionBGColor, 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+                        if (AQMod.Concoctions.ConcoctiblePotion(item))
+                        {
+                            AQUtils.DrawUIBack(spriteBatch, mod.GetTexture("Items/ConcoctionBack"), position, frame, scale, ConcoctionUI.PotionBGColor);
+                        }
+                        else if (AQUtils.ChestItem(item))
+                        {
+                            AQUtils.DrawUIBack(spriteBatch, mod.GetTexture("Items/ConcoctionBack"), position, frame, scale, ConcoctionUI.ChestBGColor);
+                        }
                     }
                 }
                 catch

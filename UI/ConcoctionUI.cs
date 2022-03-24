@@ -1,10 +1,12 @@
-﻿using AQMod.Items.Potions.Special;
+﻿using AQMod.Content.Concoctions;
+using AQMod.Items.Potions.Concoctions;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
@@ -22,6 +24,7 @@ namespace AQMod.UI
         public static bool Active { get; private set; }
 
         public static Color PotionBGColor => new Color(128, 70, 70, 0) * 0.7f;
+        public static Color ChestBGColor => new Color(222, 200, 0, 40) * 0.7f;
         public static Color CococtionItemBGColor => new Color(50, 128, 50, 0) * 0.7f;
 
         public override void OnInitialize()
@@ -54,40 +57,8 @@ namespace AQMod.UI
             }
         }
 
-        private bool SpawnConcoction()
+        private void ConsumeSlots()
         {
-            concoctingTime++;
-            Main.PlaySound(SoundID.Item86);
-
-            Item item = new Item();
-            item.SetDefaults(AQItem.Sets.Instance.ConcoctionItemConversions[concoctionSlot.Item.type]);
-            if (item.modItem is ConcoctionResult concoctionResult)
-            {
-                concoctionResult.original = potionSlot.Item.Clone();
-                concoctionResult.original.stack = 1;
-                concoctionResult.SetPotion();
-
-                Main.LocalPlayer.QuickSpawnClonedItem(item);
-
-                if (!slowMode)
-                {
-                    var inv = Main.LocalPlayer.inventory;
-                    for (int i = 0; i < Main.maxInventory; i++)
-                    {
-                        if (!inv[i].IsAir)
-                        {
-                            slowMode = true;
-                            concoctingTime = -20;
-                            break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                Main.LocalPlayer.QuickSpawnClonedItem(item);
-            }
-
             potionSlot.Item.stack--;
             concoctionSlot.Item.stack--;
             if (potionSlot.Item.stack <= 0)
@@ -100,7 +71,65 @@ namespace AQMod.UI
                 concocting = 0;
                 concoctionSlot.Item.TurnToAir();
             }
-            return false;
+        }
+        private void CheckSlowmode()
+        {
+            if (!slowMode)
+            {
+                var inv = Main.LocalPlayer.inventory;
+                int amtAir = 0;
+                for (int i = 0; i < Main.maxInventory; i++)
+                {
+                    if (inv[i].IsAir)
+                    {
+                        amtAir++;
+                    }
+                }
+                if (amtAir <= 1)
+                {
+                    slowMode = true;
+                    concoctingTime = -20;
+                }
+            }
+        }
+        private bool SpawnConcoction()
+        {
+            concoctingTime++;
+            Main.PlaySound(SoundID.Item86);
+
+            if (AQUtils.ChestItem(concoctionSlot.Item))
+            {
+                if (potionSlot.Item.modItem is PotionofContainers)
+                {
+                    var item = AQItem.GetDefault(ModContent.ItemType<PotionofContainersTag>());
+                    var containers = item.modItem as PotionofContainersTag;
+                    containers.chest = concoctionSlot.Item.Clone();
+                    containers.chest.stack = 1;
+                    Main.LocalPlayer.QuickSpawnClonedItem(item);
+                    CheckSlowmode();
+                    ConsumeSlots();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                var item = AQMod.Concoctions.RecipeData[concoctionSlot.Item.type].GetItem(potionSlot.Item, concoctionSlot.Item);
+                if (item != null)
+                {
+                    Main.LocalPlayer.QuickSpawnClonedItem(item);
+                    CheckSlowmode();
+                    ConsumeSlots();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
         public override void Update(GameTime gameTime)
         {
@@ -119,7 +148,10 @@ namespace AQMod.UI
                     {
                         concocting = Math.Max(12 - concoctingTime / (slowMode ? 16 : 8) * 2, 4);
                         concoctingMax = concocting;
-                        SpawnConcoction();
+                        if (!SpawnConcoction())
+                        {
+                            concoctingTime = 0;
+                        }
                     }
                 }
                 else
@@ -259,7 +291,7 @@ namespace AQMod.UI
                             }
                             else
                             {
-                                Main.PlaySound(SoundID.Item87);
+                                Main.PlaySound(AQMod.Instance.GetLegacySoundSlot(SoundType.Item, "Sounds/Item/concoction" + Main.rand.Next(2)));
                                 if (potionSlot.Item.stack == 1 || concoctionSlot.Item.stack == 1)
                                 {
                                     concocting = 1;
@@ -281,7 +313,8 @@ namespace AQMod.UI
 
         private static bool PotionSwap(Item slotItem, Item mouseItem)
         {
-            if (mouseItem != null && !mouseItem.IsAir && ConcoctionResult.IsValidPotion(mouseItem))
+            if (mouseItem != null && !mouseItem.IsAir && 
+                (AQMod.Concoctions.ConcoctiblePotion(mouseItem) || mouseItem.modItem is PotionofContainers))
                 return true;
             if (slotItem != null && !slotItem.IsAir && (mouseItem == null || mouseItem.IsAir))
                 return true;
@@ -289,7 +322,8 @@ namespace AQMod.UI
         }
         private static bool ConcoctionSwap(Item slotItem, Item mouseItem)
         {
-            if (mouseItem != null && !mouseItem.IsAir && AQItem.Sets.Instance.ConcoctionItemConversions.ContainsKey(mouseItem.type))
+            if (mouseItem != null && !mouseItem.IsAir && 
+                (AQMod.Concoctions.RecipeData.ContainsKey(mouseItem.type) || AQUtils.ChestItem(mouseItem)))
                 return true;
             if (slotItem != null && !slotItem.IsAir && (mouseItem == null || mouseItem.IsAir))
                 return true;

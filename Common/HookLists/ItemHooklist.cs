@@ -1,4 +1,4 @@
-﻿using AQMod.Items.Potions.Special;
+﻿using AQMod.Content.Concoctions;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -40,7 +40,7 @@ namespace AQMod.Common.HookLists
                 var getItemColor = drawHelper.GetType().GetMethod("GetPotionColor", BindingFlags.Public | BindingFlags.Instance);
                 for (int i = 0; i < colors.Length; i++)
                 {
-                    if (list[i]?.modItem is ConcoctionResult concoction)
+                    if (list[i]?.modItem is ConcoctionItem concoction)
                     {
                         colors[i] = (Color)getItemColor.Invoke(drawHelper, new object[] { concoction.original.type });
                     }
@@ -64,7 +64,7 @@ namespace AQMod.Common.HookLists
         [LoadHook("Split", "Split.Items.Misc.AlchemicalPot", "AddPotion", BindingFlags.NonPublic | BindingFlags.Instance)]
         internal static void Split_AlchemistPot_AddPotion(Action<ModItem, Item> orig, ModItem self, Item item)
         {
-            if (item?.modItem is ConcoctionResult)
+            if (item?.modItem is ConcoctionItem)
             {
                 var f = self.GetType().GetField("potions", BindingFlags.Public | BindingFlags.Instance);
                 var list = (List<Item>)f.GetValue(self);
