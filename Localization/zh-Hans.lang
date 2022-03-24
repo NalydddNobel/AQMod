@@ -557,9 +557,16 @@ ItemTooltip.CavernPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.To
 # Potions
 #===========================#
 
-ItemName.NoonPotion=正午药水
+ItemName.PotionofContainers=传箱药水
+ItemTooltip.PotionofContainers=将你传送至世界中的随机一个箱子\n可与宝箱混合以定向要传送的箱子
+ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
+ItemTooltip.PotionofContainersTag=将你传送至世界中的随机一个箱子
+ContainerPotionError=此药水未能正确加载
+ContainerPotionLink=会传送至 {0} ([i:{1}])
+
+ItemName.NoonPotion=午光药水
 ItemTooltip.NoonPotion=使你散发范围较大的光芒并强化夜视效果\n会使仅在白天生效的效果生效\n阻止仅在夜晚生效的效果生效
-BuffName.NoonBuff=正午
+BuffName.NoonBuff=午光
 BuffDescription.NoonBuff=使你散发范围较大的光芒并强化夜视效果\n会使仅在白天生效的效果生效\n阻止仅在夜晚生效的效果生效
 
 ItemName.OpposingPotion=对立药水
@@ -1096,8 +1103,6 @@ Common.SpawnAfterPoint=({0})会在此位置生成
 Common.EnergiesEnabled=能量掉落已启用
 Common.EnergiesDisabled=能量掉落已禁用
 Common.TimeLeft={0}已离去
-Common.ContainerPotionImproperLoad=此药水未能正确卸载...\n仅会传送至{$ItemName.GoldChest} :(
-Common.ContainerPotionLink=仅会传送至{0} ( [i:{1}] )
 Common.DemonSiege=恶魔围攻
 Common.DemonSiegeDeath=血巢吐出了你的武器...
 Common.DemonSiegeTooFarAway=你离恶魔围攻事件太远了, 必须在血巢附近才能升级你的武器
@@ -1188,8 +1193,6 @@ ItemName.BeeRod=蜜蜂钓竿
 # Other Misc
 ItemName.DwarfStariteItem=侏儒源星
 ItemName.CrabShell=蟹壳
-ItemName.PotionofContainers=传箱药水
-ItemName.PotionofContainersTag={$Mods.AQMod.ItemName.PotionofContainers}
 
 ItemName.MothmanMask=天蛾人面具
 ItemTooltip.MothmanMask=所有效果仅在你的生命值为满时生效\n增加15%暴击伤害和暴击率\n增加召唤物击退\n攻击造成暴击时对敌人造成碧蓝之火减益
@@ -1331,8 +1334,6 @@ ItemTooltip.MysticPopper=在神圣之地钓鱼时增加25%鱼饵力
 ItemTooltip.BeeRod=扔出飞行的蜜蜂浮标\n在佩戴蜂巢背包时会扔出3枚浮标
 # Other Misc
 ItemTooltip.CrabShell=畸形, 真是诡异
-ItemTooltip.PotionofContainers=将你传送至随机一个箱子
-ItemTooltip.PotionofContainersTag={$Mods.AQMod.ItemTooltip.PotionofContainers}
 #############
 # Placeable #
 #############
