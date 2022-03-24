@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Content.Seasonal.Christmas
+namespace AQMod.Content.XMas
 {
     public class XmasEnemies : GlobalNPC
     {

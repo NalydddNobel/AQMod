@@ -28,14 +28,5 @@ namespace AQMod.Items.Potions.Concoctions
             }
             return true;
         }
-
-        public override void AddRecipes()
-        {
-            var r = new ModRecipe(mod);
-            r.AddIngredient(item.type);
-            r.AddTile(TileID.CookingPots);
-            r.SetResult(ItemID.CookedShrimp, 5);
-            r.AddRecipe();
-        }
     }
 }

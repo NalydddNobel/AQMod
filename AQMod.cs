@@ -1,14 +1,12 @@
 using AQMod.Assets;
 using AQMod.Common;
 using AQMod.Common.CrossMod;
-using AQMod.Common.HookLists;
 using AQMod.Common.Utilities;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
 using AQMod.Content.Concoctions;
 using AQMod.Content.Entities;
 using AQMod.Content.Players;
-using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
@@ -67,7 +65,8 @@ namespace AQMod
         public static ParticleSystem Particles { get; private set; }
         public static TrailSystem Trails { get; private set; }
         public static EquipOverlaysManager ArmorOverlays { get; private set; }
-        public UserInterface NPCTalkState { get; private set; }
+        public UserInterface NPCTalkUI { get; private set; }
+        public InGameHookablesUI HookablesUI { get; private set; }
 
         public static ModifiableMusic CrabCavesMusic { get; private set; }
         public static ModifiableMusic CrabsonMusic { get; private set; }
@@ -208,10 +207,11 @@ namespace AQMod
             var server = ModContent.GetInstance<AQConfigServer>();
             if (!Main.dedServ)
             {
+                HookablesUI = new InGameHookablesUI();
                 DrawHelper.Load();
 
                 LegacyTextureCache.Load();
-                
+
                 CrabPot.frame = new Rectangle(0, 0, GetTexture("Assets/CrabPot").Width, GetTexture("Assets/CrabPot").Height / CrabPot.FrameCount - 2);
                 CrabPot.origin = CrabPot.frame.Size() / 2f;
 
@@ -224,7 +224,7 @@ namespace AQMod
                 AQSound.rand = new UnifiedRandom();
                 ArmorOverlays = new EquipOverlaysManager();
                 LoadMusic(unload: false);
-                NPCTalkState = new UserInterface();
+                NPCTalkUI = new UserInterface();
                 Particles = new ParticleSystem();
                 Trails = new TrailSystem();
             }
@@ -244,7 +244,7 @@ namespace AQMod
             AQTile.Sets.Instance = new AQTile.Sets();
             AQConfigClient.LoadTranslations();
             AQConfigServer.LoadTranslations();
-            AQUtils.BatchData.Load();
+            BatchData.Load();
 
             Concoctions = new ConcoctionsSystem();
             Autoloading.Autoload(Code);
@@ -295,10 +295,12 @@ namespace AQMod
             cachedLoadTasks = null;
             LoadHooks(unload: true);
             Autoloading.Unload();
+
+            HookablesUI = null;
             Concoctions = null;
             Sets = null;
             LootDrops.Unload();
-            AQUtils.BatchData.Unload();
+            BatchData.Unload();
 
             NoHitting.CurrentlyDamaged?.Clear();
             NoHitting.CurrentlyDamaged = null;
@@ -320,7 +322,7 @@ namespace AQMod
                 ArmorOverlays = null;
                 LegacyEffectCache.Unload();
                 SkyGlimmerEvent.BGStarite._texture = null;
-                NPCTalkState = null;
+                NPCTalkUI = null;
                 LoadMusic(unload: true);
                 PrimitivesRenderer.Unload();
                 FX.Unload();
@@ -339,10 +341,10 @@ namespace AQMod
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                AQMod.Particles.PreDrawProjectiles.UpdateParticles();
-                AQMod.Particles.PostDrawPlayers.UpdateParticles();
+                Particles.PreDrawProjectiles.UpdateParticles();
+                Particles.PostDrawPlayers.UpdateParticles();
 
-                AQMod.Trails.PreDrawProjectiles.UpdateTrails();
+                Trails.PreDrawProjectiles.UpdateTrails();
             }
 
             if (Glimmer.stariteDiscoParty)
@@ -477,7 +479,8 @@ namespace AQMod
 
         public override void UpdateUI(GameTime gameTime)
         {
-            NPCTalkState.Update(gameTime);
+            NPCTalkUI.Update(gameTime);
+            HookablesUI.Update(gameTime);
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -495,44 +498,7 @@ namespace AQMod
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: NPC Lock Ons", () =>
                 {
-                    if (Main.gamePaused || !Main.instance.IsActive)
-                    {
-                        return true;
-                    }
-                    var player = Main.LocalPlayer;
-                    var aQPlayer = player.GetModPlayer<AQPlayer>();
-                    if (!aQPlayer.meathookUI)
-                    {
-                        return true;
-                    }
-
-                    float grappleDistance = (ProjectileLoader.GetProjectile(player.miscEquips[4].type)?.GrappleRange()).GetValueOrDefault(480f);
-
-                    int meathookChoice = -1;
-                    float meathookDistance = 320f;
-
-                    for (int i = 0; i < Main.maxNPCs; i++)
-                    {
-                        if (Main.npc[i].active && AQNPC.CanBeMeathooked(Main.npc[i]))
-                        {
-                            float distanceFromPlayer = Main.npc[i].Distance(player.Center);
-                            if (distanceFromPlayer < grappleDistance - Main.npc[i].Size.Length())
-                            {
-                                float distanceFromCursor = Main.npc[i].Distance(Main.MouseWorld);
-                                if (distanceFromCursor < meathookDistance)
-                                {
-                                    meathookChoice = i;
-                                    meathookDistance = distanceFromCursor;
-                                }
-                            }
-                        }
-                    }
-
-                    if (meathookChoice == -1)
-                    {
-                        return true;
-                    }
-                    InterfaceHookableNPC.RenderUI(meathookChoice);
+                    HookablesUI.Draw(Main.spriteBatch);
                     return true;
                 }, InterfaceScaleType.Game));
             }
@@ -543,7 +509,7 @@ namespace AQMod
                 layers.Insert(index, new LegacyGameInterfaceLayer("AQMod: Rename Item Interface",
                     () =>
                     {
-                        NPCTalkState.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
+                        NPCTalkUI.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                         return true;
                     },
                     InterfaceScaleType.UI)
@@ -591,11 +557,6 @@ namespace AQMod
             {
                 Main.NewText(Language.GetTextValue(key), color);
             }
-        }
-
-        internal static int RandomSmokeGoreType(UnifiedRandom random)
-        {
-            return 61 + random.Next(3);
         }
 
         private void invokeTasks()

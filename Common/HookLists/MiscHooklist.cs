@@ -1,4 +1,4 @@
-﻿using AQMod.Content.Seasonal.Christmas;
+﻿using AQMod.Content.XMas;
 using AQMod.Effects.Particles;
 using Microsoft.Xna.Framework;
 using System;

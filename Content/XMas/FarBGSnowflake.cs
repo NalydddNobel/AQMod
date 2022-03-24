@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 
-namespace AQMod.Content.Seasonal.Christmas
+namespace AQMod.Content.XMas
 {
     public class FarBGSnowflake : ParticleType
     {

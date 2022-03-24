@@ -1,6 +1,6 @@
 ﻿using AQMod.Assets;
-using AQMod.Content.Seasonal.Christmas;
 using AQMod.Content.World.Events;
+using AQMod.Content.XMas;
 using AQMod.Effects;
 using AQMod.NPCs;
 using AQMod.NPCs.Bosses;

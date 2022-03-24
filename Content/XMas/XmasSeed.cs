@@ -12,7 +12,7 @@ using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 using Terraria.World.Generation;
 
-namespace AQMod.Content.Seasonal.Christmas
+namespace AQMod.Content.XMas
 {
     public sealed class XmasSeed : ModWorld
     {
@@ -172,7 +172,7 @@ namespace AQMod.Content.Seasonal.Christmas
                         Main.tile[i, j].type == TileID.Granite ||
                         Main.tile[i, j].type == TileID.Marble ||
                         Main.tile[i, j].type == TileID.Cloud ||
-                        Main.tile[i, j].type == TileID.RainCloud||
+                        Main.tile[i, j].type == TileID.RainCloud ||
                         Main.tile[i, j].type == ModContent.TileType<SedimentSand>())
                     {
                         Main.tile[i, j].type = TileID.IceBlock;
@@ -371,7 +371,7 @@ namespace AQMod.Content.Seasonal.Christmas
                         Main.tile[i, j].type == TileID.Demonite ||
                         Main.tile[i, j].type == TileID.Crimtane ||
                         Main.tileContainer[Main.tile[i, j].type] ||
-                        (Main.tileFrameImportant[Main.tile[i, j].type] && Main.tile[i, j].type != TileID.Trees))
+                        Main.tileFrameImportant[Main.tile[i, j].type] && Main.tile[i, j].type != TileID.Trees)
                     {
                         Main.tile[i, j].color(PaintID.DeepBlue);
                         replaceBlock = false;

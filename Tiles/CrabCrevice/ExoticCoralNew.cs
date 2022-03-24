@@ -1,5 +1,5 @@
 ﻿using AQMod.Common.Graphics;
-using AQMod.Content.Seasonal.Christmas;
+using AQMod.Content.XMas;
 using AQMod.Dusts.NobleMushrooms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

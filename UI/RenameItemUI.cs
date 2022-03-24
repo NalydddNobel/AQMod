@@ -44,7 +44,7 @@ namespace AQMod.UI
             base.Update(gameTime);
             if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != ModContent.NPCType<BalloonMerchant>())
             {
-                AQMod.Instance.NPCTalkState.SetState(null);
+                AQMod.Instance.NPCTalkUI.SetState(null);
             }
             else
             {

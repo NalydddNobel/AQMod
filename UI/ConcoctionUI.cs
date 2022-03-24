@@ -137,7 +137,7 @@ namespace AQMod.UI
             Active = true;
             if (concocting == 0 && !Main.LocalPlayer.IsTalkingTo<Memorialist>())
             {
-                AQMod.Instance.NPCTalkState.SetState(null);
+                AQMod.Instance.NPCTalkUI.SetState(null);
             }
             else
             {

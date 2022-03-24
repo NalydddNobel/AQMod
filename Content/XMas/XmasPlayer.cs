@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 
-namespace AQMod.Content.Seasonal.Christmas
+namespace AQMod.Content.XMas
 {
     public class XmasPlayer : ModPlayer
     {

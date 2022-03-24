@@ -89,7 +89,7 @@ namespace AQMod.Projectiles.Pets
             {
                 return false;
             }
-            var batchData = new AQUtils.BatchData(spriteBatch);
+            var batchData = new BatchData(spriteBatch);
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.Transform);
             DrawHelper.Hooks.PlayerDrawScale = projectile.scale;

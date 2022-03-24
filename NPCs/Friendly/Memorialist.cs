@@ -163,7 +163,7 @@ namespace AQMod.NPCs.Friendly
             {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
-                AQMod.Instance.NPCTalkState.SetState(new ConcoctionUI());
+                AQMod.Instance.NPCTalkUI.SetState(new ConcoctionUI());
             }
         }
 

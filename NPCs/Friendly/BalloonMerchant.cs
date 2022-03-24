@@ -96,7 +96,7 @@ namespace AQMod.NPCs.Friendly
             {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
-                AQMod.Instance.NPCTalkState.SetState(new RenameItemUI());
+                AQMod.Instance.NPCTalkUI.SetState(new RenameItemUI());
             }
         }
 

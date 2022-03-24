@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,6 +25,16 @@ namespace AQMod.Content
                 gravity = 0f;
                 noGravity--;
             }
+        }
+
+        public override void NetSend(Item item, BinaryWriter writer)
+        {
+            writer.Write(noGravity);
+        }
+
+        public override void NetReceive(Item item, BinaryReader reader)
+        {
+            noGravity = reader.ReadByte();
         }
 
         public static void AntiGravityNearbyItems(Vector2 position, float distanceMultiplier, byte duration, Player player)

@@ -1551,14 +1551,10 @@ namespace AQMod
             }
         }
 
-        public static bool UselessNPC(NPC npc)
-        {
-            return npc.friendly || npc.lifeMax < 5;
-        }
 
         public static bool CanBeMeathooked(NPC npc)
         {
-            return !UselessNPC(npc) && !npc.dontTakeDamage && !npc.immortal && !Sets.Instance.CannotBeMeathooked.Contains(npc.type);
+            return !npc.friendly && npc.lifeMax > 5 && npc.life > 0 && !npc.dontTakeDamage && !npc.immortal && !Sets.Instance.CannotBeMeathooked.Contains(npc.type);
         }
 
         public void ChangeTemperature(NPC npc, sbyte newTemperature)
