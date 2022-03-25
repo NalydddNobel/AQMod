@@ -533,7 +533,7 @@ namespace AQMod
                     NPCID.DetonatingBubble,
                     NPCID.DungeonSpirit,
                     ModContent.NPCType<Heckto>(),
-                    ModContent.NPCType<AQMod.NPCs.Monsters.Night.Starite>(),
+                    ModContent.NPCType<NPCs.Monsters.GlimmerMonsters.Starite>(),
                     ModContent.NPCType<TrapImp>(),
                     ModContent.NPCType<Cindera>(),
                     ModContent.NPCType<Meteor>(),

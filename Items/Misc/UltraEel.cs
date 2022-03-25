@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.Items.Materials
+namespace AQMod.Items.Misc
 {
     public class UltraEel : ModItem
     {

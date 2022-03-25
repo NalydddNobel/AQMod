@@ -2,7 +2,10 @@
 using AQMod.Tiles;
 using AQMod.Tiles.CrabCrevice;
 using AQMod.Tiles.ExporterQuest;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -44,14 +47,55 @@ namespace AQMod
             }
         }
 
+        private bool TryPlaceHerb(int i, int j, int[] validTile, int style)
+        {
+            for (int y = j - 1; y > 20; y--)
+            {
+                if (Main.tile[i, j] == null)
+                {
+                    Main.tile[i, j] = new Tile();
+                    continue;
+                }
+                if (!Main.tile[i, y].active() && Main.tile[i, y + 1].active())
+                {
+                    for (int k = 0; k < validTile.Length; k++)
+                    {
+                        if (Main.tile[i, y + 1].type == validTile[k] && CheckForType(new Rectangle(i - 6, y - 6, 12, 12).KeepInWorld(20), ModContent.TileType<Herbs>()))
+                        {
+                            WorldGen.PlaceTile(i, y, ModContent.TileType<Herbs>(), mute: true, forced: true, style: style);
+                            return Framing.GetTileSafely(i, y).type == ModContent.TileType<Herbs>();
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         public override void RandomUpdate(int i, int j, int type)
         {
             if (Main.tile[i, j] == null)
                 Main.tile[i, j] = new Tile();
             if (!WorldDefeats.DownedDemonSiege && WorldGen.genRand.NextBool(10000) && GoreNest.TryGrowGoreNest(i, j, true, true))
+            {
                 return;
+            }
             switch (type)
             {
+                case TileID.Cloud:
+                case TileID.RainCloud:
+                case TileID.SnowCloud:
+                    if (WorldDefeats.DownedGaleStreams && j < Main.rockLayer && WorldGen.genRand.NextBool(10))
+                    {
+                        TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, 1);
+                    }
+                    break;
+
+                case TileID.Meteorite:
+                    if (WorldDefeats.DownedStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(10))
+                    {
+                        TryPlaceHerb(i, j, new int[] { TileID.Meteorite, }, 0);
+                    }
+                    break;
+
                 case TileID.Stone:
                     if (j > Main.rockLayer && WorldGen.genRand.NextBool(300))
                     {
@@ -114,6 +158,30 @@ namespace AQMod
             {
                 if (ProtectedTile(i, j - 1))
                     return false;
+            }
+            return true;
+        }
+
+        public static bool CheckForType(Rectangle rect, AQUtils.ArrayInterpreter<int> type)
+        {
+            return CheckTiles(rect, (i, j, tile) => type.Arr.Contains(tile.type));
+        }
+        public static bool CheckTiles(Rectangle rect, Func<int, int, Tile, bool> function)
+        {
+            for (int i = rect.X; i < rect.X + rect.Width; i++)
+            {
+                for (int j = rect.Y; j < rect.Y + rect.Height; j++)
+                {
+                    if (Main.tile[i, j] == null)
+                    {
+                        Main.tile[i, j] = new Tile();
+                        continue;
+                    }
+                    if (!function(i, j, Main.tile[i, j]))
+                    {
+                        return false;
+                    }
+                }
             }
             return true;
         }

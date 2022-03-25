@@ -30,18 +30,14 @@ namespace AQMod.UI
         {
             base.Update(gameTime);
 
-            if (!Main.npc[grappleTarget].active)
-            {
-                grappleTarget = -1;
-                return;
-            }
-
             var player = Main.LocalPlayer;
             var aQPlayer = player.GetModPlayer<AQPlayer>();
+            grappleTarget = -1;
             if (!aQPlayer.meathookUI)
             {
                 return;
             }
+
 
             float distance = (ProjectileLoader.GetProjectile(player.miscEquips[4].type)?.GrappleRange()).GetValueOrDefault(480f);
             float cursorDistance = 320f;

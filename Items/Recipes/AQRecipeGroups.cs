@@ -1,5 +1,5 @@
-﻿using AQMod.Items.Materials;
-using AQMod.Items.Materials.Energies;
+﻿using AQMod.Items.Materials.Energies;
+using AQMod.Items.Misc;
 using AQMod.Items.Placeable.Nature;
 using AQMod.Items.Potions.Healing;
 using Terraria;
