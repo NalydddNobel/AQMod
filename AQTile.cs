@@ -2,6 +2,7 @@
 using AQMod.Tiles;
 using AQMod.Tiles.CrabCrevice;
 using AQMod.Tiles.ExporterQuest;
+using AQMod.Tiles.Herbs;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -47,7 +48,7 @@ namespace AQMod
             }
         }
 
-        private bool TryPlaceHerb(int i, int j, int[] validTile, int style)
+        private bool TryPlaceHerb(int i, int j, int[] validTile, int tile)
         {
             for (int y = j - 1; y > 20; y--)
             {
@@ -60,10 +61,10 @@ namespace AQMod
                 {
                     for (int k = 0; k < validTile.Length; k++)
                     {
-                        if (Main.tile[i, y + 1].type == validTile[k] && CheckForType(new Rectangle(i - 6, y - 6, 12, 12).KeepInWorld(20), ModContent.TileType<Herbs>()))
+                        if (Main.tile[i, y + 1].type == validTile[k] && CheckForType(new Rectangle(i - 6, y - 6, 12, 12).KeepInWorld(20), tile))
                         {
-                            WorldGen.PlaceTile(i, y, ModContent.TileType<Herbs>(), mute: true, forced: true, style: style);
-                            return Framing.GetTileSafely(i, y).type == ModContent.TileType<Herbs>();
+                            WorldGen.PlaceTile(i, y, tile, mute: true, forced: true);
+                            return Framing.GetTileSafely(i, y).type == tile;
                         }
                     }
                 }
@@ -85,14 +86,14 @@ namespace AQMod
                 case TileID.SnowCloud:
                     if (WorldDefeats.DownedGaleStreams && j < Main.rockLayer && WorldGen.genRand.NextBool(10))
                     {
-                        TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, 1);
+                        //TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, ModContent.TileType<Crepe>());
                     }
                     break;
 
                 case TileID.Meteorite:
-                    if (WorldDefeats.DownedStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(10))
+                    if (WorldDefeats.DownedStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(25))
                     {
-                        TryPlaceHerb(i, j, new int[] { TileID.Meteorite, }, 0);
+                        TryPlaceHerb(i, j, new int[] { TileID.Meteorite, }, ModContent.TileType<Moonflower>());
                     }
                     break;
 

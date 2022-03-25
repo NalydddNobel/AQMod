@@ -14,13 +14,13 @@ using Terraria.ModLoader;
 
 namespace AQMod.Items.Potions.Concoctions
 {
-    public class MoliteTag : ConcoctionItem
+    public class LingeringPotion : ConcoctionItem
     {
+        public override string Texture => AQUtils.GetPath<MoonflowerPollen>();
+
         public override void SetPotion()
         {
             base.SetPotion();
-            item.buffTime *= 2;
-            item.value *= 2;
             item.noUseGraphic = true;
         }
 
@@ -42,6 +42,11 @@ namespace AQMod.Items.Potions.Concoctions
             SetPotion();
         }
 
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
+        }
+
         public override bool CanUseItem(Player player)
         {
             return ItemLoader.CanUseItem(original, player);
@@ -51,32 +56,6 @@ namespace AQMod.Items.Potions.Concoctions
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                var color = BuffColorGenerator.GetColorFromItemID(original.type);
-                color.A = 0;
-                var color2 = color * 4;
-                var rectangle = new Rectangle((int)player.position.X - 2, (int)player.position.Y - 2, player.width + 4, player.height + 4);
-                var center = new Vector2(rectangle.X + rectangle.Width / 2f, rectangle.Y + rectangle.Height / 2f);
-                int type = ModContent.DustType<MonoDust>();
-                for (int i = 0; i < 10; i++)
-                {
-                    int d = Dust.NewDust(new Vector2(rectangle.X, rectangle.Y), rectangle.Width, rectangle.Height, ModContent.DustType<MonoSparkleDust>(),
-                        0f, 0f, 0, color2, Main.rand.NextFloat(0.7f, 1.2f));
-                    var velocity = Vector2.Normalize(center - Main.dust[d].position + new Vector2(0f, -4f)) * 8f;
-                    Main.dust[d].velocity = velocity;
-                }
-                for (int i = 0; i < 10; i++)
-                {
-                    int d = Dust.NewDust(new Vector2(rectangle.X, rectangle.Y), rectangle.Width, rectangle.Height, type, 0f, 0f, 0, color, Main.rand.NextFloat(0.9f, 2.1f));
-                    var velocity = Vector2.Normalize(center - Main.dust[d].position) * Main.rand.NextFloat(2f, 4f);
-                    Main.dust[d].velocity = velocity;
-                }
-                color *= 0.4f;
-                for (int i = 0; i < 30; i++)
-                {
-                    int d = Dust.NewDust(new Vector2(rectangle.X, rectangle.Y), rectangle.Width, rectangle.Height, type, 0f, 0f, 0, color, Main.rand.NextFloat(0.4f, 1f));
-                    var velocity = Vector2.Normalize(center - Main.dust[d].position) * Main.rand.NextFloat(2f, 12f);
-                    Main.dust[d].velocity = velocity;
-                }
             }
             return ItemLoader.UseItem(original, player);
         }
@@ -104,8 +83,16 @@ namespace AQMod.Items.Potions.Concoctions
             origin = drawData.origin;
             scale = drawData.scale * drawData.scale2;
 
+
+            float progress = Main.GlobalTime * 1.25f % 2f;
+            float colorMultiplier = progress * 0.5f;
+            if (progress > 1f)
+            {
+                colorMultiplier = (float)Math.Sin(progress * MathHelper.PiOver2) * 0.5f;
+            }
+
             var auraClr = BuffColorGenerator.GetColorFromItemID(original.type);
-            auraClr *= 0.75f + AQUtils.Wave(Main.GlobalTime * 6f, -0.1f, 0.1f);
+            auraClr *= colorMultiplier * 1.25f;
             auraClr.A = 0;
 
             spriteBatch.Draw(Main.itemTexture[original.type], position + new Vector2(2f, 0f), frame, auraClr, 0f, origin, scale, SpriteEffects.None, 0f);
@@ -118,7 +105,9 @@ namespace AQMod.Items.Potions.Concoctions
             if (ItemLoader.PreDrawInInventory(original, spriteBatch, position, frame, drawColor, itemColor, origin, scale))
             {
                 spriteBatch.Draw(Main.itemTexture[original.type], position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
-                spriteBatch.Draw(Main.itemTexture[original.type], position, frame, new Color(255, 255, 255, 0) * AQUtils.Wave(Main.GlobalTime * 4f, 0f, 0.4f), 0f, origin, scale, SpriteEffects.None, 0f);
+                int y = (int)(frame.Height * Math.Min(progress, 1f));
+                var frame2 = new Rectangle(frame.X, frame.Y + frame.Height - y, frame.Width, y);
+                spriteBatch.Draw(Main.itemTexture[original.type], position + new Vector2(0f, frame.Height - y), frame2, new Color(255, 255, 255, 0) * colorMultiplier, 0f, origin, scale, SpriteEffects.None, 0f);
             }
             ItemLoader.PostDrawInInventory(original, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
             InvUI.Hooks.CurrentSlotContext = originalContext;
