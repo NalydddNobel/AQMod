@@ -29,6 +29,10 @@ Tooltips.ToggleKeyBind=按下{0}以开关效果
 
 
 
+ItemName.MoonflowerPollen=月光花粉
+ItemTooltip.MoonflowerPollen={$Mods.AQMod.Tooltips.Concocted}\n药水会给予你和队友一个较为持久的增益效果
+MapObject.Moonflower=月光花
+
 ItemName.Molite=元星鱼
 ItemTooltip.Molite={$Mods.AQMod.Tooltips.Concocted}\n翻倍药水的效力
 ItemName.MoliteTag=元星药水
