@@ -29,10 +29,6 @@ Tooltips.ToggleKeyBind=按下{0}以开关效果
 
 
 
-ItemName.MoonflowerPollen=月光花粉
-ItemTooltip.MoonflowerPollen={$Mods.AQMod.Tooltips.Concocted}\n药水会给予你和队友一个较为持久的增益效果
-MapObject.Moonflower=月光花
-
 ItemName.Molite=元星鱼
 ItemTooltip.Molite={$Mods.AQMod.Tooltips.Concocted}\n翻倍药水的效力
 ItemName.MoliteTag=元星药水
@@ -493,6 +489,12 @@ MapLayerToggle.Beeswax=显示所有可见的世纪之花花苞的位置
 #===========================#
 # Tiles
 #===========================#
+ItemName.MoonflowerSeeds=月光花种
+ItemTooltip.MoonflowerSeeds=会在午夜时分开花并产生花粉
+ItemName.MoonflowerPollen=月光花粉
+ItemTooltip.MoonflowerPollen={$Mods.AQMod.Tooltips.Concocted}\n药水会给予你和队友一个较为持久的增益效果
+MapObject.Moonflower=月光花
+
 ItemName.ExoticRedTorch=超亮红火把
 ItemName.ExoticGreenTorch=超亮绿火把
 ItemName.ExoticBlueTorch=超亮蓝火把
