@@ -1,7 +1,7 @@
 ﻿using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
-using AQMod.Effects;
 using AQMod.Effects.Particles;
 using AQMod.Gores;
 using AQMod.Items.Armor.Vanity.BossMasks;
@@ -219,7 +219,7 @@ namespace AQMod.NPCs.Bosses
                                 (Main.player[Main.myPlayer].Center - center).Length() < 2000f;
                             if (npc.ai[1] >= 242f && (int)npc.ai[2] < 1 && canDoEffects)
                             {
-                                FX.SetFlash(npc.Center, 0.8f * AQConfigClient.Instance.FlashIntensity, 12f);
+                                AQMod.Effects.SetFlash(npc.Center, 0.8f * AQConfigClient.Instance.FlashIntensity, 12f);
                             }
                             if ((int)npc.ai[1] >= 245)
                             {
@@ -228,7 +228,7 @@ namespace AQMod.NPCs.Bosses
                                 {
                                     if (canDoEffects)
                                     {
-                                        FX.SetShake(8f * AQConfigClient.Instance.EffectIntensity, 12f);
+                                        AQMod.Effects.SetShake(8f * AQConfigClient.Instance.EffectIntensity, 12f);
                                     }
                                     npc.ai[2]++;
                                     npc.velocity.X = -npc.direction * 12.5f;

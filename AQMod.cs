@@ -1,6 +1,8 @@
 using AQMod.Assets;
 using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Common.CrossMod;
+using AQMod.Common.ID;
 using AQMod.Common.Utilities;
 using AQMod.Common.Utilities.Debugging;
 using AQMod.Content;
@@ -60,6 +62,10 @@ namespace AQMod
         internal static bool IsUnloading { get; private set; }
 
         public static AQMod Instance { get; private set; }
+        public static GameCamera Camera { get; private set; }
+        public static GameEffects Effects { get; private set; }
+        public static ColorHelper Coloring { get; private set; }
+        public static Keybinds Triggers { get; private set; }
         public static ConcoctionsSystem Concoctions { get; private set; }
         public static AQSets Sets { get; private set; }
         public static ParticleSystem Particles { get; private set; }
@@ -194,19 +200,20 @@ namespace AQMod
             Loading = true;
             IsUnloading = false;
             Instance = this;
+            Coloring = new ColorHelper();
+            Triggers = new Keybinds(this);
             Sets = new AQSets();
-            Keybinds.Load();
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
             DemonSiege.Load();
             ModCallDictionary.Load();
             CursorDyeManager.Load();
-            AprilFoolsJoke.Check();
-            Coloring.Load();
 
             var server = ModContent.GetInstance<AQConfigServer>();
             if (!Main.dedServ)
             {
+                Camera = new GameCamera();
+                Effects = new GameEffects();
                 HookablesUI = new InGameHookablesUI();
                 DrawHelper.Load();
 
@@ -216,7 +223,6 @@ namespace AQMod
                 CrabPot.origin = CrabPot.frame.Size() / 2f;
 
                 LegacyEffectCache.Load(this);
-                FX.InternalSetup();
                 PrimitivesRenderer.Setup();
 
                 SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
@@ -296,6 +302,7 @@ namespace AQMod
             LoadHooks(unload: true);
             Autoloading.Unload();
 
+            Effects = null;
             HookablesUI = null;
             Concoctions = null;
             Sets = null;
@@ -325,13 +332,12 @@ namespace AQMod
                 NPCTalkUI = null;
                 LoadMusic(unload: true);
                 PrimitivesRenderer.Unload();
-                FX.Unload();
+
                 LegacyEffectCache.Unload();
                 LegacyTextureCache.Unload();
                 DrawHelper.Unload();
             }
 
-            Coloring.Unload();
             CursorDyeManager.Unload();
             ModCallDictionary.Unload();
             AQText.Unload();
@@ -425,7 +431,7 @@ namespace AQMod
                 if (n != -1)
                 {
                     Main.npc[n].netUpdate = true;
-                    BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", Coloring.BossMessage);
+                    BroadcastMessage("Mods.AQMod.Common.AwakenedOmegaStarite", ColorHelper.BossMessage);
                 }
                 spawnStarite = false;
             }

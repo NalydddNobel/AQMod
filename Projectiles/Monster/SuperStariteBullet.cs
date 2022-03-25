@@ -1,4 +1,5 @@
-﻿using AQMod.Content.World.Events;
+﻿using AQMod.Common.Configuration;
+using AQMod.Content.World.Events;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

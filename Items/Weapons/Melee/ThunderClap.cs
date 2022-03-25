@@ -1,8 +1,7 @@
-﻿using AQMod.Common.Graphics;
+﻿using AQMod.Common.Configuration;
+using AQMod.Common.Graphics;
 using AQMod.Dusts;
-using AQMod.Effects;
 using AQMod.Items.Materials;
-using AQMod.Items.Materials.Energies;
 using AQMod.Items.Recipes;
 using AQMod.Projectiles.Melee;
 using AQMod.Sounds;
@@ -79,7 +78,7 @@ namespace AQMod.Items.Weapons.Melee
             }
             if (AQConfigClient.Instance.Screenshakes)
             {
-                FX.AddShake(AQGraphics.MultIntensity(10), 30f, 10f);
+                AQMod.Effects.SetShake(AQGraphics.MultIntensity(10), 10f);
             }
             return false;
         }

@@ -9,6 +9,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
 
 namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
 {
@@ -73,7 +74,7 @@ namespace AQMod.NPCs.Monsters.GaleStreamsMonsters
                 {
                     if (npc.HasValidTarget)
                     {
-                        if (AprilFoolsJoke.Active)
+                        if (AprilFools.CheckAprilFools())
                         {
                             npc.ai[2] = NPCID.LavaSlime;
                         }

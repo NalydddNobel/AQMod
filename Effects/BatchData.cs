@@ -56,7 +56,7 @@ namespace AQMod.Effects
             spriteBatch.Begin(spriteSortMode, blendState, samplerState, depthStencilState, rasterizerState, customEffect, transformMatrix);
         }
 
-        public void BeginCustom(SpriteBatch spriteBatch, 
+        public void BeginCustom(SpriteBatch spriteBatch,
             NullableOption<SpriteSortMode> spriteSortMode = default(NullableOption<SpriteSortMode>),
             NullableOption<BlendState> blendState = default(NullableOption<BlendState>),
             NullableOption<SamplerState> samplerState = default(NullableOption<SamplerState>),
@@ -65,8 +65,8 @@ namespace AQMod.Effects
             NullableOption<Effect> customEffect = default(NullableOption<Effect>),
             NullableOption<Matrix> transformMatrix = default(NullableOption<Matrix>))
         {
-            spriteBatch.Begin(spriteSortMode.Get(this.spriteSortMode), blendState.Get(this.blendState), 
-                samplerState.Get(this.samplerState), depthStencilState.Get(this.depthStencilState), 
+            spriteBatch.Begin(spriteSortMode.Get(this.spriteSortMode), blendState.Get(this.blendState),
+                samplerState.Get(this.samplerState), depthStencilState.Get(this.depthStencilState),
                 rasterizerState.Get(this.rasterizerState), customEffect.Get(this.customEffect), transformMatrix.Get(this.transformMatrix));
         }
 

@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Dusts;
 using AQMod.Effects;
@@ -77,7 +78,7 @@ namespace AQMod.Projectiles
                 {
                     if (projectile.oldPos[i] == new Vector2(0f, 0f))
                         break;
-                    trueOldPos.Add(FX.FlippedScreenCheck(projectile.oldPos[i] + offset - Main.screenPosition));
+                    trueOldPos.Add(GameCamera.GetY(projectile.oldPos[i] + offset - Main.screenPosition));
                 }
                 if (trueOldPos.Count > 1)
                 {

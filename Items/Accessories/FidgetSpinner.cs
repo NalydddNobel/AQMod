@@ -65,11 +65,11 @@ namespace AQMod.Items.Accessories
 
         public override void AddRecipes()
         {
-            for (int i = 0; i < Coloring.Paints.Length; i++)
+            for (int i = 0; i < AQMod.Coloring.Paints.Length; i++)
             {
-                var r = new DyeablesRecipe(mod, Coloring.Paints[i]);
+                var r = new DyeablesRecipe(mod, AQMod.Coloring.Paints[i]);
                 r.AddIngredient(ModContent.ItemType<FidgetSpinner>());
-                r.AddIngredient(Coloring.PaintToDye[Coloring.Paints[i]]);
+                r.AddIngredient(AQMod.Coloring.PaintToDye[AQMod.Coloring.Paints[i]]);
                 r.AddTile(TileID.DyeVat);
                 r.SetResult(this);
                 var s = (FidgetSpinner)r.createItem.modItem;

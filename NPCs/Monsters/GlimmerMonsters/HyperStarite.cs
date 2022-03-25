@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Items.Accessories;
 using AQMod.Items.Dyes;

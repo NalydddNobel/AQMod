@@ -1,5 +1,4 @@
 ﻿using AQMod.Items.Materials;
-using AQMod.Items.Materials.Energies;
 using AQMod.Items.Recipes;
 using Microsoft.Xna.Framework;
 using Terraria;

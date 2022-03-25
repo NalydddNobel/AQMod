@@ -58,7 +58,7 @@ namespace AQMod.Projectiles.Pets
             // copies armors
             //parent.armor.FillOther(dummyPlayer.armor);
             //parent.dye.FillOther(dummyPlayer.dye);
-            
+
             //dummyPlayer.UpdateDyes();
 
             // copies proj attributes

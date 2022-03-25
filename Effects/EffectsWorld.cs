@@ -10,7 +10,9 @@ namespace AQMod.Effects
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                FX.InternalInitalize();
+                AQMod.Effects.Initialize();
+                AQMod.Camera.Initialize();
+
                 AQMod.Particles.PreDrawProjectiles.Initialize();
                 AQMod.Particles.PostDrawPlayers.Initialize();
 

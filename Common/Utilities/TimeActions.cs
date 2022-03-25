@@ -20,7 +20,6 @@ namespace AQMod.Common.Utilities
                 {
                     if (Main.time + Main.dayRate > Main.dayLength)
                     {
-                        AprilFoolsJoke.Check();
                         if (Main.netMode != NetmodeID.Server)
                         {
                             SkyGlimmerEvent.InitNight();

@@ -1,11 +1,10 @@
-﻿using AQMod.Common.Graphics.PlayerEquips;
+﻿using AQMod.Common;
+using AQMod.Common.Graphics.PlayerEquips;
 using AQMod.Items.Materials.Energies;
-using AQMod.Localization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace AQMod.Items.Armor.Arachnotron
@@ -57,7 +56,7 @@ namespace AQMod.Items.Armor.Arachnotron
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = Language.GetTextValue("Mods.AQMod.ArmorSetBonus.Arachnotron", AQText.KeybindText(Keybinds.ArmorSetBonus));
+            player.setBonus = AQMod.GetText("ArmorSetBonus.Arachnotron", Keybinds.GetText(AQMod.Triggers.ArmorSetBonus));
             player.GetModPlayer<AQPlayer>().setArachnotron = true;
         }
 

@@ -12,7 +12,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
-namespace AQMod
+namespace AQMod.Common.Configuration
 {
     [Label("$Mods.AQMod.ServerConfig.Name")]
     [BackgroundColor(10, 10, 40, 220)]

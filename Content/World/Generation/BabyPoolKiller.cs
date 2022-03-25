@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AQMod.Common.Configuration;
+using System;
 using Terraria;
 using Terraria.Localization;
 using Terraria.World.Generation;

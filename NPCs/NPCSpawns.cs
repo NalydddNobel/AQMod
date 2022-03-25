@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Content.World.Events;
 using AQMod.NPCs.Bosses;
 using AQMod.NPCs.Friendly;

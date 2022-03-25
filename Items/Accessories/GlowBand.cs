@@ -52,7 +52,7 @@ namespace AQMod.Items.Accessories
         {
             try
             {
-                var texture = Main.itemTexture[Coloring.PaintToYoyoString[color]];
+                var texture = Main.itemTexture[item.type];
                 var frame = texture.Frame();
                 var origin = frame.Size() / 2f;
                 var drawCoordinates = item.position - Main.screenPosition + origin + new Vector2(item.width / 2 - origin.X, item.height - frame.Height);
@@ -83,20 +83,20 @@ namespace AQMod.Items.Accessories
             r.AddTile(TileID.WorkBenches);
             r.SetResult(this);
             r.AddRecipe();
-            for (int i = 0; i < Coloring.Paints.Length; i++)
+            for (int i = 0; i < AQMod.Coloring.Paints.Length; i++)
             {
-                var r2 = new DyeablesRecipe(mod, Coloring.Paints[i]);
+                var r2 = new DyeablesRecipe(mod, AQMod.Coloring.Paints[i]);
                 r2.AddIngredient(item.type);
-                r2.AddIngredient(Coloring.PaintToDye[Coloring.Paints[i]]);
+                r2.AddIngredient(AQMod.Coloring.PaintToDye[AQMod.Coloring.Paints[i]]);
                 r2.AddTile(TileID.DyeVat);
                 r2.SetResult(this);
                 var dyeable = (DyeableAccessory)r2.createItem.modItem;
                 dyeable.color = r2.SetColor;
                 r2.AddRecipe();
 
-                r2 = new DyeablesRecipe(mod, Coloring.Paints[i]);
+                r2 = new DyeablesRecipe(mod, AQMod.Coloring.Paints[i]);
                 r2.AddIngredient(ItemID.Shackle);
-                r2.AddIngredient(Coloring.PaintToDye[Coloring.Paints[i]]);
+                r2.AddIngredient(AQMod.Coloring.PaintToDye[AQMod.Coloring.Paints[i]]);
                 r2.AddIngredient(ItemID.Glowstick, 50);
                 r2.AddTile(TileID.WorkBenches);
                 r2.SetResult(this);

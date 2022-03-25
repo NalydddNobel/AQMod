@@ -1,4 +1,5 @@
 ﻿using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
 using AQMod.Content.Players;
 using AQMod.Content.World.Events;
@@ -30,13 +31,13 @@ namespace AQMod.Effects
 
             public DustEffect()
             {
-                _time = FX.Rand(0f, MathHelper.PiOver2 * 3f);
-                _maxWidth = FX.Rand(10f, 35f);
-                _maxHeight = FX.Rand(55f, 120f);
-                _reps = (byte)(FX.Rand(4) + 1);
-                _lifespan = (byte)(FX.Rand(50, 150) + 1);
-                _existence = (byte)FX.Rand(_lifespan / 3);
-                int colorType = (int)FX.Rand(9f);
+                _time = AQMod.Effects.Rand(0f, MathHelper.PiOver2 * 3f);
+                _maxWidth = AQMod.Effects.Rand(10f, 35f);
+                _maxHeight = AQMod.Effects.Rand(55f, 120f);
+                _reps = (byte)(AQMod.Effects.Rand(4) + 1);
+                _lifespan = (byte)(AQMod.Effects.Rand(50, 150) + 1);
+                _existence = (byte)AQMod.Effects.Rand(_lifespan / 3);
+                int colorType = (int)AQMod.Effects.Rand(9f);
                 switch (colorType)
                 {
                     default:
@@ -128,12 +129,12 @@ namespace AQMod.Effects
                     {
                         float p = 1f - progress * 0.5f;
                         Main.dust[d].scale *= p * p;
-                        if (FX.RandChance(20))
+                        if (AQMod.Effects.RandChance(20))
                         {
-                            Main.dust[d].scale *= FX.Rand(1.1f, 1.5f);
+                            Main.dust[d].scale *= AQMod.Effects.Rand(1.1f, 1.5f);
                         }
                         Main.dust[d].color *= p;
-                        if (FX.RandChance(15))
+                        if (AQMod.Effects.RandChance(15))
                         {
                             d = Dust.NewDust(new Vector2(x, y), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, _dustColor);
                             Main.dust[d].noGravity = true;
@@ -259,9 +260,9 @@ namespace AQMod.Effects
             }
             float y = Glimmer.tileY * 16 - 80f + (float)Math.Sin(Main.GameUpdateCount * 0.0157f) * 8f;
             Lighting.AddLight(new Vector2(x, y), new Vector3(1f, 1f, 1f));
-            if (FX.RandChance(10))
+            if (AQMod.Effects.RandChance(10))
             {
-                int d = Dust.NewDust(new Vector2(x, y) + new Vector2(FX.Rand(-6f, 6f), -FX.Rand(60)), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(160, 160, 160, 80));
+                int d = Dust.NewDust(new Vector2(x, y) + new Vector2(AQMod.Effects.Rand(-6f, 6f), -AQMod.Effects.Rand(60)), 2, 2, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(160, 160, 160, 80));
                 Main.dust[d].velocity *= 0.1f;
                 Main.dust[d].noGravity = true;
             }
@@ -269,7 +270,7 @@ namespace AQMod.Effects
             {
                 UltimateSwordEffectDelay--;
             }
-            else if (FX.RandChance(10 + (int)(20 * (1f - AQConfigClient.Instance.EffectIntensity))))
+            else if (AQMod.Effects.RandChance(10 + (int)(20 * (1f - AQConfigClient.Instance.EffectIntensity))))
             {
                 _fx.Add(new DustEffect());
                 UltimateSwordEffectDelay = (byte)(int)(8 * (1f - AQConfigClient.Instance.EffectIntensity));

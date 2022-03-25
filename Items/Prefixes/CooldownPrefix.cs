@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AQMod.Common.Configuration;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;

@@ -1,4 +1,5 @@
-﻿using AQMod.Common.CrossMod;
+﻿using AQMod.Common.Configuration;
+using AQMod.Common.CrossMod;
 using AQMod.Common.WorldGeneration;
 using AQMod.Content.Players;
 using AQMod.Content.World.Biomes;
@@ -350,12 +351,6 @@ namespace AQMod.Common.Utilities.Debugging
                             method.Invoke(null, null);
                         }
                     }
-                    break;
-
-                case "april":
-                case "fools":
-                case "aprilfools":
-                    AprilFoolsJoke.Active = true;
                     break;
 
                 case "downedglimmer":

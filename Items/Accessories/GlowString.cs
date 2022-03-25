@@ -51,7 +51,7 @@ namespace AQMod.Items.Accessories
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            var texture = Main.itemTexture[Coloring.PaintToYoyoString[color]];
+            var texture = Main.itemTexture[AQMod.Coloring.PaintToYoyoString[color]];
             for (float f = 0f; f < 1f; f += 0.125f)
             {
                 Main.spriteBatch.Draw(texture, position + new Vector2(2f * scale, 0f).RotatedBy(Main.GlobalTime * MathHelper.PiOver4 + f * MathHelper.TwoPi), frame, new Color(50, 50, 50, 0), 0f, origin, scale, SpriteEffects.None, 0f);
@@ -64,7 +64,7 @@ namespace AQMod.Items.Accessories
         {
             try
             {
-                var texture = Main.itemTexture[Coloring.PaintToYoyoString[color]];
+                var texture = Main.itemTexture[AQMod.Coloring.PaintToYoyoString[color]];
                 var frame = texture.Frame();
                 var origin = frame.Size() / 2f;
                 var drawCoordinates = item.position - Main.screenPosition + origin + new Vector2(item.width / 2 - origin.X, item.height - frame.Height);
@@ -94,18 +94,18 @@ namespace AQMod.Items.Accessories
             r.AddTile(TileID.Loom);
             r.SetResult(this);
             r.AddRecipe();
-            for (int i = 0; i < Coloring.Paints.Length; i++)
+            for (int i = 0; i < AQMod.Coloring.Paints.Length; i++)
             {
-                var r2 = new DyeablesRecipe(mod, Coloring.Paints[i]);
+                var r2 = new DyeablesRecipe(mod, AQMod.Coloring.Paints[i]);
                 r2.AddIngredient(item.type);
-                r2.AddIngredient(Coloring.PaintToDye[Coloring.Paints[i]]);
+                r2.AddIngredient(AQMod.Coloring.PaintToDye[AQMod.Coloring.Paints[i]]);
                 r2.AddTile(TileID.DyeVat);
                 r2.SetResult(this);
                 var g = (GlowString)r2.createItem.modItem;
                 g.color = r2.SetColor;
                 r2.AddRecipe();
-                r2 = new DyeablesRecipe(mod, Coloring.Paints[i]);
-                r2.AddIngredient(Coloring.PaintToYoyoString[Coloring.Paints[i]]);
+                r2 = new DyeablesRecipe(mod, AQMod.Coloring.Paints[i]);
+                r2.AddIngredient(AQMod.Coloring.PaintToYoyoString[AQMod.Coloring.Paints[i]]);
                 r2.AddIngredient(ModContent.ItemType<CosmicEnergy>());
                 r2.AddTile(TileID.DyeVat);
                 r2.SetResult(this);

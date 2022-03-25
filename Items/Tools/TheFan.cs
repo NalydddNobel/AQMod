@@ -43,7 +43,7 @@ namespace AQMod.Items.Tools
                 {
                     return;
                 }
-                tooltips.Insert(index + 2, new TooltipLine(mod, "StartsGaleStreams", Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.TheFan.0")) { overrideColor = AQMod.MysteriousGuideTooltip, });
+                tooltips.Insert(1, new TooltipLine(mod, "StartsGaleStreams", Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.TheFan.0")) { overrideColor = AQMod.MysteriousGuideTooltip, });
             }
             catch
             {

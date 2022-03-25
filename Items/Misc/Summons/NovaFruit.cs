@@ -1,4 +1,5 @@
-﻿using AQMod.Common.ID;
+﻿using AQMod.Common;
+using AQMod.Common.ID;
 using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Items.Dyes;
@@ -44,7 +45,7 @@ namespace AQMod.Items.Misc.Summons
             if (Main.myPlayer == player.whoAmI)
                 SkyGlimmerEvent._glimmerLight = 1f;
             NPC.NewNPC((int)player.position.X, (int)player.position.Y - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, player.whoAmI);
-            AQMod.BroadcastMessage(AQText.Key + "Common.AwakenedOmegaStarite", Coloring.BossMessage);
+            AQMod.BroadcastMessage(AQText.Key + "Common.AwakenedOmegaStarite", ColorHelper.BossMessage);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

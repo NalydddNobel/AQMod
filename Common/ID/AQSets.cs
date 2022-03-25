@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod
+namespace AQMod.Common.ID
 {
     public sealed class AQSets
     {

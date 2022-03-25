@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Materials;
+﻿using AQMod.Common;
+using AQMod.Items.Materials;
 using AQMod.Items.Recipes;
 using AQMod.Localization;
 using AQMod.NPCs.Bosses;
@@ -33,7 +34,7 @@ namespace AQMod.Items.Misc.Summons
         public override bool UseItem(Player player)
         {
             NPC.NewNPC((int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<Crabson>(), 0, 0f, 0f, 0f, 0f, player.whoAmI);
-            Main.NewText(AQText.ModText("Common.AwakenedCrabson"), Coloring.BossMessage);
+            Main.NewText(AQText.ModText("Common.AwakenedCrabson"), ColorHelper.BossMessage);
             Main.PlaySound(SoundID.Roar, player.position, 0);
             return true;
         }

@@ -1,13 +1,10 @@
-﻿using AQMod.Common;
+﻿using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Summon;
-using AQMod.Items.Materials.Energies;
-using AQMod.Items.Misc.Toggles;
 using AQMod.Items.Potions.Foods;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Melee;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -174,7 +171,7 @@ namespace AQMod.NPCs
 
         internal static void LootTables()
         {
-            CustomLoot = new Dictionary<int, AQUtils.ArrayInterpreter<Loot>>() 
+            CustomLoot = new Dictionary<int, AQUtils.ArrayInterpreter<Loot>>()
             {
                 [NPCID.DevourerHead] = new Loot(ModContent.ItemType<SpicyEel>()) { chance = 50, },
                 [NPCID.GiantWormHead] = new Loot(ModContent.ItemType<SpicyEel>()) { chance = 50, },

@@ -1,6 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Buffs.Debuffs;
 using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events;
@@ -28,6 +29,7 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
 
 namespace AQMod.NPCs.Bosses
 {
@@ -174,7 +176,7 @@ namespace AQMod.NPCs.Bosses
             {
                 music = GetMusic().GetMusicID();
                 musicPriority = MusicPriority.BossMedium;
-                if (AprilFoolsJoke.Active)
+                if (AprilFools.CheckAprilFools())
                 {
                     npc.GivenName = "Omega Starite, Living Galaxy the Omega Being";
                 }
@@ -412,7 +414,7 @@ namespace AQMod.NPCs.Bosses
                                         Main.PlaySound(SoundID.Trackable, npc.Center, 188);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            FX.AddShake(AQGraphics.MultIntensity(4), 24f, 12f);
+                                            AQMod.Effects.SetShake(AQGraphics.MultIntensity(12), 60f);
                                         }
                                         int p = Projectile.NewProjectile(center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, npc.whoAmI);
                                         Main.projectile[p].scale = 0.75f;
@@ -578,7 +580,7 @@ namespace AQMod.NPCs.Bosses
                                 else
                                 {
                                     npc.ai[1] = -npc.ai[3] * 16;
-                                    if (Vector2.Distance(plrCenter, center) > 400f)
+                                    if (Vector2.Distance(plrCenter, center) > 120f)
                                     {
                                         if (Main.netMode != NetmodeID.MultiplayerClient)
                                         {
@@ -1249,14 +1251,10 @@ namespace AQMod.NPCs.Bosses
             if ((int)npc.ai[0] == -1)
             {
                 intensity += npc.ai[1] / 20;
-                if (FX.cameraFocusNPC != npc.whoAmI)
-                {
-                    FX.cameraFocusLerp = 0.001f;
-                }
-                FX.cameraFocusNPC = npc.whoAmI;
-                FX.cameraFocusReset = 60;
-                FX.SetFlash(npc.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f * AQConfigClient.Instance.FlashIntensity, 4f), 12f);
-                FX.SetShake(intensity * 2f, 24f);
+                AQMod.Camera.SetTarget("Omega Starite", npc.Center, CameraPriority.NPCDefeat, 16f, 60);
+
+                AQMod.Effects.SetFlash(npc.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f * AQConfigClient.Instance.FlashIntensity, 4f), 12f);
+                AQMod.Effects.SetShake(intensity * 2f, 24f);
                 int range = (int)intensity + 4;
                 drawPos += new Vector2(Main.rand.Next(-range, range), Main.rand.Next(-range, range));
                 for (int i = 0; i < positions.Count; i++)

@@ -1,5 +1,6 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Placeable.Banners;

@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Configuration;
 using AQMod.Content.Players;
 using AQMod.Content.World;
 using AQMod.Content.World.Events;

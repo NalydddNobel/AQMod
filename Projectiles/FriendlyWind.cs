@@ -1,6 +1,5 @@
 ﻿using AQMod.Common.Graphics;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.World.Events;
 using AQMod.Effects.Particles;
 using Microsoft.Xna.Framework;
 using System;

@@ -1,9 +1,9 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Common.Utilities.Colors;
 using AQMod.Dusts;
-using AQMod.Effects;
 using AQMod.Effects.Particles;
 using AQMod.Items;
 using AQMod.Items.Accessories.Vanity;
@@ -523,10 +523,6 @@ namespace AQMod.Content.Players
             NalydGradientPersonal = NalydGradient;
             ThunderbirdGradient = new ColorWaveGradient(10f, new Color(255, 120, 200), new Color(170, 80, 200));
             BaguetteGradient = new ColorWaveGradient(10f, new Color(255, 222, 150), new Color(170, 130, 80));
-            if (Main.myPlayer == player.whoAmI)
-            {
-                FX.cameraFocusNPC = -1;
-            }
         }
         public override void Initialize()
         {
@@ -553,77 +549,6 @@ namespace AQMod.Content.Players
             cMask = 0;
             cCelesteTorus = 0;
             MothmanMaskEyeColor = MothmanMaskEyeColorDefault;
-        }
-
-        private void UpdateCameraFocus()
-        {
-            FX.cameraFocus = false;
-            if (FX.cameraFocusNPC != -1)
-            {
-                if (Main.npc[FX.cameraFocusNPC].active)
-                {
-                    FX.cameraFocus = true;
-                    FX.CameraFocus = Main.npc[FX.cameraFocusNPC].Center;
-                }
-                else
-                {
-                    FX.cameraFocusNPC = -1;
-                }
-            }
-            if (FX.CameraFocus != Vector2.Zero)
-            {
-                if (FX.cameraFocusLerp <= 0.001f)
-                {
-                    FX.cameraFocusLerp = 0.001f;
-                }
-                if (!FX.cameraFocus && FX.cameraFocusReset > 0)
-                {
-                    FX.cameraFocusReset--;
-                    FX.cameraFocus = true;
-                }
-                if (FX.cameraFocus)
-                {
-                    Main.screenPosition = Vector2.Lerp(Main.screenPosition, FX.CameraFocus - new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f), FX.cameraFocusLerp);
-                    if (FX.cameraFocusLerp < 1f)
-                    {
-                        FX.cameraFocusLerp *= 1.5f;
-                        if (FX.cameraFocusLerp > 1f)
-                        {
-                            FX.cameraFocusLerp = 1f;
-                        }
-                    }
-                }
-                else
-                {
-                    Main.screenPosition = Vector2.Lerp(Main.screenPosition, FX.CameraFocus - new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f), FX.cameraFocusLerp);
-                    FX.cameraFocusLerp *= 0.86f;
-                    if (FX.cameraFocusLerp < 0.001f)
-                    {
-                        FX.cameraFocusLerp = 0f;
-                        FX.CameraFocus = Vector2.Zero;
-                    }
-                }
-            }
-        }
-        private void UpdateScreenShakes()
-        {
-            var offset = Vector2.Zero;
-            foreach (var s in FX.ScreenShakeDict)
-            {
-                if (s.Value.Active)
-                {
-                    offset += s.Value.GetOffset();
-                }
-            }
-            Main.screenPosition += new Vector2((int)offset.X, (int)offset.Y);
-        }
-        public override void ModifyScreenPosition()
-        {
-            if (!Main.gamePaused && Main.instance.IsActive)
-            {
-                UpdateCameraFocus();
-                UpdateScreenShakes();
-            }
         }
 
         private static void ModifyDrawInfo_Omori(ref PlayerDrawInfo drawInfo)

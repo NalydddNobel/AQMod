@@ -1,8 +1,8 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Common.Utilities.Colors;
 using AQMod.Common.WorldGeneration;
-using AQMod.Content.Concoctions;
 using AQMod.Content.Players;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
@@ -15,7 +15,6 @@ using AQMod.Items.Accessories.Wings;
 using AQMod.Items.Misc;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
-using AQMod.Items.Potions.Concoctions;
 using AQMod.Items.Potions.Foods;
 using AQMod.Items.Prefixes;
 using AQMod.Items.Tools.Fishing;
@@ -28,7 +27,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -1340,19 +1338,19 @@ namespace AQMod
 
             if (ModContent.GetInstance<AQConfigClient>().EffectQuality > 0.5f)
             {
-                FX.TempSetRand(Main.LocalPlayer.name.GetHashCode(), out int reset);
+                AQMod.Effects.TempSetRand(Main.LocalPlayer.name.GetHashCode(), out int reset);
                 // particles
                 var particleTexture = LegacyTextureCache.Lights[LightTex.Spotlight15x15];
                 var particleOrigin = particleTexture.Size() / 2f;
-                int amt = (int)FX.Rand((int)size.X / 3, (int)size.X);
+                int amt = (int)AQMod.Effects.Rand((int)size.X / 3, (int)size.X);
                 for (int i = 0; i < amt; i++)
                 {
-                    float lifeTime = (FX.Rand(20f) + Main.GlobalTime * 2f) % 20f;
-                    int baseParticleX = (int)FX.Rand(4, (int)size.X - 4);
-                    int particleX = baseParticleX + (int)AQUtils.Wave(lifeTime + Main.GlobalTime * FX.Rand(2f, 5f), -FX.Rand(3f, 10f), FX.Rand(3f, 10f));
-                    int particleY = (int)FX.Rand(10);
-                    float scale = FX.Rand(0.2f, 0.4f);
-                    if (baseParticleX > 14 && baseParticleX < size.X - 14 && FX.RandChance(6))
+                    float lifeTime = (AQMod.Effects.Rand(20f) + Main.GlobalTime * 2f) % 20f;
+                    int baseParticleX = (int)AQMod.Effects.Rand(4, (int)size.X - 4);
+                    int particleX = baseParticleX + (int)AQUtils.Wave(lifeTime + Main.GlobalTime * AQMod.Effects.Rand(2f, 5f), -AQMod.Effects.Rand(3f, 10f), AQMod.Effects.Rand(3f, 10f));
+                    int particleY = (int)AQMod.Effects.Rand(10);
+                    float scale = AQMod.Effects.Rand(0.2f, 0.4f);
+                    if (baseParticleX > 14 && baseParticleX < size.X - 14 && AQMod.Effects.RandChance(6))
                     {
                         scale *= 2f;
                     }
@@ -1389,7 +1387,7 @@ namespace AQMod
                     }
                 }
 
-                FX.SetRand(reset);
+                AQMod.Effects.SetRand(reset);
             }
 
             // light effect

@@ -1,7 +1,7 @@
 ﻿using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
-using AQMod.Effects;
 using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Dyes;
 using AQMod.Items.Placeable.Banners;
@@ -552,7 +552,7 @@ namespace AQMod.NPCs.Bosses
                                     && Main.netMode != NetmodeID.Server && AQConfigClient.Instance.Screenshakes &&
                                     (Main.myPlayer == npc.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 {
-                                    FX.SetFlash(npc.Center, 0.75f * AQConfigClient.Instance.FlashIntensity, 10f);
+                                    AQMod.Effects.SetFlash(npc.Center, 0.75f * AQConfigClient.Instance.FlashIntensity, 10f);
                                 }
                                 if (timer == 0)
                                 {
@@ -560,7 +560,7 @@ namespace AQMod.NPCs.Bosses
                                     {
                                         if (AQConfigClient.Instance.Screenshakes)
                                         {
-                                            FX.SetShake(12f * AQConfigClient.Instance.EffectIntensity, 10f);
+                                            AQMod.Effects.SetShake(12f * AQConfigClient.Instance.EffectIntensity, 10f);
                                         }
                                         if (Main.netMode != NetmodeID.Server)
                                         {

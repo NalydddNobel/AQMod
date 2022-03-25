@@ -1,5 +1,4 @@
-﻿using AQMod.Content.Concoctions;
-using AQMod.Items.Potions.Concoctions;
+﻿using AQMod.Items.Potions.Concoctions;
 using AQMod.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -313,7 +312,7 @@ namespace AQMod.UI
 
         private static bool PotionSwap(Item slotItem, Item mouseItem)
         {
-            if (mouseItem != null && !mouseItem.IsAir && 
+            if (mouseItem != null && !mouseItem.IsAir &&
                 (AQMod.Concoctions.ConcoctiblePotion(mouseItem) || mouseItem.modItem is PotionofContainers))
                 return true;
             if (slotItem != null && !slotItem.IsAir && (mouseItem == null || mouseItem.IsAir))
@@ -322,7 +321,7 @@ namespace AQMod.UI
         }
         private static bool ConcoctionSwap(Item slotItem, Item mouseItem)
         {
-            if (mouseItem != null && !mouseItem.IsAir && 
+            if (mouseItem != null && !mouseItem.IsAir &&
                 (AQMod.Concoctions.RecipeData.ContainsKey(mouseItem.type) || AQUtils.ChestItem(mouseItem)))
                 return true;
             if (slotItem != null && !slotItem.IsAir && (mouseItem == null || mouseItem.IsAir))

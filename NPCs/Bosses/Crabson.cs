@@ -550,7 +550,7 @@ namespace AQMod.NPCs.Bosses
                                     if (Main.netMode != NetmodeID.Server && (int)npc.localAI[0] == 0)
                                     {
                                         SoundID.Item14.Play(npc.Center);
-                                        FX.AddShake(2f, 2f);
+                                        AQMod.Effects.SetShake(2f, 6f);
                                     }
                                     npc.localAI[0] = 1f;
                                 }

@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events;
 using Microsoft.Xna.Framework;

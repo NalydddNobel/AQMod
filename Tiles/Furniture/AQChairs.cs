@@ -1,4 +1,5 @@
-﻿using AQMod.Items.Placeable.Furniture;
+﻿using AQMod.Common;
+using AQMod.Items.Placeable.Furniture;
 using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
@@ -27,7 +28,7 @@ namespace AQMod.Tiles.Furniture
             TileObjectData.addAlternate(1);
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-            AddMapEntry(Coloring.Furniture, CreateMapEntryName(GetType().Name));
+            AddMapEntry(ColorHelper.Furniture, CreateMapEntryName(GetType().Name));
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Chairs };
         }

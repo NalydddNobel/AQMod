@@ -1,4 +1,5 @@
-﻿using AQMod.Common.ID;
+﻿using AQMod.Common.Configuration;
+using AQMod.Common.ID;
 using AQMod.Items.Accessories.HookUpgrades;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Melee;

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using AQMod.Common;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +28,7 @@ namespace AQMod.Tiles.PetrifiedFurn
             TileObjectData.newTile.UsesCustomCanPlace = false;
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
-            AddMapEntry(Coloring.Furniture);
+            AddMapEntry(ColorHelper.Furniture);
             dustType = DustID.Dirt;
             drop = ModContent.ItemType<Items.Placeable.PetrifiedWoodPlatform>();
             disableSmartCursor = true;

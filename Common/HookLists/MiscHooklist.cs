@@ -1,4 +1,5 @@
-﻿using AQMod.Content.XMas;
+﻿using AQMod.Common.Configuration;
+using AQMod.Content.XMas;
 using AQMod.Effects.Particles;
 using Microsoft.Xna.Framework;
 using System;
@@ -43,7 +44,7 @@ namespace AQMod.Common.HookLists
         internal static void DrawXmasBG(On.Terraria.Main.orig_DrawBG orig, Main self)
         {
             bool christmasBackground = XmasSeed.XmasWorld && WorldGen.gen; // originally this also ran on the title screen,
-                                                                  // but for some reason there were conflicts with Modder's Toolkit
+                                                                           // but for some reason there were conflicts with Modder's Toolkit
             bool snowflakes = XmasSeed.XmasWorld; // I like the snowflakes on the title screen :)
             if (AQMod.Loading || AQMod.IsUnloading)
             {

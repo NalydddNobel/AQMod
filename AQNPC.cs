@@ -1,9 +1,9 @@
 ﻿using AQMod.Common;
+using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Content.World;
 using AQMod.Dusts;
-using AQMod.Effects;
 using AQMod.Effects.Particles;
 using AQMod.Items.Materials.Energies;
 using AQMod.Items.Misc.Cursor;
@@ -291,7 +291,7 @@ namespace AQMod
                     NPCID.ChaosElemental,
                 };
 
-                HecktoplasmSpawn = new HashSet<int>() 
+                HecktoplasmSpawn = new HashSet<int>()
                 {
                     NPCID.DiabolistRed,
                     NPCID.DiabolistWhite,
@@ -533,7 +533,7 @@ namespace AQMod
                     NPCID.DetonatingBubble,
                     NPCID.DungeonSpirit,
                     ModContent.NPCType<Heckto>(),
-                    ModContent.NPCType<NPCs.Monsters.GlimmerMonsters.Starite>(),
+                    ModContent.NPCType<AQMod.NPCs.Monsters.Night.Starite>(),
                     ModContent.NPCType<TrapImp>(),
                     ModContent.NPCType<Cindera>(),
                     ModContent.NPCType<Meteor>(),
@@ -979,7 +979,7 @@ namespace AQMod
                         amount = (int)(amount * AQConfigClient.Instance.EffectQuality);
                     if (AQConfigClient.Instance.Screenshakes)
                     {
-                        FX.AddShake(AQGraphics.MultIntensity(12), 24f, 6f);
+                        AQMod.Effects.SetShake(AQGraphics.MultIntensity(12), 8f);
                     }
                     var npcCenter = npc.Center;
                     int p = Projectile.NewProjectile(npcCenter, Vector2.Normalize(npcCenter - Main.player[npc.target].Center), ModContent.ProjectileType<SparklingExplosion>(), 50, 5f, npc.target);
@@ -1279,7 +1279,7 @@ namespace AQMod
                 return;
 
             DropTerminator(npc);
-            
+
             if (npc.lifeMax < 5 || npc.friendly)
                 return;
 

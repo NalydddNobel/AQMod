@@ -1,8 +1,5 @@
-﻿using AQMod.Items.Recipes;
-using AQMod.Localization;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;

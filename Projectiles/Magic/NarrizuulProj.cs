@@ -1,4 +1,5 @@
 ﻿using AQMod.Assets;
+using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Dusts;
@@ -91,7 +92,7 @@ namespace AQMod.Projectiles.Magic
                 {
                     if (projectile.oldPos[i] == Vector2.Zero)
                         break;
-                    trueOldPos.Add(FX.FlippedScreenCheck(projectile.oldPos[i] + offset - Main.screenPosition));
+                    trueOldPos.Add(GameCamera.GetY(projectile.oldPos[i] + offset - Main.screenPosition));
                 }
                 if (trueOldPos.Count > 1)
                 {
@@ -136,7 +137,7 @@ namespace AQMod.Projectiles.Magic
                 float distance = Vector2.Distance(projectile.Center, Main.player[projectile.owner].Center);
                 if (distance < 800)
                 {
-                    FX.AddShake(AQGraphics.MultIntensity((int)(800f - distance) / 128), 60f, 16f);
+                    AQMod.Effects.SetShake(AQGraphics.MultIntensity((int)(800f - distance) / 32), 16f);
                 }
             }
             Color color = NarrizuulRainbow(projectile.localAI[1]) * 1.5f;

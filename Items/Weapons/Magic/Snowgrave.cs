@@ -1,6 +1,5 @@
 ﻿using AQMod.Buffs.Debuffs;
 using AQMod.Items.Materials;
-using AQMod.Items.Materials.Energies;
 using AQMod.Items.Recipes;
 using AQMod.Projectiles.Magic;
 using Microsoft.Xna.Framework;

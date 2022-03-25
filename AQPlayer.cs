@@ -1,8 +1,8 @@
-﻿using AQMod.Assets;
-using AQMod.Buffs;
+﻿using AQMod.Buffs;
 using AQMod.Buffs.Debuffs;
 using AQMod.Buffs.Summon;
 using AQMod.Buffs.Temperature;
+using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Content;
@@ -15,7 +15,6 @@ using AQMod.Items.Accessories.Fishing;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Tools;
 using AQMod.Items.Tools.GrapplingHooks;
-using AQMod.NPCs;
 using AQMod.Projectiles;
 using AQMod.Projectiles.Summon;
 using AQMod.Projectiles.Summon.Equips;
@@ -26,7 +25,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Achievements;
 using Terraria.GameInput;
-using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -265,37 +263,7 @@ namespace AQMod
 
         public override void UpdateBiomeVisuals()
         {
-            if (FX.flashLocation != Vector2.Zero)
-            {
-                LegacyEffectCache.f_Flash.GetShader()
-                .UseIntensity(Math.Max(FX.flashBrightness * AQConfigClient.Instance.EffectIntensity, 1f / 18f));
-                if (!LegacyEffectCache.f_Flash.IsActive())
-                {
-                    Filters.Scene.Activate(LegacyEffectCache.fn_Flash, FX.flashLocation, null).GetShader()
-                    .UseOpacity(1f)
-                    .UseTargetPosition(FX.flashLocation);
-                }
-                FX.flashBrightness -= FX.flashBrightnessDecrement;
-                if (FX.flashBrightness <= 0f)
-                {
-                    FX.flashLocation = Vector2.Zero;
-                    FX.flashBrightness = 0f;
-                    FX.flashBrightnessDecrement = 0.05f;
-                }
-            }
-            else
-            {
-                if (LegacyEffectCache.f_Flash.IsActive())
-                {
-                    LegacyEffectCache.f_Flash.GetShader()
-                        .UseIntensity(0f)
-                        .UseProgress(0f)
-                        .UseOpacity(0f);
-                    Filters.Scene.Deactivate(LegacyEffectCache.fn_Flash, null);
-                }
-            }
-
-            FX.Update();
+            AQMod.Effects.UpdateVisuals();
 
             if (extractinatorBlipCooldown > 0)
                 extractinatorBlipCooldown--;
@@ -576,7 +544,7 @@ namespace AQMod
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (Keybinds.ArmorSetBonus.JustPressed)
+            if (AQMod.Triggers.ArmorSetBonus.JustPressed)
             {
                 if (setArachnotron && !setArachnotronCooldown)
                 {
@@ -1340,7 +1308,7 @@ namespace AQMod
                     }
                     if (AQConfigClient.Instance.Screenshakes)
                     {
-                        FX.AddShake(AQGraphics.MultIntensity(8), 24f, 16f);
+                        AQMod.Effects.SetShake(AQGraphics.MultIntensity(8), 16f);
                     }
                     mothmanExplosionCooldown = 60;
                     int p = Projectile.NewProjectile(targetCenter, Vector2.Normalize(targetCenter - player.Center), ModContent.ProjectileType<MothmanCritExplosion>(), damage * 2, knockback * 1.5f, player.whoAmI, 0f, target.whoAmI);
@@ -1449,6 +1417,12 @@ namespace AQMod
         {
             AnglerReward_ShowNumFinished();
             AnglerReward_GiveFishingSeal(rewardItems);
+        }
+
+        public override void ModifyScreenPosition()
+        {
+            AQMod.Camera.UpdateScreen();
+            AQMod.Effects.UpdateScreen();
         }
 
         private static void SpreadDebuffs(NPC spreader, NPC npc)

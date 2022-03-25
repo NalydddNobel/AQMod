@@ -12,15 +12,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
-namespace AQMod
+namespace AQMod.Common.Configuration
 {
     [Label("$Mods.AQMod.ClientConfig.Name")]
     [BackgroundColor(10, 10, 40, 220)]
     public class AQConfigClient : ModConfig
     {
-        public static AQConfigClient Instance;
-
         public override ConfigScope Mode => ConfigScope.ClientSide;
+
+        public static AQConfigClient Instance;
 
         [Header("$Mods.AQMod.ClientConfig.Header.Visuals")]
 

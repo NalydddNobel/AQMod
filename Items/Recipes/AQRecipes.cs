@@ -1,4 +1,5 @@
-﻿using AQMod.Content.World.Events;
+﻿using AQMod.Common.Configuration;
+using AQMod.Content.World.Events;
 using AQMod.Items.Materials;
 using AQMod.Items.Materials.Energies;
 using AQMod.Tiles;
