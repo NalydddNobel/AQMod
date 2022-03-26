@@ -460,9 +460,9 @@ namespace AQMod.NPCs.Bosses
                                 const int width = (int)(Circumference * 2f);
                                 const int height = 900;
                                 Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.auraColor, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.auraColor, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.auraColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.purple, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.purple, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.purple, 2f);
                             }
                         }
                     }
@@ -1361,7 +1361,7 @@ namespace AQMod.NPCs.Bosses
                 if (prim == null)
                 {
                     float radius = Circumference / 2f;
-                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThinLine"), PrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => Glimmer.auraColor * (1f - p), drawOffset: npc.Size / 2f);
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThinLine"), PrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => (Glimmer.stariteDiscoParty ? Main.DiscoColor.UseA(0) : new Color(35, 85, 255, 0)) * (1f - p), drawOffset: npc.Size / 2f);
                 }
                 prim.Draw(npc.oldPos);
             }

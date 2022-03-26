@@ -353,11 +353,11 @@ namespace AQMod
 
             if (Glimmer.stariteDiscoParty)
             {
-                Glimmer.auraColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
+                Glimmer.purple = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
             }
             else
             {
-                Glimmer.auraColor = Glimmer.StariteProjectileColorOrig;
+                Glimmer.purple = Glimmer.StariteProjectileColorOrig;
             }
         }
 
