@@ -2,11 +2,10 @@
 using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Dusts;
-using AQMod.Effects;
+using AQMod.Effects.Prims;
 using AQMod.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,7 +14,8 @@ namespace AQMod.Projectiles.Magic
 {
     public class UmystickMoon : ModProjectile
     {
-        private Color _glowClr;
+        protected PrimRenderer prim;
+        protected Color _glowClr;
 
         public override void SetStaticDefaults()
         {
@@ -64,21 +64,14 @@ namespace AQMod.Projectiles.Magic
             var origin = frame.Size() / 2f;
             var center = projectile.Center;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimRenderer.renderProjTrails)
             {
-                var trueOldPos = new List<Vector2>();
-                for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
+                if (prim == null)
                 {
-                    if (projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    trueOldPos.Add(GameCamera.GetY(projectile.oldPos[i] + offset - Main.screenPosition));
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickTrail"), PrimRenderer.DefaultPass,
+                        (p) => new Vector2(14f - p * 14f) * projectile.scale, (p) => _glowClr * (1f - p));
                 }
-                if (trueOldPos.Count > 1)
-                {
-                    var trail = new PrimitivesRenderer(LegacyTextureCache.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail);
-                    trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(14f - p * 14f) * projectile.scale, (p) => _glowClr * (1f - p));
-                    trail.Draw();
-                }
+                prim.Draw(projectile.oldPos);
             }
             else
             {

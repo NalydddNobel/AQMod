@@ -4,6 +4,7 @@ using AQMod.Common.ID;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;
+using AQMod.Effects.Prims;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,6 +17,8 @@ namespace AQMod.Projectiles.Monster
 {
     public class OmegaStariteBullet : ModProjectile
     {
+        private PrimRenderer prim;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
@@ -44,7 +47,7 @@ namespace AQMod.Projectiles.Monster
             projectile.rotation += 0.0314f;
             if (Main.rand.NextBool(12))
             {
-                int d = Dust.NewDust(projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.stariteProjectileColoring, 0.75f);
+                int d = Dust.NewDust(projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.auraColor, 0.75f);
                 Main.dust[d].velocity = projectile.velocity * 0.1f;
             }
         }
@@ -54,23 +57,16 @@ namespace AQMod.Projectiles.Monster
             var texture = Main.projectileTexture[projectile.type];
             var orig = texture.Size() / 2f;
             var drawPos = projectile.Center - Main.screenPosition;
-            var drawColor = Glimmer.stariteProjectileColoring;
+            var drawColor = Glimmer.auraColor;
             drawColor.A = 0;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimRenderer.renderProjTrails)
             {
-                var trueOldPos = new List<Vector2>();
-                for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
+                if (prim == null)
                 {
-                    if (projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    trueOldPos.Add(GameCamera.GetY(projectile.oldPos[i] + offset - Main.screenPosition));
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickerLine"), PrimRenderer.DefaultPass, (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
-                if (trueOldPos.Count > 1)
-                {
-                    PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail,
-                        trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
-                }
+                prim.Draw(projectile.oldPos);
             }
             else
             {
@@ -115,7 +111,7 @@ namespace AQMod.Projectiles.Monster
             var velo = projectile.velocity * 0.5f;
             for (int i = 0; i < 25; i++)
             {
-                int d = Dust.NewDust(projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.stariteProjectileColoring, 0.75f);
+                int d = Dust.NewDust(projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.auraColor, 0.75f);
                 Main.dust[d].velocity = velo;
             }
         }

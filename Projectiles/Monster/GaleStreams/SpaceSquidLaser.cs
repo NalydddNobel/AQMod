@@ -1,9 +1,8 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.ID;
-using AQMod.Effects;
+using AQMod.Effects.Prims;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,6 +11,8 @@ namespace AQMod.Projectiles.Monster.GaleStreams
 {
     public class SpaceSquidLaser : ModProjectile
     {
+        private PrimRenderer prim;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
@@ -44,20 +45,13 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             var drawPos = projectile.Center - Main.screenPosition;
             var drawColor = new Color(30, 255, 30, 0);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimRenderer.renderProjTrails)
             {
-                var trueOldPos = new List<Vector2>();
-                for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
+                if (prim == null)
                 {
-                    if (projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    trueOldPos.Add(GameCamera.GetY(projectile.oldPos[i] + offset - Main.screenPosition));
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickerLine"), PrimRenderer.DefaultPass, (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
                 }
-                if (trueOldPos.Count > 1)
-                {
-                    PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
-                        trueOldPos.ToArray(), (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
-                }
+                prim.Draw(projectile.oldPos);
             }
             else
             {

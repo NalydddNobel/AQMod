@@ -1,7 +1,7 @@
 ﻿using AQMod.Assets;
 using AQMod.Common.Configuration;
 using AQMod.Common.ID;
-using AQMod.Effects;
+using AQMod.Effects.Prims;
 using AQMod.NPCs.Bosses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,6 +15,9 @@ namespace AQMod.Projectiles.Monster.GaleStreams
 {
     public class SpaceSquidDeathray : ModProjectile
     {
+        private PrimRenderer prim;
+        private PrimRenderer smokePrim;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
@@ -124,7 +127,18 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                     projectile.Center - Main.screenPosition,
                     projectile.Center + new Vector2(Main.screenWidth * projectile.direction, 0f) - Main.screenPosition,
                     projectile.Center + new Vector2(Main.screenWidth * 2f * projectile.direction, 0f) - Main.screenPosition, };
-            PrimitivesRenderer.ReversedGravity(arr);
+            if (prim == null)
+            {
+                prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickTrail"), PrimRenderer.DefaultPass, (p) => new Vector2(projectile.height * ((1f - p) * (1f - p))), (p) => drawColor * (1f - p), obeyReversedGravity: false, worldTrail: false);
+            }
+            if (smokePrim == null)
+            {
+                smokePrim = new PrimRenderer(mod.GetTexture("Effects/Prims/SmokeLine"), PrimRenderer.DefaultPass, (p) => new Vector2(projectile.height * ((1f - p) * (1f - p))), (p) => drawColor * ((float)Math.Sin(Main.GlobalTime * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
+            }
+            if (Main.LocalPlayer.gravDir == -1)
+            {
+                AQMod.ScreenFlip(arr);
+            }
             var smokeLineColor = drawColor * ((float)Math.Sin(Main.GlobalTime * 12f) + 2f);
             if (AQConfigClient.Instance.EffectQuality > 0.2f)
             {
@@ -136,25 +150,27 @@ namespace AQMod.Projectiles.Monster.GaleStreams
                 {
                     initialArr[i] = center + new Vector2(200f / amount * i * projectile.direction, 0f) - Main.screenPosition;
                 }
-                PrimitivesRenderer.ReversedGravity(initialArr);
-                PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail,
-                initialArr, (p) => new Vector2(projectile.height * ((1f - p) * (1f - p))), (p) => drawColor * (1f - p));
+                if (Main.LocalPlayer.gravDir == -1)
+                {
+                    AQMod.ScreenFlip(initialArr);
+                }
+
                 initialArr[0] = center - Main.screenPosition;
                 for (int i = 1; i < amount; i++)
                 {
                     initialArr[i] = center + new Vector2(20f / amount * i * -projectile.direction, 0f) - Main.screenPosition;
                 }
-                PrimitivesRenderer.ReversedGravity(initialArr);
-                PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail,
-                initialArr, (p) => new Vector2(projectile.height * ((1f - p) * (1f - p))), (p) => drawColor * (1f - p));
-                PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.SmokeLine], PrimitivesRenderer.TextureTrail,
-                initialArr, (p) => new Vector2(projectile.height * ((1f - p) * (1f - p))), (p) => smokeLineColor * (1f - p), Main.GlobalTime * 20f, 20f);
+                if (Main.LocalPlayer.gravDir == -1)
+                {
+                    AQMod.ScreenFlip(initialArr);
+                }
+                prim.Draw(initialArr);
+                smokePrim.Draw(initialArr, Main.GlobalTime * 20f, 20f);
             }
 
-            PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail,
-                arr, (p) => new Vector2(projectile.height), (p) => drawColor);
-            PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.SmokeLine], PrimitivesRenderer.TextureTrail,
-                arr, (p) => new Vector2(projectile.height), (p) => smokeLineColor, Main.GlobalTime * 0.5f, 4f);
+            prim.Draw(arr);
+            smokePrim.Draw(arr, Main.GlobalTime * 0.5f, 4f);
+
             var spotlight = LegacyTextureCache.Lights[LightTex.Spotlight100x100];
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.4f, projectile.rotation, spotlight.Size() / 2f, projectile.scale * (projectile.height / 32f), SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor, projectile.rotation, spotlight.Size() / 2f, projectile.scale * 0.5f * (projectile.height / 32f), SpriteEffects.None, 0f);

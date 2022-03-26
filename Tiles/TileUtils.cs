@@ -1,6 +1,4 @@
-﻿using AQMod.Common.Graphics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Enums;
@@ -11,68 +9,6 @@ namespace AQMod.Tiles
 {
     internal static class TileUtils
     {
-        public static class Rendering
-        {
-            public static void RenderSwayingVine(int x, int y, int vineID)
-            {
-                int num = 0;
-                int num2 = 0;
-                Vector2 vector = new Vector2(x * 16 + 8, y * 16 - 2);
-                float amount = Math.Abs(Main.windSpeed) / 1.7f;
-                amount = MathHelper.Lerp(0.2f, 1f, amount);
-                float num3 = -0.08f * amount;
-                float windCycle = (float)Math.Sin(Main.GlobalTime + (x + y) * 0.1f) * 0.05f + 0.12f;
-                float num4 = 0f;
-                float num5 = 0f;
-                for (int j = y; j < Main.maxTilesY - 10; j++)
-                {
-                    Tile tile = Main.tile[x, j];
-                    if (tile != null)
-                    {
-                        ushort type = tile.type;
-                        if (!tile.active() || type != vineID)
-                        {
-                            break;
-                        }
-                        num++;
-                        if (num2 >= 5)
-                        {
-                            num3 += 0.0075f * amount;
-                        }
-                        if (num2 >= 2)
-                        {
-                            num3 += 0.0025f;
-                        }
-                        float windGridPush = 0f;
-                        if (Main.tile[x, j].wall <= 0 && (double)j < Main.worldSurface)
-                        {
-                            windGridPush = (float)Math.Sin(Main.GlobalTime + (x + y) * 0.1f) * 0.05f + 0.04f;
-                            num2++;
-                        }
-                        windGridPush *= Main.windSpeed;
-                        num4 = ((windGridPush != 0f || num5 == 0f) ? (num4 - windGridPush) : (num4 * -0.78f));
-                        num5 = windGridPush;
-                        short tileFrameX = tile.frameX;
-                        short tileFrameY = tile.frameY;
-                        Color color = Lighting.GetColor(x, j);
-                        Vector2 position = new Vector2(-(int)Main.screenPosition.X, -(int)Main.screenPosition.Y) + AQGraphics.TileZero + vector;
-                        if (tile.color() == 31)
-                        {
-                            color = Color.White;
-                        }
-                        float num6 = (float)num2 * num3 * windCycle + num4;
-                        var tileDrawTexture = Main.tileTexture[type];
-                        if (tileDrawTexture == null)
-                        {
-                            break;
-                        }
-                        Main.spriteBatch.Draw(tileDrawTexture, position, new Rectangle(tileFrameX, tileFrameY, 16, 16), color, num6, new Vector2(16f / 2f, 0f), 1f, SpriteEffects.None, 0f);
-                        vector += (num6 + (float)Math.PI / 2f).ToRotationVector2() * 16f;
-                    }
-                }
-            }
-        }
-
         public static void GemFrame(int i, int j)
         {
             Tile tile = Framing.GetTileSafely(i, j);
@@ -115,7 +51,7 @@ namespace AQMod.Tiles
             WorldGen.KillTile(i, j);
         }
 
-        public static int FrameForPlatformSloping(byte slope)
+        public static int PlatformSlopeFrame(byte slope)
         {
             if (slope == 1)
             {
@@ -981,12 +917,10 @@ namespace AQMod.Tiles
                 }
             }
             int num = 20;
-            int num100 = x;
-            int num101 = y;
-            int num102 = num100 - 1;
-            int num103 = num100 + 2;
-            int num104 = num101 - 1;
-            int num105 = num101 + 2;
+            int num102 = x - 1;
+            int num103 = x + 2;
+            int num104 = y - 1;
+            int num105 = y + 2;
             if (num102 < 10)
             {
                 num102 = 10;
@@ -1003,39 +937,39 @@ namespace AQMod.Tiles
             {
                 num105 = Main.maxTilesY - 10;
             }
-            if (Main.tile[num100, num101] == null)
+            if (Main.tile[x, y] == null)
             {
                 return;
             }
-            if (Main.tileAlch[Main.tile[num100, num101].type])
+            if (Main.tileAlch[Main.tile[x, y].type])
             {
-                WorldGen.GrowAlch(num100, num101);
+                WorldGen.GrowAlch(x, y);
             }
-            if (Main.tile[num100, num101].liquid <= 32)
+            if (Main.tile[x, y].liquid <= 32)
             {
-                if (Main.tile[num100, num101].nactive())
+                if (Main.tile[x, y].nactive())
                 {
-                    WorldGen.hardUpdateWorld(num100, num101);
+                    WorldGen.hardUpdateWorld(x, y);
                     if (Main.rand.Next(3000) == 0)
                     {
-                        WorldGen.plantDye(num100, num101);
+                        WorldGen.plantDye(x, y);
                     }
                     if (Main.rand.Next(4500) == 0)
                     {
-                        WorldGen.plantDye(num100, num101, exoticPlant: true);
+                        WorldGen.plantDye(x, y, exoticPlant: true);
                     }
-                    if (Main.tile[num100, num101].type == 23 && !Main.tile[num100, num104].active() && WorldGen.genRand.Next(1) == 0)
+                    if (Main.tile[x, y].type == 23 && !Main.tile[x, num104].active() && WorldGen.genRand.Next(1) == 0)
                     {
-                        WorldGen.PlaceTile(num100, num104, 24, mute: true);
-                        if (Main.netMode == NetmodeID.Server && Main.tile[num100, num104].active())
+                        WorldGen.PlaceTile(x, num104, 24, mute: true);
+                        if (Main.netMode == NetmodeID.Server && Main.tile[x, num104].active())
                         {
-                            NetMessage.SendTileSquare(-1, num100, num104, 1);
+                            NetMessage.SendTileSquare(-1, x, num104, 1);
                         }
                     }
-                    if (Main.tile[num100, num101].type == 32 && WorldGen.genRand.Next(3) == 0)
+                    if (Main.tile[x, y].type == 32 && WorldGen.genRand.Next(3) == 0)
                     {
-                        int num106 = num100;
-                        int num108 = num101;
+                        int num106 = x;
+                        int num108 = y;
                         int num109 = 0;
                         if (Main.tile[num106 + 1, num108].active() && Main.tile[num106 + 1, num108].type == 32)
                         {
@@ -1053,7 +987,7 @@ namespace AQMod.Tiles
                         {
                             num109++;
                         }
-                        if (num109 < 3 || Main.tile[num100, num101].type == 23)
+                        if (num109 < 3 || Main.tile[x, y].type == 23)
                         {
                             switch (WorldGen.genRand.Next(4))
                             {
@@ -1122,21 +1056,21 @@ namespace AQMod.Tiles
                             }
                         }
                     }
-                    if (Main.tile[num100, num101].type == 352 && WorldGen.genRand.Next(3) == 0)
+                    if (Main.tile[x, y].type == 352 && WorldGen.genRand.Next(3) == 0)
                     {
-                        WorldGen.GrowSpike(num100, num101, 352, 199);
+                        WorldGen.GrowSpike(x, y, 352, 199);
                     }
-                    if (Main.tile[num100, num101].type == 199)
+                    if (Main.tile[x, y].type == 199)
                     {
-                        int type9 = Main.tile[num100, num101].type;
+                        int type9 = Main.tile[x, y].type;
                         bool flag9 = false;
                         for (int num116 = num102; num116 < num103; num116++)
                         {
                             for (int num118 = num104; num118 < num105; num118++)
                             {
-                                if ((num100 != num116 || num101 != num118) && Main.tile[num116, num118].active() && Main.tile[num116, num118].type == 0)
+                                if ((x != num116 || y != num118) && Main.tile[num116, num118].active() && Main.tile[num116, num118].type == 0)
                                 {
-                                    WorldGen.SpreadGrass(num116, num118, 0, type9, repeat: false, Main.tile[num100, num101].color());
+                                    WorldGen.SpreadGrass(num116, num118, 0, type9, repeat: false, Main.tile[x, y].color());
                                     if (Main.tile[num116, num118].type == type9)
                                     {
                                         WorldGen.SquareTileFrame(num116, num118);
@@ -1147,29 +1081,29 @@ namespace AQMod.Tiles
                         }
                         if (Main.netMode == NetmodeID.Server && flag9)
                         {
-                            NetMessage.SendTileSquare(-1, num100, num101, 3);
+                            NetMessage.SendTileSquare(-1, x, y, 3);
                         }
                     }
-                    if (Main.tile[num100, num101].type == 60)
+                    if (Main.tile[x, y].type == 60)
                     {
-                        int type10 = Main.tile[num100, num101].type;
-                        if (!Main.tile[num100, num104].active() && WorldGen.genRand.Next(10) == 0)
+                        int type10 = Main.tile[x, y].type;
+                        if (!Main.tile[x, num104].active() && WorldGen.genRand.Next(10) == 0)
                         {
-                            WorldGen.PlaceTile(num100, num104, 61, mute: true);
-                            if (Main.netMode == NetmodeID.Server && Main.tile[num100, num104].active())
+                            WorldGen.PlaceTile(x, num104, 61, mute: true);
+                            if (Main.netMode == NetmodeID.Server && Main.tile[x, num104].active())
                             {
-                                NetMessage.SendTileSquare(-1, num100, num104, 1);
+                                NetMessage.SendTileSquare(-1, x, num104, 1);
                             }
                         }
-                        else if (WorldGen.genRand.Next(25) == 0 && Main.tile[num100, num104].liquid == 0)
+                        else if (WorldGen.genRand.Next(25) == 0 && Main.tile[x, num104].liquid == 0)
                         {
                             if (Main.hardMode && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 && WorldGen.genRand.Next(60) == 0)
                             {
                                 bool flag10 = true;
                                 int num119 = 150;
-                                for (int num120 = num100 - num119; num120 < num100 + num119; num120 += 2)
+                                for (int num120 = x - num119; num120 < x + num119; num120 += 2)
                                 {
-                                    for (int num121 = num101 - num119; num121 < num101 + num119; num121 += 2)
+                                    for (int num121 = y - num119; num121 < y + num119; num121 += 2)
                                     {
                                         if (num120 > 1 && num120 < Main.maxTilesX - 2 && num121 > 1 && num121 < Main.maxTilesY - 2 && Main.tile[num120, num121].active() && Main.tile[num120, num121].type == 238)
                                         {
@@ -1180,12 +1114,12 @@ namespace AQMod.Tiles
                                 }
                                 if (flag10)
                                 {
-                                    WorldGen.PlaceJunglePlant(num100, num104, 238, 0, 0);
-                                    WorldGen.SquareTileFrame(num100, num104);
-                                    WorldGen.SquareTileFrame(num100 + 1, num104 + 1);
-                                    if (Main.tile[num100, num104].type == 238 && Main.netMode == NetmodeID.Server)
+                                    WorldGen.PlaceJunglePlant(x, num104, 238, 0, 0);
+                                    WorldGen.SquareTileFrame(x, num104);
+                                    WorldGen.SquareTileFrame(x + 1, num104 + 1);
+                                    if (Main.tile[x, num104].type == 238 && Main.netMode == NetmodeID.Server)
                                     {
-                                        NetMessage.SendTileSquare(-1, num100, num104, 4);
+                                        NetMessage.SendTileSquare(-1, x, num104, 4);
                                     }
                                 }
                             }
@@ -1197,9 +1131,9 @@ namespace AQMod.Tiles
                                 {
                                     num122 -= 10;
                                 }
-                                for (int num123 = num100 - num122; num123 < num100 + num122; num123 += 2)
+                                for (int num123 = x - num122; num123 < x + num122; num123 += 2)
                                 {
-                                    for (int num124 = num101 - num122; num124 < num101 + num122; num124 += 2)
+                                    for (int num124 = y - num122; num124 < y + num122; num124 += 2)
                                     {
                                         if (num123 > 1 && num123 < Main.maxTilesX - 2 && num124 > 1 && num124 < Main.maxTilesY - 2 && Main.tile[num123, num124].active() && Main.tile[num123, num124].type == 236)
                                         {
@@ -1210,30 +1144,30 @@ namespace AQMod.Tiles
                                 }
                                 if (flag11)
                                 {
-                                    WorldGen.PlaceJunglePlant(num100, num104, TileID.LifeFruit, WorldGen.genRand.Next(3), 0);
-                                    WorldGen.SquareTileFrame(num100, num104);
-                                    WorldGen.SquareTileFrame(num100 + 1, num104 + 1);
-                                    if (Main.tile[num100, num104].type == 236 && Main.netMode == NetmodeID.Server)
+                                    WorldGen.PlaceJunglePlant(x, num104, TileID.LifeFruit, WorldGen.genRand.Next(3), 0);
+                                    WorldGen.SquareTileFrame(x, num104);
+                                    WorldGen.SquareTileFrame(x + 1, num104 + 1);
+                                    if (Main.tile[x, num104].type == 236 && Main.netMode == NetmodeID.Server)
                                     {
-                                        NetMessage.SendTileSquare(-1, num100, num104, 4);
+                                        NetMessage.SendTileSquare(-1, x, num104, 4);
                                     }
                                 }
                             }
                             else
                             {
-                                WorldGen.PlaceJunglePlant(num100, num104, 233, WorldGen.genRand.Next(8), 0);
-                                if (Main.tile[num100, num104].type == 233)
+                                WorldGen.PlaceJunglePlant(x, num104, 233, WorldGen.genRand.Next(8), 0);
+                                if (Main.tile[x, num104].type == 233)
                                 {
                                     if (Main.netMode == NetmodeID.Server)
                                     {
-                                        NetMessage.SendTileSquare(-1, num100, num104, 4);
+                                        NetMessage.SendTileSquare(-1, x, num104, 4);
                                     }
                                     else
                                     {
-                                        WorldGen.PlaceJunglePlant(num100, num104, 233, WorldGen.genRand.Next(12), 1);
-                                        if (Main.tile[num100, num104].type == 233 && Main.netMode == NetmodeID.Server)
+                                        WorldGen.PlaceJunglePlant(x, num104, 233, WorldGen.genRand.Next(12), 1);
+                                        if (Main.tile[x, num104].type == 233 && Main.netMode == NetmodeID.Server)
                                         {
-                                            NetMessage.SendTileSquare(-1, num100, num104, 3);
+                                            NetMessage.SendTileSquare(-1, x, num104, 3);
                                         }
                                     }
                                 }
@@ -1244,9 +1178,9 @@ namespace AQMod.Tiles
                         {
                             for (int num126 = num104; num126 < num105; num126++)
                             {
-                                if ((num100 != num125 || num101 != num126) && Main.tile[num125, num126].active() && Main.tile[num125, num126].type == 59)
+                                if ((x != num125 || y != num126) && Main.tile[num125, num126].active() && Main.tile[num125, num126].type == 59)
                                 {
-                                    WorldGen.SpreadGrass(num125, num126, 59, type10, repeat: false, Main.tile[num100, num101].color());
+                                    WorldGen.SpreadGrass(num125, num126, 59, type10, repeat: false, Main.tile[x, y].color());
                                     if (Main.tile[num125, num126].type == type10)
                                     {
                                         WorldGen.SquareTileFrame(num125, num126);
@@ -1257,32 +1191,32 @@ namespace AQMod.Tiles
                         }
                         if (Main.netMode == NetmodeID.Server && flag13)
                         {
-                            NetMessage.SendTileSquare(-1, num100, num101, 3);
+                            NetMessage.SendTileSquare(-1, x, y, 3);
                         }
                     }
-                    if (Main.tile[num100, num101].type == 61 && WorldGen.genRand.Next(3) == 0 && Main.tile[num100, num101].frameX < 144)
+                    if (Main.tile[x, y].type == 61 && WorldGen.genRand.Next(3) == 0 && Main.tile[x, y].frameX < 144)
                     {
                         if (Main.rand.Next(4) == 0)
                         {
-                            Main.tile[num100, num101].frameX = (short)(162 + WorldGen.genRand.Next(8) * 18);
+                            Main.tile[x, y].frameX = (short)(162 + WorldGen.genRand.Next(8) * 18);
                         }
-                        Main.tile[num100, num101].type = 74;
+                        Main.tile[x, y].type = 74;
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            NetMessage.SendTileSquare(-1, num100, num101, 3);
+                            NetMessage.SendTileSquare(-1, x, y, 3);
                         }
                     }
-                    if ((Main.tile[num100, num101].type == 60 || Main.tile[num100, num101].type == 62) && WorldGen.genRand.Next(5) == 0 && !Main.tile[num100, num101 + 1].active() && !Main.tile[num100, num101 + 1].lava())
+                    if ((Main.tile[x, y].type == 60 || Main.tile[x, y].type == 62) && WorldGen.genRand.Next(5) == 0 && !Main.tile[x, y + 1].active() && !Main.tile[x, y + 1].lava())
                     {
                         bool flag14 = false;
-                        for (int num127 = num101; num127 > num101 - 10; num127--)
+                        for (int num127 = y; num127 > y - 10; num127--)
                         {
-                            if (Main.tile[num100, num127].bottomSlope())
+                            if (Main.tile[x, num127].bottomSlope())
                             {
                                 flag14 = false;
                                 break;
                             }
-                            if (Main.tile[num100, num127].active() && Main.tile[num100, num127].type == 60 && !Main.tile[num100, num127].bottomSlope())
+                            if (Main.tile[x, num127].active() && Main.tile[x, num127].type == 60 && !Main.tile[x, num127].bottomSlope())
                             {
                                 flag14 = true;
                                 break;
@@ -1290,8 +1224,8 @@ namespace AQMod.Tiles
                         }
                         if (flag14)
                         {
-                            int num129 = num100;
-                            int num130 = num101 + 1;
+                            int num129 = x;
+                            int num130 = y + 1;
                             Main.tile[num129, num130].type = 62;
                             Main.tile[num129, num130].active(active: true);
                             WorldGen.SquareTileFrame(num129, num130);
@@ -1301,15 +1235,15 @@ namespace AQMod.Tiles
                             }
                         }
                     }
-                    if ((Main.tile[num100, num101].type == 60 || Main.tile[num100, num101].type == 62) && WorldGen.genRand.Next(80) == 0 && !WorldGen.PlayerLOS(num100, num101))
+                    if ((Main.tile[x, y].type == 60 || Main.tile[x, y].type == 62) && WorldGen.genRand.Next(80) == 0 && !WorldGen.PlayerLOS(x, y))
                     {
                         bool flag15 = true;
-                        int num131 = num101;
-                        if (Main.tile[num100, num101].type == 60)
+                        int num131 = y;
+                        if (Main.tile[x, y].type == 60)
                         {
                             num131++;
                         }
-                        for (int num132 = num100; num132 < num100 + 2; num132++)
+                        for (int num132 = x; num132 < x + 2; num132++)
                         {
                             int num133 = num131 - 1;
                             if (!WorldGen.AnchorValid(Framing.GetTileSafely(num132, num133), AnchorType.SolidTile) || Main.tile[num132, num133].bottomSlope())
@@ -1340,13 +1274,13 @@ namespace AQMod.Tiles
                                 break;
                             }
                         }
-                        if (flag15 && CountNearBlocksTypes(num100, num101, 20, 1, 444) > 0)
+                        if (flag15 && CountNearBlocksTypes(x, y, 20, 1, 444) > 0)
                         {
                             flag15 = false;
                         }
                         if (flag15)
                         {
-                            for (int num135 = num100; num135 < num100 + 2; num135++)
+                            for (int num135 = x; num135 < x + 2; num135++)
                             {
                                 Main.tile[num135, num131 - 1].slope(0);
                                 Main.tile[num135, num131 - 1].halfBrick(halfBrick: false);
@@ -1358,26 +1292,26 @@ namespace AQMod.Tiles
                                     }
                                 }
                             }
-                            for (int num137 = num100; num137 < num100 + 2; num137++)
+                            for (int num137 = x; num137 < x + 2; num137++)
                             {
                                 for (int num138 = num131; num138 < num131 + 2; num138++)
                                 {
                                     Main.tile[num137, num138].active(active: true);
                                     Main.tile[num137, num138].type = 444;
-                                    Main.tile[num137, num138].frameX = (short)((num137 - num100) * 18);
+                                    Main.tile[num137, num138].frameX = (short)((num137 - x) * 18);
                                     Main.tile[num137, num138].frameY = (short)((num138 - num131) * 18);
                                 }
                             }
                             if (Main.netMode == NetmodeID.Server)
                             {
-                                NetMessage.SendTileSquare(-1, num100, num131, 3);
+                                NetMessage.SendTileSquare(-1, x, num131, 3);
                             }
                         }
                     }
-                    if (Main.tile[num100, num101].type == 69 && WorldGen.genRand.Next(3) == 0)
+                    if (Main.tile[x, y].type == 69 && WorldGen.genRand.Next(3) == 0)
                     {
-                        int num3 = num100;
-                        int num4 = num101;
+                        int num3 = x;
+                        int num4 = y;
                         int num5 = 0;
                         if (Main.tile[num3 + 1, num4].active() && Main.tile[num3 + 1, num4].type == 69)
                         {
@@ -1395,7 +1329,7 @@ namespace AQMod.Tiles
                         {
                             num5++;
                         }
-                        if (num5 < 3 || Main.tile[num100, num101].type == 60)
+                        if (num5 < 3 || Main.tile[x, y].type == 60)
                         {
                             switch (WorldGen.genRand.Next(4))
                             {
@@ -1464,54 +1398,54 @@ namespace AQMod.Tiles
                             }
                         }
                     }
-                    else if (Main.tile[num100, num101].type == 147 || Main.tile[num100, num101].type == 161 || Main.tile[num100, num101].type == 163 || Main.tile[num100, num101].type == 164 || Main.tile[num100, num101].type == 200)
+                    else if (Main.tile[x, y].type == 147 || Main.tile[x, y].type == 161 || Main.tile[x, y].type == 163 || Main.tile[x, y].type == 164 || Main.tile[x, y].type == 200)
                     {
-                        if (Main.rand.Next(10) == 0 && !Main.tile[num100, num101 + 1].active() && !Main.tile[num100, num101 + 2].active())
+                        if (Main.rand.Next(10) == 0 && !Main.tile[x, y + 1].active() && !Main.tile[x, y + 2].active())
                         {
-                            int num143 = num100 - 3;
-                            int num13 = num100 + 4;
+                            int num143 = x - 3;
+                            int num13 = x + 4;
                             int num14 = 0;
                             for (int num15 = num143; num15 < num13; num15++)
                             {
-                                if (Main.tile[num15, num101].type == 165 && Main.tile[num15, num101].active())
+                                if (Main.tile[num15, y].type == 165 && Main.tile[num15, y].active())
                                 {
                                     num14++;
                                 }
-                                if (Main.tile[num15, num101 + 1].type == 165 && Main.tile[num15, num101 + 1].active())
+                                if (Main.tile[num15, y + 1].type == 165 && Main.tile[num15, y + 1].active())
                                 {
                                     num14++;
                                 }
-                                if (Main.tile[num15, num101 + 2].type == 165 && Main.tile[num15, num101 + 2].active())
+                                if (Main.tile[num15, y + 2].type == 165 && Main.tile[num15, y + 2].active())
                                 {
                                     num14++;
                                 }
-                                if (Main.tile[num15, num101 + 3].type == 165 && Main.tile[num15, num101 + 3].active())
+                                if (Main.tile[num15, y + 3].type == 165 && Main.tile[num15, y + 3].active())
                                 {
                                     num14++;
                                 }
                             }
                             if (num14 < 2)
                             {
-                                WorldGen.PlaceTight(num100, num101 + 1, 165);
-                                WorldGen.SquareTileFrame(num100, num101 + 1);
-                                if (Main.netMode == NetmodeID.Server && Main.tile[num100, num101 + 1].active())
+                                WorldGen.PlaceTight(x, y + 1, 165);
+                                WorldGen.SquareTileFrame(x, y + 1);
+                                if (Main.netMode == NetmodeID.Server && Main.tile[x, y + 1].active())
                                 {
-                                    NetMessage.SendTileSquare(-1, num100, num101 + 1, 3);
+                                    NetMessage.SendTileSquare(-1, x, y + 1, 3);
                                 }
                             }
                         }
                     }
-                    else if (Main.tileMoss[Main.tile[num100, num101].type])
+                    else if (Main.tileMoss[Main.tile[x, y].type])
                     {
-                        int type11 = Main.tile[num100, num101].type;
+                        int type11 = Main.tile[x, y].type;
                         bool flag17 = false;
                         for (int num16 = num102; num16 < num103; num16++)
                         {
                             for (int num17 = num104; num17 < num105; num17++)
                             {
-                                if ((num100 != num16 || num101 != num17) && Main.tile[num16, num17].active() && Main.tile[num16, num17].type == 1)
+                                if ((x != num16 || y != num17) && Main.tile[num16, num17].active() && Main.tile[num16, num17].type == 1)
                                 {
-                                    WorldGen.SpreadGrass(num16, num17, 1, type11, repeat: false, Main.tile[num100, num101].color());
+                                    WorldGen.SpreadGrass(num16, num17, 1, type11, repeat: false, Main.tile[x, y].color());
                                     if (Main.tile[num16, num17].type == type11)
                                     {
                                         WorldGen.SquareTileFrame(num16, num17);
@@ -1522,12 +1456,12 @@ namespace AQMod.Tiles
                         }
                         if (Main.netMode == NetmodeID.Server && flag17)
                         {
-                            NetMessage.SendTileSquare(-1, num100, num101, 3);
+                            NetMessage.SendTileSquare(-1, x, y, 3);
                         }
                         if (WorldGen.genRand.Next(6) == 0)
                         {
-                            int num18 = num100;
-                            int num19 = num101;
+                            int num18 = x;
+                            int num19 = y;
                             switch (WorldGen.genRand.Next(4))
                             {
                                 case 0:
@@ -1553,29 +1487,29 @@ namespace AQMod.Tiles
                             }
                         }
                     }
-                    if (Main.tile[num100, num101].type == 70)
+                    if (Main.tile[x, y].type == 70)
                     {
-                        int type12 = Main.tile[num100, num101].type;
-                        if (!Main.tile[num100, num104].active() && WorldGen.genRand.Next(10) == 0)
+                        int type12 = Main.tile[x, y].type;
+                        if (!Main.tile[x, num104].active() && WorldGen.genRand.Next(10) == 0)
                         {
-                            WorldGen.PlaceTile(num100, num104, 71, mute: true);
-                            if (Main.netMode == NetmodeID.Server && Main.tile[num100, num104].active())
+                            WorldGen.PlaceTile(x, num104, 71, mute: true);
+                            if (Main.netMode == NetmodeID.Server && Main.tile[x, num104].active())
                             {
-                                NetMessage.SendTileSquare(-1, num100, num104, 1);
+                                NetMessage.SendTileSquare(-1, x, num104, 1);
                             }
                         }
-                        if (WorldGen.genRand.Next(200) == 0 && WorldGen.GrowShroom(num100, num101) && WorldGen.PlayerLOS(num100, num101))
+                        if (WorldGen.genRand.Next(200) == 0 && WorldGen.GrowShroom(x, y) && WorldGen.PlayerLOS(x, y))
                         {
-                            WorldGen.TreeGrowFXCheck(num100, num101 - 1);
+                            WorldGen.TreeGrowFXCheck(x, y - 1);
                         }
                         bool flag18 = false;
                         for (int num20 = num102; num20 < num103; num20++)
                         {
                             for (int num21 = num104; num21 < num105; num21++)
                             {
-                                if ((num100 != num20 || num101 != num21) && Main.tile[num20, num21].active() && Main.tile[num20, num21].type == 59)
+                                if ((x != num20 || y != num21) && Main.tile[num20, num21].active() && Main.tile[num20, num21].type == 59)
                                 {
-                                    WorldGen.SpreadGrass(num20, num21, 59, type12, repeat: false, Main.tile[num100, num101].color());
+                                    WorldGen.SpreadGrass(num20, num21, 59, type12, repeat: false, Main.tile[x, y].color());
                                     if (Main.tile[num20, num21].type == type12)
                                     {
                                         WorldGen.SquareTileFrame(num20, num21);
@@ -1586,19 +1520,19 @@ namespace AQMod.Tiles
                         }
                         if (Main.netMode == NetmodeID.Server && flag18)
                         {
-                            NetMessage.SendTileSquare(-1, num100, num101, 3);
+                            NetMessage.SendTileSquare(-1, x, y, 3);
                         }
                     }
                 }
                 else
                 {
-                    if (Main.tile[num100, num101].wall == 62 && Main.tile[num100, num101].liquid == 0 && WorldGen.genRand.Next(10) == 0)
+                    if (Main.tile[x, y].wall == 62 && Main.tile[x, y].liquid == 0 && WorldGen.genRand.Next(10) == 0)
                     {
                         int num23 = WorldGen.genRand.Next(2, 4);
-                        int num144 = num100 - num23;
-                        int num24 = num100 + num23;
-                        int num25 = num101 - num23;
-                        int num26 = num101 + num23;
+                        int num144 = x - num23;
+                        int num24 = x + num23;
+                        int num25 = y - num23;
+                        int num26 = y + num23;
                         bool flag19 = false;
                         for (int num27 = num144; num27 <= num24; num27++)
                         {
@@ -1611,32 +1545,32 @@ namespace AQMod.Tiles
                                 }
                             }
                         }
-                        if (flag19 && !Main.tile[num100, num101].active())
+                        if (flag19 && !Main.tile[x, y].active())
                         {
-                            WorldGen.PlaceTile(num100, num101, 51, mute: true);
-                            WorldGen.TileFrame(num100, num101, resetFrame: true);
+                            WorldGen.PlaceTile(x, y, 51, mute: true);
+                            WorldGen.TileFrame(x, y, resetFrame: true);
                             if (Main.netMode == NetmodeID.Server)
                             {
-                                NetMessage.SendTileSquare(-1, num100, num101, 3);
+                                NetMessage.SendTileSquare(-1, x, y, 3);
                             }
                         }
                     }
                 }
             }
-            if (Main.tile[num100, num101].wall == 81 || Main.tile[num100, num101].wall == 83 || (Main.tile[num100, num101].type == 199 && Main.tile[num100, num101].active()))
+            if (Main.tile[x, y].wall == 81 || Main.tile[x, y].wall == 83 || (Main.tile[x, y].type == 199 && Main.tile[x, y].active()))
             {
-                int num29 = num100 + WorldGen.genRand.Next(-2, 3);
-                int num30 = num101 + WorldGen.genRand.Next(-2, 3);
+                int num29 = x + WorldGen.genRand.Next(-2, 3);
+                int num30 = y + WorldGen.genRand.Next(-2, 3);
                 if (Main.tile[num29, num30].wall >= 63 && Main.tile[num29, num30].wall <= 68)
                 {
                     bool flag20 = false;
-                    for (int num31 = num100 - num; num31 < num100 + num; num31++)
+                    for (int num31 = x - num; num31 < x + num; num31++)
                     {
-                        for (int num33 = num101 - num; num33 < num101 + num; num33++)
+                        for (int num33 = y - num; num33 < y + num; num33++)
                         {
-                            if (Main.tile[num100, num101].active())
+                            if (Main.tile[x, y].active())
                             {
-                                int type2 = Main.tile[num100, num101].type;
+                                int type2 = Main.tile[x, y].type;
                                 if (type2 == 199 || type2 == 200 || type2 == 201 || type2 == 203 || type2 == 205 || type2 == 234 || type2 == 352)
                                 {
                                     flag20 = true;
@@ -1655,20 +1589,20 @@ namespace AQMod.Tiles
                     }
                 }
             }
-            if (Main.tile[num100, num101].wall == 69 || Main.tile[num100, num101].wall == 3 || (Main.tile[num100, num101].type == 23 && Main.tile[num100, num101].active()))
+            if (Main.tile[x, y].wall == 69 || Main.tile[x, y].wall == 3 || (Main.tile[x, y].type == 23 && Main.tile[x, y].active()))
             {
-                int num34 = num100 + WorldGen.genRand.Next(-2, 3);
-                int num35 = num101 + WorldGen.genRand.Next(-2, 3);
+                int num34 = x + WorldGen.genRand.Next(-2, 3);
+                int num35 = y + WorldGen.genRand.Next(-2, 3);
                 if (Main.tile[num34, num35].wall >= 63 && Main.tile[num34, num35].wall <= 68)
                 {
                     bool flag21 = false;
-                    for (int num36 = num100 - num; num36 < num100 + num; num36++)
+                    for (int num36 = x - num; num36 < x + num; num36++)
                     {
-                        for (int num37 = num101 - num; num37 < num101 + num; num37++)
+                        for (int num37 = y - num; num37 < y + num; num37++)
                         {
-                            if (Main.tile[num100, num101].active())
+                            if (Main.tile[x, y].active())
                             {
-                                int type3 = Main.tile[num100, num101].type;
+                                int type3 = Main.tile[x, y].type;
                                 if (type3 == 22 || type3 == 23 || type3 == 24 || type3 == 25 || type3 == 32 || type3 == 112 || type3 == 163)
                                 {
                                     flag21 = true;
@@ -1687,20 +1621,20 @@ namespace AQMod.Tiles
                     }
                 }
             }
-            if (Main.tile[num100, num101].wall == 70 || (Main.tile[num100, num101].type == 109 && Main.tile[num100, num101].active()))
+            if (Main.tile[x, y].wall == 70 || (Main.tile[x, y].type == 109 && Main.tile[x, y].active()))
             {
-                int num38 = num100 + WorldGen.genRand.Next(-2, 3);
-                int num39 = num101 + WorldGen.genRand.Next(-2, 3);
+                int num38 = x + WorldGen.genRand.Next(-2, 3);
+                int num39 = y + WorldGen.genRand.Next(-2, 3);
                 if (Main.tile[num38, num39].wall == 63 || Main.tile[num38, num39].wall == 65 || Main.tile[num38, num39].wall == 66 || Main.tile[num38, num39].wall == 68)
                 {
                     bool flag22 = false;
-                    for (int num40 = num100 - num; num40 < num100 + num; num40++)
+                    for (int num40 = x - num; num40 < x + num; num40++)
                     {
-                        for (int num41 = num101 - num; num41 < num101 + num; num41++)
+                        for (int num41 = y - num; num41 < y + num; num41++)
                         {
-                            if (Main.tile[num100, num101].active())
+                            if (Main.tile[x, y].active())
                             {
-                                int type4 = Main.tile[num100, num101].type;
+                                int type4 = Main.tile[x, y].type;
                                 if (type4 == 109 || type4 == 110 || type4 == 113 || type4 == 115 || type4 == 116 || type4 == 117 || type4 == 164)
                                 {
                                     flag22 = true;
@@ -1719,9 +1653,9 @@ namespace AQMod.Tiles
                     }
                 }
             }
-            WorldGen.SpreadDesertWalls(num, num100, num101);
-            TileLoader.RandomUpdate(num100, num101, Main.tile[num100, num101].type);
-            WallLoader.RandomUpdate(num100, num101, Main.tile[num100, num101].wall);
+            WorldGen.SpreadDesertWalls(num, x, y);
+            TileLoader.RandomUpdate(x, y, Main.tile[x, y].type);
+            WallLoader.RandomUpdate(x, y, Main.tile[x, y].wall);
         }
     }
 }

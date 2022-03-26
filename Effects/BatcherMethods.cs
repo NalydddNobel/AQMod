@@ -9,18 +9,6 @@ namespace AQMod.Effects
         public static SpriteSortMode Regular => SpriteSortMode.Deferred;
         public static SpriteSortMode Shader => SpriteSortMode.Immediate;
 
-        public static class Background
-        {
-            public static void Begin(SpriteBatch spriteBatch)
-            {
-                Begin(spriteBatch, Regular);
-            }
-            public static void Begin(SpriteBatch spriteBatch, SpriteSortMode spriteSort)
-            {
-                spriteBatch.Begin(spriteSort, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.instance.Rasterizer, null, Main.BackgroundViewMatrix.TransformationMatrix);
-            }
-        }
-
         public static class Dusts
         {
             public static void Begin(SpriteBatch spriteBatch)

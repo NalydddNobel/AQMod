@@ -7,6 +7,7 @@ using AQMod.Common.ID;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
 using AQMod.Effects;
+using AQMod.Effects.Prims;
 using AQMod.Items.Armor.Vanity.BossMasks;
 using AQMod.Items.Dyes;
 using AQMod.Items.Materials;
@@ -138,6 +139,8 @@ namespace AQMod.NPCs.Bosses
                 yaw = reader.ReadSingle();
             }
         }
+
+        private PrimRenderer prim;
 
         public Ring[] rings;
         public int skipDeathTimer;
@@ -457,9 +460,9 @@ namespace AQMod.NPCs.Bosses
                                 const int width = (int)(Circumference * 2f);
                                 const int height = 900;
                                 Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.stariteProjectileColoring, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.stariteProjectileColoring, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.stariteProjectileColoring, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.auraColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.auraColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.auraColor, 2f);
                             }
                         }
                     }
@@ -1355,43 +1358,12 @@ namespace AQMod.NPCs.Bosses
             spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity - (int)intensity)), npc.rotation, spotlightOrig, npc.scale * 2.5f + ((int)intensity + 1), SpriteEffects.None, 0f);
             if ((npc.position - npc.oldPos[1]).Length() > 0.01f)
             {
-                if (PrimitivesRenderer.ShouldDrawVertexTrails())
+                if (prim == null)
                 {
-                    var trueOldPos = new List<Vector2>();
-                    for (int i = 0; i < NPCID.Sets.TrailCacheLength[npc.type]; i++)
-                    {
-                        if (npc.oldPos[i] == new Vector2(0f, 0f))
-                            break;
-                        trueOldPos.Add(npc.oldPos[i] + offset - Main.screenPosition);
-                    }
-                    if (trueOldPos.Count > 1)
-                    {
-                        PrimitivesRenderer.ReversedGravity(trueOldPos);
-                        const float radius = Circumference / 2f;
-                        Vector2[] arr;
-                        arr = trueOldPos.ToArray();
-                        if (arr.Length > 1)
-                        {
-                            var trailClr = Glimmer.stariteDiscoParty ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                            var trail = new PrimitivesRenderer(LegacyTextureCache.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail);
-                            trail.PrepareVertices(arr, (p) => new Vector2(radius - p * radius), (p) => trailClr * (1f - p));
-                            trail.Draw();
-                        }
-                    }
+                    float radius = Circumference / 2f;
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThinLine"), PrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => Glimmer.auraColor * (1f - p));
                 }
-                else
-                {
-                    int trailLength = NPCID.Sets.TrailCacheLength[npc.type];
-                    for (int i = 0; i < trailLength; i++)
-                    {
-                        if (npc.oldPos[i] == new Vector2(0f, 0f))
-                            break;
-                        float progress = 1f - 1f / trailLength * i;
-                        var trailClr = Glimmer.stariteDiscoParty ? Main.DiscoColor : new Color(35, 85, 255, 120);
-                        trailClr.A = 0;
-                        Main.spriteBatch.Draw(texture, npc.oldPos[i] + offset - Main.screenPosition, npc.frame, trailClr * 0.4f * progress, npc.rotation, origin, npc.scale, SpriteEffects.None, 0f);
-                    }
-                }
+                prim.Draw(npc.oldPos);
             }
             else
             {

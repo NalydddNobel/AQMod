@@ -3,11 +3,10 @@ using AQMod.Common.Configuration;
 using AQMod.Common.Graphics;
 using AQMod.Common.ID;
 using AQMod.Dusts;
-using AQMod.Effects;
+using AQMod.Effects.Prims;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,6 +15,8 @@ namespace AQMod.Projectiles.Magic
 {
     public class NarrizuulProj : ModProjectile
     {
+        private PrimRenderer prim;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 18;
@@ -85,22 +86,15 @@ namespace AQMod.Projectiles.Magic
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             float colorMult = 1f / ProjectileID.Sets.TrailCacheLength[projectile.type];
             int trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
-            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimRenderer.renderProjTrails)
             {
-                var trueOldPos = new List<Vector2>();
-                for (int i = 0; i < trailLength; i++)
+                if (prim == null)
                 {
-                    if (projectile.oldPos[i] == Vector2.Zero)
-                        break;
-                    trueOldPos.Add(GameCamera.GetY(projectile.oldPos[i] + offset - Main.screenPosition));
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickTrail"), PrimRenderer.DefaultPass,
+                        (p) => new Vector2(20f - p * 20f),
+                        (p) => NarrizuulRainbow(projectile.localAI[1]) * 3 * (0.65f + (float)(Math.Sin(Main.GlobalTime + p * 20f) * 0.1f)) * (1f - p));
                 }
-                if (trueOldPos.Count > 1)
-                {
-                    var trail = new PrimitivesRenderer(LegacyTextureCache.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail);
-                    var clr2 = NarrizuulRainbow(projectile.localAI[1]) * 3;
-                    trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20f - p * 20f), (p) => clr2 * (0.65f + (float)(Math.Sin(Main.GlobalTime + p * 20f) * 0.1f)) * (1f - p));
-                    trail.Draw();
-                }
+                prim.Draw(projectile.oldPos);
             }
             else
             {

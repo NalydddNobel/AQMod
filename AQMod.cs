@@ -13,6 +13,7 @@ using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.Particles;
+using AQMod.Effects.Prims;
 using AQMod.Effects.Trails;
 using AQMod.Items;
 using AQMod.Items.Accessories.Wings;
@@ -223,7 +224,6 @@ namespace AQMod
                 CrabPot.origin = CrabPot.frame.Size() / 2f;
 
                 LegacyEffectCache.Load(this);
-                PrimitivesRenderer.Setup();
 
                 SkyManager.Instance[SkyGlimmerEvent.Name] = new SkyGlimmerEvent();
 
@@ -331,7 +331,6 @@ namespace AQMod
                 SkyGlimmerEvent.BGStarite._texture = null;
                 NPCTalkUI = null;
                 LoadMusic(unload: true);
-                PrimitivesRenderer.Unload();
 
                 LegacyEffectCache.Unload();
                 LegacyTextureCache.Unload();
@@ -355,11 +354,11 @@ namespace AQMod
 
             if (Glimmer.stariteDiscoParty)
             {
-                Glimmer.stariteProjectileColoring = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
+                Glimmer.auraColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0);
             }
             else
             {
-                Glimmer.stariteProjectileColoring = Glimmer.StariteProjectileColorOrig;
+                Glimmer.auraColor = Glimmer.StariteProjectileColorOrig;
             }
         }
 
@@ -675,6 +674,22 @@ namespace AQMod
         public static Texture2D Texture(string key)
         {
             return ModContent.GetInstance<AQMod>().GetTexture(key);
+        }
+
+        public static void ScreenFlip(Vector2[] value)
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                value[i] = ScreenFlip(value[i]);
+            }
+        }
+        public static Vector2 ScreenFlip(Vector2 value)
+        {
+            return new Vector2(value.X, ScreenFlip(value.Y));
+        }
+        public static float ScreenFlip(float value)
+        {
+            return -value + Main.screenHeight;
         }
     }
 }

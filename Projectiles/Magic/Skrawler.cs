@@ -1,6 +1,5 @@
 ﻿using AQMod.Dusts;
-using AQMod.Effects;
-using AQMod.Effects.Trails;
+using AQMod.Effects.Prims;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,6 +11,8 @@ namespace AQMod.Projectiles.Magic
 {
     public class Skrawler : ModProjectile
     {
+        private PrimRenderer prim;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 200;
@@ -48,14 +49,13 @@ namespace AQMod.Projectiles.Magic
             var texture = Main.projectileTexture[projectile.type];
             var textureOrig = new Vector2(texture.Width / 2f, 2f);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimRenderer.renderProjTrails)
             {
-                var renderingPositions = PrimitivesRenderer.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f - Main.screenPosition.X, projectile.height / 2f - Main.screenPosition.Y));
-                if (renderingPositions.Count > 1)
+                if (prim == null)
                 {
-                    PrimitivesRenderer.FullDraw(texture, PrimitivesRenderer.TextureTrail,
-                        renderingPositions.ToArray(), GetSizeMethod(), GetColorMethod());
+                    prim = new PrimRenderer(texture, PrimRenderer.DefaultPass, GetSizeMethod(), GetColorMethod());
                 }
+                prim.Draw(projectile.oldPos);
             }
             else
             {
@@ -76,12 +76,9 @@ namespace AQMod.Projectiles.Magic
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                var renderingPositions = PrimitivesRenderer.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f, projectile.height / 2f));
-                if (renderingPositions.Count > 3)
+                if (prim != null)
                 {
-                    renderingPositions.RemoveAt(renderingPositions.Count - 1);
-                    AQMod.Trails.PreDrawProjectiles.NewTrail(new DyingTrail(Main.projectileTexture[projectile.type], PrimitivesRenderer.TextureTrail,
-                    renderingPositions, GetSizeMethod(), GetColorMethod(), default, default, projectile.extraUpdates));
+                    AQMod.Trails.PreDrawProjectiles.NewTrail(new DyingPrimTrail(prim, projectile.oldPos, removeAmt: projectile.extraUpdates + 1));
                 }
             }
             for (int i = 0; i < 10; i++)

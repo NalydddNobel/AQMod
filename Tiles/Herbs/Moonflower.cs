@@ -20,7 +20,7 @@ namespace AQMod.Tiles.Herbs
 
         protected override Color MapColor => new Color(186, 122, 255, 255);
         public override Vector3 GlowColor => new Vector3(0.45f, 0.05f, 1f);
-        protected override int DrawOffsetY => -16;
+        protected override int DrawOffsetY => -14;
 
         public override bool IsBlooming(int i, int j)
         {
@@ -100,8 +100,8 @@ namespace AQMod.Tiles.Herbs
             var effects = SpriteEffects.None;
             SetSpriteEffects(i, j, ref effects);
             var frame = new Rectangle(Main.tile[i, j].frameX, Main.tile[i, j].frameY, FrameWidth, FrameHeight);
-            var offset = AQMod.Zero - Main.screenPosition;
-            var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f);
+            var offset = (AQMod.Zero - Main.screenPosition).Floor();
+            var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
             spriteBatch.Draw(texture, groundPosition + offset, frame, Lighting.GetColor(i, j), 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
             if (Main.tile[i, j].frameX == 56)
             {

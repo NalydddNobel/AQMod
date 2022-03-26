@@ -49,7 +49,7 @@ namespace AQMod.Tiles.PetrifiedFurn
         {
             if (Main.tile[i, j].frameY != 0)
             {
-                Main.tile[i, j].frameX = (short)TileUtils.FrameForPlatformSloping(Main.tile[i, j].slope());
+                Main.tile[i, j].frameX = (short)TileUtils.PlatformSlopeFrame(Main.tile[i, j].slope());
                 Main.tile[i, j].frameY = 0;
                 WorldGen.SquareTileFrame(i, j, resetFrame: true);
             }

@@ -1151,7 +1151,7 @@ namespace AQMod.Content.World.Biomes
                 WorldGen.PlaceTile(p.X, p.Y, ModContent.TileType<PetrifiedWoodPlatform>(), mute: true, forced: true);
                 Main.tile[p.X, p.Y].halfBrick(halfBrick: false);
                 Main.tile[p.X, p.Y].slope(slope: (byte)(int)v.Z);
-                Main.tile[p.X, p.Y].frameX = (short)TileUtils.FrameForPlatformSloping(Main.tile[p.X, p.Y].slope());
+                Main.tile[p.X, p.Y].frameX = (short)TileUtils.PlatformSlopeFrame(Main.tile[p.X, p.Y].slope());
                 Main.tile[p.X, p.Y].frameY = 0;
                 WorldGen.SquareTileFrame(p.X, p.Y, resetFrame: true);
             }

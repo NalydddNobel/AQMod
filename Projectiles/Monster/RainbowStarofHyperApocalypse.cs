@@ -4,6 +4,7 @@ using AQMod.Common.ID;
 using AQMod.Common.Utilities.Colors;
 using AQMod.Dusts;
 using AQMod.Effects;
+using AQMod.Effects.Prims;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,6 +17,8 @@ namespace AQMod.Projectiles.Monster
 {
     public class RainbowStarofHyperApocalypse : ModProjectile
     {
+        private PrimRenderer prim;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
@@ -77,25 +80,15 @@ namespace AQMod.Projectiles.Monster
             if (playerDistance < 1200f)
                 intensity = 1f - playerDistance / 1200f;
             intensity *= ModContent.GetInstance<AQConfigClient>().EffectIntensity;
-            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimRenderer.renderProjTrails)
             {
-                var trueOldPos = new List<Vector2>();
-                for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
+                if (prim == null)
                 {
-                    if (projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    trueOldPos.Add(GameCamera.GetY(projectile.oldPos[i] + offset - Main.screenPosition));
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThinLine"), PrimRenderer.DefaultPass,
+                        (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTime + p) * 0.5f * (1f - p));
                 }
-                if (trueOldPos.Count > 1)
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        var trail = new PrimitivesRenderer(LegacyTextureCache.Trails[TrailTex.Line], PrimitivesRenderer.TextureTrail);
-                        trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTime + p) * 0.5f * (1f - p));
-                        trail.Draw();
-                    }
-                    // amazing code
-                }
+                for (int i = 0; i < 4; i++)
+                    prim.Draw(projectile.oldPos);
             }
             else
             {

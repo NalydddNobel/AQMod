@@ -2,7 +2,7 @@
 using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Dusts;
-using AQMod.Effects;
+using AQMod.Effects.Prims;
 using AQMod.Effects.Trails;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -65,14 +65,13 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
             var texture = TextureGrabber.GetProjectile(projectile.type);
             var textureOrig = new Vector2(texture.Width / 2f, 2f);
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
-            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimRenderer.renderProjTrails)
             {
-                var renderingPositions = PrimitivesRenderer.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f - Main.screenPosition.X, projectile.height / 2f - Main.screenPosition.Y));
-                if (renderingPositions.Count > 1)
+                if (prim == null)
                 {
-                    PrimitivesRenderer.FullDraw(LegacyTextureCache.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
-                        renderingPositions.ToArray(), GetSizeMethod(), GetColorMethod(lightColor));
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickerLine"), PrimRenderer.DefaultPass, GetSizeMethod(), (p) => GetColor() * (1f - p));
                 }
+                prim.Draw(projectile.oldPos);
             }
             else
             {
@@ -114,15 +113,9 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
 
         public override void Kill(int timeLeft)
         {
-            if (Main.netMode != NetmodeID.Server)
+            if (Main.netMode != NetmodeID.Server && prim != null)
             {
-                var renderingPositions = PrimitivesRenderer.GetValidRenderingPositions(projectile.oldPos, new Vector2(projectile.width / 2f, projectile.height / 2f));
-                if (renderingPositions.Count > 3)
-                {
-                    renderingPositions.RemoveAt(renderingPositions.Count - 1);
-                    AQMod.Trails.PreDrawProjectiles.NewTrail(new DyingTrail(LegacyTextureCache.Trails[TrailTex.ThickerLine], PrimitivesRenderer.TextureTrail,
-                    renderingPositions, GetSizeMethod(), GetColorMethod(GetColor()), default, default, projectile.extraUpdates));
-                }
+                AQMod.Trails.PreDrawProjectiles.NewTrail(new DyingPrimTrail(prim, projectile.oldPos, removeAmt: projectile.extraUpdates + 1));
             }
             int dustType = ModContent.DustType<MonoDust>();
             var dustColor = GetColor();

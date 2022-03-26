@@ -2,18 +2,19 @@
 using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Dusts;
-using AQMod.Effects;
+using AQMod.Effects.Prims;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace AQMod.Projectiles
 {
-    public class Memorialist : ModProjectile
+    public class MemorialistProj : ModProjectile
     {
+        private PrimRenderer prim;
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 19;
@@ -54,22 +55,15 @@ namespace AQMod.Projectiles
             var center = projectile.Center;
             var offset = new Vector2(projectile.width / 2f, projectile.height / 2f);
             int trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
-            if (PrimitivesRenderer.ShouldDrawVertexTrails(PrimitivesRenderer.GetVertexDrawingContext_Projectile(projectile)))
+            if (PrimRenderer.renderProjTrails)
             {
-                var trueOldPos = new List<Vector2>();
-                for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[projectile.type]; i++)
+                if (prim == null)
                 {
-                    if (projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    trueOldPos.Add(GameCamera.GetY(projectile.oldPos[i] + offset - Main.screenPosition));
-                }
-                if (trueOldPos.Count > 1)
-                {
-                    var trail = new PrimitivesRenderer(LegacyTextureCache.Trails[TrailTex.ThickLine], PrimitivesRenderer.TextureTrail);
-                    trail.PrepareVertices(trueOldPos.ToArray(), (p) => new Vector2(14f - p * 14f) * projectile.scale,
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickTrail"), PrimRenderer.DefaultPass,
+                        (p) => new Vector2(14f - p * 14f) * projectile.scale,
                         (p) => Color.Lerp(new Color(255, 255, 50, 20), new Color(255, 10, 10, 0), p) * (1f - p));
-                    trail.Draw();
                 }
+                prim.Draw(projectile.oldPos);
             }
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 200 + (int)AQUtils.Wave(Main.GlobalTime * 10f, -15, 15), 200, 160), projectile.rotation, origin, projectile.scale, SpriteEffects.None, 0f);
             if (AQConfigClient.Instance.EffectQuality >= 1f)

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AQMod.Effects;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -141,7 +142,7 @@ namespace AQMod.Tiles.CrabCrevice
         {
             if (Main.tile[i, j - 1].type != Type)
             {
-                TileUtils.Rendering.RenderSwayingVine(i, j, Type);
+                TileEffects.RenderSwayingVine(i, j, Type);
             }
             return false;
         }

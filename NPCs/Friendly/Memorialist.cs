@@ -186,7 +186,7 @@ namespace AQMod.NPCs.Friendly
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = ModContent.ProjectileType<Projectiles.Memorialist>();
+            projType = ModContent.ProjectileType<Projectiles.MemorialistProj>();
             attackDelay = 1;
         }
 

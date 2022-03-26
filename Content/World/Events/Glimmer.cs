@@ -78,7 +78,7 @@ namespace AQMod.Content.World.Events
         public static ushort tileX;
         public static ushort tileY;
         public static int deactivationDelay = -1;
-        public static Color stariteProjectileColoring;
+        public static Color auraColor;
         public static bool stariteDiscoParty;
         public static bool renderUltimateSword;
 
@@ -99,7 +99,7 @@ namespace AQMod.Content.World.Events
             tileX = 0;
             tileY = 0;
             stariteDiscoParty = false;
-            stariteProjectileColoring = StariteProjectileColorOrig;
+            auraColor = StariteProjectileColorOrig;
             deactivationDelay = -1;
         }
 
@@ -323,7 +323,7 @@ namespace AQMod.Content.World.Events
             if (stariteDiscoParty)
             {
                 stariteDiscoParty = false;
-                stariteProjectileColoring = StariteProjectileColorOrig;
+                auraColor = StariteProjectileColorOrig;
             }
         }
     }
