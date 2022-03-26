@@ -12,6 +12,7 @@ using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.HookUpgrades;
 using AQMod.Items.Accessories.Summon;
 using AQMod.Items.Accessories.Wings;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Misc;
 using AQMod.Items.Placeable.Furniture;
 using AQMod.Items.Potions;
@@ -642,28 +643,20 @@ namespace AQMod
 
         public override void OpenVanillaBag(string context, Player player, int arg)
         {
-            switch (context)
+            if (context == "bossBag")
             {
-                case "bossBag":
-                    {
-                        switch (arg)
-                        {
-                            case ItemID.QueenBeeBossBag:
-                                {
-                                    if (Main.rand.NextBool())
-                                        player.QuickSpawnItem(ModContent.ItemType<BeeRod>());
-                                }
-                                break;
-
-                            case ItemID.WallOfFleshBossBag:
-                                {
-                                    if (Main.hardMode)
-                                        player.QuickSpawnItem(ModContent.ItemType<OpposingPotion>(), Main.rand.Next(4) + 1);
-                                }
-                                break;
-                        }
-                    }
-                    break;
+                if (arg == ItemID.QueenBeeBossBag)
+                {
+                    if (Main.rand.NextBool())
+                        player.QuickSpawnItem(ModContent.ItemType<BeeRod>());
+                    player.QuickSpawnItem(ModContent.ItemType<OrganicEnergy>(), Main.rand.Next(4) + 5);
+                }
+                else if (arg == ItemID.WallOfFleshBossBag)
+                {
+                    if (Main.hardMode)
+                        player.QuickSpawnItem(ModContent.ItemType<OpposingPotion>(), Main.rand.Next(4) + 1);
+                    player.QuickSpawnItem(ModContent.ItemType<DemonicEnergy>(), Main.rand.Next(4) + 5);
+                }
             }
         }
 

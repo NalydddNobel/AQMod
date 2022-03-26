@@ -172,7 +172,7 @@ namespace AQMod.Items.Potions.Concoctions
                 {
                     if (t.mod == "Terraria" && t.Name == "ItemName")
                     {
-                        t.text = Lang.GetItemName(original.type).Value;
+                        t.text = AQMod.GetText("Doubled", Lang.GetItemName(original.type));
                         break;
                     }
                 }

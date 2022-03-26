@@ -13,7 +13,6 @@ using AQMod.Content.World.Events;
 using AQMod.Effects;
 using AQMod.Effects.Dyes;
 using AQMod.Effects.Particles;
-using AQMod.Effects.Prims;
 using AQMod.Effects.Trails;
 using AQMod.Items;
 using AQMod.Items.Accessories.Wings;
@@ -90,7 +89,7 @@ namespace AQMod
         internal static ModData fargowiltas;
         internal static ModData polarities;
         internal static ModData split;
-        internal static ModData sOTS;
+        internal static ModData sots;
         internal static ModData shaderLib;
         internal static ModData discordRP;
         internal static ModData bossChecklist;
@@ -175,7 +174,7 @@ namespace AQMod
                 fargowiltas.Dispose();
                 polarities.Dispose();
                 split.Dispose();
-                sOTS.Dispose();
+                sots.Dispose();
                 shaderLib.Dispose();
                 discordRP.Dispose();
                 bossChecklist.Dispose();
@@ -189,7 +188,7 @@ namespace AQMod
                 fargowiltas = new ModData("Fargowiltas");
                 polarities = new ModData("Polarities");
                 split = new ModData("Split");
-                sOTS = new ModData("SOTS");
+                sots = new ModData("SOTS");
                 shaderLib = new ModData("ShaderLib");
                 discordRP = new ModData("DiscordRP");
                 bossChecklist = new ModData("BossChecklist");

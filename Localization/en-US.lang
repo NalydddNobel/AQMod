@@ -28,10 +28,16 @@ Tooltips.ToggleKeyBind=You can toggle this function by pressing {0}
 
 
 
+ItemName.MoonflowerPollen=Moonflower Pollen
+ItemTooltip.MoonflowerPollen={$Mods.AQMod.Tooltips.Concocted}
+ItemName.LingeringPotion=Lingering Potion
+ItemTooltip.LingeringPotion=Leaves a lingering effect which buffs yourself and nearby teammates
+Lingering=Lingering {0}
 
 ItemName.Molite=Starbyte
-ItemTooltip.Molite={$Mods.AQMod.Tooltips.Concocted}\nDoubles the length of potions
-ItemName.MoliteTag=Starbyte Potion
+ItemTooltip.Molite={$Mods.AQMod.Tooltips.Concocted}
+ItemName.MoliteTag=Doubled Potion
+Doubled=Doubled {0}
 ItemTooltip.MoliteTag=Has double the length
 
 ItemName.MushroomClam=Hypnotic Pearl
@@ -491,8 +497,6 @@ MapLayerToggle.Beeswax=Shows the location of any visible Plantera bulbs
 #===========================#
 ItemName.MoonflowerSeeds=Moonflower Seeds
 ItemTooltip.MoonflowerSeeds=Blooms and produces pollen near midnight
-ItemName.MoonflowerPollen=Moonflower Pollen
-ItemTooltip.MoonflowerPollen={$Mods.AQMod.Tooltips.Concocted}\nPotions leave a lingering effect which gives yourself and teammates buffs
 MapObject.Moonflower=Moonflower
 
 ItemName.ExoticRedTorch=Ultrabright Red Torch

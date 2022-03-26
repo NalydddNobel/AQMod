@@ -2,6 +2,7 @@
 using AQMod.Common.ID;
 using AQMod.Items.Accessories;
 using AQMod.Items.Accessories.Summon;
+using AQMod.Items.Materials.Energies;
 using AQMod.Items.Potions.Foods;
 using AQMod.Items.Tools.Map;
 using AQMod.Items.Weapons.Melee;
@@ -22,6 +23,7 @@ namespace AQMod.NPCs
             public bool? crimson;
             public bool? hallow;
             public bool? jungle;
+            public bool? expert;
             public bool hardmodeOnly;
 
             public DropConditions(bool setup = false) : this()
@@ -40,6 +42,7 @@ namespace AQMod.NPCs
             {
                 moonPhase = Main.moonPhase;
                 hardmodeOnly = Main.hardMode;
+                expert = Main.expertMode;
             }
 
             private void GiveValue(ref bool? me, bool value)
@@ -79,6 +82,7 @@ namespace AQMod.NPCs
                         CompareEqual(crimson, conditions.crimson) ||
                         CompareEqual(hallow, conditions.hallow) ||
                         CompareEqual(jungle, conditions.jungle) ||
+                        CompareEqual(expert, conditions.expert) ||
                         OnlyFlag(conditions.hardmodeOnly, hardmodeOnly);
                 }
                 return false;
@@ -185,6 +189,8 @@ namespace AQMod.NPCs
                 [NPCID.UndeadViking] = new Loot(ModContent.ItemType<CrystalDagger>()) { chance = 10, },
                 [NPCID.MossHornet] = new Loot(ModContent.ItemType<Beeswax>()) { chance = 80, },
                 [NPCID.Golem] = new Loot(ModContent.ItemType<RustyKnife>(), 1, new DropConditions() { moonPhase = MoonPhases.FullMoon }),
+                [NPCID.WallofFlesh] = new Loot(ModContent.ItemType<DemonicEnergy>(), 6, 10, new DropConditions() { expert = false, }),
+                [NPCID.QueenBee] = new Loot(ModContent.ItemType<DemonicEnergy>(), 6, 10, new DropConditions() { expert = false, }),
                 [NPCID.DungeonSpirit] = new Loot(ModContent.ItemType<Breadsoul>()) { chance = 45, },
                 [NPCID.DuneSplicerHead] = new Loot(ModContent.ItemType<SpicyEel>()) { chance = 15, },
             };

@@ -1,6 +1,7 @@
 ﻿using AQMod.Content.Concoctions;
 using AQMod.Dusts;
 using AQMod.Effects;
+using AQMod.Projectiles;
 using AQMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -54,8 +55,11 @@ namespace AQMod.Items.Potions.Concoctions
 
         public override bool UseItem(Player player)
         {
-            if (Main.netMode != NetmodeID.Server)
+            if (Main.myPlayer == player.whoAmI)
             {
+                int p = Projectile.NewProjectile(player.Center, Vector2.Zero, ModContent.ProjectileType<LingeringPotionAura>(), 0, 0f, player.whoAmI);
+                Main.projectile[p].timeLeft = original.buffTime / 8;
+                ((LingeringPotionAura)Main.projectile[p].modProjectile).ApplyPotion(original);
             }
             return ItemLoader.UseItem(original, player);
         }
@@ -161,7 +165,7 @@ namespace AQMod.Items.Potions.Concoctions
                 {
                     if (t.mod == "Terraria" && t.Name == "ItemName")
                     {
-                        t.text = Lang.GetItemName(original.type).Value;
+                        t.text = AQMod.GetText("Lingering", Lang.GetItemName(original.type));
                         break;
                     }
                 }

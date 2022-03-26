@@ -32,7 +32,7 @@ namespace AQMod.Effects
             returning = false;
         }
 
-        public bool SetTarget(string key, Vector2 target, CameraPriority priority, float speed = 48f, int hold = 60)
+        public bool SetTarget(string key, Vector2 target, CameraPriority priority, float speed = 128f, int hold = 60)
         {
             if (key == FocusKey)
             {
@@ -56,7 +56,7 @@ namespace AQMod.Effects
 
         private void CheckSpeed()
         {
-            speed = Math.Max(speed, 10f);
+            speed = Math.Max(speed, 128f);
         }
         internal void UpdateScreen()
         {
@@ -66,7 +66,6 @@ namespace AQMod.Effects
                 {
                     cameraPosition = Main.screenPosition;
                 }
-                Main.NewText(cameraPosition);
                 CheckSpeed();
                 var difference = ScreenTarget - cameraPosition.Value;
                 float l = difference.Length();
@@ -89,7 +88,6 @@ namespace AQMod.Effects
                     hold--;
                     return;
                 }
-                Main.NewText(cameraPosition);
                 target = null;
                 returning = false;
                 CheckSpeed();
