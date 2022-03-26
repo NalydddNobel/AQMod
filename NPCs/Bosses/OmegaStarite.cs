@@ -1361,7 +1361,7 @@ namespace AQMod.NPCs.Bosses
                 if (prim == null)
                 {
                     float radius = Circumference / 2f;
-                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThinLine"), PrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => Glimmer.auraColor * (1f - p));
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThinLine"), PrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => Glimmer.auraColor * (1f - p), drawOffset: npc.Size / 2f);
                 }
                 prim.Draw(npc.oldPos);
             }

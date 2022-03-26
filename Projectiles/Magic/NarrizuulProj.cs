@@ -92,7 +92,8 @@ namespace AQMod.Projectiles.Magic
                 {
                     prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickTrail"), PrimRenderer.DefaultPass,
                         (p) => new Vector2(20f - p * 20f),
-                        (p) => NarrizuulRainbow(projectile.localAI[1]) * 3 * (0.65f + (float)(Math.Sin(Main.GlobalTime + p * 20f) * 0.1f)) * (1f - p));
+                        (p) => NarrizuulRainbow(projectile.localAI[1]) * 3 * (0.65f + (float)(Math.Sin(Main.GlobalTime + p * 20f) * 0.1f)) * (1f - p),
+                        drawOffset: projectile.Size / 2f);
                 }
                 prim.Draw(projectile.oldPos);
             }

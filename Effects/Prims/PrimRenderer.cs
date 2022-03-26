@@ -16,6 +16,7 @@ namespace AQMod.Effects.Prims
 
         public static bool renderProjTrails;
 
+        public Vector2 drawOffset;
         protected readonly Texture2D Texture;
         protected readonly string Pass;
         protected readonly Func<float, Vector2> GetWidth;
@@ -30,7 +31,7 @@ namespace AQMod.Effects.Prims
 
         }
 
-        public PrimRenderer(Texture2D texture, string pass, Func<float, Vector2> getWidth, Func<float, Color> getColor, bool obeyReversedGravity = true, bool worldTrail = true)
+        public PrimRenderer(Texture2D texture, string pass, Func<float, Vector2> getWidth, Func<float, Color> getColor, bool obeyReversedGravity = true, bool worldTrail = true, Vector2 drawOffset = default(Vector2))
         {
             Texture = texture;
             Pass = pass;
@@ -38,6 +39,7 @@ namespace AQMod.Effects.Prims
             GetColor = getColor;
             ObeyReversedGravity = obeyReversedGravity;
             WorldTrail = worldTrail;
+            this.drawOffset = drawOffset;
             vertices = null;
         }
 
@@ -58,11 +60,20 @@ namespace AQMod.Effects.Prims
         {
             if (WorldTrail)
             {
-                arr = RemoveZerosAndDoOffset(arr, -Main.screenPosition);
+                arr = RemoveZerosAndDoOffset(arr, -Main.screenPosition + drawOffset);
                 if (arr.Length <= 1)
                 {
                     return false;
                 }
+            }
+            else if (drawOffset != Vector2.Zero)
+            {
+                var arr2 = new Vector2[arr.Length];
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr2[i] = arr[i] + drawOffset;
+                }
+                arr = arr2;
             }
             if (ObeyReversedGravity && Main.player[Main.myPlayer].gravDir == -1)
             {

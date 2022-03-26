@@ -53,7 +53,7 @@ namespace AQMod.Projectiles.Magic
             {
                 if (prim == null)
                 {
-                    prim = new PrimRenderer(texture, PrimRenderer.DefaultPass, GetSizeMethod(), GetColorMethod());
+                    prim = new PrimRenderer(texture, PrimRenderer.DefaultPass, GetSizeMethod(), GetColorMethod(), drawOffset: projectile.Size / 2f);
                 }
                 prim.Draw(projectile.oldPos);
             }

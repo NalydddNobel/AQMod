@@ -49,7 +49,8 @@ namespace AQMod.Projectiles.Monster.GaleStreams
             {
                 if (prim == null)
                 {
-                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickerLine"), PrimRenderer.DefaultPass, (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickerLine"), PrimRenderer.DefaultPass, (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p),
+                        drawOffset: projectile.Size / 2f);
                 }
                 prim.Draw(projectile.oldPos);
             }

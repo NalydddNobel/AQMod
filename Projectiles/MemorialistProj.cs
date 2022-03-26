@@ -61,7 +61,8 @@ namespace AQMod.Projectiles
                 {
                     prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickTrail"), PrimRenderer.DefaultPass,
                         (p) => new Vector2(14f - p * 14f) * projectile.scale,
-                        (p) => Color.Lerp(new Color(255, 255, 50, 20), new Color(255, 10, 10, 0), p) * (1f - p));
+                        (p) => Color.Lerp(new Color(255, 255, 50, 20), new Color(255, 10, 10, 0), p) * (1f - p),
+                        drawOffset: projectile.Size / 2f);
                 }
                 prim.Draw(projectile.oldPos);
             }

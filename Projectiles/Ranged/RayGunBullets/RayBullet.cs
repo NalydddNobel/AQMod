@@ -104,7 +104,8 @@ namespace AQMod.Projectiles.Ranged.RayGunBullets
             {
                 if (prim == null)
                 {
-                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickerLine"), PrimRenderer.DefaultPass, GetSizeMethod(), (p) => GetColor() * (1f - p));
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickerLine"), PrimRenderer.DefaultPass, GetSizeMethod(), (p) => GetColor() * (1f - p),
+                        drawOffset: projectile.Size / 2f);
                 }
                 prim.Draw(projectile.oldPos);
             }

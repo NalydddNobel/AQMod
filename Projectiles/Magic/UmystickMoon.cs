@@ -69,7 +69,8 @@ namespace AQMod.Projectiles.Magic
                 if (prim == null)
                 {
                     prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickTrail"), PrimRenderer.DefaultPass,
-                        (p) => new Vector2(14f - p * 14f) * projectile.scale, (p) => _glowClr * (1f - p));
+                        (p) => new Vector2(14f - p * 14f) * projectile.scale, (p) => _glowClr * (1f - p),
+                        drawOffset: projectile.Size / 2f);
                 }
                 prim.Draw(projectile.oldPos);
             }
