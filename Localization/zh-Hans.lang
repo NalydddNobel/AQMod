@@ -79,10 +79,10 @@ ItemName.Terraroot=弹药恢复包
 ItemTooltip.Terraroot=敌人会掉落你所消耗的弹药
 
 ItemName.Quasicrystal=准晶体护符
-ItemTooltip.Quasicrystal=附近的敌人会受到10%额外伤害\n击中敌人时会对其造成宇宙辐射减益和火焰伤害\n增加5%近战暴击率\n受伤时会召唤星星从天而降
+ItemTooltip.Quasicrystal=附近的敌人会受到25%额外伤害\n击中敌人时会对其造成宇宙辐射减益和火焰伤害\n增加5%近战暴击率\n受伤时会召唤星星从天而降
 
 ItemName.Ultranium=超聚焦晶体
-ItemTooltip.Ultranium=附近的敌人会受到10%额外伤害\n击中敌人时会对其造成宇宙辐射减益
+ItemTooltip.Ultranium=附近的敌人会受到25%额外伤害\n击中敌人时会对其造成宇宙辐射减益
 
 ProjectileName.HyperCrystalExplosion=超聚焦晶体
 ItemName.ExtractorHelmet=顶板
@@ -166,9 +166,9 @@ ItemName.DegenerationRing=阻燃戒指
 ItemTooltip.DegenerationRing=阻止大多数种类的燃烧
 
 ItemName.HeatedAmulet=灼炎护符
-ItemTooltip.HeatedAmulet=阻止大多数种类的燃烧\n降低来自紊流风暴敌人的热源强度
+ItemTooltip.HeatedAmulet=阻止大多数种类的冻结\n降低来自紊流风暴敌人的冷源强度
 ItemName.FreezingAmulet=霜结护符
-ItemTooltip.FreezingAmulet=阻止大多数种类的冻结\n降低来自紊流风暴敌人的冷源强度
+ItemTooltip.FreezingAmulet=阻止大多数种类的燃烧\n降低来自紊流风暴敌人的热源强度
 ItemName.NormalizerAmulet=化一护符
 ItemTooltip.NormalizerAmulet=阻止大多数种类的冻结\n降低来自紊流风暴敌人的温度源强度
 
