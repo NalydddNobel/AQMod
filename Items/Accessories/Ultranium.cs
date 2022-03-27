@@ -24,7 +24,7 @@ namespace AQMod.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<AQPlayer>().accFocusCrystalRadius = 480f;
-            player.GetModPlayer<AQPlayer>().accFocusCrystalDamage = 0.1f;
+            player.GetModPlayer<AQPlayer>().accFocusCrystalDamage = 0.25f;
             player.GetModPlayer<AQPlayer>().accFocusCrystalVisible = !hideVisual;
             player.GetModPlayer<AQPlayer>().cosmicRadiationFlask = true;
         }

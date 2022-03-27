@@ -27,7 +27,7 @@ namespace AQMod.Items.Accessories
             player.magmaStone = true;
             player.starCloak = true;
             player.GetModPlayer<AQPlayer>().accFocusCrystalRadius = 480f;
-            player.GetModPlayer<AQPlayer>().accFocusCrystalDamage = 0.1f;
+            player.GetModPlayer<AQPlayer>().accFocusCrystalDamage = 0.25f;
             player.GetModPlayer<AQPlayer>().accFocusCrystalVisible = !hideVisual;
             player.GetModPlayer<AQPlayer>().cosmicRadiationFlask = true;
         }

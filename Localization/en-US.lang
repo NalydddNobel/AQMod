@@ -79,10 +79,10 @@ ItemName.Terraroot=Ammo Renewal Pack
 ItemTooltip.Terraroot=Enemies drop ammo you have consumed
 
 ItemName.Quasicrystal=Quasicrystal Amulet
-ItemTooltip.Quasicrystal=Nearby enemies take 10% extra damage\nInflicts cosmic radiation and fire damage on attack\nCauses stars to fall when injured
+ItemTooltip.Quasicrystal=Nearby enemies take 25% extra damage\nInflicts cosmic radiation and fire damage on attack\nCauses stars to fall when injured
 
 ItemName.Ultranium=Hyper Focus Crystal
-ItemTooltip.Ultranium=Nearby enemies take 10% extra damage\nYour attacks inflict cosmic radiation
+ItemTooltip.Ultranium=Nearby enemies take 25% extra damage\nYour attacks inflict cosmic radiation
 ProjectileName.HyperCrystalExplosion=Hyper Focus Crystal
 
 ItemName.ExtractorHelmet=Head Plate
