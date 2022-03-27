@@ -25,6 +25,11 @@ namespace AQMod.Projectiles
             projectile.ignoreWater = true;
         }
 
+        public override bool CanDamage()
+        {
+            return false;
+        }
+
         public override void AI()
         {
             var center = projectile.Center;
