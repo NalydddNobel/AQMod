@@ -1,6 +1,8 @@
 ﻿using AQMod.Buffs.Temperature;
 using AQMod.Content.Players;
+using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.ID;
@@ -10,7 +12,45 @@ namespace AQMod.Common.HookLists
 {
     public sealed class PlayerHooklist : HookList
     {
-        [LoadHook(typeof(Player), "DropTombstone", BindingFlags.Public | BindingFlags.Instance)]
+        [LoadHook(typeof(Main), "DrawPlayers", BindingFlags.NonPublic | BindingFlags.Instance)]
+        internal static void Main_DrawPlayers(On.Terraria.Main.orig_DrawPlayers orig, Main self)
+        {
+            List<AQPlayer> active = new List<AQPlayer>();
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    if (Main.player[i].active && !Main.player[i].outOfRange)
+                    {
+                        active.Add(Main.player[i].GetModPlayer<AQPlayer>());
+                    }
+                }
+            }
+            else
+            {
+                active.Add(Main.LocalPlayer.GetModPlayer<AQPlayer>());
+            }
+            foreach (var p in active)
+            {
+                p.PreDrawAllPlayers(self);
+            }
+            orig(self);
+            foreach (var p in active)
+            {
+                p.PostDrawAllPlayers(self);
+            }
+        }
+
+        [LoadHook(typeof(Main), nameof(Main.DrawPlayer), BindingFlags.Public | BindingFlags.Instance)]
+        internal static void Main_DrawPlayer(On.Terraria.Main.orig_DrawPlayer orig, Main self, Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow)
+        {
+            var aQPlayer = drawPlayer.GetModPlayer<AQPlayer>();
+            aQPlayer.PreDrawPlayer(self, Position, rotation, rotationOrigin, shadow);
+            orig(self, drawPlayer, Position, rotation, rotationOrigin, shadow);
+            aQPlayer.PostDrawPlayer(self, Position, rotation, rotationOrigin, shadow);
+        }
+
+        [LoadHook(typeof(Player), nameof(Player.DropTombstone), BindingFlags.Public | BindingFlags.Instance)]
         internal static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, Terraria.Localization.NetworkText deathText, int hitDirection)
         {
             var tombstonesPlayer = self.GetModPlayer<TombstonesPlayer>();

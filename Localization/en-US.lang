@@ -166,9 +166,9 @@ ItemName.DegenerationRing=Flame Resistance Ring
 ItemTooltip.DegenerationRing=Prevents most types of burning
 
 ItemName.HeatedAmulet=Heated Amulet
-ItemTooltip.HeatedAmulet=Prevents most types of burning\nLowers the intensity of heat from Gale Streams enemies
+ItemTooltip.HeatedAmulet=Prevents most types of freezing\nLowers the intensity of cold from Gale Streams enemies
 ItemName.FreezingAmulet=Freezing Amulet
-ItemTooltip.FreezingAmulet=Prevents most types of freezing\nLowers the intensity of cold from Gale Streams enemies
+ItemTooltip.FreezingAmulet=Prevents most types of burning\nLowers the intensity of heat from Gale Streams enemies
 ItemName.NormalizerAmulet=Normalized Amulet
 ItemTooltip.NormalizerAmulet=Prevents most types of freezing and burning\nLowers the intensity of temperature sources from gale streams enemies
 

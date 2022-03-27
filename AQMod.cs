@@ -61,6 +61,8 @@ namespace AQMod
         internal static bool Loading { get; private set; }
         internal static bool IsUnloading { get; private set; }
 
+        public static bool enemyDanger;
+
         public static AQMod Instance { get; private set; }
         public static GameCamera Camera { get; private set; }
         public static GameEffects Effects { get; private set; }
@@ -358,6 +360,24 @@ namespace AQMod
             else
             {
                 Glimmer.purple = Glimmer.StariteProjectileColorOrig;
+            }
+
+            if (Main.netMode != NetmodeID.Server)
+            {
+                enemyDanger = false;
+
+                var screenRect = new Rectangle((int)Main.screenPosition.X, (int)Main.screenPosition.Y, Main.screenWidth, Main.screenHeight);
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].lifeMax > 5)
+                    {
+                        if (Main.npc[i].getRect().Intersects(screenRect))
+                        {
+                            enemyDanger = true;
+                            break;
+                        }
+                    }
+                }
             }
         }
 

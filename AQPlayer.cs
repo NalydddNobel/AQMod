@@ -19,6 +19,7 @@ using AQMod.Projectiles;
 using AQMod.Projectiles.Summon;
 using AQMod.Projectiles.Summon.Equips;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -49,10 +50,15 @@ namespace AQMod
         public static bool forceAutoswing;
         public static byte extractinatorBlipCooldown;
 
+        public float accFocusCrystalRadius;
+        public bool accFocusCrystalVisible;
+        public float accFocusCrystalDamage;
+        private float _focusCrystalRadiusVisual;
+        private float _focusCrystalAuraTransparancy;
+        public bool cosmicRadiationFlask;
         public byte manaDrainCooldown;
         public bool manaDrain;
         public float discountPercentage = 1f;
-        public bool focusCrystal;
         public bool shimmering;
         public bool ammoRenewal;
         public bool altEvilDrops;
@@ -293,8 +299,9 @@ namespace AQMod
         }
         public override void ResetEffects()
         {
-            fakeDaytime = 0;
+            cosmicRadiationFlask = false;
 
+            fakeDaytime = 0;
             accOmegaStarite = null;
 
             if (itemCombo > 0)
@@ -347,7 +354,9 @@ namespace AQMod
             setArachnotronCooldown = false;
 
             discountPercentage = 1f;
-            focusCrystal = false;
+            _focusCrystalRadiusVisual = MathHelper.Lerp(_focusCrystalRadiusVisual, accFocusCrystalRadius, 0.2f);
+            accFocusCrystalRadius = 0f;
+            accFocusCrystalDamage = 0f;
             monoxiderBird = false;
             moonShoes = false;
             copperSeal = false;
@@ -1217,9 +1226,9 @@ namespace AQMod
             {
                 damage = (int)(damage * unholyDamage);
             }
-            if (focusCrystal && player.Distance(target.Center) < 160f)
+            if (accFocusCrystalRadius > 0f && player.Distance(target.Center) < accFocusCrystalRadius)
             {
-                damage = (int)(damage * 1.1f);
+                damage = (int)(damage * (1f + accFocusCrystalDamage));
             }
         }
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
@@ -1231,36 +1240,12 @@ namespace AQMod
             HitDamage(target, ref damage);
         }
 
-        private bool IsTrueMeleeProjectile(Projectile projectile)
-        {
-            return projectile.melee && projectile.whoAmI == player.heldProj && projectile.aiStyle != 99;
-        }
-        private void OnHitNPC_SpreadDebuffs(NPC target, Vector2 targetCenter)
-        {
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                if (Main.npc[i].active && Main.npc[i].Distance(targetCenter) < 200f)
-                {
-                    SpreadDebuffs(target, Main.npc[i]);
-                }
-            }
-        }
-        private void OnHitNPC_VoodooAmulet(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
-        {
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                if (i != target.whoAmI && Main.npc[i].active)
-                {
-                    float distance = Main.npc[i].Distance(targetCenter);
-                    if (distance < 300f && AQNPC.AreTheSameNPC(target.type, Main.npc[i].type))
-                    {
-                        player.ApplyDamageToNPC(Main.npc[i], (int)(damage * (1f - distance / 300f)), knockback, Main.npc[i].position.X + Main.npc[i].width / 2f < player.position.X + player.width / 2f ? -1 : 1, crit);
-                    }
-                }
-            }
-        }
         private void OnHitNPCWithAnything(NPC target, Vector2 targetCenter, int damage, float knockback, bool crit)
         {
+            if (cosmicRadiationFlask)
+            {
+                target.AddBuff(ModContent.BuffType<Sparkling>(), 480);
+            }
             if (manaDrain && manaDrainCooldown <= 0)
             {
                 var aQNPC = target.GetGlobalNPC<AQNPC>();
@@ -1342,11 +1327,27 @@ namespace AQMod
             }
             if (spreadDebuffs)
             {
-                OnHitNPC_SpreadDebuffs(target, targetCenter);
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && Main.npc[i].Distance(targetCenter) < 200f)
+                    {
+                        SpreadDebuffs(target, Main.npc[i]);
+                    }
+                }
             }
             if (voodooAmulet)
             {
-                OnHitNPC_VoodooAmulet(target, targetCenter, damage, knockback, crit);
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (i != target.whoAmI && Main.npc[i].active)
+                    {
+                        float distance = Main.npc[i].Distance(targetCenter);
+                        if (distance < 300f && AQNPC.AreTheSameNPC(target.type, Main.npc[i].type))
+                        {
+                            player.ApplyDamageToNPC(Main.npc[i], (int)(damage * (1f - distance / 300f)), knockback, Main.npc[i].position.X + Main.npc[i].width / 2f < player.position.X + player.width / 2f ? -1 : 1, crit);
+                        }
+                    }
+                }
             }
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -1359,9 +1360,6 @@ namespace AQMod
         {
             var center = player.Center;
             var targetCenter = target.Center;
-            //if (IsTrueMeleeProjectile(proj))
-            //{
-            //}
             OnHitNPCWithAnything(target, targetCenter, damage, knockback, crit);
         }
 
@@ -1423,6 +1421,71 @@ namespace AQMod
         {
             AQMod.Camera.UpdateScreen();
             AQMod.Effects.UpdateScreen();
+        }
+
+        public void PreDrawAllPlayers(Main main)
+        {
+            //Main.NewText(_focusCrystalRadiusVisual);
+            bool end = false;
+            if (_focusCrystalRadiusVisual > 0f && accFocusCrystalVisible)
+            {
+                if (AQMod.enemyDanger)
+                {
+                    _focusCrystalAuraTransparancy = MathHelper.Lerp(_focusCrystalAuraTransparancy, 1f, 0.1f);
+                }
+                else
+                {
+                    _focusCrystalAuraTransparancy = MathHelper.Lerp(_focusCrystalAuraTransparancy, 0.2f, 0.1f);
+                }
+
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.Transform);
+                end = true;
+                var texture = mod.GetTexture("Assets/EffectTextures/FocusAura");
+                var origin = texture.Size() / 2f;
+                var drawCoords = (player.Center - Main.screenPosition).Floor();
+                float scale = _focusCrystalRadiusVisual / texture.Width;
+                float transparancy = Math.Min(_focusCrystalAuraTransparancy * scale, 1f);
+
+                Main.spriteBatch.Draw(texture, drawCoords, null,
+                    new Color(60, 4, 4, 0) * transparancy, 0f, origin, scale, SpriteEffects.None, 0f);
+                texture = mod.GetTexture("Assets/EffectTextures/Circle");
+
+                for (int i = 0; i < 8; i++)
+                {
+                    Main.spriteBatch.Draw(texture, drawCoords + (MathHelper.PiOver4 * i).ToRotationVector2() * 2f * scale, null,
+                        new Color(80, 6, 6, 0) * transparancy, 0f, origin, scale, SpriteEffects.None, 0f);
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    Main.spriteBatch.Draw(texture, drawCoords + (MathHelper.PiOver2 * i).ToRotationVector2() * scale, null,
+                        new Color(128, 6, 6, 0) * transparancy, 0f, origin, scale, SpriteEffects.None, 0f);
+                }
+
+                Main.spriteBatch.Draw(texture, drawCoords, null,
+                    new Color(128, 10, 10, 0) * transparancy, 0f, origin, scale, SpriteEffects.None, 0f);
+            }
+            else
+            {
+                _focusCrystalAuraTransparancy = 0f;
+            }
+            if (end)
+            {
+                Main.spriteBatch.End();
+            }
+        }
+
+        public void PostDrawAllPlayers(Main main)
+        {
+
+        }
+
+        public void PreDrawPlayer(Main main, Vector2 position, float rotation, Vector2 rotationOrigin, float shadow)
+        {
+        }
+
+        public void PostDrawPlayer(Main main, Vector2 position, float rotation, Vector2 rotationOrigin, float shadow)
+        {
         }
 
         private static void SpreadDebuffs(NPC spreader, NPC npc)

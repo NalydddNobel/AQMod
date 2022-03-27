@@ -26,7 +26,10 @@ namespace AQMod.Items.Accessories
             player.meleeCrit += 5;
             player.magmaStone = true;
             player.starCloak = true;
-            player.GetModPlayer<AQPlayer>().focusCrystal = true;
+            player.GetModPlayer<AQPlayer>().accFocusCrystalRadius = 480f;
+            player.GetModPlayer<AQPlayer>().accFocusCrystalDamage = 0.1f;
+            player.GetModPlayer<AQPlayer>().accFocusCrystalVisible = !hideVisual;
+            player.GetModPlayer<AQPlayer>().cosmicRadiationFlask = true;
         }
 
         public override void AddRecipes()
