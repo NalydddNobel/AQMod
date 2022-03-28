@@ -1226,7 +1226,7 @@ namespace AQMod
             {
                 damage = (int)(damage * unholyDamage);
             }
-            if (accFocusCrystalRadius > 0f && player.Distance(target.Center) < accFocusCrystalRadius)
+            if (accFocusCrystalRadius > 0f && player.Distance(target.Center) < (accFocusCrystalRadius / 2f))
             {
                 damage = (int)(damage * (1f + accFocusCrystalDamage));
             }

@@ -229,6 +229,9 @@ ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% 
 # Weapons
 #===========================#
 
+ItemName.Hitscanner=Hitscanner
+ItemTooltip.Hitscanner=Fires a spread of instantly hitting bullets
+
 ItemName.XenonBasher=Xenon Basher
 ItemTooltip.XenonBasher=Whack nearby enemies using your mouse\nHitting enemies will create xenon spores
 
@@ -555,6 +558,8 @@ ItemTooltip.CrabClock='What time is it? Crabby time.'
 ItemName.OceanRavineWall=Crab Crevice Wall
 
 # Exporter Crates
+ItemName.SkyPalette=Sky Palette
+ItemTooltip.SkyPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
 ItemName.OverworldPalette=Overworld Palette
 ItemTooltip.OverworldPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
 ItemName.CavernPalette=Cavern Palette

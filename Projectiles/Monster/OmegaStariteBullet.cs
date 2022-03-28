@@ -3,12 +3,10 @@ using AQMod.Common.Configuration;
 using AQMod.Common.ID;
 using AQMod.Content.World.Events;
 using AQMod.Dusts;
-using AQMod.Effects;
 using AQMod.Effects.Prims;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -64,7 +62,7 @@ namespace AQMod.Projectiles.Monster
             {
                 if (prim == null)
                 {
-                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickerLine"), PrimRenderer.DefaultPass, (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p));
+                    prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickerLine"), PrimRenderer.DefaultPass, (p) => new Vector2(projectile.width - p * projectile.width), (p) => drawColor * (1f - p), drawOffset: new Vector2(projectile.width / 2f, projectile.height / 2f));
                 }
                 prim.Draw(projectile.oldPos);
             }
