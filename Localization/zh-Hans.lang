@@ -229,6 +229,9 @@ ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱对你造
 # Weapons
 #===========================#
 
+ItemName.Hitscanner=碰撞器
+ItemTooltip.Hitscanner=发射一系列会瞬间命中的子弹
+
 ItemName.XenonBasher=氙制粉碎者
 ItemTooltip.XenonBasher=打击你光标附近的敌人\n击中敌人时会生成氙孢子
 
@@ -555,6 +558,8 @@ ItemTooltip.CrabClock='现在是什么时间? 螃躁时间.'
 ItemName.OceanRavineWall=蟹状裂隙墙
 
 # Exporter Crates
+ItemName.SkyPalette=天空调色板
+ItemTooltip.SkyPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
 ItemName.OverworldPalette=上界调色板
 ItemTooltip.OverworldPalette={$CommonItemTooltip.RightClickToOpen}\n{$Mods.AQMod.Tooltips.PaletteDrop}
 ItemName.CavernPalette=洞穴调色板
