@@ -16,6 +16,7 @@ Tooltips.EffectActive=启用
 Tooltips.IncreasedMinions=增加最大召唤栏位
 Tooltips.SuspiciousLooking='我知道你在想什么...'
 Tooltips.Nalyddd='闻起来像玫瑰'
+nalyd='闻起来像玫瑰'
 Tooltips.HookBarbBlacklist=不受钩刺升级效果影响
 Tooltips.HookBarb=你的钩爪会造成伤害
 Tooltips.DemonSiegeUpgrade=可在地狱祭坛处升级
@@ -81,10 +82,9 @@ ItemTooltip.Terraroot=敌人会掉落你所消耗的弹药
 ItemName.Quasicrystal=准晶体护符
 ItemTooltip.Quasicrystal=附近的敌人会受到25%额外伤害\n击中敌人时会对其造成宇宙辐射减益和火焰伤害\n增加5%近战暴击率\n受伤时会召唤星星从天而降
 
-ItemName.Ultranium=超聚焦晶体
+ItemName.Ultranium=聚焦晶体
 ItemTooltip.Ultranium=附近的敌人会受到25%额外伤害\n击中敌人时会对其造成宇宙辐射减益
 
-ProjectileName.HyperCrystalExplosion=超聚焦晶体
 ItemName.ExtractorHelmet=顶板
 ItemTooltip.ExtractorHelmet=坠落的方块对你造成的伤害降低
 
@@ -181,10 +181,11 @@ ItemTooltip.Extractor=使你免疫窒息\n坠落的方块对你造成的伤害�
 ItemName.SparrowWings=雀翼
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 
-ItemName.Thunderbird=雷鸟之翼
+ItemName.Thunderbird=远古雷鸟
 ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\n有着强大的水平速度!
-NPCName.Thunderbird=雷鸟
 
+ItemName.FishyFins=鱼鳍
+ItemTooltip.FishyFins={$Mods.AQMod.nalyd}
 
 
 
@@ -230,7 +231,7 @@ ArmorSetBonus.Lightbulb=你现在拥有危险感和猎人增益\n陷阱对你造
 #===========================#
 
 ItemName.Hitscanner=碰撞器
-ItemTooltip.Hitscanner=发射一系列会瞬间命中的子弹
+ItemTooltip.Hitscanner=发射一大片会瞬间命中的子弹
 
 ItemName.XenonBasher=氙制粉碎者
 ItemTooltip.XenonBasher=打击你光标附近的敌人\n击中敌人时会生成氙孢子
@@ -1230,7 +1231,6 @@ ItemName.PlaceableCrimsonHeart=猩红之心 (可放置)
 # Vanities #
 ############
 ItemName.MonoxideHat=金乌之巢
-ItemName.FishyFins=可疑的鱼鳍
 ItemName.CelesitalEightBall=星界八号球
 ###########
 # Weapons #
@@ -1660,9 +1660,6 @@ ServerConfig.GenerateOceanRavinesTooltip=决定是否生成蟹状裂隙.
 
 ServerConfig.FixBabyPools=修复小水坑
 ServerConfig.FixBabyPoolsTooltip=移除地表上生成的1格物块高的水坑.\n可能会导致在地表生成的与水有关的构造出现小问题.
-
-ServerConfig.BloodyThingDrop=敌人掉落血腥之物
-ServerConfig.BloodyThingDropTooltip=决定血月期间的敌人是否会掉落'血腥之物'
 
 ServerConfig.DebugCommand=调试模式 (/ncall)
 ServerConfig.DebugCommandTooltip=启用 /ncall 调试命令.\n{$Mods.AQMod.Config.RequiresReload}
