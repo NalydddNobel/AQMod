@@ -1,5 +1,9 @@
 Mods: {
 	Aequus: {
+		Bestiary: {
+			Crabson: Birthed from a interspecies relationship
+			OmegaStarite: The near-end of a living star's life. Devours any source of ultimate energy to fuel its approaching supernova
+		}
 		DropCondition: {
 			Trophy: Will 100% drop when defeated flawlessly
 		}

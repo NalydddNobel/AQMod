@@ -1,4 +1,3 @@
-using Aequus.Assets.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -7,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-	public class Aequus : Mod
+    public class Aequus : Mod
     {
         internal delegate void LegacyDrawMethod(Texture2D texture, Vector2 position, Rectangle? frame, Color color, float scale, Vector2 origin, float rotation, SpriteEffects effects, float layerDepth);
 
@@ -51,5 +50,5 @@ namespace Aequus
         {
             return ModContent.Request<Texture2D>(path, AssetRequestMode.ImmediateLoad);
         }
-	}
+    }
 }

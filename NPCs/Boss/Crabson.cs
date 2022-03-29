@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -49,6 +50,23 @@ namespace Aequus.NPCs.Boss
             ClawBossHead = Mod.AddBossHeadTexture(this.GetPath() + "Claw_Head_Boss", -1);
         }
 
+        public override void SetStaticDefaults()
+        {
+            NPCID.Sets.MPAllowedEnemies[Type] = true;
+            NPCID.Sets.BossBestiaryPriority.Add(Type);
+            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData()
+            {
+                SpecificallyImmuneTo = new int[]
+                {
+                    BuffID.Wet,
+                    BuffID.Confused,
+                    BuffID.Lovestruck,
+                }
+            });
+
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) { PortraitPositionYOverride = 48f, });
+        }
+
         public override void SetDefaults()
         {
             NPC.width = 90;
@@ -78,12 +96,6 @@ namespace Aequus.NPCs.Boss
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.8f);
-            //if (AQMod.calamityMod.IsActive)
-            //{
-            //    NPC.lifeMax *= 3;
-            //    NPC.defense += 6;
-            //}
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -138,7 +150,6 @@ namespace Aequus.NPCs.Boss
                     Main.npc[n].defDefense = Main.npc[n].defense;
                     Main.npc[n].width += 20;
                     Main.npc[n].height += 50;
-                    //Main.npc[n].dontTakeDamage = true;
                 }
             }
             var crab = (Crabson)Left.ModNPC;
@@ -648,7 +659,7 @@ namespace Aequus.NPCs.Boss
             }
         }
 
-        public static void DrawSaggyChain(Texture2D chain, Vector2 currentPosition, Vector2 endPosition)
+        public static void DrawSaggyChain(SpriteBatch spriteBatch, Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos)
         {
             int height = chain.Height + 8;
             var velo = Vector2.Normalize(endPosition + new Vector2(0f, height * 4f) - currentPosition) * height;
@@ -656,7 +667,7 @@ namespace Aequus.NPCs.Boss
             var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
             for (int i = 0; i < 50; i++)
             {
-                Main.spriteBatch.Draw(chain, position - Main.screenPosition, null, Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), 0f, origin, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(chain, position - screenPos, null, Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), 0f, origin, 1f, SpriteEffects.None, 0f);
                 velo = Vector2.Normalize(Vector2.Lerp(velo, endPosition - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(endPosition, position) / 300f, 0f, 0.99f))) * height;
                 position += velo;
                 float gravity = MathHelper.Clamp(1f - Vector2.Distance(endPosition, position) / 500f, 0.4f, 1f);
@@ -667,30 +678,58 @@ namespace Aequus.NPCs.Boss
             }
         }
 
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
+                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.Crabson")
+            });
+        }
+
+        private void RenderClaw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            var claw = Aequus.Tex(this.GetPath() + "Claw");
+            var origin = new Vector2(16f, 48f);
+            var drawCoords = npc.position + new Vector2(origin.X + (npc.direction == 1 ? npc.width - origin.X * 2f : 0), npc.width / 2f) - screenPos;
+            origin.X = npc.direction == 1 ? claw.Width - origin.X : origin.X;
+            float rotation = npc.rotation / 2f;
+            rotation = npc.direction == -1 ? -rotation : rotation;
+            var spriteEffects = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            RenderClaw(spriteBatch, claw, drawCoords, drawColor, origin, rotation, npc.scale, spriteEffects);
+        }
+        private void RenderClaw(SpriteBatch spriteBatch, Texture2D claw, Vector2 drawCoords, Color drawColor, Vector2 origin, float rotation, float scale, SpriteEffects spriteEffects)
+        {
+            int frameHeight = claw.Height / 2;
+            var clawFrame = new Rectangle(0, frameHeight, claw.Width, frameHeight - 2);
+            spriteBatch.Draw(claw, drawCoords, clawFrame, drawColor, -rotation, origin, scale, spriteEffects, 0f);
+            clawFrame.Y = 0;
+            spriteBatch.Draw(claw, drawCoords, clawFrame, drawColor, rotation, origin, scale, spriteEffects, 0f);
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                var claw = Aequus.Tex(this.GetPath() + "Claw");
+                var origin = new Vector2(16f, 48f);
+                RenderClaw(spriteBatch, claw, NPC.Center + new Vector2(-NPC.width * 1.33f, -NPC.height * 1f) - screenPos, Color.White, origin, 0f, NPC.scale, SpriteEffects.None);
+                origin.X = claw.Width - origin.X;
+                RenderClaw(spriteBatch, claw, NPC.Center + new Vector2(NPC.width * 1.33f, -NPC.height * 1f) - screenPos, Color.White, origin, 0f, NPC.scale, SpriteEffects.FlipHorizontally);
+                return true;
+            }
             if (IsClaw)
             {
-                var texture = Aequus.Tex(this.GetPath() + "Claw");
-                int frameHeight = texture.Height / 2;
-                var frame = new Rectangle(0, frameHeight, texture.Width, frameHeight - 2);
-                var origin = new Vector2(16f, 48f);
-                var drawPosition = NPC.position + new Vector2(origin.X + (NPC.direction == 1 ? NPC.width - origin.X * 2f : 0), NPC.width / 2f);
-                origin.X = NPC.direction == 1 ? texture.Width - origin.X : origin.X;
-                var spriteEffects = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                float rotation = NPC.rotation / 2f;
-                rotation = NPC.direction == -1 ? -rotation : rotation;
-                Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, drawColor, -rotation, origin, NPC.scale, spriteEffects, 0f);
-                frame.Y = 0;
-                Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, drawColor, rotation, origin, NPC.scale, spriteEffects, 0f);
+                RenderClaw(NPC, spriteBatch, screenPos, drawColor);
                 return false;
             }
             if (EffectsSystem.NPCsBehindAllNPCs.renderingNow)
             {
                 var drawCoordinates = NPC.Center;
                 var chain = Aequus.Tex(this.GetPath() + "Claw_Chain");
-                DrawSaggyChain(chain, new Vector2(drawCoordinates.X - 24f, drawCoordinates.Y), Left.position + new Vector2(0f, Left.height / 2f - 24f));
-                DrawSaggyChain(chain, new Vector2(drawCoordinates.X + 24f, drawCoordinates.Y), Right.Center + new Vector2(Right.width / 2f, -24f));
+                DrawSaggyChain(spriteBatch, chain, new Vector2(drawCoordinates.X - 24f, drawCoordinates.Y), Left.position + new Vector2(0f, Left.height / 2f - 24f), screenPos);
+                DrawSaggyChain(spriteBatch, chain, new Vector2(drawCoordinates.X + 24f, drawCoordinates.Y), Right.Center + new Vector2(Right.width / 2f, -24f), screenPos);
             }
             else
             {
@@ -701,13 +740,14 @@ namespace Aequus.NPCs.Boss
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
+            scale = 1.5f;
             return IsClaw ? false : null;
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CrabsonBag>()));
             npcLoot.Add(new TrophyDrop(ModContent.ItemType<CrabsonTrophy>()));
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CrabsonBag>()));
         }
 
         public override void OnKill()

@@ -19,6 +19,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -140,6 +141,8 @@ namespace Aequus.NPCs.Boss
         {
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             NPCID.Sets.TrailCacheLength[NPC.type] = 60;
+            NPCID.Sets.MPAllowedEnemies[Type] = true;
+            NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() { ImmuneToAllBuffsThatAreNotWhips = true, };
             Main.npcFrameCount[NPC.type] = 14;
         }
@@ -1210,6 +1213,17 @@ namespace Aequus.NPCs.Boss
             return null;
         }
 
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+
+                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.OmegaStarite")
+            });
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (NPC.IsABestiaryIconDummy)
@@ -1229,6 +1243,7 @@ namespace Aequus.NPCs.Boss
             {
                 return false;
             }
+            var viewPos = NPC.IsABestiaryIconDummy ? NPC.Center : new Vector2(screenPos.X + Main.screenWidth / 2f, screenPos.Y + Main.screenHeight / 2f);
             drawColor *= 5f;
             if (drawColor.R < 80)
                 drawColor.R = 80;
@@ -1317,7 +1332,7 @@ namespace Aequus.NPCs.Boss
             {
                 if (positions[i].Z > 0f)
                 {
-                    var drawPosition = PerspectiveHelper.GetParralaxPosition(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f, screenPos) - screenPos;
+                    var drawPosition = PerspectiveHelper.GetParralaxPosition(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f, viewPos) - screenPos;
                     var drawScale = PerspectiveHelper.GetParralaxScale(positions[i].W, positions[i].Z * 0.0314f);
                     foreach (var draw in drawOmegite)
                     {
@@ -1372,7 +1387,7 @@ namespace Aequus.NPCs.Boss
             }
             for (int i = 0; i < positions.Count; i++)
             {
-                var drawPosition = PerspectiveHelper.GetParralaxPosition(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f) - screenPos;
+                var drawPosition = PerspectiveHelper.GetParralaxPosition(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f, viewPos) - screenPos;
                 var drawScale = PerspectiveHelper.GetParralaxScale(positions[i].W, positions[i].Z * 0.0314f);
                 foreach (var draw in drawOmegite)
                 {
@@ -1437,8 +1452,8 @@ namespace Aequus.NPCs.Boss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<OmegaStariteBag>()));
             npcLoot.Add(new TrophyDrop(ModContent.ItemType<OmegaStariteTrophy>()));
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<OmegaStariteBag>()));
         }
 
         public override void OnKill()

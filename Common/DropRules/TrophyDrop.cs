@@ -4,9 +4,11 @@ using Terraria.Localization;
 
 namespace Aequus.Common.DropRules
 {
-    public sealed class TrophyDrop : IItemDropRule, IProvideItemConditionDescription
+    public sealed class TrophyDrop : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
     {
         private readonly int Trophy;
+
+        public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; }
 
         public TrophyDrop(int trophy)
         {
@@ -14,18 +16,13 @@ namespace Aequus.Common.DropRules
             ChainedRules = new List<IItemDropRuleChainAttempt>();
         }
 
-        public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; }
-
-        public bool CanDrop(DropAttemptInfo info)
-        {
-            return true;
-        }
-
         public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
         {
             float num = 1f / 10f;
             float dropRate = num * ratesInfo.parentDroprateChance;
+            ratesInfo.conditions = new List<IItemDropRuleCondition>() { this, };
             drops.Add(new DropRateInfo(Trophy, 1, 1, dropRate, ratesInfo.conditions));
+            Chains.ReportDroprates(ChainedRules, num, drops, ratesInfo);
         }
 
         public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
@@ -42,6 +39,16 @@ namespace Aequus.Common.DropRules
             result = default(ItemDropAttemptResult);
             result.State = ItemDropAttemptResultState.FailedRandomRoll;
             return result;
+        }
+
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            return true;
+        }
+
+        bool IItemDropRuleCondition.CanShowItemDropInUI()
+        {
+            return true;
         }
 
         public string GetConditionDescription()
