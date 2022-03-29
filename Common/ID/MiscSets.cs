@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace AQMod.Common.ID
 {
-    public sealed class AQSets
+    public sealed class MiscSets
     {
         internal List<Color> ItemColorBlacklist;
         public Dictionary<int, Color> BuffToColor { get; private set; }
@@ -14,7 +14,7 @@ namespace AQMod.Common.ID
 
         public Dictionary<int, int> ConcoctionItemConversions { get; private set; }
 
-        public AQSets()
+        public MiscSets()
         {
             ItemColorBlacklist = new List<Color>()
             {

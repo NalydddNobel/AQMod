@@ -1,5 +1,4 @@
 ﻿using AQMod.Buffs;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,32 +17,10 @@ namespace AQMod.Items.Potions.Foods
             item.UseSound = SoundID.Item2;
             item.maxStack = 999;
             item.consumable = true;
-            item.rare = AQItem.RarityDedicatedItem;
+            item.rare = ItemRarityID.Orange;
             item.value = Item.buyPrice(silver: 80);
             item.buffType = ModContent.BuffType<BaguetteBuff>();
             item.buffTime = 216000;
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            for (int i = 0; i < tooltips.Count; i++)
-            {
-                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
-                {
-                    tooltips[i].overrideColor = Main.LocalPlayer.FX().BaguetteGradient.GetColor(Main.GlobalTime);
-                    return;
-                }
-            }
-        }
-
-        public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
-        {
-            if (line.mod == "Terraria" && line.Name == "ItemName")
-            {
-                AQItem.DrawDeveloperTooltip(line);
-                return false;
-            }
-            return true;
         }
 
         public override bool CanBurnInLava()

@@ -69,7 +69,7 @@ namespace AQMod
         public static ColorHelper Coloring { get; private set; }
         public static Keybinds Triggers { get; private set; }
         public static ConcoctionsSystem Concoctions { get; private set; }
-        public static AQSets Sets { get; private set; }
+        public static MiscSets Sets { get; private set; }
         public static ParticleSystem Particles { get; private set; }
         public static TrailSystem Trails { get; private set; }
         public static EquipOverlaysManager ArmorOverlays { get; private set; }
@@ -204,7 +204,7 @@ namespace AQMod
             Instance = this;
             Coloring = new ColorHelper();
             Triggers = new Keybinds(this);
-            Sets = new AQSets();
+            Sets = new MiscSets();
             AQText.Load();
             ImitatedWindyDay.Reset(resetNonUpdatedStatics: true);
             DemonSiege.Load();
@@ -645,11 +645,6 @@ namespace AQMod
             {
                 ModContent.ItemType<Baguette>(),
             };
-            if (hardmode)
-            {
-                items.Add(ModContent.ItemType<NalydDye>());
-                items.Add(ModContent.ItemType<Thunderbird>());
-            }
             if (items.Count == 0)
             {
                 player.QuickSpawnItem(items[0]);

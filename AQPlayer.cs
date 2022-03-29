@@ -118,6 +118,7 @@ namespace AQMod
         public int passiveSummonTimer;
 
         public bool setLightbulb;
+        public bool setCrabson;
         public bool arachnotronArms;
         public bool setArachnotron;
         public bool setArachnotronCooldown;

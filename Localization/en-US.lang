@@ -16,6 +16,7 @@ Tooltips.EffectActive=Active
 Tooltips.IncreasedMinions=Increases your max number of minions
 Tooltips.SuspiciousLooking='I know what you're thinking...'
 Tooltips.Nalyddd='Smells like roses'
+nalyd='Smells like roses'
 Tooltips.HookBarbBlacklist=Does not get affected by hook barb upgrades
 Tooltips.HookBarb=Your grappling hooks inflict damage
 Tooltips.DemonSiegeUpgrade=Can be upgraded at a Hell Altar
@@ -81,9 +82,8 @@ ItemTooltip.Terraroot=Enemies drop ammo you have consumed
 ItemName.Quasicrystal=Quasicrystal Amulet
 ItemTooltip.Quasicrystal=Nearby enemies take 25% extra damage\nInflicts cosmic radiation and fire damage on attack\nCauses stars to fall when injured
 
-ItemName.Ultranium=Hyper Focus Crystal
+ItemName.Ultranium=Focus Crystal
 ItemTooltip.Ultranium=Nearby enemies take 25% extra damage\nYour attacks inflict cosmic radiation
-ProjectileName.HyperCrystalExplosion=Hyper Focus Crystal
 
 ItemName.ExtractorHelmet=Head Plate
 ItemTooltip.ExtractorHelmet=Falling blocks deal less damage
@@ -181,10 +181,11 @@ ItemTooltip.Extractor=Immunity to Suffocation\nFalling blocks deal less damage\n
 ItemName.SparrowWings=Sparrow Wings
 ItemTooltip.SparrowWings={$CommonItemTooltip.FlightAndSlowfall}
 
-ItemName.Thunderbird=Thunderbird
+ItemName.Thunderbird=Ancient Thunderbird
 ItemTooltip.Thunderbird={$CommonItemTooltip.FlightAndSlowfall}\nHas immense horizontal speed!
-NPCName.Thunderbird=Thunderbird
 
+ItemName.FishyFins=Fish Fins
+ItemTooltip.FishyFins={$Mods.AQMod.nalyd}
 
 
 
@@ -230,7 +231,7 @@ ArmorSetBonus.Lightbulb=Hunter and dangersense is always active\nTraps deal 30% 
 #===========================#
 
 ItemName.Hitscanner=Hitscanner
-ItemTooltip.Hitscanner=Fires a spread of instantly hitting bullets
+ItemTooltip.Hitscanner=Fires a massive spread of instantly hitting bullets
 
 ItemName.XenonBasher=Xenon Basher
 ItemTooltip.XenonBasher=Whack nearby enemies using your mouse\nHitting enemies will create xenon spores
@@ -1230,7 +1231,6 @@ ItemName.PlaceableCrimsonHeart=Crimson Heart (Placeable)
 # Vanities #
 ############
 ItemName.MonoxideHat=Monoxide Hat
-ItemName.FishyFins=Fishy Fins
 ItemName.CelesitalEightBall=Celestial 8-Ball
 ###########
 # Weapons #
@@ -1660,9 +1660,6 @@ ServerConfig.GenerateOceanRavinesTooltip=Whether or not to generate the crab cre
 
 ServerConfig.FixBabyPools=Fix Baby Pools
 ServerConfig.FixBabyPoolsTooltip=Removes those 1 block tall pools of water which generate on the surface.\nMay cause minor issues with structures that generate on the surface with water.
-
-ServerConfig.BloodyThingDrop=Bloody Thing Enemy Drop
-ServerConfig.BloodyThingDropTooltip=Whether or not enemies during the blood moon will drop the 'Bloody Thing'
 
 ServerConfig.DebugCommand=Debug Mode (/ncall)
 ServerConfig.DebugCommandTooltip=Enables the /ncall debug command.\n{$Mods.AQMod.Config.RequiresReload}

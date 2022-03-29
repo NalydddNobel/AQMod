@@ -12,7 +12,7 @@ namespace AQMod.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            item.damage = 20;
+            item.damage = 13;
             item.ranged = true;
             item.width = 30;
             item.height = 30;
@@ -37,7 +37,16 @@ namespace AQMod.Items.Weapons.Ranged
             {
                 int p = Projectile.NewProjectile(position, new Vector2(speedX, speedY).RotatedBy(Main.rand.NextFloat(-0.15f, 0.15f)), type, damage, knockBack, player.whoAmI);
                 Main.projectile[p].extraUpdates++;
-                Main.projectile[p].extraUpdates *= 35;
+                if (type == ProjectileID.ChlorophyteBullet)
+                {
+                    Main.projectile[p].extraUpdates *= 15;
+                    Main.projectile[p].damage *= 2;
+                    i++;
+                }
+                else
+                {
+                    Main.projectile[p].extraUpdates *= 50;
+                }
             }
             return false;
         }

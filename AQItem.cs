@@ -514,7 +514,7 @@ namespace AQMod
             }
             if (AQConfigClient.Instance.HookBarbBlacklistTooltip && item.shoot > ProjectileID.None && AQProjectile.Sets.Instance.HookBarbBlacklist.Contains(item.shoot))
             {
-                tooltips.Insert(GetLineIndex(tooltips, "Material"), new TooltipLine(mod, "HookBarbBlacklist", Language.GetTextValue("Mods.AQMod.Tooltips.HookBarbBlacklist")) { overrideColor = new Color(255, 255, 255), });
+                tooltips.Insert(GetLineIndex(tooltips, "Material") + 1, new TooltipLine(mod, "HookBarbBlacklist", Language.GetTextValue("Mods.AQMod.Tooltips.HookBarbBlacklist")) { overrideColor = new Color(255, 255, 255), });
             }
             if (Sets.Instance.ExporterQuest.Contains(item.type))
             {

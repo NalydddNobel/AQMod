@@ -17,7 +17,7 @@ namespace AQMod.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            this.CustomGlowmask(new AQUtils.ItemGlowmask(), null, this);
+            this.CustomGlowmask(null, null, this);
         }
 
         public override void SetDefaults()
@@ -78,8 +78,7 @@ namespace AQMod.Items.Weapons.Melee
             }
             try
             {
-                int index = AQItem.LegacyGetLineIndex(tooltips, "Tooltip#");
-                tooltips.Insert(index + 1, new TooltipLine(mod, "ObtainedFrom", Language.GetTextValue("Mods.AQMod.ItemTooltipExtra.UltimateSword.0")) { overrideColor = AQMod.MysteriousGuideTooltip, });
+                tooltips.Insert(1, new TooltipLine(mod, "ObtainedFrom", AQMod.GetText("ItemTooltipExtra.UltimateSword.0")) { overrideColor = AQMod.MysteriousGuideTooltip, });
             }
             catch
             {
@@ -88,14 +87,15 @@ namespace AQMod.Items.Weapons.Melee
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            var drawColor = new Color(128, 128, 128, 0);
+            var drawColor = new Color(128, 128, 128, 100);
             var texture = AQUtils.GetTextureobj<UltimateSword>("_Glow");
             var drawPosition = new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
             var origin = Main.itemTexture[item.type].Size() / 2;
             Main.spriteBatch.Draw(texture, drawPosition, null, drawColor, rotation, origin, scale, SpriteEffects.None, 0f);
 
             float x = (float)Math.Sin(Main.GlobalTime / 2f) * 4f;
-            drawColor *= 0.25f;
+            drawColor *= 0.5f;
+            drawColor.A = 0;
             Main.spriteBatch.Draw(texture, drawPosition + new Vector2(x, 0f), null, drawColor, rotation, origin, scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, drawPosition + new Vector2(-x, 0f), null, drawColor, rotation, origin, scale, SpriteEffects.None, 0f);
         }
@@ -103,7 +103,7 @@ namespace AQMod.Items.Weapons.Melee
         void GlowmaskData.IPlayerHeld.Draw(GlowmaskData glowmask, Player player, AQPlayer aQPlayer, Item item, PlayerDrawInfo info)
         {
             var texture = glowmask.Tex;
-            var drawColor = new Color(128, 128, 128, 0);
+            var drawColor = new Color(128, 128, 128, 100);
 
             if (player.gravDir == -1f)
             {
@@ -120,6 +120,7 @@ namespace AQMod.Items.Weapons.Melee
             texture = TextureGrabber.GetItem(item.type);
             float x = (float)Math.Sin(Main.GlobalTime / 2f) * 4f;
             drawColor *= 0.5f;
+            drawColor.A = 0;
             Main.playerDrawData.Add(new DrawData(texture, drawPosition + new Vector2(x, 0f), drawFrame, drawColor, player.itemRotation, swordOrigin, item.scale, info.spriteEffects, 0));
             Main.playerDrawData.Add(new DrawData(texture, drawPosition + new Vector2(-x, 0f), drawFrame, drawColor, player.itemRotation, swordOrigin, item.scale, info.spriteEffects, 0));
         }

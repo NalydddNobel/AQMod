@@ -117,7 +117,7 @@ namespace AQMod.Projectiles.Melee
                 if (prim == null)
                 {
                     prim = new PrimRenderer(mod.GetTexture("Effects/Prims/ThickTrail"), PrimRenderer.DefaultPass,
-                        (p) => new Vector2(20 - p * 20) * (1f + intensity), (p) => color(projectile.timeLeft - p) * 0.5f * (1f - p),
+                        (p) => new Vector2(10 - p * 10) * (1f + intensity), (p) => color(projectile.timeLeft - p) * 0.5f * (1f - p),
                         drawOffset: projectile.Size / 2f);
                 }
                 prim.Draw(projectile.oldPos);
