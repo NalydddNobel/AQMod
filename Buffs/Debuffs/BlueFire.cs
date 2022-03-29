@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace AQMod.Buffs.Debuffs
+namespace Aequus.Buffs.Debuffs
 {
     public class BlueFire : ModBuff
     {
@@ -13,12 +13,12 @@ namespace AQMod.Buffs.Debuffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<AQPlayer>().blueFire = true;
+            player.GetModPlayer<AequusPlayer>().blueFire = true;
         }
 
-        public override void Update(NPC npc, ref int buffIndex)
-        {
-            npc.GetGlobalNPC<AQNPC>().blueFire = true;
-        }
+        //public override void Update(NPC npc, ref int buffIndex)
+        //{
+        //    npc.GetGlobalNPC<AequusPlayer>().blueFire = true;
+        //}
     }
 }

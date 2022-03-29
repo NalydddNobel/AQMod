@@ -1,98 +1,256 @@
 Mods: {
-	AQMod: {
+	Aequus: {
+		DropCondition: {
+			Trophy: Will 100% drop when defeated flawlessly
+		}
+		Tooltips: {
+			UsesGel: Uses gel for ammo
+			ExporterQuest: Return this to the exporter
+			Concocted: Used in potion concoctions
+			PaletteDrop: The item below is guaranteed to drop
+			EffectActive: Disabled
+			EffectInactive: Active
+			IncreasedMinions: Increases your max number of minions
+			SuspiciousLooking: "'I know what you're thinking...'"
+			Nalyddd: "'Smells like roses'"
+			HookBarbBlacklist: Does not get affected by hook barb upgrades
+			HookBarb: Your grappling hooks inflict damage
+			DemonSiegeUpgrade: Can be upgraded at a Hell Altar
+			DedicatedItem: Dedicated Item
+			Unobtainable: A relic birthed in an alternate universe
+			ManaPerSecond: Uses {0} mana per second
+			UmbrellaWeapon:
+				'''
+				You will fall slower while holding this, holding down will let you fall at regular speed
+				You will not take any fall damage
+				'''
+			InventoryPiggyBankFunction: Works in your inventory or piggy bank
+			ToggleKeyBind: You can toggle this function by pressing {0}
+		}
+
+		nalyd: "'Smells like roses'"
+
 		ItemName: {
+			MoonflowerPollen: Moonflower Pollen
+			LingeringPotion: Lingering Potion
+			Molite: Starbyte
+			MoliteTag: Doubled Potion
+			MushroomClam: Hypnotic Pearl
+			NovaFruit: Nova Fruit
+			MythicStarfruit: Galactic Starfruit
+			MoonLeech: Moon Leech
+			Squyp: Squyp
+			DreamCatcher: Dream Catcher
+			MagikaAmulet: Magika Amulet
+			JellyAmulet: Jelly Amulet
+			Terraroot: Ammo Renewal Pack
+			Quasicrystal: Quasicrystal Amulet
+			Ultranium: Focus Crystal
+			ExtractorHelmet: Head Plate
+			ExtractorAirMask: Air Filter
+			GlowBand: Glow Band
+			Amulet: Amulet
+			BloodPlasma: Blood Plasma
+			TargeoftheBlodded: Spike Shield
+			SpiritualRelic: Spiritual Amulet
+			Dreadsoul: Burning Heart
+			Breadsoul: Soul Eater
+			RustyKnife: KNIFE
+			CrimtaneBarb: Blood Articulation
+			DemoniteBarb: Dark Tether
+			MetalBarb: Metal Barb
+			CrabBarb: Crab Barb
+			Meathook: Meathook
+			CelesteTorus: Interstellar Orbiter
+			VoodooAmulet: Voodoo Amulet
+			WyvernAmulet: Featherflight Amulet
+			DarkAmulet: Dark Amulet
+			LightAmulet: Light Amulet
+			NeutralityAmulet: Neutrality Amulet
+			GlowString: Glow String
 			ShockCollar: Shock Collar
 			FidgetSpinner: Perpetuator
-			DegenerationRing: Degeneration Ring
+			DegenerationRing: Flame Resistance Ring
 			HeatedAmulet: Heated Amulet
 			FreezingAmulet: Freezing Amulet
 			NormalizerAmulet: Normalized Amulet
-			CrabBarb: Crab Barb
-			CrimtaneBarb: Crimtane Barb
-			DemoniteBarb: Demonite Barb
-			MetalBarb: Metal Barb
+			MinersFlashlight: Miner's Flashlight
+			Extractor: Extractor Cog
+			SparrowWings: Sparrow Wings
+			Thunderbird: Ancient Thunderbird
+			FishyFins: Fish Fins
+			FlowerCrown: Flower Crown
+			ArachnotronVisor: Arachnotron Visor
+			ArachnotronRibcage: Arachnotron Ribcage
+			ArachnotronRevvers: Arachnotron Revvers
+			CrabsonMask: Crabson Mask
 			SteelPlatedChestplate: Steel Plated Chestplate
-			Fluorescence: Fluorescence
-			JellyManaCrystal: Jelly Mana Crystal
-			HeartPiece: Heart Piece
-			VineSword: Turnblock Hammer
+			LightbulbHelmet: Lightbulb Helmet
+			LightbulbBreastplate: Lightbulb Breastplate
+			LightbulbGreaves: Lightbulb Greaves
+			Hitscanner: Hitscanner
+			XenonBasher: Xenon Basher
+			Flameblaster: Flameblaster
+			CrusadersCrossbow: Crusader's Crossbow
+			DoubleShot: Double Shot
+			KochfrostStaff: Kochfrost Staff
+			Baozhu: Baozhu
+			JerryClawFlail: Jerry Claw
+			MagicWand: Magic Wand
+			Deltoid: Deltoid
+			Lightbulb: Lightbulb
+			CrimsonHellSword: Cauterizer
+			HellsBoon: Hell's Boon
+			MonoxiderStaff: Monoxider Staff
+			ScarletSea: Scarlet Sea
+			SeltzerRain: Tainted Rain
+			FizzlingFire: Super Scorcher
+			MagicalBoomerang: Magical Boomerang
+			StariteBlade: Star Blade
+			StariteSpinner: Pulsar
+			Resonance: Resonance
+			StariteStaff: Starite Staff
+			VineSword: Mallet
 			KryptonSword: Krypton Boomerang
 			Vrang: Vrang
 			AirBlade: Air Blade
-			RedSpriteStaff: Red Sprite Staff
+			RedSpriteStaff: Surge Rod
 			ThunderClap: Thunder Clap
-			Umberserk: Umberserk
-			Umberetta: Umberetta
 			Umystick: Umystick
-			RedSpriteDye: Red Sprite Dye
-			FrostbiteDye: Frostbite Dye
-			Cosmicanon: Cosmicanon
+			Narrizuul: Narrizuul
+			StudiesoftheInkblot: Studies of the Inkblot
+			CursedKey: Cursed Key
+			PiranhaPot: Piranha Pot
+			Skrawler: Skrawler
+			SnowflakeCannon: Snowflake Cannon
+			Snowgrave: Snowgrave
+			UltimateSword: Ultimate Sword
+			Fluorescence: Fluorescence
+			SiphonTentacle: Siphon Tentacle
+			CrustaciumBar: Crustacium Bar
+			CrustaciumBlob: Crustacium Blob
+			CrustaciumOre: Crustacium Ore
+			LightMatter: Light Matter
+			NuclearFeather: Nuclear Feather
+			CrabPot: Crab Pot
+			PalePufferfish: Pale Pufferfish
+			VampireSquid: Vampire Squid
+			Blobfish: Blobfish
+			Fizzler: Fizzler
+			Nessie: Nessie
+			UltraEel: Ultra Eel
+			Combfish: Combfish
+			LarvaEel: Larva Eel
+			CentennialLight: Centennial Light
+			Globebulb: Globebulb
+			TheFan: Pumpinator
+			VampireHook: Bloodline
+			BlackBookofUntoldLegends: "'Untold Legends'"
 			EquivalenceMachine: Equivalence Machine
+			GhostlyGrave: Ghostly Grave
+			Stardrop: Stardrop
 			IWillBeBack: "'I'll Be Back'"
 			Nimrod: Nimrod
-			MinersFlashlight: Miner's Flashlight
+			CosmicTelescope: Cosmic Telescope
+			DungeonMap: Vial of Blood
+			LihzahrdMap: Cabbage
+			RetroGoggles: Blighted Soul
+			Beeswax: Beeswax
+			MoonflowerSeeds: Moonflower Seeds
+			ExoticRedTorch: Ultrabright Red Torch
+			ExoticGreenTorch: Ultrabright Green Torch
+			ExoticBlueTorch: Ultrabright Blue Torch
+			UltrabrightRedTorch: Red Wallshroom
+			UltrabrightGreenTorch: Green Wallshroom
+			UltrabrightBlueTorch: Blue Wallshroom
+			SparklingTorch: Wall Sparkler
+			GlobeItem: Sky Globe
+			OrbicularStargaizar: Cosmic Ball
+			GlimmeringStatue: Ultimate Crystal
+			SedimentSandBlock: Sedimentary Sand Block
+			SeaPickle: Sea Pickle
+			CrabsonTrophy: Crabson Trophy
+			HellTombstone: Hell Tombstone
+			GoreNestItem: Gore Nest
+			ArgonMushroom: Argon Mushroom
+			KryptonMushroom: Krypton Mushroom
+			XenonMushroom: Xenon Mushroom
+			CrabClock: Crab Wall Clock
+			OceanRavineWall: Crab Crevice Wall
+			SkyPalette: Sky Palette
+			OverworldPalette: Overworld Palette
+			CavernPalette: Cavern Palette
+			PotionofContainers: Containers Potion
+			PotionofContainersTag: "{$Mods.AQMod.ItemName.PotionofContainers}"
+			NoonPotion: Noon Potion
+			OpposingPotion: Opposing Potion
+			Baguette: Baguette
+			SpoilsPotion: Plethora Potion
+			BloodthirstPotion: Bloodthirst Potion
+			BloodshedPotion: Resurrection Potion
+			SpreadPotion: Spread Potion
+			ShadePotion: Shade Potion
+			MysteryGrail: Mysterious Grail
+			SaintsFlow: Saint's Flow
+			SpicyEel: Spicy Eel
+			NeutronJuice: Neutron Yogurt
+			RedLicorice: Red Licorice
+			GrapePhanta: Grape Phanta
+			PeeledCarrot: Dragon Carrot
+			CursorDyeRemover: Cursor Dye Remover
+			HealthCursorDye: Health Cursor Dye
+			ManaCursorDye: Mana Cursor Dye
+			SwordCursorDye: Sword Cursor Dye
+			DemonicCursorDye: Demonic Cursor Dye
+			TemperatureHairDye: Temperature Hair Dye
+			NalydDye: Summit Dye
+			RedSpriteDye: Scorching Dye
+			FrostbiteDye: Frostbite Dye
+			EnchantedDye: Enchanted Dye
+			ScrollDye: Scroll Dye
+			HellBeamDye: Hell Beam Dye
+			BreakdownDye: Breakdown Dye
+			DiscoDye: Disco Dye
+			HypnoDye: Hypno Dye
+			SimplifiedDye: Simplified Dye
+			OutlineDye: Outline Dye
+			RainbowOutlineDye: Rainbow Outline Dye
+			FamiliarPickaxe: Familiar Pickaxe
+			HeartLamp: Heart Lamp
+			StariteinaBottle: Starite in a Bottle
+			DragonBall: Dragon Ball
+			YuckyOrb: Charming Lure
+			WaterFisg: Water Fish
+			Crabdaughter: Crabdaughter
+			Transistor: Transistor
+			EclipseGlasses: Eclipse Glasses
+			Cosmicanon: Cosmicanon
+			SoliderCrabsBanner: Soldier Crab Banner
+			Snobster: Snobster
+			JeweledChalice: Jeweled Chalice
+			JeweledCandelabra: Jeweled Candelabra
+			JeweledChandelier: Jeweled Chandelier
 			OmegaStaritePainting: "'{$Mods.AQMod.NPCName.OmegaStarite}'"
 			RockFromAnAlternateUniverse: "'Rock from an Alternate Universe'"
 			AStrangeIdea: "'A Strange Idea...'"
 			GhostAmulet: Ghost Amulet
-			SpiritAmulet: Spirit Amulet
-			WyvernAmulet: Wyvern Amulet
-			VoodooAmulet: Voodoo Amulet
 			CopperSeal: Copper Seal
 			SilverSeal: Silver Seal
 			GoldSeal: Gold Seal
 			PlatinumSeal: Platinum Seal
-			TargeoftheBlodded: Shield of the Blooded
 			MoonShoes: Moonwalker
 			BlurryDiscountCard: Blurry Discount Card
 			BusinessCard: Business Card
-			SparrowWings: Sparrow Wings
-			Breadsoul: Breadsoul
-			Dreadsoul: Dreadsoul
-			CelesteTorus: Celeste Torus
-			RustyKnife: Rusty Knife
-			Terraroot: Terraroot
-			Thunderbird: Thunderbird
-			Ultranium: Hyper Crystal
-			Quasicrystal: Quasicrystal
 			Crabsol: Crabsol
-			CrabsonBag: Treasure Bag
-			MushroomClam: Mushroom Clam
-			CrabsonTrophy: Jerry Crabson Trophy
-			CrabsonMask: Jerry Crabson Mask
-			MythicStarfruit: Mythic Starfruit
-			NovaFruit: Nova Fruit
+			CrabsonBag: Treasure Bag (Crabson)
 			OmegaStariteMask: Omega Starite Mask
 			OmegaStariteTrophy: Omega Starite Trophy
-			StariteBag: Treasure Bag
-			UltimateStarfruit: Ultimate Starfruit
-			UltimateSword: Ultimate Sword
-			Baguette: Baguette
-			NeutronJuice: Neutron Yogurt
-			RedLicorice: Red Licorice
-			PeeledCarrot: Peeled Carrot
-			GrapePhanta: Grape Phanta
+			OmegaStariteBag: Treasure Bag (Omega Starite)
 			SuspiciousLookingSteak: Suspicious Looking Steak
-			SpicyEel: Spicy Eel
-			MysteryGrail: Mystery Grail
-			OpposingPotion: Opposing Potion
-			PotionofBossrushium: Encore Potion
-			SpoilsPotion: Spoils Potion
-			HermitShell: Hermit Shell
+			HermitShell: Clamshell Helmet
 			StriderPalms: Strider Palms
-			ArachnotronRevvers: Arachnotron Revvers
-			ArachnotronRibcage: Arachnotron Ribcage
-			ArachnotronVisor: Arachnotron Visor
 			DartTrapHat: Dart Trap Hat
-			LightbulbBreastplate: Lightbulb Breastplate
-			LightbulbGreaves: Lightbulb Greaves
-			LightbulbHelmet: Lightbulb Helmet
 			SuperDartTrapHat: Super Dart Trap Hat
-			CosmicTelescope: Cosmic Marker
-			DungeonMap: Bone Marker
-			LihzahrdMap: Lihzahrd Marker
-			RetroGoggles: Retro Marker
-			Extractor: Extractor
 			OrganicEnergy: Organic Energy
 			DemonicEnergy: Demonic Energy
 			CosmicEnergy: Cosmic Energy
@@ -104,97 +262,31 @@ Mods: {
 			MysticPopper: Mystic Popper
 			CrabRod: Crab Rod
 			BeeRod: Buzzrod
-			Blobfish: Blobfish
-			Fizzler: Fizzler
-			Nessie: Nessie
-			UltraEel: Ultra Eel
-			Combfish: Combfish
-			LarvaEel: Larva Eel
-			WaterFisg: Water Fish
-			Crabdaughter: Crabdaughter
-			Snobster: Snobster
-			JeweledChalice: Jeweled Chalice
-			JeweledCandelabra: Jeweled Candelabra
-			JeweledChandelier: Jeweled Chandelier
-			JeweledChair: Jeweled Chair
-			JeweledTable: Jeweled Table
 			DwarfStariteItem: Dwarf Starite
-			BloodshedPotion: Bloodshed Potion
 			CrabShell: Crab Shell
-			CrabClock: Crab Clock
-			Lightbulb: Lightbulb
-			Molite: Starbyte
-			MoliteTag: "{$Mods.AQMod.ItemName.Molite}"
-			NuclearFeather: Nuclear Feather
-			PotionofContainers: Containers Potion
-			PotionofContainersTag: "{$Mods.AQMod.ItemName.PotionofContainers}"
-			Narrizuul: Narrizuul
 			MothmanMask: Mothman Mask
-			Qi: Qi
-			ArgonMushroom: Argon Mushroom
-			KryptonMushroom: Krypton Mushroom
-			XenonMushroom: Xenon Mushroom
-			ExoticRedTorch: Exotic Red Torch
-			ExoticGreenTorch: Exotic Green Torch
-			ExoticBlueTorch: Exotic Blue Torch
-			UltrabrightRedTorch: Ultrabright Red Torch
-			UltrabrightGreenTorch: Ultrabright Green Torch
-			UltrabrightBlueTorch: Ultrabright Blue Torch
-			SparklingTorch: Shimmering Torch
 			MoonlightWall: Moonlight Wall
-			OceanRavineWall: Ocean Ravine Wall
-			GlimmeringStatue: Glimmering Statue
 			ExoticCoral: Exotic Coral
 			ExoticStarfish: Exotic Starfish
 			FishingCraftingStation: Fishing Utility Crafting Station
-			GlobeItem: Unity Globe
-			GoreNestItem: Gore Nest
 			PlaceableShadowOrb: Shadow Orb (Placeable)
 			PlaceableCrimsonHeart: Crimson Heart (Placeable)
 			MonoxideHat: Monoxide Hat
-			FishyFins: Fishy Fins
 			CelesitalEightBall: Celestial 8-Ball
-			DragonBall: Dragon Ball
-			HeartLamp: Heart Lamp
-			CursorDyeRemover: Cursor Dye Remover
-			HealthCursorDye: Health Cursor Dye
-			ManaCursorDye: Mana Cursor Dye
-			SwordCursorDye: Sword Cursor Dye
-			DemonicCursorDye: Demonic Cursor Dye
-			EnchantedDye: Enchanted Dye
-			ScrollDye: Scroll Dye
-			HellBeamDye: Hell Beam Dye
-			BreakdownDye: Breakdown Dye
-			DiscoDye: Disco Dye
-			HypnoDye: Hypno Dye
-			SimplifiedDye: Simplified Dye
-			OutlineDye: Outline Dye
-			RainbowOutlineDye: Rainbow Outline Dye
 			SunbaskMirror: Sunbask Mirror
 			UnityMirror: Moonluna Mirror
 			Bubbler: Bubbler
 			GebulbaStaff: Gebulba Staff
-			MagicWand: Magic Wand
 			MagmalbulbiaStaff: Magmalbulbia Staff
-			ScarletSea: Scarlet Sea
-			SeltzerRain: Seltzer Rain
-			FizzlingFire: Fizzling Fire
 			PentalScythe: Pental Scythe
-			JerryClawFlail: Jerry Claw
 			PowPunch: Pow Punch
 			CrystalDagger: Crystal Dagger
 			ArgonSpear: Argon Spear
 			HorizonSkies: Horizon Skies
 			Aphrodite: Aphrodite
 			Venus: Venus
-			StariteSpinner: Starite Spinner
 			Dysesthesia: Dysesthesia
-			CrimsonHellSword: Burnterizer
-			HellsBoon: Hell's Boon
 			Galactium: Galactium
-			OrbicularStargaizar: Orbicular Stargaizar
-			StariteBlade: Starite Blade
-			XenonBasher: Xenon Basher
 			CinnabarBow: Cinnabar Bow
 			HamaYumi: Hama Yumi
 			SpiralingTwilight: Spiraling Twilight
@@ -203,26 +295,18 @@ Mods: {
 			Raygun: Raygun
 			SpaceShot: Space Shot
 			LotusStaff: Lotus Staff
-			MonoxiderStaff: Monoxider Staff
-			StariteStaff: Starite Staff
 			CrimsonHandStaff: Crimson Hand Staff
 			CorruptPot: Corrupt Pot
 			ATM: ATM
-			Globebulb: Globebulb
 			SpectralLens: Spectral Lens
 			SpectreSoul: Spectre Soul
 			GoldPowder: Gold Powder
 			FertilePowder: Fertile Powder
-			TheFan: The Fan
 			Crabax: Crabax
 			Floatstick: Floatstick
 			StariteBanner: Starite Banner
 			SuperStariteBanner: Super Starite Banner
 			HyperStariteBanner: Hyper Starite Banner
-			ArrowCrabBanner: Arrow Crab Banner
-			HermitCrabBanner: Hermit Crab Banner
-			SoliderCrabsBanner: Solider Crabs Banner
-			StriderCrabBanner: Strider Crab Banner
 			CinderaBanner: Cindera Banner
 			MagmabubbleBanner: Magmabubble Banner
 			TrapperImpBanner: Trapper Imp Banner
@@ -234,6 +318,121 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			MoonflowerPollen: "{$Mods.AQMod.Tooltips.Concocted}"
+			LingeringPotion: Leaves a lingering effect which buffs yourself and nearby teammates
+			Molite: "{$Mods.AQMod.Tooltips.Concocted}"
+			MoliteTag: Has double the length
+			MushroomClam:
+				'''
+				Summons Crabson at the crab caves
+				{$Mods.AQMod.Common.NotConsumable}
+				'''
+			NovaFruit:
+				'''
+				Summons Omega Starite at night
+				{$Mods.AQMod.Common.NotConsumable}
+				'''
+			MythicStarfruit: Summons a strange glimmer
+			MoonLeech: Attacks drain mana from enemies
+			Squyp:
+				'''
+				Automatically places a sentry when you are in combat
+				Requires a sentry staff in your inventory to work
+				'It's only mildy disturbing'
+				'''
+			DreamCatcher:
+				'''
+				{$Mods.AQMod.Tooltips.HookBarb}
+				Deals extra damage while in the sky biome
+				'''
+			MagikaAmulet:
+				'''
+				8% reduced mana useage
+				Attacks drain mana from enemies
+				Increases length of invincibility after taking damage
+				Automatically uses mana potions when needed
+				'''
+			JellyAmulet:
+				'''
+				Provides light which gets brighter while underwater
+				5% increased ranged damage
+				10% increased ranged critical strike chance while underwater
+				Enemies drop ammo you have consumed
+				'''
+			Terraroot: Enemies drop ammo you have consumed
+			Quasicrystal:
+				'''
+				Nearby enemies take 25% extra damage
+				Inflicts cosmic radiation and fire damage on attack
+				Causes stars to fall when injured
+				'''
+			Ultranium:
+				'''
+				Nearby enemies take 25% extra damage
+				Your attacks inflict cosmic radiation
+				'''
+			ExtractorHelmet: Falling blocks deal less damage
+			ExtractorAirMask: Immunity to Suffocation
+			GlowBand: Emits colored light
+			Amulet: May be enchanted
+			BloodPlasma:
+				'''
+				When equipped, you will eat this instead of dying
+				Only 1 can be in your accessory slot
+				'''
+			TargeoftheBlodded:
+				'''
+				Increases armor penetration by 2
+				Allows the player to slide down walls
+				Improved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
+				'''
+			SpiritualRelic:
+				'''
+				{$Mods.AQMod.Tooltips.IncreasedMinions}
+				Defeated enemies create minion damage boosting spirits
+				Enemies haunted by spirits take extra damage from minions
+				'''
+			Dreadsoul:
+				'''
+				Defeated enemies summon hellish spirits which haunt nearby enemies
+				Haunted enemies take extra damage from minions
+				'''
+			Breadsoul: Defeated enemies summon dream spirits which boost your minion's damage
+			RustyKnife:
+				'''
+				Summons your friends to fight for you
+				Revives you with 1 HP on fatal hits with a 5 minute cooldown
+				'Why would you hold a knife from the sharp part?'
+				'''
+			CrimtaneBarb: "{$Mods.AQMod.Tooltips.HookBarb}"
+			DemoniteBarb: "{$Mods.AQMod.Tooltips.HookBarb}"
+			MetalBarb: "{$Mods.AQMod.Tooltips.HookBarb}"
+			CrabBarb: Your grappling hooks inflict poison and damage
+			Meathook: Allows you to attach to enemies using your grappling hook
+			CelesteTorus:
+				'''
+				You obtain rotating orbs which deal contact damage
+				The radius, speed, and damage, are all determined by various stats
+				'''
+			VoodooAmulet:
+				'''
+				Hitting an enemy will make nearby enemies of the same type get hit aswell
+				Reduces damage from touching lava
+				'''
+			WyvernAmulet:
+				'''
+				Increases flight time by a second
+				Enemies give you extra flight time when killed
+				Negates fall damage
+				'''
+			DarkAmulet: You deal 15% more damage to holy creatures
+			LightAmulet: You deal 15% more damage to unholy creatures
+			NeutralityAmulet: You deal 15% more damage to holy and unholy creatures
+			GlowString:
+				'''
+				Makes your yoyo string glow in the dark
+				Increases yoyo range
+				'''
 			ShockCollar:
 				'''
 				Increases damage by 5%
@@ -243,123 +442,340 @@ Mods: {
 			DegenerationRing: Prevents most types of burning
 			HeatedAmulet:
 				'''
-				Prevents most types of burning
-				Lowers the intensity of hot sources from gale streams enemies
+				Prevents most types of freezing
+				Lowers the intensity of cold from Gale Streams enemies
 				'''
 			FreezingAmulet:
 				'''
-				Prevents most types of freezing
-				Lowers the intensity of cold sources from gale streams enemies
+				Prevents most types of burning
+				Lowers the intensity of heat from Gale Streams enemies
 				'''
 			NormalizerAmulet:
 				'''
 				Prevents most types of freezing and burning
 				Lowers the intensity of temperature sources from gale streams enemies
 				'''
-			CrabBarb: Your grappling hooks inflicts poison, and damage
-			CrimtaneBarb: Your grappling hooks inflicts damage
-			DemoniteBarb: Your grappling hooks inflicts damage
-			MetalBarb: Your grappling hooks inflicts damage
+			MinersFlashlight:
+				'''
+				You emit a stream of light which points towards your cursor
+				Treasure shimmers when shone on by the light
+				Hide the accessory to disable the flashlight
+				'''
+			Extractor:
+				'''
+				Immunity to Suffocation
+				Falling blocks deal less damage
+				Increases mining speed by 25%
+				When visible, extracting will show how many things you've extracted
+				'''
+			SparrowWings: "{$CommonItemTooltip.FlightAndSlowfall}"
+			Thunderbird:
+				'''
+				{$CommonItemTooltip.FlightAndSlowfall}
+				Has immense horizontal speed!
+				'''
+			FishyFins: "{$Mods.AQMod.nalyd}"
+			FlowerCrown: Ocassionally summons damaging petals which blow in the wind
+			ArachnotronVisor:
+				'''
+				Increases melee damage, crit, and summon damage by 10%
+				Gives you night vision
+				'''
+			ArachnotronRibcage:
+				'''
+				Increases melee speed and summon damage by 10%
+				Reduces damage taken by 5%
+				Increases your max number of minions
+				Gives you damaging spider arms
+				'''
+			ArachnotronRevvers:
+				'''
+				Increases melee and summon damage by 10%
+				Increases your max number of minions
+				Allows you to run super fast and grants immunity to fire blocks
+				'''
+			LightbulbHelmet:
+				'''
+				Slightly increases mana regeneration
+				You faintly emit light
+				'..and so he left'
+				'''
+			LightbulbBreastplate: "'..and so he vanished'"
+			LightbulbGreaves:
+				'''
+				Increases your max number of minions
+				'..and so it comes'
+				'''
+			Hitscanner: Fires a massive spread of instantly hitting bullets
+			XenonBasher:
+				'''
+				Whack nearby enemies using your mouse
+				Hitting enemies will create xenon spores
+				'''
+			Flameblaster:
+				'''
+				Right click to shoot an airblast
+				Extra effective in the hallow
+				{$Mods.AQMod.Tooltips.UsesGel}
+				50% chance to not consume ammo
+				'The [c/ee2222:HOTTEST] in Home Incendiary Devices'
+				'''
+			CrusadersCrossbow: Shoots a healing bolt which can damage enemies or opposing teams
+			DoubleShot:
+				'''
+				Spawns a secondary bullet
+				50% chance to not be consumed upon firing
+				'''
+			KochfrostStaff:
+				'''
+				Summons a snowflake to fight for you
+				Uses half a minion slot
+				'''
+			Baozhu:
+				'''
+				A large explosion that puts enemies on fire
+				Lights the area on fire for a while
+				'''
+			JerryClawFlail:
+				'''
+				Throws two claws
+				'Feels oily'
+				'''
+			MagicWand: Shoots a bolt which explodes into horizontal waves
+			Deltoid: Shoots a hellish arrow which summons more arrows
+			Lightbulb: Emits light using the power of stars
+			CrimsonHellSword:
+				'''
+				Shoots a wave of explosive demonic energy
+				Sword hits inflict crimson hellfire
+				'That's gotta burn'
+				'''
+			HellsBoon:
+				'''
+				Ash spikes appear around your cursor
+				Sword hits inflict corruption hellfire
+				'''
+			MonoxiderStaff: Summons a monoxide finch to fight for you
+			ScarletSea: Summons two blood orbs
+			SeltzerRain: Shoots many corrupted orbs
+			FizzlingFire: Cannot be used if you have mana sickness
+			MagicalBoomerang: Can pick up items
+			StariteBlade:
+				'''
+				Inflicts blue fire on hit
+				'The sacred blade that evil can never touch'
+				'''
+			StariteSpinner:
+				'''
+				Occasionally inflicts blue fire on hit
+				'Is it rotating? Or are we just orbiting around it?'
+				'''
+			Resonance:
+				'''
+				Occasionally burns enemies on hit
+				'Don't you think we should recalculate those resonance dampening factors again?'
+				'''
+			StariteStaff: Summons a speedy starite to fight for you
+			VineSword:
+				'''
+				Whack nearby enemies using your mouse
+				'It's just like huntin' squirbos'
+				'''
 			KryptonSword:
 				'''
-				Cuts through enemies and can be swung around
+				Cuts through enemies
 				Inflicts multiple debuffs
 				'''
-			Vrang: Throws 3 vraines which move very quickly
+			Vrang: Throws boomerangs in a v-shape
 			AirBlade: Summons magical air blades
 			RedSpriteStaff:
 				'''
-				Summons a red sprite to rain thunder down upon your foes
-				Can cast four at once
+				Summons a thundercloud to strike your foes
+				Four can be casted at once
 				'''
 			ThunderClap: Summons a thunderbolt from the sky
-			Umberserk:
-				'''
-				{$Mods.AQMod.Tooltips.UmbrellaWeapon}
-				Hitting enemies makes you swing your weapon faster
-				Your first hit will always be a crit
-				'''
-			Umberetta:
-				'''
-				{$Mods.AQMod.Tooltips.UmbrellaWeapon}
-				Shoots umbrella harpoons
-				'''
 			Umystick:
 				'''
 				{$Mods.AQMod.Tooltips.UmbrellaWeapon}
-				Right click while held to do an extra jump which costs a great amount of mana
+				Right click to perform a double jump
 				'Looks quite menacing'
 				'''
-			Cosmicanon:
+			Narrizuul:
 				'''
-				Prevents the Blood Moon, Eclipse and Glimmer Event from naturally spawning
-				{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
+				{$Mods.AQMod.Tooltips.Unobtainable}
+				{$Mods.AQMod.Tooltips.Nalyddd}
 				'''
-			EquivalenceMachine:
+			StudiesoftheInkblot:
 				'''
-				Nearby items float instead of falling
-				{$Mods.AQMod.Tooltips.InventoryPiggyBankFunction}
+				'Rorschach in Danmaku'
+				'Subterranean Rose'
 				'''
+			CursedKey: Summons a demonic trapper to fight for you
+			PiranhaPot: Summons a vicious plant to fight for you
+			Skrawler: Shoots a deadly flame bolt
+			SnowflakeCannon:
+				'''
+				Launches many snowballs at once
+				66% chance to not consume ammo
+				'''
+			Snowgrave:
+				'''
+				Summons a snowblast from below
+				Casting will drain your magic power for a short time
+				'Watch what happens when I cast a spell I don't know!'
+				'''
+			UltimateSword:
+				'''
+				Temporarily increases your stats on critical hits
+				Inflicts cosmic radiation on hit
+				'''
+			LightMatter: Radiates light and interstellar power
+			NuclearFeather:
+				'''
+				{$Mods.AQMod.Tooltips.Unobtainable}
+				'They say it's from the flawless wings of Yatagaratsu'
+				'''
+			CrabPot: Uses bait to catch things in the water
+			PalePufferfish:
+				'''
+				Can cure you of many debuffs
+				Can cure vampirism
+				'''
+			VampireSquid: Gives you vampirism
+			Blobfish: "'Looking at it without puking requires you to not have gag reflexes'"
+			UltraEel: The offspring of an ancient Starite species
+			Combfish: Has regenerative properties
+			LarvaEel: Provides life regeneration
+			CentennialLight: Greatly speeds up time
+			Globebulb: Speeds up time
+			TheFan:
+				'''
+				Can push things in any direction
+				Changes the speed of the wind
+				'Handheld inspiration!'
+				'''
+			VampireHook:
+				'''
+				Automatically aims towards nearby enemies
+				When attached to an enemy, it drains its life
+				'''
+			BlackBookofUntoldLegends: Summons the Hermit Crab merchant
+			EquivalenceMachine: Nearby items float instead of falling
+			GhostlyGrave: Can disable graves from spawning upon your death
+			Stardrop: Toggles whether town NPCs can move in during night
 			IWillBeBack:
 				'''
 				Summons the Wall of Flesh without murdering the Guide
-				Right click to make all town NPCs immune to lava
+				Right click to toggle whether villagers are immune to lava
 				'''
 			Nimrod:
 				'''
 				Summons a fishing cloud which spawns 3 lightning bobbers to catch fish
 				Catches fish faster during the rain
 				'''
-			MinersFlashlight:
+			CosmicTelescope: Shows the source of the Glimmer and some other related info on the map
+			DungeonMap:
 				'''
-				You emit a stream of light which points towards your cursor
-				Treasure shimmers when shown by the light
-				Hide the accessory to disable the flashlight
+				Shows the location of the Dungeon
+				Pressing the map icon of the Dungeon allows you to teleport to it
 				'''
-			OmegaStaritePainting:
+			LihzahrdMap:
 				'''
-				'You have no idea whats in store for you!'
-				{$Mods.AQMod.PaintingSignature.niker}
+				Shows the location of the Lihzahrd Altar
+				Pressing on the map icon of the Lihzahrd Altar allows you to teleport to it
 				'''
-			RockFromAnAlternateUniverse:
+			RetroGoggles: Enemies appear as a blip on the fullscreen map
+			Beeswax: Shows the location of any visible Plantera bulbs
+			MoonflowerSeeds: Blooms and produces pollen near midnight
+			UltrabrightRedTorch: "{$Mods.AQMod.Common.TorchCanBePlacedInLiquids}"
+			UltrabrightGreenTorch: "{$Mods.AQMod.Common.TorchCanBePlacedInLiquids}"
+			UltrabrightBlueTorch: "{$Mods.AQMod.Common.TorchCanBePlacedInLiquids}"
+			GlobeItem:
 				'''
-				'The great might of an interstellar nebula!'
-				{$Mods.AQMod.PaintingSignature.NalydT}.. from another universe
+				Shows your tile coordinates when right clicked
+				'Explore the world'
 				'''
-			AStrangeIdea:
+			GlimmeringStatue: Used to craft powerful items made of energy
+			SedimentSandBlock: Does not fall
+			SeaPickle: "'You hear a voice telling you to flip it over'"
+			GoreNestItem:
 				'''
-				'The birthplace of Aequus'
-				{$Mods.AQMod.PaintingSignature.NalydT}
+				Use an item crafted with demonite or crimtane at this altar
+				Counts as a demon/crimson altar
 				'''
-			Breadsoul:
+			ArgonMushroom:
 				'''
-				Increases your grab reach by 25%
-				Dungeon Spirit enemies are now friendly
-				Nearby enemies no longer drop hearts, and instead drop souls
-				Spectre souls drop more commonly and give you massive life regeneration
+				Emits red light
+				'Dormant and inanimate'
 				'''
-			Dreadsoul:
+			KryptonMushroom:
 				'''
-				Upon death enemies will release 6 dreaded souls which will target enemies of the same type
-				Dungeon Spirit enemies are now friendly
+				Emits green light
+				'Can show vital weaknesses in super beings'
 				'''
-			Ultranium:
+			XenonMushroom:
 				'''
-				True melee crits on enemies channels the damage to the closest boss
-				Your attacks inflict shimmering
-				5% increased melee critical strike chance
+				Emits blue light
+				'Gets brighter when you touch it'
 				'''
-			Quasicrystal:
+			CrabClock: "'What time is it? Crabby time.'"
+			SkyPalette:
 				'''
-				True melee crits on enemies channels the damage to the closest boss
-				Causes stars to fall when injured
-				Causes shimmering and fire damage on attack
-				5% increased melee critical strike chance
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.AQMod.Tooltips.PaletteDrop}
 				'''
-			UltimateSword:
+			OverworldPalette:
 				'''
-				Temporarily increases your stats on critical hits
-				Inflicts shimmering on hit
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.AQMod.Tooltips.PaletteDrop}
+				'''
+			CavernPalette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.AQMod.Tooltips.PaletteDrop}
+				'''
+			PotionofContainers:
+				'''
+				Teleports you to random chests in the world
+				Can be concocted with a chest to target specific chest types
+				'''
+			PotionofContainersTag: Teleports you to random chests in the world
+			NoonPotion:
+				'''
+				Emits a large aura of light and increases night vision
+				You always have daytime-only effects active
+				Prevents nighttime-only effects from working
+				'''
+			OpposingPotion: Reverses the effects of many things
+			Baguette:
+				'''
+				Supreme improvements to all stats
+				Greatly improves life regeneration
+				'Cake is just spongy bread'
+				'''
+			SpoilsPotion:
+				'''
+				Enemies drop twice as much loot
+				'You are such a spoiled brat!'
+				'''
+			BloodthirstPotion: You drain some life when you kill an enemy
+			BloodshedPotion: Teleports you to the location of your most recent death
+			SpreadPotion: Enemies will spread their current debuffs to nearby enemies when attacked
+			ShadePotion: Standing still will make enemies unable to target you
+			MysteryGrail:
+				'''
+				{$Mods.AQMod.Tooltips.Unobtainable}
+				Gives you a random buff
+				'''
+			SaintsFlow:
+				'''
+				Minor improvements to all stats
+				Greatly increases speed
+				'''
+			SpicyEel:
+				'''
+				Minor improvements to all stats
+				Greatly increases speed
 				'''
 			NeutronJuice:
 				'''
@@ -367,18 +783,42 @@ Mods: {
 				'Weighs millions of tons... still lighter than putting a safe in a safe'
 				'''
 			RedLicorice: Medium improvements to all stats and increases your life by 20
-			PeeledCarrot: Medium improvements to all stats and grants you night vision
 			GrapePhanta:
 				'''
 				Medium improvements to most stats
 				Major improvements to magic stats
 				Increases mana by 20
 				'''
-			SpicyEel: Greatly increases speed
-			Narrizuul:
+			PeeledCarrot: Medium improvements to all stats and grants you night vision
+			CursorDyeRemover: Removes any applied cursor dye
+			NalydDye: "{$Mods.AQMod.Tooltips.Nalyddd}"
+			FamiliarPickaxe: Summons a mini version of yourself
+			HeartLamp: Summons a heart moth which increases life regen and provides light
+			StariteinaBottle:
 				'''
-				A relic birthed in an alternate universe
-				'Smells like roses'
+				Summons a dwarf starite to provide light
+				{$Mods.AQMod.Tooltips.SuspiciousLooking}
+				'''
+			DragonBall: Summons an omega starite mini
+			YuckyOrb: Summons a pet angler fish to provide light
+			Transistor: Prevents the Glimmer from naturally spawning
+			EclipseGlasses: Prevents the Eclipse from naturally spawning
+			Cosmicanon: Prevents the Blood Moon from naturally spawning
+			SoliderCrabsBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoldierCrab}"
+			OmegaStaritePainting:
+				'''
+				'You have no idea what's in store for you!'
+				{$Mods.AQMod.PaintingSignature.niker}
+				'''
+			RockFromAnAlternateUniverse:
+				'''
+				'The great might of an interstellar nebula!'
+				'N.T... from another universe'
+				'''
+			AStrangeIdea:
+				'''
+				'The birthplace of Aequus'
+				{$Mods.AQMod.PaintingSignature.NalydT}
 				'''
 			MothmanMask:
 				'''
@@ -387,10 +827,6 @@ Mods: {
 				Increases the knockback of your minions
 				Crits inflicts blue fire to nearby enemies
 				'''
-			ExoticRedTorch: "{$Mods.AQMod.Common.TorchCanBePlacedInLiquids}"
-			ExoticGreenTorch: "{$Mods.AQMod.Common.TorchCanBePlacedInLiquids}"
-			ExoticBlueTorch: "{$Mods.AQMod.Common.TorchCanBePlacedInLiquids}"
-			SparklingTorch: "{$Mods.AQMod.Common.TorchCanBePlacedInLiquids}"
 			MoonlightWall: NPCs in front of the wall will think it's night
 			SunbaskMirror:
 				'''
@@ -402,13 +838,12 @@ Mods: {
 				Reflects powerful moonlight off of its surface
 				Can only be used during nighttime, above ground
 				'''
-			ScarletSea: Summons homing blood orbs which follow your cursor
 			PowPunch: Throws two fists which repeatedly bash enemies
 			CrystalDagger: Quickly jabs enemies
-			Aphrodite: Give enemies lovestruck which decreases their damage inflicted by 10%, and increases their damage taken by 10%
+			Aphrodite: Inflicts strong love which decreases enemy stats
 			Venus:
 				'''
-				Give enemies lovestruck which decreases their damage inflicted by 10%, and increases their damage taken by 10%
+				Inflicts strong love which decreases enemy stats
 				Has a chance to poison enemies if they are very close to you
 				'''
 			Dysesthesia:
@@ -416,26 +851,14 @@ Mods: {
 				Summons demon scythes
 				Inflicts enemies with corrupt hellfire if they are very close
 				'''
-			CrimsonHellSword: Shoots a wave of demonic energy
 			Galactium:
 				'''
 				Rains stars from the sky
 				Inflicts blue fire on true melee hits
 				'''
-			StariteBlade: Inflicts blue fire on hit
-			MonoxiderStaff: Summons a monoxide finch to fight for you
 			GoldPowder: Converts critters into their golden counterparts
 			FertilePowder: Forces tiles to grow
-			TheFan:
-				'''
-				Can push things in any direction
-				Changes the speed of the wind
-				'Handheld inspiration! It doesn't suck... It blows! It is... THE FAN'
-				'''
 			GhostAmulet: Prevents Ghost spawns in singleplayer
-			SpiritAmulet: Prevents Dungeon Spirit spawns in singleplayer
-			WyvernAmulet: Prevents Wyvern spawns in singleplayer
-			VoodooAmulet: Prevents Voodoo Demon spawns in singleplayer
 			CopperSeal: Fishing a crate will bless you with 30 seconds of the crate potion buff
 			SilverSeal: Fishing anything will bless you with 10 seconds of the fishing potion buff
 			GoldSeal: Fishing anything that can be sold for 1 gold blesses you with 1 minute of the sonar potion buff
@@ -444,12 +867,6 @@ Mods: {
 				{$Mods.AQMod.ItemTooltip.CopperSeal}
 				{$Mods.AQMod.ItemTooltip.SilverSeal}
 				{$Mods.AQMod.ItemTooltip.GoldSeal}
-				'''
-			TargeoftheBlodded:
-				'''
-				Increases armor penetration by 2
-				Allows the ability to slide down walls
-				Improved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
 				'''
 			MoonShoes:
 				'''
@@ -469,85 +886,24 @@ Mods: {
 				{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}
 				'Consider everything a business expense'
 				'''
-			SparrowWings: "{$CommonItemTooltip.FlightAndSlowfall}"
-			CelesteTorus:
-				'''
-				You obtain rotating orbs which deal contact damage
-				The radius speed damage and knockback are all determined by various stats
-				Increases flight time by 2 seconds
-				'''
-			RustyKnife:
-				'''
-				Summons your friends to fight for you
-				Revives you with 1 HP when you die with a 5 minute cooldown
-				'Why would you hold a knife from the sharp part?'
-				'''
-			Terraroot: Randomly converts musket balls into chlorophyte bullets
-			Thunderbird:
-				'''
-				Gives you a thunderous extra jump that refreshes every 2 seconds you must be moving in a direction to use the jump
-				Enemies below you have a chance to get struck by lightning
-				The lightning becomes more powerful the lower your life
-				'''
 			Crabsol: Only the strongest of people can wield this weapon in honor
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
-			MushroomClam: Summons Jerry Crabson at the beach
-			DragonBall: Summons a micro starite
-			MythicStarfruit: Begins the Glimmer Event
-			NovaFruit:
-				'''
-				Summons {$Mods.AQMod.NPCName.OmegaStarite} at night
-				{$Mods.AQMod.Common.NotConsumable}
-				'''
-			StariteBag: "{$CommonItemTooltip.RightClickToOpen}"
-			UltimateStarfruit:
-				'''
-				Left click summons {$Mods.AQMod.NPCName.OmegaStarite} at night
-				Right click toggles the Glimmer Event
-				{$Mods.AQMod.Common.NotConsumable}
-				'''
-			Baguette: "'Cake is just spongy bread'"
+			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			SuspiciousLookingSteak:
 				'''
 				Gives multiple buffs
 				'A curse has been lifted'
 				'''
-			MysteryGrail: Gives you a random buff
-			OpposingPotion: Makes some enemies drop opposing loot
-			PotionofBossrushium: Bosses respawn when defeated
-			SpoilsPotion: Non-Boss Enemies drop 2 times more loot
 			HermitShell: Increases your defense the lower your speed
 			StriderPalms:
 				'''
 				Increases minion damage by 10%
 				Increases the stats of the Strider Hook
 				'''
-			ArachnotronRevvers:
-				'''
-				Allows you to run super fast and grants immunity to fire blocks
-				Increases your max number of minions
-				'''
-			ArachnotronRibcage:
-				'''
-				Gives you damaging spider arms
-				Increases melee speed by 10% and damage reduction by 5%
-				Increases your max number of minions
-				'''
-			ArachnotronVisor:
-				'''
-				Increases melee crit chance by 5% and summon damage by 10%
-				Gives you night vision
-				'''
 			DartTrapHat:
 				'''
 				Shoots poisioned darts while you are on the ground
 				Increases summon damage by 5%
-				'''
-			LightbulbGreaves: Increases your max number of minions
-			LightbulbHelmet:
-				'''
-				Slightly increases mana regeneration
-				You faintly emit light
 				'''
 			SuperDartTrapHat:
 				'''
@@ -555,27 +911,6 @@ Mods: {
 				Increases summon damage by 10%
 				Increases your max number of minions
 				'''
-			CosmicTelescope: Shows the center of the Glimmer Event on the map
-			DungeonMap:
-				'''
-				Shows the location of the Dungeon if it has already been disovered
-				You can teleport to the dungeon using a Unity Mirror
-				'''
-			LihzahrdMap:
-				'''
-				Shows the location of the Lihzahrd Altar if it has already been disovered or Plantera has been defeated
-				You can teleport to the Lihzahrd Altar using a Unity Mirror if Plantera has been defeated
-				'''
-			RetroGoggles: Shows enemies as a pink blip on the fullscreen map
-			Extractor:
-				'''
-				You gain immunity to suffocation
-				Falling Silt and Slush now deal x4 less damage
-				If the accessory is not marked as hidden:
-				You obtain the ability to veinmine silt slush and desert fossils
-				Extracting something at the Extractinator will show your extractination count 
-				'''
-			CursorDyeRemover: Removes any applied cursor dye
 			CursedPopper: Increases bait power by 30% when in the corruption
 			IchorPopper: Increases bait power by 35% when in the crimson
 			MysticPopper: Increases bait power by 25% when in the hallow
@@ -584,34 +919,8 @@ Mods: {
 				Throws flying bee bobbers
 				Throws 3 lines when using the Hive Pack
 				'''
-			Fizzler: It's corrupted and glimmering
-			UltraEel: The offspring of an ancient starite species
-			Combfish: "'The scales of this fish are not edible'"
-			LarvaEel: Gives you 3 minutes of honey and 60 seconds of potion sickness
-			JeweledChalice: "{$Mods.AQMod.Common.ReturnToLobster}"
-			JeweledCandelabra: "{$Mods.AQMod.Common.ReturnToLobster}"
-			JeweledChandelier: "{$Mods.AQMod.Common.ReturnToLobster}"
-			JeweledChair: "{$Mods.AQMod.Common.ReturnToLobster}"
-			JeweledTable: "{$Mods.AQMod.Common.ReturnToLobster}"
-			BloodshedPotion: Teleports you to the location of your most recent death
-			CrabShell: It's oddly mishapen
-			CrabClock: Speeds up ocean's natural fluctuations
-			Molite: Doubles the length of potions
-			NuclearFeather:
-				'''
-				Created from nuclear fusion
-				'They say it's from the flawless wings of Yatagaratsu'
-				'''
-			PotionofContainers: Teleports you to a random chest in the world
-			PotionofContainersTag: "{$Mods.AQMod.ItemTooltip.PotionofContainers}"
-			Qi: A mystical energy created by extreme philosophical forces
-			ArgonMushroom: "{$Mods.AQMod.Common.NobleMushroomScent}"
-			KryptonMushroom: "{$Mods.AQMod.Common.NobleMushroomScent}"
-			XenonMushroom: "{$Mods.AQMod.Common.NobleMushroomScent}"
-			GlimmeringStatue: Has a very high chance to attract the Ultimate Sword during the Glimmer Event
+			CrabShell: It's oddly misshapen
 			FishingCraftingStation: Used to craft special fishing items
-			GlobeItem: Can be drawn on with markers
-			HeartLamp: Summons a heart moth which increases life regen
 			MonoxideHat: "'Became a vanity item due to popular demand'"
 			CelesitalEightBall:
 				'''
@@ -628,32 +937,18 @@ Mods: {
 				Shoots bouncy slimeballs
 				'Boing!'
 				'''
-			MagicWand: Shoots a bolt towards your cursor which explodes into horizontal waves
 			MagmalbulbiaStaff:
 				'''
 				Shoots firey magmaballs that explode off tiles
 				'EXPLOSION! EXPLOSION! EXPLOSION!'
 				'''
-			SeltzerRain:
-				'''
-				Shoots 5 fizzy orbs which follow your cursor for a short while
-				The fizzy orbs soon start fleeing from your cursor
-				'''
-			FizzlingFire:
-				'''
-				Shoots powerful blue flames
-				Cannot be used while mana sick
-				'''
 			PentalScythe: Shoots firey demon scythes that target your enemies
-			JerryClawFlail: "'Feels oily'"
 			ArgonSpear: Redirects itself to your cursor
 			HorizonSkies:
 				'''
 				Shoots lines of energy
 				'Are you readyayayayayyayayayaya'
 				'''
-			HellsBoon: Creates ash spikes around your cursor which protrude out of nearby tiles
-			XenonBasher: Hitting enemies will create xenon spores
 			HamaYumi: Converts arrows into exploding shade arrows
 			SpiralingTwilight: "{$Mods.AQMod.Common.UseDarts}"
 			Sprinkler: "{$Mods.AQMod.Common.UseDarts}"
@@ -665,7 +960,6 @@ Mods: {
 				Summons a magma lotus to fight for you
 				{$Mods.AQMod.Common.DoesntMinionTarget}
 				'''
-			StariteStaff: Summons 3 starites to fight for you
 			CrimsonHandStaff: Summons a crimson hand to fight for you
 			CorruptPot: Summons a corrupted plant to fight for you
 			ATM:
@@ -674,7 +968,6 @@ Mods: {
 				Place in your Safe in order to have it always summoned
 				'''
 			SpectralLens: Toggles energy drops
-			Globebulb: Speeds up time for a moment
 			Crabax:
 				'''
 				Can chop multiple trees at once
@@ -688,10 +981,6 @@ Mods: {
 			StariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}"
 			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}"
 			HyperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}"
-			ArrowCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.ArrowCrab}"
-			HermitCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HermitCrab}"
-			SoliderCrabsBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoliderCrabs}"
-			StriderCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.StriderCrab}"
 			CinderaBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}"
 			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}"
 			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}"
@@ -701,123 +990,46 @@ Mods: {
 			SpaceSquidBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SpaceSquid}"
 		}
 
-		ProjectileName: {
-			AirBlade: Air Blade
-			AirBladeGhost: Air Blade
-			RedSpriteStaff: Red Sprite Staff
-			RedSpriteStaffLightning: Red Sprite Staff
-			ThunderClap: Thunder Clap
-			BreadsoulHealing: Breadsoul
-			DreadsoulAttack: Dreadsoul
-			UltimateSword: Ultimate Sword
-			MothmanCritExplosion: Mothman Mask
-			PowPunch: Pow Punch
-			PowPunchExplosion: Pow Punch
-			CrystalDagger: Crystal Dagger
-			Dysesthesia: Dysesthesia
-			MiniDemonScythe: Dysesthesia
-			Aphrodite: Aphrodite
-			ArgonSpear: Argon Spear
-			Burnterizer: Burnterizer
-			BurnterizerExplosion: Burnterizer
-			Galactium: Galactium
-			HellsBoon: Hell's Boon
-			HorizonSkies: Horizon Skies
-			HorizonSkiesBolt: Horizon Skies
-			HorizonSkiesExplosion: Horizon Skies
-			JerryClawFlail: Jerry Claw
-			StariteSpinner: Starite Spinner
-			UltimaFlare: Ultima Flare
-			XenonBasher: Xenon Basher
-			Venus: Venus
-			RayBullet: Ray Bullet
-			RayChlorophyteBullet: Ray Bullet
-			RayCursedBullet: Ray Bullet
-			RayIchorBullet: Ray Bullet
-			RayMeteorBullet: Ray Bullet
-			RayVenomBullet: Ray Bullet
-			DeltoidArrow: Deltoid Arrow
-			HamaYumiArrow: Hama Yumi Arrow
-			SpaceShot: SpaceShot
-			Bubbler: Bubbler
-			FizzlingFire: Fizzling Fire
-			GebulbaStaff: Gebulba Staff
-			MagicWand: Magic Wand
-			MagmalbulbiaStaff: Magmalbulbia Staff
-			MagmalbulbiaStaffExplosion: Magmalbulbia Staff
-			MoonMoonMirror: Moonluna Mirror
-			Narrizuul: Narrizuul
-			PentalScythe: Pental Scythe
-			ScarletSea: Scarlet Sea
-			SeltzerRain: Seltzer Rain
-			SunbaskMirror: Sunbask Mirror
-			Chomper: Chomper
-			Lotus: Lotus
-			LotusShot: Lotus
-			Starite: Starite
-			StariteLeader: Starite
-			CrimsonHand: Crimson Hand
-			Monoxider: Monoxider
-			CelesteTorusCollider: Celeste Torus
-			FertilePowder: Fertile Powder
-			Friend: Friend
-			FriendlyWind: Friendly Wind
-			GoldPowder: Gold Powder
-			HyperCrystalExplosion: Hyper Crystal
-			KelBall: Kel's Ball
-			SparklingExplosion: Shimmering Explosion
-			ATM: ATM
-			HeartMoth: Heart Moth
-			MicroStarite: Micro Starite
-			BeeRod: Bee Bobber
-			CrabRod: Crab Bobber
-			HyperStarite: Hyper Starite
-			JerryBubble: Jerry Bubble
-			JerryBubbleBig: Jerry Bubble
-			JerryPearl: Jerry Pearl
-			Magmabub: Magmabub
-			OmegaBullet: Omega Bullet
-			OmegaRay: Omega Ray
-			OmegaStarite: Omega Starite
-			RainbowStarofHyperApocalypse: Rainbow Star of Hyper Apocalypse
-			StriderCrab: Strider Crab
-			StriderCrabLaser: Strider Crab
-			SuperStarite: Super Starite
-			TemperatureBombCold: Temperature Bomb
-			TemperatureBombHot: Temperature Bomb
-			Trapper: Trapper
-			RedSpriteCloud: Red Sprite
-			RedSpriteCloudLightning: Red Sprite
-			RedSpriteThunderClap: Red Sprite
-			SpaceSquidLaser: Space Squid
-			SpaceSquidDeathray: Space Squid
-		}
+		Lingering: Lingering {0}
+		Doubled: Doubled {0}
 
 		BuffName: {
-			UmystickDelay: Umystick Delay
-			NeutronYogurt: Neutron Yogurt
-			RedLicorice: Red Licorice
-			PeeledCarrot: Peeled Carrot
-			GrapePhanta: Grape Phanta
-			SpicyEel: Spicy Eel
-			Harmony: Harmony
-			Monoxider: Monoxider
+			ManaDrain: Magical Drain
+			Omori: Friends
+			PrimeTime: Arachnotron Power
+			ArachnotronCooldown: Arachnotron Cooldown
+			SnowsawBuff: Snowflake
+			MonoxiderBuff: Monoxider
 			Starite: Starite
+			Trapper: Trapper
+			PiranhaPlant: Plant
+			Vampirism: Vampirism
+			VampirismDay: Sunlight
+			Harmony: Harmony
+			NoonBuff: Noon
+			Opposing: Opposing
+			BaguetteBuff: Baguette
+			Spoiled: Plethora
+			Bloodthirst: Bloodthirst
+			DebuffSpread: Debuff Spread
+			Shade: Shade
+			SpeedBoostFood: Speed Food
+			NeutronYogurtBuff: Lower Gravity
+			RedLicoriceBuff: Extra Life
+			GrapePhantaBuff: Extra Mana
+			DragonCarrotBuff: Eyesight
+			FamiliarBuff: Familiar
+			HeartMothBuff: Heart Moth
+			DwarfStariteBuff: Dwarf Starite
+			OmegaStariteBuff: Omega Starite Mini
+			AnglerFish: Angler Fish
+			Sparkling: Cosmic Radiation
 			CrimsonHand: Crimson Hand
 			Chomper: Chomper
 			BlueFire: Blue Fire
-			Spoiled: Spoiled
-			MicroStarite: Micro Starite
-			HeartMoth: Heart Moth
-			CosmicMarker: Cosmic Marker
-			RetroMarker: Retro Marker
-			DungeonMarker: Dungeon Marker
-			LihzahrdMarker: Lihzahrd Marker
 			Bossrush: Encore
 			Ultima: Ultima
 			SpectreHealing: Spectre Healing
-			PrimeTime: Prime Time
-			Opposing: Opposing
 			Cold20: Cold
 			Cold40: Colder
 			Cold60: Freezing
@@ -831,39 +1043,52 @@ Mods: {
 		}
 
 		BuffDescription: {
-			UmystickDelay: Decreases your mana regen, and you can no longer use the Umystick to double jump
-			NeutronYogurt: Minor improvements to all stats and you have slightly lower gravity
-			RedLicorice: Medium improvements to all stats and increases your life by 20
-			PeeledCarrot: Medium improvements to all stats and grants you night vision
-			GrapePhanta:
+			ManaDrain: Decreases magic damage by 90%
+			Omori: Revives you with 1 HP on fatal hits with a 5 minute cooldown
+			PrimeTime: Your defense is greatly increased!
+			ArachnotronCooldown: You cannot use the Arachnotron Armor's effect anymore
+			SnowsawBuff: The snowflake will fight for you
+			MonoxiderBuff: The monoxider will fight for you
+			Starite: The starite will fight for you
+			Trapper: The demonic trapper will fight for you
+			PiranhaPlant: The plant will fight for you
+			Vampirism: You may become a vampire after this...
+			VampirismDay: Greatly decreased stats, you no longer get buffs from food
+			Harmony: Greatly increases your magical powers
+			NoonBuff:
+				'''
+				Emits a large aura of light and increases night vision
+				You always have daytime-only effects active
+				Prevents nighttime-only effects from working
+				'''
+			Opposing: Reverses the effects of many things
+			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration
+			Spoiled: Enemies drop twice as much loot
+			Bloodthirst: You drain some life when you kill an enemy
+			DebuffSpread: Enemies will spread their current debuffs to nearby enemies when attacked
+			Shade: Standing still will make enemies unable to target you
+			SpeedBoostFood: Minor improvements to all stats and your speed is greatly increased
+			NeutronYogurtBuff: Minor improvements to all stats and you have slightly lower gravity
+			RedLicoriceBuff: Medium improvements to all stats and increases your life by 20
+			GrapePhantaBuff:
 				'''
 				Medium improvements to most stats
 				Major improvements to magic stats
 				Increases mana by 20
 				'''
-			SpicyEel: Your speed is greatly increased
-			Harmony: Grealy increases your magical powers
-			Monoxider: The monoxider will fight for you
-			Starite: The starite will fight for you
+			DragonCarrotBuff: Medium improvements to all stats and grants you night vision
+			FamiliarBuff: Despite everything, it's still you
+			HeartMothBuff: Gives you increased life regen and emits light
+			DwarfStariteBuff: "'The more you know'"
+			OmegaStariteBuff: The smallest solar system imaginable
+			AnglerFish: Is secretly attracted to its own light
+			Sparkling: You are shimmering from cosmic radiation
 			CrimsonHand: The crimson hand will fight for you
 			Chomper: The chomper will fight for you
 			BlueFire: The immense heat burns off your skin
-			Spoiled:
-				'''
-				Enemies drop twice as much loot
-				'You are such a spoiled brat!'
-				'''
-			MicroStarite: The smallest solar system imaginable
-			HeartMoth: Gives you increased life regen and emits light
-			CosmicMarker: The glimmer event's center is shown on the map
-			RetroMarker: Enemies appear as pink blobs on the map
-			DungeonMarker: The Dungeon is shown on the map
-			LihzahrdMarker: The Lihzahrd Altar is shown on the map
 			Bossrush: Bosses respawn when defeated
-			Ultima: The blade of ultima blesses you
+			Ultima: The blade of Ultima blesses you
 			SpectreHealing: You are healing at rapid speeds
-			PrimeTime: Your endurance is greatly increased and crits are twice as likely to occur
-			Opposing: Enemies have a chance to drop opposing loot
 			Cold20: You are below 20 degrees Fahrenheit
 			Cold40: You are below 40 degrees Fahrenheit
 			Cold60: You are below 60 degrees Fahrenheit
@@ -880,23 +1105,145 @@ Mods: {
 				'''
 		}
 
+		ProjectileName: {
+			DreadsoulAttack: Hellish Spirit
+			BreadsoulHealing: Dream Spirit
+			FriendMinion: Friend
+			KelBall: Kel's Ball
+			OmegaStariteAccessory: Interstellar Orb
+			FlowerCrownProj: Flower Crown
+			FlameblasterFire: Flameblaster
+			FlameblasterWind: Flameblaster Wind
+			HealingBolt: Healing Bolt
+			DoubleShotProj: Bullet
+			SnowsawMinion: Snowflake
+			JerryClawFlail: Jerry Claw
+			MagicWand: Magic Wand
+			DeltoidArrow: Deltoid Arrow
+			Burnterizer: First Degree Burns
+			BurnterizerExplosion: First Degree Burns
+			HellsBoonSpike: Hell's Boon
+			MonoxiderMinion: Monoxider
+			MagicalBoomerang: Magical Boomerang
+			StariteSpinnerProjectile: Starite Spinner
+			AirBlade: Air Blade
+			AirBladeGhost: Air Blade
+			RedSpriteStaff: Surge Rod
+			RedSpriteStaffLightning: Surge Rod
+			ThunderClap: Thunder Clap
+			Narrizuul: Narrizuul
+			StudiesoftheInkblotBullet: Studies of the Inkblot
+			TrapperMinion: Trapper
+			TrapperMinionBlast: Trapper
+			TrapperMinionExplosion: Trapper
+			PiranhaPlant: Plant
+			Skrawler: Skrawler
+			UltimateSword: Ultimate Sword
+			DwarfStaritePet: Dwarf Starite
+			OmegaStaritePet: Omega Starite
+			SuperStariteBullet: Super Starite Bullet
+			HyperStariteProj: Hyper Starite
+			OmegaStariteProj: Omega Starite
+			OmegaStariteBullet: Omega Bullet
+			OmegaStariteDeathray: Omega Ray
+			RainbowStarofHyperApocalypse: Rainbow Star of Hyper Apocalypse
+			SparklingExplosion: Cosmic Rad-splosion
+			MothmanCritExplosion: Mothman Mask
+			PowPunch: Pow Punch
+			PowPunchExplosion: Pow Punch
+			CrystalDagger: Crystal Dagger
+			Dysesthesia: Dysesthesia
+			MiniDemonScythe: Dysesthesia
+			Aphrodite: Aphrodite
+			ArgonSpear: Argon Spear
+			Galactium: Galactium
+			HorizonSkies: Horizon Skies
+			HorizonSkiesBolt: Horizon Skies
+			HorizonSkiesExplosion: Horizon Skies
+			UltimaFlare: Ultima Flare
+			Venus: Venus
+			RayBullet: Ray Bullet
+			RayChlorophyteBullet: Ray Bullet
+			RayCursedBullet: Ray Bullet
+			RayIchorBullet: Ray Bullet
+			RayMeteorBullet: Ray Bullet
+			RayVenomBullet: Ray Bullet
+			HamaYumiArrow: Hama Yumi Arrow
+			SpaceShot: SpaceShot
+			Bubbler: Bubbler
+			FizzlingFire: Fizzling Fire
+			GebulbaStaff: Gebulba Staff
+			MagmalbulbiaStaff: Magmalbulbia Staff
+			MagmalbulbiaStaffExplosion: Magmalbulbia Staff
+			MoonMoonMirror: Moonluna Mirror
+			PentalScythe: Pental Scythe
+			ScarletSea: Scarlet Sea
+			SeltzerRain: Seltzer Rain
+			SunbaskMirror: Sunbask Mirror
+			Chomper: Chomper
+			Lotus: Lotus
+			LotusShot: Lotus
+			Starite: Starite
+			StariteLeader: Starite
+			CrimsonHand: Crimson Hand
+			FertilePowder: Fertile Powder
+			FriendlyWind: Friendly Wind
+			GoldPowder: Gold Powder
+			ATM: ATM
+			BeeRod: Bee Bobber
+			CrabRod: Crab Bobber
+			JerryBubble: Jerry Bubble
+			JerryBubbleBig: Jerry Bubble
+			JerryPearl: Jerry Pearl
+			Magmabub: Magmabub
+			StriderCrab: Strider Crab
+			StriderCrabLaser: Strider Crab
+			Trapper: Trapper
+			RedSpriteCloud: Red Sprite
+			RedSpriteCloudLightning: Red Sprite
+			RedSpriteThunderClap: Red Sprite
+			SpaceSquidLaser: Space Squid
+			SpaceSquidDeathray: Space Squid
+		}
+
+		ArmorSetBonus: {
+			Arachnotron:
+				'''
+				12% increased melee and summon damage
+				Increases your maximum number of minions
+				Press the {0} key to gain heavily increased defensive stats for a short while with a cooldown
+				'''
+			SkyrimArmor:
+				'''
+				5% increased damage reduction
+				10% decreased movement speed
+				'You are carrying too much to be able to run'
+				'''
+			Lightbulb:
+				'''
+				Hunter and dangersense is always active
+				Traps deal 30% less damage
+				'''
+		}
+
 		ItemTooltipExtra: {
-			Cosmicanon: {
-				$parentVal: You can toggle this function by pressing {0}
-				BloodMoonsPrevented: Blood Moons Prevented: {0}
-				GlimmersPrevented: Glimmers Prevented: {0}
-				EclipsesPrevented: Eclipses Prevented: {0}
+			UltimateSword: {
+				0: Only obtainable from Omega Starite while there is a glimmer in the sky
+			}
+
+			TheFan: {
+				0: Strong space winds may cause new creatures to appear
 			}
 		}
 
-		ToggleCosmicanon: {
-			False: Moon events can occur again
-			True: Moon events can no longer occur
+		GhostlyGrave: {
+			False: You will now drop graves again
+			True: You will no longer drop graves
 		}
 
-		EquivalenceMachineToggle: {
-			False: Nearby items will now fall
-			True: Nearby items will now float
+		Stardrop: {
+			False: Town NPCs can no longer move in during the night
+			True: Town NPCs can now move in during the night
 		}
 
 		IWillBeBackToggle: {
@@ -904,61 +1251,163 @@ Mods: {
 			False: Town NPCs will no longer resist lava
 		}
 
-		Tooltips: {
-			ManaPerSecond: Uses {0} mana per second
-			UmbrellaWeapon:
+		MapLayerToggle: {
+			CosmicTelescope: Shows the source of the Glimmer and some other related info on the map
+			VialOfBlood:
 				'''
-				You will fall slower while holding this, holding down will let you fall at regular speed
-				You will not take any fall damage
+				Shows the location of the Dungeon
+				Pressing the map icon of the Dungeon allows you to teleport to it
 				'''
-			InventoryPiggyBankFunction: Works in your inventory or piggy bank
-			ToggleKeyBind: You can toggle this function by pressing {0}
+			Cabbage:
+				'''
+				Shows the location of the Lihzahrd Altar
+				Pressing on the map icon of the Lihzahrd Altar allows you to teleport to it
+				'''
+			BlightedSoul: Enemies appear as a blip on the fullscreen map
+			Beeswax: Shows the location of any visible Plantera bulbs
 		}
 
-		Bestiary: {
-			OmegaStarite: 
-			'''
-			Birthed through a violent death of a star, the chaotic fragments created life which could live while being blasted with gamma rays.
-			This formation of starite cannot think, and can only rely on the instinct to consume ultimate energy.
-			'''
+		MapObject: {
+			Moonflower: Moonflower
+			GlimmeringStatueTile: Ultimate Crystal
+			SeaPickle: Sea Pickle
+			HellTombstone: Hell Tombstone
+			GoreNest: Gore Nest
+			NobleMushrooms: Noble Mushroom
+			Painting: Painting
+			Trophies: Trophy
+			Banners: Banner
+			ExoticCoral: Exotic Coral
+			FishingCraftingStation: Fishing Utility Crafting Station
+			BuriedDirtChest: Buried Dirt Chest
+			Dungeon: Dungeon
+			Crustacium: Crustacium
+			WallClocks: Wall Clock
+			AQChairs: Chair
+			AQTables: Table
+			LightbulbTile: Lightbulb
+		}
+
+		ContainerPotionError: This potion was improperly loaded
+		ContainerPotionLink: Will teleport to {0} ([i:{1}])
+
+		QuestFish: {
+			WaterFisg: It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.
+			Crabdaughter: Seems like some new fish have entered the ocean recently, one of these fish seems to be related this massive crab with clam as claws. The only thing that makes me think it's related is that it's a clam with crab claws. It's an amazing sight so catch one for me.
+		}
+
+		FishingLocation: {
+			Anywhere: Caught anywhere
+			Beach: Caught in Ocean
+		}
+
+		Transistor: {
+			False: Glimmers occur again
+			True: Glimmers no longer occur
+		}
+
+		EclipseGlasses: {
+			False: Eclipses occur again
+			True: Eclipses no longer occur
+		}
+
+		Cosmicanon: {
+			False: Blood Moons occur again
+			True: Blood Moons no longer occur
+		}
+
+		PrefixTooltip: {
+			Cooldown: "{0}% cooldown"
+			Combo: "{0}% combo rate"
+		}
+
+		PrefixName: {
+			Speedrunning: Speedrunning
+			Outpacing: Outpacing
+			Timed: Timed
+			Scheduled: Scheduled
 		}
 
 		NPCName: {
-			BloodMimic: "{$NPCName.Mimic}"
-			Heckto: Heckto
-
+			SoldierCrabs: Soldier Crab
+			HermitCrab: Hermit Crab
+			Memorialist: Memorialist
 			BalloonMerchant: Air Hunter
 			Robster: Exporter
 			Physicist: Physicist
-
-			DwarfStarite: Dwarf Starite
-			Starite: Starite
 			SuperStarite: Super Starite
 			HyperStarite: Hyper Starite
-			UltraStarite: Ultra Starite
 			OmegaStarite: Omega Starite
-
+			StreamingBalloon: Streaming Balloon
+			DwarfStarite: Dwarf Starite
+			Starite: Starite
+			UltraStarite: Ultra Starite
 			Snobster: "{$Mods.AQMod.ItemName.Snobster}"
-			JerryCrabson: Jerry Crabson
+			JerryCrabson: Crabson
 			JerryClaw: Jerry Claw
-			ArrowCrab: Arrow Crab
-			SoliderCrabs: Solider Crabs
-			HermitCrab: Hermit Crab
-			StriderCrab: Strider Crab
-
 			Magmalbubble: Magmabubble
 			TrapImp: Trapper Imp
 			Trapper: Trapper
 			Cindera: Cindera
-
 			Meteor: Meteor
+			TemperatureBalloon: Temperature Balloon
 			Vraine: Vraine
+			Atmodrone: Atmodrone
 			HotCurrent: Hot Current
 			ColdCurrent: Cold Current
-			StreamingBalloon: Streaming Balloon
+			BloodMimic: "{$NPCName.Mimic}"
+			Heckto: Heckto
 			RedSprite: Red Sprite
 			WhiteSlime: White Slime
 			SpaceSquid: Space Squid
+		}
+
+		HermitCrab: {
+			Storage: Storage
+			StorageFull: Your storage is full!
+
+			Chat: {
+				0: You have many things I wish to buy. I'm sure we can strike a bargain.
+				1: Haggling with you can be so... entertaining. Let's make a deal.
+				2: My skin feels itchy when I'm outside of my shell... make this quick
+				3: Have you seen any lobsters? I've been trying to stay away from them, for some reason they have a thirst for crabby blood
+			}
+
+			BloodMoon: I remember one of these nights, my friend turned into a feral creature and attacked me! I can't even trust my own kind.
+			StoredAt: Stored at {0}
+			SecondAgo: Stored this item {0} second ago
+			SecondsAgo: Stored this item {0} seconds ago
+			MinuteAgo: Stored this item {0} minute ago
+			MinutesAgo: Stored this item {0} minutes ago
+			HourAgo: Stored this item {0} hour ago
+			HoursAgo: Stored this item {0} hours ago
+			DayAgo: Stored this item {0} day ago
+			DaysAgo: Stored this item {0} days ago
+			MonthAgo: Stored this item {0} month ago
+			MonthsAgo: Stored this item {0} months ago
+		}
+
+		Memorialist: {
+			Concoction: Concoctions
+			Concoct: Concoct
+			StopConcocting: Stop Concocting
+
+			Chat: {
+				0: What? Do you think I'm a freak? You must have not looked in the mirror recently.
+				1: Who's Issac? Sounds like the name of a crybaby kid.
+				2: You need a service from me? You must not be a good hero.
+				3: I wonder where my friend Meru has gone.
+				4: What do you mean I look like a Zoologist? I hate animals!
+				5: I used to be pals with an anthropomorphic bat. They really liked talking about touchy subjects about you humans, it was so awesome. One day they wanted to see if I wanted to be a bat, I couldn't say no.
+				Exporter: That lobster thing... what's his name? {0}? He's almost as addicted to crime as me!
+				Physicist: "{0} is such a loser. Doesn't even think I am real! She's absolutely insane."
+
+				Mod: {
+					Split: {
+						Sheep: Have you seen one of those fluffy sheep around the snow? They look awfully good for a sacrifice.
+					}
+				}
+			}
 		}
 
 		BalloonMerchant: {
@@ -974,7 +1423,7 @@ Mods: {
 				Corruption: Even in such vile places, there are edible meats and plants.
 				Crimson: Even in such gorey places, there are edible meats and plants.
 				Hallow: A utopia, plenty of unicorns to go find and hunt.
-				0: Up here in the emptyness, many birds and other strong wind beasts flock here.
+				0: Up here in the emptiness, many birds and other strong wind beasts flock here.
 				1: How come less creatures assault me compared to you? What do you mean I decrease enemy spawns? Why would things be giving birth mid-battle...?
 				2: Dogs are unfortunately afraid of heights, and will jump off your hot air balloon if you try to go hunting with them. Do not ask if I have experience with this.
 				3: Have I fallen out of this basket before? No. And don't even think about shaking it.
@@ -1020,7 +1469,7 @@ Mods: {
 					}
 
 					EvilBunny: These evil bunnies are so much more interesting than the cute ones! I should keep one as a pet.
-					CrimsonWarning: I wouldn't go to the crimson if I were you... I sense something bad happens when the bloody, living, hive mind merges with the magical essense of this world's blood moons.
+					CrimsonWarning: I wouldn't go to the crimson if I were you... I sense something bad happens when the bloody, living hive mind merges with the magical essense of this world's blood moons.
 					NewMoon: Interesting, I thought blood moons couldn't happen during the new moon?
 				}
 
@@ -1038,8 +1487,8 @@ Mods: {
 
 				Purity: {
 					0: These woods are very calm... but also very susceptible to the spreading infections.
-					1: I once saw a little bunny, it died.
-					2: While this place is very interesting and calm, it definetly doesn't fit my criteria for work
+					1: I once saw a little bunny... it died.
+					2: While this place is very interesting and calm, it definetly doesn't fit my criteria for work.
 				}
 
 				Hallow: {
@@ -1048,7 +1497,7 @@ Mods: {
 					2: There's too much magic here, I can't stand it!
 					3: I wish I could get out of here...
 					4: What's next? The Great Mighty Poo is real?
-					5: You cannot tell me that the core of Terraria contained THIS inside itself
+					5: You cannot tell me that the core of Terraria contained THIS inside itself!
 				}
 
 				Corruption: Get me out of this stinky, vile place.
@@ -1076,193 +1525,51 @@ Mods: {
 			}
 		}
 
+		Exporter: {
+			Quests: {
+				Complete: {
+					0: You got it, very nice... I bet they didn't suspect a thing.
+					1: Ooohoohoohoohoo yes yes yes yeesssss you got it. I can't wait to sell this out on the seas.
+					2: Dumb cricket, I don't even think they remember buying that. Ah, whatever, I'm just going to take this trinket and use it for... something better.
+					3: Looks like the gems got a bit scuffed... whatever. Here's your pay.
+					4: They say steal from the rich and give to the poor, but I think we should do the opposite. OH! And here's your payment.
+				}
+
+				AtTownNPCHouse: I think I saw it in {0}'s house.
+				QuitHuntQuestion: Do you really want to quit this mission?
+				UIButtonQuit: Quit
+				UIButtonComplete: Complete
+				UIButtonQuest: Thievery
+			}
+		}
+
 		PaintingSignature: {
-			NalydT: N.T.
-			niker: N.
+			NalydT: "'N.T.'"
+			niker: "'N.'"
 		}
 
-		EventName: {
-			CrabSeason: Crab Season
-			DemonSiege: Demon Siege
-			GlimmerEvent: Glimmer Event
-			GaleStreams: Gale Streams
-		}
+		CrabSeason: Crab Season
 
-		BossChecklistDesc: {
-			CrabSeason: Begins naturally and ends naturally at random times. You can check the time when the event begins and ends using a [i:{0}].
-			JerryCrabson: Summoned by using a [i:{0}] at the beach.
-			DemonSiege: Can be summoned using: {0} at a Gore Nest.
-			GlimmerEvent: Happens naturally at night. Can alternatively be summoned with a [i:{0}]. Ends when the sun rises.
-			OmegaStarite: Summoned by using an {0} at night. Can also be summoned by interacting with the sword located at the center of the Glimmer Event.
-			GaleStreams: Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using [i:{0}]
-			RedSprite: Occasionally appears during the Gale Streams!
-		}
-
-		EventWarning: {
-			CrabSeason: The warmth of the oceans increases...
-			GlimmerEvent: A glimmer appears in the sky...
-		}
-
-		EventEnding: {
-			CrabSeason: The oceans become neutral again...
-			GlimmerEvent: The glimmer begins to fade away...
-		}
-
-		EventProgress: {
-			GaleStreams: "{0}mph/{1}mph"
-		}
-
-		RecipeGroup: {
-			AnyEnergy: Any Energy
-			AnyNobleMushroom: Any Noble Mushroom
-		}
-
-		Config: {
-			RequiresReload: Requires a reload.
-		}
-
-		ClientConfig: {
-			Name: Client Config
-
-			Header: {
-				Starite: Starite Visuals
-				Xmas: Xmas
-				UI: User Interface
-				Worldgen: World Gen
+		BC: {
+			Spawn: {
+				Crabson: Summoned by using a {0} at the crab caves
+				DemonSiege: Can be summoned using: {0} at a Gore Nest.
+				GlimmerEvent: Happens naturally at night. Can alternatively be summoned with a {0}. Ends when the sun rises.
+				OmegaStarite: Summoned by using {0} at night. Can also be summoned by going to the source of a glimmer
+				GaleStreams: Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using {0}
+				GaleStreamsMiniboss: Occasionally appears during the Gale Streams!
 			}
-
-			Effect3D: 3D Effectiveness
-			Effect3DTooltip: Higher values make 3D effects more pronounced, and lower values make 3D effects look more flat.
-			BackgroundStarites: Background Starites
-			BackgroundStaritesTooltip: Whether or not to have small Starites in the background while the Glimmer Event is active
-			StariteProjColor: Starite Projectile Color
-			StariteProjColorTooltip: The color of some Starite projectiles
-			StariteAuraColor: Starite Aura Color
-			StariteAuraColorTooltip: The color of the background aura, and the aura around Omega Starite
-			StariteBackgroundLight: Starite Background Intensity
-			StariteBackgroundLightTooltip:
-				'''
-				Lower values make the starite background more transparent
-				Can be useful if you have trouble seeing Omega Starite or its projectiles
-				'''
-			XmasBackground: Xmas Background
-			XmasBackgroundTooltip:
-				'''
-				Whether or not to use a Xmas background in special Xmas worlds
-				{$Mods.AQMod.Config.RequiresReload}
-				'''
-			XmasProgressMeterOverride: Xmas Progress Meter Override
-			XmasProgressMeterOverrideTooltip:
-				'''
-				Whether or not to have the "AQ Xmas" seed override your worldgen progress bar. This sometimes has conflicts with Worldgen Previewer
-				{$Mods.AQMod.Config.RequiresReload}
-				'''
-			MapBlipColor: Map Blip Color
-			MapBlipColorTooltip: The color of the little blips shown by the Retro Marker
-			Screenshakes: Screenshakes
-			TonsofScreenShakes: Extra Unnecessary Screenshakes
-			OverrideVanillaChestLoot: Overwrite Vanilla Chest Loot
-			OverrideVanillaChestLootTooltip:
-				'''
-				Whether or not special Aequus items will overwrite vanilla items in chests
-				If this is disabled, Aequus loot will generate with vanilla loot intact
-				'''
-		}
-
-		ServerConfig: {
-			Name: Server Config
-
-			Header: {
-				QualityOfLife: "[c/ffdddd:Quality of Life]"
-				World: "[c/ddeeff:World]"
-				Debug: "[c/ffeedd:Debug]"
-			}
-
-			DemonSiegeDowngrades: Demon Siege Downgrades
-			DemonSiegeDowngradesTooltip:
-				'''
-				Adds recipes for downgrading weapons upgraded at the Demon Siege.
-				{$Mods.AQMod.Config.RequiresReload}
-				'''
-			ReduceSpawns: Reduce Spawns during Bossfights
-			ReduceSpawnsTooltip:
-				'''
-				Practically disables spawns for Aequus bossfights.
-				Would require a reload if anything in the world is currently reducing spawns.
-				'''
-			EvilProgressionLock: World-Evil Progression Lock
-			EvilProgressionLockTooltip: Ebonstone, Crimstone, Shadow Orbs and Crimson Hearts can no longer be destroyed by explosives until a boss has been defeated.
-			HarderOmegaStarite: Omega Starite always uses Harder AI
-			HarderOmegaStariteTooltip:
-				'''
-				Makes Omega Starite always use its Glimmer Event version even when the Glimmer Event is not active
-				This will not mean it will drop the Ultimate Sword outside of the Glimmer Event
-				Cannot be changed if Omega Starite is alive.
-				'''
-			JellyfishNecklace: Remove Jellyfish Necklace drop from Blue Jellyfish ([i:1303])
-			JellyfishNecklaceTooltip: If you disable this, the Blue Jellyfish would be able to drop both the Jellyfish Necklace and Shock Collar.
-			DebugCommand: Debug Mode (/ncall)
-			DebugCommandTooltip:
-				'''
-				Enables the /ncall debug command.
-				{$Mods.AQMod.Config.RequiresReload}
-				'''
-		}
-
-		XmasGift: {
-			Tooltip: Will you be naughty or nice..?
-			Nice: You were nice this year!
-			Naughty: You were naughty this year...
-		}
-
-		MerryXmas: {
-			0: Merry Xmas to you, {0}
-			1: Happy Holidays to you, {0}
-			2: Seasons Greetings to you, {0}
-		}
-
-		WorldGen: {
-			ChristmasSpirit: The Christmas Spirit
-			ChristmasSpiritProgress0: Current Progress: (Something/Something%)
-			ChristmasSpiritProgress1: Current Progress: (Santa Magic%)
-			ChristmasSpiritProgress2: Current Progress: (Hello)
-			ChristmasSpiritProgress3: Current Progress: (Elf/Elf%)
-			ChristmasSpiritProgress4: Current Progress: (100%)
-			ChristmasSpiritProgress5: Current Progress: (99.9999999999999999999999999999999999999998%)
-			ChristmasSpiritProgress6: Current Progress: (99.999999999999999999999999999999999999998%)
-			ChristmasSpiritProgress7: Current Progress: (99.99999999999999999965998%)
-			ChristmasSpiritProgress8: Current Progress: (99.992%)
-			ChristmasSpiritProgress9: Current Progress: (99.91%)
-			ChristmasSpiritProgress10: Current Progress: (99.9%)
-			ChristmasSpiritProgress11: Current Progress: (99%)
-			ChristmasSpiritProgress12: Current Progress: (95%)
-			ChristmasSpiritProgress13: Current Progress: (80%)
-			ChristmasSpiritProgress14: Current Progress: (50%)
-			ChristmasSpiritProgress15: Current Progress: (0%)
 		}
 
 		Common: {
+			AwakenedCrabson: Crabson has awoken!
 			KeyUnbound: "'Unbound Key'"
 			KeyBound: "'{0}' Key"
-			ArmorSetBonus_Arachnotron:
-				'''
-				On a true melee critical hit you gain greatly increased stats for a short while
-				When the effect activates you gain the potion sickness debuff
-				This effect can only trigger if you don't have the potion sickness debuff
-				'''
-			ArmorSetBonus_Lightbulb: Hunter and dangersense is always active
 			ConfigName_AQConfigClient: Client Config
 			ConfigHeader_Visuals: Visuals
 			ConfigHeader_Misc: Misc
 			ConfigHeader_World: World
 			ConfigHeader_Debug: Debug
-			Config_DrawSpotlights: Draw Spotlights
-			Config_EffectQuality: Effect Quality
-			Config_EffectIntensity: Effect Intensity
-			Config_LoadItemOverlays: Load Item Overlays
-			Config_ShowCompletedAnglerQuestsCount: Show Completed Angler Quests Count
-			Config_ShowCompletedRobsterQuestsCount: Show Completed Robster Hunts Count
-			Config_CosmicEnergyAlt: Cosmic Energy (Alt Texture)
 			EightballAnswer0: Yes
 			EightballAnswer1: My sources say no
 			EightballAnswer2: It is certain
@@ -1301,53 +1608,29 @@ Mods: {
 			WorldGen_GoreNests: Generating Gore Nests...
 			WorldGen_Globes: Generating Globes...
 			WorldGen_GlimmeringStatues: Generating Glimmering Statues...
-			RecipeGroup_AnyNobleMushroom: Any Noble Mushroom
-			RecipeGroup_AnyEnergy: Any Energy
 			RobsterChat0: There is a reason I don't like other lobsters... it's because my own brother betrayed me.
 			RobsterChat1: Do you know what I have been through?
 			RobsterChat2: The floor below me seems to be glowing... this feels like reversed fog.
-			RobsterChat3: Starites can be such a pain I tell you, atleast they make for good cereal.
+			RobsterChat3: Starites can be such a pain, I tell you. At least they make for good cereal.
 			RobsterChat4: There's this sword I saw somewhere in the distance. I wonder what happens if someone tried to touch it...
 			RobsterChat5: Y'know, I was never a fan of horror movies and this is absolutely freaking me out.
 			RobsterChat6: I saw a suspicious moth wearing a blue cloak, looked a bit like a cultist. It told me that Mothron stole a powerful piece of equipment. I am not gonna try to kill one of those giant Moths though.
 			RobsterChat7: Blood Moons were very scary when sailing through the ocean. I don't know how many Zombie Mermen our crew has killed.
 			RobsterChat8: Tell those little eye flappers I said 'hi'.
-			RobsterChat9: I was fishing at the lake tonight and got ambushed by an anthropomorphic shark. Ugly thing I tell you.
-			RobsterChat10: I was fishing at the lake tonight and got ambushed by a giant red eel. Ugly thing I tell you.
-			RobsterChat11: I once dared {0} to fish during the blood moon. He caught this massive nautalis, I actually felt afraid.
+			RobsterChat9: I was fishing at the lake tonight and got ambushed by an anthropomorphic shark. Ugly thing, I tell you.
+			RobsterChat10: I was fishing at the lake tonight and got ambushed by a giant red eel. Ugly thing, I tell you.
+			RobsterChat11: I once dared {0} to fish during the blood moon. He caught this massive nautilus! I was terrified.
 			RobsterChat12: Whoever gave me this hat forgot to make it fit me... I can't see a thing!
 			RobsterChat13: I feel really dumb that I forgot my own name. How would anyone even do that?
 			RobsterChat14: Thanks for finding my card. It reminded me of how much I love ripping people off and stealing their things.
-			RobsterNPCDeath: The town NPC that Robster wants you to steal isn't here anymore...
-			RobsterNPCDeath2: Ask Robster to begin a different hunt
+			RobsterNPCDeath: The town NPC that Robster wants you to steal from isn't here anymore...
+			RobsterNPCDeath2: Ask Robster to begin a different hunt.
 			RobsterFail: You didn't obtain the special item sneakily enough...
 			RobsterFailAccident: The special item was accidentally destroyed...
-			HuntJeweledChalice: I saw someone with a very special Jeweled Chalice. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
-			HuntJeweledCandelabra: I saw someone with a very special Jeweled Candelabra. It had rubies and emeralds engraved into the gold, it looks fancy enough for me. So go and steal it!
-			RobsterRandomHunt0: I saw someone with a very special {0}. I want you to steal it from them
-			RobsterCantDoRandomHunt: I don't have anything for you to do.
-			RobsterSawInSomeonesHouse: I think I saw it in {0}'s house.
-			RobsterRandomHuntComplete0: You got it, very nice... I bet they didn't suspect a thing.
-			RobsterRandomHuntComplete1: Ooohoohoohoohoo yes yes yes yeesssss you got it. I can't wait to sell this out on the seas.
-			RobsterRandomHuntComplete2: Dumb cricket, I don't even think they remember buying that. Ah whatever I'm just going to take this trinket and use it for... something better
-			RobsterRandomHuntComplete3: Looks like the gems got a bit scuffed... whatever. Here's your pay.
-			RobsterRandomHuntComplete4: They say steal from the rich and give to the poor, but I think we should do the opposite. OH and here's your payment.
-			RobsterHunt: Hunt
-			CompleteRobsterHunt: Complete Hunt
-			RobsterQuitHunt: Quit Hunt
-			PressHuntToContinue: (Press 'Hunt' again to continue)
-			RobsterQuitHuntQuestion: Do you really want to quit this hunt?
 			SpawnAfterPoint: ({0}) can spawn after this point
-			FoundGlobe: A globe was discovered!
 			EnergiesEnabled: Energy drops are enabled
 			EnergiesDisabled: Energy drops are disabled
 			TimeLeft: "{0} Left"
-			ContainerPotionImproperLoad:
-				'''
-				This potion has unloaded improperly...
-				Will only teleport to {$ItemName.GoldChest} :(
-				'''
-			ContainerPotionLink: Will only teleport to {0} ( [i:{1}] )
 			DemonSiege: Demon Siege
 			DemonSiegeDeath: The Gore Nest regurgitates your item...
 			DemonSiegeTooFarAway: You are too far away from the Demon Siege in order to upgrade your weapon
@@ -1369,46 +1652,216 @@ Mods: {
 			DoesntMinionTarget: Does not obey minion targetting
 			NotConsumable: Does not get consumed
 			TorchCanBePlacedInLiquids: Can be placed in liquids
-			ReturnToLobster: Return this to the Lobster
 			IchorDartShotgunTag: Ichor Darts spawn pre-split
-			NobleMushroomScent: Crabs cannot resist its scent
 			EnableThing: Enable {0}?
 			DisableThing: Disable {0}?
 			UnassignedKey0: Unassigned Key
 			UnassignedKey1: an unassigned key
 			UnassignedKey2: unassigned key
 			AwakenedOmegaStarite: Omega Starite has awoken!
-			AwakenedCrabson: Jerry Crabson has awoken!
 		}
 
-		CommonTooltip: {
-			DedicatedItem: Dedicated Item
-			ContentCreatorItem: Content Creator Item
+		DemonSiege: Demon Siege
+		GlimmerEvent: Glimmer
+
+		EventProgress: {
+			GlimmerEvent: "{0} tiles away from the center"
+			GaleStreams: "{0}mph/{1}mph"
 		}
 
-		QuestFish: {
-			Crabdaughter: Seems like some new fish have entered the ocean recently, one of these fish seems to be related this massive crab with clam as claws. The only thing that makes me think it's related is that it's a clam with crab claws. It's an amazing sight so catch one for me.
-			WaterFisg: It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.
+		EventWarning: {
+			GlimmerEvent: A glimmer appears in the distance...
 		}
 
-		FishingLocation: {
-			AnywhereFishing: Caught anywhere
-			BeachFishing: Caught in Ocean
+		EventEnding: {
+			GlimmerEvent: The glimmer begins to fade away...
 		}
 
-		CrabClock: {
-			Ends: "{0} until crab season ends"
-			Starts: "{0} until crab season starts"
-			Favorite: Favorite this item to see the time
+		GaleStreams: Gale Streams
+
+		RecipeGroup: {
+			AnyEnergy: Any Energy
+			AnyNobleMushroom: Any Noble Mushroom
+			CopperOrTin: Copper or Tin
+			DemoniteBarOrCrimtaneBar: Demonite Bar or Crimtane Bar
+			ShadowScaleOrTissueSample: Shadow Scale or Tissue Sample
+			CascadeOrHelfire: Cascade or Helfire
+			AnyEel: Any Eel
+			EvilAccessories: Either Evil Accessories
 		}
 
-		MapObject: {
-			Painting: Painting
-			Trophies: Trophy
-			Banners: Banner
-			ExoticCoral: Exotic Coral
-			FishingCraftingStation: Fishing Utility Crafting Station
-			NobleMushrooms: Noble Mushroom
+		Gen: {
+			SkyGlobes: Aequus: Sky Globes
 		}
+
+		WorldGen: {
+			FinalSteps: Generating things after Everything Else...
+
+			CrabCrevice: {
+				$parentVal: Aequus: Generating Crab Crevice
+				Sand: Aequus: Generating Crab Crevice... Sand Circle
+				Caves: Aequus: Generating Crab Crevice... Caves
+				FinalCave: Aequus: Generating Crab Crevice... Big Caves
+				Chests: Aequus: Generating Crab Crevice... Treasure
+				Vines: Aequus: Generating Crab Crevice... Foliage
+				Ores: Aequus: Generating Crab Crevice... Ores
+			}
+
+			Fix1TileHighWater: Aequus: Fixing Baby Pools
+			BuriedDirtChests: Aequus: Generating Buried Dirt Chests
+			ExoticBlotches: Aequus: Exotic Blotches
+			MiscFoliageCrabCrevice: Aequus: Misc Foliage... Crab Crevice
+			ChristmasSpirit: The Christmas Spirit
+			ChristmasSpiritProgress0: Current Progress: (Something/Something%)
+			ChristmasSpiritProgress1: Current Progress: (Santa Magic%)
+			ChristmasSpiritProgress2: Current Progress: (Hello)
+			ChristmasSpiritProgress3: Current Progress: (Elf/Elf%)
+			ChristmasSpiritProgress4: Current Progress: (100%)
+			ChristmasSpiritProgress5: Current Progress: (99.9999999999999999999999999999999999999998%)
+			ChristmasSpiritProgress6: Current Progress: (99.999999999999999999999999999999999999998%)
+			ChristmasSpiritProgress7: Current Progress: (99.99999999999999999965998%)
+			ChristmasSpiritProgress8: Current Progress: (99.992%)
+			ChristmasSpiritProgress9: Current Progress: (99.91%)
+			ChristmasSpiritProgress10: Current Progress: (99.9%)
+			ChristmasSpiritProgress11: Current Progress: (99%)
+			ChristmasSpiritProgress12: Current Progress: (95%)
+			ChristmasSpiritProgress13: Current Progress: (80%)
+			ChristmasSpiritProgress14: Current Progress: (50%)
+			ChristmasSpiritProgress15: Current Progress: (0%)
+		}
+
+		XmasGift: {
+			Tooltip: Will you be naughty or nice..?
+			Nice: You were nice this year!
+			Naughty: You were naughty this year...
+		}
+
+		MerryXmas: {
+			0: Merry Xmas to you, {0}
+			1: Happy Holidays to you, {0}
+			2: Seasons Greetings to you, {0}
+		}
+
+		Config: {
+			RequiresReload: Requires a reload.
+		}
+
+		DiscordRichPresenceConfig: {
+			Name: Discord Rich Presence
+
+			Header: {
+				DRP: "[c/eeffee:Options]"
+			}
+
+			enableDiscordRichPresence: Enable Discord Rich Presence
+			enableDiscordRichPresenceTooltip: Whether or not Aequus' Discord Rich Presence support should be loaded
+			miniBossRichPresence: Presence for Minibosses
+			miniBossRichPresenceTooltip: Will add a rich presence for any Aequus enemy considered a 'miniboss'
+			eventRichPresence: Presence for Events
+			eventRichPresenceTooltip: Will add a rich presence for all Aequus events
+		}
+
+		ClientConfig: {
+			Name: Client Config
+
+			Header: {
+				Visuals: Visuals
+				Xmas: Xmas
+				UI: User Interface
+				Worldgen: World Gen
+			}
+
+			EffectIntensity: Effect Intensity
+			FlashIntensity: Flash Intensity
+			EffectQuality: Effect Quality
+			ShowCompletedAnglerQuestsCount: Show Completed Angler Quests Count
+			XmasBackground: Xmas Background
+			XmasBackgroundTooltip:
+				'''
+				Whether or not to use a Xmas background in special Xmas worlds
+				{$Mods.AQMod.Config.RequiresReload}
+				'''
+			XmasProgressMeterOverride: Xmas Progress Meter Override
+			XmasProgressMeterOverrideTooltip:
+				'''
+				Whether or not to have the "AQ Xmas" seed override your worldgen progress bar. This sometimes has conflicts with Worldgen Previewer
+				{$Mods.AQMod.Config.RequiresReload}
+				'''
+			DemonSiegeUpgradeTooltip: "Demon Siege Upgrade Tooltip "
+			DemonSiegeUpgradeTooltipTooltip: Whether or not 'Can be upgraded at a Hell Altar' appears on an item's tooltip if it is upgradeable at the Gore Nest
+			HookBarbBlacklistTooltip: "Hook Barb Blacklist Tooltip "
+			HookBarbBlacklistTooltipTooltip: Whether or not 'Does not get affected by hook barb upgrades' appears on an item's tooltip if it cannot have hook barb upgrades
+			MapUITogglesPosition: Map UI: Icon Toggle Pos
+			MapUITogglesPositionTooltip: Moves the Icon Toggle UI on the map, instantly snaps onto screen if its position goes off
+			Screenshakes: Screenshakes
+			TonsofScreenShakes: Extra Unnecessary Screenshakes
+		}
+
+		ServerConfig: {
+			Name: Server Config
+
+			Header: {
+				QualityOfLife: "[c/ffdddd:Quality of Life]"
+				World: "[c/ddeeff:World]"
+				WorldGen: "[c/eeffdd:WorldGen]"
+				Debug: Debug
+			}
+
+			DemonSiegeDowngrades: Demon Siege Downgrades
+			DemonSiegeDowngradesTooltip:
+				'''
+				Adds recipes for downgrading weapons upgraded at the Demon Siege.
+				{$Mods.AQMod.Config.RequiresReload}
+				'''
+			ReduceSpawns: Reduce Spawns during Bossfights
+			ReduceSpawnsTooltip:
+				'''
+				Practically disables spawns for Aequus bossfights.
+				Would require a reload if anything in the world is currently reducing spawns.
+				'''
+			HarderOmegaStarite: Omega Starite always uses Harder AI
+			HarderOmegaStariteTooltip:
+				'''
+				Makes Omega Starite always use its glimmer event version even when the glimmer event is not active
+				This will not mean it will drop the Ultimate Sword outside of the glimmer event
+				Cannot be changed if Omega Starite is alive.
+				'''
+			CooldownReforges: Cooldown Refoges
+			CooldownReforgesTooltip:
+				'''
+				Whether or not to load cooldown reforges
+				If you get a prefix error when loading this mod with others, you can disable this to remove some prefixes
+				'''
+			JellyfishNecklace: Remove Jellyfish Necklace drop from Blue Jellyfish ([i:1303])
+			JellyfishNecklaceTooltip: If you disable this, the Blue Jellyfish would be able to drop both the Jellyfish Necklace and Shock Collar.
+			OverrideVanillaChestLoot: Overwrite Vanilla Chest Loot
+			OverrideVanillaChestLootTooltip:
+				'''
+				Whether or not special Aequus items will overwrite vanilla items in chests.
+				If this is disabled, Aequus loot will generate with all previous loot intact.
+				'''
+			GenerateOceanRavines: Crab Crevice
+			GenerateOceanRavinesTooltip: Whether or not to generate the crab crevice.
+			FixBabyPools: Fix Baby Pools
+			FixBabyPoolsTooltip:
+				'''
+				Removes those 1 block tall pools of water which generate on the surface.
+				May cause minor issues with structures that generate on the surface with water.
+				'''
+			DebugCommand: Debug Mode (/ncall)
+			DebugCommandTooltip:
+				'''
+				Enables the /ncall debug command.
+				{$Mods.AQMod.Config.RequiresReload}
+				'''
+		}
+
+		Complete: Complete
+		Active: Active
+		Inactive: Inactive
+		BloodMoonsPrevented: Blood Moons Prevented: {0}
+		GlimmersPrevented: Glimmers Prevented: {0}
+		EclipsesPrevented: Eclipses Prevented: {0}
+		YourCoordinates: Your corrdinates are (X: {0}, Y: {1})
 	}
 }
