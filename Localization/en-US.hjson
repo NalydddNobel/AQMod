@@ -1,8 +1,10 @@
 Mods: {
 	Aequus: {
 		Bestiary: {
-			Crabson: Birthed from a interspecies relationship
-			OmegaStarite: The near-end of a living star's life. Devours any source of ultimate energy to fuel its approaching supernova
+			Exporter: The Exporter is a lesser known thief with distant relations to pirates. All proceeds sold will be exported around the world to questionable folks looking for the best deals.
+
+			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
+			OmegaStarite: Sent from outer space to scout for a valuable resource. An anomaly in the starite life-cycle in need of constant life support from its shell, in exchange it can produce vasts amounts of energy.
 		}
 		DropCondition: {
 			Trophy: Will 100% drop when defeated flawlessly
