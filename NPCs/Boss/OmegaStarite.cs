@@ -7,6 +7,7 @@ using Aequus.Common.Utilities;
 using Aequus.Content.World.Events;
 using Aequus.Dusts;
 using Aequus.Items.Misc;
+using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
 using Aequus.Projectiles.Boss;
 using Aequus.Sounds;
@@ -1456,6 +1457,10 @@ namespace Aequus.NPCs.Boss
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<OmegaStariteBag>()));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<OmegaStariteRelic>()));
             npcLoot.Add(new FlawlessDrop(ModContent.ItemType<Origin>()));
+            var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());
+            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<LightMatter>(), 1, 14, 20));
+            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CosmicEnergy>(), 1, 3, 6));
+            npcLoot.Add(normalOnly);
         }
 
         public override void OnKill()

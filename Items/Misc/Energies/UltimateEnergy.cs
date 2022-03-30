@@ -10,7 +10,7 @@ namespace Aequus.Items.Misc.Energies
     {
         protected override IColorGradient Gradient => ColorHelper.Instance.UltimateGrad;
         protected override Vector3 LightColor => new Vector3(0.5f, 0.5f, 0.5f);
-        public override int Rarity => ItemRarityID.Green;
+        public override int Rarity => ItemRarityID.Pink;
 
         public override void AddRecipes()
         {

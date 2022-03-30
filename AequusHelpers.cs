@@ -6,6 +6,11 @@ namespace Aequus
 {
     public static class AequusHelpers
     {
+        public static int RollHigherFromLuck(this Player player, int amt)
+        {
+            return amt - player.RollLuck(amt);
+        }
+
         public static Color UseR(this Color color, int R) => new Color(R, color.G, color.B, color.A);
         public static Color UseR(this Color color, float R) => new Color((int)(R * 255), color.G, color.B, color.A);
 

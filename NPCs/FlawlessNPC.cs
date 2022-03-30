@@ -1,4 +1,5 @@
-﻿using Aequus.Sounds;
+﻿using Aequus.Common;
+using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -13,7 +14,6 @@ namespace Aequus.NPCs
         public override bool InstancePerEntity => true;
         public override bool CloneNewInstances => true;
 
-        public static List<byte> CurrentlyDamaged;
         public bool[] damagedPlayers;
         public bool preventNoHitCheck;
 
@@ -40,9 +40,10 @@ namespace Aequus.NPCs
         {
             if (!preventNoHitCheck)
             {
-                for (int i = 0; i < CurrentlyDamaged.Count; i++)
+                var manager = ModContent.GetInstance<FlawlessManager>();
+                for (int i = 0; i < manager.DamagedPlayers.Count; i++)
                 {
-                    damagedPlayers[CurrentlyDamaged[i]] = true;
+                    damagedPlayers[manager.DamagedPlayers[i]] = true;
                 }
             }
         }

@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.DropRules;
 using Aequus.Items.Misc;
+using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
 using Aequus.NPCs.Characters;
 using Aequus.Projectiles.Boss;
@@ -746,6 +747,9 @@ namespace Aequus.NPCs.Boss
             npcLoot.Add(new TrophyDrop(ModContent.ItemType<CrabsonTrophy>()));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CrabsonBag>()));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CrabsonRelic>()));
+            var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());
+            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<AquaticEnergy>(), 1, 3, 6));
+            npcLoot.Add(normalOnly);
         }
 
         public override void OnKill()

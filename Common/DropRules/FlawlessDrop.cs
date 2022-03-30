@@ -34,7 +34,7 @@ namespace Aequus.Common.DropRules
 
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                if (info.npc.playerInteraction[Main.myPlayer] && info.npc.GetGlobalNPC<FlawlessNPC>().damagedPlayers[Main.myPlayer])
+                if (info.npc.playerInteraction[Main.myPlayer] && !info.npc.GetGlobalNPC<FlawlessNPC>().damagedPlayers[Main.myPlayer])
                 {
                     CommonCode.DropItemFromNPC(info.npc, ItemType, 1);
                     result.State = ItemDropAttemptResultState.Success;
@@ -48,7 +48,7 @@ namespace Aequus.Common.DropRules
                 for (int i = 0; i < 255; i++)
                 {
                     var plr = Main.player[i];
-                    if (plr.active && info.npc.playerInteraction[i] && flags[i])
+                    if (plr.active && info.npc.playerInteraction[i] && !flags[i])
                     {
                         NetMessage.SendData(MessageID.InstancedItem, i, -1, null, item);
                         result.State = ItemDropAttemptResultState.Success;
