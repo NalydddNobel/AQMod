@@ -14,19 +14,10 @@ namespace Aequus.Items.Placeable
 
         public override void SetDefaults()
         {
-            Item.width = 12;
-            Item.height = 12;
-            Item.value = Item.sellPrice(silver: 5);
-            Item.maxStack = 999;
-            Item.useTime = 10;
-            Item.useAnimation = 15;
-            Item.rare = ItemRarityID.Pink;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.createTile = ModContent.TileType<WallPaintings>();
-            Item.placeStyle = WallPaintings.TheOrigin;
-            Item.consumable = true;
-            Item.useTurn = true;
-            Item.autoReuse = true;
+            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings>(), WallPaintings.Origin);
+            Item.maxStack = 99;
+            Item.value = 50000;
+            Item.rare = ItemRarityID.Blue;
         }
     }
 }

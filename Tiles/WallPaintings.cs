@@ -13,7 +13,7 @@ namespace Aequus.Tiles
         public const int OmegaStarite = 0;
         public const int Crabson = 1;
         public const int RedSprite = 2;
-        public const int TheOrigin = 3;
+        public const int Origin = 3;
         public const int RockFromAnAlternateUniverse = 4;
         public const int OmegaStaritePainting = 5;
         public const int SpaceSquid = 6;
@@ -58,7 +58,7 @@ namespace Aequus.Tiles
                 //    Item.NewItem(i * 16, j * 16, 48, 48, ModContent.ItemType<RedSpriteTrophy>());
                 //    break;
 
-                case TheOrigin:
+                case Origin:
                     Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<Origin>());
                     break;
 

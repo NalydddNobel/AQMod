@@ -1,7 +1,9 @@
+using Aequus.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus
@@ -21,6 +23,7 @@ namespace Aequus
         public override void Load()
         {
             Instance = this;
+            AequusText.OnModLoad(this);
         }
 
         public override void Unload()
@@ -53,6 +56,11 @@ namespace Aequus
         public static Asset<Texture2D> TexAsset(string path)
         {
             return ModContent.Request<Texture2D>(path, AssetRequestMode.ImmediateLoad);
+        }
+
+        public static string GetText(string key)
+        {
+            return AequusText.modTranslations["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture);
         }
     }
 }

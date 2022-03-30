@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.ModLoader;
 
 namespace Aequus.Localization
@@ -33,7 +30,7 @@ namespace Aequus.Localization
                 {
                     replacements.Add((value.Key, modifyText(value.Value)));
                 }
-                var text = LocalizationLoader.CreateTranslation(newKey);
+                var text = LocalizationLoader.CreateTranslation("Mods.Aequus." + newKey);
                 foreach (var value in replacements)
                 {
                     text.AddTranslation(value.Item1, value.Item2);
