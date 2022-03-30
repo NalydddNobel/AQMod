@@ -6,7 +6,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 
-namespace Aequus.Common.DropRules
+namespace Aequus.Common.ItemDrops
 {
     public sealed class FlawlessDrop : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
     {

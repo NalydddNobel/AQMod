@@ -6,6 +6,11 @@ namespace Aequus.Items.Placeable
 {
     public class CrabsonTrophy : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetRearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 30;

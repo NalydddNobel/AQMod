@@ -1,11 +1,42 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ModLoader;
 
 namespace Aequus
 {
     public static class AequusHelpers
     {
+        public static void SetRearch(this ModItem modItem, int amt)
+        {
+            SetRearch(modItem.Type, amt);
+        }
+        public static void SetRearch(int type, int amt)
+        {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[type] = amt;
+        }
+
+        public static int FindTargetWithLineOfSight(Vector2 position, int width = 2, int height = 2, float maxRange = 800f, object me = null, Func<int, bool> validCheck = null)
+        {
+            float num = maxRange;
+            int result = -1;
+            for (int i = 0; i < 200; i++)
+            {
+                NPC nPC = Main.npc[i];
+                if (nPC.CanBeChasedBy(me) && (validCheck == null || validCheck.Invoke(i)))
+                {
+                    float num2 = Vector2.Distance(position, Main.npc[i].Center);
+                    if (num2 < num && Collision.CanHit(position, width, height, nPC.position, nPC.width, nPC.height))
+                    {
+                        num = num2;
+                        result = i;
+                    }
+                }
+            }
+            return result;
+        }
+
         public static int RollHigherFromLuck(this Player player, int amt)
         {
             return amt - player.RollLuck(amt);

@@ -12,7 +12,7 @@ namespace Aequus.Items
         public static int GlimmerWeaponValue => Item.sellPrice(silver: 75);
         public static int DemonSiegeWeaponValue => Item.sellPrice(silver: 80);
         public static int MemorialistItemBuyValue => Item.buyPrice(gold: 20);
-        public static int OmegaStariteWeaponValue => Item.sellPrice(gold: 4, silver: 50);
+        public static int OmegaStariteDropValue => Item.sellPrice(gold: 4, silver: 50);
         public static int GaleStreamsWeaponValue => Item.sellPrice(gold: 4);
         public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);
         public static int PillarWeaponValue => Item.sellPrice(gold: 10);

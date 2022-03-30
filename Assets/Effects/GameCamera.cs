@@ -35,24 +35,21 @@ namespace Aequus.Assets.Effects
             returning = false;
         }
 
-        public bool SetTarget(string key, Vector2 target, CameraPriority priority, float speed = 128f, int hold = 60)
+        public bool SetTarget(string key, Vector2 target, CameraPriority priority, float speed = 128f, int hold = 25)
         {
             if (key == FocusKey)
             {
                 this.hold = hold;
             }
-            if (this.target == null)
+            if (this.target == null || this.priority < priority)
             {
-                if (this.priority < priority)
-                {
-                    this.target = target;
-                    this.priority = priority;
-                    this.speed = speed;
-                    returning = false;
-                    this.hold = hold;
-                    FocusKey = key;
-                    return true;
-                }
+                this.target = target;
+                this.priority = priority;
+                this.speed = speed;
+                returning = false;
+                this.hold = hold;
+                FocusKey = key;
+                return true;
             }
             return false;
         }
@@ -99,6 +96,7 @@ namespace Aequus.Assets.Effects
                 if (l <= speed)
                 {
                     cameraPosition = null;
+                    FocusKey = null;
                     return;
                 }
                 else

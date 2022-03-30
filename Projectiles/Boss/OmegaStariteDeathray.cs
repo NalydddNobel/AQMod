@@ -26,6 +26,8 @@ namespace Aequus.Projectiles.Boss
             Projectile.penetrate = -1;
             Projectile.aiStyle = -1;
             Projectile.timeLeft *= 5;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 4;
         }
 
         private const float size = NPCs.Boss.OmegaStarite.Circumference * 4f;

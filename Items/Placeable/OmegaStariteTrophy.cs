@@ -6,6 +6,11 @@ namespace Aequus.Items.Placeable
 {
     public class OmegaStariteTrophy : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetRearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 30;

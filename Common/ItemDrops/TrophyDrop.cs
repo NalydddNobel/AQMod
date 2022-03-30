@@ -2,7 +2,7 @@
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
-namespace Aequus.Common.DropRules
+namespace Aequus.Common.ItemDrops
 {
     public sealed class TrophyDrop : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
     {

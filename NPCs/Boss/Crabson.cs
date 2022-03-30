@@ -1,6 +1,6 @@
 ﻿using Aequus.Assets.Effects;
 using Aequus.Common;
-using Aequus.Common.DropRules;
+using Aequus.Common.ItemDrops;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
