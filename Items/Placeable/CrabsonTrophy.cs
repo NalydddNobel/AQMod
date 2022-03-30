@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Aequus.Tiles;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable
@@ -18,8 +19,8 @@ namespace Aequus.Items.Placeable
             Item.consumable = true;
             Item.value = 50000;
             Item.rare = ItemRarityID.Blue;
-            //Item.createTile = ModContent.TileType<Tiles.Furniture.Trophies>();
-            //Item.placeStyle = Tiles.Furniture.Trophies.Crabson;
+            Item.createTile = ModContent.TileType<WallPaintings>();
+            Item.placeStyle = WallPaintings.Crabson;
         }
     }
 }

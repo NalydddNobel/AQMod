@@ -82,6 +82,7 @@ namespace Aequus.NPCs.Boss
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.boss = true;
             NPC.behindTiles = true;
+            NPC.value = Item.buyPrice(gold: 2);
 
             NPC.buffImmune[BuffID.Suffocation] = true;
             //if (AQMod.UseAssets)
@@ -92,10 +93,6 @@ namespace Aequus.NPCs.Boss
             crabson = -1;
             leftClaw = -1;
             rightClaw = -1;
-        }
-
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -748,6 +745,7 @@ namespace Aequus.NPCs.Boss
         {
             npcLoot.Add(new TrophyDrop(ModContent.ItemType<CrabsonTrophy>()));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CrabsonBag>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CrabsonRelic>()));
         }
 
         public override void OnKill()

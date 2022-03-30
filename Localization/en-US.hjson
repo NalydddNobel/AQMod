@@ -7,6 +7,7 @@ Mods: {
 			OmegaStarite: Sent from outer space to scout for a valuable resource. An anomaly in the starite life-cycle in need of constant life support from its shell, in exchange it can produce vasts amounts of energy.
 		}
 		DropCondition: {
+			Flawless: Drops when defeated flawlessly
 			Trophy: Will 100% drop when defeated flawlessly
 		}
 		Tooltips: {
@@ -187,7 +188,7 @@ Mods: {
 			OverworldPalette: Overworld Palette
 			CavernPalette: Cavern Palette
 			PotionofContainers: Containers Potion
-			PotionofContainersTag: "{$Mods.AQMod.ItemName.PotionofContainers}"
+			PotionofContainersTag: "{$Mods.Aequus.ItemName.PotionofContainers}"
 			NoonPotion: Noon Potion
 			OpposingPotion: Opposing Potion
 			Baguette: Baguette
@@ -236,9 +237,9 @@ Mods: {
 			JeweledChalice: Jeweled Chalice
 			JeweledCandelabra: Jeweled Candelabra
 			JeweledChandelier: Jeweled Chandelier
-			OmegaStaritePainting: "'{$Mods.AQMod.NPCName.OmegaStarite}'"
+			OmegaStaritePainting: "'{$Mods.Aequus.NPCName.OmegaStarite}'"
 			RockFromAnAlternateUniverse: "'Rock from an Alternate Universe'"
-			AStrangeIdea: "'A Strange Idea...'"
+			Origin: "'Origin'"
 			GhostAmulet: Ghost Amulet
 			CopperSeal: Copper Seal
 			SilverSeal: Silver Seal
@@ -324,19 +325,19 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			MoonflowerPollen: "{$Mods.AQMod.Tooltips.Concocted}"
+			MoonflowerPollen: "{$Mods.Aequus.Tooltips.Concocted}"
 			LingeringPotion: Leaves a lingering effect which buffs yourself and nearby teammates
-			Molite: "{$Mods.AQMod.Tooltips.Concocted}"
+			Molite: "{$Mods.Aequus.Tooltips.Concocted}"
 			MoliteTag: Has double the length
 			MushroomClam:
 				'''
 				Summons Crabson at the crab caves
-				{$Mods.AQMod.Common.NotConsumable}
+				{$Mods.Aequus.Common.NotConsumable}
 				'''
 			NovaFruit:
 				'''
 				Summons Omega Starite at night
-				{$Mods.AQMod.Common.NotConsumable}
+				{$Mods.Aequus.Common.NotConsumable}
 				'''
 			MythicStarfruit: Summons a strange glimmer
 			MoonLeech: Attacks drain mana from enemies
@@ -348,7 +349,7 @@ Mods: {
 				'''
 			DreamCatcher:
 				'''
-				{$Mods.AQMod.Tooltips.HookBarb}
+				{$Mods.Aequus.Tooltips.HookBarb}
 				Deals extra damage while in the sky biome
 				'''
 			MagikaAmulet:
@@ -394,7 +395,7 @@ Mods: {
 				'''
 			SpiritualRelic:
 				'''
-				{$Mods.AQMod.Tooltips.IncreasedMinions}
+				{$Mods.Aequus.Tooltips.IncreasedMinions}
 				Defeated enemies create minion damage boosting spirits
 				Enemies haunted by spirits take extra damage from minions
 				'''
@@ -410,9 +411,9 @@ Mods: {
 				Revives you with 1 HP on fatal hits with a 5 minute cooldown
 				'Why would you hold a knife from the sharp part?'
 				'''
-			CrimtaneBarb: "{$Mods.AQMod.Tooltips.HookBarb}"
-			DemoniteBarb: "{$Mods.AQMod.Tooltips.HookBarb}"
-			MetalBarb: "{$Mods.AQMod.Tooltips.HookBarb}"
+			CrimtaneBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
+			DemoniteBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
+			MetalBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
 			CrabBarb: Your grappling hooks inflict poison and damage
 			Meathook: Allows you to attach to enemies using your grappling hook
 			CelesteTorus:
@@ -480,7 +481,7 @@ Mods: {
 				{$CommonItemTooltip.FlightAndSlowfall}
 				Has immense horizontal speed!
 				'''
-			FishyFins: "{$Mods.AQMod.nalyd}"
+			FishyFins: "{$Mods.Aequus.nalyd}"
 			FlowerCrown: Ocassionally summons damaging petals which blow in the wind
 			ArachnotronVisor:
 				'''
@@ -522,7 +523,7 @@ Mods: {
 				'''
 				Right click to shoot an airblast
 				Extra effective in the hallow
-				{$Mods.AQMod.Tooltips.UsesGel}
+				{$Mods.Aequus.Tooltips.UsesGel}
 				50% chance to not consume ammo
 				'The [c/ee2222:HOTTEST] in Home Incendiary Devices'
 				'''
@@ -602,14 +603,14 @@ Mods: {
 			ThunderClap: Summons a thunderbolt from the sky
 			Umystick:
 				'''
-				{$Mods.AQMod.Tooltips.UmbrellaWeapon}
+				{$Mods.Aequus.Tooltips.UmbrellaWeapon}
 				Right click to perform a double jump
 				'Looks quite menacing'
 				'''
 			Narrizuul:
 				'''
-				{$Mods.AQMod.Tooltips.Unobtainable}
-				{$Mods.AQMod.Tooltips.Nalyddd}
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				{$Mods.Aequus.Tooltips.Nalyddd}
 				'''
 			StudiesoftheInkblot:
 				'''
@@ -638,7 +639,7 @@ Mods: {
 			LightMatter: Radiates light and interstellar power
 			NuclearFeather:
 				'''
-				{$Mods.AQMod.Tooltips.Unobtainable}
+				{$Mods.Aequus.Tooltips.Unobtainable}
 				'They say it's from the flawless wings of Yatagaratsu'
 				'''
 			CrabPot: Uses bait to catch things in the water
@@ -693,9 +694,9 @@ Mods: {
 			RetroGoggles: Enemies appear as a blip on the fullscreen map
 			Beeswax: Shows the location of any visible Plantera bulbs
 			MoonflowerSeeds: Blooms and produces pollen near midnight
-			UltrabrightRedTorch: "{$Mods.AQMod.Common.TorchCanBePlacedInLiquids}"
-			UltrabrightGreenTorch: "{$Mods.AQMod.Common.TorchCanBePlacedInLiquids}"
-			UltrabrightBlueTorch: "{$Mods.AQMod.Common.TorchCanBePlacedInLiquids}"
+			UltrabrightRedTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
+			UltrabrightGreenTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
+			UltrabrightBlueTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
 			GlobeItem:
 				'''
 				Shows your tile coordinates when right clicked
@@ -728,17 +729,17 @@ Mods: {
 			SkyPalette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.AQMod.Tooltips.PaletteDrop}
+				{$Mods.Aequus.Tooltips.PaletteDrop}
 				'''
 			OverworldPalette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.AQMod.Tooltips.PaletteDrop}
+				{$Mods.Aequus.Tooltips.PaletteDrop}
 				'''
 			CavernPalette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.AQMod.Tooltips.PaletteDrop}
+				{$Mods.Aequus.Tooltips.PaletteDrop}
 				'''
 			PotionofContainers:
 				'''
@@ -770,7 +771,7 @@ Mods: {
 			ShadePotion: Standing still will make enemies unable to target you
 			MysteryGrail:
 				'''
-				{$Mods.AQMod.Tooltips.Unobtainable}
+				{$Mods.Aequus.Tooltips.Unobtainable}
 				Gives you a random buff
 				'''
 			SaintsFlow:
@@ -797,34 +798,34 @@ Mods: {
 				'''
 			PeeledCarrot: Medium improvements to all stats and grants you night vision
 			CursorDyeRemover: Removes any applied cursor dye
-			NalydDye: "{$Mods.AQMod.Tooltips.Nalyddd}"
+			NalydDye: "{$Mods.Aequus.Tooltips.Nalyddd}"
 			FamiliarPickaxe: Summons a mini version of yourself
 			HeartLamp: Summons a heart moth which increases life regen and provides light
 			StariteinaBottle:
 				'''
 				Summons a dwarf starite to provide light
-				{$Mods.AQMod.Tooltips.SuspiciousLooking}
+				{$Mods.Aequus.Tooltips.SuspiciousLooking}
 				'''
 			DragonBall: Summons an omega starite mini
 			YuckyOrb: Summons a pet angler fish to provide light
 			Transistor: Prevents the Glimmer from naturally spawning
 			EclipseGlasses: Prevents the Eclipse from naturally spawning
 			Cosmicanon: Prevents the Blood Moon from naturally spawning
-			SoliderCrabsBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SoldierCrab}"
+			SoliderCrabsBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
 			OmegaStaritePainting:
 				'''
 				'You have no idea what's in store for you!'
-				{$Mods.AQMod.PaintingSignature.niker}
+				{$Mods.Aequus.PaintingSignature.niker}
 				'''
 			RockFromAnAlternateUniverse:
 				'''
 				'The great might of an interstellar nebula!'
 				'N.T... from another universe'
 				'''
-			AStrangeIdea:
+			Origin:
 				'''
-				'The birthplace of Aequus'
-				{$Mods.AQMod.PaintingSignature.NalydT}
+				The birthplace of Aequus
+				{$Mods.Aequus.PaintingSignature.NalydT}
 				'''
 			MothmanMask:
 				'''
@@ -870,9 +871,9 @@ Mods: {
 			GoldSeal: Fishing anything that can be sold for 1 gold blesses you with 1 minute of the sonar potion buff
 			PlatinumSeal:
 				'''
-				{$Mods.AQMod.ItemTooltip.CopperSeal}
-				{$Mods.AQMod.ItemTooltip.SilverSeal}
-				{$Mods.AQMod.ItemTooltip.GoldSeal}
+				{$Mods.Aequus.ItemTooltip.CopperSeal}
+				{$Mods.Aequus.ItemTooltip.SilverSeal}
+				{$Mods.Aequus.ItemTooltip.GoldSeal}
 				'''
 			MoonShoes:
 				'''
@@ -883,13 +884,13 @@ Mods: {
 			BlurryDiscountCard:
 				'''
 				Shops have slightly lower prices
-				{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}
+				{$Mods.Aequus.Common.WorksInInventoryAndPiggyBank}
 				'It's hard to read but they will give you a discount anyways'
 				'''
 			BusinessCard:
 				'''
 				Shops have even lower prices
-				{$Mods.AQMod.Common.WorksInInventoryAndPiggyBank}
+				{$Mods.Aequus.Common.WorksInInventoryAndPiggyBank}
 				'Consider everything a business expense'
 				'''
 			Crabsol: Only the strongest of people can wield this weapon in honor
@@ -956,15 +957,15 @@ Mods: {
 				'Are you readyayayayayyayayayaya'
 				'''
 			HamaYumi: Converts arrows into exploding shade arrows
-			SpiralingTwilight: "{$Mods.AQMod.Common.UseDarts}"
-			Sprinkler: "{$Mods.AQMod.Common.UseDarts}"
-			StarPhish: "{$Mods.AQMod.Common.UseDarts}"
+			SpiralingTwilight: "{$Mods.Aequus.Common.UseDarts}"
+			Sprinkler: "{$Mods.Aequus.Common.UseDarts}"
+			StarPhish: "{$Mods.Aequus.Common.UseDarts}"
 			Raygun: Converts most bullets into a ray
 			SpaceShot: Shoots a star which then shoots bullets
 			LotusStaff:
 				'''
 				Summons a magma lotus to fight for you
-				{$Mods.AQMod.Common.DoesntMinionTarget}
+				{$Mods.Aequus.Common.DoesntMinionTarget}
 				'''
 			CrimsonHandStaff: Summons a crimson hand to fight for you
 			CorruptPot: Summons a corrupted plant to fight for you
@@ -984,16 +985,16 @@ Mods: {
 				Works when wet
 				'I think you can guess what this does from the name'
 				'''
-			StariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Starite}"
-			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SuperStarite}"
-			HyperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.HyperStarite}"
-			CinderaBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Cindera}"
-			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Magmalbubble}"
-			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.TrapImp}"
-			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.Vraine}"
-			RedSpriteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.RedSprite}"
-			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.WhiteSlime}"
-			SpaceSquidBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.AQMod.NPCName.SpaceSquid}"
+			StariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
+			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
+			HyperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
+			CinderaBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera}"
+			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmalbubble}"
+			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapImp}"
+			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
+			RedSpriteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.RedSprite}"
+			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
+			SpaceSquidBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SpaceSquid}"
 		}
 
 		Lingering: Lingering {0}
@@ -1348,7 +1349,7 @@ Mods: {
 			DwarfStarite: Dwarf Starite
 			Starite: Starite
 			UltraStarite: Ultra Starite
-			Snobster: "{$Mods.AQMod.ItemName.Snobster}"
+			Snobster: "{$Mods.Aequus.ItemName.Snobster}"
 			JerryCrabson: Crabson
 			JerryClaw: Jerry Claw
 			Magmalbubble: Magmabubble
@@ -1785,13 +1786,13 @@ Mods: {
 			XmasBackgroundTooltip:
 				'''
 				Whether or not to use a Xmas background in special Xmas worlds
-				{$Mods.AQMod.Config.RequiresReload}
+				{$Mods.Aequus.Config.RequiresReload}
 				'''
 			XmasProgressMeterOverride: Xmas Progress Meter Override
 			XmasProgressMeterOverrideTooltip:
 				'''
 				Whether or not to have the "AQ Xmas" seed override your worldgen progress bar. This sometimes has conflicts with Worldgen Previewer
-				{$Mods.AQMod.Config.RequiresReload}
+				{$Mods.Aequus.Config.RequiresReload}
 				'''
 			DemonSiegeUpgradeTooltip: "Demon Siege Upgrade Tooltip "
 			DemonSiegeUpgradeTooltipTooltip: Whether or not 'Can be upgraded at a Hell Altar' appears on an item's tooltip if it is upgradeable at the Gore Nest
@@ -1817,7 +1818,7 @@ Mods: {
 			DemonSiegeDowngradesTooltip:
 				'''
 				Adds recipes for downgrading weapons upgraded at the Demon Siege.
-				{$Mods.AQMod.Config.RequiresReload}
+				{$Mods.Aequus.Config.RequiresReload}
 				'''
 			ReduceSpawns: Reduce Spawns during Bossfights
 			ReduceSpawnsTooltip:
@@ -1858,7 +1859,7 @@ Mods: {
 			DebugCommandTooltip:
 				'''
 				Enables the /ncall debug command.
-				{$Mods.AQMod.Config.RequiresReload}
+				{$Mods.Aequus.Config.RequiresReload}
 				'''
 		}
 

@@ -1,10 +1,23 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 
 namespace Aequus
 {
     public static class AequusHelpers
     {
+        public static Color UseR(this Color color, int R) => new Color(R, color.G, color.B, color.A);
+        public static Color UseR(this Color color, float R) => new Color((int)(R * 255), color.G, color.B, color.A);
+
+        public static Color UseG(this Color color, int G) => new Color(color.R, G, color.B, color.A);
+        public static Color UseG(this Color color, float G) => new Color(color.R, (int)(G * 255), color.B, color.A);
+
+        public static Color UseB(this Color color, int B) => new Color(color.R, color.G, B, color.A);
+        public static Color UseB(this Color color, float B) => new Color(color.R, color.G, (int)(B * 255), color.A);
+
+        public static Color UseA(this Color color, int alpha) => new Color(color.R, color.G, color.B, alpha);
+        public static Color UseA(this Color color, float alpha) => new Color(color.R, color.G, color.B, (int)(alpha * 255));
+
         public static float FromByte(byte value, float maximum)
         {
             return value * maximum / 255f;

@@ -1454,6 +1454,8 @@ namespace Aequus.NPCs.Boss
         {
             npcLoot.Add(new TrophyDrop(ModContent.ItemType<OmegaStariteTrophy>()));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<OmegaStariteBag>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<OmegaStariteRelic>()));
+            npcLoot.Add(new FlawlessDrop(ModContent.ItemType<Origin>()));
         }
 
         public override void OnKill()
