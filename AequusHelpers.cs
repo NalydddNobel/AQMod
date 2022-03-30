@@ -8,11 +8,20 @@ namespace Aequus
 {
     public static class AequusHelpers
     {
-        public static void SetRearch(this ModItem modItem, int amt)
+        public static bool UpdateProjActive(Projectile projectile, ref bool active)
         {
-            SetRearch(modItem.Type, amt);
+            if (Main.player[projectile.owner].dead)
+                active = false;
+            if (active)
+                projectile.timeLeft = 2;
+            return active;
         }
-        public static void SetRearch(int type, int amt)
+
+        public static void SetResearch(this ModItem modItem, int amt)
+        {
+            SetResearch(modItem.Type, amt);
+        }
+        public static void SetResearch(int type, int amt)
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[type] = amt;
         }

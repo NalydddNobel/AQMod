@@ -12,7 +12,7 @@ namespace Aequus.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            this.SetRearch(1);
+            this.SetResearch(1);
         }
 
         public override void SetDefaults()

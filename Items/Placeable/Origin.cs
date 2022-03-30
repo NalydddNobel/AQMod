@@ -9,7 +9,7 @@ namespace Aequus.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            this.SetRearch(1);
+            this.SetResearch(1);
         }
 
         public override void SetDefaults()
