@@ -1,10 +1,11 @@
 ﻿using Aequus.Assets.Effects;
 using Aequus.Assets.Effects.Prims;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common;
 using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
-using Aequus.Content.World.Events;
+using Aequus.Content.Invasions;
 using Aequus.Dusts;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
@@ -249,6 +250,8 @@ namespace Aequus.NPCs.Boss
         {
             if (!bestiaryDummy)
                 NPC.TargetClosest(faceTarget: false);
+            else if (!Main.getGoodWorld)
+                NPC.scale *= 0.5f;
             var center = NPC.Center;
             rings = new Ring[2];
             if (Main.expertMode)
@@ -259,10 +262,6 @@ namespace Aequus.NPCs.Boss
                     rings[1] = new Ring(OuterRingSegmentCount, Circumference * OuterRingCircumferenceMultiplier_Expert, OuterRingSegment_Expert);
                     Array.Resize(ref rings, 3);
                     rings[2] = new Ring(12, Circumference * 2.5f, 1.45f);
-                    for (int i = 0; i < rings.Length; i++)
-                    {
-                        rings[i].MultScale(NPC.scale);
-                    }
                 }
                 else
                 {
@@ -274,8 +273,11 @@ namespace Aequus.NPCs.Boss
                 rings[0] = new Ring(InnerRingSegmentCount, Circumference * 0.75f, InnerRingScale);
                 rings[1] = new Ring(OuterRingSegmentCount, Circumference * OuterRingCircumferenceMultiplier_Normal, OuterRingScale_Normal);
             }
-            rings[0].Update(center);
-            rings[1].Update(center);
+            for (int i = 0; i < rings.Length; i++)
+            {
+                rings[i].MultScale(NPC.scale);
+                rings[i].Update(center);
+            }
             if (Main.netMode != NetmodeID.MultiplayerClient && !bestiaryDummy)
             {
                 int damage = Main.expertMode ? 25 : 30;
@@ -1579,6 +1581,7 @@ namespace Aequus.NPCs.Boss
 
         public override void OnKill()
         {
+            AequusDefeats.MarkAsDefeated(ref AequusDefeats.downedOmegaStarite);
             //Glimmer.deactivationDelay = 275;
             //var noHitManager = NPC.GetGlobalNPC<NoHitting>();
             //bool anyoneNoHit = false;

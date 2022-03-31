@@ -74,14 +74,18 @@ namespace Aequus.Projectiles.Boss
                     Projectile.scale = 1f;
                 }
                 Projectile.ai[1]++;
-                if (Projectile.ai[1] > 30f)
+                if (!Main.getGoodWorld && Projectile.ai[1] > 30f)
                 {
                     Projectile.tileCollide = true;
                 }
                 float amt = Main.expertMode ? 0.05f : 0.025f;
+                if (Main.getGoodWorld)
+                {
+                    amt *= 2.5f;
+                }
                 Projectile.velocity.X += Main.rand.NextFloat(-amt, amt);
             }
-            if (Main.player[target].active && !Main.player[target].dead && (Projectile.velocity.Y > 0f ? Projectile.position.Y < Main.player[target].position.Y : Projectile.position.Y > Main.player[target].position.Y))
+            if (!Main.getGoodWorld || (Main.player[target].active && !Main.player[target].dead && (Projectile.velocity.Y > 0f ? Projectile.position.Y < Main.player[target].position.Y : Projectile.position.Y > Main.player[target].position.Y)))
             {
                 Projectile.tileCollide = false;
             }
@@ -114,6 +118,11 @@ namespace Aequus.Projectiles.Boss
                 var offset = new Vector2(Projectile.width / 2, Projectile.height / 2) - Main.screenPosition;
                 int trailLength = ProjectileID.Sets.TrailCacheLength[Projectile.type];
                 var trailColor = new Color(10, 80, 160, 0);
+                if (Main.getGoodWorld)
+                {
+                    drawColor *= 0.5f;
+                    trailColor *= 0.5f;
+                }
                 var origin = frame.Size() / 2f;
                 int trailRemove = Math.Min((int)Projectile.ai[0], 0);
                 for (int i = 0; i < trailLength + trailRemove; i++)
@@ -123,7 +132,7 @@ namespace Aequus.Projectiles.Boss
                 }
                 var drawPos = Projectile.position + offset;
                 drawPos = new Vector2((int)drawPos.X, (int)drawPos.Y);
-                if (Projectile.ai[0] > 0f)
+                if (Projectile.ai[0] > 0f && !Main.getGoodWorld)
                 {
                     var bloom = Aequus.MyTex("Assets/Bloom");
                     var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height / 2);

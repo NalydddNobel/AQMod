@@ -1,6 +1,6 @@
 ﻿using Aequus.Assets.Effects.Prims;
 using Aequus.Common.Configuration;
-using Aequus.Content.World.Events;
+using Aequus.Content.Invasions;
 using Aequus.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -26,6 +26,10 @@ namespace Aequus.Projectiles.Boss
             Projectile.scale = 0.6f;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
+            if (Main.getGoodWorld)
+            {
+                Projectile.scale = 1f;
+            }
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -39,7 +43,10 @@ namespace Aequus.Projectiles.Boss
             int explodeTime = 16;
             if (Projectile.timeLeft < explodeTime)
             {
-                Projectile.tileCollide = true;
+                if (!Main.getGoodWorld)
+                {
+                    Projectile.tileCollide = true;
+                }
                 _light += 1f / explodeTime;
                 var center = Projectile.Center;
                 int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(120, 160, 255, 10));
@@ -106,10 +113,16 @@ namespace Aequus.Projectiles.Boss
             if ((int)Projectile.ai[1] == 1)
             {
                 float add = Main.expertMode ? MathHelper.PiOver4 : MathHelper.PiOver2;
+                float speed = 10f;
+                if (Main.getGoodWorld)
+                {
+                    add /= 2f;
+                    speed *= 2f;
+                }
                 for (float r = 0; r <= MathHelper.TwoPi; r += add + 0.001f)
                 {
                     var normal = (r + Main.rand.NextFloat(-0.01f, 0.01f)).ToRotationVector2();
-                    int p = Projectile.NewProjectile(new EntitySource_Parent(Projectile), center + normal * 20f, normal * 10f, ModContent.ProjectileType<CrabsonPearlShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                    int p = Projectile.NewProjectile(new EntitySource_Parent(Projectile), center + normal * 20f, normal * speed, ModContent.ProjectileType<CrabsonPearlShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                     Main.projectile[p].timeLeft += Main.rand.Next(-10, 10);
                 }
             }

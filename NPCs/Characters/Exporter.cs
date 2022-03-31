@@ -240,7 +240,7 @@ namespace Aequus.NPCs.Characters
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-            return BossDefeats.downedCrabson;
+            return AequusDefeats.downedCrabson;
         }
 
         public override string TownNPCName()

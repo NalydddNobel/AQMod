@@ -1,3 +1,5 @@
+using Aequus.Common.Utilities;
+using Aequus.Items;
 using Aequus.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,10 +21,13 @@ namespace Aequus
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
 
         public static Aequus Instance { get; private set; }
+        public static StaticManipulator<bool> DayTimeManipulator { get; private set; }
 
         public override void Load()
         {
             Instance = this;
+            DayTimeManipulator = new StaticManipulator<bool>(() => ref Main.dayTime);
+            CooldownsManager.OnModLoad();
             AequusText.OnModLoad(this);
         }
 

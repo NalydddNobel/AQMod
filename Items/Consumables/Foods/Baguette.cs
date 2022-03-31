@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,6 +11,7 @@ namespace Aequus.Items.Consumables.Foods
         {
             ItemID.Sets.IsFood[Type] = true;
             Main.RegisterItemAnimation(Type, new FoodFramingHack());
+            this.SetResearch(1);
         }
 
         public override void SetDefaults()
@@ -20,7 +20,5 @@ namespace Aequus.Items.Consumables.Foods
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.buyPrice(silver: 80);
         }
-
-
     }
 }

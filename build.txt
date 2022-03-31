@@ -1,4 +1,4 @@
-displayName = Aequus (1.4 Porting Test)
+displayName = Aequus
 author = Nalyd T.
 version = 2.0
 homepage = https://forums.terraria.org/index.php?threads/aequus.105402/

@@ -7,6 +7,16 @@ Mods: {
 			OmegaStarite: Sent from outer space to scout for a valuable resource. An anomaly in the starite life-cycle in need of constant life support from its shell, in exchange it can produce vasts amounts of energy.
 		}
 		DropCondition: {
+			OreTier: { 
+				0: Only dropped in worlds with copper ore
+				1: Only dropped in worlds with tin ore
+				2: Only dropped in worlds with iron ore
+				3: Only dropped in worlds with lead ore
+				4: Only dropped in worlds with silver ore
+				5: Only dropped in worlds with tungsten ore
+				6: Only dropped in worlds with gold ore
+				7: Only dropped in worlds with platinum ore
+			}
 			Flawless: Drops when defeated flawlessly
 			Trophy: Will 100% drop when defeated flawlessly
 		}
@@ -125,7 +135,7 @@ Mods: {
 			ThunderClap: Thunder Clap
 			Umystick: Umystick
 			Narrizuul: Narrizuul
-			StudiesoftheInkblot: Studies of the Inkblot
+			StudiesOfTheInkblot: Studies of the Inkblot
 			CursedKey: Cursed Key
 			PiranhaPot: Piranha Pot
 			Skrawler: Skrawler
@@ -150,7 +160,7 @@ Mods: {
 			LarvaEel: Larva Eel
 			CentennialLight: Centennial Light
 			Globebulb: Globebulb
-			TheFan: Pumpinator
+			Pumpinator: Pumpinator
 			VampireHook: Bloodline
 			BlackBookofUntoldLegends: "'Untold Legends'"
 			EquivalenceMachine: Equivalence Machine
@@ -612,7 +622,7 @@ Mods: {
 				{$Mods.Aequus.Tooltips.Unobtainable}
 				{$Mods.Aequus.Tooltips.Nalyddd}
 				'''
-			StudiesoftheInkblot:
+			StudiesOfTheInkblot:
 				'''
 				'Rorschach in Danmaku'
 				'Subterranean Rose'
@@ -655,10 +665,10 @@ Mods: {
 			LarvaEel: Provides life regeneration
 			CentennialLight: Greatly speeds up time
 			Globebulb: Speeds up time
-			TheFan:
+			Pumpinator:
 				'''
-				Can push things in any direction
-				Changes the speed of the wind
+				Gradually changes the speed of the wind
+				Can move villagers, enemies and projectiles
 				'Handheld inspiration!'
 				'''
 			VampireHook:
@@ -1139,7 +1149,8 @@ Mods: {
 			RedSpriteStaffLightning: Surge Rod
 			ThunderClap: Thunder Clap
 			Narrizuul: Narrizuul
-			StudiesoftheInkblotBullet: Studies of the Inkblot
+			TouhouBullet: Touhou
+			TouhouOrbiter: Touhou
 			TrapperMinion: Trapper
 			TrapperMinionBlast: Trapper
 			TrapperMinionExplosion: Trapper
@@ -1169,12 +1180,7 @@ Mods: {
 			HorizonSkiesExplosion: Horizon Skies
 			UltimaFlare: Ultima Flare
 			Venus: Venus
-			RayBullet: Ray Bullet
-			RayChlorophyteBullet: Ray Bullet
-			RayCursedBullet: Ray Bullet
-			RayIchorBullet: Ray Bullet
-			RayMeteorBullet: Ray Bullet
-			RayVenomBullet: Ray Bullet
+			RayBulletBase: Ray
 			HamaYumiArrow: Hama Yumi Arrow
 			SpaceShot: SpaceShot
 			Bubbler: Bubbler
@@ -1236,10 +1242,6 @@ Mods: {
 		ItemTooltipExtra: {
 			UltimateSword: {
 				0: Only obtainable from Omega Starite while there is a glimmer in the sky
-			}
-
-			TheFan: {
-				0: Strong space winds may cause new creatures to appear
 			}
 		}
 
@@ -1870,5 +1872,6 @@ Mods: {
 		GlimmersPrevented: Glimmers Prevented: {0}
 		EclipsesPrevented: Eclipses Prevented: {0}
 		YourCoordinates: Your corrdinates are (X: {0}, Y: {1})
+		GaleStreamsHint: Strong space winds may cause new creatures to appear
 	}
 }

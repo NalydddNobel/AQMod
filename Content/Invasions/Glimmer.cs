@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.World.Events
+namespace Aequus.Content.Invasions
 {
     public sealed class Glimmer : ModSystem
     {

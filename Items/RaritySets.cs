@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
+﻿using Terraria.ID;
 
 namespace Aequus.Items
 {
@@ -14,7 +9,6 @@ namespace Aequus.Items
         public const int RarityDemonSiege = ItemRarityID.Orange;
         public const int RarityOmegaStarite = ItemRarityID.LightRed;
         public const int RarityGaleStreams = ItemRarityID.LightRed;
-        public const int RarityDedicatedItem = ItemRarityID.Cyan;
 
         internal const int RarityBanner = ItemRarityID.Blue;
         internal const int RarityDemoniteCrimtane = ItemRarityID.Blue;

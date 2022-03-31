@@ -1,13 +1,55 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public static class AequusHelpers
+    public static partial class AequusHelpers
     {
+        public static void DrawUIBack(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle itemFrame, float itemScale, Color color, float progress = 1f)
+        {
+            int frameY = (int)(texture.Height * progress);
+            var uiFrame = new Rectangle(0, texture.Height - frameY, texture.Width, frameY);
+            position.Y += uiFrame.Y * Main.inventoryScale;
+            var center = position + itemFrame.Size() / 2f * itemScale;
+            spriteBatch.Draw(texture, center, uiFrame, color, 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+        }
+
+        public static Item DefaultItem(int type)
+        {
+            var item = new Item();
+            item.SetDefaults(type);
+            return item;
+        }
+
+        public static bool Insert(this Chest chest, int itemType, int index)
+        {
+            return Insert(chest, itemType, 1, index);
+        }
+        public static bool Insert(this Chest chest, int itemType, int itemStack, int index)
+        {
+            var item = DefaultItem(itemType);
+            item.stack = itemStack;
+            return InsertIntoUnresizableArray(chest.item, item, index);
+        }
+        public static bool InsertIntoUnresizableArray<T>(T[] arr, T value, int index)
+        {
+            if (index >= arr.Length)
+            {
+                return false;
+            }
+            for (int j = arr.Length - 1; j > index; j--)
+            {
+                arr[j] = arr[j - 1];
+            }
+            arr[index] = value; 
+            return true;
+        }
+
         public static bool UpdateProjActive(Projectile projectile, ref bool active)
         {
             if (Main.player[projectile.owner].dead)
@@ -101,9 +143,34 @@ namespace Aequus
         {
             return GetPath(obj.GetType());
         }
+        public static string GetPath<T>()
+        {
+            return GetPath(typeof(T));
+        }
         public static string GetPath(Type t)
         {
             return t.Namespace.Replace('.', '/') + "/" + t.Name;
+        }
+
+        public static bool UglyCodeForCheckingIfYouAreInAnAlternateMaterialWorld(int tier)
+        {
+            if (Main.drunkWorld)
+            {
+                return WorldGen.genRand.NextBool();
+            }
+            if (tier == 1)
+            {
+                return WorldGen.SavedOreTiers.Iron == TileID.Iron;
+            }
+            else if (tier == 2)
+            {
+                return WorldGen.SavedOreTiers.Silver == TileID.Silver;
+            }
+            else if (tier == 3)
+            {
+                return WorldGen.SavedOreTiers.Gold == TileID.Gold;
+            }
+            return WorldGen.SavedOreTiers.Copper == TileID.Copper;
         }
     }
 }

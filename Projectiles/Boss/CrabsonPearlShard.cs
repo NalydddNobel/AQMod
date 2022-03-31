@@ -19,6 +19,10 @@ namespace Aequus.Projectiles.Boss
             Projectile.hostile = true;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 80;
+            if (Main.getGoodWorld)
+            {
+                Projectile.timeLeft *= 2;
+            }
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.scale = 1.5f;
@@ -32,7 +36,7 @@ namespace Aequus.Projectiles.Boss
         public override void AI()
         {
             Projectile.rotation = Projectile.velocity.ToRotation();
-            if (Projectile.timeLeft < 60)
+            if (Projectile.timeLeft < 60 && !Main.getGoodWorld)
             {
                 Projectile.tileCollide = true;
             }

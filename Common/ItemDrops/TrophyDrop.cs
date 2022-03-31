@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.NPCs;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
@@ -28,7 +30,16 @@ namespace Aequus.Common.ItemDrops
         public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
         {
             ItemDropAttemptResult result;
-            if (info.player.RollLuck(10) <= 1)
+            bool anyoneNoHit = false;
+            var flags = info.npc.GetGlobalNPC<FlawlessNPC>().damagedPlayers;
+            for (int i = 0; i < flags.Length; i++)
+            {
+                if (info.npc.playerInteraction[i] && !flags[i])
+                {
+                    anyoneNoHit = true;
+                }
+            }
+            if (anyoneNoHit || info.player.RollLuck(10) <= 1)
             {
                 CommonCode.DropItemFromNPC(info.npc, Trophy, 1);
                 result = default(ItemDropAttemptResult);
