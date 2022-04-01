@@ -6,9 +6,9 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Consumables.TreasureBags
 {
-    public abstract class TreasureBag : ModItem
+    public abstract class TreasureBagBase : ModItem
     {
         protected abstract int InternalRarity { get; }
         protected abstract bool PreHardmode { get; }

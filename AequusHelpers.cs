@@ -3,13 +3,24 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent.Creative;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus
 {
     public static partial class AequusHelpers
     {
+        public static Color LerpBetween(Color[] colors, float amount)
+        {
+            int index = (int)(amount % colors.Length);
+            return Color.Lerp(colors[index], colors[(index + 1) % (colors.Length - 1)], amount % 1f);
+        }
+
+        public static int TimedBasedOn(int timer, int ticksPer, int loop)
+        {
+            timer %= ticksPer * loop;
+            return timer / ticksPer;
+        }
+
         public static void DrawUIBack(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle itemFrame, float itemScale, Color color, float progress = 1f)
         {
             int frameY = (int)(texture.Height * progress);
@@ -46,7 +57,7 @@ namespace Aequus
             {
                 arr[j] = arr[j - 1];
             }
-            arr[index] = value; 
+            arr[index] = value;
             return true;
         }
 
@@ -150,27 +161,6 @@ namespace Aequus
         public static string GetPath(Type t)
         {
             return t.Namespace.Replace('.', '/') + "/" + t.Name;
-        }
-
-        public static bool UglyCodeForCheckingIfYouAreInAnAlternateMaterialWorld(int tier)
-        {
-            if (Main.drunkWorld)
-            {
-                return WorldGen.genRand.NextBool();
-            }
-            if (tier == 1)
-            {
-                return WorldGen.SavedOreTiers.Iron == TileID.Iron;
-            }
-            else if (tier == 2)
-            {
-                return WorldGen.SavedOreTiers.Silver == TileID.Silver;
-            }
-            else if (tier == 3)
-            {
-                return WorldGen.SavedOreTiers.Gold == TileID.Gold;
-            }
-            return WorldGen.SavedOreTiers.Copper == TileID.Copper;
         }
     }
 }

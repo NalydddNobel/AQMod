@@ -1,12 +1,10 @@
 ﻿using Aequus.Content.Invasions;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,6 +16,14 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             Main.npcFrameCount[NPC.type] = 5;
             NPCSets.WindUpdates.Add(Type);
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
+                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.Meteor")
+            });
         }
 
         public override void SetDefaults()
@@ -118,7 +124,12 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void FindFrame(int frameHeight)
         {
-            NPC.frame.Y = frameHeight * (int)(NPC.localAI[0] - 1f);
+            int frame = (int)(NPC.localAI[0] - 1f);
+            if (NPC.IsABestiaryIconDummy)
+            {
+                frame = AequusHelpers.TimedBasedOn((int)Main.GameUpdateCount, 30, Main.npcFrameCount[NPC.type]);
+            }
+            NPC.frame.Y = frameHeight * frame;
         }
 
         public override void SendExtraAI(BinaryWriter writer)

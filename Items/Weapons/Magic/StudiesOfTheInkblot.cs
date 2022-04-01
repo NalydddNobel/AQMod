@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Magic;
+﻿using Aequus.Common.Players;
+using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -62,10 +63,10 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void HoldItem(Player player)
         {
-            var aQPlayer = player.GetModPlayer<AequusPlayer>();
+            var cooldowns = player.GetModPlayer<CooldownsPlayer>();
             if (Main.myPlayer == player.whoAmI)
             {
-                if (player.ownedProjectileCounts[Item.shoot] == 0 && aQPlayer.itemCombo <= 0)
+                if (player.ownedProjectileCounts[Item.shoot] == 0 && cooldowns.itemCombo <= 0)
                 {
                     for (int i = 0; i < Main.maxProjectiles; i++)
                     {
@@ -81,7 +82,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            var aequus = player.GetModPlayer<AequusPlayer>();
+            var cooldowns = player.GetModPlayer<CooldownsPlayer>();
             float speed = velocity.Length();
             if (player.altFunctionUse == 2)
             {
@@ -98,11 +99,11 @@ namespace Aequus.Items.Weapons.Magic
                     int p = Projectile.NewProjectile(source, position, new Vector2(speed * 0.3f, 0f).RotatedBy(MathHelper.TwoPi / 62f * i),
                         ModContent.ProjectileType<TouhouBullet>(), damage, knockback, player.whoAmI, 100f + 40f * (1f / 62f * ((i + rand) % 62f)), speed * 0.5f);
                     Main.projectile[p].localAI[0] = 1.5f;
-                    Main.projectile[p].frame = aequus.itemCombo > 0 ? 1 : 5;
+                    Main.projectile[p].frame = cooldowns.itemCombo > 0 ? 1 : 5;
                 }
-                if (aequus.itemCombo <= 0)
+                if (cooldowns.itemCombo <= 0)
                 {
-                    aequus.itemCombo = (ushort)(Item.useTime * 2);
+                    cooldowns.itemCombo = (ushort)(Item.useTime * 2);
                 }
                 DefaultUse();
             }

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ItemDrops;
+using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Boss;
@@ -7,9 +8,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Consumables.TreasureBags
 {
-    public class OmegaStariteBag : TreasureBag
+    public class OmegaStariteBag : TreasureBagBase
     {
         protected override int InternalRarity => ItemRarityID.LightRed;
         public override int BossBagNPC => ModContent.NPCType<OmegaStarite>();
@@ -19,9 +20,9 @@ namespace Aequus.Items.Misc
         {
             var source = player.GetItemSource_OpenItem(Type);
 
-            DropHelper.OneFromList(source, player, new List<int>() 
-            { 
-                ModContent.ItemType<Raygun>(), 
+            DropHelper.OneFromList(source, player, new List<int>()
+            {
+                ModContent.ItemType<Raygun>(),
             });
             player.QuickSpawnItem(source, ModContent.ItemType<CosmicEnergy>(), player.RollHigherFromLuck(4) + 5);
             player.QuickSpawnItem(source, ModContent.ItemType<LightMatter>(), player.RollHigherFromLuck(7) + 18);

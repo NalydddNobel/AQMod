@@ -7,6 +7,7 @@ using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
 using Aequus.Content.Invasions;
 using Aequus.Dusts;
+using Aequus.Items.Consumables.TreasureBags;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
@@ -26,6 +27,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
 
 namespace Aequus.NPCs.Boss
 {
@@ -181,15 +183,16 @@ namespace Aequus.NPCs.Boss
                 NPC.scale *= 0.5f;
             }
 
+            if (AprilFools.CheckAprilFools())
+            {
+                NPC.GivenName = "Omega Starite, Living Galaxy the Omega Being";
+            }
             //if (!Glimmer.IsGlimmerEventCurrentlyActive())
             //if (AQMod.UseAssets)
             //{
             //    music = GetMusic().GetMusicID();
             //    musicPriority = MusicPriority.BossMedium;
-            //    if (AprilFools.CheckAprilFools())
-            //    {
-            //        NPC.GivenName = "Omega Starite, Living Galaxy the Omega Being";
-            //    }
+
             //}
         }
 
@@ -261,7 +264,7 @@ namespace Aequus.NPCs.Boss
                 {
                     rings[1] = new Ring(OuterRingSegmentCount, Circumference * OuterRingCircumferenceMultiplier_Expert, OuterRingSegment_Expert);
                     Array.Resize(ref rings, 3);
-                    rings[2] = new Ring(12, Circumference * 2.5f, 1.45f);
+                    rings[2] = new Ring(13, Circumference * 2.5f, 1.45f);
                 }
                 else
                 {
@@ -450,7 +453,7 @@ namespace Aequus.NPCs.Boss
                         else if ((center - plrCenter).Length() > 1800f)
                         {
                             NPC.ai[2] = 1200f;
-                            rings[0].yaw += NPC.ai[1]; 
+                            rings[0].yaw += NPC.ai[1];
                             for (int i = 1; i < rings.Length; i++)
                             {
                                 rings[i].yaw += NPC.ai[1] * 0.5f;
@@ -485,7 +488,12 @@ namespace Aequus.NPCs.Boss
                                             GameEffects.Instance.SetShake(12f * ClientConfiguration.Instance.effectIntensity, 24f);
                                         }
                                         int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
-                                        Main.projectile[p].scale = 0.75f;
+                                        Main.projectile[p].scale = Main.getGoodWorld ? 1f : 0.75f;
+                                        if (Main.getGoodWorld)
+                                        {
+                                            p = Projectile.NewProjectile(new EntitySource_Parent(NPC), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
+                                            ((OmegaStariteDeathray)Main.projectile[p].ModProjectile).rotationOffset = MathHelper.Pi;
+                                        }
                                     }
                                     else
                                     {
@@ -804,7 +812,7 @@ namespace Aequus.NPCs.Boss
                             if (allRingsSet)
                             {
                                 NPC.velocity = Vector2.Normalize(plrCenter - center) * NPC.velocity.Length();
-                                for (int i =0; i < rings.Length; i++)
+                                for (int i = 0; i < rings.Length; i++)
                                 {
                                     rings[i].pitch = 0f;
                                     rings[i].roll = 0f;
@@ -1477,7 +1485,7 @@ namespace Aequus.NPCs.Boss
                 spriteBatch.Draw(spotlight, drawPos, null, spotlightColor, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + i, SpriteEffects.None, 0f);
             }
             spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity - (int)intensity)), NPC.rotation, spotlightOrig, NPC.scale * 2.5f + ((int)intensity + 1), SpriteEffects.None, 0f);
-            
+
             if (!NPC.IsABestiaryIconDummy)
             {
                 if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f)
@@ -1494,7 +1502,7 @@ namespace Aequus.NPCs.Boss
                     NPC.oldPos[0] = new Vector2(0f, 0f);
                 }
             }
-            
+
             spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             for (int j = 0; j < intensity; j++)
             {
@@ -1571,6 +1579,7 @@ namespace Aequus.NPCs.Boss
             npcLoot.Add(new TrophyDrop(ModContent.ItemType<OmegaStariteTrophy>()));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<OmegaStariteBag>()));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<OmegaStariteRelic>()));
+            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DragonBall>(), 4));
             npcLoot.Add(new FlawlessDrop(ModContent.ItemType<Origin>()));
             var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());
             normalOnly.OnSuccess(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Raygun>()));

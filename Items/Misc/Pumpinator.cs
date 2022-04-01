@@ -57,8 +57,12 @@ namespace Aequus.Items.Misc
             if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeWindDirectionAndStrength>().Enabled && !LanternNight.LanternsUp)
             {
                 float windChange = 0.02f * (1f - velocity.Y.Abs() / Item.shootSpeed) * Math.Sign(velocity.X);
-                Main.windSpeedTarget += windChange;
 
+                if ((Main.windSpeedTarget + windChange).Abs() > 0.8f)
+                {
+                    windChange = -(Main.windSpeedTarget - 0.8f * Math.Sign(Main.windSpeedTarget));
+                }
+                Main.windSpeedTarget += windChange;
                 if (!Main.windSpeedCurrent.CloseEnough(Main.windSpeedTarget, 0.019f))
                 {
                     Main.windSpeedCurrent = MathHelper.Lerp(Main.windSpeedCurrent, Main.windSpeedTarget, 0.5f);

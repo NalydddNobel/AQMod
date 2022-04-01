@@ -1,10 +1,8 @@
 ﻿using Aequus.Common;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.NPCs
@@ -40,7 +38,7 @@ namespace Aequus.NPCs
         {
             if (!preventNoHitCheck)
             {
-                var manager = ModContent.GetInstance<FlawlessManager>();
+                var manager = ModContent.GetInstance<FlawlessSystem>();
                 for (int i = 0; i < manager.DamagedPlayers.Count; i++)
                 {
                     damagedPlayers[manager.DamagedPlayers[i]] = true;

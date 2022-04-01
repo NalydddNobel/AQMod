@@ -1,12 +1,6 @@
-﻿using Aequus.Content.Invasions;
-using Aequus.Items.Misc;
-using Aequus.Sounds;
-using Microsoft.Xna.Framework;
-using System;
+﻿using Aequus.Items.Misc;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -69,7 +63,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
             public bool CanShowItemDropInUI()
             {
-                return Main.drunkWorld || AequusHelpers.UglyCodeForCheckingIfYouAreInAnAlternateMaterialWorld(tier) == isAlt;
+                return Main.drunkWorld || UglyCodeForCheckingIfYouAreInAnAlternateMaterialWorldUsingMysteriousTierVariable(tier) == isAlt;
             }
 
             public string GetConditionDescription()
@@ -114,7 +108,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
             protected override void DropItem(DropAttemptInfo info)
             {
-                bool altOres = AequusHelpers.UglyCodeForCheckingIfYouAreInAnAlternateMaterialWorld(tier);
+                bool altOres = UglyCodeForCheckingIfYouAreInAnAlternateMaterialWorldUsingMysteriousTierVariable(tier);
                 int stack = Main.rand.Next(dropAmt) + 1;
                 if (stack == dropAmt)
                 {
@@ -125,6 +119,27 @@ namespace Aequus.NPCs.Monsters.Sky
             }
         }
 
+        private static bool UglyCodeForCheckingIfYouAreInAnAlternateMaterialWorldUsingMysteriousTierVariable(int tier)
+        {
+            if (Main.drunkWorld)
+            {
+                return WorldGen.genRand.NextBool();
+            }
+            if (tier == 1)
+            {
+                return WorldGen.SavedOreTiers.Iron == TileID.Iron;
+            }
+            else if (tier == 2)
+            {
+                return WorldGen.SavedOreTiers.Silver == TileID.Silver;
+            }
+            else if (tier == 3)
+            {
+                return WorldGen.SavedOreTiers.Gold == TileID.Gold;
+            }
+            return WorldGen.SavedOreTiers.Copper == TileID.Copper;
+        }
+
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(new CommonDrop(ModContent.ItemType<Pumpinator>(), 15));
@@ -133,43 +148,5 @@ namespace Aequus.NPCs.Monsters.Sky
             npcLoot.Add(new StupidOresAndBarsRule(ItemID.SilverOre, ItemID.TungstenOre, ItemID.SilverBar, ItemID.TungstenBar, 2, 4));
             npcLoot.Add(new StupidOresAndBarsRule(ItemID.GoldOre, ItemID.PlatinumOre, ItemID.GoldBar, ItemID.PlatinumBar, 3, 4));
         }
-
-        //public override void NPCLoot()
-        //{
-        //    GaleStreams.ProgressEvent(Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)], 1);
-        //    if ((int)NPC.ai[0] == 2)
-        //        return;
-        //    if (Main.rand.NextBool())
-        //        barOreDrop(ItemID.CopperOre, ItemID.TinOre, ItemID.CopperBar, ItemID.TinBar, WorldGen.CopperTierOre, TileID.Tin, 3);
-        //    else
-        //        barOreDrop(ItemID.SilverOre, ItemID.TungstenOre, ItemID.SilverBar, ItemID.TungstenBar, WorldGen.SilverTierOre, TileID.Tungsten, 4);
-        //    barOreDrop(ItemID.IronOre, ItemID.LeadOre, ItemID.IronBar, ItemID.LeadBar, WorldGen.IronTierOre, TileID.Lead, 20);
-        //    if (Main.rand.NextBool(4))
-        //        barOreDrop(ItemID.GoldOre, ItemID.PlatinumOre, ItemID.GoldBar, ItemID.PlatinumBar, WorldGen.GoldTierOre, TileID.Platinum, 4);
-        //    if ((NPC.downedBoss2 || Main.hardMode) && Main.rand.NextBool(32))
-        //        Item.NewItem(NPC.getRect(), ModContent.ItemType<Items.Tools.TheFan>());
-        //}
-
-        //private void barOreDrop(int ore1, int ore2, int bar1, int bar2, int worldOreTier, int altOreTier, int oreDropMax)
-        //{
-        //    if (worldOreTier == altOreTier)
-        //    {
-        //        if (Main.rand.NextBool())
-        //            Item.NewItem(NPC.getRect(), ore2, Main.rand.NextVRand(1, oreDropMax));
-        //        else
-        //        {
-        //            Item.NewItem(NPC.getRect(), bar2, Math.Max(Main.rand.NextVRand(1, oreDropMax) / 3, 1));
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (Main.rand.NextBool())
-        //            Item.NewItem(NPC.getRect(), ore1, Main.rand.NextVRand(1, oreDropMax));
-        //        else
-        //        {
-        //            Item.NewItem(NPC.getRect(), bar1, Math.Max(Main.rand.NextVRand(1, oreDropMax) / 3, 1));
-        //        }
-        //    }
-        //}
     }
 }

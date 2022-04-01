@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Consumables.TreasureBags
 {
-    public class CrabsonBag : TreasureBag
+    public class CrabsonBag : TreasureBagBase
     {
         protected override int InternalRarity => ItemRarityID.Blue;
         public override int BossBagNPC => ModContent.NPCType<Crabson>();

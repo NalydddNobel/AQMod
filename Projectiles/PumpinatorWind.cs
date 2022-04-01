@@ -1,4 +1,5 @@
 ﻿using Aequus.Dusts;
+using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -54,28 +55,23 @@ namespace Aequus.Projectiles
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 var npc = Main.npc[i];
-                if (npc.active && !npc.dontTakeDamage && !npc.immortal)
-                { 
-                    if (Projectile.Colliding(Projectile.getRect(), npc.getRect()))
-                    {
-                        npc.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack / 45f;
-                        npc.netUpdate = true;
-                    }
+                if (npc.active && !npc.dontTakeDamage && !npc.immortal && 
+                    Projectile.Colliding(Projectile.getRect(), npc.getRect()) && 
+                    NPCSets.WindUpdates.Contains(Main.projectile[i].type))
+                {
+                    npc.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack / 45f;
+                    npc.netUpdate = true;
                 }
             }
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 var proj = Main.projectile[i];
-                if (i != Projectile.whoAmI && proj.active)
+                if (i != Projectile.whoAmI && proj.active && 
+                    Projectile.Colliding(Projectile.getRect(), proj.getRect()) &&
+                    ProjSets.WindUpdates.Contains(Main.projectile[i].type))
                 {
-                    if (Projectile.Colliding(Projectile.getRect(), proj.getRect()))
-                    {
-                        if (ProjSets.WindUpdates.Contains(Main.projectile[i].type))
-                        {
-                            proj.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack;
-                            proj.netUpdate = true;
-                        }
-                    }
+                    proj.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack;
+                    proj.netUpdate = true;
                 }
             }
             if (Main.rand.NextBool(3))

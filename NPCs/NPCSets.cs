@@ -1,5 +1,4 @@
-﻿using Aequus.NPCs.Monsters.Sky;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

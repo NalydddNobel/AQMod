@@ -16,8 +16,6 @@ namespace Aequus
 
         public const string TextureNone = "Aequus/Assets/None";
 
-        public static Color MysteriousGuideTooltip => new Color(225, 100, 255, 255);
-        public static Color DemonSiegeTooltip => new Color(255, 170, 150, 255);
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
 
         public static Aequus Instance { get; private set; }
@@ -27,7 +25,7 @@ namespace Aequus
         {
             Instance = this;
             DayTimeManipulator = new StaticManipulator<bool>(() => ref Main.dayTime);
-            CooldownsManager.OnModLoad();
+            CooldownsItem.OnModLoad();
             AequusText.OnModLoad(this);
         }
 

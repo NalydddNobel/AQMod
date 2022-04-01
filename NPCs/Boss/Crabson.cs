@@ -1,7 +1,7 @@
 ﻿using Aequus.Assets.Effects;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
-using Aequus.Items.Misc;
+using Aequus.Items.Consumables.TreasureBags;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
 using Aequus.NPCs.Characters;

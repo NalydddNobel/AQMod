@@ -7,31 +7,34 @@ namespace Aequus
     public sealed class AequusPlayer : ModPlayer
     {
         /// <summary>
-        /// A value of 1 forces it to be day while updating this player.<para>A value of 2 forces it to be night while updating this player.</para>
-        /// <para>Used by <see cref="Buffs.NoonBuff"/></para>
+        /// 0 = no force, 1 = force day, 2 = force night
+        /// <para>Applied by <see cref="Buffs.NoonBuff"/></para>
         /// </summary>
         public byte forceDaytime;
 
+        /// <summary>
+        /// Applied by <see cref="Buffs.Debuffs.BlueFire"/>
+        /// </summary>
         public bool blueFire;
+        /// <summary>
+        /// Applied by <see cref="Buffs.Debuffs.PickBreak"/>
+        /// </summary>
         public bool pickBreak;
 
+        /// <summary>
+        /// Applied by <see cref="Buffs.Pets.FamiliarBuff"/>
+        /// </summary>
         public bool familiarPet;
 
-        public ushort itemCooldownMax;
-        public ushort itemCooldown;
-        public ushort itemCombo;
-        public ushort itemSwitch;
-        public int lastSelectedItem = -1;
-        public uint interactionCooldown;
+        /// <summary>
+        /// Applied by <see cref="Buffs.Pets.OmegaStariteBuff"/>
+        /// </summary>
+        public bool omegaStaritePet;
 
-        public override void Initialize()
-        {
-            itemCooldown = 0;
-            itemCooldownMax = 0;
-            itemCombo = 0;
-            itemSwitch = 0;
-            interactionCooldown = 60;
-        }
+        /// <summary>
+        /// Tracks <see cref="Terraria.Player.selectedItem"/>, reset in <see cref="PostItemCheck"/>
+        /// </summary>
+        public int lastSelectedItem = -1;
 
         public override void PreUpdate()
         {
@@ -48,43 +51,18 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            if (itemCombo > 0)
-            {
-                itemCombo--;
-            }
-            if (itemSwitch > 0)
-            {
-                itemSwitch--;
-            }
-            if (itemCooldown > 0)
-            {
-                if (itemCooldownMax == 0)
-                {
-                    itemCooldown = 0;
-                    itemCooldownMax = 0;
-                }
-                else
-                {
-                    itemCooldown--;
-                    if (itemCooldown == 0)
-                    {
-                        itemCooldownMax = 0;
-                    }
-                }
-                Player.manaRegen = 0;
-                Player.manaRegenDelay = (int)Player.maxRegenDelay;
-            }
-            if (interactionCooldown > 0)
-            {
-                interactionCooldown--;
-            }
-
             forceDaytime = 0;
 
             blueFire = false;
             pickBreak = false;
 
             familiarPet = false;
+            omegaStaritePet = false;
+        }
+
+        public override void PostItemCheck()
+        {
+            lastSelectedItem = Player.selectedItem;
         }
 
         public override void PostUpdate()

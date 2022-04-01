@@ -12,6 +12,8 @@ namespace Aequus.Projectiles.Boss
 {
     public class OmegaStariteDeathray : ModProjectile
     {
+        public float rotationOffset;
+
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 2;
@@ -42,7 +44,7 @@ namespace Aequus.Projectiles.Boss
                 return;
             }
             Projectile.Center = npc.Center;
-            Projectile.rotation = -omegaStarite.rings[0].roll;
+            Projectile.rotation = -omegaStarite.rings[0].roll + rotationOffset;
             if (omegaStarite.IsOmegaLaserActive())
                 Projectile.timeLeft = LASER_DEATH_TIME;
         }
