@@ -59,7 +59,7 @@ namespace Aequus.Tiles
 			TileObjectData.newTile.StyleHorizontal = false;
             TileObjectData.newTile.StyleWrapLimitVisualOverride = 2;
             TileObjectData.newTile.StyleMultiplier = 2;
-            TileObjectData.newTile.StyleWrapLimit = FrameCount;
+            TileObjectData.newTile.StyleWrapLimit = 2;
             TileObjectData.newTile.styleLineSkipVisualOverride = 0;
 
             TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile); 
@@ -80,6 +80,14 @@ namespace Aequus.Tiles
 
 				case Crabson:
 					Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<CrabsonRelic>());
+					break;
+
+				case RedSprite:
+					Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<RedSpriteRelic>());
+					break;
+
+				case SpaceSquid:
+					Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<SpaceSquidRelic>());
 					break;
 			}
 		}

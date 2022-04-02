@@ -38,6 +38,10 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             Main.npcFrameCount[NPC.type] = 8;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(1f, 0f),
+            });
             NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData()
             {
                 SpecificallyImmuneTo = new int[]
@@ -57,7 +61,9 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
             {
+                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky),
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay,
                 new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.RedSprite")
             });
             bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(NPC.GetBestiaryCreditId(), true);
@@ -975,6 +981,7 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(new TrophyDrop(ModContent.ItemType<RedSpriteTrophy>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<RedSpriteRelic>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fluorescence>(), 1, 10, 24));
             npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 2, 6));

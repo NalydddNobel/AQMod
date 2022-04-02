@@ -5,6 +5,11 @@ namespace Aequus.Items.Misc
 {
     public class Fluorescence : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(25);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 12;

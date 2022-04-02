@@ -35,6 +35,10 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             Main.npcFrameCount[NPC.type] = 6;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(24f, 0f),
+            });
             NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData()
             {
                 SpecificallyImmuneTo = new int[]
@@ -54,7 +58,9 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
             {
+                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky),
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay,
                 new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.SpaceSquid")
             });
             bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(NPC.GetBestiaryCreditId(), true);
@@ -631,6 +637,7 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(new TrophyDrop(ModContent.ItemType<SpaceSquidTrophy>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<SpaceSquidRelic>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SiphonTentacle>(), 1, 10, 24));
             npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 2, 6));

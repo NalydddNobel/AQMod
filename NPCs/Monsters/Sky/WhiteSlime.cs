@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,7 +19,23 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 20;
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(0f, 16f),
+            });
         }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky),
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay,
+                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.WhiteSlime")
+            });
+        }
+
 
         public override void SetDefaults()
         {
@@ -30,7 +47,7 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.lifeMax = 210;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
-            NPC.alpha = 50;
+            NPC.alpha = 155;
             NPC.lavaImmune = true;
             NPC.trapImmune = true;
             NPC.noGravity = true;
@@ -244,10 +261,7 @@ namespace Aequus.NPCs.Monsters.Sky
             drawPosition.Y -= 1.5f;
             var orig = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
 
-            if (NPC.frame.Y == NPC.frame.Height)
-                drawPosition.Y += 0.1f;
-
-            Main.spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, new Color(255, 255, 255, NPC.alpha), NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha), NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
             return false;
         }
 
@@ -268,6 +282,7 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>(), 20));
             npcLoot.Add(ItemDropRule.Common(ItemID.Gel, 1, 5, 15));
+            npcLoot.Add(ItemDropRule.Common(ItemID.SlimeStaff, 250));
         }
 
         //public override void NPCLoot()

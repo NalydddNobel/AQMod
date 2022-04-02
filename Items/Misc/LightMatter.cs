@@ -14,7 +14,7 @@ namespace Aequus.Items.Misc
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemNoGravity[Item.type] = true;
-            this.SetResearch(50);
+            this.SetResearch(25);
         }
 
         public override void SetDefaults()
