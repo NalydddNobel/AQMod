@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,6 +17,11 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             Main.npcFrameCount[NPC.type] = 5;
             NPCSets.WindUpdates.Add(Type);
+            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData()
+            {
+                ImmuneToAllBuffsThatAreNotWhips = true,
+                ImmuneToWhips = true,
+            });
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -40,10 +46,6 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.knockBackResist = 0.3f;
             NPC.value = Item.buyPrice(silver: 2);
             NPC.npcSlots = 0.25f;
-            for (int i = 0; i < NPC.buffImmune.Length; i++)
-            {
-                NPC.buffImmune[i] = true;
-            }
         }
 
         public override void AI()

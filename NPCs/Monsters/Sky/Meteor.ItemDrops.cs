@@ -9,40 +9,6 @@ namespace Aequus.NPCs.Monsters.Sky
 {
     partial class Meteor : ModNPC
     {
-        private abstract class BaseRule : IItemDropRule
-        {
-            public List<IItemDropRuleChainAttempt> ChainedRules { get; set; }
-
-            public BaseRule()
-            {
-                ChainedRules = new List<IItemDropRuleChainAttempt>();
-            }
-
-            public virtual bool CanDrop(DropAttemptInfo info)
-            {
-                return true;
-            }
-
-            public abstract void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo);
-
-            protected abstract void DropItem(DropAttemptInfo info);
-
-            public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
-            {
-                ItemDropAttemptResult result;
-                if ((int)info.npc.ai[0] != 2)
-                {
-                    DropItem(info);
-                    result = default(ItemDropAttemptResult);
-                    result.State = ItemDropAttemptResultState.Success;
-                    return result;
-                }
-
-                result = default(ItemDropAttemptResult);
-                result.State = ItemDropAttemptResultState.FailedRandomRoll;
-                return result;
-            }
-        }
         private sealed class StupidAltWorldConditionThing : IItemDropRuleCondition
         {
             private int tier;
@@ -71,8 +37,10 @@ namespace Aequus.NPCs.Monsters.Sky
                 return Aequus.GetText("DropCondition.OreTier." + textType);
             }
         }
-        private sealed class StupidOresAndBarsRule : BaseRule
+        private sealed class StupidOresAndBarsRule : IItemDropRule
         {
+            public List<IItemDropRuleChainAttempt> ChainedRules { get; set; }
+
             public int ore;
             public int altOre;
             public int bar;
@@ -82,6 +50,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
             public StupidOresAndBarsRule(int ore, int altOre, int bar, int altBar, int tier, int dropAmt) : base()
             {
+                ChainedRules = new List<IItemDropRuleChainAttempt>();
                 this.ore = ore;
                 this.altOre = altOre;
                 this.bar = bar;
@@ -90,7 +59,12 @@ namespace Aequus.NPCs.Monsters.Sky
                 this.dropAmt = dropAmt;
             }
 
-            public override void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
+            public bool CanDrop(DropAttemptInfo info)
+            {
+                return true;
+            }
+
+            public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
             {
                 var altRates = ratesInfo.With(1f);
                 altRates.AddCondition(new StupidAltWorldConditionThing(tier, true));
@@ -106,16 +80,30 @@ namespace Aequus.NPCs.Monsters.Sky
                 Chains.ReportDroprates(ChainedRules, 1f, drops, ratesInfo);
             }
 
-            protected override void DropItem(DropAttemptInfo info)
+
+            public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
             {
-                bool altOres = UglyCodeForCheckingIfYouAreInAnAlternateMaterialWorldUsingMysteriousTierVariable(tier);
-                int stack = Main.rand.Next(dropAmt) + 1;
-                if (stack == dropAmt)
+                ItemDropAttemptResult result;
+                if ((int)info.npc.ai[0] != 2)
                 {
-                    CommonCode.DropItemFromNPC(info.npc, altOres ? altBar : bar, 1);
-                    return;
+                    bool altOres = UglyCodeForCheckingIfYouAreInAnAlternateMaterialWorldUsingMysteriousTierVariable(tier);
+                    int stack = Main.rand.Next(dropAmt) + 1;
+                    if (stack == dropAmt)
+                    {
+                        CommonCode.DropItemFromNPC(info.npc, altOres ? altBar : bar, 1);
+                    }
+                    else
+                    {
+                        CommonCode.DropItemFromNPC(info.npc, altOres ? altOre : ore, stack);
+                    }
+                    result = default(ItemDropAttemptResult);
+                    result.State = ItemDropAttemptResultState.Success;
+                    return result;
                 }
-                CommonCode.DropItemFromNPC(info.npc, altOres ? altOre : ore, stack);
+
+                result = default(ItemDropAttemptResult);
+                result.State = ItemDropAttemptResultState.FailedRandomRoll;
+                return result;
             }
         }
 

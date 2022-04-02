@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Reflection;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
@@ -9,6 +10,15 @@ namespace Aequus
 {
     public static partial class AequusHelpers
     {
+        public static void SetLiquidSpeeds(this NPC npc, float water = 0.5f, float lava = 0.5f, float honey = 0.25f)
+        {
+            return;
+            // TODO: Check if these fields still exist
+            typeof(NPC).GetField("waterMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, water);
+            typeof(NPC).GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, lava);
+            typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, honey);
+        }
+
         public static T ModNPC<T>(this NPC npc) where T : ModNPC
         {
             return (T)npc.ModNPC;

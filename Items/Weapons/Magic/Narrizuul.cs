@@ -41,9 +41,9 @@ namespace Aequus.Items.Weapons.Magic
         {
             for (int i = 0; i < tooltips.Count; i++)
             {
-                if (tooltips[i].mod == "Terraria" && tooltips[i].Name == "ItemName")
+                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "ItemName")
                 {
-                    tooltips[i].overrideColor = Main.LocalPlayer.GetModPlayer<DrawEffectsPlayer>().NalydGradientPersonal.GetColor(Main.GlobalTimeWrappedHourly);
+                    tooltips[i].OverrideColor = Main.LocalPlayer.GetModPlayer<DrawEffectsPlayer>().NalydGradientPersonal.GetColor(Main.GlobalTimeWrappedHourly);
                     return;
                 }
             }
@@ -51,7 +51,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
         {
-            if (line.mod == "Terraria" && line.Name == "ItemName")
+            if (line.Mod == "Terraria" && line.Name == "ItemName")
             {
                 ItemTooltipsHelper.DrawDevTooltip(line);
                 return false;

@@ -12,7 +12,7 @@ namespace Aequus.Items
         {
             if (Dedicated.TryGetValue(item.type, out var dedication))
             {
-                tooltips.Add(new TooltipLine(Mod, "DedicatedItem", Aequus.GetText("Tooltips.DedicatedItem")) { overrideColor = dedication.color });
+                tooltips.Add(new TooltipLine(Mod, "DedicatedItem", Aequus.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
             }
         }
 
@@ -21,7 +21,7 @@ namespace Aequus.Items
             int myIndex = FindLineIndex(lineName);
             for (int i = 0; i < tooltips.Count; i++)
             {
-                if (tooltips[i].mod == "Terraria" && FindLineIndex(tooltips[i].Name) >= myIndex)
+                if (tooltips[i].Mod == "Terraria" && FindLineIndex(tooltips[i].Name) >= myIndex)
                 {
                     return i;
                 }

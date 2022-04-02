@@ -41,11 +41,11 @@ namespace Aequus.Items.Misc
             try
             {
                 int index = ItemTooltipsHelper.GetLineIndex(tooltips, "Material");
-                if (!Main.hardMode || AequusDefeats.downedEventGaleStreams)
+                if (!Main.hardMode || WorldFlags.downedEventGaleStreams)
                 {
                     return;
                 }
-                tooltips.Insert(1, new TooltipLine(Mod, "StartsGaleStreams", Aequus.GetText("GaleStreamsHint")) { overrideColor = ItemTooltipsHelper.MysteriousGuideTooltip, });
+                tooltips.Insert(1, new TooltipLine(Mod, "StartsGaleStreams", Aequus.GetText("GaleStreamsHint")) { OverrideColor = ItemTooltipsHelper.MysteriousGuideTooltip, });
             }
             catch
             {

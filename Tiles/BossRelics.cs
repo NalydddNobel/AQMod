@@ -21,7 +21,9 @@ namespace Aequus.Tiles
 
         public const int OmegaStarite = 0;
         public const int Crabson = 1;
-        public const int FrameCount = 2;
+		public const int RedSprite = 2;
+        public const int SpaceSquid = 3;
+        public const int FrameCount = 4;
 
         public override string Texture => "Terraria/Images/Tiles_" + TileID.MasterTrophyBase;
 

@@ -37,7 +37,7 @@ namespace Aequus.Content.Invasions
 
         public static void SpeedUpWinds(Player player, int points)
         {
-            if (!AequusDefeats.HardmodeTier || player.dead || !player.active)
+            if (!WorldFlags.HardmodeTier || player.dead || !player.active)
                 return;
         }
 

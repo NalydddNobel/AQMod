@@ -794,11 +794,11 @@ namespace Aequus.NPCs.Boss
         public override void OnKill()
         {
             Rectangle rect = NPC.getRect();
-            if (!AequusDefeats.downedCrabson && !NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
+            if (!WorldFlags.downedCrabson && !NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
             {
                 NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, ModContent.NPCType<Exporter>());
             }
-            AequusDefeats.MarkAsDefeated(ref AequusDefeats.downedCrabson);
+            WorldFlags.MarkAsDefeated(ref WorldFlags.downedCrabson);
             //LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonTrophy>(), 10);
             //if (Main.expertMode)
             //{

@@ -639,7 +639,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void OnKill()
         {
-            AequusDefeats.MarkAsDefeated(ref AequusDefeats.downedSpaceSquid);
+            WorldFlags.MarkAsDefeated(ref WorldFlags.downedSpaceSquid);
         }
 
         //public override void NPCLoot()

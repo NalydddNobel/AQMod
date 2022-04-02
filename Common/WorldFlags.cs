@@ -5,7 +5,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Common
 {
-    public sealed class AequusDefeats : ModSystem
+    public sealed class WorldFlags : ModSystem
     {
         public static bool downedSpaceSquid;
         public static bool downedRedSprite;

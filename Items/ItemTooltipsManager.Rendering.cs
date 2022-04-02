@@ -15,7 +15,7 @@ namespace Aequus.Items
     {
         public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
         {
-            if (line.mod == "Aequus" && line.Name == "DedicatedItem")
+            if (line.Mod == "Aequus" && line.Name == "DedicatedItem")
             {
                 DrawDedicatedTooltip(line);
                 return false;
@@ -25,7 +25,7 @@ namespace Aequus.Items
 
         public static void DrawDevTooltip(DrawableTooltipLine line)
         {
-            DrawDevTooltip(line.text, line.X, line.Y, line.rotation, line.origin, line.baseScale, line.overrideColor.GetValueOrDefault(line.Color));
+            DrawDevTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
         }
         public static void DrawDevTooltip(string text, int x, int y, Color color)
         {
@@ -133,7 +133,7 @@ namespace Aequus.Items
 
         public static void DrawDedicatedTooltip(DrawableTooltipLine line)
         {
-            DrawDedicatedTooltip(line.text, line.X, line.Y, line.rotation, line.origin, line.baseScale, line.overrideColor.GetValueOrDefault(line.Color));
+            DrawDedicatedTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
         }
         public static void DrawDedicatedTooltip(string text, int x, int y, Color color)
         {
