@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Particles.Dusts;
 using Aequus.Sounds;
@@ -280,9 +281,11 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>(), 20));
+            var rule = new LeadingConditionRule(new Conditions.IsHardmode());
+            rule.OnSuccess(npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>(), 20)));
             npcLoot.Add(ItemDropRule.Common(ItemID.Gel, 1, 5, 15));
             npcLoot.Add(ItemDropRule.Common(ItemID.SlimeStaff, 250));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CensorDye>(), 10));
         }
 
         //public override void NPCLoot()

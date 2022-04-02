@@ -53,6 +53,10 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			SpaceSquidRelic: Space Squid Relic
+			RedSpriteRelic: Red Sprite Relic
+			CrabsonRelic: Crabson Relic
+			OmegaStariteRelic: Omega Starite Relic
 			MoonflowerPollen: Moonflower Pollen
 			LingeringPotion: Lingering Potion
 			Molite: Starbyte

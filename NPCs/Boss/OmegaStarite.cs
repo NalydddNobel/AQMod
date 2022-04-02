@@ -156,6 +156,11 @@ namespace Aequus.NPCs.Boss
             NPCID.Sets.TrailCacheLength[NPC.type] = 60;
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(0f, 2f),
+                Scale = 0.5f
+            });
             NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() { ImmuneToAllBuffsThatAreNotWhips = true, };
             Main.npcFrameCount[NPC.type] = 14;
         }

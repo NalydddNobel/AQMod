@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
@@ -12,6 +7,9 @@ namespace Aequus.NPCs
     /// </summary>
     public sealed class TemperatureNPC : GlobalNPC
     {
-        
+        public override bool InstancePerEntity => true;
+        public override bool CloneNewInstances => true;
+
+        public int temperature;
     }
 }
