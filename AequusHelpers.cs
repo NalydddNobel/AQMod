@@ -9,6 +9,27 @@ namespace Aequus
 {
     public static partial class AequusHelpers
     {
+        public static T ModNPC<T>(this NPC npc) where T : ModNPC
+        {
+            return (T)npc.ModNPC;
+        }
+
+        public static void ScreenFlip(Vector2[] value)
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                value[i] = ScreenFlip(value[i]);
+            }
+        }
+        public static Vector2 ScreenFlip(Vector2 value)
+        {
+            return new Vector2(value.X, ScreenFlip(value.Y));
+        }
+        public static float ScreenFlip(float value)
+        {
+            return -value + Main.screenHeight;
+        }
+
         public static Color LerpBetween(Color[] colors, float amount)
         {
             int index = (int)(amount % colors.Length);

@@ -6,12 +6,12 @@ using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
 using Aequus.Content.Invasions;
-using Aequus.Dusts;
 using Aequus.Items.Consumables.TreasureBags;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
 using Aequus.Items.Weapons.Ranged;
+using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Boss;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
@@ -1393,7 +1393,7 @@ namespace Aequus.NPCs.Boss
                 intensity += NPC.ai[1] / 20;
                 GameCamera.Instance.SetTarget("Omega Starite", NPC.Center, CameraPriority.NPCDefeat, 12f, 60);
 
-                GameEffects.Instance.SetFlash(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f * ClientConfiguration.Instance.flashIntensity, 4f), 12f);
+                GameEffects.Instance.SetFlash(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 4f), 12f);
                 GameEffects.Instance.SetShake(intensity * 2f, 24f);
                 int range = (int)intensity + 4;
                 drawPos += new Vector2(Main.rand.Next(-range, range), Main.rand.Next(-range, range));

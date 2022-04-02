@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Dusts
+namespace Aequus.Particles.Dusts
 {
     public sealed class MonoSparkleDust : ModDust
     {
@@ -13,10 +13,7 @@ namespace Aequus.Dusts
 
         public override Color? GetAlpha(Dust dust, Color lightColor)
         {
-            return new Color(lightColor.ToVector3() * dust.color.ToVector3())
-            {
-                A = 25
-            };
+            return new Color(lightColor.ToVector3() * dust.color.ToVector3()).UseA(25);
         }
 
         public override bool Update(Dust dust)

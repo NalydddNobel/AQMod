@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Configuration;
-using Aequus.Dusts;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;

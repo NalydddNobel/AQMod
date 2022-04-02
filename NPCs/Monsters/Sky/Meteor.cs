@@ -24,6 +24,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
                 new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.Meteor")
             });
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(NPC.GetBestiaryCreditId(), true);
         }
 
         public override void SetDefaults()

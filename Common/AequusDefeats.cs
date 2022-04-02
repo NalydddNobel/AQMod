@@ -7,45 +7,56 @@ namespace Aequus.Common
 {
     public sealed class AequusDefeats : ModSystem
     {
+        public static bool downedSpaceSquid;
+        public static bool downedRedSprite;
+        public static bool downedEventGaleStreams;
         public static bool downedCrabson;
         public static bool downedOmegaStarite;
-        public static bool downedEventGaleStreams;
 
         public static bool HardmodeTier => Main.hardMode || downedOmegaStarite;
 
         public override void OnWorldLoad()
         {
+            downedRedSprite = false;
+            downedEventGaleStreams = false;
             downedCrabson = false;
             downedOmegaStarite = false;
-            downedEventGaleStreams = false;
         }
 
         public override void SaveWorldData(TagCompound tag)
         {
+            tag["SpaceSquid"] = downedSpaceSquid;
+            tag["RedSprite"] = downedRedSprite;
+            tag["GaleStreams"] = downedEventGaleStreams;
             tag["Crabson"] = downedCrabson;
             tag["OmegaStarite"] = downedOmegaStarite;
-            tag["GaleStreams"] = downedEventGaleStreams;
         }
 
         public override void LoadWorldData(TagCompound tag)
         {
+            downedSpaceSquid = tag.Get<bool>("SpaceSquid");
+            downedRedSprite = tag.Get<bool>("RedSprite");
+            downedEventGaleStreams = tag.Get<bool>("GaleStreams");
             downedCrabson = tag.Get<bool>("Crabson");
             downedOmegaStarite = tag.Get<bool>("OmegaStarite");
-            downedEventGaleStreams = tag.Get<bool>("GaleStreams");
         }
 
         public override void NetSend(BinaryWriter writer)
         {
+            writer.Write(downedSpaceSquid);
+            writer.Write(downedRedSprite);
+            writer.Write(downedEventGaleStreams);
             writer.Write(downedCrabson);
             writer.Write(downedOmegaStarite);
-            writer.Write(downedEventGaleStreams);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
+            downedSpaceSquid = reader.ReadBoolean();
+            downedRedSprite = reader.ReadBoolean();
+            downedEventGaleStreams = reader.ReadBoolean();
             downedCrabson = reader.ReadBoolean();
             downedOmegaStarite = reader.ReadBoolean();
-            downedEventGaleStreams = reader.ReadBoolean();
         }
 
         public static void MarkAsDefeated(ref bool defeated)

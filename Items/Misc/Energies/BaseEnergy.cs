@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.Dusts;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

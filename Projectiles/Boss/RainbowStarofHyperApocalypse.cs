@@ -1,7 +1,7 @@
 ﻿using Aequus.Assets.Effects.Prims;
 using Aequus.Common.Configuration;
 using Aequus.Common.Utilities;
-using Aequus.Dusts;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

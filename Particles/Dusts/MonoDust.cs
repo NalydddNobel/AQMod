@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Dusts
+namespace Aequus.Particles.Dusts
 {
     public class MonoDust : ModDust
     {

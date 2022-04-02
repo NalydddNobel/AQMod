@@ -1,5 +1,5 @@
-﻿using Aequus.Dusts;
-using Aequus.NPCs;
+﻿using Aequus.NPCs;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;

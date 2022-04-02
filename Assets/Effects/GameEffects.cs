@@ -98,7 +98,7 @@ namespace Aequus.Assets.Effects
         public void SetFlash(Vector2 location, float brightness, float time)
         {
             flashLocation = location;
-            flashBrightness = brightness;
+            flashBrightness = brightness * ClientConfiguration.Instance.flashIntensity;
             flashBrightnessDecrement = flashBrightness * (1f / time);
         }
 

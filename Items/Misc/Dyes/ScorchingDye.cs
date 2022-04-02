@@ -4,7 +4,7 @@ using Terraria.Graphics.Shaders;
 
 namespace Aequus.Items.Misc.Dyes
 {
-    public class RedSpriteDye : DyeItemBase
+    public class ScorchingDye : DyeItemBase
     {
         public override string Pass => "RedSpritePass";
         public override int Rarity => RaritySets.RarityGaleStreams - 1;
