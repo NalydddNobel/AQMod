@@ -13,16 +13,19 @@ namespace Aequus.Items.Misc
     {
         protected abstract List<int> LootTable { get; }
 
-        // public override bool CloneNewInstances => true;
-
         public virtual int PickTableIndex(int total)
         {
-            return (int)(Main.GameUpdateCount / 30 % total);
+            return (int)(Main.GlobalTimeWrappedHourly * 2f % total);
         }
 
         public int GetItem()
         {
             return LootTable[PickTableIndex(LootTable.Count)];
+        }
+
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(10);
         }
 
         public override void SetDefaults()
@@ -47,8 +50,17 @@ namespace Aequus.Items.Misc
         {
             for (int i = 0; i < 3; i++)
             {
-                tooltips.Add(new TooltipLine(Mod, "None" + i, " "));
+                tooltips.Add(new TooltipLine(Mod, "None" + i, "-"));
             }
+        }
+
+        public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
+        {
+            if (line.Mod == "Aequus" && line.Name.StartsWith("None"))
+            {
+                return false;
+            }
+            return true;
         }
 
         public override void PostDrawTooltip(ReadOnlyCollection<DrawableTooltipLine> lines)
@@ -68,7 +80,7 @@ namespace Aequus.Items.Misc
 
             foreach (var l in lines)
             {
-                if (l.Mod == "AQMod" && l.Name == "None0")
+                if (l.Mod == "Aequus" && l.Name == "None0")
                 {
                     y += l.Y;
                 }
@@ -87,7 +99,7 @@ namespace Aequus.Items.Misc
             int item = GetItem();
             Main.instance.LoadItem(item);
             var itemTexture = TextureAssets.Item[item].Value;
-            Main.spriteBatch.Draw(itemTexture, new Vector2(x, y) + new Vector2(), null, Color.White, 0f, new Vector2(0f, 0f), Main.inventoryScale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(itemTexture, new Vector2(x, y) + back.Size() / 2f, null, Color.White, 0f, itemTexture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
 
             Main.inventoryScale = oldScale;
 
