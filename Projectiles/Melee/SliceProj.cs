@@ -99,7 +99,7 @@ namespace Aequus.Projectiles.Melee
                 Main.instance.LoadItem(ModContent.ItemType<Slice>());
                 texture = TextureAssets.Item[ModContent.ItemType<Slice>()].Value;
             }
-            float trailOutwards = (texture.Size().Length() * Projectile.scale - 44f * Projectile.scale);
+            float trailOutwards = texture.Size().Length() * Projectile.scale - 42f * Projectile.scale;
             bool reverseTrail = Projectile.direction == -1 ? combo > 0 : combo == 0;
             var oldPos = Array.ConvertAll(Projectile.oldPos, (v) => Vector2.Normalize(v) * trailOutwards);
             if (ClientConfiguration.Instance.effectQuality >= 1f)
