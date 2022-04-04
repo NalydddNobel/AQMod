@@ -10,6 +10,38 @@ namespace Aequus
 {
     public static partial class AequusHelpers
     {
+        public static Color MaxRGBA(this Color color, byte amt)
+        {
+            return MaxRGBA(color, amt, amt);
+        }
+        public static Color MaxRGBA(this Color color, byte amt, byte a)
+        {
+            return MaxRGBA(color, amt, amt, amt, a);
+        }
+        public static Color MaxRGBA(this Color color, byte r, byte g, byte b, byte a)
+        {
+            color.R = Math.Max(color.R, r);
+            color.G = Math.Max(color.G, g);
+            color.B = Math.Max(color.B, b);
+            color.A = Math.Max(color.A, a);
+            return color;
+        }
+
+        public static Vector2[] CircularVector(int amt, float angleAddition = 0f)
+        {
+            return Array.ConvertAll(Circular(amt, angleAddition), (f) => f.ToRotationVector2());
+        }
+        public static float[] Circular(int amt, float angleAddition = 0f)
+        {
+            var v = new float[amt];
+            float f = MathHelper.TwoPi / amt;
+            for (int i = 0; i < amt; i++)
+            {
+                v[i] = (f * i + angleAddition) % MathHelper.TwoPi;
+            }
+            return v;
+        }
+
         public static void SetLiquidSpeeds(this NPC npc, float water = 0.5f, float lava = 0.5f, float honey = 0.25f)
         {
             return;

@@ -159,7 +159,6 @@ namespace Aequus.NPCs.Boss
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Position = new Vector2(0f, 2f),
-                Scale = 0.5f
             });
             NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() { ImmuneToAllBuffsThatAreNotWhips = true, };
             Main.npcFrameCount[NPC.type] = 14;
@@ -1367,6 +1366,7 @@ namespace Aequus.NPCs.Boss
                 {
                     rings[i].Update(NPC.Center);
                 }
+                NPC.scale = 0.5f;
             }
             if (rings == null)
             {
@@ -1383,6 +1383,10 @@ namespace Aequus.NPCs.Boss
             var drawPos = NPC.Center - screenPos;
             drawPos.X = (int)drawPos.X;
             drawPos.Y = (int)drawPos.Y;
+            if (NPC.IsABestiaryIconDummy)
+            {
+                drawPos.Y += 2f;
+            }
             var positions = new List<Vector4>();
             for (int i = 0; i < rings.Length; i++)
             {

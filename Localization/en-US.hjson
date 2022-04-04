@@ -825,7 +825,11 @@ Mods: {
 				Summons a dwarf starite to provide light
 				{$Mods.Aequus.Tooltips.SuspiciousLooking}
 				'''
-			DragonBall: Summons an omega starite mini
+			DragonBall: 
+				'''
+				Summons an omega starite mini
+				'Ball Incarnate'
+				'''
 			YuckyOrb: Summons a pet angler fish to provide light
 			Transistor: Prevents the Glimmer from naturally spawning
 			EclipseGlasses: Prevents the Eclipse from naturally spawning

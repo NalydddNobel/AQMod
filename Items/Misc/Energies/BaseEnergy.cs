@@ -31,7 +31,7 @@ namespace Aequus.Items.Misc.Energies
             Item.width = 24;
             Item.height = 24;
             Item.rare = Rarity;
-            Item.value = ShopPrices.EnergySellValue;
+            Item.value = ItemPrices.EnergySellValue;
             Item.maxStack = 999;
         }
 

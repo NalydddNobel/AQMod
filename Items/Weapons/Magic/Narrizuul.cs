@@ -18,23 +18,15 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.width = 80;
-            Item.height = 80;
-            Item.damage = 777;
-            Item.knockBack = 7.77f;
-            Item.crit = 3;
-            Item.DamageType = DamageClass.Magic;
-            Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useTime = 7;
+            Item.SetWeaponValues(777, 7.77f, 3);
+            Item.DefaultToMagicWeapon(ModContent.ProjectileType<NarrizuulProj>(), 7, 27.77f, true);
             Item.useAnimation = 14;
-            Item.rare = ItemRarityID.Purple;
-            Item.shootSpeed = 27.77f;
-            Item.autoReuse = true;
-            Item.noMelee = true;
-            Item.UseSound = SoundID.Item1;
-            Item.value = Item.sellPrice(gold: 50);
             Item.mana = 7;
-            Item.shoot = ModContent.ProjectileType<NarrizuulProj>();
+            Item.width = 32;
+            Item.height = 32;
+            Item.rare = ItemRarityID.Purple;
+            Item.value = Item.sellPrice(gold: 50);
+            Item.UseSound = SoundID.Item1;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

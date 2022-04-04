@@ -14,7 +14,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Monsters.Sky
 {
-    public class Skycaller : ModNPC/*, IDecideFallThroughPlatforms*/
+    public class Vraine : ModNPC/*, IDecideFallThroughPlatforms*/
     {
         public const int Temperature = 40;
         public int transitionMax;
@@ -327,7 +327,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     NPC.ai[2] = closestNPC;
                 }
 
-                var vraine = (Skycaller)leader.ModNPC;
+                var vraine = (Vraine)leader.ModNPC;
                 NPC.ai[1] = leader.ai[1];
                 NPC.ai[3] = leader.ai[3];
                 transitionMax = vraine.transitionMax;

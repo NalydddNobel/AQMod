@@ -23,7 +23,7 @@ namespace Aequus.Items.Misc
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.UseSound = SoundID.Item2;
             Item.value = Item.buyPrice(gold: 20);
-            Item.rare = RaritySets.RarityPet;
+            Item.rare = ItemRarities.RarityPet;
             Item.shoot = ModContent.ProjectileType<FamiliarPet>();
             Item.buffType = ModContent.BuffType<FamiliarBuff>();
         }

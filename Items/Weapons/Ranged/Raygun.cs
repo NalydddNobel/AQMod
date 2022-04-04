@@ -25,12 +25,12 @@ namespace Aequus.Items.Weapons.Ranged
             Item.height = 24;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = RaritySets.RarityOmegaStarite;
+            Item.rare = ItemRarities.RarityOmegaStarite;
             Item.shoot = ModContent.ProjectileType<BaseRayBullet>();
             Item.shootSpeed = 7.5f;
             Item.autoReuse = true;
             Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/raygun")?.WithVolume(0.2f);
-            Item.value = ShopPrices.OmegaStariteDropValue;
+            Item.value = ItemPrices.OmegaStariteDropValue;
             Item.knockBack = 1f;
             Item.useAmmo = AmmoID.Bullet;
         }
