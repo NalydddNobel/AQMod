@@ -99,7 +99,7 @@ namespace Aequus.Projectiles.Melee
                 Main.instance.LoadItem(ModContent.ItemType<Slice>());
                 texture = TextureAssets.Item[ModContent.ItemType<Slice>()].Value;
             }
-            float trailOutwards = texture.Size().Length() * Projectile.scale - 44f;
+            float trailOutwards = (texture.Size().Length() * Projectile.scale - 44f * Projectile.scale);
             bool reverseTrail = Projectile.direction == -1 ? combo > 0 : combo == 0;
             var oldPos = Array.ConvertAll(Projectile.oldPos, (v) => Vector2.Normalize(v) * trailOutwards);
             if (ClientConfiguration.Instance.effectQuality >= 1f)
@@ -154,7 +154,7 @@ namespace Aequus.Projectiles.Melee
                 var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
                 var shineOrigin = shine.Size() / 2f;
                 var shineColor = new Color(40, 120, 200, 0) * intensity * intensity;
-                var shineLocation = handPosition - Main.screenPosition + (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2() * (size * Projectile.scale - 8f);
+                var shineLocation = handPosition - Main.screenPosition + (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2() * ((size - 8f) * Projectile.scale);
                 Main.EntitySpriteDraw(shine, shineLocation, null, shineColor, 0f, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale) * intensity, effects, 0);
                 Main.EntitySpriteDraw(shine, shineLocation, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale * 2f) * intensity, effects, 0);
             }
