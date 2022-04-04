@@ -67,7 +67,7 @@ namespace Aequus.Projectiles.Melee
                 }
                 else
                 {
-                    var d = Dust.NewDustDirect(Projectile.position - Vector2.Normalize(-Projectile.velocity) * 4f, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(175, 200, 220, 80) * Main.rand.NextFloat(0.6f, 1f), 0.8f);
+                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(175, 200, 220, 80) * Main.rand.NextFloat(0.6f, 1f), 0.8f);
                     d.velocity *= 0.1f;
                     d.velocity += Vector2.Normalize(-Projectile.velocity) * 1.35f;
                     Projectile.ai[0] = MathHelper.Lerp(Projectile.ai[0], stabLength, MathHelper.Clamp(lerpAmount + 0.55f, 0.8f, 1f));

@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Configuration;
+﻿using Aequus.Assets.Effects.Prims;
+using Aequus.Common.Configuration;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,26 +13,29 @@ namespace Aequus.Projectiles.Melee
 {
     public sealed class SliceProj : DopeSwordBase
     {
+        public SwordSlashPrimRenderer prim;
+        public SwordSlashPrimRenderer primBlue;
+
         public override float VisualHoldout => 8f;
         public override float HitboxHoldout => 45f;
 
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ProjectileID.Sets.TrailCacheLength[Type] = 32;
+            ProjectileID.Sets.TrailCacheLength[Type] = 48;
         }
 
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.width = 50;
-            Projectile.height = 50;
+            Projectile.width = 120;
+            Projectile.height = 120;
             Projectile.extraUpdates = 8;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return lightColor.MaxRGBA(120);
+            return lightColor.MaxRGBA(222);
         }
 
         public override bool? CanDamage()
@@ -69,11 +73,12 @@ namespace Aequus.Projectiles.Melee
             if (swingMultiplier < 0.05f)
             {
                 base.OnReachMaxProgress();
-                Cooldowns().itemCombo = (ushort)(combo == 0 ? 20 : 0);
+                ItemPlayer().itemCombo = (ushort)(combo == 0 ? 20 : 0);
             }
             else
             {
-                swingMultiplier *= 0.95f * Main.player[Projectile.owner].meleeSpeed;
+                //Main.NewText(Main.player[Projectile.owner].meleeSpeed);
+                swingMultiplier *= 0.975f - (1f - Main.player[Projectile.owner].meleeSpeed) / 8f;
             }
         }
 
@@ -81,12 +86,12 @@ namespace Aequus.Projectiles.Melee
         {
             var texture = TextureAssets.Projectile[Type].Value;
             var origin = new Vector2(0f, texture.Height);
-            var handPosition = Main.player[Projectile.owner].Center + AngleVector * VisualHoldout;
+            var center = Main.player[Projectile.owner].Center;
+            var handPosition = center + AngleVector * VisualHoldout;
             var drawColor = Projectile.GetAlpha(lightColor);
             var drawCoords = handPosition - Main.screenPosition;
             int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
             float size = texture.Size().Length();
-            var fowardOffset = 0f;
             var effects = SpriteEffects.None;
             bool flip = Main.player[Projectile.owner].direction == 1 ? combo > 0 : combo == 0;
             if (flip)
@@ -94,24 +99,50 @@ namespace Aequus.Projectiles.Melee
                 Main.instance.LoadItem(ModContent.ItemType<Slice>());
                 texture = TextureAssets.Item[ModContent.ItemType<Slice>()].Value;
             }
+            float trailOutwards = texture.Size().Length() * Projectile.scale - 44f;
+            bool reverseTrail = Projectile.direction == -1 ? combo > 0 : combo == 0;
+            var oldPos = Array.ConvertAll(Projectile.oldPos, (v) => Vector2.Normalize(v) * trailOutwards);
             if (ClientConfiguration.Instance.effectQuality >= 1f)
             {
-                for (int i = 0; i < trailLength; i++)
+                if (primBlue == null)
                 {
-                    float progress = 1f - 1f / trailLength * i;
-                    Main.EntitySpriteDraw(texture, Projectile.oldPos[i] - Main.screenPosition + (Projectile.oldRot[i] - MathHelper.PiOver4).ToRotationVector2() * (size * (1f - progress * 0.33f) + fowardOffset), null, new Color(40, 120, 200, 0) * progress, Projectile.oldRot[i], origin, Projectile.scale * progress * 0.33f, effects, 0);
+                    primBlue = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(15, 75, 255, 75) * (1f - p) * (1f - p) * (1f - p));
                 }
+                if (reverseTrail)
+                {
+                    primBlue.coord1 = 0f;
+                    primBlue.coord2 = 1f;
+                }
+                else
+                {
+                    primBlue.coord1 = 1f;
+                    primBlue.coord2 = 0f;
+                }
+                primBlue.drawOffset = center;
+                primBlue.Draw(oldPos);
             }
-            trailLength = (int)(trailLength * 0.85f);
-            for (int i = 0; i < trailLength; i++)
+            if (prim == null)
             {
-                float progress = 1f - 1f / trailLength * i;
-                Main.EntitySpriteDraw(texture, Projectile.oldPos[i] - Main.screenPosition + (Projectile.oldRot[i] - MathHelper.PiOver4).ToRotationVector2() * (size * (1f - progress) + fowardOffset), null, new Color(10, 60, 100, 0) * progress, Projectile.oldRot[i], origin, Projectile.scale * progress, effects, 0);
+                prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(75, 180, 255, 0) * (1f - p));
             }
+            if (reverseTrail)
+            {
+                prim.coord1 = 0f;
+                prim.coord2 = 1f;
+            }
+            else
+            {
+                prim.coord1 = 1f;
+                prim.coord2 = 0f;
+            }
+            prim.drawOffset = center;
+            prim.Draw(oldPos);
+
             foreach (var v in AequusHelpers.CircularVector(4, Main.GlobalTimeWrappedHourly))
             {
-                Main.EntitySpriteDraw(texture, drawCoords + v * 2f, null, new Color(10, 60, 100, 0), Projectile.rotation, origin, Projectile.scale, effects, 0);
+                Main.EntitySpriteDraw(texture, drawCoords + v * 2f, null, new Color(5, 25, 100, 0), Projectile.rotation, origin, Projectile.scale, effects, 0);
             }
+
             Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
             if (SwingProgress > 0.25f && SwingProgress < 0.75f)
@@ -123,7 +154,7 @@ namespace Aequus.Projectiles.Melee
                 var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
                 var shineOrigin = shine.Size() / 2f;
                 var shineColor = new Color(40, 120, 200, 0) * intensity * intensity;
-                var shineLocation = handPosition - Main.screenPosition + (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2() * (size - 4f);
+                var shineLocation = handPosition - Main.screenPosition + (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2() * (size * Projectile.scale - 8f);
                 Main.EntitySpriteDraw(shine, shineLocation, null, shineColor, 0f, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale) * intensity, effects, 0);
                 Main.EntitySpriteDraw(shine, shineLocation, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale * 2f) * intensity, effects, 0);
             }

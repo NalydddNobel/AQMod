@@ -2,7 +2,7 @@
 
 namespace Aequus.Common.Players
 {
-    public sealed class CooldownsPlayer : ModPlayer
+    public sealed class ItemVarsPlayer : ModPlayer
     {        
         /// <summary>
         /// When a new cooldown is applied, this gets set to the duration of the cooldown. Does not tick down unlike <see cref="itemCooldown"/>
@@ -18,6 +18,7 @@ namespace Aequus.Common.Players
         /// <para>A usage example would be a weapon with a 3 swing pattern. Each swing will increase the combo meter by 60, and when it becomes greater than 120, reset to 0.</para>
         /// </summary>
         public ushort itemCombo;
+        public ushort itemUsage;
         /// <summary>
         /// A short lived timer which gets set to 30 when the player has a different selected item.
         /// </summary>
@@ -26,6 +27,7 @@ namespace Aequus.Common.Players
         /// Used to prevent players from spam interacting with special objects which may have important networking actions which need to be awaited. Ticks down by 1 every player update.
         /// </summary>
         public uint interactionCooldown;
+        public int lastSelectedItem;
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown.
@@ -49,7 +51,16 @@ namespace Aequus.Common.Players
             }
             if (itemSwitch > 0)
             {
+                itemUsage = 0;
                 itemSwitch--;
+            }
+            else if (Player.itemTime > 0)
+            {
+                itemUsage++;
+            }
+            else
+            {
+                itemUsage = 0;
             }
             if (itemCooldown > 0)
             {
@@ -74,6 +85,21 @@ namespace Aequus.Common.Players
                 interactionCooldown--;
             }
             return true;
+        }
+
+        public override void PostItemCheck()
+        {
+            if (Player.selectedItem != lastSelectedItem)
+            {
+                itemSwitch = 30;
+                lastSelectedItem = Player.selectedItem;
+                OnSwitchItem();
+            }
+        }
+
+        public void OnSwitchItem()
+        {
+            itemUsage = 0;
         }
 
         /// <summary>

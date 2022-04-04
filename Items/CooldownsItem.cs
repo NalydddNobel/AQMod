@@ -25,14 +25,14 @@ namespace Aequus.Items
 
         public override bool CanUseItem(Item item, Player player)
         {
-            return !HasWeaponCooldown.Contains(item.type) || player.GetModPlayer<CooldownsPlayer>().itemCooldown <= 0;
+            return !HasWeaponCooldown.Contains(item.type) || player.GetModPlayer<ItemVarsPlayer>().itemCooldown <= 0;
         }
 
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             if (!Main.playerInventory && HasWeaponCooldown.Contains(item.type))
             {
-                var cooldowns = Main.LocalPlayer.GetModPlayer<CooldownsPlayer>();
+                var cooldowns = Main.LocalPlayer.GetModPlayer<ItemVarsPlayer>();
                 if (cooldowns.itemCooldown > 0 && cooldowns.itemCooldownMax > 0)
                 {
                     float progress = cooldowns.itemCooldown / (float)cooldowns.itemCooldownMax;

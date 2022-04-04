@@ -10,6 +10,17 @@ namespace Aequus
 {
     public static partial class AequusHelpers
     {
+        public static void MeleeScale(Projectile proj)
+        {
+            float scale = Main.player[proj.owner].GetAdjustedItemScale(Main.player[proj.owner].HeldItem);
+            if (scale != 1f)
+            {
+                proj.scale *= scale;
+                proj.width = (int)(proj.width * proj.scale);
+                proj.height = (int)(proj.height * proj.scale);
+            }
+        }
+
         public static Color MaxRGBA(this Color color, byte amt)
         {
             return MaxRGBA(color, amt, amt);

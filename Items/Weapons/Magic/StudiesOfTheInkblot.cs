@@ -63,7 +63,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void HoldItem(Player player)
         {
-            var cooldowns = player.GetModPlayer<CooldownsPlayer>();
+            var cooldowns = player.GetModPlayer<ItemVarsPlayer>();
             if (Main.myPlayer == player.whoAmI)
             {
                 if (player.ownedProjectileCounts[Item.shoot] == 0 && cooldowns.itemCombo <= 0)
@@ -82,7 +82,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            var cooldowns = player.GetModPlayer<CooldownsPlayer>();
+            var cooldowns = player.GetModPlayer<ItemVarsPlayer>();
             float speed = velocity.Length();
             if (player.altFunctionUse == 2)
             {

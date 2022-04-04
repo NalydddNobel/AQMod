@@ -12,7 +12,7 @@ namespace Aequus.Assets.Effects.Prims
     {
         public const string DefaultPass = "Texture";
 
-        private static Asset<Effect> shader;
+        protected static Asset<Effect> shader;
         public static Effect Shader => shader.Value;
         public static bool renderProjTrails;
 
@@ -47,7 +47,8 @@ namespace Aequus.Assets.Effects.Prims
             var valid = new List<Vector2>();
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] == new Vector2(0f, 0f))
+                //Main.NewText(arr[i], Main.DiscoColor);
+                if (arr[i] == Vector2.Zero || arr[i].HasNaNs())
                     break;
                 if (i != 0 && arr[i - 1] == arr[i])
                     continue;
@@ -55,7 +56,8 @@ namespace Aequus.Assets.Effects.Prims
             }
             return valid.ToArray();
         }
-        protected virtual bool InternalPrepare(Vector2[] arr, float uvAdd = 0f, float uvMultiplier = 1f)
+
+        protected virtual bool InternalPrepare(Vector2[] arr, float[] rotationArr, float uvAdd = 0f, float uvMultiplier = 1f)
         {
             if (WorldTrail)
             {
@@ -81,6 +83,21 @@ namespace Aequus.Assets.Effects.Prims
                     arr[i] = new Vector2(arr[i].X, -arr[i].Y + Main.screenHeight);
                 }
             }
+            var rotationVectors = new Vector2[arr.Length];
+            if (rotationArr == null)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    rotationVectors[i] = getRotationVector(arr, i);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    rotationVectors[i] = rotationArr[i].ToRotationVector2();
+                }
+            }
             vertices = new List<VertexPositionColorTexture>();
             for (int i = 0; i < arr.Length - 1; i++)
             {
@@ -90,8 +107,8 @@ namespace Aequus.Assets.Effects.Prims
                 Vector2 width2 = GetWidth(uv2);
                 Vector2 pos1 = arr[i];
                 Vector2 pos2 = arr[i + 1];
-                Vector2 off1 = getRotationVector(arr, i) * width;
-                Vector2 off2 = getRotationVector(arr, i + 1) * width;
+                Vector2 off1 = rotationVectors[i] * width;
+                Vector2 off2 = rotationVectors[i + 1] * width2;
                 float coord1 = off1.Length() < off2.Length() ? 1 : 0;
                 float coord2 = off1.Length() < off2.Length() ? 0 : 1;
                 Color col1 = GetColor(uv);
@@ -106,7 +123,7 @@ namespace Aequus.Assets.Effects.Prims
             return true;
         }
 
-        private Vector2 getRotationVector(Vector2[] oldPos, int index)
+        protected Vector2 getRotationVector(Vector2[] oldPos, int index)
         {
             if (oldPos.Length == 1)
                 return oldPos[0];
@@ -121,7 +138,11 @@ namespace Aequus.Assets.Effects.Prims
 
         public void Draw(Vector2[] arr, float uvAdd = 0f, float uvMultiplier = 1f)
         {
-            if (!InternalPrepare(arr, uvAdd, uvMultiplier))
+            Draw(arr, null, uvAdd, uvMultiplier);
+        }
+        public void Draw(Vector2[] arr, float[] rotation, float uvAdd = 0f, float uvMultiplier = 1f)
+        {
+            if (!InternalPrepare(arr, rotation, uvAdd, uvMultiplier))
             {
                 return;
             }

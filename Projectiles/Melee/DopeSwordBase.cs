@@ -30,9 +30,9 @@ namespace Aequus.Projectiles.Melee
 			return (Projectile.rotation - MathHelper.PiOver2).ToRotationVector2() * (Projectile.getRect().Size() / 2f);
 		}
 
-		protected CooldownsPlayer Cooldowns()
+		protected ItemVarsPlayer ItemPlayer()
         {
-			return Main.player[Projectile.owner].GetModPlayer<CooldownsPlayer>();
+			return Main.player[Projectile.owner].GetModPlayer<ItemVarsPlayer>();
         }
 
         public override void SetDefaults()
@@ -47,12 +47,18 @@ namespace Aequus.Projectiles.Melee
         }
 
         public virtual void Initalize(Player player, AequusPlayer aequusPlayer)
-        {
+		{
+			var itemPlayer = ItemPlayer();
 			Projectile.direction = player.direction;
 			swingTimeMax = player.itemAnimationMax * (1 + Projectile.extraUpdates);
+			if (itemPlayer.itemUsage < 60)
+			{
+				swingTimeMax = (int)(swingTimeMax * 1.5f);
+			}
 			swing = ProgressSnippet;
 			swingMultiplier = 1f;
-			combo = Cooldowns().itemCombo;
+			combo = itemPlayer.itemCombo;
+			AequusHelpers.MeleeScale(Projectile);
 		}
 
 		protected void SetArmRotation(Player player)
@@ -129,8 +135,8 @@ namespace Aequus.Projectiles.Melee
 			Projectile.position = Main.GetPlayerArmPosition(Projectile) + angleVector * HitboxHoldout;
 			Projectile.position.X -= Projectile.width / 2f;
 			Projectile.position.Y -= Projectile.height / 2f;
-			Projectile.oldPos[0] = player.Center + angleVector * VisualHoldout;
-			Projectile.oldRot[0] = Projectile.rotation = (Projectile.oldPos[0] - player.Center).ToRotation() + MathHelper.PiOver4;
+			Projectile.oldPos[0] = angleVector * VisualHoldout;
+			Projectile.oldRot[0] = Projectile.rotation = Projectile.oldPos[0].ToRotation() + MathHelper.PiOver4;
 
 			// Manually updating oldPos and oldRot 
 			for (int i = Projectile.oldPos.Length - 1; i > 0; i--)
