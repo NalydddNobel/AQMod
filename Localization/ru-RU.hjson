@@ -13,7 +13,7 @@ Mods: {
 		}
 		DropCondition: {
 			OreTier: { 
-				0: Only dropped in worlds with copper ore
+				0: Only dropped in worlds with copper ore Bag Crabson
 				1: Only dropped in worlds with tin ore
 				2: Only dropped in worlds with iron ore
 				3: Only dropped in worlds with lead ore
@@ -53,19 +53,17 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
-			MirrorsCall: Mirror's Call
-			Slice: Slice
-			SpaceSquidRelic: Space Squid Relic
-			RedSpriteRelic: Red Sprite Relic
-			CrabsonRelic: Crabson Relic
-			OmegaStariteRelic: Omega Starite Relic
+			SpaceSquidRelic: Реликвия Космического Кальмара
+			RedSpriteRelic: Реликвия Красного Дождевого Облака
+			CrabsonRelic: Реликвия Крабсона
+			OmegaStariteRelic: Реликвия Омега Жизнезвезды
 			MoonflowerPollen: Moonflower Pollen
 			LingeringPotion: Lingering Potion
 			Molite: Starbyte
 			MoliteTag: Doubled Potion
-			HypnoticPearl: Hypnotic Pearl
-			SupernovaFruit: Supernova Fruit
-			GalacticStarfruit: Galactic Starfruit
+			MushroomClam: Hypnotic Pearl
+			NovaFruit: Nova Fruit
+			MythicStarfruit: Galactic Starfruit
 			MoonLeech: Moon Leech
 			Squyp: Squyp
 			DreamCatcher: Dream Catcher
@@ -111,7 +109,7 @@ Mods: {
 			ArachnotronVisor: Arachnotron Visor
 			ArachnotronRibcage: Arachnotron Ribcage
 			ArachnotronRevvers: Arachnotron Revvers
-			CrabsonMask: Crabson Mask
+			CrabsonMask: Маска Крабсона
 			SteelPlatedChestplate: Steel Plated Chestplate
 			LightbulbHelmet: Lightbulb Helmet
 			LightbulbBreastplate: Lightbulb Breastplate
@@ -137,7 +135,7 @@ Mods: {
 			StariteBlade: Star Blade
 			StariteSpinner: Pulsar
 			Resonance: Resonance
-			StariteStaff: Starite Staff
+			StariteStaff: Starite Staff Trophy
 			VineSword: Mallet
 			KryptonSword: Krypton Boomerang
 			Vrang: Vrang
@@ -146,19 +144,19 @@ Mods: {
 			ThunderClap: Thunder Clap
 			Umystick: Umystick
 			Narrizuul: Narrizuul
-			StudiesOfTheInkblot: Studies of the Inkblot
+			StudiesOfTheInkblot: Исследования Чернильного Пятна
 			CursedKey: Cursed Key
 			PiranhaPot: Piranha Pot
 			Skrawler: Skrawler
 			SnowflakeCannon: Snowflake Cannon
 			Snowgrave: Snowgrave
 			UltimateSword: Ultimate Sword
-			Fluorescence: Fluorescence
-			SiphonTentacle: Siphon Tentacle
+			Fluorescence: Флуорисценция
+			SiphonTentacle: Сифоновое Щупальце
 			CrustaciumBar: Crustacium Bar
 			CrustaciumBlob: Crustacium Blob
 			CrustaciumOre: Crustacium Ore
-			LightMatter: Light Matter
+			LightMatter: Материя Света
 			NuclearFeather: Nuclear Feather
 			CrabPot: Crab Pot
 			PalePufferfish: Pale Pufferfish
@@ -171,7 +169,7 @@ Mods: {
 			LarvaEel: Larva Eel
 			CentennialLight: Centennial Light
 			Globebulb: Globebulb
-			Pumpinator: Pumpinator
+			Pumpinator: Насос
 			VampireHook: Bloodline
 			BlackBookofUntoldLegends: "'Untold Legends'"
 			EquivalenceMachine: Equivalence Machine
@@ -197,7 +195,7 @@ Mods: {
 			GlimmeringStatue: Ultimate Crystal
 			SedimentSandBlock: Sedimentary Sand Block
 			SeaPickle: Sea Pickle
-			CrabsonTrophy: Crabson Trophy
+			CrabsonTrophy: Трофей Крабсона
 			HellTombstone: Hell Tombstone
 			GoreNestItem: Gore Nest
 			ArgonMushroom: Argon Mushroom
@@ -231,22 +229,22 @@ Mods: {
 			SwordCursorDye: Sword Cursor Dye
 			DemonicCursorDye: Demonic Cursor Dye
 			TemperatureHairDye: Temperature Hair Dye
-			NalydDye: Summit Dye
-			RedSpriteDye: Scorching Dye
-			FrostbiteDye: Frostbite Dye
-			EnchantedDye: Enchanted Dye
-			ScrollDye: Scroll Dye
-			HellBeamDye: Hell Beam Dye
-			BreakdownDye: Breakdown Dye
-			DiscoDye: Disco Dye
-			HypnoDye: Hypno Dye
-			SimplifiedDye: Simplified Dye
-			OutlineDye: Outline Dye
-			RainbowOutlineDye: Rainbow Outline Dye
-			FamiliarPickaxe: Familiar Pickaxe
+			NalydDye: Вершинный Краситель
+			RedSpriteDye: Палящий Краситель
+			FrostbiteDye: Обмореженный Краситель
+			EnchantedDye: Зачарованный Краситель
+			ScrollDye: Спиральный Краситель
+			HellBeamDye: Краситель Адского Луча
+			BreakdownDye: Аварийный Краситель
+			DiscoDye: Диско Краситель
+			HypnoDye: Гипно Краситель
+			SimplifiedDye: Упрощённый Краситель
+			OutlineDye: Контурный Краситель
+			RainbowOutlineDye: Радужный Контурный Краситель
+			FamiliarPickaxe: Знакомая Кирка
 			HeartLamp: Heart Lamp
 			StariteinaBottle: Starite in a Bottle
-			DragonBall: Dragon Ball
+			DragonBall: Драконий Шар
 			YuckyOrb: Charming Lure
 			WaterFisg: Water Fish
 			Crabdaughter: Crabdaughter
@@ -258,9 +256,9 @@ Mods: {
 			JeweledChalice: Jeweled Chalice
 			JeweledCandelabra: Jeweled Candelabra
 			JeweledChandelier: Jeweled Chandelier
-			OmegaStaritePainting: "'{$Mods.Aequus.NPCName.OmegaStarite}'"
+			OmegaStaritePainting: "'{$Mods.Aequus.NPCName.OmegaStarite}'" 
 			RockFromAnAlternateUniverse: "'Rock from an Alternate Universe'"
-			Origin: "'Origin'"
+			Origin: "'Начало'"
 			GhostAmulet: Ghost Amulet
 			CopperSeal: Copper Seal
 			SilverSeal: Silver Seal
@@ -270,21 +268,21 @@ Mods: {
 			BlurryDiscountCard: Blurry Discount Card
 			BusinessCard: Business Card
 			Crabsol: Crabsol
-			CrabsonBag: Treasure Bag (Crabson)
-			OmegaStariteMask: Omega Starite Mask
-			OmegaStariteTrophy: Omega Starite Trophy
-			OmegaStariteBag: Treasure Bag (Omega Starite)
+			CrabsonBag: Мешок с Сокровищами (Крабсон)
+			OmegaStariteMask: Маска Омега Жизнезвезды
+			OmegaStariteTrophy: Трофей Омега Жизнезвезды
+			OmegaStariteBag: Мешок с Сокровищами (Омега Жизнезвезда)
 			SuspiciousLookingSteak: Suspicious Looking Steak
 			HermitShell: Clamshell Helmet
 			StriderPalms: Strider Palms
 			DartTrapHat: Dart Trap Hat
 			SuperDartTrapHat: Super Dart Trap Hat
-			OrganicEnergy: Organic Energy
-			DemonicEnergy: Demonic Energy
-			CosmicEnergy: Cosmic Energy
-			AtmosphericEnergy: Atmospheric Energy
-			AquaticEnergy: Aquatic Energy
-			UltimateEnergy: Ultimate Energy
+			OrganicEnergy: Органическая Энергия
+			DemonicEnergy: Демоническая Энегрия
+			CosmicEnergy: Космическая Энергия
+			AtmosphericEnergy: Атмосферная Энегрия
+			AquaticEnergy: Акватическая Энергия
+			UltimateEnergy: Ультимативная Энегрия
 			CursedPopper: Cursed Popper
 			IchorPopper: Ichor Popper
 			MysticPopper: Mystic Popper
@@ -320,7 +318,7 @@ Mods: {
 			SpiralingTwilight: Spiraling Twilight
 			Sprinkler: Sprinkler
 			StarPhish: Star Phish
-			Raygun: Raygun
+			Raygun: Лучевая Пушка
 			SpaceShot: Space Shot
 			LotusStaff: Lotus Staff
 			CrimsonHandStaff: Crimson Hand Staff
@@ -341,37 +339,26 @@ Mods: {
 			VraineBanner: Vraine Banner
 			RedSpriteBanner: Red Sprite Banner
 			WhiteSlimeBanner: White Slime Banner
-			SpaceSquidTrophy: Space Squid Trophy
+			SpaceSquidTrophy: Трофей Космического Кальмар
 			SpaceSquidBanner: Space Squid Banner
 		}
 
 		ItemTooltip: {
-			MirrorsCall:
-				'''
-				Strike your enemy from the comfort of your couch!
-				Right click to do a large swing with no projectile
-				'''
-			Slice:
-				'''
-				Rapidly slashes and shoots piercing snowflakes
-				Inflicts frostburn on hit
-				Right click to do a large swing with no projectile
-				'''
 			MoonflowerPollen: "{$Mods.Aequus.Tooltips.Concocted}"
 			LingeringPotion: Leaves a lingering effect which buffs yourself and nearby teammates
 			Molite: "{$Mods.Aequus.Tooltips.Concocted}"
 			MoliteTag: Has double the length
-			HypnoticPearl:
+			MushroomClam:
 				'''
-				Summons Crabson at the ocean
+				Summons Crabson at the crab caves
 				{$Mods.Aequus.Common.NotConsumable}
 				'''
-			SupernovaFruit:
+			NovaFruit:
 				'''
 				Summons Omega Starite at night
 				{$Mods.Aequus.Common.NotConsumable}
 				'''
-			GalacticStarfruit: Creates a strange glimmer
+			MythicStarfruit: Summons a strange glimmer
 			MoonLeech: Attacks drain mana from enemies
 			Squyp:
 				'''
@@ -838,11 +825,7 @@ Mods: {
 				Summons a dwarf starite to provide light
 				{$Mods.Aequus.Tooltips.SuspiciousLooking}
 				'''
-			DragonBall: 
-				'''
-				Summons an omega starite mini
-				'Ball Incarnate'
-				'''
+			DragonBall: Summons an omega starite mini
 			YuckyOrb: Summons a pet angler fish to provide light
 			Transistor: Prevents the Glimmer from naturally spawning
 			EclipseGlasses: Prevents the Eclipse from naturally spawning
@@ -1174,7 +1157,7 @@ Mods: {
 			RedSpriteStaff: Surge Rod
 			RedSpriteStaffLightning: Surge Rod
 			ThunderClap: Thunder Clap
-			Narrizuul: Narrizuul
+			Narrizuul: Нарризул
 			TouhouBullet: Touhou
 			TouhouOrbiter: Touhou
 			TrapperMinion: Trapper
@@ -1310,8 +1293,8 @@ Mods: {
 			GoreNest: Gore Nest
 			NobleMushrooms: Noble Mushroom
 			Painting: Painting
-			Trophies: Trophy
-			Banners: Banner
+			Trophies: Трофей
+			Banners: Знамя
 			ExoticCoral: Exotic Coral
 			FishingCraftingStation: Fishing Utility Crafting Station
 			BuriedDirtChest: Buried Dirt Chest
@@ -1368,23 +1351,23 @@ Mods: {
 			HermitCrab: Hermit Crab
 			Memorialist: Memorialist
 			BalloonMerchant: Air Hunter
-			Robster: Exporter
+			Robster: Экспортер
 			Physicist: Physicist
 			SuperStarite: Super Starite
 			HyperStarite: Hyper Starite
-			OmegaStarite: Omega Starite
+			OmegaStarite: Омега Жизнезвезда
 			StreamingBalloon: Streaming Balloon
 			DwarfStarite: Dwarf Starite
 			Starite: Starite
 			UltraStarite: Ultra Starite
 			Snobster: "{$Mods.Aequus.ItemName.Snobster}"
-			JerryCrabson: Crabson
+			JerryCrabson: Крабсон
 			JerryClaw: Jerry Claw
 			Magmalbubble: Magmabubble
 			TrapImp: Trapper Imp
 			Trapper: Trapper
 			Cindera: Cindera
-			Meteor: Meteor
+			Meteor: Метеор
 			TemperatureBalloon: Temperature Balloon
 			Vraine: Vraine
 			Atmodrone: Atmodrone
@@ -1392,9 +1375,9 @@ Mods: {
 			ColdCurrent: Cold Current
 			BloodMimic: "{$NPCName.Mimic}"
 			Heckto: Heckto
-			RedSprite: Red Sprite
-			WhiteSlime: White Slime
-			SpaceSquid: Space Squid
+			RedSprite: Красное Дождевое Облако
+			WhiteSlime: Белый Слизень
+			SpaceSquid: Космический Кальмар
 		}
 
 		HermitCrab: {

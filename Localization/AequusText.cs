@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.Chat;
 
 namespace Aequus.Localization
 {
-    public sealed class AequusText
+    public sealed partial class AequusText
     {
         internal static FieldInfo translationsField;
         internal static Dictionary<string, ModTranslation> modTranslations;
@@ -45,16 +49,6 @@ namespace Aequus.Localization
         internal static Dictionary<int, string> GetTranslationsDict(ModTranslation text)
         {
             return (Dictionary<int, string>)translationsField.GetValue(text);
-        }
-
-        public static string Item<T>() where T : ModItem
-        {
-            return Item(ModContent.ItemType<T>());
-        }
-
-        public static string Item(int item)
-        {
-            return "[i:" + item + "]";
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
-using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Utilities
