@@ -3,6 +3,7 @@ using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Potions;
 using Aequus.Items.Misc;
 using Aequus.Items.Weapons.Magic;
+using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria.ModLoader;
@@ -74,6 +75,7 @@ namespace Aequus.Items
         {
             Dedicated = new Dictionary<int, ItemDedication>()
             {
+                [ModContent.ItemType<MirrorsCall>()] = new ItemDedication(new Color(110, 110, 128, 255)),
                 [ModContent.ItemType<NoonPotion>()] = new ItemDedication(new Color(200, 80, 50, 255)),
                 [ModContent.ItemType<FamiliarPickaxe>()] = new ItemDedication(new Color(200, 65, 70, 255)),
                 //[ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),

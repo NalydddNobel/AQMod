@@ -45,7 +45,7 @@ namespace Aequus.Projectiles.Boss
             }
             Projectile.Center = npc.Center;
             Projectile.rotation = -omegaStarite.rings[0].roll + rotationOffset;
-            if (omegaStarite.IsOmegaLaserActive())
+            if (omegaStarite.IsUltimateRayActive())
                 Projectile.timeLeft = LASER_DEATH_TIME;
         }
 

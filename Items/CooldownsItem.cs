@@ -25,17 +25,17 @@ namespace Aequus.Items
 
         public override bool CanUseItem(Item item, Player player)
         {
-            return !HasWeaponCooldown.Contains(item.type) || player.GetModPlayer<ItemVarsPlayer>().itemCooldown <= 0;
+            return !HasWeaponCooldown.Contains(item.type) || player.GetModPlayer<AequusPlayer>().itemCooldown <= 0;
         }
 
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             if (!Main.playerInventory && HasWeaponCooldown.Contains(item.type))
             {
-                var cooldowns = Main.LocalPlayer.GetModPlayer<ItemVarsPlayer>();
-                if (cooldowns.itemCooldown > 0 && cooldowns.itemCooldownMax > 0)
+                var aequus = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
+                if (aequus.itemCooldown > 0 && aequus.itemCooldownMax > 0)
                 {
-                    float progress = cooldowns.itemCooldown / (float)cooldowns.itemCooldownMax;
+                    float progress = aequus.itemCooldown / (float)aequus.itemCooldownMax;
                     AequusHelpers.DrawUIBack(spriteBatch, Aequus.Tex("UI/InventoryBack"), position, frame, scale, new Color(155, 155, 105, 250) * (0.75f + progress * 0.25f), progress);
                 }
             }

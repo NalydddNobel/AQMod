@@ -216,11 +216,6 @@ namespace Aequus.NPCs.Boss
             //}
         }
 
-        public bool IsOmegaLaserActive()
-        {
-            return NPC.ai[0] == PHASE_OMEGA_LASER && NPC.ai[2] < 1200f;
-        }
-
         public const int PHASE_HYPER_STARITE_PART2_ALT = 8;
         public const int PHASE_OMEGA_LASER_PART0 = 7;
         public const int PHASE_OMEGA_LASER = 6;
@@ -1731,6 +1726,11 @@ namespace Aequus.NPCs.Boss
                 rings[1].yaw = reader.ReadSingle();
                 rings[1].RecieveNetPackage(reader);
             }
+        }
+
+        public bool IsUltimateRayActive()
+        {
+            return NPC.ai[0] == PHASE_OMEGA_LASER && NPC.ai[2] < 1200f;
         }
     }
 }

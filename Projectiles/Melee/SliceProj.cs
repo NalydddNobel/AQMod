@@ -1,5 +1,6 @@
 ﻿using Aequus.Assets.Effects.Prims;
 using Aequus.Common.Configuration;
+using Aequus.Common.Players;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,13 +17,21 @@ namespace Aequus.Projectiles.Melee
         public SwordSlashPrimRenderer prim;
         public SwordSlashPrimRenderer primBlue;
 
+        public override float Radius => 76.36f;
         public override float VisualHoldout => 8f;
         public override float HitboxHoldout => 45f;
+        public override float AltFunctionSpeedup => 0.35f;
+        public override float AltFunctionScale => 1.7f;
+
+        public static bool FasterSwings(int itemUsage)
+        {
+            return itemUsage >= 60;
+        }
 
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ProjectileID.Sets.TrailCacheLength[Type] = 48;
+            ProjectileID.Sets.TrailCacheLength[Type] = 80;
         }
 
         public override void SetDefaults()
@@ -30,7 +39,7 @@ namespace Aequus.Projectiles.Melee
             base.SetDefaults();
             Projectile.width = 120;
             Projectile.height = 120;
-            Projectile.extraUpdates = 8;
+            Projectile.extraUpdates = 16;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -41,6 +50,19 @@ namespace Aequus.Projectiles.Melee
         public override bool? CanDamage()
         {
             return SwingProgress > 0.4f && damageTime < 4;
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.Frostburn, 360);
+        }
+
+        protected override void AdjustSwingTime(Player player, AequusPlayer aequusPlayer)
+        {
+            if (!FasterSwings(aequusPlayer.itemUsage))
+            {
+                swingTimeMax = (int)(swingTimeMax * 1.5f);
+            }
         }
 
         public override void Initalize(Player player, AequusPlayer aequusPlayer)
@@ -56,9 +78,9 @@ namespace Aequus.Projectiles.Melee
 
         protected override void UpdateSwing(Player player, AequusPlayer aequus)
         {
-            if (damageTime == 1)
+            if (damageTime == 1 && Main.myPlayer == player.whoAmI && player.altFunctionUse != 2)
             {
-                Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), player.Center, Projectile.velocity * 10f, ProjectileID.NorthPoleSnowflake, Projectile.damage, Projectile.knockBack, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), player.Center, Projectile.velocity * 10f, ModContent.ProjectileType<Sliceflake>(), (int)(Projectile.damage * 0.66f), Projectile.knockBack, Projectile.owner);
             }
             int direction = -Projectile.direction;
             if (combo > 0)
@@ -73,7 +95,7 @@ namespace Aequus.Projectiles.Melee
             if (swingMultiplier < 0.05f)
             {
                 base.OnReachMaxProgress();
-                ItemPlayer().itemCombo = (ushort)(combo == 0 ? 20 : 0);
+                Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemCombo = (ushort)(combo == 0 ? 20 : 0);
             }
             else
             {
@@ -99,7 +121,7 @@ namespace Aequus.Projectiles.Melee
                 Main.instance.LoadItem(ModContent.ItemType<Slice>());
                 texture = TextureAssets.Item[ModContent.ItemType<Slice>()].Value;
             }
-            float trailOutwards = texture.Size().Length() * Projectile.scale - 42f * Projectile.scale;
+            float trailOutwards = texture.Size().Length() * Projectile.scale - 40f * Projectile.scale;
             bool reverseTrail = Projectile.direction == -1 ? combo > 0 : combo == 0;
             var oldPos = Array.ConvertAll(Projectile.oldPos, (v) => Vector2.Normalize(v) * trailOutwards);
             if (ClientConfiguration.Instance.effectQuality >= 1f)

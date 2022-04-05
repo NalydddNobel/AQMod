@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Utilities;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,6 +8,8 @@ namespace Aequus.Projectiles.Boss
 {
     public class OmegaStariteProj : ModProjectile
     {
+        public float Radius => 84.85f / 2f;
+
         public override void SetDefaults()
         {
             Projectile.width = 2;
@@ -54,7 +57,9 @@ namespace Aequus.Projectiles.Boss
                 for (int j = 0; j < omegaStarite.rings[i].amountOfSegments; j++)
                 {
                     if (omegaStarite.rings[i].CachedHitboxes[j].Intersects(targetHitbox))
-                        return true;
+                    {
+                        return CollisionHelper.IsRectangleCollidingWithCircle(omegaStarite.rings[i].CachedHitboxes[j].Center.ToVector2(), Radius, targetHitbox);
+                    }
                 }
             }
             return false;

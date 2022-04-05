@@ -158,6 +158,10 @@ namespace Aequus
             typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, honey);
         }
 
+        public static T Mod<T>(this Projectile projectile) where T : ModProjectile
+        {
+            return (T)projectile.ModProjectile;
+        }
         public static T ModNPC<T>(this NPC npc) where T : ModNPC
         {
             return (T)npc.ModNPC;

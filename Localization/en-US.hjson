@@ -53,6 +53,8 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			MirrorsCall: Mirror's Call
+			Slice: Slice
 			SpaceSquidRelic: Space Squid Relic
 			RedSpriteRelic: Red Sprite Relic
 			CrabsonRelic: Crabson Relic
@@ -344,6 +346,16 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			MirrorsCall:
+				'''
+				Right click to do a large swing with no projectile
+				'''
+			Slice:
+				'''
+				Rapidly slashes and shoots piercing snowflakes
+				Inflicts frostburn on hit
+				Right click to do a large swing with no projectile
+				'''
 			MoonflowerPollen: "{$Mods.Aequus.Tooltips.Concocted}"
 			LingeringPotion: Leaves a lingering effect which buffs yourself and nearby teammates
 			Molite: "{$Mods.Aequus.Tooltips.Concocted}"

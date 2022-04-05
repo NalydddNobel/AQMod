@@ -1,7 +1,11 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Common.Players;
+using Aequus.Items.Recipes;
 using Aequus.Projectiles.Melee;
+using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -13,18 +17,18 @@ namespace Aequus.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
         }
 
         public override void SetDefaults()
         {
             Item.DefaultToDopeSword<SliceProj>(10);
-            Item.SetWeaponValues(40, 6f);
+            Item.SetWeaponValues(32, 6f);
             Item.width = 20;
             Item.height = 20;
             Item.autoReuse = true;
             Item.rare = ItemRarities.GaleStreams;
             Item.value = ItemPrices.GaleStreamsValue;
-            Item.UseSound = SoundID.Item1;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -37,9 +41,25 @@ namespace Aequus.Items.Weapons.Melee
             return AequusHelpers.RollSwordPrefix(Item, rand);
         }
 
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
+
         public override void AddRecipes()
         {
             AequusRecipes.SpaceSquidDrop(this, ModContent.ItemType<CrystalDagger>());
+        }
+
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            float pitch = 0.8f;
+            if (SliceProj.FasterSwings(player.GetModPlayer<AequusPlayer>().itemUsage))
+            {
+                pitch += 1.25f;
+            }
+            SoundHelper.Play(SoundType.Sound, "swordswoosh" + Main.rand.Next(4), position, 0.7f, pitch);
+            return true;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Players;
+using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -11,6 +12,19 @@ namespace Aequus.Projectiles.Melee
     {
 		public virtual float VisualHoldout => 8f;
 		public virtual float HitboxHoldout => 45f;
+		/// <summary>
+		/// Multiplies the use time by this value when the player is using the right click function of the item. Lower numbers means faster speed
+		/// </summary>
+		public virtual float AltFunctionSpeedup => 0.8f;
+		/// <summary>
+		/// Multiplies the scale by this value when the player is using the right click function of the item. Higher numbers means larger weapon
+		/// </summary>
+		public virtual float AltFunctionScale => 1.2f;
+		/// <summary>
+		/// Multiplies the scale by this value when the player is using the right click function of the item. Higher numbers means larger weapon
+		/// </summary>
+		public virtual float AltFunctionHitboxScale => AltFunctionScale;
+		public abstract float Radius { get; }
 
         public int swingTime;
         public int swingTimeMax;
@@ -25,16 +39,6 @@ namespace Aequus.Projectiles.Melee
 		public Vector2 AngleVector => Vector2.Normalize(angleVector);
 		public Vector2 BaseAngleVector => Vector2.Normalize(Projectile.velocity);
 
-		protected Vector2 GetSwordTipOffset()
-        {
-			return (Projectile.rotation - MathHelper.PiOver2).ToRotationVector2() * (Projectile.getRect().Size() / 2f);
-		}
-
-		protected ItemVarsPlayer ItemPlayer()
-        {
-			return Main.player[Projectile.owner].GetModPlayer<ItemVarsPlayer>();
-        }
-
         public override void SetDefaults()
         {
 			Projectile.DamageType = DamageClass.Melee;
@@ -42,22 +46,34 @@ namespace Aequus.Projectiles.Melee
 			Projectile.ignoreWater = true;
 			Projectile.tileCollide = false;
 			Projectile.penetrate = -1;
-			Projectile.usesIDStaticNPCImmunity = true;
-			Projectile.idStaticNPCHitCooldown = 8;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 24;
         }
 
-        public virtual void Initalize(Player player, AequusPlayer aequusPlayer)
+        public override bool? CanHitNPC(NPC target)
+        {
+            return CollisionHelper.IsRectangleCollidingWithCircle(Main.player[Projectile.owner].Center, Radius * Projectile.scale, target.getRect()) ? null : false;
+        }
+
+        protected virtual void AdjustSwingTime(Player player, AequusPlayer aequusPlayer)
+        {
+		}
+		public virtual void Initalize(Player player, AequusPlayer aequus)
 		{
-			var itemPlayer = ItemPlayer();
 			Projectile.direction = player.direction;
 			swingTimeMax = player.itemAnimationMax * (1 + Projectile.extraUpdates);
-			if (itemPlayer.itemUsage < 60)
+			if (player.altFunctionUse == 2)
 			{
-				swingTimeMax = (int)(swingTimeMax * 1.5f);
+				swingTimeMax = (int)(swingTimeMax * AltFunctionSpeedup);
+				Projectile.scale *= AltFunctionScale;
+				Projectile.width = (int)(Projectile.width * AltFunctionScale);
+				Projectile.height = (int)(Projectile.height * AltFunctionScale);
 			}
+			AdjustSwingTime(player, aequus);
+			swingTimeMax = Math.Max(swingTimeMax, 3);
 			swing = ProgressSnippet;
 			swingMultiplier = 1f;
-			combo = itemPlayer.itemCombo;
+			combo = aequus.itemCombo;
 			AequusHelpers.MeleeScale(Projectile);
 		}
 
