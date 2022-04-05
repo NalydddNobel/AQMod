@@ -340,7 +340,7 @@ ItemName.ThunderClap=雷霆一击
 ItemTooltip.ThunderClap=召唤雷霆从天而降
 ProjectileName.ThunderClap=雷霆一击
 
-ItemName.Umystick=神秘的伞
+ItemName.Umystick=秘伞
 ItemTooltip.Umystick={$Mods.AQMod.Tooltips.UmbrellaWeapon}\n手持此物品时按下右键进行一次跳跃\n'看起来贼危险'
 
 ItemName.Narrizuul=耀宇遗光
@@ -437,9 +437,9 @@ ItemTooltip.LarvaEel=提供生命再生
 #===========================#
 
 ItemName.CentennialLight=百年灯
-ItemTooltip.CentennialLight=大幅度加速时间的流失
+ItemTooltip.CentennialLight=大幅度加速时间的流逝
 ItemName.Globebulb=球形灯泡
-ItemTooltip.Globebulb=加速时间的流失
+ItemTooltip.Globebulb=加速时间的流逝
 
 ItemName.TheFan=吹风机
 ItemTooltip.TheFan=用风吹退你面前的东西\n可更改风的速度\n'手持灵感'
@@ -459,7 +459,7 @@ ItemTooltip.GhostlyGrave=可在你死亡后阻止墓碑的生成
 GhostlyGrave.False=你现在会掉落墓碑
 GhostlyGrave.True=你现在不会掉落墓碑
 
-ItemName.Stardrop=星之果实
+ItemName.Stardrop=星落果
 ItemTooltip.Stardrop=切换以决定是否允许城镇NPC在夜间入住
 Stardrop.False=城镇NPC现在无法在夜间入住
 Stardrop.True=城镇NPC现在可在夜间入住
