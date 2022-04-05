@@ -23,6 +23,7 @@ namespace Aequus.Projectiles.Melee
         public override float HitboxHoldout => 45f;
         public override float AltFunctionSpeedup => 0.6f;
         public override float AltFunctionScale => 2f;
+        public override float AltFunctionHitboxScale => 1.25f;
 
         public SwordSlashPrimRenderer prim;
         public float colorProgress;

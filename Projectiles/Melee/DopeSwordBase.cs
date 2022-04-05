@@ -21,7 +21,7 @@ namespace Aequus.Projectiles.Melee
 		/// </summary>
 		public virtual float AltFunctionScale => 1.2f;
 		/// <summary>
-		/// Multiplies the scale by this value when the player is using the right click function of the item. Higher numbers means larger weapon
+		/// Multiplies the hitbox's dimensions by this value when the player is using the right click function of the item. Higher numbers means larger hitbox dimensions
 		/// </summary>
 		public virtual float AltFunctionHitboxScale => AltFunctionScale;
 		public abstract float Radius { get; }
@@ -66,8 +66,8 @@ namespace Aequus.Projectiles.Melee
 			{
 				swingTimeMax = (int)(swingTimeMax * AltFunctionSpeedup);
 				Projectile.scale *= AltFunctionScale;
-				Projectile.width = (int)(Projectile.width * AltFunctionScale);
-				Projectile.height = (int)(Projectile.height * AltFunctionScale);
+				Projectile.width = (int)(Projectile.width * AltFunctionHitboxScale);
+				Projectile.height = (int)(Projectile.height * AltFunctionHitboxScale);
 			}
 			AdjustSwingTime(player, aequus);
 			swingTimeMax = Math.Max(swingTimeMax, 3);
