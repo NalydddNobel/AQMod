@@ -157,7 +157,7 @@ ItemName.GlowString=发光细绳
 ItemTooltip.GlowString=你的悠悠球线在黑暗中会发出光亮\n增加悠悠球距离
 
 ItemName.ShockCollar=冲击项圈
-ItemTooltip.ShockCollar=增加5%上海\n在水中时增加10%暴击率
+ItemTooltip.ShockCollar=增加5%伤害\n在水中时增加10%暴击率
 
 ItemName.FidgetSpinner=永续仪
 ItemTooltip.FidgetSpinner=无法自动挥舞的物品的速度变慢, 但可以自动挥舞
