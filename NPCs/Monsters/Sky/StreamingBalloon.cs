@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.ItemDrops;
 using Aequus.Items.Misc.Energies;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
@@ -8,6 +9,8 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
@@ -17,12 +20,22 @@ namespace Aequus.NPCs.Monsters.Sky
     public class StreamingBalloon : ModNPC
     {
         private bool _setupFrame = false;
+        private int _balloonFrame;
         public const int FramesX = 8;
+
+        private NPC _bestiaryRenderNPC;
+        public NPC SlaveNPC => Main.npc[(int)NPC.ai[0]];
 
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 2;
 
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(0f, -14f),
+                PortraitPositionYOverride = -20f,
+                Scale = 0.7f,
+            });
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             NPCID.Sets.TrailCacheLength[NPC.type] = 20;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData()
@@ -43,6 +56,18 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.aiStyle = -1;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky),
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay,
+                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.StreamingBalloon")
+            });
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(NPC.GetBestiaryCreditId(), true);
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -71,10 +96,9 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
                 return;
             }
-            if ((int)NPC.localAI[0] == 0f)
+            if ((int)NPC.ai[2] == 0)
             {
                 NPC.TargetClosest(faceTarget: false);
-                NPC.localAI[0] = Main.rand.Next(FramesX - 1) + 1;
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     if (NPC.HasValidTarget)
@@ -89,46 +113,50 @@ namespace Aequus.NPCs.Monsters.Sky
                         //}
                         else
                         {
-                            List<int> selectableEnemies = new List<int>()
-                            {
-                                NPCID.RedSlime,
-                                NPCID.PurpleSlime,
-                                NPCID.BlackSlime,
-                                NPCID.JungleSlime,
-                                NPCID.IceSlime,
-                                NPCID.SpikedJungleSlime,
-                                NPCID.SpikedIceSlime,
-                            };
-                            if (WorldFlags.HardmodeTier)
-                            {
-                                selectableEnemies.Add(NPCID.ToxicSludge);
-                            }
-                            if (Main.hardMode && Main.player[NPC.target].ZoneHallow)
-                            {
-                                selectableEnemies.Add(NPCID.IlluminantSlime);
-                            }
+                            var selectableEnemies = EnemyList();
                             NPC.ai[2] = selectableEnemies[Main.rand.Next(selectableEnemies.Count)];
                         }
-                        int n = NPC.NewNPC(NPC.GetSpawnSource_NPCCatch(NPC.whoAmI), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + 66, (int)NPC.ai[2]);
+                        int n = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + 66, (int)NPC.ai[2]);
                         Main.npc[n].hide = true;
                         Main.npc[n].noTileCollide = true;
                         Main.npc[n].knockBackResist = 0f;
                         if (((int)NPC.ai[2] == NPCID.BlueSlime ||
-                            (int)NPC.ai[2] < 0) && Main.rand.NextBool())
+                            (int)NPC.ai[2] < 0))
                         {
-                            int[] selectableLoot = new int[]
+                            List<int> selectableLoot = null;
+                            if (Main.rand.NextBool())
                             {
-                                ItemID.ShinyRedBalloon,
-                                ItemID.Starfury,
-                                //ModContent.ItemType<CinnamonRoll>(),
-                                //ModContent.ItemType<TemperatureHairDye>(),
-                            };
+                                selectableLoot = new List<int>()
+                                {
+                                    ItemID.ShinyRedBalloon,
+                                    ItemID.Starfury,
+                                    ItemID.CreativeWings,
+                                    //ModContent.ItemType<CinnamonRoll>(),
+                                    //ModContent.ItemType<TemperatureHairDye>(),
+                                };
+                            }
+                            else if (Main.rand.NextBool(9))
+                            {
+                                selectableLoot = new List<int>()
+                                {
+                                    ItemID.KiteBlue,
+                                    ItemID.KiteBlueAndYellow,
+                                    ItemID.KiteRed,
+                                    ItemID.KiteRedAndYellow,
+                                    ItemID.KiteYellow,
+                                    ItemID.KiteBunny,
+                                    ItemID.PaperAirplaneA,
+                                    ItemID.PaperAirplaneB,
+                                };
+                            }
+
                             //if (WorldFlags.SudoHardmode)
                             //{
                             //    Array.Resize(ref selectableLoot, selectableLoot.Length + 1);
                             //    selectableLoot[selectableLoot.Length - 1] = ModContent.ItemType<Items.Weapons.Magic.Umystick>();
                             //}
-                            NPC.ai[1] = selectableLoot[Main.rand.Next(selectableLoot.Length)];
+                            if (selectableLoot != null)
+                                NPC.ai[1] = selectableLoot[Main.rand.Next(selectableLoot.Count)];
                         }
                         NPC.ai[0] = n;
                     }
@@ -234,7 +262,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     if (NPC.velocity.Y > 0f)
                         NPC.velocity.Y *= 0.92f;
                     if (NPC.velocity.Y < 12f)
-                        NPC.velocity.Y += 0.025f;
+                        NPC.velocity.Y += 0.05f;
                     if ((NPC.position.X + NPC.width / 2f - Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2f).Abs() < 100f)
                     {
                         NPC.life = 0;
@@ -249,55 +277,42 @@ namespace Aequus.NPCs.Monsters.Sky
 
             if (NPC.active)
             {
-                Main.npc[(int)NPC.ai[0]].velocity = NPC.velocity;
-                Main.npc[(int)NPC.ai[0]].position.X = NPC.position.X + NPC.width / 2f - Main.npc[(int)NPC.ai[0]].width / 2f;
-                Main.npc[(int)NPC.ai[0]].position.Y = NPC.position.Y + 66 - Main.npc[(int)NPC.ai[0]].height / 2;
-                Main.npc[(int)NPC.ai[0]].position -= NPC.velocity;
-                Main.npc[(int)NPC.ai[0]].ai[0] = 0f;
-                Main.npc[(int)NPC.ai[0]].hide = true;
-                Main.npc[(int)NPC.ai[0]].noTileCollide = true;
-                Main.npc[(int)NPC.ai[0]].knockBackResist = 0f;
+                var npc = SlaveNPC;
+                npc.velocity = NPC.velocity;
+                npc.position.X = NPC.position.X + NPC.width / 2f - Main.npc[(int)NPC.ai[0]].width / 2f;
+                npc.position.Y = NPC.position.Y + 66 - Main.npc[(int)NPC.ai[0]].height / 2;
+                npc.position -= NPC.velocity;
+                npc.ai[0] = 0f;
+                npc.hide = true;
+                npc.noTileCollide = true;
+                npc.knockBackResist = 0f;
             }
             if (NPC.ai[1] > 0f)
             {
-                Main.npc[(int)NPC.ai[0]].ai[1] = NPC.ai[1];
+                SlaveNPC.ai[1] = NPC.ai[1];
             }
         }
-
-        public static void GetDrawInfo(int netID, Color lightColor, out int frameX, out Color alpha, out Color npcClr, out float scale)
+        private List<int> EnemyList()
         {
-            NPC npc = new NPC();
-            npc.SetDefaults(netID);
-            frameX = NPCIDToFrameIndex(npc.type);
-            alpha = npc.GetAlpha(lightColor);
-            scale = npc.scale;
-            npcClr = npc.color;
-            if (npcClr != default(Color))
+            var selectableEnemies = new List<int>()
             {
-                npcClr = npc.GetColor(lightColor);
-            }
-        }
-
-        public static int NPCIDToFrameIndex(int type)
-        {
-            switch (type)
+                NPCID.RedSlime,
+                NPCID.PurpleSlime,
+                NPCID.BlackSlime,
+                NPCID.JungleSlime,
+                NPCID.IceSlime,
+                NPCID.SpikedJungleSlime,
+                NPCID.SpikedIceSlime,
+            };
+            if (WorldFlags.HardmodeTier)
             {
-                case NPCID.BlueSlime:
-                    return 1;
-                case NPCID.LavaSlime:
-                    return 2;
-                case NPCID.ToxicSludge:
-                    return 3;
-                case NPCID.SpikedJungleSlime:
-                    return 4;
-                case NPCID.IceSlime:
-                    return 5;
-                case NPCID.SpikedIceSlime:
-                    return 6;
-                case NPCID.IlluminantSlime:
-                    return 7;
+                selectableEnemies.Add(NPCID.ToxicSludge);
             }
-            return -1;
+            if (Main.hardMode && Main.player[NPC.target].ZoneHallow)
+            {
+                selectableEnemies.Add(NPCID.IlluminantSlime);
+            }
+            return selectableEnemies;
         }
 
         public override void FindFrame(int frameHeight)
@@ -306,23 +321,71 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 _setupFrame = true;
                 NPC.frame.Width /= FramesX;
+                _balloonFrame = Main.rand.Next(FramesX - 1);
             }
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(new StreamingBalloonKillSlaveRule(ModContent.ItemType<AtmosphericEnergy>(), 4));
+
+            int goodItemsChance = 2 * 3;
+
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.CreativeWings, goodItemsChance));
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.Starfury, goodItemsChance));
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.ShinyRedBalloon, goodItemsChance));
+
+            int randomItemChance = 9 * 8;
+
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBlue, randomItemChance));
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBlueAndYellow, randomItemChance));
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteRed, randomItemChance));
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteRedAndYellow, randomItemChance));
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteYellow, randomItemChance));
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBunny, randomItemChance));
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.PaperAirplaneA, randomItemChance));
+            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.PaperAirplaneB, randomItemChance));
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                _balloonFrame = AequusHelpers.TimedBasedOn((int)Main.GameUpdateCount, 90, FramesX - 1);
+            }
             var texture = TextureAssets.Npc[Type].Value;
             var drawPosition = NPC.Center;
             var origin = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 4f);
-            Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, new Rectangle(NPC.frame.X + NPC.frame.Width * (int)NPC.localAI[0], NPC.frame.Y, NPC.frame.Width, NPC.frame.Height), drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawPosition - screenPos, new Rectangle(NPC.frame.X + NPC.frame.Width * (_balloonFrame + 1), NPC.frame.Y, NPC.frame.Width, NPC.frame.Height), drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
-            if ((int)NPC.ai[0] == -1)
+            NPC renderNPC;
+            if (NPC.IsABestiaryIconDummy)
+            {
+                var spawnableEnemies = EnemyList();
+                int index = AequusHelpers.TimedBasedOn((int)Main.GameUpdateCount, 30, spawnableEnemies.Count - 1);
+                _bestiaryRenderNPC = new NPC();
+                _bestiaryRenderNPC.SetDefaults(spawnableEnemies[index]);
+                renderNPC = _bestiaryRenderNPC;
+            }
+            else if ((int)NPC.ai[0] == -1)
             {
                 return false;
             }
+            else
+            {
+                renderNPC = SlaveNPC;
+            }
 
-            GetDrawInfo((int)NPC.ai[2], drawColor, out int frameX, out var alpha, out var npcClr, out float scale);
+            int frameX = NPCToFrame(renderNPC.type);
+            var alpha = renderNPC.GetAlpha(drawColor);
+            float scale = renderNPC.scale;
+            var npcClr = renderNPC.color;
+            if (npcClr != default(Color))
+            {
+                npcClr = renderNPC.GetColor(drawColor);
+            }
+
             if (scale != 1f)
             {
                 float y = 70f - origin.Y;
@@ -354,26 +417,50 @@ namespace Aequus.NPCs.Monsters.Sky
                 num206 -= 13f;
                 float itemscale = 0.2f;
                 itemscale -= 0.3f * somethingelse;
-                spriteBatch.Draw(itemTexture, new Vector2(drawPosition.X + num205 - Main.screenPosition.X, drawPosition.Y + num206 - Main.screenPosition.Y + 66f), null, drawColor, itemscale, itemTexture.Size() / 2f, num199, SpriteEffects.None, 0f);
+                spriteBatch.Draw(itemTexture, new Vector2(drawPosition.X + num205 - screenPos.X, drawPosition.Y + num206 - screenPos.Y + 66f), null, drawColor, itemscale, itemTexture.Size() / 2f, num199, SpriteEffects.None, 0f);
             }
 
-            if ((int)NPC.ai[2] == NPCID.IlluminantSlime)
+            if (!NPC.IsABestiaryIconDummy)
             {
-                for (int i = 1; i < NPC.oldPos.Length; i++)
+                if ((int)NPC.ai[2] == NPCID.IlluminantSlime)
                 {
-                    spriteBatch.Draw(texture, new Vector2(NPC.oldPos[i].X - Main.screenPosition.X + NPC.width / 2,
-                        NPC.oldPos[i].Y - Main.screenPosition.Y + NPC.height / 2f),
-                        new Rectangle(NPC.frame.X + NPC.frame.Width * frameX, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height),
-                        new Color(150 * (10 - i) / 15, 100 * (10 - i) / 15, 150 * (10 - i) / 15, 50 * (10 - i) / 15), NPC.rotation, origin, NPC.scale * scale, SpriteEffects.None, 0f);
+                    for (int i = 1; i < NPC.oldPos.Length; i++)
+                    {
+                        spriteBatch.Draw(texture, new Vector2(NPC.oldPos[i].X - screenPos.X + NPC.width / 2,
+                            NPC.oldPos[i].Y - screenPos.Y + NPC.height / 2f),
+                            new Rectangle(NPC.frame.X + NPC.frame.Width * frameX, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height),
+                            new Color(150 * (10 - i) / 15, 100 * (10 - i) / 15, 150 * (10 - i) / 15, 50 * (10 - i) / 15), NPC.rotation, origin, NPC.scale * scale, SpriteEffects.None, 0f);
+                    }
                 }
             }
 
-            Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, new Rectangle(NPC.frame.X + NPC.frame.Width * frameX, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height), alpha, NPC.rotation, origin, NPC.scale * scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawPosition - screenPos, new Rectangle(NPC.frame.X + NPC.frame.Width * frameX, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height), alpha, NPC.rotation, origin, NPC.scale * scale, SpriteEffects.None, 0f);
             if (npcClr != default(Color))
             {
-                Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, new Rectangle(NPC.frame.X + NPC.frame.Width * frameX, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height), npcClr, NPC.rotation, origin, NPC.scale * scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawPosition - screenPos, new Rectangle(NPC.frame.X + NPC.frame.Width * frameX, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height), npcClr, NPC.rotation, origin, NPC.scale * scale, SpriteEffects.None, 0f);
             }
             return false;
+        }
+        private int NPCToFrame(int type)
+        {
+            switch (type)
+            {
+                case NPCID.BlueSlime:
+                    return 1;
+                case NPCID.LavaSlime:
+                    return 2;
+                case NPCID.ToxicSludge:
+                    return 3;
+                case NPCID.SpikedJungleSlime:
+                    return 4;
+                case NPCID.IceSlime:
+                    return 5;
+                case NPCID.SpikedIceSlime:
+                    return 6;
+                case NPCID.IlluminantSlime:
+                    return 7;
+            }
+            return -1;
         }
     }
 }

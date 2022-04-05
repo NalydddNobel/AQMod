@@ -23,6 +23,7 @@ namespace Aequus.NPCs.Monsters.Sky
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Position = new Vector2(0f, 16f),
+                PortraitPositionYOverride = 36f,
             });
         }
 

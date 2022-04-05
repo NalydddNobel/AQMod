@@ -3,7 +3,8 @@ Mods: {
 		Bestiary: {
 			Exporter: The Exporter is a lesser known thief with distant relations to pirates. All proceeds sold will be exported around the world to questionable folks looking for the best deals.
 
-			WhiteSlime: Due to being blasted with cosmic radiation, these slimes absorbed the properties of the sun. Rumored to taste like cinnamon.
+			StreamingBalloon: Extra resourceful slimes ride miniature hot air balloons to sail higher currents to find food. They purposely fly over and pop their own balloons to fall atop their prey.
+			WhiteSlime: Originally a photosynthetic Jungle Slime, after being blasted with cosmic radiation, it absorbed the properties of the sun. Rumored to taste like cinnamon.
 			Meteor: Similar to barnacles, these things appear to be inanimate but are still living creatures. When pushed out of space using the Pumpinator, they can leave a meteor crater.
 
 			SpaceSquid: A mysterious squid hailing from an advanced interstellar civilization. Made entirely out of snow since it's easier to teleport.
@@ -12,6 +13,12 @@ Mods: {
 			OmegaStarite: Sent from outer space to scout for a valuable resource. An anomaly in the starite life-cycle in need of constant life support from its shell, in exchange it can produce vasts amounts of energy.
 		}
 		DropCondition: {
+			StreamingBalloonKill: 
+			'''
+			    Only dropped when the slime killed is attached to the balloon 
+			    Only dropped after Omega Starite or Wall of Flesh is defeated
+			'''
+			StreamingBalloonSlime: Can only dropped from Red, Purple, Black, or Jungle Slimes
 			OreTier: { 
 				0: Only dropped in worlds with copper ore
 				1: Only dropped in worlds with tin ore

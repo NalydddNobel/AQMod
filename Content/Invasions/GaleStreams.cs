@@ -10,6 +10,63 @@ namespace Aequus.Content.Invasions
     public sealed class GaleStreams : ModSystem
     {
         public static InvasionStatus status;
+        public static byte updateTimer;
+        public static bool SupressWindUpdates { get; set; }
+
+        public override void SaveWorldData(TagCompound tag)
+        {
+            tag["Status"] = (byte)status;
+        }
+
+        public override void LoadWorldData(TagCompound tag)
+        {
+            status = (InvasionStatus)tag.Get<byte>("Status");
+        }
+
+        public override void PostUpdateWorld()
+        {
+            if (!WorldFlags.HardmodeTier)
+            {
+                status = InvasionStatus.Inactive;
+                return;
+            }
+            if (Main.WindyEnoughForKiteDrops)
+            {
+                status = InvasionStatus.Active;
+            }
+            else
+            {
+                status = InvasionStatus.Inactive;
+            }
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                if (status == InvasionStatus.Active)
+                {
+                    UpdateActive();
+                }
+            }
+        }
+        private void UpdateActive()
+        {
+            if (updateTimer == 1)
+            {
+                SupressWindUpdates = false;
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    if (Main.player[i].active && IsThisSpace(Main.player[i]))
+                    {
+                        SupressWindUpdates = true;
+                        break;
+                    }
+                }
+            }
+            updateTimer++;
+
+            if (SupressWindUpdates)
+            {
+                Main.windCounter = Math.Max(Main.windCounter, 360);
+            }
+        }
 
         public static bool IsThisSpace(Player player)
         {
@@ -33,22 +90,6 @@ namespace Aequus.Content.Invasions
             if (Main.dayTime)
                 return Main.time > Main.dayLength - 3600;
             return Main.time > Main.nightLength - 3600;
-        }
-
-        public static void SpeedUpWinds(Player player, int points)
-        {
-            if (!WorldFlags.HardmodeTier || player.dead || !player.active)
-                return;
-        }
-
-        public override void SaveWorldData(TagCompound tag)
-        {
-            tag["Status"] = (byte)status;
-        }
-
-        public override void LoadWorldData(TagCompound tag)
-        {
-            status = (InvasionStatus)tag.Get<byte>("Status");
         }
 
         public static bool MeteorCheck(int x, int y, int size = 40)

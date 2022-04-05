@@ -17,6 +17,10 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             Main.npcFrameCount[NPC.type] = 5;
             NPCSets.WindUpdates.Add(Type);
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(0f, 8f),
+            });
             NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData()
             {
                 ImmuneToAllBuffsThatAreNotWhips = true,

@@ -24,7 +24,7 @@ namespace Aequus.Common.ItemDrops
 
         public string GetConditionDescription()
         {
-            return "Test test, you should see this!";
+            return null;
         }
     }
 }
