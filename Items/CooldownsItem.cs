@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Players;
-using Aequus.Items.Weapons.Magic;
+﻿using Aequus.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace Aequus.Items
         /// </summary>
         public static HashSet<int> HasWeaponCooldown { get; private set; }
 
-        internal static void OnModLoad()
+        public override void SetStaticDefaults()
         {
             HasWeaponCooldown = new HashSet<int>()
             {

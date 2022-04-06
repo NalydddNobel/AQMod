@@ -1,6 +1,5 @@
-﻿using Aequus.Assets.Effects;
-using Aequus.Assets.Effects.Prims;
-using Aequus.Common.Players;
+﻿using Aequus.Effects;
+using Aequus.Effects.Prims;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -58,10 +57,10 @@ namespace Aequus.Projectiles.Melee
             {
                 bool rightClick = Main.player[Projectile.owner].altFunctionUse == 2;
                 float explosionScale = !rightClick ? 0.66f : 1f;
-                GameEffects.Instance.SetShake(8f * explosionScale, 8f * explosionScale);
+                ModContent.GetInstance<ModEffects>().SetShake(8f * explosionScale, 8f * explosionScale);
                 MirrorsCallExplosion.ExplosionEffects(target.Center, colorProgress, explosionScale);
                 float damageScale = !rightClick ? 0.8f : 1.8f;
-                int p = Projectile.NewProjectile(Projectile.GetProjectileSource_OnHit(target, Type), target.Center, 
+                int p = Projectile.NewProjectile(Projectile.GetProjectileSource_OnHit(target, Type), target.Center,
                     Vector2.Normalize(target.Center - Main.player[Projectile.owner].Center), ModContent.ProjectileType<MirrorsCallExplosion>(), (int)(Projectile.damage * damageScale), Projectile.knockBack, Projectile.owner);
                 Main.projectile[p].scale = explosionScale;
                 Main.projectile[p].width = (int)(Main.projectile[p].width * explosionScale);

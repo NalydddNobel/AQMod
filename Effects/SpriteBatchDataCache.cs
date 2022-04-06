@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Utilities
+namespace Aequus.Effects
 {
-    public sealed class SpriteBatchData : ILoadable
+    public sealed class SpriteBatchDataCache : ILoadable
     {
         private static FieldInfo sortModeField;
         private static FieldInfo blendStateField;
@@ -23,11 +24,11 @@ namespace Aequus.Common.Utilities
         public Effect customEffect;
         public Matrix transformMatrix;
 
-        public SpriteBatchData()
+        public SpriteBatchDataCache()
         {
         }
 
-        public SpriteBatchData(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState,
+        public SpriteBatchDataCache(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState,
             RasterizerState rasterizerState, Effect effect, Matrix transformMatrix)
         {
             this.sortMode = sortMode;
@@ -39,7 +40,7 @@ namespace Aequus.Common.Utilities
             this.transformMatrix = transformMatrix;
         }
 
-        public SpriteBatchData(SpriteBatch spriteBatch)
+        public SpriteBatchDataCache(SpriteBatch spriteBatch)
         {
             FromSpriteBatch(spriteBatch);
         }
@@ -69,7 +70,7 @@ namespace Aequus.Common.Utilities
             NullableOption<Effect> customEffect = default(NullableOption<Effect>),
             NullableOption<Matrix> transformMatrix = default(NullableOption<Matrix>))
         {
-            spriteBatch.Begin(spriteSortMode.Get(this.sortMode), blendState.Get(this.blendState),
+            spriteBatch.Begin(spriteSortMode.Get(sortMode), blendState.Get(this.blendState),
                 samplerState.Get(this.samplerState), depthStencilState.Get(this.depthStencilState),
                 rasterizerState.Get(this.rasterizerState), customEffect.Get(this.customEffect), transformMatrix.Get(this.transformMatrix));
         }

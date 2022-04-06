@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Assets.Effects.Prims
+namespace Aequus.Effects.Prims
 {
     public class LegacyPrimRenderer : IPrimRenderer, ILoadable
     {

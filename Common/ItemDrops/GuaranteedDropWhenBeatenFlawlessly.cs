@@ -1,29 +1,30 @@
 ﻿using Aequus.NPCs;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
 namespace Aequus.Common.ItemDrops
 {
-    public sealed class TrophyDrop : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
+    public sealed class GuaranteedDropWhenBeatenFlawlessly : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        private readonly int Trophy;
+        private readonly int Item;
+        private readonly int DropChance;
 
         public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; }
 
-        public TrophyDrop(int trophy)
+        public GuaranteedDropWhenBeatenFlawlessly(int item, int dropChance)
         {
-            Trophy = trophy;
+            Item = item;
+            DropChance = dropChance;
             ChainedRules = new List<IItemDropRuleChainAttempt>();
         }
 
         public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
         {
-            float num = 1f / 10f;
+            float num = 1f / DropChance;
             float dropRate = num * ratesInfo.parentDroprateChance;
             ratesInfo.conditions = new List<IItemDropRuleCondition>() { this, };
-            drops.Add(new DropRateInfo(Trophy, 1, 1, dropRate, ratesInfo.conditions));
+            drops.Add(new DropRateInfo(Item, 1, 1, dropRate, ratesInfo.conditions));
             Chains.ReportDroprates(ChainedRules, num, drops, ratesInfo);
         }
 
@@ -41,7 +42,7 @@ namespace Aequus.Common.ItemDrops
             }
             if (anyoneNoHit || info.player.RollLuck(10) <= 1)
             {
-                CommonCode.DropItemFromNPC(info.npc, Trophy, 1);
+                CommonCode.DropItemFromNPC(info.npc, Item, 1);
                 result = default(ItemDropAttemptResult);
                 result.State = ItemDropAttemptResultState.Success;
                 return result;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Aequus.Common.Utilities
+namespace Aequus.Common.Utilities.Coloring
 {
     public struct ColorWaveGradient : IColorGradient
     {

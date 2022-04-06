@@ -1,8 +1,8 @@
-﻿using Aequus.Assets.Effects;
-using Aequus.Common;
+﻿using Aequus.Common;
 using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.Invasions;
+using Aequus.Effects;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -587,37 +587,31 @@ namespace Aequus.NPCs.Monsters.Sky
                             else
                             {
                                 if (timer < 3
-                                    && Main.netMode != NetmodeID.Server && ClientConfiguration.Instance.screenshakes &&
+                                    && Main.netMode != NetmodeID.Server &&
                                     (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 {
-                                    GameEffects.Instance.SetFlash(NPC.Center, 0.75f, 10f);
+                                    ModContent.GetInstance<ModEffects>().SetFlash(NPC.Center, 0.75f, 10f);
                                 }
                                 if (timer == 0)
                                 {
                                     if (Main.netMode != NetmodeID.Server && (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                     {
-                                        if (ClientConfiguration.Instance.screenshakes)
-                                        {
-                                            GameEffects.Instance.SetShake(12f, 10f);
-                                        }
+                                        ModContent.GetInstance<ModEffects>().SetShake(12f, 10f);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
                                             SoundHelper.Play(SoundType.Sound, "thunderclap" + Main.rand.Next(2), NPC.Center, 0.6f);
                                         }
-                                        if (ClientConfiguration.Instance.effectQuality > 0.2f)
+                                        int dustAmount = 50;
+                                        if (!ClientConfiguration.Instance.HighQuality)
                                         {
-                                            int dustAmount = 50;
-                                            if (ClientConfiguration.Instance.effectQuality < 1f)
-                                            {
-                                                dustAmount = (int)(dustAmount * ClientConfiguration.Instance.effectQuality);
-                                            }
-                                            float rot = MathHelper.TwoPi / dustAmount;
-                                            for (int i = 0; i < dustAmount; i++)
-                                            {
-                                                var normal = new Vector2(1f, 0f).RotatedBy(rot * i);
-                                                int d = Dust.NewDust(center + normal * NPC.width, 2, 2, ModContent.DustType<RedSpriteDust>());
-                                                Main.dust[d].velocity = normal * 12f;
-                                            }
+                                            dustAmount = (int)(dustAmount * 0.5f);
+                                        }
+                                        float rot = MathHelper.TwoPi / dustAmount;
+                                        for (int i = 0; i < dustAmount; i++)
+                                        {
+                                            var normal = new Vector2(1f, 0f).RotatedBy(rot * i);
+                                            int d = Dust.NewDust(center + normal * NPC.width, 2, 2, ModContent.DustType<RedSpriteDust>());
+                                            Main.dust[d].velocity = normal * 12f;
                                         }
                                     }
                                     if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -980,7 +974,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(new TrophyDrop(ModContent.ItemType<RedSpriteTrophy>()));
+            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<RedSpriteTrophy>(), 10));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<RedSpriteRelic>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fluorescence>(), 1, 10, 24));

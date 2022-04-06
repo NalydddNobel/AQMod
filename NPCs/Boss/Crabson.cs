@@ -1,6 +1,6 @@
-﻿using Aequus.Assets.Effects;
-using Aequus.Common;
+﻿using Aequus.Common;
 using Aequus.Common.ItemDrops;
+using Aequus.Effects;
 using Aequus.Items.Consumables.TreasureBags;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
@@ -761,7 +761,7 @@ namespace Aequus.NPCs.Boss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(new TrophyDrop(ModContent.ItemType<CrabsonTrophy>()));
+            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<CrabsonTrophy>(), 10));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CrabsonBag>()));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CrabsonRelic>()));
             var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());

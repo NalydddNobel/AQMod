@@ -10,7 +10,6 @@ namespace Aequus.Projectiles
     public sealed class ProjSets : ModType
     {
         public static Dictionary<int, Color> RaygunColors { get; private set; }
-        public static Dictionary<int, int> RaygunConversions { get; private set; }
         public static HashSet<int> WindUpdates { get; private set; }
 
         protected sealed override void Register()
@@ -34,13 +33,12 @@ namespace Aequus.Projectiles
                 [ProjectileID.GoldenBullet] = new Color(255, 255, 10, 255),
                 [ProjectileID.MoonlordBullet] = new Color(60, 215, 245, 255),
             };
-            RaygunConversions = new Dictionary<int, int>();
             WindUpdates = new HashSet<int>();
         }
 
         public override void SetupContent()
         {
-            List<int> windAIStyles = new List<int>() 
+            List<int> windAIStyles = new List<int>()
             {
                 0,
                 ProjAIStyleID.Arrow,
@@ -151,8 +149,6 @@ namespace Aequus.Projectiles
             WindUpdates = null;
             RaygunColors?.Clear();
             RaygunColors = null;
-            RaygunConversions?.Clear();
-            RaygunConversions = null;
         }
     }
 }

@@ -6,36 +6,55 @@ using System;
 using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.Assets.Effects
+namespace Aequus.Effects
 {
-    public sealed class GameEffects : ILoadable
+    public sealed class ModEffects : ModSystem
     {
         public static Asset<Effect> Flash { get; private set; }
         public static Filter FlashFilter { get => Filters.Scene[FlashFilterName]; set => Filters.Scene[FlashFilterName] = value; }
         public const string FlashFilterName = "Aequus:Flash";
 
-        public static GameEffects Instance { get; private set; }
+        public static ModEffects Instance { get; private set; }
 
         private int MySeed;
         private UnifiedRandom Randomizer;
         private byte[] RNG;
-        
+
         private byte rngIndex;
         private Vector2 flashLocation;
         private float flashBrightness;
         private float flashBrightnessDecrement;
 
-        private float shake;
-        private float shakeDecrement;
+        public float ScreenShake { get; private set; }
+        public float ShakeDecrement { get; private set; }
+
+        public override void Load()
+        {
+            Instance = this;
+            MySeed = "Split".GetHashCode();
+            Randomizer = new UnifiedRandom(MySeed);
+            RNG = new byte[byte.MaxValue + 1];
+            Randomizer.NextBytes(RNG);
+            Flash = ModContent.Request<Effect>("Aequus/Assets/Effects/Flash", AssetRequestMode.ImmediateLoad);
+            FlashFilter = new Filter(new ScreenShaderData(new Ref<Effect>(Flash.Value), "FlashCoordinatePass"), EffectPriority.VeryHigh);
+            Initialize();
+        }
+
+        public override void OnWorldLoad()
+        {
+            if (Main.netMode != NetmodeID.Server)
+                Initialize();
+        }
 
         internal void Initialize()
         {
             rngIndex = 0;
-            shake = 0f;
-            shakeDecrement = 0f;
+            ScreenShake = 0f;
+            ShakeDecrement = 0f;
             flashLocation = Vector2.Zero;
             flashBrightness = 0f;
             flashBrightnessDecrement = 0f;
@@ -84,10 +103,10 @@ namespace Aequus.Assets.Effects
         }
         public void SetShake(float intensity, float time)
         {
-            if (shake < intensity)
+            if (ScreenShake < intensity)
             {
-                shake = intensity;
-                shakeDecrement = shake / time;
+                ScreenShake = intensity;
+                ShakeDecrement = ScreenShake / time;
             }
         }
 
@@ -98,7 +117,7 @@ namespace Aequus.Assets.Effects
         public void SetFlash(Vector2 location, float brightness, float time)
         {
             flashLocation = location;
-            flashBrightness = brightness * ClientConfiguration.Instance.flashIntensity;
+            flashBrightness = brightness;
             flashBrightnessDecrement = flashBrightness * (1f / time);
         }
 
@@ -106,7 +125,7 @@ namespace Aequus.Assets.Effects
         {
             if (flashLocation != Vector2.Zero)
             {
-                FlashFilter.GetShader().UseIntensity(Math.Max(flashBrightness * ClientConfiguration.Instance.effectIntensity, 1f / 18f));
+                FlashFilter.GetShader().UseIntensity(Math.Max(flashBrightness * ClientConfiguration.Instance.FlashIntensity, 1f / 18f));
                 if (!FlashFilter.IsActive())
                 {
                     Filters.Scene.Activate(FlashFilterName, flashLocation, null).GetShader()
@@ -135,13 +154,14 @@ namespace Aequus.Assets.Effects
         }
         internal void UpdateScreen()
         {
-            if (shake > 0f)
+            if (ScreenShake > 0f)
             {
-                Main.screenPosition += new Vector2(Rand(-shake, shake), Rand(-shake, shake));
-                shake -= shakeDecrement;
-                if (shake < 0.5f)
+                float shakeAmt = ScreenShake * ClientConfiguration.Instance.ScreenshakeIntensity;
+                Main.screenPosition += new Vector2(Rand(-shakeAmt, shakeAmt), Rand(-shakeAmt, shakeAmt));
+                ScreenShake -= ShakeDecrement;
+                if (ScreenShake < 0.5f)
                 {
-                    shake = 0f;
+                    ScreenShake = 0f;
                 }
             }
         }
@@ -149,23 +169,6 @@ namespace Aequus.Assets.Effects
         public static Vector2 GetY(Vector2 position)
         {
             return Main.player[Main.myPlayer].gravDir == -1 ? new Vector2(position.X, -position.Y + Main.screenHeight) : new Vector2(position.X, position.Y);
-        }
-
-        void ILoadable.Load(Mod mod)
-        {
-            Instance = this;
-            MySeed = "Split".GetHashCode();
-            Randomizer = new UnifiedRandom(MySeed);
-            RNG = new byte[byte.MaxValue + 1];
-            Randomizer.NextBytes(RNG);
-            Flash = ModContent.Request<Effect>("Aequus/Assets/Effects/Flash", AssetRequestMode.ImmediateLoad);
-            FlashFilter = new Filter(new ScreenShaderData(new Ref<Effect>(Flash.Value), "FlashCoordinatePass"), EffectPriority.VeryHigh);
-            Initialize();
-        }
-
-        void ILoadable.Unload()
-        {
-            Instance = null;
         }
     }
 }

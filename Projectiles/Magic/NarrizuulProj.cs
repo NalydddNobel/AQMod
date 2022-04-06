@@ -1,6 +1,5 @@
-﻿using Aequus.Assets.Effects;
-using Aequus.Assets.Effects.Prims;
-using Aequus.Common.Configuration;
+﻿using Aequus.Effects;
+using Aequus.Effects.Prims;
 using Aequus.Particles.Dusts;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
@@ -112,12 +111,12 @@ namespace Aequus.Projectiles.Magic
 
         public override void Kill(int timeLeft)
         {
-            if (Main.myPlayer == Projectile.owner && ClientConfiguration.Instance.screenshakes)
+            if (Main.myPlayer == Projectile.owner)
             {
                 float distance = Vector2.Distance(Projectile.Center, Main.player[Projectile.owner].Center);
                 if (distance < 800)
                 {
-                    GameEffects.Instance.SetShake((int)(800f - distance) / 32, 16f);
+                    ModContent.GetInstance<ModEffects>().SetShake((int)(800f - distance) / 32, 16f);
                 }
             }
             Color color = NarrizuulRainbow(Projectile.localAI[1]) * 1.5f;

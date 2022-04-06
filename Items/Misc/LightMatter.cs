@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Configuration;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -41,7 +40,7 @@ namespace Aequus.Items.Misc
             float time = Main.GlobalTimeWrappedHourly * 2f;
             float waveFunction = (float)Math.Sin(time);
             scale += waveFunction * 0.1f - 0.1f;
-            int b = (int)(110 * scale * ClientConfiguration.Instance.effectIntensity);
+            int b = (int)(110f * scale);
             var itemFrame = new Rectangle(0, 0, itemTexture.Width, itemTexture.Height);
             var itemOrigin = itemFrame.Size() / 2f;
             for (float f = 0f; f < 1f; f += 0.125f)
@@ -68,8 +67,8 @@ namespace Aequus.Items.Misc
             float fourthScale = scale / 4f;
             float eighthScale = scale / 8f;
             float sixteenthScale = scale / 16f;
-            int b = (int)(60 * scale * ClientConfiguration.Instance.effectIntensity);
-            int b2 = (int)(110 * scale * ClientConfiguration.Instance.effectIntensity);
+            int b = (int)(60 * scale);
+            int b2 = (int)(110 * scale);
             var itemFrame = new Rectangle(0, 0, itemTexture.Width, itemTexture.Height);
             var itemOrigin = itemFrame.Size() / 2f;
             for (float f = 0f; f < 1f; f += 0.125f)

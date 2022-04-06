@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Terraria.ModLoader;
 
-namespace Aequus.Assets.Effects
+namespace Aequus.Effects
 {
     public sealed class DrawIndexCache
     {

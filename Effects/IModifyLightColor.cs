@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Aequus.Assets.Effects
+namespace Aequus.Effects
 {
     public interface IModifyLightColor
     {

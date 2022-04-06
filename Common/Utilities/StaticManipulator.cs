@@ -4,14 +4,14 @@ namespace Aequus.Common.Utilities
 {
     public sealed class StaticManipulator<T>
     {
-        public delegate ref T GetReference();
-
         private sealed class InvalidCacheException : Exception
         {
             public InvalidCacheException(string text) : base(text)
             {
             }
         }
+
+        public delegate ref T GetReference();
 
         private readonly GetReference _ref;
         private T _myValue;

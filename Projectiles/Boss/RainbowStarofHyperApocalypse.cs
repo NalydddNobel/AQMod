@@ -1,6 +1,5 @@
-﻿using Aequus.Assets.Effects.Prims;
-using Aequus.Common.Configuration;
-using Aequus.Common.Utilities;
+﻿using Aequus.Common.Utilities.Coloring;
+using Aequus.Effects.Prims;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -60,7 +59,7 @@ namespace Aequus.Projectiles.Boss
 
         private static Color getColor(float time)
         {
-            return gradient.GetColor(time) * ClientConfiguration.Instance.effectIntensity;
+            return gradient.GetColor(time);
         }
 
 
@@ -76,7 +75,6 @@ namespace Aequus.Projectiles.Boss
             float playerDistance = (Main.player[Main.myPlayer].Center - Projectile.Center).Length();
             if (playerDistance < 1200f)
                 intensity = 1f - playerDistance / 1200f;
-            intensity *= ClientConfiguration.Instance.effectIntensity;
             if (LegacyPrimRenderer.renderProjTrails)
             {
                 if (prim == null)

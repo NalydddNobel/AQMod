@@ -1,6 +1,5 @@
-﻿using Aequus.Assets.Effects.Prims;
-using Aequus.Common.Configuration;
-using Aequus.Content.Invasions;
+﻿using Aequus.Content.Invasions;
+using Aequus.Effects.Prims;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -80,7 +79,6 @@ namespace Aequus.Projectiles.Boss
             float playerDistance = (Main.player[Main.myPlayer].Center - Projectile.Center).Length();
             if (playerDistance < 480f)
                 intensity = 1f - playerDistance / 480f;
-            intensity *= ClientConfiguration.Instance.effectIntensity;
             if (intensity > 0f)
             {
                 var spotlight = Aequus.MyTex("Assets/Bloom");

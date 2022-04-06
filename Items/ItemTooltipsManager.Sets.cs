@@ -1,5 +1,4 @@
-﻿using Aequus.Common.ID;
-using Aequus.Items.Consumables.Foods;
+﻿using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Potions;
 using Aequus.Items.Misc;
 using Aequus.Items.Weapons.Magic;
@@ -12,8 +11,15 @@ namespace Aequus.Items
 {
     public sealed partial class ItemTooltipsHelper : GlobalItem
     {
-        public static Color MysteriousGuideTooltip => new Color(225, 100, 255, 255);
-        public static Color DemonSiegeTooltip => new Color(255, 170, 150, 255);
+        public struct ItemDedication
+        {
+            public readonly Color color;
+
+            public ItemDedication(Color color)
+            {
+                this.color = color;
+            }
+        }
 
         public static Dictionary<int, ItemDedication> Dedicated;
 

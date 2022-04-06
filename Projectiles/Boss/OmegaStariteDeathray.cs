@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Configuration;
-using Aequus.Content.Invasions;
+﻿using Aequus.Content.Invasions;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -88,13 +87,13 @@ namespace Aequus.Projectiles.Boss
             Vector2 basePosition2 = basePosition + normalizedRotation * (origin.Y - 1.9999998f);
             var origin2 = new Vector2(texture.Width / 2f, 0f);
             var frame2 = new Rectangle(frame.X, frame.Y + frame.Height, frame.Width, frame.Height);
-            int repetitions = (int)((5 + Main.frameRate) * ClientConfiguration.Instance.effectQuality);
+            int repetitions = 5 + Main.frameRate;
             float lerpValueMult = 1f / repetitions;
             float length = Main.screenHeight / (20 - repetitions / 60);
             Main.spriteBatch.Draw(texture, basePosition2, frame2, beamColor, rotation, origin2, new Vector2(1f * baseScale, length), SpriteEffects.None, 0f);
-            float laserIntensity = ClientConfiguration.Instance.effectIntensity;
+            float laserIntensity = 1f;
             beamColor = new Color((int)(beamColor.R * laserIntensity), (int)(beamColor.G * laserIntensity), (int)(beamColor.B * laserIntensity), (int)(beamColor.A * laserIntensity));
-            var goToColor = new Color(ClientConfiguration.Instance.effectIntensity, ClientConfiguration.Instance.effectIntensity, ClientConfiguration.Instance.effectIntensity, ClientConfiguration.Instance.effectIntensity);
+            var goToColor = new Color(laserIntensity, laserIntensity, laserIntensity, laserIntensity);
             for (int i = 0; i < repetitions; i++)
             {
                 float lerpValue = lerpValueMult * i;

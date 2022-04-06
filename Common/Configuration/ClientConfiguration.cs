@@ -1,38 +1,45 @@
-﻿using System;
+﻿using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Consumables.Potions;
+using Aequus.Items.Weapons.Melee;
+using Aequus.Localization;
+using System;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
 namespace Aequus.Common.Configuration
 {
-    public sealed class ClientConfiguration : BaseConfiguration
+    public sealed class ClientConfiguration : ConfigurationBase
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
         public static ClientConfiguration Instance;
 
-        [Header("$Mods.AQMod.ClientConfig.Header.Visuals")]
+        [Header(Key + "Client.Headers.Visuals")]
 
-        [BackgroundColor(140, 29, 47, 180)]
-        [Label("$Mods.AQMod.ClientConfig.ScreenshakesLabel")]
+        [BackgroundColor(47, 29, 140, 180)]
+        [Label(Key + "Client.ScreenshakeIntensityLabel")]
+        [Range(0f, 1f)]
+        [DefaultValue(1f)]
+        [SliderColor(120, 40, 255, 255)]
+        public float ScreenshakeIntensity { get; set; }
+
+        [BackgroundColor(47, 29, 140, 180)]
+        [Label(Key + "Client.FlashIntensityLabel")]
+        [Range(0f, 1f)]
+        [DefaultValue(1f)]
+        [SliderColor(120, 40, 255, 255)]
+        public float FlashIntensity { get; set; }
+
+        [BackgroundColor(47, 29, 140, 180)]
+        [Label(Key + "Client.HighQualityLabel")]
         [DefaultValue(true)]
-        public bool screenshakes;
+        public bool HighQuality { get; set; }
 
-        [BackgroundColor(140, 29, 47, 180)]
-        [Label("$Mods.AQMod.ClientConfig.EffectIntensityLabel")]
-        [DefaultValue(1f)]
-        [Range(0.1f, 1f)]
-        public float effectIntensity;
-
-        [BackgroundColor(140, 29, 47, 180)]
-        [Label("$Mods.AQMod.ClientConfig.FlashIntensityLabel")]
-        [DefaultValue(1f)]
-        [Range(0.1f, 1f)]
-        public float flashIntensity;
-
-        [BackgroundColor(140, 29, 47, 180)]
-        [Label("$Mods.AQMod.ClientConfig.EffectQualityLabel")]
-        [DefaultValue(1f)]
-        [Range(0.1f, 2f)]
-        public float effectQuality;
+        internal static void AddText()
+        {
+            AequusText.AdjustTranslation("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusText.Item<Baguette>() + "  " + s);
+            AequusText.AdjustTranslation("Configuration.Client.FlashIntensity", "Label", (s) => AequusText.Item<NoonPotion>() + "  " + s);
+            AequusText.AdjustTranslation("Configuration.Client.HighQuality", "Label", (s) => AequusText.Item<MirrorsCall>() + "  " + s);
+        }
     }
 }

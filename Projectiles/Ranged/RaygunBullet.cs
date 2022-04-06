@@ -10,40 +10,67 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Ranged
 {
-    public class BaseRayBullet : ModProjectile
+    public class RaygunBullet : ModProjectile
     {
         public override string Texture => Aequus.TextureNone;
 
-        public virtual Color GetColor()
-        {
-            if (baseProj != null)
-            {
-                if (baseProj.type == ProjectileID.PartyBullet)
-                {
-                    return Main.DiscoColor;
-                }
-                if (ProjSets.RaygunColors.TryGetValue(baseProj.type, out var color))
-                {
-                    return color;
-                }
-            }
-            return new Color(255, 255, 255, 255);
-        }
-
         public Projectile baseProj;
+        public int projType;
         public int trailTimer;
+        public Vector2 positionFixer;
+        public byte dontAccidentallyStealTheDataFromAnOldProjectileTimer;
 
-        public void SetBullet(int type)
+        public override void SetDefaults()
         {
-            baseProj = new Projectile();
-            baseProj.SetDefaults(type);
-            SetBullet();
+            Projectile.width = Math.Max(Projectile.width, 12);
+            Projectile.height = Math.Max(Projectile.height, 12);
+            Projectile.timeLeft = Math.Min(Projectile.timeLeft, 180);
+            Projectile.friendly = true;
+            Projectile.hide = true;
+            trailTimer = 7;
         }
-        public void SetBullet()
+
+        public override void AI()
+        {
+            //Main.NewText(Projectile.Center);
+            if (AIType == ProjectileID.ChlorophyteBullet)
+            {
+                Projectile.alpha = 255;
+            }
+            if (dontAccidentallyStealTheDataFromAnOldProjectileTimer == 1)
+            {
+                Projectile.Center = positionFixer;
+                dontAccidentallyStealTheDataFromAnOldProjectileTimer = 2;
+            }
+            else if (dontAccidentallyStealTheDataFromAnOldProjectileTimer == 0)
+            {
+                positionFixer = Projectile.Center;
+                if (projType == 0)
+                {
+                    projType = ProjectileID.Bullet;
+                }
+                baseProj = new Projectile();
+                baseProj.SetDefaults(projType);
+                Initalize();
+                dontAccidentallyStealTheDataFromAnOldProjectileTimer = 1;
+            }
+            if (trailTimer <= 0)
+            {
+                if (Main.myPlayer == Projectile.owner)
+                {
+                    int p = Projectile.NewProjectile(new EntitySource_Parent(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<RayTrailEffect>(), 0, 0f, Projectile.owner);
+                    Main.projectile[p].rotation = Projectile.velocity.ToRotation();
+                    ((RayTrailEffect)Main.projectile[p].ModProjectile).color = GetColor().UseA(0);
+                }
+                trailTimer = 6;
+            }
+            trailTimer--;
+        }
+
+        private void Initalize()
         {
             if (baseProj != null)
             {
-                //Projectile.CloneDefaults(baseProj.type);
                 Projectile.width = baseProj.width;
                 Projectile.height = baseProj.height;
                 Projectile.DamageType = baseProj.DamageType;
@@ -65,38 +92,16 @@ namespace Aequus.Projectiles.Ranged
                 Projectile.aiStyle = -1;
                 Projectile.DamageType = DamageClass.Ranged;
             }
-            SetDefaults();
-        }
-
-        public override void SetDefaults()
-        {
-            Projectile.width = Math.Max(Projectile.width, 12);
-            Projectile.height = Math.Max(Projectile.height, 12);
-            Projectile.timeLeft = Math.Min(Projectile.timeLeft, 180);
-            Projectile.friendly = true;
+            SetDefaults(); 
             Projectile.extraUpdates++;
             Projectile.extraUpdates *= 6;
-            Projectile.hide = true;
-            trailTimer = 7;
+            Projectile.netUpdate = true;
+            dontAccidentallyStealTheDataFromAnOldProjectileTimer = 2;
         }
 
-        public override void AI()
+        public override bool ShouldUpdatePosition()
         {
-            if (AIType == ProjectileID.ChlorophyteBullet)
-            {
-                Projectile.alpha = 255;
-            }
-            if (trailTimer <= 0)
-            {
-                if (Main.myPlayer == Projectile.owner)
-                {
-                    int p = Projectile.NewProjectile(new EntitySource_Parent(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<RayTrailEffect>(), 0, 0f, Projectile.owner);
-                    Main.projectile[p].rotation = Projectile.velocity.ToRotation();
-                    ((RayTrailEffect)Main.projectile[p].ModProjectile).color = GetColor().UseA(0);
-                }
-                trailTimer = 6;
-            }
-            trailTimer--;
+            return dontAccidentallyStealTheDataFromAnOldProjectileTimer == 2;
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
@@ -150,7 +155,6 @@ namespace Aequus.Projectiles.Ranged
                             Projectile.netUpdate = true;
                         }
                     }
-                    trailTimer = 6;
                     return value.GetValueOrDefault(false);
                 }
                 return value.GetValueOrDefault(true);
@@ -187,7 +191,7 @@ namespace Aequus.Projectiles.Ranged
                 {
                     target.AddBuff(BuffID.Midas, 1200);
                 }
-                if (baseProj.penetrate > 1)
+                if (baseProj.penetrate != 1)
                 {
                     SpawnExplosion();
                 }
@@ -198,11 +202,13 @@ namespace Aequus.Projectiles.Ranged
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(trailTimer);
+            writer.Write(projType);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             trailTimer = reader.ReadInt32();
+            projType = reader.ReadInt32();
         }
 
         public override void Kill(int timeLeft)
@@ -210,12 +216,25 @@ namespace Aequus.Projectiles.Ranged
             SpawnExplosion();
         }
 
+        public virtual Color GetColor()
+        {
+            if (projType == ProjectileID.PartyBullet)
+            {
+                return Main.DiscoColor;
+            }
+            if (ProjSets.RaygunColors.TryGetValue(projType, out var color))
+            {
+                return color;
+            }
+            return new Color(255, 255, 255, 255);
+        }
+
         private void SpawnExplosion()
         {
             var center = Projectile.Center;
             if (Main.netMode != NetmodeID.Server)
             {
-                int amt = (int)(75 * ClientConfiguration.Instance.effectQuality);
+                int amt = (int)(75 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
                 var color = GetColor().UseA(0);
                 for (int i = 0; i < amt; i++)
                 {
@@ -237,7 +256,7 @@ namespace Aequus.Projectiles.Ranged
                         var explosionPos = Projectile.Center + r * Main.rand.NextFloat(16f, 60f);
                         if (Main.netMode != NetmodeID.Server)
                         {
-                            int amt = (int)(35 * ClientConfiguration.Instance.effectQuality);
+                            int amt = (int)(35 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
                             var color = GetColor().UseA(0) * 0.8f;
                             for (int j = 0; j < amt; j++)
                             {
@@ -271,7 +290,7 @@ namespace Aequus.Projectiles.Ranged
                 {
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        int amt = (int)(175 * ClientConfiguration.Instance.effectQuality);
+                        int amt = (int)(175 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
                         var color = GetColor().UseA(0) * 1.2f;
                         for (int j = 0; j < amt; j++)
                         {

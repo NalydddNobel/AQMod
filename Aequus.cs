@@ -1,3 +1,4 @@
+using Aequus.Common.Configuration;
 using Aequus.Common.Utilities;
 using Aequus.Items;
 using Aequus.Localization;
@@ -25,8 +26,8 @@ namespace Aequus
         {
             Instance = this;
             DayTimeManipulator = new StaticManipulator<bool>(() => ref Main.dayTime);
-            CooldownsItem.OnModLoad();
-            AequusText.OnModLoad(this);
+            AequusText.InitalizeReflection();
+            ClientConfiguration.AddText();
         }
 
         public override void Unload()

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.Utilities.Coloring;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Terraria;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.Chat;
 
 namespace Aequus.Localization
 {
@@ -14,17 +10,17 @@ namespace Aequus.Localization
         internal static FieldInfo translationsField;
         internal static Dictionary<string, ModTranslation> modTranslations;
 
-        internal static void OnModLoad(Aequus aequus)
+        internal static void InitalizeReflection()
         {
             translationsField = typeof(ModTranslation).GetField("translations", BindingFlags.NonPublic | BindingFlags.Instance);
             modTranslations = (Dictionary<string, ModTranslation>)typeof(LocalizationLoader).GetField("translations", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
         }
 
-        internal static void AdjustTranslation(string key, string newKey, Func<string, string> modifyText)
+        internal static void AdjustTranslation(string key, string key2, Func<string, string> modifyText)
         {
-            AdjustTranslation(key, newKey, modifyText, Aequus.Instance);
+            AdjustTranslation(key, key2, modifyText, Aequus.Instance);
         }
-        internal static void AdjustTranslation(string key, string newKey, Func<string, string> modifyText, Aequus aQMod)
+        internal static void AdjustTranslation(string key, string key2, Func<string, string> modifyText, Aequus aQMod)
         {
             try
             {
@@ -34,7 +30,7 @@ namespace Aequus.Localization
                 {
                     replacements.Add((value.Key, modifyText(value.Value)));
                 }
-                var text = LocalizationLoader.CreateTranslation("Mods.Aequus." + newKey);
+                var text = LocalizationLoader.CreateTranslation("Mods.Aequus." + key + key2);
                 foreach (var value in replacements)
                 {
                     text.AddTranslation(value.Item1, value.Item2);

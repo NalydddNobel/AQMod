@@ -1,4 +1,4 @@
-﻿using Aequus.Assets.Effects.Armor;
+﻿using Aequus.Effects.Armor;
 using Microsoft.Xna.Framework;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;

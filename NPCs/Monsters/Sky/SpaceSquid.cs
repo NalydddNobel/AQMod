@@ -1,8 +1,7 @@
-﻿using Aequus.Assets.Effects;
-using Aequus.Common;
-using Aequus.Common.Configuration;
+﻿using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.Invasions;
+using Aequus.Effects;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -236,20 +235,19 @@ namespace Aequus.NPCs.Monsters.Sky
                                     SoundHelper.Play(SoundType.Sound, "awesomedeathray");
                                 }
                             }
-                            bool canDoEffects = Main.netMode != NetmodeID.Server && ClientConfiguration.Instance.screenshakes &&
-                                (Main.player[Main.myPlayer].Center - center).Length() < 2000f;
-                            if (NPC.ai[1] >= 242f && (int)NPC.ai[2] < 1 && canDoEffects)
+                            bool doEffects = AequusHelpers.ShouldDoEffects(center);
+                            if (NPC.ai[1] >= 242f && (int)NPC.ai[2] < 1 && doEffects)
                             {
-                                GameEffects.Instance.SetFlash(NPC.Center, 0.8f, 12f);
+                                ModContent.GetInstance<ModEffects>().SetFlash(NPC.Center, 0.8f, 12f);
                             }
                             if ((int)NPC.ai[1] >= 245)
                             {
                                 runOtherAis = false;
                                 if ((int)NPC.ai[2] < 1)
                                 {
-                                    if (canDoEffects)
+                                    if (doEffects)
                                     {
-                                        GameEffects.Instance.SetShake(8f, 12f);
+                                        ModContent.GetInstance<ModEffects>().SetShake(8f, 12f);
                                     }
                                     NPC.ai[2]++;
                                     NPC.velocity.X = -NPC.direction * 12.5f;
@@ -636,7 +634,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(new TrophyDrop(ModContent.ItemType<SpaceSquidTrophy>()));
+            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<SpaceSquidTrophy>(), 10));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<SpaceSquidRelic>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SiphonTentacle>(), 1, 10, 24));

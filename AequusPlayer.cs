@@ -1,5 +1,6 @@
-﻿using Aequus.Assets.Effects;
-using Aequus.Common.Players;
+﻿using Aequus.Common;
+using Aequus.Content.Invasions;
+using Aequus.Effects;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
@@ -50,6 +51,9 @@ namespace Aequus
         /// <para>A usage example would be a weapon with a 3 swing pattern. Each swing will increase the combo meter by 60, and when it becomes greater than 120, reset to 0.</para>
         /// </summary>
         public ushort itemCombo;
+        /// <summary>
+        /// Increments when the player uses an item. Does not increment when the player is using the alt function of an item.
+        /// </summary>
         public ushort itemUsage;
         /// <summary>
         /// A short lived timer which gets set to 30 when the player has a different selected item.
@@ -60,10 +64,15 @@ namespace Aequus
         /// </summary>
         public uint interactionCooldown;
 
+        /// <summary>
+        /// Whether or not the player is in the Gale Streams event. This is set to true when <see cref="GaleStreams.Status"/> equals <see cref="InvasionStatus.Active"/> and the <see cref="GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="PreUpdate"/>. Otherwise, this is false.
+        /// </summary>
+        public bool eventGaleStreams;
+
         public override void Initialize()
         {
-            itemCooldown = 0;
-            itemCooldownMax = 0;
+               itemCooldown = 0; 
+             itemCooldownMax = 0;
             itemCombo = 0;
             itemSwitch = 0;
             interactionCooldown = 60;
@@ -78,6 +87,14 @@ namespace Aequus
             else if (forceDaytime == 2)
             {
                 Aequus.DayTimeManipulator.TemporarilySet(false);
+            }
+            if (GaleStreams.Status == InvasionStatus.Active && GaleStreams.IsThisSpace(Player))
+            {
+                eventGaleStreams = true;
+            }
+            else
+            {
+                eventGaleStreams = false;
             }
             forceDaytime = 0;
         }
@@ -166,8 +183,8 @@ namespace Aequus
 
         public override void ModifyScreenPosition()
         {
-            GameCamera.Instance.UpdateScreen();
-            GameEffects.Instance.UpdateScreen();
+            ModContent.GetInstance<GameCamera>().UpdateScreen();
+            ModContent.GetInstance<ModEffects>().UpdateScreen();
         }
 
         /// <summary>

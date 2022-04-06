@@ -98,7 +98,7 @@ namespace Aequus.Items.Weapons.Melee
         {
             var clrs = EightWayRainbow;
             var v = AequusHelpers.CircularVector(clrs.Length, Main.GlobalTimeWrappedHourly * 5f);
-            
+
             for (float rainbowOffset = Math.Min(scale.X > scale.Y ? scale.Y : scale.X, 1.01f) * 4f; rainbowOffset > 0f; rainbowOffset -= 2f)
             {
                 for (int i = 0; i < clrs.Length; i++)

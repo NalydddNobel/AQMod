@@ -1,5 +1,5 @@
-﻿using Aequus.Assets.Effects.Prims;
-using Aequus.Common.Configuration;
+﻿using Aequus.Common.Configuration;
+using Aequus.Effects.Prims;
 using Aequus.NPCs.Monsters.Sky;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -139,34 +139,31 @@ namespace Aequus.Projectiles.Monster
                 AequusHelpers.ScreenFlip(arr);
             }
             var smokeLineColor = drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f);
-            if (ClientConfiguration.Instance.effectQuality > 0.2f)
+            int amount = (int)(30 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
+            var initialArr = new Vector2[amount];
+            var center = Projectile.Center;
+            initialArr[0] = center - Main.screenPosition;
+            for (int i = 1; i < amount; i++)
             {
-                int amount = (int)(30 * ClientConfiguration.Instance.effectQuality);
-                var initialArr = new Vector2[amount];
-                var center = Projectile.Center;
-                initialArr[0] = center - Main.screenPosition;
-                for (int i = 1; i < amount; i++)
-                {
-                    initialArr[i] = center + new Vector2(200f / amount * i * Projectile.direction, 0f) - Main.screenPosition;
-                }
-                if (Main.LocalPlayer.gravDir == -1)
-                {
-                    AequusHelpers.ScreenFlip(initialArr);
-                }
-
-                initialArr[0] = center - Main.screenPosition;
-                for (int i = 1; i < amount; i++)
-                {
-                    initialArr[i] = center + new Vector2(20f / amount * i * -Projectile.direction, 0f) - Main.screenPosition;
-                }
-                if (Main.LocalPlayer.gravDir == -1)
-                {
-                    AequusHelpers.ScreenFlip(initialArr);
-                }
-                prim.Draw(initialArr);
-                smokePrim.Draw(initialArr, Main.GlobalTimeWrappedHourly * 20f, 20f);
+                initialArr[i] = center + new Vector2(200f / amount * i * Projectile.direction, 0f) - Main.screenPosition;
+            }
+            if (Main.LocalPlayer.gravDir == -1)
+            {
+                AequusHelpers.ScreenFlip(initialArr);
             }
 
+            initialArr[0] = center - Main.screenPosition;
+            for (int i = 1; i < amount; i++)
+            {
+                initialArr[i] = center + new Vector2(20f / amount * i * -Projectile.direction, 0f) - Main.screenPosition;
+            }
+            if (Main.LocalPlayer.gravDir == -1)
+            {
+                AequusHelpers.ScreenFlip(initialArr);
+            }
+            // funny prim shenanigans
+            prim.Draw(initialArr);
+            smokePrim.Draw(initialArr, Main.GlobalTimeWrappedHourly * 20f, 20f);
             prim.Draw(arr);
             smokePrim.Draw(arr, Main.GlobalTimeWrappedHourly * 0.5f, 4f);
 

@@ -1,11 +1,11 @@
-﻿using Aequus.Assets.Effects;
-using Aequus.Assets.Effects.Prims;
-using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common;
 using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
 using Aequus.Content.Invasions;
+using Aequus.Effects;
+using Aequus.Effects.Prims;
 using Aequus.Items.Consumables.TreasureBags;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
@@ -484,7 +484,7 @@ namespace Aequus.NPCs.Boss
                                         SoundID.DD2_EtherianPortalOpen?.Play(NPC.Center);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            GameEffects.Instance.SetShake(12f * ClientConfiguration.Instance.effectIntensity, 24f);
+                                            ModContent.GetInstance<ModEffects>().SetShake(12f, 24f);
                                         }
                                         int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
                                         Main.projectile[p].scale = Main.getGoodWorld ? 1f : 0.75f;
@@ -1390,15 +1390,15 @@ namespace Aequus.NPCs.Boss
                     positions.Add(new Vector4((int)rings[i].CachedPositions[j].X, (int)rings[i].CachedPositions[j].Y, (int)rings[i].CachedPositions[j].Z, rings[i].Scale));
                 }
             }
-            float intensity = ClientConfiguration.Instance.effectIntensity;
+            float intensity = 1f;
 
             if ((int)NPC.ai[0] == -1)
             {
                 intensity += NPC.ai[1] / 20;
-                GameCamera.Instance.SetTarget("Omega Starite", NPC.Center, CameraPriority.NPCDefeat, 12f, 60);
+                ModContent.GetInstance<GameCamera>().SetTarget("Omega Starite", NPC.Center, CameraPriority.NPCDefeat, 12f, 60);
 
-                GameEffects.Instance.SetFlash(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 4f), 12f);
-                GameEffects.Instance.SetShake(intensity * 2f, 24f);
+                ModContent.GetInstance<ModEffects>().SetFlash(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 4f), 12f);
+                ModContent.GetInstance<ModEffects>().SetShake(intensity * 2f, 24f);
                 int range = (int)intensity + 4;
                 drawPos += new Vector2(Main.rand.Next(-range, range), Main.rand.Next(-range, range));
                 for (int i = 0; i < positions.Count; i++)
@@ -1417,7 +1417,7 @@ namespace Aequus.NPCs.Boss
             var omegiteFrame = new Rectangle(0, 0, omegiteTexture.Width, omegiteTexture.Height);
             var omegiteOrigin = omegiteFrame.Size() / 2f;
             float xOff = (float)(Math.Sin(Main.GlobalTimeWrappedHourly * 3f) + 1f);
-            var clr3 = new Color(50, 50, 50, 0) * (intensity - ClientConfiguration.Instance.effectIntensity + 1f);
+            var clr3 = new Color(50, 50, 50, 0) * intensity;
             float deathSpotlightScale = 0f;
             if (intensity > 3f)
                 deathSpotlightScale = NPC.scale * (intensity - 2.1f) * ((float)Math.Sin(NPC.ai[1] * 0.1f) + 1f) / 2f;
@@ -1425,7 +1425,7 @@ namespace Aequus.NPCs.Boss
             var spotlightOrig = spotlight.Size() / 2f;
             Color spotlightColor = new Color(100, 100, 255, 0);
             var drawOmegite = new List<Aequus.LegacyDrawMethod>();
-            if (ClientConfiguration.Instance.effectQuality >= 1f)
+            if (ClientConfiguration.Instance.HighQuality)
             {
                 drawOmegite.Add(delegate (Texture2D texture1, Vector2 position, Rectangle? frame1, Color color, float scale, Vector2 origin1, float rotation, SpriteEffects effects, float layerDepth)
                 {
@@ -1536,7 +1536,7 @@ namespace Aequus.NPCs.Boss
                 float intensity2 = intensity - 2f;
                 if (NPC.ai[1] > DEATH_TIME)
                 {
-                    float scale = (NPC.ai[1] - DEATH_TIME) * 0.2f * ClientConfiguration.Instance.effectIntensity;
+                    float scale = (NPC.ai[1] - DEATH_TIME) * 0.2f;
                     scale *= scale;
                     Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(120, 120, 120, 0) * intensity2, NPC.rotation, spotlightOrig, scale, SpriteEffects.None, 0f);
                     Main.spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * intensity2, NPC.rotation, spotlightOrig, scale * 2.15f, SpriteEffects.None, 0f);
@@ -1580,7 +1580,7 @@ namespace Aequus.NPCs.Boss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(new TrophyDrop(ModContent.ItemType<OmegaStariteTrophy>()));
+            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<OmegaStariteTrophy>(), 10));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<OmegaStariteBag>()));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<OmegaStariteRelic>()));
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DragonBall>(), 4));

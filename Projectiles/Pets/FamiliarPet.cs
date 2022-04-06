@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Hooklists;
-using Aequus.Common.Utilities;
+using Aequus.Effects;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -89,7 +88,7 @@ namespace Aequus.Projectiles.Pets
             {
                 return false;
             }
-            var batchData = new SpriteBatchData(Main.spriteBatch);
+            var batchData = new SpriteBatchDataCache(Main.spriteBatch);
             PlayerHooklist.PlayerDrawScale = Projectile.scale;
             Main.spriteBatch.End();
             Main.PlayerRenderer.DrawPlayers(Main.Camera, new Player[] { dummyPlayer });

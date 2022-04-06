@@ -1,6 +1,5 @@
-﻿using Aequus.Assets.Effects;
+﻿using Aequus.Effects;
 using Aequus.Items.Weapons.Melee;
-using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
@@ -45,7 +44,7 @@ namespace Aequus.Projectiles.Melee
         {
             if (Main.myPlayer == Projectile.owner)
             {
-                GameEffects.Instance.SetShake(2f, 2f);
+                ModContent.GetInstance<ModEffects>().SetShake(2f, 2f);
                 MirrorsCallExplosion.ExplosionEffects(target.Center, colorProgress, 0.75f);
                 int p = Projectile.NewProjectile(Projectile.GetProjectileSource_OnHit(target, Type), target.Center,
                     Vector2.Normalize(target.Center - Main.player[Projectile.owner].Center), ModContent.ProjectileType<MirrorsCallExplosion>(), (int)(Projectile.damage * 0.4f), Projectile.knockBack, Projectile.owner);

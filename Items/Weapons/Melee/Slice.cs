@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Players;
-using Aequus.Items.Recipes;
+﻿using Aequus.Items.Recipes;
 using Aequus.Projectiles.Melee;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;

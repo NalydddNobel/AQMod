@@ -9,38 +9,38 @@ namespace Aequus.Content.Invasions
 {
     public sealed class GaleStreams : ModSystem
     {
-        public static InvasionStatus status;
+        public static InvasionStatus Status { get; set; }
         public static byte updateTimer;
         public static bool SupressWindUpdates { get; set; }
 
         public override void SaveWorldData(TagCompound tag)
         {
-            tag["Status"] = (byte)status;
+            tag["Status"] = (byte)Status;
         }
 
         public override void LoadWorldData(TagCompound tag)
         {
-            status = (InvasionStatus)tag.Get<byte>("Status");
+            Status = (InvasionStatus)tag.Get<byte>("Status");
         }
 
         public override void PostUpdateWorld()
         {
             if (!WorldFlags.HardmodeTier)
             {
-                status = InvasionStatus.Inactive;
+                Status = InvasionStatus.Inactive;
                 return;
             }
             if (Main.WindyEnoughForKiteDrops)
             {
-                status = InvasionStatus.Active;
+                Status = InvasionStatus.Active;
             }
             else
             {
-                status = InvasionStatus.Inactive;
+                Status = InvasionStatus.Inactive;
             }
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                if (status == InvasionStatus.Active)
+                if (Status == InvasionStatus.Active)
                 {
                     UpdateActive();
                 }

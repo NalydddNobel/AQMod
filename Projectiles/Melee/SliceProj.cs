@@ -1,6 +1,5 @@
-﻿using Aequus.Assets.Effects.Prims;
-using Aequus.Common.Configuration;
-using Aequus.Common.Players;
+﻿using Aequus.Common.Configuration;
+using Aequus.Effects.Prims;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -124,7 +123,7 @@ namespace Aequus.Projectiles.Melee
             float trailOutwards = texture.Size().Length() * Projectile.scale - 40f * Projectile.scale;
             bool reverseTrail = Projectile.direction == -1 ? combo > 0 : combo == 0;
             var oldPos = Array.ConvertAll(Projectile.oldPos, (v) => Vector2.Normalize(v) * trailOutwards);
-            if (ClientConfiguration.Instance.effectQuality >= 1f)
+            if (ClientConfiguration.Instance.HighQuality)
             {
                 if (primBlue == null)
                 {

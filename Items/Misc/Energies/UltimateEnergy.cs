@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.Utilities;
+﻿using Aequus.Common.Utilities.Coloring;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -2,8 +2,16 @@
 
 namespace Aequus.Common.Utilities
 {
-    public static class ReflectionHelper
+    public static class ModHelper
     {
+        public static T GetValue<T>(this PropertyInfo property, object obj)
+        {
+            return (T)property.GetValue(obj);
+        }
+        public static T GetValue<T>(this FieldInfo field, object obj)
+        {
+            return (T)field.GetValue(obj);
+        }
         public static T ReflectiveCloneTo<T>(this T obj, T obj2)
         {
             return ReflectionClone(obj, obj2, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);

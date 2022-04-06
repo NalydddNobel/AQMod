@@ -1,4 +1,4 @@
-﻿namespace Aequus.Assets.Effects
+﻿namespace Aequus.Common
 {
     public enum CameraPriority
     {

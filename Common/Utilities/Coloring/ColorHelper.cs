@@ -1,23 +1,20 @@
-﻿using Aequus.Common.Utilities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
+namespace Aequus.Common.Utilities.Coloring
 {
     public sealed class ColorHelper : ILoadable
     {
-        internal static Color BossMessage => new Color(175, 75, 255, 255);
-        internal static Color EventMessage => new Color(50, 255, 130, 255);
         internal static Color Furniture => new Color(191, 142, 111);
 
         public static ColorHelper Instance;
 
-        public readonly byte[] Paints;
-        public readonly Dictionary<short, byte> DyeToPaint;
-        public readonly Dictionary<byte, short> PaintToDye;
-        public readonly Dictionary<byte, short> PaintToYoyoString;
+        public byte[] Paints { get; private set; }
+        public Dictionary<short, byte> DyeToPaint { get; private set; }
+        public Dictionary<byte, short> PaintToDye { get; private set; }
+        public Dictionary<byte, short> PaintToYoyoString { get; private set; }
 
         public IColorGradient AquaticGrad;
         public IColorGradient AtmosphericGrad;
@@ -28,13 +25,20 @@ namespace Aequus.Common
 
         public ColorHelper()
         {
+            InitalizeGradients();
+            InitalizeSets();
+        }
+        private void InitalizeGradients()
+        {
             AquaticGrad = new ColorWaveGradient(4f, new Color(111, 111, 190, 0), new Color(144, 144, 255, 0));
             AtmosphericGrad = new ColorWaveGradient(4f, new Color(200, 150, 10, 0) * 0.8f, new Color(255, 230, 70, 0) * 0.8f);
             CosmicGrad = new ColorWaveGradient(4f, new Color(90, 30, 200, 0), new Color(190, 120, 255, 0));
             DemonicGrad = new ColorWaveGradient(4f, new Color(222, 100, 10, 0) * 0.8f, new Color(255, 255, 120, 0) * 0.8f);
             OrganicGrad = new ColorWaveGradient(4f, new Color(120, 255, 60, 0), new Color(180, 250, 90, 0));
             UltimateGrad = new ColorWaveGradient(8f, new Color(150, 255, 255, 0), new Color(255, 150, 255, 0));
-
+        }
+        private void InitalizeSets()
+        {
             Paints = new byte[]
             {
                 PaintID.RedPaint,

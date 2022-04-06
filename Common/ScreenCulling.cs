@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Common.Utilities
+namespace Aequus.Common
 {
     public sealed class ScreenCulling
     {

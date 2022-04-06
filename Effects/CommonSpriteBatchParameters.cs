@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace AQMod.Effects
+namespace Aequus.Effects
 {
     internal static class CommonSpriteBatchParameters
     {

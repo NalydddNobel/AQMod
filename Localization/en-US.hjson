@@ -1608,11 +1608,6 @@ Mods: {
 			AwakenedCrabson: Crabson has awoken!
 			KeyUnbound: "'Unbound Key'"
 			KeyBound: "'{0}' Key"
-			ConfigName_AQConfigClient: Client Config
-			ConfigHeader_Visuals: Visuals
-			ConfigHeader_Misc: Misc
-			ConfigHeader_World: World
-			ConfigHeader_Debug: Debug
 			EightballAnswer0: Yes
 			EightballAnswer1: My sources say no
 			EightballAnswer2: It is certain
@@ -1804,99 +1799,16 @@ Mods: {
 			eventRichPresenceTooltip: Will add a rich presence for all Aequus events
 		}
 
-		ClientConfig: {
-			Name: Client Config
+		Configuration: {
+			Client: {
+				Headers: {
+					Visuals: Visuals
+				}
 
-			Header: {
-				Visuals: Visuals
-				Xmas: Xmas
-				UI: User Interface
-				Worldgen: World Gen
+				ScreenshakeIntensity: Screenshake Intensity
+				FlashIntensity: Flash Intensity
+				HighQuality: High Quality
 			}
-
-			EffectIntensity: Effect Intensity
-			FlashIntensity: Flash Intensity
-			EffectQuality: Effect Quality
-			ShowCompletedAnglerQuestsCount: Show Completed Angler Quests Count
-			XmasBackground: Xmas Background
-			XmasBackgroundTooltip:
-				'''
-				Whether or not to use a Xmas background in special Xmas worlds
-				{$Mods.Aequus.Config.RequiresReload}
-				'''
-			XmasProgressMeterOverride: Xmas Progress Meter Override
-			XmasProgressMeterOverrideTooltip:
-				'''
-				Whether or not to have the "AQ Xmas" seed override your worldgen progress bar. This sometimes has conflicts with Worldgen Previewer
-				{$Mods.Aequus.Config.RequiresReload}
-				'''
-			DemonSiegeUpgradeTooltip: "Demon Siege Upgrade Tooltip "
-			DemonSiegeUpgradeTooltipTooltip: Whether or not 'Can be upgraded at a Hell Altar' appears on an item's tooltip if it is upgradeable at the Gore Nest
-			HookBarbBlacklistTooltip: "Hook Barb Blacklist Tooltip "
-			HookBarbBlacklistTooltipTooltip: Whether or not 'Does not get affected by hook barb upgrades' appears on an item's tooltip if it cannot have hook barb upgrades
-			MapUITogglesPosition: Map UI: Icon Toggle Pos
-			MapUITogglesPositionTooltip: Moves the Icon Toggle UI on the map, instantly snaps onto screen if its position goes off
-			Screenshakes: Screenshakes
-			TonsofScreenShakes: Extra Unnecessary Screenshakes
-		}
-
-		ServerConfig: {
-			Name: Server Config
-
-			Header: {
-				QualityOfLife: "[c/ffdddd:Quality of Life]"
-				World: "[c/ddeeff:World]"
-				WorldGen: "[c/eeffdd:WorldGen]"
-				Debug: Debug
-			}
-
-			DemonSiegeDowngrades: Demon Siege Downgrades
-			DemonSiegeDowngradesTooltip:
-				'''
-				Adds recipes for downgrading weapons upgraded at the Demon Siege.
-				{$Mods.Aequus.Config.RequiresReload}
-				'''
-			ReduceSpawns: Reduce Spawns during Bossfights
-			ReduceSpawnsTooltip:
-				'''
-				Practically disables spawns for Aequus bossfights.
-				Would require a reload if anything in the world is currently reducing spawns.
-				'''
-			HarderOmegaStarite: Omega Starite always uses Harder AI
-			HarderOmegaStariteTooltip:
-				'''
-				Makes Omega Starite always use its glimmer event version even when the glimmer event is not active
-				This will not mean it will drop the Ultimate Sword outside of the glimmer event
-				Cannot be changed if Omega Starite is alive.
-				'''
-			CooldownReforges: Cooldown Refoges
-			CooldownReforgesTooltip:
-				'''
-				Whether or not to load cooldown reforges
-				If you get a prefix error when loading this mod with others, you can disable this to remove some prefixes
-				'''
-			JellyfishNecklace: Remove Jellyfish Necklace drop from Blue Jellyfish ([i:1303])
-			JellyfishNecklaceTooltip: If you disable this, the Blue Jellyfish would be able to drop both the Jellyfish Necklace and Shock Collar.
-			OverrideVanillaChestLoot: Overwrite Vanilla Chest Loot
-			OverrideVanillaChestLootTooltip:
-				'''
-				Whether or not special Aequus items will overwrite vanilla items in chests.
-				If this is disabled, Aequus loot will generate with all previous loot intact.
-				'''
-			GenerateOceanRavines: Crab Crevice
-			GenerateOceanRavinesTooltip: Whether or not to generate the crab crevice.
-			FixBabyPools: Fix Baby Pools
-			FixBabyPoolsTooltip:
-				'''
-				Removes those 1 block tall pools of water which generate on the surface.
-				May cause minor issues with structures that generate on the surface with water.
-				'''
-			DebugCommand: Debug Mode (/ncall)
-			DebugCommandTooltip:
-				'''
-				Enables the /ncall debug command.
-				{$Mods.Aequus.Config.RequiresReload}
-				'''
 		}
 
 		Complete: Complete

@@ -1,15 +1,40 @@
 ﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
-namespace Aequus.Assets.Effects
+namespace Aequus.Effects
 {
-    partial class EffectsSystem
+    public sealed class EffectsSystem : ModSystem
     {
-        internal void LoadHooks()
+        public static DrawIndexCache NPCsBehindAllNPCs { get; private set; }
+        public static DrawIndexCache ProjsBehindTiles { get; private set; }
+
+        public override void PreUpdatePlayers()
         {
-            On.Terraria.Main.DrawNPCs += OnDrawNPCs;
+            if (Main.netMode != NetmodeID.Server)
+            {
+                ModContent.GetInstance<ModEffects>().UpdateFilters();
+            }
         }
 
-        internal static void OnDrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
+        public override void Load()
+        {
+            NPCsBehindAllNPCs = new DrawIndexCache();
+            ProjsBehindTiles = new DrawIndexCache();
+            ApplyHooks();
+        }
+        internal void ApplyHooks()
+        {
+            On.Terraria.Main.DrawNPCs += Hook_OnDrawNPCs;
+        }
+
+        public override void Unload()
+        {
+            NPCsBehindAllNPCs = null;
+            ProjsBehindTiles = null;
+        }
+
+        internal static void Hook_OnDrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
         {
             try
             {

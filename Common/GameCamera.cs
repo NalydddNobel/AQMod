@@ -1,14 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Assets.Effects
+namespace Aequus.Common
 {
-    public sealed class GameCamera : ILoadable
+    public sealed class GameCamera : ModSystem
     {
-        public static GameCamera Instance { get; private set; }
-
         public string FocusKey { get; private set; }
 
         private Vector2? target;
@@ -20,9 +19,15 @@ namespace Aequus.Assets.Effects
 
         private Vector2 ScreenTarget => target.Value - new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
 
-        public GameCamera()
+        public override void Load()
         {
             Initialize();
+        }
+
+        public override void OnWorldLoad()
+        {
+            if (Main.netMode != NetmodeID.Server)
+                Initialize();
         }
 
         internal void Initialize()
@@ -110,16 +115,6 @@ namespace Aequus.Assets.Effects
         internal static Vector2 GetY(Vector2 position)
         {
             return Main.player[Main.myPlayer].gravDir == -1 ? new Vector2(position.X, -position.Y + Main.screenHeight) : new Vector2(position.X, position.Y);
-        }
-
-        void ILoadable.Load(Mod mod)
-        {
-            Instance = this;
-        }
-
-        void ILoadable.Unload()
-        {
-            Instance = null;
         }
     }
 }

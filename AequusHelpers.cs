@@ -12,6 +12,11 @@ namespace Aequus
 {
     public static partial class AequusHelpers
     {
+        public static bool ShouldDoEffects(Vector2 location)
+        {
+            return Main.netMode != NetmodeID.Server && (new Vector2(Main.screenPosition.X + Main.screenWidth / 2f, Main.screenPosition.Y + Main.screenHeight / 2f) - location).Length() < 2000f;
+        }
+
         public static int RollVanillaSwordPrefix(Item item, UnifiedRandom rand)
         {
             int choice = rand.Next(40);
@@ -98,7 +103,7 @@ namespace Aequus
                 case 39:
                     return PrefixID.Legendary;
             }
-        }        
+        }
         public static int RollSwordPrefix(Item item, UnifiedRandom rand)
         {
             int num = RollVanillaSwordPrefix(item, rand);
@@ -185,8 +190,26 @@ namespace Aequus
 
         public static Color LerpBetween(Color[] colors, float amount)
         {
-            int index = (int)(amount % colors.Length);
-            return Color.Lerp(colors[index], colors[(index + 1) % (colors.Length - 1)], amount % 1f);
+            if (amount < 0f)
+            {
+                amount %= colors.Length;
+                amount = colors.Length - amount;
+            }
+            int index = (int)amount;
+            return Color.Lerp(colors[index % colors.Length], colors[(index + 1) % colors.Length], amount % 1f);
+            //try
+            //{
+            //}
+            //catch
+            //{
+            //    Main.NewText(index);
+            //    Main.NewText(index % colors.Length, Color.Blue);
+            //    Main.NewText((index + 1) % colors.Length, Color.Red);
+            //    Main.NewText(amount, Color.BlanchedAlmond);
+            //    Main.NewText(amount % colors.Length, Color.AliceBlue);
+            //    Main.NewText(colors.Length, Main.DiscoColor);
+            //}
+            //return Color.Black;
         }
 
         public static int TimedBasedOn(int timer, int ticksPer, int loop)

@@ -10,6 +10,7 @@ namespace Aequus.Localization
     partial class AequusText
     {
         public static Color BossSummonColor => new Color(175, 75, 255, 255);
+        internal static Color EventMessage => new Color(50, 255, 130, 255);
 
         public static void BroadcastAwakened(NPC npc)
         {

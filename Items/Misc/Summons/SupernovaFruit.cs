@@ -1,7 +1,7 @@
-﻿using Aequus.Items.Misc.Dyes;
+﻿using Aequus.Effects;
+using Aequus.Items.Misc.Dyes;
 using Aequus.Localization;
 using Aequus.NPCs.Boss;
-using AQMod.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

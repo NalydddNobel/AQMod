@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.Assets.Effects.Prims
+namespace Aequus.Effects.Prims
 {
-    public class SwordSlashPrimRenderer : LegacyPrimRenderer
+    public sealed class SwordSlashPrimRenderer : LegacyPrimRenderer
     {
         public float coord1;
         public float coord2;

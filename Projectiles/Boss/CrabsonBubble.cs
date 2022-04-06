@@ -1,4 +1,4 @@
-﻿using Aequus.Assets.Effects;
+﻿using Aequus.Effects;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

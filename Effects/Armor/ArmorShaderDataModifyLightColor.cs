@@ -4,7 +4,7 @@ using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Assets.Effects.Armor
+namespace Aequus.Effects.Armor
 {
     public class ArmorShaderDataModifyLightColor : ArmorShaderData, IModifyLightColor
     {

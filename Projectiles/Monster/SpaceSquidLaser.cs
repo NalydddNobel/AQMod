@@ -1,4 +1,4 @@
-﻿using Aequus.Assets.Effects.Prims;
+﻿using Aequus.Effects.Prims;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

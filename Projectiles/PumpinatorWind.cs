@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles
@@ -55,8 +54,8 @@ namespace Aequus.Projectiles
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 var npc = Main.npc[i];
-                if (npc.active && !npc.dontTakeDamage && !npc.immortal && 
-                    Projectile.Colliding(Projectile.getRect(), npc.getRect()) && 
+                if (npc.active && !npc.dontTakeDamage && !npc.immortal &&
+                    Projectile.Colliding(Projectile.getRect(), npc.getRect()) &&
                     NPCSets.WindUpdates.Contains(Main.projectile[i].type))
                 {
                     npc.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack / 45f;
@@ -66,7 +65,7 @@ namespace Aequus.Projectiles
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 var proj = Main.projectile[i];
-                if (i != Projectile.whoAmI && proj.active && 
+                if (i != Projectile.whoAmI && proj.active &&
                     Projectile.Colliding(Projectile.getRect(), proj.getRect()) &&
                     ProjSets.WindUpdates.Contains(Main.projectile[i].type))
                 {
