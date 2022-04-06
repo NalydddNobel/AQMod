@@ -65,6 +65,7 @@ namespace Aequus.Projectiles.Melee
                 Main.projectile[p].scale = explosionScale;
                 Main.projectile[p].width = (int)(Main.projectile[p].width * explosionScale);
                 Main.projectile[p].height = (int)(Main.projectile[p].height * explosionScale);
+                Main.projectile[p].Center = target.Center;
                 Main.projectile[p].Mod<MirrorsCallExplosion>().colorProgress = colorProgress + 1f;
             }
         }
