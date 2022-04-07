@@ -12,7 +12,7 @@ namespace Aequus.Items.Recipes
             modItem.CreateRecipe()
                 .AddIngredient(original)
                 .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
-                .AddIngredient(ModContent.ItemType<SiphonTentacle>(), 12)
+                .AddIngredient(ModContent.ItemType<GelidTentacle>(), 12)
                 .AddIngredient(ItemID.SoulofFlight, 8)
                 .AddTile(TileID.Anvils)
                 .Register();

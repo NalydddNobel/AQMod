@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc
@@ -7,6 +8,7 @@ namespace Aequus.Items.Misc
     {
         public override void SetStaticDefaults()
         {
+            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(4, 6));
             this.SetResearch(25);
         }
 

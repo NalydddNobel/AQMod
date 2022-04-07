@@ -1,7 +1,11 @@
 ﻿using Aequus.Common;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
+using Aequus.Projectiles;
+using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus
@@ -27,11 +31,15 @@ namespace Aequus
         /// Applied by <see cref="Buffs.Pets.FamiliarBuff"/>
         /// </summary>
         public bool familiarPet;
-
         /// <summary>
         /// Applied by <see cref="Buffs.Pets.OmegaStariteBuff"/>
         /// </summary>
         public bool omegaStaritePet;
+
+        /// <summary>
+        /// Applied by <see cref="Buffs.Debuffs.BlueFire"/>
+        /// </summary>
+        public bool freezingAmulet;
 
         /// <summary>
         /// Tracks <see cref="Terraria.Player.selectedItem"/>, reset in <see cref="PostItemCheck"/>
@@ -69,10 +77,62 @@ namespace Aequus
         /// </summary>
         public bool eventGaleStreams;
 
+        public TrackedProjectileReference itemDropChooser;
+
+        public override void Load()
+        {
+            On.Terraria.Player.HandleBeingInChestRange += Hook_CustomChestRangeSupport;
+        }
+
+        private static void Hook_CustomChestRangeSupport(On.Terraria.Player.orig_HandleBeingInChestRange orig, Player self)
+        {
+            if (self.chest == -1)
+            {
+                int p = self.GetModPlayer<AequusPlayer>().itemDropChooser.ProjectileLocalIndex;
+                if (p >= 0)
+                {
+                    if (!Main.projectile[p].active || (Main.projectile[p].type != ModContent.ProjectileType<ItemDropChooser>()))
+                    {
+                        SoundEngine.PlaySound(SoundID.MenuClose);
+                        Recipe.FindRecipes();
+                        self.GetModPlayer<AequusPlayer>().itemDropChooser.Clear();
+                    }
+                    else
+                    {
+                        int num = (int)((self.position.X + self.width * 0.5) / 16.0);
+                        int num2 = (int)((self.position.Y + self.height * 0.5) / 16.0);
+                        var vector = Main.projectile[p].Hitbox.ClosestPointInRect(self.Center);
+                        self.chestX = (int)vector.X / 16;
+                        self.chestY = (int)vector.Y / 16;
+                        if (num < self.chestX - Player.tileRangeX || num > self.chestX + Player.tileRangeX + 1 || num2 < self.chestY - Player.tileRangeY || num2 > self.chestY + Player.tileRangeY + 1)
+                        {
+                            SoundEngine.PlaySound(SoundID.MenuClose);
+                            Recipe.FindRecipes();
+                            self.GetModPlayer<AequusPlayer>().itemDropChooser.Clear();
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    self.GetModPlayer<AequusPlayer>().itemDropChooser.Clear();
+                }
+            }
+            else
+            {
+                self.GetModPlayer<AequusPlayer>().itemDropChooser.Clear();
+            }
+            orig(self);
+        }
+
         public override void Initialize()
         {
-               itemCooldown = 0; 
-             itemCooldownMax = 0;
+            itemDropChooser.Clear();
+            itemCooldown = 0;
+            itemCooldownMax = 0;
             itemCombo = 0;
             itemSwitch = 0;
             interactionCooldown = 60;

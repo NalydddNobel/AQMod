@@ -637,7 +637,7 @@ namespace Aequus.NPCs.Monsters.Sky
             npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<SpaceSquidTrophy>(), 10));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<SpaceSquidRelic>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SiphonTentacle>(), 1, 10, 24));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GelidTentacle>(), 1, 10, 24));
             npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 2, 6));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrostbiteDye>(), 7));
         }

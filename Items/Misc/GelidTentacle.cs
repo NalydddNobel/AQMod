@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc
 {
-    public class SiphonTentacle : ModItem
+    public class GelidTentacle : ModItem
     {
         public override void SetStaticDefaults()
         {

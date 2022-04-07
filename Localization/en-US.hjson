@@ -61,6 +61,10 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			ArtifactOfDissonance: Artifact of Dissonance
+			ArtifactOfKin: Artifact of Kin
+			ArtifactOfSwarms: Artifact of Swarms
+			ArtifactOfCommand: Artifact of Command
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 			SpaceSquidRelic: Space Squid Relic
@@ -108,7 +112,7 @@ Mods: {
 			FidgetSpinner: Perpetuator
 			DegenerationRing: Flame Resistance Ring
 			HeatedAmulet: Heated Amulet
-			FreezingAmulet: Freezing Amulet
+			FrigidTalisman: Frigid Talisman
 			NormalizerAmulet: Normalized Amulet
 			MinersFlashlight: Miner's Flashlight
 			Extractor: Extractor Cog
@@ -162,7 +166,7 @@ Mods: {
 			Snowgrave: Snowgrave
 			UltimateSword: Ultimate Sword
 			Fluorescence: Fluorescence
-			SiphonTentacle: Siphon Tentacle
+			GelidTentacle: Gelid Tentacle
 			CrustaciumBar: Crustacium Bar
 			CrustaciumBlob: Crustacium Blob
 			CrustaciumOre: Crustacium Ore
@@ -354,6 +358,28 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Fluorescence: 'Pulsates with violence'
+			GelidTentacle: 'It's twitching...'
+			ArtifactOfDissonance:
+				'''
+				Monsters can appear outside their usual environments
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				'''
+			ArtifactOfKin:
+				'''
+				Monsters will be of only one type for a minute
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				'''
+			ArtifactOfSwarms:
+				'''
+				Monster spawns are doubled, but monster maximum health is halved
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				'''
+			ArtifactOfCommand:
+				'''
+				Choose your items
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				'''
 			MirrorsCall:
 				'''
 				Strike your enemy from the comfort of your couch!
@@ -492,10 +518,10 @@ Mods: {
 				Prevents most types of freezing
 				Lowers the intensity of cold from Gale Streams enemies
 				'''
-			FreezingAmulet:
+			FrigidTalisman:
 				'''
 				Prevents most types of burning
-				Lowers the intensity of heat from Gale Streams enemies
+				Lowers the intensity of heat from gale streams enemies
 				'''
 			NormalizerAmulet:
 				'''
