@@ -12,6 +12,18 @@ namespace Aequus
 {
     public static partial class AequusHelpers
     {
+        public static int CheckForPlayers(Rectangle rectangle)
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && !Main.player[i].dead && rectangle.Intersects(Main.player[i].getRect()))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         public static bool ShouldDoEffects(Vector2 location)
         {
             return Main.netMode != NetmodeID.Server && (new Vector2(Main.screenPosition.X + Main.screenWidth / 2f, Main.screenPosition.Y + Main.screenHeight / 2f) - location).Length() < 2000f;
