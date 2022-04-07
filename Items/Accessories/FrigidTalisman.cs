@@ -8,6 +8,11 @@ namespace Aequus.Items.Accessories
 {
     public class FrigidTalisman : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 28;
