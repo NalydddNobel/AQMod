@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.ItemDrops;
+using Aequus.Content.Artifacts;
 using Aequus.Items.Misc.Energies;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
@@ -42,6 +43,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 ImmuneToAllBuffsThatAreNotWhips = true,
                 ImmuneToWhips = true,
             });
+            ArtifactsSystem.SwarmsNPCBlacklist.Add(Type);
         }
 
         public override void SetDefaults()

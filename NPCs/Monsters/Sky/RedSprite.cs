@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
+using Aequus.Content.Artifacts;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Aequus.Items.Misc;
@@ -199,6 +200,14 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 NPC.ai[0] = -1;
                 return;
+            }
+            var parent = NPC.GetGlobalNPC<ArtifactsNPC>().swarmParent;
+            if (parent != null)
+            {
+                if ((int)parent.ai[0] == (int)NPC.ai[0])
+                {
+                    RandomizePhase((int)NPC.ai[0]);
+                }
             }
             switch ((int)NPC.ai[0])
             {

@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.ItemDrops;
+using Aequus.Content.Artifacts;
 using Aequus.Effects;
 using Aequus.Items.Consumables.TreasureBags;
 using Aequus.Items.Misc.Energies;
@@ -376,6 +377,14 @@ namespace Aequus.NPCs.Boss
                             {
                                 SetGoodbyeState();
                                 return;
+                            }
+                        }
+                        var parent = NPC.GetGlobalNPC<ArtifactsNPC>().swarmParent;
+                        if (parent != null)
+                        {
+                            if ((int)parent.ai[0] == (int)NPC.ai[0])
+                            {
+                                RandomizePhase((int)NPC.ai[0]);
                             }
                         }
                         if ((int)NPC.ai[0] == Phase_Intro)

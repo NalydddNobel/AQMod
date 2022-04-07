@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ID;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -24,6 +25,11 @@ namespace Aequus.Items.Misc
             Item.maxStack = 999;
             Item.rare = ItemRarities.GaleStreams - 1;
             Item.value = Item.sellPrice(silver: 15);
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
         }
     }
 }

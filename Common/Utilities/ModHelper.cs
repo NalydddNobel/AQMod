@@ -14,9 +14,9 @@ namespace Aequus.Common.Utilities
         }
         public static T ReflectiveCloneTo<T>(this T obj, T obj2)
         {
-            return ReflectionClone(obj, obj2, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            return ReflectiveCloneTo(obj, obj2, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         }
-        public static T ReflectionClone<T>(this T obj, T obj2, BindingFlags flags)
+        public static T ReflectiveCloneTo<T>(this T obj, T obj2, BindingFlags flags)
         {
             var t = typeof(T);
             foreach (var f in t.GetFields(flags))

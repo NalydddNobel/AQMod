@@ -3,6 +3,7 @@ using Aequus.Common;
 using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
+using Aequus.Content.Artifacts;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Aequus.Effects.Prims;
@@ -305,6 +306,14 @@ namespace Aequus.NPCs.Boss
             Player player = Main.player[NPC.target];
             var plrCenter = player.Center;
             float speed = NPC.velocity.Length();
+            var parent = NPC.GetGlobalNPC<ArtifactsNPC>().swarmParent;
+            if (parent != null)
+            {
+                if ((int)parent.ai[0] == (int)NPC.ai[0])
+                {
+                    NPC.ai[0] = PHASE_ASSAULT_PLAYER;
+                }
+            }
             switch ((int)NPC.ai[0])
             {
                 default:
@@ -1395,7 +1404,10 @@ namespace Aequus.NPCs.Boss
             if ((int)NPC.ai[0] == -1)
             {
                 intensity += NPC.ai[1] / 20;
-                ModContent.GetInstance<GameCamera>().SetTarget("Omega Starite", NPC.Center, CameraPriority.NPCDefeat, 12f, 60);
+                if (NPC.CountNPCS(Type) == 1)
+                {
+                    ModContent.GetInstance<GameCamera>().SetTarget("Omega Starite", NPC.Center, CameraPriority.NPCDefeat, 12f, 60);
+                }
 
                 ModContent.GetInstance<ModEffects>().SetFlash(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 4f), 12f);
                 ModContent.GetInstance<ModEffects>().SetShake(intensity * 2f, 24f);

@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.ItemDrops;
+using Aequus.Content.Artifacts;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Sounds;
@@ -26,6 +27,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             NPCID.Sets.TrailCacheLength[NPC.type] = 20;
+            ArtifactsSystem.SwarmsNPCBlacklist.Add(Type);
         }
 
         public override void SetDefaults()
@@ -127,6 +129,11 @@ namespace Aequus.NPCs.Monsters.Sky
                 NPC.ai[1] = 2f;
                 NPC.ai[2] = -1f;
                 int count = Main.rand.Next(3) + 1;
+                int swarmCount = count;
+                if (ArtifactsSystem.SwarmsGameMode)
+                {
+                    count *= 2;
+                }
                 int npcX = (int)NPC.position.X + NPC.width / 2;
                 int npcY = (int)NPC.position.Y + NPC.height / 2;
                 int lastNPC = NPC.whoAmI;
@@ -138,12 +145,20 @@ namespace Aequus.NPCs.Monsters.Sky
                     Main.npc[n].ai[2] = lastNPC;
                     Main.npc[n].localAI[0] = NPC.localAI[0];
                     Main.npc[n].target = NPC.target;
+                    if (i >= swarmCount)
+                    {
+                        Main.npc[n].GetGlobalNPC<ArtifactsNPC>().swarmParent = Main.npc[lastNPC];
+                    }
                     lastNPC = n;
                     n = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), npcX - NPC.width * (i + 1), npcY, NPC.type, NPC.whoAmI);
                     Main.npc[n].ai[1] = NPC.ai[1];
                     Main.npc[n].ai[2] = lastNPC2;
                     Main.npc[n].localAI[0] = NPC.localAI[0];
                     Main.npc[n].target = NPC.target;
+                    if (i >= swarmCount)
+                    {
+                        Main.npc[n].GetGlobalNPC<ArtifactsNPC>().swarmParent = Main.npc[lastNPC2];
+                    }
                     lastNPC2 = n;
                 }
                 NPC.netUpdate = true;
