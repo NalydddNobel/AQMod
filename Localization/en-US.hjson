@@ -358,8 +358,8 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			Fluorescence: 'Pulsates with violence'
-			GelidTentacle: 'It's twitching...'
+			Fluorescence: "'Pulsates with violence'"
+			GelidTentacle: "'It's twitching...'"
 			ArtifactOfDissonance:
 				'''
 				Monsters can appear outside their usual environments
