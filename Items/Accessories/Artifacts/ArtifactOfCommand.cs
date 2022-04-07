@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Artifacts;
+using Aequus.Localization;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
