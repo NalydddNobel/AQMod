@@ -12,6 +12,8 @@ namespace Aequus.Items.Misc
         {
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(4, 6));
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemMaterialSorting.SoulOfFlight;
+            ItemID.Sets.ItemNoGravity[Type] = true;
+            ItemID.Sets.AnimatesAsSoul[Type] = true;
             this.SetResearch(25);
         }
 
