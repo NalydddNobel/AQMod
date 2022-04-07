@@ -31,10 +31,6 @@ namespace Aequus.Content.Artifacts
         }
         private void SwarmSpawn(NPC parent, NPC swarmChild)
         {
-            for (int i = 0; i < parent.localAI.Length; i++)
-            {
-                swarmChild.localAI[i] = parent.localAI[i];
-            }
             swarmChild.velocity = -parent.velocity;
             if (swarmChild.velocity.Length() > 0f)
             {
@@ -155,7 +151,7 @@ namespace Aequus.Content.Artifacts
                     else if (!ArtifactsSystem.SwarmsNPCBlacklist.Contains(npc.type) && npc.aiStyle != NPCAIStyleID.Worm && npc.aiStyle != NPCAIStyleID.TheDestroyer && !NPCID.Sets.ProjectileNPC[npc.type])
                     {
                         var p = npc.Center;
-                        int n = NPC.NewNPC(null, (int)p.X, (int)p.Y, npc.type, npc.whoAmI, npc.ai[0], npc.ai[1], npc.ai[2], npc.ai[3], npc.target);
+                        int n = NPC.NewNPC(null, (int)p.X, (int)p.Y, npc.type, npc.whoAmI, 0f, 0f, 0f, 0f, npc.target);
                         if (n != -1)
                         {
                             SwarmStats(npc);
