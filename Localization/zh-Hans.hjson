@@ -61,8 +61,12 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			ArtifactOfDissonance: 失谐造物
+			ArtifactOfKin: 血亲造物
+			ArtifactOfSwarms: 蜂群造物
+			ArtifactOfCommand: 指令造物
 			MirrorsCall: 镜之召
-			Slice: Slice
+			Slice: 利刃
 			SpaceSquidRelic: 太空乌贼纪念物
 			RedSpriteRelic: 红色精灵纪念物
 			CrabsonRelic: 巨蟹蛤纪念物
@@ -108,7 +112,7 @@ Mods: {
 			FidgetSpinner: 永续仪
 			DegenerationRing: 阻燃戒指
 			HeatedAmulet: 灼炎护符
-			FreezingAmulet: 霜结护符
+			FrigidTalisman: 寒霜护符
 			NormalizerAmulet: 化一护符
 			MinersFlashlight: 矿工的手电筒
 			Extractor: 提炼装备
@@ -162,7 +166,7 @@ Mods: {
 			Snowgrave: 雪墓
 			UltimateSword: 最终之剑
 			Fluorescence: 荧光
-			SiphonTentacle: 虹吸触手
+			GelidTentacle: 冰寒触手
 			CrustaciumBar: 硬壳锭
 			CrustaciumBlob: 硬壳肉
 			CrustaciumOre: 硬壳矿
@@ -354,6 +358,28 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Fluorescence: "'猛烈的跳动着'"
+			GelidTentacle: "'它在抽搐...'"
+			ArtifactOfDissonance:
+				'''
+				怪物可以出现在它们通常不会出现的环境
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				'''
+			ArtifactOfKin:
+				'''
+				怪物在一分钟内仅会出现一种类型
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				'''
+			ArtifactOfSwarms:
+				'''
+				怪物生成率加倍, 但怪物的最大生命值减半
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				'''
+			ArtifactOfCommand:
+				'''
+				选择你的物品
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				'''
 			MirrorsCall:
 				'''
 				从你舒适的沙发上打击敌人!
@@ -492,7 +518,7 @@ Mods: {
 				阻止大多数种类的冻结
 				降低来自紊流风暴敌人的冷源强度
 				'''
-			FreezingAmulet:
+			FrigidTalisman:
 				'''
 				阻止大多数种类的燃烧
 				降低来自紊流风暴敌人的热源强度
