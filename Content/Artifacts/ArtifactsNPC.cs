@@ -36,10 +36,14 @@ namespace Aequus.Content.Artifacts
                 swarmChild.localAI[i] = parent.localAI[i];
             }
             swarmChild.velocity = -parent.velocity;
-            swarmChild.UpdateNPC(swarmChild.whoAmI);
             if (swarmChild.velocity.Length() > 0f)
             {
                 swarmChild.velocity += new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f));
+            }
+            if (swarmChild.noTileCollide)
+            {
+                swarmChild.velocity += new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f));
+                swarmChild.position += new Vector2(Main.rand.NextFloat(-64f, 64f), Main.rand.NextFloat(-64f, 64f));
             }
             swarmChild.frame = parent.frame;
             var a = swarmChild.GetGlobalNPC<ArtifactsNPC>();
@@ -58,11 +62,11 @@ namespace Aequus.Content.Artifacts
                 }
             }
         }
-        public override bool PreAI(NPC npc)
+        public override void PostAI(NPC npc)
         {
             if (Main.netMode == NetmodeID.MultiplayerClient || !ArtifactsSystem.SwarmsGameMode)
             {
-                return true;
+                return;
             }
             if (swarmParent != null)
             {
@@ -180,7 +184,6 @@ namespace Aequus.Content.Artifacts
             }
 
             initalized = true;
-            return true;
         }
 
         public override bool PreKill(NPC npc)

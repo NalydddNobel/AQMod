@@ -42,6 +42,9 @@ namespace Aequus.Content.Artifacts
                 NPCID.PirateShipCannon,
                 NPCID.MothronSpawn,
                 NPCID.WindyBalloon,
+                NPCID.VortexLarva,
+                NPCID.StardustCellSmall,
+                NPCID.Slimeling,
             };
         }
 
