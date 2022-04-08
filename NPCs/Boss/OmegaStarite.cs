@@ -3,7 +3,7 @@ using Aequus.Common;
 using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
-using Aequus.Content.Artifacts;
+using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Aequus.Effects.Prims;
@@ -306,10 +306,13 @@ namespace Aequus.NPCs.Boss
             Player player = Main.player[NPC.target];
             var plrCenter = player.Center;
             float speed = NPC.velocity.Length();
-            var parent = NPC.GetGlobalNPC<ArtifactsNPC>().swarmParent;
-            if (parent != null && !parent.dontTakeDamage && (int)parent.ai[0] == (int)NPC.ai[0])
+            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
             {
-                NPC.ai[0] = PHASE_ASSAULT_PLAYER;
+                var parent = ROR2ArtifactsSupport.GetParent(NPC);
+                if (parent != null && !parent.dontTakeDamage && (int)parent.ai[0] == (int)NPC.ai[0])
+                {
+                    NPC.ai[0] = PHASE_ASSAULT_PLAYER;
+                }
             }
             switch ((int)NPC.ai[0])
             {

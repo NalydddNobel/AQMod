@@ -8,7 +8,7 @@ namespace Aequus.Effects
         public float Intensity;
         public float MultiplyPerTick;
 
-        public void Set(Vector2 location, float brightness, float multiplier = 0.75f)
+        public void Set(Vector2 location, float brightness, float multiplier = 0.9f)
         {
             FlashLocation = location;
             Intensity = brightness;

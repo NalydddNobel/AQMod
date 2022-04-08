@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.ItemDrops;
-using Aequus.Content.Artifacts;
+using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Aequus.Items.Misc;
@@ -219,16 +219,19 @@ namespace Aequus.NPCs.Monsters.Sky
                 NPC.ai[0] = Phase_Goodbye;
                 return;
             }
-            var parent = NPC.GetGlobalNPC<ArtifactsNPC>().swarmParent;
-            if (parent != null)
+            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
             {
-                if ((int)parent.ai[0] == Phase_SpaceGun)
+                var parent = ROR2ArtifactsSupport.GetParent(NPC);
+                if (parent != null)
                 {
-                    NPC.ai[0] = Phase_SnowflakeSpiral;
-                }
-                else
-                {
-                    NPC.ai[0] = Phase_SpaceGun;
+                    if ((int)parent.ai[0] == Phase_SpaceGun)
+                    {
+                        NPC.ai[0] = Phase_SnowflakeSpiral;
+                    }
+                    else
+                    {
+                        NPC.ai[0] = Phase_SpaceGun;
+                    }
                 }
             }
             switch ((int)NPC.ai[0])

@@ -48,7 +48,7 @@ namespace Aequus.Effects
                     .UseOpacity(1f).UseTargetPosition(Flash.FlashLocation);
                 }
                 Flash.Intensity *= Flash.MultiplyPerTick;
-                if (Flash.Intensity <= 0f)
+                if (Flash.Intensity <= 0.01f)
                 {
                     Flash.Clear();
                 }

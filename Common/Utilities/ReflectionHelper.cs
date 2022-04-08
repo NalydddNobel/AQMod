@@ -2,7 +2,7 @@
 
 namespace Aequus.Common.Utilities
 {
-    public static class ModHelper
+    public static class ReflectionHelper
     {
         public static T GetValue<T>(this PropertyInfo property, object obj)
         {
