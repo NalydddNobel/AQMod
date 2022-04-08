@@ -16,9 +16,9 @@ namespace Aequus.Content.CrossMod
             return (NPC)ROR2Artifacts.Call("GetParent", me);
         }
 
-        public static NPC SetParent(NPC parent)
+        public static NPC SetParent(NPC me, NPC parent)
         {
-            return (NPC)ROR2Artifacts.Call("SetParent", parent);
+            return (NPC)ROR2Artifacts.Call("SetParent", me, parent);
         }
     }
 }

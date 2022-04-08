@@ -125,6 +125,69 @@ namespace Aequus.NPCs.Boss
 
         private void SpawnClaws(Vector2 center)
         {
+            var myParent = ROR2ArtifactsSupport.GetParent(NPC);
+            if (myParent != null)
+            {
+                NPC.alpha = 255;
+                NPC.ai[1]++;
+                if (NPC.ai[1] < 60f)
+                {
+                    NPC.ai[0] = Phase_Initalize;
+                    if (myParent.whoAmI == crabson || myParent.ModNPC<Crabson>().crabson == myParent.whoAmI || !IsClaw)
+                    {
+                        crabson = NPC.whoAmI;
+                    }
+                    else
+                    {
+                        NPC.direction = myParent.direction;
+                        if (NPC.direction == -1)
+                        {
+                            leftClaw = NPC.whoAmI;
+                        }
+                        else
+                        {
+                            rightClaw = NPC.whoAmI;
+                        }
+                        for (int i = 0; i < Main.maxNPCs; i++)
+                        {
+                            if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].type == Type)
+                            {
+                                if (ROR2ArtifactsSupport.GetParent(Main.npc[i]) != null)
+                                {
+                                    var crab2 = Main.npc[i].ModNPC<Crabson>();
+                                    if (crab2.crabson == i)
+                                    {
+                                        if (NPC.direction == -1)
+                                        {
+                                            crab2.leftClaw = NPC.whoAmI;
+                                        }
+                                        else
+                                        {
+                                            crab2.rightClaw = NPC.whoAmI;
+                                        }
+                                        crabson = i;
+                                    }
+                                    else if (crab2.leftClaw == i)
+                                    {
+                                        crab2.rightClaw = NPC.whoAmI;
+                                        leftClaw = i;
+                                    }
+                                    else if (crab2.rightClaw == i)
+                                    {
+                                        crab2.leftClaw = NPC.whoAmI;
+                                        rightClaw = i;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    NPC.ai[1] = 0f;
+                }
+                return;
+            }
             leftClaw = -1;
             rightClaw = -1;
             crabson = NPC.whoAmI;
@@ -333,6 +396,14 @@ namespace Aequus.NPCs.Boss
         }
         public override void AI()
         {
+            if (NPC.alpha > 0)
+            {
+                NPC.alpha -= 5;
+                if (NPC.alpha < 0)
+                {
+                    NPC.alpha = 0;
+                }
+            }
             int loops = Main.getGoodWorld ? 2 : 1;
             for (int k = 0; k < loops; k++)
             {
@@ -363,9 +434,11 @@ namespace Aequus.NPCs.Boss
                     NPC.netUpdate = true;
                     NPC.TargetClosest(faceTarget: false);
                     SpawnClaws(center);
+                    return;
                 }
                 if (CheckClaws())
                 {
+                    NPC.realLife = crabson;
                     if (!IsClaw)
                     {
                         contactDamage = false;

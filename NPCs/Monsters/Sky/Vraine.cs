@@ -150,7 +150,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     Main.npc[n].target = NPC.target;
                     if (i >= swarmCount && ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
                     {
-                        ROR2ArtifactsSupport.SetParent(Main.npc[lastNPC]);
+                        ROR2ArtifactsSupport.SetParent(Main.npc[n], Main.npc[lastNPC]);
                     }
                     lastNPC = n;
                     n = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), npcX - NPC.width * (i + 1), npcY, NPC.type, NPC.whoAmI);
@@ -160,7 +160,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     Main.npc[n].target = NPC.target;
                     if (i >= swarmCount && ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
                     {
-                        ROR2ArtifactsSupport.SetParent(Main.npc[lastNPC2]);
+                        ROR2ArtifactsSupport.SetParent(Main.npc[n], Main.npc[lastNPC2]);
                     }
                     lastNPC2 = n;
                 }
