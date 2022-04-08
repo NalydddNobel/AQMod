@@ -307,12 +307,9 @@ namespace Aequus.NPCs.Boss
             var plrCenter = player.Center;
             float speed = NPC.velocity.Length();
             var parent = NPC.GetGlobalNPC<ArtifactsNPC>().swarmParent;
-            if (parent != null)
+            if (parent != null && !parent.dontTakeDamage && (int)parent.ai[0] == (int)NPC.ai[0])
             {
-                if ((int)parent.ai[0] == (int)NPC.ai[0])
-                {
-                    NPC.ai[0] = PHASE_ASSAULT_PLAYER;
-                }
+                NPC.ai[0] = PHASE_ASSAULT_PLAYER;
             }
             switch ((int)NPC.ai[0])
             {
@@ -493,7 +490,7 @@ namespace Aequus.NPCs.Boss
                                         SoundID.DD2_EtherianPortalOpen?.Play(NPC.Center);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            ModContent.GetInstance<ModEffects>().SetShake(12f, 24f);
+                                            EffectsSystem.Shake.Set(12f);
                                         }
                                         int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
                                         Main.projectile[p].scale = Main.getGoodWorld ? 1f : 0.75f;
@@ -1409,8 +1406,9 @@ namespace Aequus.NPCs.Boss
                     ModContent.GetInstance<GameCamera>().SetTarget("Omega Starite", NPC.Center, CameraPriority.NPCDefeat, 12f, 60);
                 }
 
-                ModContent.GetInstance<ModEffects>().SetFlash(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 4f), 12f);
-                ModContent.GetInstance<ModEffects>().SetShake(intensity * 2f, 24f);
+                FlashScene.Flash.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 4f));
+                EffectsSystem.Shake.Set(intensity * 2f);
+
                 int range = (int)intensity + 4;
                 drawPos += new Vector2(Main.rand.Next(-range, range), Main.rand.Next(-range, range));
                 for (int i = 0; i < positions.Count; i++)

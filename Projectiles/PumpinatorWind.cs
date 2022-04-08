@@ -67,7 +67,7 @@ namespace Aequus.Projectiles
                 var proj = Main.projectile[i];
                 if (i != Projectile.whoAmI && proj.active &&
                     Projectile.Colliding(Projectile.getRect(), proj.getRect()) &&
-                    ProjSets.WindUpdates.Contains(Main.projectile[i].type))
+                    ProjSets.WindEffectsWhitelist.Contains(Main.projectile[i].type))
                 {
                     proj.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack;
                     proj.netUpdate = true;

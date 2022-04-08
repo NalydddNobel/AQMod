@@ -116,7 +116,7 @@ namespace Aequus.Projectiles.Magic
                 float distance = Vector2.Distance(Projectile.Center, Main.player[Projectile.owner].Center);
                 if (distance < 800)
                 {
-                    ModContent.GetInstance<ModEffects>().SetShake((int)(800f - distance) / 32, 16f);
+                    EffectsSystem.Shake.Set((int)(800f - distance) / 32);
                 }
             }
             Color color = NarrizuulRainbow(Projectile.localAI[1]) * 1.5f;

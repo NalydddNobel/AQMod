@@ -599,13 +599,14 @@ namespace Aequus.NPCs.Monsters.Sky
                                     && Main.netMode != NetmodeID.Server &&
                                     (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 {
-                                    ModContent.GetInstance<ModEffects>().SetFlash(NPC.Center, 0.75f, 10f);
+                                    FlashScene.Flash.Set(NPC.Center, 0.75f);
+                                    EffectsSystem.Shake.Set(8f);
                                 }
                                 if (timer == 0)
                                 {
                                     if (Main.netMode != NetmodeID.Server && (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                     {
-                                        ModContent.GetInstance<ModEffects>().SetShake(12f, 10f);
+                                        EffectsSystem.Shake.Set(12f);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
                                             SoundHelper.Play(SoundType.Sound, "thunderclap" + Main.rand.Next(2), NPC.Center, 0.6f);

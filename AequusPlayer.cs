@@ -244,7 +244,7 @@ namespace Aequus
         public override void ModifyScreenPosition()
         {
             ModContent.GetInstance<GameCamera>().UpdateScreen();
-            ModContent.GetInstance<ModEffects>().UpdateScreen();
+            EffectsSystem.UpdateScreenPosition();
         }
 
         /// <summary>
@@ -261,7 +261,6 @@ namespace Aequus
         /// <param name="info"></param>
         public void PostDraw(ref PlayerDrawSet info)
         {
-
         }
 
         /// <summary>

@@ -44,7 +44,7 @@ namespace Aequus.Projectiles.Melee
         {
             if (Main.myPlayer == Projectile.owner)
             {
-                ModContent.GetInstance<ModEffects>().SetShake(2f, 2f);
+                EffectsSystem.Shake.Set(4f);
                 MirrorsCallExplosion.ExplosionEffects(target.Center, colorProgress, 0.75f);
                 int p = Projectile.NewProjectile(Projectile.GetProjectileSource_OnHit(target, Type), target.Center,
                     Vector2.Normalize(target.Center - Main.player[Projectile.owner].Center), ModContent.ProjectileType<MirrorsCallExplosion>(), (int)(Projectile.damage * 0.4f), Projectile.knockBack, Projectile.owner);

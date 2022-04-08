@@ -251,7 +251,7 @@ namespace Aequus.NPCs.Monsters.Sky
                             bool doEffects = AequusHelpers.ShouldDoEffects(center);
                             if (NPC.ai[1] >= 242f && (int)NPC.ai[2] < 1 && doEffects)
                             {
-                                ModContent.GetInstance<ModEffects>().SetFlash(NPC.Center, 0.8f, 12f);
+                                FlashScene.Flash.Set(NPC.Center, 0.75f);
                             }
                             if ((int)NPC.ai[1] >= 245)
                             {
@@ -260,7 +260,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 {
                                     if (doEffects)
                                     {
-                                        ModContent.GetInstance<ModEffects>().SetShake(8f, 12f);
+                                        EffectsSystem.Shake.Set(12f);
                                     }
                                     NPC.ai[2]++;
                                     NPC.velocity.X = -NPC.direction * 12.5f;

@@ -10,7 +10,7 @@ namespace Aequus.Projectiles
     public sealed class ProjSets : ModType
     {
         public static Dictionary<int, Color> RaygunColors { get; private set; }
-        public static HashSet<int> WindUpdates { get; private set; }
+        public static HashSet<int> WindEffectsWhitelist { get; private set; }
 
         protected sealed override void Register()
         {
@@ -33,12 +33,12 @@ namespace Aequus.Projectiles
                 [ProjectileID.GoldenBullet] = new Color(255, 255, 10, 255),
                 [ProjectileID.MoonlordBullet] = new Color(60, 215, 245, 255),
             };
-            WindUpdates = new HashSet<int>();
+            WindEffectsWhitelist = new HashSet<int>();
         }
 
         public override void SetupContent()
         {
-            List<int> windAIStyles = new List<int>()
+            HashSet<int> windAIStyles = new HashSet<int>()
             {
                 0,
                 ProjAIStyleID.Arrow,
@@ -123,7 +123,7 @@ namespace Aequus.Projectiles
 
             foreach (var p in ContentSamples.ProjectilesByType)
             {
-                if (WindUpdates.Contains(p.Key))
+                if (WindEffectsWhitelist.Contains(p.Key))
                 {
                     continue;
                 }
@@ -132,7 +132,7 @@ namespace Aequus.Projectiles
                     var projectile = p.Value;
                     if (windAIStyles.Contains(projectile.aiStyle))
                     {
-                        WindUpdates.Add(p.Key);
+                        WindEffectsWhitelist.Add(p.Key);
                     }
                 }
                 catch (Exception e)
@@ -145,8 +145,8 @@ namespace Aequus.Projectiles
 
         public override void Unload()
         {
-            WindUpdates?.Clear();
-            WindUpdates = null;
+            WindEffectsWhitelist?.Clear();
+            WindEffectsWhitelist = null;
             RaygunColors?.Clear();
             RaygunColors = null;
         }

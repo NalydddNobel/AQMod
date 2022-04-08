@@ -6,7 +6,7 @@ using Terraria.Graphics.Shaders;
 
 namespace Aequus.Effects.Armor
 {
-    public class ArmorShaderDataModifyLightColor : ArmorShaderData, IModifyLightColor
+    public class ArmorShaderDataModifyLightColor : ArmorShaderData, IShaderDataModifyLightColor
     {
         private readonly Func<Vector3, Vector3> _modifyColor;
 

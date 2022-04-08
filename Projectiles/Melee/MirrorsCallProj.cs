@@ -57,7 +57,7 @@ namespace Aequus.Projectiles.Melee
             {
                 bool rightClick = Main.player[Projectile.owner].altFunctionUse == 2;
                 float explosionScale = !rightClick ? 0.66f : 1f;
-                ModContent.GetInstance<ModEffects>().SetShake(8f * explosionScale, 8f * explosionScale);
+                EffectsSystem.Shake.Set(8f * explosionScale);
                 MirrorsCallExplosion.ExplosionEffects(target.Center, colorProgress, explosionScale);
                 float damageScale = !rightClick ? 0.8f : 1.8f;
                 int p = Projectile.NewProjectile(Projectile.GetProjectileSource_OnHit(target, Type), target.Center,

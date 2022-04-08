@@ -175,19 +175,20 @@ namespace Aequus.Items
 
             if (ModContent.GetInstance<ClientConfiguration>().HighQuality)
             {
-                ModContent.GetInstance<ModEffects>().TempSetRand(Main.LocalPlayer.name.GetHashCode(), out int reset);
+                int reset = EffectsSystem.EffectRand.SetRand(Main.LocalPlayer.name.GetHashCode());
+
                 // particles
                 var particleTexture = Aequus.MyTex("Assets/Bloom");
                 var particleOrigin = particleTexture.Size() / 2f;
-                int amt = (int)ModContent.GetInstance<ModEffects>().Rand((int)size.X / 3, (int)size.X);
+                int amt = (int)EffectsSystem.EffectRand.Rand((int)size.X / 3, (int)size.X);
                 for (int i = 0; i < amt; i++)
                 {
-                    float lifeTime = (ModContent.GetInstance<ModEffects>().Rand(20f) + Main.GlobalTimeWrappedHourly * 2f) % 20f;
-                    int baseParticleX = (int)ModContent.GetInstance<ModEffects>().Rand(4, (int)size.X - 4);
-                    int particleX = baseParticleX + (int)AequusHelpers.Wave(lifeTime + Main.GlobalTimeWrappedHourly * ModContent.GetInstance<ModEffects>().Rand(2f, 5f), -ModContent.GetInstance<ModEffects>().Rand(3f, 10f), ModContent.GetInstance<ModEffects>().Rand(3f, 10f));
-                    int particleY = (int)ModContent.GetInstance<ModEffects>().Rand(10);
-                    float scale = ModContent.GetInstance<ModEffects>().Rand(0.2f, 0.4f);
-                    if (baseParticleX > 14 && baseParticleX < size.X - 14 && ModContent.GetInstance<ModEffects>().RandChance(6))
+                    float lifeTime = (EffectsSystem.EffectRand.Rand(20f) + Main.GlobalTimeWrappedHourly * 2f) % 20f;
+                    int baseParticleX = (int)EffectsSystem.EffectRand.Rand(4, (int)size.X - 4);
+                    int particleX = baseParticleX + (int)AequusHelpers.Wave(lifeTime + Main.GlobalTimeWrappedHourly * EffectsSystem.EffectRand.Rand(2f, 5f), -EffectsSystem.EffectRand.Rand(3f, 10f), EffectsSystem.EffectRand.Rand(3f, 10f));
+                    int particleY = (int)EffectsSystem.EffectRand.Rand(10);
+                    float scale = EffectsSystem.EffectRand.Rand(0.2f, 0.4f);
+                    if (baseParticleX > 14 && baseParticleX < size.X - 14 && EffectsSystem.EffectRand.RandChance(6))
                     {
                         scale *= 2f;
                     }
@@ -225,7 +226,7 @@ namespace Aequus.Items
                     }
                 }
 
-                ModContent.GetInstance<ModEffects>().SetRand(reset);
+                EffectsSystem.EffectRand.SetRand(reset);
             }
 
             // light effect
