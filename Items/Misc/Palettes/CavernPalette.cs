@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Misc.Palettes
 {
     public class CavernPalette : PaletteBase
     {
@@ -45,20 +45,8 @@ namespace Aequus.Items.Misc
                 player.QuickSpawnItem(source, ItemID.Flare, Main.rand.Next(25) + 25);
             }
 
-            //if (Main.rand.NextBool())
-            //{
-            //    int p = AQItem.PoolPotion(-1);
-            //    player.QuickSpawnItem(p, Main.rand.Next(2) + 1);
-            //    if (Main.rand.NextBool())
-            //    {
-            //        player.QuickSpawnItem(AQItem.PoolPotion(p), Main.rand.Next(2) + 1);
-            //    }
-            //}
-
-            //if (AQMod.split.IsActive && Main.rand.NextBool())
-            //{
-            //    player.QuickSpawnItem(AQMod.split.ItemType("ArmorPolishKit"));
-            //}
+            PoolPotions(player, PaletteDataProvider.DefaultPotions);
+            Split_PoolArmorPolish(player);
         }
     }
 }

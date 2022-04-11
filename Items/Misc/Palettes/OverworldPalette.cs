@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Misc.Palettes
 {
     public class OverworldPalette : PaletteBase
     {

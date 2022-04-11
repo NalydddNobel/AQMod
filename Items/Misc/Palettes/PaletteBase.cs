@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Terraria;
@@ -7,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Misc.Palettes
 {
     public abstract class PaletteBase : ModItem
     {
@@ -99,11 +100,40 @@ namespace Aequus.Items.Misc
             int item = GetItem();
             Main.instance.LoadItem(item);
             var itemTexture = TextureAssets.Item[item].Value;
-            Main.spriteBatch.Draw(itemTexture, new Vector2(x, y) + back.Size() / 2f, null, Color.White, 0f, itemTexture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+            var itemScale = 1f;
+            int max = itemTexture.Width > itemTexture.Height ? itemTexture.Width : itemTexture.Height;
+            if (max > 32)
+            {
+                itemScale = 32f / max;
+            }
+            Main.spriteBatch.Draw(itemTexture, new Vector2(x, y) + back.Size() / 2f, null, Color.White, 0f, itemTexture.Size() / 2f, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
 
             Main.inventoryScale = oldScale;
 
             //Main.spriteBatch.End();
+        }
+
+        protected void PoolPotions(Player player, List<int> pool, int amt = 2, int dropChance = 2)
+        {
+            var poolablePotions = new List<int>(pool);
+            var source = player.GetItemSource_OpenItem(Type);
+            amt = Math.Min(amt, pool.Count);
+            for (int i = 0; i < amt; i++)
+            {
+                if (dropChance <= 0 || Main.rand.NextBool(dropChance))
+                {
+                    int index = poolablePotions.Count == 1 ? 0 : Main.rand.Next(poolablePotions.Count);
+                    player.QuickSpawnItem(source, poolablePotions[index], Main.rand.Next(2) + 1);
+                    poolablePotions.RemoveAt(index);
+                }
+            }
+        }
+        protected void Split_PoolArmorPolish(Player player, int dropChance = 2)
+        {
+            //if (SplitSupport.Split.Enabled && Main.rand.NextBool(dropChance))
+            //{
+            //    player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), SplitSupport.Split.GetItemType("ArmorPolishKit"));
+            //}
         }
     }
 }

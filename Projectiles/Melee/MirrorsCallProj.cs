@@ -100,17 +100,23 @@ namespace Aequus.Projectiles.Melee
                 Main.projectile[p].Mod<MirrorsCallBullet>().colorProgress = colorProgress - Main.rand.NextFloat(0.2f);
             }
             float rotationSpeed = MathHelper.Pi * swing * swingMultiplier * direction;
+            angleVector = AngleVector.RotatedBy(rotationSpeed);
+
+            colorProgress += Main.rand.NextFloat(-0.2f, 0.2f);
+
+            UpdateSwing_Dust(player, direction);
+        }
+        private void UpdateSwing_Dust(Player player, int direction)
+        {
             int dustChance = (int)(3 / Projectile.scale);
             if (Main.netMode != NetmodeID.Server && (dustChance <= 1 || Main.rand.NextBool(dustChance)))
             {
-                colorProgress += Main.rand.NextFloat(-0.2f, 0.2f);
                 var clrs = MirrorsCall.EightWayRainbow;
                 var d = Dust.NewDustDirect(player.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AequusHelpers.LerpBetween(clrs, colorProgress).UseA(0) * Main.rand.NextFloat(0.5f, 1.25f), Main.rand.NextFloat(0.75f, 1.5f));
                 d.position = player.Center + angleVector * Main.rand.NextFloat(20f, Radius * Projectile.scale);
                 d.velocity *= 0.1f;
-                d.velocity += AngleVector.RotatedBy(-MathHelper.PiOver2 + Main.rand.NextFloat(-0.1f, 0.1f)) * Main.rand.NextFloat(1.5f, 3.5f);
+                d.velocity += AngleVector.RotatedBy(MathHelper.PiOver2 * direction + Main.rand.NextFloat(-0.1f, 0.1f)) * Main.rand.NextFloat(1.5f, 3.5f);
             }
-            angleVector = AngleVector.RotatedBy(rotationSpeed);
         }
 
         protected override void OnReachMaxProgress()

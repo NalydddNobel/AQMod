@@ -40,7 +40,7 @@ namespace Aequus
         public bool omegaStaritePet;
 
         /// <summary>
-        /// Applied by <see cref="Items.Accessories.FrigidTalisman"/>
+        /// Applied by <see cref="Aequus.Items.Equipment.Accessories.FrigidTalisman"/>
         /// </summary>
         public bool accGSFreezeResist;
 

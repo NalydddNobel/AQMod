@@ -61,10 +61,9 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
-			ArtifactOfDissonance: Artifact of Dissonance
-			ArtifactOfKin: Artifact of Kin
-			ArtifactOfSwarms: Artifact of Swarms
-			ArtifactOfCommand: Artifact of Command
+			SnowPalette: Snow Palette
+			GlowingMushroomsPalette: Glowing Mushrooms Palette
+			DesertPalette: Desert Palette
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 			SpaceSquidRelic: Space Squid Relic
@@ -358,6 +357,21 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			SnowPalette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.PaletteDrop}
+				'''
+			GlowingMushroomsPalette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.PaletteDrop}
+				'''
+			DesertPalette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.PaletteDrop}
+				'''
 			Fluorescence: "'Pulsates with violence'"
 			GelidTentacle: "'It's twitching...'"
 			ArtifactOfDissonance:
@@ -382,7 +396,7 @@ Mods: {
 				'''
 			MirrorsCall:
 				'''
-				Strike the enemy from the comfort of your couch!
+				'Strike the enemy from the comfort of your couch!'
 				Right click to do a large swing with no projectile
 				'''
 			Slice:

@@ -2,13 +2,11 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Misc.Palettes
 {
     public class SkyPalette : PaletteBase
     {
         public static List<int> SkyChestLoot { get; private set; }
-
-        public override string Texture => "Terraria/Images/Item_" + ItemID.FloatingIslandFishingCrate;
 
         protected override List<int> LootTable => SkyChestLoot;
 
