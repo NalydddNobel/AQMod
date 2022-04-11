@@ -61,10 +61,9 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
-			ArtifactOfDissonance: 失谐造物
-			ArtifactOfKin: 血亲造物
-			ArtifactOfSwarms: 蜂群造物
-			ArtifactOfCommand: 指令造物
+			SnowPalette: 雪地调色板
+			GlowingMushroomsPalette: 发光蘑菇调色板
+			DesertPalette: 沙漠调色板
 			MirrorsCall: 镜之召
 			Slice: 利刃
 			SpaceSquidRelic: 太空乌贼纪念物
@@ -358,6 +357,21 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			SnowPalette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.PaletteDrop}
+				'''
+			GlowingMushroomsPalette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.PaletteDrop}
+				'''
+			DesertPalette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.PaletteDrop}
+				'''
 			Fluorescence: "'猛烈的跳动着'"
 			GelidTentacle: "'它在抽搐...'"
 			ArtifactOfDissonance:
@@ -382,7 +396,7 @@ Mods: {
 				'''
 			MirrorsCall:
 				'''
-				从你舒适的沙发上打击敌人!
+				'从你舒适的沙发上打击敌人!'
 				右键可在没有弹幕的情况下大幅度摆动
 				'''
 			Slice:
