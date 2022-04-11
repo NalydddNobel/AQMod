@@ -1,7 +1,10 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Players;
+using Aequus.Content;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Aequus.Projectiles;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -10,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public sealed class AequusPlayer : ModPlayer
+    public sealed class AequusPlayer : ModPlayer, ITemperatureEntity
     {
         /// <summary>
         /// 0 = no force, 1 = force day, 2 = force night
@@ -37,9 +40,9 @@ namespace Aequus
         public bool omegaStaritePet;
 
         /// <summary>
-        /// Applied by <see cref="Buffs.Debuffs.BlueFire"/>
+        /// Applied by <see cref="Items.Accessories.FrigidTalisman"/>
         /// </summary>
-        public bool freezingAmulet;
+        public bool accGSFreezeResist;
 
         /// <summary>
         /// Tracks <see cref="Terraria.Player.selectedItem"/>, reset in <see cref="PostItemCheck"/>
@@ -76,6 +79,31 @@ namespace Aequus
         /// Whether or not the player is in the Gale Streams event. This is set to true when <see cref="GaleStreams.Status"/> equals <see cref="InvasionStatus.Active"/> and the <see cref="GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="PreUpdate"/>. Otherwise, this is false.
         /// </summary>
         public bool eventGaleStreams;
+
+        /// <summary>
+        /// The player's current temperature. Ticks down by 1 every frame
+        /// </summary>
+        public int temperature;
+        /// <summary>
+        /// Clamps <see cref="currentTemperature"/> using this as the maximum
+        /// </summary>
+        public int maxTemperature;
+        /// <summary>
+        /// Clamps <see cref="currentTemperature"/> using this as the minimum
+        /// </summary>
+        public int minTemperature;
+        /// <summary>
+        /// Whenever the <see cref="currentTemperature"/> decrements, it uses this value
+        /// </summary>
+        public int temperatureRegen;
+
+        public bool inDanger;
+        /// <summary>
+        /// Helper for whether or not the player currently has a cooldown.
+        /// </summary>
+        public bool HasCooldown => itemCooldown > 0;
+
+        int ITemperatureEntity.Temperature { get => temperature; set => temperature = value; }
 
         public override void Initialize()
         {
@@ -118,10 +146,9 @@ namespace Aequus
             omegaStaritePet = false;
         }
 
-        /// <summary>
-        /// Helper for whether or not the player currently has a cooldown.
-        /// </summary>
-        public bool HasCooldown => itemCooldown > 0;
+        public override void PostUpdateEquips()
+        {
+        }
 
         public override bool PreItemCheck()
         {
@@ -187,7 +214,25 @@ namespace Aequus
             {
                 Aequus.DayTimeManipulator.Clear();
             }
+            CheckDanger();
         }
+        public void CheckDanger()
+        {
+            inDanger = false;
+            var checkTangle = new Rectangle((int)Player.position.X + Player.width / 2 - 1000, (int)Player.position.X + Player.head / 2 - 500, 2000, 1000);
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].lifeMax > 5)
+                {
+                    if (Main.npc[i].getRect().Intersects(checkTangle))
+                    {
+                        inDanger = true;
+                        return;
+                    }
+                }
+            }
+        }
+
 
         public override void ModifyScreenPosition()
         {
@@ -226,6 +271,10 @@ namespace Aequus
 
             itemCooldownMax = (ushort)cooldown;
             itemCooldown = (ushort)cooldown;
+        }
+
+        public void ModifyTemperatureApplication(ref int temperature, ref int minTemperature, ref int maxTemperature)
+        {
         }
     }
 }

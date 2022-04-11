@@ -125,68 +125,71 @@ namespace Aequus.NPCs.Boss
 
         private void SpawnClaws(Vector2 center)
         {
-            var myParent = ROR2ArtifactsSupport.GetParent(NPC);
-            if (myParent != null)
+            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
             {
-                NPC.alpha = 255;
-                NPC.ai[1]++;
-                if (NPC.ai[1] < 60f)
+                var myParent = ROR2ArtifactsSupport.GetParent(NPC);
+                if (myParent != null)
                 {
-                    NPC.ai[0] = Phase_Initalize;
-                    if (myParent.whoAmI == crabson || myParent.ModNPC<Crabson>().crabson == myParent.whoAmI || !IsClaw)
+                    NPC.alpha = 255;
+                    NPC.ai[1]++;
+                    if (NPC.ai[1] < 60f)
                     {
-                        crabson = NPC.whoAmI;
-                    }
-                    else
-                    {
-                        NPC.direction = myParent.direction;
-                        if (NPC.direction == -1)
+                        NPC.ai[0] = Phase_Initalize;
+                        if (myParent.whoAmI == crabson || myParent.ModNPC<Crabson>().crabson == myParent.whoAmI || !IsClaw)
                         {
-                            leftClaw = NPC.whoAmI;
+                            crabson = NPC.whoAmI;
                         }
                         else
                         {
-                            rightClaw = NPC.whoAmI;
-                        }
-                        for (int i = 0; i < Main.maxNPCs; i++)
-                        {
-                            if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].type == Type)
+                            NPC.direction = myParent.direction;
+                            if (NPC.direction == -1)
                             {
-                                if (ROR2ArtifactsSupport.GetParent(Main.npc[i]) != null)
+                                leftClaw = NPC.whoAmI;
+                            }
+                            else
+                            {
+                                rightClaw = NPC.whoAmI;
+                            }
+                            for (int i = 0; i < Main.maxNPCs; i++)
+                            {
+                                if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].type == Type)
                                 {
-                                    var crab2 = Main.npc[i].ModNPC<Crabson>();
-                                    if (crab2.crabson == i)
+                                    if (ROR2ArtifactsSupport.GetParent(Main.npc[i]) != null)
                                     {
-                                        if (NPC.direction == -1)
+                                        var crab2 = Main.npc[i].ModNPC<Crabson>();
+                                        if (crab2.crabson == i)
                                         {
-                                            crab2.leftClaw = NPC.whoAmI;
+                                            if (NPC.direction == -1)
+                                            {
+                                                crab2.leftClaw = NPC.whoAmI;
+                                            }
+                                            else
+                                            {
+                                                crab2.rightClaw = NPC.whoAmI;
+                                            }
+                                            crabson = i;
                                         }
-                                        else
+                                        else if (crab2.leftClaw == i)
                                         {
                                             crab2.rightClaw = NPC.whoAmI;
+                                            leftClaw = i;
                                         }
-                                        crabson = i;
-                                    }
-                                    else if (crab2.leftClaw == i)
-                                    {
-                                        crab2.rightClaw = NPC.whoAmI;
-                                        leftClaw = i;
-                                    }
-                                    else if (crab2.rightClaw == i)
-                                    {
-                                        crab2.leftClaw = NPC.whoAmI;
-                                        rightClaw = i;
+                                        else if (crab2.rightClaw == i)
+                                        {
+                                            crab2.leftClaw = NPC.whoAmI;
+                                            rightClaw = i;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    else
+                    {
+                        NPC.ai[1] = 0f;
+                    }
+                    return;
                 }
-                else
-                {
-                    NPC.ai[1] = 0f;
-                }
-                return;
             }
             leftClaw = -1;
             rightClaw = -1;

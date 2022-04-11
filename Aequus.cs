@@ -1,15 +1,12 @@
 using Aequus.Common.Configuration;
 using Aequus.Common.Utilities;
-using Aequus.Items;
 using Aequus.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI;
 
 namespace Aequus
 {

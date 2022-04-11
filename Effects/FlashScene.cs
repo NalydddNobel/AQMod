@@ -20,6 +20,8 @@ namespace Aequus.Effects
 
         public static ScreenFlashData Flash { get; private set; }
 
+        public override SceneEffectPriority Priority => SceneEffectPriority.BossHigh;
+
         public override bool IsSceneEffectActive(Player player)
         {
             return true;

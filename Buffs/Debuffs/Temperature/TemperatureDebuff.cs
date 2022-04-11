@@ -16,7 +16,7 @@ namespace Aequus.Buffs.Debuffs.Temperature
 
         public override void Update(Player player, ref int buffIndex)
         {
-            int temperature = player.GetModPlayer<TemperaturePlayer>().currentTemperature;
+            int temperature = player.GetModPlayer<AequusPlayer>().temperature;
             if (temperature < 0)
                 temperature = -temperature;
             temperature -= 300;

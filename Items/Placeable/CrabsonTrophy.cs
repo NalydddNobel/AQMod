@@ -13,7 +13,7 @@ namespace Aequus.Items.Placeable
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings>(), WallPaintings.Crabson);
+            Item.DefaultToPlaceableTile(ModContent.TileType<Trophies>(), Trophies.Crabson);
             Item.maxStack = 99;
             Item.value = 50000;
             Item.rare = ItemRarityID.Blue;

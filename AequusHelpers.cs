@@ -10,8 +10,19 @@ using Terraria.Utilities;
 
 namespace Aequus
 {
-    public static partial class AequusHelpers
+    public static class AequusHelpers
     {
+        public static void Active(this Tile tile, bool value)
+        {
+            tile.HasTile = value;
+        }
+
+        public static void SyncNPC(NPC npc)
+        {
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                NetMessage.SendData(MessageID.SyncNPC, Main.myPlayer, -1, null, npc.whoAmI);
+        }
+
         public static int CheckForPlayers(Rectangle rectangle)
         {
             for (int i = 0; i < Main.maxPlayers; i++)

@@ -67,6 +67,8 @@ namespace Aequus.Tiles
             TileObjectData.addAlternate(1);
             TileObjectData.addTile(Type);
 
+            AdjTiles = new int[] { TileID.MasterTrophyBase, };
+
             AddMapEntry(new Color(233, 207, 94, 255), Language.GetText("MapObject.Relic"));
         }
 
