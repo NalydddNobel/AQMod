@@ -25,6 +25,7 @@ namespace Aequus.Projectiles.Melee
         public override float AltFunctionHitboxScale => 1.25f;
 
         public SwordSlashPrimRenderer prim;
+        public SwordSlashPrimRenderer colorPrim;
         public float colorProgress;
 
         public override void SetStaticDefaults()
@@ -151,24 +152,40 @@ namespace Aequus.Projectiles.Melee
             {
                 prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(255, 255, 255, 0) * (1f - p));
             }
+            if (colorPrim == null)
+            {
+                colorPrim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => AequusHelpers.LerpBetween(MirrorsCall.EightWayRainbow, colorProgress).UseA(0) * (1f - p));
+            }
             if (reverseTrail)
             {
                 prim.coord1 = 0f;
                 prim.coord2 = 1f;
+                colorPrim.coord1 = 0f;
+                colorPrim.coord2 = 1f;
             }
             else
             {
                 prim.coord1 = 1f;
                 prim.coord2 = 0f;
+                colorPrim.coord1 = 1f;
+                colorPrim.coord2 = 0f;
             }
             prim.drawOffset = center;
+            colorPrim.drawOffset = center;
             prim.Draw(oldPos);
+            colorPrim.Draw(oldPos);
 
-            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects);
+            float intensity = 0f;
+            if (SwingProgress > 0.25f && SwingProgress < 0.75f)
+            {
+                intensity = (float)Math.Sin((SwingProgress - 0.25f) * 2f * MathHelper.Pi);
+            }
+
+            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects, rainbowOffsetScaleMultiplier: 4f + 16f * intensity);
+            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects, drawWhite: false, rainbowOffsetScaleMultiplier: 4f + 16f * intensity);
 
             if (SwingProgress > 0.25f && SwingProgress < 0.75f)
             {
-                float intensity = (float)Math.Sin((SwingProgress - 0.25f) * 2f * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
                 Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);

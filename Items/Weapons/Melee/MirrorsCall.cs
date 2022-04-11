@@ -90,40 +90,47 @@ namespace Aequus.Items.Weapons.Melee
             return false;
         }
 
-        public static void DrawRainbowAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin, float scale, SpriteEffects effects = SpriteEffects.None, float opacity = 1f, bool entitySpriteDraw = true)
+        public static void DrawRainbowAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin, 
+            float scale, SpriteEffects effects = SpriteEffects.None, float opacity = 1f, bool entitySpriteDraw = true, bool drawWhite = true, 
+            float rainbowScaleMultiplier = 1f, float rainbowOffsetScaleMultiplier = 4f, float rainbowOffsetScaleMultiplier2 = 1f)
         {
-            DrawRainbowAura(spriteBatch, texture, vector, frame, rotation, origin, new Vector2(scale), effects, opacity, entitySpriteDraw);
+            DrawRainbowAura(spriteBatch, texture, vector, frame, rotation, origin, new Vector2(scale), effects, opacity, entitySpriteDraw, drawWhite, rainbowScaleMultiplier, rainbowOffsetScaleMultiplier, rainbowOffsetScaleMultiplier2);
         }
-        public static void DrawRainbowAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects = SpriteEffects.None, float opacity = 1f, bool entitySpriteDraw = true)
+        public static void DrawRainbowAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin, 
+            Vector2 scale, SpriteEffects effects = SpriteEffects.None, float opacity = 1f, bool entitySpriteDraw = true, bool drawWhite = true, 
+            float rainbowScaleMultiplier = 1f, float rainbowOffsetScaleMultiplier = 4f, float rainbowOffsetScaleMultiplier2 = 1f)
         {
             var clrs = EightWayRainbow;
             var v = AequusHelpers.CircularVector(clrs.Length, Main.GlobalTimeWrappedHourly * 5f);
 
-            for (float rainbowOffset = Math.Min(scale.X > scale.Y ? scale.Y : scale.X, 1.01f) * 4f; rainbowOffset > 0f; rainbowOffset -= 2f)
+            if (drawWhite)
             {
-                for (int i = 0; i < clrs.Length; i++)
+                if (entitySpriteDraw)
                 {
-                    clrs[i] = clrs[i].MaxRGBA(30);
-                    if (entitySpriteDraw)
-                    {
-                        spriteBatch.Draw(texture, vector + v[i] * rainbowOffset, frame, clrs[i].UseA(25) * 0.2f * opacity, rotation, origin, scale, effects, 0f);
-                    }
-                    else
-                    {
-                        Main.EntitySpriteDraw(texture, vector + v[i] * rainbowOffset, frame, clrs[i].UseA(25) * 0.2f * opacity, rotation, origin, scale, effects, 0);
-                    }
+                    spriteBatch.Draw(texture, vector, frame, Color.White * opacity, rotation, origin, scale, effects, 0f);
+                    spriteBatch.Draw(texture, vector, frame, Color.White.UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0f, 0.25f) * opacity, rotation, origin, scale, effects, 0f);
+                }
+                else
+                {
+                    Main.EntitySpriteDraw(texture, vector, frame, Color.White * opacity, rotation, origin, scale, effects, 0);
+                    Main.EntitySpriteDraw(texture, vector, frame, Color.White.UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0f, 0.25f) * opacity, rotation, origin, scale, effects, 0);
                 }
             }
 
-            if (entitySpriteDraw)
+            for (float rainbowOffset = Math.Min(scale.X > scale.Y ? scale.Y : scale.X, 1.01f) * rainbowOffsetScaleMultiplier; rainbowOffset > 0f; rainbowOffset -= 2f)
             {
-                spriteBatch.Draw(texture, vector, frame, Color.White * opacity, rotation, origin, scale, effects, 0f);
-                spriteBatch.Draw(texture, vector, frame, Color.White.UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0f, 0.25f) * opacity, rotation, origin, scale, effects, 0f);
-            }
-            else
-            {
-                Main.EntitySpriteDraw(texture, vector, frame, Color.White * opacity, rotation, origin, scale, effects, 0);
-                Main.EntitySpriteDraw(texture, vector, frame, Color.White.UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0f, 0.25f) * opacity, rotation, origin, scale, effects, 0);
+                for (int i = 0; i < clrs.Length; i++)
+                {
+                    clrs[i] = clrs[i].MaxRGBA(1);
+                    if (entitySpriteDraw)
+                    {
+                        spriteBatch.Draw(texture, vector + v[i] * rainbowOffset * rainbowOffsetScaleMultiplier2, frame, clrs[i].UseA(50) * 0.2f * opacity, rotation, origin, scale * rainbowScaleMultiplier, effects, 0f);
+                    }
+                    else
+                    {
+                        Main.EntitySpriteDraw(texture, vector + v[i] * rainbowOffset * rainbowOffsetScaleMultiplier2, frame, clrs[i].UseA(50) * 0.2f * opacity, rotation, origin, scale * rainbowScaleMultiplier, effects, 0);
+                    }
+                }
             }
         }
 

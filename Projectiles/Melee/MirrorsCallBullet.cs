@@ -12,7 +12,7 @@ namespace Aequus.Projectiles.Melee
     {
         public float colorProgress;
 
-        public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.RainbowCrystalExplosion;
+        public override string Texture => "Aequus/Assets/Bullet";
         public override void SetDefaults()
         {
             Projectile.width = 32;
@@ -59,8 +59,12 @@ namespace Aequus.Projectiles.Melee
         public override bool PreDraw(ref Color lightColor)
         {
             var texture = TextureAssets.Projectile[Type].Value;
-            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, Projectile.Center - Main.screenPosition, null, Projectile.rotation, texture.Size() / 2f, Projectile.scale);
-            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, Projectile.Center - Main.screenPosition, null, Projectile.rotation, texture.Size() / 2f, Projectile.scale, opacity: 0.5f);
+            var bloom = Aequus.MyTex("Assets/Bloom");
+            var drawCoordinates = Projectile.Center - Main.screenPosition;
+            MirrorsCall.DrawRainbowAura(Main.spriteBatch, bloom, drawCoordinates, null, 0f, bloom.Size() / 2f, Projectile.scale * 0.55f, opacity: 0.5f, drawWhite: false, rainbowScaleMultiplier: 0.6f, rainbowOffsetScaleMultiplier: 8f);
+            MirrorsCall.DrawRainbowAura(Main.spriteBatch, bloom, drawCoordinates, null, 0f, bloom.Size() / 2f, Projectile.scale * 0.7f, opacity: 0.25f, drawWhite: false, rainbowScaleMultiplier: 0.75f, rainbowOffsetScaleMultiplier: 8f);
+            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, drawCoordinates, null, Projectile.rotation, texture.Size() / 2f, Projectile.scale);
+            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, drawCoordinates, null, Projectile.rotation, texture.Size() / 2f, Projectile.scale, opacity: 0.5f, drawWhite: false);
             return false;
         }
     }
