@@ -151,24 +151,24 @@ namespace Aequus.Common.ID
         }
         private void AutomaticEntries_NPCs(HashSet<int> hash)
         {
-            foreach (var p in ContentSamples.NpcsByNetId)
+            foreach (var n in ContentSamples.NpcsByNetId)
             {
-                if (NPCsWhitelist.Contains(p.Key))
+                if (NPCsWhitelist.Contains(n.Key))
                 {
                     continue;
                 }
                 try
                 {
-                    var projectile = p.Value;
-                    if (hash.Contains(projectile.aiStyle))
+                    var npc = n.Value;
+                    if (hash.Contains(npc.aiStyle))
                     {
-                        NPCsWhitelist.Add(p.Key);
+                        NPCsWhitelist.Add(n.Key);
                     }
                 }
                 catch (Exception e)
                 {
                     var l = Aequus.Instance.Logger;
-                    l.Error("An error occured when doing algorithmic checks for sets for {" + Lang.GetNPCName(p.Key).Value + ", ID: " + p.Key + "}", e);
+                    l.Error("An error occured when doing algorithmic checks for sets for {" + Lang.GetNPCName(n.Key).Value + ", ID: " + n.Key + "}", e);
                 }
             }
         }
