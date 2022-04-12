@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Common.ID;
+using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;
@@ -56,7 +57,7 @@ namespace Aequus.Projectiles
                 var npc = Main.npc[i];
                 if (npc.active && !npc.dontTakeDamage && !npc.immortal &&
                     Projectile.Colliding(Projectile.getRect(), npc.getRect()) &&
-                    NPCSets.WindUpdates.Contains(Main.projectile[i].type))
+                    MovementWindWhitelistSetsProvider.NPCWindWhitelist.Contains(Main.projectile[i].type))
                 {
                     npc.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack / 45f;
                     npc.netUpdate = true;

@@ -11,7 +11,7 @@ using Terraria.ModLoader.Utilities;
 
 namespace Aequus.NPCs
 {
-    public sealed class NPCSpawns : GlobalNPC
+    public sealed class NPCSpawnsManager : GlobalNPC
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {

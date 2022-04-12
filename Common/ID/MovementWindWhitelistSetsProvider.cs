@@ -2,24 +2,19 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.NPCs
+namespace Aequus.Common.ID
 {
-    public sealed class NPCSets : ModType
+    public sealed class MovementWindWhitelistSetsProvider : SetsProviderBase
     {
-        protected sealed override void Register()
+        public static HashSet<int> NPCWindWhitelist { get; private set; }
+
+        public override void InitalizeMiscEntries()
         {
+            NPCWindWhitelist = new HashSet<int>();
         }
 
-        public static HashSet<int> WindUpdates { get; private set; }
-
-        public override void Load()
-        {
-            WindUpdates = new HashSet<int>();
-        }
-
-        public override void SetupContent()
+        public override void LoadAutomaticEntries()
         {
             List<int> windAIStyles = new List<int>()
             {
@@ -72,7 +67,7 @@ namespace Aequus.NPCs
 
             foreach (var p in ContentSamples.NpcsByNetId)
             {
-                if (WindUpdates.Contains(p.Key))
+                if (NPCWindWhitelist.Contains(p.Key))
                 {
                     continue;
                 }
@@ -81,7 +76,7 @@ namespace Aequus.NPCs
                     var projectile = p.Value;
                     if (windAIStyles.Contains(projectile.aiStyle))
                     {
-                        WindUpdates.Add(p.Key);
+                        NPCWindWhitelist.Add(p.Key);
                     }
                 }
                 catch (Exception e)
@@ -90,8 +85,11 @@ namespace Aequus.NPCs
                     l.Error("An error occured when doing algorithmic checks for sets for {" + Lang.GetNPCName(p.Key).Value + ", ID: " + p.Key + "}", e);
                 }
             }
+        }
 
-            WindUpdates.Remove(NPCID.BloodSquid);
+        public override void RemoveUnwantedEntries()
+        {
+            NPCWindWhitelist.Remove(NPCID.BloodSquid);
         }
     }
 }
