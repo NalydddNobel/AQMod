@@ -2,6 +2,7 @@
 using Aequus.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,22 +17,16 @@ namespace Aequus.Items.Misc
 
         public override void SetDefaults()
         {
+            Item.DefaultToVanitypet(ModContent.ProjectileType<FamiliarPet>(), ModContent.BuffType<FamiliarBuff>());
             Item.width = 20;
             Item.height = 20;
-            Item.useTime = 17;
-            Item.useAnimation = 17;
-            Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.UseSound = SoundID.Item2;
             Item.value = Item.buyPrice(gold: 20);
-            Item.rare = ItemRarities.RarityPet;
-            Item.shoot = ModContent.ProjectileType<FamiliarPet>();
-            Item.buffType = ModContent.BuffType<FamiliarBuff>();
         }
 
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-                player.AddBuff(Item.buffType, 3600, true);
+            player.AddBuff(Item.buffType, 2);
+            return true;
         }
     }
 }

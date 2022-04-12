@@ -1,5 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Buffs.Pets;
+using Aequus.Projectiles.Pets;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -7,27 +10,27 @@ namespace Aequus.Items.Misc
 {
     public class DragonBall : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
+            Item.DefaultToVanitypet(ModContent.ProjectileType<OmegaStaritePet>(), ModContent.BuffType<OmegaStariteBuff>());
             Item.width = 20;
             Item.height = 20;
-            Item.useTime = 17;
-            Item.useAnimation = 17;
-            Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.UseSound = SoundID.Item8;
             Item.value = Item.sellPrice(gold: 5);
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Master;
             Item.master = true;
-            Item.shoot = ModContent.ProjectileType<Projectiles.Pets.OmegaStaritePet>();
-            Item.buffType = ModContent.BuffType<Buffs.Pets.OmegaStariteBuff>();
         }
 
         public override Color? GetAlpha(Color lightColor) => new Color(250, 250, 250, 150);
 
-        public override void UseStyle(Player player, Rectangle heldItemFrame)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-                player.AddBuff(Item.buffType, 3600, true);
+            player.AddBuff(Item.buffType, 2);
+            return true;
         }
     }
 }
