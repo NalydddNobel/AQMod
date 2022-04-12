@@ -1,4 +1,5 @@
-﻿using Aequus.Effects;
+﻿using Aequus.Common;
+using Aequus.Effects;
 using Aequus.Effects.Prims;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Particles.Dusts;
@@ -148,6 +149,13 @@ namespace Aequus.Projectiles.Melee
             float trailOutwards = texture.Size().Length() * Projectile.scale - 38f * Projectile.scale;
             bool reverseTrail = Projectile.direction == -1 ? combo > 0 : combo == 0;
             var oldPos = Array.ConvertAll(Projectile.oldPos, (v) => Vector2.Normalize(v) * trailOutwards);
+            if (Main.LocalPlayer.gravDir == -1)
+            {
+                for (int i = 0; i < oldPos.Length; i++)
+                {
+                    oldPos[i].Y = -oldPos[i].Y;
+                }
+            }
             if (prim == null)
             {
                 prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(255, 255, 255, 0) * (1f - p));
@@ -184,17 +192,17 @@ namespace Aequus.Projectiles.Melee
             MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects, rainbowOffsetScaleMultiplier: 4f + 16f * intensity);
             MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects, drawWhite: false, rainbowOffsetScaleMultiplier: 4f + 16f * intensity);
 
-            if (SwingProgress > 0.25f && SwingProgress < 0.75f)
-            {
-                Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            //if (SwingProgress > 0.25f && SwingProgress < 0.75f)
+            //{
+            //    Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-                Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
-                var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
-                var shineOrigin = shine.Size() / 2f;
-                var shineLocation = handPosition - Main.screenPosition + (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2() * ((size - 8f) * Projectile.scale);
-                MirrorsCall.DrawRainbowAura(Main.spriteBatch, shine, shineLocation, null, 0f, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale) * intensity, opacity: intensity * intensity);
-                MirrorsCall.DrawRainbowAura(Main.spriteBatch, shine, shineLocation, null, MathHelper.PiOver2, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale * 2f) * intensity, opacity: intensity * intensity);
-            }
+            //    Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
+            //    var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
+            //    var shineOrigin = shine.Size() / 2f;
+            //    var shineLocation = handPosition - Main.screenPosition + (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2() * ((size - 8f) * Projectile.scale);
+            //    MirrorsCall.DrawRainbowAura(Main.spriteBatch, shine, shineLocation, null, 0f, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale) * intensity, opacity: intensity * intensity);
+            //    MirrorsCall.DrawRainbowAura(Main.spriteBatch, shine, shineLocation, null, MathHelper.PiOver2, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale * 2f) * intensity, opacity: intensity * intensity);
+            //}
 
             return false;
         }

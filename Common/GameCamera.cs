@@ -112,9 +112,35 @@ namespace Aequus.Common
             }
         }
 
+        internal static Vector2 GetY_Check(Vector2 position)
+        {
+            return Main.player[Main.myPlayer].gravDir == -1 ? GetY(position) : position;
+        }
+        internal static Vector2[] GetY_Check(Vector2[] arr)
+        {
+            if (Main.player[Main.myPlayer].gravDir == -1)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = GetY(arr[i]);
+                }
+            }
+            return arr;
+        }
+        internal static Vector2[] GetY_Check_WorldPos(Vector2[] arr)
+        {
+            if (Main.player[Main.myPlayer].gravDir == -1)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = GetY(arr[i] - Main.screenPosition) + Main.screenPosition;
+                }
+            }
+            return arr;
+        }
         internal static Vector2 GetY(Vector2 position)
         {
-            return Main.player[Main.myPlayer].gravDir == -1 ? new Vector2(position.X, -position.Y + Main.screenHeight) : new Vector2(position.X, position.Y);
+            return new Vector2(position.X, Main.screenHeight - position.Y);
         }
     }
 }
