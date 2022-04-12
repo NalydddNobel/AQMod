@@ -1,44 +1,72 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.Projectiles
+namespace Aequus.Common.ID
 {
-    public sealed class ProjSets : ModType
+    public sealed class WindMovementSetsProvider : SetsProviderBase
     {
-        public static Dictionary<int, Color> RaygunColors { get; private set; }
-        public static HashSet<int> WindEffectsWhitelist { get; private set; }
+        public static HashSet<int> NPCsWhitelist { get; private set; }
+        public static HashSet<int> ProjectilesWhitelist { get; private set; }
 
-        protected sealed override void Register()
+        public override void InitalizeMiscEntries()
         {
+            NPCsWhitelist = new HashSet<int>();
+            ProjectilesWhitelist = new HashSet<int>();
         }
 
-        public override void Load()
+        public override void LoadAutomaticEntries()
         {
-            RaygunColors = new Dictionary<int, Color>()
+            AutomaticEntries_NPCs(new HashSet<int>()
             {
-                [ProjectileID.Bullet] = new Color(1, 255, 40, 255),
-                [ProjectileID.MeteorShot] = new Color(30, 255, 200, 255),
-                [ProjectileID.CrystalBullet] = new Color(200, 112, 145, 255),
-                [ProjectileID.CursedBullet] = new Color(120, 228, 50, 255),
-                [ProjectileID.IchorBullet] = new Color(228, 200, 50, 255),
-                [ProjectileID.ChlorophyteBullet] = new Color(135, 255, 120, 255),
-                [ProjectileID.BulletHighVelocity] = new Color(255, 255, 235, 255),
-                [ProjectileID.VenomBullet] = new Color(128, 30, 255, 255),
-                [ProjectileID.NanoBullet] = new Color(60, 200, 255, 255),
-                [ProjectileID.ExplosiveBullet] = new Color(255, 120, 60, 255),
-                [ProjectileID.GoldenBullet] = new Color(255, 255, 10, 255),
-                [ProjectileID.MoonlordBullet] = new Color(60, 215, 245, 255),
-            };
-            WindEffectsWhitelist = new HashSet<int>();
-        }
-
-        public override void SetupContent()
-        {
-            HashSet<int> windAIStyles = new HashSet<int>()
+                0,
+                NPCAIStyleID.Slime,
+                NPCAIStyleID.DemonEye,
+                NPCAIStyleID.Fighter,
+                NPCAIStyleID.Fairy,
+                NPCAIStyleID.AncientLight,
+                NPCAIStyleID.BabyMothron,
+                NPCAIStyleID.Balloon,
+                NPCAIStyleID.Bat,
+                NPCAIStyleID.Bird,
+                NPCAIStyleID.Butterfly,
+                NPCAIStyleID.Caster,
+                NPCAIStyleID.Creeper,
+                NPCAIStyleID.CritterWorm,
+                NPCAIStyleID.Dragonfly,
+                NPCAIStyleID.Duck,
+                NPCAIStyleID.DukeFishronBubble,
+                NPCAIStyleID.ElfCopter,
+                NPCAIStyleID.EnchantedSword,
+                NPCAIStyleID.Firefly,
+                NPCAIStyleID.Flying,
+                NPCAIStyleID.FlyingFish,
+                NPCAIStyleID.GiantTortoise,
+                NPCAIStyleID.GraniteElemental,
+                NPCAIStyleID.Herpling,
+                NPCAIStyleID.HoveringFighter,
+                NPCAIStyleID.Jellyfish,
+                NPCAIStyleID.Ladybug,
+                NPCAIStyleID.ManEater,
+                NPCAIStyleID.Mimic,
+                NPCAIStyleID.MothronEgg,
+                NPCAIStyleID.NebulaFloater,
+                NPCAIStyleID.Passive,
+                NPCAIStyleID.Piranha,
+                NPCAIStyleID.PlanteraTentacle,
+                NPCAIStyleID.Seahorse,
+                NPCAIStyleID.SmallStarCell,
+                NPCAIStyleID.Spell,
+                NPCAIStyleID.Spider,
+                NPCAIStyleID.Spore,
+                NPCAIStyleID.StarCell,
+                NPCAIStyleID.TheHungry,
+                NPCAIStyleID.Unicorn,
+                NPCAIStyleID.Vulture,
+                NPCAIStyleID.WaterStrider,
+            });
+            AutomaticEntries_Projectiles(new HashSet<int>()
             {
                 0,
                 ProjAIStyleID.Arrow,
@@ -119,20 +147,45 @@ namespace Aequus.Projectiles
                 ProjAIStyleID.VoidBag,
                 ProjAIStyleID.WaterJet,
                 ProjAIStyleID.WireKite,
-            };
-
-            foreach (var p in ContentSamples.ProjectilesByType)
+            });
+        }
+        private void AutomaticEntries_NPCs(HashSet<int> hash)
+        {
+            foreach (var p in ContentSamples.NpcsByNetId)
             {
-                if (WindEffectsWhitelist.Contains(p.Key))
+                if (NPCsWhitelist.Contains(p.Key))
                 {
                     continue;
                 }
                 try
                 {
                     var projectile = p.Value;
-                    if (windAIStyles.Contains(projectile.aiStyle))
+                    if (hash.Contains(projectile.aiStyle))
                     {
-                        WindEffectsWhitelist.Add(p.Key);
+                        NPCsWhitelist.Add(p.Key);
+                    }
+                }
+                catch (Exception e)
+                {
+                    var l = Aequus.Instance.Logger;
+                    l.Error("An error occured when doing algorithmic checks for sets for {" + Lang.GetNPCName(p.Key).Value + ", ID: " + p.Key + "}", e);
+                }
+            }
+        }
+        private void AutomaticEntries_Projectiles(HashSet<int> hash)
+        {
+            foreach (var p in ContentSamples.ProjectilesByType)
+            {
+                if (ProjectilesWhitelist.Contains(p.Key))
+                {
+                    continue;
+                }
+                try
+                {
+                    var projectile = p.Value;
+                    if (hash.Contains(projectile.aiStyle))
+                    {
+                        ProjectilesWhitelist.Add(p.Key);
                     }
                 }
                 catch (Exception e)
@@ -143,12 +196,17 @@ namespace Aequus.Projectiles
             }
         }
 
+        public override void RemoveUnwantedEntries()
+        {
+            NPCsWhitelist.Remove(NPCID.BloodSquid);
+        }
+
         public override void Unload()
         {
-            WindEffectsWhitelist?.Clear();
-            WindEffectsWhitelist = null;
-            RaygunColors?.Clear();
-            RaygunColors = null;
+            NPCsWhitelist?.Clear();
+            NPCsWhitelist = null;
+            ProjectilesWhitelist?.Clear();
+            ProjectilesWhitelist = null;
         }
     }
 }

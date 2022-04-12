@@ -2,6 +2,7 @@
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
@@ -10,8 +11,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Ranged
 {
-    public class RaygunBullet : ModProjectile
+    public abstract class RaygunBullet : ModProjectile
     {
+        public static Dictionary<int, Color> RaygunColors { get; private set; }
+
         public override string Texture => Aequus.TextureNone;
 
         public Projectile baseProj;
@@ -19,6 +22,31 @@ namespace Aequus.Projectiles.Ranged
         public int trailTimer;
         public Vector2 positionFixer;
         public byte dontAccidentallyStealTheDataFromAnOldProjectileTimer;
+
+        public override void SetStaticDefaults()
+        {
+            RaygunColors = new Dictionary<int, Color>()
+            {
+                [ProjectileID.Bullet] = new Color(1, 255, 40, 255),
+                [ProjectileID.MeteorShot] = new Color(30, 255, 200, 255),
+                [ProjectileID.CrystalBullet] = new Color(200, 112, 145, 255),
+                [ProjectileID.CursedBullet] = new Color(120, 228, 50, 255),
+                [ProjectileID.IchorBullet] = new Color(228, 200, 50, 255),
+                [ProjectileID.ChlorophyteBullet] = new Color(135, 255, 120, 255),
+                [ProjectileID.BulletHighVelocity] = new Color(255, 255, 235, 255),
+                [ProjectileID.VenomBullet] = new Color(128, 30, 255, 255),
+                [ProjectileID.NanoBullet] = new Color(60, 200, 255, 255),
+                [ProjectileID.ExplosiveBullet] = new Color(255, 120, 60, 255),
+                [ProjectileID.GoldenBullet] = new Color(255, 255, 10, 255),
+                [ProjectileID.MoonlordBullet] = new Color(60, 215, 245, 255),
+            };
+        }
+
+        public override void Unload()
+        {
+            RaygunColors?.Clear();
+            RaygunColors = null;
+        }
 
         public override void SetDefaults()
         {
@@ -222,7 +250,7 @@ namespace Aequus.Projectiles.Ranged
             {
                 return Main.DiscoColor;
             }
-            if (ProjSets.RaygunColors.TryGetValue(projType, out var color))
+            if (RaygunColors.TryGetValue(projType, out var color))
             {
                 return color;
             }
