@@ -14,7 +14,7 @@ namespace Aequus.Effects
         {
             if (Intensity > 0f)
             {
-                _shake = (Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2() * Main.rand.NextFloat(Intensity)).Floor();
+                _shake = (Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2() * Main.rand.NextFloat(Intensity * 0.8f, Intensity)).Floor();
                 Intensity *= MultiplyPerTick;
             }
             else

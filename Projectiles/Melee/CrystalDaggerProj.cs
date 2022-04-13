@@ -41,7 +41,7 @@ namespace Aequus.Projectiles.Melee
         public override void AI()
         {
             var player = Main.player[Projectile.owner];
-            float speedMultiplier = 1f + (1f - player.meleeSpeed);
+            float speedMultiplier = Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee) - 1f;
             if (stabLength == 0f)
                 stabLength = 145f * speedMultiplier;
             var playerCenter = player.RotatedRelativePoint(player.MountedCenter, true);

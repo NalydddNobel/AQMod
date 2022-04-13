@@ -21,7 +21,7 @@ namespace Aequus.Common.Utilities
         public byte Rand()
         {
             byte value = samples[sampleIndex];
-            sampleIndex++;
+            IncRand(1);
             return value;
         }
         public bool RandChance(int chance)

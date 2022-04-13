@@ -197,7 +197,6 @@ namespace Aequus.NPCs.Boss
             //{
             //    music = GetMusic().GetMusicID();
             //    musicPriority = MusicPriority.BossMedium;
-
             //}
         }
 

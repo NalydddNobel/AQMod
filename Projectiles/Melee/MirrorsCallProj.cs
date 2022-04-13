@@ -131,7 +131,7 @@ namespace Aequus.Projectiles.Melee
             else
             {
                 //Main.NewText(Main.player[Projectile.owner].meleeSpeed);
-                swingMultiplier *= 0.9f - (1f - Main.player[Projectile.owner].meleeSpeed) / 8f;
+                swingMultiplier *= 0.9f - (Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee) - 1f) / 8f;
             }
         }
 
