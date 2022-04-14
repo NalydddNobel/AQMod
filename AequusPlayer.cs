@@ -3,24 +3,20 @@ using Aequus.Common.Players;
 using Aequus.Content;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
-using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.ID;
+using Terraria.Graphics;
+using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public sealed class AequusPlayer : ModPlayer, ITemperatureEntity
+    public sealed partial class AequusPlayer : ModPlayer, ITemperatureEntity
     {
-        /// <summary>
-        /// 0 = no force, 1 = force day, 2 = force night
-        /// <para>Applied by <see cref="Buffs.NoonBuff"/></para>
-        /// </summary>
-        public byte forceDaytime;
-
         /// <summary>
         /// Applied by <see cref="Buffs.Debuffs.BlueFire"/>
         /// </summary>
@@ -40,9 +36,15 @@ namespace Aequus
         public bool omegaStaritePet;
 
         /// <summary>
-        /// Applied by <see cref="Aequus.Items.Equipment.Accessories.FrigidTalisman"/>
+        /// Applied by <see cref="Items.Accessories.FrigidTalisman"/>
         /// </summary>
         public bool accGSFreezeResist;
+        /// <summary>
+        /// Added to by <see cref="Items.Accessories.FocusCrystal"/>
+        /// </summary>
+        public FocusCrystalStats accFocusCrystal;
+        public float _accFocusCrystalCircumference;
+        public float _accFocusCrystalOpacity;
 
         /// <summary>
         /// Tracks <see cref="Terraria.Player.selectedItem"/>, reset in <see cref="PostItemCheck"/>
@@ -98,6 +100,13 @@ namespace Aequus
         public int temperatureRegen;
 
         public bool inDanger;
+
+        /// <summary>
+        /// 0 = no force, 1 = force day, 2 = force night
+        /// <para>Applied by <see cref="Buffs.NoonBuff"/></para>
+        /// </summary>
+        public byte forceDaytime;
+
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown.
         /// </summary>
@@ -137,17 +146,16 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            forceDaytime = 0;
-
             blueFire = false;
             pickBreak = false;
 
             familiarPet = false;
             omegaStaritePet = false;
-        }
 
-        public override void PostUpdateEquips()
-        {
+            _accFocusCrystalCircumference = MathHelper.Lerp(_accFocusCrystalCircumference, accFocusCrystal.effectCircumference, 0.2f);
+            accFocusCrystal.ResetEffects(Player, this);
+
+            forceDaytime = 0;
         }
 
         public override bool PreItemCheck()
@@ -214,9 +222,9 @@ namespace Aequus
             {
                 Aequus.DayTimeManipulator.Clear();
             }
-            CheckDanger();
+            PostUpdate_CheckDanger();
         }
-        public void CheckDanger()
+        private void PostUpdate_CheckDanger()
         {
             inDanger = false;
             var checkTangle = new Rectangle((int)Player.position.X + Player.width / 2 - 1000, (int)Player.position.X + Player.head / 2 - 500, 2000, 1000);
@@ -233,11 +241,93 @@ namespace Aequus
             }
         }
 
-
         public override void ModifyScreenPosition()
         {
             ModContent.GetInstance<GameCamera>().UpdateScreen();
             EffectsSystem.UpdateScreenPosition();
+        }
+
+        private float NPCDamageMultiplier(NPC target, int damage, float knockback, bool crit)
+        {
+            float multiplier = 1f;
+            if (accFocusCrystal.effectCircumference > 0f && Player.Distance(target.getRect().ClosestDistance(Player.Center)) < (accFocusCrystal.effectCircumference / 2f))
+            {
+                multiplier += accFocusCrystal.damageMultiplier;
+            }
+            return multiplier;
+        }
+
+        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+        {
+            float multiplier = NPCDamageMultiplier(target, damage, knockback, crit);
+            if (multiplier != 1f)
+            {
+                damage = (int)(damage * multiplier);
+            }
+        }
+
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            float multiplier = NPCDamageMultiplier(target, damage, knockback, crit);
+            if (multiplier != 1f)
+            {
+                damage = (int)(damage * multiplier);
+            }
+        }
+
+        public void PreDrawAllPlayers(LegacyPlayerRenderer playerRenderer, Camera camera, IEnumerable<Player> players)
+        {
+            if (Main.gameMenu)
+            {
+                return;
+            }
+            bool end = false;
+            if (_accFocusCrystalCircumference > 0f && !accFocusCrystal.hideVisual)
+            {
+                if (inDanger)
+                {
+                    _accFocusCrystalOpacity = MathHelper.Lerp(_accFocusCrystalOpacity, 1f, 0.1f);
+                }
+                else
+                {
+                    _accFocusCrystalOpacity = MathHelper.Lerp(_accFocusCrystalOpacity, 0.2f, 0.1f);
+                }
+
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+                end = true;
+                var texture = PlayerAssets.FocusAura.Value;
+                var origin = texture.Size() / 2f;
+                var drawCoords = (Player.Center - Main.screenPosition).Floor();
+                float scale = _accFocusCrystalCircumference / texture.Width;
+                float opacity = Math.Min(_accFocusCrystalOpacity * scale, 1f);
+
+                Main.spriteBatch.Draw(texture, drawCoords, null,
+                    new Color(60, 4, 4, 0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+                texture = PlayerAssets.FocusCircle.Value;
+
+                for (int i = 0; i < 8; i++)
+                {
+                    Main.spriteBatch.Draw(texture, drawCoords + (MathHelper.PiOver4 * i).ToRotationVector2() * 2f * scale, null,
+                        new Color(80, 6, 6, 0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    Main.spriteBatch.Draw(texture, drawCoords + (MathHelper.PiOver2 * i).ToRotationVector2() * scale, null,
+                        new Color(128, 6, 6, 0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+                }
+
+                Main.spriteBatch.Draw(texture, drawCoords, null,
+                    new Color(128, 10, 10, 0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+            }
+            else
+            {
+                _accFocusCrystalOpacity = 0f;
+            }
+            if (end)
+            {
+                Main.spriteBatch.End();
+            }
         }
 
         /// <summary>
@@ -262,7 +352,7 @@ namespace Aequus
         /// </summary>
         /// <param name="cooldown">The amount of time the cooldown lasts in game ticks.</param>
         /// <param name="ignoreStats">Whether or not to ignore cooldown stats and effects. Setting this to true will prevent them from effecting this cooldown</param>
-        public void SetCooldown(int cooldown, bool ignoreStats = false)
+        public void SetCooldown(int cooldown, bool ignoreStats = false, Item itemReference = null)
         {
             if (cooldown < itemCooldown)
             {
@@ -275,6 +365,8 @@ namespace Aequus
 
         public void ModifyTemperatureApplication(ref int temperature, ref int minTemperature, ref int maxTemperature)
         {
+            minTemperature = -300;
+            maxTemperature = 300;
         }
     }
 }

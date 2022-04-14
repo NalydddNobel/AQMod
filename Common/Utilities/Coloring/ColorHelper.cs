@@ -9,7 +9,7 @@ namespace Aequus.Common.Utilities.Coloring
     {
         internal static Color Furniture => new Color(191, 142, 111);
 
-        public static ColorHelper Instance;
+        public static ColorHelper Instance { get; private set; }
 
         public byte[] Paints { get; private set; }
         public Dictionary<short, byte> DyeToPaint { get; private set; }

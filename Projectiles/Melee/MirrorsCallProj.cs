@@ -68,7 +68,7 @@ namespace Aequus.Projectiles.Melee
                 Main.projectile[p].width = (int)(Main.projectile[p].width * explosionScale);
                 Main.projectile[p].height = (int)(Main.projectile[p].height * explosionScale);
                 Main.projectile[p].Center = target.Center;
-                Main.projectile[p].Mod<MirrorsCallExplosion>().colorProgress = colorProgress + 1f;
+                Main.projectile[p].ModProjectile<MirrorsCallExplosion>().colorProgress = colorProgress + 1f;
             }
         }
 
@@ -95,11 +95,11 @@ namespace Aequus.Projectiles.Melee
             {
                 int damage = (int)(Projectile.damage * 0.25f);
                 int p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), player.Center, Projectile.velocity * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
-                Main.projectile[p].Mod<MirrorsCallBullet>().colorProgress = colorProgress;
+                Main.projectile[p].ModProjectile<MirrorsCallBullet>().colorProgress = colorProgress;
                 p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), player.Center, Projectile.velocity.RotatedBy(-0.2f) * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
-                Main.projectile[p].Mod<MirrorsCallBullet>().colorProgress = colorProgress + Main.rand.NextFloat(0.2f);
+                Main.projectile[p].ModProjectile<MirrorsCallBullet>().colorProgress = colorProgress + Main.rand.NextFloat(0.2f);
                 p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), player.Center, Projectile.velocity.RotatedBy(0.2f) * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
-                Main.projectile[p].Mod<MirrorsCallBullet>().colorProgress = colorProgress - Main.rand.NextFloat(0.2f);
+                Main.projectile[p].ModProjectile<MirrorsCallBullet>().colorProgress = colorProgress - Main.rand.NextFloat(0.2f);
             }
             float rotationSpeed = MathHelper.Pi * swing * swingMultiplier * direction;
             angleVector = AngleVector.RotatedBy(rotationSpeed);

@@ -12,6 +12,15 @@ namespace Aequus
 {
     public static class AequusHelpers
     {
+        public static Vector2 ClosestDistance(this Rectangle rect, Vector2 other)
+        {
+            var center = rect.Center.ToVector2();
+            var n = Vector2.Normalize(other - center);
+            float x = Math.Min((other.X - center.X).Abs(), rect.Width / 2f);
+            float y = Math.Min((other.Y - center.Y).Abs(), rect.Height / 2f);
+            return center + n * new Vector2(x, y);
+        }
+
         public static void Active(this Tile tile, bool value)
         {
             tile.HasTile = value;
@@ -186,7 +195,11 @@ namespace Aequus
             typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, honey);
         }
 
-        public static T Mod<T>(this Projectile projectile) where T : ModProjectile
+        public static T ModItem<T>(this Item item) where T : ModItem
+        {
+            return (T)item.ModItem;
+        }
+        public static T ModProjectile<T>(this Projectile projectile) where T : ModProjectile
         {
             return (T)projectile.ModProjectile;
         }

@@ -41,7 +41,7 @@ namespace Aequus.Projectiles.Melee
         public override void AI()
         {
             var player = Main.player[Projectile.owner];
-            float speedMultiplier = Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee) - 1f;
+            float speedMultiplier = Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee);
             if (stabLength == 0f)
                 stabLength = 145f * speedMultiplier;
             var playerCenter = player.RotatedRelativePoint(player.MountedCenter, true);
@@ -88,7 +88,7 @@ namespace Aequus.Projectiles.Melee
         {
             var texture = TextureAssets.Projectile[Type].Value;
             var drawColor = Projectile.GetAlpha(lightColor);
-            var swordTip = Projectile.Center/* - Vector2.Normalize(Projectile.velocity) * (Projectile.Size.Length() / 2f)*/;
+            var swordTip = Projectile.Center;
             var origin = new Vector2(texture.Width, 0f);
             var effects = SpriteEffects.None;
 

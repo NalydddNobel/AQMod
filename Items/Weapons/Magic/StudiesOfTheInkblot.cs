@@ -12,6 +12,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
+            CooldownsItem.HasWeaponCooldown.Add(Type);
             this.SetResearch(1);
         }
 

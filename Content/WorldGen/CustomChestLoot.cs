@@ -1,4 +1,6 @@
 ﻿using Aequus.Common.ID;
+using Aequus.Items.Accessories;
+using Aequus.Items.Weapons.Melee;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -8,40 +10,6 @@ namespace Aequus.Content.WorldGeneration
 {
     public sealed class CustomChestLoot : ModSystem
     {
-        public struct ChestLootData
-        {
-            public int originalItem;
-            public int newItem;
-            public int replacementChance;
-
-            public ChestLootData(int original, int newItem) : this(original, newItem, 2)
-            {
-            }
-
-            public ChestLootData(int original, int newItem, int chance)
-            {
-                originalItem = original;
-                this.newItem = newItem;
-                replacementChance = chance;
-            }
-
-            public bool RollChance()
-            {
-                return replacementChance <= 1 || WorldGen.genRand.NextBool(replacementChance);
-            }
-        }
-
-        public static Dictionary<int, List<ChestLootData>> VanillaChestRewards { get; private set; }
-
-        public override void Load()
-        {
-            VanillaChestRewards = new Dictionary<int, List<ChestLootData>>();
-            for (int i = 0; i < ChestTypes.VanillaCount; i++)
-            {
-                VanillaChestRewards[i] = new List<ChestLootData>();
-            }
-        }
-
         public override void PostWorldGen()
         {
             for (int i = 0; i < Main.maxChests; i++)
@@ -49,28 +17,44 @@ namespace Aequus.Content.WorldGeneration
                 Chest c = Main.chest[i];
                 if (c != null && Main.tile[c.x, c.y].TileType == TileID.Containers && c.item[0] != null && !c.item[0].IsAir)
                 {
-                    if (VanillaChestRewards.TryGetValue(ChestTypes.GetChestType(c), out var list))
+                    int chestType = ChestTypes.GetChestType(c);
+                    if (chestType == ChestTypes.Gold || chestType == ChestTypes.deadMans)
                     {
-                        foreach (var loot in list)
-                        {
-                            if (c.item[0].type == loot.originalItem)
-                            {
-                                if (loot.RollChance())
-                                {
-                                    c.item[0].SetDefaults(loot.newItem);
-                                }
-                                continue;
-                            }
-                        }
+                        GoldChestLoot(c);
+                    }
+                    else if (chestType == ChestTypes.Frozen)
+                    {
+                        FrozenChestLoot(c);
                     }
                 }
             }
         }
-
-        public override void Unload()
+        private void GoldChestLoot(Chest c)
         {
-            VanillaChestRewards?.Clear();
-            VanillaChestRewards = null;
+            if (WorldGen.genRand.NextBool(3))
+            {
+                for (int i = 0; i < Chest.maxItems; i++)
+                {
+                    if (c.item[i].stack > 0 && (c.item[i].type == ItemID.Torch || c.item[i].type == ItemID.Glowstick))
+                    {
+                        goto AddGlowCore;
+                    }
+                }
+                return;
+
+            AddGlowCore:
+                c.Insert(ModContent.ItemType<GlowCore>(), 1);
+            }
+        }
+        private void FrozenChestLoot(Chest c)
+        {
+            if (c.item[0].type == ItemID.IceBlade)
+            {
+                if (WorldGen.genRand.NextBool())
+                {
+                    c.item[0].SetDefaults(ModContent.ItemType<CrystalDagger>());
+                }
+            }
         }
     }
 }

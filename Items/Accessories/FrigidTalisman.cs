@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories
+namespace Aequus.Items.Accessories
 {
     public class FrigidTalisman : ModItem
     {
@@ -24,7 +24,7 @@ namespace Aequus.Items.Equipment.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            //player.GetModPlayer<AQPlayer>().hotAmulet = true;
+            player.GetModPlayer<AequusPlayer>().maxTemperature -= 120;
             player.fireWalk = true;
             player.buffImmune[BuffID.OnFire] = true;
             player.buffImmune[BuffID.Burning] = true;

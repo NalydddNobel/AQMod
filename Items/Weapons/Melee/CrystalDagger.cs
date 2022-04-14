@@ -14,7 +14,6 @@ namespace Aequus.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-            CustomChestLoot.VanillaChestRewards[ChestTypes.Ice].Add(new CustomChestLoot.ChestLootData(ItemID.IceBlade, Type));
         }
 
         public override void SetDefaults()

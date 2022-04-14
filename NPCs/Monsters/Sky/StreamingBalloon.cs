@@ -2,6 +2,7 @@
 using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Weapons.Magic;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -138,6 +139,10 @@ namespace Aequus.NPCs.Monsters.Sky
                                     //ModContent.ItemType<CinnamonRoll>(),
                                     //ModContent.ItemType<TemperatureHairDye>(),
                                 };
+                                if (WorldFlags.HardmodeTier)
+                                {
+                                    selectableLoot.Add(ModContent.ItemType<Umystick>());
+                                }
                             }
                             else if (Main.rand.NextBool(9))
                             {
@@ -154,11 +159,6 @@ namespace Aequus.NPCs.Monsters.Sky
                                 };
                             }
 
-                            //if (WorldFlags.SudoHardmode)
-                            //{
-                            //    Array.Resize(ref selectableLoot, selectableLoot.Length + 1);
-                            //    selectableLoot[selectableLoot.Length - 1] = ModContent.ItemType<Items.Weapons.Magic.Umystick>();
-                            //}
                             if (selectableLoot != null)
                                 NPC.ai[1] = selectableLoot[Main.rand.Next(selectableLoot.Count)];
                         }

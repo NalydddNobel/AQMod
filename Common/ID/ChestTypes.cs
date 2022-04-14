@@ -16,7 +16,7 @@ namespace Aequus.Common.ID
         public const int RichMahogany = 8;
         public const int Pearlwood = 9;
         public const int Ivy = 10;
-        public const int Ice = 11;
+        public const int Frozen = 11;
         public const int Living = 12;
         public const int Skyware = 13;
         public const int Shadewood = 14;
@@ -27,12 +27,12 @@ namespace Aequus.Common.ID
         public const int Corruption = 19;
         public const int Crimson = 20;
         public const int Hallow = 21;
-        public const int Frozen = 22;
+        public const int Ice = 22;
         public const int LockedJungle = 23;
         public const int LockedCorruption = 24;
         public const int LockedCrimson = 25;
         public const int LockedHallow = 26;
-        public const int LockedFrozen = 27;
+        public const int LockedIce = 27;
         public const int Dynasty = 28;
         public const int Honey = 29;
         public const int Steampunk = 30;

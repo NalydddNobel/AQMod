@@ -43,7 +43,7 @@ namespace Aequus.Projectiles.Melee
                 int p = Projectile.NewProjectile(Projectile.GetProjectileSource_OnHit(target, Type), target.Center,
                     Vector2.Normalize(Projectile.Center - Main.player[Projectile.owner].Center), Type, Projectile.damage, Projectile.knockBack, Projectile.owner);
                 Main.projectile[p].scale = Projectile.scale - 0.2f;
-                Main.projectile[p].Mod<MirrorsCallExplosion>().colorProgress = colorProgress + 1f;
+                Main.projectile[p].ModProjectile<MirrorsCallExplosion>().colorProgress = colorProgress + 1f;
             }
         }
     }

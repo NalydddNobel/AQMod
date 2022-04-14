@@ -14,12 +14,15 @@ namespace Aequus.Items
         /// </summary>
         public static HashSet<int> HasWeaponCooldown { get; private set; }
 
-        public override void SetStaticDefaults()
+        public override void Load()
         {
-            HasWeaponCooldown = new HashSet<int>()
-            {
-                ModContent.ItemType<StudiesOfTheInkblot>(),
-            };
+            HasWeaponCooldown = new HashSet<int>();
+        }
+
+        public override void Unload()
+        {
+            HasWeaponCooldown?.Clear();
+            HasWeaponCooldown = null;
         }
 
         public override bool CanUseItem(Item item, Player player)
@@ -35,7 +38,7 @@ namespace Aequus.Items
                 if (aequus.itemCooldown > 0 && aequus.itemCooldownMax > 0)
                 {
                     float progress = aequus.itemCooldown / (float)aequus.itemCooldownMax;
-                    AequusHelpers.DrawUIBack(spriteBatch, Aequus.Tex("UI/InventoryBack"), position, frame, scale, new Color(155, 155, 105, 250) * (0.75f + progress * 0.25f), progress);
+                    AequusHelpers.DrawUIBack(spriteBatch, Aequus.MyTex("UI/InventoryBack"), position, frame, scale, new Color(155, 155, 105, 250) * (0.75f + progress * 0.25f), progress);
                 }
             }
             return true;
