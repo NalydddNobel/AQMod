@@ -14,7 +14,6 @@ using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -29,9 +28,14 @@ namespace Aequus.NPCs.Monsters.Sky
     [AutoloadBossHead()]
     public class RedSprite : ModNPC
     {
-        private bool _setupFrame;
         public int frameIndex;
-        private SoundEffectInstance WindSound;
+
+        private bool _setupFrame;
+        
+        private float _brightnessTimer;
+        private float _brightness;
+
+        private SoundEffectInstance windSoundInstance;
 
         public const int FramesX = 3;
 
@@ -83,11 +87,9 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.aiStyle = -1;
             NPC.noGravity = true;
             NPC.value = Item.buyPrice(gold: 2);
-            //banner = NPC.type;
-            //bannerItem = ModContent.ItemType<RedSpriteBanner>();
             NPC.noTileCollide = true;
 
-            //NPC.GetGlobalNPC<AQNPC>().temperature = 40;
+            _brightness = 0.2f;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -114,10 +116,10 @@ namespace Aequus.NPCs.Monsters.Sky
                 if (Main.netMode != NetmodeID.Server)
                 {
                     var soundEffect = SoundEngine.GetTrackableSoundByStyleId(SoundID.BlizzardStrongLoop.Style);
-                    WindSound = soundEffect.CreateInstance();
-                    if (WindSound.State == SoundState.Playing)
+                    windSoundInstance = soundEffect.CreateInstance();
+                    if (windSoundInstance.State == SoundState.Playing)
                     {
-                        WindSound.Stop();
+                        windSoundInstance.Stop();
                     }
                 }
                 for (int i = 0; i < 50; i++)
@@ -138,24 +140,25 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override Color? GetAlpha(Color drawColor)
         {
-            if (drawColor.R < 60)
+            byte minimum = (byte)(int)(255 * _brightness);
+            if (drawColor.R < minimum)
             {
-                drawColor.R = 60;
+                drawColor.R = minimum;
             }
-            if (drawColor.G < 60)
+            if (drawColor.G < minimum)
             {
-                drawColor.G = 60;
+                drawColor.G = minimum;
             }
-            if (drawColor.B < 60)
+            if (drawColor.B < minimum)
             {
-                drawColor.B = 60;
+                drawColor.B = minimum;
             }
             return drawColor;
         }
 
         public const int PHASE_DIRECT_WIND = 1;
         public const int PHASE_SUMMON_NIMBUS = 2;
-        public const int PHASE_DIRECT_WIND_Transition = 3;
+        public const int TRANSITION_DIRECT_WIND = 3;
         public const int PHASE_THUNDERCLAP = 4;
         public const int PHASE_THUNDERCLAP_Transition = 5;
 
@@ -289,7 +292,7 @@ namespace Aequus.NPCs.Monsters.Sky
                             NPC.ai[3]++;
                             if (NPC.ai[3] > 600f)
                             {
-                                NPC.ai[0] = PHASE_DIRECT_WIND_Transition;
+                                NPC.ai[0] = TRANSITION_DIRECT_WIND;
                                 NPC.ai[2] = -1f;
                                 NPC.ai[3] = 0f;
                             }
@@ -402,10 +405,10 @@ namespace Aequus.NPCs.Monsters.Sky
                             if (Main.netMode != NetmodeID.Server && Main.ambientVolume > 0f)
                             {
                                 LoadWindSound();
-                                if (WindSound.State != SoundState.Playing)
+                                if (windSoundInstance.State != SoundState.Playing)
                                 {
-                                    WindSound.Volume = Main.ambientVolume;
-                                    WindSound.Play();
+                                    windSoundInstance.Volume = Main.ambientVolume;
+                                    windSoundInstance.Play();
                                 }
                             }
                         }
@@ -414,7 +417,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     break;
 
-                case PHASE_DIRECT_WIND_Transition:
+                case TRANSITION_DIRECT_WIND:
                     {
                         if (NPC.direction == -1)
                         {
@@ -486,16 +489,16 @@ namespace Aequus.NPCs.Monsters.Sky
                         if (Main.netMode != NetmodeID.Server && Main.ambientVolume > 0f)
                         {
                             LoadWindSound();
-                            if (WindSound.State == SoundState.Playing)
+                            if (windSoundInstance.State == SoundState.Playing)
                             {
                                 if (NPC.ai[1] > 30f)
                                 {
-                                    WindSound.Stop();
+                                    windSoundInstance.Stop();
                                 }
                                 else
                                 {
                                     float volume = 1f - NPC.ai[1] / 30f;
-                                    WindSound.Volume = Main.ambientVolume * volume;
+                                    windSoundInstance.Volume = Main.ambientVolume * volume;
                                 }
                             }
                         }
@@ -706,6 +709,9 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (Main.netMode == NetmodeID.Server)
                 return;
+            _brightnessTimer += 0.1f;
+
+            float brightnessMax = 0.5f;
             if (!_setupFrame)
             {
                 _setupFrame = true;
@@ -713,6 +719,7 @@ namespace Aequus.NPCs.Monsters.Sky
             }
             if (NPC.IsABestiaryIconDummy)
             {
+                _brightness = AequusHelpers.Wave(_brightnessTimer, 0.2f, brightnessMax);
                 return;
             }
 
@@ -847,7 +854,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     break;
 
-                case PHASE_DIRECT_WIND_Transition:
+                case TRANSITION_DIRECT_WIND:
                     {
                         if (NPC.direction == -1)
                         {
@@ -922,6 +929,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
                 case PHASE_THUNDERCLAP:
                     {
+                        brightnessMax += 0.5f;
                         if (NPC.ai[1] > 68f)
                         {
                             if (NPC.ai[1] >= 88f)
@@ -971,6 +979,8 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     break;
             }
+
+            _brightness = AequusHelpers.Wave(_brightnessTimer, 0.2f, brightnessMax);
 
             NPC.frame.Y = frameIndex * frameHeight;
 
@@ -1031,18 +1041,28 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public static void DrawThingWithAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPosition, Rectangle? frame, Color drawColor, float rotation, Vector2 origin, float scale, float auraIntensity = 0f)
         {
-            float electric = 3f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f) + auraIntensity;
-            if (electric > 0f)
+            int aura = (int)((AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) + auraIntensity) * 4f);
+            if (aura > 0f)
             {
                 var color = new Color(255, 150, 0, 20) * 0.3f;
-                for (; electric > 0f; electric -= 2f)
+                var circular = AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f);
+
+                var batchData = new SpriteBatchDataCache(spriteBatch);
+                spriteBatch.End();
+                CommonSpriteBatchParameters.GeneralEntities.BeginShader(spriteBatch);
+
+                var drawData = new DrawData(texture, drawPosition, frame, new Color(255, 255, 255, 5), rotation, origin, scale, SpriteEffects.None, 0);
+                EffectCache.MiscShader.UseSecondaryColor(Color.Orange);
+                EffectCache.MiscShader.UseColor(Color.Red);
+                EffectCache.MiscShader.Apply(drawData);
+
+                foreach (var v in circular)
                 {
-                    for (int k = 0; k < 8; k++)
-                    {
-                        Main.spriteBatch.Draw(texture, drawPosition + (MathHelper.PiOver4 * k).ToRotationVector2() * electric, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
-                        Main.spriteBatch.Draw(texture, drawPosition - (MathHelper.PiOver4 * k).ToRotationVector2() * electric, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
-                    }
+                    Main.spriteBatch.Draw(texture, drawPosition + v * (aura / 4f), frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
                 }
+
+                spriteBatch.End();
+                batchData.Begin(spriteBatch);
             }
             Main.spriteBatch.Draw(texture, drawPosition, frame, drawColor, rotation, origin, scale, SpriteEffects.None, 0f);
         }
@@ -1074,10 +1094,10 @@ namespace Aequus.NPCs.Monsters.Sky
 
         private void LoadWindSound()
         {
-            if (WindSound == null)
+            if (windSoundInstance == null)
             {
                 var soundEffect = SoundEngine.GetTrackableSoundByStyleId(SoundID.BlizzardStrongLoop.Style);
-                WindSound = soundEffect.CreateInstance();
+                windSoundInstance = soundEffect.CreateInstance();
             }
         }
     }

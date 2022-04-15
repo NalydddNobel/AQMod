@@ -20,6 +20,7 @@ namespace Aequus.NPCs.Monsters.Sky
     {
         public const int Temperature = 40;
         public int transitionMax;
+        public int temperature;
 
         public override void SetStaticDefaults()
         {
@@ -118,7 +119,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     NPC.netUpdate = true;
                 }
                 NPC.velocity.Y -= 0.25f;
-                NPC.GetGlobalNPC<TemperatureNPC>().temperature = 0;
+                temperature = 0;
                 return;
             }
             if ((int)NPC.ai[1] == 0)
@@ -185,12 +186,12 @@ namespace Aequus.NPCs.Monsters.Sky
                 if (NPC.ai[3] <= 0)
                 {
                     NPC.ai[3] = 0f;
-                    NPC.GetGlobalNPC<TemperatureNPC>().temperature = (sbyte)(Temperature * (hot ? 1 : -1));
+                    temperature = (sbyte)(Temperature * (hot ? 1 : -1));
                     NPC.netUpdate = true;
                 }
                 else if (transitionMax != 0)
                 {
-                    NPC.GetGlobalNPC<TemperatureNPC>().temperature = (sbyte)(int)MathHelper.Lerp(NPC.GetGlobalNPC<TemperatureNPC>().temperature, Temperature * (hot ? 1 : -1), 1f - NPC.ai[3] / transitionMax);
+                    temperature = (sbyte)(int)MathHelper.Lerp(temperature, Temperature * (hot ? 1 : -1), 1f - NPC.ai[3] / transitionMax);
                 }
             }
             if ((int)NPC.ai[2] == -1) // leader
@@ -408,11 +409,13 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(transitionMax);
+            writer.Write(temperature);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             transitionMax = reader.ReadInt32();
+            temperature = reader.ReadInt32();
         }
 
         public override void FindFrame(int frameHeight)

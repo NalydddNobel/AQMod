@@ -8,6 +8,8 @@ namespace Aequus.Effects
 {
     public sealed partial class EffectsSystem : ModSystem
     {
+        public static EffectCache Effects { get; private set; }
+
         public static MiniRandom EffectRand { get; private set; }
 
         public static DrawIndexCache NPCsBehindAllNPCs { get; private set; }
@@ -17,6 +19,7 @@ namespace Aequus.Effects
 
         public override void Load()
         {
+            Effects = new EffectCache();
             NPCsBehindAllNPCs = new DrawIndexCache();
             ProjsBehindTiles = new DrawIndexCache();
             Shake = new ScreenShakeData();

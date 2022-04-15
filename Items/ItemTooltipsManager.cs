@@ -180,13 +180,13 @@ namespace Aequus.Items
                 // particles
                 var particleTexture = Aequus.MyTex("Assets/Bloom");
                 var particleOrigin = particleTexture.Size() / 2f;
-                int amt = (int)EffectsSystem.EffectRand.Rand((int)size.X / 3, (int)size.X);
+                int amt = (int)EffectsSystem.EffectRand.Rand(size.X / 3, size.X);
                 for (int i = 0; i < amt; i++)
                 {
                     float lifeTime = (EffectsSystem.EffectRand.Rand(20f) + Main.GlobalTimeWrappedHourly * 2f) % 20f;
-                    int baseParticleX = (int)EffectsSystem.EffectRand.Rand(4, (int)size.X - 4);
+                    int baseParticleX = (int)EffectsSystem.EffectRand.Rand(4f, size.X - 4f);
                     int particleX = baseParticleX + (int)AequusHelpers.Wave(lifeTime + Main.GlobalTimeWrappedHourly * EffectsSystem.EffectRand.Rand(2f, 5f), -EffectsSystem.EffectRand.Rand(3f, 10f), EffectsSystem.EffectRand.Rand(3f, 10f));
-                    int particleY = (int)EffectsSystem.EffectRand.Rand(10);
+                    int particleY = (int)EffectsSystem.EffectRand.Rand(10f);
                     float scale = EffectsSystem.EffectRand.Rand(0.2f, 0.4f);
                     if (baseParticleX > 14 && baseParticleX < size.X - 14 && EffectsSystem.EffectRand.RandChance(6))
                     {

@@ -1,4 +1,5 @@
-﻿using Terraria.Utilities;
+﻿using System;
+using Terraria.Utilities;
 
 namespace Aequus.Common.Utilities
 {
@@ -43,7 +44,8 @@ namespace Aequus.Common.Utilities
         public int SetRand(int set)
         {
             int oldValue = sampleIndex;
-            sampleIndex = set % samples.Length;
+            sampleIndex = 0;
+            IncRand(Math.Abs(set));
             return oldValue;
         }
     }

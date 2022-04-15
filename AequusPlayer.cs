@@ -15,7 +15,7 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public sealed partial class AequusPlayer : ModPlayer, ITemperatureEntity
+    public sealed partial class AequusPlayer : ModPlayer
     {
         /// <summary>
         /// Applied by <see cref="Buffs.Debuffs.BlueFire"/>
@@ -111,8 +111,6 @@ namespace Aequus
         /// Helper for whether or not the player currently has a cooldown.
         /// </summary>
         public bool HasCooldown => itemCooldown > 0;
-
-        int ITemperatureEntity.Temperature { get => temperature; set => temperature = value; }
 
         public override void Initialize()
         {
