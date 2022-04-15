@@ -42,7 +42,7 @@ namespace Aequus.Projectiles.Monster
             var texture = TextureAssets.Projectile[Type].Value;
             var orig = texture.Size() / 2f;
             var drawPos = Projectile.Center - Main.screenPosition;
-            var drawColor = new Color(30, 255, 30, 0);
+            var drawColor = new Color(10, 200, 80, 0);
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
             {

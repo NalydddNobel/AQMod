@@ -295,17 +295,17 @@ namespace Aequus.NPCs.Monsters.Sky
                             else if ((int)NPC.ai[1] > 200)
                             {
                                 var eyePos = GetEyePos();
-                                Dust.NewDustPerfect(eyePos, ModContent.DustType<MonoDust>(), new Vector2(0f, 0f), 0, new Color(10, 255, 20, 0), 0.9f);
+                                Dust.NewDustPerfect(eyePos, ModContent.DustType<MonoDust>(), new Vector2(0f, 0f), 0, new Color(10, 255, 80, 0), 0.9f);
                                 int spawnChance = 3 - (int)(NPC.ai[1] - 210) / 8;
                                 if (spawnChance <= 1 || Main.rand.NextBool(spawnChance))
                                 {
                                     var spawnPos = eyePos + new Vector2(Main.rand.NextFloat(-60f, 60f), Main.rand.NextFloat(-60f, 60f));
-                                    Dust.NewDustPerfect(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 8f + NPC.velocity, 0, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.9f, 1.35f));
+                                    Dust.NewDustPerfect(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 8f + NPC.velocity, 0, new Color(10, 200, 80, 0), Main.rand.NextFloat(0.9f, 1.35f));
                                 }
                                 if (spawnChance <= 1)
                                 {
                                     var spawnPos = eyePos + new Vector2(Main.rand.NextFloat(-120f, 120f), Main.rand.NextFloat(-120f, 120f));
-                                    Dust.NewDustPerfect(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 12f + NPC.velocity, 0, new Color(10, 200, 20, 0), Main.rand.NextFloat(0.5f, 0.75f));
+                                    Dust.NewDustPerfect(spawnPos, ModContent.DustType<MonoDust>(), (eyePos - spawnPos) / 12f + NPC.velocity, 0, new Color(10, 200, 80, 0), Main.rand.NextFloat(0.5f, 0.75f));
                                 }
                             }
                             if ((int)NPC.ai[1] >= 330)
@@ -339,7 +339,12 @@ namespace Aequus.NPCs.Monsters.Sky
                                 }
                                 else
                                 {
-                                    int timer = (int)(NPC.ai[1] - 120) % 10;
+                                    int timeBetweenShots = 10;
+                                    if (Main.getGoodWorld)
+                                    {
+                                        timeBetweenShots /= 3;
+                                    }
+                                    int timer = (int)(NPC.ai[1] - 120) % timeBetweenShots;
                                     if (timer == 0)
                                     {
                                         frameIndex = 8;
@@ -349,6 +354,11 @@ namespace Aequus.NPCs.Monsters.Sky
                                         }
                                         var spawnPosition = new Vector2(NPC.position.X + (NPC.direction == 1 ? NPC.width + 20f : -20), NPC.position.Y + NPC.height / 2f);
                                         var velocity = new Vector2(20f * NPC.direction, 0f);
+                                        if (Main.getGoodWorld)
+                                        {
+                                            velocity = velocity.RotatedBy(Math.Sin((NPC.ai[1] - 120) * (MathHelper.TwoPi / 80f)) * MathHelper.PiOver4);
+                                            velocity *= 0.5f;
+                                        }
                                         if (Main.netMode != NetmodeID.MultiplayerClient)
                                         {
                                             Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), spawnPosition, velocity, ModContent.ProjectileType<SpaceSquidLaser>(), 30, 1f, Main.myPlayer);
@@ -419,12 +429,21 @@ namespace Aequus.NPCs.Monsters.Sky
                             NPC.ai[3]++;
                             NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(gotoPosition - NPC.Center) * 10f, 0.006f);
                             int timeBetweenShots = 3 + NPC.life / (NPC.lifeMax / 3);
+                            if (Main.getGoodWorld)
+                            {
+                                timeBetweenShots /= 2;
+                            }
                             int timer = (int)(NPC.ai[2] - 60) % timeBetweenShots;
                             if (timer == 0)
                             {
                                 if (Main.netMode != NetmodeID.MultiplayerClient)
                                 {
                                     var velocity = new Vector2(10f, 0f).RotatedBy(NPC.ai[3] * 0.12f);
+                                    if (Main.getGoodWorld)
+                                    {
+                                        velocity = velocity.RotatedBy(Main.rand.NextFloat(-0.5f, 0.5f));
+                                        velocity *= Main.rand.NextFloat(1.9f, 2.1f);
+                                    }
                                     Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center + velocity * 4f, velocity, ModContent.ProjectileType<SpaceSquidSnowflake>(), 20, 1f, Main.myPlayer);
                                 }
                                 if (Main.netMode != NetmodeID.Server)
@@ -749,16 +768,49 @@ namespace Aequus.NPCs.Monsters.Sky
 
             spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, origin, scale, effects, 0f);
             spriteBatch.Draw(Aequus.Tex(this.GetPath() + "_Glow"), drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, effects, 0f);
+
+            if (!NPC.IsABestiaryIconDummy && Main.expertMode)
+                RenderDeathrayTelegraph(spriteBatch, screenPos);
             return false;
         }
-
-        internal Vector2 GetEyePos()
+        private void RenderDeathrayTelegraph(SpriteBatch spriteBatch, Vector2 screenPos)
         {
-            if (NPC.direction == -1)
+            if ((int)NPC.ai[0] == Phase_SpaceGun && NPC.ai[1] > 200f && NPC.ai[1] <= 245f && (int)NPC.ai[3] == 2)
             {
-                return NPC.position + new Vector2(4f, NPC.height / 2f - 2f);
+                float opacity = 1f;
+                if (NPC.ai[1] < 10f)
+                {
+                    opacity = (NPC.ai[1] - 200f) / 10f;
+                }
+                float progress = (NPC.ai[1] - 200f) / 45f;
+                var eyePosition = GetEyePos(NPC.position);
+                eyePosition.X -= NPC.direction * 6f;
+                eyePosition.Y -= 2f;
+                var scale = new Vector2(10000f, 4f);
+                if (NPC.direction == -1)
+                {
+                    eyePosition.X -= scale.X;
+                }
+                var pixel = TextureAssets.MagicPixel.Value;
+                var frame = new Rectangle(0, 0, 1, 1);
+                var laserColor = new Color(10, 200, 80, 0);
+                for (int i = 0; i < 8; i++)
+                {
+                    float progress2 = 1f - 1f / 10f * (i + 2);
+                    spriteBatch.Draw(pixel, eyePosition + new Vector2(0f, i * scale.Y * (1f - progress)) - screenPos, frame, laserColor * progress2 * opacity, 0f, new Vector2(0f, 0.5f), scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(pixel, eyePosition - new Vector2(0f, i * scale.Y * (1f- progress)) - screenPos, frame, laserColor * progress2 * opacity, 0f, new Vector2(0f, 0.5f), scale, SpriteEffects.None, 0f);
+                }
+
             }
-            return NPC.position + new Vector2(NPC.width - 4f, NPC.height / 2f - 2f);
+        }
+        
+        public Vector2 GetEyePos()
+        {
+            return GetEyePos(NPC.position);
+        }
+        public Vector2 GetEyePos(Vector2 position)
+        {
+            return position + new Vector2(NPC.direction == 1 ? NPC.width - 4f : 4f, NPC.height / 2f - 2f);
         }
     }
 }
