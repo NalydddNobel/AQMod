@@ -61,6 +61,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			GlowCore: 发光核心
 			SnowPalette: 雪地调色板
 			GlowingMushroomsPalette: 发光蘑菇调色板
 			DesertPalette: 沙漠调色板
@@ -84,7 +85,7 @@ Mods: {
 			JellyAmulet: 水母护符
 			Terraroot: 弹药恢复包
 			Quasicrystal: 准晶体护符
-			Ultranium: 聚焦晶体
+			FocusCrystal: 聚焦晶体
 			ExtractorHelmet: 顶板
 			ExtractorAirMask: 空气过滤器
 			GlowBand: 发光手环
@@ -110,7 +111,7 @@ Mods: {
 			ShockCollar: 冲击项圈
 			FidgetSpinner: 永续仪
 			DegenerationRing: 阻燃戒指
-			HeatedAmulet: 灼炎护符
+			BlazingTalisman: 灼炎护符
 			FrigidTalisman: 寒霜护符
 			NormalizerAmulet: 化一护符
 			MinersFlashlight: 矿工的手电筒
@@ -357,6 +358,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			GlowCore: 散发着彩色的光芒
 			SnowPalette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
@@ -397,13 +399,13 @@ Mods: {
 			MirrorsCall:
 				'''
 				'从你舒适的沙发上打击敌人!'
-				右键可在没有弹幕的情况下大幅度摆动
+				右键可在没有弹幕的情况下大幅度挥舞
 				'''
 			Slice:
 				'''
 				快速挥砍并发射穿刺雪花
 				击中敌人时会造成霜火减益
-				右键可在没有弹幕的情况下大幅度摆动
+				右键可在没有弹幕的情况下大幅度挥舞
 				'''
 			MoonflowerPollen: "{$Mods.Aequus.Tooltips.Concocted}"
 			LingeringPotion: 给予你和队友一个较为持久的增益效果
@@ -453,10 +455,9 @@ Mods: {
 				击中敌人时会对其造成宇宙辐射减益和火焰伤害
 				受伤时会召唤星星从天而降
 				'''
-			Ultranium:
+			FocusCrystal:
 				'''
 				附近的敌人会受到25%额外伤害
-				击中敌人时会对其造成宇宙辐射减益和火焰伤害
 				'''
 			ExtractorHelmet: 坠落的方块对你造成的伤害降低
 			ExtractorAirMask: 使你免疫窒息
@@ -527,7 +528,7 @@ Mods: {
 				'''
 			FidgetSpinner: 无法自动挥舞的物品的速度变慢, 但可以自动挥舞
 			DegenerationRing: 阻止大多数种类的燃烧
-			HeatedAmulet:
+			BlazingTalisman:
 				'''
 				阻止大多数种类的冻结
 				降低来自紊流风暴敌人的冷源强度
