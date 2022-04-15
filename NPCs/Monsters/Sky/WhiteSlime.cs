@@ -287,7 +287,7 @@ namespace Aequus.NPCs.Monsters.Sky
             var rule = new LeadingConditionRule(new Conditions.IsHardmode());
             rule.OnSuccess(npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>(), 20)));
             npcLoot.Add(ItemDropRule.Common(ItemID.Gel, 1, 5, 15));
-            npcLoot.Add(ItemDropRule.ByCondition(new HardmodeTierCondition(), ModContent.ItemType<Umystick>()));
+            npcLoot.Add(ItemDropRule.ByCondition(new HardmodeTierCondition(), ModContent.ItemType<Umystick>(), 15));
             npcLoot.Add(ItemDropRule.Common(ItemID.SlimeStaff));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CensorDye>(), 10));
         }

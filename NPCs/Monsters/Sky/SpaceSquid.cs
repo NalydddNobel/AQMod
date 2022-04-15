@@ -720,9 +720,19 @@ namespace Aequus.NPCs.Monsters.Sky
             int aura = (int)(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) * 4f);
             if (aura > 0f)
             {
+                var batchData = new SpriteBatchDataCache(spriteBatch);
                 spriteBatch.End();
-                CommonSpriteBatchParameters.GeneralEntities.BeginShader(spriteBatch);
-
+                if (NPC.IsABestiaryIconDummy)
+                {
+                    RasterizerState rasterizer = new RasterizerState();
+                    rasterizer.CullMode = CullMode.None;
+                    rasterizer.ScissorTestEnable = true;
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, rasterizer, null, Main.UIScaleMatrix);
+                }
+                else
+                {
+                    CommonSpriteBatchParameters.GeneralEntities.BeginShader(spriteBatch);
+                }
                 var drawData = new DrawData(texture, drawPosition - screenPos, NPC.frame, new Color(255, 255, 255, 5), NPC.rotation, origin, scale, effects, 0);
                 EffectCache.MiscShader.UseSecondaryColor(Color.Blue);
                 EffectCache.MiscShader.UseColor(Color.Cyan);
@@ -734,7 +744,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
 
                 spriteBatch.End();
-                CommonSpriteBatchParameters.GeneralEntities.Begin(spriteBatch);
+                batchData.Begin(spriteBatch);
             }
 
             spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, origin, scale, effects, 0f);

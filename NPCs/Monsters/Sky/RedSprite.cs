@@ -1039,7 +1039,7 @@ namespace Aequus.NPCs.Monsters.Sky
         //    }
         //}
 
-        public static void DrawThingWithAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPosition, Rectangle? frame, Color drawColor, float rotation, Vector2 origin, float scale, float auraIntensity = 0f)
+        public static void DrawThingWithAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPosition, Rectangle? frame, Color drawColor, float rotation, Vector2 origin, float scale, float auraIntensity = 0f, bool bestiary = false)
         {
             int aura = (int)((AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) + auraIntensity) * 4f);
             if (aura > 0f)
@@ -1049,7 +1049,17 @@ namespace Aequus.NPCs.Monsters.Sky
 
                 var batchData = new SpriteBatchDataCache(spriteBatch);
                 spriteBatch.End();
-                CommonSpriteBatchParameters.GeneralEntities.BeginShader(spriteBatch);
+                if (bestiary)
+                {
+                    RasterizerState rasterizer = new RasterizerState();
+                    rasterizer.CullMode = CullMode.None;
+                    rasterizer.ScissorTestEnable = true;
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, rasterizer, null, Main.UIScaleMatrix);
+                }
+                else
+                {
+                    CommonSpriteBatchParameters.GeneralEntities.BeginShader(spriteBatch);
+                }
 
                 var drawData = new DrawData(texture, drawPosition, frame, new Color(255, 255, 255, 5), rotation, origin, scale, SpriteEffects.None, 0);
                 EffectCache.MiscShader.UseSecondaryColor(Color.Orange);
@@ -1087,7 +1097,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     drawPosition.X -= (scale.X - 1f) * 16f;
                 }
             }
-            DrawThingWithAura(spriteBatch, texture, drawPosition - screenPos, NPC.frame, drawColor, 0f, origin, NPC.scale, auraIntensity);
+            DrawThingWithAura(spriteBatch, texture, drawPosition - screenPos, NPC.frame, drawColor, 0f, origin, NPC.scale, auraIntensity, bestiary: NPC.IsABestiaryIconDummy);
             Main.spriteBatch.Draw(Aequus.Tex(this.GetPath() + "_Glow"), drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, SpriteEffects.None, 0f);
             return false;
         }
