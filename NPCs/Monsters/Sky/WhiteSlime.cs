@@ -7,6 +7,7 @@ using Aequus.Particles.Dusts;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -22,6 +23,8 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 20;
+            NPCID.Sets.TrailingMode[Type] = 7;
+            NPCID.Sets.TrailCacheLength[Type] = 10;
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Position = new Vector2(0f, 16f),
@@ -56,7 +59,7 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.trapImmune = true;
             NPC.noGravity = true;
             NPC.value = Item.buyPrice(silver: 10);
-            NPC.knockBackResist = 0.2f;
+            NPC.knockBackResist = 0.35f;
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.CursedInferno] = true;
@@ -141,11 +144,11 @@ namespace Aequus.NPCs.Monsters.Sky
                 {
                     NPC.velocity.X *= 0.8f;
                     bool incrementTimer = true;
-                    if (jumpTime > 40f)
+                    if (jumpTime > 100f)
                     {
                         NPC.TargetClosest();
                         NPC.ai[1] = 0f;
-                        NPC.ai[0] += 960f;
+                        NPC.ai[0] += 900f;
                         bool close = false;
                         if (NPC.HasValidTarget)
                         {
@@ -207,11 +210,32 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
             }
 
-            NPC.velocity.Y += 0.5f;
+            int dustRate = 12;
+            if (NPC.velocity.Length() > 4f)
+            {
+                dustRate -= 8;
+            }
 
-            int d = Dust.NewDust(dustRect.TopLeft(), dustRect.Width, dustRect.Height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(120, 120, 120, 0));
-            Main.dust[d].velocity *= 0.1f;
-            Main.dust[d].scale = Main.rand.NextFloat(1f, 1.5f);
+            if (Main.GameUpdateCount % dustRate == 0)
+            {
+                if (dustRate >= 11 || Main.rand.NextBool(12 - dustRate))
+                {
+                    var d = Dust.NewDustDirect(dustRect.TopLeft(), dustRect.Width, dustRect.Height, ModContent.DustType<MonoSparkleDust>(), 0f, 0f, 0, new Color(215, 190, 160, 0));
+                    d.velocity *= 0.1f;
+                    d.velocity -= NPC.velocity * 0.15f;
+                    d.velocity.Y -= 1f;
+                    d.scale = Main.rand.NextFloat(1.125f, 1.85f);
+                    d.fadeIn = 1.35f * d.scale;
+                }
+                else
+                {
+                    var d = Dust.NewDustDirect(dustRect.TopLeft(), dustRect.Width, dustRect.Height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(215, 190 - Main.rand.Next(10, 40), 160, 0));
+                    d.velocity *= 0.2f;
+                    d.velocity -= NPC.velocity * 0.2f;
+                }
+            }
+
+            NPC.velocity.Y += 0.5f;
         }
 
         public override void FindFrame(int frameHeight)
@@ -261,11 +285,26 @@ namespace Aequus.NPCs.Monsters.Sky
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             var texture = TextureAssets.Npc[Type].Value;
-            var drawPosition = new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + NPC.height / 2f);
-            drawPosition.Y -= 1.5f;
+            var offset = new Vector2(NPC.width / 2f, NPC.height / 2f - 1.5f);
             var orig = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
 
-            Main.spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha), NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
+            int trailLength = NPCID.Sets.TrailCacheLength[Type];
+            for (int i = 0; i < trailLength; i++)
+            {
+                if (i < trailLength - 1 && (NPC.oldPos[i] - NPC.oldPos[i + 1]).Length() < 1f)
+                {
+                    continue;
+                }
+                float progress = 1f / trailLength * i;
+                spriteBatch.Draw(texture, NPC.oldPos[i] + offset - screenPos, NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha) * (1f - progress) * 0.35f, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
+            }
+            float brightness = (float)Math.Sin(Main.GlobalTimeWrappedHourly);
+            foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
+            {
+                spriteBatch.Draw(texture, NPC.position + offset - screenPos + v * (brightness * 2f + 2f), NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha) * (1f - brightness * 0.8f), NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
+            }
+
+            spriteBatch.Draw(texture, NPC.position + offset - screenPos, NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha), NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
             return false;
         }
 

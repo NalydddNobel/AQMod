@@ -1,6 +1,7 @@
 ﻿using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -110,6 +111,7 @@ namespace Aequus.Projectiles.Magic
                 }
                 Projectile.netUpdate = true;
             }
+            player.ChangeDir(Math.Sign(Projectile.velocity.X));
             Projectile.hide = false;
             if (player.itemTime <= 2)
             {
