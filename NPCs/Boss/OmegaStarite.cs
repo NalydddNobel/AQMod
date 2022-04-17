@@ -412,7 +412,7 @@ namespace Aequus.NPCs.Boss
                                     }
                                     if (shot)
                                     {
-                                        SoundID.DD2_DarkMageHealImpact?.Play(NPC.Center);
+                                        SoundID.DD2_DarkMageHealImpact?.PlaySound(NPC.Center);
                                         NPC.localAI[0] = 0f;
                                     }
                                 }
@@ -420,7 +420,7 @@ namespace Aequus.NPCs.Boss
                                 {
                                     if (ShootProjsFromRing(endingPhase: true, rings[1]))
                                     {
-                                        SoundID.DD2_DarkMageHealImpact?.Play(NPC.Center);
+                                        SoundID.DD2_DarkMageHealImpact?.PlaySound(NPC.Center);
                                         NPC.localAI[0] = 0f;
                                     }
                                 }
@@ -489,7 +489,7 @@ namespace Aequus.NPCs.Boss
                                     if (PlrCheck())
                                     {
                                         NPC.localAI[1] = 1f;
-                                        SoundID.DD2_EtherianPortalOpen?.Play(NPC.Center);
+                                        SoundID.DD2_EtherianPortalOpen?.PlaySound(NPC.Center);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
                                             EffectsSystem.Shake.Set(12f);
@@ -525,7 +525,7 @@ namespace Aequus.NPCs.Boss
                                     }
                                     if (shot)
                                     {
-                                        SoundID.DD2_DarkMageHealImpact?.Play(NPC.Center);
+                                        SoundID.DD2_DarkMageHealImpact?.PlaySound(NPC.Center);
                                         NPC.localAI[0] = 0f;
                                     }
                                 }
@@ -533,7 +533,7 @@ namespace Aequus.NPCs.Boss
                                 {
                                     if (ShootProjsFromRing(endingPhase: false, rings[1]))
                                     {
-                                        SoundID.DD2_DarkMageHealImpact?.Play(NPC.Center);
+                                        SoundID.DD2_DarkMageHealImpact?.PlaySound(NPC.Center);
                                         NPC.localAI[0] = 0f;
                                     }
                                 }
@@ -541,14 +541,14 @@ namespace Aequus.NPCs.Boss
                                 if (NPC.soundDelay <= 0)
                                 {
                                     NPC.soundDelay = 60;
-                                    SoundID.DD2_EtherianPortalIdleLoop?.Play(NPC.Center);
+                                    SoundID.DD2_EtherianPortalIdleLoop?.PlaySound(NPC.Center);
                                 }
                                 if (NPC.soundDelay > 0)
                                     NPC.soundDelay--;
                                 if (rings[0].roll > MathHelper.PiOver2 * 7f)
                                 {
                                     NPC.soundDelay = 0;
-                                    SoundID.DD2_EtherianPortalOpen?.Play(NPC.Center);
+                                    SoundID.DD2_EtherianPortalOpen?.PlaySound(NPC.Center);
                                     NPC.ai[2] = 1200f;
                                     rings[0].roll = -MathHelper.PiOver2;
                                 }
@@ -664,7 +664,7 @@ namespace Aequus.NPCs.Boss
                                 break;
                             if (NPC.ai[1] == 0f)
                             {
-                                SoundID.DD2_BetsyWindAttack?.Play(NPC.Center);
+                                SoundID.DD2_BetsyWindAttack?.PlaySound(NPC.Center);
                                 NPC.ai[1] = plrCenter.X + player.velocity.X * 20f;
                                 NPC.ai[2] = plrCenter.Y + player.velocity.Y * 20f;
                             }
@@ -687,7 +687,7 @@ namespace Aequus.NPCs.Boss
                                             float lifePercent = NPC.life / (float)NPC.lifeMax;
                                             if (Main.getGoodWorld || (Main.expertMode && lifePercent < 0.75f) || lifePercent < 0.6f)
                                             {
-                                                SoundID.DD2_DarkMageHealImpact?.Play(NPC.Center);
+                                                SoundID.DD2_DarkMageHealImpact?.PlaySound(NPC.Center);
                                                 int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;
                                                 int damage = 30;
@@ -775,7 +775,7 @@ namespace Aequus.NPCs.Boss
                                     }
                                     if (shot)
                                     {
-                                        SoundID.DD2_DarkMageHealImpact?.Play(NPC.Center);
+                                        SoundID.DD2_DarkMageHealImpact?.PlaySound(NPC.Center);
                                         NPC.localAI[0] = 0f;
                                     }
                                 }
@@ -783,7 +783,7 @@ namespace Aequus.NPCs.Boss
                                 {
                                     if (ShootProjsFromRing(endingPhase: false, rings[1]))
                                     {
-                                        SoundID.DD2_DarkMageHealImpact?.Play(NPC.Center);
+                                        SoundID.DD2_DarkMageHealImpact?.PlaySound(NPC.Center);
                                         NPC.localAI[0] = 0f;
                                     }
                                 }
@@ -850,7 +850,7 @@ namespace Aequus.NPCs.Boss
                         {
                             if (PlrCheck())
                             {
-                                SoundID.DD2_BetsyWindAttack?.Play(NPC.Center);
+                                SoundID.DD2_BetsyWindAttack?.PlaySound(NPC.Center);
                                 NPC.ai[1] = plrCenter.X + player.velocity.X * 20f;
                                 NPC.ai[2] = plrCenter.Y + player.velocity.Y * 20f;
                                 NPC.netUpdate = true;

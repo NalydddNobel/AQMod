@@ -79,7 +79,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     NPC.life = -1;
                     var p = NPC.Center.ToTileCoordinates();
-                    SoundID.NPCDeath14?.Play(NPC.Center);
+                    SoundID.NPCDeath14?.PlaySound(NPC.Center);
                     for (int i = 0; i < 80; i++)
                     {
                         int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.8f, 2f));

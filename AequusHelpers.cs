@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -14,6 +15,77 @@ namespace Aequus
 {
     public static class AequusHelpers
     {
+        public static void PlaySound(SoundType type, string name)
+        {
+            if (type != SoundType.Sound)
+            {
+                name = type.ToString() + "/" + name;
+            }
+            var slot = SoundLoader.GetLegacySoundSlot(Aequus.Instance.Name + "/Sounds/" + name);
+            SoundEngine.PlaySound(slot);
+        }
+        public static void PlaySound(SoundType type, string name, Vector2 position)
+        {
+            if (Main.dedServ)
+            {
+                return;
+            }
+            if (type != SoundType.Sound)
+            {
+                name = type.ToString() + "/" + name;
+            }
+            var slot = SoundLoader.GetLegacySoundSlot(Aequus.Instance.Name + "/Sounds/" + name);
+            SoundEngine.PlaySound(slot, position);
+        }
+        public static void PlaySound(SoundType type, string name, Vector2 position, float volume = 1f, float pitch = 0f)
+        {
+            if (Main.dedServ)
+            {
+                return;
+            }
+            if (type != SoundType.Sound)
+            {
+                name = type.ToString() + "/" + name;
+            }
+            var slot = SoundLoader.GetLegacySoundSlot(Aequus.Instance.Name + "/Sounds/" + name);
+            SoundEngine.PlaySound(slot.SoundId, (int)position.X, (int)position.Y, slot.Style, volume, pitch);
+        }
+        public static void PlaySound(this LegacySoundStyle value, Vector2 position, float volume, float pitch)
+        {
+            SoundEngine.PlaySound(value.SoundId, (int)position.X, (int)position.Y, value.Style, volume, pitch);
+        }
+        public static void PlaySound(this LegacySoundStyle value, Vector2 position, float volume)
+        {
+            SoundEngine.PlaySound(value.SoundId, (int)position.X, (int)position.Y, value.Style, volume);
+        }
+        public static void PlaySound(this LegacySoundStyle value, Vector2 position)
+        {
+            SoundEngine.PlaySound(value, position);
+        }
+        public static void PlaySound(this LegacySoundStyle value)
+        {
+            SoundEngine.PlaySound(value);
+        }
+
+        public static void DrawTrail(this ModProjectile modProjectile, Action<Vector2, float> draw)
+        {
+            int trailLength = ProjectileID.Sets.TrailCacheLength[modProjectile.Type];
+            var offset = new Vector2(modProjectile.Projectile.width / 2f, modProjectile.Projectile.height / 2f);
+            for (int i = 0; i < trailLength; i++)
+            {
+                draw(modProjectile.Projectile.oldPos[i] + offset, 1f - 1f / trailLength * i);
+            }
+        }
+
+        public static void SetTrail(this ModProjectile modProjectile, int length = -1)
+        {
+            if (length > 0)
+            {
+                ProjectileID.Sets.TrailCacheLength[modProjectile.Type] = length;
+            }
+            ProjectileID.Sets.TrailingMode[modProjectile.Type] = 2;
+        }
+
         public static void GetItemDrawData(this Item item, out Rectangle frame)
         {
             frame = Main.itemAnimations[item.type] == null ? TextureAssets.Item[item.type].Value.Frame() : Main.itemAnimations[item.type].GetFrame(TextureAssets.Item[item.type].Value);

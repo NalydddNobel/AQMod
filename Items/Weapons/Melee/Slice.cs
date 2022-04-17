@@ -47,7 +47,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void AddRecipes()
         {
-            AequusRecipes.SpaceSquidDrop(this, ModContent.ItemType<CrystalDagger>());
+            ConsistentRecipes.SpaceSquidDrop(this, ModContent.ItemType<CrystalDagger>());
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

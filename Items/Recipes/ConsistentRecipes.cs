@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Recipes
 {
-    public sealed class AequusRecipes
+    public sealed class ConsistentRecipes
     {
         public static void SpaceSquidDrop(ModItem modItem, int original)
         {

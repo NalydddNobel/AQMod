@@ -77,7 +77,7 @@ namespace Aequus.Projectiles.Boss
                 {
                     if (Projectile.velocity.Y < -8f)
                         Projectile.velocity.Y = -8f;
-                    SoundID.Item10?.Play(Projectile.Center);
+                    SoundID.Item10?.PlaySound(Projectile.Center);
                 }
             }
             if (Projectile.velocity.X != oldVelocity.X)

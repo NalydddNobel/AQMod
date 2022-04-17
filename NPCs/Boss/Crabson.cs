@@ -587,7 +587,7 @@ namespace Aequus.NPCs.Boss
                                     NPC.ai[2] = 0.5f;
                                     NPC.position.X += 40f * NPC.direction;
                                     NPC.velocity = new Vector2(16f * NPC.direction, 0f);
-                                    SoundID.Item61?.Play(NPC.Center);
+                                    SoundID.Item61?.PlaySound(NPC.Center);
                                     ShootProj<CrabsonPearl>(NPC.Center, new Vector2(20f * -NPC.direction, 0f), NPC.damage, ai1: (int)CrabsonNPC.ai[0] == Phase_ClawShotsShrapnal ? 1f : 0f);
                                 }
                             }
@@ -643,7 +643,7 @@ namespace Aequus.NPCs.Boss
                                         NPC.noTileCollide = false;
                                         if (Main.netMode != NetmodeID.Server && (int)NPC.localAI[0] == 0)
                                         {
-                                            SoundID.Item14.Play(NPC.Center);
+                                            SoundID.Item14.PlaySound(NPC.Center);
                                             //AQMod.Effects.SetShake(2f, 6f);
                                         }
                                         NPC.localAI[0] = 1f;
