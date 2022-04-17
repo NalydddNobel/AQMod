@@ -5,7 +5,7 @@ namespace Aequus.Common.ID
     /// <summary>
     /// A base for a sets provider related class.
     /// </summary>
-    public abstract class SetsProviderBase : ModType
+    public abstract class CatalogueBase : ModType
     {
         protected sealed override void Register()
         {

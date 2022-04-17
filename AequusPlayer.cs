@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.ID;
 using Aequus.Common.Players;
 using Aequus.Common.Players.Stats;
 using Aequus.Content.Invasions;
@@ -36,9 +37,9 @@ namespace Aequus
         public bool omegaStaritePet;
 
         /// <summary>
-        /// Applied by <see cref="Items.Accessories.FrigidTalisman"/>
+        /// Applied by <see cref="Buffs.FrostBuff"/>
         /// </summary>
-        public bool accGSFreezeResist;
+        public bool resistHeat;
 
         /// <summary>
         /// Whether or not the player is in the Gale Streams event. This is set to true when <see cref="GaleStreams.Status"/> equals <see cref="InvasionStatus.Active"/> and the <see cref="GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="PreUpdate"/>. Otherwise, this is false.
@@ -137,6 +138,8 @@ namespace Aequus
             familiarPet = false;
             omegaStaritePet = false;
 
+            resistHeat = false;
+
             forceDaytime = 0;
         }
 
@@ -227,6 +230,22 @@ namespace Aequus
         {
             ModContent.GetInstance<GameCamera>().UpdateScreen();
             EffectsSystem.UpdateScreenPosition();
+        }
+
+        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+        {
+            if (resistHeat && HeatDamageCatalogue.HeatNPC.Contains(npc.netID))
+            {
+                damage = (int)(damage * 0.7f);
+            }
+        }
+
+        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+        {
+            if (resistHeat && HeatDamageCatalogue.HeatProjectile.Contains(proj.type))
+            {
+                damage = (int)(damage * 0.7f);
+            }
         }
 
         private float NPCDamageMultiplier(NPC target, int damage, float knockback, bool crit)

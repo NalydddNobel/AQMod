@@ -27,7 +27,7 @@ namespace Aequus.Projectiles.Magic
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return GetProjectileColor(Projectile.frame);
+            return FrameToColor(Projectile.frame);
         }
 
         public override void AI()
@@ -102,7 +102,7 @@ namespace Aequus.Projectiles.Magic
 
             if (Projectile.ai[0] > 120f)
             {
-                var explosionTexture = Aequus.MyTex("Projectiles/Explosion");
+                var explosionTexture = Aequus.MyTex("Assets/Explosion");
                 int explosionFrameNumber = (int)((Projectile.ai[0] - 120f) / 4f);
                 var explosionFrame = explosionTexture.Frame(verticalFrames: 5, frameY: explosionFrameNumber);
                 var explosionOrigin = explosionFrame.Size() / 2f;
@@ -111,7 +111,7 @@ namespace Aequus.Projectiles.Magic
             return false;
         }
 
-        public static Color GetProjectileColor(int frame)
+        public static Color FrameToColor(int frame)
         {
             switch (frame)
             {

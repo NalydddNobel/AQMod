@@ -31,7 +31,7 @@ namespace Aequus.Items.Accessories
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.HellstoneBar, 15)
+                .AddIngredient(ItemID.WarmthPotion, 3)
                 .AddIngredient<AtmosphericEnergy>()
                 .AddIngredient<Fluorescence>(20)
                 .AddIngredient(ItemID.SoulofFlight, 8)

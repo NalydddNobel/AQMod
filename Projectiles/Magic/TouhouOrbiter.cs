@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Magic
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return TouhouBullet.GetProjectileColor(Projectile.frame);
+            return TouhouBullet.FrameToColor(Projectile.frame);
         }
 
         public static Vector2 GetPosition(float X, float Y, float T, Vector2 playerOrigin)

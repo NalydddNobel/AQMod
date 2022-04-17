@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.ID;
 using Aequus.Common.ItemDrops;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -30,6 +31,8 @@ namespace Aequus.NPCs.Monsters.Sky
                 Position = new Vector2(0f, 16f),
                 PortraitPositionYOverride = 36f,
             });
+
+            HeatDamageCatalogue.HeatNPC.Add(Type);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

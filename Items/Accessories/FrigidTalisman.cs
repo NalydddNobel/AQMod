@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc;
+﻿using Aequus.Items.Consumables.Potions;
+using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Terraria;
 using Terraria.ID;
@@ -24,6 +25,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.GetModPlayer<AequusPlayer>().resistHeat = true;
             player.fireWalk = true;
             player.buffImmune[BuffID.OnFire] = true;
             player.buffImmune[BuffID.Burning] = true;
@@ -38,7 +40,7 @@ namespace Aequus.Items.Accessories
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.FrostCore)
+                .AddIngredient<FrostPotion>(3)
                 .AddIngredient<AtmosphericEnergy>()
                 .AddIngredient<GelidTentacle>(20)
                 .AddIngredient(ItemID.SoulofFlight, 8)

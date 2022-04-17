@@ -5,7 +5,7 @@ using Terraria.ID;
 
 namespace Aequus.Common.ID
 {
-    public sealed class WindMovementSetsProvider : SetsProviderBase
+    public sealed class WindMovementCatalogue : CatalogueBase
     {
         public static HashSet<int> NPCsWhitelist { get; private set; }
         public static HashSet<int> ProjectilesWhitelist { get; private set; }

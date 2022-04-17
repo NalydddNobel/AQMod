@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Configuration;
+using Aequus.Common.ID;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
@@ -60,6 +61,8 @@ namespace Aequus.NPCs.Monsters.Sky
                     BuffID.Frostburn2,
                 }
             });
+
+            HeatDamageCatalogue.HeatNPC.Add(Type);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

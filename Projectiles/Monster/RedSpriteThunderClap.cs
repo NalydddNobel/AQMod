@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Configuration;
+using Aequus.Common.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,6 +14,8 @@ namespace Aequus.Projectiles.Monster
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
+
+            HeatDamageCatalogue.HeatProjectile.Add(Type);
         }
 
         public override void SetDefaults()
@@ -24,8 +27,6 @@ namespace Aequus.Projectiles.Monster
             Projectile.aiStyle = -1;
             Projectile.ignoreWater = true;
             Projectile.timeLeft = 16;
-
-            //Projectile.GetGlobalProjectile<AQProjectile>().SetupTemperatureStats(20);
         }
 
         public override void AI()

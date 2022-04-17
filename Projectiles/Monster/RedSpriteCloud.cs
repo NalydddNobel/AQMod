@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Monsters.Sky;
+﻿using Aequus.Common.ID;
+using Aequus.NPCs.Monsters.Sky;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System.IO;
@@ -14,6 +15,8 @@ namespace Aequus.Projectiles.Monster
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 10;
+
+            HeatDamageCatalogue.HeatProjectile.Add(Type);
         }
 
         public override void SetDefaults()

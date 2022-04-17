@@ -61,6 +61,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			FrostPotion: Frost Potion
 			GlowCore: Glow Core
 			SnowPalette: Snow Palette
 			GlowingMushroomsPalette: Glowing Mushrooms Palette
@@ -358,6 +359,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			FrostPotion: Reduces damage from heat sources
 			GlowCore: Emits colored light
 			SnowPalette:
 				'''

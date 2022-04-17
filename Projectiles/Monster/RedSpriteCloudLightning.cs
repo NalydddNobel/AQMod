@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Monsters.Sky;
+﻿using Aequus.Common.ID;
+using Aequus.NPCs.Monsters.Sky;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -9,6 +10,11 @@ namespace Aequus.Projectiles.Monster
 {
     public class RedSpriteCloudLightning : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+            HeatDamageCatalogue.HeatProjectile.Add(Type);
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 10;
