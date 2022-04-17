@@ -61,6 +61,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			FrostPotion: 冰霜药水
 			GlowCore: 发光核心
 			SnowPalette: 雪地调色板
 			GlowingMushroomsPalette: 发光蘑菇调色板
@@ -358,6 +359,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			FrostPotion: 降低来自热源的伤害
 			GlowCore: 散发着彩色的光芒
 			SnowPalette:
 				'''
