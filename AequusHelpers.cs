@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Players.StatData;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection;
@@ -12,6 +13,11 @@ namespace Aequus
 {
     public static class AequusHelpers
     {
+        public static T GetStat<T>(this AequusPlayer aequus) where T : PlayerStat
+        {
+            return aequus.Stats.GetStat<T>(aequus);
+        }
+
         public static Vector2 ClosestDistance(this Rectangle rect, Vector2 other)
         {
             var center = rect.Center.ToVector2();

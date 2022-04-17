@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Players;
-using Aequus.Content;
+using Aequus.Common.Players.StatData;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Microsoft.Xna.Framework;
@@ -39,12 +39,6 @@ namespace Aequus
         /// Applied by <see cref="Items.Accessories.FrigidTalisman"/>
         /// </summary>
         public bool accGSFreezeResist;
-        /// <summary>
-        /// Added to by <see cref="Items.Accessories.FocusCrystal"/>
-        /// </summary>
-        public FocusCrystalStats accFocusCrystal;
-        public float _accFocusCrystalCircumference;
-        public float _accFocusCrystalOpacity;
 
         /// <summary>
         /// Tracks <see cref="Terraria.Player.selectedItem"/>, reset in <see cref="PostItemCheck"/>
@@ -83,22 +77,8 @@ namespace Aequus
         public bool eventGaleStreams;
 
         /// <summary>
-        /// The player's current temperature. Ticks down by 1 every frame
+        /// Whether or not the player is 'in danger'. Updated in <see cref="PostUpdate"/> / <see cref="PostUpdate_CheckDanger"/>
         /// </summary>
-        public int temperature;
-        /// <summary>
-        /// Clamps <see cref="currentTemperature"/> using this as the maximum
-        /// </summary>
-        public int maxTemperature;
-        /// <summary>
-        /// Clamps <see cref="currentTemperature"/> using this as the minimum
-        /// </summary>
-        public int minTemperature;
-        /// <summary>
-        /// Whenever the <see cref="currentTemperature"/> decrements, it uses this value
-        /// </summary>
-        public int temperatureRegen;
-
         public bool inDanger;
 
         /// <summary>
@@ -107,13 +87,22 @@ namespace Aequus
         /// </summary>
         public byte forceDaytime;
 
+        public CustomStatsManager Stats { get; private set; }
+
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown.
         /// </summary>
         public bool HasCooldown => itemCooldown > 0;
 
+        public override void Load()
+        {
+            LoadHooks();
+        }
+
         public override void Initialize()
         {
+            Stats = new CustomStatsManager();
+            Stats.Initialize(this);
             itemCooldown = 0;
             itemCooldownMax = 0;
             itemCombo = 0;
@@ -131,27 +120,22 @@ namespace Aequus
             {
                 Aequus.DayTimeManipulator.TemporarilySet(false);
             }
-            if (GaleStreams.Status == InvasionStatus.Active && GaleStreams.IsThisSpace(Player))
-            {
-                eventGaleStreams = true;
-            }
-            else
-            {
-                eventGaleStreams = false;
-            }
+            eventGaleStreams = CheckEventGaleStreams();
             forceDaytime = 0;
+        }
+        private bool CheckEventGaleStreams()
+        {
+            return GaleStreams.Status == InvasionStatus.Active && GaleStreams.IsThisSpace(Player);
         }
 
         public override void ResetEffects()
         {
+            Stats.ResetEffects(this);
             blueFire = false;
             pickBreak = false;
 
             familiarPet = false;
             omegaStaritePet = false;
-
-            _accFocusCrystalCircumference = MathHelper.Lerp(_accFocusCrystalCircumference, accFocusCrystal.effectCircumference, 0.2f);
-            accFocusCrystal.ResetEffects(Player, this);
 
             forceDaytime = 0;
         }
@@ -248,9 +232,10 @@ namespace Aequus
         private float NPCDamageMultiplier(NPC target, int damage, float knockback, bool crit)
         {
             float multiplier = 1f;
-            if (accFocusCrystal.effectCircumference > 0f && Player.Distance(target.getRect().ClosestDistance(Player.Center)) < (accFocusCrystal.effectCircumference / 2f))
+            var stat = this.GetStat<FocusCrystalStat>();
+            if (stat.effectCircumference > 0f && Player.Distance(target.getRect().ClosestDistance(Player.Center)) < (stat.effectCircumference / 2f))
             {
-                multiplier += accFocusCrystal.damageMultiplier;
+                multiplier += stat.damageMultiplier;
             }
             return multiplier;
         }
@@ -280,15 +265,16 @@ namespace Aequus
                 return;
             }
             bool end = false;
-            if (_accFocusCrystalCircumference > 0f && !accFocusCrystal.hideVisual)
+            var stat = this.GetStat<FocusCrystalStat>();
+            if (stat._accFocusCrystalCircumference > 0f && !stat.hideVisual)
             {
                 if (inDanger)
                 {
-                    _accFocusCrystalOpacity = MathHelper.Lerp(_accFocusCrystalOpacity, 1f, 0.1f);
+                    stat._accFocusCrystalOpacity = MathHelper.Lerp(stat._accFocusCrystalOpacity, 1f, 0.1f);
                 }
                 else
                 {
-                    _accFocusCrystalOpacity = MathHelper.Lerp(_accFocusCrystalOpacity, 0.2f, 0.1f);
+                    stat._accFocusCrystalOpacity = MathHelper.Lerp(stat._accFocusCrystalOpacity, 0.2f, 0.1f);
                 }
 
                 Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
@@ -296,8 +282,8 @@ namespace Aequus
                 var texture = PlayerAssets.FocusAura.Value;
                 var origin = texture.Size() / 2f;
                 var drawCoords = (Player.Center - Main.screenPosition).Floor();
-                float scale = _accFocusCrystalCircumference / texture.Width;
-                float opacity = Math.Min(_accFocusCrystalOpacity * scale, 1f);
+                float scale = stat._accFocusCrystalCircumference / texture.Width;
+                float opacity = Math.Min(stat._accFocusCrystalOpacity * scale, 1f);
 
                 Main.spriteBatch.Draw(texture, drawCoords, null,
                     new Color(60, 4, 4, 0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
@@ -320,7 +306,7 @@ namespace Aequus
             }
             else
             {
-                _accFocusCrystalOpacity = 0f;
+                stat._accFocusCrystalOpacity = 0f;
             }
             if (end)
             {

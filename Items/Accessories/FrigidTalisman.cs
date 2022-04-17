@@ -24,7 +24,6 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AequusPlayer>().maxTemperature -= 120;
             player.fireWalk = true;
             player.buffImmune[BuffID.OnFire] = true;
             player.buffImmune[BuffID.Burning] = true;
@@ -45,15 +44,6 @@ namespace Aequus.Items.Accessories
                 .AddIngredient(ItemID.SoulofFlight, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
-            //var r = new ModRecipe(mod);
-            //r.AddIngredient(ModContent.ItemType<Amulet>());
-            //r.AddIngredient(ModContent.ItemType<DegenerationRing>());
-            //r.AddIngredient(ModContent.ItemType<Materials.Energies.AtmosphericEnergy>());
-            //r.AddIngredient(ModContent.ItemType<Materials.SiphonTentacle>(), 20);
-            //r.AddIngredient(ItemID.SoulofFlight, 8);
-            //r.AddTile(TileID.MythrilAnvil);
-            //r.SetResult(this);
-            //r.AddRecipe();
         }
     }
 }
