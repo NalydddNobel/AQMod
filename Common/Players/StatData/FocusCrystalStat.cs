@@ -1,8 +1,7 @@
-﻿using Aequus.Common.Players.StatData;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Common.Players
+namespace Aequus.Common.Players.Stats
 {
     /// <summary>
     /// Added to by <see cref="Items.Accessories.FocusCrystal"/>

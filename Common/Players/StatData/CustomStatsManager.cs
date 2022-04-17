@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Players.StatData
+namespace Aequus.Common.Players.Stats
 {
     public sealed class CustomStatsManager
     {

@@ -3,7 +3,7 @@ using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Players.StatData
+namespace Aequus.Common.Players.Stats
 {
     public abstract class PlayerStat : ModType, INetBinary, ICloneable
     {

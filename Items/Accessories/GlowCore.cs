@@ -39,9 +39,9 @@ namespace Aequus.Items.Accessories
             {
                 var texture = TextureAssets.Item[Type].Value;
                 var coloring = DyeColor();
-                for (float f = 0f; f < 1f; f += 0.125f)
+                foreach (var v in AequusHelpers.CircularVector(4))
                 {
-                    Main.spriteBatch.Draw(texture, position + new Vector2(2f * scale, 0f).RotatedBy(Main.GlobalTimeWrappedHourly * MathHelper.PiOver4 + f * MathHelper.TwoPi), frame, coloring.UseA(0) * 0.7f, 0f, origin, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(texture, position + v * scale * 2f, frame, coloring.UseA(0) * 0.7f, 0f, origin, scale, SpriteEffects.None, 0f);
                 }
                 spriteBatch.Draw(texture, position, frame, coloring, 0f, origin, scale, SpriteEffects.None, 0f);
             }
@@ -64,7 +64,7 @@ namespace Aequus.Items.Accessories
                 var coloring = DyeColor();
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {
-                    Main.spriteBatch.Draw(texture, drawCoordinates + v * scale, frame, coloring.UseA(0) * 0.3f, rotation, origin, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(texture, drawCoordinates + v * scale * 2f, frame, coloring.UseA(0) * 0.3f, rotation, origin, scale, SpriteEffects.None, 0f);
                 }
 
                 var spotlight = AssetCache.Bloom[0].Value;

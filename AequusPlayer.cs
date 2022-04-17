@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Players;
-using Aequus.Common.Players.StatData;
+using Aequus.Common.Players.Stats;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Microsoft.Xna.Framework;
@@ -41,6 +41,22 @@ namespace Aequus
         public bool accGSFreezeResist;
 
         /// <summary>
+        /// Whether or not the player is in the Gale Streams event. This is set to true when <see cref="GaleStreams.Status"/> equals <see cref="InvasionStatus.Active"/> and the <see cref="GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="PreUpdate"/>. Otherwise, this is false.
+        /// </summary>
+        public bool eventGaleStreams;
+
+        /// <summary>
+        /// Whether or not the player is 'in danger'. Updated in <see cref="PostUpdate"/> / <see cref="PostUpdate_CheckDanger"/>
+        /// </summary>
+        public bool inDanger;
+
+        /// <summary>
+        /// 0 = no force, 1 = force day, 2 = force night
+        /// <para>Applied by <see cref="Buffs.NoonBuff"/></para>
+        /// </summary>
+        public byte forceDaytime;
+
+        /// <summary>
         /// Tracks <see cref="Terraria.Player.selectedItem"/>, reset in <see cref="PostItemCheck"/>
         /// </summary>
         public int lastSelectedItem = -1;
@@ -70,22 +86,6 @@ namespace Aequus
         /// Used to prevent players from spam interacting with special objects which may have important networking actions which need to be awaited. Ticks down by 1 every player update.
         /// </summary>
         public uint interactionCooldown;
-
-        /// <summary>
-        /// Whether or not the player is in the Gale Streams event. This is set to true when <see cref="GaleStreams.Status"/> equals <see cref="InvasionStatus.Active"/> and the <see cref="GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="PreUpdate"/>. Otherwise, this is false.
-        /// </summary>
-        public bool eventGaleStreams;
-
-        /// <summary>
-        /// Whether or not the player is 'in danger'. Updated in <see cref="PostUpdate"/> / <see cref="PostUpdate_CheckDanger"/>
-        /// </summary>
-        public bool inDanger;
-
-        /// <summary>
-        /// 0 = no force, 1 = force day, 2 = force night
-        /// <para>Applied by <see cref="Buffs.NoonBuff"/></para>
-        /// </summary>
-        public byte forceDaytime;
 
         public CustomStatsManager Stats { get; private set; }
 
@@ -345,12 +345,6 @@ namespace Aequus
 
             itemCooldownMax = (ushort)cooldown;
             itemCooldown = (ushort)cooldown;
-        }
-
-        public void ModifyTemperatureApplication(ref int temperature, ref int minTemperature, ref int maxTemperature)
-        {
-            minTemperature = -300;
-            maxTemperature = 300;
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using Aequus.Common.Players.StatData;
+﻿using Aequus.Common.Players.Stats;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,6 +14,11 @@ namespace Aequus
 {
     public static class AequusHelpers
     {
+        public static void GetItemDrawData(this Item item, out Rectangle frame)
+        {
+            frame = Main.itemAnimations[item.type] == null ? TextureAssets.Item[item.type].Value.Frame() : Main.itemAnimations[item.type].GetFrame(TextureAssets.Item[item.type].Value);
+        }
+
         public static T GetStat<T>(this AequusPlayer aequus) where T : PlayerStat
         {
             return aequus.Stats.GetStat<T>(aequus);
