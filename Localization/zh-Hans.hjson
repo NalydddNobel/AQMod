@@ -1862,5 +1862,6 @@ Mods: {
 		EclipsesPrevented: 阻止日蚀: {0}
 		YourCoordinates: 你的坐标为 (X: {0}, Y: {1})
 		GaleStreamsHint: 强烈的太空风可能会导致新的生物出现
+		OpenedLink: 点击并发送至
 	}
 }
