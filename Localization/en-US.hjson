@@ -1862,5 +1862,6 @@ Mods: {
 		EclipsesPrevented: Eclipses Prevented: {0}
 		YourCoordinates: Your corrdinates are (X: {0}, Y: {1})
 		GaleStreamsHint: Strong space winds may cause new creatures to appear
+		OpenedLink: Clicked and sending to
 	}
 }
