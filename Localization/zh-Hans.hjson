@@ -61,7 +61,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
-			Bungus: 愈灵株
+			Mendshroom: 愈灵菇
 			FrostPotion: 冰霜药水
 			GlowCore: 发光核心
 			SnowPalette: 雪地调色板
@@ -87,7 +87,7 @@ Mods: {
 			JellyAmulet: 水母护符
 			Terraroot: 弹药恢复包
 			Quasicrystal: 准晶体护符
-			FocusCrystal: 聚焦晶体
+			HyperCrystal: 超晶体
 			ExtractorHelmet: 顶板
 			ExtractorAirMask: 空气过滤器
 			GlowBand: 发光手环
@@ -360,7 +360,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			Bungus: 站定不动时会治疗你自己和附近的队友
+			Mendshroom: 站定不动时会治疗你自己和附近的队友
 			FrostPotion: 降低来自热源的伤害
 			GlowCore: 散发着彩色的光芒
 			SnowPalette:
@@ -459,7 +459,7 @@ Mods: {
 				击中敌人时会对其造成宇宙辐射减益和火焰伤害
 				受伤时会召唤星星从天而降
 				'''
-			FocusCrystal:
+			HyperCrystal:
 				'''
 				附近的敌人会受到25%额外伤害
 				'''
