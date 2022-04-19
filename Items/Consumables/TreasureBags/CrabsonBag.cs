@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Items.Accessories;
+using Aequus.Items.Misc.Energies;
 using Aequus.NPCs.Boss;
 using Terraria;
 using Terraria.ID;
@@ -15,6 +16,7 @@ namespace Aequus.Items.Consumables.TreasureBags
         public override void OpenBossBag(Player player)
         {
             player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<AquaticEnergy>(), Main.rand.Next(4) + 5);
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<Bungus>());
 
             //AQMod.AequusDeveloperItems(player, hardmode: false);
             //player.QuickSpawnItem(ModContent.ItemType<Crabax>());

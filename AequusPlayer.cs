@@ -1,7 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.ID;
 using Aequus.Common.Players;
-using Aequus.Common.Players.Stats;
+using Aequus.Common.Players.StatData;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Microsoft.Xna.Framework;
@@ -40,6 +40,10 @@ namespace Aequus
         /// Applied by <see cref="Buffs.FrostBuff"/>
         /// </summary>
         public bool resistHeat;
+        /// <summary>
+        /// Applied by <see cref="BungusStat"/>
+        /// </summary>
+        public int bungusRegen;
 
         /// <summary>
         /// Whether or not the player is in the Gale Streams event. This is set to true when <see cref="GaleStreams.Status"/> equals <see cref="InvasionStatus.Active"/> and the <see cref="GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="PreUpdate"/>. Otherwise, this is false.
@@ -143,6 +147,11 @@ namespace Aequus
             forceDaytime = 0;
         }
 
+        public override void UpdateDead()
+        {
+            Stats.UpdateDead(this);
+        }
+
         public override bool PreItemCheck()
         {
             if (Aequus.DayTimeManipulator.Caching)
@@ -198,6 +207,16 @@ namespace Aequus
                 lastSelectedItem = Player.selectedItem;
                 itemSwitch = 30;
                 itemUsage = 0;
+            }
+        }
+
+        public override void UpdateLifeRegen()
+        {
+            bool badRegen = Player.lifeRegen < 0;
+            Player.lifeRegen += bungusRegen;
+            if (badRegen && Player.lifeRegen > 0)
+            {
+                Player.lifeRegen = 0;
             }
         }
 
@@ -283,7 +302,21 @@ namespace Aequus
             {
                 return;
             }
-            bool end = false;
+            RenderBungusAura();
+            RenderFocusCrystalAura();
+        }
+        private void RenderBungusAura()
+        {
+            var stat = this.GetStat<BungusStat>();
+            if (stat._circumferenceForVFX > 0f)
+            {
+                HelpBeginSpriteBatch(Main.spriteBatch);
+                HelpDrawAura(stat._circumferenceForVFX, 1f, new Color(10, 128, 10, 0));
+                Main.spriteBatch.End();
+            }
+        }
+        private void RenderFocusCrystalAura()
+        {
             var stat = this.GetStat<FocusCrystalStat>();
             if (stat._accFocusCrystalCircumference > 0f && !stat.hideVisual)
             {
@@ -296,41 +329,45 @@ namespace Aequus
                     stat._accFocusCrystalOpacity = MathHelper.Lerp(stat._accFocusCrystalOpacity, 0.2f, 0.1f);
                 }
 
-                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
-                end = true;
-                var texture = PlayerAssets.FocusAura.Value;
-                var origin = texture.Size() / 2f;
-                var drawCoords = (Player.Center - Main.screenPosition).Floor();
-                float scale = stat._accFocusCrystalCircumference / texture.Width;
-                float opacity = Math.Min(stat._accFocusCrystalOpacity * scale, 1f);
-
-                Main.spriteBatch.Draw(texture, drawCoords, null,
-                    new Color(60, 4, 4, 0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
-                texture = PlayerAssets.FocusCircle.Value;
-
-                for (int i = 0; i < 8; i++)
-                {
-                    Main.spriteBatch.Draw(texture, drawCoords + (MathHelper.PiOver4 * i).ToRotationVector2() * 2f * scale, null,
-                        new Color(80, 6, 6, 0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
-                }
-
-                for (int i = 0; i < 4; i++)
-                {
-                    Main.spriteBatch.Draw(texture, drawCoords + (MathHelper.PiOver2 * i).ToRotationVector2() * scale, null,
-                        new Color(128, 6, 6, 0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
-                }
-
-                Main.spriteBatch.Draw(texture, drawCoords, null,
-                    new Color(128, 10, 10, 0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+                HelpBeginSpriteBatch(Main.spriteBatch);
+                HelpDrawAura(stat._accFocusCrystalCircumference, stat._accFocusCrystalOpacity, new Color(128, 10, 10, 0));
+                Main.spriteBatch.End();
             }
             else
             {
                 stat._accFocusCrystalOpacity = 0f;
             }
-            if (end)
+        }
+        private void HelpDrawAura(float circumference, float opacity, Color color)
+        {
+            var texture = PlayerAssets.FocusAura.Value;
+            var origin = texture.Size() / 2f;
+            var drawCoords = (Player.Center - Main.screenPosition).Floor();
+            float scale = circumference / texture.Width;
+            opacity = Math.Min(opacity * scale, 1f);
+
+            Main.spriteBatch.Draw(texture, drawCoords, null,
+                color * 0.5f * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+            texture = PlayerAssets.FocusCircle.Value;
+
+            foreach (var v in AequusHelpers.CircularVector(8))
             {
-                Main.spriteBatch.End();
+                Main.spriteBatch.Draw(texture, drawCoords + v * 2f * scale, null,
+                    color * 0.66f * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
             }
+
+            foreach (var v in AequusHelpers.CircularVector(4))
+            {
+                Main.spriteBatch.Draw(texture, drawCoords + v * scale, null,
+                    color * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+            }
+
+            Main.spriteBatch.Draw(texture, drawCoords, null,
+                color * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+        }
+        private void HelpBeginSpriteBatch(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
         }
 
         /// <summary>

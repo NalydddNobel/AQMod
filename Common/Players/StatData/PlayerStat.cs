@@ -3,7 +3,7 @@ using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Players.Stats
+namespace Aequus.Common.Players.StatData
 {
     public abstract class PlayerStat : ModType, INetBinary, ICloneable
     {
@@ -32,6 +32,10 @@ namespace Aequus.Common.Players.Stats
             Clear();
         }
         public abstract void Clear();
+
+        public virtual void UpdateDead(Player player, AequusPlayer aequus)
+        {
+        }
 
         public virtual object Clone()
         {

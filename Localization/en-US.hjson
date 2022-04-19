@@ -61,6 +61,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			Bungus: Bungus
 			FrostPotion: Frost Potion
 			GlowCore: Glow Core
 			SnowPalette: Snow Palette
@@ -359,6 +360,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Bungus: Standing still will heal yourself and nearby teammates
 			FrostPotion: Reduces damage from heat sources
 			GlowCore: Emits colored light
 			SnowPalette:

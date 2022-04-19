@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Common.Players.Stats
+namespace Aequus.Common.Players.StatData
 {
     /// <summary>
     /// Added to by <see cref="Items.Accessories.FocusCrystal"/>
@@ -38,6 +38,12 @@ namespace Aequus.Common.Players.Stats
         {
             _accFocusCrystalCircumference = MathHelper.Lerp(_accFocusCrystalCircumference, effectCircumference, 0.2f);
             base.ResetEffects(player, aequus);
+        }
+
+        public override void UpdateDead(Player player, AequusPlayer aequus)
+        {
+            _accFocusCrystalCircumference = MathHelper.Lerp(_accFocusCrystalCircumference, 0f, 0.2f);
+            Clear();
         }
 
         public override void Clear()

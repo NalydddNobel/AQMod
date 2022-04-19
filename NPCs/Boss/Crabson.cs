@@ -2,6 +2,7 @@
 using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Effects;
+using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.TreasureBags;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
@@ -854,6 +855,7 @@ namespace Aequus.NPCs.Boss
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CrabsonRelic>()));
             var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());
             normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<AquaticEnergy>(), 1, 3, 6));
+            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Bungus>(), 2));
             npcLoot.Add(normalOnly);
         }
 

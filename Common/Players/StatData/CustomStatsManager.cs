@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Players.Stats
+namespace Aequus.Common.Players.StatData
 {
     public sealed class CustomStatsManager
     {
@@ -24,6 +24,14 @@ namespace Aequus.Common.Players.Stats
             foreach (var stat in _playerStats)
             {
                 stat.ResetEffects(aequus.Player, aequus);
+            }
+        }
+
+        public void UpdateDead(AequusPlayer aequus)
+        {
+            foreach (var stat in _playerStats)
+            {
+                stat.UpdateDead(aequus.Player, aequus);
             }
         }
 

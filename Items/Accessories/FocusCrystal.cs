@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players.Stats;
+﻿using Aequus.Common.Players.StatData;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
