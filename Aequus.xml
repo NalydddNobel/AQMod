@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aequus</name>
+    </assembly>
+    <members>
+        <member name="F:Aequus.AequusPlayer.blueFire">
+            <summary>
+            Applied by <see cref="T:Aequus.Buffs.Debuffs.BlueFire"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.pickBreak">
+            <summary>
+            Applied by <see cref="T:Aequus.Buffs.Debuffs.PickBreak"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.familiarPet">
+            <summary>
+            Applied by <see cref="T:Aequus.Buffs.Pets.FamiliarBuff"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.omegaStaritePet">
+            <summary>
+            Applied by <see cref="T:Aequus.Buffs.Pets.OmegaStariteBuff"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.resistHeat">
+            <summary>
+            Applied by <see cref="T:Aequus.Buffs.FrostBuff"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.bungusRegen">
+            <summary>
+            Used by <see cref="T:Aequus.Common.Players.StatData.BungusStat"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.eventGaleStreams">
+            <summary>
+            Whether or not the player is in the Gale Streams event. This is set to true when <see cref="P:Aequus.Content.Invasions.GaleStreams.Status"/> equals <see cref="F:Aequus.Content.Invasions.InvasionStatus.Active"/> and the <see cref="M:Aequus.Content.Invasions.GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>. Otherwise, this is false.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.inDanger">
+            <summary>
+            Whether or not the player is 'in danger'. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> / <see cref="M:Aequus.AequusPlayer.PostUpdate_CheckDanger"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.forceDaytime">
+            <summary>
+            0 = no force, 1 = force day, 2 = force night
+            <para>Used by <see cref="T:Aequus.Buffs.NoonBuff"/> and set to 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.lastSelectedItem">
+            <summary>
+            Tracks <see cref="F:Terraria.Player.selectedItem"/>, updated in <see cref="M:Aequus.AequusPlayer.PostItemCheck"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemCooldownMax">
+            <summary>
+            When a new cooldown is applied, this gets set to the duration of the cooldown. Does not tick down unlike <see cref="F:Aequus.AequusPlayer.itemCooldown"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemCooldown">
+            <summary>
+            When above 0, the cooldown is active. Ticks down by 1 every player update.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemCombo">
+            <summary>
+            When above 0, you are in a combo. Ticks down by 1 every player update.
+            <para>Item "combos" are used for determining what type of item action to use.</para>
+            <para>A usage example would be a weapon with a 3 swing pattern. Each swing will increase the combo meter by 60, and when it becomes greater than 120, reset to 0.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemUsage">
+            <summary>
+            Increments when the player uses an item. Does not increment when the player is using the alt function of an item.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemSwitch">
+            <summary>
+            A short lived timer which gets set to 30 when the player has a different selected item.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.interactionCooldown">
+            <summary>
+            Used to prevent players from spam interacting with special objects which may have important networking actions which need to be awaited. Ticks down by 1 every player update.
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusPlayer.HasCooldown">
+            <summary>
+            Helper for whether or not the player currently has a cooldown.
+            </summary>
+        </member>
+        <member name="M:Aequus.AequusPlayer.PreDraw(Terraria.DataStructures.PlayerDrawSet@)">
+            <summary>
+            Called right before all player layers have been drawn
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:Aequus.AequusPlayer.PostDraw(Terraria.DataStructures.PlayerDrawSet@)">
+            <summary>
+            Called right after all player layers have been drawn
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:Aequus.AequusPlayer.SetCooldown(System.Int32,System.Boolean,Terraria.Item)">
+            <summary>
+            Sets a cooldown for the player. If the cooldown value provided is less than the player's currently active cooldown, this does nothing.
+            <para>Use in combination with <see cref="P:Aequus.AequusPlayer.HasCooldown"/></para>
+            </summary>
+            <param name="cooldown">The amount of time the cooldown lasts in game ticks.</param>
+            <param name="ignoreStats">Whether or not to ignore cooldown stats and effects. Setting this to true will prevent them from effecting this cooldown</param>
+        </member>
+        <member name="T:Aequus.Buffs.Pets.FamiliarBuff">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Misc.FamiliarPickaxe"/>
+            </summary>
+        </member>
+        <member name="T:Aequus.Buffs.Pets.OmegaStariteBuff">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Misc.DragonBall"/>
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.ID.CatalogueBase">
+            <summary>
+            A base for a sets provider related class.
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Players.StatData.BungusStat">
+            <summary>
+            Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Players.StatData.FocusCrystalStat">
+            <summary>
+            Added to by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.CooldownsItem.HasWeaponCooldown">
+            <summary>
+            Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
+            </summary>
+        </member>
+        <member name="T:Aequus.Items.OnlineLinkedItem">
+            <summary>
+            Currently only used by the Aequus Music mod's music boxes.
+            </summary>
+        </member>
+        <member name="M:Aequus.NPCs.Boss.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="P:Aequus.Projectiles.Melee.DopeSwordBase.AltFunctionSpeedup">
+            <summary>
+            Multiplies the use time by this value when the player is using the right click function of the item. Lower numbers means faster speed
+            </summary>
+        </member>
+        <member name="P:Aequus.Projectiles.Melee.DopeSwordBase.AltFunctionScale">
+            <summary>
+            Multiplies the scale by this value when the player is using the right click function of the item. Higher numbers means larger weapon
+            </summary>
+        </member>
+        <member name="P:Aequus.Projectiles.Melee.DopeSwordBase.AltFunctionHitboxScale">
+            <summary>
+            Multiplies the hitbox's dimensions by this value when the player is using the right click function of the item. Higher numbers means larger hitbox dimensions
+            </summary>
+        </member>
+        <member name="P:Aequus.Sounds.MusicData.CrabsonBoss">
+            <summary>
+            Used by <see cref="T:Aequus.NPCs.Boss.Crabson"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.Sounds.MusicData.OmegaStariteBoss">
+            <summary>
+            Used by <see cref="T:Aequus.NPCs.Boss.OmegaStarite"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.Sounds.MusicData.DustDevilBoss">
+            <summary>
+            Unused
+            </summary>
+        </member>
+        <member name="P:Aequus.Sounds.MusicData.CrabCreviceBiome">
+            <summary>
+            Unused
+            </summary>
+        </member>
+        <member name="P:Aequus.Sounds.MusicData.CrabSeasonEvent">
+            <summary>
+            Unused
+            </summary>
+        </member>
+        <member name="P:Aequus.Sounds.MusicData.GlimmerEvent">
+            <summary>
+            Unused
+            </summary>
+        </member>
+        <member name="P:Aequus.Sounds.MusicData.GaleStreamsEvent">
+            <summary>
+            Used when <see cref="F:Aequus.AequusPlayer.eventGaleStreams"/> is true
+            </summary>
+        </member>
+    </members>
+</doc>

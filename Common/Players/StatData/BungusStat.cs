@@ -5,7 +5,7 @@ using Terraria;
 namespace Aequus.Common.Players.StatData
 {
     /// <summary>
-    /// Used by <see cref="Items.Accessories.Bungus"/>
+    /// Used by <see cref="Items.Accessories.Mendshroom"/>
     /// </summary>
     public sealed class BungusStat : PlayerStat
     {

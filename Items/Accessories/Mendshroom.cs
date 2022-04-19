@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
-    public sealed class Bungus : ModItem
+    public sealed class Mendshroom : ModItem
     {
         public override void SetStaticDefaults()
         {

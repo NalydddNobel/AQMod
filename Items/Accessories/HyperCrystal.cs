@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
-    public class FocusCrystal : ModItem
+    public class HyperCrystal : ModItem
     {
         public override void SetDefaults()
         {

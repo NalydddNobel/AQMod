@@ -4,7 +4,7 @@ using Terraria;
 namespace Aequus.Common.Players.StatData
 {
     /// <summary>
-    /// Added to by <see cref="Items.Accessories.FocusCrystal"/>
+    /// Added to by <see cref="Items.Accessories.HyperCrystal"/>
     /// </summary>
     public sealed class FocusCrystalStat : PlayerStat
     {

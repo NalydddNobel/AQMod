@@ -16,7 +16,7 @@ namespace Aequus.Items.Consumables.TreasureBags
         public override void OpenBossBag(Player player)
         {
             player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<AquaticEnergy>(), Main.rand.Next(4) + 5);
-            player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<Bungus>());
+            player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), ModContent.ItemType<Mendshroom>());
 
             //AQMod.AequusDeveloperItems(player, hardmode: false);
             //player.QuickSpawnItem(ModContent.ItemType<Crabax>());

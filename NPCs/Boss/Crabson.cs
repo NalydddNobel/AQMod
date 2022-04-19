@@ -855,7 +855,7 @@ namespace Aequus.NPCs.Boss
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CrabsonRelic>()));
             var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());
             normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<AquaticEnergy>(), 1, 3, 6));
-            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Bungus>(), 2));
+            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Mendshroom>(), 2));
             npcLoot.Add(normalOnly);
         }
 

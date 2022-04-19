@@ -41,7 +41,7 @@ namespace Aequus
         /// </summary>
         public bool resistHeat;
         /// <summary>
-        /// Applied by <see cref="BungusStat"/>
+        /// Used by <see cref="BungusStat"/>
         /// </summary>
         public int bungusRegen;
 
@@ -57,12 +57,12 @@ namespace Aequus
 
         /// <summary>
         /// 0 = no force, 1 = force day, 2 = force night
-        /// <para>Applied by <see cref="Buffs.NoonBuff"/></para>
+        /// <para>Used by <see cref="Buffs.NoonBuff"/> and set to 1</para>
         /// </summary>
         public byte forceDaytime;
 
         /// <summary>
-        /// Tracks <see cref="Terraria.Player.selectedItem"/>, reset in <see cref="PostItemCheck"/>
+        /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
         /// </summary>
         public int lastSelectedItem = -1;
         /// <summary>
