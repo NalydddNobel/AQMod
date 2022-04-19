@@ -61,6 +61,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			Bungus: 愈灵株
 			FrostPotion: 冰霜药水
 			GlowCore: 发光核心
 			SnowPalette: 雪地调色板
@@ -359,6 +360,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Bungus: 站定不动时会治疗你自己和附近的队友
 			FrostPotion: 降低来自热源的伤害
 			GlowCore: 散发着彩色的光芒
 			SnowPalette:
