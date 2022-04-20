@@ -12,7 +12,7 @@ namespace Aequus.Items.Misc
         public override void SetStaticDefaults()
         {
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(4, 6));
-            ItemID.Sets.SortingPriorityMaterials[Type] = ItemMaterialSorting.SoulOfFlight;
+            ItemID.Sets.SortingPriorityMaterials[Type] = ItemMaterialSortingConstants.SoulOfFlight;
             ItemID.Sets.ItemNoGravity[Type] = true;
             ItemID.Sets.AnimatesAsSoul[Type] = true;
             this.SetResearch(25);

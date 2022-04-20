@@ -14,6 +14,7 @@ namespace Aequus.UI
         public static UserInterface InventoryInterface { get; private set; }
         public static UserInterface NPCTalkInterface { get; private set; }
         public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
+        public static HashSet<int> ValidModularSlotContext { get; private set; }
 
         public override void Load()
         {
@@ -21,9 +22,26 @@ namespace Aequus.UI
             ValidOnlineLinkedSlotContext = new HashSet<int>() 
             {
                 ItemSlot.Context.EquipAccessory,
+                ItemSlot.Context.ModdedAccessorySlot,
                 //ItemSlot.Context.EquipAccessoryVanity,
                 ItemSlot.Context.InventoryItem,
                 ItemSlot.Context.BankItem,
+                ItemSlot.Context.ChestItem,
+            };
+            ValidModularSlotContext = new HashSet<int>()
+            {
+                ItemSlot.Context.InventoryItem,
+                ItemSlot.Context.EquipArmor,
+                ItemSlot.Context.EquipAccessory,
+                ItemSlot.Context.BankItem,
+                ItemSlot.Context.ChestItem,
+                ItemSlot.Context.DisplayDollAccessory,
+                ItemSlot.Context.DisplayDollArmor,
+                ItemSlot.Context.EquipGrapple,
+                ItemSlot.Context.EquipLight,
+                ItemSlot.Context.EquipMinecart,
+                ItemSlot.Context.EquipMount,
+                ItemSlot.Context.ModdedAccessorySlot,
             };
             if (Main.netMode != NetmodeID.Server)
             {

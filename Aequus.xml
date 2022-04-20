@@ -127,6 +127,20 @@
             A base for a sets provider related class.
             </summary>
         </member>
+        <member name="M:Aequus.Common.ID.ItemModuleType.GetReservedID">
+            <summary>
+            Gives you an ID to classify a specific item module type
+            <para>
+            It may be confusing to wrap around your head what this ID is used for, but this example should help:
+            <code>public static int MyCustomModuleType;</code>
+            <code>...Load()</code>
+            <code>MyCustomEquipType = ItemModuleType.GetReservedID();</code>
+            <code>...SetStaticDefaults() in a Grappling Hook Item...</code>
+            <code>ModularItemManager.Catalogue.AllowEquipType(Type, MyCustomEquipType);</code>
+            </para>
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Aequus.Common.Players.StatData.BungusStat">
             <summary>
             Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
@@ -141,6 +155,91 @@
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
             </summary>
+        </member>
+        <member name="T:Aequus.Items.HookEquips.HookEquipsCatalogue">
+            <summary>
+            Where Hook Barb data is registered and collected
+            </summary>
+        </member>
+        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.IHookBarbData.ProjPreAI(Terraria.Projectile,Terraria.Item,Terraria.Item,Aequus.Items.ModularItemsManager,Terraria.Player,Aequus.AequusPlayer)">
+            <summary>
+            Ran in <see cref="M:Terraria.ModLoader.GlobalProjectile.PreAI(Terraria.Projectile)"/>
+            </summary>
+            <param name="projectile"></param>
+            <param name="barbEquip"></param>
+            <param name="hook"></param>
+            <param name="hookBarbGlobal"></param>
+            <param name="player"></param>
+            <param name="aequus"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.IHookBarbData.ProjAI(Terraria.Projectile,Terraria.Item,Terraria.Item,Aequus.Items.ModularItemsManager,Terraria.Player,Aequus.AequusPlayer)">
+            <summary>
+            Ran in <see cref="M:Terraria.ModLoader.GlobalProjectile.AI(Terraria.Projectile)"/>
+            </summary>
+            <param name="projectile"></param>
+            <param name="barbEquip"></param>
+            <param name="hook"></param>
+            <param name="hookBarbGlobal"></param>
+            <param name="player"></param>
+            <param name="aequus"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.IHookBarbData.ProjPostAI(Terraria.Projectile,Terraria.Item,Terraria.Item,Aequus.Items.ModularItemsManager,Terraria.Player,Aequus.AequusPlayer)">
+            <summary>
+            Ran in <see cref="M:Terraria.ModLoader.GlobalProjectile.PostAI(Terraria.Projectile)"/>
+            </summary>
+            <param name="projectile"></param>
+            <param name="barbEquip"></param>
+            <param name="hook"></param>
+            <param name="hookBarbGlobal"></param>
+            <param name="player"></param>
+            <param name="aequus"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.INPCCollisionHookBarbData.ProjOnCollideNPC(Terraria.Projectile,Terraria.NPC)">
+            <summary>
+            Checked in <see cref="M:Terraria.ModLoader.GlobalProjectile.PostAI(Terraria.Projectile)"/>
+            </summary>
+            <param name="projectile"></param>
+            <param name="npc">The NPC that is colliding with this hook</param>
+        </member>
+        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.INPCPlayerPVPCollisionHookBarbData.ProjOnCollidePlayer(Terraria.Projectile,Terraria.Player)">
+            <summary>
+            Checked in <see cref="M:Terraria.ModLoader.GlobalProjectile.PostAI(Terraria.Projectile)"/>
+            </summary>
+            <param name="projectile"></param>
+            <param name="player">The player that is colliding with this hook. Does not check if they are hostile and a part of an opposing team.</param>
+        </member>
+        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.RegisterHookBarb(System.Int32,Aequus.Items.HookEquips.HookEquipsCatalogue.IHookBarbData)">
+            <summary>
+            Registers a hook barb for a given item.
+            </summary>
+            <param name="item">Item ID</param>
+            <param name="data">Data statically stored for this item type</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.GetHookBarb(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="item">Item ID</param>
+            <returns>The generic hook barb data for this item. If there is none, throws an error</returns>
+        </member>
+        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.GetHookBarb``1(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="item">Item ID</param>
+            <returns>The specific hook barb data for this item. If there is none or it's an incompatible type, throws an error</returns>
+        </member>
+        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.TryGetHookBarb(System.Int32,Aequus.Items.HookEquips.HookEquipsCatalogue.IHookBarbData@)">
+            <summary>
+            
+            </summary>
+            <param name="item">Item ID</param>
+            <param name="value">An output value. When this method returns true, this is the data for the hook barb, otherwise it is useless data</param>
+            <returns>The generic hook barb data for this item</returns>
         </member>
         <member name="T:Aequus.Items.OnlineLinkedItem">
             <summary>

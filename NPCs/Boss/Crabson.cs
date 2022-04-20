@@ -791,27 +791,6 @@ namespace Aequus.NPCs.Boss
             });
         }
 
-        private void RenderClaw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            var claw = Aequus.Tex(this.GetPath() + "Claw");
-            var origin = new Vector2(16f, 48f);
-            var drawCoords = npc.position + new Vector2(origin.X + (npc.direction == 1 ? npc.width - origin.X * 2f : 0), npc.width / 2f) - screenPos;
-            origin.X = npc.direction == 1 ? claw.Width - origin.X : origin.X;
-            float rotation = npc.rotation / 2f;
-            rotation = npc.direction == -1 ? -rotation : rotation;
-            var spriteEffects = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-
-            RenderClaw(spriteBatch, claw, drawCoords, drawColor, origin, rotation, npc.scale, spriteEffects);
-        }
-        private void RenderClaw(SpriteBatch spriteBatch, Texture2D claw, Vector2 drawCoords, Color drawColor, Vector2 origin, float rotation, float scale, SpriteEffects spriteEffects)
-        {
-            int frameHeight = claw.Height / 2;
-            var clawFrame = new Rectangle(0, frameHeight, claw.Width, frameHeight - 2);
-            spriteBatch.Draw(claw, drawCoords, clawFrame, drawColor, -rotation, origin, scale, spriteEffects, 0f);
-            clawFrame.Y = 0;
-            spriteBatch.Draw(claw, drawCoords, clawFrame, drawColor, rotation, origin, scale, spriteEffects, 0f);
-        }
-
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (NPC.IsABestiaryIconDummy)
@@ -840,6 +819,26 @@ namespace Aequus.NPCs.Boss
                 EffectsSystem.NPCsBehindAllNPCs.Add(NPC.whoAmI);
             }
             return true;
+        }
+        private void RenderClaw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            var claw = Aequus.Tex(this.GetPath() + "Claw");
+            var origin = new Vector2(16f, 48f);
+            var drawCoords = npc.position + new Vector2(origin.X + (npc.direction == 1 ? npc.width - origin.X * 2f : 0), npc.width / 2f) - screenPos;
+            origin.X = npc.direction == 1 ? claw.Width - origin.X : origin.X;
+            float rotation = npc.rotation / 2f;
+            rotation = npc.direction == -1 ? -rotation : rotation;
+            var spriteEffects = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            RenderClaw(spriteBatch, claw, drawCoords, drawColor, origin, rotation, npc.scale, spriteEffects);
+        }
+        private void RenderClaw(SpriteBatch spriteBatch, Texture2D claw, Vector2 drawCoords, Color drawColor, Vector2 origin, float rotation, float scale, SpriteEffects spriteEffects)
+        {
+            int frameHeight = claw.Height / 2;
+            var clawFrame = new Rectangle(0, frameHeight, claw.Width, frameHeight - 2);
+            spriteBatch.Draw(claw, drawCoords, clawFrame, drawColor, -rotation, origin, scale, spriteEffects, 0f);
+            clawFrame.Y = 0;
+            spriteBatch.Draw(claw, drawCoords, clawFrame, drawColor, rotation, origin, scale, spriteEffects, 0f);
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -243,37 +244,28 @@ namespace Aequus.NPCs.Characters
             return WorldFlags.downedCrabson;
         }
 
-        public override string TownNPCName()
+        public override List<string> SetNPCNameList()
         {
-            switch (WorldGen.genRand.Next(12))
+            return new List<string>()
             {
-                default:
-                    return "Larry";
-                case 0:
-                    return "Ronald";
-                case 1:
-                    return "Captain";
-                case 2:
-                    return "Crabort";
-                case 3:
-                    return "Robson";
-                case 4:
-                    return "Geezer";
-                case 5:
-                    return "Albrecht";
-                case 6:
-                    return "Eugene";
-                case 7:
-                    return "Utagawa";
-                case 8:
-                    return "Ebirah";
-                case 9:
-                    return "Tamatoa";
-                case 10:
-                    return "Crablante";
-                case 11:
-                    return "Robster";
-            }
+                "Larry",
+                "Captain",
+                "Jailer",
+                "Reaver",
+                "Barnacle",
+                "Eugene",
+                "Robster",
+                "Clicky",
+                "Clacky",
+                "Clocky",
+                "Snapper",
+                "Catcher",
+                "Latcher",
+            };
+        }
+
+        public override void SetTownNPCProfile(Dictionary<int, ITownNPCProfile> database)
+        {
         }
 
         public override string GetChat()

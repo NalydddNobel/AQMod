@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
@@ -15,6 +16,21 @@ namespace Aequus
 {
     public static class AequusHelpers
     {
+        public static bool ContainsAny<T>(this IEnumerable<T> en, IEnumerable<T> en2)
+        {
+            foreach (var t in en)
+            {
+                foreach (var t2 in en2)
+                {
+                    if (t.Equals(t2))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public static void PlaySound(SoundType type, string name)
         {
             if (type != SoundType.Sound)

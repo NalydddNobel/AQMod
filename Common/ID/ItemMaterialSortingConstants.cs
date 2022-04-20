@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Aequus.Common.ID
+﻿namespace Aequus.Common.ID
 {
-    public sealed class ItemMaterialSorting
+    public sealed class ItemMaterialSortingConstants
     {
         public const int Amethyst = 37;
         public const int Topaz = 38;

@@ -93,6 +93,7 @@ namespace Aequus
         public uint interactionCooldown;
 
         public CustomStatsManager Stats { get; private set; }
+        public Item GrapplingHookForBarbs => Player.miscEquips[4];
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown.
