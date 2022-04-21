@@ -146,10 +146,41 @@ namespace Aequus.NPCs.Boss
             }
         }
 
+        public static HashSet<int> StarResistCatalogue { get; private set; }
+        public static HashSet<int> StarResistEasterEggCatalogue { get; private set; }
+
         private LegacyPrimRenderer prim;
 
         public Ring[] rings;
+        public float starDamageMultiplier;
         private byte _hitShake;
+
+        public override void Load()
+        {
+            StarResistEasterEggCatalogue = new HashSet<int>()
+            {
+                ProjectileID.FallingStar,
+                ProjectileID.StarCannonStar,
+                ProjectileID.SuperStar,
+            };
+            StarResistCatalogue = new HashSet<int>(StarResistEasterEggCatalogue)
+            {
+                ProjectileID.StarCloakStar,
+                ProjectileID.Starfury,
+                ProjectileID.StarVeilStar,
+                ProjectileID.StarWrath,
+                ProjectileID.BeeCloakStar,
+                ProjectileID.HallowStar,
+                ProjectileID.ManaCloakStar,
+                ProjectileID.SuperStarSlash,
+            };
+        }
+
+        public override void Unload()
+        {
+            StarResistEasterEggCatalogue?.Clear();
+            StarResistEasterEggCatalogue = null;
+        }
 
         public override void SetStaticDefaults()
         {
@@ -183,9 +214,12 @@ namespace Aequus.NPCs.Boss
             NPC.trapImmune = true;
             NPC.lavaImmune = true;
 
+            starDamageMultiplier = 0.8f;
+
             if (Main.getGoodWorld)
             {
                 NPC.scale *= 0.5f;
+                starDamageMultiplier *= 0.5f;
             }
 
             if (AprilFools.CheckAprilFools())
@@ -207,6 +241,10 @@ namespace Aequus.NPCs.Boss
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
+            if (Main.expertMode)
+            {
+                starDamageMultiplier *= 0.8f;
+            }
             NPC.lifeMax = (int)(NPC.lifeMax * 0.8f) + 4000 * numPlayers;
             //if (AQMod.calamityMod.IsActive)
             //{
@@ -283,7 +321,7 @@ namespace Aequus.NPCs.Boss
             if (Main.netMode != NetmodeID.MultiplayerClient && !bestiaryDummy)
             {
                 int damage = Main.expertMode ? 25 : 30;
-                Projectile.NewProjectile(new EntitySource_Parent(NPC), NPC.Center, Vector2.Zero,
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero,
                     ModContent.ProjectileType<OmegaStariteProj>(), damage, 1f, Main.myPlayer, NPC.whoAmI);
             }
         }
@@ -494,11 +532,11 @@ namespace Aequus.NPCs.Boss
                                         {
                                             EffectsSystem.Shake.Set(12f);
                                         }
-                                        int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
+                                        int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
                                         Main.projectile[p].scale = Main.getGoodWorld ? 1f : 0.75f;
                                         if (Main.getGoodWorld)
                                         {
-                                            p = Projectile.NewProjectile(new EntitySource_Parent(NPC), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
+                                            p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
                                             ((OmegaStariteDeathray)Main.projectile[p].ModProjectile).rotationOffset = MathHelper.Pi;
                                         }
                                     }
@@ -603,7 +641,7 @@ namespace Aequus.NPCs.Boss
                                     for (float f = 0f; f < MathHelper.TwoPi; f += rot)
                                     {
                                         var v = f.ToRotationVector2();
-                                        int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), center + v * Radius, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
+                                        int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center + v * Radius, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
                                         Main.projectile[p].timeLeft += 120;
                                     }
                                     speed2 *= 1.2f;
@@ -697,7 +735,7 @@ namespace Aequus.NPCs.Boss
                                                 for (float f = 0f; f < MathHelper.TwoPi; f += rot)
                                                 {
                                                     var v = f.ToRotationVector2();
-                                                    int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), center + v * Radius, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
+                                                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center + v * Radius, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
                                                     Main.projectile[p].timeLeft += 120;
                                                 }
                                             }
@@ -1018,7 +1056,7 @@ namespace Aequus.NPCs.Boss
                 }
                 if (Main.rand.NextBool(30))
                 {
-                    int g = Gore.NewGore(NPC.position + new Vector2(Main.rand.Next(NPC.width - 4), Main.rand.Next(NPC.height - 4)), new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)), 16 + Main.rand.Next(2));
+                    int g = Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.position + new Vector2(Main.rand.Next(NPC.width - 4), Main.rand.Next(NPC.height - 4)), new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)), 16 + Main.rand.Next(2));
                     Main.gore[g].scale *= 0.6f;
                 }
             }
@@ -1070,7 +1108,7 @@ namespace Aequus.NPCs.Boss
                         {
                             float rot = ring.rotationOrbLoop * i;
                             var position = NPC.Center + diff.RotatedBy(rot);
-                            Projectile.NewProjectile(new EntitySource_Parent(NPC), position, shootDir.RotatedBy(rot), type, damage, 1f, Main.myPlayer);
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), position, shootDir.RotatedBy(rot), type, damage, 1f, Main.myPlayer);
                         }
                     }
                     return true;
@@ -1208,7 +1246,7 @@ namespace Aequus.NPCs.Boss
                 {
                     for (int k = 0; k < 7; k++)
                     {
-                        Gore.NewGore(NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                        Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
                     }
                 }
                 for (int i = 0; i < rings.Length; i++)
@@ -1231,7 +1269,7 @@ namespace Aequus.NPCs.Boss
                         {
                             for (int k = 0; k < 7; k++)
                             {
-                                Gore.NewGore(NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                                Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
                             }
                         }
                     }
@@ -1290,7 +1328,7 @@ namespace Aequus.NPCs.Boss
                 {
                     for (int k = 0; k < 7; k++)
                     {
-                        Gore.NewGore(NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * 6f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                        Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * 6f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
                     }
                 }
 
@@ -1311,7 +1349,7 @@ namespace Aequus.NPCs.Boss
                     Main.dust[d].velocity.Y = Main.rand.NextFloat(2f, 6f);
                 }
                 if (Main.rand.NextBool(7))
-                    Gore.NewGore(NPC.Center, new Vector2(Main.rand.NextFloat(-4f, 4f) + x * 0.75f, Main.rand.NextFloat(-4f, 4f)), 16 + Main.rand.Next(2));
+                    Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, new Vector2(Main.rand.NextFloat(-4f, 4f) + x * 0.75f, Main.rand.NextFloat(-4f, 4f)), 16 + Main.rand.Next(2));
             }
         }
 
@@ -1564,23 +1602,30 @@ namespace Aequus.NPCs.Boss
 
         public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (projectile.type == ProjectileID.FallingStar)
+            if (StarResistCatalogue.Contains(projectile.type))
             {
-                if (damage > 300)
+                damage = (int)(damage * starDamageMultiplier);
+            }
+        }
+
+        public override void OnHitByProjectile(Projectile projectile, int damage, float knockback, bool crit)
+        {
+            if (StarResistEasterEggCatalogue.Contains(projectile.type))
+            {
+                if (damage > 800 * starDamageMultiplier)
                 {
-                    Vector2 velo = projectile.velocity * -1.2f;
+                    var starVelocity = projectile.velocity * -1.2f;
                     for (int i = 0; i < 8; i++)
                     {
-                        int p2 = Projectile.NewProjectile(new EntitySource_Parent(NPC), projectile.Center, velo.RotatedBy(MathHelper.PiOver4 * i), ModContent.ProjectileType<RainbowStarofHyperApocalypse>(), damage, knockback);
+                        int p2 = Projectile.NewProjectile(NPC.GetSource_OnHurt(projectile), projectile.Center, starVelocity.RotatedBy(MathHelper.PiOver4 * i), ModContent.ProjectileType<RainbowStarofHyperApocalypse>(), damage, knockback);
                         Main.projectile[p2].timeLeft = 240;
                     }
-                    damage = (int)(damage * 0.25);
-                    projectile.active = false;
-                    return;
                 }
-                int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), projectile.Center, projectile.velocity * -1.2f, ModContent.ProjectileType<RainbowStarofHyperApocalypse>(), damage, knockback);
-                Main.projectile[p].timeLeft = 240;
-                damage = (int)(damage * 0.25);
+                else
+                {
+                    int p = Projectile.NewProjectile(NPC.GetSource_OnHurt(projectile), projectile.Center, projectile.velocity * -1.2f, ModContent.ProjectileType<RainbowStarofHyperApocalypse>(), damage, knockback);
+                    Main.projectile[p].timeLeft = 240;
+                }
                 projectile.active = false;
             }
         }

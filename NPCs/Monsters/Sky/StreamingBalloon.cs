@@ -121,7 +121,7 @@ namespace Aequus.NPCs.Monsters.Sky
                             var selectableEnemies = EnemyList();
                             NPC.ai[2] = selectableEnemies[Main.rand.Next(selectableEnemies.Count)];
                         }
-                        int n = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + 66, (int)NPC.ai[2]);
+                        int n = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + 66, (int)NPC.ai[2]);
                         Main.npc[n].hide = true;
                         Main.npc[n].noTileCollide = true;
                         Main.npc[n].knockBackResist = 0f;
@@ -176,7 +176,7 @@ namespace Aequus.NPCs.Monsters.Sky
             if (!Main.npc[(int)NPC.ai[0]].active)
             {
                 if (WorldFlags.HardmodeTier && Main.rand.NextBool(4))
-                    Item.NewItem(NPC.GetItemSource_Loot(), new Vector2(NPC.position.X + NPC.width / 2f - Main.npc[(int)NPC.ai[0]].width / 2f, NPC.position.Y + 66 - Main.npc[(int)NPC.ai[0]].height / 2), ModContent.ItemType<AtmosphericEnergy>());
+                    Item.NewItem(NPC.GetSource_Loot(), new Vector2(NPC.position.X + NPC.width / 2f - Main.npc[(int)NPC.ai[0]].width / 2f, NPC.position.Y + 66 - Main.npc[(int)NPC.ai[0]].height / 2), ModContent.ItemType<AtmosphericEnergy>());
                 NPC.ai[0] = -1f;
                 NPC.netUpdate = true;
                 return;

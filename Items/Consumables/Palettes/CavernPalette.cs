@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Palettes
+namespace Aequus.Items.Consumables.Palettes
 {
     public class CavernPalette : PaletteBase
     {
@@ -35,7 +35,7 @@ namespace Aequus.Items.Misc.Palettes
 
         public override void RightClick(Player player)
         {
-            var source = player.GetItemSource_OpenItem(Type);
+            var source = player.GetSource_OpenItem(Type);
             base.RightClick(player);
             if (GetItem() == ItemID.FlareGun)
             {
@@ -56,7 +56,7 @@ namespace Aequus.Items.Misc.Palettes
                 }
             }
 
-            PoolPotions(player, PaletteDataProvider.DefaultPotions);
+            PoolPotions(player, PaletteCatalogue.DefaultPotions);
             Split_PoolArmorPolish(player);
         }
     }

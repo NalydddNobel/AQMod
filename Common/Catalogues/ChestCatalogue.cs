@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Common.ID
+namespace Aequus.Common.Catalogues
 {
-    internal static class ChestTypes
+    internal static class ChestCatalogue
     {
         public const int Wood = 0;
         public const int Gold = 1;

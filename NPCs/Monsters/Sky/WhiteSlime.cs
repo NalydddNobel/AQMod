@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Common.ID;
+using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;

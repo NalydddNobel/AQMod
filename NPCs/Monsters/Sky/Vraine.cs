@@ -144,7 +144,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 int lastNPC2 = NPC.whoAmI;
                 for (int i = 0; i < count; i++)
                 {
-                    int n = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), npcX + NPC.width * (i + 1), npcY, NPC.type, NPC.whoAmI);
+                    int n = NPC.NewNPC(NPC.GetSource_FromAI(), npcX + NPC.width * (i + 1), npcY, NPC.type, NPC.whoAmI);
                     Main.npc[n].ai[1] = NPC.ai[1];
                     Main.npc[n].ai[2] = lastNPC;
                     Main.npc[n].localAI[0] = NPC.localAI[0];
@@ -154,7 +154,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         ROR2ArtifactsSupport.SetParent(Main.npc[n], Main.npc[lastNPC]);
                     }
                     lastNPC = n;
-                    n = NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), npcX - NPC.width * (i + 1), npcY, NPC.type, NPC.whoAmI);
+                    n = NPC.NewNPC(NPC.GetSource_FromAI(), npcX - NPC.width * (i + 1), npcY, NPC.type, NPC.whoAmI);
                     Main.npc[n].ai[1] = NPC.ai[1];
                     Main.npc[n].ai[2] = lastNPC2;
                     Main.npc[n].localAI[0] = NPC.localAI[0];

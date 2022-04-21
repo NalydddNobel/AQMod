@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Palettes
+namespace Aequus.Items.Consumables.Palettes
 {
-    public sealed class PaletteDataProvider : ILoadable
+    public sealed class PaletteCatalogue : ILoadable
     {
         public static List<int> DefaultPotions { get; private set; }
 

@@ -18,7 +18,7 @@ namespace Aequus.Items.Consumables.TreasureBags
 
         public override void OpenBossBag(Player player)
         {
-            var source = player.GetItemSource_OpenItem(Type);
+            var source = player.GetSource_OpenItem(Type);
 
             DropHelper.OneFromList(source, player, new List<int>()
             {

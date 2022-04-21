@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ID;
+﻿using Aequus.Common.Catalogues;
 using Aequus.NPCs.Monsters.Sky;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

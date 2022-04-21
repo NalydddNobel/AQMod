@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Aequus.Common.Utilities.Coloring
+namespace Aequus.Common.Utilities
 {
     public interface IColorGradient
     {

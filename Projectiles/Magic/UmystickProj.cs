@@ -65,7 +65,7 @@ namespace Aequus.Projectiles.Magic
                         {
                             shootPosition = player.Center;
                         }
-                        Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), shootPosition, Projectile.velocity * 27.5f, ModContent.ProjectileType<UmystickMoon>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(Projectile.GetSource_FromAI(), shootPosition, Projectile.velocity * 27.5f, ModContent.ProjectileType<UmystickMoon>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                     }
                 }
                 else

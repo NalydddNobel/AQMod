@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Configuration;
-using Aequus.Common.ID;
+using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
@@ -556,7 +556,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                             damage = 30;
                                         }
                                         int type = ModContent.ProjectileType<RedSpriteCloud>();
-                                        int p = Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), projPosition, velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 18f, type, damage, 1f, Main.myPlayer);
+                                        int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), projPosition, velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 18f, type, damage, 1f, Main.myPlayer);
                                         Main.projectile[p].rotation = Main.projectile[p].velocity.ToRotation();
                                         Main.projectile[p].friendly = false;
                                         Main.projectile[p].hostile = true;
@@ -640,7 +640,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         {
                                             damage = 75;
                                         }
-                                        Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), center + new Vector2(0f, 130f), Vector2.Zero, ModContent.ProjectileType<RedSpriteThunderClap>(), damage, 1f, Main.myPlayer);
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), center + new Vector2(0f, 130f), Vector2.Zero, ModContent.ProjectileType<RedSpriteThunderClap>(), damage, 1f, Main.myPlayer);
                                     }
                                 }
                             }

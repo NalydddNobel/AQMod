@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Melee
         {
             if (Main.myPlayer == Projectile.owner && Projectile.scale >= 0.4f)
             {
-                int p = Projectile.NewProjectile(Projectile.GetProjectileSource_OnHit(target, Type), target.Center,
+                int p = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center,
                     Vector2.Normalize(Projectile.Center - Main.player[Projectile.owner].Center), Type, Projectile.damage, Projectile.knockBack, Projectile.owner);
                 Main.projectile[p].scale = Projectile.scale - 0.2f;
                 Main.projectile[p].ModProjectile<MirrorsCallExplosion>().colorProgress = colorProgress + 1f;

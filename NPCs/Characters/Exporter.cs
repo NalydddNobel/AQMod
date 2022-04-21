@@ -1,4 +1,6 @@
 ﻿using Aequus.Common;
+using Aequus.UI;
+using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -328,7 +330,7 @@ namespace Aequus.NPCs.Characters
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            if (completeButton)
+            //if (completeButton)
             {
                 button2 = Language.GetTextValue("Mods.AQMod.Complete");
             }
@@ -342,6 +344,7 @@ namespace Aequus.NPCs.Characters
             }
             else
             {
+                UIHelper.InventoryInterface.SetState(new ModularItemsUI());
                 completeButton = false;
                 //var player = Main.LocalPlayer;
                 //bool consumed = false;

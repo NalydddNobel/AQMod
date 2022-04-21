@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common
 {
-    public sealed class NPCShops : GlobalNPC
+    public sealed class CustomNPCShopItems : GlobalNPC
     {
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {

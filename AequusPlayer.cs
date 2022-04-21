@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Common.ID;
+using Aequus.Common.Catalogues;
 using Aequus.Common.Players;
 using Aequus.Common.Players.StatData;
 using Aequus.Content.Invasions;

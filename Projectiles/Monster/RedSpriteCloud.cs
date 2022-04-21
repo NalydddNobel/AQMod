@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ID;
+﻿using Aequus.Common.Catalogues;
 using Aequus.NPCs.Monsters.Sky;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -85,7 +85,7 @@ namespace Aequus.Projectiles.Monster
                     if (Projectile.ai[1] > 6f)
                     {
                         Projectile.ai[1] = 0f;
-                        Projectile.NewProjectile(Projectile.GetItemSource_FromThis(), new Vector2(Projectile.position.X + Main.rand.NextFloat(Projectile.width), Projectile.position.Y + Projectile.height), new Vector2(0f, 10f), ModContent.ProjectileType<RedSpriteCloudLightning>(), Projectile.damage, Projectile.knockBack, Main.myPlayer);
+                        Projectile.NewProjectile(Projectile.GetSource_FromAI(), new Vector2(Projectile.position.X + Main.rand.NextFloat(Projectile.width), Projectile.position.Y + Projectile.height), new Vector2(0f, 10f), ModContent.ProjectileType<RedSpriteCloudLightning>(), Projectile.damage, Projectile.knockBack, Main.myPlayer);
                     }
                 }
             }

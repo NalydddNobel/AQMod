@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc.Palettes
+namespace Aequus.Items.Consumables.Palettes
 {
     public class DesertPalette : PaletteBase
     {
@@ -34,7 +34,7 @@ namespace Aequus.Items.Misc.Palettes
 
         public override void RightClick(Player player)
         {
-            var source = player.GetItemSource_OpenItem(Type);
+            var source = player.GetSource_OpenItem(Type);
             player.QuickSpawnItem(source, ItemID.SilverCoin, Main.rand.Next(50, 80));
             if (Main.rand.NextBool(8))
             {
@@ -54,7 +54,7 @@ namespace Aequus.Items.Misc.Palettes
                 player.QuickSpawnItem(source, ItemID.PharaohsRobe);
             }
 
-            PoolPotions(player, PaletteDataProvider.DefaultPotions);
+            PoolPotions(player, PaletteCatalogue.DefaultPotions);
             Split_PoolArmorPolish(player);
         }
     }

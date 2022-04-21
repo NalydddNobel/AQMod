@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Utilities.Coloring;
+﻿using Aequus.Common.Utilities;
 using Aequus.Effects.Prims;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

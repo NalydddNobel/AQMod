@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ID;
+﻿using Aequus.Common.Catalogues;
 using Aequus.Content.WorldGeneration;
 using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;

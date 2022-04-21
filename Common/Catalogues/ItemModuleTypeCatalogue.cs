@@ -1,8 +1,8 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Common.ID
+namespace Aequus.Common.Catalogues
 {
-    public sealed class ItemModuleType : ILoadable
+    public sealed class ItemModuleTypeCatalogue : ILoadable
     {
         public const int BarbDamaging = 0;
         public const int BarbDebuff = 1;

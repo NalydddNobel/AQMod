@@ -1,20 +1,24 @@
-﻿using Aequus.Common.ID;
-using Aequus.UI;
+﻿using Aequus.Common.Catalogues;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI;
+using Terraria.ModLoader.IO;
 
 namespace Aequus.Items
 {
     public sealed class ModularItemsManager : GlobalItem
     {
+        public interface IItemModuleData
+        {
+            List<int> ModuleTypes { get; set; }
+        }
+
         public sealed class Catalogue
         {
             private static Dictionary<int, IItemModuleData> _registeredModules;
@@ -53,24 +57,29 @@ namespace Aequus.Items
             {
                 AllowEquipType(item, new List<int>()
                 {
-                    ItemModuleType.BarbDamaging,
-                    ItemModuleType.BarbDebuff,
+                    ItemModuleTypeCatalogue.BarbDamaging,
+                    ItemModuleTypeCatalogue.BarbDebuff,
                 });
             }
             public static void DefaultToAllAequusHookEquips(int item)
             {
                 AllowEquipType(item, new List<int>()
                 {
-                    ItemModuleType.BarbDamaging,
-                    ItemModuleType.BarbDebuff,
-                    ItemModuleType.BarbMovementOverhaul,
-                    ItemModuleType.BarbMeathook,
+                    ItemModuleTypeCatalogue.BarbDamaging,
+                    ItemModuleTypeCatalogue.BarbDebuff,
+                    ItemModuleTypeCatalogue.BarbMovementOverhaul,
+                    ItemModuleTypeCatalogue.BarbMeathook,
                 });
             }
 
             public static void RegisterModule(int item, IItemModuleData data)
             {
                 _registeredModules.Add(item, data);
+            }
+
+            public static bool ContainsModuleDataFor(int item)
+            {
+                return _registeredModules.ContainsKey(item);
             }
 
             public static IItemModuleData GetModuleData(int item)
@@ -80,6 +89,10 @@ namespace Aequus.Items
             public static bool TryGetModuleData(int item, out IItemModuleData value)
             {
                 return _registeredModules.TryGetValue(item, out value);
+            }
+            public static bool CanEquipAnyModules(int item)
+            {
+                return _allowedEquips.ContainsKey(item);
             }
             public static int[] GetAllowedEquips(int item)
             {
@@ -134,19 +147,55 @@ namespace Aequus.Items
             }
         }
 
-        public interface IItemModuleData
+        public class ModuleData : TagSerializable
         {
-            List<int> ModuleTypes { get; set; }
+            public readonly Dictionary<int, Item> modules;
+
+            public ModuleData()
+            {
+                modules = new Dictionary<int, Item>();
+            }
+
+            public TagCompound SerializeData()
+            {
+                List<int> keys = new List<int>();
+                List<Item> values = new List<Item>();
+                foreach (var pair in modules)
+                {
+                    keys.Add(pair.Key);
+                    values.Add(pair.Value);
+                }
+                return new TagCompound()
+                {
+                    ["keys"] = keys.ToList(),
+                    ["values"] = values.ToList(),
+                };
+            }
+
+            public static ModuleData LoadData(TagCompound tag)
+            {
+                if (tag.ContainsKey("keys") && tag.ContainsKey("values"))
+                {
+                    var data = new ModuleData();
+                    List<int> keys = tag.Get<List<int>>("keys");
+                    List<Item> values = tag.Get<List<Item>>("values");
+                    for (int i = 0; i < keys.Count; i++)
+                    {
+                        data.modules.Add(keys[i], values[i]);
+                    }
+                }
+                return null;
+            }
         }
 
-        public Item[] moduleItems;
+        public ModuleData modules;
 
         public override bool InstancePerEntity => true;
 
         public override GlobalItem Clone(Item item, Item itemClone)
         {
             var clone = (ModularItemsManager)base.Clone(item, itemClone);
-            clone.moduleItems = moduleItems;
+            clone.modules = modules;
             return clone;
         }
 
@@ -160,41 +209,41 @@ namespace Aequus.Items
             Catalogue.Unload();
         }
 
+        public override void SaveData(Item item, TagCompound tag)
+        {
+            if (modules != null)
+            {
+                tag["modules"] = modules.SerializeData();
+            }
+        }
+
+        public override void LoadData(Item item, TagCompound tag)
+        {
+            if (tag.ContainsKey("modules"))
+            {
+                try
+                {
+                    ModuleData.LoadData(tag.Get<TagCompound>("modules"));
+                }
+                catch
+                {
+                    modules = null;
+                }
+            }
+        }
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             try
             {
                 if (Catalogue.TryGetAllowedModules(item.type, out var equips) && tooltips != null)
                 {
-                    string spillage = "";
-                    //foreach (var e in equips)
-                    //{
-                    //    if (spillage == "")
-                    //    {
-                    //        spillage += e;
-                    //    }
-                    //    else
-                    //    {
-                    //        spillage += ", " + e;
-                    //    }
-                    //}
-                    //tooltips.Add(new TooltipLine(Mod, "BarbCheck", "This hook barb can equip these types:\n" + spillage));
-
-                    if (moduleItems != null)
+                    if (modules != null && modules.modules.Count > 0)
                     {
-                        spillage = "";
-                        foreach (var e in moduleItems)
+                        for (int i = 0; i < 2; i++)
                         {
-                            if (spillage == "")
-                            {
-                                spillage += "[i:" + e.type + "]";
-                            }
-                            else
-                            {
-                                spillage += ", [i: " + e.type + "]";
-                            }
+                            tooltips.Add(new TooltipLine(Mod, "ModularNone" + i, "-"));
                         }
-                        tooltips.Add(new TooltipLine(Mod, "BarbCheck", "Equipped modules: \n" + spillage));
                     }
                 }
             }
@@ -203,95 +252,56 @@ namespace Aequus.Items
             }
         }
 
-        public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
         {
-            if (Catalogue.TryGetAllowedModules(item.type, out var value) && UISystem.ValidModularSlotContext.Contains(UISystem.ItemSlotContext))
+            if (line.Mod == "Aequus" && line.Name.StartsWith("ModularNone"))
             {
-                var back = position + frame.Size() / 2f * scale - TextureAssets.InventoryBack.Value.Size() / 2f * Main.inventoryScale;
-                var backHitbox = new Rectangle((int)back.X, (int)back.Y, (int)(TextureAssets.InventoryBack.Value.Width * Main.inventoryScale), (int)(TextureAssets.InventoryBack.Value.Height * Main.inventoryScale));
-                if (backHitbox.Contains(Main.mouseX, Main.mouseY))
+                return false;
+            }
+            return true;
+        }
+
+        public override void PostDrawTooltip(Item item, ReadOnlyCollection<DrawableTooltipLine> lines)
+        {
+            if (modules != null && modules.modules.Count > 0)
+            {
+                float X = lines[0].X;
+                float y = 0f;
+
+                foreach (var l in lines)
                 {
-                    if (Main.mouseItem != null && !Main.mouseItem.IsAir && Catalogue.TryGetModuleData(Main.mouseItem.type, out var value2))
+                    if (l.Mod == "Aequus" && l.Name == "ModularNone0")
                     {
-                        if (moduleItems != null)
-                        {
-                            foreach (var i in moduleItems)
-                            {
-                                var value3 = Catalogue.GetModuleData(i.type);
-                                if (value2.ModuleTypes.ContainsAny(value3.ModuleTypes))
-                                {
-                                    return;
-                                }
-                            }
-                        }
-                        UISystem.DisableItemLeftClick = 2;
-                        Main.HoverItem = new Item();
-                        Main.hoverItemName = "";
-                        Main.instance.MouseText(Language.GetTextValue(ApplyModuleHoverText(item, Main.mouseItem)), 2);
-                        if (Main.mouseLeft && Main.mouseLeftRelease)
-                        {
-                            Main.mouseLeftRelease = false;
-                            AddModule(Main.mouseItem.Clone());
-                            Main.mouseItem.TurnToAir();
-                        }
-                    }
-                    else
-                    {
-                        if (moduleItems != null)
-                        {
-                            bool unequip = false;
-                            if (ItemSlot.NotUsingGamepad)
-                            {
-                                unequip = (ItemSlot.Options.DisableLeftShiftTrashCan && ItemSlot.ShiftInUse) || (!ItemSlot.Options.DisableLeftShiftTrashCan && ItemSlot.ControlInUse);
-                            }
-                            else
-                            {
-                                unequip = ItemSlot.ControlInUse;
-                            }
-                            if (unequip)
-                            {
-                                Main.cursorOverride = 8;
-                                UISystem.DisableItemLeftClick = 2;
-                                Main.HoverItem = new Item();
-                                Main.hoverItemName = "";
-                                Main.instance.MouseText(Language.GetTextValue(UnequipModuleHoverText(item, moduleItems)), 2);
-                                if (Main.mouseLeft && Main.mouseLeftRelease)
-                                {
-                                    Main.mouseLeftRelease = false;
-                                    Main.mouseItem = moduleItems[0].Clone();
-                                    for (int i = 1; i < moduleItems.Length; i++)
-                                    {
-                                        moduleItems[i - 1] = moduleItems[i];
-                                    }
-                                    Array.Resize(ref moduleItems, moduleItems.Length - 1);
-                                    if (moduleItems.Length == 0)
-                                    {
-                                        moduleItems = null;
-                                    }
-                                }
-                            }
-                        }
+                        y += l.Y;
                     }
                 }
+
+                float oldScale = Main.inventoryScale;
+                Main.inventoryScale = 1f;
+
+                var back = TextureAssets.InventoryBack.Value;
+                float backWidth = back.Width * Main.inventoryScale;
+                int i = 0;
+                foreach (var module in modules.modules)
+                {
+                    float x = X + (backWidth + 4) * i;
+                    Main.spriteBatch.Draw(back, new Vector2(x, y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), Main.inventoryScale, SpriteEffects.None, 0f);
+
+                    int itemType = module.Value.type;
+                    Main.instance.LoadItem(itemType);
+                    var itemTexture = TextureAssets.Item[itemType].Value;
+                    var itemScale = 1f;
+                    int max = itemTexture.Width > itemTexture.Height ? itemTexture.Width : itemTexture.Height;
+                    if (max > 32)
+                    {
+                        itemScale = 32f / max;
+                    }
+                    Main.spriteBatch.Draw(itemTexture, new Vector2(x, y) + back.Size() / 2f, null, Color.White, 0f, itemTexture.Size() / 2f, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
+                    i++;
+                }
+
+                Main.inventoryScale = oldScale;
             }
-        }
-        private string UnequipModuleHoverText(Item item, Item[] modules)
-        {
-            return "Unequip module?";
-        }
-        private string ApplyModuleHoverText(Item item, Item mouseItem)
-        {
-            return "Apply module?";
-        }
-        public void AddModule(Item module)
-        {
-            if (moduleItems == null)
-            {
-                moduleItems = new Item[] { module };
-                return;
-            }
-            Array.Resize(ref moduleItems, moduleItems.Length + 1);
-            moduleItems[^1] = module;
         }
     }
 }

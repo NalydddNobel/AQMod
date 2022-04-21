@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Utilities.Coloring
+namespace Aequus.Common.Utilities
 {
     public sealed class ColorHelper : ILoadable
     {
@@ -26,7 +26,7 @@ namespace Aequus.Common.Utilities.Coloring
         public ColorHelper()
         {
             InitalizeGradients();
-            InitalizeSets();
+            InitalizeCatalogues();
         }
         private void InitalizeGradients()
         {
@@ -37,7 +37,7 @@ namespace Aequus.Common.Utilities.Coloring
             OrganicGrad = new ColorWaveGradient(4f, new Color(120, 255, 60, 0), new Color(180, 250, 90, 0));
             UltimateGrad = new ColorWaveGradient(8f, new Color(150, 255, 255, 0), new Color(255, 150, 255, 0));
         }
-        private void InitalizeSets()
+        private void InitalizeCatalogues()
         {
             Paints = new byte[]
             {

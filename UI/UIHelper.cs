@@ -2,19 +2,33 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus.UI
 {
-    public sealed partial class UISystem : ModSystem
+    public sealed partial class UIHelper : ModSystem
     {
         public static byte linkClickDelay;
         public static UserInterface InventoryInterface { get; private set; }
         public static UserInterface NPCTalkInterface { get; private set; }
         public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
         public static HashSet<int> ValidModularSlotContext { get; private set; }
+
+        public const int LeftInv = 20;
+        public static int leftInvOffset;
+        public static int LeftInventory(bool ignoreCreative = false)
+        {
+            int left = LeftInv;
+            if (!ignoreCreative && Main.LocalPlayer.difficulty == 3 && !Main.CreativeMenu.Blocked)
+            {
+                left += 48;
+            }
+            return leftInvOffset + left;
+        }
+        public static int BottomInventory => 325;
 
         public override void Load()
         {
@@ -60,6 +74,7 @@ namespace Aequus.UI
 
         public override void UpdateUI(GameTime gameTime)
         {
+            leftInvOffset = 0;
             InventoryInterface.Update(gameTime);
             NPCTalkInterface.Update(gameTime);
             if (Main.mouseItem != null && !Main.mouseItem.IsAir)
@@ -82,6 +97,7 @@ namespace Aequus.UI
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
+            leftInvOffset = 0;
             IntoLayer(layers, "Vanilla: Inventory", "Aequus: Inventory", () =>
             {
                 InventoryInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
@@ -95,6 +111,36 @@ namespace Aequus.UI
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer(yourName, method, scaleType));
             }
+        }
+
+        public static void CloseAllInventoryRelatedUI()
+        {
+            CloseAllInventoryRelatedUI(Main.LocalPlayer);
+        }
+        public static void CloseAllInventoryRelatedUI(Player player)
+        {
+            player.chest = -1;
+            player.sign = -1;
+            player.SetTalkNPC(-1);
+            if (player.whoAmI == Main.myPlayer)
+            {
+                Main.playerInventory = false;
+                Main.recBigList = false;
+                Main.CreativeMenu.CloseMenu();
+                if (PlayerInput.GrappleAndInteractAreShared)
+                {
+                    PlayerInput.Triggers.JustPressed.Grapple = false;
+                }
+                NPCTalkInterface.SetState(null);
+                InventoryInterface.SetState(null);
+            }
+        }
+
+        public static void HoverItem(Item item, int context = -1)
+        {
+            Main.hoverItemName = item.Name;
+            Main.HoverItem = item.Clone();
+            Main.HoverItem.tooltipContext = context;
         }
     }
 }

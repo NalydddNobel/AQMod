@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ID;
+﻿using Aequus.Common.Catalogues;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -53,6 +53,26 @@ namespace Aequus.Items.HookEquips
         public interface IDamageBarbData : IHookBarbData
         {
             int GetBarbDamage();
+
+            public static void FlagUseProjDamage(bool value)
+            {
+                HookEquipsProjectile.moduleAddProjDamage = value;
+            }
+            public static void AddToDamageBusVariableDamage(int npc, int damage, float luck = 0f)
+            {
+                AddToDamageBus(npc, Main.DamageVar(damage, luck));
+            }
+            public static void AddToDamageBus(int npc, int damage)
+            {
+                if (HookEquipsProjectile.modulesCombinedDamage.ContainsKey(npc))
+                {
+                    HookEquipsProjectile.modulesCombinedDamage[npc] += damage;
+                }
+                else
+                {
+                    HookEquipsProjectile.modulesCombinedDamage.Add(npc, damage);
+                }
+            }
         }
         public interface IDebuffBarbData : IHookBarbData
         {
@@ -152,7 +172,7 @@ namespace Aequus.Items.HookEquips
                 crit = 0;
                 ModuleTypes = new List<int>()
                 {
-                    ItemModuleType.BarbDamaging,
+                    ItemModuleTypeCatalogue.BarbDamaging,
                 };
             }
 
@@ -163,9 +183,8 @@ namespace Aequus.Items.HookEquips
 
             public override void ProjOnCollideNPC(Projectile projectile, NPC npc)
             {
-                int damage = Main.DamageVar(projectile.damage + this.damage, Main.player[projectile.owner].luck);
-                Main.player[projectile.owner].ApplyDamageToNPC(npc, damage, kb, Math.Sign(projectile.velocity.X), crit: false);
-                npc.immune[projectile.owner] = 10;
+                IDamageBarbData.FlagUseProjDamage(value: true);
+                IDamageBarbData.AddToDamageBusVariableDamage(npc.whoAmI, GetBarbDamage(), Main.player[projectile.owner].luck);
             }
 
             public override void ProjOnCollidePlayer(Projectile projectile, Player player)
@@ -206,7 +225,7 @@ namespace Aequus.Items.HookEquips
             {
                 ModuleTypes = new List<int>()
                 {
-                    ItemModuleType.BarbDebuff,
+                    ItemModuleTypeCatalogue.BarbDebuff,
                 };
                 DebuffsToApply = debuffs;
             }
@@ -253,7 +272,7 @@ namespace Aequus.Items.HookEquips
                 crit = 0;
                 ModuleTypes = new List<int>()
                 {
-                    ItemModuleType.BarbDebuff,
+                    ItemModuleTypeCatalogue.BarbDebuff,
                 };
                 DebuffsToApply = debuffs;
             }
@@ -276,9 +295,8 @@ namespace Aequus.Items.HookEquips
                         npc.AddBuff(b.Item1, b.Item2);
                     }
                 }
-                int damage = Main.DamageVar(projectile.damage + GetBarbDamage(), Main.player[projectile.owner].luck);
-                Main.player[projectile.owner].ApplyDamageToNPC(npc, damage, kb, Math.Sign(projectile.velocity.X), crit: false);
-                npc.immune[projectile.owner] = 10;
+                IDamageBarbData.FlagUseProjDamage(value: true);
+                IDamageBarbData.AddToDamageBusVariableDamage(npc.whoAmI, GetBarbDamage(), Main.player[projectile.owner].luck);
             }
 
             public override void ProjOnCollidePlayer(Projectile projectile, Player player)

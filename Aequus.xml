@@ -122,12 +122,12 @@
             Applied by <see cref="T:Aequus.Items.Misc.DragonBall"/>
             </summary>
         </member>
-        <member name="T:Aequus.Common.ID.CatalogueBase">
+        <member name="T:Aequus.Common.Catalogues.CatalogueBase">
             <summary>
             A base for a sets provider related class.
             </summary>
         </member>
-        <member name="M:Aequus.Common.ID.ItemModuleType.GetReservedID">
+        <member name="M:Aequus.Common.Catalogues.ItemModuleTypeCatalogue.GetReservedID">
             <summary>
             Gives you an ID to classify a specific item module type
             <para>
@@ -156,62 +156,56 @@
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
             </summary>
         </member>
-        <member name="T:Aequus.Items.HookEquips.HookEquipsCatalogue">
+        <member name="T:Aequus.Items.HookEquips.GrapplingHookModules">
             <summary>
             Where Hook Barb data is registered and collected
             </summary>
         </member>
-        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.IHookBarbData.ProjPreAI(Terraria.Projectile,Terraria.Item,Terraria.Item,Aequus.Items.ModularItemsManager,Terraria.Player,Aequus.AequusPlayer)">
+        <member name="M:Aequus.Items.HookEquips.GrapplingHookModules.IHookBarbData.ProjPreAI(Terraria.Projectile,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
             <summary>
             Ran in <see cref="M:Terraria.ModLoader.GlobalProjectile.PreAI(Terraria.Projectile)"/>
             </summary>
             <param name="projectile"></param>
-            <param name="barbEquip"></param>
-            <param name="hook"></param>
-            <param name="hookBarbGlobal"></param>
+            <param name="barbEquipType"></param>
             <param name="player"></param>
             <param name="aequus"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.IHookBarbData.ProjAI(Terraria.Projectile,Terraria.Item,Terraria.Item,Aequus.Items.ModularItemsManager,Terraria.Player,Aequus.AequusPlayer)">
+        <member name="M:Aequus.Items.HookEquips.GrapplingHookModules.IHookBarbData.ProjAI(Terraria.Projectile,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
             <summary>
             Ran in <see cref="M:Terraria.ModLoader.GlobalProjectile.AI(Terraria.Projectile)"/>
             </summary>
             <param name="projectile"></param>
-            <param name="barbEquip"></param>
-            <param name="hook"></param>
-            <param name="hookBarbGlobal"></param>
+            <param name="barbEquipType"></param>
             <param name="player"></param>
             <param name="aequus"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.IHookBarbData.ProjPostAI(Terraria.Projectile,Terraria.Item,Terraria.Item,Aequus.Items.ModularItemsManager,Terraria.Player,Aequus.AequusPlayer)">
+        <member name="M:Aequus.Items.HookEquips.GrapplingHookModules.IHookBarbData.ProjPostAI(Terraria.Projectile,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
             <summary>
             Ran in <see cref="M:Terraria.ModLoader.GlobalProjectile.PostAI(Terraria.Projectile)"/>
             </summary>
             <param name="projectile"></param>
-            <param name="barbEquip"></param>
-            <param name="hook"></param>
-            <param name="hookBarbGlobal"></param>
+            <param name="barbEquipType"></param>
             <param name="player"></param>
             <param name="aequus"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.INPCCollisionHookBarbData.ProjOnCollideNPC(Terraria.Projectile,Terraria.NPC)">
+        <member name="M:Aequus.Items.HookEquips.GrapplingHookModules.NPCCollisionHookBarbData.ProjOnCollideNPC(Terraria.Projectile,Terraria.NPC)">
             <summary>
             Checked in <see cref="M:Terraria.ModLoader.GlobalProjectile.PostAI(Terraria.Projectile)"/>
             </summary>
             <param name="projectile"></param>
             <param name="npc">The NPC that is colliding with this hook</param>
         </member>
-        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.INPCPlayerPVPCollisionHookBarbData.ProjOnCollidePlayer(Terraria.Projectile,Terraria.Player)">
+        <member name="M:Aequus.Items.HookEquips.GrapplingHookModules.NPCPlayerPVPCollisionHookBarbData.ProjOnCollidePlayer(Terraria.Projectile,Terraria.Player)">
             <summary>
             Checked in <see cref="M:Terraria.ModLoader.GlobalProjectile.PostAI(Terraria.Projectile)"/>
             </summary>
             <param name="projectile"></param>
             <param name="player">The player that is colliding with this hook. Does not check if they are hostile and a part of an opposing team.</param>
         </member>
-        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.RegisterHookBarb(System.Int32,Aequus.Items.HookEquips.HookEquipsCatalogue.IHookBarbData)">
+        <member name="M:Aequus.Items.HookEquips.GrapplingHookModules.RegisterHookBarb(System.Int32,Aequus.Items.HookEquips.GrapplingHookModules.IHookBarbData)">
             <summary>
             Registers a hook barb for a given item.
             </summary>
@@ -219,21 +213,21 @@
             <param name="data">Data statically stored for this item type</param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.GetHookBarb(System.Int32)">
+        <member name="M:Aequus.Items.HookEquips.GrapplingHookModules.GetHookBarb(System.Int32)">
             <summary>
             
             </summary>
             <param name="item">Item ID</param>
             <returns>The generic hook barb data for this item. If there is none, throws an error</returns>
         </member>
-        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.GetHookBarb``1(System.Int32)">
+        <member name="M:Aequus.Items.HookEquips.GrapplingHookModules.GetHookBarb``1(System.Int32)">
             <summary>
             
             </summary>
             <param name="item">Item ID</param>
             <returns>The specific hook barb data for this item. If there is none or it's an incompatible type, throws an error</returns>
         </member>
-        <member name="M:Aequus.Items.HookEquips.HookEquipsCatalogue.TryGetHookBarb(System.Int32,Aequus.Items.HookEquips.HookEquipsCatalogue.IHookBarbData@)">
+        <member name="M:Aequus.Items.HookEquips.GrapplingHookModules.TryGetHookBarb(System.Int32,Aequus.Items.HookEquips.GrapplingHookModules.IHookBarbData@)">
             <summary>
             
             </summary>

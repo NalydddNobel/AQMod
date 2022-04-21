@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ID;
+﻿using Aequus.Common.Catalogues;
 using Aequus.Content.Invasions;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;

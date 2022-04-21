@@ -20,9 +20,39 @@ namespace Aequus.Items
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if (item.createTile > -1)
+            {
+                AequusHelpers.Iterations = 0;
+                GetSpecialTileTooltip(item.createTile, out bool tinkerersWorkshopItem);
+                if (tinkerersWorkshopItem)
+                {
+                    int index = GetLineIndex(tooltips, "Tooltip#");
+                    tooltips.Insert(index + 2, new TooltipLine(Mod, "HookBarbsStation", Aequus.GetText("Tooltips.HookBarbStation")));
+                }
+            }
             if (Dedicated.TryGetValue(item.type, out var dedication))
             {
                 tooltips.Add(new TooltipLine(Mod, "DedicatedItem", Aequus.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
+            }
+        }
+        private void GetSpecialTileTooltip(int tile, out bool tinkerersWorkshopItem)
+        {
+            tinkerersWorkshopItem = tile == TileID.TinkerersWorkbench;
+            if (tile >= Main.maxTileSets && AequusHelpers.Iterations < 10)
+            {
+                var adjTiles = TileLoader.GetTile(tile).AdjTiles;
+                if (adjTiles == null || adjTiles.Length == 0)
+                {
+                    return;
+                }
+                foreach (var tile2 in adjTiles)
+                {
+                    AequusHelpers.Iterations++;
+                    GetSpecialTileTooltip(tile2, out bool tinkerersWorkshopItem2);
+                    AequusHelpers.Iterations = 0;
+                    if (tinkerersWorkshopItem2)
+                        tinkerersWorkshopItem = true;
+                }
             }
         }
 

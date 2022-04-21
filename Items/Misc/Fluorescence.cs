@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ID;
+﻿using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

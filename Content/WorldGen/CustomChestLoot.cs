@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ID;
+﻿using Aequus.Common.Catalogues;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Melee;
 using System.Collections.Generic;
@@ -17,12 +17,12 @@ namespace Aequus.Content.WorldGeneration
                 Chest c = Main.chest[i];
                 if (c != null && Main.tile[c.x, c.y].TileType == TileID.Containers && c.item[0] != null && !c.item[0].IsAir)
                 {
-                    int chestType = ChestTypes.GetChestType(c);
-                    if (chestType == ChestTypes.Gold || chestType == ChestTypes.deadMans)
+                    int chestType = ChestCatalogue.GetChestType(c);
+                    if (chestType == ChestCatalogue.Gold || chestType == ChestCatalogue.deadMans)
                     {
                         GoldChestLoot(c);
                     }
-                    else if (chestType == ChestTypes.Frozen)
+                    else if (chestType == ChestCatalogue.Frozen)
                     {
                         FrozenChestLoot(c);
                     }

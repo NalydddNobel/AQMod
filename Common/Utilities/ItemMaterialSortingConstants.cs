@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common.ID
+﻿namespace Aequus.Common.Utilities
 {
     public sealed class ItemMaterialSortingConstants
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ID;
 
-namespace Aequus.Common.ID
+namespace Aequus.Common.Catalogues
 {
     public sealed class HeatDamageCatalogue : CatalogueBase
     {

@@ -278,7 +278,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                     NPC.velocity.X = -NPC.direction * 12.5f;
                                     if (Main.netMode != NetmodeID.MultiplayerClient)
                                     {
-                                        int p = Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), GetEyePos(), new Vector2(0f, 0f), ModContent.ProjectileType<SpaceSquidDeathray>(), 70, 1f, Main.myPlayer);
+                                        int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), GetEyePos(), new Vector2(0f, 0f), ModContent.ProjectileType<SpaceSquidDeathray>(), 70, 1f, Main.myPlayer);
                                         Main.projectile[p].ai[0] = NPC.whoAmI + 1;
                                         Main.projectile[p].direction = NPC.direction;
                                     }
@@ -361,9 +361,10 @@ namespace Aequus.NPCs.Monsters.Sky
                                         }
                                         if (Main.netMode != NetmodeID.MultiplayerClient)
                                         {
-                                            Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), spawnPosition, velocity, ModContent.ProjectileType<SpaceSquidLaser>(), 30, 1f, Main.myPlayer);
-                                            Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), spawnPosition, velocity.RotatedBy(MathHelper.PiOver4), ModContent.ProjectileType<SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
-                                            Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), spawnPosition, velocity.RotatedBy(-MathHelper.PiOver4), ModContent.ProjectileType<SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
+                                            var source = NPC.GetSource_FromAI();
+                                            Projectile.NewProjectile(source, spawnPosition, velocity, ModContent.ProjectileType<SpaceSquidLaser>(), 30, 1f, Main.myPlayer);
+                                            Projectile.NewProjectile(source, spawnPosition, velocity.RotatedBy(MathHelper.PiOver4), ModContent.ProjectileType<SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
+                                            Projectile.NewProjectile(source, spawnPosition, velocity.RotatedBy(-MathHelper.PiOver4), ModContent.ProjectileType<SpaceSquidLaser>(), 40, 1f, Main.myPlayer);
                                         }
                                     }
                                 }
@@ -444,7 +445,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         velocity = velocity.RotatedBy(Main.rand.NextFloat(-0.5f, 0.5f));
                                         velocity *= Main.rand.NextFloat(1.9f, 2.1f);
                                     }
-                                    Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center + velocity * 4f, velocity, ModContent.ProjectileType<SpaceSquidSnowflake>(), 20, 1f, Main.myPlayer);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + velocity * 4f, velocity, ModContent.ProjectileType<SpaceSquidSnowflake>(), 20, 1f, Main.myPlayer);
                                 }
                                 if (Main.netMode != NetmodeID.Server)
                                 {

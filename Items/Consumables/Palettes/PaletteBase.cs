@@ -8,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Palettes
+namespace Aequus.Items.Consumables.Palettes
 {
     public abstract class PaletteBase : ModItem
     {
@@ -44,7 +44,7 @@ namespace Aequus.Items.Misc.Palettes
 
         public override void RightClick(Player player)
         {
-            player.QuickSpawnItem(player.GetItemSource_OpenItem(Type), GetItem());
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), GetItem());
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -116,7 +116,7 @@ namespace Aequus.Items.Misc.Palettes
         protected void PoolPotions(Player player, List<int> pool, int amt = 2, int dropChance = 2)
         {
             var poolablePotions = new List<int>(pool);
-            var source = player.GetItemSource_OpenItem(Type);
+            var source = player.GetSource_OpenItem(Type);
             amt = Math.Min(amt, pool.Count);
             for (int i = 0; i < amt; i++)
             {

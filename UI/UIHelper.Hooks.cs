@@ -4,7 +4,7 @@ using Terraria;
 
 namespace Aequus.UI
 {
-    partial class UISystem
+    partial class UIHelper
     {
         private static byte specialLeftClickDelay;
         private static byte disableItemLeftClick;

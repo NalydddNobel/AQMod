@@ -62,7 +62,7 @@ namespace Aequus.Projectiles.Melee
                 EffectsSystem.Shake.Set(8f * explosionScale);
                 MirrorsCallExplosion.ExplosionEffects(target.Center, colorProgress, explosionScale);
                 float damageScale = !rightClick ? 0.8f : 1.8f;
-                int p = Projectile.NewProjectile(Projectile.GetProjectileSource_OnHit(target, Type), target.Center,
+                int p = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center,
                     Vector2.Normalize(target.Center - Main.player[Projectile.owner].Center), ModContent.ProjectileType<MirrorsCallExplosion>(), (int)(Projectile.damage * damageScale), Projectile.knockBack, Projectile.owner);
                 Main.projectile[p].scale = explosionScale;
                 Main.projectile[p].width = (int)(Main.projectile[p].width * explosionScale);
@@ -94,11 +94,12 @@ namespace Aequus.Projectiles.Melee
             else if (damageTime == 1 && Main.myPlayer == player.whoAmI && player.altFunctionUse != 2)
             {
                 int damage = (int)(Projectile.damage * 0.25f);
-                int p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), player.Center, Projectile.velocity * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
+                var source = Projectile.GetSource_FromAI();
+                int p = Projectile.NewProjectile(source, player.Center, Projectile.velocity * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
                 Main.projectile[p].ModProjectile<MirrorsCallBullet>().colorProgress = colorProgress;
-                p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), player.Center, Projectile.velocity.RotatedBy(-0.2f) * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
+                p = Projectile.NewProjectile(source, player.Center, Projectile.velocity.RotatedBy(-0.2f) * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
                 Main.projectile[p].ModProjectile<MirrorsCallBullet>().colorProgress = colorProgress + Main.rand.NextFloat(0.2f);
-                p = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), player.Center, Projectile.velocity.RotatedBy(0.2f) * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
+                p = Projectile.NewProjectile(source, player.Center, Projectile.velocity.RotatedBy(0.2f) * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
                 Main.projectile[p].ModProjectile<MirrorsCallBullet>().colorProgress = colorProgress - Main.rand.NextFloat(0.2f);
             }
             float rotationSpeed = MathHelper.Pi * swing * swingMultiplier * direction;

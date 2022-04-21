@@ -10,7 +10,6 @@ namespace Aequus.NPCs
     public class FlawlessNPC : GlobalNPC
     {
         public override bool InstancePerEntity => true;
-        public override bool CloneNewInstances => true;
 
         public bool[] damagedPlayers;
         public bool preventNoHitCheck;
@@ -18,11 +17,6 @@ namespace Aequus.NPCs
         public FlawlessNPC()
         {
             damagedPlayers = new bool[Main.maxPlayers];
-        }
-
-        public override GlobalNPC NewInstance(NPC npc)
-        {
-            return new FlawlessNPC();
         }
 
         private void ResetNoHit(int player)

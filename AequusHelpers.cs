@@ -16,6 +16,41 @@ namespace Aequus
 {
     public static class AequusHelpers
     {
+        public static int Iterations;
+
+        public static bool HasMouseItem()
+        {
+            return Main.mouseItem != null && !Main.mouseItem.IsAir;
+        }
+
+        public static bool IsThisTileOrIsACraftingStationOfThisTile(int craftingStationTile, int comparisonTile)
+        {
+            if (craftingStationTile == comparisonTile)
+            {
+                return true;
+            }
+            if (comparisonTile > Main.maxTileSets)
+            {
+                var adjTiles = TileLoader.GetTile(comparisonTile).AdjTiles;
+                if (adjTiles != null && adjTiles.ContainsAny(craftingStationTile))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool ContainsAny<T>(this IEnumerable<T> en, int en2)
+        {
+            foreach (var t in en)
+            {
+                if (t.Equals(en2))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public static bool ContainsAny<T>(this IEnumerable<T> en, IEnumerable<T> en2)
         {
             foreach (var t in en)

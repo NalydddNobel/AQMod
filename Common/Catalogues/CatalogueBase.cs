@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Common.ID
+namespace Aequus.Common.Catalogues
 {
     /// <summary>
     /// A base for a sets provider related class.
