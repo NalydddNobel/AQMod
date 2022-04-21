@@ -34,6 +34,8 @@ Mods: {
 			Trophy: 在无伤击败时100%掉落
 		}
 		Tooltips: {
+			HookBarbStation: 允许你在背包中为抓钩装备刺钩
+
 			UsesGel: 使用凝胶作为弹药
 			ExporterQuest: 将此物交付于发货人
 			Concocted: 用于药水调配
@@ -43,7 +45,7 @@ Mods: {
 			IncreasedMinions: 增加最大召唤栏位
 			SuspiciousLooking: "'我知道你在想什么...'"
 			Nalyddd: "'闻起来像玫瑰'"
-			HookBarbBlacklist: 不受钩刺升级效果影响
+			HookBarbBlacklist: 不受刺钩升级效果影响
 			HookBarb: 你的钩爪会造成伤害
 			DemonSiegeUpgrade: 可在地狱祭坛处升级
 			DedicatedItem: 专属物品
