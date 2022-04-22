@@ -1858,7 +1858,6 @@ Mods: {
 			}
 		}
 
-
 		Chat: {
 			Exporter: {
 				Introduction: No Text
@@ -1917,12 +1916,14 @@ Mods: {
 				Crabson: No Text
 
 				PirateInvasion: No Text
-				Christmas: No Text
+				XMas: No Text
 
 				VanityEyePatch: No Text
 				PirateVanitySet: No Text
 			}
 		}
+		
+		UpgradeGrapplingHooks: Upgrade Hooks
 
 		Complete: Complete
 		Active: Active

@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Catalogues;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -181,6 +182,7 @@ namespace Aequus.Items
                     {
                         data.modules.Add(keys[i], values[i]);
                     }
+                    return data;
                 }
                 return null;
             }
@@ -221,10 +223,11 @@ namespace Aequus.Items
             {
                 try
                 {
-                    ModuleData.LoadData(tag.Get<TagCompound>("modules"));
+                    modules = ModuleData.LoadData(tag.Get<TagCompound>("modules"));
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Aequus.Instance.Logger.Error(ex);
                     modules = null;
                 }
             }

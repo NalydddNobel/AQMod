@@ -28,7 +28,7 @@ namespace Aequus.UI.States
 
         public override void OnInitialize()
         {
-            int x = UIHelper.LeftInventory(ignoreCreative: true) + 60;
+            int x = UIHelper.LeftInventory(ignoreCreative: true) + 48;
             int y = UIHelper.BottomInventory;
             var back = InvBack;
             itemSlot = new ItemSlotData(x, y, back, new SpriteFrameData(TextureAssets.Extra[ExtrasID.EquipIcons], 3, 6, 1, 1, -2, -2)) { Scale = DrawScale, };
@@ -45,11 +45,16 @@ namespace Aequus.UI.States
             Append(itemSlot);
         }
 
+        public override void OnDeactivate()
+        {
+            base.OnDeactivate();
+            Main.LocalPlayer.QuickSpawnClonedItem(Main.LocalPlayer.GetSource_Misc("Aequus:ModularItemsUI"), itemSlot.item, itemSlot.item.stack);
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != ModContent.NPCType<Exporter>())
             {
-                Main.LocalPlayer.QuickSpawnClonedItem(Main.LocalPlayer.GetSource_Misc("Aequus:ModularItemsUI"), itemSlot.item, itemSlot.item.stack);
                 UIHelper.InventoryInterface.SetState(null);
                 return;
             }
@@ -233,7 +238,7 @@ namespace Aequus.UI.States
                     }
                 }
             }
-                    base.Draw(spriteBatch);
+            base.Draw(spriteBatch);
             UIHelper.leftInvOffset += 60;
             Main.inventoryScale = oldInvScale;
         }
@@ -266,7 +271,15 @@ namespace Aequus.UI.States
             {
                 mouseItem = new Item();
             }
-            return item.IsAir || (!item.IsAir && mouseItem.IsAir) || (mouseItem.stack == 1 && IsGrapplingHook(mouseItem));
+            if (mouseItem.IsAir && item.IsAir)
+            {
+                return false;
+            }
+            return mouseItem.IsAir || (!mouseItem.IsAir && mouseItem.stack == 1 && IsGrapplingHook(mouseItem));
+        }
+        public static bool IsGrapplingHook(Item item)
+        {
+            return ModularItemsManager.Catalogue.CanEquipAnyModules(item.type);
         }
         public static bool CanSwapBarb(Item item, Item mouseItem)
         {
@@ -274,11 +287,11 @@ namespace Aequus.UI.States
             {
                 mouseItem = new Item();
             }
-            return item.IsAir || (!item.IsAir && mouseItem.IsAir) || (mouseItem.stack == 1 && IsBarb(mouseItem));
-        }
-        public static bool IsGrapplingHook(Item item)
-        {
-            return ModularItemsManager.Catalogue.CanEquipAnyModules(item.type);
+            if (mouseItem.IsAir && item.IsAir)
+            {
+                return false;
+            }
+            return mouseItem.IsAir || (!mouseItem.IsAir && mouseItem.stack == 1 && IsBarb(mouseItem));
         }
         public static bool IsBarb(Item item)
         {

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.NPCs.Boss;
 using Aequus.UI;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
@@ -20,12 +21,6 @@ namespace Aequus.NPCs.Characters
     {
         public static Color JeweledTileMapColor => new Color(255, 185, 25, 255);
         public static Color RobsterBroadcastMessageColor => new Color(255, 215, 105, 255);
-
-        public static bool completeButton;
-
-        public byte NPCCheck;
-        public int checkX;
-        public int checkY;
 
         public override void SetStaticDefaults()
         {
@@ -272,68 +267,97 @@ namespace Aequus.NPCs.Characters
 
         public override string GetChat()
         {
-            return "No Text";
-            //var player = Main.LocalPlayer;
-            //for (int i = 0; i < Main.InventorySlotsTotal; i++)
-            //{
-            //    if (player.inventory[i] != null && !player.inventory[i].IsAir && AQItem.Sets.Instance.ExporterQuest.Contains(player.inventory[i].type))
-            //    {
-            //        completeButton = true;
-            //        break;
-            //    }
-            //}
-            //var potentialText = new List<string>();
-            //int angler = NPC.FindFirstNPC(NPCID.Angler);
+            var player = Main.LocalPlayer;
+            if (player.armor[0].headSlot == 97 && Main.rand.NextBool())
+            {
+                return GetChatText("VanityEyePatch");
+            }
+            if (player.armor[0].headSlot == 68 && Main.rand.NextBool())
+            {
+                return GetChatText("PirateVanitySet");
+            }
+            if (Main.xMas && Main.rand.NextBool())
+            {
+                return GetChatText("XMas");
+            }
 
-            //if (BirthdayParty.GenuineParty || BirthdayParty.ManualParty)
-            //    potentialText.Add(AQText.RobsterChat(12).Value);
+            return GetTextFromList(player);
+        }
+        private string GetTextFromList(Player player)
+        {
+            List<string> textChoices = new List<string>()
+            {
+                GetChatText("Basic.0"),
+                GetChatText("Basic.1"),
+                GetChatText("Basic.2"),
+                GetChatText("Basic.3"),
+                GetChatText("Basic.4"),
+            };
 
-            //if (Main.bloodMoon)
-            //{
-            //    potentialText.Add(AQText.RobsterChat(7).Value);
-            //    potentialText.Add(AQText.RobsterChat(8).Value);
-            //    if (Main.hardMode)
-            //    {
-            //        if (Main.moonPhase % 2 == 0)
-            //            potentialText.Add(AQText.RobsterChat(9).Value);
-            //        else
-            //        {
-            //            potentialText.Add(AQText.RobsterChat(10).Value);
-            //        }
-            //        if (angler != -1)
-            //        {
-            //            string text = AQText.RobsterChat(11).Value;
-            //            potentialText.Add(string.Format(text, Main.npc[angler].GivenName));
-            //        }
-            //    }
-            //}
+            if (!Main.dayTime)
+            {
+                textChoices.Add(GetChatText("Night.0"));
+                textChoices.Add(GetChatText("Night.1"));
+                textChoices.Add(GetChatText("Night.2"));
+            }
 
-            //if (Main.eclipse)
-            //{
-            //    potentialText.Add(AQText.RobsterChat(5).Value);
-            //    if (NPC.downedGolemBoss)
-            //        potentialText.Add(AQText.RobsterChat(6).Value);
-            //}
+            if (player.ZoneBeach)
+            {
+                textChoices.Add(GetChatText("Ocean.0"));
+                textChoices.Add(GetChatText("Ocean.1"));
+                textChoices.Add(GetChatText("Ocean.2"));
+                // temporary
+                textChoices.Add(GetChatText("CrabCrevice.0"));
+                textChoices.Add(GetChatText("CrabCrevice.1"));
+                textChoices.Add(GetChatText("CrabCrevice.2"));
+            }
 
-            //if (Glimmer.IsGlimmerEventCurrentlyActive())
-            //{
-            //    potentialText.Add(AQText.RobsterChat(2).Value);
-            //    potentialText.Add(AQText.RobsterChat(3).Value);
-            //    potentialText.Add(AQText.RobsterChat(4).Value);
-            //}
+            if (Main.rand.NextBool())
+            {
+                FindAndAddText(textChoices, NPCID.Angler, "AnglerTownNPC");
+                FindAndAddText(textChoices, NPCID.Pirate, "PirateTownNPC");
+                FindAndAddText(textChoices, NPCID.Dryad, "DryadTownNPC");
+                FindAndAddText(textChoices, NPCID.BestiaryGirl, "ZoologistTownNPC");
+                FindAndAddText(textChoices, NPCID.Truffle, "TruffleTownNPC");
+            }
+            else
+            {
+                FindAndAddText(textChoices, NPCID.ArmsDealer, "ArmsDealerTownNPC");
+                FindAndAddText(textChoices, NPCID.Demolitionist, "DemolitionistTownNPC");
+                FindAndAddText(textChoices, NPCID.TaxCollector, "TaxCollectorTownNPC");
+                FindAndAddText(textChoices, NPCID.TravellingMerchant, "TravellingMerchantTownNPC");
+                FindAndAddText(textChoices, NPCID.Stylist, "StylistTownNPC");
+            }
 
-            //potentialText.Add(AQText.RobsterChat(0).Value);
-            //potentialText.Add(AQText.RobsterChat(1).Value);
-            //return Language.GetTextValue(potentialText[Main.rand.Next(potentialText.Count)]);
+            if (Main.rand.NextBool(4) || NPC.AnyNPCs(ModContent.NPCType<Crabson>()))
+            {
+                textChoices.Add(GetChatText("Crabson"));
+            }
+
+            if (Main.invasionType == InvasionID.PirateInvasion || (Main.rand.NextBool(4) && NPC.downedPirates))
+            {
+                textChoices.Add(GetChatText("PirateInvasion"));
+            }
+
+            return textChoices[Main.rand.Next(textChoices.Count)];
+        }
+        private void FindAndAddText(List<string> textChoices, int npc, string key)
+        {
+            int n = NPC.FindFirstNPC(npc);
+            if (n != -1)
+            {
+                textChoices.Add(GetChatText(key));
+            }
+        }
+        private string GetChatText(string key)
+        {
+            return Language.GetTextValue("Mods.Aequus.Chat.Exporter." + key);
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            //if (completeButton)
-            {
-                button2 = Language.GetTextValue("Mods.AQMod.Complete");
-            }
+            button2 = Language.GetTextValue("Mods.Aequus.UpgradeGrapplingHooks");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -345,52 +369,8 @@ namespace Aequus.NPCs.Characters
             else
             {
                 Main.playerInventory = true;
+                Main.npcChatText = "";
                 UIHelper.InventoryInterface.SetState(new ModularItemsUI());
-                completeButton = false;
-                //var player = Main.LocalPlayer;
-                //bool consumed = false;
-                //for (int i = 0; i < Main.maxInventory; i++)
-                //{
-                //    if (player.inventory[i] != null && !player.inventory[i].IsAir && AQItem.Sets.Instance.ExporterQuest.Contains(player.inventory[i].type))
-                //    {
-                //        if (consumed)
-                //        {
-                //            completeButton = true;
-                //            break;
-                //        }
-                //        Main.PlaySound(SoundID.Grab);
-
-                //        player.QuickSpawnItem(ModContent.ItemType<OverworldPalette>());
-                //        if (Main.rand.NextBool())
-                //            player.QuickSpawnItem(ModContent.ItemType<CavernPalette>());
-                //        if (MiscWorldInfo.exporterQuests > 5 && Main.rand.NextBool())
-                //            player.QuickSpawnItem(ModContent.ItemType<SkyPalette>());
-                //        if (Main.rand.NextBool(10))
-                //            player.QuickSpawnItem(ItemID.GoldenCrate);
-
-                //        if (Main.netMode == NetmodeID.SinglePlayer)
-                //        {
-                //            MiscWorldInfo.exporterQuests++;
-                //        }
-                //        else
-                //        {
-                //            NetHelper.UpdateExporterQuestsCompleted((ushort)(MiscWorldInfo.exporterQuests + 1));
-                //        }
-
-                //        Main.npcChatText = Language.GetTextValue("Mods.AQMod.Exporter.Quests.Complete." + Main.rand.Next(5));
-                //        player.inventory[i].stack--;
-                //        if (player.inventory[i].stack <= 0)
-                //        {
-                //            player.inventory[i].TurnToAir();
-                //        }
-                //        else
-                //        {
-                //            completeButton = true;
-                //            break;
-                //        }
-                //        consumed = true;
-                //    }
-                //}
             }
         }
 
@@ -446,7 +426,6 @@ namespace Aequus.NPCs.Characters
 
         public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset)
         {
-            //int itemType = ModContent.ItemType<Crabsol>();
             int itemType = ItemID.TerraBlade;
             Main.instance.LoadItem(itemType);
             item = TextureAssets.Item[itemType].Value;
