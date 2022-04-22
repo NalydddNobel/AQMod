@@ -1,14 +1,21 @@
-﻿using Terraria.ModLoader;
+﻿using Aequus.Common.Utilities;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.GameContent;
+using Terraria.ModLoader;
 
 namespace Aequus.Common.Catalogues
 {
     public sealed class ItemModuleTypeCatalogue : ILoadable
     {
-        public const int BarbDamaging = 0;
-        public const int BarbDebuff = 1;
-        public const int BarbMovementOverhaul = 2;
-        public const int BarbMeathook = 3;
-        public const int MaxModuleTypes = 4;
+        public const int BarbHook = 0;
+        public const int BarbChain = 1;
+        public const int BarbMisc = 2;
+        public const int MaxModuleTypes = 3;
+
+        public static Dictionary<int, SpriteFrameData> TypeToTexture { get; private set; }
 
         private static int reservedID;
 
@@ -35,6 +42,19 @@ namespace Aequus.Common.Catalogues
         void ILoadable.Load(Mod mod)
         {
             ResetReservedIDToCount();
+            if (!Main.dedServ)
+            {
+                LoadTextureDict();
+            }
+        }
+        private void LoadTextureDict()
+        {
+            TypeToTexture = new Dictionary<int, SpriteFrameData>()
+            {
+                [BarbHook] = new SpriteFrameData(TextureAssets.Extra[54], 3, 6, 2, 4, -2, -2),
+                [BarbChain] = new SpriteFrameData(TextureAssets.Extra[54], 3, 6, 2, 2, -2, -2),
+                [BarbMisc] = new SpriteFrameData(TextureAssets.Extra[54], 3, 6, 2, 5, -2, -2),
+            };
         }
 
         void ILoadable.Unload()

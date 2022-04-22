@@ -1858,6 +1858,72 @@ Mods: {
 			}
 		}
 
+
+		Chat: {
+			Exporter: {
+				Introduction: No Text
+								
+				Basic: {
+					0: No Text
+					1: No Text
+					2: No Text
+					3: No Text
+					4: No Text
+				}
+
+				Night: {
+					0: No Text
+					1: No Text
+					2: No Text
+				}
+
+				BloodMoon: {
+					0: No Text
+					1: No Text
+					2: No Text
+					WanderingEyeFish: No Text
+					ZombieMerman: No Text
+					HemogoblinShark: No Text
+					BloodEel: No Text
+					Dreadnautilus: No Text
+				}
+
+				Ocean: {
+					0: No Text
+					1: No Text
+					2: No Text 
+				}
+
+				CrabCrevice: {
+					0: No Text
+					1: No Text
+					2: No Text
+				}
+
+				AnglerTownNPC: No Text
+				PirateTownNPC: No Text
+				DryadTownNPC: No Text
+				ZoologistTownNPC: No Text
+				TruffleTownNPC: No Text
+				ArmsDealerTownNPC: No Text
+				DemolitionistTownNPC: No Text
+				TaxCollectorTownNPC: No Text
+				TravellingMerchantTownNPC: No Text
+				StylistTownNPC: No Text
+
+				PhysicistTownNPC: No Text
+				MemorialistTownNPC: No Text
+
+				Crabson: No Text
+
+				PirateInvasion: No Text
+				Christmas: No Text
+
+				VanityEyePatch: No Text
+				PirateVanitySet: No Text
+			}
+		}
+
 		Complete: Complete
 		Active: Active
 		Inactive: Inactive

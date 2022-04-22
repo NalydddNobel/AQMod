@@ -28,7 +28,7 @@ namespace Aequus.UI
             }
             return leftInvOffset + left;
         }
-        public static int BottomInventory => 325;
+        public static int BottomInventory => 280;
 
         public override void Load()
         {

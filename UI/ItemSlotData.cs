@@ -1,4 +1,5 @@
-﻿using Aequus.UI.Drawers;
+﻿using Aequus.Common.Utilities;
+using Aequus.UI.Drawers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -15,27 +16,25 @@ namespace Aequus.UI
         public int Y;
         public float Scale;
         public Texture2D back;
+        public SpriteFrameData icon;
+        public bool canHover;
 
         public bool HasItem => item != null && !item.IsAir;
 
-        public ItemSlotData(int x, int y, Texture2D back)
+        public ItemSlotData(int x, int y, Texture2D back, SpriteFrameData icon = null)
         {
             X = x;
             Y = y;
             Scale = 1f;
             item = new Item();
             this.back = back;
+            this.icon = icon;
         }
 
         public Rectangle GetHitbox()
         {
-            return GetHitbox(Scale);
-        }
-
-        public Rectangle GetHitbox(float scale)
-        {
             var back = TextureAssets.InventoryBack.Value;
-            return new Rectangle(X, Y, (int)(back.Width * scale), (int)(back.Height * scale));
+            return new Rectangle(X, Y, (int)(back.Width * Scale), (int)(back.Height * Scale));
         }
 
         public override void Update(GameTime gameTime)
@@ -52,9 +51,16 @@ namespace Aequus.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(back, new Vector2(X, Y), null, Color.White, 0f, Vector2.Zero, Main.inventoryScale * Scale, SpriteEffects.None, 0f);
+            float oldScale = Main.inventoryScale;
+            Main.inventoryScale = Scale;
+            spriteBatch.Draw(back, new Vector2(X, Y), null, Color.White, 0f, Vector2.Zero, Scale, SpriteEffects.None, 0f);
+            if (!HasItem && icon != null)
+            {
+                spriteBatch.Draw(icon.Texture.Value, new Vector2(X, Y) + back.Size() / 2f * Scale, icon.Frame, Color.White * 0.35f, 0f, icon.Frame.Size() / 2f, Scale, SpriteEffects.None, 0f);
+            }
             InvDrawer.Draw(spriteBatch, item, new Vector2(X, Y));
             base.Draw(spriteBatch);
+            Main.inventoryScale = oldScale;
         }
 
     }

@@ -53,22 +53,20 @@ namespace Aequus.Items
             {
                 RemoveEquipType(item, new List<int>() { equipType, });
             }
-            public static void DefaultToHookEquipDamageDebuffs(int item)
+            public static void DefaultHookOnlyBarbHookEquips(int item)
             {
                 AllowEquipType(item, new List<int>()
                 {
-                    ItemModuleTypeCatalogue.BarbDamaging,
-                    ItemModuleTypeCatalogue.BarbDebuff,
+                    ItemModuleTypeCatalogue.BarbHook,
                 });
             }
-            public static void DefaultToAllAequusHookEquips(int item)
+            public static void DefaultAllBarbHookEquips(int item)
             {
                 AllowEquipType(item, new List<int>()
                 {
-                    ItemModuleTypeCatalogue.BarbDamaging,
-                    ItemModuleTypeCatalogue.BarbDebuff,
-                    ItemModuleTypeCatalogue.BarbMovementOverhaul,
-                    ItemModuleTypeCatalogue.BarbMeathook,
+                    ItemModuleTypeCatalogue.BarbHook,
+                    ItemModuleTypeCatalogue.BarbChain,
+                    ItemModuleTypeCatalogue.BarbMisc,
                 });
             }
 
@@ -115,29 +113,29 @@ namespace Aequus.Items
                 // Hook of Dissonance and other teleporting hooks should not be allowed to use barbs
                 // Anti Gravity Hook and Static hook are also purposely not allowed to use barbs
                 _allowedEquips = new Dictionary<int, List<int>>();
-                DefaultToAllAequusHookEquips(ItemID.GrapplingHook);
-                DefaultToAllAequusHookEquips(ItemID.IvyWhip);
-                DefaultToAllAequusHookEquips(ItemID.SkeletronHand);
-                DefaultToAllAequusHookEquips(ItemID.SlimeHook);
-                DefaultToAllAequusHookEquips(ItemID.BatHook);
-                DefaultToAllAequusHookEquips(ItemID.CandyCaneHook);
-                DefaultToAllAequusHookEquips(ItemID.DualHook);
-                DefaultToAllAequusHookEquips(ItemID.ThornHook);
-                DefaultToAllAequusHookEquips(ItemID.IlluminantHook);
-                DefaultToAllAequusHookEquips(ItemID.WormHook);
-                DefaultToAllAequusHookEquips(ItemID.TendonHook);
-                DefaultToAllAequusHookEquips(ItemID.SpookyHook);
-                DefaultToAllAequusHookEquips(ItemID.ChristmasHook);
-                DefaultToAllAequusHookEquips(ItemID.LunarHook);
+                DefaultAllBarbHookEquips(ItemID.GrapplingHook);
+                DefaultAllBarbHookEquips(ItemID.IvyWhip);
+                DefaultAllBarbHookEquips(ItemID.SkeletronHand);
+                DefaultAllBarbHookEquips(ItemID.SlimeHook);
+                DefaultAllBarbHookEquips(ItemID.BatHook);
+                DefaultAllBarbHookEquips(ItemID.CandyCaneHook);
+                DefaultAllBarbHookEquips(ItemID.DualHook);
+                DefaultAllBarbHookEquips(ItemID.ThornHook);
+                DefaultAllBarbHookEquips(ItemID.IlluminantHook);
+                DefaultAllBarbHookEquips(ItemID.WormHook);
+                DefaultAllBarbHookEquips(ItemID.TendonHook);
+                DefaultAllBarbHookEquips(ItemID.SpookyHook);
+                DefaultAllBarbHookEquips(ItemID.ChristmasHook);
+                DefaultAllBarbHookEquips(ItemID.LunarHook);
 
-                DefaultToHookEquipDamageDebuffs(ItemID.SquirrelHook);
-                DefaultToHookEquipDamageDebuffs(ItemID.WebSlinger);
-                DefaultToHookEquipDamageDebuffs(ItemID.AmethystHook);
-                DefaultToHookEquipDamageDebuffs(ItemID.TopazHook);
-                DefaultToHookEquipDamageDebuffs(ItemID.SapphireHook);
-                DefaultToHookEquipDamageDebuffs(ItemID.EmeraldHook);
-                DefaultToHookEquipDamageDebuffs(ItemID.RubyHook);
-                DefaultToHookEquipDamageDebuffs(ItemID.DiamondHook);
+                DefaultHookOnlyBarbHookEquips(ItemID.SquirrelHook);
+                DefaultHookOnlyBarbHookEquips(ItemID.WebSlinger);
+                DefaultHookOnlyBarbHookEquips(ItemID.AmethystHook);
+                DefaultHookOnlyBarbHookEquips(ItemID.TopazHook);
+                DefaultHookOnlyBarbHookEquips(ItemID.SapphireHook);
+                DefaultHookOnlyBarbHookEquips(ItemID.EmeraldHook);
+                DefaultHookOnlyBarbHookEquips(ItemID.RubyHook);
+                DefaultHookOnlyBarbHookEquips(ItemID.DiamondHook);
             }
 
             internal static void Unload()

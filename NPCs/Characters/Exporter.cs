@@ -344,6 +344,7 @@ namespace Aequus.NPCs.Characters
             }
             else
             {
+                Main.playerInventory = true;
                 UIHelper.InventoryInterface.SetState(new ModularItemsUI());
                 completeButton = false;
                 //var player = Main.LocalPlayer;

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Aequus.Common.Catalogues;
+using Aequus.Common.Utilities;
 using Aequus.Items;
 using Aequus.NPCs.Characters;
 using Microsoft.Xna.Framework;
@@ -30,12 +31,16 @@ namespace Aequus.UI.States
             int x = UIHelper.LeftInventory(ignoreCreative: true) + 60;
             int y = UIHelper.BottomInventory;
             var back = InvBack;
-            itemSlot = new ItemSlotData(x, y, back);
+            itemSlot = new ItemSlotData(x, y, back, new SpriteFrameData(TextureAssets.Extra[ExtrasID.EquipIcons], 3, 6, 1, 1, -2, -2)) { Scale = DrawScale, };
             moduleSlot = new ItemSlotData[ItemModuleTypeCatalogue.Count];
             int height = (int)(back.Height * DrawScale);
             for (int i = 0; i < moduleSlot.Length; i++)
             {
-                moduleSlot[i] = new ItemSlotData(x, y + height, back);
+                moduleSlot[i] = new ItemSlotData(x, y, back) { Scale = DrawScale, };
+                if (ItemModuleTypeCatalogue.TypeToTexture.ContainsKey(i))
+                {
+                    moduleSlot[i].icon = ItemModuleTypeCatalogue.TypeToTexture[i];
+                }
             }
             Append(itemSlot);
         }
@@ -44,6 +49,7 @@ namespace Aequus.UI.States
         {
             if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != ModContent.NPCType<Exporter>())
             {
+                Main.LocalPlayer.QuickSpawnClonedItem(Main.LocalPlayer.GetSource_Misc("Aequus:ModularItemsUI"), itemSlot.item, itemSlot.item.stack);
                 UIHelper.InventoryInterface.SetState(null);
                 return;
             }
@@ -58,7 +64,7 @@ namespace Aequus.UI.States
             }
             else
             {
-                slotSpeed = (int)MathHelper.Lerp(slotSpeed, 24f, 0.33f);
+                slotSpeed = (int)MathHelper.Lerp(slotSpeed, 12f, 0.33f);
             }
 
             try
@@ -99,6 +105,10 @@ namespace Aequus.UI.States
                                 moduleSlot[i].Y = gotoY;
                             }
                         }
+                        else
+                        {
+                            moduleSlot[i].canHover = true;
+                        }
 
                         index++;
                         if (i != 0 && moduleSlot[i].Y - itemSlot.Y < height)
@@ -111,6 +121,7 @@ namespace Aequus.UI.States
                 {
                     for (int i = 0; i < moduleSlot.Length; i++)
                     {
+                        moduleSlot[i].canHover = false;
                         if (moduleSlot[i].Y < itemSlot.Y)
                         {
                             moduleSlot[i].Y = itemSlot.Y;
@@ -132,7 +143,7 @@ namespace Aequus.UI.States
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (itemSlot.GetHitbox(DrawScale).Contains(Main.mouseX, Main.mouseY))
+            if (itemSlot.GetHitbox().Contains(Main.mouseX, Main.mouseY))
             {
                 Main.LocalPlayer.mouseInterface = true;
                 if (Main.mouseLeft && Main.mouseLeftRelease && CanSwapGrapplingHook(itemSlot.item, Main.mouseItem))
@@ -145,6 +156,8 @@ namespace Aequus.UI.States
                     UIHelper.HoverItem(itemSlot.item, ItemSlot.Context.PrefixItem);
                 }
             }
+
+            DrawSlotBG(spriteBatch);
 
             float oldInvScale = Main.inventoryScale;
             Main.inventoryScale = DrawScale;
@@ -168,7 +181,7 @@ namespace Aequus.UI.States
                                 moduleSlot[i].item.TurnToAir();
                             }
 
-                            if (moduleSlot[i].GetHitbox(DrawScale).Contains(Main.mouseX, Main.mouseY))
+                            if (moduleSlot[i].canHover && moduleSlot[i].GetHitbox().Contains(Main.mouseX, Main.mouseY))
                             {
                                 Main.LocalPlayer.mouseInterface = true;
                                 if (Main.mouseLeft && Main.mouseLeftRelease && CanSwapBarb(moduleSlot[i].item, Main.mouseItem))
@@ -210,25 +223,50 @@ namespace Aequus.UI.States
 
                 }
             }
-            base.Draw(spriteBatch);
+            else
+            {
+                for (int i = moduleSlot.Length - 1; i >= 0; i--)
+                {
+                    if (moduleSlot[i].Y > itemSlot.Y)
+                    {
+                        moduleSlot[i].Draw(spriteBatch);
+                    }
+                }
+            }
+                    base.Draw(spriteBatch);
             UIHelper.leftInvOffset += 60;
             Main.inventoryScale = oldInvScale;
         }
+        private void DrawSlotBG(SpriteBatch spriteBatch)
+        {
+            int lowest = -1;
+            int y = -1;
+            for (int i = moduleSlot.Length - 1; i >= 0; i--)
+            {
+                if (moduleSlot[i].Y > y)
+                {
+                    lowest = i;
+                    y = moduleSlot[i].Y;
+                }
+            }
+            if (lowest != -1)
+            {
+                if (moduleSlot[lowest].Y != itemSlot.Y)
+                {
+                    var backgroundPosition = new Vector2(itemSlot.X, itemSlot.Y + 8 * DrawScale);
+                    var backgroundScale = new Vector2(InvBack.Width * DrawScale, (moduleSlot[lowest].Y + (InvBack.Height - 8) * DrawScale) - backgroundPosition.Y);
+                    spriteBatch.Draw(TextureAssets.MagicPixel.Value, backgroundPosition, new Rectangle(0, 0, 1, 1), Color.Black, 0f, Vector2.Zero, backgroundScale, SpriteEffects.None, 0f);
+                }
+            }
+        }
+
         public static bool CanSwapGrapplingHook(Item item, Item mouseItem)
         {
             if (mouseItem == null)
             {
                 mouseItem = new Item();
             }
-            if (item.IsAir)
-            {
-                return IsGrapplingHook(mouseItem);
-            }
-            if (!mouseItem.IsAir)
-            {
-                return IsGrapplingHook(item);
-            }
-            return true;
+            return item.IsAir || (!item.IsAir && mouseItem.IsAir) || (mouseItem.stack == 1 && IsGrapplingHook(mouseItem));
         }
         public static bool CanSwapBarb(Item item, Item mouseItem)
         {
@@ -236,15 +274,7 @@ namespace Aequus.UI.States
             {
                 mouseItem = new Item();
             }
-            if (item.IsAir)
-            {
-                return IsBarb(mouseItem);
-            }
-            if (!mouseItem.IsAir)
-            {
-                return IsBarb(item);
-            }
-            return true;
+            return item.IsAir || (!item.IsAir && mouseItem.IsAir) || (mouseItem.stack == 1 && IsBarb(mouseItem));
         }
         public static bool IsGrapplingHook(Item item)
         {
