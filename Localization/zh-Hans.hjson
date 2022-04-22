@@ -1858,6 +1858,73 @@ Mods: {
 			}
 		}
 
+		Chat: {
+			Exporter: {
+				Introduction: 无文本
+
+				Basic: {
+					0: 无文本
+					1: 无文本
+					2: 无文本
+					3: 无文本
+					4: 无文本
+				}
+
+				Night: {
+					0: 无文本
+					1: 无文本
+					2: 无文本
+				}
+
+				BloodMoon: {
+					0: 无文本
+					1: 无文本
+					2: 无文本
+					WanderingEyeFish: 无文本
+					ZombieMerman: 无文本
+					HemogoblinShark: 无文本
+					BloodEel: 无文本
+					Dreadnautilus: 无文本
+				}
+
+				Ocean: {
+					0: 无文本
+					1: 无文本
+					2: 无文本
+				}
+
+				CrabCrevice: {
+					0: 无文本
+					1: 无文本
+					2: 无文本
+				}
+
+				AnglerTownNPC: 无文本
+				PirateTownNPC: 无文本
+				DryadTownNPC: 无文本
+				ZoologistTownNPC: 无文本
+				TruffleTownNPC: 无文本
+				ArmsDealerTownNPC: 无文本
+				DemolitionistTownNPC: 无文本
+				TaxCollectorTownNPC: 无文本
+				TravellingMerchantTownNPC: 无文本
+				StylistTownNPC: 无文本
+
+				PhysicistTownNPC: 无文本
+				MemorialistTownNPC: 无文本
+
+				Crabson: 无文本
+
+				PirateInvasion: 无文本
+				XMas: 无文本
+
+				VanityEyePatch: 无文本
+				PirateVanitySet: 无文本
+			}
+		}
+
+		UpgradeGrapplingHooks: 升级钩爪
+
 		Complete: 完成
 		Active: 激活
 		Inactive: 失效
