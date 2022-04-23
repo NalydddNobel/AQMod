@@ -158,7 +158,7 @@ Mods: {
 			KryptonSword: 氪制回旋镖
 			Vrang: 镰刃
 			AirBlade: 风之刃
-			RedSpriteStaff: 电涌杖
+			SurgeRod: 电涌杖
 			ThunderClap: 雷霆一击
 			Umystick: 秘伞
 			Narrizuul: 耀宇遗光
@@ -1860,19 +1860,19 @@ Mods: {
 
 		Chat: {
 			Exporter: {
-				Introduction: 无文本
+				Introduction: 我的名字是{0}, 我将致力于为你带来我所能找到的最可疑的商品!
 
 				Basic: {
-					0: 无文本
-					1: 无文本
+					0: 仅为你, 我的朋友, 我们来做个交易. 买一件东西, 然后以相同的价格再买一个吧!
+					1: 所有收益都会捐给慈善机构 — 我所说的慈善机构是指我的银行账户!
 					2: 无文本
 					3: 无文本
 					4: 无文本
 				}
 
 				Night: {
-					0: 无文本
-					1: 无文本
+					0: 今晚夜色真美, 非常适合买点什么!
+					1: 你知道的, 大鱼会在月亮出来的时候更活跃. 最好去钓鱼!
 					2: 无文本
 				}
 
@@ -1880,7 +1880,7 @@ Mods: {
 					0: 无文本
 					1: 无文本
 					2: 无文本
-					WanderingEyeFish: 无文本
+					WanderingEyeFish: 我今晚出去钓鱼了, 然后我钓到了一条长着大眼睛的鱼! 我从那只眼球上赚了30美元.
 					ZombieMerman: 无文本
 					HemogoblinShark: 无文本
 					BloodEel: 无文本
@@ -1888,34 +1888,34 @@ Mods: {
 				}
 
 				Ocean: {
-					0: 无文本
+					0: 如果愿望是鱼...如果愿望是鱼, 我就不会因为骗税而被通缉!
 					1: 无文本
 					2: 无文本
 				}
 
 				CrabCrevice: {
-					0: 无文本
+					0: 我宁愿呆在戴维·琼斯的柜子里, 也不愿呆在这个...有螃蟹出没的地狱里!
 					1: 无文本
 					2: 无文本
 				}
 
-				AnglerTownNPC: 无文本
-				PirateTownNPC: 无文本
+				AnglerTownNPC: {0}一直在向我吹嘘他捕到的一些小鱼. 小伙子, 自从我离开蛋后, 我就一直在公海航行! 我钓到的鱼比你们见过的还多.
+				PirateTownNPC: 耶! 我和{0}在公海上相遇过几次. 但那都是美好的过去了...
 				DryadTownNPC: 无文本
 				ZoologistTownNPC: 无文本
-				TruffleTownNPC: 无文本
+				TruffleTownNPC: {0}提醒了我...某次我在地下发现了一条长满蘑菇的虫子! 我试着用它当诱饵, 但什么也没钓上来.
 				ArmsDealerTownNPC: 无文本
 				DemolitionistTownNPC: 无文本
-				TaxCollectorTownNPC: 无文本
+				TaxCollectorTownNPC: 我躲着{0}已经七年了! 别让他知道我在这里!
 				TravellingMerchantTownNPC: 无文本
-				StylistTownNPC: 无文本
+				StylistTownNPC: 有一次我要求{0}给我修剪头发. 但她却砍掉了我的触角! 我是说我的感知头发!
 
 				PhysicistTownNPC: 无文本
 				MemorialistTownNPC: 无文本
 
-				Crabson: 无文本
+				Crabson: 吓我一跳! 你杀了那个被上帝遗弃的螃蟹怪物. 那个野兽就是去年把我的船撞沉的那个!
 
-				PirateInvasion: 无文本
+				PirateInvasion: 我在海盗时代就认识这些小伙子. 他是公海上第十七位最可怕的船员!
 				XMas: 无文本
 
 				VanityEyePatch: 无文本
