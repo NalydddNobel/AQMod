@@ -7,7 +7,7 @@ namespace Aequus.Items.Misc.Dyes
     public class ScorchingDye : DyeItemBase
     {
         public override string Pass => "RedSpritePass";
-        public override int Rarity => ItemRarities.GaleStreams - 1;
+        public override int Rarity => ItemRarityConstants.GaleStreams - 1;
 
         public override ArmorShaderData CreateShaderData()
         {

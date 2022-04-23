@@ -2,7 +2,7 @@
 
 namespace Aequus.Items
 {
-    public sealed class ItemRarities
+    public sealed class ItemRarityConstants
     {
         public const int CrabCrevice = ItemRarityID.Blue;
         public const int RarityGlimmer = ItemRarityID.Green;

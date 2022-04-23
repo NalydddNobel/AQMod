@@ -10,6 +10,7 @@ using Aequus.Effects.Prims;
 using Aequus.Items.Consumables.TreasureBags;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Pets;
 using Aequus.Items.Placeable;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;

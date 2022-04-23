@@ -16,8 +16,8 @@ namespace Aequus.Items.Accessories
         public override void SetDefaults()
         {
             Item.DefaultToAccessory();
-            Item.rare = ItemRarities.CrabCrevice;
-            Item.value = ItemPrices.CrabCreviceValue;
+            Item.rare = ItemRarityConstants.CrabCrevice;
+            Item.value = ItemPriceProperties.CrabCreviceValue;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

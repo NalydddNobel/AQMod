@@ -26,8 +26,8 @@ namespace Aequus.Items.Weapons.Melee
             Item.width = 20;
             Item.height = 20;
             Item.autoReuse = true;
-            Item.rare = ItemRarities.GaleStreams;
-            Item.value = ItemPrices.GaleStreamsValue;
+            Item.rare = ItemRarityConstants.GaleStreams;
+            Item.value = ItemPriceProperties.GaleStreamsValue;
         }
 
         public override Color? GetAlpha(Color lightColor)

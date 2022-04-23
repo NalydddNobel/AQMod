@@ -16,8 +16,8 @@ namespace Aequus.Items.Accessories
         public override void SetDefaults()
         {
             Item.DefaultToAccessory();
-            Item.rare = ItemRarities.GaleStreams;
-            Item.value = ItemPrices.GaleStreamsValue;
+            Item.rare = ItemRarityConstants.GaleStreams;
+            Item.value = ItemPriceProperties.GaleStreamsValue;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

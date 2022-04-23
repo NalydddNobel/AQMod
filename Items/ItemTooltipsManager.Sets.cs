@@ -1,6 +1,6 @@
 ﻿using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Potions;
-using Aequus.Items.Misc;
+using Aequus.Items.Misc.Pets;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;

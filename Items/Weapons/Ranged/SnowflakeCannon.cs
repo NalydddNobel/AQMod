@@ -17,12 +17,12 @@ namespace Aequus.Items.Weapons.Ranged
             Item.useAnimation = 16;
             Item.autoReuse = true;
             Item.damage = 36;
-            Item.rare = ItemRarities.GaleStreams;
+            Item.rare = ItemRarityConstants.GaleStreams;
             Item.DamageType = DamageClass.Ranged;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.shoot = ProjectileID.SnowBallFriendly;
             Item.shootSpeed = 8f;
-            Item.value = ItemPrices.GaleStreamsValue;
+            Item.value = ItemPriceProperties.GaleStreamsValue;
             Item.useAmmo = AmmoID.Snowball;
             Item.knockBack = 5.6f;
             Item.UseSound = SoundID.Item11;
@@ -36,7 +36,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(4f, 0f);
+            return new Vector2(0f, 0f);
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

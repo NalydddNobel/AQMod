@@ -2,7 +2,7 @@
 
 namespace Aequus.Items
 {
-    public sealed class ItemPrices
+    public sealed class ItemPriceProperties
     {
         public static int PotionValue => Item.sellPrice(silver: 2);
         public static int EnergySellValue => Item.sellPrice(silver: 10);

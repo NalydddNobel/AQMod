@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Aequus.Buffs.Pets
 {
     /// <summary>
-    /// Applied by <see cref="Items.Misc.DragonBall"/>
+    /// Applied by <see cref="Aequus.Items.Misc.Pets.DragonBall"/>
     /// </summary>
     public class OmegaStariteBuff : PetBuffBase
     {

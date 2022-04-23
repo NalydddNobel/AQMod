@@ -17,10 +17,10 @@ namespace Aequus.Items.Recipes
                 .AddTile(TileID.Anvils)
                 .Register();
         }
-        public static void RedSpriteDrop(ModItem modItem, int original)
+        public static void RedSpriteDrop(ModItem modItem, int original, int amt = 1)
         {
             modItem.CreateRecipe()
-                .AddIngredient(original)
+                .AddIngredient(original, amt)
                 .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
                 .AddIngredient(ModContent.ItemType<Fluorescence>(), 12)
                 .AddIngredient(ItemID.SoulofFlight, 8)

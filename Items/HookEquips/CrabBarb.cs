@@ -9,7 +9,7 @@ namespace Aequus.Items.HookEquips
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-            GrapplingHookModules.RegisterHookBarb(Type, new GrapplingHookModules.DebuffDamageBarbData(15, BuffID.Poisoned, 120) { ModuleTypes = new System.Collections.Generic.List<int>(), });
+            GrapplingHookModules.RegisterHookBarb(Type, new GrapplingHookModules.DebuffDamageBarbData(15, BuffID.Poisoned, 120));
         }
 
         public override void SetDefaults()

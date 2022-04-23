@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc;
+﻿using Aequus.Items.Misc.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

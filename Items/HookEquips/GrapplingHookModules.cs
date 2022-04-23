@@ -8,9 +8,6 @@ using Terraria.ID;
 
 namespace Aequus.Items.HookEquips
 {
-    /// <summary>
-    /// Where Hook Barb data is registered and collected
-    /// </summary>
     public sealed class GrapplingHookModules
     {
         public interface IHookBarbData : ModularItemsManager.IItemModuleData
@@ -225,7 +222,7 @@ namespace Aequus.Items.HookEquips
             {
                 ModuleTypes = new List<int>()
                 {
-                    ItemModuleTypeCatalogue.BarbChain,
+                    ItemModuleTypeCatalogue.BarbHook,
                 };
                 DebuffsToApply = debuffs;
             }
@@ -272,7 +269,7 @@ namespace Aequus.Items.HookEquips
                 crit = 0;
                 ModuleTypes = new List<int>()
                 {
-                    ItemModuleTypeCatalogue.BarbChain,
+                    ItemModuleTypeCatalogue.BarbHook,
                 };
                 DebuffsToApply = debuffs;
             }

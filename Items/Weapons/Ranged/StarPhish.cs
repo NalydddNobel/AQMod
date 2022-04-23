@@ -25,7 +25,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shootSpeed = 25f;
             Item.UseSound = SoundID.Item65;
             Item.noMelee = true;
-            Item.rare = ItemRarities.CrabCrevice;
+            Item.rare = ItemRarityConstants.CrabCrevice;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

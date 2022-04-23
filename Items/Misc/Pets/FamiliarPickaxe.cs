@@ -3,10 +3,9 @@ using Aequus.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Misc.Pets
 {
     public class FamiliarPickaxe : ModItem
     {

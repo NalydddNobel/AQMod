@@ -261,8 +261,9 @@ namespace Aequus.NPCs.Characters
             };
         }
 
-        public override void SetTownNPCProfile(Dictionary<int, ITownNPCProfile> database)
+        public override ITownNPCProfile TownNPCProfile()
         {
+            return base.TownNPCProfile();
         }
 
         public override string GetChat()

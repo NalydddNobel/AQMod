@@ -16,10 +16,11 @@ namespace Aequus
 
         public const string TextureNone = "Aequus/Assets/None";
 
-        public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
-
         public static Aequus Instance { get; private set; }
         public static StaticManipulator<bool> DayTimeManipulator { get; private set; }
+
+        public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
+        public static bool HQ => ClientConfiguration.Instance.HighQuality;
 
         public override void Load()
         {

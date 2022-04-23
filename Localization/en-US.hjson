@@ -158,7 +158,7 @@ Mods: {
 			KryptonSword: Krypton Boomerang
 			Vrang: Vrang
 			AirBlade: Air Blade
-			RedSpriteStaff: Surge Rod
+			SurgeRod: Surge Rod
 			ThunderClap: Thunder Clap
 			Umystick: Umystick
 			Narrizuul: Narrizuul
@@ -1917,12 +1917,14 @@ Mods: {
 				Crabson: Shiver me timbers! Ye killed that god-forsaken crab monster. That beastie be the same one who sunk me ship last year!
 
 				PirateInvasion: I know these lads from me days as a buccaneer. They were the seventeenth-most-feared crew on the high seas!
-				Christmas: No Text
+				XMas: No Text
 
 				VanityEyePatch: No Text
 				PirateVanitySet: No Text
 			}
 		}
+
+		UpgradeGrapplingHooks: Upgrade Hooks
 
 		Complete: Complete
 		Active: Active

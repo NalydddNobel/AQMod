@@ -23,8 +23,8 @@ namespace Aequus.Items.Weapons.Magic
             Item.damage = 47;
             Item.useTime = 24;
             Item.useAnimation = 24;
-            Item.rare = ItemRarities.GaleStreams;
-            Item.value = ItemPrices.GaleStreamsValue;
+            Item.rare = ItemRarityConstants.GaleStreams;
+            Item.value = ItemPriceProperties.GaleStreamsValue;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item1;
             Item.DamageType = DamageClass.Magic;
