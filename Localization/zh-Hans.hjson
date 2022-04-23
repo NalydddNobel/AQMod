@@ -628,7 +628,7 @@ Mods: {
 			Baozhu:
 				'''
 				会产生巨大的爆炸并引燃敌人
-				爆炸区域会被点燃一段时间
+				爆炸成会燃烧一段时间的火焰
 				'''
 			JerryClawFlail:
 				'''
@@ -682,10 +682,10 @@ Mods: {
 				'''
 			Vrang: 扔出V型移动回旋镖
 			AirBlade: 召唤魔法风刃
-			RedSpriteStaff:
+			SurgeRod:
 				'''
-				召唤雷云打击你的敌人
-				至多同时存在4朵雷云
+				允许你创造雷云网来轰击你的敌人
+				至多同时存在12朵雷云
 				'''
 			ThunderClap: 召唤雷霆从天而降
 			Umystick:
@@ -1858,6 +1858,7 @@ Mods: {
 			}
 		}
 
+
 		Chat: {
 			Exporter: {
 				Introduction: 我的名字是{0}, 我将致力于为你带来我所能找到的最可疑的商品!
@@ -1894,16 +1895,19 @@ Mods: {
 				}
 
 				CrabCrevice: {
-					0: 我宁愿呆在戴维·琼斯的柜子里, 也不愿呆在这个...有螃蟹出没的地狱里!
+					0: 
+						'''
+						我宁愿呆在戴维·琼斯的柜子里, 也不愿呆在这个...有螃蟹出没的地狱里!
+						'''
 					1: 无文本
 					2: 无文本
 				}
 
-				AnglerTownNPC: {0}一直在向我吹嘘他捕到的一些小鱼. 小伙子, 自从我离开蛋后, 我就一直在公海航行! 我钓到的鱼比你们见过的还多.
+				AnglerTownNPC: "{0}一直在向我吹嘘他捕到的一些小鱼. 小伙子, 自从我离开蛋后, 我就一直在公海航行! 我钓到的鱼比你们见过的还多."
 				PirateTownNPC: 耶! 我和{0}在公海上相遇过几次. 但那都是美好的过去了...
 				DryadTownNPC: 无文本
 				ZoologistTownNPC: 无文本
-				TruffleTownNPC: {0}提醒了我...某次我在地下发现了一条长满蘑菇的虫子! 我试着用它当诱饵, 但什么也没钓上来.
+				TruffleTownNPC: "{0}提醒了我...某次我在地下发现了一条长满蘑菇的虫子! 我试着用它当诱饵, 但什么也没钓上来."
 				ArmsDealerTownNPC: 无文本
 				DemolitionistTownNPC: 无文本
 				TaxCollectorTownNPC: 我躲着{0}已经七年了! 别让他知道我在这里!
