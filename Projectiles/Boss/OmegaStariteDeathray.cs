@@ -59,7 +59,7 @@ namespace Aequus.Projectiles.Boss
 
         public override bool? CanHitNPC(NPC target)
         {
-            return !target.friendly && target.life > 5;
+            return !target.friendly && target.life > 5 ? false : null;
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
@@ -67,7 +67,7 @@ namespace Aequus.Projectiles.Boss
             float _ = float.NaN;
             var normal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
             var offset = normal * NPCs.Boss.OmegaStarite.Circumference;
-            Vector2 end = Projectile.Center + offset + normal * NORMAL_BEAM_LENGTH;
+            var end = Projectile.Center + offset + normal * NORMAL_BEAM_LENGTH;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + offset, end, size * Projectile.scale, ref _);
         }
 

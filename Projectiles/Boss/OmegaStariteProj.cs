@@ -58,7 +58,7 @@ namespace Aequus.Projectiles.Boss
                 {
                     if (omegaStarite.rings[i].CachedHitboxes[j].Intersects(targetHitbox))
                     {
-                        return CollisionHelper.IsRectangleCollidingWithCircle(omegaStarite.rings[i].CachedHitboxes[j].Center.ToVector2(), Radius, targetHitbox);
+                        return AequusHelpers.IsRectangleCollidingWithCircle(omegaStarite.rings[i].CachedHitboxes[j].Center.ToVector2(), Radius, targetHitbox);
                     }
                 }
             }

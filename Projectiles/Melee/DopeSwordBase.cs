@@ -51,7 +51,7 @@ namespace Aequus.Projectiles.Melee
 
         public override bool? CanHitNPC(NPC target)
         {
-            return CollisionHelper.IsRectangleCollidingWithCircle(Main.player[Projectile.owner].Center, Radius * Projectile.scale, target.getRect()) ? null : false;
+            return AequusHelpers.IsRectangleCollidingWithCircle(Main.player[Projectile.owner].Center, Radius * Projectile.scale, target.getRect()) ? null : false;
         }
 
         protected virtual void AdjustSwingTime(Player player, AequusPlayer aequusPlayer)

@@ -347,8 +347,12 @@ namespace Aequus.NPCs.Characters
             int n = NPC.FindFirstNPC(npc);
             if (n != -1)
             {
-                textChoices.Add(GetChatText(key));
+                textChoices.Add(GetChatText(key, Main.npc[n].GivenOrTypeName));
             }
+        }
+        private string GetChatText(string key, params object[] args)
+        {
+            return Language.GetTextValue("Mods.Aequus.Chat.Exporter." + key, args);
         }
         private string GetChatText(string key)
         {

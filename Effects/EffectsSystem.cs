@@ -23,7 +23,7 @@ namespace Aequus.Effects
             NPCsBehindAllNPCs = new DrawIndexCache();
             ProjsBehindTiles = new DrawIndexCache();
             Shake = new ScreenShakeData();
-            EffectRand = new MiniRandom("Split".GetHashCode());
+            EffectRand = new MiniRandom("Split".GetHashCode(), capacity: 256 * 4);
             LoadHooks();
         }
         private void LoadHooks()

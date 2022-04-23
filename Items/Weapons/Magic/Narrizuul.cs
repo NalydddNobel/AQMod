@@ -51,24 +51,6 @@ namespace Aequus.Items.Weapons.Magic
             return true;
         }
 
-        public override bool AltFunctionUse(Player player)
-        {
-            return true;
-        }
-
-        public override bool? UseItem(Player player)
-        {
-            if (player.altFunctionUse == 2)
-            {
-                if (Main.GameUpdateCount % 30 == 0)
-                {
-                    NPC.NewNPC(player.GetSource_FromThis(), (int)player.position.X, (int)player.position.Y, ModContent.NPCType<NPCs.Characters.Exporter>());
-                }
-                return false;
-            }
-            return true;
-        }
-
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Projectile.NewProjectile(source, position, velocity.RotatedBy(MathHelper.PiOver4 * 0.5f), type, damage, knockback, player.whoAmI);

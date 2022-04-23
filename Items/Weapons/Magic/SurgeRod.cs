@@ -15,7 +15,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.width = 30;
             Item.height = 30;
             Item.DefaultToMagicWeapon(ModContent.ProjectileType<SurgeRodProj>(), 20, 30f, hasAutoReuse: false);
-            Item.SetWeaponValues(55, 0f, 0);
+            Item.SetWeaponValues(65, 0f, 0);
             Item.useStyle = ItemUseStyleID.Swing;
             Item.mana = 10;
             Item.UseSound = SoundID.Item66;

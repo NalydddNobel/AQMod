@@ -628,7 +628,7 @@ Mods: {
 			Baozhu:
 				'''
 				A large explosion that puts enemies on fire
-				Lights the area on fire for a while
+				Explodes into lingering flames
 				'''
 			JerryClawFlail:
 				'''
@@ -682,10 +682,10 @@ Mods: {
 				'''
 			Vrang: Throws boomerangs in a v-shape
 			AirBlade: Summons magical air blades
-			RedSpriteStaff:
+			SurgeRod:
 				'''
-				Summons a thundercloud to strike your foes
-				Four can be casted at once
+				Allows you to create a thundercloud net to fry your foes
+				Twelve clouds can be casted at once
 				'''
 			ThunderClap: Summons a thunderbolt from the sky
 			Umystick:
@@ -1895,16 +1895,19 @@ Mods: {
 				}
 
 				CrabCrevice: {
-					0: I’d rather be in Davy Jones’ Locker than down here in this… crab-infested hellhole!
+					0: 
+						'''
+						I'd rather be in Davy Jones' Locker than down here in this… crab-infested hellhole!
+						'''
 					1: No Text
 					2: No Text
 				}
 
-				AnglerTownNPC: {0} keeps boasting to me about some little fish he caught. Lad, I’ve sailed the high seas since I left me egg! I’ve caught me more fish than ye’ve ever seen.
+				AnglerTownNPC: "{0} keeps boasting to me about some little fish he caught. Lad, I’ve sailed the high seas since I left me egg! I’ve caught me more fish than ye’ve ever seen."
 				PirateTownNPC: Yarrgh! Me and {0} crossed paths a couple of times on the high seas. Those were the good old days...
 				DryadTownNPC: No Text
 				ZoologistTownNPC: No Text
-				TruffleTownNPC: {0} reminds me... one time I found this worm underground covered in mushrooms! I tried to use it as bait, but I didn't pull anything up.
+				TruffleTownNPC: "{0} reminds me... one time I found this worm underground covered in mushrooms! I tried to use it as bait, but I didn't pull anything up."
 				ArmsDealerTownNPC: No Text
 				DemolitionistTownNPC: No Text
 				TaxCollectorTownNPC: I've been hiding from {0} for seven years! Don't let him know I be here!

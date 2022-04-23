@@ -12,8 +12,15 @@ namespace Aequus.Projectiles.Magic
 {
     public class SurgeRodProj : ModProjectile
     {
+        public const int LightningCheckRate = 12;
+        public const int Amount = 12;
+
+        public static float DrawOpacity;
+
         private LegacyPrimRenderer prim;
         private LegacyPrimRenderer bloomPrim;
+
+        public int lightningCheck;
 
         public Color lightningBloomColor = new Color(128, 30, 10, 0);
 
@@ -36,7 +43,7 @@ namespace Aequus.Projectiles.Magic
             Projectile.ignoreWater = true;
         }
 
-        public override bool? CanCutTiles()
+        public override bool? CanDamage()
         {
             return false;
         }
@@ -79,27 +86,40 @@ namespace Aequus.Projectiles.Magic
                         UpdateSurge(1);
                     }
 
-                    if (Main.player[Projectile.owner].ownedProjectileCounts[Projectile.type] > 3)
+                    if (lightningCheck <= 0)
                     {
-                        bool imOldest = true;
-                        for (int i = 0; i < Main.maxProjectiles; i++)
+                        lightningCheck = LightningCheckRate;
+                    }
+                    else
+                    {
+                        lightningCheck--;
+                    }
+
+                    int amountActive = 0;
+                    int oldest = Projectile.whoAmI;
+                    int timeLeftComparison = Projectile.timeLeft;
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        if (Main.projectile[i].active && Main.projectile[i].type == Type && Main.projectile[i].timeLeft > 60
+                            && ((int)Main.projectile[i].ai[0] != -1 || (int)Main.projectile[i].ai[0] != 0))
                         {
-                            if (Main.projectile[i].active && Main.projectile[i].type == Projectile.type && Main.projectile[i].timeLeft < Projectile.timeLeft
-                                && ((int)Main.projectile[i].ai[0] != -1 || (int)Main.projectile[i].ai[0] != 0))
+                            if (Main.projectile[i].timeLeft < timeLeftComparison)
                             {
-                                imOldest = false;
-                                break;
+                                oldest = i;
+                                timeLeftComparison = Main.projectile[i].timeLeft;
                             }
+                            amountActive++;
                         }
-                        if (imOldest)
-                        {
-                            Projectile.timeLeft = 60;
-                        }
+                    }
+
+                    if (amountActive > Amount)
+                    {
+                        Main.projectile[oldest].timeLeft = 60;
                     }
                 }
                 else
                 {
-                    Projectile.alpha -= 4;
+                    Projectile.alpha += 4;
                 }
             }
             else
@@ -143,11 +163,10 @@ namespace Aequus.Projectiles.Magic
         private int FindClosestSurge()
         {
             int result = -1;
-            float resultLength = 500f;
+            float resultLength = 750f;
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (i != Projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].type == Projectile.type &&
-                    ((int)Main.projectile[i].ai[0] == -2 || (int)Main.projectile[i].ai[1] == 0f || (int)Main.projectile[i].ai[1] == -2) && Main.projectile[i].timeLeft > 60)
+                if (i != Projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].type == Projectile.type && Main.projectile[i].timeLeft > 60)
                 {
                     if (i == (int)Projectile.ai[0] - 1 || i == (int)Projectile.ai[1] - 1 || (Main.projectile[i].ai[0] - 1) == Projectile.whoAmI || (Main.projectile[i].ai[1] - 1) == Projectile.whoAmI)
                     {
@@ -172,18 +191,13 @@ namespace Aequus.Projectiles.Magic
                 Projectile.ai[aiIndex] = -2f;
                 return;
             }
-            //var difference = Main.projectile[surge].Center - Projectile.Center;
-            //var normal = Vector2.Normalize(difference);
-            //float length = Main.rand.NextFloat(difference.Length());
-            //var d = Dust.NewDustPerfect(Projectile.Center + normal * length, ModContent.DustType<MonoDust>(), null, 0, new Color(225, 100, 10, 10));
-            //if (Main.rand.NextBool())
-            //{
-            //    d.velocity = normal.RotatedBy(MathHelper.PiOver2) * 3f * (float)Math.Sin(length * 0.4f + Main.GlobalTimeWrappedHourly * 0.1f + Projectile.position.X + Projectile.position.Y);
-            //}
-            //else
-            //{
-            //    d.velocity *= Main.rand.NextFloat(0.1f, 0.75f);
-            //}
+
+            if (lightningCheck <= 0)
+            {
+                var difference = Main.projectile[surge].Center - Projectile.Center;
+                Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<SurgeRodHitbox>(), Projectile.damage, Projectile.knockBack, Projectile.owner,
+                    difference.ToRotation(), difference.Length());
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -223,12 +237,14 @@ namespace Aequus.Projectiles.Magic
             var difference = Main.projectile[to].Center - Projectile.Center;
             var screenPosition = Projectile.Center - Main.screenPosition;
 
+            DrawOpacity = Main.projectile[to].Opacity * Projectile.Opacity;
+
             CheckPrims();
-            GenerateAndDrawLightning(Main.GlobalTimeWrappedHourly * 30f, difference, screenPosition);
+            GenerateAndDrawLightning(Main.GlobalTimeWrappedHourly * 10f, difference, screenPosition);
             if (Aequus.HQ)
             {
-                GenerateAndDrawLightning(Main.GlobalTimeWrappedHourly * 60f, difference, screenPosition);
-                GenerateAndDrawLightning(Main.GlobalTimeWrappedHourly * 80f, difference, screenPosition);
+                GenerateAndDrawLightning(Main.GlobalTimeWrappedHourly * 15f, difference, screenPosition);
+                GenerateAndDrawLightning(Main.GlobalTimeWrappedHourly * 20f, difference, screenPosition);
             }
             //var normal = Vector2.Normalize(difference);
             //float length = Main.rand.NextFloat(difference.Length());
@@ -238,12 +254,12 @@ namespace Aequus.Projectiles.Magic
             if (prim == null)
             {
                 prim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass,
-                    (p) => new Vector2(2f), (p) => new Color(255, 180, 160, 40) * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
+                    (p) => new Vector2(2f), (p) => new Color(255, 180, 160, 40) * DrawOpacity, obeyReversedGravity: false, worldTrail: false);
             }
             if (bloomPrim == null)
             {
                 bloomPrim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass,
-                    (p) => new Vector2(8f), (p) => lightningBloomColor * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
+                    (p) => new Vector2(8f), (p) => lightningBloomColor * DrawOpacity, obeyReversedGravity: false, worldTrail: false);
             }
         }
         private void GenerateAndDrawLightning(float timer, Vector2 difference, Vector2 screenPosition)
@@ -267,7 +283,7 @@ namespace Aequus.Projectiles.Magic
             for (int i = 0; i < coordinates.Length; i++)
             {
                 var offset = Vector2.Lerp(new Vector2(EffectsSystem.EffectRand.Rand() / 15f, EffectsSystem.EffectRand.Rand() / 25f), new Vector2(EffectsSystem.EffectRand.Rand() / 15f, EffectsSystem.EffectRand.Rand() / 25f), timer / 2f % 1f);
-                coordinates[i] = difference / coordinates.Length * i + screenPosition + offset;
+                coordinates[i] = difference / (coordinates.Length - 1) * i + screenPosition + offset;
             }
             EffectsSystem.EffectRand.SetRand(old);
             return coordinates;
