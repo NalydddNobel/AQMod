@@ -1858,21 +1858,22 @@ Mods: {
 			}
 		}
 
+
 		Chat: {
 			Exporter: {
-				Introduction: No Text
+				Introduction: Me name be {0} and I be dedicated to bringing ye only the most dubiously sourced goods I can find!
 								
 				Basic: {
-					0: No Text
-					1: No Text
+					0: Just for ye, my friend, I'll give ye a little deal. Buy one, get another for the same price!
+					1: All proceeds go to charity- and by charity I mean me bank account!
 					2: No Text
 					3: No Text
 					4: No Text
 				}
 
 				Night: {
-					0: No Text
-					1: No Text
+					0: It be a beautiful night tonight. Perfect setting to buy something!
+					1: Ye know, big fish be more active when the moon’s out. Better get to fishing!
 					2: No Text
 				}
 
@@ -1880,7 +1881,7 @@ Mods: {
 					0: No Text
 					1: No Text
 					2: No Text
-					WanderingEyeFish: No Text
+					WanderingEyeFish: I went out fishing tonight and I caught me a fish with a massive eye! I made thirty bucks off that eyeball.
 					ZombieMerman: No Text
 					HemogoblinShark: No Text
 					BloodEel: No Text
@@ -1889,41 +1890,39 @@ Mods: {
 
 				Ocean: {
 					0: No Text
-					1: No Text
+					1: If wishes were fishes... if wishes were fishes I wouldn't be wanted for tax fraud!
 					2: No Text 
 				}
 
 				CrabCrevice: {
-					0: No Text
+					0: I’d rather be in Davy Jones’ Locker than down here in this… crab-infested hellhole!
 					1: No Text
 					2: No Text
 				}
 
-				AnglerTownNPC: No Text
-				PirateTownNPC: No Text
+				AnglerTownNPC: {0} keeps boasting to me about some little fish he caught. Lad, I’ve sailed the high seas since I left me egg! I’ve caught me more fish than ye’ve ever seen.
+				PirateTownNPC: Yarrgh! Me and {0} crossed paths a couple of times on the high seas. Those were the good old days...
 				DryadTownNPC: No Text
 				ZoologistTownNPC: No Text
-				TruffleTownNPC: No Text
+				TruffleTownNPC: {0} reminds me... one time I found this worm underground covered in mushrooms! I tried to use it as bait, but I didn't pull anything up.
 				ArmsDealerTownNPC: No Text
 				DemolitionistTownNPC: No Text
-				TaxCollectorTownNPC: No Text
+				TaxCollectorTownNPC: I've been hiding from {0} for seven years! Don't let him know I be here!
 				TravellingMerchantTownNPC: No Text
-				StylistTownNPC: No Text
+				StylistTownNPC: One time I asked {0} to trim me hair. Instead, she chopped me antennae off! I meant me sensor hairs!
 
 				PhysicistTownNPC: No Text
 				MemorialistTownNPC: No Text
 
-				Crabson: No Text
+				Crabson: Shiver me timbers! Ye killed that god-forsaken crab monster. That beastie be the same one who sunk me ship last year!
 
-				PirateInvasion: No Text
-				XMas: No Text
+				PirateInvasion: I know these lads from me days as a buccaneer. They were the seventeenth-most-feared crew on the high seas!
+				Christmas: No Text
 
 				VanityEyePatch: No Text
 				PirateVanitySet: No Text
 			}
 		}
-		
-		UpgradeGrapplingHooks: Upgrade Hooks
 
 		Complete: Complete
 		Active: Active
