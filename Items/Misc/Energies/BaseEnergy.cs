@@ -23,7 +23,7 @@ namespace Aequus.Items.Misc.Energies
         {
             Aura = ModContent.Request<Texture2D>(Texture + "_Aura");
             ItemID.Sets.ItemNoGravity[Item.type] = true;
-            this.SetResearch(15);
+            this.SetResearch(10);
         }
 
         public override void SetDefaults()

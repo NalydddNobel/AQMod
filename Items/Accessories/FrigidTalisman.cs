@@ -42,7 +42,7 @@ namespace Aequus.Items.Accessories
             CreateRecipe()
                 .AddIngredient<FrostPotion>(3)
                 .AddIngredient<AtmosphericEnergy>()
-                .AddIngredient<GelidTentacle>(20)
+                .AddIngredient<FrozenTear>(20)
                 .AddIngredient(ItemID.SoulofFlight, 8)
                 .AddTile(TileID.Anvils)
                 .Register();

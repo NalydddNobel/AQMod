@@ -170,7 +170,7 @@ Mods: {
 			Snowgrave: Snowgrave
 			UltimateSword: Ultimate Sword
 			Fluorescence: Fluorescence
-			GelidTentacle: Gelid Tentacle
+			FrozenTear: Frozen Tear
 			CrustaciumBar: Crustacium Bar
 			CrustaciumBlob: Crustacium Blob
 			CrustaciumOre: Crustacium Ore
@@ -381,7 +381,7 @@ Mods: {
 				{$Mods.Aequus.Tooltips.PaletteDrop}
 				'''
 			Fluorescence: "'Pulsates with violence'"
-			GelidTentacle: "'It's twitching...'"
+			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
 			ArtifactOfDissonance:
 				'''
 				Monsters can appear outside their usual environments
