@@ -170,7 +170,7 @@ Mods: {
 			Snowgrave: 雪墓
 			UltimateSword: 最终之剑
 			Fluorescence: 荧光
-			GelidTentacle: 冰寒触手
+			FrozenTear: 冰霜之泪
 			CrustaciumBar: 硬壳锭
 			CrustaciumBlob: 硬壳肉
 			CrustaciumOre: 硬壳矿
@@ -381,7 +381,7 @@ Mods: {
 				{$Mods.Aequus.Tooltips.PaletteDrop}
 				'''
 			Fluorescence: "'猛烈的跳动着'"
-			GelidTentacle: "'它在抽搐...'"
+			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 			ArtifactOfDissonance:
 				'''
 				怪物可以出现在它们通常不会出现的环境
