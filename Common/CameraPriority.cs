@@ -5,7 +5,8 @@
         None,
         Weak,
         NPC,
-        NPCDefeat,
+        MinibossDefeat,
+        BossDefeat,
         VeryImportant,
     }
 }

@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using System;
+﻿using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,7 +24,7 @@ namespace Aequus.Content.Invasions
 
         public override void PostUpdateWorld()
         {
-            if (!WorldFlags.HardmodeTier)
+            if (!AequusWorld.HardmodeTier)
             {
                 Status = InvasionStatus.Inactive;
                 return;

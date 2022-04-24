@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.Catalogues;
+﻿using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -80,7 +79,7 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.75f);
-            if (WorldFlags.HardmodeTier)
+            if (AequusWorld.HardmodeTier)
             {
                 NPC.lifeMax *= 2;
                 NPC.knockBackResist = 0f;

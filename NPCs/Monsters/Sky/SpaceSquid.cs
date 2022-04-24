@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.ItemDrops;
+﻿using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
@@ -697,7 +696,8 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void OnKill()
         {
-            WorldFlags.MarkAsDefeated(ref WorldFlags.downedSpaceSquid);
+            AequusWorld.DefeatEvent(ref AequusWorld.downedSpaceSquid);
+            AequusWorld.killsSpaceSquid++;
         }
 
         //public override void NPCLoot()

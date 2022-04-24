@@ -1,10 +1,11 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Configuration;
 using Aequus.Common.Catalogues;
+using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
+using Aequus.Effects.Prims;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -15,6 +16,7 @@ using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -29,16 +31,33 @@ namespace Aequus.NPCs.Monsters.Sky
     [AutoloadBossHead()]
     public class RedSprite : ModNPC
     {
+        public const int PHASE_DEAD = -2;
+        public const int PHASE_DIRECT_WIND = 1;
+        public const int PHASE_SUMMON_NIMBUS = 2;
+        public const int TRANSITION_DIRECT_WIND = 3;
+        public const int PHASE_THUNDERCLAP = 4;
+        public const int PHASE_THUNDERCLAP_Transition = 5;
+
+        public const int FRAMES_X = 4;
+
+        public static float LightningDrawOpacity;
+        public static float LightningDrawProgress;
+
+        private LegacyPrimRenderer prim;
+        private LegacyPrimRenderer bloomPrim;
+
         public int frameIndex;
+        public Color lightningBloomColor = new Color(128, 10, 5, 0);
 
         private bool _setupFrame;
         
         private float _brightnessTimer;
         private float _brightness;
+        private bool _deathEffect;
+        private bool _importantDeath;
+        private Vector2[][] _redSpriteLightningCoords;
 
         private SoundEffectInstance windSoundInstance;
-
-        public const int FramesX = 3;
 
         public override void SetStaticDefaults()
         {
@@ -116,14 +135,9 @@ namespace Aequus.NPCs.Monsters.Sky
             var center = NPC.Center;
             if (NPC.life < 0)
             {
-                if (Main.netMode != NetmodeID.Server)
+                if (Main.netMode != NetmodeID.Server && windSoundInstance != null && windSoundInstance.State == SoundState.Playing)
                 {
-                    var soundEffect = SoundEngine.GetTrackableSoundByStyleId(SoundID.BlizzardStrongLoop.Style);
-                    windSoundInstance = soundEffect.CreateInstance();
-                    if (windSoundInstance.State == SoundState.Playing)
-                    {
-                        windSoundInstance.Stop();
-                    }
+                    windSoundInstance.Stop();
                 }
                 for (int i = 0; i < 50; i++)
                 {
@@ -159,12 +173,6 @@ namespace Aequus.NPCs.Monsters.Sky
             return drawColor;
         }
 
-        public const int PHASE_DIRECT_WIND = 1;
-        public const int PHASE_SUMMON_NIMBUS = 2;
-        public const int TRANSITION_DIRECT_WIND = 3;
-        public const int PHASE_THUNDERCLAP = 4;
-        public const int PHASE_THUNDERCLAP_Transition = 5;
-
         public override void AI()
         {
             bool leave = (int)NPC.ai[0] == -1;
@@ -199,7 +207,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     NPC.ai[0] = -1;
                     return;
                 }
-                RandomizePhase();
+                AI_RandomizePhase();
                 NPC.velocity = -Vector2.Normalize(Main.player[NPC.target].Center - center) * 20f;
             }
             if (!NPC.HasValidTarget)
@@ -214,7 +222,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 {
                     if ((int)parent.ai[0] == (int)NPC.ai[0])
                     {
-                        RandomizePhase((int)NPC.ai[0]);
+                        AI_RandomizePhase((int)NPC.ai[0]);
                     }
                 }
             }
@@ -407,7 +415,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
                             if (Main.netMode != NetmodeID.Server && Main.ambientVolume > 0f)
                             {
-                                LoadWindSound();
+                                AI_LoadWindSound();
                                 if (windSoundInstance.State != SoundState.Playing)
                                 {
                                     windSoundInstance.Volume = Main.ambientVolume;
@@ -491,7 +499,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         NPC.ai[1]++;
                         if (Main.netMode != NetmodeID.Server && Main.ambientVolume > 0f)
                         {
-                            LoadWindSound();
+                            AI_LoadWindSound();
                             if (windSoundInstance.State == SoundState.Playing)
                             {
                                 if (NPC.ai[1] > 30f)
@@ -508,7 +516,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         if (NPC.ai[1] > (Main.expertMode ? 30f : 60f))
                         {
                             NPC.ai[1] = 0f;
-                            RandomizePhase(PHASE_DIRECT_WIND);
+                            AI_RandomizePhase(PHASE_DIRECT_WIND);
                         }
                     }
                     break;
@@ -567,7 +575,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 {
                                     NPC.ai[2] = -1f;
                                     NPC.localAI[2] = 0f;
-                                    RandomizePhase(PHASE_SUMMON_NIMBUS);
+                                    AI_RandomizePhase(PHASE_SUMMON_NIMBUS);
                                     NPC.ai[2] = 0f;
                                 }
                             }
@@ -599,7 +607,7 @@ namespace Aequus.NPCs.Monsters.Sky
                             {
                                 NPC.ai[2] = -1f;
                                 NPC.localAI[2] = 0f;
-                                RandomizePhase(PHASE_THUNDERCLAP);
+                                AI_RandomizePhase(PHASE_THUNDERCLAP);
                                 NPC.ai[2] = 0f;
                             }
                             else
@@ -671,14 +679,51 @@ namespace Aequus.NPCs.Monsters.Sky
                         if (NPC.ai[1] > (Main.expertMode ? 30f : 60f))
                         {
                             NPC.ai[1] = 0f;
-                            RandomizePhase(PHASE_THUNDERCLAP);
+                            AI_RandomizePhase(PHASE_THUNDERCLAP);
+                        }
+                    }
+                    break;
+
+                case PHASE_DEAD:
+                    {
+                        NPC.rotation = MathHelper.WrapAngle(NPC.rotation);
+                        NPC.rotation *= 0.8f;
+                        NPC.velocity *= 0.8f;
+                        NPC.ai[1]++;
+                        if ((int)NPC.ai[1] >= 57 && !_deathEffect)
+                        {
+                            if (Main.netMode != NetmodeID.Server)
+                            {
+                                NPC.DeathSound?.Play(NPC.Center, 1f, -0.5f);
+                                NPC.HitEffect(0, NPC.lifeMax);
+                                if (NPC.Distance(Main.LocalPlayer.Center) < 2000f)
+                                {
+                                    bool reduceFX = NPC.CountNPCS(Type) > 1 || AequusWorld.killsRedSprite >= 2;
+                                    FlashScene.Flash.Set(NPC.Center, reduceFX ? 2f : 7.5f, 0.6f);
+                                    EffectsSystem.Shake.Set(reduceFX ? 18f : 20f);
+                                }
+                                _deathEffect = true;
+                            }
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                            {
+                                NPC.NPCLoot();
+                            }
+                        }
+                        if ((int)NPC.ai[1] > 140f)
+                        {
+                            NPC npc = new NPC();
+                            npc.SetDefaults(NPCID.AngryNimbus);
+                            npc.Center = NPC.Center;
+                            npc.DeathSound?.Play(NPC.Center);
+                            npc.HitEffect(0, npc.lifeMax);
+                            NPC.active = false;
+                            NPC.life = -1;
                         }
                     }
                     break;
             }
         }
-
-        private void RandomizePhase(int curPhase = -1)
+        private void AI_RandomizePhase(int curPhase = -1)
         {
             NPC.TargetClosest(faceTarget: false);
             if (!NPC.HasValidTarget)
@@ -707,6 +752,14 @@ namespace Aequus.NPCs.Monsters.Sky
             }
             NPC.spriteDirection = NPC.direction;
         }
+        private void AI_LoadWindSound()
+        {
+            if (windSoundInstance == null)
+            {
+                var soundEffect = SoundEngine.GetTrackableSoundByStyleId(SoundID.BlizzardStrongLoop.Style);
+                windSoundInstance = soundEffect.CreateInstance();
+            }
+        }
 
         public override void FindFrame(int frameHeight)
         {
@@ -718,7 +771,7 @@ namespace Aequus.NPCs.Monsters.Sky
             if (!_setupFrame)
             {
                 _setupFrame = true;
-                NPC.frame.Width = NPC.frame.Width / FramesX;
+                NPC.frame.Width = NPC.frame.Width / FRAMES_X;
             }
             if (NPC.IsABestiaryIconDummy)
             {
@@ -735,7 +788,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         {
                             NPC.frameCounter = 0.0d;
                             frameIndex++;
-                            if (frameIndex >= Main.npcFrameCount[NPC.type] * FramesX)
+                            if (frameIndex >= Main.npcFrameCount[NPC.type] * FRAMES_X)
                             {
                                 frameIndex = 0;
                             }
@@ -981,6 +1034,19 @@ namespace Aequus.NPCs.Monsters.Sky
                         }
                     }
                     break;
+
+                case PHASE_DEAD:
+                    {
+                        if (NPC.ai[1] > 30f)
+                        {
+                            frameIndex = 22 + (int)Math.Min((NPC.ai[1] - 30f) / 3f, 5f);
+                        }
+                        else
+                        {
+                            frameIndex = 22;
+                        }
+                    }
+                    break;
             }
 
             _brightness = AequusHelpers.Wave(_brightnessTimer, 0.2f, brightnessMax);
@@ -998,6 +1064,24 @@ namespace Aequus.NPCs.Monsters.Sky
             }
         }
 
+        public override bool CheckDead()
+        {
+            if ((int)NPC.ai[0] == PHASE_DEAD)
+            {
+                return true;
+            }
+
+            _importantDeath = AequusWorld.killsRedSprite < 2 && NPC.CountNPCS(Type) <= 1;
+            NPC.ai[0] = PHASE_DEAD;
+            NPC.ai[1] = 0f;
+            NPC.ai[2] = 0f;
+            NPC.ai[3] = 0f;
+            NPC.dontTakeDamage = true;
+            NPC.life = 1;
+            NPC.netUpdate = true;
+            return false;
+        }
+
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<RedSpriteTrophy>(), 10));
@@ -1010,7 +1094,8 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void OnKill()
         {
-            WorldFlags.MarkAsDefeated(ref WorldFlags.downedRedSprite);
+            AequusWorld.DefeatEvent(ref AequusWorld.downedRedSprite);
+            AequusWorld.killsRedSprite++;
         }
 
         //public override void NPCLoot()
@@ -1042,7 +1127,151 @@ namespace Aequus.NPCs.Monsters.Sky
         //    }
         //}
 
-        public static void DrawThingWithAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPosition, Rectangle? frame, Color drawColor, float rotation, Vector2 origin, float scale, float auraIntensity = 0f, bool bestiary = false)
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            var texture = TextureAssets.Npc[Type].Value;
+            var drawPosition = NPC.Center;
+            var origin = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f - 14f);
+            Vector2 scale = new Vector2(NPC.scale, NPC.scale);
+            float auraIntensity = 0f;
+            if ((int)NPC.ai[0] == PHASE_DEAD)
+            {
+                if (_importantDeath)
+                {
+                    ModContent.GetInstance<GameCamera>().SetTarget("Red Sprite", NPC.Center, CameraPriority.MinibossDefeat, 6f, 60);
+                }
+                if (NPC.ai[1] > 60f)
+                {
+                    DrawLightning(screenPos);
+
+                    Main.instance.LoadNPC(NPCID.AngryNimbus);
+                    var nimbusTexture = TextureAssets.Npc[NPCID.AngryNimbus].Value;
+                    var nimbusFrame = nimbusTexture.Frame(verticalFrames: Main.npcFrameCount[NPCID.AngryNimbus], 
+                        frameY: AequusHelpers.TimedBasedOn((int)Main.GameUpdateCount, 6, Main.npcFrameCount[NPCID.AngryNimbus]));
+                    var nimbusOrigin = nimbusFrame.Size() / 2f;
+
+                    Main.spriteBatch.Draw(nimbusTexture, drawPosition - screenPos, nimbusFrame, Color.Lerp(Color.White, drawColor, MathHelper.Clamp((NPC.ai[1] - 60f) / 20f, 0f, 1f)), NPC.rotation, nimbusOrigin, scale, SpriteEffects.None, 0f);
+                    return false;
+                }
+            }
+            else if ((int)NPC.ai[0] == PHASE_SUMMON_NIMBUS)
+            {
+                auraIntensity += NPC.localAI[2] / 2f;
+            }
+            else
+            {
+                float speedX = NPC.velocity.X.Abs();
+                if (speedX > 8f)
+                {
+                    scale.X += (speedX - 8f) / 120f;
+                    drawPosition.X -= (scale.X - 1f) * 16f;
+                }
+            }
+            DrawWithAura(spriteBatch, texture, drawPosition - screenPos, NPC.frame, drawColor, 0f, origin, NPC.scale, auraIntensity, bestiary: NPC.IsABestiaryIconDummy);
+            Main.spriteBatch.Draw(Aequus.Tex(this.GetPath() + "_Glow"), drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, SpriteEffects.None, 0f);
+            return false;
+        }
+        private void DrawLightning(Vector2 screenPos)
+        {
+            LightningDrawOpacity = Math.Min(1f - (NPC.ai[1] - 65f) / 10f , 1f);
+
+            if (LightningDrawOpacity <= 0f)
+            {
+                return;
+            }
+
+            if (_redSpriteLightningCoords == null)
+            {
+                GenerateLightning();
+            }
+
+            var screenPosition = NPC.Center - screenPos;
+            Vector2[][] lightningStrips = new Vector2[_redSpriteLightningCoords.GetLength(0)][];
+            for (int i = 0; i < _redSpriteLightningCoords.GetLength(0); i++)
+            {
+                lightningStrips[i] = new Vector2[_redSpriteLightningCoords[i].Length];
+                PrepareLightningStrip(ref lightningStrips[i], i, Main.GlobalTimeWrappedHourly * (10f * (i + 1)), screenPosition + new Vector2(-10f, 0f));
+            }
+
+            CheckPrims();
+
+            LightningDrawProgress = 1f - Math.Min(1f - (NPC.ai[1] - 60f) / 20f, 1f);
+
+            for (int i = 0; i < _redSpriteLightningCoords.GetLength(0); i++)
+            {
+                prim.Draw(lightningStrips[i]);
+                bloomPrim.Draw(lightningStrips[i]);
+            }
+        }
+        private void GenerateLightning()
+        {
+            _redSpriteLightningCoords = new Vector2[7][];
+            for (int i = 0; i < _redSpriteLightningCoords.GetLength(0); i++)
+            {
+                _redSpriteLightningCoords[i] = new Vector2[Aequus.HQ ? 20 : 5];
+                var end = (MathHelper.PiOver4 * 0.1f * (i - 3) - MathHelper.PiOver2).ToRotationVector2() * 1080f;
+                GenerateLightningString(ref _redSpriteLightningCoords[i], Main.GlobalTimeWrappedHourly * (i + 1), end);
+            }
+        }
+        private Vector2[] GenerateLightningString(ref Vector2[] coordinates, float timer, Vector2 difference)
+        {
+            var offsetVector = Vector2.Normalize(difference.RotatedBy(MathHelper.PiOver2));
+            int old = EffectsSystem.EffectRand.SetRand((int)timer / 2 * 2);
+            float multiplier = 0.01f;
+            float diff = 0f;
+            for (int i = 0; i < coordinates.Length; i++)
+            {
+                if (multiplier < 1f)
+                {
+                    multiplier += 0.2f;
+                    if (multiplier > 1f)
+                    {
+                        multiplier = 1f;
+                    }
+                }
+                diff += EffectsSystem.EffectRand.Rand(-20f, 20f);
+                diff = MathHelper.Clamp(diff, -50f, 50f);
+                coordinates[i] = difference / (coordinates.Length - 1) * i + offsetVector * diff * multiplier;
+            }
+            EffectsSystem.EffectRand.SetRand(old);
+            return coordinates;
+        }
+        private Vector2[] PrepareLightningStrip(ref Vector2[] coordinates, int k, float timer, Vector2 screenPosition)
+        {
+            int old = EffectsSystem.EffectRand.SetRand((int)timer / 2 * 2);
+            for (int i = 0; i < coordinates.Length; i++)
+            {
+                var offset = Vector2.Lerp(new Vector2(EffectsSystem.EffectRand.Rand() / 15f, EffectsSystem.EffectRand.Rand() / 25f), new Vector2(EffectsSystem.EffectRand.Rand() / 15f, EffectsSystem.EffectRand.Rand() / 25f), timer / 2f % 1f);
+                coordinates[i] += _redSpriteLightningCoords[k][i] + screenPosition + offset;
+            }
+            EffectsSystem.EffectRand.SetRand(old);
+            GameCamera.GetY_Check(coordinates);
+            return coordinates;
+        }
+        private void CheckPrims()
+        {
+            if (prim == null)
+            {
+                prim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass,
+                    (p) => new Vector2(8f) * GetRealProgress(p), (p) => new Color(255, 100, 40, 40) * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
+            }
+            if (bloomPrim == null)
+            {
+                bloomPrim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass,
+                    (p) => new Vector2(44f) * GetRealProgress(p), (p) => lightningBloomColor * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
+            }
+        }
+        private float GetRealProgress(float p)
+        {
+            float p2 = (p - LightningDrawProgress).Abs();
+            if (p2 < 0.1f)
+            {
+                return 1f - p2 * 5f;
+            }
+            return 0.33f;
+        }
+
+        public static void DrawWithAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPosition, Rectangle? frame, Color drawColor, float rotation, Vector2 origin, float scale, float auraIntensity = 0f, bool bestiary = false)
         {
             int aura = (int)((AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) + auraIntensity) * 4f);
             if (aura > 0f)
@@ -1078,40 +1307,6 @@ namespace Aequus.NPCs.Monsters.Sky
                 batchData.Begin(spriteBatch);
             }
             Main.spriteBatch.Draw(texture, drawPosition, frame, drawColor, rotation, origin, scale, SpriteEffects.None, 0f);
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            var texture = TextureAssets.Npc[Type].Value;
-            var drawPosition = NPC.Center;
-            var origin = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f - 14f);
-            Vector2 scale = new Vector2(NPC.scale, NPC.scale);
-            float auraIntensity = 0f;
-            if ((int)NPC.ai[0] == PHASE_SUMMON_NIMBUS)
-            {
-                auraIntensity += NPC.localAI[2] / 2f;
-            }
-            else
-            {
-                float speedX = NPC.velocity.X.Abs();
-                if (speedX > 8f)
-                {
-                    scale.X += (speedX - 8f) / 120f;
-                    drawPosition.X -= (scale.X - 1f) * 16f;
-                }
-            }
-            DrawThingWithAura(spriteBatch, texture, drawPosition - screenPos, NPC.frame, drawColor, 0f, origin, NPC.scale, auraIntensity, bestiary: NPC.IsABestiaryIconDummy);
-            Main.spriteBatch.Draw(Aequus.Tex(this.GetPath() + "_Glow"), drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, SpriteEffects.None, 0f);
-            return false;
-        }
-
-        private void LoadWindSound()
-        {
-            if (windSoundInstance == null)
-            {
-                var soundEffect = SoundEngine.GetTrackableSoundByStyleId(SoundID.BlizzardStrongLoop.Style);
-                windSoundInstance = soundEffect.CreateInstance();
-            }
         }
     }
 }

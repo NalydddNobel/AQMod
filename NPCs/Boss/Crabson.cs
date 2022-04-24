@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.ItemDrops;
+﻿using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Effects;
 using Aequus.Items.Accessories;
@@ -26,21 +25,21 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead]
     public class Crabson : AequusBoss
     {
-        public const int Phase_Goodbye = -1;
-        public const int Phase_Initalize = 0;
-        public const int Phase_Intro = 1;
-        public const int Phase_ClawShots = 2;
-        public const int Phase_GroundBubbles = 3;
-        public const int Phase_ClawSlams = 4;
-        public const int Phase_HomingBubbles = 5;
-        public const int Phase_ClawShotsShrapnal = 6;
+        public const int PHASE_GOODBYE = -1;
+        public const int PHASE_INIT = 0;
+        public const int PHASE_INTRO = 1;
+        public const int PHASE_CLAWSHOTS = 2;
+        public const int PHASE_GROUNDBUBBLES = 3;
+        public const int PHASE_CLAWSLAMS = 4;
+        public const int PHASE2_GROUNDBUBBLES_SPAMMY = 5;
+        public const int PHASE2_CLAWSHOTS_SHRAPNEL = 6;
 
-        public static int ClawBossHead { get; private set; }
+        public static int BossHeadID_Claw { get; private set; }
 
         public int leftClaw;
         public int rightClaw;
         public int crabson;
-        public bool contactDamage;
+        public bool dealContactDamage;
 
         public NPC Left => Main.npc[leftClaw];
         public NPC Right => Main.npc[rightClaw];
@@ -50,7 +49,7 @@ namespace Aequus.NPCs.Boss
 
         public override void Load()
         {
-            ClawBossHead = Mod.AddBossHeadTexture(this.GetPath() + "Claw_Head_Boss", -1);
+            BossHeadID_Claw = Mod.AddBossHeadTexture(this.GetPath() + "Claw_Head_Boss", -1);
         }
 
         public override void SetStaticDefaults()
@@ -121,7 +120,7 @@ namespace Aequus.NPCs.Boss
 
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)
         {
-            return contactDamage;
+            return dealContactDamage;
         }
 
         private void SpawnClaws(Vector2 center)
@@ -135,7 +134,7 @@ namespace Aequus.NPCs.Boss
                     NPC.ai[1]++;
                     if (NPC.ai[1] < 60f)
                     {
-                        NPC.ai[0] = Phase_Initalize;
+                        NPC.ai[0] = PHASE_INIT;
                         if (myParent.whoAmI == crabson || myParent.ModNPC<Crabson>().crabson == myParent.whoAmI || !IsClaw)
                         {
                             crabson = NPC.whoAmI;
@@ -210,7 +209,7 @@ namespace Aequus.NPCs.Boss
                         rightClaw = n;
                     }
                     Main.npc[n].position.X += 150f * i;
-                    Main.npc[n].ai[0] = Phase_Intro;
+                    Main.npc[n].ai[0] = PHASE_INTRO;
                     Main.npc[n].direction = i;
                     Main.npc[n].spriteDirection = i;
                     Main.npc[n].realLife = NPC.whoAmI;
@@ -250,7 +249,7 @@ namespace Aequus.NPCs.Boss
         }
         private void SetGoodbyeState()
         {
-            NPC.ai[0] = Phase_Goodbye;
+            NPC.ai[0] = PHASE_GOODBYE;
             NPC.ai[1] = 60f;
         }
         private void GroundMovement(Vector2 location)
@@ -314,9 +313,9 @@ namespace Aequus.NPCs.Boss
         }
         private void RandomizePhase(int current)
         {
-            List<int> actions = new List<int>() { Phase_ClawShots, Phase_GroundBubbles, Phase_ClawSlams };
+            List<int> actions = new List<int>() { PHASE_CLAWSHOTS, PHASE_GROUNDBUBBLES, PHASE_CLAWSLAMS };
             NPC.ai[0] = actions[Main.rand.Next(actions.Count)];
-            contactDamage = true;
+            dealContactDamage = true;
             NPC.localAI[0] = 0f;
             Right.localAI[0] = 0f;
             Left.localAI[0] = 0f;
@@ -326,28 +325,28 @@ namespace Aequus.NPCs.Boss
             NPC.defense = NPC.defDefense;
             Right.defense = Right.defDefense;
             Left.defense = Left.defDefense;
-            if ((int)NPC.ai[0] == Phase_ClawShots)
+            if ((int)NPC.ai[0] == PHASE_CLAWSHOTS)
             {
                 NPC.ai[1] = Main.expertMode ? 240f : 320f;
                 if (PhaseTwo && (Main.expertMode || Main.rand.NextFloat() < 0.75f))
                 {
-                    NPC.ai[0] = Phase_ClawShotsShrapnal;
+                    NPC.ai[0] = PHASE2_CLAWSHOTS_SHRAPNEL;
                 }
                 Left.ai[1] = 0f;
                 Right.ai[1] = 0f;
                 Left.ai[2] = 0f;
                 Right.ai[2] = 0f;
             }
-            else if ((int)NPC.ai[0] == Phase_GroundBubbles)
+            else if ((int)NPC.ai[0] == PHASE_GROUNDBUBBLES)
             {
-                if (current == Phase_GroundBubbles || current == Phase_HomingBubbles)
+                if (current == PHASE_GROUNDBUBBLES || current == PHASE2_GROUNDBUBBLES_SPAMMY)
                 {
                     RandomizePhase(current);
                     return;
                 }
                 if (PhaseTwo && (Main.expertMode || Main.rand.NextFloat() < 0.75f))
                 {
-                    NPC.ai[0] = Phase_HomingBubbles;
+                    NPC.ai[0] = PHASE2_GROUNDBUBBLES_SPAMMY;
                 }
                 NPC.ai[1] = Main.expertMode ? 180f : 120f;
                 NPC.ai[2] = 0f;
@@ -355,7 +354,7 @@ namespace Aequus.NPCs.Boss
                 Right.defense *= 4;
                 Left.defense *= 4;
             }
-            else if ((int)NPC.ai[0] == Phase_ClawSlams)
+            else if ((int)NPC.ai[0] == PHASE_CLAWSLAMS)
             {
                 float firstSmash = Main.expertMode ? -8f : -60f;
                 float secondSmash = Main.expertMode ? -68f : -128f;
@@ -415,7 +414,7 @@ namespace Aequus.NPCs.Boss
                 {
                     NPC.position += NPC.velocity;
                 }
-                if ((int)NPC.ai[0] == Phase_Goodbye)
+                if ((int)NPC.ai[0] == PHASE_GOODBYE)
                 {
                     if (NPC.timeLeft > 20)
                     {
@@ -432,9 +431,9 @@ namespace Aequus.NPCs.Boss
                     return;
                 }
                 Vector2 center = NPC.Center;
-                if ((int)NPC.ai[0] == Phase_Initalize && Main.netMode != NetmodeID.MultiplayerClient)
+                if ((int)NPC.ai[0] == PHASE_INIT && Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    NPC.ai[0] = Phase_Intro;
+                    NPC.ai[0] = PHASE_INTRO;
                     NPC.netUpdate = true;
                     NPC.TargetClosest(faceTarget: false);
                     SpawnClaws(center);
@@ -445,7 +444,7 @@ namespace Aequus.NPCs.Boss
                     NPC.realLife = crabson;
                     if (!IsClaw)
                     {
-                        contactDamage = false;
+                        dealContactDamage = false;
                         NPC.behindTiles = true;
                         if (!NPC.HasValidTarget || NPC.Distance(Main.npc[NPC.target].Center) > 4000f)
                         {
@@ -467,13 +466,13 @@ namespace Aequus.NPCs.Boss
                                 }
                             }
                         }
-                        if ((int)NPC.ai[0] == Phase_Intro)
+                        if ((int)NPC.ai[0] == PHASE_INTRO)
                         {
                             Movement1(out var tileCoords, out var j);
                             NPC.ai[1]++;
                             if ((NPC.position.Y + NPC.height - (tileCoords.Y + j) * 16f).Abs() < 20f || NPC.ai[1] > 60f)
                             {
-                                NPC.ai[0] = Phase_ClawShots;
+                                NPC.ai[0] = PHASE_CLAWSHOTS;
                                 NPC.ai[1] = Main.expertMode ? 240f : 320f;
                                 Left.ai[1] = 0f;
                                 Right.ai[1] = 0f;
@@ -481,7 +480,7 @@ namespace Aequus.NPCs.Boss
                                 Right.ai[2] = 0f;
                             }
                         }
-                        else if ((int)NPC.ai[0] == Phase_ClawShots || (int)NPC.ai[0] == Phase_ClawSlams || (int)NPC.ai[0] == Phase_ClawShotsShrapnal)
+                        else if ((int)NPC.ai[0] == PHASE_CLAWSHOTS || (int)NPC.ai[0] == PHASE_CLAWSLAMS || (int)NPC.ai[0] == PHASE2_CLAWSHOTS_SHRAPNEL)
                         {
                             NPC.ai[1]--;
                             Movement1();
@@ -490,7 +489,7 @@ namespace Aequus.NPCs.Boss
                                 RandomizePhase((int)NPC.ai[0]);
                             }
                         }
-                        else if ((int)NPC.ai[0] == Phase_GroundBubbles || (int)NPC.ai[0] == Phase_HomingBubbles)
+                        else if ((int)NPC.ai[0] == PHASE_GROUNDBUBBLES || (int)NPC.ai[0] == PHASE2_GROUNDBUBBLES_SPAMMY)
                         {
                             NPC.ai[1]--;
                             var tileCoordinates = Main.player[NPC.target].Center.ToTileCoordinates();
@@ -526,7 +525,7 @@ namespace Aequus.NPCs.Boss
                             }
                             NPC.ai[2]++;
                             float time = Main.expertMode ? 40f : 80f;
-                            if ((int)NPC.ai[0] == Phase_HomingBubbles)
+                            if ((int)NPC.ai[0] == PHASE2_GROUNDBUBBLES_SPAMMY)
                             {
                                 time -= 36f * (1f - NPC.life / NPC.lifeMax);
                             }
@@ -534,7 +533,7 @@ namespace Aequus.NPCs.Boss
                             {
                                 NPC.ai[2] = 0f;
                                 float shootTime = Main.expertMode ? 30f - (PhaseTwo ? 8f : 0f) : 40f;
-                                if ((int)NPC.ai[0] == Phase_HomingBubbles && Main.rand.NextBool())
+                                if ((int)NPC.ai[0] == PHASE2_GROUNDBUBBLES_SPAMMY && Main.rand.NextBool())
                                 {
                                     var spawnPos = new Vector2((tileCoordinates.X + Main.rand.Next(-3, 3)) * 16f + 8f, (tileCoordinates.Y - Main.rand.Next(12, 20)) * 16f - 4f);
                                     ShootProj<CrabsonBubble>(spawnPos, Vector2.Normalize(Main.player[NPC.target].Center - spawnPos) * 0.01f, NPC.damage, ai0: shootTime / 2f, alpha: 1);
@@ -557,11 +556,11 @@ namespace Aequus.NPCs.Boss
                     }
                     else
                     {
-                        contactDamage = false;
+                        dealContactDamage = false;
                         NPC.behindTiles = false;
                         NPC.noGravity = true;
                         NPC.noTileCollide = true;
-                        if (CrabsonNPC.ai[0] == Phase_ClawShots || CrabsonNPC.ai[0] == Phase_ClawShotsShrapnal)
+                        if (CrabsonNPC.ai[0] == PHASE_CLAWSHOTS || CrabsonNPC.ai[0] == PHASE2_CLAWSHOTS_SHRAPNEL)
                         {
                             var gotoPosition = Main.player[NPC.target].Center + new Vector2(400f * NPC.direction, 0f);
 
@@ -589,7 +588,7 @@ namespace Aequus.NPCs.Boss
                                     NPC.position.X += 40f * NPC.direction;
                                     NPC.velocity = new Vector2(16f * NPC.direction, 0f);
                                     SoundID.Item61?.PlaySound(NPC.Center);
-                                    ShootProj<CrabsonPearl>(NPC.Center, new Vector2(20f * -NPC.direction, 0f), NPC.damage, ai1: (int)CrabsonNPC.ai[0] == Phase_ClawShotsShrapnal ? 1f : 0f);
+                                    ShootProj<CrabsonPearl>(NPC.Center, new Vector2(20f * -NPC.direction, 0f), NPC.damage, ai1: (int)CrabsonNPC.ai[0] == PHASE2_CLAWSHOTS_SHRAPNEL ? 1f : 0f);
                                 }
                             }
                             if (CrabsonNPC.ai[1] < 30f)
@@ -619,9 +618,9 @@ namespace Aequus.NPCs.Boss
                                 NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(difference) * difference.Length() / 20f, Math.Max(0.7f - NPC.ai[2], 0.01f));
                             }
                         }
-                        else if ((int)CrabsonNPC.ai[0] == Phase_ClawSlams)
+                        else if ((int)CrabsonNPC.ai[0] == PHASE_CLAWSLAMS)
                         {
-                            contactDamage = true;
+                            dealContactDamage = true;
                             NPC.ai[1]++;
                             int time = 10;
                             if (NPC.ai[1] + time < 0f)
@@ -668,7 +667,7 @@ namespace Aequus.NPCs.Boss
                         }
                         else
                         {
-                            NPC.Center = Vector2.Lerp(NPC.Center, ClawIdlePosition(), CrabsonNPC.ai[0] == Phase_Intro ? 0.5f : 0.1f);
+                            NPC.Center = Vector2.Lerp(NPC.Center, ClawIdlePosition(), CrabsonNPC.ai[0] == PHASE_INTRO ? 0.5f : 0.1f);
                         }
                         if (crabson == -1 || !Main.npc[crabson].active || Main.npc[crabson].type != NPC.type)
                         {
@@ -757,9 +756,9 @@ namespace Aequus.NPCs.Boss
 
         public override void BossHeadSlot(ref int index)
         {
-            if (IsClaw && ClawBossHead != -1)
+            if (IsClaw && BossHeadID_Claw != -1)
             {
-                index = ClawBossHead;
+                index = BossHeadID_Claw;
             }
         }
 
@@ -883,11 +882,11 @@ namespace Aequus.NPCs.Boss
         public override void OnKill()
         {
             Rectangle rect = NPC.getRect();
-            if (!WorldFlags.downedCrabson && !NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
+            if (!AequusWorld.downedCrabson && !NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
             {
                 NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, ModContent.NPCType<Exporter>());
             }
-            WorldFlags.MarkAsDefeated(ref WorldFlags.downedCrabson);
+            AequusWorld.DefeatEvent(ref AequusWorld.downedCrabson);
             //LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonTrophy>(), 10);
             //if (Main.expertMode)
             //{

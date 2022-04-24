@@ -14,6 +14,7 @@ namespace Aequus.Common
         private Vector2? cameraPosition;
         private CameraPriority priority;
         private float speed;
+        private float cameraProgress;
         private int hold;
         private bool returning;
 
@@ -40,7 +41,7 @@ namespace Aequus.Common
             returning = false;
         }
 
-        public bool SetTarget(string key, Vector2 target, CameraPriority priority, float speed = 128f, int hold = 25)
+        public bool SetTarget(string key, Vector2 target, CameraPriority priority, float speed = 6f, int hold = 25)
         {
             if (key == FocusKey)
             {
@@ -61,7 +62,7 @@ namespace Aequus.Common
 
         private void CheckSpeed()
         {
-            speed = Math.Max(speed, 128f);
+            speed = Math.Min(speed, 128f);
         }
         internal void UpdateScreen()
         {
@@ -72,16 +73,14 @@ namespace Aequus.Common
                     cameraPosition = Main.screenPosition;
                 }
                 CheckSpeed();
-                var difference = ScreenTarget - cameraPosition.Value;
-                float l = difference.Length();
-                if (l <= speed)
+                var difference = ScreenTarget - Main.screenPosition;
+                cameraProgress += speed / 50f;
+                cameraPosition = Main.screenPosition + difference * cameraProgress;
+                if (cameraProgress >= 1f)
                 {
+                    cameraProgress = 1f;
                     cameraPosition = ScreenTarget;
                     returning = true;
-                }
-                else
-                {
-                    cameraPosition += Vector2.Normalize(difference) * speed;
                 }
                 Main.screenPosition = cameraPosition.Value;
             }
@@ -93,21 +92,19 @@ namespace Aequus.Common
                     hold--;
                     return;
                 }
-                target = null;
-                returning = false;
                 CheckSpeed();
-                var difference = Main.screenPosition - cameraPosition.Value;
-                float l = difference.Length();
-                if (l <= speed)
+                var difference = ScreenTarget - Main.screenPosition;
+                cameraProgress -= speed / 50f;
+                if (cameraProgress <= 0f)
                 {
+                    returning = false;
+                    target = null;
+                    cameraProgress = 0f;
                     cameraPosition = null;
                     FocusKey = null;
                     return;
                 }
-                else
-                {
-                    cameraPosition += Vector2.Normalize(difference) * speed;
-                }
+                cameraPosition = Main.screenPosition + difference * cameraProgress;
                 Main.screenPosition = cameraPosition.Value;
             }
         }

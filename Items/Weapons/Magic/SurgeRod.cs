@@ -10,6 +10,11 @@ namespace Aequus.Items.Weapons.Magic
 {
     public class SurgeRod : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 30;

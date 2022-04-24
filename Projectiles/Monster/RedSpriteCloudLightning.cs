@@ -42,7 +42,7 @@ namespace Aequus.Projectiles.Monster
             lightColor = Projectile.GetAlpha(lightColor);
             var frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
             var origin = frame.Size() / 2f;
-            RedSprite.DrawThingWithAura(Main.spriteBatch, texture, drawPosition - Main.screenPosition, frame, lightColor, Projectile.rotation, origin, Projectile.scale, auraIntensity: -4f);
+            RedSprite.DrawWithAura(Main.spriteBatch, texture, drawPosition - Main.screenPosition, frame, lightColor, Projectile.rotation, origin, Projectile.scale, auraIntensity: -4f);
             return false;
         }
 

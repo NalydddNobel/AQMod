@@ -29,11 +29,6 @@
             Applied by <see cref="T:Aequus.Buffs.FrostBuff"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.bungusRegen">
-            <summary>
-            Used by <see cref="T:Aequus.Common.Players.StatData.BungusStat"/>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.eventGaleStreams">
             <summary>
             Whether or not the player is in the Gale Streams event. This is set to true when <see cref="P:Aequus.Content.Invasions.GaleStreams.Status"/> equals <see cref="F:Aequus.Content.Invasions.InvasionStatus.Active"/> and the <see cref="M:Aequus.Content.Invasions.GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>. Otherwise, this is false.
@@ -114,12 +109,12 @@
         </member>
         <member name="T:Aequus.Buffs.Pets.FamiliarBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Misc.FamiliarPickaxe"/>
+            Applied by <see cref="!:Aequus.Items.Misc.Pets.FamiliarPickaxe"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.OmegaStariteBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Misc.DragonBall"/>
+            Applied by <see cref="!:Aequus.Items.Misc.Pets.DragonBall"/>
             </summary>
         </member>
         <member name="T:Aequus.Common.Catalogues.CatalogueBase">
@@ -141,24 +136,19 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Aequus.Common.Players.StatData.BungusStat">
+        <member name="T:Aequus.Common.Players.StatData.HyperCrystalPlayer">
             <summary>
-            Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
+            Used by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>
             </summary>
         </member>
-        <member name="T:Aequus.Common.Players.StatData.FocusCrystalStat">
+        <member name="T:Aequus.Common.Players.StatData.MendshroomPlayer">
             <summary>
-            Added to by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>
+            Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
             </summary>
         </member>
         <member name="P:Aequus.Items.CooldownsItem.HasWeaponCooldown">
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
-            </summary>
-        </member>
-        <member name="T:Aequus.Items.HookEquips.GrapplingHookModules">
-            <summary>
-            Where Hook Barb data is registered and collected
             </summary>
         </member>
         <member name="M:Aequus.Items.HookEquips.GrapplingHookModules.IHookBarbData.ProjPreAI(Terraria.Projectile,System.Int32,Terraria.Player,Aequus.AequusPlayer)">

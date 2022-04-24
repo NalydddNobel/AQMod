@@ -265,6 +265,10 @@ namespace Aequus.Projectiles.Magic
         private void GenerateAndDrawLightning(float timer, Vector2 difference, Vector2 screenPosition)
         {
             var coordinates = GenerateLightningCoords(timer, difference, screenPosition);
+            if (coordinates == null)
+            {
+                return;
+            }
             if (Main.LocalPlayer.gravDir == -1)
             {
                 AequusHelpers.ScreenFlip(coordinates);
@@ -278,6 +282,10 @@ namespace Aequus.Projectiles.Magic
         }
         private Vector2[] GenerateLightningCoords(float timer, Vector2 difference, Vector2 screenPosition)
         {
+            if (difference.HasNaNs() || difference.Length() < 25f)
+            {
+                return null;
+            }
             Vector2[] coordinates = new Vector2[(ClientConfiguration.Instance.HighQuality ? 25 : 8)];
             int old = EffectsSystem.EffectRand.SetRand((int)timer / 2 * 2);
             for (int i = 0; i < coordinates.Length; i++)

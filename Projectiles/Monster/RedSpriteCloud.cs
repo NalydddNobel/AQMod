@@ -140,7 +140,7 @@ namespace Aequus.Projectiles.Monster
                     Projectile.localAI[0]++;
                 auraIntensity += Projectile.localAI[0] / 5f;
             }
-            RedSprite.DrawThingWithAura(Main.spriteBatch, texture, drawPosition - Main.screenPosition, frame, lightColor, Projectile.rotation, origin, Projectile.scale, auraIntensity);
+            RedSprite.DrawWithAura(Main.spriteBatch, texture, drawPosition - Main.screenPosition, frame, lightColor, Projectile.rotation, origin, Projectile.scale, auraIntensity);
             return false;
         }
 

@@ -40,10 +40,6 @@ namespace Aequus
         /// Applied by <see cref="Buffs.FrostBuff"/>
         /// </summary>
         public bool resistHeat;
-        /// <summary>
-        /// Used by <see cref="BungusStat"/>
-        /// </summary>
-        public int bungusRegen;
 
         /// <summary>
         /// Whether or not the player is in the Gale Streams event. This is set to true when <see cref="GaleStreams.Status"/> equals <see cref="InvasionStatus.Active"/> and the <see cref="GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="PreUpdate"/>. Otherwise, this is false.
@@ -92,9 +88,6 @@ namespace Aequus
         /// </summary>
         public uint interactionCooldown;
 
-        public CustomStatsManager Stats { get; private set; }
-        public Item GrapplingHookForBarbs => Player.miscEquips[4];
-
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown.
         /// </summary>
@@ -107,8 +100,6 @@ namespace Aequus
 
         public override void Initialize()
         {
-            Stats = new CustomStatsManager();
-            Stats.Initialize(this);
             itemCooldown = 0;
             itemCooldownMax = 0;
             itemCombo = 0;
@@ -136,7 +127,6 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            Stats.ResetEffects(this);
             blueFire = false;
             pickBreak = false;
 
@@ -146,11 +136,6 @@ namespace Aequus
             resistHeat = false;
 
             forceDaytime = 0;
-        }
-
-        public override void UpdateDead()
-        {
-            Stats.UpdateDead(this);
         }
 
         public override bool PreItemCheck()
@@ -211,16 +196,6 @@ namespace Aequus
             }
         }
 
-        public override void UpdateLifeRegen()
-        {
-            bool badRegen = Player.lifeRegen < 0;
-            Player.lifeRegen += bungusRegen;
-            if (badRegen && Player.lifeRegen > 0)
-            {
-                Player.lifeRegen = 0;
-            }
-        }
-
         public override void PostUpdate()
         {
             if (Aequus.DayTimeManipulator.Caching)
@@ -268,35 +243,6 @@ namespace Aequus
             }
         }
 
-        private float NPCDamageMultiplier(NPC target, int damage, float knockback, bool crit)
-        {
-            float multiplier = 1f;
-            var stat = this.GetStat<FocusCrystalStat>();
-            if (stat.effectCircumference > 0f && Player.Distance(target.getRect().ClosestDistance(Player.Center)) < (stat.effectCircumference / 2f))
-            {
-                multiplier += stat.damageMultiplier;
-            }
-            return multiplier;
-        }
-
-        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
-        {
-            float multiplier = NPCDamageMultiplier(target, damage, knockback, crit);
-            if (multiplier != 1f)
-            {
-                damage = (int)(damage * multiplier);
-            }
-        }
-
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            float multiplier = NPCDamageMultiplier(target, damage, knockback, crit);
-            if (multiplier != 1f)
-            {
-                damage = (int)(damage * multiplier);
-            }
-        }
-
         public void PreDrawAllPlayers(LegacyPlayerRenderer playerRenderer, Camera camera, IEnumerable<Player> players)
         {
             if (Main.gameMenu)
@@ -308,7 +254,7 @@ namespace Aequus
         }
         private void RenderBungusAura()
         {
-            var stat = this.GetStat<BungusStat>();
+            var stat = Player.GetModPlayer<MendshroomPlayer>();
             if (stat._circumferenceForVFX > 0f)
             {
                 HelpBeginSpriteBatch(Main.spriteBatch);
@@ -318,25 +264,25 @@ namespace Aequus
         }
         private void RenderFocusCrystalAura()
         {
-            var stat = this.GetStat<FocusCrystalStat>();
-            if (stat._accFocusCrystalCircumference > 0f && !stat.hideVisual)
+            var hyperCrystal = Player.GetModPlayer<HyperCrystalPlayer>();
+            if (hyperCrystal._accFocusCrystalCircumference > 0f && !hyperCrystal.hideVisual)
             {
                 if (inDanger)
                 {
-                    stat._accFocusCrystalOpacity = MathHelper.Lerp(stat._accFocusCrystalOpacity, 1f, 0.1f);
+                    hyperCrystal._accFocusCrystalOpacity = MathHelper.Lerp(hyperCrystal._accFocusCrystalOpacity, 1f, 0.1f);
                 }
                 else
                 {
-                    stat._accFocusCrystalOpacity = MathHelper.Lerp(stat._accFocusCrystalOpacity, 0.2f, 0.1f);
+                    hyperCrystal._accFocusCrystalOpacity = MathHelper.Lerp(hyperCrystal._accFocusCrystalOpacity, 0.2f, 0.1f);
                 }
 
                 HelpBeginSpriteBatch(Main.spriteBatch);
-                HelpDrawAura(stat._accFocusCrystalCircumference, stat._accFocusCrystalOpacity, new Color(128, 10, 10, 0));
+                HelpDrawAura(hyperCrystal._accFocusCrystalCircumference, hyperCrystal._accFocusCrystalOpacity, new Color(128, 10, 10, 0));
                 Main.spriteBatch.End();
             }
             else
             {
-                stat._accFocusCrystalOpacity = 0f;
+                hyperCrystal._accFocusCrystalOpacity = 0f;
             }
         }
         private void HelpDrawAura(float circumference, float opacity, Color color)

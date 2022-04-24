@@ -22,8 +22,8 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var stat = player.GetModPlayer<AequusPlayer>().GetStat<BungusStat>();
-            stat.Add(new BungusStat(240, 60));
+            var stat = player.GetModPlayer<MendshroomPlayer>();
+            stat.Add(circumference: 240f, regen: 60);
             if (stat.EffectActive)
             {
                 var v = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();

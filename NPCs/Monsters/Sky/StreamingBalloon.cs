@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.ItemDrops;
+﻿using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Magic;
@@ -139,7 +138,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                     //ModContent.ItemType<CinnamonRoll>(),
                                     //ModContent.ItemType<TemperatureHairDye>(),
                                 };
-                                if (WorldFlags.HardmodeTier)
+                                if (AequusWorld.HardmodeTier)
                                 {
                                     selectableLoot.Add(ModContent.ItemType<Umystick>());
                                 }
@@ -175,7 +174,7 @@ namespace Aequus.NPCs.Monsters.Sky
             }
             if (!Main.npc[(int)NPC.ai[0]].active)
             {
-                if (WorldFlags.HardmodeTier && Main.rand.NextBool(4))
+                if (AequusWorld.HardmodeTier && Main.rand.NextBool(4))
                     Item.NewItem(NPC.GetSource_Loot(), new Vector2(NPC.position.X + NPC.width / 2f - Main.npc[(int)NPC.ai[0]].width / 2f, NPC.position.Y + 66 - Main.npc[(int)NPC.ai[0]].height / 2), ModContent.ItemType<AtmosphericEnergy>());
                 NPC.ai[0] = -1f;
                 NPC.netUpdate = true;
@@ -308,7 +307,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 NPCID.SpikedJungleSlime,
                 NPCID.SpikedIceSlime,
             };
-            if (WorldFlags.HardmodeTier)
+            if (AequusWorld.HardmodeTier)
             {
                 selectableEnemies.Add(NPCID.ToxicSludge);
             }

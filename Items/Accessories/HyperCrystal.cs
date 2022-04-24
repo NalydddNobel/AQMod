@@ -24,7 +24,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<AequusPlayer>().GetStat<FocusCrystalStat>().Add(new FocusCrystalStat(480f, 0.25f, hideVisual));
+            player.GetModPlayer<HyperCrystalPlayer>().Add(480f, 0.25f, hideVisual);
         }
     }
 }

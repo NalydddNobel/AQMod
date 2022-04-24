@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Content.Invasions;
+﻿using Aequus.Content.Invasions;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Monsters.Sky;
 using Microsoft.Xna.Framework;
@@ -56,7 +55,7 @@ namespace Aequus.NPCs
             if (spawnInfo.Player.GetModPlayer<AequusPlayer>().eventGaleStreams && !spawnInfo.PlayerSafe)
             {
                 AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
-                if (WorldFlags.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
+                if (AequusWorld.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
                 {
                     pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
                     pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);

@@ -18,6 +18,21 @@ namespace Aequus
     {
         public static int Iterations;
 
+        internal static void spawnNPC<T>(Vector2 where) where T : ModNPC
+        {
+            NPC.NewNPC(null, (int)where.X, (int)where.Y, ModContent.NPCType<T>());
+        }
+
+        public static void AddLifeRegen(this Player player, int regen)
+        {
+            bool badRegen = player.lifeRegen < 0;
+            player.lifeRegen += regen;
+            if (badRegen && player.lifeRegen > 0)
+            {
+                player.lifeRegen = 0;
+            }
+        }
+
         public static bool IsRectangleCollidingWithCircle(Vector2 circle, float circleRadius, Rectangle rectangle)
         {
             return Vector2.Distance(circle, rectangle.Center.ToVector2() + Vector2.Normalize(circle - rectangle.Center.ToVector2()) * rectangle.Size() / 2f) < circleRadius;
@@ -159,11 +174,6 @@ namespace Aequus
         public static void GetItemDrawData(this Item item, out Rectangle frame)
         {
             frame = Main.itemAnimations[item.type] == null ? TextureAssets.Item[item.type].Value.Frame() : Main.itemAnimations[item.type].GetFrame(TextureAssets.Item[item.type].Value);
-        }
-
-        public static T GetStat<T>(this AequusPlayer aequus) where T : PlayerStat
-        {
-            return aequus.Stats.GetStat<T>(aequus);
         }
 
         public static Vector2 ClosestDistance(this Rectangle rect, Vector2 other)

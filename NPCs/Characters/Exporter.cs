@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.NPCs.Boss;
+﻿using Aequus.NPCs.Boss;
 using Aequus.UI;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
@@ -238,7 +237,7 @@ namespace Aequus.NPCs.Characters
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-            return WorldFlags.downedCrabson;
+            return AequusWorld.downedCrabson;
         }
 
         public override List<string> SetNPCNameList()

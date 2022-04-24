@@ -36,18 +36,35 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead()]
     public class OmegaStarite : AequusBoss
     {
-        public const float Circumference = 120;
-        public const float Radius = Circumference / 2f;
-        private const float DEATH_TIME = MathHelper.PiOver4 * 134;
+        public const int PHASE_HYPER_STARITE_PART2_ALT = 8;
+        public const int PHASE_OMEGA_LASER_PART0 = 7;
+        public const int PHASE_OMEGA_LASER = 6;
+        public const int PHASE_STAR_BULLETS = 5;
+        public const int PHASE_ASSAULT_PLAYER = 4;
+        public const int PHASE_HYPER_STARITE_PART2 = 3;
+        public const int PHASE_HYPER_STARITE_PART1 = 2;
+        public const int PHASE_HYPER_STARITE_PART0 = 1;
+        public const int PHASE_INIT = 0;
+        public const int PHASE_DEAD = -1;
+        public const int PHASE_NOVA = -2;
+        public const int PHASE_GOODBYE = -3;
 
-        public const int InnerRingSegmentCount = 5;
-        public const float InnerRingScale = 1f;
+        public const float CIRCUMFERENCE = 120;
+        public const float RADIUS = CIRCUMFERENCE / 2f;
+        private const float DEATHTIME = MathHelper.PiOver4 * 134;
 
-        public const int OuterRingSegmentCount = 8;
-        public const float OuterRingScale_Normal = 1.1f;
-        public const float OuterRingSegment_Expert = 1.2f;
-        public const float OuterRingCircumferenceMultiplier_Normal = 1.5f;
-        public const float OuterRingCircumferenceMultiplier_Expert = 1.75f;
+        public const int RING_1_SEGMENTCOUNT = 5;
+        public const int RING_2_SEGMENTCOUNT = 8;
+        public const int RING_3_SEGMENTCOUNT = 13;
+
+        public const float RING_1_SCALE = 1f;
+        public const float RING_2_SCALE = 1.1f;
+        public const float RING_2_SCALE_EXPERT = 1.2f;
+        public const float RING_3_SCALE = 1.45f;
+
+        public const float RING_2_CIRCUMFERENCEMULT = 1.5f;
+        public const float RING_2_CIRCUMFERENCEMULT_EXPERT = 1.75f;
+        public const float RING_3_CIRCUMFERENCEMULT = 2.5f;
 
         public class Ring
         {
@@ -255,78 +272,6 @@ namespace Aequus.NPCs.Boss
             //}
         }
 
-        public const int PHASE_HYPER_STARITE_PART2_ALT = 8;
-        public const int PHASE_OMEGA_LASER_PART0 = 7;
-        public const int PHASE_OMEGA_LASER = 6;
-        public const int PHASE_STAR_BULLETS = 5;
-        public const int PHASE_ASSAULT_PLAYER = 4;
-        public const int PHASE_HYPER_STARITE_PART2 = 3;
-        public const int PHASE_HYPER_STARITE_PART1 = 2;
-        public const int PHASE_HYPER_STARITE_PART0 = 1;
-        public const int PHASE_INIT = 0;
-        public const int PHASE_DEAD = -1;
-        public const int PHASE_NOVA = -2;
-        public const int PHASE_GOODBYE = -3;
-
-        private bool PlrCheck()
-        {
-            NPC.TargetClosest(faceTarget: false);
-            NPC.netUpdate = true;
-            if (Main.player[NPC.target].dead)
-            {
-                NPC.ai[0] = PHASE_GOODBYE;
-                NPC.ai[1] = 0f;
-                NPC.ai[2] = 0f;
-                NPC.ai[3] = 0f;
-                NPC.localAI[0] = 0f;
-                NPC.localAI[1] = 0f;
-                NPC.localAI[2] = 0f;
-                NPC.localAI[3] = 0f;
-                return false;
-            }
-            return true;
-        }
-
-        public void Initialize(bool bestiaryDummy = false)
-        {
-            if (!bestiaryDummy)
-                NPC.TargetClosest(faceTarget: false);
-            else if (!Main.getGoodWorld)
-                NPC.scale *= 0.5f;
-            var center = NPC.Center;
-            rings = new Ring[2];
-            if (Main.expertMode)
-            {
-                rings[0] = new Ring(InnerRingSegmentCount, Circumference, InnerRingScale);
-                if (Main.getGoodWorld)
-                {
-                    rings[1] = new Ring(OuterRingSegmentCount, Circumference * OuterRingCircumferenceMultiplier_Expert, OuterRingSegment_Expert);
-                    Array.Resize(ref rings, 3);
-                    rings[2] = new Ring(13, Circumference * 2.5f, 1.45f);
-                }
-                else
-                {
-                    rings[1] = new Ring(OuterRingSegmentCount, Circumference * OuterRingCircumferenceMultiplier_Expert, OuterRingSegment_Expert);
-                }
-            }
-            else
-            {
-                rings[0] = new Ring(InnerRingSegmentCount, Circumference * 0.75f, InnerRingScale);
-                rings[1] = new Ring(OuterRingSegmentCount, Circumference * OuterRingCircumferenceMultiplier_Normal, OuterRingScale_Normal);
-            }
-            for (int i = 0; i < rings.Length; i++)
-            {
-                rings[i].MultScale(NPC.scale);
-                rings[i].Update(center);
-            }
-            if (Main.netMode != NetmodeID.MultiplayerClient && !bestiaryDummy)
-            {
-                int damage = Main.expertMode ? 25 : 30;
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero,
-                    ModContent.ProjectileType<OmegaStariteProj>(), damage, 1f, Main.myPlayer, NPC.whoAmI);
-            }
-        }
-
         public override void AI()
         {
             if (Main.dayTime)
@@ -357,7 +302,7 @@ namespace Aequus.NPCs.Boss
                 default:
                     {
                         LerpToDefaultRotationVelocity();
-                        NPC.Center = plrCenter + new Vector2(0f, -Circumference * 2f);
+                        NPC.Center = plrCenter + new Vector2(0f, -CIRCUMFERENCE * 2f);
                     }
                     break;
 
@@ -594,7 +539,7 @@ namespace Aequus.NPCs.Boss
                             }
                             else
                             {
-                                const int width = (int)(Circumference * 2f);
+                                const int width = (int)(CIRCUMFERENCE * 2f);
                                 const int height = 900;
                                 Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
                                 Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.CosmicEnergyColor, 2f);
@@ -642,7 +587,7 @@ namespace Aequus.NPCs.Boss
                                     for (float f = 0f; f < MathHelper.TwoPi; f += rot)
                                     {
                                         var v = f.ToRotationVector2();
-                                        int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center + v * Radius, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
+                                        int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
                                         Main.projectile[p].timeLeft += 120;
                                     }
                                     speed2 *= 1.2f;
@@ -654,11 +599,11 @@ namespace Aequus.NPCs.Boss
                             }
                         }
                         float distance = (center - plrCenter).Length();
-                        if (distance > Circumference * 3.75f)
+                        if (distance > CIRCUMFERENCE * 3.75f)
                         {
                             NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(plrCenter - center) * NPC.ai[2], 0.02f);
                         }
-                        else if (distance < Circumference * 2.25f)
+                        else if (distance < CIRCUMFERENCE * 2.25f)
                         {
                             NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(center - plrCenter) * NPC.ai[2], 0.02f);
                         }
@@ -707,7 +652,7 @@ namespace Aequus.NPCs.Boss
                                 NPC.ai[1] = plrCenter.X + player.velocity.X * 20f;
                                 NPC.ai[2] = plrCenter.Y + player.velocity.Y * 20f;
                             }
-                            if ((center - new Vector2(NPC.ai[1], NPC.ai[2])).Length() < Circumference)
+                            if ((center - new Vector2(NPC.ai[1], NPC.ai[2])).Length() < CIRCUMFERENCE)
                             {
                                 NPC.ai[3]++;
                                 if (NPC.ai[3] > 5)
@@ -736,7 +681,7 @@ namespace Aequus.NPCs.Boss
                                                 for (float f = 0f; f < MathHelper.TwoPi; f += rot)
                                                 {
                                                     var v = f.ToRotationVector2();
-                                                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center + v * Radius, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
+                                                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
                                                     Main.projectile[p].timeLeft += 120;
                                                 }
                                             }
@@ -899,7 +844,7 @@ namespace Aequus.NPCs.Boss
                                 break;
                             }
                         }
-                        if ((center - new Vector2(NPC.ai[1], NPC.ai[2])).Length() < Circumference)
+                        if ((center - new Vector2(NPC.ai[1], NPC.ai[2])).Length() < CIRCUMFERENCE)
                         {
                             if (NPC.velocity.Length() < 2f)
                             {
@@ -951,7 +896,7 @@ namespace Aequus.NPCs.Boss
                             rings[i].rotationVelocity *= 0f;
                         }
                         NPC.ai[1] += 0.5f;
-                        if (NPC.ai[1] > DEATH_TIME * 1.314f)
+                        if (NPC.ai[1] > DEATHTIME * 1.314f)
                         {
                             NPC.life = -33333;
                             NPC.HitEffect();
@@ -968,7 +913,7 @@ namespace Aequus.NPCs.Boss
                             Initialize();
                             NPC.netUpdate = true;
                             NPC.target = target;
-                            NPC.ai[2] = plrCenter.Y - Circumference * 2.5f;
+                            NPC.ai[2] = plrCenter.Y - CIRCUMFERENCE * 2.5f;
                         }
                         LerpToDefaultRotationVelocity();
                         if (center.Y > NPC.ai[2])
@@ -1038,13 +983,13 @@ namespace Aequus.NPCs.Boss
                 {
                     if (speed < 2f)
                     {
-                        var spawnPos = new Vector2(Radius, 0f);
+                        var spawnPos = new Vector2(RADIUS, 0f);
                         int d = Dust.NewDust(center + spawnPos.RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi)), 2, 2, 15);
                         Main.dust[d].velocity = Vector2.Normalize(spawnPos - center) * speed * 0.25f;
                     }
                     else
                     {
-                        var spawnPos = new Vector2(Radius, 0f).RotatedBy(NPC.velocity.ToRotation() - MathHelper.Pi);
+                        var spawnPos = new Vector2(RADIUS, 0f).RotatedBy(NPC.velocity.ToRotation() - MathHelper.Pi);
                         int d = Dust.NewDust(NPC.Center + spawnPos.RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4)), 2, 2, 15);
                         Main.dust[d].velocity = -NPC.velocity * 0.25f;
                     }
@@ -1073,6 +1018,63 @@ namespace Aequus.NPCs.Boss
                     Lighting.AddLight(new Vector2(rings[i].CachedPositions[i].X, rings[i].CachedPositions[i].Y), new Vector3(0.4f, 0.4f, 1f));
                 }
             }
+        }
+        private void Initialize(bool bestiaryDummy = false)
+        {
+            if (!bestiaryDummy)
+                NPC.TargetClosest(faceTarget: false);
+            else if (!Main.getGoodWorld)
+                NPC.scale *= 0.5f;
+            var center = NPC.Center;
+            rings = new Ring[2];
+            if (Main.expertMode)
+            {
+                rings[0] = new Ring(RING_1_SEGMENTCOUNT, CIRCUMFERENCE, RING_1_SCALE);
+                if (Main.getGoodWorld)
+                {
+                    rings[1] = new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT_EXPERT, RING_2_SCALE_EXPERT);
+                    Array.Resize(ref rings, 3);
+                    rings[2] = new Ring(RING_3_SEGMENTCOUNT, CIRCUMFERENCE * RING_3_CIRCUMFERENCEMULT, RING_3_SCALE);
+                }
+                else
+                {
+                    rings[1] = new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT_EXPERT, RING_2_SCALE_EXPERT);
+                }
+            }
+            else
+            {
+                rings[0] = new Ring(RING_1_SEGMENTCOUNT, CIRCUMFERENCE * 0.75f, RING_1_SCALE);
+                rings[1] = new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT, RING_2_SCALE);
+            }
+            for (int i = 0; i < rings.Length; i++)
+            {
+                rings[i].MultScale(NPC.scale);
+                rings[i].Update(center);
+            }
+            if (Main.netMode != NetmodeID.MultiplayerClient && !bestiaryDummy)
+            {
+                int damage = Main.expertMode ? 25 : 30;
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero,
+                    ModContent.ProjectileType<OmegaStariteProj>(), damage, 1f, Main.myPlayer, NPC.whoAmI);
+            }
+        }
+        private bool PlrCheck()
+        {
+            NPC.TargetClosest(faceTarget: false);
+            NPC.netUpdate = true;
+            if (Main.player[NPC.target].dead)
+            {
+                NPC.ai[0] = PHASE_GOODBYE;
+                NPC.ai[1] = 0f;
+                NPC.ai[2] = 0f;
+                NPC.ai[3] = 0f;
+                NPC.localAI[0] = 0f;
+                NPC.localAI[1] = 0f;
+                NPC.localAI[2] = 0f;
+                NPC.localAI[3] = 0f;
+                return false;
+            }
+            return true;
         }
 
         private void LerpToDefaultRotationVelocity()
@@ -1444,10 +1446,10 @@ namespace Aequus.NPCs.Boss
                 intensity += NPC.ai[1] / 20;
                 if (NPC.CountNPCS(Type) == 1)
                 {
-                    ModContent.GetInstance<GameCamera>().SetTarget("Omega Starite", NPC.Center, CameraPriority.NPCDefeat, 12f, 60);
+                    ModContent.GetInstance<GameCamera>().SetTarget("Omega Starite", NPC.Center, CameraPriority.BossDefeat, 12f, 60);
                 }
 
-                FlashScene.Flash.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 4f));
+                FlashScene.Flash.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 0.75f));
                 EffectsSystem.Shake.Set(intensity * 2f);
 
                 int range = (int)intensity + 4;
@@ -1547,7 +1549,7 @@ namespace Aequus.NPCs.Boss
                 {
                     if (prim == null)
                     {
-                        float radius = Circumference / 2f;
+                        float radius = CIRCUMFERENCE / 2f;
                         prim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThinLine"), LegacyPrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
                     }
                     prim.Draw(NPC.oldPos);
@@ -1585,9 +1587,9 @@ namespace Aequus.NPCs.Boss
             if (intensity > 3f)
             {
                 float intensity2 = intensity - 2f;
-                if (NPC.ai[1] > DEATH_TIME)
+                if (NPC.ai[1] > DEATHTIME)
                 {
-                    float scale = (NPC.ai[1] - DEATH_TIME) * 0.2f;
+                    float scale = (NPC.ai[1] - DEATHTIME) * 0.2f;
                     scale *= scale;
                     Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(120, 120, 120, 0) * intensity2, NPC.rotation, spotlightOrig, scale, SpriteEffects.None, 0f);
                     Main.spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * intensity2, NPC.rotation, spotlightOrig, scale * 2.15f, SpriteEffects.None, 0f);
@@ -1652,7 +1654,7 @@ namespace Aequus.NPCs.Boss
 
         public override void OnKill()
         {
-            WorldFlags.MarkAsDefeated(ref WorldFlags.downedOmegaStarite);
+            AequusWorld.DefeatEvent(ref AequusWorld.downedOmegaStarite);
             //Glimmer.deactivationDelay = 275;
             //var noHitManager = NPC.GetGlobalNPC<NoHitting>();
             //bool anyoneNoHit = false;
