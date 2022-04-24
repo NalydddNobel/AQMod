@@ -117,12 +117,6 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.8);
-            //if (AQMod.calamityMod.IsActive)
-            //{
-            //    NPC.lifeMax = (int)(NPC.lifeMax * 2.5f);
-            //    NPC.damage *= 2;
-            //    NPC.defense *= 2;
-            //}
         }
 
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)

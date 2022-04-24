@@ -52,6 +52,8 @@ namespace Aequus.Items.Misc
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
+            AequusHelpers.spawnNPC<NPCs.Monsters.Sky.SpaceSquid>(position);
+            AequusWorld.killsSpaceSquid = 0;
             //AequusHelpers.spawnNPC<NPCs.Monsters.Sky.RedSprite>(position);
             //AequusWorld.killsRedSprite = 0;
             if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeWindDirectionAndStrength>().Enabled && !LanternNight.LanternsUp)

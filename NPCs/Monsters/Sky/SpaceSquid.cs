@@ -11,6 +11,7 @@ using Aequus.Projectiles.Monster;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -28,17 +29,33 @@ namespace Aequus.NPCs.Monsters.Sky
     {
         public const int FramesX = 8;
 
-        public const int Phase_Goodbye = -1;
-        public const int Phase_SpaceGun = 1;
-        public const int Phase_ChangeDirection = 2;
-        public const int Phase_SnowflakeSpiral = 3;
+        public const int PHASE_DEAD = -2;
+        public const int PHASE_GOODBYE = -1;
+        public const int PHASE_SPACEGUN = 1;
+        public const int PHASE_TRANSITION_CHANGEDIRECTION = 2;
+        public const int PHASE_SNOWFLAKESPIRAL = 3;
+
+        public static Asset<Texture2D> DefeatedTexture { get; private set; }
+        public static Asset<Texture2D> DefeatedTextureGlow { get; private set; }
 
         public int frameIndex;
 
         private bool _setupFrame;
 
+        private bool _importantDeath;
+        private bool _magicMirrorSound;
+
         private float _brightnessTimer;
         private float _brightness;
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                DefeatedTexture = ModContent.Request<Texture2D>(this.GetPath() + "Defeated");
+                DefeatedTextureGlow = ModContent.Request<Texture2D>(this.GetPath() + "Defeated_Glow");
+            }
+        }
 
         public override void SetStaticDefaults()
         {
@@ -196,7 +213,7 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 if (!NPC.HasValidTarget)
                 {
-                    NPC.ai[0] = Phase_Goodbye;
+                    NPC.ai[0] = PHASE_GOODBYE;
                     return;
                 }
                 if (Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2f < NPC.position.X + NPC.width / 2f)
@@ -208,12 +225,12 @@ namespace Aequus.NPCs.Monsters.Sky
                     NPC.direction = 1;
                 }
                 NPC.spriteDirection = NPC.direction;
-                AdvancePhase();
+                AI_AdvancePhase();
                 NPC.velocity = -Vector2.Normalize(Main.player[NPC.target].Center - center) * 20f;
             }
             if (!NPC.HasValidTarget)
             {
-                NPC.ai[0] = Phase_Goodbye;
+                NPC.ai[0] = PHASE_GOODBYE;
                 return;
             }
             if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
@@ -221,19 +238,19 @@ namespace Aequus.NPCs.Monsters.Sky
                 var parent = ROR2ArtifactsSupport.GetParent(NPC);
                 if (parent != null)
                 {
-                    if ((int)parent.ai[0] == Phase_SpaceGun)
+                    if ((int)parent.ai[0] == PHASE_SPACEGUN)
                     {
-                        NPC.ai[0] = Phase_SnowflakeSpiral;
+                        NPC.ai[0] = PHASE_SNOWFLAKESPIRAL;
                     }
                     else
                     {
-                        NPC.ai[0] = Phase_SpaceGun;
+                        NPC.ai[0] = PHASE_SPACEGUN;
                     }
                 }
             }
             switch ((int)NPC.ai[0])
             {
-                case Phase_SpaceGun:
+                case PHASE_SPACEGUN:
                     {
                         bool runOtherAis = true;
                         bool noDeathray = true;
@@ -311,7 +328,7 @@ namespace Aequus.NPCs.Monsters.Sky
                             {
                                 NPC.ai[2] = 0f;
                                 NPC.ai[3] = 0f;
-                                AdvancePhase(Phase_SpaceGun);
+                                AI_AdvancePhase(PHASE_SPACEGUN);
                             }
                         }
                         if (runOtherAis)
@@ -332,7 +349,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         }
                                         NPC.ai[2] = 0f;
                                         NPC.ai[3] = 0f;
-                                        AdvancePhase(Phase_SpaceGun);
+                                        AI_AdvancePhase(PHASE_SPACEGUN);
                                         NPC.velocity *= 0.95f;
                                     }
                                 }
@@ -381,19 +398,19 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     break;
 
-                case Phase_ChangeDirection:
+                case PHASE_TRANSITION_CHANGEDIRECTION:
                     {
                         NPC.velocity *= 0.8f;
                         NPC.ai[1]++;
                         if (NPC.ai[1] > 20f)
                         {
                             NPC.spriteDirection = NPC.direction;
-                            AdvancePhase((int)NPC.ai[2]);
+                            AI_AdvancePhase((int)NPC.ai[2]);
                         }
                     }
                     break;
 
-                case Phase_SnowflakeSpiral:
+                case PHASE_SNOWFLAKESPIRAL:
                     {
                         var gotoPosition = new Vector2(205f * -NPC.direction, 0f).RotatedBy(NPC.ai[1] * 0.01f);
                         gotoPosition = Main.player[NPC.target].Center + new Vector2(gotoPosition.X * 2f, gotoPosition.Y);
@@ -463,7 +480,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 {
                                     NPC.direction = 1;
                                 }
-                                AdvancePhase(Phase_SnowflakeSpiral);
+                                AI_AdvancePhase(PHASE_SNOWFLAKESPIRAL);
                             }
                         }
                         else
@@ -474,27 +491,66 @@ namespace Aequus.NPCs.Monsters.Sky
                         NPC.rotation = NPC.rotation.AngleLerp(0f, 0.1f);
                     }
                     break;
+
+                case PHASE_DEAD:
+                    {
+                        NPC.rotation = MathHelper.WrapAngle(NPC.rotation);
+                        NPC.rotation *= 0.8f;
+                        NPC.velocity *= 0.8f;
+                        if ((int)NPC.ai[1] == 0)
+                        {
+                            frameIndex = 0;
+                        }
+                        NPC.ai[1]++;
+                        if (NPC.ai[1] > 30f)
+                        {
+                            if (!_magicMirrorSound && Main.netMode != NetmodeID.Server)
+                            {
+                                SoundID.Item6?.PlaySound(NPC.Center);
+                                _magicMirrorSound = true;
+                            }
+
+                            if (Main.rand.NextBool())
+                            {
+                                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.1f);
+                            }
+
+                            if (NPC.ai[1] > 30f + 45f)
+                            {
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
+                                {
+                                    NPC.NPCLoot();
+                                }
+                                for (int d = 0; d < 70; d++)
+                                {
+                                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror, 0f, 0f, 150, default(Color), 1.5f);
+                                }
+                                NPC.active = false;
+                                NPC.life = -1;
+                            }
+                        }
+                    }
+                    break;
             }
         }
-
-        private void AdvancePhase(int curPhase = -1)
+        private void AI_AdvancePhase(int curPhase = -1)
         {
             NPC.TargetClosest(faceTarget: false);
             NPC.netUpdate = true;
             if (!NPC.HasValidTarget)
             {
-                NPC.ai[0] = Phase_Goodbye;
+                NPC.ai[0] = PHASE_GOODBYE;
                 return;
             }
-            if (curPhase != Phase_ChangeDirection && NPC.direction != NPC.spriteDirection)
+            if (curPhase != PHASE_TRANSITION_CHANGEDIRECTION && NPC.direction != NPC.spriteDirection)
             {
                 NPC.ai[1] = 0f;
                 NPC.ai[2] = NPC.ai[0];
-                NPC.ai[0] = Phase_ChangeDirection;
+                NPC.ai[0] = PHASE_TRANSITION_CHANGEDIRECTION;
                 frameIndex = 19;
                 return;
             }
-            int[] selectablePhases = new int[] { Phase_SpaceGun, Phase_SnowflakeSpiral };
+            int[] selectablePhases = new int[] { PHASE_SPACEGUN, PHASE_SNOWFLAKESPIRAL };
             for (int i = 0; i < 50; i++)
             {
                 NPC.ai[0] = selectablePhases[Main.rand.Next(selectablePhases.Length)];
@@ -541,11 +597,11 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     break;
 
-                case Phase_Goodbye:
+                case PHASE_GOODBYE:
                     frameIndex = 20;
                     break;
 
-                case Phase_SpaceGun:
+                case PHASE_SPACEGUN:
                     {
                         if ((int)NPC.ai[1] >= 200)
                         {
@@ -610,7 +666,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     break;
 
-                case Phase_ChangeDirection:
+                case PHASE_TRANSITION_CHANGEDIRECTION:
                     {
                         if (frameIndex < 19)
                         {
@@ -629,7 +685,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     break;
 
-                case Phase_SnowflakeSpiral:
+                case PHASE_SNOWFLAKESPIRAL:
                     {
                         if (NPC.direction != NPC.spriteDirection)
                         {
@@ -668,6 +724,20 @@ namespace Aequus.NPCs.Monsters.Sky
                         }
                     }
                     break;
+
+                case PHASE_DEAD:
+                    {
+                        if (frameIndex < 15)
+                        {
+                            NPC.frameCounter += 1.0d;
+                            if (NPC.frameCounter >= 2.0d)
+                            {
+                                frameIndex++;
+                            }
+                        }
+                        _brightness = AequusHelpers.Wave(_brightnessTimer, 0.2f, brightnessMax);
+                    }
+                    return;
             }
 
             _brightness = AequusHelpers.Wave(_brightnessTimer, 0.2f, brightnessMax);
@@ -682,6 +752,25 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 NPC.frame.X = 0;
             }
+        }
+
+        public override bool CheckDead()
+        {
+            if ((int)NPC.ai[0] == PHASE_DEAD)
+            {
+                return true;
+            }
+
+            _importantDeath = AequusWorld.killsSpaceSquid < 2 && NPC.CountNPCS(Type) <= 1;
+            NPC.ai[0] = PHASE_DEAD;
+            NPC.ai[1] = 0f;
+            NPC.ai[2] = 0f;
+            NPC.ai[3] = 0f;
+            NPC.dontTakeDamage = true;
+            NPC.life = 1;
+            NPC.netUpdate = true;
+            frameIndex = 0;
+            return false;
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -721,51 +810,28 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var texture = TextureAssets.Npc[Type].Value;
             var drawPosition = NPC.Center;
-            var origin = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
-            Vector2 scale = new Vector2(NPC.scale, NPC.scale);
-            float speedX = NPC.velocity.X.Abs();
             var effects = SpriteEffects.None;
             if (NPC.spriteDirection == 1)
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
+            if ((int)NPC.ai[0] == PHASE_DEAD)
+            {
+                DrawDeathSequence(spriteBatch, drawPosition, screenPos, drawColor, effects);
+                return false;
+            }
+            var texture = TextureAssets.Npc[Type].Value;
+            var origin = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
+            Vector2 scale = new Vector2(NPC.scale, NPC.scale);
+            float speedX = NPC.velocity.X.Abs();
             if (speedX > 8f)
             {
                 scale.X += (speedX - 8f) / 120f;
                 drawPosition.X -= (scale.X - 1f) * 16f;
             }
 
-            int aura = (int)(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) * 4f);
-            if (aura > 0f)
-            {
-                var batchData = new SpriteBatchDataCache(spriteBatch);
-                spriteBatch.End();
-                if (NPC.IsABestiaryIconDummy)
-                {
-                    RasterizerState rasterizer = new RasterizerState();
-                    rasterizer.CullMode = CullMode.None;
-                    rasterizer.ScissorTestEnable = true;
-                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, rasterizer, null, Main.UIScaleMatrix);
-                }
-                else
-                {
-                    CommonSpriteBatchParameters.GeneralEntities.BeginShader(spriteBatch);
-                }
-                var drawData = new DrawData(texture, drawPosition - screenPos, NPC.frame, new Color(255, 255, 255, 5), NPC.rotation, origin, scale, effects, 0);
-                EffectCache.MiscShader.UseSecondaryColor(Color.Blue);
-                EffectCache.MiscShader.UseColor(Color.Cyan);
-                EffectCache.MiscShader.Apply(drawData);
-
-                foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
-                {
-                    Main.spriteBatch.Draw(texture, drawPosition - screenPos + v * (aura / 4), NPC.frame, new Color(255, 255, 255, 5), NPC.rotation, origin, scale, effects, 0f);
-                }
-
-                spriteBatch.End();
-                batchData.Begin(spriteBatch);
-            }
+            DrawBGAura(spriteBatch, texture, drawPosition, screenPos, NPC.frame, NPC.rotation, origin, scale, effects, NPC.IsABestiaryIconDummy);
 
             spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, origin, scale, effects, 0f);
             spriteBatch.Draw(Aequus.Tex(this.GetPath() + "_Glow"), drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, effects, 0f);
@@ -774,9 +840,36 @@ namespace Aequus.NPCs.Monsters.Sky
                 RenderDeathrayTelegraph(spriteBatch, screenPos);
             return false;
         }
+        private void DrawDeathSequence(SpriteBatch spriteBatch, Vector2 drawPosition, Vector2 screenPos, Color drawColor, SpriteEffects effects)
+        {
+            int verticalFrames = 6;
+            var texture = DefeatedTexture.Value;
+            var frame = texture.Frame(horizontalFrames: 3, verticalFrames: verticalFrames);
+            frame.Y = frameIndex * frame.Height;
+
+            if (frame.Y >= frame.Height * verticalFrames)
+            {
+                frame.X = frame.Width * (frame.Y / (frame.Height * verticalFrames));
+                frame.Y = frame.Y % (frame.Height * verticalFrames);
+            }
+            else
+            {
+                frame.X = 0;
+            }
+
+            frame.Width -= 2;
+            frame.Height -= 2;
+
+            var origin = frame.Size() / 2f;
+
+            DrawBGAura(spriteBatch, texture, drawPosition, screenPos, frame, NPC.rotation, origin, new Vector2(NPC.scale), effects, NPC.IsABestiaryIconDummy);
+
+            spriteBatch.Draw(texture, NPC.Center - screenPos, frame, drawColor, NPC.rotation, origin, NPC.scale, effects, 0f);
+            spriteBatch.Draw(DefeatedTextureGlow.Value, NPC.Center - screenPos, frame, Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
+        }
         private void RenderDeathrayTelegraph(SpriteBatch spriteBatch, Vector2 screenPos)
         {
-            if ((int)NPC.ai[0] == Phase_SpaceGun && NPC.ai[1] > 200f && NPC.ai[1] <= 245f && (int)NPC.ai[3] == 2)
+            if ((int)NPC.ai[0] == PHASE_SPACEGUN && NPC.ai[1] > 200f && NPC.ai[1] <= 245f && (int)NPC.ai[3] == 2)
             {
                 float opacity = 1f;
                 if (NPC.ai[1] < 10f)
@@ -804,7 +897,39 @@ namespace Aequus.NPCs.Monsters.Sky
 
             }
         }
-        
+        public static void DrawBGAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPosition, Vector2 screenPos, Rectangle frame, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, bool bestiary = false)
+        {
+            int aura = (int)(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) * 4f);
+            if (aura > 0f)
+            {
+                var batchData = new SpriteBatchDataCache(spriteBatch);
+                spriteBatch.End();
+                if (bestiary)
+                {
+                    RasterizerState rasterizer = new RasterizerState();
+                    rasterizer.CullMode = CullMode.None;
+                    rasterizer.ScissorTestEnable = true;
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, rasterizer, null, Main.UIScaleMatrix);
+                }
+                else
+                {
+                    CommonSpriteBatchParameters.GeneralEntities.BeginShader(spriteBatch);
+                }
+                var drawData = new DrawData(texture, drawPosition - screenPos, frame, new Color(255, 255, 255, 5), rotation, origin, scale, effects, 0);
+                EffectCache.MiscShader.UseSecondaryColor(Color.Blue);
+                EffectCache.MiscShader.UseColor(Color.Cyan);
+                EffectCache.MiscShader.Apply(drawData);
+
+                foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
+                {
+                    Main.spriteBatch.Draw(texture, drawPosition - screenPos + v * (aura / 4), frame, new Color(255, 255, 255, 5), rotation, origin, scale, effects, 0f);
+                }
+
+                spriteBatch.End();
+                batchData.Begin(spriteBatch);
+            }
+        }
+
         public Vector2 GetEyePos()
         {
             return GetEyePos(NPC.position);
