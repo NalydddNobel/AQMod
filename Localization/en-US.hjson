@@ -63,6 +63,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			GrandReward: Grand Reward
 			Mendshroom: Mendshroom
 			FrostPotion: Frost Potion
 			GlowCore: Glow Core
@@ -362,6 +363,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			GrandReward: Enemies are more likely to drop rarer items
 			Mendshroom: Standing still will heal yourself and nearby teammates
 			FrostPotion: Reduces damage from heat sources
 			GlowCore: Emits colored light

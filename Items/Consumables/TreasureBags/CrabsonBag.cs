@@ -1,6 +1,8 @@
-﻿using Aequus.Items.Accessories;
+﻿using Aequus.Common.ItemDrops;
+using Aequus.Items.Accessories;
 using Aequus.Items.Misc.Energies;
 using Aequus.NPCs.Boss;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,9 +17,9 @@ namespace Aequus.Items.Consumables.TreasureBags
 
         public override void OpenBossBag(Player player)
         {
+            var source = player.GetSource_OpenItem(Type);
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AquaticEnergy>(), Main.rand.Next(4) + 5);
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<Mendshroom>());
-
+            DropHelper.OneFromList(source, player, new List<int>() { ModContent.ItemType<Mendshroom>(), ModContent.ItemType<GrandReward>(), });
             //AQMod.AequusDeveloperItems(player, hardmode: false);
             //player.QuickSpawnItem(ModContent.ItemType<Crabax>());
             //if (Main.rand.NextBool(7))

@@ -18,6 +18,11 @@ namespace Aequus
     {
         public static int Iterations;
 
+        public static AequusPlayer Aequus(this Player player)
+        {
+            return player.GetModPlayer<AequusPlayer>();
+        }
+
         internal static void spawnNPC<T>(Vector2 where) where T : ModNPC
         {
             NPC.NewNPC(null, (int)where.X, (int)where.Y, ModContent.NPCType<T>());
@@ -106,7 +111,7 @@ namespace Aequus
             {
                 name = type.ToString() + "/" + name;
             }
-            var slot = SoundLoader.GetLegacySoundSlot(Aequus.Instance.Name + "/Sounds/" + name);
+            var slot = SoundLoader.GetLegacySoundSlot("Aequus/Sounds/" + name);
             SoundEngine.PlaySound(slot);
         }
         public static void PlaySound(SoundType type, string name, Vector2 position)
@@ -119,7 +124,7 @@ namespace Aequus
             {
                 name = type.ToString() + "/" + name;
             }
-            var slot = SoundLoader.GetLegacySoundSlot(Aequus.Instance.Name + "/Sounds/" + name);
+            var slot = SoundLoader.GetLegacySoundSlot("Aequus/Sounds/" + name);
             SoundEngine.PlaySound(slot, position);
         }
         public static void PlaySound(SoundType type, string name, Vector2 position, float volume = 1f, float pitch = 0f)
@@ -132,7 +137,7 @@ namespace Aequus
             {
                 name = type.ToString() + "/" + name;
             }
-            var slot = SoundLoader.GetLegacySoundSlot(Aequus.Instance.Name + "/Sounds/" + name);
+            var slot = SoundLoader.GetLegacySoundSlot("Aequus/Sounds/" + name);
             SoundEngine.PlaySound(slot.SoundId, (int)position.X, (int)position.Y, slot.Style, volume, pitch);
         }
         public static void PlaySound(this LegacySoundStyle value, Vector2 position, float volume, float pitch)

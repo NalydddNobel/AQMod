@@ -24,8 +24,8 @@ namespace Aequus.Items.Consumables.TreasureBags
             {
                 ModContent.ItemType<Raygun>(),
             });
-            player.QuickSpawnItem(source, ModContent.ItemType<CosmicEnergy>(), player.RollHigherFromLuck(4) + 5);
-            player.QuickSpawnItem(source, ModContent.ItemType<LightMatter>(), player.RollHigherFromLuck(7) + 18);
+            player.QuickSpawnItem(source, ModContent.ItemType<CosmicEnergy>(), Main.rand.Next(4) + 5);
+            player.QuickSpawnItem(source, ModContent.ItemType<LightMatter>(), Main.rand.Next(7) + 18);
 
             //AQMod.AequusDeveloperItems(player, hardmode: true);
             //if (Main.rand.NextBool(7))

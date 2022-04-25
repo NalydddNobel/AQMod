@@ -56,6 +56,11 @@ namespace Aequus
         /// <para>Used by <see cref="Buffs.NoonBuff"/> and set to 1</para>
         /// </summary>
         public byte forceDaytime;
+        /// <summary>
+        /// Used to increase droprates.
+        /// <para>Used by <see cref="Items.Accessories.GrandReward"/></para> 
+        /// </summary>
+        public float lootLuck;
 
         /// <summary>
         /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
@@ -136,6 +141,7 @@ namespace Aequus
             resistHeat = false;
 
             forceDaytime = 0;
+            lootLuck = 0f;
         }
 
         public override bool PreItemCheck()

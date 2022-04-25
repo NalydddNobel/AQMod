@@ -853,7 +853,7 @@ namespace Aequus.NPCs.Boss
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CrabsonRelic>()));
             var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());
             normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<AquaticEnergy>(), 1, 3, 6));
-            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Mendshroom>(), 2));
+            normalOnly.OnSuccess(ItemDropRule.OneFromOptions(2, ModContent.ItemType<Mendshroom>(), ModContent.ItemType<GrandReward>()));
             npcLoot.Add(normalOnly);
         }
 
