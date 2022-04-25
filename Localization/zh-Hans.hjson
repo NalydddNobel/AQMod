@@ -290,7 +290,7 @@ Mods: {
 			CrabsonBag: 宝藏袋 (巨蟹蛤)
 			OmegaStariteMask: 终末之星面具
 			OmegaStariteTrophy: 终末之星纪念章
-			OmegaStariteBag: 宝藏袋 ( 终末之星)
+			OmegaStariteBag: 宝藏袋 (终末之星)
 			SuspiciousLookingSteak: 可疑牛排
 			HermitShell: 蟹壳头盔
 			StriderPalms: 长足护胫
@@ -363,7 +363,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			GrandReward: 敌人更有几率掉落稀有物品
+			GrandReward: 敌人更容易掉落稀有物品
 			Mendshroom: 站定不动时会治疗你自己和附近的队友
 			FrostPotion: 降低来自热源的伤害
 			GlowCore: 散发着彩色的光芒
@@ -1670,7 +1670,7 @@ Mods: {
 			EightballAnswer10: 有迹象表明是的
 			EightballAnswer11: 别想了
 			EightballAnswer12: 我的回答是否
-			EightballAnswer13: 未来可期
+			EightballAnswer13: 前景不妙
 			EightballAnswer14: 令人疑惑
 			EightballAnswer15: 再试一次吧
 			EightballAnswer16: 待会再问
