@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Items.Accessories;
+using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc.Energies;
 using Aequus.NPCs.Boss;
 using System.Collections.Generic;
@@ -18,6 +19,10 @@ namespace Aequus.Items.Consumables.TreasureBags
         public override void OpenBossBag(Player player)
         {
             var source = player.GetSource_OpenItem(Type);
+            if (player.RollLuck(7) == 0)
+            {
+                player.QuickSpawnItem(source, ModContent.ItemType<CrabsonMask>());
+            }
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AquaticEnergy>(), Main.rand.Next(4) + 5);
             DropHelper.OneFromList(source, player, new List<int>() { ModContent.ItemType<Mendshroom>(), ModContent.ItemType<GrandReward>(), });
             //AQMod.AequusDeveloperItems(player, hardmode: false);

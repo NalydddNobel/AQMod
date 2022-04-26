@@ -2,6 +2,7 @@
 using Aequus.Content.CrossMod;
 using Aequus.Effects;
 using Aequus.Items.Accessories;
+using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables.TreasureBags;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
@@ -68,6 +69,8 @@ namespace Aequus.NPCs.Boss
             });
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) { PortraitPositionYOverride = 48f, });
+
+            FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
         }
 
         public override void SetDefaults()
@@ -852,6 +855,7 @@ namespace Aequus.NPCs.Boss
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CrabsonBag>()));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CrabsonRelic>()));
             var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());
+            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CrabsonMask>(), 7));
             normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<AquaticEnergy>(), 1, 3, 6));
             normalOnly.OnSuccess(ItemDropRule.OneFromOptions(2, ModContent.ItemType<Mendshroom>(), ModContent.ItemType<GrandReward>()));
             npcLoot.Add(normalOnly);

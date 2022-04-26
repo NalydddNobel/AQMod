@@ -7,6 +7,7 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Aequus.Effects.Prims;
+using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables.TreasureBags;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
@@ -66,7 +67,7 @@ namespace Aequus.NPCs.Boss
         public const float RING_2_CIRCUMFERENCEMULT_EXPERT = 1.75f;
         public const float RING_3_CIRCUMFERENCEMULT = 2.5f;
 
-        public class Ring
+        public class Ring : ICloneable
         {
             public readonly byte amountOfSegments;
             public readonly float rotationOrbLoop;
@@ -162,6 +163,11 @@ namespace Aequus.NPCs.Boss
                 roll = reader.ReadSingle();
                 yaw = reader.ReadSingle();
             }
+
+            public object Clone()
+            {
+                return new Ring(amountOfSegments, OriginalRadiusFromOrigin, Scale) { pitch = pitch, roll = roll, yaw = yaw, radiusFromOrigin = radiusFromOrigin, };
+            }
         }
 
         public static HashSet<int> StarResistCatalogue { get; private set; }
@@ -212,6 +218,8 @@ namespace Aequus.NPCs.Boss
             });
             NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() { ImmuneToAllBuffsThatAreNotWhips = true, };
             Main.npcFrameCount[NPC.type] = 14;
+
+            FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
         }
 
         public override void SetDefaults()
@@ -1646,6 +1654,7 @@ namespace Aequus.NPCs.Boss
             npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DragonBall>(), 4));
             npcLoot.Add(new FlawlessDrop(ModContent.ItemType<Origin>()));
             var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());
+            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<OmegaStariteMask>(), 7));
             normalOnly.OnSuccess(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Raygun>()));
             normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<LightMatter>(), 1, 14, 20));
             normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CosmicEnergy>(), 1, 3, 6));

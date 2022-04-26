@@ -175,20 +175,21 @@ namespace Aequus.Items
 
             if (ModContent.GetInstance<ClientConfiguration>().HighQuality)
             {
-                int reset = EffectsSystem.EffectRand.SetRand(Main.LocalPlayer.name.GetHashCode());
+                var rand = EffectsSystem.EffectRand;
+                int reset = rand.SetRand(Main.LocalPlayer.name.GetHashCode());
 
                 // particles
                 var particleTexture = Aequus.MyTex("Assets/Bloom");
                 var particleOrigin = particleTexture.Size() / 2f;
-                int amt = (int)EffectsSystem.EffectRand.Rand(size.X / 3, size.X);
+                int amt = (int)rand.Rand(size.X / 3, size.X);
                 for (int i = 0; i < amt; i++)
                 {
-                    float lifeTime = (EffectsSystem.EffectRand.Rand(20f) + Main.GlobalTimeWrappedHourly * 2f) % 20f;
-                    int baseParticleX = (int)EffectsSystem.EffectRand.Rand(4f, size.X - 4f);
-                    int particleX = baseParticleX + (int)AequusHelpers.Wave(lifeTime + Main.GlobalTimeWrappedHourly * EffectsSystem.EffectRand.Rand(2f, 5f), -EffectsSystem.EffectRand.Rand(3f, 10f), EffectsSystem.EffectRand.Rand(3f, 10f));
-                    int particleY = (int)EffectsSystem.EffectRand.Rand(10f);
-                    float scale = EffectsSystem.EffectRand.Rand(0.2f, 0.4f);
-                    if (baseParticleX > 14 && baseParticleX < size.X - 14 && EffectsSystem.EffectRand.RandChance(6))
+                    float lifeTime = (rand.Rand(20f) + Main.GlobalTimeWrappedHourly * 2f) % 20f;
+                    int baseParticleX = (int)rand.Rand(4f, size.X - 4f);
+                    int particleX = baseParticleX + (int)AequusHelpers.Wave(lifeTime + Main.GlobalTimeWrappedHourly * rand.Rand(2f, 5f), -rand.Rand(3f, 10f), rand.Rand(3f, 10f));
+                    int particleY = (int)rand.Rand(10f);
+                    float scale = rand.Rand(0.2f, 0.4f);
+                    if (baseParticleX > 14 && baseParticleX < size.X - 14 && rand.RandChance(6))
                     {
                         scale *= 2f;
                     }
@@ -226,7 +227,7 @@ namespace Aequus.Items
                     }
                 }
 
-                EffectsSystem.EffectRand.SetRand(reset);
+                rand.SetRand(reset);
             }
 
             // light effect

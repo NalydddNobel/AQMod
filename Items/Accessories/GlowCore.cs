@@ -67,7 +67,7 @@ namespace Aequus.Items.Accessories
                     Main.spriteBatch.Draw(texture, drawCoordinates + v * scale * 2f, frame, coloring.UseA(0) * 0.3f, rotation, origin, scale, SpriteEffects.None, 0f);
                 }
 
-                var spotlight = AssetCache.Bloom[0].Value;
+                var spotlight = TextureCache.Bloom[0].Value;
                 Main.spriteBatch.Draw(spotlight, drawCoordinates, null, DyeColor() * 0.2f, 0f, spotlight.Size() / 2f, scale * 0.9f, SpriteEffects.None, 0f);
 
                 Main.spriteBatch.Draw(texture, drawCoordinates, frame, coloring, rotation, origin, scale, SpriteEffects.None, 0f);

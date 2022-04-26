@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.HookEquips
+namespace Aequus.Items.Misc.HookEquips
 {
     public class CrabBarb : ModItem
     {

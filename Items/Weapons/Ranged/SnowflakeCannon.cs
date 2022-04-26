@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.useTime = 16;
             Item.useAnimation = 16;
             Item.autoReuse = true;
-            Item.damage = 36;
+            Item.damage = 50;
             Item.rare = ItemRarityConstants.GaleStreams;
             Item.DamageType = DamageClass.Ranged;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -24,7 +24,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shootSpeed = 8f;
             Item.value = ItemPriceProperties.GaleStreamsValue;
             Item.useAmmo = AmmoID.Snowball;
-            Item.knockBack = 5.6f;
+            Item.knockBack = 2.6f;
             Item.UseSound = SoundID.Item11;
             Item.noMelee = true;
         }

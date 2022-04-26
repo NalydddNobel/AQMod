@@ -6,6 +6,7 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Aequus.Effects.Prims;
+using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -82,6 +83,8 @@ namespace Aequus.NPCs.Monsters.Sky
             });
 
             HeatDamageCatalogue.HeatNPC.Add(Type);
+
+            FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -1080,6 +1083,7 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<RedSpriteTrophy>(), 10));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<RedSpriteRelic>()));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedSpriteMask>(), 7));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fluorescence>(), 1, 10, 24));
             npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 2, 6));
@@ -1210,7 +1214,8 @@ namespace Aequus.NPCs.Monsters.Sky
         private Vector2[] GenerateLightningString(ref Vector2[] coordinates, float timer, Vector2 difference)
         {
             var offsetVector = Vector2.Normalize(difference.RotatedBy(MathHelper.PiOver2));
-            int old = EffectsSystem.EffectRand.SetRand((int)timer / 2 * 2);
+            var rand = EffectsSystem.EffectRand;
+            int old = rand.SetRand((int)timer / 2 * 2);
             float multiplier = 0.01f;
             float diff = 0f;
             for (int i = 0; i < coordinates.Length; i++)
@@ -1223,22 +1228,23 @@ namespace Aequus.NPCs.Monsters.Sky
                         multiplier = 1f;
                     }
                 }
-                diff += EffectsSystem.EffectRand.Rand(-20f, 20f);
+                diff += rand.Rand(-20f, 20f);
                 diff = MathHelper.Clamp(diff, -50f, 50f);
                 coordinates[i] = difference / (coordinates.Length - 1) * i + offsetVector * diff * multiplier;
             }
-            EffectsSystem.EffectRand.SetRand(old);
+            rand.SetRand(old);
             return coordinates;
         }
         private Vector2[] PrepareLightningStrip(ref Vector2[] coordinates, int k, float timer, Vector2 screenPosition)
         {
-            int old = EffectsSystem.EffectRand.SetRand((int)timer / 2 * 2);
+            var rand = EffectsSystem.EffectRand;
+            int old = rand.SetRand((int)timer / 2 * 2);
             for (int i = 0; i < coordinates.Length; i++)
             {
-                var offset = Vector2.Lerp(new Vector2(EffectsSystem.EffectRand.Rand() / 15f, EffectsSystem.EffectRand.Rand() / 25f), new Vector2(EffectsSystem.EffectRand.Rand() / 15f, EffectsSystem.EffectRand.Rand() / 25f), timer / 2f % 1f);
+                var offset = Vector2.Lerp(new Vector2(rand.Rand() / 15f, rand.Rand() / 25f), new Vector2(rand.Rand() / 15f, rand.Rand() / 25f), timer / 2f % 1f);
                 coordinates[i] += _redSpriteLightningCoords[k][i] + screenPosition + offset;
             }
-            EffectsSystem.EffectRand.SetRand(old);
+            rand.SetRand(old);
             GameCamera.GetY_Check(coordinates);
             return coordinates;
         }

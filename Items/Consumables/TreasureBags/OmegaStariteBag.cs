@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ItemDrops;
+using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Ranged;
@@ -24,8 +25,13 @@ namespace Aequus.Items.Consumables.TreasureBags
             {
                 ModContent.ItemType<Raygun>(),
             });
+            if (player.RollLuck(7) == 0)
+            {
+                player.QuickSpawnItem(source, ModContent.ItemType<OmegaStariteMask>());
+            }
             player.QuickSpawnItem(source, ModContent.ItemType<CosmicEnergy>(), Main.rand.Next(4) + 5);
             player.QuickSpawnItem(source, ModContent.ItemType<LightMatter>(), Main.rand.Next(7) + 18);
+            player.QuickSpawnItem(source, ItemID.FallenStar, Main.rand.Next(11) + 20);
 
             //AQMod.AequusDeveloperItems(player, hardmode: true);
             //if (Main.rand.NextBool(7))
@@ -33,13 +39,6 @@ namespace Aequus.Items.Consumables.TreasureBags
             //player.QuickSpawnItem(ModContent.ItemType<CelesteTorus>());
             //if (Main.rand.NextBool(3))
             //    player.QuickSpawnItem(ModContent.ItemType<CosmicTelescope>());
-            //int[] choices = new int[]
-            //{
-            //    ModContent.ItemType<MagicWand>(),
-            //    ModContent.ItemType<Raygun>(),
-            //};
-            //player.QuickSpawnItem(choices[Main.rand.Next(choices.Length)]);
-            //player.QuickSpawnItem(ItemID.FallenStar, Main.rand.NextVRand(20, 30));
         }
     }
 }

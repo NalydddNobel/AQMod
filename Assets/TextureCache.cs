@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Assets
 {
-    public sealed class AssetCache : ILoadable
+    public sealed class TextureCache : ILoadable
     {
         public static Asset<Texture2D>[] Bloom { get; private set; }
 

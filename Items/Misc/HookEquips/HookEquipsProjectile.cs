@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.HookEquips
+namespace Aequus.Items.Misc.HookEquips
 {
     public sealed class HookEquipsProjectile : GlobalProjectile
     {

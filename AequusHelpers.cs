@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Players.StatData;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -17,6 +16,44 @@ namespace Aequus
     public static class AequusHelpers
     {
         public static int Iterations;
+
+        public static NPC CreateSudo(NPC npc)
+        {
+            var npc2 = new NPC();
+            npc2.SetDefaults(npc.type);
+            for (int i = 0; i < npc.ai.Length; i++)
+            {
+                npc2.ai[i] = npc.ai[i];
+            }
+            for (int i = 0; i < npc.localAI.Length; i++)
+            {
+                npc2.localAI[i] = npc.localAI[i];
+            }
+            npc2.width = npc.width;
+            npc2.height = npc.height;
+            npc2.scale = npc.scale;
+            npc2.frame = npc.frame;
+            npc2.direction = npc.direction;
+            npc2.spriteDirection = npc.spriteDirection;
+            npc2.velocity = npc.velocity;
+            npc2.rotation = npc.rotation;
+            npc2.gfxOffY = npc.gfxOffY;
+
+            var oldSlot = Main.npc[npc.whoAmI];
+            try
+            {
+                npc2.position = npc.position;
+                Main.npc[npc.whoAmI] = npc2;
+                npc2.AI();
+                Main.npc[npc.whoAmI] = oldSlot;
+                npc2.position = npc.position;
+            }
+            catch
+            {
+                Main.npc[npc.whoAmI] = oldSlot;
+            }
+            return npc2;
+        }
 
         public static AequusPlayer Aequus(this Player player)
         {
@@ -105,6 +142,18 @@ namespace Aequus
             return false;
         }
 
+        public static void PlaySound<T>() where T : ModSound
+        {
+            SoundEngine.PlaySound(From<T>());
+        }
+        public static void PlaySound<T>(Vector2 location) where T : ModSound
+        {
+            SoundEngine.PlaySound(From<T>(), location);
+        }
+        public static LegacySoundStyle From<T>() where T : ModSound
+        {
+            return SoundLoader.GetLegacySoundSlot(typeof(T).Namespace.Replace('.', '/') + "/" + ModContent.GetInstance<T>().Name);
+        }
         public static void PlaySound(SoundType type, string name)
         {
             if (type != SoundType.Sound)

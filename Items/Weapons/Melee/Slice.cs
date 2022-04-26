@@ -22,7 +22,7 @@ namespace Aequus.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Item.DefaultToDopeSword<SliceProj>(10);
-            Item.SetWeaponValues(32, 6f);
+            Item.SetWeaponValues(32, 2.5f);
             Item.width = 20;
             Item.height = 20;
             Item.autoReuse = true;

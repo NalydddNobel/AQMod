@@ -287,13 +287,14 @@ namespace Aequus.Projectiles.Magic
                 return null;
             }
             Vector2[] coordinates = new Vector2[(ClientConfiguration.Instance.HighQuality ? 25 : 8)];
-            int old = EffectsSystem.EffectRand.SetRand((int)timer / 2 * 2);
+            var rand = EffectsSystem.EffectRand;
+            int old = rand.SetRand((int)timer / 2 * 2);
             for (int i = 0; i < coordinates.Length; i++)
             {
-                var offset = Vector2.Lerp(new Vector2(EffectsSystem.EffectRand.Rand() / 15f, EffectsSystem.EffectRand.Rand() / 25f), new Vector2(EffectsSystem.EffectRand.Rand() / 15f, EffectsSystem.EffectRand.Rand() / 25f), timer / 2f % 1f);
+                var offset = Vector2.Lerp(new Vector2(rand.Rand() / 15f, rand.Rand() / 25f), new Vector2(rand.Rand() / 15f, rand.Rand() / 25f), timer / 2f % 1f);
                 coordinates[i] = difference / (coordinates.Length - 1) * i + screenPosition + offset;
             }
-            EffectsSystem.EffectRand.SetRand(old);
+            rand.SetRand(old);
             return coordinates;
         }
 

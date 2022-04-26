@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Aequus.Items.HookEquips
+namespace Aequus.Items.Misc.HookEquips
 {
     public sealed class GrapplingHookModules
     {
@@ -89,7 +89,7 @@ namespace Aequus.Items.HookEquips
                 {
                     for (int i = 0; i < Main.maxNPCs; i++)
                     {
-                        if (!(Main.npc[i].active && !Main.npc[i].dontTakeDamage) || (Main.npc[i].aiStyle == 112 && Main.npc[i].ai[2] > 1f))
+                        if (!(Main.npc[i].active && !Main.npc[i].dontTakeDamage) || Main.npc[i].aiStyle == 112 && Main.npc[i].ai[2] > 1f)
                         {
                             continue;
                         }
@@ -120,7 +120,7 @@ namespace Aequus.Items.HookEquips
                             flag12 = false;
                         }
                         bool flag13 = Main.npc[i].friendly && !Main.npc[i].dontTakeDamageFromHostiles;
-                        if (canHitFlag || (projectile.friendly && flag12) || (projectile.hostile && flag13))
+                        if (canHitFlag || projectile.friendly && flag12 || projectile.hostile && flag13)
                         {
                             if (projectile.owner < 0 || Main.npc[i].immune[projectile.owner] == 0)
                             {
@@ -207,7 +207,7 @@ namespace Aequus.Items.HookEquips
                         int num20 = Item.NPCtoBanner(npc.BannerID());
                         if (num20 > 0 && Main.player[projectile.owner].HasNPCBannerBuff(num20))
                         {
-                            damage = (!Main.expertMode) ? ((int)(damage * ItemID.Sets.BannerStrength[Item.BannerToItem(num20)].NormalDamageDealt)) : ((int)(damage * ItemID.Sets.BannerStrength[Item.BannerToItem(num20)].ExpertDamageDealt));
+                            damage = !Main.expertMode ? (int)(damage * ItemID.Sets.BannerStrength[Item.BannerToItem(num20)].NormalDamageDealt) : (int)(damage * ItemID.Sets.BannerStrength[Item.BannerToItem(num20)].ExpertDamageDealt);
                         }
                     }
                 }

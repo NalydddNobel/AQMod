@@ -61,20 +61,13 @@ namespace Aequus.Projectiles.Ranged
                     Projectile.alpha = 0;
                 }
             }
-            if (Projectile.ai[0] <= 0f)
-            {
-                int target = Projectile.FindTargetWithLineOfSight(250f);
-                if (target != -1)
-                {
-                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, Main.npc[target].Center - Projectile.Center, 0.002f);
-                }
-            }
             Projectile.velocity = Vector2.Normalize(Projectile.velocity) * Projectile.ai[1];
             Projectile.rotation += Projectile.ai[1] * 0.075f;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
             Projectile.ai[0] += 30f;
             for (int i = 0; i < 5; i++)
             {

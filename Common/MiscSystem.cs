@@ -1,4 +1,4 @@
-﻿using Aequus.Items.HookEquips;
+﻿using Aequus.Items.Misc.HookEquips;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 
