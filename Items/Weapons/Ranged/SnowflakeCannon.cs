@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Common;
 using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -17,12 +17,12 @@ namespace Aequus.Items.Weapons.Ranged
             Item.useAnimation = 16;
             Item.autoReuse = true;
             Item.damage = 50;
-            Item.rare = ItemRarityConstants.GaleStreams;
+            Item.rare = ItemDefaults.RarityGaleStreams;
             Item.DamageType = DamageClass.Ranged;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.shoot = ProjectileID.SnowBallFriendly;
             Item.shootSpeed = 8f;
-            Item.value = ItemPriceProperties.GaleStreamsValue;
+            Item.value = ItemDefaults.GaleStreamsValue;
             Item.useAmmo = AmmoID.Snowball;
             Item.knockBack = 2.6f;
             Item.UseSound = SoundID.Item11;
@@ -47,7 +47,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void AddRecipes()
         {
-            ConsistentRecipes.SpaceSquidDrop(this, ItemID.SnowballCannon);
+            CommonRecipes.SpaceSquidDrop(this, ItemID.SnowballCannon);
         }
     }
 }

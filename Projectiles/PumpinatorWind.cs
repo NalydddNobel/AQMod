@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Catalogues;
-using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;

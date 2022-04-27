@@ -3,41 +3,18 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Utilities
+namespace Aequus.Common.Catalogues
 {
-    public sealed class ColorHelper : ILoadable
+    public sealed class PaintsCatalogue : ILoadable
     {
         internal static Color Furniture => new Color(191, 142, 111);
 
-        public static ColorHelper Instance { get; private set; }
+        public static byte[] Paints { get; private set; }
+        public static Dictionary<short, byte> DyeToPaint { get; private set; }
+        public static Dictionary<byte, short> PaintToDye { get; private set; }
+        public static Dictionary<byte, short> PaintToYoyoString { get; private set; }
 
-        public byte[] Paints { get; private set; }
-        public Dictionary<short, byte> DyeToPaint { get; private set; }
-        public Dictionary<byte, short> PaintToDye { get; private set; }
-        public Dictionary<byte, short> PaintToYoyoString { get; private set; }
-
-        public IColorGradient AquaticGrad;
-        public IColorGradient AtmosphericGrad;
-        public IColorGradient CosmicGrad;
-        public IColorGradient DemonicGrad;
-        public IColorGradient OrganicGrad;
-        public IColorGradient UltimateGrad;
-
-        public ColorHelper()
-        {
-            InitalizeGradients();
-            InitalizeCatalogues();
-        }
-        private void InitalizeGradients()
-        {
-            AquaticGrad = new ColorWaveGradient(4f, new Color(111, 111, 190, 0), new Color(144, 144, 255, 0));
-            AtmosphericGrad = new ColorWaveGradient(4f, new Color(200, 150, 10, 0) * 0.8f, new Color(255, 230, 70, 0) * 0.8f);
-            CosmicGrad = new ColorWaveGradient(4f, new Color(90, 30, 200, 0), new Color(190, 120, 255, 0));
-            DemonicGrad = new ColorWaveGradient(4f, new Color(222, 100, 10, 0) * 0.8f, new Color(255, 255, 120, 0) * 0.8f);
-            OrganicGrad = new ColorWaveGradient(4f, new Color(120, 255, 60, 0), new Color(180, 250, 90, 0));
-            UltimateGrad = new ColorWaveGradient(8f, new Color(150, 255, 255, 0), new Color(255, 150, 255, 0));
-        }
-        private void InitalizeCatalogues()
+        void ILoadable.Load(Mod mod)
         {
             Paints = new byte[]
             {
@@ -118,14 +95,15 @@ namespace Aequus.Common.Utilities
             };
         }
 
-        void ILoadable.Load(Mod mod)
-        {
-            Instance = this;
-        }
-
         void ILoadable.Unload()
         {
-            Instance = null;
+            Paints = null;
+            DyeToPaint?.Clear();
+            DyeToPaint = null;
+            PaintToDye?.Clear();
+            PaintToDye = null;
+            PaintToYoyoString?.Clear();
+            PaintToYoyoString = null;
         }
     }
 }

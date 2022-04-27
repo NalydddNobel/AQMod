@@ -7,20 +7,112 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
 namespace Aequus.Items
 {
-    public sealed partial class ItemTooltipsHelper : GlobalItem
+    public sealed class ItemTooltips : GlobalItem
     {
+        public class Catalogue
+        {
+            public struct ItemDedication
+            {
+                public readonly Color color;
+
+                public ItemDedication(Color color)
+                {
+                    this.color = color;
+                }
+            }
+
+            internal static readonly string[] OutdatedTooltipNames = new string[]
+            {
+                "ItemName",
+                "Favorite",
+                "FavoriteDesc",
+                "Social",
+                "SocialDesc",
+                "Damage",
+                "CritChance",
+                "Speed",
+                "Knockback",
+                "FishingPower",
+                "NeedsBait",
+                "BaitPower",
+                "Equipable",
+                "WandConsumes",
+                "Quest",
+                "Vanity",
+                "Defense",
+                "PickPower",
+                "AxePower",
+                "HammerPower",
+                "TileBoost",
+                "HealLife",
+                "HealMana",
+                "UseMana",
+                "Placeable",
+                "Ammo",
+                "Consumable",
+                "Material",
+                "Tooltip#",
+                "EtherianManaWarning",
+                "WellFedExpert",
+                "BuffTime",
+                "OneDropLogo",
+                "PrefixDamage",
+                "PrefixSpeed",
+                "PrefixCritChance",
+                "PrefixUseMana",
+                "PrefixSize",
+                "PrefixShootSpeed",
+                "PrefixKnockback",
+                "PrefixAccDefense",
+                "PrefixAccMaxMana",
+                "PrefixAccCritChance",
+                "PrefixAccDamage",
+                "PrefixAccMoveSpeed",
+                "PrefixAccMeleeSpeed",
+                "SetBonus",
+                "Expert",
+                "SpecialPrice",
+                "Price",
+            };
+
+            public static Dictionary<int, ItemDedication> Dedicated { get; private set; }
+
+            internal static void Load()
+            {
+                Dedicated = new Dictionary<int, ItemDedication>();
+                //[ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),
+                //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
+                //[ModContent.ItemType<Thunderbird>()] = new ItemDedication(new Color(200, 125, 255, 255)),
+            }
+
+            internal static void Unload()
+            {
+                Dedicated?.Clear();
+                Dedicated = null;
+            }
+        }
+
         public static Color MysteriousGuideTooltip => new Color(225, 100, 255, 255);
         public static Color DemonSiegeTooltip => new Color(255, 170, 150, 255);
 
+        public override void Load()
+        {
+            Catalogue.Load();
+        }
+
+        public override void Unload()
+        {
+            Catalogue.Unload();
+        }
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (Dedicated.TryGetValue(item.type, out var dedication))
+            if (Catalogue.Dedicated.TryGetValue(item.type, out var dedication))
             {
                 tooltips.Add(new TooltipLine(Mod, "DedicatedItem", Aequus.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
             }
@@ -41,9 +133,9 @@ namespace Aequus.Items
 
         private static int FindLineIndex(string name)
         {
-            for (int i = 0; i < OutdatedTooltipNames.Length; i++)
+            for (int i = 0; i < Catalogue.OutdatedTooltipNames.Length; i++)
             {
-                if (name == OutdatedTooltipNames[i])
+                if (name == Catalogue.OutdatedTooltipNames[i])
                 {
                     return i;
                 }
@@ -61,76 +153,6 @@ namespace Aequus.Items
                     return;
                 }
             }
-        }
-
-        internal static string UseAnimText(float useAnimation)
-        {
-            if (useAnimation <= 8)
-            {
-                return Language.GetTextValue("LegacyTooltip.6");
-            }
-            else if (useAnimation <= 20)
-            {
-                return Language.GetTextValue("LegacyTooltip.7");
-            }
-            else if (useAnimation <= 25)
-            {
-                return Language.GetTextValue("LegacyTooltip.8");
-            }
-            else if (useAnimation <= 30)
-            {
-                return Language.GetTextValue("LegacyTooltip.9");
-            }
-            else if (useAnimation <= 35)
-            {
-                return Language.GetTextValue("LegacyTooltip.10");
-            }
-            else if (useAnimation <= 45)
-            {
-                return Language.GetTextValue("LegacyTooltip.11");
-            }
-            else if (useAnimation <= 55)
-            {
-                return Language.GetTextValue("LegacyTooltip.12");
-            }
-            return Language.GetTextValue("LegacyTooltip.13");
-        }
-
-        internal static string KBText(float knockback)
-        {
-            if (knockback == 0f)
-            {
-                return Language.GetTextValue("LegacyTooltip.14");
-            }
-            else if (knockback <= 1.5)
-            {
-                return Language.GetTextValue("LegacyTooltip.15");
-            }
-            else if (knockback <= 3f)
-            {
-                return Language.GetTextValue("LegacyTooltip.16");
-            }
-            else if (knockback <= 4f)
-            {
-                return Language.GetTextValue("LegacyTooltip.17");
-            }
-            else if (knockback <= 6f)
-            {
-                return Language.GetTextValue("LegacyTooltip.18");
-            }
-            else if (knockback <= 7f)
-            {
-                return Language.GetTextValue("LegacyTooltip.19");
-            }
-            else if (knockback <= 9f)
-            {
-                return Language.GetTextValue("LegacyTooltip.20");
-            }
-            else if (knockback <= 11f)
-            {
-                return Language.GetTextValue("LegacyTooltip.21");
-            }
-            return Language.GetTextValue("LegacyTooltip.22");
         }
 
         public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)

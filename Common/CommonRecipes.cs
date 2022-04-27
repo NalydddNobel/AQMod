@@ -3,9 +3,9 @@ using Aequus.Items.Misc.Energies;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Recipes
+namespace Aequus.Common
 {
-    public sealed class ConsistentRecipes
+    public sealed class CommonRecipes
     {
         public static void SpaceSquidDrop(ModItem modItem, int original)
         {

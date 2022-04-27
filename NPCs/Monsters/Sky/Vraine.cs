@@ -2,7 +2,6 @@
 using Aequus.Content.CrossMod;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;

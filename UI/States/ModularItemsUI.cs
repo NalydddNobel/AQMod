@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Aequus.Common.Catalogues;
+﻿using Aequus.Common.Catalogues;
 using Aequus.Common.Utilities;
 using Aequus.Items;
 using Aequus.NPCs.Characters;
@@ -77,7 +76,7 @@ namespace Aequus.UI.States
                 if (hasItem)
                 {
                     int height = SlotHeight;
-                    int[] validSlots = ModularItemsManager.Catalogue.GetAllowedEquips(itemSlot.item.type);
+                    int[] validSlots = ModularItems.Catalogue.GetAllowedEquips(itemSlot.item.type);
                     int index = 0;
                     for (int i = moduleSlot.Length - 1; i >= 0; i--)
                     {
@@ -156,7 +155,7 @@ namespace Aequus.UI.States
                     SoundEngine.PlaySound(SoundID.Grab);
                     Utils.Swap(ref itemSlot.item, ref Main.mouseItem);
                 }
-                if (!AequusHelpers.HasMouseItem&& !itemSlot.item.IsAir)
+                if (!AequusHelpers.HasMouseItem && !itemSlot.item.IsAir)
                 {
                     UIHelper.HoverItem(itemSlot.item, ItemSlot.Context.PrefixItem);
                 }
@@ -171,15 +170,15 @@ namespace Aequus.UI.States
             {
                 try
                 {
-                    var module = itemSlot.item.GetGlobalItem<ModularItemsManager>();
-                    var data = ModularItemsManager.Catalogue.GetAllowedEquips(itemSlot.item.type);
+                    var module = itemSlot.item.GetGlobalItem<ModularItems>();
+                    var data = ModularItems.Catalogue.GetAllowedEquips(itemSlot.item.type);
                     for (int i = moduleSlot.Length - 1; i >= 0; i--)
                     {
                         if (moduleSlot[i].Y > itemSlot.Y)
                         {
-                            if (module.modules != null && module.modules.modules.ContainsKey(i))
+                            if (module.modules != null && module.modules.dict.ContainsKey(i))
                             {
-                                moduleSlot[i].item = module.modules.modules[i].Clone();
+                                moduleSlot[i].item = module.modules.dict[i].Clone();
                             }
                             else
                             {
@@ -194,26 +193,26 @@ namespace Aequus.UI.States
                                     SoundEngine.PlaySound(SoundID.Grab);
                                     if (module.modules == null)
                                     {
-                                        module.modules = new ModularItemsManager.ModuleData();
+                                        module.modules = new ModularItems.ItemModuleData();
                                     }
                                     if (Main.mouseItem == null || Main.mouseItem.IsAir)
                                     {
-                                        module.modules.modules.Remove(i);
+                                        module.modules.dict.Remove(i);
                                     }
                                     else
                                     {
-                                        if (module.modules.modules.ContainsKey(i))
+                                        if (module.modules.dict.ContainsKey(i))
                                         {
-                                            module.modules.modules[i] = Main.mouseItem;
+                                            module.modules.dict[i] = Main.mouseItem;
                                         }
                                         else
                                         {
-                                            module.modules.modules.Add(i, Main.mouseItem);
+                                            module.modules.dict.Add(i, Main.mouseItem);
                                         }
                                     }
                                     Utils.Swap(ref moduleSlot[i].item, ref Main.mouseItem);
                                 }
-                                if (!AequusHelpers.HasMouseItem&& !moduleSlot[i].item.IsAir)
+                                if (!AequusHelpers.HasMouseItem && !moduleSlot[i].item.IsAir)
                                 {
                                     UIHelper.HoverItem(moduleSlot[i].item, ItemSlot.Context.PrefixItem);
                                 }
@@ -279,7 +278,7 @@ namespace Aequus.UI.States
         }
         public static bool IsGrapplingHook(Item item)
         {
-            return ModularItemsManager.Catalogue.CanEquipAnyModules(item.type);
+            return ModularItems.Catalogue.CanEquipAnyModules(item.type);
         }
         public static bool CanSwapBarb(Item item, Item mouseItem)
         {
@@ -295,7 +294,7 @@ namespace Aequus.UI.States
         }
         public static bool IsBarb(Item item)
         {
-            return ModularItemsManager.Catalogue.ContainsModuleDataFor(item.type);
+            return ModularItems.Catalogue.ContainsModuleDataFor(item.type);
         }
     }
 }

@@ -9,8 +9,10 @@ namespace Aequus.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.DrinkParticleColors[Type] = new Color[] { new Color(255, 255, 255, 0), new Color(255, 100, 10, 0), new Color(255, 255, 40, 0), new Color(255, 200, 20, 0), };
             this.SetResearch(20);
+            ItemID.Sets.DrinkParticleColors[Type] = new Color[] { new Color(255, 255, 255, 0), new Color(255, 100, 10, 0), new Color(255, 255, 40, 0), new Color(255, 200, 20, 0), };
+
+            ItemTooltips.Catalogue.Dedicated[Type] = new ItemTooltips.Catalogue.ItemDedication(new Color(200, 80, 50, 255));
         }
 
         public override void SetDefaults()
@@ -24,7 +26,7 @@ namespace Aequus.Items.Consumables.Potions
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
             Item.rare = ItemRarityID.LightRed;
-            Item.value = ItemPriceProperties.PotionValue;
+            Item.value = ItemDefaults.PotionValue;
             Item.maxStack = 30;
             Item.buffTime = 28800;
             Item.buffType = ModContent.BuffType<NoonBuff>();

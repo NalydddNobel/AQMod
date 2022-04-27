@@ -33,6 +33,8 @@ namespace Aequus.Items.Weapons.Melee
         {
             this.SetResearch(1);
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
+
+            ItemTooltips.Catalogue.Dedicated[Type] = new ItemTooltips.Catalogue.ItemDedication(new Color(110, 110, 128, 255));
         }
 
         public override void SetDefaults()
@@ -86,14 +88,14 @@ namespace Aequus.Items.Weapons.Melee
             return false;
         }
 
-        public static void DrawRainbowAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin, 
-            float scale, SpriteEffects effects = SpriteEffects.None, float opacity = 1f, bool entitySpriteDraw = true, bool drawWhite = true, 
+        public static void DrawRainbowAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin,
+            float scale, SpriteEffects effects = SpriteEffects.None, float opacity = 1f, bool entitySpriteDraw = true, bool drawWhite = true,
             float rainbowScaleMultiplier = 1f, float rainbowOffsetScaleMultiplier = 4f, float rainbowOffsetScaleMultiplier2 = 1f)
         {
             DrawRainbowAura(spriteBatch, texture, vector, frame, rotation, origin, new Vector2(scale), effects, opacity, entitySpriteDraw, drawWhite, rainbowScaleMultiplier, rainbowOffsetScaleMultiplier, rainbowOffsetScaleMultiplier2);
         }
-        public static void DrawRainbowAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin, 
-            Vector2 scale, SpriteEffects effects = SpriteEffects.None, float opacity = 1f, bool entitySpriteDraw = true, bool drawWhite = true, 
+        public static void DrawRainbowAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin,
+            Vector2 scale, SpriteEffects effects = SpriteEffects.None, float opacity = 1f, bool entitySpriteDraw = true, bool drawWhite = true,
             float rainbowScaleMultiplier = 1f, float rainbowOffsetScaleMultiplier = 4f, float rainbowOffsetScaleMultiplier2 = 1f)
         {
             var clrs = EightWayRainbow;

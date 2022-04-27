@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.Catalogues;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
@@ -51,11 +51,11 @@ namespace Aequus.Items.Accessories
 
         protected void ColorRecipes<T>() where T : DyeableAccessory
         {
-            foreach (byte paint in ColorHelper.Instance.Paints)
+            foreach (byte paint in PaintsCatalogue.Paints)
             {
                 var r = CreateRecipe()
                     .AddIngredient<T>()
-                    .AddIngredient(ColorHelper.Instance.PaintToDye[paint])
+                    .AddIngredient(PaintsCatalogue.PaintToDye[paint])
                     .AddTile(TileID.DyeVat);
                 r.createItem.ModItem<T>().color = paint;
                 r.Register();

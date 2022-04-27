@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.HookEquips
 {
     public sealed class GrapplingHookModules
     {
-        public interface IHookBarbData : ModularItemsManager.IItemModuleData
+        public interface IHookBarbData : ModularItems.IModuleData
         {
             /// <summary>
             /// Ran in <see cref="GlobalProjectile.PreAI(Projectile)"/>
@@ -321,7 +321,7 @@ namespace Aequus.Items.Misc.HookEquips
         /// <returns></returns>
         public static void RegisterHookBarb(int item, IHookBarbData data)
         {
-            ModularItemsManager.Catalogue.RegisterModule(item, data);
+            ModularItems.Catalogue.RegisterModule(item, data);
         }
 
         /// <summary>
@@ -331,7 +331,7 @@ namespace Aequus.Items.Misc.HookEquips
         /// <returns>The generic hook barb data for this item. If there is none, throws an error</returns>
         public static IHookBarbData GetHookBarb(int item)
         {
-            return (IHookBarbData)ModularItemsManager.Catalogue.GetModuleData(item);
+            return (IHookBarbData)ModularItems.Catalogue.GetModuleData(item);
         }
         /// <summary>
         /// 
@@ -351,7 +351,7 @@ namespace Aequus.Items.Misc.HookEquips
         /// <returns>The generic hook barb data for this item</returns>
         public static bool TryGetHookBarb(int item, out IHookBarbData value)
         {
-            if (ModularItemsManager.Catalogue.TryGetModuleData(item, out var value2))
+            if (ModularItems.Catalogue.TryGetModuleData(item, out var value2))
             {
                 value = (IHookBarbData)value2;
                 return true;

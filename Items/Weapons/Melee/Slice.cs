@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Common;
 using Aequus.Projectiles.Melee;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
@@ -26,8 +26,8 @@ namespace Aequus.Items.Weapons.Melee
             Item.width = 20;
             Item.height = 20;
             Item.autoReuse = true;
-            Item.rare = ItemRarityConstants.GaleStreams;
-            Item.value = ItemPriceProperties.GaleStreamsValue;
+            Item.rare = ItemDefaults.RarityGaleStreams;
+            Item.value = ItemDefaults.GaleStreamsValue;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -47,7 +47,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void AddRecipes()
         {
-            ConsistentRecipes.SpaceSquidDrop(this, ModContent.ItemType<CrystalDagger>());
+            CommonRecipes.SpaceSquidDrop(this, ModContent.ItemType<CrystalDagger>());
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

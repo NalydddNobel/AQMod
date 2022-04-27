@@ -13,7 +13,7 @@ namespace Aequus.Items.Armor.Vanity
         public override void SetDefaults()
         {
             Item.DefaultToHeadgear(16, 16, Item.headSlot);
-            Item.rare = ItemRarityConstants.BossMasks;
+            Item.rare = ItemDefaults.RarityBossMasks;
         }
     }
 }

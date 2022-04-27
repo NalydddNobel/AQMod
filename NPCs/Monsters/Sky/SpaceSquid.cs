@@ -764,7 +764,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 return true;
             }
 
-            _importantDeath = AequusWorld.killsSpaceSquid < 2 && NPC.CountNPCS(Type) <= 1;
+            _importantDeath = !AequusWorld.downedSpaceSquid && NPC.CountNPCS(Type) <= 1;
             NPC.ai[0] = PHASE_DEAD;
             NPC.ai[1] = 0f;
             NPC.ai[2] = 0f;
@@ -790,7 +790,6 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void OnKill()
         {
             AequusWorld.DefeatEvent(ref AequusWorld.downedSpaceSquid);
-            AequusWorld.killsSpaceSquid++;
         }
 
         //public override void NPCLoot()
@@ -896,7 +895,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 {
                     float progress2 = 1f - 1f / 10f * (i + 2);
                     spriteBatch.Draw(pixel, eyePosition + new Vector2(0f, i * scale.Y * (1f - progress)) - screenPos, frame, laserColor * progress2 * opacity, 0f, new Vector2(0f, 0.5f), scale, SpriteEffects.None, 0f);
-                    spriteBatch.Draw(pixel, eyePosition - new Vector2(0f, i * scale.Y * (1f- progress)) - screenPos, frame, laserColor * progress2 * opacity, 0f, new Vector2(0f, 0.5f), scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(pixel, eyePosition - new Vector2(0f, i * scale.Y * (1f - progress)) - screenPos, frame, laserColor * progress2 * opacity, 0f, new Vector2(0f, 0.5f), scale, SpriteEffects.None, 0f);
                 }
 
             }

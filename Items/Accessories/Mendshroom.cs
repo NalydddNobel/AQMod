@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players.StatData;
+﻿using Aequus.Common.Players;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -16,8 +16,8 @@ namespace Aequus.Items.Accessories
         public override void SetDefaults()
         {
             Item.DefaultToAccessory();
-            Item.rare = ItemRarityConstants.CrabCrevice;
-            Item.value = ItemPriceProperties.CrabCreviceValue;
+            Item.rare = ItemDefaults.RarityCrabCrevice;
+            Item.value = ItemDefaults.CrabCreviceValue;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

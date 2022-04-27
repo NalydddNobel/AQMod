@@ -33,7 +33,7 @@ namespace Aequus.UI
         public override void Load()
         {
             LoadHooks();
-            ValidOnlineLinkedSlotContext = new HashSet<int>() 
+            ValidOnlineLinkedSlotContext = new HashSet<int>()
             {
                 ItemSlot.Context.EquipAccessory,
                 ItemSlot.Context.ModdedAccessorySlot,

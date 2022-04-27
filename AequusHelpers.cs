@@ -6,11 +6,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
-using Terraria.Chat;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -22,42 +20,39 @@ namespace Aequus
 
         public static StaticManipulator<bool> Main_dayTime { get; private set; }
 
-        public static Color BossSummonMessage => new Color(175, 75, 255, 255);
-        internal static Color EventMessage => new Color(50, 255, 130, 255);
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
 
-        public static string ItemText(int item)
+        public static T GetValue<T>(this PropertyInfo property, object obj)
         {
-            return "[i:" + item + "]";
+            return (T)property.GetValue(obj);
         }
-        public static string ItemText<T>() where T : ModItem
+        public static T GetValue<T>(this FieldInfo field, object obj)
         {
-            return ItemText(ModContent.ItemType<T>());
+            return (T)field.GetValue(obj);
         }
-
-        public static void HasAwakened(NPC npc)
+        public static T ReflectiveCloneTo<T>(this T obj, T obj2)
         {
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                Main.NewText(Language.GetTextValue("Announcement.HasAwoken", npc.TypeName), BossSummonMessage);
-            }
-            else if (Main.netMode == NetmodeID.Server)
-            {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", npc.GetTypeNetName()), BossSummonMessage);
-            }
+            return ReflectiveCloneTo(obj, obj2, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         }
-        public static void HasAwakened(string key)
+        public static T ReflectiveCloneTo<T>(this T obj, T obj2, BindingFlags flags)
         {
-            if (Main.netMode == NetmodeID.SinglePlayer)
+            var t = typeof(T);
+            foreach (var f in t.GetFields(flags))
             {
-                Main.NewText(Language.GetTextValue("Announcement.HasAwoken", Language.GetTextValue(key)), BossSummonMessage);
+                if (!f.IsInitOnly)
+                {
+                    f.SetValue(obj2, f.GetValue(obj));
+                }
             }
-            else if (Main.netMode == NetmodeID.Server)
+            foreach (var p in t.GetProperties(flags))
             {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", key), BossSummonMessage);
+                if (p.CanWrite)
+                {
+                    p.SetValue(obj2, p.GetValue(obj));
+                }
             }
+            return obj2;
         }
-
 
         public static NPC CreateSudo(NPC npc)
         {

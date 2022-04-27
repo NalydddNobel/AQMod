@@ -13,7 +13,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-            CooldownsItem.HasWeaponCooldown.Add(Type);
+            CooldownItems.HasWeaponCooldown.Add(Type);
         }
 
         public override void SetDefaults()
@@ -23,8 +23,8 @@ namespace Aequus.Items.Weapons.Magic
             Item.damage = 47;
             Item.useTime = 24;
             Item.useAnimation = 24;
-            Item.rare = ItemRarityConstants.GaleStreams;
-            Item.value = ItemPriceProperties.GaleStreamsValue;
+            Item.rare = ItemDefaults.RarityGaleStreams;
+            Item.value = ItemDefaults.GaleStreamsValue;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item1;
             Item.DamageType = DamageClass.Magic;

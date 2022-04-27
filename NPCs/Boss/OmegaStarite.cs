@@ -1521,8 +1521,8 @@ namespace Aequus.NPCs.Boss
             {
                 if (positions[i].Z > 0f)
                 {
-                    var drawPosition = PerspectiveHelper.GetParralaxPosition(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f, viewPos) - screenPos;
-                    var drawScale = PerspectiveHelper.GetParralaxScale(positions[i].W, positions[i].Z * 0.0314f);
+                    var drawPosition = OrthographicView.GetViewPoint(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f, viewPos) - screenPos;
+                    var drawScale = OrthographicView.GetViewScale(positions[i].W, positions[i].Z * 0.0314f);
                     foreach (var draw in drawOmegite)
                     {
                         draw.Invoke(
@@ -1576,8 +1576,8 @@ namespace Aequus.NPCs.Boss
             }
             for (int i = 0; i < positions.Count; i++)
             {
-                var drawPosition = PerspectiveHelper.GetParralaxPosition(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f, viewPos) - screenPos;
-                var drawScale = PerspectiveHelper.GetParralaxScale(positions[i].W, positions[i].Z * 0.0314f);
+                var drawPosition = OrthographicView.GetViewPoint(new Vector2(positions[i].X, positions[i].Y), positions[i].Z * 0.00728f, viewPos) - screenPos;
+                var drawScale = OrthographicView.GetViewScale(positions[i].W, positions[i].Z * 0.0314f);
                 foreach (var draw in drawOmegite)
                 {
                     draw.Invoke(

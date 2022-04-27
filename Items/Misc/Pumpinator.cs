@@ -38,12 +38,12 @@ namespace Aequus.Items.Misc
         {
             try
             {
-                int index = ItemTooltipsHelper.GetLineIndex(tooltips, "Material");
+                int index = ItemTooltips.GetLineIndex(tooltips, "Material");
                 if (!Main.hardMode || AequusWorld.downedEventGaleStreams)
                 {
                     return;
                 }
-                tooltips.Insert(1, new TooltipLine(Mod, "StartsGaleStreams", Aequus.GetText("GaleStreamsHint")) { OverrideColor = ItemTooltipsHelper.MysteriousGuideTooltip, });
+                tooltips.Insert(1, new TooltipLine(Mod, "StartsGaleStreams", Aequus.GetText("GaleStreamsHint")) { OverrideColor = ItemTooltips.MysteriousGuideTooltip, });
             }
             catch
             {
@@ -52,10 +52,6 @@ namespace Aequus.Items.Misc
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            AequusHelpers.spawnNPC<NPCs.Monsters.Sky.SpaceSquid>(position);
-            AequusWorld.killsSpaceSquid = 0;
-            //AequusHelpers.spawnNPC<NPCs.Monsters.Sky.RedSprite>(position);
-            //AequusWorld.killsRedSprite = 0;
             if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeWindDirectionAndStrength>().Enabled && !LanternNight.LanternsUp)
             {
                 float windChange = 0.02f * (1f - velocity.Y.Abs() / Item.shootSpeed) * Math.Sign(velocity.X);

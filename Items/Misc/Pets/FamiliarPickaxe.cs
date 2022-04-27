@@ -12,6 +12,8 @@ namespace Aequus.Items.Misc.Pets
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
+
+            ItemTooltips.Catalogue.Dedicated[Type] = new ItemTooltips.Catalogue.ItemDedication(new Color(200, 65, 70, 255));
         }
 
         public override void SetDefaults()

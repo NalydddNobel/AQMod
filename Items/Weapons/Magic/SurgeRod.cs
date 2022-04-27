@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Common;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -24,8 +24,8 @@ namespace Aequus.Items.Weapons.Magic
             Item.useStyle = ItemUseStyleID.Swing;
             Item.mana = 10;
             Item.UseSound = SoundID.Item66;
-            Item.rare = ItemRarityConstants.GaleStreams;
-            Item.value = ItemPriceProperties.GaleStreamsValue;
+            Item.rare = ItemDefaults.RarityGaleStreams;
+            Item.value = ItemDefaults.GaleStreamsValue;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -37,7 +37,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            ConsistentRecipes.RedSpriteDrop(this, ItemID.NimbusRod);
+            CommonRecipes.RedSpriteDrop(this, ItemID.NimbusRod);
         }
     }
 }

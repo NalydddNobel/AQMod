@@ -38,7 +38,7 @@ namespace Aequus.Items.Misc.Dyes
         {
             if (line.Mod == "Terraria" && line.Name == "ItemName")
             {
-                ItemTooltipsHelper.DrawDevTooltip(line);
+                ItemTooltips.DrawDevTooltip(line);
                 return false;
             }
             return true;

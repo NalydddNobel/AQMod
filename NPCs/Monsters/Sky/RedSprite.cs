@@ -51,7 +51,7 @@ namespace Aequus.NPCs.Monsters.Sky
         public Color lightningBloomColor = new Color(128, 10, 5, 0);
 
         private bool _setupFrame;
-        
+
         private float _brightnessTimer;
         private float _brightness;
         private bool _deathEffect;
@@ -695,7 +695,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 NPC.HitEffect(0, NPC.lifeMax);
                                 if (NPC.Distance(Main.LocalPlayer.Center) < 2000f)
                                 {
-                                    bool reduceFX = NPC.CountNPCS(Type) > 1 || AequusWorld.killsRedSprite >= 2;
+                                    bool reduceFX = AequusWorld.downedRedSprite || NPC.CountNPCS(Type) > 1;
                                     FlashScene.Flash.Set(NPC.Center, reduceFX ? 2f : 7.5f, 0.6f);
                                     EffectsSystem.Shake.Set(reduceFX ? 18f : 20f);
                                 }
@@ -1068,7 +1068,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 return true;
             }
 
-            _importantDeath = AequusWorld.killsRedSprite < 2 && NPC.CountNPCS(Type) <= 1;
+            _importantDeath = !AequusWorld.downedRedSprite && NPC.CountNPCS(Type) <= 1;
             NPC.ai[0] = PHASE_DEAD;
             NPC.ai[1] = 0f;
             NPC.ai[2] = 0f;
@@ -1093,7 +1093,6 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void OnKill()
         {
             AequusWorld.DefeatEvent(ref AequusWorld.downedRedSprite);
-            AequusWorld.killsRedSprite++;
         }
 
         //public override void NPCLoot()
@@ -1144,7 +1143,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
                     Main.instance.LoadNPC(NPCID.AngryNimbus);
                     var nimbusTexture = TextureAssets.Npc[NPCID.AngryNimbus].Value;
-                    var nimbusFrame = nimbusTexture.Frame(verticalFrames: Main.npcFrameCount[NPCID.AngryNimbus], 
+                    var nimbusFrame = nimbusTexture.Frame(verticalFrames: Main.npcFrameCount[NPCID.AngryNimbus],
                         frameY: AequusHelpers.TimedBasedOn((int)Main.GameUpdateCount, 6, Main.npcFrameCount[NPCID.AngryNimbus]));
                     var nimbusOrigin = nimbusFrame.Size() / 2f;
 
@@ -1171,7 +1170,7 @@ namespace Aequus.NPCs.Monsters.Sky
         }
         private void DrawLightning(Vector2 screenPos)
         {
-            LightningDrawOpacity = Math.Min(1f - (NPC.ai[1] - 65f) / 10f , 1f);
+            LightningDrawOpacity = Math.Min(1f - (NPC.ai[1] - 65f) / 10f, 1f);
 
             if (LightningDrawOpacity <= 0f)
             {

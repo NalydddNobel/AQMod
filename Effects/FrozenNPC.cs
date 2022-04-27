@@ -1,5 +1,4 @@
 ﻿using Aequus.Assets;
-using Aequus.Common.Networking;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

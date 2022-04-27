@@ -10,7 +10,7 @@ namespace Aequus.Effects
     {
         private Asset<Effect> miscEffect;
         public Asset<Effect> MiscEffect { get => miscEffect; }
-        public static MiscShaderData MiscShader { get => GameShaders.Misc["Aequus:Misc"]; set => GameShaders.Misc ["Aequus:Misc"] = value; }
+        public static MiscShaderData MiscShader { get => GameShaders.Misc["Aequus:Misc"]; set => GameShaders.Misc["Aequus:Misc"] = value; }
         public const string MiscShaderKey = "Aequus:Misc";
 
         public EffectCache()

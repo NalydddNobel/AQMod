@@ -1,8 +1,8 @@
 ﻿using System.IO;
 
-namespace Aequus.Common
+namespace Aequus.Common.Networking
 {
-    public interface INetBinary
+    public interface IBinaryNetworker
     {
         void Send(BinaryWriter writer);
         void Receive(BinaryReader reader);

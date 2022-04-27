@@ -6,7 +6,7 @@ namespace Aequus.Items.Misc.Energies
 {
     public class DemonicEnergy : BaseEnergy
     {
-        protected override IColorGradient Gradient => ColorHelper.Instance.DemonicGrad;
+        protected override IColorGradient Gradient => Gradients.demonicGrad;
         protected override Vector3 LightColor => new Vector3(0.8f, 0.2f, 0.2f);
         public override int Rarity => ItemRarityID.Orange;
     }

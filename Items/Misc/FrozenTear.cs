@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.Catalogues;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -10,7 +10,7 @@ namespace Aequus.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityMaterials[Type] = ItemMaterialSortingConstants.SoulOfFlight;
+            ItemID.Sets.SortingPriorityMaterials[Type] = ItemMaterialSort.SoulOfFlight;
             ItemID.Sets.ItemNoGravity[Type] = true;
             this.SetResearch(25);
         }
@@ -20,7 +20,7 @@ namespace Aequus.Items.Misc
             Item.width = 12;
             Item.height = 12;
             Item.maxStack = 999;
-            Item.rare = ItemRarityConstants.GaleStreams - 1;
+            Item.rare = ItemDefaults.RarityGaleStreams - 1;
             Item.value = Item.sellPrice(silver: 15);
         }
 

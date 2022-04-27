@@ -38,15 +38,11 @@ namespace Aequus.Common.Players
         private bool initUpdate;
         public static IColorGradient NalydGradient { get; private set; }
         public IColorGradient NalydGradientPersonal { get; private set; }
-        public IColorGradient ThunderbirdGradient { get; private set; }
-        public IColorGradient BaguetteGradient { get; private set; }
 
         private void InitUpdate(string name = null)
         {
-            NalydGradient = new ColorWaveGradient(10f, Color.Violet, Color.MediumPurple);
+            NalydGradient = new Gradients.ColorWaveGradient(10f, Color.Violet, Color.MediumPurple);
             NalydGradientPersonal = NalydGradient;
-            ThunderbirdGradient = new ColorWaveGradient(10f, new Color(255, 120, 200), new Color(170, 80, 200));
-            BaguetteGradient = new ColorWaveGradient(10f, new Color(255, 222, 150), new Color(170, 130, 80));
         }
         public override void Initialize()
         {

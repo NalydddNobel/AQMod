@@ -1,6 +1,5 @@
 using Aequus.Common.Configuration;
 using Aequus.Common.Utilities;
-using Aequus.Localization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -26,7 +25,7 @@ namespace Aequus
         {
             Instance = this;
             Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
-            ModTranslationHelpers.OnModLoad(this);
+            AequusText.OnModLoad(this);
             ClientConfiguration.AddText();
         }
 
@@ -65,7 +64,7 @@ namespace Aequus
 
         public static string GetText(string key)
         {
-            return ModTranslationHelpers.Text["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture);
+            return AequusText.Text["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture);
         }
     }
 }

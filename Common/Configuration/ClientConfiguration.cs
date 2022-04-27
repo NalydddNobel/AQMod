@@ -1,7 +1,6 @@
 ﻿using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Potions;
 using Aequus.Items.Weapons.Melee;
-using Aequus.Localization;
 using System;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
@@ -37,9 +36,9 @@ namespace Aequus.Common.Configuration
 
         internal static void AddText()
         {
-            ModTranslationHelpers.NewFromDict("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusHelpers.ItemText<Baguette>() + "  " + s);
-            ModTranslationHelpers.NewFromDict("Configuration.Client.FlashIntensity", "Label", (s) => AequusHelpers.ItemText<NoonPotion>() + "  " + s);
-            ModTranslationHelpers.NewFromDict("Configuration.Client.HighQuality", "Label", (s) => AequusHelpers.ItemText<MirrorsCall>() + "  " + s);
+            AequusText.NewFromDict("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusText.ItemText<Baguette>() + "  " + s);
+            AequusText.NewFromDict("Configuration.Client.FlashIntensity", "Label", (s) => AequusText.ItemText<NoonPotion>() + "  " + s);
+            AequusText.NewFromDict("Configuration.Client.HighQuality", "Label", (s) => AequusText.ItemText<MirrorsCall>() + "  " + s);
         }
     }
 }

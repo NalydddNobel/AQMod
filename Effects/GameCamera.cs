@@ -1,14 +1,15 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
+namespace Aequus.Effects
 {
     public sealed class GameCamera : ModSystem
     {
-        public string FocusKey { get; private set; }
+        public string FocusContext { get; private set; }
 
         private Vector2? target;
         private Vector2? cameraPosition;
@@ -43,7 +44,7 @@ namespace Aequus.Common
 
         public bool SetTarget(string key, Vector2 target, CameraPriority priority, float speed = 6f, int hold = 25)
         {
-            if (key == FocusKey)
+            if (key == FocusContext)
             {
                 this.hold = hold;
             }
@@ -54,7 +55,7 @@ namespace Aequus.Common
                 this.speed = speed;
                 returning = false;
                 this.hold = hold;
-                FocusKey = key;
+                FocusContext = key;
                 return true;
             }
             return false;
@@ -101,7 +102,7 @@ namespace Aequus.Common
                     target = null;
                     cameraProgress = 0f;
                     cameraPosition = null;
-                    FocusKey = null;
+                    FocusContext = null;
                     return;
                 }
                 cameraPosition = Main.screenPosition + difference * cameraProgress;

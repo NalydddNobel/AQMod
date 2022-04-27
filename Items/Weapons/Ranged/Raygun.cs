@@ -1,5 +1,4 @@
-﻿using Aequus.Projectiles;
-using Aequus.Projectiles.Ranged;
+﻿using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -25,12 +24,12 @@ namespace Aequus.Items.Weapons.Ranged
             Item.height = 24;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityConstants.RarityOmegaStarite;
+            Item.rare = ItemDefaults.RarityOmegaStarite;
             Item.shoot = ModContent.ProjectileType<RaygunBullet>();
             Item.shootSpeed = 7.5f;
             Item.autoReuse = true;
             Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/raygun")?.WithVolume(0.2f);
-            Item.value = ItemPriceProperties.OmegaStariteDropValue;
+            Item.value = ItemDefaults.OmegaStariteDropValue;
             Item.knockBack = 1f;
             Item.useAmmo = AmmoID.Bullet;
         }

@@ -7,7 +7,7 @@ namespace Aequus.Items.Misc.Dyes
     public class FrostbiteDye : DyeItemBase
     {
         public override string Pass => "HoriztonalWavePass";
-        public override int Rarity => ItemRarityConstants.GaleStreams - 1;
+        public override int Rarity => ItemDefaults.RarityGaleStreams - 1;
 
         public override ArmorShaderData CreateShaderData()
         {

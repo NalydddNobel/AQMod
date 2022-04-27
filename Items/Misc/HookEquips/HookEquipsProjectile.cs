@@ -48,12 +48,12 @@ namespace Aequus.Items.Misc.HookEquips
             var grapplingHook = item;
             if (grapplingHook != null && !grapplingHook.IsAir)
             {
-                var modules = grapplingHook.GetGlobalItem<ModularItemsManager>().modules;
+                var modules = grapplingHook.GetGlobalItem<ModularItems>().modules;
                 if (modules != null)
                 {
-                    int[] barbs = new int[modules.modules.Count];
+                    int[] barbs = new int[modules.dict.Count];
                     int i = 0;
-                    foreach (var pair in modules.modules)
+                    foreach (var pair in modules.dict)
                     {
                         barbs[i] = pair.Value.type;
                         i++;

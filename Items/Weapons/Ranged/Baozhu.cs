@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Common;
 using Aequus.Projectiles.Ranged;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,11 +22,11 @@ namespace Aequus.Items.Weapons.Ranged
             Item.height = 16;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.rare = ItemRarityConstants.GaleStreams;
+            Item.rare = ItemDefaults.RarityGaleStreams;
             Item.shoot = ModContent.ProjectileType<BaozhuProj>();
             Item.shootSpeed = 8.5f;
             Item.UseSound = SoundID.Item1;
-            Item.value = ItemPriceProperties.GaleStreamsValue;
+            Item.value = ItemDefaults.GaleStreamsValue;
             Item.noMelee = true;
             Item.knockBack = 7f;
             Item.noUseGraphic = true;
@@ -35,7 +35,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void AddRecipes()
         {
-            ConsistentRecipes.RedSpriteDrop(this, ItemID.MolotovCocktail, 50);
+            CommonRecipes.RedSpriteDrop(this, ItemID.MolotovCocktail, 50);
         }
     }
 }

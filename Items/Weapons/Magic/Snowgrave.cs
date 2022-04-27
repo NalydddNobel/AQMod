@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Common;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -19,11 +19,11 @@ namespace Aequus.Items.Weapons.Magic
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useTime = 160;
             Item.useAnimation = 160;
-            Item.rare = ItemRarityConstants.GaleStreams;
+            Item.rare = ItemDefaults.RarityGaleStreams;
             Item.shootSpeed = 32f;
             Item.autoReuse = true;
             Item.noMelee = true;
-            Item.value = ItemPriceProperties.GaleStreamsValue;
+            Item.value = ItemDefaults.GaleStreamsValue;
             Item.mana = 200;
             Item.shoot = ModContent.ProjectileType<SnowgraveProjSpawner>();
         }
@@ -43,7 +43,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            ConsistentRecipes.SpaceSquidDrop(this, ItemID.WaterBolt);
+            CommonRecipes.SpaceSquidDrop(this, ItemID.WaterBolt);
         }
     }
 }

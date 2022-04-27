@@ -120,7 +120,7 @@ namespace Aequus.Projectiles.Ranged
                 Projectile.aiStyle = -1;
                 Projectile.DamageType = DamageClass.Ranged;
             }
-            SetDefaults(); 
+            SetDefaults();
             Projectile.extraUpdates++;
             Projectile.extraUpdates *= 6;
             Projectile.netUpdate = true;

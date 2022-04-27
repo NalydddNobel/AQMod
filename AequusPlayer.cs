@@ -1,7 +1,5 @@
-﻿using Aequus.Common;
-using Aequus.Common.Catalogues;
+﻿using Aequus.Common.Catalogues;
 using Aequus.Common.Players;
-using Aequus.Common.Players.StatData;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Microsoft.Xna.Framework;
@@ -116,11 +114,11 @@ namespace Aequus
         {
             if (forceDaytime == 1)
             {
-                AequusHelpers.Main_dayTime.TemporarilySet(true);
+                AequusHelpers.Main_dayTime.StartCaching(true);
             }
             else if (forceDaytime == 2)
             {
-                AequusHelpers.Main_dayTime.TemporarilySet(false);
+                AequusHelpers.Main_dayTime.StartCaching(false);
             }
             eventGaleStreams = CheckEventGaleStreams();
             forceDaytime = 0;
@@ -147,7 +145,7 @@ namespace Aequus
         public override bool PreItemCheck()
         {
             if (AequusHelpers.Main_dayTime.IsCaching)
-                AequusHelpers.Main_dayTime.Repair();
+                AequusHelpers.Main_dayTime.RepairCachedStatic();
             if (itemCombo > 0)
             {
                 itemCombo--;
@@ -193,7 +191,7 @@ namespace Aequus
         public override void PostItemCheck()
         {
             if (AequusHelpers.Main_dayTime.IsCaching)
-                AequusHelpers.Main_dayTime.Disrepair();
+                AequusHelpers.Main_dayTime.DisrepairCachedStatic();
             if (Player.selectedItem != lastSelectedItem)
             {
                 lastSelectedItem = Player.selectedItem;

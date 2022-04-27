@@ -9,13 +9,13 @@ namespace Aequus.Items.Armor.Vanity
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-            ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true; 
+            ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 
         public override void SetDefaults()
         {
             Item.DefaultToHeadgear(16, 16, Item.headSlot);
-            Item.rare = ItemRarityConstants.BossMasks;
+            Item.rare = ItemDefaults.RarityBossMasks;
         }
     }
 }

@@ -4,7 +4,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
-using Terraria.ID;
 
 namespace Aequus
 {

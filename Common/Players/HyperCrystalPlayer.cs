@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Players.StatData
+namespace Aequus.Common.Players
 {
     /// <summary>
     /// Used by <see cref="Items.Accessories.HyperCrystal"/>
@@ -43,7 +43,7 @@ namespace Aequus.Common.Players.StatData
         }
         private void CalcDamage(Rectangle targetRect, ref int damage)
         {
-            if (effectCircumference > 0f && Player.Distance(targetRect.ClosestDistance(Player.Center)) < (effectCircumference / 2f))
+            if (effectCircumference > 0f && Player.Distance(targetRect.ClosestDistance(Player.Center)) < effectCircumference / 2f)
             {
                 damage = (int)(damage * damageMultiplier);
             }

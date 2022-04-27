@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Configuration;
-using Aequus.Common.Catalogues;
+﻿using Aequus.Common.Catalogues;
+using Aequus.Common.Configuration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

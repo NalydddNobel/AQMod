@@ -17,7 +17,7 @@ namespace Aequus.NPCs
         {
             var result = orig(self, rule, info);
             if (info.player != null && result.State == ItemDropAttemptResultState.FailedRandomRoll)
-            {                
+            {
                 if (AequusHelpers.iterations == 0)
                 {
                     for (float luckLeft = info.player.Aequus().lootLuck; luckLeft > 0f; luckLeft--)

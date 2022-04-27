@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
-    public sealed class CooldownsItem : GlobalItem
+    public sealed class CooldownItems : GlobalItem
     {
         /// <summary>
         /// Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown

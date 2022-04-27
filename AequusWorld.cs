@@ -13,9 +13,6 @@ namespace Aequus
         public static bool downedCrabson;
         public static bool downedOmegaStarite;
 
-        public static int killsSpaceSquid;
-        public static int killsRedSprite;
-
         public static bool HardmodeTier => Main.hardMode || downedOmegaStarite;
 
         public override void OnWorldLoad()
@@ -25,9 +22,6 @@ namespace Aequus
             downedEventGaleStreams = false;
             downedCrabson = false;
             downedOmegaStarite = false;
-
-            killsRedSprite = 0;
-            killsSpaceSquid = 0;
         }
 
         public override void SaveWorldData(TagCompound tag)
@@ -37,9 +31,6 @@ namespace Aequus
             tag["GaleStreams"] = downedEventGaleStreams;
             tag["Crabson"] = downedCrabson;
             tag["OmegaStarite"] = downedOmegaStarite;
-
-            tag["SpaceSquidKills"] = killsSpaceSquid;
-            tag["RedSpriteKills"] = killsRedSprite;
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -49,9 +40,6 @@ namespace Aequus
             downedEventGaleStreams = tag.Get<bool>("GaleStreams");
             downedCrabson = tag.Get<bool>("Crabson");
             downedOmegaStarite = tag.Get<bool>("OmegaStarite");
-
-            killsSpaceSquid = tag.Get<int>("SpaceSquidKills");
-            killsRedSprite = tag.Get<int>("RedSpriteKills");
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -61,9 +49,6 @@ namespace Aequus
             writer.Write(downedEventGaleStreams);
             writer.Write(downedCrabson);
             writer.Write(downedOmegaStarite);
-
-            writer.Write(killsSpaceSquid);
-            writer.Write(killsRedSprite);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -73,9 +58,6 @@ namespace Aequus
             downedEventGaleStreams = reader.ReadBoolean();
             downedCrabson = reader.ReadBoolean();
             downedOmegaStarite = reader.ReadBoolean();
-
-            killsSpaceSquid = reader.ReadInt32();
-            killsRedSprite = reader.ReadInt32();
         }
 
         public static void DefeatEvent(ref bool defeated)

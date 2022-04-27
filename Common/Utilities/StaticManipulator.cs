@@ -27,7 +27,7 @@ namespace Aequus.Common.Utilities
             _caching = false;
         }
 
-        public void TemporarilySet(T value)
+        public void StartCaching(T value)
         {
             if (_caching)
             {
@@ -40,7 +40,7 @@ namespace Aequus.Common.Utilities
             _caching = true;
         }
 
-        public void Repair()
+        public void RepairCachedStatic()
         {
             if (!_caching)
             {
@@ -49,7 +49,7 @@ namespace Aequus.Common.Utilities
             _ref.Invoke() = _origValue;
         }
 
-        public void Disrepair()
+        public void DisrepairCachedStatic()
         {
             if (!_caching)
             {

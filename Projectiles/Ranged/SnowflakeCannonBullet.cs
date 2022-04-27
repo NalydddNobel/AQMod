@@ -92,7 +92,7 @@ namespace Aequus.Projectiles.Ranged
             var frame = texture.Frame(verticalFrames: Main.projFrames[Type], frameY: Projectile.frame);
             var trailColor = new Color(15, 120, 222, 0) * (1f - Projectile.alpha / 255f);
             var origin = frame.Size() / 2f;
-            this.DrawTrail((v, progress) => 
+            this.DrawTrail((v, progress) =>
             {
                 Main.EntitySpriteDraw(texture, v - Main.screenPosition, frame, Color.Lerp(new Color(15, 120, 222, 0), new Color(1, 111, 255), AequusHelpers.Wave(progress * MathHelper.TwoPi + Main.GlobalTimeWrappedHourly * 2f, 0f, 1f)) * progress, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             });

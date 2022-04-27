@@ -3,7 +3,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Players.StatData
+namespace Aequus.Common.Players
 {
     /// <summary>
     /// Used by <see cref="Items.Accessories.Mendshroom"/>
@@ -46,7 +46,7 @@ namespace Aequus.Common.Players.StatData
         {
             for (int i = 0; i < Main.maxPlayers; i++)
             {
-                if (i == healer.whoAmI || (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(healer.Center) < circumference / 2f))
+                if (i == healer.whoAmI || Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(healer.Center) < circumference / 2f)
                 {
                     HealPlayer(healer, i);
                 }

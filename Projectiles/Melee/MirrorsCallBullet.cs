@@ -3,7 +3,6 @@ using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee

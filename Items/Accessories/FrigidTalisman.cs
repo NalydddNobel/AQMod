@@ -19,8 +19,8 @@ namespace Aequus.Items.Accessories
             Item.width = 28;
             Item.height = 28;
             Item.accessory = true;
-            Item.rare = ItemRarityConstants.GaleStreams;
-            Item.value = ItemPriceProperties.GaleStreamsValue;
+            Item.rare = ItemDefaults.RarityGaleStreams;
+            Item.value = ItemDefaults.GaleStreamsValue;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

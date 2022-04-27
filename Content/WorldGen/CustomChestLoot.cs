@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Catalogues;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Melee;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
