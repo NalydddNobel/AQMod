@@ -1434,7 +1434,7 @@ Mods: {
 			DwarfStarite: 侏儒源星
 			Starite: 星之源
 			UltraStarite: 终耀源星
-			Snobster: "{$Mods.Aequus.ItemName.Snobster}"
+			SnobsterCritter: 势利鬼虾
 			JerryCrabson: 巨蟹蛤
 			JerryClaw: 蟹蛤之爪
 			Magmalbubble: 熔火喷吐者
