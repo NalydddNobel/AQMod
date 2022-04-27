@@ -116,11 +116,11 @@ namespace Aequus
         {
             if (forceDaytime == 1)
             {
-                Aequus.DayTimeManipulator.TemporarilySet(true);
+                AequusHelpers.Main_dayTime.TemporarilySet(true);
             }
             else if (forceDaytime == 2)
             {
-                Aequus.DayTimeManipulator.TemporarilySet(false);
+                AequusHelpers.Main_dayTime.TemporarilySet(false);
             }
             eventGaleStreams = CheckEventGaleStreams();
             forceDaytime = 0;
@@ -146,8 +146,8 @@ namespace Aequus
 
         public override bool PreItemCheck()
         {
-            if (Aequus.DayTimeManipulator.Caching)
-                Aequus.DayTimeManipulator.Repair();
+            if (AequusHelpers.Main_dayTime.IsCaching)
+                AequusHelpers.Main_dayTime.Repair();
             if (itemCombo > 0)
             {
                 itemCombo--;
@@ -192,8 +192,8 @@ namespace Aequus
 
         public override void PostItemCheck()
         {
-            if (Aequus.DayTimeManipulator.Caching)
-                Aequus.DayTimeManipulator.Disrepair();
+            if (AequusHelpers.Main_dayTime.IsCaching)
+                AequusHelpers.Main_dayTime.Disrepair();
             if (Player.selectedItem != lastSelectedItem)
             {
                 lastSelectedItem = Player.selectedItem;
@@ -204,9 +204,9 @@ namespace Aequus
 
         public override void PostUpdate()
         {
-            if (Aequus.DayTimeManipulator.Caching)
+            if (AequusHelpers.Main_dayTime.IsCaching)
             {
-                Aequus.DayTimeManipulator.Clear();
+                AequusHelpers.Main_dayTime.EndCaching();
             }
             PostUpdate_CheckDanger();
         }

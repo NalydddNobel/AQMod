@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria;
@@ -186,7 +185,6 @@ namespace Aequus.Projectiles.Melee
             damaging = reader.ReadBoolean();
             damageTime = reader.ReadInt32();
             swing = reader.ReadSingle();
-            swingMultiplier = reader.ReadSingle();
             swingMultiplier = reader.ReadSingle();
             angleVector.X = reader.ReadSingle();
             angleVector.Y = reader.ReadSingle();

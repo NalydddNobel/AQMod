@@ -17,7 +17,7 @@ namespace Aequus
         public const string TextureNone = "Aequus/Assets/None";
 
         public static Aequus Instance { get; private set; }
-        public static StaticManipulator<bool> DayTimeManipulator { get; private set; }
+        public static StaticManipulator<bool> Main_dayTime { get; private set; }
 
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
         public static bool HQ => ClientConfiguration.Instance.HighQuality;
@@ -25,14 +25,15 @@ namespace Aequus
         public override void Load()
         {
             Instance = this;
-            DayTimeManipulator = new StaticManipulator<bool>(() => ref Main.dayTime);
-            AequusText.InitalizeReflection();
+            Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
+            ModTranslationHelpers.OnModLoad(this);
             ClientConfiguration.AddText();
         }
 
         public override void Unload()
         {
             Instance = null;
+            Main_dayTime = null;
         }
 
         public static Matrix GetWorldViewPoint()
@@ -64,7 +65,7 @@ namespace Aequus
 
         public static string GetText(string key)
         {
-            return AequusText.modTranslations["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture);
+            return ModTranslationHelpers.Text["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture);
         }
     }
 }

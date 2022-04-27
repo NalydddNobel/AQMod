@@ -82,7 +82,7 @@ namespace Aequus.NPCs
         {
             if (Main.netMode != NetmodeID.Server && FrozenNPC.CanFreezeNPC(npc))
             {
-                EffectsSystem.BehindProjs.Add(new FrozenNPC(npc.position, npc));
+                EffectsSystem.BehindProjs.Add(new FrozenNPC(npc.Center, npc));
             }
         }
     }

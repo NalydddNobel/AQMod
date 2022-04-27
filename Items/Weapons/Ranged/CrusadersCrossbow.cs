@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Healing
+namespace Aequus.Items.Weapons.Ranged
 {
     public class CrusadersCrossbow : ModItem
     {

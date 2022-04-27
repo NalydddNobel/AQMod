@@ -1,13 +1,16 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Chat;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -15,7 +18,46 @@ namespace Aequus
 {
     public static class AequusHelpers
     {
-        public static int Iterations;
+        public static int iterations;
+
+        public static StaticManipulator<bool> Main_dayTime { get; private set; }
+
+        public static Color BossSummonMessage => new Color(175, 75, 255, 255);
+        internal static Color EventMessage => new Color(50, 255, 130, 255);
+        public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
+
+        public static string ItemText(int item)
+        {
+            return "[i:" + item + "]";
+        }
+        public static string ItemText<T>() where T : ModItem
+        {
+            return ItemText(ModContent.ItemType<T>());
+        }
+
+        public static void HasAwakened(NPC npc)
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText(Language.GetTextValue("Announcement.HasAwoken", npc.TypeName), BossSummonMessage);
+            }
+            else if (Main.netMode == NetmodeID.Server)
+            {
+                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", npc.GetTypeNetName()), BossSummonMessage);
+            }
+        }
+        public static void HasAwakened(string key)
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                Main.NewText(Language.GetTextValue("Announcement.HasAwoken", Language.GetTextValue(key)), BossSummonMessage);
+            }
+            else if (Main.netMode == NetmodeID.Server)
+            {
+                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Announcement.HasAwoken", key), BossSummonMessage);
+            }
+        }
+
 
         public static NPC CreateSudo(NPC npc)
         {
@@ -92,11 +134,6 @@ namespace Aequus
         {
             float _ = float.NaN;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), from, to, size, ref _);
-        }
-
-        public static bool HasMouseItem()
-        {
-            return Main.mouseItem != null && !Main.mouseItem.IsAir;
         }
 
         public static bool IsThisTileOrIsACraftingStationOfThisTile(int craftingStationTile, int comparisonTile)
@@ -374,11 +411,11 @@ namespace Aequus
 
         public static Color MaxRGBA(this Color color, byte amt)
         {
-            return MaxRGBA(color, amt, amt);
+            return color.MaxRGBA(amt, amt);
         }
         public static Color MaxRGBA(this Color color, byte amt, byte a)
         {
-            return MaxRGBA(color, amt, amt, amt, a);
+            return color.MaxRGBA(amt, amt, amt, a);
         }
         public static Color MaxRGBA(this Color color, byte r, byte g, byte b, byte a)
         {
@@ -490,7 +527,7 @@ namespace Aequus
 
         public static bool Insert(this Chest chest, int itemType, int index)
         {
-            return Insert(chest, itemType, 1, index);
+            return chest.Insert(itemType, 1, index);
         }
         public static bool Insert(this Chest chest, int itemType, int itemStack, int index)
         {

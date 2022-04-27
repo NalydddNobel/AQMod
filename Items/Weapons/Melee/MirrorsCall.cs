@@ -69,10 +69,6 @@ namespace Aequus.Items.Weapons.Melee
             {
                 pitch += 1.8f;
             }
-            //if (SliceProj.FasterSwings(player.GetModPlayer<ItemVarsPlayer>().itemUsage))
-            //{
-            //    pitch += 1.8f;
-            //}
             SoundHelper.Play(SoundType.Sound, "swordswoosh" + Main.rand.Next(4), position, 0.7f, pitch);
             return true;
         }

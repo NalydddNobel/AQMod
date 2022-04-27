@@ -38,7 +38,8 @@ namespace Aequus.Items.Misc.Summons
                 SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
 
                 int n = NPC.NewNPC(new EntitySource_BossSpawn(player), (int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<Crabson>(), 0, 0f, 0f, 0f, 0f, player.whoAmI);
-                AequusText.BroadcastAwakened(Main.npc[n]);
+                
+                AequusHelpers.HasAwakened(Main.npc[n]);
                 AequusHelpers.SyncNPC(Main.npc[n]);
             }
             return true;

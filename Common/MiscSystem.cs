@@ -14,9 +14,9 @@ namespace Aequus.Common
 
         public override void PostUpdatePlayers()
         {
-            if (Aequus.DayTimeManipulator.Caching)
+            if (AequusHelpers.Main_dayTime.IsCaching)
             {
-                Aequus.DayTimeManipulator.Clear();
+                AequusHelpers.Main_dayTime.EndCaching();
             }
         }
     }

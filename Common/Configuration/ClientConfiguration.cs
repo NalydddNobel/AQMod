@@ -37,9 +37,9 @@ namespace Aequus.Common.Configuration
 
         internal static void AddText()
         {
-            AequusText.AdjustTranslation("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusText.Item<Baguette>() + "  " + s);
-            AequusText.AdjustTranslation("Configuration.Client.FlashIntensity", "Label", (s) => AequusText.Item<NoonPotion>() + "  " + s);
-            AequusText.AdjustTranslation("Configuration.Client.HighQuality", "Label", (s) => AequusText.Item<MirrorsCall>() + "  " + s);
+            ModTranslationHelpers.NewFromDict("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusHelpers.ItemText<Baguette>() + "  " + s);
+            ModTranslationHelpers.NewFromDict("Configuration.Client.FlashIntensity", "Label", (s) => AequusHelpers.ItemText<NoonPotion>() + "  " + s);
+            ModTranslationHelpers.NewFromDict("Configuration.Client.HighQuality", "Label", (s) => AequusHelpers.ItemText<MirrorsCall>() + "  " + s);
         }
     }
 }

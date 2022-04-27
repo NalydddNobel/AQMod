@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Effects;
+﻿using Aequus.Effects;
 using Aequus.Effects.Prims;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Particles.Dusts;

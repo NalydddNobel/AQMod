@@ -17,7 +17,7 @@ namespace Aequus.Common.Utilities
         private T _myValue;
         private T _origValue;
         private bool _caching;
-        public bool Caching => _caching;
+        public bool IsCaching => _caching;
 
         public StaticManipulator(GetReference reference)
         {
@@ -31,7 +31,7 @@ namespace Aequus.Common.Utilities
         {
             if (_caching)
             {
-                Clear();
+                EndCaching();
                 throw new InvalidCacheException("Trying to set cached data while there is already data being cached");
             }
             _myValue = value;
@@ -58,7 +58,7 @@ namespace Aequus.Common.Utilities
             _ref.Invoke() = _myValue;
         }
 
-        public void Clear()
+        public void EndCaching()
         {
             if (!_caching)
             {

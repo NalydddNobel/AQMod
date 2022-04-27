@@ -5,27 +5,17 @@ using Terraria.ModLoader;
 
 namespace Aequus.Localization
 {
-    public sealed partial class AequusText
+    internal sealed class ModTranslationHelpers : ILoadable
     {
         internal static FieldInfo translationsField;
-        internal static Dictionary<string, ModTranslation> modTranslations;
+        internal static Dictionary<string, ModTranslation> Text;
 
-        internal static void InitalizeReflection()
-        {
-            translationsField = typeof(ModTranslation).GetField("translations", BindingFlags.NonPublic | BindingFlags.Instance);
-            modTranslations = (Dictionary<string, ModTranslation>)typeof(LocalizationLoader).GetField("translations", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-        }
-
-        internal static void AdjustTranslation(string key, string key2, Func<string, string> modifyText)
-        {
-            AdjustTranslation(key, key2, modifyText, Aequus.Instance);
-        }
-        internal static void AdjustTranslation(string key, string key2, Func<string, string> modifyText, Aequus aQMod)
+        internal static void NewFromDict(string key, string key2, Func<string, string> modifyText)
         {
             try
             {
                 List<(int, string)> replacements = new List<(int, string)>();
-                var dict = GetTranslationsDict(modTranslations["Mods.Aequus." + key]);
+                var dict = GetTranslationsDict(Text["Mods.Aequus." + key]);
                 foreach (var value in dict)
                 {
                     replacements.Add((value.Key, modifyText(value.Value)));
@@ -45,6 +35,22 @@ namespace Aequus.Localization
         internal static Dictionary<int, string> GetTranslationsDict(ModTranslation text)
         {
             return (Dictionary<int, string>)translationsField.GetValue(text);
+        }
+
+        internal static void OnModLoad(Aequus mod)
+        {
+            translationsField = typeof(ModTranslation).GetField("translations", BindingFlags.NonPublic | BindingFlags.Instance);
+            Text = (Dictionary<string, ModTranslation>)typeof(LocalizationLoader).GetField("translations", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
+        }
+
+        void ILoadable.Load(Mod mod)
+        {
+        }
+
+        void ILoadable.Unload()
+        {
+            translationsField = null;
+            Text = null;
         }
     }
 }

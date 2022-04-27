@@ -172,7 +172,6 @@ namespace Aequus.Effects
                         _scale = Draw_DetermineIceSize(iceTexture, npc.frame);
                         _width = (int)(iceTexture.Width * _scale.X);
                         _height = (int)(iceTexture.Height * _scale.Y);
-                        TopLeft = LocalPosition;
                     }
                     if (_iceOrigin == Vector2.Zero)
                     {

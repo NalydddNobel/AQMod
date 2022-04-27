@@ -156,7 +156,7 @@ namespace Aequus.UI.States
                     SoundEngine.PlaySound(SoundID.Grab);
                     Utils.Swap(ref itemSlot.item, ref Main.mouseItem);
                 }
-                if (!AequusHelpers.HasMouseItem() && !itemSlot.item.IsAir)
+                if (!AequusHelpers.HasMouseItem&& !itemSlot.item.IsAir)
                 {
                     UIHelper.HoverItem(itemSlot.item, ItemSlot.Context.PrefixItem);
                 }
@@ -213,7 +213,7 @@ namespace Aequus.UI.States
                                     }
                                     Utils.Swap(ref moduleSlot[i].item, ref Main.mouseItem);
                                 }
-                                if (!AequusHelpers.HasMouseItem() && !moduleSlot[i].item.IsAir)
+                                if (!AequusHelpers.HasMouseItem&& !moduleSlot[i].item.IsAir)
                                 {
                                     UIHelper.HoverItem(moduleSlot[i].item, ItemSlot.Context.PrefixItem);
                                 }

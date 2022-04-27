@@ -42,9 +42,10 @@ namespace Aequus.Items.Misc.Summons
             if (player.whoAmI == Main.myPlayer)
             {
                 SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
+                
                 int n = NPC.NewNPC(new EntitySource_BossSpawn(player), (int)player.position.X, (int)player.position.Y - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, player.whoAmI);
 
-                AequusText.BroadcastAwakened(Main.npc[n]);
+                AequusHelpers.HasAwakened(Main.npc[n]);
                 AequusHelpers.SyncNPC(Main.npc[n]);
             }
             return true;

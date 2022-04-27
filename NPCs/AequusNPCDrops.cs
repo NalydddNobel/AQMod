@@ -18,7 +18,7 @@ namespace Aequus.NPCs
             var result = orig(self, rule, info);
             if (info.player != null && result.State == ItemDropAttemptResultState.FailedRandomRoll)
             {                
-                if (AequusHelpers.Iterations == 0)
+                if (AequusHelpers.iterations == 0)
                 {
                     for (float luckLeft = info.player.Aequus().lootLuck; luckLeft > 0f; luckLeft--)
                     {
@@ -30,18 +30,18 @@ namespace Aequus.NPCs
                             }
                         }
                         var result2 = orig(self, rule, info);
-                        AequusHelpers.Iterations++;
+                        AequusHelpers.iterations++;
                         if (result2.State != ItemDropAttemptResultState.FailedRandomRoll)
                         {
-                            AequusHelpers.Iterations = 0;
+                            AequusHelpers.iterations = 0;
                             return result2;
                         }
                     }
-                    AequusHelpers.Iterations = 0;
+                    AequusHelpers.iterations = 0;
                 }
                 else
                 {
-                    AequusHelpers.Iterations++;
+                    AequusHelpers.iterations++;
                 }
             }
             return result;
