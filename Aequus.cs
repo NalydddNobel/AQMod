@@ -16,15 +16,17 @@ namespace Aequus
         public const string TextureNone = "Aequus/Assets/None";
 
         public static Aequus Instance { get; private set; }
-        public static StaticManipulator<bool> Main_dayTime { get; private set; }
 
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
         public static bool HQ => ClientConfiguration.Instance.HighQuality;
 
+        internal static Color GreenSlimeColor => new Color(0, 220, 40, 100);
+        internal static Color BlueSlimeColor => new Color(0, 80, 255, 100);
+
         public override void Load()
         {
             Instance = this;
-            Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
+            AequusHelpers.Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
             AequusText.OnModLoad(this);
             ClientConfiguration.AddText();
         }
@@ -32,7 +34,7 @@ namespace Aequus
         public override void Unload()
         {
             Instance = null;
-            Main_dayTime = null;
+            AequusHelpers.Main_dayTime = null;
         }
 
         public static Matrix GetWorldViewPoint()

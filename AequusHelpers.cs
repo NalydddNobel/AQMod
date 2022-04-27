@@ -18,7 +18,7 @@ namespace Aequus
     {
         public static int iterations;
 
-        public static StaticManipulator<bool> Main_dayTime { get; private set; }
+        public static StaticManipulator<bool> Main_dayTime { get; internal set; }
 
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
 

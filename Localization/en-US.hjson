@@ -1434,7 +1434,7 @@ Mods: {
 			DwarfStarite: Dwarf Starite
 			Starite: Starite
 			UltraStarite: Ultra Starite
-			Snobster: "{$Mods.Aequus.ItemName.Snobster}"
+			SnobsterCritter: Snobster
 			JerryCrabson: Crabson
 			JerryClaw: Jerry Claw
 			Magmalbubble: Magmabubble

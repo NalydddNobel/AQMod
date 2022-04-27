@@ -142,12 +142,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Aequus.Common.Players.StatData.HyperCrystalPlayer">
+        <member name="T:Aequus.Common.Players.HyperCrystalPlayer">
             <summary>
             Used by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>
             </summary>
         </member>
-        <member name="T:Aequus.Common.Players.StatData.MendshroomPlayer">
+        <member name="T:Aequus.Common.Players.MendshroomPlayer">
             <summary>
             Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
             </summary>
@@ -170,7 +170,7 @@
             <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
-        <member name="P:Aequus.Items.CooldownsItem.HasWeaponCooldown">
+        <member name="P:Aequus.Items.CooldownItems.HasWeaponCooldown">
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
             </summary>
