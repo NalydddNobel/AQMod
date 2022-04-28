@@ -374,7 +374,7 @@ namespace Aequus.NPCs.Characters
             {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
-                UIHelper.InventoryInterface.SetState(new ModularItemsUI());
+                Aequus.InventoryInterface.SetState(new ModularItemsUI());
             }
         }
 

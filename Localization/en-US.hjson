@@ -1,17 +1,18 @@
 Mods: {
 	Aequus: {
 		Bestiary: {
-			Exporter: The Exporter is a lesser known thief with distant relations to pirates. All proceeds sold will be exported around the world to questionable folks looking for the best deals.
+			OmegaStarite: Sent from outer space to scout for a valuable resource. An anomaly in the starite life-cycle in need of constant life support from its shell, in exchange it can produce vasts amounts of energy.
+			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
 
+			SpaceSquid: A mysterious squid hailing from an advanced interstellar civilization. Made entirely out of snow due to it being easier to teleport long distances.
+			RedSprite: A mysterious thunderous discharge once struck a nimbus. Both the thunder and the nimbus' living souls were combined to create an evil monster.
 			Vraine: Extraordinarily aerodynamic birds which come in packs of 3-9, temperature sensative beaks determine how aggressive they are. Their name is based off their v-arc anatomy and group flight pattern.
 			StreamingBalloon: Extra resourceful slimes ride miniature hot air balloons to sail higher currents to find food. They purposely fly over and pop their own balloons to fall atop their prey.
 			WhiteSlime: Originally a photosynthetic Jungle Slime, after being blasted with cosmic radiation, it absorbed the properties of the sun. Rumored to taste like cinnamon.
 			Meteor: Similar to barnacles, these things appear to be inanimate but are still living creatures. When pushed out of space using the Pumpinator, they can leave a meteor crater.
 
-			SpaceSquid: A mysterious squid hailing from an advanced interstellar civilization. Made entirely out of snow due to it being easier to teleport long distances.
-			RedSprite: A mysterious thunderous discharge once struck a nimbus. Both the thunder and the nimbus' living souls were combined to create an evil monster.
-			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
-			OmegaStarite: Sent from outer space to scout for a valuable resource. An anomaly in the starite life-cycle in need of constant life support from its shell, in exchange it can produce vasts amounts of energy.
+			SkyMerchant: A smart hunter who created a hot air balloon to hunt birds, proceeded to become an avid lover of chicken nuggets after eating a harpy. Can be seen flying around the sky during windy days.
+			Exporter: The Exporter is a thief with a relation to pirates. All proceeds sold will be exported around the world to questionable folks looking for the best deals.
 		}
 		DropCondition: {
 			StreamingBalloonKill: 
@@ -1421,37 +1422,37 @@ Mods: {
 		}
 
 		NPCName: {
+			DustDevil: Dust Devil
+			OmegaStarite: Omega Starite
+			Crabson: Crabson
+
+			SpaceSquid: Space Squid
+			RedSprite: Red Sprite
+			WhiteSlime: White Slime
+			StreamingBalloon: Streaming Balloon
+			Vraine: Vraine
+			Meteor: Meteor
+
 			SoldierCrabs: Soldier Crab
 			HermitCrab: Hermit Crab
-			Memorialist: Memorialist
-			BalloonMerchant: Air Hunter
-			Robster: Exporter
-			Physicist: Physicist
 			SuperStarite: Super Starite
 			HyperStarite: Hyper Starite
-			OmegaStarite: Omega Starite
-			StreamingBalloon: Streaming Balloon
 			DwarfStarite: Dwarf Starite
 			Starite: Starite
 			UltraStarite: Ultra Starite
-			SnobsterCritter: Snobster
-			JerryCrabson: Crabson
-			JerryClaw: Jerry Claw
 			Magmalbubble: Magmabubble
 			TrapImp: Trapper Imp
 			Trapper: Trapper
 			Cindera: Cindera
-			Meteor: Meteor
-			TemperatureBalloon: Temperature Balloon
-			Vraine: Vraine
-			Atmodrone: Atmodrone
-			HotCurrent: Hot Current
-			ColdCurrent: Cold Current
 			BloodMimic: "{$NPCName.Mimic}"
 			Heckto: Heckto
-			RedSprite: Red Sprite
-			WhiteSlime: White Slime
-			SpaceSquid: Space Squid
+
+			SkyMerchant: Sky Merchant
+			Memorialist: Memorialist
+			Physicist: Physicist
+			Exporter: Exporter
+
+			SnobsterCritter: Snobster
 		}
 
 		HermitCrab: {
@@ -1502,7 +1503,7 @@ Mods: {
 			}
 		}
 
-		BalloonMerchant: {
+		SkyMerchant: {
 			Chat: {
 				Introduction: You are an interesting looking person, I sell materials I have gathered at quite a good price. You can catch me hunting up in space while the wind is fierce.
 

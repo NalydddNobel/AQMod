@@ -54,7 +54,7 @@ namespace Aequus.UI.States
         {
             if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != ModContent.NPCType<Exporter>())
             {
-                UIHelper.InventoryInterface.SetState(null);
+                Aequus.InventoryInterface.SetState(null);
                 return;
             }
             for (int i = 0; i < moduleSlot.Length; i++)

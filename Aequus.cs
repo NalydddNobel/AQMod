@@ -4,8 +4,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace Aequus
 {
@@ -16,6 +18,8 @@ namespace Aequus
         public const string TextureNone = "Aequus/Assets/None";
 
         public static Aequus Instance { get; private set; }
+        public static UserInterface InventoryInterface { get; private set; }
+        public static UserInterface NPCTalkInterface { get; private set; }
 
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
         public static bool HQ => ClientConfiguration.Instance.HighQuality;
@@ -28,13 +32,20 @@ namespace Aequus
             Instance = this;
             AequusHelpers.Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
             AequusText.OnModLoad(this);
-            ClientConfiguration.AddText();
+            ClientConfiguration.OnModLoad(this);
+            if (Main.netMode != NetmodeID.Server)
+            {
+                InventoryInterface = new UserInterface();
+                NPCTalkInterface = new UserInterface();
+            }
         }
 
         public override void Unload()
         {
             Instance = null;
             AequusHelpers.Main_dayTime = null;
+            InventoryInterface = null;
+            NPCTalkInterface = null;
         }
 
         public static Matrix GetWorldViewPoint()

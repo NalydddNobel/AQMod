@@ -12,8 +12,6 @@ namespace Aequus.UI
     public sealed partial class UIHelper : ModSystem
     {
         public static byte linkClickDelay;
-        public static UserInterface InventoryInterface { get; private set; }
-        public static UserInterface NPCTalkInterface { get; private set; }
         public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
         public static HashSet<int> ValidModularSlotContext { get; private set; }
 
@@ -57,26 +55,19 @@ namespace Aequus.UI
                 ItemSlot.Context.EquipMount,
                 ItemSlot.Context.ModdedAccessorySlot,
             };
-            if (Main.netMode != NetmodeID.Server)
-            {
-                InventoryInterface = new UserInterface();
-                NPCTalkInterface = new UserInterface();
-            }
         }
 
         public override void Unload()
         {
             ValidOnlineLinkedSlotContext?.Clear();
             ValidOnlineLinkedSlotContext = null;
-            InventoryInterface = null;
-            NPCTalkInterface = null;
         }
 
         public override void UpdateUI(GameTime gameTime)
         {
             leftInvOffset = 0;
-            InventoryInterface.Update(gameTime);
-            NPCTalkInterface.Update(gameTime);
+            Aequus.InventoryInterface.Update(gameTime);
+            Aequus.NPCTalkInterface.Update(gameTime);
             if (Main.mouseItem != null && !Main.mouseItem.IsAir)
             {
                 specialLeftClickDelay = Math.Max(specialLeftClickDelay, (byte)20);
@@ -100,7 +91,7 @@ namespace Aequus.UI
             leftInvOffset = 0;
             IntoLayer(layers, "Vanilla: Inventory", "Aequus: Inventory", () =>
             {
-                InventoryInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
+                Aequus.InventoryInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                 return true;
             });
         }
@@ -131,8 +122,8 @@ namespace Aequus.UI
                 {
                     PlayerInput.Triggers.JustPressed.Grapple = false;
                 }
-                NPCTalkInterface.SetState(null);
-                InventoryInterface.SetState(null);
+                Aequus.NPCTalkInterface.SetState(null);
+                Aequus.InventoryInterface.SetState(null);
             }
         }
 

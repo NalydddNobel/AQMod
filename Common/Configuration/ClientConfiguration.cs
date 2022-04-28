@@ -34,7 +34,7 @@ namespace Aequus.Common.Configuration
         [DefaultValue(true)]
         public bool HighQuality { get; set; }
 
-        internal static void AddText()
+        internal static void OnModLoad(Aequus aequus)
         {
             AequusText.NewFromDict("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusText.ItemText<Baguette>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.FlashIntensity", "Label", (s) => AequusText.ItemText<NoonPotion>() + "  " + s);
