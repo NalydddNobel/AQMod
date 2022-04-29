@@ -33,7 +33,7 @@ namespace Aequus.NPCs.Monsters.Sky
     public class RedSprite : ModNPC
     {
         public const int PHASE_DEAD = -2;
-        public const int PHASE_DIRECT_WIND = 1;
+        public const int PHASE_DIRECTWIND = 1;
         public const int PHASE_SUMMON_NIMBUS = 2;
         public const int TRANSITION_DIRECT_WIND = 3;
         public const int PHASE_THUNDERCLAP = 4;
@@ -205,216 +205,12 @@ namespace Aequus.NPCs.Monsters.Sky
                 NPC.ai[0] = -1;
                 return;
             }
-            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
-            {
-                var parent = ROR2ArtifactsSupport.GetParent(NPC);
-                if (parent != null)
-                {
-                    if ((int)parent.ai[0] == (int)NPC.ai[0])
-                    {
-                        AI_RandomizePhase((int)NPC.ai[0]);
-                    }
-                }
-            }
+            AI_CrossMod_ROR2Artifacts_Swarms();
             switch ((int)NPC.ai[0])
             {
-                case PHASE_DIRECT_WIND:
+                case PHASE_DIRECTWIND:
                     {
-                        if (NPC.direction == -1)
-                        {
-                            if (NPC.position.X > Main.player[NPC.target].position.X - 100)
-                            {
-                                if (NPC.velocity.X > -20f)
-                                {
-                                    NPC.velocity.X -= 0.8f;
-                                    if (NPC.velocity.X > 0f)
-                                    {
-                                        NPC.velocity.X *= 0.96f;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (Main.player[NPC.target].position.X - NPC.position.X > 500)
-                                {
-                                    if (NPC.velocity.X < 20f)
-                                    {
-                                        NPC.velocity.X += 0.4f;
-                                        if (NPC.velocity.X < 0f)
-                                        {
-                                            NPC.velocity.X *= 0.96f;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    NPC.ai[1] = 1f;
-                                    if (NPC.velocity.X < -4f)
-                                        NPC.velocity.X *= 0.94f;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (NPC.position.X < Main.player[NPC.target].position.X + 100)
-                            {
-                                if (NPC.velocity.X < 20f)
-                                {
-                                    NPC.velocity.X += 0.8f;
-                                    if (NPC.velocity.X < 0f)
-                                    {
-                                        NPC.velocity.X *= 0.96f;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (NPC.position.X - Main.player[NPC.target].position.X > 500)
-                                {
-                                    if (NPC.velocity.X > -20f)
-                                    {
-                                        NPC.velocity.X -= 0.4f;
-                                        if (NPC.velocity.X > 0f)
-                                        {
-                                            NPC.velocity.X *= 0.96f;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    NPC.ai[1] = 1f;
-                                    if (NPC.velocity.X > 4f)
-                                        NPC.velocity.X *= 0.94f;
-                                }
-                            }
-                        }
-                        if ((int)NPC.ai[1] == 1)
-                        {
-                            NPC.ai[3]++;
-                            if (NPC.ai[3] > 600f)
-                            {
-                                NPC.ai[0] = TRANSITION_DIRECT_WIND;
-                                NPC.ai[2] = -1f;
-                                NPC.ai[3] = 0f;
-                            }
-                            if (NPC.ai[2] < 0f)
-                            {
-                                NPC.ai[2] = 0f;
-                            }
-
-                            if (Main.netMode != NetmodeID.Server)
-                            {
-                                if (Main.player[Main.myPlayer].Distance(center) < 1000f)
-                                {
-                                    float x = Main.player[Main.myPlayer].position.X + Main.player[Main.myPlayer].width / 2f + (Main.screenWidth / 2f + 20) * NPC.direction;
-                                    float y = Main.player[Main.myPlayer].position.Y + Main.player[Main.myPlayer].height / 2f - Main.screenHeight / 2f;
-                                    for (int j = 0; j < 50; j++)
-                                    {
-                                        float y2 = y + Main.rand.NextFloat(Main.screenHeight);
-                                        if (!Collision.SolidCollision(new Vector2(x - 1f, y2 - 1f), 2, 2))
-                                        {
-                                            y = y2;
-                                            break;
-                                        }
-                                    }
-                                    int d = Dust.NewDust(new Vector2(x - 1f, y - 1f), 2, 2, 268);
-                                    Main.dust[d].velocity.X = -NPC.direction * 20f;
-                                    Main.dust[d].velocity.Y = Main.rand.NextFloat(1f, 3f);
-                                    Main.dust[d].color = new Color(255, 200, 10, 255);
-                                    Main.dust[d].alpha = 100;
-                                    Main.dust[d].scale = Main.rand.NextFloat(0.5f, 4f);
-                                }
-                            }
-
-                            //for (int i = 0; i < Main.maxPlayers; i++)
-                            //{
-                            //    if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(center) < 2000f)
-                            //    {
-                            //        Main.player[i].AddBuff(ModContent.BuffType<Buffs.Debuffs.RedSpriteWind>(), 4);
-                            //        var aQPlayer = Main.player[i].GetModPlayer<AQPlayer>();
-                            //        aQPlayer.redSpriteWind = (sbyte)-NPC.direction;
-                            //        if (NPC.direction == -1)
-                            //        {
-                            //            if (Main.player[NPC.target].velocity.X < 1f)
-                            //            {
-                            //                if (aQPlayer.temperatureRegen < 10 || aQPlayer.temperature == 0)
-                            //                {
-                            //                    if (Main.expertMode)
-                            //                    {
-                            //                        aQPlayer.InflictTemperature(10);
-                            //                        aQPlayer.temperatureRegen = 20;
-                            //                    }
-                            //                    else
-                            //                    {
-                            //                        aQPlayer.InflictTemperature(4);
-                            //                    }
-                            //                }
-                            //            }
-                            //        }
-                            //        else
-                            //        {
-                            //            if (Main.player[NPC.target].velocity.X > -1f)
-                            //            {
-                            //                if (aQPlayer.temperatureRegen < 10 || aQPlayer.temperature == 0)
-                            //                {
-                            //                    if (Main.expertMode)
-                            //                    {
-                            //                        aQPlayer.InflictTemperature(10);
-                            //                        aQPlayer.temperatureRegen = 20;
-                            //                    }
-                            //                    else
-                            //                    {
-                            //                        aQPlayer.InflictTemperature(4);
-                            //                    }
-                            //                }
-                            //            }
-                            //        }
-                            //    }
-                            //}
-
-                            if (NPC.direction == -1)
-                            {
-                                if (Main.player[NPC.target].velocity.X > 2f)
-                                {
-                                    NPC.ai[2]++;
-                                    if (NPC.ai[2] > 180f)
-                                    {
-                                        NPC.TargetClosest(faceTarget: false);
-                                        NPC.ai[2] = -1f;
-                                        NPC.ai[1] = 0f;
-                                        NPC.spriteDirection = NPC.direction;
-                                        NPC.direction = 1;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (Main.player[NPC.target].velocity.X < -2f)
-                                {
-                                    NPC.ai[2]++;
-                                    if (NPC.ai[2] > 180f)
-                                    {
-                                        NPC.TargetClosest(faceTarget: false);
-                                        NPC.ai[2] = -1f;
-                                        NPC.ai[1] = 0f;
-                                        NPC.spriteDirection = NPC.direction;
-                                        NPC.direction = -1;
-                                    }
-                                }
-                            }
-
-                            if (Main.netMode != NetmodeID.Server && Main.ambientVolume > 0f)
-                            {
-                                AI_LoadWindSound();
-                                if (windSoundInstance.State != SoundState.Playing)
-                                {
-                                    windSoundInstance.Volume = Main.ambientVolume;
-                                    windSoundInstance.Play();
-                                }
-                            }
-                        }
-                        NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, (Main.player[NPC.target].position.Y - 100 - center.Y) / 4f, 0.1f);
-                        NPC.rotation = NPC.velocity.X * 0.01f;
+                        AI_Phase_DirectWind(center);
                     }
                     break;
 
@@ -506,7 +302,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         if (NPC.ai[1] > (Main.expertMode ? 30f : 60f))
                         {
                             NPC.ai[1] = 0f;
-                            AI_RandomizePhase(PHASE_DIRECT_WIND);
+                            AI_RandomizePhase(PHASE_DIRECTWIND);
                         }
                     }
                     break;
@@ -713,7 +509,207 @@ namespace Aequus.NPCs.Monsters.Sky
                     break;
             }
         }
-        private void AI_RandomizePhase(int curPhase = -1)
+        public void AI_CrossMod_ROR2Artifacts_Swarms()
+        {
+            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
+            {
+                var parent = ROR2ArtifactsSupport.GetParent(NPC);
+                if (parent != null)
+                {
+                    if ((int)parent.ai[0] == (int)NPC.ai[0])
+                    {
+                        AI_RandomizePhase((int)NPC.ai[0]);
+                    }
+                }
+            }
+        }
+        public void AI_Phase_DirectWind(Vector2 center)
+        {
+            if (NPC.direction == -1)
+            {
+                if (NPC.position.X > Main.player[NPC.target].position.X - 100)
+                {
+                    if (NPC.velocity.X > -20f)
+                    {
+                        NPC.velocity.X -= 0.8f;
+                        if (NPC.velocity.X > 0f)
+                        {
+                            NPC.velocity.X *= 0.96f;
+                        }
+                    }
+                }
+                else
+                {
+                    if (Main.player[NPC.target].position.X - NPC.position.X > 500)
+                    {
+                        if (NPC.velocity.X < 20f)
+                        {
+                            NPC.velocity.X += 0.4f;
+                            if (NPC.velocity.X < 0f)
+                            {
+                                NPC.velocity.X *= 0.96f;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        NPC.ai[1] = 1f;
+                        if (NPC.velocity.X < -4f)
+                            NPC.velocity.X *= 0.94f;
+                    }
+                }
+            }
+            else
+            {
+                if (NPC.position.X < Main.player[NPC.target].position.X + 100)
+                {
+                    if (NPC.velocity.X < 20f)
+                    {
+                        NPC.velocity.X += 0.8f;
+                        if (NPC.velocity.X < 0f)
+                        {
+                            NPC.velocity.X *= 0.96f;
+                        }
+                    }
+                }
+                else
+                {
+                    if (NPC.position.X - Main.player[NPC.target].position.X > 500)
+                    {
+                        if (NPC.velocity.X > -20f)
+                        {
+                            NPC.velocity.X -= 0.4f;
+                            if (NPC.velocity.X > 0f)
+                            {
+                                NPC.velocity.X *= 0.96f;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        NPC.ai[1] = 1f;
+                        if (NPC.velocity.X > 4f)
+                            NPC.velocity.X *= 0.94f;
+                    }
+                }
+            }
+
+            if ((int)NPC.ai[1] == 1)
+            {
+                NPC.ai[3]++;
+                if (NPC.ai[3] > 600f)
+                {
+                    NPC.ai[0] = TRANSITION_DIRECT_WIND;
+                    NPC.ai[2] = -1f;
+                    NPC.ai[3] = 0f;
+                }
+                if (NPC.ai[2] < 0f)
+                {
+                    NPC.ai[2] = 0f;
+                }
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    AI_Phase_DirectWind_SpawnDust_PlaySound(center);
+                }
+                AI_Phase_DirectWind_SpawnProjs(center);
+            }
+
+            if (NPC.direction == -1)
+            {
+                if (Main.player[NPC.target].velocity.X > 2f)
+                {
+                    NPC.ai[2]++;
+                    if (NPC.ai[2] > 180f)
+                    {
+                        NPC.TargetClosest(faceTarget: false);
+                        NPC.ai[2] = -1f;
+                        NPC.ai[1] = 0f;
+                        NPC.spriteDirection = NPC.direction;
+                        NPC.direction = 1;
+                    }
+                }
+            }
+            else
+            {
+                if (Main.player[NPC.target].velocity.X < -2f)
+                {
+                    NPC.ai[2]++;
+                    if (NPC.ai[2] > 180f)
+                    {
+                        NPC.TargetClosest(faceTarget: false);
+                        NPC.ai[2] = -1f;
+                        NPC.ai[1] = 0f;
+                        NPC.spriteDirection = NPC.direction;
+                        NPC.direction = -1;
+                    }
+                }
+            }
+
+            NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, (Main.player[NPC.target].position.Y - 100 - center.Y) / 4f, 0.1f);
+            NPC.rotation = NPC.velocity.X * 0.01f;
+        }
+        public void AI_Phase_DirectWind_SpawnDust_PlaySound(Vector2 center)
+        {
+            if (Main.player[Main.myPlayer].Distance(center) < 1000f)
+            {
+                float x = Main.player[Main.myPlayer].position.X + Main.player[Main.myPlayer].width / 2f + (Main.screenWidth / 2f + 20) * NPC.direction;
+                float y = Main.player[Main.myPlayer].position.Y + Main.player[Main.myPlayer].height / 2f - Main.screenHeight / 2f;
+                for (int j = 0; j < 50; j++)
+                {
+                    float y2 = y + Main.rand.NextFloat(Main.screenHeight);
+                    if (!Collision.SolidCollision(new Vector2(x - 1f, y2 - 1f), 2, 2))
+                    {
+                        y = y2;
+                        break;
+                    }
+                }
+                int d = Dust.NewDust(new Vector2(x - 1f, y - 1f), 2, 2, 268);
+                Main.dust[d].velocity.X = -NPC.direction * 20f;
+                Main.dust[d].velocity.Y = Main.rand.NextFloat(1f, 3f);
+                Main.dust[d].color = new Color(255, 200, 10, 255);
+                Main.dust[d].alpha = 100;
+                Main.dust[d].scale = Main.rand.NextFloat(0.5f, 4f);
+
+                if (Main.netMode != NetmodeID.Server && Main.ambientVolume > 0f)
+                {
+                    AI_LoadWindSound();
+                    if (windSoundInstance.State != SoundState.Playing)
+                    {
+                        windSoundInstance.Volume = Main.ambientVolume;
+                        windSoundInstance.Play();
+                    }
+                }
+            }
+        }
+        public void AI_Phase_DirectWind_SpawnProjs(Vector2 center)
+        {
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                float xOffset = 1500f * NPC.direction;
+                var velocity = new Vector2(4.5f * -NPC.direction, 0f);
+                int damage = NPC.damage;
+                if (Math.Sign(velocity.X) == Math.Sign(Main.player[NPC.target].velocity.X))
+                {
+                    velocity.X += Main.player[NPC.target].velocity.X / 3;
+                }
+                if ((int)NPC.ai[3] % 60 == 0)
+                {
+                    NPC.TargetClosest(faceTarget: false);
+                    if (NPC.HasValidTarget)
+                    {
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(Main.player[NPC.target].position.X + xOffset, Main.player[NPC.target].position.Y + Main.player[NPC.target].height / 2f), velocity, ModContent.ProjectileType<RedSpriteWindFire>(), damage, 1f, Main.myPlayer);
+                    }
+                }
+                if (Main.rand.NextBool(Main.expertMode ? 30 : 60))
+                {
+                    var position = center;
+                    position.X += xOffset;
+                    position.Y += Main.rand.NextFloat(-350f, 350f);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, ModContent.ProjectileType<RedSpriteWindFire>(), damage, 1f, Main.myPlayer);
+                }
+            }
+        }
+        public void AI_RandomizePhase(int curPhase = -1)
         {
             NPC.TargetClosest(faceTarget: false);
             if (!NPC.HasValidTarget)
@@ -742,7 +738,7 @@ namespace Aequus.NPCs.Monsters.Sky
             }
             NPC.spriteDirection = NPC.direction;
         }
-        private void AI_LoadWindSound()
+        public void AI_LoadWindSound()
         {
             if (windSoundInstance == null)
             {
@@ -790,7 +786,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     frameIndex = 1;
                     break;
 
-                case PHASE_DIRECT_WIND:
+                case PHASE_DIRECTWIND:
                     {
                         int direction = NPC.spriteDirection;
                         if (direction == -1)

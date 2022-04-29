@@ -24,6 +24,21 @@ namespace Aequus
 
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
 
+        public static Rectangle Frame(this Projectile projectile)
+        {
+            return TextureAssets.Projectile[projectile.type].Value.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
+        }
+
+        public static float CalcProgress(int length, int i)
+        {
+            return 1f - 1f / length * i;
+        }
+
+        public static int TrailLength(this Projectile projectile)
+        {
+            return ProjectileID.Sets.TrailCacheLength[projectile.type];
+        }
+
         public static void LoopingFrame(this Projectile projectile, int ticksPerFrame)
         {
             projectile.frameCounter++;

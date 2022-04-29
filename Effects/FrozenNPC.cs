@@ -63,6 +63,9 @@ namespace Aequus.Effects
             }
         }
 
+        public static int AmtOld;
+        public static int Amt;
+
         public NPC npc;
         private bool _anyErrors;
         private Vector2 _scale;
@@ -99,12 +102,18 @@ namespace Aequus.Effects
             }
             else
             {
+                if (Amt == 0 && AmtOld > (Aequus.HQ ? 30 : 10))
+                {
+                    timeActive = Math.Max(timeActive, maxTimeActive - 60);
+                }
                 timeActive++;
                 if (timeActive > maxTimeActive)
                 {
                     Kill(lavaDeath: false);
+                    AmtOld--;
                     ShouldBeRemovedFromRenderer = true;
                 }
+                Amt++;
                 if (Catalouge.CustomUpdate.TryGetValue(npc.netID, out var customUpdate) && !customUpdate(this, settings, npc))
                 {
                     return;
@@ -222,6 +231,12 @@ namespace Aequus.Effects
         public static bool CanFreezeNPC(NPC npc)
         {
             return npc.realLife == -1 && npc.lifeMax > 5 && npc.aiStyle != NPCAIStyleID.Worm && npc.aiStyle != NPCAIStyleID.TheDestroyer && !Catalouge.NPCBlacklist.Contains(npc.type);
+        }
+
+        internal static void ResetCounts()
+        {
+            AmtOld = Amt;
+            Amt = 0;
         }
     }
 }

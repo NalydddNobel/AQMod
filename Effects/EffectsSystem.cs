@@ -53,6 +53,8 @@ namespace Aequus.Effects
         {
             if (Main.netMode != NetmodeID.Server)
             {
+                FrozenNPC.ResetCounts();
+
                 Shake.Update();
                 BehindProjs.Update();
             }
