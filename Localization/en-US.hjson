@@ -373,7 +373,7 @@ Mods: {
 			GrandReward: Enemies are more likely to drop rarer items
 			Mendshroom: Standing still will heal yourself and nearby teammates
 			FrostPotion: Reduces damage from heat sources
-			GlowCore: Emits colored light
+			GlowCore: You and your projectiles emit light
 			SnowPalette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}

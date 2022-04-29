@@ -1,4 +1,5 @@
 ﻿using Aequus.Assets;
+using Aequus.Items.Consumables.Palettes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -12,6 +13,8 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
+            OnOpenBag.WoodenCratePool.Add(Type);
+            CavernPalette.CavernChestLoot.Add(Type);
         }
 
         public override void SetDefaults()
@@ -30,7 +33,12 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            Lighting.AddLight(player.Center, DyeColor().ToVector3() * 0.8f);
+            byte value = color;
+            if (color != 255)
+            {
+                value++;
+            }
+            player.Aequus().glowCore = value;
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
@@ -38,7 +46,11 @@ namespace Aequus.Items.Accessories
             try
             {
                 var texture = TextureAssets.Item[Type].Value;
+
+                AequusPlayer.teamContext = Main.LocalPlayer.team;
                 var coloring = DyeColor();
+                AequusPlayer.teamContext = 0;
+
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {
                     Main.spriteBatch.Draw(texture, position + v * scale * 2f, frame, coloring.UseA(0) * 0.7f, 0f, origin, scale, SpriteEffects.None, 0f);
@@ -61,7 +73,19 @@ namespace Aequus.Items.Accessories
                 var origin = frame.Size() / 2f;
                 var drawCoordinates = Item.position - Main.screenPosition + origin + new Vector2(Item.width / 2 - origin.X, Item.height - frame.Height);
                 var itemOrigin = frame.Size() / 2f;
+
+                if (Item.playerIndexTheItemIsReservedFor >= 0 && Item.playerIndexTheItemIsReservedFor != 255)
+                {
+                    AequusPlayer.teamContext = Main.player[Item.playerIndexTheItemIsReservedFor].team;
+                }
+                else
+                {
+                    AequusPlayer.teamContext = 0;
+                }
+
                 var coloring = DyeColor();
+                AequusPlayer.teamContext = 0;
+
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {
                     Main.spriteBatch.Draw(texture, drawCoordinates + v * scale * 2f, frame, coloring.UseA(0) * 0.3f, rotation, origin, scale, SpriteEffects.None, 0f);
@@ -82,6 +106,15 @@ namespace Aequus.Items.Accessories
         public override void AddRecipes()
         {
             ColorRecipes<GlowCore>();
+        }
+
+        public static void AddLight(Entity entity, byte glowCore, int playerTeam = -1)
+        {
+            if (glowCore != 255)
+            {
+                glowCore--;
+            }
+            Lighting.AddLight(entity.Center, DyeColor(glowCore).ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.7f, 0.9f));
         }
     }
 }

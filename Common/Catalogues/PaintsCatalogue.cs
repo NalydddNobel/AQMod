@@ -33,7 +33,8 @@ namespace Aequus.Common.Catalogues
                 PaintID.BlackPaint,
                 PaintID.WhitePaint,
                 PaintID.BrownPaint,
-                255,
+                253, // Team
+                255, // Rainbow
             };
             DyeToPaint = new Dictionary<short, byte>
             {
@@ -52,27 +53,14 @@ namespace Aequus.Common.Catalogues
                 [ItemID.BlackDye] = Paints[12],
                 [ItemID.SilverDye] = Paints[13],
                 [ItemID.BrownDye] = Paints[14],
-                [ItemID.RainbowDye] = Paints[15],
+                [ItemID.TeamDye] = Paints[15],
+                [ItemID.RainbowDye] = Paints[16],
             };
-            PaintToDye = new Dictionary<byte, short>
+            PaintToDye = new Dictionary<byte, short>();
+            foreach (var pair in DyeToPaint)
             {
-                [Paints[0]] = ItemID.RedDye,
-                [Paints[1]] = ItemID.OrangeDye,
-                [Paints[2]] = ItemID.YellowDye,
-                [Paints[3]] = ItemID.LimeDye,
-                [Paints[4]] = ItemID.GreenDye,
-                [Paints[5]] = ItemID.TealDye,
-                [Paints[6]] = ItemID.CyanDye,
-                [Paints[7]] = ItemID.SkyBlueDye,
-                [Paints[8]] = ItemID.BlueDye,
-                [Paints[9]] = ItemID.PurpleDye,
-                [Paints[10]] = ItemID.VioletDye,
-                [Paints[11]] = ItemID.PinkDye,
-                [Paints[12]] = ItemID.BlackDye,
-                [Paints[13]] = ItemID.SilverDye,
-                [Paints[14]] = ItemID.BrownDye,
-                [Paints[15]] = ItemID.RainbowDye,
-            };
+                PaintToDye.Add(pair.Value, pair.Key);
+            }
             PaintToYoyoString = new Dictionary<byte, short>
             {
                 [0] = ItemID.WhiteString,
@@ -91,7 +79,8 @@ namespace Aequus.Common.Catalogues
                 [Paints[12]] = ItemID.BlackString,
                 [Paints[13]] = ItemID.WhiteString,
                 [Paints[14]] = ItemID.BrownString,
-                [Paints[15]] = ItemID.RainbowString,
+                [Paints[15]] = 0,
+                [Paints[16]] = ItemID.RainbowString,
             };
         }
 

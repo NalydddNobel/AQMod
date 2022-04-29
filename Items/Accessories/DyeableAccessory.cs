@@ -22,6 +22,10 @@ namespace Aequus.Items.Accessories
             {
                 return Color.White;
             }
+            if (dye == 253)
+            {
+                return Main.teamColor[AequusPlayer.teamContext];
+            }
             if (dye == 255)
             {
                 return Main.DiscoColor;

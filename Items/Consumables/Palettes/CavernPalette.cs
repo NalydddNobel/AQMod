@@ -13,16 +13,16 @@ namespace Aequus.Items.Consumables.Palettes
         public override void Load()
         {
             CavernChestLoot = new List<int>()
-                {
-                    ItemID.BandofRegeneration,
-                    ItemID.MagicMirror,
-                    ItemID.CloudinaBottle,
-                    ItemID.HermesBoots,
-                    ItemID.LuckyHorseshoe,
-                    ItemID.ShoeSpikes,
-                    ItemID.FlareGun,
-                    ItemID.Mace,
-                };
+            {
+                ItemID.BandofRegeneration,
+                ItemID.MagicMirror,
+                ItemID.CloudinaBottle,
+                ItemID.HermesBoots,
+                ItemID.LuckyHorseshoe,
+                ItemID.ShoeSpikes,
+                ItemID.FlareGun,
+                ItemID.Mace,
+            };
         }
 
         public override void Unload()

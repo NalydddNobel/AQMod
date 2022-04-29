@@ -2,6 +2,7 @@
 using Aequus.Common.Players;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
+using Aequus.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,6 +17,8 @@ namespace Aequus
 {
     public sealed partial class AequusPlayer : ModPlayer
     {
+        public static int teamContext;
+
         /// <summary>
         /// Applied by <see cref="Buffs.Debuffs.BlueFire"/>
         /// </summary>
@@ -54,15 +57,19 @@ namespace Aequus
         public bool inDanger;
 
         /// <summary>
+        /// Used by <see cref="GlowCore"/>. All player owned projectiles also check this in order to decide if they should glow.
+        /// </summary>
+        public byte glowCore;
+        /// <summary>
+        /// Used to increase droprates.
+        /// <para>Used by <see cref="GrandReward"/></para> 
+        /// </summary>
+        public float lootLuck;
+        /// <summary>
         /// 0 = no force, 1 = force day, 2 = force night
         /// <para>Used by <see cref="Buffs.NoonBuff"/> and set to 1</para>
         /// </summary>
         public byte forceDaytime;
-        /// <summary>
-        /// Used to increase droprates.
-        /// <para>Used by <see cref="Items.Accessories.GrandReward"/></para> 
-        /// </summary>
-        public float lootLuck;
 
         /// <summary>
         /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
@@ -134,6 +141,7 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            teamContext = Player.team;
             blueFire = false;
             pickBreak = false;
 
@@ -143,6 +151,7 @@ namespace Aequus
 
             resistHeat = false;
 
+            glowCore = 0;
             forceDaytime = 0;
             lootLuck = 0f;
         }
@@ -205,6 +214,14 @@ namespace Aequus
             }
         }
 
+        public override void PostUpdateEquips()
+        {
+            if (glowCore > 0)
+            {
+                GlowCore.AddLight(Player, glowCore);
+            }
+        }
+
         public override void PostUpdate()
         {
             if (AequusHelpers.Main_dayTime.IsCaching)
@@ -212,6 +229,7 @@ namespace Aequus
                 AequusHelpers.Main_dayTime.EndCaching();
             }
             PostUpdate_CheckDanger();
+            teamContext = 0;
         }
         private void PostUpdate_CheckDanger()
         {
