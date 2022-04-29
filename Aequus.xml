@@ -14,6 +14,11 @@
             Applied by <see cref="T:Aequus.Buffs.Debuffs.PickBreak"/>
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.spaceSquidPet">
+            <summary>
+            Applied by <see cref="T:Aequus.Buffs.Pets.SpaceSquidBuff"/>
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.familiarPet">
             <summary>
             Applied by <see cref="T:Aequus.Buffs.Pets.FamiliarBuff"/>
@@ -39,16 +44,31 @@
             Whether or not the player is 'in danger'. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> / <see cref="M:Aequus.AequusPlayer.PostUpdate_CheckDanger"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.forceDaytime">
+        <member name="F:Aequus.AequusPlayer.glowCore">
             <summary>
-            0 = no force, 1 = force day, 2 = force night
-            <para>Used by <see cref="T:Aequus.Buffs.NoonBuff"/> and set to 1</para>
+            Used by <see cref="T:Aequus.Items.Accessories.GlowCore"/>. All player owned projectiles also check this in order to decide if they should glow.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lootLuck">
             <summary>
             Used to increase droprates.
             <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.forceDaytime">
+            <summary>
+            0 = no force, 1 = force day, 2 = force night
+            <para>Used by <see cref="T:Aequus.Buffs.NoonBuff"/> and set to 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.wearingSummonHelmet">
+            <summary>
+            Set to true by <see cref="T:Aequus.Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.PassiveSummon.FlowerCrown"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.summonHelmetTimer">
+            <summary>
+            Used by summon helmets (<see cref="T:Aequus.Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.PassiveSummon.FlowerCrown"/>) to time projectile spawns and such.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">
@@ -115,12 +135,17 @@
         </member>
         <member name="T:Aequus.Buffs.Pets.FamiliarBuff">
             <summary>
-            Applied by <see cref="!:Aequus.Items.Misc.Pets.FamiliarPickaxe"/>
+            Applied by <see cref="T:Aequus.Items.Misc.Pets.FamiliarPickaxe"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.OmegaStariteBuff">
             <summary>
-            Applied by <see cref="!:Aequus.Items.Misc.Pets.DragonBall"/>
+            Applied by <see cref="T:Aequus.Items.Misc.Pets.DragonBall"/>
+            </summary>
+        </member>
+        <member name="T:Aequus.Buffs.Pets.SpaceSquidBuff">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Misc.Pets.ToySpaceGun"/>
             </summary>
         </member>
         <member name="T:Aequus.Common.Catalogues.CatalogueBase">
@@ -252,6 +277,11 @@
         <member name="T:Aequus.Items.OnlineLinkedItem">
             <summary>
             Currently only used by the Aequus Music mod's music boxes.
+            </summary>
+        </member>
+        <member name="T:Aequus.NPCs.BestiaryBuilder">
+            <summary>
+            Helper class for setting up bestiary entries
             </summary>
         </member>
         <member name="M:Aequus.NPCs.Boss.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">

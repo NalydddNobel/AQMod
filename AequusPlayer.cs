@@ -72,6 +72,14 @@ namespace Aequus
         public byte forceDaytime;
 
         /// <summary>
+        /// Set to true by <see cref="Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.FlowerCrown"/>
+        /// </summary>
+        public bool wearingSummonHelmet;
+        /// <summary>
+        /// Used by summon helmets (<see cref="Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.FlowerCrown"/>) to time projectile spawns and such.
+        /// </summary>
+        public int summonHelmetTimer;
+        /// <summary>
         /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
         /// </summary>
         public int lastSelectedItem = -1;
