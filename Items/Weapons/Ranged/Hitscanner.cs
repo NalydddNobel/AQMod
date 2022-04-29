@@ -32,6 +32,11 @@ namespace Aequus.Items.Weapons.Ranged
             Item.useAnimation = 60;
         }
 
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(6f, 6f);
+        }
+
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             for (int i = 0; i < 10; i++)

@@ -29,15 +29,6 @@ namespace Aequus.NPCs.Monsters.Sky
             });
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.Meteor")
-            });
-            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(NPC.GetBestiaryCreditId(), true);
-        }
-
         public override void SetDefaults()
         {
             NPC.width = 30;
@@ -51,6 +42,13 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.knockBackResist = 0.3f;
             NPC.value = Item.buyPrice(silver: 2);
             NPC.npcSlots = 0.25f;
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateEntry(database, bestiaryEntry)
+                .AddMainSpawn(BestiaryBuilder.SkyBiome)
+                .QuickUnlock();
         }
 
         public override void AI()

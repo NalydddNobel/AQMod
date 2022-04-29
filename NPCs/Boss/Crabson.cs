@@ -126,280 +126,12 @@ namespace Aequus.NPCs.Boss
             return dealContactDamage;
         }
 
-        private void SpawnClaws(Vector2 center)
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
-            {
-                var myParent = ROR2ArtifactsSupport.GetParent(NPC);
-                if (myParent != null)
-                {
-                    NPC.alpha = 255;
-                    NPC.ai[1]++;
-                    if (NPC.ai[1] < 60f)
-                    {
-                        NPC.ai[0] = PHASE_INIT;
-                        if (myParent.whoAmI == crabson || myParent.ModNPC<Crabson>().crabson == myParent.whoAmI || !IsClaw)
-                        {
-                            crabson = NPC.whoAmI;
-                        }
-                        else
-                        {
-                            NPC.direction = myParent.direction;
-                            if (NPC.direction == -1)
-                            {
-                                leftClaw = NPC.whoAmI;
-                            }
-                            else
-                            {
-                                rightClaw = NPC.whoAmI;
-                            }
-                            for (int i = 0; i < Main.maxNPCs; i++)
-                            {
-                                if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].type == Type)
-                                {
-                                    if (ROR2ArtifactsSupport.GetParent(Main.npc[i]) != null)
-                                    {
-                                        var crab2 = Main.npc[i].ModNPC<Crabson>();
-                                        if (crab2.crabson == i)
-                                        {
-                                            if (NPC.direction == -1)
-                                            {
-                                                crab2.leftClaw = NPC.whoAmI;
-                                            }
-                                            else
-                                            {
-                                                crab2.rightClaw = NPC.whoAmI;
-                                            }
-                                            crabson = i;
-                                        }
-                                        else if (crab2.leftClaw == i)
-                                        {
-                                            crab2.rightClaw = NPC.whoAmI;
-                                            leftClaw = i;
-                                        }
-                                        else if (crab2.rightClaw == i)
-                                        {
-                                            crab2.leftClaw = NPC.whoAmI;
-                                            rightClaw = i;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        NPC.ai[1] = 0f;
-                    }
-                    return;
-                }
-            }
-            leftClaw = -1;
-            rightClaw = -1;
-            crabson = NPC.whoAmI;
-            NPC.realLife = NPC.whoAmI;
-            for (int i = -1; i <= 1; i++)
-            {
-                if (i != 0)
-                {
-                    int n = NPC.NewNPC(new EntitySource_Parent(NPC), (int)center.X, (int)center.Y, NPC.type);
-                    if (i == -1)
-                    {
-                        leftClaw = n;
-                    }
-                    else
-                    {
-                        rightClaw = n;
-                    }
-                    Main.npc[n].position.X += 150f * i;
-                    Main.npc[n].ai[0] = PHASE_INTRO;
-                    Main.npc[n].direction = i;
-                    Main.npc[n].spriteDirection = i;
-                    Main.npc[n].realLife = NPC.whoAmI;
-                    Main.npc[n].defense *= 4;
-                    Main.npc[n].defDefense = Main.npc[n].defense;
-                    Main.npc[n].width += 20;
-                    Main.npc[n].height += 50;
-                    if (Main.getGoodWorld)
-                    {
-                        float scale = 2f;
-                        Main.npc[n].scale *= scale;
-                        Main.npc[n].width = (int)(Main.npc[n].width * scale);
-                        Main.npc[n].height = (int)(Main.npc[n].height * scale);
-                    }
-                }
-            }
-            var crab = (Crabson)Left.ModNPC;
-            crab.rightClaw = rightClaw;
-            crab.leftClaw = leftClaw;
-            crab.crabson = crabson;
+            this.CreateEntry(database, bestiaryEntry)
+                .AddSpawn(BestiaryBuilder.OceanBiome);
+        }
 
-            crab = (Crabson)Right.ModNPC;
-            crab.rightClaw = rightClaw;
-            crab.leftClaw = leftClaw;
-            crab.crabson = crabson;
-        }
-        private bool CheckClaws()
-        {
-            return !(leftClaw == -1 || !Left.active || Left.type != NPC.type ||
-                rightClaw == -1 || !Right.active || Right.type != NPC.type);
-        }
-        private void Kill()
-        {
-            NPC.life = -1;
-            NPC.HitEffect();
-            NPC.active = false;
-        }
-        private void SetGoodbyeState()
-        {
-            NPC.ai[0] = PHASE_GOODBYE;
-            NPC.ai[1] = 60f;
-        }
-        private void GroundMovement(Vector2 location)
-        {
-            if (NPC.position.Y + NPC.height < location.Y)
-            {
-                NPC.velocity.Y += 0.65f;
-
-                if (NPC.position.Y + NPC.height < location.Y - 240f && Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
-                {
-                    NPC.velocity.Y *= 0.5f;
-                }
-            }
-            else if ((NPC.position.Y + NPC.height - location.Y).Abs() < 10f)
-            {
-                NPC.velocity.Y *= 0.75f;
-            }
-            else
-            {
-                if (Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
-                {
-                    NPC.velocity.Y -= 0.05f;
-                }
-                else
-                {
-                    NPC.velocity.Y -= 0.1f;
-                }
-                NPC.velocity.Y = Math.Min(NPC.velocity.Y, Math.Max(Main.player[NPC.target].velocity.Y, 2.5f));
-            }
-            float differenceX = NPC.position.X + NPC.width / 2f - location.X;
-            if (differenceX.Abs() > 100f)
-            {
-                int sign = Math.Sign(differenceX);
-                NPC.velocity.X -= sign * 0.085f;
-            }
-            else
-            {
-                NPC.velocity.X *= 0.8f;
-            }
-        }
-        private void Movement1()
-        {
-            Movement1(out var _, out var _);
-        }
-        private void Movement1(out Point tileCoordinates, out int j)
-        {
-            tileCoordinates = Main.player[NPC.target].Center.ToTileCoordinates();
-            bool toPlayer = true;
-            for (j = 7; j < 36; j++)
-            {
-                var tile = Main.tile[tileCoordinates.X, tileCoordinates.Y + j];
-                if (tile.HasTile && (tile.Solid() || tile.SolidTop()))
-                {
-                    GroundMovement(new Vector2(tileCoordinates.X * 16f + 8f, (tileCoordinates.Y + j) * 16f));
-                    toPlayer = false;
-                    break;
-                }
-            }
-            if (toPlayer)
-                GroundMovement(Main.player[NPC.target].Center + new Vector2(0f, 128f + NPC.height));
-        }
-        private void RandomizePhase(int current)
-        {
-            List<int> actions = new List<int>() { PHASE_CLAWSHOTS, PHASE_GROUNDBUBBLES, PHASE_CLAWSLAMS };
-            NPC.ai[0] = actions[Main.rand.Next(actions.Count)];
-            dealContactDamage = true;
-            NPC.localAI[0] = 0f;
-            Right.localAI[0] = 0f;
-            Left.localAI[0] = 0f;
-            NPC.damage = NPC.defDamage;
-            Right.damage = Right.defDamage;
-            Left.damage = Left.defDamage;
-            NPC.defense = NPC.defDefense;
-            Right.defense = Right.defDefense;
-            Left.defense = Left.defDefense;
-            if ((int)NPC.ai[0] == PHASE_CLAWSHOTS)
-            {
-                NPC.ai[1] = Main.expertMode ? 240f : 320f;
-                if (PhaseTwo && (Main.expertMode || Main.rand.NextFloat() < 0.75f))
-                {
-                    NPC.ai[0] = PHASE2_CLAWSHOTS_SHRAPNEL;
-                }
-                Left.ai[1] = 0f;
-                Right.ai[1] = 0f;
-                Left.ai[2] = 0f;
-                Right.ai[2] = 0f;
-            }
-            else if ((int)NPC.ai[0] == PHASE_GROUNDBUBBLES)
-            {
-                if (current == PHASE_GROUNDBUBBLES || current == PHASE2_GROUNDBUBBLES_SPAMMY)
-                {
-                    RandomizePhase(current);
-                    return;
-                }
-                if (PhaseTwo && (Main.expertMode || Main.rand.NextFloat() < 0.75f))
-                {
-                    NPC.ai[0] = PHASE2_GROUNDBUBBLES_SPAMMY;
-                }
-                NPC.ai[1] = Main.expertMode ? 180f : 120f;
-                NPC.ai[2] = 0f;
-                NPC.defense *= 4;
-                Right.defense *= 4;
-                Left.defense *= 4;
-            }
-            else if ((int)NPC.ai[0] == PHASE_CLAWSLAMS)
-            {
-                float firstSmash = Main.expertMode ? -8f : -60f;
-                float secondSmash = Main.expertMode ? -68f : -128f;
-                if (PhaseTwo)
-                {
-                    secondSmash += 28f * (NPC.life * 2f / NPC.lifeMax);
-                }
-                NPC.ai[1] = Main.expertMode ? 200f : 400f;
-                if (Main.rand.NextBool())
-                {
-                    Left.ai[1] = firstSmash;
-                    Right.ai[1] = secondSmash;
-                }
-                else
-                {
-                    Right.ai[1] = firstSmash;
-                    Left.ai[1] = secondSmash;
-                }
-            }
-            NPC.netUpdate = true;
-        }
-        private Vector2 ClawIdlePosition()
-        {
-            return CrabsonNPC.Center + new Vector2(120f * NPC.direction, -48f);
-        }
-        public int ShootProj<T>(Vector2 position, Vector2 velo, int damage, float ai0 = 0f, float ai1 = 0f, int extraUpdates = 0, int alpha = 0) where T : ModProjectile
-        {
-            return ShootProj(position, velo, ModContent.ProjectileType<T>(), damage, ai0, ai1, extraUpdates, alpha);
-        }
-        public int ShootProj(Vector2 position, Vector2 velo, int type, int damage, float ai0 = 0f, float ai1 = 0f, int extraUpdates = 0, int alpha = 0)
-        {
-            if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), position, velo, type, Main.expertMode ? damage / 3 : damage, 1f, Main.myPlayer, ai0, ai1);
-                if (p == -1)
-                    return -1;
-                Main.projectile[p].extraUpdates += extraUpdates;
-                Main.projectile[p].alpha += alpha;
-                return p;
-            }
-            return -1;
-        }
         public override void AI()
         {
             if (NPC.alpha > 0)
@@ -728,6 +460,280 @@ namespace Aequus.NPCs.Boss
                 }
             }
         }
+        private void SpawnClaws(Vector2 center)
+        {
+            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
+            {
+                var myParent = ROR2ArtifactsSupport.GetParent(NPC);
+                if (myParent != null)
+                {
+                    NPC.alpha = 255;
+                    NPC.ai[1]++;
+                    if (NPC.ai[1] < 60f)
+                    {
+                        NPC.ai[0] = PHASE_INIT;
+                        if (myParent.whoAmI == crabson || myParent.ModNPC<Crabson>().crabson == myParent.whoAmI || !IsClaw)
+                        {
+                            crabson = NPC.whoAmI;
+                        }
+                        else
+                        {
+                            NPC.direction = myParent.direction;
+                            if (NPC.direction == -1)
+                            {
+                                leftClaw = NPC.whoAmI;
+                            }
+                            else
+                            {
+                                rightClaw = NPC.whoAmI;
+                            }
+                            for (int i = 0; i < Main.maxNPCs; i++)
+                            {
+                                if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].type == Type)
+                                {
+                                    if (ROR2ArtifactsSupport.GetParent(Main.npc[i]) != null)
+                                    {
+                                        var crab2 = Main.npc[i].ModNPC<Crabson>();
+                                        if (crab2.crabson == i)
+                                        {
+                                            if (NPC.direction == -1)
+                                            {
+                                                crab2.leftClaw = NPC.whoAmI;
+                                            }
+                                            else
+                                            {
+                                                crab2.rightClaw = NPC.whoAmI;
+                                            }
+                                            crabson = i;
+                                        }
+                                        else if (crab2.leftClaw == i)
+                                        {
+                                            crab2.rightClaw = NPC.whoAmI;
+                                            leftClaw = i;
+                                        }
+                                        else if (crab2.rightClaw == i)
+                                        {
+                                            crab2.leftClaw = NPC.whoAmI;
+                                            rightClaw = i;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        NPC.ai[1] = 0f;
+                    }
+                    return;
+                }
+            }
+            leftClaw = -1;
+            rightClaw = -1;
+            crabson = NPC.whoAmI;
+            NPC.realLife = NPC.whoAmI;
+            for (int i = -1; i <= 1; i++)
+            {
+                if (i != 0)
+                {
+                    int n = NPC.NewNPC(new EntitySource_Parent(NPC), (int)center.X, (int)center.Y, NPC.type);
+                    if (i == -1)
+                    {
+                        leftClaw = n;
+                    }
+                    else
+                    {
+                        rightClaw = n;
+                    }
+                    Main.npc[n].position.X += 150f * i;
+                    Main.npc[n].ai[0] = PHASE_INTRO;
+                    Main.npc[n].direction = i;
+                    Main.npc[n].spriteDirection = i;
+                    Main.npc[n].realLife = NPC.whoAmI;
+                    Main.npc[n].defense *= 4;
+                    Main.npc[n].defDefense = Main.npc[n].defense;
+                    Main.npc[n].width += 20;
+                    Main.npc[n].height += 50;
+                    if (Main.getGoodWorld)
+                    {
+                        float scale = 2f;
+                        Main.npc[n].scale *= scale;
+                        Main.npc[n].width = (int)(Main.npc[n].width * scale);
+                        Main.npc[n].height = (int)(Main.npc[n].height * scale);
+                    }
+                }
+            }
+            var crab = (Crabson)Left.ModNPC;
+            crab.rightClaw = rightClaw;
+            crab.leftClaw = leftClaw;
+            crab.crabson = crabson;
+
+            crab = (Crabson)Right.ModNPC;
+            crab.rightClaw = rightClaw;
+            crab.leftClaw = leftClaw;
+            crab.crabson = crabson;
+        }
+        private bool CheckClaws()
+        {
+            return !(leftClaw == -1 || !Left.active || Left.type != NPC.type ||
+                rightClaw == -1 || !Right.active || Right.type != NPC.type);
+        }
+        private void Kill()
+        {
+            NPC.life = -1;
+            NPC.HitEffect();
+            NPC.active = false;
+        }
+        private void SetGoodbyeState()
+        {
+            NPC.ai[0] = PHASE_GOODBYE;
+            NPC.ai[1] = 60f;
+        }
+        private void GroundMovement(Vector2 location)
+        {
+            if (NPC.position.Y + NPC.height < location.Y)
+            {
+                NPC.velocity.Y += 0.65f;
+
+                if (NPC.position.Y + NPC.height < location.Y - 240f && Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
+                {
+                    NPC.velocity.Y *= 0.5f;
+                }
+            }
+            else if ((NPC.position.Y + NPC.height - location.Y).Abs() < 10f)
+            {
+                NPC.velocity.Y *= 0.75f;
+            }
+            else
+            {
+                if (Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
+                {
+                    NPC.velocity.Y -= 0.05f;
+                }
+                else
+                {
+                    NPC.velocity.Y -= 0.1f;
+                }
+                NPC.velocity.Y = Math.Min(NPC.velocity.Y, Math.Max(Main.player[NPC.target].velocity.Y, 2.5f));
+            }
+            float differenceX = NPC.position.X + NPC.width / 2f - location.X;
+            if (differenceX.Abs() > 100f)
+            {
+                int sign = Math.Sign(differenceX);
+                NPC.velocity.X -= sign * 0.085f;
+            }
+            else
+            {
+                NPC.velocity.X *= 0.8f;
+            }
+        }
+        private void Movement1()
+        {
+            Movement1(out var _, out var _);
+        }
+        private void Movement1(out Point tileCoordinates, out int j)
+        {
+            tileCoordinates = Main.player[NPC.target].Center.ToTileCoordinates();
+            bool toPlayer = true;
+            for (j = 7; j < 36; j++)
+            {
+                var tile = Main.tile[tileCoordinates.X, tileCoordinates.Y + j];
+                if (tile.HasTile && (tile.Solid() || tile.SolidTop()))
+                {
+                    GroundMovement(new Vector2(tileCoordinates.X * 16f + 8f, (tileCoordinates.Y + j) * 16f));
+                    toPlayer = false;
+                    break;
+                }
+            }
+            if (toPlayer)
+                GroundMovement(Main.player[NPC.target].Center + new Vector2(0f, 128f + NPC.height));
+        }
+        private void RandomizePhase(int current)
+        {
+            List<int> actions = new List<int>() { PHASE_CLAWSHOTS, PHASE_GROUNDBUBBLES, PHASE_CLAWSLAMS };
+            NPC.ai[0] = actions[Main.rand.Next(actions.Count)];
+            dealContactDamage = true;
+            NPC.localAI[0] = 0f;
+            Right.localAI[0] = 0f;
+            Left.localAI[0] = 0f;
+            NPC.damage = NPC.defDamage;
+            Right.damage = Right.defDamage;
+            Left.damage = Left.defDamage;
+            NPC.defense = NPC.defDefense;
+            Right.defense = Right.defDefense;
+            Left.defense = Left.defDefense;
+            if ((int)NPC.ai[0] == PHASE_CLAWSHOTS)
+            {
+                NPC.ai[1] = Main.expertMode ? 240f : 320f;
+                if (PhaseTwo && (Main.expertMode || Main.rand.NextFloat() < 0.75f))
+                {
+                    NPC.ai[0] = PHASE2_CLAWSHOTS_SHRAPNEL;
+                }
+                Left.ai[1] = 0f;
+                Right.ai[1] = 0f;
+                Left.ai[2] = 0f;
+                Right.ai[2] = 0f;
+            }
+            else if ((int)NPC.ai[0] == PHASE_GROUNDBUBBLES)
+            {
+                if (current == PHASE_GROUNDBUBBLES || current == PHASE2_GROUNDBUBBLES_SPAMMY)
+                {
+                    RandomizePhase(current);
+                    return;
+                }
+                if (PhaseTwo && (Main.expertMode || Main.rand.NextFloat() < 0.75f))
+                {
+                    NPC.ai[0] = PHASE2_GROUNDBUBBLES_SPAMMY;
+                }
+                NPC.ai[1] = Main.expertMode ? 180f : 120f;
+                NPC.ai[2] = 0f;
+                NPC.defense *= 4;
+                Right.defense *= 4;
+                Left.defense *= 4;
+            }
+            else if ((int)NPC.ai[0] == PHASE_CLAWSLAMS)
+            {
+                float firstSmash = Main.expertMode ? -8f : -60f;
+                float secondSmash = Main.expertMode ? -68f : -128f;
+                if (PhaseTwo)
+                {
+                    secondSmash += 28f * (NPC.life * 2f / NPC.lifeMax);
+                }
+                NPC.ai[1] = Main.expertMode ? 200f : 400f;
+                if (Main.rand.NextBool())
+                {
+                    Left.ai[1] = firstSmash;
+                    Right.ai[1] = secondSmash;
+                }
+                else
+                {
+                    Right.ai[1] = firstSmash;
+                    Left.ai[1] = secondSmash;
+                }
+            }
+            NPC.netUpdate = true;
+        }
+        private Vector2 ClawIdlePosition()
+        {
+            return CrabsonNPC.Center + new Vector2(120f * NPC.direction, -48f);
+        }
+        public int ShootProj<T>(Vector2 position, Vector2 velo, int damage, float ai0 = 0f, float ai1 = 0f, int extraUpdates = 0, int alpha = 0) where T : ModProjectile
+        {
+            return ShootProj(position, velo, ModContent.ProjectileType<T>(), damage, ai0, ai1, extraUpdates, alpha);
+        }
+        public int ShootProj(Vector2 position, Vector2 velo, int type, int damage, float ai0 = 0f, float ai1 = 0f, int extraUpdates = 0, int alpha = 0)
+        {
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), position, velo, type, Main.expertMode ? damage / 3 : damage, 1f, Main.myPlayer, ai0, ai1);
+                if (p == -1)
+                    return -1;
+                Main.projectile[p].extraUpdates += extraUpdates;
+                Main.projectile[p].alpha += alpha;
+                return p;
+            }
+            return -1;
+        }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
@@ -782,15 +788,6 @@ namespace Aequus.NPCs.Boss
                 if (Vector2.Distance(position, endPosition) <= height)
                     break;
             }
-        }
-
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
-            {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
-                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.Crabson")
-            });
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

@@ -64,6 +64,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			ToySpaceGun: Toy Space Gun
 			GrandReward: Grand Reward
 			Mendshroom: Mendshroom
 			FrostPotion: Frost Potion
@@ -364,6 +365,11 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			ToySpaceGun: 
+				'''
+				Summons a space squiddy to follow you
+				'Just too cute'
+				'''
 			GrandReward: Enemies are more likely to drop rarer items
 			Mendshroom: Standing still will heal yourself and nearby teammates
 			FrostPotion: Reduces damage from heat sources
@@ -1086,16 +1092,14 @@ Mods: {
 			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmalbubble}"
 			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapImp}"
 			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
-			RedSpriteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.RedSprite}"
 			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
-			SpaceSquidBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SpaceSquid}"
 		}
 
 		Lingering: Lingering {0}
 		Doubled: Doubled {0}
 
 		BuffName: {
-			ManaDrain: Magical Drain
+			SpaceSquidBuff: Space Squid
 			Omori: Friends
 			PrimeTime: Arachnotron Power
 			ArachnotronCooldown: Arachnotron Cooldown
@@ -1144,7 +1148,7 @@ Mods: {
 		}
 
 		BuffDescription: {
-			ManaDrain: Decreases magic damage by 90%
+			SpaceSquidBuff: "'It's just so cute'"
 			Omori: Revives you with 1 HP on fatal hits with a 5 minute cooldown
 			PrimeTime: Your defense is greatly increased!
 			ArachnotronCooldown: You cannot use the Arachnotron Armor's effect anymore

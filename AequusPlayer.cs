@@ -26,6 +26,10 @@ namespace Aequus
         public bool pickBreak;
 
         /// <summary>
+        /// Applied by <see cref="Buffs.Pets.SpaceSquidBuff"/>
+        /// </summary>
+        public bool spaceSquidPet;
+        /// <summary>
         /// Applied by <see cref="Buffs.Pets.FamiliarBuff"/>
         /// </summary>
         public bool familiarPet;
@@ -133,6 +137,7 @@ namespace Aequus
             blueFire = false;
             pickBreak = false;
 
+            spaceSquidPet = false;
             familiarPet = false;
             omegaStaritePet = false;
 

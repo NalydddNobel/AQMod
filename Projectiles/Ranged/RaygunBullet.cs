@@ -11,17 +11,14 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Ranged
 {
-    public abstract class RaygunBullet : ModProjectile
+    public class RaygunBullet : ModProjectile
     {
         public static Dictionary<int, Color> RaygunColors { get; private set; }
 
         public override string Texture => Aequus.TextureNone;
 
-        public Projectile baseProj;
         public int projType;
         public int trailTimer;
-        public Vector2 positionFixer;
-        public byte dontAccidentallyStealTheDataFromAnOldProjectileTimer;
 
         public override void SetStaticDefaults()
         {
@@ -50,37 +47,61 @@ namespace Aequus.Projectiles.Ranged
 
         public override void SetDefaults()
         {
-            Projectile.width = Math.Max(Projectile.width, 12);
-            Projectile.height = Math.Max(Projectile.height, 12);
+            Projectile.width = 12;
+            Projectile.height = 12;
             Projectile.timeLeft = Math.Min(Projectile.timeLeft, 180);
             Projectile.friendly = true;
             Projectile.hide = true;
+            Projectile.aiStyle = 1;
             trailTimer = 7;
+        }
+
+        public override void OnSpawn(IEntitySource source)
+        {
+            if (source is EntitySource_ItemUse_WithAmmo itemUseWithAmmo)
+            {
+                projType = ContentSamples.ItemsByType[itemUseWithAmmo.AmmoItemIdUsed].shoot;
+            }
+            else
+            {
+                projType = ProjectileID.Bullet;
+            }
+            StealSomeStats(GetProjectileInstance());
+        }
+        private void StealSomeStats(Projectile projToClone)
+        {
+            if (projToClone != null)
+            {
+                //Projectile.DamageType = baseProj.DamageType;
+                //Projectile.aiStyle = baseProj.aiStyle;
+                Projectile.penetrate = projToClone.penetrate;
+                Projectile.usesLocalNPCImmunity = projToClone.usesLocalNPCImmunity;
+                Projectile.localNPCHitCooldown = projToClone.localNPCHitCooldown;
+                Projectile.usesIDStaticNPCImmunity = projToClone.usesIDStaticNPCImmunity;
+                Projectile.idStaticNPCHitCooldown = projToClone.idStaticNPCHitCooldown;
+                Projectile.scale = projToClone.scale;
+                Projectile.ignoreWater = projToClone.ignoreWater;
+                Projectile.tileCollide = projToClone.tileCollide;
+                Projectile.extraUpdates = projToClone.extraUpdates;
+
+                AIType = projToClone.type;
+            }
+            else
+            {
+                Projectile.aiStyle = -1;
+                Projectile.DamageType = DamageClass.Ranged;
+            }
+            SetDefaults();
+            Projectile.extraUpdates++;
+            Projectile.extraUpdates *= 6;
+            //Projectile.netUpdate = true;
         }
 
         public override void AI()
         {
-            //Main.NewText(Projectile.Center);
             if (AIType == ProjectileID.ChlorophyteBullet)
             {
                 Projectile.alpha = 255;
-            }
-            if (dontAccidentallyStealTheDataFromAnOldProjectileTimer == 1)
-            {
-                Projectile.Center = positionFixer;
-                dontAccidentallyStealTheDataFromAnOldProjectileTimer = 2;
-            }
-            else if (dontAccidentallyStealTheDataFromAnOldProjectileTimer == 0)
-            {
-                positionFixer = Projectile.Center;
-                if (projType == 0)
-                {
-                    projType = ProjectileID.Bullet;
-                }
-                baseProj = new Projectile();
-                baseProj.SetDefaults(projType);
-                Initalize();
-                dontAccidentallyStealTheDataFromAnOldProjectileTimer = 1;
             }
             if (trailTimer <= 0)
             {
@@ -95,43 +116,6 @@ namespace Aequus.Projectiles.Ranged
             trailTimer--;
         }
 
-        private void Initalize()
-        {
-            if (baseProj != null)
-            {
-                Projectile.width = baseProj.width;
-                Projectile.height = baseProj.height;
-                Projectile.DamageType = baseProj.DamageType;
-                Projectile.aiStyle = baseProj.aiStyle;
-                Projectile.penetrate = baseProj.penetrate;
-                Projectile.usesLocalNPCImmunity = baseProj.usesLocalNPCImmunity;
-                Projectile.localNPCHitCooldown = baseProj.localNPCHitCooldown;
-                Projectile.usesIDStaticNPCImmunity = baseProj.usesIDStaticNPCImmunity;
-                Projectile.idStaticNPCHitCooldown = baseProj.idStaticNPCHitCooldown;
-                Projectile.scale = baseProj.scale;
-                Projectile.ignoreWater = baseProj.ignoreWater;
-                Projectile.tileCollide = baseProj.tileCollide;
-                Projectile.extraUpdates = baseProj.extraUpdates;
-
-                AIType = baseProj.type;
-            }
-            else
-            {
-                Projectile.aiStyle = -1;
-                Projectile.DamageType = DamageClass.Ranged;
-            }
-            SetDefaults();
-            Projectile.extraUpdates++;
-            Projectile.extraUpdates *= 6;
-            Projectile.netUpdate = true;
-            dontAccidentallyStealTheDataFromAnOldProjectileTimer = 2;
-        }
-
-        public override bool ShouldUpdatePosition()
-        {
-            return dontAccidentallyStealTheDataFromAnOldProjectileTimer == 2;
-        }
-
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
             width = 4;
@@ -142,10 +126,10 @@ namespace Aequus.Projectiles.Ranged
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (baseProj != null)
+            if (projType > ProjectileID.None)
             {
-                var value = baseProj.ModProjectile?.OnTileCollide(oldVelocity);
-                if (baseProj.type == ProjectileID.MeteorShot || baseProj.type == ProjectileID.NanoBullet)
+                var value = GetProjectileInstance().ModProjectile?.OnTileCollide(oldVelocity);
+                if (projType == ProjectileID.MeteorShot || projType == ProjectileID.NanoBullet)
                 {
                     if (Projectile.velocity.X != oldVelocity.X)
                     {
@@ -155,7 +139,7 @@ namespace Aequus.Projectiles.Ranged
                     {
                         Projectile.velocity.Y = -oldVelocity.Y;
                     }
-                    if (baseProj.type == ProjectileID.MeteorShot)
+                    if (projType == ProjectileID.MeteorShot)
                     {
                         Projectile.penetrate--;
                         if (Projectile.penetrate == 0)
@@ -192,39 +176,39 @@ namespace Aequus.Projectiles.Ranged
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            baseProj?.ModProjectile?.ModifyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
+            GetProjectileInstance()?.ModProjectile?.ModifyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (baseProj != null)
+            if (projType > ProjectileID.None)
             {
-                if (baseProj.type == ProjectileID.CursedBullet)
+                if (projType == ProjectileID.CursedBullet)
                 {
                     target.AddBuff(BuffID.CursedInferno, 240);
                 }
-                else if (baseProj.type == ProjectileID.IchorBullet)
+                else if (projType == ProjectileID.IchorBullet)
                 {
                     target.AddBuff(BuffID.Ichor, 240);
                 }
-                else if (baseProj.type == ProjectileID.VenomBullet)
+                else if (projType == ProjectileID.VenomBullet)
                 {
                     target.AddBuff(BuffID.Venom, 240);
                 }
-                else if (baseProj.type == ProjectileID.NanoBullet)
+                else if (projType == ProjectileID.NanoBullet)
                 {
                     target.AddBuff(BuffID.Confused, 1200);
                 }
-                else if (baseProj.type == ProjectileID.GoldenBullet)
+                else if (projType == ProjectileID.GoldenBullet)
                 {
                     target.AddBuff(BuffID.Midas, 1200);
                 }
-                if (baseProj.penetrate != 1)
+                if (Projectile.penetrate != 1)
                 {
                     SpawnExplosion();
                 }
+                GetProjectileInstance().ModProjectile?.OnHitNPC(target, damage, knockback, crit);
             }
-            baseProj?.ModProjectile?.OnHitNPC(target, damage, knockback, crit);
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -274,74 +258,71 @@ namespace Aequus.Projectiles.Ranged
                     d.velocity = r * (speed - Math.Min(scale * 4f, speed - 0.1f));
                 }
             }
-            if (baseProj != null)
+            if (projType == ProjectileID.CrystalBullet)
             {
-                if (baseProj.type == ProjectileID.CrystalBullet)
+                for (int i = 0; i < 6; i++)
                 {
-                    for (int i = 0; i < 6; i++)
-                    {
-                        var r = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                        var explosionPos = Projectile.Center + r * Main.rand.NextFloat(16f, 60f);
-                        if (Main.netMode != NetmodeID.Server)
-                        {
-                            int amt = (int)(35 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
-                            var color = GetColor().UseA(0) * 0.8f;
-                            for (int j = 0; j < amt; j++)
-                            {
-                                float scale = Main.rand.NextFloat(1f, 3f);
-                                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color, scale * 0.75f);
-                                var r2 = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                                d.position = explosionPos + r2 * Main.rand.NextFloat(6f);
-                                float speed = Main.rand.NextFloat(9f, 14f);
-                                d.velocity = r2 * (speed - Math.Min(scale * 4f, speed - 0.1f)) * 1.2f;
-                            }
-                        }
-                        if (Main.myPlayer == Projectile.owner)
-                        {
-                            Projectile.NewProjectile(new EntitySource_Parent(Projectile), explosionPos, Vector2.Normalize(Projectile.velocity), ModContent.ProjectileType<RayExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                            Projectile.NewProjectile(new EntitySource_Parent(Projectile), explosionPos, r * 8f, ProjectileID.CrystalShard, Projectile.damage / 10, Projectile.knockBack, Projectile.owner);
-                        }
-                    }
-                }
-                else if (baseProj.type == ProjectileID.PartyBullet)
-                {
-                    if (Main.myPlayer == Projectile.owner)
-                    {
-                        for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f)
-                        {
-                            var r = f.ToRotationVector2();
-                            Projectile.NewProjectile(new EntitySource_Parent(Projectile), center + r * 50f, r * 8f, ProjectileID.ConfettiGun, 0, 0f, Projectile.owner);
-                        }
-                    }
-                }
-                else if (baseProj.type == ProjectileID.ExplosiveBullet)
-                {
+                    var r = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
+                    var explosionPos = Projectile.Center + r * Main.rand.NextFloat(16f, 60f);
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        int amt = (int)(175 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
-                        var color = GetColor().UseA(0) * 1.2f;
+                        int amt = (int)(35 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
+                        var color = GetColor().UseA(0) * 0.8f;
                         for (int j = 0; j < amt; j++)
                         {
-                            float scale = Main.rand.NextFloat(0.6f, 2.5f);
-                            if (Main.rand.NextBool(4))
-                            {
-                                scale *= 1.5f;
-                            }
-                            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color, scale);
+                            float scale = Main.rand.NextFloat(1f, 3f);
+                            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color, scale * 0.75f);
                             var r2 = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                            d.position = center + r2 * Main.rand.NextFloat(50f);
+                            d.position = explosionPos + r2 * Main.rand.NextFloat(6f);
                             float speed = Main.rand.NextFloat(9f, 14f);
-                            d.velocity = r2 * (speed - Math.Min(scale * 4f, speed - 0.01f)) * 2.15f;
+                            d.velocity = r2 * (speed - Math.Min(scale * 4f, speed - 0.1f)) * 1.2f;
                         }
                     }
                     if (Main.myPlayer == Projectile.owner)
                     {
-                        for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f)
+                        Projectile.NewProjectile(new EntitySource_Parent(Projectile), explosionPos, Vector2.Normalize(Projectile.velocity), ModContent.ProjectileType<RayExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(new EntitySource_Parent(Projectile), explosionPos, r * 8f, ProjectileID.CrystalShard, Projectile.damage / 10, Projectile.knockBack, Projectile.owner);
+                    }
+                }
+            }
+            else if (projType == ProjectileID.PartyBullet)
+            {
+                if (Main.myPlayer == Projectile.owner)
+                {
+                    for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f)
+                    {
+                        var r = f.ToRotationVector2();
+                        Projectile.NewProjectile(new EntitySource_Parent(Projectile), center + r * 50f, r * 8f, ProjectileID.ConfettiGun, 0, 0f, Projectile.owner);
+                    }
+                }
+            }
+            else if (projType == ProjectileID.ExplosiveBullet)
+            {
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    int amt = (int)(175 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
+                    var color = GetColor().UseA(0) * 1.2f;
+                    for (int j = 0; j < amt; j++)
+                    {
+                        float scale = Main.rand.NextFloat(0.6f, 2.5f);
+                        if (Main.rand.NextBool(4))
                         {
-                            var r = f.ToRotationVector2();
-                            var explosionPos = Projectile.Center + r * Main.rand.NextFloat(42f, 68f);
-                            Projectile.NewProjectile(new EntitySource_Parent(Projectile), explosionPos, Vector2.Normalize(Projectile.velocity), ModContent.ProjectileType<RayExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                            scale *= 1.5f;
                         }
+                        var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color, scale);
+                        var r2 = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
+                        d.position = center + r2 * Main.rand.NextFloat(50f);
+                        float speed = Main.rand.NextFloat(9f, 14f);
+                        d.velocity = r2 * (speed - Math.Min(scale * 4f, speed - 0.01f)) * 2.15f;
+                    }
+                }
+                if (Main.myPlayer == Projectile.owner)
+                {
+                    for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f)
+                    {
+                        var r = f.ToRotationVector2();
+                        var explosionPos = Projectile.Center + r * Main.rand.NextFloat(42f, 68f);
+                        Projectile.NewProjectile(new EntitySource_Parent(Projectile), explosionPos, Vector2.Normalize(Projectile.velocity), ModContent.ProjectileType<RayExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                     }
                 }
             }
@@ -351,6 +332,13 @@ namespace Aequus.Projectiles.Ranged
                 // I could just override the modify hit methods and manually apply direction there but blah
                 Projectile.NewProjectile(new EntitySource_Parent(Projectile), Projectile.Center, Vector2.Normalize(Projectile.velocity), ModContent.ProjectileType<RayExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
             }
+        }
+
+        public virtual Projectile GetProjectileInstance()
+        {
+            var proj = new Projectile();
+            proj.SetDefaults(projType);
+            return proj;
         }
     }
 }

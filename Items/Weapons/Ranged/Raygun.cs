@@ -1,7 +1,6 @@
 ﻿using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,7 +24,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemDefaults.RarityOmegaStarite;
-            Item.shoot = ModContent.ProjectileType<RaygunBullet>();
+            Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 7.5f;
             Item.autoReuse = true;
             Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/raygun")?.WithVolume(0.2f);
@@ -44,11 +43,9 @@ namespace Aequus.Items.Weapons.Ranged
             return new Vector2(-4f, -4f);
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            int p = Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<RaygunBullet>(), damage, knockback, player.whoAmI);
-            Main.projectile[p].ModProjectile<RaygunBullet>().projType = type;
-            return false;
+            type = ModContent.ProjectileType<RaygunBullet>();
         }
     }
 }

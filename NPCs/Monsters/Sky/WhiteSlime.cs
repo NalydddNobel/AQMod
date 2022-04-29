@@ -34,18 +34,6 @@ namespace Aequus.NPCs.Monsters.Sky
             HeatDamageCatalogue.HeatNPC.Add(Type);
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
-            {
-                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky),
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay,
-                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.WhiteSlime")
-            });
-        }
-
-
         public override void SetDefaults()
         {
             NPC.width = 38;
@@ -90,6 +78,11 @@ namespace Aequus.NPCs.Monsters.Sky
             //    NPC.damage = (int)(NPC.damage * 1.5f);
             //    NPC.defense *= 2;
             //}
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateGaleStreamsEntry(database, bestiaryEntry);
         }
 
         public override void AI()

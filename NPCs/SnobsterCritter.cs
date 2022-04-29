@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Misc;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
@@ -34,6 +35,12 @@ namespace Aequus.NPCs
             {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, NPC.velocity.X, NPC.velocity.Y, 0, Aequus.GreenSlimeColor);
             }
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateEntry(database, bestiaryEntry)
+                .AddSpawn(BestiaryBuilder.OceanBiome);
         }
 
         public override void AI()

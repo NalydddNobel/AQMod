@@ -24,6 +24,16 @@ namespace Aequus
 
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
 
+        public static void LoopingFrame(this Projectile projectile, int ticksPerFrame)
+        {
+            projectile.frameCounter++;
+            if (projectile.frameCounter > ticksPerFrame)
+            {
+                projectile.frame = (projectile.frame + 1) % Main.projFrames[projectile.type];
+                projectile.frameCounter = 0;
+            }
+        }
+
         public static T GetValue<T>(this PropertyInfo property, object obj)
         {
             return (T)property.GetValue(obj);

@@ -87,18 +87,6 @@ namespace Aequus.NPCs.Monsters.Sky
             FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
-            {
-                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky),
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay,
-                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.RedSprite")
-            });
-            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(NPC.GetBestiaryCreditId(), true);
-        }
-
         public override void SetDefaults()
         {
             NPC.width = 74;
@@ -125,6 +113,11 @@ namespace Aequus.NPCs.Monsters.Sky
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)
         {
             return false;
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateGaleStreamsEntry(database, bestiaryEntry, miniBoss: true);
         }
 
         public override void HitEffect(int hitDirection, double damage)

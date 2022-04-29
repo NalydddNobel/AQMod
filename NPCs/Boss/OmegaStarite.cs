@@ -280,6 +280,150 @@ namespace Aequus.NPCs.Boss
             //}
         }
 
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+            if (NPC.life == -33333)
+            {
+                //if (NoHitting.HasBeenNoHit(npc, Main.myPlayer))
+                //{
+                //    NoHitting.PlayNoHitJingle(NPC.Center);
+                //}
+                var center = NPC.Center;
+                for (int k = 0; k < 60; k++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
+                }
+                for (float f = 0f; f < 1f; f += 0.02f)
+                {
+                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, Color.CornflowerBlue).noGravity = true;
+                }
+                for (float f = 0f; f < 1f; f += 0.05f)
+                {
+                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
+                }
+                ScreenCulling.SetFluff();
+                if (ScreenCulling.OnScreenWorld(NPC.getRect()))
+                {
+                    for (int k = 0; k < 7; k++)
+                    {
+                        Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                    }
+                }
+                for (int i = 0; i < rings.Length; i++)
+                {
+                    for (int j = 0; j < rings[i].amountOfSegments; j++)
+                    {
+                        for (int k = 0; k < 30; k++)
+                        {
+                            Dust.NewDust(rings[i].CachedHitboxes[j].TopLeft(), rings[i].CachedHitboxes[j].Width, rings[i].CachedHitboxes[j].Height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
+                        }
+                        for (float f = 0f; f < 1f; f += 0.125f)
+                        {
+                            Dust.NewDustPerfect(rings[i].CachedHitboxes[j].Center.ToVector2(), ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, Color.CornflowerBlue).noGravity = true;
+                        }
+                        for (float f = 0f; f < 1f; f += 0.25f)
+                        {
+                            Dust.NewDustPerfect(rings[i].CachedHitboxes[j].Center.ToVector2(), ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
+                        }
+                        if (ScreenCulling.OnScreenWorld(rings[i].CachedHitboxes[j]))
+                        {
+                            for (int k = 0; k < 7; k++)
+                            {
+                                Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                            }
+                        }
+                    }
+                }
+            }
+            else if (NPC.life <= 0)
+            {
+                SoundHelper.Play(SoundType.Sound, "omegastaritehit" + Main.rand.Next(3), NPC.Center, 0.6f);
+                //if (skipDeathTimer > 0)
+                //{
+                //    if (NoHitting.HasBeenNoHit(npc, Main.myPlayer))
+                //    {
+                //        NoHitting.PlayNoHitJingle(NPC.Center);
+                //    }
+                //    AQGraphics.SetCullPadding();
+                //    for (int i = 0; i < rings.Length; i++)
+                //    {
+                //        for (int j = 0; j < rings[i].amountOfSegments; j++)
+                //        {
+                //            for (int k = 0; k < 30; k++)
+                //            {
+                //                Dust.NewDust(rings[i].CachedHitboxes[j].TopLeft(), rings[i].CachedHitboxes[j].Width, rings[i].CachedHitboxes[j].Height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
+                //            }
+                //            for (float f = 0f; f < 1f; f += 0.125f)
+                //            {
+                //                Dust.NewDustPerfect(rings[i].CachedHitboxes[j].Center.ToVector2(), ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, Color.CornflowerBlue).noGravity = true;
+                //            }
+                //            for (float f = 0f; f < 1f; f += 0.25f)
+                //            {
+                //                Dust.NewDustPerfect(rings[i].CachedHitboxes[j].Center.ToVector2(), ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
+                //            }
+                //            if (AQGraphics.Cull_WorldPosition(rings[i].CachedHitboxes[j]))
+                //            {
+                //                for (int k = 0; k < 7; k++)
+                //                {
+                //                    Gore.NewGore(NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * 12f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
+                for (int k = 0; k < 60; k++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
+                }
+                for (float f = 0f; f < 1f; f += 0.02f)
+                {
+                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, Color.CornflowerBlue).noGravity = true;
+                }
+                for (float f = 0f; f < 1f; f += 0.05f)
+                {
+                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
+                }
+                ScreenCulling.SetFluff();
+                if (ScreenCulling.OnScreenWorld(NPC.getRect()))
+                {
+                    for (int k = 0; k < 7; k++)
+                    {
+                        Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * 6f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                    }
+                }
+
+            }
+            else
+            {
+                SoundHelper.Play(SoundType.Sound, "omegastaritehit" + Main.rand.Next(3), NPC.Center, 0.6f);
+                byte shake = (byte)MathHelper.Clamp((int)(damage / 8), 4, 10);
+                if (shake > _hitShake)
+                {
+                    _hitShake = shake;
+                }
+                float x = NPC.velocity.X.Abs() * hitDirection;
+                if (Main.rand.NextBool())
+                {
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 58);
+                    Main.dust[d].velocity.X += x;
+                    Main.dust[d].velocity.Y = Main.rand.NextFloat(2f, 6f);
+                }
+                if (Main.rand.NextBool(7))
+                    Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, new Vector2(Main.rand.NextFloat(-4f, 4f) + x * 0.75f, Main.rand.NextFloat(-4f, 4f)), 16 + Main.rand.Next(2));
+            }
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateEntry(database, bestiaryEntry)
+                .AddSpawn(BestiaryBuilder.NightTime)
+                .AddSpawn(BestiaryBuilder.SurfaceBiome);
+        }
+
         public override void AI()
         {
             if (Main.dayTime)
@@ -1084,7 +1228,6 @@ namespace Aequus.NPCs.Boss
             }
             return true;
         }
-
         private void LerpToDefaultRotationVelocity()
         {
             rings[0].rotationVelocity = Vector3.Lerp(rings[0].rotationVelocity, new Vector3(0.01f, 0.0157f, 0.0314f), 0.1f);
@@ -1094,7 +1237,6 @@ namespace Aequus.NPCs.Boss
                 rings[2].rotationVelocity = Vector3.Lerp(rings[2].rotationVelocity, new Vector3(0.012f, 0.0186f, 0.0214f), 0.1f);
             }
         }
-
         private bool ShootProjsFromRing(bool endingPhase, Ring ring)
         {
             int delay = Main.expertMode ? 12 : 60;
@@ -1127,7 +1269,6 @@ namespace Aequus.NPCs.Boss
             }
             return false;
         }
-
         private void CullRingRotations()
         {
             for (int i = 0; i < rings.Length; i++)
@@ -1136,7 +1277,6 @@ namespace Aequus.NPCs.Boss
                 rings[i].roll %= MathHelper.TwoPi;
             }
         }
-
         private void ResetRingsRadiusFromOrigin()
         {
             for (int i = 0; i < rings.Length; i++)
@@ -1144,7 +1284,6 @@ namespace Aequus.NPCs.Boss
                 rings[i].radiusFromOrigin = rings[i].OriginalRadiusFromOrigin;
             }
         }
-
         private void PullInRingsTransition()
         {
             bool allRingsSet = true;
@@ -1227,143 +1366,6 @@ namespace Aequus.NPCs.Boss
             return false;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (Main.netMode == NetmodeID.Server)
-            {
-                return;
-            }
-            if (NPC.life == -33333)
-            {
-                //if (NoHitting.HasBeenNoHit(npc, Main.myPlayer))
-                //{
-                //    NoHitting.PlayNoHitJingle(NPC.Center);
-                //}
-                var center = NPC.Center;
-                for (int k = 0; k < 60; k++)
-                {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
-                }
-                for (float f = 0f; f < 1f; f += 0.02f)
-                {
-                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, Color.CornflowerBlue).noGravity = true;
-                }
-                for (float f = 0f; f < 1f; f += 0.05f)
-                {
-                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
-                }
-                ScreenCulling.SetFluff();
-                if (ScreenCulling.OnScreenWorld(NPC.getRect()))
-                {
-                    for (int k = 0; k < 7; k++)
-                    {
-                        Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
-                    }
-                }
-                for (int i = 0; i < rings.Length; i++)
-                {
-                    for (int j = 0; j < rings[i].amountOfSegments; j++)
-                    {
-                        for (int k = 0; k < 30; k++)
-                        {
-                            Dust.NewDust(rings[i].CachedHitboxes[j].TopLeft(), rings[i].CachedHitboxes[j].Width, rings[i].CachedHitboxes[j].Height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
-                        }
-                        for (float f = 0f; f < 1f; f += 0.125f)
-                        {
-                            Dust.NewDustPerfect(rings[i].CachedHitboxes[j].Center.ToVector2(), ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, Color.CornflowerBlue).noGravity = true;
-                        }
-                        for (float f = 0f; f < 1f; f += 0.25f)
-                        {
-                            Dust.NewDustPerfect(rings[i].CachedHitboxes[j].Center.ToVector2(), ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
-                        }
-                        if (ScreenCulling.OnScreenWorld(rings[i].CachedHitboxes[j]))
-                        {
-                            for (int k = 0; k < 7; k++)
-                            {
-                                Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
-                            }
-                        }
-                    }
-                }
-            }
-            else if (NPC.life <= 0)
-            {
-                SoundHelper.Play(SoundType.Sound, "omegastaritehit" + Main.rand.Next(3), NPC.Center, 0.6f);
-                //if (skipDeathTimer > 0)
-                //{
-                //    if (NoHitting.HasBeenNoHit(npc, Main.myPlayer))
-                //    {
-                //        NoHitting.PlayNoHitJingle(NPC.Center);
-                //    }
-                //    AQGraphics.SetCullPadding();
-                //    for (int i = 0; i < rings.Length; i++)
-                //    {
-                //        for (int j = 0; j < rings[i].amountOfSegments; j++)
-                //        {
-                //            for (int k = 0; k < 30; k++)
-                //            {
-                //                Dust.NewDust(rings[i].CachedHitboxes[j].TopLeft(), rings[i].CachedHitboxes[j].Width, rings[i].CachedHitboxes[j].Height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
-                //            }
-                //            for (float f = 0f; f < 1f; f += 0.125f)
-                //            {
-                //                Dust.NewDustPerfect(rings[i].CachedHitboxes[j].Center.ToVector2(), ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, Color.CornflowerBlue).noGravity = true;
-                //            }
-                //            for (float f = 0f; f < 1f; f += 0.25f)
-                //            {
-                //                Dust.NewDustPerfect(rings[i].CachedHitboxes[j].Center.ToVector2(), ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
-                //            }
-                //            if (AQGraphics.Cull_WorldPosition(rings[i].CachedHitboxes[j]))
-                //            {
-                //                for (int k = 0; k < 7; k++)
-                //                {
-                //                    Gore.NewGore(NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * 12f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
-                for (int k = 0; k < 60; k++)
-                {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
-                }
-                for (float f = 0f; f < 1f; f += 0.02f)
-                {
-                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, Color.CornflowerBlue).noGravity = true;
-                }
-                for (float f = 0f; f < 1f; f += 0.05f)
-                {
-                    Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
-                }
-                ScreenCulling.SetFluff();
-                if (ScreenCulling.OnScreenWorld(NPC.getRect()))
-                {
-                    for (int k = 0; k < 7; k++)
-                    {
-                        Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * 6f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
-                    }
-                }
-
-            }
-            else
-            {
-                SoundHelper.Play(SoundType.Sound, "omegastaritehit" + Main.rand.Next(3), NPC.Center, 0.6f);
-                byte shake = (byte)MathHelper.Clamp((int)(damage / 8), 4, 10);
-                if (shake > _hitShake)
-                {
-                    _hitShake = shake;
-                }
-                float x = NPC.velocity.X.Abs() * hitDirection;
-                if (Main.rand.NextBool())
-                {
-                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 58);
-                    Main.dust[d].velocity.X += x;
-                    Main.dust[d].velocity.Y = Main.rand.NextFloat(2f, 6f);
-                }
-                if (Main.rand.NextBool(7))
-                    Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, new Vector2(Main.rand.NextFloat(-4f, 4f) + x * 0.75f, Main.rand.NextFloat(-4f, 4f)), 16 + Main.rand.Next(2));
-            }
-        }
-
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (Main.expertMode)
@@ -1391,17 +1393,6 @@ namespace Aequus.NPCs.Boss
         {
             scale = 1.5f;
             return null;
-        }
-
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
-            {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
-                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.OmegaStarite")
-            });
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

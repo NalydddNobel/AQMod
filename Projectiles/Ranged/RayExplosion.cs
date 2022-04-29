@@ -14,8 +14,8 @@ namespace Aequus.Projectiles.Ranged
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.timeLeft = 4;
-            Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = Projectile.timeLeft + 2;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = Projectile.timeLeft + 2;
             Projectile.penetrate = -1;
         }
     }

@@ -11,11 +11,10 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs.Characters
 {
-    [AutoloadHead()]
+    [AutoloadBossHead()]
     public class SkyMerchant : ModNPC
     {
         public static Asset<Texture2D> BasketTexture { get; private set; }
@@ -23,13 +22,14 @@ namespace Aequus.NPCs.Characters
         public static Asset<Texture2D> FleeTexture { get; private set; }
 
         public int currentAction;
-        public Item shopBanner;
         public bool setupShop;
         public int oldSpriteDirection;
         public int basketFrameCounter;
         public int basketFrame;
         public int balloonColor;
         public bool init;
+
+        public Item shopBanner;
 
         public static bool IsActive => Main.IsItAHappyWindyDay;
 
@@ -75,18 +75,13 @@ namespace Aequus.NPCs.Characters
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 0.5f;
-            AnimationType = NPCID.Guide;
+            AnimationType = NPCID.SkeletonMerchant;
             currentAction = 7;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky),
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay,
-                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.SkyMerchant")
-            });
+            this.CreateGaleStreamsEntry(database, bestiaryEntry);
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
@@ -110,6 +105,11 @@ namespace Aequus.NPCs.Characters
                 Main.npcChatText = "";
                 //Aequus.NPCTalkInterface.SetState(new RenameItemUI());
             }
+        }
+
+        public override void BossHeadSpriteEffects(ref SpriteEffects spriteEffects)
+        {
+            spriteEffects = NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot)
@@ -136,17 +136,18 @@ namespace Aequus.NPCs.Characters
             {
                 var result = new Item();
                 result.SetDefaults(potentialBanners[Main.rand.Next(potentialBanners.Count)]);
+                return result;
             }
             return null;
         }
         public List<int> SetupShopCache_BannerItem_GetPotentialBanners()
         {
             var potentialBanners = new List<int>();
-            for (int bannerID = 0; bannerID < NPCLoader.NPCCount; bannerID++)
+            for (int npcID = 0; npcID < NPCLoader.NPCCount; npcID++)
             {
-                int npcID = Item.BannerToNPC(bannerID);
-                if (npcID > 0 && !NPCID.Sets.PositiveNPCTypesExcludedFromDeathTally[npcID] && !NPCID.Sets.BelongsToInvasionOldOnesArmy[npcID] &&
-                    NPC.killCount[bannerID] > ItemID.Sets.KillsToBanner[Item.BannerToItem(bannerID)])
+                int bannerID = Item.NPCtoBanner(npcID);
+                if (bannerID > 0 && !NPCID.Sets.PositiveNPCTypesExcludedFromDeathTally[npcID] && !NPCID.Sets.BelongsToInvasionOldOnesArmy[npcID] &&
+                    NPC.killCount[bannerID] >= ItemID.Sets.KillsToBanner[Item.BannerToItem(bannerID)])
                 {
                     potentialBanners.Add(Item.BannerToItem(bannerID));
                 }
@@ -161,11 +162,6 @@ namespace Aequus.NPCs.Characters
             {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
             }
-        }
-
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
-        {
-            return false;
         }
 
         public override List<string> SetNPCNameList()
@@ -253,28 +249,10 @@ namespace Aequus.NPCs.Characters
             //return text;
         }
 
-        private bool IsOffscreen()
-        {
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                Player player = Main.player[i];
-                if (player.active && (player.Center - NPC.Center).Length() < 1250f)
-                    return false;
-            }
-            return true;
-        }
-
         public override bool PreAI()
         {
-            NPC.homeless = true;
-            if (currentAction != 7)
-            {
-                return false;
-            }
-            NPC.townNPC = true;
-            return true;
+            return currentAction == 7;
         }
-
         public override void PostAI()
         {
             bool offscreen = IsOffscreen();
@@ -304,15 +282,6 @@ namespace Aequus.NPCs.Characters
                 {
                     AequusHelpers.PlaySound(SoundType.Sound, "slidewhistle", NPC.Center, 0.5f);
                 }
-            }
-            else if (!offscreen)
-            {
-                //WorldDefeats.AirMerchantHasBeenFound = true;
-                //if (Main.netMode != NetmodeID.SinglePlayer)
-                //{
-                //    NetHelper.Request(NetHelper.PacketType.Flag_AirMerchantHasBeenFound);
-                //}
-                NPC.netUpdate = true;
             }
 
             if (currentAction == -4)
@@ -355,7 +324,7 @@ namespace Aequus.NPCs.Characters
                     bool notInTown = true;
                     for (int i = 0; i < Main.maxNPCs; i++)
                     {
-                        if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && (NPC.Center - Main.npc[i].Center).Length() < 1200f)
+                        if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && NPC.Distance(Main.npc[i].Center) < 1200f)
                         {
                             SetTownNPCState();
                             notInTown = false;
@@ -374,8 +343,10 @@ namespace Aequus.NPCs.Characters
                 return;
             }
             if (NPC.position.X <= 240f || NPC.position.X + NPC.width > Main.maxTilesX * 16f - 240f
-                || currentAction == 7 && offscreen && Main.rand.NextBool(1500))
+                || (currentAction == 7 && offscreen && Main.rand.NextBool(1500)))
             {
+                NPC.active = false;
+                NPC.netUpdate = true;
                 //AirHunterWorldData.SpawnMerchant(NPC.whoAmI);
                 return;
             }
@@ -494,11 +465,6 @@ namespace Aequus.NPCs.Characters
                 }
             }
         }
-
-        public override void FindFrame(int frameHeight)
-        {
-        }
-
         private void SetBalloonState()
         {
             currentAction = -2;
@@ -537,6 +503,25 @@ namespace Aequus.NPCs.Characters
             NPC.localAI[2] = 0f;
             NPC.localAI[3] = 0f;
         }
+        private bool IsOffscreen()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                Player player = Main.player[i];
+                if (player.active && (player.Center - NPC.Center).Length() < 1250f)
+                    return false;
+            }
+            return true;
+        }
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (spawnInfo.Player.ZoneSkyHeight && !NPC.AnyNPCs(Type))
+            {
+                return 0.1f;
+            }
+            return 0f;
+        }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -547,7 +532,7 @@ namespace Aequus.NPCs.Characters
             }
             if (currentAction == -4)
             {
-                Draw_Flee(spriteBatch, screenPos, drawColor);
+                DrawFlee(spriteBatch, screenPos, drawColor);
                 return false;
             }
             if (currentAction == 7)
@@ -650,7 +635,7 @@ namespace Aequus.NPCs.Characters
         {
             return new Rectangle(0, balloonTexture.Height / 5 * (balloonColor - 1), balloonTexture.Width, balloonTexture.Height / 5);
         }
-        public void Draw_Flee(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        public void DrawFlee(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             var texture = FleeTexture.Value;
             var frame = GetFleeFrame(texture);

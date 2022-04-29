@@ -6,6 +6,7 @@ using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Pets;
 using Aequus.Items.Placeable;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
@@ -83,18 +84,6 @@ namespace Aequus.NPCs.Monsters.Sky
             FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
-            {
-                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky),
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay,
-                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.SpaceSquid")
-            });
-            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(NPC.GetBestiaryCreditId(), true);
-        }
-
         public override void SetDefaults()
         {
             NPC.width = 80;
@@ -140,6 +129,11 @@ namespace Aequus.NPCs.Monsters.Sky
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)
         {
             return false;
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateGaleStreamsEntry(database, bestiaryEntry, miniBoss: true);
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -780,6 +774,7 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<SpaceSquidTrophy>(), 10));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<SpaceSquidRelic>()));
+            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<ToySpaceGun>(), 4));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpaceSquidMask>(), 7));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTear>(), 1, 10, 24));

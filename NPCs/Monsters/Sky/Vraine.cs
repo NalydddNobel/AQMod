@@ -71,11 +71,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.Vraine")
-            });
-            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(NPC.GetBestiaryCreditId(), true);
+            this.CreateGaleStreamsEntry(database, bestiaryEntry);
         }
 
         public override void HitEffect(int hitDirection, double damage)

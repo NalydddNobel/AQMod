@@ -76,14 +76,6 @@ namespace Aequus.NPCs.Characters
             AnimationType = NPCID.Guide;
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
-                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.Exporter")
-            });
-        }
-
         public override void HitEffect(int hitDirection, double damage)
         {
             int dustAmount = NPC.life > 0 ? 1 : 5;
@@ -91,6 +83,12 @@ namespace Aequus.NPCs.Characters
             {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
             }
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateEntry(database, bestiaryEntry)
+                .AddSpawn(BestiaryBuilder.OceanBiome);
         }
 
         //public static bool TryPlaceQuestTile(int x, int y)

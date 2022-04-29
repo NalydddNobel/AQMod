@@ -64,14 +64,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
-            {
-                new BestiaryPortraitBackgroundProviderPreferenceInfoElement(BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky),
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
-                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay,
-                new FlavorTextBestiaryInfoElement("Mods.Aequus.Bestiary.StreamingBalloon")
-            });
-            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(NPC.GetBestiaryCreditId(), true);
+            this.CreateGaleStreamsEntry(database, bestiaryEntry);
         }
 
         public override void HitEffect(int hitDirection, double damage)
