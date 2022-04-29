@@ -64,6 +64,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			ToySpaceGun: 玩具太空枪
 			GrandReward: 豪华奖励
 			Mendshroom: 愈灵菇
 			FrostPotion: 冰霜药水
@@ -364,6 +365,11 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			ToySpaceGun: 
+				'''
+				召唤一只跟着你的太空乌贼
+				'太可爱了'
+				'''
 			GrandReward: 敌人更容易掉落稀有物品
 			Mendshroom: 站定不动时会治疗你自己和附近的队友
 			FrostPotion: 降低来自热源的伤害
@@ -1086,16 +1092,14 @@ Mods: {
 			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmalbubble}"
 			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapImp}"
 			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
-			RedSpriteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.RedSprite}"
 			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
-			SpaceSquidBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SpaceSquid}"
 		}
 
 		Lingering: 长效{0}
 		Doubled: 倍效{0}
 
 		BuffName: {
-			ManaDrain: 法力枯竭
+			SpaceSquidBuff: 太空乌贼
 			Omori: 朋友
 			PrimeTime: 机械蜘蛛强化
 			ArachnotronCooldown:机械蜘蛛冷却
@@ -1144,7 +1148,7 @@ Mods: {
 		}
 
 		BuffDescription: {
-			ManaDrain: 魔法伤害降低90%
+			SpaceSquidBuff: "'它太可爱了'"
 			Omori: 当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间
 			PrimeTime: 防御大幅度提升!
 			ArachnotronCooldown: 你现在无法使用机械蜘蛛套装的效果
