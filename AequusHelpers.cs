@@ -24,6 +24,11 @@ namespace Aequus
 
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
 
+        public static bool IsTheDestroyer(this NPC npc)
+        {
+            return npc.type == NPCID.TheDestroyer || npc.type == NPCID.TheDestroyerBody || npc.type == NPCID.TheDestroyerTail;
+        }
+
         public static Rectangle Frame(this Projectile projectile)
         {
             return TextureAssets.Projectile[projectile.type].Value.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);

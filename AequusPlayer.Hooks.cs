@@ -10,6 +10,7 @@ namespace Aequus
     partial class AequusPlayer
     {
         public static float? PlayerDrawScale { get; set; }
+        public static int? PlayerDrawForceDye { get; set; }
 
         private void LoadHooks()
         {
@@ -48,6 +49,16 @@ namespace Aequus
                     DrawData data = drawinfo.DrawDataCache[i];
                     data.position -= (data.position - to) * (1f - PlayerDrawScale.Value);
                     data.scale *= PlayerDrawScale.Value;
+                    drawinfo.DrawDataCache[i] = data;
+                }
+            }
+            if (PlayerDrawForceDye != null)
+            {
+                var drawPlayer = drawinfo.drawPlayer;
+                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
+                {
+                    DrawData data = drawinfo.DrawDataCache[i];
+                    data.shader = PlayerDrawForceDye.Value;
                     drawinfo.DrawDataCache[i] = data;
                 }
             }

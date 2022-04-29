@@ -9,6 +9,11 @@ namespace Aequus.Items.Weapons.Magic
 {
     public class Snowgrave : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 80;

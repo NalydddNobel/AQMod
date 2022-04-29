@@ -8,6 +8,11 @@ namespace Aequus.Items.Weapons.Ranged
 {
     public class CrusadersCrossbow : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.damage = 22;

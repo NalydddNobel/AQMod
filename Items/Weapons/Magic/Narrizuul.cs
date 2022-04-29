@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players;
+﻿using Aequus.Common.Utilities;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -35,7 +35,7 @@ namespace Aequus.Items.Weapons.Magic
             {
                 if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "ItemName")
                 {
-                    tooltips[i].OverrideColor = Main.LocalPlayer.GetModPlayer<DrawEffectsPlayer>().NalydGradientPersonal.GetColor(Main.GlobalTimeWrappedHourly);
+                    tooltips[i].OverrideColor = Gradients.nalydGradient.GetColor(Main.GlobalTimeWrappedHourly);
                     return;
                 }
             }

@@ -11,6 +11,11 @@ namespace Aequus.Items.Weapons.Ranged
     {
         public override bool OnlyShootOnSwing => true;
 
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.damage = 13;

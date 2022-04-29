@@ -27,10 +27,15 @@ namespace Aequus.Projectiles.Magic
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (target.type == NPCID.TheDestroyer || target.type == NPCID.TheDestroyerBody || target.type == NPCID.TheDestroyerTail)
+            if (target.IsTheDestroyer())
             {
                 damage = (int)(damage * 0.50f);
             }
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.OnFire3, 480);
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)

@@ -65,7 +65,7 @@ namespace Aequus.Projectiles.Magic
         {
             target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
             target.GetGlobalNPC<DeathEffects>().SetContext(DeathEffects.Context.Snowgrave, 20);
-            if (target.type == NPCID.TheDestroyer || target.type == NPCID.TheDestroyerBody || target.type == NPCID.TheDestroyerTail)
+            if (target.IsTheDestroyer())
             {
                 Projectile.ai[0] += 12.5f;
             }

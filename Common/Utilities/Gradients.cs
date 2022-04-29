@@ -11,6 +11,7 @@ namespace Aequus.Common.Utilities
         public static IColorGradient demonicGrad;
         public static IColorGradient organicGrad;
         public static IColorGradient ultimateGrad;
+        public static IColorGradient nalydGradient;
 
         void ILoadable.Load(Mod mod)
         {
@@ -20,6 +21,7 @@ namespace Aequus.Common.Utilities
             demonicGrad = new ColorWaveGradient(4f, new Color(222, 100, 10, 0) * 0.8f, new Color(255, 255, 120, 0) * 0.8f);
             organicGrad = new ColorWaveGradient(4f, new Color(120, 255, 60, 0), new Color(180, 250, 90, 0));
             ultimateGrad = new ColorWaveGradient(8f, new Color(150, 255, 255, 0), new Color(255, 150, 255, 0));
+            nalydGradient = new ColorWaveGradient(10f, Color.Violet, Color.MediumPurple);
         }
 
         void ILoadable.Unload()

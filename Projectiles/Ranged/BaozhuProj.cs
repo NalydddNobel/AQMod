@@ -102,6 +102,7 @@ namespace Aequus.Projectiles.Ranged
         {
             if (Projectile.timeLeft > 3)
                 Projectile.timeLeft = 3;
+            target.AddBuff(BuffID.OnFire3, 480);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
