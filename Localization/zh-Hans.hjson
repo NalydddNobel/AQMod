@@ -373,7 +373,7 @@ Mods: {
 			GrandReward: 敌人更容易掉落稀有物品
 			Mendshroom: 站定不动时会治疗你自己和附近的队友
 			FrostPotion: 降低来自热源的伤害
-			GlowCore: 散发着彩色的光芒
+			GlowCore: 你和你的弹幕会发光
 			SnowPalette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
@@ -696,7 +696,7 @@ Mods: {
 				允许你创造雷云网来轰击你的敌人
 				至多同时存在12朵雷云
 				'''
-			ThunderClap: 召唤雷霆从天而降
+			ThunderClap: 召唤两个大手拍打你的敌人
 			Umystick:
 				'''
 				{$Mods.Aequus.Tooltips.UmbrellaWeapon}
@@ -723,8 +723,7 @@ Mods: {
 				'''
 			Snowgrave:
 				'''
-				在下方召唤向上喷涌的冰雪风暴
-				释放法术时会耗尽你的法力值一小段时间
+				在下方召唤向上喷涌的致命冰雪风暴
 				'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
 				'''
 			UltimateSword:
