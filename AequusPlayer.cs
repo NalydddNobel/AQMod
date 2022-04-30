@@ -297,7 +297,7 @@ namespace Aequus
             float distance = 2000f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && !Main.npc[i].friendly && !Main.npc[i].IsProbablyACritter())
+                if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].type != NPCID.TargetDummy && Main.npc[i].CanBeChasedBy(Player) && !Main.npc[i].IsProbablyACritter())
                 {
                     if (Main.npc[i].getRect().Intersects(checkTangle))
                     {

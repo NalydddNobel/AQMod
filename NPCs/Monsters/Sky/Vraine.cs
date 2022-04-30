@@ -2,6 +2,7 @@
 using Aequus.Content.CrossMod;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Placeable.Banners;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -46,9 +47,10 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.knockBackResist = 0.1f;
             NPC.value = Item.buyPrice(silver: 3);
             NPC.buffImmune[BuffID.OnFire] = true;
-            //banner = NPC.type;
-            //bannerItem = ModContent.ItemType<VraineBanner>();
             NPC.noTileCollide = true;
+
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<VraineBanner>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

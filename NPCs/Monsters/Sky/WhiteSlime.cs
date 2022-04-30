@@ -2,6 +2,7 @@
 using Aequus.Common.ItemDrops;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Particles.Dusts;
 using Aequus.Sounds;
@@ -58,10 +59,8 @@ namespace Aequus.NPCs.Monsters.Sky
 
             NPC.SetLiquidSpeeds(water: 1f, lava: 1f);
 
-            //banner = NPC.type;
-            //bannerItem = ModContent.ItemType<Items.Placeable.Banners.WhiteSlimeBanner>();
-
-            //NPC.GetGlobalNPC<AQNPC>().temperature = 40;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<WhiteSlimeBanner>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

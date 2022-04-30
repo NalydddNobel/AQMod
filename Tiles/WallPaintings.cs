@@ -25,6 +25,7 @@ namespace Aequus.Tiles
             TileObjectData.newTile.StyleWrapLimit = 36;
             TileObjectData.addTile(Type);
             DustType = DustID.WoodFurniture;
+            TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(120, 85, 60), Language.GetText("MapObject.Painting"));
         }
 

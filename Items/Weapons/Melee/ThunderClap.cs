@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.SetWeaponValues(88, 32f, 15);
+            Item.SetWeaponValues(55, 32f, 15);
             Item.width = 30;
             Item.height = 30;
             Item.useTime = 100;
